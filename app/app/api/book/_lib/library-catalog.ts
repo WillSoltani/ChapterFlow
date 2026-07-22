@@ -10,6 +10,7 @@ import type {
   LibraryChapterSummary,
 } from "@/app/book/_lib/library-data";
 import { boilerplateSynopsis } from "@/lib/library-catalog-stub";
+import { logger } from "@/lib/logging/logger";
 import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
 import {
@@ -110,10 +111,10 @@ async function readLibraryCatalogIndex(
     // that 422'd the whole library), or any transient S3 error must DEGRADE to
     // DynamoDB-only data, not fail the listing. See library-catalog-index-core.
     if (shouldDegradeLibraryCatalogIndex(error)) {
-      console.warn("library_catalog_index_degraded", {
+      logger.warn("library_catalog_index_degraded", {
         key: LIBRARY_CATALOG_KEY,
         code: error instanceof BookApiError ? error.code : undefined,
-        message: error instanceof Error ? error.message : String(error),
+        err: error,
       });
       return new Map();
     }

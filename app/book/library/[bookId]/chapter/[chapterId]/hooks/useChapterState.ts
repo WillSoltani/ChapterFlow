@@ -1,14 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJson } from "@/lib/client/book-api";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
-import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
-
-export type ChapterTab = "summary" | "examples" | "quiz" | "practice";
-export type ExampleFilter = "all" | "work" | "school" | "personal";
-export type FontScale = "sm" | "md" | "lg";
+import type { ReadingDepth } from "@/lib/reader-content-types";
+import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
+import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
+export type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
 
 export type QuizResult = {
   score: number;

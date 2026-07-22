@@ -47,8 +47,9 @@ interface BookCoverProps {
 /**
  * Canonical book cover. Renders a real cover raster through next/image via the
  * shared useBookCoverSource resolver (AVIF→WebP local rasters, then the remote
- * S3 URL as a last resort; `unoptimized` keeps every source out of /_next/image,
- * which 400s on these). Only when every candidate fails do we show the fallback.
+ * S3 URL as a last resort). Local rasters use the default Next image optimizer;
+ * only the external fallback is passed through unoptimized. Only when every
+ * candidate fails do we show the fallback.
  * The image is decorative (alt="") because every caller renders the book title
  * as adjacent text.
  *
@@ -87,7 +88,7 @@ export function BookCover({
   fallbackClassName,
   interactive = true,
 }: BookCoverProps) {
-  const { src, exhausted, onError, loader } = useBookCoverSource(bookId, coverImage);
+  const { src, exhausted, onError, imageProps } = useBookCoverSource(bookId, coverImage);
   const showFallback = !src || exhausted;
   const isEmbedded = fill || width !== undefined || height !== undefined || borderRadius !== undefined;
 
@@ -98,7 +99,7 @@ export function BookCover({
       style={{ background: coverGradient, borderRadius }}
       aria-hidden="true"
     >
-      <span className="line-clamp-3 hyphens-auto break-words text-[12px] font-semibold leading-tight text-white">
+      <span className="line-clamp-3 hyphens-auto break-words text-cf-label-sm font-semibold leading-tight text-white">
         {title}
       </span>
     </span>
@@ -118,8 +119,7 @@ export function BookCover({
         {...(priority ? { priority: true } : { loading: "lazy" as const })}
         className={`object-cover ${className ?? ""}`}
         onError={onError}
-        loader={loader}
-        unoptimized
+        {...imageProps}
       />
     ) : null;
 
@@ -180,8 +180,7 @@ export function BookCover({
           {...(priority ? { priority: true } : { loading: "lazy" as const })}
           className={imageClasses}
           onError={onError}
-          loader={loader}
-          unoptimized
+          {...imageProps}
         />
       ) : null}
 

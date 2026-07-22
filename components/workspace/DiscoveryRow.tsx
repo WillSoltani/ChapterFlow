@@ -54,7 +54,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
 
       {/* Book cards */}
       <div
-        className="hide-scrollbar flex gap-3 overflow-x-auto pb-2"
+        className="scrollbar-hide flex gap-3 overflow-x-auto pb-2"
         role="list"
         style={{ scrollSnapType: "x mandatory" }}
       >

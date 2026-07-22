@@ -2,20 +2,19 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import {
-  motion,
+  m,
   AnimatePresence,
   useReducedMotion,
   useInView,
 } from "framer-motion";
 
-import { PhaseStepper } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PhaseStepper";
-import { SummaryCard } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/SummaryCard";
-import { ExamplesList } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ExamplesList";
-import { PracticePhase } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/PracticePhase";
-import { ContinueButton } from "@/app/book/library/[bookId]/chapter/[chapterId]/components/ContinueButton";
-import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import type { ExampleFilter } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
+import { PhaseStepper } from "@/components/reader/PhaseStepper";
+import { SummaryCard } from "@/components/reader/SummaryCard";
+import { ExamplesList } from "@/components/reader/ExamplesList";
+import { PracticePhase } from "@/components/reader/PracticePhase";
+import { ContinueButton } from "@/components/reader/ContinueButton";
+import type { ChapterTab, ExampleFilter } from "@/lib/reader-state-types";
+import type { ReadingDepth } from "@/lib/reader-content-types";
 
 import { AppWindowChrome } from "./AppWindowChrome";
 import { MobileAppChrome } from "./MobileAppChrome";
@@ -104,6 +103,11 @@ export function DesktopReaderShell({
   // loop run once, then it rests — no perpetual motion they can't halt.
   const advancesRef = useRef(0);
   const [loopComplete, setLoopComplete] = useState(false);
+  // Keyboard focus is a transient pause, not a permanent interaction. While a
+  // visitor is reading or operating anything in the demo, keep the keyed phase
+  // subtree mounted so its focused control cannot disappear. Once focus leaves
+  // the demo, autoplay may resume with a fresh dwell period.
+  const [isFocusWithin, setIsFocusWithin] = useState(false);
 
   const stopAutoAdvance = useCallback(() => {
     if (advanceRef.current) {
@@ -126,6 +130,7 @@ export function DesktopReaderShell({
     if (!autoPlay || isControlled) return;
     if (prefersReducedMotion) return;
     if (!isInView) return;
+    if (isFocusWithin) return;
     if (hasInteracted.current) return;
     if (loopComplete) return; // one full loop done — rest (WCAG 2.2.2)
     const dwell = PHASE_DURATIONS_MS[activeTab];
@@ -145,6 +150,7 @@ export function DesktopReaderShell({
     stopAutoAdvance,
     prefersReducedMotion,
     isInView,
+    isFocusWithin,
     autoPlay,
     isControlled,
     loopComplete,
@@ -215,11 +221,25 @@ export function DesktopReaderShell({
   return (
     <div
       ref={rootRef}
+      onFocusCapture={() => {
+        stopAutoAdvance();
+        setIsFocusWithin(true);
+      }}
+      onBlurCapture={(event) => {
+        const nextTarget = event.relatedTarget;
+        if (
+          nextTarget instanceof Node &&
+          event.currentTarget.contains(nextTarget)
+        ) {
+          return;
+        }
+        setIsFocusWithin(false);
+      }}
       className="overflow-hidden rounded-[1.75rem] border md:rounded-2xl"
       style={{
         background: "var(--cr-bg-root)",
         borderColor: "var(--cr-glass-border)",
-        boxShadow: "0 24px 64px rgba(0,0,0,0.5), 0 8px 24px rgba(0,0,0,0.3)",
+        boxShadow: "var(--cf-anchor-shadow)",
       }}
     >
       {/* Phone-style chrome on small screens; desktop browser chrome from md up. */}
@@ -259,7 +279,7 @@ export function DesktopReaderShell({
         onClick={isControlled ? undefined : markInteracted}
       >
         <AnimatePresence mode="wait">
-          <motion.div
+          <m.div
             key={`${activeTab}-${readingDepth}`}
             initial={prefersReducedMotion ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
@@ -347,7 +367,7 @@ export function DesktopReaderShell({
                 chapterId={DEMO_CHAPTER_ID}
               />
             )}
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       </div>
     </div>

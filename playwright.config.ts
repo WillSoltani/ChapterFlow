@@ -35,6 +35,10 @@ const BASE_URL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 // NODE_ENV=production it is a no-op anyway.
 export const PROD_E2E_ENV: Readonly<Record<string, string>> = {
   ...buildSyntheticRuntimeEnvironment("prod"),
+  // The server listens on loopback, but production redirects must use the same
+  // trusted public authority as a deployed environment. A loopback public base
+  // is intentionally rejected by the middleware origin boundary.
+  CHAPTERFLOW_APP_BASE_URL: "https://app.chapterflow.ca",
   NEXT_DIST_DIR: ".next-prod-e2e",
   NEXT_TELEMETRY_DISABLED: "1",
 };

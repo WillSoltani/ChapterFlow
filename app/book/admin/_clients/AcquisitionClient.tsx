@@ -57,7 +57,7 @@ export function AcquisitionClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -96,7 +96,7 @@ export function AcquisitionClient() {
                   data.totalSurveyed > 0 ? Math.round((r.count / data.totalSurveyed) * 100) : 0;
                 return (
                   <div key={r.label}>
-                    <div className="mb-1 flex items-center justify-between text-[12px]">
+                    <div className="mb-1 flex items-center justify-between text-cf-label-sm">
                       <span className="font-medium text-(--cf-text-2)">{r.label}</span>
                       <span className="tabular-nums text-(--cf-text-3)">
                         {r.count.toLocaleString()}{" "}
@@ -122,7 +122,7 @@ export function AcquisitionClient() {
               compact
             />
           ) : (
-            <ul className="space-y-1.5 text-[12px]">
+            <ul className="space-y-1.5 text-cf-label-sm">
               {data?.utmCampaigns.map((c, i) => (
                 <li key={i} className="flex items-center justify-between">
                   <span className="text-(--cf-text-2)">
@@ -138,7 +138,7 @@ export function AcquisitionClient() {
         </AdminCard>
       </div>
 
-      <p className="mt-4 text-[11px] text-(--cf-text-soft)">
+      <p className="mt-4 text-cf-caption text-(--cf-text-soft)">
         Referer and UTM (utm_source, utm_medium, utm_campaign) are captured at signup; these
         breakdowns populate as users arrive through tagged links.
       </p>

@@ -1,5 +1,6 @@
 // This module was split out of repo.ts (WS3-004). Code moved verbatim.
 
+import { logger } from "@/lib/logging/logger";
 import {
   GetCommand,
   PutCommand,
@@ -206,10 +207,10 @@ export async function setAccountStatus(
       })
     );
   } catch (error) {
-    console.error("account_status_audit_write_failed", {
+    logger.error("account_status_audit_write_failed", {
       userId,
       status,
-      message: error instanceof Error ? error.message : String(error),
+      err: error,
     });
   }
 }

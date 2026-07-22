@@ -5,6 +5,7 @@ import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { recordNudgeSent, getUserActivePair } from "@/app/app/api/book/_lib/pair-repo";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -40,7 +41,7 @@ export async function POST(req: Request, ctx: Params) {
         body: "Time to pick up where you left off.",
       });
     } catch (err) {
-      console.error("partner_nudge_notification_failed", { partnerId, err });
+      logger.error("partner_nudge_notification_failed", { partnerId, err });
     }
 
     return bookOk({ sent: true });

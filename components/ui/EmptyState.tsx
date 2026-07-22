@@ -114,7 +114,7 @@ export function EmptyState({
         )}
         <p className="mt-3 text-base font-semibold text-(--cf-text-1)">{title}</p>
         {description && (
-          <p className="mx-auto mt-1 max-w-md text-[13px] leading-relaxed text-(--cf-text-3)">
+          <p className="mx-auto mt-1 max-w-md text-cf-label leading-relaxed text-(--cf-text-3)">
             {description}
           </p>
         )}

@@ -167,8 +167,8 @@ export function KnowledgeReview({
                   background: "var(--accent-cyan)",
                   color: "var(--cf-accent-contrast)",
                   width: "fit-content",
-                  border: "1px solid rgba(34,211,238,0.3)",
-                  boxShadow: "0 4px 12px rgba(34,211,238,0.25)",
+                  border: "1px solid color-mix(in srgb, var(--accent-cyan) 30%, transparent)",
+                  boxShadow: "0 4px 12px color-mix(in srgb, var(--accent-cyan) 25%, transparent)",
                 }}
               >
                 Start Review {"\u2192"}
@@ -187,12 +187,12 @@ export function KnowledgeReview({
                       style={{
                         width: 40,
                         background: isTodayCell
-                          ? "rgba(56,189,248,0.1)"
+                          ? "color-mix(in srgb, var(--cf-data-sky) 10%, transparent)"
                           : day.count > 0
                             ? "var(--cf-surface-muted)"
                             : "transparent",
                         border: isTodayCell
-                          ? "2px solid rgba(56,189,248,0.4)"
+                          ? "2px solid color-mix(in srgb, var(--cf-data-sky) 40%, transparent)"
                           : "1px solid transparent",
                       }}
                     >
@@ -210,7 +210,7 @@ export function KnowledgeReview({
                         <span
                           className="flex h-5 w-5 items-center justify-center rounded-full text-[10px] font-semibold"
                           style={{
-                            background: "rgba(56,189,248,0.2)",
+                            background: "color-mix(in srgb, var(--cf-data-sky) 20%, transparent)",
                             color: "var(--cf-accent)",
                           }}
                         >

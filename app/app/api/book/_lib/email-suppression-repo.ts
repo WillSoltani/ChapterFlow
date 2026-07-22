@@ -18,6 +18,7 @@ import {
   isConditionalCheckFailed,
   readStr,
 } from "./repo-shared";
+import { logger } from "@/lib/logging/logger";
 
 /**
  * Atomically claim the right to send the transactional "trial ends soon" email
@@ -117,10 +118,7 @@ export async function isEmailSuppressed(
     );
     return isAddressSuppressed({ ok: true, itemFound: !!res.Item });
   } catch (error) {
-    console.error(
-      "[repo] email suppression lookup failed — failing CLOSED (treating address as suppressed, skipping this send)",
-      error
-    );
+    logger.error("email_suppression_lookup_failed_closed", { err: error });
     return isAddressSuppressed({ ok: false, error });
   }
 }

@@ -6,6 +6,7 @@ import { getAuthCookieBase } from "../_lib/auth-cookie";
 import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 import { encryptState } from "../_lib/state-crypto";
+import { logger } from "@/lib/logging/logger";
 
 // Identity providers the branded entry screen is allowed to deep-link into.
 // Validated server-side so a crafted ?identity_provider= value can never be
@@ -167,9 +168,7 @@ export async function GET(req: NextRequest) {
 
     return res;
   } catch (error: unknown) {
-    console.error("auth_login_error", {
-      message: error instanceof Error ? error.message : String(error),
-    });
+    logger.error("auth_login_error", { err: error });
     return NextResponse.redirect(new URL("/?auth=server_error", origin));
   }
 }

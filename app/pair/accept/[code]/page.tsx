@@ -37,7 +37,7 @@ export default async function PairAcceptFallbackPage({
       secondaryLabel="Enter a code manually"
     >
       {normalized ? (
-        <p className="mb-6 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 font-mono text-[15px] tracking-widest text-(--cf-text-1)">
+        <p className="mb-6 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3 font-mono text-cf-body tracking-widest text-(--cf-text-1)">
           {normalized}
         </p>
       ) : null}

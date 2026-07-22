@@ -42,6 +42,7 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { nowIso, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 import { redactLicenseCode } from "./license-redaction-core";
 import { eventSk } from "./analytics-event-key-core";
+import { logger } from "@/lib/logging/logger";
 
 const SCHEMA_V = "1";
 
@@ -357,7 +358,7 @@ export async function analyticsSetUserLocale(
     );
   } catch (err) {
     // Don't break the request flow on analytics failure
-    console.warn("[analytics] setUserLocale failed:", err);
+    logger.warn("analytics_set_user_locale_failed", { err });
   }
 }
 

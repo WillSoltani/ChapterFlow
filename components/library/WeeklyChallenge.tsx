@@ -33,7 +33,7 @@ export function WeeklyChallenge({ challenge, onBrowseCategory }: WeeklyChallenge
           style={{
             maxWidth: 1080,
             margin: "40px auto 0",
-            background: "rgba(245,158,11,0.04)",
+            background: "color-mix(in srgb, var(--accent-amber) 4%, transparent)",
             border: "1px solid var(--border-subtle)",
             borderLeft: "4px solid var(--accent-amber)",
           }}
@@ -56,7 +56,7 @@ export function WeeklyChallenge({ challenge, onBrowseCategory }: WeeklyChallenge
             {/* Compass — "a direction to explore", not a trophy/prize */}
             <div
               className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-              style={{ background: "rgba(245,158,11,0.12)" }}
+              style={{ background: "color-mix(in srgb, var(--accent-amber) 12%, transparent)" }}
             >
               <svg
                 width="20"
@@ -74,11 +74,11 @@ export function WeeklyChallenge({ challenge, onBrowseCategory }: WeeklyChallenge
             </div>
 
             <div className="min-w-0">
-              <p className="text-[14px] font-semibold" style={{ color: "var(--text-heading)" }}>
+              <p className="text-cf-body-sm font-semibold" style={{ color: "var(--text-heading)" }}>
                 This week&apos;s focus:{" "}
                 <span style={{ color: "var(--cf-amber-text)" }}>{challenge.description}</span>
               </p>
-              <p className="mt-1 text-[12px]" style={{ color: "var(--text-secondary)" }}>
+              <p className="mt-1 text-cf-label-sm" style={{ color: "var(--text-secondary)" }}>
                 A gentle nudge to explore something new — no streak, no timer.
               </p>
 
@@ -86,10 +86,10 @@ export function WeeklyChallenge({ challenge, onBrowseCategory }: WeeklyChallenge
                 <button
                   type="button"
                   onClick={() => onBrowseCategory(challenge.category!)}
-                  className="mt-3 inline-flex cursor-pointer items-center rounded-lg px-4 py-2 text-[13px] font-semibold transition-colors"
+                  className="mt-3 inline-flex cursor-pointer items-center rounded-lg px-4 py-2 text-cf-label font-semibold transition-colors"
                   style={{
-                    background: "rgba(245,158,11,0.1)",
-                    border: "1px solid rgba(245,158,11,0.2)",
+                    background: "color-mix(in srgb, var(--accent-amber) 10%, transparent)",
+                    border: "1px solid color-mix(in srgb, var(--accent-amber) 20%, transparent)",
                     color: "var(--cf-amber-text)",
                   }}
                 >

@@ -9,7 +9,7 @@ import {
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { LearningLoopIndicator } from "./LearningLoopIndicator";
-import { BOOKS_CATALOG } from "@/app/book/data/booksCatalog";
+import { BOOKS_CATALOG } from "@/lib/books-catalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 
 type LoopStep = "summary" | "scenarios" | "quiz" | "unlock";
@@ -266,7 +266,7 @@ export function HeroSessionCard({
               }}
             />
             <span
-              className="text-[11px] font-semibold uppercase tracking-widest"
+              className="text-cf-caption font-semibold uppercase tracking-widest"
               style={{ color: badge.textColor ?? badge.color }}
             >
               {badge.label}
@@ -462,7 +462,7 @@ export function HeroSessionCard({
                       className="rounded-lg object-cover ring-1 ring-white/[0.08]"
                       style={{
                         boxShadow:
-                          "0 25px 50px -12px rgba(0,0,0,0.6), 0 0 30px -5px var(--accent-cyan-glow)",
+                          "0 25px 50px -12px color-mix(in srgb, var(--cf-palette-black) 60%, transparent), 0 0 30px -5px var(--accent-cyan-glow)",
                       }}
                     />
                   </Link>

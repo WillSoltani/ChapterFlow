@@ -9,7 +9,10 @@ import {
   assertAppleIapDeploymentConfig,
   shouldAssertAppleIapDeploymentConfig,
 } from "../lib/apple-iap-config";
-import { buildFrontendRuntimeConfig } from "../lib/frontend-runtime-config";
+import {
+  buildFrontendRuntimeConfig,
+  resolveFrontendHostedZoneId,
+} from "../lib/frontend-runtime-config";
 import { SensitiveWildcardGuard } from "../lib/iam-guards";
 
 const app = new cdk.App();
@@ -114,8 +117,13 @@ if (!skipFrontend && openNextExists) {
     deploymentEnvironment: cfg.env,
     appTableName,
     contentBucketName,
+    ssmParameterPrefix: cfg.ssmPrefix,
     deployEnv: process.env,
   });
+  const hostedZoneId = resolveFrontendHostedZoneId(
+    cfg.domainName,
+    process.env.CHAPTERFLOW_HOSTED_ZONE_ID,
+  );
 
   new ChapterFlowFrontendStack(app, cfg.frontendStackId, {
     env,
@@ -127,6 +135,7 @@ if (!skipFrontend && openNextExists) {
     contentBucketName,
     ssmPrefix: cfg.ssmPrefix,
     domainName: cfg.domainName,
+    hostedZoneId,
     // WS6-002 interim origin lock. Secret unset → byte-identical to today (no
     // header, no enforcement). Mode is passed through ONLY when exactly "log"
     // (the two-phase observation window); anything else leaves it undefined so

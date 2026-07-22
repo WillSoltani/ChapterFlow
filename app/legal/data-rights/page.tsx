@@ -16,11 +16,11 @@ export default function DataRightsPage() {
       >
         Your Data Rights
       </h1>
-      <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
+      <p className="text-cf-body-sm mb-10" style={{ color: "var(--text-muted)" }}>
         Effective date: June 10, 2026
       </p>
 
-      <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+      <div className="space-y-8 text-cf-body leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
           <p>
             You control your personal data on ChapterFlow. Once you&apos;re signed in, you can exercise most rights
@@ -36,7 +36,7 @@ export default function DataRightsPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             Access &amp; export
           </h2>
           <p>
@@ -51,7 +51,7 @@ export default function DataRightsPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             Correct your information
           </h2>
           <p>
@@ -61,7 +61,7 @@ export default function DataRightsPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             Deactivate or delete
           </h2>
           <ul className="list-disc pl-6 space-y-2">
@@ -79,7 +79,7 @@ export default function DataRightsPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             Withdraw consent
           </h2>
           <p>
@@ -90,7 +90,7 @@ export default function DataRightsPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             Data retention
           </h2>
           <p>
@@ -102,7 +102,7 @@ export default function DataRightsPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             Making a request
           </h2>
           <p>

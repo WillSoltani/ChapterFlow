@@ -21,11 +21,11 @@ export default function TermsOfServicePage() {
       >
         Terms of Service
       </h1>
-      <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
+      <p className="text-cf-body-sm mb-10" style={{ color: "var(--text-muted)" }}>
         Effective date: June 10, 2026
       </p>
 
-      <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+      <div className="space-y-8 text-cf-body leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
           <h2 className="text-[21px] font-semibold mt-2 mb-3" style={{ color: "var(--text-heading)" }}>
             1. Acceptance of Terms

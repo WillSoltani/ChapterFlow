@@ -68,7 +68,7 @@ export function SettingsSection({
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
             <Icon className="h-4 w-4" />
           </div>
-          <h2 className="text-[15px] font-semibold text-(--cf-text-1)">{title}</h2>
+          <h2 className="text-cf-body font-semibold text-(--cf-text-1)">{title}</h2>
           {badge && (
             <span className="rounded-full bg-(--cf-surface-muted) px-2 py-0.5 text-[10px] font-medium text-(--cf-text-soft)">
               {badge}

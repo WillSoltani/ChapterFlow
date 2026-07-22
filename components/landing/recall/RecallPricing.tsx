@@ -21,7 +21,7 @@
 import { useState } from "react";
 import { Check, ArrowRight } from "lucide-react";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
-import { SegmentedControl } from "@/app/book/settings/components/controls/SegmentedControl";
+import { SegmentedControl } from "@/components/ui/SegmentedControl";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import {
   PRICING,
@@ -67,7 +67,7 @@ export function RecallPricing() {
         {/* ── Editorial header, centered, lots of air ── */}
         <header className="mx-auto max-w-[40rem] text-center">
           <p
-            className="cf-fade-up font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.34em]"
+            className="cf-fade-up font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.34em]"
             style={{ color: "var(--cf-recall-ink-faint)", animationDelay: "0ms" }}
           >
             Pricing
@@ -161,7 +161,7 @@ function PricingPlans() {
             }}
           >
             <p
-              className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.28em]"
+              className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.28em]"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
               Free
@@ -194,6 +194,7 @@ function PricingPlans() {
             </ul>
 
             <a
+              data-public-sticky-cta-suppress
               href={AUTH_LOGIN_BOOK_URL}
               className="mt-9 inline-flex w-full items-center justify-center rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,background,border-color] duration-150 ease-out hover:brightness-110 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
               style={{
@@ -219,7 +220,7 @@ function PricingPlans() {
           >
             <div className="flex items-baseline justify-between gap-3">
               <p
-                className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.28em]"
+                className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.28em]"
                 style={{ color: "var(--cf-recall-accent)" }}
               >
                 Pro
@@ -271,6 +272,7 @@ function PricingPlans() {
             </ul>
 
             <a
+              data-public-sticky-cta-suppress
               href={proUpgradeHref}
               className="mt-9 inline-flex w-full items-center justify-center gap-2 rounded-full px-7 py-3.5 text-[0.9375rem] font-semibold transition-[transform,filter] duration-150 ease-out hover:brightness-105 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
               style={{

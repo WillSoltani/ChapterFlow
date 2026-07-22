@@ -8,6 +8,7 @@ import {
   scanAllUserSnapshots,
 } from "@/app/app/api/book/_lib/admin-metrics";
 import { countFunnelTail, scaleFunnelCount } from "@/app/app/api/book/_lib/funnels-tail-core";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -43,7 +44,7 @@ export async function GET(req: Request) {
         "userId, firstSeenAt, onboardingCompletedAt, totalSessionCount, totalQuizAttempts, totalQuizPasses",
       );
     } catch (err) {
-      console.warn("[admin-funnels] snapshot scan failed:", err);
+      logger.warn("admin_funnels_snapshot_scan_failed", { err });
       warnings.push("Funnel data unavailable (database scan failed).");
     }
 

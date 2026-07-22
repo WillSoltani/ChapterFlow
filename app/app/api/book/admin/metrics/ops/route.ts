@@ -21,6 +21,7 @@ import {
   listRecentIngestionJobsForAdmin,
   type AdminIngestionJob,
 } from "@/app/app/api/book/_lib/ingestion-repo";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -53,7 +54,7 @@ export async function GET(req: Request) {
     ] = await Promise.all([
       dailySeries(analyticsTable, days, "beacon_performance").catch(() => []),
       listRecentIngestionJobsForAdmin(tableName).catch((err) => {
-        console.warn("[admin-ops] ingestion jobs scan failed:", err);
+        logger.warn("admin_ops_ingestion_jobs_scan_failed", { err });
         warnings.push("Ingestion jobs unavailable (database scan failed).");
         return [] as IngestionJob[];
       }),
@@ -82,7 +83,7 @@ export async function GET(req: Request) {
       ]),
       // Unresolved operational failures (e.g. swallowed Stripe cancellations)
       listRecentOpsFailures(tableName, { limit: 25 }).catch((err) => {
-        console.warn("[admin-ops] ops failures query failed:", err);
+        logger.warn("admin_ops_failures_query_failed", { err });
         return [];
       }),
     ]);

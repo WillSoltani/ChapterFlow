@@ -8,6 +8,7 @@ import {
   type MetricDatum,
 } from "@aws-sdk/client-cloudwatch";
 import { DescribeTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
+import { logger } from "@/lib/logging/logger";
 
 const REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
 
@@ -73,9 +74,9 @@ export async function putOpsMetric(
       })
     );
   } catch (error) {
-    console.error("cloudwatch_put_metric_failed", {
+    logger.error("cloudwatch_put_metric_failed", {
       metricName,
-      message: error instanceof Error ? error.message : String(error),
+      err: error,
     });
   }
 }
@@ -178,7 +179,7 @@ export async function getLambdaHealth(functionName: string): Promise<LambdaHealt
       coldStarts: Math.round(coldStarts),
     };
   } catch (err) {
-    console.warn(`[cloudwatch] getLambdaHealth failed for ${functionName}:`, err);
+    logger.warn("cloudwatch_get_lambda_health_failed", { functionName, err });
     return {
       functionName,
       invocations: 0,
@@ -209,7 +210,7 @@ export async function getDdbHealth(tableName: string): Promise<DdbHealth> {
     getDdbMeta()
       .send(new DescribeTableCommand({ TableName: tableName }))
       .catch((err) => {
-        console.warn(`[cloudwatch] describe ${tableName} failed:`, err);
+        logger.warn("cloudwatch_describe_table_failed", { tableName, err });
         return null;
       }),
     getCw()
@@ -264,7 +265,7 @@ export async function getS3BucketSize(bucketName: string): Promise<number> {
     points.sort((a, b) => (b.Timestamp?.getTime() ?? 0) - (a.Timestamp?.getTime() ?? 0));
     return Math.round(points[0]?.Average ?? 0);
   } catch (err) {
-    console.warn(`[cloudwatch] getS3BucketSize failed for ${bucketName}:`, err);
+    logger.warn("cloudwatch_get_s3_bucket_size_failed", { bucketName, err });
     return 0;
   }
 }

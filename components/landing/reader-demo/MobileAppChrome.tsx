@@ -20,7 +20,7 @@ export function MobileAppChrome() {
     <div aria-hidden style={{ background: "var(--cr-bg-surface-2)" }}>
       {/* Status bar */}
       <div
-        className="flex items-center justify-between px-5 pt-2.5 pb-1 text-[12px] font-semibold"
+        className="flex items-center justify-between px-5 pt-2.5 pb-1 text-cf-label-sm font-semibold"
         style={{ color: "var(--cr-text-primary)" }}
       >
         <span style={{ fontFamily: "var(--font-display)" }}>9:41</span>
@@ -42,7 +42,7 @@ export function MobileAppChrome() {
         />
         <div className="flex min-w-0 flex-1 flex-col items-center text-center leading-tight">
           <span
-            className="truncate text-[13px] font-semibold"
+            className="truncate text-cf-label font-semibold"
             style={{
               color: "var(--cr-text-primary)",
               fontFamily: "var(--font-display)",

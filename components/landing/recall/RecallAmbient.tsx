@@ -4,20 +4,19 @@
  * RecallAmbient — the page's depth field.
  *
  * A single FIXED layer behind all content that turns the flat near-black canvas
- * into a lit room: a slow drifting aurora and a top spotlight seat the page in
+ * into a lit room: a static aurora wash and a top spotlight seat the page in
  * light, two soft accent blooms (the ONE periwinkle hue, very low opacity) add
  * depth, a base vignette darkens the edges, and a whisper of procedural film
  * grain breaks up the flatness. The two blooms drift gently in opposite
  * directions as you scroll (a slow parallax) so the backdrop feels alive, not
- * static, Apple product-page depth. Drift is transform-only (off the main
- * thread) and disabled under prefers-reduced-motion; the aurora animation is a
- * pure-CSS keyframe (`.rl-ambient-aurora` in globals.css) that no-ops under
- * reduced motion too.
+ * static. The scroll-linked bloom shift is transform-only and resolves to its
+ * resting position under either reduced-motion signal; the aurora itself does
+ * not animate.
  *
  * Token-only color, pointer-events-none, aria-hidden. The sections above render
  * transparent so these blooms read through the whole page.
  */
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 export function RecallAmbient() {
@@ -37,14 +36,13 @@ export function RecallAmbient() {
       className="pointer-events-none fixed inset-0 -z-10 overflow-hidden"
       style={{ background: "var(--cf-recall-bg)" }}
     >
-      {/* aurora — a slow, wide accent wash drifting across the top of the page;
-          the keyframe + reduced-motion guard live in globals.css (.rl-ambient-aurora) */}
+      {/* Static aurora wash; scroll depth comes only from the blooms below. */}
       <div className="rl-ambient-aurora" />
       {/* top spotlight — a soft white cone seating the hero from above */}
       <div className="rl-ambient-spot" />
 
       {/* upper-right bloom — seats the hero in light */}
-      <motion.div
+      <m.div
         className="absolute -right-[10%] -top-[15%] h-[70vh] w-[70vh] rounded-full"
         style={{
           background:
@@ -53,7 +51,7 @@ export function RecallAmbient() {
         }}
       />
       {/* lower-left bloom — keeps the mid/lower page from going dead-flat */}
-      <motion.div
+      <m.div
         className="absolute -bottom-[20%] -left-[12%] h-[60vh] w-[60vh] rounded-full"
         style={{
           background:

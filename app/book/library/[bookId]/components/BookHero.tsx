@@ -7,7 +7,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
-import { ProgressRing } from "./ProgressRing";
+import { BookHeroProgressRing } from "./BookHeroProgressRing";
 import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookHeroProps = {
@@ -217,7 +217,7 @@ export function BookHero({
             {/* Progress (real data only) vs. forward-looking zero-state */}
             {hasProgress ? (
               <div className="mt-5 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-                <ProgressRing percent={progressPercent} size={56} strokeWidth={4} />
+                <BookHeroProgressRing percent={progressPercent} size={56} strokeWidth={4} />
                 <div className="flex flex-wrap items-center gap-3">
                   {avgScore > 0 && (
                     <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">

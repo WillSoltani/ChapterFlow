@@ -7,8 +7,8 @@ import {
   assertWithinTotalSize,
   dailyLimitDateKey,
   isWithinDailyLimit,
-  isCsrfEnforcementOn,
   originOf,
+  shouldEnforceCsrfOrigin,
   SETTINGS_VALUE_MAX_CHARS,
   SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
@@ -49,6 +49,32 @@ test("same-site Sec-Fetch-Site (sibling subdomain) is rejected", () => {
     appOrigin: APP,
   });
   assert.equal(d.rejected, true);
+});
+
+test("unknown Sec-Fetch-Site values fail closed instead of bypassing the Origin check", () => {
+  const d = evaluateSameOrigin({
+    method: "POST",
+    secFetchSite: "future-value",
+    originHeader: "https://evil.example",
+    appOrigin: null,
+  });
+  assert.deepEqual(d, {
+    rejected: true,
+    reason: "unsupported sec-fetch-site=future-value",
+  });
+});
+
+test("a present Sec-Fetch-Site value that trims blank also fails closed", () => {
+  const d = evaluateSameOrigin({
+    method: "POST",
+    secFetchSite: "\u00a0",
+    originHeader: "https://evil.example",
+    appOrigin: null,
+  });
+  assert.deepEqual(d, {
+    rejected: true,
+    reason: "unsupported blank sec-fetch-site",
+  });
 });
 
 test("same-origin request (matching Origin) is allowed", () => {
@@ -184,22 +210,66 @@ test("originOf returns lowercased scheme+host+port, null for junk", () => {
 
 // ─── isCsrfEnforcementOn (flag) ───────────────────────────────────────────────
 
-test("CSRF enforcement defaults ON and only the explicit off-switches disable it", () => {
-  const saved = process.env.CSRF_ORIGIN_ENFORCE;
-  try {
-    delete process.env.CSRF_ORIGIN_ENFORCE;
-    assert.equal(isCsrfEnforcementOn(), true, "unset → ON");
-    for (const off of ["0", "false", "off", "no", "FALSE", "Off", " 0 "]) {
-      process.env.CSRF_ORIGIN_ENFORCE = off;
-      assert.equal(isCsrfEnforcementOn(), false, `"${off}" → observe-only`);
-    }
-    for (const on of ["1", "true", "on", "yes", "anything"]) {
-      process.env.CSRF_ORIGIN_ENFORCE = on;
-      assert.equal(isCsrfEnforcementOn(), true, `"${on}" → enforcing`);
-    }
-  } finally {
-    if (saved === undefined) delete process.env.CSRF_ORIGIN_ENFORCE;
-    else process.env.CSRF_ORIGIN_ENFORCE = saved;
+test("non-production CSRF enforcement defaults ON and only explicit off-switches disable it", () => {
+  const decide = (enforcementFlag: string | undefined) =>
+    shouldEnforceCsrfOrigin({
+      nodeEnvironment: "production",
+      deploymentEnvironment: "dev",
+      enforcementFlag,
+    });
+
+  assert.equal(decide(undefined), true, "unset → ON");
+  for (const off of ["0", "false", "off", "no", "FALSE", "Off", " 0 "]) {
+    assert.equal(decide(off), false, `"${off}" → observe-only`);
+  }
+  for (const on of ["1", "true", "on", "yes", "anything"]) {
+    assert.equal(decide(on), true, `"${on}" → enforcing`);
+  }
+});
+
+test("production CSRF enforcement cannot be disabled by any observe-only spelling", () => {
+  for (const off of ["0", "false", "off", "no", "FALSE", "Off", " 0 "]) {
+    assert.equal(
+      shouldEnforceCsrfOrigin({
+        nodeEnvironment: "production",
+        deploymentEnvironment: "prod",
+        enforcementFlag: off,
+      }),
+      true,
+      `prod + "${off}" must enforce`
+    );
+    assert.equal(
+      shouldEnforceCsrfOrigin({
+        nodeEnvironment: "production",
+        deploymentEnvironment: undefined,
+        enforcementFlag: off,
+      }),
+      true,
+      `production fallback + "${off}" must enforce`
+    );
+  }
+});
+
+test("explicit dev and staging deployments may use observe-only while secure defaults stay on", () => {
+  for (const deploymentEnvironment of ["dev", "staging"]) {
+    assert.equal(
+      shouldEnforceCsrfOrigin({
+        nodeEnvironment: "production",
+        deploymentEnvironment,
+        enforcementFlag: "off",
+      }),
+      false,
+      `${deploymentEnvironment} may observe despite the optimized runtime using NODE_ENV=production`
+    );
+    assert.equal(
+      shouldEnforceCsrfOrigin({
+        nodeEnvironment: "production",
+        deploymentEnvironment,
+        enforcementFlag: undefined,
+      }),
+      true,
+      `${deploymentEnvironment} remains enforcing by default`
+    );
   }
 });
 

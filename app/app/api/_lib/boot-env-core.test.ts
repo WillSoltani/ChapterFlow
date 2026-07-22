@@ -2,7 +2,9 @@ import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
   RUNTIME_ENV_REQUIREMENTS,
+  SSM_RUNTIME_SECRET_NAMES,
   buildSyntheticRuntimeEnvironment,
+  hydrateRuntimeSsmRequirements,
   validateRuntimeEnvironment,
 } from "./boot-env-core";
 
@@ -155,5 +157,90 @@ test("derived production placeholders use valid callback, app, and App Store URL
     "IOS_APP_STORE_URL",
   ]) {
     assert.doesNotThrow(() => new URL(PRODUCTION_ENV[name]), name);
+  }
+});
+
+test("the five audited secret-class names are runtime-SSM backed without weakening required boot entries", () => {
+  assert.deepEqual(SSM_RUNTIME_SECRET_NAMES, [
+    "BOOK_STRIPE_SECRET_KEY",
+    "BOOK_STRIPE_WEBHOOK_SECRET",
+    "ANTHROPIC_API_KEY",
+    "ELEVENLABS_API_KEY",
+    "AUTH_STATE_SECRET",
+  ]);
+  const requiredSsmNames = RUNTIME_ENV_REQUIREMENTS.filter(
+    (requirement) =>
+      "source" in requirement && requirement.source === "ssm_runtime",
+  ).flatMap(({ names }) => names);
+  assert.deepEqual(requiredSsmNames.sort(), [
+    "ANTHROPIC_API_KEY",
+    "AUTH_STATE_SECRET",
+    "BOOK_STRIPE_SECRET_KEY",
+    "BOOK_STRIPE_WEBHOOK_SECRET",
+  ]);
+});
+
+test("production boot hydrates required SSM secrets before validation", async () => {
+  const env = buildSyntheticRuntimeEnvironment("prod");
+  const expected = { ...env };
+  for (const name of SSM_RUNTIME_SECRET_NAMES) delete env[name];
+  const requested: string[] = [];
+
+  const hydrated = await hydrateRuntimeSsmRequirements(env, async (name) => {
+    requested.push(name);
+    return expected[name];
+  });
+
+  assert.deepEqual(validateRuntimeEnvironment(hydrated).failures, []);
+  assert.deepEqual(requested.sort(), [
+    "ANTHROPIC_API_KEY",
+    "AUTH_STATE_SECRET",
+    "BOOK_STRIPE_SECRET_KEY",
+    "BOOK_STRIPE_WEBHOOK_SECRET",
+  ]);
+  assert.equal(requested.includes("ELEVENLABS_API_KEY"), false);
+});
+
+test("production boot fails closed when a required SSM secret is missing or malformed", async () => {
+  const missingEnv = buildSyntheticRuntimeEnvironment("prod");
+  delete missingEnv.AUTH_STATE_SECRET;
+  const missing = await hydrateRuntimeSsmRequirements(
+    missingEnv,
+    async () => undefined,
+  );
+  assert.deepEqual(
+    validateRuntimeEnvironment(missing).failures.find(
+      ({ requirementId }) => requirementId === "auth-state-secret",
+    ),
+    {
+      requirementId: "auth-state-secret",
+      code: "missing",
+      names: ["AUTH_STATE_SECRET"],
+    },
+  );
+
+  const malformedEnv = buildSyntheticRuntimeEnvironment("prod");
+  delete malformedEnv.AUTH_STATE_SECRET;
+  const malformed = await hydrateRuntimeSsmRequirements(
+    malformedEnv,
+    async () => "short-placeholder",
+  );
+  assert.equal(
+    validateRuntimeEnvironment(malformed).failures.find(
+      ({ requirementId }) => requirementId === "auth-state-secret",
+    )?.code,
+    "too_short",
+  );
+});
+
+test("production boot propagates denied and undecryptable SSM reads", async () => {
+  for (const name of ["AccessDeniedException", "KMSInvalidStateException"] as const) {
+    const env = buildSyntheticRuntimeEnvironment("prod");
+    delete env.AUTH_STATE_SECRET;
+    await assert.rejects(() =>
+      hydrateRuntimeSsmRequirements(env, async () => {
+        throw Object.assign(new Error("nonsecret failure metadata"), { name });
+      }),
+    );
   }
 });

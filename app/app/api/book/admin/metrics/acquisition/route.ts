@@ -7,6 +7,7 @@ import {
   ADMIN_SCAN_MAX_ITEMS,
   scanBookUserProfilesPage,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -50,7 +51,7 @@ export async function GET(req: Request) {
         );
       }
     } catch (err) {
-      console.warn("[admin-acquisition] profile scan failed:", err);
+      logger.warn("admin_acquisition_profile_scan_failed", { err });
       warnings.push("Profile data unavailable (database scan failed).");
     }
 

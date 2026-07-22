@@ -9,6 +9,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import type { SegmentDefinition } from "@/app/app/api/book/_lib/segment-engine";
+import { logger } from "@/lib/logging/logger";
 
 const PK = "ADMINSEGMENT#DEFS";
 
@@ -160,7 +161,7 @@ export async function checkpointBulkNotifyAudit(
       }),
     );
   } catch (err) {
-    console.warn("[admin-segment-notify] audit checkpoint failed", err);
+    logger.warn("admin_segment_notify_audit_checkpoint_failed", { err });
   }
 }
 
@@ -195,7 +196,7 @@ export async function claimSegmentNotifyDedup(
     return "claimed";
   } catch (err) {
     if (isConditionalCheckFailed(err)) return "skipped";
-    console.warn("[admin-segment-notify] dedup claim failed for", params.userId, err);
+    logger.warn("admin_segment_notify_dedup_claim_failed", { userId: params.userId, err });
     return "error";
   }
 }

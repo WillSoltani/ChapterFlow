@@ -193,7 +193,7 @@ export function WeeklySummary({
               <span
                 className="rounded px-1.5 py-0.5 text-xs font-medium"
                 style={{
-                  background: "rgba(34,211,238,0.1)",
+                  background: "color-mix(in srgb, var(--accent-cyan) 10%, transparent)",
                   color: "var(--accent-cyan)",
                   width: "fit-content",
                 }}

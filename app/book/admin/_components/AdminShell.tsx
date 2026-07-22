@@ -99,8 +99,8 @@ export function AdminShell({
             <Settings2 className="h-4 w-4" aria-hidden="true" />
           </div>
           <div>
-            <p className="text-[13px] font-semibold text-(--cf-text-1)">Admin</p>
-            <p className="text-[11px] text-(--cf-text-3)">ChapterFlow</p>
+            <p className="text-cf-label font-semibold text-(--cf-text-1)">Admin</p>
+            <p className="text-cf-caption text-(--cf-text-3)">ChapterFlow</p>
           </div>
         </div>
 
@@ -122,7 +122,7 @@ export function AdminShell({
                       <Link
                         href={item.href}
                         className={[
-                          "flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-[13px] transition",
+                          "flex items-center gap-2.5 rounded-lg px-2.5 py-1.5 text-cf-label transition",
                           active
                             ? "bg-(--cf-accent)/15 text-(--cf-accent) font-semibold"
                             : "text-(--cf-text-2) hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)",
@@ -140,12 +140,12 @@ export function AdminShell({
         </nav>
 
         <div className="border-t border-(--cf-border) px-4 py-3">
-          <p className="text-[11px] text-(--cf-text-3) truncate" title={userEmail}>
+          <p className="text-cf-caption text-(--cf-text-3) truncate" title={userEmail}>
             {userEmail ?? "Signed in"}
           </p>
           <Link
             href="/book/home"
-            className="mt-1 inline-block text-[11px] text-(--cf-accent) hover:underline"
+            className="mt-1 inline-block text-cf-caption text-(--cf-accent) hover:underline"
           >
             ← Back to app
           </Link>
@@ -186,10 +186,10 @@ function MobileNav({
         <summary className="flex cursor-pointer items-center justify-between gap-2 list-none">
           <div className="flex items-center gap-2">
             <Settings2 className="h-4 w-4 text-(--cf-accent)" aria-hidden="true" />
-            <span className="text-[14px] font-semibold">{current?.label ?? "Admin"}</span>
+            <span className="text-cf-body-sm font-semibold">{current?.label ?? "Admin"}</span>
           </div>
-          <span className="text-[11px] text-(--cf-text-3) group-open:hidden">Tap to switch</span>
-          <span className="text-[11px] text-(--cf-text-3) hidden group-open:inline">Close</span>
+          <span className="text-cf-caption text-(--cf-text-3) group-open:hidden">Tap to switch</span>
+          <span className="text-cf-caption text-(--cf-text-3) hidden group-open:inline">Close</span>
         </summary>
         <nav className="mt-3 space-y-3">
           {groups.map(({ group, items }) => (
@@ -209,7 +209,7 @@ function MobileNav({
                       <Link
                         href={item.href}
                         className={[
-                          "flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-[13px]",
+                          "flex items-center gap-2 rounded-lg px-2.5 py-1.5 text-cf-label",
                           active
                             ? "bg-(--cf-accent)/15 text-(--cf-accent) font-semibold"
                             : "text-(--cf-text-2)",
@@ -225,8 +225,8 @@ function MobileNav({
             </div>
           ))}
           <div className="border-t border-(--cf-border) pt-2">
-            <p className="text-[11px] text-(--cf-text-3) truncate">{userEmail ?? "Signed in"}</p>
-            <Link href="/book/home" className="text-[11px] text-(--cf-accent) hover:underline">
+            <p className="text-cf-caption text-(--cf-text-3) truncate">{userEmail ?? "Signed in"}</p>
+            <Link href="/book/home" className="text-cf-caption text-(--cf-accent) hover:underline">
               ← Back to app
             </Link>
           </div>

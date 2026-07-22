@@ -6,6 +6,7 @@ import { BookApiError } from "./errors";
 import { nowIso, opsFailurePk, opsFailureSk, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 import { putOpsMetric } from "./cloudwatch-metrics";
 import type { OpsFailureItem, OpsFailureKind } from "./types";
+import { logger } from "@/lib/logging/logger";
 
 function readStr(value: unknown): string | undefined {
   return typeof value === "string" ? value : undefined;
@@ -87,10 +88,10 @@ export async function recordOpsFailure(
     );
     persisted = ref;
   } catch (error) {
-    console.error("ops_failure_record_error", {
+    logger.error("ops_failure_record_error", {
       context: input.context,
       userId: input.userId,
-      message: error instanceof Error ? error.message : String(error),
+      err: error,
     });
   }
   // Always emit the alarm metric — even if persistence failed, the operator
@@ -165,7 +166,7 @@ export async function captureStripeCancelFailure(
   }
 ): Promise<void> {
   const { code, message } = stripeErrorParts(input.error);
-  console.error("stripe_cancellation_failed", {
+  logger.error("stripe_cancellation_failed", {
     context: input.context,
     userId: input.userId,
     subscriptionId: input.subscriptionId,

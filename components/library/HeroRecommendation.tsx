@@ -4,8 +4,8 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { BookCover } from "@/components/ui/BookCover";
-import { ProgressRing } from "./ProgressRing";
-import { BookSaveButton } from "@/app/book/components/BookSaveButton";
+import { LibraryProgressRing } from "./LibraryProgressRing";
+import { BookSaveButton } from "@/components/book/BookSaveButton";
 import { useLibraryContext } from "./LibraryContext";
 import {
   formatReadingTime,
@@ -75,7 +75,7 @@ export function HeroRecommendation({
           <div
             className="absolute -left-20 top-1/2 h-[400px] w-[400px] -translate-y-1/2 rounded-full"
             style={{
-              background: "rgba(34,211,238,0.04)",
+              background: "color-mix(in srgb, var(--accent-cyan) 4%, transparent)",
               filter: "blur(100px)",
             }}
           />
@@ -113,7 +113,7 @@ export function HeroRecommendation({
               className="absolute -bottom-3 -right-3 rounded-full"
               style={{ background: "var(--bg-base)", padding: 3 }}
             >
-              <ProgressRing
+              <LibraryProgressRing
                 percent={prog.percentComplete}
                 size={80}
                 strokeWidth={6}
@@ -125,11 +125,11 @@ export function HeroRecommendation({
 
         {/* Right — Details */}
         <div className="flex flex-1 flex-col justify-center">
-          <p className="text-[14px]" style={{ color: "var(--text-muted)" }}>
+          <p className="text-cf-body-sm" style={{ color: "var(--text-muted)" }}>
             {getGreeting()}, {userName}
           </p>
 
-          <p className="mt-1 text-[13px] font-medium" style={{ color: "var(--accent-cyan)" }}>
+          <p className="mt-1 text-cf-label font-medium" style={{ color: "var(--accent-cyan)" }}>
             {isInProgress ? "Continue your journey" : "Recommended for you"}
           </p>
 
@@ -140,12 +140,12 @@ export function HeroRecommendation({
             {heroBook.title}
           </h2>
 
-          <p className="mt-1 text-[15px]" style={{ color: "var(--text-secondary)" }}>
+          <p className="mt-1 text-cf-body" style={{ color: "var(--text-secondary)" }}>
             {heroBook.author}
           </p>
 
           <p
-            className="mt-2 text-[16px] italic"
+            className="mt-2 text-cf-body-lg italic"
             style={{ color: "var(--text-primary)", opacity: 0.85 }}
           >
             &ldquo;{heroBook.hook}&rdquo;
@@ -153,7 +153,7 @@ export function HeroRecommendation({
 
           {/* Metadata row */}
           <div
-            className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-[13px]"
+            className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-cf-label"
             style={{ color: "var(--text-secondary)" }}
           >
             <span>
@@ -185,10 +185,10 @@ export function HeroRecommendation({
           {/* Progress line (in-progress) */}
           {isInProgress && (
             <div className="mt-3">
-              <p className="text-[14px] font-medium" style={{ color: "var(--text-heading)" }}>
+              <p className="text-cf-body-sm font-medium" style={{ color: "var(--text-heading)" }}>
                 Chapter {prog.currentChapter} of {heroBook.totalChapters} · {prog.percentComplete}% complete
               </p>
-              <p className="mt-0.5 text-[13px]" style={{ color: getProgressTextColor(prog.percentComplete) }}>
+              <p className="mt-0.5 text-cf-label" style={{ color: getProgressTextColor(prog.percentComplete) }}>
                 {getProgressMicrocopy(prog.percentComplete, chaptersLeft)}
               </p>
             </div>
@@ -198,19 +198,19 @@ export function HeroRecommendation({
           <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
             <Link
               href={detailHref}
-              className="cta-shine flex w-full cursor-pointer items-center justify-center rounded-xl px-8 text-[16px] font-semibold transition-all sm:w-auto"
+              className="cta-shine flex w-full cursor-pointer items-center justify-center rounded-xl px-8 text-cf-body-lg font-semibold transition-all sm:w-auto"
               style={{
                 height: 52,
                 background: "var(--accent-cyan)",
                 color: "var(--bg-base)",
-                boxShadow: "0 4px 20px rgba(34,211,238,0.3), 0 0 40px rgba(34,211,238,0.1)",
+                boxShadow: "0 4px 20px color-mix(in srgb, var(--accent-cyan) 30%, transparent), 0 0 40px color-mix(in srgb, var(--accent-cyan) 10%, transparent)",
               }}
             >
               {isInProgress ? "Continue Reading →" : "Start Reading →"}
             </Link>
             <Link
               href={detailHref}
-              className="flex cursor-pointer items-center justify-center rounded-xl px-5 text-[14px] font-medium transition-colors"
+              className="flex cursor-pointer items-center justify-center rounded-xl px-5 text-cf-body-sm font-medium transition-colors"
               style={{
                 height: 48,
                 color: "var(--text-secondary)",
@@ -233,7 +233,7 @@ export function HeroRecommendation({
           className="relative flex flex-col gap-3 border-t px-8 py-5 sm:flex-row sm:items-center sm:gap-5"
           style={{ borderColor: "var(--border-subtle)" }}
         >
-          <span className="shrink-0 text-[13px]" style={{ color: "var(--text-muted)" }}>
+          <span className="shrink-0 text-cf-label" style={{ color: "var(--text-muted)" }}>
             Not feeling this? Try one of these →
           </span>
           <div className="flex gap-4">
@@ -272,10 +272,10 @@ export function HeroRecommendation({
                     />
                   </div>
                   <div className="hidden text-left md:block" style={{ maxWidth: 140 }}>
-                    <p className="text-[13px] font-medium" style={{ color: "var(--text-heading)" }}>
+                    <p className="text-cf-label font-medium" style={{ color: "var(--text-heading)" }}>
                       {book.title}
                     </p>
-                    <p className="mt-0.5 text-[11px] leading-snug" style={{ color: "var(--text-muted)" }}>
+                    <p className="mt-0.5 text-cf-caption leading-snug" style={{ color: "var(--text-muted)" }}>
                       {book.hook}
                     </p>
                   </div>

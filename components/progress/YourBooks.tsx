@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import type { ActiveBook, CompletedBook } from "./progressTypes";
-import { ActiveBookRow, CompletedBookRow } from "./BookRow";
+import { ActiveBookRow, CompletedBookRow } from "./ProgressBookRows";
 
 type BookFilter = "active" | "completed" | "all";
 

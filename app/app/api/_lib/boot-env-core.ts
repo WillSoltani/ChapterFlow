@@ -15,10 +15,20 @@ export type RuntimeEnvRequirement = {
   presence: RuntimeEnvPresence;
   allowedValues?: readonly string[];
   minimumLength?: number;
+  /** Omitted means Lambda environment; ssm_runtime is hydrated before validation. */
+  source?: "ssm_runtime";
   reason: string;
   /** Nonsecret value used only to derive local production E2E placeholders. */
   syntheticValue: string;
 };
+
+export const SSM_RUNTIME_SECRET_NAMES = [
+  "BOOK_STRIPE_SECRET_KEY",
+  "BOOK_STRIPE_WEBHOOK_SECRET",
+  "ANTHROPIC_API_KEY",
+  "ELEVENLABS_API_KEY",
+  "AUTH_STATE_SECRET",
+] as const;
 
 export type RuntimeEnvFailure = {
   requirementId: string;
@@ -57,6 +67,7 @@ export const RUNTIME_ENV_REQUIREMENTS = [
     names: ["BOOK_STRIPE_SECRET_KEY"],
     applicability: "production",
     presence: "all",
+    source: "ssm_runtime",
     reason: "Authorizes production Stripe server operations.",
     syntheticValue: "e2e-stripe-secret-placeholder",
   },
@@ -65,6 +76,7 @@ export const RUNTIME_ENV_REQUIREMENTS = [
     names: ["BOOK_STRIPE_WEBHOOK_SECRET"],
     applicability: "production",
     presence: "all",
+    source: "ssm_runtime",
     reason: "Authenticates production Stripe webhook deliveries.",
     syntheticValue: "e2e-stripe-webhook-placeholder",
   },
@@ -122,6 +134,7 @@ export const RUNTIME_ENV_REQUIREMENTS = [
     applicability: "production",
     presence: "all",
     minimumLength: 32,
+    source: "ssm_runtime",
     reason: "Protects the encrypted OAuth state and PKCE verifier.",
     syntheticValue: `e2e-auth-state-${"0".repeat(32)}`,
   },
@@ -138,6 +151,7 @@ export const RUNTIME_ENV_REQUIREMENTS = [
     names: ["ANTHROPIC_API_KEY"],
     applicability: "production",
     presence: "all",
+    source: "ssm_runtime",
     reason: "Enables the production AI response path.",
     syntheticValue: "e2e-anthropic-placeholder",
   },
@@ -194,6 +208,36 @@ export const RUNTIME_ENV_REQUIREMENTS = [
 
 function nonBlank(value: string | undefined): value is string {
   return value !== undefined && value.trim() !== "";
+}
+
+export type RuntimeEnvResolver = (
+  name: string,
+) => Promise<string | undefined>;
+
+/**
+ * Hydrate only manifest-required SSM values for the active environment.
+ * Optional SSM-backed capabilities (currently ElevenLabs) remain lazy and do
+ * not become new boot requirements. Resolver errors propagate so IAM/KMS
+ * failures stop production boot instead of degrading into a cached miss.
+ */
+export async function hydrateRuntimeSsmRequirements(
+  env: Record<string, string | undefined>,
+  resolve: RuntimeEnvResolver,
+): Promise<Record<string, string | undefined>> {
+  const hydrated = { ...env };
+  const isProduction = hydrated.CHAPTERFLOW_ENV?.trim() === "prod";
+
+  for (const requirement of RUNTIME_ENV_REQUIREMENTS as readonly RuntimeEnvRequirement[]) {
+    if (requirement.source !== "ssm_runtime") continue;
+    if (requirement.applicability === "production" && !isProduction) continue;
+    for (const name of requirement.names) {
+      if (nonBlank(hydrated[name])) continue;
+      const value = await resolve(name);
+      if (value !== undefined) hydrated[name] = value;
+    }
+  }
+
+  return hydrated;
 }
 
 export function validateRuntimeEnvironment(

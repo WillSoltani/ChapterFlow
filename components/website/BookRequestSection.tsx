@@ -97,7 +97,7 @@ export function BookRequestSection({ initialTitle }: { initialTitle?: string }) 
 
         {/* Description */}
         <p
-          className="text-[15px] max-w-[460px] mx-auto mt-2"
+          className="text-cf-body max-w-[460px] mx-auto mt-2"
           style={{
             color: "var(--text-secondary)",
             lineHeight: 1.7,
@@ -139,13 +139,13 @@ export function BookRequestSection({ initialTitle }: { initialTitle?: string }) 
 
         {/* Trust signals */}
         <div className="flex gap-4 justify-center mt-5 flex-wrap">
-          <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+          <span className="text-cf-caption" style={{ color: "var(--text-muted)" }}>
             No spam, ever
           </span>
-          <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+          <span className="text-cf-caption" style={{ color: "var(--text-muted)" }}>
             We email only if we build it
           </span>
-          <span className="text-[11px]" style={{ color: "var(--text-muted)" }}>
+          <span className="text-cf-caption" style={{ color: "var(--text-muted)" }}>
             It is free
           </span>
         </div>

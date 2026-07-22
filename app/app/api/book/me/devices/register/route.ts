@@ -12,6 +12,7 @@ import {
   listUserDeviceTokens,
   putDeviceToken,
 } from "@/app/app/api/book/_lib/device-token-repo";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -94,7 +95,7 @@ export async function POST(req: Request) {
         await deleteDeviceTokenBySk(tableName, user.sub, SK);
       }
     } catch (e) {
-      console.error("[devices/register] device-cap pruning failed:", e);
+      logger.error("devices_register_device_cap_pruning_failed", { err: e });
     }
 
     return bookOk({ registered: true });

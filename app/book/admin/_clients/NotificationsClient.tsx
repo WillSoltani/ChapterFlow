@@ -61,7 +61,7 @@ export function NotificationsClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -89,9 +89,9 @@ export function NotificationsClient() {
           <EmptyState icon={Bell} title="No notifications sent yet" compact />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[520px] text-[12px]">
+            <table className="w-full min-w-[520px] text-cf-label-sm">
               <thead>
-                <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Type</th>
                   <th className="py-2 pr-3">Channel</th>
                   <th className="py-2 pr-3 text-right">Sent</th>
@@ -107,7 +107,7 @@ export function NotificationsClient() {
                   >
                     <td className="py-2 pr-3 text-(--cf-text-1)">{a.type}</td>
                     <td className="py-2 pr-3">
-                      <span className="rounded-md border border-(--cf-border) bg-(--cf-surface-muted) px-1.5 py-0.5 text-[11px] text-(--cf-text-soft)">
+                      <span className="rounded-md border border-(--cf-border) bg-(--cf-surface-muted) px-1.5 py-0.5 text-cf-caption text-(--cf-text-soft)">
                         {a.channel}
                       </span>
                     </td>
@@ -116,7 +116,7 @@ export function NotificationsClient() {
                     <td className="py-2 pr-3 text-right">
                       <span
                         className={[
-                          "rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+                          "rounded-md px-1.5 py-0.5 text-cf-caption font-medium",
                           a.channel !== "in_app"
                             ? "text-(--cf-text-soft)"
                             : a.readRate >= 50
@@ -137,7 +137,7 @@ export function NotificationsClient() {
         )}
       </AdminCard>
 
-      <p className="mt-4 text-[11px] text-(--cf-text-soft)">
+      <p className="mt-4 text-cf-caption text-(--cf-text-soft)">
         Email/push read rates require SES bounce/open tracking and push receipt webhooks (Phase 6).
       </p>
     </div>

@@ -9,10 +9,10 @@ interface StreakDisplayProps {
   streak: StreakData;
 }
 
-function getFlameSize(days: number): { fontSize: number; className: string } {
-  if (days >= 30) return { fontSize: 28, className: "flame-golden" };
-  if (days >= 7) return { fontSize: 24, className: "flame-medium" };
-  return { fontSize: 20, className: "flame-small" };
+function getFlameSize(days: number): number {
+  if (days >= 30) return 28;
+  if (days >= 7) return 24;
+  return 20;
 }
 
 function getNextStreakMilestone(current: number): number | null {
@@ -23,7 +23,7 @@ function getNextStreakMilestone(current: number): number | null {
 export function StreakDisplay({ streak }: StreakDisplayProps) {
   const prefersReduced = useReducedMotion();
   const hasStreak = streak.currentDays > 0;
-  const flame = getFlameSize(streak.currentDays);
+  const flameSize = getFlameSize(streak.currentDays);
   const nextMilestone = getNextStreakMilestone(streak.currentDays);
   const daysToMilestone = nextMilestone
     ? nextMilestone - streak.currentDays
@@ -41,8 +41,8 @@ export function StreakDisplay({ streak }: StreakDisplayProps) {
           {/* Streak counter */}
           <div className="flex items-center gap-2">
             <span
-              className={streak.currentDays >= 30 ? "flame-pulse-intense" : "flame-pulse"}
-              style={{ fontSize: flame.fontSize }}
+              className="inline-block"
+              style={{ fontSize: flameSize }}
               role="img"
               aria-label="Fire"
             >

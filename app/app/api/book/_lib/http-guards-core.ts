@@ -11,13 +11,44 @@ import { BookApiError } from "./errors";
 
 export const UNSAFE_METHODS = new Set(["POST", "PATCH", "PUT", "DELETE"]);
 
+const CSRF_OBSERVE_ONLY_VALUES = new Set(["0", "false", "off", "no"]);
+
+export type CsrfEnforcementInput = {
+  nodeEnvironment: string | undefined;
+  deploymentEnvironment: string | undefined;
+  enforcementFlag: string | undefined;
+};
+
 /**
- * Enforcement flag. Default ON. Set env `CSRF_ORIGIN_ENFORCE=0`
- * (or "false"/"off"/"no") to run in OBSERVE-ONLY mode (log, don't block).
+ * Pure production-safe decision for the CSRF origin guard.
+ *
+ * Deployed Lambdas use `NODE_ENV=production` in every environment, while
+ * `CHAPTERFLOW_ENV` carries the canonical `dev | staging | prod` identity.
+ * Explicit dev/staging deployments may therefore opt into observation; every
+ * other explicit deployment identity fails closed. When that identity is
+ * absent (local/legacy runtime), NODE_ENV=production is the safe fallback.
  */
+export function shouldEnforceCsrfOrigin(params: CsrfEnforcementInput): boolean {
+  const deploymentEnvironment = params.deploymentEnvironment?.trim().toLowerCase();
+  const explicitlyNonProduction =
+    deploymentEnvironment === "dev" || deploymentEnvironment === "staging";
+  const productionRuntime = deploymentEnvironment
+    ? !explicitlyNonProduction
+    : params.nodeEnvironment?.trim().toLowerCase() === "production";
+
+  if (productionRuntime) return true;
+
+  const raw = params.enforcementFlag?.trim().toLowerCase();
+  return !raw || !CSRF_OBSERVE_ONLY_VALUES.has(raw);
+}
+
+/** Runtime adapter retained for callers that need the current process config. */
 export function isCsrfEnforcementOn(): boolean {
-  const raw = process.env.CSRF_ORIGIN_ENFORCE?.trim().toLowerCase();
-  return !(raw === "0" || raw === "false" || raw === "off" || raw === "no");
+  return shouldEnforceCsrfOrigin({
+    nodeEnvironment: process.env.NODE_ENV,
+    deploymentEnvironment: process.env.CHAPTERFLOW_ENV,
+    enforcementFlag: process.env.CSRF_ORIGIN_ENFORCE,
+  });
 }
 
 /** Lowercased scheme+host(+port) of a URL/origin string, or null if unparseable. */
@@ -74,6 +105,9 @@ function isSameSiteOrigin(a: string, b: string): boolean {
  *     it and do NOT compare Origin against a single pinned canonical origin (doing
  *     so 403'd every mutation from users served on a non-canonical host).
  *   - `Sec-Fetch-Site: cross-site | same-site` → REJECT.
+ *   - Any other present `Sec-Fetch-Site` value, including one that trims blank,
+ *     → REJECT. Unknown browser-set values must not fall through with no
+ *     canonical app origin and fail open.
  *   - No Sec-Fetch-Site (archaic / non-browser clients): fall back to `Origin` —
  *     allow when it equals the app origin OR is a first-party sibling host (same
  *     scheme + registrable domain); reject a cross-site Origin; and STRICT-DEFAULT
@@ -90,13 +124,21 @@ export function evaluateSameOrigin(params: {
   const method = params.method.toUpperCase();
   if (!UNSAFE_METHODS.has(method)) return { rejected: false };
 
-  const secFetchSite = params.secFetchSite?.trim().toLowerCase() || null;
+  const rawSecFetchSite = params.secFetchSite;
+  const secFetchSite = rawSecFetchSite?.trim().toLowerCase() || null;
+
+  if (rawSecFetchSite !== null && !secFetchSite) {
+    return { rejected: true, reason: "unsupported blank sec-fetch-site" };
+  }
 
   if (secFetchSite === "same-origin" || secFetchSite === "none") {
     return { rejected: false };
   }
   if (secFetchSite === "cross-site" || secFetchSite === "same-site") {
     return { rejected: true, reason: `sec-fetch-site=${secFetchSite}` };
+  }
+  if (secFetchSite) {
+    return { rejected: true, reason: `unsupported sec-fetch-site=${secFetchSite}` };
   }
 
   // Sec-Fetch-Site absent → Origin fallback.

@@ -1,5 +1,6 @@
 /**
- * Regression coverage for the catalog-count drift guard (d) in
+ * Regression coverage for the catalog-count drift guard (d) and numeric
+ * arbitrary font-size occurrence guard (e) in
  * scripts/ci/scan-style-drift.mjs.
  *
  * The guard previously only scanned .tsx files and only matched book counts,
@@ -7,7 +8,8 @@
  * category/topic/genre count claim — slipped past it (finding H10, cluster
  * "scan-style-drift-scope"). These tests pin the broadened behavior: .ts/.md
  * are scanned, category counts are matched, and the single-digit book floor is
- * caught.
+ * caught. Guard (e) coverage proves a staged, unbaselined numeric arbitrary
+ * font size fails closed.
  *
  * The scanner is a standalone .mjs with no exports (it `process.exit`s), so we
  * exercise it as a subprocess: `--selftest` for the regex/false-positive matrix,
@@ -101,5 +103,46 @@ test("guard (d) catches hardcoded catalog claims in .ts and .md (not just .tsx)"
     }
     if (existsSync(tsFixture)) rmSync(tsFixture);
     if (existsSync(mdFixture)) rmSync(mdFixture);
+  }
+});
+
+test("guard (e) rejects an unbaselined numeric arbitrary font size in staged TSX", () => {
+  const stamp = Date.now();
+  const fixtureRel = `components/__drift_font_fixture_${stamp}.tsx`;
+  const fixture = join(ROOT, fixtureRel);
+
+  // Assemble the forbidden utility from fragments so this tracked test file is
+  // not itself a guard (e) finding or a Tailwind source-scanner input.
+  const frag = (...p: string[]) => p.join("");
+  const forbiddenClass = frag("text-[", "19", "px]");
+  writeFileSync(
+    fixture,
+    `export function DriftFixture() { return <span className=${JSON.stringify(forbiddenClass)}>fixture</span>; }\n`,
+  );
+
+  try {
+    execFileSync("git", ["add", "--", fixtureRel], { cwd: ROOT });
+    const { code, stdout } = runScanner("--staged");
+    assert.equal(
+      code,
+      1,
+      `expected guard (e) to FAIL on the staged TSX fixture; output:\n${stdout}`,
+    );
+    assert.match(
+      stdout,
+      /Numeric arbitrary font-size utility/,
+      "should report the arbitrary font-size guard",
+    );
+    assert.ok(
+      stdout.includes(fixtureRel),
+      `should flag the staged TSX font-size fixture; output:\n${stdout}`,
+    );
+  } finally {
+    try {
+      execFileSync("git", ["reset", "--quiet", "--", fixtureRel], { cwd: ROOT });
+    } catch {
+      /* best-effort */
+    }
+    if (existsSync(fixture)) rmSync(fixture);
   }
 });
