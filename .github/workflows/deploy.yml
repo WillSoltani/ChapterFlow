@@ -51,18 +51,10 @@ jobs:
       - id: s
         run: |
           set -euo pipefail
-          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
-            echo "environment=${{ inputs.environment }}" >> "$GITHUB_OUTPUT"
-            echo "deploy_infra=${{ inputs.deploy_infra }}" >> "$GITHUB_OUTPUT"
-            echo "deploy_app=${{ inputs.deploy_app }}" >> "$GITHUB_OUTPUT"
-            echo "seed=${{ inputs.seed }}" >> "$GITHUB_OUTPUT"
-          else
-            # push to main → keep dev in sync (cdk no-ops when unchanged); no re-seed
-            echo "environment=dev" >> "$GITHUB_OUTPUT"
-            echo "deploy_infra=true" >> "$GITHUB_OUTPUT"
-            echo "deploy_app=true" >> "$GITHUB_OUTPUT"
-            echo "seed=false" >> "$GITHUB_OUTPUT"
-          fi
+          echo "environment=${{ inputs.environment }}" >> "$GITHUB_OUTPUT"
+          echo "deploy_infra=${{ inputs.deploy_infra }}" >> "$GITHUB_OUTPUT"
+          echo "deploy_app=${{ inputs.deploy_app }}" >> "$GITHUB_OUTPUT"
+          echo "seed=${{ inputs.seed }}" >> "$GITHUB_OUTPUT"
 
   infra:
     needs: plan
