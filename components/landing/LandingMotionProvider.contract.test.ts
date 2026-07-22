@@ -159,6 +159,9 @@ test("shared m controls self-provide features for consumers outside scoped route
   assert.match(dialog, /<MotionFeatureProvider>/);
   assert.doesNotMatch(dialog, /<MotionFeatureProvider strict>/);
   assert.match(segmentedControl, /<MotionFeatureProvider strict>/);
+
+  const pricing = source("components/sections/Pricing.tsx");
+  assert.match(pricing, /<MotionFeatureProvider strict>/);
 });
 
 test("JetBrains and Newsreader remain defined without eager root preloads", () => {

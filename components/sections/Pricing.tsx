@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { m, AnimatePresence } from "framer-motion";
 import { Check, Minus, ChevronDown } from "lucide-react";
+import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
@@ -205,6 +206,7 @@ export function Pricing() {
     : formatAmount(perMonthAmount);
 
   return (
+    <MotionFeatureProvider strict>
     <section id="pricing" className="relative">
       <div className="mx-auto max-w-[1180px] px-5 pt-(--section-pad-sm) pb-(--section-pad-lg) md:px-8 md:pt-(--section-pad-md)">
         {/* Clear plan summary */}
@@ -442,5 +444,6 @@ export function Pricing() {
         </SectionReveal>
       </div>
     </section>
+    </MotionFeatureProvider>
   );
 }
