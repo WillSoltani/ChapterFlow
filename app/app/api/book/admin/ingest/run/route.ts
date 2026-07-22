@@ -67,7 +67,6 @@ export async function POST(req: Request) {
         bookId: result.bookId,
       });
       return bookOk({
-        ok: true,
         jobId,
         bookId: result.bookId,
         version: result.version,

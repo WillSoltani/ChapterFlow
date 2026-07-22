@@ -84,6 +84,6 @@ export async function PUT(req: Request) {
         .catch(() => {});
     }
 
-    return bookOk({ ok: true, created });
+    return bookOk({ created });
   });
 }

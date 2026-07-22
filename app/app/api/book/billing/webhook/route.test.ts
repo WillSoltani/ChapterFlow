@@ -329,9 +329,9 @@ test("WS4-014 PIN: checkout.session.completed still takes over Apple", async () 
 });
 
 // WS4-014 (PIN, harness sanity): an event type the route does not handle is
-// acknowledged (200 { ok: true }) without touching any entitlement — proves
-// the harness itself is inert on a no-op path, not just quiet on the tested
-// paths.
+// acknowledged (200 { received: true }) without touching any entitlement —
+// proves the harness itself is inert on a no-op path, not just quiet on the
+// tested paths.
 test("WS4-014 PIN: unhandled event type is acknowledged and touches nothing", async () => {
   const event = {
     id: "evt_unhandled_1",
@@ -342,7 +342,7 @@ test("WS4-014 PIN: unhandled event type is acknowledged and touches nothing", as
 
   const res = await POST(webhookRequest(event));
   assert.equal(res.status, 200);
-  assert.deepEqual(await res.json(), { ok: true });
+  assert.deepEqual(await res.json(), { received: true });
 
   assert.equal(capturedParams.length, 0);
   assert.deepEqual(entitlements.get("user-apple"), {

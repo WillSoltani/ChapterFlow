@@ -132,6 +132,7 @@ export async function DELETE(req: Request) {
     const url = new URL(req.url);
     const bookId = requireString(url.searchParams.get("bookId"), "bookId", { maxLength: 120 });
     await deleteSavedBook(tableName, user.sub, bookId);
-    return bookOk({ ok: true });
+    const saved = await listSavedBooks(tableName, user.sub);
+    return bookOk({ saved, savedBookIds: saved.map((s) => s.bookId) });
   });
 }

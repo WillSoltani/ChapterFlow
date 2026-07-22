@@ -249,6 +249,6 @@ export async function DELETE(req: Request) {
     );
 
     await deleteHighlight(tableName, user.sub, highlightId);
-    return bookOk({ ok: true });
+    return bookOk({ deleted: true });
   });
 }

@@ -125,6 +125,14 @@ export async function requireSameOrigin(req: Request): Promise<void> {
   );
 }
 
+// Mutation ACK conventions (WS4-007): book API mutation endpoints return either
+// the affected resource (e.g. the updated `saved` list) or ONE documented ack
+// shape — `{ recorded: true }` / `{ deleted: true }` / `{ created }` /
+// `{ applied, reason }` / `{ received: true, duplicate?: true }` — never a bare
+// `{ ok: true }`. The sole exceptions are `me/share-events` and
+// `me/flow-points/redeem`, whose `/ok` field is pinned by the native contract
+// and decoded by live iOS models; those retire from the allowlist only when an
+// iOS-coordinated release drops `/ok` (see mutation-ack-shape.test.ts).
 export function bookOk<T>(data: T, init?: number | ResponseInit): NextResponse<T> {
   const resInit = typeof init === "number" ? { status: init } : init;
   return NextResponse.json(data, resInit);

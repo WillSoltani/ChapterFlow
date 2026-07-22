@@ -115,7 +115,6 @@ test("missing body keeps the documented purchase_shield default", async () => {
   const response = await POST(streakRequest());
   assert.equal(response.status, 200);
   assert.deepEqual(await response.json(), {
-    ok: true,
     shieldsHeld: 2,
     balance: 125,
     message:

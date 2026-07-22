@@ -68,7 +68,6 @@ export async function POST(req: Request) {
     const state = await getUserFlowPointsState(tableName, userId);
 
     return bookOk({
-      ok: true,
       userId,
       amount,
       reason,
