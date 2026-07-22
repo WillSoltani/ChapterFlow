@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
-import { fetchBookJsonCached, invalidateBookCache } from "@/app/book/_lib/book-api-cache";
+import { useBookQuery, invalidateBookCache } from "@/app/book/_lib/book-api-cache";
 
 const PROFILE_KEY = "/app/api/book/me/profile";
 
@@ -164,26 +164,16 @@ export function useBookProfile(seed: BookProfileSeed) {
     setHydrated(true);
   }, [stableSeed]);
 
+  // Cached GET — dedups with useBookViewer's /me/profile read when co-mounted.
+  const profileQuery = useBookQuery<{ profile: Partial<BookProfileState> | null }>(PROFILE_KEY);
   useEffect(() => {
-    let mounted = true;
-    // Cached GET — dedups with useBookViewer's /me/profile read when co-mounted.
-    fetchBookJsonCached<{ profile: Partial<BookProfileState> | null }>(PROFILE_KEY)
-      .then((payload) => {
-        if (!mounted || !payload.profile) return;
-        setState((prev) => ({
-          ...prev,
-          ...payload.profile,
-        }));
-        setServerReady(true);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setServerReady(true);
-      });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    if (profileQuery.data === undefined && profileQuery.error === undefined) return;
+    const profile = profileQuery.data?.profile;
+    if (profile) {
+      setState((prev) => ({ ...prev, ...profile }));
+    }
+    setServerReady(true); // on data AND on error — matches the old .catch path
+  }, [profileQuery.data, profileQuery.error]);
 
   useEffect(() => {
     if (!hydrated) return;

@@ -4,7 +4,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/lib/client/book-api";
-import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { useBookQuery, invalidateBookCache } from "@/lib/client/book-api-cache";
 import {
   getBookProgressStorageKey,
   getChapterReaderStorageKey,
@@ -450,9 +450,12 @@ export function useBadgeSystem({
   // (via useBookAnalytics -> useDashboardQuery), so a refresh recomputes badges
   // automatically. See WS3-022/WS3-023.
 
+  const badgesQuery = useBookQuery<{ awards: Array<{ badgeId: string; earnedAt: string }> }>(
+    BADGES_KEY
+  );
+
   useEffect(() => {
     if (typeof window === "undefined") return;
-    let mounted = true;
     const localFallback = (() => {
       try {
         const raw = window.localStorage.getItem(BADGE_EARNED_KEY);
@@ -463,25 +466,16 @@ export function useBadgeSystem({
     })();
 
     setEarnedHistory(localFallback);
-
-    fetchBookJsonCached<{ awards: Array<{ badgeId: string; earnedAt: string }> }>(BADGES_KEY)
-      .then((payload) => {
-        if (!mounted) return;
-        const next = Object.fromEntries(
-          payload.awards.map((award) => [award.badgeId, award.earnedAt])
-        );
-        window.localStorage.setItem(BADGE_EARNED_KEY, JSON.stringify(next));
-        setEarnedHistory(next);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setEarnedHistory(localFallback);
-      });
-
-    return () => {
-      mounted = false;
-    };
   }, []);
+
+  useEffect(() => {
+    if (!badgesQuery.data) return;
+    const next = Object.fromEntries(
+      badgesQuery.data.awards.map((award) => [award.badgeId, award.earnedAt])
+    );
+    window.localStorage.setItem(BADGE_EARNED_KEY, JSON.stringify(next));
+    setEarnedHistory(next);
+  }, [badgesQuery.data]);
 
   const badgeStats = useMemo(() => {
     if (!hydrated || !analytics) return null;

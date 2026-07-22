@@ -16,7 +16,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/components/navigation/TopNav";
 import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
-import { invalidateBookCache } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
 import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
@@ -664,10 +665,16 @@ function CommitmentFollowUpSection() {
   const [skippingId, setSkippingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Cached read: routes the ?status=active commitments GET through the shared
+  // client cache (dedupes the dev StrictMode double-invoke and serves back-nav
+  // from memory). Kept as an imperative effect + async setDue — mirroring the
+  // prior structure — so the clock read and the state write both stay out of
+  // render, and a mutation elsewhere reconciles this via invalidateBookCache's
+  // prefix drop of COMMITMENTS_KEY on the next mount.
   useEffect(() => {
     let cancelled = false;
-    fetchBookJson<{ commitments: BookUserCommitmentItem[] }>(
-      "/app/api/book/me/commitments?status=active",
+    fetchBookJsonCached<{ commitments: BookUserCommitmentItem[] }>(
+      `${COMMITMENTS_KEY}?status=active`,
     )
       .then((data) => {
         if (cancelled) return;
@@ -704,6 +711,7 @@ function CommitmentFollowUpSection() {
           ...(outcomes[activeId] ? { outcome: outcomes[activeId] } : {}),
         }),
       });
+      invalidateBookCache(COMMITMENTS_KEY);
       setReflections((prev) => {
         const next = { ...prev };
         delete next[activeId];
@@ -736,6 +744,7 @@ function CommitmentFollowUpSection() {
           method: "PATCH",
           body: JSON.stringify({ action: "skip" }),
         });
+        invalidateBookCache(COMMITMENTS_KEY);
         removeCommitment(id);
         if (activeId === id) setActiveId(null);
       } catch (e) {

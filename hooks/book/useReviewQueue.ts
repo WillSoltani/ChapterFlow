@@ -4,7 +4,10 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchBookJson } from "@/lib/client/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import type { FSRSCardState, FSRSRating } from "@/app/app/api/book/_lib/types";
+
+const REVIEWS_KEY = "/app/api/book/me/reviews";
 
 type CardWithRetrievability = FSRSCardState & { retrievability: number };
 
@@ -37,8 +40,8 @@ export function useReviewQueue(bookId?: string) {
     try {
       const params = new URLSearchParams();
       if (bookId) params.set("bookId", bookId);
-      const { cards: dueCards } = await fetchBookJson<DueResponse>(
-        `/app/api/book/me/reviews?${params.toString()}`
+      const { cards: dueCards } = await fetchBookJsonCached<DueResponse>(
+        `${REVIEWS_KEY}?${params.toString()}`
       );
       setCards(dueCards);
       setCurrentIndex(0);
@@ -51,8 +54,8 @@ export function useReviewQueue(bookId?: string) {
 
   const fetchStats = useCallback(async () => {
     try {
-      const { stats: s } = await fetchBookJson<StatsResponse>(
-        "/app/api/book/me/reviews?mode=stats"
+      const { stats: s } = await fetchBookJsonCached<StatsResponse>(
+        `${REVIEWS_KEY}?mode=stats`
       );
       setStats(s);
     } catch {
@@ -90,6 +93,9 @@ export function useReviewQueue(bookId?: string) {
         });
 
         setCurrentIndex((i) => i + 1);
+        // Prefix invalidation drops both the due key (any ?bookId= variant) and
+        // the stats key so the next mount refetches fresh counts.
+        invalidateBookCache(REVIEWS_KEY);
       } catch (err) {
         console.error("Failed to submit review:", err);
       } finally {

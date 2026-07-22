@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useMemo, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import {
   CHAPTER_READER_STORAGE_PREFIX,
   getBookProgressStorageKey,
@@ -295,14 +296,14 @@ export function useBookProgress<TChapter extends ProgressChapter>(
     setHydrated(true);
   }, [chapters, initialProgressFloor, storageKey]);
 
+  const stateKey = `/app/api/book/me/books/${encodeURIComponent(bookId)}/state`;
+
   useEffect(() => {
-    let mounted = true;
-    fetchBookJson<{
+    fetchBookJsonCached<{
       state: PersistedBookProgress | null;
       applicationStates?: Record<string, ChapterApplicationState>;
-    }>(`/app/api/book/me/books/${encodeURIComponent(bookId)}/state`)
+    }>(stateKey)
       .then((payload) => {
-        if (!mounted) return;
         // Server-only, read-only: set straight from the (sanitized) payload, never
         // merged with local progress. Independent of the `state` early-return below.
         setApplicationStates(normalizeApplicationStates(payload.applicationStates));
@@ -355,13 +356,9 @@ export function useBookProgress<TChapter extends ProgressChapter>(
         setServerReady(true);
       })
       .catch(() => {
-        if (!mounted) return;
         setServerReady(true);
       });
-    return () => {
-      mounted = false;
-    };
-  }, [bookId, chapters]);
+  }, [stateKey, chapters]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -372,13 +369,15 @@ export function useBookProgress<TChapter extends ProgressChapter>(
   useEffect(() => {
     if (!hydrated || !serverReady) return;
     const timeout = window.setTimeout(() => {
-      fetchBookJson(`/app/api/book/me/books/${encodeURIComponent(bookId)}/state`, {
+      fetchBookJson(stateKey, {
         method: "PATCH",
         body: JSON.stringify({ state: progress }),
-      }).catch(() => {});
+      })
+        .then(() => invalidateBookCache(stateKey))
+        .catch(() => {});
     }, 200);
     return () => window.clearTimeout(timeout);
-  }, [bookId, hydrated, progress, serverReady]);
+  }, [stateKey, hydrated, progress, serverReady]);
 
   const completedSet = useMemo(
     () => new Set(progress.completedChapterIds),

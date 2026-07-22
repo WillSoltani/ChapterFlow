@@ -3,7 +3,7 @@
 // Canonical shared book-viewer hook (WS3-001).
 
 import { useEffect, useMemo, useState } from "react";
-import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { useBookQuery } from "@/lib/client/book-api-cache";
 
 export type BookViewerIdentity = {
   sub: string;
@@ -96,7 +96,6 @@ export function formatViewerLocation(location: BookViewerLocation | null | undef
 
 export function useBookViewer() {
   const [hydrated, setHydrated] = useState(false);
-  const [loading, setLoading] = useState(true);
   const [identity, setIdentity] = useState<BookViewerIdentity>(defaultIdentity);
   const [inferredLocation, setInferredLocation] = useState<BookViewerLocation | null>(null);
 
@@ -109,39 +108,32 @@ export function useBookViewer() {
     setHydrated(true);
   }, []);
 
+  // Cached GET — dedups with useBookProfile's /me/profile read when co-mounted.
+  const viewerQuery = useBookQuery<ViewerPayload>("/app/api/book/me/profile");
+  const loading = viewerQuery.loading;
+
   useEffect(() => {
-    let mounted = true;
-    // Cached GET — dedups with useBookProfile's /me/profile read when co-mounted.
-    fetchBookJsonCached<ViewerPayload>("/app/api/book/me/profile")
-      .then((payload) => {
-        if (!mounted) return;
-        const avatarFromProfile =
-          typeof payload.profile?.avatarDataUrl === "string"
-            ? payload.profile.avatarDataUrl
-            : null;
-        if (payload.identity) {
-          setIdentity({
-            ...defaultIdentity,
-            ...payload.identity,
-            avatarDataUrl: avatarFromProfile,
-            displayName:
-              typeof payload.identity.displayName === "string" && payload.identity.displayName.trim()
-                ? payload.identity.displayName
-                : defaultIdentity.displayName,
-          });
-        } else {
-          setIdentity((prev) => ({ ...prev, avatarDataUrl: avatarFromProfile }));
-        }
-        setInferredLocation(payload.inferredLocation ?? null);
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (mounted) setLoading(false);
+    const payload = viewerQuery.data;
+    if (!payload) return;
+    const avatarFromProfile =
+      typeof payload.profile?.avatarDataUrl === "string"
+        ? payload.profile.avatarDataUrl
+        : null;
+    if (payload.identity) {
+      setIdentity({
+        ...defaultIdentity,
+        ...payload.identity,
+        avatarDataUrl: avatarFromProfile,
+        displayName:
+          typeof payload.identity.displayName === "string" && payload.identity.displayName.trim()
+            ? payload.identity.displayName
+            : defaultIdentity.displayName,
       });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    } else {
+      setIdentity((prev) => ({ ...prev, avatarDataUrl: avatarFromProfile }));
+    }
+    setInferredLocation(payload.inferredLocation ?? null);
+  }, [viewerQuery.data]);
 
   useEffect(() => {
     if (!hydrated) return;

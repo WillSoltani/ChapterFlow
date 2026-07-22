@@ -144,6 +144,22 @@
         "fix/ws6-minor-cluster",
         "app/app/api/book/_lib/app-base-url-core.ts"
       ]
+    },
+    {
+      "recordId": "39ad40c1721c4fecab1224c61825e475869c40c3ba95c7860476b5be5ac44487",
+      "changeId": "ws3-minor-cluster-wave3c-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "lib/catalog-integrity.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "54be4d935af27a2172eb6955425c0b8721be155fbc68aefa5483ac504466044a",
+      "evidenceRefs": [
+        "WS3-019",
+        "fix/ws3-minor-cluster",
+        "lib/catalog-integrity-gate.test.ts"
+      ]
     }
   ]
 }
