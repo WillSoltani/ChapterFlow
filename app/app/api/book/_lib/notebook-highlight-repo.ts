@@ -5,13 +5,13 @@ import {
   DeleteCommand,
   GetCommand,
   PutCommand,
-  QueryCommand,
   UpdateCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { BookApiError } from "./errors";
 import { bookUserPk, HIGHLIGHT_SK_PREFIX, highlightSk, nowIso } from "./keys";
 import type { ParsedHighlightUpdate } from "./notebook-highlights-core";
+import { queryAllItems } from "./repo-shared";
 import type { BookUserHighlightItem } from "./types";
 
 /**
@@ -61,17 +61,17 @@ export async function listHighlights(
   tableName: string,
   userId: string,
 ): Promise<BookUserHighlightItem[]> {
-  const result = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": HIGHLIGHT_SK_PREFIX,
-      },
-    }),
-  );
-  return (result.Items ?? []) as BookUserHighlightItem[];
+  // WS4-009: paginate to completion (was a single unpaginated QueryCommand,
+  // which silently truncated at the first 1MB page).
+  const rows = await queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": HIGHLIGHT_SK_PREFIX,
+    },
+  });
+  return rows as BookUserHighlightItem[];
 }
 
 /**
