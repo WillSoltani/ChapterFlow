@@ -157,6 +157,72 @@ requiredTest("semantic panel passes when baseline passes and every reader review
   assert.equal(evaluated.value.issues.some((issue) => issue.severity === "BLOCKER"), false);
 });
 
+requiredTest("semantic panel is ERROR when a reader run is unparseable", async () => {
+  const candidate = twoChapterCandidate();
+  const scripted = scriptedRunner(["this is not reader-review JSON", readerContent()]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "ERROR");
+  assert.ok(evaluated.value.issues.some((issue) => issue.code === "SEMANTIC_PANEL_READER_UNPARSEABLE"), JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("semantic panel is ERROR when a reader run fails to execute", async () => {
+  const candidate = twoChapterCandidate();
+  const scripted = scriptedRunner([readerContent(), "__MODEL_FAIL__"]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "ERROR");
+  assert.ok(evaluated.value.issues.some((issue) => issue.code === "SEMANTIC_PANEL_READER_FAILED"), JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("semantic panel FAILS with a BLOCKER when a reader flags an on-page blocker", async () => {
+  const candidate = twoChapterCandidate();
+  const scripted = scriptedRunner([
+    readerContent({
+      recommendation: "BLOCK",
+      blockingFindings: [{ category: "internal_contradiction", unit: "deep read", problem: "claims A then not-A on the same page", evidenceSpans: [] }],
+    }),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "FAIL");
+  assert.ok(evaluated.value.issues.some(
+    (issue) => issue.code === "READER.BLOCKING.internal_contradiction" && issue.severity === "BLOCKER",
+  ), JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("semantic panel short-circuits on a baseline non-PASS and runs zero reader tasks", async () => {
+  const candidate = twoChapterCandidate();
+  const scripted = scriptedRunner([readerContent(), readerContent()]);
+  let baselineCalls = 0;
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub(
+      { outcome: "FAIL", issues: [{ code: "BASE.blocker", severity: "BLOCKER", message: "baseline blocked" }] },
+      () => { baselineCalls += 1; },
+    ),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "FAIL");
+  assert.equal(baselineCalls, 1);
+  // The reader lane never runs when the baseline did not PASS.
+  assert.equal(scripted.calls, 0);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
