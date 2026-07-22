@@ -33,6 +33,16 @@ confuse this tree with the shallow `app/api/` (two deliberately public routes:
   parallel `*-core.ts` files with zero `server-only`/AWS imports
   (`http-guards-core.ts`, `progress-write-core.ts` + `.test.ts`,
   `_lib/server-env-core.ts`). New logic follows that pattern.
+- **Route-wrapper tests:** seam tests for money/authz routes live next to the
+  route as `route.test.ts` and use `tests/_lib/route-harness.ts`
+  (`installRouteHarness` + `guardStub` + `makeSpy`) to neutralize
+  `server-only` and stub the dependency graph. Assert exactly three seams:
+  (1) the auth guard was invoked, (2) the parsed request field reaches the
+  core/repo call, (3) a thrown `BookApiError` maps to the right status
+  envelope. Pure decisions stay in `*-core.ts` tests. Never import a route
+  statically — dynamic `import()` in `before()` AFTER the harness is
+  installed. Reference: `book/me/streak/route.test.ts` (inline predecessor of
+  the same pattern).
 - **Convention:** route.ts stays thin (auth guard + orchestration); logic goes
   in `_lib`. See `book/me/streak/route.ts` for the reference shape.
 - `book/admin/**` (40+ routes) is gated by `book/_lib/admin-auth.ts` +

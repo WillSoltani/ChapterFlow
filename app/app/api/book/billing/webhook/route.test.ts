@@ -97,6 +97,19 @@ let capturedParams: Array<
   StripeEntitlementWriteParams & { userId: string }
 >;
 
+// ─── Per-test-configurable stub state (declared before the module-level
+// resetHarness() call below so it is initialized when reset runs). ────────────
+let claimResult: "claimed" | "done" | "in_progress" = "claimed";
+let constructEventImpl: (payload: string) => unknown = (payload) =>
+  JSON.parse(payload);
+let chargeRetrieveImpl: (id: string) => Promise<unknown> = async () => {
+  throw new Error("unexpected charges.retrieve");
+};
+let completedEventIds: string[] = [];
+let releasedEventIds: string[] = [];
+let recordedBillingEvents: unknown[] = [];
+let disputeMarkerCalls: Array<[string, boolean]> = [];
+
 function resetHarness(): void {
   customerToUser = new Map([["cus_apple", "user-apple"]]);
   entitlements = new Map([
@@ -111,6 +124,15 @@ function resetHarness(): void {
     ],
   ]);
   capturedParams = [];
+  claimResult = "claimed";
+  constructEventImpl = (payload) => JSON.parse(payload);
+  chargeRetrieveImpl = async () => {
+    throw new Error("unexpected charges.retrieve");
+  };
+  completedEventIds = [];
+  releasedEventIds = [];
+  recordedBillingEvents = [];
+  disputeMarkerCalls = [];
 }
 resetHarness();
 
@@ -151,20 +173,18 @@ function applyStripeWrite(
   entitlements.set(params.userId, next);
 }
 
-// ─── Stripe stub. charges.retrieve throws so an unexpected call (a code path
-// this file does not intend to exercise) fails loudly instead of silently
-// returning plausible-looking data. ───────────────────────────────────────────
+// ─── Stripe stub. charges.retrieve throws by default so an unexpected call (a
+// code path a test does not intend to exercise) fails loudly instead of
+// silently returning plausible-looking data. ─────────────────────────────────
 const stripeStub = {
   webhooks: {
-    constructEvent: (payload: string) => JSON.parse(payload),
+    constructEvent: (payload: string) => constructEventImpl(payload),
   },
   paymentIntents: {
     retrieve: async () => ({ last_payment_error: { code: "card_declined" } }),
   },
   charges: {
-    retrieve: async () => {
-      throw new Error("unexpected charges.retrieve");
-    },
+    retrieve: async (id: string) => chargeRetrieveImpl(id),
   },
 };
 
@@ -205,15 +225,26 @@ Module._load = function patchedLoad(
     return {
       getUserIdByStripeCustomer: async (_t: string, customerId: string) =>
         customerToUser.get(customerId) ?? null,
-      claimStripeWebhookEvent: async () => "claimed",
-      completeStripeWebhookEvent: async () => {},
-      releaseStripeWebhookClaim: async () => {},
+      claimStripeWebhookEvent: async () => claimResult,
+      completeStripeWebhookEvent: async (_t: string, eventId: string) => {
+        completedEventIds.push(eventId);
+      },
+      releaseStripeWebhookClaim: async (_t: string, eventId: string) => {
+        releasedEventIds.push(eventId);
+      },
       mapStripeCustomerToUser: async () => {},
-      setEntitlementDisputeMarker: async () => {},
-      // Not part of the spec's stub list, but route.ts imports it (used by the
-      // charge.dispute.created branch, which this file's tests never trigger).
-      // Provided as a no-op so the destructured import isn't `undefined`.
-      recordBillingEvent: async () => {},
+      setEntitlementDisputeMarker: async (
+        _t: string,
+        userId: string,
+        open: boolean,
+      ) => {
+        disputeMarkerCalls.push([userId, open]);
+      },
+      // route.ts imports this for the charge.dispute.created branch, which the
+      // WS7-001 dispute tests below exercise. Capture rows for assertion.
+      recordBillingEvent: async (_t: string, row: unknown) => {
+        recordedBillingEvents.push(row);
+      },
       updateUserEntitlementFromStripe: async (
         _t: string,
         params: StripeEntitlementWriteParams & { userId: string },
@@ -351,4 +382,152 @@ test("WS4-014 PIN: unhandled event type is acknowledged and touches nothing", as
     proStatus: "active",
     lastAppleSignedDate: 1_000,
   });
+});
+
+test("WS7-001: customer.subscription.deleted downgrades a stripe entitlement", async () => {
+  customerToUser.set("cus_stripe", "user-stripe");
+  entitlements.set("user-stripe", {
+    proSource: "stripe",
+    plan: "PRO",
+    proStatus: "active",
+  });
+  const event = {
+    id: "evt_sub_del_1",
+    type: "customer.subscription.deleted",
+    created: 2_000,
+    data: { object: { customer: "cus_stripe", id: "sub_1", status: "canceled" } },
+  };
+
+  const res = await POST(webhookRequest(event));
+  assert.equal(res.status, 200);
+
+  // mapSubscriptionStatus("canceled") → plan FREE
+  assert.equal(capturedParams.length, 1);
+  assert.equal(capturedParams[0].plan, "FREE");
+  assert.equal(entitlements.get("user-stripe")?.plan, "FREE");
+  assert.ok(completedEventIds.includes("evt_sub_del_1"));
+});
+
+test("WS7-001: invalid signature returns 400 invalid_signature and never claims", async () => {
+  // Plain object with the type discriminator passes
+  // isStripeSignatureVerificationError (webhook-signature-core.ts:50-64 keys
+  // on `type`, not the message text).
+  constructEventImpl = () => {
+    throw {
+      type: "StripeSignatureVerificationError",
+      message:
+        "No signatures found matching the expected signature for payload",
+    };
+  };
+  const res = await POST(
+    webhookRequest({ id: "evt_sig_1", type: "checkout.session.completed", created: 2_000, data: { object: {} } }),
+  );
+  assert.equal(res.status, 400);
+  const body = (await res.json()) as { error?: { code?: string } };
+  assert.equal(body.error?.code, "invalid_signature");
+  // Signature check precedes the claim (route.ts:99): nothing ran.
+  assert.equal(capturedParams.length, 0);
+  assert.equal(completedEventIds.length, 0);
+  assert.equal(releasedEventIds.length, 0);
+});
+
+test("WS7-001: duplicate claim (done) acknowledges without side effects", async () => {
+  claimResult = "done";
+  const event = {
+    id: "evt_dup_1",
+    type: "checkout.session.completed",
+    created: 2_000,
+    data: { object: { customer: "cus_apple", subscription: "sub_1", metadata: { userId: "user-apple" } } },
+  };
+  const res = await POST(webhookRequest(event));
+  assert.equal(res.status, 200);
+  assert.deepEqual(await res.json(), { received: true, duplicate: true });
+  assert.equal(capturedParams.length, 0);
+  assert.equal(completedEventIds.length, 0);
+});
+
+test("WS7-001: in-progress claim returns 409 webhook_in_progress without side effects", async () => {
+  claimResult = "in_progress";
+  const event = {
+    id: "evt_prog_1",
+    type: "checkout.session.completed",
+    created: 2_000,
+    data: { object: { customer: "cus_apple", subscription: "sub_1", metadata: { userId: "user-apple" } } },
+  };
+  const res = await POST(webhookRequest(event));
+  assert.equal(res.status, 409);
+  const body = (await res.json()) as { error?: { code?: string } };
+  assert.equal(body.error?.code, "webhook_in_progress");
+  assert.equal(capturedParams.length, 0);
+});
+
+test("WS7-001: charge.dispute.created revokes a stripe entitlement and sets the sticky marker", async () => {
+  customerToUser.set("cus_stripe", "user-stripe");
+  entitlements.set("user-stripe", {
+    proSource: "stripe",
+    plan: "PRO",
+    proStatus: "active",
+  });
+  chargeRetrieveImpl = async () => ({ customer: "cus_stripe", created: 1_234 });
+  const event = {
+    id: "evt_dispute_1",
+    type: "charge.dispute.created",
+    created: 2_000,
+    data: {
+      object: {
+        id: "dp_1",
+        charge: "ch_1",
+        amount: 2_999,
+        currency: "cad",
+        reason: "fraudulent",
+        status: "needs_response",
+        created: 1_900,
+      },
+    },
+  };
+
+  const res = await POST(webhookRequest(event));
+  assert.equal(res.status, 200);
+
+  assert.equal(recordedBillingEvents.length, 1);
+  assert.equal((recordedBillingEvents[0] as { kind?: string }).kind, "dispute");
+  assert.equal(capturedParams.length, 1);
+  assert.equal(capturedParams[0].plan, "FREE");
+  assert.equal(capturedParams[0].proStatus, "canceled");
+  assert.equal(capturedParams[0].setDisputeOpen, true);
+  assert.deepEqual(disputeMarkerCalls, [["user-stripe", true]]);
+  assert.ok(completedEventIds.includes("evt_dispute_1"));
+});
+
+test("WS7-001: charge.dispute.created retry path releases the claim and never completes", async () => {
+  // Charge HAS a customer but the customer→user map has no entry:
+  // classifyDisputeResolution → "retry" → route.ts:539-553 throws
+  // BookApiError(500, "user_resolution_failed").
+  chargeRetrieveImpl = async () => ({ customer: "cus_unmapped", created: 1_234 });
+  const event = {
+    id: "evt_dispute_2",
+    type: "charge.dispute.created",
+    created: 2_000,
+    data: {
+      object: {
+        id: "dp_2",
+        charge: "ch_2",
+        amount: 2_999,
+        currency: "cad",
+        reason: "fraudulent",
+        status: "needs_response",
+        created: 1_900,
+      },
+    },
+  };
+
+  const res = await POST(webhookRequest(event));
+  assert.equal(res.status, 500);
+
+  // Finance row is written BEFORE the throw (route.ts:519) — idempotent SK.
+  assert.equal(recordedBillingEvents.length, 1);
+  // catch at route.ts:643-652 releases the PROCESSING lease so Stripe retries.
+  assert.ok(releasedEventIds.includes("evt_dispute_2"));
+  assert.equal(completedEventIds.length, 0);
+  assert.equal(capturedParams.length, 0);
 });
