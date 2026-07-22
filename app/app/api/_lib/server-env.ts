@@ -4,6 +4,7 @@ import {
   loadSsmParameterValue,
 } from "./server-env-core";
 import { logger } from "@/lib/logging/logger";
+import { awsClientConfig } from "./aws-client-config-core";
 
 const REGION =
   process.env.AWS_REGION ||
@@ -34,7 +35,7 @@ async function getSsmClient() {
   if (ssmClientPromise) return ssmClientPromise;
 
   ssmClientPromise = (async () => {
-    return new SSMClient({ region: REGION });
+    return new SSMClient({ region: REGION, ...awsClientConfig });
   })();
 
   return ssmClientPromise;

@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { resolveBillingSecretReadiness } from "./billing-readiness-core";
+import { awsClientConfig } from "@/app/app/api/_lib/aws-client-config-core";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -71,7 +72,7 @@ async function probeDynamo(): Promise<boolean> {
     const { DynamoDBClient, DescribeTableCommand } = await import(
       "@aws-sdk/client-dynamodb"
     );
-    const client = new DynamoDBClient({ region: REGION });
+    const client = new DynamoDBClient({ region: REGION, ...awsClientConfig });
     await client.send(new DescribeTableCommand({ TableName: tableName }));
     return true;
   } catch {
@@ -111,7 +112,7 @@ async function probeContent(): Promise<boolean> {
     const { S3Client, GetBucketLocationCommand } = await import(
       "@aws-sdk/client-s3"
     );
-    const client = new S3Client({ region: REGION });
+    const client = new S3Client({ region: REGION, ...awsClientConfig });
     await client.send(new GetBucketLocationCommand({ Bucket: bucket }));
     return true;
   } catch {

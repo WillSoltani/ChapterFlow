@@ -4,6 +4,7 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { S3Client } from "@aws-sdk/client-s3";
 import { SFNClient } from "@aws-sdk/client-sfn";
+import { awsClientConfig } from "./aws-client-config-core";
 
 // WS6-029: passive X-Ray instrumentation. When the server Lambda runs with
 // ACTIVE tracing (frontend ServerFn), the daemon address env var is set and we
@@ -36,7 +37,7 @@ export const REGION =
 
 // Wrap the base client before building the DocumentClient so DynamoDB calls
 // issued through the doc client still surface as X-Ray subsegments.
-const ddb = traceClient(new DynamoDBClient({ region: REGION }));
+const ddb = traceClient(new DynamoDBClient({ region: REGION, ...awsClientConfig }));
 
 export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   // NOTE: convertEmptyValues is intentionally OFF. With it on, the SDK rewrites
@@ -51,6 +52,6 @@ export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   marshallOptions: { removeUndefinedValues: true },
 });
 
-export const s3 = traceClient(new S3Client({ region: REGION }));
+export const s3 = traceClient(new S3Client({ region: REGION, ...awsClientConfig }));
 
-export const sfn = traceClient(new SFNClient({ region: REGION }));
+export const sfn = traceClient(new SFNClient({ region: REGION, ...awsClientConfig }));
