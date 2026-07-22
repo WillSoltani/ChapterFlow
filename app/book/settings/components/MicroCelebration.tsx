@@ -48,6 +48,7 @@ export function MicroCelebration({ event, reducedMotion }: MicroCelebrationProps
       const timer = setTimeout(() => setVisible(false), duration);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [event, reducedMotion]);
 
   if (!currentEvent) return null;

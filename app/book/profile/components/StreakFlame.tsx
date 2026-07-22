@@ -38,6 +38,7 @@ export function StreakFlame({ active, size = 28, streakDays = 0 }: { active: boo
       const timer = setTimeout(() => setShowCelebration(false), 1200);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [isMilestone, active, reducedMotion]);
 
   return (
