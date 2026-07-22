@@ -3,8 +3,9 @@
 // Canonical shared saved-books hook (WS3-001).
 
 import { useCallback, useEffect, useMemo, useState } from "react";
+import { useBookQuery, invalidateBookCache } from "@/lib/client/book-api-cache";
 import { fetchBookJson } from "@/lib/client/book-api";
-import { emitBookStorageChanged, BOOK_STORAGE_EVENT } from "@/lib/client/book-storage-events";
+import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
 
 export type SavedBookItem = {
   bookId: string;
@@ -19,6 +20,8 @@ type SavedResponse = {
   saved: SavedBookItem[];
 };
 
+const SAVED_BOOKS_KEY = "/app/api/book/me/saved";
+
 function sortSaved(items: SavedBookItem[]) {
   return [...items].sort((left, right) => {
     if (left.pinned !== right.pinned) return left.pinned ? -1 : 1;
@@ -30,65 +33,40 @@ function sortSaved(items: SavedBookItem[]) {
 }
 
 export function useSavedBooks(enabled = true) {
-  const [hydrated, setHydrated] = useState(false);
-  const [loading, setLoading] = useState(enabled);
-  const [error, setError] = useState<string | null>(null);
-  const [saved, setSaved] = useState<SavedBookItem[]>([]);
+  const query = useBookQuery<SavedResponse>(enabled ? SAVED_BOOKS_KEY : null);
+  // Non-null only between a toggle and its server settle.
+  const [optimistic, setOptimistic] = useState<SavedBookItem[] | null>(null);
+  const [toggleErrorMessage, setToggleErrorMessage] = useState<string | null>(null);
 
-  const refresh = useCallback(async () => {
-    if (!enabled) {
-      setSaved([]);
-      setHydrated(true);
-      setLoading(false);
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const payload = await fetchBookJson<SavedResponse>("/app/api/book/me/saved");
-      setSaved(sortSaved(payload.saved ?? []));
-      setError(null);
-    } catch (fetchError: unknown) {
-      const message =
-        fetchError instanceof Error ? fetchError.message : "Unable to load saved books.";
-      setError(message);
-    } finally {
-      setHydrated(true);
-      setLoading(false);
-    }
-  }, [enabled]);
-
+  const serverSaved = useMemo(
+    () => sortSaved(query.data?.saved ?? []),
+    [query.data]
+  );
+  // Fresh server data settled — drop the overlay; the cache is source of truth.
   useEffect(() => {
-    void refresh();
-  }, [refresh]);
+    setOptimistic(null);
+  }, [query.data]);
 
-  useEffect(() => {
-    function onStorageChange(event: Event) {
-      const detail =
-        "detail" in event && event.detail && typeof event.detail === "string"
-          ? event.detail
-          : "";
-      if (!detail || detail.startsWith("saved-books")) {
-        void refresh();
-      }
-    }
-
-    window.addEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-    window.addEventListener("focus", onStorageChange);
-    return () => {
-      window.removeEventListener(BOOK_STORAGE_EVENT, onStorageChange as EventListener);
-      window.removeEventListener("focus", onStorageChange);
-    };
-  }, [refresh]);
+  const saved = optimistic ?? serverSaved;
+  const hydrated =
+    !enabled || query.data !== undefined || query.error !== undefined;
+  const loading = enabled && query.loading;
+  const error =
+    toggleErrorMessage ??
+    (query.error
+      ? query.error instanceof Error
+        ? query.error.message
+        : "Unable to load saved books."
+      : null);
+  const refresh = query.refetch;
 
   const savedSet = useMemo(() => new Set(saved.map((item) => item.bookId)), [saved]);
 
   const toggleSaved = useCallback(
     async (bookId: string, options?: { source?: string; priority?: number; pinned?: boolean }) => {
       const alreadySaved = savedSet.has(bookId);
-      const previous = saved;
       const now = new Date().toISOString();
-      const optimistic = alreadySaved
+      const optimisticList = alreadySaved
         ? saved.filter((item) => item.bookId !== bookId)
         : sortSaved([
             ...saved,
@@ -102,7 +80,8 @@ export function useSavedBooks(enabled = true) {
             },
           ]);
 
-      setSaved(optimistic);
+      setOptimistic(optimisticList);
+      setToggleErrorMessage(null);
       emitBookStorageChanged("saved-books");
 
       try {
@@ -111,7 +90,7 @@ export function useSavedBooks(enabled = true) {
             method: "DELETE",
           });
         } else {
-          const payload = await fetchBookJson<{ saved: SavedBookItem }>("/app/api/book/me/saved", {
+          await fetchBookJson<{ saved: SavedBookItem }>("/app/api/book/me/saved", {
             method: "PUT",
             body: JSON.stringify({
               bookId,
@@ -120,22 +99,18 @@ export function useSavedBooks(enabled = true) {
               pinned: options?.pinned,
             }),
           });
-          setSaved((current) =>
-            sortSaved([
-              ...current.filter((item) => item.bookId !== bookId),
-              payload.saved,
-            ])
-          );
         }
-        setError(null);
+        // Refetch every subscriber; the query.data effect clears the overlay when
+        // the revalidated list arrives, so the UI never flashes back to stale.
+        invalidateBookCache(SAVED_BOOKS_KEY);
         emitBookStorageChanged("saved-books");
         return { saved: !alreadySaved, error: null };
       } catch (toggleError: unknown) {
-        setSaved(previous);
+        setOptimistic(null);
         emitBookStorageChanged("saved-books");
         const message =
           toggleError instanceof Error ? toggleError.message : "Unable to update saved books.";
-        setError(message);
+        setToggleErrorMessage(message);
         return { saved: alreadySaved, error: message };
       }
     },
