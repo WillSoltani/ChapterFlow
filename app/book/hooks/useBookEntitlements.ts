@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useState } from "react";
 import { fetchBookJson, handleReauthRequired } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { ENTITLEMENTS_KEY } from "./book-read-keys";
 import type { ProSource } from "@/lib/entitlement-types";
 
 export type BillingInterval = "monthly" | "annual" | "annual_upfront";
@@ -97,7 +99,7 @@ export function useBookEntitlements(enabled: boolean) {
 
   const fetchEntitlements = useCallback(() => {
     setBillingState((current) => ({ ...current, loading: true, error: null }));
-    fetchBookJson<EntitlementsResponse>("/app/api/book/me/entitlements")
+    fetchBookJsonCached<EntitlementsResponse>(ENTITLEMENTS_KEY)
       .then((payload) => {
         setBillingState({ loading: false, payload, error: null });
       })
@@ -122,6 +124,7 @@ export function useBookEntitlements(enabled: boolean) {
 
     if (justUpgraded) {
       sessionStorage.removeItem(BILLING_UPGRADED_KEY);
+      invalidateBookCache(ENTITLEMENTS_KEY);
       // Refetch a few times with backoff: webhook delivery is async and may
       // take a couple seconds. Stop early once the user shows as PRO.
       let cancelled = false;
@@ -129,7 +132,9 @@ export function useBookEntitlements(enabled: boolean) {
       const timers: ReturnType<typeof setTimeout>[] = [];
       const tryFetch = (attempt: number) => {
         if (cancelled) return;
-        fetchBookJson<EntitlementsResponse>("/app/api/book/me/entitlements")
+        fetchBookJsonCached<EntitlementsResponse>(ENTITLEMENTS_KEY, undefined, {
+          forceRevalidate: true,
+        })
           .then((payload) => {
             if (cancelled) return;
             setBillingState({ loading: false, payload, error: null });
@@ -177,7 +182,12 @@ export function useBookEntitlements(enabled: boolean) {
         body: JSON.stringify({ code }),
       });
       // Refresh entitlement state after successful redemption
-      const payload = await fetchBookJson<EntitlementsResponse>("/app/api/book/me/entitlements");
+      invalidateBookCache(ENTITLEMENTS_KEY);
+      const payload = await fetchBookJsonCached<EntitlementsResponse>(
+        ENTITLEMENTS_KEY,
+        undefined,
+        { forceRevalidate: true }
+      );
       setBillingState({ loading: false, payload, error: null });
       return null;
     } catch (error: unknown) {

@@ -1,10 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
+import { BookClientError } from "@/lib/client/book-api";
+import { ENTITLEMENTS_KEY } from "@/app/book/hooks/book-read-keys";
 
 export type AuthUser = {
   displayName: string;
   email: string | null;
+};
+
+const AUTH_SESSION_KEY = "/app/api/auth/session";
+
+type SessionResponse = {
+  loggedIn?: unknown;
+  user?: { displayName?: string; email?: string | null };
 };
 
 const RETRY_DELAY_MS = 400;
@@ -33,34 +43,23 @@ export function useAuthStatus(options?: { withPlan?: boolean }) {
     // loggedIn at null (the loading state) rather than claiming logged-out.
     async function run() {
       for (let attempt = 1; attempt <= MAX_ATTEMPTS && !cancelled; attempt++) {
-        let res: Response;
+        let data: SessionResponse;
         try {
-          res = await fetch("/app/api/auth/session", { cache: "no-store" });
-        } catch {
-          if (attempt < MAX_ATTEMPTS) {
-            await delay(attempt);
-            continue;
+          data = await fetchBookJsonCached<SessionResponse>(
+            AUTH_SESSION_KEY,
+            undefined,
+            attempt > 1 ? { forceRevalidate: true } : undefined
+          );
+        } catch (error) {
+          if (error instanceof BookClientError && error.status < 500) {
+            if (!cancelled) setLoggedIn(false); // definitive 4xx — not logged in
+            return;
           }
-          return; // transient network failure — stay in loading, do not logout
+          // transient 5xx / network failure — retry, and on persistent failure
+          // stay in loading rather than claiming logged-out
+          if (attempt < MAX_ATTEMPTS) await delay(attempt);
+          continue;
         }
-
-        if (res.status >= 500) {
-          if (attempt < MAX_ATTEMPTS) {
-            await delay(attempt);
-            continue;
-          }
-          return; // persistent transient failure — stay in loading
-        }
-
-        if (!res.ok) {
-          if (!cancelled) setLoggedIn(false); // definitive 4xx — not logged in
-          return;
-        }
-
-        const data = (await res.json().catch(() => ({}))) as {
-          loggedIn?: unknown;
-          user?: { displayName?: string; email?: string | null };
-        };
         const v = data.loggedIn === true;
         if (!cancelled) {
           setLoggedIn(v);
@@ -71,13 +70,9 @@ export function useAuthStatus(options?: { withPlan?: boolean }) {
             });
           }
           if (v && withPlan) {
-            // The session endpoint doesn't carry the plan, so fetch it from the
-            // authenticated entitlements endpoint as a best-effort signal. A
-            // 401 / !ok / network failure leaves isPro=false (the safe default),
-            // so any consumer's plan-gated UI degrades to its logged-in-but-
-            // unknown-plan behaviour. Guarded by `cancelled` like the rest.
-            fetch("/app/api/book/me/entitlements", { cache: "no-store" })
-              .then((r) => (r.ok ? r.json() : null))
+            // Same ENTITLEMENTS_KEY as useBookEntitlements — one request per
+            // navigation even when Pricing and Settings are both mounted.
+            fetchBookJsonCached<{ entitlement?: { plan?: string } }>(ENTITLEMENTS_KEY)
               .then((d) => {
                 if (!cancelled && d?.entitlement?.plan === "PRO") setIsPro(true);
               })
