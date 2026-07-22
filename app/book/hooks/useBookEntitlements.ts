@@ -157,6 +157,7 @@ export function useBookEntitlements(enabled: boolean) {
     }
 
     fetchEntitlements();
+    return undefined;
   }, [enabled, fetchEntitlements]);
 
   const launchBillingAction = useCallback(

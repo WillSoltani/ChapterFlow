@@ -173,6 +173,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
       const id = setTimeout(() => inputRef.current?.focus(), 100);
       return () => clearTimeout(id);
     }
+    return undefined;
   }, [open]);
 
   const handleClear = useCallback(() => {

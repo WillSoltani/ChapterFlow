@@ -208,6 +208,7 @@ export function LibraryPage() {
       }, 300);
       return () => clearTimeout(t);
     }
+    return undefined;
   }, [navSearchQuery]);
 
   // Up to 3 Pro books (catalog order) for the exhaustion banner — no fake ranking.

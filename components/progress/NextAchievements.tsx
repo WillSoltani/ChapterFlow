@@ -48,6 +48,7 @@ export function NextAchievements({
       }, 5000);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [recentlyEarnedBadge, dismissed, handleDismiss]);
 
   if (milestones.length === 0) return null;
