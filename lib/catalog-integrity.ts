@@ -16,6 +16,10 @@
  *
  * Edge-safe: depends only on the alias map (no node/server-only imports), so it
  * can run in scripts, server code, and tests.
+ *
+ * Live invokers: lib/catalog-integrity-gate.test.ts (CI gate that fails the
+ * suite if an unknown fork re-enters lib/books-catalog.metadata.json) and
+ * scripts/book/reconcile-prod-catalog.ts (operator-run dry-run reconcile).
  */
 import { isOrphanBookSlug } from "./book-slug-aliases";
 
@@ -130,4 +134,19 @@ export function findDuplicateTitleGroups(
   }
 
   return groups.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+/**
+ * Duplicate-title groups NOT fully explained by the alias map — i.e. at least
+ * one non-canonical sibling is not a known retired slug from
+ * book-slug-aliases.ts. These are the unknown/future forks the CI gate
+ * (lib/catalog-integrity-gate.test.ts) fails the build on; known forks stay
+ * report-only in scripts/book/reconcile-prod-catalog.ts.
+ */
+export function findUnknownDuplicateTitleGroups(
+  records: CatalogRecordLike[]
+): DuplicateTitleGroup[] {
+  return findDuplicateTitleGroups(records).filter(
+    (group) => !group.orphanBookIds.every(isOrphanBookSlug)
+  );
 }
