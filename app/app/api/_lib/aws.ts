@@ -4,7 +4,6 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { S3Client } from "@aws-sdk/client-s3";
 import { SFNClient } from "@aws-sdk/client-sfn";
-import { mustServerEnv } from "./server-env";
 
 // WS6-029: passive X-Ray instrumentation. When the server Lambda runs with
 // ACTIVE tracing (frontend ServerFn), the daemon address env var is set and we
@@ -28,10 +27,6 @@ function traceClient<T>(client: T): T {
   } catch {
     return client;
   }
-}
-
-export async function mustEnv(name: string): Promise<string> {
-  return mustServerEnv(name);
 }
 
 export const REGION =
