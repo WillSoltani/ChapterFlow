@@ -28,9 +28,9 @@ export function useReaderExamples({
   onToast,
 }: {
   bookId: string;
-  chapterOrder?: number;
-  chapterNumber?: number;
-  chapter?: BookChapter;
+  chapterOrder?: number | undefined;
+  chapterNumber?: number | undefined;
+  chapter?: BookChapter | undefined;
   enabled: boolean;
   exampleFilter: ExampleFilter;
   setExampleFilter: (filter: ExampleFilter) => void;

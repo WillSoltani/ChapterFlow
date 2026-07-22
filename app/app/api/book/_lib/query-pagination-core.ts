@@ -18,7 +18,7 @@ export const MAX_QUERY_PAGES = 50;
 
 export interface QueryPage<TKey = Record<string, unknown>> {
   items: Record<string, unknown>[];
-  lastEvaluatedKey?: TKey;
+  lastEvaluatedKey?: TKey | undefined;
 }
 
 /**

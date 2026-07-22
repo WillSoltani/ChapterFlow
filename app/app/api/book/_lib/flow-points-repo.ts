@@ -574,7 +574,7 @@ export async function awardFlowPoints(
   awarded: boolean;
   reason: AwardFlowPointsFailureReason;
   state: BookUserEngagementItem;
-  transactionId?: string;
+  transactionId?: string | undefined;
 }> {
   const amount = Math.max(0, Math.floor(params.amount));
   const sourceId = params.sourceId.trim();
@@ -708,7 +708,7 @@ export async function reverseFlowPointsAward(
   reason: ReverseFlowPointsFailureReason;
   pointsDeducted: number;
   state: BookUserEngagementItem;
-  transactionId?: string;
+  transactionId?: string | undefined;
 }> {
   const amount = Math.max(0, Math.floor(params.amount));
   const sourceId = params.sourceId.trim();
@@ -848,9 +848,9 @@ export async function redeemFlowPointsReward(
     userId: string;
     rewardId: FlowPointsRewardId;
     costPoints: number;
-    metadata?: Record<string, unknown>;
-    bookSlotDelta?: number;
-    passExpiresAt?: string;
+    metadata?: Record<string, unknown> | undefined;
+    bookSlotDelta?: number | undefined;
+    passExpiresAt?: string | undefined;
   }
 ): Promise<{ state: BookUserEngagementItem; redemptionId: string }> {
   const now = nowIso();
@@ -1367,7 +1367,7 @@ export async function adjustEngagementPointsAdmin(
     amount: number;
     reason: string;
     adminUserId: string;
-    adminEmail?: string;
+    adminEmail?: string | undefined;
   }
 ): Promise<{ transactionId: string; now: string }> {
   const now = nowIso();

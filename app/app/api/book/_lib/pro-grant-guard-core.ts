@@ -10,16 +10,16 @@
 // spec across a full truth table in pro-grant-guard-condition.test.ts (the
 // executable enforcement coverage).
 export interface ExistingGrant {
-  plan?: string | null; // "PRO" / "FREE" / absent
-  proSource?: string | null; // "stripe" | "admin" | "license" | "gift_code" | "flow_points" | null | absent
-  licenseExpiresAt?: string | null; // ISO-8601, or null/absent
-  currentPeriodEnd?: string | null; // ISO-8601, or null/absent
+  plan?: string | null | undefined; // "PRO" / "FREE" / absent | undefined
+  proSource?: string | null | undefined; // "stripe" | "admin" | "license" | "gift_code" | "flow_points" | null | absent | undefined
+  licenseExpiresAt?: string | null | undefined; // ISO-8601, or null/absent | undefined
+  currentPeriodEnd?: string | null | undefined; // ISO-8601, or null/absent | undefined
   // Sticky chargeback marker (L13/C3). Set true by the charge.dispute.created
   // downgrade (stripe-entitlement-write-core), cleared (REMOVEd) only by a
   // dispute.closed(won). While present, NO PRO grant may be (re)applied — not via
   // Stripe and not via license / gift / flow_points — so a charged-back user can't
   // immediately restore PRO through a non-Stripe path.
-  disputeOpen?: boolean | null; // true while a chargeback is unresolved, else absent
+  disputeOpen?: boolean | null | undefined; // true while a chargeback is unresolved, else absent | undefined
 }
 
 export function grantUpgradeApplies(

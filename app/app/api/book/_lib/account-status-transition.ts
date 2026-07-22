@@ -23,9 +23,9 @@ export type AccountTransitionAction = "reactivate" | "deactivate" | "delete";
 
 /** The subset of the entitlement this orchestration reads. */
 type EntitlementView = {
-  proStatus?: string;
-  stripeSubscriptionId?: string;
-  stripeCustomerId?: string;
+  proStatus?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
+  stripeCustomerId?: string | undefined;
 };
 
 export type AccountTransitionDeps = {
@@ -40,8 +40,8 @@ export type AccountTransitionDeps = {
   /** Record a failed Stripe cancellation for operator follow-up (best-effort). */
   captureCancelFailure: (input: {
     kind: OpsFailureKind;
-    subscriptionId?: string;
-    stripeCustomerId?: string;
+    subscriptionId?: string | undefined;
+    stripeCustomerId?: string | undefined;
     error: unknown;
   }) => Promise<void>;
 };

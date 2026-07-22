@@ -13,7 +13,7 @@ export type LibraryBookEntry = BookCatalogItem & {
   progressPercent: number;
   chaptersTotal: number;
   chaptersCompleted: number;
-  isNew?: boolean;
+  isNew?: boolean | undefined;
   lastActivityAt: string;
 };
 

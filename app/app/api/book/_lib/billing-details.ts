@@ -15,9 +15,9 @@ export type BillingDetailsCharge = {
 };
 
 export type ExtractedBillingDetails = {
-  cardBrand?: string;
-  cardCountry?: string;
-  billingCountry?: string;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  billingCountry?: string | undefined;
 };
 
 export function extractBillingDetails(

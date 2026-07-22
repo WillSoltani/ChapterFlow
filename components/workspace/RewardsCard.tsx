@@ -9,8 +9,8 @@ interface RewardsCardProps {
   insightPoints: number;
   // UF-3: a Pro subscriber has no plan-relevant "next reward" goal, so the
   // dashboard passes these as undefined and the progress sub-block is hidden.
-  nextRewardName?: string;
-  pointsRequired?: number;
+  nextRewardName?: string | undefined;
+  pointsRequired?: number | undefined;
 }
 
 export function RewardsCard({
@@ -38,14 +38,10 @@ export function RewardsCard({
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
         border: "1px solid var(--cf-border)",
       }}
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
-      whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 16 } })}
+      {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
       viewport={{ once: true, margin: "-50px" }}
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: DUR.slow, ease: EASE.standard }
-      }
+      {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, ease: EASE.standard } })}
     >
       {/* Points balance */}
       <div className="flex items-center gap-2">
@@ -96,7 +92,7 @@ export function RewardsCard({
               style={{
                 background: "linear-gradient(90deg, var(--cf-accent), var(--cf-accent-strong))",
               }}
-              initial={prefersReducedMotion ? undefined : { width: 0 }}
+              {...(prefersReducedMotion ? {} : { initial: { width: 0 } })}
               whileInView={{ width: `${progress}%` }}
               viewport={{ once: true }}
               transition={

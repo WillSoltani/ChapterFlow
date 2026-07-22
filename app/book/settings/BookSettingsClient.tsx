@@ -129,7 +129,7 @@ type BookSettingsClientProps = {
   appVersion: string;
   /** Optional billing-interval pre-selection carried from an upgrade deep-link
    *  (e.g. the landing "Annual" toggle). Clamped to an available tier downstream. */
-  initialUpgradeInterval?: BillingInterval;
+  initialUpgradeInterval?: BillingInterval | undefined;
 };
 
 export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgradeInterval }: BookSettingsClientProps) {
@@ -1061,7 +1061,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                       key={ext.streakMode}
                       initial={reducedMotion ? false : { opacity: 0, y: 4 }}
                       animate={{ opacity: 1, y: 0 }}
-                      exit={reducedMotion ? undefined : { opacity: 0, y: -4 }}
+                      {...(reducedMotion ? {} : { exit: { opacity: 0, y: -4 } })}
                       transition={{ duration: DUR.micro }}
                       className="mt-0.5 text-xs leading-relaxed text-(--cf-text-3)"
                     >
@@ -1096,7 +1096,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 <motion.div
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
-                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
                   transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
                 >
                   <SettingRow
@@ -1250,7 +1250,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 <motion.div
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
-                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
                   transition={reducedMotion ? { duration: 0 } : { duration: DUR.fast }}
                   className="ml-6 flex items-center gap-3 border-l-2 border-(--cf-divider) pl-4 pb-3"
                 >
@@ -1389,7 +1389,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 <motion.div
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
-                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
                   transition={reducedMotion ? { duration: 0 } : { duration: DUR.micro }}
                 >
                   <SettingRow
@@ -1415,7 +1415,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 <motion.div
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
-                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
                   transition={reducedMotion ? { duration: 0 } : { duration: DUR.micro }}
                 >
                   <SettingRow
@@ -1452,7 +1452,7 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
                 <motion.div
                   initial={reducedMotion ? false : { height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
-                  exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+                  {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
                   transition={reducedMotion ? { duration: 0 } : { duration: DUR.micro }}
                 >
                   <SettingRow

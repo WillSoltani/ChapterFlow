@@ -35,10 +35,10 @@ export type Badge = {
   relatedBadgeIds: string[];
   tieredProgression?: {
     currentTier: BadgeTier;
-    nextTier?: BadgeTier;
-    nextTierTarget?: number;
-    nextTierBadgeId?: string;
-  };
+    nextTier?: BadgeTier | undefined;
+    nextTierTarget?: number | undefined;
+    nextTierBadgeId?: string | undefined;
+  } | undefined;
   evaluate: (stats: BadgeProgressStats) => { current: number; target: number };
 };
 

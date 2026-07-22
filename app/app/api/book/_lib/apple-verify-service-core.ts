@@ -19,11 +19,11 @@ import type { AppleEntitlementWriteParams } from "./apple-entitlement-write-core
 import type { AppleStorageLane } from "./keys";
 
 type EntitlementView = {
-  plan?: string;
-  proStatus?: string;
-  proSource?: string;
-  currentPeriodEnd?: string;
-  cancelAtPeriodEnd?: boolean;
+  plan?: string | undefined;
+  proStatus?: string | undefined;
+  proSource?: string | undefined;
+  currentPeriodEnd?: string | undefined;
+  cancelAtPeriodEnd?: boolean | undefined;
 } | null;
 
 export type AppleVerifyServiceDependencies = {
@@ -39,7 +39,7 @@ export type AppleVerifyServiceDependencies = {
     storageLane: AppleStorageLane,
   ): Promise<{
     userId: string;
-    accountBindingVersion?: string;
+    accountBindingVersion?: string | undefined;
   } | null>;
   claimTransaction(
     originalTransactionId: string,
@@ -67,8 +67,8 @@ export type AppleVerificationResponse = {
   entitlement: {
     plan: string;
     proStatus: string;
-    proSource?: string;
-    currentPeriodEnd?: string;
+    proSource?: string | undefined;
+    currentPeriodEnd?: string | undefined;
     cancelAtPeriodEnd: boolean;
   };
 };

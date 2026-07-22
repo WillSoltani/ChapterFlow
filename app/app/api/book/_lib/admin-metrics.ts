@@ -10,32 +10,32 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 export type EntitlementSnapshot = {
   userId: string;
   plan: "FREE" | "PRO";
-  proStatus?: string;
-  proSource?: string;
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
-  stripePriceId?: string;
-  subscriptionInterval?: string;
-  currentPeriodEnd?: string;
-  cancelAtPeriodEnd?: boolean;
-  licenseKey?: string;
-  licenseExpiresAt?: string;
+  proStatus?: string | undefined;
+  proSource?: string | undefined;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
+  stripePriceId?: string | undefined;
+  subscriptionInterval?: string | undefined;
+  currentPeriodEnd?: string | undefined;
+  cancelAtPeriodEnd?: boolean | undefined;
+  licenseKey?: string | undefined;
+  licenseExpiresAt?: string | undefined;
   // Billing intelligence — written by the Stripe webhook (absent for
   // license / flow_points / gift sources). These MUST stay in lockstep with
   // the ProjectionExpression AND the item mapping in scanAllEntitlements
   // below: a field listed here but not projected reads back `undefined` at
   // runtime, which is exactly how the admin billing dashboard silently
   // reported $0 MRR while the data sat in DynamoDB.
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  failedPaymentLastReason?: string;
-  updatedAt?: string;
+  billingCountry?: string | undefined;
+  billingCurrency?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  lastInvoiceAmountCents?: number | undefined;
+  lastInvoiceCurrency?: string | undefined;
+  lastInvoicePaidAt?: string | undefined;
+  failedPaymentLastReason?: string | undefined;
+  updatedAt?: string | undefined;
 };
 
 /**
@@ -590,7 +590,7 @@ export type CohortRetentionRow = {
 };
 
 export function buildCohortRetention(
-  snapshots: Array<{ firstSeenAt?: string; readingDays?: Set<string> | string[] }>,
+  snapshots: Array<{ firstSeenAt?: string | undefined; readingDays?: Set<string> | string[] | undefined }>,
   weeksToShow = 8,
 ): CohortRetentionRow[] {
   const cohorts = new Map<string, { size: number; activeByWeek: number[] }>();
@@ -688,9 +688,9 @@ export function bucketReadingFrequency(
  */
 export function bucketDeviceFields(
   snapshots: Array<{
-    deviceType?: string;
-    browserName?: string;
-    osName?: string;
+    deviceType?: string | undefined;
+    browserName?: string | undefined;
+    osName?: string | undefined;
   }>,
 ): {
   deviceType: Array<{ key: string; count: number }>;

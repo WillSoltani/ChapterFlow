@@ -35,15 +35,15 @@ interface Props {
   hasNextChapter: boolean;
   onNext: () => void;
   onLibrary: () => void;
-  onShare?: () => Promise<"shared" | "copied" | "unsupported"> | void;
+  onShare?: () => Promise<"shared" | "copied" | "unsupported"> | void | undefined;
   /** Two-axis completion (feedback #4): the chapter's DERIVED application state.
    *  Display/celebration only — gates nothing, awards no IP. Defaults to "none". */
-  applicationState?: ChapterApplicationState | null;
+  applicationState?: ChapterApplicationState | null | undefined;
   /** Whether a CommitmentPrompt will actually render below (children). The "none"
    *  invitation points at that prompt, so it's suppressed when none exists (a chapter
    *  without if-then plans) to avoid copy that dangles. Defaults to true. */
-  commitmentAvailable?: boolean;
-  children?: React.ReactNode;
+  commitmentAvailable?: boolean | undefined;
+  children?: React.ReactNode | undefined;
 }
 
 type IconCmp = typeof Check;

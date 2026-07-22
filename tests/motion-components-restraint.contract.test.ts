@@ -71,9 +71,13 @@ test("the one continuous Framer loop is reduced-motion-safe submitting feedback"
 
   assert.match(requestForm, /usePrefersReducedMotion\(\)/);
   assert.match(requestForm, /formState === "submitting"[\s\S]*Submitting\.\.\./);
+  // exactOptionalPropertyTypes (WS7-010 flag 4) forbids `animate={cond ? undefined : …}`
+  // on framer's strict SVGMotionProps, so the reduced-motion guard is expressed as a
+  // conditional prop spread instead — runtime-identical: when reduced, the `animate`
+  // prop is absent (React drops it), so the continuous rotate loop never mounts.
   assert.match(
     requestForm,
-    /animate=\{reducedMotion\s*\?\s*undefined\s*:\s*\{\s*rotate:\s*360\s*\}\}/,
+    /\{\.\.\.\(reducedMotion\s*\?\s*\{\}\s*:\s*\{\s*animate:\s*\{\s*rotate:\s*360\s*\}\s*\}\)\}/,
   );
   assert.match(requestForm, /aria-hidden="true"/);
 });

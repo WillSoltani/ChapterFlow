@@ -296,7 +296,7 @@ export async function recordQuizAttemptOutcome(
     previousAttemptsCount: number;
     attempt: QuizAttemptItem;
     nextQuizState: BookUserQuizStateItem;
-    nextProgress?: BookUserProgress;
+    nextProgress?: BookUserProgress | undefined;
     // Recompute nextProgress against a freshly-read row when the optimistic
     // progressRev guard loses a race. Defaults to keeping the originally-computed row
     // (the snapshot merge already includes this chapter), which is still correct but a

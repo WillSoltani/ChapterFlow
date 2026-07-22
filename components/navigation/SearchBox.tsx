@@ -8,13 +8,13 @@ import { Search } from "lucide-react";
 type SearchBoxProps = {
   value: string;
   onChange: (value: string) => void;
-  placeholder?: string;
-  onFocus?: () => void;
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
+  placeholder?: string | undefined;
+  onFocus?: (() => void) | undefined;
+  onKeyDown?: KeyboardEventHandler<HTMLInputElement> | undefined;
   /** combobox a11y — set when a results listbox is wired up. */
-  expanded?: boolean;
-  controlsId?: string;
-  activeDescendantId?: string;
+  expanded?: boolean | undefined;
+  controlsId?: string | undefined;
+  activeDescendantId?: string | undefined;
 };
 
 export const SearchBox = forwardRef<HTMLInputElement, SearchBoxProps>(

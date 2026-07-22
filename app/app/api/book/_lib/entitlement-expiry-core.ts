@@ -23,8 +23,8 @@ function parsedDateMs(value: string | undefined): number | null {
 export function isStoredProGrantExpired(input: {
   storedPlan: "FREE" | "PRO";
   proSource: StoredProSource;
-  licenseExpiresAt?: string;
-  currentPeriodEnd?: string;
+  licenseExpiresAt?: string | undefined;
+  currentPeriodEnd?: string | undefined;
   nowMs: number;
 }): boolean {
   if (input.storedPlan !== "PRO") return false;

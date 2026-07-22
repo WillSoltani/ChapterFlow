@@ -185,7 +185,7 @@ export async function* streamReflectionFeedback(params: {
       name: err instanceof Error ? err.name : typeof err,
       message: err instanceof Error ? err.message : String(err),
     });
-    const wrapped = new Error("AI feedback failed") as Error & { status?: number };
+    const wrapped = new Error("AI feedback failed") as Error & { status?: number | undefined };
     wrapped.status = status;
     throw wrapped;
   } finally {

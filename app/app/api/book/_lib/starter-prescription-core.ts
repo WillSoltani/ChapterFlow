@@ -223,9 +223,9 @@ function buildReason(
 export function buildStarterPrescription(params: {
   motivation: string;
   interests: string[];
-  starterShelf?: string[];
+  starterShelf?: string[] | undefined;
   catalog: PrescriptionCatalogBook[];
-  now?: Date;
+  now?: Date | undefined;
 }): StarterPrescription | null {
   const { motivation, interests, starterShelf, catalog } = params;
   const mot = coerceMotivation(motivation);

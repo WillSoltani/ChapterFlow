@@ -20,20 +20,20 @@ export type ReconDiscrepancy = {
   stripeCustomerId: string | null;
   stripeSubscriptionId: string | null;
   detail: string;
-  dbPlan?: string;
-  dbProSource?: string;
-  stripeStatus?: string;
+  dbPlan?: string | undefined;
+  dbProSource?: string | undefined;
+  stripeStatus?: string | undefined;
 };
 
 /** Minimal projection of a DynamoDB entitlement the reconciliation needs. */
 export type ReconEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
-  proSource?: string;
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
-  stripePriceId?: string;
-  subscriptionAmountCents?: number;
+  proSource?: string | undefined;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
+  stripePriceId?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
 };
 
 /** Minimal projection of a live Stripe subscription the reconciliation needs. */

@@ -54,14 +54,14 @@ const DEFAULT_VERSION = "1.0.0";
  * (`ProcessEnv`) be passed directly; the named keys document the contract.
  */
 export interface IosConfigEnv {
-  IOS_MIN_SUPPORTED_VERSION?: string;
-  IOS_LATEST_VERSION?: string;
-  IOS_FEATURE_FLAGS?: string;
-  IOS_STOREKIT_PRODUCT_IDS?: string;
-  IOS_APP_STORE_URL?: string;
-  APPLE_IAP_APP_APPLE_ID?: string;
-  IOS_MAINTENANCE_MODE?: string;
-  IOS_MESSAGE_OF_THE_DAY?: string;
+  IOS_MIN_SUPPORTED_VERSION?: string | undefined;
+  IOS_LATEST_VERSION?: string | undefined;
+  IOS_FEATURE_FLAGS?: string | undefined;
+  IOS_STOREKIT_PRODUCT_IDS?: string | undefined;
+  IOS_APP_STORE_URL?: string | undefined;
+  APPLE_IAP_APP_APPLE_ID?: string | undefined;
+  IOS_MAINTENANCE_MODE?: string | undefined;
+  IOS_MESSAGE_OF_THE_DAY?: string | undefined;
   [key: string]: string | undefined;
 }
 

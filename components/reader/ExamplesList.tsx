@@ -105,9 +105,9 @@ function ScenarioCard({
   index: number;
   fontScaleClass: string;
   readingDepth: ReadingDepth;
-  onInteraction?: () => void;
-  chapterId?: string;
-  onVisible?: (index: number) => void;
+  onInteraction?: (() => void) | undefined;
+  chapterId?: string | undefined;
+  onVisible?: ((index: number) => void) | undefined;
   bookId: string;
   chapterNumber: number;
   chapterTitle: string;

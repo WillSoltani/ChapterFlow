@@ -36,7 +36,7 @@ export type RefundRecord = {
   currency: string; // uppercased ISO code
   reason: string | null;
   status: string;
-  createdUnix?: number;
+  createdUnix?: number | undefined;
 };
 
 export function buildRefundRecords(

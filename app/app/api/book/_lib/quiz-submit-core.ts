@@ -141,10 +141,10 @@ function toLearningModeKey(mode: string): LearningModeKey {
 
 /** Minimal shape of the persisted quiz state the backfill reads (see repo.ts). */
 export interface PassedRetryBackfillQuizState {
-  passed?: boolean;
-  lastAttemptNumber?: number | null;
-  attemptsCount?: number | null;
-  lastScorePercent?: number | null;
+  passed?: boolean | undefined;
+  lastAttemptNumber?: number | null | undefined;
+  attemptsCount?: number | null | undefined;
+  lastScorePercent?: number | null | undefined;
 }
 
 export interface PassedRetryBackfillInput {

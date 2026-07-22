@@ -15,7 +15,7 @@ interface UserBookData {
   coverUrl: string;
   progressPercent: number;
   status: "not_started" | "in_progress" | "completed";
-  gradient?: string;
+  gradient?: string | undefined;
 }
 
 interface ProBookData {
@@ -55,11 +55,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         border: "1px solid var(--cf-border)",
         boxShadow: "var(--cf-shadow-md)",
       }}
-      whileHover={
-        prefersReducedMotion
-          ? undefined
-          : { scale: 1.03, y: -8 }
-      }
+      {...(prefersReducedMotion ? {} : { whileHover: { scale: 1.03, y: -8 } })}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       role="listitem"
     >
@@ -151,7 +147,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
               <motion.div
                 className="h-full rounded-full"
                 style={{ background: "var(--cf-accent)" }}
-                initial={prefersReducedMotion ? undefined : { width: 0 }}
+                {...(prefersReducedMotion ? {} : { initial: { width: 0 } })}
                 animate={{
                   width: `${(book as UserBookData).progressPercent}%`,
                 }}

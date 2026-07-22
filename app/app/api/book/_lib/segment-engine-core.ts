@@ -38,13 +38,13 @@ export type SegmentFilter = {
 export type SegmentDefinition = {
   segmentId: string;
   name: string;
-  description?: string;
+  description?: string | undefined;
   filters: SegmentFilter[]; // joined by AND
   createdAt: string;
   updatedAt: string;
   createdBy: string;
-  lastRunCount?: number;
-  lastRunAt?: string;
+  lastRunCount?: number | undefined;
+  lastRunAt?: string | undefined;
 };
 
 /**

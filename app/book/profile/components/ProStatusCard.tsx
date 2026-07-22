@@ -17,7 +17,7 @@ export function ProStatusCard({
   /** When "apple", subscription is billed through the App Store — show Apple's
    *  management link rather than the Stripe billing portal. Derived from the
    *  shared `ProSource` source of truth so it cannot drift (WS3-014). */
-  proSource?: ProSource;
+  proSource?: ProSource | undefined;
   onManage: () => void;
 }) {
   return (

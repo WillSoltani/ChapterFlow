@@ -257,10 +257,10 @@ export async function upsertBookMetaAndCatalog(
     author: string;
     categories: string[];
     tags: string[];
-    cover?: { emoji?: string; color?: string };
+    cover?: { emoji?: string | undefined; color?: string | undefined } | undefined;
     variantFamily: "EMH" | "PBC";
     latestVersion: number;
-    currentPublishedVersion?: number;
+    currentPublishedVersion?: number | undefined;
     status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   }
 ): Promise<void> {

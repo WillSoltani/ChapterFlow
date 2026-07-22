@@ -21,10 +21,10 @@ export async function createOrUpdateIngestionJob(
     createdBy: string;
     ingestBucket: string;
     ingestKey: string;
-    bookId?: string;
+    bookId?: string | undefined;
     status: "PENDING" | "RUNNING" | "FAILED" | "SUCCEEDED";
-    details?: unknown;
-    errorReportKey?: string;
+    details?: unknown | undefined;
+    errorReportKey?: string | undefined;
   }
 ) {
   const ts = nowIso();
@@ -55,9 +55,9 @@ export async function updateIngestionJob(
   jobId: string,
   params: {
     status: "RUNNING" | "FAILED" | "SUCCEEDED";
-    details?: unknown;
-    errorReportKey?: string;
-    bookId?: string;
+    details?: unknown | undefined;
+    errorReportKey?: string | undefined;
+    bookId?: string | undefined;
   }
 ) {
   const ts = nowIso();

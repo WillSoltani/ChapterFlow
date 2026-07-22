@@ -124,7 +124,7 @@ export type BadgeState = BadgeDefinition & {
   targetValue: number;
   progressLabel: string;
   isVisible: boolean;
-  nextTierId?: string;
+  nextTierId?: string | undefined;
 };
 
 export const BADGE_DEFINITIONS: BadgeDefinition[] = [

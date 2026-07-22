@@ -35,9 +35,9 @@ export function useReaderProgress({
 }: {
   bookId: string;
   chapterId: string;
-  chapter?: BookChapter;
+  chapter?: BookChapter | undefined;
   chapters: ProgressChapter[];
-  initialProgressFloor?: BookProgressFloor | null;
+  initialProgressFloor?: BookProgressFloor | null | undefined;
   preferredReadingDepth: ReadingDepth;
   preferredActiveTab: ChapterTab;
   preferredExampleFilter: ExampleFilter;

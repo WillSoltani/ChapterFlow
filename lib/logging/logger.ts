@@ -66,7 +66,7 @@ function normalizeErr(value: unknown): unknown {
     value.message.length > MESSAGE_MAX_CHARS
       ? `${value.message.slice(0, MESSAGE_MAX_CHARS)}…`
       : value.message;
-  const normalized: { name: string; message: string; stack?: string } = {
+  const normalized: { name: string; message: string; stack?: string | undefined } = {
     name: value.name,
     message,
   };

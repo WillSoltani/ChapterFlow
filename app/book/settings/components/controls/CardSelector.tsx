@@ -16,10 +16,10 @@ type CardOption<T extends string> = {
   emoji: string;
   label: string;
   description: string;
-  tint?: string;
-  selectedTint?: string;
-  badge?: string;
-  prominentValue?: string;
+  tint?: string | undefined;
+  selectedTint?: string | undefined;
+  badge?: string | undefined;
+  prominentValue?: string | undefined;
 };
 
 type CardSelectorProps<T extends string> = {
@@ -57,7 +57,7 @@ export function CardSelector<T extends string>({
             aria-checked={isSelected}
             onClick={() => onChange(opt.value)}
             whileTap={{ scale: 0.97 }}
-            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)" } : undefined}
+            {...(!isSelected ? { whileHover: { scale: 1.01, borderColor: "var(--cf-border-strong)" } } : {})}
             animate={isSelected ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className={cn(

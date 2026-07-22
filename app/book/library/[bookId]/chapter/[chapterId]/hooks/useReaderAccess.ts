@@ -36,9 +36,9 @@ export function useReaderAccess({
 }: {
   bookId: string;
   chapterId: string;
-  chapterOrder?: number;
-  initialBook?: LibraryBookDetail;
-  initialSeed?: InitialChapterReaderSeed;
+  chapterOrder?: number | undefined;
+  initialBook?: LibraryBookDetail | undefined;
+  initialSeed?: InitialChapterReaderSeed | undefined;
   contentTone: ContentTone;
   onboarding: OnboardingAccess;
   onboardingHydrated: boolean;

@@ -124,7 +124,7 @@ export async function recordRiskSignals(
   req: Request,
   user: AuthedUser,
   eventType: BookRiskEventType,
-  options?: { deviceId?: string }
+  options?: { deviceId?: string | undefined }
 ): Promise<{ deviceId: string; issuedDeviceId: boolean }> {
   const existing = getOrCreateDeviceId(req);
   const deviceId = normalizeDeviceId(options?.deviceId) ?? existing.deviceId;

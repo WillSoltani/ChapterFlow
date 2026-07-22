@@ -20,9 +20,9 @@ export interface IngestionJobUpdateInput {
   status: "RUNNING" | "FAILED" | "SUCCEEDED";
   updatedAt: string;
   // Optional fields: only included in the write when actually provided.
-  details?: unknown;
-  errorReportKey?: string;
-  bookId?: string;
+  details?: unknown | undefined;
+  errorReportKey?: string | undefined;
+  bookId?: string | undefined;
 }
 
 export interface DynamoUpdateParts {

@@ -858,7 +858,8 @@ export function useBookPreferences() {
             concise: "guided", balanced: "standard", deep: "challenge",
           };
           if (typeof ob.learningStyle === "string" && ob.learningStyle in learningMap) {
-            seeds.learningMode = learningMap[ob.learningStyle];
+            const mappedLearningMode = learningMap[ob.learningStyle];
+            if (mappedLearningMode !== undefined) seeds.learningMode = mappedLearningMode;
           }
           if (ob.dailyGoalMinutes === 10 || ob.dailyGoalMinutes === 20 || ob.dailyGoalMinutes === 30) {
             seeds.dailyGoalPreset = ob.dailyGoalMinutes;

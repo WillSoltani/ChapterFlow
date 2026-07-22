@@ -24,11 +24,11 @@ export function KPITile({
 }: {
   label: string;
   value: number | string;
-  delta?: number; // percent vs prior period
-  spark?: Spark;
-  hint?: string;
-  format?: "number" | "currency" | "minutes" | "percent";
-  currency?: string;
+  delta?: number | undefined; // percent vs prior period
+  spark?: Spark | undefined;
+  hint?: string | undefined;
+  format?: "number" | "currency" | "minutes" | "percent" | undefined;
+  currency?: string | undefined;
 }) {
   const display = formatValue(value, format, currency);
   const deltaInfo = formatDelta(delta);

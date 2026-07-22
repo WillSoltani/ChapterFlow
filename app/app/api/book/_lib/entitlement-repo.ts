@@ -367,7 +367,7 @@ export async function claimAppleTransactionForUser(
 
 export type AppleTransactionClaim = {
   userId: string;
-  accountBindingVersion?: string;
+  accountBindingVersion?: string | undefined;
   environment: "Production" | "Sandbox";
 };
 
@@ -436,9 +436,9 @@ export async function adminUpdateUserEntitlement(
   tableName: string,
   params: {
     userId: string;
-    freeBookSlots?: number;
-    plan?: "FREE" | "PRO";
-    proStatus?: "inactive" | "active" | "past_due" | "canceled";
+    freeBookSlots?: number | undefined;
+    plan?: "FREE" | "PRO" | undefined;
+    proStatus?: "inactive" | "active" | "past_due" | "canceled" | undefined;
   }
 ): Promise<BookUserEntitlement> {
   const updatedAt = nowIso();

@@ -192,7 +192,7 @@ export async function putBadgeAward(
     userId: string;
     badgeId: string;
     earnedAt: string;
-    tier?: string;
+    tier?: string | undefined;
   }
 ): Promise<boolean> {
   try {

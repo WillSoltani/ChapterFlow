@@ -10,38 +10,38 @@ interface BookCoverProps {
   /** Rendered in BOTH fallbacks as adjacent decorative text. */
   title: string;
   /** Optional remote (S3) cover URL, tried as a last resort after local rasters. */
-  coverImage?: string;
+  coverImage?: string | undefined;
   /** SEE per-mode routing below — target differs by mode. */
-  className?: string;
+  className?: string | undefined;
   /** Responsive `sizes` hint for next/image. */
-  sizes?: string;
+  sizes?: string | undefined;
   /** Eager-load via next/image `priority` (drops loading="lazy"). Set ONLY on
    *  the LCP hero cover; grid/shelf covers stay lazy (default false). */
-  priority?: boolean;
+  priority?: boolean | undefined;
 
   // --- fallback mode selectors (mutually-exclusive data sources) ---
   /** library variant: gradient bg + white title fallback. */
-  coverGradient?: string;
+  coverGradient?: string | undefined;
   /** app/book variant: emoji glyph + title fallback. */
-  icon?: string;
+  icon?: string | undefined;
 
   // --- library (embedded fill / fixed-size) variant ---
   /** Render bare <Image>+fallback fragment, NO own wrapper (parent positioned). */
-  fill?: boolean;
+  fill?: boolean | undefined;
   /** Fixed-size mode: own a positioned sized box (default 160). */
-  width?: number;
+  width?: number | undefined;
   /** Fixed-size mode (default 240). */
-  height?: number;
+  height?: number | undefined;
   /** Fixed-size box + gradient fallback radius. */
-  borderRadius?: string | number;
+  borderRadius?: string | number | undefined;
 
   // --- app/book (standalone tile) variant ---
   /** Extra classes merged onto the <Image>. */
-  imageClassName?: string;
+  imageClassName?: string | undefined;
   /** Extra classes merged onto the fallback <span>. */
-  fallbackClassName?: string;
+  fallbackClassName?: string | undefined;
   /** Default true: aspect-2/3 wrapper + hover lift/sheen/ring. */
-  interactive?: boolean;
+  interactive?: boolean | undefined;
 }
 
 /**

@@ -11,13 +11,13 @@
 export type BookRequestRecord = {
   requestId: string;
   title: string;
-  author?: string;
+  author?: string | undefined;
   email: string;
-  note?: string;
+  note?: string | undefined;
   createdAt: string;
   source: string;
-  userAgent?: string;
-  ip?: string;
+  userAgent?: string | undefined;
+  ip?: string | undefined;
 };
 
 /**

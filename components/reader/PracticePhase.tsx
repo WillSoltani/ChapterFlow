@@ -11,20 +11,20 @@ import type { ImplementationPlanItem, ReviewCardItem } from "@/lib/reader-conten
 import type { V21ExperiencePlan } from "@/lib/book-package-types";
 
 type PracticePhaseProps = {
-  keyTakeawayCard?: string;
-  implementationPlan?: ImplementationPlanItem;
-  reviewCards?: ReviewCardItem[];
-  predictionPrompt?: string;
+  keyTakeawayCard?: string | undefined;
+  implementationPlan?: ImplementationPlanItem | undefined;
+  reviewCards?: ReviewCardItem[] | undefined;
+  predictionPrompt?: string | undefined;
   fontScaleClass: string;
   onContinueToNextChapter: () => void;
   nextChapterLabel: string;
-  bookmarkedTakeaways?: string[];
-  chapterId?: string;
-  bookId?: string;
-  chapterNumber?: number;
+  bookmarkedTakeaways?: string[] | undefined;
+  chapterId?: string | undefined;
+  bookId?: string | undefined;
+  chapterNumber?: number | undefined;
   /** Called when a user bookmarks a step. Receives the step text so the
    *  parent can append it to the chapter's notes. */
-  onBookmarkStep?: (text: string) => void;
+  onBookmarkStep?: ((text: string) => void) | undefined;
   /** Called when user commits to an if-then plan. */
   onCommit?: (params: {
     bookId: string;
@@ -32,14 +32,14 @@ type PracticePhaseProps = {
     ifThenPlan: string;
     followUpDays: 3 | 7;
   }) => Promise<void>;
-  hasActiveCommitment?: boolean;
+  hasActiveCommitment?: boolean | undefined;
   /** v21-only behavior-change layer (Layer A). Rendered at chapter end. */
-  failureRecovery?: V21ExperiencePlan["failureRecovery"];
-  transferPrompt?: V21ExperiencePlan["transferPrompt"];
+  failureRecovery?: V21ExperiencePlan["failureRecovery"] | undefined;
+  transferPrompt?: V21ExperiencePlan["transferPrompt"] | undefined;
   /** When true, hide the trailing "Continue to next chapter" CTA — used
    *  when this component is embedded inside ChapterCompleteModal which
    *  renders its own primary CTA below the content. */
-  hideContinueCta?: boolean;
+  hideContinueCta?: boolean | undefined;
 };
 
 export function PracticePhase({

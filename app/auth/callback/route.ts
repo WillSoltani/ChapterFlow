@@ -35,7 +35,7 @@ async function resolveAuthState(
 ): Promise<{
   verifier: string | null;
   returnTo: string;
-  acquisition?: { referer?: string; utmSource?: string; utmMedium?: string; utmCampaign?: string };
+  acquisition?: { referer?: string | undefined; utmSource?: string | undefined; utmMedium?: string | undefined; utmCampaign?: string | undefined };
 }> {
   // Primary path: decrypt from URL state parameter. Integrity of the AES-256-GCM
   // ciphertext IS the CSRF control here: an attacker can't forge a valid state

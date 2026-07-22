@@ -44,7 +44,7 @@ const dailyGoalOptions: {
   value: DailyGoal;
   label: string;
   sublabel: string;
-  badge?: string;
+  badge?: string | undefined;
   Icon: typeof Coffee;
 }[] = DAILY_GOAL_TIERS.filter(
   (tier): tier is DailyGoalTier & { value: DailyGoal } =>

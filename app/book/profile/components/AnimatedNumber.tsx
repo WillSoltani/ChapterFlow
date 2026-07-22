@@ -10,7 +10,7 @@ export function AnimatedNumber({
 }: {
   value: number;
   duration?: number;
-  formatFn?: (v: number) => string;
+  formatFn?: ((v: number) => string) | undefined;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-20px" });

@@ -6,7 +6,7 @@ export type BookDifficulty = "Easy" | "Medium" | "Hard";
 export type BookCatalogItem = {
   id: string;
   icon: string;
-  coverImage?: string;
+  coverImage?: string | undefined;
   title: string;
   author: string;
   category: string;

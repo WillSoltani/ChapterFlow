@@ -56,7 +56,7 @@ function assertExactExpressionValues(input: {
 
 type StoredItem = {
   pkExists?: boolean;
-  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin" | null;
+  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin" | null | undefined;
   lastAppleSignedDate?: number;
   appleOriginalTransactionId?: string;
   licenseExpiresAt?: string;

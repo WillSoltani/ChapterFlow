@@ -216,7 +216,7 @@ function toRecommendationCard(
     rating: rating?.rating ?? 0,
     readerCount: rating?.ratingsCount ?? 0,
     category: snap.book.category ?? "General",
-    reason: reason ?? undefined,
+    ...(reason != null ? { reason } : {}),
   };
 }
 

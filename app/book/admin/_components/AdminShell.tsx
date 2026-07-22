@@ -79,7 +79,7 @@ export function AdminShell({
   userEmail,
 }: {
   children: React.ReactNode;
-  userEmail?: string;
+  userEmail?: string | undefined;
 }) {
   const pathname = usePathname();
 
@@ -173,7 +173,7 @@ function MobileNav({
   groups,
 }: {
   pathname: string;
-  userEmail?: string;
+  userEmail?: string | undefined;
   groups: Array<{ group: NavGroup; items: NavItem[] }>;
 }) {
   const current = NAV.find((n) =>

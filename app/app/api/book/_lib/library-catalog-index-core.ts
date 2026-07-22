@@ -17,13 +17,13 @@ import type { BookDifficulty } from "@/app/book/_lib/library-data";
 
 export type LibraryCatalogIndexBook = {
   bookId: string;
-  icon?: string;
-  difficulty?: BookDifficulty;
-  synopsis?: string;
-  pages?: number;
-  estimatedMinutes?: number;
-  chapterCount?: number;
-  coverAssetKey?: string;
+  icon?: string | undefined;
+  difficulty?: BookDifficulty | undefined;
+  synopsis?: string | undefined;
+  pages?: number | undefined;
+  estimatedMinutes?: number | undefined;
+  chapterCount?: number | undefined;
+  coverAssetKey?: string | undefined;
 };
 
 export type LibraryCatalogIndex = {

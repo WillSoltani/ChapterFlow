@@ -24,17 +24,17 @@ export interface UserProgress {
   lastReadAt: Date;
   /** Real insight points earned for this book. Undefined when the backend
    *  exposes no per-book figure — never fabricate a number. */
-  xpEarned?: number;
+  xpEarned?: number | undefined;
   isCompleted: boolean;
-  completedAt?: Date;
+  completedAt?: Date | undefined;
 }
 
 export interface LibraryBook {
   id: string;
   title: string;
   author: string;
-  authorCredentials?: string;
-  coverImage?: string;
+  authorCredentials?: string | undefined;
+  coverImage?: string | undefined;
   coverGradient: string;
   hook: string;
   description: string;
@@ -46,9 +46,9 @@ export interface LibraryBook {
   estimatedReadingTimeMinutes: number;
   isPro: boolean;
   badges: BadgeType[];
-  staffPickReason?: string;
-  similarBookId?: string;
-  userProgress?: UserProgress;
+  staffPickReason?: string | undefined;
+  similarBookId?: string | undefined;
+  userProgress?: UserProgress | undefined;
 }
 
 export interface UserStats {

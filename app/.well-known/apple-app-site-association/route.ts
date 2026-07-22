@@ -24,8 +24,8 @@ export const dynamic = "force-dynamic";
  * exercise.
  */
 async function resolveAppleIdentifiers(): Promise<{
-  teamId?: string;
-  bundleId?: string;
+  teamId?: string | undefined;
+  bundleId?: string | undefined;
 }> {
   try {
     const { getServerEnv } = await import("@/app/app/api/_lib/server-env");

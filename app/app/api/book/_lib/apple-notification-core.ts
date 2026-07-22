@@ -81,13 +81,13 @@ export function buildAppleActivation(
  */
 export function mapAppleNotificationToEntitlement(input: {
   notificationType: string | undefined;
-  subtype?: string;
-  transaction?: AppleTransactionInfo;
-  renewalInfo?: AppleRenewalInfo;
+  subtype?: string | undefined;
+  transaction?: AppleTransactionInfo | undefined;
+  renewalInfo?: AppleRenewalInfo | undefined;
   /** The notification's signedDate (epoch ms) — the ordering high-water mark. */
-  signedDateMs?: number;
+  signedDateMs?: number | undefined;
   /** Injected clock for grace-period decisions. */
-  nowMs?: number;
+  nowMs?: number | undefined;
 }): AppleEntitlementDecision {
   const {
     notificationType,

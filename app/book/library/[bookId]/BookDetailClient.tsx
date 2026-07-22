@@ -343,7 +343,7 @@ export function BookDetailClient({
         {accessBlocked && (
           <motion.div
             className="mt-6 rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-5 text-center"
-            initial={prefersReducedMotion ? undefined : { opacity: 0, y: 10 }}
+            {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 10 } })}
             animate={{ opacity: 1, y: 0 }}
           >
             <p className="text-sm font-medium text-(--cf-text-1)">
@@ -363,7 +363,7 @@ export function BookDetailClient({
         {/* ═══════ ZONE 2 — Chapter Journey ═══════ */}
         <motion.section
           className="mt-10 isolate"
-          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+          {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 20 } })}
           animate={{ opacity: 1, y: 0 }}
           transition={
             prefersReducedMotion
@@ -526,7 +526,7 @@ export function BookDetailClient({
         {/* ═══════ ZONE 3 — Book Details ═══════ */}
         <motion.div
           className="mt-12"
-          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
+          {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 20 } })}
           animate={{ opacity: 1, y: 0 }}
           transition={
             prefersReducedMotion

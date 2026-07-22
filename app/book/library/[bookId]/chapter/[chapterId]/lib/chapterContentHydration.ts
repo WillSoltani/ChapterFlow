@@ -136,7 +136,7 @@ export function buildChapterRouteKey(
 /** Classify `/start` failures without trusting message text. */
 export function classifyStartAccessFailure(params: {
   status: number | null;
-  code?: string;
+  code?: string | undefined;
 }): StartAccessFailure {
   const { status, code } = params;
   if (code === "account_deleted") return "account_deleted";

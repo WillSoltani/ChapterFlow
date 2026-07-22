@@ -83,7 +83,11 @@ test("the disintegration signature completes once and leaves readable final text
 
 test("the reader showcase cannot stay hidden under either reduced-motion signal", () => {
   assert.match(readerShowcase, /initial=\{reduced \? false :/);
-  assert.match(readerShowcase, /whileInView=\{reduced \? undefined :/);
+  // exactOptionalPropertyTypes (WS7-010 flag 4) forbids `whileInView={reduced ? undefined : …}`
+  // on framer's strict HTMLMotionProps, so the reduced-motion guard is expressed as a
+  // conditional prop spread — runtime-identical: when reduced, `whileInView` is absent, so
+  // the scroll-triggered reveal never animates and the demo cannot stay hidden.
+  assert.match(readerShowcase, /\{\.\.\.\(reduced \? \{\} : \{ whileInView:/);
   assert.match(
     css,
     /@media \(prefers-reduced-motion: reduce\) \{[\s\S]*?\.recall-reader-demo \{[\s\S]*?opacity:\s*1 !important;[\s\S]*?transform:\s*translateZ\(0\) !important;/,

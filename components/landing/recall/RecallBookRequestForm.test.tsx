@@ -13,7 +13,7 @@ afterEach(() => {
 });
 
 test("RecallBookRequestForm validates, trims, submits, and confirms success", async () => {
-  const requests: Array<{ input: string | URL | Request; init?: RequestInit }> = [];
+  const requests: Array<{ input: string | URL | Request; init?: RequestInit | undefined }> = [];
   let successes = 0;
   globalThis.fetch = (async (input, init) => {
     requests.push({ input, init });

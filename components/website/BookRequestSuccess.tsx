@@ -18,7 +18,7 @@ export function BookRequestSuccess({ title, author, email }: BookRequestSuccessP
       className="flex flex-col items-center text-center"
       initial={reducedMotion ? false : { opacity: 0 }}
       animate={{ opacity: 1 }}
-      exit={reducedMotion ? undefined : { opacity: 0 }}
+      {...(reducedMotion ? {} : { exit: { opacity: 0 } })}
       transition={{ duration: reducedMotion ? 0 : 0.3 }}
     >
       {/* Checkmark circle */}

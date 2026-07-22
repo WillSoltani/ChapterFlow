@@ -44,14 +44,10 @@ export function WorkspaceBookRow({
   return (
     <motion.div
       className="mt-9"
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
-      whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 16 } })}
+      {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
       viewport={{ once: true, margin: "-50px" }}
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: DUR.slow, ease: EASE.standard }
-      }
+      {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, ease: EASE.standard } })}
     >
       {/* Section header */}
       <div className="mb-4 flex items-end justify-between">
@@ -87,21 +83,11 @@ export function WorkspaceBookRow({
               boxShadow: "var(--cf-shadow-md)",
               borderRadius: 12,
             }}
-            initial={
-              prefersReducedMotion ? undefined : { opacity: 0, y: 12 }
-            }
-            whileInView={
-              prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
-            }
-            whileHover={
-              prefersReducedMotion ? undefined : { y: -8 }
-            }
+            {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 12 } })}
+            {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
+            {...(prefersReducedMotion ? {} : { whileHover: { y: -8 } })}
             viewport={{ once: true }}
-            transition={
-              prefersReducedMotion
-                ? undefined
-                : { duration: DUR.page, delay: i * 0.06, ease: EASE.standard }
-            }
+            {...(prefersReducedMotion ? {} : { transition: { duration: DUR.page, delay: i * 0.06, ease: EASE.standard } })}
           >
             <BookCardWorkspace variant="user" book={book} />
           </motion.div>
@@ -116,25 +102,15 @@ export function WorkspaceBookRow({
               boxShadow: "var(--cf-shadow-md)",
               borderRadius: 12,
             }}
-            initial={
-              prefersReducedMotion ? undefined : { opacity: 0, y: 12 }
-            }
-            whileInView={
-              prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
-            }
-            whileHover={
-              prefersReducedMotion ? undefined : { y: -8 }
-            }
+            {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 12 } })}
+            {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
+            {...(prefersReducedMotion ? {} : { whileHover: { y: -8 } })}
             viewport={{ once: true }}
-            transition={
-              prefersReducedMotion
-                ? undefined
-                : {
+            {...(prefersReducedMotion ? {} : { transition: {
                     duration: DUR.page,
                     delay: (userBooks.length + i) * 0.06,
                     ease: EASE.standard,
-                  }
-            }
+                  } })}
           >
             {isPro ? (
               <BookCardWorkspace

@@ -88,7 +88,7 @@ export type SegmentDescriptor = {
    */
   segmentId: string;
   /** Short narration script shown as a caption; omitted for long-form body segments. */
-  text?: string;
+  text?: string | undefined;
 };
 
 // ── S3 key helpers ───────────────────────────────────────────────────

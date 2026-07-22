@@ -1,7 +1,7 @@
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 
 interface CatalogLike {
-  currentPublishedVersion?: number | null;
+  currentPublishedVersion?: number | null | undefined;
 }
 
 /**

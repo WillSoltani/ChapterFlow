@@ -1,7 +1,7 @@
 "use client";
 
 type TryThisNowProps = {
-  text?: string;
+  text?: string | undefined;
 };
 
 /**

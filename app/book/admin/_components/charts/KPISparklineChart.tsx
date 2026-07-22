@@ -14,7 +14,7 @@ export function KPISparklineChart({
   label: string;
   spark: Spark;
   format: Format;
-  currency?: string;
+  currency?: string | undefined;
 }) {
   const gradientId = `spark-${label.replace(/\s+/g, "")}`;
 

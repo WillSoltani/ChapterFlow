@@ -159,7 +159,7 @@ export function createAppleSignedDataVerifier(
         enableOnlineChecks,
         environment,
         bundleId: policy.bundleId,
-        appAppleId,
+        ...(appAppleId !== undefined ? { appAppleId } : {}),
       })
     : new SignedDataVerifier(
         roots,
@@ -200,39 +200,39 @@ export async function verifyAppleTransactionJws(
 // ─── Typed views over the decoded payloads ───────────────────────────────────
 
 export type AppleTransactionInfo = {
-  bundleId?: string;
-  productId?: string;
-  transactionId?: string;
-  originalTransactionId?: string;
-  environment?: string;
-  subscriptionGroupIdentifier?: string;
-  appAccountToken?: string;
-  inAppOwnershipType?: string;
-  expiresDateMs?: number;
-  revocationDateMs?: number;
-  signedDateMs?: number;
-  type?: string;
+  bundleId?: string | undefined;
+  productId?: string | undefined;
+  transactionId?: string | undefined;
+  originalTransactionId?: string | undefined;
+  environment?: string | undefined;
+  subscriptionGroupIdentifier?: string | undefined;
+  appAccountToken?: string | undefined;
+  inAppOwnershipType?: string | undefined;
+  expiresDateMs?: number | undefined;
+  revocationDateMs?: number | undefined;
+  signedDateMs?: number | undefined;
+  type?: string | undefined;
 };
 
 export type AppleRenewalInfo = {
-  autoRenewStatus?: number;
-  autoRenewProductId?: string;
-  productId?: string;
-  gracePeriodExpiresDateMs?: number;
+  autoRenewStatus?: number | undefined;
+  autoRenewProductId?: string | undefined;
+  productId?: string | undefined;
+  gracePeriodExpiresDateMs?: number | undefined;
 };
 
 export type AppleNotificationPayload = {
-  notificationType?: string;
-  subtype?: string;
-  notificationUUID?: string;
-  signedDateMs?: number;
+  notificationType?: string | undefined;
+  subtype?: string | undefined;
+  notificationUUID?: string | undefined;
+  signedDateMs?: number | undefined;
   data?: {
-    bundleId?: string;
-    appAppleId?: number;
-    environment?: string;
-    signedTransactionInfo?: string;
-    signedRenewalInfo?: string;
-  };
+    bundleId?: string | undefined;
+    appAppleId?: number | undefined;
+    environment?: string | undefined;
+    signedTransactionInfo?: string | undefined;
+    signedRenewalInfo?: string | undefined;
+  } | undefined;
 };
 
 function readNumber(value: unknown): number | undefined {

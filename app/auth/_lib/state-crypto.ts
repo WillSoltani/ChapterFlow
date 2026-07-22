@@ -18,13 +18,13 @@ export type StatePayload = {
   /** Random nonce (CSRF replacement) */
   n: string;
   /** Acquisition: HTTP referer at login start */
-  ref?: string;
+  ref?: string | undefined;
   /** Acquisition: utm_source */
-  us?: string;
+  us?: string | undefined;
   /** Acquisition: utm_medium */
-  um?: string;
+  um?: string | undefined;
   /** Acquisition: utm_campaign */
-  uc?: string;
+  uc?: string | undefined;
 };
 
 // ── Key derivation ──────────────────────────────────────────────────

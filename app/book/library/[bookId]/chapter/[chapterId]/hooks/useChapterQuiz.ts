@@ -33,7 +33,7 @@ export function useChapterQuiz({
 }: {
   bookId: string;
   chapterId: string;
-  chapter?: BookChapter;
+  chapter?: BookChapter | undefined;
   chapterNumber: number;
   activeDepth: ReadingDepth;
   contentTone: ContentTone;

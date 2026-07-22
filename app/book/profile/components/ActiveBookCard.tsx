@@ -6,7 +6,7 @@ import { BookCover } from "@/components/ui/BookCover";
 export function ActiveBookCard({
   title, author, bookId, coverImage, icon, progress, chapterLabel, eta, onContinue,
 }: {
-  title: string; author: string; bookId: string; coverImage?: string; icon: string;
+  title: string; author: string; bookId: string; coverImage?: string | undefined; icon: string;
   progress: number; chapterLabel: string; eta: string; onContinue: () => void;
 }) {
   return (

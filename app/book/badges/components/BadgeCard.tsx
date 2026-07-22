@@ -87,7 +87,7 @@ function EarnedBadgeCard({
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
-      whileHover={reduced ? undefined : { y: -3 }}
+      {...(reduced ? {} : { whileHover: { y: -3 } })}
       whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
@@ -154,7 +154,7 @@ function LockedBadgeCard({
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
-      whileHover={reduced ? undefined : { y: -1, opacity: 1 }}
+      {...(reduced ? {} : { whileHover: { y: -1, opacity: 1 } })}
       whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",

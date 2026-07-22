@@ -71,9 +71,9 @@ export function buildAppleTransactionClaimWrite(input: {
   originalTransactionId: string;
   userId: string;
   updatedAt: string;
-  accountBindingVersion?: string;
-  storageLane?: AppleStorageLane;
-  storeEnvironment?: AppleStoreEnvironment;
+  accountBindingVersion?: string | undefined;
+  storageLane?: AppleStorageLane | undefined;
+  storeEnvironment?: AppleStoreEnvironment | undefined;
 }): AppleTransactionClaimWrite {
   const storageLane = input.storageLane ?? "Primary";
   const storeEnvironment =

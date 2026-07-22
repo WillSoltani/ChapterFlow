@@ -17,7 +17,7 @@ interface ContinueLearningCardProps {
   otherBooks: ActiveBook[];
   /** Closest real badge milestone, or null when the user has none yet. */
   nextMilestone?: { name: string; icon: string } | null;
-  onSwitchBook?: (bookId: string) => void;
+  onSwitchBook?: ((bookId: string) => void) | undefined;
 }
 
 const STEP_CTA: Record<LearningStep, string> = {

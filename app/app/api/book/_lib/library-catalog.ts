@@ -63,11 +63,11 @@ function fallbackSynopsis(title: string): string {
 
 function buildLibraryCatalogBook(params: {
   catalog: BookCatalogItem;
-  extra?: LibraryCatalogIndexBook;
-  chapterCount?: number;
-  estimatedMinutes?: number;
+  extra?: LibraryCatalogIndexBook | undefined;
+  chapterCount?: number | undefined;
+  estimatedMinutes?: number | undefined;
   contentBucket: string;
-  appBaseUrl?: string;
+  appBaseUrl?: string | undefined;
 }): LibraryCatalogBook {
   const { catalog, extra, chapterCount, estimatedMinutes, contentBucket, appBaseUrl } = params;
   const resolvedChapterCount =

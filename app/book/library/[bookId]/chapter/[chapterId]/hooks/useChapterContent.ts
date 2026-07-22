@@ -25,10 +25,10 @@ export type ChapterContentProgress = {
 
 type BookMeta = {
   bookId: string;
-  title?: string;
-  author?: string;
-  categories?: string[];
-  tags?: string[];
+  title?: string | undefined;
+  author?: string | undefined;
+  categories?: string[] | undefined;
+  tags?: string[] | undefined;
 };
 
 type ChapterContentState = {
@@ -102,10 +102,10 @@ export function useChapterContent(params: {
   bookId: string;
   chapterNumber: number | undefined;
   book: BookMeta;
-  enabled?: boolean;
+  enabled?: boolean | undefined;
   localFallback?: () => BookChapter | undefined;
   /** Bump to force a refetch (e.g. a "Try again" button after a failure). */
-  refetchKey?: number;
+  refetchKey?: number | undefined;
   /**
    * Server-hydrated chapter payload for the ENTRY chapter (WS3-024). When it
    * matches `chapterNumber` and reconstructs to non-empty content, the hook
@@ -113,7 +113,7 @@ export function useChapterContent(params: {
    * intact for refetchKey/retry flows and for navigation to un-hydrated
    * chapters.
    */
-  initialChapter?: ApiChapterResponse | null;
+  initialChapter?: ApiChapterResponse | null | undefined;
 }): ChapterContentState {
   const { bookId, chapterNumber, enabled = true, refetchKey = 0, initialChapter } = params;
   const requestedRouteKey =

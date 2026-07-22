@@ -262,9 +262,9 @@ export type PushMessage = {
   type: string;
   title: string;
   body: string;
-  metadata?: Record<string, unknown>;
+  metadata?: Record<string, unknown> | undefined;
   /** Unread inbox count → APNs badge. Omitted ⇒ no badge mutation. */
-  badge?: number;
+  badge?: number | undefined;
 };
 
 /** The `aps` dictionary Apple interprets, plus our custom keys. */
