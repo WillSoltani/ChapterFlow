@@ -117,6 +117,31 @@ attempt counts and the single JSON repair attempt; adapters make one raw call wi
 SDK retries disabled, honor per-call timeouts, return bounded raw evidence, and
 include usage/latency metadata for validation.
 
+### V4 model routing (`ModelProcessRoute` — codex / claude CLI)
+
+The V4 application layer does **not** use the legacy provider router above. Every
+model call goes through the `ModelGateway`, which spawns a subscription CLI via a
+`ModelProcessRoute`. Two routes exist, selected per pipeline role by
+[`config/model-routing.json`](config/model-routing.json) (validated fail-closed;
+a `gpt-5.5` model outside the codex fallback + the D1 owner-override sentinel
+trips the NO-GPT-5.5 gate):
+
+- **`codex`** (`src/runtime/codexRoute.ts`, id `codex-chatgpt-subscription-v1`) —
+  `codex exec` on a Codex/Max subscription. Model + reasoning effort are config
+  parameters.
+- **`claude-cli`** (`src/runtime/claudeRoute.ts`, id `claude-subscription-v1`) —
+  Claude Sonnet 5 via the `claude` headless CLI (`-p --output-format json`) on a
+  `~/.claude` subscription. Effort tiers (`medium`/`high`/`xhigh`) map to the
+  `MAX_THINKING_TOKENS` budget the route contributes through the gateway's guarded
+  env merge; the JSON envelope is unwrapped to the inner-JSON contract the gateway
+  validates. The route requires the `claude` CLI installed and `claude /login`
+  completed; the executionPolicy strips provider API keys but preserves `HOME`, so
+  the CLI runs on subscription auth.
+
+Both routes deliver the prompt on **stdin** (never argv) and run under the
+executionPolicy sandbox (env-strip, workdir policy). The active default is set in
+`config/model-routing.json`; `npm run doctor` reports the resolved `v4-route`.
+
 ## Package and CI contract
 
 The v22 optimized artifact is a standalone npm package. The root

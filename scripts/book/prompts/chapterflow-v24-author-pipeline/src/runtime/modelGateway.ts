@@ -2,7 +2,8 @@ import type { Result, UtcIso } from "../contracts/v4Core.js";
 import type { AttemptOutcome, RunSnapshot, RunStore } from "../run-state/index.js";
 import { assertFlagsSupported, CODEX_ROUTE_REQUIRED_FLAGS, qualifyCodexCli } from "../exec/cliQualification.js";
 import { CODEX_ROUTE_ID, createDefaultModelRoute, type ModelProcessRoute } from "./codexRoute.js";
-import type { ExecutionPolicy, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
+import { FORBIDDEN_ENV } from "./executionPolicy.js";
+import type { ExecutionPolicy, ExecutionProfile, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
 import { modelError, type ModelErrorCode } from "./modelErrors.js";
 import type { ModelTask } from "./modelRequest.js";
 import type { ModelResult } from "./modelResult.js";
@@ -13,6 +14,53 @@ import { renderPrompt } from "./promptRenderer.js";
 const SAFE_ID = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
 const INVALID_ATTEMPT_ID = "invalid-attempt";
 const ATTEMPT_TAILS = new Map<string, Promise<void>>();
+const SAFE_ENV_NAME = /^[A-Za-z_][A-Za-z0-9_]*$/;
+const FORBIDDEN_ENV_SET: ReadonlySet<string> = new Set(FORBIDDEN_ENV);
+
+/**
+ * Merge a route's optional env (Task 7: claude's MAX_THINKING_TOKENS effort
+ * tier) over the policy-built, already-stripped environment. Fail-closed by
+ * construction: a route-supplied key is dropped unless it is a well-formed env
+ * name AND not a forbidden provider key — so the executionPolicy env-strip
+ * stays authoritative and a route can never reintroduce a stripped API key.
+ * Returns the base unchanged when the route supplies no env.
+ */
+function mergeRouteEnv(
+  base: Readonly<Record<string, string>>,
+  route: ModelProcessRoute,
+  profile: ExecutionProfile,
+): Readonly<Record<string, string>> {
+  if (typeof route.env !== "function") return base;
+  let supplied: Readonly<Record<string, string>>;
+  try {
+    supplied = route.env(profile);
+  } catch {
+    return base;
+  }
+  if (supplied === null || typeof supplied !== "object" || Array.isArray(supplied)) return base;
+  const merged: Record<string, string> = { ...base };
+  for (const [name, value] of Object.entries(supplied)) {
+    if (typeof value !== "string" || value.includes("\0")) continue;
+    if (!SAFE_ENV_NAME.test(name) || FORBIDDEN_ENV_SET.has(name)) continue;
+    merged[name] = value;
+  }
+  return Object.freeze(merged);
+}
+
+/**
+ * Normalize a route's raw stdout to the inner-JSON contract validateOutput
+ * expects (Task 7: unwrap claude's `--output-format json` envelope). Identity
+ * when the route supplies no normalizer (codex) or when the normalizer throws.
+ */
+function normalizeRouteStdout(route: ModelProcessRoute, stdout: Uint8Array): Uint8Array {
+  if (typeof route.normalizeStdout !== "function") return stdout;
+  try {
+    const normalized = route.normalizeStdout(stdout);
+    return normalized instanceof Uint8Array ? normalized : stdout;
+  } catch {
+    return stdout;
+  }
+}
 
 export interface ModelGateway {
   execute(task: ModelTask): Promise<ModelResult>;
@@ -354,7 +402,7 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
       args: [...prepared.value.args],
       cwd: prepared.value.policy.workDir,
       stdin: prepared.value.prompt,
-      environment: prepared.value.policy.environment,
+      environment: mergeRouteEnv(prepared.value.policy.environment, route, prepared.value.policy.profile),
       timeoutMs: prepared.value.policy.profile.timeoutMs,
       terminateGraceMs: prepared.value.policy.profile.terminateGraceMs,
       maxStdoutBytes: prepared.value.policy.profile.maxStdoutBytes,
@@ -372,7 +420,8 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
       if (!processResultIsBounded(process, prepared.value.policy)) {
         outcome = "UNKNOWN";
       } else if (process.outcome === "EXITED" && process.exitCode === 0) {
-        const validated = dependencies.executionPolicy.validateOutput(prepared.value.policy.profile.outputSchemaId, process.stdout);
+        const normalizedStdout = normalizeRouteStdout(route, process.stdout);
+        const validated = dependencies.executionPolicy.validateOutput(prepared.value.policy.profile.outputSchemaId, normalizedStdout);
         if (validated.ok) {
           outcome = "SUCCEEDED";
           output = validated.value;

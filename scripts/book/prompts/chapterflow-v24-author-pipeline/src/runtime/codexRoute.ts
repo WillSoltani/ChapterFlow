@@ -2,6 +2,7 @@ import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { createClaudeRoute } from "./claudeRoute.js";
 import type { ExecutionProfile } from "./executionPolicyTypes.js";
 
 export interface ModelProcessRoute {
@@ -10,6 +11,16 @@ export interface ModelProcessRoute {
     command: string;
     args: readonly string[];
   }>;
+  /** Optional route-supplied process env (Task 7: claude conveys its effort
+   *  tier as MAX_THINKING_TOKENS here — the CLI has no effort flag). The gateway
+   *  merges the result over the policy-built environment AFTER the env-strip and
+   *  rejects any forbidden provider key, so this is an additive, guarded channel
+   *  and can never reintroduce a stripped API key. Absent on the codex route. */
+  env?(profile: ExecutionProfile): Readonly<Record<string, string>>;
+  /** Optional stdout normalizer (Task 7: claude's `--output-format json`
+   *  envelope is unwrapped to the inner-JSON contract the gateway validates —
+   *  the same bare-object contract codex already emits). Identity when absent. */
+  normalizeStdout?(stdout: Uint8Array): Uint8Array;
 }
 
 /** Route id, exported so callers (e.g. ModelGateway's model-CLI preflight) can
@@ -49,9 +60,10 @@ export function createCodexRoute(model: string, effort: RoleRoute["effort"]): Mo
 // ── Task 6: per-role model-routing config mechanism ─────────────────────────
 //
 // Route *selection* (claude vs codex, and which model/effort per pipeline
-// role) lives here. The claude route implementation itself is Task 7 — until
-// it lands, selecting "claude-cli" fails closed with
-// ClaudeRouteNotAvailableError rather than silently falling back to codex.
+// role) lives here. Task 7 landed the claude route: selecting "claude-cli" now
+// builds a real claude ModelProcessRoute (createClaudeRoute). The historical
+// ClaudeRouteNotAvailableError is retained (exported) as the documented
+// fail-closed contract for the pre-Task-7 window but is no longer thrown.
 
 export interface RoleRoute {
   readonly route: "claude-cli" | "codex";
@@ -80,10 +92,11 @@ export function resolveRoleRoute(config: ModelRoutingConfig, role?: string): Rol
 
 export const CLAUDE_ROUTE_NOT_AVAILABLE_CODE = "CLAUDE_ROUTE_NOT_AVAILABLE" as const;
 
-/** Fail-closed: thrown when a resolved route selects "claude-cli" before
- *  Task 7's claude route implementation exists. Never falls back to codex
- *  silently — a misconfigured or premature claude-cli selection must be a
- *  hard failure, not a quiet behavior change. */
+/** Historical fail-closed contract for the pre-Task-7 window, when selecting
+ *  "claude-cli" had to hard-fail rather than silently fall back to codex.
+ *  Task 7 shipped the real claude route, so this is no longer thrown by
+ *  `createRouteForRoleRoute`; it is retained (exported) as documentation of the
+ *  never-silently-fall-back invariant that still governs route selection. */
 export class ClaudeRouteNotAvailableError extends Error {
   readonly code = CLAUDE_ROUTE_NOT_AVAILABLE_CODE;
   constructor(role?: string) {
@@ -96,9 +109,11 @@ export class ClaudeRouteNotAvailableError extends Error {
 }
 
 /** Gateway-construction route selection: dispatches a resolved RoleRoute to
- *  its ModelProcessRoute implementation by the `route` field. */
-export function createRouteForRoleRoute(roleRoute: RoleRoute, role?: string): ModelProcessRoute {
-  if (roleRoute.route === "claude-cli") throw new ClaudeRouteNotAvailableError(role);
+ *  its ModelProcessRoute implementation by the `route` field. "claude-cli"
+ *  builds the Task 7 claude route; "codex" builds the parameterized codex
+ *  route. Never falls back silently across route kinds. */
+export function createRouteForRoleRoute(roleRoute: RoleRoute, _role?: string): ModelProcessRoute {
+  if (roleRoute.route === "claude-cli") return createClaudeRoute(roleRoute.model, roleRoute.effort);
   return createCodexRoute(roleRoute.model, roleRoute.effort);
 }
 

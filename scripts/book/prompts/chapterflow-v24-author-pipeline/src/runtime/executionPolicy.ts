@@ -9,8 +9,17 @@ import type {
   ResolvedExecutionPolicy,
 } from "./executionPolicyTypes.js";
 
+// Task 7: no binary allowlist exists in this policy — the process command comes
+// from the selected ModelProcessRoute (codex → "codex", claude → "claude") and
+// is validated for shape only (nonempty, no NUL) in the gateway's prepareTask.
+// So the claude binary is already permitted; the env-strip below is unchanged
+// and, crucially, keeps HOME (claude's ~/.claude subscription credentials) while
+// still removing every provider API key.
 const ENV_ALLOWLIST = ["PATH", "HOME", "TMPDIR", "TMP", "TEMP", "LANG", "LC_ALL", "LC_CTYPE", "TERM"] as const;
-const FORBIDDEN_ENV = [
+/** Exported (Task 7) as the single source of truth for the route-env merge
+ *  guard in modelGateway: a route-supplied env (claude's MAX_THINKING_TOKENS)
+ *  may never carry any of these keys, so the env-strip stays authoritative. */
+export const FORBIDDEN_ENV = [
   "OPENAI_API_KEY",
   "CODEX_API_KEY",
   "OPENAI_BASE_URL",

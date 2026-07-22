@@ -4,8 +4,6 @@ import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
 import {
-  CLAUDE_ROUTE_NOT_AVAILABLE_CODE,
-  ClaudeRouteNotAvailableError,
   createCodexRoute,
   createRouteForRoleRoute,
   DEFAULT_MODEL_ROUTING_CONFIG_PATH,
@@ -207,28 +205,37 @@ requiredTest("createRouteForRoleRoute: route:\"codex\" builds a working ModelPro
   assert.equal(built.command, "codex");
 });
 
-requiredTest("createRouteForRoleRoute: route:\"claude-cli\" fails closed with ClaudeRouteNotAvailableError (Task 7 not landed)", () => {
-  assert.throws(
-    () => createRouteForRoleRoute({ route: "claude-cli", model: "claude-sonnet-5", effort: "high" }, "review"),
-    (err: unknown) => {
-      assert.ok(err instanceof ClaudeRouteNotAvailableError);
-      assert.equal(err.code, CLAUDE_ROUTE_NOT_AVAILABLE_CODE);
-      assert.match(err.message, /review/);
-      assert.match(err.message, /Task 7/);
-      return true;
-    },
-  );
+requiredTest("createRouteForRoleRoute: route:\"claude-cli\" builds the Task 7 claude route (no longer throws)", () => {
+  const route = createRouteForRoleRoute({ route: "claude-cli", model: "claude-sonnet-5", effort: "xhigh" }, "review");
+  assert.equal(route.id, "claude-subscription-v1");
+  const built = route.build({
+    id: "read",
+    workDirPolicy: "PIPELINE_ROOT",
+    mode: "READ_ONLY",
+    outputSchemaId: "json.object.v1",
+    timeoutMs: 1,
+    terminateGraceMs: 1,
+    maxStdoutBytes: 1,
+    maxStderrBytes: 1,
+  });
+  assert.equal(built.command, "claude");
+  assert.equal(built.args.includes("claude-sonnet-5"), true);
 });
 
-requiredTest("createRouteForRoleRoute: claude-cli never silently falls back to codex", () => {
-  let threw = false;
-  try {
-    createRouteForRoleRoute({ route: "claude-cli", model: "claude-sonnet-5", effort: "high" });
-  } catch (err) {
-    threw = true;
-    assert.ok(err instanceof ClaudeRouteNotAvailableError);
-  }
-  assert.equal(threw, true, "claude-cli selection must throw, never construct a codex route as a silent fallback");
+requiredTest("createRouteForRoleRoute: claude-cli never silently constructs a codex route", () => {
+  const route = createRouteForRoleRoute({ route: "claude-cli", model: "claude-sonnet-5", effort: "high" });
+  assert.equal(route.id, "claude-subscription-v1");
+  assert.notEqual(route.id, "codex-chatgpt-subscription-v1");
+  assert.notEqual(route.build({
+    id: "read",
+    workDirPolicy: "PIPELINE_ROOT",
+    mode: "READ_ONLY",
+    outputSchemaId: "json.object.v1",
+    timeoutMs: 1,
+    terminateGraceMs: 1,
+    maxStdoutBytes: 1,
+    maxStderrBytes: 1,
+  }).command, "codex");
 });
 
 // ── loadModelRoutingConfig: fail-closed on disk-level problems ─────────────
