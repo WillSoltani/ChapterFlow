@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { BookOpen } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -47,18 +47,18 @@ export function ContentClient() {
   const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<Sort>("readingMinutes");
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<ContentResponse>(`/metrics/content?range=${range}`)
       .then(setData)
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Failed to load"))
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   const sortedBooks = data ? [...data.books].sort((a, b) => b[sort] - a[sort]) : [];
   const scenarioCombined = useMemo(() => {

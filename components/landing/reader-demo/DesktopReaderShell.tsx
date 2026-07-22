@@ -77,7 +77,7 @@ export function DesktopReaderShell({
   // hero console auto-running the loop).
   const isControlled = controlledPhase != null;
   const activeTab = controlledPhase ?? internalTab;
-  const [readingDepth, setReadingDepth] = useState<ReadingDepth>("standard");
+  const [readingDepth, _setReadingDepth] = useState<ReadingDepth>("standard");
   const [bookmarkedTakeaways, setBookmarkedTakeaways] = useState<Set<number>>(
     new Set()
   );
@@ -188,14 +188,6 @@ export function DesktopReaderShell({
   const handleSaveTakeaways = useCallback(() => {
     markInteracted();
   }, [markInteracted]);
-
-  const handleChangeReadingDepth = useCallback(
-    (value: ReadingDepth) => {
-      markInteracted();
-      setReadingDepth(value);
-    },
-    [markInteracted]
-  );
 
   // Derived: which phases are "completed" for stepper visual
   const completedPhases = new Set<ChapterTab>(

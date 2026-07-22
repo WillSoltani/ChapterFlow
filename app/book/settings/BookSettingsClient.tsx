@@ -41,7 +41,6 @@ import { useReducedMotion } from "./hooks/useReducedMotion";
 
 // Components
 import { SettingsSearch } from "./components/SettingsSearch";
-import { PersonalizationMeter } from "./components/PersonalizationMeter";
 import { SettingsSection } from "./components/SettingsSection";
 import { SettingRow, Divider, SubsectionLabel } from "./components/SettingRow";
 import { ToggleSwitch } from "./components/controls/ToggleSwitch";
@@ -66,8 +65,6 @@ import type { RefreshResult } from "./components/RefreshPreferencesModal";
 import { READING_PROFILES, DAILY_GOAL_OPTIONS, MOTIVATION_OPTIONS } from "./constants/profiles";
 import {
   QUIZ_STYLE_TO_INTENSITY,
-  PERSONA_TO_MOTIVATION,
-  MOTIVATION_TO_PERSONA,
   DAILY_GOAL_TIERS,
 } from "./constants/defaults";
 import { TTS_SPEED_OPTIONS, snapTtsSpeedToOption } from "./constants/tts";
@@ -84,7 +81,7 @@ import type {
   LetterSpacing,
   ColorBlindMode,
 } from "./types/settings";
-import type { LearningStyle, QuizIntensity, MotivationStyle } from "@/app/book/hooks/useOnboardingState";
+import type { QuizIntensity } from "@/app/book/hooks/useOnboardingState";
 
 // Finding A: one user-facing depth vocabulary end to end. Settings' reading
 // profiles now read with the SAME names a buyer saw on Pricing (Lite / Standard
@@ -148,8 +145,8 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     setQuizIntensity,
     setReminderTime,
     setStreakMode: setOnboardingStreakMode,
-    setMotivationStyle: setOnboardingMotivationStyle,
-    resetSetup,
+    setMotivationStyle: _setOnboardingMotivationStyle,
+    resetSetup: _resetSetup,
   } = useOnboardingState();
   const { billingState, launchBillingAction, redeemLicenseKey } =
     useBookEntitlements(true);
@@ -490,16 +487,6 @@ export function BookSettingsClient({ isAdmin, userEmail, appVersion, initialUpgr
     if (mode !== "off") triggerCelebration("streak-enabled");
     const labels = { off: "Off", standard: "Standard", flexible: "Flexible" };
     announce(`Streak mode changed to ${labels[mode]}`);
-    showSavedToast();
-  }
-
-  // --- Dyslexia font sync ---
-  function handleDyslexiaToggle(enabled: boolean) {
-    patchSection("accessibility", { dyslexiaFriendlyFont: enabled });
-    if (enabled) {
-      patchExt({ fontFamily: "opendyslexic" });
-    }
-    announce(`Dyslexia-friendly font ${enabled ? "enabled" : "disabled"}`);
     showSavedToast();
   }
 

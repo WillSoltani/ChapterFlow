@@ -9,7 +9,7 @@ separated by a resource-name suffix: `dev`, `staging`, `prod`.
 | File | Trigger | What it does |
 |------|---------|--------------|
 | `.github/workflows/ci.yml` | PRs + push to `main` | **Hard gate:** app typecheck/unit tests/`next build`/OpenNext bundle, the v21 pipeline workspace typecheck/tests/doctor/build, and CDK backend synth. **Advisory:** an ESLint job that reports problems but never blocks. |
-| `.github/workflows/deploy.yml` | push to `main` (auto → **dev**); `workflow_dispatch` (pick env) | Orchestrates a deploy. Push keeps **dev** in sync. Manual dispatch chooses `dev`/`staging`/`prod` and what to run. |
+| `.github/workflows/deploy.yml` | `workflow_dispatch` only (pick env) | Orchestrates a deploy. Deploys are manual — there is no auto-deploy on push to `main`. Dispatch chooses `dev`/`prod` and what to run; staging is deliberately absent from this entry point (see §3). |
 | `.github/workflows/_deploy-infra.yml` | reusable (`workflow_call`) | Deploys the CDK **backend** stack for one env, then optionally seeds book data (names resolved from SSM — never hardcoded). |
 | `.github/workflows/_deploy-app.yml` | reusable (`workflow_call`) | Builds OpenNext, deploys the CDK **frontend** stack, invalidates CloudFront, runs a **blocking health gate**, and opens a failure issue on prod. |
 
@@ -37,14 +37,30 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
 
 ## 3) Day-to-day
 
-- **PR:** open a PR → `ci.yml` runs. The required checks (`App Build + Tests`,
-  `Infra Build + CDK Synth`) must pass; the `Lint (advisory)` job is *not*
-  required (see §6).
-- **Ship to dev:** merge to `main` → `deploy.yml` auto-deploys dev (infra sync +
-  app; no re-seed).
-- **Ship to staging/prod:** `Actions → Deploy → Run workflow`, choose the
-  environment and toggles (`deploy_infra`, `deploy_app`, `seed`). A **prod** run
-  pauses for approval before anything is applied.
+- **PR:** open a PR → `ci.yml` runs. The canonical required-status-checks list
+  lives in `.github/rulesets/main-branch.json` — do not restate it here or in
+  `ci.yml` comments; read that file (it's the versioned, machine-parseable
+  source of truth, enumerating the `ci.yml` job display names branch
+  protection must gate merge on). `Integration — Golden Journey (DynamoDB
+  Local)` (`continue-on-error: true`, not yet promoted) and `Lint (advisory)`
+  report but never block (see §6). `npm run verify` mirrors most, but not
+  all, of the required set — the exact delta is in §6/§7.
+- **Ship to dev:** `Actions → Deploy → Run workflow`, choose `dev` and the
+  toggles (`deploy_infra`, `deploy_app`, `seed`). There is no auto-deploy on
+  push to `main` — every dev deploy is a manual dispatch.
+- **Ship to prod:** `Actions → Deploy → Run workflow`, choose `prod` and the
+  toggles. The run pauses for the `prod` GitHub Environment's required-reviewer
+  approval before anything is applied, then runs the blocking health gate and
+  prod-blocking deep readiness smoke in `_deploy-app.yml`.
+- **Staging is deliberately absent** from this entry point: the staging AWS
+  stacks and GitHub Environment secrets do not exist, so a prod deploy ships a
+  dev-validated commit directly rather than promoting through a staging stage.
+  `deploy.yml`'s `environment` choice is `[dev, prod]` only.
+  `_deploy-infra.yml` / `_deploy-app.yml` and `infra/lib/env-config.ts` keep
+  their `dev`/`staging`/`prod` modeling for later use — re-introducing a
+  staging promotion stage requires standing up the staging GitHub Environment
+  (scoped secrets) and AWS stacks first, then adding it back to `deploy.yml`'s
+  options.
 
 ## 4) One-time AWS / GitHub setup
 
@@ -106,15 +122,44 @@ issue. **Rollback** = re-run `Deploy` on the last good commit/tag (OpenNext
 bundles are immutable per-commit, so this restores the prior Lambda + assets).
 Stateful RETAIN resources are not rolled back by an app redeploy.
 
-## 6) Lint policy (advisory)
+## 6) Verify ↔ CI delta, and lint policy
 
-`npm run verify` = `typecheck && test && build` (the enforced gate). ESLint is
-run separately and is **advisory** — the web-app lint surface (`app/`,
-`components/`, `lib/`) carries pre-existing debt, so the CI lint job reports it
-without blocking. Pay it down, then promote `Lint (advisory)` to a required
-check. The offline v21 pipeline (`scripts/book/prompts/chapterflow-v21-authored`)
-has its own npm workspace package and CI job; the CDK package (`infra/**`) is
-excluded from the app lint surface.
+`npm run verify` = `typecheck && test && scan:secrets && scan:style &&
+lint:ratchet && build` (package.json — WS6-021). It is the enforced local
+gate and directly runs 4 of the 9 required CI jobs (`Secret & Artifact Scan`,
+`Style & Token Drift Scan`, `Lint Ratchet (no new errors)`, and the
+typecheck/test/build slice of `App Build + Tests`). A green `npm run verify`
+predicts a green CI required set **except** for what it does not run:
+
+- The PR-relative shared-TypeScript-closure diff (`typecheck:shared-closure`)
+  — needs a real PR base SHA, so it only runs inside `App Build + Tests` on
+  the `pull_request` trigger, never on `push` and never locally via `verify`.
+- `test:coverage` (c8 coverage + `scripts/ci/verify-code-coverage.mjs`
+  inventory) and `open-next build` — both also part of `App Build + Tests`.
+- `Lambda Handler Tests` (`infra/` lambda unit tests + bundle-freshness check).
+- `v21 Pipeline Typecheck + Tests` (the offline pipeline workspace).
+- `E2E Smoke (dev build)` / `E2E Smoke (prod build)` (Playwright).
+- `Infra Build + CDK Synth` (`cd infra && npx cdk synth ...` for dev/staging/prod).
+
+Run `npm run verify:ci` for a closer local mirror — it adds `test:coverage`,
+the pipeline typecheck/test/doctor/build, and `infra`'s own install/test/build
+— everything except Playwright's e2e jobs and the PR-relative shared-closure
+diff, which need a live browser/build server and a real PR base respectively.
+
+Full ESLint (`npm run lint`, the `Lint (advisory)` CI job) stays **advisory**
+— the web-app lint surface (`app/`, `components/`, `lib/`) carries
+pre-existing debt, so that job reports it without blocking. What **does**
+block is the separate `Lint Ratchet (no new errors)` job
+(`npm run lint:ratchet` → `scripts/ci/lint-ratchet.mjs`): it fails when the
+total ESLint error count exceeds the number committed in
+`scripts/ci/eslint-error-baseline`, and fails unconditionally on any hit in a
+small zero-tolerance correctness-rule subset
+(`scripts/ci/check-eslint-correctness.mjs`) regardless of the overall count.
+The offline v21 pipeline (`scripts/book/prompts/chapterflow-v21-authored`) has
+its own npm workspace package and CI job; the CDK package (`infra/**`) is
+covered by `lint:infra-ci` (part of the ratchet job) and by its own
+`Infra Build + CDK Synth`/`Lambda Handler Tests` jobs, not by the app lint
+surface.
 
 ## 7) Troubleshooting
 
@@ -125,11 +170,17 @@ excluded from the app lint surface.
   Deploy infra first.
 - **Reproduce CI locally:**
   ```bash
-  npm ci && npm run verify          # typecheck + test + build
+  npm ci && npm run verify          # typecheck + test + scan:secrets + scan:style + lint:ratchet + build
   npm run pipeline:typecheck
   npm run pipeline:test
   npm run pipeline:doctor
+  npm run pipeline:build
   npx open-next build
-  npm --prefix infra ci && npm --prefix infra run build
+  npm --prefix infra ci && npm --prefix infra test && npm --prefix infra run build
   cd infra && npx cdk synth -c env=dev ChapterFlowBackend-dev
   ```
+  Or run everything above in one shot with `npm run verify:ci`. Not
+  reproduced by either: Playwright `E2E Smoke (dev/prod build)` (needs a live
+  build server) and the PR-relative shared-TypeScript-closure diff check
+  (`npm run typecheck:shared-closure -- --base <sha>`, only meaningful against
+  a real PR base — see §6).

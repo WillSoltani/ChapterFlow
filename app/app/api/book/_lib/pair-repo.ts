@@ -1,7 +1,6 @@
 import "server-only";
 
 import {
-  DeleteCommand,
   GetCommand,
   PutCommand,
   TransactWriteCommand,

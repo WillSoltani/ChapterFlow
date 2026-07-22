@@ -1,6 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { resolveAppBaseUrl, isUsableProdBaseUrl } from "./app-base-url-core";
+import {
+  resolveAppBaseUrl,
+  isUsableProdBaseUrl,
+  buildCoverUrl,
+  encodeS3Key,
+} from "./app-base-url-core";
 
 // ---------------------------------------------------------------------------
 // F12: getAppBaseUrl must NOT return a loopback CHAPTERFLOW_APP_BASE_URL
@@ -115,4 +120,49 @@ test("isUsableProdBaseUrl: loopback/invalid rejected, public https accepted", ()
   assert.equal(isUsableProdBaseUrl("https://[::1]"), false);
   assert.equal(isUsableProdBaseUrl("not a url"), false);
   assert.equal(isUsableProdBaseUrl("ftp://example.com"), false);
+});
+
+// ---------------------------------------------------------------------------
+// WS6-012: cover URL builder. Covers move off the direct public S3 URL onto the
+// canonical app origin (served by CloudFront OAC → content bucket) so the content
+// bucket can enforce BLOCK_ALL. buildCoverUrl lives here (a pre-existing shared,
+// server-only-free module) rather than a new module, which would grow the
+// app+book shared TypeScript closure via library-catalog.ts's importers.
+// ---------------------------------------------------------------------------
+
+test("buildCoverUrl builds a cover URL on the app base origin", () => {
+  assert.equal(
+    buildCoverUrl(
+      "https://app.chapterflow.ca",
+      "book-content/library/covers/the-power-of-habit.svg"
+    ),
+    "https://app.chapterflow.ca/book-content/library/covers/the-power-of-habit.svg"
+  );
+});
+
+test("buildCoverUrl strips a trailing slash so the URL never doubles the separator", () => {
+  assert.equal(
+    buildCoverUrl(
+      "https://app.chapterflow.ca/",
+      "book-content/library/covers/make-time.svg"
+    ),
+    "https://app.chapterflow.ca/book-content/library/covers/make-time.svg"
+  );
+});
+
+test("buildCoverUrl percent-encodes key segments while preserving the path separators", () => {
+  assert.equal(
+    buildCoverUrl(
+      "https://app.chapterflow.ca",
+      "book-content/library/covers/a b & c.svg"
+    ),
+    "https://app.chapterflow.ca/book-content/library/covers/a%20b%20%26%20c.svg"
+  );
+});
+
+test("encodeS3Key encodes each segment but keeps the slashes", () => {
+  assert.equal(
+    encodeS3Key("book-content/library/covers/x y.svg"),
+    "book-content/library/covers/x%20y.svg"
+  );
 });

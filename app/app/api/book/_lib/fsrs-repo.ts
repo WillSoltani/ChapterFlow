@@ -4,7 +4,7 @@ import {
   GetCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { bookUserPk, fsrsCardSk, fsrsReviewLogSk, nowIso } from "./keys";
+import { bookUserPk, fsrsCardSk, fsrsReviewLogSk } from "./keys";
 import {
   createNewCard,
   scheduleCard,

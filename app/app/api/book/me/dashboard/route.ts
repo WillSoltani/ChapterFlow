@@ -7,7 +7,7 @@ import {
   classifyDashboardReads,
   type DashboardSource,
 } from "@/app/app/api/book/me/dashboard/dashboard-partial";
-import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getAppBaseUrl, getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { listPublishedLibraryCatalog } from "@/app/app/api/book/_lib/library-catalog";
 import {
   getUserEntitlement,
@@ -27,9 +27,10 @@ export const runtime = "nodejs";
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
-    const [tableName, contentBucket] = await Promise.all([
+    const [tableName, contentBucket, appBaseUrl] = await Promise.all([
       getBookTableName(),
       getBookContentBucket(),
+      getAppBaseUrl(req.url),
     ]);
 
     // Fan out every read, but split CRITICAL from OPTIONAL (#2). Critical reads
@@ -52,7 +53,7 @@ export async function GET(req: Request) {
       badgeAwardsR,
       flowPointsStateR,
     ] = await Promise.allSettled([
-      listPublishedLibraryCatalog({ tableName, contentBucket }),
+      listPublishedLibraryCatalog({ tableName, contentBucket, appBaseUrl }),
       getUserEntitlement(tableName, user.sub),
       listAllUserProgress(tableName, user.sub),
       listAllUserBookStates(tableName, user.sub),

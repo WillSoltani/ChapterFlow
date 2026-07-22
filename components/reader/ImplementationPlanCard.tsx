@@ -1,14 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { Zap, Target, Clock, RotateCcw, ChevronDown, ChevronUp } from "lucide-react";
+import { Zap, Target, RotateCcw, ChevronDown, ChevronUp } from "lucide-react";
 import type { ImplementationPlanItem } from "@/lib/reader-content-types";
-
-const CONTEXT_ICONS: Record<string, string> = {
-  work: "Briefcase",
-  school: "GraduationCap",
-  personal: "Heart",
-};
 
 const CONTEXT_LABELS: Record<string, string> = {
   work: "Work",

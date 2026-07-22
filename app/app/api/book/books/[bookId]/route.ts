@@ -1,6 +1,6 @@
 import "server-only";
 import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
-import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getAppBaseUrl, getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getPublishedLibraryBookDetail } from "@/app/app/api/book/_lib/library-catalog";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { BOOK_DETAIL_CACHE_CONTROL } from "@/app/app/api/book/_lib/cache-control-core";
@@ -19,11 +19,13 @@ export async function GET(
 
     const tableName = await getBookTableName();
     const contentBucket = await getBookContentBucket();
+    const appBaseUrl = await getAppBaseUrl(req.url);
 
     const book = await getPublishedLibraryBookDetail({
       tableName,
       contentBucket,
       bookId,
+      appBaseUrl,
     });
 
     const response = bookOk({ book });

@@ -11,11 +11,6 @@ interface ReadingActivityProps {
   onStartReading?: () => void;
 }
 
-function getDayAbbr(dateStr: string): string {
-  const date = new Date(`${dateStr}T12:00:00`);
-  return date.toLocaleDateString(undefined, { weekday: "short" }).slice(0, 3);
-}
-
 function getWeekdayName(dateStr: string): string {
   const date = new Date(`${dateStr}T12:00:00`);
   return date.toLocaleDateString(undefined, {

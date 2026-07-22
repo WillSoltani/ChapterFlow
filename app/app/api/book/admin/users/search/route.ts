@@ -60,6 +60,13 @@ function readTime(item: Record<string, unknown>): number {
   return 0;
 }
 
+// GSI PROJECTION GUARD: for the plan-listing path, `item` comes from
+// listRecentUsersByPlan, which queries "plan-updatedAt-index" (projected
+// INCLUDE, not ALL). Every attribute read below MUST be in that GSI's
+// nonKeyAttributes list in infra/lib/chapterflow-backend-stack.ts, or DynamoDB
+// silently omits it (no error) and this function emits null/0. The email-search
+// path (searchUsersByEmail) scans the base table and returns full items, so it
+// is unaffected. See docs/architecture/adr-analytics-gsi-projection.md.
 function formatUser(item: Record<string, unknown>, ent?: EntitlementSnapshot) {
   // Entitlement is the source of truth for plan / proSource. If no
   // entitlement exists, fall back to the analytics snapshot's plan field.

@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Activity } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -54,7 +54,7 @@ export function EngagementClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<EngagementResponse>(`/metrics/engagement?range=${range}`)
@@ -63,13 +63,13 @@ export function EngagementClient() {
         setError(err instanceof Error ? err.message : "Failed to load engagement"),
       )
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
-  const daily = data?.daily ?? [];
+  const daily = useMemo(() => data?.daily ?? [], [data]);
   const wauMau = useMemo(() => computeWauMau(daily), [daily]);
   const heatmapMax = useMemo(() => {
     if (!data) return 0;

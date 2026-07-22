@@ -3,7 +3,6 @@ import "server-only";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
-  bookErr,
   requireBodyObject,
   withBookApiErrors,
 } from "@/app/app/api/book/_lib/http";

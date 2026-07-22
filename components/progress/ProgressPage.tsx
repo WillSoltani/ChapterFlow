@@ -597,11 +597,6 @@ export function ProgressPage() {
 
   // ── Determine which sections to show (progressive disclosure) ──
   const totalDaysWithData = displayData?.readingActivity.totalDaysWithData ?? 0;
-  const hasQuizData = (displayData?.weekSummary.quizAccuracy ?? null) !== null;
-  const hasCompletedChapters =
-    (displayData?.activeBooks.reduce((s, b) => s + b.completedChapters, 0) ??
-      0) > 0;
-  const isNewUser = totalDaysWithData < 2;
 
   // Recent badge for celebration banner
   const recentBadgeName =

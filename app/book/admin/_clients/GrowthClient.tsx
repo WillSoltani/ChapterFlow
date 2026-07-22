@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { TrendingUp } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -46,7 +46,7 @@ export function GrowthClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<GrowthResponse>(`/metrics/growth?range=${range}`)
@@ -55,11 +55,11 @@ export function GrowthClient() {
         setError(err instanceof Error ? err.message : "Failed to load growth"),
       )
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   const totalSignups = data?.signups.reduce((s, d) => s + d.value, 0) ?? 0;
 

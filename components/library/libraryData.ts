@@ -1,6 +1,5 @@
 // ── Extended library data for the psychology-driven redesign ──
 
-import { getBookCoverPath } from "@/lib/book-covers";
 import type {
   LibraryCatalogBook,
   LibraryBookEntry,

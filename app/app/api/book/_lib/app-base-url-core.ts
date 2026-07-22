@@ -81,3 +81,42 @@ export function resolveAppBaseUrl(input: AppBaseUrlInput): string {
   }
   return `${input.reqProtocol}//${input.reqHost}`;
 }
+
+// ---------------------------------------------------------------------------
+// WS6-012: library cover URL builder.
+//
+// This lives here (rather than a new `cover-url-core.ts`) on purpose: covers are
+// minted in library-catalog.ts, which is reachable from the book pipeline's
+// static type program (scripts/book/check-catalog-state.ts dynamically imports
+// it), so it is part of the app+book SHARED TypeScript closure. A NEW module
+// imported by library-catalog.ts would GROW that shared set — forbidden by the
+// closure guard (scripts/ci/verify-shared-ts-closure.mjs). app-base-url-core.ts
+// is already in the shared set and is the natural home for app-origin URL
+// construction, so the builder is co-located here with resolveAppBaseUrl.
+//
+// Covers are served from the CloudFront distribution on the canonical app origin
+// under the `book-content/library/covers/*` path, which CloudFront routes to the
+// content S3 bucket via Origin Access Control. The cover URL is therefore
+// `${appBaseUrl}/${encodeS3Key(coverAssetKey)}`, where coverAssetKey is the S3
+// object key (e.g. "book-content/library/covers/foo.svg") — the CloudFront path
+// pattern equals the key prefix, so no origin-path rewrite is involved.
+
+/**
+ * Percent-encode each `/`-delimited segment of an S3 key while preserving the
+ * `/` separators, so the key round-trips as a URL path.
+ */
+export function encodeS3Key(key: string): string {
+  return key
+    .split("/")
+    .map((segment) => encodeURIComponent(segment))
+    .join("/");
+}
+
+/**
+ * Build the public cover URL on the canonical app origin. `appBaseUrl` is the
+ * resolved base URL (resolveAppBaseUrl above); any trailing slash is stripped so
+ * the result never doubles the `/` between origin and key.
+ */
+export function buildCoverUrl(appBaseUrl: string, coverAssetKey: string): string {
+  return `${normalizeBaseUrl(appBaseUrl)}/${encodeS3Key(coverAssetKey)}`;
+}

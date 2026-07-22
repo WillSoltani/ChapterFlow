@@ -1,0 +1,43 @@
+{
+  "name": "main-branch",
+  "target": "branch",
+  "enforcement": "active",
+  "conditions": {
+    "ref_name": {
+      "include": ["refs/heads/main"],
+      "exclude": []
+    }
+  },
+  "rules": [
+    {
+      "type": "required_status_checks",
+      "parameters": {
+        "strict_required_status_checks_policy": true,
+        "do_not_enforce_on_create": false,
+        "required_status_checks": [
+          { "context": "App Build + Tests" },
+          { "context": "Lambda Handler Tests" },
+          { "context": "v21 Pipeline Typecheck + Tests" },
+          { "context": "Infra Build + CDK Synth" },
+          { "context": "Secret & Artifact Scan" },
+          { "context": "Style & Token Drift Scan" },
+          { "context": "Lint Ratchet (no new errors)" }
+        ]
+      }
+    },
+    {
+      "type": "pull_request",
+      "parameters": {
+        "required_approving_review_count": 0,
+        "dismiss_stale_reviews_on_push": true,
+        "require_code_owner_review": true,
+        "require_last_push_approval": false,
+        "required_review_thread_resolution": false
+      }
+    },
+    {
+      "type": "non_fast_forward"
+    }
+  ],
+  "_comment": "GitHub ruleset import/export shape (see `gh api repos/:owner/:repo/rulesets`). This file is the single source of truth for which ci.yml jobs are required-status-checks on main; ci.yml comments and docs/CI_CD.md reference it instead of restating the list. Apply with: gh api --method POST /repos/WillSoltani/ChapterFlow/rulesets --input .github/rulesets/main-branch.json (OWNER, non-code follow-up — not applied by this commit). `Integration — Golden Journey (DynamoDB Local)`, `Lint (advisory)`, `E2E Smoke (dev build)`, and `E2E Smoke (prod build)` are intentionally NOT listed: they report but do not gate today (see ci.yml job comments)."
+}

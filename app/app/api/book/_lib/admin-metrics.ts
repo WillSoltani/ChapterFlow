@@ -754,6 +754,13 @@ export function countActiveDays(
 
 /**
  * List most recently active users by plan, capped to `limit`.
+ *
+ * GSI PROJECTION GUARD: this reads full items off "plan-updatedAt-index", which
+ * is projected INCLUDE (not ALL). Every attribute a caller reads off these
+ * results (via formatUser in admin/users/search/route.ts) MUST be in the GSI's
+ * nonKeyAttributes list in infra/lib/chapterflow-backend-stack.ts. A missing
+ * attribute is NOT an error — DynamoDB silently omits it and formatUser emits
+ * null/0. See docs/architecture/adr-analytics-gsi-projection.md.
  */
 export async function listRecentUsersByPlan(
   analyticsTable: string,

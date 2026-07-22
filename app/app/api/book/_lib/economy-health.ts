@@ -4,7 +4,7 @@ import "server-only";
 // Designed to run as a scheduled Lambda function (weekly).
 // Computes metrics from ENGAGEMENT and LEDGER records.
 
-import { QueryCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 
 // ── Types ───────────────────────────────────────────────────────────────────

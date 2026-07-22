@@ -32,7 +32,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json', 'app/**/*.ts', 'app/**/*.tsx', 'components/**/*.ts', 'components/**/*.tsx', 'next.config.ts', 'postcss.config.mjs') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json', 'app/**/*.ts', 'app/**/*.tsx', 'components/**/*.ts', 'components/**/*.tsx', 'lib/**/*.ts', 'lib/**/*.tsx', 'next.config.ts', 'postcss.config.mjs') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-
 
@@ -111,7 +111,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
           cache-dependency-path: infra/package-lock.json
 
@@ -122,6 +122,34 @@ jobs:
       - name: Lambda unit tests
         working-directory: infra
         run: npm test
+
+      # The reminder cron / suppression handler / cognito pre-signup linker deploy
+      # from infra/lambda/dist via CDK fromAsset. Rebuild those bundles from source
+      # here (mirrors _deploy-infra.yml's "Build Lambda bundles" step) so a PR that
+      # edits a lambda .ts source without regenerating dist fails CI instead of
+      # deploying stale code.
+      - name: Build Lambda bundles
+        working-directory: infra
+        run: |
+          set -euo pipefail
+          npx esbuild lambda/reading-reminder-cron.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
+            --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
+            --external:@aws-sdk/client-sesv2 --external:@aws-sdk/client-ssm
+          npx esbuild lambda/suppression-handler.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/suppression-handler.js \
+            --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb
+          npx esbuild lambda/cognito-pre-signup.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/cognito-pre-signup.js \
+            --external:@aws-sdk/client-cognito-identity-provider
+
+      - name: Verify Lambda bundle freshness
+        run: |
+          set -euo pipefail
+          if ! git diff --exit-code -- infra/lambda/dist; then
+            echo "::error::infra/lambda/dist is stale — rebuild with the esbuild commands in this job and commit the output"
+            exit 1
+          fi
 
   # ── Hard gate: v21 pipeline workspace package ───────────────────────────
   # This runs from the same clean checkout and root package-lock as the app.
@@ -139,7 +167,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
@@ -168,7 +196,8 @@ jobs:
   # at construction, so prod code talks to the local container with no source edit.
   #
   # NON-REQUIRED (continue-on-error) for now: keep it OUT of branch-protection
-  # required checks; promote to required after N consecutive green runs.
+  # required checks (canonical list: .github/rulesets/main-branch.json);
+  # promote to required after N consecutive green runs.
   integration-journey:
     name: Integration — Golden Journey (DynamoDB Local)
     runs-on: ubuntu-latest
@@ -193,7 +222,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
@@ -241,14 +270,30 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
         run: npm ci --include=optional
 
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
       - name: Install Playwright browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright OS deps (cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Run E2E smoke tests (dev bypass)
         run: npm run test:e2e
@@ -286,14 +331,30 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
         run: npm ci --include=optional
 
+      - name: Get Playwright version
+        id: playwright-version
+        run: echo "version=$(node -p "require('@playwright/test/package.json').version")" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Playwright browsers
+        id: playwright-cache
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/ms-playwright
+          key: ${{ runner.os }}-playwright-${{ steps.playwright-version.outputs.version }}
+
       - name: Install Playwright browser
+        if: steps.playwright-cache.outputs.cache-hit != 'true'
         run: npx playwright install --with-deps chromium
+
+      - name: Install Playwright OS deps (cache hit)
+        if: steps.playwright-cache.outputs.cache-hit == 'true'
+        run: npx playwright install-deps chromium
 
       - name: Run E2E smoke tests (prod bundle)
         # playwright.config.ts (E2E_MODE=prod) runs `next build` + `next start`
@@ -309,7 +370,8 @@ jobs:
           retention-days: 7
 
   # ── Advisory: lint (known in-scope debt — reports, never blocks) ─────────
-  # NOTE: keep this OUT of the required status checks in branch protection.
+  # NOTE: keep this OUT of the required status checks in branch protection
+  # (canonical list: .github/rulesets/main-branch.json).
   # The web-app lint surface (app/, components/, lib/) carries pre-existing
   # debt; this job surfaces it without blocking merges/deploys. Pay it down
   # over time, then promote to a hard gate.
@@ -325,7 +387,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
@@ -376,15 +438,29 @@ jobs:
   # the baseline — i.e. on NEW errors. It does not force a big-bang cleanup; as
   # debt is paid down, ratchet the baseline LOWER (it must never go up).
   #
-  # Baseline recaptured 2026-07-19 (`npx eslint . --format json`): 8 errors.
+  # Baseline recaptured 2026-07-22 (WS6-015, `npx eslint . --format json`): 7
+  # errors — @typescript-eslint/no-explicit-any (1) + react-hooks/set-state-in-effect
+  # (6), all pre-existing. WS6-015 also elevated react-hooks/exhaustive-deps and
+  # @typescript-eslint/no-unused-vars from eslint-config-next's default "warn" to
+  # "error" (eslint.config.mjs) and fixed every case that surfaced (54 unused-vars +
+  # 14 exhaustive-deps sites); @typescript-eslint/no-floating-promises was left at
+  # its default (unset) since it requires type-aware linting
+  # (parserOptions.projectService) whose lint-time cost hasn't been measured yet —
+  # deferred, not part of this ratchet's correctness subset. The "ESLint
+  # correctness subset" step below runs check-eslint-correctness.mjs at ZERO
+  # tolerance for that elevated subset (plus the never-elevated
+  # no-unused-vars/no-floating-promises aliases), independent from the overall
+  # baseline comparison.
+  #
+  # WS6-021: the baseline count and the count/compare logic both live in
+  # scripts/ci/lint-ratchet.mjs (baseline read from the committed
+  # scripts/ci/eslint-error-baseline file, not a workflow env var), so `npm run
+  # lint:ratchet`/`npm run verify` locally and this job can never drift from
+  # each other — see docs/CI_CD.md §3/§6 for the verify↔CI delta.
   lint-ratchet:
     name: Lint Ratchet (no new errors)
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      # Committed baseline: the current ESLint error count. Lower this (never
-      # raise it) as errors are fixed. New errors above this number block CI.
-      ESLINT_ERROR_BASELINE: "8"
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -392,7 +468,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Install dependencies
@@ -404,31 +480,16 @@ jobs:
         run: npm run lint:infra-ci
 
       - name: ESLint ratchet
-        run: |
-          set -uo pipefail
-          npx eslint . --format json > eslint-report.json || true
-          ERRORS=$(node -e "const r=require('./eslint-report.json');let e=0;for(const f of r)e+=f.errorCount;console.log(e);")
-          echo "ESLint errors: ${ERRORS} (baseline: ${ESLINT_ERROR_BASELINE})"
-          {
-            echo "## ESLint ratchet"
-            echo ""
-            echo "- Current errors: \`${ERRORS}\`"
-            echo "- Baseline: \`${ESLINT_ERROR_BASELINE}\`"
-          } >> "$GITHUB_STEP_SUMMARY"
-          if [ "${ERRORS}" -gt "${ESLINT_ERROR_BASELINE}" ]; then
-            echo "::error::ESLint error count ${ERRORS} exceeds baseline ${ESLINT_ERROR_BASELINE} — new correctness-lint debt is not allowed. Fix the new error(s) or, if intentional, justify and update ESLINT_ERROR_BASELINE in ci.yml."
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "❌ **${ERRORS} > ${ESLINT_ERROR_BASELINE}** — new ESLint errors introduced." >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
-          if [ "${ERRORS}" -lt "${ESLINT_ERROR_BASELINE}" ]; then
-            echo "::warning::ESLint error count ${ERRORS} is BELOW baseline ${ESLINT_ERROR_BASELINE} — lower ESLINT_ERROR_BASELINE in ci.yml to lock in the win."
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "⬇️ **${ERRORS} < ${ESLINT_ERROR_BASELINE}** — ratchet the baseline down to lock in the cleanup." >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "✅ No new ESLint errors." >> "$GITHUB_STEP_SUMMARY"
-          fi
+        run: node scripts/ci/lint-ratchet.mjs
+
+      # WS6-015: zero-tolerance correctness-rule subset — runs regardless of
+      # whether the step above already failed the job, so a PR that both
+      # exceeds the baseline AND introduces a correctness-rule hit reports
+      # both instead of only the first failure. Reads the same
+      # eslint-report.json the "ESLint ratchet" step above writes.
+      - name: ESLint correctness subset (zero tolerance)
+        if: ${{ !cancelled() }}
+        run: node scripts/ci/check-eslint-correctness.mjs eslint-report.json
 
   # ── Hard gate: CDK synth (backend) for the dev environment ───────────────
   infra-checks:
@@ -445,7 +506,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
           cache-dependency-path: infra/package-lock.json
 
@@ -455,8 +516,22 @@ jobs:
       - name: Build infra TypeScript
         run: npm run build
 
-      - name: CDK synth (backend, dev context — frontend needs OpenNext artifacts)
+      # Frontend stack (CloudFront + Route53 + custom domain) requires OpenNext
+      # build artifacts on disk (bin/app.ts auto-skips it here without them),
+      # so it isn't synthed from this backend-only context. Its prod-shaped and
+      # staging-shaped synth coverage instead lives in the infra test suite
+      # (frontend-stack-prod-synth.test.ts, run by lambda-checks) against a
+      # non-secret stub .open-next/ fixture.
+      - name: CDK synth (backend, dev context)
         run: npm run cdk -- synth -c env=dev ChapterFlowBackend-dev
+
+      - name: CDK synth (backend, staging context)
+        run: npm run cdk -- synth -c env=staging ChapterFlowBackend-staging
+
+      - name: CDK synth (backend, prod context)
+        env:
+          CHAPTERFLOW_APP_BASE_URL: https://app.chapterflow.ca
+        run: npm run cdk -- synth -c env=prod ChapterFlowBackend
 
   # ── Hard gate: no committed build artifacts or hardcoded secrets ─────────
   # Public repo. A committed Turbopack cache once leaked a live Stripe key;
@@ -480,7 +555,9 @@ jobs:
   # is the enforcement path for: dead Tailwind v4 `-[--x]` syntax, undeclared
   # --cf-/--cr- tokens, raw hex/rgba in components & app/book, and literal
   # catalog counts. (c)+(d) are baselined (style-drift-allowlist.txt) so only
-  # NEW drift blocks. Add this job to branch-protection required checks.
+  # NEW drift blocks. Already required (see .github/rulesets/main-branch.json,
+  # the canonical required-status-checks list; apply via `gh api --method POST
+  # /repos/WillSoltani/ChapterFlow/rulesets --input .github/rulesets/main-branch.json`).
   style-drift-scan:
     name: Style & Token Drift Scan
     runs-on: ubuntu-latest
@@ -492,7 +569,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
 
       - name: Verify detection patterns (selftest)
         run: node scripts/ci/scan-style-drift.mjs --selftest

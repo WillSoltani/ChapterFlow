@@ -9,7 +9,6 @@ import type {
   BookPackageQuizQuestion,
   ConceptGraph,
   OneMinuteRecapToneKeyed,
-  ToneKeyed,
   V21ChapterExtras,
   VariantFamily,
   VariantKey,
@@ -822,7 +821,7 @@ function parseV21Extras(value: unknown): V21ChapterExtras | undefined {
   return Object.keys(extras).length > 0 ? extras : undefined;
 }
 
-function parseToneKeyed(value: unknown, path: string, issues: ValidationIssue[]): { gentle: string; direct: string; competitive: string } | null {
+function parseToneKeyed(value: unknown, _path: string, _issues: ValidationIssue[]): { gentle: string; direct: string; competitive: string } | null {
   if (!isRecord(value)) return null;
   const hasGDC = typeof value.gentle === "string" || typeof value.direct === "string" || typeof value.competitive === "string";
   if (!hasGDC) return null;
@@ -1105,7 +1104,6 @@ function parseConceptGraph(
   }
 
   const conceptIds = new Set(parsedConcepts.map((c) => c.id));
-  const chapterNumbers = new Set(chapters.map((c) => c.number));
 
   for (const [chapterKey, requiredConcepts] of Object.entries(parsedRequires)) {
     const chapterNum = parseInt(chapterKey.replace("ch", ""), 10);

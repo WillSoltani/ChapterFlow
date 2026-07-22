@@ -23,6 +23,12 @@ permissions:
   contents: read
   issues: write # open a deploy-failure issue on prod
 
+# Serialize infra deploys per environment — a second run to the same env queues
+# instead of racing CloudFormation. Mirrors _deploy-app.yml.
+concurrency:
+  group: deploy-infra-${{ inputs.environment }}
+  cancel-in-progress: false
+
 env:
   AWS_REGION: us-east-1
 
@@ -62,7 +68,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Resolve env/stack names
@@ -84,11 +90,11 @@ jobs:
       - name: Install infra dependencies
         run: npm ci --prefix infra
 
-      # The reminder cron + suppression handler deploy from infra/lambda/dist via
-      # CDK fromAsset. Rebuild those bundles from source on every deploy so a stale
-      # committed bundle can never ship silently. Run from infra/ with lambda/...
-      # entry paths so esbuild's source-path comments match the committed bundles,
-      # keeping the drift check below byte-exact.
+      # The reminder cron + suppression handler + cognito pre-signup linker deploy
+      # from infra/lambda/dist via CDK fromAsset. Rebuild those bundles from source
+      # on every deploy so a stale committed bundle can never ship silently. Run
+      # from infra/ with lambda/... entry paths so esbuild's source-path comments
+      # match the committed bundles, keeping the drift check below byte-exact.
       - name: Build Lambda bundles
         working-directory: infra
         run: |
@@ -100,6 +106,9 @@ jobs:
           npx esbuild lambda/suppression-handler.ts --bundle --platform=node \
             --target=node20 --outfile=lambda/dist/suppression-handler.js \
             --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb
+          npx esbuild lambda/cognito-pre-signup.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/cognito-pre-signup.js \
+            --external:@aws-sdk/client-cognito-identity-provider
 
       # Fail loudly if the committed bundles are stale (source changed but the
       # rebuilt dist differs from what's checked in). Forces a rebuild + commit so

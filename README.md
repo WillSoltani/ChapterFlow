@@ -68,7 +68,8 @@ npm run dev:3001
 
 ### Verification
 ```bash
-npm run verify   # typecheck + unit tests + style-drift scan (scan:style) + next build (the CI hard gate)
+npm run verify   # typecheck + unit tests + secret scan + style-drift scan + lint ratchet + next build
+                 # (mirrors most, not all, of the CI required set — see docs/CI_CD.md §6 for the exact delta)
 npm test         # unit tests only (node test runner via tsx)
 npm run lint     # advisory — known in-scope debt, not a blocking gate
 ```

@@ -131,6 +131,16 @@ export interface ChapterFlowBackendStackProps extends cdk.StackProps {
    * resources (so a dev/staging synth without the secret stays clean).
    */
   readonly cognitoUserPoolId?: string;
+  /**
+   * WS6-001 per-function reserved concurrency (see env-config.ts's
+   * ChapterFlowEnvConfig.lambdaConcurrency doc for the account-wide-sum
+   * rules this must respect).
+   */
+  readonly lambdaConcurrency: {
+    readonly reminder: number;
+    readonly suppression: number;
+    readonly preSignUp: number;
+  };
 }
 
 export class ChapterFlowBackendStack extends cdk.Stack {
@@ -203,6 +213,14 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: props.removalPolicy,
     });
 
+    // KEEP ProjectionType.ALL. queryEventsForDay (admin-metrics.ts) feeds ~12
+    // admin routes that read event-type-specific payload fields off the returned
+    // items (deltaMs, subscription_change, beacon_performance, scenario/quiz
+    // payloads). An INCLUDE union would silently DROP attributes for any future
+    // event type — DynamoDB returns only the projected attributes with NO error,
+    // so an under-projection here surfaces as missing metrics, not a failure.
+    // Because a single query needs the whole item, ALL is the correct projection.
+    // See docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "eventDate-eventType-index",
       partitionKey: { name: "eventDate", type: dynamodb.AttributeType.STRING },
@@ -210,18 +228,49 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
+    // INCLUDE only the attributes the admin users/search reader consumes
+    // (formatUser + readTime in app/app/api/book/admin/users/search/route.ts).
+    // plan/updatedAt (index keys) and PK/SK (table keys) are auto-projected and
+    // MUST NOT be listed. The two COUNT queries in admin-metrics.ts
+    // (activeUsersByPlan/totalUsersByPlan) use Select:COUNT and need keys only.
+    // This stops replicating the wide snapshot Sets (readingDays, activeBookIds,
+    // completedBookIds, badgeIds) into the index on every snapshot UpdateCommand.
+    // GUARD: any attribute newly read off listRecentUsersByPlan results must be
+    // added to this list. CloudFormation cannot change a GSI projection in place;
+    // see the staged (v2) rollout in
+    // docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "plan-updatedAt-index",
       partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
+      projectionType: dynamodb.ProjectionType.INCLUDE,
+      nonKeyAttributes: [
+        "userId",
+        "email",
+        "proStatus",
+        "proSource",
+        "firstSeenAt",
+        "lastActiveAt",
+        "totalReadingMs",
+        "totalQuizAttempts",
+        "totalQuizPasses",
+        "flowPoints",
+        "booksCompleted",
+        "badgeCount",
+        "onboardingCompletedAt",
+      ],
     });
 
+    // KEYS_ONLY: this index has ZERO query consumers. quiz/commitment events
+    // stamp `contextKey` in analytics-repo.ts, but nothing reads back the item
+    // off this index — it is write-only. Projecting ALL would replicate every
+    // event payload for no reader. See
+    // docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "contextKey-occurredAt-index",
       partitionKey: { name: "contextKey", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "occurredAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
+      projectionType: dynamodb.ProjectionType.KEYS_ONLY,
     });
 
     this.ingestBucket = new s3.Bucket(this, "ChapterFlowIngestBucket", {
@@ -268,6 +317,36 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
+    // WS6-012: covers are also readable by the CloudFront distribution (frontend
+    // stack) via Origin Access Control. This statement is what lets the content
+    // bucket move to BLOCK_ALL: it is NON-public (conditioned on the CloudFront
+    // service principal AND our own account), so restrictPublicBuckets does not
+    // strip it, unlike the AnyPrincipal `PublicReadLibraryCovers` statement.
+    //
+    // The condition uses aws:SourceAccount (our account id) rather than the
+    // distribution's SourceArn on purpose: keying on the distribution ARN would
+    // make this backend stack depend on the frontend distribution, but the
+    // frontend stack already imports the content bucket by name from the backend
+    // stack — a distribution SourceArn condition would create a deploy cycle
+    // (backend needs distribution, distribution needs bucket). SourceAccount
+    // breaks that cycle while still scoping the grant to this account's
+    // CloudFront service. Deploy order stays backend stack then frontend stack.
+    this.contentBucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        sid: "CloudFrontReadLibraryCovers",
+        effect: iam.Effect.ALLOW,
+        principals: [new iam.ServicePrincipal("cloudfront.amazonaws.com")],
+        actions: ["s3:GetObject"],
+        resources: [`${this.contentBucket.bucketArn}/book-content/library/covers/*`],
+        conditions: {
+          StringEquals: { "aws:SourceAccount": cdk.Aws.ACCOUNT_ID },
+        },
+      })
+    );
+
+    // TRANSITIONAL (WS6-012 PR1): direct public S3 read of covers. Removed in
+    // PR2 once the CloudFront OAC path above is proven live, at which point the
+    // bucket flips to BlockPublicAccess.BLOCK_ALL.
     this.contentBucket.addToResourcePolicy(
       new iam.PolicyStatement({
         sid: "PublicReadLibraryCovers",
@@ -503,8 +582,14 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "reading-reminder-cron.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      // WS6-013: the committed bundle is pure-JS esbuild output built with
+      // `--platform=node --target=node20` and @aws-sdk marked external, so it
+      // is architecture-agnostic — arm64 is a free cost/perf win here.
+      architecture: lambda.Architecture.ARM_64,
       memorySize: 512,
       timeout: reminderTimeout,
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.reminder,
       deadLetterQueue: reminderDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
       // WS6-029: this Lambda is multi-hop (DynamoDB read/write + SES send + SSM),
@@ -694,8 +779,13 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "suppression-handler.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      // WS6-013: same architecture-agnostic pure-JS bundle as the other
+      // committed lambda/dist crons — arm64 is a free cost/perf win here.
+      architecture: lambda.Architecture.ARM_64,
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.suppression,
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
@@ -857,10 +947,18 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         runtime: lambda.Runtime.NODEJS_20_X,
         handler: "cognito-pre-signup.handler",
         code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+        // WS6-013: same architecture-agnostic pure-JS bundle as the other
+        // committed lambda/dist crons — arm64 is a free cost/perf win here.
+        architecture: lambda.Architecture.ARM_64,
         memorySize: 256,
         // A sign-in trigger runs inline on the auth path — keep it short so a
         // hung ListUsers/AdminLink can never wedge the user's sign-in.
         timeout: cdk.Duration.seconds(10),
+        // WS6-001: this runs synchronously on the sign-in path for EVERY Apple
+        // sign-in, so its floor stays generous (10, never 1-2) — a starved
+        // reservation here fails closed and blocks sign-in, not just a
+        // background job (see env-config.ts doc).
+        reservedConcurrentExecutions: props.lambdaConcurrency.preSignUp,
         logRetention: logs.RetentionDays.ONE_MONTH,
         // WS6-029: inline on the auth path and calls Cognito (ListUsers/
         // AdminLinkProviderForUser); ACTIVE tracing shows where a slow sign-in went.

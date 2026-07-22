@@ -18,7 +18,6 @@ import {
   NotebookPen,
   Sparkles,
   Target,
-  Trophy,
 } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
@@ -58,7 +57,6 @@ import { HeatmapCalendar } from "@/app/book/profile/components/HeatmapCalendar";
 import { IdentityHeroBanner } from "@/app/book/profile/components/IdentityHeroBanner";
 import { MomentumCard } from "@/app/book/profile/components/MomentumCard";
 import { MomentumEmptyState } from "@/app/book/profile/components/MomentumEmptyState";
-import { NewBadgeDot } from "@/app/book/profile/components/NewBadgeDot";
 import { NotePreviewCard } from "@/app/book/profile/components/NotePreviewCard";
 import { PinnedTakeawayCard } from "@/app/book/profile/components/PinnedTakeawayCard";
 import { ProfileSkeleton } from "@/app/book/profile/components/ProfileSkeleton";
@@ -70,7 +68,6 @@ import { Sparkline } from "@/app/book/profile/components/Sparkline";
 import { StaggeredBadgeGrid } from "@/app/book/profile/components/StaggeredBadgeGrid";
 import { StaggeredBadgeItem } from "@/app/book/profile/components/StaggeredBadgeItem";
 import { StatCard } from "@/app/book/profile/components/StatCard";
-import { StickyMiniHeader } from "@/app/book/profile/components/StickyMiniHeader";
 import { ThisWeekStrip } from "@/app/book/profile/components/ThisWeekStrip";
 import { TimelineRow } from "@/app/book/profile/components/TimelineRow";
 import { UpgradeCard } from "@/app/book/profile/components/UpgradeCard";
@@ -245,7 +242,7 @@ const SECTION_IDS = [
 export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   const router = useRouter();
   const heroRef = useRef<HTMLDivElement>(null);
-  const [showMiniHeader, setShowMiniHeader] = useState(false);
+  const [showMiniHeader, _setShowMiniHeader] = useState(false);
   const [revision, setRevision] = useState(0);
   const [editOpen, setEditOpen] = useState(false);
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);

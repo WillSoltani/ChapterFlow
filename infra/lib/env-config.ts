@@ -40,8 +40,57 @@ export interface ChapterFlowEnvConfig {
   readonly removalPolicy: cdk.RemovalPolicy;
   readonly deletionProtection: boolean;
   readonly pointInTimeRecovery: boolean;
+  /**
+   * Per-function Lambda reserved concurrency (WS6-001). Reserved concurrency
+   * is BOTH a ceiling (caps a runaway function's blast radius on downstream
+   * DynamoDB/SES/Cognito) AND a guaranteed floor (that many concurrent
+   * invocations always have capacity, immune to other functions' bursts).
+   *
+   * Two AWS rules make this account-wide, not per-function: (1) every
+   * function's reserved concurrency is deducted from ONE pool — the
+   * account's total concurrency limit (default 1000, region-scoped) — so
+   * reservations sum across every Lambda in the account, not just this
+   * stack; (2) AWS refuses to apply any reservation that would leave less
+   * than 100 units of UNRESERVED concurrency account-wide (deploy-time
+   * `InvalidParameterValueException`). dev/staging/prod share ONE AWS
+   * account (see the class doc above), so their sums are additive against
+   * that same 1000 and same 100-unit floor — see
+   * reserved-concurrency.test.ts's cross-env guard.
+   */
+  readonly lambdaConcurrency: {
+    readonly server: number;
+    readonly image: number;
+    readonly revalidation: number;
+    readonly dynamoProvider: number;
+    readonly warmer: number;
+    readonly reminder: number;
+    readonly suppression: number;
+    readonly preSignUp: number;
+  };
   readonly region: string;
 }
+
+const DEV_STAGING_LAMBDA_CONCURRENCY = {
+  server: 25,
+  image: 5,
+  revalidation: 2,
+  dynamoProvider: 2,
+  warmer: 2,
+  reminder: 2,
+  suppression: 2,
+  preSignUp: 2,
+};
+
+const PROD_LAMBDA_CONCURRENCY = {
+  server: 400,
+  image: 60,
+  revalidation: 10,
+  dynamoProvider: 2,
+  warmer: 2,
+  reminder: 5,
+  suppression: 5,
+  preSignUp: 10,
+};
 
 const REGION = "us-east-1";
 /** The production apex domain. dev/staging must never resolve to this. */
@@ -98,6 +147,8 @@ export function resolveEnvConfig(app: cdk.App): ChapterFlowEnvConfig {
     removalPolicy: retain ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
     deletionProtection: retain,
     pointInTimeRecovery: retain,
+    lambdaConcurrency:
+      env === "prod" ? PROD_LAMBDA_CONCURRENCY : DEV_STAGING_LAMBDA_CONCURRENCY,
     region: REGION,
   };
 }

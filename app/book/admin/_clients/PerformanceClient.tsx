@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Zap } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -43,18 +43,18 @@ export function PerformanceClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<PerfResponse>(`/metrics/performance?range=${range}`)
       .then(setData)
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Failed"))
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   const totalSamples = data?.stats.pageLoadMs.count ?? 0;
 

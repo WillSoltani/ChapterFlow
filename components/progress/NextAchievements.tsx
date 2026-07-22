@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
@@ -33,6 +33,13 @@ export function NextAchievements({
     }
   }, [recentlyEarnedBadgeId]);
 
+  const handleDismiss = useCallback(() => {
+    setDismissed(true);
+    if (recentlyEarnedBadgeId) {
+      localStorage.setItem(`badge_dismissed_${recentlyEarnedBadgeId}`, "true");
+    }
+  }, [recentlyEarnedBadgeId]);
+
   // Auto-dismiss after 5 seconds
   useEffect(() => {
     if (recentlyEarnedBadge && !dismissed) {
@@ -41,14 +48,7 @@ export function NextAchievements({
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [recentlyEarnedBadge, dismissed]);
-
-  function handleDismiss() {
-    setDismissed(true);
-    if (recentlyEarnedBadgeId) {
-      localStorage.setItem(`badge_dismissed_${recentlyEarnedBadgeId}`, "true");
-    }
-  }
+  }, [recentlyEarnedBadge, dismissed, handleDismiss]);
 
   if (milestones.length === 0) return null;
 

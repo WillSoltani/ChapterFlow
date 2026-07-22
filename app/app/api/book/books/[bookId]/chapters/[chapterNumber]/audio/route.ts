@@ -405,7 +405,7 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
     const totalChapters = pkg.chapters.length;
 
     // Gather user context in parallel
-    const [profile, streak, tier, progress, userSettings, prevQuizState, prevPrevQuizState] =
+    const [profile, streak, tier, _progress, userSettings, prevQuizState, prevPrevQuizState] =
       await Promise.all([
         getUserProfileItem(tableName, user.sub),
         getOrCreateStreak(tableName, user.sub),

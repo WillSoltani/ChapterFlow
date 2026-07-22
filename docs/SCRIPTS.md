@@ -23,10 +23,12 @@ when-to-run notes. `infra/` is a separate package with its own scripts — see
 
 | Script | What it does | When to run |
 |--------|--------------|-------------|
-| `verify` | Composite gate: `typecheck && test && scan:style && build`. | Before every push/PR — the canonical pre-push gate. |
+| `verify` | Composite gate: `typecheck && test && scan:secrets && scan:style && lint:ratchet && build` (WS6-021). Mirrors 4 of the 9 required CI jobs (`Secret & Artifact Scan`, `Style & Token Drift Scan`, `Lint Ratchet`, and the typecheck/test/build slice of `App Build + Tests`) — it does **not** run what only CI runs: `test:coverage`, the OpenNext build, `infra/lambda`'s tests, the v21 pipeline suite, CDK synth, Playwright e2e smokes, or the PR-relative shared-TypeScript-closure diff check. See [docs/CI_CD.md §6](CI_CD.md#6-verify--ci-delta-and-lint-policy) for the full delta and `verify:ci` for a closer mirror. | Before every push/PR — the canonical pre-push gate. |
+| `verify:ci` | `verify` plus `test:coverage`, the pipeline typecheck/test/doctor/build, and `infra`'s own install/test/build. Still missing Playwright e2e and the shared-closure diff. | Optional — a fuller local mirror before a risky push. |
 | `typecheck` | `tsc --noEmit` (excludes `infra/**`). | Part of `verify`; run alone for a fast check. |
 | `lint` | `eslint .` (excludes `infra/**`). | Advisory — known in-scope debt, not a blocking gate. |
-| `scan:secrets` | Blocks committed build artifacts, secret-shaped tokens (Stripe/AWS/Anthropic/… keys, PEM), and transient QC files. Runs `--all` + `--selftest`. | CI and pre-commit hook; run manually before large imports. |
+| `lint:ratchet` | `scripts/ci/lint-ratchet.mjs` — runs `lint:infra-ci`, then sums ESLint errorCount and fails if it exceeds the committed `scripts/ci/eslint-error-baseline` (warns if below). This one blocks CI (`Lint Ratchet (no new errors)`), unlike `lint`. | Part of `verify`; CI. |
+| `scan:secrets` | Blocks committed build artifacts, secret-shaped tokens (Stripe/AWS/Anthropic/… keys, PEM), and transient QC files. Runs `--all` + `--selftest`. | Part of `verify`; CI and pre-commit hook; run manually before large imports. |
 | `scan:style` | Design-system drift gate: dead Tailwind arbitrary CSS-var syntax, undeclared `--cf-`/`--cr-` tokens, raw color literals in TSX, catalog-size literals bypassing `lib/catalog-stats`. Baselined via `scripts/ci/style-drift-allowlist.txt` — only NEW drift fails. | Part of `verify`; CI + pre-commit. |
 
 ## Test tiers
