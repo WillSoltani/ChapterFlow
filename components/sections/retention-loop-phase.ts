@@ -1,4 +1,4 @@
-import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import type { ChapterTab } from "@/lib/reader-state-types";
 
 /**
  * Pure scroll-progress → loop-phase mapping AND the §01 retention-curve geometry

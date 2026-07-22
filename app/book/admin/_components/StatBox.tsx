@@ -15,12 +15,12 @@ export function StatBox({
       <p
         className={[
           "mt-0.5 font-semibold tabular-nums tracking-tight text-(--cf-text-1)",
-          large ? "text-xl" : "text-[14px]",
+          large ? "text-xl" : "text-cf-body-sm",
         ].join(" ")}
       >
         {typeof value === "number" ? value.toLocaleString() : value}
       </p>
-      {hint && <p className="mt-0.5 text-[11px] text-(--cf-text-3)">{hint}</p>}
+      {hint && <p className="mt-0.5 text-cf-caption text-(--cf-text-3)">{hint}</p>}
     </div>
   );
 }

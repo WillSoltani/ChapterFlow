@@ -13,14 +13,14 @@
  *     scrolls into view, once. No mouse-follow tilt (that read as distracting) —
  *     the only ongoing motion is the product itself auto-playing its phases.
  *
- * Reduced-motion → the entrance plays with a zero-duration transition (instant,
- * no visible movement). We ALWAYS render the same motion.div and gate only the
- * BEHAVIOR — never swap the element type — and read the motion preference through
+ * Reduced-motion → the showcase renders directly in its meaningful final state,
+ * with no hidden pre-intersection frame. We ALWAYS render the same motion.div and
+ * gate only the BEHAVIOR — never swap the element type — and read the preference through
  * the hydration-safe usePrefersReducedMotion (server snapshot is false, so SSR
  * and the first client render agree). This avoids the hydration mismatch a
  * motion.div ↔ plain div swap would cause.
  */
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import type { ReactNode } from "react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
@@ -28,14 +28,14 @@ export function RecallReaderShowcase({ children }: { children: ReactNode }) {
   const reduced = usePrefersReducedMotion();
 
   return (
-    <motion.div
+    <m.div
       className="recall-reader-demo"
-      initial={{ opacity: 0, y: 36, scale: 0.965 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={reduced ? false : { opacity: 0, y: 36, scale: 0.965 }}
+      whileInView={reduced ? undefined : { opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount: 0.3 }}
-      transition={reduced ? { duration: 0 } : { duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

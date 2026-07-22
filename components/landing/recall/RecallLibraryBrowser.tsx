@@ -23,7 +23,7 @@ import { Dialog } from "@/components/ui/Dialog";
 import {
   BOOKS_CATALOG_METADATA,
   type BookCatalogMetadata,
-} from "@/app/book/data/booksCatalog";
+} from "@/lib/books-catalog";
 import { useBookCoverSource } from "@/lib/use-book-cover-source";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
@@ -160,7 +160,7 @@ export function RecallLibraryBrowser({ open, onClose }: RecallLibraryBrowserProp
             <div className="flex items-start justify-between gap-4">
               <div>
                 <p
-                  className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.3em]"
+                  className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.3em]"
                   style={{ color: "var(--cf-recall-ink-faint)" }}
                 >
                   The library

@@ -7,6 +7,7 @@ import {
   CATALOG_BOOK_COUNT_DISPLAY,
 } from "@/lib/catalog-stats";
 import { getChapterFlowSiteUrl } from "@/app/_lib/chapterflow-brand";
+import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 
 export const metadata: Metadata = {
   title: `Library | ChapterFlow — ${CATALOG_BOOK_COUNT_DISPLAY} Non-Fiction Books`,
@@ -44,13 +45,15 @@ export default async function BooksPage() {
   };
 
   return (
-    <>
+    <PublicSiteShell>
       <script
         type="application/ld+json"
         nonce={nonce}
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <BrowseLibraryPage />
-    </>
+      <main id="main" tabIndex={-1} className="focus:outline-none">
+        <BrowseLibraryPage />
+      </main>
+    </PublicSiteShell>
   );
 }

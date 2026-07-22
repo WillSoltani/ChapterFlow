@@ -34,7 +34,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import { LayoutGrid } from "lucide-react";
-import { getBookById } from "@/app/book/data/booksCatalog";
+import { getBookById } from "@/lib/books-catalog";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { CATALOG_BOOK_COUNT } from "@/lib/catalog-stats";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
@@ -252,7 +252,7 @@ export function RecallLibrary() {
             className="rl-lib-header mx-auto max-w-[42rem] text-center"
           >
             <p
-              className="font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.34em]"
+              className="font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.34em]"
               style={{ color: "var(--cf-recall-ink-faint)" }}
             >
               The library

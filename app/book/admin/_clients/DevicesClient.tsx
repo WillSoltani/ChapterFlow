@@ -1,26 +1,30 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Monitor } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton } from "@/app/book/admin/_components/Skeleton";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const DeviceTypeChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/DevicesCharts").then(
+      (module) => module.DeviceTypeChart,
+    ),
+  { ssr: false },
+);
+
+const DeviceBreakdownChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/DevicesCharts").then(
+      (module) => module.DeviceBreakdownChart,
+    ),
+  { ssr: false },
+);
 
 type Row = { key: string; count: number };
 type DevicesResponse = {
@@ -71,7 +75,7 @@ export function DevicesClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -97,32 +101,10 @@ export function DevicesClient() {
             <EmptyState icon={Monitor} title="No device data yet" compact />
           ) : (
             <div className="h-64">
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    data={deviceData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={50}
-                    outerRadius={90}
-                    paddingAngle={2}
-                    dataKey="count"
-                    isAnimationActive={false}
-                  >
-                    {deviceData.map((entry) => (
-                      <Cell
-                        key={entry.key}
-                        fill={DEVICE_COLORS[entry.key] ?? "var(--cf-text-soft)"}
-                        stroke="var(--cf-surface)"
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip content={<DarkTooltip />} />
-                </PieChart>
-              </ResponsiveContainer>
+              <DeviceTypeChart data={deviceData} />
             </div>
           )}
-          <ul className="mt-2 space-y-1 text-[12px]">
+          <ul className="mt-2 space-y-1 text-cf-label-sm">
             {deviceData.map((d) => (
               <li key={d.key} className="flex items-center justify-between">
                 <span className="flex items-center gap-2 text-(--cf-text-2)">
@@ -165,20 +147,7 @@ function BarList({
   }
   return (
     <div className="h-56">
-      <ResponsiveContainer>
-        <BarChart data={rows} layout="vertical" margin={{ top: 4, right: 8, bottom: 0, left: 80 }}>
-          <CartesianGrid stroke="var(--cf-border)" horizontal={false} />
-          <XAxis type="number" tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} />
-          <YAxis
-            dataKey="key"
-            type="category"
-            tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-            width={120}
-          />
-          <Tooltip content={<DarkTooltip />} />
-          <Bar dataKey="count" fill={color} radius={[0, 4, 4, 0]} isAnimationActive={false} />
-        </BarChart>
-      </ResponsiveContainer>
+      <DeviceBreakdownChart rows={rows} color={color} />
     </div>
   );
 }

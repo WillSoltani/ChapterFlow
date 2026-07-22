@@ -52,7 +52,7 @@ export function SettingsSearch({ query, onChange }: SettingsSearchProps) {
         />
         {/* Keyboard shortcut hint */}
         {!query && (
-          <span className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1 text-[11px] text-(--cf-text-soft) pointer-events-none">
+          <span className="absolute right-4 top-1/2 -translate-y-1/2 hidden sm:flex items-center gap-1 text-cf-caption text-(--cf-text-soft) pointer-events-none">
             <kbd className="rounded border border-(--cf-border-strong) bg-(--cf-surface-muted) px-1.5 py-0.5 font-mono text-[10px]">
               &#8984;K
             </kbd>

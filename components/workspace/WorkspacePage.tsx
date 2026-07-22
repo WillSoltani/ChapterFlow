@@ -8,25 +8,25 @@ import { AnimatedBackground } from "./AnimatedBackground";
 import { CompactHeader } from "./CompactHeader";
 import { HeroSessionCard } from "./HeroSessionCard";
 import { WeeklyMomentumStrip } from "./WeeklyMomentumStrip";
-import { BookRow } from "./BookRow";
+import { WorkspaceBookRow } from "./WorkspaceBookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { TopNav } from "@/app/book/home/components/TopNav";
-import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
-import { fetchBookJson, BookClientError } from "@/app/book/_lib/book-api";
-import { invalidateBookCache } from "@/app/book/_lib/book-api-cache";
+import { TopNav } from "@/components/navigation/TopNav";
+import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
+import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
+import { invalidateBookCache } from "@/lib/client/book-api-cache";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
-import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
-import { DASHBOARD_KEY } from "@/app/book/hooks/useDashboardQuery";
-import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
-import { getBookRating } from "@/app/book/data/bookRatings";
+import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
+import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
+import { BOOKS_CATALOG, getBookMetadata } from "@/lib/books-catalog";
+import { getBookRating } from "@/lib/book-ratings";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
-import { evaluateBadges } from "@/app/book/badges/lib/badge-ui-definitions";
-import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { evaluateBadges } from "@/lib/badges/badge-ui-definitions";
+import { INSIGHT_POINTS_REWARDS } from "@/lib/flow-points-economy";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -756,7 +756,7 @@ function CommitmentFollowUpSection() {
     <section className="cf-panel rounded-3xl border border-(--cf-warning-border) bg-(--cf-surface) p-5 sm:p-6">
       <div className="mb-3 flex items-center gap-2">
         <Clock className="h-4 w-4 text-(--cf-warning-text)" />
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
+        <p className="text-cf-caption font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
           Time to Check In
         </p>
       </div>
@@ -961,7 +961,7 @@ function DashboardContent({
       <SectionWrapper
         {...(prefersReducedMotion ? {} : { variants: itemVariants })}
       >
-        <BookRow
+        <WorkspaceBookRow
           userBooks={data.userBooks}
           recommendedProBooks={data.recommendedProBooks}
           isNewUser={isNewUser}

@@ -75,11 +75,11 @@ export function AuthErrorBanner() {
           />
         </svg>
 
-        <div className="flex-1 text-[13px] leading-relaxed">
+        <div className="flex-1 text-cf-label leading-relaxed">
           <p className="text-(--cf-text-2)">{message}</p>
           <a
             href={retryUrl}
-            className="mt-1.5 inline-block text-[13px] font-semibold text-(--cf-warning-text) underline underline-offset-2"
+            className="mt-1.5 inline-block text-cf-label font-semibold text-(--cf-warning-text) underline underline-offset-2"
           >
             Try again
           </a>

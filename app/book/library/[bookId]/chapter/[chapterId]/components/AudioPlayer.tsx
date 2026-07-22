@@ -335,7 +335,7 @@ export function AudioPlayer({
               {playing ? <Pause className="h-4 w-4" /> : <Play className="ml-0.5 h-4 w-4" />}
             </button>
             <div className="min-w-0 flex-1">
-              <p className="truncate text-[12px] font-medium text-(--cr-text-primary)">{chapterTitle}</p>
+              <p className="truncate text-cf-label-sm font-medium text-(--cr-text-primary)">{chapterTitle}</p>
               <div className="mt-0.5 flex items-center gap-2">
                 {/* Padded transparent wrapper enlarges the touch target to
                  * ~44px tall; the seek math reads this element's width (flex-1,
@@ -365,7 +365,7 @@ export function AudioPlayer({
         <div className="flex items-center justify-between px-4 pt-3 pb-1">
           <div className="flex items-center gap-2">
             {playing ? <Volume2 className="h-3.5 w-3.5 text-(--cr-accent) animate-pulse" /> : <Headphones className="h-3.5 w-3.5 text-(--cr-accent)" />}
-            <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-(--cr-accent)">
+            <span className="text-cf-caption font-bold uppercase tracking-[0.12em] text-(--cr-accent)">
               {loading ? "Generating audio..." : playing ? "Now Playing" : audioReady ? "Ready" : "Audio"}
             </span>
           </div>
@@ -376,16 +376,16 @@ export function AudioPlayer({
         </div>
 
         <div className="px-4 pb-1">
-          <p className="truncate text-[13px] font-medium text-(--cr-text-primary)">{chapterTitle}</p>
+          <p className="truncate text-cf-label font-medium text-(--cr-text-primary)">{chapterTitle}</p>
           {!audioMatchesCurrent && !loading && (
-            <button type="button" onClick={() => { loadedParamsRef.current = ""; setLoadedParams(""); loadAudio(); }} className="mt-1 text-[11px] text-(--cr-warning) hover:underline">Reading settings changed — tap to reload audio</button>
+            <button type="button" onClick={() => { loadedParamsRef.current = ""; setLoadedParams(""); loadAudio(); }} className="mt-1 text-cf-caption text-(--cr-warning) hover:underline">Reading settings changed — tap to reload audio</button>
           )}
         </div>
 
         {error && (
           <div className="px-4 py-2">
-            <p className="text-[12px] text-(--cr-danger)">{error}</p>
-            <button type="button" onClick={() => { loadedParamsRef.current = ""; setLoadedParams(""); loadAudio(); }} className="mt-1 text-[12px] font-semibold text-(--cr-accent) hover:underline">Try Again</button>
+            <p className="text-cf-label-sm text-(--cr-danger)">{error}</p>
+            <button type="button" onClick={() => { loadedParamsRef.current = ""; setLoadedParams(""); loadAudio(); }} className="mt-1 text-cf-label-sm font-semibold text-(--cr-accent) hover:underline">Try Again</button>
           </div>
         )}
 
@@ -413,12 +413,12 @@ export function AudioPlayer({
         {!error && (
           <div className="flex items-center justify-center gap-2 px-4 pb-3 pt-1">
             <button type="button" onClick={() => seekTo(0)} disabled={loading} className="rounded-lg p-2 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Restart" title="Restart"><RotateCcw className="h-4 w-4" /></button>
-            <button type="button" onClick={() => seekTo(currentTime - 10)} disabled={loading} className="rounded-lg px-2 py-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Back 10s" title="Back 10s"><span className="text-[11px] font-bold">-10s</span></button>
+            <button type="button" onClick={() => seekTo(currentTime - 10)} disabled={loading} className="rounded-lg px-2 py-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Back 10s" title="Back 10s"><span className="text-cf-caption font-bold">-10s</span></button>
             <button type="button" onClick={togglePlay} disabled={loading} className="cf-pressable flex h-12 w-12 items-center justify-center rounded-full bg-(--cr-accent) text-(--cr-text-inverse) shadow-[0_0_20px_color-mix(in_srgb,var(--cr-accent)_35%,transparent)] transition hover:brightness-110 disabled:opacity-60" aria-label={playing ? "Pause" : "Play"}>
               {loading ? <Loader2 className="h-5 w-5 animate-spin" /> : playing ? <Pause className="h-5 w-5" /> : <Play className="ml-0.5 h-5 w-5" />}
             </button>
-            <button type="button" onClick={() => seekTo(currentTime + 10)} disabled={loading} className="rounded-lg px-2 py-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Forward 10s" title="Forward 10s"><span className="text-[11px] font-bold">+10s</span></button>
-            <button type="button" onClick={cycleSpeed} className="rounded-lg border border-(--cr-glass-border) px-2.5 py-1.5 text-[11px] font-bold tabular-nums text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2)" aria-label={`Speed: ${speed}x`} title="Change speed">{speed}x</button>
+            <button type="button" onClick={() => seekTo(currentTime + 10)} disabled={loading} className="rounded-lg px-2 py-1.5 text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2) hover:text-(--cr-text-primary) disabled:opacity-30" aria-label="Forward 10s" title="Forward 10s"><span className="text-cf-caption font-bold">+10s</span></button>
+            <button type="button" onClick={cycleSpeed} className="rounded-lg border border-(--cr-glass-border) px-2.5 py-1.5 text-cf-caption font-bold tabular-nums text-(--cr-text-secondary) transition hover:bg-(--cr-bg-surface-2)" aria-label={`Speed: ${speed}x`} title="Change speed">{speed}x</button>
           </div>
         )}
       </div>

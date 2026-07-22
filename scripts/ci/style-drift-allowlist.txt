@@ -1,117 +1,15 @@
-# style-drift-allowlist.txt — baseline for scan-style-drift.mjs guards (c) and (d).
+# style-drift-allowlist.txt — baseline for scan-style-drift.mjs guards (c), (d), and (e).
 # Auto-seeded from the pre-Wave-0 census so the guards block only NEW drift.
-# Format: <guard>\t<repo-relative-path>\t<whitespace-stripped-literal>
+# Guards c/d: <guard>\t<repo-relative-path>\t<whitespace-stripped-literal>
+# Guard e: e\t<repo-relative-path>\t<normalized-literal>\t<normalized-line-sha256-16>\t<ordinal>
 # Remove an entry when you replace that literal with a token / catalog-stats constant.
 # Regenerate (intentional churn only): node scripts/ci/scan-style-drift.mjs --write-allowlist
-c	app/book/badges/components/BadgeCard.tsx	#1a0f00
-c	app/book/badges/components/BadgeCard.tsx	#1a1a2e
-c	app/book/badges/components/BadgeCard.tsx	#8B5CF6
-c	app/book/badges/components/BadgeCard.tsx	#C0C0C0
-c	app/book/badges/components/BadgeCard.tsx	#CD7F32
-c	app/book/badges/components/BadgeCard.tsx	#E5E4E2
-c	app/book/badges/components/BadgeCard.tsx	#E8A862
-c	app/book/badges/components/BadgeCard.tsx	#E8E8E8
-c	app/book/badges/components/BadgeCard.tsx	#EC4899
-c	app/book/badges/components/BadgeCard.tsx	#FFD700
-c	app/book/badges/components/BadgeCard.tsx	#FFF0A0
-c	app/book/badges/components/BadgeCard.tsx	#FFFFFF
-c	app/book/badges/components/BadgeCard.tsx	#ffffff
-c	app/book/badges/components/BadgeCard.tsx	rgba(255,255,255,0.4)
-c	app/book/badges/components/BadgeCelebration.tsx	rgba(255,215,0,0.04)
-c	app/book/badges/components/BadgeDetailModal.tsx	#1a0f00
-c	app/book/badges/components/BadgeDetailModal.tsx	#1a1a2e
-c	app/book/badges/components/BadgeDetailModal.tsx	#ffffff
-c	app/book/badges/components/BadgeDetailModal.tsx	rgba(255,255,255,0.4)
-c	app/book/badges/components/BadgeRecommendations.tsx	rgba(245,158,11,0.1)
-c	app/book/badges/components/BadgeShowcase.tsx	rgba(245,158,11,0.05)
-c	app/book/badges/components/ProgressRing.tsx	#f59e0b
-c	app/book/error.tsx	#070b16
-c	app/book/error.tsx	#1e293b
-c	app/book/error.tsx	#334155
-c	app/book/error.tsx	#94a3b8
-c	app/book/error.tsx	#e2e8f0
-c	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterBackgroundOrbs.tsx	#2A1A4E
-c	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderSettingsMenu.tsx	rgba(0,0,0,0.45)
-c	app/book/library/[bookId]/components/BackgroundOrbs.tsx	#818CF8
-c	app/book/library/[bookId]/components/BackgroundOrbs.tsx	#DC2626
-c	app/book/library/components/BookCardLarge.tsx	rgba(0,0,0,0.04)
-c	app/book/profile/components/ProfilePrimitives.tsx	#F59E0B
-c	app/book/profile/components/ProfilePrimitives.tsx	#FBBF24
-c	app/book/profile/components/ProfilePrimitives.tsx	#FDE68A
-c	app/book/profile/components/ProfilePrimitives.tsx	#d97706
-c	app/book/profile/components/ProfilePrimitives.tsx	#f59e0b
-c	app/book/profile/components/ProfilePrimitives.tsx	#fb923c
-c	app/book/profile/components/ProfilePrimitives.tsx	#fbbf24
-c	app/book/profile/components/ProfilePrimitives.tsx	#fde68a
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(245,158,11,0.15)
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(34,211,238,0)
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(34,211,238,0.4)
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(59,130,246,0)
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(59,130,246,0.15)
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(59,130,246,0.2)
-c	app/book/profile/components/ProfilePrimitives.tsx	rgba(59,130,246,0.4)
-c	app/book/settings/components/PersonalizationMeter.tsx	rgba(16,185,129,0.5)
-c	app/book/settings/components/PersonalizationMeter.tsx	rgba(34,211,238,0.5)
-c	app/book/settings/components/ProBadge.tsx	#EC4899
-c	app/book/settings/components/ProBadge.tsx	rgba(255,255,255,0.15)
-c	app/book/settings/components/SubscriptionCard.tsx	#b45309
-c	app/book/settings/components/controls/CardSelector.tsx	#14B8A6
-c	app/book/settings/components/controls/CardSelector.tsx	#38BDF8
-c	app/book/settings/components/controls/CardSelector.tsx	#F97316
-c	app/signup/page.tsx	#34A853
-c	app/signup/page.tsx	#4285F4
-c	app/signup/page.tsx	#EA4335
-c	app/signup/page.tsx	#FBBC05
-c	components/landing/reader-demo/AppWindowChrome.tsx	#22c55e
-c	components/landing/reader-demo/AppWindowChrome.tsx	#eab308
-c	components/landing/reader-demo/AppWindowChrome.tsx	#ef4444
-c	components/landing/reader-demo/DesktopReaderShell.tsx	rgba(0,0,0,0.3)
-c	components/landing/reader-demo/DesktopReaderShell.tsx	rgba(0,0,0,0.5)
-c	components/library/HeroRecommendation.tsx	rgba(34,211,238,0.04)
-c	components/library/HeroRecommendation.tsx	rgba(34,211,238,0.1)
-c	components/library/HeroRecommendation.tsx	rgba(34,211,238,0.3)
-c	components/library/WeeklyChallenge.tsx	rgba(245,158,11,0.04)
-c	components/library/WeeklyChallenge.tsx	rgba(245,158,11,0.1)
-c	components/library/WeeklyChallenge.tsx	rgba(245,158,11,0.12)
-c	components/library/WeeklyChallenge.tsx	rgba(245,158,11,0.2)
-c	components/progress/BookRow.tsx	rgba(167,139,250,0.2)
-c	components/progress/BookRow.tsx	rgba(52,211,153,0.1)
-c	components/progress/BookRow.tsx	rgba(52,211,153,0.2)
-c	components/progress/BookRow.tsx	rgba(56,189,248,0.2)
-c	components/progress/DailyQuests.tsx	rgba(139,92,246,0.15)
-c	components/progress/DailyQuests.tsx	rgba(16,185,129,0.06)
-c	components/progress/DailyQuests.tsx	rgba(16,185,129,0.1)
-c	components/progress/DailyQuests.tsx	rgba(16,185,129,0.3)
-c	components/progress/DailyQuests.tsx	rgba(245,158,11,0.15)
-c	components/progress/DailyQuests.tsx	rgba(34,211,238,0.15)
-c	components/progress/KnowledgeReview.tsx	rgba(34,211,238,0.25)
-c	components/progress/KnowledgeReview.tsx	rgba(34,211,238,0.3)
-c	components/progress/KnowledgeReview.tsx	rgba(56,189,248,0.1)
-c	components/progress/KnowledgeReview.tsx	rgba(56,189,248,0.2)
-c	components/progress/KnowledgeReview.tsx	rgba(56,189,248,0.4)
-c	components/progress/ProInsightsPreview.tsx	#A78BFA
-c	components/progress/ProInsightsPreview.tsx	rgba(167,139,250,0.15)
-c	components/progress/ProInsightsPreview.tsx	rgba(52,211,153,0.2)
-c	components/progress/ProInsightsPreview.tsx	rgba(52,211,153,0.3)
-c	components/progress/WeeklySummary.tsx	rgba(34,211,238,0.1)
-c	components/website/BrowseLibraryPage.tsx	rgba(0,0,0,0.4)
-c	components/website/BrowseLibraryPage.tsx	rgba(0,0,0,0.5)
-c	components/website/BrowseLibraryPage.tsx	rgba(0,0,0,0.88)
-c	components/website/BrowseLibraryPage.tsx	rgba(255,255,255,0.12)
-c	components/website/BrowseLibraryPage.tsx	rgba(255,255,255,0.7)
-c	components/website/BrowseLibraryPage.tsx	rgba(34,211,238,0.04)
-c	components/workspace/BookCardWorkspace.tsx	#082f49
-c	components/workspace/BookCardWorkspace.tsx	#155e75
-c	components/workspace/BookCardWorkspace.tsx	rgba(0,0,0,0.3)
-c	components/workspace/HeroSessionCard.tsx	rgba(0,0,0,0.6)
-c	components/workspace/ProBadge.tsx	#000
 d	app/app/api/book/_lib/achievement-repo.ts	10+categories
 d	app/app/api/book/_lib/achievement-repo.ts	3categories
 d	app/app/api/book/_lib/achievement-repo.ts	6categories
 d	app/app/api/book/_lib/achievement-repo.ts	8categories
-d	app/book/badges/lib/badge-ui-definitions.ts	3categories
 d	app/book/badges/lib/badge-utils.ts	9categories
-d	components/website/BrowseLibraryPage.tsx	4+books
+d	components/website/browse-library/BrowseLibraryResults.tsx	4+books
 d	docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md	21categories
 d	docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md	93+books
 d	docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md	93+morebooks
@@ -130,6 +28,152 @@ d	docs/fix-prompts/data-integrity.md	60+morebooks
 d	docs/fix-prompts/data-integrity.md	93+books
 d	docs/fix-prompts/data-integrity.md	93+morebooks
 d	docs/insight-points-system-spec.md	2categories
+d	lib/badges/badge-ui-definitions.ts	3categories
 d	lib/catalog-stats.ts	21categories
 d	lib/catalog-stats.ts	93morebooks
 d	lib/catalog-stats.ts	95+books
+e	app/account-deleted/page.tsx	text-[22px]	72537c923d3e0214	1
+e	app/book/admin/_clients/EngagementClient.tsx	text-[10px]	83905d3098d923cd	1
+e	app/book/admin/_clients/EngagementClient.tsx	text-[10px]	d6446d385c5ae30d	1
+e	app/book/admin/_clients/GeographyClient.tsx	text-[10px]	910d7f5f409d64d7	1
+e	app/book/admin/_clients/OpsClient.tsx	text-[10px]	53f14df5e3615d01	1
+e	app/book/admin/_clients/OpsClient.tsx	text-[10px]	7b3457b831ee9a53	1
+e	app/book/admin/_clients/OpsClient.tsx	text-[10px]	c4ab6228ae9b3394	1
+e	app/book/admin/_clients/OpsClient.tsx	text-[10px]	e0ef31b6b38c23e0	1
+e	app/book/admin/_clients/OpsClient.tsx	text-[10px]	ef671fdcb98f8514	1
+e	app/book/admin/_clients/RetentionClient.tsx	text-[10px]	194be79b56deb7df	1
+e	app/book/admin/_clients/UsersClient.tsx	text-[10px]	e1584ede94c86cea	1
+e	app/book/admin/_components/AdminCard.tsx	text-[32px]	164db915dfa5fdd5	1
+e	app/book/admin/_components/AdminShell.tsx	text-[10px]	936018d052097ea0	1
+e	app/book/admin/_components/AdminShell.tsx	text-[10px]	b5ee4dde9b7f3b6f	1
+e	app/book/admin/_components/StatBox.tsx	text-[10px]	60b7b2af22209490	1
+e	app/book/badges/components/BadgeCard.tsx	text-[10px]	42f100f4b0a792d0	1
+e	app/book/badges/components/BadgeCard.tsx	text-[10px]	4f8ecf578fdd894a	1
+e	app/book/badges/components/BadgeCard.tsx	text-[10px]	4f8ecf578fdd894a	2
+e	app/book/badges/components/BadgeCard.tsx	text-[10px]	96db483d905ca4e0	1
+e	app/book/badges/components/BadgeCard.tsx	text-[10px]	aad5a20be339340a	1
+e	app/book/badges/components/BadgeCard.tsx	text-[10px]	fb7c160d0b6453f1	1
+e	app/book/badges/components/BadgePageHeader.tsx	text-[10px]	693bf8a41841f5c5	1
+e	app/book/badges/components/BadgeShowcase.tsx	text-[10px]	9e54d4ddd11f82de	1
+e	app/book/badges/components/BadgeShowcase.tsx	text-[10px]	c738d0d60162a48e	1
+e	app/book/badges/components/BadgeSystemCards.tsx	text-[10px]	64ea917749f28c05	1
+e	app/book/badges/components/BadgeTimeline.tsx	text-[10px]	79476bbdd9c12b50	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	65ced37e8c1ba7e9	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	72537c923d3e0214	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	92fb2a80469bcf00	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	9b089072356f9d3b	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	c30a6aa121565515	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	c6aa4ec27014df80	1
+e	app/book/gift/[code]/page.tsx	text-[22px]	f290b082dee7f21f	1
+e	app/book/journeys/[journeyId]/JourneyDetailClient.tsx	text-[10px]	992ea148f8bb3854	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer.tsx	text-[10px]	7964ba809d8ded75	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer.tsx	text-[10px]	cd83bee932d8fa69	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer.tsx	text-[10px]	f80f2cd6a2095e7b	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal.tsx	text-[22px]	bfb87b5fcba29ab6	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal.tsx	text-[34px]	e21d75e19f96e071	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterCompleteModal.tsx	text-[40px]	f826abe5484d916a	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/ChapterHeader.tsx	text-[28px]	c6fa679b05d6707b	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderSettingsMenu.tsx	text-[10px]	550a1fed0fc66f38	1
+e	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderSettingsMenu.tsx	text-[10px]	7c4cac8eddf588e5	1
+e	app/book/pair-accept/page.tsx	text-[22px]	456b68c165862bce	1
+e	app/book/pair-accept/page.tsx	text-[22px]	b6416a3866549199	1
+e	app/book/pair-accept/page.tsx	text-[22px]	fed5bae4eef1fb1b	1
+e	app/book/pair-accept/page.tsx	text-[22px]	fed5bae4eef1fb1b	2
+e	app/book/profile/BookProfileClient.tsx	text-[10px]	26e40f29d134efb2	1
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	1
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	2
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	3
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	4
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	5
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	a4efb931ed7ca1b6	1
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	a4efb931ed7ca1b6	2
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	d4abccbf7071285e	1
+e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	d7c3a03aabb99814	1
+e	app/book/profile/components/ThisWeekStrip.tsx	text-[10px]	0abeb96aa6ac0459	1
+e	app/book/profile/components/HeatmapCalendar.tsx	text-[10px]	18af348c59145232	1
+e	app/book/profile/components/ProStatusCard.tsx	text-[10px]	44a08ee052f6c23c	1
+e	app/book/profile/components/ProStatusCard.tsx	text-[10px]	50c3171162134765	1
+e	app/book/profile/components/ProStatusCard.tsx	text-[10px]	6077d2a97db59eb7	1
+e	app/book/profile/components/UpNextPreview.tsx	text-[10px]	7c1a5d7a8ddb8396	1
+e	app/book/profile/components/QuizBarChart.tsx	text-[10px]	7ea11fa39df0f5f5	1
+e	app/book/profile/components/LearningLoopSteps.tsx	text-[10px]	b3c74fb5ecfd8a36	1
+e	app/book/profile/components/StickyMiniHeader.tsx	text-[10px]	b6e75c05faca2a31	1
+e	app/book/profile/components/AchievementBadgeCard.tsx	text-[10px]	d97c065d9f51c06b	1
+e	app/book/saved/SavedBooksClient.tsx	text-[28px]	f3a4d81f6e7f365c	1
+e	app/book/settings/components/ProBadge.tsx	text-[10px]	455f308c0f4b7e6b	1
+e	app/book/settings/components/SettingsSearch.tsx	text-[10px]	4012fa696e55a23f	1
+e	app/book/settings/components/SettingsSection.tsx	text-[10px]	438174efb3781105	1
+e	app/book/settings/components/SubscriptionCard.tsx	text-[10px]	1ce4baba05d20c08	1
+e	app/book/settings/components/SubscriptionCard.tsx	text-[10px]	9a1916cd0296105b	1
+e	app/book/settings/components/controls/CardSelector.tsx	text-[10px]	4f4eb42360e4150c	1
+e	app/book/settings/components/controls/SliderControl.tsx	text-[10px]	0ef05407813ba5cb	1
+e	app/book/settings/components/controls/SliderControl.tsx	text-[10px]	75d816640bded009	1
+e	app/book/settings/components/controls/SliderControl.tsx	text-[10px]	dd74ca0def8c7f01	1
+e	app/legal/cookies/page.tsx	text-[28px]	b5d8505304a1e9f8	1
+e	app/legal/cookies/page.tsx	text-[32px]	b5d8505304a1e9f8	1
+e	app/legal/copyright/page.tsx	text-[28px]	b5d8505304a1e9f8	1
+e	app/legal/copyright/page.tsx	text-[32px]	b5d8505304a1e9f8	1
+e	app/legal/data-rights/page.tsx	text-[28px]	b5d8505304a1e9f8	1
+e	app/legal/data-rights/page.tsx	text-[32px]	b5d8505304a1e9f8	1
+e	app/legal/privacy/page.tsx	text-[28px]	b5d8505304a1e9f8	1
+e	app/legal/privacy/page.tsx	text-[32px]	b5d8505304a1e9f8	1
+e	app/legal/refund/page.tsx	text-[28px]	b5d8505304a1e9f8	1
+e	app/legal/refund/page.tsx	text-[32px]	b5d8505304a1e9f8	1
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	1
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	10
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	11
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	12
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	13
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	2
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	3
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	4
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	5
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	6
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	7
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	8
+e	app/legal/terms/page.tsx	text-[21px]	7b01eda8c50f183c	9
+e	app/legal/terms/page.tsx	text-[28px]	b5d8505304a1e9f8	1
+e	app/legal/terms/page.tsx	text-[32px]	b5d8505304a1e9f8	1
+e	app/ref/page.tsx	text-[22px]	343a96fa2a5cf09c	1
+e	components/applink/AppLinkInterstitial.tsx	text-[22px]	343a96fa2a5cf09c	1
+e	components/brand/ChapterFlowMark.tsx	text-[10px]	b21a31f0ea84a1fc	1
+e	components/landing/reader-demo/MobileAppChrome.tsx	text-[10.5px]	cdc740d51366e6fb	1
+e	components/landing/recall/RecallBookRequestForm.tsx	text-[10px]	6f1067aeb9053d7d	1
+e	components/landing/recall/RecallLibraryBrowser.tsx	text-[10px]	37b169a934d116e0	1
+e	components/landing/recall/RecallPricing.tsx	text-[10.5px]	74dcb0565559587e	1
+e	components/landing/recall/RecallPricing.tsx	text-[10px]	5612ff7178a69651	1
+e	components/library/BookCard.tsx	text-[10px]	6314203c945872e4	1
+e	components/library/BookCard.tsx	text-[10px]	af0e61579e6f1473	1
+e	components/library/BrowseAll.tsx	text-[22px]	b39e2479e28cf678	1
+e	components/library/CompletedShelf.tsx	text-[21px]	c80143329435276a	1
+e	components/library/CuratedSection.tsx	text-[21px]	c80143329435276a	1
+e	components/library/HeroRecommendation.tsx	text-[28px]	3e44ce1e02266750	1
+e	components/navigation/NotificationBell.tsx	text-[10px]	1d457df5de8c59e6	1
+e	components/navigation/NotificationBell.tsx	text-[10px]	c2f235ec0c3b9d34	1
+e	components/navigation/TopNav.tsx	text-[10px]	5be6809c9ae3f578	1
+e	components/navigation/TopNav.tsx	text-[10px]	5be6809c9ae3f578	2
+e	components/progress/ContinueLearningCard.tsx	text-[10px]	587b579c01647cb7	1
+e	components/progress/DailyQuests.tsx	text-[10px]	4841562b0d939d0e	1
+e	components/progress/KnowledgeReview.tsx	text-[10px]	2872d0237ba5e0cf	1
+e	components/progress/KnowledgeReview.tsx	text-[10px]	8d84d2ae55b6e782	1
+e	components/progress/NextAchievements.tsx	text-[10px]	176daa11914528ca	1
+e	components/progress/NextAchievements.tsx	text-[10px]	6b52fe092b2d22c6	1
+e	components/progress/ReadingActivity.tsx	text-[10px]	5d4323916a635ee6	1
+e	components/progress/StepIndicator.tsx	text-[10px]	f880ce012b72c0f0	1
+e	components/sections/Pricing.tsx	text-[44px]	7fda308e7ed3ffc0	1
+e	components/website/BookRequestSection.tsx	text-[22px]	acb0cd86cc30a300	1
+e	components/website/browse-library/BrowseLibrarySearchBar.tsx	text-[10px]	378d39c095329a7f	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	5720fb4448b8fb1a	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	a8b53d32e19cfe33	1
+e	components/website/browse-library/BrowseLibraryHero.tsx	text-[10px]	b4a2e11381339008	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	d58128c0235464e0	1
+e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	e3369e8fcf5638fa	1
+e	components/website/browse-library/BrowseLibraryResults.tsx	text-[22px]	9ed5873648221014	1
+e	components/website/browse-library/BrowseLibraryHero.tsx	text-[28px]	66313429d7658164	1
+e	components/website/browse-library/BrowseLibraryHero.tsx	text-[42px]	66313429d7658164	1
+e	components/workspace/BookCardWorkspace.tsx	text-[10px]	30f534429d55d5b7	1
+e	components/workspace/BookCardWorkspace.tsx	text-[10px]	d220467632799990	1
+e	components/workspace/DiscoveryRow.tsx	text-[10px]	700b4db3971d24e1	1
+e	components/workspace/NextAchievementCard.tsx	text-[10px]	26cbac4ff8acbf68	1
+e	components/workspace/ProBadge.tsx	text-[10px]	cb9f4178d4392a3b	1
+e	components/workspace/WeeklyMomentumStrip.tsx	text-[10px]	4841562b0d939d0e	1

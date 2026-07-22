@@ -7,7 +7,7 @@ type BackgroundOrbsProps = {
 };
 
 export function BackgroundOrbs({
-  accentColor = "#DC2626",
+  accentColor = "var(--cf-book-orb-danger)",
 }: BackgroundOrbsProps) {
   const prefersReducedMotion = useReducedMotion();
 
@@ -37,7 +37,7 @@ export function BackgroundOrbs({
         className="absolute -right-48 top-[60%] h-[500px] w-[500px] rounded-full"
         style={{
           background:
-            "radial-gradient(circle, #818CF8 0%, transparent 70%)",
+            "radial-gradient(circle, var(--cf-book-orb-indigo) 0%, transparent 70%)",
           filter: "blur(140px)",
           opacity: 0,
         }}

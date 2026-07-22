@@ -45,13 +45,13 @@ export function AppLinkInterstitial({
           {icon}
         </div>
 
-        <p className="mb-1 text-[13px] font-medium uppercase tracking-wide text-(--cf-accent)">
+        <p className="mb-1 text-cf-label font-medium uppercase tracking-wide text-(--cf-accent)">
           {eyebrow}
         </p>
         <h1 className="mb-3 text-[22px] font-bold leading-snug text-(--cf-text-1)">
           {title}
         </h1>
-        <p className="mb-7 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-7 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           {description}
         </p>
 
@@ -60,14 +60,14 @@ export function AppLinkInterstitial({
         <div className="flex flex-col gap-3">
           <Link
             href={primaryHref}
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
           >
             {primaryLabel}
           </Link>
           {secondaryHref && secondaryLabel ? (
             <Link
               href={secondaryHref}
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[14px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface)"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-cf-body-sm font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface)"
             >
               {secondaryLabel}
             </Link>
@@ -77,12 +77,12 @@ export function AppLinkInterstitial({
         {appStoreUrl ? (
           <a
             href={appStoreUrl}
-            className="mt-5 inline-block text-[13px] font-medium text-(--cf-accent) hover:underline"
+            className="mt-5 inline-block text-cf-label font-medium text-(--cf-accent) hover:underline"
           >
             Open in the App Store
           </a>
         ) : (
-          <p className="mt-5 text-[12px] text-(--cf-text-3)">
+          <p className="mt-5 text-cf-label-sm text-(--cf-text-3)">
             The ChapterFlow iOS app is coming soon.
           </p>
         )}

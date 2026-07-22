@@ -26,12 +26,26 @@ test("RecallBookRequestForm validates, trims, submits, and confirms success", as
     }} />,
   );
   const submit = view.getByRole("button", { name: "Request this book" });
-  assert.equal((submit as HTMLButtonElement).disabled, true);
+  const title = view.getByRole("textbox", { name: /book title/i });
+  const email = view.getByRole("textbox", { name: /your email/i });
+  assert.equal((submit as HTMLButtonElement).disabled, false);
 
-  fireEvent.change(view.getByRole("textbox", { name: /book title/i }), {
+  fireEvent.click(submit);
+  await waitFor(() => {
+    assert.equal(document.activeElement, title);
+    assert.equal(title.getAttribute("aria-invalid"), "true");
+    assert.equal(email.getAttribute("aria-invalid"), "true");
+    assert.match(
+      view.getByRole("status").textContent ?? "",
+      /correct the book title and email fields/i,
+    );
+  });
+  assert.equal(requests.length, 0);
+
+  fireEvent.change(title, {
     target: { value: "  Deep Work  " },
   });
-  fireEvent.change(view.getByRole("textbox", { name: /your email/i }), {
+  fireEvent.change(email, {
     target: { value: "  reader@example.com  " },
   });
   assert.equal((submit as HTMLButtonElement).disabled, false);

@@ -19,13 +19,13 @@ export default function CopyrightPolicyPage() {
       >
         Copyright &amp; Takedown Policy
       </h1>
-      <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
+      <p className="text-cf-body-sm mb-10" style={{ color: "var(--text-muted)" }}>
         Effective date: June 10, 2026
       </p>
 
-      <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+      <div className="space-y-8 text-cf-body leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             1. Original, Transformative Content
           </h2>
           <p className="mb-3">
@@ -42,7 +42,7 @@ export default function CopyrightPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             2. Not Affiliated; Trademarks
           </h2>
           <p>
@@ -56,7 +56,7 @@ export default function CopyrightPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             3. Submitting a Takedown Notice
           </h2>
           <p className="mb-3">
@@ -76,7 +76,7 @@ export default function CopyrightPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             4. How We Respond
           </h2>
           <p>
@@ -88,7 +88,7 @@ export default function CopyrightPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             5. Contact
           </h2>
           <p>

@@ -4,13 +4,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
-import { TopNav } from "@/app/book/home/components/TopNav";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
-import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
-import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
-import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
-import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
+import { TopNav } from "@/components/navigation/TopNav";
+import { useOnboardingState } from "@/hooks/book/useOnboardingState";
+import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
+import { useInsightPoints } from "@/hooks/book/useInsightPoints";
+import { useBadgeSystem } from "@/hooks/book/useBadgeSystem";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import type {
   ProgressPageData,
   ActiveBook,
@@ -22,14 +22,14 @@ import type {
 } from "./progressTypes";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { deriveReaderLevel, deriveReaderLevelProgress } from "@/lib/reader-levels";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJson } from "@/lib/client/book-api";
 import {
   fetchBookJsonCached,
   invalidateBookCache,
-} from "@/app/book/_lib/book-api-cache";
-import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
-import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
-import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
+} from "@/lib/client/book-api-cache";
+import { aggregateHourlyForDay } from "@/lib/client/reading-activity-storage";
+import { ReviewSessionFSRS } from "@/components/review/ReviewSessionFSRS";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
 import { WeeklySummary } from "./WeeklySummary";

@@ -14,13 +14,13 @@ export default function PrivacyPolicyPage() {
       >
         Privacy Policy
       </h1>
-      <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
+      <p className="text-cf-body-sm mb-10" style={{ color: "var(--text-muted)" }}>
         Effective date: June 10, 2026
       </p>
 
-      <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+      <div className="space-y-8 text-cf-body leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             1. Information We Collect
           </h2>
           <p className="mb-3">When you use ChapterFlow, we collect the following types of information:</p>
@@ -47,7 +47,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             2. How We Use Your Information
           </h2>
           <ul className="list-disc pl-6 space-y-2">
@@ -62,7 +62,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             3. Cookies and Local Storage
           </h2>
           <p className="mb-3">
@@ -78,7 +78,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             4. Third-Party Services
           </h2>
           <ul className="list-disc pl-6 space-y-2">
@@ -92,7 +92,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             5. Your Controls
           </h2>
           <p className="mb-3">You can manage your privacy preferences directly in ChapterFlow Settings:</p>
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             6. Data Retention
           </h2>
           <p className="mb-3">
@@ -135,7 +135,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             7. Security
           </h2>
           <p>
@@ -146,7 +146,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             8. Changes to This Policy
           </h2>
           <p>
@@ -157,7 +157,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             9. Email &amp; Communications
           </h2>
           <p className="mb-3">We send two kinds of email:</p>
@@ -180,7 +180,7 @@ export default function PrivacyPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             10. Contact Us
           </h2>
           <p>

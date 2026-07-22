@@ -120,7 +120,7 @@ export function OpsClient() {
             <div
               key={i}
               role="status"
-              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)"
+              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)"
             >
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
               <span>{w}</span>
@@ -136,7 +136,7 @@ export function OpsClient() {
             description="Unresolved failures needing follow-up — e.g. Stripe cancellations that failed during account delete/deactivate"
           >
             {actionError && (
-              <div className="mb-3 rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) p-2 text-[12px] text-(--cf-danger-text)">
+              <div className="mb-3 rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) p-2 text-cf-label-sm text-(--cf-danger-text)">
                 {actionError}
               </div>
             )}
@@ -146,20 +146,20 @@ export function OpsClient() {
                   <div className="flex flex-wrap items-start justify-between gap-2">
                     <div className="min-w-0">
                       <div className="flex items-center gap-2">
-                        <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-[11px] font-medium text-(--cf-danger-text)">
+                        <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-cf-caption font-medium text-(--cf-danger-text)">
                           {f.kind}
                         </span>
-                        <span className="text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                        <span className="text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                           {f.context}
                         </span>
-                        <span className="text-[11px] text-(--cf-text-3)">{fmt(f.createdAt)}</span>
+                        <span className="text-cf-caption text-(--cf-text-3)">{fmt(f.createdAt)}</span>
                       </div>
-                      <p className="mt-1 font-mono text-[11px] text-(--cf-text-2)" title={f.userId}>
+                      <p className="mt-1 font-mono text-cf-caption text-(--cf-text-2)" title={f.userId}>
                         user {f.userId.slice(0, 12)}…
                         {f.subscriptionId ? ` · sub ${f.subscriptionId}` : ""}
                       </p>
                       {(f.errorCode || f.errorMessage) && (
-                        <p className="mt-1 text-[12px] text-(--cf-danger-text)">
+                        <p className="mt-1 text-cf-label-sm text-(--cf-danger-text)">
                           {f.errorCode ? `[${f.errorCode}] ` : ""}
                           {f.errorMessage}
                         </p>
@@ -170,7 +170,7 @@ export function OpsClient() {
                         type="button"
                         disabled={actioningRef === f.ref || !f.subscriptionId}
                         onClick={() => runFailureAction(f.ref, "retry")}
-                        className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+                        className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-cf-label-sm font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
                         title={f.subscriptionId ? "Re-attempt the Stripe cancellation" : "No subscription id to retry"}
                       >
                         {actioningRef === f.ref ? (
@@ -184,7 +184,7 @@ export function OpsClient() {
                         type="button"
                         disabled={actioningRef === f.ref}
                         onClick={() => runFailureAction(f.ref, "resolve")}
-                        className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+                        className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-cf-label-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
                         title="Mark as handled without retrying"
                       >
                         <ShieldCheck className="h-3.5 w-3.5" />
@@ -231,7 +231,7 @@ export function OpsClient() {
 
       {/* Lambda health cards */}
       <div className="mb-6">
-        <h2 className="mb-3 text-[11px] font-semibold uppercase tracking-[0.1em] text-(--cf-text-soft)">
+        <h2 className="mb-3 text-cf-caption font-semibold uppercase tracking-[0.1em] text-(--cf-text-soft)">
           Lambda functions (last 24h)
         </h2>
         <div className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-4">
@@ -261,14 +261,14 @@ export function OpsClient() {
                   className="cf-panel-muted rounded-xl p-3"
                 >
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[12px] text-(--cf-text-1)">{t.tableName}</span>
+                    <span className="font-mono text-cf-label-sm text-(--cf-text-1)">{t.tableName}</span>
                     {t.throttlesLast24h > 0 && (
-                      <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-[11px] text-(--cf-danger-text)">
+                      <span className="rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-1.5 py-0.5 text-cf-caption text-(--cf-danger-text)">
                         {t.throttlesLast24h} throttles
                       </span>
                     )}
                   </div>
-                  <div className="mt-2 grid grid-cols-3 gap-2 text-[12px]">
+                  <div className="mt-2 grid grid-cols-3 gap-2 text-cf-label-sm">
                     <div>
                       <p className="text-[10px] uppercase tracking-[0.08em] text-(--cf-text-soft)">Items</p>
                       <p className="mt-0.5 tabular-nums font-semibold text-(--cf-text-1)">
@@ -308,7 +308,7 @@ export function OpsClient() {
                 value={`$${data?.costEstimate.totalMonthlyUsd.toFixed(2) ?? "0.00"}`}
                 hint="USD at on-demand rates"
               />
-              <div className="mt-2 space-y-1.5 text-[12px]">
+              <div className="mt-2 space-y-1.5 text-cf-label-sm">
                 <div className="flex items-center justify-between">
                   <span className="flex items-center gap-1.5 text-(--cf-text-3)">
                     <Database className="h-3 w-3" /> DynamoDB
@@ -357,9 +357,9 @@ export function OpsClient() {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-[12px]">
+            <table className="w-full min-w-[640px] text-cf-label-sm">
               <thead>
-                <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Job</th>
                   <th className="py-2 pr-3">Book</th>
                   <th className="py-2 pr-3">Status</th>
@@ -375,7 +375,7 @@ export function OpsClient() {
                     className="border-b border-(--cf-border)/50 transition hover:bg-(--cf-surface-muted)/40"
                   >
                     <td
-                      className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-2)"
+                      className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-2)"
                       title={j.jobId}
                     >
                       {j.jobId.slice(0, 12)}…
@@ -389,7 +389,7 @@ export function OpsClient() {
                     <td className="py-2 pr-3 text-(--cf-text-3)">
                       {j.errorReportKey ? (
                         <span
-                          className="font-mono text-[11px] text-(--cf-danger-text)"
+                          className="font-mono text-cf-caption text-(--cf-danger-text)"
                           title={j.errorReportKey}
                         >
                           error
@@ -416,7 +416,7 @@ function LambdaCard({ fn }: { fn: LambdaHealth }) {
   return (
     <div className="cf-panel rounded-2xl p-4">
       <div className="flex items-start justify-between gap-2">
-        <p className="truncate text-[11px] font-semibold uppercase tracking-[0.08em] text-(--cf-text-soft)">
+        <p className="truncate text-cf-caption font-semibold uppercase tracking-[0.08em] text-(--cf-text-soft)">
           {fn.functionName}
         </p>
         {hasErrors && (
@@ -428,8 +428,8 @@ function LambdaCard({ fn }: { fn: LambdaHealth }) {
       <p className="mt-2 text-2xl font-semibold tabular-nums text-(--cf-text-1)">
         {fn.invocations.toLocaleString()}
       </p>
-      <p className="text-[11px] text-(--cf-text-3)">invocations / 24h</p>
-      <div className="mt-2 grid grid-cols-2 gap-1 text-[11px]">
+      <p className="text-cf-caption text-(--cf-text-3)">invocations / 24h</p>
+      <div className="mt-2 grid grid-cols-2 gap-1 text-cf-caption">
         <div>
           <span className="text-(--cf-text-soft)">p50 </span>
           <span className="tabular-nums text-(--cf-text-2)">{fn.durationP50Ms}ms</span>
@@ -452,7 +452,7 @@ function StatusBadge({ status }: { status: string }) {
   return (
     <span
       className={[
-        "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+        "inline-flex items-center gap-1 rounded-md px-1.5 py-0.5 text-cf-caption font-medium",
         ok
           ? "border border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)"
           : fail

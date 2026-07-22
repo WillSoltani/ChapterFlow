@@ -23,7 +23,7 @@ export function TryThisNow({ text }: TryThisNowProps) {
       aria-label="Try this now"
       className="cr-try-this-now rounded-2xl border border-(--cr-glass-border-teal) bg-(--cr-accent-muted) px-5 py-4"
     >
-      <p className="text-[11px] font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
+      <p className="text-cf-caption font-bold uppercase tracking-[0.16em] text-(--cr-accent)">
         Try this now
       </p>
       <p className="mt-2 text-base italic leading-relaxed text-(--cr-text-primary)">

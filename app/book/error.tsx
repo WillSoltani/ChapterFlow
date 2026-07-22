@@ -23,8 +23,8 @@ export default function BookError({
         alignItems: "center",
         justifyContent: "center",
         padding: 24,
-        backgroundColor: "var(--cf-page-bg, #070b16)",
-        color: "var(--cf-text-1, #e2e8f0)",
+        backgroundColor: "var(--cf-page-bg)",
+        color: "var(--cf-text-1)",
         fontFamily: "system-ui, sans-serif",
       }}
     >
@@ -35,7 +35,7 @@ export default function BookError({
         <p
           style={{
             fontSize: 15,
-            color: "var(--cf-text-3, #94a3b8)",
+            color: "var(--cf-text-3)",
             lineHeight: 1.6,
             marginBottom: 32,
           }}
@@ -48,9 +48,9 @@ export default function BookError({
             style={{
               padding: "12px 24px",
               borderRadius: 12,
-              backgroundColor: "var(--cf-surface-muted, #1e293b)",
-              border: "1px solid var(--cf-border, #334155)",
-              color: "var(--cf-text-1, #e2e8f0)",
+              backgroundColor: "var(--cf-surface-muted)",
+              border: "1px solid var(--cf-border)",
+              color: "var(--cf-text-1)",
               fontSize: 14,
               fontWeight: 500,
               cursor: "pointer",
@@ -65,9 +65,9 @@ export default function BookError({
               alignItems: "center",
               padding: "12px 24px",
               borderRadius: 12,
-              backgroundColor: "var(--cf-surface-muted, #1e293b)",
-              border: "1px solid var(--cf-border, #334155)",
-              color: "var(--cf-text-1, #e2e8f0)",
+              backgroundColor: "var(--cf-surface-muted)",
+              border: "1px solid var(--cf-border)",
+              color: "var(--cf-text-1)",
               fontSize: 14,
               fontWeight: 500,
               textDecoration: "none",

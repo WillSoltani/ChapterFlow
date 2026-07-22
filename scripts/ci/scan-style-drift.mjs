@@ -2,7 +2,7 @@
 /**
  * scan-style-drift.mjs — pre-commit / CI guard for design-system drift.
  *
- * Four guards (see docs/CHAPTERFLOW-UI-AUDIT.md, Wave 0):
+ * Five guards (see docs/CHAPTERFLOW-UI-AUDIT.md, Wave 0):
  *   (a) Dead Tailwind v4 arbitrary CSS-var syntax in className: `-[--x]` and
  *       `[family-name:--x]` (both compile to invalid CSS and are dropped).
  *   (b) var(--cf-…)/var(--cr-…) — and the v4 `(--…)` shorthand — referenced in
@@ -15,16 +15,20 @@
  *       app/, components/, lib/, docs/ (copy can leak from any of them), matching
  *       both book counts AND category/topic/genre counts. Baselined: only NEW
  *       literals fail.
+ *   (e) Numeric arbitrary font-size utilities (`text-[NNpx]`, including
+ *       decimals) in tracked app/components TSX. Every occurrence is pinned by
+ *       normalized line content and a duplicate ordinal so drift fails closed.
  *
  * Guards (a) and (b) must be clean (no baseline). Guards (c) and (d) carry a
  * baseline (scripts/ci/style-drift-allowlist.txt) seeded from the pre-Wave-0
- * census, so they block only NEW drift; remove an entry when you fix it.
+ * census, while guard (e) carries an exact occurrence baseline. Remove entries
+ * when their corresponding debt is fixed.
  *
  * Modes:
  *   --all            scan all tracked files                       [CI, default]
  *   --staged         scan files staged for commit                 [pre-commit]
  *   --selftest       verify the detection patterns vs samples     [CI sanity]
- *   --write-allowlist  regenerate the (c)+(d) baseline from --all  [maintenance]
+ *   --write-allowlist  regenerate the (c)+(d)+(e) baseline from --all [maintenance]
  *
  * Exit non-zero on any finding. Bypass LOCALLY only with `git commit --no-verify`;
  * the CI job is the un-bypassable backstop. ESLint is advisory here and `next
@@ -32,6 +36,7 @@
  */
 import { readFileSync, writeFileSync } from "node:fs";
 import { execSync } from "node:child_process";
+import { createHash } from "node:crypto";
 import path from "node:path";
 
 const ROOT = execSync("git rev-parse --show-toplevel").toString().trim();
@@ -47,6 +52,7 @@ const RE_DEAD_TW = /-\[--|\[[a-z-]+:--/;
 const RE_TOKEN = /--c[fr]-[a-z0-9-]+/gi; // guard (b): any --cf-/--cr- reference
 const RE_HEX = /(?<!&)#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b/g; // (c)
 const RE_RGBA = /\brgba?\([^)]*\)/gi; // (c)
+const RE_FONT_SIZE = /\btext-\[\d+(?:\.\d+)?px\]/g; // (e)
 // URL/id fragment refs (href="#abc", id="#x") whose all-hex fragments would
 // otherwise false-positive as colors in guard (c).
 const RE_FRAGMENT_ATTR = /\b(?:href|xlinkHref|to|id)\s*=\s*["']#[\w-]*["']/g;
@@ -81,7 +87,7 @@ const RUNTIME_TOKENS = new Set([
 function gitFiles(mode) {
   const cmd =
     mode === "--staged"
-      ? "git diff --cached --name-only --diff-filter=ACM"
+      ? "git diff --cached --name-only --diff-filter=ACMD"
       : "git ls-files";
   return execSync(cmd, { cwd: ROOT, maxBuffer: 64 * 1024 * 1024 })
     .toString()
@@ -119,7 +125,7 @@ const isStyleConsumer = (f) => /\.(tsx|ts|css)$/.test(f);
 const isCatalogCopy = (f) => /\.(tsx|ts|md)$/.test(f);
 const norm = (s) => s.replace(/\s+/g, ""); // signature normalization
 
-// ── allowlist (baseline) for guards (c) + (d) ────────────────────────────────
+// ── allowlist (baseline) for guards (c) + (d) + (e) ─────────────────────────
 function loadAllowlist() {
   const raw = read(ALLOWLIST_REL);
   const set = new Set();
@@ -127,11 +133,83 @@ function loadAllowlist() {
   for (const line of raw.split("\n")) {
     const t = line.trim();
     if (!t || t.startsWith("#")) continue;
-    set.add(t); // entries are "guard\trelpath\tnormalizedLiteral"
+    set.add(t); // c/d use 3 fields; e adds normalized-line hash + ordinal
   }
   return set;
 }
 const sig = (guard, rel, literal) => `${guard}\t${rel}\t${norm(literal)}`;
+const normalizedLineHash = (line) =>
+  createHash("sha256").update(norm(line)).digest("hex").slice(0, 16);
+
+function arbitraryFontSizeOccurrences(rel, src) {
+  const out = [];
+  const ordinals = new Map();
+  src.split("\n").forEach((line, i) => {
+    const hits = [...line.matchAll(RE_FONT_SIZE)];
+    if (hits.length === 0) return;
+    const lineHash = normalizedLineHash(line);
+    for (const match of hits) {
+      const literal = match[0];
+      const ordinalKey = `${norm(literal)}\t${lineHash}`;
+      const ordinal = (ordinals.get(ordinalKey) ?? 0) + 1;
+      ordinals.set(ordinalKey, ordinal);
+      out.push({
+        file: rel,
+        line: i + 1,
+        detail: literal,
+        literal,
+        lineHash,
+        ordinal,
+        signature: `${sig("e", rel, literal)}\t${lineHash}\t${ordinal}`,
+      });
+    }
+  });
+  return out;
+}
+
+function collectArbitraryFontSizes(files) {
+  const occurrences = [];
+  const scopePaths = new Set();
+  for (const f of files) {
+    if (!isTsx(f) || !(inApp(f) || inComponents(f))) continue;
+    scopePaths.add(f);
+    const src = read(f);
+    if (src == null) continue;
+    occurrences.push(...arbitraryFontSizeOccurrences(f, src));
+  }
+  return { occurrences, scopePaths };
+}
+
+function evaluateArbitraryFontSizes(occurrences, allow, scopePaths, checkAllStale) {
+  const out = [];
+  let baselined = 0;
+  const actual = new Set(occurrences.map((v) => v.signature));
+
+  for (const occurrence of occurrences) {
+    if (allow.has(occurrence.signature)) {
+      baselined++;
+      continue;
+    }
+    out.push({
+      ...occurrence,
+      detail: `${occurrence.literal} is not pinned (${occurrence.lineHash}/${occurrence.ordinal})`,
+    });
+  }
+
+  for (const entry of allow) {
+    if (!entry.startsWith("e\t")) continue;
+    const [, rel, literal, lineHash, ordinal] = entry.split("\t");
+    if (!checkAllStale && !scopePaths.has(rel)) continue;
+    if (actual.has(entry)) continue;
+    out.push({
+      file: rel,
+      line: 0,
+      detail: `stale allowlist occurrence ${literal} (${lineHash}/${ordinal})`,
+    });
+  }
+
+  return { out, baselined };
+}
 
 // ── guards ────────────────────────────────────────────────────────────────────
 // Each returns { violations: [{file,line,detail}], baselined: number }
@@ -224,26 +302,43 @@ function guardCatalogCounts(files, allow) {
   return { out, baselined };
 }
 
+function guardArbitraryFontSizes(files, allow, checkAllStale) {
+  const { occurrences, scopePaths } = collectArbitraryFontSizes(files);
+  return {
+    ...evaluateArbitraryFontSizes(occurrences, allow, scopePaths, checkAllStale),
+    occurrences,
+  };
+}
+
 // ── --write-allowlist (maintenance) ──────────────────────────────────────────
 function writeAllowlist() {
   const files = gitFiles("--all");
   const allowNone = new Set();
   const c = guardRawColors(files, allowNone).out;
   const d = guardCatalogCounts(files, allowNone).out;
+  const e = collectArbitraryFontSizes(files).occurrences;
   const lines = new Set();
   for (const v of c) lines.add(sig("c", v.file, v.literal));
   for (const v of d) lines.add(sig("d", v.file, v.literal));
+  for (const v of e) lines.add(v.signature);
   const sorted = [...lines].sort();
   const header = [
-    "# style-drift-allowlist.txt — baseline for scan-style-drift.mjs guards (c) and (d).",
+    "# style-drift-allowlist.txt — baseline for scan-style-drift.mjs guards (c), (d), and (e).",
     "# Auto-seeded from the pre-Wave-0 census so the guards block only NEW drift.",
-    "# Format: <guard>\\t<repo-relative-path>\\t<whitespace-stripped-literal>",
+    "# Guards c/d: <guard>\\t<repo-relative-path>\\t<whitespace-stripped-literal>",
+    "# Guard e: e\\t<repo-relative-path>\\t<normalized-literal>\\t<normalized-line-sha256-16>\\t<ordinal>",
     "# Remove an entry when you replace that literal with a token / catalog-stats constant.",
     "# Regenerate (intentional churn only): node scripts/ci/scan-style-drift.mjs --write-allowlist",
     "",
   ].join("\n");
   writeFileSync(path.join(ROOT, ALLOWLIST_REL), header + sorted.join("\n") + "\n");
-  console.log(`Wrote ${sorted.length} baseline entries to ${ALLOWLIST_REL} (${c.length} color, ${d.length} catalog).`);
+  const rowCount = (guard) => sorted.filter((line) => line.startsWith(`${guard}\t`)).length;
+  console.log(
+    `Wrote ${sorted.length} baseline rows to ${ALLOWLIST_REL} ` +
+      `(c=${rowCount("c")} rows/${c.length} occurrences, ` +
+      `d=${rowCount("d")} rows/${d.length} occurrences, ` +
+      `e=${rowCount("e")} rows/${e.length} occurrences).`,
+  );
 }
 
 // ── --selftest ───────────────────────────────────────────────────────────────
@@ -292,9 +387,54 @@ function selftest() {
   expect(!RE_CATALOG.some((r) => r.test("2 books free")), "(d) false-positive on free-tier '2 books'");
   expect(!RE_CATALOG.some((r) => r.test("added 12 books from requests")), "(d) false-positive on '12 books'");
   expect(!RE_CATALOG.some((r) => r.test("category counts as one")), "(d) false-positive on bare 'category'");
+  // (e) numeric arbitrary font sizes and occurrence identity.
+  const integerSize = cls("text-[", "10px]");
+  const decimalSize = cls("text-[", "13.5px]");
+  expect([...integerSize.matchAll(RE_FONT_SIZE)][0]?.[0] === integerSize, "(e) missed integer px utility");
+  expect([...decimalSize.matchAll(RE_FONT_SIZE)][0]?.[0] === decimalSize, "(e) missed decimal px utility");
+  expect([..."text-sm text-cf-body text-lg".matchAll(RE_FONT_SIZE)].length === 0, "(e) false-positive on semantic/built-in utilities");
+  expect([...cls("text-[", "var(--font-size)]").matchAll(RE_FONT_SIZE)].length === 0, "(e) false-positive on var() utility");
+
+  const fixtureRel = "components/__font_size_selftest.tsx";
+  const fixtureLine = `const x = <span className="${integerSize} ${integerSize}" />;`;
+  const duplicateOccurrences = arbitraryFontSizeOccurrences(fixtureRel, fixtureLine);
+  expect(
+    duplicateOccurrences.length === 2 &&
+      duplicateOccurrences[0].ordinal === 1 &&
+      duplicateOccurrences[1].ordinal === 2 &&
+      duplicateOccurrences[0].signature !== duplicateOccurrences[1].signature,
+    "(e) duplicate occurrences did not receive distinct 1-based ordinals",
+  );
+
+  const singleLine = `const x = <span className="${integerSize}" />;`;
+  const original = arbitraryFontSizeOccurrences(fixtureRel, singleLine);
+  const moved = arbitraryFontSizeOccurrences(fixtureRel, `\n\n${singleLine}`);
+  const baseline = new Set([original[0].signature]);
+  expect(
+    evaluateArbitraryFontSizes(moved, baseline, new Set([fixtureRel]), true).out.length === 0,
+    "(e) line-number-only movement changed the occurrence signature",
+  );
+  expect(
+    evaluateArbitraryFontSizes(
+      duplicateOccurrences,
+      new Set([duplicateOccurrences[0].signature]),
+      new Set([fixtureRel]),
+      true,
+    ).out.length === 1,
+    "(e) duplicate occurrence was not rejected",
+  );
+  const changed = arbitraryFontSizeOccurrences(fixtureRel, singleLine.replace(integerSize, decimalSize));
+  expect(
+    evaluateArbitraryFontSizes(changed, baseline, new Set([fixtureRel]), true).out.length === 2,
+    "(e) changed occurrence did not produce new + stale findings",
+  );
+  expect(
+    evaluateArbitraryFontSizes([], baseline, new Set([fixtureRel]), true).out.length === 1,
+    "(e) stale allowlist occurrence was not rejected",
+  );
 
   if (fails === 0) {
-    console.log("✓ selftest OK — all four guards detect samples with no false positives");
+    console.log("✓ selftest OK — all five guards detect samples with no false positives");
     return 0;
   }
   return 1;
@@ -348,6 +488,12 @@ report(
   d.out,
   "Use CATALOG_BOOK_COUNT_DISPLAY / CATALOG_CATEGORY_COUNT_DISPLAY from @/lib/catalog-stats.",
 );
+const e = guardArbitraryFontSizes(files, allow, mode !== "--staged");
+report(
+  "Numeric arbitrary font-size utility occurrence in app/components TSX",
+  e.out,
+  `Replace mapped sizes with semantic utilities. Intentional retained sizes require an exact occurrence row in ${ALLOWLIST_REL}.`,
+);
 
 if (problems !== 0) {
   console.log(red("Style/token drift guard FAILED."));
@@ -355,6 +501,7 @@ if (problems !== 0) {
   process.exit(1);
 }
 console.log(
-  `✓ style/token drift guard passed (${mode}) — ${c.baselined} color + ${d.baselined} catalog literals baselined`,
+  `✓ style/token drift guard passed (${mode}) — ${c.baselined} color + ${d.baselined} catalog + ` +
+    `${e.baselined} arbitrary font-size occurrences baselined`,
 );
 process.exit(0);

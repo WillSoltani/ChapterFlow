@@ -100,7 +100,7 @@ export function NextAchievementCard({
               />
             </div>
             <p
-              className="mt-1 text-[11px] tabular-nums"
+              className="mt-1 text-cf-caption tabular-nums"
               style={{ color: "var(--cf-text-soft)" }}
             >
               {progressCurrent} of {progressTotal}

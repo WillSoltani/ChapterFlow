@@ -23,13 +23,13 @@ export default function ReferralLandingPage() {
           <Gift className="h-7 w-7" />
         </div>
 
-        <p className="mb-1 text-[13px] font-medium uppercase tracking-wide text-(--cf-accent)">
+        <p className="mb-1 text-cf-label font-medium uppercase tracking-wide text-(--cf-accent)">
           You&apos;ve been invited
         </p>
         <h1 className="mb-3 text-[22px] font-bold leading-snug text-(--cf-text-1)">
           A friend invited you to ChapterFlow
         </h1>
-        <p className="mb-7 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-7 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           Create your free account and finish your first learning loop — you&apos;ll
           earn 80 Insight Points and your friend earns 180, a real head start
           toward bonus books and Pro passes. ChapterFlow turns any book into a
@@ -39,13 +39,13 @@ export default function ReferralLandingPage() {
         <div className="flex flex-col gap-3">
           <Link
             href="/signup?returnTo=%2Fbook"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
           >
             Claim your invite
           </Link>
           <Link
             href="/auth/login?returnTo=%2Fbook"
-            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-[14px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface)"
+            className="inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) bg-(--cf-surface-muted) px-4 text-cf-body-sm font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface)"
           >
             I already have an account
           </Link>
