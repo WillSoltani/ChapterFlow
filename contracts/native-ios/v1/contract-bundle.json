@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-15T03:48:02-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "052984d4936d6afa68d4be2d4cbf6c82978e106994839c9bd2c9dd58bf03857a",
+    "generatorTreeDigest": "595dfc7a6d5aab55823dad0b2c6d3bb392e401db942353ab2b02419e713aae8d",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -3700,7 +3700,7 @@
           {
             "path": "app/app/api/book/_lib/fsrs-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "15c354e95db18ce6aecce98803270f9ea1e84c86451717e9711b7906721edd29"
+            "sourceSha256": "65b40f20e27cab217fdbd76170d02b46e9446ce804e3110939a35cc184b5c284"
           },
           {
             "path": "app/app/api/book/_lib/fsrs.ts",
@@ -3919,7 +3919,7 @@
           {
             "path": "app/app/api/book/me/saved/route.ts",
             "role": "route",
-            "sourceSha256": "af1c45e887e2125d3f79143a1307345c97194cd69e56124c2ddb68a2d98292b8"
+            "sourceSha256": "8233ae7b765d124a7e0a27138c8444542fbe066ab0e6074573b63b52141fe9e3"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -4675,7 +4675,7 @@
             {
               "path": "app/app/api/book/me/notebook/route.ts",
               "role": "route",
-              "sourceSha256": "2dc5bd89446bbb719468e6521fe29f3bdf92a7ac1ddfaa1426138310408bf6df"
+              "sourceSha256": "cf5318394d081b1b43b0c818c1e717d770bc7ce9bb7f5ced14ee76ed30167005"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
@@ -5571,7 +5571,7 @@
           {
             "path": "app/app/api/book/me/notebook/route.ts",
             "role": "route",
-            "sourceSha256": "2dc5bd89446bbb719468e6521fe29f3bdf92a7ac1ddfaa1426138310408bf6df"
+            "sourceSha256": "cf5318394d081b1b43b0c818c1e717d770bc7ce9bb7f5ced14ee76ed30167005"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -5799,7 +5799,7 @@
           {
             "path": "app/app/api/book/_lib/notifications-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "828c5a3055089e98fc253fca9041e947f4d7f2fd1eb8575ef8f6738625bf0931"
+            "sourceSha256": "d4eb6205fcec166ead604cdfc4be9f949a9777b8ab17314ac97329c7bab4e79b"
           }
         ],
         "serializerProof": {
@@ -6941,7 +6941,7 @@
           {
             "path": "app/app/api/book/_lib/notifications-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "828c5a3055089e98fc253fca9041e947f4d7f2fd1eb8575ef8f6738625bf0931"
+            "sourceSha256": "d4eb6205fcec166ead604cdfc4be9f949a9777b8ab17314ac97329c7bab4e79b"
           }
         ],
         "serializerProof": {
@@ -9932,7 +9932,7 @@
             {
               "path": "app/app/api/book/me/notebook/route.ts",
               "role": "route",
-              "sourceSha256": "2dc5bd89446bbb719468e6521fe29f3bdf92a7ac1ddfaa1426138310408bf6df"
+              "sourceSha256": "cf5318394d081b1b43b0c818c1e717d770bc7ce9bb7f5ced14ee76ed30167005"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
@@ -11927,7 +11927,7 @@
           "Decodable<ReviewsResponse|FsrsCard>"
         ],
         "optionality": "Exact optionality is source-fenced; additive unknown fields are allowed.",
-        "pagination": "Optional limit (max 50) and bookId filters; no continuation cursor.",
+        "pagination": "Optional limit (max 50) and bookId filters. WS4-004: ?cursor= is now supported additively for mode=due (default) — items/nextCursor/hasMore are added alongside cards/count. mode=all also accepts ?limit=/?cursor= opt-in; without them it still returns the full unbounded card set.",
         "versionSemantics": "No explicit API contract version is emitted.",
         "assetSemantics": "No external asset semantics."
       },
@@ -12071,7 +12071,7 @@
           {
             "path": "app/app/api/book/me/reviews/route.ts",
             "role": "route",
-            "sourceSha256": "73375539f1fb73e32080eae1f91ebcef64bfcefbf0f5e9231adef7aca3960b4e"
+            "sourceSha256": "37a597d6d949f2c3beeacb078762e389714470dfe41ddca4afd0e9a9dc86d4b4"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -12086,7 +12086,7 @@
           {
             "path": "app/app/api/book/_lib/fsrs-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "15c354e95db18ce6aecce98803270f9ea1e84c86451717e9711b7906721edd29"
+            "sourceSha256": "65b40f20e27cab217fdbd76170d02b46e9446ce804e3110939a35cc184b5c284"
           },
           {
             "path": "app/app/api/book/_lib/fsrs.ts",
@@ -12287,7 +12287,7 @@
           {
             "path": "app/app/api/book/me/saved/route.ts",
             "role": "route",
-            "sourceSha256": "af1c45e887e2125d3f79143a1307345c97194cd69e56124c2ddb68a2d98292b8"
+            "sourceSha256": "8233ae7b765d124a7e0a27138c8444542fbe066ab0e6074573b63b52141fe9e3"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -14254,7 +14254,7 @@
           "Decodable<NotebookResponse|NotebookEntry>"
         ],
         "optionality": "Exact optionality is source-fenced; additive unknown fields are allowed.",
-        "pagination": "Optional bookId/chapterId query filters; no server pagination cursor.",
+        "pagination": "Optional bookId/chapterId query filters. WS4-004: also accepts ?limit=&cursor=; entries/totalCount are unchanged keys (entries is the current page, totalCount the full filtered count) and items/nextCursor/hasMore are added additively.",
         "versionSemantics": "No explicit API contract version is emitted.",
         "assetSemantics": "No external asset semantics."
       },
@@ -14398,7 +14398,7 @@
           {
             "path": "app/app/api/book/me/notebook/route.ts",
             "role": "route",
-            "sourceSha256": "2dc5bd89446bbb719468e6521fe29f3bdf92a7ac1ddfaa1426138310408bf6df"
+            "sourceSha256": "cf5318394d081b1b43b0c818c1e717d770bc7ce9bb7f5ced14ee76ed30167005"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -14615,7 +14615,7 @@
           {
             "path": "app/app/api/book/me/notifications/route.ts",
             "role": "route",
-            "sourceSha256": "10313b4f8facd29a2b0bd07627114310369b54fa2124637abfa9d75204d6c7ae"
+            "sourceSha256": "b558d46c92800ba5d82cd289cdb90a001e4208c71978a5b094e6a05e11374f4c"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -14630,7 +14630,7 @@
           {
             "path": "app/app/api/book/_lib/notifications-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "828c5a3055089e98fc253fca9041e947f4d7f2fd1eb8575ef8f6738625bf0931"
+            "sourceSha256": "d4eb6205fcec166ead604cdfc4be9f949a9777b8ab17314ac97329c7bab4e79b"
           }
         ],
         "serializerProof": {

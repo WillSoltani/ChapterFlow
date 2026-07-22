@@ -2612,7 +2612,8 @@ nativeContractOperationDefinitions.push(
       { path: "app/app/api/book/_lib/fsrs.ts", role: "response_builder" },
     ],
     authority: { classification: "private_data", pointers: ["/cards"] },
-    pagination: "Optional limit (max 50) and bookId filters; no continuation cursor.",
+    pagination:
+      "Optional limit (max 50) and bookId filters. WS4-004: ?cursor= is now supported additively for mode=due (default) — items/nextCursor/hasMore are added alongside cards/count. mode=all also accepts ?limit=/?cursor= opt-in; without them it still returns the full unbounded card set.",
   }),
   matched({
     id: "saved.get",
@@ -2936,7 +2937,8 @@ nativeContractOperationDefinitions.push(
       { path: "app/app/api/book/_lib/notebook-entries.ts", role: "response_builder" },
     ],
     authority: { classification: "private_data", pointers: ["/entries"] },
-    pagination: "Optional bookId/chapterId query filters; no server pagination cursor.",
+    pagination:
+      "Optional bookId/chapterId query filters. WS4-004: also accepts ?limit=&cursor=; entries/totalCount are unchanged keys (entries is the current page, totalCount the full filtered count) and items/nextCursor/hasMore are added additively.",
   }),
   matched({
     id: "notifications.get",

@@ -13,6 +13,7 @@ import { queryChapterStatesForNotebook } from "@/app/app/api/book/_lib/book-stat
 import { queryCommitmentItemsForNotebook } from "@/app/app/api/book/_lib/commitment-repo";
 import { loadNotebookReads } from "@/app/app/api/book/_lib/notebook-read-core";
 import { buildChapterStateNotebookEntries } from "@/app/app/api/book/_lib/notebook-entries";
+import { paginateArray, parseListPaginationParams } from "@/app/app/api/book/_lib/list-pagination-core";
 import {
   buildHighlightNotebookEntries,
   highlightItemToNotebookEntry,
@@ -28,6 +29,16 @@ import {
 import type { BookUserHighlightItem, NotebookEntry } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
+
+// WS4-004: default/max page size for `?limit=&cursor=`. Deliberately generous
+// — unlike saved.get (whose `savedBookIds` iOS treats as the complete
+// authoritative set and so must never cap by default), notebook.get's
+// `entries` becomes the current PAGE below, so a too-small default would be a
+// real regression for any account with more than one page of notes/
+// bookmarks/commitments/highlights. Sized well past any realistic account so
+// `entries` is unaffected in practice; the cap only engages for outliers.
+const NOTEBOOK_DEFAULT_PAGE_SIZE = 500;
+const NOTEBOOK_MAX_PAGE_SIZE = 2000;
 
 /** Parse an optional integer `chapter` query param; null when absent/invalid. */
 function parseChapterFilter(url: URL): number | null {
@@ -152,7 +163,22 @@ export async function GET(req: Request) {
     // Sort by date descending
     filtered.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
 
-    return bookOk({ entries: filtered, totalCount: filtered.length });
+    // WS4-004: `?limit=&cursor=` pagination, additive alongside the existing
+    // entries/totalCount keys (NotebookResponse / NotebookClient.tsx keep
+    // reading `entries` unchanged for any account within one page).
+    const params = parseListPaginationParams(url, {
+      defaultLimit: NOTEBOOK_DEFAULT_PAGE_SIZE,
+      maxLimit: NOTEBOOK_MAX_PAGE_SIZE,
+    });
+    const page = paginateArray(filtered, { limit: params.limit, cursor: params.cursor });
+
+    return bookOk({
+      entries: page.items,
+      items: page.items,
+      totalCount: filtered.length,
+      nextCursor: page.nextCursor,
+      hasMore: page.hasMore,
+    });
   });
 }
 
