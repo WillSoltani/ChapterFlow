@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { fetchBookJsonCached } from "@/lib/client/book-api-cache";
 import { BookClientError } from "@/lib/client/book-api";
-import { ENTITLEMENTS_KEY } from "@/app/book/hooks/book-read-keys";
+import { ENTITLEMENTS_KEY } from "@/lib/client/book-read-keys";
 
 export type AuthUser = {
   displayName: string;

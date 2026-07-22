@@ -17,7 +17,7 @@ import { TopNav } from "@/components/navigation/TopNav";
 import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
 import { useBookQuery, invalidateBookCache } from "@/lib/client/book-api-cache";
-import { COMMITMENTS_KEY } from "@/app/book/hooks/book-read-keys";
+import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
 import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
