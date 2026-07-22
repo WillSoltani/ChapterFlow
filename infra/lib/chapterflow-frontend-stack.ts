@@ -1272,6 +1272,28 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       "Oldest revalidation message is >5 min old — the queue is backing up.",
     );
 
+    // Image optimization, warmer, and Dynamo cache-provider Lambda errors
+    // (WS6-007) — these had no error alarms despite ServerFn/RevalidationFn
+    // being covered above.
+    makeAlarm(
+      "ImageFnErrorsAlarm",
+      imageFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "Image optimization Lambda is erroring — images may be serving broken sitewide.",
+    );
+    makeAlarm(
+      "WarmerFnErrorsAlarm",
+      warmerFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "Warmer Lambda is erroring — the server Lambda may be going cold between requests.",
+    );
+    makeAlarm(
+      "DynamoProviderFnErrorsAlarm",
+      dynamoProviderFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "OpenNext Dynamo cache provider Lambda is erroring — ISR tag-cache init may be broken.",
+    );
+
     // CloudFront edge 5xx rate (percent). Sustained over 3 periods to avoid
     // paging on a transient blip.
     makeAlarm(
