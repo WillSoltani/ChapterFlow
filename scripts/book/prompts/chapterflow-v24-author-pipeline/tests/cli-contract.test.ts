@@ -11,7 +11,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test, skip } from "./harness.js";
@@ -55,7 +55,9 @@ test("reader-only plan command opens candidate without model attempt or source f
   const roots = createTestRoots("cli-reader-only");
   const bookId = "zz-cli-candidate";
   const candidateId = "candidate-1";
-  const planPath = resolve(PIPELINE_DIR, "state", "shape-plans", `${bookId}.shape-plan.json`);
+  const planParent = resolve(PIPELINE_DIR, "state", "shape-plans");
+  const planParentExisted = existsSync(planParent);
+  const planPath = resolve(planParent, `${bookId}.shape-plan.json`);
   try {
     const writeLock = createBookWriteLock({ booksRoot: roots.booksRoot });
     const currentPointerStore = createCurrentPointerStore({ booksRoot: roots.booksRoot, writeLock });
@@ -83,6 +85,7 @@ test("reader-only plan command opens candidate without model attempt or source f
     assert.doesNotMatch(result.out, /V25_COMPOSITION_REQUIRED/);
   } finally {
     rmSync(planPath, { force: true });
+    if (!planParentExisted && existsSync(planParent) && readdirSync(planParent).length === 0) rmdirSync(planParent);
     roots.dispose();
   }
 });

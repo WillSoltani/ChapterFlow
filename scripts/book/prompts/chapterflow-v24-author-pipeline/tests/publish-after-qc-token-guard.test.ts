@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -12,6 +12,9 @@ import { unsafePublishFiles } from "../src/qc/publishAfterQc.js";
 
 const BOOK = "zz-fixture-publish-token-guard";
 const ROUND = "r-token";
+const ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const ORCHESTRATOR_PARENT_DIR = dirname(ORCHESTRATOR_BOOK_DIR);
+const ORCHESTRATOR_PARENT_EXISTED = existsSync(ORCHESTRATOR_PARENT_DIR);
 
 function write(path: string, text = "fixture"): string {
   mkdirSync(dirname(path), { recursive: true });
@@ -24,7 +27,10 @@ function fakeToken(role: string): string {
 }
 
 function cleanup(): void {
-  rmSync(dirname(orchestratorRoundDir(BOOK, ROUND)), { recursive: true, force: true });
+  rmSync(ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!ORCHESTRATOR_PARENT_EXISTED && existsSync(ORCHESTRATOR_PARENT_DIR) && readdirSync(ORCHESTRATOR_PARENT_DIR).length === 0) {
+    rmdirSync(ORCHESTRATOR_PARENT_DIR);
+  }
 }
 
 test("publish-after-qc token guard refuses plaintext role tokens", () => {

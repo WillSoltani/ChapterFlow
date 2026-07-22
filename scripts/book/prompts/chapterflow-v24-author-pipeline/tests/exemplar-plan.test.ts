@@ -5,7 +5,7 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { formatExemplarPlan, formatExemplarForbidden, planExemplars, writeExemplarPlan } from "../src/librarian/exemplarPlan.js";
@@ -18,7 +18,9 @@ const BOOK = "zz-fixture-exemplars";
 const REPO_ROOT = PIPELINE_DIR;
 const RUN_BOOK_DIR = resolve(REPO_ROOT, ".chapterflow", "runs", BOOK);
 const RUN_DIR = resolve(RUN_BOOK_DIR, "99999999-test");
-const PLAN_PATH = resolve(PIPELINE_DIR, "state", "exemplar-plans", `${BOOK}.exemplar-plan.json`);
+const PLAN_PARENT = resolve(PIPELINE_DIR, "state", "exemplar-plans");
+const PLAN_PARENT_EXISTED = existsSync(PLAN_PARENT);
+const PLAN_PATH = resolve(PLAN_PARENT, `${BOOK}.exemplar-plan.json`);
 const CANDIDATE = "exemplar-plan-candidate";
 
 function candidateReader(bookId: string): BookContentReader {
@@ -47,6 +49,7 @@ function writeSidecar(chapter: number, data: Record<string, unknown>): void {
 function resetFixture(): void {
   rmSync(RUN_BOOK_DIR, { recursive: true, force: true });
   rmSync(PLAN_PATH, { force: true });
+  if (!PLAN_PARENT_EXISTED && existsSync(PLAN_PARENT) && readdirSync(PLAN_PARENT).length === 0) rmdirSync(PLAN_PARENT);
 }
 
 function writeFixtureSidecars(): void {
