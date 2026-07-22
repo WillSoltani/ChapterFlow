@@ -80,6 +80,38 @@
         "upgrade/FINISH-BACKLOG-PLAN-2026-07-22.md Wave 1",
         "WS4-001 WS4-009 WS4-010 WS4-016 WS4-017 WS4-020"
       ]
+    },
+    {
+      "recordId": "0411e3d279a46a511a37a11232dde23c12dc48a75b54bbbdcd1ae3774a48ab2f",
+      "changeId": "ws6-minor-cluster-wave2-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/fsrs-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "5fd3e0ccca40f6842bd154b285c5bdcd5555377568b9160ea65e2fb0f68ceac4",
+      "repairedBlobSha256": "ad912d5d091712961afc05b3be56c32b26a4cca5f1c7f32a152f37953e89d904",
+      "evidenceRefs": [
+        "WS6-015",
+        "fix/ws6-minor-cluster@a63132a01",
+        "scripts/ci/check-eslint-correctness.mjs"
+      ]
+    },
+    {
+      "recordId": "932a7373c9aec8fc0f86cad4e6263d152582af152a0e6ab1ccfce52f4bb6ae9e",
+      "changeId": "ws6-minor-cluster-wave2-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/validate-book-package.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "bea5e09cc5a2d18cb1388407f3ff5a2a976feb1312a5c66f131f7b40bfaf2c50",
+      "evidenceRefs": [
+        "WS6-015",
+        "fix/ws6-minor-cluster@a63132a01",
+        "scripts/ci/check-eslint-correctness.mjs"
+      ]
     }
   ]
 }
