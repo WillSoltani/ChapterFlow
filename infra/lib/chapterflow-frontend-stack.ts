@@ -236,7 +236,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       queueName: `ChapterFlowRevalidation${suffix}.fifo`,
       fifo: true,
       contentBasedDeduplication: true,
-      visibilityTimeout: cdk.Duration.seconds(30),
+      // keep >= 6x RevalidationFn timeout
+      visibilityTimeout: cdk.Duration.seconds(180),
       retentionPeriod: cdk.Duration.days(1),
       deadLetterQueue: { queue: revalidationDlq, maxReceiveCount: 5 },
     });
