@@ -2,7 +2,7 @@ name: Deploy
 
 # Single entry point for all environment deploys.
 #
-#   • workflow_dispatch only  → pick env (dev/staging/prod) + what to run
+#   • workflow_dispatch only  → pick env (dev/prod) + what to run
 #
 # Deploys are MANUAL — there is no auto-deploy on push to main (CI still runs on
 # every push/PR via ci.yml). This avoids firing a deploy at an environment whose
@@ -11,6 +11,15 @@ name: Deploy
 # environment supplies its own scoped secrets (AWS role, domain, Cognito,
 # Stripe, AI keys). The reusable internals (_deploy-infra.yml / _deploy-app.yml)
 # do the actual work.
+#
+# There is deliberately NO staging promotion stage: prod deploys a
+# dev-validated commit directly, gated by the prod GitHub Environment's
+# required reviewers plus the blocking health gate and prod-blocking deep
+# readiness smoke in _deploy-app.yml. Re-introducing staging requires
+# standing up the staging GitHub Environment (scoped secrets) and AWS stacks
+# first. `_deploy-infra.yml` / `_deploy-app.yml` and `infra/lib/env-config.ts`
+# keep their dev/staging/prod modeling for later use — only this entry
+# point's dispatch choices are narrowed.
 
 on:
   workflow_dispatch:
@@ -18,7 +27,7 @@ on:
       environment:
         description: "Target environment"
         type: choice
-        options: [dev, staging, prod]
+        options: [dev, prod]
         default: dev
       deploy_infra:
         description: "Deploy the backend (CDK) stack"

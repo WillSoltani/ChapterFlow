@@ -9,7 +9,7 @@ separated by a resource-name suffix: `dev`, `staging`, `prod`.
 | File | Trigger | What it does |
 |------|---------|--------------|
 | `.github/workflows/ci.yml` | PRs + push to `main` | **Hard gate:** app typecheck/unit tests/`next build`/OpenNext bundle, the v21 pipeline workspace typecheck/tests/doctor/build, and CDK backend synth. **Advisory:** an ESLint job that reports problems but never blocks. |
-| `.github/workflows/deploy.yml` | push to `main` (auto → **dev**); `workflow_dispatch` (pick env) | Orchestrates a deploy. Push keeps **dev** in sync. Manual dispatch chooses `dev`/`staging`/`prod` and what to run. |
+| `.github/workflows/deploy.yml` | `workflow_dispatch` only (pick env) | Orchestrates a deploy. Deploys are manual — there is no auto-deploy on push to `main`. Dispatch chooses `dev`/`prod` and what to run; staging is deliberately absent from this entry point (see §3). |
 | `.github/workflows/_deploy-infra.yml` | reusable (`workflow_call`) | Deploys the CDK **backend** stack for one env, then optionally seeds book data (names resolved from SSM — never hardcoded). |
 | `.github/workflows/_deploy-app.yml` | reusable (`workflow_call`) | Builds OpenNext, deploys the CDK **frontend** stack, invalidates CloudFront, runs a **blocking health gate**, and opens a failure issue on prod. |
 
@@ -45,11 +45,22 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
   Local)` (`continue-on-error: true`, not yet promoted) and `Lint (advisory)`
   report but never block (see §6). `npm run verify` mirrors most, but not
   all, of the required set — the exact delta is in §6/§7.
-- **Ship to dev:** merge to `main` → `deploy.yml` auto-deploys dev (infra sync +
-  app; no re-seed).
-- **Ship to staging/prod:** `Actions → Deploy → Run workflow`, choose the
-  environment and toggles (`deploy_infra`, `deploy_app`, `seed`). A **prod** run
-  pauses for approval before anything is applied.
+- **Ship to dev:** `Actions → Deploy → Run workflow`, choose `dev` and the
+  toggles (`deploy_infra`, `deploy_app`, `seed`). There is no auto-deploy on
+  push to `main` — every dev deploy is a manual dispatch.
+- **Ship to prod:** `Actions → Deploy → Run workflow`, choose `prod` and the
+  toggles. The run pauses for the `prod` GitHub Environment's required-reviewer
+  approval before anything is applied, then runs the blocking health gate and
+  prod-blocking deep readiness smoke in `_deploy-app.yml`.
+- **Staging is deliberately absent** from this entry point: the staging AWS
+  stacks and GitHub Environment secrets do not exist, so a prod deploy ships a
+  dev-validated commit directly rather than promoting through a staging stage.
+  `deploy.yml`'s `environment` choice is `[dev, prod]` only.
+  `_deploy-infra.yml` / `_deploy-app.yml` and `infra/lib/env-config.ts` keep
+  their `dev`/`staging`/`prod` modeling for later use — re-introducing a
+  staging promotion stage requires standing up the staging GitHub Environment
+  (scoped secrets) and AWS stacks first, then adding it back to `deploy.yml`'s
+  options.
 
 ## 4) One-time AWS / GitHub setup
 
