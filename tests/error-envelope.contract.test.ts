@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { NextRequest } from "next/server";
 
 import { installServerOnlyShim } from "@/tests/_lib/server-only-shim";
+import { buildSessionResponse } from "@/app/app/api/_lib/session-response-core";
 
 // Every JSON error response across the three route stacks (`app/api/**`,
 // `app/auth/**`, `app/app/api/**`) must serialize the canonical envelope
@@ -16,17 +17,11 @@ import { installServerOnlyShim } from "@/tests/_lib/server-only-shim";
 let restoreServerOnly: (() => void) | undefined;
 let bookRequestsPOST: typeof import("@/app/api/book-requests/route").POST;
 let refreshPOST: typeof import("@/app/auth/refresh/route").POST;
-let buildMeErrorResponse: typeof import("@/app/app/api/me/route").buildMeErrorResponse;
-let buildSessionErrorResponse: typeof import("@/app/app/api/auth/session/route").buildSessionErrorResponse;
-let AuthError: typeof import("@/app/app/api/_lib/auth").AuthError;
 
 before(async () => {
   restoreServerOnly = installServerOnlyShim();
   ({ POST: bookRequestsPOST } = await import("@/app/api/book-requests/route"));
   ({ POST: refreshPOST } = await import("@/app/auth/refresh/route"));
-  ({ buildMeErrorResponse } = await import("@/app/app/api/me/route"));
-  ({ buildSessionErrorResponse } = await import("@/app/app/api/auth/session/route"));
-  ({ AuthError } = await import("@/app/app/api/_lib/auth"));
 });
 
 after(() => restoreServerOnly?.());
@@ -123,29 +118,23 @@ test("auth/refresh rate_limited → 429 envelope with Retry-After", async () => 
   assertEnvelope(await last!.json(), "rate_limited");
 });
 
-// ── (c) me / session verifier paths via extracted mappers ───────────────────
+// ── (c) me / session status-probe stack via the shared mapper ───────────────
+// The /app/api/me and /app/api/auth/session routes now delegate to one shared
+// handler whose pure mapper (buildSessionResponse) owns the envelope shape
+// (WS4-003). The old per-route buildMeErrorResponse/buildSessionErrorResponse
+// mappers are superseded, so the app/app/api stack's envelope contract is
+// asserted here through that single mapper.
 
-test("me verifier-unavailable → 503 envelope", async () => {
-  const req = new Request("http://localhost/api/me");
-  const res = buildMeErrorResponse(req, new AuthError("VERIFIER_UNAVAILABLE"));
-  assert.equal(res.status, 503);
-  assertEnvelope(await res.json(), "verifier_unavailable");
+test("session-status verifier-unavailable → 503 envelope with loggedIn:null", () => {
+  const r = buildSessionResponse({ kind: "verifier_unavailable" }, "req-id-1");
+  assert.equal(r.status, 503);
+  assert.equal((r.body as { loggedIn?: unknown }).loggedIn, null);
+  assertEnvelope(r.body, "verifier_unavailable");
 });
 
-test("me unauthenticated → 401 envelope with authenticated:false", async () => {
-  const req = new Request("http://localhost/api/me");
-  const res = buildMeErrorResponse(req, new AuthError("UNAUTHENTICATED"));
-  assert.equal(res.status, 401);
-  const body = (await res.json()) as { authenticated?: unknown };
-  assert.equal(body.authenticated, false);
-  assertEnvelope(body, "unauthenticated");
-});
-
-test("session verifier-unavailable → 503 envelope with loggedIn:null", async () => {
-  const req = new Request("http://localhost/api/auth/session");
-  const res = buildSessionErrorResponse(req, new AuthError("VERIFIER_UNAVAILABLE"));
-  assert.equal(res.status, 503);
-  const body = (await res.json()) as { loggedIn?: unknown };
-  assert.equal(body.loggedIn, null);
-  assertEnvelope(body, "verifier_unavailable");
+test("session-status unexpected error → 503 envelope (never a logged-out flip)", () => {
+  const r = buildSessionResponse({ kind: "unexpected" }, "req-id-2");
+  assert.equal(r.status, 503);
+  assert.equal((r.body as { loggedIn?: unknown }).loggedIn, null);
+  assertEnvelope(r.body, "verifier_unavailable");
 });
