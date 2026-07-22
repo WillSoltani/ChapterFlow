@@ -1000,6 +1000,19 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       { originPath: "/_assets" },
     );
 
+    // WS6-012: serve library covers from the content bucket through CloudFront
+    // via Origin Access Control, so the bucket can drop its public-read grant
+    // (BLOCK_ALL, PR2). The path pattern `book-content/library/covers/*` equals
+    // the S3 key prefix, so NO originPath rewrite is used — the request key is
+    // passed through verbatim. The backend stack owns the bucket resource policy
+    // (CloudFrontReadLibraryCovers, conditioned on aws:SourceAccount): CDK cannot
+    // auto-attach a policy to an imported (fromBucketName) bucket and will WARN —
+    // that is intended, the grant is authored in chapterflow-backend-stack.ts and
+    // keyed on the account (not this distribution's ARN) to avoid a deploy cycle.
+    const contentCoversOrigin = origins.S3BucketOrigin.withOriginAccessControl(
+      bookContentBucket,
+    );
+
     // Plain Function URL origins (no OAC). The OAC lock (X2) is reverted here —
     // see the serverFnUrl note above for why and the re-locking follow-up. The
     // interim origin lock rides on custom origin headers instead: CloudFront
@@ -1213,6 +1226,16 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           viewerProtocolPolicy:
             cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: staticCachePolicy,
+        },
+        // WS6-012: library covers on the app origin, routed to the content
+        // bucket via OAC (contentCoversOrigin). library-catalog.ts mints
+        // `${appBaseUrl}/book-content/library/covers/<key>` for coverImage.
+        "book-content/library/covers/*": {
+          origin: contentCoversOrigin,
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: staticCachePolicy,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
         },
       },
       ...(certificate && appDomain && domainName

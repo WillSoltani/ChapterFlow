@@ -762,7 +762,7 @@
           {
             "path": "app/app/api/book/books/route.ts",
             "role": "route",
-            "sourceSha256": "b14e879d24d1e5cc3a1805305e8abd73104b20276d5cd1b8af21ab95284c1102"
+            "sourceSha256": "4c7625060bb006753ac7eb688dc81adc3a28470b42280a67f2afef9c1d12ae73"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -772,7 +772,7 @@
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
             "role": "response_builder",
-            "sourceSha256": "851e612ece7a7bb543a3514cbef29f6cfbf5ff4cd8c8c2d3bc440809e6cccb98"
+            "sourceSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347"
           },
           {
             "path": "app/app/api/book/_lib/types.ts",
@@ -1204,7 +1204,7 @@
           {
             "path": "app/app/api/book/books/[bookId]/route.ts",
             "role": "route",
-            "sourceSha256": "8f261762b734915edebe01e42add491819cd5602f058d44e7900b6254198a4fb"
+            "sourceSha256": "84a9d0225271512ba71ab60f6ef57998512096f1a81d4db395aacb23d7bcfe80"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -1214,7 +1214,7 @@
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
             "role": "response_builder",
-            "sourceSha256": "851e612ece7a7bb543a3514cbef29f6cfbf5ff4cd8c8c2d3bc440809e6cccb98"
+            "sourceSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347"
           }
         ],
         "serializerProof": {
@@ -14196,7 +14196,7 @@
             {
               "path": "app/app/api/book/me/journeys/[journeyId]/route.ts",
               "role": "route",
-              "sourceSha256": "58620cf4f5edb79362891dd5ff6a033afc50d8a2c1229d0caa72c3d27fb0e889"
+              "sourceSha256": "3a91c427844fdba660cfc0d360661d9145d9093a252537d2e3f0e92904a1b018"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",
@@ -17039,7 +17039,7 @@
           {
             "path": "app/app/api/book/me/dashboard/route.ts",
             "role": "route",
-            "sourceSha256": "5b10af351fb301542179d9eaf4a6d414884df73fcdbb0996dd1b83b628a6c36f"
+            "sourceSha256": "0e8aa33fbf5b7dfca7328ec77f87452668d3db9dc9a7fcfe772f3c10d072f369"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -17094,7 +17094,7 @@
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
             "role": "response_builder",
-            "sourceSha256": "851e612ece7a7bb543a3514cbef29f6cfbf5ff4cd8c8c2d3bc440809e6cccb98"
+            "sourceSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347"
           }
         ],
         "serializerProof": {

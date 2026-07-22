@@ -317,6 +317,36 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
+    // WS6-012: covers are also readable by the CloudFront distribution (frontend
+    // stack) via Origin Access Control. This statement is what lets the content
+    // bucket move to BLOCK_ALL: it is NON-public (conditioned on the CloudFront
+    // service principal AND our own account), so restrictPublicBuckets does not
+    // strip it, unlike the AnyPrincipal `PublicReadLibraryCovers` statement.
+    //
+    // The condition uses aws:SourceAccount (our account id) rather than the
+    // distribution's SourceArn on purpose: keying on the distribution ARN would
+    // make this backend stack depend on the frontend distribution, but the
+    // frontend stack already imports the content bucket by name from the backend
+    // stack — a distribution SourceArn condition would create a deploy cycle
+    // (backend needs distribution, distribution needs bucket). SourceAccount
+    // breaks that cycle while still scoping the grant to this account's
+    // CloudFront service. Deploy order stays backend stack then frontend stack.
+    this.contentBucket.addToResourcePolicy(
+      new iam.PolicyStatement({
+        sid: "CloudFrontReadLibraryCovers",
+        effect: iam.Effect.ALLOW,
+        principals: [new iam.ServicePrincipal("cloudfront.amazonaws.com")],
+        actions: ["s3:GetObject"],
+        resources: [`${this.contentBucket.bucketArn}/book-content/library/covers/*`],
+        conditions: {
+          StringEquals: { "aws:SourceAccount": cdk.Aws.ACCOUNT_ID },
+        },
+      })
+    );
+
+    // TRANSITIONAL (WS6-012 PR1): direct public S3 read of covers. Removed in
+    // PR2 once the CloudFront OAC path above is proven live, at which point the
+    // bucket flips to BlockPublicAccess.BLOCK_ALL.
     this.contentBucket.addToResourcePolicy(
       new iam.PolicyStatement({
         sid: "PublicReadLibraryCovers",

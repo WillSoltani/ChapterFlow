@@ -112,6 +112,38 @@
         "fix/ws6-minor-cluster@a63132a01",
         "scripts/ci/check-eslint-correctness.mjs"
       ]
+    },
+    {
+      "recordId": "e19823b941270804ca59362812c5e761954a3d770f5761f89ff196a9b858507b",
+      "changeId": "ws6-minor-cluster-wave2-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/library-catalog.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347",
+      "evidenceRefs": [
+        "WS6-012",
+        "fix/ws6-minor-cluster",
+        "app/app/api/book/_lib/app-base-url-core.ts"
+      ]
+    },
+    {
+      "recordId": "0cfe713e8d022b8a7e7732bf94aa88303026c0e13d2593efeab5c88de17374aa",
+      "changeId": "ws6-minor-cluster-wave2-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/app-base-url-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "abe2e0524e2d34f05141f9a8dcfcf033bcccb6bfdce972166809323cd43fd4e0",
+      "evidenceRefs": [
+        "WS6-012",
+        "fix/ws6-minor-cluster",
+        "app/app/api/book/_lib/app-base-url-core.ts"
+      ]
     }
   ]
 }

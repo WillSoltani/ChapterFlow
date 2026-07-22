@@ -11,6 +11,7 @@ import type {
 } from "@/app/book/_lib/library-data";
 import { boilerplateSynopsis } from "@/lib/library-catalog-stub";
 import { logger } from "@/lib/logging/logger";
+import { buildCoverUrl, encodeS3Key } from "./app-base-url-core";
 import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
 import {
@@ -26,13 +27,12 @@ import type { BookCatalogItem } from "./types";
 
 const LIBRARY_CATALOG_KEY = "book-content/library/catalog.json";
 
-function encodeS3Key(key: string): string {
-  return key
-    .split("/")
-    .map((segment) => encodeURIComponent(segment))
-    .join("/");
-}
-
+// TRANSITIONAL (WS6-012 PR1): direct public S3 cover URL, kept only as the
+// fallback for internal callers that don't render covers and so don't resolve an
+// app base URL (pair-repo chapter-count map, health probe). Cover-rendering
+// routes pass `appBaseUrl`, minting the CloudFront/app-origin URL via
+// buildCoverUrl. Removed in PR2 once BLOCK_ALL is enforced and every cover flows
+// through CloudFront.
 function buildPublicS3Url(bucket: string, key: string): string {
   return `https://${bucket}.s3.${REGION}.amazonaws.com/${encodeS3Key(key)}`;
 }
@@ -67,8 +67,9 @@ function buildLibraryCatalogBook(params: {
   chapterCount?: number;
   estimatedMinutes?: number;
   contentBucket: string;
+  appBaseUrl?: string;
 }): LibraryCatalogBook {
-  const { catalog, extra, chapterCount, estimatedMinutes, contentBucket } = params;
+  const { catalog, extra, chapterCount, estimatedMinutes, contentBucket, appBaseUrl } = params;
   const resolvedChapterCount =
     extra?.chapterCount && extra.chapterCount > 0 ? extra.chapterCount : chapterCount ?? 0;
   const resolvedEstimatedMinutes =
@@ -81,7 +82,9 @@ function buildLibraryCatalogBook(params: {
     author: catalog.author,
     icon: extra?.icon || catalog.cover?.emoji || "📘",
     coverImage: extra?.coverAssetKey
-      ? buildPublicS3Url(contentBucket, extra.coverAssetKey)
+      ? appBaseUrl
+        ? buildCoverUrl(appBaseUrl, extra.coverAssetKey)
+        : buildPublicS3Url(contentBucket, extra.coverAssetKey)
       : undefined,
     category: catalog.categories[0] ?? "General",
     categories: catalog.categories,
@@ -125,6 +128,10 @@ async function readLibraryCatalogIndex(
 export async function listPublishedLibraryCatalog(params: {
   tableName: string;
   contentBucket: string;
+  // Canonical app origin (getAppBaseUrl). When provided, coverImage is minted on
+  // the app origin (served by CloudFront OAC → content bucket, WS6-012); absent
+  // for internal callers that don't render covers.
+  appBaseUrl?: string;
 }): Promise<LibraryCatalogBook[]> {
   const [catalogItems, presentationIndex] = await Promise.all([
     listPublishedCatalogItems(params.tableName),
@@ -138,6 +145,7 @@ export async function listPublishedLibraryCatalog(params: {
         catalog: item,
         extra: presentationIndex.get(item.bookId),
         contentBucket: params.contentBucket,
+        appBaseUrl: params.appBaseUrl,
       })
     )
     .sort((left, right) => left.title.localeCompare(right.title));
@@ -152,7 +160,10 @@ const loadPublishedLibraryBookDetail = cache(
   async (
     tableName: string,
     contentBucket: string,
-    bookId: string
+    bookId: string,
+    // Kept a primitive (empty string when absent) so React cache() still keys by
+    // value — an undefined arg would collapse distinct calls onto one entry.
+    appBaseUrl: string
   ): Promise<LibraryBookDetail> => {
     const [catalog, presentationIndex, manifestPayload] = await Promise.all([
       getCatalogBook(tableName, bookId),
@@ -173,6 +184,7 @@ const loadPublishedLibraryBookDetail = cache(
         0
       ),
       contentBucket,
+      appBaseUrl: appBaseUrl || undefined,
     });
 
     const chapters: LibraryChapterSummary[] = manifestPayload.manifest.chapters.map((chapter) => ({
@@ -197,10 +209,12 @@ export async function getPublishedLibraryBookDetail(params: {
   tableName: string;
   contentBucket: string;
   bookId: string;
+  appBaseUrl?: string;
 }): Promise<LibraryBookDetail> {
   return loadPublishedLibraryBookDetail(
     params.tableName,
     params.contentBucket,
-    params.bookId
+    params.bookId,
+    params.appBaseUrl ?? ""
   );
 }
