@@ -13,10 +13,13 @@ import { TMP_DIR } from "./helpers.js";
 import {
   __clearQualificationMemo,
   assertFlagsSupported,
+  CLAUDE_ROUTE_REQUIRED_FLAGS,
   ExecPreflightError,
+  parseClaudeHelpForFlags,
   parseHelpForFlags,
   PROBED_FLAGS,
   qualificationCachePathFor,
+  qualifyClaudeCli,
   qualifyCodexCli,
   syntheticQualification,
 } from "../src/exec/cliQualification.js";
@@ -111,4 +114,52 @@ test("qualifyCodexCli: a probe failure is a fail-closed preflight error", async 
     qualifyCodexCli({ bin: "/nonexistent/codex", prober }),
     (err: Error) => err instanceof ExecPreflightError && /qualification probe failed/.test(err.message),
   );
+});
+
+/** Shape captured from `claude --help` (Claude Code 2.1.197, 2026-07-22) — the
+ *  option lines the claude route's required flags parse against. */
+const REAL_CLAUDE_HELP_SHAPE = `
+Options:
+  --add-dir <directories...>            Additional directories to allow tool access to
+  --allowedTools, --allowed-tools <tools...>
+  --disallowedTools, --disallowed-tools <tools...>
+  --effort <level>                      Effort level for the current session (low, medium, high, xhigh, max)
+  --model <model>                       Model for the current session.
+  --output-format <format>              Output format (only works with --print): "text" (default), "json"
+  --permission-mode <mode>              Permission mode to use for the session
+  -p, --print                           Print response and exit
+`;
+
+test("parseClaudeHelpForFlags: the real 2.1.197 help shape yields every claude route flag as supported", () => {
+  const flags = parseClaudeHelpForFlags(REAL_CLAUDE_HELP_SHAPE);
+  for (const f of CLAUDE_ROUTE_REQUIRED_FLAGS) assert.equal(flags[f], true, `expected ${f} supported`);
+});
+
+test("parseClaudeHelpForFlags: a CLI missing --effort reports it unsupported (fail-closed qualification)", () => {
+  const stripped = REAL_CLAUDE_HELP_SHAPE.replace(/^\s*--effort[\s\S]*?max\)\n/m, "");
+  const flags = parseClaudeHelpForFlags(stripped);
+  assert.equal(flags["--effort"], false);
+  assert.equal(flags["--model"], true, "unrelated flags still parse");
+});
+
+test("qualifyClaudeCli: probes `claude --version` + `claude --help` and persists a distinct disk cache", async () => {
+  __clearQualificationMemo();
+  const cacheDir = join(TMP_DIR, `claude-qual-${process.pid}-${Date.now().toString(36)}`);
+  mkdirSync(cacheDir, { recursive: true });
+  const fakeBin = join(cacheDir, "claude-fake");
+  writeFileSync(fakeBin, "#!/bin/sh\n");
+  const probeArgs: string[][] = [];
+  const prober = async (_bin: string, args: string[]) => {
+    probeArgs.push(args);
+    return args[0] === "--version"
+      ? { stdout: "2.1.197 (Claude Code)\n", stderr: "" }
+      : { stdout: REAL_CLAUDE_HELP_SHAPE, stderr: "" };
+  };
+  const qual = await qualifyClaudeCli({ bin: fakeBin, cacheDir, prober });
+  assert.equal(qual.version, "2.1.197 (Claude Code)");
+  assert.equal(qual.schema, "claude-cli-qualification-v1");
+  assert.deepEqual(probeArgs, [["--version"], ["--help"]], "claude probes --version then bare --help (no `exec` subcommand)");
+  assertFlagsSupported(qual, CLAUDE_ROUTE_REQUIRED_FLAGS);
+  const disk = JSON.parse(readFileSync(join(cacheDir, "claude-cli-qualification.json"), "utf8"));
+  assert.equal(disk.schema, "claude-cli-qualification-v1");
 });

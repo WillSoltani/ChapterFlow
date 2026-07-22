@@ -1,6 +1,7 @@
 import type { Result, UtcIso } from "../contracts/v4Core.js";
 import type { AttemptOutcome, RunSnapshot, RunStore } from "../run-state/index.js";
-import { assertFlagsSupported, CODEX_ROUTE_REQUIRED_FLAGS, qualifyCodexCli } from "../exec/cliQualification.js";
+import { assertFlagsSupported, CLAUDE_ROUTE_REQUIRED_FLAGS, CODEX_ROUTE_REQUIRED_FLAGS, qualifyClaudeCli, qualifyCodexCli } from "../exec/cliQualification.js";
+import { CLAUDE_ROUTE_ID } from "./claudeRoute.js";
 import { CODEX_ROUTE_ID, createDefaultModelRoute, type ModelProcessRoute } from "./codexRoute.js";
 import { FORBIDDEN_ENV } from "./executionPolicy.js";
 import type { ExecutionPolicy, ExecutionProfile, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
@@ -82,17 +83,30 @@ function hermeticGuardActive(): boolean {
   return process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1";
 }
 
-/** Cached once per process: the first non-hermetic execute() on the live
- *  codex route pays the qualification cost; every attempt after reuses the
+/** Cached once per process, PER ROUTE: the first non-hermetic execute() on a
+ *  qualifiable route pays the qualification cost; every attempt after reuses the
  *  same settled promise (success or failure — a failed preflight stays
  *  fail-closed for the rest of the process; nothing should overwrite the
  *  installed CLI mid-run). */
-let codexPreflightPromise: Promise<void> | null = null;
+const preflightPromises = new Map<string, Promise<void>>();
 
 async function qualifyCodexRoutePreflight(): Promise<void> {
   const qual = await qualifyCodexCli({ bin: "codex" });
   assertFlagsSupported(qual, CODEX_ROUTE_REQUIRED_FLAGS);
 }
+
+async function qualifyClaudeRoutePreflight(): Promise<void> {
+  const qual = await qualifyClaudeCli({ bin: "claude" });
+  assertFlagsSupported(qual, CLAUDE_ROUTE_REQUIRED_FLAGS);
+}
+
+/** Route id → its CLI qualification. Task 7 generalized the preflight from
+ *  codex-only to whichever route the per-role config selects; a route absent
+ *  from this table spawns no real binary and needs no qualification. */
+const ROUTE_PREFLIGHTS: ReadonlyMap<string, () => Promise<void>> = new Map([
+  [CODEX_ROUTE_ID, qualifyCodexRoutePreflight],
+  [CLAUDE_ROUTE_ID, qualifyClaudeRoutePreflight],
+]);
 
 /**
  * Model-CLI preflight (IMP-00 fail-closed rule, wired into the gateway so no
@@ -100,24 +114,27 @@ async function qualifyCodexRoutePreflight(): Promise<void> {
  * to support the flags the route's build() emits).
  *  - Hermetic no-API operating mode (CHAPTERFLOW_NO_API_CODEX_QC=1): SKIP —
  *    tests/CI never spawn a real model CLI.
- *  - Any route other than the live codex route: SKIP — nothing else spawns a
- *    real binary today (Task 6/7 generalizes this to whichever route the
- *    per-role config selects).
- *  - Otherwise: qualify once per process; a missing required flag throws
- *    `ExecPreflightError` (`policy_preflight_failure`), which the caller must
- *    surface as a hard failure — never run anyway with unproven flags.
+ *  - A route with no registered qualification (no real binary today): SKIP.
+ *  - Otherwise: qualify once per process per route; a missing required flag
+ *    throws `ExecPreflightError` (`policy_preflight_failure`), which the caller
+ *    must surface as a hard failure — never run anyway with unproven flags.
  */
 async function ensureModelCliPreflight(route: ModelProcessRoute): Promise<void> {
   if (hermeticGuardActive()) return;
-  if (route.id !== CODEX_ROUTE_ID) return;
-  if (!codexPreflightPromise) codexPreflightPromise = qualifyCodexRoutePreflight();
-  return codexPreflightPromise;
+  const qualify = ROUTE_PREFLIGHTS.get(route.id);
+  if (qualify === undefined) return;
+  let pending = preflightPromises.get(route.id);
+  if (pending === undefined) {
+    pending = qualify();
+    preflightPromises.set(route.id, pending);
+  }
+  return pending;
 }
 
-/** Test hook: forget the process-cached preflight result so the next
+/** Test hook: forget the process-cached preflight results so the next
  *  non-hermetic execute() re-probes from scratch. */
 export function __resetModelCliPreflightForTests(): void {
-  codexPreflightPromise = null;
+  preflightPromises.clear();
 }
 
 type PreparedTask = {

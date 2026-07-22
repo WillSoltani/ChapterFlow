@@ -10,11 +10,9 @@ import {
 } from "../../src/run-state/index.js";
 import {
   CLAUDE_ROUTE_ID,
-  CLAUDE_THINKING_BUDGET_BY_EFFORT,
-  CLAUDE_THINKING_ENV_VAR,
   createClaudeRoute,
+  effortArgs,
   normalizeClaudeStdout,
-  thinkingBudgetEnv,
 } from "../../src/runtime/claudeRoute.js";
 import type { ModelProcessRoute } from "../../src/runtime/codexRoute.js";
 import { createExecutionPolicy } from "../../src/runtime/executionPolicy.js";
@@ -48,13 +46,13 @@ const WRITE_PROFILE: ExecutionProfile = {
 
 // ── build(): READ_ONLY analog (no tools, JSON envelope, prompt never in argv) ─
 
-requiredTest("claude route READ_ONLY build: headless JSON, model, tool lockdown, no prompt bytes in argv", () => {
+requiredTest("claude route READ_ONLY build: headless JSON, model, effort flag, tool lockdown, no prompt bytes in argv", () => {
   const route = createClaudeRoute("claude-sonnet-5", "high");
   assert.equal(route.id, CLAUDE_ROUTE_ID);
   const built = route.build(READ_ONLY_PROFILE);
   assert.equal(built.command, "claude");
   assert.equal(built.args.includes("-p"), true);
-  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--disallowedTools", "*"].join("\0"));
+  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--effort", "high", "--disallowedTools", "*"].join("\0"));
   // model flows in from the caller (config), verbatim
   assert.equal(built.args.includes("claude-sonnet-5"), true);
   // READ_ONLY analog: no write-mode permission grant leaks in
@@ -68,7 +66,7 @@ requiredTest("claude route WORKSPACE_WRITE build: acceptEdits permission mode, n
   const route = createClaudeRoute("claude-sonnet-5", "high");
   const built = route.build(WRITE_PROFILE);
   assert.equal(built.command, "claude");
-  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--permission-mode", "acceptEdits"].join("\0"));
+  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--effort", "high", "--permission-mode", "acceptEdits"].join("\0"));
   assert.equal(built.args.includes("--disallowedTools"), false);
 });
 
@@ -80,27 +78,26 @@ requiredTest("claude route: the model id flows through verbatim (no hardcoded mo
   assert.notDeepEqual(a.args, b.args);
 });
 
-// ── effort tiers → thinking-budget env (the effort mechanism) ────────────────
+// ── effort tiers → the --effort argv flag (live probe: the CLI exposes it) ────
 
-requiredTest("claude route effort tiers map to MAX_THINKING_TOKENS via env(), not argv", () => {
-  for (const effort of ["low", "medium", "high", "xhigh"] as const) {
-    const route = createClaudeRoute("claude-sonnet-5", effort);
-    // effort never appears in argv (no CLI flag exposed today)
-    const built = route.build(READ_ONLY_PROFILE);
-    assert.equal(built.args.includes(effort), false);
-    // effort rides on the env channel
-    assert.equal(typeof route.env, "function");
-    const env = route.env!(READ_ONLY_PROFILE);
-    assert.equal(env[CLAUDE_THINKING_ENV_VAR], String(CLAUDE_THINKING_BUDGET_BY_EFFORT[effort]));
+requiredTest("claude route effort tiers ride in argv via --effort <tier>, not an env channel", () => {
+  for (const effort of ["low", "medium", "high", "xhigh", "max"] as const) {
+    const built = createClaudeRoute("claude-sonnet-5", effort).build(READ_ONLY_PROFILE);
+    // --effort <tier> appears as an adjacent flag/value pair in argv
+    const idx = built.args.indexOf("--effort");
+    assert.notEqual(idx, -1, `--effort must be present for ${effort}`);
+    assert.equal(built.args[idx + 1], effort);
+    // the effort is NOT smuggled through an env channel
+    assert.equal(typeof (createClaudeRoute("claude-sonnet-5", effort) as { env?: unknown }).env, "undefined");
   }
-  // distinct tiers → distinct budgets, in ascending order
-  assert.equal(Number(thinkingBudgetEnv("medium")[CLAUDE_THINKING_ENV_VAR]) < Number(thinkingBudgetEnv("high")[CLAUDE_THINKING_ENV_VAR]), true);
-  assert.equal(Number(thinkingBudgetEnv("high")[CLAUDE_THINKING_ENV_VAR]) < Number(thinkingBudgetEnv("xhigh")[CLAUDE_THINKING_ENV_VAR]), true);
+  assert.deepEqual(effortArgs("xhigh"), ["--effort", "xhigh"]);
 });
 
-requiredTest("claude route: an unknown effort string degrades to the high tier budget, never NaN", () => {
-  const env = thinkingBudgetEnv("bogus-effort");
-  assert.equal(env[CLAUDE_THINKING_ENV_VAR], String(CLAUDE_THINKING_BUDGET_BY_EFFORT.high));
+requiredTest("claude route: an unknown effort string degrades to the high tier flag value, never an invalid flag", () => {
+  assert.deepEqual(effortArgs("bogus-effort"), ["--effort", "high"]);
+  const built = createClaudeRoute("claude-sonnet-5", "bogus-effort").build(READ_ONLY_PROFILE);
+  const idx = built.args.indexOf("--effort");
+  assert.equal(built.args[idx + 1], "high");
 });
 
 // ── output-envelope adapter (Task 7 Step 4) ─────────────────────────────────
@@ -208,7 +205,7 @@ async function expectRun(store: RunStore, run: RunDefinition): Promise<void> {
   if (!created.ok) assert.fail(`${created.error.code}: ${created.error.message}`);
 }
 
-requiredTest("gateway on claude route: unwraps envelope to inner object and merges the effort thinking-budget env", async ({ roots }) => {
+requiredTest("gateway on claude route: unwraps envelope to inner object, effort in argv, API keys stripped", async ({ roots }) => {
   const run = definition("claude-book", "claude-run");
   const store = new FileRunStore(roots.stateRoot);
   await expectRun(store, run);
@@ -221,7 +218,7 @@ requiredTest("gateway on claude route: unwraps envelope to inner object and merg
     executionPolicy: policy(roots),
     route: createClaudeRoute("claude-sonnet-5", "xhigh"),
     now: clock(),
-    // claude route id ≠ codex → default preflight SKIPs; keep it explicit + hermetic
+    // hermetic: never touch a real claude binary from the test suite
     modelCliPreflight: async () => {},
   });
   const result = await gateway.execute(task(run, "attempt-claude", attemptDirectory(roots, "attempt-claude")));
@@ -233,11 +230,14 @@ requiredTest("gateway on claude route: unwraps envelope to inner object and merg
   // prompt is on stdin, never argv
   assert.equal(spec.args.join("\0").includes("PROMPT_BYTES_9f"), false);
   assert.equal(new TextDecoder().decode(spec.stdin).includes("PROMPT_BYTES_9f"), true);
-  // effort xhigh → thinking budget in the merged env; API keys still stripped
-  assert.equal(spec.environment[CLAUDE_THINKING_ENV_VAR], String(CLAUDE_THINKING_BUDGET_BY_EFFORT.xhigh));
+  // effort xhigh → the --effort argv flag (live probe), not an env channel
+  const effortIdx = spec.args.indexOf("--effort");
+  assert.notEqual(effortIdx, -1);
+  assert.equal(spec.args[effortIdx + 1], "xhigh");
+  // API keys still stripped
   assert.equal(spec.environment.ANTHROPIC_API_KEY, undefined);
   assert.equal(spec.environment.OPENAI_API_KEY, undefined);
-  // HOME preserved → claude keeps its ~/.claude subscription credentials
+  // HOME preserved → claude keeps its subscription credentials
   assert.equal(spec.environment.HOME, roots.homeRoot);
 });
 

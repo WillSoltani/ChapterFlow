@@ -124,22 +124,29 @@ model call goes through the `ModelGateway`, which spawns a subscription CLI via 
 `ModelProcessRoute`. Two routes exist, selected per pipeline role by
 [`config/model-routing.json`](config/model-routing.json) (validated fail-closed;
 a `gpt-5.5` model outside the codex fallback + the D1 owner-override sentinel
-trips the NO-GPT-5.5 gate):
+trips the NO-GPT-5.5 gate). **The production default is `claude-cli` (Claude
+Sonnet 5), effort-tiered per role** (research/structural-QC `medium`;
+author/repair `high`; canonical review + quiz-key judge `xhigh`); the `codex`
+route is a config-switchable fallback, never the default.
 
+- **`claude-cli`** (`src/runtime/claudeRoute.ts`, id `claude-subscription-v1`) —
+  Claude Sonnet 5 via the `claude` headless CLI (`-p --output-format json`) on the
+  macOS-Keychain subscription. The effort tier is a real per-call CLI flag,
+  `--effort <low|medium|high|xhigh>` (live-probed 2026-07-22, `claude` 2.1.197);
+  the JSON envelope's `.result` is unwrapped and any Markdown code fence stripped
+  to reach the inner-JSON contract the gateway validates. Requires the `claude`
+  CLI installed and `claude /login` completed. The executionPolicy strips provider
+  API keys but keeps `HOME`/`USER`/`LOGNAME`/`SHELL` so the CLI resolves its
+  subscription credentials (`USER` is required — Keychain lookup is keyed to the
+  login identity). Live-smoke evidence: `docs/v25/reports/CLAUDE_ROUTE_SMOKE_2026-07.md`.
 - **`codex`** (`src/runtime/codexRoute.ts`, id `codex-chatgpt-subscription-v1`) —
   `codex exec` on a Codex/Max subscription. Model + reasoning effort are config
-  parameters.
-- **`claude-cli`** (`src/runtime/claudeRoute.ts`, id `claude-subscription-v1`) —
-  Claude Sonnet 5 via the `claude` headless CLI (`-p --output-format json`) on a
-  `~/.claude` subscription. Effort tiers (`medium`/`high`/`xhigh`) map to the
-  `MAX_THINKING_TOKENS` budget the route contributes through the gateway's guarded
-  env merge; the JSON envelope is unwrapped to the inner-JSON contract the gateway
-  validates. The route requires the `claude` CLI installed and `claude /login`
-  completed; the executionPolicy strips provider API keys but preserves `HOME`, so
-  the CLI runs on subscription auth.
+  parameters. Retained as the fallback route.
 
 Both routes deliver the prompt on **stdin** (never argv) and run under the
-executionPolicy sandbox (env-strip, workdir policy). The active default is set in
+executionPolicy sandbox (env-strip, workdir policy). Before the first non-hermetic
+spawn the gateway qualifies the selected route's CLI (`claude --version`/`--help`
+or `codex exec --help`) fail-closed. The active default is set in
 `config/model-routing.json`; `npm run doctor` reports the resolved `v4-route`.
 
 ## Package and CI contract

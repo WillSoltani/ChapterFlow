@@ -479,7 +479,8 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(supervisor.specs.length, 7, "research, compiler, and review must cross fake process boundary");
   assert.equal(supervisor.remaining(), 0);
   for (const spec of supervisor.specs) {
-    assert.equal(spec.command, "codex");
+    // Task 7 Step 6 flip: the D1 default route is now claude-cli (Sonnet 5).
+    assert.equal(spec.command, "claude");
     assert.equal(spec.environment.OPENAI_API_KEY, undefined);
     assert.equal(spec.environment.ANTHROPIC_API_KEY, undefined);
     assert.equal(spec.environment.CHAPTERFLOW_PROVIDER, undefined);

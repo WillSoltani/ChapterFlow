@@ -11,11 +11,13 @@ export interface ModelProcessRoute {
     command: string;
     args: readonly string[];
   }>;
-  /** Optional route-supplied process env (Task 7: claude conveys its effort
-   *  tier as MAX_THINKING_TOKENS here — the CLI has no effort flag). The gateway
-   *  merges the result over the policy-built environment AFTER the env-strip and
-   *  rejects any forbidden provider key, so this is an additive, guarded channel
-   *  and can never reintroduce a stripped API key. Absent on the codex route. */
+  /** Optional route-supplied process env, a guarded additive channel: the
+   *  gateway merges the result over the policy-built environment AFTER the
+   *  env-strip and rejects any malformed name or forbidden provider key, so it
+   *  can never reintroduce a stripped API key. Unused by the shipped routes
+   *  today — the claude route conveys its effort tier via the `--effort` argv
+   *  flag, not env (live probe 2026-07-22) — but retained as defense-in-depth
+   *  for any future route that needs a non-secret env var. */
   env?(profile: ExecutionProfile): Readonly<Record<string, string>>;
   /** Optional stdout normalizer (Task 7: claude's `--output-format json`
    *  envelope is unwrapped to the inner-JSON contract the gateway validates —

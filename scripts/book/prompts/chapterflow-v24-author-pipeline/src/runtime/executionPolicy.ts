@@ -12,13 +12,18 @@ import type {
 // Task 7: no binary allowlist exists in this policy — the process command comes
 // from the selected ModelProcessRoute (codex → "codex", claude → "claude") and
 // is validated for shape only (nonempty, no NUL) in the gateway's prepareTask.
-// So the claude binary is already permitted; the env-strip below is unchanged
-// and, crucially, keeps HOME (claude's ~/.claude subscription credentials) while
-// still removing every provider API key.
-const ENV_ALLOWLIST = ["PATH", "HOME", "TMPDIR", "TMP", "TEMP", "LANG", "LC_ALL", "LC_CTYPE", "TERM"] as const;
+// So the claude binary is already permitted; the env-strip below still removes
+// every provider API key. USER/LOGNAME/SHELL and HOME are kept because the
+// claude route authenticates against the subscription credentials in the macOS
+// login Keychain, which the CLI resolves by the login identity — a live Step-5
+// smoke proved `claude -p` returns "Not logged in" when USER is stripped even
+// with HOME present. These are non-secret identity vars (the sibling codex
+// envelope's DEFAULT_ENV_ALLOWLIST already permits the same three); no provider
+// key rides here (that set is FORBIDDEN_ENV below, checked after the copy).
+const ENV_ALLOWLIST = ["PATH", "HOME", "USER", "LOGNAME", "SHELL", "TMPDIR", "TMP", "TEMP", "LANG", "LC_ALL", "LC_CTYPE", "TERM"] as const;
 /** Exported (Task 7) as the single source of truth for the route-env merge
- *  guard in modelGateway: a route-supplied env (claude's MAX_THINKING_TOKENS)
- *  may never carry any of these keys, so the env-strip stays authoritative. */
+ *  guard in modelGateway: a route-supplied env may never carry any of these
+ *  keys, so the env-strip stays authoritative. */
 export const FORBIDDEN_ENV = [
   "OPENAI_API_KEY",
   "CODEX_API_KEY",

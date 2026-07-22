@@ -171,7 +171,27 @@ async function checkModelCli(): Promise<DoctorFinding> {
     };
   }
   try {
-    const { qualifyCodexCli, assertFlagsSupported, CODEX_ROUTE_REQUIRED_FLAGS } = await import("../exec/cliQualification.js");
+    // Qualify whichever CLI the per-role config actually selects as the default
+    // production route (Task 7: generalized from codex-only). The doctor probes
+    // the DEFAULT route's binary — the route every book-run uses first.
+    const { loadModelRoutingConfig, resolveRoleRoute } = await import("../runtime/codexRoute.js");
+    const defaultRoute = resolveRoleRoute(loadModelRoutingConfig());
+    const {
+      qualifyCodexCli,
+      qualifyClaudeCli,
+      assertFlagsSupported,
+      CODEX_ROUTE_REQUIRED_FLAGS,
+      CLAUDE_ROUTE_REQUIRED_FLAGS,
+    } = await import("../exec/cliQualification.js");
+    if (defaultRoute.route === "claude-cli") {
+      const qual = await qualifyClaudeCli({ bin: "claude" });
+      assertFlagsSupported(qual, CLAUDE_ROUTE_REQUIRED_FLAGS);
+      return {
+        level: "ok",
+        check: "v4-route:model-cli",
+        message: `claude CLI qualified (version ${qual.version || "unknown"}); required flags present: ${CLAUDE_ROUTE_REQUIRED_FLAGS.join(", ")}`,
+      };
+    }
     const qual = await qualifyCodexCli({ bin: "codex" });
     assertFlagsSupported(qual, CODEX_ROUTE_REQUIRED_FLAGS);
     return {

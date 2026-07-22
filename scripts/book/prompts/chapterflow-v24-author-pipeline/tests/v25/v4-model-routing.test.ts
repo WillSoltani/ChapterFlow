@@ -57,10 +57,17 @@ requiredTest("resolveRoleRoute: role absent, undefined, or unknown falls through
 
 // ── (c) config validates against schema ─────────────────────────────────────
 
-requiredTest("shipped config/model-routing.json validates structurally and passes the tripwire", () => {
+requiredTest("shipped config/model-routing.json is the D1 Sonnet-5 defaults, no ownerOverride, and passes the tripwire", () => {
   const config = loadModelRoutingConfig();
-  assert.equal(config.defaultRoute.route, "codex");
-  assert.equal(typeof config.defaultRoute.model, "string");
+  // Task 7 Step 6 flip: every role is on the claude-cli Sonnet-5 route, effort-tiered.
+  assert.equal(config.defaultRoute.route, "claude-cli");
+  assert.equal(config.defaultRoute.model, "claude-sonnet-5");
+  assert.equal(config.ownerOverride, undefined, "the gpt-5.5 exception override must be gone after the flip");
+  for (const [role, effort] of [["research", "medium"], ["author", "high"], ["repair", "high"], ["review", "xhigh"], ["qc", "xhigh"]] as const) {
+    assert.equal(config.roles?.[role]?.route, "claude-cli", `${role} route`);
+    assert.equal(config.roles?.[role]?.model, "claude-sonnet-5", `${role} model`);
+    assert.equal(config.roles?.[role]?.effort, effort, `${role} effort`);
+  }
   assert.equal(checkModelRoutingTripwire(config).length, 0);
 });
 

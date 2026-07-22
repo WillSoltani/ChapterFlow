@@ -7,29 +7,30 @@ import type { ExecutionProfile } from "./executionPolicyTypes.js";
  * the prompt is delivered on **stdin** (never in argv, so no prompt/source
  * bytes can leak onto the command line), the model + effort tier are the only
  * per-call parameters, and the executionPolicy env-strip (API keys removed,
- * HOME preserved) leaves the CLI on its `~/.claude` subscription credentials.
+ * HOME preserved) leaves the CLI on its subscription credentials (macOS
+ * Keychain / `~/.claude`, not env keys).
  *
  * ── PROBE TRANSCRIPT (Task 7 Step 1) ────────────────────────────────────────
- * STATUS: **DERIVED, NOT LIVE-PROBED.** The `claude` CLI is not installed in
- * the implementation environment (`which claude` → not found) and this is a
- * non-interactive session with no way to run `claude /login`, so the one-time
- * live probe (`claude --version`, `claude --help`, two headless calls) and the
- * Step 5 live smoke could not be executed here. The args below are pinned from
- * the documented Claude Code headless (`-p`) CLI contract and MUST be confirmed
- * by the live probe + smoke before `config/model-routing.json` is flipped to
- * the claude-cli D1 defaults (Task 7 Step 6, deliberately left un-flipped).
- *
- * Documented contract the args rely on (confirm each in the live probe):
- *   claude -p                         headless / print mode (no REPL)
- *   --output-format json              structured envelope (see normalizeClaudeStdout)
- *   --model <id>                      e.g. claude-sonnet-5 (supplied by caller, config-sourced)
- *   --disallowedTools "*"             READ_ONLY analog: no tool use, pure JSON answer
- *   --permission-mode acceptEdits     WORKSPACE_WRITE analog: auto-approve edits in cwd
- * Effort tier → thinking budget is conveyed via the MAX_THINKING_TOKENS env var
- * (Claude Code exposes no per-call effort/thinking FLAG as of this contract), so
- * effort flows through `env()` below, not argv. If the live probe finds a real
- * effort/thinking flag, move the mapping from `thinkingBudgetEnv` into
- * `effortArgs` — everything else stays.
+ * STATUS: **LIVE-PROBED 2026-07-22** against `/opt/homebrew/bin/claude`
+ * (`claude --version` → `2.1.197 (Claude Code)`; on PATH; auth = macOS Keychain
+ * subscription creds, works headless). Findings that pin the args below:
+ *   claude -p / --print               headless / print mode (`-p, --print`)
+ *   --output-format json              structured envelope; help: `"json" (single
+ *                                     result)`, "only works with --print" — works
+ *                                     WITHOUT --verbose. See normalizeClaudeStdout.
+ *   --model <id>                      e.g. claude-sonnet-5 (resolves); caller-supplied,
+ *                                     config-sourced — never hardcoded here.
+ *   --effort <level>                  Effort level for the session; help enumerates
+ *                                     exactly (low, medium, high, xhigh, max). This
+ *                                     is a real per-call FLAG — effort rides in argv
+ *                                     (effortArgs), NOT a thinking-budget env var.
+ *   --disallowedTools "*"             READ_ONLY analog: no tool use, pure JSON answer.
+ *                                     Help spells it `--disallowedTools, --disallowed-tools
+ *                                     <tools...>` — both spellings accepted; camelCase used.
+ *   --permission-mode acceptEdits     WORKSPACE_WRITE analog: auto-approve edits in cwd.
+ *                                     Help choices include "acceptEdits". With cwd pinned
+ *                                     to the isolated attempt sub-root by executionPolicy,
+ *                                     files are written there with NO --add-dir needed.
  * ────────────────────────────────────────────────────────────────────────────
  */
 
@@ -37,23 +38,17 @@ import type { ExecutionProfile } from "./executionPolicyTypes.js";
  *  claude route" without a magic string literal. */
 export const CLAUDE_ROUTE_ID = "claude-subscription-v1";
 
-export type ClaudeEffort = "low" | "medium" | "high" | "xhigh";
+/** Effort tiers the installed `claude --effort <level>` flag accepts (live
+ *  probe 2026-07-22). RoleRoute (Task 6) constrains config to a subset of
+ *  these (low/medium/high/xhigh); "max" is accepted by the CLI and passes
+ *  through verbatim if ever supplied. */
+export type ClaudeEffort = "low" | "medium" | "high" | "xhigh" | "max";
 
-/** Effort tier → extended-thinking token budget (Task 7 Step 1 mapping;
- *  MAX_THINKING_TOKENS env var — the documented Claude Code thinking control).
- *  Adjust the numbers to live-probe findings; the mechanism (env, not flag)
- *  is the part that must be confirmed. */
-export const CLAUDE_THINKING_BUDGET_BY_EFFORT: Readonly<Record<ClaudeEffort, number>> = Object.freeze({
-  low: 4096,
-  medium: 8192,
-  high: 16384,
-  xhigh: 32768,
-});
-
-/** The env var name the thinking budget is written to. Route-supplied env is
- *  merged by the gateway AFTER the executionPolicy env-strip and is guarded so
- *  it can never reintroduce a forbidden provider key (see modelGateway). */
-export const CLAUDE_THINKING_ENV_VAR = "MAX_THINKING_TOKENS" as const;
+function normalizeEffort(effort: string): ClaudeEffort {
+  return effort === "low" || effort === "medium" || effort === "high" || effort === "xhigh" || effort === "max"
+    ? effort
+    : "high";
+}
 
 /** READ_ONLY analog of codex's `--sandbox read-only`: no tools at all, so the
  *  model can only return its JSON answer (nothing to read/write/execute). */
@@ -64,39 +59,38 @@ const READ_ONLY_LOCKDOWN_ARGS: readonly string[] = ["--disallowedTools", "*"];
  *  the isolated attempt sub-root — no `--add-dir` needed, cwd IS the grant). */
 const WORKSPACE_WRITE_ARGS: readonly string[] = ["--permission-mode", "acceptEdits"];
 
-function normalizeEffort(effort: string): ClaudeEffort {
-  return effort === "low" || effort === "medium" || effort === "high" || effort === "xhigh"
-    ? effort
-    : "high";
+/** Effort → CLI args. The installed CLI exposes `--effort <level>` (live probe),
+ *  so the effort tier rides in argv verbatim (unknown strings degrade to the
+ *  "high" tier, never NaN and never an invalid flag value). */
+export function effortArgs(effort: string): readonly string[] {
+  return ["--effort", normalizeEffort(effort)];
 }
 
-/** Effort → CLI args. Empty today: the documented headless CLI exposes no
- *  effort/thinking flag, so tiering rides on `env()` (MAX_THINKING_TOKENS). If a
- *  live probe surfaces a flag, fill this in and drop the env mapping. */
-export function effortArgs(_effort: string): readonly string[] {
-  return [];
-}
-
-/** Effort → route-supplied env (the thinking budget). Merged post-policy by the
- *  gateway; the gateway rejects any forbidden key, so this stays a security-safe
- *  additive channel. */
-export function thinkingBudgetEnv(effort: string): Readonly<Record<string, string>> {
-  const budget = CLAUDE_THINKING_BUDGET_BY_EFFORT[normalizeEffort(effort)];
-  return Object.freeze({ [CLAUDE_THINKING_ENV_VAR]: String(budget) });
+/**
+ * Strip a single Markdown code fence around the model's answer. Claude in `-p`
+ * mode very commonly returns its JSON wrapped in a ```json … ``` (or bare ```)
+ * fence (live probe 2026-07-22 — the smoke's first cooperative task came back
+ * fenced), which `JSON.parse` rejects. codex emits the bare object, so part of
+ * normalizing claude to that same contract is unwrapping the fence. If no fence
+ * is present the text is returned unchanged (so already-bare JSON is untouched).
+ */
+export function stripCodeFence(text: string): string {
+  const match = text.match(/```(?:[A-Za-z0-9_-]+)?[ \t]*\r?\n?([\s\S]*?)\r?\n?[ \t]*```/);
+  return match ? match[1]!.trim() : text;
 }
 
 /**
  * Output-envelope adapter (Task 7 Step 4). `claude --output-format json` wraps
  * the model's answer in a result envelope:
  *   {"type":"result","subtype":"success","is_error":false,
- *    "result":"<the assistant's text — our inner JSON>", "session_id":..., ...}
+ *    "result":"<the assistant's text — our inner JSON, sometimes fenced>", ...}
  * The gateway's validateOutput expects the *inner* JSON object directly (that is
  * the codex contract too — codex prints the bare final message). So we unwrap:
  * parse the envelope, and if it is a successful result whose `.result` is a
- * string, hand back exactly those bytes for validateOutput to parse. Anything
- * unexpected (not JSON, error envelope, non-string result) falls through to the
- * ORIGINAL bytes so validateOutput fails-closed on it rather than this adapter
- * throwing. */
+ * string, strip any Markdown code fence and hand back those bytes for
+ * validateOutput to parse. Anything unexpected (not JSON, error envelope,
+ * non-string result) falls through to the ORIGINAL bytes so validateOutput
+ * fails-closed on it rather than this adapter throwing. */
 export function normalizeClaudeStdout(stdout: Uint8Array): Uint8Array {
   try {
     const text = new TextDecoder("utf-8", { fatal: true }).decode(stdout);
@@ -109,7 +103,7 @@ export function normalizeClaudeStdout(stdout: Uint8Array): Uint8Array {
       const record = envelope as Record<string, unknown>;
       if (record.is_error === true) return stdout;
       if (typeof record.result === "string") {
-        return new TextEncoder().encode(record.result);
+        return new TextEncoder().encode(stripCodeFence(record.result));
       }
     }
   } catch {
@@ -121,8 +115,8 @@ export function normalizeClaudeStdout(stdout: Uint8Array): Uint8Array {
 /**
  * Construct the claude route for a resolved role route's (model, effort).
  * Mirrors createCodexRoute's shape: pure {command, args} builder plus the
- * envelope adapter and the effort→env mapping. No real process is spawned here;
- * no model literal is hardcoded (model flows in from config).
+ * envelope adapter. No real process is spawned here; no model literal is
+ * hardcoded (model flows in from config).
  */
 export function createClaudeRoute(model: string, effort: string): ModelProcessRoute {
   return Object.freeze({
@@ -131,9 +125,6 @@ export function createClaudeRoute(model: string, effort: string): ModelProcessRo
       const base = ["-p", "--output-format", "json", "--model", model, ...effortArgs(effort)];
       const mode = profile.mode === "READ_ONLY" ? READ_ONLY_LOCKDOWN_ARGS : WORKSPACE_WRITE_ARGS;
       return { command: "claude", args: [...base, ...mode] };
-    },
-    env(_profile: ExecutionProfile) {
-      return thinkingBudgetEnv(effort);
     },
     normalizeStdout(stdout: Uint8Array) {
       return normalizeClaudeStdout(stdout);
