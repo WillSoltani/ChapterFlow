@@ -446,11 +446,17 @@ jobs:
   # 14 exhaustive-deps sites); @typescript-eslint/no-floating-promises was left at
   # its default (unset) since it requires type-aware linting
   # (parserOptions.projectService) whose lint-time cost hasn't been measured yet —
-  # deferred, not part of this ratchet's correctness subset. The "ESLint
-  # correctness subset" step below runs check-eslint-correctness.mjs at ZERO
-  # tolerance for that elevated subset (plus the never-elevated
-  # no-unused-vars/no-floating-promises aliases), independent from the overall
-  # baseline comparison.
+  # deferred, not part of this ratchet's correctness subset. check-eslint-
+  # correctness.mjs (findCorrectnessHits) checks that elevated subset at ZERO
+  # tolerance (plus the never-elevated no-unused-vars/no-floating-promises
+  # aliases), independent from the overall baseline comparison. As of
+  # WS6-021's final-audit-remainder fix, scripts/ci/lint-ratchet.mjs imports
+  # and runs findCorrectnessHits() inline against the same parsed report, so
+  # `npm run lint:ratchet`/`npm run verify` locally exercise the correctness
+  # subset identically to CI, not just the baseline count. The "ESLint
+  # correctness subset" step below is a redundant, explicit re-check of the
+  # same eslint-report.json — kept for its own line in the Actions UI and as
+  # defense in depth, not because local verify misses it anymore.
   #
   # WS6-021: the baseline count and the count/compare logic both live in
   # scripts/ci/lint-ratchet.mjs (baseline read from the committed

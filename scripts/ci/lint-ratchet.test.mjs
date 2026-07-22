@@ -186,6 +186,71 @@ test("runLintRatchetCli fails closed (exit 1) when the report file does not exis
 
 // ── Non-fixture ("real") mode runs lint:infra-ci first, then eslint ──────
 
+// ── WS6-021: the zero-tolerance correctness subset runs inline too ───────
+
+test("runLintRatchetCli fails and reports a hit when the report contains a zero-tolerance correctness-rule error", () => {
+  const dir = makeTmpDir();
+  try {
+    const baselinePath = writeFixture(dir, "eslint-error-baseline", "9\n");
+    const reportPath = writeFixture(
+      dir,
+      "eslint-report.json",
+      JSON.stringify([
+        {
+          filePath: "app/foo.tsx",
+          errorCount: 1,
+          messages: [
+            { severity: 2, ruleId: "react-hooks/exhaustive-deps", line: 12 },
+          ],
+        },
+      ]),
+    );
+    const stdout = collectingWriter();
+    const stderr = collectingWriter();
+    const exitCode = runLintRatchetCli({
+      reportPath,
+      baselinePath,
+      runLintInfraCi: nullExplodingCall("npm run lint:infra-ci"),
+      runEslintReport: nullExplodingCall("npx eslint"),
+      stdout,
+      stderr,
+    });
+    // Below baseline (1 < 9) but still fails: correctness hits are
+    // independent of the baseline comparison, same as CI's separate step.
+    assert.equal(exitCode, 1);
+    assert.match(stderr.text(), /app\/foo\.tsx:12 react-hooks\/exhaustive-deps/);
+    assert.match(stderr.text(), /::error::ESLint correctness subset found 1 zero-tolerance hit/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("runLintRatchetCli prints the correctness-subset-clean marker and passes when there are no zero-tolerance hits", () => {
+  const dir = makeTmpDir();
+  try {
+    const baselinePath = writeFixture(dir, "eslint-error-baseline", "7\n");
+    const reportPath = writeFixture(
+      dir,
+      "eslint-report.json",
+      JSON.stringify([{ filePath: "a.ts", errorCount: 4, messages: [] }]),
+    );
+    const stdout = collectingWriter();
+    const stderr = collectingWriter();
+    const exitCode = runLintRatchetCli({
+      reportPath,
+      baselinePath,
+      runLintInfraCi: nullExplodingCall("npm run lint:infra-ci"),
+      runEslintReport: nullExplodingCall("npx eslint"),
+      stdout,
+      stderr,
+    });
+    assert.equal(exitCode, 0);
+    assert.match(stdout.text(), /correctness subset clean/);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
+});
+
 test("runLintRatchetCli in real mode (no reportPath) runs lint:infra-ci before generating the eslint report, and writes it to outputPath", () => {
   const dir = makeTmpDir();
   try {
