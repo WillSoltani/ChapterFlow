@@ -432,7 +432,10 @@ function parseLedger(snapshot) {
 
 function isExactRepositoryPath(value) {
   if (typeof value !== "string" || value.length === 0 || value.includes("\\")) return false;
-  if (path.posix.isAbsolute(value) || value.endsWith("/") || /[*?\[\]{}!]/.test(value)) return false;
+  // Literal [ and ] are allowed: Next.js dynamic-route directories ([bookId]) are
+  // exact repository paths here — record.path is only ever compared by string
+  // equality against git-diff output, never used as a glob or pathspec.
+  if (path.posix.isAbsolute(value) || value.endsWith("/") || /[*?{}!]/.test(value)) return false;
   return path.posix.normalize(value) === value && value !== "." && !value.startsWith("../");
 }
 

@@ -1,6 +1,16 @@
-import { test } from "node:test";
+import { test, before } from "node:test";
 import assert from "node:assert/strict";
-import { GET } from "./route";
+
+import { installServerOnlyShim } from "@/tests/_lib/server-only-shim";
+
+// The route now reaches the shared AWS client factory in _lib/aws.ts, whose
+// import chain includes `server-only` — shim it before loading the handler.
+let GET: typeof import("./route").GET;
+before(async () => {
+  const restore = installServerOnlyShim();
+  ({ GET } = await import("./route"));
+  restore();
+});
 
 // A real route-handler test: invokes the Next.js GET handler in-process and
 // asserts the contract the deploy health gate depends on.
