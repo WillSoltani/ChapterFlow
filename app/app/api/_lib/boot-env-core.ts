@@ -313,6 +313,7 @@ export function buildSyntheticRuntimeEnvironment(
         ? [requirement.names[0]]
         : requirement.names;
     for (const name of names) {
+      if (name === undefined) continue;
       synthetic[name] =
         requirement.id === "deployment-environment"
           ? deploymentEnvironment

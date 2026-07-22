@@ -52,7 +52,8 @@ export async function GET(req: Request) {
         const date = new Date(occurredAt);
         const dow = date.getUTCDay();
         const hour = date.getUTCHours();
-        heatmap[dow][hour] += 1;
+        const row = heatmap[dow];
+        if (row !== undefined) row[hour] = (row[hour] ?? 0) + 1;
       }
     }
 

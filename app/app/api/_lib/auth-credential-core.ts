@@ -32,7 +32,7 @@ export function parseBearerToken(header: string | null | undefined): string | nu
   // scheme + at least one space/tab + a non-empty token remainder.
   const match = /^Bearer[ \t]+(\S.*)$/i.exec(header.trim());
   if (!match) return null;
-  const token = match[1].trim();
+  const token = (match[1] ?? "").trim();
   return token.length > 0 ? token : null;
 }
 

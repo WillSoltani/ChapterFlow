@@ -42,10 +42,10 @@ test("filtering and sorting never mutate their input", () => {
 
 test("public catalog badges share the single Recall accent", () => {
   for (const book of [
-    { ...books[0], isFree: true },
-    { ...books[0], isNew: true },
-    { ...books[0], popular: true },
-    { ...books[0], staffPick: true },
+    { ...books[0]!, isFree: true },
+    { ...books[0]!, isNew: true },
+    { ...books[0]!, popular: true },
+    { ...books[0]!, staffPick: true },
   ]) {
     assert.equal(getBookBadge(book)?.color, "var(--accent-cyan)");
   }

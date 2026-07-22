@@ -229,7 +229,7 @@ test("a write without a signedDate carries no ordering guard/stamp", () => {
   assert.ok(!built.setParts.includes(STAMP_SET));
   assert.ok(!built.conditionParts.includes(ORDERING_GUARD));
   assert.ok(!built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"));
-  assert.doesNotMatch(built.conditionParts[0], /proSource = :stripeSource/);
+  assert.doesNotMatch(built.conditionParts[0]!, /proSource = :stripeSource/);
 });
 
 test("every Apple guard emits exactly the DynamoDB values it references", () => {

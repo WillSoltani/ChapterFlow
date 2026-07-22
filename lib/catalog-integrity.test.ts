@@ -40,7 +40,7 @@ test("flags a known fork: art-of-war (orphan) vs the-art-of-war (canonical)", ()
 
   const groups = findDuplicateTitleGroups(records);
   assert.equal(groups.length, 1);
-  const group = groups[0];
+  const group = groups[0]!;
   // The non-orphan, highest-version record is kept; the orphan is flagged.
   assert.equal(group.canonicalBookId, "the-art-of-war");
   assert.deepEqual(group.orphanBookIds, ["art-of-war"]);
@@ -72,6 +72,6 @@ test("picks the highest published version when none/both slugs are known orphans
   ];
   const groups = findDuplicateTitleGroups(records);
   assert.equal(groups.length, 1);
-  assert.equal(groups[0].canonicalBookId, "deep-work-v3");
-  assert.deepEqual(groups[0].orphanBookIds, ["deep-work-v1"]);
+  assert.equal(groups[0]!.canonicalBookId, "deep-work-v3");
+  assert.deepEqual(groups[0]!.orphanBookIds, ["deep-work-v1"]);
 });

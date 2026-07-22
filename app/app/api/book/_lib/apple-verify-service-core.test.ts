@@ -174,9 +174,9 @@ test("authenticated active purchase is bound, claimed, written, and acknowledged
     "cognito_sub_v1",
   );
   assert.equal(state.mutations.length, 1);
-  assert.equal(state.mutations[0].guard, "activate");
+  assert.equal(state.mutations[0]!.guard, "activate");
   assert.equal(
-    state.mutations[0].cancelAtPeriodEnd,
+    state.mutations[0]!.cancelAtPeriodEnd,
     undefined,
     "a transaction JWS has no renewal-status authority",
   );
@@ -524,7 +524,7 @@ for (const proSource of ["license", "admin"] as const) {
     assert.equal(response.transactionState, "active");
     assert.equal(response.entitlement.plan, "PRO");
     assert.equal(response.entitlement.proSource, proSource);
-    assert.equal(state.mutations[0].guard, "activate");
+    assert.equal(state.mutations[0]!.guard, "activate");
   });
 }
 
@@ -630,8 +630,8 @@ for (const [transactionState, patch, expectedStatus] of [
       false,
       "terminal JSON omits an unknown source instead of fabricating Apple",
     );
-    assert.equal(state.mutations[0].guard, "apple_only");
-    assert.equal(state.mutations[0].plan, "FREE");
+    assert.equal(state.mutations[0]!.guard, "apple_only");
+    assert.equal(state.mutations[0]!.plan, "FREE");
   });
 }
 
@@ -655,5 +655,5 @@ test("terminal processing cannot downgrade an authoritative Stripe entitlement",
   assert.equal(response.transactionState, "expired");
   assert.equal(response.entitlement.plan, "PRO");
   assert.equal(response.entitlement.proSource, "stripe");
-  assert.equal(state.mutations[0].guard, "apple_only");
+  assert.equal(state.mutations[0]!.guard, "apple_only");
 });

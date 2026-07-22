@@ -157,10 +157,10 @@ test("runAppleRevoke POSTs a correct signed request and reports revoked on 200",
 
   assert.deepEqual(outcome, { status: "revoked", attempts: 1 });
   assert.equal(seen.length, 1);
-  assert.equal(seen[0].url, APPLE_REVOKE_URL);
-  assert.equal(seen[0].init.method, "POST");
+  assert.equal(seen[0]!.url, APPLE_REVOKE_URL);
+  assert.equal(seen[0]!.init.method, "POST");
 
-  const body = new URLSearchParams(seen[0].init.body);
+  const body = new URLSearchParams(seen[0]!.init.body);
   assert.equal(body.get("client_id"), CONFIG.clientId);
   assert.equal(body.get("token"), "refresh-abc");
   assert.equal(body.get("token_type_hint"), "refresh_token");

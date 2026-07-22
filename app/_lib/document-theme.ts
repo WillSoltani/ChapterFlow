@@ -122,8 +122,8 @@ function pickTimeString(value: unknown, fallback: string): string {
 export function isWithinDarkWindow(from: string, to: string, now: Date = new Date()): boolean {
   const [startH, startM] = from.split(":").map(Number);
   const [endH, endM] = to.split(":").map(Number);
-  const start = startH * 60 + startM;
-  const end = endH * 60 + endM;
+  const start = (startH ?? NaN) * 60 + (startM ?? NaN);
+  const end = (endH ?? NaN) * 60 + (endM ?? NaN);
   if (Number.isNaN(start) || Number.isNaN(end)) return false;
   const mins = now.getHours() * 60 + now.getMinutes();
   return start > end ? mins >= start || mins < end : mins >= start && mins < end;

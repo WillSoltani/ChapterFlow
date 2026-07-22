@@ -45,15 +45,15 @@ function evalLeaf(
 ): boolean {
   const clause = clauseRaw.trim();
   let m = /^attribute_not_exists\(([#\w]+)\)$/.exec(clause);
-  if (m) return resolvePath(item, names, m[1]) === undefined;
+  if (m) return resolvePath(item, names, m[1]!) === undefined;
   m = /^attribute_exists\(([#\w]+)\)$/.exec(clause);
-  if (m) return resolvePath(item, names, m[1]) !== undefined;
+  if (m) return resolvePath(item, names, m[1]!) !== undefined;
   m = /^([#\w]+)\s*=\s*(:[\w]+)$/.exec(clause);
-  if (m) return resolvePath(item, names, m[1]) === values[m[2]];
+  if (m) return resolvePath(item, names, m[1]!) === values[m[2]!];
   m = /^([#\w]+)\s*<=\s*(:[\w]+)$/.exec(clause);
   if (m) {
-    const left = resolvePath(item, names, m[1]);
-    const right = values[m[2]];
+    const left = resolvePath(item, names, m[1]!);
+    const right = values[m[2]!];
     if (typeof left !== "number" || typeof right !== "number") return false;
     return left <= right;
   }
@@ -85,8 +85,8 @@ function evalGuard(
   const grouped = /^(.*?)\s+AND\s+\((.+)\)\s*$/.exec(cond.trim());
   if (grouped) {
     return (
-      evalFlat(grouped[1], names, values, item) &&
-      evalFlat(grouped[2], names, values, item)
+      evalFlat(grouped[1]!, names, values, item) &&
+      evalFlat(grouped[2]!, names, values, item)
     );
   }
   return evalFlat(cond, names, values, item);
@@ -104,8 +104,8 @@ function applySet(
     const assign = assignRaw.trim();
     const m = /^([#\w]+)\s*=\s*(:[\w]+)$/.exec(assign);
     if (!m) throw new Error(`unsupported assignment: ${assign}`);
-    const name = m[1].startsWith("#") ? (names?.[m[1]] ?? m[1]) : m[1];
-    next[name] = values[m[2]];
+    const name = m[1]!.startsWith("#") ? (names?.[m[1]!] ?? m[1]!) : m[1]!;
+    next[name] = values[m[2]!];
   }
   return next;
 }

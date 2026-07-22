@@ -38,8 +38,8 @@ test("an unaliased same-title sibling pair is flagged as an unknown fork", () =>
   ];
   const groups = findUnknownDuplicateTitleGroups(unknownFork);
   assert.equal(groups.length, 1);
-  assert.equal(groups[0].normalizedTitle, "deep work");
-  assert.deepEqual(groups[0].orphanBookIds, ["deep-work-v2"]);
+  assert.equal(groups[0]!.normalizedTitle, "deep work");
+  assert.deepEqual(groups[0]!.orphanBookIds, ["deep-work-v2"]);
 
   // A KNOWN fork (both slugs explained by the alias map) is NOT flagged:
   // "cant-hurt-me" is a key of BOOK_SLUG_ALIASES, so the group's orphan side

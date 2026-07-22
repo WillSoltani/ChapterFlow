@@ -87,12 +87,16 @@ function divergentFields(records: CatalogRecordLike[]): string[] {
 function pickCanonical(records: CatalogRecordLike[]): CatalogRecordLike {
   const nonOrphans = records.filter((r) => !isOrphanBookSlug(r.bookId));
   const pool = nonOrphans.length > 0 ? nonOrphans : records;
-  return [...pool].sort((a, b) => {
+  const [canonical] = [...pool].sort((a, b) => {
     const versionDelta =
       (b.currentPublishedVersion ?? 0) - (a.currentPublishedVersion ?? 0);
     if (versionDelta !== 0) return versionDelta;
     return a.bookId.localeCompare(b.bookId);
-  })[0];
+  });
+  if (canonical === undefined) {
+    throw new Error("pickCanonical: called with an empty record group");
+  }
+  return canonical;
 }
 
 /**

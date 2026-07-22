@@ -60,8 +60,8 @@ test("invalid required values reserve hidden error copies before blur", () => {
     ) ?? [];
 
   assert.equal(reservedErrors.length, 2);
-  assert.match(reservedErrors[0], /book title/);
-  assert.match(reservedErrors[1], /valid email address/);
+  assert.match(reservedErrors[0]!, /book title/);
+  assert.match(reservedErrors[1]!, /valid email address/);
   assert.doesNotMatch(html, /<p id="[^"]+-(?:title|email)-err"/);
 });
 

@@ -55,8 +55,8 @@ test("RecallBookRequestForm validates, trims, submits, and confirms success", as
 
   assert.equal(successes, 1);
   assert.equal(requests.length, 1);
-  assert.equal(requests[0].input, "/api/book-requests");
-  assert.deepEqual(JSON.parse(String(requests[0].init?.body)), {
+  assert.equal(requests[0]!.input, "/api/book-requests");
+  assert.deepEqual(JSON.parse(String(requests[0]!.init?.body)), {
     title: "Deep Work",
     author: "",
     email: "reader@example.com",

@@ -40,8 +40,10 @@ export function moveRadioSelectionByArrow(
   if (direction === 0) return false;
 
   const nextIndex = (currentIndex + direction + targets.length) % targets.length;
-  targets[nextIndex].focus();
-  targets[nextIndex].click();
+  const target = targets[nextIndex];
+  if (target === undefined) return false; // empty targets ⇒ NaN index
+  target.focus();
+  target.click();
   return true;
 }
 

@@ -161,6 +161,7 @@ function OverlayShell({
       }
       const first = items[0];
       const last = items[items.length - 1];
+      if (first === undefined || last === undefined) return; // items is non-empty here
       const active = document.activeElement as HTMLElement;
       if (e.shiftKey) {
         if (active === first || !panel.contains(active)) {

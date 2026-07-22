@@ -733,7 +733,7 @@ export function percentile(sortedValues: number[], p: number): number {
     sortedValues.length - 1,
     Math.max(0, Math.floor((p / 100) * sortedValues.length)),
   );
-  return sortedValues[idx];
+  return sortedValues[idx]!; // idx is clamped to [0, length-1] and length > 0 here
 }
 
 /**

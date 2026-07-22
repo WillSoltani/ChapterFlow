@@ -86,7 +86,7 @@ export async function GET(req: Request) {
 
     // Daily p50 trend for pageLoadMs
     const trend = days.map((d, i) => {
-      const dayEvents = dayResults[i].events;
+      const dayEvents = dayResults[i]?.events ?? [];
       const values = dayEvents
         .map((e) => e.pageLoadMs)
         .filter((v): v is number => typeof v === "number" && v >= 0)

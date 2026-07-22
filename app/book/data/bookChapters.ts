@@ -149,7 +149,9 @@ function normalizeQuizPrompt(prompt: string): string {
 }
 
 function pickScenarioName(seed: string): string {
-  return SCENARIO_NAMES[hashString(seed) % SCENARIO_NAMES.length];
+  // hashString is non-negative and SCENARIO_NAMES is non-empty, so the modulo is
+  // always in-bounds; SCENARIO_NAMES[0] is a provably-present tuple element.
+  return SCENARIO_NAMES[hashString(seed) % SCENARIO_NAMES.length] ?? SCENARIO_NAMES[0];
 }
 
 function normalizeScenarioPerspective(scenario: string, seed: string): string {
@@ -460,7 +462,7 @@ function normalizeQuizQuestion(
     explanation:
       strictV12
         ? authoredExplanation
-        : authoredExplanation || buildQuizExplanation(chapter, prompt, options[correctIndex], family),
+        : authoredExplanation || buildQuizExplanation(chapter, prompt, options[correctIndex] ?? "", family),
   };
 }
 
@@ -824,7 +826,11 @@ export function buildBookChapterFromRawV21(
   const bundle = buildBundle(pkg, [rawChapter], "direct", {
     suppressEmptyQuizWarning: true,
   });
-  return bundle.chapters[0];
+  const chapter = bundle.chapters[0];
+  if (chapter === undefined) {
+    throw new Error("buildBookChapterFromRawV21: buildBundle produced no chapters");
+  }
+  return chapter;
 }
 
 // ── Slim chapter metadata (replaces the former all-books corpus) ──────────────

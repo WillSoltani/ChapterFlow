@@ -144,9 +144,9 @@ test("F10 REGRESSION: a persistent write failure surfaces a DISTINCT terminal si
   );
   // Exactly one terminal signal, and it is DISTINCT from the read-failure log.
   assert.equal(errorLogs.length, 1);
-  assert.equal(errorLogs[0].event, "account_reactivation_write_failed");
-  assert.notEqual(errorLogs[0].event, "account_status_check_error");
-  assert.equal(errorLogs[0].detail.attempts, REACTIVATION_WRITE_MAX_ATTEMPTS);
+  assert.equal(errorLogs[0]!.event, "account_reactivation_write_failed");
+  assert.notEqual(errorLogs[0]!.event, "account_status_check_error");
+  assert.equal(errorLogs[0]!.detail.attempts, REACTIVATION_WRITE_MAX_ATTEMPTS);
 });
 
 test("runReactivationWrite: a Next.js redirect propagates (never retried/swallowed)", async () => {

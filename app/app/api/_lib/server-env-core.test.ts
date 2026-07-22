@@ -24,8 +24,8 @@ test("with a prefix, the prefix-scoped names come first and are tagged prefixSco
 
 test("a trailing slash on the prefix is normalized away", () => {
   const got = candidateParameterNames("SES_SENDER_EMAIL", "/chapterflow/prod/", {});
-  assert.equal(got[0].name, "/chapterflow/prod/SES_SENDER_EMAIL");
-  assert.equal(got[0].prefixScoped, true);
+  assert.equal(got[0]!.name, "/chapterflow/prod/SES_SENDER_EMAIL");
+  assert.equal(got[0]!.prefixScoped, true);
 });
 
 test("with no prefix there are no prefix-scoped candidates — only bare-name fallbacks", () => {

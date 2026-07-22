@@ -14,7 +14,7 @@ const rawPkg = JSON.parse(
   ),
 ) as unknown;
 
-const sampleRawChapter = (rawPkg as { chapters: Record<string, unknown>[] }).chapters[0];
+const sampleRawChapter = (rawPkg as { chapters: Record<string, unknown>[] }).chapters[0]!;
 
 const EXPERIENCE_PLAN = {
   failureRecovery: {
@@ -101,7 +101,7 @@ test("normalizeV21Package leaves a missing quiz correctIndex undefined (not 0)",
   const patched = { ...(rawPkg as object), chapters: [{ ...first, quiz }, ...rest] };
 
   const pkg = normalizeV21Package(patched);
-  const questions = pkg.chapters[0].quiz.questions;
+  const questions = pkg.chapters[0]!.quiz.questions;
   const missing = questions.find((q) => q.questionId === "missing");
   const present = questions.find((q) => q.questionId === "present");
   assert.ok(missing && present, "expected both fixture questions to survive normalization");
@@ -222,11 +222,11 @@ test("behaviorLoop.readerPatterns survives raw → BookChapter (local adapter + 
   const patterns = chapter.experiencePlan?.behaviorLoop?.readerPatterns;
   assert.ok(patterns, "behaviorLoop.readerPatterns must reach the reader BookChapter (local path)");
   assert.equal(patterns!.length, 2);
-  assert.equal(patterns![0].label, "When you reach for the phone first thing");
-  assert.equal(patterns![0].mapsToPlanIndex, 0);
-  assert.equal(patterns![0].mapsToExampleIndex, 1);
-  assert.equal(patterns![1].mapsToExampleIndex, 2);
-  assert.equal(patterns![1].mapsToPlanIndex, undefined, "an omitted index stays omitted");
+  assert.equal(patterns![0]!.label, "When you reach for the phone first thing");
+  assert.equal(patterns![0]!.mapsToPlanIndex, 0);
+  assert.equal(patterns![0]!.mapsToExampleIndex, 1);
+  assert.equal(patterns![1]!.mapsToExampleIndex, 2);
+  assert.equal(patterns![1]!.mapsToPlanIndex, undefined, "an omitted index stays omitted");
 });
 
 test("behaviorLoop.readerPatterns survives the API-backed path (chapterFromApi.v21Extras → BookChapter)", () => {
@@ -249,6 +249,6 @@ test("behaviorLoop.readerPatterns survives the API-backed path (chapterFromApi.v
   const patterns = chapter.experiencePlan?.behaviorLoop?.readerPatterns;
   assert.ok(patterns, "API path must carry behaviorLoop.readerPatterns onto the reader BookChapter");
   assert.equal(patterns!.length, 2);
-  assert.equal(patterns![0].id, "morning-phone-reach");
-  assert.equal(patterns![1].mapsToExampleIndex, 2);
+  assert.equal(patterns![0]!.id, "morning-phone-reach");
+  assert.equal(patterns![1]!.mapsToExampleIndex, 2);
 });

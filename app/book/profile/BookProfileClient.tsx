@@ -324,7 +324,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         if (visible.length > 0) {
-          const idx = SECTION_IDS.findIndex((s) => s.id === visible[0].target.id);
+          const idx = SECTION_IDS.findIndex((s) => s.id === visible[0]?.target.id);
           if (idx >= 0) setActiveSectionIdx(idx);
         }
       },
@@ -1363,10 +1363,10 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                   ) : localInsights.recentQuizEntries.length === 1 ? (
                     <div className="mt-4">
                       <QuizBarChart
-                        scores={[localInsights.recentQuizEntries[0].score]}
-                        avg={localInsights.recentQuizEntries[0].score}
-                        best={localInsights.recentQuizEntries[0].score}
-                        last={localInsights.recentQuizEntries[0].score}
+                        scores={[localInsights.recentQuizEntries[0]?.score ?? 0]}
+                        avg={localInsights.recentQuizEntries[0]?.score ?? 0}
+                        best={localInsights.recentQuizEntries[0]?.score ?? 0}
+                        last={localInsights.recentQuizEntries[0]?.score ?? 0}
                         trend="steady"
                       />
                       <p className="mt-2 text-xs text-(--cf-text-soft)">Complete more quizzes to see your trend</p>

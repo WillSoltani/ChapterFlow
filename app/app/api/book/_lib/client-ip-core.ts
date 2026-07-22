@@ -22,7 +22,7 @@ export function readClientIp(req: Request): string | null {
       .filter(Boolean);
     if (chain.length > 0) {
       const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
-      return chain[idx] ?? chain[chain.length - 1];
+      return chain[idx] ?? chain[chain.length - 1] ?? null;
     }
   }
   const realIp = req.headers.get("x-real-ip")?.trim();
@@ -71,7 +71,7 @@ export function coarseNetworkPrefix(ip: string | null): string | null {
   // IPv4-mapped IPv6 (e.g. ::ffff:203.0.113.7), common when an IPv4 client
   // reaches a dual-stack edge — coarsen the embedded IPv4 to its /24.
   const v4mapped = ip.match(/^::ffff:(\d{1,3}(?:\.\d{1,3}){3})$/i);
-  const effective = v4mapped ? v4mapped[1] : ip;
+  const effective = v4mapped ? v4mapped[1] ?? ip : ip;
   if (/^\d{1,3}(\.\d{1,3}){3}$/.test(effective)) {
     const octets = effective.split(".");
     if (octets.length !== 4) return null;

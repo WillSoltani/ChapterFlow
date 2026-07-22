@@ -341,7 +341,7 @@ function mergeServerChapterState(
             local.bookmarkedTakeawayTexts[key] ?? server.bookmarkedTakeawayTexts[key];
           return [key, text] as const;
         })
-        .filter(([, text]) => typeof text === "string" && text.trim().length > 0)
+        .filter((entry): entry is readonly [string, string] => typeof entry[1] === "string" && entry[1].trim().length > 0)
     ),
   };
 }

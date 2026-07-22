@@ -145,7 +145,7 @@ function toSlug(value: string): string {
 function titleizeSlug(slug: string): string {
   return slug
     .split("-")
-    .map((word) => (word ? word[0].toUpperCase() + word.slice(1) : word))
+    .map((word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : word))
     .join(" ");
 }
 

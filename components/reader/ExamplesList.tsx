@@ -369,7 +369,8 @@ export function ExamplesList({
     if (!pinnedExampleId) return examples;
     const idx = examples.findIndex((e) => e.id === pinnedExampleId);
     if (idx <= 0) return examples; // not found, or already first
-    return [examples[idx], ...examples.slice(0, idx), ...examples.slice(idx + 1)];
+    // idx came from findIndex and is guarded > 0, so it indexes a real example.
+    return [examples[idx]!, ...examples.slice(0, idx), ...examples.slice(idx + 1)];
   }, [examples, pinnedExampleId]);
 
   return (

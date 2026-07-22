@@ -30,5 +30,5 @@ export function getBookErrorMessage(error: unknown): string {
   if (error instanceof Error && error.message) {
     return error.message;
   }
-  return ERROR_MESSAGES.server_error;
+  return ERROR_MESSAGES.server_error ?? "Something went wrong. Please try again.";
 }

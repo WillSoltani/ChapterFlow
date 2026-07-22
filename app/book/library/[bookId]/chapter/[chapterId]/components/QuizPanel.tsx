@@ -644,7 +644,8 @@ export function QuizPanel({
       const seed = session.attemptNumber;
       for (let i = questions.length - 1; i > 0; i--) {
         const j = ((seed * 2654435761 + i * 40503) >>> 0) % (i + 1);
-        [questions[i], questions[j]] = [questions[j], questions[i]];
+        // Fisher-Yates: i ∈ (0, len) and j ∈ [0, i] are both in-bounds.
+        [questions[i], questions[j]] = [questions[j]!, questions[i]!];
       }
     }
     return questions;
@@ -730,7 +731,7 @@ export function QuizPanel({
         const used = (retriesUsed[questionId] ?? 0) + 1;
         setRetriesUsed((prev) => ({ ...prev, [questionId]: used }));
         setDisabledChoices((prev) => {
-          const next = new Set(prev[questionId] ?? new Set());
+          const next = new Set<string>(prev[questionId] ?? []);
           next.add(choiceId);
           return { ...prev, [questionId]: next };
         });
@@ -959,8 +960,8 @@ export function QuizPanel({
                   answerChoiceId={answers[displayQuestions[oneByOneIndex].questionId]}
                   correctChoiceId={correctByQuestion[displayQuestions[oneByOneIndex].questionId]}
                   learningMode={learningMode}
-                  onAnswer={(choiceId) => handleAnswer(displayQuestions[oneByOneIndex].questionId, choiceId)}
-                  onToggleExplanation={() => onToggleExplanation(displayQuestions[oneByOneIndex].questionId)}
+                  onAnswer={(choiceId) => handleAnswer(displayQuestions[oneByOneIndex]?.questionId ?? "", choiceId)}
+                  onToggleExplanation={() => onToggleExplanation(displayQuestions[oneByOneIndex]?.questionId ?? "")}
                   explanationOpen={Boolean(explanationOpen[displayQuestions[oneByOneIndex].questionId])}
                   feedbackState={questionFeedback[displayQuestions[oneByOneIndex].questionId] ?? null}
                   disabledChoices={disabledChoices[displayQuestions[oneByOneIndex].questionId] ?? new Set()}

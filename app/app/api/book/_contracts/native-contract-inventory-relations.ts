@@ -216,9 +216,10 @@ function routeFromSourceExpression(expression: string, routeTemplate: string): s
   let normalized = "";
   for (let index = 0; index < interpolations.length; index += 1) {
     const interpolation = interpolations[index];
+    if (interpolation === undefined) continue; // index ∈ [0, interpolations.length)
     normalized += sourcePath.slice(cursor, interpolation.index);
     normalized += placeholders[index];
-    cursor = (interpolation.index ?? 0) + interpolation[0].length;
+    cursor = (interpolation.index ?? 0) + (interpolation[0]?.length ?? 0);
   }
   return normalized + sourcePath.slice(cursor);
 }
@@ -615,13 +616,13 @@ function parseProducerEvidence(
       `iOS relational inventory ${operationId} requires exactly one native producer evidence entry`
     );
   }
-  const match = /^([^@]+)@(Packages\/.+\/Sources\/.+\.swift):([1-9][0-9]*)$/.exec(evidence[0]);
+  const match = /^([^@]+)@(Packages\/.+\/Sources\/.+\.swift):([1-9][0-9]*)$/.exec(evidence[0] ?? "");
   if (!match) {
     throw new Error(
       `iOS relational inventory ${operationId} producer evidence must end in one numeric source line: ${evidence[0]}`
     );
   }
-  return { producerSymbol: match[1], producerSourcePath: match[2] };
+  return { producerSymbol: match[1] ?? "", producerSourcePath: match[2] ?? "" };
 }
 
 function deriveBackendRelations(

@@ -149,7 +149,7 @@ export function useReaderExamples({
         exampleIndex >= 0 &&
         exampleIndex < authored.length
       ) {
-        setPinnedExampleId(authored[exampleIndex].id);
+        setPinnedExampleId(authored[exampleIndex]!.id); // guarded 0 ≤ exampleIndex < length
         if (exampleFilter !== "all") setExampleFilter("all");
       } else {
         if (exampleIndex !== undefined) {
@@ -162,7 +162,7 @@ export function useReaderExamples({
       const plans = chapter?.implementationPlan?.ifThenPlans ?? [];
       const planIndex = pattern.mapsToPlanIndex;
       if (planIndex !== undefined && planIndex >= 0 && planIndex < plans.length) {
-        setPlanFromPattern(plans[planIndex].plan);
+        setPlanFromPattern(plans[planIndex]!.plan); // guarded 0 ≤ planIndex < length
       } else {
         if (planIndex !== undefined) {
           console.warn(

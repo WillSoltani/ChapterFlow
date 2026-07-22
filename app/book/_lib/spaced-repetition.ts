@@ -34,7 +34,7 @@ export type ReviewItem = {
 };
 
 function toDateString(date: Date): string {
-  return date.toISOString().split("T")[0];
+  return date.toISOString().split("T")[0] ?? "";
 }
 
 /** Local date string (YYYY-MM-DD) for daily count tracking — resets at local midnight */
@@ -209,7 +209,8 @@ export function processReviewAnswer(
     if (item.consecutiveCorrect >= INTERVALS.length) {
       item.mastered = true;
     } else {
-      const nextInterval = INTERVALS[item.consecutiveCorrect];
+      // consecutiveCorrect < INTERVALS.length is guaranteed by the branch above.
+      const nextInterval = INTERVALS[item.consecutiveCorrect]!;
       item.intervalDays = nextInterval;
       item.nextReviewDate = toDateString(addDays(new Date(), nextInterval));
     }

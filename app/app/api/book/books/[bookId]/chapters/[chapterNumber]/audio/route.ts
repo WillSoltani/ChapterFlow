@@ -640,14 +640,17 @@ async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<u
       // Patch results — handle both fulfilled and rejected
       for (let i = 0; i < missingBody.length; i++) {
         const result = generated[i];
-        const idx = loadResults.indexOf(missingBody[i]);
-        if (idx >= 0 && result.status === "fulfilled" && result.value) {
-          loadResults[idx].buffer = result.value;
-          audioDebug(`[audio] Generated ${missingBody[i].bodyType}: ${missingBody[i].key} (${result.value.length} bytes)`);
+        const seg = missingBody[i];
+        if (result === undefined || seg === undefined) continue; // i ∈ [0, missingBody.length)
+        const idx = loadResults.indexOf(seg);
+        const target = idx >= 0 ? loadResults[idx] : undefined;
+        if (target && result.status === "fulfilled" && result.value) {
+          target.buffer = result.value;
+          audioDebug(`[audio] Generated ${seg.bodyType}: ${seg.key} (${result.value.length} bytes)`);
         } else if (result.status === "rejected") {
-          logger.error("audio_generate_segment_failed", { bodyType: missingBody[i].bodyType, err: result.reason });
+          logger.error("audio_generate_segment_failed", { bodyType: seg.bodyType, err: result.reason });
         } else {
-          audioDebug(`[audio] No content for ${missingBody[i].bodyType} (empty chapter section)`);
+          audioDebug(`[audio] No content for ${seg.bodyType} (empty chapter section)`);
         }
       }
     }

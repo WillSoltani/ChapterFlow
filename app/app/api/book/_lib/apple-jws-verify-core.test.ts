@@ -143,6 +143,7 @@ test("notification parser preserves bundle, appAppleId, and environment", () => 
 test("tampered payload and signature are rejected", async () => {
   const jws = await signWithLeaf(SAMPLE_TX);
   const [header, , signature] = jws.split(".");
+  assert.ok(header !== undefined && signature !== undefined);
   const forgedPayload = Buffer.from(
     JSON.stringify({ ...SAMPLE_TX, productId: "chapterflow.pro.HIJACKED" }),
   ).toString("base64url");

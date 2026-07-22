@@ -66,7 +66,7 @@ test("every required_status_checks context is a real ci.yml job `name:`", () => 
   // Job display names are declared as `    name: <Display Name>` under each
   // job id in ci.yml.
   const declaredNames = new Set(
-    [...ciYml.matchAll(/^\s{4}name:\s*(.+)\s*$/gm)].map((m) => m[1].trim()),
+    [...ciYml.matchAll(/^\s{4}name:\s*(.+)\s*$/gm)].map((m) => m[1]!.trim()),
   );
 
   for (const context of contexts) {

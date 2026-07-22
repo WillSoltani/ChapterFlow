@@ -91,8 +91,8 @@ test("happy redeem: guard invoked once, key reaches redeemLicenseKey", async () 
   assert.equal(guard.requireActiveBookUser.calls.length, 1);
   assert.equal(redeemSpy.calls.length, 1);
   // field-reaches-core seam: the parsed, normalized key is redeemed.
-  assert.equal(redeemSpy.calls[0][1].code, VALID_KEY);
-  assert.equal(redeemSpy.calls[0][1].userId, "user-1");
+  assert.equal(redeemSpy.calls[0]![1]!.code, VALID_KEY);
+  assert.equal(redeemSpy.calls[0]![1]!.userId, "user-1");
 });
 
 test("guard error maps to 403 account_deleted; key never redeemed", async () => {

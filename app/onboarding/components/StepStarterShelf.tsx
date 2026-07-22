@@ -127,7 +127,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         buttonSwipeRef={buttonSwipeRef}
         deckEmpty={deckEmpty}
         fillerPicks={fillerPicks}
-        frontBook={frontBook}
+        frontBook={frontBook ?? null}
         onContinueWithPicks={handleContinueWithPicks}
         onSwipe={handleSwipe}
         reducedMotion={reducedMotion}

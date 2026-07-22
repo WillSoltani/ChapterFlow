@@ -26,10 +26,10 @@ test("one record per individual refund, using each refund's own amount (not cumu
     ],
   );
   // currency uppercased, chargeId + customer carried, createdUnix from the refund
-  assert.equal(records[0].currency, "CAD");
-  assert.equal(records[0].chargeId, "ch_1");
-  assert.equal(records[0].stripeCustomerId, "cus_1");
-  assert.equal(records[0].createdUnix, 2000);
+  assert.equal(records[0]!.currency, "CAD");
+  assert.equal(records[0]!.chargeId, "ch_1");
+  assert.equal(records[0]!.stripeCustomerId, "cus_1");
+  assert.equal(records[0]!.createdUnix, 2000);
 });
 
 test("no refunds list → ONE record keyed by the unique event id (not charge id), cumulative amount", () => {
@@ -43,11 +43,11 @@ test("no refunds list → ONE record keyed by the unique event id (not charge id
   const records = buildRefundRecords(charge, "evt_42", "CAD");
   assert.equal(records.length, 1);
   // keyed by event id so repeated partial refunds don't collide on charge id
-  assert.equal(records[0].eventId, "evt_42");
-  assert.equal(records[0].amountCents, 799);
-  assert.equal(records[0].status, "refunded");
-  assert.equal(records[0].reason, null);
-  assert.equal(records[0].createdUnix, 1000);
+  assert.equal(records[0]!.eventId, "evt_42");
+  assert.equal(records[0]!.amountCents, 799);
+  assert.equal(records[0]!.status, "refunded");
+  assert.equal(records[0]!.reason, null);
+  assert.equal(records[0]!.createdUnix, 1000);
 });
 
 test("currency falls back refund → charge → default; null customer tolerated", () => {
@@ -57,8 +57,8 @@ test("currency falls back refund → charge → default; null customer tolerated
     refunds: { data: [{ id: "re_9" }] }, // no amount/currency/reason
   };
   const records = buildRefundRecords(charge, "evt_2", "CAD");
-  assert.equal(records[0].amountCents, 0);
-  assert.equal(records[0].currency, "CAD"); // default, since neither refund nor charge had one
-  assert.equal(records[0].stripeCustomerId, null);
-  assert.equal(records[0].status, "succeeded");
+  assert.equal(records[0]!.amountCents, 0);
+  assert.equal(records[0]!.currency, "CAD"); // default, since neither refund nor charge had one
+  assert.equal(records[0]!.stripeCustomerId, null);
+  assert.equal(records[0]!.status, "succeeded");
 });

@@ -38,8 +38,8 @@ export async function GET(req: Request) {
       for (const e of events) {
         const email = e.email;
         if (typeof email === "string" && email.includes("@")) {
-          const domain = email.split("@")[1].toLowerCase();
-          domainCounts.set(domain, (domainCounts.get(domain) ?? 0) + 1);
+          const domain = email.split("@")[1]?.toLowerCase();
+          if (domain) domainCounts.set(domain, (domainCounts.get(domain) ?? 0) + 1);
         }
       }
     }

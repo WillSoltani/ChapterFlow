@@ -40,7 +40,7 @@ function patchedPackageWithQuiz() {
  */
 test("adaptV21ToV13 leaves a missing quiz correctIndex undefined (not 0)", () => {
   const pkg = adaptV21ToV13(patchedPackageWithQuiz());
-  const questions = pkg.chapters[0].quiz.questions;
+  const questions = pkg.chapters[0]!.quiz.questions;
   const missing = questions.find((q) => q.questionId === "missing");
   const present = questions.find((q) => q.questionId === "present");
   assert.ok(missing && present, "expected both fixture questions to survive adaptation");

@@ -110,9 +110,9 @@ test("happy submit: guard invoked; answers reach completeLearningLoop", async ()
   assert.equal(guard.requireActiveBookUser.calls.length, 1);
   assert.equal(completeLearningLoop.calls.length, 1);
   // field-reaches-core seam: the parsed responses + route params reach the core.
-  assert.deepEqual(completeLearningLoop.calls[0][0].responses, answers);
-  assert.equal(completeLearningLoop.calls[0][0].bookId, "b1");
-  assert.equal(completeLearningLoop.calls[0][0].chapterNumber, 1);
+  assert.deepEqual(completeLearningLoop.calls[0]![0]!.responses, answers);
+  assert.equal(completeLearningLoop.calls[0]![0]!.bookId, "b1");
+  assert.equal(completeLearningLoop.calls[0]![0]!.chapterNumber, 1);
 });
 
 test("guard error maps to 403 account_deleted; submit never called", async () => {

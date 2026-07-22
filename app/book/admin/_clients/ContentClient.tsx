@@ -67,7 +67,7 @@ export function ContentClient() {
     for (const s of data.scenarioSubmissions) map[s.date] = { date: s.date, submitted: s.value, approved: 0 };
     for (const a of data.scenarioApprovals) {
       if (!map[a.date]) map[a.date] = { date: a.date, submitted: 0, approved: 0 };
-      map[a.date].approved = a.value;
+      map[a.date]!.approved = a.value; // assigned above if absent
     }
     return Object.values(map).sort((a, b) => a.date.localeCompare(b.date));
   }, [data]);

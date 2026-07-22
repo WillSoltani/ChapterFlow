@@ -122,7 +122,7 @@ test("list + filter: highlights filter by bookId and chapter like the other entr
   assert.equal(store.list({ bookId: "atomic-habits" }).length, 2);
   assert.equal(store.list({ chapter: 3 }).length, 2);
   assert.equal(store.list({ bookId: "atomic-habits", chapter: 3 }).length, 1);
-  assert.equal(store.list({ bookId: "atomic-habits", chapter: 3 })[0].bookId, "atomic-habits");
+  assert.equal(store.list({ bookId: "atomic-habits", chapter: 3 })[0]!.bookId, "atomic-habits");
   // absent filters (null) match everything — GET back-compat
   assert.equal(store.list({ bookId: null, chapter: null }).length, 3);
 });

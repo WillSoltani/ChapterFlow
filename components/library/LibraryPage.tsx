@@ -54,7 +54,7 @@ export function LibraryPage() {
   const { savedSet, toggleSaved } = useSavedBooks(true);
 
   const firstName = useMemo(
-    () => (identity.givenName || identity.displayName || "Reader").split(" ")[0],
+    () => (identity.givenName || identity.displayName || "Reader").split(" ")[0] ?? "Reader",
     [identity.givenName, identity.displayName],
   );
 

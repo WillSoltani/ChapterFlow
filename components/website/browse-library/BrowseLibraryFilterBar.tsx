@@ -28,7 +28,7 @@ export function BrowseLibraryFilterBar({
     const el = sentinelRef.current;
     if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => setIsSticky(!entry.isIntersecting),
+      ([entry]) => setIsSticky(!entry?.isIntersecting),
       { threshold: 0, rootMargin: "-64px 0px 0px 0px" },
     );
     observer.observe(el);

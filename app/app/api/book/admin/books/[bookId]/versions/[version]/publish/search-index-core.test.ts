@@ -60,8 +60,8 @@ test("REFUSES the write when a per-chapter read failed", () => {
   assert.equal(decision.write, false);
   if (decision.write === false) {
     assert.equal(decision.details.failureCount, 1);
-    assert.equal(decision.details.failures[0].scope, "chapter");
-    assert.equal(decision.details.failures[0].chapterNumber, 3);
+    assert.equal(decision.details.failures[0]!.scope, "chapter");
+    assert.equal(decision.details.failures[0]!.chapterNumber, 3);
   }
 });
 

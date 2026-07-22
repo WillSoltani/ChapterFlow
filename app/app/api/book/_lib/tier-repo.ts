@@ -81,13 +81,19 @@ function getTierIndex(tier: TierName): number {
 }
 
 export function getTierDefinition(tier: TierName): TierDefinition {
-  return TIER_DEFINITIONS.find((t) => t.name === tier) ?? TIER_DEFINITIONS[0];
+  const found = TIER_DEFINITIONS.find((t) => t.name === tier) ?? TIER_DEFINITIONS[0];
+  if (found === undefined) {
+    throw new Error("getTierDefinition: TIER_DEFINITIONS is empty");
+  }
+  return found;
 }
 
 export function getNextTier(currentTier: TierName): TierDefinition | null {
   const idx = getTierIndex(currentTier);
   if (idx < 0 || idx >= TIER_ORDER.length - 1) return null;
-  return getTierDefinition(TIER_ORDER[idx + 1]);
+  const nextTier = TIER_ORDER[idx + 1];
+  if (nextTier === undefined) return null;
+  return getTierDefinition(nextTier);
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -311,6 +317,7 @@ export async function updateTierOnLoopComplete(
 
     for (let i = currentIdx + 1; i <= qualifiedIdx; i++) {
       const tierName = TIER_ORDER[i];
+      if (tierName === undefined) continue; // i ≤ qualifiedIdx < TIER_ORDER.length
       if (!tier.tiersAdvanced.includes(tierName)) {
         const def = getTierDefinition(tierName);
         if (def.advancementIP > 0) {

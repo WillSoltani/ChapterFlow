@@ -95,7 +95,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
           ? cs.font
           : `${cs.fontStyle} ${cs.fontWeight} ${cs.fontSize} ${cs.fontFamily}`;
       const cm = (cs.color.match(/\d+/g) || []).map(Number);
-      if (cm.length >= 3) rgb = [cm[0], cm[1], cm[2]];
+      if (cm.length >= 3) rgb = [cm[0] ?? 0, cm[1] ?? 0, cm[2] ?? 0];
       fs = parseFloat(cs.fontSize) || 48;
       const probeCanvas = document.createElement("canvas");
       const probe = probeCanvas.getContext("2d");
@@ -128,7 +128,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
       points = [];
       for (let y = 0; y < off.height; y += step) {
         for (let x = 0; x < off.width; x += step) {
-          if (data[(y * off.width + x) * 4 + 3] > 78) {
+          if ((data[(y * off.width + x) * 4 + 3] ?? 0) > 78) {
             const hx = x / dpr;
             const hy = y / dpr;
             points.push({
@@ -201,6 +201,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
       ctx.globalCompositeOperation = "source-over";
       for (let i = 0; i < points.length; i++) {
         const p = points[i];
+        if (p === undefined) continue; // i ∈ [0, points.length)
         if (p.rel === 0) {
           // At rest (with a faint shimmer); pick up dust the gust front passes.
           if (
@@ -247,6 +248,7 @@ export function DissolveWord({ text }: DissolveWordProps) {
         ctx.globalCompositeOperation = "lighter";
         for (let i = 0; i < lighterDraws.length; i++) {
           const d = lighterDraws[i];
+          if (d === undefined) continue; // i ∈ [0, lighterDraws.length)
           ctx.fillStyle = dust(d[2]);
           ctx.fillRect(d[0], d[1], 1.7, 1.7);
         }

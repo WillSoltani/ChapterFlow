@@ -30,7 +30,7 @@ test("emits exactly one line of well-formed JSON per call", () => {
   logger.info("something_happened", { count: 3 });
   restore();
   assert.equal(lines.length, 1);
-  const { level, record } = lines[0];
+  const { level, record } = lines[0]!;
   assert.equal(level, "info");
   assert.equal(record.level, "info");
   assert.equal(record.event, "something_happened");
@@ -63,8 +63,8 @@ test("requestId is injected from the ALS request context", () => {
   });
   logger.info("out_of_context");
   restore();
-  assert.equal(lines[0].record.requestId, "trace-123");
-  assert.equal("requestId" in lines[1].record, false);
+  assert.equal(lines[0]!.record.requestId, "trace-123");
+  assert.equal("requestId" in lines[1]!.record, false);
 });
 
 test("an explicit requestId field overrides the ambient context", () => {
@@ -73,7 +73,7 @@ test("an explicit requestId field overrides the ambient context", () => {
     logger.warn("override_event", { requestId: "explicit" });
   });
   restore();
-  assert.equal(lines[0].record.requestId, "explicit");
+  assert.equal(lines[0]!.record.requestId, "explicit");
 });
 
 test("an Error `err` field is normalized to {name, message} with stack in dev", () => {
@@ -83,7 +83,7 @@ test("an Error `err` field is normalized to {name, message} with stack in dev", 
   logger.error("boom", { err: new TypeError("kaboom") });
   restore();
   setNodeEnv(prev);
-  const err = lines[0].record.err as Record<string, unknown>;
+  const err = lines[0]!.record.err as Record<string, unknown>;
   assert.equal(err.name, "TypeError");
   assert.equal(err.message, "kaboom");
   assert.equal(typeof err.stack, "string");
@@ -93,7 +93,7 @@ test("Error message is capped at 300 chars with an ellipsis", () => {
   const { lines, restore } = capture();
   logger.error("long", { err: new Error("x".repeat(500)) });
   restore();
-  const err = lines[0].record.err as Record<string, unknown>;
+  const err = lines[0]!.record.err as Record<string, unknown>;
   const message = err.message as string;
   // 300 characters + the single-char ellipsis.
   assert.equal(message.length, 301);
@@ -108,7 +108,7 @@ test("stack is suppressed when NODE_ENV=production", () => {
   logger.error("prod_err", { err: new Error("nope") });
   restore();
   setNodeEnv(prev);
-  const err = lines[0].record.err as Record<string, unknown>;
+  const err = lines[0]!.record.err as Record<string, unknown>;
   assert.equal(err.name, "Error");
   assert.equal(err.message, "nope");
   assert.equal("stack" in err, false);
@@ -118,5 +118,5 @@ test("a non-Error `err` value passes through untouched", () => {
   const { lines, restore } = capture();
   logger.warn("string_err", { err: "just a string" });
   restore();
-  assert.equal(lines[0].record.err, "just a string");
+  assert.equal(lines[0]!.record.err, "just a string");
 });

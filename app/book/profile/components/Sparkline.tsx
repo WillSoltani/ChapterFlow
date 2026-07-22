@@ -22,7 +22,7 @@ export function Sparkline({ data }: { data: number[] }) {
   const line = `M${points.join(" L")}`;
   const area = `${line} L${w},${h} L0,${h} Z`;
   const lastX = w;
-  const lastY = h - padY - ((data[data.length - 1] / max) * (h - padY * 2));
+  const lastY = h - padY - (((data[data.length - 1] ?? 0) / max) * (h - padY * 2));
 
   return (
     <svg ref={svgRef} width={w} height={h} viewBox={`0 0 ${w} ${h}`} className="w-full max-w-[200px]" aria-label="Daily reading sparkline">

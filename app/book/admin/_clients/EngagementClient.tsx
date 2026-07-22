@@ -82,7 +82,7 @@ export function EngagementClient() {
     for (const a of data.quizAttempts) map[a.date] = { date: a.date, attempts: a.value, passes: 0 };
     for (const p of data.quizPasses) {
       if (!map[p.date]) map[p.date] = { date: p.date, attempts: 0, passes: 0 };
-      map[p.date].passes = p.value;
+      map[p.date]!.passes = p.value; // assigned above if absent
     }
     return Object.values(map).sort((a, b) => a.date.localeCompare(b.date));
   }, [data]);
