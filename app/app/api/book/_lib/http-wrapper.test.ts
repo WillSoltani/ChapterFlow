@@ -339,3 +339,52 @@ test("withBookApiErrors maps VERIFIER_UNAVAILABLE to 503 verifier_unavailable", 
   const json = (await res.json()) as { error?: { code?: string } };
   assert.equal(json.error?.code, "verifier_unavailable");
 });
+
+// ─── AWS throttle → 503 throttled mapping (WS4-021) ────────────────────────
+
+test("a ProvisionedThroughputExceededException maps to 503 throttled with Retry-After, not 500", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw Object.assign(new Error("rate exceeded"), {
+      name: "ProvisionedThroughputExceededException",
+      $metadata: { httpStatusCode: 400 },
+    });
+  });
+  assert.equal(res.status, 503);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "throttled");
+  assert.equal(res.headers.get("Retry-After"), "1");
+});
+
+test("an S3 SlowDown maps to 503 throttled with Retry-After", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw Object.assign(new Error("slow down"), {
+      name: "SlowDown",
+      $metadata: { httpStatusCode: 503 },
+    });
+  });
+  assert.equal(res.status, 503);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "throttled");
+  assert.equal(res.headers.get("Retry-After"), "1");
+});
+
+test("a BookApiError(429, rate_limited) keeps its 429 envelope (no reclassification)", async () => {
+  const { BookApiError } = await import("./errors");
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new BookApiError(429, "rate_limited", "Too many requests.");
+  });
+  assert.equal(res.status, 429);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "rate_limited");
+  assert.equal(res.headers.get("Retry-After"), null);
+});
+
+test("an unknown non-AWS error still maps to 500 server_error with no Retry-After", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new Error("boom");
+  });
+  assert.equal(res.status, 500);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "server_error");
+  assert.equal(res.headers.get("Retry-After"), null);
+});

@@ -9,6 +9,7 @@ import { isHeaderAuthenticatedRequest } from "@/app/app/api/_lib/auth-credential
 import { logger } from "@/lib/logging/logger";
 import { runWithRequestContext } from "@/lib/logging/request-context";
 import { BookApiError, isBookApiError } from "./errors";
+import { classifyRetryableAwsError } from "./aws-retryable-error-core";
 import { getAppBaseUrl } from "./env";
 import {
   evaluateSameOrigin,
@@ -246,6 +247,28 @@ export async function withBookApiErrors<T>(
 
       const name = error instanceof Error ? error.name : "UnknownError";
       const message = error instanceof Error ? error.message : String(error);
+
+      // AWS SDK throttling (DynamoDB ProvisionedThroughputExceeded, S3
+      // SlowDown, etc.) is a transient upstream-capacity signal, not an
+      // unhandled bug — surface it as a retryable 503 with a Retry-After
+      // hint instead of the generic 500. `logger.warn` (not `.error`) and NO
+      // `reportUnhandledError` call: throttling must not trip the OpsFailure
+      // alarm that unhandled 500s do.
+      const throttle = classifyRetryableAwsError(error);
+      if (throttle) {
+        logger.warn("book_api_upstream_throttled", { name, requestId });
+        const res = bookErr(
+          req,
+          503,
+          "throttled",
+          "The service is temporarily busy. Please retry.",
+          undefined,
+          requestId
+        );
+        res.headers.set("Retry-After", String(throttle.retryAfterSeconds));
+        return res;
+      }
+
       // Cap the message so a runaway error string can't bloat the log line, and
       // never log the full stack in production: stacks can incidentally surface
       // identifiers, and CloudWatch is for correlation, not forensic dumps. In

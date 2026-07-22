@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-15T03:48:02-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "da7d01ba08af1fbc3cab200a094da0f3511fb105e62610d1eef3f6fce984e007",
+    "generatorTreeDigest": "9eb83381846c1d3ead9ef1b3521e838626b8df009ad17e081e6dfaf053335454",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -297,6 +297,12 @@
         "notes": "The JWKS verifier could not reach a validity decision."
       },
       {
+        "status": 503,
+        "code": "throttled",
+        "retryable": true,
+        "notes": "An upstream AWS SDK throttle (e.g. DynamoDB ProvisionedThroughputExceeded, S3 SlowDown) was classified by classifyRetryableAwsError and surfaced with a Retry-After header."
+      },
+      {
         "status": 500,
         "code": "server_error",
         "retryable": true,
@@ -308,10 +314,10 @@
     "implemented": false,
     "fixtureCount": 0,
     "evidence": [
-      "app/app/api/book/_lib/http.ts bookErr emits only the JSON error envelope",
-      "behavior source revision 968ff67 has no native-route Retry-After header contract"
+      "app/app/api/book/_lib/http.ts withBookApiErrors sets a Retry-After header only on the 503 throttled path (classifyRetryableAwsError)",
+      "behavior source revision 968ff67 has no native-route Retry-After header contract for any other error"
     ],
-    "gap": "Rate-limit responses do not currently define a stable Retry-After header, so no fixture is invented."
+    "gap": "Only the AWS-throttle 503 sets Retry-After today; per-operation native fixtures for it, and for a 429 rate_limited Retry-After, are not yet captured."
   },
   "authorityProofSummary": {
     "structuralFixtureVerifiedOperationCount": 52,
@@ -436,7 +442,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -561,7 +567,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -761,7 +767,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
@@ -1198,7 +1204,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
@@ -1481,7 +1487,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -1775,7 +1781,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -1938,7 +1944,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -2142,7 +2148,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -2347,7 +2353,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -2680,7 +2686,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -2981,7 +2987,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -3320,7 +3326,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -3449,7 +3455,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -3674,7 +3680,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -3908,7 +3914,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -4129,7 +4135,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -4342,7 +4348,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -4664,7 +4670,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -4870,7 +4876,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -5094,7 +5100,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -5323,7 +5329,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -5560,7 +5566,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -5773,7 +5779,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -6011,7 +6017,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -6250,7 +6256,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -6473,7 +6479,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -6693,7 +6699,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -6910,7 +6916,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -7144,7 +7150,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -7542,7 +7548,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -7787,7 +7793,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -8033,7 +8039,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -8262,7 +8268,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -8484,7 +8490,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -8710,7 +8716,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -8841,7 +8847,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -9057,7 +9063,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -9533,7 +9539,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -9781,7 +9787,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -9921,7 +9927,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -10198,7 +10204,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -10334,7 +10340,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -10458,7 +10464,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -10662,7 +10668,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/_lib/auth.ts",
@@ -10798,7 +10804,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/_lib/auth.ts",
@@ -11064,7 +11070,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -11199,7 +11205,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -11403,7 +11409,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -11629,7 +11635,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -11858,7 +11864,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -12060,7 +12066,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -12276,7 +12282,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -12488,7 +12494,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -12703,7 +12709,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -12923,7 +12929,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -13156,7 +13162,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/_lib/auth.ts",
@@ -13381,7 +13387,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -13583,7 +13589,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/_lib/auth.ts",
@@ -13836,7 +13842,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -14054,7 +14060,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -14185,7 +14191,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -14387,7 +14393,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -14604,7 +14610,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -14814,7 +14820,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -15024,7 +15030,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -15266,7 +15272,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/config/ios/config-core.ts",
@@ -15463,7 +15469,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -15679,7 +15685,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -15979,7 +15985,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -16192,7 +16198,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -16452,7 +16458,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -16688,7 +16694,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -16813,7 +16819,7 @@
             {
               "path": "app/app/api/book/_lib/http.ts",
               "role": "error_envelope",
-              "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+              "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -17028,7 +17034,7 @@
           {
             "path": "app/app/api/book/_lib/http.ts",
             "role": "error_envelope",
-            "sourceSha256": "26259485ed8b7e08804c8284df4d37438c64398d61dc46b577523a26885e74d3"
+            "sourceSha256": "0f98ac0b3a60ba477f660ba72aa0d018a74411788883d63c55148bc40d30d535"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",

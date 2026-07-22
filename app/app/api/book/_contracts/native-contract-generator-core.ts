@@ -429,6 +429,13 @@ export function buildNativeContractBundle(
           notes: "The JWKS verifier could not reach a validity decision.",
         },
         {
+          status: 503,
+          code: "throttled",
+          retryable: true,
+          notes:
+            "An upstream AWS SDK throttle (e.g. DynamoDB ProvisionedThroughputExceeded, S3 SlowDown) was classified by classifyRetryableAwsError and surfaced with a Retry-After header.",
+        },
+        {
           status: 500,
           code: "server_error",
           retryable: true,
@@ -440,10 +447,10 @@ export function buildNativeContractBundle(
       implemented: false,
       fixtureCount: 0,
       evidence: [
-        "app/app/api/book/_lib/http.ts bookErr emits only the JSON error envelope",
-        "behavior source revision 968ff67 has no native-route Retry-After header contract",
+        "app/app/api/book/_lib/http.ts withBookApiErrors sets a Retry-After header only on the 503 throttled path (classifyRetryableAwsError)",
+        "behavior source revision 968ff67 has no native-route Retry-After header contract for any other error",
       ],
-      gap: "Rate-limit responses do not currently define a stable Retry-After header, so no fixture is invented.",
+      gap: "Only the AWS-throttle 503 sets Retry-After today; per-operation native fixtures for it, and for a 429 rate_limited Retry-After, are not yet captured.",
     },
     authorityProofSummary: {
       structuralFixtureVerifiedOperationCount: authorityOperations.filter(
