@@ -36,3 +36,6 @@ There is no per-env account variable anywhere in infra/.
   `chapterflow-backend-stack.ts`).
 - The freshness gate lives in CI, not in infra/ code — a local `cdk synth`
   will not catch a stale bundle.
+- `@types/node` is pinned to ^20 to match the NODEJS_20_X Lambda deploy runtime
+  and CI's `node-version: 20`. Do not bump its major ahead of the runtime —
+  `.github/dependabot.yml` already ignores `@types/node` semver-major for /infra.
