@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { chapterClearsPath, checkSweep, sweepHistoryPath, sweepRecordPath, sweepTextureAdvisories, writeSweepAttestation } from "../src/qc/sweep.js";
@@ -11,6 +11,8 @@ import { makeChapter, STATE_CHAPTERS, TMP_DIR, writeFixtureBook } from "./helper
 
 const BOOK = "zz-fixture-sweep-file";
 const ROUND = "r-sweep-file";
+const SHARED_QC_DIRS = [QC_ORCHESTRATOR_DIR, resolve(QC_ORCHESTRATOR_DIR, "..", "qc-packs"), resolve(QC_ORCHESTRATOR_DIR, "..", "qc-rounds")]
+  .map((path) => ({ path, existed: existsSync(path) }));
 
 function cleanup(): void {
   for (const n of [1, 2]) rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
@@ -20,7 +22,11 @@ function cleanup(): void {
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(dirname(keyPackDir(BOOK, ROUND)), { recursive: true, force: true });
   rmSync(resolve(TMP_DIR, `${BOOK}.sweep.json`), { force: true });
+  for (const dir of SHARED_QC_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
+  }
 }
 
 function setup(): { token: string; findingsFile: string } {

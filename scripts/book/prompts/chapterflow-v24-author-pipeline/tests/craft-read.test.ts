@@ -13,7 +13,7 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -51,6 +51,10 @@ const SWEEP_SESSION = "fixture-craft-sweep";
 const BAR_SESSION = "fixture-craft-bar";
 const CONFIRM_SESSION = "fixture-craft-confirm";
 const FINALIZER_SESSION = "fixture-craft-finalizer";
+const SHARED_QC_DIRS = ["qc-packs", "qc-orchestrator", "qc-rounds"].map((name) => {
+  const path = resolve(PIPELINE_DIR, "state", name);
+  return { path, existed: existsSync(path) };
+});
 
 const CRAFT_AXES = Object.keys(CRAFT_AXIS_WEIGHTS) as CraftAxisId[];
 const GROUNDED_QUOTE = "A good handoff starts with one visible source.";
@@ -92,6 +96,9 @@ function cleanup(): void {
     rmSync(manualKeyJudgePath(BOOK, n), { force: true });
     rmSync(provenancePath(`${BOOK}-ch${String(n).padStart(2, "0")}`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "plans", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-plan.json`), { force: true });
+  }
+  for (const dir of SHARED_QC_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
   }
 }
 

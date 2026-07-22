@@ -8,7 +8,7 @@
  *    bloomsLevel) yields a FINDING, never an unhandled crash.
  */
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
@@ -20,13 +20,15 @@ import { runShipGate } from "../src/critics/finalGate.js";
 import type { ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-atomic-quarantine";
+const CORRUPT_DIR = resolve(CHAPTERS_DIR, "_corrupt");
+const CORRUPT_DIR_EXISTED = existsSync(CORRUPT_DIR);
 
 function cleanup(): void {
   for (const f of readdirSync(CHAPTERS_DIR)) {
     if (f.startsWith(BOOK)) rmSync(resolve(CHAPTERS_DIR, f), { force: true });
   }
-  const corrupt = resolve(CHAPTERS_DIR, "_corrupt");
-  try { for (const f of readdirSync(corrupt)) if (f.startsWith(BOOK)) rmSync(resolve(corrupt, f), { force: true }); } catch { /* none */ }
+  try { for (const f of readdirSync(CORRUPT_DIR)) if (f.startsWith(BOOK)) rmSync(resolve(CORRUPT_DIR, f), { force: true }); } catch { /* none */ }
+  if (!CORRUPT_DIR_EXISTED && existsSync(CORRUPT_DIR) && readdirSync(CORRUPT_DIR).length === 0) rmdirSync(CORRUPT_DIR);
 }
 
 test("writeFileAtomic writes valid content, overwrites, and leaves no .tmp behind", () => {
@@ -61,7 +63,7 @@ test("quarantineCorruptChapterFiles recovers a torn chapter so loadBookChapters 
     assert.equal(moved.length, 1, "the torn chapter must be quarantined");
     assert.doesNotThrow(() => loadBookChapters(BOOK), "after quarantine, loadBookChapters must not throw");
     assert.equal(loadBookChapters(BOOK).length, 0, "the quarantined chapter is gone (treated as missing)");
-    assert.ok(existsSync(resolve(CHAPTERS_DIR, "_corrupt")), "the corrupt bytes are preserved under _corrupt/");
+    assert.ok(existsSync(CORRUPT_DIR), "the corrupt bytes are preserved under _corrupt/");
   } finally {
     console.warn = oldWarn;
     cleanup();

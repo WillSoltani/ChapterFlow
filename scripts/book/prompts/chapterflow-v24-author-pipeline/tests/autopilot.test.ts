@@ -92,6 +92,11 @@ const MODULE_AUTOPILOT_TELEMETRY = [
 
 const MODULE_AUTOPILOT_DIRS = [
   join(PIPELINE_DIR, "state", "qc-preflight", "zz"),
+  join(PIPELINE_DIR, "state", "qc-preflight"),
+  join(PIPELINE_DIR, "state", "qc-orchestrator", "zz"),
+  join(PIPELINE_DIR, "state", "qc-orchestrator", "zz-drivers"),
+  join(PIPELINE_DIR, "state", "qc-orchestrator"),
+  join(PIPELINE_DIR, "state", "books", "zz", "runs"),
   join(PIPELINE_DIR, "logs", "exec"),
 ].map(snapshotFixtureDir);
 

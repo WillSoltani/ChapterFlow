@@ -7,9 +7,11 @@
  */
 
 import assert from "node:assert/strict";
+import { existsSync, rmSync } from "node:fs";
+import { join } from "node:path";
 
 import { test } from "./harness.js";
-import { makeChapter } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
 import type { SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import {
@@ -27,6 +29,8 @@ import {
 } from "../src/critics/readerBudgets.js";
 
 const BOOK = "zz-fixture-reader-budgets";
+const BOOK_RUNS_DIR = join(PIPELINE_DIR, "state", "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
 
 function makePacket(n: number, caseLabels: string[]): SourcePacketV1 {
   return {
@@ -589,4 +593,8 @@ test("CHB6-9 findings carry the same shape as CHB1-5 (checkId/severity/chapterNu
     assert.equal(typeof f.chapterNumber, "number");
     assert.ok(f.message.length > 0);
   }
+});
+
+test("reader-budget fixtures remove owned run directories", () => {
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
 });

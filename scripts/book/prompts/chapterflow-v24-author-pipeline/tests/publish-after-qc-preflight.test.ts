@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -29,6 +29,10 @@ const SWEEP_SESSION = "fixture-publish-sweep";
 const BAR_SESSION = "fixture-publish-bar";
 const CONFIRM_SESSION = "fixture-publish-confirm";
 const ATTEST_SESSION = "fixture-publish-attest";
+const OWNED_EMPTY_DIRS = ["qc-packs", "qc-orchestrator", "qc-rounds", "shape-plans", "venue-plans", "exemplar-plans"].map((name) => {
+  const path = resolve(PIPELINE_DIR, "state", name);
+  return { path, existed: existsSync(path) };
+});
 
 function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
   for (const bookId of bookIds) {
@@ -57,6 +61,9 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(provenancePath(`${bookId}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}`), { force: true });
     rmSync(sourceVerifyRecordPath(bookId), { force: true });
     rmSync(productionManifestSidecarPath(bookId), { force: true });
+  }
+  for (const dir of OWNED_EMPTY_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
   }
 }
 

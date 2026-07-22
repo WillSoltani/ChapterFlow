@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test, skip } from "./harness.js";
@@ -47,6 +47,10 @@ const SWEEP_SESSION = "fixture-sweep-session";
 const BAR_SESSION = "fixture-bar-session";
 const CONFIRM_SESSION = "fixture-confirm-session";
 const FINALIZER_SESSION = "fixture-finalizer-session";
+const OWNED_EMPTY_DIRS = ["qc-packs", "qc-orchestrator", "qc-rounds", "shape-plans", "venue-plans", "exemplar-plans"].map((name) => {
+  const path = resolve(PIPELINE_DIR, "state", name);
+  return { path, existed: existsSync(path) };
+});
 
 function withSession<T>(sessionId: string, fn: () => T): T {
   const prev = process.env.CHAPTERFLOW_SESSION_ID;
@@ -111,6 +115,7 @@ function cleanup(): void {
     rmSync(sweepRecordPath(bookId), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${bookId}.manual-brief.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "shape-plans", `${bookId}.shape-plan.json`), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "venue-plans", `${bookId}.venue-plan.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "exemplar-plans", `${bookId}.exemplar-plan.json`), { force: true });
     for (const n of [1, 2, 3, 4, 5, 6]) {
       rmSync(attestationPath(bookId, n), { force: true });
@@ -118,6 +123,9 @@ function cleanup(): void {
       rmSync(provenancePath(`${bookId}-ch${String(n).padStart(2, "0")}`), { force: true });
       rmSync(resolve(PIPELINE_DIR, "state", "plans", `${bookId}-ch${String(n).padStart(2, "0")}.manual-plan.json`), { force: true });
     }
+  }
+  for (const dir of OWNED_EMPTY_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
   }
 }
 

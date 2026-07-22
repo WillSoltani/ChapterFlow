@@ -10,7 +10,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
@@ -24,6 +24,7 @@ import { AXIS_RUBRIC } from "../src/critics/semantic/publishableBar.js";
 
 const BOOK = "zz-fixture-grounded-numbers";
 const SWEEP_DROP_ROUND = "r-sweep-drop";
+const QC_ORCHESTRATOR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
 
 const SIDECAR_CH1 = {
   chapterNumber: 1,
@@ -222,6 +223,7 @@ test("writeSweepRecordFromSubmission: an off-family (factual) finding is DROPPED
     rmSync(chapterClearsPath(BOOK), { force: true });
     rmSync(immutableRoundRecord, { force: true });
     rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
+    if (!QC_ORCHESTRATOR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
     for (const n of [1, 2]) rmSync(`${STATE_CHAPTERS}/${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`, { force: true });
   }
 });

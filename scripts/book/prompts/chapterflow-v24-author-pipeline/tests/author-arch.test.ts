@@ -13,7 +13,7 @@
  * targeted regen then halting; and compiler/legacy defaults unchanged.
  */
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -326,6 +326,20 @@ function restoreTestFile(snapshot: TestFileSnapshot): void {
   utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
 }
 
+type TestDirSnapshot = { path: string; existed: boolean; entries: Set<string> };
+
+function snapshotTestDir(path: string): TestDirSnapshot {
+  return { path, existed: existsSync(path), entries: new Set(existsSync(path) ? readdirSync(path) : []) };
+}
+
+function restoreTestDir(snapshot: TestDirSnapshot): void {
+  if (!existsSync(snapshot.path)) return;
+  for (const entry of readdirSync(snapshot.path)) {
+    if (!snapshot.entries.has(entry)) rmSync(join(snapshot.path, entry), { recursive: true, force: true });
+  }
+  if (!snapshot.existed && readdirSync(snapshot.path).length === 0) rmdirSync(snapshot.path);
+}
+
 async function runAutopilotWithoutProductionTelemetry(
   options: Parameters<typeof runAutopilot>[0],
 ): ReturnType<typeof runAutopilot> {
@@ -342,6 +356,10 @@ async function runAutopilotWithoutProductionTelemetry(
 // pre-file bytes and mtimes, then restore them in the final registered test so
 // this suite remains hermetic under CHAPTERFLOW_LEAK_GUARD=1.
 const MODULE_TELEMETRY_SNAPSHOTS = AUTOPILOT_TEST_TELEMETRY.map(snapshotTestFile);
+const MODULE_DIR_SNAPSHOTS = [
+  resolve(TEST_PIPELINE_DIR, "state", "books", "zz", "runs"),
+  resolve(TEST_PIPELINE_DIR, "state", "reviews", "zz"),
+].map(snapshotTestDir);
 
 function mkIo(over: Partial<AuthorReviewIo> = {}): Partial<AuthorReviewIo> & { attestations: QcAttestation[]; bars: ValidatedBarReadSubmission[]; confirms: ValidatedConfirmReadSubmission[]; acceptanceRecords: AuthorAcceptanceRecord[]; reopenNotes: ReopenNote[]; gateCandidateCalls: Array<{ attemptKey: string; chapterId: string }>; chapterBytes: Map<string, string> } {
   const attestations: QcAttestation[] = [];
@@ -2229,4 +2247,5 @@ test("F-09 guard: a reserved-harm FAIL spawns NO second opinion — it goes stra
 
 test("author-arch fixtures restore production telemetry bytes and mtimes", () => {
   for (const snapshot of MODULE_TELEMETRY_SNAPSHOTS) restoreTestFile(snapshot);
+  for (const snapshot of MODULE_DIR_SNAPSHOTS) restoreTestDir(snapshot);
 });

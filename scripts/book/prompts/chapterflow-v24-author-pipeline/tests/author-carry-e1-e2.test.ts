@@ -22,7 +22,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { test } from "./harness.js";
-import { makeChapter } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
 import {
   attestationPath,
@@ -65,6 +65,12 @@ import { reviewDir } from "../src/orchestrator/authorReviewLedger.js";
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
 
 const BOOK = "zz-fixture-carry";
+const BOOK_RUNS_DIR = join(PIPELINE_DIR, "state", "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
+
+function cleanupBookRuns(): void {
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
+}
 
 // ── attestation fixtures (real state/qc, cleaned up) ──────────────────────────
 
@@ -490,4 +496,8 @@ test("E2: regen counts PERSIST across a simulated re-entry (a carried PASS never
     // research / re-dealt brief) is a new original authoring with a fresh budget.
     assert.equal(regenConsumedFor(loadAuthorRegenLedger(BOOK, root), 1, "fresh-design1"), 0, "a new lineage has a fresh budget");
   } finally { rmSync(root, { recursive: true, force: true }); }
+});
+
+test("author-carry fixtures remove owned run directories", () => {
+  cleanupBookRuns();
 });

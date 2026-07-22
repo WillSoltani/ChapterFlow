@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
@@ -8,6 +8,10 @@ import { checkPlanEnforcement } from "../src/qc/planEnforcement.js";
 import { stripInternalFields } from "../src/promoteBook.js";
 
 const BOOK = "zz-fixture-plan-enforcement";
+const PLAN_DIRS = ["shape-plans", "venue-plans", "exemplar-plans"].map((kind) => {
+  const path = resolve(PIPELINE_DIR, "state", kind);
+  return { path, existed: existsSync(path) };
+});
 
 function planPath(kind: string, suffix: string): string {
   return resolve(PIPELINE_DIR, "state", kind, `${BOOK}.${suffix}.json`);
@@ -17,6 +21,9 @@ function cleanup(): void {
   rmSync(planPath("shape-plans", "shape-plan"), { force: true });
   rmSync(planPath("venue-plans", "venue-plan"), { force: true });
   rmSync(planPath("exemplar-plans", "exemplar-plan"), { force: true });
+  for (const dir of PLAN_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
+  }
 }
 
 function writePlans(): { shapes: string[]; venues: string[] } {

@@ -13,7 +13,7 @@ import { tmpdir } from "node:os";
 import { join, dirname } from "node:path";
 
 import { test } from "./harness.js";
-import { makeChapter } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
 import {
   EXAMPLE_LENSES,
@@ -67,6 +67,8 @@ import { REVIEW_FACTORS, type ChapterReviewV1 } from "../src/artifacts/artifactT
 import { loadTiebreakNotes, reviewDir } from "../src/orchestrator/authorReviewLedger.js";
 
 const BOOK = "zz-fixture-stier";
+const BOOK_RUNS_DIR = join(PIPELINE_DIR, "state", "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
 
 // ── P2: example-lens triples ───────────────────────────────────────────────────
 
@@ -891,4 +893,8 @@ test("P1b/P3b: scene-furniture budget rides the brief; rule 5 carries the mechan
   assert.ok(STRAWMAN_LEXICON.test("polish the deck"), "CHB12 gate lexicon still catches the banned mechanical families");
   assert.ok(STRAWMAN_LEXICON.test("announce it on a slide"), "CHB12 gate lexicon catches announce/slide");
   assert.equal(CHB12_STRAWMAN_RATE_CAP, 0.07, "the deterministic 7% strawman stake is unchanged");
+});
+
+test("stier fixtures remove owned run directories", () => {
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
 });

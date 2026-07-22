@@ -13,12 +13,12 @@
  */
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { test } from "./harness.js";
-import { makeChapter } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR } from "./helpers.js";
 import {
   ARCHITECTURE_FAMILIES,
   EXAMPLE_ENTRY_POINTS,
@@ -59,6 +59,8 @@ import { computeRegenLineage } from "../src/orchestrator/authorRegenLedger.js";
 import { checkReaderBudgets, measureQuizKeyEcho, measureStemOpenerMolds } from "../src/critics/readerBudgets.js";
 
 const BOOK = "zz-fixture-stier2";
+const BOOK_RUNS_DIR = join(PIPELINE_DIR, "state", "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
 
 function mkPacket(n: number, opts: { claims?: string[]; numbers?: string[]; cases?: Array<{ id: string; label: string }> } = {}): SourcePacketV1 {
   const claims = opts.claims ?? [
@@ -552,4 +554,8 @@ test("proxy-banned owned-case chapters deal an EMPTY cast and a no-stand-ins lea
   assert.match(withCast, /Invented cast appears only in supporting scenes/);
   assert.match(noCast, /NO invented stand-in characters/);
   assert.doesNotMatch(noCast, /supporting scenes\./);
+});
+
+test("stier2 fixtures remove owned run directories", () => {
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
 });

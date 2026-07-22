@@ -44,6 +44,8 @@ async function runLegacyAutopilotWithoutFixtureLeaks(
   const telemetryDir = resolve(PIPELINE_DIR, "state", "autopilot-logs", "zz");
   const provenanceDir = resolve(PIPELINE_DIR, "state", "provenance");
   const preflightDir = resolve(PIPELINE_DIR, "state", "qc-preflight", "zz");
+  const runsDir = resolve(PIPELINE_DIR, "state", "books", "zz", "runs");
+  const runsExisted = existsSync(runsDir);
   const preflightExisted = existsSync(preflightDir);
   const preflightEntries = new Set(preflightExisted ? readdirSync(preflightDir) : []);
   const parentDirs = [
@@ -67,6 +69,7 @@ async function runLegacyAutopilotWithoutFixtureLeaks(
         if (!preflightEntries.has(entry) && entry.endsWith(".scout-read.json")) rmSync(join(preflightDir, entry), { force: true });
       }
     }
+    if (!runsExisted) rmSync(runsDir, { recursive: true, force: true });
     for (const parent of parentDirs) {
       if (!parent.existed && existsSync(parent.path) && readdirSync(parent.path).length === 0) rmSync(parent.path, { recursive: true, force: true });
     }
@@ -231,7 +234,7 @@ test("autopilot HALTS with a specific gate/QC flip message when a QC repair rein
     blockingMajors: () => [],
     majorFindingKeys: () => new Set(),
   });
-  const outcome = await runAutopilot({ architecture: "compiler", bookId: "zz", deps });
+  const outcome = await runLegacyAutopilotWithoutFixtureLeaks({ architecture: "compiler", bookId: "zz", deps });
   assert.equal(outcome.status, "halt");
   if (outcome.status === "halt") {
     assert.equal(outcome.phase, "gate");

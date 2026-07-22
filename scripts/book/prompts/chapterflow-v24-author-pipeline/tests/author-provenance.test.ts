@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "child_process";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -22,6 +22,12 @@ import {
 
 const BOOK = "zz-fixture-author-provenance";
 const CHAPTER_ID = `${BOOK}-ch01`;
+const CACHE_ACCEPTANCE_DIR = resolve(PIPELINE_DIR, "state", "cache-acceptance");
+const CACHE_ACCEPTANCE_DIR_EXISTED = existsSync(CACHE_ACCEPTANCE_DIR);
+
+function pruneCacheAcceptanceDir(): void {
+  if (!CACHE_ACCEPTANCE_DIR_EXISTED && existsSync(CACHE_ACCEPTANCE_DIR) && readdirSync(CACHE_ACCEPTANCE_DIR).length === 0) rmdirSync(CACHE_ACCEPTANCE_DIR);
+}
 
 function cleanup(): void {
   cleanTmp();
@@ -122,6 +128,7 @@ const LC_CH = `${LC_BOOK}-ch01`;
 function cleanLifecycle(): void {
   rmSync(provenancePath(LC_CH), { force: true });
   rmSync(cacheAcceptancePath(LC_CH), { force: true });
+  pruneCacheAcceptanceDir();
 }
 
 function reauthoredHash(): string {

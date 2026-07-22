@@ -8,7 +8,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
@@ -32,12 +32,14 @@ import { QC_ORCHESTRATOR_DIR, roundRecordPath, submissionsDir } from "../src/qc/
 const BOOK = "zz-fixture-sweep-confirm";
 const CHAPTERS = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
 const HASHES = Object.fromEntries(CHAPTERS.map((ch) => [String(ch.number), chapterContentHash(ch)]));
+const QC_ORCHESTRATOR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
 
 function reset(): void {
   rmSync(sweepHistoryPath(BOOK), { force: true });
   rmSync(chapterClearsPath(BOOK), { force: true });
   rmSync(sweepRecordPath(BOOK), { force: true });
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
 }
 
 function rec(opts: { roundId: string; at: string; verdict?: SweepRecord["verdict"]; reviewer?: string; reviewerSessionId?: string; gating?: boolean; hashes?: Record<string, string> }): SweepRecord {

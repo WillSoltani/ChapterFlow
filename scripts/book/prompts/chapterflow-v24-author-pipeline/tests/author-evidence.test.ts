@@ -20,7 +20,7 @@
  * budget (2 key readers + 1 sweep reader per book).
  */
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -55,6 +55,9 @@ import type { ChapterV21 } from "../src/types.js";
 const BOOK = "zz-fixture-author-evidence";
 const RUN = "20260702T000000Z";
 const ROUND = "r-authorev";
+const BOOK_RUNS_DIR = resolve(CANONICAL_STATE, "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
+const SHARED_QC_DIRS = [QC_PACKS_DIR, QC_ORCHESTRATOR_DIR, QC_ROUNDS_DIR].map((path) => ({ path, existed: existsSync(path) }));
 
 // ── fixture state (real writers, real state dirs, zz-fixture ids, full cleanup) ──
 
@@ -98,6 +101,10 @@ function cleanup(): void {
   rmMatching(QC_DIR, BOOK);
   rmMatching(resolve(CANONICAL_STATE, "provenance"), `${BOOK}-`);
   rmSync(resolve(REPO_ROOT, "scratch/review", BOOK), { recursive: true, force: true });
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
+  for (const dir of SHARED_QC_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
+  }
 }
 
 /** Chapters + sidecars + research manifest on real fixture state (no round). */
