@@ -1,3 +1,4 @@
+import { logger } from "@/lib/logging/logger";
 import { BookApiError } from "./errors";
 import type {
   BookManifest,
@@ -53,10 +54,10 @@ async function resolveReaderProgress(params: {
     // A version-upgrade attempt must never break a read. Surface the failure for
     // operators (a correction silently not reaching readers — e.g. repeated S3
     // errors — is otherwise invisible) and fall back to the pinned content.
-    console.warn("[par2_version_upgrade_failed]", {
+    logger.warn("par2_version_upgrade_failed", {
       bookId: params.bookId,
       pinnedBookVersion: progress.pinnedBookVersion,
-      error: error instanceof Error ? error.message : String(error),
+      err: error,
     });
     return progress;
   }

@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import crypto from "crypto";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
@@ -153,7 +154,7 @@ export async function POST(req: Request, { params }: Ctx) {
         });
         return "sent";
       } catch (err) {
-        console.warn("[admin-segment-notify] failed for", user.userId, err);
+        logger.warn("admin_segment_notify_failed", { userId: user.userId, err });
         // Release the claim so this user can be retried on a later dispatch.
         await releaseSegmentNotifyDedup(tableName, dispatchId, user.userId).catch(() => {});
         return "failed";

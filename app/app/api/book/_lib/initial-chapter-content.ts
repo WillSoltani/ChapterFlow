@@ -18,6 +18,7 @@ import type {
   ApiChapterResponse,
   InitialChapterReaderSeed,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/lib/chapterFromApi";
+import { logger } from "@/lib/logging/logger";
 
 /**
  * Server-hydrate the reader's ENTRY chapter content (WS3-024).
@@ -142,10 +143,10 @@ export async function loadInitialChapterContent(
     // locked (403 chapter_locked), missing book (404), or any infra/auth error
     // leaves the client's existing fetch + `/start` state machine in charge.
     if (!(error instanceof BookApiError)) {
-      console.warn("[ws3_024_initial_chapter_hydration_skipped]", {
+      logger.warn("ws3_024_initial_chapter_hydration_skipped", {
         bookId,
         chapterParam,
-        error: error instanceof Error ? error.message : String(error),
+        err: error,
       });
     }
     return null;

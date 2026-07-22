@@ -13,6 +13,7 @@ import {
   lastNDays,
   queryEventsForDay,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 // NOTE (M13/N2): do NOT add `export const maxDuration = ...` here. OpenNext bundles
@@ -57,7 +58,7 @@ export async function GET(req: Request) {
       metrics = await computeEconomyHealth(tableName, range);
       alerts = generateAlerts(metrics);
     } catch (err) {
-      console.error("[admin-economy] computeEconomyHealth failed:", err);
+      logger.error("admin_economy_compute_failed", { err });
       warnings.push("Balance metrics unavailable (database scan failed).");
     }
 
@@ -66,13 +67,13 @@ export async function GET(req: Request) {
     // failure doesn't kill the whole response.
     const earnedQueries = days.map((d) =>
       queryEventsForDay(analyticsTable, d, "flow_points_earned").catch((err) => {
-        console.warn(`[admin-economy] flow_points_earned query failed for ${d}:`, err);
+        logger.warn("admin_economy_flow_points_earned_query_failed", { day: d, err });
         return { events: [], uniqueUsers: new Set<string>() };
       }),
     );
     const spentQueries = days.map((d) =>
       queryEventsForDay(analyticsTable, d, "flow_points_spent").catch((err) => {
-        console.warn(`[admin-economy] flow_points_spent query failed for ${d}:`, err);
+        logger.warn("admin_economy_flow_points_spent_query_failed", { day: d, err });
         return { events: [], uniqueUsers: new Set<string>() };
       }),
     );

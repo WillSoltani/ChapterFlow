@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
@@ -74,10 +75,10 @@ export async function GET(
       // commitments-table error failing the whole /state read — as a robustness
       // regression that contradicts the feature's graceful-degradation guardrail.)
       getBookApplicationStates(tableName, user.sub, bookId).catch((err) => {
-        console.error(
-          `[state] getBookApplicationStates failed for book ${bookId}; degrading applicationStates to {}`,
+        logger.error("state_get_book_application_states_failed", {
+          bookId,
           err,
-        );
+        });
         return {} as Record<number, ChapterApplicationState>;
       }),
     ]);
@@ -107,10 +108,10 @@ export async function GET(
       readPinnedManifest: () =>
         readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
       onDegrade: (err) =>
-        console.error(
-          `[state] pinned-manifest read failed for book ${bookId}; degrading chapter map to the live manifest`,
+        logger.error("state_pinned_manifest_read_failed", {
+          bookId,
           err,
-        ),
+        }),
     });
     const chapterIdByNumber = new Map(
       chapters.map((chapter) => [chapter.number, chapter.chapterId])
@@ -228,10 +229,10 @@ export async function PATCH(
       readPinnedManifest: () =>
         readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
       onDegrade: (err) =>
-        console.error(
-          `[state] pinned-manifest read failed for book ${bookId} (PATCH); degrading chapter map to the live manifest`,
+        logger.error("state_pinned_manifest_read_failed_patch", {
+          bookId,
           err,
-        ),
+        }),
     });
     const firstChapterId = chapters[0]?.chapterId ?? "";
     const chapterIdByNumber = new Map(

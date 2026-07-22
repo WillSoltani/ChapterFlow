@@ -14,6 +14,7 @@ import {
   sumFieldOnDay,
 } from "@/app/app/api/book/_lib/admin-metrics";
 import { listPendingScenarioModerationItems } from "@/app/app/api/book/_lib/repo";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -61,7 +62,7 @@ export async function GET(req: Request) {
       sumFieldOnDay(analyticsTable, yesterday, "reading_session", "deltaMs"),
       listPendingScenarioModerationItems(tableName, 50).catch(() => []),
       scanAllEntitlements(tableName).catch((err) => {
-        console.warn("[admin-overview] entitlement scan failed:", err);
+        logger.warn("admin_overview_entitlement_scan_failed", { err });
         return [];
       }),
       dailyDAU(analyticsTable, days14),

@@ -22,6 +22,7 @@ import {
   selectNewMilestones,
   type EscalationMilestone,
 } from "@/app/app/api/book/_lib/referral-escalation-core";
+import { logger } from "@/lib/logging/logger";
 
 // Re-export the milestone table, annual cap, and type so any importer of this
 // module keeps working now that the definitions live in the (testable) core.
@@ -69,10 +70,11 @@ async function grantEscalationCosmetic(
       });
       return true;
     } catch (error: unknown) {
-      console.warn(
-        `[referral-escalation] failed to grant badge ${exclusiveReward} to ${userId}:`,
-        error
-      );
+      logger.warn("referral_escalation_grant_badge_failed", {
+        badgeId: exclusiveReward,
+        userId,
+        err: error,
+      });
       return false;
     }
   }
@@ -100,10 +102,12 @@ async function grantEscalationCosmetic(
     return true;
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) return true; // already owned — idempotent
-    console.warn(
-      `[referral-escalation] failed to grant ${exclusiveRewardType} ${exclusiveReward} to ${userId}:`,
-      error
-    );
+    logger.warn("referral_escalation_grant_item_failed", {
+      itemType: exclusiveRewardType,
+      itemId: exclusiveReward,
+      userId,
+      err: error,
+    });
     return false;
   }
 }

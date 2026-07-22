@@ -34,6 +34,7 @@ import {
   getAppleTransactionClaim,
   updateUserEntitlementFromApple,
 } from "@/app/app/api/book/_lib/repo";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -202,7 +203,7 @@ export async function POST(req: Request) {
         storageLane,
       );
       if (!claim) {
-        console.warn("apple_notification_unmapped_transaction", {
+        logger.warn("apple_notification_unmapped_transaction", {
           notificationType: notification.notificationType,
         });
         return bookOk({ ok: true, applied: false, reason: "unmapped_transaction" });

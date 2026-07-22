@@ -5,6 +5,7 @@ import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 import { readSearchIndex } from "./search-index-read-core";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -23,7 +24,7 @@ export async function GET() {
       return object.Body?.transformToString("utf-8");
     },
     logError: (error) => {
-      console.error("search-index read failed", error);
+      logger.error("search_index_read_failed", { err: error });
     },
     emitOpsFailure: () =>
       putOpsMetric("OpsFailure", 1, { context: "search_index_read_failed" }),

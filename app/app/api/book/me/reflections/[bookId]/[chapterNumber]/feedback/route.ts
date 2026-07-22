@@ -16,6 +16,7 @@ import {
 import { streamReflectionFeedback } from "@/app/app/api/book/_lib/ai-service";
 import { getReflectionFeedbackModel } from "@/app/app/api/book/_lib/ai-config";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { logger } from "@/lib/logging/logger";
 
 // Upper bound for the free-text prompt fields echoed into the Sonnet message.
 // Mirrors the maxLength the scenarios route applies via requireString — keeps
@@ -205,7 +206,7 @@ export async function POST(req: Request, ctx: Params) {
             err && typeof err === "object" && "status" in err
               ? (err as { status?: number }).status
               : undefined;
-          console.error("[reflection-feedback] stream failed:", {
+          logger.error("reflection_feedback_stream_failed", {
             status,
             name: err instanceof Error ? err.name : typeof err,
             message: err instanceof Error ? err.message : String(err),
@@ -247,7 +248,7 @@ export async function POST(req: Request, ctx: Params) {
     if (isBookApiError(err)) {
       return bookErr(req, err.status, err.code, err.message, err.details);
     }
-    console.error("[feedback] Error:", err);
+    logger.error("reflection_feedback_error", { err });
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }
 }

@@ -2,6 +2,7 @@ import "server-only";
 
 import { requireUser, type AuthedUser } from "@/app/app/api/_lib/auth";
 import { isDevAuthBypassEnabled } from "@/app/app/_lib/dev-auth-bypass";
+import { logger } from "@/lib/logging/logger";
 import { BookApiError } from "./errors";
 import { getBookTableName } from "./env";
 import { getAccountStatus, setAccountStatus } from "./repo";
@@ -96,9 +97,9 @@ export async function requireActiveBookUser(): Promise<AuthedUser> {
     // mutating routes. Everyone else fails OPEN (see below) so a transient
     // outage cannot lock out the entire user base.
     if (isKnownDeleted(user.sub)) {
-      console.error("account_status_gate_fail_closed", {
+      logger.error("account_status_gate_fail_closed", {
         userId: user.sub,
-        message: error instanceof Error ? error.message : String(error),
+        err: error,
       });
       throw new BookApiError(
         403,
@@ -108,9 +109,9 @@ export async function requireActiveBookUser(): Promise<AuthedUser> {
     }
     // Treat any other infrastructure failure (e.g. DynamoDB unavailable, env
     // missing) as fail-open.
-    console.error("account_status_gate_error", {
+    logger.error("account_status_gate_error", {
       userId: user.sub,
-      message: error instanceof Error ? error.message : String(error),
+      err: error,
     });
     return user;
   }

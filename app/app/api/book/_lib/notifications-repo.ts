@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { MAX_PUSH_FANOUT } from "@/app/app/api/book/_lib/device-cap-core";
@@ -189,7 +190,7 @@ export async function createNotification(
         }
       }
     } catch (e) {
-      console.error("[notifications-repo] push send failed:", e);
+      logger.error("notifications_repo_push_send_failed", { err: e });
     }
   }
 

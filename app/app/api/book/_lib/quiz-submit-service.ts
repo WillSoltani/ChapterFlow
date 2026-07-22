@@ -68,6 +68,35 @@ import {
 import { resolveStreakMode, resolveStreakSkipDays } from "./streak-mode";
 import type { ToneKey } from "@/app/book/data/book-package-core";
 import { runLoopCompletionSaga, type LoopCompletionDeps } from "./quiz-submit-core";
+import { logger } from "@/lib/logging/logger";
+
+// quiz-submit-core.ts's LoopCompletionDeps.logError is a variadic
+// (...args: unknown[]) => void sink (its call sites pass a "[tag]" string
+// followed by an error/object/array in varying shapes). This shim derives a
+// stable snake_case event name from the leading tag and folds the remaining
+// args into structured fields so every call routes through the logger without
+// having to change quiz-submit-core.ts's call sites.
+function logLoopPipelineError(...args: unknown[]): void {
+  const [first, ...rest] = args;
+  const event =
+    typeof first === "string"
+      ? first
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, "_")
+          .replace(/^_+|_+$/g, "") || "quiz_submit_loop_error"
+      : "quiz_submit_loop_error";
+  const fields: Record<string, unknown> = {};
+  rest.forEach((arg, index) => {
+    if (arg instanceof Error) {
+      fields.err = arg;
+    } else if (arg && typeof arg === "object" && !Array.isArray(arg)) {
+      Object.assign(fields, arg);
+    } else {
+      fields[`arg${index}`] = arg;
+    }
+  });
+  logger.error(event, fields);
+}
 
 const MAX_ATTEMPTS_PER_HOUR = 5;
 
@@ -696,7 +725,7 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
       checkAndAdvanceJourneys(tableName, user.sub, bookId),
     markLoopPipelineCompleted: () =>
       markLoopPipelineCompleted(tableName, user.sub, bookId, chapterNumberInt, ts),
-    logError: (...args) => console.error(...args),
+    logError: (...args) => logLoopPipelineError(...args),
   };
 
   const saga = await runLoopCompletionSaga(deps, {

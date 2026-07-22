@@ -17,6 +17,7 @@ import {
 import { createHash } from "crypto";
 import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
 import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -243,7 +244,7 @@ export async function POST(req: Request, ctx: Params) {
           });
         }
       } catch (e) {
-        console.warn("[ask-book] Cache lookup failed, proceeding without cache:", e);
+        logger.warn("ask_book_cache_lookup_failed", { err: e });
       }
     }
 
@@ -316,7 +317,7 @@ ${bookContext}`,
             err && typeof err === "object" && "status" in err
               ? (err as { status?: number }).status
               : undefined;
-          console.error("[ask-book] Anthropic stream failed:", {
+          logger.error("ask_book_anthropic_stream_failed", {
             status,
             name: err instanceof Error ? err.name : typeof err,
             message: err instanceof Error ? err.message : String(err),
@@ -374,7 +375,7 @@ ${bookContext}`,
               question,
               answer: fullAnswer,
               ttlEpochSeconds: cacheTtl,
-            }).catch((e) => console.error("[ask-book] Failed to write cache:", e));
+            }).catch((e) => logger.error("ask_book_cache_write_failed", { err: e }));
           }
         }
       },
@@ -404,7 +405,7 @@ ${bookContext}`,
     if (isBookApiError(err)) {
       return bookErr(req, err.status, err.code, err.message, err.details);
     }
-    console.error("[ask-book] Error:", err);
+    logger.error("ask_book_error", { err });
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }
 }
