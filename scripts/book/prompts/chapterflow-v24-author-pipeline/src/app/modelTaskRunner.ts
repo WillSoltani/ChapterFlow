@@ -16,6 +16,8 @@ export interface ModelTaskRunner {
 export interface ModelCallerExecution {
   readonly runner: ModelTaskRunner;
   readonly context: ModelTaskContext;
+  /** Optional route override for callers whose injected workDir has a narrower policy. */
+  readonly profileId?: string;
 }
 
 export const MODEL_CALLER_PROFILES = Object.freeze({
@@ -107,7 +109,7 @@ export async function runJsonModelTask<T>(
     throw new Error("MODEL_RUN_CANCELLED:model task cancelled before scheduling");
   }
   const result = await supplied.runner.run({
-    profileId: MODEL_CALLER_PROFILES[taskId],
+    profileId: supplied.profileId ?? MODEL_CALLER_PROFILES[taskId],
     prompt: jsonPromptRequest(systemPrompt, userPrompt),
     context: supplied.context,
   });

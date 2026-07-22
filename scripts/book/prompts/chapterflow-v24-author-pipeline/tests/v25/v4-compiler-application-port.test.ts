@@ -7,9 +7,13 @@ import { CompilerApplicationPort } from "../../src/app/compilerApplicationPort.j
 import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../../src/artifacts/artifactStore.js";
 import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
+import { renderPrompt } from "../../src/runtime/promptRenderer.js";
+import { FileRunStore } from "../../src/run-state/fileRunStore.js";
+import { FileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
+import type { StageCoordinator } from "../../src/run-state/stageTypes.js";
 import { deriveBookDesign } from "../../src/compiler/bookDesign.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
-import { compileSourcePacketFromSidecar } from "../../src/compiler/sourcePacket.js";
+import { compileSourcePacketFromSidecar, sourcePacketHash } from "../../src/compiler/sourcePacket.js";
 import {
   BOOK_PATTERN_AUDIT_LOGICAL_PATH,
   parseBookPatternAuditReport,
@@ -22,7 +26,7 @@ import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 const BOOK = "compiler-port-book";
 const INPUT = "candidate-input";
 const DIGEST = "a".repeat(64);
-const PROFILE = "pipeline-read-json-v1" as const;
+const PROFILE = "attempt-read-json-v1" as const;
 const INDEX = "inputs/chapter-index.json";
 const SIDECAR = "inputs/ch01.source.json";
 const SOURCE = "inputs/ch01.source.txt";
@@ -93,8 +97,11 @@ function snapshot(overrides: { indexBytes?: Uint8Array; sidecarBytes?: Uint8Arra
 
 type RigOptions = {
   readonly selected?: CandidateSnapshot;
-  readonly gatewayOutcome?: "success" | "error" | "malformed";
+  readonly gatewayOutcome?: "success" | "error" | "malformed" | "unsettled";
   readonly stageError?: "LOCK_BUSY" | "CANDIDATE_EXISTS";
+  readonly checkpointErrorOnce?: boolean;
+  readonly abortAfterCalls?: number;
+  readonly malformedSummary?: boolean;
 };
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
@@ -107,22 +114,94 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   const counts = { open: 0, runner: 0, stage: 0 };
   const prompts: Parameters<ModelTaskRunner["run"]>[0][] = [];
   let stagedInput: Parameters<CandidateStore["stage"]>[0] | null = null;
+  let stagedSnapshot: CandidateSnapshot | null = null;
   let outputIndex = 0;
+  const controller = new AbortController();
+  const runStore = new FileRunStore(resolve(context.roots.tempRoot, `run-state-${suffix}`));
+  const fileStageCoordinator = new FileStageCoordinator(resolve(context.roots.tempRoot, `run-state-${suffix}`));
+  let checkpointFailures = options.checkpointErrorOnce ? 1 : 0;
+  const stageCoordinator: StageCoordinator = {
+    async checkpoint(input) {
+      if (checkpointFailures > 0) {
+        checkpointFailures -= 1;
+        return { ok: false, error: { code: "IO_ERROR", message: "injected checkpoint failure" } };
+      }
+      return fileStageCoordinator.checkpoint(input);
+    },
+    planResume: (definition) => fileStageCoordinator.planResume(definition),
+  };
   const runner: ModelTaskRunner = {
     async run(request) {
       counts.runner += 1;
       prompts.push(request);
+      const admittedAt = context.clock.now();
+      const admission = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admission.ok, true);
+      if (options.gatewayOutcome === "unsettled") {
+        return { attemptId: request.context.attemptId, outcome: "UNKNOWN", error: { code: "FAKE_UNSETTLED", message: "uncertain" } };
+      }
+      const outcome = options.gatewayOutcome === "error" ? "FAILED" as const : "SUCCEEDED" as const;
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome,
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true);
+      if (counts.runner === options.abortAfterCalls) controller.abort();
       if (options.gatewayOutcome === "error") {
         return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "FAKE_GATEWAY", message: "blocked" } };
       }
       if (options.gatewayOutcome === "malformed") {
         return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: null };
       }
-      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: outputs[outputIndex++ % outputs.length] };
+      const output = outputs[outputIndex++ % outputs.length];
+      if (options.malformedSummary && counts.runner === 1) {
+        return {
+          attemptId: request.context.attemptId,
+          outcome: "SUCCEEDED",
+          output: {
+            ...output,
+            hook: {
+              text: fixture.summary.hook.hook,
+              sourceAnchorIds: fixture.summary.hook.sourceAnchorIds,
+            },
+            breakdown: {
+              fastRead: {
+                text: fixture.summary.breakdown.fastRead,
+                sourceAnchorIds: fixture.summary.breakdown.sourceAnchorIds?.fastRead,
+              },
+              deepRead: {
+                text: fixture.summary.breakdown.deepRead,
+                sourceAnchorIds: fixture.summary.breakdown.sourceAnchorIds?.deepRead,
+              },
+              fullRead: {
+                text: fixture.summary.breakdown.fullRead,
+                sourceAnchorIds: fixture.summary.breakdown.sourceAnchorIds?.fullRead,
+              },
+            },
+          },
+        };
+      }
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
     },
   };
   const candidateStore: CandidateStore = {
-    open: async () => { throw new Error("candidateStore.open must not select compiler input"); },
+    async open(input) {
+      if (stagedSnapshot && input.selector.kind === "CANDIDATE" && input.selector.candidateId === stagedSnapshot.manifest.candidateId) {
+        return { ok: true, value: stagedSnapshot };
+      }
+      return { ok: false, error: { code: "CANDIDATE_NOT_FOUND", message: "not found" } };
+    },
     async stage(input) {
       counts.stage += 1;
       stagedInput = input;
@@ -137,28 +216,35 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
         manifestDigest: "b".repeat(64),
         createdAt: input.createdAt,
       };
+      stagedSnapshot = {
+        manifest,
+        files: input.files.map((file) => ({ ...file, byteLength: file.bytes.byteLength })),
+      };
       return { ok: true, value: manifest };
     },
   };
-  let id = 0;
   const port = new CompilerApplicationPort({
     pipelineRoot: resolve(context.roots.base, "pipeline-root"),
     contentReader: {
       async open(input) {
         counts.open += 1;
+        const durable = await runStore.readRun(BOOK, `run-${suffix}`, context.clock.now());
+        assert.equal(durable.ok, true, "compiler run must exist before selected candidate is opened");
         assert.deepEqual(input, { bookId: BOOK, selector: { kind: "CANDIDATE", candidateId: INPUT } });
         return { ok: true, value: selected };
       },
     },
     candidateStore,
     runner,
+    runStore,
+    stageCoordinator,
     ids: {
-      nextRunId: () => `run-${suffix}-${++id}`,
-      candidateId: () => `candidate-${suffix}-${++id}`,
-      modelAttemptId: () => `attempt-${suffix}-${++id}`,
-      reviewAttemptId: () => `review-attempt-${suffix}-${++id}`,
-      reviewId: () => `review-${suffix}-${++id}`,
-      qcRoundId: () => `qc-${suffix}-${++id}`,
+      nextRunId: () => `run-${suffix}`,
+      candidateId: (runId) => `candidate-${runId}`,
+      modelAttemptId: (runId) => `attempt-${runId}`,
+      reviewAttemptId: (runId) => `review-attempt-${runId}`,
+      reviewId: (runId) => `review-${runId}`,
+      qcRoundId: (runId) => `qc-${runId}`,
     },
     clock: context.clock,
   });
@@ -167,14 +253,15 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     bookId: BOOK,
     candidateId: INPUT,
     manifestDigest: DIGEST,
+    sourceGitSha: "a20d1cdab0fc33c4c1f840f4cf99089816e022d4",
     attemptRoot,
     indexLogicalPath: INDEX,
     sectionTaskContextLogicalPath: CONTEXT,
     sources: [{ chapterNumber: 1, sidecarLogicalPath: SIDECAR, sourceLogicalPaths: [SOURCE] }],
     profileId: PROFILE,
-    signal: new AbortController().signal,
+    signal: controller.signal,
   } as const;
-  return { port, request, counts, prompts, attemptRoot, selected, staged: () => stagedInput };
+  return { port, request, counts, prompts, attemptRoot, selected, runStore, controller, staged: () => stagedInput };
 }
 
 requiredTest("1 selected candidate opens exactly once and returns successor identity", async (context) => {
@@ -182,11 +269,61 @@ requiredTest("1 selected candidate opens exactly once and returns successor iden
   const result = await subject.port.run(subject.request);
   assert.equal(subject.counts.open, 1);
   assert.equal(subject.counts.stage, 1);
-  assert.match(result.candidateId, /^candidate-open-once-/);
+  assert.equal(result.runId, "run-open-once");
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(result.candidateId, "candidate-run-open-once");
   assert.equal(result.manifestDigest, "b".repeat(64));
+  const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (!run.ok) return;
+  assert.equal(run.value.status, "COMPLETED");
+  assert.deepEqual(run.value.definition.requiredStages, ["compiler-candidate"]);
+  assert.deepEqual(run.value.definition.attemptLimits, { run: 4, byStage: { "compiler-candidate": 4 } });
+  assert.equal(run.value.attempts.length, 4);
+  assert.equal(new Set(run.value.attempts.map((attempt) => attempt.admission.attemptId)).size, 4);
+  assert.deepEqual(run.value.attempts.map((attempt) => attempt.admission.operationId), [
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-example-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-action-pack",
+  ]);
+  assert.ok(run.value.attempts.every((attempt) => attempt.status === "SUCCEEDED"));
 });
 
-requiredTest("2 digest index mapping and sidecar failures precede gateway and attempt writes", async (context) => {
+requiredTest("1b completed resume performs zero model calls and exact staged-candidate reconciliation completes after checkpoint loss", async (context) => {
+  const completed = rig(context, "resume-complete");
+  const first = await completed.port.run(completed.request);
+  const calls = completed.counts.runner;
+  const resumed = await completed.port.run({ ...completed.request, resumeRunId: first.runId });
+  assert.deepEqual(resumed, first);
+  assert.equal(completed.counts.runner, calls);
+  assert.equal(completed.counts.stage, 1);
+
+  const reconcile = rig(context, "resume-reconcile", { checkpointErrorOnce: true });
+  await assert.rejects(reconcile.port.run(reconcile.request), /COMPILER_CHECKPOINT_UNCERTAIN/);
+  assert.equal(reconcile.counts.stage, 1);
+  assert.equal(reconcile.counts.runner, 4);
+  const recovered = await reconcile.port.run({ ...reconcile.request, resumeRunId: "run-resume-reconcile" });
+  assert.equal(recovered.runStatus, "COMPLETED");
+  assert.equal(recovered.candidateId, "candidate-run-resume-reconcile");
+  assert.equal(reconcile.counts.stage, 1);
+  assert.equal(reconcile.counts.runner, 4);
+});
+
+requiredTest("1c unsettled admitted section work blocks replay and never stages candidate", async (context) => {
+  const subject = rig(context, "resume-uncertain", { gatewayOutcome: "unsettled" });
+  await assert.rejects(subject.port.run(subject.request), /COMPILER_ATTEMPT_UNCERTAIN/);
+  assert.equal(subject.counts.runner, 1);
+  assert.equal(subject.counts.stage, 0);
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: "run-resume-uncertain" }),
+    /COMPILER_ATTEMPT_UNCERTAIN/,
+  );
+  assert.equal(subject.counts.runner, 1);
+  assert.equal(subject.counts.stage, 0);
+});
+
+requiredTest("2 durable run precedes candidate validation while invalid input commits no model attempt or candidate", async (context) => {
   const cases = [
     { suffix: "digest", selected: snapshot(), request: { manifestDigest: "c".repeat(64) }, message: /manifest digest mismatch/ },
     { suffix: "index", selected: snapshot({ indexBytes: Buffer.from("{") }), request: {}, message: /index is malformed/ },
@@ -199,6 +336,12 @@ requiredTest("2 digest index mapping and sidecar failures precede gateway and at
     assert.equal(subject.counts.runner, 0);
     assert.equal(subject.counts.stage, 0);
     assert.equal(existsSync(subject.attemptRoot), false);
+    const run = await subject.runStore.readRun(BOOK, `run-${item.suffix}`, context.clock.now());
+    assert.equal(run.ok, true);
+    if (run.ok) {
+      assert.equal(run.value.status, "FAILED");
+      assert.equal(run.value.attempts.length, 0);
+    }
   }
 });
 
@@ -218,6 +361,9 @@ requiredTest("2b section-task context rejects missing duplicate malformed wrong-
     await assert.rejects(subject.port.run(subject.request), item.message);
     assert.deepEqual(subject.counts, { open: 1, runner: 0, stage: 0 });
     assert.equal(existsSync(subject.attemptRoot), false);
+    const run = await subject.runStore.readRun(BOOK, `run-${item.suffix}`, context.clock.now());
+    assert.equal(run.ok, true);
+    if (run.ok) assert.equal(run.value.status, "FAILED");
   }
 });
 
@@ -225,15 +371,74 @@ requiredTest("3 fixed profile and ordered framing preserve hostile candidate byt
   const subject = rig(context, "framing");
   await subject.port.run(subject.request);
   assert.equal(subject.prompts.length, 4);
+  assert.equal(new Set(subject.prompts.map((prompt) => prompt.context.attemptId)).size, 4);
+  assert.equal(new Set(subject.prompts.map((prompt) => prompt.context.operationId)).size, 4);
   for (const prompt of subject.prompts) {
     assert.equal(prompt.profileId, PROFILE);
-    assert.equal(prompt.prompt.templateId, "compiler.section.v1");
+    assert.equal(prompt.context.stageId, "compiler-candidate");
+    assert.equal(prompt.prompt.templateId, "chapterflow-json-v1");
+    assert.equal(renderPrompt(prompt.prompt).ok, true);
     assert.deepEqual(prompt.prompt.inputs.map((input) => input.name), ["control", "chapter_index", "source_sidecar", "source_1", "task_card"]);
     assert.deepEqual(Buffer.from(prompt.prompt.inputs[3].bytes), HOSTILE);
     const taskCard = Buffer.from(prompt.prompt.inputs[4].bytes).toString("utf8");
     assert.match(taskCard, /voice: direct and warm/);
     assert.match(taskCard, /reused phrase/);
+    assert.doesNotMatch(taskCard, /After writing|npx tsx|validate-sections|outputPath|Do not edit any file except/);
+    assert.doesNotMatch(taskCard, /\nVALIDATION\n/);
+    assert.match(taskCard, /Do not use tools, shell commands, filesystem access, or network access\./);
+    assert.match(taskCard, /Do not read or write files\./);
+    assert.match(taskCard, /Final response must be exactly one JSON object matching the schema hint\./);
+    assert.match(taskCard, /Return no prose and no Markdown fence\./);
+    const schemaMatch = taskCard.match(/OUTPUT SCHEMA HINT\n```json\n([^]*?)\n```/);
+    assert.ok(schemaMatch);
+    const schema = JSON.parse(schemaMatch[1]);
+    assert.equal(JSON.stringify(schema).includes("..."), false);
+    assert.deepEqual(Object.keys(schema), ["schemaVersion", "artifactType", "chapterId", ...(
+      schema.artifactType === "summary-pack" ? ["hook", "breakdown", "keyTakeaway", "keyTakeawaySourceAnchorIds", "tryThisNow", "tryThisNowSourceAnchorIds", "sourceFactIds"]
+        : schema.artifactType === "example-pack" ? ["examples"]
+          : schema.artifactType === "learning-pack" ? ["quiz", "cards"]
+            : ["tryThisNow", "tryThisNowSourceAnchorIds", "implementationPlan"]
+    )]);
+    if (schema.artifactType === "summary-pack") {
+      assert.deepEqual(Object.keys(schema.hook), ["hook", "counterintuition", "sourceAnchorIds", "counterintuitionSourceAnchorIds"]);
+      assert.deepEqual(Object.keys(schema.breakdown), ["fastRead", "deepRead", "fullRead", "sourceAnchorIds"]);
+      assert.deepEqual(Object.keys(schema.breakdown.sourceAnchorIds), ["fastRead", "deepRead", "fullRead"]);
+      assert.match(taskCard, /hook\.hook must be at least 40 characters/);
+    } else if (schema.artifactType === "learning-pack") {
+      assert.deepEqual(Object.keys(schema.quiz.questions[0]), ["questionId", "sourceAnchorId", "sourceAnchorIds", "keyEvidenceAnchorIds", "prompt", "choices", "correctIndex", "explanation", "bloomsLevel", "depthLevel"]);
+      assert.deepEqual(Object.keys(schema.cards.cards[0]), ["cardId", "sourceAnchorId", "sourceAnchorIds", "front", "back", "difficulty"]);
+      assert.match(taskCard, /retrieval question ending in \?/);
+    } else if (schema.artifactType === "action-pack") {
+      assert.match(taskCard, /ifThenPlans\[\]\.plan must begin with If/);
+    }
   }
+  const actionPrompt = subject.prompts.find((prompt) => prompt.context.operationId === "compiler-ch01-action-pack");
+  assert.ok(actionPrompt);
+  const actionCard = Buffer.from(actionPrompt.prompt.inputs[4].bytes).toString("utf8");
+  assert.doesNotMatch(actionCard, /ImplementationPlanOutput/);
+  for (const key of [
+    "title", "titleSourceAnchorIds", "coreSkill", "coreSkillSourceAnchorIds", "ifThenPlans",
+    "sourceAnchorId", "sourceAnchorIds", "context", "plan", "twentyFourHourChallenge",
+    "twentyFourHourChallengeSourceAnchorIds", "weeklyPractice", "weeklyPracticeSourceAnchorIds",
+  ]) {
+    assert.match(actionCard, new RegExp(`"${key}"`));
+  }
+});
+
+requiredTest("3b malformed summary stops after one settled call and stages no candidate", async (context) => {
+  const subject = rig(context, "section-blocked", { malformedSummary: true });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_(?:BLOCKED|OUTPUT_INVALID):summary-pack:/);
+    assert.ok(error.message.length <= 1700, `section rejection exceeded bounded detail: ${error.message.length}`);
+    return true;
+  });
+  assert.equal(subject.counts.runner, 1);
+  assert.equal(subject.counts.stage, 0);
+  assert.equal(subject.staged(), null);
+  const run = await subject.runStore.readRun(BOOK, "run-section-blocked", context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) assert.equal(run.value.status, "FAILED");
 });
 
 requiredTest("4 complete successor inventory preserves input order then compiler order", async (context) => {
@@ -249,6 +454,7 @@ requiredTest("4 complete successor inventory preserves input order then compiler
     CONTEXT,
     "compiler/book-design.json",
     "compiler/ch01/source-packet.json",
+    "compiler/ch01/source-use-plan.json",
     "compiler/ch01/blueprint.json",
     "compiler/ch01/summary-pack.json",
     "compiler/ch01/example-pack.json",
@@ -278,6 +484,25 @@ requiredTest("4 complete successor inventory preserves input order then compiler
   assert.deepEqual(audit.stats.missingPlanChapters, []);
   assert.equal(audit.stats.sourceAlignmentWarnings, 0);
   assert.doesNotMatch(Buffer.from(auditFile.bytes).toString("utf8"), /predecessor-poison/);
+  const packetFile = staged.files.find((file) => file.logicalPath === "compiler/ch01/source-packet.json");
+  const blueprintFile = staged.files.find((file) => file.logicalPath === "compiler/ch01/blueprint.json");
+  assert.ok(packetFile);
+  assert.ok(blueprintFile);
+  const packet = JSON.parse(Buffer.from(packetFile.bytes).toString("utf8"));
+  const blueprint = JSON.parse(Buffer.from(blueprintFile.bytes).toString("utf8"));
+  assert.equal(blueprint.sourcePacketPath, packetFile.logicalPath);
+  assert.equal(blueprint.sourcePacketHash, sourcePacketHash(packet));
+  const adapterBlueprint = compileChapterBlueprint({
+    bookId: BOOK,
+    chapter: creditChapterSpec(BOOK),
+    packet,
+    packetPath: "candidate://run-inventory/packets/ch01.json",
+    roots: { stateRoot: resolve(subject.attemptRoot, "legacy") },
+    totalChapters: 1,
+  });
+  const { sourcePacketPath: _candidatePacketPath, ...candidateValidatedFields } = blueprint;
+  const { sourcePacketPath: _adapterPacketPath, ...adapterValidatedFields } = adapterBlueprint;
+  assert.deepEqual(candidateValidatedFields, adapterValidatedFields);
 
   const specs = [
     creditChapterSpec(BOOK),
@@ -323,6 +548,11 @@ requiredTest("4 complete successor inventory preserves input order then compiler
   }), /MODEL_TASK_FAILED:FAKE_GATEWAY/);
   assert.equal(parity.counts.runner, 1);
   assert.equal(parity.counts.stage, 0);
+  const parityRun = await parity.runStore.readRun(BOOK, "run-parity", context.clock.now());
+  assert.equal(parityRun.ok, true);
+  if (parityRun.ok) {
+    assert.deepEqual(parityRun.value.definition.attemptLimits, { run: 8, byStage: { "compiler-candidate": 8 } });
+  }
 
   const legacyRoot = resolve(parity.attemptRoot, "legacy");
   const shadowRoot = resolve(parity.attemptRoot, "shadow");
@@ -368,6 +598,21 @@ requiredTest("5 cancellation gateway error and malformed output commit no candid
   await assert.rejects(cancelled.port.run({ ...cancelled.request, signal: controller.signal }), /MODEL_RUN_CANCELLED/);
   assert.equal(cancelled.counts.runner, 0);
   assert.equal(cancelled.counts.stage, 0);
+  const midRun = rig(context, "cancel-mid-run", { abortAfterCalls: 1 });
+  await assert.rejects(midRun.port.run(midRun.request), /MODEL_RUN_CANCELLED/);
+  assert.equal(midRun.counts.runner, 1);
+  assert.equal(midRun.counts.stage, 0);
+  const cancelledRun = await midRun.runStore.readRun(BOOK, "run-cancel-mid-run", context.clock.now());
+  assert.equal(cancelledRun.ok, true);
+  if (cancelledRun.ok) assert.equal(cancelledRun.value.status, "CANCELLED");
+  const afterFinal = rig(context, "cancel-after-final-section", { abortAfterCalls: 4 });
+  await assert.rejects(afterFinal.port.run(afterFinal.request), /MODEL_RUN_CANCELLED/);
+  assert.equal(afterFinal.counts.runner, 4);
+  assert.equal(afterFinal.counts.stage, 0);
+  assert.equal(afterFinal.staged(), null);
+  const finalCancelledRun = await afterFinal.runStore.readRun(BOOK, "run-cancel-after-final-section", context.clock.now());
+  assert.equal(finalCancelledRun.ok, true);
+  if (finalCancelledRun.ok) assert.equal(finalCancelledRun.value.status, "CANCELLED");
   for (const outcome of ["error", "malformed"] as const) {
     const subject = rig(context, outcome, { gatewayOutcome: outcome });
     await assert.rejects(subject.port.run(subject.request), outcome === "error" ? /MODEL_TASK_FAILED:FAKE_GATEWAY/ : /MODEL_TASK_OUTPUT_INVALID/);
