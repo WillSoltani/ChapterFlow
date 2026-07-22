@@ -228,6 +228,21 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
+    // ProjectionType.ALL reverted to match the LIVE deployed table (no-op diff
+    // vs the currently-deployed GSI). Commit 693ad9908 tried to switch this index
+    // to INCLUDE in place; CloudFormation rejected it at deploy (a GSI projection
+    // change is a delete+recreate, and DynamoDB permits only one GSI mutation per
+    // table update) and the stack rolled back. Stage 1 (this PR) instead adds
+    // plan-updatedAt-index-v2 (below) with the INCLUDE projection and switches the
+    // readers to it; this original index is scheduled for DELETION in stage 3
+    // (its own deploy). See docs/architecture/adr-analytics-gsi-projection.md.
+    this.analyticsTable.addGlobalSecondaryIndex({
+      indexName: "plan-updatedAt-index",
+      partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
+      sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
+      projectionType: dynamodb.ProjectionType.ALL,
+    });
+
     // INCLUDE only the attributes the admin users/search reader consumes
     // (formatUser + readTime in app/app/api/book/admin/users/search/route.ts).
     // plan/updatedAt (index keys) and PK/SK (table keys) are auto-projected and
@@ -240,7 +255,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     // see the staged (v2) rollout in
     // docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
-      indexName: "plan-updatedAt-index",
+      indexName: "plan-updatedAt-index-v2",
       partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
       projectionType: dynamodb.ProjectionType.INCLUDE,
@@ -261,16 +276,20 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       ],
     });
 
-    // KEYS_ONLY: this index has ZERO query consumers. quiz/commitment events
-    // stamp `contextKey` in analytics-repo.ts, but nothing reads back the item
-    // off this index — it is write-only. Projecting ALL would replicate every
-    // event payload for no reader. See
-    // docs/architecture/adr-analytics-gsi-projection.md.
+    // ProjectionType.ALL reverted to match the LIVE deployed table (no-op diff).
+    // Commit 693ad9908 tried to switch this to KEYS_ONLY in place; CloudFormation
+    // rejected the projection change and the stack rolled back. This index has
+    // ZERO query consumers (quiz/commitment events stamp `contextKey` in
+    // analytics-repo.ts, but nothing reads back off this index — it is
+    // write-only), so it is scheduled for outright DELETION in stage 2 (NOT a v2
+    // replacement — an unused KEYS_ONLY index is not worth recreating). That
+    // deletion is its own deploy because DynamoDB allows only one GSI mutation per
+    // table update. See docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "contextKey-occurredAt-index",
       partitionKey: { name: "contextKey", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "occurredAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.KEYS_ONLY,
+      projectionType: dynamodb.ProjectionType.ALL,
     });
 
     this.ingestBucket = new s3.Bucket(this, "ChapterFlowIngestBucket", {

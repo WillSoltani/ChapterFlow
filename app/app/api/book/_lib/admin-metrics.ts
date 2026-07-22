@@ -47,7 +47,7 @@ export type EntitlementSnapshot = {
  *   USER#<userId>         EVENT#<isoTs>#<eventType>
  *
  * GSI1 "eventDate-eventType-index"  PK=eventDate (YYYY-MM-DD), SK=eventType
- * GSI2 "plan-updatedAt-index"       PK=plan, SK=updatedAt
+ * GSI2 "plan-updatedAt-index-v2"    PK=plan, SK=updatedAt (readers query v2)
  */
 
 export function dayKey(date: Date = new Date()): string {
@@ -165,7 +165,7 @@ export async function activeUsersByPlan(
     const res = await ddbDoc.send(
       new QueryCommand({
         TableName: analyticsTable,
-        IndexName: "plan-updatedAt-index",
+        IndexName: "plan-updatedAt-index-v2",
         KeyConditionExpression: "#p = :p AND updatedAt >= :since",
         ExpressionAttributeNames: { "#p": "plan" },
         ExpressionAttributeValues: { ":p": plan, ":since": sinceIso },
@@ -192,7 +192,7 @@ export async function totalUsersByPlan(
     const res = await ddbDoc.send(
       new QueryCommand({
         TableName: analyticsTable,
-        IndexName: "plan-updatedAt-index",
+        IndexName: "plan-updatedAt-index-v2",
         KeyConditionExpression: "#p = :p",
         ExpressionAttributeNames: { "#p": "plan" },
         ExpressionAttributeValues: { ":p": plan },
@@ -755,8 +755,8 @@ export function countActiveDays(
 /**
  * List most recently active users by plan, capped to `limit`.
  *
- * GSI PROJECTION GUARD: this reads full items off "plan-updatedAt-index", which
- * is projected INCLUDE (not ALL). Every attribute a caller reads off these
+ * GSI PROJECTION GUARD: this reads full items off "plan-updatedAt-index-v2",
+ * which is projected INCLUDE (not ALL). Every attribute a caller reads off these
  * results (via formatUser in admin/users/search/route.ts) MUST be in the GSI's
  * nonKeyAttributes list in infra/lib/chapterflow-backend-stack.ts. A missing
  * attribute is NOT an error — DynamoDB silently omits it and formatUser emits
@@ -770,7 +770,7 @@ export async function listRecentUsersByPlan(
   const res = await ddbDoc.send(
     new QueryCommand({
       TableName: analyticsTable,
-      IndexName: "plan-updatedAt-index",
+      IndexName: "plan-updatedAt-index-v2",
       KeyConditionExpression: "#p = :p",
       ExpressionAttributeNames: { "#p": "plan" },
       ExpressionAttributeValues: { ":p": plan },

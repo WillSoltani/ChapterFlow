@@ -44,6 +44,7 @@ test("the two durable application tables explicitly synthesize AWS-managed KMS e
       indexes: [
         "eventDate-eventType-index",
         "plan-updatedAt-index",
+        "plan-updatedAt-index-v2",
         "contextKey-occurredAt-index",
       ],
     },

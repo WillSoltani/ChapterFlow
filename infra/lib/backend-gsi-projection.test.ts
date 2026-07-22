@@ -1,4 +1,6 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import path from "node:path";
 import { test } from "node:test";
 import * as cdk from "aws-cdk-lib";
 import { Template } from "aws-cdk-lib/assertions";
@@ -43,18 +45,41 @@ function analyticsIndexesByName(): Record<
   return byName;
 }
 
-test("analytics contextKey-occurredAt-index projects KEYS_ONLY", () => {
-  const indexes = analyticsIndexesByName();
-  const projection = indexes["contextKey-occurredAt-index"];
-  assert.ok(projection, "contextKey-occurredAt-index must exist");
-  assert.equal(projection.ProjectionType, "KEYS_ONLY");
-  assert.equal(projection.NonKeyAttributes, undefined);
-});
+// WS6-008 staged rollout (stage 1). The three ORIGINAL analytics GSIs retain
+// ProjectionType.ALL so that the deployed table sees a NO-OP diff — the in-place
+// projection edit (commit 693ad9908) was rejected by CloudFormation and rolled
+// back. Right-sizing happens via a NEW index (plan-updatedAt-index-v2) plus
+// staged deletions of the originals. See
+// docs/architecture/adr-analytics-gsi-projection.md.
 
-test("analytics plan-updatedAt-index projects INCLUDE with exactly the attributes the admin users/search reader consumes", () => {
+test("analytics original plan-updatedAt-index stays ALL (no-op vs live table)", () => {
   const indexes = analyticsIndexesByName();
   const projection = indexes["plan-updatedAt-index"];
   assert.ok(projection, "plan-updatedAt-index must exist");
+  assert.equal(projection.ProjectionType, "ALL");
+  assert.equal(projection.NonKeyAttributes, undefined);
+});
+
+test("analytics original contextKey-occurredAt-index stays ALL (no-op vs live table)", () => {
+  const indexes = analyticsIndexesByName();
+  const projection = indexes["contextKey-occurredAt-index"];
+  assert.ok(projection, "contextKey-occurredAt-index must exist");
+  assert.equal(projection.ProjectionType, "ALL");
+  assert.equal(projection.NonKeyAttributes, undefined);
+});
+
+test("analytics eventDate-eventType-index deliberately projects ALL", () => {
+  const indexes = analyticsIndexesByName();
+  const projection = indexes["eventDate-eventType-index"];
+  assert.ok(projection, "eventDate-eventType-index must exist");
+  assert.equal(projection.ProjectionType, "ALL");
+  assert.equal(projection.NonKeyAttributes, undefined);
+});
+
+test("analytics plan-updatedAt-index-v2 projects INCLUDE with exactly the attributes the admin users/search reader consumes", () => {
+  const indexes = analyticsIndexesByName();
+  const projection = indexes["plan-updatedAt-index-v2"];
+  assert.ok(projection, "plan-updatedAt-index-v2 must exist");
   assert.equal(projection.ProjectionType, "INCLUDE");
   // The exact non-key attribute union read by formatUser + readTime in
   // app/app/api/book/admin/users/search/route.ts. plan/updatedAt (index keys)
@@ -80,10 +105,22 @@ test("analytics plan-updatedAt-index projects INCLUDE with exactly the attribute
   );
 });
 
-test("analytics eventDate-eventType-index deliberately projects ALL", () => {
-  const indexes = analyticsIndexesByName();
-  const projection = indexes["eventDate-eventType-index"];
-  assert.ok(projection, "eventDate-eventType-index must exist");
-  assert.equal(projection.ProjectionType, "ALL");
-  assert.equal(projection.NonKeyAttributes, undefined);
+// The whole point of stage 1 is that the app readers move onto the v2 index in
+// the same workflow run. Assert the reader source queries plan-updatedAt-index-v2
+// and no longer names the original plan-updatedAt-index in any QueryCommand.
+test("admin-metrics readers query plan-updatedAt-index-v2, not the original index", () => {
+  const metricsSource = readFileSync(
+    path.resolve(__dirname, "../../app/app/api/book/_lib/admin-metrics.ts"),
+    "utf8",
+  );
+  assert.match(
+    metricsSource,
+    /IndexName:\s*"plan-updatedAt-index-v2"/,
+    "admin-metrics.ts must query plan-updatedAt-index-v2",
+  );
+  assert.doesNotMatch(
+    metricsSource,
+    /IndexName:\s*"plan-updatedAt-index"/,
+    "admin-metrics.ts must not query the original plan-updatedAt-index",
+  );
 });
