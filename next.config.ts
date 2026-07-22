@@ -39,6 +39,9 @@ const nextConfig: NextConfig = {
   ...(process.env.NEXT_DIST_DIR
     ? { distDir: process.env.NEXT_DIST_DIR }
     : {}),
+  experimental: {
+    optimizePackageImports: ["framer-motion"],
+  },
   images: {
     remotePatterns: coverRemotePatterns,
     // Covers (and local /book-covers/*.svg) are SVG; next/image refuses SVG by
