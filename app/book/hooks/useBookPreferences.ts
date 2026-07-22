@@ -1012,7 +1012,6 @@ export function useBookPreferences() {
   // Apply CSS variables for extended reading settings
   useEffect(() => {
     if (!hydrated) return;
-    const ext = state.extended;
     const root = document.documentElement;
 
     const fontMap: Record<string, string> = {
@@ -1029,16 +1028,22 @@ export function useBookPreferences() {
       "sans-serif": "var(--font-jakarta), system-ui, sans-serif",
       "opendyslexic": '"OpenDyslexic", sans-serif',
     };
-    root.style.setProperty("--reading-font-family", fontMap[ext.fontFamily] || fontMap["sans-serif"]);
+    root.style.setProperty(
+      "--reading-font-family",
+      fontMap[state.extended.fontFamily] || fontMap["sans-serif"],
+    );
     root.style.setProperty("--reading-font-size", `${state.reading.fontSize}px`);
 
     const lineMap: Record<string, string> = { compact: "1.4", comfortable: "1.6", relaxed: "1.8" };
-    root.style.setProperty("--reading-line-height", lineMap[ext.lineSpacing] || "1.6");
+    root.style.setProperty("--reading-line-height", lineMap[state.extended.lineSpacing] || "1.6");
 
     const letterMap: Record<string, string> = { tight: "-0.01em", normal: "0", wide: "0.03em" };
-    root.style.setProperty("--reading-letter-spacing", letterMap[ext.letterSpacing] || "0");
+    root.style.setProperty(
+      "--reading-letter-spacing",
+      letterMap[state.extended.letterSpacing] || "0",
+    );
 
-    root.dataset.colorBlindMode = ext.colorBlindMode;
+    root.dataset.colorBlindMode = state.extended.colorBlindMode;
   }, [
     hydrated,
     state.reading.fontSize,

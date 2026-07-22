@@ -436,7 +436,18 @@ jobs:
   # the baseline — i.e. on NEW errors. It does not force a big-bang cleanup; as
   # debt is paid down, ratchet the baseline LOWER (it must never go up).
   #
-  # Baseline recaptured 2026-07-19 (`npx eslint . --format json`): 8 errors.
+  # Baseline recaptured 2026-07-22 (WS6-015, `npx eslint . --format json`): 7
+  # errors — @typescript-eslint/no-explicit-any (1) + react-hooks/set-state-in-effect
+  # (6), all pre-existing. WS6-015 also elevated react-hooks/exhaustive-deps and
+  # @typescript-eslint/no-unused-vars from eslint-config-next's default "warn" to
+  # "error" (eslint.config.mjs) and fixed every case that surfaced (54 unused-vars +
+  # 14 exhaustive-deps sites); @typescript-eslint/no-floating-promises was left at
+  # its default (unset) since it requires type-aware linting
+  # (parserOptions.projectService) whose lint-time cost hasn't been measured yet —
+  # deferred, not part of this ratchet's correctness subset. The "ESLint ratchet"
+  # step below runs check-eslint-correctness.mjs at ZERO tolerance for that
+  # elevated subset (plus the never-elevated no-unused-vars/no-floating-promises
+  # aliases), ahead of and independent from the overall baseline comparison.
   lint-ratchet:
     name: Lint Ratchet (no new errors)
     runs-on: ubuntu-latest
@@ -444,7 +455,7 @@ jobs:
     env:
       # Committed baseline: the current ESLint error count. Lower this (never
       # raise it) as errors are fixed. New errors above this number block CI.
-      ESLINT_ERROR_BASELINE: "8"
+      ESLINT_ERROR_BASELINE: "7"
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -469,6 +480,19 @@ jobs:
           npx eslint . --format json > eslint-report.json || true
           ERRORS=$(node -e "const r=require('./eslint-report.json');let e=0;for(const f of r)e+=f.errorCount;console.log(e);")
           echo "ESLint errors: ${ERRORS} (baseline: ${ESLINT_ERROR_BASELINE})"
+
+          # WS6-015: zero-tolerance correctness-rule subset — fails immediately on
+          # any hit, independent of the overall baseline comparison below. `set -e`
+          # is not active in this step, so the exit code must be checked explicitly.
+          if ! node scripts/ci/check-eslint-correctness.mjs eslint-report.json; then
+            echo "::error::Correctness-rule subset (react-hooks/exhaustive-deps, no-unused-vars, no-floating-promises) has zero tolerance — see hits above."
+            {
+              echo "## ESLint ratchet"
+              echo ""
+              echo "❌ **Correctness-rule subset violation** — see job log for file:line hits."
+            } >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
           {
             echo "## ESLint ratchet"
             echo ""

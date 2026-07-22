@@ -9,14 +9,10 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   achievementSk,
   bookUserPk,
-  loopSk,
   nowIso,
 } from "@/app/app/api/book/_lib/keys";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
-import {
-  ACHIEVEMENT_DEFINITIONS,
-  getAchievementById,
-} from "@/app/book/badges/lib/achievement-definitions";
+import { getAchievementById } from "@/app/book/badges/lib/achievement-definitions";
 import type { BookUserTierItem, BookUserStreakItem } from "@/app/app/api/book/_lib/types";
 
 // ── Types ───────────────────────────────────────────────────────────────────

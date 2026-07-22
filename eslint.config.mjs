@@ -100,6 +100,27 @@ const eslintConfig = defineConfig([
       ],
     },
   },
+  {
+    // WS6-015: promote a correctness-rule subset from eslint-config-next's
+    // default "warn" to "error" so the lint-ratchet's severity-2 count (and
+    // the zero-tolerance checker in scripts/ci/check-eslint-correctness.mjs)
+    // actually catches these instead of silently passing as warnings.
+    files: ["**/*.{ts,tsx,js,jsx}"],
+    rules: {
+      "react-hooks/exhaustive-deps": "error",
+      // argsIgnorePattern/varsIgnorePattern/caughtErrorsIgnorePattern preserve
+      // the codebase's existing underscore-prefix convention for intentionally
+      // unused parameters (e.g. app/book/data/bookChapters.ts, ExamplesList.tsx).
+      "@typescript-eslint/no-unused-vars": [
+        "error",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+          caughtErrorsIgnorePattern: "^_",
+        },
+      ],
+    },
+  },
   // Override default ignores of eslint-config-next.
   globalIgnores([
     // Default ignores of eslint-config-next:

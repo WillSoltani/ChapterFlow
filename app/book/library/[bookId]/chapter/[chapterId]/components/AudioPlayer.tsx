@@ -290,7 +290,8 @@ export function AudioPlayer({
   }, []);
 
   useEffect(() => {
-    return () => { audioRef.current?.pause(); };
+    const audioEl = audioRef.current;
+    return () => { audioEl?.pause(); };
   }, []);
 
   useKeyboardShortcut("l", () => {

@@ -12,7 +12,6 @@ import {
   LoaderCircle,
   RotateCcw,
   Target,
-  Trophy,
   X,
 } from "lucide-react";
 import type {
@@ -20,7 +19,6 @@ import type {
   QuizSessionView,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import {
-  CHAPTER_FP,
   QUIZ_RETRIES_PER_QUESTION,
   QUIZ_AUTO_ADVANCE_DELAY,
 } from "@/app/book/_lib/flow-points-economy";
@@ -487,7 +485,7 @@ function ReviewMistakesView({
 // ─── Results Screen ──────────────────────────────────────────────────────────
 
 function ResultsScreen({
-  session, learningMode, cooldownSeconds, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
+  session, learningMode: _learningMode, cooldownSeconds, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
 }: {
   session: QuizSessionView;
   learningMode: LearningMode;
@@ -650,7 +648,7 @@ export function QuizPanel({
       }
     }
     return questions;
-  }, [session, shuffleQuestions, retryIncorrectOnly, session?.attemptNumber, previousIncorrectIds]);
+  }, [session, shuffleQuestions, retryIncorrectOnly, previousIncorrectIds]);
 
   // Reset local quiz state when session refreshes (e.g. retry)
   const prevSessionRef = useRef(session);

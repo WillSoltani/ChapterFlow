@@ -384,6 +384,11 @@ export function useChapterState(
     });
     setHasPersistedState(Boolean(parsed));
     setHydrated(true);
+    // preferredFocusMode/preferredFontScale intentionally excluded: this
+    // effect must hydrate exactly once per storageKey (mount / chapter
+    // change), not re-run and clobber persisted user state whenever a
+    // parent re-render passes a fresh default-param value.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     preferredActiveTab,
     preferredExampleFilter,

@@ -1,10 +1,6 @@
 import type { BookUserDepthModelItem } from "./types";
 import { nowIso } from "./keys";
-import {
-  computeDepthRecommendation,
-  computeNextDepthModel,
-  depthModelKey,
-} from "./depth-routing-core";
+import { computeNextDepthModel, depthModelKey } from "./depth-routing-core";
 import { GetCommand, PutCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 

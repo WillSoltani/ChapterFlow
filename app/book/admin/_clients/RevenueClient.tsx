@@ -1,7 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Wallet } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -66,7 +66,7 @@ export function RevenueClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<RevenueResponse>(`/metrics/revenue?range=${range}`)
@@ -75,11 +75,11 @@ export function RevenueClient() {
         setError(err instanceof Error ? err.message : "Failed to load revenue"),
       )
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   const sourceData = useMemo(() => {
     if (!data) return [];

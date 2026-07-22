@@ -1,6 +1,5 @@
 "use client";
 
-import { cn } from "@/lib/utils";
 import type { UserAchievementProfile } from "../lib/badge-types";
 import { BadgesProgressRing } from "./BadgesProgressRing";
 

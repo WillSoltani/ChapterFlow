@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Pause, Play, RefreshCw, Radio } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -33,7 +33,7 @@ export function LiveActivityClient() {
   const [typeFilter, setTypeFilter] = useState<string>("");
   const intervalRef = useRef<number | null>(null);
 
-  const reload = async () => {
+  const reload = useCallback(async () => {
     setError(null);
     try {
       const params = new URLSearchParams({ limit: "200" });
@@ -45,11 +45,11 @@ export function LiveActivityClient() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [typeFilter]);
 
   useEffect(() => {
     reload();
-  }, [typeFilter]);
+  }, [reload]);
 
   useEffect(() => {
     if (paused) {
@@ -63,7 +63,7 @@ export function LiveActivityClient() {
     return () => {
       if (intervalRef.current) window.clearInterval(intervalRef.current);
     };
-  }, [paused, typeFilter]);
+  }, [paused, reload]);
 
   const filtered = filter
     ? events.filter((e) => {
