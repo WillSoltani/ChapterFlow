@@ -51,7 +51,8 @@ import {
   runSourceCoherenceCheck,
 } from "./critics/sourceCoherence.js";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
-import { checkSourceV2Gate, formatSourceV2GateReport } from "./qc/sourceV2Gate.js";
+import { formatSourceV2GateReport, type SourceV2GateReport } from "./qc/sourceV2Gate.js";
+import { evaluateSourceV2Integrity } from "./source/sourceIntegrity.js";
 import { buildCanonicalToc } from "./lib/tocContract.js";
 import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
@@ -316,7 +317,26 @@ export async function researchBook(
   });
   if (v2SidecarsPresent) {
     log("Step 3.5/4: source integrity gate...");
-    const integrity = checkSourceV2Gate(bookId, chapterList.map((ch) => ch.number), { runsRoot, stateRoot });
+    // Evaluate exact in-memory/durable outputs from this active run. The normal
+    // run-discovery reader intentionally exposes only completed runs, so using it
+    // here (before this manifest is marked complete) would falsely report every
+    // just-written sidecar as missing.
+    const findings = chapters.flatMap((chapter) => evaluateSourceV2Integrity(chapter, {
+      chapterNumber: chapter.chapterNumber,
+      chapterTitle: chapter.chapterTitle,
+      rawText: JSON.stringify(chapter),
+    }).findings.map((finding) => ({
+      checkId: finding.checkId,
+      severity: finding.severity,
+      ...(finding.chapterNumber === undefined ? {} : { chapterNumber: finding.chapterNumber }),
+      message: finding.message,
+    })));
+    const integrity: SourceV2GateReport = {
+      bookId,
+      passed: !findings.some((finding) => finding.severity === "blocker"),
+      chaptersChecked: chapters.length,
+      findings,
+    };
     log("  " + formatSourceV2GateReport(integrity).replace(/\n/g, "\n  "));
     updateManifest(activeBundlePath, runId, ownerId, clock, leaseTtlMs, (m, nowIso) => {
       appendResearchEvent(m, {

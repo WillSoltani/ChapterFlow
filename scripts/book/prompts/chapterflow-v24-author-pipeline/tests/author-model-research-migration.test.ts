@@ -3,7 +3,7 @@ import { readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import type { ModelCallerExecution, ModelTaskRunner } from "../src/app/modelTaskRunner.js";
+import { runJsonModelTask, type ModelCallerExecution, type ModelTaskRunner } from "../src/app/modelTaskRunner.js";
 import { runResearcherBibliography } from "../src/agents/researcher-bibliography.js";
 import { runResearcherChapter } from "../src/agents/researcher-chapter.js";
 import { runTryThisNow } from "../src/agents/try-this-now.js";
@@ -80,6 +80,51 @@ test("research callers make one bounded explicit attempt and never retry malform
 
 test("research orchestrator has no ambient default model binding", async () => {
   await assert.rejects(researchBook("Test Book", "Test Author"), /MODEL_TASK_RUNNER_REQUIRED/);
+});
+
+test("researcher chapter prompt keeps good paraphrase notes free of meta narration", () => {
+  const prompt = readFileSync(resolve(__dirname, "../prompts/researcher-chapter.system.md"), "utf8");
+  const goodBlock = prompt.match(/### Good `paraphraseNotes`\s*\n\s*"([\s\S]*?)"\s*\n\s*\nWrite the ChapterResearchResult JSON now\./);
+  assert.ok(goodBlock, "Good paraphraseNotes exemplar must remain extractable");
+
+  const metaReference = /\b(?:this chapter|the chapter|the author|the book|chapter\s+\d+)\b|\bin (?:this )?(?:chapter|section|book)\b/i;
+  assert.doesNotMatch(goodBlock[1], metaReference);
+
+  const richSourceRule = prompt.match(/6\. \*\*`paraphraseNotes` is the rich source\.\*\*([^\n]+)/);
+  assert.ok(richSourceRule, "paraphraseNotes instruction must remain extractable");
+  assert.match(richSourceRule[1], /claims and examples directly in source order/i);
+  assert.match(richSourceRule[1], /final practical rule/i);
+  assert.doesNotMatch(richSourceRule[1], /what the chapter does|conclusion it lands on/i);
+});
+
+test("explicit model caller profile override preserves injected work directory", async () => {
+  const seen: Array<{ profileId: string; workDir: string }> = [];
+  const workDir = resolve(__dirname, ".tmp", "isolated-attempt");
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      seen.push({ profileId: request.profileId, workDir: request.context.workDir });
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { ok: true } };
+    },
+  };
+  await runJsonModelTask(
+    {
+      runner,
+      profileId: "attempt-read-json-v1",
+      context: {
+        bookId: "test-book",
+        runId: "run-profile",
+        attemptId: "attempt-profile",
+        stageId: "research",
+        operationId: "research-profile",
+        workDir,
+        signal: new AbortController().signal,
+      },
+    },
+    "researcher-chapter",
+    "system",
+    "user",
+  );
+  assert.deepEqual(seen, [{ profileId: "attempt-read-json-v1", workDir }]);
 });
 
 test("owned model caller inventory has zero direct/provider/process routes", () => {

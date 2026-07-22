@@ -19,31 +19,40 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
+import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
+import type { NamedFramework, TestableFact } from "../source/sidecarSchema.js";
 import { BibliographyResult } from "./researcher-bibliography.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
 
 export type ChapterResearchResult = {
+  schemaVersion?: "source-v2";
   chapterNumber: number;
   chapterTitle: string;
   focus: string;
   coreClaim: string;
   centralConcept: {
+    id?: string;
     name: string;
     plainDefinition: string;
     whyItMatters: string;
   };
   keyClaims: string[];
   namedExamples: Array<{
+    id?: string;
     label: string;
     summary: string;
     teachesWhat: string;
+    hardSpecifics?: string[];
+    realWorld?: boolean;
   }>;
   hardEdge: string;
   voiceCues: string[];
   forbiddenLeakage?: string[];
   paraphraseNotes: string;
+  testableFacts?: TestableFact[];
+  frameworks?: NamedFramework[];
 };
 
 export type ChapterResearchInput = {
@@ -146,6 +155,14 @@ function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearc
   }
   if (typeof r.paraphraseNotes !== "string" || r.paraphraseNotes.length < 600 || r.paraphraseNotes.length > 3000) {
     problems.push(`paraphraseNotes length ${r.paraphraseNotes?.length ?? 0} outside 600-3000 char range (target 200-400 words ≈ 1200-2400 chars)`);
+  }
+
+  const sourceV2 = evaluateSourceV2Integrity(r, {
+    chapterNumber: input.chapter.number,
+    chapterTitle: input.chapter.title,
+  });
+  for (const finding of sourceV2.findings) {
+    if (finding.severity === "blocker") problems.push(`${finding.checkId}: ${finding.message}`);
   }
 
   // Meta-reference checks across every text field.
