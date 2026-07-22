@@ -410,7 +410,7 @@ async function notifyTeam(record: BookRequestRecord): Promise<void> {
 
     const [{ SESv2Client, SendEmailCommand }, { awsClientConfig }] = await Promise.all([
       import("@aws-sdk/client-sesv2"),
-      import("@/app/app/api/_lib/aws-client-config-core"),
+      import("@/app/app/api/_lib/aws"),
     ]);
     const client = new SESv2Client({
       region: process.env.AWS_REGION ?? "us-east-1",

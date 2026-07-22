@@ -4,7 +4,7 @@ import {
   loadSsmParameterValue,
 } from "./server-env-core";
 import { logger } from "@/lib/logging/logger";
-import { awsClientConfig } from "./aws-client-config-core";
+import { awsClientConfig } from "./aws";
 
 const REGION =
   process.env.AWS_REGION ||

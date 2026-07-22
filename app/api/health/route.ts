@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { resolveBillingSecretReadiness } from "./billing-readiness-core";
-import { awsClientConfig } from "@/app/app/api/_lib/aws-client-config-core";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";

@@ -2,7 +2,7 @@ import "server-only";
 
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
 import { logger } from "@/lib/logging/logger";
-import { awsClientConfig } from "@/app/app/api/_lib/aws-client-config-core";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 let sesClient: SESv2Client | null = null;
 

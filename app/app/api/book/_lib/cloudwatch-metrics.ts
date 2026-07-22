@@ -9,7 +9,7 @@ import {
 } from "@aws-sdk/client-cloudwatch";
 import { DescribeTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { logger } from "@/lib/logging/logger";
-import { awsClientConfig } from "@/app/app/api/_lib/aws-client-config-core";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 const REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
 

@@ -1,9 +1,23 @@
-import { test } from "node:test";
+import { after, before, test } from "node:test";
 import assert from "node:assert/strict";
 import http from "node:http";
 import type { AddressInfo } from "node:net";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
-import { makeAwsClientConfig } from "./aws-client-config-core";
+
+import { installServerOnlyShim } from "@/tests/_lib/server-only-shim";
+
+// aws.ts imports `server-only`, which throws at module-load under the test
+// runner. Shim it, then dynamically import the config factory so this test
+// stays runnable and stays OUT of the shared app/book TypeScript closure.
+let restoreServerOnly: (() => void) | undefined;
+let makeAwsClientConfig: typeof import("./aws").makeAwsClientConfig;
+
+before(async () => {
+  restoreServerOnly = installServerOnlyShim();
+  ({ makeAwsClientConfig } = await import("./aws"));
+});
+
+after(() => restoreServerOnly?.());
 
 test("makeAwsClientConfig: emits explicit requestHandler timeouts, adaptive retryMode, and bounded maxAttempts", () => {
   const config = makeAwsClientConfig();
