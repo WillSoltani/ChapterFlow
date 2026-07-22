@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "./book-read-keys";
 import { applyDocumentTheme } from "@/app/_lib/document-theme";
 import type { ExtendedSettings } from "@/app/book/settings/types/settings";
 import { defaultExtendedSettings, INTENSITY_TO_QUIZ_STYLE } from "@/app/book/settings/constants/defaults";
@@ -884,12 +886,10 @@ export function useBookPreferences() {
   }, []);
 
   useEffect(() => {
-    let mounted = true;
-    fetchBookJson<{ settings: Record<string, unknown> | null; updatedAt: string | null }>(
-      "/app/api/book/me/settings"
+    fetchBookJsonCached<{ settings: Record<string, unknown> | null; updatedAt: string | null }>(
+      SETTINGS_KEY
     )
       .then((payload) => {
-        if (!mounted) return;
         if (!payload.settings) return;
 
         // Decide whether the server copy should overwrite local state. Two cases
@@ -927,12 +927,7 @@ export function useBookPreferences() {
           );
         }
       })
-      .catch(() => {
-        if (!mounted) return;
-      });
-    return () => {
-      mounted = false;
-    };
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -1079,6 +1074,10 @@ export function useBookPreferences() {
             lastSyncedAt.current = payload.updatedAt;
             window.localStorage.setItem(LAST_SYNCED_KEY, payload.updatedAt);
           }
+          // Refetch subscribed settings readers from the server echo of our own
+          // write. Ordered AFTER recording lastSyncedAt so the refetch is
+          // recognized as our own save (H27) and not re-applied as remote.
+          invalidateBookCache(SETTINGS_KEY);
         })
         .catch((err) => console.error("[settings] server save failed:", err));
     }, 500);

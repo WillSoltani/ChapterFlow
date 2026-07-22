@@ -1,7 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { useBookQuery } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "./book-read-keys";
 
 export type StarterPrescription = {
   bookId: string;
@@ -24,9 +25,7 @@ type SettingsResponse = {
 const DISMISSED_KEY = "book-accelerator:prescription-dismissed";
 
 export function useStarterPrescription(enabled: boolean) {
-  const [prescription, setPrescription] = useState<StarterPrescription | null>(null);
   const [dismissed, setDismissed] = useState(false);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -34,28 +33,10 @@ export function useStarterPrescription(enabled: boolean) {
     }
   }, []);
 
-  useEffect(() => {
-    if (!enabled) {
-      setLoading(false);
-      return;
-    }
-
-    let mounted = true;
-    fetchBookJson<SettingsResponse>("/app/api/book/me/settings")
-      .then((data) => {
-        if (!mounted) return;
-        const p = data.settings?.onboarding?.starterPrescription ?? null;
-        setPrescription(p);
-      })
-      .catch(() => {})
-      .finally(() => {
-        if (mounted) setLoading(false);
-      });
-
-    return () => {
-      mounted = false;
-    };
-  }, [enabled]);
+  const settingsQuery = useBookQuery<SettingsResponse>(enabled ? SETTINGS_KEY : null);
+  const prescription =
+    settingsQuery.data?.settings?.onboarding?.starterPrescription ?? null;
+  const loading = enabled && settingsQuery.loading;
 
   const dismiss = useCallback(() => {
     setDismissed(true);
