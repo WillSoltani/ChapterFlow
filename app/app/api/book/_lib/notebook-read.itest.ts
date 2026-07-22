@@ -25,7 +25,11 @@ import {
 } from "@/tests/_lib/dynamo-local";
 
 // ── Env MUST be set before importing any module that constructs an AWS client ──
-const TABLE_NAME = process.env.BOOK_TABLE_NAME || "ChapterFlowApp-notebook-itest";
+// Always a table of our own: the CI job exports BOOK_TABLE_NAME for the whole
+// integration job, and journey.itest.ts creates/drops that shared name — honoring
+// it here races both suites' before/after on one table. tsx --test runs each
+// file in its own process, so overriding the env stays local to this file.
+const TABLE_NAME = "ChapterFlowApp-notebook-itest";
 process.env.BOOK_TABLE_NAME = TABLE_NAME;
 process.env.AWS_REGION ||= "us-east-1";
 process.env.AWS_ENDPOINT_URL_DYNAMODB ||= "http://127.0.0.1:8000";
