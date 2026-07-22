@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-15T03:48:02-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "9eb83381846c1d3ead9ef1b3521e838626b8df009ad17e081e6dfaf053335454",
+    "generatorTreeDigest": "052984d4936d6afa68d4be2d4cbf6c82978e106994839c9bd2c9dd58bf03857a",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -1021,7 +1021,7 @@
       ],
       "cache": {
         "class": "public",
-        "notes": "Public metadata read; downloads persist the manifest in an account-owned store."
+        "notes": "Public metadata read; backend sends Cache-Control public max-age=300, stale-while-revalidate=3600. Downloads persist the manifest in an account-owned store."
       },
       "idempotency": {
         "class": "safe_read",
@@ -1143,7 +1143,12 @@
         ],
         "success": {
           "status": 200,
-          "headers": [],
+          "headers": [
+            {
+              "name": "Cache-Control",
+              "value": "public, max-age=300, stale-while-revalidate=3600"
+            }
+          ],
           "payload": {
             "kind": "json",
             "value": {
@@ -1199,7 +1204,7 @@
           {
             "path": "app/app/api/book/books/[bookId]/route.ts",
             "role": "route",
-            "sourceSha256": "69d0bbe9151e9eb85add41f8d0de58768c48b4d3418119a6404691f403aa5431"
+            "sourceSha256": "8f261762b734915edebe01e42add491819cd5602f058d44e7900b6254198a4fb"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -1984,7 +1989,7 @@
       ],
       "cache": {
         "class": "private",
-        "notes": "No explicit iOS cache was observed."
+        "notes": "No explicit iOS cache was observed. Backend sends Cache-Control private max-age=300, stale-while-revalidate=600 (auth-gated; never shared-cache)."
       },
       "idempotency": {
         "class": "safe_read",
@@ -2086,7 +2091,12 @@
         ],
         "success": {
           "status": 200,
-          "headers": [],
+          "headers": [
+            {
+              "name": "Cache-Control",
+              "value": "private, max-age=300, stale-while-revalidate=600"
+            }
+          ],
           "payload": {
             "kind": "json",
             "value": {
@@ -2143,7 +2153,7 @@
           {
             "path": "app/app/api/book/books/[bookId]/concept-graph/route.ts",
             "role": "route",
-            "sourceSha256": "c50651f25ea08c85343746b2dc347cffedd2b51f1d58f6814b409fe2215b8695"
+            "sourceSha256": "af7a5bbed3a02e72d9a5fe2e8bc7a9f8526b27c249dcbefd9a5045f27430d3ae"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
