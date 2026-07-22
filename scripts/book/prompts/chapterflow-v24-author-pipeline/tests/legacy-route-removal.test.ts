@@ -58,7 +58,6 @@ const EXPECTED_INVENTORY_ATOMS = [
   "src/cli.ts\tpipeline\tSTABLE_DISABLED",
   "src/cli.ts\tflow\tSTABLE_DISABLED",
   "src/cli.ts\tgenerate-book\tSTABLE_DISABLED",
-  "src/cli.ts\tresearch\tSTABLE_DISABLED",
   "src/cli.ts\tgenerate\tSTABLE_DISABLED",
   "src/app/compilerApplicationPort.ts\tCompilerApplicationPort.run\tINJECTED_V4_RETAINED",
   "src/cli.ts\tbook-autopilot.compiler\tINJECTED_V4_RETAINED",
@@ -120,12 +119,12 @@ test("legacy inventory deep-equals independent path, symbol, and disposition set
   assert.deepEqual(actual, [...EXPECTED_INVENTORY_ATOMS].sort());
 });
 
-test("CLI disabled command inventory is derived from exact six-command source set", () => {
+test("CLI disabled command inventory is derived from exact five-command source set", () => {
   const source = readFileSync(resolve(process.cwd(), "src/cli.ts"), "utf8");
   const declaration = source.match(/const LEGACY_DISABLED_COMMANDS = new Set<string>\(\[([\s\S]*?)\]\);/);
   assert.ok(declaration, "LEGACY_DISABLED_COMMANDS declaration missing");
   const commands = [...declaration[1].matchAll(/"([^"]+)"/g)].map((match) => match[1]);
-  assert.deepEqual(commands, ["ping", "pipeline", "flow", "generate-book", "research", "generate"]);
+  assert.deepEqual(commands, ["ping", "pipeline", "flow", "generate-book", "generate"]);
 
   const inventoried = LEGACY_ROUTE_INVENTORY
     .filter((entry) => entry.path === "src/cli.ts" && entry.disposition === "STABLE_DISABLED")

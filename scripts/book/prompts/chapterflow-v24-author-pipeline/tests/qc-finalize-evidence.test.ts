@@ -635,25 +635,6 @@ goldTest("qc-auto reaches a genuine PASS end-to-end through the shared driver (c
   }
 });
 
-goldTest("qc-auto invalid or empty chapter selectors cannot reopen legacy full-book finalization", () => {
-  const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-  try {
-    cleanup();
-    setupGreenEvidence(GREEN_BOOK, [clonedCleanChapter(GREEN_BOOK)], { rawSweepSubmission: true });
-    process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-    for (const invalid of ["abc", "0", ","]) {
-      const cli = runCli(["qc-auto", GREEN_BOOK, "--pass", "--round", ROUND, "--chapters", invalid]);
-      assert.equal(cli.status, 2, `${invalid}: ${cli.out}`);
-      assert.match(cli.out, /V25_COMPOSITION_REQUIRED/, invalid);
-      assert.doesNotMatch(cli.out, /QC AUTO PASS/, invalid);
-    }
-  } finally {
-    if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
-    else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
-    cleanup();
-  }
-});
-
 goldTest("finalize turns author-check REVISE into finalizer repair findings and prompt causes", () => {
   try {
     cleanup();

@@ -11,6 +11,7 @@ import { createCurrentPointerStore } from "../src/books/currentPointer.js";
 import type { BookWriteLock } from "../src/books/leaseTypes.js";
 import type { BookStatus } from "../src/lifecycle/bookStatus.js";
 import { runAutopilot, type AutopilotDeps } from "../src/orchestrator/autopilot.js";
+import { createFileRunStore, createFileStageCoordinator } from "../src/run-state/index.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 import { test } from "./harness.js";
 import { compileCreditFixture, creditChapterSpec } from "./fixtures/creditBookFixture.js";
@@ -92,6 +93,10 @@ test("real app to autopilot to compiler port uses candidate store lock and no le
     const currentPointerStore = createCurrentPointerStore({ booksRoot: roots.booksRoot, writeLock });
     const candidateStore = createCandidateStore({ booksRoot: roots.booksRoot, writeLock, currentPointerStore });
     const contentReader = createBookContentReader({ booksRoot: roots.booksRoot, currentPointerStore });
+    const runStateRoot = resolve(roots.tempRoot, "run-state");
+    const runStore = createFileRunStore(runStateRoot);
+    const stageCoordinator = createFileStageCoordinator(runStateRoot);
+    const clock = { now: () => "2026-01-01T00:00:01.000Z" };
     const files = [
       { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: INDEX, bytes: Buffer.from(JSON.stringify([creditChapterSpec(BOOK)])) },
       { kind: "SIDECAR" as const, mediaType: "application/json" as const, logicalPath: SIDECAR, bytes: Buffer.from(JSON.stringify(sourceSidecar())) },
@@ -116,21 +121,40 @@ test("real app to autopilot to compiler port uses candidate store lock and no le
     const runner: ModelTaskRunner = {
       async run(request) {
         const output = outputs[runnerCalls++];
+        const admittedAt = clock.now();
+        const admission = await runStore.admitAttempt({
+          bookId: request.context.bookId,
+          runId: request.context.runId,
+          attemptId: request.context.attemptId,
+          stageId: request.context.stageId,
+          operationId: request.context.operationId,
+          admittedAt,
+          staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+        });
+        assert.equal(admission.ok, true);
+        const finished = await runStore.finishAttempt({
+          bookId: request.context.bookId,
+          runId: request.context.runId,
+          attemptId: request.context.attemptId,
+          outcome: "SUCCEEDED",
+          finishedAt: clock.now(),
+        });
+        assert.equal(finished.ok, true);
         return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
       },
     };
     const tripwires = { runVerb: 0, spawn: 0, provider: 0, logSession: 0 };
     let id = 0;
     const app = createChapterFlowApp({
-      runStore: {} as never,
-      stageCoordinator: {} as never,
+      runStore,
+      stageCoordinator,
       modelGateway: { execute: async () => { tripwires.provider += 1; throw new Error("provider tripwire"); } },
       candidateStore,
       contentReader,
       reviewService: {} as never,
       qcService: {} as never,
       promotionService: {} as never,
-      clock: { now: () => "2026-01-01T00:00:01.000Z" },
+      clock,
       ids: {
         nextRunId: () => `run-${++id}`,
         candidateId: () => `candidate-output-${++id}`,
@@ -161,11 +185,12 @@ test("real app to autopilot to compiler port uses candidate store lock and no le
         request: {
           candidateId: "candidate-input",
           manifestDigest: input.value.manifestDigest,
+          sourceGitSha: "a20d1cdab0fc33c4c1f840f4cf99089816e022d4",
           attemptRoot: resolve(roots.attemptsRoot, "compiler-attempt"),
           indexLogicalPath: INDEX,
           sectionTaskContextLogicalPath: CONTEXT,
           sources: [{ chapterNumber: 1, sidecarLogicalPath: SIDECAR, sourceLogicalPaths: [SOURCE] }],
-          profileId: "pipeline-read-json-v1",
+          profileId: "attempt-read-json-v1",
           signal: new AbortController().signal,
         },
       },

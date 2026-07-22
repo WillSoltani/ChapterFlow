@@ -39,7 +39,7 @@ export const LEGACY_ROUTE_INVENTORY: readonly LegacyRouteInventoryEntry[] = Obje
   { path: "src/sections/sectionTasks.ts", symbols: ["buildSectionTaskMarkdown"], disposition: "PURE_RETAINED" },
   { path: "src/review/sourceIntegrityReview.ts", symbols: ["runSourceIntegrityReview"], disposition: "INJECTED_V4_RETAINED" },
   { path: "src/orchestrator/forwardChapterConductor.ts", symbols: ["runForwardChapterConductor"], disposition: "INJECTED_V4_RETAINED" },
-  { path: "src/cli.ts", symbols: ["ping", "pipeline", "flow", "generate-book", "research", "generate"], disposition: "STABLE_DISABLED" },
+  { path: "src/cli.ts", symbols: ["ping", "pipeline", "flow", "generate-book", "generate"], disposition: "STABLE_DISABLED" },
   { path: "src/app/compilerApplicationPort.ts", symbols: ["CompilerApplicationPort.run"], disposition: "INJECTED_V4_RETAINED" },
   { path: "src/cli.ts", symbols: ["book-autopilot.compiler"], disposition: "INJECTED_V4_RETAINED" },
   { path: "src/providers/router.ts", symbols: ["resolveProviderName", "resolveModel", "defaultModelForProviderName"], disposition: "PURE_RETAINED" },

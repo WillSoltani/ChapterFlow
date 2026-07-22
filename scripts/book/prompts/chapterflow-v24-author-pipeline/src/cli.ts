@@ -75,15 +75,36 @@ const MODEL_COMMANDS = new Set<string>([
 ]);
 
 const LEGACY_DISABLED_COMMANDS = new Set<string>([
-  "ping", "pipeline", "flow", "generate-book", "research", "generate",
+  "ping", "pipeline", "flow", "generate-book", "generate",
 ]);
+
+const V4_RESEARCH_USAGE = 'research "<title>" "<author>" [--book-id <slug>] --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--concurrency N] [--force-refresh]';
+const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha> [--round <id>]";
+const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
+
+function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+}
+
+function firstUnsupportedFlag(
+  flags: Record<string, string | boolean>,
+  commandFlags: readonly string[],
+): string | undefined {
+  const allowed = new Set([...commandFlags, "allow-noncanonical", "config-dir"]);
+  return Object.keys(flags).sort().find((flag) => !allowed.has(flag));
+}
 
 const commandRegistry = new CommandRegistry();
 const runRegisteredCommand: CommandSpec["run"] = async (context) => {
   const parsed = parseArgs([...context.argv]);
   return {
     ok: true,
-    value: await runExistingCommand({ id: normalizeCommandId(parsed.cmd), args: parsed.args, flags: parsed.flags }),
+    value: await runExistingCommand({
+      id: normalizeCommandId(parsed.cmd),
+      args: parsed.args,
+      flags: parsed.flags,
+      signal: context.abortSignal,
+    }),
   };
 };
 for (const id of COMMAND_IDS) {
@@ -237,8 +258,19 @@ async function createCliV25Composition(
   const chapterLogicalPaths = candidate.files
     .filter((file) => file.kind === "CHAPTER")
     .map((file) => file.logicalPath);
+  let sourceSidecarLogicalPaths: string[];
   let patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
   try {
+    sourceSidecarLogicalPaths = chapterLogicalPaths.map((_chapterPath, index) => {
+      const packetPath = `compiler/ch${String(index + 1).padStart(2, "0")}/source-packet.json`;
+      const packet = candidate.files.find((file) => file.logicalPath === packetPath);
+      if (!packet || packet.mediaType !== "application/json") throw new Error(`missing ${packetPath}`);
+      const value = JSON.parse(Buffer.from(packet.bytes).toString("utf8")) as { sourceSidecarPath?: unknown };
+      if (typeof value.sourceSidecarPath !== "string" || value.sourceSidecarPath.length === 0) {
+        throw new Error(`${packetPath} lacks sourceSidecarPath`);
+      }
+      return value.sourceSidecarPath;
+    });
     const [{ runBookGateFromCandidate }, { BOOK_PATTERN_AUDIT_LOGICAL_PATH, parseBookPatternAuditReport }] = await Promise.all([
       import("./critics/bookGate.js"),
       import("./critics/bookPatternAudit.js"),
@@ -248,6 +280,7 @@ async function createCliV25Composition(
       candidateId: candidate.manifest.candidateId,
       manifestDigest: candidate.manifest.manifestDigest,
       chapterLogicalPaths,
+      sourceSidecarLogicalPaths,
       patternAuditLogicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH,
     });
     patternAudit = parseBookPatternAuditReport(candidateGate.stats.patternAudit, {
@@ -278,10 +311,212 @@ function hasCliV25Selection(flags: Record<string, string | boolean>): boolean {
     .some((name) => flags[name] !== undefined);
 }
 
+function v4BookId(title: string, explicit: string | boolean | undefined): string {
+  if (typeof explicit === "string" && explicit.length > 0) return explicit;
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+async function runV4Research(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  signal: AbortSignal,
+): Promise<number> {
+  const unsupported = firstUnsupportedFlag(flags, [
+    "book-id", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "concurrency", "force-refresh",
+  ]);
+  const title = args[0] ?? "";
+  const author = args[1] ?? "";
+  const v25Root = flags["v25-root"];
+  const attemptRoot = flags["attempt-root"];
+  const sourceGitSha = flags["source-git-sha"];
+  const bookId = v4BookId(title, flags["book-id"]);
+  const chapterConcurrency = typeof flags["concurrency"] === "string" ? Number(flags["concurrency"]) : undefined;
+  if (unsupported !== undefined) {
+    console.error(`UNSUPPORTED_OPTION:research:--${unsupported}`);
+    return 2;
+  }
+  if (args.length !== 2 || !title || !author || !bookId || typeof v25Root !== "string" || !isAbsolute(v25Root)
+    || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
+    || typeof sourceGitSha !== "string" || sourceGitSha.length === 0
+    || (flags["book-id"] !== undefined && typeof flags["book-id"] !== "string")
+    || (flags["resume-run-id"] !== undefined && typeof flags["resume-run-id"] !== "string")
+    || (flags["concurrency"] !== undefined && (chapterConcurrency === undefined || !Number.isSafeInteger(chapterConcurrency) || chapterConcurrency < 1))
+    || (flags["force-refresh"] !== undefined && flags["force-refresh"] !== true)) {
+    console.error(`Usage: ${V4_RESEARCH_USAGE}`);
+    return 2;
+  }
+  const { createProductionBookRunComposition } = await import("./app/bookRunComposition.js");
+  try {
+    const composition = await createProductionBookRunComposition({
+      bookId,
+      pipelineRoot: REPO_ROOT,
+      v25Root,
+      attemptRoot,
+    });
+    if (!composition.app.research) throw new Error("V4 research application route is unavailable");
+    const result = await composition.app.research.run({
+      bookId,
+      title,
+      author,
+      sourceGitSha,
+      v25Root,
+      attemptRoot: resolve(attemptRoot, "research"),
+      ...(typeof flags["resume-run-id"] === "string" ? { resumeRunId: flags["resume-run-id"] } : {}),
+      ...(chapterConcurrency === undefined ? {} : { chapterConcurrency }),
+      forceRefresh: flags["force-refresh"] === true,
+      signal,
+    });
+    console.log(JSON.stringify(result, null, 2));
+    return 0;
+  } catch (cause) {
+    console.error((cause as Error).message);
+    return 1;
+  }
+}
+
+async function runV4BookProduction(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  command: "book-run" | "book-autopilot",
+  signal: AbortSignal,
+): Promise<number> {
+  for (const forbidden of ["publish", "publish-final", "commit", "push", "deploy"]) {
+    if (flags[forbidden] !== undefined) {
+      console.error(`BOOK_RUN_LOCAL_ONLY:--${forbidden} is not supported by V4 production route`);
+      return 2;
+    }
+  }
+  const unsupported = firstUnsupportedFlag(flags, [
+    "title", "author", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "regen",
+    "max-repair", "promote-local", "no-publish", ...(command === "book-run" ? ["log"] : []),
+  ]);
+  if (unsupported !== undefined) {
+    console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
+    return 2;
+  }
+  const bookId = args[0] ?? "";
+  const title = typeof flags["title"] === "string" ? flags["title"] : "";
+  const author = typeof flags["author"] === "string" ? flags["author"] : "";
+  const v25Root = flags["v25-root"];
+  const attemptRoot = flags["attempt-root"];
+  const sourceGitSha = flags["source-git-sha"];
+  const logPath = command === "book-run" && typeof flags["log"] === "string" ? flags["log"] : undefined;
+  const maxRepair = flags["max-repair"] === undefined ? 1
+    : typeof flags["max-repair"] === "string" ? Number(flags["max-repair"]) : Number.NaN;
+  if (args.length !== 1 || !bookId || !title || !author
+    || typeof v25Root !== "string" || !isAbsolute(v25Root)
+    || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
+    || typeof sourceGitSha !== "string" || sourceGitSha.length === 0
+    || maxRepair !== 1
+    || (flags["resume-run-id"] !== undefined && typeof flags["resume-run-id"] !== "string")
+    || (flags["regen"] !== undefined && flags["regen"] !== true)
+    || (flags["promote-local"] !== undefined && flags["promote-local"] !== true)
+    || (flags["no-publish"] !== undefined && flags["no-publish"] !== true)
+    || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
+    console.error(`Usage: ${v4BookProductionUsage(command)}`);
+    return 2;
+  }
+  const { createProductionBookRunComposition } = await import("./app/bookRunComposition.js");
+  try {
+    const composition = await createProductionBookRunComposition({
+      bookId,
+      pipelineRoot: REPO_ROOT,
+      v25Root,
+      attemptRoot,
+      ...(logPath === undefined ? {} : { logPath }),
+    });
+    if (!composition.app.bookRun) throw new Error("V4 book-run application route is unavailable");
+    const result = await composition.app.bookRun.run({
+      bookId,
+      title,
+      author,
+      sourceGitSha,
+      v25Root,
+      attemptRoot,
+      ...(typeof flags["resume-run-id"] === "string" ? { resumeRunId: flags["resume-run-id"] } : {}),
+      regen: flags["regen"] === true,
+      maxRepairRounds: 1,
+      promoteLocal: flags["promote-local"] === true,
+      // Compatibility confirmation only: V4 never publishes externally, while
+      // --promote-local may still atomically advance the local V25 pointer.
+      signal,
+    });
+    if (!result.ok) {
+      console.error(`${result.error.code}:${result.error.message}`);
+      return 1;
+    }
+    console.log(JSON.stringify(result.value, null, 2));
+    console.log("package publish, registry update, commit, push, and deploy NOT PERFORMED");
+    return 0;
+  } catch (cause) {
+    console.error((cause as Error).message);
+    return 1;
+  }
+}
+
+async function runV4SelectedCandidateQc(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  signal: AbortSignal,
+): Promise<number> {
+  const unsupported = firstUnsupportedFlag(flags, [
+    "pass", "round", "v25-root", "attempt-root", "candidate-id", "manifest-digest", "source-git-sha",
+  ]);
+  const bookId = args[0] ?? "";
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : `qc-${randomUUID()}`;
+  if (unsupported !== undefined) {
+    console.error(`UNSUPPORTED_OPTION:qc-auto:--${unsupported}`);
+    return 2;
+  }
+  if (args.length !== 1 || !bookId || flags["pass"] !== true
+    || (flags["round"] !== undefined && (typeof flags["round"] !== "string" || flags["round"].length === 0))) {
+    console.error(`Usage: ${V4_QC_AUTO_USAGE}`);
+    return 2;
+  }
+  const v25 = await createCliV25Composition(bookId, flags);
+  if (!v25.ok) {
+    console.error(v25.error);
+    return 2;
+  }
+  const reviewed = await reviewCliV25Candidate(bookId, roundId, v25.value, signal);
+  if (!reviewed.ok || reviewed.value.outcome !== "PASS") {
+    console.error(reviewed.ok ? `V25_CANONICAL_REVIEW_${reviewed.value.outcome}` : reviewed.error);
+    return 1;
+  }
+  const { CandidateQcEvaluator } = await import("./app/candidateQcEvaluator.js");
+  const evaluation = await new CandidateQcEvaluator(v25.value.contentReader).run({
+    candidate: v25.value.candidate,
+    canonicalReview: reviewed.value,
+    roundId,
+  });
+  if (!evaluation.ok) {
+    console.error(`${evaluation.error.code}:${evaluation.error.message}`);
+    return 1;
+  }
+  const fresh = await v25.value.qcService.runFresh({
+    roundId,
+    candidate: v25.value.candidate,
+    canonicalReview: reviewed.value,
+    evaluation: evaluation.value,
+  });
+  if (!fresh.ok) {
+    console.error(`${fresh.error.code}:${fresh.error.message}`);
+    return 1;
+  }
+  console.log(JSON.stringify(fresh.value, null, 2));
+  return fresh.value.outcome === "PASS" ? 0 : 1;
+}
+
 async function reviewCliV25Candidate(
   bookId: string,
   roundId: string,
   composition: CliV25Composition,
+  signal: AbortSignal = new AbortController().signal,
 ): Promise<
   | { ok: true; value: import("./review/reviewTypes.js").CanonicalReviewResult }
   | { ok: false; error: string }
@@ -315,7 +550,7 @@ async function reviewCliV25Candidate(
       stageId: "canonical-review",
       operationId: "canonical-review",
       workDir: REPO_ROOT,
-      signal: new AbortController().signal,
+      signal,
     },
   });
   await composition.runStore.finishRun({
@@ -337,7 +572,7 @@ Commands:
   critic <book.json>                 Run the critic suite on one book
   critic --all [--report <dir>]      Score every JSON in book-packages/
   critic --all --csv <file>          Emit a single-file CSV scoreboard
-  ping                               Verify the claude CLI is installed + authenticated
+  ping                               LEGACY_ROUTE_DISABLED. V4 application routes own model execution.
   ledger status                      Show cross-book library state summary
   ledger forbidden-names [--book X]  List protagonist names off-limits for the next book
   ledger ingest <chapter.json> --book-id X --title X --author X
@@ -393,25 +628,13 @@ Commands:
                                      chapters, before generate-book. Preserves a reviewed/diverged
                                      voiceCharter by default (other fields re-derive); --force-voice
                                      re-derives the voiceCharter from the TOC.
-  research "<title>" "<author>" [--book-id <slug>] [--concurrency N] [--force-refresh]
-                                     SUBPROCESS MODE: run the researcher via claude -p subprocess
-                                     calls. Counts against your Max subscription quota.
-  generate "<title>" "<author>" [--book-id <slug>] [--from N] [--to N] [--skip-research] [--force]
-                                     SUBPROCESS MODE: end-to-end fresh generation.
-                                     Counts against your Max subscription quota.
-  pipeline <bookId> --title X --author Y [--policy economy|standard|premium|publish] [--research|--skip-research]
-                                     Preferred v22 optimized autonomous run with live terminal phases, cost telemetry,
-                                     adaptive examples, risk-gated polish, deterministic final gates.
-  flow <bookId> --title X --author Y [--policy economy|standard|premium|publish] [--research|--skip-research]
-                                     Alias of pipeline, retained for compatibility.
+  ${V4_RESEARCH_USAGE}
+                                     V4-only research intake. Writes immutable candidate inputs through
+                                     production application composition. Legacy researcher route is disabled.
+  generate | pipeline | flow        LEGACY_ROUTE_DISABLED. Use book-run or book-autopilot.
   policy [economy|standard|premium|publish]
                                      Print the v22 run policy cost/quality contract.
-  generate-book <bookId> --title X --author Y [--from N] [--to N] [--policy economy|standard|premium|publish] [--force] [--no-categorizer --categories A,B --tags x,y]
-                                     Lower-level: generate (or resume) every chapter of a book
-                                     using an existing chapter index. Full canonical runs auto-promote
-                                     on success; --from/--to range runs stop before production promotion.
-                                     For inline-operator mode (no subprocess calls), pre-populate
-                                     state/chapters/ and use --no-categorizer with manual metadata.
+  generate-book                      LEGACY_ROUTE_DISABLED. Use book-run or book-autopilot.
   promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
                                      Final gate. Requires the complete canonical index, then re-validates
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
@@ -520,14 +743,12 @@ Commands:
                                      structured-output response_format (the CLI still re-checks cross-field rules).
   roles [<roleId>]                   List the pipeline roles with recommended GPT reasoning/verbosity,
                                      or print one role's full profile (roles/ROLE-DEFINITIONS.json).
-  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--incremental] [--tiebreak] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]
-                                     One-command no-api Codex QC autopilot. Creates/reuses a round,
-                                     writes workflow tasking, collects submissions, finalizes evidence,
-                                     and reports PASS/REPAIR/INCOMPLETE without using paid APIs.
-                                     --tiebreak: borderline bar reads get extra independent reads, combined by median.
-  qc-diagnose <bookId> --round <roundId>
-                                     Explain evidence-matrix verdicts, common failures, repair prompt,
-                                     and the exact next QC command.
+  ${V4_QC_AUTO_USAGE}
+                                     V4 candidate-native QC. Opens exact immutable candidate, runs canonical
+                                     review, then one fresh QC round. No CURRENT or ambient discovery.
+  ${V4_QC_DIAGNOSE_USAGE}
+                                     Diagnose selected V4 candidate round. Without V4 selector flags,
+                                     legacy evidence-matrix diagnosis remains available.
   publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--include-state] [--dry-run]
                                      Verifies no-api QC pass, promotes/registers the book, removes
                                      one-time token/task/repair artifacts, and optionally commits/pushes
@@ -549,20 +770,12 @@ Commands:
                                      reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
                                      Run after every repair until CLEAN, THEN qc-auto — so a formal round
                                      never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
-  book-autopilot <bookId> [--regen] [--plan] [--no-publish] [--author] [--legacy] [--max-repair N] [--max-parallel N]
-                                     END-TO-END conductor. Drives research → write → gate → QC(+≤3 repair)
-                                     → ready-to-publish, spawning codex exec agentic sub-sessions for the
-                                     WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
-                                     the DECISIONS. Runs on the Codex subscription (NO API metering). On QC
-                                     convergence AUTO-PUBLISHES (full promote gate, then commit+push to main —
-                                     NOT a live deploy); --no-publish halts for review. --plan previews the plan.
-                                     --regen RE-RUNS an already-published book (else it's skipped as "shipped").
-  book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--author] [--legacy] [--no-notify] [--sound] [--log <file>]
-                                     SAME conductor as book-autopilot, wrapped to print a clean timestamped
-                                     update AND a macOS notification on every MAJOR event (research / write /
-                                     gate / QC round + publishable tally / repair / warnings / final). One
-                                     input, walk away, get pinged. --no-notify = terminal only; --log appends
-                                     an event log. Changes no pipeline behavior; same gates, env, exit code.
+  ${v4BookProductionUsage("book-autopilot")}
+                                     V4 production lifecycle through shared BookRunApplicationService.
+  ${v4BookProductionUsage("book-run")}
+                                     Same V4 production lifecycle. --log must be absolute and adds an event-log
+                                     mirror. Route is always local-only: no package/registry/Git/remote/deploy.
+                                     --no-publish explicitly confirms that boundary; --promote-local remains valid.
   migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
                                      IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
                                      Stage D prompt-stack diagnostic → Stage C confirmatory four-way
@@ -723,8 +936,8 @@ Commands:
 Examples:
   npx tsx src/cli.ts critic book-packages/atomic-habits.modern.json
   npx tsx src/cli.ts critic --all
-  npx tsx src/cli.ts research "Atomic Habits" "James Clear"
-  npx tsx src/cli.ts generate "Atomic Habits" "James Clear"
+  npx tsx src/cli.ts research "Atomic Habits" "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha>
+  npx tsx src/cli.ts book-run atomic-habits --title "Atomic Habits" --author "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha> --no-publish
 `);
 }
 
@@ -3985,18 +4198,6 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   }
 
   const bookId = resolved.bookId;
-  const orch = await import("./qc/orchestrator/index.js");
-  const chapters = orch.parseChapterList(flags["chapters"]);
-  const requestedRound = typeof flags["round"] === "string" ? flags["round"] : "";
-  const explicitLegacySubsetResume = !hasCliV25Selection(flags) && requestedRound.length > 0 &&
-    typeof flags["chapters"] === "string" &&
-    Array.isArray(chapters) && chapters.length > 0 &&
-    existsSyncFs(resolve(__dirname, "../state/qc-orchestrator", bookId, requestedRound, "round.json"));
-  const v25 = explicitLegacySubsetResume ? null : await createCliV25Composition(bookId, flags);
-  if (v25 && !v25.ok) {
-    console.error(v25.error);
-    return 2;
-  }
   // Convergence guarantee: QC's book-level major scan (currentMajorFindings →
   // runBookGate → runBookPatternAudit) must run against the SAME derived brief +
   // per-chapter plans the final book-gate uses. Otherwise QC under-reports
@@ -4011,8 +4212,10 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
       console.error(`note: derive-artifacts incomplete for ${bookId}; QC's book-level audit may be partial until plans exist.`);
     }
   }
+  const orch = await import("./qc/orchestrator/index.js");
   const artifacts = await import("./qc/orchestrator/artifacts.js");
   const { generateQcAutoWorkflow } = await import("./qc/auto/generateWorkflow.js");
+  const chapters = orch.parseChapterList(flags["chapters"]);
   const maxAgents = typeof flags["max-agents"] === "string" ? parseInt(flags["max-agents"], 10) : undefined;
   if (maxAgents !== undefined && (!Number.isInteger(maxAgents) || maxAgents < 1)) {
     console.error(`--max-agents must be a positive integer (got "${String(flags["max-agents"])}")`);
@@ -4021,7 +4224,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
   let roundId = typeof flags["round"] === "string" ? flags["round"] : "";
 
   if (!roundId || !existsSyncFs(artifacts.roundRecordPath(bookId, roundId))) {
-    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true, incremental: flags["incremental"] === true, tiebreak: flags["tiebreak"] === true, ...(v25?.ok ? { patternAudit: v25.value.patternAudit } : {}) });
+    const created = orch.createQcOrchestrationRound(bookId, { roundId: roundId || undefined, chapters, allowDirtyPreflight: flags["allow-dirty-preflight"] === true, incremental: flags["incremental"] === true, tiebreak: flags["tiebreak"] === true });
     for (const m of created.messages) console.log(m);
     if (created.errors.length) for (const e of created.errors) console.error(e);
     roundId = created.roundId;
@@ -4040,7 +4243,7 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
       const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
       const allCh = loadBookChapters(bookId);
       const selCh = chapters && chapters.length ? allCh.filter((c) => chapters.includes(c.number)) : allCh;
-      const det = evaluateDeterministic(bookId, selCh, allCh, v25?.ok ? v25.value.patternAudit : undefined);
+      const det = evaluateDeterministic(bookId, selCh, allCh);
       if (!det.clean) {
         const n = [...det.perChapter.values()].reduce((a, c) => a + c.findings.length, 0) + det.bookFindings.length;
         console.log(`⚠ WARN: opening a formal QC round while ${n} deterministic finding(s) remain — they will resurface INSIDE the round and waste reviewer submissions (15-36/round).`);
@@ -4085,12 +4288,6 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
     return flags["dry-run"] === true ? 0 : 3;
   }
 
-  const reviewed = v25?.ok ? await reviewCliV25Candidate(bookId, roundId, v25.value) : null;
-  if (reviewed && !reviewed.ok) {
-    console.error(reviewed.error);
-    return 3;
-  }
-
   // The shared QC round-driver runs the SAME sequence as the autopilot conductor;
   // qc-auto injects IN-PROCESS orchestrator calls (its long-standing behavior, so the
   // output + exit codes below stay byte-for-byte identical) and a NO-OP reviewer
@@ -4118,153 +4315,33 @@ async function runQcAuto(args: string[], flags: Record<string, string | boolean>
 
       collect: () => { const r = orch.collectQcRound(bookId, roundId); return { ok: r.ok, errors: r.errors }; },
       generateConfirmCandidates: () => { const r = orch.generateConfirmCandidates(bookId, roundId, { chapters }); return { ok: r.ok, errors: r.errors }; },
-      finalize: v25
-        ? () => orch.finalizeQcRound(bookId, roundId, { chapters, attest, dryRun: true })
-        : () => orch.finalizeQcRound(bookId, roundId, { chapters, attest }),
+      finalize: () => orch.finalizeQcRound(bookId, roundId, { chapters, attest }),
       ledgerOpenCount: () => orch.ledgerStatus(bookId, roundId).summary.open ?? 0,
-      recordMetrics: () => undefined,
+      recordMetrics: (finalized) => {
+        // Best-effort telemetry — one append-only row per finalization (see `qc-metrics`).
+        // A failure here NEVER breaks the QC run.
+        try {
+          const failingBarAxes: string[] = [];
+          for (const d of finalized.chapters) {
+            if (d.finalVerdict === "PUBLISHABLE" || (d.checks.barRead !== "YELLOW" && d.checks.barRead !== "RED")) continue;
+            const bar = loadBarReadArtifact(bookId, roundId, d.chapterNumber);
+            for (const a of bar?.axes ?? []) if (a.tier !== "PUBLISHABLE") failingBarAxes.push(a.axis);
+          }
+          appendQcFinalizationMetric(buildQcFinalizationMetric({
+            bookId, roundId, timestamp: new Date().toISOString(),
+            mode: chapters?.length ? "subset" : "full",
+            incremental: flags["incremental"] === true,
+            tiebreak: flags["tiebreak"] === true,
+            decisions: finalized.chapters, failingBarAxes,
+          }));
+        } catch { /* telemetry is best-effort — never break QC */ }
+      },
       // Full-book qc-status verification on a clean pass — skipped on a subset (never a
       // book-level pass) and in stale-diagnostics mode (the stale override fires below).
-      verifyFullBook: undefined,
+      verifyFullBook: (isSubset || staleDiagnosticsOnly) ? undefined : async () => (await runQcStatus([bookId])) === 0,
     },
     { isSubset, narrowRetryOnIncomplete: false },
   );
-
-  if (!result.finalized) {
-    console.error(`V25_QC_EVALUATION_UNAVAILABLE:${result.reason ?? result.outcome}`);
-    return 3;
-  }
-
-  if (v25?.ok && reviewed?.ok) {
-    // Subset and stale-diagnostic rounds are legacy-only observations. They can
-    // finalize their legacy projection once, but can never store a canonical V4
-    // book PASS or enter full-book readiness/publish output.
-    if (isSubset || staleDiagnosticsOnly) {
-    const legacyCanFinalize = reviewed.value.outcome !== "ERROR" &&
-      (result.outcome === "PASS" || result.outcome === "PASS_SUBSET" || result.outcome === "REPAIR");
-    let finalized = result.finalized;
-    if (legacyCanFinalize) {
-      const committed = orch.finalizeQcRound(bookId, roundId, { chapters, attest });
-      if (!committed.ok) {
-        for (const error of committed.errors) console.error(error);
-        return 3;
-      }
-      finalized = committed;
-    }
-    if (result.collectErrors.length) for (const error of result.collectErrors) console.error(error);
-    if (finalized.errors.length) for (const error of finalized.errors) console.error(error);
-
-    if (staleDiagnosticsOnly) {
-      console.log(`QC AUTO INCOMPLETE — ${bookId}`);
-      console.log(`round: ${roundId}`);
-      console.log("status: STALE_ROUND");
-      console.log("This round is stale after repair. Do not resume this round for publishability.");
-      console.log("Start a fresh QC round:");
-      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
-      return 3;
-    }
-    if (result.outcome === "PASS_SUBSET" && reviewed.value.outcome === "PASS") {
-      console.log(`QC AUTO PASS (SUBSET) — ${bookId}`);
-      console.log(`round: ${roundId}`);
-      console.log(`chapters selected: ${finalized.chapters.length} (subset)`);
-      console.log(`attestations written: ${finalized.attestationsWritten} PUBLISHABLE`);
-      console.log("repair findings: 0 open");
-      console.log("qc-status: selected chapters PASS (subset — book not fully verified)");
-      console.log("next:");
-      console.log("  # subset only — run a full-book pass before publishing:");
-      console.log(`  CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts qc-auto ${JSON.stringify(bookId)} --pass`);
-      return 0;
-    }
-    if (result.outcome === "REPAIR" && reviewed.value.outcome !== "ERROR") {
-      console.log(`QC AUTO REPAIR REQUIRED — ${bookId}`);
-      console.log(`round: ${roundId}`);
-      console.log(`PUBLISHABLE attested: ${result.counts.publishable}`);
-      console.log(`REVISE attested: ${result.counts.revise}`);
-      console.log(`CORRUPTION attested: ${result.counts.corruption}`);
-      console.log(`open repair findings: ${result.openRepairFindings}`);
-      console.log("repair prompt:");
-      console.log(`  ${finalized.repairPromptPath}`);
-      return 1;
-    }
-      console.error(`V25_QC_${reviewed.value.outcome}:subset QC did not produce a canonical full-book pass`);
-      return 3;
-    }
-
-  const evaluationOutcome = result.outcome === "PASS"
-    ? "PASS"
-    : result.outcome === "REPAIR" ? "FAIL" : "ERROR";
-  const deterministicIssues = result.finalized.chapters
-    .filter((chapter) => chapter.finalVerdict !== "PUBLISHABLE")
-    .map((chapter) => ({
-      code: `QC_CHAPTER_${chapter.chapterNumber}_${chapter.finalVerdict}`,
-      severity: "BLOCKER" as const,
-      message: chapter.reason || chapter.finalVerdict,
-      location: chapter.chapterId,
-    }));
-  if (evaluationOutcome !== "PASS" && deterministicIssues.length === 0) {
-    deterministicIssues.push({
-      code: `QC_ROUTE_${evaluationOutcome}`,
-      severity: "BLOCKER",
-      message: result.reason ?? `QC route ended ${evaluationOutcome}`,
-      location: bookId,
-    });
-  }
-  const { driveV4FreshQc } = await import("./qc/auto/driver.js");
-  const candidateIdentity = {
-    candidateId: v25.value.candidate.manifest.candidateId,
-    manifestDigest: v25.value.candidate.manifest.manifestDigest,
-  };
-  const fresh = await driveV4FreshQc({
-    qcService: v25.value.qcService,
-    writeLock: v25.value.writeLock,
-    cohort: { bookId, legacyWriterEnabled: false, v4WriterEnabled: true, cutoverComplete: true, v4WriteObserved: false },
-    roundId,
-    candidate: v25.value.candidate,
-    canonicalReview: reviewed.value,
-    finalization: {
-      bookId,
-      roundId,
-      candidate: candidateIdentity,
-      reviewId: reviewed.value.reviewId,
-      publishable: result.finalized.allPublishable,
-    },
-    evaluateCompletedChecks: () => ({
-      deterministic: { outcome: evaluationOutcome, issues: deterministicIssues },
-      model: {
-        outcome: reviewed.value.outcome,
-        issues: reviewed.value.issues
-          .filter((issue): issue is typeof issue & { severity: "WARN" | "BLOCKER" } => issue.severity !== "INFO")
-          .map((issue) => ({
-            code: issue.code,
-            severity: issue.severity,
-            message: issue.message,
-            ...(issue.location === undefined ? {} : { location: issue.location }),
-          })),
-      },
-    }),
-    commitFinalization: () => {
-      const committed = orch.finalizeQcRound(bookId, roundId, { chapters, attest });
-      return committed.ok ? { ok: true as const, value: null } : {
-        ok: false as const,
-        error: { code: "QC_FINALIZATION_FAILED", message: committed.errors.join("; ") || "finalization failed" },
-      };
-    },
-    verifyFullBook: async () => isSubset || staleDiagnosticsOnly || (await runQcStatus([bookId])) === 0,
-  });
-  if (fresh.outcome === "ERROR" || fresh.outcome === "BLOCKED" || fresh.outcome === "FINALIZATION_ERROR" || fresh.outcome === "QC_STATUS_FAIL") {
-    console.error(`V25_QC_${fresh.outcome}:${fresh.reason ?? "fresh QC failed"}`);
-    return 3;
-  }
-    if (fresh.outcome === "FAIL") {
-    const committed = orch.finalizeQcRound(bookId, roundId, { chapters, attest });
-    if (!committed.ok) {
-      for (const error of committed.errors) console.error(error);
-      return 3;
-    }
-      console.error("V25_QC_FAIL:fresh canonical QC did not pass");
-      return 3;
-    }
-  }
 
   if (result.outcome === "INCOMPLETE" && result.reason === "collect-failed") {
     for (const e of result.collectErrors) console.error(e);
@@ -4505,6 +4582,33 @@ async function runQcMetrics(flags: Record<string, string | boolean>): Promise<nu
 }
 
 async function runQcDiagnose(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  if (hasCliV25Selection(flags)) {
+    const unsupported = firstUnsupportedFlag(flags, [
+      "round", "v25-root", "attempt-root", "candidate-id", "manifest-digest", "source-git-sha",
+    ]);
+    const bookId = args[0] ?? "";
+    const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+    if (unsupported !== undefined) {
+      console.error(`UNSUPPORTED_OPTION:qc-diagnose:--${unsupported}`);
+      return 2;
+    }
+    if (args.length !== 1 || !bookId || !roundId) {
+      console.error(`Usage: ${V4_QC_DIAGNOSE_USAGE}`);
+      return 2;
+    }
+    const v25 = await createCliV25Composition(bookId, flags);
+    if (!v25.ok) {
+      console.error(v25.error);
+      return 2;
+    }
+    const diagnosis = await v25.value.qcService.diagnose(bookId, roundId);
+    if (!diagnosis.ok) {
+      console.error(`${diagnosis.error.code}:${diagnosis.error.message}`);
+      return 1;
+    }
+    console.log(JSON.stringify(diagnosis.value, null, 2));
+    return 0;
+  }
   const g = shadowGuard();
   if (g) return g;
   const input = args.join(" ").trim();
@@ -4801,6 +4905,7 @@ async function runBookAutopilot(
   if (architecture === "compiler") {
     const candidateId = flags["candidate-id"];
     const manifestDigest = flags["manifest-digest"];
+    const sourceGitSha = flags["source-git-sha"];
     const attemptRoot = flags["attempt-root"];
     const indexLogicalPath = flags["index-path"];
     const sectionTaskContextLogicalPath = flags["section-task-context-path"];
@@ -4808,13 +4913,15 @@ async function runBookAutopilot(
     if (
       typeof candidateId !== "string" ||
       typeof manifestDigest !== "string" ||
+      typeof sourceGitSha !== "string" ||
+      sourceGitSha.length === 0 ||
       typeof attemptRoot !== "string" ||
       !isAbsolute(attemptRoot) ||
       typeof indexLogicalPath !== "string" ||
       typeof sectionTaskContextLogicalPath !== "string" ||
       typeof sourceMap !== "string"
     ) {
-      console.error("compiler requires --candidate-id, --manifest-digest, absolute --attempt-root, --index-path, --section-task-context-path, and JSON --source-map");
+      console.error("compiler requires --candidate-id, --manifest-digest, --source-git-sha, absolute --attempt-root, --index-path, --section-task-context-path, and JSON --source-map");
       return 2;
     }
     let sources: Parameters<NonNullable<NonNullable<typeof app>["compiler"]>["run"]>[0]["sources"];
@@ -4854,11 +4961,12 @@ async function runBookAutopilot(
       request: {
         candidateId,
         manifestDigest,
+        sourceGitSha,
         attemptRoot,
         indexLogicalPath,
         sectionTaskContextLogicalPath,
         sources,
-        profileId: "pipeline-read-json-v1",
+        profileId: "attempt-read-json-v1",
         signal: new AbortController().signal,
       },
     };
@@ -6593,10 +6701,11 @@ type ParsedCommandContext = Readonly<{
   id: string;
   args: string[];
   flags: Record<string, string | boolean>;
+  signal: AbortSignal;
 }>;
 
 async function runExistingCommand(context: ParsedCommandContext): Promise<number> {
-  const { id: cmd, args, flags } = context;
+  const { id: cmd, args, flags, signal } = context;
   switch (cmd) {
     case "critic":
       return runCritic(args, flags);
@@ -6646,7 +6755,7 @@ async function runExistingCommand(context: ParsedCommandContext): Promise<number
     case "derive-artifacts":
       return runDeriveArtifacts(args, flags);
     case "research":
-      return runResearch(args, flags);
+      return runV4Research(args, flags, signal);
     case "generate":
       return runGenerate(args, flags);
     case "publish":
@@ -6708,7 +6817,7 @@ async function runExistingCommand(context: ParsedCommandContext): Promise<number
     case "roles":
       return runRoles(args);
     case "qc-auto":
-      return runQcAuto(args, flags);
+      return hasCliV25Selection(flags) ? runV4SelectedCandidateQc(args, flags, signal) : runQcAuto(args, flags);
     case "publish-after-qc":
       return runPublishAfterQc(args, flags);
     case "qc-ledger-status":
@@ -6728,9 +6837,9 @@ async function runExistingCommand(context: ParsedCommandContext): Promise<number
     case "qc-converge":
       return runQcConverge(args, flags);
     case "book-autopilot":
-      return runBookAutopilot(args, flags);
+      return runV4BookProduction(args, flags, "book-autopilot", signal);
     case "book-run":
-      return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
+      return runV4BookProduction(args, flags, "book-run", signal);
     case "migration-bakeoff":
       return (await import("./bakeoff/migration/cli.js")).runMigrationBakeoffCli(args, flags);
     case "diversify-book":
@@ -6853,7 +6962,7 @@ async function runExistingCommand(context: ParsedCommandContext): Promise<number
   }
 }
 
-async function main() {
+async function main(signal: AbortSignal) {
   const { cmd, args, flags } = parseArgs(process.argv.slice(2));
   const id = normalizeCommandId(cmd);
   if (LEGACY_DISABLED_COMMANDS.has(id)) {
@@ -6884,7 +6993,7 @@ async function main() {
   const result = await spec.run({
     argv: process.argv.slice(2),
     sourceGitSha: process.env.CHAPTERFLOW_SOURCE_GIT_SHA ?? "",
-    abortSignal: new AbortController().signal,
+    abortSignal: signal,
   });
   if (!result.ok) {
     console.error(`${result.error.code}: ${result.error.message}`);
@@ -6893,10 +7002,16 @@ async function main() {
   return typeof result.value === "number" ? result.value : 0;
 }
 
-main().then(
-  (code) => process.exit(code ?? 0),
+const cliAbortController = new AbortController();
+process.once("SIGINT", () => {
+  console.error("Cancellation requested (SIGINT).");
+  cliAbortController.abort(new Error("SIGINT"));
+});
+
+main(cliAbortController.signal).then(
+  (code) => process.exit(cliAbortController.signal.aborted ? 130 : (code ?? 0)),
   (err) => {
-    console.error(err);
-    process.exit(1);
+    if (!cliAbortController.signal.aborted) console.error(err);
+    process.exit(cliAbortController.signal.aborted ? 130 : 1);
   },
 );

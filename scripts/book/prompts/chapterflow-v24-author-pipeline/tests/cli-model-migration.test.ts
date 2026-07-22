@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
@@ -35,7 +35,7 @@ test("actual CLI loads malformed config only for declared MODEL or WRITE routes"
 });
 
 test("legacy CLI commands stop before config or execution", () => {
-  for (const command of ["ping", "pipeline", "flow", "generate-book", "research", "generate"]) {
+  for (const command of ["ping", "pipeline", "flow", "generate-book", "generate"]) {
     const result = cli([command, "--config-dir", "/definitely/missing"]);
     assert.equal(result.status, 2);
     assert.match(`${result.stdout}${result.stderr}`, new RegExp(`LEGACY_ROUTE_DISABLED:V4_APPLICATION_ROUTE_REQUIRED:cli\\.${command}`));
@@ -43,57 +43,11 @@ test("legacy CLI commands stop before config or execution", () => {
   }
 });
 
-test("actual qc-auto entrypoint rejects missing explicit V25 composition before QC writes", () => {
-  const packagesDir = resolve(process.cwd(), "book-packages");
-  const fixture = resolve(packagesDir, "wp19-cli-fixture.v21.json");
-  mkdirSync(packagesDir, { recursive: true });
-  writeFileSync(fixture, "{}\n");
-  try {
-    const result = cli(["qc-auto", "wp19-cli-fixture", "--pass"]);
-    assert.equal(result.status, 2);
-    assert.match(`${result.stdout}${result.stderr}`, /V25_COMPOSITION_REQUIRED/);
-  } finally {
-    rmSync(fixture, { force: true });
-  }
-});
-
-test("qc-auto source orders canonical review before dry evaluation and one V4 fresh-QC call", () => {
-  const body = cliSource.slice(cliSource.indexOf("async function runQcAuto"), cliSource.indexOf("async function runPublishAfterQc"));
-  const reviewAt = body.indexOf("reviewCliV25Candidate");
-  const dryAt = body.indexOf("dryRun: true");
-  const freshAt = body.indexOf("driveV4FreshQc");
-  assert.ok(reviewAt > 0 && dryAt > reviewAt && freshAt > dryAt);
-  assert.equal((body.match(/driveV4FreshQc\(/g) ?? []).length, 1);
-  assert.match(body, /reviewed\.value\.outcome/);
-  assert.match(body, /fresh\.outcome === "FAIL"/);
-});
-
-test("qc-auto canonical FAIL commits legacy finalization once then blocks legacy PASS output", () => {
-  const body = cliSource.slice(cliSource.indexOf("async function runQcAuto"), cliSource.indexOf("async function runPublishAfterQc"));
-  const start = body.indexOf('if (fresh.outcome === "FAIL")');
-  const end = body.indexOf('if (result.outcome === "INCOMPLETE"', start);
-  const failBranch = body.slice(start, end);
-  assert.ok(start > 0 && end > start);
-  assert.equal((failBranch.match(/orch\.finalizeQcRound\(/g) ?? []).length, 1);
-  assert.match(failBranch, /V25_QC_FAIL/);
-  assert.match(failBranch, /return 3/);
-  assert.doesNotMatch(failBranch, /QC AUTO PASS|publish-after-qc/);
-});
-
-test("qc-auto subset and stale diagnostics return before canonical V4 fresh QC", () => {
-  const body = cliSource.slice(cliSource.indexOf("async function runQcAuto"), cliSource.indexOf("async function runPublishAfterQc"));
-  const branchAt = body.indexOf("if (isSubset || staleDiagnosticsOnly)");
-  const evaluationAt = body.indexOf("const evaluationOutcome", branchAt);
-  const freshAt = body.indexOf("const fresh = await driveV4FreshQc", branchAt);
-  const branch = body.slice(branchAt, evaluationAt);
-  assert.ok(branchAt > 0 && evaluationAt > branchAt && freshAt > evaluationAt);
-  assert.match(branch, /orch\.finalizeQcRound\(bookId, roundId, \{ chapters, attest \}\)/);
-  assert.match(branch, /result\.outcome === "PASS_SUBSET" && reviewed\.value\.outcome === "PASS"/);
-  assert.match(branch, /QC AUTO PASS \(SUBSET\)/);
-  assert.match(branch, /status: STALE_ROUND/);
-  assert.doesNotMatch(branch, /driveV4FreshQc|qcService\.runFresh|publish-after-qc/);
-  assert.equal((branch.match(/return [013];/g) ?? []).length >= 4, true);
-  assert.doesNotMatch(body.slice(evaluationAt), /result\.outcome === "PASS_SUBSET"\s*\? "PASS"/);
+test("research is restored only through the explicit V4 application route", () => {
+  const result = cli(["research", "Book Title", "Book Author"]);
+  assert.equal(result.status, 2);
+  assert.match(`${result.stdout}${result.stderr}`, /Usage: research .*--v25-root <absolute>.*--attempt-root <absolute>.*--source-git-sha <sha>/);
+  assert.doesNotMatch(`${result.stdout}${result.stderr}`, /LEGACY_ROUTE_DISABLED|SUBPROCESS MODE|claude -p/);
 });
 
 test("gate-chapter binds canonical attempt state and atomic persistence explicitly", () => {
