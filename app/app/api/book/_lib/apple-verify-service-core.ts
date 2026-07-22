@@ -60,9 +60,12 @@ export type AppleVerifyServiceDependencies = {
   ): Promise<EntitlementView>;
 };
 
+// WS4-007: this response intentionally omits the legacy `{ ok, processed }` ack
+// flags. The native iOS contract for POST /book/me/billing/apple/verify pins
+// only `/entitlement/*` (iosModels EntitlementResponse/Entitlement/Paywall — see
+// native-contract-registry.ts `apple-verify.post`); it never decodes `ok` or
+// `processed`, so those flat-stack flags carry no contract obligation here.
 export type AppleVerificationResponse = {
-  ok: true;
-  processed: true;
   transactionState: "active" | "expired" | "revoked";
   entitlement: {
     plan: string;
@@ -379,8 +382,6 @@ export async function verifyAppleTransactionForUser(input: {
         ? "canceled"
         : "inactive";
   return {
-    ok: true,
-    processed: true,
     transactionState,
     entitlement: {
       plan: entitlement?.plan ?? fallbackPlan,

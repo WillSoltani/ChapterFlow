@@ -181,8 +181,6 @@ test("authenticated active purchase is bound, claimed, written, and acknowledged
     "a transaction JWS has no renewal-status authority",
   );
   assert.deepEqual(response, {
-    ok: true,
-    processed: true,
     transactionState: "active",
     entitlement: {
       plan: "PRO",
@@ -297,7 +295,7 @@ test("Production ownership never collides with the same Sandbox transaction id",
     dependencies: state.dependencies,
   });
 
-  assert.equal(response.processed, true);
+  assert.equal(response.transactionState, "active");
   assert.equal(state.owners.get(ORIGINAL_TRANSACTION), OTHER_USER);
   assert.equal(
     state.owners.get(`TestFlightSandbox:${ORIGINAL_TRANSACTION}`),
@@ -447,7 +445,7 @@ test("legacy tokenless transaction is accepted only for its existing same-user m
     transactionJws: "legacy-signed-fixture",
     dependencies: state.dependencies,
   });
-  assert.equal(response.processed, true);
+  assert.equal(response.transactionState, "active");
   assert.equal(state.claimCalls(), 1);
 });
 
@@ -519,8 +517,6 @@ for (const proSource of ["license", "admin"] as const) {
       dependencies: state.dependencies,
     });
 
-    assert.equal(response.ok, true);
-    assert.equal(response.processed, true);
     assert.equal(response.transactionState, "active");
     assert.equal(response.entitlement.plan, "PRO");
     assert.equal(response.entitlement.proSource, proSource);
@@ -614,8 +610,6 @@ for (const [transactionState, patch, expectedStatus] of [
       transactionJws: "terminal-signed-fixture",
       dependencies: state.dependencies,
     });
-    assert.equal(response.ok, true);
-    assert.equal(response.processed, true);
     assert.equal(response.transactionState, transactionState);
     assert.equal(response.entitlement.plan, "FREE");
     assert.equal(response.entitlement.proStatus, expectedStatus);
