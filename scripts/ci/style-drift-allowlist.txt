@@ -4,6 +4,18 @@
 # Guard e: e\t<repo-relative-path>\t<normalized-literal>\t<normalized-line-sha256-16>\t<ordinal>
 # Remove an entry when you replace that literal with a token / catalog-stats constant.
 # Regenerate (intentional churn only): node scripts/ci/scan-style-drift.mjs --write-allowlist
+c	app/book/admin/_clients/SegmentBuilderClient.tsx	rgba(0,0,0,0.22)
+c	app/book/admin/events/AdminEventsClient.tsx	rgba(0,0,0,0.22)
+c	app/book/admin/scenarios/AdminScenarioReviewClient.tsx	rgba(0,0,0,0.22)
+c	app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer.tsx	rgba(0,0,0,0.08)
+c	app/book/library/[bookId]/chapter/[chapterId]/components/AudioPlayer.tsx	rgba(0,0,0,0.12)
+c	app/book/library/[bookId]/chapter/[chapterId]/components/PhaseInterstitial.tsx	rgba(0,0,0,0.3)
+c	app/book/library/[bookId]/chapter/[chapterId]/components/ReaderOverlays.tsx	rgba(0,0,0,0.22)
+c	app/book/profile/components/IdentityHeroBanner.tsx	rgba(2,6,23,0.18)
+c	app/book/profile/components/MomentumCard.tsx	rgba(0,0,0,0.2)
+c	app/book/profile/components/UpgradeCard.tsx	rgba(0,0,0,0.2)
+c	components/reader/ContinueButton.tsx	rgba(77,182,172,0.3)
+c	components/reader/ContinueButton.tsx	rgba(77,182,172,0.4)
 d	app/app/api/book/_lib/achievement-repo.ts	10+categories
 d	app/app/api/book/_lib/achievement-repo.ts	3categories
 d	app/app/api/book/_lib/achievement-repo.ts	6categories
@@ -80,6 +92,7 @@ e	app/book/pair-accept/page.tsx	text-[22px]	b6416a3866549199	1
 e	app/book/pair-accept/page.tsx	text-[22px]	fed5bae4eef1fb1b	1
 e	app/book/pair-accept/page.tsx	text-[22px]	fed5bae4eef1fb1b	2
 e	app/book/profile/BookProfileClient.tsx	text-[10px]	26e40f29d134efb2	1
+e	app/book/profile/components/AchievementBadgeCard.tsx	text-[10px]	d97c065d9f51c06b	1
 e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	1
 e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	2
 e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	1cf2ccfa70f0ff36	3
@@ -89,16 +102,15 @@ e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	a4efb931ed7ca1b6	
 e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	a4efb931ed7ca1b6	2
 e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	d4abccbf7071285e	1
 e	app/book/profile/components/EditProfileModal.tsx	text-[10px]	d7c3a03aabb99814	1
-e	app/book/profile/components/ThisWeekStrip.tsx	text-[10px]	0abeb96aa6ac0459	1
 e	app/book/profile/components/HeatmapCalendar.tsx	text-[10px]	18af348c59145232	1
+e	app/book/profile/components/LearningLoopSteps.tsx	text-[10px]	b3c74fb5ecfd8a36	1
 e	app/book/profile/components/ProStatusCard.tsx	text-[10px]	44a08ee052f6c23c	1
 e	app/book/profile/components/ProStatusCard.tsx	text-[10px]	50c3171162134765	1
 e	app/book/profile/components/ProStatusCard.tsx	text-[10px]	6077d2a97db59eb7	1
-e	app/book/profile/components/UpNextPreview.tsx	text-[10px]	7c1a5d7a8ddb8396	1
 e	app/book/profile/components/QuizBarChart.tsx	text-[10px]	7ea11fa39df0f5f5	1
-e	app/book/profile/components/LearningLoopSteps.tsx	text-[10px]	b3c74fb5ecfd8a36	1
 e	app/book/profile/components/StickyMiniHeader.tsx	text-[10px]	b6e75c05faca2a31	1
-e	app/book/profile/components/AchievementBadgeCard.tsx	text-[10px]	d97c065d9f51c06b	1
+e	app/book/profile/components/ThisWeekStrip.tsx	text-[10px]	0abeb96aa6ac0459	1
+e	app/book/profile/components/UpNextPreview.tsx	text-[10px]	7c1a5d7a8ddb8396	1
 e	app/book/saved/SavedBooksClient.tsx	text-[28px]	f3a4d81f6e7f365c	1
 e	app/book/settings/components/ProBadge.tsx	text-[10px]	455f308c0f4b7e6b	1
 e	app/book/settings/components/SettingsSearch.tsx	text-[10px]	4012fa696e55a23f	1
@@ -162,15 +174,15 @@ e	components/progress/ReadingActivity.tsx	text-[10px]	5d4323916a635ee6	1
 e	components/progress/StepIndicator.tsx	text-[10px]	f880ce012b72c0f0	1
 e	components/sections/Pricing.tsx	text-[44px]	7fda308e7ed3ffc0	1
 e	components/website/BookRequestSection.tsx	text-[22px]	acb0cd86cc30a300	1
-e	components/website/browse-library/BrowseLibrarySearchBar.tsx	text-[10px]	378d39c095329a7f	1
 e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	5720fb4448b8fb1a	1
 e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	a8b53d32e19cfe33	1
-e	components/website/browse-library/BrowseLibraryHero.tsx	text-[10px]	b4a2e11381339008	1
 e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	d58128c0235464e0	1
 e	components/website/browse-library/BrowseLibraryBookCard.tsx	text-[10px]	e3369e8fcf5638fa	1
-e	components/website/browse-library/BrowseLibraryResults.tsx	text-[22px]	9ed5873648221014	1
+e	components/website/browse-library/BrowseLibraryHero.tsx	text-[10px]	b4a2e11381339008	1
 e	components/website/browse-library/BrowseLibraryHero.tsx	text-[28px]	66313429d7658164	1
 e	components/website/browse-library/BrowseLibraryHero.tsx	text-[42px]	66313429d7658164	1
+e	components/website/browse-library/BrowseLibraryResults.tsx	text-[22px]	9ed5873648221014	1
+e	components/website/browse-library/BrowseLibrarySearchBar.tsx	text-[10px]	378d39c095329a7f	1
 e	components/workspace/BookCardWorkspace.tsx	text-[10px]	30f534429d55d5b7	1
 e	components/workspace/BookCardWorkspace.tsx	text-[10px]	d220467632799990	1
 e	components/workspace/DiscoveryRow.tsx	text-[10px]	700b4db3971d24e1	1
