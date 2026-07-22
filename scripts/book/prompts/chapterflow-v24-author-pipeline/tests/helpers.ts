@@ -8,7 +8,7 @@
  */
 
 import { execFileSync, spawnSync } from "child_process";
-import { mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync, existsSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, utimesSync, writeFileSync } from "fs";
 import { basename, dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -298,15 +298,27 @@ export function runCli(args: string[], env: Record<string, string | undefined> =
 
 /** Snapshot/restore the gate-attempts state so CLI tests don't pollute the
  *  circuit-breaker history (and repeated test runs don't trip it). */
-export function snapshotGateAttempts(): string | null {
-  return existsSync(GATE_ATTEMPTS_FILE) ? readFileSync(GATE_ATTEMPTS_FILE, "utf8") : null;
+export type GateAttemptsSnapshot =
+  | { exists: false }
+  | { exists: true; bytes: Buffer; atime: Date; mtime: Date };
+
+export function snapshotGateAttempts(): GateAttemptsSnapshot {
+  if (!existsSync(GATE_ATTEMPTS_FILE)) return { exists: false };
+  const stat = statSync(GATE_ATTEMPTS_FILE);
+  return {
+    exists: true,
+    bytes: readFileSync(GATE_ATTEMPTS_FILE),
+    atime: stat.atime,
+    mtime: stat.mtime,
+  };
 }
 
-export function restoreGateAttempts(snapshot: string | null): void {
-  if (snapshot === null) {
+export function restoreGateAttempts(snapshot: GateAttemptsSnapshot): void {
+  if (!snapshot.exists) {
     rmSync(GATE_ATTEMPTS_FILE, { force: true });
   } else {
-    writeFileSync(GATE_ATTEMPTS_FILE, snapshot, "utf8");
+    writeFileSync(GATE_ATTEMPTS_FILE, snapshot.bytes);
+    utimesSync(GATE_ATTEMPTS_FILE, snapshot.atime, snapshot.mtime);
   }
 }
 
