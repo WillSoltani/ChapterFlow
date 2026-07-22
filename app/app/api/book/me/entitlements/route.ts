@@ -16,13 +16,12 @@ export const runtime = "nodejs";
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireUser();
-    const tableName = await getBookTableName();
-    const defaultSlots = await getBookFreeSlotsDefault();
-    const price = await getBookPaywallPriceDisplay();
-    const [entitlement, annualPriceId, annualUpfrontPriceId] = await Promise.all([
-      getUserEntitlement(tableName, user.sub),
+    const [entitlement, annualPriceId, annualUpfrontPriceId, defaultSlots, price] = await Promise.all([
+      getBookTableName().then((tableName) => getUserEntitlement(tableName, user.sub)),
       getBookStripePriceIdAnnual(),
       getBookStripePriceIdAnnualUpfront(),
+      getBookFreeSlotsDefault(),
+      getBookPaywallPriceDisplay(),
     ]);
     const freeBookSlots = entitlement?.freeBookSlots ?? defaultSlots;
     const unlockedBookIds = entitlement?.unlockedBookIds ?? [];
