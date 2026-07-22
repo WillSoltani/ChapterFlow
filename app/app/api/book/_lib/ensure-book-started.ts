@@ -129,7 +129,7 @@ function buildProgressFromLegacyState(params: {
 function touchProgressForInteraction(params: {
   progress: BookUserProgress;
   touchedAt: string;
-  interactionChapterNumber?: number;
+  interactionChapterNumber?: number | undefined;
 }): BookUserProgress {
   const { progress, touchedAt, interactionChapterNumber } = params;
   const currentChapterNumber =

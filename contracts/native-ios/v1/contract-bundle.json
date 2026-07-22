@@ -9,7 +9,7 @@
     "sourceRevisionPhase": "uncommitted_backend",
     "generatedAt": "2026-07-15T03:48:02-03:00",
     "generatorVersion": "chapterflow-native-contract-generator-v1",
-    "generatorTreeDigest": "ff69660de78db85faced1d56970b13bdb1da8a8bc526cac866aa3a3358154ca7",
+    "generatorTreeDigest": "549b04e66bbe7fa79b345f5491ec93121f8fd2c97118c5f8e99cf6d8856d0334",
     "committedInputTree": null,
     "syntheticDataOnly": true,
     "deployedRevision": null,
@@ -772,12 +772,12 @@
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
             "role": "response_builder",
-            "sourceSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347"
+            "sourceSha256": "f9eb656c534dbc044e456b7a3a34f9c09175bf8f164c76949d948db1c7d645b2"
           },
           {
             "path": "app/app/api/book/_lib/types.ts",
             "role": "schema",
-            "sourceSha256": "fbc4e5d2c296a05bc849bbb68c7716ac25a53aa03ecc004fa7997792219de947"
+            "sourceSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc"
           }
         ],
         "serializerProof": {
@@ -1214,7 +1214,7 @@
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
             "role": "response_builder",
-            "sourceSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347"
+            "sourceSha256": "f9eb656c534dbc044e456b7a3a34f9c09175bf8f164c76949d948db1c7d645b2"
           }
         ],
         "serializerProof": {
@@ -1507,12 +1507,12 @@
           {
             "path": "app/app/api/book/_lib/types.ts",
             "role": "schema",
-            "sourceSha256": "fbc4e5d2c296a05bc849bbb68c7716ac25a53aa03ecc004fa7997792219de947"
+            "sourceSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc"
           },
           {
             "path": "lib/book-package-types.ts",
             "role": "schema",
-            "sourceSha256": "a0eed05552ca25b7dbdeaf64dbe9d8a9d0c69f2e2414b7f6219c48b2cfa6b85b"
+            "sourceSha256": "29a0a360fa193074c1f327462d69c3581dc8509478a867aedeb10ae9557c71ca"
           }
         ],
         "serializerProof": {
@@ -1801,7 +1801,7 @@
           {
             "path": "app/app/api/book/_lib/quiz-session.ts",
             "role": "response_builder",
-            "sourceSha256": "12f876328adca0213a18995eceb2a0c6d14d43db5abbd7d45de0d68d6339b753"
+            "sourceSha256": "af7b40b036c0586ff37a24a292f36d7a336f87d35a119a419019990b5952b4df"
           }
         ],
         "serializerProof": {
@@ -2168,12 +2168,12 @@
           {
             "path": "app/app/api/book/_lib/types.ts",
             "role": "schema",
-            "sourceSha256": "fbc4e5d2c296a05bc849bbb68c7716ac25a53aa03ecc004fa7997792219de947"
+            "sourceSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc"
           },
           {
             "path": "lib/book-package-types.ts",
             "role": "schema",
-            "sourceSha256": "a0eed05552ca25b7dbdeaf64dbe9d8a9d0c69f2e2414b7f6219c48b2cfa6b85b"
+            "sourceSha256": "29a0a360fa193074c1f327462d69c3581dc8509478a867aedeb10ae9557c71ca"
           },
           {
             "path": "app/app/api/book/_lib/storage.ts",
@@ -2711,22 +2711,22 @@
           {
             "path": "app/app/api/book/_lib/quiz-submit-core.ts",
             "role": "response_builder",
-            "sourceSha256": "7d9d024c8452bdefb9c59806faa4ef8abd0e9671d3c617652061b214a7b6eec8"
+            "sourceSha256": "d8fddbfe1401e69b8ea4044edfa9f0bab523b01a01c17a0f34b78b059066d29f"
           },
           {
             "path": "app/app/api/book/_lib/quiz-session.ts",
             "role": "response_builder",
-            "sourceSha256": "12f876328adca0213a18995eceb2a0c6d14d43db5abbd7d45de0d68d6339b753"
+            "sourceSha256": "af7b40b036c0586ff37a24a292f36d7a336f87d35a119a419019990b5952b4df"
           },
           {
             "path": "app/app/api/book/_lib/types.ts",
             "role": "schema",
-            "sourceSha256": "fbc4e5d2c296a05bc849bbb68c7716ac25a53aa03ecc004fa7997792219de947"
+            "sourceSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc"
           },
           {
             "path": "lib/book-package-types.ts",
             "role": "schema",
-            "sourceSha256": "a0eed05552ca25b7dbdeaf64dbe9d8a9d0c69f2e2414b7f6219c48b2cfa6b85b"
+            "sourceSha256": "29a0a360fa193074c1f327462d69c3581dc8509478a867aedeb10ae9557c71ca"
           }
         ],
         "serializerProof": {
@@ -3007,17 +3007,17 @@
           {
             "path": "app/app/api/book/_lib/book-metrics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "6c538f0999b08471cbb09b204986c7d29d9db43d374ac2744eee8a08dbd92c4b"
+            "sourceSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0"
           },
           {
             "path": "app/app/api/book/_lib/progress-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "2eb7caab812277f769777bd8af4c499f78231179dead25fdcf2ae2d01361b2b0"
+            "sourceSha256": "9444f9a2188e0f4281c605ad1ff3faab1932f5109841f1b8d5a22e779bc426b8"
           },
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           }
         ],
         "serializerProof": {
@@ -3346,7 +3346,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "308c8a967a3857add81121c00734fb11169f2d1677c4c61ecc51f3c044671ae3"
+            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
           }
         ],
         "serializerProof": {
@@ -3934,7 +3934,7 @@
           {
             "path": "app/app/api/book/_lib/saved-books-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "5c42c939d13b2994e6170cf45071b13fb9a40f43e5aab7279a965a714e617e08"
+            "sourceSha256": "d8782a52e173461874451aa09440fa2af80584d08849ae1d23b141663bc7d88f"
           }
         ],
         "serializerProof": {
@@ -4155,7 +4155,7 @@
           {
             "path": "app/app/api/book/_lib/book-metrics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "6c538f0999b08471cbb09b204986c7d29d9db43d374ac2744eee8a08dbd92c4b"
+            "sourceSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0"
           }
         ],
         "serializerProof": {
@@ -5120,7 +5120,7 @@
           {
             "path": "app/app/api/book/_lib/pro-grant-guard-core.ts",
             "role": "request_validator",
-            "sourceSha256": "956bd46a56b79edd446c66f4914bc11d061e1203b963a6ad4ff7f76738a26cf9"
+            "sourceSha256": "45752213c10ca71d3d83c9629915bb6e759398e2c377c34c7baed570ad09e3a2"
           },
           {
             "path": "app/app/api/book/_lib/gift-repo.ts",
@@ -5799,7 +5799,7 @@
           {
             "path": "app/app/api/book/_lib/notifications-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "d4eb6205fcec166ead604cdfc4be9f949a9777b8ab17314ac97329c7bab4e79b"
+            "sourceSha256": "1667ed56473bdd2812422fbb4dc9fd143dec22d89487f1a7c9d9176300d9fe01"
           }
         ],
         "serializerProof": {
@@ -6042,12 +6042,12 @@
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           },
           {
             "path": "app/app/api/book/_lib/user-profile-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "a5866a12576fd877e2ee22facb31c8a63945135a5c3c10d4477c33801c66c300"
+            "sourceSha256": "13123b61233d4375f8ec10dc4713fe081105561be9378e5111c3e4b311d534f4"
           }
         ],
         "serializerProof": {
@@ -6276,7 +6276,7 @@
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           }
         ],
         "serializerProof": {
@@ -6941,7 +6941,7 @@
           {
             "path": "app/app/api/book/_lib/notifications-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "d4eb6205fcec166ead604cdfc4be9f949a9777b8ab17314ac97329c7bab4e79b"
+            "sourceSha256": "1667ed56473bdd2812422fbb4dc9fd143dec22d89487f1a7c9d9176300d9fe01"
           }
         ],
         "serializerProof": {
@@ -7170,7 +7170,7 @@
           {
             "path": "app/app/api/book/_lib/analytics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "4e9ee35e99aabdd52f0e0a4f6b8506da265af32b6645100cf004a294d10dbd8d"
+            "sourceSha256": "691993bd00fcfa15564cbf072068d4f5fa8f5934548bda184d4e15c68638c810"
           }
         ],
         "serializerProof": {
@@ -7573,7 +7573,7 @@
           {
             "path": "app/app/api/book/_lib/ai-service.ts",
             "role": "request_validator",
-            "sourceSha256": "f0653b4f9e18a31f3836db0459e578ccbf63dae351343f5efc08113540ee07af"
+            "sourceSha256": "363877275f083be7720e08657748e4ef57bc677869ee6948cbf372f3f793bb33"
           },
           {
             "path": "app/app/api/book/_lib/scenario-repo.ts",
@@ -7583,7 +7583,7 @@
           {
             "path": "app/app/api/book/_lib/book-metrics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "6c538f0999b08471cbb09b204986c7d29d9db43d374ac2744eee8a08dbd92c4b"
+            "sourceSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0"
           }
         ],
         "serializerProof": {
@@ -7813,7 +7813,7 @@
           {
             "path": "app/app/api/book/_lib/ensure-book-started.ts",
             "role": "response_builder",
-            "sourceSha256": "b1aa0b31b4ee43e9bd6b13d61dcc16e5c5355a67afecad30559ce6a8ba2b256e"
+            "sourceSha256": "0199f066af0d473abd3a1176a80dc0b804c819a36e45e64a12f7c4f31199b12f"
           },
           {
             "path": "app/app/api/book/_lib/ensure-book-started-core.ts",
@@ -9083,7 +9083,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "308c8a967a3857add81121c00734fb11169f2d1677c4c61ecc51f3c044671ae3"
+            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
           }
         ],
         "serializerProof": {
@@ -9564,7 +9564,7 @@
           {
             "path": "app/app/api/book/_lib/progress-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "2eb7caab812277f769777bd8af4c499f78231179dead25fdcf2ae2d01361b2b0"
+            "sourceSha256": "9444f9a2188e0f4281c605ad1ff3faab1932f5109841f1b8d5a22e779bc426b8"
           },
           {
             "path": "app/app/api/book/_lib/book-state-repo.ts",
@@ -9574,7 +9574,7 @@
           {
             "path": "app/app/api/book/_lib/types.ts",
             "role": "schema",
-            "sourceSha256": "fbc4e5d2c296a05bc849bbb68c7716ac25a53aa03ecc004fa7997792219de947"
+            "sourceSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc"
           }
         ],
         "serializerProof": {
@@ -9812,7 +9812,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "308c8a967a3857add81121c00734fb11169f2d1677c4c61ecc51f3c044671ae3"
+            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
           }
         ],
         "serializerProof": {
@@ -10224,7 +10224,7 @@
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           },
           {
             "path": "app/app/api/book/_lib/http-guards-core.ts",
@@ -10683,22 +10683,22 @@
           {
             "path": "app/app/api/_lib/auth.ts",
             "role": "auth",
-            "sourceSha256": "538d6cfe6c873a916a63c3e794580236f36f34bbf5d9f6a21e6b7513ac6bba18"
+            "sourceSha256": "a673c3acdf0182d0f3558b7e8b1382b9ac3eded0bdce6a467bf2e39ad0638759"
           },
           {
             "path": "app/app/api/book/_lib/account-status-transition.ts",
             "role": "response_builder",
-            "sourceSha256": "ee9050b308e562470a8bb2d52f07edbfaed4e0d7fcfdd98d61c575c2e1c3bf95"
+            "sourceSha256": "5f2ea2d74261dc3256a9443ce7025666881da8ce402e373dd0ab81d89f9a728f"
           },
           {
             "path": "app/app/api/book/_lib/entitlement-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "ad13e763a9aee22b900963b88eaed9f5a385ac2bc6023acf02dd3bd7b9ecbb6f"
+            "sourceSha256": "92f9253936cb3739040ef830e3d56b4d1eb072bf0e29e4e90544d19ccbf48f79"
           },
           {
             "path": "app/app/api/book/_lib/account-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "3cfbe3584efb8de38e217c23b15cb64734c9bea80e8da29a5c6154e6bb371ad0"
+            "sourceSha256": "c0b205d06919a95cee1339941602b4169834f5124f32e58137afcd1507160380"
           }
         ],
         "serializerProof": {
@@ -10819,7 +10819,7 @@
             {
               "path": "app/app/api/_lib/auth.ts",
               "role": "auth",
-              "sourceSha256": "538d6cfe6c873a916a63c3e794580236f36f34bbf5d9f6a21e6b7513ac6bba18"
+              "sourceSha256": "a673c3acdf0182d0f3558b7e8b1382b9ac3eded0bdce6a467bf2e39ad0638759"
             },
             {
               "path": "app/app/api/book/_lib/account-guard.ts",
@@ -11090,17 +11090,17 @@
           {
             "path": "app/app/api/book/_lib/apple-verify-service-core.ts",
             "role": "response_builder",
-            "sourceSha256": "4b52818a08277488a72a198423267265eb287c382b4739ed68246eb1596fdcbc"
+            "sourceSha256": "6e52f6351415c6426ae92c9ef6d99c501b62d8f3e3f19a6f54ba8418f67fe99d"
           },
           {
             "path": "app/app/api/book/_lib/apple-purchase-policy-core.ts",
             "role": "request_validator",
-            "sourceSha256": "33696a4805e69e2bae2a1a74f30e31bdaa9520915cecd83dbe2b603c21e84962"
+            "sourceSha256": "e743273438cc16b2bd3e8b49d9fea1ed12816fc28e1165c566ba7ff10109d282"
           },
           {
             "path": "app/app/api/book/_lib/apple-entitlement-write-core.ts",
             "role": "response_builder",
-            "sourceSha256": "29ea8630d822b41d2632c4af3a4e5fa701157a4ca07dffe7af4228f579c5c768"
+            "sourceSha256": "0b5a3234245aac88a6e75069e41f79ba9a87457ad7e4f6d5b379bf4bff51e8c8"
           }
         ],
         "serializerProof": {
@@ -11414,7 +11414,7 @@
           {
             "path": "app/app/api/book/me/profile/route.ts",
             "role": "route",
-            "sourceSha256": "e27fa25902caef83ef5f3d088b00c877270fb651bbe17751c677f5dc70be35a2"
+            "sourceSha256": "45188618df723b93c05b1b32bfa9a67b900aba689267177c4ebd8e9f4105c2af"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -11434,12 +11434,12 @@
           {
             "path": "app/app/api/book/_lib/user-profile-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "a5866a12576fd877e2ee22facb31c8a63945135a5c3c10d4477c33801c66c300"
+            "sourceSha256": "13123b61233d4375f8ec10dc4713fe081105561be9378e5111c3e4b311d534f4"
           },
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           }
         ],
         "serializerProof": {
@@ -11655,12 +11655,12 @@
           {
             "path": "app/app/api/book/_lib/entitlement-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "ad13e763a9aee22b900963b88eaed9f5a385ac2bc6023acf02dd3bd7b9ecbb6f"
+            "sourceSha256": "92f9253936cb3739040ef830e3d56b4d1eb072bf0e29e4e90544d19ccbf48f79"
           },
           {
             "path": "app/app/api/book/_lib/progress-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "2eb7caab812277f769777bd8af4c499f78231179dead25fdcf2ae2d01361b2b0"
+            "sourceSha256": "9444f9a2188e0f4281c605ad1ff3faab1932f5109841f1b8d5a22e779bc426b8"
           },
           {
             "path": "app/app/api/book/_lib/book-completion-core.ts",
@@ -12302,7 +12302,7 @@
           {
             "path": "app/app/api/book/_lib/saved-books-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "5c42c939d13b2994e6170cf45071b13fb9a40f43e5aab7279a965a714e617e08"
+            "sourceSha256": "d8782a52e173461874451aa09440fa2af80584d08849ae1d23b141663bc7d88f"
           }
         ],
         "serializerProof": {
@@ -12514,7 +12514,7 @@
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           }
         ],
         "serializerProof": {
@@ -12734,7 +12734,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "308c8a967a3857add81121c00734fb11169f2d1677c4c61ecc51f3c044671ae3"
+            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
           }
         ],
         "serializerProof": {
@@ -13177,12 +13177,12 @@
           {
             "path": "app/app/api/_lib/auth.ts",
             "role": "auth",
-            "sourceSha256": "538d6cfe6c873a916a63c3e794580236f36f34bbf5d9f6a21e6b7513ac6bba18"
+            "sourceSha256": "a673c3acdf0182d0f3558b7e8b1382b9ac3eded0bdce6a467bf2e39ad0638759"
           },
           {
             "path": "app/app/api/book/_lib/entitlement-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "ad13e763a9aee22b900963b88eaed9f5a385ac2bc6023acf02dd3bd7b9ecbb6f"
+            "sourceSha256": "92f9253936cb3739040ef830e3d56b4d1eb072bf0e29e4e90544d19ccbf48f79"
           },
           {
             "path": "lib/pricing.ts",
@@ -13604,7 +13604,7 @@
           {
             "path": "app/app/api/_lib/auth.ts",
             "role": "auth",
-            "sourceSha256": "538d6cfe6c873a916a63c3e794580236f36f34bbf5d9f6a21e6b7513ac6bba18"
+            "sourceSha256": "a673c3acdf0182d0f3558b7e8b1382b9ac3eded0bdce6a467bf2e39ad0638759"
           },
           {
             "path": "app/app/api/book/_lib/account-guard.ts",
@@ -13614,7 +13614,7 @@
           {
             "path": "app/app/api/book/_lib/export-manifest-core.ts",
             "role": "response_builder",
-            "sourceSha256": "491991c0739ad31958be985230f9fb18a511bb42db9363e4c4c6f50106633e38"
+            "sourceSha256": "fcd8ec8bc8b0e441545a9e87ba790f888780689e66adf8dc26edb8098f27a6b9"
           },
           {
             "path": "app/app/api/book/_lib/export-repo.ts",
@@ -13624,17 +13624,17 @@
           {
             "path": "app/app/api/book/_lib/entitlement-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "ad13e763a9aee22b900963b88eaed9f5a385ac2bc6023acf02dd3bd7b9ecbb6f"
+            "sourceSha256": "92f9253936cb3739040ef830e3d56b4d1eb072bf0e29e4e90544d19ccbf48f79"
           },
           {
             "path": "app/app/api/book/_lib/user-profile-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "a5866a12576fd877e2ee22facb31c8a63945135a5c3c10d4477c33801c66c300"
+            "sourceSha256": "13123b61233d4375f8ec10dc4713fe081105561be9378e5111c3e4b311d534f4"
           },
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           }
         ],
         "serializerProof": {
@@ -13862,7 +13862,7 @@
           {
             "path": "app/app/api/book/_lib/flow-points-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "308c8a967a3857add81121c00734fb11169f2d1677c4c61ecc51f3c044671ae3"
+            "sourceSha256": "37ae273183e0018f01ea2c15733569f8202492bb84898a31e69e1f474a28dee1"
           }
         ],
         "serializerProof": {
@@ -14085,7 +14085,7 @@
           {
             "path": "app/app/api/book/_lib/user-profile-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "a5866a12576fd877e2ee22facb31c8a63945135a5c3c10d4477c33801c66c300"
+            "sourceSha256": "13123b61233d4375f8ec10dc4713fe081105561be9378e5111c3e4b311d534f4"
           }
         ],
         "serializerProof": {
@@ -14630,7 +14630,7 @@
           {
             "path": "app/app/api/book/_lib/notifications-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "d4eb6205fcec166ead604cdfc4be9f949a9777b8ab17314ac97329c7bab4e79b"
+            "sourceSha256": "1667ed56473bdd2812422fbb4dc9fd143dec22d89487f1a7c9d9176300d9fe01"
           }
         ],
         "serializerProof": {
@@ -14840,7 +14840,7 @@
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           }
         ],
         "serializerProof": {
@@ -15287,12 +15287,12 @@
           {
             "path": "app/app/api/book/config/ios/config-core.ts",
             "role": "response_builder",
-            "sourceSha256": "1b9257ab3374b1cb06657924bb1be22223e2fec25dc277a81ad09e82ce5fff89"
+            "sourceSha256": "b92662cfac9073733c1e4dfd1102bbf5d10ba2b9cad196ab8bce83631a8115d2"
           },
           {
             "path": "app/app/api/book/_lib/apple-purchase-policy-core.ts",
             "role": "request_validator",
-            "sourceSha256": "33696a4805e69e2bae2a1a74f30e31bdaa9520915cecd83dbe2b603c21e84962"
+            "sourceSha256": "e743273438cc16b2bd3e8b49d9fea1ed12816fc28e1165c566ba7ff10109d282"
           }
         ],
         "serializerProof": {
@@ -15474,7 +15474,7 @@
           {
             "path": "app/app/api/book/events/active/route.ts",
             "role": "route",
-            "sourceSha256": "2a34d4445e1497629159c182850b97adcc80f246b04145b7762b40fe62470e18"
+            "sourceSha256": "99d71312cbe87bec85e4c687c089013b938319040080a62a4fc918158417ec50"
           },
           {
             "path": "app/app/api/book/_lib/http.ts",
@@ -15705,7 +15705,7 @@
           {
             "path": "app/app/api/book/_lib/book-metrics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "6c538f0999b08471cbb09b204986c7d29d9db43d374ac2744eee8a08dbd92c4b"
+            "sourceSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0"
           }
         ],
         "serializerProof": {
@@ -16010,12 +16010,12 @@
           {
             "path": "app/app/api/book/_lib/book-metrics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "6c538f0999b08471cbb09b204986c7d29d9db43d374ac2744eee8a08dbd92c4b"
+            "sourceSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0"
           },
           {
             "path": "app/app/api/book/_lib/ai-service.ts",
             "role": "response_builder",
-            "sourceSha256": "f0653b4f9e18a31f3836db0459e578ccbf63dae351343f5efc08113540ee07af"
+            "sourceSha256": "363877275f083be7720e08657748e4ef57bc677869ee6948cbf372f3f793bb33"
           }
         ],
         "serializerProof": {
@@ -16488,7 +16488,7 @@
           {
             "path": "app/app/api/book/_lib/progress-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "2eb7caab812277f769777bd8af4c499f78231179dead25fdcf2ae2d01361b2b0"
+            "sourceSha256": "9444f9a2188e0f4281c605ad1ff3faab1932f5109841f1b8d5a22e779bc426b8"
           },
           {
             "path": "app/app/api/book/_lib/book-state-repo.ts",
@@ -16503,7 +16503,7 @@
           {
             "path": "app/app/api/book/_lib/types.ts",
             "role": "schema",
-            "sourceSha256": "fbc4e5d2c296a05bc849bbb68c7716ac25a53aa03ecc004fa7997792219de947"
+            "sourceSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc"
           }
         ],
         "serializerProof": {
@@ -17059,17 +17059,17 @@
           {
             "path": "app/app/api/book/_lib/entitlement-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "ad13e763a9aee22b900963b88eaed9f5a385ac2bc6023acf02dd3bd7b9ecbb6f"
+            "sourceSha256": "92f9253936cb3739040ef830e3d56b4d1eb072bf0e29e4e90544d19ccbf48f79"
           },
           {
             "path": "app/app/api/book/_lib/user-profile-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "a5866a12576fd877e2ee22facb31c8a63945135a5c3c10d4477c33801c66c300"
+            "sourceSha256": "13123b61233d4375f8ec10dc4713fe081105561be9378e5111c3e4b311d534f4"
           },
           {
             "path": "app/app/api/book/_lib/user-settings-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "c0a1c9eec29179bc9546bd40b75875b5cee78579500076a777cf3ad594f974cc"
+            "sourceSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c"
           },
           {
             "path": "app/app/api/book/_lib/book-state-repo.ts",
@@ -17079,22 +17079,22 @@
           {
             "path": "app/app/api/book/_lib/progress-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "2eb7caab812277f769777bd8af4c499f78231179dead25fdcf2ae2d01361b2b0"
+            "sourceSha256": "9444f9a2188e0f4281c605ad1ff3faab1932f5109841f1b8d5a22e779bc426b8"
           },
           {
             "path": "app/app/api/book/_lib/book-metrics-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "6c538f0999b08471cbb09b204986c7d29d9db43d374ac2744eee8a08dbd92c4b"
+            "sourceSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0"
           },
           {
             "path": "app/app/api/book/_lib/saved-books-repo.ts",
             "role": "response_builder",
-            "sourceSha256": "5c42c939d13b2994e6170cf45071b13fb9a40f43e5aab7279a965a714e617e08"
+            "sourceSha256": "d8782a52e173461874451aa09440fa2af80584d08849ae1d23b141663bc7d88f"
           },
           {
             "path": "app/app/api/book/_lib/library-catalog.ts",
             "role": "response_builder",
-            "sourceSha256": "60fe3a476f69fef7e1b82c9a227339164a31273d40f1a52b20089e8f362f0347"
+            "sourceSha256": "f9eb656c534dbc044e456b7a3a34f9c09175bf8f164c76949d948db1c7d645b2"
           }
         ],
         "serializerProof": {

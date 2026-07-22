@@ -62,13 +62,13 @@ export type AppleEntitlementWriteParams = {
    */
   originalTransactionId: string;
   /** Apple product id of the subscription (for display / reconciliation). */
-  productId?: string;
+  productId?: string | undefined;
   /** Subscription expiry (ISO 8601) → `currentPeriodEnd`. */
-  currentPeriodEnd?: string;
+  currentPeriodEnd?: string | undefined;
   /** Auto-renew turned off → true (still Pro until the period ends). */
-  cancelAtPeriodEnd?: boolean;
+  cancelAtPeriodEnd?: boolean | undefined;
   /** Apple `signedDate` (epoch ms) — stamped as the ordering high-water mark. */
-  appleSignedDateMs?: number;
+  appleSignedDateMs?: number | undefined;
   /** Which existing proSource values this write may apply over (see module header). */
   guard: "activate" | "same_lineage_activate" | "apple_only";
 };

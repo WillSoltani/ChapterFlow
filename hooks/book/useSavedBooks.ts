@@ -11,9 +11,9 @@ export type SavedBookItem = {
   bookId: string;
   savedAt: string;
   updatedAt: string;
-  source?: string;
-  priority?: number;
-  pinned?: boolean;
+  source?: string | undefined;
+  priority?: number | undefined;
+  pinned?: boolean | undefined;
 };
 
 type SavedResponse = {

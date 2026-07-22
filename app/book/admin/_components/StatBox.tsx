@@ -6,8 +6,8 @@ export function StatBox({
 }: {
   label: string;
   value: string | number;
-  hint?: string;
-  large?: boolean;
+  hint?: string | undefined;
+  large?: boolean | undefined;
 }) {
   return (
     <div className="cf-panel-muted rounded-xl px-3 py-2.5">

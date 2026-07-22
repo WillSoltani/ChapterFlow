@@ -58,7 +58,7 @@ export function normalizeAppleAccountToken(value: string | undefined): string | 
 export function validateApplePurchasePolicy(
   transaction: AppleTransactionInfo,
   policy: ApplePurchasePolicy,
-  context?: { authenticatedUserId?: string },
+  context?: { authenticatedUserId?: string | undefined },
 ): ApplePurchasePolicyViolation | null {
   if (transaction.bundleId !== policy.bundleId) return "bundle_mismatch";
   if (
@@ -111,7 +111,7 @@ export function isAppleTestFlightSandboxUserAllowed(
 export function resolveAppleTransactionEnvironment(input: {
   signedEnvironment: string | undefined;
   policy: ApplePurchasePolicy;
-  authenticatedUserId?: string;
+  authenticatedUserId?: string | undefined;
 }): AppleStoreEnvironment | null {
   if (input.signedEnvironment === input.policy.environment) {
     return input.policy.environment;
@@ -205,7 +205,7 @@ export function validateAppleAccountBinding(input: {
   authenticatedUserId: string;
   appAccountToken: string | undefined;
   existingOwnerId: string | null;
-  existingBindingVersion?: string;
+  existingBindingVersion?: string | undefined;
 }): AppleAccountBindingViolation | null {
   const expected = normalizeAppleAccountToken(input.authenticatedUserId);
   if (!expected) return "account_identifier_unsupported";
@@ -225,7 +225,7 @@ export function validateAppleAccountBinding(input: {
 export function validateAppleNotificationAccountBinding(input: {
   mappedUserId: string;
   appAccountToken: string | undefined;
-  bindingVersion?: string;
+  bindingVersion?: string | undefined;
 }): AppleAccountBindingViolation | null {
   // Tokenless transactions are the deliberate compatibility path for mappings
   // written before appAccountToken enforcement. No new mapping is created here.
@@ -286,13 +286,13 @@ const BUNDLE_ID_PATTERN = /^[A-Za-z0-9]+(?:\.[A-Za-z0-9-]+)+$/;
 const SUBSCRIPTION_GROUP_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{2,127}$/;
 
 export type AppleIapPolicyEnv = {
-  APPLE_IAP_BUNDLE_ID?: string;
-  APPLE_IAP_APP_APPLE_ID?: string;
-  APPLE_IAP_SUBSCRIPTION_GROUP_ID?: string;
-  IOS_STOREKIT_PRODUCT_IDS?: string;
-  CHAPTERFLOW_ENV?: string;
-  APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED?: string;
-  APPLE_IAP_TESTFLIGHT_QA_USER_HASHES?: string;
+  APPLE_IAP_BUNDLE_ID?: string | undefined;
+  APPLE_IAP_APP_APPLE_ID?: string | undefined;
+  APPLE_IAP_SUBSCRIPTION_GROUP_ID?: string | undefined;
+  IOS_STOREKIT_PRODUCT_IDS?: string | undefined;
+  CHAPTERFLOW_ENV?: string | undefined;
+  APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED?: string | undefined;
+  APPLE_IAP_TESTFLIGHT_QA_USER_HASHES?: string | undefined;
 };
 
 export type AppleIapPolicyConfigResult =

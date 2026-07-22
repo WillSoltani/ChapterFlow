@@ -18,15 +18,15 @@ export type ChapterCardStatus =
 type ChapterCardProps = {
   chapter: LibraryChapterSummary;
   status: ChapterCardStatus;
-  score?: number;
+  score?: number | undefined;
   stepsCompleted: number;
   /** Two-axis completion (feedback #4): derived application state for this chapter.
    *  Display-only; defaults to "none" (renders nothing extra). */
-  applicationState?: ChapterApplicationState;
+  applicationState?: ChapterApplicationState | undefined;
   onClick: () => void;
-  onLockedClick?: () => void;
-  onMouseEnter?: () => void;
-  isCurrent?: boolean;
+  onLockedClick?: (() => void) | undefined;
+  onMouseEnter?: (() => void) | undefined;
+  isCurrent?: boolean | undefined;
 };
 
 export function ChapterCard({
@@ -159,15 +159,11 @@ export function ChapterCard({
     <motion.button
       type="button"
       onClick={handleClick}
-        onMouseEnter={onMouseEnter}
-      whileHover={
-        !prefersReducedMotion
-          ? {
+      {...(onMouseEnter ? { onMouseEnter } : {})}
+      {...(!prefersReducedMotion ? { whileHover: {
               y: -2,
               transition: { type: "spring" as const, stiffness: 400, damping: 25 },
-            }
-          : undefined
-      }
+            } } : {})}
       whileTap={{ scale: 0.97, transition: { duration: DUR.instant } }}
       className={[
         "group relative w-full rounded-2xl text-left [transform:translateZ(0)]",
@@ -181,13 +177,11 @@ export function ChapterCard({
               "hover:border-(--cf-success-text)/30",
             ].join(" "),
       ].join(" ")}
-      style={
-        isInProgress
-          ? { borderLeft: "3px solid var(--accent-cyan)" }
-          : isCompleted
-            ? { borderLeft: "3px solid var(--accent-emerald)" }
-            : undefined
-      }
+      {...(isInProgress
+        ? { style: { borderLeft: "3px solid var(--accent-cyan)" } }
+        : isCompleted
+          ? { style: { borderLeft: "3px solid var(--accent-emerald)" } }
+          : {})}
       aria-label={
         (isCompleted && typeof score === "number"
           ? `Chapter ${chapter.number} - ${chapter.title} - Completed with ${Math.round(score)}% score`

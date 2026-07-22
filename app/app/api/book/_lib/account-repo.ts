@@ -153,11 +153,11 @@ export async function setAccountStatus(
   userId: string,
   status: AccountStatusItem["status"],
   extras?: {
-    statusReason?: string;
-    previousPlan?: "FREE" | "PRO";
-    previousProSource?: string;
+    statusReason?: string | undefined;
+    previousPlan?: "FREE" | "PRO" | undefined;
+    previousProSource?: string | undefined;
     /** Who made the change: "self" (default), "admin:<adminUserId>", or "system". */
-    changedBy?: string;
+    changedBy?: string | undefined;
   }
 ): Promise<void> {
   const now = nowIso();

@@ -688,7 +688,7 @@ function formatCents(value: unknown, currency: unknown): string {
  */
 function EntitlementView({ entitlement }: { entitlement: Record<string, unknown> }) {
   const e = entitlement;
-  const rows: Array<{ label: string; value: string; hint?: string }> = [
+  const rows: Array<{ label: string; value: string; hint?: string | undefined }> = [
     { label: "Plan", value: asString(e.plan) },
     { label: "PRO status", value: asString(e.proStatus) },
     { label: "PRO source", value: asString(e.proSource) },

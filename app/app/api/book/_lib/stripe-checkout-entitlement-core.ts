@@ -9,9 +9,9 @@
  * condition, so charging first would create the same paid-without-access chain.
  */
 export function stripeCheckoutBlockReason(entitlement: {
-  plan?: string;
-  proSource?: string;
-  disputeOpen?: boolean;
+  plan?: string | undefined;
+  proSource?: string | undefined;
+  disputeOpen?: boolean | undefined;
 } | null): "already_pro" | "billing_disputed" | null {
   // already_pro is checked FIRST so a disputed-but-still-Pro account keeps the
   // accurate answer.
@@ -25,9 +25,9 @@ export function stripeCheckoutBlockReason(entitlement: {
 }
 
 export function shouldBlockStripeCheckout(entitlement: {
-  plan?: string;
-  proSource?: string;
-  disputeOpen?: boolean;
+  plan?: string | undefined;
+  proSource?: string | undefined;
+  disputeOpen?: boolean | undefined;
 } | null): boolean {
   return stripeCheckoutBlockReason(entitlement) !== null;
 }

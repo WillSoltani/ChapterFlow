@@ -53,9 +53,9 @@ export async function putSavedBook(
   params: {
     userId: string;
     bookId: string;
-    source?: string;
-    priority?: number;
-    pinned?: boolean;
+    source?: string | undefined;
+    priority?: number | undefined;
+    pinned?: boolean | undefined;
   }
 ): Promise<BookUserSavedBookItem> {
   const existing = await ddbDoc.send(

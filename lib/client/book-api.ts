@@ -4,7 +4,7 @@
 
 export class BookClientError extends Error {
   status: number;
-  code?: string;
+  code?: string | undefined;
   details?: unknown;
 
   constructor(message: string, status = 500, code?: string, details?: unknown) {

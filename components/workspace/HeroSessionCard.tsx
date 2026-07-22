@@ -237,13 +237,9 @@ export function HeroSessionCard({
         border: "1px solid var(--cf-border-strong)",
         boxShadow: "0 0 80px -28px var(--cf-accent-shadow), var(--cf-shadow-lg)",
       }}
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 20 }}
-      animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: DUR.slow, delay: 0.1, ease: EASE.standard }
-      }
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 20 } })}
+      {...(prefersReducedMotion ? {} : { animate: { opacity: 1, y: 0 } })}
+      {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, delay: 0.1, ease: EASE.standard } })}
     >
       <div className="flex flex-col md:flex-row">
         {/* LEFT: Book info + CTA */}
@@ -323,7 +319,7 @@ export function HeroSessionCard({
                   style={{
                     background: "linear-gradient(90deg, var(--cf-accent), var(--cf-accent-strong))",
                   }}
-                  initial={prefersReducedMotion ? undefined : { width: 0 }}
+                  {...(prefersReducedMotion ? {} : { initial: { width: 0 } })}
                   animate={{ width: `${currentBook.progressPercent}%` }}
                   transition={
                     prefersReducedMotion
@@ -431,26 +427,10 @@ export function HeroSessionCard({
                     transform: "perspective(800px) rotateY(-5deg)",
                     transformOrigin: "left center",
                   }}
-                  initial={
-                    prefersReducedMotion
-                      ? undefined
-                      : { scale: 0.9, opacity: 0 }
-                  }
-                  animate={
-                    prefersReducedMotion
-                      ? undefined
-                      : { scale: 1, opacity: 1 }
-                  }
-                  whileHover={
-                    prefersReducedMotion
-                      ? undefined
-                      : { rotateY: -8, scale: 1.03 }
-                  }
-                  transition={
-                    prefersReducedMotion
-                      ? undefined
-                      : { type: "spring", stiffness: 300, damping: 20 }
-                  }
+                  {...(prefersReducedMotion ? {} : { initial: { scale: 0.9, opacity: 0 } })}
+                  {...(prefersReducedMotion ? {} : { animate: { scale: 1, opacity: 1 } })}
+                  {...(prefersReducedMotion ? {} : { whileHover: { rotateY: -8, scale: 1.03 } })}
+                  {...(prefersReducedMotion ? {} : { transition: { type: "spring", stiffness: 300, damping: 20 } })}
                 >
                   <Link href={`/book/library/${currentBook.id}`}>
                     <Image
@@ -499,26 +479,10 @@ export function HeroSessionCard({
                       height: hasPersonalizedShelf ? 130 : 100,
                       transform: `rotate(${item.rot}deg)`,
                     }}
-                    initial={
-                      prefersReducedMotion
-                        ? undefined
-                        : { y: 20, opacity: 0 }
-                    }
-                    animate={
-                      prefersReducedMotion
-                        ? undefined
-                        : { y: 0, opacity: 1 }
-                    }
-                    whileHover={
-                      prefersReducedMotion
-                        ? undefined
-                        : { scale: 1.08, rotate: 0 }
-                    }
-                    transition={
-                      prefersReducedMotion
-                        ? undefined
-                        : { duration: DUR.page, delay: 0.3 + i * 0.1, ease: EASE.standard }
-                    }
+                    {...(prefersReducedMotion ? {} : { initial: { y: 20, opacity: 0 } })}
+                    {...(prefersReducedMotion ? {} : { animate: { y: 0, opacity: 1 } })}
+                    {...(prefersReducedMotion ? {} : { whileHover: { scale: 1.08, rotate: 0 } })}
+                    {...(prefersReducedMotion ? {} : { transition: { duration: DUR.page, delay: 0.3 + i * 0.1, ease: EASE.standard } })}
                   >
                     <Image
                       src={item.src}

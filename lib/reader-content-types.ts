@@ -20,7 +20,7 @@ export type ChapterSummaryBlock =
       id: string;
       type: "bullet";
       text: string;
-      detail?: string;
+      detail?: string | undefined
     };
 
 export type ScenarioDecisionOption = {
@@ -37,7 +37,7 @@ export type ChapterExample = {
   whatToDo: string;
   whyItMatters: string;
   decisionOptions?: ScenarioDecisionOption[];
-  reflectionPrompt?: string;
+  reflectionPrompt?: string | undefined;
 };
 
 export type ImplementationPlanItem = {

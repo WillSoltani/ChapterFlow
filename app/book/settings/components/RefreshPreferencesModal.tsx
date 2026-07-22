@@ -129,10 +129,10 @@ export function RefreshPreferencesModal({
           <motion.div
             key={step}
             custom={direction}
-            variants={reducedMotion ? undefined : slideVariants}
+            {...(reducedMotion ? {} : { variants: slideVariants })}
             initial={reducedMotion ? false : "enter"}
             animate="center"
-            exit={reducedMotion ? undefined : "exit"}
+            {...(reducedMotion ? {} : { exit: "exit" })}
             transition={{ duration: DUR.fast, ease: EASE.standard }}
           >
             {step === 1 && (

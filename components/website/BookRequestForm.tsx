@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 interface BookRequestFormProps {
-  initialTitle?: string;
+  initialTitle?: string | undefined;
   onSuccess: (data: { title: string; author: string; email: string }) => void;
 }
 
@@ -263,7 +263,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
               height="16"
               viewBox="0 0 16 16"
               fill="none"
-              animate={reducedMotion ? undefined : { rotate: 360 }}
+              {...(reducedMotion ? {} : { animate: { rotate: 360 } })}
               transition={
                 reducedMotion
                   ? { duration: 0 }

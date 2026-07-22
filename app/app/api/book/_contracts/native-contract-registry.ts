@@ -608,9 +608,12 @@ function blocked(seed: BlockedSeed): NativeContractOperationDefinition {
       reason: seed.blocker.reason,
       evidence: seed.blocker.evidence,
       resolution,
-      expectedRouteSource:
-        seed.blocker.kind === "missing_route" ? defaultRouteSource(seed.routeTemplate) : undefined,
-      backendCandidate,
+      // exactOptionalPropertyTypes: only set expectedRouteSource when a route is
+      // actually expected, so the definition omits it otherwise (no undefined).
+      ...(seed.blocker.kind === "missing_route"
+        ? { expectedRouteSource: defaultRouteSource(seed.routeTemplate) }
+        : {}),
+      ...(backendCandidate !== undefined ? { backendCandidate } : {}),
     },
   };
 }

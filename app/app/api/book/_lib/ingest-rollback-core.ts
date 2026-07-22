@@ -27,7 +27,7 @@ import { bookMetaSk, bookPk, catalogPk, catalogSk } from "./keys";
  * `ingestion-publish-policy.ts` / `account-guard-policy.ts`).
  */
 
-export type BookCover = { emoji?: string; color?: string };
+export type BookCover = { emoji?: string | undefined; color?: string | undefined } | undefined;
 
 export interface BookMetaCatalogFields {
   bookId: string;
@@ -35,10 +35,10 @@ export interface BookMetaCatalogFields {
   author: string;
   categories: string[];
   tags: string[];
-  cover?: BookCover;
+  cover?: BookCover | undefined;
   variantFamily: "EMH" | "PBC";
   latestVersion: number;
-  currentPublishedVersion?: number;
+  currentPublishedVersion?: number | undefined;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
 }
 

@@ -19,13 +19,13 @@ export type LibraryCatalogBook = {
   title: string;
   author: string;
   icon: string;
-  coverImage?: string;
+  coverImage?: string | undefined;
   category: string;
   categories: string[];
   difficulty: BookDifficulty;
   estimatedMinutes: number;
   chapterCount: number;
-  pages?: number;
+  pages?: number | undefined;
   synopsis: string;
   tags: string[];
   variantFamily: "EMH" | "PBC";

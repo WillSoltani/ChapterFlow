@@ -124,10 +124,10 @@ export function adaptApiChapterToBookChapter(
   api: ApiChapter,
   book: {
     bookId: string;
-    title?: string;
-    author?: string;
-    categories?: string[];
-    tags?: string[];
+    title?: string | undefined;
+    author?: string | undefined;
+    categories?: string[] | undefined;
+    tags?: string[] | undefined;
   },
 ): BookChapter {
   const cv = api.contentVariants ?? {};

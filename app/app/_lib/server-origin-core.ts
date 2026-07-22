@@ -86,10 +86,10 @@ export function trustedHostsFromEnv(env: Record<string, string | undefined>): Se
 }
 
 export type ResolveOriginEnv = {
-  appBaseUrl?: string;
-  chapterFlowAppBaseUrl?: string;
-  allowAppBaseUrlInDev?: string;
-  nodeEnv?: string;
+  appBaseUrl?: string | undefined;
+  chapterFlowAppBaseUrl?: string | undefined;
+  allowAppBaseUrlInDev?: string | undefined;
+  nodeEnv?: string | undefined;
   /** Full env snapshot used to derive the trusted-host allowlist. */
   trustedHosts: Set<string>;
 };

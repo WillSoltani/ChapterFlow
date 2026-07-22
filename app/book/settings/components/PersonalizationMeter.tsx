@@ -25,7 +25,7 @@ export function PersonalizationMeter({
     <motion.div
       initial={reducedMotion ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={reducedMotion ? undefined : { opacity: 0, height: 0, marginBottom: 0 }}
+      {...(reducedMotion ? {} : { exit: { opacity: 0, height: 0, marginBottom: 0 } })}
       transition={{ duration: DUR.normal, ease: EASE.standard }}
       className="relative overflow-hidden rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-5 backdrop-blur-lg"
     >

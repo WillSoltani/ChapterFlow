@@ -22,13 +22,13 @@ type CommitmentPromptProps = {
   /** The follow-up window of the EXISTING active commitment (when hydrated from
    *  the server), so the "Committed" view shows the real value rather than the
    *  local default. Undefined until known / for a not-yet-committed chapter. */
-  activeFollowUpDays?: 3 | 7;
+  activeFollowUpDays?: 3 | 7 | undefined;
   /** A plan pre-selected by a picked reader pattern (Phase 3). Applied as the
    *  default selection ONLY until the user manually picks a plan — a manual click
    *  always wins (autonomy preserved), and STAYS won even if the reader later
    *  switches to a different pattern (the manual choice is sticky for the session;
    *  only the routed example re-pins). */
-  defaultSelectedPlan?: string;
+  defaultSelectedPlan?: string | undefined;
 };
 
 export function CommitmentPrompt({

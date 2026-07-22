@@ -68,24 +68,24 @@ export type SummaryBlock =
   | {
       type: "bullet";
       text: string;
-      detail?: string;
+      detail?: string | undefined
     };
 
 export type BookPackageEdition = {
   name: string;
-  publishedYear?: number | null;
-  publisher?: string;
-  publishedDate?: string;
-  imprintFamily?: string[];
-  isbn10?: string;
-  isbn13?: string;
-  format?: string;
-  language?: string;
-  translator?: string;
-  translationYear?: number | null;
-  openLibraryEdition?: string;
-  sourceText?: string;
-  sourceProvenance?: string;
+  publishedYear?: number | null | undefined;
+  publisher?: string | undefined;
+  publishedDate?: string | undefined;
+  imprintFamily?: string[] | undefined;
+  isbn10?: string | undefined;
+  isbn13?: string | undefined;
+  format?: string | undefined;
+  language?: string | undefined;
+  translator?: string | undefined;
+  translationYear?: number | null | undefined;
+  openLibraryEdition?: string | undefined;
+  sourceText?: string | undefined;
+  sourceProvenance?: string | undefined;
 };
 
 // ── Concept Dependency Graph (raw-stage only) ───────────────────────────────
@@ -94,7 +94,7 @@ export type ConceptNode = {
   id: string;
   label: string;
   introducedIn: string;
-  summary?: string;
+  summary?: string | undefined;
 };
 
 export type ConceptEdge = {
@@ -153,100 +153,100 @@ export type V21ChapterExtras = {
 // aliased onto these in app/app/api/book/_lib/types.ts.
 
 export type RawVariantContent = {
-  importantSummary?: string;
-  summaryBullets?: string[];
-  summaryBlocks?: SummaryBlock[];
-  takeaways?: string[];
-  practice?: string[];
+  importantSummary?: string | undefined;
+  summaryBullets?: string[] | undefined;
+  summaryBlocks?: SummaryBlock[] | undefined;
+  takeaways?: string[] | undefined;
+  practice?: string[] | undefined;
   /** Modern format: tone-keyed chapter breakdown narrative */
-  chapterBreakdown?: ToneKeyed;
+  chapterBreakdown?: ToneKeyed | undefined;
   /** Modern format: tone-keyed takeaway objects */
-  keyTakeaways?: Array<{ point: ToneKeyed; moreDetails?: ToneKeyed }>;
+  keyTakeaways?: Array<{ point: ToneKeyed; moreDetails?: ToneKeyed | undefined }> | undefined;
   /** Modern format: tone-keyed one-minute recap */
-  oneMinuteRecap?: OneMinuteRecapToneKeyed;
-  activationPrompt?: ToneKeyed;
-  selfCheckPrompt?: ToneKeyed;
-  selfCheckPrompts?: ToneKeyed[];
-  reflectionPrompts?: ToneKeyed[];
-  predictionPrompt?: ToneKeyed;
+  oneMinuteRecap?: OneMinuteRecapToneKeyed | undefined;
+  activationPrompt?: ToneKeyed | undefined;
+  selfCheckPrompt?: ToneKeyed | undefined;
+  selfCheckPrompts?: ToneKeyed[] | undefined;
+  reflectionPrompts?: ToneKeyed[] | undefined;
+  predictionPrompt?: ToneKeyed | undefined;
 };
 
 export type RawQuizQuestion = {
   questionId: string;
-  prompt?: string;
-  stem?: string;
-  choices?: string[];
-  options?: string[];
-  correctAnswerIndex?: number;
-  correctIndex?: number;
-  explanation?: string | ToneKeyed;
-  bloomsLevel?: string;
-  depthLevel?: string;
+  prompt?: string | undefined;
+  stem?: string | undefined;
+  choices?: string[] | undefined;
+  options?: string[] | undefined;
+  correctAnswerIndex?: number | undefined;
+  correctIndex?: number | undefined;
+  explanation?: string | ToneKeyed | undefined;
+  bloomsLevel?: string | undefined;
+  depthLevel?: string | undefined;
 };
 
 export type RawQuiz = {
-  chapterId?: string;
-  chapterNumber?: number;
-  chapterTitle?: string;
-  title?: string;
+  chapterId?: string | undefined;
+  chapterNumber?: number | undefined;
+  chapterTitle?: string | undefined;
+  title?: string | undefined;
   passingScorePercent: number;
   questions: RawQuizQuestion[];
-  retryQuestions?: RawQuizQuestion[];
+  retryQuestions?: RawQuizQuestion[] | undefined;
 };
 
 export type RawExample = {
-  exampleId?: string;
-  title?: string;
+  exampleId?: string | undefined;
+  title?: string | undefined;
   scenario: string | ToneKeyed;
   whatToDo: string[] | ToneKeyed;
   whyItMatters: string | ToneKeyed;
-  contexts?: string[];
-  category?: string;
-  format?: string;
-  endingType?: string;
+  contexts?: string[] | undefined;
+  category?: string | undefined;
+  format?: string | undefined;
+  endingType?: string | undefined;
 };
 
 /** Tone-keyed review card for spaced repetition */
 export type RawReviewCard = {
-  cardId?: string;
+  cardId?: string | undefined;
   front: ToneKeyed;
   back: ToneKeyed;
-  difficulty?: "easy" | "medium" | "hard";
+  difficulty?: "easy" | "medium" | "hard" | undefined;
 };
 
 /** Tone-keyed implementation plan */
 export type RawImplementationPlan = {
-  coreSkill?: ToneKeyed;
-  concreteAction?: ToneKeyed;
+  coreSkill?: ToneKeyed | undefined;
+  concreteAction?: ToneKeyed | undefined;
   ifThenPlans?: Array<{
     context: string;
     plan: ToneKeyed;
-  }>;
-  ifThenPlan?: ToneKeyed;
-  twentyFourHourChallenge?: ToneKeyed;
-  weeklyPractice?: ToneKeyed;
-  friction?: ToneKeyed;
-  checkpoint?: ToneKeyed;
+  }> | undefined;
+  ifThenPlan?: ToneKeyed | undefined;
+  twentyFourHourChallenge?: ToneKeyed | undefined;
+  weeklyPractice?: ToneKeyed | undefined;
+  friction?: ToneKeyed | undefined;
+  checkpoint?: ToneKeyed | undefined;
 };
 
 export type RawChapter = {
   book?: {
-    bookId?: string;
-    title?: string;
-    author?: string;
-  };
+    bookId?: string | undefined;
+    title?: string | undefined;
+    author?: string | undefined;
+  } | undefined;
   chapterId: string;
   number: number;
   title: string;
   readingTimeMinutes: number;
-  contentHash?: string;
+  contentHash?: string | undefined;
   contentVariants: Partial<Record<VariantKey, RawVariantContent>>;
   examples: RawExample[];
   quiz: RawQuiz;
-  implementationPlan?: RawImplementationPlan;
-  reviewCards?: RawReviewCard[];
-  keyTakeawayCard?: ToneKeyed;
-  v21Extras?: V21ChapterExtras;
+  implementationPlan?: RawImplementationPlan | undefined;
+  reviewCards?: RawReviewCard[] | undefined;
+  keyTakeawayCard?: ToneKeyed | undefined;
+  v21Extras?: V21ChapterExtras | undefined;
 };
 
 export type RawBook = {
@@ -254,14 +254,14 @@ export type RawBook = {
   title: string;
   author: string;
   categories: string[];
-  tags?: string[];
+  tags?: string[] | undefined;
   cover?: {
-    emoji?: string;
-    color?: string;
-  };
-  edition?: string | BookPackageEdition;
+    emoji?: string | undefined;
+    color?: string | undefined;
+  } | undefined;
+  edition?: string | BookPackageEdition | undefined;
   variantFamily: VariantFamily;
-  chapterRange?: string;
+  chapterRange?: string | undefined;
 };
 
 export type RawBookPackage = {
@@ -269,10 +269,10 @@ export type RawBookPackage = {
   packageId: string;
   createdAt: string;
   contentOwner: string;
-  licenseNotes?: string;
+  licenseNotes?: string | undefined;
   book: RawBook;
   chapters: RawChapter[];
-  conceptGraph?: ConceptGraph;
+  conceptGraph?: ConceptGraph | undefined;
 };
 
 // ── RESOLVED stage (tone-flattened, post-normalization) ─────────────────────
@@ -280,31 +280,31 @@ export type RawBookPackage = {
 // aliased onto these in app/book/data/book-package-core.ts.
 
 export type ResolvedVariantContent = {
-  chapterBreakdown?: string;
-  importantSummary?: string;
-  summaryBullets?: string[];
-  summaryBlocks?: SummaryBlock[];
-  keyTakeaways?: string[];
-  takeaways?: string[];
-  practice?: string[];
-  oneMinuteRecap?: string[];
-  activationPrompt?: string;
-  selfCheckPrompt?: string;
-  selfCheckPrompts?: string[];
-  reflectionPrompts?: string[];
-  closingPrompt?: string;
-  predictionPrompt?: string;
+  chapterBreakdown?: string | undefined;
+  importantSummary?: string | undefined;
+  summaryBullets?: string[] | undefined;
+  summaryBlocks?: SummaryBlock[] | undefined;
+  keyTakeaways?: string[] | undefined;
+  takeaways?: string[] | undefined;
+  practice?: string[] | undefined;
+  oneMinuteRecap?: string[] | undefined;
+  activationPrompt?: string | undefined;
+  selfCheckPrompt?: string | undefined;
+  selfCheckPrompts?: string[] | undefined;
+  reflectionPrompts?: string[] | undefined;
+  closingPrompt?: string | undefined;
+  predictionPrompt?: string | undefined;
 };
 
 export type ResolvedQuizQuestion = {
   questionId: string;
-  prompt?: string;
-  stem?: string;
-  choices?: string[];
-  options?: string[];
-  correctIndex?: number;
-  correctAnswerIndex?: number;
-  explanation?: string | Record<string, string>;
+  prompt?: string | undefined;
+  stem?: string | undefined;
+  choices?: string[] | undefined;
+  options?: string[] | undefined;
+  correctIndex?: number | undefined;
+  correctAnswerIndex?: number | undefined;
+  explanation?: string | Record<string, string> | undefined;
 };
 
 export type ResolvedQuiz = {
@@ -322,8 +322,8 @@ export type ResolvedExample = {
   scenario: string;
   whatToDo: string[];
   whyItMatters: string;
-  contexts?: string[];
-  reflectionPrompt?: string;
+  contexts?: string[] | undefined;
+  reflectionPrompt?: string | undefined;
 };
 
 export type ResolvedImplementationPlan = {
@@ -348,9 +348,9 @@ export type ResolvedChapter = {
   contentVariants: Partial<Record<VariantKey, ResolvedVariantContent>>;
   examples: ResolvedExample[];
   quiz: ResolvedQuiz;
-  implementationPlan?: ResolvedImplementationPlan;
-  reviewCards?: ResolvedReviewCard[];
-  keyTakeawayCard?: string;
+  implementationPlan?: ResolvedImplementationPlan | undefined;
+  reviewCards?: ResolvedReviewCard[] | undefined;
+  keyTakeawayCard?: string | undefined;
 };
 
 export type ResolvedBook = {
@@ -358,10 +358,10 @@ export type ResolvedBook = {
   title: string;
   author: string;
   categories: string[];
-  tags?: string[];
-  edition?: string | BookPackageEdition;
+  tags?: string[] | undefined;
+  edition?: string | BookPackageEdition | undefined;
   variantFamily: VariantFamily;
-  chapterRange?: string;
+  chapterRange?: string | undefined;
 };
 
 export type ResolvedBookPackage = {

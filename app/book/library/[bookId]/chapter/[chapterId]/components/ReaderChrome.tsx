@@ -29,7 +29,7 @@ const LazyAudioPlayer = dynamic(
 
 type Props = {
   bookId: string;
-  initialBook?: LibraryBookDetail;
+  initialBook?: LibraryBookDetail | undefined;
   chapter: BookChapter;
   activeDepth: ReadingDepth;
   isV21Chapter: boolean;

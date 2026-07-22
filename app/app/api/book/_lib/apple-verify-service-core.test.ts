@@ -59,11 +59,11 @@ function harness(
   const mutationEnvironments: string[] = [];
   const readEnvironments: string[] = [];
   let entitlement: {
-    plan?: string;
-    proStatus?: string;
-    proSource?: string;
-    currentPeriodEnd?: string;
-    cancelAtPeriodEnd?: boolean;
+    plan?: string | undefined;
+    proStatus?: string | undefined;
+    proSource?: string | undefined;
+    currentPeriodEnd?: string | undefined;
+    cancelAtPeriodEnd?: boolean | undefined;
   } | null = null;
   let claimCalls = 0;
   const ownerKey = (id: string, storageLane = "Primary") =>

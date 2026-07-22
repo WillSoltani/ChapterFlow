@@ -49,22 +49,22 @@ export type BookChapter = {
   summaryByDepth: Record<ReadingDepth, ChapterSummaryBlock[]>;
   takeaways: string[];
   takeawaysByDepth: Record<ReadingDepth, string[]>;
-  recap?: string;
+  recap?: string | undefined;
   recapByDepth: Record<ReadingDepth, string[]>;
-  activationPrompt?: string;
-  activationPromptByDepth: Partial<Record<ReadingDepth, string>>;
-  selfCheckPrompt?: string;
-  selfCheckPrompts?: string[];
-  selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
-  reflectionPrompts?: string[];
-  reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
-  closingPrompt?: string;
-  closingPromptByDepth: Partial<Record<ReadingDepth, string>>;
-  predictionPrompt?: string;
-  predictionPromptByDepth: Partial<Record<ReadingDepth, string>>;
-  keyTakeawayCard?: string;
-  implementationPlan?: ImplementationPlanItem;
-  reviewCards?: ReviewCardItem[];
+  activationPrompt?: string | undefined;
+  activationPromptByDepth: Partial<Record<ReadingDepth, string | undefined>>;
+  selfCheckPrompt?: string | undefined;
+  selfCheckPrompts?: string[] | undefined;
+  selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>>;
+  reflectionPrompts?: string[] | undefined;
+  reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>>;
+  closingPrompt?: string | undefined;
+  closingPromptByDepth: Partial<Record<ReadingDepth, string | undefined>>;
+  predictionPrompt?: string | undefined;
+  predictionPromptByDepth: Partial<Record<ReadingDepth, string | undefined>>;
+  keyTakeawayCard?: string | undefined;
+  implementationPlan?: ImplementationPlanItem | undefined;
+  reviewCards?: ReviewCardItem[] | undefined;
   examplesDetailed: ChapterExample[];
   quiz: ChapterQuizQuestion[];
   quizByDepth: Record<ReadingDepth, ChapterQuizQuestion[]>;
@@ -72,27 +72,27 @@ export type BookChapter = {
   quizPassingScorePercent: number;
   isStrictV12: boolean;
   /** Source schema marker. Set to "chapterflow-v21-authored" for v21 books. */
-  schemaVersion?: string;
+  schemaVersion?: string | undefined;
   /** v21-only: arresting one-liner shown above the chapter title. */
-  hook?: string;
+  hook?: string | undefined;
   /** v21-only: 1–2 sentence framing of why the idea is non-obvious. */
-  counterintuition?: string;
+  counterintuition?: string | undefined;
   /**
    * v21-only: a single 30–90s directive shown as a mid-chapter callout.
    * Replaces the deprecated reflectionBefore/After fields.
    */
-  tryThisNow?: string;
+  tryThisNow?: string | undefined;
   /**
    * DEPRECATED v21 fields. Kept for parsing legacy v21 packages (tiny-habits)
    * cleanly; the reader UI no longer renders them.
    */
-  reflectionBefore?: string;
-  reflectionAfter?: string;
+  reflectionBefore?: string | undefined;
+  reflectionAfter?: string | undefined;
   /** v21-only: 3 quotable sentences from the chapter for share/highlight. */
-  memorableLines?: V21MemorableLine[];
+  memorableLines?: V21MemorableLine[] | undefined;
   /** v21-only: the behavior-change layer (failureRecovery + transferPrompt),
    *  rendered at chapter end in the Practice phase. */
-  experiencePlan?: V21ExperiencePlan;
+  experiencePlan?: V21ExperiencePlan | undefined;
 };
 
 type BookChapterBundle = {
@@ -648,7 +648,7 @@ export function buildBundle(
             standard: legacyRecap,
             deeper: legacyRecap,
           };
-      const activationPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+      const activationPromptByDepth: Partial<Record<ReadingDepth, string | undefined>> = strictV12
         ? {
             simple: exactActivationPrompt(chapter, family, "simple"),
             standard: exactActivationPrompt(chapter, family, "standard"),
@@ -657,7 +657,7 @@ export function buildBundle(
         : {
             standard: newFields.activationPrompt,
           };
-      const selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>> = strictV12
+      const selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>> = strictV12
         ? {
             simple: exactSelfCheckPrompts(chapter, family, "simple"),
             standard: exactSelfCheckPrompts(chapter, family, "standard"),
@@ -667,7 +667,7 @@ export function buildBundle(
             standard: newFields.selfCheckPrompt ? [newFields.selfCheckPrompt] : undefined,
             deeper: newFields.selfCheckPrompts,
           };
-      const predictionPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+      const predictionPromptByDepth: Partial<Record<ReadingDepth, string | undefined>> = strictV12
         ? {
             simple: exactPredictionPrompt(chapter, family, "simple"),
             standard: exactPredictionPrompt(chapter, family, "standard"),
@@ -676,14 +676,14 @@ export function buildBundle(
         : {
             deeper: newFields.predictionPrompt,
           };
-      const reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[]>> = strictV12
+      const reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>> = strictV12
         ? {
             simple: exactReflectionPrompts(chapter, family, "simple"),
             standard: exactReflectionPrompts(chapter, family, "standard"),
             deeper: exactReflectionPrompts(chapter, family, "deeper"),
           }
         : {};
-      const closingPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+      const closingPromptByDepth: Partial<Record<ReadingDepth, string | undefined>> = strictV12
         ? {
             simple: exactClosingPrompt(chapter, family, "simple"),
             standard: exactClosingPrompt(chapter, family, "standard"),
@@ -799,10 +799,10 @@ export function buildBookChapterFromRawV21(
   rawChapter: Record<string, unknown>,
   book: {
     bookId: string;
-    title?: string;
-    author?: string;
-    categories?: string[];
-    tags?: string[];
+    title?: string | undefined;
+    author?: string | undefined;
+    categories?: string[] | undefined;
+    tags?: string[] | undefined;
   },
 ): BookChapter {
   const rawPackage = {

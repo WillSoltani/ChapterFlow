@@ -274,7 +274,7 @@ function buildProfileResponse(
   user: Awaited<ReturnType<typeof requireActiveBookUser>>,
   profile: Record<string, unknown> | null,
   updatedAt: string | null,
-  options?: { deviceId?: string; issuedDeviceId?: boolean }
+  options?: { deviceId?: string | undefined; issuedDeviceId?: boolean | undefined }
 ) {
   const sanitizedProfile = sanitizeProfileForResponse(profile);
   const response = bookOk({

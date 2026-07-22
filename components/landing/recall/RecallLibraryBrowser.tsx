@@ -365,7 +365,7 @@ function BrowseCover({ book }: { book: BookCatalogMetadata }) {
   return (
     <Image
       src={src}
-      loader={loader}
+      {...(loader ? { loader } : {})}
       alt={`${book.title} by ${book.author}`}
       fill
       sizes="(max-width: 640px) 44vw, (max-width: 1024px) 22vw, 14vw"

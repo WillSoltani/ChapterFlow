@@ -34,7 +34,7 @@ export function useReaderPhaseFlow({
 }: {
   bookId: string;
   chapterId: string;
-  chapter?: BookChapter;
+  chapter?: BookChapter | undefined;
   chapters: ProgressChapter[];
   activeTab: ChapterTab;
   setActiveTabRaw: (tab: ChapterTab) => void;

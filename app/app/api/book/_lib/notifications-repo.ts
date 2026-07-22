@@ -43,9 +43,9 @@ type CreateNotificationParams = {
   type: BookUserNotificationItem["type"];
   title: string;
   body: string;
-  metadata?: Record<string, unknown>;
-  userEmail?: string;
-  userName?: string;
+  metadata?: Record<string, unknown> | undefined;
+  userEmail?: string | undefined;
+  userName?: string | undefined;
 };
 
 export async function createNotification(
@@ -249,7 +249,7 @@ export async function listNotifications(
 
 export interface NotificationsPage {
   items: BookUserNotificationItem[];
-  lastEvaluatedKey?: Record<string, unknown>;
+  lastEvaluatedKey?: Record<string, unknown> | undefined;
 }
 
 /**
@@ -267,7 +267,7 @@ export interface NotificationsPage {
 export async function listNotificationsPage(
   tableName: string,
   userId: string,
-  opts: { limit: number; exclusiveStartKey?: Record<string, unknown> }
+  opts: { limit: number; exclusiveStartKey?: Record<string, unknown> | undefined }
 ): Promise<NotificationsPage> {
   const res = await ddbDoc.send(
     new QueryCommand({

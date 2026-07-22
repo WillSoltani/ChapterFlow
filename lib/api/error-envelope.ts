@@ -46,10 +46,10 @@ export function jsonErrorResponse(
   code: string,
   message: string,
   opts?: {
-    details?: unknown;
-    requestId?: string;
-    headers?: HeadersInit;
-    extra?: Record<string, unknown>;
+    details?: unknown | undefined;
+    requestId?: string | undefined;
+    headers?: HeadersInit | undefined;
+    extra?: Record<string, unknown> | undefined;
   }
 ): NextResponse {
   return NextResponse.json(
@@ -62,6 +62,6 @@ export function jsonErrorResponse(
         ...(opts?.details !== undefined ? { details: opts.details } : {}),
       },
     },
-    { status, headers: opts?.headers }
+    { status, ...(opts?.headers !== undefined ? { headers: opts.headers } : {}) }
   );
 }

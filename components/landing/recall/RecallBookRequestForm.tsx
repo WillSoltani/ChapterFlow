@@ -61,10 +61,10 @@ export function validateRecallBookRequest({
 
 type RecallBookRequestFormProps = {
   /** Pre-fill the title (e.g. the unmatched search term from the browser). */
-  initialTitle?: string;
+  initialTitle?: string | undefined;
   /** Called once the request is accepted (201), e.g. to keep a dialog open on
    *  the success state. */
-  onSuccess?: () => void;
+  onSuccess?: (() => void) | undefined;
 };
 
 export function RecallBookRequestForm({
@@ -407,19 +407,19 @@ function Field({
   errorText,
 }: {
   id: string;
-  inputRef?: RefObject<HTMLInputElement | null>;
+  inputRef?: RefObject<HTMLInputElement | null> | undefined;
   label: string;
   value: string;
   onChange: (value: string) => void;
-  onBlur?: () => void;
-  placeholder?: string;
-  type?: string;
-  required?: boolean;
-  optional?: boolean;
-  autoComplete?: string;
-  invalid?: boolean;
-  errorId?: string;
-  errorText?: string;
+  onBlur?: (() => void) | undefined;
+  placeholder?: string | undefined;
+  type?: string | undefined;
+  required?: boolean | undefined;
+  optional?: boolean | undefined;
+  autoComplete?: string | undefined;
+  invalid?: boolean | undefined;
+  errorId?: string | undefined;
+  errorText?: string | undefined;
 }) {
   return (
     <div className="flex flex-col gap-2">

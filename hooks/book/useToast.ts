@@ -8,7 +8,7 @@ import type {
 
 type ShowToastOptions = {
   autoDismissMs?: number;
-  detail?: string;
+  detail?: string | undefined;
   presentation?: ToastPresentation;
 };
 
@@ -16,7 +16,7 @@ type ToastState = {
   open: boolean;
   message: string;
   tone: ToastTone;
-  detail?: string;
+  detail?: string | undefined;
   presentation: ToastPresentation;
   autoDismissMs: number;
   sequence: number;

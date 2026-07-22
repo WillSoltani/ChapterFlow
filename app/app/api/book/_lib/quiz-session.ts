@@ -15,7 +15,7 @@ export type QuizSessionChoice = {
 export type QuizSessionQuestion = {
   questionId: string;
   prompt: string;
-  explanation?: string;
+  explanation?: string | undefined;
   choices: QuizSessionChoice[];
   correctChoiceId: string;
   correctIndex: number;
@@ -28,11 +28,11 @@ export type QuizSessionReviewQuestion = {
     choiceId: string;
     text: string;
   }>;
-  explanation?: string;
-  selectedChoiceId?: string | null;
-  correctChoiceId?: string;
-  correctIndex?: number;
-  isCorrect?: boolean;
+  explanation?: string | undefined;
+  selectedChoiceId?: string | null | undefined;
+  correctChoiceId?: string | undefined;
+  correctIndex?: number | undefined;
+  isCorrect?: boolean | undefined;
 };
 
 export type QuizSessionAttemptSummary = {
@@ -58,7 +58,7 @@ export type QuizClientSession = {
   nextAttemptAvailableAt: string | null;
   highestScorePercent: number;
   unlockedNextChapter: boolean;
-  latestAttemptAt?: string;
+  latestAttemptAt?: string | undefined;
   questions: QuizSessionReviewQuestion[];
   result: QuizSessionAttemptSummary | null;
   history: QuizSessionAttemptSummary[];
@@ -121,8 +121,8 @@ export function buildQuizAttemptQuestions(params: {
   chapterNumber: number;
   attemptNumber: number;
   /** Maximum number of questions to include (filters by learning mode). Defaults to all. */
-  maxQuestions?: number;
-  preserveAuthoredOrder?: boolean;
+  maxQuestions?: number | undefined;
+  preserveAuthoredOrder?: boolean | undefined;
 }): QuizSessionQuestion[] {
   const {
     quiz,
@@ -386,10 +386,10 @@ export function buildQuizClientSession(params: {
   quizState: BookUserQuizStateItem | null;
   latestAttempt: QuizAttemptItem | null;
   history: QuizAttemptItem[];
-  passingScorePercent?: number;
+  passingScorePercent?: number | undefined;
   /** Maximum number of questions to include (based on learning mode) */
-  maxQuestions?: number;
-  preserveAuthoredOrder?: boolean;
+  maxQuestions?: number | undefined;
+  preserveAuthoredOrder?: boolean | undefined;
 }): QuizClientSession {
   const passingScorePercent =
     params.passingScorePercent ?? params.quiz.passingScorePercent ?? 80;

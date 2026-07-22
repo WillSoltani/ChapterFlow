@@ -222,7 +222,7 @@ function applyUpdateExpression(
 type FakeCommand = { constructor: { name: string }; input: Record<string, unknown> };
 
 const fakeDdb: {
-  beforeSend?: (cmd: FakeCommand) => Promise<void>;
+  beforeSend?: ((cmd: FakeCommand) => Promise<void>) | undefined;
   send: (cmd: FakeCommand) => Promise<Record<string, unknown>>;
 } = {
   beforeSend: undefined,

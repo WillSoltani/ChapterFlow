@@ -24,7 +24,7 @@ export type ExportSourceStatus = {
    */
   complete: boolean;
   /** Optional machine-readable reason a source is incomplete. */
-  reason?: "read_failed" | "truncated";
+  reason?: "read_failed" | "truncated" | undefined;
 };
 
 export type ExportManifest = {

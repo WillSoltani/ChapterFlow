@@ -14,13 +14,13 @@ export type ToastPresentation = "default" | "saved" | "celebration";
 type ToastProps = {
   open: boolean;
   message: string;
-  tone?: ToastTone;
-  detail?: string;
-  presentation?: ToastPresentation;
+  tone?: ToastTone | undefined;
+  detail?: string | undefined;
+  presentation?: ToastPresentation | undefined;
   /** Auto-dismiss after this many ms (0 = no auto-dismiss). Default 3000. */
-  autoDismissMs?: number;
+  autoDismissMs?: number | undefined;
   /** Called when the toast should close (auto-dismiss or user action). */
-  onClose?: () => void;
+  onClose?: (() => void) | undefined;
 };
 
 function iconForTone(tone: ToastTone) {

@@ -71,7 +71,7 @@ function coerceDayStrings(value: unknown): string[] {
 }
 
 function computeDayNRates(
-  snapshots: Array<{ firstSeenAt?: string; readingDays: string[] }>,
+  snapshots: Array<{ firstSeenAt?: string | undefined; readingDays: string[] }>,
   daysList: number[],
 ): Array<{ day: number; rate: number; sample: number }> {
   return daysList.map((d) => {

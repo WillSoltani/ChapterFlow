@@ -44,7 +44,7 @@ export async function putUserProfileItem(
   params: {
     userId: string;
     profile: Record<string, unknown>;
-    createdAt?: string;
+    createdAt?: string | undefined;
   }
 ): Promise<BookUserProfileItem> {
   const now = nowIso();

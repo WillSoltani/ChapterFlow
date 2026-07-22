@@ -162,7 +162,7 @@ export function SegmentBuilderClient() {
     ]);
   };
 
-  const updateFilter = (idx: number, patch: Partial<SegmentFilter>) => {
+  const updateFilter = (idx: number, patch: { [K in keyof SegmentFilter]?: SegmentFilter[K] | undefined }) => {
     setFilters((fs) =>
       fs.map((f, i) => (i === idx ? ({ ...f, ...patch } as SegmentFilter) : f)),
     );

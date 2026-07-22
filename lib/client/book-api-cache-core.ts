@@ -37,9 +37,9 @@ export interface BookCacheOptions {
 
 export interface BookCacheLoadOptions {
   /** Bypass freshness and always hit the network (still dedups concurrently). */
-  force?: boolean;
+  force?: boolean | undefined;
   /** Per-call fetcher override (e.g. a GET carrying custom RequestInit). */
-  fetcher?: BookCacheFetcher;
+  fetcher?: BookCacheFetcher | undefined;
 }
 
 export interface BookCachePeek {

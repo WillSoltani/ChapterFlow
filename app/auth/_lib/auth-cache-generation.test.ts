@@ -51,7 +51,7 @@ test("successful refresh preserves a valid generation", () => {
 test("successful refresh creates a generation when the cookie is missing or malformed", () => {
   for (const cookie of [undefined, `${AUTH_CACHE_GENERATION_COOKIE}=not-a-uuid`]) {
     const request = new NextRequest("https://app.chapterflow.ca/auth/refresh", {
-      headers: cookie ? { cookie } : undefined,
+      ...(cookie ? { headers: { cookie } } : {}),
     });
     const response = NextResponse.next();
     const generated = preserveOrCreateAuthCacheGeneration(request, response);

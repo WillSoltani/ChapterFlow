@@ -78,20 +78,20 @@ export type V21ExperiencePlan = {
 
 export type V21ChapterExtras = {
   schemaVersion: typeof V21_SCHEMA_VERSION;
-  hook?: string;
-  counterintuition?: string;
+  hook?: string | undefined;
+  counterintuition?: string | undefined;
   /** Mid-chapter directive (30–90s action). Replaces reflectionBefore/After. */
-  tryThisNow?: string;
+  tryThisNow?: string | undefined;
   /**
    * DEPRECATED: replaced by `tryThisNow`. Retained for backwards-compat parsing
    * of v21 packages that shipped with these fields populated (e.g. tiny-habits).
    * The reader UI no longer renders them.
    */
-  reflectionBefore?: string;
-  reflectionAfter?: string;
-  keyTakeaway?: string;
-  memorableLines?: V21MemorableLine[];
-  experiencePlan?: V21ExperiencePlan;
+  reflectionBefore?: string | undefined;
+  reflectionAfter?: string | undefined;
+  keyTakeaway?: string | undefined;
+  memorableLines?: V21MemorableLine[] | undefined;
+  experiencePlan?: V21ExperiencePlan | undefined;
 };
 
 function asRecord(value: unknown): Record<string, unknown> | null {

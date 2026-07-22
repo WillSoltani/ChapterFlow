@@ -100,26 +100,33 @@ function materializeOperation(
         reason: blockerDefinition.reason,
         evidence: blockerDefinition.evidence,
         resolution: blockerDefinition.resolution,
-        expectedRouteSource: blockerDefinition.expectedRouteSource,
-        backendCandidate: blockerDefinition.backendCandidate
+        // exactOptionalPropertyTypes: build optional props conditionally so the
+        // emitted contract omits (rather than sets undefined) absent fields —
+        // preserving the exact JSON shape the native client is promised.
+        ...(blockerDefinition.expectedRouteSource !== undefined
+          ? { expectedRouteSource: blockerDefinition.expectedRouteSource }
+          : {}),
+        ...(blockerDefinition.backendCandidate
           ? {
-              ...blockerDefinition.backendCandidate,
-              sourceFiles: materializeSourceFiles(
-                repoRoot,
-                blockerDefinition.backendCandidate.sourceFiles
-              ),
+              backendCandidate: {
+                ...blockerDefinition.backendCandidate,
+                sourceFiles: materializeSourceFiles(
+                  repoRoot,
+                  blockerDefinition.backendCandidate.sourceFiles
+                ),
+              },
             }
-          : undefined,
+          : {}),
       }
     : undefined;
-  if (!backendDefinition) return { ...operation, blocker };
+  if (!backendDefinition) return { ...operation, ...(blocker !== undefined ? { blocker } : {}) };
   return {
     ...operation,
     backend: {
       ...backendDefinition,
       sourceFiles: materializeSourceFiles(repoRoot, backendDefinition.sourceFiles),
     },
-    blocker,
+    ...(blocker !== undefined ? { blocker } : {}),
   };
 }
 

@@ -38,9 +38,9 @@ export function ChapterReaderClient({
 }: {
   bookId: string;
   chapterId: string;
-  chapterOrder?: number;
-  initialBook?: LibraryBookDetail;
-  initialSeed?: InitialChapterReaderSeed;
+  chapterOrder?: number | undefined;
+  initialBook?: LibraryBookDetail | undefined;
+  initialSeed?: InitialChapterReaderSeed | undefined;
 }) {
   const router = useRouter();
   const pathname = usePathname();

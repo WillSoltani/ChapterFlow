@@ -14,22 +14,22 @@ function stripMarkdownBold(text: string): string {
 type SummaryCardProps = {
   blocks: ChapterSummaryBlock[];
   takeaways: string[];
-  recap?: string[];
+  recap?: string[] | undefined;
   onSaveTakeaways: () => void;
   bookmarkedTakeaways: Set<number>;
   onToggleBookmarkTakeaway: (index: number) => void;
   fontScaleClass: string;
-  learningMode?: LearningMode;
-  activationPrompt?: string;
-  selfCheckPrompts?: string[];
-  reflectionPrompts?: string[];
-  closingPrompt?: string;
+  learningMode?: LearningMode | undefined;
+  activationPrompt?: string | undefined;
+  selfCheckPrompts?: string[] | undefined;
+  reflectionPrompts?: string[] | undefined;
+  closingPrompt?: string | undefined;
   /** Rendered inside the footer action cluster alongside Save — e.g. AudioPlayer launcher. */
-  footerAction?: React.ReactNode;
+  footerAction?: React.ReactNode | undefined;
   /** Called once after mount when the recap is rendered. Lets the host preserve
    *  "user has seen the recap" signals (badges, analytics) now that the recap
    *  is always visible rather than behind a toggle. */
-  onRecapVisible?: () => void;
+  onRecapVisible?: (() => void) | undefined;
 };
 
 export function SummaryCard({

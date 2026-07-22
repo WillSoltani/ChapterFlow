@@ -13,7 +13,7 @@ export function track(event: string, props?: EventProps): void {
   if (typeof window === "undefined") return;
   try {
     const queue = (window.__cfAnalyticsQueue ||= []);
-    queue.push({ event, props, ts: Date.now() });
+    queue.push({ event, ts: Date.now(), ...(props !== undefined ? { props } : {}) });
     // Cap queue to avoid unbounded growth before a provider drains it.
     if (queue.length > 200) queue.splice(0, queue.length - 200);
   } catch {

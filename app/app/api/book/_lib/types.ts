@@ -63,10 +63,10 @@ export type ChapterSummaryPayload = {
   readingTimeMinutes: number;
   contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
   examples: BookPackageExample[];
-  implementationPlan?: ImplementationPlan;
-  reviewCards?: ReviewCard[];
-  keyTakeawayCard?: ToneKeyed;
-  v21Extras?: V21ChapterExtras;
+  implementationPlan?: ImplementationPlan | undefined;
+  reviewCards?: ReviewCard[] | undefined;
+  keyTakeawayCard?: ToneKeyed | undefined;
+  v21Extras?: V21ChapterExtras | undefined;
 };
 
 export type ChapterQuizPayload = {
@@ -75,7 +75,7 @@ export type ChapterQuizPayload = {
   title: string;
   passingScorePercent: number;
   questions: BookPackageQuizQuestion[];
-  retryQuestions?: BookPackageQuizQuestion[];
+  retryQuestions?: BookPackageQuizQuestion[] | undefined;
 };
 
 export type BookManifestChapter = {
@@ -109,13 +109,13 @@ export type BookCatalogItem = {
   categories: string[];
   tags: string[];
   cover?: {
-    emoji?: string;
-    color?: string;
-  };
+    emoji?: string | undefined;
+    color?: string | undefined;
+  } | undefined;
   variantFamily: VariantFamily;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   latestVersion: number;
-  currentPublishedVersion?: number;
+  currentPublishedVersion?: number | undefined;
   updatedAt: string;
 };
 
@@ -129,69 +129,69 @@ export type BookVersionItem = {
   manifestKey: string;
   createdAt: string;
   createdBy: string;
-  publishedAt?: string;
-  publishedBy?: string;
+  publishedAt?: string | undefined;
+  publishedBy?: string | undefined;
 };
 
 export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
-  proStatus?: "inactive" | "active" | "past_due" | "canceled";
+  proStatus?: "inactive" | "active" | "past_due" | "canceled" | undefined;
   /** How the user obtained PRO. Single-sourced as `ProSource` in
    *  lib/entitlement-types.ts so the client billing hook cannot drift from this
    *  server definition (WS3-014). See that module for the per-value semantics. */
-  proSource?: ProSource;
+  proSource?: ProSource | undefined;
   freeBookSlots: number;
   unlockedBookIds: string[];
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
   /** Stripe Price id of the current subscription (for plan reconciliation). */
-  stripePriceId?: string;
+  stripePriceId?: string | undefined;
   /** Stripe recurring interval ("month" | "year") of the current subscription. */
-  subscriptionInterval?: string;
-  currentPeriodEnd?: string;
+  subscriptionInterval?: string | undefined;
+  currentPeriodEnd?: string | undefined;
   /** True if the Stripe subscription is set to cancel at the end of the current period (no auto-renew) */
-  cancelAtPeriodEnd?: boolean;
+  cancelAtPeriodEnd?: boolean | undefined;
   /** The license key code that granted PRO access (if proSource === "license") */
-  licenseKey?: string;
+  licenseKey?: string | undefined;
   /** ISO date when the license-based PRO expires (if proSource === "license") */
-  licenseExpiresAt?: string;
+  licenseExpiresAt?: string | undefined;
   /** Billing intelligence — populated from Stripe webhooks (null for license/flow_points sources) */
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  discountCouponId?: string;
-  failedPaymentLastReason?: string;
+  billingCountry?: string | undefined;
+  billingCurrency?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  lastInvoiceAmountCents?: number | undefined;
+  lastInvoiceCurrency?: string | undefined;
+  lastInvoicePaidAt?: string | undefined;
+  discountCouponId?: string | undefined;
+  failedPaymentLastReason?: string | undefined;
   /**
    * High-water mark of the most recent Stripe webhook `event.created` (epoch
    * seconds) applied to this entitlement. Set by updateUserEntitlementFromStripe
    * to reject out-of-order/reordered Stripe events; see
    * stripe-entitlement-write-core.ts. Dispute writes do not touch it.
    */
-  lastStripeEventAt?: number;
+  lastStripeEventAt?: number | undefined;
   /** Apple `originalTransactionId` — stable identity of the App Store subscription (if proSource === "apple") */
-  appleOriginalTransactionId?: string;
+  appleOriginalTransactionId?: string | undefined;
   /** Apple product id of the current App Store subscription (if proSource === "apple") */
-  appleProductId?: string;
+  appleProductId?: string | undefined;
   /**
    * High-water mark of the most recent Apple `signedDate` (epoch MILLISECONDS)
    * applied to this entitlement. Set by updateUserEntitlementFromApple to reject
    * out-of-order App Store Server Notifications / re-verifications; see
    * apple-entitlement-write-core.ts. The Apple mirror of lastStripeEventAt.
    */
-  lastAppleSignedDate?: number;
+  lastAppleSignedDate?: number | undefined;
   /**
    * Sticky chargeback marker set by charge.dispute.created and cleared only when
    * the dispute is won. Blocks Stripe re-activation (the webhook grant write is
    * refused by attribute_not_exists(disputeOpen)) and new Stripe Checkout until
    * the dispute is resolved. Absent when no dispute is open.
    */
-  disputeOpen?: boolean;
+  disputeOpen?: boolean | undefined;
   updatedAt: string;
 };
 
@@ -201,11 +201,11 @@ export type LicenseKeyItem = {
   plan: "PRO";
   validMonths: number;
   status: "available" | "redeemed" | "revoked";
-  redeemedBy?: string;
-  redeemedAt?: string;
+  redeemedBy?: string | undefined;
+  redeemedAt?: string | undefined;
   createdAt: string;
   /** Optional human note for tracking (e.g., "Given to John Doe") */
-  note?: string;
+  note?: string | undefined;
 };
 
 export type BookUserProgress = {
@@ -218,15 +218,15 @@ export type BookUserProgress = {
   unlockedThroughChapterNumber: number;
   completedChapters: number[];
   bestScoreByChapter: Record<string, number>;
-  lastOpenedAt?: string;
-  lastActiveAt?: string;
-  streakDays?: number;
-  preferredVariant?: VariantKey;
+  lastOpenedAt?: string | undefined;
+  lastActiveAt?: string | undefined;
+  streakDays?: number | undefined;
+  preferredVariant?: VariantKey | undefined;
   // Monotonic optimistic-concurrency counter for the canonical PROGRESS#<bookId> item.
   // Bumped on every quiz-pass mutation and used as the write guard so a stale full-row
   // write can't clobber a concurrently-advanced row. Absent on legacy items (treated
   // as 0). See progress-write-core.ts.
-  progressRev?: number;
+  progressRev?: number | undefined;
   updatedAt: string;
   createdAt: string;
 };
@@ -235,7 +235,7 @@ export type QuizAttemptItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   quizId: string;
   attemptNumber: number;
   passingScorePercent: number;
@@ -244,7 +244,7 @@ export type QuizAttemptItem = {
   totalQuestions: number;
   passed: boolean;
   cooldownSeconds: number;
-  nextEligibleAttemptAt?: string | null;
+  nextEligibleAttemptAt?: string | null | undefined;
   unlockedNextChapter: boolean;
   responses: Array<{
     questionId: string;
@@ -259,7 +259,7 @@ export type QuizAttemptItem = {
     correctIndex: number;
     isCorrect: boolean;
   }>;
-  timeSpentSeconds?: number;
+  timeSpentSeconds?: number | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -268,7 +268,7 @@ export type BookUserQuizStateItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   quizId: string;
   attemptsCount: number;
   failureStreak: number;
@@ -277,13 +277,13 @@ export type BookUserQuizStateItem = {
   lastScorePercent: number;
   lastCorrectCount: number;
   lastTotalQuestions: number;
-  lastAttemptAt?: string;
-  lastAttemptNumber?: number;
-  nextEligibleAttemptAt?: string | null;
-  passedAt?: string;
+  lastAttemptAt?: string | undefined;
+  lastAttemptNumber?: number | undefined;
+  nextEligibleAttemptAt?: string | null | undefined;
+  passedAt?: string | undefined;
   unlockedNextChapter: boolean;
   /** ISO timestamp set when the loop pipeline (streak/tier/achievement/spark) finished cleanly. */
-  loopPipelineCompletedAt?: string;
+  loopPipelineCompletedAt?: string | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -296,7 +296,7 @@ export type BookUserScenarioSubmissionItem = {
   submissionId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   title: string;
   scenario: string;
   whatToDo: string;
@@ -306,11 +306,11 @@ export type BookUserScenarioSubmissionItem = {
   pointsAwarded: number;
   createdAt: string;
   updatedAt: string;
-  reviewedAt?: string;
-  reviewedBy?: string;
-  reviewNotes?: string;
-  userEmail?: string;
-  userName?: string;
+  reviewedAt?: string | undefined;
+  reviewedBy?: string | undefined;
+  reviewNotes?: string | undefined;
+  userEmail?: string | undefined;
+  userName?: string | undefined;
   aiValidation?: {
     decision: "auto_approve" | "auto_reject" | "queue_for_review";
     reason: string;
@@ -331,8 +331,8 @@ export type BookScenarioLookupItem = {
   createdAt: string;
   status: ScenarioSubmissionStatus;
   pointsAwarded: number;
-  queuedAt?: string;
-  approvedAt?: string;
+  queuedAt?: string | undefined;
+  approvedAt?: string | undefined;
   updatedAt: string;
 };
 
@@ -341,7 +341,7 @@ export type BookApprovedScenarioItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   title: string;
   scenario: string;
   whatToDo: string;
@@ -355,10 +355,10 @@ export type BookApprovedScenarioItem = {
 export type BookUserEngagementItem = {
   userId: string;
   points: number;
-  lifetimeEarned?: number;
-  lifetimeSpent?: number;
-  totalEarnEvents?: number;
-  totalSpendEvents?: number;
+  lifetimeEarned?: number | undefined;
+  lifetimeSpent?: number | undefined;
+  totalEarnEvents?: number | undefined;
+  totalSpendEvents?: number | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -535,8 +535,8 @@ export type BookUserFlowPointsLedgerItem = {
   amount: number;
   sourceType: FlowPointsSourceType;
   sourceId: string;
-  rewardId?: FlowPointsRewardId;
-  metadata?: Record<string, unknown>;
+  rewardId?: FlowPointsRewardId | undefined;
+  metadata?: Record<string, unknown> | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -596,10 +596,10 @@ export type BookUserReferralClaimItem = {
   inviteCode: string;
   status: "pending" | "activated" | "paid" | "blocked" | "expired";
   claimedAt: string;
-  activationQualifiedAt?: string;
-  activationRewardedAt?: string;
-  proRewardedAt?: string;
-  blockedReason?: string;
+  activationQualifiedAt?: string | undefined;
+  activationRewardedAt?: string | undefined;
+  proRewardedAt?: string | undefined;
+  blockedReason?: string | undefined;
   updatedAt: string;
 };
 
@@ -619,9 +619,9 @@ export type BookRiskEventItem = {
   eventType: BookRiskEventType;
   userId: string;
   createdAt: string;
-  emailVerified?: boolean;
-  deviceId?: string;
-  metadata?: Record<string, unknown>;
+  emailVerified?: boolean | undefined;
+  deviceId?: string | undefined;
+  metadata?: Record<string, unknown> | undefined;
 };
 
 export type BookUserSettingsItem = {
@@ -637,9 +637,9 @@ export type AccountStatusItem = {
   userId: string;
   status: AccountStatus;
   statusChangedAt: string;
-  statusReason?: string;
-  previousPlan?: "FREE" | "PRO";
-  previousProSource?: string;
+  statusReason?: string | undefined;
+  previousPlan?: "FREE" | "PRO" | undefined;
+  previousProSource?: string | undefined;
 };
 
 /**
@@ -649,11 +649,11 @@ export type AccountStatusItem = {
 export type AccountStatusChangeItem = {
   userId: string;
   status: AccountStatus;
-  previousStatus?: AccountStatus | null;
+  previousStatus?: AccountStatus | null | undefined;
   changedAt: string;
   /** "self" | "admin:<adminUserId>" | "system" */
   changedBy: string;
-  reason?: string;
+  reason?: string | undefined;
 };
 
 export type OpsFailureKind =
@@ -680,15 +680,15 @@ export type OpsFailureItem = {
   /** Where the failure occurred, e.g. "account_delete" | "account_deactivate". */
   context: string;
   userId: string;
-  subscriptionId?: string;
-  stripeCustomerId?: string;
-  errorCode?: string;
-  errorMessage?: string;
+  subscriptionId?: string | undefined;
+  stripeCustomerId?: string | undefined;
+  errorCode?: string | undefined;
+  errorMessage?: string | undefined;
   createdAt: string;
-  resolvedAt?: string;
+  resolvedAt?: string | undefined;
   /** Admin userId who resolved it (or "auto" when a retry succeeded). */
-  resolvedBy?: string;
-  resolutionNote?: string;
+  resolvedBy?: string | undefined;
+  resolutionNote?: string | undefined;
 };
 
 export type BookUserSavedBookItem = {
@@ -696,9 +696,9 @@ export type BookUserSavedBookItem = {
   bookId: string;
   savedAt: string;
   updatedAt: string;
-  source?: string;
-  priority?: number;
-  pinned?: boolean;
+  source?: string | undefined;
+  priority?: number | undefined;
+  pinned?: boolean | undefined;
 };
 
 export type BookUserBookStateItem = {
@@ -719,7 +719,7 @@ export type BookUserChapterStateItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   state: Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
@@ -730,7 +730,7 @@ export type BookUserReadingDayItem = {
   dayKey: string;
   totalActiveMs: number;
   updatedAt: string;
-  lastActivityAt?: string;
+  lastActivityAt?: string | undefined;
 };
 
 export type BookUserBadgeAwardItem = {
@@ -738,7 +738,7 @@ export type BookUserBadgeAwardItem = {
   badgeId: string;
   earnedAt: string;
   updatedAt: string;
-  tier?: string;
+  tier?: string | undefined;
 };
 
 // ── FSRS Spaced Repetition (§ Algorithm Feature 4) ──────────────────────────
@@ -830,7 +830,7 @@ export type BookUserCommitmentItem = {
   status: CommitmentStatus;
   followThroughReflection: string | null;
   followThroughSubmittedAt: string | null;
-  outcome?: CommitmentOutcome | null;
+  outcome?: CommitmentOutcome | null | undefined;
   ipAwarded: number;
   notificationSentAt: string | null;
   createdAt: string;
@@ -911,9 +911,9 @@ export type BookUserShareEventItem = {
   shareId: string;
   cardType: "chapter" | "badge" | "streak" | "book";
   destination: "clipboard" | "twitter" | "linkedin" | "download";
-  bookId?: string;
-  chapterNumber?: number;
-  badgeId?: string;
+  bookId?: string | undefined;
+  chapterNumber?: number | undefined;
+  badgeId?: string | undefined;
   referralCode: string;
   createdAt: string;
 };

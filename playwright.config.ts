@@ -60,7 +60,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  ...(process.env.CI ? { workers: 1 } : {}),
   reporter: process.env.CI ? "github" : "list",
   timeout: 90_000,
   expect: { timeout: 15_000 },
@@ -69,8 +69,8 @@ export default defineConfig({
   // baselines are host-specific (committed as chromium-darwin) and would fail on
   // the Linux CI runner. They are a LOCAL gate, opted into with RUN_VISUAL=1
   // (`npm run test:visual`), which flips the selection to ONLY @visual.
-  grep: IS_PROD ? /@prod/ : RUN_VISUAL ? /@visual/ : undefined,
-  grepInvert: IS_PROD ? undefined : RUN_VISUAL ? undefined : /@prod|@visual/,
+  ...(IS_PROD ? { grep: /@prod/ } : RUN_VISUAL ? { grep: /@visual/ } : {}),
+  ...(IS_PROD || RUN_VISUAL ? {} : { grepInvert: /@prod|@visual/ }),
   use: {
     baseURL: BASE_URL,
     headless: true,

@@ -31,7 +31,7 @@ export function RecallReaderShowcase({ children }: { children: ReactNode }) {
     <m.div
       className="recall-reader-demo"
       initial={reduced ? false : { opacity: 0, y: 36, scale: 0.965 }}
-      whileInView={reduced ? undefined : { opacity: 1, y: 0, scale: 1 }}
+      {...(reduced ? {} : { whileInView: { opacity: 1, y: 0, scale: 1 } })}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
     >

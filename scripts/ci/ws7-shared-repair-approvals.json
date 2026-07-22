@@ -224,6 +224,518 @@
         "fix/ws7-010-flag1",
         "tsconfig.app.json noUncheckedIndexedAccess strict-flag fallout"
       ]
+    },
+    {
+      "recordId": "f5900cad801ded7242168ddc73264acfe38154c453cc6fe09de371f5c6aab660",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/account-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "c0b205d06919a95cee1339941602b4169834f5124f32e58137afcd1507160380",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "c1299f6dcacc58e77c471c5167c3ba770de7421c56d5fa5fde12d05261fea1d6",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/apple-entitlement-write-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "0b5a3234245aac88a6e75069e41f79ba9a87457ad7e4f6d5b379bf4bff51e8c8",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "96fa3f7427408123b7374f03fd2686dd2c37325cf9d7bb3593bf5867f849890e",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/apple-jws-verify-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "487b12cdc13c04471a36d4082c07876f2c91d82c78da89fa278c838c914a9d61",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "4b4bb7b52355a8df1a25e2498965e6d060e3285900d33882fb74bf67457e9254",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/apple-purchase-policy-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "e743273438cc16b2bd3e8b49d9fea1ed12816fc28e1165c566ba7ff10109d282",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "a4b2e29c7347e80afd84521f7b9010d39b08c218df1c2afa454cb77ef6fb0b85",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/apple-transaction-claim-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "6ba8cdab1d9f0be5261e590af3eb31c48ec1e26026d0b6fbfbfb0d2f022a6f66",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "a443c441a6eafc0d46edc7becca3ec52051d2a4b1798003cbae5066cffe45303",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/billing-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "b30b9ce067f3ec1a53e378c9adec93fa55410636cdaf0b492a876ff2c5895f68",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "d8c3ad776bcadc44de27ec653c95168c4840e66fa677a073ec14b8fd4ce9e7a5",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/book-catalog-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "93d217677ab450ac16704954902e3a6c42d8f114b9d048ba71ad1a56e98fe5c4",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "c366297b2606f38cd84f637fff180870bd5b79755b8b1c9fb832d287464efe44",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/book-metrics-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "d0dd94f23ce8f1f4199f9b680b8108873e14fbc84fa7123e33e11f43a1a4ace0",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "be645e8e0d048aebc5f7d81d366649d83c1ba23285b24f2093890a2cb8c262a1",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/email-suppression-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "ceac0c2acdac6f1344f232a70e9c72d71abbaf8f77bf183d2e85d92a75eb557d",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "267d533f22f01c653210954285426d22c16e5cb3e26ec68cdff3c6cce048c760",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/entitlement-expiry-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "61a225eccc5a3676b63a55d7dbde8016b87573dc63e4e12cf2ffd7bf76a52d5d",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "5744ebfb1c17fab8d0841147ce37d84e1ad44002c1d62589c3d4e59c7304ea18",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/entitlement-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "92f9253936cb3739040ef830e3d56b4d1eb072bf0e29e4e90544d19ccbf48f79",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "1abe4d5f85b6912d8f4ebfaa215b16019bcdc0c796de33cb09aa8ddc751241bf",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/ingest-rollback-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "456446972be0e06000a70245dd9cb37dff5ad4e088e8a14ffb48202ca3a1d56f",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "f0f483732583a6a04650a312db7ca709766a351af76f644214ba962a3028edde",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/ingestion-job-update-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "46a8e434a8d5842a37add6e0e085f78bf19fd3f9891dae2619d8c740ac78142a",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "64d7bde7685b47161140118cc356aee33ce4c3410956e2abe98945bdfe45256d",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/ingestion-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "722e79e9ca8fb8933cb28571cce2eee3f8db08c67317cc3532d6d30fe434584c",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "c2fcb760be951ab47597582f1e4fad7965a7b0f58e02c3d3395320e6907d3db9",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/library-catalog-index-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "7e9a107e98c77459990f05d0da8b2e72cdb7a94700ee3db462b1c63fa97dde97",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "0f52cbd9336433c4009d6bd2aae59d170c49b74e0ff5f416463f89c11db29f4e",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/library-catalog.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "e19823b941270804ca59362812c5e761954a3d770f5761f89ff196a9b858507b",
+      "repairedBlobSha256": "f9eb656c534dbc044e456b7a3a34f9c09175bf8f164c76949d948db1c7d645b2",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "f63ed6e00e1f85620efd08c03c5b120a6c6fd94416b00bc96cbee0e482d80cff",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/pro-grant-guard-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "45752213c10ca71d3d83c9629915bb6e759398e2c377c34c7baed570ad09e3a2",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "1c54e59b921cbb2eeabf4af52165268ddeebcc18f8ea5de07fba383f8a918c5d",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/progress-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "9444f9a2188e0f4281c605ad1ff3faab1932f5109841f1b8d5a22e779bc426b8",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "b8b293171310a2fe2d563222ebc63bb1dd123715e1334f8e5a6d0ec6a48d76f0",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/query-pagination-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "ade5d94567ccc07440c5e6de5be85575b766b7d2e2a40ef062c44ab8eff91d41",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "f7297ff5c1f18001b3da21c3f1d584ee9491032094d70e2e4e68ccd351746c5e",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/saved-books-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "d8782a52e173461874451aa09440fa2af80584d08849ae1d23b141663bc7d88f",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "344cb7579d34f16a3dc60d69b6c7d72523781ea7490f98d36a8aaed1449c1014",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/stripe-entitlement-write-core.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "d1392d4579a76c10f4d0e69470c944d78a67658e20571354ff2d3d93f68d030c",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "95f94f9e71c49d78dcb821fba9e55deb9b576c149b2b68c912a6d5924bc12e05",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/types.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "1477b7f19d434ca8b4e6deaef3e8f943551e9882bb256df2b7ccddb6c26765cc",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "162255778270420d58913d5c0614ac32cfddf6da36f96186c0e06d8805ca1ad3",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/user-profile-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "13123b61233d4375f8ec10dc4713fe081105561be9378e5111c3e4b311d534f4",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "3e1bc07a344c0c7a4bfa958cec21dfbe259bb26976ee065ee448ed3f1d223b62",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/user-settings-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "c655e203467e11a114e3873d8851cf2c77a3b0a50909b4edfeed892e3759c36c",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "094f3078a8bc87fe439a85e8a9be4a7d84f3ec07a1127d5a0edbffd3dfd71c12",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/app/api/book/_lib/validate-book-package.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "932a7373c9aec8fc0f86cad4e6263d152582af152a0e6ab1ccfce52f4bb6ae9e",
+      "repairedBlobSha256": "e4a3832e90d57aef3fb8b95e7b15427eeccccd21a2e7c1a117e3cd39087e117e",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "720ab1943e2275fd549b34d5d88a16e14f175371aec36bc8df21d075c9d59d50",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/book/data/bookChapters.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "ad2649438b3063b268d40939720cbf6672874946fa75513f27386b2ed3662787",
+      "repairedBlobSha256": "e61ba9103ba90c92c1c9950ef60817006c5efc90ffbf82b276c0b94abd4822ff",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "b55f934f88c3f26115346405a1f1b1b37aed9813da5455750297d54a1e47c6dc",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "app/book/lib/v21-adapter.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "4bba3e93e51c3911bdccd663983da6517bcae15f32e04d1705f8692ce0625b11",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "2c8d4b7df9b41cbe4c2b58993fd111df1414139eb2d4d0ad3fec8f53619470c7",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "lib/badges/badge-ui-definitions.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "e5b0ec4ab4a9e5f350311bc83bd286e78cb1b1b1089a306ee9501eae3b3a85a8",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "c633535a9f3c3122d8489788b54695a0ee193d8babcff5b015c90c9a42c95b05",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "lib/book-package-types.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "29a0a360fa193074c1f327462d69c3581dc8509478a867aedeb10ae9557c71ca",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "e2d6c149e5f53321998a72d2cafacb1e2a400c009ac4b1ca52a9b666f8989de0",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "lib/library-data.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "377790519fa6293bdf10bcb41f71415c31f2120d22e1556c473af7190a0bb9c0",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "7a88ebe464144b4a81623b9136974a6fae8fdbdb370110872d468fac99f159ab",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "lib/logging/logger.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "bd5d382a7a7be841161d4a34ca15b6922501a30dff0d04faf465c04319db7e7b",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "4d474913e6e161a5208c594fc74b6c67282a243ee2577911a600ee672331531a",
+      "changeId": "ws7-010-flag4-exactOptionalPropertyTypes-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "exactOptionalPropertyTypes",
+      "path": "lib/reader-content-types.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "153c0de69f72bd25cde2429498f582dcbe98b1355f383c90447e510e8b395498",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag4",
+        "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
+      ]
     }
   ]
 }

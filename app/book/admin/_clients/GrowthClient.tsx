@@ -138,7 +138,7 @@ export function GrowthClient() {
   );
 }
 
-function FunnelView({ funnel }: { funnel?: GrowthResponse["funnel"] }) {
+function FunnelView({ funnel }: { funnel?: GrowthResponse["funnel"] | undefined }) {
   if (!funnel) {
     return (
       <div className="space-y-2">

@@ -32,14 +32,10 @@ export function NextAchievementCard({
         WebkitBackdropFilter: "blur(16px) saturate(125%)",
         border: "1px solid var(--cf-border)",
       }}
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
-      whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 16 } })}
+      {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
       viewport={{ once: true, margin: "-50px" }}
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: DUR.slow, delay: 0.1, ease: EASE.standard }
-      }
+      {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, delay: 0.1, ease: EASE.standard } })}
     >
       <div className="flex items-start gap-3.5">
         {/* Metallic badge icon */}
@@ -89,7 +85,7 @@ export function NextAchievementCard({
                 style={{
                   background: "linear-gradient(90deg, var(--accent-amber), var(--accent-gold))",
                 }}
-                initial={prefersReducedMotion ? undefined : { width: 0 }}
+                {...(prefersReducedMotion ? {} : { initial: { width: 0 } })}
                 whileInView={{ width: `${progress}%` }}
                 viewport={{ once: true }}
                 transition={

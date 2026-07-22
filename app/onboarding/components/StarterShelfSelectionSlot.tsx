@@ -6,7 +6,7 @@ import { DUR, EASE } from "@/lib/motion";
 import { StarterShelfBookCover } from "./StarterShelfBookCover";
 
 interface StarterShelfSelectionSlotProps {
-  book?: OnboardingBook;
+  book?: OnboardingBook | undefined;
   index: number;
   reducedMotion: boolean | null;
 }

@@ -56,29 +56,29 @@
 export type StripeEntitlementWriteParams = {
   plan: "FREE" | "PRO";
   proStatus: "inactive" | "active" | "past_due" | "canceled";
-  proSource?: "stripe";
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
-  stripePriceId?: string;
-  subscriptionInterval?: string;
-  currentPeriodEnd?: string;
-  cancelAtPeriodEnd?: boolean;
+  proSource?: "stripe" | undefined;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
+  stripePriceId?: string | undefined;
+  subscriptionInterval?: string | undefined;
+  currentPeriodEnd?: string | undefined;
+  cancelAtPeriodEnd?: boolean | undefined;
   // Billing intelligence (optional)
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  failedPaymentLastReason?: string;
+  billingCountry?: string | undefined;
+  billingCurrency?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  lastInvoiceAmountCents?: number | undefined;
+  lastInvoiceCurrency?: string | undefined;
+  lastInvoicePaidAt?: string | undefined;
+  failedPaymentLastReason?: string | undefined;
   // Sticky chargeback marker (L13).
-  setDisputeOpen?: boolean;
-  clearDisputeOpen?: boolean;
+  setDisputeOpen?: boolean | undefined;
+  clearDisputeOpen?: boolean | undefined;
   // Stripe webhook envelope `event.created` (epoch seconds). When present (and
   // finite) on a non-dispute write, enables the event-ordering guard above.
-  stripeEventCreatedAt?: number;
+  stripeEventCreatedAt?: number | undefined;
 };
 
 export type EntitlementUpdate = {

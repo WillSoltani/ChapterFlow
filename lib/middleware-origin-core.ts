@@ -1,8 +1,8 @@
 export type MiddlewareOriginEnv = {
-  appBaseUrl?: string;
-  chapterFlowAppBaseUrl?: string;
-  allowAppBaseUrlInDev?: string;
-  nodeEnv?: string;
+  appBaseUrl?: string | undefined;
+  chapterFlowAppBaseUrl?: string | undefined;
+  allowAppBaseUrlInDev?: string | undefined;
+  nodeEnv?: string | undefined;
 };
 
 export type MiddlewareOriginRequest = {

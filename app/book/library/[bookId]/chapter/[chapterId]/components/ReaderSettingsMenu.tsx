@@ -75,12 +75,12 @@ const FONT_MAX = 24;
 export type ReaderSettingsMenuProps = {
   open: boolean;
   onClose: () => void;
-  anchorClassName?: string;
+  anchorClassName?: string | undefined;
   learningMode: LearningMode;
   onChangeLearningMode: (mode: LearningMode) => void;
   showDepthSelector: boolean;
-  readingDepth?: ReadingDepth;
-  onChangeReadingDepth?: (depth: ReadingDepth) => void;
+  readingDepth?: ReadingDepth | undefined;
+  onChangeReadingDepth?: ((depth: ReadingDepth) => void) | undefined;
   focusMode: boolean;
   onToggleFocus: () => void;
   // Typography controls (Kindle-style), wired to the reading-pref CSS-var pipeline.
@@ -93,8 +93,8 @@ export type ReaderSettingsMenuProps = {
   // NS-2 typeface (Serif/Sans). Optional so the reader compiles before the
   // single prefs instance is wired through (batch-05 handoff); the control only
   // renders once onChangeFontFamily is provided.
-  fontFamily?: FontFamily;
-  onChangeFontFamily?: (value: FontFamily) => void;
+  fontFamily?: FontFamily | undefined;
+  onChangeFontFamily?: ((value: FontFamily) => void) | undefined;
 };
 
 export function ReaderSettingsMenu({

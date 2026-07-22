@@ -24,7 +24,7 @@ export type CheckedAnswerResult = {
    *  verdict whose choice no longer matches the user's committed answer. */
   selectedChoiceId: string;
   isCorrect: boolean;
-  correctChoiceId?: string;
+  correctChoiceId?: string | undefined;
 };
 
 export type CheckedResults = Record<string, CheckedAnswerResult>;

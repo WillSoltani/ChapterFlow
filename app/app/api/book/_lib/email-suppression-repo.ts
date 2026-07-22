@@ -88,8 +88,8 @@ export async function releaseTrialEndingEmailClaim(
 export type EmailSuppressionRecord = {
   email: string;
   reason: "bounce" | "complaint";
-  subtype?: string;
-  source?: string;
+  subtype?: string | undefined;
+  source?: string | undefined;
   createdAt: string;
 };
 

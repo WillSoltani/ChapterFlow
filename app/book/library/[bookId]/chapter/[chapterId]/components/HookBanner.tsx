@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 type HookBannerProps = {
   hook: string;
-  counterintuition?: string;
+  counterintuition?: string | undefined;
   /** When true, show the full hook + counterintuition. When false, show a
    *  compact variant (just the hook line, smaller padding). The reader-page
    *  hook is the chapter's first impression; once they scroll into the
    *  chapter, the banner shrinks so it stops eating viewport. */
-  collapsed?: boolean;
+  collapsed?: boolean | undefined;
 };
 
 /** Auto-collapsing variant. Pass `autoCollapse` to make the banner shrink

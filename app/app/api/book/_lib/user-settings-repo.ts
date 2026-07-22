@@ -46,14 +46,14 @@ export async function putUserSettingsItem(
   params: {
     userId: string;
     settings: Record<string, unknown>;
-    createdAt?: string;
+    createdAt?: string | undefined;
     /**
      * Optimistic-concurrency guard. When provided, the write only succeeds if
      * the stored `updatedAt` still equals this value (or the item is absent for
      * `""`). On mismatch a ConditionalCheckFailedException is thrown so callers
      * can re-read and retry instead of silently clobbering a concurrent write.
      */
-    expectedUpdatedAt?: string;
+    expectedUpdatedAt?: string | undefined;
   }
 ): Promise<BookUserSettingsItem> {
   const now = nowIso();

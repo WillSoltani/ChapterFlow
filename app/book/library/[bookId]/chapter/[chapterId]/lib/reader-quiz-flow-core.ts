@@ -35,7 +35,7 @@ export function classifyQuizSubmission(
 }
 
 export function projectIncorrectQuestionReviews<
-  T extends { isCorrect?: boolean; correctChoiceId?: string },
+  T extends { isCorrect?: boolean | undefined; correctChoiceId?: string | undefined },
 >(questions: readonly T[] | null | undefined): T[] {
   return (questions ?? []).filter(
     (question) => question.isCorrect === false && Boolean(question.correctChoiceId),

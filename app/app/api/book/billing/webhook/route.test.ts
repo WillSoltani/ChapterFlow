@@ -42,15 +42,15 @@ const EXISTS_PK = "attribute_exists(PK)";
 
 type StoredItem = {
   pkExists?: boolean;
-  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin" | null;
+  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin" | null | undefined;
   lastStripeEventAt?: number;
   disputeOpen?: boolean;
   activePaidIntentAtMs?: number;
   lastAppleSignedDate?: number;
   // Extended beyond the pure-builder StoredItem so the harness can assert on
   // the full stored entitlement shape (the route also writes plan/proStatus).
-  plan?: "FREE" | "PRO";
-  proStatus?: "inactive" | "active" | "past_due" | "canceled";
+  plan?: "FREE" | "PRO" | undefined;
+  proStatus?: "inactive" | "active" | "past_due" | "canceled" | undefined;
 };
 
 function conditionApplies(

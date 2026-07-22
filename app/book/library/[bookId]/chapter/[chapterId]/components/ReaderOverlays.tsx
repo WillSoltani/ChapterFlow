@@ -65,7 +65,7 @@ type Props = {
   chapterId: string;
   chapter: BookChapter;
   activeDepth: ReadingDepth;
-  nextChapter?: ChapterLink;
+  nextChapter?: ChapterLink | undefined;
   notesOpen: boolean;
   onNotesOpenChange: (open: boolean) => void;
   sessionMode: boolean;

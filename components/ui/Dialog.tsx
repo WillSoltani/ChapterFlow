@@ -28,16 +28,16 @@ interface BaseOverlayProps {
   open: boolean;
   onClose: () => void;
   /** id of the element labelling the dialog (e.g. its <h2 id>). */
-  labelledBy?: string;
+  labelledBy?: string | undefined;
   /** Accessible label when there is no visible title to point at. */
-  ariaLabel?: string;
+  ariaLabel?: string | undefined;
   /** Element to focus when the overlay opens. Falls back to the first focusable. */
-  initialFocusRef?: RefObject<HTMLElement | null>;
+  initialFocusRef?: RefObject<HTMLElement | null> | undefined;
   /** Clicking the backdrop closes (default true). */
-  closeOnBackdrop?: boolean;
+  closeOnBackdrop?: boolean | undefined;
   /** Escape closes (default true). */
-  closeOnEscape?: boolean;
-  className?: string;
+  closeOnEscape?: boolean | undefined;
+  className?: string | undefined;
   children: ReactNode;
 }
 
@@ -45,7 +45,7 @@ interface OverlayShellProps extends BaseOverlayProps {
   layout: "center" | "bottom";
   panelClassName: string;
   /** Edge-to-edge: drop the centered/padded container so the panel fills the viewport. */
-  fullBleed?: boolean;
+  fullBleed?: boolean | undefined;
 }
 
 /**

@@ -25,11 +25,11 @@ export type QuizQuestionView = {
   questionId: string;
   prompt: string;
   choices: QuizChoiceView[];
-  explanation?: string;
-  selectedChoiceId?: string | null;
-  correctChoiceId?: string;
-  correctIndex?: number;
-  isCorrect?: boolean;
+  explanation?: string | undefined;
+  selectedChoiceId?: string | null | undefined;
+  correctChoiceId?: string | undefined;
+  correctIndex?: number | undefined;
+  isCorrect?: boolean | undefined;
 };
 
 export type QuizAttemptSummaryView = {
@@ -193,11 +193,11 @@ export function useQuizSession(params: {
   contentTone: ToneKey;
   enabled: boolean;
   /** Local quiz data from bookChapters for offline/dev fallback */
-  localQuiz?: LocalQuizData;
+  localQuiz?: LocalQuizData | undefined;
   /** Whether the retake only re-shows previously-missed questions (the default).
    *  Only in this mode are previously-correct answers hidden and thus carried
    *  forward; a full retake re-asks everything and must start from a clean map. */
-  retryIncorrectOnly?: boolean;
+  retryIncorrectOnly?: boolean | undefined;
 }) {
   const { bookId, chapterNumber, difficulty, contentTone, enabled, localQuiz, retryIncorrectOnly = false } = params;
   const localQuizRef = useRef(localQuiz);

@@ -82,7 +82,7 @@ export function SettingsSection({
               <motion.span
                 initial={reducedMotion ? false : { opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={reducedMotion ? undefined : { opacity: 0, x: 8 }}
+                {...(reducedMotion ? {} : { exit: { opacity: 0, x: 8 } })}
                 transition={{ duration: DUR.micro }}
                 className="hidden min-w-0 truncate text-right text-xs text-(--cf-text-soft) sm:block"
               >
@@ -107,7 +107,7 @@ export function SettingsSection({
             aria-label={`${title} settings`}
             initial={reducedMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+            {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
             transition={
               reducedMotion
                 ? { duration: 0 }

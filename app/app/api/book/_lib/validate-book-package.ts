@@ -202,14 +202,14 @@ function parseSummaryBlocks(
   value: unknown,
   path: string,
   issues: ValidationIssue[]
-): Array<{ type: "paragraph"; text: string } | { type: "bullet"; text: string; detail?: string }> {
+): Array<{ type: "paragraph"; text: string } | { type: "bullet"; text: string; detail?: string | undefined }> {
   if (value == null) return [];
   if (!Array.isArray(value)) {
     issues.push({ path, message: "summaryBlocks must be an array." });
     return [];
   }
   const blocks: Array<
-    { type: "paragraph"; text: string } | { type: "bullet"; text: string; detail?: string }
+    { type: "paragraph"; text: string } | { type: "bullet"; text: string; detail?: string | undefined }
   > = [];
   value.forEach((item, index) => {
     const blockPath = `${path}[${index}]`;

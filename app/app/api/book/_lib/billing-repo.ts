@@ -338,35 +338,35 @@ export async function updateUserEntitlementFromStripe(
     userId: string;
     plan: "FREE" | "PRO";
     proStatus: "inactive" | "active" | "past_due" | "canceled";
-    proSource?: "stripe";
-    stripeCustomerId?: string;
-    stripeSubscriptionId?: string;
-    stripePriceId?: string;
-    subscriptionInterval?: string;
-    currentPeriodEnd?: string;
-    cancelAtPeriodEnd?: boolean;
+    proSource?: "stripe" | undefined;
+    stripeCustomerId?: string | undefined;
+    stripeSubscriptionId?: string | undefined;
+    stripePriceId?: string | undefined;
+    subscriptionInterval?: string | undefined;
+    currentPeriodEnd?: string | undefined;
+    cancelAtPeriodEnd?: boolean | undefined;
     // Billing intelligence (optional)
-    billingCountry?: string;
-    billingCurrency?: string;
-    subscriptionAmountCents?: number;
-    cardBrand?: string;
-    cardCountry?: string;
-    lastInvoiceAmountCents?: number;
-    lastInvoiceCurrency?: string;
-    lastInvoicePaidAt?: string;
-    failedPaymentLastReason?: string;
+    billingCountry?: string | undefined;
+    billingCurrency?: string | undefined;
+    subscriptionAmountCents?: number | undefined;
+    cardBrand?: string | undefined;
+    cardCountry?: string | undefined;
+    lastInvoiceAmountCents?: number | undefined;
+    lastInvoiceCurrency?: string | undefined;
+    lastInvoicePaidAt?: string | undefined;
+    failedPaymentLastReason?: string | undefined;
     // Sticky chargeback marker. Set true when charge.dispute.created revokes
     // access so a stale/redelivered PRO-activation event (invoice.paid,
     // customer.subscription.*) cannot silently re-grant Pro to a user who
     // reversed payment. Cleared (true → removed) on charge.dispute.closed with
     // status="won". A PRO-activation write is refused while it is present.
-    setDisputeOpen?: boolean;
-    clearDisputeOpen?: boolean;
+    setDisputeOpen?: boolean | undefined;
+    clearDisputeOpen?: boolean | undefined;
     // Stripe webhook envelope `event.created` (epoch seconds). Stamped as the
     // entitlement's lastStripeEventAt high-water mark and used to reject
     // out-of-order (reordered/retried) Stripe events. See
     // stripe-entitlement-write-core.ts for the ordering invariant.
-    stripeEventCreatedAt?: number;
+    stripeEventCreatedAt?: number | undefined;
   }
 ): Promise<void> {
   // All UpdateExpression / ConditionExpression building lives in the pure

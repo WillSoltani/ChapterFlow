@@ -20,14 +20,14 @@ export function StatCard({
   icon: ReactNode;
   label: string;
   value: ReactNode;
-  helper?: string;
-  trend?: ReactNode;
-  animate?: boolean;
-  numericValue?: number;
-  formatFn?: (v: number) => string;
-  performanceLevel?: "strong" | "active" | "zero";
-  accentColor?: string;
-  valueColorClass?: string;
+  helper?: string | undefined;
+  trend?: ReactNode | undefined;
+  animate?: boolean | undefined;
+  numericValue?: number | undefined;
+  formatFn?: ((v: number) => string) | undefined;
+  performanceLevel?: "strong" | "active" | "zero" | undefined;
+  accentColor?: string | undefined;
+  valueColorClass?: string | undefined;
 }) {
   const isHighlight = performanceLevel === "strong";
   const bgTint = isHighlight
