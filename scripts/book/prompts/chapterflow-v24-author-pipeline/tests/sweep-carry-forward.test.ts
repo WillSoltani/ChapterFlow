@@ -6,7 +6,7 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
@@ -26,6 +26,7 @@ import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
 
 const BOOK = "zz-fixture-sweep-carry";
 const ROUND = "r-prior-sweep";
+const QC_ORCHESTRATOR_DIR_EXISTED_BEFORE_TESTS = existsSync(QC_ORCHESTRATOR_DIR);
 
 type FixtureFileSnapshot = {
   path: string;
@@ -111,5 +112,8 @@ test("carryForwardSweep: re-stamps the prior PASS onto a new round without re-ju
   } finally {
     rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
     for (const snapshot of snapshots) restoreFixtureFile(snapshot);
+    if (!QC_ORCHESTRATOR_DIR_EXISTED_BEFORE_TESTS && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) {
+      rmdirSync(QC_ORCHESTRATOR_DIR);
+    }
   }
 });
