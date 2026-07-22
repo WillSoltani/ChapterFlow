@@ -3003,7 +3003,16 @@ html[data-contrast="high"] :focus-visible {
   pointer-events: none;
 }
 
+/* ── Breakpoint set (WS5-030) ─────────────────────────────────────────────
+   Utility classes use Tailwind v4 defaults: sm=640px, md=768px, lg=1024px, xl=1280px.
+   Hand-authored max-width complements use the X-0.02px form (1023.98px).
+   The single named navigation breakpoint is 1024px, shared with
+   components/landing/recall/RecallNavModel.ts (PUBLIC_NAV_DESKTOP_QUERY).
+   Any width media query outside {640, 768, 1024, 1280, 1023.98}px requires an
+   inline rationale comment (enforced by app/globals-breakpoint-policy.test.ts). */
+
 /* ---- responsive ---- */
+/* 900px: hero-showcase-specific tuning point — plate transform and hero margin need relief well before lg; not a navigation breakpoint. */
 @media (max-width: 900px) {
   .rl-hero-showcase { margin-top: 3.5rem; }
   .rl-plate-wrap { transform: none; }
@@ -3303,6 +3312,7 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   }
 }
 
+/* 340px: ultra-narrow guard — brand wordmark drops to sr-only below ~340px so the nav never wraps. */
 @media (max-width: 340px) {
   .rl-nav-brand > span:last-child {
     position: absolute;
@@ -3460,6 +3470,7 @@ html[data-motion="reduced"] .rl-plate-scan { display: none; }
   margin: 0;
   padding: 0;
 }
+/* 480px: content-driven 2→3 column cover-grid step between mobile and sm. */
 @media (min-width: 480px) {
   .rl-browse-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
