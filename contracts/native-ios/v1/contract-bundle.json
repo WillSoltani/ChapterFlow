@@ -956,12 +956,12 @@
           {
             "path": "app/app/api/book/search-index/route.ts",
             "role": "route",
-            "sourceSha256": "bf5e660f9b35ab35284d46491f1051f6cc0dc27bf90f2003b7d7c98de7bc243b"
+            "sourceSha256": "bc2da8da99e36835691e7397820f84868d5339568f4c8a39879537f1a6d48efb"
           },
           {
             "path": "app/app/api/book/admin/books/[bookId]/versions/[version]/publish/search-index-builder.ts",
             "role": "response_builder",
-            "sourceSha256": "5afd553349920637fab9296dcef65925082ea2e703bab4b46a1b09cb4a5a3940"
+            "sourceSha256": "9c466304a24ef7365f26fa4fe2960785736ed70ab4a73dc11bc0308c079cdfcb"
           }
         ],
         "serializerProof": {
@@ -1933,7 +1933,7 @@
             {
               "path": "app/app/api/book/books/[bookId]/chapters/[chapterNumber]/audio/route.ts",
               "role": "route",
-              "sourceSha256": "a05d3ea8f8983397a34e07806fa731011d9b9fe92437fb5ce313bb46acae9997"
+              "sourceSha256": "91b049da97c4e8259792ae653e34057ba9e001712fe565708c97ad06b765ae43"
             },
             {
               "path": "app/app/api/book/_lib/http.ts",

@@ -1,6 +1,7 @@
 import "server-only";
 
-import { GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from "@/app/app/api/_lib/aws";
 import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { listPublishedCatalogItems } from "@/app/app/api/book/_lib/repo";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
@@ -10,8 +11,6 @@ import {
   decideSearchIndexWrite,
   type SearchIndexRebuildFailure,
 } from "./search-index-core";
-
-const s3 = new S3Client({});
 
 export type RebuildSearchIndexResult = {
   documentCount: number;

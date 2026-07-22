@@ -1,15 +1,14 @@
 import "server-only";
 
 import { NextResponse } from "next/server";
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { GetObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from "@/app/app/api/_lib/aws";
 import { getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 import { readSearchIndex } from "./search-index-read-core";
 import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
-
-const s3 = new S3Client({});
 
 export async function GET() {
   const result = await readSearchIndex({

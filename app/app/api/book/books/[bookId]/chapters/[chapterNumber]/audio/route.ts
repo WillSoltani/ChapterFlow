@@ -19,7 +19,8 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { getOrCreateStreak } from "@/app/app/api/book/_lib/streak-repo";
 import { getOrCreateTier } from "@/app/app/api/book/_lib/tier-repo";
-import { S3Client, GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from "@/app/app/api/_lib/aws";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
 import type { ToneKey, VariantKey } from "@/app/book/data/book-package-core";
@@ -41,8 +42,6 @@ import {
 import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
-
-const s3 = new S3Client({});
 
 // Presigned segment URLs in the ?mode=plan manifest live for 6 hours — the
 // contract minimum (docs/ios/AUDIO-CONTRACT.md §8). The client refreshes by
