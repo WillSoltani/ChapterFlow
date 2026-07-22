@@ -12,6 +12,8 @@ import { appendFileSync, existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
+import { findCorrectnessHits } from "./check-eslint-correctness.mjs";
+
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
 const REPO_ROOT = path.resolve(path.dirname(SCRIPT_PATH), "../..");
 const DEFAULT_BASELINE_PATH = path.join(
@@ -185,6 +187,22 @@ export function runLintRatchetCli({
     stdout.write(`${result.message}\n`);
   }
   writeGithubStepSummary({ errors, baseline, result });
+
+  // WS6-021: run the zero-tolerance correctness subset inline, against the
+  // same parsed report, so `npm run lint:ratchet` (and therefore `npm run
+  // verify`) fails on the same hits CI's separate "ESLint correctness
+  // subset" step would — independent of the baseline comparison above,
+  // exactly like that CI step (`if: ${{ !cancelled() }}`) runs regardless
+  // of whether the ratchet step already failed.
+  const correctnessHits = findCorrectnessHits(report);
+  if (correctnessHits.length) {
+    for (const hit of correctnessHits) stderr.write(`${hit}\n`);
+    stderr.write(
+      `::error::ESLint correctness subset found ${correctnessHits.length} zero-tolerance hit(s) — see scripts/ci/check-eslint-correctness.mjs.\n`,
+    );
+    return 1;
+  }
+  stdout.write("correctness subset clean\n");
 
   return result.exitCode;
 }

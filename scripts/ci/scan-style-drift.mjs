@@ -51,7 +51,12 @@ const red = (s) => `\x1b[31m${s}\x1b[0m`;
 const RE_DEAD_TW = /-\[--|\[[a-z-]+:--/;
 const RE_TOKEN = /--c[fr]-[a-z0-9-]+/gi; // guard (b): any --cf-/--cr- reference
 const RE_HEX = /(?<!&)#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{4}|[0-9a-fA-F]{3})\b/g; // (c)
-const RE_RGBA = /\brgba?\([^)]*\)/gi; // (c)
+// (c): no leading letter allowed immediately before "rgb(a)" (excludes identifiers
+// like "myrgba(") but — unlike \b — does NOT require a non-word char, so it still
+// catches rgba()/rgb() glued to a preceding "_" or "[" inside Tailwind arbitrary-
+// value brackets, e.g. `shadow-[0_24px_44px_rgba(0,0,0,0.12)]` (\b sees two \w
+// chars either side of "_rgba" and silently fails to match there).
+const RE_RGBA = /(?<![a-zA-Z])rgba?\([^)]*\)/gi; // (c)
 const RE_FONT_SIZE = /\btext-\[\d+(?:\.\d+)?px\]/g; // (e)
 // URL/id fragment refs (href="#abc", id="#x") whose all-hex fragments would
 // otherwise false-positive as colors in guard (c).
@@ -373,6 +378,14 @@ function selftest() {
   expect(!RE_HEX.test("&#10022;"), "(c) false-positive on HTML entity");
   RE_HEX.lastIndex = 0;
   expect(RE_RGBA.test("rgba(0,0,0,0.3)"), "(c) missed rgba()");
+  RE_RGBA.lastIndex = 0;
+  // WS5-013 regression: rgba()/rgb() glued directly to an underscore or bracket
+  // delimiter inside a Tailwind arbitrary-value utility, e.g.
+  // `shadow-[0_24px_44px_rgba(0,0,0,0.12)]` — a bare \b assertion sees two \w
+  // chars ("_" and "r") either side of "_rgba" and never fires here.
+  expect(RE_RGBA.test(cls("shadow-[0_24px_44px_", "rgba(0,0,0,0.12)]")), "(c) missed rgba() glued to '_' in arbitrary-value brackets");
+  RE_RGBA.lastIndex = 0;
+  expect(RE_RGBA.test(cls("shadow-[", "rgba(0,0,0,0.12)]")), "(c) missed rgba() glued to '[' in arbitrary-value brackets");
   RE_RGBA.lastIndex = 0;
   expect([...stripFragmentRefs('<a href="#abc">x</a>').matchAll(RE_HEX)].length === 0, "(c) false-positive on href fragment");
   RE_HEX.lastIndex = 0;

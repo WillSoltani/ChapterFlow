@@ -346,7 +346,11 @@ export class ChapterFlowBackendStack extends cdk.Stack {
 
     // TRANSITIONAL (WS6-012 PR1): direct public S3 read of covers. Removed in
     // PR2 once the CloudFront OAC path above is proven live, at which point the
-    // bucket flips to BlockPublicAccess.BLOCK_ALL.
+    // bucket flips to BlockPublicAccess.BLOCK_ALL. See
+    // docs/architecture/content-bucket-public-access-rollout.md for the
+    // documented two-PR rollout decision, the PR2 precondition (owner deploys
+    // main and confirms covers load via CloudFront OAC in prod), and the exact
+    // PR2 steps.
     this.contentBucket.addToResourcePolicy(
       new iam.PolicyStatement({
         sid: "PublicReadLibraryCovers",

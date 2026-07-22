@@ -67,3 +67,48 @@ test("allowlisted routes are still pinned by the native contract", async () => {
     );
   }
 });
+
+// WS4-007 (final audit remainder): the flat-stack `{ ok, processed }` ack leaked
+// through POST /book/me/billing/apple/verify — but the `ok:true` literal lived in
+// the response BUILDER (_lib/apple-verify-service-core.ts), not the route.ts the
+// scan above walks, so it slipped the route grep. The native contract for that
+// endpoint pins only `/entitlement/*` and never decodes `ok`/`processed`, so the
+// fix was removal (not an allowlist). This guard locks the builder against a
+// regression AND proves removal stays contract-safe.
+test("apple/verify response builder does not re-introduce the flat ok/processed ack", () => {
+  const builder = readFileSync(
+    path.join(bookApiRoot, "_lib", "apple-verify-service-core.ts"),
+    "utf8",
+  );
+  assert.doesNotMatch(
+    builder,
+    /\bok:\s*true\b/,
+    "apple-verify-service-core.ts must not emit the flat `ok: true` ack (WS4-007)",
+  );
+  assert.doesNotMatch(
+    builder,
+    /\bprocessed:\s*true\b/,
+    "apple-verify-service-core.ts must not emit the flat `processed: true` ack (WS4-007)",
+  );
+});
+
+test("native contract for apple/verify never pinned ok/processed (removal is contract-safe)", async () => {
+  const { nativeContractOperationDefinitions } = await import(
+    "../_contracts/native-contract-registry"
+  );
+  const op = nativeContractOperationDefinitions.find(
+    (o) => o.id === "apple-verify.post",
+  );
+  assert.ok(op, "expected native-contract op apple-verify.post to exist");
+  const payload = JSON.stringify(op.fixtures?.success?.payload ?? {});
+  assert.doesNotMatch(
+    payload,
+    /"ok":/,
+    "apple-verify.post pins /entitlement/* only; it must not promise /ok to iOS",
+  );
+  assert.doesNotMatch(
+    payload,
+    /"processed":/,
+    "apple-verify.post must not promise /processed to iOS",
+  );
+});

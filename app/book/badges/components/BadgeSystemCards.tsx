@@ -79,7 +79,7 @@ export function FeaturedBadgeCard({
       className={cn(
         "cf-pressable group relative flex h-full flex-col overflow-hidden rounded-4xl p-5 text-left transition",
         "cf-focus",
-        "hover:-translate-y-0.5 hover:shadow-[0_24px_44px_rgba(0,0,0,0.12)]",
+        "hover:-translate-y-0.5 hover:shadow-[var(--cf-badge-card-hover-shadow)]",
         isLocked
           ? "border border-dashed border-(--cf-border) bg-(--cf-surface-muted)"
           : cn("border bg-(--cf-surface)", accentClass[badge.accent])
@@ -151,7 +151,7 @@ export function BadgeCard({
         "cf-pressable group relative overflow-hidden rounded-3xl border p-4 text-left transition",
         "cf-focus",
         badge.earned
-          ? "border-(--cf-warning-border) bg-(--cf-warning-soft) hover:-translate-y-0.5 hover:shadow-[0_18px_34px_rgba(251,191,36,0.12)]"
+          ? "border-(--cf-warning-border) bg-(--cf-warning-soft) hover:-translate-y-0.5 hover:shadow-[var(--cf-badge-earned-hover-shadow)]"
           : "border-(--cf-border) bg-(--cf-surface-muted) hover:border-(--cf-border-strong) hover:bg-(--cf-surface)"
       )}
     >
