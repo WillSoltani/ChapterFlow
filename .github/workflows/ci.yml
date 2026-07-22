@@ -42,7 +42,7 @@ jobs:
         uses: actions/cache@v6
         with:
           path: .next/cache
-          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json', 'app/**/*.ts', 'app/**/*.tsx', 'components/**/*.ts', 'components/**/*.tsx', 'next.config.ts', 'postcss.config.mjs') }}
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json', 'app/**/*.ts', 'app/**/*.tsx', 'components/**/*.ts', 'components/**/*.tsx', 'lib/**/*.ts', 'lib/**/*.tsx', 'next.config.ts', 'postcss.config.mjs') }}
           restore-keys: |
             ${{ runner.os }}-nextjs-
 
