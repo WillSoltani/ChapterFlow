@@ -213,6 +213,14 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: props.removalPolicy,
     });
 
+    // KEEP ProjectionType.ALL. queryEventsForDay (admin-metrics.ts) feeds ~12
+    // admin routes that read event-type-specific payload fields off the returned
+    // items (deltaMs, subscription_change, beacon_performance, scenario/quiz
+    // payloads). An INCLUDE union would silently DROP attributes for any future
+    // event type — DynamoDB returns only the projected attributes with NO error,
+    // so an under-projection here surfaces as missing metrics, not a failure.
+    // Because a single query needs the whole item, ALL is the correct projection.
+    // See docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "eventDate-eventType-index",
       partitionKey: { name: "eventDate", type: dynamodb.AttributeType.STRING },
@@ -220,18 +228,49 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
+    // INCLUDE only the attributes the admin users/search reader consumes
+    // (formatUser + readTime in app/app/api/book/admin/users/search/route.ts).
+    // plan/updatedAt (index keys) and PK/SK (table keys) are auto-projected and
+    // MUST NOT be listed. The two COUNT queries in admin-metrics.ts
+    // (activeUsersByPlan/totalUsersByPlan) use Select:COUNT and need keys only.
+    // This stops replicating the wide snapshot Sets (readingDays, activeBookIds,
+    // completedBookIds, badgeIds) into the index on every snapshot UpdateCommand.
+    // GUARD: any attribute newly read off listRecentUsersByPlan results must be
+    // added to this list. CloudFormation cannot change a GSI projection in place;
+    // see the staged (v2) rollout in
+    // docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "plan-updatedAt-index",
       partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
+      projectionType: dynamodb.ProjectionType.INCLUDE,
+      nonKeyAttributes: [
+        "userId",
+        "email",
+        "proStatus",
+        "proSource",
+        "firstSeenAt",
+        "lastActiveAt",
+        "totalReadingMs",
+        "totalQuizAttempts",
+        "totalQuizPasses",
+        "flowPoints",
+        "booksCompleted",
+        "badgeCount",
+        "onboardingCompletedAt",
+      ],
     });
 
+    // KEYS_ONLY: this index has ZERO query consumers. quiz/commitment events
+    // stamp `contextKey` in analytics-repo.ts, but nothing reads back the item
+    // off this index — it is write-only. Projecting ALL would replicate every
+    // event payload for no reader. See
+    // docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "contextKey-occurredAt-index",
       partitionKey: { name: "contextKey", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "occurredAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
+      projectionType: dynamodb.ProjectionType.KEYS_ONLY,
     });
 
     this.ingestBucket = new s3.Bucket(this, "ChapterFlowIngestBucket", {
