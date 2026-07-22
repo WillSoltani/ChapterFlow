@@ -46,8 +46,22 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-
 
-      - name: Type-check
-        run: npm run typecheck
+      - name: TypeScript boundary verifier tests
+        run: npm run typecheck:boundary:test
+
+      - name: Verify TypeScript project boundary
+        run: npm run typecheck:boundary
+
+      # Shared-closure policy is PR-relative. Push events have no exact PR base,
+      # so they must not synthesize one or override the verifier's inferred mode.
+      - name: Verify shared TypeScript closure
+        if: ${{ github.event_name == 'pull_request' }}
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: npm run typecheck:shared-closure -- --base "$PR_BASE_SHA"
+
+      - name: Type-check app
+        run: npm run typecheck:app
 
       - name: Unit tests
         run: npm run test
@@ -130,6 +144,9 @@ jobs:
 
       - name: Install dependencies
         run: npm ci --include=optional
+
+      - name: Type-check book project
+        run: npm run typecheck:book
 
       - name: Pipeline typecheck
         run: npm run pipeline:typecheck
