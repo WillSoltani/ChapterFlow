@@ -1,0 +1,69 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c08-a1",
+  "requestSha256": "a785b87a7c1cef27037874c0ecbc3921e8d63bfc8839e20ec82f9316fb6005b9",
+  "receiptSha256": "874e9cf3d4788c219ea7a0f9f39192a79a3a2a18eb3589c75d2f3b914ba020eb",
+  "executionEvidenceSha256": "23941246a28069497102ebc24ab58af52966f84a434dea78a255e1a28f906356",
+  "rawOutputSha256": "39906df024211346ef527a295d1555cac3c0c2199e4841d0729ec4c342c0b241",
+  "evaluationSha256": "457a3aed31d6772e4f0c04b4c8942a2433a44c3eac22758cc823ed2676c92379",
+  "parsedOutputSha256": "11e476fada0ba441c5e60371fb52f21b7026fb6fbb2bd70f27b95d71366d6b3a",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "ambiguous",
+          "supportStatus": "UNSUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The target is licensed as a generic operational scenario with dates forbidden, but the chapter text includes a specific calendar date in the scenario.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The prose uses a role label and modal operational action, so framing and descriptive claim strength fit the plan. However, the dated opening adds historical specificity that the generic operational scenario license forbids."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "51730e99ae82462fc50aec18234720fd72274318c8416b0e3671690d8a59bd98"
+}

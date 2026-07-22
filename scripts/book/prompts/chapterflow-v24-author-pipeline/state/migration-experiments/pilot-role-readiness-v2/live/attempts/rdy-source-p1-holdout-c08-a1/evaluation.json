@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c08-a1",
+  "requestSha256": "7aa414d82db04b52cb9b7fcd71fb8fd221caa40a687ba563ee5b02f0ab7b3c71",
+  "receiptSha256": "c547d6166b383dc08aaf005c79e293c551cc08c8be3e651f27806c2c8fb1ac72",
+  "executionEvidenceSha256": "42fa1d12424ae1d5c8ffc4f1e8c762cc26927065700aa0c414f8a4bf2c9da3bf",
+  "rawOutputSha256": "ffb6b88bad97d74d27a1a89b85dd96e436abef77b5580bf9e84aa91f5e73f65e",
+  "evaluationSha256": "5ac750a945a5f5e6ea81d4c35694a0bf9f6b17fb866893ff3c8df272635c8572",
+  "parsedOutputSha256": "717df8ffeeb4b7fcbc9db4c5a8fbb657d181f9b0ef882d3336b373e47ed15da3",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The generic operational scenario includes an exact date, although the governing plan permits only role labels and operational details and explicitly forbids dates.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "CH-U001-001 uses a generic role label and modal operational wording, so its register is clearly generic, its framing is adequate, and its claim remains descriptive. However, the exact date is prohibited by PLAN-U001; source support is not applicable because the plan provides no anchors and licenses only a concept-level generic scenario."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "8371d8a95d620fcbc82f339712a118eb68e208229159a86544be87cfe4959b16"
+}

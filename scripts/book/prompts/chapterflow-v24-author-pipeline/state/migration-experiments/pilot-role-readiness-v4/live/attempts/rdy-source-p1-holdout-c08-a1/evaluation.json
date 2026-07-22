@@ -1,0 +1,147 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c08-a1",
+  "requestSha256": "bc713f211e518f9cbe2421b12440dd9b3f96afa08ab4780fa0a00b166f4a5fba",
+  "receiptSha256": "7a2f8f994742d02a080f71ea8229c405c96e5a8068207e4f9d4b42762a7d320d",
+  "executionEvidenceSha256": "db08f406ff1a75dc728d02e5be0858212d8e59766d07d3ea9afa024e76a044c4",
+  "rawOutputSha256": "27b660afb8c5b782ce6867a8e0fb89af66cceda7085102e5828933e4dc27493f",
+  "evaluationSha256": "7461f6c6762298ae7521e3b342d499362aff6a180ee1202711a8c91ce36c2208",
+  "parsedOutputSha256": "bf3d80312492bf457e03ae13ba990fa3b33cd753f23290f3b2b4f5ea0ecfa306",
+  "assembledReviewSha256": "36f07474323b279b26801231a9a4a4e0fec5870a64a4ff6e1e2b285e12a071b8",
+  "evidenceReferenceResolutionSha256": "1cefc560805b93b5c26574aecf3471e0f2f9b381c7cef967d198d66696c96438",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "BLOCK; primary=generic_specificity_leak",
+    "metricObservations": {
+      "supportRegisterAccuracy": false,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": null,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The operational role and action are generic, but the exact date introduces historical specificity expressly forbidden by the governing plan.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "The role label and observable workflow action fit the generic operational license and remain descriptive. The exact date does not: the plan forbids dates and historical specificity for this target."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "4fa4df94bca90cfb3a9925513a1ed7412e1a0a789634fe9d9e637041dfed34db",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "0dce7a966416e5d9f78df745b27dd95081250a931d810323a4660594cf1ca7ab",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": null,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The operational role and action are generic, but the exact date introduces historical specificity expressly forbidden by the governing plan.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.generic-scenario:source-finding:001",
+              "chapterEvidenceSpans": [
+                "On March 12, 2019, a support lead can group routine alerts into a scheduled review window."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"generic\",\n  \"formLicense\": \"operational_scenario\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"role_label\",\n    \"observable_action\",\n    \"constraint\",\n    \"tradeoff\",\n    \"workflow_step\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"named_person\",\n    \"named_organization\",\n    \"date\",\n    \"exact_metric\",\n    \"credential\",\n    \"biography\",\n    \"historical_claim\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "The role label and observable workflow action fit the generic operational license and remain descriptive. The exact date does not: the plan forbids dates and historical specificity for this target.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:named-specificity-forbidden",
+        "U1:visible-register-incompatible",
+        "unit.ch01.generic-scenario:source-finding:001"
+      ],
+      "rationale": "U1: The role label and observable workflow action fit the generic operational license and remain descriptive. The exact date does not: the plan forbids dates and historical specificity for this target."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "On March 12, 2019, a support lead can group routine alerts into a scheduled review window."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"generic\",\n  \"formLicense\": \"operational_scenario\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"role_label\",\n    \"observable_action\",\n    \"constraint\",\n    \"tradeoff\",\n    \"workflow_step\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"named_person\",\n    \"named_organization\",\n    \"date\",\n    \"exact_metric\",\n    \"credential\",\n    \"biography\",\n    \"historical_claim\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": false,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "ed3317841e6b119bf28900415c77ae67a990a3fac0aba901c58f70f2b6532a95"
+}

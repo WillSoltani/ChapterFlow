@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p4-canary-c01-a1",
+  "requestSha256": "fc47f5cdc9c69e393693bb795ce35fba39a50bb6f4b712eb52a0f0cce6ad80a3",
+  "receiptSha256": "af8e7f26bbb2495fa06266ff6bac3e44213e6e7b105714e73f62c76f482b4345",
+  "executionEvidenceSha256": "ec6dd8f4225a0dc0f3cad59a20dd2ce7d4548b968bef21ed4eb757c53ff68af8",
+  "rawOutputSha256": "ebf703d3aeefd1713a7ddab1965f429502a0623ff31700e4b5d2f00f0bbb239c",
+  "evaluationSha256": "82dd01313a870d686783224f5917d88be866fe48c960c464da56abebca8bb1cf",
+  "parsedOutputSha256": "fdd509ed93990458f82515e2cf0ed496fc48c93d53fd7b86bbddb9f943dda760",
+  "assembledReviewSha256": "9d9cb90e6e73a3bed3f184ea8dbd75e3b8e3e5ce7f49cafb6088827e8b93e3b3",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly source-framed and matches the documented claim in SRC-U001-CLAIM-001 and the mechanism in SRC-U001-MECHANISM-001. The named/date specificity is allowed by PLAN-U001 and supported by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. The prose stays within the mechanistic ceiling in PLAN-U001 and does not add unsupported people, dates, quantified effects, or outcomes."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly source-framed and matches the documented claim in SRC-U001-CLAIM-001 and the mechanism in SRC-U001-MECHANISM-001. The named/date specificity is allowed by PLAN-U001 and supported by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. The prose stays within the mechanistic ceiling in PLAN-U001 and does not add unsupported people, dates, quantified effects, or outcomes.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly source-framed and matches the documented claim in SRC-U001-CLAIM-001 and the mechanism in SRC-U001-MECHANISM-001. The named/date specificity is allowed by PLAN-U001 and supported by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012. The prose stays within the mechanistic ceiling in PLAN-U001 and does not add unsupported people, dates, quantified effects, or outcomes."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "7a9bd59affff67f7411154dea1d94f1a9a8024b3575c46d4633cba3b001da6f5"
+}

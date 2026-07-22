@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c01-a1",
+  "requestSha256": "7976d3d52eee39de027488d7e172df194535b6242f90953602db7d9f460f0370",
+  "receiptSha256": "961ffec72099ebaa5b2e440f5541b0903c01e67a9edf12fd6cdcc7e16e32d919",
+  "executionEvidenceSha256": "d14f6f0268a6446c3e4b6cd7b24a8ed9f4025b77ab1a8ebfb460f6545bb15081",
+  "rawOutputSha256": "0e78b5cc25a92838f155d5c79fcd6c824d14af66dff16bb7afe29d4203c4921b",
+  "evaluationSha256": "b89115c70e65edec2ef00f0079da9c24762b18da772d615cc402d765f990da29",
+  "parsedOutputSha256": "a2c860b093934cae60d3d8918e38d0664b3221ab02a949881e3da3798c5ae017",
+  "assembledReviewSha256": "99906edcba8d7c060ae86e1f607403b6c537cd3b5c5dcd58388479530a663cfd",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly attributed as source-stated material and is supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001, with the governing source anchor SRC-U001-ANCHOR-001. PLAN-U001 permits a source-bound explanation up to mechanistic strength, requires no additional framing, and allows concept-only detail. No named specifics requiring separate support appear in the target."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly attributed as source-stated material and is supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001, with the governing source anchor SRC-U001-ANCHOR-001. PLAN-U001 permits a source-bound explanation up to mechanistic strength, requires no additional framing, and allows concept-only detail. No named specifics requiring separate support appear in the target.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly attributed as source-stated material and is supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001, with the governing source anchor SRC-U001-ANCHOR-001. PLAN-U001 permits a source-bound explanation up to mechanistic strength, requires no additional framing, and allows concept-only detail. No named specifics requiring separate support appear in the target."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "0b07fbdb22847b8266ca3ca011571c9df935a17b5dd59300bd0d002e02dc4f0b"
+}

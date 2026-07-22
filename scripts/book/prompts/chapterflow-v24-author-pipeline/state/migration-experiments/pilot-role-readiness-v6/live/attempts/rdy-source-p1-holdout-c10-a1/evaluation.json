@@ -1,0 +1,151 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c10-a1",
+  "requestSha256": "d1703074aaf38257e87d2ee6740fa47e70f9c00111597fe9d18995eb0e82c3fa",
+  "receiptSha256": "3b0856865f5793639d63a87bed89b60afc5a018c84a6bb48db18c7a81d0d71e9",
+  "executionEvidenceSha256": "37bb574b19b551378dbcfedcb95d3353543a9588ec2354c2905b7e51f183b8ac",
+  "rawOutputSha256": "55262d2b15626299e0206a53fa05b4b4f6eea3e8ff11a99b6269da6bbe3d0784",
+  "evaluationSha256": "725259db2f26ee1a3fe6fb3610b1e741705989f7d77aa7711343354fb7cb47ea",
+  "parsedOutputSha256": "5d9dbae43bb1dc465e8a928263d1f015b9a2012b157d5b4d798149ad02f74604",
+  "assembledReviewSha256": "c3ea0ff358170bbd42c6e963977788aa9cf4d2e5c972d8d9939e86ef52899f6d",
+  "evidenceReferenceResolutionSha256": "f3e17d6d12d36b3273402e52c459ae833788c82b855eeedecd158023d8b6238b",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=claim_strength_overreach",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The universal, exceptionless causal guarantee in the chapter exceeds the plan’s mechanistic ceiling and the source mechanism’s limited statement of behavioral reasons; the packet also expressly forbids guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 contains a supported description of the Facebook Like button corresponding to SRC-U001-CLAIM-001, so the named specificity is allowed. PLAN-U001 requires no special framing. However, the chapter adds an absolute causal guarantee unsupported by SRC-U001-MECHANISM-001 and prohibited by SRC-U001-ATOMIC-016, making support partial and claim strength unfit."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "48d7168a09c6890402db5f2758faeb5bca8e8cc150ae2bcf2e71432767573708",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "dc3112a6dcd32dbe9e89a6f10b7aa2c03b8de329166bcee7f6805f46b641246c",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": false,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "claim_strength_overreach",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The universal, exceptionless causal guarantee in the chapter exceeds the plan’s mechanistic ceiling and the source mechanism’s limited statement of behavioral reasons; the packet also expressly forbids guaranteed outcomes.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-MECHANISM-001",
+                "SRC-U001-ATOMIC-016"
+              ],
+              "findingId": "unit.fact.ch01.fact.3:source-finding:001",
+              "chapterEvidenceSpans": [
+                "This proves that the Facebook Like button turned social approval into a quick, measurable feedback signal. always causes the stated outcome for every person, without exception."
+              ],
+              "sourceEvidenceSpans": [
+                "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+                "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 contains a supported description of the Facebook Like button corresponding to SRC-U001-CLAIM-001, so the named specificity is allowed. PLAN-U001 requires no special framing. However, the chapter adds an absolute causal guarantee unsupported by SRC-U001-MECHANISM-001 and prohibited by SRC-U001-ATOMIC-016, making support partial and claim strength unfit.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:claim-strength-fit",
+        "unit.fact.ch01.fact.3:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 contains a supported description of the Facebook Like button corresponding to SRC-U001-CLAIM-001, so the named specificity is allowed. PLAN-U001 requires no special framing. However, the chapter adds an absolute causal guarantee unsupported by SRC-U001-MECHANISM-001 and prohibited by SRC-U001-ATOMIC-016, making support partial and claim strength unfit."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "This proves that the Facebook Like button turned social approval into a quick, measurable feedback signal. always causes the stated outcome for every person, without exception."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "SRC-U001-MECHANISM-001",
+            "SRC-U001-ATOMIC-016"
+          ],
+          "evidenceSpans": [
+            "Because a tap creates visible feedback with almost no effort, users gain reasons to post more often and return to check reactions.",
+            "{\n  \"label\": \"packet.forbiddenClaims[0]\",\n  \"value\": \"Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.\"\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "7e6d7a659ef6bc6d3e5b88669b1cd45fa2f6bee1ebd59c50f4ded42d754dce7d"
+}

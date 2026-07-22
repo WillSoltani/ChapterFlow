@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-canary-c01-a1",
+  "requestSha256": "9e823d5f83cec5a6327a9625ff2b17edb5287a47afff52cd9f6bac85dc316234",
+  "receiptSha256": "4ab4e0763252c1c9ea951e809cd02ae35c474de1a03fd2e0efbd1c7e88dd193d",
+  "executionEvidenceSha256": "59cc3fa88ddeb2c60728586655816eb0f57b614262a3b2c1c6fcb1252f8dec12",
+  "rawOutputSha256": "887d9b8032a849e7ffee625900fb471e05df49a47f4b8900dd63315229907f3c",
+  "evaluationSha256": "c955c9a93529632954b6a4780ed227ccc4344d2c909a620dabe3853f12dbcfd4",
+  "parsedOutputSha256": "cc8f73dc4e4db05dc9405dc46c032383b4ff2ea969e34c8313e7cd61373322f8",
+  "assembledReviewSha256": "ec61ad53a84bdbf005040de4c10de3d8ca7266090e8e640718935d96cd95c7fc",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly sourced and stays within PLAN-U001's source-bound explanation license with no required hypothetical framing. Its 2007 iPhone launch/converged-utility claim is supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, and its mechanism about later feed-checking expansion/tool mutation is supported by SRC-U001-MECHANISM-001 and SRC-U001-ATOMIC-002. The claim strength fits PLAN-U001's mechanistic ceiling, and the named/documented specifics are supported by the cited source evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly sourced and stays within PLAN-U001's source-bound explanation license with no required hypothetical framing. Its 2007 iPhone launch/converged-utility claim is supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, and its mechanism about later feed-checking expansion/tool mutation is supported by SRC-U001-MECHANISM-001 and SRC-U001-ATOMIC-002. The claim strength fits PLAN-U001's mechanistic ceiling, and the named/documented specifics are supported by the cited source evidence.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly sourced and stays within PLAN-U001's source-bound explanation license with no required hypothetical framing. Its 2007 iPhone launch/converged-utility claim is supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, and its mechanism about later feed-checking expansion/tool mutation is supported by SRC-U001-MECHANISM-001 and SRC-U001-ATOMIC-002. The claim strength fits PLAN-U001's mechanistic ceiling, and the named/documented specifics are supported by the cited source evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "5c4321b788360301bde2a5c92ef953f9c067afcfee2265e9bc67d992136196a1"
+}

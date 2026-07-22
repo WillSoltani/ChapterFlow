@@ -1,0 +1,76 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c04-a1",
+  "requestSha256": "281a5ea5319e6cee4cfe1135cf02d892ed20c6b17fdbab6f426f16bac5b4c0a5",
+  "receiptSha256": "43e321b7f02a0d2a580ba9743cc4cff2a971cbc6d76fbe72e56c65955c0ad020",
+  "executionEvidenceSha256": "374483e81aa5c510a76c2613ce0a392f90c7f5f058035aecfb76e8fe26a01ae3",
+  "rawOutputSha256": "45d29b750e1de66f56bb505d2b9728190e81ad3750d6ab2ff2a10073c157433f",
+  "evaluationSha256": "f51b33b93e3e42942662f5f543349ed5e438650d805b744faff27de55404bebe",
+  "parsedOutputSha256": "b49dfad5ec42a2c518d89ce5b5074271d0bf825c5a18f026a4738fdf0ff72543",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "unsupported_attribution",
+              "secondaryCategories": [
+                "invented_detail",
+                "missing_required_evidence"
+              ],
+              "severity": "blocker",
+              "explanation": "The chapter attributes a 2018 sample of exactly 47 participants to the chapter source, but the supplied source evidence for the allowed anchor supports only the Like-button feedback signal and its low-effort visible-feedback mechanism. No supplied source evidence documents that date, sample, participant count, or participant framing.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": [
+                "SRC-U001-ANCHOR-001",
+                "SRC-U001-CLAIM-001",
+                "SRC-U001-MECHANISM-001"
+              ]
+            }
+          ],
+          "rationale": "The first two chapter claims are supported by the source claim and mechanism and stay within the mechanistic ceiling. The added 2018 sample of exactly 47 participants is presented as source-reported but has no supporting source evidence in the packet, so the target is only partially supported."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "4080340b8c7c36c454a8da324a7ab1c7057876e38f566f17d15a87126ab263e4"
+}

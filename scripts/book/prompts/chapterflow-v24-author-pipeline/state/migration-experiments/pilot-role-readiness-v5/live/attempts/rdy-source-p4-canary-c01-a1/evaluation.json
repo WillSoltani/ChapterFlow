@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p4-canary-c01-a1",
+  "requestSha256": "e44e7cd57bcf718e248c34a67daafa3f8ec188c58b7e71ae261d44755ca2540e",
+  "receiptSha256": "c21b91d257146d69f902c31eeae49c059287c512406b8706c5e59fe67afafe6d",
+  "executionEvidenceSha256": "802096712ecf07d230eca6ed3ae32e4d68c88a3ed20812426612f4f4ec52aae4",
+  "rawOutputSha256": "11c1f34593fee46dc53b22af57e86bae8a35eeae6c2dd3a5fa042ce6a3844704",
+  "evaluationSha256": "8a8b3263711f68b8b5c6e72c39acd2321c03cd174621246a14f87131ea46243e",
+  "parsedOutputSha256": "9c4095da918dd8047fae6803502fb00941a4303c5a8350522138767eebb8efea",
+  "assembledReviewSha256": "03aad800d816d21aec484e4ba1b77c4c348333b3829a5dfa4cc61bceae0d2ba8",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is explicitly framed as sourced and stays within the source-bound explanation license. Its named specific and date are supported by the allowed anchor and source claim, and its mechanistic statement matches the supplied source mechanism without adding unsupported causation or extra specifics."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is explicitly framed as sourced and stays within the source-bound explanation license. Its named specific and date are supported by the allowed anchor and source claim, and its mechanistic statement matches the supplied source mechanism without adding unsupported causation or extra specifics.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter target is explicitly framed as sourced and stays within the source-bound explanation license. Its named specific and date are supported by the allowed anchor and source claim, and its mechanistic statement matches the supplied source mechanism without adding unsupported causation or extra specifics."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "017f8d366f4078409da2a05721c5cd3a668c242adb9042c49bdba393a970b1b9"
+}

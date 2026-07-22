@@ -1,0 +1,71 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p2-holdout-c05-a1",
+  "requestSha256": "3909e7201223222327821cd83ec6201937ffc8fa193284559fd55a59cb336d39",
+  "receiptSha256": "1e8ba54b00db5e58a21015275db8a3da1550cb75034862292a207e23e5d8b206",
+  "executionEvidenceSha256": "5cb8d7e8120a7e7b6a685091d9a037bd45c70afd1dc5e3c88f95ccdb588ec7ac",
+  "rawOutputSha256": "bdcd4378168753233c23821f68df45788945c42a0e5f2a6ce4ef1b7f5b26c986",
+  "evaluationSha256": "c4fe073f071cb04013c9cf9060701b6973deebf69dc9a3a0e0a90aaaebe242c0",
+  "parsedOutputSha256": "eac3fb055beaa14dd1fd1cc0e61f5efd538c9101da65b54774ea85475ed399eb",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The constructed application is required to be visibly framed as hypothetical at first entry, but the chapter presents the support-team action as an occurred event. The details otherwise stay within role-label and concrete-action bounds, and the claim remains descriptive.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "PLAN-U001 requires constructed application framing and allows only role labels and concrete actions. CH-U001-001 uses a role label and concrete action but lacks visible hypothetical framing, so the target is only partially supported by the governing plan."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "0c5b8318ed7923a6a97cf68f3d8a61faf0f14e43f8db47bfaeecbf70e05c6ab0"
+}

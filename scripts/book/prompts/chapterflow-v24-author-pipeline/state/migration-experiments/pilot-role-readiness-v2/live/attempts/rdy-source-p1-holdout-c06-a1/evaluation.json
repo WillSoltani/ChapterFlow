@@ -1,0 +1,151 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c06-a1",
+  "requestSha256": "c8907f7162079d01800ed443b190e563de8b061ed028ab9e4af03d69bcbd3ef4",
+  "receiptSha256": "ffb1bd3a9186ca0e6c83abe07076fbbfb34cb270a4214916b4067466ae8c8d40",
+  "executionEvidenceSha256": "422ddcb88eebd05ac5f8987748db8955f82e85650bf3221acc6f7a20cd5dc37f",
+  "rawOutputSha256": "24d66b479a19830480cccee4b7f4dc476ceb2c539de473edb6dc073ba42d4e47",
+  "evaluationSha256": "464a9beb4ada018cdb12a1dc58bcecc7ba7533a6b809c0209b6e3caf5206a405",
+  "parsedOutputSha256": "2d7d3a75894c538c47c6b69fcd8327938aa0b98c7a3ac85ea0e602b96cf40619",
+  "assembledReviewSha256": "4c1ad0ca6f668659c54bd262516b19af999db43c31e7287d92d14b347a1dae20",
+  "evidenceReferenceResolutionSha256": "94b5ad9d543c9d813dd5b249e1ed9c5ec1cb2e7d60324c957daa7c7593486dba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "BLOCK; primary=missing_visible_framing",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "highSeverityDefectSensitivity": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The constructed application is stated as a past event without visible hypothetical framing, causing the invented exercise to read as reported history.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 stays within descriptive claim strength and contains no named specificity, but it presents the constructed application as an event that occurred. PLAN-U001 requires visible framing and forbids historical claims or outcomes reported as fact."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "962f17215fd76f898a62885a46e28381149456386ab2be234e8dace5cae8e836",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "10987a736414553d60e548897944790fbde0ab7d7195288282e54b87379b3cde",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "blocker",
+              "explanation": "The constructed application is stated as a past event without visible hypothetical framing, causing the invented exercise to read as reported history.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": [
+                "PLAN-U001"
+              ],
+              "findingId": "unit.ch01.constructed-application:source-finding:001",
+              "chapterEvidenceSpans": [
+                "A project team tried a visible decision log during a product-planning exercise."
+              ],
+              "sourceEvidenceSpans": [
+                "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+              ]
+            }
+          ],
+          "rationale": "CH-U001-001 stays within descriptive claim strength and contains no named specificity, but it presents the constructed application as an event that occurred. PLAN-U001 requires visible framing and forbids historical claims or outcomes reported as fact.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "BLOCK",
+      "blockingFindingIds": [
+        "U1:visible-framing",
+        "U1:visible-register-incompatible",
+        "unit.ch01.constructed-application:source-finding:001"
+      ],
+      "rationale": "U1: CH-U001-001 stays within descriptive claim strength and contains no named specificity, but it presents the constructed application as an event that occurred. PLAN-U001 requires visible framing and forbids historical claims or outcomes reported as fact."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [
+        {
+          "path": "$assembled.units[0].findings[0].chapterEvidenceRefIds",
+          "refIds": [
+            "CH-U001-001"
+          ],
+          "evidenceSpans": [
+            "A project team tried a visible decision log during a product-planning exercise."
+          ]
+        },
+        {
+          "path": "$assembled.units[0].findings[0].sourceEvidenceRefIds",
+          "refIds": [
+            "PLAN-U001"
+          ],
+          "evidenceSpans": [
+            "{\n  \"targetRef\": \"U1\",\n  \"originLicense\": \"constructed\",\n  \"formLicense\": \"application\",\n  \"maximumClaimStrength\": \"descriptive\",\n  \"allowedDetailTypes\": [\n    \"fictional_name\",\n    \"role_label\",\n    \"concrete_action\",\n    \"hypothetical_consequence\"\n  ],\n  \"forbiddenDetailTypes\": [\n    \"real_person\",\n    \"real_organization\",\n    \"fabricated_statistic\",\n    \"fabricated_date\",\n    \"fabricated_credential\",\n    \"fabricated_citation\",\n    \"historical_claim\",\n    \"outcome_reported_as_fact\"\n  ],\n  \"detailSufficiency\": \"concept_only\",\n  \"framingRequired\": true,\n  \"allowedAnchorRefs\": []\n}"
+          ]
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "4c3a9df00914afbbc678229694a3f541ec657f4951feb3c27fa6a63dad5f5b25"
+}

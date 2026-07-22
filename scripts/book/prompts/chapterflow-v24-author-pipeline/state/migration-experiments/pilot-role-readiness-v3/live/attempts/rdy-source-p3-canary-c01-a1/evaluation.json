@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-canary-c01-a1",
+  "requestSha256": "8e55417759875d422f5e785483bed62f4160303842730bfdcff8376bbfdd25cf",
+  "receiptSha256": "637585be42c9df87647e1daaa985a39e1697924e577769e6ab9be5666637cdb4",
+  "executionEvidenceSha256": "0063307368cdcf987e778fbaa508133351792f361f5017cbf7bb584948d188cc",
+  "rawOutputSha256": "ee3e6cb420fda5dd72e622967052b44ff1ebe5895896be6b2d9a9bbcfb925395",
+  "evaluationSha256": "9a358a2cfbf1133aa93dc23ee9919a9a300d53c122b54318ef23a4beb3042bdd",
+  "parsedOutputSha256": "1e8b6873f83eb75e409ad5e1344b16dbfa372c20843c37c5b8381954ebeb680b",
+  "assembledReviewSha256": "b7f82be97e9c9440cdf99e25bc1cc8dd29c5f33c84e5a02db5a1f0d8de16976b",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly presented as sourced and matches both the documented launch characterization in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. Its named product, documented year, and specific convergence description are authorized by PLAN-U001 and grounded by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly presented as sourced and matches both the documented launch characterization in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. Its named product, documented year, and specific convergence description are authorized by PLAN-U001 and grounded by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly presented as sourced and matches both the documented launch characterization in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. Its named product, documented year, and specific convergence description are authorized by PLAN-U001 and grounded by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "c0ac4884406761f09483317a0a4cdc005203db9fd2c9d1a6623b9e4b91f9b440"
+}

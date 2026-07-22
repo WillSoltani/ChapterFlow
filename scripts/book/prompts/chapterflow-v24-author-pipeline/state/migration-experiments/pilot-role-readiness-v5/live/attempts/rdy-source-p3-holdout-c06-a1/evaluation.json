@@ -1,0 +1,71 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c06-a1",
+  "requestSha256": "d400776cc2c776d489ad23850d0341da0a35bb4538e43318d7e0b797bb0881be",
+  "receiptSha256": "0320cc81a2e9164fbbe9680f7ae5805647897b58d660d214c2bf997b95aed58c",
+  "executionEvidenceSha256": "07d9d68993ae8c620aa4041a910b4c516611dcfb46be6c6796d6f3c3c097c4ea",
+  "rawOutputSha256": "05b9d864c2b8979b77c274a8b53d44758ec81493c3d81bb534ff65e8dba97d14",
+  "evaluationSha256": "fd7af37f93b0f9778be0e47bcd3c51d1798be8c7af49134b1d353979b6dd0e60",
+  "parsedOutputSha256": "48439afadb3419857cff0af998a81e48a5013409264f36043d376f7d983e45ec",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "NOT_APPLICABLE",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The constructed application is stated as a past event that a project team tried, without a visible hypothetical or illustrative marker at first entry, despite the plan requiring framing and forbidding historical claims or outcomes reported as fact.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The prose remains descriptive and uses only a generic role label, but its past-tense presentation makes the constructed exercise read as an event that occurred. Because this target is compiler-licensed as constructed and has no source anchors, external source support is not applicable."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "b49dfb84caa56a8d0ef158e7894b0d69e2543305ef1af8574827a2844ae19d42"
+}

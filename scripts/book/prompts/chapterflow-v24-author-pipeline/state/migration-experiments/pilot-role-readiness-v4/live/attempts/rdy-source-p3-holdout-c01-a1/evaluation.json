@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c01-a1",
+  "requestSha256": "8e66c78af31d35102450417875c3af461a83d16e19381bfb133f935e533e3de5",
+  "receiptSha256": "ce521d416909ecd7bba1d145e60647d1d1e2ffcab15ff069a62d5e79312ba36c",
+  "executionEvidenceSha256": "337ae60984b027cc261d312da5d179fe91228c05d9c9eadf6c9b35288f9b7d76",
+  "rawOutputSha256": "4164ae658d10b710c432ea8def90f06a8d89dc096307ee014d500f098ff782a3",
+  "evaluationSha256": "69a9ba4a1cd6da31f778b28aa59e119310b7444e737785770899434154231279",
+  "parsedOutputSha256": "39267ab692e4ea3475b908e34ac60b0a7cfc5c1c92e5a82a1636e9130fe68ec1",
+  "assembledReviewSha256": "4295f8ee11bc5809559584e1f579a2ffd2c82f8a075dac49498c7ed514f88588",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly presents the passage as sourced and closely matches both the supported claim and mechanism in SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its mechanistic explanation stays within the ceiling and permissions recorded in PLAN-U001. It introduces no named specific requiring separate support."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": null,
+          "findings": [],
+          "rationale": "CH-U001-001 explicitly presents the passage as sourced and closely matches both the supported claim and mechanism in SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its mechanistic explanation stays within the ceiling and permissions recorded in PLAN-U001. It introduces no named specific requiring separate support.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 explicitly presents the passage as sourced and closely matches both the supported claim and mechanism in SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001. Its mechanistic explanation stays within the ceiling and permissions recorded in PLAN-U001. It introduces no named specific requiring separate support."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "f06b191ebdbeea9c957fb3a9f7ccb137d4888ad475dbf6e68e7a18488ea37b3a"
+}

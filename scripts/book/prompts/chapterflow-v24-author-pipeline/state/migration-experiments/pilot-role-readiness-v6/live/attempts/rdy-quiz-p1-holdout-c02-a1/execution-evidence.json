@@ -1,0 +1,43 @@
+{
+  "schema": "imp24-role-qualification-live-execution-evidence-v4",
+  "attemptId": "rdy-quiz-p1-holdout-c02-a1",
+  "requestSha256": "039da8dddb5276f95ae8006befa362f7d010600f199a0c32671ccd896b6563e0",
+  "receiptSha256": "ee0c77019401337da2bd2b4395a977bd3a40ae15ad077ea872c7c5738058da14",
+  "processDiagnosticsSha256": "07b3786ac2e5127bde8d9f7968d022deb3d25c3b53ef2696875941a13e5ac77b",
+  "invocation": "RUNNER_RETURNED",
+  "evidenceComplete": true,
+  "sessionId": "imp24-v3-584095ce26b8aa6f5a7460b3459590196be8d1fbd7f3c9b6dca62b9cf59e40dc",
+  "schemaRequested": true,
+  "schemaBoundAtRunner": true,
+  "finalMessageSource": "output-file",
+  "responseProduced": true,
+  "rawFinalOutputSha256": "870d47001de2c6424e87be706b82062226f8d45717e58bb2b9015d5bb29aef69",
+  "rawFinalOutputBytes": 680,
+  "effectiveContextManifest": {
+    "kind": "effective-context-manifest",
+    "relPath": "exec/logs/2026-07-16-095938-imp24-v3-584095ce26b8aa6f5a7460b3459590196be8d1fbd7f3c9b6dca62b9cf59e40dc.manifest.json",
+    "bytes": 2911,
+    "bytesSha256": "711adb9953def644504289c2a26ae9aee873827e8ef0fb1da254a3a13c7e99db"
+  },
+  "routeSidecar": {
+    "kind": "route",
+    "relPath": "exec/logs/2026-07-16-095938-imp24-v3-584095ce26b8aa6f5a7460b3459590196be8d1fbd7f3c9b6dca62b9cf59e40dc.route.json",
+    "bytes": 642,
+    "bytesSha256": "347a1261367b737fb0798fe19438d2d9fe8c8f396d379e5bca2d0a47eea8fec3"
+  },
+  "structuredOutputSidecar": {
+    "kind": "structured-output",
+    "relPath": "exec/logs/2026-07-16-095938-imp24-v3-584095ce26b8aa6f5a7460b3459590196be8d1fbd7f3c9b6dca62b9cf59e40dc.structured.json",
+    "bytes": 584,
+    "bytesSha256": "8c2ff73ada47fe96b7c00daf70769db0b0b7d0057f2ed1d0298e073c440964ab"
+  },
+  "resultSidecar": {
+    "kind": "exec-result",
+    "relPath": "exec/logs/2026-07-16-095938-imp24-v3-584095ce26b8aa6f5a7460b3459590196be8d1fbd7f3c9b6dca62b9cf59e40dc.result.json",
+    "bytes": 571,
+    "bytesSha256": "6b93ef97bf2aa446c3b2591cc9940b17079d01f762df0e8dbad413a6e6e4dfc9"
+  },
+  "missingRequiredSidecars": [],
+  "unexpectedSidecarRelPaths": [],
+  "executionEvidenceSha256": "739d5da23e5671b0b72b958c9ac9d3782a1dbafff5b61c28cfce2355bced426b"
+}

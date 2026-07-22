@@ -1,0 +1,69 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p3-holdout-c07-a1",
+  "requestSha256": "62a14be419d516b163661b2fc1fbc8003d11dbb473571eafc593b4fe208eb64d",
+  "receiptSha256": "b5f79fb0774abad76ca990ea74096ed59b19145572bd7063d127e1732898ee7d",
+  "executionEvidenceSha256": "f31a142a353a4eca2bf9b0b6d8a54ae5a2f572f8c9675fa2fc13c0d5cf879b38",
+  "rawOutputSha256": "dde4a1737c26b5e0d783e968664e951732f37349189dbd8c22c3ddb8ca243250",
+  "evaluationSha256": "7e52e25b8fc0a41f68c43ea245ef4c6ae9281cf85dbff5ea8b44bb0851979b7f",
+  "parsedOutputSha256": "d2ad98c502724b4eec6d645a0c848eb2046f4677ab22f56a73a9d4fa1d230164",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [],
+              "severity": "blocker",
+              "explanation": "The operational scenario uses the named organization “Northstar Systems,” although the generic license permits role labels and observable actions but forbids named organizations.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "CH-U001-001 is phrased as a generic, descriptive capability and does not claim that an event occurred, so its framing and claim strength fit PLAN-U001. However, its named organization violates the generic operational-scenario specificity restriction in PLAN-U001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "2c35c58744cf5e5f7403f5e0186d454f789c7d82ac697e5acfa1e2520e8afcaf"
+}

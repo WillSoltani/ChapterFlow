@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-holdout-c02-a1",
+  "requestSha256": "b9a32fadda94941a50f542abb7f3925b2a3badbde141a865c59650d4820d24e8",
+  "receiptSha256": "ab20f58315d6ed75fb2bec68fdc854cbb84a6be3d3df16c145dd4f9e42e2a180",
+  "executionEvidenceSha256": "05e46370a83a53298d67cc319e6e8a2159e8e692a4225f5e447fae27a1865dcf",
+  "rawOutputSha256": "53529963f88d5eec29154bdfd69f687bd20e40c8f19fb1b623bf7c888903c82b",
+  "evaluationSha256": "3ae1317bd805b35431bcc5dc5a054062e035ab5bf1042a4e3f8e6a343230c401",
+  "parsedOutputSha256": "28f3e33cedcd8d29e86e98601a8a80a18ec7dace1376285bcde53dc7d72d1fed",
+  "assembledReviewSha256": "edb0c337acf263cff66a8ea539e340b79628298e01d5018a0b93ea75a00769f3",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly source-attributed and is fully supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001 under PLAN-U001. Its mechanistic strength stays within the plan ceiling, and its named specificity is grounded by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "d85c3523c2ab2c8c4ef5830e8ee5ba46dd586ef1718cd54cc684e31b6ceea50d",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "aefd5ed84707636c88ec1588230e15e725ff842155ec162f873d9f988a43ff1d",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is visibly source-attributed and is fully supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001 under PLAN-U001. Its mechanistic strength stays within the plan ceiling, and its named specificity is grounded by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012.",
+          "unitId": "unit.fact.ch01.fact.3",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is visibly source-attributed and is fully supported by SRC-U001-CLAIM-001 and SRC-U001-MECHANISM-001 under PLAN-U001. Its mechanistic strength stays within the plan ceiling, and its named specificity is grounded by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "dfed8751738e97ddaf8e723c4ecc5cdf2789c33f0359da30867c434698c18723"
+}

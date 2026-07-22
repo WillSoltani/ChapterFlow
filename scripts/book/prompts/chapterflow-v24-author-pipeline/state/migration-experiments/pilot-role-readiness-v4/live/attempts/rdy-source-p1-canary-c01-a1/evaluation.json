@@ -1,0 +1,91 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "rdy-source-p1-canary-c01-a1",
+  "requestSha256": "34ffafb9cc137785ded583293321efe0bb3707c97170b8f9a013837e1301a09a",
+  "receiptSha256": "4d346e0ac179276f522673394c9ffe2464abd3bc7a9c0e6af0753008c6858727",
+  "executionEvidenceSha256": "077a4123cd2f6728f9ed83d3b1a0ff244d2377c6042bf49f469690c20205a3db",
+  "rawOutputSha256": "327cf39f58ed2a581d2f3b9b4c3b7a6d17b0179be0f6751634017e58d53c5862",
+  "evaluationSha256": "73ff8cd4e0f6b5b2aedf9f8cbcaea21c26d2110cd2c2dce91e3ec201bb97eb38",
+  "parsedOutputSha256": "eca2aff5ac3f1885ef5d682b8f60ef109325b4b53c19281495def638d15584cd",
+  "assembledReviewSha256": "d209ec2c34ba5b054015361c862fbc91a9db2aba61b148b77c262836d896421e",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportRegisterAccuracy": true,
+      "falseHighSeverityBlockerFreeOnClean": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly introduced as source-derived and matches the documented launch claim in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. Its named iPhone reference and 2007 detail are permitted and documented by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012; the mechanistic strength stays within PLAN-U001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-readiness-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is explicitly introduced as source-derived and matches the documented launch claim in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. Its named iPhone reference and 2007 detail are permitted and documented by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012; the mechanistic strength stays within PLAN-U001.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is explicitly introduced as source-derived and matches the documented launch claim in SRC-U001-CLAIM-001 and the supported explanatory mechanism in SRC-U001-MECHANISM-001. Its named iPhone reference and 2007 detail are permitted and documented by SRC-U001-ANCHOR-001 and SRC-U001-ATOMIC-012; the mechanistic strength stays within PLAN-U001."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "882b944517ee328ee6ae5b3f814178cdee6f5f646e87700ed3c4a03601710585"
+}
