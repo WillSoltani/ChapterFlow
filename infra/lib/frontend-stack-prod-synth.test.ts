@@ -69,6 +69,13 @@ test("prod-shaped frontend stack synthesizes with explicit hosted zone", () => {
     hostedZoneId: "Z0123456789SYNTHETIC",
     serverEnv: syntheticServerEnv(),
     originVerifySecret: "synthetic-origin-lock-value-long-enough",
+    lambdaConcurrency: {
+      server: 400,
+      image: 60,
+      revalidation: 10,
+      dynamoProvider: 2,
+      warmer: 2,
+    },
   });
 
   const template = Template.fromStack(stack);
@@ -89,6 +96,13 @@ test("staging-shaped frontend stack synthesizes", () => {
     openNextDir: openNextFixture,
     serverEnv: syntheticServerEnv(),
     originVerifySecret: "synthetic-origin-lock-value-long-enough",
+    lambdaConcurrency: {
+      server: 25,
+      image: 5,
+      revalidation: 2,
+      dynamoProvider: 2,
+      warmer: 2,
+    },
   });
 
   const template = Template.fromStack(stack);

@@ -16,6 +16,7 @@ function synthBackendTemplate(): Record<string, unknown> {
     removalPolicy: cdk.RemovalPolicy.DESTROY,
     deletionProtection: false,
     pointInTimeRecovery: false,
+    lambdaConcurrency: { reminder: 2, suppression: 2, preSignUp: 2 },
   });
   return Template.fromStack(stack).toJSON();
 }

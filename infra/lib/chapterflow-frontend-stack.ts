@@ -126,6 +126,18 @@ export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
    * them through — the observation half of a two-phase rollout.
    */
   readonly originVerifyMode?: "enforce" | "log";
+  /**
+   * WS6-001 per-function reserved concurrency (see env-config.ts's
+   * ChapterFlowEnvConfig.lambdaConcurrency doc for the account-wide-sum
+   * rules this must respect).
+   */
+  readonly lambdaConcurrency: {
+    readonly server: number;
+    readonly image: number;
+    readonly revalidation: number;
+    readonly dynamoProvider: number;
+    readonly warmer: number;
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -549,6 +561,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       // 30s before returning a retryable failure. Leave enough time to map that
       // failure to the stable 503 response rather than hard-killing Lambda.
       timeout: cdk.Duration.seconds(45),
+      // WS6-001: reserved concurrency caps this fan-out hop's blast radius on
+      // downstream DynamoDB/SES/Cognito/Stripe AND guarantees it a floor
+      // immune to the other Lambdas' bursts (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.server,
       role: lambdaRole,
       environment: commonEnv,
       architecture: lambda.Architecture.X86_64,
@@ -625,6 +641,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       memorySize: 1536,
       timeout: cdk.Duration.seconds(25),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.image,
       // Least-privilege: its own auto-created role (basic execution) plus read
       // on the assets bucket only (granted below). No app secrets, no
       // DynamoDB / SES / Cognito access — image optimization needs none of it.
@@ -693,6 +711,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       memorySize: 256,
       timeout: cdk.Duration.seconds(30),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.revalidation,
       // Least-privilege: its own auto-created role plus the ISR cache table; SQS
       // consume permissions are granted by addEventSource() below. No app
       // secrets — the origin-verify secret is the one exception, carried ONLY so
@@ -726,6 +746,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ),
       memorySize: 256,
       timeout: cdk.Duration.minutes(15),
+      // WS6-001: this runs during every deploy (ISR tag-cache init) — keep its
+      // floor at 2, never 1, so a deploy is never starved by a stuck prior
+      // invocation (see env-config.ts doc for the account-wide-sum rules).
+      reservedConcurrentExecutions: props.lambdaConcurrency.dynamoProvider,
       // Least-privilege: its own auto-created role plus the ISR cache table only.
       environment: baseInfraEnv,
       architecture: lambda.Architecture.X86_64,
@@ -744,6 +768,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(openNextDir, "warmer-function")),
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.warmer,
       // Least-privilege: its own auto-created role plus invoke on the server
       // function only (granted below via a constructed ARN). No secrets.
       environment: {

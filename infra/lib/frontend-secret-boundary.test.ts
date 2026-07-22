@@ -56,6 +56,13 @@ function synthFrontendTemplate(options: {
       ["COGNITO_CLIENT_ID", "nonsecret-client-id"],
     ]),
     originVerifySecret: "synthetic-origin-lock-value-long-enough",
+    lambdaConcurrency: {
+      server: 25,
+      image: 5,
+      revalidation: 2,
+      dynamoProvider: 2,
+      warmer: 2,
+    },
   });
   return Template.fromStack(stack).toJSON();
 }

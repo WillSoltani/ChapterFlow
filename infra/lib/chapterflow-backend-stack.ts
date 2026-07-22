@@ -131,6 +131,16 @@ export interface ChapterFlowBackendStackProps extends cdk.StackProps {
    * resources (so a dev/staging synth without the secret stays clean).
    */
   readonly cognitoUserPoolId?: string;
+  /**
+   * WS6-001 per-function reserved concurrency (see env-config.ts's
+   * ChapterFlowEnvConfig.lambdaConcurrency doc for the account-wide-sum
+   * rules this must respect).
+   */
+  readonly lambdaConcurrency: {
+    readonly reminder: number;
+    readonly suppression: number;
+    readonly preSignUp: number;
+  };
 }
 
 export class ChapterFlowBackendStack extends cdk.Stack {
@@ -505,6 +515,8 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
       memorySize: 512,
       timeout: reminderTimeout,
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.reminder,
       deadLetterQueue: reminderDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
       // WS6-029: this Lambda is multi-hop (DynamoDB read/write + SES send + SSM),
@@ -696,6 +708,8 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrency.suppression,
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
@@ -861,6 +875,11 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         // A sign-in trigger runs inline on the auth path — keep it short so a
         // hung ListUsers/AdminLink can never wedge the user's sign-in.
         timeout: cdk.Duration.seconds(10),
+        // WS6-001: this runs synchronously on the sign-in path for EVERY Apple
+        // sign-in, so its floor stays generous (10, never 1-2) — a starved
+        // reservation here fails closed and blocks sign-in, not just a
+        // background job (see env-config.ts doc).
+        reservedConcurrentExecutions: props.lambdaConcurrency.preSignUp,
         logRetention: logs.RetentionDays.ONE_MONTH,
         // WS6-029: inline on the auth path and calls Cognito (ListUsers/
         // AdminLinkProviderForUser); ACTIVE tracing shows where a slow sign-in went.
