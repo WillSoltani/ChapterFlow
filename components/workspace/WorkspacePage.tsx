@@ -16,7 +16,8 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/components/navigation/TopNav";
 import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
-import { invalidateBookCache } from "@/lib/client/book-api-cache";
+import { useBookQuery, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { COMMITMENTS_KEY } from "@/app/book/hooks/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
 import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
@@ -664,25 +665,18 @@ function CommitmentFollowUpSection() {
   const [skippingId, setSkippingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  const dueQuery = useBookQuery<{ commitments: BookUserCommitmentItem[] }>(
+    `${COMMITMENTS_KEY}?status=active`,
+  );
   useEffect(() => {
-    let cancelled = false;
-    fetchBookJson<{ commitments: BookUserCommitmentItem[] }>(
-      "/app/api/book/me/commitments?status=active",
-    )
-      .then((data) => {
-        if (cancelled) return;
-        const now = Date.now();
-        setDue(
-          (data.commitments ?? []).filter(
-            (c) => c.status === "active" && Date.parse(c.followUpDate) <= now,
-          ),
-        );
-      })
-      .catch(() => {});
-    return () => {
-      cancelled = true;
-    };
-  }, []);
+    if (!dueQuery.data) return;
+    const now = Date.now();
+    setDue(
+      (dueQuery.data.commitments ?? []).filter(
+        (c) => c.status === "active" && Date.parse(c.followUpDate) <= now,
+      ),
+    );
+  }, [dueQuery.data]);
 
   const activeReflection = activeId ? (reflections[activeId] ?? "") : "";
 
@@ -704,6 +698,7 @@ function CommitmentFollowUpSection() {
           ...(outcomes[activeId] ? { outcome: outcomes[activeId] } : {}),
         }),
       });
+      invalidateBookCache(COMMITMENTS_KEY);
       setReflections((prev) => {
         const next = { ...prev };
         delete next[activeId];
@@ -736,6 +731,7 @@ function CommitmentFollowUpSection() {
           method: "PATCH",
           body: JSON.stringify({ action: "skip" }),
         });
+        invalidateBookCache(COMMITMENTS_KEY);
         removeCommitment(id);
         if (activeId === id) setActiveId(null);
       } catch (e) {
