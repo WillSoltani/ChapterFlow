@@ -206,7 +206,7 @@ export function Pricing() {
     : formatAmount(perMonthAmount);
 
   return (
-    <MotionFeatureProvider strict>
+    <MotionFeatureProvider>
     <section id="pricing" className="relative">
       <div className="mx-auto max-w-[1180px] px-5 pt-(--section-pad-sm) pb-(--section-pad-lg) md:px-8 md:pt-(--section-pad-md)">
         {/* Clear plan summary */}
