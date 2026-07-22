@@ -17,7 +17,6 @@ import {
   ensureCompilerRun,
 } from "../src/artifacts/artifactStore.js";
 import type { CompilerApplicationPort } from "../src/app/compilerApplicationPort.js";
-import { MODEL_CALLER_PROFILES } from "../src/app/modelTaskRunner.js";
 import { doCompilerWrite } from "../src/orchestrator/compilerRun.js";
 import { resolveDeps, type AutopilotDeps, type VerbResult } from "../src/orchestrator/autopilot.js";
 
@@ -100,11 +99,12 @@ test("doCompilerWrite invokes the injected CompilerApplicationPort with explicit
   const compilerRequest = {
     candidateId: "candidate-1",
     manifestDigest: "candidate-digest",
+    sourceGitSha: "fixture-source-sha",
     attemptRoot: resolve(tmpdir(), "compiler-application-port-attempt"),
     indexLogicalPath: "index.json",
     sectionTaskContextLogicalPath: "section-context.json",
     sources: [],
-    profileId: MODEL_CALLER_PROFILES["compiler-section"],
+    profileId: "attempt-read-json-v1" as const,
     signal: new AbortController().signal,
   };
 

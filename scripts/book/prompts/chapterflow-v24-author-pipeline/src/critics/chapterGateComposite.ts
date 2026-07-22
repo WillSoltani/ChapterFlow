@@ -25,9 +25,11 @@
 import { resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
+import type { ChapterBlueprintV1 } from "../artifacts/artifactTypes.js";
 import type { BookContentReader } from "../books/candidateTypes.js";
+import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { checkChapterIdentity } from "../lib/chapterPaths.js";
-import { runShipGate, formatGateReport, type ShipGateOptions } from "./finalGate.js";
+import { runShipGate, formatGateReport, type GateFinding, type ShipGateOptions } from "./finalGate.js";
 import { runIntraBookChecks } from "./intraBook.js";
 import { openCriticCandidateEntries } from "./schema.js";
 
@@ -39,6 +41,8 @@ export type ChapterGateCompositeResult = {
   /** true when the ship gate CRASHED on a malformed chapter (CLI prints to stderr). */
   crashed: boolean;
   combinedBlockers: number;
+  /** Structured candidate-native findings used by V4 QC. */
+  findings: readonly GateFinding[];
 };
 
 /** Optional isolation controls for callers that gate an experiment-local
@@ -81,6 +85,7 @@ export async function runChapterGateComposite(
       exitCode: 1,
       crashed: false,
       combinedBlockers: 1,
+      findings: [{ catalogId: "GATE_ATTEMPT_STATE_UNBOUND", severity: "blocker", unit: "gate-attempt-state", message: "explicit candidate-local gate attempt state is required" }],
       report: "GATE_ATTEMPT_STATE_UNBOUND: explicit gateAttemptState and persistGateAttemptState are required; path/default fallback is forbidden.",
     };
   }
@@ -95,6 +100,7 @@ export async function runChapterGateComposite(
       exitCode: 1,
       crashed: true,
       combinedBlockers: 1,
+      findings: [{ catalogId: "CHAPTER_SCHEMA_INVALID", severity: "blocker", unit: "chapter", message: (err as Error)?.message ?? String(err) }],
       report:
         `gate-chapter: ship gate CRASHED on a malformed chapter (${(err as Error)?.message ?? String(err)}). ` +
         `Fix the malformed field (likely a quiz question: missing/null choices, out-of-range correctIndex, or non-string bloomsLevel) and re-run.`,
@@ -159,6 +165,24 @@ export async function runChapterGateComposite(
 
   // ── 5. Authoritative combined verdict ─────────────────────────────────────
   const combinedBlockers = report.blockers.length + extraBlockers;
+  const findings: GateFinding[] = [
+    ...report.blockers,
+    ...report.majors,
+    ...report.minors,
+    ...intraFindings.map((finding) => ({
+      catalogId: finding.checkId,
+      severity: finding.severity,
+      unit: "intra-book",
+      message: finding.message,
+      ...(finding.evidence === undefined ? {} : { evidence: finding.evidence }),
+    })),
+    ...identityFindings.map((finding) => ({
+      catalogId: finding.checkId,
+      severity: finding.severity,
+      unit: "identity",
+      message: finding.message,
+    })),
+  ];
   lines.push("");
   if (combinedBlockers > 0) {
     lines.push(
@@ -184,6 +208,7 @@ export async function runChapterGateComposite(
       exitCode: 1,
       crashed: false,
       combinedBlockers: Math.max(1, combinedBlockers),
+      findings: [...findings, { catalogId: "GATE_ATTEMPT_STATE_PERSIST_FAILED", severity: "blocker", unit: "gate-attempt-state", message: (cause as Error).message }],
       report: `${lines.join("\n")}\nGATE_ATTEMPT_STATE_PERSIST_FAILED: ${(cause as Error).message}`,
     };
   }
@@ -217,6 +242,7 @@ export async function runChapterGateComposite(
     exitCode: breakerTripped ? 3 : combinedReport.passed ? 0 : 1,
     crashed: false,
     combinedBlockers,
+    findings,
     report: lines.join("\n"),
   };
 }
@@ -230,17 +256,27 @@ export async function runChapterGateCompositeFromCandidate(
     chapterLogicalPath: string;
     siblingLogicalPaths: readonly string[];
     sourceSidecarLogicalPath: string;
+    blueprintLogicalPath?: string;
+    sourceUsePlanLogicalPath?: string;
     siblingContextPath: string;
     attemptKey: string;
     gateAttemptState: Record<string, GateAttemptEntry>;
     persistGateAttemptState: (state: Record<string, GateAttemptEntry>) => void;
   }>,
 ): Promise<ChapterGateCompositeResult> {
+  const experimentPaths = input.blueprintLogicalPath && input.sourceUsePlanLogicalPath
+    ? [input.blueprintLogicalPath, input.sourceUsePlanLogicalPath]
+    : [];
+  if ((input.blueprintLogicalPath === undefined) !== (input.sourceUsePlanLogicalPath === undefined)) {
+    throw new Error("CANDIDATE_ENTRY_INVALID: blueprint and source-use plan must be supplied together");
+  }
   const opened = await openCriticCandidateEntries(reader, {
     ...input,
-    logicalPaths: [input.chapterLogicalPath, ...input.siblingLogicalPaths, input.sourceSidecarLogicalPath],
+    logicalPaths: [input.chapterLogicalPath, ...input.siblingLogicalPaths, input.sourceSidecarLogicalPath, ...experimentPaths],
   });
   const siblingEnd = 1 + input.siblingLogicalPaths.length;
+  const blueprint = opened.values[siblingEnd + 1] as ChapterBlueprintV1 | undefined;
+  const sourceUsePlan = opened.values[siblingEnd + 2] as SourceUsePlanV1 | undefined;
   return runChapterGateComposite(
     opened.values[0] as ChapterV21,
     input.siblingContextPath,
@@ -251,6 +287,15 @@ export async function runChapterGateCompositeFromCandidate(
       gateAttemptState: input.gateAttemptState,
       persistGateAttemptState: input.persistGateAttemptState,
       disableCanonicalKeyJudgeAdvisory: true,
+      ...(blueprint === undefined ? {} : {
+        shipGate: {
+          isolationMode: "experiment",
+          allocatedNames: blueprint.reservedVariety.allowedNames,
+          exampleFloor: blueprint.sections.examples.length,
+          sourceSidecar: opened.values[siblingEnd],
+          sourceUsePlan: sourceUsePlan ?? null,
+        },
+      }),
     },
   );
 }

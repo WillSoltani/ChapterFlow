@@ -26,7 +26,7 @@ import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { ReviewService } from "../../src/review/reviewTypes.js";
 import { buildLegacyReaderPackage } from "../../src/promoteBook.js";
 import type { ChapterV21 } from "../../src/types.js";
-import { runCli, writeResearchRunManifestFixture } from "../helpers.js";
+import { makeSourceV2SidecarFixture, runCli, writeResearchRunManifestFixture } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -319,8 +319,11 @@ requiredTest("candidate-only CLI release does not require ambient canonical chap
   const bookId = "candidate-only-cli-release";
   const stores = storage(context);
   const chapter = fixtureChapter(bookId, 1, "candidate-only");
+  const sourceSidecarPath = "sidecars/source/ch01.source.json";
   const files = [
     { kind: "CHAPTER" as const, logicalPath: "chapters/ch01.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(chapter)}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: "compiler/ch01/source-packet.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify({ sourceSidecarPath })}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: sourceSidecarPath, mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(makeSourceV2SidecarFixture({ chapterNumber: chapter.number, chapterTitle: chapter.title }))}\n`) },
     { kind: "SIDECAR" as const, logicalPath: "critics/book-pattern-audit.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(patternAudit(bookId))}\n`) },
   ];
   const staged = await stores.candidates.stage({

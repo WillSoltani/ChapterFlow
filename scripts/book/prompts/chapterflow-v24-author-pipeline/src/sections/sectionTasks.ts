@@ -209,12 +209,29 @@ function bookScarsSection(scars: BookScars | null): string {
   return lines.join("\n");
 }
 
-function sectionSchemaHint(kind: SectionKind): string {
+function sectionSchemaHint(kind: SectionKind, deliveryMode: SectionTaskDeliveryMode = "FILE_WRITE"): string {
+  if (deliveryMode === "DIRECT_JSON") {
+    switch (kind) {
+      case "summary-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"summary-pack","chapterId":"chapter-id","hook":{"hook":"A concrete chapter-specific tension opens this lesson with enough detail to orient the reader.","counterintuition":"The intuitive move can hide the mechanism that matters most.","sourceAnchorIds":["anchor-id"],"counterintuitionSourceAnchorIds":["anchor-id"]},"breakdown":{"fastRead":"Write the complete fast-read summary here.","deepRead":"Write the complete deep-read summary here.","fullRead":"Write the complete full-read summary here.","sourceAnchorIds":{"fastRead":["anchor-id"],"deepRead":["anchor-id"],"fullRead":["anchor-id"]}},"keyTakeaway":"State one concrete takeaway.","keyTakeawaySourceAnchorIds":["anchor-id"],"tryThisNow":"State one immediate action grounded in the chapter.","tryThisNowSourceAnchorIds":["anchor-id"],"sourceFactIds":["fact-id"]}`;
+      case "example-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"example-pack","chapterId":"chapter-id","examples":[{"exampleId":"ex01","slotId":"example-slot-id","title":"Concrete Moment","scenario":"A named person faces a specific chapter-grounded decision and experiences its consequence.","whatToDo":"Take one concrete action that applies the demonstrated mechanism.","whyItMatters":"Explain why that action follows from the cited source fact.","sourceAnchorIds":["anchor-id"],"sourceFactIds":["fact-id"],"namedCaseIds":["case-id"],"introducedEntities":["Person Name"],"numbersUsed":["verified number"]}]}`;
+      case "learning-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"learning-pack","chapterId":"chapter-id","quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"keyEvidenceAnchorIds":["anchor-id"],"prompt":"Suppose you face a chapter-specific decision; which response best applies the mechanism?","choices":["Plausible response one","Plausible response two","Plausible response three"],"correctIndex":0,"explanation":"Explain why the keyed response follows from the cited evidence.","bloomsLevel":"apply","depthLevel":"standard"}]},"cards":{"cards":[{"cardId":"card01","sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"front":"Which chapter-specific mechanism should you retrieve here?","back":"State the mechanism, its boundary, and the concrete evidence that makes it useful.","difficulty":"easy"}]}}`;
+      case "action-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"action-pack","chapterId":"chapter-id","tryThisNow":"Take one concrete, low-friction action that applies the cited mechanism today.","tryThisNowSourceAnchorIds":["anchor-id"],"implementationPlan":{"title":"Practice One Concrete Skill","titleSourceAnchorIds":["anchor-id"],"coreSkill":"Describe the skill, trigger, constraint, and observable result in concrete terms.","coreSkillSourceAnchorIds":["anchor-id"],"ifThenPlans":[{"sourceAnchorId":"anchor-id","sourceAnchorIds":["anchor-id"],"context":"Before a specific recurring decision","plan":"If the trigger appears, then perform the chapter-specific action and check its result."}],"twentyFourHourChallenge":"Run the chapter-specific practice once within twenty-four hours and record the observable result.","twentyFourHourChallengeSourceAnchorIds":["anchor-id"],"weeklyPractice":"Repeat the practice on a specific cadence and adjust from observed results.","weeklyPracticeSourceAnchorIds":["anchor-id"]}}`;
+    }
+  }
   switch (kind) {
     case "summary-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"summary-pack","chapterId":"...","hook":{...HookOutput},"breakdown":{...BreakdownOutput},"keyTakeaway":"...","keyTakeawaySourceAnchorIds":["..."],"tryThisNow":"...","tryThisNowSourceAnchorIds":["..."],"sourceFactIds":["..."]}`;
     case "example-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"example-pack","chapterId":"...","examples":[{"exampleId":"ex01","title":"...","scenario":"...","whatToDo":"...","whyItMatters":"...","sourceAnchorIds":["..."],"sourceFactIds":["..."],"namedCaseIds":["..."]}]}`;
     case "learning-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"learning-pack","chapterId":"...","quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","sourceAnchorIds":["..."],"keyEvidenceAnchorIds":["..."],"prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...","bloomsLevel":"apply","depthLevel":"standard"}]},"cards":{"cards":[...]}}`;
     case "action-pack": return `{"schemaVersion":"section-artifact-v1","artifactType":"action-pack","chapterId":"...","tryThisNow":"...","tryThisNowSourceAnchorIds":["..."],"implementationPlan":{...ImplementationPlanOutput}}`;
+  }
+}
+
+function directJsonShapeRules(kind: SectionKind): string {
+  switch (kind) {
+    case "summary-pack": return "- hook.hook must be at least 40 characters.";
+    case "learning-pack": return "- Every cards.cards[].front must be a retrieval question ending in ?.";
+    case "action-pack": return "- Every implementationPlan.ifThenPlans[].plan must begin with If.";
+    case "example-pack": return "";
   }
 }
 
@@ -262,8 +279,10 @@ export type SectionTaskRenderContext = Readonly<{
   bookScars: BookScars | null;
 }>;
 
-export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext }): string {
-  const { bookId, kind, blueprint, sourcePacket, outputPath, context } = args;
+export type SectionTaskDeliveryMode = "FILE_WRITE" | "DIRECT_JSON";
+
+export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext; deliveryMode?: SectionTaskDeliveryMode }): string {
+  const { bookId, kind, blueprint, sourcePacket, outputPath, context, deliveryMode = "FILE_WRITE" } = args;
   // Each writer consumes only its own section's slots plus a little shared chapter
   // context; the per-slot dealt fields (sceneFrame, promptShape, correctIndex,
   // requiredFactIds, action.practiceForm, …) all live inside these section slices.
@@ -287,6 +306,10 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   // packet.coreMoveFactId) from the writer-facing copy — the blueprint already encodes which fact
   // is dealt where — so the ranking never leaks into the writer prompt or spends its tokens.
   const writerPacket = { ...sourcePacket, coreMoveFactId: undefined, facts: sourcePacket.facts.map(({ teachingPriority: _tp, ...f }) => f) };
+  if (deliveryMode === "DIRECT_JSON") {
+    const shapeRules = directJsonShapeRules(kind);
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n`;
+  }
   return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nAfter writing ${outputPath}, run:\n\n  npx tsx src/cli.ts validate-sections ${bookId} --chapters ${blueprint.chapterNumber} --section ${kind}\n\nStop only when validation passes for this section or the validator gives a precise blocker you cannot resolve without more source.\n`;
 }
 

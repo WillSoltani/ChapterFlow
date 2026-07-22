@@ -38,7 +38,26 @@ function chapterTextForExemplars(chapter: ChapterV21): string {
   return parts.filter(Boolean).join("\n");
 }
 
-function sidecarWhitelistTerms(bookId: string, chapters: ChapterV21[]): Set<string> {
+function addSidecarWhitelistTerms(whitelist: Set<string>, sidecar: unknown): void {
+  if (!isRecord(sidecar)) return;
+  const centralConcept = sidecar.centralConcept;
+  if (isRecord(centralConcept) && typeof centralConcept.name === "string") {
+    whitelist.add(normalizeExemplarCandidate(centralConcept.name));
+  }
+  if (Array.isArray(sidecar.frameworks)) {
+    for (const framework of sidecar.frameworks) {
+      if (!isRecord(framework)) continue;
+      if (typeof framework.name === "string") whitelist.add(normalizeExemplarCandidate(framework.name));
+      if (Array.isArray(framework.members)) {
+        for (const member of framework.members) {
+          if (typeof member === "string") whitelist.add(normalizeExemplarCandidate(member));
+        }
+      }
+    }
+  }
+}
+
+function ambientSidecarWhitelistTerms(bookId: string, chapters: ChapterV21[]): Set<string> {
   const whitelist = new Set<string>();
   for (const chapter of chapters) {
     const path = findSourceSidecar(bookId, chapter.number);
@@ -53,29 +72,30 @@ function sidecarWhitelistTerms(bookId: string, chapters: ChapterV21[]): Set<stri
       console.warn(`BP26: unreadable source sidecar for "${bookId}" ch${String(chapter.number).padStart(2, "0")}: ${(err as Error).message}`);
       continue;
     }
-    if (!isRecord(sidecar)) continue;
-    const centralConcept = sidecar.centralConcept;
-    if (isRecord(centralConcept) && typeof centralConcept.name === "string") {
-      whitelist.add(normalizeExemplarCandidate(centralConcept.name));
-    }
-    if (Array.isArray(sidecar.frameworks)) {
-      for (const framework of sidecar.frameworks) {
-        if (!isRecord(framework)) continue;
-        if (typeof framework.name === "string") whitelist.add(normalizeExemplarCandidate(framework.name));
-        if (Array.isArray(framework.members)) {
-          for (const member of framework.members) {
-            if (typeof member === "string") whitelist.add(normalizeExemplarCandidate(member));
-          }
-        }
-      }
-    }
+    addSidecarWhitelistTerms(whitelist, sidecar);
   }
   whitelist.delete("");
   return whitelist;
 }
 
-export function checkBookExemplarChapterReuse(bookId: string, chapters: ChapterV21[]): CriticFinding[] {
-  const whitelist = sidecarWhitelistTerms(bookId, chapters);
+export type BookExemplarChapterReuseOptions = Readonly<{
+  /** Candidate-native source-v2 values. Presence, including an empty array,
+   * disables legacy ambient source discovery. */
+  sourceSidecars?: readonly unknown[];
+  /** Optional already-normalized or raw framework terms from a caller-owned snapshot. */
+  whitelistTerms?: readonly string[];
+}>;
+
+export function checkBookExemplarChapterReuse(
+  bookId: string,
+  chapters: ChapterV21[],
+  options: BookExemplarChapterReuseOptions = {},
+): CriticFinding[] {
+  const hasExplicitInputs = options.sourceSidecars !== undefined || options.whitelistTerms !== undefined;
+  const whitelist = hasExplicitInputs ? new Set<string>() : ambientSidecarWhitelistTerms(bookId, chapters);
+  for (const sidecar of options.sourceSidecars ?? []) addSidecarWhitelistTerms(whitelist, sidecar);
+  for (const term of options.whitelistTerms ?? []) whitelist.add(normalizeExemplarCandidate(term));
+  whitelist.delete("");
   const byCandidate = new Map<string, { display: string; hits: ChapterHit[] }>();
 
   for (const chapter of chapters) {

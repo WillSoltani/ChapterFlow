@@ -117,6 +117,8 @@ async function rig(context: TestContext) {
   const store = createCandidateStore({ booksRoot: context.roots.booksRoot, writeLock: lock, currentPointerStore: pointer });
   const reader = createBookContentReader({ booksRoot: context.roots.booksRoot, currentPointerStore: pointer });
   const sourceChapters = chapters();
+  sourceChapters[0].breakdown.fastRead += " Marie Curie anchors this candidate teaching case.";
+  sourceChapters[1].breakdown.fastRead += " Marie Curie anchors this candidate teaching case again.";
   const files: CandidateInputFile[] = [
     ...sourceChapters.map((chapter) => jsonFile(chapterPath(chapter.number), chapter, "CHAPTER")),
     jsonFile(PACKAGE, v21Package(sourceChapters)),
@@ -213,14 +215,29 @@ requiredTest("critics use candidate bytes despite conflicting legacy files", asy
   assert.equal(unbound.passed, false);
   assert.equal(unboundFinding?.message, "BOOK_PATTERN_AUDIT_UNBOUND: explicit candidate-bound patternAudit is required; ambient plan/source discovery is forbidden.");
   assert.equal(unbound.stats.patternAudit.passed, false);
-  const bound = await runBookGateFromCandidate(input.reader, {
-    bookId: BOOK,
-    candidateId: CANDIDATE,
-    manifestDigest: input.digest,
-    chapterLogicalPaths: input.chapters.map((chapter) => chapterPath(chapter.number)),
-    patternAuditLogicalPath: PATTERN_AUDIT,
-  });
+  const beforeCandidateRead = snapshotTree(context.roots.booksRoot);
+  const beforeAmbientState = snapshotTree(context.roots.stateRoot);
+  const candidateWarnings: string[] = [];
+  const priorWarn = console.warn;
+  console.warn = (...args: unknown[]) => candidateWarnings.push(args.map(String).join(" "));
+  let bound: Awaited<ReturnType<typeof runBookGateFromCandidate>>;
+  try {
+    bound = await runBookGateFromCandidate(input.reader, {
+      bookId: BOOK,
+      candidateId: CANDIDATE,
+      manifestDigest: input.digest,
+      chapterLogicalPaths: input.chapters.map((chapter) => chapterPath(chapter.number)),
+      sourceSidecarLogicalPaths: input.chapters.map(() => SOURCE),
+      patternAuditLogicalPath: PATTERN_AUDIT,
+    });
+  } finally {
+    console.warn = priorWarn;
+  }
+  assert.deepEqual(snapshotTree(context.roots.booksRoot), beforeCandidateRead);
+  assert.deepEqual(snapshotTree(context.roots.stateRoot), beforeAmbientState);
+  assert.deepEqual(candidateWarnings, []);
   assert.equal(bound.findings.some((finding) => finding.catalogId === "BOOK_PATTERN_AUDIT_UNBOUND"), false);
+  assert.equal(bound.findings.some((finding) => finding.catalogId === "BP26.exemplar_chapter_reuse"), true);
   assert.equal(bound.stats.patternAudit.passed, true);
   const report = await runAllCriticsFromCandidate(input.reader, { bookId: BOOK, candidateId: CANDIDATE, manifestDigest: input.digest, packageLogicalPath: LEGACY_PACKAGE, generatedAt: CREATED });
   assert.equal(report.bookId, BOOK);
@@ -237,6 +254,7 @@ requiredTest("book gate and model evaluator reject missing malformed or mismatch
     candidateId,
     manifestDigest,
     chapterLogicalPaths,
+    sourceSidecarLogicalPaths: chapterLogicalPaths.map(() => SOURCE),
     patternAuditLogicalPath: PATTERN_AUDIT,
   });
   const withoutAudit = input.files.filter((file) => file.logicalPath !== PATTERN_AUDIT);
@@ -256,6 +274,13 @@ requiredTest("book gate and model evaluator reject missing malformed or mismatch
   const malformedShapeDigest = await stageVariant(input, "candidate-audit-wrong-shape", replaceAudit(Buffer.from(JSON.stringify(malformedShape))));
   await assert.rejects(gate("candidate-audit-wrong-shape", malformedShapeDigest), /BOOK_PATTERN_AUDIT_INVALID: stats shape/);
   const beforeReads = snapshotTree(context.roots.booksRoot);
+  await assert.rejects(() => runBookGateFromCandidate(input.reader, {
+    bookId: BOOK,
+    candidateId: CANDIDATE,
+    manifestDigest: input.digest,
+    chapterLogicalPaths,
+    patternAuditLogicalPath: PATTERN_AUDIT,
+  }), /CANDIDATE_ENTRY_INVALID: one explicit source-v2 sidecar path is required per chapter/);
   await assert.rejects(gate("candidate-audit-missing", missingDigest), /CANDIDATE_ENTRY_MISSING/);
   await assert.rejects(gate("candidate-audit-malformed", malformedDigest), /CANDIDATE_ENTRY_INVALID/);
   await assert.rejects(gate("candidate-audit-wrong-book", wrongBookDigest), /BOOK_PATTERN_AUDIT_MISMATCH/);
@@ -266,6 +291,7 @@ requiredTest("book gate and model evaluator reject missing malformed or mismatch
     candidateId: CANDIDATE,
     manifestDigest: input.digest,
     chapterLogicalPaths,
+    sourceSidecarLogicalPaths: chapterLogicalPaths.map(() => SOURCE),
     patternAuditLogicalPath: "ambient/newest-audit.json",
   }), /CANDIDATE_ENTRY_INVALID: expected critics\/book-pattern-audit\.json/);
 

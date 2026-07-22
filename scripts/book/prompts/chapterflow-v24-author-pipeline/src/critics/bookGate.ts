@@ -112,6 +112,11 @@ export type BookGateOptions = {
   checkSourceAlignment?: boolean;
   /** Frozen candidate-bound pattern audit; avoids ambient plan/source discovery. */
   patternAudit?: BookPatternAuditReport;
+  /** Explicit candidate-bound source-v2 values for BP26. Presence disables
+   * legacy ambient source-sidecar discovery. */
+  exemplarSourceSidecars?: readonly unknown[];
+  /** Optional caller-owned BP26 framework terms. */
+  exemplarWhitelistTerms?: readonly string[];
 };
 
 /**
@@ -498,7 +503,10 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   }
 
   // ── BP26/BP27 — book-level repetition of marquee exemplars and venues. ───
-  for (const f of checkBookExemplarChapterReuse(bookId, chapters)) {
+  for (const f of checkBookExemplarChapterReuse(bookId, chapters, {
+    sourceSidecars: options.exemplarSourceSidecars,
+    whitelistTerms: options.exemplarWhitelistTerms,
+  })) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",
@@ -705,15 +713,28 @@ export async function runBookGateFromCandidate(
     candidateId: string;
     manifestDigest: string;
     chapterLogicalPaths: readonly string[];
+    /** One candidate source-v2 sidecar path paired with each chapter path. */
+    sourceSidecarLogicalPaths?: readonly string[];
     patternAuditLogicalPath: string;
   }>,
 ): Promise<BookGateReport> {
   if (input.patternAuditLogicalPath !== BOOK_PATTERN_AUDIT_LOGICAL_PATH) {
     throw new Error(`CANDIDATE_ENTRY_INVALID: expected ${BOOK_PATTERN_AUDIT_LOGICAL_PATH}`);
   }
+  if (
+    !input.sourceSidecarLogicalPaths ||
+    input.sourceSidecarLogicalPaths.length !== input.chapterLogicalPaths.length ||
+    input.sourceSidecarLogicalPaths.some((path) => typeof path !== "string" || path.length === 0)
+  ) {
+    throw new Error("CANDIDATE_ENTRY_INVALID: one explicit source-v2 sidecar path is required per chapter");
+  }
   const opened = await openCriticCandidateEntries(reader, {
     ...input,
-    logicalPaths: [...input.chapterLogicalPaths, input.patternAuditLogicalPath],
+    logicalPaths: [
+      ...input.chapterLogicalPaths,
+      ...input.sourceSidecarLogicalPaths,
+      input.patternAuditLogicalPath,
+    ],
   });
   const auditFile = opened.snapshot.files.find((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH);
   if (!auditFile || auditFile.kind !== "SIDECAR" || auditFile.mediaType !== "application/json") {
@@ -723,8 +744,10 @@ export async function runBookGateFromCandidate(
     bookId: input.bookId,
     chapterCount: input.chapterLogicalPaths.length,
   });
-  return runBookGate(input.bookId, opened.values.slice(0, -1) as ChapterV21[], {
+  const chapterCount = input.chapterLogicalPaths.length;
+  return runBookGate(input.bookId, opened.values.slice(0, chapterCount) as ChapterV21[], {
     patternAudit,
+    exemplarSourceSidecars: opened.values.slice(chapterCount, chapterCount * 2),
   });
 }
 

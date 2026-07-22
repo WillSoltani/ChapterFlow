@@ -42,6 +42,18 @@ test("BP26 fires when the same marquee proper noun anchors multiple chapters", (
   assert.ok(findings.some((f) => f.checkId === "BP26.exemplar_chapter_reuse" && f.severity === "minor"), JSON.stringify(findings));
 });
 
+test("BP26 uses explicit candidate sidecars as whitelist input", () => {
+  const book = "zz-fixture-bp26-candidate";
+  const ch1 = makeChapter(book, 1);
+  const ch2 = makeChapter(book, 2);
+  ch1.breakdown.fastRead += " Marie Curie turns the laboratory result into the teaching case.";
+  ch2.breakdown.fastRead += " Marie Curie anchors the second teaching case.";
+  const findings = checkBookExemplarChapterReuse(book, [ch1, ch2], {
+    sourceSidecars: [{ centralConcept: { name: "Marie Curie" } }],
+  });
+  assert.equal(findings.some((f) => f.checkId === "BP26.exemplar_chapter_reuse"), false, JSON.stringify(findings));
+});
+
 test("BP27 fires when one venue appears as an example setting in more than two chapters", () => {
   const book = "zz-fixture-bp27";
   const chapters = [1, 2, 3].map((n) => {

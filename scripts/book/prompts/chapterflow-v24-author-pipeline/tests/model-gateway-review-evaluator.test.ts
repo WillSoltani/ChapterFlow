@@ -61,3 +61,59 @@ test("gateway review evaluator converts failed or invalid model results to error
   });
   assert.equal((await invalid.evaluate({ candidate, taskContext: context })).ok, false);
 });
+
+test("gateway review evaluator defaults to pipeline profile and accepts isolated-attempt profile", async () => {
+  const profiles: string[] = [];
+  const runner = {
+    async run(request: Parameters<import("../src/app/modelTaskRunner.js").ModelTaskRunner["run"]>[0]) {
+      profiles.push(request.profileId);
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED" as const, output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  assert.ok((await new ModelGatewayReviewEvaluator(runner).evaluate({ candidate, taskContext: context })).ok);
+  assert.ok((await new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1").evaluate({ candidate, taskContext: context })).ok);
+  assert.deepEqual(profiles, ["pipeline-read-json-v1", "attempt-read-json-v1"]);
+  assert.throws(() => new ModelGatewayReviewEvaluator(runner, "unregistered-read-json" as never), /REVIEW_PROFILE_INVALID/);
+});
+
+test("gateway review packet contains ordered chapters plus one pattern audit only", async () => {
+  const first = makeChapter("review-book", 1);
+  const second = makeChapter("review-book", 2);
+  const firstBytes = Buffer.from(`${JSON.stringify(first)}\n`);
+  const secondBytes = Buffer.from(`${JSON.stringify(second)}\n`);
+  const twoAuditBytes = Buffer.from(`${JSON.stringify(runBookPatternAudit({
+    bookId: "review-book",
+    chapters: [first, second],
+    requirePlanArtifacts: false,
+    checkSourceAlignment: false,
+  }))}\n`);
+  const privateBytes = Buffer.from('{"secret":"omit"}');
+  const packetFiles = [
+    { kind: "SIDECAR" as const, logicalPath: "compiler/private-task.json", mediaType: "application/json" as const, byteLength: privateBytes.byteLength, bytes: privateBytes },
+    { kind: "CHAPTER" as const, logicalPath: "chapters/ch02.json", mediaType: "application/json" as const, byteLength: secondBytes.byteLength, bytes: secondBytes },
+    { kind: "SIDECAR" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, mediaType: "application/json" as const, byteLength: twoAuditBytes.byteLength, bytes: twoAuditBytes },
+    { kind: "CHAPTER" as const, logicalPath: "chapters/ch01.json", mediaType: "application/json" as const, byteLength: firstBytes.byteLength, bytes: firstBytes },
+  ];
+  const metadata: CandidateManifestMetadata = {
+    schemaVersion: "1", bookId: "review-book", candidateId: "candidate-ordered", createdByRunId: "run-1",
+    entries: packetFiles.map(({ bytes: _bytes, ...entry }) => entry),
+    createdAt: "2026-07-21T00:00:00.000Z",
+  };
+  const orderedCandidate: CandidateSnapshot = {
+    manifest: { ...metadata, manifestDigest: candidateManifestDigest(metadata, packetFiles) },
+    files: packetFiles,
+  };
+  let document = "";
+  const evaluator = new ModelGatewayReviewEvaluator({
+    async run(request) {
+      document = new TextDecoder().decode(request.prompt.inputs.find((input) => input.name === "user_prompt")!.bytes);
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  });
+  const evaluated = await evaluator.evaluate({ candidate: orderedCandidate, taskContext: context });
+  assert.ok(evaluated.ok);
+  assert.ok(document.indexOf("FILE chapters/ch01.json") < document.indexOf("FILE chapters/ch02.json"));
+  assert.ok(document.indexOf("FILE chapters/ch02.json") < document.indexOf(`FILE ${BOOK_PATTERN_AUDIT_LOGICAL_PATH}`));
+  assert.equal(document.includes("compiler/private-task.json"), false);
+  assert.equal(document.includes("secret"), false);
+});

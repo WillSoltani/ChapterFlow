@@ -12,13 +12,42 @@ const REVIEW_SYSTEM = `Review candidate book content. Return JSON only:
 {"outcome":"PASS"|"FAIL"|"ERROR","issues":[{"code":"...","severity":"INFO"|"WARN"|"BLOCKER","message":"...","location":"optional"}]}
 PASS must contain no BLOCKER issue. Preserve uncertainty as ERROR.`;
 
+export type ModelGatewayReviewProfileId = "pipeline-read-json-v1" | "attempt-read-json-v1";
+
+const REVIEW_PROFILE_IDS = new Set<ModelGatewayReviewProfileId>([
+  "pipeline-read-json-v1",
+  "attempt-read-json-v1",
+]);
+
 function failure(code: string, message: string): Result<never> {
   return { ok: false, error: { code, message } };
 }
 
-function candidateText(candidate: CandidateSnapshot): string {
+function reviewFiles(candidate: CandidateSnapshot): Result<CandidateSnapshot["files"]> {
+  const chapters = candidate.files.filter((file) => file.kind === "CHAPTER");
+  if (chapters.length === 0) return failure("REVIEW_CANDIDATE_INVALID", "canonical review requires at least one CHAPTER file");
+  const numbered = chapters.map((file) => {
+    if (file.mediaType !== "application/json") throw new Error(`${file.logicalPath} must use application/json`);
+    let value: unknown;
+    try {
+      value = JSON.parse(Buffer.from(file.bytes).toString("utf8"));
+    } catch {
+      throw new Error(`${file.logicalPath} is malformed JSON`);
+    }
+    const number = (value as { number?: unknown } | null)?.number;
+    if (!Number.isInteger(number) || (number as number) < 1) throw new Error(`${file.logicalPath} has invalid chapter number`);
+    return { file, number: number as number };
+  }).sort((left, right) => left.number - right.number || left.file.logicalPath.localeCompare(right.file.logicalPath));
+  for (let index = 0; index < numbered.length; index += 1) {
+    if (numbered[index].number !== index + 1) throw new Error("CHAPTER files must form one contiguous ordered chapter set");
+  }
+  const audit = candidate.files.find((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH)!;
+  return { ok: true, value: [...numbered.map((entry) => entry.file), audit] };
+}
+
+function candidateText(files: CandidateSnapshot["files"]): string {
   const decoder = new TextDecoder();
-  return candidate.files.map((file) => [
+  return files.map((file) => [
     `FILE ${file.logicalPath} (${file.mediaType})`,
     decoder.decode(file.bytes),
   ].join("\n")).join("\n\n");
@@ -80,9 +109,14 @@ function parseEvaluation(value: unknown): CanonicalReviewEvaluation | null {
 
 export class ModelGatewayReviewEvaluator implements CanonicalReviewEvaluator {
   readonly #runner: ModelTaskRunner;
+  readonly #profileId: ModelGatewayReviewProfileId;
 
-  constructor(runner: ModelTaskRunner) {
+  constructor(runner: ModelTaskRunner, profileId: ModelGatewayReviewProfileId = "pipeline-read-json-v1") {
+    if (!REVIEW_PROFILE_IDS.has(profileId)) {
+      throw new Error(`REVIEW_PROFILE_INVALID: ${String(profileId)}`);
+    }
     this.#runner = runner;
+    this.#profileId = profileId;
   }
 
   async evaluate(input: Readonly<{
@@ -91,9 +125,16 @@ export class ModelGatewayReviewEvaluator implements CanonicalReviewEvaluator {
   }>): Promise<Result<CanonicalReviewEvaluation>> {
     const audit = validatePatternAudit(input.candidate);
     if (!audit.ok) return audit;
+    let files: Result<CandidateSnapshot["files"]>;
+    try {
+      files = reviewFiles(input.candidate);
+    } catch (error) {
+      return failure("REVIEW_CANDIDATE_INVALID", (error as Error).message);
+    }
+    if (!files.ok) return files;
     const result = await this.#runner.run({
-      profileId: "pipeline-read-json-v1",
-      prompt: jsonPromptRequest(REVIEW_SYSTEM, candidateText(input.candidate)),
+      profileId: this.#profileId,
+      prompt: jsonPromptRequest(REVIEW_SYSTEM, candidateText(files.value)),
       context: input.taskContext,
     });
     if (result.outcome !== "SUCCEEDED") {
