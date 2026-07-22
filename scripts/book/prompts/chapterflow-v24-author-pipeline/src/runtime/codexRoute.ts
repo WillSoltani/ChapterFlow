@@ -11,11 +11,15 @@ export interface ModelProcessRoute {
 const FIXED_CODEX_MODEL = "gpt-5.5";
 const FIXED_REASONING_EFFORT = "high";
 
+/** Route id, exported so callers (e.g. ModelGateway's model-CLI preflight) can
+ *  identify "this is the real codex route" without a magic string literal. */
+export const CODEX_ROUTE_ID = "codex-chatgpt-subscription-v1";
+
 /** Sole production mapping. Prompt never enters build(), so route cannot place
  * prompt/source bytes in argv. Final '-' tells Codex to consume task on stdin. */
 export function createCodexRoute(): ModelProcessRoute {
   return Object.freeze({
-    id: "codex-chatgpt-subscription-v1",
+    id: CODEX_ROUTE_ID,
     build(profile: ExecutionProfile) {
       const sandbox = profile.mode === "READ_ONLY" ? "read-only" : "workspace-write";
       const args = [

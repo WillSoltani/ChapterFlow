@@ -9,6 +9,7 @@ import {
   type RunDefinition,
   type RunStore,
 } from "../../src/run-state/index.js";
+import { ExecPreflightError } from "../../src/exec/cliQualification.js";
 import { createCodexRoute, type ModelProcessRoute } from "../../src/runtime/codexRoute.js";
 import { createExecutionPolicy } from "../../src/runtime/executionPolicy.js";
 import type { ExecutionPolicy, ExecutionProfile } from "../../src/runtime/executionPolicyTypes.js";
@@ -572,6 +573,60 @@ requiredTest("production Codex mapping is fixed and performs no invocation durin
   assert.equal(write.args.includes("--skip-git-repo-check"), true);
   assert.equal(read.args.join("\0").includes("gpt-5.5"), true);
   assert.equal(write.args.join("\0").includes("gpt-5.5"), true);
+  assertNoLiveInvocation();
+});
+
+requiredTest("model-CLI preflight is skipped under the hermetic no-API guard, even on the live codex route", async ({ roots }) => {
+  assert.equal(process.env.CHAPTERFLOW_NO_API_CODEX_QC, "1", "this suite runs hermetic — the preflight must never spawn a real CLI");
+  const run = definition("hermetic-preflight-book", "hermetic-preflight-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  const supervisor = new FakeSupervisor(observed, () => processResult());
+  // The real codex route (matching id) — if the hermetic guard did not gate
+  // the default preflight, this would attempt a real `codex` spawn.
+  const gateway = createModelGateway({
+    runStore: tracedStore(inner, observed),
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: createCodexRoute(),
+    now: clock(),
+  });
+  const workDir = attemptDirectory(roots, "attempt-hermetic-preflight");
+  const result = await gateway.execute(task(run, "attempt-hermetic-preflight", workDir));
+
+  assert.equal(result.outcome, "SUCCEEDED", `preflight must be skipped hermetically; got ${JSON.stringify(result)}`);
+  assert.equal(observed.process, 1);
+  assertNoLiveInvocation();
+});
+
+requiredTest("model-CLI preflight failure fails closed before any run-state or process-supervisor interaction", async ({ roots }) => {
+  const run = definition("preflight-fail-book", "preflight-fail-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  const supervisor = new FakeSupervisor(observed, () => {
+    assert.fail("process supervisor must never run after a preflight failure");
+  });
+  const gateway = createModelGateway({
+    runStore: tracedStore(inner, observed),
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: route(observed),
+    now: clock(),
+    modelCliPreflight: async () => {
+      throw new ExecPreflightError("fixture: installed codex CLI lacks required flag(s) --sandbox");
+    },
+  });
+  const workDir = attemptDirectory(roots, "attempt-preflight-fail");
+  const result = await gateway.execute(task(run, "attempt-preflight-fail", workDir));
+
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_CLI_UNQUALIFIED");
+  assert.match(result.error?.message ?? "", /lacks required flag/);
+  assert.deepEqual({ admit: observed.admit, process: observed.process, terminal: observed.terminal }, { admit: 0, process: 0, terminal: 0 });
+  const snapshot = expectOk(await inner.readRun(run.bookId, run.runId, "2026-01-01T00:01:00.000Z"));
+  assert.equal(snapshot.attempts.length, 0, "a fail-closed preflight must never consume attempt admission");
   assertNoLiveInvocation();
 });
 

@@ -11,7 +11,8 @@ export type ModelErrorCode =
   | "MODEL_PROCESS_FAILED"
   | "MODEL_OUTPUT_INVALID"
   | "MODEL_EXECUTION_UNCERTAIN"
-  | "MODEL_TERMINAL_RECORD_FAILED";
+  | "MODEL_TERMINAL_RECORD_FAILED"
+  | "MODEL_CLI_UNQUALIFIED";
 
 export interface ModelError extends PortError {
   readonly code: ModelErrorCode;

@@ -48,6 +48,11 @@ export const PROBED_FLAGS: readonly string[] = [
   "--cd",
 ];
 
+/** Flags the live codex route (`codexRoute.ts`'s `build()`) actually places on
+ *  `codex exec` argv — the minimal set a preflight (doctor, ModelGateway) must
+ *  prove the installed CLI supports before any process is spawned. */
+export const CODEX_ROUTE_REQUIRED_FLAGS: readonly string[] = ["--sandbox", "--skip-git-repo-check", "--ignore-user-config", "--ignore-rules", "-c"];
+
 export type CliProber = (bin: string, args: string[]) => Promise<{ stdout: string; stderr: string }>;
 
 const defaultProber: CliProber = (bin, args) =>

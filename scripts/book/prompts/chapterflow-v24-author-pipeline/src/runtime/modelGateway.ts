@@ -1,6 +1,7 @@
 import type { Result, UtcIso } from "../contracts/v4Core.js";
 import type { AttemptOutcome, RunSnapshot, RunStore } from "../run-state/index.js";
-import { createCodexRoute, type ModelProcessRoute } from "./codexRoute.js";
+import { assertFlagsSupported, CODEX_ROUTE_REQUIRED_FLAGS, qualifyCodexCli } from "../exec/cliQualification.js";
+import { CODEX_ROUTE_ID, createCodexRoute, type ModelProcessRoute } from "./codexRoute.js";
 import type { ExecutionPolicy, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
 import { modelError, type ModelErrorCode } from "./modelErrors.js";
 import type { ModelTask } from "./modelRequest.js";
@@ -23,6 +24,52 @@ export interface ModelGatewayDependencies {
   readonly executionPolicy: ExecutionPolicy;
   readonly route?: ModelProcessRoute;
   readonly now?: () => UtcIso;
+  /** Test-only override for the model-CLI preflight (`ensureModelCliPreflight`
+   *  below). When supplied it replaces the default entirely — including its
+   *  hermetic/route-id gating — so injected fakes never touch a real binary. */
+  readonly modelCliPreflight?: () => Promise<void>;
+}
+
+function hermeticGuardActive(): boolean {
+  return process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1";
+}
+
+/** Cached once per process: the first non-hermetic execute() on the live
+ *  codex route pays the qualification cost; every attempt after reuses the
+ *  same settled promise (success or failure — a failed preflight stays
+ *  fail-closed for the rest of the process; nothing should overwrite the
+ *  installed CLI mid-run). */
+let codexPreflightPromise: Promise<void> | null = null;
+
+async function qualifyCodexRoutePreflight(): Promise<void> {
+  const qual = await qualifyCodexCli({ bin: "codex" });
+  assertFlagsSupported(qual, CODEX_ROUTE_REQUIRED_FLAGS);
+}
+
+/**
+ * Model-CLI preflight (IMP-00 fail-closed rule, wired into the gateway so no
+ * production attempt can spawn a process before the installed CLI is proven
+ * to support the flags the route's build() emits).
+ *  - Hermetic no-API operating mode (CHAPTERFLOW_NO_API_CODEX_QC=1): SKIP —
+ *    tests/CI never spawn a real model CLI.
+ *  - Any route other than the live codex route: SKIP — nothing else spawns a
+ *    real binary today (Task 6/7 generalizes this to whichever route the
+ *    per-role config selects).
+ *  - Otherwise: qualify once per process; a missing required flag throws
+ *    `ExecPreflightError` (`policy_preflight_failure`), which the caller must
+ *    surface as a hard failure — never run anyway with unproven flags.
+ */
+async function ensureModelCliPreflight(route: ModelProcessRoute): Promise<void> {
+  if (hermeticGuardActive()) return;
+  if (route.id !== CODEX_ROUTE_ID) return;
+  if (!codexPreflightPromise) codexPreflightPromise = qualifyCodexRoutePreflight();
+  return codexPreflightPromise;
+}
+
+/** Test hook: forget the process-cached preflight result so the next
+ *  non-hermetic execute() re-probes from scratch. */
+export function __resetModelCliPreflightForTests(): void {
+  codexPreflightPromise = null;
 }
 
 type PreparedTask = {
@@ -238,6 +285,15 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
 
     const prepared = prepareTask(task, dependencies.executionPolicy, route);
     if (!prepared.ok) return { attemptId: task.attemptId, outcome: "FAILED", error: prepared.error };
+
+    // Model-CLI preflight — before any run-state/admission side effect, so a
+    // fail-closed qualification failure never consumes attempt capacity.
+    try {
+      await (dependencies.modelCliPreflight ?? (() => ensureModelCliPreflight(route)))();
+    } catch (err) {
+      const message = err instanceof Error ? err.message : "model CLI preflight failed";
+      return result(task.attemptId, "FAILED", "MODEL_CLI_UNQUALIFIED", message);
+    }
 
     const admittedAt = readClock(now);
     if (admittedAt === null) return result(task.attemptId, "FAILED", "MODEL_TASK_INVALID", "gateway clock returned invalid UTC time");

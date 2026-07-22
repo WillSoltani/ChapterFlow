@@ -677,9 +677,13 @@ Commands:
                                      The whole lifecycle in one view: research → written → gate-clean →
                                      QC'd → publishable, a cross-book variety read (advisory), and the
                                      single exact next command. Read-only.
-  doctor [<bookId>] [--json]         Preflight: catches the shadow state dir, dual brief shapes,
+  doctor [<bookId>] [--json] [--v25-root <absolute>] [--attempt-root <absolute>]
+                                     Preflight: catches the shadow state dir, dual brief shapes,
                                      chapter-number drift, and untracked-but-imported source files before
-                                     they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
+                                     they cost a run; also checks the V4 route (model CLI preflight,
+                                     v25-root writability, production composition constructs — SKIPs the
+                                     model-CLI probe under CHAPTERFLOW_NO_API_CODEX_QC=1). Exit 0 healthy /
+                                     1 warnings / 2 blocking trap.
   authoring-guardrails <bookId> [--chapters N]
                                      Write the pre-authoring sheet (per-chapter reserved names +
                                      banned-phrase registry: house tics, forbidden moves, salting
@@ -2490,8 +2494,14 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
     bookId = resolved.ok === false ? input : resolved.bookId;
     if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   }
-  const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
-  const findings = runDoctorChecks(bookId);
+  const { runDoctorChecks, checkV4Route, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
+  const v25RootFlag = _flags["v25-root"];
+  const attemptRootFlag = _flags["attempt-root"];
+  const v4RouteFindings = await checkV4Route({
+    v25Root: typeof v25RootFlag === "string" ? v25RootFlag : undefined,
+    attemptRoot: typeof attemptRootFlag === "string" ? attemptRootFlag : undefined,
+  });
+  const findings = [...runDoctorChecks(bookId), ...v4RouteFindings];
   const exitCode = doctorExitCode(findings);
   if (_flags.json === true) {
     const fatal = findings.filter((f) => f.level === "fatal").length;
