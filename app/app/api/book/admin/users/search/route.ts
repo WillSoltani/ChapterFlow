@@ -61,7 +61,7 @@ function readTime(item: Record<string, unknown>): number {
 }
 
 // GSI PROJECTION GUARD: for the plan-listing path, `item` comes from
-// listRecentUsersByPlan, which queries "plan-updatedAt-index" (projected
+// listRecentUsersByPlan, which queries "plan-updatedAt-index-v2" (projected
 // INCLUDE, not ALL). Every attribute read below MUST be in that GSI's
 // nonKeyAttributes list in infra/lib/chapterflow-backend-stack.ts, or DynamoDB
 // silently omits it (no error) and this function emits null/0. The email-search

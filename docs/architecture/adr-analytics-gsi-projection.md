@@ -1,6 +1,7 @@
 # ADR: Right-size analytics-table GSI projections
 
-- Status: Accepted
+- Status: Accepted (revised after a failed in-place deploy — see "Failed first
+  attempt" below)
 - Finding: WS6-008
 - Scope: `ChapterFlowInsights-*` (the analytics table) global secondary indexes
   defined in `infra/lib/chapterflow-backend-stack.ts`.
@@ -38,61 +39,94 @@ Three consumers:
 - `activeUsersByPlan` and `totalUsersByPlan` (admin-metrics.ts) both issue
   `Select: "COUNT"` queries — they need index keys only, no projected attributes.
 
-None of these consumers read the wide snapshot Sets. **Decision: `INCLUDE`** with
-exactly the 13 non-key attributes above. This stops replicating the snapshot Sets
-into the index on every snapshot `UpdateCommand`.
+None of these consumers read the wide snapshot Sets. **Decision: right-size to
+`INCLUDE`** with exactly the 13 non-key attributes above. Because a projection
+cannot be changed in place (see below), the target `INCLUDE` shape is delivered
+as a NEW index `plan-updatedAt-index-v2`; readers move onto it, then the original
+`ALL` index is deleted.
 
 **`contextKey-occurredAt-index` (GSI3, PK=`contextKey`, SK=`occurredAt`).**
 Write-only. Quiz and commitment events stamp `contextKey` in `analytics-repo.ts`,
 but no code queries this index (no `IndexName: "contextKey-occurredAt-index"`
-anywhere). **Decision: `KEYS_ONLY`.**
+anywhere). Because it has zero readers, the right-size is not a narrower
+projection but **outright DELETION** — a KEYS_ONLY replacement would still cost a
+backfill and index maintenance for an index nobody queries. **Decision: delete.**
 
 ## Silent under-projection failure mode
 
 DynamoDB returns only the projected attributes for an index query and raises **no
 error** for attributes that are not projected. If a reader consumes an attribute
 that is missing from an `INCLUDE` list, the attribute simply comes back absent.
-For `plan-updatedAt-index` that means `formatUser` emits `null`/`0` for the
+For `plan-updatedAt-index-v2` that means `formatUser` emits `null`/`0` for the
 missing field with no exception, no log, and a green build — the defect surfaces
 only as wrong numbers on the admin screen. Two guards mitigate this:
 
 1. A guard comment above `listRecentUsersByPlan` (admin-metrics.ts) and above
    `formatUser` (users/search/route.ts) stating that every attribute read there
    must be in the GSI `nonKeyAttributes` list.
-2. `infra/lib/backend-gsi-projection.test.ts` asserts the `INCLUDE` list equals
-   exactly the reader's attribute union (sorted deep-equal), so widening the
-   reader without widening the index fails the test.
+2. `infra/lib/backend-gsi-projection.test.ts` asserts the `INCLUDE` list on
+   `plan-updatedAt-index-v2` equals exactly the reader's attribute union (sorted
+   deep-equal), so widening the reader without widening the index fails the test.
 
 This is also why GSI1 stays `ALL`: an `INCLUDE` union there would silently drop
 attributes for any future event type, and the failure would be invisible.
 
-## Rollout (deploy-gated)
+## Failed first attempt (in-place projection edit)
 
-CloudFormation **cannot change a GSI projection in place** — a projection change
-is a delete-and-recreate of the index. DynamoDB additionally permits only **one
-GSI create or delete per table update**, so a stack update must never mix two
-index operations. On PAY_PER_REQUEST billing each recreate incurs a one-time
-backfill cost proportional to matching items.
+The first implementation (commit `693ad9908`) edited the projections **in place**
+on the existing indexes — `plan-updatedAt-index` from `ALL` to `INCLUDE`, and
+`contextKey-occurredAt-index` from `ALL` to `KEYS_ONLY`. CloudFormation rejected
+the stack update at deploy (GitHub Actions deploy run **29965752218**) with:
 
-The zero-outage sequence is therefore staged across separate deploys, each doing
-exactly one GSI operation:
+> Cannot update GSI's properties other than Provisioned Throughput and
+> Contributor Insights Specification. You can create a new GSI with a different
+> name.
 
-**`plan-updatedAt-index` (has live readers — must not disappear):**
-1. Deploy 1: add a NEW index `plan-updatedAt-index-v2` with the `INCLUDE`
-   projection (one GSI create; old index still serves reads).
-2. App deploy: flip the three `IndexName` references
-   (`admin-metrics.ts:168, 195, 766`) from `plan-updatedAt-index` to
-   `plan-updatedAt-index-v2`.
-3. Deploy 2: delete the old `plan-updatedAt-index` (one GSI delete).
+The stack rolled back cleanly. The live table is therefore unchanged: all three
+analytics GSIs still exist under their ORIGINAL names with `ProjectionType.ALL`
+(`eventDate-eventType-index`, `plan-updatedAt-index`, `contextKey-occurredAt-index`).
 
-**`contextKey-occurredAt-index` (no readers — safe to drop):**
-1. Deploy 1: delete the index (one GSI delete).
-2. Deploy 2: re-add it as `KEYS_ONLY` (one GSI create).
+Root cause: a GSI projection change is a delete-and-recreate of the index, and
+CloudFormation cannot express that on an existing index resource. DynamoDB
+additionally permits only **one GSI create or delete per table update**, so the
+correct approach is a sequence of separate deploys, each doing exactly one GSI
+operation, with a new index name for any projection change.
 
-Each stack update performs exactly one GSI op and is never mixed with the other
-index's ops. `GSI1` (`eventDate-eventType-index`) is untouched and stays `ALL`.
+## Rollout as executed (one GSI mutation per deploy)
 
-Committed here is the desired end-state projection on each index. The staged
-create/flip/delete choreography above is executed by the deploy operator across
-the required number of stack updates; `cdk diff` before each phase must show
-exactly one GSI create OR delete.
+Each stage is a separate stack update performing exactly ONE GSI create OR
+delete; `cdk diff` before each follow-up must show exactly one GSI operation.
+`GSI1` (`eventDate-eventType-index`) is untouched and stays `ALL` throughout.
+
+**Stage 1 — this PR (one GSI create, zero deletes):**
+- Revert the two in-place projection edits so `plan-updatedAt-index` and
+  `contextKey-occurredAt-index` are back to `ProjectionType.ALL` — a NO-OP diff
+  against the live rolled-back table.
+- Add a NEW index `plan-updatedAt-index-v2` with the `INCLUDE` projection (13
+  non-key attributes). This is the single GSI create.
+- Switch every reader (`admin-metrics.ts` — `activeUsersByPlan`,
+  `totalUsersByPlan`, `listRecentUsersByPlan`) from `plan-updatedAt-index` to
+  `plan-updatedAt-index-v2`. Safe within the one workflow run: the app job
+  deploys only after the infra job's CFN update completes, and CFN does not
+  complete until the new GSI reaches `ACTIVE` (backfilled).
+
+**Stage 2 — follow-up deploy (one GSI delete):**
+Delete `contextKey-occurredAt-index`. It has zero readers, so outright deletion
+beats re-adding it as `KEYS_ONLY`. One GSI mutation; nothing else touched.
+
+**Stage 3 — follow-up deploy (one GSI delete):**
+Delete the original `plan-updatedAt-index`. By this point every reader has been
+serving off `plan-updatedAt-index-v2` since stage 1, so the original `ALL` index
+is dead weight. One GSI mutation; nothing else touched.
+
+Stages 2 and 3 are separate deploys and are never combined (two deletes in one
+table update would violate the one-GSI-mutation limit). Each recreate/delete on
+PAY_PER_REQUEST billing incurs a one-time backfill/teardown cost proportional to
+matching items.
+
+## End state
+
+- `eventDate-eventType-index` — `ALL` (unchanged).
+- `plan-updatedAt-index-v2` — `INCLUDE` (the 13-attribute reader union).
+- `plan-updatedAt-index` — deleted (stage 3).
+- `contextKey-occurredAt-index` — deleted (stage 2).
