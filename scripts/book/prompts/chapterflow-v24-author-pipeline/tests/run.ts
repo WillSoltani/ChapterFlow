@@ -78,6 +78,19 @@ for (const file of files) {
   }
 }
 
+// Delegate to the v25 subprocess runner so `npm test` covers tests/v25/**.
+// Skipped when name filters are active and none target v25 (keeps `npm test <filter>` fast).
+if (filters.length === 0 || filters.some((t) => "v25".includes(t) || t.includes("v25"))) {
+  const { spawnSync } = await import("node:child_process");
+  const v25 = spawnSync("npx", ["tsx", "tests/v25/run.ts"], {
+    cwd: resolve(__dirname, ".."),
+    stdio: "inherit",
+    env: process.env,
+  });
+  if (v25.status !== 0) fail += 1;
+  console.log(`v25-subprocess-suite: exit=${v25.status}`);
+}
+
 console.log(
   `\n${"─".repeat(60)}\n` +
   `pass ${pass}  fail ${fail}  xfail(known defects) ${xfailCount}  xpass ${xpass}  xenv(env-absent) ${xenvCount}  skip ${skipped}`,
