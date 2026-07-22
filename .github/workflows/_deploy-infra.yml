@@ -23,6 +23,12 @@ permissions:
   contents: read
   issues: write # open a deploy-failure issue on prod
 
+# Serialize infra deploys per environment — a second run to the same env queues
+# instead of racing CloudFormation. Mirrors _deploy-app.yml.
+concurrency:
+  group: deploy-infra-${{ inputs.environment }}
+  cancel-in-progress: false
+
 env:
   AWS_REGION: us-east-1
 
