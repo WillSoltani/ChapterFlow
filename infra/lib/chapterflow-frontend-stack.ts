@@ -23,6 +23,10 @@ import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
 import { buildWebAclRules } from "./waf-rules";
+import {
+  FRONTEND_SSM_RUNTIME_SECRET_NAMES,
+  resolveFrontendHostedZoneId,
+} from "./frontend-runtime-config";
 
 // ---------------------------------------------------------------------------
 // WS6-033: DynamoDB metrics by table NAME (this stack only has
@@ -94,15 +98,19 @@ export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
   readonly ingestBucketName: string;
   readonly contentBucketName: string;
   readonly ssmPrefix: string;
+  /** Explicit environment-bound Route53 zone id for domain deployments. */
+  readonly hostedZoneId?: string;
+  /** Optional non-secret OpenNext artifact fixture used by synth tests. */
+  readonly openNextDir?: string;
   /**
    * The Route53 hosted zone domain name (e.g. "chapterflow.ca").
    * The app will be served at app.${domainName}.
    */
   readonly domainName?: string;
   /**
-   * Environment variables to inject into the server Lambda.
-   * Secrets (Stripe, Cognito, etc.) should be passed here from
-   * GitHub Secrets → CDK context/env at deploy time.
+   * Non-secret environment variables to inject into the server Lambda.
+   * Secret-class values are filtered defensively and resolved from SSM at
+   * runtime under `ssmPrefix`.
    */
   readonly serverEnv?: Record<string, string>;
   /**
@@ -143,7 +151,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // domain — the deploy health check uses that domain regardless).
     const domainName = props.domainName;
     const appDomain = domainName ? `app.${domainName}` : undefined;
-    const openNextDir = path.join(__dirname, "../../.open-next");
+    const openNextDir =
+      props.openNextDir ?? path.join(__dirname, "../../.open-next");
 
     // Construct ARNs from known names to avoid cross-stack references
     const appTableArn = cdk.Arn.format(
@@ -362,10 +371,31 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     lambdaRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "SsmConfigAccess",
-        actions: ["ssm:GetParameter", "ssm:GetParameters"],
+        actions: ["ssm:GetParameter"],
         resources: [
           `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
         ],
+      }),
+    );
+
+    // SecureString values may use either the AWS-managed SSM key or an
+    // owner-managed key. The resource wildcard is constrained to decrypts made
+    // through SSM for this environment's exact parameter ARN namespace, so the
+    // Lambda cannot call KMS directly or decrypt another prefix's ciphertext.
+    lambdaRole.addToPolicy(
+      new iam.PolicyStatement({
+        sid: "KmsDecryptSsmConfig",
+        actions: ["kms:Decrypt"],
+        resources: ["*"],
+        conditions: {
+          StringEquals: {
+            "kms:ViaService": `ssm.${cdk.Aws.REGION}.amazonaws.com`,
+          },
+          ArnLike: {
+            "kms:EncryptionContext:PARAMETER_ARN":
+              `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
+          },
+        },
       }),
     );
 
@@ -485,15 +515,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         }
       : {};
 
-    // Server-only env: the infra vars PLUS the caller-provided secrets (Stripe
-    // secret/webhook/price keys, Anthropic + ElevenLabs API keys,
-    // AUTH_STATE_SECRET, full Cognito config — see infra/bin/app.ts). Only the
-    // server Lambda needs these, so they are NOT spread into the auxiliary
-    // functions below (least-privilege secret blast radius).
+    const runtimeSecretNames = new Set<string>(
+      FRONTEND_SSM_RUNTIME_SECRET_NAMES,
+    );
+    const projectedServerEnv = Object.fromEntries(
+      Object.entries(props.serverEnv ?? {}).filter(
+        ([name]) => !runtimeSecretNames.has(name),
+      ),
+    );
+
+    // Server-only non-secret env. The audited secret class is resolved through
+    // the cached SSM runtime path and is defensively stripped even if a caller
+    // accidentally supplies one of those names here.
     const commonEnv: Record<string, string> = {
       ...baseInfraEnv,
-      // Merge caller-provided env vars (secrets come from here)
-      ...(props.serverEnv ?? {}),
+      ...projectedServerEnv,
       ...originVerifyEnv,
     };
 
@@ -801,12 +837,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     let certificate: acm.ICertificate | undefined;
     let hostedZone: route53.IHostedZone | undefined;
+    const hostedZoneId = resolveFrontendHostedZoneId(
+      domainName,
+      props.hostedZoneId,
+    );
 
     // Only create certificate and DNS records if we have a domain
-    if (domainName) {
-      hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
-        domainName,
-      });
+    if (domainName && hostedZoneId) {
+      hostedZone = route53.HostedZone.fromHostedZoneAttributes(
+        this,
+        "HostedZone",
+        {
+          hostedZoneId,
+          zoneName: domainName,
+        },
+      );
 
       certificate = new acm.Certificate(this, "Certificate", {
         domainName: `app.${domainName}`,

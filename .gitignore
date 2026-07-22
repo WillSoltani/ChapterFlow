@@ -47,6 +47,9 @@ next-env.d.ts
 # CDK build artifacts — never commit generated output
 infra/cdk.out/
 infra/.cache/
+# Account-bound lookup caches and generated IAM outputs are local artifacts.
+infra/cdk.context.json
+infra/iam/generated/
 
 # Infra dependencies — installed locally, not versioned
 infra/node_modules/

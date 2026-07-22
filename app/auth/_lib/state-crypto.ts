@@ -1,4 +1,6 @@
 import "server-only";
+import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { resolveAuthStateSecret } from "./state-crypto-core";
 
 /**
  * Encrypts and decrypts OAuth state parameters using AES-256-GCM.
@@ -29,20 +31,14 @@ export type StatePayload = {
 
 let cachedKey: CryptoKey | null = null;
 
-function getSecret(): string {
-  const secret = process.env.AUTH_STATE_SECRET;
-  if (!secret || secret.length < 32) {
-    throw new Error(
-      "AUTH_STATE_SECRET must be set and at least 32 characters long",
-    );
-  }
-  return secret;
+async function getSecret(): Promise<string> {
+  return resolveAuthStateSecret(getServerEnv);
 }
 
 async function getKey(): Promise<CryptoKey> {
   if (cachedKey) return cachedKey;
 
-  const secret = getSecret();
+  const secret = await getSecret();
   const raw = new TextEncoder().encode(secret);
 
   // Import as HKDF key material, then derive AES-GCM key

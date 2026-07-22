@@ -154,6 +154,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      encryption: dynamodb.TableEncryption.AWS_MANAGED,
       // Cron + app writers stamp a numeric `ttl` on ephemeral records only
       // (nudge dedup markers, pairing invites, Ask-the-Book cache, rate-limit
       // counters). Without this attribute DynamoDB never reaps them: the
@@ -181,6 +182,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      encryption: dynamodb.TableEncryption.AWS_MANAGED,
       // App writers stamp a numeric `ttl` (epoch seconds) on the high-volume,
       // append-only analytics EVENT rows only (`putEvent` in analytics-repo.ts).
       // The durable per-user analytics SNAPSHOT row is written via UpdateCommand
@@ -281,7 +283,8 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     // The former `ChapterFlowAppRuntimeRole` (assumed by tasks.apprunner.amazonaws.com)
     // had no consumer and stood as broad unused privilege — removed. Its CI
     // counterparts (apprunner:* + iam:PassRole) were dropped from
-    // infra/iam/github-actions-dev-policy.json.
+    // generated github-actions-<env>-additive-policy.json; see
+    // infra/iam/README.md.
 
     const parameterNames = [
       `${this.ssmPrefix}/BOOK_TABLE_NAME`,

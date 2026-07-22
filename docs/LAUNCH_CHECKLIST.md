@@ -7,7 +7,8 @@ environment, matched to the **actual** CI/CD pipeline. Companion docs:
 (runbook), [ACCOUNT_LIFECYCLE.md](./ACCOUNT_LIFECYCLE.md) (erasure/privacy).
 
 Work top to bottom for a fresh env; for an existing env, treat it as an audit.
-Items marked **⚠ launch-blocking** silently fail (no error) if skipped.
+Items marked **⚠ launch-blocking** block or materially degrade launch as
+described; required production boot configuration may fail closed immediately.
 
 ---
 
@@ -32,13 +33,21 @@ Items marked **⚠ launch-blocking** silently fail (no error) if skipped.
       gate) and optionally restrict deployments to `main`/tags.
 - [ ] Create the **OIDC deploy role** and store its ARN as the `AWS_DEPLOY_ROLE_ARN`
       env secret: trusts `token.actions.githubusercontent.com` (aud
-      `sts.amazonaws.com`), `sub` scoped to `repo:WillSoltani/ChapterFlow:*`,
-      with CDK-deploy permissions. Store `AWS_ACCOUNT_ID` too.
+      `sts.amazonaws.com`), with `sub` equal to the finite `dev`, `staging`, and
+      `prod` GitHub Environment subjects. Generate the account/environment-bound
+      trust and additive-policy JSON via
+      [infra/iam/README.md](../infra/iam/README.md), then owner-review it with
+      the companion workflow permissions documented there. Store
+      `AWS_ACCOUNT_ID` too; it is a low-sensitivity identifier that the current
+      workflows read from the environment-secret channel for compatibility,
+      not an authentication secret.
 
-## 2) Per-environment secrets
+## 2) Per-environment GitHub deploy configuration
 
 Set these as **environment-scoped** GitHub secrets for each env (prod uses live
-values). Full purpose table: [ENVIRONMENT.md §3.B/§3.C](./ENVIRONMENT.md).
+values), except entries explicitly labeled as GitHub Environment variables.
+Runtime secrets sourced only from SSM belong in §3, not here. Full purpose
+table: [ENVIRONMENT.md §3.B/§3.C](./ENVIRONMENT.md).
 
 **Infra / domain**
 - [ ] `AWS_DEPLOY_ROLE_ARN`, `AWS_ACCOUNT_ID`
@@ -52,27 +61,38 @@ values). Full purpose table: [ENVIRONMENT.md §3.B/§3.C](./ENVIRONMENT.md).
 - [ ] `CHAPTERFLOW_DOMAIN_NAME` — set **per-env** for a custom domain; **omit for
       dev/staging** to serve on the CloudFront domain. Never set repo-wide (DNS
       hijack guard will throw).
+- [ ] `CHAPTERFLOW_HOSTED_ZONE_ID` — non-secret **environment variable** paired
+      with every `CHAPTERFLOW_DOMAIN_NAME`; the frontend fails closed if only
+      one is set.
 - [ ] `CHAPTERFLOW_OPS_ALERT_EMAIL` — see §6.
 
 **Auth (Cognito)**
 - [ ] `COGNITO_DOMAIN`, `COGNITO_CLIENT_ID`, `COGNITO_USER_POOL_ID`,
       `COGNITO_REGION`, `COGNITO_REDIRECT_URI`, `COGNITO_LOGOUT_REDIRECT_URI`
-- [ ] `AUTH_STATE_SECRET` — **≥ 32 chars** (login state crypto throws otherwise).
 - [ ] `AUTH_COOKIE_DOMAIN` — e.g. `.chapterflow.ca`.
 
 **Billing (Stripe)**
-- [ ] `BOOK_STRIPE_SECRET_KEY`, `BOOK_STRIPE_WEBHOOK_SECRET`, `BOOK_STRIPE_PRICE_ID`
+- [ ] `BOOK_STRIPE_PRICE_ID`
 - [ ] `BOOK_STRIPE_PRICE_ID_ANNUAL`, `BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT` (if offered)
 - [ ] `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
-
-**AI**
-- [ ] `ANTHROPIC_API_KEY` (Ask feature), `ELEVENLABS_API_KEY` (audio, optional).
 
 ## 3) SSM-only app config (the workflow does NOT inject these)
 
 Create these as parameters under **`/chapterflow/<env>/`** (SecureString for
-secrets). The deploy workflow does not pass them, so missing ones fail silently.
-See [ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
+secrets). The deploy workflow does not pass them. Required production boot
+secrets fail closed when missing, denied, or undecryptable; optional capability
+secrets fail only their documented feature path. See
+[ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
+
+- [ ] `AUTH_STATE_SECRET` — **required at production boot**; SecureString with
+      at least 32 characters.
+- [ ] `BOOK_STRIPE_SECRET_KEY`, `BOOK_STRIPE_WEBHOOK_SECRET` — **required at
+      production boot and for billing readiness**; provision both as
+      SecureStrings.
+- [ ] `ANTHROPIC_API_KEY` — **required at production boot** for the production
+      AI paths; provision as a SecureString.
+- [ ] `ELEVENLABS_API_KEY` — optional SecureString for audio/TTS; audio routes
+      fail locally when it is absent.
 
 - [ ] `VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` — **⚠ launch-blocking for web push**.
 - [ ] `SES_SENDER_EMAIL` — **⚠ launch-blocking for email** (the app server reads
@@ -115,8 +135,9 @@ See [ENVIRONMENT.md §3.D](./ENVIRONMENT.md).
 - [ ] Products + recurring **Prices** created; their ids match the
       `BOOK_STRIPE_PRICE_ID*` secrets (live vs test keys per env).
 - [ ] **Webhook endpoint** points at `<app>/app/api/book/billing/webhook`; its
-      signing secret is `BOOK_STRIPE_WEBHOOK_SECRET`. **⚠ launch-blocking** — the
-      webhook is the sole writer of Stripe-sourced entitlements.
+      signing secret is the §3 SSM SecureString
+      `BOOK_STRIPE_WEBHOOK_SECRET`. **⚠ launch-blocking** — the webhook is the
+      sole writer of Stripe-sourced entitlements.
 - [ ] Subscribe the event types the handler expects (checkout/subscription/
       invoice/refund/dispute). Send a test event and confirm a 2xx + an idempotent
       ledger write.

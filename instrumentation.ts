@@ -19,6 +19,7 @@
 // needing to fake `server-only`.
 import {
   RUNTIME_ENV_REQUIREMENTS,
+  hydrateRuntimeSsmRequirements,
   validateRuntimeEnvironment,
 } from "@/app/app/api/_lib/boot-env-core";
 
@@ -54,7 +55,21 @@ export async function register(): Promise<void> {
   if (process.env.NODE_ENV !== "production") return;
   if (process.env.NEXT_PHASE === "phase-production-build") return;
 
-  const { failures } = validateRuntimeEnvironment(process.env);
+  // Secret-class values are intentionally absent from Lambda configuration.
+  // Hydrate only the manifest-required SSM values here, before the Node server
+  // accepts traffic. The dynamic import stays behind the runtime/build guards
+  // so Edge registration and `next build` never load the Node AWS SDK path.
+  const runtimeEnv = await hydrateRuntimeSsmRequirements(
+    process.env,
+    async (name) => {
+      const { getServerEnv } = await import(
+        "@/app/app/api/_lib/server-env"
+      );
+      return getServerEnv(name);
+    },
+  );
+
+  const { failures } = validateRuntimeEnvironment(runtimeEnv);
   if (failures.length > 0) {
     const summary = failures
       .map(
