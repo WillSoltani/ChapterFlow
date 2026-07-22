@@ -123,6 +123,34 @@ jobs:
         working-directory: infra
         run: npm test
 
+      # The reminder cron / suppression handler / cognito pre-signup linker deploy
+      # from infra/lambda/dist via CDK fromAsset. Rebuild those bundles from source
+      # here (mirrors _deploy-infra.yml's "Build Lambda bundles" step) so a PR that
+      # edits a lambda .ts source without regenerating dist fails CI instead of
+      # deploying stale code.
+      - name: Build Lambda bundles
+        working-directory: infra
+        run: |
+          set -euo pipefail
+          npx esbuild lambda/reading-reminder-cron.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/reading-reminder-cron.js \
+            --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb \
+            --external:@aws-sdk/client-sesv2 --external:@aws-sdk/client-ssm
+          npx esbuild lambda/suppression-handler.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/suppression-handler.js \
+            --external:@aws-sdk/client-dynamodb --external:@aws-sdk/lib-dynamodb
+          npx esbuild lambda/cognito-pre-signup.ts --bundle --platform=node \
+            --target=node20 --outfile=lambda/dist/cognito-pre-signup.js \
+            --external:@aws-sdk/client-cognito-identity-provider
+
+      - name: Verify Lambda bundle freshness
+        run: |
+          set -euo pipefail
+          if ! git diff --exit-code -- infra/lambda/dist; then
+            echo "::error::infra/lambda/dist is stale — rebuild with the esbuild commands in this job and commit the output"
+            exit 1
+          fi
+
   # ── Hard gate: v21 pipeline workspace package ───────────────────────────
   # This runs from the same clean checkout and root package-lock as the app.
   # The pipeline tests force no-API mode and use synthetic fixtures only.
