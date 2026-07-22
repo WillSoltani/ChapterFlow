@@ -513,6 +513,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "reading-reminder-cron.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      // WS6-013: the committed bundle is pure-JS esbuild output built with
+      // `--platform=node --target=node20` and @aws-sdk marked external, so it
+      // is architecture-agnostic — arm64 is a free cost/perf win here.
+      architecture: lambda.Architecture.ARM_64,
       memorySize: 512,
       timeout: reminderTimeout,
       // WS6-001: reserved floor/ceiling (see env-config.ts doc).
@@ -706,6 +710,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "suppression-handler.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      // WS6-013: same architecture-agnostic pure-JS bundle as the other
+      // committed lambda/dist crons — arm64 is a free cost/perf win here.
+      architecture: lambda.Architecture.ARM_64,
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
       // WS6-001: reserved floor/ceiling (see env-config.ts doc).
@@ -871,6 +878,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         runtime: lambda.Runtime.NODEJS_20_X,
         handler: "cognito-pre-signup.handler",
         code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+        // WS6-013: same architecture-agnostic pure-JS bundle as the other
+        // committed lambda/dist crons — arm64 is a free cost/perf win here.
+        architecture: lambda.Architecture.ARM_64,
         memorySize: 256,
         // A sign-in trigger runs inline on the auth path — keep it short so a
         // hung ListUsers/AdminLink can never wedge the user's sign-in.

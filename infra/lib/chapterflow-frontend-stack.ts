@@ -568,6 +568,12 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       reservedConcurrentExecutions: props.lambdaConcurrency.server,
       role: lambdaRole,
       environment: commonEnv,
+      // WS6-013: stays x86_64 until OpenNext emits arm64 build artifacts for
+      // this function — the committed backend cron bundles moved to arm64
+      // (they're architecture-agnostic pure-JS), but this asset is built by
+      // the OpenNext toolchain, not our esbuild step. Track: evaluate
+      // OpenNext's arm64 support for `server-functions/default` before
+      // flipping.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
       // WS6-029: the server Lambda is the fan-out hop (DynamoDB/S3/Stripe/
@@ -655,6 +661,11 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         ...baseInfraEnv,
         ...originVerifyEnv,
       },
+      // WS6-013: stays x86_64 until OpenNext emits arm64 build artifacts —
+      // this bundles arch-specific `sharp` binaries, so open-next.config.ts
+      // would need the arm64 build option (e.g.
+      // `imageOptimization: { arch: "arm64" }`) evaluated and enabled before
+      // this can flip.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -725,6 +736,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           ? { ORIGIN_VERIFY_SECRET: originVerifySecret }
           : {}),
       },
+      // WS6-013: pinned to x86_64 alongside ServerFn/ImageFn above — see
+      // those comments; OpenNext build artifacts, not our esbuild step.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -753,6 +766,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       reservedConcurrentExecutions: props.lambdaConcurrency.dynamoProvider,
       // Least-privilege: its own auto-created role plus the ISR cache table only.
       environment: baseInfraEnv,
+      // WS6-013: pinned to x86_64 alongside ServerFn/ImageFn above — see
+      // those comments; OpenNext build artifacts, not our esbuild step.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -778,6 +793,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         CONCURRENCY: "1",
         ...baseInfraEnv,
       },
+      // WS6-013: pinned to x86_64 alongside ServerFn/ImageFn above — see
+      // those comments; OpenNext build artifacts, not our esbuild step.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
