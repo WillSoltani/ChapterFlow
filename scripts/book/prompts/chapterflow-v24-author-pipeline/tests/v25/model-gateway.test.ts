@@ -542,7 +542,7 @@ requiredTest("cleanup failure and supervisor rejection stay consumed unknown wit
 });
 
 requiredTest("production Codex mapping is fixed and performs no invocation during inspection", () => {
-  const codex = createCodexRoute();
+  const codex = createCodexRoute("gpt-5.5", "high");
   const readProfile = createExecutionPolicy;
   assert.equal(typeof readProfile, "function");
   const read = codex.build({
@@ -589,7 +589,7 @@ requiredTest("model-CLI preflight is skipped under the hermetic no-API guard, ev
     runStore: tracedStore(inner, observed),
     processSupervisor: supervisor,
     executionPolicy: policy(roots),
-    route: createCodexRoute(),
+    route: createCodexRoute("gpt-5.5", "high"),
     now: clock(),
   });
   const workDir = attemptDirectory(roots, "attempt-hermetic-preflight");

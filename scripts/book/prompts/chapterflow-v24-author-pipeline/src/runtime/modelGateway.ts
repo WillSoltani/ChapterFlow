@@ -1,7 +1,7 @@
 import type { Result, UtcIso } from "../contracts/v4Core.js";
 import type { AttemptOutcome, RunSnapshot, RunStore } from "../run-state/index.js";
 import { assertFlagsSupported, CODEX_ROUTE_REQUIRED_FLAGS, qualifyCodexCli } from "../exec/cliQualification.js";
-import { CODEX_ROUTE_ID, createCodexRoute, type ModelProcessRoute } from "./codexRoute.js";
+import { CODEX_ROUTE_ID, createDefaultModelRoute, type ModelProcessRoute } from "./codexRoute.js";
 import type { ExecutionPolicy, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
 import { modelError, type ModelErrorCode } from "./modelErrors.js";
 import type { ModelTask } from "./modelRequest.js";
@@ -277,7 +277,10 @@ function terminalDetail(process: ProcessResult | null, outcome: ModelResult["out
 }
 
 export function createModelGateway(dependencies: ModelGatewayDependencies): ModelGateway {
-  const route = dependencies.route ?? createCodexRoute();
+  // Callers without an explicit `route` (e.g. src/cli.ts's ad-hoc wiring)
+  // fall back to the config-driven default from config/model-routing.json —
+  // no model literal may live here (model-policy static scan).
+  const route = dependencies.route ?? createDefaultModelRoute();
   const now = dependencies.now ?? (() => new Date().toISOString());
 
   const executeOnce = async (task: ModelTaskSnapshot): Promise<ModelResult> => {

@@ -9,6 +9,12 @@ export interface ExecutionProfile {
   readonly terminateGraceMs: number;
   readonly maxStdoutBytes: number;
   readonly maxStderrBytes: number;
+  /** Task 6 (model-routing mechanism): optional pipeline-role tag a caller may
+   *  attach to a profile so route selection (`resolveRoleRoute`, codexRoute.ts)
+   *  can pick a per-role model/effort. Unset today on every source-controlled
+   *  profile — no call site threads it through yet; Task 7/8 wire per-task
+   *  role tagging into the gateway. */
+  readonly role?: "research" | "author" | "repair" | "review" | "qc";
 }
 
 export interface ResolvedExecutionPolicy {

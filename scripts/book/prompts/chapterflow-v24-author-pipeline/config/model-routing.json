@@ -1,0 +1,13 @@
+{
+  "$schema": "./model-routing.schema.json",
+  "_comment": "P/Task 6 — per-role model routing. INTERIM: every role is pinned to the codex route on gpt-5.5 (ownerOverride=D1-gpt-exception-approved) so behavior is byte-identical to the pre-Task-6 hardcode until Task 7 ships the claude-cli route. TODO(task-7): flip every entry to the D1 Sonnet-5 defaults ({route:\"claude-cli\", model:\"claude-sonnet-5\", effort:<tier>}) and remove ownerOverride once createClaudeRoute() lands — see plan Task 7 Step 6.",
+  "defaultRoute": { "route": "codex", "model": "gpt-5.5", "effort": "high" },
+  "roles": {
+    "research": { "route": "codex", "model": "gpt-5.5", "effort": "high" },
+    "author":   { "route": "codex", "model": "gpt-5.5", "effort": "high" },
+    "repair":   { "route": "codex", "model": "gpt-5.5", "effort": "high" },
+    "review":   { "route": "codex", "model": "gpt-5.5", "effort": "high" },
+    "qc":       { "route": "codex", "model": "gpt-5.5", "effort": "high" }
+  },
+  "ownerOverride": "D1-gpt-exception-approved"
+}

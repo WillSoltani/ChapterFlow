@@ -13,6 +13,7 @@ import { FileRepairHistoryStore } from "../qc/repairHistoryStore.js";
 import { createPromotionService } from "../release/promotionService.js";
 import { createReviewServiceFactory } from "../review/reviewService.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
+import { createRouteForRoleRoute, loadModelRoutingConfig, resolveRoleRoute } from "../runtime/codexRoute.js";
 import { createExecutionPolicy } from "../runtime/executionPolicy.js";
 import { createModelGateway } from "../runtime/modelGateway.js";
 import { createProcessSupervisor } from "../runtime/processSupervisor.js";
@@ -286,10 +287,20 @@ export async function createProductionBookRunComposition(input: Readonly<{
   const stageCoordinator = createFileStageCoordinator(runRoot);
   const clock = monotonicClock();
   const ids = idFactory();
+  // Task 6: route selection is threaded through config/model-routing.json
+  // rather than modelGateway.ts's hardcoded default. No per-task role is
+  // threaded through yet (Task 7/8) — the whole gateway is wired to the
+  // config's defaultRoute, which the shipped config pins to the same
+  // codex/gpt-5.5/high mapping every role used before this change, so
+  // behavior is unchanged. Fails closed (throws) if the config is invalid
+  // or resolves to "claude-cli" before Task 7's route exists.
+  const modelRoutingConfig = loadModelRoutingConfig();
+  const modelRoute = createRouteForRoleRoute(resolveRoleRoute(modelRoutingConfig));
   const modelGateway = createModelGateway({
     runStore,
     processSupervisor: input.processSupervisor ?? createProcessSupervisor(),
     executionPolicy: createExecutionPolicy({ pipelineRoot: input.pipelineRoot, attemptRoot: input.attemptRoot }),
+    route: modelRoute,
     now: () => clock.now(),
   });
   const runner = createModelTaskRunner(modelGateway);

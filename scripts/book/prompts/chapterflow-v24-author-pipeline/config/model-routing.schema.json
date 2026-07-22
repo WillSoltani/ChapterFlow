@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "model-routing.schema.json",
+  "title": "Per-role model routing config (V25 Task 6)",
+  "description": "Selects, per pipeline role, which model process route (claude-cli | codex) and model/effort a ModelGateway task should build against. The authoritative validator is validateModelRoutingConfig() in src/runtime/codexRoute.ts; this schema documents the shape. \"claude-cli\" is not selectable in production until Task 7 ships createClaudeRoute() — selecting it before then throws ClaudeRouteNotAvailableError (fail-closed). Any role/defaultRoute whose model matches /^gpt-5\\.5/ must have route:\"codex\" AND ownerOverride:\"D1-gpt-exception-approved\" (the NO-GPT-5.5 tripwire).",
+  "type": "object",
+  "required": ["defaultRoute"],
+  "additionalProperties": true,
+  "definitions": {
+    "roleRoute": {
+      "type": "object",
+      "required": ["route", "model", "effort"],
+      "additionalProperties": false,
+      "properties": {
+        "route": { "type": "string", "enum": ["claude-cli", "codex"] },
+        "model": { "type": "string", "minLength": 1 },
+        "effort": { "type": "string", "enum": ["low", "medium", "high", "xhigh"] }
+      }
+    }
+  },
+  "properties": {
+    "$schema": { "type": "string" },
+    "_comment": { "type": "string" },
+    "defaultRoute": { "$ref": "#/definitions/roleRoute" },
+    "roles": {
+      "type": "object",
+      "additionalProperties": { "$ref": "#/definitions/roleRoute" }
+    },
+    "ownerOverride": {
+      "type": "string",
+      "description": "Gate for the temporary gpt-5.5-as-author exception (D1). Must equal \"D1-gpt-exception-approved\" for any gpt-5.5* model to validate."
+    }
+  }
+}
