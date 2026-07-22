@@ -16,7 +16,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { TopNav } from "@/components/navigation/TopNav";
 import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
 import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
-import { useBookQuery, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
 import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
 import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
@@ -665,18 +665,31 @@ function CommitmentFollowUpSection() {
   const [skippingId, setSkippingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const dueQuery = useBookQuery<{ commitments: BookUserCommitmentItem[] }>(
-    `${COMMITMENTS_KEY}?status=active`,
-  );
+  // Cached read: routes the ?status=active commitments GET through the shared
+  // client cache (dedupes the dev StrictMode double-invoke and serves back-nav
+  // from memory). Kept as an imperative effect + async setDue — mirroring the
+  // prior structure — so the clock read and the state write both stay out of
+  // render, and a mutation elsewhere reconciles this via invalidateBookCache's
+  // prefix drop of COMMITMENTS_KEY on the next mount.
   useEffect(() => {
-    if (!dueQuery.data) return;
-    const now = Date.now();
-    setDue(
-      (dueQuery.data.commitments ?? []).filter(
-        (c) => c.status === "active" && Date.parse(c.followUpDate) <= now,
-      ),
-    );
-  }, [dueQuery.data]);
+    let cancelled = false;
+    fetchBookJsonCached<{ commitments: BookUserCommitmentItem[] }>(
+      `${COMMITMENTS_KEY}?status=active`,
+    )
+      .then((data) => {
+        if (cancelled) return;
+        const now = Date.now();
+        setDue(
+          (data.commitments ?? []).filter(
+            (c) => c.status === "active" && Date.parse(c.followUpDate) <= now,
+          ),
+        );
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const activeReflection = activeId ? (reflections[activeId] ?? "") : "";
 
