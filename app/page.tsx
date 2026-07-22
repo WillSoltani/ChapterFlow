@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { headers } from "next/headers";
 import {
   CHAPTERFLOW_NAME,
   getChapterFlowSiteUrl,
@@ -54,7 +55,12 @@ export const metadata: Metadata = {
  * right. The earlier ?v=a|b|c variant switcher and its alternate heroes are gone.
  * Server Component.
  */
-export default function Home() {
+export default async function Home() {
+  // Per-request nonce from middleware.ts (WS8-001). The JSON-LD below is a
+  // non-executable data block that browsers do NOT gate under script-src, so
+  // this is belt-and-suspenders — but the nonce keeps it consistent with the
+  // enforcing policy (and reading headers() makes the page dynamic anyway).
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   const siteUrl = getChapterFlowSiteUrl();
   const jsonLd = [
     {
@@ -85,6 +91,7 @@ export default function Home() {
     <div className="landing-dark relative min-h-screen">
       <script
         type="application/ld+json"
+        nonce={nonce}
         // Escape `<` so a literal "</script>" inside any JSON-LD string (e.g. a
         // future FAQ answer) can't close this inline tag early. < is valid
         // JSON and renders identically in the parsed structured data.
