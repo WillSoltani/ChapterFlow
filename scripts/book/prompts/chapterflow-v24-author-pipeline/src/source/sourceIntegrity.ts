@@ -488,7 +488,13 @@ function realnessFindings(
       message: "Source sidecar does not contain enough concrete entities, dates, numbers, or verifiable specifics to ground authoring.",
     }));
   }
-  if ((placeholderExamples.length > 0 ? 1 : 0) + (nonTestableFacts.length >= 3 ? 1 : 0) + (unsupportedExamples.length >= 2 ? 1 : 0) + (repeated.length > 0 ? 1 : 0) >= 2) {
+  const fabricatedSignalCount =
+    (placeholderExamples.length > 0 ? 1 : 0) +
+    (nonTestableFacts.length >= 3 ? 1 : 0) +
+    (unsupportedExamples.length >= 2 ? 1 : 0) +
+    (repeated.length > 0 ? 1 : 0);
+  const hasFabricationShape = placeholderExamples.length > 0 || repeated.length > 0;
+  if (fabricatedSignalCount >= 2 && hasFabricationShape) {
     findings.push(finding({
       checkId: "SV2.realness_fabricated_sidecar",
       severity: "advisory",

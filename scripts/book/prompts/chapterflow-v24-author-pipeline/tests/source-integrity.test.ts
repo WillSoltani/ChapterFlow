@@ -229,6 +229,46 @@ test("source integrity surfaces concept-only, placeholder, fabricated, and boile
   }
 });
 
+test("non-testable mechanisms plus paraphrased specifics do not alone synthesize a fabricated-sidecar finding", () => {
+  const root = fixtureRoot("realness-false-positive");
+  rmSync(root, { recursive: true, force: true });
+  try {
+    const sidecar = specificSidecar();
+    sidecar.namedExamples[0] = {
+      ...sidecar.namedExamples[0],
+      realWorld: true,
+      hardSpecifics: [
+        "Northstar Lab reduced ticket reopenings from 37 to 12 after adding its May 2026 intake checkpoint.",
+        "The intake checkpoint preserved the original failed-ticket record before reassignment.",
+      ],
+    };
+    sidecar.namedExamples[1] = {
+      ...sidecar.namedExamples[1],
+      realWorld: true,
+      hardSpecifics: [
+        "Harbor Clinic identified 18 missing consent forms ahead of its Friday discharge review.",
+        "Reviewing paperwork before discharge let staff correct forms while visit details remained available.",
+      ],
+    };
+    sidecar.testableFacts[0].becauseMechanism = "The intake checkpoint captures failed tickets before reassignment and preserves their original records.";
+    sidecar.testableFacts[1].becauseMechanism = "The discharge review exposes missing consent forms while staff still remember each visit.";
+    sidecar.testableFacts[2].becauseMechanism = "The launch delay preserves sensor evidence and isolates the failed cold-chain device.";
+
+    const { stateRoot, runsRoot } = writeSourceFixture(root, BOOK, [sidecar]);
+    const report = checkSourceV2Gate(BOOK, undefined, { stateRoot, runsRoot });
+    const ids = report.findings.map((finding) => finding.checkId);
+
+    assert.ok(ids.includes("SV2.realness_non_testable_fact"), "causal prose without a connector remains advisory");
+    assert.ok(ids.includes("SV2.realness_unsupported_entity"), "full-sentence paraphrased specifics remain advisory");
+    assert.equal(ids.includes("SV2.realness_placeholder_example"), false);
+    assert.equal(ids.includes("SV2.realness_repeated_boilerplate"), false);
+    assert.equal(ids.includes("SV2.realness_fabricated_sidecar"), false,
+      "low-confidence realness advisories alone must not imply fabricated source material");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 
 test("prewrite source gate escalates thin realness advisories before writer fanout without changing structural gate semantics", () => {
   const root = fixtureRoot("prewrite-realness");
