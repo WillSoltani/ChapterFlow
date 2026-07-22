@@ -1,33 +1,26 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
-  MOBILE_EDGE_OPACITY_CLASS,
+  VISIBLE_PER_SIDE,
   getCoverflowPresentation,
 } from "./RecallCoverflowPresentation";
 
-test("keeps the existing five-cover desktop presentation", () => {
-  assert.deepEqual(getCoverflowPresentation(0), {
-    beyond: false,
-    desktopOpacity: 1,
-    mobileOpacityClassName: "",
-  });
+test("floors every in-stage cover at 0.5 on the #06070A canvas (WS5-011)", () => {
+  assert.deepEqual(getCoverflowPresentation(0), { beyond: false, desktopOpacity: 1 });
   assert.deepEqual(getCoverflowPresentation(1), {
     beyond: false,
     desktopOpacity: 0.6599999999999999,
-    mobileOpacityClassName: "",
   });
-  assert.deepEqual(getCoverflowPresentation(2), {
-    beyond: false,
-    desktopOpacity: 0.31999999999999995,
-    mobileOpacityClassName: MOBILE_EDGE_OPACITY_CLASS,
-  });
+  assert.deepEqual(getCoverflowPresentation(2), { beyond: false, desktopOpacity: 0.5 });
+  for (let distance = 0; distance <= VISIBLE_PER_SIDE; distance++) {
+    assert.ok(
+      getCoverflowPresentation(distance).desktopOpacity >= 0.5,
+      `in-stage distance ${distance} must render at >= 0.5`,
+    );
+  }
 });
 
-test("raises only the phone edge-cover floor and keeps off-stage covers hidden", () => {
-  assert.equal(MOBILE_EDGE_OPACITY_CLASS, "max-sm:opacity-50");
-  assert.deepEqual(getCoverflowPresentation(3), {
-    beyond: true,
-    desktopOpacity: 0,
-    mobileOpacityClassName: "",
-  });
+test("keeps off-stage covers fully hidden", () => {
+  assert.deepEqual(getCoverflowPresentation(3), { beyond: true, desktopOpacity: 0 });
+  assert.deepEqual(getCoverflowPresentation(-3), { beyond: true, desktopOpacity: 0 });
 });

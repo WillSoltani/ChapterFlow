@@ -318,8 +318,7 @@ export function RecallCoverflow({
 
             const distance = Math.abs(offset);
             const isFocused = offset === 0;
-            const { beyond, desktopOpacity, mobileOpacityClassName } =
-              getCoverflowPresentation(distance);
+            const { beyond, desktopOpacity } = getCoverflowPresentation(distance);
 
             // Covers past the visible window collapse to the back plane: pushed
             // fully out + transparent so only the near five read as the shelf.
@@ -378,7 +377,7 @@ export function RecallCoverflow({
                 // so we keep it at lg+ but drop it below lg, where single (correct)
                 // centering is what makes the compact mobile/tablet stage clear the
                 // header.
-                className={`absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(12rem,34vw,23rem)] rounded-[12px] opacity-(--recall-cover-opacity) focus-visible:outline-none focus-visible:ring-2 lg:-translate-x-1/2 lg:-translate-y-1/2 ${mobileOpacityClassName}`}
+                className="absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(12rem,34vw,23rem)] rounded-[12px] opacity-(--recall-cover-opacity) focus-visible:outline-none focus-visible:ring-2 lg:-translate-x-1/2 lg:-translate-y-1/2"
                 style={coverStyle}
               >
                 <CoverFrame book={book} focused={isFocused} withReflection />

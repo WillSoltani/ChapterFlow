@@ -159,6 +159,13 @@ test("shared m controls self-provide features for consumers outside scoped route
   assert.match(dialog, /<MotionFeatureProvider>/);
   assert.doesNotMatch(dialog, /<MotionFeatureProvider strict>/);
   assert.match(segmentedControl, /<MotionFeatureProvider strict>/);
+
+  // Pricing renders SectionReveal (raw `motion.*`) in its subtree, so its
+  // boundary must stay non-strict: strict LazyMotion throws at runtime for
+  // any raw motion component and takes down the whole page via app/error.tsx.
+  const pricing = source("components/sections/Pricing.tsx");
+  assert.match(pricing, /<MotionFeatureProvider>/);
+  assert.doesNotMatch(pricing, /<MotionFeatureProvider strict>/);
 });
 
 test("JetBrains and Newsreader remain defined without eager root preloads", () => {
