@@ -10,6 +10,7 @@ import { logger } from "@/lib/logging/logger";
 import { runWithRequestContext } from "@/lib/logging/request-context";
 import { BookApiError, isBookApiError } from "./errors";
 import { classifyRetryableAwsError } from "./aws-retryable-error-core";
+import { resolveApiVersion } from "./api-version-core";
 import { getAppBaseUrl } from "./env";
 import {
   evaluateSameOrigin,
@@ -185,13 +186,32 @@ export async function withBookApiErrors<T>(
   // scope — resolves the correlation id automatically (WS6-031).
   return runWithRequestContext(requestId, async () => {
     try {
+      // API version negotiation (WS4-006) runs BEFORE anything else — a
+      // request naming an unsupported version never touches CSRF, auth,
+      // DynamoDB, or Stripe. See docs/API-VERSIONING.md. Absent header, plain
+      // application/json, and browser Accept lists all default to v1, so
+      // every existing web/native client is unaffected.
+      const versionResolution = resolveApiVersion(req.headers.get("accept"));
+      if (!versionResolution.supported) {
+        return bookErr(
+          req,
+          406,
+          "unsupported_api_version",
+          "This API version is not supported. This endpoint currently serves v1 only.",
+          { requested: versionResolution.requested },
+          requestId
+        );
+      }
+
       // CSRF / same-origin guard runs BEFORE the route body so a rejected
       // cross-site mutation never touches auth, DynamoDB, or Stripe. No-op on
       // safe methods and when explicitly opted out.
       if (!opts?.skipOriginCheck) {
         await requireSameOrigin(req);
       }
-      return await fn();
+      const res = await fn();
+      res.headers.set("X-ChapterFlow-Api-Version", String(versionResolution.version));
+      return res;
     } catch (error: unknown) {
       if (error instanceof AuthError) {
         // A transient JWKS-verifier outage is reported as AuthError

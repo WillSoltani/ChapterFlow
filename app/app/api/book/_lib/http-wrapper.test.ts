@@ -388,3 +388,58 @@ test("an unknown non-AWS error still maps to 500 server_error with no Retry-Afte
   assert.equal(json.error?.code, "server_error");
   assert.equal(res.headers.get("Retry-After"), null);
 });
+
+// ─── Accept-header API versioning (WS4-006) ────────────────────────────────
+
+function getWithAccept(accept: string | null): Request {
+  const headers: HeadersInit = {};
+  if (accept !== null) headers.accept = accept;
+  return new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method: "GET",
+    headers,
+  });
+}
+
+test("a request with no version header runs the body unchanged (v1 default)", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(getWithAccept(null), async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(bodyRan, true, "no-Accept request must reach the route body");
+  assert.equal(res.status, 200);
+});
+
+test("Accept application/vnd.chapterflow.v1+json reaches the body", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(
+    getWithAccept("application/vnd.chapterflow.v1+json"),
+    async () => {
+      bodyRan = true;
+      const { bookOk } = await import("./http");
+      return bookOk({ ok: true });
+    }
+  );
+  assert.equal(bodyRan, true, "explicit v1 Accept must reach the route body");
+  assert.equal(res.status, 200);
+});
+
+test("an unsupported vendor version returns 406 unsupported_api_version in the canonical envelope WITHOUT running the body", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(
+    getWithAccept("application/vnd.chapterflow.v2+json"),
+    async () => {
+      bodyRan = true;
+      const { bookOk } = await import("./http");
+      return bookOk({ ok: true });
+    }
+  );
+  assert.equal(res.status, 406, "unsupported version must be rejected before the route body");
+  assert.equal(bodyRan, false, "route body must NOT run for an unsupported version");
+  const json = (await res.json()) as {
+    error?: { code?: string; details?: { requested?: string } };
+  };
+  assert.equal(json.error?.code, "unsupported_api_version");
+  assert.equal(json.error?.details?.requested, "application/vnd.chapterflow.v2+json");
+});
