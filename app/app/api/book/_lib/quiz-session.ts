@@ -87,8 +87,9 @@ function shuffle<T>(values: T[], rand: () => number): T[] {
   const copy = [...values];
   for (let index = copy.length - 1; index > 0; index -= 1) {
     const swapIndex = Math.floor(rand() * (index + 1));
-    const current = copy[index];
-    copy[index] = copy[swapIndex];
+    // Fisher-Yates: index ∈ [1, len) and swapIndex ∈ [0, index] are both in-bounds.
+    const current = copy[index]!;
+    copy[index] = copy[swapIndex]!;
     copy[swapIndex] = current;
   }
   return copy;
@@ -197,7 +198,8 @@ export function buildQuizAttemptQuestions(params: {
         }
       );
     }
-    const correctChoiceId = choices[correctIndex].choiceId;
+    // correctIndex is a findIndex result guarded ≥ 0 above, so it indexes a real choice.
+    const correctChoiceId = choices[correctIndex]!.choiceId;
     const prompt =
       typeof question.prompt === "string"
         ? question.prompt
@@ -336,10 +338,12 @@ export function buildQuizStateFromAttempts(params: {
   );
   if (attemptsAsc.length === 0) return null;
   const latest = attemptsAsc[attemptsAsc.length - 1];
+  const earliest = attemptsAsc[0];
+  if (latest === undefined || earliest === undefined) return null;
   const passedAttempt = [...attemptsAsc].reverse().find((attempt) => attempt.passed);
   let failureStreak = 0;
   for (let index = attemptsAsc.length - 1; index >= 0; index -= 1) {
-    if (attemptsAsc[index].passed) break;
+    if (attemptsAsc[index]?.passed) break;
     failureStreak += 1;
   }
   return {
@@ -369,7 +373,7 @@ export function buildQuizStateFromAttempts(params: {
         ).toISOString(),
     passedAt: passedAttempt?.createdAt,
     unlockedNextChapter: Boolean(passedAttempt?.unlockedNextChapter),
-    createdAt: attemptsAsc[0].createdAt,
+    createdAt: earliest.createdAt,
     updatedAt: latest.updatedAt || latest.createdAt,
   };
 }

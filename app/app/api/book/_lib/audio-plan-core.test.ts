@@ -74,7 +74,7 @@ const TTL = 6 * 60 * 60; // 6h
 
 // A HEAD fake that reports a byte length for keys in `present`, else null.
 function fakeHead(present: Record<string, number>): BuildAudioPlanDeps["headContentLength"] {
-  return async (key: string) => (key in present ? present[key] : null);
+  return async (key: string) => (present[key] ?? null);
 }
 
 function fakePresign(): BuildAudioPlanDeps["presign"] {
@@ -141,6 +141,7 @@ test("getSegmentDescriptors: score segmentId stays clean for the first-chapter c
     "direct",
     "medium",
   ).filter((d) => d.type === "score");
+  assert.ok(score);
   assert.equal(score.segmentId, "score-first-chapter");
 });
 
@@ -160,7 +161,7 @@ test("getSegmentKeys is exactly getSegmentDescriptors().map(key) — stream keys
 test("getSegmentDescriptors: no userName drops the leading user-greeting descriptor", () => {
   const descriptors = getSegmentDescriptors(makePlan(), makeCtx({ userName: null }), "direct", "medium");
   assert.equal(descriptors.length, 9);
-  assert.equal(descriptors[0].type, "greeting");
+  assert.equal(descriptors[0]!.type, "greeting");
   assert.ok(!descriptors.some((d) => d.type === "userGreeting"));
 });
 
@@ -249,7 +250,7 @@ test("buildAudioPlan: URL matches the presign closure output for that exact key"
   assert.equal(result.ok, true);
   if (!result.ok) return;
   for (let i = 0; i < descriptors.length; i += 1) {
-    assert.equal(result.plan.segments[i].url, await presign(descriptors[i].key));
+    assert.equal(result.plan.segments[i]!.url, await presign(descriptors[i]!.key));
   }
 });
 

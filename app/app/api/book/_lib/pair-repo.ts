@@ -30,7 +30,7 @@ function generateInviteCode(): string {
   const bytes = crypto.randomBytes(8);
   let code = "";
   for (let i = 0; i < 8; i++) {
-    code += chars[bytes[i] & 31];
+    code += chars[(bytes[i] ?? 0) & 31];
   }
   return code;
 }

@@ -192,10 +192,10 @@ test("buildTakeawayText: 3+ takeaways close with the wrap-up connector; details 
   ]);
   const blocks = out.split("\n\n");
   assert.equal(blocks.length, 3);
-  assert.ok(blocks[0].includes("The first key takeaway"));
-  assert.ok(blocks[0].includes("because reasons"));
-  assert.ok(blocks[2].includes("And the last one"));
-  assert.ok(blocks[2].includes("final detail"));
+  assert.ok(blocks[0]!.includes("The first key takeaway"));
+  assert.ok(blocks[0]!.includes("because reasons"));
+  assert.ok(blocks[2]!.includes("And the last one"));
+  assert.ok(blocks[2]!.includes("final detail"));
 });
 
 test("buildTakeawayText: empty list yields empty string", () => {

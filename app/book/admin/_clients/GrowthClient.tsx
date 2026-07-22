@@ -101,7 +101,7 @@ export function GrowthClient() {
           {data?.topDomains.length ? (
             <ul className="space-y-1.5">
               {data.topDomains.map((d) => {
-                const max = data.topDomains[0].count;
+                const max = data.topDomains[0]?.count ?? 1;
                 const pct = (d.count / max) * 100;
                 return (
                   <li key={d.domain}>
@@ -164,9 +164,10 @@ function FunnelView({ funnel }: { funnel?: GrowthResponse["funnel"] }) {
         // sourced from independent proxy event series (see growth/route.ts), not a
         // real monotonic cohort, so a later step can exceed its predecessor. Render
         // no percent rather than a misleading 5-digit figure (e.g. "20200% from prev").
+        const prev = steps[i - 1];
         const conv =
-          i > 0 && steps[i - 1].value > 0 && s.value <= steps[i - 1].value
-            ? `${((s.value / steps[i - 1].value) * 100).toFixed(0)}% from prev`
+          i > 0 && prev && prev.value > 0 && s.value <= prev.value
+            ? `${((s.value / prev.value) * 100).toFixed(0)}% from prev`
             : "";
         return (
           <div key={s.label}>

@@ -136,7 +136,7 @@ export function DesktopReaderShell({
     const dwell = PHASE_DURATIONS_MS[activeTab];
     advanceRef.current = setTimeout(() => {
       const idx = PHASE_ORDER.indexOf(activeTab);
-      const next = PHASE_ORDER[(idx + 1) % PHASE_ORDER.length];
+      const next = PHASE_ORDER[(idx + 1) % PHASE_ORDER.length]!; // PHASE_ORDER non-empty ⇒ in-bounds
       advancesRef.current += 1;
       // Completed the loop (cycled through all 4 phases, back to Summary): stop.
       if (advancesRef.current >= PHASE_ORDER.length) {
@@ -168,7 +168,7 @@ export function DesktopReaderShell({
     markInteracted();
     const idx = PHASE_ORDER.indexOf(activeTab);
     if (idx >= 0 && idx < PHASE_ORDER.length - 1) {
-      setInternalTab(PHASE_ORDER[idx + 1]);
+      setInternalTab(PHASE_ORDER[idx + 1]!); // guarded idx+1 < length
     }
   }, [activeTab, markInteracted]);
 
@@ -207,8 +207,8 @@ export function DesktopReaderShell({
 
   // Bookmark text payload for Practice phase
   const bookmarkedTakeawayTexts = Array.from(bookmarkedTakeaways)
-    .filter((i) => i < takeaways.length)
-    .map((i) => takeaways[i]);
+    .filter((i) => i >= 0 && i < takeaways.length)
+    .map((i) => takeaways[i]!); // filtered to valid indices
 
   return (
     <div

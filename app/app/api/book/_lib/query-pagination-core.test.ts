@@ -49,7 +49,7 @@ test("paginateQuery follows LastEvaluatedKey across all pages (does NOT truncate
 
   const result = await paginateQuery(async (start) => {
     seenStartKeys.push(start);
-    return pages[idx++];
+    return pages[idx++]!;
   });
 
   // Every item from every page, in page+intra-page order (newest-first preserved
@@ -97,6 +97,6 @@ test("paginateQuery tolerates a page with missing items array", async () => {
     makePage([{ version: 1 }]),
   ];
   let idx = 0;
-  const result = await paginateQuery(async () => pages[idx++]);
+  const result = await paginateQuery(async () => pages[idx++]!);
   assert.deepEqual(result, [{ version: 1 }]);
 });

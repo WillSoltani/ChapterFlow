@@ -157,13 +157,13 @@ function matchIsEmailAddress(text: string, matchStart: number, matchEnd: number)
   // mail.company.* may sit between the '@' and the matched label) until we reach
   // an '@' or leave the charset.
   let i = matchStart - 1;
-  while (i >= 0 && EMAIL_LOCALPART_CHARS.test(text[i])) i--;
+  while (i >= 0 && EMAIL_LOCALPART_CHARS.test(text[i] ?? "")) i--;
   // For this to be an email, the boundary char must be '@' AND there must be at
   // least one local-part char immediately before that '@' (so "@host" alone, with
   // no addressee, is NOT treated as an address).
   if (i < 0 || text[i] !== "@") return false;
   const beforeAt = i - 1;
-  return beforeAt >= 0 && EMAIL_LOCALPART_CHARS.test(text[beforeAt]);
+  return beforeAt >= 0 && EMAIL_LOCALPART_CHARS.test(text[beforeAt] ?? "");
 }
 
 function containsLink(text: string): boolean {

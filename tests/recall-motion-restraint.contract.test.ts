@@ -36,10 +36,10 @@ test("the retention entrance is finite and settles in its meaningful final state
     const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     const rule = css.match(new RegExp(`${escaped}\\s*\\{([\\s\\S]*?)\\}`));
     assert.ok(rule, `${selector} must have a live rule`);
-    assert.doesNotMatch(rule[1], /\binfinite\b/);
-    const animation = rule[1].match(/animation\s*:\s*([^;]+);/);
+    assert.doesNotMatch(rule[1]!, /\binfinite\b/);
+    const animation = rule[1]!.match(/animation\s*:\s*([^;]+);/);
     assert.ok(animation, `${selector} must declare its finite entrance`);
-    const cycles = animation[1].match(/(?:^|\s)(\d+(?:\.\d+)?)\s*(?:both|forwards|backwards|none)?\s*$/);
+    const cycles = animation[1]!.match(/(?:^|\s)(\d+(?:\.\d+)?)\s*(?:both|forwards|backwards|none)?\s*$/);
     assert.ok(cycles, `${selector} must declare an explicit iteration count`);
     assert.ok(Number(cycles[1]) <= 2, `${selector} may run at most two cycles`);
   }
@@ -51,8 +51,8 @@ test("Recall decorative motion is one-shot, pointer-driven, or static", () => {
 
   const sheen = css.match(/\.rl-hero-sheen\s*\{([\s\S]*?)\}/);
   assert.ok(sheen);
-  assert.match(sheen[1], /animation\s*:\s*rl-sheen\b/);
-  assert.doesNotMatch(sheen[1], /\binfinite\b/);
+  assert.match(sheen[1]!, /animation\s*:\s*rl-sheen\b/);
+  assert.doesNotMatch(sheen[1]!, /\binfinite\b/);
 
   assert.match(hero, /FSRS(?:&#8209;|-)5 model/);
   assert.doesNotMatch(hero, /FSRS(?:&#8209;|-)5 live/);
@@ -123,5 +123,5 @@ test("OS and in-app reduced-motion kill lists stay semantically identical", () =
       .map((selector) => selector.trim())
       .filter(Boolean)
       .sort();
-  assert.deepEqual(normalize(os[1]), normalize(inApp[1]));
+  assert.deepEqual(normalize(os[1]!), normalize(inApp[1]!));
 });

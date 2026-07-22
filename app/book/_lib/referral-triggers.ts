@@ -64,6 +64,7 @@ export function selectReferralTrigger(
   );
 
   const winner = sorted[0];
+  if (winner === undefined) return null;
   return {
     type: winner.type,
     priority: TRIGGER_PRIORITY[winner.type],

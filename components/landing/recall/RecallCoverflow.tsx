@@ -209,6 +209,7 @@ export function RecallCoverflow({
   if (count === 0) return null;
 
   const focused = books[active];
+  if (focused === undefined) return null;
 
   // Typed style bag — the variable annotation lets the ring custom-properties
   // pass through inline `style` without an excess-property error or `any`.
@@ -605,6 +606,7 @@ function pickStaticRow(
 ): CoverflowBook[] {
   const count = books.length;
   if (count <= 3) return books;
-  const at = (i: number) => books[((i % count) + count) % count];
+  // count > 3 here (short rows returned above), so the wrapped index is in-bounds.
+  const at = (i: number) => books[((i % count) + count) % count]!;
   return [at(active - 1), at(active), at(active + 1)];
 }

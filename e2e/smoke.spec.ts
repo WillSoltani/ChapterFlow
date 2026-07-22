@@ -581,7 +581,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
         { maxRedirects: 0 },
       );
       expect(res.status(), `${orphan} should 308`).toBe(308);
-      const loc = new URL(res.headers()["location"], BASE);
+      const loc = new URL(res.headers()["location"]!, BASE);
       expect(loc.pathname).toBe(`/book/library/${canonical}`);
     });
   }
@@ -592,7 +592,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
       { maxRedirects: 0 },
     );
     expect(res.status()).toBe(308);
-    const loc = new URL(res.headers()["location"], BASE);
+    const loc = new URL(res.headers()["location"]!, BASE);
     expect(loc.pathname).toBe(
       "/book/library/the-art-of-war/chapter/laying-plans",
     );
@@ -605,7 +605,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
       maxRedirects: 0,
     });
     expect(res.status()).toBe(308);
-    const loc = new URL(res.headers()["location"], BASE);
+    const loc = new URL(res.headers()["location"]!, BASE);
     expect(loc.pathname).toBe("/book/library/you-cant-hurt-me");
   });
 
@@ -617,7 +617,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
       const path = `/book/library/${canonical}`;
       const res = await request.get(path, { maxRedirects: 0 });
       if (res.status() >= 300 && res.status() < 400) {
-        const loc = new URL(res.headers()["location"], BASE);
+        const loc = new URL(res.headers()["location"]!, BASE);
         expect(loc.pathname, `${path} must not redirect to itself`).not.toBe(
           path,
         );
@@ -659,7 +659,7 @@ test.describe("prod-build smoke (@prod)", () => {
       expect(res.status()).toBeLessThan(400);
       const location = res.headers()["location"];
       expect(location, `${path} redirect must carry a Location header`).toBeTruthy();
-      const loc = new URL(location, "http://127.0.0.1:3000");
+      const loc = new URL(location!, "http://127.0.0.1:3000");
       expect(loc.pathname).toBe("/auth/login");
       expect(loc.searchParams.get("returnTo")).toBe(path);
     });

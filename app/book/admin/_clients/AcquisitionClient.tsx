@@ -90,7 +90,7 @@ export function AcquisitionClient() {
           ) : (
             <div className="space-y-2">
               {data?.referralSources.map((r) => {
-                const max = data.referralSources[0].count;
+                const max = data.referralSources[0]?.count ?? 0;
                 const pct = max > 0 ? (r.count / max) * 100 : 0;
                 const totalPct =
                   data.totalSurveyed > 0 ? Math.round((r.count / data.totalSurveyed) * 100) : 0;

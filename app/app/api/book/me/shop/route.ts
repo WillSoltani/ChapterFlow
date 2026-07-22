@@ -48,7 +48,7 @@ function generateGiftCode(): string {
   const bytes = crypto.getRandomValues(new Uint8Array(20));
   let code = "";
   for (let i = 0; i < bytes.length; i++) {
-    code += chars[bytes[i] & 31];
+    code += chars[(bytes[i] ?? 0) & 31];
   }
   return `GIFT-${code}`;
 }

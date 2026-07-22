@@ -29,7 +29,8 @@ export function computeProgressPercent(
 ): number {
   if (completedPhases.has(activeTab)) return PHASE_WEIGHTS[activeTab];
   const currentIndex = PHASE_ORDER.indexOf(activeTab);
-  const previousWeight = currentIndex > 0 ? PHASE_WEIGHTS[PHASE_ORDER[currentIndex - 1]] : 0;
+  const prevTab = currentIndex > 0 ? PHASE_ORDER[currentIndex - 1] : undefined;
+  const previousWeight = prevTab !== undefined ? PHASE_WEIGHTS[prevTab] : 0;
   return previousWeight + Math.round((PHASE_WEIGHTS[activeTab] - previousWeight) * 0.5);
 }
 

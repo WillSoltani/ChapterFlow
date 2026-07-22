@@ -140,7 +140,7 @@ export function GeographyClient() {
                     </thead>
                     <tbody>
                       {data.countries.map((c) => {
-                        const max = data.countries[0].count;
+                        const max = data.countries[0]?.count ?? 1;
                         const pct = (c.count / max) * 100;
                         return (
                           <tr
@@ -258,7 +258,7 @@ export function GeographyClient() {
                     </thead>
                     <tbody>
                       {data.locationClusters.map((c, i) => {
-                        const max = data.locationClusters![0].count;
+                        const max = data.locationClusters![0]?.count ?? 1;
                         const pct = (c.count / max) * 100;
                         return (
                           <tr

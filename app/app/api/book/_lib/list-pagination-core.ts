@@ -168,7 +168,7 @@ export function paginateArray<T>(
 
   let nextCursor: string | null = null;
   if (hasMore) {
-    const last = cursorKey(page[page.length - 1]);
+    const last = cursorKey(page[page.length - 1]!); // hasMore ⇒ page is non-empty
     const payload: ArrayCursorPayload = { offset: nextIndex, id: last.id, createdAt: last.createdAt };
     nextCursor = encodeListCursor(payload);
   }

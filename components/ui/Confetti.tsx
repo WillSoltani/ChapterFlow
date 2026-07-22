@@ -44,7 +44,7 @@ function resolveColor(input: string, root: HTMLElement): string {
     token = trimmed;
   } else {
     const m = trimmed.match(/^var\(\s*(--[^,)\s]+)/); // tolerate `var( --x )`
-    if (m) token = m[1];
+    if (m) token = m[1] ?? null;
   }
   if (!token) return trimmed;
   const value = getComputedStyle(root).getPropertyValue(token).trim();
@@ -129,10 +129,11 @@ export function Confetti({
         vy: fromCenter ? (Math.random() - 0.5) * 16 - 4 : Math.random() * 3 + 2,
         width: Math.random() * 8 + 4,
         height: Math.random() * 6 + 3,
-        color: palette[Math.floor(Math.random() * palette.length)],
+        // palette and shapes are both non-empty, so the random index is in-bounds.
+        color: palette[Math.floor(Math.random() * palette.length)]!,
         rotation: Math.random() * Math.PI * 2,
         rotationSpeed: (Math.random() - 0.5) * 0.15,
-        shape: shapes[Math.floor(Math.random() * shapes.length)],
+        shape: shapes[Math.floor(Math.random() * shapes.length)]!,
         opacity: 1,
         gravity: 0.12 + Math.random() * 0.08,
       });

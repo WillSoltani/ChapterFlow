@@ -361,7 +361,9 @@ export function buildTakeawayText(
   const total = takeaways.length;
 
   for (let i = 0; i < total; i++) {
-    const { point, moreDetails } = takeaways[i];
+    const takeaway = takeaways[i];
+    if (takeaway === undefined) continue; // i ∈ [0, total)
+    const { point, moreDetails } = takeaway;
     const hasDetails = moreDetails && moreDetails.trim().length > 0;
     const connectors = hasDetails ? CONNECTORS_WITH_DETAILS : CONNECTORS_POINT_ONLY;
 
@@ -628,7 +630,7 @@ export async function buildAudioPlan(
   const built = await Promise.all(
     descriptors.map(async (d, i): Promise<AudioPlanSegment | null> => {
       const contentLength = lengths[i];
-      if (contentLength === null) return null;
+      if (contentLength === null || contentLength === undefined) return null;
       const url = await deps.presign(d.key);
       const durationSeconds = ELEVENLABS_CBR_TYPES.has(d.type)
         ? Math.round((contentLength / CBR_BYTES_PER_SECOND) * 10) / 10

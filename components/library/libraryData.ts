@@ -101,7 +101,8 @@ function inferCoverGradient(bookId: string): string {
   for (let index = 0; index < bookId.length; index += 1) {
     hash = ((hash << 5) - hash + bookId.charCodeAt(index)) | 0;
   }
-  return gradients[Math.abs(hash) % gradients.length];
+  // gradients is non-empty, so the hashed index is in-bounds.
+  return gradients[Math.abs(hash) % gradients.length]!;
 }
 
 function buildLearningPoints(tags: string[] | undefined, categories: string[]): string[] {

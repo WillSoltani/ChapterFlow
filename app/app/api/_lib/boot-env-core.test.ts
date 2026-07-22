@@ -156,7 +156,7 @@ test("derived production placeholders use valid callback, app, and App Store URL
     "CHAPTERFLOW_APP_BASE_URL",
     "IOS_APP_STORE_URL",
   ]) {
-    assert.doesNotThrow(() => new URL(PRODUCTION_ENV[name]), name);
+    assert.doesNotThrow(() => new URL(PRODUCTION_ENV[name]!), name);
   }
 });
 

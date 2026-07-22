@@ -969,8 +969,8 @@ export function useBookPreferences() {
       const mins = now.getHours() * 60 + now.getMinutes();
       const [startH, startM] = state.extended.darkModeFrom.split(":").map(Number);
       const [endH, endM] = state.extended.darkModeTo.split(":").map(Number);
-      const start = startH * 60 + startM;
-      const end = endH * 60 + endM;
+      const start = (startH ?? NaN) * 60 + (startM ?? NaN);
+      const end = (endH ?? NaN) * 60 + (endM ?? NaN);
       const isDark = start > end ? mins >= start || mins < end : mins >= start && mins < end;
       const root = document.documentElement;
       root.classList.toggle("dark", isDark);
@@ -1025,7 +1025,7 @@ export function useBookPreferences() {
     };
     root.style.setProperty(
       "--reading-font-family",
-      fontMap[state.extended.fontFamily] || fontMap["sans-serif"],
+      fontMap[state.extended.fontFamily] || fontMap["sans-serif"] || "",
     );
     root.style.setProperty("--reading-font-size", `${state.reading.fontSize}px`);
 

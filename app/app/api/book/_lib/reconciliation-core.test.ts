@@ -35,7 +35,7 @@ test("matching stripe PRO ↔ active sub yields no discrepancies", () => {
 test("orphan_stripe_sub: live sub with no matching entitlement", () => {
   const ds = categorizeReconciliation([], [sub({ customerId: "cus_x" })]);
   assert.deepEqual(typesOf(ds), ["orphan_stripe_sub"]);
-  assert.equal(ds[0].stripeSubscriptionId, "sub_1");
+  assert.equal(ds[0]!.stripeSubscriptionId, "sub_1");
 });
 
 test("stripe_live_but_db_not_pro: active sub but entitlement is FREE", () => {

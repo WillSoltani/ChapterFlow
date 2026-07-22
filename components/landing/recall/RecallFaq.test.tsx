@@ -10,8 +10,8 @@ afterEach(cleanup);
 
 test("RecallFaq keeps exactly one answer expanded", () => {
   const view = render(<RecallFaq />);
-  const first = view.getByRole("button", { name: RECALL_FAQ[0].q });
-  const second = view.getByRole("button", { name: RECALL_FAQ[1].q });
+  const first = view.getByRole("button", { name: RECALL_FAQ[0]!.q });
+  const second = view.getByRole("button", { name: RECALL_FAQ[1]!.q });
 
   assert.equal(first.getAttribute("aria-expanded"), "false");
   assert.equal(second.getAttribute("aria-expanded"), "false");

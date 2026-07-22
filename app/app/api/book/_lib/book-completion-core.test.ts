@@ -100,7 +100,7 @@ test("buildPinnedChapterCountMap: maps each book to its pinned manifest's chapte
       { bookId: "a", manifestKey: "books/a/v1/manifest.json" },
       { bookId: "b", manifestKey: "books/b/v2/manifest.json" },
     ],
-    readManifestChapterCount: async (key) => byKey[key],
+    readManifestChapterCount: async (key) => byKey[key] ?? 0,
   });
   assert.equal(map.get("a"), 3);
   assert.equal(map.get("b"), 7);

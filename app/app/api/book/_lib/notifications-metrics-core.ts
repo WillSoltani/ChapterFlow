@@ -63,6 +63,7 @@ export function windowCutoff(days: string[]): string {
   // `days` is produced by lastNDays() in ascending order, but don't trust that —
   // take the min so the bound is correct regardless of input ordering.
   let min = days[0];
+  if (min === undefined) return ""; // days is non-empty here
   for (const d of days) {
     if (d < min) min = d;
   }

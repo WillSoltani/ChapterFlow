@@ -259,7 +259,8 @@ export function AudioPlayer({
   const cycleSpeed = useCallback(() => {
     userAdjustedSpeedRef.current = true;
     const idx = TTS_SPEED_OPTIONS.indexOf(speed as typeof TTS_SPEED_OPTIONS[number]);
-    const next = TTS_SPEED_OPTIONS[(idx + 1) % TTS_SPEED_OPTIONS.length];
+    // TTS_SPEED_OPTIONS is non-empty, so the wrapped index is in-bounds.
+    const next = TTS_SPEED_OPTIONS[(idx + 1) % TTS_SPEED_OPTIONS.length]!;
     setSpeed(next);
     if (audioRef.current) audioRef.current.playbackRate = next;
     onSpeedChange?.(next);

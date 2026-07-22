@@ -223,8 +223,8 @@ export function ReaderOverlays({
               nextChapter ? `Continue to Chapter ${nextChapter.order} \u2192` : "Finish Book \u2192"
             }
             bookmarkedTakeaways={state.bookmarkedTakeaways
-              .filter((index) => index < activeTakeaways.length)
-              .map((index) => activeTakeaways[index])}
+              .filter((index) => index >= 0 && index < activeTakeaways.length)
+              .map((index) => activeTakeaways[index]!)}
             chapterId={chapterId}
             bookId={bookId}
             chapterNumber={chapter.order}

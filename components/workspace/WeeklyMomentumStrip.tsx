@@ -15,7 +15,8 @@ const MON_LETTERS = ["M", "T", "W", "T", "F", "S", "S"];
 
 /** Monday-based weekday letter for the day `daysAgo` before today (todayWeekday is Mon=0…Sun=6). */
 function weekdayLabel(todayWeekday: number, daysAgo: number): string {
-  return MON_LETTERS[((todayWeekday - daysAgo) % 7 + 7) % 7];
+  // MON_LETTERS has 7 entries and the index is reduced mod 7, so it is in-bounds.
+  return MON_LETTERS[((todayWeekday - daysAgo) % 7 + 7) % 7]!;
 }
 
 export function WeeklyMomentumStrip({

@@ -96,7 +96,7 @@ export function aggregateHourlyForDay(dayKey: string): Array<{ hour: number; min
     for (let h = 0; h < 24; h++) {
       const hourKey = `${dayKey}T${String(h).padStart(2, "0")}`;
       const ms = Number(parsed.hourlyActiveMs[hourKey] ?? 0);
-      if (ms > 0) hourlyMs[h] += ms;
+      if (ms > 0) hourlyMs[h] = (hourlyMs[h] ?? 0) + ms;
     }
   }
 

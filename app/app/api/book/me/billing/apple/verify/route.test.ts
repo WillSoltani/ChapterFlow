@@ -94,8 +94,8 @@ test("happy path: guard invoked, JWS reaches the verify service", async () => {
   assert.equal(guard.requireActiveBookUser.calls.length, 1);
   assert.equal(verifySpy.calls.length, 1);
   // field-reaches-core seam: the parsed transactionJWS is handed to the service.
-  assert.equal(verifySpy.calls[0][0].transactionJws, "jws-abc");
-  assert.equal(verifySpy.calls[0][0].userId, "user-1");
+  assert.equal(verifySpy.calls[0]![0]!.transactionJws, "jws-abc");
+  assert.equal(verifySpy.calls[0]![0]!.userId, "user-1");
 });
 
 test("guard error maps to 403 account_deleted; verify never called", async () => {

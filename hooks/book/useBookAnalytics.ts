@@ -360,6 +360,7 @@ function calculateLongestStreak(dayKeys: string[]): number {
   for (let index = 1; index < dayKeys.length; index += 1) {
     const previous = dayKeys[index - 1];
     const currentDay = dayKeys[index];
+    if (previous === undefined || currentDay === undefined) continue; // index ∈ [1, len)
     if (previousDayKey(currentDay) === previous) {
       current += 1;
       longest = Math.max(longest, current);

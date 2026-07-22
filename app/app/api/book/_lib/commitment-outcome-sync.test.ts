@@ -29,7 +29,7 @@ test("CommitmentOutcome type matches the canonical set", () => {
   const match = src.match(/export type CommitmentOutcome\s*=\s*([^;]+);/);
   assert.ok(match, "CommitmentOutcome type declaration not found");
   const values = sortedUnique(
-    [...match[1].matchAll(/"([a-z]+)"/g)].map((m) => m[1]),
+    [...match[1]!.matchAll(/"([a-z]+)"/g)].map((m) => m[1]!),
   );
   assert.deepEqual(values, CANONICAL, "CommitmentOutcome type drifted");
 });
@@ -39,7 +39,7 @@ test("PATCH validator matches the canonical set", () => {
     "app/app/api/book/me/commitments/[commitmentId]/route.ts",
   );
   const values = sortedUnique(
-    [...src.matchAll(/body\.outcome === "([a-z]+)"/g)].map((m) => m[1]),
+    [...src.matchAll(/body\.outcome === "([a-z]+)"/g)].map((m) => m[1]!),
   );
   assert.deepEqual(values, CANONICAL, "PATCH outcome validator drifted");
 });
@@ -51,7 +51,7 @@ test("dashboard outcome buttons match the canonical set", () => {
   // The three { value: "..." } options live just below the "Did it help?" legend.
   const block = src.slice(start, start + 400);
   const values = sortedUnique(
-    [...block.matchAll(/value:\s*"([a-z]+)"/g)].map((m) => m[1]),
+    [...block.matchAll(/value:\s*"([a-z]+)"/g)].map((m) => m[1]!),
   );
   assert.deepEqual(values, CANONICAL, "dashboard outcome buttons drifted");
 });

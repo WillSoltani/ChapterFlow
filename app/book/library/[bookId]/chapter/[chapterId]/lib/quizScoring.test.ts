@@ -208,7 +208,7 @@ test("scoreSessionLocally scores a keyless (post-H3) session from captured /chec
   assert.equal(graded!.result!.passed, false);
   // Without a shipped key and no captured reveal, the wrong answer can't be
   // enrolled offline — correctChoiceId stays undefined; /submit reconciles it.
-  assert.equal(graded!.questions[1].correctChoiceId, undefined);
+  assert.equal(graded!.questions[1]!.correctChoiceId, undefined);
 });
 
 test("scoreSessionLocally ignores a STALE captured verdict whose choice no longer matches the committed answer", () => {
@@ -239,7 +239,7 @@ test("scoreSessionLocally still uses the local-bundle key when present (offline 
     FIXED_NOW,
   );
   assert.equal(graded!.result!.correctAnswers, 2); // q1, q3 right; q2 wrong
-  assert.equal(graded!.questions[1].correctChoiceId, localChoiceId("q2", 0));
+  assert.equal(graded!.questions[1]!.correctChoiceId, localChoiceId("q2", 0));
 });
 
 test("buildCarryForwardAnswers falls back to the prior correct selection when the target ships no key (post-H3 server retake)", () => {

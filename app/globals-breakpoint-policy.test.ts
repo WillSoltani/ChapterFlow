@@ -21,7 +21,7 @@ test("every width media query in globals.css uses a documented breakpoint or car
   const offenders: string[] = [];
   lines.forEach((line, i) => {
     for (const m of line.matchAll(/@media[^{]*?\((?:min|max)-width:\s*([\d.]+)px\)/g)) {
-      if (DOCUMENTED.has(m[1])) continue;
+      if (DOCUMENTED.has(m[1]!)) continue;
       const window = lines.slice(Math.max(0, i - 3), i + 1).join("\n");
       if (!hasRationale(window)) offenders.push(`line ${i + 1}: ${line.trim()}`);
     }

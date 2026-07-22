@@ -160,6 +160,70 @@
         "fix/ws3-minor-cluster",
         "lib/catalog-integrity-gate.test.ts"
       ]
+    },
+    {
+      "recordId": "b6686bf4a527022c56c813e4a418f59f23818d853b68b0040ae100bcf15cc6e8",
+      "changeId": "ws7-010-flag1-noUncheckedIndexedAccess-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "noUncheckedIndexedAccess",
+      "path": "app/app/api/book/_lib/fsrs.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "f2271efff8ed9e2e9cf9caabf46a2e42aecceaeab289a915f4fd3cd0a2eb1f86",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag1",
+        "tsconfig.app.json noUncheckedIndexedAccess strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "ad2649438b3063b268d40939720cbf6672874946fa75513f27386b2ed3662787",
+      "changeId": "ws7-010-flag1-noUncheckedIndexedAccess-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "noUncheckedIndexedAccess",
+      "path": "app/book/data/bookChapters.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "363836fcb3d7d2def8736da9735e4c9cf5854d8d43619025de5e9f89bedd3acb",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag1",
+        "tsconfig.app.json noUncheckedIndexedAccess strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "428636e908a0aa1fad38434384116f52dc8ecb0e06adeca8818fe2bc41fc72d7",
+      "changeId": "ws7-010-flag1-noUncheckedIndexedAccess-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "noUncheckedIndexedAccess",
+      "path": "app/book/data/bookPackages.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "3c7ec6ab11dbe6d7d2a848bccf04fa3b8989bf060a192ee3af27ff47b524b918",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag1",
+        "tsconfig.app.json noUncheckedIndexedAccess strict-flag fallout"
+      ]
+    },
+    {
+      "recordId": "19d55e34d35a947488cd6930d0f5854707a9c6cf109ff512e36ca05215bbc4be",
+      "changeId": "ws7-010-flag1-noUncheckedIndexedAccess-2026-07-22",
+      "purpose": "ws7-flag-preparation",
+      "flag": "noUncheckedIndexedAccess",
+      "path": "lib/catalog-integrity.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "39ad40c1721c4fecab1224c61825e475869c40c3ba95c7860476b5be5ac44487",
+      "repairedBlobSha256": "4378432900a0e56f0299cc0b93d06bf90ae8d6fbf857ee14a554adf060a5412e",
+      "evidenceRefs": [
+        "WS7-010",
+        "fix/ws7-010-flag1",
+        "tsconfig.app.json noUncheckedIndexedAccess strict-flag fallout"
+      ]
     }
   ]
 }

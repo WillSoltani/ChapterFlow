@@ -16,7 +16,7 @@ export function HeatmapCalendar({ cells }: { cells: HeatmapCell[] }) {
   for (const cell of last30) {
     const d = new Date(`${cell.key}T12:00:00`);
     const dow = (d.getDay() + 6) % 7; // 0=Mon, 6=Sun
-    rows[dow].push(cell);
+    rows[dow]?.push(cell);
   }
   // Pad rows to equal length
   const maxCols = Math.max(...rows.map((r) => r.length), 1);

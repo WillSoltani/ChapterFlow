@@ -82,7 +82,7 @@ export async function POST(req: Request, ctx: Params) {
     // The Messages API requires the first message to be a user turn; dropping
     // leading assistant turns also stops a fabricated assistant turn from
     // opening the conversation.
-    while (history.length && history[0].role === "assistant") {
+    while (history.length && history[0]?.role === "assistant") {
       history.shift();
     }
 

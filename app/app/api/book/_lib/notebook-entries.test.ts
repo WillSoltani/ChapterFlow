@@ -62,8 +62,8 @@ test("the working sibling: notes still surface as a Note entry", () => {
   );
   const notes = entries.filter((e) => e.type === "note");
   assert.equal(notes.length, 1);
-  assert.equal(notes[0].content, "Start with a two-minute version of the habit.");
-  assert.equal(notes[0].id, "note:atomic-habits:3");
+  assert.equal(notes[0]!.content, "Start with a two-minute version of the habit.");
+  assert.equal(notes[0]!.id, "note:atomic-habits:3");
 });
 
 test("notes and bookmarks coexist on the same chapter state", () => {
@@ -93,8 +93,8 @@ test("skips empty, whitespace-only, and non-string takeaway texts", () => {
   );
   const bookmarks = entries.filter((e) => e.type === "bookmark");
   assert.equal(bookmarks.length, 1);
-  assert.equal(bookmarks[0].content, "Real takeaway.");
-  assert.equal(bookmarks[0].id, "bookmark:atomic-habits:3:3");
+  assert.equal(bookmarks[0]!.content, "Real takeaway.");
+  assert.equal(bookmarks[0]!.id, "bookmark:atomic-habits:3:3");
 });
 
 test("bookmark entries come out in ascending index order regardless of insertion order", () => {

@@ -151,7 +151,7 @@ test("apnsRequestHeaders sets topic=bundle, push-type, priority, collapse-id", (
 test("apns-collapse-id is capped at 64 bytes", () => {
   const spec = { ...routeSpecFor("event_reminder", { eventId: "e" }), collapseId: "z".repeat(200) };
   const headers = apnsRequestHeaders({ bundleId: "b", spec });
-  assert.ok(headers["apns-collapse-id"].length <= 64);
+  assert.ok(headers["apns-collapse-id"]!.length <= 64);
 });
 
 test("apnsJwtClaims returns the ES256 header + iss/iat payload", () => {

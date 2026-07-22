@@ -84,7 +84,7 @@ function bookTokens(entry: BookCatalogMetadata): Set<string> {
 function interestsForBook(entry: BookCatalogMetadata): string[] {
   const tokens = bookTokens(entry);
   return ONBOARDING_INTERESTS.filter((slug) =>
-    INTEREST_SIGNALS[slug].some((signal) => tokens.has(norm(signal))),
+    (INTEREST_SIGNALS[slug] ?? []).some((signal) => tokens.has(norm(signal))),
   );
 }
 
@@ -105,7 +105,8 @@ const GRADIENTS = [
 function gradientFor(id: string): string {
   let hash = 0;
   for (let i = 0; i < id.length; i++) hash = (hash * 31 + id.charCodeAt(i)) | 0;
-  return GRADIENTS[Math.abs(hash) % GRADIENTS.length];
+  // GRADIENTS is non-empty, so the hashed index is in-bounds.
+  return GRADIENTS[Math.abs(hash) % GRADIENTS.length]!;
 }
 
 function coverFor(entry: BookCatalogMetadata): string | null {

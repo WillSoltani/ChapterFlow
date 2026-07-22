@@ -62,10 +62,12 @@ export const ALL_BOOKS: LibraryBook[] = BOOKS_CATALOG.map((cat) => {
   };
 });
 
+const FIRST_BOOK = ALL_BOOKS[0];
+if (FIRST_BOOK === undefined) throw new Error("browse-library: ALL_BOOKS is empty");
 export const FEATURED_BOOK =
   ALL_BOOKS.find((book) => book.staffPick) ??
   ALL_BOOKS.find((book) => book.popular) ??
-  ALL_BOOKS[0];
+  FIRST_BOOK;
 
 export const FEATURED_REASON =
   STAFF_PICK_IDS.has(FEATURED_BOOK.id) ? "Staff Pick" :

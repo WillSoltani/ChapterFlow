@@ -74,9 +74,9 @@ test("rejects empty/missing secret or token", () => {
 test("List-Unsubscribe headers include the URL and a one-click POST", () => {
   const url = buildUnsubscribeUrl("https://app.example.com", "tok123");
   const headers = unsubscribeHeaders(url, "mailto:support@chapterflow.ca?subject=unsubscribe");
-  assert.equal(headers[0].Name, "List-Unsubscribe");
-  assert.ok(headers[0].Value.includes(url));
-  assert.ok(headers[0].Value.includes("mailto:support@chapterflow.ca"));
+  assert.equal(headers[0]!.Name, "List-Unsubscribe");
+  assert.ok(headers[0]!.Value.includes(url));
+  assert.ok(headers[0]!.Value.includes("mailto:support@chapterflow.ca"));
   assert.deepEqual(headers[1], {
     Name: "List-Unsubscribe-Post",
     Value: "List-Unsubscribe=One-Click",

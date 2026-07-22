@@ -169,8 +169,9 @@ function deriveBadgeStats(
   let recoveredAfterMiss = 0;
   let returnedAfterLongGap = 0;
   for (let index = 1; index < sortedActivityDays.length; index += 1) {
-    const previous = dayKeyToDate(sortedActivityDays[index - 1]);
-    const current = dayKeyToDate(sortedActivityDays[index]);
+    // index ∈ [1, len): both index-1 and index are in-bounds.
+    const previous = dayKeyToDate(sortedActivityDays[index - 1]!);
+    const current = dayKeyToDate(sortedActivityDays[index]!);
     const gapDays = Math.round((current.getTime() - previous.getTime()) / 86400000);
     if (gapDays >= 2 && gapDays <= 3) recoveredAfterMiss += 1;
     if (gapDays >= 10) returnedAfterLongGap += 1;

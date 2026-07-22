@@ -516,7 +516,7 @@ test("relational inventory rejects duplicate and removed producer membership", (
   const duplicatedBook = duplicated.find((operation) => operation.id === "book-detail.get");
   assert.ok(duplicatedBook);
   duplicatedBook.nativeRequestFixtures.push(
-    structuredClone(duplicatedBook.nativeRequestFixtures[0])
+    structuredClone(duplicatedBook.nativeRequestFixtures[0]!)
   );
   assert.throws(
     () => buildNativeContractBundle(repoRoot, duplicated),
@@ -557,7 +557,7 @@ test("relational inventory rejects producer symbol and source-path reassignment"
   const symbolDrift = structuredClone(nativeContractOperationDefinitions);
   const symbolCommitment = symbolDrift.find((operation) => operation.id === "commitment.get");
   assert.ok(symbolCommitment);
-  symbolCommitment.nativeRequestFixtures[0].producerEvidence = [
+  symbolCommitment.nativeRequestFixtures[0]!.producerEvidence = [
     "getOtherCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:502",
   ];
   assert.throws(
@@ -568,7 +568,7 @@ test("relational inventory rejects producer symbol and source-path reassignment"
   const sourceDrift = structuredClone(nativeContractOperationDefinitions);
   const sourceCommitment = sourceDrift.find((operation) => operation.id === "commitment.get");
   assert.ok(sourceCommitment);
-  sourceCommitment.nativeRequestFixtures[0].producerEvidence = [
+  sourceCommitment.nativeRequestFixtures[0]!.producerEvidence = [
     "getCommitment@Packages/Networking/Sources/Networking/Endpoint+Other.swift:502",
   ];
   assert.throws(
@@ -581,7 +581,7 @@ test("relational inventory rejects variant and derived stable-suffix reassignmen
   const variantDrift = structuredClone(nativeContractOperationDefinitions);
   const variantCommitment = variantDrift.find((operation) => operation.id === "commitment.get");
   assert.ok(variantCommitment);
-  variantCommitment.nativeRequestFixtures[0].operationVariantId =
+  variantCommitment.nativeRequestFixtures[0]!.operationVariantId =
     "commitment.get:getothercommitment";
   assert.throws(
     () => buildNativeContractBundle(repoRoot, variantDrift),
@@ -591,10 +591,10 @@ test("relational inventory rejects variant and derived stable-suffix reassignmen
   const suffixDrift = structuredClone(nativeContractOperationDefinitions);
   const suffixCommitment = suffixDrift.find((operation) => operation.id === "commitment.get");
   assert.ok(suffixCommitment);
-  suffixCommitment.nativeRequestFixtures[0].producerEvidence = [
+  suffixCommitment.nativeRequestFixtures[0]!.producerEvidence = [
     "getOtherCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:502",
   ];
-  suffixCommitment.nativeRequestFixtures[0].operationVariantId =
+  suffixCommitment.nativeRequestFixtures[0]!.operationVariantId =
     "commitment.get:getothercommitment";
   assert.throws(
     () => buildNativeContractBundle(repoRoot, suffixDrift),
@@ -606,7 +606,7 @@ test("relational inventory normalizes only a terminal numeric evidence line", ()
   const lineOnlyDrift = structuredClone(nativeContractOperationDefinitions);
   const commitment = lineOnlyDrift.find((operation) => operation.id === "commitment.get");
   assert.ok(commitment);
-  commitment.nativeRequestFixtures[0].producerEvidence = [
+  commitment.nativeRequestFixtures[0]!.producerEvidence = [
     "getCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:999",
   ];
   assert.doesNotThrow(() => buildNativeContractBundle(repoRoot, lineOnlyDrift));
@@ -614,7 +614,7 @@ test("relational inventory normalizes only a terminal numeric evidence line", ()
   const unsafeSuffix = structuredClone(nativeContractOperationDefinitions);
   const unsafeCommitment = unsafeSuffix.find((operation) => operation.id === "commitment.get");
   assert.ok(unsafeCommitment);
-  unsafeCommitment.nativeRequestFixtures[0].producerEvidence = [
+  unsafeCommitment.nativeRequestFixtures[0]!.producerEvidence = [
     "getCommitment@Packages/Networking/Sources/Networking/Endpoint.swift:502:extra",
   ];
   assert.throws(

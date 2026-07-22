@@ -308,8 +308,8 @@ test("WS4-014 RED: invoice.payment_failed cannot overwrite an Apple entitlement"
   assert.equal(res.status, 200);
 
   assert.equal(capturedParams.length, 1);
-  assert.equal(capturedParams[0].plan, "PRO");
-  assert.equal(capturedParams[0].proStatus, "past_due");
+  assert.equal(capturedParams[0]!.plan, "PRO");
+  assert.equal(capturedParams[0]!.proStatus, "past_due");
 
   const stored = entitlements.get("user-apple");
   assert.equal(
@@ -349,8 +349,8 @@ test("WS4-014 PIN: checkout.session.completed still takes over Apple", async () 
   assert.equal(res.status, 200);
 
   assert.equal(capturedParams.length, 1);
-  assert.equal(capturedParams[0].plan, "PRO");
-  assert.equal(capturedParams[0].proStatus, "active");
+  assert.equal(capturedParams[0]!.plan, "PRO");
+  assert.equal(capturedParams[0]!.proStatus, "active");
 
   const stored = entitlements.get("user-apple");
   assert.equal(stored?.proSource, "stripe");
@@ -403,7 +403,7 @@ test("WS7-001: customer.subscription.deleted downgrades a stripe entitlement", a
 
   // mapSubscriptionStatus("canceled") → plan FREE
   assert.equal(capturedParams.length, 1);
-  assert.equal(capturedParams[0].plan, "FREE");
+  assert.equal(capturedParams[0]!.plan, "FREE");
   assert.equal(entitlements.get("user-stripe")?.plan, "FREE");
   assert.ok(completedEventIds.includes("evt_sub_del_1"));
 });
@@ -490,11 +490,11 @@ test("WS7-001: charge.dispute.created revokes a stripe entitlement and sets the 
   assert.equal(res.status, 200);
 
   assert.equal(recordedBillingEvents.length, 1);
-  assert.equal((recordedBillingEvents[0] as { kind?: string }).kind, "dispute");
+  assert.equal((recordedBillingEvents[0]! as { kind?: string }).kind, "dispute");
   assert.equal(capturedParams.length, 1);
-  assert.equal(capturedParams[0].plan, "FREE");
-  assert.equal(capturedParams[0].proStatus, "canceled");
-  assert.equal(capturedParams[0].setDisputeOpen, true);
+  assert.equal(capturedParams[0]!.plan, "FREE");
+  assert.equal(capturedParams[0]!.proStatus, "canceled");
+  assert.equal(capturedParams[0]!.setDisputeOpen, true);
   assert.deepEqual(disputeMarkerCalls, [["user-stripe", true]]);
   assert.ok(completedEventIds.includes("evt_dispute_1"));
 });

@@ -26,7 +26,9 @@ const LEVELS: LevelEntry[] = [
 ];
 
 export function getLevel(fp: number) {
-  let current = LEVELS[0];
+  const first = LEVELS[0];
+  if (first === undefined) throw new Error("getLevel: LEVELS is empty");
+  let current = first;
   for (const level of LEVELS) {
     if (fp >= level.fpThreshold) current = level;
     else break;

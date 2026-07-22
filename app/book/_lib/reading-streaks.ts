@@ -17,7 +17,7 @@ const DEFAULT_STATE: StreakState = {
 };
 
 function toDateString(date: Date): string {
-  return date.toISOString().split("T")[0];
+  return date.toISOString().split("T")[0] ?? "";
 }
 
 function getMonday(date: Date): string {

@@ -60,7 +60,7 @@ test("ready attempt: status is ready and per-result fields are gated to null/und
 test("ready attempt: choiceIds use the server `<qid>::choice::<index>` scheme (pins build/grade contract)", () => {
   const session = readySession();
   assert.deepEqual(
-    session.questions[0].choices.map((c) => c.choiceId),
+    session.questions[0]!.choices.map((c) => c.choiceId),
     ["q1::choice::0", "q1::choice::1", "q1::choice::2", "q1::choice::3"],
   );
 });
@@ -69,8 +69,8 @@ test("correctIndex is NOT emitted to the client (dead, answer-revealing field �
   const session = readySession();
   // It has zero client consumers and is a redundant plaintext copy of the
   // answer; it must never appear on the wire, in any status.
-  assert.ok(!("correctIndex" in session.questions[0]), "ready");
-  assert.equal(session.questions[0].correctIndex, undefined);
+  assert.ok(!("correctIndex" in session.questions[0]!), "ready");
+  assert.equal(session.questions[0]!.correctIndex, undefined);
 });
 
 test("H3 CLOSED: correctChoiceId is NOT emitted on a ready attempt (the answer key never ships pre-submit)", () => {
@@ -79,11 +79,11 @@ test("H3 CLOSED: correctChoiceId is NOT emitted on a ready attempt (the answer k
   // click via the server /check endpoint, which returns only correctness. The
   // key is revealed only in the post-submit review projection (asserted below).
   const session = readySession();
-  assert.equal(session.questions[0].correctChoiceId, undefined);
-  assert.equal(session.questions[1].correctChoiceId, undefined);
+  assert.equal(session.questions[0]!.correctChoiceId, undefined);
+  assert.equal(session.questions[1]!.correctChoiceId, undefined);
   // And the redundant index copy must likewise never appear on a ready question.
-  assert.equal(session.questions[0].correctIndex, undefined);
-  assert.ok(!("correctIndex" in session.questions[0]));
+  assert.equal(session.questions[0]!.correctIndex, undefined);
+  assert.ok(!("correctIndex" in session.questions[0]!));
 });
 
 // ─── out-of-range authored answer key (A4 — permanently-failing question) ─────
@@ -176,8 +176,8 @@ test("A4: an in-range correctAnswerIndex still resolves to the matching choice (
     attemptNumber: 1,
     preserveAuthoredOrder: true,
   });
-  assert.equal(questions[0].correctChoiceId, "q1::choice::2");
-  assert.equal(questions[0].correctIndex, 2);
+  assert.equal(questions[0]!.correctChoiceId, "q1::choice::2");
+  assert.equal(questions[0]!.correctIndex, 2);
 });
 
 // ─── post-submit (review) projection ──────────────────────────────────────────
@@ -245,14 +245,14 @@ test("passed review: selectedChoiceId/isCorrect come from the attempt, correctCh
   // Review screens (ReviewMistakesView, FSRS enrolment) legitimately need the
   // key here — it is read off a session that already has a result — so the
   // future gate must keep emitting correctChoiceId in non-ready states.
-  assert.equal(session.questions[0].correctChoiceId, "q1::choice::2");
-  assert.equal(session.questions[0].selectedChoiceId, "q1::choice::2");
-  assert.equal(session.questions[0].isCorrect, true);
-  assert.equal(session.questions[1].selectedChoiceId, "q2::choice::1");
-  assert.equal(session.questions[1].isCorrect, false);
+  assert.equal(session.questions[0]!.correctChoiceId, "q1::choice::2");
+  assert.equal(session.questions[0]!.selectedChoiceId, "q1::choice::2");
+  assert.equal(session.questions[0]!.isCorrect, true);
+  assert.equal(session.questions[1]!.selectedChoiceId, "q2::choice::1");
+  assert.equal(session.questions[1]!.isCorrect, false);
   // The MISSED question must ALSO carry the key here — this is the field the
   // post-submit spaced-repetition enrolment (ChapterReaderClient) reads to
   // enroll wrong answers. Gating it to non-ready states must not drop it.
-  assert.equal(session.questions[1].correctChoiceId, "q2::choice::0");
-  assert.ok(!("correctIndex" in session.questions[0]), "passed");
+  assert.equal(session.questions[1]!.correctChoiceId, "q2::choice::0");
+  assert.ok(!("correctIndex" in session.questions[0]!), "passed");
 });

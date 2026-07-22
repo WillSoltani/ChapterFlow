@@ -46,11 +46,11 @@ test("phaseForProgress clamps out-of-range progress (scroll overshoot)", () => {
 test("phase bands are monotonic, cover [0,1], and match ORDER", () => {
   for (let i = 1; i < PHASE_BANDS.length; i++) {
     assert.ok(
-      PHASE_BANDS[i].max > PHASE_BANDS[i - 1].max,
+      PHASE_BANDS[i]!.max > PHASE_BANDS[i - 1]!.max,
       "band maxima must strictly increase",
     );
   }
-  assert.equal(PHASE_BANDS[PHASE_BANDS.length - 1].max, Infinity);
+  assert.equal(PHASE_BANDS[PHASE_BANDS.length - 1]!.max, Infinity);
   assert.deepEqual(
     PHASE_BANDS.map((b) => b.phase),
     ORDER,

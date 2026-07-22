@@ -87,8 +87,8 @@ test("happy path mints a portal session; guard + step-up invoked", async () => {
   assert.equal(res.status, 200);
   assert.deepEqual(await res.json(), { portalUrl: "https://stripe.test/portal" });
   assert.equal(guard.requireActiveBookUser.calls.length, 1);
-  assert.equal(requireRecentAuth.calls[0][1], 10); // PORTAL_MAX_AUTH_AGE_MINUTES
-  assert.deepEqual(sessionsCreate.calls[0][0], {
+  assert.equal(requireRecentAuth.calls[0]![1], 10); // PORTAL_MAX_AUTH_AGE_MINUTES
+  assert.deepEqual(sessionsCreate.calls[0]![0], {
     customer: "cus_1",
     return_url: "https://app.chapterflow.ca/book/settings",
   });

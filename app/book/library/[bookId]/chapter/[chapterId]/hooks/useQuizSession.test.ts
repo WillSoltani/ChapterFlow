@@ -52,7 +52,7 @@ test("buildLocalQuizSession builds a ready session for a non-empty quiz", () => 
 test("buildLocalQuizSession keys choices in the local `-choice-` scheme and strips A)/B) labels", () => {
   const session = buildLocalQuizSession(makeLocalQuiz(1), 1);
   assert.ok(session);
-  const q = session.questions[0];
+  const q = session.questions[0]!;
   assert.equal(q.questionId, "q0");
   // correctIndex is 1, so the correct choiceId is `<id>-choice-1` and the label
   // prefix ("B) ") is stripped from the visible text.

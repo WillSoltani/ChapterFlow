@@ -21,7 +21,8 @@ type MessageFactory = (ctx: MessageContext) => string;
 
 function pick(messages: MessageFactory[], ctx: MessageContext): string {
   const index = Math.floor(Math.random() * messages.length);
-  return messages[index](ctx);
+  const factory = messages[index];
+  return factory ? factory(ctx) : "";
 }
 
 const messages: Record<Persona, Record<Event, MessageFactory[]>> = {

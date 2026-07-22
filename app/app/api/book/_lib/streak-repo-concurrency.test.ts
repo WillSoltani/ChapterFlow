@@ -110,23 +110,26 @@ function evalClause(
   let m: RegExpExecArray | null;
 
   if ((m = /^attribute_not_exists\((\w+)\)$/.exec(trimmed))) {
-    return !item || !(m[1] in item);
+    return !item || !(m[1]! in item); // regex capture group 1 is always present on a match
   }
   if ((m = /^attribute_exists\((\w+)\)$/.exec(trimmed))) {
-    return !!item && m[1] in item;
+    return !!item && m[1]! in item; // regex capture group 1 is always present on a match
   }
   if ((m = /^(\w+)\s*>=\s*(:\w+)$/.exec(trimmed))) {
     const [, name, token] = m;
+    if (name === undefined || token === undefined) return false;
     if (!item || !(name in item)) return false;
     return Number(item[name]) >= Number(resolveValue(token, values));
   }
   if ((m = /^(\w+)\s*<\s*(:\w+)$/.exec(trimmed))) {
     const [, name, token] = m;
+    if (name === undefined || token === undefined) return false;
     if (!item || !(name in item)) return false;
     return Number(item[name]) < Number(resolveValue(token, values));
   }
   if ((m = /^(\w+)\s*=\s*(:\w+)$/.exec(trimmed))) {
     const [, name, token] = m;
+    if (name === undefined || token === undefined) return false;
     if (!item || !(name in item)) return false;
     const v = resolveValue(token, values);
     return item[name] === v;
@@ -175,7 +178,7 @@ function parseAssignments(s: string): Array<{ name: string; token: string }> {
   return splitCommaTopLevel(s).map((pair) => {
     const m = /^(\S+)\s*=\s*(:\S+)$/.exec(pair);
     if (!m) throw new Error(`unsupported expression: SET clause "${pair}"`);
-    return { name: m[1], token: m[2] };
+    return { name: m[1]!, token: m[2]! }; // both capture groups present on a match
   });
 }
 
@@ -183,7 +186,7 @@ function parseAdds(s: string): Array<{ name: string; token: string }> {
   return splitCommaTopLevel(s).map((pair) => {
     const m = /^(\S+)\s+(:\S+)$/.exec(pair);
     if (!m) throw new Error(`unsupported expression: ADD clause "${pair}"`);
-    return { name: m[1], token: m[2] };
+    return { name: m[1]!, token: m[2]! }; // both capture groups present on a match
   });
 }
 
@@ -553,10 +556,10 @@ test("PIN (harness sanity) — purchaseStreakShield alone: +1 shield, -100 IP, l
 
   const rows = ledgerRows();
   assert.equal(rows.length, 1, "exactly one ledger row must be written");
-  assert.equal(rows[0].direction, "spend");
-  assert.equal(rows[0].amount, 100);
-  assert.equal(rows[0].sourceType, "reward_redemption");
-  assert.equal(rows[0].sourceId, "streak_shield");
+  assert.equal(rows[0]!.direction, "spend");
+  assert.equal(rows[0]!.amount, 100);
+  assert.equal(rows[0]!.sourceType, "reward_redemption");
+  assert.equal(rows[0]!.sourceId, "streak_shield");
 });
 
 test("PIN (harness sanity) — shields_full at 3 refuses without deducting", async () => {

@@ -48,7 +48,7 @@ function readClientIp(req: NextRequest): string | null {
       // Trust the Nth entry from the right (appended by our edge), never the
       // leftmost client-controlled token.
       const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
-      return chain[idx] ?? chain[chain.length - 1];
+      return chain[idx] ?? chain[chain.length - 1] ?? null;
     }
   }
   const realIp = req.headers.get("x-real-ip")?.trim();

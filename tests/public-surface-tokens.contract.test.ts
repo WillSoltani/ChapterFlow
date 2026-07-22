@@ -9,7 +9,7 @@ function rule(selector: string): string {
   const escaped = selector.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
   const match = css.match(new RegExp(`${escaped}\\s*\\{([\\s\\S]*?)\\}`));
   assert.ok(match, `missing ${selector} rule`);
-  return match[1];
+  return match[1]!;
 }
 
 function channel(v: number): number {
@@ -20,12 +20,12 @@ function channel(v: number): number {
 function luminance(hex: string): number {
   const value = hex.replace("#", "");
   const parts = [0, 2, 4].map((offset) => Number.parseInt(value.slice(offset, offset + 2), 16));
-  return 0.2126 * channel(parts[0]) + 0.7152 * channel(parts[1]) + 0.0722 * channel(parts[2]);
+  return 0.2126 * channel(parts[0]!) + 0.7152 * channel(parts[1]!) + 0.0722 * channel(parts[2]!);
 }
 
 function contrast(a: string, b: string): number {
   const [light, dark] = [luminance(a), luminance(b)].sort((x, y) => y - x);
-  return (light + 0.05) / (dark + 0.05);
+  return (light! + 0.05) / (dark! + 0.05);
 }
 
 test("the public shell aliases every legacy marketing accent to Recall periwinkle", () => {

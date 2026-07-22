@@ -133,17 +133,18 @@ function buildReviewDataFromCards(cards: FSRSCardLite[]): ReviewData {
   let dueTodayCount = 0;
   let upcomingThisWeekCount = 0;
 
+  // forecast always has 7 buckets (index 0..6); every index below is in-bounds.
   for (const card of cards) {
     const offset = dayOffsetFromToday(card.dueAt, todayMs);
     if (offset < 0) {
       overdueCount += 1;
-      forecast[0].count += 1;
+      forecast[0]!.count += 1;
     } else if (offset === 0) {
       dueTodayCount += 1;
-      forecast[0].count += 1;
+      forecast[0]!.count += 1;
     } else if (offset <= 7) {
       upcomingThisWeekCount += 1;
-      if (offset <= 6) forecast[offset].count += 1;
+      if (offset <= 6) forecast[offset]!.count += 1;
     }
   }
 
@@ -183,7 +184,8 @@ function buildProgressData(
   const activeBooks: ActiveBook[] = analytics.recentlyOpenedSnapshots.map(
     (snapshot) => {
       const loopStep = snapshot.currentLoopStep ?? "summary";
-      const { step, stepNumber } = LOOP_STEP_MAP[loopStep] ?? LOOP_STEP_MAP.summary;
+      // "summary" is a statically-defined key of LOOP_STEP_MAP, so the fallback is always present.
+      const { step, stepNumber } = LOOP_STEP_MAP[loopStep] ?? LOOP_STEP_MAP.summary!;
       return {
         id: snapshot.book.id,
         title: snapshot.book.title,
@@ -591,7 +593,7 @@ export function ProgressPage() {
 
     const reordered = [...merged.activeBooks];
     const [selected] = reordered.splice(idx, 1);
-    reordered.unshift(selected);
+    if (selected !== undefined) reordered.unshift(selected); // idx guarded ≥ 0 and < length
     return { ...merged, activeBooks: reordered };
   }, [data, primaryBookId, readerMetrics]);
 
@@ -599,10 +601,8 @@ export function ProgressPage() {
   const totalDaysWithData = displayData?.readingActivity.totalDaysWithData ?? 0;
 
   // Recent badge for celebration banner
-  const recentBadgeName =
-    recentlyEarned.length > 0 ? recentlyEarned[0].name : null;
-  const recentBadgeId =
-    recentlyEarned.length > 0 ? recentlyEarned[0].id : null;
+  const recentBadgeName = recentlyEarned[0]?.name ?? null;
+  const recentBadgeId = recentlyEarned[0]?.id ?? null;
 
   // ── Loading state ──
   if (!onboardingHydrated || !hydrated || !onboarding.setupComplete) {
