@@ -515,8 +515,22 @@ jobs:
       - name: Build infra TypeScript
         run: npm run build
 
-      - name: CDK synth (backend, dev context — frontend needs OpenNext artifacts)
+      # Frontend stack (CloudFront + Route53 + custom domain) requires OpenNext
+      # build artifacts on disk (bin/app.ts auto-skips it here without them),
+      # so it isn't synthed from this backend-only context. Its prod-shaped and
+      # staging-shaped synth coverage instead lives in the infra test suite
+      # (frontend-stack-prod-synth.test.ts, run by lambda-checks) against a
+      # non-secret stub .open-next/ fixture.
+      - name: CDK synth (backend, dev context)
         run: npm run cdk -- synth -c env=dev ChapterFlowBackend-dev
+
+      - name: CDK synth (backend, staging context)
+        run: npm run cdk -- synth -c env=staging ChapterFlowBackend-staging
+
+      - name: CDK synth (backend, prod context)
+        env:
+          CHAPTERFLOW_APP_BASE_URL: https://app.chapterflow.ca
+        run: npm run cdk -- synth -c env=prod ChapterFlowBackend
 
   # ── Hard gate: no committed build artifacts or hardcoded secrets ─────────
   # Public repo. A committed Turbopack cache once leaked a live Stripe key;
