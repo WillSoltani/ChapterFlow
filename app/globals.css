@@ -241,6 +241,18 @@ body {
   --cf-badge-unique-highlight: var(--cf-palette-pink);
   --cf-badge-text-warm: #1A0F00;
   --cf-badge-text-cool: #1A1A2E;
+  /* WS5-013: badge tier border + glow tokens (seeded verbatim from badge-utils.ts).
+     unique/secret borders are theme-INVARIANT (declared once, no light override) —
+     do NOT alias --accent-amber/--cf-badge-unique here: those darken in light theme. */
+  --cf-badge-platinum-border: #8b7dff;
+  --cf-badge-unique-border: #f59e0b;
+  --cf-badge-secret-border: #8b5cf6;
+  --cf-badge-glow-bronze: 0 0 20px rgba(205,127,50,0.08), inset 0 1px 0 rgba(205,127,50,0.1);
+  --cf-badge-glow-silver: 0 0 20px rgba(192,192,192,0.08), inset 0 1px 0 rgba(192,192,192,0.1);
+  --cf-badge-glow-gold: 0 0 20px rgba(255,215,0,0.1), inset 0 1px 0 rgba(255,215,0,0.12);
+  --cf-badge-glow-platinum: 0 0 25px rgba(139,125,255,0.1), inset 0 1px 0 rgba(139,125,255,0.12);
+  --cf-badge-glow-unique: 0 0 15px rgba(245,158,11,0.07), inset 0 1px 0 rgba(245,158,11,0.08);
+  --cf-badge-glow-secret: 0 0 20px rgba(139,92,246,0.1), inset 0 1px 0 rgba(139,92,246,0.1);
   --cf-reader-orb-violet: #2A1A4E;
   --cf-book-orb-indigo: #818CF8;
   --cf-book-orb-danger: #DC2626;
