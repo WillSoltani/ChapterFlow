@@ -257,13 +257,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     });
 
     // DynamoDB access — app + analytics tables, scoped to their exact ARNs.
-    // `dynamodb:Scan` is intentionally retained: the admin metrics routes plus
-    // economy-health and soft-decay full-table-Scan to compute aggregates, and
-    // OpenNext runs EVERY route (user + admin) in this single server Lambda, so
-    // the role can't drop Scan without breaking those dashboards. Resource scope
-    // (no `*`) keeps the blast radius to these two tables. Future hardening:
-    // move admin/Scan paths to a dedicated least-privilege function and remove
-    // Scan from this role.
+    // WS6-005: `dynamodb:Scan` is NO LONGER granted to the shared server role.
+    // The admin metrics routes (economy-health aggregates, etc.) full-table-Scan
+    // to compute aggregates, and OpenNext used to run EVERY route (user + admin)
+    // in this ONE internet-facing server Lambda — so Scan had to sit on the role
+    // that fronts all public traffic. The admin surface is now split into its own
+    // OpenNext function (open-next.config.ts `functions.admin`, pattern
+    // app/api/book/admin/*) fronted by AdminFn below with its OWN role (adminRole)
+    // that carries Scan; the public `default` server role drops it, shrinking the
+    // blast radius of the internet-facing Lambda. Resource scope (no `*`) keeps
+    // both roles limited to these two tables. (soft-decay's processSoftDecay Scan
+    // is uncalled, so no app-code change is needed here.)
     const ddbResources = [
       appTableArn,
       `${appTableArn}/index/*`,
@@ -271,220 +275,258 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       `${analyticsTableArn}/index/*`,
     ];
 
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AppDynamoDbAccess",
-        actions: [
-          "dynamodb:BatchGetItem",
-          "dynamodb:BatchWriteItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:DescribeTable",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:Query",
-          "dynamodb:Scan",
-          "dynamodb:TransactWriteItems",
-          "dynamodb:UpdateItem",
-        ],
-        resources: ddbResources,
-      }),
-    );
-
-    // CloudWatch metrics read access — used by the admin Ops page to surface
-    // Lambda invocation counts, latency p50/p95, error rates, DynamoDB
-    // throttle counters, and S3 bucket sizes. CloudWatch metric reads are
-    // not resource-scoped so we use "*".
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CloudWatchMetricsRead",
-        actions: [
-          "cloudwatch:GetMetricStatistics",
-          "cloudwatch:ListMetrics",
-          "cloudwatch:GetMetricData",
-        ],
-        resources: ["*"],
-      }),
-    );
-
-    // CloudWatch metrics write access — the server emits custom operational
-    // metrics (e.g. StripeCancellationFailure via putOpsMetric) that a backend
-    // alarm pages on. PutMetricData isn't resource-scoped, so we constrain it to
-    // the ChapterFlow/Ops namespace instead.
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CloudWatchMetricsWrite",
-        actions: ["cloudwatch:PutMetricData"],
-        resources: ["*"],
-        conditions: {
-          StringEquals: { "cloudwatch:namespace": "ChapterFlow/Ops" },
-        },
-      }),
-    );
-
-    // DynamoDB access — ISR cache table
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CacheDynamoDbAccess",
-        actions: [
-          "dynamodb:BatchGetItem",
-          "dynamodb:BatchWriteItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:Query",
-          "dynamodb:Scan",
-          "dynamodb:UpdateItem",
-          "dynamodb:DescribeTable",
-        ],
-        resources: [cacheTable.tableArn, `${cacheTable.tableArn}/index/*`],
-      }),
-    );
-
-    // S3 access — app buckets (same as App Runner role)
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AppS3Access",
-        actions: ["s3:GetObject", "s3:PutObject"],
-        resources: [
-          `${ingestBucketArn}/*`,
-          `${contentBucketArn}/*`,
-        ],
-      }),
-    );
-
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AppS3MetadataAccess",
-        actions: ["s3:GetBucketLocation"],
-        resources: [ingestBucketArn, contentBucketArn],
-      }),
-    );
-
-    // S3 access — static assets + cache bucket
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AssetsBucketAccess",
-        actions: [
-          "s3:GetObject",
-          "s3:PutObject",
-          "s3:DeleteObject",
-          "s3:ListBucket",
-        ],
-        resources: [assetsBucket.bucketArn, `${assetsBucket.bucketArn}/*`],
-      }),
-    );
-
-    // SSM access — scoped to THIS env's parameter namespace only.
-    // getServerEnv() (app/app/api/_lib/server-env.ts) resolves every value from
-    // process.env first and only falls back to SSM; when it does, it tries the
-    // prefixed parameter (`${SSM_PARAMETER_PREFIX}/<KEY>`) BEFORE any bare-name
-    // candidate, so the role never needs access outside the prefix. The
-    // unreachable bare-name fallbacks now return AccessDenied instead of
-    // ParameterNotFound — server-env treats both as skippable (isMissingParameterError).
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "SsmConfigAccess",
-        actions: ["ssm:GetParameter"],
-        resources: [
-          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
-        ],
-      }),
-    );
-
-    // SecureString values may use either the AWS-managed SSM key or an
-    // owner-managed key. The resource wildcard is constrained to decrypts made
-    // through SSM for this environment's exact parameter ARN namespace, so the
-    // Lambda cannot call KMS directly or decrypt another prefix's ciphertext.
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "KmsDecryptSsmConfig",
-        actions: ["kms:Decrypt"],
-        resources: ["*"],
-        conditions: {
-          StringEquals: {
-            "kms:ViaService": `ssm.${cdk.Aws.REGION}.amazonaws.com`,
-          },
-          ArnLike: {
-            "kms:EncryptionContext:PARAMETER_ARN":
-              `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
-          },
-        },
-      }),
-    );
-
-    // SES access — transactional/notification emails are sent from an address
-    // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
-    // Scope SendEmail to that domain's SES identity so the role can't send as an
-    // arbitrary identity.
-    //
-    // WS6-003: all three envs share ONE AWS account and SES is account-global, so
-    // a "*" resource here would reach the PROD SES identities from a dev/staging
-    // role. We therefore add this statement ONLY when this env's verified domain is
-    // known at synth (prod always has it — bin/app.ts asserts it). A non-prod synth
-    // without a domain gets NO SES grant at all, so an email send there fails closed
-    // with AccessDenied in that env instead of gaining an account-wide send.
-    if (props.domainName) {
-      lambdaRole.addToPolicy(
-        new iam.PolicyStatement({
-          sid: "SesSendAccess",
-          actions: ["ses:SendEmail", "sesv2:SendEmail"],
-          resources: [
-            `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
-          ],
-        }),
-      );
-    }
-
-    // Cognito admin access — the admin "erase user" tool resolves a user by
-    // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
-    // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
-    // revokes a user's outstanding refresh tokens server-side on self-delete /
-    // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
-    // immediately. Scoped to the configured pool.
-    //
-    // WS6-003: all three envs share ONE AWS account and Cognito is account-global,
-    // so a "*" resource here would grant AdminDeleteUser on the PROD user pool from
-    // a dev/staging role. We therefore add this statement ONLY when this env's pool
-    // id is known at synth (prod always has it — bin/app.ts asserts it). A non-prod
-    // synth without COGNITO_USER_POOL_ID gets NO Cognito grant at all, so the
-    // admin-erasure tool there fails closed with AccessDenied in that env instead of
-    // reaching the prod pool.
-    //
-    // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
-    // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
-    // is swallowed into an ops-failure, and the delete still returns success
-    // (sessions look revoked but aren't).
+    // Cognito pool is account-global; the erasure grant is only added when this
+    // env's pool id is known at synth (see the WS6-003 note on the statement in
+    // the shared-grants helper below).
     const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
-    if (cognitoUserPoolId) {
-      lambdaRole.addToPolicy(
+
+    // Shared runtime grants for the app server Lambdas. The public `default`
+    // server (lambdaRole) and the split admin function (adminRole) run the SAME
+    // application code and therefore need the SAME permissions — the only
+    // difference is `dynamodb:Scan` on the app/analytics tables, which is
+    // admin-only (WS6-005). Both roles keep the ISR CacheDynamoDbAccess Scan
+    // (OpenNext needs it on the cache table — unrelated to the app-table Scan).
+    const addAppRuntimePolicies = (
+      role: iam.Role,
+      opts: { includeAppScan: boolean },
+    ): void => {
+      role.addToPolicy(
         new iam.PolicyStatement({
-          sid: "CognitoAdminUserErasure",
+          sid: "AppDynamoDbAccess",
           actions: [
-            "cognito-idp:ListUsers",
-            "cognito-idp:AdminDeleteUser",
-            "cognito-idp:AdminUserGlobalSignOut",
+            "dynamodb:BatchGetItem",
+            "dynamodb:BatchWriteItem",
+            "dynamodb:DeleteItem",
+            "dynamodb:DescribeTable",
+            "dynamodb:GetItem",
+            "dynamodb:PutItem",
+            "dynamodb:Query",
+            ...(opts.includeAppScan ? ["dynamodb:Scan"] : []),
+            "dynamodb:TransactWriteItems",
+            "dynamodb:UpdateItem",
           ],
+          resources: ddbResources,
+        }),
+      );
+
+      // CloudWatch metrics read access — used by the admin Ops page to surface
+      // Lambda invocation counts, latency p50/p95, error rates, DynamoDB
+      // throttle counters, and S3 bucket sizes. CloudWatch metric reads are
+      // not resource-scoped so we use "*". (WS6-014 — moving this read grant to
+      // the admin role only — is a contingent follow-up NOT in this backlog; the
+      // grant deliberately stays on BOTH roles for now.)
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CloudWatchMetricsRead",
+          actions: [
+            "cloudwatch:GetMetricStatistics",
+            "cloudwatch:ListMetrics",
+            "cloudwatch:GetMetricData",
+          ],
+          resources: ["*"],
+        }),
+      );
+
+      // CloudWatch metrics write access — the server emits custom operational
+      // metrics (e.g. StripeCancellationFailure via putOpsMetric) that a backend
+      // alarm pages on. PutMetricData isn't resource-scoped, so we constrain it to
+      // the ChapterFlow/Ops namespace instead.
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CloudWatchMetricsWrite",
+          actions: ["cloudwatch:PutMetricData"],
+          resources: ["*"],
+          conditions: {
+            StringEquals: { "cloudwatch:namespace": "ChapterFlow/Ops" },
+          },
+        }),
+      );
+
+      // DynamoDB access — ISR cache table
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CacheDynamoDbAccess",
+          actions: [
+            "dynamodb:BatchGetItem",
+            "dynamodb:BatchWriteItem",
+            "dynamodb:DeleteItem",
+            "dynamodb:GetItem",
+            "dynamodb:PutItem",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:UpdateItem",
+            "dynamodb:DescribeTable",
+          ],
+          resources: [cacheTable.tableArn, `${cacheTable.tableArn}/index/*`],
+        }),
+      );
+
+      // S3 access — app buckets (same as App Runner role)
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AppS3Access",
+          actions: ["s3:GetObject", "s3:PutObject"],
           resources: [
-            `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
+            `${ingestBucketArn}/*`,
+            `${contentBucketArn}/*`,
           ],
         }),
       );
-    }
 
-    // SQS access — revalidation queue
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "RevalidationQueueAccess",
-        actions: [
-          "sqs:SendMessage",
-          "sqs:ReceiveMessage",
-          "sqs:DeleteMessage",
-          "sqs:GetQueueAttributes",
-          "sqs:GetQueueUrl",
-        ],
-        resources: [revalidationQueue.queueArn],
-      }),
-    );
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AppS3MetadataAccess",
+          actions: ["s3:GetBucketLocation"],
+          resources: [ingestBucketArn, contentBucketArn],
+        }),
+      );
+
+      // S3 access — static assets + cache bucket
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AssetsBucketAccess",
+          actions: [
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject",
+            "s3:ListBucket",
+          ],
+          resources: [assetsBucket.bucketArn, `${assetsBucket.bucketArn}/*`],
+        }),
+      );
+
+      // SSM access — scoped to THIS env's parameter namespace only.
+      // getServerEnv() (app/app/api/_lib/server-env.ts) resolves every value from
+      // process.env first and only falls back to SSM; when it does, it tries the
+      // prefixed parameter (`${SSM_PARAMETER_PREFIX}/<KEY>`) BEFORE any bare-name
+      // candidate, so the role never needs access outside the prefix. The
+      // unreachable bare-name fallbacks now return AccessDenied instead of
+      // ParameterNotFound — server-env treats both as skippable (isMissingParameterError).
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "SsmConfigAccess",
+          actions: ["ssm:GetParameter"],
+          resources: [
+            `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
+          ],
+        }),
+      );
+
+      // SecureString values may use either the AWS-managed SSM key or an
+      // owner-managed key. The resource wildcard is constrained to decrypts made
+      // through SSM for this environment's exact parameter ARN namespace, so the
+      // Lambda cannot call KMS directly or decrypt another prefix's ciphertext.
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "KmsDecryptSsmConfig",
+          actions: ["kms:Decrypt"],
+          resources: ["*"],
+          conditions: {
+            StringEquals: {
+              "kms:ViaService": `ssm.${cdk.Aws.REGION}.amazonaws.com`,
+            },
+            ArnLike: {
+              "kms:EncryptionContext:PARAMETER_ARN":
+                `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
+            },
+          },
+        }),
+      );
+
+      // SES access — transactional/notification emails are sent from an address
+      // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
+      // Scope SendEmail to that domain's SES identity so the role can't send as an
+      // arbitrary identity.
+      //
+      // WS6-003: all three envs share ONE AWS account and SES is account-global, so
+      // a "*" resource here would reach the PROD SES identities from a dev/staging
+      // role. We therefore add this statement ONLY when this env's verified domain is
+      // known at synth (prod always has it — bin/app.ts asserts it). A non-prod synth
+      // without a domain gets NO SES grant at all, so an email send there fails closed
+      // with AccessDenied in that env instead of gaining an account-wide send.
+      if (props.domainName) {
+        role.addToPolicy(
+          new iam.PolicyStatement({
+            sid: "SesSendAccess",
+            actions: ["ses:SendEmail", "sesv2:SendEmail"],
+            resources: [
+              `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
+            ],
+          }),
+        );
+      }
+
+      // Cognito admin access — the admin "erase user" tool resolves a user by
+      // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
+      // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
+      // revokes a user's outstanding refresh tokens server-side on self-delete /
+      // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
+      // immediately. Scoped to the configured pool.
+      //
+      // WS6-003: all three envs share ONE AWS account and Cognito is account-global,
+      // so a "*" resource here would grant AdminDeleteUser on the PROD user pool from
+      // a dev/staging role. We therefore add this statement ONLY when this env's pool
+      // id is known at synth (prod always has it — bin/app.ts asserts it). A non-prod
+      // synth without COGNITO_USER_POOL_ID gets NO Cognito grant at all, so the
+      // admin-erasure tool there fails closed with AccessDenied in that env instead of
+      // reaching the prod pool.
+      //
+      // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
+      // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
+      // is swallowed into an ops-failure, and the delete still returns success
+      // (sessions look revoked but aren't).
+      if (cognitoUserPoolId) {
+        role.addToPolicy(
+          new iam.PolicyStatement({
+            sid: "CognitoAdminUserErasure",
+            actions: [
+              "cognito-idp:ListUsers",
+              "cognito-idp:AdminDeleteUser",
+              "cognito-idp:AdminUserGlobalSignOut",
+            ],
+            resources: [
+              `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
+            ],
+          }),
+        );
+      }
+
+      // SQS access — revalidation queue
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "RevalidationQueueAccess",
+          actions: [
+            "sqs:SendMessage",
+            "sqs:ReceiveMessage",
+            "sqs:DeleteMessage",
+            "sqs:GetQueueAttributes",
+            "sqs:GetQueueUrl",
+          ],
+          resources: [revalidationQueue.queueArn],
+        }),
+      );
+    };
+
+    // Public server role: NO app-table Scan (WS6-005).
+    addAppRuntimePolicies(lambdaRole, { includeAppScan: false });
+
+    // -------------------------------------------------------------------
+    // IAM — Admin Lambda execution role (WS6-005)
+    // -------------------------------------------------------------------
+    // The split admin OpenNext function (server-functions/admin) runs the same
+    // app code as the public server but ONLY serves /app/api/book/admin/*, so it
+    // gets an identical grant set PLUS dynamodb:Scan on the app/analytics tables.
+    // It is the sole holder of app-table Scan now.
+    const adminRole = new iam.Role(this, "AdminRole", {
+      roleName: name("ChapterFlowAdminRole"),
+      assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
+      managedPolicies: [
+        iam.ManagedPolicy.fromAwsManagedPolicyName(
+          "service-role/AWSLambdaBasicExecutionRole",
+        ),
+      ],
+    });
+    addAppRuntimePolicies(adminRole, { includeAppScan: true });
 
     // -------------------------------------------------------------------
     // Common Lambda environment variables
@@ -603,6 +645,47 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // policy excluding Host + Authorization, and UNSIGNED-PAYLOAD signing for the
     // stream) — cdk synth cannot catch the runtime 403 failure mode.
     const serverFnUrl = this.serverFunction.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.NONE,
+      invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
+    });
+
+    // -------------------------------------------------------------------
+    // Lambda — Admin server function (WS6-005)
+    // -------------------------------------------------------------------
+    // The admin OpenNext split function serves ONLY /app/api/book/admin/* (see
+    // open-next.config.ts `functions.admin`). It is otherwise identical to
+    // ServerFn — same OpenNext streaming wrapper, same commonEnv (so middleware.ts
+    // enforces the WS6-002 origin lock here too, and SSM-resolved secrets work),
+    // same timeout/tracing — but runs under adminRole, which is the sole holder of
+    // app-table dynamodb:Scan. Unlike ServerFn it carries NO reserved concurrency:
+    // admin is low-volume internal traffic, and adding a reserved slice would eat
+    // into the account-wide budget the WS6-001 guard tracks; it draws from the
+    // shared unreserved pool instead.
+    const adminFn = new lambda.Function(this, "AdminFn", {
+      functionName: name("ChapterFlowAdmin"),
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromAsset(
+        path.join(openNextDir, "server-functions/admin"),
+      ),
+      memorySize: 1024,
+      timeout: cdk.Duration.seconds(45),
+      role: adminRole,
+      environment: commonEnv,
+      // WS6-013: stays x86_64 alongside ServerFn — OpenNext build artifact.
+      architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
+      // Same rationale as ServerFn: this is a fan-out hop worth tracing.
+      tracing: lambda.Tracing.ACTIVE,
+    });
+
+    // authType NONE — public Function URL fronted by CloudFront, exactly like
+    // serverFnUrl (OAC lock reverted; see that note above). WS6-002 interim
+    // origin lock: when originVerifySecret is set, CloudFront stamps
+    // x-origin-verify on this origin (below) and middleware.ts rejects any
+    // request lacking it. Task 20 (WS6-002 OAC re-lock) MUST include this
+    // Function URL in its scope.
+    const adminFnUrl = adminFn.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
@@ -938,6 +1021,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         : {}),
     });
 
+    // Admin origin (WS6-005) — same treatment as serverOrigin: x-forwarded-host
+    // for OpenNext's public-host resolution plus the WS6-002 x-origin-verify
+    // shared secret so middleware.ts in AdminFn accepts the CloudFront-fronted
+    // request and rejects any direct Function-URL hit.
+    const adminOrigin = new origins.FunctionUrlOrigin(adminFnUrl, {
+      readTimeout: cdk.Duration.seconds(60),
+      ...(Object.keys(serverCustomHeaders).length > 0
+        ? { customHeaders: serverCustomHeaders }
+        : {}),
+    });
+
     const imageOrigin = originVerifySecret
       ? new origins.FunctionUrlOrigin(imageFnUrl, {
           customHeaders: { "x-origin-verify": originVerifySecret },
@@ -1042,6 +1136,19 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           cloudfront.ResponseHeadersPolicy.SECURITY_HEADERS,
       },
       additionalBehaviors: {
+        // WS6-005: the admin API surface is served by its own OpenNext function
+        // (AdminFn) so its IAM role — not the public server role — holds
+        // dynamodb:Scan. Same policies as the default server behavior.
+        "app/api/book/admin/*": {
+          origin: adminOrigin,
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: serverCachePolicy,
+          originRequestPolicy: serverOriginRequestPolicy,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+          responseHeadersPolicy:
+            cloudfront.ResponseHeadersPolicy.SECURITY_HEADERS,
+        },
         "_next/static/*": {
           origin: s3Origin,
           viewerProtocolPolicy:
@@ -1260,6 +1367,15 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       20000,
       "ChapterFlow server Lambda p99 duration ≥20s — early warning below the 45s timeout.",
       { evaluationPeriods: 3, datapointsToAlarm: 2 },
+    );
+
+    // Admin Lambda (WS6-005) — its own error alarm so a failing admin dashboard
+    // surfaces even though admin traffic is a small share of server traffic.
+    makeAlarm(
+      "AdminFnErrorsAlarm",
+      adminFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      5,
+      "ChapterFlow admin Lambda returned ≥5 errors in 5 minutes — admin dashboards/tools may be broken.",
     );
 
     // Revalidation Lambda errors + dead-letter / stuck-queue depth.

@@ -14,6 +14,7 @@ before(() => {
   openNextFixture = fs.mkdtempSync(path.join(os.tmpdir(), "chapterflow-open-next-"));
   for (const relative of [
     "server-functions/default",
+    "server-functions/admin",
     "image-optimization-function",
     "revalidation-function",
     "dynamodb-provider",

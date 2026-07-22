@@ -26,6 +26,7 @@ before(() => {
   );
   for (const relative of [
     "server-functions/default",
+    "server-functions/admin",
     "image-optimization-function",
     "revalidation-function",
     "dynamodb-provider",
