@@ -11,7 +11,7 @@
  * (no git, no real reader spawn).
  */
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -39,6 +39,13 @@ import type { BookPackageV21, ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-e5-control";
 const RUN = "20260703T000000Z";
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
+const QC_PACKS_DIR_EXISTED = existsSync(QC_PACKS_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+
+function pruneSharedDir(path: string, existedBefore: boolean): void {
+  if (!existedBefore && existsSync(path) && readdirSync(path).length === 0) rmdirSync(path);
+}
 
 // ── fixture state (evidence-style) ────────────────────────────────────────────
 
@@ -72,6 +79,9 @@ function cleanup(): void {
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   rmMatching(QC_DIR, BOOK);
   rmSync(resolve(REPO_ROOT, "scratch/review", BOOK), { recursive: true, force: true });
+  pruneSharedDir(QC_ROUNDS_DIR, QC_ROUNDS_DIR_EXISTED);
+  pruneSharedDir(QC_PACKS_DIR, QC_PACKS_DIR_EXISTED);
+  pruneSharedDir(QC_ORCHESTRATOR_DIR, QC_ORCHESTRATOR_DIR_EXISTED);
 }
 
 function setup(): { chapters: ChapterV21[]; round: AuthorEvidenceRound } {

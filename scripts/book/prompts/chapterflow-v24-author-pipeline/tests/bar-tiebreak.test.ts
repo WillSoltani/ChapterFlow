@@ -8,7 +8,8 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync } from "fs";
+import { existsSync, readdirSync, rmdirSync, rmSync } from "fs";
+import { dirname } from "path";
 
 import { test } from "./harness.js";
 import { combineBarAxes, computeVerdict, AXIS_WEIGHTS, type AxisScore, type AxisId } from "../src/critics/semantic/publishableBar.js";
@@ -19,6 +20,16 @@ import type { ValidatedBarReadSubmission } from "../src/qc/orchestrator/schemas.
 // Derive from the single source of truth so a new axis (Plan A added the 9th,
 // behavioral_naturalness) is covered automatically and this never drifts again.
 const ALL_AXES: AxisId[] = Object.keys(AXIS_WEIGHTS) as AxisId[];
+const BOOK = "zz-fixture-tiebreak";
+const ROUND = "r-tiebreak";
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+
+function cleanupTiebreakArtifacts(): void {
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
+}
 
 /** A full bar read across EVERY axis at a uniform score, then per-axis overrides. */
 function read(base: number, overrides: Partial<Record<AxisId, Partial<AxisScore>>> = {}): AxisScore[] {
@@ -81,8 +92,6 @@ test("a cited CORRUPTION on ANY read SURVIVES the combine (RED veto never median
 });
 
 test("variant bar reads are stored alongside the primary (no overwrite) and loadAllBarReads gathers them", () => {
-  const BOOK = "zz-fixture-tiebreak";
-  const ROUND = "r-tiebreak";
   // Every bar axis except the injected key axis (derived from the source of truth so a
   // new axis is covered automatically — see ALL_AXES above).
   const NON_KEY: AxisId[] = ALL_AXES.filter((a) => a !== "quiz_key_correctness");
@@ -97,7 +106,7 @@ test("variant bar reads are stored alongside the primary (no overwrite) and load
       verdict: computeVerdict(`${BOOK}-ch01`, [KEY, ...axes], true) };
   };
   try {
-    rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+    cleanupTiebreakArtifacts();
     writeBarReadArtifact(sub("codex-qc:r:bar:ch01", 0.58));         // primary
     writeBarReadArtifact(sub("codex-qc:r:bar:ch01:t2", 0.62), "t2"); // tiebreak 2 — must NOT overwrite the primary
     writeBarReadArtifact(sub("codex-qc:r:bar:ch01:t3", 0.61), "t3"); // tiebreak 3
@@ -113,7 +122,7 @@ test("variant bar reads are stored alongside the primary (no overwrite) and load
     // The primary read ALONE (0.58 < 0.6) would have floored it to YELLOW.
     assert.equal(computeVerdict("ch", [KEY, ...all[0].axes], true).gate, "YELLOW");
   } finally {
-    rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+    cleanupTiebreakArtifacts();
   }
 });
 

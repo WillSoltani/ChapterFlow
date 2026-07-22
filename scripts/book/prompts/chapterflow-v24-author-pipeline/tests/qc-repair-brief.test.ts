@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname } from "path";
 
 import { test } from "./harness.js";
@@ -10,9 +10,13 @@ import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js
 
 const BOOK = "zz-fixture-brief";
 const ROUND = "r-brief";
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
 
 function cleanup(): void {
-  rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
 }
 
 test("repair brief renders rules, exact finding details, and validation commands", () => {

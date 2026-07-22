@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -14,6 +14,14 @@ import { isAdvisoryMajor } from "../src/critics/majorPolicy.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-no-api-promote";
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, "r-no-api-artifacts"));
+const WAIVERS_DIR = dirname(waiverPath(BOOK));
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
+const WAIVERS_DIR_EXISTED = existsSync(WAIVERS_DIR);
+
+function pruneSharedDir(path: string, existedBefore: boolean): void {
+  if (!existedBefore && existsSync(path) && readdirSync(path).length === 0) rmdirSync(path);
+}
 
 function productionPackagePath(): string {
   return resolve(PIPELINE_DIR, "book-packages", `${BOOK}.v21.json`);
@@ -53,6 +61,8 @@ function cleanup(): void {
   rmSync(qcRoundPath(BOOK, "r-legacy-major"), { force: true });
   rmSync(orchestratorRoundDir(BOOK, "r-no-api-artifacts"), { recursive: true, force: true });
   rmSync(waiverPath(BOOK), { force: true });
+  pruneSharedDir(QC_ROUNDS_DIR, QC_ROUNDS_DIR_EXISTED);
+  pruneSharedDir(WAIVERS_DIR, WAIVERS_DIR_EXISTED);
   rmSync(resolve(PIPELINE_DIR, "state", "books", `${BOOK}.gate.json`), { force: true });
   rmSync(productionPackagePath(), { force: true });
   rmSync(productionManifestSidecarPath(BOOK), { force: true });

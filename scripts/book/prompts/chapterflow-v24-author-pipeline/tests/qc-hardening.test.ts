@@ -9,7 +9,7 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -29,6 +29,10 @@ import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvena
 
 const BOOK = "zz-hardening-fixture";
 const ROUND = "rtest-hardening";
+const QC_ORCHESTRATOR_DIR = resolve(PIPELINE_DIR, "state", "qc-orchestrator");
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
 
 function cleanup(): void {
   for (const n of [1, 2]) {
@@ -36,8 +40,10 @@ function cleanup(): void {
     rmSync(attestationPath(BOOK, n), { force: true });
     rmSync(provenancePath(`${BOOK}-ch${String(n).padStart(2, "0")}`), { force: true });
   }
-  rmSync(resolve(PIPELINE_DIR, "state", "qc-orchestrator", BOOK), { recursive: true, force: true });
+  rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
+  if (!QC_ROUNDS_DIR_EXISTED && existsSync(QC_ROUNDS_DIR) && readdirSync(QC_ROUNDS_DIR).length === 0) rmdirSync(QC_ROUNDS_DIR);
   rmSync(TMP_DIR, { recursive: true, force: true });
 }
 

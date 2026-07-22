@@ -8,7 +8,7 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { promoteBook, stripInternalFields, productionManifestSidecarPath } from "../src/promoteBook.js";
@@ -30,6 +30,8 @@ import type { ChapterV21 } from "../src/types.js";
 const BOOK = "zz-fixture-promote";
 const MAJOR_BOOK = "zz-fixture-promote-major-clean";
 const SUBSET_BOOK = "zz-fixture-promote-subset";
+const WAIVERS_DIR = dirname(waiverPath(MAJOR_BOOK));
+const WAIVERS_DIR_EXISTED = existsSync(WAIVERS_DIR);
 
 function cleanupFixture(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -42,6 +44,7 @@ function cleanupFixture(): void {
   rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${MAJOR_BOOK}.json`), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), { force: true });
   rmSync(waiverPath(MAJOR_BOOK), { force: true });
+  if (!WAIVERS_DIR_EXISTED && existsSync(WAIVERS_DIR) && readdirSync(WAIVERS_DIR).length === 0) rmdirSync(WAIVERS_DIR);
   rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
   rmSync(productionManifestSidecarPath(MAJOR_BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(BOOK), { force: true });
