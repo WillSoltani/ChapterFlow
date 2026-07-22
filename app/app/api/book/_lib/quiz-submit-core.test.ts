@@ -16,6 +16,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  buildPassedRetryBackfill,
   runLoopCompletionSaga,
   type LoopCompletionContext,
   type LoopCompletionDeps,
@@ -316,4 +317,106 @@ test("a failed quiz persists the attempt but runs no awards or loop pipeline", a
   assert.equal(result.loopPipeline, null);
   assert.equal(result.quizPassAwarded, false);
   assert.equal(result.bookCompleteAwarded, false);
+});
+
+// ── WS4-010: points durability across the persist→award crash window ──────────
+
+test("award failure after the outcome persist propagates (crash window preserved for retry)", async () => {
+  const calls: string[] = [];
+  const deps = makeDeps(calls, {
+    awardQuizPassPoints: async () => {
+      calls.push("awardQuizPassPoints");
+      throw new Error("award boom");
+    },
+  });
+
+  await assert.rejects(runLoopCompletionSaga(deps, passCtx()), /award boom/);
+  // The outcome WAS persisted (which flips quizState.passed=true) before the award
+  // threw — this is exactly the crash window the passed-branch backfill recovers.
+  assert.equal(calls.includes("recordQuizOutcome"), true);
+  assert.deepEqual(calls, ["recordQuizOutcome", "awardQuizPassPoints"]);
+});
+
+test("passed-branch retry backfills the idempotent quiz_pass grant exactly once", async () => {
+  const grants = new Map<string, number>(); // fake store with attribute_not_exists semantics
+  const award = async (sourceType: string, sourceId: string, amount: number) => {
+    const key = `${sourceType}#${sourceId}`;
+    if (grants.has(key)) return { reason: "duplicate" as const };
+    grants.set(key, amount);
+    return { reason: "granted" as const };
+  };
+  // The persisted quiz state left behind by the crashed run (passed=true, no grant).
+  const quizState = {
+    passed: true,
+    lastAttemptNumber: 1,
+    attemptsCount: 1,
+    lastScorePercent: 100,
+  };
+
+  // run 1: outcome persists, award throws (simulated crash) => 0 grants
+  assert.equal([...grants.keys()].filter((k) => k.startsWith("quiz_pass#")).length, 0);
+
+  // run 2 (retry hits passed branch): buildPassedRetryBackfill(...) drives award(...); call it twice
+  const runBackfill = async () => {
+    const backfill = buildPassedRetryBackfill({
+      quizState,
+      completedChapterCount: 5,
+      pinnedChapterCount: 5,
+      learningMode: "standard",
+    });
+    assert.ok(backfill);
+    await award("quiz_pass", "book-1:2", backfill.quizPassAmount);
+    if (backfill.includeBookComplete) {
+      await award("book_complete", "book-1", 120);
+    }
+  };
+  await runBackfill();
+  await runBackfill();
+
+  assert.equal([...grants.keys()].filter((k) => k.startsWith("quiz_pass#")).length, 1);
+  // The single grant carries the reconstructed amount (standard first-attempt 60 + perfect 50).
+  assert.equal(grants.get("quiz_pass#book-1:2"), 110);
+  // Book-complete backfilled once too (book finished on this chapter).
+  assert.equal(grants.get("book_complete#book-1"), 120);
+});
+
+test("buildPassedRetryBackfill reconstructs first-attempt/perfect/book-complete amounts from persisted quiz state", () => {
+  // First-attempt, perfect score, whole book finished →
+  // first-attempt amount + perfect bonus, with book-complete included.
+  const perfect = buildPassedRetryBackfill({
+    quizState: { passed: true, lastAttemptNumber: 1, attemptsCount: 1, lastScorePercent: 100 },
+    completedChapterCount: 5,
+    pinnedChapterCount: 5,
+    learningMode: "standard",
+  });
+  assert.ok(perfect);
+  assert.equal(perfect.isFirstAttempt, true);
+  assert.equal(perfect.perfectBonus, 50);
+  assert.equal(perfect.quizPassAmount, 110); // 60 first-attempt + 50 perfect
+  assert.equal(perfect.includeBookComplete, true);
+
+  // Retry (attempt 3), imperfect score, mid-book →
+  // retry amount, no perfect bonus, no book-complete.
+  const retry = buildPassedRetryBackfill({
+    quizState: { passed: true, lastAttemptNumber: 3, attemptsCount: 3, lastScorePercent: 80 },
+    completedChapterCount: 2,
+    pinnedChapterCount: 5,
+    learningMode: "standard",
+  });
+  assert.ok(retry);
+  assert.equal(retry.isFirstAttempt, false);
+  assert.equal(retry.perfectBonus, 0);
+  assert.equal(retry.quizPassAmount, 35); // standard retry
+  assert.equal(retry.includeBookComplete, false);
+
+  // A not-passed quiz state produces no backfill (nothing to recover).
+  assert.equal(
+    buildPassedRetryBackfill({
+      quizState: { passed: false },
+      completedChapterCount: 0,
+      pinnedChapterCount: 5,
+      learningMode: "standard",
+    }),
+    null,
+  );
 });

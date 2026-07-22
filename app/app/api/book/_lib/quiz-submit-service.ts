@@ -67,7 +67,11 @@ import {
 } from "./learning-mode";
 import { resolveStreakMode, resolveStreakSkipDays } from "./streak-mode";
 import type { ToneKey } from "@/app/book/data/book-package-core";
-import { runLoopCompletionSaga, type LoopCompletionDeps } from "./quiz-submit-core";
+import {
+  buildPassedRetryBackfill,
+  runLoopCompletionSaga,
+  type LoopCompletionDeps,
+} from "./quiz-submit-core";
 import { logger } from "@/lib/logging/logger";
 
 // quiz-submit-core.ts's LoopCompletionDeps.logError is a variadic
@@ -327,6 +331,53 @@ export async function completeLearningLoop(input: CompleteLearningLoopInput) {
     : QUIZ_QUESTION_COUNTS[learningMode];
 
   if (quizState?.passed) {
+    // WS4-010 — points durability. The graded-pass path persists the outcome
+    // (flipping quizState.passed=true) and only THEN awards the CRITICAL quiz_pass /
+    // book_complete flow points. A crash in that window leaves the chapter passed
+    // with no grant, and every later submit short-circuits here — losing the award
+    // forever. Reconstruct the amounts from the persisted state and re-award
+    // idempotently: awardFlowPoints guards on (sourceType, sourceId), so a grant
+    // that already landed is a no-op ("duplicate") and only a missing one is
+    // backfilled, exactly once. Failures propagate to match the saga's CRITICAL
+    // award semantics (a repeat submit retries the backfill).
+    const backfill = buildPassedRetryBackfill({
+      quizState,
+      completedChapterCount: progress.completedChapters?.length ?? 0,
+      pinnedChapterCount,
+      learningMode,
+    });
+    if (backfill) {
+      const backfillTs = nowIso();
+      await awardFlowPoints(tableName, {
+        userId: user.sub,
+        amount: backfill.quizPassAmount,
+        sourceType: "quiz_pass",
+        sourceId: `${bookId}:${chapterNumberInt}`,
+        metadata: {
+          bookId,
+          chapterLabel: `Chapter ${chapterNumberInt}`,
+          chapterNumber: chapterNumberInt,
+          learningMode,
+          isFirstAttempt: backfill.isFirstAttempt,
+          perfectBonus: backfill.perfectBonus > 0,
+        },
+        createdAt: backfillTs,
+      });
+      if (backfill.includeBookComplete) {
+        await awardFlowPoints(tableName, {
+          userId: user.sub,
+          amount: INSIGHT_POINTS_AMOUNTS.bookComplete,
+          sourceType: "book_complete",
+          sourceId: bookId,
+          metadata: {
+            bookId,
+            bookTitle: manifest.title,
+          },
+          createdAt: backfillTs,
+        });
+      }
+    }
+
     return {
       quiz: buildQuizClientSession({
         quiz,
