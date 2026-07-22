@@ -40,20 +40,20 @@ export async function POST(
     // and throws, so we report that status in the response instead of only
     // console.error-ing it.
     let searchIndex: {
-      ok: boolean;
+      rebuilt: boolean;
       documentCount: number;
       code?: string;
       message?: string;
       details?: unknown;
-    } = { ok: false, documentCount: 0 };
+    } = { rebuilt: false, documentCount: 0 };
     try {
       const indexResult = await rebuildSearchIndex();
-      searchIndex = { ok: true, documentCount: indexResult.documentCount };
+      searchIndex = { rebuilt: true, documentCount: indexResult.documentCount };
     } catch (err) {
       logger.error("publish_search_index_rebuild_failed", { err });
       if (err instanceof BookApiError) {
         searchIndex = {
-          ok: false,
+          rebuilt: false,
           documentCount: 0,
           code: err.code,
           message: err.message,
@@ -61,7 +61,7 @@ export async function POST(
         };
       } else {
         searchIndex = {
-          ok: false,
+          rebuilt: false,
           documentCount: 0,
           code: "search_index_rebuild_failed",
           message: err instanceof Error ? err.message : String(err),
@@ -70,7 +70,6 @@ export async function POST(
     }
 
     return bookOk({
-      ok: true,
       bookId,
       version: versionItem.version,
       state: "PUBLISHED",

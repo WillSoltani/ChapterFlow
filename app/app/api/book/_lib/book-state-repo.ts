@@ -3,7 +3,6 @@
 import {
   GetCommand,
   PutCommand,
-  QueryCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
@@ -201,28 +200,30 @@ export async function listUserChapterStates(
 }
 
 /**
- * Single-page (unpaginated) raw scan of a user's CHAPTERSTATE# rows for the
- * Notebook feed. Moved verbatim from me/notebook/route.ts's GET handler
- * (WS3-002) — deliberately distinct from `listUserChapterStates` above,
- * which paginates to completion AND maps to the typed
+ * Raw (untyped-mapping) scan of a user's CHAPTERSTATE# rows for the Notebook
+ * feed, paginated to completion via `queryAllItems`. Moved verbatim from
+ * me/notebook/route.ts's GET handler (WS3-002) — deliberately distinct from
+ * `listUserChapterStates` above, which ALSO paginates but maps to the typed
  * `BookUserChapterStateItem` shape (dropping `bookTitle`/`chapterTitle`,
  * which the typed shape doesn't carry but the Notebook route reads directly
- * off the raw item). Reusing `listUserChapterStates` here would both drop
- * those fields and read more than one page, which is a behavior change.
+ * off the raw item). Reusing `listUserChapterStates` here would drop those
+ * fields, which is a behavior change.
+ *
+ * WS4-009: previously a single unpaginated `QueryCommand`, which silently
+ * truncated at the first 1MB page once a user's chapter-state rows grew past
+ * it. Now follows `LastEvaluatedKey` like every other full-partition read in
+ * this file.
  */
 export async function queryChapterStatesForNotebook(
   tableName: string,
   userId: string
 ): Promise<Record<string, unknown>[]> {
-  const res = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "CHAPTERSTATE#",
-      },
-    }),
-  );
-  return res.Items ?? [];
+  return queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "CHAPTERSTATE#",
+    },
+  });
 }

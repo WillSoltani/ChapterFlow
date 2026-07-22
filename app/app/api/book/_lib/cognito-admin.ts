@@ -7,6 +7,7 @@ import {
 } from "@aws-sdk/client-cognito-identity-provider";
 import { REGION } from "@/app/app/api/_lib/aws";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 // Single shared Cognito Identity Provider client for ALL admin operations
 // (erasure's ListUsers/AdminDeleteUser AND step-up's AdminUserGlobalSignOut).
@@ -17,7 +18,7 @@ let cognitoClient: CognitoIdentityProviderClient | null = null;
 
 /** Lazily-constructed, process-wide Cognito Identity Provider client. */
 export function getCognitoClient(): CognitoIdentityProviderClient {
-  if (!cognitoClient) cognitoClient = new CognitoIdentityProviderClient({ region: REGION });
+  if (!cognitoClient) cognitoClient = new CognitoIdentityProviderClient({ region: REGION, ...awsClientConfig });
   return cognitoClient;
 }
 

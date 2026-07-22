@@ -7,6 +7,7 @@ import { getCatalogBook, getBookVersion } from "@/app/app/api/book/_lib/repo";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import { buildConceptGraphKey, buildContentPrefix } from "@/app/app/api/book/_lib/keys";
 import type { ConceptGraph } from "@/app/app/api/book/_lib/types";
+import { CONCEPT_GRAPH_CACHE_CONTROL } from "@/app/app/api/book/_lib/cache-control-core";
 
 export const runtime = "nodejs";
 
@@ -43,7 +44,9 @@ export async function GET(
 
     try {
       const graph = await readJsonFromS3<ConceptGraph>(contentBucket, key);
-      return bookOk({ conceptGraph: graph });
+      const response = bookOk({ conceptGraph: graph });
+      response.headers.set("Cache-Control", CONCEPT_GRAPH_CACHE_CONTROL);
+      return response;
     } catch (error: unknown) {
       // Only a genuinely-absent (or empty) concept-graph object is reported as
       // "no graph". Any other failure (transient S3 throttling, network, or a
@@ -53,7 +56,9 @@ export async function GET(
         isBookApiError(error) &&
         (error.code === "content_not_found" || error.code === "empty_content")
       ) {
-        return bookOk({ conceptGraph: null as unknown as ConceptGraph });
+        const response = bookOk({ conceptGraph: null as unknown as ConceptGraph });
+        response.headers.set("Cache-Control", CONCEPT_GRAPH_CACHE_CONTROL);
+        return response;
       }
       throw error;
     }

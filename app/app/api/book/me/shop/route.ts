@@ -150,7 +150,6 @@ export async function POST(req: Request) {
 
       const state = await getUserFlowPointsState(tableName, user.sub);
       return bookOk({
-        ok: true,
         itemId: GIFT_A_FRIEND.id,
         balance: state.points,
         giftCode,
@@ -216,7 +215,6 @@ export async function POST(req: Request) {
 
     const state = await getUserFlowPointsState(tableName, user.sub);
     return bookOk({
-      ok: true,
       itemId: item.id,
       balance: state.points,
       message: `${item.name} acquired! You can equip it from your profile settings.`,

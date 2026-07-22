@@ -326,3 +326,120 @@ test("an UNAUTHENTICATED (no credential) still maps to 401 unauthenticated", asy
   const json = (await res.json()) as { error?: { code?: string } };
   assert.equal(json.error?.code, "unauthenticated");
 });
+
+test("withBookApiErrors maps VERIFIER_UNAVAILABLE to 503 verifier_unavailable", async () => {
+  // WS4-002: the third identity handler (this wrapper — http.ts:214-222, NOT
+  // edited by WS4-002) must emit the SAME error.code as the session-status
+  // routes (see app/app/api/_lib/verifier-unavailable-routes.test.ts), which
+  // are pinned to the shared `VERIFIER_UNAVAILABLE_CODE` constant.
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new AuthError("VERIFIER_UNAVAILABLE");
+  });
+  assert.equal(res.status, 503);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "verifier_unavailable");
+});
+
+// ─── AWS throttle → 503 throttled mapping (WS4-021) ────────────────────────
+
+test("a ProvisionedThroughputExceededException maps to 503 throttled with Retry-After, not 500", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw Object.assign(new Error("rate exceeded"), {
+      name: "ProvisionedThroughputExceededException",
+      $metadata: { httpStatusCode: 400 },
+    });
+  });
+  assert.equal(res.status, 503);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "throttled");
+  assert.equal(res.headers.get("Retry-After"), "1");
+});
+
+test("an S3 SlowDown maps to 503 throttled with Retry-After", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw Object.assign(new Error("slow down"), {
+      name: "SlowDown",
+      $metadata: { httpStatusCode: 503 },
+    });
+  });
+  assert.equal(res.status, 503);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "throttled");
+  assert.equal(res.headers.get("Retry-After"), "1");
+});
+
+test("a BookApiError(429, rate_limited) keeps its 429 envelope (no reclassification)", async () => {
+  const { BookApiError } = await import("./errors");
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new BookApiError(429, "rate_limited", "Too many requests.");
+  });
+  assert.equal(res.status, 429);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "rate_limited");
+  assert.equal(res.headers.get("Retry-After"), null);
+});
+
+test("an unknown non-AWS error still maps to 500 server_error with no Retry-After", async () => {
+  const res = await withBookApiErrors(sameOriginPost(), async () => {
+    throw new Error("boom");
+  });
+  assert.equal(res.status, 500);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "server_error");
+  assert.equal(res.headers.get("Retry-After"), null);
+});
+
+// ─── Accept-header API versioning (WS4-006) ────────────────────────────────
+
+function getWithAccept(accept: string | null): Request {
+  const headers: HeadersInit = {};
+  if (accept !== null) headers.accept = accept;
+  return new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method: "GET",
+    headers,
+  });
+}
+
+test("a request with no version header runs the body unchanged (v1 default)", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(getWithAccept(null), async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(bodyRan, true, "no-Accept request must reach the route body");
+  assert.equal(res.status, 200);
+});
+
+test("Accept application/vnd.chapterflow.v1+json reaches the body", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(
+    getWithAccept("application/vnd.chapterflow.v1+json"),
+    async () => {
+      bodyRan = true;
+      const { bookOk } = await import("./http");
+      return bookOk({ ok: true });
+    }
+  );
+  assert.equal(bodyRan, true, "explicit v1 Accept must reach the route body");
+  assert.equal(res.status, 200);
+});
+
+test("an unsupported vendor version returns 406 unsupported_api_version in the canonical envelope WITHOUT running the body", async () => {
+  let bodyRan = false;
+  const res = await withBookApiErrors(
+    getWithAccept("application/vnd.chapterflow.v2+json"),
+    async () => {
+      bodyRan = true;
+      const { bookOk } = await import("./http");
+      return bookOk({ ok: true });
+    }
+  );
+  assert.equal(res.status, 406, "unsupported version must be rejected before the route body");
+  assert.equal(bodyRan, false, "route body must NOT run for an unsupported version");
+  const json = (await res.json()) as {
+    error?: { code?: string; details?: { requested?: string } };
+  };
+  assert.equal(json.error?.code, "unsupported_api_version");
+  assert.equal(json.error?.details?.requested, "application/vnd.chapterflow.v2+json");
+});

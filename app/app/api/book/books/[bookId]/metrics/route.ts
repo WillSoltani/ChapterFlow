@@ -2,10 +2,11 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
-import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getCatalogBook, getUserProgress } from "@/app/app/api/book/_lib/repo";
 import { queryDailyReaderMetricsRange } from "@/app/app/api/book/_lib/book-metrics-repo";
+
+import { loadMetricsAccess } from "./metrics-core";
 
 export const runtime = "nodejs";
 
@@ -20,23 +21,14 @@ export async function GET(
     const tableName = await getBookTableName();
 
     // Per-title reader/loop KPIs are business-sensitive: do not let any logged-in
-    // user enumerate engagement numbers across the whole catalog (L22). Require
+    // user enumerate engagement numbers across the whole catalog. Require
     // (1) the book to be a published catalog title, and (2) the caller to have
     // actually started it — the only legitimate consumer (the Progress page)
     // requests metrics solely for the viewer's own active books.
-    const catalog = await getCatalogBook(tableName, bookId);
-    if (!catalog || !catalog.currentPublishedVersion) {
-      throw new BookApiError(404, "book_not_found", "Published book not found.");
-    }
-
-    const progress = await getUserProgress(tableName, user.sub, bookId);
-    if (!progress) {
-      throw new BookApiError(
-        403,
-        "book_not_started",
-        "Start this book to view its reader activity."
-      );
-    }
+    await loadMetricsAccess({
+      getCatalogBook: () => getCatalogBook(tableName, bookId),
+      getUserProgress: () => getUserProgress(tableName, user.sub, bookId),
+    });
 
     const today = new Date().toISOString().slice(0, 10);
     const weekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)

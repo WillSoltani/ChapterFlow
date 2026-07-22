@@ -1,0 +1,85 @@
+{
+  "schemaVersion": 1,
+  "records": [
+    {
+      "recordId": "2937b71a34653a7f1d4eff74977826e8a32bf7304abed2fa9030d177d3b512ae",
+      "changeId": "ws4-minor-cluster-wave1-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/_lib/aws.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "3bf6644bbd6d45bc367833b0daf45dc227d8c345fbd949ca74f80fdd2c3dfafd",
+      "evidenceRefs": [
+        "https://github.com/WillSoltani/ChapterFlow/pull/426",
+        "upgrade/FINISH-BACKLOG-PLAN-2026-07-22.md Wave 1",
+        "WS4-001 WS4-009 WS4-010 WS4-016 WS4-017 WS4-020"
+      ]
+    },
+    {
+      "recordId": "e9965d61ebf4a7cfe1a9286ad9c756d237f0191697801b9adb13dfca7b669e92",
+      "changeId": "ws4-minor-cluster-wave1-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/_lib/server-env.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "6e9746fc063399ebb1428506f4bdb85c0019581bac6dff0a85d5c43685ef6793",
+      "evidenceRefs": [
+        "https://github.com/WillSoltani/ChapterFlow/pull/426",
+        "upgrade/FINISH-BACKLOG-PLAN-2026-07-22.md Wave 1",
+        "WS4-001 WS4-009 WS4-010 WS4-016 WS4-017 WS4-020"
+      ]
+    },
+    {
+      "recordId": "7cadaa910789cf6ad0da2fb4f3c41d995300d9060c270e36f01ba68ce6cbdc4e",
+      "changeId": "ws4-minor-cluster-wave1-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/book-state-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "e7b6ec89cb14cd6b730e198ed29acbc38b5e21750d6ffebc2d15daf8c2a4383a",
+      "evidenceRefs": [
+        "https://github.com/WillSoltani/ChapterFlow/pull/426",
+        "upgrade/FINISH-BACKLOG-PLAN-2026-07-22.md Wave 1",
+        "WS4-001 WS4-009 WS4-010 WS4-016 WS4-017 WS4-020"
+      ]
+    },
+    {
+      "recordId": "5fd3e0ccca40f6842bd154b285c5bdcd5555377568b9160ea65e2fb0f68ceac4",
+      "changeId": "ws4-minor-cluster-wave1-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/fsrs-repo.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "65b40f20e27cab217fdbd76170d02b46e9446ce804e3110939a35cc184b5c284",
+      "evidenceRefs": [
+        "https://github.com/WillSoltani/ChapterFlow/pull/426",
+        "upgrade/FINISH-BACKLOG-PLAN-2026-07-22.md Wave 1",
+        "WS4-001 WS4-009 WS4-010 WS4-016 WS4-017 WS4-020"
+      ]
+    },
+    {
+      "recordId": "6b629d5e75fea5e5a71106b03bfd7d9de0a0e852b304c157a865889ad5873b46",
+      "changeId": "ws4-minor-cluster-wave1-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/admin/books/[bookId]/versions/[version]/publish/search-index-builder.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": null,
+      "repairedBlobSha256": "9c466304a24ef7365f26fa4fe2960785736ed70ab4a73dc11bc0308c079cdfcb",
+      "evidenceRefs": [
+        "https://github.com/WillSoltani/ChapterFlow/pull/426",
+        "upgrade/FINISH-BACKLOG-PLAN-2026-07-22.md Wave 1",
+        "WS4-001 WS4-009 WS4-010 WS4-016 WS4-017 WS4-020"
+      ]
+    }
+  ]
+}

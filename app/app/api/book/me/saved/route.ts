@@ -14,8 +14,15 @@ import {
   listSavedBooks,
   putSavedBook,
 } from "@/app/app/api/book/_lib/repo";
+import { paginateArray, parseListPaginationParams } from "@/app/app/api/book/_lib/list-pagination-core";
 
 export const runtime = "nodejs";
+
+// WS4-004: opt-in `?limit=&cursor=` page size bounds. Unlike notebook.get,
+// `saved`/`savedBookIds` NEVER shrink below the full set — see the GET
+// handler comment.
+const SAVED_DEFAULT_PAGE_SIZE = 50;
+const SAVED_MAX_PAGE_SIZE = 200;
 
 export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
@@ -24,8 +31,34 @@ export async function GET(req: Request) {
     const saved = await listSavedBooks(tableName, user.sub);
     // `savedBookIds` is the native (iOS) contract — SavedBooksResponse decodes
     // exactly that key, and without it the device's Home/Library fail closed.
-    // `saved` stays for the web client; keep BOTH.
-    return bookOk({ saved, savedBookIds: saved.map((s) => s.bookId) });
+    // `saved` stays for the web client; keep BOTH, and keep BOTH COMPLETE
+    // (never paginated) — iOS treats `savedBookIds` as the full authoritative
+    // saved-book set, not a page of it.
+    const url = new URL(req.url);
+    const hasPaginationParams = url.searchParams.has("limit") || url.searchParams.has("cursor");
+    if (!hasPaginationParams) {
+      // Opt-in only: without ?limit=/?cursor= the response is byte-for-byte
+      // what it was before WS4-004 — no new keys, no behavior change.
+      return bookOk({ saved, savedBookIds: saved.map((s) => s.bookId) });
+    }
+
+    const params = parseListPaginationParams(url, {
+      defaultLimit: SAVED_DEFAULT_PAGE_SIZE,
+      maxLimit: SAVED_MAX_PAGE_SIZE,
+    });
+    const page = paginateArray(saved, {
+      limit: params.limit,
+      cursor: params.cursor,
+      cursorKey: (item) => ({ id: item.bookId, createdAt: item.savedAt }),
+    });
+
+    return bookOk({
+      saved,
+      savedBookIds: saved.map((s) => s.bookId),
+      items: page.items,
+      nextCursor: page.nextCursor,
+      hasMore: page.hasMore,
+    });
   });
 }
 
@@ -99,6 +132,7 @@ export async function DELETE(req: Request) {
     const url = new URL(req.url);
     const bookId = requireString(url.searchParams.get("bookId"), "bookId", { maxLength: 120 });
     await deleteSavedBook(tableName, user.sub, bookId);
-    return bookOk({ ok: true });
+    const saved = await listSavedBooks(tableName, user.sub);
+    return bookOk({ saved, savedBookIds: saved.map((s) => s.bookId) });
   });
 }

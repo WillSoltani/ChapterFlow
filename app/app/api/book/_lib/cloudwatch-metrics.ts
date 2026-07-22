@@ -9,6 +9,7 @@ import {
 } from "@aws-sdk/client-cloudwatch";
 import { DescribeTableCommand, DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { logger } from "@/lib/logging/logger";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 const REGION = process.env.AWS_REGION || process.env.AWS_DEFAULT_REGION || "us-east-1";
 
@@ -16,12 +17,12 @@ let cwClient: CloudWatchClient | null = null;
 let ddbMetaClient: DynamoDBClient | null = null;
 
 function getCw(): CloudWatchClient {
-  if (!cwClient) cwClient = new CloudWatchClient({ region: REGION });
+  if (!cwClient) cwClient = new CloudWatchClient({ region: REGION, ...awsClientConfig });
   return cwClient;
 }
 
 function getDdbMeta(): DynamoDBClient {
-  if (!ddbMetaClient) ddbMetaClient = new DynamoDBClient({ region: REGION });
+  if (!ddbMetaClient) ddbMetaClient = new DynamoDBClient({ region: REGION, ...awsClientConfig });
   return ddbMetaClient;
 }
 

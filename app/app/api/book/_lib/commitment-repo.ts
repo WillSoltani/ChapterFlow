@@ -8,6 +8,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, commitmentSk, nowIso } from "./keys";
+import { queryAllItems } from "./repo-shared";
 import type { BookUserCommitmentItem, CommitmentStatus, CommitmentOutcome } from "./types";
 
 const EXPIRY_GRACE_MS = 7 * 86400000;
@@ -191,15 +192,14 @@ export async function queryCommitmentItemsForNotebook(
   tableName: string,
   userId: string,
 ): Promise<Record<string, unknown>[]> {
-  const result = await ddbDoc.send(
-    new QueryCommand({
-      TableName: tableName,
-      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-      ExpressionAttributeValues: {
-        ":pk": bookUserPk(userId),
-        ":prefix": "COMMITMENT#",
-      },
-    }),
-  );
-  return result.Items ?? [];
+  // WS4-009: paginate to completion (was a single unpaginated QueryCommand,
+  // which silently truncated at the first 1MB page).
+  return queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "COMMITMENT#",
+    },
+  });
 }

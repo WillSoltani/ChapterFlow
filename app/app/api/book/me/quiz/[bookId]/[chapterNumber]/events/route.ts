@@ -62,6 +62,6 @@ export async function POST(
       }).catch(() => null);
     }
 
-    return bookOk({ ok: true });
+    return bookOk({ recorded: true });
   });
 }

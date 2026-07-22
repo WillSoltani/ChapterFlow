@@ -83,7 +83,6 @@ export async function POST(req: Request) {
     }
 
     return bookOk({
-      ok: true,
       shieldsHeld: result.shieldsHeld,
       balance: result.balance,
       message: "Streak Shield purchased. It will automatically protect your streak if you miss a day.",

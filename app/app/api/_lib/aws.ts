@@ -4,7 +4,58 @@ import { DynamoDBClient } from "@aws-sdk/client-dynamodb";
 import { DynamoDBDocumentClient } from "@aws-sdk/lib-dynamodb";
 import { S3Client } from "@aws-sdk/client-s3";
 import { SFNClient } from "@aws-sdk/client-sfn";
-import { mustServerEnv } from "./server-env";
+
+// Shared AWS SDK v3 client-config factory (WS4-016). Kept in aws.ts so it does
+// not exist as a separate module in the shared app/book TypeScript closure.
+// It is a pure config object — every AWS client construction site (this module,
+// cloudwatch-metrics.ts, cognito-admin.ts, email-service.ts, server-env.ts, the
+// health probes, book-requests) spreads it into a client constructor config.
+//
+// Without an explicit requestHandler timeout the SDK's default
+// NodeHttpHandler has NO connection/socket timeout, so a stalled TCP
+// connection or a server that accepts-but-never-responds hangs until the
+// Lambda's own execution timeout kills the whole invocation — no client-level
+// deadline, no retry, no clean error. Setting both timeouts here means a
+// stalled call fails fast at the client boundary instead.
+//
+// NodeHttpHandler's `requestTimeout` is socket-IDLE time (time with no bytes
+// received), not a hard end-to-end deadline — so a slow-but-steadily-streaming
+// S3 GetObject body stays safe even past this value. `connectionTimeout` is
+// TCP-connect time only.
+//
+// SDK 3.1073.0 accepts the plain-object `requestHandler` shorthand (spread
+// into a client's constructor config) without a direct
+// `@smithy/node-http-handler` dependency — the client lazily builds the real
+// NodeHttpHandler from it.
+export function makeAwsClientConfig(overrides?: {
+  connectionTimeout?: number;
+  requestTimeout?: number;
+  maxAttempts?: number;
+}): {
+  requestHandler: {
+    connectionTimeout: number;
+    requestTimeout: number;
+    throwOnRequestTimeout: true;
+  };
+  retryMode: "adaptive";
+  maxAttempts: number;
+} {
+  return {
+    requestHandler: {
+      connectionTimeout: overrides?.connectionTimeout ?? 1000,
+      requestTimeout: overrides?.requestTimeout ?? 5000,
+      // @smithy/node-http-handler >=4.x only LOGS a WARN when requestTimeout is
+      // exceeded unless this is set — without it a stalled socket never
+      // actually rejects at the client deadline, defeating the whole point of
+      // this factory.
+      throwOnRequestTimeout: true,
+    },
+    retryMode: "adaptive" as const,
+    maxAttempts: overrides?.maxAttempts ?? 3,
+  };
+}
+
+export const awsClientConfig = Object.freeze(makeAwsClientConfig());
 
 // WS6-029: passive X-Ray instrumentation. When the server Lambda runs with
 // ACTIVE tracing (frontend ServerFn), the daemon address env var is set and we
@@ -30,10 +81,6 @@ function traceClient<T>(client: T): T {
   }
 }
 
-export async function mustEnv(name: string): Promise<string> {
-  return mustServerEnv(name);
-}
-
 export const REGION =
   process.env.AWS_REGION ||
   process.env.AWS_DEFAULT_REGION ||
@@ -41,7 +88,7 @@ export const REGION =
 
 // Wrap the base client before building the DocumentClient so DynamoDB calls
 // issued through the doc client still surface as X-Ray subsegments.
-const ddb = traceClient(new DynamoDBClient({ region: REGION }));
+const ddb = traceClient(new DynamoDBClient({ region: REGION, ...awsClientConfig }));
 
 export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   // NOTE: convertEmptyValues is intentionally OFF. With it on, the SDK rewrites
@@ -56,6 +103,6 @@ export const ddbDoc = DynamoDBDocumentClient.from(ddb, {
   marshallOptions: { removeUndefinedValues: true },
 });
 
-export const s3 = traceClient(new S3Client({ region: REGION }));
+export const s3 = traceClient(new S3Client({ region: REGION, ...awsClientConfig }));
 
-export const sfn = traceClient(new SFNClient({ region: REGION }));
+export const sfn = traceClient(new SFNClient({ region: REGION, ...awsClientConfig }));

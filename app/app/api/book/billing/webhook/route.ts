@@ -103,7 +103,7 @@ export async function POST(req: Request) {
     if (claim === "done") {
       // Already fully processed under the claim-lease (or the legacy record-last
       // scheme) — safe to acknowledge.
-      return bookOk({ ok: true, duplicate: true });
+      return bookOk({ received: true, duplicate: true });
     }
     if (claim === "in_progress") {
       // Another delivery holds a live PROCESSING lease (or a crashed worker's
@@ -639,7 +639,7 @@ export async function POST(req: Request) {
     // processed (preserving the prior retry-after-failure guarantee).
     await completeStripeWebhookEvent(tableName, event.id);
 
-    return bookOk({ ok: true });
+    return bookOk({ received: true });
     } catch (err) {
       // Release our PROCESSING lease so a Stripe retry can re-claim and reprocess
       // immediately rather than waiting out the full lease. Conditional on

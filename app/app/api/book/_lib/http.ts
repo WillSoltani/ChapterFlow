@@ -1,9 +1,16 @@
 import { NextResponse } from "next/server";
+import {
+  type ErrorEnvelope,
+  jsonErrorResponse,
+  requestIdFromHeaders,
+} from "@/lib/api/error-envelope";
 import { AuthError } from "@/app/app/api/_lib/auth";
 import { isHeaderAuthenticatedRequest } from "@/app/app/api/_lib/auth-credential-core";
 import { logger } from "@/lib/logging/logger";
 import { runWithRequestContext } from "@/lib/logging/request-context";
 import { BookApiError, isBookApiError } from "./errors";
+import { classifyRetryableAwsError } from "./aws-retryable-error-core";
+import { resolveApiVersion } from "./api-version-core";
 import { getAppBaseUrl } from "./env";
 import {
   evaluateSameOrigin,
@@ -27,19 +34,6 @@ export {
   SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
 } from "./http-guards-core";
-
-type ErrorEnvelope = {
-  error: {
-    code: string;
-    message: string;
-    requestId: string;
-    details?: unknown;
-  };
-};
-
-function requestIdFromHeaders(req: Request): string {
-  return req.headers.get("x-amzn-trace-id") || crypto.randomUUID();
-}
 
 // ─── Same-origin / CSRF guard (#6) ───────────────────────────────────────────
 //
@@ -131,6 +125,14 @@ export async function requireSameOrigin(req: Request): Promise<void> {
   );
 }
 
+// Mutation ACK conventions (WS4-007): book API mutation endpoints return either
+// the affected resource (e.g. the updated `saved` list) or ONE documented ack
+// shape — `{ recorded: true }` / `{ deleted: true }` / `{ created }` /
+// `{ applied, reason }` / `{ received: true, duplicate?: true }` — never a bare
+// `{ ok: true }`. The sole exceptions are `me/share-events` and
+// `me/flow-points/redeem`, whose `/ok` field is pinned by the native contract
+// and decoded by live iOS models; those retire from the allowlist only when an
+// iOS-coordinated release drops `/ok` (see mutation-ack-shape.test.ts).
 export function bookOk<T>(data: T, init?: number | ResponseInit): NextResponse<T> {
   const resInit = typeof init === "number" ? { status: init } : init;
   return NextResponse.json(data, resInit);
@@ -144,17 +146,10 @@ export function bookErr(
   details?: unknown,
   requestId?: string
 ): NextResponse<ErrorEnvelope> {
-  return NextResponse.json(
-    {
-      error: {
-        code,
-        message,
-        requestId: requestId ?? requestIdFromHeaders(req),
-        details,
-      },
-    },
-    { status }
-  );
+  return jsonErrorResponse(req, status, code, message, {
+    details,
+    requestId,
+  }) as NextResponse<ErrorEnvelope>;
 }
 
 /**
@@ -199,13 +194,32 @@ export async function withBookApiErrors<T>(
   // scope — resolves the correlation id automatically (WS6-031).
   return runWithRequestContext(requestId, async () => {
     try {
+      // API version negotiation (WS4-006) runs BEFORE anything else — a
+      // request naming an unsupported version never touches CSRF, auth,
+      // DynamoDB, or Stripe. See docs/API-VERSIONING.md. Absent header, plain
+      // application/json, and browser Accept lists all default to v1, so
+      // every existing web/native client is unaffected.
+      const versionResolution = resolveApiVersion(req.headers.get("accept"));
+      if (!versionResolution.supported) {
+        return bookErr(
+          req,
+          406,
+          "unsupported_api_version",
+          "This API version is not supported. This endpoint currently serves v1 only.",
+          { requested: versionResolution.requested },
+          requestId
+        );
+      }
+
       // CSRF / same-origin guard runs BEFORE the route body so a rejected
       // cross-site mutation never touches auth, DynamoDB, or Stripe. No-op on
       // safe methods and when explicitly opted out.
       if (!opts?.skipOriginCheck) {
         await requireSameOrigin(req);
       }
-      return await fn();
+      const res = await fn();
+      res.headers.set("X-ChapterFlow-Api-Version", String(versionResolution.version));
+      return res;
     } catch (error: unknown) {
       if (error instanceof AuthError) {
         // A transient JWKS-verifier outage is reported as AuthError
@@ -261,6 +275,28 @@ export async function withBookApiErrors<T>(
 
       const name = error instanceof Error ? error.name : "UnknownError";
       const message = error instanceof Error ? error.message : String(error);
+
+      // AWS SDK throttling (DynamoDB ProvisionedThroughputExceeded, S3
+      // SlowDown, etc.) is a transient upstream-capacity signal, not an
+      // unhandled bug — surface it as a retryable 503 with a Retry-After
+      // hint instead of the generic 500. `logger.warn` (not `.error`) and NO
+      // `reportUnhandledError` call: throttling must not trip the OpsFailure
+      // alarm that unhandled 500s do.
+      const throttle = classifyRetryableAwsError(error);
+      if (throttle) {
+        logger.warn("book_api_upstream_throttled", { name, requestId });
+        const res = bookErr(
+          req,
+          503,
+          "throttled",
+          "The service is temporarily busy. Please retry.",
+          undefined,
+          requestId
+        );
+        res.headers.set("Retry-After", String(throttle.retryAfterSeconds));
+        return res;
+      }
+
       // Cap the message so a runaway error string can't bloat the log line, and
       // never log the full stack in production: stacks can incidentally surface
       // identifiers, and CloudWatch is for correlation, not forensic dumps. In

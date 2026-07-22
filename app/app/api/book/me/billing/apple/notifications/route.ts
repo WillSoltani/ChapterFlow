@@ -152,7 +152,7 @@ export async function POST(req: Request) {
       });
       if (!decision.apply) {
         // Acknowledge unhandled/no-op events so Apple stops retrying.
-        return bookOk({ ok: true, applied: false, reason: decision.reason });
+        return bookOk({ applied: false, reason: decision.reason });
       }
 
       // Every entitlement mutation requires the same exact signed transaction
@@ -206,7 +206,7 @@ export async function POST(req: Request) {
         logger.warn("apple_notification_unmapped_transaction", {
           notificationType: notification.notificationType,
         });
-        return bookOk({ ok: true, applied: false, reason: "unmapped_transaction" });
+        return bookOk({ applied: false, reason: "unmapped_transaction" });
       }
 
       const bindingViolation = validateAppleNotificationAccountBinding({
@@ -224,7 +224,7 @@ export async function POST(req: Request) {
         },
         storageLane,
       );
-      return bookOk({ ok: true, applied, reason: decision.reason });
+      return bookOk({ applied, reason: decision.reason });
     },
     { skipOriginCheck: true },
   );

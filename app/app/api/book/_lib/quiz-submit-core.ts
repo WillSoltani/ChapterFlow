@@ -32,7 +32,7 @@
 // Each successful step also stamps a per-step marker via markLoopStep (best-effort;
 // its own rejections are swallowed, mirroring the route's `.catch(() => {})`).
 
-import type { LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
+import { CHAPTER_FP, type LoopPipelineResult } from "@/app/book/_lib/flow-points-economy";
 import type {
   BookUserNotificationItem,
   ChapterSummaryPayload,
@@ -122,6 +122,79 @@ export interface LoopCompletionResult {
   loopPipeline: LoopPipelineResult | null;
   quizPassAwarded: boolean;
   bookCompleteAwarded: boolean;
+}
+
+// ── WS4-010: points durability across the persist→award crash window ──────────
+// The graded-pass path persists the outcome (flipping quizState.passed=true) and
+// only THEN awards the CRITICAL quiz_pass / book_complete flow points. If the
+// process dies in between, every later submit for that chapter short-circuits on
+// the `quizState?.passed` early return and the grant is lost forever. This pure
+// helper reconstructs the amounts the crashed award would have paid, straight from
+// the persisted quiz state, so the passed-branch can idempotently backfill them.
+
+const LEARNING_MODES = CHAPTER_FP.quizPassFirstAttempt;
+type LearningModeKey = keyof typeof LEARNING_MODES;
+
+function toLearningModeKey(mode: string): LearningModeKey {
+  return (mode in LEARNING_MODES ? mode : "standard") as LearningModeKey;
+}
+
+/** Minimal shape of the persisted quiz state the backfill reads (see repo.ts). */
+export interface PassedRetryBackfillQuizState {
+  passed?: boolean;
+  lastAttemptNumber?: number | null;
+  attemptsCount?: number | null;
+  lastScorePercent?: number | null;
+}
+
+export interface PassedRetryBackfillInput {
+  quizState: PassedRetryBackfillQuizState | null | undefined;
+  completedChapterCount: number;
+  pinnedChapterCount: number;
+  learningMode: string;
+}
+
+export interface PassedRetryBackfill {
+  /** Total quiz_pass grant (first-attempt-or-retry base + perfect bonus). */
+  quizPassAmount: number;
+  isFirstAttempt: boolean;
+  /** Perfect-score bonus portion of quizPassAmount (0 when the last score < 100). */
+  perfectBonus: number;
+  /** Whether a book_complete grant should also be backfilled. */
+  includeBookComplete: boolean;
+}
+
+/**
+ * Reconstruct the quiz_pass (and optional book_complete) award amounts for a
+ * chapter whose quiz is already persisted as passed, so a passed-branch retry can
+ * idempotently backfill a grant lost to a persist→award crash. Returns null when
+ * there is nothing to recover (quiz state absent or not passed).
+ */
+export function buildPassedRetryBackfill({
+  quizState,
+  completedChapterCount,
+  pinnedChapterCount,
+  learningMode,
+}: PassedRetryBackfillInput): PassedRetryBackfill | null {
+  if (!quizState?.passed) return null;
+
+  const mode = toLearningModeKey(learningMode);
+  const isFirstAttempt =
+    (quizState.lastAttemptNumber ?? quizState.attemptsCount ?? 1) === 1;
+  const perfectBonus =
+    quizState.lastScorePercent === 100 ? CHAPTER_FP.quizPerfectScore[mode] : 0;
+  const quizPassBase = isFirstAttempt
+    ? CHAPTER_FP.quizPassFirstAttempt[mode]
+    : CHAPTER_FP.quizPassRetry[mode];
+  const includeBookComplete =
+    pinnedChapterCount > 0 && completedChapterCount >= pinnedChapterCount;
+
+  return {
+    quizPassAmount: quizPassBase + perfectBonus,
+    isFirstAttempt,
+    perfectBonus,
+    includeBookComplete,
+  };
 }
 
 /**
