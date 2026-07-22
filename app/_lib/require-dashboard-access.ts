@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/app/app/api/_lib/auth";
@@ -89,8 +90,8 @@ async function reactivateDeactivatedAccount(
     {
       log: (level, event, detail) => {
         // Tag every signal with the userId for observability.
-        if (level === "error") console.error(event, { userId, ...detail });
-        else console.warn(event, { userId, ...detail });
+        if (level === "error") logger.error(event, { userId, ...detail });
+        else logger.warn(event, { userId, ...detail });
       },
     }
   );
@@ -121,9 +122,10 @@ export async function requireDashboardAccess(options?: {
   ) {
     if (!warnedLocalBypass) {
       warnedLocalBypass = true;
-      console.warn(
-        "dashboard_access_dev_bypass: allowing local access because DEV_AUTH_BYPASS is enabled or Cognito env vars are missing in dev."
-      );
+      logger.warn("dashboard_access_dev_bypass", {
+        reason:
+          "allowing local access because DEV_AUTH_BYPASS is enabled or Cognito env vars are missing in dev.",
+      });
     }
     return UNVERIFIED_ACCESS;
   }
@@ -168,7 +170,7 @@ export async function requireDashboardAccess(options?: {
     // For DynamoDB read errors, don't block the user — fail open. (A
     // reactivation WRITE failure is handled inside the helper above with its own
     // distinct log, so it never reaches here as a generic error.)
-    console.error("account_status_check_error", error);
+    logger.error("account_status_check_error", { err: error });
   }
 
   // Onboarding funnel gate — route signed-in-but-un-onboarded users into the
@@ -194,7 +196,7 @@ export async function requireDashboardAccess(options?: {
       // Fail open on a DynamoDB/network hiccup — don't trap a legitimate user
       // out of the app over a transient backend error (mirrors the
       // account-status block above).
-      console.error("onboarding_status_check_error", error);
+      logger.error("onboarding_status_check_error", { err: error });
       return UNVERIFIED_ACCESS;
     }
   }

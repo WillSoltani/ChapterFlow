@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { logger } from "@/lib/logging/logger";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { timingSafeStrEqual } from "../_lib/timing-safe-equal";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
@@ -233,9 +234,7 @@ export async function GET(req: NextRequest) {
 
     return res;
   } catch (error: unknown) {
-    console.error("auth_callback_error", {
-      message: error instanceof Error ? error.message : String(error),
-    });
+    logger.error("auth_callback_error", { err: error });
     // Clear the transient OAuth cookies even on an unexpected failure so a stale
     // verifier/nonce can't linger for a replay.
     return clearTransientOAuthCookies(

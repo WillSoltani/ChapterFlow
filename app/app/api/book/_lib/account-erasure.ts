@@ -35,6 +35,7 @@ import { getStripeClient } from "./stripe-service";
 import { getUserEntitlement, setAccountStatus } from "./repo";
 import { recordOpsFailure } from "./ops-failure-repo";
 import { putOpsMetric } from "./cloudwatch-metrics";
+import { logger } from "@/lib/logging/logger";
 
 /** Outcome of a per-store erasure step. */
 type StepOutcome = "deleted" | "skipped" | "failed";
@@ -452,7 +453,7 @@ export async function eraseUserData(
       })
     );
   } catch (error) {
-    console.error("erasure_audit_write_failed", { subjectHash: subjectHash.hash, message: errMsg(error) });
+    logger.error("erasure_audit_write_failed", { subjectHash: subjectHash.hash, message: errMsg(error) });
   }
 
   // A partial erasure is an operational condition that needs follow-up — page it.

@@ -8,6 +8,7 @@ import {
   buildCohortRetention,
   scanAllUserSnapshots,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -27,7 +28,7 @@ export async function GET(req: Request) {
         "userId, firstSeenAt, readingDays, lastActiveAt",
       );
     } catch (err) {
-      console.warn("[admin-retention] snapshot scan failed:", err);
+      logger.warn("admin_retention_snapshot_scan_failed", { err });
       warnings.push("Retention data unavailable (database scan failed).");
     }
 

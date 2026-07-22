@@ -13,6 +13,7 @@ import {
   routeSpecFor,
   type PushMessage,
 } from "@/app/app/api/book/_lib/push-payload-core";
+import { logger } from "@/lib/logging/logger";
 
 let configured = false;
 
@@ -48,7 +49,7 @@ export async function sendPushNotification(
   // browser push service over HTTPS so a crafted endpoint can't make us hit
   // internal hosts / cloud metadata.
   if (!isAllowedPushEndpoint(subscription.endpoint)) {
-    console.warn("[push-service] refusing send to non-allowlisted endpoint");
+    logger.warn("push_service_endpoint_not_allowlisted");
     return { sent: false, error: "endpoint_not_allowed" };
   }
   try {
@@ -67,7 +68,7 @@ export async function sendPushNotification(
     if (statusCode === 410 || statusCode === 404) {
       return { sent: false, expired: true };
     }
-    console.error("[push-service] send failed:", String(error));
+    logger.error("push_service_send_failed", { err: error });
     return { sent: false, error: String(error) };
   }
 }
@@ -208,7 +209,7 @@ export async function sendApnsNotification(
     // TODO(B2): APNs credentials not configured in this environment. Registration
     // still works end-to-end; wiring the APNS_* SSM params (docs/ENVIRONMENT.md)
     // switches real delivery on with no code change.
-    console.warn("[push-service] APNs not configured; skipping iOS push");
+    logger.warn("push_service_apns_not_configured");
     return { sent: false, error: "apns_not_configured" };
   }
   try {
@@ -220,7 +221,7 @@ export async function sendApnsNotification(
     const res = await apnsPost(cfg.host, `/3/device/${apnsToken}`, headers, JSON.stringify(payload));
     return classifyApnsResponse(res.status, res.body);
   } catch (error: unknown) {
-    console.error("[push-service] APNs send failed:", String(error));
+    logger.error("push_service_apns_send_failed", { err: error });
     return { sent: false, error: String(error) };
   }
 }

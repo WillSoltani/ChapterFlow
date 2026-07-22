@@ -5,6 +5,7 @@ import {
   reserveBookRequestRateLimitSlot,
   type BookRequestRecord,
 } from "./_lib/book-request-repo";
+import { logger } from "@/lib/logging/logger";
 
 /**
  * Public book-request intake endpoint.
@@ -171,7 +172,7 @@ async function reserveSlot(
       return false; // window cap reached
     }
     // Unexpected limiter failure: log and apply the configured fail direction.
-    console.warn("book_request_ratelimit_failed", { scope, err });
+    logger.warn("book_request_ratelimit_failed", { scope, err });
     return !failClosed;
   }
 }
@@ -209,7 +210,7 @@ async function verifyCaptcha(
     const data = (await res.json()) as { success?: boolean };
     return data?.success === true;
   } catch (err) {
-    console.warn("book_request_captcha_failed", err);
+    logger.warn("book_request_captcha_failed", { err });
     return true;
   }
 }
@@ -294,7 +295,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   try {
     await persist(record);
   } catch (err) {
-    console.error("book_request_persist_failed", err);
+    logger.error("book_request_persist_failed", { err });
     return jsonError(
       500,
       "server_error",
@@ -351,7 +352,7 @@ export async function GET(): Promise<NextResponse> {
       .filter(Boolean);
     return NextResponse.json({ ok: true, count: requests.length, requests });
   } catch (err) {
-    console.error("book_request_read_failed", err);
+    logger.error("book_request_read_failed", { err });
     return jsonError(500, "server_error", "Unable to read requests.");
   }
 }
@@ -435,6 +436,6 @@ async function notifyTeam(record: BookRequestRecord): Promise<void> {
       }),
     );
   } catch (err) {
-    console.warn("book_request_notify_failed", err);
+    logger.warn("book_request_notify_failed", { err });
   }
 }

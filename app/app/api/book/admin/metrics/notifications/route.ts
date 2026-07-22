@@ -13,6 +13,7 @@ import {
   windowCutoff,
   type NotificationMetricRow,
 } from "@/app/app/api/book/_lib/notifications-metrics-core";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -56,7 +57,7 @@ export async function GET(req: Request) {
         lastKey = res.LastEvaluatedKey;
       } while (lastKey && scanned < maxItems);
     } catch (err) {
-      console.warn("[admin-notifications] scan failed:", err);
+      logger.warn("admin_notifications_scan_failed", { err });
       warnings.push("Notification data unavailable (database scan failed).");
     }
 
@@ -100,7 +101,7 @@ export async function GET(req: Request) {
         settingsLastKey = res.LastEvaluatedKey;
       } while (settingsLastKey && totalSettings < maxItems);
     } catch (err) {
-      console.warn("[admin-notifications] settings scan failed:", err);
+      logger.warn("admin_notifications_settings_scan_failed", { err });
     }
 
     if (totalSettings >= maxItems) {

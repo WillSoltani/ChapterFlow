@@ -9,6 +9,7 @@ import {
   scanAllEntitlements,
   type EntitlementSnapshot,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -37,7 +38,7 @@ export async function GET(req: Request) {
               .slice(0, limit),
           ),
       scanAllEntitlements(tableName).catch((err) => {
-        console.warn("[admin-users-search] entitlement scan failed:", err);
+        logger.warn("admin_users_search_entitlement_scan_failed", { err });
         return [] as EntitlementSnapshot[];
       }),
     ]);

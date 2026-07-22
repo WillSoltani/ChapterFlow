@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { requireUser, AuthError } from "../_lib/auth";
 import { resolveBookIdentity } from "../book/_lib/identity";
+import { logger } from "@/lib/logging/logger";
 
 export async function GET() {
   try {
@@ -23,7 +24,7 @@ export async function GET() {
       }
       return NextResponse.json({ authenticated: false }, { status: 401 });
     }
-    console.error("GET /api/me unexpected error:", error);
+    logger.error("me_get_unexpected_error", { err: error });
     return NextResponse.json({ authenticated: false }, { status: 500 });
   }
 }

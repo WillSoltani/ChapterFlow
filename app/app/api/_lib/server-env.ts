@@ -4,6 +4,7 @@ import {
   candidateParameterNames,
   classifySsmCandidateError,
 } from "./server-env-core";
+import { logger } from "@/lib/logging/logger";
 
 const REGION =
   process.env.AWS_REGION ||
@@ -82,7 +83,7 @@ async function loadFromSsm(key: string): Promise<string | undefined> {
     // Without a prefix, SSM is an optional fallback — credential/network failures
     // should not crash the request. But signal the failure as transient so the
     // caller does NOT cache this name as permanently missing on a transient blip.
-    console.warn("book_ssm_fallback_skipped", {
+    logger.warn("book_ssm_fallback_skipped", {
       message: lastError instanceof Error ? lastError.message : String(lastError),
     });
     throw new SsmTransientError(lastError);

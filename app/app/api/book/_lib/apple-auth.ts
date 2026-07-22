@@ -11,6 +11,7 @@ import {
   type AppleAuthConfig,
   type AppleRevokeOutcome,
 } from "./apple-auth-core";
+import { logger } from "@/lib/logging/logger";
 
 /**
  * Resolve the four Apple key values from env/SSM (shared with B3's Apple IAP
@@ -109,5 +110,5 @@ export async function revokeAppleIdentityOnDelete(
 
 function defaultLog(event: string, fields: Record<string, unknown>): void {
   // Observable per the DoD: a clear, greppable marker in CloudWatch.
-  console.log(JSON.stringify({ marker: event, ...fields }));
+  logger.info(event, fields);
 }

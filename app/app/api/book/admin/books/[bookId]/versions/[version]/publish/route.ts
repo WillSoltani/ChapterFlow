@@ -4,6 +4,7 @@ import { withBookApiErrors, bookOk } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getBookVersion, publishBookVersion } from "@/app/app/api/book/_lib/repo";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { logger } from "@/lib/logging/logger";
 import { rebuildSearchIndex } from "./search-index-builder";
 
 export const runtime = "nodejs";
@@ -49,7 +50,7 @@ export async function POST(
       const indexResult = await rebuildSearchIndex();
       searchIndex = { ok: true, documentCount: indexResult.documentCount };
     } catch (err) {
-      console.error("[publish] Search index rebuild failed:", err);
+      logger.error("publish_search_index_rebuild_failed", { err });
       if (err instanceof BookApiError) {
         searchIndex = {
           ok: false,
