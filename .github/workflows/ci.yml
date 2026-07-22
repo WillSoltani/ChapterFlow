@@ -196,7 +196,8 @@ jobs:
   # at construction, so prod code talks to the local container with no source edit.
   #
   # NON-REQUIRED (continue-on-error) for now: keep it OUT of branch-protection
-  # required checks; promote to required after N consecutive green runs.
+  # required checks (canonical list: .github/rulesets/main-branch.json);
+  # promote to required after N consecutive green runs.
   integration-journey:
     name: Integration — Golden Journey (DynamoDB Local)
     runs-on: ubuntu-latest
@@ -369,7 +370,8 @@ jobs:
           retention-days: 7
 
   # ── Advisory: lint (known in-scope debt — reports, never blocks) ─────────
-  # NOTE: keep this OUT of the required status checks in branch protection.
+  # NOTE: keep this OUT of the required status checks in branch protection
+  # (canonical list: .github/rulesets/main-branch.json).
   # The web-app lint surface (app/, components/, lib/) carries pre-existing
   # debt; this job surfaces it without blocking merges/deploys. Pay it down
   # over time, then promote to a hard gate.
@@ -553,7 +555,9 @@ jobs:
   # is the enforcement path for: dead Tailwind v4 `-[--x]` syntax, undeclared
   # --cf-/--cr- tokens, raw hex/rgba in components & app/book, and literal
   # catalog counts. (c)+(d) are baselined (style-drift-allowlist.txt) so only
-  # NEW drift blocks. Add this job to branch-protection required checks.
+  # NEW drift blocks. Already required (see .github/rulesets/main-branch.json,
+  # the canonical required-status-checks list; apply via `gh api --method POST
+  # /repos/WillSoltani/ChapterFlow/rulesets --input .github/rulesets/main-branch.json`).
   style-drift-scan:
     name: Style & Token Drift Scan
     runs-on: ubuntu-latest

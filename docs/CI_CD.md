@@ -37,15 +37,14 @@ Default env is **`dev`**: a bare `cdk deploy` / `cdk synth` never touches prod.
 
 ## 3) Day-to-day
 
-- **PR:** open a PR → `ci.yml` runs. Nine jobs are required (branch protection
-  blocks merge on any red): `App Build + Tests`, `Lambda Handler Tests`,
-  `v21 Pipeline Typecheck + Tests`, `E2E Smoke (dev build)`,
-  `E2E Smoke (prod build)`, `Lint Ratchet (no new errors)`,
-  `Infra Build + CDK Synth`, `Secret & Artifact Scan`, and
-  `Style & Token Drift Scan`. Two jobs report but never block:
-  `Integration — Golden Journey (DynamoDB Local)` (`continue-on-error: true`,
-  not yet promoted) and `Lint (advisory)` (see §6). `npm run verify` mirrors
-  most, but not all, of the required set — the exact delta is in §6/§7.
+- **PR:** open a PR → `ci.yml` runs. The canonical required-status-checks list
+  lives in `.github/rulesets/main-branch.json` — do not restate it here or in
+  `ci.yml` comments; read that file (it's the versioned, machine-parseable
+  source of truth, enumerating the `ci.yml` job display names branch
+  protection must gate merge on). `Integration — Golden Journey (DynamoDB
+  Local)` (`continue-on-error: true`, not yet promoted) and `Lint (advisory)`
+  report but never block (see §6). `npm run verify` mirrors most, but not
+  all, of the required set — the exact delta is in §6/§7.
 - **Ship to dev:** merge to `main` → `deploy.yml` auto-deploys dev (infra sync +
   app; no re-seed).
 - **Ship to staging/prod:** `Actions → Deploy → Run workflow`, choose the
