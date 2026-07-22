@@ -1,4 +1,9 @@
 import { NextResponse } from "next/server";
+import {
+  type ErrorEnvelope,
+  jsonErrorResponse,
+  requestIdFromHeaders,
+} from "@/lib/api/error-envelope";
 import { AuthError } from "@/app/app/api/_lib/auth";
 import { isHeaderAuthenticatedRequest } from "@/app/app/api/_lib/auth-credential-core";
 import { logger } from "@/lib/logging/logger";
@@ -27,19 +32,6 @@ export {
   SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
 } from "./http-guards-core";
-
-type ErrorEnvelope = {
-  error: {
-    code: string;
-    message: string;
-    requestId: string;
-    details?: unknown;
-  };
-};
-
-function requestIdFromHeaders(req: Request): string {
-  return req.headers.get("x-amzn-trace-id") || crypto.randomUUID();
-}
 
 // ─── Same-origin / CSRF guard (#6) ───────────────────────────────────────────
 //
@@ -144,17 +136,10 @@ export function bookErr(
   details?: unknown,
   requestId?: string
 ): NextResponse<ErrorEnvelope> {
-  return NextResponse.json(
-    {
-      error: {
-        code,
-        message,
-        requestId: requestId ?? requestIdFromHeaders(req),
-        details,
-      },
-    },
-    { status }
-  );
+  return jsonErrorResponse(req, status, code, message, {
+    details,
+    requestId,
+  }) as NextResponse<ErrorEnvelope>;
 }
 
 /**

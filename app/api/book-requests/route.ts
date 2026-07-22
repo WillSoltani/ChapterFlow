@@ -6,6 +6,7 @@ import {
   type BookRequestRecord,
 } from "./_lib/book-request-repo";
 import { logger } from "@/lib/logging/logger";
+import { jsonErrorResponse } from "@/lib/api/error-envelope";
 
 /**
  * Public book-request intake endpoint.
@@ -44,8 +45,8 @@ function cleanString(value: unknown, max: number): string {
     : "";
 }
 
-function jsonError(status: number, error: string, message: string) {
-  return NextResponse.json({ ok: false, error, message }, { status });
+function jsonError(req: Request, status: number, code: string, message: string) {
+  return jsonErrorResponse(req, status, code, message);
 }
 
 // --- Abuse controls --------------------------------------------------------
@@ -220,7 +221,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   try {
     body = await req.json();
   } catch {
-    return jsonError(400, "invalid_json", "Request body must be valid JSON.");
+    return jsonError(req, 400, "invalid_json", "Request body must be valid JSON.");
   }
 
   const obj =
@@ -246,10 +247,10 @@ export async function POST(req: Request): Promise<NextResponse> {
   }
 
   if (title.length < 2) {
-    return jsonError(400, "invalid_title", "Please enter the book title.");
+    return jsonError(req, 400, "invalid_title", "Please enter the book title.");
   }
   if (!EMAIL_RE.test(email)) {
-    return jsonError(400, "invalid_email", "Please enter a valid email address.");
+    return jsonError(req, 400, "invalid_email", "Please enter a valid email address.");
   }
 
   const clientIp = readClientIp(req);
@@ -264,6 +265,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   );
   if (!withinIpLimit) {
     return jsonError(
+      req,
       429,
       "rate_limited",
       "You’ve sent several requests recently. Please try again in a little while.",
@@ -274,6 +276,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   // outbound siteverify calls.
   if (!(await verifyCaptcha(obj, clientIp))) {
     return jsonError(
+      req,
       403,
       "captcha_failed",
       "Please complete the verification challenge and try again.",
@@ -297,6 +300,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   } catch (err) {
     logger.error("book_request_persist_failed", { err });
     return jsonError(
+      req,
       500,
       "server_error",
       "We couldn’t save your request just now. Please try again.",
@@ -324,12 +328,9 @@ export async function POST(req: Request): Promise<NextResponse> {
  * in production — book requests contain reader emails and must never be served
  * publicly; in prod they live in DynamoDB behind the team's normal access.
  */
-export async function GET(): Promise<NextResponse> {
+export async function GET(req: Request): Promise<NextResponse> {
   if (process.env.NODE_ENV === "production") {
-    return NextResponse.json(
-      { ok: false, error: "not_found" },
-      { status: 404 },
-    );
+    return jsonError(req, 404, "not_found", "Not found.");
   }
   try {
     const [{ readFile }, os, path] = await Promise.all([
@@ -353,7 +354,7 @@ export async function GET(): Promise<NextResponse> {
     return NextResponse.json({ ok: true, count: requests.length, requests });
   } catch (err) {
     logger.error("book_request_read_failed", { err });
-    return jsonError(500, "server_error", "Unable to read requests.");
+    return jsonError(req, 500, "server_error", "Unable to read requests.");
   }
 }
 
