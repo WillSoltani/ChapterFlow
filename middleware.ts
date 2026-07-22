@@ -6,9 +6,31 @@ import {
 } from "@/lib/book-slug-aliases";
 import { evaluateOriginVerify } from "@/lib/origin-verify-core";
 import { resolveMiddlewareOrigin } from "@/lib/middleware-origin-core";
+import { buildContentSecurityPolicy } from "@/lib/csp";
 
 let missingConfigWarned = false;
 let originVerifyWarned = false;
+
+// WS8-001: forward a per-request nonce + enforcing CSP on the pass-through
+// response. Setting Content-Security-Policy on the FORWARDED REQUEST headers is
+// what makes Next read the nonce and stamp it on its own bootstrap <script>
+// tags (required under strict-dynamic, which ignores 'self'); setting it on the
+// RESPONSE is what the browser actually enforces. x-nonce is read back by the
+// server components (RootLayout / Home / BooksPage) to nonce their inline
+// <script> tags. Every terminal NextResponse.next() goes through here so the
+// header set is identical on every rendered path.
+function nextWithCsp(
+  req: NextRequest,
+  nonce: string,
+  csp: string,
+): NextResponse {
+  const requestHeaders = new Headers(req.headers);
+  requestHeaders.set("x-nonce", nonce);
+  requestHeaders.set("Content-Security-Policy", csp);
+  const res = NextResponse.next({ request: { headers: requestHeaders } });
+  res.headers.set("Content-Security-Policy", csp);
+  return res;
+}
 
 // PROD-DUP: redirect a retired book slug to its canonical slug (308). This lives
 // in middleware rather than next.config redirects() on purpose: Next compiles
@@ -99,6 +121,14 @@ export function middleware(req: NextRequest) {
     }
   }
 
+  // WS8-001: mint a per-request nonce (Edge-safe Web Crypto — no Buffer /
+  // node:crypto, so middleware stays on the Edge runtime) and build the
+  // enforcing document CSP. Every terminal NextResponse.next() below forwards
+  // both via nextWithCsp(); redirects (orphan 308, auth bounce) carry no inline
+  // scripts and are left byte-identical.
+  const nonce = btoa(crypto.randomUUID());
+  const csp = buildContentSecurityPolicy(nonce);
+
   const { pathname } = req.nextUrl;
 
   // API routes never get cookie-based auth middleware. Routes under /app/api
@@ -113,7 +143,7 @@ export function middleware(req: NextRequest) {
   // retries, then disables the endpoint, silently breaking all subscription
   // processing (checkout grants, cancellations, disputes, refunds).
   if (pathname.startsWith("/app/api/")) {
-    return NextResponse.next();
+    return nextWithCsp(req, nonce, csp);
   }
 
   // PROD-DUP: send retired book slugs to their canonical slug before the auth
@@ -128,12 +158,12 @@ export function middleware(req: NextRequest) {
     pathname.startsWith("/dashboard");
 
   if (!protectedSurface) {
-    return NextResponse.next();
+    return nextWithCsp(req, nonce, csp);
   }
 
   // Dev bypass — allow all in development when enabled or Cognito not configured
   if (isDevAuthBypassEnabled()) {
-    return NextResponse.next();
+    return nextWithCsp(req, nonce, csp);
   }
 
   if (
@@ -146,7 +176,7 @@ export function middleware(req: NextRequest) {
         "middleware_auth_skip: COGNITO env vars not set in dev; skipping auth check",
       );
     }
-    return NextResponse.next();
+    return nextWithCsp(req, nonce, csp);
   }
 
   // Lightweight cookie-presence + expiry check. Full JWT verification
@@ -188,7 +218,7 @@ export function middleware(req: NextRequest) {
     return res;
   }
 
-  return NextResponse.next();
+  return nextWithCsp(req, nonce, csp);
 }
 
 export const config = {
