@@ -20,20 +20,23 @@ resolves each key in this order:
 1. **`process.env[KEY]`** — set directly on the Lambda. Two sub-channels:
    - **CDK auto-injects** the data-plane names + app mode (always present, no
      secret needed) — see §3.A.
-   - **The deploy workflow injects secrets** it forwards from GitHub
+   - **The deploy workflow injects selected configuration** from GitHub
      environment secrets into `infra/bin/app.ts` → the frontend stack's
-     `serverEnv` → the Lambda — see §3.B. **This list is the source of truth**
-     for "secrets the app gets": [`infra/bin/app.ts`](../infra/bin/app.ts) lines
-     81–141.
+     `serverEnv` → the Lambda — see §3.B. The five runtime secret-class names
+     in §3.D are explicitly filtered from this path.
 2. **SSM Parameter Store**, tried as `${SSM_PARAMETER_PREFIX}/<KEY>` (e.g.
    `/chapterflow/prod/VAPID_PRIVATE_KEY`) first, then bare-name fallbacks
    (denied by IAM scope, harmlessly skipped). The Lambda role is scoped to
-   `${ssmPrefix}/*` only ([frontend stack](../infra/lib/chapterflow-frontend-stack.ts)).
+   `${ssmPrefix}/*` only ([frontend stack](../infra/lib/chapterflow-frontend-stack.ts))
+   and requests SecureString decryption. Production boot resolves and validates
+   its required SSM secrets before accepting traffic; optional ElevenLabs
+   configuration remains lazy.
 
 **Consequence that bites:** anything **not** injected as Lambda env in §3.A/§3.B
 *only* works if it exists as an SSM parameter under `/chapterflow/<env>/`. That
-is the case for **`VAPID_*`, `SES_SENDER_EMAIL`**, and the optional tuning vars
-(§3.D). A handful of vars are read via **raw `process.env` with no SSM
+is the case for the five runtime secret-class names, **`VAPID_*`,
+`SES_SENDER_EMAIL`**, and the optional tuning vars (§3.D). A handful of vars are
+read via **raw `process.env` with no SSM
 fallback** (`ADMIN_EMAILS`, `ADMIN_SUBS`, `APP_BASE_URL`, the `NEXT_PUBLIC_*`
 build-time vars) — those only take effect if they are literally on the Lambda
 env (or inlined at build), so since the pipeline doesn't inject them they are
@@ -53,6 +56,7 @@ locally you still need the data vars + AWS credentials (§4).
 | **O** | Optional (has a safe default or only enables an extra feature) |
 | **auto** | CDK injects automatically; you do not set it |
 | **secret** | Supply as a GitHub **environment** secret (per env) |
+| **var** | Supply as a non-secret GitHub **environment** variable (per env) |
 | **ssm** | Supply as an SSM param `/chapterflow/<env>/<KEY>` (not injected by the workflow) |
 | **local** | Only consulted in local/dev or at build time; not wired into deployed Lambdas |
 
@@ -76,11 +80,14 @@ You never set these; the frontend stack derives them from the backend stack.
 | `NODE_ENV` | R | auto | `production` in deployed envs. Gates dev bypass + base-URL fallbacks. |
 | `CACHE_BUCKET_NAME`, `CACHE_BUCKET_KEY_PREFIX`, `CACHE_DYNAMO_TABLE`, `REVALIDATION_QUEUE_URL`, `REVALIDATION_QUEUE_REGION` | R | auto | OpenNext ISR/revalidation internals (not app config). |
 
-### B. Secrets injected by the deploy workflow (`serverEnv` in `app.ts`)
+### B. Configuration injected by the deploy workflow (`serverEnv` in `app.ts`)
 
-Set each as a **per-environment GitHub secret**. The frontend deploy job
-(`_deploy-app.yml`) passes them on the `cdk deploy` step; `app.ts` forwards only
-the ones that are present.
+Set each through the per-environment GitHub channel named in the Source column.
+The frontend deploy job (`_deploy-app.yml`) passes them on the `cdk deploy`
+step; `app.ts` forwards only the ones that are present.
+
+The five runtime secrets listed first in §3.D are intentionally excluded even
+if a caller supplies them.
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
@@ -92,28 +99,25 @@ the ones that are present.
 | `COGNITO_REGION` | R | secret | Region for the Cognito issuer/JWKS. |
 | `COGNITO_REDIRECT_URI` | R | secret | OAuth callback URL (`…/auth/callback`). Must be allow-listed in Cognito. |
 | `COGNITO_LOGOUT_REDIRECT_URI` | R | secret | Post-logout redirect. Must be allow-listed in Cognito. |
-| `AUTH_STATE_SECRET` | R | secret | HKDF key for AES-256-GCM OAuth-state encryption. **Must be ≥ 32 chars** or login state crypto throws. |
 | `AUTH_COOKIE_DOMAIN` | R | secret | Cookie `Domain` for the session cookies (e.g. `.chapterflow.ca`). The cookie helper also honors the alias `CHAPTERFLOW_COOKIE_DOMAIN`, but that alias is **not** injected by the workflow — it would have to come from SSM (§3.D), so prefer `AUTH_COOKIE_DOMAIN`. |
-| `BOOK_STRIPE_SECRET_KEY` | R (billing) | secret | Stripe API key. Without it, billing routes are inert. |
-| `BOOK_STRIPE_WEBHOOK_SECRET` | R (billing) | secret | Verifies the unauthenticated `billing/webhook` signature — the only writer of Stripe-sourced entitlements. |
 | `BOOK_STRIPE_PRICE_ID` | R (billing) | secret | Monthly Pro price id used by checkout. |
 | `BOOK_STRIPE_PRICE_ID_ANNUAL` | O | secret | Annual price id (if offered). |
 | `BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT` | O | secret | Annual-upfront price id (if offered). |
 | `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` | O | secret | Client publishable key. **Caveat:** as a `NEXT_PUBLIC_*` var it is inlined at **build**; it is currently passed on the `cdk deploy` step (after `open-next build`), so confirm it is present during the build if you rely on client-side inlining. |
-| `ANTHROPIC_API_KEY` | R (AI) | secret | Powers all three Claude features — "Ask the Book", reflection feedback, and community-scenario validation. **All degrade gracefully when unset:** Ask/feedback return `503 ai_unavailable`; scenario submissions skip validation and land in the human moderation queue (`queue_for_review`) rather than being auto-approved. See §6 for the model/tuning knobs. |
-| `ELEVENLABS_API_KEY` | O | secret | Chapter audio / TTS narration. Audio routes 4xx without it. |
 | `APPLE_ISSUER_ID` | R (SIWA) | secret | Apple Developer **Team ID** — the `iss` of the Apple client-secret JWT. Shared by B3 (Apple IAP) and B8 (revoke-on-delete). |
 | `APPLE_BUNDLE_ID` | R (SIWA) | secret | Services ID / bundle id used as the Apple OAuth **client** (`sub`/`client_id`). |
 | `APPLE_KEY_ID` | R (SIWA) | secret | Key id of the `.p8` private key (JWT header `kid`). |
 | `APPLE_PRIVATE_KEY` | R (SIWA) | secret | PKCS#8 PEM of the `.p8` AuthKey. Literal `\n` is tolerated. Used to sign the revoke client-secret JWT. **When any `APPLE_*` is unset, delete silently skips the Apple revoke (`apple_revoke_skip reason=not_configured`).** See [ios/APPLE-AUTH.md](./ios/APPLE-AUTH.md). |
+| `CSRF_ORIGIN_ENFORCE` | O | var | Injected into the server Lambda through `serverEnv`; unset defaults to `1` (enforcing). Dev/staging may temporarily set `0`/`false`/`off`/`no` for observe-only validation, which logs `csrf_origin_observe_only` and lets the request proceed. **Production always enforces and ignores every off spelling; there is no production break-glass bypass.** The Stripe webhook and one-click unsubscribe route remain exempt regardless of the flag. |
 
 ### C. Infra / CI secrets — used at deploy time only (not app runtime)
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
-| `AWS_DEPLOY_ROLE_ARN` | R | secret | OIDC role the workflows assume. |
-| `AWS_ACCOUNT_ID` | R | secret | `CDK_DEFAULT_ACCOUNT` for synth. |
+| `AWS_DEPLOY_ROLE_ARN` | R | secret | OIDC role the workflows assume. Set it in every deployable GitHub Environment; one shared role may be reused only with the finite `dev`/`staging`/`prod` environment-subject trust documented in [CI_CD.md](./CI_CD.md). |
+| `AWS_ACCOUNT_ID` | R | secret (CI carrier) | Low-sensitivity account identifier passed as `CDK_DEFAULT_ACCOUNT` for synth. The current workflows read the GitHub environment-secret channel for compatibility; it is not an authentication secret. |
 | `CHAPTERFLOW_DOMAIN_NAME` | O (R for prod custom domain) | secret | Apex/custom domain → ACM cert + Route53. **Must be a per-env secret** — a repo-level value would let dev/staging overwrite prod DNS (env-config has a hard guard that throws if a non-prod env resolves to the prod apex). |
+| `CHAPTERFLOW_HOSTED_ZONE_ID` | O (R with custom domain) | var | Exact Route53 hosted-zone id paired with `CHAPTERFLOW_DOMAIN_NAME`. The stack uses this explicit environment-bound value instead of an account-bound `cdk.context.json` lookup cache and fails closed when only one half is set. |
 | `CHAPTERFLOW_OPS_ALERT_EMAIL` | R (ops) | secret | Email subscribed to the `ChapterFlowOpsAlerts` SNS topic (backend: table-throttle + `OpsFailure`; frontend: server-fn errors/throttles/duration, ISR DLQ, CloudFront 5xx, `StripeWebhookFailure` — see [OPERATIONS.md §4](./OPERATIONS.md)). **Confirm the SNS subscription after first deploy or alerts never fire.** |
 | `WEB_ALLOWED_ORIGINS` | O | secret | Allowed origins consumed by the backend stack. |
 | `AWS_REGION` / `AWS_DEFAULT_REGION` | O | auto/runtime | Region, defaults to `us-east-1`. |
@@ -126,6 +130,11 @@ These are consumed by the app via `getServerEnv` but are **not** in
 
 | Variable | Req | Source | Purpose |
 |---|---|---|---|
+| `AUTH_STATE_SECRET` | R | ssm (SecureString) | HKDF key for AES-256-GCM OAuth-state encryption. Production boot fails closed unless it resolves and is at least 32 characters. |
+| `BOOK_STRIPE_SECRET_KEY` | R (billing) | ssm (SecureString) | Stripe API key. Production boot and billing readiness fail closed when it is absent or unreadable. |
+| `BOOK_STRIPE_WEBHOOK_SECRET` | R (billing) | ssm (SecureString) | Authenticates Stripe webhooks. Production boot and billing readiness fail closed when it is absent or unreadable. |
+| `ANTHROPIC_API_KEY` | R (prod AI) | ssm (SecureString) | Powers the three Claude paths. It is part of the existing production boot manifest; denied or undecryptable reads stop boot. |
+| `ELEVENLABS_API_KEY` | O | ssm (SecureString) | Chapter audio / TTS narration. It remains lazy and optional; audio routes fail locally when it is absent. |
 | `VAPID_PUBLIC_KEY` | R (web push) | ssm | Web-push public VAPID key. Push routes throw "VAPID keys not configured" without it. |
 | `VAPID_PRIVATE_KEY` | R (web push) | ssm (SecureString) | Web-push private VAPID key. |
 | `APNS_KEY_ID` | R (iOS push) | ssm | Apple Push (APNs) token-auth `.p8` **Key ID** (10 chars) → provider-JWT `kid`. |
@@ -145,6 +154,22 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `BOOK_AI_TIMEOUT_MS` | O | ssm | Anthropic client request timeout in ms (default `30000`). |
 | `BOOK_AI_MAX_RETRIES` | O | ssm | Anthropic client retry count on 429/5xx/connection errors (default `2`; `0` disables). Does **not** resume a stream that drops mid-response. |
 
+#### Runtime secret migration and rollback
+
+1. Before deploying this runtime boundary, provision all five names as
+   `SecureString` parameters under `/chapterflow/<env>/`. Keep the existing
+   GitHub environment secrets during the rollback window even though the new
+   workflow no longer exports them to CDK.
+2. Validate parameter names, types, prefix, key metadata, and IAM policy only;
+   never print or request secret values as evidence.
+3. Deploy to non-prod, confirm the five key names are absent from the server
+   Lambda environment, then exercise boot plus OAuth, billing, AI, and audio
+   resolution. Also prove a missing/denied required parameter fails boot closed.
+4. Promote through the normal prod approval gate only after non-prod passes.
+   If validation fails, re-run the previous known-good commit while retaining
+   both the SSM parameters and legacy GitHub secrets. Do not delete either copy
+   until the stability/rollback window is complete.
+
 ### E. Local / build-time only — raw `process.env`, no SSM fallback
 
 | Variable | Req | Source | Purpose |
@@ -152,7 +177,6 @@ These are consumed by the app via `getServerEnv` but are **not** in
 | `DEV_AUTH_BYPASS` | local | local | `=1` (non-prod only) short-circuits all auth with a synthetic user. Set by `npm run dev`. |
 | `APP_BASE_URL` | O (recommended) | local | Explicit override for the origin used by `getServerOrigin()` (share cards, OAuth return-to, `app/_lib/site-url.ts`, `app/auth/_lib/return-to.ts`). **Read via raw `process.env` — not in `serverEnv`, no SSM fallback — so the current pipeline cannot inject it into a deployed Lambda** (same trap as `ADMIN_EMAILS`). When unset, the origin is **derived from the request `x-forwarded-host`** (correct behind CloudFront); `resolvePublicOrigin()` only throws `Unable to resolve public origin. Set APP_BASE_URL for production.` in a context with no host header. Loopback values are ignored in prod. Distinct from `CHAPTERFLOW_APP_BASE_URL` (the book-API helper, which **is** injected and hard-required in prod). To pin it in prod, add it to `serverEnv` in `infra/bin/app.ts`. |
 | `ALLOW_APP_BASE_URL_IN_DEV` | local | local | `=1` lets a non-prod build honor a loopback `APP_BASE_URL`. |
-| `CSRF_ORIGIN_ENFORCE` | O | local | Same-origin / CSRF guard on cookie-authed unsafe-method routes (`requireSameOrigin` in `app/app/api/book/_lib/http.ts`, auto-wired into `withBookApiErrors`). **Defaults ON** — unset enforces, so prod is protected with no injection needed. Set to `0`/`false`/`off`/`no` for **observe-only** mode (logs `csrf_origin_observe_only` with the offending origin + path, but lets the request through) — use as a brief confirmation window after first deploy to verify no legitimate host/alias trips a `403 forbidden_origin`, then unset to re-enforce. **Read via raw `process.env`, so to flip a deployed Lambda to observe-only it must be added to `serverEnv` in `infra/bin/app.ts`** (same injection caveat as `APP_BASE_URL`); the Stripe webhook and the one-click unsubscribe route are exempt regardless of the flag. |
 | `NEXT_PUBLIC_ANALYTICS_ID` | O | local/build | Enables the lightweight client analytics shim (`lib/analytics.ts`); the shim no-ops when unset. |
 | `NEXT_DIST_DIR` | local | local | Build output dir (`.next-chapterflow` in dev). |
 | `NEXT_PUBLIC_SITE_URL`, `NEXT_PUBLIC_CHAPTERFLOW_SITE_URL`, `NEXT_PUBLIC_CHAPTERFLOW_APP_URL`, `NEXT_PUBLIC_CHAPTERFLOW_AUTH_URL` | O | local/build | Public origins inlined at **build** time. In standalone single-host mode they collapse to one origin; set them at build if you need client-side absolute URLs. |

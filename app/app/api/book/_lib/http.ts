@@ -7,8 +7,8 @@ import { BookApiError, isBookApiError } from "./errors";
 import { getAppBaseUrl } from "./env";
 import {
   evaluateSameOrigin,
-  isCsrfEnforcementOn,
   originOf,
+  shouldEnforceCsrfOrigin,
   UNSAFE_METHODS,
 } from "./http-guards-core";
 
@@ -22,6 +22,7 @@ export {
   isWithinDailyLimit,
   evaluateSameOrigin,
   isCsrfEnforcementOn,
+  shouldEnforceCsrfOrigin,
   SETTINGS_VALUE_MAX_CHARS,
   SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
@@ -58,21 +59,21 @@ function requestIdFromHeaders(req: Request): string {
 // (see `isHeaderAuthenticatedRequest`); cookie-authed mutations keep the guard
 // exactly as before.
 //
-// ENFORCEMENT FLAG: set env `CSRF_ORIGIN_ENFORCE=0` (or "false"/"off"/"no") to
-// run in OBSERVE-ONLY mode — a would-be rejection is logged (structured
+// ENFORCEMENT FLAG: non-production deployments (`CHAPTERFLOW_ENV=dev|staging`)
+// may set `CSRF_ORIGIN_ENFORCE=0` (or "false"/"off"/"no") to run in
+// OBSERVE-ONLY mode — a would-be rejection is logged (structured
 // `csrf_origin_observe_only`, with the offending origin + path) but the request
-// proceeds. Any other value
-// (or unset) = ENFORCING (the safe default). Use observe-only as a brief
-// confirmation window after first deploy to confirm no legitimate host/alias
-// trips a 403, then remove the env to re-enforce. See docs/ENVIRONMENT.md.
+// proceeds. Production always enforces regardless of that flag; there is no
+// production break-glass bypass. Any other value (or unset) = ENFORCING (the
+// safe default). See docs/ENVIRONMENT.md.
 
 /**
  * Server-side same-origin/CSRF guard. Resolves the canonical app origin
  * (`getAppBaseUrl`) and runs the pure {@link evaluateSameOrigin} decision over
  * the request's method + `Origin`/`Sec-Fetch-Site` headers. Throws
  * `BookApiError(403, "forbidden_origin")` on rejection. In observe-only mode
- * (`CSRF_ORIGIN_ENFORCE` off) it logs and returns instead of throwing. No-op on
- * safe methods.
+ * (`CSRF_ORIGIN_ENFORCE` off in dev/staging) it logs and returns instead of
+ * throwing. Production always enforces. No-op on safe methods.
  */
 export async function requireSameOrigin(req: Request): Promise<void> {
   const method = req.method.toUpperCase();
@@ -112,7 +113,12 @@ export async function requireSameOrigin(req: Request): Promise<void> {
     }
   })();
 
-  if (!isCsrfEnforcementOn()) {
+  const enforce = shouldEnforceCsrfOrigin({
+    nodeEnvironment: process.env.NODE_ENV,
+    deploymentEnvironment: process.env.CHAPTERFLOW_ENV,
+    enforcementFlag: process.env.CSRF_ORIGIN_ENFORCE,
+  });
+  if (!enforce) {
     logger.warn("csrf_origin_observe_only", { method, path, reason: decision.reason });
     return;
   }

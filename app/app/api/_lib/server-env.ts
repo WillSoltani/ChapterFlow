@@ -1,8 +1,7 @@
 import "server-only";
 import { GetParameterCommand, SSMClient } from "@aws-sdk/client-ssm";
 import {
-  candidateParameterNames,
-  classifySsmCandidateError,
+  loadSsmParameterValue,
 } from "./server-env-core";
 import { logger } from "@/lib/logging/logger";
 
@@ -51,44 +50,34 @@ async function getSsmClient() {
 // denial that must surface instead of being cached as a permanent miss.
 
 async function loadFromSsm(key: string): Promise<string | undefined> {
-  const candidates = candidateParameterNames(key, SSM_PREFIX);
-  if (candidates.length === 0) return undefined;
   const ssm = await getSsmClient();
-
-  let lastError: unknown;
-  for (const candidate of candidates) {
-    try {
-      const res = await ssm.send(
-        new GetParameterCommand({
-          Name: candidate.name,
-          WithDecryption: true,
-        })
-      );
-      const value = res.Parameter?.Value;
-      if (value != null && value !== "") {
-        return value;
-      }
-    } catch (error: unknown) {
-      if (classifySsmCandidateError(error, candidate.prefixScoped) === "skip") {
-        continue;
-      }
-      lastError = error;
-    }
-  }
-
-  if (lastError) {
+  try {
+    return await loadSsmParameterValue(
+      key,
+      SSM_PREFIX,
+      process.env,
+      async ({ name, withDecryption }) => {
+        const response = await ssm.send(
+          new GetParameterCommand({
+            Name: name,
+            WithDecryption: withDecryption,
+          }),
+        );
+        return response.Parameter?.Value;
+      },
+    );
+  } catch (error: unknown) {
     // When SSM is explicitly configured via SSM_PREFIX, propagate the error so the
     // request fails loudly (and a later call retries fresh — nothing is cached).
-    if (SSM_PREFIX) throw lastError;
+    if (SSM_PREFIX) throw error;
     // Without a prefix, SSM is an optional fallback — credential/network failures
     // should not crash the request. But signal the failure as transient so the
     // caller does NOT cache this name as permanently missing on a transient blip.
     logger.warn("book_ssm_fallback_skipped", {
-      message: lastError instanceof Error ? lastError.message : String(lastError),
+      message: error instanceof Error ? error.message : String(error),
     });
-    throw new SsmTransientError(lastError);
+    throw new SsmTransientError(error);
   }
-  return undefined;
 }
 
 export async function getServerEnv(name: string): Promise<string | undefined> {

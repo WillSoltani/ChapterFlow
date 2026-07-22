@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Newsreader } from "next/font/google";
 import localFont from "next/font/local";
@@ -93,11 +94,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Per-request nonce minted by middleware.ts (WS8-001) and forwarded on the
+  // request headers. The theme bootstrap below is EXECUTABLE inline JS, so under
+  // the enforcing strict-dynamic CSP it MUST carry this nonce or it is blocked
+  // (white-screening the app). Reading headers() opts the whole tree into
+  // dynamic rendering — intended.
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     <html
       lang="en"
@@ -106,6 +113,7 @@ export default function RootLayout({
     >
       <head>
         <script
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: buildDocumentThemeBootstrapScript(),
           }}

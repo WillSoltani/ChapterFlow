@@ -1,6 +1,7 @@
 import { test, before } from "node:test";
 import assert from "node:assert/strict";
 import { createRequire } from "node:module";
+import { setLogSink, type LogLevel } from "@/lib/logging/logger";
 
 // Importing http.ts transitively pulls `server-only` (via auth.ts / env.ts),
 // which throws on import outside a bundler. Neutralize it the same way the
@@ -20,6 +21,34 @@ Module._load = function patchedLoad(request: string, parent: unknown, isMain: bo
 type WithBookApiErrors = typeof import("./http").withBookApiErrors;
 let withBookApiErrors: WithBookApiErrors;
 let AuthError: typeof import("@/app/app/api/_lib/auth").AuthError;
+
+const RUNTIME_ENV_KEYS = [
+  "NODE_ENV",
+  "CHAPTERFLOW_ENV",
+  "CSRF_ORIGIN_ENFORCE",
+] as const;
+
+async function withRuntimeEnv(
+  values: Partial<Record<(typeof RUNTIME_ENV_KEYS)[number], string>>,
+  run: () => Promise<void>
+): Promise<void> {
+  const env = process.env as Record<string, string | undefined>;
+  const saved = Object.fromEntries(RUNTIME_ENV_KEYS.map((key) => [key, env[key]]));
+  try {
+    for (const key of RUNTIME_ENV_KEYS) {
+      const value = values[key];
+      if (value === undefined) delete env[key];
+      else env[key] = value;
+    }
+    await run();
+  } finally {
+    for (const key of RUNTIME_ENV_KEYS) {
+      const value = saved[key];
+      if (value === undefined) delete env[key];
+      else env[key] = value;
+    }
+  }
+}
 
 before(async () => {
   ({ withBookApiErrors } = await import("./http"));
@@ -80,6 +109,29 @@ test("withBookApiErrors auto-rejects a cross-site mutation with 403 forbidden_or
   assert.equal(json.error?.code, "forbidden_origin");
 });
 
+test("a whitespace-only Sec-Fetch-Site cannot skip the Origin fallback and fail open", async () => {
+  const req = new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+    method: "POST",
+    headers: {
+      "sec-fetch-site": "\u00a0",
+      origin: "https://evil.example",
+      cookie: `id_token=${FAKE_JWT}`,
+    },
+  });
+  assert.equal(req.headers.get("sec-fetch-site"), "\u00a0");
+
+  let bodyRan = false;
+  const res = await withBookApiErrors(req, async () => {
+    bodyRan = true;
+    const { bookOk } = await import("./http");
+    return bookOk({ ok: true });
+  });
+  assert.equal(res.status, 403);
+  assert.equal(bodyRan, false);
+  const json = (await res.json()) as { error?: { code?: string } };
+  assert.equal(json.error?.code, "forbidden_origin");
+});
+
 test("opts.skipOriginCheck lets a cross-site request through (webhook/unsubscribe opt-out)", async () => {
   let bodyRan = false;
   const res = await withBookApiErrors(
@@ -122,22 +174,76 @@ test("a safe-method (GET) request is never origin-checked", async () => {
   assert.equal(res.status, 200);
 });
 
-test("observe-only mode (CSRF_ORIGIN_ENFORCE=0) logs but lets a cross-site request through", async () => {
-  const saved = process.env.CSRF_ORIGIN_ENFORCE;
-  process.env.CSRF_ORIGIN_ENFORCE = "0";
+test("production ignores CSRF_ORIGIN_ENFORCE=0, rejects with 403, and does not run the body", async () => {
+  await withRuntimeEnv(
+    { NODE_ENV: "production", CHAPTERFLOW_ENV: "prod", CSRF_ORIGIN_ENFORCE: "0" },
+    async () => {
+      let bodyRan = false;
+      const res = await withBookApiErrors(cookieCrossSitePost(), async () => {
+        bodyRan = true;
+        const { bookOk } = await import("./http");
+        return bookOk({ ok: true });
+      });
+      assert.equal(res.status, 403, "production cross-site POST must stay blocked");
+      assert.equal(bodyRan, false, "production rejection must happen before the route body");
+      const json = (await res.json()) as { error?: { code?: string } };
+      assert.equal(json.error?.code, "forbidden_origin");
+    }
+  );
+});
+
+test("staging observe-only logs structurally and lets a cross-site request through", async () => {
+  const logs: Array<{ level: LogLevel; line: string }> = [];
+  setLogSink((level, line) => logs.push({ level, line }));
   try {
-    let bodyRan = false;
-    const res = await withBookApiErrors(crossSitePost(), async () => {
-      bodyRan = true;
-      const { bookOk } = await import("./http");
-      return bookOk({ ok: true });
-    });
-    assert.equal(bodyRan, true, "observe-only must not block");
-    assert.equal(res.status, 200);
+    await withRuntimeEnv(
+      { NODE_ENV: "production", CHAPTERFLOW_ENV: "staging", CSRF_ORIGIN_ENFORCE: "0" },
+      async () => {
+        let bodyRan = false;
+        const res = await withBookApiErrors(crossSitePost(), async () => {
+          bodyRan = true;
+          const { bookOk } = await import("./http");
+          return bookOk({ ok: true });
+        });
+        assert.equal(bodyRan, true, "staging observe-only must not block");
+        assert.equal(res.status, 200);
+      }
+    );
+    assert.equal(logs.length, 1);
+    assert.equal(logs[0]?.level, "warn");
+    const record = JSON.parse(logs[0]?.line ?? "{}") as Record<string, unknown>;
+    assert.equal(record.event, "csrf_origin_observe_only");
+    assert.equal(record.method, "POST");
+    assert.equal(record.path, "/app/api/book/me/settings");
+    assert.equal(record.reason, "sec-fetch-site=cross-site");
+    assert.equal(typeof record.requestId, "string");
   } finally {
-    if (saved === undefined) delete process.env.CSRF_ORIGIN_ENFORCE;
-    else process.env.CSRF_ORIGIN_ENFORCE = saved;
+    setLogSink();
   }
+});
+
+test("production-off mode keeps safe methods and Bearer-only native mutations unchanged", async () => {
+  await withRuntimeEnv(
+    { NODE_ENV: "production", CHAPTERFLOW_ENV: "prod", CSRF_ORIGIN_ENFORCE: "off" },
+    async () => {
+      for (const req of [
+        new Request("https://app.chapterflow.ca/app/api/book/me/settings", {
+          method: "GET",
+          headers: { "sec-fetch-site": "cross-site" },
+        }),
+        bearerMutation("PATCH"),
+      ]) {
+        let bodyRan = false;
+        const res = await withBookApiErrors(req, async () => {
+          bodyRan = true;
+          const { bookOk } = await import("./http");
+          return bookOk({ ok: true });
+        });
+        assert.equal(bodyRan, true, `${req.method} request must reach the route body`);
+        assert.equal(res.status, 200);
+      }
+    }
+  );
 });
 
 // ─── Bearer (native-app) auth: CSRF guard skipped for header-authed requests ──
