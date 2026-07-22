@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import { readdirSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { test } from "./harness.js";
 import {
@@ -8,6 +11,10 @@ import {
 } from "../src/app/finalQualification.js";
 
 const COMMIT = "bbee558ad980632738431a722d79f977ae284738";
+
+// Derived from disk, not hand-typed, so this stays true as tests/v25/*.test.ts grows.
+const v25FileCount = readdirSync(resolve(dirname(fileURLToPath(import.meta.url)), "v25"))
+  .filter((f) => f.endsWith(".test.ts")).length;
 
 function readyInput(): FinalQualificationInput {
   return {
@@ -28,7 +35,7 @@ function readyInput(): FinalQualificationInput {
     })),
     runners: [
       { runnerId: "ORDINARY_TEST_NO_API", command: "CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_ALLOW_MODEL_GEN=0 CHAPTERFLOW_LEAK_GUARD=1 npm run test:no-api", executed: true, unfiltered: true, exitCode: 0, fileCount: 300, caseCount: 2_000, commit: COMMIT },
-      { runnerId: "V25_LIFECYCLE", command: "CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_ALLOW_MODEL_GEN=0 CHAPTERFLOW_LEAK_GUARD=1 npx tsx tests/v25/run.ts", executed: true, unfiltered: true, exitCode: 0, fileCount: 33, caseCount: 150, commit: COMMIT },
+      { runnerId: "V25_LIFECYCLE", command: "CHAPTERFLOW_NO_API_CODEX_QC=1 CHAPTERFLOW_ALLOW_MODEL_GEN=0 CHAPTERFLOW_LEAK_GUARD=1 npx tsx tests/v25/run.ts", executed: true, unfiltered: true, exitCode: 0, fileCount: v25FileCount, caseCount: 150, commit: COMMIT },
     ],
     liveRouteCount: 0,
     productionRootDiffCount: 0,
@@ -152,6 +159,42 @@ test("failed lifecycle observation requires nonempty diagnostic rollback and man
     blocker.owner === "LC-06"
     && /safeDiagnostic, rollbackBoundary, manualOwner/.test(blocker.message)
   ));
+});
+
+test("v25 runner file count is derived from disk, not a stale hand-typed constant", () => {
+  // finalQualification() itself only checks fileCount is a positive integer (src/app/finalQualification.ts:142) —
+  // it does not compare against a known-good v25 discovery count, so a wrong-but-positive fileCount:
+  // 33 - 1 = 32 would NOT be rejected by finalQualification(). The real fail-closed enforcement point is
+  // tests/v25/run.ts's own summary line (`V25 RUNNER summary files=<selected.length> failed=<failed>`),
+  // which tests/run.ts's v25 delegation (Task 3) surfaces as `v25-subprocess-suite: exit=<code>` and folds
+  // into npm test's overall exit code. What this fixture guards is that the QUALIFICATION_RUNNERS fileCount
+  // asserted here always matches the real on-disk tests/v25/*.test.ts count (currently discovered as
+  // v25FileCount above) instead of a hand-typed number that silently drifts out of date.
+  const base = readyInput();
+  const staleFileCount = v25FileCount - 1;
+  assert.notEqual(staleFileCount, v25FileCount, "sanity: this test only means something once v25 has >=1 file");
+
+  // finalQualification() does not fail-closed on a stale-but-positive fileCount by itself...
+  const resultWithStaleCount = finalQualification({
+    ...base,
+    runners: [base.runners[0], { ...base.runners[1], fileCount: staleFileCount }],
+  });
+  assert.equal(
+    resultWithStaleCount.outcome,
+    "READY_FOR_MANUAL_RELEASE_REVIEW",
+    "documents finalQualification()'s actual contract: it only requires a positive integer fileCount, " +
+    "so it cannot itself catch a stale hand-typed count — hence this fixture must derive fileCount from disk",
+  );
+
+  // ...so the real fail-closed guarantee is that this fixture's asserted flags (executed/unfiltered/exitCode)
+  // match exactly what Task 3's real `npx tsx tests/v25/run.ts` delegation produces on a green run: exit 0,
+  // unfiltered discovery, and every discovered file executed. Any test file added or removed from tests/v25/
+  // changes v25FileCount here automatically (no manual edit needed), and a genuinely broken/filtered runner
+  // run would surface as executed=false, unfiltered=false, or exitCode!==0 — all of which ARE fail-closed
+  // per the assertions on lines 138-141 of finalQualification.ts, exercised in the "both complete unfiltered
+  // runner observations must pass" case above.
+  const resultWithHealthyCount = finalQualification(base);
+  assert.equal(resultWithHealthyCount.outcome, "READY_FOR_MANUAL_RELEASE_REVIEW");
 });
 
 test("live route production-root diff or legacy bypass blocks readiness", () => {
