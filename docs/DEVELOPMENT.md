@@ -83,7 +83,8 @@ Update docs when changes affect:
 Run the checks that match your change set:
 
 ```bash
-npm run verify                                    # typecheck + tests + style-drift scan (scan:style) + build (the CI gate)
+npm run verify                                    # typecheck + tests + secret scan + style-drift scan + lint ratchet + build
+                                                   # (mirrors most, not all, of the CI required set — see docs/CI_CD.md §6)
 npm run lint                                       # advisory — known in-scope debt
 npm --prefix infra run build
 npm --prefix infra run cdk -- synth -c env=dev ChapterFlowBackend-dev

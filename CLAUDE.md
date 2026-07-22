@@ -23,7 +23,7 @@ This checkout (`~/ChapterFlow-books`) is the canonical worktree for all work.
 - `npm run typecheck` — `tsc --noEmit`.
 - `npm run lint` — `eslint .`.
 - `npm run test` — `tsx --test` over `*.test.ts`/`*.test.tsx` in `app/`, `lib/`, `components/`, `tests/` (137-file discovery floor).
-- `npm run verify` — typecheck + test + scan:style + build; run before pushing.
+- `npm run verify` — typecheck + test + scan:secrets + scan:style + lint:ratchet + build; run before pushing. Mirrors most, not all, of CI's 9 required jobs — `docs/CI_CD.md` §6/§7 name the exact delta (e2e, coverage, lambda/pipeline/infra suites, PR-relative shared-closure diff); `npm run verify:ci` gets closer.
 - Full script catalogue (test tiers, scanners, contract + live-sync tools): `docs/SCRIPTS.md`.
 
 ## Per-folder guides

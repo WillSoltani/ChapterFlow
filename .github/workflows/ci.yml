@@ -444,18 +444,21 @@ jobs:
   # 14 exhaustive-deps sites); @typescript-eslint/no-floating-promises was left at
   # its default (unset) since it requires type-aware linting
   # (parserOptions.projectService) whose lint-time cost hasn't been measured yet —
-  # deferred, not part of this ratchet's correctness subset. The "ESLint ratchet"
-  # step below runs check-eslint-correctness.mjs at ZERO tolerance for that
-  # elevated subset (plus the never-elevated no-unused-vars/no-floating-promises
-  # aliases), ahead of and independent from the overall baseline comparison.
+  # deferred, not part of this ratchet's correctness subset. The "ESLint
+  # correctness subset" step below runs check-eslint-correctness.mjs at ZERO
+  # tolerance for that elevated subset (plus the never-elevated
+  # no-unused-vars/no-floating-promises aliases), independent from the overall
+  # baseline comparison.
+  #
+  # WS6-021: the baseline count and the count/compare logic both live in
+  # scripts/ci/lint-ratchet.mjs (baseline read from the committed
+  # scripts/ci/eslint-error-baseline file, not a workflow env var), so `npm run
+  # lint:ratchet`/`npm run verify` locally and this job can never drift from
+  # each other — see docs/CI_CD.md §3/§6 for the verify↔CI delta.
   lint-ratchet:
     name: Lint Ratchet (no new errors)
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    env:
-      # Committed baseline: the current ESLint error count. Lower this (never
-      # raise it) as errors are fixed. New errors above this number block CI.
-      ESLINT_ERROR_BASELINE: "7"
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -475,44 +478,16 @@ jobs:
         run: npm run lint:infra-ci
 
       - name: ESLint ratchet
-        run: |
-          set -uo pipefail
-          npx eslint . --format json > eslint-report.json || true
-          ERRORS=$(node -e "const r=require('./eslint-report.json');let e=0;for(const f of r)e+=f.errorCount;console.log(e);")
-          echo "ESLint errors: ${ERRORS} (baseline: ${ESLINT_ERROR_BASELINE})"
+        run: node scripts/ci/lint-ratchet.mjs
 
-          # WS6-015: zero-tolerance correctness-rule subset — fails immediately on
-          # any hit, independent of the overall baseline comparison below. `set -e`
-          # is not active in this step, so the exit code must be checked explicitly.
-          if ! node scripts/ci/check-eslint-correctness.mjs eslint-report.json; then
-            echo "::error::Correctness-rule subset (react-hooks/exhaustive-deps, no-unused-vars, no-floating-promises) has zero tolerance — see hits above."
-            {
-              echo "## ESLint ratchet"
-              echo ""
-              echo "❌ **Correctness-rule subset violation** — see job log for file:line hits."
-            } >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
-          {
-            echo "## ESLint ratchet"
-            echo ""
-            echo "- Current errors: \`${ERRORS}\`"
-            echo "- Baseline: \`${ESLINT_ERROR_BASELINE}\`"
-          } >> "$GITHUB_STEP_SUMMARY"
-          if [ "${ERRORS}" -gt "${ESLINT_ERROR_BASELINE}" ]; then
-            echo "::error::ESLint error count ${ERRORS} exceeds baseline ${ESLINT_ERROR_BASELINE} — new correctness-lint debt is not allowed. Fix the new error(s) or, if intentional, justify and update ESLINT_ERROR_BASELINE in ci.yml."
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "❌ **${ERRORS} > ${ESLINT_ERROR_BASELINE}** — new ESLint errors introduced." >> "$GITHUB_STEP_SUMMARY"
-            exit 1
-          fi
-          if [ "${ERRORS}" -lt "${ESLINT_ERROR_BASELINE}" ]; then
-            echo "::warning::ESLint error count ${ERRORS} is BELOW baseline ${ESLINT_ERROR_BASELINE} — lower ESLINT_ERROR_BASELINE in ci.yml to lock in the win."
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "⬇️ **${ERRORS} < ${ESLINT_ERROR_BASELINE}** — ratchet the baseline down to lock in the cleanup." >> "$GITHUB_STEP_SUMMARY"
-          else
-            echo "" >> "$GITHUB_STEP_SUMMARY"
-            echo "✅ No new ESLint errors." >> "$GITHUB_STEP_SUMMARY"
-          fi
+      # WS6-015: zero-tolerance correctness-rule subset — runs regardless of
+      # whether the step above already failed the job, so a PR that both
+      # exceeds the baseline AND introduces a correctness-rule hit reports
+      # both instead of only the first failure. Reads the same
+      # eslint-report.json the "ESLint ratchet" step above writes.
+      - name: ESLint correctness subset (zero tolerance)
+        if: ${{ !cancelled() }}
+        run: node scripts/ci/check-eslint-correctness.mjs eslint-report.json
 
   # ── Hard gate: CDK synth (backend) for the dev environment ───────────────
   infra-checks:
