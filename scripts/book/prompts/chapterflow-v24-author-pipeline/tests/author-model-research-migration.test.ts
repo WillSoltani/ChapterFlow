@@ -5,7 +5,7 @@ import { fileURLToPath } from "node:url";
 
 import { runJsonModelTask, type ModelCallerExecution, type ModelTaskRunner } from "../src/app/modelTaskRunner.js";
 import { runResearcherBibliography } from "../src/agents/researcher-bibliography.js";
-import { runResearcherChapter } from "../src/agents/researcher-chapter.js";
+import { MAX_CHAPTER_RESEARCH_ATTEMPTS, runResearcherChapter } from "../src/agents/researcher-chapter.js";
 import { runTryThisNow } from "../src/agents/try-this-now.js";
 import { runWriterBreakdown } from "../src/agents/writer-breakdown.js";
 import { runWriterCards } from "../src/agents/writer-cards.js";
@@ -55,12 +55,20 @@ function execution(output: unknown, calls: string[]): ModelCallerExecution {
   };
 }
 
-test("research callers make one bounded explicit attempt and never retry malformed output", async () => {
+test("research callers are bounded: non-chapter callers make one explicit attempt; the chapter researcher retries with validator feedback up to MAX", async () => {
   const calls: string[] = [];
   const bibliographyInput = { title: "Test Book", author: "Test Author", bookIdHint: "test-book" };
   await assert.rejects(runResearcherBibliography(bibliographyInput, execution({}, calls)), /bibliography/);
+  // The bibliography caller makes exactly one explicit attempt — it does not retry.
+  assert.equal(calls.length, 1);
+
+  // The chapter researcher is the one exception: on invalid output it re-issues the
+  // task with the validator's error list (Task 11a), bounded at MAX_CHAPTER_RESEARCH_ATTEMPTS.
+  const chapterCallsBefore = calls.length;
   const bibliography: any = { bookId: "test-book", title: "Test Book", author: "Test Author", thesis: "test thesis", teachingArc: "test arc" };
-  await assert.rejects(runResearcherChapter({ bibliography, chapter: { number: 1, title: "First" } }, execution({}, calls)), /chapter/);
+  await assert.rejects(runResearcherChapter({ bibliography, chapter: { number: 1, title: "First" } }, execution({}, calls)), /chapter research invalid after \d+ attempts/);
+  assert.equal(calls.length - chapterCallsBefore, MAX_CHAPTER_RESEARCH_ATTEMPTS);
+
   const brief: any = { bookId: "test-book", voiceCharter: {}, voiceSpecimens: [] };
   const plan: any = { chapterId: "test-book-ch01", number: 1, title: "First", coreMove: "specific core move", cardFocus: { count: 1 } };
   await assert.rejects(runWriterBreakdown({ brief, plan }, execution({}, calls)), /breakdown/);
@@ -74,7 +82,8 @@ test("research callers make one bounded explicit attempt and never retry malform
   );
   const action = "Write one decision you must make today, name the smallest reversible step, and take it before you close this page.";
   assert.equal((await runTryThisNow({ brief, plan }, execution({ tryThisNow: action }, calls))).tryThisNow, action);
-  assert.equal(calls.length, 6);
+  // 5 single-attempt callers (bibliography, breakdown, cards, example, try-this-now) + the bounded chapter retries.
+  assert.equal(calls.length, 5 + MAX_CHAPTER_RESEARCH_ATTEMPTS);
   assert.ok(calls.every((profile) => profile === "pipeline-read-json-v1"));
 });
 

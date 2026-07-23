@@ -77,14 +77,66 @@ const META_VERBS: RegExp[] = [
   /\b(clear|kahneman|taleb|housel|tetlock|cialdini|greene|machiavelli|duhigg|eyal|covey|ries|brown|kolb|gladwell|fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
 ];
 
+/** Total chapter-research attempts (initial + retries). Sonnet occasionally
+ *  returns a model-minted schema or trips the meta-reference content guard on
+ *  the first try; a bounded retry that hands the validator's own error list
+ *  back to the model recovers those cases without a route/envelope change. */
+export const MAX_CHAPTER_RESEARCH_ATTEMPTS = 3;
+
 export async function runResearcherChapter(
   input: ChapterResearchInput,
   execution?: ModelCallerExecution,
 ): Promise<ChapterResearchResult> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
-  const userPrompt = buildUserPrompt(input);
-  const output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
-  return validateChapterResearch(output, input);
+  const baseUserPrompt = buildUserPrompt(input);
+
+  const attemptErrors: string[][] = [];
+  let priorOutput: unknown = null;
+
+  for (let attempt = 1; attempt <= MAX_CHAPTER_RESEARCH_ATTEMPTS; attempt++) {
+    const userPrompt = attempt === 1
+      ? baseUserPrompt
+      : `${baseUserPrompt}\n\n${buildRetryFeedback(attemptErrors[attemptErrors.length - 1], priorOutput)}`;
+
+    // A model-infrastructure failure (cancellation, model error, non-object
+    // output) throws out of runJsonModelTask and is NOT a validator rejection —
+    // let it propagate immediately rather than burning retries on it.
+    const output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
+
+    const problems = collectChapterResearchProblems(output, input);
+    if (problems.length === 0) return output;
+
+    attemptErrors.push(problems);
+    priorOutput = output;
+  }
+
+  const accumulated = attemptErrors
+    .map((problems, index) => `attempt ${index + 1}: ${problems.join("; ")}`)
+    .join(" | ");
+  throw new Error(`chapter research invalid after ${MAX_CHAPTER_RESEARCH_ATTEMPTS} attempts: ${accumulated}`);
+}
+
+/** Build the retry block appended to the user prompt after a rejected attempt.
+ *  Contains (a) the validator's exact error lines and (b) the prior rejected
+ *  output verbatim, so the model repairs precisely what failed. */
+function buildRetryFeedback(problems: string[], priorOutput: unknown): string {
+  const lines: string[] = [];
+  lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
+  for (const problem of problems) lines.push(`- ${problem}`);
+  lines.push("");
+  lines.push("Your previous (rejected) output was — do not repeat these mistakes:");
+  lines.push(safeJson(priorOutput));
+  lines.push("");
+  lines.push('Return a corrected ChapterResearchResult JSON. Output MUST be a single JSON object whose schemaVersion is exactly "source-v2". Never invent a different schemaVersion.');
+  return lines.join("\n");
+}
+
+function safeJson(value: unknown): string {
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
 }
 
 function buildUserPrompt(input: ChapterResearchInput): string {
@@ -107,9 +159,13 @@ function buildUserPrompt(input: ChapterResearchInput): string {
   return parts.join("\n");
 }
 
-function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearchInput): ChapterResearchResult {
+/** Gather every validator + content-guard + source-v2-integrity problem with a
+ *  rejected chapter-research output. Returns [] when the output is admissible.
+ *  Kept separate from the throwing wrapper so the retry loop can feed the exact
+ *  error lines back to the model. */
+function collectChapterResearchProblems(r: ChapterResearchResult, input: ChapterResearchInput): string[] {
   const problems: string[] = [];
-  if (!r || typeof r !== "object") throw new Error("chapter researcher returned non-object");
+  if (!r || typeof r !== "object") return ["chapter researcher returned a non-object output"];
 
   if (r.chapterNumber !== input.chapter.number) {
     problems.push(`chapterNumber mismatch: got ${r.chapterNumber}, expected ${input.chapter.number}`);
@@ -199,10 +255,7 @@ function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearc
     }
   }
 
-  if (problems.length > 0) {
-    throw new Error(`chapter research invalid: ${problems.join("; ")}`);
-  }
-  return r;
+  return problems;
 }
 
 /** Render a ChapterResearchResult to the plain-text sidecar shape that

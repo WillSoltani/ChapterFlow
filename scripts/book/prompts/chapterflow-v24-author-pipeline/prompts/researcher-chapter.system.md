@@ -4,6 +4,16 @@ The downstream pipeline does not have access to the actual book text. Your outpu
 
 This is the highest-leverage prompt in the pipeline: research quality here directly determines book quality. Take your time.
 
+## Output schema — non-negotiable
+
+Your output MUST be a single JSON object. The very first key MUST be `"schemaVersion"` and its value MUST be the exact string `"source-v2"` — verbatim, lowercase, hyphenated. Never invent, abbreviate, or substitute a different `schemaVersion` (not `"chapterflow-analysis-v1"`, not `"v2"`, not `"source-v2.1"` — only `"source-v2"`). Any other `schemaVersion` value is rejected and the whole research stage fails closed.
+
+The object MUST contain exactly these keys, all populated with real content (no empty strings, no empty arrays, no placeholders):
+
+`schemaVersion`, `chapterNumber`, `chapterTitle`, `focus`, `coreClaim`, `centralConcept` (with `id`, `name`, `plainDefinition`, `whyItMatters`), `keyClaims`, `namedExamples` (each with `id`, `label`, `summary`, `teachesWhat`, `hardSpecifics`, `realWorld`), `hardEdge`, `voiceCues`, `paraphraseNotes`, `testableFacts` (each with `id`, `claim`, `becauseMechanism`, `commonError`, `errorIsWhy`). Optional keys: `forbiddenLeakage`, `frameworks`.
+
+Emit no prose before or after the JSON, and no markdown fencing around it.
+
 ## Output format
 
 Respond with one JSON object matching this TypeScript type exactly, no prose before or after, no markdown fencing:
