@@ -57,6 +57,7 @@ new ChapterFlowBackendStack(app, cfg.backendStackId, {
   // Sign-in-with-Apple PreSignUp linking Lambda + scoped IAM. Omitted → no
   // trigger resources (dev/staging without the secret synth cleanly).
   cognitoUserPoolId: process.env.COGNITO_USER_POOL_ID?.trim() || undefined,
+  lambdaConcurrencyEnforced: cfg.lambdaConcurrencyEnforced,
   lambdaConcurrency: cfg.lambdaConcurrency,
 });
 
@@ -144,6 +145,7 @@ if (!skipFrontend && openNextExists) {
     originVerifySecret: frontendRuntimeConfig.originVerifySecret,
     originVerifyMode: frontendRuntimeConfig.originVerifyMode,
     serverEnv: frontendRuntimeConfig.serverEnv,
+    lambdaConcurrencyEnforced: cfg.lambdaConcurrencyEnforced,
     lambdaConcurrency: cfg.lambdaConcurrency,
   });
 }

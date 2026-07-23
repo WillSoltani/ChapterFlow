@@ -57,6 +57,19 @@ export interface ChapterFlowEnvConfig {
    * that same 1000 and same 100-unit floor — see
    * reserved-concurrency.test.ts's cross-env guard.
    */
+  /**
+   * Whether reservedConcurrentExecutions is actually applied. This AWS
+   * account's Lambda "Concurrent executions" quota is still the unraised
+   * default of 10, and AWS rejects ANY reservation that would leave fewer
+   * than 10 unreserved account-wide — so reservations are mathematically
+   * impossible until the quota increase lands (Service Quotas request
+   * 46c3aa6abb9744e68072b0888fc4f1ceYQkUo8pA, L-B99A9384 -> 1000, filed
+   * 2026-07-22; prod deploy run 29967575538 failed on exactly this).
+   * Flip to true once `aws lambda get-account-settings` shows
+   * ConcurrentExecutions >= 1000. The per-function numbers below stay
+   * maintained so re-enabling is a one-line change.
+   */
+  readonly lambdaConcurrencyEnforced: boolean;
   readonly lambdaConcurrency: {
     readonly server: number;
     readonly image: number;
@@ -147,6 +160,7 @@ export function resolveEnvConfig(app: cdk.App): ChapterFlowEnvConfig {
     removalPolicy: retain ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
     deletionProtection: retain,
     pointInTimeRecovery: retain,
+    lambdaConcurrencyEnforced: false,
     lambdaConcurrency:
       env === "prod" ? PROD_LAMBDA_CONCURRENCY : DEV_STAGING_LAMBDA_CONCURRENCY,
     region: REGION,

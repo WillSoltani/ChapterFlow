@@ -136,6 +136,8 @@ export interface ChapterFlowBackendStackProps extends cdk.StackProps {
    * ChapterFlowEnvConfig.lambdaConcurrency doc for the account-wide-sum
    * rules this must respect).
    */
+  /** Applies lambdaConcurrency only when true — see ChapterFlowEnvConfig.lambdaConcurrencyEnforced (account quota gate). */
+  readonly lambdaConcurrencyEnforced: boolean;
   readonly lambdaConcurrency: {
     readonly reminder: number;
     readonly suppression: number;
@@ -612,7 +614,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       memorySize: 512,
       timeout: reminderTimeout,
       // WS6-001: reserved floor/ceiling (see env-config.ts doc).
-      reservedConcurrentExecutions: props.lambdaConcurrency.reminder,
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.reminder
+        : undefined,
       deadLetterQueue: reminderDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
       // WS6-029: this Lambda is multi-hop (DynamoDB read/write + SES send + SSM),
@@ -808,7 +812,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
       // WS6-001: reserved floor/ceiling (see env-config.ts doc).
-      reservedConcurrentExecutions: props.lambdaConcurrency.suppression,
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.suppression
+        : undefined,
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
       logRetention: logs.RetentionDays.ONE_MONTH,
@@ -981,7 +987,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         // sign-in, so its floor stays generous (10, never 1-2) — a starved
         // reservation here fails closed and blocks sign-in, not just a
         // background job (see env-config.ts doc).
-        reservedConcurrentExecutions: props.lambdaConcurrency.preSignUp,
+        reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.preSignUp
+        : undefined,
         logRetention: logs.RetentionDays.ONE_MONTH,
         // WS6-029: inline on the auth path and calls Cognito (ListUsers/
         // AdminLinkProviderForUser); ACTIVE tracing shows where a slow sign-in went.
