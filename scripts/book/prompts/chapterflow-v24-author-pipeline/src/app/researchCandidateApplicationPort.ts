@@ -20,8 +20,9 @@ import type {
 import type { CandidateIdentity, ModelTaskContext, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
 import { RESEARCH_RUN_MANIFEST_FILE } from "../lib/researchRunManifest.js";
 import { researchBook } from "../researcher.js";
+import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
-import type { RunDefinition } from "../run-state/runTypes.js";
+import type { AttemptSnapshot, RunDefinition } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
 import { evaluateSourceV2Integrity, isResearchRouteBlockingFinding } from "../source/sourceIntegrity.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
@@ -56,6 +57,17 @@ export interface ResearchCandidateApplicationRequest {
   readonly resumeRunId?: string;
   readonly chapterConcurrency?: number;
   readonly forceRefresh?: boolean;
+  /**
+   * Opt-in crash recovery. A hard-killed run (SIGKILL / host teardown — NOT the
+   * SIGINT path, which settles its own attempts) can leave an attempt admitted
+   * with no terminal record, which fail-closes replay at
+   * RESEARCH_ATTEMPT_UNCERTAIN forever. When true AND this is a resume, such
+   * unsettled attempts are explicitly reconciled (settled ABANDONED with a
+   * RECONCILED_UNSETTLED_ON_RESUME marker) so the run can replay. Default false
+   * preserves the fail-closed contract exactly. Only ever settles
+   * admitted-with-no-terminal-record attempts; never rewrites settled ones.
+   */
+  readonly reconcileUnsettled?: boolean;
   readonly signal: AbortSignal;
 }
 
@@ -379,6 +391,30 @@ export class ResearchCandidateApplicationPort {
     this.#dependencies = dependencies;
   }
 
+  /** Settle each admitted-with-no-terminal-record attempt as ABANDONED with the
+   *  RECONCILED_UNSETTLED_ON_RESUME marker and emit one operator-visible event
+   *  line (phase, attemptId, action) per reconciliation. reconcileAttempt is a
+   *  no-op on an already-settled attempt, so a lost race never rewrites a real
+   *  outcome. */
+  async #reconcileUnsettled(bookId: string, runId: string, unsettled: readonly AttemptSnapshot[]): Promise<void> {
+    for (const attempt of unsettled) {
+      const settled = await reconcileAttempt(this.#dependencies.runStore, {
+        bookId,
+        runId,
+        attemptId: attempt.admission.attemptId,
+        outcome: "ABANDONED",
+        finishedAt: safeClock(this.#dependencies.clock),
+        detail: RECONCILED_UNSETTLED_ON_RESUME,
+      });
+      if (!settled.ok && settled.error.code !== "CONFLICT") {
+        throw new Error(`RESEARCH_RECONCILE_FAILED:${settled.error.code}`);
+      }
+      console.error(
+        `[book-run] reconcile phase=${attempt.admission.stageId} attempt=${attempt.admission.attemptId} action=${RECONCILED_UNSETTLED_ON_RESUME}`,
+      );
+    }
+  }
+
   async run(input: ResearchCandidateApplicationRequest): Promise<ResearchCandidateApplicationResult> {
     requireRequest(input, this.#dependencies.pipelineRoot);
     let runId = input.resumeRunId ?? input.newRunId ?? this.#dependencies.ids.nextRunId();
@@ -415,7 +451,19 @@ export class ResearchCandidateApplicationPort {
       throw new Error(`RESEARCH_RUN_TERMINAL:${created.value.status}`);
     }
     const uncertain = created.value.attempts.filter((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE");
-    if (uncertain.length > 0) throw new Error("RESEARCH_ATTEMPT_UNCERTAIN:unsettled model attempt blocks replay");
+    if (uncertain.length > 0) {
+      if (input.reconcileUnsettled !== true) {
+        throw new Error("RESEARCH_ATTEMPT_UNCERTAIN:unsettled model attempt blocks replay");
+      }
+      await this.#reconcileUnsettled(definition.bookId, runId, uncertain);
+    }
+    // Every prior attempt (settled or just-reconciled) reserves its deterministic
+    // attempt id. A crash-resume re-runs the missing research work, which would
+    // re-admit those exact ids and fail closed at the gateway with
+    // MODEL_ATTEMPT_EXISTS. Salt the attempt-id namespace with the prior-attempt
+    // count so the resumed generation mints FRESH, non-colliding ids. A fresh run
+    // has zero prior attempts, so the id namespace is unchanged.
+    const priorAttemptCount = created.value.attempts.length;
 
     const resumePlan = await this.#dependencies.stageCoordinator.planResume(definition);
     if (!resumePlan.ok) throw new Error(`RESEARCH_RESUME_UNAVAILABLE:${resumePlan.error.code}`);
@@ -436,7 +484,8 @@ export class ResearchCandidateApplicationPort {
 
     try {
       await mkdir(input.attemptRoot, { recursive: true });
-      const baseAttemptId = this.#dependencies.ids.modelAttemptId(runId);
+      const modelAttemptId = this.#dependencies.ids.modelAttemptId(runId);
+      const baseAttemptId = priorAttemptCount === 0 ? modelAttemptId : `${modelAttemptId}-r${priorAttemptCount}`;
       const research = await researchBook(input.title, input.author, {
         bookId: definition.bookId,
         chapterConcurrency: input.chapterConcurrency,

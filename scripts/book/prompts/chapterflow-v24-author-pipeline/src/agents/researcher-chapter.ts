@@ -83,6 +83,29 @@ const META_VERBS: RegExp[] = [
  *  back to the model recovers those cases without a route/envelope change. */
 export const MAX_CHAPTER_RESEARCH_ATTEMPTS = 3;
 
+/** Feedback line handed back to the model when the GATEWAY (not the in-process
+ *  validator) rejected the previous output against its source-controlled schema.
+ *  The raw invalid output never leaves the gateway, so — unlike an in-process
+ *  rejection — there is no prior-output echo to include. */
+const GATEWAY_SCHEMA_REJECTION_FEEDBACK = "gateway schema validation rejected the previous output";
+
+/**
+ * Classify a thrown `runJsonModelTask` error as a gateway-level schema
+ * rejection (validator-class, retryable) versus genuine model infrastructure
+ * (cancellation, capacity, admission collision — propagate immediately).
+ *
+ * `runJsonModelTask` throws `MODEL_TASK_${outcome}:${errorCode}:${message}`. The
+ * gateway emits `MODEL_OUTPUT_INVALID` (with outcome FAILED) ONLY when a bounded,
+ * exit-0 model process produced output that failed the route's output schema —
+ * exactly the same variance class the in-process validator catches, just caught
+ * one layer out. Every other `MODEL_TASK_*` code (MODEL_RUN_CANCELLED,
+ * MODEL_ATTEMPT_EXISTS, MODEL_CAPACITY_EXHAUSTED, MODEL_EXECUTION_UNCERTAIN, …)
+ * is real infrastructure and must NOT burn a retry.
+ */
+function isGatewaySchemaRejection(message: string): boolean {
+  return /^MODEL_TASK_FAILED:MODEL_OUTPUT_INVALID(:|$)/.test(message);
+}
+
 export async function runResearcherChapter(
   input: ChapterResearchInput,
   execution?: ModelCallerExecution,
@@ -98,10 +121,26 @@ export async function runResearcherChapter(
       ? baseUserPrompt
       : `${baseUserPrompt}\n\n${buildRetryFeedback(attemptErrors[attemptErrors.length - 1], priorOutput)}`;
 
-    // A model-infrastructure failure (cancellation, model error, non-object
-    // output) throws out of runJsonModelTask and is NOT a validator rejection —
-    // let it propagate immediately rather than burning retries on it.
-    const output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
+    // A model-infrastructure failure (cancellation, admission collision,
+    // capacity, uncertain teardown) throws out of runJsonModelTask and is NOT a
+    // validator rejection — let it propagate immediately rather than burning
+    // retries on it. The ONE exception is a GATEWAY-level schema rejection
+    // (MODEL_OUTPUT_INVALID): the model produced output that failed the route's
+    // source-controlled schema one layer out from the in-process validator —
+    // the same variance class the retry loop exists for — so it is retried with
+    // schema-reminder feedback (the raw invalid output is unavailable from the
+    // gateway, so there is no prior-output echo).
+    let output: ChapterResearchResult;
+    try {
+      output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
+    } catch (error) {
+      if (isGatewaySchemaRejection((error as Error).message)) {
+        attemptErrors.push([GATEWAY_SCHEMA_REJECTION_FEEDBACK]);
+        priorOutput = null;
+        continue;
+      }
+      throw error;
+    }
 
     const problems = collectChapterResearchProblems(output, input);
     if (problems.length === 0) return output;
@@ -124,8 +163,14 @@ function buildRetryFeedback(problems: string[], priorOutput: unknown): string {
   lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
   for (const problem of problems) lines.push(`- ${problem}`);
   lines.push("");
-  lines.push("Your previous (rejected) output was — do not repeat these mistakes:");
-  lines.push(safeJson(priorOutput));
+  if (priorOutput === null) {
+    // Gateway-level schema rejection: the raw invalid output stays inside the
+    // gateway and is not available to echo back. Do not fabricate one.
+    lines.push("Your previous output was rejected by the output-schema gate before it reached this process, so it cannot be echoed back here.");
+  } else {
+    lines.push("Your previous (rejected) output was — do not repeat these mistakes:");
+    lines.push(safeJson(priorOutput));
+  }
   lines.push("");
   lines.push('Return a corrected ChapterResearchResult JSON. Output MUST be a single JSON object whose schemaVersion is exactly "source-v2". Never invent a different schemaVersion.');
   return lines.join("\n");

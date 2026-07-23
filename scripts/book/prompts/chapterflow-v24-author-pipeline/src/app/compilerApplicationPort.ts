@@ -22,8 +22,9 @@ import { assembleSections, type AuthorV4SectionChapterPaths } from "../sections/
 import { validateSectionPack } from "../sections/sectionGate.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterV21 } from "../types.js";
+import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
-import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
+import type { AttemptSnapshot, RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
@@ -48,6 +49,18 @@ export interface CompilerApplicationRequest {
   readonly sectionTaskContextLogicalPath: string;
   readonly sources: readonly CompilerSourceMapping[];
   readonly profileId: typeof COMPILER_SECTION_PROFILE_ID;
+  /**
+   * Opt-in crash recovery for a resume. A hard-killed compile (SIGKILL / host
+   * teardown) can leave a section attempt admitted with no terminal record while
+   * the run stays RUNNING, which fail-closes replay at COMPILER_ATTEMPT_UNCERTAIN
+   * forever. When true AND this is a resume, such unsettled attempts are settled
+   * ABANDONED with a RECONCILED_UNSETTLED_ON_RESUME marker so the crashed run can
+   * reach a terminal state (its section attempt ids are deterministic and its
+   * candidate is staged atomically only at the end, so in-place section replay is
+   * precluded by design — recovery settles the stuck run and a fresh compiler run
+   * does the work). Default false preserves the fail-closed contract exactly.
+   */
+  readonly reconcileUnsettled?: boolean;
   readonly signal: AbortSignal;
 }
 
@@ -382,6 +395,35 @@ async function failCompilerRun(
   throw error;
 }
 
+/** Settle each admitted-with-no-terminal-record compiler attempt as ABANDONED
+ *  with the RECONCILED_UNSETTLED_ON_RESUME marker and emit one operator-visible
+ *  event line per reconciliation. reconcileAttempt is a no-op on an
+ *  already-settled attempt (CONFLICT is tolerated), so a lost race never
+ *  rewrites a real outcome. */
+async function reconcileUnsettledCompilerAttempts(
+  dependencies: CompilerApplicationPortDependencies,
+  request: CompilerApplicationRequest,
+  runId: string,
+  unsettled: readonly AttemptSnapshot[],
+): Promise<void> {
+  for (const attempt of unsettled) {
+    const settled = await reconcileAttempt(dependencies.runStore, {
+      bookId: request.bookId,
+      runId,
+      attemptId: attempt.admission.attemptId,
+      outcome: "ABANDONED",
+      finishedAt: dependencies.clock.now(),
+      detail: RECONCILED_UNSETTLED_ON_RESUME,
+    });
+    if (!settled.ok && settled.error.code !== "CONFLICT") {
+      throw new Error(`COMPILER_RECONCILE_FAILED:${settled.error.code}`);
+    }
+    console.error(
+      `[book-run] reconcile phase=${attempt.admission.stageId} attempt=${attempt.admission.attemptId} action=${RECONCILED_UNSETTLED_ON_RESUME}`,
+    );
+  }
+}
+
 async function cancelCompilerRun(
   dependencies: CompilerApplicationPortDependencies,
   request: CompilerApplicationRequest,
@@ -529,9 +571,24 @@ export class CompilerApplicationPort {
     const refreshed = await this.#dependencies.runStore.readRun(request.bookId, runId, this.#dependencies.clock.now());
     if (!refreshed.ok) throw new Error(`COMPILER_RUN_UNAVAILABLE:${refreshed.error.code}:${refreshed.error.message}`);
     live = refreshed.value;
-    const priorAttempts = live.attempts.filter((attempt) => attempt.admission.stageId === COMPILER_STAGE_ID);
-    if (priorAttempts.some((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE")) {
-      throw new Error("COMPILER_ATTEMPT_UNCERTAIN:admitted compiler work is unsettled; replay refused");
+    let priorAttempts = live.attempts.filter((attempt) => attempt.admission.stageId === COMPILER_STAGE_ID);
+    const unsettled = priorAttempts.filter((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE");
+    if (unsettled.length > 0) {
+      if (request.reconcileUnsettled !== true) {
+        throw new Error("COMPILER_ATTEMPT_UNCERTAIN:admitted compiler work is unsettled; replay refused");
+      }
+      // Crash recovery: settle the stuck attempts so the run can reach a terminal
+      // state. Section outputs are not durable (the candidate stages atomically
+      // only at the end) and section attempt ids are deterministic, so in-place
+      // replay is precluded — the settled attempts fall through to the
+      // not-replayable path below, which fails the crashed run cleanly and frees
+      // a fresh compiler run to redo the work.
+      await reconcileUnsettledCompilerAttempts(this.#dependencies, request, runId, unsettled);
+      const rereadAt = this.#dependencies.clock.now();
+      const rechecked = await this.#dependencies.runStore.readRun(request.bookId, runId, rereadAt);
+      if (!rechecked.ok) throw new Error(`COMPILER_RUN_UNAVAILABLE:${rechecked.error.code}:${rechecked.error.message}`);
+      live = rechecked.value;
+      priorAttempts = live.attempts.filter((attempt) => attempt.admission.stageId === COMPILER_STAGE_ID);
     }
     if (priorAttempts.length > 0) {
       return failCompilerRun(

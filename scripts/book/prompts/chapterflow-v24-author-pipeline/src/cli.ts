@@ -83,7 +83,7 @@ const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attemp
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
 
 function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
-  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
 }
 
 function firstUnsupportedFlag(
@@ -393,7 +393,7 @@ async function runV4BookProduction(
   }
   const unsupported = firstUnsupportedFlag(flags, [
     "title", "author", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "regen",
-    "max-repair", "promote-local", "no-publish", ...(command === "book-run" ? ["log"] : []),
+    "max-repair", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
   ]);
   if (unsupported !== undefined) {
     console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
@@ -417,6 +417,7 @@ async function runV4BookProduction(
     || (flags["regen"] !== undefined && flags["regen"] !== true)
     || (flags["promote-local"] !== undefined && flags["promote-local"] !== true)
     || (flags["no-publish"] !== undefined && flags["no-publish"] !== true)
+    || (flags["reconcile-unsettled"] !== undefined && flags["reconcile-unsettled"] !== true)
     || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
     console.error(`Usage: ${v4BookProductionUsage(command)}`);
     return 2;
@@ -442,6 +443,10 @@ async function runV4BookProduction(
       regen: flags["regen"] === true,
       maxRepairRounds: 1,
       promoteLocal: flags["promote-local"] === true,
+      // Crash recovery: settle a hard-killed run's admitted-but-unsettled model
+      // attempts so a resume can proceed instead of fail-closing forever. No-op
+      // on a clean run; only meaningful with --resume-run-id.
+      reconcileUnsettled: flags["reconcile-unsettled"] === true,
       // Compatibility confirmation only: V4 never publishes externally, while
       // --promote-local may still atomically advance the local V25 pointer.
       signal,

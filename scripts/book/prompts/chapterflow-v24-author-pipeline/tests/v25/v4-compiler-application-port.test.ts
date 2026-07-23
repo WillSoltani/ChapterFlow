@@ -323,6 +323,61 @@ requiredTest("1c unsettled admitted section work blocks replay and never stages 
   assert.equal(subject.counts.stage, 0);
 });
 
+requiredTest("1d crash-resume reconcile settles a hard-killed compile's unsettled attempt and drives the stuck run to a terminal state", async (context) => {
+  const subject = rig(context, "crash-reconcile", { gatewayOutcome: "unsettled" });
+  const runId = "run-crash-reconcile";
+  // First invocation is hard-killed mid-section: the attempt is admitted but
+  // never finished, the run stays RUNNING, and replay is refused.
+  await assert.rejects(subject.port.run(subject.request), /COMPILER_ATTEMPT_UNCERTAIN/);
+  const crashed = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(crashed.ok, true);
+  if (!crashed.ok) return;
+  assert.equal(crashed.value.status, "RUNNING");
+  assert.equal(crashed.value.attempts.some((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE"), true);
+
+  // Resume WITHOUT the flag preserves the fail-closed error verbatim and mutates
+  // nothing — the run is still RUNNING and still unsettled.
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: runId }),
+    /COMPILER_ATTEMPT_UNCERTAIN:admitted compiler work is unsettled; replay refused/,
+  );
+  const stillStuck = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(stillStuck.ok, true);
+  if (stillStuck.ok) {
+    assert.equal(stillStuck.value.status, "RUNNING");
+    assert.equal(stillStuck.value.attempts.some((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE"), true);
+  }
+
+  // Resume WITH the flag reconciles the unsettled attempt (ABANDONED + marker)
+  // and drives the crashed run to a terminal, recoverable state instead of
+  // leaving it permanently stuck RUNNING.
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: runId, reconcileUnsettled: true }),
+    /COMPILER_ATTEMPT_NOT_REPLAYABLE/,
+  );
+  const recovered = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(recovered.ok, true);
+  if (!recovered.ok) return;
+  assert.equal(recovered.value.status, "FAILED");
+  assert.equal(recovered.value.attempts.every((attempt) => attempt.status !== "ACTIVE" && attempt.status !== "STALE"), true);
+  const abandoned = recovered.value.attempts.filter((attempt) => attempt.status === "ABANDONED");
+  assert.equal(abandoned.length, 1);
+
+  // The reconcile is durably recorded in the attempt journal with the marker.
+  const journalPath = resolve(context.roots.tempRoot, "run-state-crash-reconcile", "books", BOOK, "runs", runId, "attempts.jsonl");
+  const journal = readFileSync(journalPath, "utf8")
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
+  const reconciled = journal.filter(
+    (record) => record.type === "ATTEMPT_FINISHED" && record.outcome === "ABANDONED" && record.detail === "RECONCILED_UNSETTLED_ON_RESUME",
+  );
+  assert.equal(reconciled.length, 1);
+  assert.equal(reconciled[0].attemptId, abandoned[0].admission.attemptId);
+  // The candidate was never staged across the whole crash-and-recover cycle.
+  assert.equal(subject.counts.stage, 0);
+});
+
 requiredTest("2 durable run precedes candidate validation while invalid input commits no model attempt or candidate", async (context) => {
   const cases = [
     { suffix: "digest", selected: snapshot(), request: { manifestDigest: "c".repeat(64) }, message: /manifest digest mismatch/ },

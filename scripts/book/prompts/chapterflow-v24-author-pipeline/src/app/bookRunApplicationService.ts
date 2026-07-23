@@ -57,6 +57,14 @@ export interface BookRunApplicationRequest {
   readonly regen: boolean;
   readonly maxRepairRounds: 1;
   readonly promoteLocal: boolean;
+  /**
+   * Opt-in crash recovery for a resume. Threaded to the research and compiler
+   * ports so a hard-killed run (which left an attempt admitted with no terminal
+   * record) can be reconciled and resumed instead of fail-closing forever at
+   * RESEARCH_ATTEMPT_UNCERTAIN / COMPILER_ATTEMPT_UNCERTAIN. Only meaningful with
+   * resumeRunId; default (absent/false) preserves the fail-closed contract.
+   */
+  readonly reconcileUnsettled?: boolean;
   readonly signal: AbortSignal;
 }
 
@@ -551,6 +559,7 @@ export class BookRunApplicationService {
         attemptRoot: resolve(input.attemptRoot, "research"),
         ...(input.resumeRunId === undefined ? { newRunId: runId } : { resumeRunId: input.resumeRunId }),
         forceRefresh: input.regen,
+        reconcileUnsettled: input.reconcileUnsettled === true,
         signal: input.signal,
       });
     } catch (cause) {
@@ -640,6 +649,7 @@ export class BookRunApplicationService {
         sectionTaskContextLogicalPath: intake.sectionTaskContextLogicalPath,
         sources: intake.sources,
         profileId: "attempt-read-json-v1",
+        reconcileUnsettled: input.reconcileUnsettled === true,
         signal: input.signal,
       });
     } catch (cause) {

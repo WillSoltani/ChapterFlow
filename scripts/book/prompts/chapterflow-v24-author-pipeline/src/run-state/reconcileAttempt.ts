@@ -2,6 +2,11 @@ import type { AttemptId, BookId, Result, RunId, UtcIso } from "../contracts/v4Co
 import { RunStateFault, runStoreFailure, type RunStore } from "./runStore.js";
 import type { AttemptSnapshot } from "./runTypes.js";
 
+/** Terminal marker written to a reconciled attempt's finish detail so an
+ *  operator reading the attempt journal sees exactly which attempts crash
+ *  recovery settled (and that it was recovery, not a real model outcome). */
+export const RECONCILED_UNSETTLED_ON_RESUME = "RECONCILED_UNSETTLED_ON_RESUME";
+
 export interface ReconcileAttemptInput {
   readonly bookId: BookId;
   readonly runId: RunId;

@@ -7,7 +7,7 @@ import {
   type ChapterResearchResult,
 } from "../../src/agents/researcher-chapter.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
-import { createUniquenessEnforcingRunner, mintingExecution } from "./fakes/uniquenessRunner.js";
+import { createScriptedResultRunner, createUniquenessEnforcingRunner, mintingExecution } from "./fakes/uniquenessRunner.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 function bibliography(): BibliographyResult {
@@ -252,6 +252,80 @@ requiredTest("4 fabricated-but-structurally-complete sidecar is retried (not adm
   const retryPrompt = subject.prompts[1];
   assert.match(retryPrompt, /PREVIOUS ATTEMPT WAS REJECTED/);
   assert.match(retryPrompt, /SV2\.realness_fabricated_sidecar/);
+});
+
+/** Build a minting execution over a scripted-result runner (per-invocation
+ *  fresh attempt identity, mirroring the research port), so each retry admits a
+ *  distinct attempt id exactly as 11b requires. */
+function scriptedRig(script: readonly Readonly<{ outcome: "SUCCEEDED" | "FAILED" | "TIMED_OUT" | "CANCELLED" | "UNKNOWN"; output?: unknown; error?: { code: string; message: string } }>[]) {
+  const base: ModelTaskContext = {
+    bookId: "the-power-of-moments",
+    runId: "run-fixture",
+    attemptId: "attempt-fixture",
+    stageId: "research",
+    operationId: "research-ch01",
+    workDir: "/tmp/cf-v25-canary-retry",
+    signal: new AbortController().signal,
+  };
+  const { runner, prompts, runs } = createScriptedResultRunner(script);
+  const seen = new Set<string>();
+  const attemptIds: string[] = [];
+  // Wrap the runner to record + enforce fresh attempt ids across invocations,
+  // proving 11b minting still applies on the gateway-rejection retry path.
+  const recordingRunner = {
+    async run(request: Parameters<typeof runner.run>[0]) {
+      attemptIds.push(request.context.attemptId);
+      if (seen.has(request.context.attemptId)) throw new Error(`attempt id reused: ${request.context.attemptId}`);
+      seen.add(request.context.attemptId);
+      return runner.run(request);
+    },
+  };
+  const execution = mintingExecution(recordingRunner, base);
+  return { execution, prompts, runs, attemptIds };
+}
+
+requiredTest("5 gateway MODEL_OUTPUT_INVALID rejection is validator-class: retries with schema feedback and a fresh attempt id, then succeeds", async () => {
+  const subject = scriptedRig([
+    { outcome: "FAILED", error: { code: "MODEL_OUTPUT_INVALID", message: "model output failed source-controlled schema validation" } },
+    { outcome: "SUCCEEDED", output: validChapter() },
+  ]);
+  const result = await runResearcherChapter(input(), subject.execution);
+
+  assert.equal(result.schemaVersion, "source-v2");
+  assert.equal(result.chapterNumber, 1);
+  // exactly two model calls: the rejected one + the successful retry
+  assert.equal(subject.runs(), 2);
+  // 11b: the retry admitted a DISTINCT attempt id (no reuse of the rejected one)
+  assert.equal(new Set(subject.attemptIds).size, 2);
+  const retryPrompt = subject.prompts[1];
+  assert.match(retryPrompt, /PREVIOUS ATTEMPT WAS REJECTED/);
+  assert.match(retryPrompt, /gateway schema validation rejected the previous output/);
+  // schema reminder is present so the model knows the required envelope
+  assert.match(retryPrompt, /schemaVersion is exactly "source-v2"/);
+  // the raw invalid output is NOT available from the gateway — do not fabricate one
+  assert.doesNotMatch(retryPrompt, /Your previous \(rejected\) output was/);
+});
+
+requiredTest("6 genuine infra failures propagate immediately with NO retry", async () => {
+  for (const infra of [
+    { code: "MODEL_RUN_CANCELLED", outcome: "CANCELLED" as const },
+    { code: "MODEL_ATTEMPT_EXISTS", outcome: "UNKNOWN" as const },
+    { code: "MODEL_CAPACITY_EXHAUSTED", outcome: "FAILED" as const },
+  ]) {
+    const subject = scriptedRig([
+      { outcome: infra.outcome, error: { code: infra.code, message: "infra failure" } },
+      { outcome: "SUCCEEDED", output: validChapter() },
+    ]);
+    await assert.rejects(
+      runResearcherChapter(input(), subject.execution),
+      (error: unknown) => {
+        assert.match((error as Error).message, new RegExp(infra.code));
+        return true;
+      },
+    );
+    // propagated on the first call — the success at index 1 was never reached
+    assert.equal(subject.runs(), 1, `${infra.code} must not retry`);
+  }
 });
 
 finishV25Tests().catch((error: unknown) => {

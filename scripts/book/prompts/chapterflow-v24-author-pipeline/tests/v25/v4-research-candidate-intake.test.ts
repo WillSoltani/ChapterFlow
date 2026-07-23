@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import type { BibliographyResult } from "../../src/agents/researcher-bibliography.js";
@@ -229,10 +230,18 @@ function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated"
   const stageCoordinator = createFileStageCoordinator(resolve(context.roots.stateRoot, "v25-runs"));
   const candidates = fakeCandidateStore();
   const operations: string[] = [];
+  const admittedAttemptIds: string[] = [];
   const modelRoutes: Array<{ profileId: string; workDir: string }> = [];
+  // Mutable crash injection: when set, the next model call for this operationId
+  // ADMITS its run-state attempt but returns an uncertain (unsettled) result
+  // WITHOUT finishing it — reproducing a SIGKILL/teardown mid-attempt, where the
+  // journal has an ATTEMPT_ADMITTED with no terminal record. Cleared after it
+  // fires so a subsequent resume runs the operation to completion.
+  const control: { crashOperation: string | null } = { crashOperation: null };
   const runner: ModelTaskRunner = {
     async run(request) {
       operations.push(request.context.operationId);
+      admittedAttemptIds.push(request.context.attemptId);
       modelRoutes.push({ profileId: request.profileId, workDir: request.context.workDir });
       const admittedAt = context.clock.now();
       const admitted = await runStore.admitAttempt({
@@ -245,6 +254,11 @@ function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated"
         staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
       });
       assert.equal(admitted.ok, true);
+      if (control.crashOperation === request.context.operationId) {
+        control.crashOperation = null;
+        // Admitted, never finished: the attempt stays ACTIVE/STALE forever.
+        return { attemptId: request.context.attemptId, outcome: "UNKNOWN", error: { code: "MODEL_EXECUTION_UNCERTAIN", message: "simulated hard kill" } };
+      }
       const chapterMatch = request.context.operationId.match(/research-ch(\d+)$/);
       const chapterNumber = Number(chapterMatch?.[1] ?? 1);
       const chapterTitle = chapterNumber === 1 ? "Defining Moments" : "Thinking in Moments";
@@ -294,7 +308,7 @@ function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated"
     chapterConcurrency: 2,
     signal: new AbortController().signal,
   };
-  return { port, request, runStore, candidates, operations, modelRoutes };
+  return { port, request, runStore, candidates, operations, modelRoutes, control, admittedAttemptIds };
 }
 
 requiredTest("1 intake admits real research attempts and stages exact 7 plus 2N seed inventory", async (context) => {
@@ -455,6 +469,83 @@ requiredTest("7 explicit new run identity creates fresh intake and cannot masque
   );
   assert.equal(subject.operations.length, 3);
   assert.equal(subject.candidates.stageCalls(), 1);
+});
+
+/** Read the durable attempt journal for a run and return one record per line. */
+function readAttemptJournal(context: TestContext, runId: string): Array<Record<string, unknown>> {
+  const path = resolve(context.roots.stateRoot, "v25-runs", "books", BOOK, "runs", runId, "attempts.jsonl");
+  return readFileSync(path, "utf8")
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line) as Record<string, unknown>);
+}
+
+/** Drive a run to the exact crash state observed in the 2026-07-23 canary: an
+ *  attempt admitted with no terminal record while the run stays RUNNING. */
+async function crashDuringChapter(context: TestContext, runId: string) {
+  const subject = rig(context);
+  subject.control.crashOperation = "research-ch01";
+  await assert.rejects(
+    subject.port.run({ ...subject.request, newRunId: runId, chapterConcurrency: 1 }),
+    /MODEL_EXECUTION_UNCERTAIN|MODEL_TASK_UNKNOWN|chapter research/,
+  );
+  const crashed = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(crashed.ok, true);
+  if (!crashed.ok) throw new Error("crashed run unreadable");
+  assert.equal(crashed.value.status, "RUNNING");
+  const unsettled = crashed.value.attempts.filter((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE");
+  assert.ok(unsettled.length >= 1, "crash must leave an admitted-but-unsettled attempt");
+  return subject;
+}
+
+requiredTest("8 crash-resume WITHOUT reconcile flag preserves the fail-closed RESEARCH_ATTEMPT_UNCERTAIN error verbatim", async (context) => {
+  const runId = "book-run-crash-noflag";
+  const subject = await crashDuringChapter(context, runId);
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: runId, chapterConcurrency: 1 }),
+    /RESEARCH_ATTEMPT_UNCERTAIN:unsettled model attempt blocks replay/,
+  );
+  // the run is still RUNNING and still unsettled — nothing was reconciled
+  const after = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(after.ok, true);
+  if (after.ok) {
+    assert.equal(after.value.status, "RUNNING");
+    assert.ok(after.value.attempts.some((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE"));
+  }
+});
+
+requiredTest("9 crash-resume WITH reconcile flag settles the unsettled attempt, re-runs with a fresh attempt id, and completes", async (context) => {
+  const runId = "book-run-crash-reconcile";
+  const subject = await crashDuringChapter(context, runId);
+  const attemptsBefore = subject.admittedAttemptIds.length;
+
+  const resumed = await subject.port.run({ ...subject.request, resumeRunId: runId, chapterConcurrency: 1, reconcileUnsettled: true });
+  assert.equal(resumed.resumed, true);
+  assert.equal(resumed.bookId, BOOK);
+
+  // the run finished COMPLETED and every attempt is now settled
+  const after = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(after.ok, true);
+  if (!after.ok) return;
+  assert.equal(after.value.status, "COMPLETED");
+  assert.equal(after.value.attempts.every((attempt) => attempt.status !== "ACTIVE" && attempt.status !== "STALE"), true);
+
+  // the unsettled attempt was settled ABANDONED with the reconcile marker
+  const abandoned = after.value.attempts.filter((attempt) => attempt.status === "ABANDONED");
+  assert.equal(abandoned.length, 1);
+  const journal = readAttemptJournal(context, runId);
+  const reconciled = journal.filter(
+    (record) => record.type === "ATTEMPT_FINISHED" && record.outcome === "ABANDONED" && record.detail === "RECONCILED_UNSETTLED_ON_RESUME",
+  );
+  assert.equal(reconciled.length, 1);
+  assert.equal(reconciled[0].attemptId, abandoned[0].admission.attemptId);
+
+  // the resumed generation re-ran research with FRESH, salted, non-colliding
+  // attempt ids (never re-admitting the crashed run's ids)
+  const resumeAdmitted = subject.admittedAttemptIds.slice(attemptsBefore);
+  assert.ok(resumeAdmitted.length >= 1, "resume must re-run at least the crashed chapter");
+  assert.ok(resumeAdmitted.every((id) => /-r\d+-/.test(id)), "resumed attempt ids must carry the resume salt");
+  assert.equal(new Set(subject.admittedAttemptIds).size, subject.admittedAttemptIds.length, "no attempt id was ever reused");
 });
 
 finishV25Tests().catch((error: unknown) => {
