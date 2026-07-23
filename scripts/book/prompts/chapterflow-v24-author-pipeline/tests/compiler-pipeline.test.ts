@@ -2135,6 +2135,21 @@ test("v23 example-pack validator rejects undealt fictional protagonist names", (
   );
 });
 
+test("v23 SEC35 ignores capitalized hyphenated prefixes (Mid-career) — not undealt names (Task 11r)", () => {
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Mid-career, ${dealt} has the card app open at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Self-control decides the order: ${dealt} makes the balance match the careful behavior already in place before money moves.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(
+    sec35.map((f) => f.message),
+    [],
+    `hyphenated prefixes must not register as undealt names:\n${sec35.map((f) => f.message).join("\n")}`,
+  );
+});
+
 test("v23 assembly preserves the final ChapterV21 schema while evidence/risk stay upstream", () => {
   const fx = compileFixture();
   const chapter = assembleChapterV21OrThrow({

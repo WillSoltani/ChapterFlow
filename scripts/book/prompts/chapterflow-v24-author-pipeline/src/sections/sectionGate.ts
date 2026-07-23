@@ -2185,7 +2185,16 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
       }
     }
     const slotAllowedNames = new Set([...(bp.sections.examples[i]?.allowedNames ?? []), ...bp.reservedVariety.allowedNames]);
-    const scenarioNames = extractNamesFromText(text(ex.scenario));
+    const scenarioText = text(ex.scenario);
+    // Task 11r: extractNamesFromText treats a hyphen as a word boundary, so
+    // capitalized hyphenated prefixes ("Mid-career", "Self-control") — and the
+    // halves of dealt hyphenated names ("Anne-Marie") — surface as standalone
+    // undealt "names". A token that only ever appears hyphen-attached in the
+    // scenario is not a protagonist name; drop it before the dealt-name check.
+    const scenarioNames = extractNamesFromText(scenarioText).filter((name) => {
+      const bare = new RegExp(`\\b${name}\\b(?![-\u2010\u2011])`, "u");
+      return bare.test(scenarioText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+    });
     const undealtNames = [...new Set(scenarioNames.filter((name) => !slotAllowedNames.has(name) && !sourceNames.has(name) && !sourceReferenceNames.has(name)))];
     if (undealtNames.length) {
       push("SEC35.example_dealt_name", "blocker", `example ${i + 1} uses undealt protagonist/name(s): ${undealtNames.join(", ")}; use only this slot's dealt fictional names`, `${root}/scenario`);
