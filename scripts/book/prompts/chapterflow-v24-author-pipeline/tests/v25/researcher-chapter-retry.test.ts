@@ -128,6 +128,40 @@ function canaryBadOutput(): unknown {
   };
 }
 
+/** Structurally-complete sidecar engineered to trip ONLY the advisory realness
+ *  signals that gate the research route (placeholder examples + repeated
+ *  boilerplate => SV2.realness_fabricated_sidecar) while passing every
+ *  blocker-level check, length floor, and meta-reference guard. This is the
+ *  canonical padded/fabricated Sonnet failure mode: the port's requireSourceV2
+ *  rejects it, so the retry-admission predicate MUST also reject it (retry)
+ *  rather than admitting it on attempt 1 and then hard-failing at the port. */
+function fabricatedButStructurallyComplete(): ChapterResearchResult {
+  const prefix = "ch01";
+  const sharedSummary = "Company A1 rolled out a bounded workplace ritual that made a routine transition visible to every new hire on day one there.";
+  const examples = Array.from({ length: 3 }, (_, i) => ({
+    id: `${prefix}.case.${i + 1}`,
+    label: `Case A${i + 1}`, // matches PLACEHOLDER_RE -> placeholder signal + shape
+    summary: sharedSummary,   // identical across 3 -> repeated boilerplate signal + shape
+    teachesWhat: "A small bounded intervention can create useful contrast without redesigning an entire experience.",
+    hardSpecifics: ["Company A1", "day one"],
+    realWorld: true,
+  }));
+  const facts = Array.from({ length: 9 }, (_, i) => ({
+    id: `${prefix}.fact.${i + 1}`,
+    claim: `Company A1 uses a bounded ritual number ${i + 1} to make a workplace transition observable to new staff members.`,
+    becauseMechanism: `Because a visible ritual creates contrast, staff can later retrieve transition ${i + 1} more accurately than routine.`,
+    commonError: `Only total duration determines whether ritual ${i + 1} will matter to a new hire later on.`,
+    errorIsWhy: `Specific contrast and interpretation, not duration alone, explain why ritual ${i + 1} is remembered.`,
+  }));
+  const longNotes = Array.from({ length: 95 }, (_, i) => `ritual-${i + 1} contrast-mechanism meaning-choice retrieval-memory.`).join(" ").slice(0, 2200);
+  return {
+    ...validChapter(),
+    namedExamples: examples,
+    testableFacts: facts,
+    paraphraseNotes: longNotes,
+  };
+}
+
 /** A valid-shaped output that trips the meta-reference content guard. */
 function metaReferenceOutput(): ChapterResearchResult {
   return {
@@ -215,6 +249,19 @@ requiredTest("3 persistently invalid output fails closed after MAX_ATTEMPTS(3) w
   );
   // exactly MAX_ATTEMPTS model calls — never a fourth
   assert.equal(subject.calls(), 3);
+});
+
+requiredTest("4 fabricated-but-structurally-complete sidecar is retried (not admitted on attempt 1) so it never reaches the port's hard reject", async () => {
+  const subject = rig([fabricatedButStructurallyComplete(), validChapter()]);
+  const result = await runResearcherChapter(input(), subject.execution);
+
+  assert.equal(result.schemaVersion, "source-v2");
+  // The bad output MUST drive a retry — admitting it on attempt 1 (calls === 1)
+  // is the exact defect: the port's requireSourceV2 would then RESEARCH_SOURCE_V2_INVALID-abort.
+  assert.equal(subject.calls(), 2);
+  const retryPrompt = subject.prompts[1];
+  assert.match(retryPrompt, /PREVIOUS ATTEMPT WAS REJECTED/);
+  assert.match(retryPrompt, /SV2\.realness_fabricated_sidecar/);
 });
 
 finishV25Tests().catch((error: unknown) => {

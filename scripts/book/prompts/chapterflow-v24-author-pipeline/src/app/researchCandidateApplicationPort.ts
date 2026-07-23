@@ -23,7 +23,7 @@ import { researchBook } from "../researcher.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
-import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
+import { evaluateSourceV2Integrity, isResearchRouteBlockingFinding } from "../source/sourceIntegrity.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 import type { ModelCallerExecution, ModelTaskRunner } from "./modelTaskRunner.js";
 
@@ -210,9 +210,7 @@ function requireSourceV2(chapter: ChapterResearchResult): ChapterResearchResult 
     chapterNumber: chapter.chapterNumber,
     chapterTitle: chapter.chapterTitle,
   });
-  const routeBlocking = decision.findings.filter((finding) => (
-    finding.severity === "blocker" || finding.checkId === "SV2.realness_fabricated_sidecar"
-  ));
+  const routeBlocking = decision.findings.filter(isResearchRouteBlockingFinding);
   if (routeBlocking.length > 0) {
     const blockers = routeBlocking
       .map((finding) => `${finding.checkId}:${finding.message}`)

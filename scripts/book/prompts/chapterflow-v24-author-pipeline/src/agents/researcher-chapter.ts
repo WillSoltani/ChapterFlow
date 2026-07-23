@@ -19,7 +19,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
-import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
+import { evaluateSourceV2Integrity, isResearchRouteBlockingFinding } from "../source/sourceIntegrity.js";
 import type { NamedFramework, TestableFact } from "../source/sidecarSchema.js";
 import { BibliographyResult } from "./researcher-bibliography.js";
 
@@ -217,8 +217,13 @@ function collectChapterResearchProblems(r: ChapterResearchResult, input: Chapter
     chapterNumber: input.chapter.number,
     chapterTitle: input.chapter.title,
   });
+  // Admission MUST mirror the port's route-blocking decision (requireSourceV2),
+  // not a subset of it — otherwise a structurally-complete but fabricated
+  // sidecar (SV2.realness_fabricated_sidecar, advisory severity) is admitted on
+  // attempt 1 with zero retries and then hard-rejected by the port, aborting the
+  // whole research stage. Sharing isResearchRouteBlockingFinding keeps them in lockstep.
   for (const finding of sourceV2.findings) {
-    if (finding.severity === "blocker") problems.push(`${finding.checkId}: ${finding.message}`);
+    if (isResearchRouteBlockingFinding(finding)) problems.push(`${finding.checkId}: ${finding.message}`);
   }
 
   // Meta-reference checks across every text field.
