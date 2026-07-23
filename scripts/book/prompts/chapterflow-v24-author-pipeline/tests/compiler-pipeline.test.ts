@@ -2151,6 +2151,17 @@ test("v23 example-pack validator rejects undealt fictional protagonist names", (
   );
 });
 
+test("v23 SEC35 ignores sentence-initial gerunds (Copying, Balancing) — not undealt names (Task 11v)", () => {
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Copying the worn ledger by hand, ${dealt} traces each line before the card app opens. Balancing the numbers first, ${dealt} decides whether to pay a small amount before the balance becomes visible, and makes the total match the careful behavior already in place.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(sec35.map((f) => f.message), [], sec35.map((f) => f.message).join("\n"));
+});
+
 test("v23 SEC35 ignores sentence-initial temporal adverbs (Later, Meanwhile) — not undealt names (Task 11u)", () => {
   const fx = compileFixture();
   const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;

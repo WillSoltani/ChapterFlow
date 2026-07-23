@@ -2199,9 +2199,19 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     // halves of dealt hyphenated names ("Anne-Marie") — surface as standalone
     // undealt "names". A token that only ever appears hyphen-attached in the
     // scenario is not a protagonist name; drop it before the dealt-name check.
+    const asciiScenario = scenarioText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     const scenarioNames = extractNamesFromText(scenarioText).filter((name) => {
       const bare = new RegExp(`\\b${name}\\b(?![-\u2010\u2011])`, "u");
-      return bare.test(scenarioText.normalize("NFD").replace(/[\u0300-\u036f]/g, ""));
+      if (!bare.test(asciiScenario)) return false;
+      // Task 11v: a capitalized -ing token that only opens sentences is a
+      // fronted gerund ("Copying the ledger, …"), not a protagonist name.
+      // Mid-sentence -ing surnames (Fleming) keep firing.
+      if (/ing$/.test(name)) {
+        const total = (asciiScenario.match(new RegExp(`\\b${name}\\b`, "g")) ?? []).length;
+        const atStarts = (asciiScenario.match(new RegExp(`(?:^|[.!?]\\s+)${name}\\b`, "gm")) ?? []).length;
+        if (total > 0 && total === atStarts) return false;
+      }
+      return true;
     });
     const undealtNames = [...new Set(scenarioNames.filter((name) => !slotAllowedNames.has(name) && !sourceNames.has(name) && !sourceReferenceNames.has(name)))];
     if (undealtNames.length) {
