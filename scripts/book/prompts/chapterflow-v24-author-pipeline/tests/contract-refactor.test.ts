@@ -147,6 +147,27 @@ test("universal invariants are present for all four kinds", () => {
   assert.match(render("action-pack"), /Output ActionPackV1 JSON only\./);
 });
 
+test("summary craft brief pre-states the SEC16 memorable-line hardSpecifics rule", () => {
+  // Finding 16: the summary contract told the model memorable lines must be 8-14 words
+  // and portable, but never that SEC16 validates the top-3 selected lines against their
+  // tier's cited anchors — so a line citing a case with 0/2 of its hardSpecifics only
+  // surfaced via retry cards. The sibling anchor-specifics rules (SEC13/SEC14 :116,
+  // SEC33 :125, SEC73/SEC74 :146) all pre-state their "two hardSpecifics verbatim; the
+  // validator enforces this" contract; the memorable-line bullet must too.
+  const md = renderTask("money-book", "summary-pack");
+  // Names the enforcing check and its actual rule (two hardSpecifics verbatim IN THE LINE).
+  assert.match(md, /\(SEC16\)/, "summary craft brief must name the SEC16 memorable-line check");
+  assert.match(md, /at least two of them verbatim \(SEC16\)/, "SEC16 rule states the two-verbatim-hardSpecifics requirement");
+  // Sibling style: every design/craft rule that names a gate ends by naming the validator.
+  assert.match(md, /verbatim \(SEC16\)[\s\S]*?the validator enforces this/, "SEC16 memorable-line rule names the validator");
+
+  // The rule is summary-pack-specific — SEC16 governs the summary breakdown's memorable
+  // lines only, so it must not leak into the other three section contracts.
+  for (const kind of ["example-pack", "learning-pack", "action-pack"] as const) {
+    assert.doesNotMatch(renderTask("money-book", kind), /\(SEC16\)/, `${kind}: SEC16 memorable-line rule is summary-only`);
+  }
+});
+
 test("the VOICE / LIVED-MOMENTS paragraph survives verbatim in the summary contract", () => {
   const md = renderTask("money-book", "summary-pack");
   assert.ok(md.includes(VOICE_PARAGRAPH_SNAPSHOT), "summary contract must contain the exact VOICE paragraph");
