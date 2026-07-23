@@ -43,7 +43,6 @@ test("the two durable application tables explicitly synthesize AWS-managed KMS e
       tableName: "ChapterFlowInsights-dev",
       indexes: [
         "eventDate-eventType-index",
-        "plan-updatedAt-index",
         "plan-updatedAt-index-v2",
       ],
     },

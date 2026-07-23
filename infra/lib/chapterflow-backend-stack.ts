@@ -230,20 +230,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
-    // ProjectionType.ALL reverted to match the LIVE deployed table (no-op diff
-    // vs the currently-deployed GSI). Commit 693ad9908 tried to switch this index
-    // to INCLUDE in place; CloudFormation rejected it at deploy (a GSI projection
-    // change is a delete+recreate, and DynamoDB permits only one GSI mutation per
-    // table update) and the stack rolled back. Stage 1 (this PR) instead adds
-    // plan-updatedAt-index-v2 (below) with the INCLUDE projection and switches the
-    // readers to it; this original index is scheduled for DELETION in stage 3
-    // (its own deploy). See docs/architecture/adr-analytics-gsi-projection.md.
-    this.analyticsTable.addGlobalSecondaryIndex({
-      indexName: "plan-updatedAt-index",
-      partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
-      sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
-    });
+    // plan-updatedAt-index (original, ALL) was DELETED in WS6-008 stage 3 — all
+    // readers query plan-updatedAt-index-v2. See
+    // docs/architecture/adr-analytics-gsi-projection.md.
 
     // INCLUDE only the attributes the admin users/search reader consumes
     // (formatUser + readTime in app/app/api/book/admin/users/search/route.ts).

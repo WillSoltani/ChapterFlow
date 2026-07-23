@@ -52,12 +52,13 @@ function analyticsIndexesByName(): Record<
 // staged deletions of the originals. See
 // docs/architecture/adr-analytics-gsi-projection.md.
 
-test("analytics original plan-updatedAt-index stays ALL (no-op vs live table)", () => {
+test("analytics original plan-updatedAt-index is deleted (WS6-008 stage 3 — readers on v2)", () => {
   const indexes = analyticsIndexesByName();
-  const projection = indexes["plan-updatedAt-index"];
-  assert.ok(projection, "plan-updatedAt-index must exist");
-  assert.equal(projection.ProjectionType, "ALL");
-  assert.equal(projection.NonKeyAttributes, undefined);
+  assert.equal(
+    indexes["plan-updatedAt-index"],
+    undefined,
+    "stage 3 removed the original index; readers query plan-updatedAt-index-v2",
+  );
 });
 
 test("analytics contextKey-occurredAt-index is deleted (WS6-008 stage 2 — write-only, zero readers)", () => {

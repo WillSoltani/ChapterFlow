@@ -116,7 +116,7 @@ beats re-adding it as `KEYS_ONLY`. One GSI mutation. The same deploy re-enabled
 per-function reserved concurrency (`lambdaConcurrencyEnforced: true`) after the
 account's Lambda concurrent-executions quota increase to 1000 was approved.
 
-**Stage 3 — follow-up deploy (one GSI delete):**
+**Stage 3 — follow-up deploy (one GSI delete): ✅ EXECUTED 2026-07-22.**
 Delete the original `plan-updatedAt-index`. By this point every reader has been
 serving off `plan-updatedAt-index-v2` since stage 1, so the original `ALL` index
 is dead weight. One GSI mutation; nothing else touched.
