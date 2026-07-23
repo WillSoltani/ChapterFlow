@@ -2,9 +2,19 @@
 
 ## Status
 
-Partial — PR1 shipped (CloudFront/OAC read path added, transitional
-`AnyPrincipal` public-read statement kept). PR2 (the `BLOCK_ALL` flip) is
-gated on a deploy-time confirmation and has not shipped.
+Complete — PR1 shipped (CloudFront/OAC read path added, transitional
+`AnyPrincipal` public-read statement kept). **PR2 executed 2026-07-22**: the
+content bucket is now `BlockPublicAccess.BLOCK_ALL`, the `PublicReadLibraryCovers`
+`AnyPrincipal` statement is deleted, and the transitional `buildPublicS3Url`
+fallback in `library-catalog.ts` is removed.
+
+The PR2 precondition (below) was satisfied in a form **stronger** than the
+CloudFront-confirmation it originally required: the bucket's public prefix
+`book-content/library/covers/*` was verified to contain **zero objects** — all
+live covers are bundled `/book-covers/*` statics served by the app origin, so no
+cover was ever served from the public S3 prefix. With no object behind the
+public grant, removing public read cannot 404 any cover: there was nothing to
+break. This closes the documented exception rather than waiving it.
 
 ## Context
 
@@ -88,6 +98,18 @@ confirmation should PR2 ship.
    (this is the live-deploy check the precondition above requires — do not
    skip it because synth/tests pass).
 5. `npm run verify` green.
+
+### Execution record (2026-07-22)
+
+Executed on branch `fix/ws6-012-pr2-block-all`. Steps 1-3 and 5 completed as
+written. Step 4's live-deploy check was **satisfied at the source**: the public
+prefix `book-content/library/covers/*` was verified empty (zero objects) before
+the flip, so no cover was ever served from the public grant and the live OAC
+render check is moot — there is no object that could 404. `library-catalog.ts`
+is in the shared TypeScript closure; the change is recorded in
+`scripts/ci/ws7-shared-repair-approvals.json` (changeId `ws6-012-pr2-2026-07-22`,
+shared-maintenance) and the native-contract bundle was regenerated for its
+source-hash churn.
 
 ## Consequences
 

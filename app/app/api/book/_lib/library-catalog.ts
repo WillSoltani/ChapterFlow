@@ -2,7 +2,6 @@ import "server-only";
 
 import { cache } from "react";
 
-import { REGION } from "@/app/app/api/_lib/aws";
 import type {
   BookDifficulty,
   LibraryBookDetail,
@@ -11,7 +10,7 @@ import type {
 } from "@/app/book/_lib/library-data";
 import { boilerplateSynopsis } from "@/lib/library-catalog-stub";
 import { logger } from "@/lib/logging/logger";
-import { buildCoverUrl, encodeS3Key } from "./app-base-url-core";
+import { buildCoverUrl } from "./app-base-url-core";
 import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
 import {
@@ -26,16 +25,6 @@ import { readJsonFromS3 } from "./storage";
 import type { BookCatalogItem } from "./types";
 
 const LIBRARY_CATALOG_KEY = "book-content/library/catalog.json";
-
-// TRANSITIONAL (WS6-012 PR1): direct public S3 cover URL, kept only as the
-// fallback for internal callers that don't render covers and so don't resolve an
-// app base URL (pair-repo chapter-count map, health probe). Cover-rendering
-// routes pass `appBaseUrl`, minting the CloudFront/app-origin URL via
-// buildCoverUrl. Removed in PR2 once BLOCK_ALL is enforced and every cover flows
-// through CloudFront.
-function buildPublicS3Url(bucket: string, key: string): string {
-  return `https://${bucket}.s3.${REGION}.amazonaws.com/${encodeS3Key(key)}`;
-}
 
 function chapterCode(number: number): string {
   return `CH.${String(Math.max(1, Math.floor(number))).padStart(2, "0")}`;
@@ -66,10 +55,9 @@ function buildLibraryCatalogBook(params: {
   extra?: LibraryCatalogIndexBook | undefined;
   chapterCount?: number | undefined;
   estimatedMinutes?: number | undefined;
-  contentBucket: string;
   appBaseUrl?: string | undefined;
 }): LibraryCatalogBook {
-  const { catalog, extra, chapterCount, estimatedMinutes, contentBucket, appBaseUrl } = params;
+  const { catalog, extra, chapterCount, estimatedMinutes, appBaseUrl } = params;
   const resolvedChapterCount =
     extra?.chapterCount && extra.chapterCount > 0 ? extra.chapterCount : chapterCount ?? 0;
   const resolvedEstimatedMinutes =
@@ -81,11 +69,14 @@ function buildLibraryCatalogBook(params: {
     title: catalog.title,
     author: catalog.author,
     icon: extra?.icon || catalog.cover?.emoji || "📘",
-    coverImage: extra?.coverAssetKey
-      ? appBaseUrl
+    // Covers are served exclusively through CloudFront/app-origin (WS6-012 PR2:
+    // the content bucket is BLOCK_ALL with no public read). Callers that don't
+    // resolve an app base URL (pair-repo chapter-count map, health probe) don't
+    // render covers, so coverImage is simply omitted for them.
+    coverImage:
+      extra?.coverAssetKey && appBaseUrl
         ? buildCoverUrl(appBaseUrl, extra.coverAssetKey)
-        : buildPublicS3Url(contentBucket, extra.coverAssetKey)
-      : undefined,
+        : undefined,
     category: catalog.categories[0] ?? "General",
     categories: catalog.categories,
     difficulty: safeDifficulty(extra?.difficulty, catalog.variantFamily),
@@ -144,7 +135,6 @@ export async function listPublishedLibraryCatalog(params: {
       buildLibraryCatalogBook({
         catalog: item,
         extra: presentationIndex.get(item.bookId),
-        contentBucket: params.contentBucket,
         appBaseUrl: params.appBaseUrl,
       })
     )
@@ -183,7 +173,6 @@ const loadPublishedLibraryBookDetail = cache(
         (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
         0
       ),
-      contentBucket,
       appBaseUrl: appBaseUrl || undefined,
     });
 
