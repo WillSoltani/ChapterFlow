@@ -60,12 +60,13 @@ test("analytics original plan-updatedAt-index stays ALL (no-op vs live table)", 
   assert.equal(projection.NonKeyAttributes, undefined);
 });
 
-test("analytics original contextKey-occurredAt-index stays ALL (no-op vs live table)", () => {
+test("analytics contextKey-occurredAt-index is deleted (WS6-008 stage 2 — write-only, zero readers)", () => {
   const indexes = analyticsIndexesByName();
-  const projection = indexes["contextKey-occurredAt-index"];
-  assert.ok(projection, "contextKey-occurredAt-index must exist");
-  assert.equal(projection.ProjectionType, "ALL");
-  assert.equal(projection.NonKeyAttributes, undefined);
+  assert.equal(
+    indexes["contextKey-occurredAt-index"],
+    undefined,
+    "stage 2 removed this index; it must not reappear",
+  );
 });
 
 test("analytics eventDate-eventType-index deliberately projects ALL", () => {

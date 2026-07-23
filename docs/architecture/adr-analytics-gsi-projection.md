@@ -110,9 +110,11 @@ delete; `cdk diff` before each follow-up must show exactly one GSI operation.
   deploys only after the infra job's CFN update completes, and CFN does not
   complete until the new GSI reaches `ACTIVE` (backfilled).
 
-**Stage 2 — follow-up deploy (one GSI delete):**
-Delete `contextKey-occurredAt-index`. It has zero readers, so outright deletion
-beats re-adding it as `KEYS_ONLY`. One GSI mutation; nothing else touched.
+**Stage 2 — follow-up deploy (one GSI delete): ✅ EXECUTED 2026-07-22.**
+Deleted `contextKey-occurredAt-index`. It has zero readers, so outright deletion
+beats re-adding it as `KEYS_ONLY`. One GSI mutation. The same deploy re-enabled
+per-function reserved concurrency (`lambdaConcurrencyEnforced: true`) after the
+account's Lambda concurrent-executions quota increase to 1000 was approved.
 
 **Stage 3 — follow-up deploy (one GSI delete):**
 Delete the original `plan-updatedAt-index`. By this point every reader has been
