@@ -99,6 +99,13 @@ export type ResearchBookOptions = {
   /** If true, re-research a chapter even if its source file already exists.
    *  Default false (resume-aware). */
   forceRefresh?: boolean;
+  /** Optional: validate a durable/cached chapter sidecar before REUSING it on a
+   *  resume. Returns false to reject the cached chapter and re-research it — e.g.
+   *  a durable sidecar that still parses and hash-matches its manifest entry but
+   *  no longer passes the caller's source-v2 route validator. Never expected to
+   *  throw; a throwing validator is treated as reject (re-research), never a
+   *  crash. Default: accept every cached chapter. */
+  validateReusedChapter?: (chapter: ChapterResearchResult) => boolean;
   /** Test/tooling hook: override the run root. Defaults to repo .chapterflow/runs. */
   runsRoot?: string;
   /** Test/tooling hook: override the state root. Defaults to pipeline state/. */
@@ -279,6 +286,7 @@ export async function researchBook(
       clock,
       leaseTtlMs,
       forceRefresh: options.forceRefresh ?? false,
+      validateReusedChapter: options.validateReusedChapter,
       runChapter: deps.runChapter,
       log,
     },
@@ -396,6 +404,7 @@ async function researchChaptersInParallel(
     clock: () => Date;
     leaseTtlMs: number;
     forceRefresh: boolean;
+    validateReusedChapter?: (chapter: ChapterResearchResult) => boolean;
     runChapter: ResearcherDeps["runChapter"];
     log: (m: string) => void;
   },
@@ -412,11 +421,18 @@ async function researchChaptersInParallel(
       const chapter = chapterList[myIndex];
       const numStr = chapterKey(chapter.number);
 
-      const cached = !opts.forceRefresh ? loadSucceededChapter(opts.bundlePath, opts.manifest, chapter.number) : null;
+      const cachedRaw = !opts.forceRefresh ? loadSucceededChapter(opts.bundlePath, opts.manifest, chapter.number) : null;
+      const cached = cachedRaw !== null && acceptReusedChapter(opts.validateReusedChapter, cachedRaw) ? cachedRaw : null;
       if (cached) {
         opts.log(`  ch${numStr} manifest-complete — skipping`);
         results[myIndex] = cached;
         continue;
+      }
+      if (cachedRaw !== null && cached === null) {
+        // Durable sidecar exists and hash-matches its manifest entry but failed
+        // the caller's reuse validator (e.g. no longer source-v2 route-valid) —
+        // do NOT reuse it; fall through to re-research this chapter.
+        opts.log(`  ch${numStr} durable sidecar failed reuse validation — re-researching`);
       }
 
       const claim = acquireChapterClaim({
@@ -669,6 +685,22 @@ function updateManifest(
       return manifest;
     },
   });
+}
+
+/** Apply the optional reuse validator to a durable/cached chapter. Absent
+ *  validator accepts unconditionally (legacy behavior). A throwing validator is
+ *  treated as reject — a corrupt cached sidecar must fall back to re-research,
+ *  never crash the run. */
+function acceptReusedChapter(
+  validate: ((chapter: ChapterResearchResult) => boolean) | undefined,
+  chapter: ChapterResearchResult,
+): boolean {
+  if (!validate) return true;
+  try {
+    return validate(chapter) === true;
+  } catch {
+    return false;
+  }
 }
 
 function loadSucceededChapter(runDir: string, manifest: ResearchRunManifest, chapterNumber: number): ChapterResearchResult | null {

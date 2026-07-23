@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import type { BibliographyResult } from "../../src/agents/researcher-bibliography.js";
@@ -237,7 +237,12 @@ function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated"
   // WITHOUT finishing it — reproducing a SIGKILL/teardown mid-attempt, where the
   // journal has an ATTEMPT_ADMITTED with no terminal record. Cleared after it
   // fires so a subsequent resume runs the operation to completion.
-  const control: { crashOperation: string | null } = { crashOperation: null };
+  // `failChapters`: chapters whose model call returns a persistently source-v2-
+  // INVALID output (empty testableFacts). runResearcherChapter exhausts its
+  // retries and the chapter fails with every attempt SETTLED, so the control run
+  // goes TERMINAL FAILED (finding 7's shape) rather than stuck RUNNING. Cleared
+  // by the test before a recovery resume so the chapter researches cleanly.
+  const control: { crashOperation: string | null; failChapters: Set<number> } = { crashOperation: null, failChapters: new Set() };
   const runner: ModelTaskRunner = {
     async run(request) {
       operations.push(request.context.operationId);
@@ -264,13 +269,15 @@ function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated"
       const chapterTitle = chapterNumber === 1 ? "Defining Moments" : "Thinking in Moments";
       const output = request.context.operationId === "research-bibliography"
         ? bibliography()
-        : quality === "malformed"
+        : control.failChapters.has(chapterNumber)
           ? { ...chapter(chapterNumber, chapterTitle), testableFacts: [] }
-          : quality === "fabricated"
-            ? fabricatedChapter(chapterNumber, chapterTitle)
-            : quality === "advisory-canary"
-              ? advisoryCanaryChapter(chapterNumber, chapterTitle)
-              : chapter(chapterNumber, chapterTitle);
+          : quality === "malformed"
+            ? { ...chapter(chapterNumber, chapterTitle), testableFacts: [] }
+            : quality === "fabricated"
+              ? fabricatedChapter(chapterNumber, chapterTitle)
+              : quality === "advisory-canary"
+                ? advisoryCanaryChapter(chapterNumber, chapterTitle)
+                : chapter(chapterNumber, chapterTitle);
       const finished = await runStore.finishAttempt({
         bookId: request.context.bookId,
         runId: request.context.runId,
@@ -546,6 +553,130 @@ requiredTest("9 crash-resume WITH reconcile flag settles the unsettled attempt, 
   assert.ok(resumeAdmitted.length >= 1, "resume must re-run at least the crashed chapter");
   assert.ok(resumeAdmitted.every((id) => /-r\d+-/.test(id)), "resumed attempt ids must carry the resume salt");
   assert.equal(new Set(subject.admittedAttemptIds).size, subject.admittedAttemptIds.length, "no attempt id was ever reused");
+});
+
+/** Drive a book-run to finding 7's exact terminal state: one chapter exhausts
+ *  its retries (every attempt settled), so the control run goes TERMINAL FAILED
+ *  while the OTHER chapter's durable sidecars survive on disk under the shared
+ *  legacy research run. */
+async function failDuringChapter(context: TestContext, runId: string) {
+  const subject = rig(context);
+  subject.control.failChapters = new Set([2]); // ch02 persistently source-v2-invalid
+  await assert.rejects(
+    subject.port.run({ ...subject.request, newRunId: runId, chapterConcurrency: 1 }),
+    /chapter research invalid|SV2|source-v2/i,
+  );
+  const failed = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(failed.ok, true);
+  if (!failed.ok) throw new Error("failed run unreadable");
+  assert.equal(failed.value.status, "FAILED");
+  // ch01's durable sidecar survived; ch02 never wrote one
+  const dir = legacyResearchRunDir(subject);
+  assert.ok(readFileSync(resolve(dir, "sidecars", "source", "ch01.source.json"), "utf8"));
+  return subject;
+}
+
+/** Locate the single shared legacy research-run directory produced under the
+ *  v25 root (research-runs/<bookId>/<runId>). */
+function legacyResearchRunDir(subject: ReturnType<typeof rig>): string {
+  const bookRunsRoot = resolve(subject.request.v25Root, "research-runs", BOOK);
+  const runIds = readdirSync(bookRunsRoot);
+  assert.equal(runIds.length, 1, "exactly one legacy research run should exist");
+  return resolve(bookRunsRoot, runIds[0]);
+}
+
+requiredTest("10 resume of a TERMINAL-FAILED research run WITHOUT the reconcile flag fails closed with RESEARCH_RUN_TERMINAL verbatim", async (context) => {
+  const runId = "book-run-terminal-noflag";
+  const subject = await failDuringChapter(context, runId);
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: runId, chapterConcurrency: 1 }),
+    /RESEARCH_RUN_TERMINAL:FAILED/,
+  );
+  const after = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(after.ok, true);
+  if (after.ok) assert.equal(after.value.status, "FAILED");
+});
+
+requiredTest("11 resume of a TERMINAL-FAILED research run WITH the reconcile flag opens a successor that reuses the durable K sidecars and re-researches only the missing N-K", async (context) => {
+  const runId = "book-run-terminal-recover";
+  const subject = await failDuringChapter(context, runId);
+  subject.control.failChapters = new Set(); // the transient condition clears
+  const opsBefore = subject.operations.length;
+
+  const recovered = await subject.port.run({ ...subject.request, resumeRunId: runId, chapterConcurrency: 1, reconcileUnsettled: true });
+  assert.equal(recovered.resumed, true);
+  assert.equal(recovered.bookId, BOOK);
+  // a SUCCESSOR control run — a fresh intake id, never the failed predecessor
+  assert.notEqual(recovered.intakeRunId, runId);
+
+  // reuse: model-call count == N-K. ch01 reused durable (no model call), ch02 re-run.
+  const resumeOps = subject.operations.slice(opsBefore).sort();
+  assert.deepEqual(resumeOps, ["research-ch02"]);
+  assert.equal(resumeOps.includes("research-bibliography"), false);
+  assert.equal(resumeOps.includes("research-ch01"), false);
+
+  // the successor completed and staged the full 7 + 2N seed
+  const successor = await subject.runStore.readRun(BOOK, recovered.intakeRunId, context.clock.now());
+  assert.equal(successor.ok, true);
+  if (successor.ok) assert.equal(successor.value.status, "COMPLETED");
+  const snapshot = subject.candidates.snapshot();
+  assert.ok(snapshot);
+  assert.equal(snapshot.files.length, 11);
+
+  // provenance is durable in the seed's research-run manifest
+  const manifestFile = snapshot.files.find((file) => file.logicalPath === "inputs/research/research-run.manifest.json");
+  assert.ok(manifestFile);
+  const manifest = JSON.parse(Buffer.from(manifestFile.bytes).toString("utf8")) as {
+    events: Array<{ type: string; data?: Record<string, unknown> }>;
+  };
+  const provenance = manifest.events.find((event) => event.type === "run.successor_recovery");
+  assert.ok(provenance, "successor provenance must be recorded in the research-run manifest");
+  assert.equal(provenance.data?.predecessorControlRunId, runId);
+  assert.equal(provenance.data?.successorControlRunId, recovered.intakeRunId);
+  assert.deepEqual(provenance.data?.reusedChapters, [1]);
+  assert.deepEqual(provenance.data?.reResearchedChapters, [2]);
+
+  // the predecessor stays TERMINAL FAILED — never rewritten
+  const predecessor = await subject.runStore.readRun(BOOK, runId, context.clock.now());
+  assert.equal(predecessor.ok, true);
+  if (predecessor.ok) assert.equal(predecessor.value.status, "FAILED");
+});
+
+requiredTest("12 a durable sidecar that still parses and hash-matches but no longer passes source-v2 is re-researched on recovery, never reused blindly", async (context) => {
+  const runId = "book-run-terminal-corrupt-reuse";
+  const subject = await failDuringChapter(context, runId);
+  subject.control.failChapters = new Set();
+
+  // Corrupt ch01's durable sidecar in place: still parses and (after patching the
+  // manifest output hashes) hash-matches its entry, but FAILS the source-v2 route
+  // validator. The reuse gate — not the hash check — must force its re-research.
+  const dir = legacyResearchRunDir(subject);
+  const jsonPath = resolve(dir, "sidecars", "source", "ch01.source.json");
+  const txtPath = resolve(dir, "sidecars", "source", "ch01.source.txt");
+  const corrupt = JSON.parse(readFileSync(jsonPath, "utf8"));
+  corrupt.testableFacts = []; // trips SV2 route-blocking (testable_facts_floor)
+  const corruptJson = `${JSON.stringify(corrupt, null, 2)}\n`;
+  writeFileSync(jsonPath, corruptJson);
+  const corruptTxt = `${readFileSync(txtPath, "utf8")}\ncorrupted-marker`;
+  writeFileSync(txtPath, corruptTxt);
+  const manifestPath = resolve(dir, "research-run.manifest.json");
+  const manifest = JSON.parse(readFileSync(manifestPath, "utf8")) as {
+    chapters: Record<string, { outputJsonHash?: string; outputTextHash?: string }>;
+  };
+  manifest.chapters["01"].outputJsonHash = createHash("sha256").update(corruptJson).digest("hex");
+  manifest.chapters["01"].outputTextHash = createHash("sha256").update(corruptTxt).digest("hex");
+  writeFileSync(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`);
+
+  const opsBefore = subject.operations.length;
+  const recovered = await subject.port.run({ ...subject.request, resumeRunId: runId, chapterConcurrency: 1, reconcileUnsettled: true });
+  assert.equal(recovered.resumed, true);
+
+  // BOTH chapters re-researched: ch01 rejected on reuse validation, ch02 missing
+  const resumeOps = subject.operations.slice(opsBefore).sort();
+  assert.deepEqual(resumeOps, ["research-ch01", "research-ch02"]);
+  const successor = await subject.runStore.readRun(BOOK, recovered.intakeRunId, context.clock.now());
+  assert.equal(successor.ok, true);
+  if (successor.ok) assert.equal(successor.value.status, "COMPLETED");
 });
 
 finishV25Tests().catch((error: unknown) => {

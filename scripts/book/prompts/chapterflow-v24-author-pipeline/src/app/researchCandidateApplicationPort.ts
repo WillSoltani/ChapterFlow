@@ -18,7 +18,12 @@ import type {
   CandidateStore,
 } from "../books/candidateTypes.js";
 import type { CandidateIdentity, ModelTaskContext, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
-import { RESEARCH_RUN_MANIFEST_FILE } from "../lib/researchRunManifest.js";
+import {
+  DEFAULT_RESEARCH_LEASE_TTL_MS,
+  RESEARCH_RUN_MANIFEST_FILE,
+  appendResearchEvent,
+  withManifestUpdateLock,
+} from "../lib/researchRunManifest.js";
 import { researchBook } from "../researcher.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -234,6 +239,22 @@ function operationExecution(
   });
 }
 
+/** Non-throwing mirror of {@link requireSourceV2}: true iff the chapter has no
+ *  research-route-blocking source-v2 finding. Used as the durable-sidecar reuse
+ *  gate on recovery so a cached sidecar that no longer passes the source-v2
+ *  route validator is re-researched rather than reused (or crashing the run). */
+function chapterRouteValid(chapter: ChapterResearchResult): boolean {
+  try {
+    const decision = evaluateSourceV2Integrity(chapter, {
+      chapterNumber: chapter.chapterNumber,
+      chapterTitle: chapter.chapterTitle,
+    });
+    return !decision.findings.some(isResearchRouteBlockingFinding);
+  } catch {
+    return false;
+  }
+}
+
 function requireSourceV2(chapter: ChapterResearchResult): ChapterResearchResult {
   const decision = evaluateSourceV2Integrity(chapter, {
     chapterNumber: chapter.chapterNumber,
@@ -415,6 +436,58 @@ export class ResearchCandidateApplicationPort {
     }
   }
 
+  /** Record successor-recovery provenance in BOTH the shared research-run
+   *  manifest (durable, flows into the seed candidate) and the book-run event
+   *  log (operator-visible console line). The reused-chapter list is derived
+   *  from the successor run's own attempts: a chapter that admitted a
+   *  `research-chNN` attempt in this run was re-researched; every other expected
+   *  chapter was reused from the predecessor's durable sidecars. The manifest
+   *  append is idempotent per successor id, so a re-materialized seed on a later
+   *  resume produces byte-identical manifest bytes. */
+  #recordSuccessorProvenance(args: {
+    bundlePath: string;
+    researchRunId: string;
+    predecessorRunId: string;
+    successorRunId: string;
+    attempts: readonly AttemptSnapshot[];
+    chapters: readonly number[];
+  }): void {
+    const reResearched = new Set<number>();
+    for (const attempt of args.attempts) {
+      const match = attempt.admission.operationId.match(/^research-ch(\d+)$/);
+      if (match) reResearched.add(Number(match[1]));
+    }
+    const reused = args.chapters.filter((n) => !reResearched.has(n)).sort((a, b) => a - b);
+    const reResearchedList = [...reResearched].sort((a, b) => a - b);
+    const now = new Date(safeClock(this.#dependencies.clock));
+    withManifestUpdateLock({
+      runDir: args.bundlePath,
+      runId: args.researchRunId,
+      ownerId: `research-successor-${args.successorRunId}`,
+      now,
+      ttlMs: DEFAULT_RESEARCH_LEASE_TTL_MS,
+      update: (manifest) => {
+        const already = manifest.events.some(
+          (event) => event.type === "run.successor_recovery" && event.data?.successorControlRunId === args.successorRunId,
+        );
+        if (already) return;
+        appendResearchEvent(manifest, {
+          type: "run.successor_recovery",
+          message: `Control run ${args.successorRunId} recovered durable research from failed predecessor ${args.predecessorRunId}; reused chapters [${reused.join(", ")}], re-researched [${reResearchedList.join(", ")}].`,
+          data: {
+            predecessorControlRunId: args.predecessorRunId,
+            successorControlRunId: args.successorRunId,
+            reusedChapters: reused,
+            reResearchedChapters: reResearchedList,
+          },
+        }, now.toISOString());
+      },
+    });
+    console.error(
+      `[book-run] research-successor predecessor=${args.predecessorRunId} successor=${args.successorRunId} researchRunId=${args.researchRunId} reused-chapters=${reused.join(",")} reresearched-chapters=${reResearchedList.join(",")} action=REUSE_DURABLE_RESEARCH`,
+    );
+  }
+
   async run(input: ResearchCandidateApplicationRequest): Promise<ResearchCandidateApplicationResult> {
     requireRequest(input, this.#dependencies.pipelineRoot);
     let runId = input.resumeRunId ?? input.newRunId ?? this.#dependencies.ids.nextRunId();
@@ -433,22 +506,53 @@ export class ResearchCandidateApplicationPort {
       else if (prior.error.code === "NOT_FOUND") throw new Error("RESEARCH_RESUME_NOT_FOUND:resumeRunId does not exist");
       else throw new Error(`RESEARCH_RUN_UNAVAILABLE:${prior.error.code}`);
     }
-    const definition = definitionFor(input, runId, createdAt);
-    const created = await this.#dependencies.runStore.createRun(definition);
+    let definition = definitionFor(input, runId, createdAt);
+    let created = await this.#dependencies.runStore.createRun(definition);
     if (!created.ok && created.error.code === "CONFLICT" && input.resumeRunId !== undefined) {
       throw new Error("RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent");
     }
     if (!created.ok) throw new Error(`RESEARCH_RUN_UNAVAILABLE:${created.error.code}`);
 
-    const candidateId = candidateIdFor(runId);
+    let candidateId = candidateIdFor(runId);
     if (created.value.status === "COMPLETED") {
       const snapshot = await openSeed(this.#dependencies.candidateStore, definition.bookId, candidateId);
       if (!snapshot) throw new Error("RESEARCH_RESUME_INVALID:completed run seed candidate is unavailable");
       const resumed = resultFromSnapshot(snapshot, runId, true);
       return Object.freeze({ ...resumed, title: input.title, author: input.author });
     }
+    // A resume whose control run went TERMINAL cannot be reopened — run-state runs
+    // are immutable once terminal. Finding 7 (2026-07-23 canary): a FAILED control
+    // run stranded 6/7 durable chapter sidecars behind a fail-closed
+    // RESEARCH_RUN_TERMINAL error, and a fresh book-run would re-research all N.
+    // With the explicit --reconcile-unsettled recovery opt-in, open a SUCCESSOR
+    // control run instead: it reuses the shared, still-compatible legacy research
+    // run (durable K sidecars, source-v2-validated on reuse) and re-runs only the
+    // missing/failed N−K chapters. The legacy research layer is keyed on
+    // input+compatibility, NOT on control-run identity, so the successor discovers
+    // and continues the very same durable research the failed run produced.
+    // Without the flag, the fail-closed contract is preserved verbatim.
+    let reuseDurableResearch = false;
+    let predecessorRunId: string | undefined;
     if (created.value.status !== "RUNNING") {
-      throw new Error(`RESEARCH_RUN_TERMINAL:${created.value.status}`);
+      if (created.value.status !== "FAILED" || input.resumeRunId === undefined || input.reconcileUnsettled !== true) {
+        throw new Error(`RESEARCH_RUN_TERMINAL:${created.value.status}`);
+      }
+      predecessorRunId = runId;
+      const successorRunId = this.#dependencies.ids.nextRunId();
+      const successorCreatedAt = safeClock(this.#dependencies.clock);
+      const successorDefinition = definitionFor(input, successorRunId, successorCreatedAt);
+      const successorCreated = await this.#dependencies.runStore.createRun(successorDefinition);
+      if (!successorCreated.ok) throw new Error(`RESEARCH_RUN_UNAVAILABLE:${successorCreated.error.code}`);
+      if (successorCreated.value.status !== "RUNNING") throw new Error(`RESEARCH_RUN_TERMINAL:${successorCreated.value.status}`);
+      runId = successorRunId;
+      createdAt = successorCreatedAt;
+      definition = successorDefinition;
+      created = successorCreated;
+      candidateId = candidateIdFor(successorRunId);
+      // Drive the legacy research layer to REUSE durable work (forceRefresh=false
+      // via resumedRun) and report the outcome as a resume.
+      resumedRun = true;
+      reuseDurableResearch = true;
     }
     const uncertain = created.value.attempts.filter((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE");
     if (uncertain.length > 0) {
@@ -495,6 +599,11 @@ export class ResearchCandidateApplicationPort {
         forceRefresh: !resumedRun || input.forceRefresh === true,
         runsRoot: resolve(input.v25Root, "research-runs"),
         stateRoot: resolve(input.v25Root, "research-state"),
+        // A durable chapter reused on resume must still pass the source-v2 route
+        // validator (the same gate requireSourceV2 applies to freshly-researched
+        // chapters); a cached sidecar that no longer does is re-researched, not
+        // reused. Never crashes on a corrupt reused sidecar.
+        validateReusedChapter: chapterRouteValid,
         deps: {
           runBibliography: (bibliographyInput: BibliographyInput): Promise<BibliographyResult> => runResearcherBibliography(
             bibliographyInput,
@@ -541,6 +650,21 @@ export class ResearchCandidateApplicationPort {
           completedAt: safeClock(this.#dependencies.clock),
         });
         if (!checkpointed.ok) throw new Error(`RESEARCH_CHECKPOINT_FAILED:${checkpointed.error.code}`);
+      }
+
+      // Record successor-recovery provenance BEFORE materializing the seed so the
+      // reused-chapter list + predecessor link are durably captured in the seed's
+      // research-run manifest (and the book-run event log). Only on the recovery
+      // path; a normal run has no predecessor.
+      if (reuseDurableResearch && predecessorRunId !== undefined) {
+        this.#recordSuccessorProvenance({
+          bundlePath: research.bundlePath,
+          researchRunId: research.runId,
+          predecessorRunId,
+          successorRunId: runId,
+          attempts: live.value.attempts,
+          chapters: research.chapters.map((chapter) => chapter.chapterNumber),
+        });
       }
 
       const seed = await materializeSeedFiles(research);
