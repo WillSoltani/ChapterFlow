@@ -328,9 +328,39 @@ function processResultIsBounded(process: ProcessResult, policy: ResolvedExecutio
     && ["EXITED", "SPAWN_FAILED", "TIMED_OUT", "CANCELLED", "OUTPUT_LIMIT", "CLEANUP_FAILED"].includes(process.outcome);
 }
 
-function terminalDetail(process: ProcessResult | null, outcome: ModelResult["outcome"]): string {
+/** Max characters of a failed process's stdout/stderr copied into the durable
+ *  attempt detail. Long enough for a provider error envelope (rate-limit /
+ *  overload / auth message) to be diagnosable, short enough to stay well inside
+ *  the run-state 8 KiB detail cap even with both streams present. */
+const DIAGNOSTIC_HEAD_CHARS = 400;
+
+/** Sanitize a stream head for the single-line, control-char-free attempt detail:
+ *  decode a bounded byte prefix (up to 4 bytes/UTF-8 char), collapse every ASCII
+ *  control char (newlines, tabs, NUL) to a single space, and cap the length.
+ *  Never throws; returns "" for an empty or all-control stream. */
+function sanitizedStreamHead(bytes: Uint8Array): string {
+  const prefix = bytes.subarray(0, DIAGNOSTIC_HEAD_CHARS * 4);
+  return new TextDecoder().decode(prefix)
+    .replace(/[\u0000-\u001f]+/g, " ")
+    .slice(0, DIAGNOSTIC_HEAD_CHARS)
+    .trim();
+}
+
+/** Durable one-line terminal detail for an attempt. For a bounded process that
+ *  FAILED with MODEL_PROCESS_FAILED (a non-zero-exit provider subprocess — the
+ *  rate-limit/overload shape) it additionally carries a sanitized, capped head
+ *  of stdout (and stderr when non-empty) so an operator can see WHY the process
+ *  failed instead of inferring from byte counts alone. The head is NOT added for
+ *  a schema-invalid exit-0 output (MODEL_OUTPUT_INVALID — that stdout is raw
+ *  model output the security tests require kept out of the journal), a SUCCEEDED
+ *  attempt, or an uncertain teardown. */
+function terminalDetail(
+  process: ProcessResult | null,
+  outcome: ModelResult["outcome"],
+  errorCode: ModelErrorCode,
+): string {
   if (process === null) return `gateway=${outcome}; supervisor=rejected`;
-  return [
+  const fields = [
     `gateway=${outcome}`,
     `process=${process.outcome}`,
     `exit=${process.exitCode ?? "none"}`,
@@ -338,7 +368,14 @@ function terminalDetail(process: ProcessResult | null, outcome: ModelResult["out
     `stderrBytes=${process.stderr.byteLength}`,
     `stdoutTruncated=${process.stdoutTruncated}`,
     `stderrTruncated=${process.stderrTruncated}`,
-  ].join(";");
+  ];
+  if (outcome === "FAILED" && errorCode === "MODEL_PROCESS_FAILED") {
+    const stdoutHead = sanitizedStreamHead(process.stdout);
+    if (stdoutHead) fields.push(`stdoutHead=${stdoutHead}`);
+    const stderrHead = sanitizedStreamHead(process.stderr);
+    if (stderrHead) fields.push(`stderrHead=${stderrHead}`);
+  }
+  return fields.join(";");
 }
 
 export function createModelGateway(dependencies: ModelGatewayDependencies): ModelGateway {
@@ -476,7 +513,7 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
         attemptId: task.attemptId,
         outcome: attemptOutcome(outcome),
         finishedAt,
-        detail: terminalDetail(process, outcome),
+        detail: terminalDetail(process, outcome, errorCode),
       });
     } catch {
       return result(task.attemptId, "UNKNOWN", "MODEL_TERMINAL_RECORD_FAILED", "attempt terminal state could not be recorded");

@@ -502,6 +502,57 @@ requiredTest("invalid model output records failed once with bounded non-secret d
   assertNoLiveInvocation();
 });
 
+requiredTest("bounded process failure records a sanitized capped diagnostic head of stdout and stderr", async ({ roots }) => {
+  const run = definition("process-fail-book", "process-fail-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  // A rate-limit/overload envelope shape: exit 1, multi-line stdout, non-empty
+  // stderr. The head must be captured (operator diagnosis) but sanitized
+  // (newlines→spaces) and capped, and a marker past the cap must NOT survive.
+  const stdoutText = `HEAD_LINE_ONE_a1\nHEAD_LINE_TWO_b2 ${"x".repeat(600)}TAIL_MARKER_z9`;
+  const stderrText = "STDERR_MARKER_9c2d rate limited";
+  const supervisor = new FakeSupervisor(observed, () => processResult({
+    outcome: "EXITED",
+    exitCode: 1,
+    stdout: new TextEncoder().encode(stdoutText),
+    stderr: new TextEncoder().encode(stderrText),
+  }));
+  const gateway = createModelGateway({
+    runStore: tracedStore(inner, observed),
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: route(observed),
+    now: clock(),
+  });
+  const result = await gateway.execute(task(run, "attempt-process-fail", attemptDirectory(roots, "attempt-process-fail")));
+
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+
+  const journal = readFileSync(journalPath(roots, run), "utf8");
+  const finished = journal
+    .split("\n")
+    .filter((line) => line.trim().length > 0)
+    .map((line) => JSON.parse(line) as Record<string, unknown>)
+    .find((record) => record.type === "ATTEMPT_FINISHED" && record.outcome === "FAILED");
+  assert.ok(finished, "a terminal ATTEMPT_FINISHED record must be durable");
+  const detail = String(finished.detail ?? "");
+  // the existing byte-count fields remain
+  assert.match(detail, /gateway=FAILED;process=EXITED;exit=1;stdoutBytes=\d+/);
+  // the stdout head is captured, newlines collapsed to spaces
+  assert.match(detail, /stdoutHead=HEAD_LINE_ONE_a1 HEAD_LINE_TWO_b2/);
+  // the stderr head is captured
+  assert.match(detail, /stderrHead=STDERR_MARKER_9c2d rate limited/);
+  // capped: a marker past ~400 chars never survives
+  assert.equal(detail.includes("TAIL_MARKER_z9"), false);
+  // no raw newline leaks into the record and it stays well within the store cap
+  assert.equal(detail.includes("\n"), false);
+  assert.equal(detail.includes("\0"), false);
+  assert.ok(detail.length < 1_200);
+  assertNoLiveInvocation();
+});
+
 requiredTest("cleanup failure and supervisor rejection stay consumed unknown without replay", async ({ roots }) => {
   const run = definition("uncertain-book", "uncertain-run");
   const inner = new FileRunStore(roots.stateRoot);
