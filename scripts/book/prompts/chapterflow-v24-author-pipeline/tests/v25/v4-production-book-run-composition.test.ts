@@ -12,6 +12,7 @@ import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js"
 import { compileSourcePacketFromSidecar } from "../../src/compiler/sourcePacket.js";
 import type { ProcessResult, ProcessSpec, ProcessSupervisor } from "../../src/runtime/processTypes.js";
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
+import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
 import { compileCreditFixture, creditChapterSpec } from "../fixtures/creditBookFixture.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
@@ -392,6 +393,25 @@ function compilerOutputs(fixtureRoot: string) {
   return { summary, examples, learning, action };
 }
 
+/** A schema-valid reader-experience content object (the runtime stamps the
+ *  schema/reviewerRole/rubricVersion + hash bindings on top). Empty findings +
+ *  SHIP keep the panel PASS so the fixture book still promotes. */
+function readerReview(): Record<string, unknown> {
+  const scores: Record<string, number> = {};
+  for (const factor of REVIEW_FACTORS) scores[factor] = 82;
+  return {
+    scores,
+    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    recommendation: "SHIP",
+    blockingFindings: [],
+    escalationSignals: [],
+    advisoryFindings: [],
+    strongestEvidence: [],
+    weakestEvidence: [],
+    oneParagraphVerdict: "The chapter is usable and clear.",
+  };
+}
+
 class FixtureProcessSupervisor implements ProcessSupervisor {
   readonly specs: ProcessSpec[] = [];
   readonly #outputs: unknown[];
@@ -429,7 +449,10 @@ requiredTest("production composition reaches isolated local promotion and exact 
     compilerFixture.examples,
     compilerFixture.learning,
     compilerFixture.action,
+    // Canonical review = semantic panel: baseline model review first, then one
+    // reader-experience task per chapter.
     { outcome: "PASS", issues: [] },
+    readerReview(),
   ]);
   const v25Root = resolve(roots.tempRoot, "composition-v25");
   const attemptRoot = resolve(roots.attemptsRoot, "composition-run");
@@ -476,8 +499,12 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(current.value.manifest.manifestDigest, result.value.candidate.manifestDigest);
   assert.equal(current.value.files.filter((file) => file.kind === "CHAPTER").length, 1);
 
-  assert.equal(supervisor.specs.length, 7, "research, compiler, and review must cross fake process boundary");
+  assert.equal(supervisor.specs.length, 8, "research, compiler, baseline review, and the reader-experience lane must cross fake process boundary");
   assert.equal(supervisor.remaining(), 0);
+  assert.ok(
+    supervisor.specs.some((spec) => new TextDecoder().decode(spec.stdin).includes("READER-EXPERIENCE REVIEW")),
+    "a reader-experience task must cross the process boundary during canonical review",
+  );
   for (const spec of supervisor.specs) {
     // Task 7 Step 6 flip: the D1 default route is now claude-cli (Sonnet 5).
     assert.equal(spec.command, "claude");
@@ -514,7 +541,7 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.deepEqual(resumed.value.candidate, result.value.candidate);
   assert.equal(resumed.value.bookRevision, result.value.bookRevision);
   assert.equal(resumed.value.readback, "VERIFIED");
-  assert.equal(supervisor.specs.length, 7, "resume must reuse all settled model attempts");
+  assert.equal(supervisor.specs.length, 8, "resume must reuse all settled model attempts (including the reader lane)");
   const resumedEvents = readFileSync(logPath, "utf8")
     .trim()
     .split("\n")

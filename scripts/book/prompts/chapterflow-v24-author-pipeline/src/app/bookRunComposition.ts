@@ -23,7 +23,8 @@ import { CandidateQcEvaluator } from "./candidateQcEvaluator.js";
 import { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import { createChapterFlowApp, type ChapterFlowApp } from "./createChapterFlowApp.js";
 import { ModelGatewayReviewEvaluator } from "./modelGatewayReviewEvaluator.js";
-import { createModelTaskRunner } from "./modelTaskRunner.js";
+import { createModelTaskRunner, type ModelTaskRunner } from "./modelTaskRunner.js";
+import { SemanticPanelReviewEvaluator } from "./semanticPanelReviewEvaluator.js";
 import type { BookRunEvent, BookRunEventSink } from "./bookRunApplicationService.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 
@@ -243,6 +244,71 @@ function dedicatedRepairReviewService(input: Readonly<{
   };
 }
 
+/** Dedicated run-state stage the reader-experience lane's model attempts live
+ *  in. It is SEPARATE from the canonical-review run, whose attempt cap is a
+ *  single review attempt — sharing that run would exhaust its capacity and
+ *  violate the exact-single-attempt review invariant. */
+const READER_LANE_STAGE = "reader-experience-review";
+/** Generous per-run cap; a book-run reviews once, so at most one reader attempt
+ *  per chapter (and per reader, in Task 9) lands in this run. */
+const READER_LANE_ATTEMPT_CAP = 4096;
+
+/**
+ * A ModelTaskRunner the semantic panel uses ONLY for reader-experience tasks.
+ * It provisions (once per parent review run) a dedicated reader-lane run with
+ * its own attempt capacity, then redirects each reader task into that run,
+ * keeping the caller-supplied per-chapter attemptId. The canonical-review run is
+ * untouched, so its single-attempt invariant holds. The reader-lane run is left
+ * RUNNING; it carries only advisory reader evidence and is never promoted from.
+ */
+function createReaderLaneRunner(deps: Readonly<{
+  base: ModelTaskRunner;
+  runStore: ReturnType<typeof createFileRunStore>;
+  clock: ChapterFlowClock;
+}>): ModelTaskRunner {
+  const provisioned = new Set<string>();
+  return {
+    async run(request) {
+      const { bookId } = request.context;
+      const parentRunId = request.context.runId;
+      const readerRunId = `reader-lane-run-${createHash("sha256").update(parentRunId).digest("hex").slice(0, 32)}`;
+      if (!provisioned.has(readerRunId)) {
+        const observedAt = deps.clock.now();
+        const parent = await deps.runStore.readRun(bookId, parentRunId, observedAt);
+        if (!parent.ok) {
+          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "READER_LANE_PARENT_RUN_UNAVAILABLE", message: parent.error.message } };
+        }
+        let createdAt = observedAt;
+        const prior = await deps.runStore.readRun(bookId, readerRunId, observedAt);
+        if (prior.ok) createdAt = prior.value.definition.createdAt;
+        else if (prior.error.code !== "NOT_FOUND") {
+          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "READER_LANE_RUN_UNAVAILABLE", message: prior.error.message } };
+        }
+        const created = await deps.runStore.createRun({
+          schemaVersion: "1",
+          bookId,
+          runId: readerRunId,
+          commandId: "reader-experience-review",
+          sourceGitSha: parent.value.definition.sourceGitSha,
+          requiredStages: [READER_LANE_STAGE],
+          requiredInventory: parent.value.definition.requiredInventory,
+          ...(parent.value.definition.inputCandidate === undefined ? {} : { inputCandidate: parent.value.definition.inputCandidate }),
+          attemptLimits: { run: READER_LANE_ATTEMPT_CAP, byStage: { [READER_LANE_STAGE]: READER_LANE_ATTEMPT_CAP } },
+          createdAt,
+        });
+        if (!created.ok) {
+          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "READER_LANE_RUN_UNAVAILABLE", message: created.error.message } };
+        }
+        provisioned.add(readerRunId);
+      }
+      return deps.base.run({
+        ...request,
+        context: { ...request.context, runId: readerRunId, stageId: READER_LANE_STAGE },
+      });
+    },
+  };
+}
+
 export async function createProductionBookRunComposition(input: Readonly<{
   bookId: string;
   pipelineRoot: string;
@@ -304,8 +370,15 @@ export async function createProductionBookRunComposition(input: Readonly<{
     now: () => clock.now(),
   });
   const runner = createModelTaskRunner(modelGateway);
+  // Task 8: live canonical review = semantic panel — the baseline model review
+  // plus the restored reader-experience lane. Reader tasks run through a
+  // dedicated reader-lane run (createReaderLaneRunner) so the single-attempt
+  // canonical-review run stays intact.
   const reviewService = createReviewServiceFactory({ booksRoot, contentReader, now: () => clock.now() })
-    .create(new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1"));
+    .create(new SemanticPanelReviewEvaluator({
+      baseline: new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1"),
+      runner: createReaderLaneRunner({ base: runner, runStore, clock }),
+    }));
   const qcService = createQcService({
     booksRoot,
     contentReader,
