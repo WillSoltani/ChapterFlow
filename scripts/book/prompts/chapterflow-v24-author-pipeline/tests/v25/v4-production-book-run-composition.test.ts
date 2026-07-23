@@ -456,9 +456,11 @@ requiredTest("production composition reaches isolated local promotion and exact 
     compilerFixture.examples,
     compilerFixture.learning,
     compilerFixture.action,
-    // Canonical review = semantic panel: baseline model review first, then one
-    // reader-experience task per chapter.
+    // Canonical review = semantic panel: baseline model review first, then the
+    // IMP-20 blind reader panel — three reader-experience seats per chapter.
     { outcome: "PASS", issues: [] },
+    readerReview(),
+    readerReview(),
     readerReview(),
   ]);
   const v25Root = resolve(roots.tempRoot, "composition-v25");
@@ -512,8 +514,8 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
   assert.equal(
     supervisor.specs.length,
-    8 + judgeInitial,
-    "research, compiler, baseline review, reader lane, plus one fresh-qc quiz-key judge call per quiz question",
+    10 + judgeInitial,
+    "research, compiler, baseline review, three-seat reader panel, plus one fresh-qc quiz-key judge call per quiz question",
   );
   assert.equal(supervisor.remaining(), 0);
   assert.ok(
@@ -562,7 +564,7 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(resumed.value.readback, "VERIFIED");
   assert.equal(
     supervisor.specs.length,
-    8 + judgeInitial,
+    10 + judgeInitial,
     "resume reuses all settled attempts including the durable fresh-qc round — the non-deterministic quiz-key judge never re-runs",
   );
   assert.equal(judgeSpecCount(supervisor.specs), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");

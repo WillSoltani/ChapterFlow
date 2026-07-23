@@ -1,8 +1,8 @@
 /**
- * SemanticPanelReviewEvaluator — Task 8 (semantic review, stage 1).
+ * SemanticPanelReviewEvaluator — semantic review (Task 8 stage 1 → Task 9 stage 2).
  *
  * Restores the reader-experience lane onto the live `CanonicalReviewEvaluator`
- * seam. Today the live canonical review is a 3-line prompt
+ * seam. Today the live canonical review is otherwise a 3-line prompt
  * (`modelGatewayReviewEvaluator.ts`); the preserved reader machinery
  * (`src/review/readerExperienceReview.ts` + contract) was reachable only from a
  * dead path. This evaluator plugs it back in.
@@ -11,59 +11,46 @@
  *   1. Run the injected baseline evaluator first. Anything other than a baseline
  *      PASS short-circuits — NO reader task runs (the reader lane augments a
  *      passing baseline; it never rescues a failing one).
- *   2. Per CHAPTER file: render the phase-1 reader doc, build the frozen
- *      reader-experience task, execute it through the injected `ModelTaskRunner`
- *      (role "review" → Sonnet 5 xhigh once Tasks 6/7 route it), and
- *      parse + strict-assemble a `ReaderExperienceReviewV1`.
- *   3. Reader blocking findings → `ReviewIssue severity:"BLOCKER"`; reader
- *      advisory findings + escalation signals → `"WARN"`. An unparseable or
- *      failed reader run makes the whole evaluation `"ERROR"` (fail-closed —
- *      an uncertain reader lane never silently passes).
- *   4. Outcome: `ERROR` if any reader run failed; else `FAIL` if any panel (or
+ *   2. Per CHAPTER file: run the IMP-20 blind reader PANEL — three independent
+ *      reader seats (`runReaderLanes`) read the same chapter through the injected
+ *      `ModelTaskRunner` (role "review" → the production route once Tasks 6/7
+ *      route it), each strict-assembled into a `ReaderExperienceReviewV1`, their
+ *      composites MEDIANED and their findings unioned/seat-tagged (Task 9,
+ *      IMP-20 §G — the single-reader-per-chapter call of stage 1 is retired).
+ *   3. Reader blocking findings (from ANY seat) → `ReviewIssue severity:"BLOCKER"`;
+ *      reader advisory findings + escalation signals → `"WARN"`. An unparseable
+ *      or failed seat makes the whole evaluation `"ERROR"` (fail-closed — an
+ *      uncertain reader lane never silently passes).
+ *   4. Outcome: `ERROR` if any seat run failed; else `FAIL` if any panel (or
  *      baseline) BLOCKER issue exists; else `PASS`. So PASS ⟺ baseline PASS ∧
  *      zero panel BLOCKERs.
  *
  * The reader lane holds no external-source-truth authority (IMP-20 §A): its
  * blocking categories are on-page-decidable only, so this stage never invents
- * fabrication blockers. Stage 2 (Task 9) swaps the single-reader-per-chapter
- * call for the IMP-20 3-reader split lane + median.
- *
- * Stage-1 note: this maps a single reader review's findings directly to review
- * issues. The full `aggregateChapterReview` composition (reader + source + quiz
- * + deterministic bundle, median semantics) belongs to Task 9, where the source
- * and quiz lanes exist to feed it; wiring it here with only a reader lane would
- * require synthesising the other lanes' inputs. This module makes no model call
- * of its own — every reader task goes through the injected runner.
+ * fabrication blockers. The panel medians reader SCORES (`ReaderPanelReviewV1`);
+ * the full three-LANE aggregate (`aggregateChapterReview`: reader + source + quiz
+ * + deterministic bundle) is NOT produced here — the live evaluator is fed only
+ * the reader-facing page, so it has no source/quiz lane inputs to feed that
+ * aggregator without fabricating PASS lanes (see `laneOrchestrator.ts`). This
+ * module makes no model call of its own — every reader task goes through the
+ * injected runner.
  */
 
-import { createHash } from "node:crypto";
-
 import type { CandidateSnapshot } from "../books/candidateTypes.js";
-import { chapterContentHash } from "../critics/qcAttestation.js";
 import type { ModelTaskContext, Result } from "../contracts/v4Core.js";
-import { ensureTrailingNewline } from "../lib/atomicWrite.js";
-import type { ReaderExperienceReviewV1 } from "../contracts/readerExperienceReview.js";
+import { ReaderExperienceReviewError } from "../review/readerExperienceReview.js";
 import {
-  ReaderExperienceReviewError,
-  readerExperienceDocHash,
-  runReaderExperienceReview,
-} from "../review/readerExperienceReview.js";
-import { renderChapterReaderDocPhase1 } from "../review/renderReaderDoc.js";
+  READER_PANEL_SEATS,
+  runReaderLanes,
+  type ReaderPanelReviewV1,
+} from "../review/laneOrchestrator.js";
 import type {
   CanonicalReviewEvaluation,
   CanonicalReviewEvaluator,
   ReviewIssue,
 } from "../review/reviewTypes.js";
 import type { ChapterV21 } from "../types.js";
-import { jsonPromptRequest, renderUntrustedSourceBlock, type ModelTaskRunner } from "./modelTaskRunner.js";
-
-/** Deterministic sha over the reader-experience output-schema fields the lane is
- *  bound to. The frozen validator only requires a non-empty `schemaSha256`; this
- *  binds a stable instrument tag so a future output-schema change stales prior
- *  records (readerReviewIsFresh) once Task 9 uses freshness. */
-const READER_OUTPUT_SCHEMA_SHA = createHash("sha256")
-  .update("semantic-panel-reader-experience-review-v1")
-  .digest("hex");
+import type { ModelTaskRunner } from "./modelTaskRunner.js";
 
 function pad(n: number): string {
   return String(n).padStart(2, "0");
@@ -142,9 +129,16 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
     let errored = false;
 
     for (const { chapter, number } of chapters) {
-      let review: ReaderExperienceReviewV1;
+      let panel: ReaderPanelReviewV1;
       try {
-        review = await this.#reviewChapter(chapter, number, input.taskContext);
+        panel = await runReaderLanes({
+          chapter,
+          chapterNumber: number,
+          runner: this.#runner,
+          readers: READER_PANEL_SEATS.length,
+          taskContext: input.taskContext,
+          profileId: this.#profileId,
+        });
       } catch (error) {
         errored = true;
         const code = error instanceof ReaderExperienceReviewError
@@ -153,14 +147,15 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
         issues.push(issue(code, "BLOCKER", (error as Error).message, `ch${pad(number)}`));
         continue;
       }
-      for (const finding of review.blockingFindings) {
-        issues.push(issue(`READER.BLOCKING.${finding.category}`, "BLOCKER", finding.problem, `ch${pad(number)}/${finding.unit}`));
+      // ANY seat's on-page-decidable blocking finding blocks (union, fail-closed).
+      for (const finding of panel.blockingFindings) {
+        issues.push(issue(`READER.BLOCKING.${finding.category}`, "BLOCKER", finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));
       }
-      for (const finding of review.advisoryFindings) {
-        issues.push(issue(`READER.ADVISORY.${finding.category}`, "WARN", finding.problem, `ch${pad(number)}/${finding.unit}`));
+      for (const finding of panel.advisoryFindings) {
+        issues.push(issue(`READER.ADVISORY.${finding.category}`, "WARN", finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));
       }
-      for (const signal of review.escalationSignals) {
-        issues.push(issue(`READER.ESCALATION.${signal.category}`, "WARN", signal.problem, `ch${pad(number)}/${signal.unit}`));
+      for (const signal of panel.escalationSignals) {
+        issues.push(issue(`READER.ESCALATION.${signal.category}`, "WARN", signal.problem, `ch${pad(number)}/${signal.seatId}/${signal.unit}`));
       }
     }
 
@@ -170,40 +165,5 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
         ? "FAIL"
         : "PASS";
     return { ok: true, value: { outcome, issues } };
-  }
-
-  /** Render the phase-1 reader doc and run the frozen reader-experience task for
-   *  one chapter through the injected runner, binding the freshness anchors. */
-  async #reviewChapter(chapter: ChapterV21, number: number, base: ModelTaskContext): Promise<ReaderExperienceReviewV1> {
-    const rendered = ensureTrailingNewline(renderChapterReaderDocPhase1(chapter));
-    const context: ModelTaskContext = {
-      ...base,
-      attemptId: `${base.attemptId}-reader-ch${pad(number)}`,
-      operationId: `reader-review-ch${pad(number)}`,
-    };
-    return runReaderExperienceReview(
-      {
-        docRelPath: `chapter-${pad(number)} (provided inline below)`,
-        chapterContentSha256: chapterContentHash(chapter),
-        readerDocumentSha256: readerExperienceDocHash(chapter),
-        schemaSha256: READER_OUTPUT_SCHEMA_SHA,
-      },
-      {
-        reviewFn: async (task) => {
-          const result = await this.#runner.run({
-            profileId: this.#profileId,
-            // The V4 gateway feeds content inline (not a workspace file), so the
-            // rendered reader doc rides as untrusted source data beside the task.
-            prompt: jsonPromptRequest(task, renderUntrustedSourceBlock("reader-document", rendered, "markdown")),
-            context,
-          });
-          if (result.outcome !== "SUCCEEDED") {
-            const detail = result.error ? `${result.error.code}:${result.error.message}` : result.outcome;
-            throw new Error(`SEMANTIC_PANEL_READER_${result.outcome}:${detail}`);
-          }
-          return typeof result.output === "string" ? result.output : JSON.stringify(result.output ?? null);
-        },
-      },
-    );
   }
 }

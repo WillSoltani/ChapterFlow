@@ -134,8 +134,14 @@ function scriptedRunner(outputs: readonly unknown[]): {
 
 requiredTest("semantic panel passes when baseline passes and every reader review is clean", async () => {
   const candidate = twoChapterCandidate();
+  // Three reader seats per chapter (IMP-20 blind panel); one seat of ch1 raises
+  // a single advisory, the other five reads are clean.
   const scripted = scriptedRunner([
     readerContent({ advisoryFindings: [{ category: "pacing", unit: "deep read", problem: "slightly slow open", evidenceSpans: [] }] }),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
     readerContent(),
   ]);
   const evaluator = new SemanticPanelReviewEvaluator({
@@ -146,8 +152,8 @@ requiredTest("semantic panel passes when baseline passes and every reader review
   const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
   assert.ok(evaluated.ok, JSON.stringify(evaluated));
   assert.equal(evaluated.value.outcome, "PASS");
-  // one reader task per chapter
-  assert.equal(scripted.calls, 2);
+  // three reader seats per chapter × two chapters
+  assert.equal(scripted.calls, 6);
   // reader-experience task prompt is what crossed the runner seam
   assert.ok(scripted.prompts.every((prompt) => prompt.includes("READER-EXPERIENCE REVIEW")), JSON.stringify(scripted.prompts));
   // baseline WARN + reader advisory WARN both surfaced
@@ -159,7 +165,9 @@ requiredTest("semantic panel passes when baseline passes and every reader review
 
 requiredTest("semantic panel is ERROR when a reader run is unparseable", async () => {
   const candidate = twoChapterCandidate();
-  const scripted = scriptedRunner(["this is not reader-review JSON", readerContent()]);
+  // The first seat of ch1 is unparseable → ch1 errors after one read; ch2's
+  // three seats still run clean.
+  const scripted = scriptedRunner(["this is not reader-review JSON", readerContent(), readerContent(), readerContent()]);
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
@@ -172,7 +180,8 @@ requiredTest("semantic panel is ERROR when a reader run is unparseable", async (
 
 requiredTest("semantic panel is ERROR when a reader run fails to execute", async () => {
   const candidate = twoChapterCandidate();
-  const scripted = scriptedRunner([readerContent(), "__MODEL_FAIL__"]);
+  // The first seat of ch1 fails to execute → ch1 errors; ch2's three seats run clean.
+  const scripted = scriptedRunner(["__MODEL_FAIL__", readerContent(), readerContent(), readerContent()]);
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
@@ -185,11 +194,16 @@ requiredTest("semantic panel is ERROR when a reader run fails to execute", async
 
 requiredTest("semantic panel FAILS with a BLOCKER when a reader flags an on-page blocker", async () => {
   const candidate = twoChapterCandidate();
+  // One seat of ch1 raises an on-page blocker; the union blocks (fail-closed).
   const scripted = scriptedRunner([
     readerContent({
       recommendation: "BLOCK",
       blockingFindings: [{ category: "internal_contradiction", unit: "deep read", problem: "claims A then not-A on the same page", evidenceSpans: [] }],
     }),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
     readerContent(),
   ]);
   const evaluator = new SemanticPanelReviewEvaluator({
