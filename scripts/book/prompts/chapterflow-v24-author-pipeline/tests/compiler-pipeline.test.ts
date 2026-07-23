@@ -2109,6 +2109,22 @@ test("v23 example-pack validator rejects whyItMatters lines that explain a neigh
   );
 });
 
+test("SEC12 assembled-ease blocker names per-tier eases and the lowest tier (Task 11s)", () => {
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  const dense = " The institutionalization of habitual cognitive predispositions necessitates deliberate metacognitive intervention, notwithstanding considerable psychological resistance characteristically encountered.";
+  bad.breakdown.fastRead = dense.repeat(3).trim();
+  bad.breakdown.deepRead = dense.repeat(6).trim();
+  bad.breakdown.fullRead = dense.repeat(14).trim();
+
+  const findings = validateSummaryPack(bad, fx.blueprint, fx.packet);
+  const assembled = findings.filter((f) => f.checkId === "SEC12.summary_readability" && f.message.includes("assembled breakdown"));
+  assert.ok(assembled.length > 0, "dense text must trip the assembled-ease floor");
+  for (const f of assembled) {
+    assert.match(f.message, /Per-tier ease: fastRead -?\d+\.\d, deepRead -?\d+\.\d, fullRead -?\d+\.\d; lift (fastRead|deepRead|fullRead) first\./, f.message);
+  }
+});
+
 test("v23 example-pack validator rejects source-figure names as fictional actors", () => {
   const fx = compileFixture();
   const packet = { ...fx.packet, allowedEntities: [...fx.packet.allowedEntities, "Graham"] };

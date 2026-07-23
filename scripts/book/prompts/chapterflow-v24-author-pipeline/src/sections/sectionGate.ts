@@ -17,6 +17,7 @@ import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { checkSentenceSanity } from "../critics/integrity.js";
 import { checkReadingLevel, checkBreakdownReadingEase } from "../critics/readingLevel.js";
+import { fleschReadingEase } from "../metrics/rubricMetrics.js";
 import { loadBannedPhrases } from "../critics/shared.js";
 import { checkBannedPhrases } from "../critics/register.js";
 import { longestCommonRunWords, sidecarSourceText } from "../critics/authoringContract.js";
@@ -2056,7 +2057,14 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   // three tiers concatenated) must clear the rubric band, not just each tier
   // alone. Blocker, same as the per-tier SEC12 reading-level check.
   const assembledBreakdown = tiers.map((tier) => text(pack.breakdown?.[tier])).join("\n\n");
-  for (const f of checkBreakdownReadingEase(assembledBreakdown)) push("SEC12.summary_readability", "blocker", f.message, "/breakdown");
+  for (const f of checkBreakdownReadingEase(assembledBreakdown)) {
+    // Task 11s: the aggregate number alone gives the writer no lever — name each
+    // tier's ease and the one dragging the assembly down so the retry targets it.
+    const tierEases = tiers.map((tier) => ({ tier, ease: fleschReadingEase(text(pack.breakdown?.[tier])) }));
+    const lowest = tierEases.reduce((a, b) => (b.ease < a.ease ? b : a));
+    const perTier = tierEases.map(({ tier, ease }) => `${tier} ${ease.toFixed(1)}`).join(", ");
+    push("SEC12.summary_readability", "blocker", `${f.message} Per-tier ease: ${perTier}; lift ${lowest.tier} first.`, "/breakdown");
+  }
   const usedMemorableKeys = new Set<string>();
   // Grounding-aware selection (Finding 21): SEC16 validates the top-3 harvested
   // candidates, but harvest order was pure aphorism score — blind to grounding.
