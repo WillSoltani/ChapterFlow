@@ -550,6 +550,280 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   );
 });
 
+requiredTest("reconcile resume grants one operator-authorized compile attempt past an exhausted budget", async (context: TestContext) => {
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, "op-retry-books");
+  const runRoot = resolve(context.roots.tempRoot, "op-retry-runs");
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-op-retry");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "op-retry-seed-candidate",
+    runId: "op-retry-seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+
+  const PARENT_RUN_ID = "book-run-op-retry";
+  const derive = (prefix: string) => `${prefix}-${createHash("sha256").update(PARENT_RUN_ID).digest("hex").slice(0, 32)}`;
+  const baseRunId = derive("compiler-run");
+  const retry1RunId = derive("compiler-retry-1-run");
+  const opRetry1RunId = derive("compiler-operator-retry-1-run");
+  const opRetry2RunId = derive("compiler-operator-retry-2-run");
+
+  // Durable state: BOTH the base compile and its single deterministic retry have
+  // already FAILED under a retryable deterministic gate reason — the exact
+  // exhausted budget finding 12 describes.
+  for (const [childRunId, reason] of [
+    [baseRunId, "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure"],
+    [retry1RunId, "COMPILER_ASSEMBLY_BLOCKED:single retry failed"],
+  ] as const) {
+    const created = await runStore.createRun({
+      schemaVersion: "1",
+      bookId: BOOK,
+      runId: childRunId,
+      commandId: "compiler-candidate",
+      sourceGitSha: SOURCE_SHA,
+      requiredStages: ["compiler-candidate"],
+      requiredInventory: [],
+      inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+      attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+      createdAt: now(),
+    });
+    assert.ok(created.ok);
+    const failed = await runStore.finishRun({ bookId: BOOK, runId: childRunId, status: "FAILED", finishedAt: now(), reason });
+    assert.ok(failed.ok);
+  }
+
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+
+  let researchPortCalls = 0;
+  const research = {
+    async run() {
+      researchPortCalls += 1;
+      throw new Error("research port must not be invoked on a durable-seed resume");
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+
+  const compilerRunIds: string[] = [];
+  let staged: CandidateSnapshot | undefined;
+  const compiler = {
+    async run(request: { resumeRunId?: string }) {
+      assert.ok(request.resumeRunId);
+      compilerRunIds.push(request.resumeRunId);
+      // The FIRST operator-authorized attempt (op-retry-1) also fails, recording a
+      // durable FAILED run — the run returns to the exhausted state.
+      if (request.resumeRunId === opRetry1RunId) {
+        const created = await runStore.createRun({
+          schemaVersion: "1",
+          bookId: BOOK,
+          runId: request.resumeRunId,
+          commandId: "compiler-candidate",
+          sourceGitSha: SOURCE_SHA,
+          requiredStages: ["compiler-candidate"],
+          requiredInventory: [],
+          inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+          attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+          createdAt: context.clock.now(),
+        });
+        assert.ok(created.ok);
+        const failed = await runStore.finishRun({
+          bookId: BOOK,
+          runId: request.resumeRunId,
+          status: "FAILED",
+          finishedAt: context.clock.now(),
+          reason: "COMPILER_ASSEMBLY_BLOCKED:operator attempt one still fails",
+        });
+        assert.ok(failed.ok);
+        throw new Error("COMPILER_ASSEMBLY_BLOCKED:operator attempt one still fails");
+      }
+      // The SECOND operator-authorized attempt (op-retry-2) succeeds.
+      assert.equal(request.resumeRunId, opRetry2RunId);
+      staged = await stageCandidate(candidates, {
+        candidateId: `${request.resumeRunId}-candidate`,
+        parentCandidateId: seed.manifest.candidateId,
+        runId: request.resumeRunId,
+        createdAt: context.clock.now(),
+        files: [
+          jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+          jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({
+            bookId: BOOK,
+            chapters: [chapter],
+            requirePlanArtifacts: false,
+            checkSourceAlignment: false,
+          })),
+        ],
+      });
+      return {
+        runId: request.resumeRunId,
+        runStatus: "COMPLETED" as const,
+        candidateId: staged.manifest.candidateId,
+        manifestDigest: staged.manifest.manifestDigest,
+      };
+    },
+  } as unknown as CompilerApplicationPort;
+
+  const candidateQc = {
+    async run(request: { candidate: CandidateSnapshot; roundId: string; canonicalReview: { reviewId: string } }) {
+      return {
+        ok: true as const,
+        value: {
+          roundId: request.roundId,
+          candidate: { candidateId: request.candidate.manifest.candidateId, manifestDigest: request.candidate.manifest.manifestDigest },
+          reviewId: request.canonicalReview.reviewId,
+          outcome: "PASS" as const,
+          issues: [],
+        },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => PARENT_RUN_ID,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "op-retry-pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, "op-retry-v25"),
+    attemptRoot: resolve(context.roots.attemptsRoot, "book-run-op-retry"),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: false,
+    signal: new AbortController().signal,
+  };
+
+  // Durable phase events: research+seed COMPLETED (rehydratable), then two compile
+  // STARTED/FAILED pairs — the base compile and its single deterministic retry.
+  const at = now();
+  events.push(
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "intake", status: "COMPLETED", at, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "research", status: "COMPLETED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "seed", status: "COMPLETED", at, candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest } },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "FAILED", at, detail: "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "FAILED", at, detail: "COMPILER_ASSEMBLY_BLOCKED:single retry failed" },
+  );
+
+  const operatorEvents = () => events.filter((event) =>
+    event.runId === PARENT_RUN_ID && event.phase === "compile" && (event.detail ?? "").includes("action=OPERATOR_COMPILE_RETRY"));
+
+  // (c) WITHOUT the flag the exhausted error is preserved verbatim — the compiler
+  //     is never invoked and no operator authorization is recorded.
+  const blocked = await service.run({ ...request, resumeRunId: PARENT_RUN_ID });
+  assert.equal(blocked.ok, false);
+  if (blocked.ok) throw new Error("expected exhausted budget without the reconcile flag");
+  assert.equal(blocked.error.code, "BOOK_RUN_COMPILER_RETRY_EXHAUSTED");
+  assert.equal(blocked.error.message, "single deterministic compiler retry already failed");
+  assert.deepEqual(compilerRunIds, [], "exhausted budget must not invoke the compiler without operator consent");
+  assert.equal(operatorEvents().length, 0);
+
+  // (a)+(b) WITH the flag: exactly ONE fresh operator-authorized compile attempt
+  //         starts a new compile control run and records a durable authorization
+  //         event carrying the count of prior exhausted attempts. This first grant
+  //         also fails (d): the run returns to the exhausted state.
+  const firstGrant = await service.run({ ...request, resumeRunId: PARENT_RUN_ID, reconcileUnsettled: true });
+  assert.equal(firstGrant.ok, false);
+  if (firstGrant.ok) throw new Error("operator attempt one is wired to fail in this fixture");
+  assert.equal(firstGrant.error.code, "BOOK_RUN_COMPILER_FAILED");
+  assert.deepEqual(compilerRunIds, [opRetry1RunId], "the operator grant starts a NEW compile control run");
+  assert.equal(operatorEvents().length, 1, "the operator authorization is durably recorded");
+  assert.equal(operatorEvents()[0].status, "STARTED");
+  assert.equal(operatorEvents()[0].detail, "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=2;operatorAttempt=1");
+  assert.equal(researchPortCalls, 0, "the durable seed is rehydrated in-service; the research port is never called");
+
+  // (c-again) WITHOUT the flag the run is exhausted again, verbatim — each grant is
+  //           per-invocation consent, never a standing authorization.
+  const blockedAgain = await service.run({ ...request, resumeRunId: PARENT_RUN_ID });
+  assert.equal(blockedAgain.ok, false);
+  if (blockedAgain.ok) throw new Error("a failed operator grant must return to the exhausted state");
+  assert.equal(blockedAgain.error.code, "BOOK_RUN_COMPILER_RETRY_EXHAUSTED");
+  assert.equal(blockedAgain.error.message, "single deterministic compiler retry already failed");
+  assert.deepEqual(compilerRunIds, [opRetry1RunId], "no flag means no further compile attempt");
+  assert.equal(operatorEvents().length, 1, "no additional authorization recorded without the flag");
+
+  // (d) A FURTHER flagged resume grants again ONLY via the same explicit path — a
+  //     distinct new control run, its own logged authorization with the growing
+  //     prior-exhausted count. This second grant succeeds and drives the run READY.
+  const secondGrant = await service.run({ ...request, resumeRunId: PARENT_RUN_ID, reconcileUnsettled: true });
+  if (!secondGrant.ok) throw new Error(`SECOND_OPERATOR_GRANT:${JSON.stringify(secondGrant.error)}`);
+  assert.equal(secondGrant.value.status, "READY");
+  assert.ok(staged);
+  assert.equal(secondGrant.value.candidate.candidateId, `${opRetry2RunId}-candidate`);
+  assert.deepEqual(compilerRunIds, [opRetry1RunId, opRetry2RunId], "the second grant is a DISTINCT new compile control run");
+  assert.equal(operatorEvents().length, 2, "each grant is one logged attempt");
+  assert.equal(operatorEvents()[1].detail, "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=3;operatorAttempt=2");
+});
+
 requiredTest("resume after a crash inside fresh-qc reuses the durable judge run identity and completes", async (context: TestContext) => {
   const JUDGE_RUN_ID = `qc-judge-run-${createHash("sha256").update(BOOK_RUN_ID).digest("hex").slice(0, 32)}`;
   const now = () => {

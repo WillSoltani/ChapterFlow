@@ -503,6 +503,52 @@ export class BookRunApplicationService {
     };
   }
 
+  /** Allocate the next operator-authorized compile control run past an exhausted
+   *  deterministic retry budget (task 11i / finding 12). Enumerates the
+   *  `compiler-operator-retry-{n}-run` ids for the resumed run and grants the first
+   *  slot that is not already a terminal FAILED run: every lower-numbered operator
+   *  attempt has already FAILED, so exactly one fresh attempt is minted per flagged
+   *  resume. `priorExhaustedAttempts` counts the durable failures the operator is
+   *  authorizing past — the base compile plus the single deterministic retry
+   *  (2) plus each prior operator attempt (`operatorAttempt - 1`). Fails closed if
+   *  an operator-retry run exists in a non-FAILED, non-terminal state (a lost race
+   *  or partially-written run must never be silently re-granted). */
+  async #grantOperatorCompileRetry(
+    bookId: string,
+    runId: string,
+    observedAt: UtcIso,
+  ): Promise<Result<Readonly<{
+    compilerRunId: string;
+    attemptSubdir: string;
+    operatorAttempt: number;
+    priorExhaustedAttempts: number;
+  }>>> {
+    for (let operatorAttempt = 1; ; operatorAttempt += 1) {
+      const operatorRunId = derivedId(`compiler-operator-retry-${operatorAttempt}-run`, runId);
+      const existing = await this.#dependencies.runStore.readRun(bookId, operatorRunId, observedAt);
+      if (existing.ok) {
+        if (existing.value.status === "FAILED") continue;
+        return failed(
+          "BOOK_RUN_COMPILER_RETRY_BLOCKED",
+          `operator compile retry run ${operatorRunId} is ${existing.value.status}, not re-grantable`,
+        );
+      }
+      if (existing.error.code !== "NOT_FOUND") {
+        return failed("BOOK_RUN_COMPILER_UNAVAILABLE", existing.error.message);
+      }
+      return {
+        ok: true,
+        value: Object.freeze({
+          compilerRunId: operatorRunId,
+          attemptSubdir: `compiler-operator-retry-${operatorAttempt}`,
+          operatorAttempt,
+          // base compile + single deterministic retry (2) + prior operator failures.
+          priorExhaustedAttempts: operatorAttempt + 1,
+        }),
+      };
+    }
+  }
+
   /** Run the deterministic gates + LLM answer-key judge under a dedicated
    *  fresh-qc run, then commit the round. The judge is per-question model work
    *  the gateway admits against run-state, so it needs a live run sized to the
@@ -742,13 +788,42 @@ export class BookRunApplicationService {
         if (!retryAt.ok) return retryAt;
         const retryCompiler = await this.#dependencies.runStore.readRun(input.bookId, retryRunId, retryAt.value);
         if (retryCompiler.ok && retryCompiler.value.status === "FAILED") {
-          return failed("BOOK_RUN_COMPILER_RETRY_EXHAUSTED", "single deterministic compiler retry already failed");
-        }
-        if (!retryCompiler.ok && retryCompiler.error.code !== "NOT_FOUND") {
+          // The single deterministic compiler retry (service-level, one shot) has
+          // already failed. Default (no flag): fail closed, preserving the exhausted
+          // contract verbatim. The service-level retry budget cannot tell "failed
+          // under a since-fixed defect" from "content genuinely cannot pass", so a
+          // resume that survived earlier recovery fixes could otherwise be blocked
+          // one stage later forever. An operator resolves that ambiguity explicitly:
+          // resuming with --reconcile-unsettled is per-invocation consent for exactly
+          // ONE additional compile attempt past the exhausted budget. Each grant
+          // mints a distinct operator-retry control run and is durably logged; a
+          // further grant requires another explicit flagged resume (no silent loop),
+          // and the in-run deterministic retry / MAX_SECTION_ATTEMPTS logic is
+          // untouched — this is a resume-boundary decision only.
+          if (input.reconcileUnsettled !== true) {
+            return failed("BOOK_RUN_COMPILER_RETRY_EXHAUSTED", "single deterministic compiler retry already failed");
+          }
+          const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value);
+          if (!granted.ok) return granted;
+          compilerRunId = granted.value.compilerRunId;
+          compilerAttemptRoot = resolve(input.attemptRoot, granted.value.attemptSubdir);
+          const authorized = await this.#event(
+            runId,
+            input.bookId,
+            "compile",
+            "STARTED",
+            `action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=${granted.value.priorExhaustedAttempts};operatorAttempt=${granted.value.operatorAttempt}`,
+          );
+          if (!authorized.ok) return authorized;
+          console.error(
+            `[book-run] operator-compile-retry book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} priorExhaustedAttempts=${granted.value.priorExhaustedAttempts} action=OPERATOR_COMPILE_RETRY`,
+          );
+        } else if (!retryCompiler.ok && retryCompiler.error.code !== "NOT_FOUND") {
           return failed("BOOK_RUN_COMPILER_UNAVAILABLE", retryCompiler.error.message);
+        } else {
+          compilerRunId = retryRunId;
+          compilerAttemptRoot = resolve(input.attemptRoot, "compiler-retry-1");
         }
-        compilerRunId = retryRunId;
-        compilerAttemptRoot = resolve(input.attemptRoot, "compiler-retry-1");
       }
     }
     const compileStarted = await this.#event(runId, input.bookId, "compile", "STARTED", undefined, intake.candidate);
