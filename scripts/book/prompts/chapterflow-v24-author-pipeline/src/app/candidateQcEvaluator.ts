@@ -390,6 +390,17 @@ export class CandidateQcEvaluator {
               location(number, `/quiz/${verdict.questionId}`),
             ));
           }
+          // Medium-confidence disagreements are never auto-blocked (quizKeyJudge's
+          // contract), but the human-review escalation must not be silently lost:
+          // surface them as WARN so operators can see medium-confidence key doubts.
+          for (const verdict of report.review) {
+            qcIssues.push(issue(
+              "QC1.quiz_key_review",
+              "WARN",
+              `quiz answer-key judge flagged ${verdict.questionId} for human review: stored correctIndex=${verdict.storedIndex}, model derived index ${verdict.modelIndex} at medium confidence (${verdict.reason})`,
+              location(number, `/quiz/${verdict.questionId}`),
+            ));
+          }
         } catch (error) {
           qcIssues.push(issue("CANDIDATE_QC_QUIZ_JUDGE_ERROR", "BLOCKER", (error as Error).message, location(number, "/quiz")));
         }

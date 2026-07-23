@@ -550,6 +550,210 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   );
 });
 
+requiredTest("resume after a crash inside fresh-qc reuses the durable judge run identity and completes", async (context: TestContext) => {
+  const JUDGE_RUN_ID = `qc-judge-run-${createHash("sha256").update(BOOK_RUN_ID).digest("hex").slice(0, 32)}`;
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, "books");
+  const runRoot = resolve(context.roots.tempRoot, "runs");
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-service");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "seed-candidate",
+    runId: "seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+  const compiled = await stageCandidate(candidates, {
+    candidateId: COMPILED_CANDIDATE_ID,
+    parentCandidateId: seed.manifest.candidateId,
+    runId: COMPILER_RUN_ID,
+    createdAt: context.clock.now(),
+    files: [
+      jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+      jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({
+        bookId: BOOK,
+        chapters: [chapter],
+        requirePlanArtifacts: false,
+        checkSourceAlignment: false,
+      })),
+    ],
+  });
+
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+  const research = {
+    async run(request: { resumeRunId?: string; newRunId?: string }) {
+      return {
+        schemaVersion: "1" as const,
+        bookId: BOOK,
+        title: "Book Run Service",
+        author: "Fixture Author",
+        intakeRunId: request.resumeRunId ?? request.newRunId ?? BOOK_RUN_ID,
+        researchRunId: "research-fixture",
+        candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+        indexLogicalPath: "inputs/chapter-index.json" as const,
+        sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json" as const,
+        sources: [],
+        resumed: request.resumeRunId !== undefined,
+      };
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+  let compilerRunPersisted = false;
+  const compiler = {
+    async run() {
+      if (!compilerRunPersisted) {
+        const created = await runStore.createRun({
+          schemaVersion: "1",
+          bookId: BOOK,
+          runId: COMPILER_RUN_ID,
+          commandId: "compiler-candidate",
+          sourceGitSha: SOURCE_SHA,
+          requiredStages: ["compiler-candidate"],
+          requiredInventory: [],
+          inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+          attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+          createdAt: context.clock.now(),
+        });
+        assert.ok(created.ok);
+        const finished = await runStore.finishRun({ bookId: BOOK, runId: COMPILER_RUN_ID, status: "COMPLETED", finishedAt: context.clock.now() });
+        assert.ok(finished.ok);
+        compilerRunPersisted = true;
+      }
+      return {
+        runId: COMPILER_RUN_ID,
+        runStatus: "COMPLETED" as const,
+        candidateId: compiled.manifest.candidateId,
+        manifestDigest: compiled.manifest.manifestDigest,
+      };
+    },
+  } as unknown as CompilerApplicationPort;
+  // The fresh-qc judge run is created BEFORE this evaluator is invoked; throwing
+  // here simulates a crash mid-judge (multi-minute per-question window), leaving
+  // the judge run persisted as RUNNING with no committed QC round.
+  let candidateQcCalls = 0;
+  const candidateQc = {
+    async run(request: { roundId: string; canonicalReview: { reviewId: string } }) {
+      candidateQcCalls += 1;
+      if (candidateQcCalls === 1) throw new Error("SIMULATED_CRASH_INSIDE_FRESH_QC");
+      return {
+        ok: true as const,
+        value: {
+          roundId: request.roundId,
+          candidate: { candidateId: compiled.manifest.candidateId, manifestDigest: compiled.manifest.manifestDigest },
+          reviewId: request.canonicalReview.reviewId,
+          outcome: "PASS" as const,
+          issues: [],
+        },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => BOOK_RUN_ID,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, "v25"),
+    attemptRoot: resolve(context.roots.attemptsRoot, "book-run"),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: true,
+    signal: new AbortController().signal,
+  };
+
+  // First run crashes inside the fresh-qc judge window.
+  await assert.rejects(() => service.run(request), /SIMULATED_CRASH_INSIDE_FRESH_QC/);
+  const crashedJudge = await runStore.readRun(BOOK, JUDGE_RUN_ID, context.clock.now());
+  assert.ok(crashedJudge.ok, "judge run must be persisted after the crash");
+  assert.equal(crashedJudge.value.status, "RUNNING", "crash mid-judge leaves the run RUNNING");
+  const crashedCreatedAt = crashedJudge.value.definition.createdAt;
+  assert.equal(events.some((event) => event.phase === "fresh-qc" && event.status === "STARTED"), true);
+  assert.equal(events.some((event) => event.phase === "fresh-qc" && event.status === "COMPLETED"), false);
+
+  // Resume must reuse the durable judge run identity (same createdAt) rather than
+  // minting a fresh createdAt that conflicts, and drive fresh-qc to completion.
+  const resumed = await service.run({ ...request, resumeRunId: BOOK_RUN_ID });
+  if (!resumed.ok) throw new Error(`BOOK_RUN_FRESH_QC_RESUME:${JSON.stringify(resumed.error)}`);
+  assert.equal(resumed.value.status, "PROMOTED");
+  assert.equal(resumed.value.readback, "VERIFIED");
+  const resumedJudge = await runStore.readRun(BOOK, JUDGE_RUN_ID, context.clock.now());
+  assert.ok(resumedJudge.ok);
+  assert.equal(resumedJudge.value.definition.createdAt, crashedCreatedAt, "resume must reuse the prior judge run createdAt");
+  assert.equal(resumedJudge.value.status, "COMPLETED", "resume finishes the judge run");
+  assert.equal(events.filter((event) => event.phase === "fresh-qc" && event.status === "COMPLETED").length, 1);
+  const resumedPointer = await currentPointer.read(BOOK);
+  assert.ok(resumedPointer.ok && resumedPointer.value);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

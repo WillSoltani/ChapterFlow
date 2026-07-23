@@ -229,6 +229,24 @@ requiredTest("fresh QC quiz-key judge does not block on a low-confidence disagre
   assert.equal(evaluated.value.issues.some((entry) => entry.code === "QC1.wrong_quiz_key"), false);
 });
 
+requiredTest("fresh QC surfaces a medium-confidence disagreement as a non-blocking WARN", async (context) => {
+  const candidate = buildCandidate(context);
+  const evaluator = new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner: judgeRunner({ index: 0, confidence: "medium" }) },
+  );
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-judge-medconf", taskContext: judgeContext() });
+  assert.ok(evaluated.ok);
+  // Medium confidence is never auto-blocked, but the human-review escalation must
+  // not be silently dropped: it is surfaced as a WARN, never a BLOCKER.
+  assert.equal(evaluated.value.outcome, "PASS", JSON.stringify(evaluated.value.issues.filter((entry) => entry.severity === "BLOCKER"), null, 2));
+  assert.equal(evaluated.value.issues.some((entry) => entry.code === "QC1.wrong_quiz_key"), false);
+  assert.ok(
+    evaluated.value.issues.some((entry) => entry.code === "QC1.quiz_key_review" && entry.severity === "WARN"),
+    JSON.stringify(evaluated.value.issues, null, 2),
+  );
+});
+
 requiredTest("fresh QC fails closed when the quiz-key judge errors", async (context) => {
   const candidate = buildCandidate(context);
   const evaluator = new CandidateQcEvaluator(

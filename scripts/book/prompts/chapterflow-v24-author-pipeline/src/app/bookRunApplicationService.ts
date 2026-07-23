@@ -426,14 +426,30 @@ export class BookRunApplicationService {
     roundId: string,
   ): Promise<Result<QcRoundResult>> {
     const judgeRunId = derivedId("qc-judge-run", parentRunId);
-    const createdAt = safeNow(this.#dependencies.clock);
-    if (!createdAt.ok) return createdAt;
+    const observedAt = safeNow(this.#dependencies.clock);
+    if (!observedAt.ok) return observedAt;
+    // Resume-safety: the judge run's identity is deep-equality including createdAt,
+    // so a fresh createdAt on resume would CONFLICT with a judge run already written
+    // to disk before a crash. Mirror the reader-lane/repair-review runners: read the
+    // prior run and reuse its createdAt. A prior run that already reached COMPLETED
+    // committed the durable QC round; re-running the non-deterministic judge would
+    // break round idempotency, so resume from the committed round instead.
+    let createdAt = observedAt.value;
+    const prior = await this.#dependencies.runStore.readRun(input.bookId, judgeRunId, observedAt.value);
+    if (prior.ok) {
+      createdAt = prior.value.definition.createdAt;
+      if (prior.value.status === "COMPLETED") {
+        return this.#dependencies.qc.getRound(input.bookId, roundId);
+      }
+    } else if (prior.error.code !== "NOT_FOUND") {
+      return failed("BOOK_RUN_QC_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
+    }
     const created = await this.#dependencies.runStore.createRun(freshQcRunDefinition({
       bookId: input.bookId,
       runId: judgeRunId,
       sourceGitSha: input.sourceGitSha,
       candidate,
-      createdAt: createdAt.value,
+      createdAt,
       questionCount: countQuizQuestions(candidate),
     }));
     if (!created.ok) return failed("BOOK_RUN_QC_UNAVAILABLE", `${created.error.code}:${created.error.message}`);
