@@ -65,9 +65,8 @@ export interface ChapterFlowEnvConfig {
    * impossible until the quota increase lands (Service Quotas request
    * 46c3aa6abb9744e68072b0888fc4f1ceYQkUo8pA, L-B99A9384 -> 1000, filed
    * 2026-07-22; prod deploy run 29967575538 failed on exactly this).
-   * Flip to true once `aws lambda get-account-settings` shows
-   * ConcurrentExecutions >= 1000. The per-function numbers below stay
-   * maintained so re-enabling is a one-line change.
+   * ENABLED 2026-07-22: the quota increase was approved and
+   * `aws lambda get-account-settings` verified ConcurrentExecutions = 1000.
    */
   readonly lambdaConcurrencyEnforced: boolean;
   readonly lambdaConcurrency: {
@@ -160,7 +159,7 @@ export function resolveEnvConfig(app: cdk.App): ChapterFlowEnvConfig {
     removalPolicy: retain ? cdk.RemovalPolicy.RETAIN : cdk.RemovalPolicy.DESTROY,
     deletionProtection: retain,
     pointInTimeRecovery: retain,
-    lambdaConcurrencyEnforced: false,
+    lambdaConcurrencyEnforced: true,
     lambdaConcurrency:
       env === "prod" ? PROD_LAMBDA_CONCURRENCY : DEV_STAGING_LAMBDA_CONCURRENCY,
     region: REGION,

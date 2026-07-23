@@ -214,13 +214,9 @@ test("quota gate: enforced=false omits ReservedConcurrentExecutions on every Lam
   }
 });
 
-test("quota gate: resolveEnvConfig ships lambdaConcurrencyEnforced=false until the quota increase lands", () => {
+test("quota gate lifted: resolveEnvConfig ships lambdaConcurrencyEnforced=true (quota approved 2026-07-22, limit=1000)", () => {
   for (const env of ["dev", "staging", "prod"] as const) {
     const app = new cdk.App({ context: { env } });
-    assert.equal(
-      resolveEnvConfig(app).lambdaConcurrencyEnforced,
-      false,
-      `${env}: flip this only after aws lambda get-account-settings shows ConcurrentExecutions >= 1000`,
-    );
+    assert.equal(resolveEnvConfig(app).lambdaConcurrencyEnforced, true);
   }
 });
