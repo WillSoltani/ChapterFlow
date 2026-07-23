@@ -67,7 +67,7 @@ function universalCore(kind: SectionKind): string[] {
         "UNIVERSAL — Write ONLY the hook, tiered summaries, keyTakeaway, and optional tryThisNow; no examples, quiz, review cards, or implementationPlan.",
         "Cite an allowed sourceAnchorId for the hook, each breakdown tier, keyTakeaway, and tryThisNow.",
         "keyTakeaway: 30 words or fewer.",
-        "Tier floors: fastRead >=350 chars at grade <=7; deepRead >=1000 chars at grade <=8.5; fullRead >=2400 chars at grade <=9.5; the assembled breakdown reads at Flesch ease >=70. Short sentences, plain verbs.",
+        "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Short sentences, plain verbs — but meet the length floors with concrete detail, not padding.",
         "Teach the chapter, not the provenance discipline: no reader-facing source-grounding rules (\"at least 3 named cases\", \"concrete settings give memory a handle\", \"claims checkable\").",
         "Output SummaryPackV1 JSON only.",
       ];
