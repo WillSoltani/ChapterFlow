@@ -295,10 +295,53 @@ export type SectionRetryFeedback = Readonly<{
   priorDraft: unknown;
 }>;
 
-function retryFeedbackSection(feedback?: SectionRetryFeedback): string {
+// Task 11h: matches an anchor-specifics gate blocker — the shared message shape emitted by
+// validateAnchorHardSpecifics (SEC14 summary_anchor_specifics, SEC16 summary_memorable_anchor_specifics)
+// and the SEC33 example_anchor_specifics gate: "…cites <anchorId> but uses <present>/<min> required
+// hardSpecifics verbatim…". Capture group 1 = the cited anchor id, group 2 = the required count.
+const ANCHOR_SPECIFICS_BLOCKER_RE = /cites (\S+) but uses \d+\/(\d+) required hardSpecifics verbatim/;
+
+/**
+ * Task 11h enrichment. An anchor-specifics blocker names the cited case id and the required
+ * COUNT but never the STRINGS: the writer has the case in its SOURCE PACKET yet cannot tell
+ * which concrete strings the deterministic gate accepts as verbatim matches, so it drifts
+ * 0/2 → 1/2 by luck. This enumerates, for each DISTINCT anchor id cited by an anchor-specifics
+ * blocker, that anchor's own `hardSpecifics` — looked up from the SAME `packet.allowedAnchors`
+ * the validator reads (validateAnchorHardSpecifics keys `sourceAnchorById(packet)` on id), never
+ * re-derived, so the list cannot drift from what the gate checks — and states the gate's actual
+ * matching rule (exact case-insensitive substring). Cases not cited by any blocker are omitted,
+ * keeping the card targeted instead of dumping the whole packet.
+ */
+function anchorSpecificsEnumeration(
+  blockerLines: readonly string[],
+  anchors: readonly SourcePacketV1["allowedAnchors"][number][],
+): string {
+  const requiredMinById = new Map<string, number>();
+  for (const line of blockerLines) {
+    const match = ANCHOR_SPECIFICS_BLOCKER_RE.exec(line);
+    if (!match) continue;
+    const min = Number(match[2]);
+    // Same case cited by multiple units: enumerate against the strictest required count.
+    requiredMinById.set(match[1], Math.max(requiredMinById.get(match[1]) ?? 0, Number.isFinite(min) ? min : 0));
+  }
+  if (requiredMinById.size === 0) return "";
+  const byId = new Map(anchors.map((anchor) => [anchor.id, anchor]));
+  const blocks: string[] = [];
+  for (const [id, min] of requiredMinById) {
+    const specifics = byId.get(id)?.hardSpecifics ?? [];
+    if (specifics.length === 0) continue;
+    const quoted = specifics.map((specific) => `    • "${specific}"`).join("\n");
+    blocks.push(`REQUIRED VERBATIM SPECIFICS — ${id} (use at least ${min} EXACTLY as written):\n${quoted}`);
+  }
+  if (blocks.length === 0) return "";
+  return `\n\nThe anchor-specifics gate matches each required string by EXACT case-insensitive substring — a paraphrase, synonym, or reworded clause does NOT count. Copy the listed strings into the cited unit verbatim:\n${blocks.join("\n")}\n`;
+}
+
+function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = []): string {
   if (!feedback || feedback.blockerLines.length === 0) return "";
   const blockers = feedback.blockerLines.map((line) => `- ${line}`).join("\n");
-  return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n`;
+  const enumeration = anchorSpecificsEnumeration(feedback.blockerLines, anchors);
+  return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}`;
 }
 
 export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext; deliveryMode?: SectionTaskDeliveryMode; retryFeedback?: SectionRetryFeedback }): string {
@@ -328,9 +371,9 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   const writerPacket = { ...sourcePacket, coreMoveFactId: undefined, facts: sourcePacket.facts.map(({ teachingPriority: _tp, ...f }) => f) };
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {

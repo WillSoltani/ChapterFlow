@@ -14,6 +14,7 @@ import type { StageCoordinator } from "../../src/run-state/stageTypes.js";
 import { deriveBookDesign } from "../../src/compiler/bookDesign.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../../src/compiler/sourcePacket.js";
+import { buildSectionTaskMarkdown, type SectionRetryFeedback } from "../../src/sections/sectionTasks.js";
 import {
   BOOK_PATTERN_AUDIT_LOGICAL_PATH,
   parseBookPatternAuditReport,
@@ -757,6 +758,59 @@ requiredTest("8 selected path has zero forbidden authority tripwires", async (co
   assert.deepEqual(subject.counts, { open: 1, runner: 4, stage: 1 });
   const source = readFileSync(resolve(process.cwd(), "src/app/compilerApplicationPort.ts"), "utf8");
   assert.doesNotMatch(source, /(?:node:)?child_process|\brunVerb\b|\bspawn\s*\(|\bcallClaude\b|\bcallModel\b|\bCURRENT\b|process\.(?:cwd|env)|\b(?:CHAPTERS_DIR|CANONICAL_STATE|PIPELINE_DIR)\b/);
+});
+
+requiredTest("9 anchor-specifics retry feedback enumerates required verbatim strings", async () => {
+  const fx = compileCreditFixture(BOOK);
+  const fico = fx.packet.allowedAnchors.find((a) => a.id === "ch01.case.fico");
+  assert.ok(fico?.hardSpecifics?.length, "fixture must supply a case anchor with hardSpecifics");
+
+  // A summary-pack retry whose gate blocked one anchor-specifics unit (SEC14 citing
+  // ch01.case.fico) alongside an unrelated readability blocker (SEC12). The enrichment
+  // must enumerate ONLY the cited case's verbatim specifics, leaving the sibling case
+  // (ch01.case.cfpb) un-enumerated and the non-anchor blocker untouched.
+  const retryFeedback: SectionRetryFeedback = {
+    blockerLines: [
+      "SEC14.summary_anchor_specifics@/breakdown/deepRead:deepRead cites ch01.case.fico but uses 1/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details",
+      "SEC12.summary_readability@/hook/hook:hook reads above the grade ceiling for this section",
+    ],
+    priorDraft: { artifactType: "summary-pack" },
+  };
+  const md = buildSectionTaskMarkdown({
+    bookId: BOOK,
+    kind: "summary-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "compiler/ch01/summary.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode: "DIRECT_JSON",
+    retryFeedback,
+  });
+
+  // The cited case is enumerated under an explicit header that names the case and the
+  // required count, and lists each hardSpecific verbatim in quotes right below it.
+  assert.match(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.fico \(use at least 2 EXACTLY as written\):/);
+  assert.match(md, /ch01\.case\.fico \(use at least 2 EXACTLY as written\):[\s\S]*?"300 to 850 scale"[\s\S]*?"credit utilization"/);
+  // The enrichment states the ACTUAL gate matching rule so the model stops paraphrasing.
+  assert.match(md, /case-insensitive substring/i);
+  // A case NOT cited by any anchor-specifics blocker is never enumerated (no packet-wide dump).
+  assert.doesNotMatch(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.cfpb/);
+  // Non-anchor blockers survive unchanged, and the base retry feedback is preserved.
+  assert.match(md, /SEC12\.summary_readability/);
+  assert.match(md, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+
+  // A retry with ONLY non-anchor blockers must NOT grow an enumeration block at all.
+  const nonAnchorOnly = buildSectionTaskMarkdown({
+    bookId: BOOK,
+    kind: "summary-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "compiler/ch01/summary.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode: "DIRECT_JSON",
+    retryFeedback: { blockerLines: [retryFeedback.blockerLines[1]], priorDraft: { artifactType: "summary-pack" } },
+  });
+  assert.doesNotMatch(nonAnchorOnly, /REQUIRED VERBATIM SPECIFICS —/);
 });
 
 finishV25Tests().catch((error: unknown) => {
