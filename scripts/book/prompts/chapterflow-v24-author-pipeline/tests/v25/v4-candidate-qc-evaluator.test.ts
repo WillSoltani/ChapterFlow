@@ -1,7 +1,10 @@
 import assert from "node:assert/strict";
 
 import { CandidateQcEvaluator } from "../../src/app/candidateQcEvaluator.js";
+import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
 import type { CandidateInputFile, CandidateSnapshot } from "../../src/books/candidateTypes.js";
+import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
+import type { ModelResult } from "../../src/runtime/modelResult.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar } from "../../src/compiler/sourcePacket.js";
 import { compileSourceUsePlan } from "../../src/compiler/sourceUsePlanCompiler.js";
@@ -169,6 +172,73 @@ requiredTest("candidate QC refuses caller authority without exact canonical PASS
   assert.equal(evaluated.ok, false);
   if (!evaluated.ok) assert.equal(evaluated.error.code, "CANDIDATE_QC_CANONICAL_PASS_REQUIRED");
   assert.equal(opens, 0);
+});
+
+function judgeContext(): ModelTaskContext {
+  return {
+    bookId: BOOK,
+    runId: "run-candidate-qc",
+    attemptId: "qc-base",
+    stageId: "fresh-qc",
+    operationId: "fresh-qc",
+    workDir: "/tmp/candidate-qc-workdir",
+    signal: new AbortController().signal,
+  };
+}
+
+/** A runner that answers every quiz-key judge question with a fixed verdict, or
+ *  fails, so the fresh-qc judge path is exercisable model-free. */
+function judgeRunner(verdict: { index: number; confidence: "high" | "medium" | "low" } | "FAIL"): ModelTaskRunner {
+  return {
+    async run(request): Promise<ModelResult> {
+      if (verdict === "FAIL") {
+        return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "JUDGE_MODEL_DOWN", message: "injected judge failure" } };
+      }
+      return {
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        output: { index: verdict.index, confidence: verdict.confidence, correctText: "scripted choice", reason: "scripted verdict" },
+      };
+    },
+  };
+}
+
+requiredTest("fresh QC quiz-key judge blocks on a confident wrong key", async (context) => {
+  const candidate = buildCandidate(context);
+  // correctIndex is [0,1,2,...]; a judge that confidently derives index 0 for
+  // every question disagrees with the non-zero keys → wrong-key blockers.
+  const evaluator = new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner: judgeRunner({ index: 0, confidence: "high" }) },
+  );
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-judge-block", taskContext: judgeContext() });
+  assert.ok(evaluated.ok);
+  assert.equal(evaluated.value.outcome, "FAIL");
+  assert.ok(evaluated.value.issues.some((entry) => entry.code === "QC1.wrong_quiz_key" && entry.severity === "BLOCKER"), JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("fresh QC quiz-key judge does not block on a low-confidence disagreement", async (context) => {
+  const candidate = buildCandidate(context);
+  const evaluator = new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner: judgeRunner({ index: 0, confidence: "low" }) },
+  );
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-judge-lowconf", taskContext: judgeContext() });
+  assert.ok(evaluated.ok);
+  assert.equal(evaluated.value.outcome, "PASS", JSON.stringify(evaluated.value.issues.filter((entry) => entry.severity === "BLOCKER"), null, 2));
+  assert.equal(evaluated.value.issues.some((entry) => entry.code === "QC1.wrong_quiz_key"), false);
+});
+
+requiredTest("fresh QC fails closed when the quiz-key judge errors", async (context) => {
+  const candidate = buildCandidate(context);
+  const evaluator = new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner: judgeRunner("FAIL") },
+  );
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-judge-error", taskContext: judgeContext() });
+  assert.ok(evaluated.ok);
+  assert.equal(evaluated.value.outcome, "FAIL");
+  assert.ok(evaluated.value.issues.some((entry) => entry.code === "CANDIDATE_QC_QUIZ_JUDGE_ERROR" && entry.severity === "BLOCKER"), JSON.stringify(evaluated.value.issues));
 });
 
 finishV25Tests().catch((error: unknown) => {

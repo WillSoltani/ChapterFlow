@@ -4,20 +4,31 @@ import { sourcePacketHash } from "../compiler/sourcePacket.js";
 import { validateBlueprint } from "../compiler/blueprintGate.js";
 import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { validateSourceUsePlan } from "../contracts/sourceUsePlan.js";
-import type { Result } from "../contracts/v4Core.js";
+import type { ModelTaskContext, Result } from "../contracts/v4Core.js";
 import { runBookGateFromCandidate } from "../critics/bookGate.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH } from "../critics/bookPatternAudit.js";
 import { runChapterGateCompositeFromCandidate } from "../critics/chapterGateComposite.js";
 import { isQcBlockingMajor } from "../critics/majorPolicy.js";
+import { judgeQuizKeys, makeLiveAskModel } from "../critics/semantic/quizKeyJudge.js";
 import type { QcEvaluation, QcIssue } from "../qc/qcTypes.js";
 import type { CanonicalReviewResult } from "../review/reviewTypes.js";
 import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
 import type { ChapterV21 } from "../types.js";
+import type { ModelTaskRunner } from "./modelTaskRunner.js";
 
 export interface CandidateQcRequest {
   readonly candidate: CandidateSnapshot;
   readonly canonicalReview: CanonicalReviewResult;
   readonly roundId: string;
+  /** Model-task context for the fresh-qc quiz-key judge. Required (alongside an
+   *  injected runner) for the LLM answer-key judge to run; absent → judge skipped. */
+  readonly taskContext?: ModelTaskContext;
+}
+
+export interface CandidateQcOptions {
+  /** Injected model-task runner for the fresh-qc quiz-key judge (role "qc").
+   *  Absent → the LLM answer-key judge does not run (deterministic gates only). */
+  readonly runner?: ModelTaskRunner;
 }
 
 function failed<T>(code: string, message: string): Result<T> {
@@ -136,9 +147,11 @@ function strictSourceUsePlan(value: unknown): Result<SourceUsePlanV1> {
 
 export class CandidateQcEvaluator {
   readonly #reader: BookContentReader;
+  readonly #runner: ModelTaskRunner | undefined;
 
-  constructor(reader: BookContentReader) {
+  constructor(reader: BookContentReader, options?: CandidateQcOptions) {
     this.#reader = reader;
+    this.#runner = options?.runner;
   }
 
   async run(request: CandidateQcRequest): Promise<Result<QcEvaluation>> {
@@ -337,6 +350,40 @@ export class CandidateQcEvaluator {
       }
     } catch (error) {
       qcIssues.push(issue("CANDIDATE_QC_BOOK_GATE_ERROR", "BLOCKER", (error as Error).message, BOOK_PATTERN_AUDIT_LOGICAL_PATH));
+    }
+
+    // LLM answer-key judge (fresh-qc). The deterministic gates cannot tell
+    // whether a quiz's correctIndex points at the RIGHT choice; this restores
+    // the model-backed judge on the V4 seam. Fail-closed: a confident wrong-key
+    // verdict is a BLOCKER, and a judge execution failure is a BLOCKER too (an
+    // uncertain judge never silently passes). Runs only when both a runner and a
+    // task context are injected; otherwise the deterministic gates stand alone.
+    if (this.#runner !== undefined && request.taskContext !== undefined) {
+      const runner = this.#runner;
+      const base = request.taskContext;
+      for (const entry of chapters.value) {
+        const number = entry.chapter.number;
+        const judgeCtx: ModelTaskContext = {
+          ...base,
+          attemptId: `${base.attemptId}-quizjudge-ch${String(number).padStart(2, "0")}`,
+          operationId: `quiz-key-judge-ch${String(number).padStart(2, "0")}`,
+        };
+        try {
+          const report = await judgeQuizKeys(entry.chapter, {
+            ask: makeLiveAskModel({ execution: { runner, context: judgeCtx } }),
+          });
+          for (const verdict of report.flagged) {
+            qcIssues.push(issue(
+              "QC1.wrong_quiz_key",
+              "BLOCKER",
+              `quiz answer-key judge flagged ${verdict.questionId}: stored correctIndex=${verdict.storedIndex} but the model derived index ${verdict.modelIndex} (${verdict.reason})`,
+              location(number, `/quiz/${verdict.questionId}`),
+            ));
+          }
+        } catch (error) {
+          qcIssues.push(issue("CANDIDATE_QC_QUIZ_JUDGE_ERROR", "BLOCKER", (error as Error).message, location(number, "/quiz")));
+        }
+      }
     }
 
     const hasBlocker = qcIssues.some((entry) => entry.severity === "BLOCKER");
