@@ -102,6 +102,10 @@ type RigOptions = {
   readonly checkpointErrorOnce?: boolean;
   readonly abortAfterCalls?: number;
   readonly malformedSummary?: boolean;
+  /** Return a gate-BLOCKED (readable-but-rejected) summary draft for the first N
+   *  summary attempts, then a valid one. A value larger than MAX_SECTION_ATTEMPTS
+   *  keeps every attempt blocked so the bounded retry loop exhausts. */
+  readonly blockSummaryAttempts?: number;
 };
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
@@ -116,6 +120,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   let stagedInput: Parameters<CandidateStore["stage"]>[0] | null = null;
   let stagedSnapshot: CandidateSnapshot | null = null;
   let outputIndex = 0;
+  const sectionAttempts = new Map<string, number>();
   const controller = new AbortController();
   const runStore = new FileRunStore(resolve(context.roots.tempRoot, `run-state-${suffix}`));
   const fileStageCoordinator = new FileStageCoordinator(resolve(context.roots.tempRoot, `run-state-${suffix}`));
@@ -164,33 +169,28 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
       if (options.gatewayOutcome === "malformed") {
         return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: null };
       }
+      // A gate-BLOCKED summary draft: structurally well-formed (correct
+      // artifactType, complete shape) so it reaches the section gate, but its
+      // hook is too short — a deterministic SEC3.hook_length blocker that the
+      // bounded retry loop must feed back. Blocked attempts do NOT consume the
+      // rolling valid-output cursor, so the eventual passing retry still draws
+      // the valid summary fixture.
+      if (options.blockSummaryAttempts && request.context.operationId === "compiler-ch01-summary-pack") {
+        const opCount = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
+        sectionAttempts.set(request.context.operationId, opCount);
+        if (opCount <= options.blockSummaryAttempts) {
+          return {
+            attemptId: request.context.attemptId,
+            outcome: "SUCCEEDED",
+            output: { ...fixture.summary, hook: { ...fixture.summary.hook, hook: "Too short." } },
+          };
+        }
+      }
       const output = outputs[outputIndex++ % outputs.length];
       if (options.malformedSummary && counts.runner === 1) {
-        return {
-          attemptId: request.context.attemptId,
-          outcome: "SUCCEEDED",
-          output: {
-            ...output,
-            hook: {
-              text: fixture.summary.hook.hook,
-              sourceAnchorIds: fixture.summary.hook.sourceAnchorIds,
-            },
-            breakdown: {
-              fastRead: {
-                text: fixture.summary.breakdown.fastRead,
-                sourceAnchorIds: fixture.summary.breakdown.sourceAnchorIds?.fastRead,
-              },
-              deepRead: {
-                text: fixture.summary.breakdown.deepRead,
-                sourceAnchorIds: fixture.summary.breakdown.sourceAnchorIds?.deepRead,
-              },
-              fullRead: {
-                text: fixture.summary.breakdown.fullRead,
-                sourceAnchorIds: fixture.summary.breakdown.sourceAnchorIds?.fullRead,
-              },
-            },
-          },
-        };
+        // Structurally malformed output (wrong artifactType) — a NON-retryable
+        // COMPILER_SECTION_OUTPUT_INVALID, distinct from a gate blocker.
+        return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { ...output, artifactType: "not-a-section-pack" } };
       }
       return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
     },
@@ -278,7 +278,9 @@ requiredTest("1 selected candidate opens exactly once and returns successor iden
   if (!run.ok) return;
   assert.equal(run.value.status, "COMPLETED");
   assert.deepEqual(run.value.definition.requiredStages, ["compiler-candidate"]);
-  assert.deepEqual(run.value.definition.attemptLimits, { run: 4, byStage: { "compiler-candidate": 4 } });
+  // Capacity = operations.length (4 sections) * MAX_SECTION_ATTEMPTS (3) so bounded
+  // section retry has headroom; the happy path still consumes one attempt per section.
+  assert.deepEqual(run.value.definition.attemptLimits, { run: 12, byStage: { "compiler-candidate": 12 } });
   assert.equal(run.value.attempts.length, 4);
   assert.equal(new Set(run.value.attempts.map((attempt) => attempt.admission.attemptId)).size, 4);
   assert.deepEqual(run.value.attempts.map((attempt) => attempt.admission.operationId), [
@@ -496,6 +498,57 @@ requiredTest("3b malformed summary stops after one settled call and stages no ca
   if (run.ok) assert.equal(run.value.status, "FAILED");
 });
 
+requiredTest("3c gate-blocked first draft retries with blocker feedback and succeeds on the second draft", async (context) => {
+  const subject = rig(context, "retry-pass", { blockSummaryAttempts: 1 });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  const summaryPrompts = subject.prompts.filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack");
+  // (a) exactly two model calls for the retried section: blocked draft + passing retry.
+  assert.equal(summaryPrompts.length, 2);
+  assert.equal(subject.counts.runner, 5);
+  assert.equal(subject.counts.stage, 1);
+  // (c) attempt 1 keeps its deterministic id; only the retry mints a salted -r2 id.
+  const expectedBase = `cmp-${createHash("sha256").update("run-retry-pass").update("\0").update("compiler-ch01-summary-pack").digest("hex").slice(0, 40)}`;
+  assert.equal(summaryPrompts[0].context.attemptId, expectedBase);
+  assert.doesNotMatch(summaryPrompts[0].context.attemptId, /-r\d+$/);
+  assert.equal(summaryPrompts[1].context.attemptId, `${expectedBase}-r2`);
+  // (b) the retry task card carries the explicit rejection header, the verbatim
+  // blocker line, and the prior rejected draft — while the first draft carries none.
+  const firstCard = Buffer.from(summaryPrompts[0].prompt.inputs[4].bytes).toString("utf8");
+  const retryCard = Buffer.from(summaryPrompts[1].prompt.inputs[4].bytes).toString("utf8");
+  assert.doesNotMatch(firstCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.match(retryCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:/);
+  assert.match(retryCard, /SEC3\.hook_length@\/hook\/hook:hook too short/);
+  assert.match(retryCard, /Too short\./);
+  // the retry prompt must not smuggle in the dead self-validation instruction.
+  assert.doesNotMatch(retryCard, /npx tsx|validate-sections|After writing/);
+  const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (!run.ok) return;
+  assert.equal(run.value.status, "COMPLETED");
+  assert.equal(run.value.attempts.length, 5);
+  assert.ok(run.value.attempts.some((attempt) => attempt.admission.attemptId === `${expectedBase}-r2`));
+  assert.ok(run.value.attempts.every((attempt) => attempt.status === "SUCCEEDED"));
+});
+
+requiredTest("3d gate-blocked section exhausts bounded retries then throws with the accumulated attempt count", async (context) => {
+  const subject = rig(context, "retry-exhaust", { blockSummaryAttempts: 99 });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts:/);
+    assert.match(error.message, /SEC3\.hook_length@\/hook\/hook:hook too short/);
+    assert.ok(error.message.length <= 1700, `exhaustion detail exceeded bounded length: ${error.message.length}`);
+    return true;
+  });
+  // MAX_SECTION_ATTEMPTS blind attempts, then fail-closed — no candidate staged.
+  assert.equal(subject.counts.runner, 3);
+  assert.equal(subject.counts.stage, 0);
+  assert.equal(subject.staged(), null);
+  const run = await subject.runStore.readRun(BOOK, "run-retry-exhaust", context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) assert.equal(run.value.status, "FAILED");
+});
+
 requiredTest("4 complete successor inventory preserves input order then compiler order", async (context) => {
   const subject = rig(context, "inventory");
   const selectedBefore = subject.selected.files.map((file) => Buffer.from(file.bytes).toString("base64"));
@@ -606,7 +659,8 @@ requiredTest("4 complete successor inventory preserves input order then compiler
   const parityRun = await parity.runStore.readRun(BOOK, "run-parity", context.clock.now());
   assert.equal(parityRun.ok, true);
   if (parityRun.ok) {
-    assert.deepEqual(parityRun.value.definition.attemptLimits, { run: 8, byStage: { "compiler-candidate": 8 } });
+    // 2 chapters * 4 sections = 8 operations, * MAX_SECTION_ATTEMPTS (3) = 24.
+    assert.deepEqual(parityRun.value.definition.attemptLimits, { run: 24, byStage: { "compiler-candidate": 24 } });
   }
 
   const legacyRoot = resolve(parity.attemptRoot, "legacy");
