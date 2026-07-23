@@ -348,7 +348,7 @@ function anchorSpecificsEnumeration(
     blocks.push(`REQUIRED VERBATIM SPECIFICS — ${id} (use at least ${min} EXACTLY as written):\n${quoted}`);
   }
   if (blocks.length === 0) return "";
-  return `\n\nThe anchor-specifics gate matches each required string by EXACT case-insensitive substring — a paraphrase, synonym, or reworded clause does NOT count. Copy the listed strings into the cited unit verbatim:\n${blocks.join("\n")}\n`;
+  return `\n\nThe anchor-specifics gate matches each required string by EXACT case-insensitive substring — a paraphrase, synonym, or reworded clause does NOT count. Copy the listed strings into the cited unit verbatim; because matching is case-insensitive, capitalizing the first letter of a specific that opens a sentence is safe and still counts as verbatim — do this, since the readability gate SEC106 rejects an uncapitalized sentence start:\n${blocks.join("\n")}\n`;
 }
 
 // Task 11l: matches an anchor-FILING / claim-class gate blocker — the family emitted whenever a
