@@ -187,10 +187,26 @@ function judgeContext(): ModelTaskContext {
 }
 
 /** A runner that answers every quiz-key judge question with a fixed verdict, or
- *  fails, so the fresh-qc judge path is exercisable model-free. */
+ *  fails, so the fresh-qc judge path is exercisable model-free.
+ *
+ *  It ALSO enforces run-state's attempt-uniqueness invariant: a second call with
+ *  an already-admitted (runId, attemptId) returns the exact MODEL_ATTEMPT_EXISTS
+ *  ModelResult the real gateway returns (modelGateway.ts:383). This is the
+ *  Task 11b same-trap probe — the quiz-key judge issues ONE model call per quiz
+ *  question, so if the evaluator reused one frozen context across a chapter's
+ *  questions (or across chapters) the second question would fail closed exactly
+ *  as the researcher-chapter retry did. These multi-question / multi-chapter
+ *  tests staying green PROVES the live judge path mints a distinct attempt per
+ *  question (candidateQcEvaluator.ts threads a fresh judgeCtx per call). */
 function judgeRunner(verdict: { index: number; confidence: "high" | "medium" | "low" } | "FAIL"): ModelTaskRunner {
+  const seen = new Set<string>();
   return {
     async run(request): Promise<ModelResult> {
+      const key = `${request.context.runId} ${request.context.attemptId}`;
+      if (seen.has(key)) {
+        return { attemptId: request.context.attemptId, outcome: "UNKNOWN", error: { code: "MODEL_ATTEMPT_EXISTS", message: "attempt is already admitted and cannot spawn again" } };
+      }
+      seen.add(key);
       if (verdict === "FAIL") {
         return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "JUDGE_MODEL_DOWN", message: "injected judge failure" } };
       }

@@ -18,6 +18,19 @@ export interface ModelCallerExecution {
   readonly context: ModelTaskContext;
   /** Optional route override for callers whose injected workDir has a narrower policy. */
   readonly profileId?: string;
+  /**
+   * Optional: mint a FRESH attempt identity for the NEXT model call.
+   *
+   * Attempt identity is fixed at context creation, and run-state refuses to
+   * respawn an already-admitted attempt (modelGateway.ts returns
+   * MODEL_ATTEMPT_EXISTS). A retry-capable caller (e.g. researcher-chapter's
+   * bounded retry loop) therefore MUST NOT reuse one frozen `context` across
+   * attempts. When `nextContext` is present, {@link runJsonModelTask} obtains a
+   * new context per invocation so each attempt admits a NEW run-state attempt.
+   * The owning port/run mints the identity and is responsible for sizing the
+   * run's attempt capacity to the maximum attempts it can request.
+   */
+  readonly nextContext?: () => ModelTaskContext;
 }
 
 export const MODEL_CALLER_PROFILES = Object.freeze({
@@ -105,13 +118,19 @@ export async function runJsonModelTask<T>(
   userPrompt: string,
 ): Promise<T> {
   const supplied = requireModelCallerExecution(execution);
-  if (supplied.context.signal.aborted) {
+  // Mint a fresh attempt identity per call when the owner offers one, so a
+  // bounded retry admits a NEW run-state attempt instead of re-spawning an
+  // already-admitted attemptId (which run-state fail-closes with
+  // MODEL_ATTEMPT_EXISTS). Falls back to the frozen context for single-shot
+  // callers that never retry.
+  const context = supplied.nextContext ? supplied.nextContext() : supplied.context;
+  if (context.signal.aborted) {
     throw new Error("MODEL_RUN_CANCELLED:model task cancelled before scheduling");
   }
   const result = await supplied.runner.run({
     profileId: supplied.profileId ?? MODEL_CALLER_PROFILES[taskId],
     prompt: jsonPromptRequest(systemPrompt, userPrompt),
-    context: supplied.context,
+    context,
   });
   if (result.outcome !== "SUCCEEDED") {
     const detail = result.error

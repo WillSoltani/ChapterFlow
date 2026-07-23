@@ -6,13 +6,9 @@ import {
   type ChapterResearchInput,
   type ChapterResearchResult,
 } from "../../src/agents/researcher-chapter.js";
-import type {
-  ModelCallerExecution,
-  ModelTaskRunner,
-} from "../../src/app/modelTaskRunner.js";
+import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
+import { createUniquenessEnforcingRunner, mintingExecution } from "./fakes/uniquenessRunner.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
-
-const decoder = new TextDecoder();
 
 function bibliography(): BibliographyResult {
   return {
@@ -178,33 +174,27 @@ function input(): ChapterResearchInput {
   };
 }
 
-/** Fake runner that dispenses queued model outputs, clamping to the last entry
- *  on overflow, and captures the decoded user prompt for every call. */
+/** Fake runner that dispenses queued model outputs (clamping to the last entry
+ *  on overflow) AND enforces run-state's attempt-uniqueness invariant: a second
+ *  run() with an already-admitted (runId, attemptId) returns the exact
+ *  MODEL_ATTEMPT_EXISTS ModelResult the real gateway returns, so a retry that
+ *  reuses a frozen context fails closed the way the live canary did. The
+ *  execution mints a fresh attempt identity per invocation via nextContext,
+ *  mirroring the research port's operationExecution — so a CORRECT retry loop
+ *  admits a new attempt each time and never trips the uniqueness guard. */
 function rig(outputs: readonly unknown[]) {
-  const prompts: string[] = [];
-  let calls = 0;
-  const runner: ModelTaskRunner = {
-    async run(request) {
-      const userInput = request.prompt.inputs.find((entry) => entry.name === "user_prompt");
-      prompts.push(userInput ? decoder.decode(userInput.bytes) : "");
-      const output = outputs[Math.min(calls, outputs.length - 1)];
-      calls += 1;
-      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
-    },
+  const base: ModelTaskContext = {
+    bookId: "the-power-of-moments",
+    runId: "run-fixture",
+    attemptId: "attempt-fixture",
+    stageId: "research",
+    operationId: "research-ch01",
+    workDir: "/tmp/cf-v25-canary-retry",
+    signal: new AbortController().signal,
   };
-  const execution: ModelCallerExecution = {
-    runner,
-    context: {
-      bookId: "the-power-of-moments",
-      runId: "run-fixture",
-      attemptId: "attempt-fixture",
-      stageId: "research",
-      operationId: "research-ch01",
-      workDir: "/tmp/cf-v25-canary-retry",
-      signal: new AbortController().signal,
-    },
-  };
-  return { execution, prompts, calls: () => calls };
+  const { runner, prompts, calls } = createUniquenessEnforcingRunner(outputs);
+  const execution = mintingExecution(runner, base);
+  return { execution, prompts, calls };
 }
 
 requiredTest("1 invalid canary output succeeds after one retry with validator feedback + prior output in prompt", async () => {

@@ -17,7 +17,7 @@ import type {
   CandidateSnapshot,
   CandidateStore,
 } from "../books/candidateTypes.js";
-import type { CandidateIdentity, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
+import type { CandidateIdentity, ModelTaskContext, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
 import { RESEARCH_RUN_MANIFEST_FILE } from "../lib/researchRunManifest.js";
 import { researchBook } from "../researcher.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -28,7 +28,15 @@ import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 import type { ModelCallerExecution, ModelTaskRunner } from "./modelTaskRunner.js";
 
 const RESEARCH_STAGES = Object.freeze(["research", "seed-candidate"] as const);
-const MAX_RESEARCH_ATTEMPTS = 201;
+// Generous per-run attempt cap. Each chapter-research operation now admits a
+// NEW run-state attempt on every bounded retry (up to
+// MAX_CHAPTER_RESEARCH_ATTEMPTS from researcher-chapter.ts), plus one
+// bibliography attempt, so the run must budget MAX_CHAPTER_RESEARCH_ATTEMPTS ×
+// chapters + 1. The chapter count is unknown when the run definition is created
+// (research has not run yet), so — mirroring bookRunComposition's reader-lane
+// generous flat cap — we budget a flat value large enough for any real book
+// (4096 ÷ 3 ≈ 1365 chapters at full retry) rather than threading the count.
+const MAX_RESEARCH_ATTEMPTS = 4096;
 const V4_RESEARCH_PROFILE_ID = "attempt-read-json-v1";
 
 export interface ResearchCandidateSourceMapping {
@@ -190,18 +198,27 @@ function operationExecution(
   baseAttemptId: string,
   operationId: string,
 ): ModelCallerExecution {
+  // Each model call for this operation admits its OWN run-state attempt. A
+  // bounded retry (researcher-chapter) re-invokes the runner, and run-state
+  // refuses to respawn an already-admitted attempt (MODEL_ATTEMPT_EXISTS), so
+  // every invocation MUST carry a distinct attemptId. `nextContext` mints a
+  // fresh ordinal-suffixed identity per call; `context` previews ordinal 1 for
+  // any single-shot caller that reads it directly.
+  let ordinal = 0;
+  const build = (attempt: number): ModelTaskContext => Object.freeze({
+    bookId: requestBookId(input),
+    runId,
+    attemptId: attemptIdFor(baseAttemptId, `${operationId}#${attempt}`),
+    stageId: "research",
+    operationId,
+    workDir: input.attemptRoot,
+    signal: input.signal,
+  });
   return Object.freeze({
     runner: dependencies.runner,
     profileId: V4_RESEARCH_PROFILE_ID,
-    context: Object.freeze({
-      bookId: requestBookId(input),
-      runId,
-      attemptId: attemptIdFor(baseAttemptId, operationId),
-      stageId: "research",
-      operationId,
-      workDir: input.attemptRoot,
-      signal: input.signal,
-    }),
+    context: build(1),
+    nextContext: () => build(++ordinal),
   });
 }
 
