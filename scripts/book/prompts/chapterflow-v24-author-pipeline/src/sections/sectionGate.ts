@@ -234,9 +234,25 @@ export function validateAnchorHardSpecifics(
   value: unknown,
   label: string,
   min = 2,
+  // Cross-anchor combination over the cited specifics-rich anchors:
+  //   "all" (default) — EVERY specifics-rich cited anchor must be grounded (AND).
+  //     Correct for tier/example/quiz units, whose prose carries a 60+ word (or
+  //     350-2400 char) budget that can host every cited case's details.
+  //   "any" — grounding ONE specifics-rich cited anchor is enough (OR). Used ONLY
+  //     by the memorable-line check (SEC16): a memorable candidate inherits its
+  //     whole tier's sourceAnchorIds, so a tier citing several specifics-rich cases
+  //     would otherwise demand 2 verbatim specifics from EVERY case inside one
+  //     8-14-word aphorism — structurally unsatisfiable (Finding 20). The gate's
+  //     own intent ("build the unit from THE ANCHOR'S concrete details", singular)
+  //     is per-ONE-anchor grounding. When NO cited case is grounded we still emit
+  //     one blocker per unsatisfied anchor (message shape unchanged) so the retry
+  //     card can enumerate every option. Vacuous skip (no specifics-rich cited
+  //     anchor) still passes under both modes.
+  combine: "all" | "any" = "all",
 ): string[] {
   const haystack = text(value).toLowerCase();
   const problems: string[] = [];
+  let anySatisfied = false;
   for (const id of anchorArray(ids)) {
     const anchor = anchors.get(id);
     if (!anchor?.supportsClaimTypes?.includes(claimType)) continue;
@@ -245,8 +261,13 @@ export function validateAnchorHardSpecifics(
     const present = specifics.filter((specific) => specific && haystack.includes(specific.toLowerCase())).length;
     if (present < min) {
       problems.push(`${label} cites ${id} but uses ${present}/${min} required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
+    } else {
+      anySatisfied = true;
     }
   }
+  // OR: a single fully-grounded cited case clears the whole check; only when none
+  // is grounded do the per-anchor blockers surface (as alternatives to satisfy).
+  if (combine === "any" && anySatisfied) return [];
   return problems;
 }
 
@@ -2071,7 +2092,10 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   }
   for (const candidate of selectedMemorable) {
     for (const p of validateAnchorClaimType(candidate.ids, anchors, "memorable_line", `selected memorable line in breakdown.${candidate.tier}`)) push("SEC15.summary_memorable_anchor_claim_type", "blocker", p, `/breakdown/${candidate.tier}`);
-    for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`)) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
+    // OR across the tier's cited specifics-rich cases (Finding 20): the candidate
+    // inherits the WHOLE tier's sourceAnchorIds, so grounding ONE cited case in the
+    // aphorism suffices; AND-per-anchor here was structurally unsatisfiable.
+    for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any")) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
   }
   if (text(pack.keyTakeaway).length < 50) push("SEC9.takeaway_length", "blocker", "keyTakeaway too short", "/keyTakeaway");
   if (wordCount(pack.keyTakeaway) > 30) push("SEC18.takeaway_word_cap", "blocker", `keyTakeaway is ${wordCount(pack.keyTakeaway)} words (cap 30)`, "/keyTakeaway");

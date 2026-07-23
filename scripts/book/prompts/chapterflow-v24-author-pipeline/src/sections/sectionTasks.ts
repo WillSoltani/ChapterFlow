@@ -158,7 +158,7 @@ function craftBrief(kind: SectionKind): string[] {
         "WHAT EXCELLENT LOOKS LIKE: teach the chapter's spine through its real cases as lived moments.",
         SUMMARY_VOICE_PARAGRAPH,
         "Use reservedVariety.hookShape as the hook's assigned opening move. Seed at least three standalone memorable-line candidates in the breakdown: 8–14 words, portable, not a list, question, or \"if not/if so\" fragment; at least two at 14 words or fewer so they count as clean.",
-        "The three highest-scoring candidates are each validated against their own tier's cited anchors: if a candidate's tier cites a case anchor carrying two or more hardSpecifics, that line itself — not just the surrounding tier — must include at least two of them verbatim (SEC16), so weave two of the case's concrete specifics into the aphorism from the start, or seed your standout lines in a tier whose cited anchors carry fewer than two hardSpecifics; the validator enforces this.",
+        "The three highest-scoring candidates are each validated against their own tier's cited anchors: if a candidate's tier cites one or more case anchors carrying two or more hardSpecifics, that line itself — not just the surrounding tier — must ground ANY ONE of those cited cases by including at least two of them verbatim (SEC16); grounding a single cited case is enough (you do NOT need two specifics from every cited case), so weave two of one case's concrete specifics into the aphorism from the start; the validator enforces this.",
         "RUBRIC TARGETS: Flesch ease >=70 (grades: fastRead <=7, deepRead <=8.5, fullRead <=9.5); at least two clean (<=14-word) memorable lines.",
         voiceCraftLine(kind),
       ];
