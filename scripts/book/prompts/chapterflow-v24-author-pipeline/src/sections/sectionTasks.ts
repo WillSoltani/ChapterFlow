@@ -350,6 +350,56 @@ function anchorSpecificsEnumeration(
   return `\n\nThe anchor-specifics gate matches each required string by EXACT case-insensitive substring — a paraphrase, synonym, or reworded clause does NOT count. Copy the listed strings into the cited unit verbatim:\n${blocks.join("\n")}\n`;
 }
 
+// Task 11l: matches an anchor-FILING / claim-class gate blocker — the family emitted whenever a
+// draft cites an anchor under a claim class its `supportsClaimTypes` does not list. SEC32
+// (example_anchor_claim_type: "example N sourceAnchorId <id> does not support example claims; use a
+// named-example anchor and keep fact ids in sourceFactIds") and its validateAnchorClaimType siblings
+// (SEC13/SEC15/SEC55, "<label> cites <id> (<kind>) but that anchor does not support <claimType>
+// claims") share the "does not support <claimType> claims" tail. This is a DIFFERENT gate class than
+// 11h's anchor-SPECIFICS blocker ("…uses P/N required hardSpecifics verbatim"), which this must NOT
+// match — the two enrichments stay orthogonal.
+const ANCHOR_FILING_BLOCKER_RE = /does not support \S+ claims/i;
+
+/**
+ * Task 11l enrichment (generalizes finding 15). An anchor-filing blocker tells the writer that one
+ * cited id is filed under the wrong claim class, but never which of the packet's anchors ARE
+ * capable of the class it needs — same feedback-quality gap as 11h, different gate. This appends a
+ * generic ANCHOR INVENTORY: the packet's own `allowedAnchors` grouped by the SAME discriminators the
+ * gates read — `supportsClaimTypes` (SEC32/SEC55 pass/fail) and `kind` (named in the reject
+ * message) — never a regex on the id. Group 1 lists every example-claim-capable anchor
+ * (supportsClaimTypes ⊇ {example}); group 2 lists fact-class anchors (kind testable_fact that do not
+ * support example) with the gate's own filing rule (cite in sourceFactIds, never as an example
+ * anchor); a catch-all lists any remaining anchors with the exact claim classes each one supports so
+ * concept/framework anchors can be filed correctly too. Fires ONLY when a filing blocker is present,
+ * so cards without an anchor-class problem stay lean.
+ */
+function anchorInventoryAppendix(
+  blockerLines: readonly string[],
+  anchors: readonly SourcePacketV1["allowedAnchors"][number][],
+): string {
+  if (!blockerLines.some((line) => ANCHOR_FILING_BLOCKER_RE.test(line))) return "";
+  if (anchors.length === 0) return "";
+  const supportsExample = (a: SourcePacketV1["allowedAnchors"][number]): boolean =>
+    a.supportsClaimTypes?.includes("example") ?? false;
+  const exampleCapable = anchors.filter(supportsExample);
+  const factClass = anchors.filter((a) => a.kind === "testable_fact" && !supportsExample(a));
+  const filed = new Set([...exampleCapable, ...factClass].map((a) => a.id));
+  const other = anchors.filter((a) => !filed.has(a.id));
+  const bullet = (a: SourcePacketV1["allowedAnchors"][number]): string => `    • ${a.id}`;
+  const groups: string[] = [];
+  if (exampleCapable.length > 0) {
+    groups.push(`may anchor example claims (file these as an example's sourceAnchorIds):\n${exampleCapable.map(bullet).join("\n")}`);
+  }
+  if (factClass.length > 0) {
+    groups.push(`facts — cite in sourceFactIds, never as example anchors:\n${factClass.map(bullet).join("\n")}`);
+  }
+  if (other.length > 0) {
+    groups.push(`other anchors — file each ONLY under a claim class it lists:\n${other.map((a) => `    • ${a.id} (supports: ${(a.supportsClaimTypes ?? []).join(", ") || "none"})`).join("\n")}`);
+  }
+  if (groups.length === 0) return "";
+  return `\n\nANCHOR INVENTORY — an anchor may back a claim ONLY when its packet.allowedAnchors[] supportsClaimTypes lists that claim class; these groups are read straight off that field (and each anchor's kind), so file every id by its class:\n${groups.join("\n\n")}\n`;
+}
+
 function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = []): string {
   if (!feedback || feedback.blockerLines.length === 0) return "";
   const blockers = feedback.blockerLines.map((line) => `- ${line}`).join("\n");
@@ -364,7 +414,8 @@ function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly
     return `\n\nPREVIOUS OUTPUT REJECTED BEFORE IT REACHED THIS PROCESS:\n${blockers}\nThe raw invalid output stays inside the output-schema gate and cannot be echoed back here. Return exactly one JSON object matching the schema hint above and nothing else.\n`;
   }
   const enumeration = anchorSpecificsEnumeration(feedback.blockerLines, anchors);
-  return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}`;
+  const inventory = anchorInventoryAppendix(feedback.blockerLines, anchors);
+  return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}${inventory}`;
 }
 
 export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext; deliveryMode?: SectionTaskDeliveryMode; retryFeedback?: SectionRetryFeedback }): string {

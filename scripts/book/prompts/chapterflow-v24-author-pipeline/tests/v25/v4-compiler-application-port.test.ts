@@ -985,6 +985,97 @@ requiredTest("9 anchor-specifics retry feedback enumerates required verbatim str
   assert.doesNotMatch(nonAnchorOnly, /REQUIRED VERBATIM SPECIFICS —/);
 });
 
+requiredTest("10 anchor-filing retry feedback appends a class-grouped anchor inventory", async () => {
+  const fx = compileCreditFixture(BOOK);
+  const exampleCapable = fx.packet.allowedAnchors.filter((a) => a.supportsClaimTypes?.includes("example"));
+  const factClass = fx.packet.allowedAnchors.filter((a) => a.kind === "testable_fact" && !a.supportsClaimTypes?.includes("example"));
+  assert.ok(exampleCapable.length >= 2, "fixture must supply >=2 example-claim-capable anchors");
+  assert.ok(factClass.length >= 1, "fixture must supply >=1 fact-class anchor");
+
+  // An example-pack retry blocked by SEC32: the writer filed a fact-class anchor id into an
+  // example's sourceAnchorIds. The gate names the offending id and the required filing rule but
+  // never which packet anchors ARE example-claim-capable — the finding-15 feedback gap. The
+  // inventory appendix must resolve that from the SAME supportsClaimTypes/kind the gate reads.
+  const badFact = factClass[0].id;
+  const retryFeedback: SectionRetryFeedback = {
+    blockerLines: [
+      `SEC32.example_anchor_claim_type@/examples/0/sourceAnchorIds:example 1 sourceAnchorId ${badFact} does not support example claims; use a named-example anchor and keep fact ids in sourceFactIds`,
+      "SEC106.example_sentence_case@/examples/0/scenario:example 1 scenario begins with a lowercase letter",
+    ],
+    priorDraft: { artifactType: "example-pack" },
+  };
+  const md = buildSectionTaskMarkdown({
+    bookId: BOOK,
+    kind: "example-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "compiler/ch01/examples.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode: "DIRECT_JSON",
+    retryFeedback,
+  });
+
+  // The appendix is present, headed ANCHOR INVENTORY.
+  assert.match(md, /ANCHOR INVENTORY/);
+  // (a) example-claim-capable ids grouped under an explicit "may anchor example claims" heading.
+  assert.match(md, /may anchor example claims/i);
+  const exampleHeadingIdx = md.indexOf("may anchor example claims");
+  const factHeadingIdx = md.indexOf("facts — cite in sourceFactIds, never as example anchors");
+  assert.ok(exampleHeadingIdx >= 0 && factHeadingIdx >= 0, "both class headings present");
+  for (const a of exampleCapable) {
+    // Each example-capable id appears under (after) the example heading and before the fact heading.
+    const idx = md.indexOf(a.id, exampleHeadingIdx);
+    assert.ok(idx >= 0 && idx < factHeadingIdx, `${a.id} listed under the example-claim heading`);
+  }
+  // (b) fact-class ids grouped under the "facts — cite in sourceFactIds" heading.
+  const idx = md.indexOf(badFact, factHeadingIdx);
+  assert.ok(idx >= 0, `${badFact} listed under the fact-class heading`);
+  // (c) classes derive from the gate's supportsClaimTypes discriminator, so a fact id must NOT be
+  //     listed as example-claim-capable even though its raw id sits nowhere near the example ids.
+  const badFactUnderExample = md.slice(exampleHeadingIdx, factHeadingIdx).includes(badFact);
+  assert.ok(!badFactUnderExample, "fact-class id never appears under the example-claim heading");
+  // The 11h specifics-enumeration behavior is orthogonal: an anchor-filing card has no SEC14/33
+  // specifics blocker, so no REQUIRED VERBATIM SPECIFICS block is emitted here.
+  assert.doesNotMatch(md, /REQUIRED VERBATIM SPECIFICS —/);
+  // Base retry feedback and the sibling nit both survive.
+  assert.match(md, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.match(md, /SEC106\.example_sentence_case/);
+
+  // Size discipline: a retry whose blockers reference NO anchor-filing/claim-class problem must
+  // NOT grow the inventory — the sibling nit alone leaves the card lean.
+  const nitOnly = buildSectionTaskMarkdown({
+    bookId: BOOK,
+    kind: "example-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "compiler/ch01/examples.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode: "DIRECT_JSON",
+    retryFeedback: { blockerLines: [retryFeedback.blockerLines[1]], priorDraft: { artifactType: "example-pack" } },
+  });
+  assert.doesNotMatch(nitOnly, /ANCHOR INVENTORY/);
+
+  // A pure anchor-SPECIFICS blocker (SEC14 "…required hardSpecifics verbatim") is 11h's lane, not
+  // an anchor-filing problem, so it must trigger the specifics enumeration but NOT the inventory.
+  const specificsOnly = buildSectionTaskMarkdown({
+    bookId: BOOK,
+    kind: "summary-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "compiler/ch01/summary.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode: "DIRECT_JSON",
+    retryFeedback: {
+      blockerLines: [
+        "SEC14.summary_anchor_specifics@/breakdown/deepRead:deepRead cites ch01.case.fico but uses 1/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details",
+      ],
+      priorDraft: { artifactType: "summary-pack" },
+    },
+  });
+  assert.match(specificsOnly, /REQUIRED VERBATIM SPECIFICS —/);
+  assert.doesNotMatch(specificsOnly, /ANCHOR INVENTORY/);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
