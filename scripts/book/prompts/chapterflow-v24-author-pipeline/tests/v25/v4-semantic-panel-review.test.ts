@@ -77,13 +77,16 @@ type ReaderOverrides = {
   advisoryFindings?: unknown[];
   escalationSignals?: unknown[];
   recommendation?: string;
+  /** Uniform per-factor score; every weight sums to 100 so the composite equals
+   *  this value. Defaults to the chapter bar (80) so the panel median passes. */
+  score?: number;
 };
 
 /** A schema-valid reader-experience content object (the runtime stamps the
  *  schema/reviewerRole/rubricVersion + hash bindings on top). */
 function readerContent(overrides: ReaderOverrides = {}): Record<string, unknown> {
   const scores: Record<string, number> = {};
-  for (const factor of REVIEW_FACTORS) scores[factor] = 80;
+  for (const factor of REVIEW_FACTORS) scores[factor] = overrides.score ?? 80;
   return {
     scores,
     quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
@@ -216,6 +219,67 @@ requiredTest("semantic panel FAILS with a BLOCKER when a reader flags an on-page
   assert.ok(evaluated.value.issues.some(
     (issue) => issue.code === "READER.BLOCKING.internal_contradiction" && issue.severity === "BLOCKER",
   ), JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("semantic panel FAILS when the 3-reader panel MEDIAN composite is below the chapter bar, even with no categorized blocking finding", async () => {
+  const candidate = twoChapterCandidate();
+  // ch1's three seats each return a low composite (20) with NO blocking finding;
+  // the median (20) is below the chapter bar (80) so the chapter must fail on the
+  // median alone. ch2's three seats are clean at the bar.
+  const scripted = scriptedRunner([
+    readerContent({ score: 20 }),
+    readerContent({ score: 20 }),
+    readerContent({ score: 20 }),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "FAIL");
+  // The verdict was decided by the MEDIAN floor, not by any named blocking finding.
+  const floorBlockers = evaluated.value.issues.filter(
+    (issue) => issue.code === "READER.PANEL.BELOW_FLOOR" && issue.severity === "BLOCKER",
+  );
+  assert.equal(floorBlockers.length, 1, JSON.stringify(evaluated.value.issues));
+  assert.ok(floorBlockers[0].location === "ch01", JSON.stringify(floorBlockers[0]));
+  // No categorized reader blocking finding was raised — the median alone failed it.
+  assert.equal(
+    evaluated.value.issues.some((issue) => issue.code.startsWith("READER.BLOCKING.")),
+    false,
+    JSON.stringify(evaluated.value.issues),
+  );
+  // ch2 (clean at the bar) raised no floor blocker.
+  assert.equal(floorBlockers.some((issue) => issue.location === "ch02"), false);
+});
+
+requiredTest("semantic panel PASSES when the panel median sits exactly on the chapter bar", async () => {
+  const candidate = twoChapterCandidate();
+  // Seat composites 80/80/80 → median 80 == bar; the floor is a strict `< bar`.
+  const scripted = scriptedRunner([
+    readerContent({ score: 80 }),
+    readerContent({ score: 80 }),
+    readerContent({ score: 80 }),
+    readerContent({ score: 80 }),
+    readerContent({ score: 80 }),
+    readerContent({ score: 80 }),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "PASS");
+  assert.equal(
+    evaluated.value.issues.some((issue) => issue.code === "READER.PANEL.BELOW_FLOOR"),
+    false,
+    JSON.stringify(evaluated.value.issues),
+  );
 });
 
 requiredTest("semantic panel short-circuits on a baseline non-PASS and runs zero reader tasks", async () => {

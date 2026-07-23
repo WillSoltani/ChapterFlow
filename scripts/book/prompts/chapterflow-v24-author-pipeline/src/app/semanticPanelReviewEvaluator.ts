@@ -21,9 +21,18 @@
  *      reader advisory findings + escalation signals → `"WARN"`. An unparseable
  *      or failed seat makes the whole evaluation `"ERROR"` (fail-closed — an
  *      uncertain reader lane never silently passes).
- *   4. Outcome: `ERROR` if any seat run failed; else `FAIL` if any panel (or
- *      baseline) BLOCKER issue exists; else `PASS`. So PASS ⟺ baseline PASS ∧
- *      zero panel BLOCKERs.
+ *   4. MEDIAN COMPOSITE FLOOR (the headline 3-reader-median deliverable is
+ *      load-bearing here, not telemetry): a chapter whose panel MEDIAN composite
+ *      is below the frozen chapter bar (`AUTHOR_CHAPTER_BAR`, the single source of
+ *      truth shared with the author-review chapter gate) raises a
+ *      `READER.PANEL.BELOW_FLOOR` BLOCKER. Without this, three seats could each
+ *      return a low composite with no categorized blocking finding and the chapter
+ *      would still PASS — the median would decide nothing. The floor makes the
+ *      median decide the verdict.
+ *   5. Outcome: `ERROR` if any seat run failed; else `FAIL` if any panel (or
+ *      baseline) BLOCKER issue exists — including a below-floor median; else
+ *      `PASS`. So PASS ⟺ baseline PASS ∧ every chapter's panel median ≥ the
+ *      chapter bar ∧ zero panel/baseline BLOCKERs.
  *
  * The reader lane holds no external-source-truth authority (IMP-20 §A): its
  * blocking categories are on-page-decidable only, so this stage never invents
@@ -39,6 +48,7 @@
 import type { CandidateSnapshot } from "../books/candidateTypes.js";
 import type { ModelTaskContext, Result } from "../contracts/v4Core.js";
 import { ReaderExperienceReviewError } from "../review/readerExperienceReview.js";
+import { AUTHOR_CHAPTER_BAR } from "../review/readerReview.js";
 import {
   READER_PANEL_SEATS,
   runReaderLanes,
@@ -146,6 +156,18 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
           : "SEMANTIC_PANEL_READER_FAILED";
         issues.push(issue(code, "BLOCKER", (error as Error).message, `ch${pad(number)}`));
         continue;
+      }
+      // The 3-reader MEDIAN is load-bearing: a panel whose median composite is
+      // below the frozen chapter bar fails the chapter even when no seat raised a
+      // categorized blocking finding (fail-closed — a uniformly-mediocre panel
+      // must not ship on the absence of a named defect).
+      if (panel.medianComposite < AUTHOR_CHAPTER_BAR) {
+        issues.push(issue(
+          "READER.PANEL.BELOW_FLOOR",
+          "BLOCKER",
+          `reader-panel median composite ${panel.medianComposite} < chapter bar ${AUTHOR_CHAPTER_BAR} (seat composites ${panel.composites.join(", ")})`,
+          `ch${pad(number)}`,
+        ));
       }
       // ANY seat's on-page-decidable blocking finding blocks (union, fail-closed).
       for (const finding of panel.blockingFindings) {

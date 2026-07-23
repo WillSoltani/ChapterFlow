@@ -4,13 +4,57 @@
  *
  * Task 8 restored a SINGLE reader-experience read per chapter onto the live
  * `SemanticPanelReviewEvaluator`. This module restores the IMP-20 §G design's
- * blind, multi-seat READER PANEL: three INDEPENDENT reader seats read the same
- * chapter and their composites are MEDIANED (never averaged, never read off one
- * reader). It reuses the genuine shared primitives — `buildReaderExperienceTask`
- * / `parseReaderExperienceReview` / `assembleReaderExperienceReview` (the reader
+ * blind, multi-seat READER PANEL: three reader seats read the same chapter and
+ * their composites are MEDIANED (never averaged, never read off one reader). It
+ * reuses the genuine shared primitives — `buildReaderExperienceTask` /
+ * `parseReaderExperienceReview` / `assembleReaderExperienceReview` (the reader
  * lane runtime, WP-B1) and `computeReaderComposite` (the single source of truth
  * for the weighted-mean composite, WP-B4 §D) — so this path can never silently
  * diverge from the frozen reader instrument or composite arithmetic.
+ *
+ * FIDELITY CAVEAT — "seat" diversity is LENS diversity, not model diversity.
+ * Under owner decision D1 every review role is frozen to ONE route (Sonnet-5 at
+ * xhigh via `config/model-routing.json`). The three seats therefore differ only
+ * by the blind reading-stance header appended to the same frozen instrument, all
+ * routed to the same model — one model reading three times under three lenses.
+ * This is NOT IMP-20 §G's original reviewer-diversity-across-independent-models
+ * (that lived in the bakeoff judge-qualification harness, which qualified a PANEL
+ * of distinct judge profiles). It is the strongest panel the frozen single-route
+ * production seam can honestly offer; the median + union-of-findings still guard
+ * against a single unstable read, but a future reader must not mistake this for
+ * multi-model diversity.
+ *
+ * DEVIATION FROM PLAN Task 9 Step 3 / Interfaces (recorded, not silent).
+ * The plan prescribed EXTRACTION: "Implement laneOrchestrator.ts BY EXTRACTION
+ * from bakeoff/migration; bakeoff keeps working by importing the extracted
+ * module", producing the contracted `AggregatedChapterReviewV1`. This module
+ * instead is a self-contained reader-only re-implementation producing
+ * `ReaderPanelReviewV1`, and does NOT extract from bakeoff/migration. Rationale:
+ *   - Step-1 map — how bakeoff/migration invokes lanes today: the "lanes" there
+ *     are a CORPUS-SCALE judge-QUALIFICATION experiment harness, not a per-chapter
+ *     live reader panel. `reviewLaneTypes.ts:73` fixes the lane roles to
+ *     reader|source|quiz; `reviewerRoleAssignment.ts:63-84` (`assignFixedRoles`)
+ *     maps a sealed experiment's flat judge panel onto fixed role slots;
+ *     `reviewRunner.ts:62-124` (`panelAssignment`/`runReview`) assigns a frozen
+ *     primary + agreement judge PER SAMPLE CELL from an `ExperimentSpecV1`;
+ *     `aggregateChapterReview` (`review/aggregateChapterReview.ts:80`) is the WP-B4
+ *     conductor that folds reader + source + quiz + deterministic-critic bundle
+ *     into `AggregatedChapterReviewV1`. None of that machinery takes a bare
+ *     `ChapterV21` + `ModelTaskRunner`; it is driven by sealed experiment specs,
+ *     role-qualification registries, and source/quiz lane inputs.
+ *   - Why not extract / why the produced-type contract changed
+ *     (`AggregatedChapterReviewV1` → `ReaderPanelReviewV1`): the LIVE evaluator is
+ *     fed only the reader-facing page — it has no source packet, plan, sidecar, or
+ *     committed quiz derivation, so it cannot honestly feed the source and quiz
+ *     lanes `aggregateChapterReview` requires. Synthesising them would fabricate
+ *     PASS lanes and defeat that aggregator's fail-closed freshness gates. There
+ *     is no per-chapter reader-panel primitive inside bakeoff/migration to lift;
+ *     the honest reader-only unit is exactly the three shared reader primitives
+ *     this module already reuses. The reader-panel median is what a reader-only
+ *     seam can own.
+ * This is a conscious departure from the prescribed extraction and typed
+ * interface; it awaits owner/orchestrator acknowledgement rather than presenting
+ * itself as the contracted extraction.
  *
  * Design honored from IMP-20 §G (fixed, output-independent role assignment):
  *   - The seat set is FROZEN (`READER_PANEL_SEATS`): a pure constant, never a
@@ -63,10 +107,13 @@ import {
   type ModelTaskRunner,
 } from "../app/modelTaskRunner.js";
 
-/** Deterministic sha over the reader-panel output-schema tag the seats are bound
- *  to. The frozen reader validator only requires a non-empty `schemaSha256`;
- *  this binds a stable instrument tag so a future output-schema change stales
- *  prior records (readerReviewIsFresh) once a consumer uses freshness. */
+/** The reader-panel `schemaSha256` binding. The frozen reader validator
+ *  (`validateReaderExperienceReview`) REQUIRES a non-empty `schemaSha256` on
+ *  every assembled record, so this is a load-bearing binding, not a freshness
+ *  anchor: no live consumer on this seam reads it for freshness (the panel
+ *  evaluator gates on median + findings, never on record staleness). It is a
+ *  deterministic tag over the frozen instrument id so the value is stable across
+ *  runs and identical across the three seats. */
 const READER_PANEL_OUTPUT_SCHEMA_SHA = createHash("sha256")
   .update("semantic-panel-reader-experience-review-v1")
   .digest("hex");
