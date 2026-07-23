@@ -48,7 +48,7 @@ const COMPILER_STAGE_ID = "compiler-candidate" as const;
 export const MAX_SECTION_ATTEMPTS = 3;
 
 /**
- * Task 11j — retryable model-output-variance classes inside the SAME bounded
+ * Task 11j/11k — retryable model-output-variance classes inside the SAME bounded
  * per-section budget as gate blockers. The section model call goes through the
  * gateway, which can reject a bounded, exit-0 model process's output against the
  * route's source-controlled schema (outcome FAILED, code MODEL_OUTPUT_INVALID) —
@@ -56,10 +56,17 @@ export const MAX_SECTION_ATTEMPTS = 3;
  * (finding #5's misclassification, recurring in the compiler path). A
  * rate-limited / overloaded subprocess that exits nonzero surfaces as outcome
  * FAILED, code MODEL_PROCESS_FAILED — a transient blip that clears on a short
- * backoff. Both are retried with a fresh salted attempt against the section's
- * MAX_SECTION_ATTEMPTS budget; every other FAILED/TIMED_OUT/UNKNOWN code
- * (cancellation, capacity, admission collision, uncertain teardown) is genuine
- * infrastructure and propagates immediately.
+ * backoff. A section draft killed at the profile timeout horizon surfaces as
+ * outcome TIMED_OUT (the gateway stamps code MODEL_PROCESS_FAILED); because
+ * claude -p buffers ALL stdout until completion, a timeout says NOTHING about
+ * progress, and a fresh re-spawn against the same bounded budget routinely
+ * completes (finding 14 — the calibration in executionPolicy also raised the
+ * horizon). All three are retried with a fresh salted attempt against the
+ * section's MAX_SECTION_ATTEMPTS budget after the same transient backoff.
+ * CANCELLED (operator intent) and UNKNOWN (uncertain teardown — an attempt may
+ * have half-written; the unsettled/reconcile machinery owns that class), plus
+ * every other FAILED code (capacity, admission collision), are genuine
+ * infrastructure and propagate immediately.
  */
 const GATEWAY_SCHEMA_REJECTION_CODE = "MODEL_OUTPUT_INVALID" as const;
 const TRANSIENT_PROCESS_FAILURE_CODE = "MODEL_PROCESS_FAILED" as const;
@@ -72,6 +79,12 @@ const GATEWAY_SCHEMA_REJECTION_FEEDBACK = "gateway schema validation rejected th
 /** Feedback line for a transient process failure: no output ever reached this
  *  process, so nothing is echoed — only the transient cause is reported. */
 const TRANSIENT_PROCESS_FAILURE_FEEDBACK = "a transient model process failure occurred before any output was produced";
+
+/** Feedback line for a section-drafting timeout (Task 11k): the previous attempt
+ *  was killed at the profile timeout horizon before producing any output — no
+ *  content problem and nothing to echo, so the card asks only for a correct
+ *  result this time. */
+const SECTION_TIMEOUT_FEEDBACK = "the previous attempt timed out before any output was produced";
 
 /** In-loop backoff (ms) before a transient-process retry, indexed by
  *  (attempt − 1): the wait BEFORE attempt 2 is index 0, before attempt 3 is
@@ -798,8 +811,25 @@ export class CompilerApplicationPort {
                 await sleep(transientBackoffMs(attemptNumber));
                 continue;
               }
-              // Genuine infrastructure (cancellation, capacity, admission collision,
-              // TIMED_OUT / UNKNOWN teardown): never burn a retry — propagate.
+              // Section drafting timeout (outcome TIMED_OUT, any code): the bounded
+              // Sonnet@high process was killed at the profile horizon before any
+              // output. claude -p buffers all stdout until completion, so a timeout
+              // reveals nothing about progress and a fresh re-spawn against the same
+              // budget routinely completes. Retry after the same bounded backoff with
+              // a timeout note (no output to echo). Same transient class as above —
+              // exhaustion reuses the COMPILER_SECTION_PROCESS_FAILED terminal code.
+              if (result.outcome === "TIMED_OUT") {
+                if (attemptNumber >= MAX_SECTION_ATTEMPTS) {
+                  throw new Error(`COMPILER_SECTION_PROCESS_FAILED:${kind}:after ${MAX_SECTION_ATTEMPTS} attempts:${SECTION_TIMEOUT_FEEDBACK}`);
+                }
+                retryFeedback = { blockerLines: [SECTION_TIMEOUT_FEEDBACK], transientProcessFailure: true };
+                await sleep(transientBackoffMs(attemptNumber));
+                continue;
+              }
+              // Genuine infrastructure (cancellation = operator intent; capacity;
+              // admission collision; UNKNOWN teardown — an attempt may have
+              // half-written, owned by the unsettled/reconcile machinery): never
+              // burn a retry — propagate.
               throw new Error(`MODEL_TASK_${result.outcome}:${code}:${result.error?.message ?? "model task failed"}`);
             }
             if (!result.output || typeof result.output !== "object" || Array.isArray(result.output)) {

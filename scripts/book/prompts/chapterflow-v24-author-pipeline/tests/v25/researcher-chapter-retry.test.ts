@@ -382,6 +382,57 @@ requiredTest("8 persistent transient MODEL_PROCESS_FAILED fails closed after MAX
   assert.equal(new Set(subject.attemptIds).size, 3);
 });
 
+requiredTest("9 timed-out attempt (outcome TIMED_OUT) retries after a bounded backoff with a fresh attempt id, then succeeds", async () => {
+  // Task 11k: a chapter-research call killed at the profile timeout horizon
+  // surfaces as outcome TIMED_OUT (the gateway stamps code MODEL_PROCESS_FAILED).
+  // claude -p buffers ALL stdout until completion, so a timeout says nothing
+  // about progress — a fresh re-spawn against the same bounded budget routinely
+  // completes. It is a transient class: retried after a bounded backoff.
+  const subject = scriptedRig([
+    { outcome: "TIMED_OUT", error: { code: "MODEL_PROCESS_FAILED", message: "bounded model process did not succeed" } },
+    { outcome: "SUCCEEDED", output: validChapter() },
+  ]);
+  const clock = recordingSleep();
+  const result = await runResearcherChapter(input(), subject.execution, { sleep: clock.sleep });
+
+  assert.equal(result.schemaVersion, "source-v2");
+  assert.equal(result.chapterNumber, 1);
+  // exactly two model calls: the timed-out attempt + the successful retry
+  assert.equal(subject.runs(), 2);
+  // 11b: the retry admitted a DISTINCT attempt id (never re-spawns the timed-out one)
+  assert.equal(new Set(subject.attemptIds).size, 2);
+  // one backoff fired before the single retry, at the first schedule step
+  assert.deepEqual(clock.waited, [2000]);
+  const retryPrompt = subject.prompts[1];
+  // the retry prompt notes a timeout and fabricates NO output echo
+  assert.match(retryPrompt, /timed out/i);
+  assert.doesNotMatch(retryPrompt, /Your previous \(rejected\) output was/);
+  // the schema reminder is still present so the model knows the required envelope
+  assert.match(retryPrompt, /schemaVersion is exactly "source-v2"/);
+});
+
+requiredTest("10 persistent TIMED_OUT fails closed after MAX_ATTEMPTS(3) with the full backoff schedule and no fourth call", async () => {
+  const subject = scriptedRig([
+    { outcome: "TIMED_OUT", error: { code: "MODEL_PROCESS_FAILED", message: "bounded model process did not succeed" } },
+  ]);
+  const clock = recordingSleep();
+  await assert.rejects(
+    runResearcherChapter(input(), subject.execution, { sleep: clock.sleep }),
+    (error: unknown) => {
+      const message = (error as Error).message;
+      assert.match(message, /timed out/i);
+      assert.match(message, /3 attempt/i);
+      return true;
+    },
+  );
+  // exactly MAX_ATTEMPTS model calls — never a fourth
+  assert.equal(subject.runs(), 3);
+  // backoff fired between attempt 1→2 and 2→3, and never after the final attempt
+  assert.deepEqual(clock.waited, [2000, 8000]);
+  // every attempt admitted a fresh, non-colliding attempt id
+  assert.equal(new Set(subject.attemptIds).size, 3);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

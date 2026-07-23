@@ -116,6 +116,11 @@ type RigOptions = {
    *  MODEL_PROCESS_FAILED (a transient subprocess failure) then return a valid
    *  draft — exercises the backoff-gated transient retry class. */
   readonly transientFailSummaryAttempts?: number;
+  /** Fail the first N summary attempts with outcome TIMED_OUT / error code
+   *  MODEL_PROCESS_FAILED (a section drafting call killed at the profile timeout
+   *  horizon) then return a valid draft — exercises the Task 11k backoff-gated
+   *  timeout retry class (outcome TIMED_OUT, any code). */
+  readonly timedOutSummaryAttempts?: number;
 };
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
@@ -169,10 +174,12 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
       // the result carries the retryable error code. The bounded per-section loop
       // must salt a fresh -r{n} attempt and retry against the SAME budget.
       const retryableFail = options.gatewayInvalidSummaryAttempts
-        ? { limit: options.gatewayInvalidSummaryAttempts, code: "MODEL_OUTPUT_INVALID" as const }
+        ? { limit: options.gatewayInvalidSummaryAttempts, code: "MODEL_OUTPUT_INVALID" as const, outcome: "FAILED" as const }
         : options.transientFailSummaryAttempts
-          ? { limit: options.transientFailSummaryAttempts, code: "MODEL_PROCESS_FAILED" as const }
-          : null;
+          ? { limit: options.transientFailSummaryAttempts, code: "MODEL_PROCESS_FAILED" as const, outcome: "FAILED" as const }
+          : options.timedOutSummaryAttempts
+            ? { limit: options.timedOutSummaryAttempts, code: "MODEL_PROCESS_FAILED" as const, outcome: "TIMED_OUT" as const }
+            : null;
       if (retryableFail && request.context.operationId === "compiler-ch01-summary-pack") {
         const opCount = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
         sectionAttempts.set(request.context.operationId, opCount);
@@ -181,11 +188,11 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
             bookId: request.context.bookId,
             runId: request.context.runId,
             attemptId: request.context.attemptId,
-            outcome: "FAILED",
+            outcome: retryableFail.outcome,
             finishedAt: context.clock.now(),
           });
           assert.equal(failed.ok, true);
-          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: retryableFail.code, message: retryableFail.code } };
+          return { attemptId: request.context.attemptId, outcome: retryableFail.outcome, error: { code: retryableFail.code, message: retryableFail.code } };
         }
       }
       const outcome = options.gatewayOutcome === "error" ? "FAILED" as const : "SUCCEEDED" as const;
@@ -665,6 +672,54 @@ requiredTest("3g transient MODEL_PROCESS_FAILED first attempt retries after a bo
   const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
   assert.equal(run.ok, true);
   if (run.ok) assert.equal(run.value.status, "COMPLETED");
+});
+
+requiredTest("3h section timeout (outcome TIMED_OUT) first attempt retries after a bounded backoff and succeeds", async (context) => {
+  const subject = rig(context, "timeout-retry-pass", { timedOutSummaryAttempts: 1 });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  const summaryPrompts = subject.prompts.filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack");
+  assert.equal(summaryPrompts.length, 2);
+  assert.equal(subject.counts.runner, 5);
+  assert.equal(subject.counts.stage, 1);
+  const expectedBase = `cmp-${createHash("sha256").update("run-timeout-retry-pass").update("\0").update("compiler-ch01-summary-pack").digest("hex").slice(0, 40)}`;
+  assert.equal(summaryPrompts[1].context.attemptId, `${expectedBase}-r2`);
+  // A timeout carries no content problem and no draft echo — just a
+  // "timed out" note — and a bounded backoff was consulted before the retry.
+  const retryCard = Buffer.from(summaryPrompts[1].prompt.inputs[4].bytes).toString("utf8");
+  assert.match(retryCard, /timed out/i);
+  assert.doesNotMatch(retryCard, /Your rejected draft was/);
+  assert.doesNotMatch(retryCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.deepEqual(subject.sleeps, [2000]);
+  const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (!run.ok) return;
+  assert.equal(run.value.status, "COMPLETED");
+  // The timed-out base attempt is durably TIMED_OUT; every other attempt SUCCEEDED.
+  const base = run.value.attempts.find((attempt) => attempt.admission.attemptId === expectedBase);
+  assert.ok(base);
+  assert.equal(base.status, "TIMED_OUT");
+  assert.equal(run.value.attempts.filter((attempt) => attempt.status === "SUCCEEDED").length, 4);
+});
+
+requiredTest("3i section TIMED_OUT on every attempt exhausts the bounded retry then throws with the attempt count", async (context) => {
+  const subject = rig(context, "timeout-retry-exhaust", { timedOutSummaryAttempts: 99 });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_PROCESS_FAILED:summary-pack:after 3 attempts:/);
+    assert.match(error.message, /timed out/i);
+    assert.ok(error.message.length <= 1700, `exhaustion detail exceeded bounded length: ${error.message.length}`);
+    return true;
+  });
+  // MAX_SECTION_ATTEMPTS timeouts, then fail-closed — no candidate staged.
+  assert.equal(subject.counts.runner, 3);
+  assert.equal(subject.counts.stage, 0);
+  assert.equal(subject.staged(), null);
+  // backoff fired between attempt 1→2 and 2→3, never after the final attempt
+  assert.deepEqual(subject.sleeps, [2000, 8000]);
+  const run = await subject.runStore.readRun(BOOK, "run-timeout-retry-exhaust", context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) assert.equal(run.value.status, "FAILED");
 });
 
 requiredTest("4 complete successor inventory preserves input order then compiler order", async (context) => {

@@ -95,6 +95,12 @@ const GATEWAY_SCHEMA_REJECTION_FEEDBACK = "gateway schema validation rejected th
  *  cause is reported. */
 const TRANSIENT_PROCESS_FAILURE_FEEDBACK = "a transient model process failure occurred before any output was produced";
 
+/** Aggregate-error line for an attempt killed at the profile timeout horizon
+ *  (Task 11k, outcome TIMED_OUT). No output ever reached this process — a
+ *  timeout says nothing about progress (claude -p buffers all stdout until
+ *  completion) — so nothing is echoed; only the timeout cause is reported. */
+const TIMED_OUT_FEEDBACK = "the previous attempt timed out before any output was produced";
+
 /**
  * In-loop backoff schedule (ms) between transient-process-failure retries,
  * indexed by (attempt − 1): the wait BEFORE attempt 2 is index 0, before
@@ -124,11 +130,13 @@ function backoffMsForAttempt(attempt: number): number {
 type AttemptFailure =
   | { readonly kind: "validator"; readonly problems: string[]; readonly output: unknown }
   | { readonly kind: "gateway-schema" }
-  | { readonly kind: "transient-process" };
+  | { readonly kind: "transient-process" }
+  | { readonly kind: "timed-out" };
 
 function failureProblems(failure: AttemptFailure): string[] {
   if (failure.kind === "validator") return failure.problems;
   if (failure.kind === "gateway-schema") return [GATEWAY_SCHEMA_REJECTION_FEEDBACK];
+  if (failure.kind === "timed-out") return [TIMED_OUT_FEEDBACK];
   return [TRANSIENT_PROCESS_FAILURE_FEEDBACK];
 }
 
@@ -167,6 +175,21 @@ function isTransientProcessFailure(message: string): boolean {
   return /^MODEL_TASK_FAILED:MODEL_PROCESS_FAILED(:|$)/.test(message);
 }
 
+/**
+ * Classify a thrown error as a TIMEOUT (Task 11k): a bounded process killed at
+ * the profile timeout horizon surfaces as `outcome=TIMED_OUT` (the gateway
+ * stamps code MODEL_PROCESS_FAILED, but this matches ANY code on the TIMED_OUT
+ * outcome). Because `claude -p` buffers all stdout until completion, a timeout
+ * reveals nothing about progress, and a fresh re-spawn against the same bounded
+ * budget routinely completes — so it is a transient class retried after a
+ * bounded backoff. Scoped to `outcome=TIMED_OUT` only: CANCELLED (operator
+ * intent) and UNKNOWN (uncertain teardown) carry different outcomes and stay
+ * fail-closed.
+ */
+function isTimedOut(message: string): boolean {
+  return /^MODEL_TASK_TIMED_OUT(:|$)/.test(message);
+}
+
 export async function runResearcherChapter(
   input: ChapterResearchInput,
   execution?: ModelCallerExecution,
@@ -183,9 +206,10 @@ export async function runResearcherChapter(
       ? baseUserPrompt
       : `${baseUserPrompt}\n\n${buildRetryFeedback(attemptFailures[attemptFailures.length - 1])}`;
 
-    // A model-infrastructure failure (cancellation, admission collision,
-    // capacity, uncertain teardown) throws out of runJsonModelTask and is NOT
-    // retried — let it propagate immediately. Two thrown classes ARE retried:
+    // A model-infrastructure failure (cancellation = operator intent, admission
+    // collision, capacity, UNKNOWN uncertain teardown) throws out of
+    // runJsonModelTask and is NOT retried — let it propagate immediately. Three
+    // thrown classes ARE retried:
     //  - GATEWAY-level schema rejection (MODEL_OUTPUT_INVALID): the model
     //    produced output that failed the route's source-controlled schema one
     //    layer out from the in-process validator — the same variance class the
@@ -194,6 +218,9 @@ export async function runResearcherChapter(
     //  - TRANSIENT process failure (MODEL_PROCESS_FAILED, outcome FAILED): a
     //    rate-limited/overloaded subprocess that exited nonzero. Retried after a
     //    bounded in-loop backoff so one provider blip does not kill the stage.
+    //  - TIMED_OUT (Task 11k, any code): killed at the profile horizon before any
+    //    output. claude -p buffers all stdout until completion, so a timeout says
+    //    nothing about progress; retried after the same bounded backoff.
     let output: ChapterResearchResult;
     try {
       output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
@@ -205,6 +232,14 @@ export async function runResearcherChapter(
       }
       if (isTransientProcessFailure(message)) {
         attemptFailures.push({ kind: "transient-process" });
+        if (attempt < MAX_CHAPTER_RESEARCH_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
+        continue;
+      }
+      // TIMED_OUT (Task 11k): same transient class as a process failure — the
+      // attempt was killed at the profile horizon before any output. Retry after
+      // the same bounded backoff with a timeout-specific note.
+      if (isTimedOut(message)) {
+        attemptFailures.push({ kind: "timed-out" });
         if (attempt < MAX_CHAPTER_RESEARCH_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
         continue;
       }
@@ -231,8 +266,14 @@ export async function runResearcherChapter(
  *  correct result. */
 function buildRetryFeedback(failure: AttemptFailure): string {
   const lines: string[] = [];
-  if (failure.kind === "transient-process") {
-    lines.push("PREVIOUS ATTEMPT DID NOT COMPLETE — a transient model process error occurred before any output was produced. Nothing was wrong with your content; simply produce a correct result this time.");
+  if (failure.kind === "transient-process" || failure.kind === "timed-out") {
+    // Both are non-completions with no output to echo: nothing was wrong with the
+    // model's content, so the note names the cause (transient error vs timeout)
+    // and simply asks for a correct result this time.
+    const cause = failure.kind === "timed-out"
+      ? "it timed out before any output was produced"
+      : "a transient model process error occurred before any output was produced";
+    lines.push(`PREVIOUS ATTEMPT DID NOT COMPLETE — ${cause}. Nothing was wrong with your content; simply produce a correct result this time.`);
     lines.push("");
   } else {
     lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
