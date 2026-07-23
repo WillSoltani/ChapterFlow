@@ -421,7 +421,14 @@ class FixtureProcessSupervisor implements ProcessSupervisor {
   }
 
   async run(spec: ProcessSpec): Promise<ProcessResult> {
-    const output = this.#outputs.shift();
+    // Fresh-qc runs the LLM answer-key judge once per quiz question. Answer every
+    // judge call with a low-confidence verdict — never a confident wrong-key flag —
+    // so the fixture book still promotes, without consuming the ordered pipeline
+    // outputs. The judge system prompt is the reliable, count-independent marker.
+    const isQuizKeyJudge = new TextDecoder().decode(spec.stdin).includes("answer-key auditor");
+    const output = isQuizKeyJudge
+      ? { index: 0, confidence: "low", correctText: "scripted judge choice", reason: "fixture judge verdict" }
+      : this.#outputs.shift();
     if (output === undefined) throw new Error("fixture process received an unexpected model call");
     this.specs.push(spec);
     return {
@@ -499,11 +506,23 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(current.value.manifest.manifestDigest, result.value.candidate.manifestDigest);
   assert.equal(current.value.files.filter((file) => file.kind === "CHAPTER").length, 1);
 
-  assert.equal(supervisor.specs.length, 8, "research, compiler, baseline review, and the reader-experience lane must cross fake process boundary");
+  const judgeSpecCount = (specs: readonly ProcessSpec[]): number =>
+    specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes("answer-key auditor")).length;
+  const judgeInitial = judgeSpecCount(supervisor.specs);
+  assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
+  assert.equal(
+    supervisor.specs.length,
+    8 + judgeInitial,
+    "research, compiler, baseline review, reader lane, plus one fresh-qc quiz-key judge call per quiz question",
+  );
   assert.equal(supervisor.remaining(), 0);
   assert.ok(
     supervisor.specs.some((spec) => new TextDecoder().decode(spec.stdin).includes("READER-EXPERIENCE REVIEW")),
     "a reader-experience task must cross the process boundary during canonical review",
+  );
+  assert.ok(
+    supervisor.specs.some((spec) => new TextDecoder().decode(spec.stdin).includes("answer-key auditor")),
+    "a quiz-key-judge task must cross the process boundary during live fresh-qc",
   );
   for (const spec of supervisor.specs) {
     // Task 7 Step 6 flip: the D1 default route is now claude-cli (Sonnet 5).
@@ -541,7 +560,12 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.deepEqual(resumed.value.candidate, result.value.candidate);
   assert.equal(resumed.value.bookRevision, result.value.bookRevision);
   assert.equal(resumed.value.readback, "VERIFIED");
-  assert.equal(supervisor.specs.length, 8, "resume must reuse all settled model attempts (including the reader lane)");
+  assert.equal(
+    supervisor.specs.length,
+    8 + judgeInitial,
+    "resume reuses all settled attempts including the durable fresh-qc round — the non-deterministic quiz-key judge never re-runs",
+  );
+  assert.equal(judgeSpecCount(supervisor.specs), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");
   const resumedEvents = readFileSync(logPath, "utf8")
     .trim()
     .split("\n")

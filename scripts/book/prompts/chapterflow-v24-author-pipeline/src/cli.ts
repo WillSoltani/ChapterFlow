@@ -489,10 +489,44 @@ async function runV4SelectedCandidateQc(
     return 1;
   }
   const { CandidateQcEvaluator } = await import("./app/candidateQcEvaluator.js");
-  const evaluation = await new CandidateQcEvaluator(v25.value.contentReader).run({
+  const { countQuizQuestions, freshQcRunDefinition } = await import("./app/bookRunApplicationService.js");
+  // qc-auto's fresh-qc runs the LLM answer-key judge through the composition's
+  // runner (role "qc"). The judge is per-question model work the gateway admits
+  // against run-state, so open a dedicated fresh-qc run sized to the quiz-question
+  // count; the judge's READ_ONLY profile pins its workDir to the pipeline root.
+  const qcJudgeRunId = v25.value.ids.nextRunId();
+  const qcJudgeRun = await v25.value.runStore.createRun(freshQcRunDefinition({
+    bookId,
+    runId: qcJudgeRunId,
+    sourceGitSha: v25.value.sourceGitSha,
+    candidate: v25.value.candidate,
+    createdAt: new Date().toISOString(),
+    questionCount: countQuizQuestions(v25.value.candidate),
+  }));
+  if (!qcJudgeRun.ok || qcJudgeRun.value.status !== "RUNNING") {
+    console.error(qcJudgeRun.ok ? "FRESH_QC_JUDGE_RUN_NOT_RUNNING" : `${qcJudgeRun.error.code}:${qcJudgeRun.error.message}`);
+    return 1;
+  }
+  const evaluation = await new CandidateQcEvaluator(v25.value.contentReader, { runner: v25.value.runner }).run({
     candidate: v25.value.candidate,
     canonicalReview: reviewed.value,
     roundId,
+    taskContext: {
+      bookId,
+      runId: qcJudgeRunId,
+      attemptId: `${roundId}-quiz-key-judge`,
+      stageId: "fresh-qc",
+      operationId: "fresh-qc",
+      workDir: REPO_ROOT,
+      signal,
+    },
+  });
+  await v25.value.runStore.finishRun({
+    bookId,
+    runId: qcJudgeRunId,
+    status: evaluation.ok ? "COMPLETED" : "FAILED",
+    finishedAt: new Date().toISOString(),
+    ...(evaluation.ok ? {} : { reason: evaluation.error.code }),
   });
   if (!evaluation.ok) {
     console.error(`${evaluation.error.code}:${evaluation.error.message}`);

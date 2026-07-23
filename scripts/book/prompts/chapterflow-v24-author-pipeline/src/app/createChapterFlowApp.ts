@@ -67,7 +67,10 @@ export function createChapterFlowApp(
         clock: dependencies.clock,
       })
     : null;
-  const candidateQc = new CandidateQcEvaluator(dependencies.contentReader);
+  // Thread the composition's model-task runner (role "qc") into fresh-qc so the
+  // LLM answer-key judge actually executes in production. Without a runner the
+  // judge is inert; the fresh-qc call site supplies the matching taskContext.
+  const candidateQc = new CandidateQcEvaluator(dependencies.contentReader, { runner });
   const bookRun = dependencies.pipelineRoot && compiler && research
     && dependencies.currentPointerStore && dependencies.bookRunEvents
     ? new BookRunApplicationService({

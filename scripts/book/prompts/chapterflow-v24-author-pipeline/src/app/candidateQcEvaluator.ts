@@ -361,16 +361,26 @@ export class CandidateQcEvaluator {
     if (this.#runner !== undefined && request.taskContext !== undefined) {
       const runner = this.#runner;
       const base = request.taskContext;
+      // Each question is one model call = one run-state attempt, so every call
+      // needs a globally-unique attemptId/operationId — the gateway rejects a
+      // repeated attemptId within a run. The ordinal is monotonic across every
+      // chapter so the caller can size the fresh-qc run's attempt capacity to
+      // the candidate's total quiz-question count.
+      let judgeOrdinal = 0;
       for (const entry of chapters.value) {
         const number = entry.chapter.number;
-        const judgeCtx: ModelTaskContext = {
-          ...base,
-          attemptId: `${base.attemptId}-quizjudge-ch${String(number).padStart(2, "0")}`,
-          operationId: `quiz-key-judge-ch${String(number).padStart(2, "0")}`,
-        };
         try {
           const report = await judgeQuizKeys(entry.chapter, {
-            ask: makeLiveAskModel({ execution: { runner, context: judgeCtx } }),
+            ask: (args) => {
+              judgeOrdinal += 1;
+              const suffix = `ch${String(number).padStart(2, "0")}-q${String(judgeOrdinal).padStart(3, "0")}`;
+              const judgeCtx: ModelTaskContext = {
+                ...base,
+                attemptId: `${base.attemptId}-quizjudge-${suffix}`,
+                operationId: `quiz-key-judge-${suffix}`,
+              };
+              return makeLiveAskModel({ execution: { runner, context: judgeCtx } })(args);
+            },
           });
           for (const verdict of report.flagged) {
             qcIssues.push(issue(

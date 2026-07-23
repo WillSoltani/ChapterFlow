@@ -90,6 +90,7 @@ export interface BookRunApplicationDependencies {
 }
 
 const REVIEW_STAGE = "canonical-review" as const;
+const FRESH_QC_STAGE = "fresh-qc" as const;
 const RETRYABLE_COMPILER_FAILURES = Object.freeze([
   "COMPILER_ASSEMBLY_BLOCKED:",
   "COMPILER_SECTION_BLOCKED:",
@@ -192,6 +193,54 @@ function reviewDefinition(input: Readonly<{
     })),
     inputCandidate: identity(input.candidate),
     attemptLimits: { run: 1, byStage: { [REVIEW_STAGE]: 1 } },
+    createdAt: input.createdAt,
+  };
+}
+
+/** Total quiz questions across the candidate's chapters. The fresh-qc answer-key
+ *  judge runs one model call per question, so this sizes the judge run's attempt
+ *  capacity. Malformed chapters are surfaced as blockers by CandidateQcEvaluator;
+ *  they contribute zero here and never under-block. */
+export function countQuizQuestions(candidate: CandidateSnapshot): number {
+  let total = 0;
+  for (const file of candidate.files) {
+    if (file.kind !== "CHAPTER") continue;
+    try {
+      const chapter = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as { quiz?: { questions?: unknown } };
+      if (Array.isArray(chapter.quiz?.questions)) total += (chapter.quiz.questions as unknown[]).length;
+    } catch {
+      // ignore — deterministic QC inputs gate re-parses and blocks malformed chapters
+    }
+  }
+  return total;
+}
+
+/** Run definition for the dedicated fresh-qc answer-key-judge run. The judge is
+ *  per-question model work the gateway admits against run-state, so it needs a
+ *  live run whose stage capacity covers every quiz question. */
+export function freshQcRunDefinition(input: Readonly<{
+  bookId: string;
+  runId: string;
+  sourceGitSha: string;
+  candidate: CandidateSnapshot;
+  createdAt: UtcIso;
+  questionCount: number;
+}>): RunDefinition {
+  const capacity = Math.max(1, input.questionCount);
+  return {
+    schemaVersion: "1",
+    bookId: input.bookId,
+    runId: input.runId,
+    commandId: "fresh-qc",
+    sourceGitSha: input.sourceGitSha,
+    requiredStages: [FRESH_QC_STAGE],
+    requiredInventory: input.candidate.manifest.entries.map(({ kind, logicalPath, mediaType }) => ({
+      kind,
+      logicalPath,
+      mediaType,
+    })),
+    inputCandidate: identity(input.candidate),
+    attemptLimits: { run: capacity, byStage: { [FRESH_QC_STAGE]: capacity } },
     createdAt: input.createdAt,
   };
 }
@@ -362,6 +411,59 @@ export class BookRunApplicationService {
     } catch (cause) {
       return failed("BOOK_RUN_EVENT_WRITE_FAILED", (cause as Error).message);
     }
+  }
+
+  /** Run the deterministic gates + LLM answer-key judge under a dedicated
+   *  fresh-qc run, then commit the round. The judge is per-question model work
+   *  the gateway admits against run-state, so it needs a live run sized to the
+   *  candidate's quiz-question count; the judge's READ_ONLY profile pins its
+   *  workDir to the exact pipeline root. */
+  async #runFreshQcWithJudge(
+    input: BookRunApplicationRequest,
+    parentRunId: string,
+    candidate: CandidateSnapshot,
+    review: CanonicalReviewResult,
+    roundId: string,
+  ): Promise<Result<QcRoundResult>> {
+    const judgeRunId = derivedId("qc-judge-run", parentRunId);
+    const createdAt = safeNow(this.#dependencies.clock);
+    if (!createdAt.ok) return createdAt;
+    const created = await this.#dependencies.runStore.createRun(freshQcRunDefinition({
+      bookId: input.bookId,
+      runId: judgeRunId,
+      sourceGitSha: input.sourceGitSha,
+      candidate,
+      createdAt: createdAt.value,
+      questionCount: countQuizQuestions(candidate),
+    }));
+    if (!created.ok) return failed("BOOK_RUN_QC_UNAVAILABLE", `${created.error.code}:${created.error.message}`);
+    if (created.value.status !== "RUNNING") return failed("BOOK_RUN_QC_UNAVAILABLE", "fresh-qc judge run is not RUNNING");
+    const evaluation = await this.#dependencies.candidateQc.run({
+      candidate,
+      canonicalReview: review,
+      roundId,
+      taskContext: {
+        bookId: input.bookId,
+        runId: judgeRunId,
+        attemptId: derivedId("qc-attempt", judgeRunId),
+        stageId: FRESH_QC_STAGE,
+        operationId: FRESH_QC_STAGE,
+        workDir: this.#dependencies.pipelineRoot,
+        signal: input.signal,
+      },
+    });
+    const finishedAt = safeNow(this.#dependencies.clock);
+    if (finishedAt.ok) {
+      await this.#dependencies.runStore.finishRun({
+        bookId: input.bookId,
+        runId: judgeRunId,
+        status: evaluation.ok ? "COMPLETED" : "FAILED",
+        finishedAt: finishedAt.value,
+        ...(evaluation.ok ? {} : { reason: evaluation.error.code }),
+      });
+    }
+    if (!evaluation.ok) return evaluation;
+    return this.#dependencies.qc.runFresh({ roundId, candidate, canonicalReview: review, evaluation: evaluation.value });
   }
 
   async run(input: BookRunApplicationRequest): Promise<Result<BookRunApplicationResult>> {
@@ -571,25 +673,30 @@ export class BookRunApplicationService {
     const qcStarted = await this.#event(runId, input.bookId, "fresh-qc", "STARTED", undefined, identity(candidate));
     if (!qcStarted.ok) return qcStarted;
     let roundId = derivedId("qc", runId);
-    const evaluation = await this.#dependencies.candidateQc.run({
-      candidate,
-      canonicalReview: review.value,
-      roundId,
-    });
-    if (!evaluation.ok) {
-      await this.#event(runId, input.bookId, "fresh-qc", "FAILED", evaluation.error.message, identity(candidate));
-      return evaluation;
+    let qc: Result<QcRoundResult>;
+    if (priorEvents.some((phaseEvent) => phaseEvent.phase === "fresh-qc" && phaseEvent.status === "COMPLETED")) {
+      // Resume: reuse the durable QC round. The answer-key judge is
+      // non-deterministic, so re-running it would break QC-round idempotency on
+      // replay; the committed round is authoritative (mirrors canonical review).
+      const stored = await this.#dependencies.qc.getRound(input.bookId, roundId);
+      if (!stored.ok) {
+        await this.#event(runId, input.bookId, "fresh-qc", "FAILED", stored.error.message, identity(candidate));
+        return failed("BOOK_RUN_QC_FAILED", stored.error.message);
+      }
+      qc = stored;
+    } else {
+      // Initial: deterministic gates + the LLM answer-key judge, the latter run
+      // as per-question model work under a dedicated fresh-qc run, then committed.
+      const judged = await this.#runFreshQcWithJudge(input, runId, candidate, review.value, roundId);
+      if (!judged.ok) {
+        await this.#event(runId, input.bookId, "fresh-qc", "FAILED", judged.error.message, identity(candidate));
+        return judged;
+      }
+      qc = judged;
     }
-    let qc = await this.#dependencies.qc.runFresh({
-      roundId,
-      candidate,
-      canonicalReview: review.value,
-      evaluation: evaluation.value,
-    });
-    if (!qc.ok || qc.value.outcome === "ERROR") {
-      const message = qc.ok ? "fresh QC outcome=ERROR" : qc.error.message;
-      await this.#event(runId, input.bookId, "fresh-qc", "FAILED", message, identity(candidate));
-      return failed("BOOK_RUN_QC_FAILED", message);
+    if (qc.value.outcome === "ERROR") {
+      await this.#event(runId, input.bookId, "fresh-qc", "FAILED", "fresh QC outcome=ERROR", identity(candidate));
+      return failed("BOOK_RUN_QC_FAILED", "fresh QC outcome=ERROR");
     }
     const qcCompleted = await this.#event(runId, input.bookId, "fresh-qc", "COMPLETED", `outcome=${qc.value.outcome};roundId=${qc.value.roundId}`, identity(candidate));
     if (!qcCompleted.ok) return qcCompleted;
