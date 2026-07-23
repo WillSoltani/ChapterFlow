@@ -85,7 +85,7 @@ export const SOURCE_CONTROLLED_EXECUTION_PROFILES: Readonly<Record<string, Execu
     // terminateGraceMs + 1s) is derived from this field, so it scales in lockstep.
     // Review/QC probe profiles (pipeline-read-json-v1/-text-v1) are short-call and
     // are NOT touched — sections do not use them.
-    timeoutMs: 600_000,
+    timeoutMs: 900_000,
     terminateGraceMs: 2_000,
     maxStdoutBytes: 1_048_576,
     maxStderrBytes: 262_144,
