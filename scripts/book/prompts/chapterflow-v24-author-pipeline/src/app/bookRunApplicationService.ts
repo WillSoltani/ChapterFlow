@@ -514,24 +514,58 @@ export class BookRunApplicationService {
    *  attempt has already FAILED, so exactly one fresh attempt is minted per flagged
    *  resume. `priorExhaustedAttempts` counts the durable failures the operator is
    *  authorizing past — the base compile plus the single deterministic retry
-   *  (2) plus each prior operator attempt (`operatorAttempt - 1`). Fails closed if
-   *  an operator-retry run exists in a non-FAILED, non-terminal state (a lost race
-   *  or partially-written run must never be silently re-granted). */
+   *  (2) plus each prior operator attempt (`operatorAttempt - 1`).
+   *
+   *  A RUNNING operator-retry run is the FINDING-25 wedge: an earlier grant was
+   *  admitted (run RUNNING) but crashed INSIDE the grant (e.g. ENOSPC at the
+   *  `.writer.lock` mkdir) before its section attempt could settle, leaving a
+   *  durably RUNNING run with an admitted-unsettled attempt. Failing closed on it
+   *  wedges the book-run forever. Under operator consent (`reconcileUnsettled`) such
+   *  a slot is instead returned as a `RECONCILE_WEDGED` directive: the caller resumes
+   *  THAT run through the compiler resume+reconcile machinery (task 11c), which
+   *  settles the unsettled attempt ABANDONED with the RECONCILED marker and drives the
+   *  crashed run to terminal FAILED. Per-invocation consent (task 11i) is spent
+   *  un-wedging; the NEXT slot is granted only on a further explicit flagged resume —
+   *  mirroring how a RUNNING base compiler run reconciles-then-requires-resume, never a
+   *  silent same-invocation loop. Any OTHER non-FAILED state (a lost race, a
+   *  cancellation, or a partially-written run), and a RUNNING slot WITHOUT consent,
+   *  still fail closed: such a run must never be silently re-granted. */
   async #grantOperatorCompileRetry(
     bookId: string,
     runId: string,
     observedAt: UtcIso,
-  ): Promise<Result<Readonly<{
-    compilerRunId: string;
-    attemptSubdir: string;
-    operatorAttempt: number;
-    priorExhaustedAttempts: number;
-  }>>> {
+    reconcileUnsettled: boolean,
+  ): Promise<Result<Readonly<
+    | {
+        kind: "GRANT";
+        compilerRunId: string;
+        attemptSubdir: string;
+        operatorAttempt: number;
+        priorExhaustedAttempts: number;
+      }
+    | {
+        kind: "RECONCILE_WEDGED";
+        compilerRunId: string;
+        attemptSubdir: string;
+        operatorAttempt: number;
+      }
+  >>> {
     for (let operatorAttempt = 1; ; operatorAttempt += 1) {
       const operatorRunId = derivedId(`compiler-operator-retry-${operatorAttempt}-run`, runId);
       const existing = await this.#dependencies.runStore.readRun(bookId, operatorRunId, observedAt);
       if (existing.ok) {
         if (existing.value.status === "FAILED") continue;
+        if (existing.value.status === "RUNNING" && reconcileUnsettled) {
+          return {
+            ok: true,
+            value: Object.freeze({
+              kind: "RECONCILE_WEDGED" as const,
+              compilerRunId: operatorRunId,
+              attemptSubdir: `compiler-operator-retry-${operatorAttempt}`,
+              operatorAttempt,
+            }),
+          };
+        }
         return failed(
           "BOOK_RUN_COMPILER_RETRY_BLOCKED",
           `operator compile retry run ${operatorRunId} is ${existing.value.status}, not re-grantable`,
@@ -543,6 +577,7 @@ export class BookRunApplicationService {
       return {
         ok: true,
         value: Object.freeze({
+          kind: "GRANT" as const,
           compilerRunId: operatorRunId,
           attemptSubdir: `compiler-operator-retry-${operatorAttempt}`,
           operatorAttempt,
@@ -807,21 +842,43 @@ export class BookRunApplicationService {
           if (input.reconcileUnsettled !== true) {
             return failed("BOOK_RUN_COMPILER_RETRY_EXHAUSTED", "single deterministic compiler retry already failed");
           }
-          const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value);
+          const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value, input.reconcileUnsettled === true);
           if (!granted.ok) return granted;
           compilerRunId = granted.value.compilerRunId;
           compilerAttemptRoot = resolve(input.attemptRoot, granted.value.attemptSubdir);
-          const authorized = await this.#event(
-            runId,
-            input.bookId,
-            "compile",
-            "STARTED",
-            `action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=${granted.value.priorExhaustedAttempts};operatorAttempt=${granted.value.operatorAttempt}`,
-          );
-          if (!authorized.ok) return authorized;
-          console.error(
-            `[book-run] operator-compile-retry book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} priorExhaustedAttempts=${granted.value.priorExhaustedAttempts} action=OPERATOR_COMPILE_RETRY`,
-          );
+          if (granted.value.kind === "RECONCILE_WEDGED") {
+            // FINDING 25: a prior operator grant crashed INSIDE the grant (e.g. ENOSPC),
+            // leaving its control run durably RUNNING with an admitted-unsettled attempt.
+            // Resume THAT run through the same compiler resume+reconcile machinery (11c)
+            // that un-wedges a crashed base compile: the compile call below settles the
+            // unsettled attempt ABANDONED (RECONCILED marker) and drives the crashed run
+            // to terminal FAILED, then fails closed. This flagged invocation's consent is
+            // spent un-wedging; the operator grants the NEXT slot with a further flagged
+            // resume (which then finds this run FAILED and steps past it).
+            const authorized = await this.#event(
+              runId,
+              input.bookId,
+              "compile",
+              "STARTED",
+              `action=OPERATOR_COMPILE_RECONCILE_WEDGED;operatorAttempt=${granted.value.operatorAttempt}`,
+            );
+            if (!authorized.ok) return authorized;
+            console.error(
+              `[book-run] operator-compile-reconcile-wedged book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} wedgedRun=${granted.value.compilerRunId} action=OPERATOR_COMPILE_RECONCILE_WEDGED`,
+            );
+          } else {
+            const authorized = await this.#event(
+              runId,
+              input.bookId,
+              "compile",
+              "STARTED",
+              `action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=${granted.value.priorExhaustedAttempts};operatorAttempt=${granted.value.operatorAttempt}`,
+            );
+            if (!authorized.ok) return authorized;
+            console.error(
+              `[book-run] operator-compile-retry book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} priorExhaustedAttempts=${granted.value.priorExhaustedAttempts} action=OPERATOR_COMPILE_RETRY`,
+            );
+          }
         } else if (!retryCompiler.ok && retryCompiler.error.code !== "NOT_FOUND") {
           return failed("BOOK_RUN_COMPILER_UNAVAILABLE", retryCompiler.error.message);
         } else {

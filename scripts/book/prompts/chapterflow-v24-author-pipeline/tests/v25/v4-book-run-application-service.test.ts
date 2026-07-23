@@ -19,6 +19,7 @@ import { createQcService } from "../../src/qc/qcService.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
+import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../../src/run-state/reconcileAttempt.js";
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
@@ -822,6 +823,341 @@ requiredTest("reconcile resume grants one operator-authorized compile attempt pa
   assert.deepEqual(compilerRunIds, [opRetry1RunId, opRetry2RunId], "the second grant is a DISTINCT new compile control run");
   assert.equal(operatorEvents().length, 2, "each grant is one logged attempt");
   assert.equal(operatorEvents()[1].detail, "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=3;operatorAttempt=2");
+});
+
+requiredTest("reconcile resume un-wedges a RUNNING operator-retry compile run then grants the next slot on a further flagged resume", async (context: TestContext) => {
+  // FINDING 25: an ENOSPC crash landed INSIDE an operator-retry compile grant — the
+  // operator run was admitted (RUNNING) but the .writer.lock mkdir failed before its
+  // section attempt could settle, leaving the run durably RUNNING with an
+  // admitted-unsettled attempt. #grantOperatorCompileRetry used to fail closed on ANY
+  // non-FAILED slot ("...is RUNNING, not re-grantable"), permanently wedging the
+  // book-run: no flagged resume could ever settle the crashed run. The fix routes a
+  // RUNNING operator slot through the same compiler resume+reconcile machinery (11c)
+  // that already un-wedges a crashed BASE compiler run.
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, "op-wedge-books");
+  const runRoot = resolve(context.roots.tempRoot, "op-wedge-runs");
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-op-wedge");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "op-wedge-seed-candidate",
+    runId: "op-wedge-seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+
+  const PARENT_RUN_ID = "book-run-op-wedge";
+  const derive = (prefix: string) => `${prefix}-${createHash("sha256").update(PARENT_RUN_ID).digest("hex").slice(0, 32)}`;
+  const baseRunId = derive("compiler-run");
+  const retry1RunId = derive("compiler-retry-1-run");
+  const opRetry1RunId = derive("compiler-operator-retry-1-run");
+  const opRetry2RunId = derive("compiler-operator-retry-2-run");
+  const WEDGED_ATTEMPT_ID = "op-wedge-crashed-attempt-1";
+
+  // base compile + its single deterministic retry BOTH FAILED under a retryable
+  // deterministic gate reason — the exhausted budget that opens the operator path.
+  for (const [childRunId, reason] of [
+    [baseRunId, "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure"],
+    [retry1RunId, "COMPILER_ASSEMBLY_BLOCKED:single retry failed"],
+  ] as const) {
+    const created = await runStore.createRun({
+      schemaVersion: "1",
+      bookId: BOOK,
+      runId: childRunId,
+      commandId: "compiler-candidate",
+      sourceGitSha: SOURCE_SHA,
+      requiredStages: ["compiler-candidate"],
+      requiredInventory: [],
+      inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+      attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+      createdAt: now(),
+    });
+    assert.ok(created.ok);
+    const failed = await runStore.finishRun({ bookId: BOOK, runId: childRunId, status: "FAILED", finishedAt: now(), reason });
+    assert.ok(failed.ok);
+  }
+
+  // Crash simulation: the FIRST operator-retry grant was admitted (run RUNNING) but
+  // crashed inside the grant before its section attempt could settle — a durably
+  // RUNNING run carrying one admitted-unsettled (ACTIVE) attempt.
+  {
+    const created = await runStore.createRun({
+      schemaVersion: "1",
+      bookId: BOOK,
+      runId: opRetry1RunId,
+      commandId: "compiler-candidate",
+      sourceGitSha: SOURCE_SHA,
+      requiredStages: ["compiler-candidate"],
+      requiredInventory: [],
+      inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+      attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+      createdAt: now(),
+    });
+    assert.ok(created.ok);
+    const admittedAt = now();
+    const admitted = await runStore.admitAttempt({
+      bookId: BOOK,
+      runId: opRetry1RunId,
+      attemptId: WEDGED_ATTEMPT_ID,
+      stageId: "compiler-candidate",
+      operationId: "compiler-candidate",
+      admittedAt,
+      staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+    });
+    assert.ok(admitted.ok, JSON.stringify(admitted));
+  }
+  {
+    const wedged = await runStore.readRun(BOOK, opRetry1RunId, now());
+    assert.ok(wedged.ok);
+    assert.equal(wedged.value.status, "RUNNING", "precondition: the crashed operator run is durably RUNNING");
+    assert.equal(
+      wedged.value.attempts.filter((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE").length,
+      1,
+      "precondition: exactly one admitted-unsettled attempt",
+    );
+  }
+
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+
+  const research = {
+    async run() {
+      throw new Error("research port must not be invoked on a durable-seed resume");
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+
+  const compilerRunIds: string[] = [];
+  let staged: CandidateSnapshot | undefined;
+  const compiler = {
+    async run(request: { resumeRunId?: string }) {
+      assert.ok(request.resumeRunId);
+      compilerRunIds.push(request.resumeRunId);
+      if (request.resumeRunId === opRetry1RunId) {
+        // Faithfully mirror the 11c compiler resume+reconcile machinery: settle each
+        // admitted-unsettled attempt ABANDONED with the RECONCILED marker, drive the
+        // crashed run to terminal FAILED, then surface the not-replayable error.
+        const live = await runStore.readRun(BOOK, opRetry1RunId, context.clock.now());
+        assert.ok(live.ok);
+        for (const attempt of live.value.attempts.filter((a) => a.status === "ACTIVE" || a.status === "STALE")) {
+          const settled = await reconcileAttempt(runStore, {
+            bookId: BOOK,
+            runId: opRetry1RunId,
+            attemptId: attempt.admission.attemptId,
+            outcome: "ABANDONED",
+            finishedAt: now(),
+            detail: RECONCILED_UNSETTLED_ON_RESUME,
+          });
+          assert.ok(settled.ok, JSON.stringify(settled));
+        }
+        const failed = await runStore.finishRun({
+          bookId: BOOK,
+          runId: opRetry1RunId,
+          status: "FAILED",
+          finishedAt: now(),
+          reason: "COMPILER_ATTEMPT_NOT_REPLAYABLE:settled section work lacks durable candidate",
+        });
+        assert.ok(failed.ok);
+        throw new Error("COMPILER_ATTEMPT_NOT_REPLAYABLE:settled section work lacks durable candidate");
+      }
+      // The NEXT operator slot (op-retry-2), granted on the further flagged resume, succeeds.
+      assert.equal(request.resumeRunId, opRetry2RunId);
+      staged = await stageCandidate(candidates, {
+        candidateId: `${request.resumeRunId}-candidate`,
+        parentCandidateId: seed.manifest.candidateId,
+        runId: request.resumeRunId,
+        createdAt: context.clock.now(),
+        files: [
+          jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+          jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({
+            bookId: BOOK,
+            chapters: [chapter],
+            requirePlanArtifacts: false,
+            checkSourceAlignment: false,
+          })),
+        ],
+      });
+      return {
+        runId: request.resumeRunId,
+        runStatus: "COMPLETED" as const,
+        candidateId: staged.manifest.candidateId,
+        manifestDigest: staged.manifest.manifestDigest,
+      };
+    },
+  } as unknown as CompilerApplicationPort;
+
+  const candidateQc = {
+    async run(request: { candidate: CandidateSnapshot; roundId: string; canonicalReview: { reviewId: string } }) {
+      return {
+        ok: true as const,
+        value: {
+          roundId: request.roundId,
+          candidate: { candidateId: request.candidate.manifest.candidateId, manifestDigest: request.candidate.manifest.manifestDigest },
+          reviewId: request.canonicalReview.reviewId,
+          outcome: "PASS" as const,
+          issues: [],
+        },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => PARENT_RUN_ID,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "op-wedge-pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, "op-wedge-v25"),
+    attemptRoot: resolve(context.roots.attemptsRoot, "book-run-op-wedge"),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: false,
+    signal: new AbortController().signal,
+  };
+
+  const at = now();
+  events.push(
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "intake", status: "COMPLETED", at, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "research", status: "COMPLETED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "seed", status: "COMPLETED", at, candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest } },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "FAILED", at, detail: "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "FAILED", at, detail: "COMPILER_ASSEMBLY_BLOCKED:single retry failed" },
+  );
+
+  const reconcileWedgeEvents = () => events.filter((event) =>
+    event.runId === PARENT_RUN_ID && event.phase === "compile" && (event.detail ?? "").includes("action=OPERATOR_COMPILE_RECONCILE_WEDGED"));
+  const operatorGrantEvents = () => events.filter((event) =>
+    event.runId === PARENT_RUN_ID && event.phase === "compile" && (event.detail ?? "").includes("action=OPERATOR_COMPILE_RETRY"));
+
+  // WITHOUT the flag the resume stays fail-closed exactly as before: the exhausted
+  // budget error is returned verbatim, the crashed RUNNING run is never inspected, and
+  // the compiler is never invoked. (The pre-fix FLAGGED resume failed here instead with
+  // BOOK_RUN_COMPILER_RETRY_BLOCKED "...is RUNNING, not re-grantable" — the wedge.)
+  const blocked = await service.run({ ...request, resumeRunId: PARENT_RUN_ID });
+  assert.equal(blocked.ok, false);
+  if (blocked.ok) throw new Error("expected fail-closed without the reconcile flag");
+  assert.equal(blocked.error.code, "BOOK_RUN_COMPILER_RETRY_EXHAUSTED");
+  assert.equal(blocked.error.message, "single deterministic compiler retry already failed");
+  assert.deepEqual(compilerRunIds, [], "no-flag resume must not invoke the compiler");
+  {
+    const untouched = await runStore.readRun(BOOK, opRetry1RunId, now());
+    assert.ok(untouched.ok);
+    assert.equal(untouched.value.status, "RUNNING", "no-flag resume must leave the wedged run untouched");
+  }
+
+  // (a) WITH the flag: the crashed RUNNING operator run is routed through the compiler
+  //     resume+reconcile machinery — its unsettled attempt settled ABANDONED with the
+  //     RECONCILED marker, the run driven to terminal FAILED. Per-invocation consent is
+  //     spent un-wedging; this invocation itself fails closed and grants NO fresh slot.
+  const unwedge = await service.run({ ...request, resumeRunId: PARENT_RUN_ID, reconcileUnsettled: true });
+  assert.equal(unwedge.ok, false);
+  if (unwedge.ok) throw new Error("the un-wedge invocation drives the crashed run FAILED and fails closed");
+  assert.equal(unwedge.error.code, "BOOK_RUN_COMPILER_FAILED");
+  assert.deepEqual(compilerRunIds, [opRetry1RunId], "the wedged run is resumed through the compiler machinery, not a fresh slot");
+  {
+    const settledRun = await runStore.readRun(BOOK, opRetry1RunId, now());
+    assert.ok(settledRun.ok);
+    assert.equal(settledRun.value.status, "FAILED", "the wedged run is driven to terminal FAILED");
+    const attempt = settledRun.value.attempts.find((a) => a.admission.attemptId === WEDGED_ATTEMPT_ID);
+    assert.ok(attempt, "the crashed attempt is present");
+    assert.equal(attempt.status, "ABANDONED", "the crashed attempt is settled ABANDONED by the reconcile");
+    assert.equal(attempt.outcome, "ABANDONED");
+  }
+  assert.equal(reconcileWedgeEvents().length, 1, "every reconcile action is durably event-logged");
+  assert.equal(reconcileWedgeEvents()[0].status, "STARTED");
+  assert.equal(reconcileWedgeEvents()[0].detail, "action=OPERATOR_COMPILE_RECONCILE_WEDGED;operatorAttempt=1");
+  assert.equal(operatorGrantEvents().length, 0, "un-wedging does NOT grant a fresh operator slot in the same invocation");
+
+  // WITHOUT the flag after the un-wedge the run is exhausted verbatim again — consent
+  // is never a standing authorization.
+  const blockedAgain = await service.run({ ...request, resumeRunId: PARENT_RUN_ID });
+  assert.equal(blockedAgain.ok, false);
+  if (blockedAgain.ok) throw new Error("still exhausted without the flag");
+  assert.equal(blockedAgain.error.code, "BOOK_RUN_COMPILER_RETRY_EXHAUSTED");
+  assert.deepEqual(compilerRunIds, [opRetry1RunId], "no further compile attempt without the flag");
+
+  // (b) A FURTHER flagged resume grants the NEXT operator slot (op-retry-2): the wedged
+  //     op-retry-1 is now terminal FAILED so the grant loop steps past it to a distinct
+  //     new control run, whose fresh compile drives the book-run READY.
+  const grant = await service.run({ ...request, resumeRunId: PARENT_RUN_ID, reconcileUnsettled: true });
+  if (!grant.ok) throw new Error(`NEXT_SLOT_GRANT:${JSON.stringify(grant.error)}`);
+  assert.equal(grant.value.status, "READY");
+  assert.ok(staged);
+  assert.equal(grant.value.candidate.candidateId, `${opRetry2RunId}-candidate`);
+  assert.deepEqual(compilerRunIds, [opRetry1RunId, opRetry2RunId], "the next slot is a DISTINCT new compile control run");
+  assert.equal(operatorGrantEvents().length, 1, "exactly one fresh operator slot granted, on its own flagged invocation");
+  assert.equal(operatorGrantEvents()[0].detail, "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=3;operatorAttempt=2");
+  assert.equal(reconcileWedgeEvents().length, 1, "no additional un-wedge occurs on the grant invocation");
 });
 
 requiredTest("resume after a crash inside fresh-qc reuses the durable judge run identity and completes", async (context: TestContext) => {
