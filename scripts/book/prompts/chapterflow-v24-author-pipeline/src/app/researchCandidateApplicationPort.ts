@@ -363,23 +363,24 @@ function sameFiles(snapshot: CandidateSnapshot, files: readonly CandidateInputFi
   });
 }
 
-function resultFromSnapshot(snapshot: CandidateSnapshot, intakeRunId: string, resumed: boolean): ResearchCandidateApplicationResult {
+/** Reconstruct the per-chapter compiler source mapping from a seed candidate's
+ *  durable `inputs/chapter-index.json` bytes. Shared source of truth for the
+ *  source-path convention: the port's own resume rehydrate uses it, and the
+ *  book-run service's post-recovery durable-seed rehydrate (task 11g) uses the
+ *  same helper so both derive a byte-identical mapping from the same index.
+ *  Throws the exact RESEARCH_RESUME_INVALID errors on malformed/invalid input. */
+export function researchSourcesFromChapterIndex(indexBytes: Uint8Array): readonly ResearchCandidateSourceMapping[] {
   const decoder = new TextDecoder();
-  const index = snapshot.files.find((file) => file.logicalPath === "inputs/chapter-index.json");
-  const manifestFile = snapshot.files.find((file) => file.logicalPath === "inputs/research/research-run.manifest.json");
-  if (!index || !manifestFile) throw new Error("RESEARCH_RESUME_INVALID:seed candidate lacks intake metadata");
   let chapters: Array<{ chapterNumber: number }>;
-  let manifest: { runId?: unknown };
   try {
-    chapters = JSON.parse(decoder.decode(index.bytes)) as Array<{ chapterNumber: number }>;
-    manifest = JSON.parse(decoder.decode(manifestFile.bytes)) as { runId?: unknown };
+    chapters = JSON.parse(decoder.decode(indexBytes)) as Array<{ chapterNumber: number }>;
   } catch {
     throw new Error("RESEARCH_RESUME_INVALID:seed candidate metadata is malformed");
   }
-  if (!Array.isArray(chapters) || typeof manifest.runId !== "string") {
+  if (!Array.isArray(chapters)) {
     throw new Error("RESEARCH_RESUME_INVALID:seed candidate metadata schema is invalid");
   }
-  const sources = chapters.map((chapter) => {
+  return chapters.map((chapter) => {
     const logical = sourcePaths(chapter.chapterNumber);
     return Object.freeze({
       chapterNumber: chapter.chapterNumber,
@@ -387,6 +388,23 @@ function resultFromSnapshot(snapshot: CandidateSnapshot, intakeRunId: string, re
       sourceLogicalPaths: Object.freeze([logical.text, "inputs/source-freeze/book-source.md", "inputs/source-freeze/toc.json"]),
     });
   });
+}
+
+function resultFromSnapshot(snapshot: CandidateSnapshot, intakeRunId: string, resumed: boolean): ResearchCandidateApplicationResult {
+  const decoder = new TextDecoder();
+  const index = snapshot.files.find((file) => file.logicalPath === "inputs/chapter-index.json");
+  const manifestFile = snapshot.files.find((file) => file.logicalPath === "inputs/research/research-run.manifest.json");
+  if (!index || !manifestFile) throw new Error("RESEARCH_RESUME_INVALID:seed candidate lacks intake metadata");
+  let manifest: { runId?: unknown };
+  try {
+    manifest = JSON.parse(decoder.decode(manifestFile.bytes)) as { runId?: unknown };
+  } catch {
+    throw new Error("RESEARCH_RESUME_INVALID:seed candidate metadata is malformed");
+  }
+  const sources = researchSourcesFromChapterIndex(index.bytes);
+  if (typeof manifest.runId !== "string") {
+    throw new Error("RESEARCH_RESUME_INVALID:seed candidate metadata schema is invalid");
+  }
   return Object.freeze({
     schemaVersion: "1",
     bookId: snapshot.manifest.bookId,

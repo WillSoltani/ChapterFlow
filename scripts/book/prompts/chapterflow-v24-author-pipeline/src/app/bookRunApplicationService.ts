@@ -14,9 +14,11 @@ import type { StageCoordinator } from "../run-state/stageTypes.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import type { CandidateQcEvaluator } from "./candidateQcEvaluator.js";
 import type { CompilerApplicationPort } from "./compilerApplicationPort.js";
+import { researchSourcesFromChapterIndex } from "./researchCandidateApplicationPort.js";
 import type {
   ResearchCandidateApplicationPort,
   ResearchCandidateApplicationResult,
+  ResearchCandidateSourceMapping,
 } from "./researchCandidateApplicationPort.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 
@@ -449,6 +451,58 @@ export class BookRunApplicationService {
     return successor.value.status === "COMPLETED" && successor.value.definition.bookId === bookId;
   }
 
+  /** Post-recovery resume rehydrate (task 11g / finding 10). Once durable
+   *  research+seed COMPLETED events exist for the resumed run, the research phase
+   *  is DONE and MUST NOT be re-run: re-invoking the port would re-read the
+   *  terminal-FAILED predecessor and mint a SECOND successor whose candidate id
+   *  diverges from the durable seed, fail-closing at BOOK_RUN_RESEARCH_MISMATCH.
+   *  Instead, rehydrate the exact durable seed candidate from the candidate store
+   *  and reconstruct the compiler inputs from its own chapter index. Fail closed —
+   *  never silently re-research — when the recorded seed candidate is unavailable
+   *  or its manifest digest does not match the durable seed identity. */
+  async #rehydrateDurableSeed(
+    bookId: string,
+    durableSeed: CandidateIdentity,
+  ): Promise<Result<Readonly<{
+    candidate: CandidateIdentity;
+    indexLogicalPath: "inputs/chapter-index.json";
+    sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json";
+    sources: readonly ResearchCandidateSourceMapping[];
+  }>>> {
+    const opened = await this.#dependencies.contentReader.open({
+      bookId,
+      selector: { kind: "CANDIDATE", candidateId: durableSeed.candidateId },
+    });
+    if (!opened.ok) {
+      return failed("BOOK_RUN_SEED_REHYDRATE_FAILED", `durable seed candidate ${durableSeed.candidateId} is unavailable: ${opened.error.message}`);
+    }
+    if (opened.value.manifest.manifestDigest !== durableSeed.manifestDigest) {
+      return failed("BOOK_RUN_SEED_REHYDRATE_FAILED", "durable seed candidate digest does not match recorded seed identity");
+    }
+    const indexFile = opened.value.files.find((file) => file.logicalPath === "inputs/chapter-index.json");
+    if (!indexFile) {
+      return failed("BOOK_RUN_SEED_REHYDRATE_FAILED", "durable seed candidate lacks chapter index");
+    }
+    let sources: readonly ResearchCandidateSourceMapping[];
+    try {
+      sources = researchSourcesFromChapterIndex(indexFile.bytes);
+    } catch (cause) {
+      return failed("BOOK_RUN_SEED_REHYDRATE_FAILED", (cause as Error).message);
+    }
+    return {
+      ok: true,
+      value: Object.freeze({
+        candidate: {
+          candidateId: opened.value.manifest.candidateId,
+          manifestDigest: opened.value.manifest.manifestDigest,
+        },
+        indexLogicalPath: "inputs/chapter-index.json",
+        sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json",
+        sources,
+      }),
+    };
+  }
+
   /** Run the deterministic gates + LLM answer-key judge under a dedicated
    *  fresh-qc run, then commit the round. The judge is per-question model work
    *  the gateway admits against run-state, so it needs a live run sized to the
@@ -572,71 +626,86 @@ export class BookRunApplicationService {
     if (!intakeCompleted.ok) return intakeCompleted;
 
     const rehydrateSeed = input.resumeRunId !== undefined && durableSeed !== null;
-    if (!rehydrateSeed) {
+    let intake: Readonly<{
+      candidate: CandidateIdentity;
+      indexLogicalPath: "inputs/chapter-index.json";
+      sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json";
+      sources: readonly ResearchCandidateSourceMapping[];
+    }>;
+    if (rehydrateSeed && durableSeed !== null) {
+      // Research already COMPLETED durably for this run (task 11g / finding 10):
+      // do NOT re-invoke the research port — that would mint a divergent second
+      // successor and fail-close at RESEARCH_MISMATCH. Rehydrate the exact durable
+      // seed candidate from the candidate store instead; the research/seed phase
+      // events already exist and are not re-emitted.
+      const rehydrated = await this.#rehydrateDurableSeed(input.bookId, durableSeed);
+      if (!rehydrated.ok) return rehydrated;
+      intake = rehydrated.value;
+    } else {
       const researchStarted = await this.#event(runId, input.bookId, "research", "STARTED");
       if (!researchStarted.ok) return researchStarted;
-    }
-    let intake;
-    try {
-      intake = await this.#dependencies.research.run({
-        bookId: input.bookId,
-        title: input.title,
-        author: input.author,
-        sourceGitSha: input.sourceGitSha,
-        v25Root: input.v25Root,
-        attemptRoot: resolve(input.attemptRoot, "research"),
-        ...(input.resumeRunId === undefined ? { newRunId: runId } : { resumeRunId: input.resumeRunId }),
-        forceRefresh: input.regen,
-        reconcileUnsettled: input.reconcileUnsettled === true,
-        signal: input.signal,
-      });
-    } catch (cause) {
-      const message = (cause as Error).message;
-      if (!rehydrateSeed) await this.#event(runId, input.bookId, "research", "FAILED", message);
-      return failed("BOOK_RUN_RESEARCH_FAILED", message);
-    }
-    const boundToCurrentRun = intake.intakeRunId === runId;
-    // A successor-recovery intake (finding 8 / task 11d) legitimately returns
-    // artifacts bound to a fresh successor control run rather than the resumed
-    // run. Accept it ONLY when its durable provenance chains to the exact run we
-    // asked to resume: the port attests the predecessor link (recoveredFromRunId)
-    // AND that successor run is a genuine COMPLETED run in THIS book's durable
-    // run-state. The corroboration is read from run-state — the pipeline's own
-    // journal — never from the intake artifacts, so a foreign or forged research
-    // run (wrong book/root, or a fabricated provenance claim) can never masquerade
-    // as this book-run's research. A single attested hop suffices: every book-run
-    // resume presents the original resumed run id, and each recovery mints exactly
-    // one successor off it.
-    const successorAccepted = !boundToCurrentRun
-      && input.resumeRunId !== undefined
-      && await this.#successorChainBindsRun(input.bookId, runId, intake);
-    if (
-      (!boundToCurrentRun && !successorAccepted)
-      || intake.bookId !== input.bookId
-      || (rehydrateSeed && durableSeed !== null && (!intake.resumed || !sameIdentity(intake.candidate, durableSeed)))
-    ) {
-      const message = "research intake does not bind exact production run and book";
-      if (!rehydrateSeed) await this.#event(runId, input.bookId, "research", "FAILED", message);
-      return failed("BOOK_RUN_RESEARCH_MISMATCH", message);
-    }
-    if (successorAccepted) {
-      console.error(
-        `[book-run] research-intake-successor book=${input.bookId} resumed-run=${runId} successor-run=${intake.intakeRunId} action=ACCEPT_SUCCESSOR_CHAIN`,
-      );
-    }
-    if (!rehydrateSeed) {
+      let researched: ResearchCandidateApplicationResult;
+      try {
+        researched = await this.#dependencies.research.run({
+          bookId: input.bookId,
+          title: input.title,
+          author: input.author,
+          sourceGitSha: input.sourceGitSha,
+          v25Root: input.v25Root,
+          attemptRoot: resolve(input.attemptRoot, "research"),
+          ...(input.resumeRunId === undefined ? { newRunId: runId } : { resumeRunId: input.resumeRunId }),
+          forceRefresh: input.regen,
+          reconcileUnsettled: input.reconcileUnsettled === true,
+          signal: input.signal,
+        });
+      } catch (cause) {
+        const message = (cause as Error).message;
+        await this.#event(runId, input.bookId, "research", "FAILED", message);
+        return failed("BOOK_RUN_RESEARCH_FAILED", message);
+      }
+      const boundToCurrentRun = researched.intakeRunId === runId;
+      // A successor-recovery intake (finding 8 / task 11d) legitimately returns
+      // artifacts bound to a fresh successor control run rather than the resumed
+      // run. Accept it ONLY when its durable provenance chains to the exact run we
+      // asked to resume: the port attests the predecessor link (recoveredFromRunId)
+      // AND that successor run is a genuine COMPLETED run in THIS book's durable
+      // run-state. The corroboration is read from run-state — the pipeline's own
+      // journal — never from the intake artifacts, so a foreign or forged research
+      // run (wrong book/root, or a fabricated provenance claim) can never masquerade
+      // as this book-run's research. A single attested hop suffices: every book-run
+      // resume presents the original resumed run id, and each recovery mints exactly
+      // one successor off it.
+      const successorAccepted = !boundToCurrentRun
+        && input.resumeRunId !== undefined
+        && await this.#successorChainBindsRun(input.bookId, runId, researched);
+      if ((!boundToCurrentRun && !successorAccepted) || researched.bookId !== input.bookId) {
+        const message = "research intake does not bind exact production run and book";
+        await this.#event(runId, input.bookId, "research", "FAILED", message);
+        return failed("BOOK_RUN_RESEARCH_MISMATCH", message);
+      }
+      if (successorAccepted) {
+        console.error(
+          `[book-run] research-intake-successor book=${input.bookId} resumed-run=${runId} successor-run=${researched.intakeRunId} action=ACCEPT_SUCCESSOR_CHAIN`,
+        );
+      }
       const researchCompleted = await this.#event(
         runId,
         input.bookId,
         "research",
         "COMPLETED",
-        `intakeRunId=${intake.intakeRunId};researchRunId=${intake.researchRunId}`,
+        `intakeRunId=${researched.intakeRunId};researchRunId=${researched.researchRunId}`,
       );
       if (!researchCompleted.ok) return researchCompleted;
       const seedStarted = await this.#event(runId, input.bookId, "seed", "STARTED");
       if (!seedStarted.ok) return seedStarted;
-      const seedCompleted = await this.#event(runId, input.bookId, "seed", "COMPLETED", undefined, intake.candidate);
+      const seedCompleted = await this.#event(runId, input.bookId, "seed", "COMPLETED", undefined, researched.candidate);
       if (!seedCompleted.ok) return seedCompleted;
+      intake = {
+        candidate: researched.candidate,
+        indexLogicalPath: researched.indexLogicalPath,
+        sectionTaskContextLogicalPath: researched.sectionTaskContextLogicalPath,
+        sources: researched.sources,
+      };
     }
 
     const baseCompilerRunId = derivedId("compiler-run", runId);

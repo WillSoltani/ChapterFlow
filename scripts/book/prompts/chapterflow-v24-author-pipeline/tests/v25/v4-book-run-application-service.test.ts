@@ -490,7 +490,7 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   });
   assert.deepEqual(compilerRunIds, [COMPILER_RUN_ID, retryRunId]);
   assert.equal(compilerAttemptRoots[1], resolve(context.roots.attemptsRoot, "book-run-retry", "compiler-retry-1"));
-  assert.equal(researchPortCalls, 2, "resume must rehydrate through research port");
+  assert.equal(researchPortCalls, 1, "resume rehydrates the durable seed in-service and must NOT re-invoke the research port (task 11g)");
   assert.equal(researchModelCalls, 13, "resume must not repeat research model work");
   assert.equal(reviewCalls, 1);
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "STARTED").length, 1);
@@ -759,6 +759,10 @@ interface SuccessorResumeResult {
   readonly recoveredFromRunId?: string;
   readonly bookId?: string;
   readonly resumed?: boolean;
+  /** Override the seed identity the successor intake reports. Defaults to the
+   *  pre-staged seed candidate; a test models the real port minting a SECOND
+   *  successor with a DIVERGENT candidate id by returning a different identity. */
+  readonly candidate?: { readonly candidateId: string; readonly manifestDigest: string };
 }
 
 /**
@@ -872,7 +876,7 @@ async function successorRecoveryHarness(
         intakeRunId: resolved.intakeRunId,
         researchRunId: "research-successor-fixture",
         ...(resolved.recoveredFromRunId === undefined ? {} : { recoveredFromRunId: resolved.recoveredFromRunId }),
-        candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+        candidate: resolved.candidate ?? { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
         indexLogicalPath: "inputs/chapter-index.json" as const,
         sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json" as const,
         sources: [],
@@ -1080,6 +1084,123 @@ requiredTest("resume intake rejects a foreign or forged successor with the exact
   assert.equal(foreignBook.ok, false);
   if (foreignBook.ok) throw new Error("cross-book successor must be rejected");
   assert.equal(foreignBook.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+});
+
+requiredTest("resume after a successful recovery rehydrates the durable seed and does not mint a second successor", async (context: TestContext) => {
+  const S1_RUN_ID = "book-run-research-successor-1";
+  const harness = await successorRecoveryHarness(context, "post-recovery-rehydrate");
+
+  // Fresh run fails during research (the finding-8 predecessor terminal-FAILED shape).
+  const first = await harness.service.run(harness.request);
+  assert.equal(first.ok, false);
+  if (first.ok) throw new Error("expected fresh research to fail");
+
+  // First recovery: a genuine successor S1 completes research+seed under the
+  // resumed run, and the harness drives compile/review/qc to READY. Durable
+  // research+seed COMPLETED events are now recorded under BOOK_RUN_ID bound to
+  // S1's candidate identity — exactly the canary state finding 10 left behind.
+  await persistSuccessorRun(context, harness.runStore, {
+    bookId: BOOK,
+    runId: S1_RUN_ID,
+    inputCandidate: harness.seedCandidate,
+  });
+  let resumeResearchCalls = 0;
+  harness.control.onResume = (resumeRunId) => {
+    resumeResearchCalls += 1;
+    return { intakeRunId: S1_RUN_ID, recoveredFromRunId: resumeRunId };
+  };
+  const recovery = await harness.service.run({ ...harness.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  if (!recovery.ok) throw new Error(`FIRST_RECOVERY:${JSON.stringify(recovery.error)}`);
+  assert.equal(recovery.value.status, "READY");
+  assert.equal(resumeResearchCalls, 1, "the first recovery invokes the research port exactly once");
+  assert.equal(
+    harness.events.filter((event) => event.runId === BOOK_RUN_ID && event.phase === "research" && event.status === "COMPLETED").length,
+    1,
+  );
+  assert.equal(
+    harness.events.filter((event) => event.runId === BOOK_RUN_ID && event.phase === "seed" && event.status === "COMPLETED").length,
+    1,
+  );
+
+  // The NEXT resume would, in the real port, re-read the still-terminal-FAILED
+  // predecessor run and mint a SECOND successor whose candidate id DIVERGES from
+  // S1's (the durable seed identity). Model that divergence: were the service to
+  // re-invoke the port, it would receive a different identity — the verbatim live
+  // BOOK_RUN_RESEARCH_MISMATCH. The fix must not call the port at all; it must
+  // rehydrate the durable seed candidate instead.
+  harness.control.onResume = () => {
+    resumeResearchCalls += 1;
+    return {
+      intakeRunId: "book-run-research-successor-2",
+      recoveredFromRunId: BOOK_RUN_ID,
+      candidate: { candidateId: "research-seed-successor-2-divergent", manifestDigest: "d".repeat(64) },
+    };
+  };
+  const callsBefore = resumeResearchCalls;
+
+  const second = await harness.service.run({ ...harness.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  if (!second.ok) throw new Error(`SECOND_RESUME:${JSON.stringify(second.error)}`);
+  assert.equal(second.value.status, "READY");
+  // Rehydrated from the durable seed record: the run reached the compiled candidate.
+  assert.equal(second.value.candidate.candidateId, COMPILED_CANDIDATE_ID);
+  // ZERO research port calls on the second resume — no second successor minted.
+  assert.equal(resumeResearchCalls, callsBefore, "post-recovery resume must NOT re-invoke the research port");
+  // Still exactly one durable research/seed COMPLETED under BOOK_RUN_ID.
+  assert.equal(
+    harness.events.filter((event) => event.runId === BOOK_RUN_ID && event.phase === "research" && event.status === "COMPLETED").length,
+    1,
+  );
+  assert.equal(
+    harness.events.filter((event) => event.runId === BOOK_RUN_ID && event.phase === "seed" && event.status === "COMPLETED").length,
+    1,
+  );
+});
+
+requiredTest("resume with durable seed events but a missing or mismatched candidate fails closed without re-researching", async (context: TestContext) => {
+  const harness = await successorRecoveryHarness(context, "post-recovery-missing");
+
+  const first = await harness.service.run(harness.request);
+  assert.equal(first.ok, false);
+  if (first.ok) throw new Error("expected fresh research to fail");
+
+  let resumeResearchCalls = 0;
+  harness.control.onResume = (resumeRunId) => {
+    resumeResearchCalls += 1;
+    return { intakeRunId: "book-run-should-not-be-reached", recoveredFromRunId: resumeRunId };
+  };
+
+  // (a) Durable research+seed COMPLETED events name a seed candidate that does not
+  //     exist in the candidate store. Rehydrate must fail closed — never silently
+  //     re-research.
+  const missingParent = "book-run-missing-seed";
+  const missingAt = context.clock.now();
+  harness.events.push(
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "intake", status: "COMPLETED", at: missingAt, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "research", status: "COMPLETED", at: missingAt },
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "seed", status: "COMPLETED", at: missingAt, candidate: { candidateId: "research-seed-does-not-exist", manifestDigest: "e".repeat(64) } },
+  );
+  const missing = await harness.service.run({ ...harness.request, resumeRunId: missingParent, reconcileUnsettled: true });
+  assert.equal(missing.ok, false);
+  if (missing.ok) throw new Error("missing durable seed candidate must fail closed");
+  assert.equal(missing.error.code, "BOOK_RUN_SEED_REHYDRATE_FAILED");
+
+  // (b) Durable seed events name the REAL seed candidate id but a WRONG manifest
+  //     digest. Rehydrate opens the candidate, sees the digest mismatch, and fails
+  //     closed — the durable identity, not a re-research, is authoritative.
+  const mismatchParent = "book-run-mismatched-seed";
+  const mismatchAt = context.clock.now();
+  harness.events.push(
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "intake", status: "COMPLETED", at: mismatchAt, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "research", status: "COMPLETED", at: mismatchAt },
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "seed", status: "COMPLETED", at: mismatchAt, candidate: { candidateId: harness.seedCandidate.candidateId, manifestDigest: "f".repeat(64) } },
+  );
+  const mismatch = await harness.service.run({ ...harness.request, resumeRunId: mismatchParent, reconcileUnsettled: true });
+  assert.equal(mismatch.ok, false);
+  if (mismatch.ok) throw new Error("mismatched durable seed digest must fail closed");
+  assert.equal(mismatch.error.code, "BOOK_RUN_SEED_REHYDRATE_FAILED");
+
+  // Neither fail-closed path re-invoked the research port.
+  assert.equal(resumeResearchCalls, 0, "durable seed rehydrate failures must NOT silently re-research");
 });
 
 finishV25Tests().catch((error: unknown) => {
