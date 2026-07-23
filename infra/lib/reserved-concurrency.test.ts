@@ -52,7 +52,7 @@ const devLambdaConcurrency = {
   preSignUp: 2,
 };
 
-function synthFrontendTemplate(): Record<string, unknown> {
+function synthFrontendTemplate(enforced = true): Record<string, unknown> {
   const app = new cdk.App();
   const stack = new ChapterFlowFrontendStack(app, "ChapterFlowFrontend-dev", {
     env: { account: "123456789012", region: "us-east-1" },
@@ -65,12 +65,13 @@ function synthFrontendTemplate(): Record<string, unknown> {
     ssmPrefix: "/chapterflow/dev",
     openNextDir: openNextFixture,
     originVerifySecret: "synthetic-origin-lock-value-long-enough",
+    lambdaConcurrencyEnforced: enforced,
     lambdaConcurrency: devLambdaConcurrency,
   });
   return Template.fromStack(stack).toJSON();
 }
 
-function synthBackendTemplate(): Record<string, unknown> {
+function synthBackendTemplate(enforced = true): Record<string, unknown> {
   const app = new cdk.App();
   const stack = new ChapterFlowBackendStack(app, "ChapterFlowBackend-dev", {
     env: { account: "123456789012", region: "us-east-1" },
@@ -85,6 +86,7 @@ function synthBackendTemplate(): Record<string, unknown> {
     // Required so preSignUpFn (and its reserved concurrency) actually
     // instantiates — omitted, the conditional block never runs.
     cognitoUserPoolId: "us-east-1_TestPool123",
+    lambdaConcurrencyEnforced: enforced,
     lambdaConcurrency: devLambdaConcurrency,
   });
   return Template.fromStack(stack).toJSON();
@@ -188,4 +190,37 @@ test("reserved concurrency across all three env configs leaves >=100 unreserved 
       `${accountWideTotal} reserved must leave >=100 of the default 1000 ` +
       "account-wide unreserved concurrency limit",
   );
+});
+
+// ----------------------------------------------------------------------------
+// Account-quota gate (2026-07-22): the account's Lambda concurrent-executions
+// quota is still the unraised default of 10, so ANY reservation fails the
+// deploy ("decreases UnreservedConcurrentExecution below its minimum value of
+// [10]" — prod run 29967575538). Until the Service Quotas increase
+// (L-B99A9384 -> 1000, request 46c3aa6abb9744e68072b0888fc4f1ceYQkUo8pA) is
+// approved, resolveEnvConfig ships lambdaConcurrencyEnforced=false and the
+// stacks must omit ReservedConcurrentExecutions entirely.
+// ----------------------------------------------------------------------------
+
+test("quota gate: enforced=false omits ReservedConcurrentExecutions on every Lambda in both stacks", () => {
+  for (const template of [synthFrontendTemplate(false), synthBackendTemplate(false)]) {
+    for (const [name, properties] of functionsByName(template)) {
+      assert.equal(
+        properties.ReservedConcurrentExecutions,
+        undefined,
+        `${name} must not reserve concurrency while the account quota gate is active`,
+      );
+    }
+  }
+});
+
+test("quota gate: resolveEnvConfig ships lambdaConcurrencyEnforced=false until the quota increase lands", () => {
+  for (const env of ["dev", "staging", "prod"] as const) {
+    const app = new cdk.App({ context: { env } });
+    assert.equal(
+      resolveEnvConfig(app).lambdaConcurrencyEnforced,
+      false,
+      `${env}: flip this only after aws lambda get-account-settings shows ConcurrentExecutions >= 1000`,
+    );
+  }
 });
