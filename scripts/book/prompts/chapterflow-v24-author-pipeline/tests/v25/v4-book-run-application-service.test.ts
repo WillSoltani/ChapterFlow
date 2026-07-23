@@ -754,6 +754,334 @@ requiredTest("resume after a crash inside fresh-qc reuses the durable judge run 
   assert.ok(resumedPointer.ok && resumedPointer.value);
 });
 
+interface SuccessorResumeResult {
+  readonly intakeRunId: string;
+  readonly recoveredFromRunId?: string;
+  readonly bookId?: string;
+  readonly resumed?: boolean;
+}
+
+/**
+ * Build a fully-wired book-run service whose research port models the finding-8
+ * successor-recovery seam: the FIRST (fresh) research call fails mid-run — the
+ * exact terminal-FAILED-during-research predecessor shape — and every resume
+ * returns artifacts bound to a SUCCESSOR control-run id (not the resumed run),
+ * as the real ResearchCandidateApplicationPort does when it opens a successor to
+ * reuse durable chapters. The resume result is reconfigurable per call via
+ * `control.onResume` so a test can present a genuine successor or a forged one.
+ */
+async function successorRecoveryHarness(
+  context: TestContext,
+  slug: string,
+): Promise<{
+  service: BookRunApplicationService;
+  request: Parameters<BookRunApplicationService["run"]>[0];
+  runStore: ReturnType<typeof createFileRunStore>;
+  currentPointer: ReturnType<typeof createCurrentPointerStore>;
+  seedCandidate: { candidateId: string; manifestDigest: string };
+  control: { onResume: (resumeRunId: string) => SuccessorResumeResult };
+  events: BookRunEvent[];
+}> {
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, `${slug}-books`);
+  const runRoot = resolve(context.roots.tempRoot, `${slug}-runs`);
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-service");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "seed-candidate",
+    runId: "seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+  const compiled = await stageCandidate(candidates, {
+    candidateId: COMPILED_CANDIDATE_ID,
+    parentCandidateId: seed.manifest.candidateId,
+    runId: COMPILER_RUN_ID,
+    createdAt: context.clock.now(),
+    files: [
+      jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+      jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({
+        bookId: BOOK,
+        chapters: [chapter],
+        requirePlanArtifacts: false,
+        checkSourceAlignment: false,
+      })),
+    ],
+  });
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+  const control: { onResume: (resumeRunId: string) => SuccessorResumeResult } = {
+    onResume: (resumeRunId) => ({ intakeRunId: resumeRunId, recoveredFromRunId: resumeRunId }),
+  };
+  const research = {
+    async run(request: { resumeRunId?: string; newRunId?: string }) {
+      if (request.resumeRunId === undefined) {
+        // Fresh run fails mid-research: intake COMPLETED, research STARTED then
+        // FAILED, no seed — the finding-8 predecessor terminal-FAILED shape.
+        throw new Error("RESEARCH_CH07_FAILED:simulated research failure");
+      }
+      const resolved = control.onResume(request.resumeRunId);
+      return {
+        schemaVersion: "1" as const,
+        bookId: resolved.bookId ?? BOOK,
+        title: "Book Run Service",
+        author: "Fixture Author",
+        intakeRunId: resolved.intakeRunId,
+        researchRunId: "research-successor-fixture",
+        ...(resolved.recoveredFromRunId === undefined ? {} : { recoveredFromRunId: resolved.recoveredFromRunId }),
+        candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+        indexLogicalPath: "inputs/chapter-index.json" as const,
+        sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json" as const,
+        sources: [],
+        resumed: resolved.resumed ?? true,
+      };
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+  let compilerRunPersisted = false;
+  const compiler = {
+    async run() {
+      if (!compilerRunPersisted) {
+        const created = await runStore.createRun({
+          schemaVersion: "1",
+          bookId: BOOK,
+          runId: COMPILER_RUN_ID,
+          commandId: "compiler-candidate",
+          sourceGitSha: SOURCE_SHA,
+          requiredStages: ["compiler-candidate"],
+          requiredInventory: [],
+          inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+          attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+          createdAt: context.clock.now(),
+        });
+        assert.ok(created.ok);
+        const finished = await runStore.finishRun({ bookId: BOOK, runId: COMPILER_RUN_ID, status: "COMPLETED", finishedAt: context.clock.now() });
+        assert.ok(finished.ok);
+        compilerRunPersisted = true;
+      }
+      return {
+        runId: COMPILER_RUN_ID,
+        runStatus: "COMPLETED" as const,
+        candidateId: compiled.manifest.candidateId,
+        manifestDigest: compiled.manifest.manifestDigest,
+      };
+    },
+  } as unknown as CompilerApplicationPort;
+  const candidateQc = {
+    async run(request: { roundId: string; canonicalReview: { reviewId: string } }) {
+      return {
+        ok: true as const,
+        value: {
+          roundId: request.roundId,
+          candidate: { candidateId: compiled.manifest.candidateId, manifestDigest: compiled.manifest.manifestDigest },
+          reviewId: request.canonicalReview.reviewId,
+          outcome: "PASS" as const,
+          issues: [],
+        },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => BOOK_RUN_ID,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, `${slug}-v25`),
+    attemptRoot: resolve(context.roots.attemptsRoot, `${slug}-book-run`),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: false,
+    signal: new AbortController().signal,
+  };
+  return {
+    service,
+    request,
+    runStore,
+    currentPointer,
+    seedCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+    control,
+    events,
+  };
+}
+
+/** Persist a COMPLETED research successor run in the given book's durable
+ *  run-state — what the real port writes when it mints and finishes a successor. */
+async function persistSuccessorRun(
+  context: TestContext,
+  runStore: ReturnType<typeof createFileRunStore>,
+  args: { bookId: string; runId: string; inputCandidate: { candidateId: string; manifestDigest: string } },
+): Promise<void> {
+  const created = await runStore.createRun({
+    schemaVersion: "1",
+    bookId: args.bookId,
+    runId: args.runId,
+    commandId: "research-candidate-v1-successor",
+    sourceGitSha: SOURCE_SHA,
+    requiredStages: ["research", "seed-candidate"],
+    requiredInventory: [],
+    inputCandidate: args.inputCandidate,
+    attemptLimits: { run: 4096, byStage: { research: 4096, "seed-candidate": 0 } },
+    createdAt: context.clock.now(),
+  });
+  assert.ok(created.ok, JSON.stringify(created));
+  const finished = await runStore.finishRun({ bookId: args.bookId, runId: args.runId, status: "COMPLETED", finishedAt: context.clock.now() });
+  assert.ok(finished.ok, JSON.stringify(finished));
+}
+
+requiredTest("resume intake accepts a successor-recovery run whose durable provenance chains to the resumed run", async (context: TestContext) => {
+  const SUCCESSOR_RUN_ID = "book-run-research-successor";
+  const harness = await successorRecoveryHarness(context, "successor-accept");
+
+  // First run fails during research (finding-8 predecessor shape).
+  const first = await harness.service.run(harness.request);
+  assert.equal(first.ok, false);
+  if (first.ok) throw new Error("expected fresh research to fail");
+  assert.equal(first.error.code, "BOOK_RUN_RESEARCH_FAILED");
+  assert.equal(
+    harness.events.some((event) => event.phase === "research" && event.status === "FAILED"),
+    true,
+    "predecessor must record a durable research FAILED event",
+  );
+
+  // The successor control run genuinely exists, COMPLETED, in THIS book's run-state.
+  await persistSuccessorRun(context, harness.runStore, {
+    bookId: BOOK,
+    runId: SUCCESSOR_RUN_ID,
+    inputCandidate: harness.seedCandidate,
+  });
+  harness.control.onResume = (resumeRunId) => ({ intakeRunId: SUCCESSOR_RUN_ID, recoveredFromRunId: resumeRunId });
+
+  const resumed = await harness.service.run({ ...harness.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  if (!resumed.ok) throw new Error(`BOOK_RUN_SUCCESSOR_RESUME:${JSON.stringify(resumed.error)}`);
+  assert.equal(resumed.value.status, "READY");
+  // The book-run reached the compiled candidate: the successor research artifacts
+  // were intaken and the run continued through compile/review/qc.
+  assert.equal(resumed.value.candidate.candidateId, COMPILED_CANDIDATE_ID);
+
+  // The book-run continued under the resumed (predecessor) run id: research and
+  // seed COMPLETED events are recorded against BOOK_RUN_ID, not the successor.
+  assert.equal(
+    harness.events.filter((event) => event.runId === BOOK_RUN_ID && event.phase === "research" && event.status === "COMPLETED").length,
+    1,
+  );
+  assert.equal(
+    harness.events.filter((event) => event.runId === BOOK_RUN_ID && event.phase === "seed" && event.status === "COMPLETED").length,
+    1,
+  );
+});
+
+requiredTest("resume intake rejects a foreign or forged successor with the exact MISMATCH error", async (context: TestContext) => {
+  const harness = await successorRecoveryHarness(context, "successor-reject");
+
+  const first = await harness.service.run(harness.request);
+  assert.equal(first.ok, false);
+
+  // (a) A successor id with NO run-state record in this book — a foreign research
+  //     run — is rejected even though the returned provenance claims the chain.
+  harness.control.onResume = (resumeRunId) => ({ intakeRunId: "book-run-foreign-no-state", recoveredFromRunId: resumeRunId });
+  const foreign = await harness.service.run({ ...harness.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  assert.equal(foreign.ok, false);
+  if (foreign.ok) throw new Error("foreign successor must be rejected");
+  assert.equal(foreign.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+  assert.equal(foreign.error.message, "research intake does not bind exact production run and book");
+
+  // (b) A successor that DOES have a COMPLETED run-state record but whose returned
+  //     provenance names a predecessor OTHER than the resumed run is rejected: the
+  //     chain must bind the exact run we asked to resume, not any claim.
+  await persistSuccessorRun(context, harness.runStore, {
+    bookId: BOOK,
+    runId: "book-run-real-but-wrong-chain",
+    inputCandidate: harness.seedCandidate,
+  });
+  harness.control.onResume = () => ({ intakeRunId: "book-run-real-but-wrong-chain", recoveredFromRunId: "book-run-some-other-run" });
+  const forgedChain = await harness.service.run({ ...harness.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  assert.equal(forgedChain.ok, false);
+  if (forgedChain.ok) throw new Error("forged provenance chain must be rejected");
+  assert.equal(forgedChain.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+
+  // (c) A successor whose run-state lives under a DIFFERENT book is rejected: the
+  //     durable record, not the returned bookId claim, is the source of truth.
+  await persistSuccessorRun(context, harness.runStore, {
+    bookId: "other-book",
+    runId: "book-run-other-book-successor",
+    inputCandidate: harness.seedCandidate,
+  });
+  harness.control.onResume = (resumeRunId) => ({ intakeRunId: "book-run-other-book-successor", recoveredFromRunId: resumeRunId });
+  const foreignBook = await harness.service.run({ ...harness.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  assert.equal(foreignBook.ok, false);
+  if (foreignBook.ok) throw new Error("cross-book successor must be rejected");
+  assert.equal(foreignBook.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

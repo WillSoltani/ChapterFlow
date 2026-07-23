@@ -83,6 +83,16 @@ export interface ResearchCandidateApplicationResult {
   readonly author: string;
   readonly intakeRunId: string;
   readonly researchRunId: string;
+  /**
+   * Present ONLY when this result is a successor-recovery intake: the id of the
+   * terminal-FAILED predecessor control run whose durable research this successor
+   * reused (finding 8 / task 11d). The intake seam (bookRunApplicationService)
+   * reads this as the pipeline's own attestation of the predecessor→successor
+   * link — corroborated against durable run-state — so a successor run may be
+   * intaken by the resumed book-run without breaking the exact-run bind. Absent
+   * on every non-recovery result, whose intakeRunId equals the run of record.
+   */
+  readonly recoveredFromRunId?: string;
   readonly candidate: CandidateIdentity;
   readonly indexLogicalPath: "inputs/chapter-index.json";
   readonly sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json";
@@ -713,6 +723,7 @@ export class ResearchCandidateApplicationPort {
         author: input.author,
         intakeRunId: runId,
         researchRunId: research.runId,
+        ...(reuseDurableResearch && predecessorRunId !== undefined ? { recoveredFromRunId: predecessorRunId } : {}),
         candidate: identity,
         indexLogicalPath: "inputs/chapter-index.json",
         sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json",

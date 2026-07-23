@@ -14,7 +14,10 @@ import type { StageCoordinator } from "../run-state/stageTypes.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import type { CandidateQcEvaluator } from "./candidateQcEvaluator.js";
 import type { CompilerApplicationPort } from "./compilerApplicationPort.js";
-import type { ResearchCandidateApplicationPort } from "./researchCandidateApplicationPort.js";
+import type {
+  ResearchCandidateApplicationPort,
+  ResearchCandidateApplicationResult,
+} from "./researchCandidateApplicationPort.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 
 export const BOOK_RUN_PHASES = Object.freeze([
@@ -421,6 +424,31 @@ export class BookRunApplicationService {
     }
   }
 
+  /** True iff a research intake bound to a run OTHER than the resumed run is a
+   *  legitimate successor-recovery of that exact run. Fail-closed source-integrity
+   *  boundary (task 11e): the successor is accepted only when BOTH hold —
+   *   1. the port attests it recovered from the exact resumed run
+   *      (`recoveredFromRunId === predecessorRunId`), on a resume marked resumed, and
+   *   2. that successor run is a genuine COMPLETED run in THIS book's durable
+   *      run-state (same bookId).
+   *  Both facts are read from the pipeline's own durable journal — run-state and
+   *  the port's structured attestation — never from the intake artifacts, so a
+   *  foreign research run (different book/root) or a fabricated provenance claim
+   *  can never be intaken. */
+  async #successorChainBindsRun(
+    bookId: string,
+    predecessorRunId: string,
+    intake: ResearchCandidateApplicationResult,
+  ): Promise<boolean> {
+    if (intake.resumed !== true) return false;
+    if (intake.recoveredFromRunId !== predecessorRunId) return false;
+    const observedAt = safeNow(this.#dependencies.clock);
+    if (!observedAt.ok) return false;
+    const successor = await this.#dependencies.runStore.readRun(bookId, intake.intakeRunId, observedAt.value);
+    if (!successor.ok) return false;
+    return successor.value.status === "COMPLETED" && successor.value.definition.bookId === bookId;
+  }
+
   /** Run the deterministic gates + LLM answer-key judge under a dedicated
    *  fresh-qc run, then commit the round. The judge is per-question model work
    *  the gateway admits against run-state, so it needs a live run sized to the
@@ -567,14 +595,34 @@ export class BookRunApplicationService {
       if (!rehydrateSeed) await this.#event(runId, input.bookId, "research", "FAILED", message);
       return failed("BOOK_RUN_RESEARCH_FAILED", message);
     }
+    const boundToCurrentRun = intake.intakeRunId === runId;
+    // A successor-recovery intake (finding 8 / task 11d) legitimately returns
+    // artifacts bound to a fresh successor control run rather than the resumed
+    // run. Accept it ONLY when its durable provenance chains to the exact run we
+    // asked to resume: the port attests the predecessor link (recoveredFromRunId)
+    // AND that successor run is a genuine COMPLETED run in THIS book's durable
+    // run-state. The corroboration is read from run-state — the pipeline's own
+    // journal — never from the intake artifacts, so a foreign or forged research
+    // run (wrong book/root, or a fabricated provenance claim) can never masquerade
+    // as this book-run's research. A single attested hop suffices: every book-run
+    // resume presents the original resumed run id, and each recovery mints exactly
+    // one successor off it.
+    const successorAccepted = !boundToCurrentRun
+      && input.resumeRunId !== undefined
+      && await this.#successorChainBindsRun(input.bookId, runId, intake);
     if (
-      intake.intakeRunId !== runId
+      (!boundToCurrentRun && !successorAccepted)
       || intake.bookId !== input.bookId
       || (rehydrateSeed && durableSeed !== null && (!intake.resumed || !sameIdentity(intake.candidate, durableSeed)))
     ) {
       const message = "research intake does not bind exact production run and book";
       if (!rehydrateSeed) await this.#event(runId, input.bookId, "research", "FAILED", message);
       return failed("BOOK_RUN_RESEARCH_MISMATCH", message);
+    }
+    if (successorAccepted) {
+      console.error(
+        `[book-run] research-intake-successor book=${input.bookId} resumed-run=${runId} successor-run=${intake.intakeRunId} action=ACCEPT_SUCCESSOR_CHAIN`,
+      );
     }
     if (!rehydrateSeed) {
       const researchCompleted = await this.#event(
