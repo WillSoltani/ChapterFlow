@@ -2166,7 +2166,7 @@ test("v23 SEC35 ignores sentence-initial temporal adverbs (Later, Meanwhile) —
   const fx = compileFixture();
   const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
   const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
-  good.examples[0].scenario = `Later, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Meanwhile the statement waits unread. Eventually ${dealt} makes the balance match the careful behavior already in place before money moves anywhere.`;
+  good.examples[0].scenario = `Later, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. None of the alerts have fired yet. Meanwhile the statement waits unread. Everything hinges on the next choice. Eventually ${dealt} makes the balance match the careful behavior already in place before money moves anywhere.`;
 
   const findings = validateExamplePack(good, fx.blueprint, fx.packet);
   const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
