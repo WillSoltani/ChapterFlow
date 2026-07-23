@@ -77,6 +77,60 @@ const META_VERBS: RegExp[] = [
   /\b(clear|kahneman|taleb|housel|tetlock|cialdini|greene|machiavelli|duhigg|eyal|covey|ries|brown|kolb|gladwell|fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
 ];
 
+/**
+ * Max words in a single hardSpecific. A hardSpecific is a SHORT verbatim source
+ * TOKEN — a proper name, number, measurement, or striking phrase — not a
+ * sentence or clause. The floor exists because downstream composition gates
+ * embed a case's hardSpecifics VERBATIM inside word-budgeted units: SEC16
+ * requires a memorable line (8-14 words) to contain >=2 of its cited case's
+ * hardSpecifics verbatim, and SEC14/33 embed them in equally tight budgets. Two
+ * clause-length specifics ("neglected plot of ground, with no idle middle
+ * option" = 8 words) cannot compose into a 14-word line, making SEC16
+ * structurally unsatisfiable. Capping each specific at 5 words keeps the
+ * downstream budgets satisfiable while leaving the >=2-per-case floor
+ * (SV2.hard_specifics_floor / SV2.named_examples) intact — short specifics make
+ * that floor easy to satisfy, not harder.
+ */
+export const MAX_HARD_SPECIFIC_WORDS = 5;
+
+function hardSpecificWordCount(text: string): number {
+  return text.trim().split(/\s+/).filter((word) => word.length > 0).length;
+}
+
+/**
+ * Per-specific word-cap check: reject any NON-EMPTY hardSpecific longer than
+ * {@link MAX_HARD_SPECIFIC_WORDS} words. Returns [] when every specific is a
+ * short token (or empty). Empty / whitespace-only specifics are deliberately NOT
+ * flagged here — they are left to the >=2-non-empty-per-case floor
+ * (SV2.hard_specifics_floor), so empty/duplicate behavior is unchanged. Exported
+ * and shared by BOTH the researcher-chapter validator (so a fresh clause-length
+ * output is rejected and the retry loop feeds the violation back to the model)
+ * AND the durable-sidecar reuse hook (so a STALE clause-specific sidecar is
+ * rejected on reuse and falls through to re-research) — a single source of truth
+ * for the short-token research contract.
+ */
+export function collectHardSpecificLengthProblems(
+  namedExamples: ChapterResearchResult["namedExamples"] | undefined,
+): string[] {
+  const problems: string[] = [];
+  if (!Array.isArray(namedExamples)) return problems;
+  for (const example of namedExamples) {
+    const specifics = Array.isArray(example?.hardSpecifics) ? example.hardSpecifics : [];
+    for (const specific of specifics) {
+      if (typeof specific !== "string") continue;
+      const trimmed = specific.trim();
+      if (trimmed.length === 0) continue;
+      const words = hardSpecificWordCount(trimmed);
+      if (words > MAX_HARD_SPECIFIC_WORDS) {
+        problems.push(
+          `hardSpecific too long (${words} words) in namedExamples "${example?.label ?? ""}": ${JSON.stringify(trimmed)} — give a short verbatim token (a name, number, phrase of <=${MAX_HARD_SPECIFIC_WORDS} words), not a sentence or clause`,
+        );
+      }
+    }
+  }
+  return problems;
+}
+
 /** Total chapter-research attempts (initial + retries). Sonnet occasionally
  *  returns a model-minted schema or trips the meta-reference content guard on
  *  the first try; a bounded retry that hands the validator's own error list
@@ -365,6 +419,12 @@ function collectChapterResearchProblems(r: ChapterResearchResult, input: Chapter
       if (typeof ex.teachesWhat !== "string" || !ex.teachesWhat) problems.push(`namedExamples "${ex.label}" teachesWhat missing`);
     }
   }
+
+  // Short-token policy: each hardSpecific must be a SHORT verbatim source token
+  // (<=5 words), never a sentence or clause, so it can compose verbatim into the
+  // word-budgeted downstream units (SEC14/16/33). Runs regardless of the floor
+  // branch above; the retry loop feeds any violation back to the model.
+  problems.push(...collectHardSpecificLengthProblems(r.namedExamples));
   if (typeof r.hardEdge !== "string" || r.hardEdge.length < 80) {
     problems.push(`hardEdge too short (${r.hardEdge?.length ?? 0}) — write 2-3 sentences about typical misreadings`);
   }

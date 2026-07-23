@@ -169,15 +169,13 @@ function fabricatedChapter(number: number, title: string): ChapterResearchResult
 
 function advisoryCanaryChapter(number: number, title: string): ChapterResearchResult {
   const value = chapter(number, title);
+  // Short verbatim tokens (<=5 words each, per the hardSpecifics short-token
+  // policy) that are deliberately NOT echoed in example[0]'s summary or notes, so
+  // the advisory SV2.realness_unsupported_entity signal still fires while the
+  // route-blocking length cap stays satisfied.
   const hardSpecifics = number === 1
-    ? [
-        "Magic Castle Hotel guests use the red poolside telephone to request service.",
-        "The popsicles arrive beside the pool on a silver tray.",
-      ]
-    : [
-        "KIPP students announce their selected college before families and peers.",
-        "College Signing Day turns the choice into a witnessed transition.",
-      ];
+    ? ["poolside call button", "silver serving tray"]
+    : ["senior signing banner", "college destination pledge"];
   return {
     ...value,
     namedExamples: value.namedExamples.map((example, index) => (

@@ -8,6 +8,7 @@ import {
   type BibliographyResult,
 } from "../agents/researcher-bibliography.js";
 import {
+  collectHardSpecificLengthProblems,
   runResearcherChapter,
   type ChapterResearchInput,
   type ChapterResearchResult,
@@ -253,13 +254,21 @@ function operationExecution(
  *  research-route-blocking source-v2 finding. Used as the durable-sidecar reuse
  *  gate on recovery so a cached sidecar that no longer passes the source-v2
  *  route validator is re-researched rather than reused (or crashing the run). */
-function chapterRouteValid(chapter: ChapterResearchResult): boolean {
+export function chapterRouteValid(chapter: ChapterResearchResult): boolean {
   try {
     const decision = evaluateSourceV2Integrity(chapter, {
       chapterNumber: chapter.chapterNumber,
       chapterTitle: chapter.chapterTitle,
     });
-    return !decision.findings.some(isResearchRouteBlockingFinding);
+    if (decision.findings.some(isResearchRouteBlockingFinding)) return false;
+    // Apply the short-token research contract to the reused sidecar too: a STALE
+    // sidecar minted before the <=5-word hardSpecifics policy carries clause-length
+    // specifics that break downstream composition (SEC16). Rejecting it here makes
+    // reuse fall through to re-research — the designed migration path, no separate
+    // migrator. Shares collectHardSpecificLengthProblems with the fresh-research
+    // validator so the two can never diverge.
+    if (collectHardSpecificLengthProblems(chapter.namedExamples).length > 0) return false;
+    return true;
   } catch {
     return false;
   }
