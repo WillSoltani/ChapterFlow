@@ -47,6 +47,46 @@ const COMPILER_STAGE_ID = "compiler-candidate" as const;
  */
 export const MAX_SECTION_ATTEMPTS = 3;
 
+/**
+ * Task 11j — retryable model-output-variance classes inside the SAME bounded
+ * per-section budget as gate blockers. The section model call goes through the
+ * gateway, which can reject a bounded, exit-0 model process's output against the
+ * route's source-controlled schema (outcome FAILED, code MODEL_OUTPUT_INVALID) —
+ * the exact same variance class the section gate catches, just one layer out
+ * (finding #5's misclassification, recurring in the compiler path). A
+ * rate-limited / overloaded subprocess that exits nonzero surfaces as outcome
+ * FAILED, code MODEL_PROCESS_FAILED — a transient blip that clears on a short
+ * backoff. Both are retried with a fresh salted attempt against the section's
+ * MAX_SECTION_ATTEMPTS budget; every other FAILED/TIMED_OUT/UNKNOWN code
+ * (cancellation, capacity, admission collision, uncertain teardown) is genuine
+ * infrastructure and propagates immediately.
+ */
+const GATEWAY_SCHEMA_REJECTION_CODE = "MODEL_OUTPUT_INVALID" as const;
+const TRANSIENT_PROCESS_FAILURE_CODE = "MODEL_PROCESS_FAILED" as const;
+
+/** Feedback line for a GATEWAY schema rejection. The raw invalid output never
+ *  leaves the gateway, so — unlike an in-process gate blocker — there is no
+ *  prior draft to echo; the retry card carries only this schema reminder. */
+const GATEWAY_SCHEMA_REJECTION_FEEDBACK = "gateway schema validation rejected the previous output";
+
+/** Feedback line for a transient process failure: no output ever reached this
+ *  process, so nothing is echoed — only the transient cause is reported. */
+const TRANSIENT_PROCESS_FAILURE_FEEDBACK = "a transient model process failure occurred before any output was produced";
+
+/** In-loop backoff (ms) before a transient-process retry, indexed by
+ *  (attempt − 1): the wait BEFORE attempt 2 is index 0, before attempt 3 is
+ *  index 1, clamping to the last entry. Mirrors researcher-chapter's schedule
+ *  (Task 11d PART A): a provider rate-limit/overload blip clears on a short delay
+ *  far more often than on an immediate re-spawn. */
+const TRANSIENT_RETRY_BACKOFF_MS: readonly number[] = Object.freeze([2000, 8000]);
+
+function transientBackoffMs(attempt: number): number {
+  const index = Math.min(Math.max(attempt - 1, 0), TRANSIENT_RETRY_BACKOFF_MS.length - 1);
+  return TRANSIENT_RETRY_BACKOFF_MS[index];
+}
+
+const defaultCompilerSleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
+
 interface CompilerSourceMapping {
   readonly chapterNumber: number;
   readonly sidecarLogicalPath: string;
@@ -102,6 +142,10 @@ export interface CompilerApplicationPortDependencies {
   readonly stageCoordinator: StageCoordinator;
   readonly ids: ChapterFlowIdFactory;
   readonly clock: ChapterFlowClock;
+  /** Injectable backoff hook for transient-process-failure retries (Task 11j).
+   *  Faked to resolve instantly in tests so the schedule is asserted without a
+   *  real wall-clock wait; production defaults to a setTimeout sleep. */
+  readonly sleep?: (ms: number) => Promise<void>;
 }
 
 type CompilerArtifactResult = Readonly<{
@@ -482,6 +526,7 @@ export class CompilerApplicationPort {
   }
 
   async run(request: CompilerApplicationRequest): Promise<CompilerApplicationResult> {
+    const sleep = this.#dependencies.sleep ?? defaultCompilerSleep;
     if (!request.bookId || !request.candidateId || !request.manifestDigest) {
       throw new Error("COMPILER_INPUT_INVALID:explicit candidate selector and manifest digest are required");
     }
@@ -729,7 +774,33 @@ export class CompilerApplicationPort {
             });
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
             if (result.outcome !== "SUCCEEDED") {
-              throw new Error(`MODEL_TASK_${result.outcome}:${result.error?.code ?? "UNKNOWN"}:${result.error?.message ?? "model task failed"}`);
+              const code = result.error?.code ?? "UNKNOWN";
+              // Gateway output-schema rejection: same model-output-variance class as
+              // an in-process gate blocker, one layer out. Retry against the SAME
+              // section budget with a schema reminder (no draft to echo — the raw
+              // invalid output never leaves the gateway).
+              if (result.outcome === "FAILED" && code === GATEWAY_SCHEMA_REJECTION_CODE) {
+                if (attemptNumber >= MAX_SECTION_ATTEMPTS) {
+                  throw new Error(`COMPILER_SECTION_MODEL_INVALID:${kind}:after ${MAX_SECTION_ATTEMPTS} attempts:${GATEWAY_SCHEMA_REJECTION_FEEDBACK}`);
+                }
+                retryFeedback = { blockerLines: [GATEWAY_SCHEMA_REJECTION_FEEDBACK], gatewaySchemaRejection: true };
+                continue;
+              }
+              // Transient subprocess failure (rate-limit / overload): retry against
+              // the same budget after a bounded backoff. Nothing was wrong with the
+              // content and no output was produced, so the card asks only for a
+              // correct result this time.
+              if (result.outcome === "FAILED" && code === TRANSIENT_PROCESS_FAILURE_CODE) {
+                if (attemptNumber >= MAX_SECTION_ATTEMPTS) {
+                  throw new Error(`COMPILER_SECTION_PROCESS_FAILED:${kind}:after ${MAX_SECTION_ATTEMPTS} attempts:${TRANSIENT_PROCESS_FAILURE_FEEDBACK}`);
+                }
+                retryFeedback = { blockerLines: [TRANSIENT_PROCESS_FAILURE_FEEDBACK], transientProcessFailure: true };
+                await sleep(transientBackoffMs(attemptNumber));
+                continue;
+              }
+              // Genuine infrastructure (cancellation, capacity, admission collision,
+              // TIMED_OUT / UNKNOWN teardown): never burn a retry — propagate.
+              throw new Error(`MODEL_TASK_${result.outcome}:${code}:${result.error?.message ?? "model task failed"}`);
             }
             if (!result.output || typeof result.output !== "object" || Array.isArray(result.output)) {
               throw new Error("MODEL_TASK_OUTPUT_INVALID");

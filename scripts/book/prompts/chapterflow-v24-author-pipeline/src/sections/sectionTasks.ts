@@ -289,10 +289,23 @@ export type SectionTaskDeliveryMode = "FILE_WRITE" | "DIRECT_JSON";
  * author-first retry cards, where a gate/preflight FAIL feeds the retry prompt.
  */
 export type SectionRetryFeedback = Readonly<{
-  /** Rendered `checkId@path:message` blocker lines from the prior attempt's gate. */
+  /** Rendered blocker lines from the prior attempt. For an in-process section-gate
+   *  rejection these are `checkId@path:message` lines; for a GATEWAY schema
+   *  rejection or a transient process failure (Task 11j) this is a single cause
+   *  line — there are no per-check blockers to enumerate. */
   blockerLines: readonly string[];
-  /** The prior attempt's rejected draft, echoed so the model edits rather than restarts. */
-  priorDraft: unknown;
+  /** The prior attempt's rejected draft, echoed so the model edits rather than
+   *  restarts. ABSENT for a gateway/transient rejection: the raw invalid output
+   *  never leaves the gateway, so there is nothing to echo — never fabricate one. */
+  priorDraft?: unknown;
+  /** Set when the GATEWAY's source-controlled OUTPUT schema (not the in-process
+   *  section gate) rejected the previous output — MODEL_OUTPUT_INVALID. The card
+   *  reminds the model of the schema; it cannot echo the unavailable raw output. */
+  gatewaySchemaRejection?: boolean;
+  /** Set when the previous attempt was lost to a TRANSIENT model process failure
+   *  (MODEL_PROCESS_FAILED) before any output was produced — nothing was wrong
+   *  with the content, so the card asks only for a correct result this time. */
+  transientProcessFailure?: boolean;
 }>;
 
 // Task 11h: matches an anchor-specifics gate blocker — the shared message shape emitted by
@@ -340,6 +353,16 @@ function anchorSpecificsEnumeration(
 function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = []): string {
   if (!feedback || feedback.blockerLines.length === 0) return "";
   const blockers = feedback.blockerLines.map((line) => `- ${line}`).join("\n");
+  // A transient model process failure (Task 11j): no content problem and no
+  // output to echo — ask only for a correct result this time.
+  if (feedback.transientProcessFailure) {
+    return `\n\nPREVIOUS ATTEMPT DID NOT COMPLETE — nothing was wrong with your content:\n${blockers}\nProduce a correct result this time. Return exactly one JSON object matching the schema hint above and nothing else.\n`;
+  }
+  // A GATEWAY-level output-schema rejection (Task 11j): the raw invalid output
+  // stays inside the gateway and cannot be echoed back — never fabricate one.
+  if (feedback.gatewaySchemaRejection) {
+    return `\n\nPREVIOUS OUTPUT REJECTED BEFORE IT REACHED THIS PROCESS:\n${blockers}\nThe raw invalid output stays inside the output-schema gate and cannot be echoed back here. Return exactly one JSON object matching the schema hint above and nothing else.\n`;
+  }
   const enumeration = anchorSpecificsEnumeration(feedback.blockerLines, anchors);
   return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}`;
 }

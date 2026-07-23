@@ -107,6 +107,15 @@ type RigOptions = {
    *  summary attempts, then a valid one. A value larger than MAX_SECTION_ATTEMPTS
    *  keeps every attempt blocked so the bounded retry loop exhausts. */
   readonly blockSummaryAttempts?: number;
+  /** Fail the first N summary attempts at the GATEWAY with outcome FAILED / error
+   *  code MODEL_OUTPUT_INVALID (a source-controlled output-schema rejection — the
+   *  raw invalid output never leaves the gateway), then return a valid draft. A
+   *  value larger than MAX_SECTION_ATTEMPTS exhausts the bounded retry. */
+  readonly gatewayInvalidSummaryAttempts?: number;
+  /** Fail the first N summary attempts with outcome FAILED / error code
+   *  MODEL_PROCESS_FAILED (a transient subprocess failure) then return a valid
+   *  draft — exercises the backoff-gated transient retry class. */
+  readonly transientFailSummaryAttempts?: number;
 };
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
@@ -153,6 +162,31 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
       assert.equal(admission.ok, true);
       if (options.gatewayOutcome === "unsettled") {
         return { attemptId: request.context.attemptId, outcome: "UNKNOWN", error: { code: "FAKE_UNSETTLED", message: "uncertain" } };
+      }
+      // A GATEWAY-level model-output-variance failure for the first N summary
+      // attempts: the attempt is admitted and FINISHED FAILED (genuine gateway
+      // failure, unlike an in-process gate blocker which finishes SUCCEEDED), and
+      // the result carries the retryable error code. The bounded per-section loop
+      // must salt a fresh -r{n} attempt and retry against the SAME budget.
+      const retryableFail = options.gatewayInvalidSummaryAttempts
+        ? { limit: options.gatewayInvalidSummaryAttempts, code: "MODEL_OUTPUT_INVALID" as const }
+        : options.transientFailSummaryAttempts
+          ? { limit: options.transientFailSummaryAttempts, code: "MODEL_PROCESS_FAILED" as const }
+          : null;
+      if (retryableFail && request.context.operationId === "compiler-ch01-summary-pack") {
+        const opCount = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
+        sectionAttempts.set(request.context.operationId, opCount);
+        if (opCount <= retryableFail.limit) {
+          const failed = await runStore.finishAttempt({
+            bookId: request.context.bookId,
+            runId: request.context.runId,
+            attemptId: request.context.attemptId,
+            outcome: "FAILED",
+            finishedAt: context.clock.now(),
+          });
+          assert.equal(failed.ok, true);
+          return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: retryableFail.code, message: retryableFail.code } };
+        }
       }
       const outcome = options.gatewayOutcome === "error" ? "FAILED" as const : "SUCCEEDED" as const;
       const finished = await runStore.finishAttempt({
@@ -224,8 +258,10 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
       return { ok: true, value: manifest };
     },
   };
+  const sleeps: number[] = [];
   const port = new CompilerApplicationPort({
     pipelineRoot: resolve(context.roots.base, "pipeline-root"),
+    sleep: async (ms: number) => { sleeps.push(ms); },
     contentReader: {
       async open(input) {
         counts.open += 1;
@@ -262,7 +298,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     profileId: PROFILE,
     signal: controller.signal,
   } as const;
-  return { port, request, counts, prompts, attemptRoot, selected, runStore, controller, staged: () => stagedInput };
+  return { port, request, counts, prompts, attemptRoot, selected, runStore, controller, sleeps, staged: () => stagedInput };
 }
 
 requiredTest("1 selected candidate opens exactly once and returns successor identity", async (context) => {
@@ -548,6 +584,87 @@ requiredTest("3d gate-blocked section exhausts bounded retries then throws with 
   const run = await subject.runStore.readRun(BOOK, "run-retry-exhaust", context.clock.now());
   assert.equal(run.ok, true);
   if (run.ok) assert.equal(run.value.status, "FAILED");
+});
+
+requiredTest("3e gateway MODEL_OUTPUT_INVALID first draft retries with schema-rejection feedback and succeeds on the second draft", async (context) => {
+  const subject = rig(context, "gateway-retry-pass", { gatewayInvalidSummaryAttempts: 1 });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  const summaryPrompts = subject.prompts.filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack");
+  // (a) exactly two model calls: the gateway-rejected attempt + the passing retry.
+  assert.equal(summaryPrompts.length, 2);
+  assert.equal(subject.counts.runner, 5);
+  assert.equal(subject.counts.stage, 1);
+  // (c) attempt 1 keeps its deterministic id; only the retry mints a salted -r2 id.
+  const expectedBase = `cmp-${createHash("sha256").update("run-gateway-retry-pass").update("\0").update("compiler-ch01-summary-pack").digest("hex").slice(0, 40)}`;
+  assert.equal(summaryPrompts[0].context.attemptId, expectedBase);
+  assert.doesNotMatch(summaryPrompts[0].context.attemptId, /-r\d+$/);
+  assert.equal(summaryPrompts[1].context.attemptId, `${expectedBase}-r2`);
+  // (b) the retry card carries the gateway schema-rejection feedback and NO fabricated
+  // prior-draft echo (the gateway never surfaces the invalid output). The first card
+  // carries neither the gateway nor the section-gate rejection header.
+  const firstCard = Buffer.from(summaryPrompts[0].prompt.inputs[4].bytes).toString("utf8");
+  const retryCard = Buffer.from(summaryPrompts[1].prompt.inputs[4].bytes).toString("utf8");
+  assert.doesNotMatch(firstCard, /gateway schema validation rejected the previous output/);
+  assert.doesNotMatch(firstCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.match(retryCard, /gateway schema validation rejected the previous output/);
+  assert.doesNotMatch(retryCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.doesNotMatch(retryCard, /Your rejected draft was/);
+  assert.doesNotMatch(retryCard, /npx tsx|validate-sections|After writing/);
+  // No transient backoff was consulted — a schema rejection retries immediately.
+  assert.deepEqual(subject.sleeps, []);
+  const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (!run.ok) return;
+  assert.equal(run.value.status, "COMPLETED");
+  assert.equal(run.value.attempts.length, 5);
+  assert.ok(run.value.attempts.some((attempt) => attempt.admission.attemptId === `${expectedBase}-r2`));
+  // The gateway-rejected base attempt is durably FAILED; every other attempt SUCCEEDED.
+  const base = run.value.attempts.find((attempt) => attempt.admission.attemptId === expectedBase);
+  assert.ok(base);
+  assert.equal(base.status, "FAILED");
+  assert.equal(run.value.attempts.filter((attempt) => attempt.status === "SUCCEEDED").length, 4);
+});
+
+requiredTest("3f gateway MODEL_OUTPUT_INVALID on every attempt exhausts the bounded retry then throws with the attempt count", async (context) => {
+  const subject = rig(context, "gateway-retry-exhaust", { gatewayInvalidSummaryAttempts: 99 });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_MODEL_INVALID:summary-pack:after 3 attempts:/);
+    assert.match(error.message, /gateway schema validation rejected the previous output/);
+    assert.ok(error.message.length <= 1700, `exhaustion detail exceeded bounded length: ${error.message.length}`);
+    return true;
+  });
+  // MAX_SECTION_ATTEMPTS gateway rejections, then fail-closed — no candidate staged.
+  assert.equal(subject.counts.runner, 3);
+  assert.equal(subject.counts.stage, 0);
+  assert.equal(subject.staged(), null);
+  assert.deepEqual(subject.sleeps, []);
+  const run = await subject.runStore.readRun(BOOK, "run-gateway-retry-exhaust", context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) assert.equal(run.value.status, "FAILED");
+});
+
+requiredTest("3g transient MODEL_PROCESS_FAILED first attempt retries after a bounded backoff and succeeds", async (context) => {
+  const subject = rig(context, "transient-retry-pass", { transientFailSummaryAttempts: 1 });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  const summaryPrompts = subject.prompts.filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack");
+  assert.equal(summaryPrompts.length, 2);
+  assert.equal(subject.counts.runner, 5);
+  assert.equal(subject.counts.stage, 1);
+  const expectedBase = `cmp-${createHash("sha256").update("run-transient-retry-pass").update("\0").update("compiler-ch01-summary-pack").digest("hex").slice(0, 40)}`;
+  assert.equal(summaryPrompts[1].context.attemptId, `${expectedBase}-r2`);
+  // A transient failure carries no content problem and no draft echo — just a
+  // "did not complete" note — and a bounded backoff was consulted before the retry.
+  const retryCard = Buffer.from(summaryPrompts[1].prompt.inputs[4].bytes).toString("utf8");
+  assert.match(retryCard, /transient model process failure/i);
+  assert.doesNotMatch(retryCard, /Your rejected draft was/);
+  assert.doesNotMatch(retryCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.deepEqual(subject.sleeps, [2000]);
+  const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) assert.equal(run.value.status, "COMPLETED");
 });
 
 requiredTest("4 complete successor inventory preserves input order then compiler order", async (context) => {
