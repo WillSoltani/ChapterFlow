@@ -37,6 +37,14 @@ wired through `runIdempotent` (`idempotency-core.ts` + DynamoDB store in
 
 - `POST /book/me/commitments` — prevents a duplicate commitment row.
 - `POST /book/me/reading-sessions` — prevents double-counting reading time.
+- `POST /book/me/notebook` — prevents a duplicate highlight/note row (CF2-022).
+  The route mints `highlightId = crypto.randomUUID()` server-side per attempt, so
+  the `attribute_not_exists(SK)` guard in `createHighlight` cannot dedupe a retry
+  (each attempt's id is fresh). The native client stamps this create with the same
+  stable mutation id it uses for commitments (`SyncDispatch` note + highlight
+  create paths), so a dropped-200 retry re-dispatching the identical journal entry
+  would otherwise create a second row. Wiring it through `runIdempotent`
+  (routeKey `notebook.post`) replays the first entry instead.
 
 The client stamps the key on every durable write it dispatches; a backend route
 that does not (yet) call `runIdempotent` simply ignores the header (row 1 above).
@@ -48,6 +56,15 @@ that does not (yet) call `runIdempotent` simply ignores the header (row 1 above)
 - `POST /book/me/saved` — a set-to-boolean toggle; a repeat is a no-op change.
 - `POST /book/me/reviews/{cardId}` — already guarded by a time-window dedupe in
   the route (a re-grade seconds later is rejected before the scheduler advances).
+- `PATCH /book/me/notebook` (highlight colour/snippet/anchor update) — a
+  validated last-write-wins set on an existing row (`attribute_exists(SK)`); a
+  repeat re-writes identical field values, so it converges. No key dedupe needed.
+- `DELETE /book/me/notebook` — removing a row is convergent: a retried delete of an
+  already-removed highlight yields the same end state (no double-apply). It returns
+  a benign `404 not_found` on the second attempt, never a second mutation. (The
+  native client's `PATCH`/`DELETE` target the `/{entryId}` sub-path, a separate
+  route; the create above is the only `/book/me/notebook` write the client stamps
+  that could double-apply.)
 
 ## Storage
 
