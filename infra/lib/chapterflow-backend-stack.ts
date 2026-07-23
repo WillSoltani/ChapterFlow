@@ -319,12 +319,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
 
     this.contentBucket = new s3.Bucket(this, "ChapterFlowContentBucket", {
-      blockPublicAccess: new s3.BlockPublicAccess({
-        blockPublicAcls: true,
-        ignorePublicAcls: true,
-        blockPublicPolicy: false,
-        restrictPublicBuckets: false,
-      }),
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.S3_MANAGED,
       enforceSSL: true,
       versioned: true,
@@ -338,11 +333,11 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
-    // WS6-012: covers are also readable by the CloudFront distribution (frontend
-    // stack) via Origin Access Control. This statement is what lets the content
-    // bucket move to BLOCK_ALL: it is NON-public (conditioned on the CloudFront
-    // service principal AND our own account), so restrictPublicBuckets does not
-    // strip it, unlike the AnyPrincipal `PublicReadLibraryCovers` statement.
+    // WS6-012 (PR2): covers are read by the CloudFront distribution (frontend
+    // stack) via Origin Access Control only — the bucket is BLOCK_ALL and the
+    // former AnyPrincipal `PublicReadLibraryCovers` statement has been removed.
+    // This statement is NON-public (conditioned on the CloudFront service
+    // principal AND our own account), so restrictPublicBuckets does not strip it.
     //
     // The condition uses aws:SourceAccount (our account id) rather than the
     // distribution's SourceArn on purpose: keying on the distribution ARN would
@@ -362,23 +357,6 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         conditions: {
           StringEquals: { "aws:SourceAccount": cdk.Aws.ACCOUNT_ID },
         },
-      })
-    );
-
-    // TRANSITIONAL (WS6-012 PR1): direct public S3 read of covers. Removed in
-    // PR2 once the CloudFront OAC path above is proven live, at which point the
-    // bucket flips to BlockPublicAccess.BLOCK_ALL. See
-    // docs/architecture/content-bucket-public-access-rollout.md for the
-    // documented two-PR rollout decision, the PR2 precondition (owner deploys
-    // main and confirms covers load via CloudFront OAC in prod), and the exact
-    // PR2 steps.
-    this.contentBucket.addToResourcePolicy(
-      new iam.PolicyStatement({
-        sid: "PublicReadLibraryCovers",
-        effect: iam.Effect.ALLOW,
-        principals: [new iam.AnyPrincipal()],
-        actions: ["s3:GetObject"],
-        resources: [`${this.contentBucket.bucketArn}/book-content/library/covers/*`],
       })
     );
 

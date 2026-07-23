@@ -10,18 +10,18 @@ import { ChapterFlowFrontendStack } from "./chapterflow-frontend-stack";
 import { FRONTEND_SSM_RUNTIME_SECRET_NAMES } from "./frontend-runtime-config";
 
 // ---------------------------------------------------------------------------
-// WS6-012 PR1: covers are served from the content bucket through CloudFront via
-// Origin Access Control, so the bucket can drop its AnyPrincipal public-read
-// grant (BLOCK_ALL) in PR2 without breaking covers. This suite proves the
-// synth-provable half of that rollout:
-//   - the backend content bucket grants covers read to the CloudFront service
-//     principal, conditioned on aws:SourceAccount (a NON-public statement that
-//     survives restrictPublicBuckets), while (PR1) STILL keeping the transitional
-//     public-read statement and the current two-flag PublicAccessBlock;
+// WS6-012 PR2: the content bucket is now BLOCK_ALL and serves covers only
+// through CloudFront via Origin Access Control. The former transitional
+// AnyPrincipal public-read statement (PublicReadLibraryCovers) has been removed.
+// This suite proves the synth-provable half of that end state:
+//   - the backend content bucket has all four PublicAccessBlock protections
+//     enabled and carries NO public-read (AnyPrincipal Allow) statement — the
+//     only AnyPrincipal statement left is the enforceSSL Deny;
+//   - it still grants covers read to the CloudFront service principal,
+//     conditioned on aws:SourceAccount (a NON-public statement that survives
+//     restrictPublicBuckets);
 //   - the frontend distribution routes book-content/library/covers/* to an OAC
 //     origin whose domain is the content bucket.
-// PR2 will flip this suite to assert all four PublicAccessBlock protections and
-// the absence of any AnyPrincipal statement.
 // ---------------------------------------------------------------------------
 
 type Resource = {
@@ -46,63 +46,91 @@ function synthBackendTemplate(): Record<string, unknown> {
   return Template.fromStack(stack).toJSON();
 }
 
-// The content bucket is the one with the deliberate two-flag PublicAccessBlock
-// (blockPublicPolicy/restrictPublicBuckets false) — the ingest bucket is
-// BLOCK_ALL (all four true). Identify it structurally rather than by an
-// auto-generated logical id.
+// Both buckets are now BLOCK_ALL, so the content bucket can no longer be told
+// apart by a two-flag PublicAccessBlock. Identify it by its bucket policy: the
+// content bucket is the only one carrying the CloudFrontReadLibraryCovers
+// covers-read statement.
 function findContentBucket(resources: Record<string, Resource>): {
   logicalId: string;
   publicAccessBlock: Record<string, boolean>;
+  statements: Array<Record<string, unknown>>;
 } {
-  const matches = Object.entries(resources).filter(([, r]) => {
-    if (r.Type !== "AWS::S3::Bucket") return false;
-    const pab = r.Properties?.PublicAccessBlockConfiguration as
-      | Record<string, boolean>
-      | undefined;
-    return pab?.RestrictPublicBuckets === false && pab?.BlockPublicPolicy === false;
-  });
-  assert.equal(matches.length, 1, "exactly one two-flag content bucket");
-  const [logicalId, r] = matches[0]!;
-  return {
-    logicalId,
-    publicAccessBlock: r.Properties!
-      .PublicAccessBlockConfiguration as Record<string, boolean>,
-  };
-}
-
-function contentBucketPolicyStatements(
-  resources: Record<string, Resource>,
-  contentBucketLogicalId: string,
-): Array<Record<string, unknown>> {
   const policies = Object.values(resources).filter((r) => {
     if (r.Type !== "AWS::S3::BucketPolicy") return false;
-    const bucketRef = r.Properties?.Bucket as { Ref?: string } | undefined;
-    return bucketRef?.Ref === contentBucketLogicalId;
+    const doc = r.Properties?.PolicyDocument as
+      | { Statement?: Array<Record<string, unknown>> }
+      | undefined;
+    return (doc?.Statement ?? []).some((s) => s.Sid === "CloudFrontReadLibraryCovers");
   });
-  assert.equal(policies.length, 1, "one bucket policy for the content bucket");
-  const doc = policies[0]!.Properties!.PolicyDocument as {
+  assert.equal(
+    policies.length,
+    1,
+    "exactly one content-bucket policy carrying the covers-read statement",
+  );
+  const bucketRef = policies[0]!.Properties!.Bucket as { Ref?: string };
+  const logicalId = bucketRef.Ref!;
+  const bucket = resources[logicalId];
+  assert.ok(bucket && bucket.Type === "AWS::S3::Bucket", "content bucket resource present");
+  const statements = (policies[0]!.Properties!.PolicyDocument as {
     Statement: Array<Record<string, unknown>>;
+  }).Statement;
+  return {
+    logicalId,
+    publicAccessBlock: bucket!.Properties!
+      .PublicAccessBlockConfiguration as Record<string, boolean>,
+    statements,
   };
-  return doc.Statement;
 }
 
-test("content bucket keeps the transitional two-flag PublicAccessBlock (PR1)", () => {
+// True iff a statement's Principal grants to anyone (Principal "*" or a keyed
+// principal whose value is or contains "*"). Used to prove no *public grant*
+// remains — the enforceSSL Deny is AnyPrincipal too, so callers must scope by
+// Effect.
+function isAnyPrincipal(statement: Record<string, unknown>): boolean {
+  const principal = statement.Principal;
+  if (principal === "*") return true;
+  if (principal && typeof principal === "object") {
+    return Object.values(principal as Record<string, unknown>).some(
+      (value) => value === "*" || (Array.isArray(value) && value.includes("*")),
+    );
+  }
+  return false;
+}
+
+test("content bucket is BLOCK_ALL with no public-read statement (PR2)", () => {
   const template = synthBackendTemplate();
   const resources = template.Resources as Record<string, Resource>;
-  const { publicAccessBlock } = findContentBucket(resources);
+  const { publicAccessBlock, statements } = findContentBucket(resources);
+
   assert.deepEqual(publicAccessBlock, {
     BlockPublicAcls: true,
-    BlockPublicPolicy: false,
+    BlockPublicPolicy: true,
     IgnorePublicAcls: true,
-    RestrictPublicBuckets: false,
+    RestrictPublicBuckets: true,
   });
+
+  // No public GRANT survives: the only AnyPrincipal statement allowed is the
+  // enforceSSL Deny. Any AnyPrincipal Allow would be a public-read exposure.
+  const anyPrincipalAllow = statements.filter(
+    (s) => s.Effect === "Allow" && isAnyPrincipal(s),
+  );
+  assert.deepEqual(
+    anyPrincipalAllow,
+    [],
+    "no AnyPrincipal (public-read) Allow statement on the content bucket policy",
+  );
+  // The transitional public-read statement is gone entirely.
+  assert.equal(
+    statements.some((s) => s.Sid === "PublicReadLibraryCovers"),
+    false,
+    "transitional PublicReadLibraryCovers statement removed in PR2",
+  );
 });
 
 test("content bucket policy grants covers read to cloudfront.amazonaws.com conditioned on aws:SourceAccount", () => {
   const template = synthBackendTemplate();
   const resources = template.Resources as Record<string, Resource>;
-  const { logicalId } = findContentBucket(resources);
-  const statements = contentBucketPolicyStatements(resources, logicalId);
+  const { statements } = findContentBucket(resources);
 
   const cloudfront = statements.find(
     (s) => s.Sid === "CloudFrontReadLibraryCovers",
@@ -118,11 +146,6 @@ test("content bucket policy grants covers read to cloudfront.amazonaws.com condi
   });
   // Scoped to the covers key prefix only.
   assert.match(JSON.stringify(cloudfront!.Resource), /book-content\/library\/covers\/\*/);
-
-  // PR1 still carries the transitional public-read statement (removed in PR2).
-  const publicRead = statements.find((s) => s.Sid === "PublicReadLibraryCovers");
-  assert.ok(publicRead, "transitional PublicReadLibraryCovers statement present in PR1");
-  assert.deepEqual(publicRead!.Principal, { AWS: "*" });
 });
 
 // --- Frontend distribution: OAC origin on the content bucket -----------------

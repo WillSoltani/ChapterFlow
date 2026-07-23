@@ -736,6 +736,22 @@
         "fix/ws7-010-flag4",
         "tsconfig.app.json exactOptionalPropertyTypes strict-flag fallout"
       ]
+    },
+    {
+      "recordId": "6a7004ad6b776bc843bb4865c604de3960237c5ac7112535a96fa8b5b2ce9bd1",
+      "changeId": "ws6-012-pr2-2026-07-22",
+      "purpose": "shared-maintenance",
+      "flag": null,
+      "path": "app/app/api/book/_lib/library-catalog.ts",
+      "appOwner": "WillSoltani",
+      "bookOwner": "WillSoltani",
+      "supersedesRecordId": "0f52cbd9336433c4009d6bd2aae59d170c49b74e0ff5f416463f89c11db29f4e",
+      "repairedBlobSha256": "705492c23120e0c4be7bbf25c88d98f395afe6cba50349bd8e7c6c23967aa426",
+      "evidenceRefs": [
+        "WS6-012",
+        "fix/ws6-012-pr2-block-all",
+        "docs/architecture/content-bucket-public-access-rollout.md"
+      ]
     }
   ]
 }
