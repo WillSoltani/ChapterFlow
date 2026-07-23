@@ -89,6 +89,53 @@ export const MAX_CHAPTER_RESEARCH_ATTEMPTS = 3;
  *  rejection — there is no prior-output echo to include. */
 const GATEWAY_SCHEMA_REJECTION_FEEDBACK = "gateway schema validation rejected the previous output";
 
+/** Aggregate-error line for an attempt lost to a transient model process
+ *  failure (rate-limit / overload / abrupt subprocess exit). No output ever
+ *  reached this process, so there is nothing to echo — only the transient
+ *  cause is reported. */
+const TRANSIENT_PROCESS_FAILURE_FEEDBACK = "a transient model process failure occurred before any output was produced";
+
+/**
+ * In-loop backoff schedule (ms) between transient-process-failure retries,
+ * indexed by (attempt − 1): the wait BEFORE attempt 2 is index 0, before
+ * attempt 3 is index 1, clamping to the last entry for any higher attempt cap.
+ * A provider rate-limit/overload incident clears on a short delay far more often
+ * than on an immediate re-spawn, so a bounded escalating backoff turns a single
+ * transient subprocess failure into a recovered chapter rather than a dead stage.
+ */
+export const TRANSIENT_RETRY_BACKOFF_MS: readonly number[] = Object.freeze([2000, 8000]);
+
+/** Injectable dependencies for {@link runResearcherChapter}. The `sleep` hook
+ *  is faked to resolve instantly in tests so the backoff schedule is asserted
+ *  deterministically without a real wall-clock wait. Production uses setTimeout. */
+export interface ChapterResearchRetryOptions {
+  readonly sleep?: (ms: number) => Promise<void>;
+}
+
+const defaultSleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
+
+function backoffMsForAttempt(attempt: number): number {
+  const index = Math.min(Math.max(attempt - 1, 0), TRANSIENT_RETRY_BACKOFF_MS.length - 1);
+  return TRANSIENT_RETRY_BACKOFF_MS[index];
+}
+
+/** Per-attempt failure record. Drives both the next attempt's retry feedback
+ *  and the final fail-closed aggregate message. */
+type AttemptFailure =
+  | { readonly kind: "validator"; readonly problems: string[]; readonly output: unknown }
+  | { readonly kind: "gateway-schema" }
+  | { readonly kind: "transient-process" };
+
+function failureProblems(failure: AttemptFailure): string[] {
+  if (failure.kind === "validator") return failure.problems;
+  if (failure.kind === "gateway-schema") return [GATEWAY_SCHEMA_REJECTION_FEEDBACK];
+  return [TRANSIENT_PROCESS_FAILURE_FEEDBACK];
+}
+
+function describeFailure(failure: AttemptFailure): string {
+  return failureProblems(failure).join("; ");
+}
+
 /**
  * Classify a thrown `runJsonModelTask` error as a gateway-level schema
  * rejection (validator-class, retryable) versus genuine model infrastructure
@@ -106,37 +153,59 @@ function isGatewaySchemaRejection(message: string): boolean {
   return /^MODEL_TASK_FAILED:MODEL_OUTPUT_INVALID(:|$)/.test(message);
 }
 
+/**
+ * Classify a thrown error as a TRANSIENT model-process failure: a bounded,
+ * exit-nonzero subprocess (`outcome=FAILED`, `MODEL_PROCESS_FAILED`) — the shape
+ * a rate-limited / overloaded provider CLI returns when it writes a small error
+ * envelope and exits 1. Unlike a cancellation, capacity, or admission-collision
+ * code (real, non-retryable infrastructure state), a transient process failure
+ * routinely clears on a short backoff, so it is retried with a fresh attempt.
+ * Scoped to `outcome=FAILED` only: TIMED_OUT / UNKNOWN teardown carry the same
+ * error code but a different outcome and stay fail-closed.
+ */
+function isTransientProcessFailure(message: string): boolean {
+  return /^MODEL_TASK_FAILED:MODEL_PROCESS_FAILED(:|$)/.test(message);
+}
+
 export async function runResearcherChapter(
   input: ChapterResearchInput,
   execution?: ModelCallerExecution,
+  options?: ChapterResearchRetryOptions,
 ): Promise<ChapterResearchResult> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
   const baseUserPrompt = buildUserPrompt(input);
+  const sleep = options?.sleep ?? defaultSleep;
 
-  const attemptErrors: string[][] = [];
-  let priorOutput: unknown = null;
+  const attemptFailures: AttemptFailure[] = [];
 
   for (let attempt = 1; attempt <= MAX_CHAPTER_RESEARCH_ATTEMPTS; attempt++) {
     const userPrompt = attempt === 1
       ? baseUserPrompt
-      : `${baseUserPrompt}\n\n${buildRetryFeedback(attemptErrors[attemptErrors.length - 1], priorOutput)}`;
+      : `${baseUserPrompt}\n\n${buildRetryFeedback(attemptFailures[attemptFailures.length - 1])}`;
 
     // A model-infrastructure failure (cancellation, admission collision,
-    // capacity, uncertain teardown) throws out of runJsonModelTask and is NOT a
-    // validator rejection — let it propagate immediately rather than burning
-    // retries on it. The ONE exception is a GATEWAY-level schema rejection
-    // (MODEL_OUTPUT_INVALID): the model produced output that failed the route's
-    // source-controlled schema one layer out from the in-process validator —
-    // the same variance class the retry loop exists for — so it is retried with
-    // schema-reminder feedback (the raw invalid output is unavailable from the
-    // gateway, so there is no prior-output echo).
+    // capacity, uncertain teardown) throws out of runJsonModelTask and is NOT
+    // retried — let it propagate immediately. Two thrown classes ARE retried:
+    //  - GATEWAY-level schema rejection (MODEL_OUTPUT_INVALID): the model
+    //    produced output that failed the route's source-controlled schema one
+    //    layer out from the in-process validator — the same variance class the
+    //    retry loop exists for — retried with schema-reminder feedback (the raw
+    //    invalid output is unavailable from the gateway, so there is no echo).
+    //  - TRANSIENT process failure (MODEL_PROCESS_FAILED, outcome FAILED): a
+    //    rate-limited/overloaded subprocess that exited nonzero. Retried after a
+    //    bounded in-loop backoff so one provider blip does not kill the stage.
     let output: ChapterResearchResult;
     try {
       output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
     } catch (error) {
-      if (isGatewaySchemaRejection((error as Error).message)) {
-        attemptErrors.push([GATEWAY_SCHEMA_REJECTION_FEEDBACK]);
-        priorOutput = null;
+      const message = (error as Error).message;
+      if (isGatewaySchemaRejection(message)) {
+        attemptFailures.push({ kind: "gateway-schema" });
+        continue;
+      }
+      if (isTransientProcessFailure(message)) {
+        attemptFailures.push({ kind: "transient-process" });
+        if (attempt < MAX_CHAPTER_RESEARCH_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
         continue;
       }
       throw error;
@@ -145,33 +214,40 @@ export async function runResearcherChapter(
     const problems = collectChapterResearchProblems(output, input);
     if (problems.length === 0) return output;
 
-    attemptErrors.push(problems);
-    priorOutput = output;
+    attemptFailures.push({ kind: "validator", problems, output });
   }
 
-  const accumulated = attemptErrors
-    .map((problems, index) => `attempt ${index + 1}: ${problems.join("; ")}`)
+  const accumulated = attemptFailures
+    .map((failure, index) => `attempt ${index + 1}: ${describeFailure(failure)}`)
     .join(" | ");
   throw new Error(`chapter research invalid after ${MAX_CHAPTER_RESEARCH_ATTEMPTS} attempts: ${accumulated}`);
 }
 
-/** Build the retry block appended to the user prompt after a rejected attempt.
- *  Contains (a) the validator's exact error lines and (b) the prior rejected
- *  output verbatim, so the model repairs precisely what failed. */
-function buildRetryFeedback(problems: string[], priorOutput: unknown): string {
+/** Build the retry block appended to the user prompt after a failed attempt.
+ *  For a validator/gateway rejection it names the exact errors (and, for an
+ *  in-process rejection, echoes the prior output verbatim) so the model repairs
+ *  precisely what failed. For a transient process failure there is nothing wrong
+ *  with the model's content and no output to echo — the note simply asks for a
+ *  correct result. */
+function buildRetryFeedback(failure: AttemptFailure): string {
   const lines: string[] = [];
-  lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
-  for (const problem of problems) lines.push(`- ${problem}`);
-  lines.push("");
-  if (priorOutput === null) {
-    // Gateway-level schema rejection: the raw invalid output stays inside the
-    // gateway and is not available to echo back. Do not fabricate one.
-    lines.push("Your previous output was rejected by the output-schema gate before it reached this process, so it cannot be echoed back here.");
+  if (failure.kind === "transient-process") {
+    lines.push("PREVIOUS ATTEMPT DID NOT COMPLETE — a transient model process error occurred before any output was produced. Nothing was wrong with your content; simply produce a correct result this time.");
+    lines.push("");
   } else {
-    lines.push("Your previous (rejected) output was — do not repeat these mistakes:");
-    lines.push(safeJson(priorOutput));
+    lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
+    for (const problem of failureProblems(failure)) lines.push(`- ${problem}`);
+    lines.push("");
+    if (failure.kind === "validator") {
+      lines.push("Your previous (rejected) output was — do not repeat these mistakes:");
+      lines.push(safeJson(failure.output));
+    } else {
+      // Gateway-level schema rejection: the raw invalid output stays inside the
+      // gateway and is not available to echo back. Do not fabricate one.
+      lines.push("Your previous output was rejected by the output-schema gate before it reached this process, so it cannot be echoed back here.");
+    }
+    lines.push("");
   }
-  lines.push("");
   lines.push('Return a corrected ChapterResearchResult JSON. Output MUST be a single JSON object whose schemaVersion is exactly "source-v2". Never invent a different schemaVersion.');
   return lines.join("\n");
 }

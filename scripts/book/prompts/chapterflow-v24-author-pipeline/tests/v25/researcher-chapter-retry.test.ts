@@ -328,6 +328,60 @@ requiredTest("6 genuine infra failures propagate immediately with NO retry", asy
   }
 });
 
+/** A recording sleep: resolves instantly (no real wall-clock wait) while
+ *  capturing every backoff duration the retry loop requested, so the schedule
+ *  is asserted deterministically. */
+function recordingSleep() {
+  const waited: number[] = [];
+  return { sleep: async (ms: number): Promise<void> => { waited.push(ms); }, waited };
+}
+
+requiredTest("7 transient MODEL_PROCESS_FAILED retries after a bounded backoff with a fresh attempt id, then succeeds", async () => {
+  const subject = scriptedRig([
+    { outcome: "FAILED", error: { code: "MODEL_PROCESS_FAILED", message: "bounded model process did not succeed" } },
+    { outcome: "SUCCEEDED", output: validChapter() },
+  ]);
+  const clock = recordingSleep();
+  const result = await runResearcherChapter(input(), subject.execution, { sleep: clock.sleep });
+
+  assert.equal(result.schemaVersion, "source-v2");
+  assert.equal(result.chapterNumber, 1);
+  // exactly two model calls: the transient failure + the successful retry
+  assert.equal(subject.runs(), 2);
+  // 11b: the retry admitted a DISTINCT attempt id (never re-spawns the failed one)
+  assert.equal(new Set(subject.attemptIds).size, 2);
+  // one backoff fired before the single retry, at the first schedule step
+  assert.deepEqual(clock.waited, [2000]);
+  const retryPrompt = subject.prompts[1];
+  // the retry prompt notes a transient process failure and fabricates NO output echo
+  assert.match(retryPrompt, /transient/i);
+  assert.doesNotMatch(retryPrompt, /Your previous \(rejected\) output was/);
+  // the schema reminder is still present so the model knows the required envelope
+  assert.match(retryPrompt, /schemaVersion is exactly "source-v2"/);
+});
+
+requiredTest("8 persistent transient MODEL_PROCESS_FAILED fails closed after MAX_ATTEMPTS(3) with the full backoff schedule and no fourth call", async () => {
+  const subject = scriptedRig([
+    { outcome: "FAILED", error: { code: "MODEL_PROCESS_FAILED", message: "bounded model process did not succeed" } },
+  ]);
+  const clock = recordingSleep();
+  await assert.rejects(
+    runResearcherChapter(input(), subject.execution, { sleep: clock.sleep }),
+    (error: unknown) => {
+      const message = (error as Error).message;
+      assert.match(message, /transient|process/i);
+      assert.match(message, /3 attempt/i);
+      return true;
+    },
+  );
+  // exactly MAX_ATTEMPTS model calls — never a fourth
+  assert.equal(subject.runs(), 3);
+  // backoff fired between attempt 1→2 and 2→3, and never after the final attempt
+  assert.deepEqual(clock.waited, [2000, 8000]);
+  // every attempt admitted a fresh, non-colliding attempt id
+  assert.equal(new Set(subject.attemptIds).size, 3);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
