@@ -2058,8 +2058,23 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   const assembledBreakdown = tiers.map((tier) => text(pack.breakdown?.[tier])).join("\n\n");
   for (const f of checkBreakdownReadingEase(assembledBreakdown)) push("SEC12.summary_readability", "blocker", f.message, "/breakdown");
   const usedMemorableKeys = new Set<string>();
+  // Grounding-aware selection (Finding 21): SEC16 validates the top-3 harvested
+  // candidates, but harvest order was pure aphorism score — blind to grounding.
+  // A prettier UNgroundable sentence could outscore a lower-scoring one carrying
+  // a cited case's verbatim specifics, so SEC16 failed even though a groundable
+  // candidate existed, and the retry card could not beat the selector (the model
+  // does not control which sentences are picked). Prefer candidates that would
+  // SATISFY SEC16 — computed with THE SAME validateAnchorHardSpecifics call the
+  // gate runs below (memorable_line, min 2, OR-semantics) — then by score. This
+  // is selection policy, not gate weakening: SEC16/SEC17/clean-floor still enforce
+  // on the selected set, so when NO candidate is groundable the sort collapses to
+  // pure score and SEC16 blocks exactly as before. A vacuously-passing (specifics-
+  // poor) tier makes every candidate groundable, so the preference is a no-op there.
+  const memorableGroundable = (candidate: { text: string; ids: unknown }): boolean =>
+    validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any").length === 0;
   const selectedMemorable = memorableCandidates
-    .sort((a, b) => b.score - a.score)
+    .map((candidate) => ({ ...candidate, groundable: memorableGroundable(candidate) }))
+    .sort((a, b) => (a.groundable === b.groundable ? b.score - a.score : a.groundable ? -1 : 1))
     .filter((candidate) => {
       const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
       if (usedMemorableKeys.has(key)) return false;
