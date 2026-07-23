@@ -108,6 +108,10 @@ const RETRYABLE_COMPILER_FAILURES = Object.freeze([
   "COMPILER_ASSEMBLY_BLOCKED:",
   "COMPILER_SECTION_BLOCKED:",
   "COMPILER_SECTION_OUTPUT_INVALID:",
+  // 11j terminal codes: section exhausted on gateway schema rejections or
+  // transient process/timeout failures — same operator-retry class as BLOCKED.
+  "COMPILER_SECTION_MODEL_INVALID:",
+  "COMPILER_SECTION_PROCESS_FAILED:",
 ] as const);
 
 function failed<T>(code: string, message: string): Result<T> {
