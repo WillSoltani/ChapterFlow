@@ -13,6 +13,7 @@ import {
   planAssemblyEvictions,
   mergeSectionAvoidEntries,
   SEC93_MAX_VENUE_CHAPTERS,
+  CROSS_CHAPTER_EVICTION_POLICIES,
 } from "../../src/app/compilerApplicationPort.js";
 import {
   structureAssemblyBlockers,
@@ -325,6 +326,178 @@ requiredTest("11aa task card — avoid-context renders a cross-chapter conflict 
   assert.match(withAvoid, /venue "kitchen table" is already used by ch01/);
   // The avoid block is purely additive: the card without it is a prefix of the card with it.
   assert.ok(withAvoid.startsWith(withoutAvoid), "avoid-context must append, never rewrite the base card");
+});
+
+// ===========================================================================
+// Task 11ae — EVERY cross-chapter assembly gate emits an eviction signature, and
+// planAssemblyEvictions applies each gate's OWN threshold from a per-checkId
+// registry (not the single SEC93 constant). SEC94 (tryThisNow opener reuse) and
+// SEC114 (24-hour challenge opener saturation) are the live livelock drivers:
+// before 11ae they carried no signature, so structureAssemblyBlockers projected
+// nothing, planAssemblyEvictions evicted nothing, and the cached packs replayed
+// the identical collision forever (Finding 41).
+// ===========================================================================
+
+const SEC94 = "SEC94.action_try_this_now_opener_reuse";
+const SEC114 = "SEC114.action_challenge_opener_saturation";
+
+function openerBlocker(checkId: string, signature: string, chapterNumber: number): AssemblyBlocker {
+  const separator = signature.indexOf(":");
+  const phrase = separator >= 0 ? signature.slice(separator + 1) : signature;
+  return {
+    chapterNumber,
+    kind: "action-pack",
+    checkId,
+    signature,
+    phrase,
+    message: `${checkId}: opener "${phrase}" repeats across generated chapters`,
+  };
+}
+
+requiredTest("11ae registry — SEC94 opener reuse evicts per its OWN threshold (keep the single earliest, evict the rest)", () => {
+  // SEC94 fires at >= 2 chapters, so a venue-style keep-two would evict nothing;
+  // its real threshold keeps exactly ONE chapter. The single SEC93 constant would
+  // have kept two — this is the per-checkId threshold the registry restores.
+  const chapterIds = new Map<number, string>([[2, `${BOOK}-ch02`], [3, `${BOOK}-ch03`]]);
+  const blockers = [
+    openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 2),
+    openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 3),
+  ];
+  const plan = planAssemblyEvictions(blockers, chapterIds);
+  assert.equal(plan.length, 1);
+  assert.equal(plan[0].chapterNumber, 3);
+  assert.equal(plan[0].chapterId, `${BOOK}-ch03`);
+  assert.equal(plan[0].kind, "action-pack");
+  assert.deepEqual(plan[0].avoid.keptByChapters, [2]);
+  assert.equal(plan[0].avoid.checkId, SEC94);
+  assert.equal(plan[0].avoid.phrase, "open one card account find");
+});
+
+requiredTest("11ae registry — SEC114 across 4 chapters (threshold 3) evicts EXACTLY the surplus latest chapter", () => {
+  const chapterIds = new Map<number, string>([
+    [1, `${BOOK}-ch01`], [3, `${BOOK}-ch03`], [6, `${BOOK}-ch06`], [7, `${BOOK}-ch07`],
+  ]);
+  const signature = "twentyFourHourChallengeOpener:within the next";
+  const blockers = [1, 3, 6, 7].map((chapterNumber) => openerBlocker(SEC114, signature, chapterNumber));
+  const plan = planAssemblyEvictions(blockers, chapterIds);
+  assert.equal(plan.length, 1, "keep the 3 earliest offenders; evict only the surplus latest");
+  assert.equal(plan[0].chapterNumber, 7);
+  assert.deepEqual(plan[0].avoid.keptByChapters, [1, 3, 6]);
+  assert.equal(plan[0].avoid.checkId, SEC114);
+});
+
+requiredTest("11ae registry — a MIXED-gate assembly failure evicts the UNION with per-gate minimality", () => {
+  const chapterIds = new Map<number, string>([
+    [1, `${BOOK}-ch01`], [2, `${BOOK}-ch02`], [3, `${BOOK}-ch03`], [6, `${BOOK}-ch06`], [7, `${BOOK}-ch07`],
+  ]);
+  const blockers = [
+    // SEC94 (keep 1) across ch02, ch03 → evict ch03.
+    openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 2),
+    openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 3),
+    // SEC114 (keep 3) across ch01, ch03, ch06, ch07 → evict ch07.
+    ...[1, 3, 6, 7].map((chapterNumber) => openerBlocker(SEC114, "twentyFourHourChallengeOpener:within the next", chapterNumber)),
+  ];
+  const plan = planAssemblyEvictions(blockers, chapterIds);
+  const evicted = plan.map((eviction) => `ch${eviction.chapterNumber}:${eviction.avoid.checkId}`).sort();
+  assert.deepEqual(evicted, [`ch3:${SEC94}`, `ch7:${SEC114}`]);
+});
+
+requiredTest("11ae registry — per-checkId avoid wording: venue speaks venue; openers speak openers and name the kept chapters", () => {
+  const venuePlan = planAssemblyEvictions(
+    [venueBlocker(1), venueBlocker(5), venueBlocker(6)],
+    new Map<number, string>([[1, `${BOOK}-ch01`], [5, `${BOOK}-ch05`], [6, `${BOOK}-ch06`]]),
+  );
+  assert.match(venuePlan[0].avoid.message, /venue "kitchen table"/);
+  assert.doesNotMatch(venuePlan[0].avoid.message, /opener/);
+
+  const openerPlan = planAssemblyEvictions(
+    [
+      openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 2),
+      openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 3),
+    ],
+    new Map<number, string>([[2, `${BOOK}-ch02`], [3, `${BOOK}-ch03`]]),
+  );
+  assert.match(openerPlan[0].avoid.message, /opener/);
+  assert.match(openerPlan[0].avoid.message, /open one card account find/);
+  assert.match(openerPlan[0].avoid.message, /ch02/);
+  assert.doesNotMatch(openerPlan[0].avoid.message, /venue/);
+});
+
+requiredTest("11ae registry — a cross-chapter gate WITHOUT a registry entry evicts NOTHING and fails loud", () => {
+  const rogue = (chapterNumber: number): AssemblyBlocker => ({
+    chapterNumber,
+    kind: "action-pack",
+    checkId: "SEC999.unregistered_cross_chapter",
+    signature: "rogue:phrase",
+    phrase: "phrase",
+    message: "unregistered cross-chapter gate",
+  });
+  const blockers = [rogue(1), rogue(2), rogue(3)];
+  const chapterIds = new Map<number, string>([[1, "a"], [2, "b"], [3, "c"]]);
+  // Loud: an unregistered stamped gate is a programming error (a signature was
+  // emitted with no threshold/kind/wording), so the pure function throws rather
+  // than silently applying some other gate's threshold — and evicts nothing.
+  assert.throws(() => planAssemblyEvictions(blockers, chapterIds), /UNREGISTERED|registr/i);
+});
+
+requiredTest("11ae registry — SEC93/SEC94/SEC114 are all registered with the gate's own threshold and kind", () => {
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get("SEC93.example_venue_stamping")?.maxKeptChapters, SEC93_MAX_VENUE_CHAPTERS);
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get("SEC93.example_venue_stamping")?.kind, "example-pack");
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC94)?.maxKeptChapters, 1);
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC94)?.kind, "action-pack");
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.maxKeptChapters, 3);
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.kind, "action-pack");
+  // Every registered policy has a sane threshold and a wording builder.
+  for (const [checkId, policy] of CROSS_CHAPTER_EVICTION_POLICIES) {
+    assert.ok(policy.maxKeptChapters >= 1, `${checkId} keeps at least one chapter`);
+    assert.ok(policy.avoidMessage("x", "ch01").length > 0, `${checkId} builds an avoid message`);
+  }
+});
+
+requiredTest("11ae registry — the live SEC94 and SEC114 gates stamp signatures that survive into AssemblyBlockers and drive eviction", () => {
+  // Four chapters whose action packs share the same tryThisNow opener AND the same
+  // 24-hour-challenge opener trip SEC94 (>=2 chapters) and SEC114 (>=4 chapters).
+  const base = compileCreditFixture(BOOK);
+  const selectedChapters = [1, 3, 6, 7].map((chapterNumber) => {
+    const blueprint = { ...base.blueprint, chapterNumber, chapterId: `${BOOK}-ch${String(chapterNumber).padStart(2, "0")}` };
+    return {
+      chapterNumber,
+      blueprint,
+      sourcePacket: base.packet,
+      sourceSidecar: undefined,
+      packs: {
+        "summary-pack": { ...base.summary, chapterId: blueprint.chapterId },
+        "example-pack": { ...base.examples, chapterId: blueprint.chapterId },
+        "learning-pack": { ...base.learning, chapterId: blueprint.chapterId },
+        "action-pack": { ...base.action, chapterId: blueprint.chapterId },
+      },
+    };
+  });
+  const report = checkSectionGate(BOOK, {}, { selectedChapters });
+
+  const sec94 = report.findings.filter((finding) => finding.checkId === SEC94);
+  const sec114 = report.findings.filter((finding) => finding.checkId === SEC114);
+  assert.ok(sec94.length >= 2, `expected SEC94 findings, saw ${sec94.length}`);
+  assert.ok(sec114.length >= 4, `expected SEC114 findings across 4 chapters, saw ${sec114.length}`);
+  assert.ok(
+    sec94.every((finding) => typeof finding.signature === "string" && finding.signature.startsWith("tryThisNowOpener:")),
+    "every SEC94 finding must carry a tryThisNowOpener signature",
+  );
+  assert.ok(
+    sec114.every((finding) => typeof finding.signature === "string" && finding.signature.startsWith("twentyFourHourChallengeOpener:")),
+    "every SEC114 finding must carry a twentyFourHourChallengeOpener signature",
+  );
+
+  const blockers = structureAssemblyBlockers(report.findings);
+  assert.ok(blockers.some((blocker) => blocker.checkId === SEC94 && blocker.kind === "action-pack"));
+  assert.ok(blockers.some((blocker) => blocker.checkId === SEC114 && blocker.kind === "action-pack"));
+
+  // The registry converges the collision: SEC94 keeps 1, SEC114 keeps 3, so both
+  // gates evict at least their surplus chapter — a non-empty, per-gate plan.
+  const chapterIds = new Map<number, string>(selectedChapters.map((chapter) => [chapter.chapterNumber, chapter.blueprint.chapterId]));
+  const plan = planAssemblyEvictions(blockers, chapterIds);
+  assert.ok(plan.some((eviction) => eviction.avoid.checkId === SEC94), "SEC94 must produce an eviction");
+  assert.ok(plan.some((eviction) => eviction.avoid.checkId === SEC114), "SEC114 must produce an eviction");
 });
 
 finishV25Tests().catch((error: unknown) => {

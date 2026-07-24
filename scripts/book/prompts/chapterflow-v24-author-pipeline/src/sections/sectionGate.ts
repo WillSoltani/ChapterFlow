@@ -1276,6 +1276,11 @@ function crossChapterShellFindings(shells: ExampleShellOccurrence[]): SectionFin
       if (hit.reportable === false) continue;
       findings.push({
         checkId: synthetic ? "SEC37.example_synthetic_scene_shell" : "SEC80.example_cross_chapter_opening_shape",
+        // Task 11ae — stamp the grouping signature so the compiler port can evict the
+        // implicated cached packs (registry-driven). SEC37 is a synthetic-shell ban
+        // (fires at a single chapter, no keep-earliest-N semantics) — left unstamped
+        // so it keeps failing loud without eviction.
+        signature: synthetic ? undefined : hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1302,6 +1307,7 @@ function crossChapterGenericContainerFindings(containers: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC85.example_repeated_action_container",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1358,6 +1364,7 @@ function crossChapterShortcutDefaultFrameFindings(frames: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC96.example_shortcut_default_failure_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1384,6 +1391,7 @@ function crossChapterDecidesAfterFrameFindings(frames: ExampleShellOccurrence[])
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC97.example_decides_after_not_before_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1410,6 +1418,7 @@ function crossChapterPendingUntilFrameFindings(frames: ExampleShellOccurrence[])
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC98.example_pending_until_evidence_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1436,6 +1445,7 @@ function crossChapterPartialNextActionFrameFindings(frames: ExampleShellOccurren
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC100.example_partial_next_action_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1462,6 +1472,7 @@ function crossChapterWaitingAnswerFrameFindings(frames: ExampleShellOccurrence[]
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC101.example_waiting_answer_scene_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1488,6 +1499,7 @@ function crossChapterBroadProcessOnePointFindings(frames: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC108.example_broad_process_one_point_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1514,6 +1526,7 @@ function crossChapterPleasantAveragePeakEndFindings(frames: ExampleShellOccurren
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC112.example_pleasant_average_peak_end_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1540,6 +1553,7 @@ function crossChapterActionPendingTemplateFindings(units: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC102.action_pending_template_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1566,6 +1580,7 @@ function crossChapterActionClassifyLeverFindings(units: ExampleShellOccurrence[]
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC109.action_classify_lever_practice_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1592,6 +1607,7 @@ function crossChapterActionSocialPressurePauseFindings(units: ExampleShellOccurr
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC115.action_social_pressure_pause_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1618,6 +1634,7 @@ function crossChapterTryThisNowOpenerFindings(openers: ExampleShellOccurrence[])
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC94.action_try_this_now_opener_reuse",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1644,6 +1661,7 @@ function crossChapterActionChallengeOpenerFindings(openers: ExampleShellOccurren
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC114.action_challenge_opener_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1670,6 +1688,7 @@ function crossChapterCoreSkillCloserFindings(closers: ExampleShellOccurrence[]):
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC84.action_repeated_core_skill_closer",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,

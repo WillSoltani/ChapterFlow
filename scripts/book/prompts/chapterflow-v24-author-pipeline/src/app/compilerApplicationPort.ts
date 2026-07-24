@@ -415,18 +415,6 @@ function cachedSectionPackIsReusable(
   }
 }
 
-/**
- * Task 11aa — the SEC93 venue-stamping threshold, read straight off the gate.
- * `crossChapterVenueStampingFindings` emits a blocker only when a venue appears in
- * MORE than this many chapters (`if (chapters.size <= 2) continue;`), i.e. a venue
- * may legitimately repeat across at most two chapters. The eviction policy pins to
- * this number: when a venue collides across N > 2 chapters, KEEP the earliest two
- * offenders (which together still satisfy the gate) and evict only the surplus, so
- * the minimum number of packs re-draft. If SEC93's threshold ever moves, this and
- * its test move with it.
- */
-export const SEC93_MAX_VENUE_CHAPTERS = 2;
-
 /** A single (chapter, kind) cache eviction demanded by an assembly blocker, plus
  *  the avoid-context to seed into that section's re-draft. */
 export interface AssemblyEviction {
@@ -472,19 +460,130 @@ export function mergeSectionAvoidEntries(
 }
 
 /**
- * Task 11aa — the livelock-break policy. Given the STRUCTURED cross-chapter
+ * Task 11ae — the per-checkId eviction policy for ONE cross-chapter assembly gate.
+ *
+ * Every cross-chapter anti-sameness gate has its OWN saturation threshold (SEC93
+ * venue allows 2 chapters; SEC94 tryThisNow-opener reuse allows only 1; SEC114
+ * 24-hour-challenge-opener saturation allows 3; the sceneFrame/action-form gates
+ * allow anywhere from 2 to 5) and implicates ONE section kind (venue/opening/frame
+ * gates → example-pack; opener/action-unit/closer gates → action-pack). A single
+ * shared constant (the old SEC93_MAX_VENUE_CHAPTERS) evicted every gate as if it
+ * were a venue: it kept two offenders for a gate that allows one (leaving a
+ * collision) or evicted extra packs for a gate that allows more. This registry
+ * restores each gate's own threshold, kind, and re-draft wording.
+ */
+export interface CrossChapterEvictionPolicy {
+  /** The MAXIMUM number of chapters that may keep the colliding phrase and still
+   *  satisfy the gate — one less than the gate's firing threshold. Sorted ascending,
+   *  the earliest this-many chapters keep the phrase; every surplus chapter is
+   *  evicted so it re-drafts. */
+  readonly maxKeptChapters: number;
+  /** The section KIND this gate implicates — the cached pack kind to evict. */
+  readonly kind: SectionKind;
+  /** Build the re-draft avoid message, naming the colliding phrase and the chapters
+   *  that keep it. Per-checkId so venue/opener/frame gates each speak their own
+   *  vocabulary (a re-draft told to "choose a different venue" for an opener
+   *  collision would design past the wrong axis). */
+  readonly avoidMessage: (phrase: string, keptChapterLabels: string) => string;
+}
+
+/** SEC93 venue stamping keeps at most this many chapters (the gate blocks only
+ *  ABOVE it). Retained as a named export — tests and the registry both pin to it. */
+export const SEC93_MAX_VENUE_CHAPTERS = 2;
+
+const sceneFramePolicy = (maxKeptChapters: number, frameLabel: string): CrossChapterEvictionPolicy => ({
+  maxKeptChapters,
+  kind: "example-pack",
+  avoidMessage: (phrase, keptChapterLabels) =>
+    `example ${frameLabel} "${phrase}" is already used by ${keptChapterLabels} — recast this chapter's example with a different scene frame.`,
+});
+
+const actionFormPolicy = (maxKeptChapters: number, formLabel: string): CrossChapterEvictionPolicy => ({
+  maxKeptChapters,
+  kind: "action-pack",
+  avoidMessage: (phrase, keptChapterLabels) =>
+    `action ${formLabel} "${phrase}" is already used by ${keptChapterLabels} — rewrite this chapter's action with a different form.`,
+});
+
+/**
+ * Task 11ae — the authoritative per-checkId cross-chapter eviction registry. Each
+ * `maxKeptChapters` is the corresponding sectionGate gate's firing threshold MINUS
+ * one (e.g. SEC94 blocks at >=2 chapters → keeps 1; SEC114 blocks at >=4 → keeps 3;
+ * SEC93 blocks at >2 → keeps 2). The gate thresholds themselves live in
+ * `src/sections/sectionGate.ts` and are NOT changed here — this only mirrors them
+ * for eviction. A cross-chapter gate that stamps a signature (see the `signature:`
+ * fields in sectionGate's cross-chapter finding constructors) MUST have an entry
+ * here; `planAssemblyEvictions` throws loudly on any signature whose checkId is
+ * absent, so a new gate can never silently borrow a wrong threshold.
+ */
+export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, CrossChapterEvictionPolicy> = new Map<string, CrossChapterEvictionPolicy>([
+  // Example-pack gates.
+  ["SEC80.example_cross_chapter_opening_shape", sceneFramePolicy(2, "opening shape")],
+  ["SEC85.example_repeated_action_container", {
+    maxKeptChapters: 2,
+    kind: "example-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `example action container "${phrase}" is already used by ${keptChapterLabels} — vary the container for this chapter.`,
+  }],
+  ["SEC93.example_venue_stamping", {
+    maxKeptChapters: SEC93_MAX_VENUE_CHAPTERS,
+    kind: "example-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `venue "${phrase}" is already used by ${keptChapterLabels} — choose a different concrete venue.`,
+  }],
+  ["SEC96.example_shortcut_default_failure_saturation", sceneFramePolicy(2, "shortcut/default-failure frame")],
+  ["SEC97.example_decides_after_not_before_saturation", sceneFramePolicy(2, "decides-after-not-before frame")],
+  ["SEC98.example_pending_until_evidence_saturation", sceneFramePolicy(5, "pending-until-evidence frame")],
+  ["SEC100.example_partial_next_action_saturation", sceneFramePolicy(4, "partial-answer/next-action frame")],
+  ["SEC101.example_waiting_answer_scene_saturation", sceneFramePolicy(4, "waiting-for-answer frame")],
+  ["SEC108.example_broad_process_one_point_saturation", sceneFramePolicy(4, "broad-process-vs-one-point frame")],
+  ["SEC112.example_pleasant_average_peak_end_saturation", sceneFramePolicy(4, "average-vs-peak/end frame")],
+  // Action-pack gates.
+  ["SEC102.action_pending_template_saturation", actionFormPolicy(4, "pending-template unit")],
+  ["SEC109.action_classify_lever_practice_saturation", actionFormPolicy(3, "classify/choose/predict worksheet")],
+  ["SEC115.action_social_pressure_pause_saturation", actionFormPolicy(3, "social-pressure evidence-pause")],
+  ["SEC94.action_try_this_now_opener_reuse", {
+    maxKeptChapters: 1,
+    kind: "action-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `tryThisNow opener "${phrase}…" already opens ${keptChapterLabels} — open this chapter's action with a different first move.`,
+  }],
+  ["SEC114.action_challenge_opener_saturation", {
+    maxKeptChapters: 3,
+    kind: "action-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `24-hour challenge opener "${phrase}…" already opens ${keptChapterLabels} — vary the time box, cadence, trigger, and first verb so this chapter's challenge follows its own mechanism.`,
+  }],
+  ["SEC84.action_repeated_core_skill_closer", {
+    maxKeptChapters: 2,
+    kind: "action-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `coreSkill closing sentence "${phrase}" is already used by ${keptChapterLabels} — write a chapter-specific closer.`,
+  }],
+]);
+
+/**
+ * Task 11aa/11ae — the livelock-break policy. Given the STRUCTURED cross-chapter
  * assembly blockers and the run's chapter-id map, decide the MINIMAL set of cached
  * (chapter, kind) packs to evict so the next compile run can converge, and the
  * avoid-context to seed into each evicted section's re-draft.
  *
  * Blockers are grouped by signature (the colliding phrase, e.g. "venue:kitchen
- * table"). For each group the implicated chapters are sorted ascending; the
- * earliest SEC93_MAX_VENUE_CHAPTERS keep the phrase (they alone satisfy the gate),
- * and every surplus chapter is evicted so it re-drafts with an avoid-entry naming
- * the phrase and the chapters that keep it. A blocker whose chapter cannot be
- * mapped to a chapterId is skipped (never guessed). Returns [] when there are no
- * structured blockers, so the caller evicts nothing and fails loud on an unknown
- * assembly failure rather than deleting packs blindly.
+ * table" or "tryThisNowOpener:take one small"). A signature namespace is disjoint
+ * per gate, so every blocker in a group shares one checkId. That checkId's policy
+ * (CROSS_CHAPTER_EVICTION_POLICIES) supplies THIS gate's own threshold, implicated
+ * kind, and re-draft wording — not the venue defaults. For each group the
+ * implicated chapters are sorted ascending; the earliest `maxKeptChapters` keep the
+ * phrase (they alone satisfy the gate) and every surplus chapter is evicted with an
+ * avoid-entry naming the phrase and the chapters that keep it. A blocker whose
+ * chapter cannot be mapped to a chapterId is skipped (never guessed).
+ *
+ * A blocker whose checkId has NO registry entry throws (fail loud) — a signature
+ * was stamped without registering a threshold/kind/wording, a programming error we
+ * refuse to paper over by borrowing another gate's threshold. The caller
+ * (#applyAssemblyEvictions) catches this so the terminal assembly error still
+ * reaches the operator. Returns [] when there are no structured blockers, so an
+ * unknown assembly failure evicts nothing rather than deleting packs blindly.
  */
 export function planAssemblyEvictions(
   blockers: readonly AssemblyBlocker[],
@@ -498,25 +597,32 @@ export function planAssemblyEvictions(
   }
   const evictions: AssemblyEviction[] = [];
   for (const group of groups.values()) {
+    const checkId = group[0].checkId;
+    const policy = CROSS_CHAPTER_EVICTION_POLICIES.get(checkId);
+    if (!policy) {
+      throw new Error(
+        `COMPILER_ASSEMBLY_EVICTION_UNREGISTERED:cross-chapter gate ${checkId} (signature ${JSON.stringify(group[0].signature)}) stamped an eviction signature but has no CROSS_CHAPTER_EVICTION_POLICIES entry — register its threshold, kind, and avoid wording`,
+      );
+    }
     const byChapter = new Map<number, AssemblyBlocker>();
     for (const blocker of group) if (!byChapter.has(blocker.chapterNumber)) byChapter.set(blocker.chapterNumber, blocker);
     const chapters = [...byChapter.keys()].sort((a, b) => a - b);
-    if (chapters.length <= SEC93_MAX_VENUE_CHAPTERS) continue;
-    const kept = chapters.slice(0, SEC93_MAX_VENUE_CHAPTERS);
+    if (chapters.length <= policy.maxKeptChapters) continue;
+    const kept = chapters.slice(0, policy.maxKeptChapters);
     const keptLabels = kept.map(chapterLabel).join(", ");
-    for (const chapterNumber of chapters.slice(SEC93_MAX_VENUE_CHAPTERS)) {
+    for (const chapterNumber of chapters.slice(policy.maxKeptChapters)) {
       const chapterId = chapterIdByNumber.get(chapterNumber);
       if (chapterId === undefined) continue;
       const blocker = byChapter.get(chapterNumber)!;
       evictions.push({
         chapterNumber,
         chapterId,
-        kind: blocker.kind,
+        kind: policy.kind,
         avoid: Object.freeze({
           checkId: blocker.checkId,
           phrase: blocker.phrase,
           keptByChapters: Object.freeze([...kept]) as unknown as number[],
-          message: `venue "${blocker.phrase}" is already used by ${keptLabels} — choose a different concrete venue.`,
+          message: policy.avoidMessage(blocker.phrase, keptLabels),
         }),
       });
     }
@@ -700,7 +806,19 @@ export class CompilerApplicationPort {
     if (!cache || blockers.length === 0) return;
     const chapterIdByNumber = new Map<number, string>();
     for (const [chapterNumber, ctx] of chapterCacheContext) chapterIdByNumber.set(chapterNumber, ctx.chapterId);
-    const evictions = planAssemblyEvictions(blockers, chapterIdByNumber);
+    // planAssemblyEvictions throws loudly if a gate stamped an eviction signature
+    // without a CROSS_CHAPTER_EVICTION_POLICIES entry (a programming error). Eviction
+    // is best-effort: log and bail so the terminal COMPILER_ASSEMBLY_BLOCKED error —
+    // more informative to the operator than a cache-plan failure — still surfaces.
+    let evictions: AssemblyEviction[];
+    try {
+      evictions = planAssemblyEvictions(blockers, chapterIdByNumber);
+    } catch (planError) {
+      console.error(
+        `[book-run] compiler action=ASSEMBLY_EVICTION_PLAN_FAILED detail=${boundedCompilerDetail(planError)}`,
+      );
+      return;
+    }
     // planAssemblyEvictions emits one eviction PER colliding phrase, so a section
     // that collides on multiple venues yields multiple evictions for the SAME
     // (chapter, kind). Collapse them here so the pack is evicted once and its
