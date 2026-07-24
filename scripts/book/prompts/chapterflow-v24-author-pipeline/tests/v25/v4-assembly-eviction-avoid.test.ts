@@ -11,6 +11,7 @@ import {
 } from "../../src/books/sectionAvoidStore.js";
 import {
   planAssemblyEvictions,
+  mergeSectionAvoidEntries,
   SEC93_MAX_VENUE_CHAPTERS,
 } from "../../src/app/compilerApplicationPort.js";
 import {
@@ -95,6 +96,75 @@ requiredTest("11aa policy — a 4-chapter collision evicts the two surplus chapt
 
 requiredTest("11aa policy — no structured blockers evicts nothing (unknown assembly failure is not guessed)", () => {
   assert.deepEqual(planAssemblyEvictions([], new Map()), []);
+});
+
+// ---------------------------------------------------------------------------
+// (convergence) The avoid-context is a MONOTONE ban set. mergeSectionAvoidEntries
+// is the single accumulation primitive: it unions WITHIN a round (a section that
+// collides on multiple venues) and ACROSS rounds (a re-drafted section that
+// collides on a new venue), deduping on (checkId, phrase) with existing bans
+// retained. Without it the store's single-entry write clobbers prior bans and the
+// assembly can oscillate without a convergence bound.
+// ---------------------------------------------------------------------------
+
+function avoidEntry(phrase: string, keptByChapters: number[], checkId = "SEC93.example_venue_stamping"): SectionAvoidEntry {
+  return {
+    checkId,
+    phrase,
+    keptByChapters,
+    message: `venue "${phrase}" is already used by other chapters — choose a different concrete venue.`,
+  };
+}
+
+requiredTest("11aa convergence — WITHIN a round, a section colliding on two venues yields two evictions for the SAME (chapter,kind) whose union bans BOTH", () => {
+  // The finding's demonstrated case: kitchen-table across {1,5,6} and coffee-shop
+  // across {2,4,6}. ch06 is the surplus offender in BOTH groups, so it receives two
+  // evictions for (ch06, example-pack). The naive per-eviction write persisted only
+  // the last phrase; the union must ban both.
+  const chapterIds = new Map<number, string>([
+    [1, `${BOOK}-ch01`], [2, `${BOOK}-ch02`], [4, `${BOOK}-ch04`],
+    [5, `${BOOK}-ch05`], [6, `${BOOK}-ch06`],
+  ]);
+  const blockers = [
+    venueBlocker(1, "kitchen table"), venueBlocker(5, "kitchen table"), venueBlocker(6, "kitchen table"),
+    venueBlocker(2, "coffee shop"), venueBlocker(4, "coffee shop"), venueBlocker(6, "coffee shop"),
+  ];
+  const plan = planAssemblyEvictions(blockers, chapterIds);
+
+  const ch06 = plan.filter((eviction) => eviction.chapterNumber === 6);
+  assert.equal(ch06.length, 2, "ch06 is the surplus offender in both venue groups → two evictions");
+  assert.deepEqual(new Set(ch06.map((eviction) => eviction.avoid.phrase)), new Set(["kitchen table", "coffee shop"]));
+
+  // The port groups ch06's evictions by (chapter,kind) and writes the union. A
+  // single-entry write would keep only one phrase; the union keeps both.
+  const merged = mergeSectionAvoidEntries([], ch06.map((eviction) => eviction.avoid));
+  assert.deepEqual(merged.map((entry) => entry.phrase).sort(), ["coffee shop", "kitchen table"]);
+});
+
+requiredTest("11aa convergence — ACROSS rounds, a new ban ACCUMULATES onto the prior ban instead of clobbering it", () => {
+  // Round 1 banned "kitchen table"; ch06 re-drafts, picks "coffee shop", collides.
+  // Round 2's write must retain "kitchen table" AND add "coffee shop" so the next
+  // re-draft designs away from both — the shrinking-choice measure that bounds
+  // convergence. A plain overwrite would forget "kitchen table" → oscillation.
+  const round1 = [avoidEntry("kitchen table", [1, 5])];
+  const round2 = mergeSectionAvoidEntries(round1, [avoidEntry("coffee shop", [2, 4])]);
+  assert.deepEqual(round2.map((entry) => entry.phrase), ["kitchen table", "coffee shop"]);
+
+  const round3 = mergeSectionAvoidEntries(round2, [avoidEntry("break room", [3, 7])]);
+  assert.deepEqual(round3.map((entry) => entry.phrase), ["kitchen table", "coffee shop", "break room"]);
+});
+
+requiredTest("11aa convergence — a re-banned (checkId,phrase) dedups, existing entry retained (idempotent, order-stable)", () => {
+  const existing = [avoidEntry("kitchen table", [1, 5]), avoidEntry("coffee shop", [2, 4])];
+  // Re-adding an already-banned phrase (even with different kept-chapters) must not
+  // duplicate or reorder — the ban set is stable, so repeated rounds converge.
+  const merged = mergeSectionAvoidEntries(existing, [avoidEntry("kitchen table", [9]), avoidEntry("break room", [8])]);
+  assert.deepEqual(merged.map((entry) => entry.phrase), ["kitchen table", "coffee shop", "break room"]);
+  // The RETAINED "kitchen table" is the existing one (existing-first), not the re-add.
+  assert.deepEqual(merged[0].keptByChapters, [1, 5]);
+  // A different checkId with the same phrase is a distinct ban (not a dup).
+  const cross = mergeSectionAvoidEntries([avoidEntry("kitchen table", [1])], [avoidEntry("kitchen table", [2], "SEC85.action_container")]);
+  assert.equal(cross.length, 2);
 });
 
 // ---------------------------------------------------------------------------

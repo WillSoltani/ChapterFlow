@@ -441,6 +441,37 @@ function chapterLabel(chapterNumber: number): string {
 }
 
 /**
+ * Task 11aa — union avoid-entries into a MONOTONE ban set for one (chapter, kind).
+ * Two distinct accumulations reduce to this one operation:
+ *   (a) WITHIN a round — planAssemblyEvictions emits one eviction PER colliding
+ *       phrase, so a section that collides on several venues yields several
+ *       avoid-entries for the same (chapter, kind); and
+ *   (b) ACROSS rounds — a section evicted last round re-drafts into a NEW colliding
+ *       venue this round, and its prior ban must survive so the re-draft does not
+ *       simply re-pick the venue it was already told to avoid.
+ * Both are served by deduping on (checkId, phrase) with EXISTING entries first, so a
+ * phrase already banned is never dropped by a later write. Without this union the
+ * store's single-entry write clobbers prior bans, there is no shrinking-choice
+ * progress measure, and the assembly can oscillate (ban A → pick B → ban B, forget
+ * A → pick A → …) without a convergence bound. The set only ever grows until
+ * assembly passes, at which point #clearAssemblyAvoids drops the whole file.
+ */
+export function mergeSectionAvoidEntries(
+  existing: readonly SectionAvoidEntry[],
+  added: readonly SectionAvoidEntry[],
+): SectionAvoidEntry[] {
+  const merged: SectionAvoidEntry[] = [];
+  const seen = new Set<string>();
+  for (const entry of [...existing, ...added]) {
+    const dedupeKey = `${entry.checkId} ${entry.phrase}`;
+    if (seen.has(dedupeKey)) continue;
+    seen.add(dedupeKey);
+    merged.push(entry);
+  }
+  return merged;
+}
+
+/**
  * Task 11aa — the livelock-break policy. Given the STRUCTURED cross-chapter
  * assembly blockers and the run's chapter-id map, decide the MINIMAL set of cached
  * (chapter, kind) packs to evict so the next compile run can converge, and the
@@ -670,30 +701,58 @@ export class CompilerApplicationPort {
     const chapterIdByNumber = new Map<number, string>();
     for (const [chapterNumber, ctx] of chapterCacheContext) chapterIdByNumber.set(chapterNumber, ctx.chapterId);
     const evictions = planAssemblyEvictions(blockers, chapterIdByNumber);
+    // planAssemblyEvictions emits one eviction PER colliding phrase, so a section
+    // that collides on multiple venues yields multiple evictions for the SAME
+    // (chapter, kind). Collapse them here so the pack is evicted once and its
+    // avoid-context is written EXACTLY once, as the union of every phrase — a naive
+    // per-eviction write would have the second write clobber the first, leaving the
+    // re-draft told to avoid only the last venue and guaranteed to re-collide.
+    const groups = new Map<string, { readonly chapterNumber: number; readonly chapterId: string; readonly kind: SectionKind; readonly avoids: SectionAvoidEntry[] }>();
     for (const eviction of evictions) {
-      const identity = chapterCacheContext.get(eviction.chapterNumber);
+      const groupKey = `${eviction.chapterNumber} ${eviction.kind}`;
+      const group = groups.get(groupKey);
+      if (group) group.avoids.push(eviction.avoid);
+      else groups.set(groupKey, { chapterNumber: eviction.chapterNumber, chapterId: eviction.chapterId, kind: eviction.kind, avoids: [eviction.avoid] });
+    }
+    for (const group of groups.values()) {
+      const identity = chapterCacheContext.get(group.chapterNumber);
       if (!identity) continue;
       const cacheKey: SectionPackCacheKey = {
         bookId: request.bookId,
-        chapterId: eviction.chapterId,
-        kind: eviction.kind,
+        chapterId: group.chapterId,
+        kind: group.kind,
         blueprintDigest: identity.blueprintDigest,
         packetDigest: identity.packetDigest,
       };
       try {
         await cache.evict(cacheKey);
-        if (this.#dependencies.sectionAvoidStore) {
-          await this.#dependencies.sectionAvoidStore.write(
-            { bookId: request.bookId, chapterId: eviction.chapterId, kind: eviction.kind },
-            { entries: [eviction.avoid] },
-          );
+        const avoidStore = this.#dependencies.sectionAvoidStore;
+        if (avoidStore) {
+          const avoidKey = { bookId: request.bookId, chapterId: group.chapterId, kind: group.kind };
+          // Read-merge-write so bans ACCUMULATE monotonically across rounds. A prior
+          // failed round may have already banned another venue for this section (it
+          // re-drafted, then collided on a NEW one this round); overwriting with only
+          // this round's phrase would forget the earlier ban and let the re-draft
+          // re-pick it — unbounded oscillation with no convergence measure. Reading
+          // first fails open (null on any miss/corruption), so the worst case degrades
+          // to this round's bans alone, never to a lost write. #clearAssemblyAvoids
+          // drops the whole file once assembly passes, so the union never grows
+          // unbounded.
+          let existing: readonly SectionAvoidEntry[] = [];
+          try {
+            const prior = await avoidStore.read(avoidKey);
+            if (prior) existing = prior.entries;
+          } catch {
+            existing = [];
+          }
+          await avoidStore.write(avoidKey, { entries: mergeSectionAvoidEntries(existing, group.avoids) });
         }
         console.error(
-          `[book-run] compiler chapter=${eviction.chapterNumber} kind=${eviction.kind} action=EVICT_ON_ASSEMBLY_BLOCK phrase=${JSON.stringify(eviction.avoid.phrase)}`,
+          `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=EVICT_ON_ASSEMBLY_BLOCK phrase=${JSON.stringify(group.avoids.map((avoid) => avoid.phrase))}`,
         );
       } catch (evictError) {
         console.error(
-          `[book-run] compiler chapter=${eviction.chapterNumber} kind=${eviction.kind} action=EVICT_ON_ASSEMBLY_BLOCK_FAILED detail=${boundedCompilerDetail(evictError)}`,
+          `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=EVICT_ON_ASSEMBLY_BLOCK_FAILED detail=${boundedCompilerDetail(evictError)}`,
         );
       }
     }
