@@ -91,6 +91,28 @@ export function stripCodeFence(text: string): string {
  * validateOutput to parse. Anything unexpected (not JSON, error envelope,
  * non-string result) falls through to the ORIGINAL bytes so validateOutput
  * fails-closed on it rather than this adapter throwing. */
+/** Task 11x: a claude envelope with is_error=true is an API-side failure
+ * (rate limit, content filter, 4xx/5xx) — NOT model output. Surface it as a
+ * process-class failure with the API's own message so retries/diagnostics see
+ * the truth instead of a schema-validation red herring. */
+export function classifyClaudeStdout(stdout: Uint8Array): { errorCode: "MODEL_PROCESS_FAILED"; message: string } | null {
+  try {
+    const text = new TextDecoder("utf-8", { fatal: true }).decode(stdout);
+    const envelope = JSON.parse(text) as unknown;
+    if (envelope !== null && typeof envelope === "object" && !Array.isArray(envelope)) {
+      const record = envelope as Record<string, unknown>;
+      if (record.is_error === true) {
+        const raw = typeof record.result === "string" ? record.result : "claude envelope reported is_error with no result message";
+        const status = typeof record.api_error_status === "number" ? ` (api_error_status=${record.api_error_status})` : "";
+        return { errorCode: "MODEL_PROCESS_FAILED", message: `${raw.slice(0, 300)}${status}` };
+      }
+    }
+  } catch {
+    // fall through — normalize/validate own the non-JSON cases
+  }
+  return null;
+}
+
 export function normalizeClaudeStdout(stdout: Uint8Array): Uint8Array {
   try {
     const text = new TextDecoder("utf-8", { fatal: true }).decode(stdout);
@@ -128,6 +150,9 @@ export function createClaudeRoute(model: string, effort: string): ModelProcessRo
     },
     normalizeStdout(stdout: Uint8Array) {
       return normalizeClaudeStdout(stdout);
+    },
+    classifyStdout(stdout: Uint8Array) {
+      return classifyClaudeStdout(stdout);
     },
   });
 }

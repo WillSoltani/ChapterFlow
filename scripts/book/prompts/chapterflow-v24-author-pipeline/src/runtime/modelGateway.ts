@@ -476,8 +476,17 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
       if (!processResultIsBounded(process, prepared.value.policy)) {
         outcome = "UNKNOWN";
       } else if (process.outcome === "EXITED" && process.exitCode === 0) {
-        const normalizedStdout = normalizeRouteStdout(route, process.stdout);
-        const validated = dependencies.executionPolicy.validateOutput(prepared.value.policy.profile.outputSchemaId, normalizedStdout);
+        // Task 11x: an API-side error envelope (is_error=true — rate limit,
+        // content filter, 4xx/5xx) is a process-class failure, not model
+        // output; classify BEFORE schema validation so the real message
+        // surfaces and the transient-retry machinery owns it.
+        const apiError = typeof route.classifyStdout === "function"
+          ? (() => { try { return route.classifyStdout(process.stdout); } catch { return null; } })()
+          : null;
+        const normalizedStdout = apiError ? process.stdout : normalizeRouteStdout(route, process.stdout);
+        const validated = apiError
+          ? { ok: false as const, error: { code: "MODEL_PROCESS_FAILED", message: apiError.message } }
+          : dependencies.executionPolicy.validateOutput(prepared.value.policy.profile.outputSchemaId, normalizedStdout);
         if (validated.ok) {
           outcome = "SUCCEEDED";
           output = validated.value;
@@ -485,8 +494,10 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
           errorMessage = "";
         } else {
           outcome = "FAILED";
-          errorCode = "MODEL_OUTPUT_INVALID";
-          errorMessage = "model output failed source-controlled schema validation";
+          errorCode = apiError ? "MODEL_PROCESS_FAILED" : "MODEL_OUTPUT_INVALID";
+          errorMessage = apiError
+            ? apiError.message
+            : "model output failed source-controlled schema validation";
         }
       } else {
         outcome = mappedOutcome(process);

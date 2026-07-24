@@ -11,6 +11,10 @@ export interface ModelProcessRoute {
     command: string;
     args: readonly string[];
   }>;
+  /** Optional: inspect raw stdout BEFORE schema validation; a non-null return
+   *  marks the attempt FAILED with this code/message (API-side error envelopes,
+   *  Task 11x). Absent = no classification, schema validation proceeds. */
+  classifyStdout?(stdout: Uint8Array): { errorCode: "MODEL_PROCESS_FAILED"; message: string } | null;
   /** Optional route-supplied process env, a guarded additive channel: the
    *  gateway merges the result over the policy-built environment AFTER the
    *  env-strip and rejects any malformed name or forbidden provider key, so it

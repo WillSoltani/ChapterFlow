@@ -273,6 +273,30 @@ requiredTest("gateway route-env merge is guarded: a route claiming a forbidden k
   assert.equal(JSON.stringify(env).includes("SMUGGLED_KEY_dead"), false);
 });
 
+requiredTest("is_error envelope classifies as MODEL_PROCESS_FAILED with the API message, never OUTPUT_INVALID (Task 11x)", async ({ roots }) => {
+  const run = definition("claude-book", "claude-classify-run");
+  const store = new FileRunStore(roots.stateRoot);
+  await expectRun(store, run);
+  const errorEnvelope = JSON.stringify({
+    type: "result", subtype: "success", is_error: true, api_error_status: 400,
+    result: "API Error: 400 Output blocked by content filtering policy",
+  });
+  const supervisor = new CapturingSupervisor(new TextEncoder().encode(errorEnvelope));
+  const gateway = createModelGateway({
+    runStore: store,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: createClaudeRoute("claude-sonnet-5", "high"),
+    now: clock(),
+    modelCliPreflight: async () => {},
+  });
+  const result = await gateway.execute(task(run, "attempt-classify", attemptDirectory(roots, "attempt-classify")));
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+  assert.match(result.error?.message ?? "", /content filtering policy/);
+  assert.match(result.error?.message ?? "", /api_error_status=400/);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
