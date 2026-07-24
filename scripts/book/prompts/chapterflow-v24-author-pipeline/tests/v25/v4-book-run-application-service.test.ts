@@ -2228,6 +2228,259 @@ requiredTest("resume with a durable COMPLETED compile event but a missing or mis
   assert.deepEqual(compilerRunIds, [], "durable-compile rehydrate failures must NOT silently re-compile");
 });
 
+// ── Task 11ac / finding 38 LAYER B — ERROR-review successor on flagged resume ──
+//
+// A stored canonical review whose outcome is ERROR is UNCERTAINTY (a transient
+// reader-lane failure fail-closed the panel), not a verdict — yet it persists as
+// the canonical review and every resume replays it with ZERO model calls. Under
+// operator consent (`--reconcile-unsettled`) it must be superseded by a fresh
+// full-panel review; without consent it replays fail-closed verbatim; and a FAIL
+// review (a real verdict repair owns) is NEVER successor-eligible via this path.
+
+function derivedIdOf(prefix: string, runId: string): string {
+  return `${prefix}-${createHash("sha256").update(runId).digest("hex").slice(0, 32)}`;
+}
+
+/** Build a book-run service whose canonical review outcome is scripted: the first
+ *  review model call returns `firstOutcome`, every later call returns PASS. All
+ *  other ports are fakes, so the review evaluator is the ONLY runner consumer —
+ *  `runnerCalls` counts review model calls exactly. */
+async function buildReviewSuccessorHarness(
+  context: TestContext,
+  book: string,
+  firstOutcome: "ERROR" | "FAIL",
+): Promise<{
+  service: BookRunApplicationService;
+  request: Omit<Parameters<BookRunApplicationService["run"]>[0], "resumeRunId" | "reconcileUnsettled">;
+  bookRunId: string;
+  events: BookRunEvent[];
+  reviews: ReturnType<ReturnType<typeof createReviewServiceFactory>["create"]>;
+  runnerCalls: () => number;
+  predecessorReviewId: string;
+  successorReviewId: string;
+}> {
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const suffix = book.replace(/[^a-z0-9]/g, "");
+  const bookRunId = `book-run-${suffix}`;
+  const compilerRunId = derivedIdOf("compiler-run", bookRunId);
+  const compiledCandidateId = `${compilerRunId}-candidate`;
+  const booksRoot = resolve(context.roots.tempRoot, `${suffix}-books`);
+  const runRoot = resolve(context.roots.tempRoot, `${suffix}-runs`);
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(book, 1, suffix);
+  const localJsonFile = (logicalPath: string, value: unknown, kind: CandidateInputFile["kind"] = "SIDECAR"): CandidateInputFile =>
+    ({ kind, logicalPath, mediaType: "application/json", bytes: Buffer.from(`${JSON.stringify(value)}\n`) });
+  const stageLocal = async (input: { candidateId: string; runId: string; files: readonly CandidateInputFile[]; parentCandidateId?: string }): Promise<CandidateSnapshot> => {
+    const staged = await candidates.stage({
+      bookId: book,
+      candidateId: input.candidateId,
+      ...(input.parentCandidateId === undefined ? {} : { parentCandidateId: input.parentCandidateId }),
+      createdByRunId: input.runId,
+      expectedInventory: input.files.map(({ bytes: _bytes, ...file }) => file),
+      files: input.files,
+      createdAt: context.clock.now(),
+    });
+    assert.equal(staged.ok, true, JSON.stringify(staged));
+    const opened = await candidates.open({ bookId: book, selector: { kind: "CANDIDATE", candidateId: input.candidateId } });
+    assert.ok(opened.ok);
+    return opened.value;
+  };
+  const seed = await stageLocal({
+    candidateId: "seed-candidate",
+    runId: "seed-run",
+    files: [localJsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+  const compiled = await stageLocal({
+    candidateId: compiledCandidateId,
+    parentCandidateId: seed.manifest.candidateId,
+    runId: compilerRunId,
+    files: [
+      localJsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+      localJsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({ bookId: book, chapters: [chapter], requirePlanArtifacts: false, checkSourceAlignment: false })),
+    ],
+  });
+
+  let runnerCalls = 0;
+  const outcomes = [firstOutcome];
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      runnerCalls += 1;
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      const outcome = outcomes.shift() ?? "PASS";
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome, issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({ candidateStore: candidates, contentReader: reader, reviewService: reviews, qcService: qc, currentPointerStore: currentPointer, clock: now });
+  const research = {
+    async run(req: { resumeRunId?: string; newRunId?: string }) {
+      return {
+        schemaVersion: "1" as const,
+        bookId: book,
+        title: "Review Successor",
+        author: "Fixture Author",
+        intakeRunId: req.resumeRunId ?? req.newRunId ?? bookRunId,
+        researchRunId: "research-fixture",
+        candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+        indexLogicalPath: "inputs/chapter-index.json" as const,
+        sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json" as const,
+        sources: [],
+        resumed: req.resumeRunId !== undefined,
+      };
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+  let compilerRunPersisted = false;
+  const compiler = {
+    async run(req: { resumeRunId?: string }) {
+      assert.equal(req.resumeRunId, compilerRunId);
+      if (!compilerRunPersisted) {
+        const created = await runStore.createRun({
+          schemaVersion: "1", bookId: book, runId: compilerRunId, commandId: "compiler-candidate", sourceGitSha: SOURCE_SHA,
+          requiredStages: ["compiler-candidate"], requiredInventory: [],
+          inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+          attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } }, createdAt: context.clock.now(),
+        });
+        assert.ok(created.ok);
+        const finished = await runStore.finishRun({ bookId: book, runId: compilerRunId, status: "COMPLETED", finishedAt: context.clock.now() });
+        assert.ok(finished.ok);
+        compilerRunPersisted = true;
+      }
+      return { runId: compilerRunId, runStatus: "COMPLETED" as const, candidateId: compiled.manifest.candidateId, manifestDigest: compiled.manifest.manifestDigest };
+    },
+  } as unknown as CompilerApplicationPort;
+  const candidateQc = {
+    async run(req: { roundId: string; canonicalReview: { reviewId: string } }) {
+      return {
+        ok: true as const,
+        value: { roundId: req.roundId, candidate: { candidateId: compiled.manifest.candidateId, manifestDigest: compiled.manifest.manifestDigest }, reviewId: req.canonicalReview.reviewId, outcome: "PASS" as const, issues: [] },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research, compiler, contentReader: reader, candidateQc, reviews, qc, promotion, currentPointer, runStore, stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => bookRunId,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "pipeline"),
+  });
+  const request = {
+    bookId: book,
+    title: "Review Successor",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, `${suffix}-v25`),
+    attemptRoot: resolve(context.roots.attemptsRoot, `${suffix}-book-run`),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: true,
+    signal: new AbortController().signal,
+  };
+  const predecessorReviewId = derivedIdOf("review", bookRunId);
+  const successorReviewId = derivedIdOf("review", derivedIdOf("review-successor-1", bookRunId));
+  return { service, request, bookRunId, events, reviews, runnerCalls: () => runnerCalls, predecessorReviewId, successorReviewId };
+}
+
+requiredTest("stored ERROR canonical review replays fail-closed without the flag, but a flagged resume mints a REVIEW_SUCCESSOR and proceeds", async (context: TestContext) => {
+  const book = "review-successor-error";
+  const h = await buildReviewSuccessorHarness(context, book, "ERROR");
+
+  // Initial run: the panel returned ERROR → the book-run fails at review, and the
+  // ERROR is now the durable canonical review.
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("ERROR review must fail the run");
+  assert.equal(first.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.equal(h.runnerCalls(), 1);
+  const storedError = await h.reviews.get(book, h.predecessorReviewId);
+  assert.ok(storedError.ok && storedError.value.outcome === "ERROR", JSON.stringify(storedError));
+
+  // Resume WITHOUT the flag: the stored ERROR replays fail-closed VERBATIM — zero
+  // new model calls, no successor (current behavior pinned).
+  const replay = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(replay.ok, false);
+  if (replay.ok) throw new Error("unflagged resume must replay the ERROR fail-closed");
+  assert.equal(replay.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.equal(h.runnerCalls(), 1, "sticky ERROR must NOT re-run the panel without consent");
+  assert.equal(h.events.some((e) => e.detail?.includes("REVIEW_SUCCESSOR")), false, "no successor without the flag");
+
+  // Resume WITH --reconcile-unsettled: mint a successor review (fresh reviewId,
+  // full panel re-run) that PASSes, and proceed to promotion.
+  const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  if (!flagged.ok) throw new Error(`flagged resume must succeed via successor: ${JSON.stringify(flagged.error)}`);
+  assert.equal(flagged.value.status, "PROMOTED");
+  assert.equal(h.runnerCalls(), 2, "the successor re-ran the panel exactly once");
+  // The successor is a FRESH review id, distinct from the superseded ERROR.
+  assert.notEqual(h.successorReviewId, h.predecessorReviewId);
+  assert.equal(flagged.value.reviewId, h.successorReviewId, JSON.stringify(flagged.value));
+  const successorStored = await h.reviews.get(book, h.successorReviewId);
+  assert.ok(successorStored.ok && successorStored.value.outcome === "PASS", JSON.stringify(successorStored));
+  // Provenance: a REVIEW_SUCCESSOR event names the superseded predecessor reviewId.
+  const successorEvent = h.events.find((e) => e.detail?.includes("action=REVIEW_SUCCESSOR"));
+  assert.ok(successorEvent, JSON.stringify(h.events.map((e) => e.detail)));
+  assert.ok(successorEvent!.detail!.includes(`predecessorReviewId=${h.predecessorReviewId}`), successorEvent!.detail);
+});
+
+requiredTest("a stored FAIL canonical review is NOT successor-eligible even under --reconcile-unsettled (FAIL is a verdict, not uncertainty)", async (context: TestContext) => {
+  const book = "review-successor-fail";
+  const h = await buildReviewSuccessorHarness(context, book, "FAIL");
+
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false);
+  if (first.ok) throw new Error("FAIL review must fail the run");
+  assert.equal(first.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.equal(h.runnerCalls(), 1);
+
+  // Even WITH the flag, a FAIL verdict replays fail-closed verbatim: no successor,
+  // no fresh panel call — repair machinery, not this path, owns FAIL.
+  const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  assert.equal(flagged.ok, false, JSON.stringify(flagged));
+  if (flagged.ok) throw new Error("FAIL must never mint a review successor");
+  assert.equal(flagged.error.code, "BOOK_RUN_REVIEW_FAILED");
+  assert.equal(h.runnerCalls(), 1, "FAIL must NOT re-run the panel");
+  assert.equal(h.events.some((e) => e.detail?.includes("REVIEW_SUCCESSOR")), false, "FAIL is not successor-eligible");
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

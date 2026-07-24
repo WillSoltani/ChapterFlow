@@ -105,17 +105,23 @@ export interface SemanticPanelReviewDependencies {
   /** Gateway route profile for reader tasks; defaults to the attempt-scoped
    *  read-json profile the live baseline uses. */
   readonly profileId?: string;
+  /** Injectable backoff for the bounded reader-task retry (Task 11ac). Defaults
+   *  to a real setTimeout in production; tests inject an instant fake so the
+   *  retry path is exercised without a wall-clock wait. */
+  readonly sleep?: (ms: number) => Promise<void>;
 }
 
 export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
   readonly #baseline: CanonicalReviewEvaluator;
   readonly #runner: ModelTaskRunner;
   readonly #profileId: string;
+  readonly #sleep?: (ms: number) => Promise<void>;
 
   constructor(dependencies: SemanticPanelReviewDependencies) {
     this.#baseline = dependencies.baseline;
     this.#runner = dependencies.runner;
     this.#profileId = dependencies.profileId ?? "attempt-read-json-v1";
+    this.#sleep = dependencies.sleep;
   }
 
   async evaluate(input: Readonly<{
@@ -148,6 +154,7 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
           readers: READER_PANEL_SEATS.length,
           taskContext: input.taskContext,
           profileId: this.#profileId,
+          ...(this.#sleep === undefined ? {} : { sleep: this.#sleep }),
         });
       } catch (error) {
         errored = true;

@@ -90,6 +90,7 @@ import { chapterContentHash } from "../critics/qcAttestation.js";
 import { hashCanonical } from "../contracts/contractUtil.js";
 import { ensureTrailingNewline } from "../lib/atomicWrite.js";
 import type { ModelTaskContext } from "../contracts/v4Core.js";
+import type { ModelResult } from "../runtime/modelResult.js";
 import type { ReaderExperienceReviewV1 } from "../contracts/readerExperienceReview.js";
 import {
   ReaderExperienceReviewError,
@@ -181,6 +182,51 @@ function pad(n: number): string {
   return String(n).padStart(2, "0");
 }
 
+/**
+ * Bounded reader-task retry (Task 11ac, finding 38 LAYER A). A reader seat's
+ * single model call used to fail-close the whole panel to ERROR on the first
+ * transient blip — the class the research (11a/11c/11k) and compile (11j/11k)
+ * lanes already recover. A reader read is now retried up to
+ * `MAX_READER_SEAT_ATTEMPTS` times on a transient outcome, each attempt admitting
+ * a FRESH ordinal run-state attempt (the reader-lane run has generous capacity).
+ */
+export const MAX_READER_SEAT_ATTEMPTS = 3;
+
+/** In-loop backoff schedule (ms) between transient reader retries, indexed by
+ *  (attempt − 1) and clamped to the last entry — mirrors the research lane's
+ *  escalating backoff so a provider rate-limit/overload incident clears on a
+ *  short delay rather than an immediate re-spawn. */
+export const READER_SEAT_RETRY_BACKOFF_MS: readonly number[] = Object.freeze([2000, 8000]);
+
+function readerBackoffMsForAttempt(attempt: number): number {
+  const index = Math.min(Math.max(attempt - 1, 0), READER_SEAT_RETRY_BACKOFF_MS.length - 1);
+  return READER_SEAT_RETRY_BACKOFF_MS[index];
+}
+
+const defaultReaderSleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
+
+/**
+ * Classify a reader-model result as a TRANSIENT class the bounded retry should
+ * re-attempt — the structured sibling of the research lane's string classifiers
+ * (`researcher-chapter.ts`), decided on the `ModelResult` the runner returns
+ * directly rather than on a thrown `MODEL_TASK_*` string:
+ *   - TIMED_OUT (any code): killed at the profile horizon before any output;
+ *   - FAILED + MODEL_PROCESS_FAILED: a rate-limited/overloaded subprocess that
+ *     exited nonzero;
+ *   - FAILED + MODEL_OUTPUT_INVALID: a gateway-level output-schema rejection, the
+ *     same variance class a fresh attempt routinely clears.
+ * CANCELLED (operator intent), UNKNOWN (uncertain teardown), and any other FAILED
+ * code (capacity, admission collision, …) are NOT transient and stay fail-closed.
+ */
+export function isTransientReaderModelResult(result: ModelResult): boolean {
+  if (result.outcome === "TIMED_OUT") return true;
+  if (result.outcome === "FAILED") {
+    const code = result.error?.code;
+    return code === "MODEL_PROCESS_FAILED" || code === "MODEL_OUTPUT_INVALID";
+  }
+  return false;
+}
+
 /** The median of a non-empty numeric list (odd length → the middle element;
  *  even length → the mean of the two middle elements). */
 export function medianOf(values: readonly number[]): number {
@@ -243,6 +289,10 @@ export interface RunReaderLanesInput {
   readonly taskContext: ModelTaskContext;
   /** Gateway route profile for reader tasks (attempt-scoped read-json profile). */
   readonly profileId?: string;
+  /** Injectable backoff between bounded reader retries (Task 11ac). Faked to
+   *  resolve instantly in tests so the schedule is asserted without a wall-clock
+   *  wait; production uses setTimeout. */
+  readonly sleep?: (ms: number) => Promise<void>;
 }
 
 /**
@@ -268,25 +318,45 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
   } as const;
   const profileId = input.profileId ?? "attempt-read-json-v1";
   const docRelPath = `chapter-${pad(input.chapterNumber)} (provided inline below)`;
+  const sleep = input.sleep ?? defaultReaderSleep;
+  // The V4 gateway feeds content inline (not a workspace file), so the rendered
+  // reader doc rides as untrusted source data beside the task. Rendered once —
+  // every seat + every retry reads the same page.
+  const readerDocumentBlock = renderUntrustedSourceBlock("reader-document", rendered, "markdown");
 
   const seatReviews: { seatId: string; review: ReaderExperienceReviewV1 }[] = [];
   for (const seat of READER_PANEL_SEATS) {
     const task = buildBlindReaderTask(seat, docRelPath);
-    const context: ModelTaskContext = {
-      ...input.taskContext,
-      attemptId: `${input.taskContext.attemptId}-reader-ch${pad(input.chapterNumber)}-${seat.id}`,
-      operationId: `reader-review-ch${pad(input.chapterNumber)}-${seat.id}`,
-    };
-    const result = await input.runner.run({
-      profileId,
-      // The V4 gateway feeds content inline (not a workspace file), so the
-      // rendered reader doc rides as untrusted source data beside the task.
-      prompt: jsonPromptRequest(task, renderUntrustedSourceBlock("reader-document", rendered, "markdown")),
-      context,
-    });
-    if (result.outcome !== "SUCCEEDED") {
+    const seatAttemptBase = `${input.taskContext.attemptId}-reader-ch${pad(input.chapterNumber)}-${seat.id}`;
+    const operationId = `reader-review-ch${pad(input.chapterNumber)}-${seat.id}`;
+    // Bounded reader retry (Task 11ac): a transient seat result (timeout /
+    // process-failure / gateway output-schema rejection) is re-attempted with a
+    // FRESH ordinal attempt id, so one provider blip no longer fail-closes the
+    // panel to ERROR. A fatal result (CANCELLED / UNKNOWN / any other code) and an
+    // exhausted transient budget both throw — fail-closed is preserved.
+    let result: ModelResult | undefined;
+    for (let attempt = 1; attempt <= MAX_READER_SEAT_ATTEMPTS; attempt += 1) {
+      const context: ModelTaskContext = {
+        ...input.taskContext,
+        attemptId: attempt === 1 ? seatAttemptBase : `${seatAttemptBase}-a${attempt}`,
+        operationId,
+      };
+      result = await input.runner.run({
+        profileId,
+        prompt: jsonPromptRequest(task, readerDocumentBlock),
+        context,
+      });
+      if (result.outcome === "SUCCEEDED") break;
+      if (attempt < MAX_READER_SEAT_ATTEMPTS && isTransientReaderModelResult(result)) {
+        await sleep(readerBackoffMsForAttempt(attempt));
+        continue;
+      }
       const detail = result.error ? `${result.error.code}:${result.error.message}` : result.outcome;
       throw new Error(`SEMANTIC_PANEL_READER_${result.outcome}:${detail}`);
+    }
+    // Unreachable: the loop either breaks on SUCCEEDED or throws above.
+    if (!result || result.outcome !== "SUCCEEDED") {
+      throw new Error(`SEMANTIC_PANEL_READER_${result?.outcome ?? "UNKNOWN"}:reader retry loop terminated without a result`);
     }
     const stdout = typeof result.output === "string" ? result.output : JSON.stringify(result.output ?? null);
     const parsed = parseReaderExperienceReview(stdout);

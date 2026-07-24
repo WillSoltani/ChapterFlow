@@ -129,6 +129,10 @@ function scriptedRunner(outputs: readonly unknown[]): {
           error: { code: "READER_MODEL_DOWN", message: "injected reader model failure" },
         };
       }
+      if (typeof output === "object" && output !== null && "__fail" in output) {
+        const fail = (output as { __fail: { outcome: ModelResult["outcome"]; code: string } }).__fail;
+        return { attemptId: request.context.attemptId, outcome: fail.outcome, error: { code: fail.code, message: "injected transient reader failure" } };
+      }
       return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
     },
   };
@@ -280,6 +284,57 @@ requiredTest("semantic panel PASSES when the panel median sits exactly on the ch
     false,
     JSON.stringify(evaluated.value.issues),
   );
+});
+
+requiredTest("semantic panel recovers a transient reader failure via bounded retry and still PASSes (finding 38 LAYER A)", async () => {
+  const candidate = twoChapterCandidate();
+  // ch1 seat-cold's FIRST read fails transiently (MODEL_PROCESS_FAILED); its
+  // bounded retry succeeds. Previously this one blip fail-closed the whole review
+  // to ERROR. The other reads are clean.
+  const scripted = scriptedRunner([
+    { __fail: { outcome: "FAILED", code: "MODEL_PROCESS_FAILED" } },
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+    sleep: async () => {},
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "PASS");
+  // 1 transient + retry + 5 more clean reads = 7 calls.
+  assert.equal(scripted.calls, 7, "the transient seat was retried, not fail-closed");
+  assert.equal(evaluated.value.issues.some((issue) => issue.severity === "BLOCKER"), false, JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("semantic panel stays ERROR (fail-closed) when a reader exhausts its bounded retry", async () => {
+  const candidate = twoChapterCandidate();
+  // ch1 seat-cold fails transiently on every one of its bounded attempts → the
+  // seat still errors and the panel fail-closes to ERROR (retry does not weaken
+  // the gate; it only recovers a blip that clears).
+  const scripted = scriptedRunner([
+    { __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } },
+    { __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } },
+    { __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } },
+    readerContent(),
+    readerContent(),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+    sleep: async () => {},
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "ERROR");
+  assert.ok(evaluated.value.issues.some((issue) => issue.code === "SEMANTIC_PANEL_READER_FAILED"), JSON.stringify(evaluated.value.issues));
 });
 
 requiredTest("semantic panel short-circuits on a baseline non-PASS and runs zero reader tasks", async () => {

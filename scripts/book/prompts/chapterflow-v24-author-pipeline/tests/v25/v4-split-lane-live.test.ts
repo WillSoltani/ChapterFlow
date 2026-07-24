@@ -19,7 +19,10 @@
 import assert from "node:assert/strict";
 
 import {
+  MAX_READER_SEAT_ATTEMPTS,
   READER_PANEL_SEATS,
+  READER_SEAT_RETRY_BACKOFF_MS,
+  isTransientReaderModelResult,
   runReaderLanes,
   type ReaderPanelReviewV1,
 } from "../../src/review/laneOrchestrator.js";
@@ -112,6 +115,119 @@ function panelInput(chapter: ChapterV21, runner: ModelTaskRunner) {
     profileId: "attempt-read-json-v1",
   };
 }
+
+/**
+ * A reader-model failure descriptor the retry-scripted runner returns instead of
+ * an output object. `outcome`/`code` drive the transient classifier (Task 11ac):
+ * FAILED+MODEL_PROCESS_FAILED, TIMED_OUT, and FAILED+MODEL_OUTPUT_INVALID are the
+ * bounded-retry transient classes; CANCELLED / UNKNOWN are fatal (fail-closed).
+ */
+type ReaderFailure = { readonly __fail: { outcome: ModelResult["outcome"]; code: string; message: string } };
+function readerFailure(outcome: ModelResult["outcome"], code: string, message = "injected"): ReaderFailure {
+  return { __fail: { outcome, code, message } };
+}
+function isReaderFailure(value: unknown): value is ReaderFailure {
+  return typeof value === "object" && value !== null && "__fail" in value;
+}
+
+/** A runner scripted with an ordered queue of reader outputs OR failure
+ *  descriptors; records every attemptId so the retry loop's fresh ordinal
+ *  attempt ids are observable. */
+function retryScriptedRunner(queue: readonly unknown[]): {
+  runner: ModelTaskRunner;
+  attemptIds: string[];
+  calls: number;
+} {
+  const pending = [...queue];
+  const state = { runner: undefined as unknown as ModelTaskRunner, attemptIds: [] as string[], calls: 0 };
+  state.runner = {
+    async run(request): Promise<ModelResult> {
+      state.calls += 1;
+      state.attemptIds.push(request.context.attemptId);
+      const next = pending.shift();
+      if (next === undefined) {
+        return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "SCRIPT_EXHAUSTED", message: "no scripted reader output" } };
+      }
+      if (isReaderFailure(next)) {
+        return { attemptId: request.context.attemptId, outcome: next.__fail.outcome, error: { code: next.__fail.code, message: next.__fail.message } };
+      }
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: next };
+    },
+  };
+  return state as { runner: ModelTaskRunner; attemptIds: string[]; calls: number };
+}
+
+requiredTest("isTransientReaderModelResult retries process-failure / timeout / output-invalid, but never CANCELLED or UNKNOWN", () => {
+  assert.equal(isTransientReaderModelResult({ attemptId: "a", outcome: "FAILED", error: { code: "MODEL_PROCESS_FAILED", message: "x" } }), true);
+  assert.equal(isTransientReaderModelResult({ attemptId: "a", outcome: "TIMED_OUT", error: { code: "MODEL_PROCESS_FAILED", message: "x" } }), true);
+  assert.equal(isTransientReaderModelResult({ attemptId: "a", outcome: "FAILED", error: { code: "MODEL_OUTPUT_INVALID", message: "x" } }), true);
+  // Fatal: operator intent and uncertain teardown must never burn a retry.
+  assert.equal(isTransientReaderModelResult({ attemptId: "a", outcome: "CANCELLED", error: { code: "MODEL_RUN_CANCELLED", message: "x" } }), false);
+  assert.equal(isTransientReaderModelResult({ attemptId: "a", outcome: "UNKNOWN", error: { code: "MODEL_EXECUTION_UNCERTAIN", message: "x" } }), false);
+  // A FAILED with a non-transient code (e.g. capacity/admission) is fatal.
+  assert.equal(isTransientReaderModelResult({ attemptId: "a", outcome: "FAILED", error: { code: "MODEL_CAPACITY_EXHAUSTED", message: "x" } }), false);
+});
+
+requiredTest("runReaderLanes retries the three transient reader classes with fresh ordinal attempt ids and recovers", async () => {
+  const chapter = makeGateCleanChapter(BOOK, 1);
+  // seat-cold: process-failure then success; seat-skeptic: timeout then success;
+  // seat-practitioner: output-invalid then success. Every seat recovers on retry.
+  const scripted = retryScriptedRunner([
+    readerFailure("FAILED", "MODEL_PROCESS_FAILED"), readerContent(80),
+    readerFailure("TIMED_OUT", "MODEL_PROCESS_FAILED"), readerContent(80),
+    readerFailure("FAILED", "MODEL_OUTPUT_INVALID"), readerContent(80),
+  ]);
+  const backoffs: number[] = [];
+  const panel = await runReaderLanes({
+    ...panelInput(chapter, scripted.runner),
+    sleep: async (ms: number) => { backoffs.push(ms); },
+  });
+
+  assert.equal(panel.medianComposite, 80, JSON.stringify(panel.composites));
+  // 3 seats × (1 transient + 1 success) = 6 calls.
+  assert.equal(scripted.calls, 6, JSON.stringify(scripted.attemptIds));
+  // Each seat's retry admitted a NEW ordinal attempt id (never re-spawned the same one).
+  assert.equal(new Set(scripted.attemptIds).size, 6, "every attempt id is distinct");
+  assert.equal(scripted.attemptIds.filter((id) => id.endsWith("-a2")).length, 3, JSON.stringify(scripted.attemptIds));
+  // The first attempt of a seat keeps its base id; the retry appends the ordinal.
+  assert.ok(scripted.attemptIds.some((id) => id.endsWith("-seat-cold")), JSON.stringify(scripted.attemptIds));
+  assert.ok(scripted.attemptIds.some((id) => id.endsWith("-seat-cold-a2")), JSON.stringify(scripted.attemptIds));
+  // Bounded escalating backoff was honored once per recovered seat.
+  assert.deepEqual(backoffs, [READER_SEAT_RETRY_BACKOFF_MS[0], READER_SEAT_RETRY_BACKOFF_MS[0], READER_SEAT_RETRY_BACKOFF_MS[0]]);
+});
+
+requiredTest("runReaderLanes never retries a CANCELLED or UNKNOWN reader result — it propagates fail-closed", async () => {
+  const chapter = makeGateCleanChapter(BOOK, 1);
+  for (const fatal of [readerFailure("CANCELLED", "MODEL_RUN_CANCELLED"), readerFailure("UNKNOWN", "MODEL_EXECUTION_UNCERTAIN")]) {
+    const scripted = retryScriptedRunner([fatal, readerContent(80), readerContent(80)]);
+    const backoffs: number[] = [];
+    await assert.rejects(
+      () => runReaderLanes({ ...panelInput(chapter, scripted.runner), sleep: async (ms: number) => { backoffs.push(ms); } }),
+      /SEMANTIC_PANEL_READER_(CANCELLED|UNKNOWN)/,
+    );
+    // No retry: exactly one call for the first seat, and no backoff slept.
+    assert.equal(scripted.calls, 1, JSON.stringify(scripted.attemptIds));
+    assert.deepEqual(backoffs, []);
+  }
+});
+
+requiredTest("runReaderLanes fails closed when a reader exhausts its bounded retry (all attempts transient)", async () => {
+  const chapter = makeGateCleanChapter(BOOK, 1);
+  const scripted = retryScriptedRunner([
+    readerFailure("FAILED", "MODEL_PROCESS_FAILED"),
+    readerFailure("FAILED", "MODEL_PROCESS_FAILED"),
+    readerFailure("FAILED", "MODEL_PROCESS_FAILED"),
+  ]);
+  const backoffs: number[] = [];
+  await assert.rejects(
+    () => runReaderLanes({ ...panelInput(chapter, scripted.runner), sleep: async (ms: number) => { backoffs.push(ms); } }),
+    /SEMANTIC_PANEL_READER_FAILED/,
+  );
+  // The bounded cap is honored: exactly MAX attempts for the first seat, then throw.
+  assert.equal(scripted.calls, MAX_READER_SEAT_ATTEMPTS, JSON.stringify(scripted.attemptIds));
+  // Backoff slept between attempts but not after the final failure.
+  assert.equal(backoffs.length, MAX_READER_SEAT_ATTEMPTS - 1);
+});
 
 requiredTest("runReaderLanes spawns exactly one reader task per seat, each with a distinct role prompt", async () => {
   const chapter = makeGateCleanChapter(BOOK, 1);

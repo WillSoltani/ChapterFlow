@@ -1009,6 +1009,41 @@ export class BookRunApplicationService {
       attemptRoot: resolve(input.attemptRoot, "review"),
       signal: input.signal,
     });
+    // Task 11ac / finding 38 LAYER B — ERROR-review successor on flagged resume.
+    // A stored canonical review whose outcome is ERROR is UNCERTAINTY (a transient
+    // reader-lane failure fail-closed the panel), NOT a verdict — yet the exact-single-
+    // attempt review run persists it as canonical, so every resume replays the ERROR
+    // with ZERO model calls. Under per-invocation operator consent (--reconcile-unsettled)
+    // it is superseded EXACTLY ONCE by a fresh full-panel review keyed off a distinct
+    // seed (fresh reviewId / run / attempt), mirroring the research (11d) and compile
+    // (operator-slot) successor paths. A stored FAIL is deliberately NOT eligible: FAIL is
+    // a real verdict repair machinery owns, so `outcome === "ERROR"` gates this exactly.
+    // Fresh-QC binds to the review id it is handed, so reassigning `review` to the
+    // successor keeps downstream identity coherent. Idempotent on repeated flagged
+    // resumes: the successor's own exact-review run replays its stored result model-free.
+    if (review.ok && review.value.outcome === "ERROR" && input.reconcileUnsettled === true) {
+      const predecessorReviewId = review.value.reviewId;
+      const successorStarted = await this.#event(
+        runId,
+        input.bookId,
+        "review",
+        "STARTED",
+        `action=REVIEW_SUCCESSOR;predecessorReviewId=${predecessorReviewId}`,
+        identity(candidate),
+      );
+      if (!successorStarted.ok) return successorStarted;
+      console.error(
+        `[book-run] review-successor book=${input.bookId} run=${runId} predecessorReviewId=${predecessorReviewId} action=REVIEW_SUCCESSOR`,
+      );
+      review = await exactReview(this.#dependencies, {
+        bookId: input.bookId,
+        sourceGitSha: input.sourceGitSha,
+        parentRunId: derivedId("review-successor-1", runId),
+        candidate,
+        attemptRoot: resolve(input.attemptRoot, "review-successor-1"),
+        signal: input.signal,
+      });
+    }
     if (!review.ok || review.value.outcome !== "PASS") {
       const message = review.ok ? `canonical review outcome=${review.value.outcome}` : review.error.message;
       await this.#event(runId, input.bookId, "review", "FAILED", message, identity(candidate));
