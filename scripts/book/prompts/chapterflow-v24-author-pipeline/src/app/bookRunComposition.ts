@@ -6,6 +6,7 @@ import { createBookWriteLock } from "../books/bookLease.js";
 import { createBookContentReader } from "../books/bookContentReader.js";
 import { createCandidateStore } from "../books/candidateStore.js";
 import { createFileSectionPackCache } from "../books/sectionPackCache.js";
+import { createFileSectionAvoidStore } from "../books/sectionAvoidStore.js";
 import { createCurrentPointerStore } from "../books/currentPointer.js";
 import { createQcService } from "../qc/qcService.js";
 import { createQcStore } from "../qc/qcStore.js";
@@ -353,6 +354,11 @@ export async function createProductionBookRunComposition(input: Readonly<{
   // and guarded by the same book write lock as every other book store, so a compile
   // retry reuses gate-passed packs instead of re-drafting the whole book each round.
   const sectionPackCache = createFileSectionPackCache({ booksRoot, writeLock });
+  // Task 11aa — durable cross-chapter assembly-avoid context, the sibling of the
+  // section-pack cache under the same booksRoot and book write lock. Breaks the
+  // assembly livelock: an assembly cross-chapter blocker evicts the implicated
+  // cached packs and records here the phrase(s) their re-drafts must avoid.
+  const sectionAvoidStore = createFileSectionAvoidStore({ booksRoot, writeLock });
   const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
   const runStore = createFileRunStore(runRoot);
   const stageCoordinator = createFileStageCoordinator(runRoot);
@@ -454,6 +460,7 @@ export async function createProductionBookRunComposition(input: Readonly<{
     bookRunEvents: eventSink(input.v25Root, input.bookId, input.logPath),
     repairApplication,
     sectionPackCache,
+    sectionAvoidStore,
   });
   return { app, contentReader, currentPointerStore, reviewService, qcService };
 }

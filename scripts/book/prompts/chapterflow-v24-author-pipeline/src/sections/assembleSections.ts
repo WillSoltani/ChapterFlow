@@ -27,7 +27,54 @@ import type { PlanningSourceEvidence } from "../source/sourceEvidence.js";
 import type { CandidateInputFile } from "../books/candidateTypes.js";
 import type { SectionKind, SectionPackV1 } from "../artifacts/artifactTypes.js";
 
-export type AssembleSectionsResult = { bookId: string; written: string[]; findings: string[]; candidateFiles?: readonly CandidateInputFile[] };
+export type AssembleSectionsResult = { bookId: string; written: string[]; findings: string[]; candidateFiles?: readonly CandidateInputFile[]; blockers?: readonly AssemblyBlocker[] };
+
+/**
+ * Task 11aa — a structured cross-chapter assembly blocker. The cross-chapter
+ * anti-sameness gates (SEC93 venue stamping, …) fire only at assembly, over
+ * independently-drafted packs, and their string findings do not tell the compiler
+ * port WHICH cached (chapter, kind) packs to evict or WHICH phrase collided. This
+ * projects the machine-readable fields of such a finding — chapter, section kind,
+ * the grouping signature, and the colliding phrase — alongside the human message,
+ * so the port can evict exactly the implicated packs and feed cross-chapter
+ * avoid-context into the re-draft without parsing prose. Only findings that carry
+ * a chapterNumber, a section, and a signature become blockers; anything else is
+ * left unstructured so the port fails loud rather than guessing what to evict.
+ */
+export interface AssemblyBlocker {
+  readonly chapterNumber: number;
+  readonly kind: SectionKind;
+  readonly checkId: string;
+  readonly signature: string;
+  readonly phrase: string;
+  readonly message: string;
+}
+
+/** Project the structured cross-chapter blockers out of a section-gate finding
+ *  list. A finding qualifies only when it carries the full machine-readable
+ *  identity (chapterNumber + section + signature); the phrase is the signature's
+ *  value component ("venue:kitchen table" → "kitchen table"). Per-chapter findings
+ *  and any finding missing a component are intentionally dropped — the port treats
+ *  an assembly failure with no structured blockers as unknown and evicts nothing. */
+export function structureAssemblyBlockers(findings: readonly SectionFinding[]): AssemblyBlocker[] {
+  const blockers: AssemblyBlocker[] = [];
+  for (const finding of findings) {
+    if (finding.severity !== "blocker") continue;
+    if (typeof finding.chapterNumber !== "number" || finding.section === undefined || finding.signature === undefined) continue;
+    const separator = finding.signature.indexOf(":");
+    const phrase = separator >= 0 ? finding.signature.slice(separator + 1) : finding.signature;
+    if (phrase.trim().length === 0) continue;
+    blockers.push({
+      chapterNumber: finding.chapterNumber,
+      kind: finding.section,
+      checkId: finding.checkId,
+      signature: finding.signature,
+      phrase,
+      message: finding.message,
+    });
+  }
+  return blockers;
+}
 
 export interface AuthorV4SectionChapterPaths {
   readonly chapterNumber: number;
@@ -148,6 +195,10 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
         written: [],
         findings: blockers.map((finding) => `ch${String(finding.chapterNumber ?? 0).padStart(2, "0")}: section-gate blocked assembly: [${finding.checkId}] ${finding.message}`),
         candidateFiles: [],
+        // Task 11aa — the machine-readable projection of the cross-chapter blockers,
+        // so the compiler port can evict the exact implicated cached packs and feed
+        // avoid-context to the re-draft (empty when no blocker is cross-chapter).
+        blockers: structureAssemblyBlockers(blockers),
       };
     }
     const candidateFiles: CandidateInputFile[] = [];

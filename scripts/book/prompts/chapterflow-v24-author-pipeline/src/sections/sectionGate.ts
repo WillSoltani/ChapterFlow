@@ -41,6 +41,14 @@ export type SectionFinding = {
   section?: SectionKind;
   path?: string;
   message: string;
+  /** Task 11aa — the cross-chapter grouping key (e.g. "venue:kitchen table") for
+   *  findings emitted by an anti-sameness gate that compares packs across
+   *  chapters. Lets the compiler port reconstruct the colliding phrase and the
+   *  full set of implicated chapters WITHOUT parsing the human message, so an
+   *  assembly blocker can evict the exact implicated cached packs and feed
+   *  cross-chapter avoid-context into the re-draft. Absent on per-chapter
+   *  findings. */
+  signature?: string;
 };
 
 export type SectionGateReport = {
@@ -1325,6 +1333,10 @@ function crossChapterVenueStampingFindings(venues: ExampleShellOccurrence[]): Se
         section: hit.section,
         path: hit.path,
         message: `${hit.message}; appears in ${chapters.size} chapters`,
+        // Task 11aa — the venue signature ("venue:<venue>") groups this collision
+        // across chapters so the compiler port can evict exactly the implicated
+        // example packs and record the colliding venue as re-draft avoid-context.
+        signature: hit.signature,
       });
     }
   }

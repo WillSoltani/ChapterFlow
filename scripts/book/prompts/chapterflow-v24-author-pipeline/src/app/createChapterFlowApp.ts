@@ -12,6 +12,7 @@ import {
 } from "./bookRunApplicationService.js";
 import type { CurrentPointerStore } from "../books/currentPointer.js";
 import type { SectionPackCache } from "../books/sectionPackCache.js";
+import type { SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import { createModelTaskRunner, type ModelTaskRunner } from "./modelTaskRunner.js";
 
@@ -31,6 +32,7 @@ export function createChapterFlowApp(
     bookRunEvents?: BookRunEventSink;
     repairApplication?: CandidateRepairApplicationPort;
     sectionPackCache?: SectionPackCache;
+    sectionAvoidStore?: SectionAvoidStore;
   }>,
 ): ChapterFlowApp {
   const pipeline = createChapterFlowPipeline({
@@ -57,6 +59,7 @@ export function createChapterFlowApp(
       ids: dependencies.ids,
       clock: dependencies.clock,
       ...(dependencies.sectionPackCache ? { sectionPackCache: dependencies.sectionPackCache } : {}),
+      ...(dependencies.sectionAvoidStore ? { sectionAvoidStore: dependencies.sectionAvoidStore } : {}),
       })
     : null;
   const research = dependencies.pipelineRoot

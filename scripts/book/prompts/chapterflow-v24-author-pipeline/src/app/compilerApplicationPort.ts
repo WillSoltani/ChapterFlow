@@ -6,6 +6,7 @@ import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../artifacts/ar
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SectionPackV1, type SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { CandidateInputFile, CandidateSnapshot, CandidateStore, BookContentReader } from "../books/candidateTypes.js";
 import type { SectionPackCache, SectionPackCacheKey } from "../books/sectionPackCache.js";
+import type { SectionAvoidEntry, SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
 import { deriveBookDesign } from "../compiler/bookDesign.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../compiler/sourcePacket.js";
@@ -19,7 +20,7 @@ import type { ChapterSpec } from "../generateChapter.js";
 import { chapterFileName } from "../lib/chapterPaths.js";
 import type { BookScars } from "../lib/bookScars.js";
 import { buildSectionTaskMarkdown, type SectionRetryFeedback, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
-import { assembleSections, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
+import { assembleSections, type AssemblyBlocker, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import { validateSectionPack } from "../sections/sectionGate.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterV21 } from "../types.js";
@@ -168,6 +169,13 @@ export interface CompilerApplicationPortDependencies {
    *  decrease and convergence is monotone. Absent = pre-11y behaviour (always
    *  draft), which keeps every existing test byte-identical. */
   readonly sectionPackCache?: SectionPackCache;
+  /** Durable cross-chapter assembly-avoid context (Task 11aa). Sibling of the
+   *  section-pack cache. When present, a section re-draft consults it so it can
+   *  design AWAY from the concrete phrase(s) other chapters spent (the collision a
+   *  single writer cannot see), and an assembly cross-chapter blocker records the
+   *  collision here for the implicated packs it evicts. Cleared for every section
+   *  once assembly passes. Absent = no avoid-context (pre-11aa behaviour). */
+  readonly sectionAvoidStore?: SectionAvoidStore;
 }
 
 type CompilerArtifactResult = Readonly<{
@@ -407,6 +415,84 @@ function cachedSectionPackIsReusable(
   }
 }
 
+/**
+ * Task 11aa — the SEC93 venue-stamping threshold, read straight off the gate.
+ * `crossChapterVenueStampingFindings` emits a blocker only when a venue appears in
+ * MORE than this many chapters (`if (chapters.size <= 2) continue;`), i.e. a venue
+ * may legitimately repeat across at most two chapters. The eviction policy pins to
+ * this number: when a venue collides across N > 2 chapters, KEEP the earliest two
+ * offenders (which together still satisfy the gate) and evict only the surplus, so
+ * the minimum number of packs re-draft. If SEC93's threshold ever moves, this and
+ * its test move with it.
+ */
+export const SEC93_MAX_VENUE_CHAPTERS = 2;
+
+/** A single (chapter, kind) cache eviction demanded by an assembly blocker, plus
+ *  the avoid-context to seed into that section's re-draft. */
+export interface AssemblyEviction {
+  readonly chapterNumber: number;
+  readonly chapterId: string;
+  readonly kind: SectionKind;
+  readonly avoid: SectionAvoidEntry;
+}
+
+function chapterLabel(chapterNumber: number): string {
+  return `ch${String(chapterNumber).padStart(2, "0")}`;
+}
+
+/**
+ * Task 11aa — the livelock-break policy. Given the STRUCTURED cross-chapter
+ * assembly blockers and the run's chapter-id map, decide the MINIMAL set of cached
+ * (chapter, kind) packs to evict so the next compile run can converge, and the
+ * avoid-context to seed into each evicted section's re-draft.
+ *
+ * Blockers are grouped by signature (the colliding phrase, e.g. "venue:kitchen
+ * table"). For each group the implicated chapters are sorted ascending; the
+ * earliest SEC93_MAX_VENUE_CHAPTERS keep the phrase (they alone satisfy the gate),
+ * and every surplus chapter is evicted so it re-drafts with an avoid-entry naming
+ * the phrase and the chapters that keep it. A blocker whose chapter cannot be
+ * mapped to a chapterId is skipped (never guessed). Returns [] when there are no
+ * structured blockers, so the caller evicts nothing and fails loud on an unknown
+ * assembly failure rather than deleting packs blindly.
+ */
+export function planAssemblyEvictions(
+  blockers: readonly AssemblyBlocker[],
+  chapterIdByNumber: ReadonlyMap<number, string>,
+): AssemblyEviction[] {
+  const groups = new Map<string, AssemblyBlocker[]>();
+  for (const blocker of blockers) {
+    const group = groups.get(blocker.signature) ?? [];
+    group.push(blocker);
+    groups.set(blocker.signature, group);
+  }
+  const evictions: AssemblyEviction[] = [];
+  for (const group of groups.values()) {
+    const byChapter = new Map<number, AssemblyBlocker>();
+    for (const blocker of group) if (!byChapter.has(blocker.chapterNumber)) byChapter.set(blocker.chapterNumber, blocker);
+    const chapters = [...byChapter.keys()].sort((a, b) => a - b);
+    if (chapters.length <= SEC93_MAX_VENUE_CHAPTERS) continue;
+    const kept = chapters.slice(0, SEC93_MAX_VENUE_CHAPTERS);
+    const keptLabels = kept.map(chapterLabel).join(", ");
+    for (const chapterNumber of chapters.slice(SEC93_MAX_VENUE_CHAPTERS)) {
+      const chapterId = chapterIdByNumber.get(chapterNumber);
+      if (chapterId === undefined) continue;
+      const blocker = byChapter.get(chapterNumber)!;
+      evictions.push({
+        chapterNumber,
+        chapterId,
+        kind: blocker.kind,
+        avoid: Object.freeze({
+          checkId: blocker.checkId,
+          phrase: blocker.phrase,
+          keptByChapters: Object.freeze([...kept]) as unknown as number[],
+          message: `venue "${blocker.phrase}" is already used by ${keptLabels} — choose a different concrete venue.`,
+        }),
+      });
+    }
+  }
+  return evictions;
+}
+
 function assertSuccessor(
   snapshot: CandidateSnapshot,
   request: CompilerApplicationRequest,
@@ -568,6 +654,67 @@ export class CompilerApplicationPort {
 
   constructor(dependencies: CompilerApplicationPortDependencies) {
     this.#dependencies = dependencies;
+  }
+
+  /** Task 11aa — evict the cached packs an assembly cross-chapter blocker
+   *  implicates and record the collision as re-draft avoid-context. Best-effort:
+   *  a store error is logged, never re-thrown, so the terminal assembly error
+   *  (more informative than a cache write failure) always reaches the operator. */
+  async #applyAssemblyEvictions(
+    request: CompilerApplicationRequest,
+    chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string }>>,
+    blockers: readonly AssemblyBlocker[],
+  ): Promise<void> {
+    const cache = this.#dependencies.sectionPackCache;
+    if (!cache || blockers.length === 0) return;
+    const chapterIdByNumber = new Map<number, string>();
+    for (const [chapterNumber, ctx] of chapterCacheContext) chapterIdByNumber.set(chapterNumber, ctx.chapterId);
+    const evictions = planAssemblyEvictions(blockers, chapterIdByNumber);
+    for (const eviction of evictions) {
+      const identity = chapterCacheContext.get(eviction.chapterNumber);
+      if (!identity) continue;
+      const cacheKey: SectionPackCacheKey = {
+        bookId: request.bookId,
+        chapterId: eviction.chapterId,
+        kind: eviction.kind,
+        blueprintDigest: identity.blueprintDigest,
+        packetDigest: identity.packetDigest,
+      };
+      try {
+        await cache.evict(cacheKey);
+        if (this.#dependencies.sectionAvoidStore) {
+          await this.#dependencies.sectionAvoidStore.write(
+            { bookId: request.bookId, chapterId: eviction.chapterId, kind: eviction.kind },
+            { entries: [eviction.avoid] },
+          );
+        }
+        console.error(
+          `[book-run] compiler chapter=${eviction.chapterNumber} kind=${eviction.kind} action=EVICT_ON_ASSEMBLY_BLOCK phrase=${JSON.stringify(eviction.avoid.phrase)}`,
+        );
+      } catch (evictError) {
+        console.error(
+          `[book-run] compiler chapter=${eviction.chapterNumber} kind=${eviction.kind} action=EVICT_ON_ASSEMBLY_BLOCK_FAILED detail=${boundedCompilerDetail(evictError)}`,
+        );
+      }
+    }
+  }
+
+  /** Task 11aa — clear avoid-context for every section once assembly passes.
+   *  Best-effort and idempotent (a missing entry is a no-op). */
+  async #clearAssemblyAvoids(request: CompilerApplicationRequest, chapters: readonly ChapterSpec[]): Promise<void> {
+    const avoidStore = this.#dependencies.sectionAvoidStore;
+    if (!avoidStore) return;
+    for (const chapter of chapters) {
+      for (const kind of SECTION_KINDS) {
+        try {
+          await avoidStore.clear({ bookId: request.bookId, chapterId: chapter.chapterId, kind });
+        } catch (clearError) {
+          console.error(
+            `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind} action=CLEAR_ASSEMBLY_AVOID_FAILED detail=${boundedCompilerDetail(clearError)}`,
+          );
+        }
+      }
+    }
   }
 
   async run(request: CompilerApplicationRequest): Promise<CompilerApplicationResult> {
@@ -756,6 +903,10 @@ export class CompilerApplicationPort {
         bytes: jsonBytes(design),
       }];
       const assemblyPaths: AuthorV4SectionChapterPaths[] = [];
+      // Task 11aa — retain each chapter's cache identity (chapterId + the two
+      // drafting digests) so a cross-chapter assembly blocker can rebuild the exact
+      // SectionPackCacheKey of an implicated pack and evict it.
+      const chapterCacheContext = new Map<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string }>>();
       for (let index = 0; index < chapters.length; index += 1) {
         const chapter = chapters[index];
         const packet = packets[index];
@@ -777,6 +928,7 @@ export class CompilerApplicationPort {
         // mints a fresh key and the stale entry is simply never found.
         const packetDigest = candidateBlueprint.sourcePacketHash;
         const blueprintDigest = createHash("sha256").update(jsonBytes(candidateBlueprint)).digest("hex");
+        chapterCacheContext.set(chapter.chapterNumber, Object.freeze({ chapterId: chapter.chapterId, blueprintDigest, packetDigest }));
         generated.push(
           { kind: "SIDECAR", logicalPath: packetLogicalPath, mediaType: "application/json", bytes: jsonBytes(packet) },
           { kind: "SIDECAR", logicalPath: planLogicalPath, mediaType: "application/json", bytes: jsonBytes(compileSourceUsePlan(packet).plan) },
@@ -797,6 +949,19 @@ export class CompilerApplicationPort {
           };
           let acceptedOutput: Record<string, unknown> | null = null;
           let reusedFromCache = false;
+          // Task 11aa — consult durable cross-chapter avoid-context so a re-draft of
+          // an assembly-evicted pack designs away from the phrase(s) other chapters
+          // spent. Read once per section (best-effort; only consumed when drafting).
+          let assemblyAvoid: readonly SectionAvoidEntry[] | undefined;
+          const avoidStore = this.#dependencies.sectionAvoidStore;
+          if (avoidStore) {
+            try {
+              const avoidContext = await avoidStore.read({ bookId: request.bookId, chapterId: chapter.chapterId, kind });
+              if (avoidContext && avoidContext.entries.length > 0) assemblyAvoid = avoidContext.entries;
+            } catch {
+              assemblyAvoid = undefined;
+            }
+          }
           // Task 11y — durable cross-run reuse. Before spending a single model call,
           // consult the durable cache for a pack drafted under this exact identity by
           // a prior compile run. A hit is re-validated through the SAME live section
@@ -830,7 +995,7 @@ export class CompilerApplicationPort {
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
             const attemptId = attemptNumber === 1 ? operation.attemptId : `${operation.attemptId}-r${attemptNumber}`;
             invokedAttemptIds.push(attemptId);
-            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback });
+            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid });
             const result = await this.#dependencies.runner.run({
               profileId: COMPILER_SECTION_PROFILE_ID,
               context: {
@@ -967,8 +1132,23 @@ export class CompilerApplicationPort {
         chapters: assemblyPaths,
       });
       if (assembly.findings.length > 0 || !assembly.candidateFiles || assembly.candidateFiles.length !== chapters.length) {
+        // Task 11aa — break the assembly livelock. The cross-chapter anti-sameness
+        // gates run here, over independently-drafted packs that the section gates
+        // (and thus the 11y cache) already passed; without intervention the next
+        // compile run REUSES the same colliding packs and re-fails identically
+        // forever. Evict EXACTLY the implicated (chapter, kind) cached packs (the
+        // minimal set honouring the SEC93 threshold) and record cross-chapter
+        // avoid-context so their re-drafts see the phrase(s) the kept chapters keep.
+        // An assembly failure with NO structured cross-chapter blocker evicts
+        // nothing (planAssemblyEvictions returns []) — we never guess. Best-effort:
+        // an eviction/avoid store error is logged, never masking the assembly error.
+        await this.#applyAssemblyEvictions(request, chapterCacheContext, assembly.blockers ?? []);
         throw new Error(`COMPILER_ASSEMBLY_BLOCKED:${assembly.findings.join("; ") || "incomplete assembly"}`);
       }
+      // Task 11aa — assembly passed: clear any avoid-context recorded by an earlier
+      // failed round for every section in the book, so avoid guidance never outlives
+      // the collision it described.
+      await this.#clearAssemblyAvoids(request, chapters);
       const assembledChapters = assembly.candidateFiles.map((file) => {
         try {
           return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ChapterV21;

@@ -1,5 +1,5 @@
 import { createHash } from "node:crypto";
-import { readFile } from "node:fs/promises";
+import { readFile, rm } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import type { SectionKind } from "../artifacts/artifactTypes.js";
@@ -58,6 +58,13 @@ export interface SectionPackCache {
    *  Runs under the book write lock, mirroring the other book stores. Throws on a
    *  genuine store failure so the caller can treat caching as best-effort. */
   write(key: SectionPackCacheKey, pack: Record<string, unknown>): Promise<void>;
+  /** Task 11aa — remove the cached pack for this exact identity (idempotent: a
+   *  missing entry is a no-op). Runs under the book write lock. An assembly
+   *  cross-chapter blocker over a durably-cached pack would otherwise be reused
+   *  verbatim by the next compile run and re-fail identically forever; evicting
+   *  the implicated entry forces a fresh re-draft. Throws on a genuine store
+   *  failure. */
+  evict(key: SectionPackCacheKey): Promise<void>;
 }
 
 function jsonBytes(value: unknown): Uint8Array {
@@ -170,6 +177,18 @@ class FileSectionPackCache implements SectionPackCache {
     });
     if (!result.ok) {
       throw new Error(`SECTION_PACK_CACHE_WRITE_FAILED:${result.error.code}:${result.error.message}`);
+    }
+  }
+
+  async evict(key: SectionPackCacheKey): Promise<void> {
+    requirePathId(key.bookId, "bookId");
+    const path = entryPath(this.#booksRoot, key);
+    const result = await this.#writeLock.run(key.bookId, async () => {
+      await rm(path, { force: true });
+      return { ok: true as const, value: undefined };
+    });
+    if (!result.ok) {
+      throw new Error(`SECTION_PACK_CACHE_EVICT_FAILED:${result.error.code}:${result.error.message}`);
     }
   }
 }

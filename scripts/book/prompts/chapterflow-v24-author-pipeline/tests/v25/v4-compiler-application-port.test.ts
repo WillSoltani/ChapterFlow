@@ -10,6 +10,10 @@ import {
   sectionPackCacheDir,
   type SectionPackCache,
 } from "../../src/books/sectionPackCache.js";
+import {
+  createFileSectionAvoidStore,
+  type SectionAvoidStore,
+} from "../../src/books/sectionAvoidStore.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../../src/artifacts/artifactStore.js";
 import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
@@ -135,6 +139,9 @@ type RigOptions = {
   /** Durable cross-run section-pack cache (Task 11y). Shared across two rig
    *  invocations in one test to exercise reuse; absent = pre-11y always-draft. */
   readonly cache?: SectionPackCache;
+  /** Durable cross-chapter assembly-avoid store (Task 11aa). Present exercises the
+   *  port's avoid-context read (into the re-draft task) and clear-on-pass wiring. */
+  readonly avoidStore?: SectionAvoidStore;
 };
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
@@ -293,6 +300,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     pipelineRoot: resolve(context.roots.base, "pipeline-root"),
     sleep: async (ms: number) => { sleeps.push(ms); },
     ...(options.cache ? { sectionPackCache: options.cache } : {}),
+    ...(options.avoidStore ? { sectionAvoidStore: options.avoidStore } : {}),
     contentReader: {
       async open(input) {
         counts.open += 1;
@@ -1260,6 +1268,51 @@ requiredTest("11y-c a cached pack that no longer passes the current gate falls t
   const replaced = readCacheEntries(context.roots.booksRoot, BOOK).find((entry) => entry.envelope.kind === "summary-pack");
   assert.ok(replaced);
   assert.deepEqual(replaced.envelope.pack, JSON.parse(JSON.stringify(ref.summary)));
+});
+
+// ---------------------------------------------------------------------------
+// Task 11aa — the port feeds durable cross-chapter avoid-context into a re-draft
+// and clears it once assembly passes.
+// ---------------------------------------------------------------------------
+
+requiredTest("11aa the port renders seeded avoid-context into the section task and clears it on a passing assembly", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const avoidStore = createFileSectionAvoidStore({ booksRoot: context.roots.booksRoot, writeLock });
+  const avoidKey = { bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "example-pack" as const };
+
+  // A prior failed round recorded that ch01's example pack must design away from
+  // "kitchen table" (kept by another chapter).
+  await avoidStore.write(avoidKey, {
+    entries: [{
+      checkId: "SEC93.example_venue_stamping",
+      phrase: "kitchen table",
+      keptByChapters: [2],
+      message: `venue "kitchen table" is already used by ch02 — choose a different concrete venue.`,
+    }],
+  });
+
+  const subject = rig(context, "avoid-feed", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // The example-pack re-draft task card carried the cross-chapter avoid block.
+  const examplePrompt = subject.prompts.find((prompt) => prompt.context.operationId === "compiler-ch01-example-pack");
+  assert.ok(examplePrompt);
+  const taskCard = examplePrompt.prompt.inputs.find((input) => input.name === "task_card");
+  assert.ok(taskCard);
+  const rendered = Buffer.from(taskCard.bytes).toString("utf8");
+  assert.match(rendered, /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+  assert.match(rendered, /venue "kitchen table" is already used by ch02/);
+
+  // A DIFFERENT section (summary) has no avoid-context and no conflict block.
+  const summaryPrompt = subject.prompts.find((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack");
+  assert.ok(summaryPrompt);
+  const summaryCard = summaryPrompt.prompt.inputs.find((input) => input.name === "task_card");
+  assert.ok(summaryCard);
+  assert.doesNotMatch(Buffer.from(summaryCard.bytes).toString("utf8"), /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+
+  // Assembly passed, so the avoid-context is cleared — it never outlives its collision.
+  assert.equal(await avoidStore.read(avoidKey), null);
 });
 
 finishV25Tests().catch((error: unknown) => {
