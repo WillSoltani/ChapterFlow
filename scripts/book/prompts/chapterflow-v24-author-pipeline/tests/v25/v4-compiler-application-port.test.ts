@@ -1,9 +1,15 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { CompilerApplicationPort } from "../../src/app/compilerApplicationPort.js";
+import { createBookWriteLock } from "../../src/books/bookLease.js";
+import {
+  createFileSectionPackCache,
+  sectionPackCacheDir,
+  type SectionPackCache,
+} from "../../src/books/sectionPackCache.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../../src/artifacts/artifactStore.js";
 import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
@@ -121,6 +127,14 @@ type RigOptions = {
    *  horizon) then return a valid draft — exercises the Task 11k backoff-gated
    *  timeout retry class (outcome TIMED_OUT, any code). */
   readonly timedOutSummaryAttempts?: number;
+  /** Redirect which section operation the blockSummaryAttempts / *SummaryAttempts
+   *  injectors target. Defaults to summary-pack so every pre-11y test is unchanged;
+   *  the durable-reuse tests point it at a LATER section so summary passes (and is
+   *  cached) while a downstream section fails. */
+  readonly targetOperationId?: string;
+  /** Durable cross-run section-pack cache (Task 11y). Shared across two rig
+   *  invocations in one test to exercise reuse; absent = pre-11y always-draft. */
+  readonly cache?: SectionPackCache;
 };
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
@@ -129,13 +143,22 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   const seedFixture = compileCreditFixture(BOOK, { stateRoot: fixtureRoot });
   writeJsonFile(bookDesignPath(BOOK, { stateRoot: fixtureRoot }), deriveBookDesign(BOOK, { packets: [seedFixture.packet], chapters: 1 }));
   const fixture = compileCreditFixture(BOOK, { stateRoot: fixtureRoot });
-  const outputs = [fixture.summary, fixture.examples, fixture.learning, fixture.action];
+  // Select the valid draft by the section KIND being drafted (parsed from the
+  // operationId) rather than a positional cursor: durable reuse (Task 11y) can skip
+  // a section entirely, so the surviving drafts no longer arrive in fixed order.
+  const outputByKind: Record<string, unknown> = {
+    "summary-pack": fixture.summary,
+    "example-pack": fixture.examples,
+    "learning-pack": fixture.learning,
+    "action-pack": fixture.action,
+  };
+  const kindOf = (operationId: string): string => operationId.replace(/^compiler-ch\d+-/, "");
   const counts = { open: 0, runner: 0, stage: 0 };
   const prompts: Parameters<ModelTaskRunner["run"]>[0][] = [];
   let stagedInput: Parameters<CandidateStore["stage"]>[0] | null = null;
   let stagedSnapshot: CandidateSnapshot | null = null;
-  let outputIndex = 0;
   const sectionAttempts = new Map<string, number>();
+  const targetOperationId = options.targetOperationId ?? "compiler-ch01-summary-pack";
   const controller = new AbortController();
   const runStore = new FileRunStore(resolve(context.roots.tempRoot, `run-state-${suffix}`));
   const fileStageCoordinator = new FileStageCoordinator(resolve(context.roots.tempRoot, `run-state-${suffix}`));
@@ -180,7 +203,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
           : options.timedOutSummaryAttempts
             ? { limit: options.timedOutSummaryAttempts, code: "MODEL_PROCESS_FAILED" as const, outcome: "TIMED_OUT" as const }
             : null;
-      if (retryableFail && request.context.operationId === "compiler-ch01-summary-pack") {
+      if (retryableFail && request.context.operationId === targetOperationId) {
         const opCount = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
         sectionAttempts.set(request.context.operationId, opCount);
         if (opCount <= retryableFail.limit) {
@@ -217,7 +240,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
       // bounded retry loop must feed back. Blocked attempts do NOT consume the
       // rolling valid-output cursor, so the eventual passing retry still draws
       // the valid summary fixture.
-      if (options.blockSummaryAttempts && request.context.operationId === "compiler-ch01-summary-pack") {
+      if (options.blockSummaryAttempts && request.context.operationId === targetOperationId) {
         const opCount = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
         sectionAttempts.set(request.context.operationId, opCount);
         if (opCount <= options.blockSummaryAttempts) {
@@ -228,7 +251,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
           };
         }
       }
-      const output = outputs[outputIndex++ % outputs.length];
+      const output = outputByKind[kindOf(request.context.operationId)] as Record<string, unknown>;
       if (options.malformedSummary && counts.runner === 1) {
         // Structurally malformed output (wrong artifactType) — a NON-retryable
         // COMPILER_SECTION_OUTPUT_INVALID, distinct from a gate blocker.
@@ -269,6 +292,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   const port = new CompilerApplicationPort({
     pipelineRoot: resolve(context.roots.base, "pipeline-root"),
     sleep: async (ms: number) => { sleeps.push(ms); },
+    ...(options.cache ? { sectionPackCache: options.cache } : {}),
     contentReader: {
       async open(input) {
         counts.open += 1;
@@ -1083,6 +1107,159 @@ requiredTest("10 anchor-filing retry feedback appends a class-grouped anchor inv
   });
   assert.match(specificsOnly, /REQUIRED VERBATIM SPECIFICS —/);
   assert.doesNotMatch(specificsOnly, /ANCHOR INVENTORY/);
+});
+
+// ---------------------------------------------------------------------------
+// Task 11y — durable cross-run section-pack reuse.
+// ---------------------------------------------------------------------------
+
+type CacheEntry = { readonly path: string; readonly envelope: Record<string, unknown> };
+
+/** Read every durable section-pack-cache envelope for a book off disk. The
+ *  on-disk layout is a stable part of the store contract, so tests can inspect
+ *  and (for drift/gate-fail simulation) surgically edit stored entries. */
+function readCacheEntries(booksRoot: string, bookId: string): CacheEntry[] {
+  const dir = sectionPackCacheDir(booksRoot, bookId);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir)
+    .filter((name) => name.endsWith(".json"))
+    .map((name) => {
+      const path = resolve(dir, name);
+      return { path, envelope: JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown> };
+    });
+}
+
+requiredTest("11y-a a gate-passed section pack survives a failed compile run and is reused with zero model calls on the next run", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const ref = compileCreditFixture(BOOK);
+
+  // RUN 1 — summary-pack (section A) drafts and PASSES its gate (so it is cached),
+  // then example-pack (section B) fails after MAX_SECTION_ATTEMPTS and the whole run
+  // FAILS. The failure CLASS is orthogonal to the reuse mechanism; a bounded
+  // transient exhaustion is used purely because it needs no crafted blocked draft.
+  const run1 = rig(context, "reuse-run1", {
+    cache,
+    targetOperationId: "compiler-ch01-example-pack",
+    transientFailSummaryAttempts: 99,
+  });
+  await assert.rejects(run1.port.run(run1.request), /COMPILER_SECTION_PROCESS_FAILED:example-pack:after 3 attempts/);
+  assert.equal(run1.counts.stage, 0);
+  // summary drafted once (passed) + example drafted three times (all failed) = 4.
+  assert.equal(run1.counts.runner, 4);
+
+  // The gate-passed summary is durably cached under its full content identity, even
+  // though the run that produced it FAILED and staged no candidate.
+  const afterRun1 = readCacheEntries(context.roots.booksRoot, BOOK);
+  assert.equal(afterRun1.length, 1);
+  assert.equal(afterRun1[0].envelope.kind, "summary-pack");
+  assert.equal(afterRun1[0].envelope.chapterId, `${BOOK}-ch01`);
+  assert.equal(typeof afterRun1[0].envelope.blueprintDigest, "string");
+  assert.equal(typeof afterRun1[0].envelope.packetDigest, "string");
+  assert.deepEqual(afterRun1[0].envelope.pack, JSON.parse(JSON.stringify(ref.summary)));
+
+  // RUN 2 — a FRESH compile run against the same blueprint/packet, no injected
+  // failure. Summary is REUSED from the cache; the other three sections draft.
+  const run2 = rig(context, "reuse-run2", { cache });
+  const result = await run2.port.run(run2.request);
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // (a) ZERO model calls for the reused summary; exactly the B/C/D calls happen.
+  const summaryPrompts = run2.prompts.filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack");
+  assert.equal(summaryPrompts.length, 0);
+  assert.equal(run2.counts.runner, 3);
+  assert.deepEqual([...run2.prompts.map((prompt) => prompt.context.operationId)].sort(), [
+    "compiler-ch01-action-pack",
+    "compiler-ch01-example-pack",
+    "compiler-ch01-learning-pack",
+  ]);
+  assert.equal(run2.counts.stage, 1);
+
+  // The reused pack is re-serialized identically — the staged summary is byte-for-byte
+  // what a fresh draft would have produced (atomic all-pass semantics preserved).
+  const staged = run2.staged();
+  assert.ok(staged);
+  const stagedSummary = staged.files.find((file) => file.logicalPath === "compiler/ch01/summary-pack.json");
+  assert.ok(stagedSummary);
+  assert.deepEqual(JSON.parse(Buffer.from(stagedSummary.bytes).toString("utf8")), JSON.parse(JSON.stringify(ref.summary)));
+
+  // Run 2 admitted only the three drafted sections — the reused one consumes no attempt.
+  const run = await run2.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) {
+    assert.equal(run.value.status, "COMPLETED");
+    assert.equal(run.value.attempts.length, 3);
+  }
+
+  // After run 2 all four sections are cached: summary reused, the other three stored.
+  assert.deepEqual(
+    readCacheEntries(context.roots.booksRoot, BOOK).map((entry) => entry.envelope.kind).sort(),
+    ["action-pack", "example-pack", "learning-pack", "summary-pack"],
+  );
+});
+
+requiredTest("11y-b a cached pack whose stored digest no longer matches the current blueprint is ignored and re-drafts while valid entries are reused", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+
+  // Populate the cache with all four gate-passed sections.
+  const run1 = rig(context, "stale-run1", { cache });
+  await run1.port.run(run1.request);
+  assert.equal(run1.counts.runner, 4);
+
+  // Simulate a blueprint change for the summary only: its content-addressed file stays
+  // in place, but its stored blueprintDigest no longer matches what the next run will
+  // compute — a STALE entry that must be ignored, never reused.
+  const summaryEntry = readCacheEntries(context.roots.booksRoot, BOOK).find((entry) => entry.envelope.kind === "summary-pack");
+  assert.ok(summaryEntry);
+  writeFileSync(
+    summaryEntry.path,
+    `${JSON.stringify({ ...summaryEntry.envelope, blueprintDigest: "0".repeat(64) }, null, 2)}\n`,
+  );
+
+  // RUN 2 — the stale summary is ignored (re-drafts); the three digest-valid entries
+  // are reused, so exactly one model call happens.
+  const run2 = rig(context, "stale-run2", { cache });
+  const result = await run2.port.run(run2.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.deepEqual(run2.prompts.map((prompt) => prompt.context.operationId), ["compiler-ch01-summary-pack"]);
+  assert.equal(run2.counts.runner, 1);
+  assert.equal(run2.counts.stage, 1);
+});
+
+requiredTest("11y-c a cached pack that no longer passes the current gate falls through to re-draft without crashing and the entry is replaced on the new pass", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const ref = compileCreditFixture(BOOK);
+
+  // Populate the cache with all four gate-passed sections.
+  const run1 = rig(context, "gatefail-run1", { cache });
+  await run1.port.run(run1.request);
+  assert.equal(run1.counts.runner, 4);
+
+  // Replace the summary pack in-cache with a gate-FAILING one (too-short hook,
+  // SEC3.hook_length) while keeping the content identity intact — simulating a gate
+  // that tightened after the pack was stored.
+  const summaryEntry = readCacheEntries(context.roots.booksRoot, BOOK).find((entry) => entry.envelope.kind === "summary-pack");
+  assert.ok(summaryEntry);
+  const invalidPack = { ...ref.summary, hook: { ...ref.summary.hook, hook: "Too short." } };
+  writeFileSync(
+    summaryEntry.path,
+    `${JSON.stringify({ ...summaryEntry.envelope, pack: invalidPack }, null, 2)}\n`,
+  );
+
+  // RUN 2 — the invalid cached summary is re-validated through the live gate, fails,
+  // and falls through to a fresh draft (never crashes). The valid entries are reused.
+  const run2 = rig(context, "gatefail-run2", { cache });
+  const result = await run2.port.run(run2.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.deepEqual(run2.prompts.map((prompt) => prompt.context.operationId), ["compiler-ch01-summary-pack"]);
+  assert.equal(run2.counts.runner, 1);
+
+  // The stale-invalid entry is replaced by the freshly-drafted, gate-passing pack.
+  const replaced = readCacheEntries(context.roots.booksRoot, BOOK).find((entry) => entry.envelope.kind === "summary-pack");
+  assert.ok(replaced);
+  assert.deepEqual(replaced.envelope.pack, JSON.parse(JSON.stringify(ref.summary)));
 });
 
 finishV25Tests().catch((error: unknown) => {

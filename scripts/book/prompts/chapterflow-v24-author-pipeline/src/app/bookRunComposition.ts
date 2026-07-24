@@ -5,6 +5,7 @@ import { dirname, isAbsolute, relative, resolve } from "node:path";
 import { createBookWriteLock } from "../books/bookLease.js";
 import { createBookContentReader } from "../books/bookContentReader.js";
 import { createCandidateStore } from "../books/candidateStore.js";
+import { createFileSectionPackCache } from "../books/sectionPackCache.js";
 import { createCurrentPointerStore } from "../books/currentPointer.js";
 import { createQcService } from "../qc/qcService.js";
 import { createQcStore } from "../qc/qcStore.js";
@@ -348,6 +349,10 @@ export async function createProductionBookRunComposition(input: Readonly<{
   const writeLock = createBookWriteLock({ booksRoot });
   const currentPointerStore = createCurrentPointerStore({ booksRoot, writeLock });
   const candidateStore = createCandidateStore({ booksRoot, writeLock, currentPointerStore });
+  // Task 11y — durable cross-run section-pack reuse. Keyed under the same booksRoot
+  // and guarded by the same book write lock as every other book store, so a compile
+  // retry reuses gate-passed packs instead of re-drafting the whole book each round.
+  const sectionPackCache = createFileSectionPackCache({ booksRoot, writeLock });
   const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
   const runStore = createFileRunStore(runRoot);
   const stageCoordinator = createFileStageCoordinator(runRoot);
@@ -448,6 +453,7 @@ export async function createProductionBookRunComposition(input: Readonly<{
     currentPointerStore,
     bookRunEvents: eventSink(input.v25Root, input.bookId, input.logPath),
     repairApplication,
+    sectionPackCache,
   });
   return { app, contentReader, currentPointerStore, reviewService, qcService };
 }

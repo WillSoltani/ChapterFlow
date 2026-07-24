@@ -5,6 +5,7 @@ import { isAbsolute, relative, resolve } from "node:path";
 import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../artifacts/artifactStore.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SectionPackV1, type SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { CandidateInputFile, CandidateSnapshot, CandidateStore, BookContentReader } from "../books/candidateTypes.js";
+import type { SectionPackCache, SectionPackCacheKey } from "../books/sectionPackCache.js";
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
 import { deriveBookDesign } from "../compiler/bookDesign.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../compiler/sourcePacket.js";
@@ -159,6 +160,14 @@ export interface CompilerApplicationPortDependencies {
    *  Faked to resolve instantly in tests so the schedule is asserted without a
    *  real wall-clock wait; production defaults to a setTimeout sleep. */
   readonly sleep?: (ms: number) => Promise<void>;
+  /** Durable cross-run section-pack reuse (Task 11y). When present, a gate-PASSED
+   *  section pack is stored keyed by (bookId, chapterId, kind, blueprintDigest,
+   *  packetDigest) the instant it passes, and the next compile run reuses a
+   *  digest-valid cached pack — re-validated through the SAME live gate before
+   *  acceptance — instead of re-drafting it, so model calls per round strictly
+   *  decrease and convergence is monotone. Absent = pre-11y behaviour (always
+   *  draft), which keeps every existing test byte-identical. */
+  readonly sectionPackCache?: SectionPackCache;
 }
 
 type CompilerArtifactResult = Readonly<{
@@ -373,6 +382,29 @@ function sectionGateBlockers(
     .slice(0, 8)
     .map((finding) => `${finding.checkId}${finding.path ? `@${finding.path}` : ""}:${finding.message}`);
   return { blockerLines, detail: boundedCompilerDetail(blockerLines.join(" | ")) };
+}
+
+/**
+ * Task 11y — decide whether a durably-cached section pack may be reused. The
+ * cached pack is re-validated through the SAME live section gate it would face
+ * as a fresh draft: only a pack that still passes cleanly is reused. A cached
+ * pack that no longer passes the current gate (gate tightened since it was
+ * stored) or is structural garbage (sectionGateBlockers throws) is rejected so
+ * the caller falls through to re-draft — this is what keeps gate-version drift
+ * safe without any gate-code version marker. Never throws.
+ */
+function cachedSectionPackIsReusable(
+  cached: Record<string, unknown>,
+  kind: SectionKind,
+  blueprint: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  sidecar: SourceSidecarV2,
+): boolean {
+  try {
+    return sectionGateBlockers(cached, kind, blueprint, packet, sidecar) === null;
+  } catch {
+    return false;
+  }
 }
 
 function assertSuccessor(
@@ -738,6 +770,13 @@ export class CompilerApplicationPort {
           sourcePacketPath: packetLogicalPath,
           sourcePacketHash: sourcePacketHash(packet),
         });
+        // Task 11y — durable section-pack reuse identity. Both digests key on the
+        // deterministic drafting inputs (fully-resolved blueprint + compiled source
+        // packet), so a cached pack keyed here is only reused by a later compile run
+        // whose blueprint AND packet still hash identically — any drift in either
+        // mints a fresh key and the stale entry is simply never found.
+        const packetDigest = candidateBlueprint.sourcePacketHash;
+        const blueprintDigest = createHash("sha256").update(jsonBytes(candidateBlueprint)).digest("hex");
         generated.push(
           { kind: "SIDECAR", logicalPath: packetLogicalPath, mediaType: "application/json", bytes: jsonBytes(packet) },
           { kind: "SIDECAR", logicalPath: planLogicalPath, mediaType: "application/json", bytes: jsonBytes(compileSourceUsePlan(packet).plan) },
@@ -748,14 +787,46 @@ export class CompilerApplicationPort {
           const operation = operations.find((value) => value.chapterNumber === chapter.chapterNumber && value.kind === kind);
           if (!operation) throw new Error("COMPILER_ID_INVALID:missing compiler operation");
           const logicalPath = compilerPath(chapter.chapterNumber, `${kind}.json`);
+          const cache = this.#dependencies.sectionPackCache;
+          const cacheKey: SectionPackCacheKey = {
+            bookId: request.bookId,
+            chapterId: chapter.chapterId,
+            kind,
+            blueprintDigest,
+            packetDigest,
+          };
+          let acceptedOutput: Record<string, unknown> | null = null;
+          let reusedFromCache = false;
+          // Task 11y — durable cross-run reuse. Before spending a single model call,
+          // consult the durable cache for a pack drafted under this exact identity by
+          // a prior compile run. A hit is re-validated through the SAME live section
+          // gate before acceptance (cachedSectionPackIsReusable); only a pack that
+          // still passes cleanly is reused — a cached pack that no longer passes the
+          // current gate falls through to re-draft, which is what keeps gate-version
+          // drift safe. A reused section admits NO run-state attempt and burns NO
+          // model call, so model calls per compile round strictly decrease.
+          if (cache) {
+            let cached: Record<string, unknown> | null = null;
+            try {
+              cached = await cache.read(cacheKey);
+            } catch {
+              cached = null;
+            }
+            if (cached !== null && cachedSectionPackIsReusable(cached, kind, candidateBlueprint, packet, sidecars[index])) {
+              acceptedOutput = cached;
+              reusedFromCache = true;
+              console.error(
+                `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind} action=REUSE_SECTION_PACK`,
+              );
+            }
+          }
           // Bounded per-section retry: each rejected draft's gate blockers are fed
           // verbatim into the next attempt's task card. ATTEMPT 1 keeps the
           // deterministic operation id (success-path checkpoint/resume identity is
           // unchanged); retries mint salted `-r{n}` ids so run-state admits a fresh
           // attempt (the nextContext contract, applied inline).
-          let acceptedOutput: Record<string, unknown> | null = null;
           let retryFeedback: SectionRetryFeedback | undefined;
-          for (let attemptNumber = 1; attemptNumber <= MAX_SECTION_ATTEMPTS; attemptNumber += 1) {
+          for (let attemptNumber = 1; !reusedFromCache && attemptNumber <= MAX_SECTION_ATTEMPTS; attemptNumber += 1) {
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
             const attemptId = attemptNumber === 1 ? operation.attemptId : `${operation.attemptId}-r${attemptNumber}`;
             invokedAttemptIds.push(attemptId);
@@ -848,6 +919,24 @@ export class CompilerApplicationPort {
             retryFeedback = { blockerLines: blocked.blockerLines, priorDraft: draft };
           }
           if (acceptedOutput === null) throw new Error(`COMPILER_SECTION_BLOCKED:${kind}:bounded retry exhausted without a verdict`);
+          // Task 11y — write on gate-pass. A freshly-drafted pack is stored durably
+          // the instant it passes its gate, BEFORE any later section is attempted, so
+          // a section that cleared its gate in a run that later fails elsewhere is
+          // reused (not re-drafted) by the next run. Caching is best-effort: a store
+          // failure (e.g. a busy write lock) must never fail a passing compile, so it
+          // is logged and swallowed. A reused pack is already durable — no re-write.
+          if (cache && !reusedFromCache) {
+            try {
+              await cache.write(cacheKey, acceptedOutput);
+              console.error(
+                `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind} action=STORE_SECTION_PACK`,
+              );
+            } catch (cacheError) {
+              console.error(
+                `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind} action=STORE_SECTION_PACK_FAILED detail=${boundedCompilerDetail(cacheError)}`,
+              );
+            }
+          }
           sectionPaths[kind] = logicalPath;
           generated.push({ kind: "SIDECAR", logicalPath, mediaType: "application/json", bytes: jsonBytes(acceptedOutput) });
         }
