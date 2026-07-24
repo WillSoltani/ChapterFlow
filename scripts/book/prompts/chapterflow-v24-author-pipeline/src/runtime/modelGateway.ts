@@ -369,7 +369,9 @@ function terminalDetail(
     `stdoutTruncated=${process.stdoutTruncated}`,
     `stderrTruncated=${process.stderrTruncated}`,
   ];
-  if (outcome === "FAILED" && errorCode === "MODEL_PROCESS_FAILED") {
+  const captureInvalid = outcome === "FAILED" && errorCode === "MODEL_OUTPUT_INVALID"
+    && globalThis.process?.env?.CHAPTERFLOW_CAPTURE_INVALID_OUTPUT === "1";
+  if ((outcome === "FAILED" && errorCode === "MODEL_PROCESS_FAILED") || captureInvalid) {
     const stdoutHead = sanitizedStreamHead(process.stdout);
     if (stdoutHead) fields.push(`stdoutHead=${stdoutHead}`);
     const stderrHead = sanitizedStreamHead(process.stderr);
