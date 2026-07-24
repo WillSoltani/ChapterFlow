@@ -77,6 +77,7 @@ function universalCore(kind: SectionKind): string[] {
         "Produce exactly the six blueprint slots (the final v21 gate requires six). exampleId = \"ex01\"..\"ex06\" in slot order, or \"chNN-exNN-slug\"; never include the bookId.",
         "Every example is a concrete human scene with a NAMED person living a defining moment. Use a different dealt name per slot; never use a source-figure name as an invented actor.",
         "Each example cites a namedExample/example anchor; source facts DRIVE the decision and never appear as props, labels, wall cards, desk objects, or title subjects.",
+        "EVERY scenario shows a visible decision, tradeoff, mistake, friction, or recovery IN THE SCENE — a person choosing between two concrete options, catching an error, or paying a cost — not a smooth description of someone doing the right thing (SEC31); the validator enforces this per example.",
         "whatToDo adds a new instruction/test/refusal rule not already narrated in the scenario. whyItMatters explains the same cited sourceFactIds and the decision shown.",
         "Output ExamplePackV1 JSON only.",
       ];
