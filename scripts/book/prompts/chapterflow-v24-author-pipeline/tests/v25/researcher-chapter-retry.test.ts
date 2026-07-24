@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 
 import type { BibliographyResult } from "../../src/agents/researcher-bibliography.js";
 import {
+  isDegenerateChapterResearchOutput,
   runResearcherChapter,
   type ChapterResearchInput,
   type ChapterResearchResult,
@@ -124,6 +125,15 @@ function canaryBadOutput(): unknown {
   };
 }
 
+/** The exact finding-40 (canary7, 2026-07-24) degenerate output: the model
+ *  returned a bare `{}` on the RETRY — no fields at all (schemaVersion, chapter
+ *  number, every field absent). The validator reports "everything missing", and
+ *  before the fix the loop echoed this `{}` back as the "prior draft to repair",
+ *  entrenching the empty across attempts 2→3 (observed 2/2). */
+function emptyObjectOutput(): unknown {
+  return {};
+}
+
 /** Structurally-complete sidecar engineered to trip ONLY the advisory realness
  *  signals that gate the research route (placeholder examples + repeated
  *  boilerplate => SV2.realness_fabricated_sidecar) while passing every
@@ -197,7 +207,7 @@ function rig(outputs: readonly unknown[]) {
   return { execution, prompts, calls };
 }
 
-requiredTest("1 invalid canary output succeeds after one retry with validator feedback + prior output in prompt", async () => {
+requiredTest("1 degenerate (all-empty) output retries with a complete-object directive and NO echo of the empty blob", async () => {
   const subject = rig([canaryBadOutput(), validChapter()]);
   const result = await runResearcherChapter(input(), subject.execution);
 
@@ -209,8 +219,14 @@ requiredTest("1 invalid canary output succeeds after one retry with validator fe
   // (a) the retry prompt names the rejection and includes validator error lines
   assert.match(retryPrompt, /PREVIOUS ATTEMPT WAS REJECTED/);
   assert.match(retryPrompt, /focus too short/);
-  // (b) the retry prompt echoes the prior bad output so the model sees its mistake
-  assert.match(retryPrompt, /chapterflow-analysis-v1/);
+  // (b) an all-empty output is DEGENERATE — echoing it back ("do not repeat this")
+  //     is worthless and entrenches the emptiness (finding-40: 2/2). The loop must
+  //     instead demand a COMPLETE object and NOT echo the skeleton back.
+  assert.match(retryPrompt, /almost-empty|empty or skeleton|populate EVERY required field/i);
+  // the skeleton is NOT echoed back as a "prior draft to repair" (that is the
+  // entrenching behavior); the bogus schemaVersion may still appear inside the
+  // SV2 problem LINE, which is legitimate feedback, so we assert on the echo LABEL.
+  assert.doesNotMatch(retryPrompt, /repair it, do not restart/);
   // the first prompt must NOT carry any retry feedback
   assert.doesNotMatch(subject.prompts[0], /PREVIOUS ATTEMPT WAS REJECTED/);
 });
@@ -431,6 +447,69 @@ requiredTest("10 persistent TIMED_OUT fails closed after MAX_ATTEMPTS(3) with th
   assert.deepEqual(clock.waited, [2000, 8000]);
   // every attempt admitted a fresh, non-colliding attempt id
   assert.equal(new Set(subject.attemptIds).size, 3);
+});
+
+requiredTest("11 substantive validator rejection leads with the task, frames the prior draft as REFERENCE, and echoes it for repair", async () => {
+  // A substantive-but-wrong draft (trips the meta guard) is repairable, so the
+  // retry MUST echo it — but reframed as reference material to fix, led by a
+  // task restatement, not an accusation. Finding-40: the accusatory "fix exactly
+  // these" + long banned list raised the model's degenerate-empty rate; leading
+  // with the task and keeping the prior draft as reference reduces that pressure.
+  const subject = rig([metaReferenceOutput(), validChapter()]);
+  const result = await runResearcherChapter(input(), subject.execution);
+
+  assert.equal(result.schemaVersion, "source-v2");
+  assert.equal(subject.calls(), 2);
+  const retryPrompt = subject.prompts[1];
+
+  // task-first lead appears BEFORE the rejection header
+  const taskIdx = retryPrompt.search(/Continue the SAME task/i);
+  const rejectIdx = retryPrompt.search(/PREVIOUS ATTEMPT WAS REJECTED/);
+  assert.ok(taskIdx >= 0, "retry prompt must restate the task");
+  assert.ok(rejectIdx >= 0);
+  assert.ok(taskIdx < rejectIdx, "the task restatement must lead, before the rejection list");
+
+  // the banned-list problem line is preserved
+  assert.match(retryPrompt, /meta-reference/);
+  // the prior draft is echoed as REFERENCE to repair (not "do not repeat these mistakes")
+  assert.match(retryPrompt, /repair it, do not restart/i);
+  assert.match(retryPrompt, /The author argues/); // the echoed prior coreClaim
+  // NOT treated as a degenerate empty
+  assert.doesNotMatch(retryPrompt, /almost-empty/i);
+});
+
+requiredTest("12 bare {} degenerate output does NOT echo the empty and demands a complete object", async () => {
+  const subject = rig([emptyObjectOutput(), validChapter()]);
+  const result = await runResearcherChapter(input(), subject.execution);
+
+  assert.equal(result.schemaVersion, "source-v2");
+  assert.equal(subject.calls(), 2);
+  const retryPrompt = subject.prompts[1];
+
+  assert.match(retryPrompt, /almost-empty|empty or skeleton|populate EVERY required field/i);
+  // the worthless "here is your previous attempt: {}" echo must be gone
+  assert.doesNotMatch(retryPrompt, /repair it, do not restart/i);
+  // schema reminder still present
+  assert.match(retryPrompt, /schemaVersion is exactly "source-v2"/);
+});
+
+requiredTest("13 isDegenerateChapterResearchOutput classifies empties vs substantive drafts", () => {
+  // finding-40 shapes: bare {} and the all-empty-fields canary are degenerate.
+  assert.equal(isDegenerateChapterResearchOutput({}), true);
+  assert.equal(isDegenerateChapterResearchOutput(canaryBadOutput()), true);
+  assert.equal(isDegenerateChapterResearchOutput(null), true);
+  assert.equal(isDegenerateChapterResearchOutput([]), true);
+  assert.equal(isDegenerateChapterResearchOutput("{}"), true);
+  // any single substantive field makes it repairable, not degenerate
+  assert.equal(isDegenerateChapterResearchOutput({ focus: "a real focus sentence" }), false);
+  assert.equal(isDegenerateChapterResearchOutput({ keyClaims: ["one claim"] }), false);
+  assert.equal(
+    isDegenerateChapterResearchOutput({ centralConcept: { name: "x", plainDefinition: "", whyItMatters: "" } }),
+    false,
+  );
+  // substantive-but-wrong drafts are NOT degenerate
+  assert.equal(isDegenerateChapterResearchOutput(metaReferenceOutput()), false);
+  assert.equal(isDegenerateChapterResearchOutput(validChapter()), false);
 });
 
 finishV25Tests().catch((error: unknown) => {

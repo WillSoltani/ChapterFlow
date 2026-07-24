@@ -312,12 +312,57 @@ export async function runResearcherChapter(
   throw new Error(`chapter research invalid after ${MAX_CHAPTER_RESEARCH_ATTEMPTS} attempts: ${accumulated}`);
 }
 
+/**
+ * True when a rejected model output carries NO repairable content: a bare `{}`,
+ * a non-object (null / array / string), or an object in which every core field
+ * is empty/blank (the finding-40 canary7 shape — the model returned `{}` on the
+ * retry, and the all-empty "chapterflow-analysis-v1" canary before it). A
+ * substantive-but-wrong draft (one real focus/claim/example, even if it trips
+ * the meta guard) is repairable and NOT degenerate.
+ *
+ * Exported for direct classification tests. The retry loop uses it to decide the
+ * retry framing: echoing a degenerate `{}` back as "your previous draft — repair
+ * it" is worthless AND entrenching — it hands the model a skeleton to mimic with
+ * nothing to build from, which is exactly why finding-40 went empty→empty (2/2)
+ * across attempts 2 and 3 instead of recovering. When the prior output is
+ * degenerate, the loop drops the echo and demands a COMPLETE object instead.
+ */
+export function isDegenerateChapterResearchOutput(output: unknown): boolean {
+  if (!output || typeof output !== "object" || Array.isArray(output)) return true;
+  const r = output as Record<string, unknown>;
+  const nonEmptyString = (value: unknown): boolean => typeof value === "string" && value.trim().length > 0;
+  const nonEmptyArray = (value: unknown): boolean => Array.isArray(value) && value.length > 0;
+  for (const key of ["chapterTitle", "focus", "coreClaim", "hardEdge", "paraphraseNotes"]) {
+    if (nonEmptyString(r[key])) return false;
+  }
+  for (const key of ["keyClaims", "namedExamples", "voiceCues", "testableFacts"]) {
+    if (nonEmptyArray(r[key])) return false;
+  }
+  if (r.centralConcept && typeof r.centralConcept === "object" && !Array.isArray(r.centralConcept)) {
+    const concept = r.centralConcept as Record<string, unknown>;
+    for (const key of ["name", "plainDefinition", "whyItMatters"]) {
+      if (nonEmptyString(concept[key])) return false;
+    }
+  }
+  return true;
+}
+
 /** Build the retry block appended to the user prompt after a failed attempt.
- *  For a validator/gateway rejection it names the exact errors (and, for an
- *  in-process rejection, echoes the prior output verbatim) so the model repairs
- *  precisely what failed. For a transient process failure there is nothing wrong
- *  with the model's content and no output to echo — the note simply asks for a
- *  correct result. */
+ *  For a validator/gateway rejection it names the exact errors (and, for a
+ *  repairable in-process rejection, echoes the prior output as REFERENCE) so the
+ *  model repairs precisely what failed. Two finding-40 (canary7) hardenings:
+ *   1. The block LEADS with a task restatement, not the accusation. The prior
+ *      accusatory "fix exactly these" + newly-enumerated banned-form list
+ *      measurably raised the model's degenerate-empty rate on the retry (live
+ *      A/B: the old short meta note produced substantive retries, the enumerated
+ *      list went empty). Leading with the task and framing the prior draft as
+ *      reference lowers that pressure while keeping the banned list intact.
+ *   2. A DEGENERATE prior output (bare `{}` / all-empty) is NOT echoed — the
+ *      echo is worthless and entrenches the emptiness; instead the block states
+ *      the prior attempt was almost-empty and demands a complete object.
+ *  For a transient process failure / timeout there is nothing wrong with the
+ *  model's content and no output to echo — the note simply asks for a correct
+ *  result. */
 function buildRetryFeedback(failure: AttemptFailure): string {
   const lines: string[] = [];
   if (failure.kind === "transient-process" || failure.kind === "timed-out") {
@@ -330,12 +375,25 @@ function buildRetryFeedback(failure: AttemptFailure): string {
     lines.push(`PREVIOUS ATTEMPT DID NOT COMPLETE — ${cause}. Nothing was wrong with your content; simply produce a correct result this time.`);
     lines.push("");
   } else {
+    // Task-first lead: restate the goal before the correction list so the retry
+    // reads as "keep going, refine" rather than an accusation that pushes the
+    // model toward a degenerate empty response.
+    lines.push("Continue the SAME task: produce ONE complete ChapterResearchResult JSON object. Keep everything that was already correct and change ONLY the items listed below.");
+    lines.push("");
     lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
     for (const problem of failureProblems(failure)) lines.push(`- ${problem}`);
     lines.push("");
     if (failure.kind === "validator") {
-      lines.push("Your previous (rejected) output was — do not repeat these mistakes:");
-      lines.push(safeJson(failure.output));
+      if (isDegenerateChapterResearchOutput(failure.output)) {
+        // Degenerate prior output: echoing an empty/skeleton object back is
+        // worthless and entrenches the emptiness (finding-40: 2/2 empty across
+        // retries). Demand a complete object instead of handing back the void.
+        lines.push("Your previous attempt returned an almost-empty object with the required fields missing or blank. Do NOT return an empty or skeleton object — populate EVERY required field with substantive, specific content this time.");
+      } else {
+        // Repairable draft: echo it as REFERENCE to fix, not an accusation.
+        lines.push("For reference, here is your previous attempt — repair it, do not restart from scratch, and do not reproduce the problems listed above:");
+        lines.push(safeJson(failure.output));
+      }
     } else {
       // Gateway-level schema rejection: the raw invalid output stays inside the
       // gateway and is not available to echo back. Do not fabricate one.
