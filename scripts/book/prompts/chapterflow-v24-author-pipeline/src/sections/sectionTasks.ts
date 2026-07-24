@@ -464,7 +464,7 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
     });
     if (!slotLines.length) return "";
     const caseLines = [...citedCases.entries()].map(([id, specs]) => `- ${id}: ${specs.map((x) => `"${x}"`).join(" | ")}`);
-    return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC55-58: each citing question weaves at least 1 of its case's specifics verbatim — exact case-insensitive substring — into prompt or explanation):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}`;
+    return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics verbatim — exact case-insensitive substring — into the prompt AND at least 1 into the explanation):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}`;
   })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
