@@ -463,7 +463,7 @@ function collectChapterResearchProblems(r: ChapterResearchResult, input: Chapter
   for (const re of META_REGEXES) {
     const m = allText.match(re);
     if (m) {
-      problems.push(`meta-reference "${m[0]}" found — paraphrase the claim directly without naming the chapter`);
+      problems.push(`meta-reference "${m[0]}" found — paraphrase the claim directly. BANNED everywhere in every field: "this chapter", "the chapter", "this book", "the book", "the author", "Allen writes", chapter/section numbers. State the claim as a standalone fact about people/thought/circumstances.`);
       break;
     }
   }
