@@ -9,8 +9,10 @@
  *     (TI) absent from a power-of-moments render.
  *  2. universal invariants present for all four kinds.
  *  3. the VOICE / LIVED-MOMENTS paragraph retained verbatim (exact snapshot).
- *  4. a token-count regression bound: every rendered task is <= 60% of the pinned
- *     pre-refactor length (the full-blueprint duplication was dropped).
+ *  4. a token-count regression bound: every rendered task is <= 62% of the pinned
+ *     pre-refactor length (the full-blueprint duplication was dropped; re-pinned
+ *     60->62% for Task 11z's functional quiz-specifics preflight — a deliberate,
+ *     tested addition, not prose creep).
  *  5. class-B gate-restatement prose was actually deleted (only the ~8 design-around
  *     rules survive, each naming its validator).
  *  6. the book-scars loader validates + fails loud, and returns null for no file.
@@ -33,7 +35,7 @@ import type { ChapterSpec } from "../src/generateChapter.js";
 
 // ---- Pinned PRE-REFACTOR rendered lengths (chars), measured on the realistic
 // money-book fixture below at branch point (commit 4266c629c) with the pre-P07
-// sectionTasks.ts. The bound is <= 60% of these; see the P07 completion report. ----
+// sectionTasks.ts. The bound is <= 62% of these (re-pinned for Task 11z); see the P07 completion report. ----
 const PRE_REFACTOR_CHARS: Record<SectionKind, number> = {
   "summary-pack": 48356,
   "example-pack": 54639,
@@ -187,13 +189,13 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
   assert.doesNotMatch(learning, /Write in the VOICE CARD register;/);
 });
 
-test("every rendered task is <= 60% of its pinned pre-refactor length", () => {
+test("every rendered task is <= 62% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
     const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
-    assert.ok(md.length <= 0.6 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 60%`);
+    assert.ok(md.length <= 0.62 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 62%`);
   }
 });
 

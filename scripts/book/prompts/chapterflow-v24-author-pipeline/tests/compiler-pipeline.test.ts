@@ -2109,6 +2109,29 @@ test("v23 example-pack validator rejects whyItMatters lines that explain a neigh
   );
 });
 
+test("learning-pack task pre-lists each quiz slot's required verbatim specifics (Task 11z)", () => {
+  const fx = compileFixture();
+  const md = buildSectionTaskMarkdown({
+    kind: "learning-pack",
+    bookId: "money-book",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning.json",
+    context: { bookScars: { bookId: "money-book", phrases: [], frames: [], notes: [] }, voiceCard: null },
+    deliveryMode: "DIRECT_JSON",
+  });
+  assert.match(md, /REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT/, "preflight block missing");
+  const anchored = fx.packet.allowedAnchors.filter((a) => (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchored.length > 0, "fixture needs a specifics-rich anchor");
+  for (const a of anchored) {
+    for (const spec of a.hardSpecifics ?? []) {
+      assert.ok(md.includes(`"${spec}"`), `missing specific ${spec}`);
+    }
+  }
+  assert.match(md, /at least 1 of its case's specifics verbatim/i);
+  assert.match(md, /prompt or explanation/i);
+});
+
 test("SEC12 assembled-ease blocker names per-tier eases and the lowest tier (Task 11s)", () => {
   const fx = compileFixture();
   const bad = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
