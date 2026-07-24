@@ -14,6 +14,7 @@ import {
   mergeSectionAvoidEntries,
   SEC93_MAX_VENUE_CHAPTERS,
   CROSS_CHAPTER_EVICTION_POLICIES,
+  CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS,
 } from "../../src/app/compilerApplicationPort.js";
 import {
   structureAssemblyBlockers,
@@ -22,7 +23,7 @@ import {
 import { checkSectionGate, type SectionFinding } from "../../src/sections/sectionGate.js";
 import { buildSectionTaskMarkdown } from "../../src/sections/sectionTasks.js";
 import { compileCreditFixture } from "../fixtures/creditBookFixture.js";
-import type { ExamplePackV1, SectionKind } from "../../src/artifacts/artifactTypes.js";
+import type { ExamplePackV1, LearningPackV1, SectionKind } from "../../src/artifacts/artifactTypes.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 const BOOK = "assembly-avoid-book";
@@ -340,6 +341,9 @@ requiredTest("11aa task card — avoid-context renders a cross-chapter conflict 
 
 const SEC94 = "SEC94.action_try_this_now_opener_reuse";
 const SEC114 = "SEC114.action_challenge_opener_saturation";
+const SEC37 = "SEC37.example_synthetic_scene_shell";
+const SEC86 = "SEC86.quiz_repeated_choice_tail";
+const SEC95 = "SEC95.summary_hook_first_word_clustering";
 
 function openerBlocker(checkId: string, signature: string, chapterNumber: number): AssemblyBlocker {
   const separator = signature.indexOf(":");
@@ -498,6 +502,96 @@ requiredTest("11ae registry — the live SEC94 and SEC114 gates stamp signatures
   const plan = planAssemblyEvictions(blockers, chapterIds);
   assert.ok(plan.some((eviction) => eviction.avoid.checkId === SEC94), "SEC94 must produce an eviction");
   assert.ok(plan.some((eviction) => eviction.avoid.checkId === SEC114), "SEC114 must produce an eviction");
+});
+
+// ---------------------------------------------------------------------------
+// Task 11ae review — SEC86 and SEC95 are cross-chapter SATURATION cluster gates
+// that are structurally like the 16 stamped gates but whose firing conditions do
+// not reduce to a static keep-earliest-N. They are DELIBERATELY unstamped and must
+// be catalogued as documented exemptions so the decision is first-class, not a
+// silent omission that would re-open the Finding-41 livelock unexamined.
+// ---------------------------------------------------------------------------
+
+requiredTest("11ae exemptions — every cross-chapter saturation gate is either evicted OR documented-exempt, never silently omitted", () => {
+  // SEC37 (single-chapter ban), SEC86 (compound choice-count trigger), and SEC95
+  // (batch-relative threshold) are the deliberately un-evicted saturation gates.
+  for (const checkId of [SEC37, SEC86, SEC95]) {
+    const rationale = CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.get(checkId);
+    assert.ok(rationale && rationale.length > 0, `${checkId} must carry a documented exemption rationale`);
+    // Mutually exclusive: an exempt gate is NEVER also a stamped eviction policy —
+    // otherwise planAssemblyEvictions could try to evict a gate that cannot converge.
+    assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.has(checkId), false, `${checkId} must not also be a stamped eviction policy`);
+  }
+  // The two registries are globally disjoint (the module-load guard enforces this;
+  // the test pins it so a regression is caught in CI, not only at import time).
+  for (const checkId of CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.keys()) {
+    assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.has(checkId), false, `${checkId} is exempt and must not be stamped`);
+  }
+});
+
+requiredTest("11ae exemptions — the live SEC95 gate fires yet stays unstamped, so it projects NO assembly blocker and never reaches planAssemblyEvictions", () => {
+  // Five chapters whose summary hooks share the same first word saturate SEC95
+  // (group 5 of 5 >= ceil(5 * cap) threshold).
+  const base = compileCreditFixture(BOOK);
+  const selectedChapters = [1, 2, 3, 4, 5].map((chapterNumber) => {
+    const blueprint = { ...base.blueprint, chapterNumber, chapterId: `${BOOK}-ch${String(chapterNumber).padStart(2, "0")}` };
+    return {
+      chapterNumber,
+      blueprint,
+      sourcePacket: base.packet,
+      sourceSidecar: undefined,
+      packs: {
+        "summary-pack": { ...base.summary, chapterId: blueprint.chapterId },
+        "example-pack": { ...base.examples, chapterId: blueprint.chapterId },
+        "learning-pack": { ...base.learning, chapterId: blueprint.chapterId },
+        "action-pack": { ...base.action, chapterId: blueprint.chapterId },
+      },
+    };
+  });
+  const report = checkSectionGate(BOOK, {}, { selectedChapters });
+  const sec95 = report.findings.filter((finding) => finding.checkId === SEC95);
+  assert.ok(sec95.length >= 5, `expected SEC95 to fire across the batch, saw ${sec95.length}`);
+  // Deliberately unstamped: no finding carries a signature, so structureAssemblyBlockers
+  // drops every one and the eviction machinery is never engaged for SEC95.
+  assert.ok(sec95.every((finding) => finding.signature === undefined), "SEC95 findings must stay unstamped");
+  const blockers = structureAssemblyBlockers(report.findings);
+  assert.equal(blockers.some((blocker) => blocker.checkId === SEC95), false, "SEC95 must not project an assembly blocker");
+});
+
+requiredTest("11ae exemptions — the live SEC86 gate fires yet stays unstamped, so it projects NO assembly blocker", () => {
+  // Three chapters whose quiz choices share a generic mechanical tail trip SEC86
+  // (chapters.size >= 3).
+  const base = compileCreditFixture(BOOK);
+  const tailedLearning = (chapterId: string): LearningPackV1 => {
+    const questions = base.learning.quiz.questions.map((question, index) => {
+      if (index !== 0) return question;
+      const choices = [...(question.choices ?? [])];
+      choices[0] = `${choices[0]} evaluated under the stated evidence test`;
+      return { ...question, choices };
+    });
+    return { ...base.learning, chapterId, quiz: { ...base.learning.quiz, questions } };
+  };
+  const selectedChapters = [1, 2, 3].map((chapterNumber) => {
+    const blueprint = { ...base.blueprint, chapterNumber, chapterId: `${BOOK}-ch${String(chapterNumber).padStart(2, "0")}` };
+    return {
+      chapterNumber,
+      blueprint,
+      sourcePacket: base.packet,
+      sourceSidecar: undefined,
+      packs: {
+        "summary-pack": { ...base.summary, chapterId: blueprint.chapterId },
+        "example-pack": { ...base.examples, chapterId: blueprint.chapterId },
+        "learning-pack": tailedLearning(blueprint.chapterId),
+        "action-pack": { ...base.action, chapterId: blueprint.chapterId },
+      },
+    };
+  });
+  const report = checkSectionGate(BOOK, {}, { selectedChapters });
+  const sec86 = report.findings.filter((finding) => finding.checkId === SEC86);
+  assert.ok(sec86.length >= 3, `expected SEC86 to fire across 3 chapters, saw ${sec86.length}`);
+  assert.ok(sec86.every((finding) => finding.signature === undefined), "SEC86 findings must stay unstamped");
+  const blockers = structureAssemblyBlockers(report.findings);
+  assert.equal(blockers.some((blocker) => blocker.checkId === SEC86), false, "SEC86 must not project an assembly blocker");
 });
 
 finishV25Tests().catch((error: unknown) => {

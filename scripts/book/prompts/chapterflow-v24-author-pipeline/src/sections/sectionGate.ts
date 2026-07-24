@@ -1278,8 +1278,10 @@ function crossChapterShellFindings(shells: ExampleShellOccurrence[]): SectionFin
         checkId: synthetic ? "SEC37.example_synthetic_scene_shell" : "SEC80.example_cross_chapter_opening_shape",
         // Task 11ae — stamp the grouping signature so the compiler port can evict the
         // implicated cached packs (registry-driven). SEC37 is a synthetic-shell ban
-        // (fires at a single chapter, no keep-earliest-N semantics) — left unstamped
-        // so it keeps failing loud without eviction.
+        // (fires at a single chapter, no keep-earliest-N semantics) — DELIBERATELY
+        // left unstamped so it keeps failing loud without eviction, and registered as
+        // a documented exemption in CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS
+        // (compilerApplicationPort) alongside SEC86 and SEC95.
         signature: synthetic ? undefined : hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
@@ -1720,6 +1722,13 @@ function crossChapterQuizChoiceTailFindings(tails: ExampleShellOccurrence[]): Se
         section: hit.section,
         path: hit.path,
         message: `${hit.message}; repeated across ${chapters.size} chapter(s) and ${group.length} choice(s)`,
+        // Task 11ae — DELIBERATELY unstamped (no `signature`), so this never enters
+        // the assembly eviction machinery. The firing condition is compound
+        // (`chapters.size >= 3 || group.length >= 5`): the choice-count arm can trip
+        // inside one or two chapters, where a chapter-keep-earliest-N eviction evicts
+        // nothing and the shared tail survives the re-draft. It fails loud the
+        // ordinary way (assembly throws) and is registered as a documented exemption
+        // in CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS (compilerApplicationPort).
       });
     }
   }
@@ -1996,6 +2005,13 @@ function summaryHookFirstWordCapFindings(hooks: SummaryHookFirstWordOccurrence[]
         section: "summary-pack",
         path: hit.path,
         message: `summary hook opens with "${firstWord}", which appears in ${group.length} of ${hooks.length} selected summary hooks (B13 cap ${threshold}, ${Math.round(SUMMARY_HOOK_FIRST_WORD_CAP * 100)}% of batch). Vary hook first words across the parallel batch. Chapters: ${chapters.join(", ")}.`,
+        // Task 11ae — DELIBERATELY unstamped (no `signature`), so this never enters
+        // the assembly eviction machinery. The cap is BATCH-RELATIVE
+        // (`ceil(hooks.length * cap)`), not a static keep-count, so no fixed
+        // maxKeptChapters mirrors the gate across books of differing chapter counts.
+        // It fails loud the ordinary way (assembly throws) and is registered as a
+        // documented exemption in CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS
+        // (compilerApplicationPort).
       });
     }
   }

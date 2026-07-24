@@ -563,6 +563,51 @@ export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, CrossChapterEv
 ]);
 
 /**
+ * Task 11ae review — cross-chapter SATURATION gates that are DELIBERATELY left
+ * unstamped (no `signature:` in their sectionGate finding constructor), so they
+ * never enter the eviction machinery. Each groups by a colliding signature like the
+ * stamped family, but its firing condition does NOT reduce to a static
+ * `maxKeptChapters`, so a keep-earliest-N registry policy could not converge — a
+ * chapter-based eviction would either evict nothing (the collision survives) or
+ * evict without clearing the trip. Rather than stamp them with a policy that would
+ * mis-mirror the gate, they stay unstamped and fail loud the ordinary way: assembly
+ * still throws COMPILER_ASSEMBLY_BLOCKED and the collision reaches the operator;
+ * they simply do not auto-evict.
+ *
+ *  - SEC37.example_synthetic_scene_shell — a synthetic-shell BAN that fires at a
+ *    SINGLE chapter with no keep-earliest-N semantics (every occurrence must be
+ *    regenerated, never "kept"). Documented at its finding constructor.
+ *  - SEC86.quiz_repeated_choice_tail — COMPOUND trigger
+ *    (`chapters.size >= 3 || group.length >= 5`); the choice-count arm can trip
+ *    inside one or two chapters, where a chapter-keep-N eviction evicts nothing and
+ *    the shared tail survives the re-draft.
+ *  - SEC95.summary_hook_first_word_clustering — BATCH-RELATIVE threshold
+ *    (`ceil(hooks.length * cap)`), not a static keep-count, so no fixed
+ *    `maxKeptChapters` mirrors the gate across books of differing chapter counts.
+ *
+ * This map makes the decision FIRST-CLASS: every cross-chapter saturation gate is
+ * either in CROSS_CHAPTER_EVICTION_POLICIES (stamped, evicted) or here (documented,
+ * un-evicted) — never silently omitted. A new saturation gate MUST be placed in one
+ * or the other.
+ */
+export const CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS: ReadonlyMap<string, string> = new Map<string, string>([
+  ["SEC37.example_synthetic_scene_shell", "single-chapter synthetic-shell ban; no keep-earliest-N semantics — every occurrence is regenerated, never kept"],
+  ["SEC86.quiz_repeated_choice_tail", "compound firing (chapters>=3 OR choices>=5); the choice-count arm trips within 1-2 chapters, where a chapter-keep-N eviction evicts nothing"],
+  ["SEC95.summary_hook_first_word_clustering", "batch-relative threshold ceil(hooks.length*cap); no static maxKeptChapters mirrors it across differing chapter counts"],
+]);
+
+// A cross-chapter saturation gate is either evicted or exempted, never both.
+// Catching a double-listing at module load turns a future copy-paste slip into an
+// immediate loud failure rather than eviction behaviour that depends on lookup order.
+for (const checkId of CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.keys()) {
+  if (CROSS_CHAPTER_EVICTION_POLICIES.has(checkId)) {
+    throw new Error(
+      `COMPILER_ASSEMBLY_EVICTION_REGISTRY_CONTRADICTION:${checkId} is listed in both CROSS_CHAPTER_EVICTION_POLICIES and CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS — a cross-chapter saturation gate is either evicted or exempted, never both`,
+    );
+  }
+}
+
+/**
  * Task 11aa/11ae — the livelock-break policy. Given the STRUCTURED cross-chapter
  * assembly blockers and the run's chapter-id map, decide the MINIMAL set of cached
  * (chapter, kind) packs to evict so the next compile run can converge, and the
