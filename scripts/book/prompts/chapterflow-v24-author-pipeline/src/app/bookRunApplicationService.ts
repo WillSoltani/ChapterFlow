@@ -160,6 +160,25 @@ function completedResearchSeed(events: readonly BookRunEvent[]): Result<Candidat
   return { ok: true, value: seeds[0] };
 }
 
+/** The durable compiled-candidate identity a resumed run's compile phase already
+ *  COMPLETED (task 11ab / finding 37), or null when no compile has completed. The
+ *  compile COMPLETED event carries the compiled child candidate's identity; a run
+ *  resumed after that event must rehydrate that exact candidate rather than re-derive
+ *  compile state from the base compiler run (terminal FAILED, retryable) and enter the
+ *  operator-grant scan, which fail-closes on the COMPLETED slot. Mirror of
+ *  completedResearchSeed. */
+function completedCompileCandidate(events: readonly BookRunEvent[]): Result<CandidateIdentity | null> {
+  const candidates = events
+    .filter((event) => event.phase === "compile" && event.status === "COMPLETED")
+    .map((event) => event.candidate)
+    .filter((candidate): candidate is CandidateIdentity => candidate !== undefined);
+  if (candidates.length === 0) return { ok: true, value: null };
+  if (candidates.some((candidate) => !sameIdentity(candidate, candidates[0]))) {
+    return failed("BOOK_RUN_RESUME_UNAVAILABLE", "resume compile completion evidence conflicts");
+  }
+  return { ok: true, value: candidates[0] };
+}
+
 function retryableCompilerFailure(detail: string | undefined): boolean {
   return detail !== undefined && RETRYABLE_COMPILER_FAILURES.some((prefix) => detail.startsWith(prefix));
 }
@@ -507,6 +526,33 @@ export class BookRunApplicationService {
     };
   }
 
+  /** Post-recovery resume rehydrate for a durably-COMPLETED compile (task 11ab /
+   *  finding 37). Once a durable compile COMPLETED event exists for the resumed run,
+   *  compile is DONE and MUST NOT be re-derived from the base compiler run: that run
+   *  is terminal FAILED (retryable) but compile actually SUCCEEDED via an operator
+   *  slot, so re-entering the exhausted/grant scan fail-closes on the COMPLETED slot
+   *  ("...is COMPLETED, not re-grantable" / RETRY_EXHAUSTED). Instead, rehydrate the
+   *  exact staged compiled candidate the event recorded, digest-validated against the
+   *  candidate store. Fail closed — never silently re-compile — when that candidate is
+   *  unavailable or its manifest digest does not match the durable compile identity.
+   *  Mirror of #rehydrateDurableSeed. */
+  async #rehydrateDurableCompile(
+    bookId: string,
+    durableCompiled: CandidateIdentity,
+  ): Promise<Result<CandidateSnapshot>> {
+    const opened = await this.#dependencies.contentReader.open({
+      bookId,
+      selector: { kind: "CANDIDATE", candidateId: durableCompiled.candidateId },
+    });
+    if (!opened.ok) {
+      return failed("BOOK_RUN_COMPILE_REHYDRATE_FAILED", `durable compiled candidate ${durableCompiled.candidateId} is unavailable: ${opened.error.message}`);
+    }
+    if (opened.value.manifest.manifestDigest !== durableCompiled.manifestDigest) {
+      return failed("BOOK_RUN_COMPILE_REHYDRATE_FAILED", "durable compiled candidate digest does not match recorded compile identity");
+    }
+    return { ok: true, value: opened.value };
+  }
+
   /** Allocate the next operator-authorized compile control run past an exhausted
    *  deterministic retry budget (task 11i / finding 12). Enumerates the
    *  `compiler-operator-retry-{n}-run` ids for the resumed run and grants the first
@@ -793,143 +839,165 @@ export class BookRunApplicationService {
       };
     }
 
-    const baseCompilerRunId = derivedId("compiler-run", runId);
-    let compilerRunId = baseCompilerRunId;
-    let compilerAttemptRoot = resolve(input.attemptRoot, "compiler");
-    if (input.resumeRunId !== undefined) {
-      const observedAt = safeNow(this.#dependencies.clock);
-      if (!observedAt.ok) return observedAt;
-      const baseCompiler = await this.#dependencies.runStore.readRun(input.bookId, baseCompilerRunId, observedAt.value);
-      if (!baseCompiler.ok && baseCompiler.error.code !== "NOT_FOUND") {
-        return failed("BOOK_RUN_COMPILER_UNAVAILABLE", baseCompiler.error.message);
-      }
-      if (
-        !baseCompiler.ok
-        && priorEvents.some((event) => event.phase === "compile")
-      ) {
-        return failed("BOOK_RUN_COMPILER_STATE_MISSING", "durable compile event lacks base compiler run state");
-      }
-      if (
-        baseCompiler.ok
-        && (baseCompiler.value.status === "CANCEL_REQUESTED" || baseCompiler.value.status === "CANCELLED")
-      ) {
-        return failed("BOOK_RUN_COMPILER_RETRY_BLOCKED", "cancelled compiler run cannot be restarted");
-      }
-      if (baseCompiler.ok && baseCompiler.value.status === "FAILED") {
+    const durableCompiled = completedCompileCandidate(priorEvents);
+    if (!durableCompiled.ok) return durableCompiled;
+    let candidate: CandidateSnapshot;
+    if (input.resumeRunId !== undefined && durableCompiled.value !== null) {
+      // Compile already COMPLETED durably for this run (task 11ab / finding 37) — via
+      // an operator-retry slot whose control run is COMPLETED while the base compiler
+      // run is terminal FAILED (retryable). Re-deriving compile state from that base
+      // run would enter the exhausted/grant scan, which fail-closes on the COMPLETED
+      // operator slot ("...is COMPLETED, not re-grantable" / RETRY_EXHAUSTED). Instead
+      // rehydrate the exact staged compiled candidate the durable event recorded,
+      // digest-validated against the candidate store; the compile phase events already
+      // exist and are NOT re-emitted. Touch neither the compiler nor the grant scan —
+      // proceed to the next incomplete stage (review). Mirror of the durable-seed
+      // short-circuit (11g).
+      const rehydrated = await this.#rehydrateDurableCompile(input.bookId, durableCompiled.value);
+      if (!rehydrated.ok) return rehydrated;
+      candidate = rehydrated.value;
+      console.error(
+        `[book-run] compile-rehydrate book=${input.bookId} run=${runId} candidate=${durableCompiled.value.candidateId} action=REHYDRATE_DURABLE_COMPILE`,
+      );
+    } else {
+      const baseCompilerRunId = derivedId("compiler-run", runId);
+      let compilerRunId = baseCompilerRunId;
+      let compilerAttemptRoot = resolve(input.attemptRoot, "compiler");
+      if (input.resumeRunId !== undefined) {
+        const observedAt = safeNow(this.#dependencies.clock);
+        if (!observedAt.ok) return observedAt;
+        const baseCompiler = await this.#dependencies.runStore.readRun(input.bookId, baseCompilerRunId, observedAt.value);
+        if (!baseCompiler.ok && baseCompiler.error.code !== "NOT_FOUND") {
+          return failed("BOOK_RUN_COMPILER_UNAVAILABLE", baseCompiler.error.message);
+        }
         if (
-          !retryableCompilerFailure(baseCompiler.value.terminalReason)
-          || !hasRetryableCompilerFailureEvent(priorEvents)
+          !baseCompiler.ok
+          && priorEvents.some((event) => event.phase === "compile")
         ) {
-          return failed("BOOK_RUN_COMPILER_RETRY_BLOCKED", "compiler failure is not known deterministic retryable state");
+          return failed("BOOK_RUN_COMPILER_STATE_MISSING", "durable compile event lacks base compiler run state");
         }
-        const retryRunId = derivedId("compiler-retry-1-run", runId);
-        const retryAt = safeNow(this.#dependencies.clock);
-        if (!retryAt.ok) return retryAt;
-        const retryCompiler = await this.#dependencies.runStore.readRun(input.bookId, retryRunId, retryAt.value);
-        if (retryCompiler.ok && retryCompiler.value.status === "FAILED") {
-          // The single deterministic compiler retry (service-level, one shot) has
-          // already failed. Default (no flag): fail closed, preserving the exhausted
-          // contract verbatim. The service-level retry budget cannot tell "failed
-          // under a since-fixed defect" from "content genuinely cannot pass", so a
-          // resume that survived earlier recovery fixes could otherwise be blocked
-          // one stage later forever. An operator resolves that ambiguity explicitly:
-          // resuming with --reconcile-unsettled is per-invocation consent for exactly
-          // ONE additional compile attempt past the exhausted budget. Each grant
-          // mints a distinct operator-retry control run and is durably logged; a
-          // further grant requires another explicit flagged resume (no silent loop),
-          // and the in-run deterministic retry / MAX_SECTION_ATTEMPTS logic is
-          // untouched — this is a resume-boundary decision only.
-          if (input.reconcileUnsettled !== true) {
-            return failed("BOOK_RUN_COMPILER_RETRY_EXHAUSTED", "single deterministic compiler retry already failed");
+        if (
+          baseCompiler.ok
+          && (baseCompiler.value.status === "CANCEL_REQUESTED" || baseCompiler.value.status === "CANCELLED")
+        ) {
+          return failed("BOOK_RUN_COMPILER_RETRY_BLOCKED", "cancelled compiler run cannot be restarted");
+        }
+        if (baseCompiler.ok && baseCompiler.value.status === "FAILED") {
+          if (
+            !retryableCompilerFailure(baseCompiler.value.terminalReason)
+            || !hasRetryableCompilerFailureEvent(priorEvents)
+          ) {
+            return failed("BOOK_RUN_COMPILER_RETRY_BLOCKED", "compiler failure is not known deterministic retryable state");
           }
-          const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value, input.reconcileUnsettled === true);
-          if (!granted.ok) return granted;
-          compilerRunId = granted.value.compilerRunId;
-          compilerAttemptRoot = resolve(input.attemptRoot, granted.value.attemptSubdir);
-          if (granted.value.kind === "RECONCILE_WEDGED") {
-            // FINDING 25: a prior operator grant crashed INSIDE the grant (e.g. ENOSPC),
-            // leaving its control run durably RUNNING with an admitted-unsettled attempt.
-            // Resume THAT run through the same compiler resume+reconcile machinery (11c)
-            // that un-wedges a crashed base compile: the compile call below settles the
-            // unsettled attempt ABANDONED (RECONCILED marker) and drives the crashed run
-            // to terminal FAILED, then fails closed. This flagged invocation's consent is
-            // spent un-wedging; the operator grants the NEXT slot with a further flagged
-            // resume (which then finds this run FAILED and steps past it).
-            const authorized = await this.#event(
-              runId,
-              input.bookId,
-              "compile",
-              "STARTED",
-              `action=OPERATOR_COMPILE_RECONCILE_WEDGED;operatorAttempt=${granted.value.operatorAttempt}`,
-            );
-            if (!authorized.ok) return authorized;
-            console.error(
-              `[book-run] operator-compile-reconcile-wedged book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} wedgedRun=${granted.value.compilerRunId} action=OPERATOR_COMPILE_RECONCILE_WEDGED`,
-            );
+          const retryRunId = derivedId("compiler-retry-1-run", runId);
+          const retryAt = safeNow(this.#dependencies.clock);
+          if (!retryAt.ok) return retryAt;
+          const retryCompiler = await this.#dependencies.runStore.readRun(input.bookId, retryRunId, retryAt.value);
+          if (retryCompiler.ok && retryCompiler.value.status === "FAILED") {
+            // The single deterministic compiler retry (service-level, one shot) has
+            // already failed. Default (no flag): fail closed, preserving the exhausted
+            // contract verbatim. The service-level retry budget cannot tell "failed
+            // under a since-fixed defect" from "content genuinely cannot pass", so a
+            // resume that survived earlier recovery fixes could otherwise be blocked
+            // one stage later forever. An operator resolves that ambiguity explicitly:
+            // resuming with --reconcile-unsettled is per-invocation consent for exactly
+            // ONE additional compile attempt past the exhausted budget. Each grant
+            // mints a distinct operator-retry control run and is durably logged; a
+            // further grant requires another explicit flagged resume (no silent loop),
+            // and the in-run deterministic retry / MAX_SECTION_ATTEMPTS logic is
+            // untouched — this is a resume-boundary decision only.
+            if (input.reconcileUnsettled !== true) {
+              return failed("BOOK_RUN_COMPILER_RETRY_EXHAUSTED", "single deterministic compiler retry already failed");
+            }
+            const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value, input.reconcileUnsettled === true);
+            if (!granted.ok) return granted;
+            compilerRunId = granted.value.compilerRunId;
+            compilerAttemptRoot = resolve(input.attemptRoot, granted.value.attemptSubdir);
+            if (granted.value.kind === "RECONCILE_WEDGED") {
+              // FINDING 25: a prior operator grant crashed INSIDE the grant (e.g. ENOSPC),
+              // leaving its control run durably RUNNING with an admitted-unsettled attempt.
+              // Resume THAT run through the same compiler resume+reconcile machinery (11c)
+              // that un-wedges a crashed base compile: the compile call below settles the
+              // unsettled attempt ABANDONED (RECONCILED marker) and drives the crashed run
+              // to terminal FAILED, then fails closed. This flagged invocation's consent is
+              // spent un-wedging; the operator grants the NEXT slot with a further flagged
+              // resume (which then finds this run FAILED and steps past it).
+              const authorized = await this.#event(
+                runId,
+                input.bookId,
+                "compile",
+                "STARTED",
+                `action=OPERATOR_COMPILE_RECONCILE_WEDGED;operatorAttempt=${granted.value.operatorAttempt}`,
+              );
+              if (!authorized.ok) return authorized;
+              console.error(
+                `[book-run] operator-compile-reconcile-wedged book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} wedgedRun=${granted.value.compilerRunId} action=OPERATOR_COMPILE_RECONCILE_WEDGED`,
+              );
+            } else {
+              const authorized = await this.#event(
+                runId,
+                input.bookId,
+                "compile",
+                "STARTED",
+                `action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=${granted.value.priorExhaustedAttempts};operatorAttempt=${granted.value.operatorAttempt}`,
+              );
+              if (!authorized.ok) return authorized;
+              console.error(
+                `[book-run] operator-compile-retry book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} priorExhaustedAttempts=${granted.value.priorExhaustedAttempts} action=OPERATOR_COMPILE_RETRY`,
+              );
+            }
+          } else if (!retryCompiler.ok && retryCompiler.error.code !== "NOT_FOUND") {
+            return failed("BOOK_RUN_COMPILER_UNAVAILABLE", retryCompiler.error.message);
           } else {
-            const authorized = await this.#event(
-              runId,
-              input.bookId,
-              "compile",
-              "STARTED",
-              `action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=${granted.value.priorExhaustedAttempts};operatorAttempt=${granted.value.operatorAttempt}`,
-            );
-            if (!authorized.ok) return authorized;
-            console.error(
-              `[book-run] operator-compile-retry book=${input.bookId} run=${runId} operatorAttempt=${granted.value.operatorAttempt} priorExhaustedAttempts=${granted.value.priorExhaustedAttempts} action=OPERATOR_COMPILE_RETRY`,
-            );
+            compilerRunId = retryRunId;
+            compilerAttemptRoot = resolve(input.attemptRoot, "compiler-retry-1");
           }
-        } else if (!retryCompiler.ok && retryCompiler.error.code !== "NOT_FOUND") {
-          return failed("BOOK_RUN_COMPILER_UNAVAILABLE", retryCompiler.error.message);
-        } else {
-          compilerRunId = retryRunId;
-          compilerAttemptRoot = resolve(input.attemptRoot, "compiler-retry-1");
         }
       }
-    }
-    const compileStarted = await this.#event(runId, input.bookId, "compile", "STARTED", undefined, intake.candidate);
-    if (!compileStarted.ok) return compileStarted;
-    let compiled;
-    try {
-      compiled = await this.#dependencies.compiler.run({
+      const compileStarted = await this.#event(runId, input.bookId, "compile", "STARTED", undefined, intake.candidate);
+      if (!compileStarted.ok) return compileStarted;
+      let compiled;
+      try {
+        compiled = await this.#dependencies.compiler.run({
+          bookId: input.bookId,
+          candidateId: intake.candidate.candidateId,
+          manifestDigest: intake.candidate.manifestDigest,
+          sourceGitSha: input.sourceGitSha,
+          resumeRunId: compilerRunId,
+          attemptRoot: compilerAttemptRoot,
+          indexLogicalPath: intake.indexLogicalPath,
+          sectionTaskContextLogicalPath: intake.sectionTaskContextLogicalPath,
+          sources: intake.sources,
+          profileId: "attempt-read-json-v1",
+          reconcileUnsettled: input.reconcileUnsettled === true,
+          signal: input.signal,
+        });
+      } catch (cause) {
+        const message = (cause as Error).message;
+        await this.#event(runId, input.bookId, "compile", "FAILED", message, intake.candidate);
+        return failed("BOOK_RUN_COMPILER_FAILED", message);
+      }
+      const selected = await this.#dependencies.contentReader.open({
         bookId: input.bookId,
-        candidateId: intake.candidate.candidateId,
-        manifestDigest: intake.candidate.manifestDigest,
-        sourceGitSha: input.sourceGitSha,
-        resumeRunId: compilerRunId,
-        attemptRoot: compilerAttemptRoot,
-        indexLogicalPath: intake.indexLogicalPath,
-        sectionTaskContextLogicalPath: intake.sectionTaskContextLogicalPath,
-        sources: intake.sources,
-        profileId: "attempt-read-json-v1",
-        reconcileUnsettled: input.reconcileUnsettled === true,
-        signal: input.signal,
+        selector: { kind: "CANDIDATE", candidateId: compiled.candidateId },
       });
-    } catch (cause) {
-      const message = (cause as Error).message;
-      await this.#event(runId, input.bookId, "compile", "FAILED", message, intake.candidate);
-      return failed("BOOK_RUN_COMPILER_FAILED", message);
+      if (
+        !selected.ok
+        || selected.value.manifest.manifestDigest !== compiled.manifestDigest
+        || compiled.runId !== compilerRunId
+        || compiled.runStatus !== "COMPLETED"
+        || compiled.candidateId !== this.#dependencies.ids.candidateId(compilerRunId)
+        || selected.value.manifest.parentCandidateId !== intake.candidate.candidateId
+        || selected.value.manifest.createdByRunId !== compilerRunId
+      ) {
+        const message = selected.ok ? "compiled candidate digest readback mismatch" : selected.error.message;
+        await this.#event(runId, input.bookId, "compile", "FAILED", message);
+        return failed("BOOK_RUN_CANDIDATE_MISMATCH", message);
+      }
+      candidate = selected.value;
+      const compileCompleted = await this.#event(runId, input.bookId, "compile", "COMPLETED", `compilerRunId=${compiled.runId}`, identity(candidate));
+      if (!compileCompleted.ok) return compileCompleted;
     }
-    let selected = await this.#dependencies.contentReader.open({
-      bookId: input.bookId,
-      selector: { kind: "CANDIDATE", candidateId: compiled.candidateId },
-    });
-    if (
-      !selected.ok
-      || selected.value.manifest.manifestDigest !== compiled.manifestDigest
-      || compiled.runId !== compilerRunId
-      || compiled.runStatus !== "COMPLETED"
-      || compiled.candidateId !== this.#dependencies.ids.candidateId(compilerRunId)
-      || selected.value.manifest.parentCandidateId !== intake.candidate.candidateId
-      || selected.value.manifest.createdByRunId !== compilerRunId
-    ) {
-      const message = selected.ok ? "compiled candidate digest readback mismatch" : selected.error.message;
-      await this.#event(runId, input.bookId, "compile", "FAILED", message);
-      return failed("BOOK_RUN_CANDIDATE_MISMATCH", message);
-    }
-    let candidate = selected.value;
-    const compileCompleted = await this.#event(runId, input.bookId, "compile", "COMPLETED", `compilerRunId=${compiled.runId}`, identity(candidate));
-    if (!compileCompleted.ok) return compileCompleted;
 
     const reviewStarted = await this.#event(runId, input.bookId, "review", "STARTED", undefined, identity(candidate));
     if (!reviewStarted.ok) return reviewStarted;

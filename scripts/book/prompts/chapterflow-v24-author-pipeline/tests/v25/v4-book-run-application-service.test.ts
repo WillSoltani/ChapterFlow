@@ -1813,6 +1813,421 @@ requiredTest("resume with durable seed events but a missing or mismatched candid
   assert.equal(resumeResearchCalls, 0, "durable seed rehydrate failures must NOT silently re-research");
 });
 
+requiredTest("resume rehydrates a durable COMPLETED compile from an operator slot without re-granting or re-compiling (finding 37)", async (context: TestContext) => {
+  // FINDING 37 (live analog of finding 10, for compile): the base compiler run is
+  // terminal FAILED (retryable) and the single deterministic retry also FAILED, but
+  // compile SUCCEEDED via an operator-retry slot — a durable compile COMPLETED event
+  // and its staged candidate exist, and the operator slot run is COMPLETED. The old
+  // resume derived compile state from the FAILED base run, entered the operator grant
+  // scan, and fail-closed on the COMPLETED slot ("...is COMPLETED, not re-grantable").
+  // The fix mirrors 11g's durable-seed short-circuit: recognize the durable compile
+  // COMPLETED event, rehydrate the staged candidate digest-validated, and proceed to
+  // review — touching neither the compiler nor the grant scan.
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, "compile-rehydrate-books");
+  const runRoot = resolve(context.roots.tempRoot, "compile-rehydrate-runs");
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-compile-rehydrate");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "compile-rehydrate-seed-candidate",
+    runId: "compile-rehydrate-seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+
+  const PARENT_RUN_ID = "book-run-compile-rehydrate";
+  const derive = (prefix: string) => `${prefix}-${createHash("sha256").update(PARENT_RUN_ID).digest("hex").slice(0, 32)}`;
+  const baseRunId = derive("compiler-run");
+  const retry1RunId = derive("compiler-retry-1-run");
+  const opRetry1RunId = derive("compiler-operator-retry-1-run");
+
+  // Durable compiler run-state exactly as finding 37 left it: base + deterministic
+  // retry FAILED (retryable), and the operator-retry-1 slot COMPLETED — compile
+  // SUCCEEDED via that slot. If the resume fell through to the operator grant scan,
+  // it would fail closed on the COMPLETED slot ("...is COMPLETED, not re-grantable").
+  const finishRun = async (childRunId: string, status: "FAILED" | "COMPLETED", reason?: string) => {
+    const created = await runStore.createRun({
+      schemaVersion: "1",
+      bookId: BOOK,
+      runId: childRunId,
+      commandId: "compiler-candidate",
+      sourceGitSha: SOURCE_SHA,
+      requiredStages: ["compiler-candidate"],
+      requiredInventory: [],
+      inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+      attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+      createdAt: now(),
+    });
+    assert.ok(created.ok);
+    const finished = await runStore.finishRun({ bookId: BOOK, runId: childRunId, status, finishedAt: now(), ...(reason === undefined ? {} : { reason }) });
+    assert.ok(finished.ok);
+  };
+  await finishRun(baseRunId, "FAILED", "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure");
+  await finishRun(retry1RunId, "FAILED", "COMPILER_ASSEMBLY_BLOCKED:single retry failed");
+  await finishRun(opRetry1RunId, "COMPLETED");
+
+  // The compiled candidate that operator-retry-1 durably produced (child of seed).
+  const compiled = await stageCandidate(candidates, {
+    candidateId: `${opRetry1RunId}-candidate`,
+    parentCandidateId: seed.manifest.candidateId,
+    runId: opRetry1RunId,
+    createdAt: context.clock.now(),
+    files: [
+      jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+      jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({
+        bookId: BOOK,
+        chapters: [chapter],
+        requirePlanArtifacts: false,
+        checkSourceAlignment: false,
+      })),
+    ],
+  });
+
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+
+  let researchPortCalls = 0;
+  const research = {
+    async run() {
+      researchPortCalls += 1;
+      throw new Error("research port must not be invoked on a durable-compile resume");
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+
+  const compilerRunIds: string[] = [];
+  const compiler = {
+    async run(request: { resumeRunId?: string }) {
+      compilerRunIds.push(request.resumeRunId ?? "<none>");
+      throw new Error("compiler must not be invoked when compile already COMPLETED durably");
+    },
+  } as unknown as CompilerApplicationPort;
+
+  const candidateQc = {
+    async run(request: { candidate: CandidateSnapshot; roundId: string; canonicalReview: { reviewId: string } }) {
+      return {
+        ok: true as const,
+        value: {
+          roundId: request.roundId,
+          candidate: { candidateId: request.candidate.manifest.candidateId, manifestDigest: request.candidate.manifest.manifestDigest },
+          reviewId: request.canonicalReview.reviewId,
+          outcome: "PASS" as const,
+          issues: [],
+        },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => PARENT_RUN_ID,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "compile-rehydrate-pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, "compile-rehydrate-v25"),
+    attemptRoot: resolve(context.roots.attemptsRoot, "book-run-compile-rehydrate"),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: false,
+    signal: new AbortController().signal,
+  };
+
+  // Durable phase events: research+seed COMPLETED, base+retry compile FAILED, then the
+  // operator slot's compile STARTED + COMPLETED carrying the compiled candidate
+  // identity. Review has NOT completed — the resume's next incomplete stage.
+  const at = now();
+  events.push(
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "intake", status: "COMPLETED", at, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "research", status: "COMPLETED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "seed", status: "COMPLETED", at, candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest } },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "FAILED", at, detail: "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "FAILED", at, detail: "COMPILER_ASSEMBLY_BLOCKED:single retry failed" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "STARTED", at, detail: "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=2;operatorAttempt=1" },
+    { schemaVersion: "1", runId: PARENT_RUN_ID, bookId: BOOK, phase: "compile", status: "COMPLETED", at, detail: `compilerRunId=${opRetry1RunId}`, candidate: { candidateId: compiled.manifest.candidateId, manifestDigest: compiled.manifest.manifestDigest } },
+  );
+
+  const grantScanEvents = () => events.filter((event) =>
+    event.runId === PARENT_RUN_ID && event.phase === "compile" && (event.detail ?? "").includes("action=OPERATOR"));
+  const durableGrantCount = grantScanEvents().length;
+
+  // Resume WITHOUT the reconcile flag: the durable COMPLETED compile is rehydrated,
+  // neither the compiler nor the operator grant scan runs, and the run proceeds to
+  // review → READY on the rehydrated candidate.
+  const resumed = await service.run({ ...request, resumeRunId: PARENT_RUN_ID });
+  if (!resumed.ok) throw new Error(`COMPILE_REHYDRATE:${JSON.stringify(resumed.error)}`);
+  assert.equal(resumed.value.status, "READY");
+  assert.equal(resumed.value.candidate.candidateId, compiled.manifest.candidateId);
+  assert.equal(resumed.value.candidate.manifestDigest, compiled.manifest.manifestDigest);
+  assert.deepEqual(compilerRunIds, [], "compile already COMPLETED durably: the compiler is never invoked");
+  assert.equal(researchPortCalls, 0, "the durable seed is rehydrated; the research port is never invoked");
+  assert.equal(grantScanEvents().length, durableGrantCount, "no NEW operator grant/reconcile is recorded — the COMPLETED slot is never scanned");
+  assert.ok(
+    events.some((event) => event.runId === PARENT_RUN_ID && event.phase === "review" && event.status === "COMPLETED"),
+    "the resume proceeds to the next incomplete stage (review)",
+  );
+  assert.equal(
+    events.filter((event) => event.runId === PARENT_RUN_ID && event.phase === "compile" && event.status === "COMPLETED").length,
+    1,
+    "the durable compile COMPLETED event is authoritative — no second one is appended on rehydrate",
+  );
+
+  // Resume WITH the reconcile flag behaves identically — the short-circuit precedes
+  // the exhausted/grant branch, so the flag never reaches it.
+  const resumedReconcile = await service.run({ ...request, resumeRunId: PARENT_RUN_ID, reconcileUnsettled: true });
+  if (!resumedReconcile.ok) throw new Error(`COMPILE_REHYDRATE_RECONCILE:${JSON.stringify(resumedReconcile.error)}`);
+  assert.equal(resumedReconcile.value.status, "READY");
+  assert.equal(resumedReconcile.value.candidate.candidateId, compiled.manifest.candidateId);
+  assert.deepEqual(compilerRunIds, [], "the reconcile flag does not reach the grant scan when compile COMPLETED durably");
+  assert.equal(grantScanEvents().length, durableGrantCount, "the reconcile flag records no fresh operator authorization");
+});
+
+requiredTest("resume with a durable COMPLETED compile event but a missing or mismatched compiled candidate fails closed without re-compiling", async (context: TestContext) => {
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, "compile-rehydrate-fail-books");
+  const runRoot = resolve(context.roots.tempRoot, "compile-rehydrate-fail-runs");
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-compile-rehydrate-fail");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "compile-rehydrate-fail-seed-candidate",
+    runId: "compile-rehydrate-fail-seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+  // A real compiled candidate exists — the mismatch sub-case names its id with a
+  // WRONG digest, proving the durable identity (not a re-compile) is authoritative.
+  const realCompiled = await stageCandidate(candidates, {
+    candidateId: "compile-rehydrate-fail-compiled-candidate",
+    parentCandidateId: seed.manifest.candidateId,
+    runId: "compile-rehydrate-fail-compiled-run",
+    createdAt: context.clock.now(),
+    files: [
+      jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
+      jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({
+        bookId: BOOK,
+        chapters: [chapter],
+        requirePlanArtifacts: false,
+        checkSourceAlignment: false,
+      })),
+    ],
+  });
+
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const admittedAt = context.clock.now();
+      const admitted = await runStore.admitAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        stageId: request.context.stageId,
+        operationId: request.context.operationId,
+        admittedAt,
+        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
+      });
+      assert.equal(admitted.ok, true, JSON.stringify(admitted));
+      const finished = await runStore.finishAttempt({
+        bookId: request.context.bookId,
+        runId: request.context.runId,
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        finishedAt: context.clock.now(),
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+
+  const research = {
+    async run() { throw new Error("research port must not be invoked on a durable-compile resume"); },
+  } as unknown as ResearchCandidateApplicationPort;
+  const compilerRunIds: string[] = [];
+  const compiler = {
+    async run(request: { resumeRunId?: string }) {
+      compilerRunIds.push(request.resumeRunId ?? "<none>");
+      throw new Error("compiler must not be invoked when a durable compile COMPLETED event exists");
+    },
+  } as unknown as CompilerApplicationPort;
+  const candidateQc = {
+    async run(request: { candidate: CandidateSnapshot; roundId: string; canonicalReview: { reviewId: string } }) {
+      return {
+        ok: true as const,
+        value: {
+          roundId: request.roundId,
+          candidate: { candidateId: request.candidate.manifest.candidateId, manifestDigest: request.candidate.manifest.manifestDigest },
+          reviewId: request.canonicalReview.reviewId,
+          outcome: "PASS" as const,
+          issues: [],
+        },
+      };
+    },
+  } as unknown as CandidateQcEvaluator;
+
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => "book-run-compile-rehydrate-fail",
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "compile-rehydrate-fail-pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, "compile-rehydrate-fail-v25"),
+    attemptRoot: resolve(context.roots.attemptsRoot, "book-run-compile-rehydrate-fail"),
+    regen: true,
+    maxRepairRounds: 1 as const,
+    promoteLocal: false,
+    signal: new AbortController().signal,
+  };
+  const seedIdentity = { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest };
+
+  // (a) Durable compile COMPLETED names a compiled candidate that does not exist in
+  //     the candidate store. Rehydrate must fail closed — never silently re-compile.
+  const missingParent = "book-run-compile-missing";
+  const missingAt = now();
+  events.push(
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "intake", status: "COMPLETED", at: missingAt, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "research", status: "COMPLETED", at: missingAt },
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "seed", status: "COMPLETED", at: missingAt, candidate: seedIdentity },
+    { schemaVersion: "1", runId: missingParent, bookId: BOOK, phase: "compile", status: "COMPLETED", at: missingAt, candidate: { candidateId: "compile-does-not-exist", manifestDigest: "e".repeat(64) } },
+  );
+  const missing = await service.run({ ...request, resumeRunId: missingParent, reconcileUnsettled: true });
+  assert.equal(missing.ok, false);
+  if (missing.ok) throw new Error("missing durable compiled candidate must fail closed");
+  assert.equal(missing.error.code, "BOOK_RUN_COMPILE_REHYDRATE_FAILED");
+
+  // (b) Durable compile COMPLETED names the REAL compiled candidate id but a WRONG
+  //     manifest digest. Rehydrate opens the candidate, sees the digest mismatch, and
+  //     fails closed — the durable identity, not a re-compile, is authoritative.
+  const mismatchParent = "book-run-compile-mismatch";
+  const mismatchAt = now();
+  events.push(
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "intake", status: "COMPLETED", at: mismatchAt, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "research", status: "COMPLETED", at: mismatchAt },
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "seed", status: "COMPLETED", at: mismatchAt, candidate: seedIdentity },
+    { schemaVersion: "1", runId: mismatchParent, bookId: BOOK, phase: "compile", status: "COMPLETED", at: mismatchAt, candidate: { candidateId: realCompiled.manifest.candidateId, manifestDigest: "f".repeat(64) } },
+  );
+  const mismatch = await service.run({ ...request, resumeRunId: mismatchParent, reconcileUnsettled: true });
+  assert.equal(mismatch.ok, false);
+  if (mismatch.ok) throw new Error("mismatched durable compiled digest must fail closed");
+  assert.equal(mismatch.error.code, "BOOK_RUN_COMPILE_REHYDRATE_FAILED");
+
+  // Neither fail-closed path invoked the compiler.
+  assert.deepEqual(compilerRunIds, [], "durable-compile rehydrate failures must NOT silently re-compile");
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
