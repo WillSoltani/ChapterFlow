@@ -15,6 +15,7 @@
  */
 
 import { readFileSync } from "fs";
+import { isQuotaExhaustedMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -185,12 +186,16 @@ type AttemptFailure =
   | { readonly kind: "validator"; readonly problems: string[]; readonly output: unknown }
   | { readonly kind: "gateway-schema" }
   | { readonly kind: "transient-process" }
+  | { readonly kind: "quota-exhausted"; readonly message: string }
   | { readonly kind: "timed-out" };
 
 function failureProblems(failure: AttemptFailure): string[] {
   if (failure.kind === "validator") return failure.problems;
   if (failure.kind === "gateway-schema") return [GATEWAY_SCHEMA_REJECTION_FEEDBACK];
   if (failure.kind === "timed-out") return [TIMED_OUT_FEEDBACK];
+  // Task 11af: a durable quota cap is reported in the provider's own words —
+  // the operator needs the reset horizon, not a "transient" euphemism.
+  if (failure.kind === "quota-exhausted") return [failure.message];
   return [TRANSIENT_PROCESS_FAILURE_FEEDBACK];
 }
 
@@ -285,6 +290,12 @@ export async function runResearcherChapter(
         continue;
       }
       if (isTransientProcessFailure(message)) {
+        // Task 11af: fail FAST on a durable quota cap — retrying inside the
+        // same exhausted window cannot succeed and hides the reset horizon.
+        if (isQuotaExhaustedMessage(message)) {
+          attemptFailures.push({ kind: "quota-exhausted", message });
+          break;
+        }
         attemptFailures.push({ kind: "transient-process" });
         if (attempt < MAX_CHAPTER_RESEARCH_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
         continue;

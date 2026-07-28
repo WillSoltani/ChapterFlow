@@ -9,6 +9,7 @@ import {
 } from "../../src/agents/researcher-chapter.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import { createScriptedResultRunner, createUniquenessEnforcingRunner, mintingExecution } from "./fakes/uniquenessRunner.js";
+import { isQuotaExhaustedMessage } from "../../src/runtime/modelErrors.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 function bibliography(): BibliographyResult {
@@ -447,6 +448,41 @@ requiredTest("10 persistent TIMED_OUT fails closed after MAX_ATTEMPTS(3) with th
   assert.deepEqual(clock.waited, [2000, 8000]);
   // every attempt admitted a fresh, non-colliding attempt id
   assert.equal(new Set(subject.attemptIds).size, 3);
+});
+
+requiredTest("14 durable QUOTA EXHAUSTION (weekly limit) fails fast on attempt 1 — no retry, no backoff, real API message (Task 11af)", async () => {
+  const subject = scriptedRig([
+    { outcome: "FAILED", error: { code: "MODEL_PROCESS_FAILED", message: "You've hit your weekly limit \u00b7 resets Jul 28 at 8pm (America/Halifax) (api_error_status=429)" } },
+  ]);
+  const clock = recordingSleep();
+  await assert.rejects(
+    runResearcherChapter(input(), subject.execution, { sleep: clock.sleep }),
+    (error: unknown) => {
+      const message = (error as Error).message;
+      assert.match(message, /weekly limit/i, "operator must see the real provider message");
+      assert.doesNotMatch(message, /transient model process failure/i, "quota exhaustion is not a transient blip");
+      return true;
+    },
+  );
+  assert.equal(subject.runs(), 1, "quota exhaustion must not burn further attempts");
+  assert.deepEqual(clock.waited, [], "no backoff wait on a durable quota block");
+});
+
+requiredTest("15 a SHORT rate-limit 429 without a reset horizon stays transient and still retries (Task 11af)", async () => {
+  const subject = scriptedRig([
+    { outcome: "FAILED", error: { code: "MODEL_PROCESS_FAILED", message: "API Error: 429 rate_limit_error: too many requests (api_error_status=429)" } },
+  ]);
+  const clock = recordingSleep();
+  await assert.rejects(runResearcherChapter(input(), subject.execution, { sleep: clock.sleep }), () => true);
+  assert.equal(subject.runs(), 3, "short rate limits keep the bounded transient retry");
+  assert.deepEqual(clock.waited, [2000, 8000]);
+});
+
+requiredTest("16 isQuotaExhaustedMessage separates durable caps from short rate limits (Task 11af)", () => {
+  assert.equal(isQuotaExhaustedMessage("You've hit your weekly limit \u00b7 resets Jul 28 at 8pm (America/Halifax) (api_error_status=429)"), true);
+  assert.equal(isQuotaExhaustedMessage("usage limit reached for this account"), true);
+  assert.equal(isQuotaExhaustedMessage("API Error: 429 rate_limit_error: too many requests"), false);
+  assert.equal(isQuotaExhaustedMessage("bounded model process did not succeed"), false);
 });
 
 requiredTest("11 substantive validator rejection leads with the task, frames the prior draft as REFERENCE, and echoes it for repair", async () => {
