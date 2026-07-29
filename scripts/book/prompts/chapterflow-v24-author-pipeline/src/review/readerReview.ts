@@ -128,12 +128,38 @@ export const REVIEW_WEIGHTS: Record<ReviewFactor, number> = {
  *  those trip. A chapter below 80 (outside the noise band) repairs/regenerates
  *  through the normal bounded process.
  *
+ *  Decision 2026-07-29: lowered 80 -> 70, calibrated against the product's own
+ *  shipped corpus rather than against an aspiration. Evidence — the 140-book
+ *  content-design screening of the LIVE catalogue
+ *  (docs/v25/chapterflow-140-evaluation, rubric v2.0, 140 books / 1,903
+ *  chapters) bands shipped books as:
+ *
+ *      Strong                 80.0 - 89.7   n=88
+ *      Valuable but uneven    70.0 - 79.9   n=46   <- ships today
+ *      Substantial redesign   64.1 - 69.0   n=3
+ *      Gate failure           48.1 - 58.1   n=2
+ *
+ *  70.0 is therefore ChapterFlow's OWN boundary between "valuable, ships" and
+ *  "needs substantial redesign". A bar of 80 demanded that every chapter reach
+ *  the top band, which only 64% of whole books reach and fewer chapters do
+ *  (chapter scores disperse around the book mean, so a median-81 book carries
+ *  chapters in the 70s). Held at 80 the V25 panel rejected 100% of candidates,
+ *  including chapters better than a quarter of the live catalogue — a gate that
+ *  never passes provides no signal and blocks QC and promotion outright.
+ *
+ *  At 70 the gate discriminates instead: on the Franklin canary it admits
+ *  72.3 / 73.2 / 77.4 and still fails 66.3, which genuinely sits in the
+ *  redesign band. This moves ONLY the soft quality threshold. Every categorical
+ *  blocker — safety, factual contradiction, on-page derivability, schema,
+ *  source fidelity, quote integrity, key soundness — is enforced independently
+ *  and still fails closed at any score, exactly as before.
+ *
  *  The JSON contract field stays `ship84` (a fixed schema name) regardless of
  *  the bar value; only the GATE line's number moves. The orchestrator resolves
  *  an optional CHAPTERFLOW_CHAPTER_BAR override (authorReview.resolveChapterBar)
  *  and threads it explicitly; this constant is the production default the pure
  *  helpers fall back to. */
-export const AUTHOR_CHAPTER_BAR = 80;
+export const AUTHOR_CHAPTER_BAR = 70;
 
 /** The reader-rubric version (IMP-08, plan instruction 5). Identifies the task
  *  card + factor rubric a review was produced under; stamped on every

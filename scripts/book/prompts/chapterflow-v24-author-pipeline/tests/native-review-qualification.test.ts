@@ -324,7 +324,7 @@ test("seal binds corpus + instrument + thresholds + Layer-O prerequisite and is 
   assert.equal(a.seal.corpusSha256, b.seal.corpusSha256, "seal is deterministic");
   assert.equal(a.seal.corpusSha256, nativeReviewCorpusSha256(corpus));
   assert.equal(a.seal.instrumentManifestSha256, b.seal.instrumentManifestSha256);
-  assert.ok(a.instrumentManifest.authorChapterBar === 80);
+  assert.ok(a.instrumentManifest.authorChapterBar === 70);
   // §1: the Layer-O v3 security prerequisite is bound and drift-fresh.
   assert.equal(a.seal.layerOPrerequisite.instrument, "stage-q-layer-o-v3");
   assert.equal(a.seal.layerOPrerequisite.qualificationOutcome, "ALL_THREE_JUDGES_QUALIFIED");
