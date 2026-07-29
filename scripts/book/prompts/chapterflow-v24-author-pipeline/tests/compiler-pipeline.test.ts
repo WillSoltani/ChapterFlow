@@ -281,6 +281,168 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
   assert.doesNotMatch(actionTask, /transition, milestone, or pit/);
 });
 
+// ── Task 11ai — the quiz/cards must be derivable from THIS chapter's own prose ──
+// Finding 45: each section pack is drafted independently from the same SOURCE PACKET,
+// so the learning writer saw every allowed fact/anchor — not the SUBSET the summary
+// writer actually put into the reader-visible prose. The blind reader panel failed all
+// four canary chapters on one class: quiz stems and cards naming facts ("Dr. Thomas
+// Bond", "1751", "Temperance") that appear nowhere in the Fast/Deep/Full read. The fix
+// is two-sided — the writer SEES the drafted prose (Part A) and a deterministic gate
+// backstops it (Part B, SEC120).
+
+/** Render a learning-pack card with (or without) this chapter's drafted prose. */
+function renderLearningTask(
+  fx: ReturnType<typeof compileFixture>,
+  chapterProse?: SummaryPackV1,
+  deliveryMode?: "FILE_WRITE" | "DIRECT_JSON",
+): string {
+  return buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode,
+    chapterProse,
+  });
+}
+
+test("learning-pack task card carries THIS chapter's drafted prose and the derivable-from-prose rule (Task 11ai)", () => {
+  const fx = compileFixture();
+  const bare = renderLearningTask(fx);
+  const withProse = renderLearningTask(fx, fx.summary);
+
+  // Absent prose = today's card, unchanged (every existing task-card test stays green).
+  assert.doesNotMatch(bare, /CHAPTER PROSE/, "no prose supplied → no prose block");
+
+  assert.match(withProse, /CHAPTER PROSE/, "the drafted prose block must be rendered");
+  for (const passage of [
+    fx.summary.hook.hook,
+    fx.summary.hook.counterintuition,
+    fx.summary.breakdown.fastRead,
+    fx.summary.breakdown.deepRead,
+    fx.summary.breakdown.fullRead,
+    fx.summary.keyTakeaway,
+  ]) {
+    assert.ok(passage, "fixture summary must supply every reader-visible passage");
+    assert.ok(withProse.includes(passage!), `prose block must carry the drafted passage: ${passage!.slice(0, 40)}…`);
+  }
+  // The rule: derivable from the prose alone, and a packet fact absent from the prose
+  // is simply unavailable.
+  assert.match(withProse, /every quiz stem[\s\S]{0,200}review card must be answerable from the CHAPTER PROSE above ALONE/);
+  assert.match(withProse, /not in the prose, it is NOT available/);
+  assert.match(withProse, /SEC120/, "the rule names its enforcing validator");
+
+  // The block is learning-pack-only: the other three renders are byte-identical with
+  // and without the field.
+  for (const kind of ["summary-pack", "example-pack", "action-pack"] as const) {
+    const args = { bookId: "money-book", kind, blueprint: fx.blueprint, sourcePacket: fx.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: null, bookScars: null } };
+    assert.equal(
+      buildSectionTaskMarkdown({ ...args, chapterProse: fx.summary }),
+      buildSectionTaskMarkdown(args),
+      `${kind}: chapter prose is a learning-pack input only`,
+    );
+  }
+  // The live compiler drafts through DIRECT_JSON — the block must reach that card too.
+  assert.match(renderLearningTask(fx, fx.summary, "DIRECT_JSON"), /CHAPTER PROSE/);
+});
+
+test("SEC120 blocks a quiz stem whose cited specific never appears in the chapter's drafted prose (Task 11ai)", () => {
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchor, "fixture needs a specifics-rich quiz-capable anchor");
+  const specific = anchor!.hardSpecifics![0];
+  assert.equal(fx.summary.breakdown.fullRead.includes(specific), false, "fixture prose must not already name the specific");
+
+  const bad = cloneLearning(fx.learning);
+  const q = bad.quiz.questions[0];
+  q.sourceAnchorIds = [anchor!.id];
+  q.keyEvidenceAnchorIds = [anchor!.id];
+  q.prompt = `A reader checks the ${specific} recorded in 1751 before the next snapshot. Which move changes what a lender can read?`;
+  q.explanation = `The keyed move changes the ${specific} the report shows, while the other options leave it untouched.`;
+
+  // No prose supplied (legacy/other callers) → the check MUST no-op.
+  const legacy = validateLearningPack(bad, fx.blueprint, fx.packet);
+  assert.deepEqual(legacy.filter((f) => f.checkId.startsWith("SEC120")), [], "absent prose must no-op, never fire");
+
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.equal(hits.length, 1, hits.map((f) => f.message).join("\n"));
+  assert.equal(hits[0].severity, "blocker", "SEC120 is a blocker, like its SEC55–SEC58 learning-family siblings");
+  assert.equal(hits[0].section, "learning-pack");
+  assert.equal(hits[0].path, "/quiz/questions/0");
+  assert.match(hits[0].message, new RegExp(specific.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), "the blocker names the offending specific");
+  assert.match(hits[0].message, /1751/, "a 4-digit year absent from the prose is flagged too");
+
+  // Zero false positive: prose that actually shows the specific and the year clears it.
+  const grounded = cloneSummary(fx.summary);
+  grounded.breakdown.deepRead = `${grounded.breakdown.deepRead} The ${specific} written down in 1751 is the number a lender reads first.`;
+  assert.deepEqual(
+    validateLearningPack(bad, fx.blueprint, fx.packet, grounded).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "a specific the prose actually shows must never fire",
+  );
+});
+
+test("SEC120 blocks a review card that introduces a term the chapter's prose never uses (Task 11ai)", () => {
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("review_card") && (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchor, "fixture needs a specifics-rich card-capable anchor");
+  const specific = anchor!.hardSpecifics![0];
+
+  const bad = cloneLearning(fx.learning);
+  bad.cards.cards[0].sourceAnchorIds = [anchor!.id];
+  bad.cards.cards[0].back = `Retrieve the ${specific} first, because that is the account information a lender can read before any payment lands.`;
+
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.ok(hits.some((f) => f.path === "/cards/cards/0"), hits.map((f) => `${f.path}: ${f.message}`).join("\n"));
+  // Unused anchor specifics are NOT the card's problem — only what the unit itself cites.
+  const untouched = cloneLearning(fx.learning);
+  untouched.cards.cards[0].sourceAnchorIds = [anchor!.id];
+  assert.deepEqual(
+    validateLearningPack(untouched, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable" && f.path === "/cards/cards/0"),
+    [],
+    "citing an anchor without naming its specifics is not a derivability failure",
+  );
+});
+
+test("the section gate feeds a chapter's own summary prose into its learning-pack check (Task 11ai)", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v25-prose-derivable-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 0)!;
+  const specific = anchor.hardSpecifics![0];
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), fx.packet);
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+
+    const bad = cloneLearning(fx.learning);
+    const q = bad.quiz.questions[0];
+    q.sourceAnchorIds = [anchor.id];
+    q.keyEvidenceAnchorIds = [anchor.id];
+    q.prompt = `A reader checks the ${specific} before the next snapshot. Which move changes what a lender can read?`;
+    q.explanation = `The keyed move changes the ${specific} the report shows, while the other options leave it untouched.`;
+    writeJsonFile(sectionPath("money-book", 1, "learning-pack", roots), bad);
+
+    // No summary pack on disk yet → nothing to compare against → the check no-ops.
+    const withoutProse = checkSectionGate("money-book", roots, { chapters: [1], sections: ["learning-pack"] });
+    assert.equal(withoutProse.findings.some((f) => f.checkId === "SEC120.learning_prose_derivable"), false, "no drafted prose → no SEC120 finding");
+
+    // With the sibling summary pack present, the gate sees the chapter's own prose.
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["learning-pack"] });
+    assert.equal(report.passed, false);
+    assert.ok(
+      report.findings.some((f) => f.checkId === "SEC120.learning_prose_derivable" && f.chapterNumber === 1 && f.section === "learning-pack"),
+      report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+    );
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
 test("v23 source packet compiler turns source-v2 into authoring-ready typed facts/cases", () => {
   const { packet } = compileFixture();
   assert.equal(packet.schemaVersion, "source-packet-v1");

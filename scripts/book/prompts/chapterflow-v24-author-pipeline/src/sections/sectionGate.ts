@@ -26,6 +26,7 @@ import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { memorableLineScore } from "../optimizers/memorableLines.js";
 import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
+import { chapterProseText, normalizeProseText, type ChapterProseSource } from "./chapterProse.js";
 import {
   QUIZ_TELL_MAX_PER_CHAPTER,
   quizTransferFloor,
@@ -2324,7 +2325,96 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
   return findings;
 }
 
-export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+/** A 4-digit year a reader would have to reason about (old-style dating, a founding
+ *  date, a study year). Bounded to 1500-2099 deliberately: a bare 4-digit quantity
+ *  ("1200 employees") is NOT a year and must not be swept into a derivability
+ *  blocker — the check stays conservative and under-fires by design. */
+const PROSE_YEAR_RE = /\b(?:1[5-9]\d{2}|20\d{2})\b/g;
+
+/**
+ * SEC120 (Task 11ai) — DERIVABILITY BACKSTOP. Every section pack is drafted
+ * independently from one source packet; the section gates validate each pack against
+ * the PACKET and the cross-chapter gates compare packs for sameness, so nothing
+ * checked that a quiz/card is answerable from THIS chapter's own reader-visible
+ * prose. That gap is the dominant blind-reader BLOCKER class (finding 45): stems
+ * naming "Dr. Thomas Bond" or reasoning about "1705/1706" and cards introducing
+ * "Temperance" when no read tier ever says any of it.
+ *
+ * Deliberately CONSERVATIVE, to stay zero-false-positive:
+ *   - only the hardSpecifics of anchors the unit ITSELF cites under the claim class
+ *     SEC56/SEC58 already resolve — never every packet specific, never a general
+ *     proper-noun sweep;
+ *   - only specifics the unit actually USES (same case-insensitive containment the
+ *     anchor-specifics gates use), since an unused specific makes no claim;
+ *   - plus 4-digit years in the unit's own reader-facing text;
+ *   - case/punctuation normalised on both sides (chapterProse.normalizeProseText);
+ *   - the prose is hook + counterintuition + all three read tiers + keyTakeaway;
+ *   - NO prose supplied (legacy callers, a chapter whose summary pack is not drafted
+ *     yet) → the check no-ops entirely rather than firing on an empty haystack.
+ */
+export function learningProseDerivabilityFindings(
+  pack: LearningPackV1,
+  bp: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  prose: ChapterProseSource | null | undefined,
+): SectionFinding[] {
+  const haystack = normalizeProseText(chapterProseText(prose));
+  if (haystack.length === 0) return [];
+  const anchors = sourceAnchorById(packet);
+  const findings: SectionFinding[] = [];
+  const push = (message: string, path: string) => findings.push({
+    checkId: "SEC120.learning_prose_derivable",
+    severity: "blocker",
+    chapterNumber: bp.chapterNumber,
+    section: "learning-pack",
+    message,
+    path,
+  });
+  const undeliverable = (unitText: string, claimTypes: readonly SourceClaimType[], ids: readonly unknown[]): string[] => {
+    const unit = normalizeProseText(unitText);
+    const missing = new Set<string>();
+    for (const id of ids.flatMap((value) => anchorArray(value))) {
+      const anchor = anchors.get(id);
+      if (!anchor) continue;
+      if (!claimTypes.some((claimType) => anchor.supportsClaimTypes?.includes(claimType))) continue;
+      for (const specific of anchor.hardSpecifics ?? []) {
+        const normalized = normalizeProseText(text(specific));
+        if (normalized.length < 3) continue;
+        if (!unit.includes(normalized)) continue;
+        if (haystack.includes(normalized)) continue;
+        missing.add(text(specific));
+      }
+    }
+    for (const year of unitText.match(PROSE_YEAR_RE) ?? []) {
+      if (new RegExp(`\\b${year}\\b`).test(haystack)) continue;
+      missing.add(year);
+    }
+    return [...missing];
+  };
+  const blocker = (label: string, missing: readonly string[]): string =>
+    `${label} names ${missing.map((value) => `"${value}"`).join(", ")}, which ${missing.length === 1 ? "appears" : "appear"} nowhere in this chapter's drafted prose (hook, fastRead, deepRead, fullRead, keyTakeaway); a reader of this chapter cannot derive it from the page — use only the names, dates, numbers, and terms the prose actually shows`;
+  for (const [i, q] of (pack.quiz?.questions ?? []).entries()) {
+    const choices = Array.isArray(q.choices) ? q.choices.map((choice) => text(choice)).join(" ") : "";
+    const unitText = `${text(q.prompt)} ${choices} ${text(q.explanation)}`;
+    const missing = undeliverable(unitText, ["quiz_prompt", "quiz_explanation", "quiz_key_evidence"], [q.sourceAnchorIds ?? (q as { sourceAnchorId?: unknown }).sourceAnchorId, q.keyEvidenceAnchorIds]);
+    if (missing.length > 0) push(blocker(`q${i + 1}`, missing), `/quiz/questions/${i}`);
+  }
+  for (const [i, card] of (pack.cards?.cards ?? []).entries()) {
+    const unitText = `${text(card.front)} ${text(card.back)}`;
+    const missing = undeliverable(unitText, ["review_card"], [card.sourceAnchorIds ?? card.sourceAnchorId]);
+    if (missing.length > 0) push(blocker(`card ${i + 1}`, missing), `/cards/cards/${i}`);
+  }
+  return findings;
+}
+
+export function validateLearningPack(
+  pack: LearningPackV1,
+  bp: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  /** Task 11ai — THIS chapter's drafted summary pack. Absent for legacy/other
+   *  callers, and SEC120 then no-ops. */
+  chapterProse?: ChapterProseSource | null,
+): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
@@ -2461,6 +2551,7 @@ export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV
   }
   findings.push(...repeatedQuestionNgramFindings(pack, ch));
   findings.push(...quizPromptNgramReuseFindings(pack, ch));
+  findings.push(...learningProseDerivabilityFindings(pack, bp, packet, chapterProse));
   return findings;
 }
 
@@ -2504,12 +2595,21 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   return findings;
 }
 
-export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, selectedSidecar?: unknown): SectionFinding[] {
+export function validateSectionPack(
+  pack: SectionPackV1,
+  bp: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  selectedSidecar?: unknown,
+  /** Task 11ai — this chapter's already-drafted summary pack, carried in so the
+   *  learning-pack gate can check SEC120 derivability against the prose the reader
+   *  will actually see. Absent → SEC120 no-ops. */
+  chapterProse?: ChapterProseSource | null,
+): SectionFinding[] {
   const findings = (() => {
     switch (pack.artifactType) {
       case "summary-pack": return validateSummaryPack(pack, bp, packet);
       case "example-pack": return validateExamplePack(pack, bp, packet);
-      case "learning-pack": return validateLearningPack(pack, bp, packet);
+      case "learning-pack": return validateLearningPack(pack, bp, packet, chapterProse);
       case "action-pack": return validateActionPack(pack, bp, packet);
       default: return [{ checkId: "SEC99.unknown", severity: "blocker" as const, chapterNumber: bp.chapterNumber, message: `unknown section artifact ${(pack as any)?.artifactType}` }];
     }
@@ -2631,6 +2731,17 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
         if (exPack.artifactType === "example-pack") usedCast = usedExampleCast(bp, exPack);
       }
     } catch { /* unreadable example pack → its own gate run reports it */ }
+    // Task 11ai (SEC120): the chapter's OWN drafted prose, read once from the sibling
+    // summary pack — independent of which sections were requested, so a
+    // `--section learning-pack` run still checks derivability. No summary pack yet →
+    // no prose → the check no-ops (never fires on an empty haystack).
+    let chapterProse: SummaryPackV1 | undefined;
+    try {
+      if (hasPack(chapterNumber, "summary-pack")) {
+        const summaryPack = readPack(chapterNumber, "summary-pack");
+        if (summaryPack.artifactType === "summary-pack") chapterProse = summaryPack;
+      }
+    } catch { /* unreadable summary pack → its own gate run reports it */ }
     for (const kind of validSections) {
       const p = packPath(chapterNumber, kind);
       if (!hasPack(chapterNumber, kind)) {
@@ -2639,7 +2750,7 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
       }
       try {
         const pack = readPack(chapterNumber, kind);
-        findings.push(...validateSectionPack(pack, bp, packet, selectedByChapter?.get(chapterNumber)?.sourceSidecar));
+        findings.push(...validateSectionPack(pack, bp, packet, selectedByChapter?.get(chapterNumber)?.sourceSidecar, chapterProse));
         findings.push(...castContainmentFindings(pack, usedCast, bp.chapterNumber));
         softBannedFields.push(...collectSoftBannedTextFields(pack, bp.chapterNumber, true));
         if (kind === "example-pack" && pack.artifactType === "example-pack") {

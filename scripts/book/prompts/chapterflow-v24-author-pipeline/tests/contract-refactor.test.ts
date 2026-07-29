@@ -199,6 +199,52 @@ test("every rendered task is <= 62% of its pinned pre-refactor length", () => {
   }
 });
 
+// Task 11ai — DELIBERATE RE-PIN for the learning-pack card only, 62% -> 76%.
+//
+// In production the learning-pack card ALSO carries THIS chapter's already-drafted
+// reader-visible prose (finding 45: the 3-seat blind panel failed every canary chapter
+// because quiz stems and cards named facts — "Dr. Thomas Bond", "1751", "Temperance" —
+// that appear nowhere in the read tiers). The prose is the chapter itself, so it cannot
+// be summarised away without defeating the fix: a writer told "be derivable from the
+// prose" needs the prose. Worst case (every tier at the TOP of its contract aim band:
+// fastRead 600 / deepRead 1600 / fullRead 3400 chars, plus hook, counterintuition and
+// keyTakeaway) adds ~7.0k chars to a ~32.7k card = 74.3% of the 53,312-char pin.
+//
+// The re-pin is SCOPED and DOUBLE-BOUNDED so it cannot become a prose-creep loophole:
+//   - the four packet-only cards keep the 62% bound (test above, untouched);
+//   - only the with-prose learning card gets 76%; and
+//   - the DELTA over the same card without prose must stay within the prose payload
+//     plus a small allowance for the block header and the derivability rule, so growth
+//     is the chapter's own text and nothing else.
+// Precedent: the 60->62% re-pin for Task 11z's quiz-specifics preflight, same reasoning.
+const WORST_CASE_PROSE_CHARS = 220 + 220 + 600 + 1600 + 3400 + 200;
+const PROSE_BLOCK_SCAFFOLD_ALLOWANCE = 1200;
+
+function worstCaseChapterProse() {
+  const filler = (chars: number) => "The reader sees the visible balance change before the lender reads it. ".repeat(Math.ceil(chars / 70)).slice(0, chars);
+  return {
+    hook: { hook: filler(220), counterintuition: filler(220) },
+    breakdown: { fastRead: filler(600), deepRead: filler(1600), fullRead: filler(3400) },
+    keyTakeaway: filler(200),
+  };
+}
+
+test("the production learning-pack card (with drafted chapter prose) is bounded at 76% and grows only by the prose", () => {
+  const bp = realisticFixture();
+  const args = { bookId: "money-book", kind: "learning-pack" as const, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } };
+  const withProse = buildSectionTaskMarkdown({ ...args, chapterProse: worstCaseChapterProse() });
+  const bare = buildSectionTaskMarkdown(args);
+  assert.ok(withProse.length > bare.length, "the prose block must actually render");
+  const pre = PRE_REFACTOR_CHARS["learning-pack"];
+  const ratio = withProse.length / pre;
+  assert.ok(withProse.length <= 0.76 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 76% (re-pin only with a stated rationale)`);
+  const delta = withProse.length - bare.length;
+  assert.ok(
+    delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
+    `the prose block added ${delta} chars for a ${WORST_CASE_PROSE_CHARS}-char payload; growth beyond the chapter's own text + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} chars of header/rule is prose creep`,
+  );
+});
+
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {
   const pom = loadBookScars("the-power-of-moments");
   assert.ok(pom, "POM has a scar file");

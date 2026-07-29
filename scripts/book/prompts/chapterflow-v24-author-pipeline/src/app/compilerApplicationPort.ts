@@ -22,6 +22,7 @@ import type { BookScars } from "../lib/bookScars.js";
 import { buildSectionTaskMarkdown, type SectionRetryFeedback, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
 import { assembleSections, type AssemblyBlocker, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import { validateSectionPack } from "../sections/sectionGate.js";
+import type { ChapterProseSource } from "../sections/chapterProse.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterV21 } from "../types.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
@@ -374,13 +375,18 @@ function sectionGateBlockers(
   blueprint: ChapterBlueprintV1,
   packet: SourcePacketV1,
   sidecar: SourceSidecarV2,
+  /** Task 11ai — this chapter's already-accepted summary pack. Sections compile in
+   *  SECTION_KINDS order (summary → example → learning → action), so the reader-visible
+   *  prose exists by the time the learning pack is gated; SEC120 checks the quiz and
+   *  cards against it. Undefined for the summary pack itself → SEC120 no-ops. */
+  chapterProse?: ChapterProseSource,
 ): SectionGateBlockers | null {
   if (output.artifactType !== kind) {
     throw new Error(`COMPILER_SECTION_OUTPUT_INVALID:${kind}:artifactType must equal ${kind}`);
   }
   let findings: ReturnType<typeof validateSectionPack>;
   try {
-    findings = validateSectionPack(output as SectionPackV1, blueprint, packet, sidecar);
+    findings = validateSectionPack(output as SectionPackV1, blueprint, packet, sidecar, chapterProse);
   } catch (error) {
     throw new Error(`COMPILER_SECTION_OUTPUT_INVALID:${kind}:${boundedCompilerDetail(error)}`);
   }
@@ -407,9 +413,10 @@ function cachedSectionPackIsReusable(
   blueprint: ChapterBlueprintV1,
   packet: SourcePacketV1,
   sidecar: SourceSidecarV2,
+  chapterProse?: ChapterProseSource,
 ): boolean {
   try {
-    return sectionGateBlockers(cached, kind, blueprint, packet, sidecar) === null;
+    return sectionGateBlockers(cached, kind, blueprint, packet, sidecar, chapterProse) === null;
   } catch {
     return false;
   }
@@ -1157,6 +1164,12 @@ export class CompilerApplicationPort {
           { kind: "SIDECAR", logicalPath: blueprintLogicalPath, mediaType: "application/json", bytes: jsonBytes(candidateBlueprint) },
         );
         const sectionPaths = {} as Record<SectionKind, string>;
+        // Task 11ai — the chapter's reader-visible prose, captured the moment the
+        // summary pack is accepted (reused or freshly drafted). SECTION_KINDS order is
+        // summary → example → learning → action, so this is populated before the
+        // learning pack is drafted or gated: the writer sees the prose it must be
+        // derivable from, and SEC120 checks the draft against it.
+        let draftedChapterProse: ChapterProseSource | undefined;
         for (const kind of SECTION_KINDS) {
           const operation = operations.find((value) => value.chapterNumber === chapter.chapterNumber && value.kind === kind);
           if (!operation) throw new Error("COMPILER_ID_INVALID:missing compiler operation");
@@ -1199,7 +1212,7 @@ export class CompilerApplicationPort {
             } catch {
               cached = null;
             }
-            if (cached !== null && cachedSectionPackIsReusable(cached, kind, candidateBlueprint, packet, sidecars[index])) {
+            if (cached !== null && cachedSectionPackIsReusable(cached, kind, candidateBlueprint, packet, sidecars[index], draftedChapterProse)) {
               acceptedOutput = cached;
               reusedFromCache = true;
               console.error(
@@ -1217,7 +1230,7 @@ export class CompilerApplicationPort {
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
             const attemptId = attemptNumber === 1 ? operation.attemptId : `${operation.attemptId}-r${attemptNumber}`;
             invokedAttemptIds.push(attemptId);
-            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid });
+            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse });
             const result = await this.#dependencies.runner.run({
               profileId: COMPILER_SECTION_PROFILE_ID,
               context: {
@@ -1295,7 +1308,7 @@ export class CompilerApplicationPort {
             }
             const draft = result.output as Record<string, unknown>;
             // Throws (non-retryable) on structural garbage; returns gate blockers otherwise.
-            const blocked = sectionGateBlockers(draft, kind, candidateBlueprint, packet, sidecars[index]);
+            const blocked = sectionGateBlockers(draft, kind, candidateBlueprint, packet, sidecars[index], draftedChapterProse);
             if (blocked === null) {
               acceptedOutput = draft;
               break;
@@ -1306,6 +1319,8 @@ export class CompilerApplicationPort {
             retryFeedback = { blockerLines: blocked.blockerLines, priorDraft: draft };
           }
           if (acceptedOutput === null) throw new Error(`COMPILER_SECTION_BLOCKED:${kind}:bounded retry exhausted without a verdict`);
+          // Task 11ai — hand the accepted summary pack to the sections drafted after it.
+          if (kind === "summary-pack") draftedChapterProse = acceptedOutput as ChapterProseSource;
           // Task 11y — write on gate-pass. A freshly-drafted pack is stored durably
           // the instant it passes its gate, BEFORE any later section is attempted, so
           // a section that cleared its gate in a run that later fails elsewhere is

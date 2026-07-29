@@ -1,4 +1,5 @@
 import { voiceRegisterLine } from "../lib/voiceCard.js";
+import { chapterProseFields, type ChapterProseSource } from "./chapterProse.js";
 import type { BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
 import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
@@ -419,6 +420,33 @@ function assemblyAvoidSection(avoids: readonly SectionAvoidEntry[] = []): string
   return `\n\nCROSS-CHAPTER ASSEMBLY CONFLICT — a prior draft of this section collided with other chapters when the book was assembled. The section gate cannot see these in isolation; resolve every line and change nothing else:\n${lines}\n`;
 }
 
+/**
+ * Task 11ai — the CHAPTER PROSE block (learning-pack only). The packs are drafted
+ * independently from one source packet, so without this the quiz writer designs from
+ * every ALLOWED fact instead of the subset the summary writer actually put on the
+ * page — the dominant blind-reader BLOCKER class (finding 45: stems and cards naming
+ * "Dr. Thomas Bond", "1751", "Temperance" that appear nowhere in the read tiers).
+ * Compile order is summary → example → learning → action, so this chapter's prose is
+ * already drafted when the learning card is built; showing it makes the derivable-
+ * from-the-prose promise satisfiable by construction. SEC120 backstops it.
+ *
+ * Renders "" for every other kind and whenever no prose is supplied, so every
+ * existing task card stays byte-identical.
+ */
+function chapterProseSection(kind: SectionKind, source?: ChapterProseSource | null): string {
+  if (kind !== "learning-pack" || !source) return "";
+  const fields = chapterProseFields(source);
+  const passages: string[] = [];
+  if (fields.hook) passages.push(`HOOK: ${fields.hook}`);
+  if (fields.counterintuition) passages.push(`COUNTERINTUITION: ${fields.counterintuition}`);
+  if (fields.fastRead) passages.push(`FAST READ: ${fields.fastRead}`);
+  if (fields.deepRead) passages.push(`DEEP READ: ${fields.deepRead}`);
+  if (fields.fullRead) passages.push(`FULL READ: ${fields.fullRead}`);
+  if (fields.keyTakeaway) passages.push(`KEY TAKEAWAY: ${fields.keyTakeaway}`);
+  if (passages.length === 0) return "";
+  return `\n\nCHAPTER PROSE — the reader-visible text of THIS chapter, already drafted. This is EVERYTHING the reader has seen when they reach your quiz and cards.\n${passages.join("\n\n")}\n\nDERIVABLE FROM THE PROSE — every quiz stem, every choice, every explanation, and every review card must be answerable from the CHAPTER PROSE above ALONE. Cite only names, dates, numbers, and terms that appear in that prose; a term the prose never uses cannot be introduced on a card back, and a date or figure the prose never states cannot be reasoned about in a stem. If a fact is in the SOURCE PACKET below but not in the prose, it is NOT available to you here — teach what the reader was actually shown, or the question cannot be derived from the page (SEC120); the validator enforces this.`;
+}
+
 function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = []): string {
   if (!feedback || feedback.blockerLines.length === 0) return "";
   const blockers = feedback.blockerLines.map((line) => `- ${line}`).join("\n");
@@ -437,8 +465,12 @@ function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly
   return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}${inventory}`;
 }
 
-export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext; deliveryMode?: SectionTaskDeliveryMode; retryFeedback?: SectionRetryFeedback; assemblyAvoid?: readonly SectionAvoidEntry[] }): string {
-  const { bookId, kind, blueprint, sourcePacket, outputPath, context, deliveryMode = "FILE_WRITE", retryFeedback, assemblyAvoid } = args;
+export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext; deliveryMode?: SectionTaskDeliveryMode; retryFeedback?: SectionRetryFeedback; assemblyAvoid?: readonly SectionAvoidEntry[];
+  /** Task 11ai — THIS chapter's already-drafted summary pack (its reader-visible
+   *  prose). Consumed by the learning-pack card only; ABSENT everywhere else, so an
+   *  omitted field renders exactly today's task card. */
+  chapterProse?: ChapterProseSource | null }): string {
+  const { bookId, kind, blueprint, sourcePacket, outputPath, context, deliveryMode = "FILE_WRITE", retryFeedback, assemblyAvoid, chapterProse } = args;
   // Each writer consumes only its own section's slots plus a little shared chapter
   // context; the per-slot dealt fields (sceneFrame, promptShape, correctIndex,
   // requiredFactIds, action.practiceForm, …) all live inside these section slices.
@@ -485,9 +517,9 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {

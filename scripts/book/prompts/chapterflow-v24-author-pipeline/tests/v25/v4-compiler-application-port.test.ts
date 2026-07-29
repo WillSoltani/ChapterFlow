@@ -500,6 +500,31 @@ requiredTest("2b section-task context rejects missing duplicate malformed wrong-
   }
 });
 
+requiredTest("3a the learning-pack card carries THIS chapter's already-drafted prose (Task 11ai)", async (context) => {
+  // Finding 45: packs are drafted independently from one packet, so the quiz writer
+  // designed from every ALLOWED fact instead of the subset the summary actually put on
+  // the page. Sections compile summary -> example -> learning -> action, so the port
+  // must hand the ACCEPTED summary pack to the learning card (and to its gate call).
+  const subject = rig(context, "chapter-prose");
+  await subject.port.run(subject.request);
+  const cardFor = (kind: string): string => {
+    const prompt = subject.prompts.find((value) => value.context.operationId === `compiler-ch01-${kind}`);
+    assert.ok(prompt, `${kind} prompt missing`);
+    return Buffer.from(prompt!.prompt.inputs[4].bytes).toString("utf8");
+  };
+  const learningCard = cardFor("learning-pack");
+  const drafted = compileCreditFixture(BOOK).summary;
+  assert.match(learningCard, /CHAPTER PROSE/);
+  assert.ok(learningCard.includes(drafted.breakdown.fastRead), "the accepted summary's fastRead must reach the learning writer");
+  assert.ok(learningCard.includes(drafted.keyTakeaway), "the accepted summary's keyTakeaway must reach the learning writer");
+  assert.match(learningCard, /must be answerable from the CHAPTER PROSE above ALONE/);
+  // The summary pack is drafted FIRST — it has no prose of its own to be shown, and the
+  // example/action writers are unaffected by this input.
+  for (const kind of ["summary-pack", "example-pack", "action-pack"]) {
+    assert.doesNotMatch(cardFor(kind), /CHAPTER PROSE/, `${kind}: prose block is learning-pack only`);
+  }
+});
+
 requiredTest("3 fixed profile and ordered framing preserve hostile candidate bytes", async (context) => {
   const subject = rig(context, "framing");
   await subject.port.run(subject.request);
