@@ -39,7 +39,7 @@ on safety grounds with per-seat reasoning (§4).
 
 ---
 
-## 3. The 42 findings
+## 3. The 43 findings
 
 Grouped by what they reveal, not by discovery order.
 
@@ -85,6 +85,13 @@ never via the machinery that produced it.*
 - Reader seats had no bounded retry at all — the one model surface that never got
   the treatment. 17 of 21 seats succeeded; 3 transient failures fail-closed the
   entire review (11ac).
+- **11ag — bibliography had no retry either, and it runs first.** A single
+  degenerate `{}` aborted an entire book run before any chapter work began. The
+  retry hierarchy had been drawn around *observed* failures rather than blast
+  radius; a step-1 surface deserves retry in proportion to what its failure costs.
+  This deliberately changed a pinned invariant (`author-model-research-migration`
+  asserted "5 single-attempt callers"); the rationale is recorded in-test and the
+  four legacy v23-era writer callers keep single-attempt semantics.
 
 ### 3.4 Latent v24 gate defects (9 findings)
 Bugs that existed before this campaign and were only exposed because Sonnet's
