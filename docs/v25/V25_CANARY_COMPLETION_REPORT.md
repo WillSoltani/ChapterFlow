@@ -195,6 +195,7 @@ promotion leg.
 | **F1** | Book-scar edits do not invalidate implicated cache entries | Scar edits currently need manual eviction; a scar digest in the cache key would close it |
 | **F2** | Review `FAIL` has no repair path in `book-run` (QC `FAIL` does) | Editorial failure is terminal by design — worth a documented operator runbook |
 | **F3** | Corpus policy for abstract public-domain sources | *As a Man Thinketh* is not a defect to fix; it may be a source class to decline |
+| **D6** | **The 80 composite floor.** Post-11ai the panel's remaining hard blockers are 4 × `BELOW_FLOOR` at medians 66.3 / 72.3 / 73.2 / 77.4. Closing that is authoring-quality investment, not bug-fixing | Either accept the bar and fund quality iteration, or recalibrate it. A bar no first draft clears means no book ever reaches QC or promotion |
 | **F5** | No `--research-run-id` pin: a repair run re-mints the bibliography and can invalidate all research + cache reuse | Measured on the Franklin repair loop — see §5.1 |
 
 ### 5.1 Operator runbook — responding to a review `FAIL`
@@ -237,9 +238,13 @@ The supported procedure, executed and confirmed on the Franklin canary:
 
 ## 6. Honest limits
 
-- **QC-judge and promotion are unexercised.** Everything upstream is proven; those
-  two stages have unit coverage only.
-- **The Franklin canary is mid-compile** (9 of 16 packs cached) at the time of writing.
+- **QC-judge and promotion remain unexercised, and this is now a calibration
+  question rather than a defect.** Both stages are gated behind a review PASS. After
+  45 fixes the panel's structural objections are largely resolved (derivability 9→0),
+  but composites land at 66–77 against a floor of 80, so no candidate reaches them.
+  See **D6** — this needs an owner decision, not another fix.
+- **The Franklin canary reached review twice** (compile + assembly clean both times);
+  its last verdict is FAIL with 7 blockers, 4 of them score-floor.
 - **11ad's prompt reshape is single-sample.** The deterministic entrenchment guard is
   fully unit-tested; the stochastic incidence reduction is reasoned from a durable
   A/B, not statistically proven.
