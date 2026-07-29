@@ -1,5 +1,5 @@
 import { voiceRegisterLine } from "../lib/voiceCard.js";
-import { chapterProseFields, type ChapterProseSource } from "./chapterProse.js";
+import { CHAPTER_PROSE_CARD_CAPS, chapterProseFields, clampProsePassage, type ChapterProseSource } from "./chapterProse.js";
 import type { BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
 import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
@@ -437,14 +437,30 @@ function chapterProseSection(kind: SectionKind, source?: ChapterProseSource | nu
   if (kind !== "learning-pack" || !source) return "";
   const fields = chapterProseFields(source);
   const passages: string[] = [];
-  if (fields.hook) passages.push(`HOOK: ${fields.hook}`);
-  if (fields.counterintuition) passages.push(`COUNTERINTUITION: ${fields.counterintuition}`);
-  if (fields.fastRead) passages.push(`FAST READ: ${fields.fastRead}`);
-  if (fields.deepRead) passages.push(`DEEP READ: ${fields.deepRead}`);
-  if (fields.fullRead) passages.push(`FULL READ: ${fields.fullRead}`);
-  if (fields.keyTakeaway) passages.push(`KEY TAKEAWAY: ${fields.keyTakeaway}`);
+  // Each passage is clamped to CHAPTER_PROSE_CARD_CAPS — well above the top of every
+  // contract aim band, so conformant prose renders whole and only a runaway tier
+  // (nothing enforces a tier CEILING; SEC6 checks floors) is trimmed. Without this the
+  // card's pinned length bound would be a hope rather than a bound.
+  let clamped = false;
+  const passage = (label: string, key: keyof typeof CHAPTER_PROSE_CARD_CAPS): void => {
+    if (!fields[key]) return;
+    const rendered = clampProsePassage(fields[key], CHAPTER_PROSE_CARD_CAPS[key]);
+    clamped ||= rendered.length !== fields[key].length;
+    passages.push(`${label}: ${rendered}`);
+  };
+  passage("HOOK", "hook");
+  passage("COUNTERINTUITION", "counterintuition");
+  passage("FAST READ", "fastRead");
+  passage("DEEP READ", "deepRead");
+  passage("FULL READ", "fullRead");
+  passage("KEY TAKEAWAY", "keyTakeaway");
   if (passages.length === 0) return "";
-  return `\n\nCHAPTER PROSE — the reader-visible text of THIS chapter, already drafted. This is EVERYTHING the reader has seen when they reach your quiz and cards.\n${passages.join("\n\n")}\n\nDERIVABLE FROM THE PROSE — every quiz stem, every choice, every explanation, and every review card must be answerable from the CHAPTER PROSE above ALONE. Cite only names, dates, numbers, and terms that appear in that prose; a term the prose never uses cannot be introduced on a card back, and a date or figure the prose never states cannot be reasoned about in a stem. If a fact is in the SOURCE PACKET below but not in the prose, it is NOT available to you here — teach what the reader was actually shown, or the question cannot be derived from the page (SEC120); the validator enforces this.`;
+  // The "EVERYTHING" claim has to stay true: an over-long passage is marked, and the
+  // header says so rather than overstating what is shown.
+  const completeness = clamped
+    ? "A passage marked […prose truncated] ran past the card budget and was cut there; write only from what is shown."
+    : "This is EVERYTHING the reader has seen when they reach your quiz and cards.";
+  return `\n\nCHAPTER PROSE — the reader-visible text of THIS chapter, already drafted. ${completeness}\n${passages.join("\n\n")}\n\nDERIVABLE FROM THE PROSE — every quiz stem, every choice, every explanation, and every review card must be answerable from the CHAPTER PROSE above ALONE. Cite only names, dates, numbers, and terms that appear in that prose; a term the prose never uses cannot be introduced on a card back, and a date or figure the prose never states cannot be reasoned about in a stem. If a fact is in the SOURCE PACKET below but not in the prose, it is NOT available to you here — teach what the reader was actually shown, or the question cannot be derived from the page (SEC120); the validator enforces this.`;
 }
 
 function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = []): string {

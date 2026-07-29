@@ -16,6 +16,7 @@ import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
 import { assembleChapterV21OrThrow } from "../src/assembler.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
+import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
@@ -317,17 +318,24 @@ test("learning-pack task card carries THIS chapter's drafted prose and the deriv
   assert.doesNotMatch(bare, /CHAPTER PROSE/, "no prose supplied → no prose block");
 
   assert.match(withProse, /CHAPTER PROSE/, "the drafted prose block must be rendered");
-  for (const passage of [
-    fx.summary.hook.hook,
-    fx.summary.hook.counterintuition,
-    fx.summary.breakdown.fastRead,
-    fx.summary.breakdown.deepRead,
-    fx.summary.breakdown.fullRead,
-    fx.summary.keyTakeaway,
-  ]) {
+  // Each drafted passage reaches the card, clamped to its documented cap (Task 11ai
+  // review, minor a — this fixture's tiers are synthetic repeats far past any aim
+  // band, so they exercise the clamp; the hook and keyTakeaway are under their caps
+  // and must render verbatim).
+  for (const [key, passage] of [
+    ["hook", fx.summary.hook.hook],
+    ["counterintuition", fx.summary.hook.counterintuition],
+    ["fastRead", fx.summary.breakdown.fastRead],
+    ["deepRead", fx.summary.breakdown.deepRead],
+    ["fullRead", fx.summary.breakdown.fullRead],
+    ["keyTakeaway", fx.summary.keyTakeaway],
+  ] as const) {
     assert.ok(passage, "fixture summary must supply every reader-visible passage");
-    assert.ok(withProse.includes(passage!), `prose block must carry the drafted passage: ${passage!.slice(0, 40)}…`);
+    const rendered = clampProsePassage(passage!, CHAPTER_PROSE_CARD_CAPS[key]);
+    assert.ok(withProse.includes(rendered), `prose block must carry the drafted passage: ${passage!.slice(0, 40)}…`);
   }
+  assert.ok(withProse.includes(fx.summary.hook.hook!), "a passage inside its cap is carried verbatim");
+  assert.ok(withProse.includes(fx.summary.keyTakeaway!), "a passage inside its cap is carried verbatim");
   // The rule: derivable from the prose alone, and a packet fact absent from the prose
   // is simply unavailable.
   assert.match(withProse, /every quiz stem[\s\S]{0,200}review card must be answerable from the CHAPTER PROSE above ALONE/);
@@ -403,6 +411,82 @@ test("SEC120 blocks a review card that introduces a term the chapter's prose nev
     validateLearningPack(untouched, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable" && f.path === "/cards/cards/0"),
     [],
     "citing an anchor without naming its specifics is not a derivability failure",
+  );
+});
+
+// Task 11ai REVIEW — the year branch was the one asymmetric path: years were pulled
+// from the RAW unit text but tested against the NORMALISED haystack, where
+// normalizeProseText turns "$1,800" into "1 800". A figure that IS on the page then
+// read as a phantom, emitting an unactionable retry line ("remove 1800") and burning
+// bounded retries on money/quantity books. Both sides now collapse digit-group
+// separators and compare on digit boundaries.
+test("SEC120's year rule normalises BOTH sides: a comma-grouped figure on the page is not a phantom (Task 11ai review)", () => {
+  const fx = compileFixture();
+  assert.deepEqual(
+    validateLearningPack(cloneLearning(fx.learning), fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "baseline: the untouched fixture pack is derivable from its own prose",
+  );
+  const missingFor = (prompt: string, proseSentence: string): string[] => {
+    const bad = cloneLearning(fx.learning);
+    bad.quiz.questions[0].prompt = prompt;
+    const prose = cloneSummary(fx.summary);
+    prose.breakdown.deepRead = `${prose.breakdown.deepRead} ${proseSentence}`;
+    return validateLearningPack(bad, fx.blueprint, fx.packet, prose)
+      .filter((f) => f.checkId === "SEC120.learning_prose_derivable" && f.path === "/quiz/questions/0")
+      .map((f) => f.message);
+  };
+  // Same number, different punctuation on each side — must NOT fire.
+  assert.deepEqual(missingFor(
+    "A reader keeps a 1800 dollar buffer before the statement closes. Which move protects it?",
+    "She kept a $1,800 buffer on hand while the statement closed.",
+  ), [], "a thousands-separated figure in the prose is the same figure as the bare one in the stem");
+  assert.deepEqual(missingFor(
+    "A reader walks 2000 steps a day between statement dates. Which habit shows up first?",
+    "She walked 2,000 steps a day while the balance sat unpaid.",
+  ), [], "2,000 in the prose answers 2000 in the stem");
+  assert.deepEqual(missingFor(
+    "A reader compares the 1600 point swing against the next snapshot. Which move matters?",
+    "The report showed a 1,600 point swing after the payment landed.",
+  ), [], "1,600 in the prose answers 1600 in the stem");
+  assert.deepEqual(missingFor(
+    "A reader reads the 1751 charter before the reporting date arrives. Which move helps?",
+    "The 1751st charter in the file still governs how the balance is read.",
+  ), [], "digit-boundary matching: the number is on the page even inside an ordinal");
+
+  // Still a blocker when the figure genuinely is not on the page.
+  const absent = missingFor(
+    "A reader checks the 1751 charter before the reporting date arrives. Which move helps?",
+    "The charter in the file still governs how the balance is read.",
+  );
+  assert.equal(absent.length, 1, absent.join("\n"));
+  assert.match(absent[0], /1751/, "a year the prose never states is still blocked");
+  // And a longer number that merely CONTAINS the digits is not a match.
+  const swallowed = missingFor(
+    "A reader checks the 1751 charter before the reporting date arrives. Which move helps?",
+    "The charter numbered 11751 in the file still governs how the balance is read.",
+  );
+  assert.equal(swallowed.length, 1, "1751 inside 11751 is a different number, not a match");
+});
+
+// Task 11ai REVIEW (minor b) — checkSectionGate reads the sibling summary pack off
+// disk without re-gating it, so a stub pack (a hook and nothing else) could become a
+// near-empty haystack that fails everything. The chapter the reader sees is the read
+// tiers; without them there is nothing to be derivable FROM.
+test("SEC120 no-ops against a summary pack with no drafted read tiers (Task 11ai review)", () => {
+  const fx = compileFixture();
+  const bad = cloneLearning(fx.learning);
+  bad.quiz.questions[0].prompt = "A reader checks the 1751 charter before the reporting date arrives. Which move helps?";
+  assert.ok(
+    validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).some((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    "control: against the real drafted prose the same pack IS blocked",
+  );
+  const stub = cloneSummary(fx.summary);
+  stub.breakdown = { ...stub.breakdown, fastRead: "", deepRead: "", fullRead: "" } as SummaryPackV1["breakdown"];
+  assert.deepEqual(
+    validateLearningPack(bad, fx.blueprint, fx.packet, stub).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "a summary pack with no read tiers is not this chapter's prose — the backstop no-ops",
   );
 });
 

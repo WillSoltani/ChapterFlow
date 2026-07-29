@@ -25,6 +25,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
+import { CHAPTER_PROSE_CARD_BUDGET } from "../src/sections/chapterProse.js";
 import { loadBookScars, validateBookScars } from "../src/lib/bookScars.js";
 import { voiceCard } from "../src/lib/voiceCard.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
@@ -217,6 +218,9 @@ test("every rendered task is <= 62% of its pinned pre-refactor length", () => {
 //     plus a small allowance for the block header and the derivability rule, so growth
 //     is the chapter's own text and nothing else.
 // Precedent: the 60->62% re-pin for Task 11z's quiz-specifics preflight, same reasoning.
+// The 76% figure assumes tiers that RESPECT their aim bands, which nothing in
+// production enforces (SEC6 checks floors only) — the hard ceiling that holds for any
+// input at all is the clamp test below.
 const WORST_CASE_PROSE_CHARS = 220 + 220 + 600 + 1600 + 3400 + 200;
 const PROSE_BLOCK_SCAFFOLD_ALLOWANCE = 1200;
 
@@ -243,6 +247,41 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
     `the prose block added ${delta} chars for a ${WORST_CASE_PROSE_CHARS}-char payload; growth beyond the chapter's own text + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} chars of header/rule is prose creep`,
   );
+});
+
+// Task 11ai REVIEW (minor a) — the 76% figure above assumes tiers that RESPECT their
+// aim bands, and nothing in production enforces a tier CEILING (SEC6.breakdown_length
+// checks floors only; the aim bands are prompt guidance). A model that overshoots
+// fullRead would silently blow the pin. The renderer now clamps each passage to
+// CHAPTER_PROSE_CARD_CAPS, so the ceiling below holds for ANY input, not just
+// well-behaved input.
+test("a runaway summary pack cannot blow the learning card: the prose block is clamped at a hard ceiling", () => {
+  const bp = realisticFixture();
+  const args = { bookId: "money-book", kind: "learning-pack" as const, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } };
+  const filler = (chars: number) => "The reader sees the visible balance change before the lender reads it. ".repeat(Math.ceil(chars / 70)).slice(0, chars);
+  const runaway = {
+    hook: { hook: filler(9000), counterintuition: filler(9000) },
+    breakdown: { fastRead: filler(9000), deepRead: filler(30000), fullRead: filler(60000) },
+    keyTakeaway: filler(9000),
+  };
+  const withProse = buildSectionTaskMarkdown({ ...args, chapterProse: runaway });
+  const bare = buildSectionTaskMarkdown(args);
+  const pre = PRE_REFACTOR_CHARS["learning-pack"];
+  const ratio = withProse.length / pre;
+  assert.ok(withProse.length <= 0.80 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 80%`);
+  const delta = withProse.length - bare.length;
+  assert.ok(
+    delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
+    `unbounded prose added ${delta} chars against a ${CHAPTER_PROSE_CARD_BUDGET}-char clamp budget + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} of scaffold`,
+  );
+  // Aim-band-conformant prose is never touched by the clamp (the test above still
+  // measures the real, whole passages).
+  const conformant = buildSectionTaskMarkdown({ ...args, chapterProse: worstCaseChapterProse() });
+  assert.doesNotMatch(conformant, /prose truncated/, "well-behaved tiers render whole");
+  assert.match(withProse, /prose truncated/, "a clamped passage says so, so the writer knows the tail exists");
+  // The header cannot claim completeness it no longer has.
+  assert.match(conformant, /This is EVERYTHING the reader has seen/);
+  assert.doesNotMatch(withProse, /This is EVERYTHING the reader has seen/, "a clamped block must not claim to be everything");
 });
 
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {

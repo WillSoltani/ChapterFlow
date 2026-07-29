@@ -26,7 +26,7 @@ import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { memorableLineScore } from "../optimizers/memorableLines.js";
 import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
-import { chapterProseText, normalizeProseText, type ChapterProseSource } from "./chapterProse.js";
+import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, type ChapterProseSource } from "./chapterProse.js";
 import {
   QUIZ_TELL_MAX_PER_CHAPTER,
   quizTransferFloor,
@@ -2325,11 +2325,17 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
   return findings;
 }
 
-/** A 4-digit year a reader would have to reason about (old-style dating, a founding
- *  date, a study year). Bounded to 1500-2099 deliberately: a bare 4-digit quantity
- *  ("1200 employees") is NOT a year and must not be swept into a derivability
- *  blocker — the check stays conservative and under-fires by design. */
-const PROSE_YEAR_RE = /\b(?:1[5-9]\d{2}|20\d{2})\b/g;
+/** A 4-digit NUMBER in 1500-2099 — the band where a figure is most likely to be a
+ *  year a reader must reason about (old-style dating, a founding date, a study year).
+ *  The band is the whole rule, not a semantic test: a quantity that happens to land
+ *  inside it ("1,800 dollars", "2,000 steps") is checked exactly like a year, which is
+ *  correct — the requirement is only that the FIGURE appears on the page, and
+ *  digit-group separators are collapsed on both sides so formatting never decides it.
+ *  Below 1500 and above 2099 the check stays silent by design (a bare "1200
+ *  employees" is out of band), so it under-fires rather than over-fires.
+ *  Digit boundaries, not \b: "1751" inside "1751st" is the same number, while "1751"
+ *  inside "11751" is not — and the same regex form is used on both sides. */
+const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
 
 /**
  * SEC120 (Task 11ai) — DERIVABILITY BACKSTOP. Every section pack is drafted
@@ -2340,17 +2346,23 @@ const PROSE_YEAR_RE = /\b(?:1[5-9]\d{2}|20\d{2})\b/g;
  * naming "Dr. Thomas Bond" or reasoning about "1705/1706" and cards introducing
  * "Temperance" when no read tier ever says any of it.
  *
- * Deliberately CONSERVATIVE, to stay zero-false-positive:
- *   - only the hardSpecifics of anchors the unit ITSELF cites under the claim class
- *     SEC56/SEC58 already resolve — never every packet specific, never a general
- *     proper-noun sweep;
- *   - only specifics the unit actually USES (same case-insensitive containment the
- *     anchor-specifics gates use), since an unused specific makes no claim;
- *   - plus 4-digit years in the unit's own reader-facing text;
- *   - case/punctuation normalised on both sides (chapterProse.normalizeProseText);
- *   - the prose is hook + counterintuition + all three read tiers + keyTakeaway;
- *   - NO prose supplied (legacy callers, a chapter whose summary pack is not drafted
- *     yet) → the check no-ops entirely rather than firing on an empty haystack.
+ * TWO independent rules, both bounded:
+ *   1. ANCHOR SPECIFICS — only the hardSpecifics of anchors the unit ITSELF cites
+ *      under the claim class SEC56/SEC58 already resolve (never every packet
+ *      specific, never a general proper-noun sweep), and only the specifics the unit
+ *      actually USES, since an unused specific makes no claim.
+ *   2. YEAR-BAND FIGURES — every 4-digit number in 1500-2099 in the unit's own
+ *      reader-facing text, INDEPENDENT of rule 1: this one fires on a stem that cites
+ *      no specifics-rich anchor at all, which is the point (the panel's Q9 asked a
+ *      reader to reason about a birth year the prose never states).
+ *
+ * Both rules compare through ONE normalisation applied to BOTH sides
+ * (chapterProse.normalizeDerivabilityText: case, punctuation and digit-group
+ * separators), so "Dr Thomas Bond" answers "Dr. Thomas Bond" and "$1,800" answers
+ * "1800". The prose is hook + counterintuition + all three read tiers + keyTakeaway.
+ * The check NO-OPS entirely — never fires on a thin haystack — when no prose is
+ * supplied (legacy callers, a summary pack not drafted yet) or when the supplied pack
+ * has no drafted read tiers (a stub the reporting CLI happened to find on disk).
  */
 export function learningProseDerivabilityFindings(
   pack: LearningPackV1,
@@ -2358,8 +2370,8 @@ export function learningProseDerivabilityFindings(
   packet: SourcePacketV1,
   prose: ChapterProseSource | null | undefined,
 ): SectionFinding[] {
-  const haystack = normalizeProseText(chapterProseText(prose));
-  if (haystack.length === 0) return [];
+  const haystack = normalizeDerivabilityText(chapterProseText(prose));
+  if (haystack.length === 0 || !hasDraftedReadTiers(prose)) return [];
   const anchors = sourceAnchorById(packet);
   const findings: SectionFinding[] = [];
   const push = (message: string, path: string) => findings.push({
@@ -2371,22 +2383,24 @@ export function learningProseDerivabilityFindings(
     path,
   });
   const undeliverable = (unitText: string, claimTypes: readonly SourceClaimType[], ids: readonly unknown[]): string[] => {
-    const unit = normalizeProseText(unitText);
+    const unit = normalizeDerivabilityText(unitText);
     const missing = new Set<string>();
     for (const id of ids.flatMap((value) => anchorArray(value))) {
       const anchor = anchors.get(id);
       if (!anchor) continue;
       if (!claimTypes.some((claimType) => anchor.supportsClaimTypes?.includes(claimType))) continue;
       for (const specific of anchor.hardSpecifics ?? []) {
-        const normalized = normalizeProseText(text(specific));
+        const normalized = normalizeDerivabilityText(text(specific));
         if (normalized.length < 3) continue;
         if (!unit.includes(normalized)) continue;
         if (haystack.includes(normalized)) continue;
         missing.add(text(specific));
       }
     }
-    for (const year of unitText.match(PROSE_YEAR_RE) ?? []) {
-      if (new RegExp(`\\b${year}\\b`).test(haystack)) continue;
+    // The unit's years are read off the SAME normalised form the haystack is built
+    // from, so a stem saying "1800" and prose saying "$1,800" are one number.
+    for (const year of unit.match(PROSE_YEAR_RE) ?? []) {
+      if (new RegExp(`(?<!\\d)${year}(?!\\d)`).test(haystack)) continue;
       missing.add(year);
     }
     return [...missing];

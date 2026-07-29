@@ -25,6 +25,7 @@ import { deriveBookDesign } from "../../src/compiler/bookDesign.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../../src/compiler/sourcePacket.js";
 import { buildSectionTaskMarkdown, type SectionRetryFeedback } from "../../src/sections/sectionTasks.js";
+import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../../src/sections/chapterProse.js";
 import {
   BOOK_PATTERN_AUDIT_LOGICAL_PATH,
   parseBookPatternAuditReport,
@@ -515,7 +516,12 @@ requiredTest("3a the learning-pack card carries THIS chapter's already-drafted p
   const learningCard = cardFor("learning-pack");
   const drafted = compileCreditFixture(BOOK).summary;
   assert.match(learningCard, /CHAPTER PROSE/);
-  assert.ok(learningCard.includes(drafted.breakdown.fastRead), "the accepted summary's fastRead must reach the learning writer");
+  // Clamped to its documented card cap (Task 11ai review, minor a — this fixture's
+  // fastRead is a synthetic repeat far past the 600-char aim band).
+  assert.ok(
+    learningCard.includes(clampProsePassage(drafted.breakdown.fastRead, CHAPTER_PROSE_CARD_CAPS.fastRead)),
+    "the accepted summary's fastRead must reach the learning writer",
+  );
   assert.ok(learningCard.includes(drafted.keyTakeaway), "the accepted summary's keyTakeaway must reach the learning writer");
   assert.match(learningCard, /must be answerable from the CHAPTER PROSE above ALONE/);
   // The summary pack is drafted FIRST — it has no prose of its own to be shown, and the
