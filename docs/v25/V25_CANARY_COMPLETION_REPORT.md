@@ -1,7 +1,7 @@
 # V25 Pipeline — Canary Completion Report
 
 **Branch:** `codex/v25-pipeline-completion-recovered` · **Base:** `a20d1cdab`
-**Commits:** 71 · **Suite:** 2796 pass / 0 fail (48 v25 files, 0 failed)
+**Commits:** 75 · **Suite:** 2804 pass / 0 fail (48 v25 files, 0 failed)
 **Period:** 2026-07-22 → 2026-07-28 · **Model under test:** Claude Sonnet 5 (author roles)
 
 ---
@@ -14,7 +14,7 @@ never executed against a live book, and five criticals were open. This campaign
 closed those criticals and then drove a real book end-to-end through every stage to
 find what the test suite structurally could not.
 
-**Result: 43 findings, 43 fixed.** Five came from the audit. **Thirty-eight came from
+**Result: 45 findings, 45 fixed.** Five came from the audit. **Thirty-eight came from
 the live canary** — defects that no amount of unit testing would have surfaced,
 because they only exist in the interaction between a real model, real book content,
 and the pipeline's own recovery machinery.
@@ -39,7 +39,7 @@ on safety grounds with per-seat reasoning (§4).
 
 ---
 
-## 3. The 43 findings
+## 3. The 45 findings
 
 Grouped by what they reveal, not by discovery order.
 
@@ -122,6 +122,36 @@ Contract bullets pre-stating gate rules the model had to otherwise infer: SEC31
 decision scenes, SEC53 answer-length balance, the SEC56 quiz-slot→case→specifics
 join (with a follow-up correcting *"prompt OR explanation"* to *"prompt AND
 explanation"* — the gate checks both fields separately).
+
+### 3.7 Cross-pack derivability (finding 45 — the one that gated everything)
+
+Each section pack is drafted **independently from the same source packet**, so the
+learning writer saw every allowed fact rather than the subset the summary writer
+actually put in front of the reader. Every pack passed its own gates; the violation
+only existed *between* packs. The panel caught it on every chapter:
+
+> *"Quiz stems and review cards name specific facts ('Dr. Thomas Bond,' 'Pennsylvania
+> Assembly,' '1751') that never appear anywhere in the Fast/Deep/Full read prose,
+> breaking the quiz's own derivable-from-the-prose promise."*
+
+**11ai** fixed it on two sides: the learning writer now receives the chapter's
+*actual drafted prose* (available because summary drafts first) with an explicit
+derivability rule, and a conservative deterministic gate (`SEC120`) backstops it,
+no-opping when prose is absent. Both sides normalise through one shared helper so
+writer and gate cannot drift.
+
+**Measured on the same book, same panel, before vs after:**
+
+| Blocker class | Before | After |
+|---|---|---|
+| `structurally_invalid` (derivability) | **9** | **0** |
+| `internal_contradiction` | 3 | 2 |
+| `unsafe` | 0 | 1 |
+| `READER.PANEL.BELOW_FLOOR` | 4 | 4 |
+| **Total** | **16** | **7** |
+
+The targeted class went to zero. Review still returns FAIL on the **score axis**
+(§6), which no gate can close.
 
 ---
 
