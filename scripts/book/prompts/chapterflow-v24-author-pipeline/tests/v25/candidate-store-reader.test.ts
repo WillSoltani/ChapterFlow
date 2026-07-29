@@ -234,6 +234,38 @@ requiredTest("candidate crash seams expose absent or fully openable directory", 
   assert.equal(opened.ok, true);
 });
 
+requiredTest("inventory diagnostics name WHICH way the root is wrong: incomplete vs extra entries (Task 11ah)", async ({ roots }) => {
+  const { mkdir: mk, writeFile: wf } = await import("node:fs/promises");
+  const booksRoot = roots.booksRoot;
+  const { reader } = setup(booksRoot);
+
+  // (a) INCOMPLETE candidate — content present, manifest absent. This is the
+  // shape a torn/aborted stage leaves behind; the operator response differs
+  // from the extra-entry case, so the message must say so.
+  const incomplete = join(booksRoot, "diag-book", "candidates", "incomplete-candidate");
+  await mk(join(incomplete, "content"), { recursive: true });
+  const openIncomplete = await reader.open({ bookId: "diag-book", selector: { kind: "CANDIDATE", candidateId: "incomplete-candidate" } });
+  assert.equal(openIncomplete.ok, false);
+  if (!openIncomplete.ok) {
+    assert.equal(openIncomplete.error.code, "CANDIDATE_MISMATCH");
+    assert.match(openIncomplete.error.message, /missing manifest\.json/, "must name the missing entry");
+    assert.doesNotMatch(openIncomplete.error.message, /unexpected/, "nothing unexpected is present");
+  }
+
+  // (b) EXTRA entries — a complete candidate plus a stray file.
+  const extra = join(booksRoot, "diag-book", "candidates", "extra-candidate");
+  await mk(join(extra, "content"), { recursive: true });
+  await wf(join(extra, "manifest.json"), "{}\n");
+  await wf(join(extra, "stray.txt"), "x\n");
+  const openExtra = await reader.open({ bookId: "diag-book", selector: { kind: "CANDIDATE", candidateId: "extra-candidate" } });
+  assert.equal(openExtra.ok, false);
+  if (!openExtra.ok) {
+    assert.equal(openExtra.error.code, "CANDIDATE_MISMATCH");
+    assert.match(openExtra.error.message, /unexpected stray\.txt/, "must name the unexpected entry");
+    assert.doesNotMatch(openExtra.error.message, /missing/, "nothing is missing");
+  }
+});
+
 requiredTest("immutable candidate rejects overwrite, inventory drift, and byte drift without repair", async ({ roots }) => {
   const { candidateStore } = setup(roots.booksRoot);
   const bookId = "immutable-book";

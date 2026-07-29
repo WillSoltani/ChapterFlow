@@ -219,7 +219,22 @@ async function requireCandidateLayout(booksRoot: string, candidateRoot: string):
   }
   const names = children.map((child) => child.name).sort(byteCompare);
   if (!sameOrderedStrings(names, ["content", "manifest.json"])) {
-    return failed("CANDIDATE_MISMATCH", "candidate root inventory must contain only content and manifest.json");
+    // Task 11ah: name WHICH way the inventory is wrong. A single catch-all
+    // message ("must contain only content and manifest.json") reads as
+    // "unexpected extra entries" even when the real state is an INCOMPLETE
+    // candidate (content present, manifest absent) — a materially different
+    // situation with a different operator response, and one that cost a live
+    // investigation on the 2026-07-28 canary. Fail-closed either way.
+    const missing = ["content", "manifest.json"].filter((entry) => !names.includes(entry));
+    const unexpected = names.filter((name) => name !== "content" && name !== "manifest.json");
+    const detail = [
+      missing.length > 0 ? `missing ${missing.join(", ")}` : "",
+      unexpected.length > 0 ? `unexpected ${unexpected.join(", ")}` : "",
+    ].filter(Boolean).join("; ");
+    return failed(
+      "CANDIDATE_MISMATCH",
+      `candidate root inventory must contain exactly content and manifest.json (${detail || "inventory mismatch"})`,
+    );
   }
   const content = children.find((child) => child.name === "content");
   const manifest = children.find((child) => child.name === "manifest.json");
