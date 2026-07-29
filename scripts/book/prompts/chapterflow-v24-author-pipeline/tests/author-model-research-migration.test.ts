@@ -4,7 +4,7 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 import { runJsonModelTask, type ModelCallerExecution, type ModelTaskRunner } from "../src/app/modelTaskRunner.js";
-import { runResearcherBibliography } from "../src/agents/researcher-bibliography.js";
+import { MAX_BIBLIOGRAPHY_ATTEMPTS, runResearcherBibliography } from "../src/agents/researcher-bibliography.js";
 import { MAX_CHAPTER_RESEARCH_ATTEMPTS, runResearcherChapter } from "../src/agents/researcher-chapter.js";
 import { runTryThisNow } from "../src/agents/try-this-now.js";
 import { runWriterBreakdown } from "../src/agents/writer-breakdown.js";
@@ -55,12 +55,22 @@ function execution(output: unknown, calls: string[]): ModelCallerExecution {
   };
 }
 
-test("research callers are bounded: non-chapter callers make one explicit attempt; the chapter researcher retries with validator feedback up to MAX", async () => {
+test("research callers are bounded: legacy writer callers make one explicit attempt; the chapter AND bibliography researchers retry with validator feedback up to MAX", async () => {
   const calls: string[] = [];
   const bibliographyInput = { title: "Test Book", author: "Test Author", bookIdHint: "test-book" };
-  await assert.rejects(runResearcherBibliography(bibliographyInput, execution({}, calls)), /bibliography/);
-  // The bibliography caller makes exactly one explicit attempt — it does not retry.
-  assert.equal(calls.length, 1);
+  await assert.rejects(
+    runResearcherBibliography(bibliographyInput, execution({}, calls), { sleep: async () => {} }),
+    /bibliography invalid after \d+ attempts/,
+  );
+  // Task 11ag — DELIBERATE CHANGE to this invariant (was: exactly one attempt).
+  // Bibliography is step 1 of a book run, so a single degenerate or transient
+  // response aborted the ENTIRE run before any chapter work began. Live
+  // 2026-07-28 (Franklin canary): a bare {} killed the run outright. It now
+  // carries the same bounded retry as the chapter researcher. The remaining
+  // legacy writer callers below (breakdown, cards, example, try-this-now) keep
+  // their single-attempt boundary — they are v23-era surfaces that the v25
+  // section-pack compiler does not use.
+  assert.equal(calls.length, MAX_BIBLIOGRAPHY_ATTEMPTS);
 
   // The chapter researcher is the one exception: on invalid output it re-issues the
   // task with the validator's error list (Task 11a), bounded at MAX_CHAPTER_RESEARCH_ATTEMPTS.
@@ -82,8 +92,9 @@ test("research callers are bounded: non-chapter callers make one explicit attemp
   );
   const action = "Write one decision you must make today, name the smallest reversible step, and take it before you close this page.";
   assert.equal((await runTryThisNow({ brief, plan }, execution({ tryThisNow: action }, calls))).tryThisNow, action);
-  // 5 single-attempt callers (bibliography, breakdown, cards, example, try-this-now) + the bounded chapter retries.
-  assert.equal(calls.length, 5 + MAX_CHAPTER_RESEARCH_ATTEMPTS);
+  // 4 single-attempt legacy writer callers (breakdown, cards, example, try-this-now)
+  // + the bounded bibliography retries + the bounded chapter retries.
+  assert.equal(calls.length, 4 + MAX_BIBLIOGRAPHY_ATTEMPTS + MAX_CHAPTER_RESEARCH_ATTEMPTS);
   assert.ok(calls.every((profile) => profile === "pipeline-read-json-v1"));
 });
 
