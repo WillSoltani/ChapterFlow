@@ -1,7 +1,7 @@
 # V25 Pipeline — Canary Completion Report
 
 **Branch:** `codex/v25-pipeline-completion-recovered` · **Base:** `a20d1cdab`
-**Commits:** 67 · **Suite:** 2796 pass / 0 fail (47 v25 files, 0 failed)
+**Commits:** 71 · **Suite:** 2796 pass / 0 fail (48 v25 files, 0 failed)
 **Period:** 2026-07-22 → 2026-07-28 · **Model under test:** Claude Sonnet 5 (author roles)
 
 ---
@@ -14,7 +14,7 @@ never executed against a live book, and five criticals were open. This campaign
 closed those criticals and then drove a real book end-to-end through every stage to
 find what the test suite structurally could not.
 
-**Result: 42 findings, 42 fixed.** Five came from the audit. **Thirty-seven came from
+**Result: 43 findings, 43 fixed.** Five came from the audit. **Thirty-eight came from
 the live canary** — defects that no amount of unit testing would have surfaced,
 because they only exist in the interaction between a real model, real book content,
 and the pipeline's own recovery machinery.
@@ -158,6 +158,43 @@ promotion leg.
 | **F1** | Book-scar edits do not invalidate implicated cache entries | Scar edits currently need manual eviction; a scar digest in the cache key would close it |
 | **F2** | Review `FAIL` has no repair path in `book-run` (QC `FAIL` does) | Editorial failure is terminal by design — worth a documented operator runbook |
 | **F3** | Corpus policy for abstract public-domain sources | *As a Man Thinketh* is not a defect to fix; it may be a source class to decline |
+| **F5** | No `--research-run-id` pin: a repair run re-mints the bibliography and can invalidate all research + cache reuse | Measured on the Franklin repair loop — see §5.1 |
+
+### 5.1 Operator runbook — responding to a review `FAIL`
+
+A review `FAIL` is **terminal for that candidate, by design**. The compile phase
+rehydrates from its durable record (11ab), so the staged candidate is immutable:
+editing scars or evicting cache entries cannot reach a run whose compile already
+completed. Resuming such a run replays the stored verdict with zero model calls.
+
+The supported procedure, executed and confirmed on the Franklin canary:
+
+1. **Read the blockers** — `books/<id>/reviews/<reviewId>.json`, `severity: BLOCKER`.
+2. **Locate the authoritative fact** in the chapter's research sidecar
+   (`hardSpecifics` is the source of truth; a surface that disagrees is the defect).
+3. **Write the constraint into `config/book-scars/<bookId>.json`** — pin the fact,
+   ban the contradicting variants, state the rule. Scars render only into that
+   book's writer prompts.
+4. **Evict only the offending surfaces** from `books/<id>/section-pack-cache/`
+   (match on `identity.chapterId` + `identity.kind`). Correct packs keep their entries.
+5. **Start a FRESH run** — no `--resume-run-id`. Research reuses its durable
+   sidecars via the successor chain; every non-evicted pack reuses from cache;
+   only the evicted surfaces re-draft, now under the scar.
+
+> **Known friction (F1):** step 4 is manual because the cache key does not include
+> a scar digest. Adding one would make step 3 evict implicated entries automatically.
+>
+> **Known friction (F5) — measured, not theoretical:** step 5's reuse promise holds
+> *only if the fresh run's bibliography reproduces the same chapter list*. Research
+> reuse is keyed on `expectedChaptersHash`, and the section-pack cache key derives
+> from the resulting sidecars. On the Franklin repair loop the re-minted bibliography
+> differed, which invalidated the durable research **and all 16 cached packs** — a
+> one-line quiz fix became a full re-research and recompile. `book-run` exposes no
+> flag to pin an existing research run (allowed options are `title`, `author`,
+> `v25-root`, `attempt-root`, `source-git-sha`, `resume-run-id`, `regen`,
+> `max-repair`, `promote-local`, `no-publish`, `reconcile-unsettled`, `log`).
+> **Suggested fix:** a `--research-run-id` pin, so a content repair re-drafts only
+> the evicted surfaces instead of paying for the whole book again.
 
 ---
 
