@@ -70,6 +70,17 @@ function stringArray(raw: unknown, bookId: string, where: string): string[] {
 export function validateBookScars(raw: unknown, expectedBookId: string): BookScars {
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) fail(expectedBookId, "root must be an object");
   const obj = raw as Record<string, unknown>;
+  // Reject unknown keys. The schema declares additionalProperties:false but NOTHING
+  // executes it — validateAllConfigFiles reads config/ non-recursively, so
+  // config/book-scars/ is never reached. Without this, misspelling `prohibitions`
+  // as `prohibition` silently drops every safety rule in the file while the rest
+  // still loads, and the "no actionable content" guard below does not fire either:
+  // exactly the silent no-op class the near-miss filename guard exists to kill.
+  const KNOWN_KEYS = ["$schema", "_comment", "bookId", "phrases", "frames", "notes", "prohibitions"];
+  const unknown = Object.keys(obj).filter((k) => !KNOWN_KEYS.includes(k));
+  if (unknown.length > 0) {
+    fail(expectedBookId, `unknown key(s): ${unknown.join(", ")} — known keys are ${KNOWN_KEYS.join(", ")}`);
+  }
   if (typeof obj.bookId !== "string" || obj.bookId.trim().length === 0) fail(expectedBookId, "bookId must be a non-empty string");
   if (normSlug(obj.bookId) !== normSlug(expectedBookId)) fail(expectedBookId, `bookId "${obj.bookId}" does not match its filename`);
   return {
@@ -100,6 +111,13 @@ function articleVariants(slug: string): string[] {
  * NO signal at all. autobiography-of-benjamin-franklin.json sat unread for the
  * whole canary while its book compiled as the-autobiography-of-benjamin-franklin,
  * including a fact pin written straight off a panel FAIL. Fail loud instead.
+ *
+ * Deliberate trade-off: if two DISTINCT books ever have slugs differing only by a
+ * leading article ("brief-history" and "the-brief-history"), the one without a
+ * scar file will throw here even though nothing is wrong. That is accepted — the
+ * scar directory is a hand-maintained config of a handful of files, the error
+ * names both paths and the two ways out, and an ambiguous pairing is itself worth
+ * surfacing. Silent misapplication of a safety rule is the worse failure.
  */
 function assertNoNearMissScarFile(slug: string): void {
   for (const candidate of articleVariants(slug)) {

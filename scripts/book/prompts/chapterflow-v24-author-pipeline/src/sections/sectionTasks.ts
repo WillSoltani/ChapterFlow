@@ -214,7 +214,12 @@ function bookScarsSection(scars: BookScars | null): string {
 
   if (scars.prohibitions.length) {
     const hard: string[] = [
-      "\n\nNON-NEGOTIABLE RULES FOR THIS BOOK — these are absolute. They are not style preferences and carry no quota: there is no number of times any of these may appear, and paraphrasing one does not satisfy it.",
+      // Phrased to cover BOTH shapes a rule takes: a ban and a requirement. An
+      // earlier wording ("there is no number of times any of these may appear")
+      // quantified over the items themselves, which read correctly for a ban and
+      // inverted a mandate — telling the writer that a phrase a FACT PIN requires
+      // must never appear.
+      "\n\nNON-NEGOTIABLE RULES FOR THIS BOOK — each rule below is absolute, whether it forbids something or requires it. They are not style preferences and carry no quota: a rule that forbids something admits no permitted first use and no paraphrase, and a rule that requires something must be satisfied on every surface it names. Where two rules could appear to collide, the one that protects the reader from harm wins, and the other yields.",
     ];
     for (const rule of scars.prohibitions) hard.push(`- ${rule}`);
     blocks.push(hard.join("\n"));

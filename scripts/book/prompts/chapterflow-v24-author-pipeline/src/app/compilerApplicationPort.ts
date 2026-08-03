@@ -214,6 +214,32 @@ function nonemptyStrings(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === "string" && item.trim().length > 0);
 }
 
+/**
+ * sha256 over the scar content a writer prompt would carry, or null when the book
+ * has no scars. Field-tagged and order-sensitive: reordering `prohibitions`
+ * changes the rendered block, so it must change the digest too. A book with no
+ * scar file hashes to null, which is what a pre-field cache entry reads as — so
+ * scar-less books keep every cached pack across this change.
+ */
+function bookScarsDigest(scars: BookScars | null): string | null {
+  if (scars === null) return null;
+  const hash = createHash("sha256");
+  hash.update(scars.bookId);
+  for (const [field, values] of [
+    ["prohibitions", scars.prohibitions],
+    ["phrases", scars.phrases],
+    ["frames", scars.frames],
+    ["notes", scars.notes],
+  ] as const) {
+    hash.update(`\0${field}\0`);
+    for (const value of values) {
+      hash.update(value);
+      hash.update("\0");
+    }
+  }
+  return hash.digest("hex");
+}
+
 function sectionTaskContext(snapshot: CandidateSnapshot, logicalPath: string, bookId: string): SectionTaskRenderContext {
   const file = selectedFile(snapshot, logicalPath);
   if (file.mediaType !== "application/json") {
@@ -858,7 +884,7 @@ export class CompilerApplicationPort {
    *  (more informative than a cache write failure) always reaches the operator. */
   async #applyAssemblyEvictions(
     request: CompilerApplicationRequest,
-    chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string }>>,
+    chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>,
     blockers: readonly AssemblyBlocker[],
   ): Promise<void> {
     const cache = this.#dependencies.sectionPackCache;
@@ -900,6 +926,7 @@ export class CompilerApplicationPort {
         kind: group.kind,
         blueprintDigest: identity.blueprintDigest,
         packetDigest: identity.packetDigest,
+        scarsDigest: identity.scarsDigest,
       };
       try {
         await cache.evict(cacheKey);
@@ -1142,7 +1169,11 @@ export class CompilerApplicationPort {
       // Task 11aa — retain each chapter's cache identity (chapterId + the two
       // drafting digests) so a cross-chapter assembly blocker can rebuild the exact
       // SectionPackCacheKey of an implicated pack and evict it.
-      const chapterCacheContext = new Map<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string }>>();
+      // Book-level and constant for the whole compile: the scars a writer prompt
+      // would carry. Part of every cache identity so a scar edit cannot be served
+      // a pack drafted without it — see SectionPackCacheKey.scarsDigest.
+      const scarsDigest = bookScarsDigest(renderContext.bookScars);
+      const chapterCacheContext = new Map<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>();
       for (let index = 0; index < chapters.length; index += 1) {
         const chapter = chapters[index];
         const packet = packets[index];
@@ -1164,7 +1195,7 @@ export class CompilerApplicationPort {
         // mints a fresh key and the stale entry is simply never found.
         const packetDigest = candidateBlueprint.sourcePacketHash;
         const blueprintDigest = createHash("sha256").update(jsonBytes(candidateBlueprint)).digest("hex");
-        chapterCacheContext.set(chapter.chapterNumber, Object.freeze({ chapterId: chapter.chapterId, blueprintDigest, packetDigest }));
+        chapterCacheContext.set(chapter.chapterNumber, Object.freeze({ chapterId: chapter.chapterId, blueprintDigest, packetDigest, scarsDigest }));
         generated.push(
           { kind: "SIDECAR", logicalPath: packetLogicalPath, mediaType: "application/json", bytes: jsonBytes(packet) },
           { kind: "SIDECAR", logicalPath: planLogicalPath, mediaType: "application/json", bytes: jsonBytes(compileSourceUsePlan(packet).plan) },
@@ -1188,6 +1219,7 @@ export class CompilerApplicationPort {
             kind,
             blueprintDigest,
             packetDigest,
+            scarsDigest,
           };
           let acceptedOutput: Record<string, unknown> | null = null;
           let reusedFromCache = false;

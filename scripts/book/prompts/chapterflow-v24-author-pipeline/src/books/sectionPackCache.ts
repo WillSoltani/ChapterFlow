@@ -37,6 +37,27 @@ export interface SectionPackCacheKey {
   readonly blueprintDigest: string;
   /** sha256 of the compiled source packet the section was drafted and gated against. */
   readonly packetDigest: string;
+  /**
+   * sha256 of the book's scars as rendered into the writer prompt, or null when
+   * the book has no scar file.
+   *
+   * Scars are NOT a gate input by design, so a stale pack cannot be caught on
+   * reuse: cachedSectionPackIsReusable re-runs the section gate, which never sees
+   * them. And buildSectionTaskMarkdown — the only thing that renders a scar — is
+   * inside the `!reusedFromCache` loop guard, so a cache hit means the prompt is
+   * never built at all. Without this field, adding a panel-blocker SAFETY rule and
+   * re-running the documented repair loop would hit cache on every pack, apply
+   * nothing, and report green: a silent safety bypass on exactly the path the
+   * scar was written for.
+   *
+   * Deliberately NOT part of entryFileName. Keying the path on it would orphan
+   * every existing entry for every book, including the majority that have no scar
+   * file and are unaffected. Comparing it in identityMatches instead invalidates
+   * only the books whose scars actually changed — and a legacy entry, written
+   * before this field existed, reads as null, which is exactly what it was
+   * drafted under.
+   */
+  readonly scarsDigest: string | null;
 }
 
 type SectionPackCacheEnvelope = Readonly<{
@@ -46,6 +67,8 @@ type SectionPackCacheEnvelope = Readonly<{
   kind: SectionKind;
   blueprintDigest: string;
   packetDigest: string;
+  /** Absent on entries written before the field existed — read as null. */
+  scarsDigest?: string | null;
   pack: Record<string, unknown>;
 }>;
 
@@ -102,7 +125,8 @@ function identityMatches(envelope: SectionPackCacheEnvelope, key: SectionPackCac
     && envelope.chapterId === key.chapterId
     && envelope.kind === key.kind
     && envelope.blueprintDigest === key.blueprintDigest
-    && envelope.packetDigest === key.packetDigest;
+    && envelope.packetDigest === key.packetDigest
+    && (envelope.scarsDigest ?? null) === key.scarsDigest;
 }
 
 function parseEnvelope(raw: unknown): SectionPackCacheEnvelope | null {
@@ -114,6 +138,9 @@ function parseEnvelope(raw: unknown): SectionPackCacheEnvelope | null {
     || typeof value.kind !== "string"
     || typeof value.blueprintDigest !== "string"
     || typeof value.packetDigest !== "string"
+    // Absent on pre-field entries (read as null by identityMatches); present must
+    // be string|null. Anything else is corruption, not a legacy shape.
+    || !(value.scarsDigest === undefined || value.scarsDigest === null || typeof value.scarsDigest === "string")
     || typeof value.pack !== "object"
     || value.pack === null
     || Array.isArray(value.pack)
@@ -168,6 +195,7 @@ class FileSectionPackCache implements SectionPackCache {
       kind: key.kind,
       blueprintDigest: key.blueprintDigest,
       packetDigest: key.packetDigest,
+      scarsDigest: key.scarsDigest,
       pack,
     };
     const result = await this.#writeLock.run(key.bookId, async () => {

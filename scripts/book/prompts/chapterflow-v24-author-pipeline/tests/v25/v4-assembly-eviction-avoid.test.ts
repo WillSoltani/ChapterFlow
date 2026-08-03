@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
+import { readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { resolve } from "node:path";
 
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import {
   createFileSectionPackCache,
+  sectionPackCacheDir,
   type SectionPackCacheKey,
 } from "../../src/books/sectionPackCache.js";
 import {
@@ -35,6 +38,7 @@ function packKey(chapterNumber: number, kind: SectionKind): SectionPackCacheKey 
     kind,
     blueprintDigest: `bp-${chapterNumber}-${kind}`,
     packetDigest: `pk-${chapterNumber}-${kind}`,
+    scarsDigest: null,
   };
 }
 
@@ -266,6 +270,59 @@ requiredTest("11aa durability — eviction removes exactly the implicated pack a
 
   // Eviction is idempotent.
   await cache.evict(packKey(6, "example-pack"));
+});
+
+requiredTest("a changed scarsDigest misses the cache, so a new SAFETY rule cannot be bypassed by a cache hit", async (context) => {
+  // buildSectionTaskMarkdown — the only thing that renders a scar — is inside the
+  // `!reusedFromCache` guard, and cachedSectionPackIsReusable re-runs the section
+  // gate, which by design never sees scars. So without scarsDigest in the identity,
+  // adding a panel-blocker SAFETY rule and running the documented repair loop would
+  // hit cache on every pack, build no prompt, apply nothing, and report green.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+
+  const before = { ...packKey(1, "summary-pack"), scarsDigest: null };
+  await cache.write(before, { artifactType: "summary-pack", body: "drafted with no scars" });
+  assert.deepEqual(await cache.read(before), { artifactType: "summary-pack", body: "drafted with no scars" });
+
+  // An operator adds a scar. Same chapter, same blueprint, same packet.
+  const after = { ...packKey(1, "summary-pack"), scarsDigest: "sha256-of-the-new-safety-rule" };
+  assert.equal(await cache.read(after), null, "a pack drafted without the scar must not be reused under it");
+
+  // Redrafting under the scar caches separately, and reverting the scar still finds
+  // the original entry rather than serving the scarred pack to a scar-less identity.
+  await cache.write(after, { artifactType: "summary-pack", body: "drafted under the rule" });
+  assert.deepEqual(await cache.read(after), { artifactType: "summary-pack", body: "drafted under the rule" });
+
+  // Editing the scar again misses again — every distinct scar state is its own identity.
+  const edited = { ...packKey(1, "summary-pack"), scarsDigest: "sha256-of-an-edited-rule" };
+  assert.equal(await cache.read(edited), null);
+});
+
+requiredTest("a legacy cache entry with no scarsDigest still serves a book that has no scars", async (context) => {
+  // The compatibility half. Most books have no scar file, so their identity digest
+  // is null — and a pre-field entry reads as null, which is exactly what it was
+  // drafted under. Keying the FILENAME on the digest would have orphaned all of
+  // them; comparing it in identityMatches invalidates only books whose scars moved.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const key = { ...packKey(2, "action-pack"), scarsDigest: null };
+  await cache.write(key, { artifactType: "action-pack" });
+
+  // Strip the field on disk to simulate an entry written before it existed.
+  const dir = sectionPackCacheDir(context.roots.booksRoot, key.bookId);
+  const files = readdirSync(dir);
+  assert.equal(files.length, 1, "one entry expected");
+  const entryFile = resolve(dir, files[0]!);
+  const envelope = JSON.parse(readFileSync(entryFile, "utf8")) as Record<string, unknown>;
+  assert.ok("scarsDigest" in envelope, "new writes must record the field");
+  delete envelope.scarsDigest;
+  writeFileSync(entryFile, `${JSON.stringify(envelope, null, 2)}\n`, "utf8");
+
+  const nextCache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  assert.deepEqual(await nextCache.read(key), { artifactType: "action-pack" }, "legacy entry must still hit for a scar-less book");
+  // ...but must NOT satisfy an identity that now carries scars.
+  assert.equal(await nextCache.read({ ...key, scarsDigest: "sha256-new" }), null);
 });
 
 requiredTest("11aa durability — avoid-context is written, read back through a fresh store, and cleared", async (context) => {

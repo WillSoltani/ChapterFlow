@@ -19,7 +19,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
+import { mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
@@ -377,15 +377,21 @@ test("book-scars: a filename differing only by a leading article fails loud, nev
 
 test("book-scars: every shipped scar file loads under the bookId the pipeline derives", () => {
   // Pins the wiring end of the same defect: a shipped file whose name does not
-  // match a real derived bookId is dead weight that reads as protection.
-  for (const bookId of ["the-autobiography-of-benjamin-franklin", "as-a-man-thinketh", "the-power-of-moments", "the-intelligent-investor"]) {
+  // match a real derived bookId is dead weight that reads as protection. Reads the
+  // DIRECTORY rather than a hardcoded list, so a file added later is covered too.
+  const dir = resolve(PIPELINE_DIR, "config", "book-scars");
+  const shipped = readdirSync(dir)
+    .filter((f) => f.endsWith(".json") && f !== "book-scars.schema.json" && !f.startsWith("zz-fixture-"))
+    .map((f) => f.replace(/\.json$/, ""));
+  assert.ok(shipped.length >= 4, `expected the shipped scar files, found: ${shipped.join(", ")}`);
+  for (const bookId of shipped) {
     const scars = loadBookScars(bookId);
     assert.ok(scars, `${bookId} must load`);
-    assert.equal(scars!.bookId, bookId);
+    assert.equal(scars!.bookId, bookId, "a file's bookId must round-trip its filename");
   }
   const franklin = loadBookScars("the-autobiography-of-benjamin-franklin")!;
   assert.ok(franklin.prohibitions.some((p) => /Silence Dogood|age sixteen/i.test(p)), "Dogood fact pin survives");
-  assert.ok(franklin.prohibitions.some((p) => /unpermitted public works/i.test(p)), "street-work safety rule present");
+  assert.ok(franklin.prohibitions.some((p) => /shared or public property without permission/i.test(p)), "street-work safety rule present");
   assert.ok(franklin.prohibitions.some((p) => /COUNT CONSISTENCY/.test(p)), "virtue count rule present");
   // The banned variants must NOT sit in the over-use channel, where each would be
   // granted one permitted use.
@@ -393,4 +399,23 @@ test("book-scars: every shipped scar file loads under the bookId the pipeline de
   const allen = loadBookScars("as-a-man-thinketh")!;
   assert.ok(allen.prohibitions.some((p) => /no exceptions/i.test(p)), "absolutist wording is banned, not rationed");
   assert.ok(!allen.phrases.some((p) => /no exceptions/i.test(p)), "must not remain in the quota channel");
+});
+
+test("book-scars: an unknown key fails loud instead of silently dropping its rules", () => {
+  // config/book-scars/ is never reached by validateAllConfigFiles (it reads config/
+  // non-recursively), so the schema's additionalProperties:false never executes.
+  // Misspelling `prohibitions` must not silently discard every safety rule.
+  assert.throws(
+    () => validateBookScars({
+      bookId: "x", phrases: [], frames: [], notes: [],
+      prohibition: ["SAFETY: never do the dangerous thing."],
+    }, "x"),
+    /unknown key\(s\): prohibition/,
+  );
+  // Documentation-only keys stay accepted.
+  const ok = validateBookScars({
+    $schema: "./book-scars.schema.json", _comment: "why", bookId: "x",
+    phrases: ["p"], frames: [], notes: [], prohibitions: ["SAFETY: no."],
+  }, "x");
+  assert.equal(ok.prohibitions.length, 1);
 });
