@@ -209,6 +209,19 @@ function sectionContract(kind: SectionKind): string {
  *  safety rule needs, which is why a prohibition must never be filed as a phrase,
  *  frame, or note. */
 function bookScarsSection(scars: BookScars | null): string {
+  return renderBookScarsBlock(scars);
+}
+
+/**
+ * The rendered scar block, or "" when the book has no scars.
+ *
+ * Exported because the section writer is not the only surface that must honour a
+ * book's rules: the candidate-repair writer rewrites a chapter after a QC or
+ * panel failure and needs the same prohibitions, in the same framing, or a repair
+ * can reintroduce exactly the wording a panel blocked. Both callers must render
+ * from one function so the two prompts cannot drift.
+ */
+export function renderBookScarsBlock(scars: BookScars | null): string {
   if (!scars) return "";
   const blocks: string[] = [];
 
