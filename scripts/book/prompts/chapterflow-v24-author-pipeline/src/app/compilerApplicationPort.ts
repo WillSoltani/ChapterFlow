@@ -241,10 +241,16 @@ function sectionTaskContext(snapshot: CandidateSnapshot, logicalPath: string, bo
       throw new Error("COMPILER_INPUT_INVALID:section-task bookScars must be null or an object");
     }
     const scars = value.bookScars as Record<string, unknown>;
-    if (!exactKeys(scars, ["bookId", "phrases", "frames", "notes"]) || scars.bookId !== bookId || !nonemptyStrings(scars.phrases) || !nonemptyStrings(scars.frames) || !nonemptyStrings(scars.notes)) {
+    // `prohibitions` is accepted but not REQUIRED: a candidate staged before that
+    // channel existed carries a four-key sidecar, and a resume must not fail on it.
+    // Absent means no hard rules, which is what those candidates were compiled under.
+    const scarKeys = ["bookId", "phrases", "frames", "notes"];
+    const allowedScarKeys = scars.prohibitions === undefined ? scarKeys : [...scarKeys, "prohibitions"];
+    const prohibitions = scars.prohibitions === undefined ? [] : scars.prohibitions;
+    if (!exactKeys(scars, allowedScarKeys) || scars.bookId !== bookId || !nonemptyStrings(scars.phrases) || !nonemptyStrings(scars.frames) || !nonemptyStrings(scars.notes) || !nonemptyStrings(prohibitions)) {
       throw new Error("COMPILER_INPUT_INVALID:section-task bookScars are invalid or book-mismatched");
     }
-    if (scars.phrases.length === 0 && scars.frames.length === 0 && scars.notes.length === 0) {
+    if (scars.phrases.length === 0 && scars.frames.length === 0 && scars.notes.length === 0 && prohibitions.length === 0) {
       throw new Error("COMPILER_INPUT_INVALID:section-task bookScars must contain guidance");
     }
     bookScars = Object.freeze({
@@ -252,6 +258,7 @@ function sectionTaskContext(snapshot: CandidateSnapshot, logicalPath: string, bo
       phrases: Object.freeze([...scars.phrases]) as unknown as string[],
       frames: Object.freeze([...scars.frames]) as unknown as string[],
       notes: Object.freeze([...scars.notes]) as unknown as string[],
+      prohibitions: Object.freeze([...prohibitions]) as unknown as string[],
     });
   }
   const parsed = value as unknown as CompilerSectionTaskContextFile;

@@ -192,11 +192,52 @@ promotion leg.
 | # | Item | Why it needs you |
 |---|---|---|
 | **D4** | SEC16 gate semantics — the AND-impossibility fix changed what the gate *means*, not just how it reports | A gate-semantics change is a content-policy decision |
-| **F1** | Book-scar edits do not invalidate implicated cache entries | Scar edits currently need manual eviction; a scar digest in the cache key would close it |
+| **F1** | Book-scar edits do not invalidate implicated cache entries | Scar edits currently need manual eviction; a scar digest in the cache key would close it. **Do not ship it alongside F5** — see §5.1 |
+| **F6** | **CORRECTION (2026-08-03): no scar reached a writer prompt during this campaign.** Resolved — see §5.3 | The remediation narrative in §4 needs reading with that in mind |
 | **F2** | Review `FAIL` has no repair path in `book-run` (QC `FAIL` does) | Editorial failure is terminal by design — worth a documented operator runbook |
 | **F3** | Corpus policy for abstract public-domain sources | *As a Man Thinketh* is not a defect to fix; it may be a source class to decline |
 | ~~**D6**~~ | **RESOLVED 2026-07-29 — chapter bar calibrated 80 → 70.** Decided on evidence from the product's own 140-book screening of the live catalogue, not on preference. See §5.2 | Reversible in one constant; `CHAPTERFLOW_CHAPTER_BAR` also overrides it per-run |
 | ~~**F5**~~ | **RESOLVED — `--research-run-id` pin shipped on `book-run` / `book-autopilot`.** A content repair now adopts an exact research run: zero research model calls, every non-evicted pack reuses. See §5.1 | Operator-facing: the pin is opt-in, fails closed, and cannot be combined with `--resume-run-id` |
+
+### 5.3 F6 — CORRECTION: the scar channel was never wired to production
+
+Recorded 2026-08-03, after the campaign. **No book-scar reached a writer prompt at
+any point during this campaign**, so §4's account of the *As a Man Thinketh*
+remediation — verdict translated into a scar, packs evicted, book recompiled
+"under constraint" — is not supported. The recompile happened; the constraint did
+not reach the writer. Whatever changed between those two verdicts, it was not the
+scar.
+
+Three independent faults, each sufficient on its own:
+
+1. **No caller.** `loadBookScars` had zero production callers. The sole production
+   writer of `inputs/compiler-section-task-context.json` hardcoded `bookScars: null`.
+   The compiler already validated and rendered the field — only the data was absent.
+2. **Wrong channel.** `phrases`, `frames` and `notes` all render under
+   *"KNOWN OVER-USED MATERIAL … each item may appear in at most one teaching unit
+   book-wide; paraphrase the mechanism everywhere else."* Every safety verdict from
+   the Allen panel was filed in `notes`, and its banned absolutist wordings
+   (`"no exceptions"`, `"always traces back to"`) in `phrases` — so had the wiring
+   existed, the block would have granted each banned phrase one permitted use and
+   asked the model to paraphrase the rest.
+3. **Unreachable filename.** The Franklin file was `autobiography-of-benjamin-franklin.json`
+   while the pipeline derives `the-autobiography-of-benjamin-franklin`. A missing
+   scar file is a legitimate no-op for most books, so this produced no signal at all.
+
+All three are fixed. `prohibitions` is a new channel rendering before the over-use
+block as absolute rules with no quota; the seeder now loads the book's scars; the
+Franklin file is renamed and a near-miss filename fails loud. The Allen safety
+verdicts and the Franklin fact pins were moved into `prohibitions`, and the two
+blockers from §6 were added there.
+
+**This is why F5 mattered more than it looked.** The pin exists to make the
+scar → evict → fresh-run loop cheap. With scars inert, that loop had nothing to
+apply, and F5 would have been optimising a no-op.
+
+Note the ordering consequence: because the section-pack cache key does not include
+a scar digest (F1), the newly-live scars do **not** invalidate existing cached
+packs. Step 4's manual eviction is what makes a scar take effect. That is the
+documented procedure, and it is now load-bearing rather than belt-and-braces.
 
 ### 5.2 D6 resolved — the chapter bar is 70, calibrated to the shipped catalogue
 
@@ -242,7 +283,12 @@ The supported procedure, executed and confirmed on the Franklin canary:
    (`hardSpecifics` is the source of truth; a surface that disagrees is the defect).
 3. **Write the constraint into `config/book-scars/<bookId>.json`** — pin the fact,
    ban the contradicting variants, state the rule. Scars render only into that
-   book's writer prompts.
+   book's writer prompts. Safety verdicts and fact pins go in **`prohibitions`**,
+   never in `phrases`/`frames`/`notes`: those render under an over-use header that
+   grants a quota of one and tells the writer to paraphrase the item everywhere
+   else. `<bookId>` is the slug the pipeline derives from the TITLE (article
+   included, e.g. `the-autobiography-of-benjamin-franklin`); a near-miss filename
+   now fails loud rather than loading nothing.
 4. **Evict only the offending surfaces** from `books/<id>/section-pack-cache/`
    (match on `identity.chapterId` + `identity.kind`). Correct packs keep their entries.
 5. **Start a FRESH run with `--research-run-id <id>`** — never `--resume-run-id`.

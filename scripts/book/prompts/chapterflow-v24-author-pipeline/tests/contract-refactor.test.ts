@@ -300,8 +300,97 @@ test("book-scars loader: real seed files load; unknown book is null; malformed f
   try {
     mkdirSync(dir, { recursive: true });
     writeFileSync(bad, JSON.stringify({ bookId: "zz-fixture-bad-scar", phrases: [], frames: [], notes: [] }), "utf8");
-    assert.throws(() => loadBookScars("zz-fixture-bad-scar"), /no phrases, frames, or notes/);
+    assert.throws(() => loadBookScars("zz-fixture-bad-scar"), /no phrases, frames, notes, or prohibitions/);
   } finally {
     rmSync(bad, { force: true });
   }
+});
+
+test("book-scars: prohibitions render as absolute rules, never under the over-use quota", () => {
+  // The whole point of the channel. phrases/frames/notes render under a header
+  // granting a quota of one and telling the writer to paraphrase the item
+  // everywhere else — filing a safety rule there instructs the model to restate
+  // the unsafe line in different words.
+  const scars = validateBookScars({
+    bookId: "zz-scar-render",
+    phrases: ["an over-used case phrase"],
+    frames: [],
+    notes: [],
+    prohibitions: ["SAFETY: never tell the reader to do the dangerous thing."],
+  }, "zz-scar-render");
+  const md = buildSectionTaskMarkdown({
+    bookId: "zz-scar-render",
+    kind: "summary-pack",
+    blueprint: minimalBlueprint("zz-scar-render"),
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+
+  const hardAt = md.indexOf("NON-NEGOTIABLE RULES FOR THIS BOOK");
+  const overUseAt = md.indexOf("KNOWN OVER-USED MATERIAL FOR THIS BOOK");
+  assert.ok(hardAt >= 0, "prohibitions must render their own block");
+  assert.ok(overUseAt >= 0, "over-used material still renders");
+  assert.ok(hardAt < overUseAt, "prohibitions must come BEFORE the over-use block");
+  assert.match(md, /carry no quota/, "the prohibition block must deny the quota explicitly");
+
+  // The prohibition text must not fall inside the over-use block.
+  const overUseBlock = md.slice(overUseAt);
+  assert.doesNotMatch(overUseBlock, /never tell the reader to do the dangerous thing/,
+    "a prohibition rendered under the over-use header would be budgeted and paraphrased");
+
+  // A book with only prohibitions must not emit an empty over-use scaffold.
+  const onlyHard = validateBookScars({
+    bookId: "zz-scar-render", phrases: [], frames: [], notes: [],
+    prohibitions: ["SAFETY: never do the thing."],
+  }, "zz-scar-render");
+  const md2 = buildSectionTaskMarkdown({
+    bookId: "zz-scar-render", kind: "summary-pack", blueprint: minimalBlueprint("zz-scar-render"),
+    sourcePacket: PACKET, outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: onlyHard },
+  });
+  assert.match(md2, /NON-NEGOTIABLE RULES FOR THIS BOOK/);
+  assert.doesNotMatch(md2, /KNOWN OVER-USED MATERIAL FOR THIS BOOK/, "no empty over-use scaffolding");
+});
+
+test("book-scars: a filename differing only by a leading article fails loud, never silently", () => {
+  // autobiography-of-benjamin-franklin.json sat unread for the entire canary
+  // while its book compiled as the-autobiography-of-benjamin-franklin. A missing
+  // file is a legitimate no-op for most books, so the near-miss produced no
+  // signal at all — including for a fact pin written straight off a panel FAIL.
+  const dir = resolve(PIPELINE_DIR, "config", "book-scars");
+  const stray = resolve(dir, "zz-fixture-article.json");
+  try {
+    mkdirSync(dir, { recursive: true });
+    writeFileSync(stray, JSON.stringify({
+      bookId: "zz-fixture-article", phrases: ["x"], frames: [], notes: [],
+    }), "utf8");
+    assert.throws(
+      () => loadBookScars("the-zz-fixture-article"),
+      /differs only by a leading article|zz-fixture-article\.json exists/,
+      "the-<slug> must not silently miss <slug>.json",
+    );
+  } finally {
+    rmSync(stray, { force: true });
+  }
+});
+
+test("book-scars: every shipped scar file loads under the bookId the pipeline derives", () => {
+  // Pins the wiring end of the same defect: a shipped file whose name does not
+  // match a real derived bookId is dead weight that reads as protection.
+  for (const bookId of ["the-autobiography-of-benjamin-franklin", "as-a-man-thinketh", "the-power-of-moments", "the-intelligent-investor"]) {
+    const scars = loadBookScars(bookId);
+    assert.ok(scars, `${bookId} must load`);
+    assert.equal(scars!.bookId, bookId);
+  }
+  const franklin = loadBookScars("the-autobiography-of-benjamin-franklin")!;
+  assert.ok(franklin.prohibitions.some((p) => /Silence Dogood|age sixteen/i.test(p)), "Dogood fact pin survives");
+  assert.ok(franklin.prohibitions.some((p) => /unpermitted public works/i.test(p)), "street-work safety rule present");
+  assert.ok(franklin.prohibitions.some((p) => /COUNT CONSISTENCY/.test(p)), "virtue count rule present");
+  // The banned variants must NOT sit in the over-use channel, where each would be
+  // granted one permitted use.
+  assert.equal(franklin.phrases.length, 0, "banned variants must not be filed as over-used phrases");
+  const allen = loadBookScars("as-a-man-thinketh")!;
+  assert.ok(allen.prohibitions.some((p) => /no exceptions/i.test(p)), "absolutist wording is banned, not rationed");
+  assert.ok(!allen.phrases.some((p) => /no exceptions/i.test(p)), "must not remain in the quota channel");
 });

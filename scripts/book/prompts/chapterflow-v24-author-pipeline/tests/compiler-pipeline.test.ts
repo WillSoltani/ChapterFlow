@@ -2363,7 +2363,7 @@ test("learning-pack task pre-lists each quiz slot's required verbatim specifics 
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/learning.json",
-    context: { bookScars: { bookId: "money-book", phrases: [], frames: [], notes: [] }, voiceCard: null },
+    context: { bookScars: { bookId: "money-book", phrases: [], frames: [], notes: [], prohibitions: [] }, voiceCard: null },
     deliveryMode: "DIRECT_JSON",
   });
   assert.match(md, /REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT/, "preflight block missing");

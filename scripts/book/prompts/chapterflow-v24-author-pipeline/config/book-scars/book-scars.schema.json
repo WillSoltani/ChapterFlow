@@ -23,6 +23,11 @@
       "description": "Free-text reminders specific to this book's over-use patterns.",
       "type": "array",
       "items": { "type": "string", "minLength": 1 }
+    },
+    "prohibitions": {
+      "description": "Non-negotiable rules for this book: reader-panel safety verdicts, and fact pins where surfaces contradicted each other. Rendered in their own block, BEFORE the over-use block, as absolute rules with no quota. Never file a safety rule or fact pin under phrases/frames/notes — those render under a header granting a quota of one and instructing the writer to paraphrase the item everywhere else, which for a prohibition means restating the banned thing in different words. Optional: absent means this book has no hard rules.",
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
     }
   },
   "additionalProperties": false

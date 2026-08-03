@@ -26,6 +26,7 @@ import {
   isSafeResearchRunId,
   withManifestUpdateLock,
 } from "../lib/researchRunManifest.js";
+import { loadBookScars } from "../lib/bookScars.js";
 import { researchBook } from "../researcher.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -397,7 +398,15 @@ async function materializeSeedFiles(result: Awaited<ReturnType<typeof researchBo
         schemaVersion: "compiler-section-task-context-v1",
         bookId: result.bookId,
         voiceCard: null,
-        bookScars: null,
+        // Seed the book's own scars. This was hardcoded null, which made the
+        // ENTIRE scar mechanism inert in production: the loader had no caller, so
+        // no phrase, frame, note or panel-blocker rule ever reached a writer
+        // prompt — including the fact pins written directly off reader-panel FAILs
+        // during the canary. The compiler already validated and rendered this
+        // field; only the data was missing. The documented repair loop (scar →
+        // evict → fresh run) depends on it, and so does --research-run-id, whose
+        // whole purpose is making that loop cheap.
+        bookScars: loadBookScars(result.bookId),
       }, null, 2)}\n`),
     },
     await inputFile(resolve(result.bundlePath, RESEARCH_RUN_MANIFEST_FILE), "inputs/research/research-run.manifest.json", "PROVENANCE", "application/json"),

@@ -201,16 +201,37 @@ function sectionContract(kind: SectionKind): string {
 
 /** The book-scars block, or "" when the book has no scar file (most books). Rendered
  *  between TASK and the VOICE CARD, so a writer sees ONLY its own book's over-used
- *  material — never another book's. Enforcement stays in the gates; this is guidance. */
+ *  material — never another book's. Enforcement stays in the gates; this is guidance.
+ *
+ *  Two blocks, deliberately separate. Prohibitions come FIRST and are absolute.
+ *  Over-used material follows and carries a quota of one plus an instruction to
+ *  paraphrase elsewhere — correct for scar tissue, and the exact inverse of what a
+ *  safety rule needs, which is why a prohibition must never be filed as a phrase,
+ *  frame, or note. */
 function bookScarsSection(scars: BookScars | null): string {
   if (!scars) return "";
-  const lines: string[] = [
-    "\n\nKNOWN OVER-USED MATERIAL FOR THIS BOOK — each item may appear in at most one teaching unit book-wide; paraphrase the mechanism everywhere else.",
-  ];
-  if (scars.phrases.length) lines.push(`- Over-used case phrases: ${scars.phrases.map((p) => `"${p}"`).join("; ")}.`);
-  if (scars.frames.length) lines.push(`- Over-used scene/prop/connective frames: ${scars.frames.join("; ")}.`);
-  for (const note of scars.notes) lines.push(`- ${note}`);
-  return lines.join("\n");
+  const blocks: string[] = [];
+
+  if (scars.prohibitions.length) {
+    const hard: string[] = [
+      "\n\nNON-NEGOTIABLE RULES FOR THIS BOOK — these are absolute. They are not style preferences and carry no quota: there is no number of times any of these may appear, and paraphrasing one does not satisfy it.",
+    ];
+    for (const rule of scars.prohibitions) hard.push(`- ${rule}`);
+    blocks.push(hard.join("\n"));
+  }
+
+  const overUse: string[] = [];
+  if (scars.phrases.length) overUse.push(`- Over-used case phrases: ${scars.phrases.map((p) => `"${p}"`).join("; ")}.`);
+  if (scars.frames.length) overUse.push(`- Over-used scene/prop/connective frames: ${scars.frames.join("; ")}.`);
+  for (const note of scars.notes) overUse.push(`- ${note}`);
+  if (overUse.length) {
+    blocks.push([
+      "\n\nKNOWN OVER-USED MATERIAL FOR THIS BOOK — each item may appear in at most one teaching unit book-wide; paraphrase the mechanism everywhere else.",
+      ...overUse,
+    ].join("\n"));
+  }
+
+  return blocks.join("");
 }
 
 function sectionSchemaHint(kind: SectionKind, deliveryMode: SectionTaskDeliveryMode = "FILE_WRITE"): string {
