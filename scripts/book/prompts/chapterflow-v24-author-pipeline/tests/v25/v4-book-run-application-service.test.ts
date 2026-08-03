@@ -2481,6 +2481,219 @@ requiredTest("a stored FAIL canonical review is NOT successor-eligible even unde
   assert.equal(h.events.some((e) => e.detail?.includes("REVIEW_SUCCESSOR")), false, "FAIL is not successor-eligible");
 });
 
+/** Minimal book-run wiring whose research port CAPTURES its request and returns
+ *  a configurable intake. Everything after seed is deliberately inert (the
+ *  compiler throws), so these cases isolate the research seam: the F5 pin's
+ *  threading, its mutual exclusions, and the anti-forgery gate it must never
+ *  weaken. */
+async function researchPinHarness(
+  context: TestContext,
+  slug: string,
+): Promise<{
+  service: BookRunApplicationService;
+  request: Parameters<BookRunApplicationService["run"]>[0];
+  currentPointer: ReturnType<typeof createCurrentPointerStore>;
+  captured: Array<Record<string, unknown>>;
+  control: { intake: (runId: string) => Record<string, unknown> };
+  events: BookRunEvent[];
+}> {
+  const now = () => {
+    const value = context.clock.now();
+    context.clock.advance(1);
+    return value;
+  };
+  const booksRoot = resolve(context.roots.tempRoot, `${slug}-books`);
+  const runRoot = resolve(context.roots.tempRoot, `${slug}-runs`);
+  mkdirSync(booksRoot, { recursive: true });
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
+  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const chapter = fixtureChapter(BOOK, 1, "book-run-service");
+  const seed = await stageCandidate(candidates, {
+    candidateId: "seed-candidate",
+    runId: "seed-run",
+    createdAt: context.clock.now(),
+    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
+  });
+  const runner: ModelTaskRunner = {
+    async run() {
+      throw new Error("BOOK_RUN_PIN_HARNESS:no model call is expected past the research seam");
+    },
+  };
+  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  const promotion = createPromotionService({
+    candidateStore: candidates,
+    contentReader: reader,
+    reviewService: reviews,
+    qcService: qc,
+    currentPointerStore: currentPointer,
+    clock: now,
+  });
+  const captured: Array<Record<string, unknown>> = [];
+  const control: { intake: (runId: string) => Record<string, unknown> } = {
+    intake: (runId) => ({ intakeRunId: runId }),
+  };
+  const research = {
+    async run(request: Record<string, unknown>) {
+      captured.push(request);
+      const runId = (request.resumeRunId ?? request.newRunId ?? BOOK_RUN_ID) as string;
+      const overrides = control.intake(runId);
+      return {
+        schemaVersion: "1" as const,
+        bookId: BOOK,
+        title: "Book Run Service",
+        author: "Fixture Author",
+        intakeRunId: runId,
+        researchRunId: "research-pin-fixture",
+        candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+        indexLogicalPath: "inputs/chapter-index.json" as const,
+        sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json" as const,
+        sources: [],
+        resumed: false,
+        ...overrides,
+      };
+    },
+  } as unknown as ResearchCandidateApplicationPort;
+  const compiler = {
+    async run() {
+      throw new Error("BOOK_RUN_PIN_HARNESS:compile is out of scope for the research-seam cases");
+    },
+  } as unknown as CompilerApplicationPort;
+  const candidateQc = {
+    async run() {
+      throw new Error("BOOK_RUN_PIN_HARNESS:qc is out of scope");
+    },
+  } as unknown as CandidateQcEvaluator;
+  const events: BookRunEvent[] = [];
+  const service = new BookRunApplicationService({
+    research,
+    compiler,
+    contentReader: reader,
+    candidateQc,
+    reviews,
+    qc,
+    promotion,
+    currentPointer,
+    runStore,
+    stageCoordinator,
+    clock: { now },
+    ids: {
+      nextRunId: () => BOOK_RUN_ID,
+      candidateId: (runId) => `${runId}-candidate`,
+      modelAttemptId: (runId) => `${runId}-model`,
+      reviewAttemptId: (runId) => `${runId}-review-attempt`,
+      reviewId: (runId) => `${runId}-review`,
+      qcRoundId: (runId) => `${runId}-qc`,
+    },
+    events: {
+      async append(event) { events.push(event); },
+      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
+    },
+    pipelineRoot: resolve(context.roots.base, "pipeline"),
+  });
+  const request = {
+    bookId: BOOK,
+    title: "Book Run Service",
+    author: "Fixture Author",
+    sourceGitSha: SOURCE_SHA,
+    v25Root: resolve(context.roots.tempRoot, `${slug}-v25`),
+    attemptRoot: resolve(context.roots.attemptsRoot, `${slug}-book-run`),
+    regen: false,
+    maxRepairRounds: 1 as const,
+    promoteLocal: false,
+    signal: new AbortController().signal,
+  };
+  return { service, request, currentPointer, captured, control, events };
+}
+
+requiredTest("research-run pin threads verbatim to the research port and never participates in run identity", async (context: TestContext) => {
+  const harness = await researchPinHarness(context, "pin-thread");
+  const result = await harness.service.run({ ...harness.request, researchRunId: "20260728T101112131Z-pinned" });
+  assert.equal(result.ok, false, "the harness compiler is inert; the research seam is what is under test");
+
+  assert.equal(harness.captured.length, 1);
+  const port = harness.captured[0];
+  assert.equal(port.researchRunId, "20260728T101112131Z-pinned");
+  assert.equal(port.newRunId, BOOK_RUN_ID, "a pinned run is a FRESH control run");
+  assert.equal(port.resumeRunId, undefined);
+  assert.equal(port.forceRefresh, false, "the pin owns the research axis");
+
+  const detail = harness.events.find((event) => event.phase === "research" && event.status === "COMPLETED")?.detail;
+  assert.match(String(detail), /intakeRunId=.*;researchRunId=.*;pinnedResearchRunId=20260728T101112131Z-pinned/);
+});
+
+requiredTest("research-run pin and resumeRunId are mutually exclusive before any durable side effect", async (context: TestContext) => {
+  const harness = await researchPinHarness(context, "pin-exclusive");
+  const result = await harness.service.run({
+    ...harness.request,
+    researchRunId: "20260728T101112131Z-pinned",
+    resumeRunId: BOOK_RUN_ID,
+  });
+  assert.equal(result.ok, false);
+  if (result.ok) throw new Error("the pin must not compose with a resume");
+  assert.equal(result.error.code, "BOOK_RUN_INPUT_INVALID");
+  assert.match(result.error.message, /researchRunId and resumeRunId are mutually exclusive/);
+  assert.equal(harness.events.length, 0, "the rejection precedes every durable event");
+  assert.equal(harness.captured.length, 0, "the research port is never invoked");
+});
+
+requiredTest("regen keeps only its promotion-pointer meaning when a research-run pin is present", async (context: TestContext) => {
+  const harness = await researchPinHarness(context, "pin-regen");
+  // Without a pin, --regen still force-refreshes research verbatim.
+  await harness.service.run({ ...harness.request, regen: true });
+  assert.equal(harness.captured[0]?.forceRefresh, true);
+
+  // With a pin, --regen keeps ONLY its ALREADY_PROMOTED bypass; the research
+  // axis belongs to the pin.
+  const pinned = await harness.service.run({
+    ...harness.request,
+    regen: true,
+    researchRunId: "20260728T101112131Z-pinned",
+  });
+  assert.equal(pinned.ok, false, "the harness compiler is inert");
+  assert.equal(harness.captured[1]?.forceRefresh, false);
+  assert.equal(harness.captured[1]?.researchRunId, "20260728T101112131Z-pinned");
+
+  const unpinnedDetail = harness.events.filter((event) => event.phase === "research" && event.status === "COMPLETED")[0]?.detail;
+  assert.doesNotMatch(String(unpinnedDetail), /pinnedResearchRunId/, "an unpinned run records no pin in its durable audit");
+});
+
+requiredTest("a research-run pin cannot fabricate the control-run bind or reach the successor exception", async (context: TestContext) => {
+  const harness = await researchPinHarness(context, "pin-forgery");
+
+  // (a) An intake bound to some other control run is rejected, pin or no pin.
+  harness.control.intake = () => ({ intakeRunId: "book-run-some-other-run" });
+  const foreign = await harness.service.run({ ...harness.request, researchRunId: "20260728T101112131Z-pinned" });
+  assert.equal(foreign.ok, false);
+  if (foreign.ok) throw new Error("a foreign intake run must be rejected");
+  assert.equal(foreign.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+
+  // (b) Even when the intake ALSO fabricates a successor-recovery attestation,
+  //     successorAccepted requires input.resumeRunId !== undefined — which the
+  //     pin structurally forbids.
+  harness.control.intake = () => ({
+    intakeRunId: "book-run-some-other-run",
+    resumed: true,
+    recoveredFromRunId: BOOK_RUN_ID,
+  });
+  const forged = await harness.service.run({ ...harness.request, researchRunId: "20260728T101112131Z-pinned" });
+  assert.equal(forged.ok, false);
+  if (forged.ok) throw new Error("a fabricated successor claim must be rejected under a pin");
+  assert.equal(forged.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+
+  // (c) A cross-book intake is rejected independently of the pin.
+  harness.control.intake = (runId) => ({ intakeRunId: runId, bookId: "some-other-book" });
+  const crossBook = await harness.service.run({ ...harness.request, researchRunId: "20260728T101112131Z-pinned" });
+  assert.equal(crossBook.ok, false);
+  if (crossBook.ok) throw new Error("a cross-book intake must be rejected under a pin");
+  assert.equal(crossBook.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

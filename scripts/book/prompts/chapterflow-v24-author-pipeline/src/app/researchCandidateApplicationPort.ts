@@ -23,6 +23,7 @@ import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
   RESEARCH_RUN_MANIFEST_FILE,
   appendResearchEvent,
+  isSafeResearchRunId,
   withManifestUpdateLock,
 } from "../lib/researchRunManifest.js";
 import { researchBook } from "../researcher.js";
@@ -61,6 +62,33 @@ export interface ResearchCandidateApplicationRequest {
   readonly attemptRoot: string;
   readonly newRunId?: string;
   readonly resumeRunId?: string;
+  /**
+   * Operator pin naming an existing research run DIRECTORY under
+   * <v25Root>/research-runs/<bookId>/. This is a WEAKER TRUST CLASS than the
+   * successor-chain attestation: a research run has no run-state record, so the
+   * run-state corroboration #successorChainBindsRun performs is structurally
+   * unavailable for it — do not claim parity. Validation is therefore
+   * manifest-intrinsic (bookId, runId, status, input hash, five-field
+   * compatibility, parser integrity, bibliography hash and chapter-list
+   * binding, full per-chapter reusability) plus strict confinement — resolved
+   * path AND realpath — to <v25Root>/research-runs/<bookId>.
+   *
+   * That is acceptable because every durable artifact the pipeline owns already
+   * lives under v25Root (run-state, books, the event journal, research-runs), so
+   * an actor who can write the pinned directory can already write run-state: the
+   * pin confers no authority the v25Root trust boundary does not. What it must
+   * not do is extend reach BEYOND that boundary (the confinement checks) or
+   * become a second acceptance path for the control-run bind — which mutual
+   * exclusion with resumeRunId guarantees structurally, since successorAccepted
+   * requires resumeRunId to be present.
+   *
+   * Deliberately NOT corroborated against the book-run event journal: the
+   * research COMPLETED event does record researchRunId, but BookRunEventSink.read
+   * filters to a single run, and widening it to a book-scoped scan would weaken
+   * the sink's own per-run isolation while buying nothing (the journal lives
+   * under the same v25Root).
+   */
+  readonly researchRunId?: string;
   readonly chapterConcurrency?: number;
   readonly forceRefresh?: boolean;
   /**
@@ -138,6 +166,23 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
   if (input.newRunId !== undefined && input.resumeRunId !== undefined) {
     throw new Error("RESEARCH_INPUT_INVALID:newRunId and resumeRunId are mutually exclusive");
   }
+  if (input.researchRunId !== undefined) {
+    if (!isSafeResearchRunId(input.researchRunId)) {
+      throw new Error("RESEARCH_INPUT_INVALID:researchRunId must be one safe opaque path segment");
+    }
+    // A resume with durable research+seed events never reaches this port at all,
+    // so a pin there would be a silent no-op; worse, accepting the combination
+    // would make the successor exception reachable with a pin present, creating
+    // a SECOND acceptance path for the control-run bind.
+    if (input.resumeRunId !== undefined) {
+      throw new Error("RESEARCH_INPUT_INVALID:researchRunId and resumeRunId are mutually exclusive");
+    }
+    // At this layer the two are genuinely contradictory: one says "read exactly
+    // this bundle", the other says "discard every bundle".
+    if (input.forceRefresh === true) {
+      throw new Error("RESEARCH_INPUT_INVALID:researchRunId and forceRefresh are mutually exclusive");
+    }
+  }
   for (const [name, root] of [["v25Root", input.v25Root], ["attemptRoot", input.attemptRoot]] as const) {
     if (!isAbsolute(root)) throw new Error(`RESEARCH_INPUT_INVALID:${name} must be absolute`);
     if (within(pipelineRoot, root) || within(root, pipelineRoot)) {
@@ -151,6 +196,13 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
   if (input.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:research cancelled before run creation");
 }
 
+/**
+ * The run's INTENT identity. `researchRunId` is deliberately absent: a run
+ * definition drift makes fileRunStore.createRun throw CONFLICT, so folding the
+ * pin in here would mean a run started WITHOUT the pin could never be resumed
+ * WITH it (surfacing as a misleading RESEARCH_RESUME_CONFLICT). The pin selects
+ * an INPUT, not an intent.
+ */
 function intentCommandId(input: ResearchCandidateApplicationRequest): string {
   const digest = createHash("sha256")
     .update(input.title.trim())
@@ -207,6 +259,19 @@ function definitionFor(input: ResearchCandidateApplicationRequest, runId: string
     }),
     createdAt,
   });
+}
+
+/** Chapter numbers that admitted a `research-chNN` model attempt in this run —
+ *  i.e. were RE-RESEARCHED. Every other expected chapter was reused from durable
+ *  sidecars. Shared by the successor-recovery provenance record and the
+ *  research-pin operator line so the two can never drift apart. */
+function reResearchedChapterNumbers(attempts: readonly AttemptSnapshot[]): number[] {
+  const found = new Set<number>();
+  for (const attempt of attempts) {
+    const match = attempt.admission.operationId.match(/^research-ch(\d+)$/);
+    if (match) found.add(Number(match[1]));
+  }
+  return [...found].sort((a, b) => a - b);
 }
 
 function candidateIdFor(runId: string): string {
@@ -489,13 +554,9 @@ export class ResearchCandidateApplicationPort {
     attempts: readonly AttemptSnapshot[];
     chapters: readonly number[];
   }): void {
-    const reResearched = new Set<number>();
-    for (const attempt of args.attempts) {
-      const match = attempt.admission.operationId.match(/^research-ch(\d+)$/);
-      if (match) reResearched.add(Number(match[1]));
-    }
+    const reResearchedList = reResearchedChapterNumbers(args.attempts);
+    const reResearched = new Set<number>(reResearchedList);
     const reused = args.chapters.filter((n) => !reResearched.has(n)).sort((a, b) => a - b);
-    const reResearchedList = [...reResearched].sort((a, b) => a - b);
     const now = new Date(safeClock(this.#dependencies.clock));
     withManifestUpdateLock({
       runDir: args.bundlePath,
@@ -631,9 +692,16 @@ export class ResearchCandidateApplicationPort {
         bookId: definition.bookId,
         chapterConcurrency: input.chapterConcurrency,
         // Legacy research cache is global to its injected research root. A new
-        // V4 control run must not silently adopt an earlier compatible bundle;
-        // only an exact, known control-run resume may reuse durable chapter work.
-        forceRefresh: !resumedRun || input.forceRefresh === true,
+        // V4 control run must not SILENTLY adopt an earlier compatible bundle;
+        // only an exact, known control-run resume may reuse durable chapter
+        // work. An explicit --research-run-id pin is not silent: it names one
+        // exact run id under THIS run's own research root and is rejected
+        // outright unless the manifest proves same book, same run id, allowed
+        // status, identical input identity, an identical five-field
+        // compatibility fingerprint, an internally consistent bibliography, and
+        // every chapter durably reusable.
+        forceRefresh: input.researchRunId !== undefined ? false : (!resumedRun || input.forceRefresh === true),
+        ...(input.researchRunId === undefined ? {} : { pinnedRunId: input.researchRunId }),
         runsRoot: resolve(input.v25Root, "research-runs"),
         stateRoot: resolve(input.v25Root, "research-state"),
         // A durable chapter reused on resume must still pass the source-v2 route
@@ -660,6 +728,11 @@ export class ResearchCandidateApplicationPort {
           ),
         },
       });
+      // Defense-in-depth readback: researchBook surfaces the run it actually
+      // adopted, so the pin is verified against what happened, not what was asked.
+      if (input.researchRunId !== undefined && research.runId !== input.researchRunId) {
+        throw new Error(`RESEARCH_RUN_PIN_MISMATCH:research adopted run ${research.runId}, pin requested ${input.researchRunId}`);
+      }
       if (input.bookId !== undefined && research.bookId !== input.bookId) {
         throw new Error(`RESEARCH_IDENTITY_MISMATCH:expected ${input.bookId}, got ${research.bookId}`);
       }
@@ -702,6 +775,23 @@ export class ResearchCandidateApplicationPort {
           attempts: live.value.attempts,
           chapters: research.chapters.map((chapter) => chapter.chapterNumber),
         });
+      }
+
+      if (input.researchRunId !== undefined) {
+        // A NON-EMPTY re-researched list under a pin means a durable sidecar
+        // failed chapterRouteValid at reuse time (a validator tightening). The
+        // book is still correct — it just lost section-pack cache reuse, because
+        // re-researching even one chapter rewrites the book-level book-source.md
+        // and perturbs every chapter's packetDigest. Log it loudly; never fail.
+        const reResearched = reResearchedChapterNumbers(live.value.attempts);
+        const reResearchedSet = new Set(reResearched);
+        const reused = research.chapters
+          .map((chapter) => chapter.chapterNumber)
+          .filter((n) => !reResearchedSet.has(n))
+          .sort((a, b) => a - b);
+        console.error(
+          `[book-run] research-pin book=${definition.bookId} pinned-research-run=${input.researchRunId} reused-chapters=${reused.join(",")} reresearched-chapters=${reResearched.join(",")} action=REUSE_PINNED_RESEARCH`,
+        );
       }
 
       const seed = await materializeSeedFiles(research);

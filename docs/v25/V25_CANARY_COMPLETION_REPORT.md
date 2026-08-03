@@ -196,7 +196,7 @@ promotion leg.
 | **F2** | Review `FAIL` has no repair path in `book-run` (QC `FAIL` does) | Editorial failure is terminal by design — worth a documented operator runbook |
 | **F3** | Corpus policy for abstract public-domain sources | *As a Man Thinketh* is not a defect to fix; it may be a source class to decline |
 | ~~**D6**~~ | **RESOLVED 2026-07-29 — chapter bar calibrated 80 → 70.** Decided on evidence from the product's own 140-book screening of the live catalogue, not on preference. See §5.2 | Reversible in one constant; `CHAPTERFLOW_CHAPTER_BAR` also overrides it per-run |
-| **F5** | No `--research-run-id` pin: a repair run re-mints the bibliography and can invalidate all research + cache reuse | Measured on the Franklin repair loop — see §5.1 |
+| ~~**F5**~~ | **RESOLVED — `--research-run-id` pin shipped on `book-run` / `book-autopilot`.** A content repair now adopts an exact research run: zero research model calls, every non-evicted pack reuses. See §5.1 | Operator-facing: the pin is opt-in, fails closed, and cannot be combined with `--resume-run-id` |
 
 ### 5.2 D6 resolved — the chapter bar is 70, calibrated to the shipped catalogue
 
@@ -245,24 +245,80 @@ The supported procedure, executed and confirmed on the Franklin canary:
    book's writer prompts.
 4. **Evict only the offending surfaces** from `books/<id>/section-pack-cache/`
    (match on `identity.chapterId` + `identity.kind`). Correct packs keep their entries.
-5. **Start a FRESH run** — no `--resume-run-id`. Research reuses its durable
-   sidecars via the successor chain; every non-evicted pack reuses from cache;
-   only the evicted surfaces re-draft, now under the scar.
+5. **Start a FRESH run with `--research-run-id <id>`** — never `--resume-run-id`.
+   Take `<id>` from the failing run's research `COMPLETED` event
+   (`researchRunId=…` in `book-run-events/<bookId>.jsonl`). Research adopts that
+   exact bundle with **zero model calls**; every non-evicted pack reuses from
+   cache; only the evicted surfaces re-draft, now under the scar.
 
 > **Known friction (F1):** step 4 is manual because the cache key does not include
 > a scar digest. Adding one would make step 3 evict implicated entries automatically.
->
-> **Known friction (F5) — measured, not theoretical:** step 5's reuse promise holds
-> *only if the fresh run's bibliography reproduces the same chapter list*. Research
-> reuse is keyed on `expectedChaptersHash`, and the section-pack cache key derives
-> from the resulting sidecars. On the Franklin repair loop the re-minted bibliography
-> differed, which invalidated the durable research **and all 16 cached packs** — a
-> one-line quiz fix became a full re-research and recompile. `book-run` exposes no
-> flag to pin an existing research run (allowed options are `title`, `author`,
-> `v25-root`, `attempt-root`, `source-git-sha`, `resume-run-id`, `regen`,
-> `max-repair`, `promote-local`, `no-publish`, `reconcile-unsettled`, `log`).
-> **Suggested fix:** a `--research-run-id` pin, so a content repair re-drafts only
-> the evicted surfaces instead of paying for the whole book again.
+> **Do not ship F1 alongside F5:** adding a key field forces a
+> `SECTION_PACK_CACHE_SCHEMA_VERSION` bump, and `identityMatches` requires exact
+> schema-version equality — every pre-existing entry would become a permanent miss,
+> destroying exactly the reuse the pin buys back. Sequence F1 after F5 has been
+> exercised.
+
+#### F5 — RESOLVED: `--research-run-id`
+
+**What was actually broken.** Two things, and the second was the blocker:
+
+1. The re-minted bibliography could differ, invalidating `expectedChaptersHash`
+   and therefore the durable research and all 16 cached packs. Measured on the
+   Franklin repair loop: a one-line quiz fix became a full re-research and recompile.
+2. **More decisively, a fresh `book-run` could not reuse research at all**, whatever
+   the bibliography did. `researchCandidateApplicationPort` computed
+   `forceRefresh: !resumedRun || input.forceRefresh === true`, and a fresh control
+   run is never `resumedRun`, so `forceRefresh` was unconditionally `true` — which
+   short-circuits both compatible-run probes *and* per-chapter durable reuse.
+   **The earlier claim in step 5 that a fresh run "reuses its durable sidecars via
+   the successor chain" was wrong:** the successor chain is a control-run mechanism
+   requiring `--resume-run-id` **and** `--reconcile-unsettled` on a terminal-FAILED
+   run. A CLI-only flag would have changed nothing.
+
+**The fix.** `--research-run-id <id>` names an existing research run directory under
+`<v25-root>/research-runs/<bookId>/`. The researcher resolves-then-adopts it before
+any model call: it loads that run's own hash-verified bibliography, so the chapter
+list cannot drift, and every chapter reuses its durable sidecar (each still
+re-validated through the live source-v2 route validator). Coherence, the source
+integrity gate and the manifest write still run in full — a pinned reuse is gated,
+not blindly trusted.
+
+**Validation is fail-closed at every stage, and there is no fallback.** The pin
+never falls back to scanning for a compatible run or to creating one: a fallback
+would silently charge a full re-research while the operator believed they pinned,
+and would turn the pin into a research-substitution primitive. Each failure raises
+a distinct code — `RESEARCH_RUN_PIN_ESCAPED` (unsafe segment, or a path/symlink
+escaping the book's research root), `RESEARCH_RUN_PIN_NOT_FOUND` (with the
+available run ids listed, since a typo must look like a typo),
+`RESEARCH_RUN_PIN_UNREADABLE`, `RESEARCH_RUN_PIN_INVALID` (manifest `bookId`,
+manifest `runId` vs the pinned id, status allowlist, input identity, the five-field
+compatibility fingerprint, bibliography bytes, bibliography-vs-`expectedChaptersHash`
+binding, coherence), `RESEARCH_RUN_PIN_INCOMPLETE` (missing source-freeze artifact,
+or any chapter not durably reusable), and `RESEARCH_RUN_PIN_MISMATCH` on readback.
+Compatibility is **never** waived: the pin selects *which* run is read, it never
+relaxes *whether* that run is valid.
+
+**Two operator constraints, both deliberate:**
+
+- **It cannot be combined with `--resume-run-id`** (rejected at the CLI, the service
+  and the port). A resume rehydrates its durable seed and never calls the research
+  port, so a pin there would silently do nothing — and accepting the pair would make
+  the successor-recovery exception reachable with a pin present, creating a second
+  acceptance path for the control-run bind. Because the pin forces a fresh run, its
+  intake always presents `intakeRunId === runId`: the anti-forgery gate is
+  *satisfied*, never bypassed, and the pin can never reach `#successorChainBindsRun`.
+- **It fails closed on a partially reusable run.** Re-researching even one chapter
+  rewrites the book-level `book-source.md`, which is hashed into *every* chapter's
+  `packetDigest` — so partial reuse would miss all 4N cached packs while appearing
+  to have pinned. Use `--resume-run-id --reconcile-unsettled` if partial durable
+  reuse is genuinely what you want.
+
+`--regen` still composes: it keeps only its promotion-pointer meaning (the
+`BOOK_RUN_ALREADY_PROMOTED` bypass, without which the pin would be unusable on any
+previously-promoted book), while the pin owns the research axis. The combination
+logs `action=REGEN_SUPERSEDES_POINTER_ONLY` so it is never silent, and the research
+`COMPLETED` event records `pinnedResearchRunId=…` for audit.
 
 ---
 

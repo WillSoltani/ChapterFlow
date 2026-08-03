@@ -1,7 +1,7 @@
 import { createHash, randomBytes, randomUUID } from "crypto";
 import { existsSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, unlinkSync, writeFileSync } from "fs";
 import { hostname } from "os";
-import { dirname, resolve } from "path";
+import { dirname, isAbsolute, relative, resolve } from "path";
 
 import { writeFileAtomic } from "./atomicWrite.js";
 import { normSlug } from "./chapterPaths.js";
@@ -436,6 +436,117 @@ export function compatibilityRejectionReasons(
     if (manifest.compatibility[key] !== args.compatibility[key]) reasons.push(`${key} changed`);
   }
   return reasons;
+}
+
+/**
+ * The id shape a `--research-run-id` pin may name. This is the SAME allowlist
+ * run-state applies to its own ids (run-state/runProjection.ts), and every
+ * `createResearchRunId` output satisfies it. It rejects ".", "..", "/", "\",
+ * NUL, control characters, leading dots and absolute paths BY CONSTRUCTION, so
+ * an operator-supplied id can never be anything other than one opaque path
+ * segment.
+ */
+const RESEARCH_RUN_ID_SEGMENT = /^[A-Za-z0-9][A-Za-z0-9._-]{0,127}$/;
+
+export function isSafeResearchRunId(value: string): boolean {
+  return typeof value === "string" && RESEARCH_RUN_ID_SEGMENT.test(value);
+}
+
+/**
+ * Statuses a pinned research run may present.
+ *
+ * `failed` / `coherence_failed` record a real integrity verdict and are HARD
+ * rejected — a pin never launders them. `running` is admitted only because a
+ * pinned adoption itself passes transiently through it (researcher step 3 sets
+ * `running` before step 4 sets `complete`), so a pin killed in that window would
+ * otherwise leave the run permanently unpinnable and brick the operator's only
+ * cheap repair path. Admitting it is safe because the caller demands the FULL
+ * evidence set regardless of status: coherence passed, every source-freeze
+ * artifact present, and every expected chapter durably reusable.
+ */
+const RESEARCH_RUN_PIN_STATUSES: ReadonlySet<ResearchRunOverallStatus> = new Set<ResearchRunOverallStatus>([
+  "complete",
+  "running",
+]);
+
+/**
+ * Why a pinned research run is unacceptable, or `[]` when it is acceptable.
+ *
+ * Identity comes from the MANIFEST, never from the directory name:
+ * `createResearchRun` mkdirs under the raw `bibliography.bookId` while run
+ * discovery matches on `normSlug`, so the two spellings can diverge — and a
+ * copied or renamed directory must fail. Compatibility is NEVER waived: the pin
+ * selects WHICH run is read, it never relaxes WHETHER that run is valid.
+ */
+export function researchRunPinRejectionReasons(
+  manifest: ResearchRunManifest,
+  args: { bookId: string; pinnedRunId: string; inputHash: string; compatibility: ResearchCompatibility },
+): string[] {
+  const reasons: string[] = [];
+  if (normSlug(manifest.bookId) !== normSlug(args.bookId)) {
+    reasons.push(`manifest bookId ${manifest.bookId} does not match ${args.bookId}`);
+  }
+  if (manifest.runId !== args.pinnedRunId) {
+    reasons.push(`manifest runId ${manifest.runId} does not match pinned id ${args.pinnedRunId}`);
+  }
+  if (!RESEARCH_RUN_PIN_STATUSES.has(manifest.overallStatus)) {
+    reasons.push(`status ${manifest.overallStatus} not allowed`);
+  }
+  // Delegate the input-identity and five-field fingerprint checks rather than
+  // reimplementing them. No expectedChaptersHash argument: a pin has no
+  // freshly-minted chapter list to compare against — it proves the run
+  // INTERNALLY consistent (bibliography <-> expectedChaptersHash) at its caller.
+  reasons.push(...compatibilityRejectionReasons(manifest, { inputHash: args.inputHash, compatibility: args.compatibility }));
+  return reasons;
+}
+
+/**
+ * Resolve `<runsRoot>/<bookId>/<runId>` for an operator-supplied run id, proving
+ * the result stays inside the book's research root. Throws
+ * RESEARCH_RUN_PIN_ESCAPED on an unsafe segment or on any escape. Symlink
+ * containment is the CALLER's job (realpath), because a nonexistent directory
+ * must fall through to the not-found message rather than raising ENOENT here.
+ */
+export function pinnedResearchRunDir(runsRoot: string, bookId: string, runId: string): string {
+  if (!isSafeResearchRunId(runId)) {
+    throw new Error("RESEARCH_RUN_PIN_ESCAPED:researchRunId must be one safe opaque path segment");
+  }
+  const root = resolve(runsRoot, bookId);
+  const runDir = resolve(root, runId);
+  if (!pathWithin(root, runDir) || runDir === root) {
+    throw new Error(`RESEARCH_RUN_PIN_ESCAPED:pinned research run resolves outside ${root}`);
+  }
+  return runDir;
+}
+
+/** Discoverability for a mistyped pin: the manifest-bearing run ids under this
+ *  book, newest `createdAt` first. Never throws; an unreadable root is `[]`. */
+export function listResearchRunIds(runsRoot: string, bookId: string, limit = 10): string[] {
+  const root = resolve(runsRoot, bookId);
+  let names: string[] = [];
+  try {
+    names = readdirSync(root);
+  } catch {
+    return [];
+  }
+  const found: Array<{ runId: string; createdAtMs: number }> = [];
+  for (const name of names) {
+    const runDir = resolve(root, name);
+    if (!safeIsDir(runDir)) continue;
+    if (!existsSync(researchRunManifestPath(runDir))) continue;
+    const parsed = readResearchRunManifest(runDir);
+    const createdAtMs = parsed.ok ? Date.parse(parsed.manifest.createdAt) : Number.NaN;
+    found.push({ runId: name, createdAtMs: Number.isFinite(createdAtMs) ? createdAtMs : -1 });
+  }
+  return found
+    .sort((a, b) => (a.createdAtMs === b.createdAtMs ? (a.runId < b.runId ? 1 : -1) : b.createdAtMs - a.createdAtMs))
+    .slice(0, limit)
+    .map((entry) => entry.runId);
+}
+
+export function pathWithin(base: string, target: string): boolean {
+  const path = relative(resolve(base), resolve(target));
+  return path === "" || (!path.startsWith("..") && !isAbsolute(path));
 }
 
 export function acquireChapterClaim(args: {

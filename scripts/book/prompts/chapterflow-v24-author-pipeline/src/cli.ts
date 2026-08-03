@@ -83,7 +83,7 @@ const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attemp
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
 
 function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
-  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
 }
 
 function firstUnsupportedFlag(
@@ -392,11 +392,19 @@ async function runV4BookProduction(
     }
   }
   const unsupported = firstUnsupportedFlag(flags, [
-    "title", "author", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "regen",
+    "title", "author", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "research-run-id", "regen",
     "max-repair", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
   ]);
   if (unsupported !== undefined) {
     console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
+    return 2;
+  }
+  // The research-run pin selects a research BUNDLE for a FRESH run; --resume-run-id
+  // names a CONTROL run whose durable seed is rehydrated without calling the
+  // research port at all. Combining them is never meaningful, so reject it here
+  // (after the allowlist, so an unsupported flag still reports first).
+  if (flags["research-run-id"] !== undefined && flags["resume-run-id"] !== undefined) {
+    console.error("BOOK_RUN_FLAG_CONFLICT:--research-run-id cannot be combined with --resume-run-id");
     return 2;
   }
   const bookId = args[0] ?? "";
@@ -414,6 +422,7 @@ async function runV4BookProduction(
     || typeof sourceGitSha !== "string" || sourceGitSha.length === 0
     || maxRepair !== 1
     || (flags["resume-run-id"] !== undefined && typeof flags["resume-run-id"] !== "string")
+    || (flags["research-run-id"] !== undefined && (typeof flags["research-run-id"] !== "string" || flags["research-run-id"].length === 0))
     || (flags["regen"] !== undefined && flags["regen"] !== true)
     || (flags["promote-local"] !== undefined && flags["promote-local"] !== true)
     || (flags["no-publish"] !== undefined && flags["no-publish"] !== true)
@@ -440,6 +449,10 @@ async function runV4BookProduction(
       v25Root,
       attemptRoot,
       ...(typeof flags["resume-run-id"] === "string" ? { resumeRunId: flags["resume-run-id"] } : {}),
+      // Content repair (F5): pin an existing research run so a FRESH run reuses
+      // its sidecars and every non-evicted section pack instead of re-minting
+      // the bibliography. Fails closed in the research port.
+      ...(typeof flags["research-run-id"] === "string" ? { researchRunId: flags["research-run-id"] } : {}),
       regen: flags["regen"] === true,
       maxRepairRounds: 1,
       promoteLocal: flags["promote-local"] === true,
@@ -819,6 +832,10 @@ Commands:
                                      Same V4 production lifecycle. --log must be absolute and adds an event-log
                                      mirror. Route is always local-only: no package/registry/Git/remote/deploy.
                                      --no-publish explicitly confirms that boundary; --promote-local remains valid.
+                                     --research-run-id pins an existing research run so a content repair reuses its
+                                     sidecars and section-pack cache instead of re-minting the bibliography; it fails
+                                     closed if the pinned run is missing, foreign, incompatible, or not fully reusable,
+                                     and cannot be combined with --resume-run-id.
   migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
                                      IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
                                      Stage D prompt-stack diagnostic → Stage C confirmatory four-way
@@ -981,6 +998,7 @@ Examples:
   npx tsx src/cli.ts critic --all
   npx tsx src/cli.ts research "Atomic Habits" "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha>
   npx tsx src/cli.ts book-run atomic-habits --title "Atomic Habits" --author "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha> --no-publish
+  npx tsx src/cli.ts book-run atomic-habits --title "Atomic Habits" --author "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha> --no-publish --research-run-id 20260728T101112131Z-<uuid>
 `);
 }
 
@@ -7057,10 +7075,47 @@ process.once("SIGINT", () => {
   cliAbortController.abort(new Error("SIGINT"));
 });
 
+/**
+ * Exit only once stdout and stderr have drained.
+ *
+ * `process.exit()` discards whatever is still queued in an asynchronous stream,
+ * and stdout is asynchronous whenever it is a PIPE rather than a TTY or file —
+ * i.e. under CI, `| tee`, `$(...)`, and spawnSync. Exiting directly truncated
+ * every command whose output exceeded the pipe buffer: `help` measured 37410
+ * bytes to a file but exactly 8192 to a pipe, silently losing 78% of it. Any
+ * consumer parsing piped CLI output (`--json` readers, captured CI logs) was
+ * reading a prefix and could not tell.
+ *
+ * A zero-length write queues its callback BEHIND the data already buffered on
+ * that stream, so it fires once that stream has flushed. The timer is a liveness
+ * backstop for a reader that never drains us — it exits with the real code
+ * rather than hanging the CLI forever — and is unref'd so it never itself keeps
+ * the process alive.
+ */
+function exitAfterFlush(code: number): void {
+  process.exitCode = code;
+  let pending = 2;
+  let exited = false;
+  const finish = (): void => {
+    if (exited) return;
+    exited = true;
+    process.exit(code);
+  };
+  const drained = (): void => {
+    if (exited) return;
+    pending -= 1;
+    if (pending === 0) finish();
+  };
+  const backstop = setTimeout(finish, 5000);
+  backstop.unref();
+  process.stdout.write("", drained);
+  process.stderr.write("", drained);
+}
+
 main(cliAbortController.signal).then(
-  (code) => process.exit(cliAbortController.signal.aborted ? 130 : (code ?? 0)),
+  (code) => exitAfterFlush(cliAbortController.signal.aborted ? 130 : (code ?? 0)),
   (err) => {
     if (!cliAbortController.signal.aborted) console.error(err);
-    process.exit(cliAbortController.signal.aborted ? 130 : 1);
+    exitAfterFlush(cliAbortController.signal.aborted ? 130 : 1);
   },
 );

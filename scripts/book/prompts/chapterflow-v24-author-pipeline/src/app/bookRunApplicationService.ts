@@ -5,6 +5,7 @@ import { isAbsolute, resolve } from "node:path";
 import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
 import type { CurrentPointerStore } from "../books/currentPointer.js";
 import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
+import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
 import type { QcRoundResult, QcService } from "../qc/qcTypes.js";
 import type { PromotionService } from "../release/promotionTypes.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
@@ -59,6 +60,18 @@ export interface BookRunApplicationRequest {
   readonly v25Root: string;
   readonly attemptRoot: string;
   readonly resumeRunId?: string;
+  /**
+   * Opt-in research-run pin for a content repair (friction F5). Names the exact
+   * research run a FRESH run adopts, so research costs zero model calls and
+   * every non-evicted section pack reuses from cache — only the evicted surfaces
+   * re-draft. Mutually exclusive with resumeRunId: a resume rehydrates its
+   * durable seed and never calls the research port, so a pin there would
+   * silently do nothing, and accepting the combination would make the successor
+   * exception reachable with a pin present. Composes with regen, which then
+   * keeps ONLY its promotion-pointer meaning. Validated fail-closed by the
+   * research port; it does NOT participate in run identity or in the intake bind.
+   */
+  readonly researchRunId?: string;
   readonly regen: boolean;
   readonly maxRepairRounds: 1;
   readonly promoteLocal: boolean;
@@ -714,6 +727,17 @@ export class BookRunApplicationService {
       return failed("BOOK_RUN_INPUT_INVALID", "maxRepairRounds must equal 1");
     }
     if (!(input.signal instanceof AbortSignal)) return failed("BOOK_RUN_INPUT_INVALID", "signal must be AbortSignal");
+    if (input.researchRunId !== undefined && input.resumeRunId !== undefined) {
+      return failed("BOOK_RUN_INPUT_INVALID", "researchRunId and resumeRunId are mutually exclusive");
+    }
+    // Shape-validate at the INPUT boundary, not just in the research port. The
+    // port's check (isSafeResearchRunId, applied at path-resolution time) is the
+    // path-traversal guard; this one exists because the value reaches an operator
+    // audit line on stderr BEFORE the port ever runs. Without it, a newline-bearing
+    // id forges additional "[book-run] …" records in the operator's own log.
+    if (input.researchRunId !== undefined && !isSafeResearchRunId(input.researchRunId)) {
+      return failed("BOOK_RUN_INPUT_INVALID", "researchRunId must be one opaque path segment: [A-Za-z0-9][A-Za-z0-9._-]{0,127}");
+    }
     if (input.signal.aborted) return failed("BOOK_RUN_CANCELLED", "cancelled before intake");
 
     const runId = input.resumeRunId ?? this.#dependencies.ids.nextRunId();
@@ -776,6 +800,16 @@ export class BookRunApplicationService {
       const researchStarted = await this.#event(runId, input.bookId, "research", "STARTED");
       if (!researchStarted.ok) return researchStarted;
       let researched: ResearchCandidateApplicationResult;
+      if (input.researchRunId !== undefined && input.regen) {
+        // --regen is overloaded. Split the axes rather than rejecting the pair:
+        // regen keeps its BOOK_RUN_ALREADY_PROMOTED bypass (without it the pin
+        // would be unusable on any previously-promoted book — precisely the
+        // second-repair case F5 exists for), while the research axis belongs to
+        // the pin. Never silent.
+        console.error(
+          `[book-run] research-pin book=${input.bookId} pinned-research-run=${input.researchRunId} regen=true action=REGEN_SUPERSEDES_POINTER_ONLY`,
+        );
+      }
       try {
         researched = await this.#dependencies.research.run({
           bookId: input.bookId,
@@ -785,7 +819,11 @@ export class BookRunApplicationService {
           v25Root: input.v25Root,
           attemptRoot: resolve(input.attemptRoot, "research"),
           ...(input.resumeRunId === undefined ? { newRunId: runId } : { resumeRunId: input.resumeRunId }),
-          forceRefresh: input.regen,
+          ...(input.researchRunId === undefined ? {} : { researchRunId: input.researchRunId }),
+          // The --regen split: a pin owns the research axis, so regen retains
+          // only its promotion-pointer meaning (the ALREADY_PROMOTED bypass
+          // above). Unpinned behaviour is byte-unchanged.
+          forceRefresh: input.researchRunId === undefined && input.regen,
           reconcileUnsettled: input.reconcileUnsettled === true,
           signal: input.signal,
         });
@@ -806,6 +844,10 @@ export class BookRunApplicationService {
       // as this book-run's research. A single attested hop suffices: every book-run
       // resume presents the original resumed run id, and each recovery mints exactly
       // one successor off it.
+      // A --research-run-id pin selects which research BUNDLE the researcher reads
+      // and never the control-run bind: it is mutually exclusive with resumeRunId,
+      // so a pinned run always presents intakeRunId === runId and can never reach
+      // the successor exception below.
       const successorAccepted = !boundToCurrentRun
         && input.resumeRunId !== undefined
         && await this.#successorChainBindsRun(input.bookId, runId, researched);
@@ -824,7 +866,7 @@ export class BookRunApplicationService {
         input.bookId,
         "research",
         "COMPLETED",
-        `intakeRunId=${researched.intakeRunId};researchRunId=${researched.researchRunId}`,
+        `intakeRunId=${researched.intakeRunId};researchRunId=${researched.researchRunId}${input.researchRunId === undefined ? "" : `;pinnedResearchRunId=${input.researchRunId}`}`,
       );
       if (!researchCompleted.ok) return researchCompleted;
       const seedStarted = await this.#event(runId, input.bookId, "seed", "STARTED");

@@ -49,6 +49,76 @@ test("help exposes only canonical V4 production routes and flags", () => {
   assert.match(output, /book-run <bookId> --title <title> --author <author>.*--log <absolute>/);
   assert.match(output, /Route is always local-only: no package\/registry\/Git\/remote\/deploy/);
   assert.doesNotMatch(output, /SUBPROCESS MODE|AUTO-PUBLISHES|macOS notification/);
+  // F5: the research-run pin is exposed on BOTH book production commands.
+  assert.match(output, /book-run <bookId> .*--research-run-id <id>/);
+  assert.match(output, /book-autopilot <bookId> .*--research-run-id <id>/);
+});
+
+test("piped stdout is never truncated by exit — the whole document reaches the reader", () => {
+  // Regression lock. `process.exit()` discards data still queued on an async
+  // stream, and stdout is async whenever it is a pipe. Before exitAfterFlush,
+  // `help` delivered exactly 8192 bytes to a pipe (one pipe buffer) out of the
+  // 37410 it writes to a file, and any consumer of piped output — captured CI
+  // logs, `--json` readers — silently read a prefix. This asserts on the tail
+  // and on the byte count, because a prefix check cannot see truncation.
+  const result = cli(["help"]);
+  const output = `${result.stdout}${result.stderr}`;
+  assert.equal(result.status, 0);
+  assert.ok(
+    output.length > 8192,
+    `piped help truncated to ${output.length} bytes — process.exit() is discarding buffered stdout again`,
+  );
+  // The final documented route must survive, not just the first pipe-buffer's worth.
+  assert.match(output, /npx tsx src\/cli\.ts book-run atomic-habits/);
+});
+
+test("the research-run pin is shared by both book production commands and fails closed on a malformed value", () => {
+  // Paired with a deliberately invalid --max-repair so the command stops at the
+  // usage gate (no composition, no side effects) while still proving the flag
+  // cleared book-autopilot's allowlist.
+  const autopilot = cli([...bookArgs("book-autopilot"), "--research-run-id", "20260728T101112131Z-abc", "--max-repair", "2"]);
+  assert.equal(autopilot.status, 2);
+  assert.doesNotMatch(
+    `${autopilot.stdout}${autopilot.stderr}`,
+    /UNSUPPORTED_OPTION:book-autopilot:--research-run-id/,
+    "--research-run-id is shared, not book-run-only",
+  );
+  assert.match(`${autopilot.stdout}${autopilot.stderr}`, /Usage: book-autopilot /);
+
+  const valueless = cli([...bookArgs("book-run"), "--research-run-id"]);
+  assert.equal(valueless.status, 2);
+  assert.match(`${valueless.stdout}${valueless.stderr}`, /Usage: book-run .*--research-run-id <id>/);
+
+  const empty = cli([...bookArgs("book-run"), "--research-run-id", ""]);
+  assert.equal(empty.status, 2);
+  assert.match(`${empty.stdout}${empty.stderr}`, /Usage: book-run .*--research-run-id <id>/);
+});
+
+test("the research-run pin is mutually exclusive with resume and is not offered by the research command", () => {
+  const conflict = cli([...bookArgs("book-run"), "--research-run-id", "X", "--resume-run-id", "Y"]);
+  assert.equal(conflict.status, 2);
+  assert.match(
+    `${conflict.stdout}${conflict.stderr}`,
+    /BOOK_RUN_FLAG_CONFLICT:--research-run-id cannot be combined with --resume-run-id/,
+  );
+
+  // An unsupported flag is still reported FIRST — the conflict check never
+  // masks the allowlist rejection.
+  const withUnsupported = cli([...bookArgs("book-run"), "--research-run-id", "X", "--resume-run-id", "Y", "--plan"]);
+  assert.equal(withUnsupported.status, 2);
+  assert.match(`${withUnsupported.stdout}${withUnsupported.stderr}`, /UNSUPPORTED_OPTION:book-run:--plan/);
+
+  // Scope lock: the pin buys nothing on the research command (which already has
+  // --force-refresh), so its absence there is a decision, not an oversight.
+  const research = cli([
+    "research", "Some Title", "Some Author",
+    "--v25-root", "/tmp/cli-v4-state",
+    "--attempt-root", "/tmp/cli-v4-attempts",
+    "--source-git-sha", "deadbeef",
+    "--research-run-id", "X",
+  ]);
+  assert.equal(research.status, 2);
+  assert.match(`${research.stdout}${research.stderr}`, /UNSUPPORTED_OPTION:research:--research-run-id/);
 });
 
 test("book routes reject retired flags and require absolute book-run log", () => {
@@ -75,6 +145,11 @@ test("book-run and book-autopilot share one service binding and local promotion 
   assert.equal((production.match(/createProductionBookRunComposition\(/g) ?? []).length, 1);
   assert.equal((production.match(/\.app\.bookRun\.run\(/g) ?? []).length, 1);
   assert.match(production, /"promote-local", "no-publish"/);
+  assert.match(production, /"resume-run-id", "research-run-id"/);
+  assert.match(
+    production,
+    /\.\.\.\(typeof flags\["research-run-id"\] === "string" \? \{ researchRunId: flags\["research-run-id"\] \} : \{\}\)/,
+  );
   assert.match(production, /promoteLocal: flags\["promote-local"\] === true/);
   assert.match(production, /signal,/);
   assert.doesNotMatch(production, /new AbortController/);

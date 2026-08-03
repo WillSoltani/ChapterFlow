@@ -677,6 +677,84 @@ requiredTest("12 a durable sidecar that still parses and hash-matches but no lon
   if (successor.ok) assert.equal(successor.value.status, "COMPLETED");
 });
 
+function seedBytes(snapshot: CandidateSnapshot | null): Record<string, string> {
+  assert.ok(snapshot);
+  const out: Record<string, string> = {};
+  for (const file of snapshot.files) out[file.logicalPath] = Buffer.from(file.bytes).toString("base64");
+  return out;
+}
+
+function controlRunIds(context: TestContext): string[] {
+  const dir = resolve(context.roots.stateRoot, "v25-runs", "books", BOOK, "runs");
+  try {
+    return readdirSync(dir).sort();
+  } catch {
+    return [];
+  }
+}
+
+requiredTest("13 an explicit research-run pin makes a FRESH control run adopt the pinned bundle with zero model calls and byte-identical packet inputs", async (context) => {
+  const subject = rig(context);
+  const first = await subject.port.run(subject.request);
+  const calls = subject.operations.length;
+  const stageCalls = subject.candidates.stageCalls();
+  const firstFiles = seedBytes(subject.candidates.snapshot());
+
+  const second = await subject.port.run({ ...subject.request, researchRunId: first.researchRunId });
+  assert.equal(second.resumed, false, "a pin is a FRESH run, not a resume");
+  assert.notEqual(second.intakeRunId, first.intakeRunId);
+  assert.equal(second.researchRunId, first.researchRunId, "the pinned research run is adopted verbatim");
+  assert.equal(subject.operations.length, calls, "a pinned research run costs ZERO model calls");
+  assert.equal(subject.candidates.stageCalls(), stageCalls + 1, "a fresh control run still mints its own seed candidate");
+
+  const secondFiles = seedBytes(subject.candidates.snapshot());
+  // These are exactly the files sidecarHash reads (per-chapter text + the two
+  // book-level artifacts), so byte-identity here proves packetDigest is stable
+  // and every non-evicted section pack will hit.
+  for (const path of [
+    "inputs/source-freeze/toc.json",
+    "inputs/source-freeze/book-source.md",
+    "inputs/source/ch01.source.txt",
+    "inputs/source/ch02.source.txt",
+    "inputs/source/ch01.source.json",
+    "inputs/source/ch02.source.json",
+  ]) {
+    assert.equal(secondFiles[path], firstFiles[path], `${path} must be byte-identical under a pinned reuse`);
+  }
+});
+
+requiredTest("14 a contradictory or unsafe research-run pin is rejected before any control run is created", async (context) => {
+  const subject = rig(context);
+  const before = controlRunIds(context);
+  const cases: Array<[Partial<ResearchCandidateApplicationRequest>, RegExp]> = [
+    [{ researchRunId: "X", resumeRunId: "book-run-y" }, /RESEARCH_INPUT_INVALID:researchRunId and resumeRunId are mutually exclusive/],
+    [{ researchRunId: "X", forceRefresh: true }, /RESEARCH_INPUT_INVALID:researchRunId and forceRefresh are mutually exclusive/],
+    [{ researchRunId: "../escape" }, /RESEARCH_INPUT_INVALID:researchRunId must be one safe opaque path segment/],
+  ];
+  for (const [patch, message] of cases) {
+    await assert.rejects(subject.port.run({ ...subject.request, ...patch }), message);
+  }
+  assert.equal(subject.operations.length, 0, "no model call may be admitted by a rejected pin");
+  assert.equal(subject.candidates.stageCalls(), 0);
+  assert.deepEqual(controlRunIds(context), before, "a rejected pin must not create a control run");
+});
+
+requiredTest("15 a research-run pin selects an input and never changes run identity", async (context) => {
+  const subject = rig(context);
+  const first = await subject.port.run(subject.request);
+  const pinned = await subject.port.run({ ...subject.request, researchRunId: first.researchRunId });
+
+  const unpinnedRun = await subject.runStore.readRun(BOOK, first.intakeRunId, context.clock.now());
+  const pinnedRun = await subject.runStore.readRun(BOOK, pinned.intakeRunId, context.clock.now());
+  assert.equal(unpinnedRun.ok, true);
+  assert.equal(pinnedRun.ok, true);
+  if (!unpinnedRun.ok || !pinnedRun.ok) return;
+  // Folding the pin into intentCommandId would make a run started WITHOUT the
+  // pin unresumable WITH it (fileRunStore.createRun CONFLICTs on definition
+  // drift). The pin selects an input, not an intent.
+  assert.equal(pinnedRun.value.definition.commandId, unpinnedRun.value.definition.commandId);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
