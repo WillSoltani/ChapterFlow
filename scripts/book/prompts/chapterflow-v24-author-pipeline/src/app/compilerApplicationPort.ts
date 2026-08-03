@@ -18,7 +18,7 @@ import {
 } from "../critics/bookPatternAudit.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { chapterFileName } from "../lib/chapterPaths.js";
-import type { BookScars } from "../lib/bookScars.js";
+import { bookScarsDigest, type BookScars } from "../lib/bookScars.js";
 import { buildSectionTaskMarkdown, type SectionRetryFeedback, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
 import { assembleSections, type AssemblyBlocker, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import { validateSectionPack } from "../sections/sectionGate.js";
@@ -212,32 +212,6 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[]):
 
 function nonemptyStrings(value: unknown): value is string[] {
   return Array.isArray(value) && value.every((item) => typeof item === "string" && item.trim().length > 0);
-}
-
-/**
- * sha256 over the scar content a writer prompt would carry, or null when the book
- * has no scars. Field-tagged and order-sensitive: reordering `prohibitions`
- * changes the rendered block, so it must change the digest too. A book with no
- * scar file hashes to null, which is what a pre-field cache entry reads as — so
- * scar-less books keep every cached pack across this change.
- */
-function bookScarsDigest(scars: BookScars | null): string | null {
-  if (scars === null) return null;
-  const hash = createHash("sha256");
-  hash.update(scars.bookId);
-  for (const [field, values] of [
-    ["prohibitions", scars.prohibitions],
-    ["phrases", scars.phrases],
-    ["frames", scars.frames],
-    ["notes", scars.notes],
-  ] as const) {
-    hash.update(`\0${field}\0`);
-    for (const value of values) {
-      hash.update(value);
-      hash.update("\0");
-    }
-  }
-  return hash.digest("hex");
 }
 
 function sectionTaskContext(snapshot: CandidateSnapshot, logicalPath: string, bookId: string): SectionTaskRenderContext {

@@ -498,6 +498,54 @@ requiredTest("repair proceeds with no rules when the candidate's bookScars name 
   await assertRepairsWithoutRules(context, { scars: { bookId: "a-different-book", phrases: ["x"], frames: [], notes: [] } });
 });
 
+requiredTest("a repair says so when the candidate's rules are older than config, without substituting them", async (context) => {
+  // The likeliest operator action after a panel FAIL is: file the verdict as a
+  // prohibition, then repair. That repair CANNOT see the new rule — the sidecar
+  // froze at research-intake staging — and silence there is the same class of bug
+  // as a scar file that never loaded. The candidate's rules still win (that is
+  // what makes a repair reproducible); only the silence is removed.
+  const stderr: string[] = [];
+  const original = console.error;
+  console.error = (...args: unknown[]) => { stderr.push(args.map(String).join(" ")); };
+  try {
+    // BOOK has no config/book-scars file, so on-disk rules are "none" while the
+    // candidate carries some — a genuine divergence in the direction that matters.
+    const subject = rig(context, {
+      scars: { bookId: BOOK, phrases: [], frames: [], notes: [], prohibitions: ["SAFETY: never tell the reader to skip the permit."] },
+    });
+    const result = await subject.port.run(subject.request);
+    assert.equal(result.ok, true, JSON.stringify(result));
+
+    const warned = stderr.filter((line) => line.includes("book-rules-stale"));
+    assert.equal(warned.length, 1, `expected one staleness warning, got: ${JSON.stringify(stderr)}`);
+    assert.match(warned[0]!, /action=USING_CANDIDATE_RULES/);
+    assert.match(warned[0]!, /--research-run-id/, "the warning must name the supported route");
+
+    // The prompt still carries the CANDIDATE's rules — the warning must not have
+    // swapped in config, which would make the same repair irreproducible.
+    const rules = Buffer.from(subject.prompts[0].prompt.inputs.find((i) => i.name === "book_rules")!.bytes).toString("utf8");
+    assert.match(rules, /never tell the reader to skip the permit/);
+  } finally {
+    console.error = original;
+  }
+});
+
+requiredTest("a repair stays quiet when the candidate's rules match config", async (context) => {
+  // Both sides "none" for a book with no scar file: the common case must not
+  // train operators to ignore the warning.
+  const stderr: string[] = [];
+  const original = console.error;
+  console.error = (...args: unknown[]) => { stderr.push(args.map(String).join(" ")); };
+  try {
+    const subject = rig(context, { scars: null });
+    const result = await subject.port.run(subject.request);
+    assert.equal(result.ok, true, JSON.stringify(result));
+    assert.deepEqual(stderr.filter((line) => line.includes("book-rules-stale")), []);
+  } finally {
+    console.error = original;
+  }
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

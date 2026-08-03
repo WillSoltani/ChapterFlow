@@ -18,7 +18,7 @@ import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
 import { renderBookScarsBlock } from "../sections/sectionTasks.js";
-import { validateBookScars } from "../lib/bookScars.js";
+import { bookScarsDigest, loadBookScars, validateBookScars, type BookScars } from "../lib/bookScars.js";
 import { validateChapterV21 } from "../runtimeSchemas.js";
 import { V21_SCHEMA_VERSION, type ChapterV21 } from "../types.js";
 import {
@@ -334,14 +334,51 @@ const SECTION_TASK_CONTEXT_LOGICAL_PATH = "inputs/compiler-section-task-context.
  */
 function candidateBookRules(candidate: CandidateSnapshot, bookId: string): string {
   const file = candidate.files.find((entry) => entry.logicalPath === SECTION_TASK_CONTEXT_LOGICAL_PATH);
-  if (!file) return "";
-  try {
-    const raw = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as Record<string, unknown>;
-    if (raw.bookScars === null || raw.bookScars === undefined) return "";
-    return renderBookScarsBlock(validateBookScars(raw.bookScars, bookId)).trim();
-  } catch {
-    return "";
+  let scars: BookScars | null = null;
+  if (file) {
+    try {
+      const raw = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as Record<string, unknown>;
+      if (raw.bookScars !== null && raw.bookScars !== undefined) scars = validateBookScars(raw.bookScars, bookId);
+    } catch {
+      scars = null;
+    }
   }
+  warnIfBookRulesAreStale(bookId, scars);
+  return renderBookScarsBlock(scars).trim();
+}
+
+/**
+ * Say so when the candidate's frozen rules differ from config/book-scars/ on disk.
+ *
+ * This does NOT substitute the on-disk rules — that would defeat the
+ * reproducibility the candidate-sourced design buys. It removes the SILENCE,
+ * which is the part that actually bites: the single most likely operator action
+ * after a reader-panel FAIL is to file the verdict as a prohibition and then run
+ * a repair, and that repair cannot see the new rule, because the sidecar was
+ * frozen at research-intake staging. Without this line the operator's only
+ * evidence that their prohibition did not bind is a doc step. The supported route
+ * for a new rule is edit -> evict -> FRESH run (cheap via --research-run-id),
+ * which re-stages the sidecar; the message says so.
+ *
+ * Never throws: loadBookScars fails loud on a malformed or near-miss file, and a
+ * config problem must not take down a recovery path that was not going to use
+ * that config anyway.
+ */
+function warnIfBookRulesAreStale(bookId: string, candidateScars: BookScars | null): void {
+  let current: BookScars | null;
+  try {
+    current = loadBookScars(bookId);
+  } catch {
+    return;
+  }
+  const onDisk = bookScarsDigest(current);
+  if (bookScarsDigest(candidateScars) === onDisk) return;
+  console.error(
+    `[repair] book-rules-stale book=${bookId} candidate-rules=${bookScarsDigest(candidateScars) ?? "none"} on-disk-rules=${onDisk ?? "none"} `
+    + "action=USING_CANDIDATE_RULES — config/book-scars/ has changed since this candidate was staged. "
+    + "The repair prompt carries the candidate's rules, NOT the edited file: a rule added after staging binds writers only through a FRESH run "
+    + "(edit the scar, evict the implicated section-pack cache entries, then re-run with --research-run-id <id>), never through a repair.",
+  );
 }
 
 function inputFiles(candidate: CandidateSnapshot): CandidateInputFile[] {

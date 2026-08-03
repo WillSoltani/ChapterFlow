@@ -20,6 +20,7 @@
  * voice card).
  */
 
+import { createHash } from "crypto";
 import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -128,6 +129,34 @@ function assertNoNearMissScarFile(slug: string): void {
       );
     }
   }
+}
+
+/**
+ * sha256 over a book's scar content, or null when it has none.
+ *
+ * Field-tagged and order-sensitive: reordering `prohibitions` changes the rendered
+ * writer block, so it must change the digest too. Two consumers depend on it —
+ * the section-pack cache identity (a pack drafted without a rule must not be
+ * served under it) and the repair port's divergence check (the candidate's frozen
+ * rules versus what is on disk now). One definition so those cannot disagree.
+ */
+export function bookScarsDigest(scars: BookScars | null): string | null {
+  if (scars === null) return null;
+  const hash = createHash("sha256");
+  hash.update(scars.bookId);
+  for (const [field, values] of [
+    ["prohibitions", scars.prohibitions],
+    ["phrases", scars.phrases],
+    ["frames", scars.frames],
+    ["notes", scars.notes],
+  ] as const) {
+    hash.update(`\0${field}\0`);
+    for (const value of values) {
+      hash.update(value);
+      hash.update("\0");
+    }
+  }
+  return hash.digest("hex");
 }
 
 const _cache = new Map<string, BookScars | null>();
