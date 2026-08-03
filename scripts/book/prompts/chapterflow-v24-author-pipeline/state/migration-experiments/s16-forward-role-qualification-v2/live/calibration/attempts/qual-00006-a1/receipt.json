@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783911486097-7-ef7a1e7b-7c6e-491d-a1ee-797c54b511c8",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"ch02-q01\",\"keyedAnswerIndex\":1,\"derivedAnswerIndex\":0,\"agreement\":false,\"keyCorrect\":\"wrong\",\"rationale\":\"The key-free evidence decisively supports choice 0, while keyed choice 1 conflicts with that evidence; only choice 0 is defensible.\",\"defensibleAnswerIndices\":[0],\"keyedMechanismSupported\":false}]}"
+}

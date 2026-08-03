@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
@@ -19,6 +20,7 @@ import {
 } from "@/app/app/api/book/_lib/progress-write-core";
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import {
+  applyProgressCursorTouch,
   getUserBookState,
   getUserProgress,
   putUserBookState,
@@ -28,14 +30,13 @@ import {
   toChapterIdKeyedApplicationStates,
 } from "@/app/app/api/book/_lib/commitment-application";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
+import { buildBookStateGetResponse } from "@/app/app/api/book/_lib/book-state-status-core";
 import type {
   BookManifest,
   BookUserBookStateItem,
   ChapterApplicationState,
 } from "@/app/app/api/book/_lib/types";
-import { bookUserPk, nowIso, progressSk } from "@/app/app/api/book/_lib/keys";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 function parseStringRecord(value: unknown): Record<string, string> {
   if (!value || typeof value !== "object" || Array.isArray(value)) return {};
@@ -74,10 +75,10 @@ export async function GET(
       // commitments-table error failing the whole /state read — as a robustness
       // regression that contradicts the feature's graceful-degradation guardrail.)
       getBookApplicationStates(tableName, user.sub, bookId).catch((err) => {
-        console.error(
-          `[state] getBookApplicationStates failed for book ${bookId}; degrading applicationStates to {}`,
+        logger.error("state_get_book_application_states_failed", {
+          bookId,
           err,
-        );
+        });
         return {} as Record<number, ChapterApplicationState>;
       }),
     ]);
@@ -107,19 +108,27 @@ export async function GET(
       readPinnedManifest: () =>
         readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
       onDegrade: (err) =>
-        console.error(
-          `[state] pinned-manifest read failed for book ${bookId}; degrading chapter map to the live manifest`,
+        logger.error("state_pinned_manifest_read_failed", {
+          bookId,
           err,
-        ),
+        }),
     });
     const chapterIdByNumber = new Map(
       chapters.map((chapter) => [chapter.number, chapter.chapterId])
     );
     const applicationStates: Record<string, ChapterApplicationState> =
       toChapterIdKeyedApplicationStates(appByNumber, chapterIdByNumber);
+    const statusPresence = {
+      hasBookState: bookState !== null,
+      hasProgress: progress !== null,
+    };
 
     if (bookState) {
-      return bookOk({ state: bookState, applicationStates });
+      return bookOk(buildBookStateGetResponse({
+        state: bookState,
+        applicationStates,
+        ...statusPresence,
+      }));
     }
 
     const firstChapterId = chapters[0]?.chapterId ?? "";
@@ -153,7 +162,11 @@ export async function GET(
       updatedAt: progress?.updatedAt ?? nowIso(),
     };
 
-    return bookOk({ state: fallbackState, applicationStates });
+    return bookOk(buildBookStateGetResponse({
+      state: fallbackState,
+      applicationStates,
+      ...statusPresence,
+    }));
   });
 }
 
@@ -216,10 +229,10 @@ export async function PATCH(
       readPinnedManifest: () =>
         readJsonFromS3<BookManifest>(contentBucket, progress!.manifestKey),
       onDegrade: (err) =>
-        console.error(
-          `[state] pinned-manifest read failed for book ${bookId} (PATCH); degrading chapter map to the live manifest`,
+        logger.error("state_pinned_manifest_read_failed_patch", {
+          bookId,
           err,
-        ),
+        }),
     });
     const firstChapterId = chapters[0]?.chapterId ?? "";
     const chapterIdByNumber = new Map(
@@ -337,36 +350,8 @@ export async function PATCH(
         lastActiveAt: now,
         updatedAt: now,
       });
-      const Key = { PK: bookUserPk(user.sub), SK: progressSk(bookId) };
-      const sync = async (spec: typeof timestamps): Promise<void> => {
-        try {
-          await ddbDoc.send(
-            new UpdateCommand({
-              TableName: tableName,
-              Key,
-              UpdateExpression: spec.UpdateExpression,
-              ConditionExpression: spec.ConditionExpression,
-              ExpressionAttributeNames: spec.ExpressionAttributeNames,
-              ExpressionAttributeValues: spec.ExpressionAttributeValues,
-            })
-          );
-        } catch (error: unknown) {
-          // Progress row vanished between read and write (attribute_exists(PK) failed,
-          // e.g. account erasure) OR the cursor lost its forward-only guard — both are
-          // benign no-ops. We must never (re)create a partial BOOK_PROGRESS item; any
-          // other error is real and re-thrown.
-          const name =
-            error && typeof error === "object"
-              ? (error as Record<string, unknown>).name ??
-                (error as Record<string, unknown>).__type
-              : undefined;
-          if (name !== "ConditionalCheckFailedException") {
-            throw error;
-          }
-        }
-      };
-      await sync(timestamps);
-      await sync(cursor);
+      await applyProgressCursorTouch(tableName, user.sub, bookId, timestamps);
+      await applyProgressCursorTouch(tableName, user.sub, bookId, cursor);
     }
 
     return bookOk({ state: nextState });

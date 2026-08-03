@@ -18,15 +18,15 @@ export type ChapterCardStatus =
 type ChapterCardProps = {
   chapter: LibraryChapterSummary;
   status: ChapterCardStatus;
-  score?: number;
+  score?: number | undefined;
   stepsCompleted: number;
   /** Two-axis completion (feedback #4): derived application state for this chapter.
    *  Display-only; defaults to "none" (renders nothing extra). */
-  applicationState?: ChapterApplicationState;
+  applicationState?: ChapterApplicationState | undefined;
   onClick: () => void;
-  onLockedClick?: () => void;
-  onMouseEnter?: () => void;
-  isCurrent?: boolean;
+  onLockedClick?: (() => void) | undefined;
+  onMouseEnter?: (() => void) | undefined;
+  isCurrent?: boolean | undefined;
 };
 
 export function ChapterCard({
@@ -38,7 +38,6 @@ export function ChapterCard({
   onClick,
   onLockedClick,
   onMouseEnter,
-  isCurrent = false,
 }: ChapterCardProps) {
   const prefersReducedMotion = useReducedMotion();
   const [shaking, setShaking] = useState(false);
@@ -101,8 +100,8 @@ export function ChapterCard({
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className={`shrink-0 text-[11px] font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
-                <span className={`line-clamp-2 text-[15px] sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
+                <span className={`shrink-0 text-cf-caption font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
+                <span className={`line-clamp-2 text-cf-body sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} lockedDots />
             </div>
@@ -138,8 +137,8 @@ export function ChapterCard({
             </div>
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-2">
-                <span className={`shrink-0 text-[11px] font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
-                <span className={`line-clamp-2 text-[15px] sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
+                <span className={`shrink-0 text-cf-caption font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
+                <span className={`line-clamp-2 text-cf-body sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
               </div>
               <StepIndicators stepsCompleted={0} lockedDots />
               <span className="mt-1 block text-xs font-medium" style={{ color: "var(--accent-emerald)" }}>
@@ -160,15 +159,11 @@ export function ChapterCard({
     <motion.button
       type="button"
       onClick={handleClick}
-        onMouseEnter={onMouseEnter}
-      whileHover={
-        !prefersReducedMotion
-          ? {
+      {...(onMouseEnter ? { onMouseEnter } : {})}
+      {...(!prefersReducedMotion ? { whileHover: {
               y: -2,
               transition: { type: "spring" as const, stiffness: 400, damping: 25 },
-            }
-          : undefined
-      }
+            } } : {})}
       whileTap={{ scale: 0.97, transition: { duration: DUR.instant } }}
       className={[
         "group relative w-full rounded-2xl text-left [transform:translateZ(0)]",
@@ -176,20 +171,17 @@ export function ChapterCard({
         isInProgress
           ? [
               "bg-(--cf-surface-muted) p-5 cursor-pointer overflow-hidden",
-              isCurrent ? "bd-chapter-shimmer" : "",
             ].join(" ")
           : [
               "cf-panel border border-(--cf-border) p-4 cursor-pointer",
               "hover:border-(--cf-success-text)/30",
             ].join(" "),
       ].join(" ")}
-      style={
-        isInProgress
-          ? { borderLeft: "3px solid var(--accent-cyan)" }
-          : isCompleted
-            ? { borderLeft: "3px solid var(--accent-emerald)" }
-            : undefined
-      }
+      {...(isInProgress
+        ? { style: { borderLeft: "3px solid var(--accent-cyan)" } }
+        : isCompleted
+          ? { style: { borderLeft: "3px solid var(--accent-emerald)" } }
+          : {})}
       aria-label={
         (isCompleted && typeof score === "number"
           ? `Chapter ${chapter.number} - ${chapter.title} - Completed with ${Math.round(score)}% score`
@@ -207,7 +199,7 @@ export function ChapterCard({
               {!prefersReducedMotion && (
                 <div
                   className="absolute inset-0 rounded-full"
-                  style={{ border: "2px solid var(--accent-cyan)", opacity: 0.3, animation: "bd-pulse-ring 2.5s ease-out infinite" }}
+                  style={{ border: "2px solid var(--accent-cyan)", opacity: 0.3, animation: "bd-pulse-ring 1.2s ease-out 2" }}
                 />
               )}
             </div>
@@ -223,8 +215,8 @@ export function ChapterCard({
           {/* Content */}
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className={`shrink-0 text-[11px] font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
-              <span className={`line-clamp-2 text-[15px] sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
+              <span className={`shrink-0 text-cf-caption font-medium uppercase tracking-wide tabular-nums ${codeClass}`}>{chapter.code}</span>
+              <span className={`line-clamp-2 text-cf-body sm:truncate ${titleClass}`} title={chapter.title}>{chapter.title}</span>
             </div>
             <div className="mt-2 flex items-center gap-2">
               <StepIndicators
@@ -249,7 +241,7 @@ export function ChapterCard({
           {appBadge && (
             <span
               aria-hidden="true"
-              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-[11px] font-medium"
+              className="inline-flex items-center gap-1 whitespace-nowrap rounded-full px-2 py-0.5 text-cf-caption font-medium"
               style={
                 appBadge.tone === "applied"
                   ? {

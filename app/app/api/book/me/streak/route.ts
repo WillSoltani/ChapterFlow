@@ -50,12 +50,21 @@ export async function POST(req: Request) {
     const user = await requireActiveBookUser();
 
     let action = "purchase_shield";
-    try {
-      const bodyRaw = await req.json();
+    const hasExplicitBody = req.body !== null;
+    const bodyText = await req.text();
+    if (hasExplicitBody) {
+      let bodyRaw: unknown;
+      try {
+        bodyRaw = JSON.parse(bodyText) as unknown;
+      } catch {
+        throw new BookApiError(
+          400,
+          "invalid_json",
+          "Request body must be valid JSON."
+        );
+      }
       const body = requireBodyObject(bodyRaw);
       action = requireString(body.action, "action", { maxLength: 50 });
-    } catch {
-      // Default action
     }
 
     if (action !== "purchase_shield") {
@@ -74,7 +83,6 @@ export async function POST(req: Request) {
     }
 
     return bookOk({
-      ok: true,
       shieldsHeld: result.shieldsHeld,
       balance: result.balance,
       message: "Streak Shield purchased. It will automatically protect your streak if you miss a day.",

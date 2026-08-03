@@ -48,14 +48,14 @@ export function evaluateAuthRecency(params: {
 
 export type MappedIdClaims = {
   sub: string;
-  email?: string;
-  emailVerified?: boolean;
-  name?: string;
-  givenName?: string;
-  familyName?: string;
-  preferredUsername?: string;
-  groups?: string[];
-  authTime?: number;
+  email?: string | undefined;
+  emailVerified?: boolean | undefined;
+  name?: string | undefined;
+  givenName?: string | undefined;
+  familyName?: string | undefined;
+  preferredUsername?: string | undefined;
+  groups?: string[] | undefined;
+  authTime?: number | undefined;
 };
 
 /**

@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
 import { requireUser } from "@/app/app/api/_lib/auth";
@@ -16,6 +17,14 @@ import {
 } from "@/app/_lib/account-reactivation-core";
 
 let warnedLocalBypass = false;
+
+export type DashboardAccessResult = {
+  onboarding: "confirmed_complete" | "unverified";
+};
+
+const UNVERIFIED_ACCESS = {
+  onboarding: "unverified",
+} as const satisfies DashboardAccessResult;
 
 /**
  * Best-effort recovery of the path the reader was actually trying to reach, so
@@ -81,8 +90,8 @@ async function reactivateDeactivatedAccount(
     {
       log: (level, event, detail) => {
         // Tag every signal with the userId for observability.
-        if (level === "error") console.error(event, { userId, ...detail });
-        else console.warn(event, { userId, ...detail });
+        if (level === "error") logger.error(event, { userId, ...detail });
+        else logger.warn(event, { userId, ...detail });
       },
     }
   );
@@ -103,7 +112,7 @@ async function reactivateDeactivatedAccount(
  */
 export async function requireDashboardAccess(options?: {
   allowUnonboarded?: boolean;
-}) {
+}): Promise<DashboardAccessResult> {
   if (
     process.env.NODE_ENV !== "production" &&
     (isDevAuthBypassEnabled() ||
@@ -113,11 +122,12 @@ export async function requireDashboardAccess(options?: {
   ) {
     if (!warnedLocalBypass) {
       warnedLocalBypass = true;
-      console.warn(
-        "dashboard_access_dev_bypass: allowing local access because DEV_AUTH_BYPASS is enabled or Cognito env vars are missing in dev."
-      );
+      logger.warn("dashboard_access_dev_bypass", {
+        reason:
+          "allowing local access because DEV_AUTH_BYPASS is enabled or Cognito env vars are missing in dev.",
+      });
     }
-    return;
+    return UNVERIFIED_ACCESS;
   }
 
   let userId: string;
@@ -149,7 +159,7 @@ export async function requireDashboardAccess(options?: {
       // Reactivation already cleared the onboarding-deferred funnel below in the
       // legacy code path via an early `return`; keep that behavior so a returning
       // user lands straight on the page they requested.
-      return;
+      return UNVERIFIED_ACCESS;
     }
     if (status?.status === "deleted") {
       redirect("/auth/login?reason=deleted");
@@ -160,7 +170,7 @@ export async function requireDashboardAccess(options?: {
     // For DynamoDB read errors, don't block the user — fail open. (A
     // reactivation WRITE failure is handled inside the helper above with its own
     // distinct log, so it never reaches here as a generic error.)
-    console.error("account_status_check_error", error);
+    logger.error("account_status_check_error", { err: error });
   }
 
   // Onboarding funnel gate — route signed-in-but-un-onboarded users into the
@@ -179,13 +189,17 @@ export async function requireDashboardAccess(options?: {
       if (!onboarding?.onboardingCompleted) {
         redirect("/book");
       }
+      return { onboarding: "confirmed_complete" };
     } catch (error: unknown) {
       // Re-throw the Next.js redirect (it's thrown, not returned).
       if (error && typeof error === "object" && "digest" in error) throw error;
       // Fail open on a DynamoDB/network hiccup — don't trap a legitimate user
       // out of the app over a transient backend error (mirrors the
       // account-status block above).
-      console.error("onboarding_status_check_error", error);
+      logger.error("onboarding_status_check_error", { err: error });
+      return UNVERIFIED_ACCESS;
     }
   }
+
+  return UNVERIFIED_ACCESS;
 }

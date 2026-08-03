@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight } from "lucide-react";
-import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/app/book/badges/lib/badge-ui-definitions";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/lib/badges/badge-ui-definitions";
 import type { ActiveBook, LearningStep } from "./progressTypes";
 import { getBookHref } from "./book-href";
 import { StepIndicator } from "./StepIndicator";
@@ -17,7 +17,7 @@ interface ContinueLearningCardProps {
   otherBooks: ActiveBook[];
   /** Closest real badge milestone, or null when the user has none yet. */
   nextMilestone?: { name: string; icon: string } | null;
-  onSwitchBook?: (bookId: string) => void;
+  onSwitchBook?: ((bookId: string) => void) | undefined;
 }
 
 const STEP_CTA: Record<LearningStep, string> = {
@@ -223,7 +223,7 @@ export function ContinueLearningCard({
                   ) : (
                     <div className="flex h-full w-full items-center justify-center">
                       <span
-                        className="text-[7px] font-medium leading-tight"
+                        className="text-cf-caption font-medium leading-tight"
                         style={{ color: "var(--text-heading)" }}
                       >
                         {book.title.split(" ").slice(0, 2).join(" ")}

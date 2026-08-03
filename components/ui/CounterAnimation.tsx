@@ -49,6 +49,7 @@ export function CounterAnimation({
 
       return () => controls.stop();
     }
+    return undefined;
   }, [isInView, target, duration, prefersReducedMotion]);
 
   return (

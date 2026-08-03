@@ -10,7 +10,8 @@ This checkout (`~/ChapterFlow-books`) is the canonical worktree for all work.
 
 ## Where things live
 - `app/` — Next.js App Router. **API routes are double-nested**: `app/app/api/book/**` (not `app/api/`).
-- `components/` — the live route UIs (`library/`, `progress/`, `onboarding/`, `landing/`, `sections/`, `ui/`). Live routes render `components/*`; the older `app/book/*Client.tsx` are largely dead — confirm a component is actually mounted before editing it.
+- New authenticated app routes -> `app/app/api/**` (see `app/app/api/README.md`); the shallow `app/api/**` namespace is reserved for unauthenticated endpoints only (health, book-requests).
+- `components/` — route-level UIs for the MIGRATED routes (`library/`, `progress/`, `workspace/`, `landing/`, `sections/`, `ui/`, `website/`). Many `app/book/**/*Client.tsx` pages are still the live render path for their routes — always confirm a component is mounted (grep importers from a `page.tsx`/`layout.tsx`) before editing or deleting it.
 - `lib/` — shared app code.
 - `infra/` — AWS CDK (its own `package.json`).
 - `scripts/book/prompts/chapterflow-v24-author-pipeline/` — the ACTIVE (v24 author-first) book pipeline: briefs → whole-chapter writers → reader reviews → publish-final. Background tooling, not the web app.
@@ -21,8 +22,15 @@ This checkout (`~/ChapterFlow-books`) is the canonical worktree for all work.
 - `npm run dev` — local app at http://localhost:3000 (DEV_AUTH_BYPASS + standalone env baked in).
 - `npm run typecheck` — `tsc --noEmit`.
 - `npm run lint` — `eslint .`.
-- `npm run test` — `tsx --test` over `*.test.ts` in `app/` and `lib/`.
-- `npm run verify` — typecheck + test + build; run before pushing.
+- `npm run test` — `tsx --test` over `*.test.ts`/`*.test.tsx` in `app/`, `lib/`, `components/`, `tests/` (137-file discovery floor).
+- `npm run verify` — typecheck + test + scan:secrets + scan:style + lint:ratchet + build; run before pushing. Mirrors most, not all, of CI's 9 required jobs — `docs/CI_CD.md` §6/§7 name the exact delta (e2e, coverage, lambda/pipeline/infra suites, PR-relative shared-closure diff); `npm run verify:ci` gets closer.
+- Full script catalogue (test tiers, scanners, contract + live-sync tools): `docs/SCRIPTS.md`.
+
+## Per-folder guides
+Folder-specific source-of-truth files and traps live next to the code:
+[app/CLAUDE.md](app/CLAUDE.md) · [app/app/api/CLAUDE.md](app/app/api/CLAUDE.md) ·
+[components/CLAUDE.md](components/CLAUDE.md) · [lib/CLAUDE.md](lib/CLAUDE.md) ·
+[infra/CLAUDE.md](infra/CLAUDE.md) · [docs/CLAUDE.md](docs/CLAUDE.md)
 
 ## Don't read / search these
 - `scripts/book/**/state/**.json` — ~4,150 tracked generated book-state files (~78% of tracked files). They bloat grep/glob and waste tokens; scope searches to `app/`, `components/`, `lib/`. Open a specific state file only when working on it directly.

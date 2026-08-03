@@ -1,10 +1,11 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 
 interface BookRequestFormProps {
-  initialTitle?: string;
+  initialTitle?: string | undefined;
   onSuccess: (data: { title: string; author: string; email: string }) => void;
 }
 
@@ -13,11 +14,42 @@ interface ValidationErrors {
   email?: string;
 }
 
+type RequiredField = keyof ValidationErrors;
+
 function isValidEmail(email: string): boolean {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
+function getFieldError(field: RequiredField, value: string): string | undefined {
+  const trimmed = value.trim();
+  if (field === "title") {
+    if (!trimmed) return "Enter a book title";
+    if (trimmed.length < 2) return "Title must be at least 2 characters";
+  }
+  if (field === "email") {
+    if (!trimmed) return "Enter your email address";
+    if (!isValidEmail(trimmed)) return "Please enter a valid email address";
+  }
+  return undefined;
+}
+
+export function validateBookRequest(title: string, email: string): {
+  errors: ValidationErrors;
+  firstInvalid: RequiredField | null;
+} {
+  const errors: ValidationErrors = {};
+  const titleError = getFieldError("title", title);
+  const emailError = getFieldError("email", email);
+  if (titleError) errors.title = titleError;
+  if (emailError) errors.email = emailError;
+  return {
+    errors,
+    firstInvalid: errors.title ? "title" : errors.email ? "email" : null,
+  };
+}
+
 export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFormProps) {
+  const reducedMotion = usePrefersReducedMotion();
   const [formState, setFormState] = useState<"idle" | "submitting" | "success" | "error">("idle");
   // Seed the title once from the parent prop via a lazy initializer (avoids a
   // setState-in-effect). The component is keyed by initialTitle upstream
@@ -27,39 +59,51 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
   const [email, setEmail] = useState("");
   const [errors, setErrors] = useState<ValidationErrors>({});
   const [touched, setTouched] = useState<Record<string, boolean>>({});
+  const [focusField, setFocusField] = useState<RequiredField | null>(null);
+  const [focusRequest, setFocusRequest] = useState(0);
+  const [validationAnnouncement, setValidationAnnouncement] = useState("");
+  const titleRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
 
   const isFormValid = bookTitle.trim().length >= 2 && isValidEmail(email.trim());
 
-  const validateField = useCallback((field: string, value: string) => {
+  const validateField = useCallback((field: RequiredField, value: string) => {
     setErrors((prev) => {
       const next = { ...prev };
-      if (field === "title") {
-        if (value.trim().length > 0 && value.trim().length < 2) {
-          next.title = "Title must be at least 2 characters";
-        } else {
-          delete next.title;
-        }
-      }
-      if (field === "email") {
-        if (value.trim().length > 0 && !isValidEmail(value.trim())) {
-          next.email = "Please enter a valid email address";
-        } else {
-          delete next.email;
-        }
-      }
+      const error = getFieldError(field, value);
+      if (error) next[field] = error;
+      else delete next[field];
       return next;
     });
   }, []);
 
-  const handleBlur = (field: string, value: string) => {
+  useEffect(() => {
+    if (!focusField) return;
+    (focusField === "title" ? titleRef : emailRef).current?.focus();
+  }, [focusField, focusRequest]);
+
+  const handleBlur = (field: RequiredField, value: string) => {
     setTouched((prev) => ({ ...prev, [field]: true }));
     validateField(field, value);
+    setValidationAnnouncement(getFieldError(field, value) ?? "");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!isFormValid) return;
+    const validation = validateBookRequest(bookTitle, email);
+    if (validation.firstInvalid) {
+      setTouched({ title: true, email: true });
+      setErrors(validation.errors);
+      setValidationAnnouncement(
+        validation.errors.title && validation.errors.email
+          ? "Correct the book title and email fields."
+          : "Correct the highlighted required field.",
+      );
+      setFocusField(validation.firstInvalid);
+      setFocusRequest((current) => current + 1);
+      return;
+    }
 
     const payload = {
       title: bookTitle.trim(),
@@ -68,6 +112,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
     };
 
     setFormState("submitting");
+    setValidationAnnouncement("");
 
     try {
       const res = await fetch("/api/book-requests", {
@@ -94,15 +139,28 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
     "transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2";
 
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-2.5">
+    <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-2.5">
+      <p
+        id="book-request-required-instructions"
+        className="mb-1 text-left text-cf-label-sm"
+        style={{ color: "var(--text-muted)" }}
+      >
+        Required fields are marked with an asterisk (*).
+      </p>
+      <p role="status" aria-live="polite" aria-atomic="true" className="sr-only">
+        {validationAnnouncement}
+      </p>
+
       {/* Book title */}
       <div>
-        <label htmlFor="book-request-title" className="sr-only">
-          Book title
+        <label htmlFor="book-request-title" className="mb-1 block text-left text-cf-label-sm font-medium" style={{ color: "var(--text-secondary)" }}>
+          Book title <span aria-hidden="true">*</span><span className="sr-only"> (required)</span>
         </label>
         <input
+          ref={titleRef}
           id="book-request-title"
           type="text"
+          required
           value={bookTitle}
           onChange={(e) => {
             setBookTitle(e.target.value);
@@ -111,12 +169,15 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           onBlur={() => handleBlur("title", bookTitle)}
           placeholder="Enter book title..."
           aria-invalid={!!errors.title && !!touched.title}
-          aria-describedby={errors.title && touched.title ? "book-request-title-error" : undefined}
-          className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
+          aria-describedby={[
+            "book-request-required-instructions",
+            errors.title && touched.title ? "book-request-title-error" : null,
+          ].filter(Boolean).join(" ")}
+          className={`w-full h-12 rounded-lg px-4 text-cf-body-sm placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.title && !!touched.title)}
         />
         {errors.title && touched.title && (
-          <p id="book-request-title-error" role="alert" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-title-error" className="text-cf-caption mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.title}
           </p>
         )}
@@ -133,19 +194,22 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           value={authorName}
           onChange={(e) => setAuthorName(e.target.value)}
           placeholder="Author name (optional)"
-          className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
+          className={`w-full h-12 rounded-lg px-4 text-cf-body-sm placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(false)}
         />
       </div>
 
       {/* Email */}
       <div>
-        <label htmlFor="book-request-email" className="sr-only">
-          Your email
+        <label htmlFor="book-request-email" className="mb-1 block text-left text-cf-label-sm font-medium" style={{ color: "var(--text-secondary)" }}>
+          Your email <span aria-hidden="true">*</span><span className="sr-only"> (required)</span>
         </label>
         <input
+          ref={emailRef}
           id="book-request-email"
           type="email"
+          required
+          autoComplete="email"
           value={email}
           onChange={(e) => {
             setEmail(e.target.value);
@@ -154,12 +218,15 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
           onBlur={() => handleBlur("email", email)}
           placeholder="Your email (so we can reach you)"
           aria-invalid={!!errors.email && !!touched.email}
-          aria-describedby={errors.email && touched.email ? "book-request-email-error" : undefined}
-          className={`w-full h-12 rounded-lg px-4 text-[14px] placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
+          aria-describedby={[
+            "book-request-required-instructions",
+            errors.email && touched.email ? "book-request-email-error" : null,
+          ].filter(Boolean).join(" ")}
+          className={`w-full h-12 rounded-lg px-4 text-cf-body-sm placeholder:text-[var(--text-muted)] ${inputFocusClass}`}
           style={inputStyle(!!errors.email && !!touched.email)}
         />
         {errors.email && touched.email && (
-          <p id="book-request-email-error" role="alert" className="text-[11px] mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
+          <p id="book-request-email-error" className="text-cf-caption mt-1 ml-1" style={{ color: "var(--accent-rose)" }}>
             {errors.email}
           </p>
         )}
@@ -168,13 +235,14 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       {/* Submit button */}
       <motion.button
         type="submit"
-        disabled={!isFormValid || formState === "submitting"}
-        className="w-full h-12 rounded-lg text-[15px] font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+        disabled={formState === "submitting"}
+        aria-busy={formState === "submitting"}
+        className="w-full h-12 rounded-lg text-cf-body font-semibold cursor-pointer transition-all duration-200 flex items-center justify-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
         style={{
           background: "var(--accent-cyan)",
           color: "var(--primary-foreground)",
-          opacity: !isFormValid || formState === "submitting" ? 0.5 : 1,
-          cursor: !isFormValid || formState === "submitting" ? "not-allowed" : "pointer",
+          opacity: formState === "submitting" ? 0.5 : 1,
+          cursor: formState === "submitting" ? "not-allowed" : "pointer",
           fontFamily: "var(--font-body)",
         }}
         whileHover={
@@ -190,12 +258,17 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
         {formState === "submitting" ? (
           <>
             <motion.svg
+              aria-hidden="true"
               width="16"
               height="16"
               viewBox="0 0 16 16"
               fill="none"
-              animate={{ rotate: 360 }}
-              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              {...(reducedMotion ? {} : { animate: { rotate: 360 } })}
+              transition={
+                reducedMotion
+                  ? { duration: 0 }
+                  : { duration: 1, repeat: Infinity, ease: "linear" }
+              }
             >
               <circle
                 cx="8"
@@ -227,7 +300,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
       {/* Error state — shown only when the submission actually failed */}
       {formState === "error" && (
         <p
-          className="text-[12px] text-center mt-1"
+          className="text-cf-label-sm text-center mt-1"
           style={{ color: "var(--accent-rose)" }}
           role="alert"
         >
@@ -237,7 +310,7 @@ export function BookRequestForm({ initialTitle = "", onSuccess }: BookRequestFor
 
       {/* Honest microcopy — a statement of intent, not a fabricated metric */}
       <p
-        className="text-[12px] text-center mt-2"
+        className="text-cf-label-sm text-center mt-2"
         style={{ color: "var(--text-muted)" }}
       >
         We read every request and build the most-asked-for titles first.

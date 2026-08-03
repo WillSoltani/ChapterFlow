@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c09-a1",
+  "requestSha256": "220311c246efffed18f56a405a4608a344633724291ba6982cb9cc1da934d0d6",
+  "receiptSha256": "de13f77bd9851b53b54972d79125f631dac340f3e71339b2354738338632b2c5",
+  "executionEvidenceSha256": "a065a7263342663b766cd6326932d485af424c831c3cd28bbc9e9b81fbe0f476",
+  "rawOutputSha256": "e9663e4fcc73fa8f538be9c6531cb4698417c2a5cc64ab7c0ecd93bd17afcce1",
+  "evaluationSha256": "28121c0905b6fa41f7418297d40b9e0cd05d256c07488b5114c1d29534c33f9f",
+  "parsedOutputSha256": "0fa26451d55154ea19124ff014abb5ddf521bed51930a0e0b9a850c949c993c5",
+  "assembledReviewSha256": "569297b669cda70bfb8d83ddc9b86e59af21d45d57ddc4e76d6ce6c73b4425c3",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim and mechanism are directly supported by the allowed source anchor and mechanism evidence, stay within the plan's mechanistic maximum, and use cautious framing consistent with the packet constraints. No unsupported named specificity or prohibited leakage is present."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "80fc7b7a08a60027d4288eb00ca852f54f3ca95932e7df50dd3f6e0324c84637",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "5a29850fdc1bcae5f69edd262527e29cd720c3bd222022bde7e15791f861f167",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim and mechanism are directly supported by the allowed source anchor and mechanism evidence, stay within the plan's mechanistic maximum, and use cautious framing consistent with the packet constraints. No unsupported named specificity or prohibited leakage is present.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim and mechanism are directly supported by the allowed source anchor and mechanism evidence, stay within the plan's mechanistic maximum, and use cautious framing consistent with the packet constraints. No unsupported named specificity or prohibited leakage is present."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "e3e9ddc7006d93cc984ff1f3d0cb7f22f5445d19339eede4669f44f1ece7f979"
+}

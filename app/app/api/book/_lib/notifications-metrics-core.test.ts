@@ -159,6 +159,6 @@ test("(k) missing type/channel default to 'unknown'/'in_app'", () => {
     WEEK,
   );
   assert.equal(aggregates.length, 1);
-  assert.equal(aggregates[0].type, "unknown");
-  assert.equal(aggregates[0].channel, "in_app");
+  assert.equal(aggregates[0]!.type, "unknown");
+  assert.equal(aggregates[0]!.channel, "in_app");
 });

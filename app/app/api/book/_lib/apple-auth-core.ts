@@ -36,7 +36,7 @@ export interface AppleAuthConfig {
 
 /** True only if every field is a non-empty string. */
 export function isAppleAuthConfigComplete(
-  config: Partial<AppleAuthConfig> | null | undefined
+  config: { [K in keyof AppleAuthConfig]?: AppleAuthConfig[K] | undefined } | null | undefined
 ): config is AppleAuthConfig {
   return Boolean(
     config &&
@@ -140,8 +140,8 @@ function nameIsApple(name: string | undefined): boolean {
  * Cognito stores a federated Apple user as `SignInWithApple_<sub>`.
  */
 export function hasLinkedAppleIdentity(params: {
-  identitiesAttr?: string | null;
-  username?: string | null;
+  identitiesAttr?: string | null | undefined;
+  username?: string | null | undefined;
 }): boolean {
   const identities = parseCognitoIdentities(params.identitiesAttr);
   if (identities.some((i) => nameIsApple(i.providerName) || nameIsApple(i.providerType))) {

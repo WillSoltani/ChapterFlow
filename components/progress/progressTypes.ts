@@ -1,8 +1,8 @@
-export type ReaderLevel =
-  | "Curious Reader"
-  | "Active Learner"
-  | "Knowledge Builder"
-  | "Thought Leader";
+// Canonical definition moved to lib/reader-levels.ts (WS3-007): lib/ is the
+// base layer and components/ may depend on it, never the reverse. Imported
+// (not just re-exported) so the type is also in scope for ProgressUser below.
+import type { ReaderLevel } from "@/lib/reader-levels";
+export type { ReaderLevel };
 
 export type LearningStep = "summary" | "scenarios" | "quiz" | "unlock";
 export type StepNumber = 1 | 2 | 3 | 4;

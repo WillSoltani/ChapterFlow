@@ -1,23 +1,22 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { Repeat } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const StreakDistributionChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/RetentionCharts").then(
+      (module) => module.StreakDistributionChart,
+    ),
+  { ssr: false },
+);
 
 type Cohort = { cohort: string; size: number; weeks: number[] };
 
@@ -63,7 +62,7 @@ export function RetentionClient() {
 
       {error && <ErrorAlert error={error} onRetry={reload} />}
       {data?.warnings?.length ? (
-        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)">
+        <div className="mb-4 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)">
           {data.warnings.join(" · ")}
         </div>
       ) : null}
@@ -120,15 +119,7 @@ export function RetentionClient() {
             <ChartSkeleton />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart data={data?.streakBuckets ?? []} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis dataKey="bucket" tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar dataKey="count" fill="var(--cf-accent)" radius={[4, 4, 0, 0]} isAnimationActive={false} />
-                </BarChart>
-              </ResponsiveContainer>
+              <StreakDistributionChart data={data?.streakBuckets ?? []} />
             </div>
           )}
         </AdminCard>
@@ -141,7 +132,7 @@ function CohortHeatmap({ cohorts }: { cohorts: Cohort[] }) {
   const weeksToShow = cohorts[0]?.weeks.length ?? 0;
   return (
     <div className="overflow-x-auto">
-      <table className="text-[11px]">
+      <table className="text-cf-caption">
         <thead>
           <tr className="text-(--cf-text-soft)">
             <th className="px-2 py-1 text-left">Cohort</th>
@@ -200,7 +191,7 @@ function FreqRow({
   const pct = total > 0 ? (value / total) * 100 : 0;
   return (
     <div>
-      <div className="mb-1 flex items-center justify-between text-[12px]">
+      <div className="mb-1 flex items-center justify-between text-cf-label-sm">
         <span className="font-medium text-(--cf-text-2)">{label}</span>
         <span className="tabular-nums text-(--cf-text-3)">
           {value.toLocaleString()} <span className="text-(--cf-text-soft)">({pct.toFixed(0)}%)</span>

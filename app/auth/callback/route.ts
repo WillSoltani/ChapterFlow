@@ -1,9 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
+import { logger } from "@/lib/logging/logger";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { timingSafeStrEqual } from "../_lib/timing-safe-equal";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 import { decryptState } from "../_lib/state-crypto";
 import { applyDeviceIdCookie, getOrCreateDeviceId } from "@/app/app/api/book/_lib/abuse";
@@ -33,7 +35,7 @@ async function resolveAuthState(
 ): Promise<{
   verifier: string | null;
   returnTo: string;
-  acquisition?: { referer?: string; utmSource?: string; utmMedium?: string; utmCampaign?: string };
+  acquisition?: { referer?: string | undefined; utmSource?: string | undefined; utmMedium?: string | undefined; utmCampaign?: string | undefined };
 }> {
   // Primary path: decrypt from URL state parameter. Integrity of the AES-256-GCM
   // ciphertext IS the CSRF control here: an attacker can't forge a valid state
@@ -202,6 +204,7 @@ export async function GET(req: NextRequest) {
       httpOnly: false, // Must be readable by client JS
       maxAge: REFRESH_TOKEN_MAX_AGE,
     });
+    rotateAuthCacheGeneration(res);
 
     // Clear ephemeral OAuth cookies (single-use; cleared on every exit path).
     clearTransientOAuthCookies(res);
@@ -231,9 +234,7 @@ export async function GET(req: NextRequest) {
 
     return res;
   } catch (error: unknown) {
-    console.error("auth_callback_error", {
-      message: error instanceof Error ? error.message : String(error),
-    });
+    logger.error("auth_callback_error", { err: error });
     // Clear the transient OAuth cookies even on an unexpected failure so a stale
     // verifier/nonce can't linger for a replay.
     return clearTransientOAuthCookies(

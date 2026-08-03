@@ -68,7 +68,7 @@ export function ReconciliationClient() {
       {error && <ErrorAlert error={error} onRetry={reload} />}
 
       <div className="mb-6 flex items-center justify-between">
-        <p className="text-[12px] text-(--cf-text-soft)">
+        <p className="text-cf-label-sm text-(--cf-text-soft)">
           {data ? `Checked ${new Date(data.generatedAt).toLocaleString()}` : "—"}
           {data?.truncated ? " · Stripe list truncated (more subscriptions exist)" : ""}
         </p>
@@ -76,7 +76,7 @@ export function ReconciliationClient() {
           type="button"
           onClick={reload}
           disabled={loading}
-          className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) hover:border-(--cf-text-soft) disabled:opacity-50"
+          className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) hover:border-(--cf-text-soft) disabled:opacity-50"
         >
           <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
           Re-run
@@ -108,9 +108,9 @@ export function ReconciliationClient() {
             />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[520px] text-[12px]">
+              <table className="w-full min-w-[520px] text-cf-label-sm">
                 <thead>
-                  <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                  <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                     <th className="py-2 pr-3">Type</th>
                     <th className="py-2 pr-3">User</th>
                     <th className="py-2 pr-3">Detail</th>
@@ -126,7 +126,7 @@ export function ReconciliationClient() {
                       <td className="py-2 pr-3 font-medium text-(--cf-text-1)">
                         {TYPE_LABEL[d.type] ?? d.type}
                       </td>
-                      <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-2)" title={d.userId ?? undefined}>
+                      <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-2)" title={d.userId ?? undefined}>
                         {d.userId ? `${d.userId.slice(0, 14)}…` : "—"}
                       </td>
                       <td className="py-2 pr-3 text-(--cf-text-3)">{d.detail}</td>

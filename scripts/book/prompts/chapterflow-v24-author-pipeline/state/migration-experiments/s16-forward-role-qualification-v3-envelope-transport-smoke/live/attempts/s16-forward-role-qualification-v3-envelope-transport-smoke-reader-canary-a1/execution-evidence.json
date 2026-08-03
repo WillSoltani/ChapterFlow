@@ -1,0 +1,43 @@
+{
+  "schema": "imp24-role-qualification-live-execution-evidence-v4",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-transport-smoke-reader-canary-a1",
+  "requestSha256": "a0bbee6350516bc8e318d8e513dee17af8f659b790863fce956848f296187ce5",
+  "receiptSha256": "0205498cde7d73478533910b1cf018be15d9b88e9b6edb0ac57a96d993fb2ba3",
+  "processDiagnosticsSha256": "d7c822da11e9576edab52e549d4c0bf382eba9f8b0093b4f6a300ce3da029817",
+  "invocation": "RUNNER_RETURNED",
+  "evidenceComplete": true,
+  "sessionId": "imp24-v3-13aafa04c1c8ffa0900fb477759c68a1d10847aef5a0995bf5914e8cb0b0b885",
+  "schemaRequested": true,
+  "schemaBoundAtRunner": true,
+  "finalMessageSource": "stdout-fallback",
+  "responseProduced": true,
+  "rawFinalOutputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "rawFinalOutputBytes": 0,
+  "effectiveContextManifest": {
+    "kind": "effective-context-manifest",
+    "relPath": "exec/logs/2026-07-14-110030-imp24-v3-13aafa04c1c8ffa0900fb477759c68a1d10847aef5a0995bf5914e8cb0b0b885.manifest.json",
+    "bytes": 2999,
+    "bytesSha256": "523812dd4ce09bb60b2a582a4c36d5526aa09637e25a3802a300732825dd7bd1"
+  },
+  "routeSidecar": {
+    "kind": "route",
+    "relPath": "exec/logs/2026-07-14-110030-imp24-v3-13aafa04c1c8ffa0900fb477759c68a1d10847aef5a0995bf5914e8cb0b0b885.route.json",
+    "bytes": 646,
+    "bytesSha256": "7fcef34a2d0627e46943fade96c38f656d44b4e5ad10dff4cf8432a035b61d44"
+  },
+  "structuredOutputSidecar": {
+    "kind": "structured-output",
+    "relPath": "exec/logs/2026-07-14-110030-imp24-v3-13aafa04c1c8ffa0900fb477759c68a1d10847aef5a0995bf5914e8cb0b0b885.structured.json",
+    "bytes": 634,
+    "bytesSha256": "3bb08582240801e14bf7238636e8383f8a80893a81edf55b3827eaf33177367c"
+  },
+  "resultSidecar": {
+    "kind": "exec-result",
+    "relPath": "exec/logs/2026-07-14-110030-imp24-v3-13aafa04c1c8ffa0900fb477759c68a1d10847aef5a0995bf5914e8cb0b0b885.result.json",
+    "bytes": 574,
+    "bytesSha256": "2bdf703fb7b7c461595d9ae13f915de6c90d3b2ff2e5503f698be34a9fdb2887"
+  },
+  "missingRequiredSidecars": [],
+  "unexpectedSidecarRelPaths": [],
+  "executionEvidenceSha256": "3aa88a08c83d0dae92799668179ba3ce3bb5bb242d620738c90b622ab7f1acf3"
+}

@@ -2,7 +2,6 @@ import "server-only";
 
 import { cache } from "react";
 
-import { REGION } from "@/app/app/api/_lib/aws";
 import type {
   BookDifficulty,
   LibraryBookDetail,
@@ -10,10 +9,13 @@ import type {
   LibraryChapterSummary,
 } from "@/app/book/_lib/library-data";
 import { boilerplateSynopsis } from "@/lib/library-catalog-stub";
+import { logger } from "@/lib/logging/logger";
+import { buildCoverUrl } from "./app-base-url-core";
 import { getPublishedBookManifest } from "./content-service";
 import { BookApiError } from "./errors";
 import {
   buildLibraryCatalogIndexMap,
+  resolveListChapterCount,
   shouldDegradeLibraryCatalogIndex,
   type LibraryCatalogIndex,
   type LibraryCatalogIndexBook,
@@ -23,17 +25,6 @@ import { readJsonFromS3 } from "./storage";
 import type { BookCatalogItem } from "./types";
 
 const LIBRARY_CATALOG_KEY = "book-content/library/catalog.json";
-
-function encodeS3Key(key: string): string {
-  return key
-    .split("/")
-    .map((segment) => encodeURIComponent(segment))
-    .join("/");
-}
-
-function buildPublicS3Url(bucket: string, key: string): string {
-  return `https://${bucket}.s3.${REGION}.amazonaws.com/${encodeS3Key(key)}`;
-}
 
 function chapterCode(number: number): string {
   return `CH.${String(Math.max(1, Math.floor(number))).padStart(2, "0")}`;
@@ -61,12 +52,12 @@ function fallbackSynopsis(title: string): string {
 
 function buildLibraryCatalogBook(params: {
   catalog: BookCatalogItem;
-  extra?: LibraryCatalogIndexBook;
-  chapterCount?: number;
-  estimatedMinutes?: number;
-  contentBucket: string;
+  extra?: LibraryCatalogIndexBook | undefined;
+  chapterCount?: number | undefined;
+  estimatedMinutes?: number | undefined;
+  appBaseUrl?: string | undefined;
 }): LibraryCatalogBook {
-  const { catalog, extra, chapterCount, estimatedMinutes, contentBucket } = params;
+  const { catalog, extra, chapterCount, estimatedMinutes, appBaseUrl } = params;
   const resolvedChapterCount =
     extra?.chapterCount && extra.chapterCount > 0 ? extra.chapterCount : chapterCount ?? 0;
   const resolvedEstimatedMinutes =
@@ -78,14 +69,19 @@ function buildLibraryCatalogBook(params: {
     title: catalog.title,
     author: catalog.author,
     icon: extra?.icon || catalog.cover?.emoji || "📘",
-    coverImage: extra?.coverAssetKey
-      ? buildPublicS3Url(contentBucket, extra.coverAssetKey)
-      : undefined,
+    // Covers are served exclusively through CloudFront/app-origin (WS6-012 PR2:
+    // the content bucket is BLOCK_ALL with no public read). Callers that don't
+    // resolve an app base URL (pair-repo chapter-count map, health probe) don't
+    // render covers, so coverImage is simply omitted for them.
+    coverImage:
+      extra?.coverAssetKey && appBaseUrl
+        ? buildCoverUrl(appBaseUrl, extra.coverAssetKey)
+        : undefined,
     category: catalog.categories[0] ?? "General",
     categories: catalog.categories,
     difficulty: safeDifficulty(extra?.difficulty, catalog.variantFamily),
     estimatedMinutes: Math.max(1, Math.round(resolvedEstimatedMinutes)),
-    chapterCount: Math.max(1, Math.round(resolvedChapterCount || 1)),
+    chapterCount: resolveListChapterCount(extra?.chapterCount, chapterCount),
     pages:
       typeof extra?.pages === "number" && Number.isFinite(extra.pages) && extra.pages > 0
         ? Math.round(extra.pages)
@@ -109,10 +105,10 @@ async function readLibraryCatalogIndex(
     // that 422'd the whole library), or any transient S3 error must DEGRADE to
     // DynamoDB-only data, not fail the listing. See library-catalog-index-core.
     if (shouldDegradeLibraryCatalogIndex(error)) {
-      console.warn("library_catalog_index_degraded", {
+      logger.warn("library_catalog_index_degraded", {
         key: LIBRARY_CATALOG_KEY,
         code: error instanceof BookApiError ? error.code : undefined,
-        message: error instanceof Error ? error.message : String(error),
+        err: error,
       });
       return new Map();
     }
@@ -123,6 +119,10 @@ async function readLibraryCatalogIndex(
 export async function listPublishedLibraryCatalog(params: {
   tableName: string;
   contentBucket: string;
+  // Canonical app origin (getAppBaseUrl). When provided, coverImage is minted on
+  // the app origin (served by CloudFront OAC → content bucket, WS6-012); absent
+  // for internal callers that don't render covers.
+  appBaseUrl?: string;
 }): Promise<LibraryCatalogBook[]> {
   const [catalogItems, presentationIndex] = await Promise.all([
     listPublishedCatalogItems(params.tableName),
@@ -135,7 +135,7 @@ export async function listPublishedLibraryCatalog(params: {
       buildLibraryCatalogBook({
         catalog: item,
         extra: presentationIndex.get(item.bookId),
-        contentBucket: params.contentBucket,
+        appBaseUrl: params.appBaseUrl,
       })
     )
     .sort((left, right) => left.title.localeCompare(right.title));
@@ -150,7 +150,10 @@ const loadPublishedLibraryBookDetail = cache(
   async (
     tableName: string,
     contentBucket: string,
-    bookId: string
+    bookId: string,
+    // Kept a primitive (empty string when absent) so React cache() still keys by
+    // value — an undefined arg would collapse distinct calls onto one entry.
+    appBaseUrl: string
   ): Promise<LibraryBookDetail> => {
     const [catalog, presentationIndex, manifestPayload] = await Promise.all([
       getCatalogBook(tableName, bookId),
@@ -170,7 +173,7 @@ const loadPublishedLibraryBookDetail = cache(
         (sum, chapter) => sum + Math.max(chapter.readingTimeMinutes, 1),
         0
       ),
-      contentBucket,
+      appBaseUrl: appBaseUrl || undefined,
     });
 
     const chapters: LibraryChapterSummary[] = manifestPayload.manifest.chapters.map((chapter) => ({
@@ -195,10 +198,12 @@ export async function getPublishedLibraryBookDetail(params: {
   tableName: string;
   contentBucket: string;
   bookId: string;
+  appBaseUrl?: string;
 }): Promise<LibraryBookDetail> {
   return loadPublishedLibraryBookDetail(
     params.tableName,
     params.contentBucket,
-    params.bookId
+    params.bookId,
+    params.appBaseUrl ?? ""
   );
 }

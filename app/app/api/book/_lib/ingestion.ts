@@ -20,6 +20,7 @@ import { validateBookPackage } from "./validate-book-package";
 import { CategoryTaxonomyError, enforceCanonicalCategories } from "@/lib/category-taxonomy";
 import { shouldPublishReusedVersion } from "./ingestion-publish-policy";
 import { putJsonStringToS3, readJsonFromS3, writeJsonToS3 } from "./storage";
+import { logger } from "@/lib/logging/logger";
 import {
   createBookVersionDraft,
   deleteBookVersion,
@@ -339,14 +340,17 @@ async function archiveSupersededOrphans(
         currentPublishedVersion: orphan.currentPublishedVersion,
         status: "ARCHIVED",
       });
-      console.log(
-        `[prod-dup] archived orphan catalog record "${orphanBookId}" superseded by "${canonicalBookId}" (publish by ${actor}).`
-      );
+      logger.info("prod_dup_archived_orphan", {
+        orphanBookId,
+        canonicalBookId,
+        actor,
+      });
     } catch (error: unknown) {
-      const message = error instanceof Error ? error.message : String(error);
-      console.warn(
-        `[prod-dup] could not archive orphan "${orphanBookId}" superseded by "${canonicalBookId}": ${message}`
-      );
+      logger.warn("prod_dup_archive_orphan_failed", {
+        orphanBookId,
+        canonicalBookId,
+        err: error,
+      });
     }
   }
 }

@@ -1,8 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { Target, BookOpen, Sprout, Brain } from "lucide-react";
-import { useRef, useCallback } from "react";
+import { Target, BookOpen, Sprout, Brain, ArrowRight } from "lucide-react";
 import TappableCard from "./TappableCard";
 import { useOnboarding, type Motivation } from "@/app/onboarding/hooks/useOnboarding";
 import {
@@ -10,6 +9,7 @@ import {
   staggerItem,
 } from "@/app/onboarding/utils/animations";
 import { DUR } from "@/lib/motion";
+import { Button } from "@/components/ui/button";
 
 interface StepMotivationProps {
   onNext: () => void;
@@ -50,24 +50,7 @@ const options: {
 export default function StepMotivation({ onNext }: StepMotivationProps) {
   const { motivation, setMotivation } = useOnboarding();
   const prefersReducedMotion = useReducedMotion();
-  const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-
-  const handleSelect = useCallback(
-    (value: Motivation) => {
-      setMotivation(value);
-
-      // Clear any pending auto-advance
-      if (advanceTimer.current) {
-        clearTimeout(advanceTimer.current);
-      }
-
-      // Auto-advance after 400ms
-      advanceTimer.current = setTimeout(() => {
-        onNext();
-      }, 400);
-    },
-    [setMotivation, onNext]
-  );
+  const hasMotivation = options.some(({ value }) => motivation === value);
 
   return (
     <div
@@ -117,18 +100,21 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
         variants={staggerContainer}
         initial="hidden"
         animate="show"
-        className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2"
+        className="mb-10 grid w-full grid-cols-1 gap-3 sm:grid-cols-2"
         role="radiogroup"
         aria-label="What brings you here?"
       >
-        {options.map(({ value, label, description, Icon }) => {
+        {options.map(({ value, label, description, Icon }, index) => {
           const isSelected = motivation === value;
 
           return (
             <motion.div key={value} variants={staggerItem}>
               <TappableCard
                 selected={isSelected}
-                onSelect={() => handleSelect(value)}
+                onSelect={() => setMotivation(value)}
+                tabStop={isSelected || (!hasMotivation && index === 0)}
+                positionInSet={index + 1}
+                setSize={options.length}
               >
                 <div
                   style={{
@@ -191,6 +177,16 @@ export default function StepMotivation({ onNext }: StepMotivationProps) {
           );
         })}
       </motion.div>
+
+      <Button
+        size="lg"
+        className="min-w-45"
+        disabled={!motivation}
+        onClick={onNext}
+      >
+        Continue
+        <ArrowRight size={18} strokeWidth={2} />
+      </Button>
     </div>
   );
 }

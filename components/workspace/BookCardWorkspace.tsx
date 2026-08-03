@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
 import { ProBadge } from "./ProBadge";
 import { BookCover } from "@/components/ui/BookCover";
-import { formatAttributedRatingsCount } from "@/app/book/data/bookRatings";
+import { formatAttributedRatingsCount } from "@/lib/book-ratings";
 import { Star } from "lucide-react";
 
 interface UserBookData {
@@ -15,7 +15,7 @@ interface UserBookData {
   coverUrl: string;
   progressPercent: number;
   status: "not_started" | "in_progress" | "completed";
-  gradient?: string;
+  gradient?: string | undefined;
 }
 
 interface ProBookData {
@@ -55,11 +55,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
         border: "1px solid var(--cf-border)",
         boxShadow: "var(--cf-shadow-md)",
       }}
-      whileHover={
-        prefersReducedMotion
-          ? undefined
-          : { scale: 1.03, y: -8 }
-      }
+      {...(prefersReducedMotion ? {} : { whileHover: { scale: 1.03, y: -8 } })}
       transition={{ type: "spring", stiffness: 400, damping: 25 }}
       role="listitem"
     >
@@ -69,7 +65,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
           <BookCover
             bookId={book.id}
             title={book.title}
-            coverGradient={book.gradient ?? "linear-gradient(135deg, #155e75 0%, #082f49 100%)"}
+            coverGradient={book.gradient ?? "linear-gradient(135deg, var(--cf-cover-fallback-start) 0%, var(--cf-cover-fallback-end) 100%)"}
             coverImage={book.coverUrl || undefined}
             fill
             sizes="170px"
@@ -79,14 +75,14 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
           <div
             className="pointer-events-none absolute inset-x-0 bottom-0 h-12"
             style={{
-              background: "linear-gradient(to top, rgba(0,0,0,0.3), transparent)",
+              background: "linear-gradient(to top, color-mix(in srgb, var(--cf-palette-black) 30%, transparent), transparent)",
             }}
           />
           {/* In-progress cover bar */}
           {variant === "user" && (book as UserBookData).status === "in_progress" && (
             <div
               className="absolute inset-x-0 bottom-0"
-              style={{ height: 3, background: "rgba(0,0,0,0.3)" }}
+              style={{ height: 3, background: "color-mix(in srgb, var(--cf-palette-black) 30%, transparent)" }}
             >
               <div
                 style={{
@@ -151,7 +147,7 @@ export function BookCardWorkspace(props: BookCardWorkspaceProps) {
               <motion.div
                 className="h-full rounded-full"
                 style={{ background: "var(--cf-accent)" }}
-                initial={prefersReducedMotion ? undefined : { width: 0 }}
+                {...(prefersReducedMotion ? {} : { initial: { width: 0 } })}
                 animate={{
                   width: `${(book as UserBookData).progressPercent}%`,
                 }}

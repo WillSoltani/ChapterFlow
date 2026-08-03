@@ -9,7 +9,7 @@
  */
 
 export type SuppressionReason = "bounce" | "complaint";
-export type SuppressionEntry = { email: string; reason: SuppressionReason; subtype?: string };
+export type SuppressionEntry = { email: string; reason: SuppressionReason; subtype?: string | undefined };
 
 function asRecord(v: unknown): Record<string, unknown> | null {
   return v && typeof v === "object" && !Array.isArray(v) ? (v as Record<string, unknown>) : null;

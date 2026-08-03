@@ -1,4 +1,4 @@
-import type { ChapterTab } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useChapterState";
+import type { ChapterTab } from "@/lib/reader-state-types";
 
 /**
  * Pure scroll-progress → loop-phase mapping AND the §01 retention-curve geometry
@@ -37,7 +37,10 @@ export function phaseForProgress(p: number): ChapterTab {
 
 /** Map scroll progress to the active beat INDEX (0..3) — the value ScrollStory uses. */
 export function beatFor(p: number): number {
-  for (let i = 0; i < BEAT_BANDS.length; i++) if (p < BEAT_BANDS[i]) return i;
+  for (let i = 0; i < BEAT_BANDS.length; i++) {
+    const band = BEAT_BANDS[i];
+    if (band !== undefined && p < band) return i;
+  }
   return BEAT_BANDS.length - 1;
 }
 
@@ -69,6 +72,7 @@ export const REVIEWS = [
 // readout ALWAYS agrees with the line height at the playhead.
 export function withRecall(t: number): number {
   let iv = REVIEWS[0];
+  if (iv === undefined) return 1; // REVIEWS is non-empty; full recall as a defensive default
   for (const r of REVIEWS) if (t >= r.t) iv = r;
   return Rf(t - iv.t, iv.s);
 }

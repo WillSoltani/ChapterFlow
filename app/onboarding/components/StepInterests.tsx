@@ -1,5 +1,6 @@
 "use client";
 
+import { useId, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import {
   Brain,
@@ -58,17 +59,59 @@ const topics: { slug: string; label: string; Icon: typeof Brain }[] = [
   { slug: "writing", label: "Writing", Icon: Pen },
 ];
 
+const MINIMUM_INTERESTS = 3;
+
+export function getInterestContinueDecision(selectedCount: number): {
+  canContinue: boolean;
+  validationMessage: string | null;
+} {
+  const remaining = Math.max(0, MINIMUM_INTERESTS - selectedCount);
+
+  if (remaining === 0) {
+    return { canContinue: true, validationMessage: null };
+  }
+
+  return {
+    canContinue: false,
+    validationMessage: `Select ${remaining} more interest${remaining === 1 ? "" : "s"} to continue.`,
+  };
+}
+
 export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
   const { interests, toggleInterest } = useOnboarding();
   const prefersReducedMotion = useReducedMotion();
+  const interestsGridRef = useRef<HTMLDivElement>(null);
+  const headingId = useId();
+  const requirementId = useId();
+  const validationId = useId();
+  const [validationMessage, setValidationMessage] = useState<string | null>(null);
 
   const selectedCount = interests.length;
-  const isReady = selectedCount >= 3;
+  const isReady = getInterestContinueDecision(selectedCount).canContinue;
+
+  const handleToggleInterest = (slug: string) => {
+    setValidationMessage(null);
+    toggleInterest(slug);
+  };
+
+  const handleContinue = () => {
+    const decision = getInterestContinueDecision(selectedCount);
+
+    if (decision.canContinue) {
+      setValidationMessage(null);
+      onNext();
+      return;
+    }
+
+    setValidationMessage(decision.validationMessage);
+    interestsGridRef.current?.focus();
+  };
 
   return (
     <div className="mx-auto flex w-full max-w-160 flex-col items-center px-4 pb-24">
       {/* Heading */}
       <h1
+        id={headingId}
         className="mb-2 text-center font-(family-name:--font-display) text-[clamp(28px,5vw,36px)] font-semibold leading-tight"
         style={{ color: "var(--text-heading)" }}
       >
@@ -77,6 +120,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
 
       {/* Subtitle */}
       <p
+        id={requirementId}
         className="mb-8 text-center text-base leading-relaxed"
         style={{ color: "var(--text-secondary)" }}
       >
@@ -85,6 +129,11 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
 
       {/* Topic grid: 2 columns on mobile, 3 on larger screens */}
       <motion.div
+        ref={interestsGridRef}
+        role="group"
+        tabIndex={-1}
+        aria-labelledby={headingId}
+        aria-describedby={requirementId}
         variants={staggerContainer}
         initial="hidden"
         animate="show"
@@ -100,7 +149,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
               variants={staggerItem}
               whileHover={prefersReducedMotion ? {} : { scale: 1.03 }}
               whileTap={prefersReducedMotion ? {} : { scale: 0.97 }}
-              onClick={() => toggleInterest(slug)}
+              onClick={() => handleToggleInterest(slug)}
               aria-pressed={isSelected}
               className="relative flex min-h-12 items-start gap-2 overflow-hidden rounded-(--radius-lg-val) px-4 py-3"
               style={{
@@ -141,6 +190,7 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
       <AnimatePresence>
         {selectedCount > 0 && (
           <motion.div
+            aria-hidden="true"
             initial={prefersReducedMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 10 }}
@@ -168,13 +218,19 @@ export default function StepInterests({ onNext, onSkip }: StepInterestsProps) {
         )}
       </AnimatePresence>
 
+      {validationMessage ? (
+        <p id={validationId} role="alert" className="mb-6 text-center text-sm font-medium text-(--text-secondary)">
+          {validationMessage}
+        </p>
+      ) : null}
+
       {/* Bottom actions */}
       <div className="flex w-full items-center justify-center gap-6">
         <Button
           size="lg"
           className="min-w-45"
-          disabled={!isReady}
-          onClick={onNext}
+          onClick={handleContinue}
+          aria-describedby={requirementId}
         >
           Continue
           <ArrowRight size={18} strokeWidth={2} />

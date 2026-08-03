@@ -110,17 +110,17 @@ test("Stripe cancel failure is captured (best-effort), transition still resolves
   await applyAccountStatusTransition("delete", deps); // resolves, does not throw
   assert.equal(calls.setStatus, 1);
   assert.equal(calls.capture.length, 1);
-  assert.equal(calls.capture[0].kind, "stripe_cancel");
-  assert.equal(calls.capture[0].subscriptionId, "sub_123");
-  assert.equal(calls.capture[0].stripeCustomerId, "cus_123");
-  assert.equal(calls.capture[0].error, cancelError);
+  assert.equal(calls.capture[0]!.kind, "stripe_cancel");
+  assert.equal(calls.capture[0]!.subscriptionId, "sub_123");
+  assert.equal(calls.capture[0]!.stripeCustomerId, "cus_123");
+  assert.equal(calls.capture[0]!.error, cancelError);
 });
 
 test("deactivate cancel failure captures stripe_cancel_at_period_end", async () => {
   const { deps, calls } = makeDeps({ entitlement: ACTIVE, cancelError: new Error("x") });
   await applyAccountStatusTransition("deactivate", deps);
   assert.equal(calls.capture.length, 1);
-  assert.equal(calls.capture[0].kind, "stripe_cancel_at_period_end");
+  assert.equal(calls.capture[0]!.kind, "stripe_cancel_at_period_end");
 });
 
 test("reactivate never reads entitlement and never cancels", async () => {

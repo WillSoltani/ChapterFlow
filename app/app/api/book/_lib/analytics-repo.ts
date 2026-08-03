@@ -42,6 +42,7 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { nowIso, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 import { redactLicenseCode } from "./license-redaction-core";
 import { eventSk } from "./analytics-event-key-core";
+import { logger } from "@/lib/logging/logger";
 
 const SCHEMA_V = "1";
 
@@ -213,11 +214,11 @@ export async function analyticsTrackQuizInteraction(
       | "next_chapter_clicked";
     bookId: string;
     chapterNumber: number;
-    attemptNumber?: number;
-    scorePercent?: number;
-    questionId?: string;
-    contextKey?: string;
-    metadata?: Record<string, unknown>;
+    attemptNumber?: number | undefined;
+    scorePercent?: number | undefined;
+    questionId?: string | undefined;
+    contextKey?: string | undefined;
+    metadata?: Record<string, unknown> | undefined;
   }
 ): Promise<void> {
   const now = nowIso();
@@ -262,8 +263,8 @@ export async function analyticsTrackCommitment(
     commitmentId: string;
     bookId: string;
     chapterNumber: number;
-    followUpDays?: 3 | 7;
-    helped?: "helped" | "partly" | "didnt";
+    followUpDays?: 3 | 7 | undefined;
+    helped?: "helped" | "partly" | "didnt" | undefined;
   }
 ): Promise<void> {
   const now = nowIso();
@@ -312,15 +313,15 @@ export async function analyticsSetUserLocale(
   table: string,
   args: {
     userId: string;
-    countryCode?: string;
-    countryName?: string;
-    regionCode?: string;
-    regionName?: string;
-    city?: string;
-    viewerTimezone?: string;
-    latitude?: string;
-    longitude?: string;
-    acceptLanguage?: string;
+    countryCode?: string | undefined;
+    countryName?: string | undefined;
+    regionCode?: string | undefined;
+    regionName?: string | undefined;
+    city?: string | undefined;
+    viewerTimezone?: string | undefined;
+    latitude?: string | undefined;
+    longitude?: string | undefined;
+    acceptLanguage?: string | undefined;
   }
 ): Promise<void> {
   const now = nowIso();
@@ -357,7 +358,7 @@ export async function analyticsSetUserLocale(
     );
   } catch (err) {
     // Don't break the request flow on analytics failure
-    console.warn("[analytics] setUserLocale failed:", err);
+    logger.warn("analytics_set_user_locale_failed", { err });
   }
 }
 
@@ -464,9 +465,9 @@ export async function analyticsTrackBadge(
   args: {
     userId: string;
     badgeId: string;
-    tier?: string;
+    tier?: string | undefined;
     earnedAt: string;
-    pointsAwarded?: number;
+    pointsAwarded?: number | undefined;
   }
 ): Promise<void> {
   const now = nowIso();
@@ -523,11 +524,11 @@ export async function analyticsTrackSubscription(
   args: {
     userId: string;
     plan: "FREE" | "PRO";
-    proStatus?: string;
-    proSource?: string;
-    stripeCustomerId?: string;
-    stripeSubscriptionId?: string;
-    currentPeriodEnd?: string;
+    proStatus?: string | undefined;
+    proSource?: string | undefined;
+    stripeCustomerId?: string | undefined;
+    stripeSubscriptionId?: string | undefined;
+    currentPeriodEnd?: string | undefined;
   }
 ): Promise<void> {
   const now = nowIso();
@@ -615,11 +616,11 @@ export async function analyticsTrackOnboarding(
   table: string,
   args: {
     userId: string;
-    email?: string;
-    goal?: string;
-    dailyGoalMinutes?: number;
-    selectedCategories?: string[];
-    selectedBookIds?: string[];
+    email?: string | undefined;
+    goal?: string | undefined;
+    dailyGoalMinutes?: number | undefined;
+    selectedCategories?: string[] | undefined;
+    selectedBookIds?: string[] | undefined;
   }
 ): Promise<void> {
   const now = nowIso();

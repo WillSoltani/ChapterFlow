@@ -261,7 +261,7 @@ export function JourneyDetailClient() {
             const isCurrent =
               isActive &&
               !book.completed &&
-              (idx === 0 || journey.books[idx - 1].completed);
+              (idx === 0 || journey.books[idx - 1]?.completed === true);
 
             return (
               <Link

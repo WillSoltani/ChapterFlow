@@ -1,10 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
+import { jsonErrorResponse } from "@/lib/api/error-envelope";
 import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getAccountStatus } from "@/app/app/api/book/_lib/repo";
 import { BOOK_DEVICE_COOKIE } from "@/app/app/api/book/_lib/abuse";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import {
+  preserveOrCreateAuthCacheGeneration,
+  rotateAuthCacheGeneration,
+} from "../_lib/auth-cache-generation";
 
 export const runtime = "nodejs";
 
@@ -43,7 +48,7 @@ function readClientIp(req: NextRequest): string | null {
       // Trust the Nth entry from the right (appended by our edge), never the
       // leftmost client-controlled token.
       const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
-      return chain[idx] ?? chain[chain.length - 1];
+      return chain[idx] ?? chain[chain.length - 1] ?? null;
     }
   }
   const realIp = req.headers.get("x-real-ip")?.trim();
@@ -92,8 +97,8 @@ function readString(value: unknown): string | null {
   return typeof value === "string" && value.trim().length > 0 ? value : null;
 }
 
-function unauthorized(message: string) {
-  return NextResponse.json({ ok: false, error: message }, { status: 401 });
+function unauthorized(req: NextRequest, code: string, message: string) {
+  return jsonErrorResponse(req, 401, code, message);
 }
 
 /**
@@ -124,15 +129,14 @@ function subFromIdToken(idToken: string): string | null {
  */
 export async function POST(req: NextRequest) {
   if (isRateLimited(req)) {
-    return NextResponse.json(
-      { ok: false, error: "rate_limited" },
-      { status: 429, headers: { "Retry-After": "30" } },
-    );
+    return jsonErrorResponse(req, 429, "rate_limited", "Too many refresh attempts. Please retry shortly.", {
+      headers: { "Retry-After": "30" },
+    });
   }
 
   const refreshToken = req.cookies.get("refresh_token")?.value;
   if (!refreshToken) {
-    return unauthorized("no_refresh_token");
+    return unauthorized(req, "no_refresh_token", "No refresh token was provided.");
   }
 
   let domain: string;
@@ -141,7 +145,7 @@ export async function POST(req: NextRequest) {
     domain = await resolveCognitoDomain();
     clientId = await mustServerEnv("COGNITO_CLIENT_ID");
   } catch {
-    return NextResponse.json({ ok: false, error: "config_error" }, { status: 500 });
+    return jsonErrorResponse(req, 500, "config_error", "Authentication is temporarily misconfigured. Please retry.");
   }
 
   let tokenRes: Response;
@@ -159,13 +163,13 @@ export async function POST(req: NextRequest) {
       signal: AbortSignal.timeout(10_000),
     });
   } catch {
-    return NextResponse.json({ ok: false, error: "upstream_error" }, { status: 502 });
+    return jsonErrorResponse(req, 502, "upstream_error", "The authentication service is unavailable. Please retry.");
   }
 
   if (!tokenRes.ok) {
     // The refresh token is invalid/expired/revoked — clear it so the client
     // stops retrying and re-authenticates cleanly.
-    const res = unauthorized("refresh_rejected");
+    const res = unauthorized(req, "refresh_rejected", "Your session has expired. Please sign in again.");
     const cookieBase = getAuthCookieBase();
     res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
     return res;
@@ -178,7 +182,7 @@ export async function POST(req: NextRequest) {
   try {
     tokens = (await tokenRes.json()) as Record<string, unknown>;
   } catch {
-    return NextResponse.json({ ok: false, error: "bad_upstream_body" }, { status: 502 });
+    return jsonErrorResponse(req, 502, "bad_upstream_body", "The authentication service returned an invalid response. Please retry.");
   }
   const idToken = readString(tokens.id_token);
   const accessToken = readString(tokens.access_token);
@@ -187,7 +191,7 @@ export async function POST(req: NextRequest) {
   const rotatedRefresh = readString(tokens.refresh_token);
 
   if (!idToken || !accessToken) {
-    return unauthorized("incomplete_tokens");
+    return unauthorized(req, "incomplete_tokens", "The refresh response was incomplete. Please sign in again.");
   }
 
   // Refuse to re-mint a session for a deleted account. Soft-delete is a
@@ -201,12 +205,13 @@ export async function POST(req: NextRequest) {
       const tableName = await getBookTableName();
       const status = await getAccountStatus(tableName, sub);
       if (status?.status === "deleted") {
-        const res = unauthorized("account_deleted");
+        const res = unauthorized(req, "account_deleted", "This account is no longer active.");
         const cookieBase = getAuthCookieBase();
         res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
         res.cookies.set("id_token", "", { ...cookieBase, maxAge: 0 });
         res.cookies.set("access_token", "", { ...cookieBase, maxAge: 0 });
         res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
+        rotateAuthCacheGeneration(res);
         return res;
       }
     } catch {
@@ -234,6 +239,7 @@ export async function POST(req: NextRequest) {
     httpOnly: false,
     maxAge: REFRESH_TOKEN_MAX_AGE,
   });
+  preserveOrCreateAuthCacheGeneration(req, res);
 
   return res;
 }

@@ -155,11 +155,13 @@ test("happy E2E: bridge → register → commit → push → 0/0 sync → cleanu
     const entry = sentinel.pending.find((e: { bookId: string }) => e.bookId === BOOK);
     assert.ok(entry, "the published book is recorded as pending deploy");
     assert.equal(entry.packageSha256, res.packageSha, "the sentinel sha matches the published package sha");
+    assert.ok(entry.steps.includes("register-api-books"), "the owed steps include API-catalog registration (the iOS surface) — a book without it is web-only");
     // It rode the publish commit (tracked, not left dirty).
     const tracked = git(fx.outer, ["ls-files", "--", PENDING_DEPLOY_REL]);
     assert.equal(tracked, PENDING_DEPLOY_REL, "the sentinel is committed, not an untracked leftover");
     // The success report carries the loud DEPLOY REQUIRED hint.
     assert.ok((res.deployRequired ?? []).some((l) => /DEPLOY REQUIRED/.test(l)), "the result exposes the deploy-required hint");
+    assert.ok((res.deployRequired ?? []).some((l) => /register-api-books\.ts/.test(l)), "the hint names the API-catalog registration command");
     assert.ok((res.deployRequired ?? []).some((l) => /verify:live/.test(l)), "the hint names the verify command");
   } finally { fx.cleanup(); }
 });

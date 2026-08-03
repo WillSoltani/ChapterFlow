@@ -8,30 +8,30 @@ export interface ProgressRingProps {
   /** 0–100 */
   percent: number;
   /** Diameter in px */
-  size?: number;
+  size?: number | undefined;
   /** Stroke width in px */
-  strokeWidth?: number;
+  strokeWidth?: number | undefined;
   /** Show the percentage label in the center (ignored when `children` is set) */
-  showLabel?: boolean;
+  showLabel?: boolean | undefined;
   /** Delay before the fill animation starts (ms) */
-  delay?: number;
-  className?: string;
+  delay?: number | undefined;
+  className?: string | undefined;
   /** Progress stroke color (any CSS color / token var). Default brand cyan. */
-  color?: string;
+  color?: string | undefined;
   /** Track (unfilled) stroke color. */
-  trackColor?: string;
+  trackColor?: string | undefined;
   /** Center label color. */
-  labelColor?: string;
+  labelColor?: string | undefined;
   /** Glow color applied at 100%. Defaults to `color`. */
-  glowColor?: string;
+  glowColor?: string | undefined;
   /** Apply a drop-shadow glow when complete (default true). */
-  showCompletionGlow?: boolean;
+  showCompletionGlow?: boolean | undefined;
   /** Render decoratively (aria-hidden) instead of role="progressbar". */
-  decorative?: boolean;
+  decorative?: boolean | undefined;
   /** Accessible label for the progressbar. */
-  ariaLabel?: string;
+  ariaLabel?: string | undefined;
   /** Custom center content (overrides the percentage label). */
-  children?: ReactNode;
+  children?: ReactNode | undefined;
 }
 
 /**

@@ -1,7 +1,7 @@
 "use client";
 
 import { X } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
 
@@ -23,7 +23,7 @@ export function BadgeShowcase({ badges, showcaseBadgeIds, onBadgeClick, onUnpin 
   return (
     <div
       className="rounded-2xl border border-(--cf-border) p-5 backdrop-blur-xl"
-      style={{ background: "linear-gradient(135deg, rgba(245,158,11,0.05), var(--cf-surface-muted))" }}
+      style={{ background: "linear-gradient(135deg, color-mix(in srgb, var(--accent-amber) 5%, transparent), var(--cf-surface-muted))" }}
     >
       <div>
         <h2 className="text-base font-semibold tracking-tight text-(--cf-text-1)">Your Showcase</h2>

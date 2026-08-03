@@ -1,3 +1,4 @@
+import * as fs from "fs";
 import * as path from "path";
 import * as cdk from "aws-cdk-lib";
 import { Construct } from "constructs";
@@ -22,6 +23,62 @@ import * as logs from "aws-cdk-lib/aws-logs";
 import * as wafv2 from "aws-cdk-lib/aws-wafv2";
 import { type EnvName } from "./env-config";
 import { buildWebAclRules } from "./waf-rules";
+import {
+  FRONTEND_SSM_RUNTIME_SECRET_NAMES,
+  resolveFrontendHostedZoneId,
+} from "./frontend-runtime-config";
+
+// ---------------------------------------------------------------------------
+// WS6-033: DynamoDB metrics by table NAME (this stack only has
+// props.appTableName/analyticsTableName strings — see the ARN-by-name
+// construction above — not the dynamodb.Table constructs the backend stack
+// owns, so it can't call table.metricThrottledRequestsForOperation() etc.
+// directly). Mirrors the shape of buildThrottleMetric in
+// chapterflow-backend-stack.ts for the golden-signals dashboard below.
+// ---------------------------------------------------------------------------
+
+function buildThrottleMetricByName(tableName: string): cloudwatch.MathExpression {
+  const operations = [
+    "BatchGetItem",
+    "BatchWriteItem",
+    "DeleteItem",
+    "GetItem",
+    "PutItem",
+    "Query",
+    "TransactWriteItems",
+    "UpdateItem",
+  ];
+
+  const usingMetrics = Object.fromEntries(
+    operations.map((operation, index) => [
+      `m${index}`,
+      new cloudwatch.Metric({
+        namespace: "AWS/DynamoDB",
+        metricName: "ThrottledRequests",
+        dimensionsMap: { TableName: tableName, Operation: operation },
+        statistic: "sum",
+        period: cdk.Duration.minutes(5),
+      }),
+    ]),
+  );
+
+  return new cloudwatch.MathExpression({
+    expression: Object.keys(usingMetrics).join(" + "),
+    usingMetrics,
+    period: cdk.Duration.minutes(5),
+  });
+}
+
+function tableLatencyMetricByName(tableName: string): cloudwatch.Metric {
+  return new cloudwatch.Metric({
+    namespace: "AWS/DynamoDB",
+    metricName: "SuccessfulRequestLatency",
+    dimensionsMap: { TableName: tableName },
+    statistic: "Average",
+    period: cdk.Duration.minutes(5),
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Props
 // ---------------------------------------------------------------------------
@@ -41,17 +98,48 @@ export interface ChapterFlowFrontendStackProps extends cdk.StackProps {
   readonly ingestBucketName: string;
   readonly contentBucketName: string;
   readonly ssmPrefix: string;
+  /** Explicit environment-bound Route53 zone id for domain deployments. */
+  readonly hostedZoneId?: string;
+  /** Optional non-secret OpenNext artifact fixture used by synth tests. */
+  readonly openNextDir?: string;
   /**
    * The Route53 hosted zone domain name (e.g. "chapterflow.ca").
    * The app will be served at app.${domainName}.
    */
   readonly domainName?: string;
   /**
-   * Environment variables to inject into the server Lambda.
-   * Secrets (Stripe, Cognito, etc.) should be passed here from
-   * GitHub Secrets → CDK context/env at deploy time.
+   * Non-secret environment variables to inject into the server Lambda.
+   * Secret-class values are filtered defensively and resolved from SSM at
+   * runtime under `ssmPrefix`.
    */
   readonly serverEnv?: Record<string, string>;
+  /**
+   * WS6-002 interim origin lock. When set, CloudFront injects it as the
+   * x-origin-verify custom header on both public Function URL origins and it is
+   * enforced by middleware.ts (server) + the image wrapper. Unset → no header,
+   * no enforcement (today's behavior; keeps currently-deployed envs diff-clean
+   * until the secret is introduced).
+   */
+  readonly originVerifySecret?: string;
+  /**
+   * "enforce" (default) rejects unverified requests; "log" only warns and lets
+   * them through — the observation half of a two-phase rollout.
+   */
+  readonly originVerifyMode?: "enforce" | "log";
+  /**
+   * WS6-001 per-function reserved concurrency (see env-config.ts's
+   * ChapterFlowEnvConfig.lambdaConcurrency doc for the account-wide-sum
+   * rules this must respect).
+   */
+  /** Applies lambdaConcurrency only when true — see ChapterFlowEnvConfig.lambdaConcurrencyEnforced (account quota gate). */
+  readonly lambdaConcurrencyEnforced: boolean;
+  readonly lambdaConcurrency: {
+    readonly server: number;
+    readonly image: number;
+    readonly revalidation: number;
+    readonly dynamoProvider: number;
+    readonly warmer: number;
+  };
 }
 
 // ---------------------------------------------------------------------------
@@ -77,7 +165,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // domain — the deploy health check uses that domain regardless).
     const domainName = props.domainName;
     const appDomain = domainName ? `app.${domainName}` : undefined;
-    const openNextDir = path.join(__dirname, "../../.open-next");
+    const openNextDir =
+      props.openNextDir ?? path.join(__dirname, "../../.open-next");
 
     // Construct ARNs from known names to avoid cross-stack references
     const appTableArn = cdk.Arn.format(
@@ -149,7 +238,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       queueName: `ChapterFlowRevalidation${suffix}.fifo`,
       fifo: true,
       contentBasedDeduplication: true,
-      visibilityTimeout: cdk.Duration.seconds(30),
+      // keep >= 6x RevalidationFn timeout
+      visibilityTimeout: cdk.Duration.seconds(180),
       retentionPeriod: cdk.Duration.days(1),
       deadLetterQueue: { queue: revalidationDlq, maxReceiveCount: 5 },
     });
@@ -169,13 +259,17 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     });
 
     // DynamoDB access — app + analytics tables, scoped to their exact ARNs.
-    // `dynamodb:Scan` is intentionally retained: the admin metrics routes plus
-    // economy-health and soft-decay full-table-Scan to compute aggregates, and
-    // OpenNext runs EVERY route (user + admin) in this single server Lambda, so
-    // the role can't drop Scan without breaking those dashboards. Resource scope
-    // (no `*`) keeps the blast radius to these two tables. Future hardening:
-    // move admin/Scan paths to a dedicated least-privilege function and remove
-    // Scan from this role.
+    // WS6-005: `dynamodb:Scan` is NO LONGER granted to the shared server role.
+    // The admin metrics routes (economy-health aggregates, etc.) full-table-Scan
+    // to compute aggregates, and OpenNext used to run EVERY route (user + admin)
+    // in this ONE internet-facing server Lambda — so Scan had to sit on the role
+    // that fronts all public traffic. The admin surface is now split into its own
+    // OpenNext function (open-next.config.ts `functions.admin`, pattern
+    // app/api/book/admin/*) fronted by AdminFn below with its OWN role (adminRole)
+    // that carries Scan; the public `default` server role drops it, shrinking the
+    // blast radius of the internet-facing Lambda. Resource scope (no `*`) keeps
+    // both roles limited to these two tables. (soft-decay's processSoftDecay Scan
+    // is uncalled, so no app-code change is needed here.)
     const ddbResources = [
       appTableArn,
       `${appTableArn}/index/*`,
@@ -183,188 +277,258 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       `${analyticsTableArn}/index/*`,
     ];
 
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AppDynamoDbAccess",
-        actions: [
-          "dynamodb:BatchGetItem",
-          "dynamodb:BatchWriteItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:DescribeTable",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:Query",
-          "dynamodb:Scan",
-          "dynamodb:TransactWriteItems",
-          "dynamodb:UpdateItem",
-        ],
-        resources: ddbResources,
-      }),
-    );
-
-    // CloudWatch metrics read access — used by the admin Ops page to surface
-    // Lambda invocation counts, latency p50/p95, error rates, DynamoDB
-    // throttle counters, and S3 bucket sizes. CloudWatch metric reads are
-    // not resource-scoped so we use "*".
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CloudWatchMetricsRead",
-        actions: [
-          "cloudwatch:GetMetricStatistics",
-          "cloudwatch:ListMetrics",
-          "cloudwatch:GetMetricData",
-        ],
-        resources: ["*"],
-      }),
-    );
-
-    // CloudWatch metrics write access — the server emits custom operational
-    // metrics (e.g. StripeCancellationFailure via putOpsMetric) that a backend
-    // alarm pages on. PutMetricData isn't resource-scoped, so we constrain it to
-    // the ChapterFlow/Ops namespace instead.
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CloudWatchMetricsWrite",
-        actions: ["cloudwatch:PutMetricData"],
-        resources: ["*"],
-        conditions: {
-          StringEquals: { "cloudwatch:namespace": "ChapterFlow/Ops" },
-        },
-      }),
-    );
-
-    // DynamoDB access — ISR cache table
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CacheDynamoDbAccess",
-        actions: [
-          "dynamodb:BatchGetItem",
-          "dynamodb:BatchWriteItem",
-          "dynamodb:DeleteItem",
-          "dynamodb:GetItem",
-          "dynamodb:PutItem",
-          "dynamodb:Query",
-          "dynamodb:Scan",
-          "dynamodb:UpdateItem",
-          "dynamodb:DescribeTable",
-        ],
-        resources: [cacheTable.tableArn, `${cacheTable.tableArn}/index/*`],
-      }),
-    );
-
-    // S3 access — app buckets (same as App Runner role)
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AppS3Access",
-        actions: ["s3:GetObject", "s3:PutObject"],
-        resources: [
-          `${ingestBucketArn}/*`,
-          `${contentBucketArn}/*`,
-        ],
-      }),
-    );
-
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AppS3MetadataAccess",
-        actions: ["s3:GetBucketLocation"],
-        resources: [ingestBucketArn, contentBucketArn],
-      }),
-    );
-
-    // S3 access — static assets + cache bucket
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "AssetsBucketAccess",
-        actions: [
-          "s3:GetObject",
-          "s3:PutObject",
-          "s3:DeleteObject",
-          "s3:ListBucket",
-        ],
-        resources: [assetsBucket.bucketArn, `${assetsBucket.bucketArn}/*`],
-      }),
-    );
-
-    // SSM access — scoped to THIS env's parameter namespace only.
-    // getServerEnv() (app/app/api/_lib/server-env.ts) resolves every value from
-    // process.env first and only falls back to SSM; when it does, it tries the
-    // prefixed parameter (`${SSM_PARAMETER_PREFIX}/<KEY>`) BEFORE any bare-name
-    // candidate, so the role never needs access outside the prefix. The
-    // unreachable bare-name fallbacks now return AccessDenied instead of
-    // ParameterNotFound — server-env treats both as skippable (isMissingParameterError).
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "SsmConfigAccess",
-        actions: ["ssm:GetParameter", "ssm:GetParameters"],
-        resources: [
-          `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
-        ],
-      }),
-    );
-
-    // SES access — transactional/notification emails are sent from an address
-    // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
-    // Scope SendEmail to that domain's SES identity so the role can't send as an
-    // arbitrary identity. dev/staging without a verified domain have no identity
-    // to scope to, so they fall back to "*" — same conditional shape as the
-    // Cognito statement above.
-    const sesIdentityResources = props.domainName
-      ? [
-          `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
-        ]
-      : ["*"];
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "SesSendAccess",
-        actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: sesIdentityResources,
-      }),
-    );
-
-    // Cognito admin access — the admin "erase user" tool resolves a user by
-    // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
-    // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
-    // revokes a user's outstanding refresh tokens server-side on self-delete /
-    // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
-    // immediately. Scoped to the configured pool when its id is known at synth,
-    // otherwise to all pools.
-    //
-    // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
-    // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
-    // is swallowed into an ops-failure, and the delete still returns success
-    // (sessions look revoked but aren't).
+    // Cognito pool is account-global; the erasure grant is only added when this
+    // env's pool id is known at synth (see the WS6-003 note on the statement in
+    // the shared-grants helper below).
     const cognitoUserPoolId = process.env.COGNITO_USER_POOL_ID;
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "CognitoAdminUserErasure",
-        actions: [
-          "cognito-idp:ListUsers",
-          "cognito-idp:AdminDeleteUser",
-          "cognito-idp:AdminUserGlobalSignOut",
-        ],
-        resources: cognitoUserPoolId
-          ? [
-              `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
-            ]
-          : ["*"],
-      }),
-    );
 
-    // SQS access — revalidation queue
-    lambdaRole.addToPolicy(
-      new iam.PolicyStatement({
-        sid: "RevalidationQueueAccess",
-        actions: [
-          "sqs:SendMessage",
-          "sqs:ReceiveMessage",
-          "sqs:DeleteMessage",
-          "sqs:GetQueueAttributes",
-          "sqs:GetQueueUrl",
-        ],
-        resources: [revalidationQueue.queueArn],
-      }),
-    );
+    // Shared runtime grants for the app server Lambdas. The public `default`
+    // server (lambdaRole) and the split admin function (adminRole) run the SAME
+    // application code and therefore need the SAME permissions — the only
+    // difference is `dynamodb:Scan` on the app/analytics tables, which is
+    // admin-only (WS6-005). Both roles keep the ISR CacheDynamoDbAccess Scan
+    // (OpenNext needs it on the cache table — unrelated to the app-table Scan).
+    const addAppRuntimePolicies = (
+      role: iam.Role,
+      opts: { includeAppScan: boolean },
+    ): void => {
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AppDynamoDbAccess",
+          actions: [
+            "dynamodb:BatchGetItem",
+            "dynamodb:BatchWriteItem",
+            "dynamodb:DeleteItem",
+            "dynamodb:DescribeTable",
+            "dynamodb:GetItem",
+            "dynamodb:PutItem",
+            "dynamodb:Query",
+            ...(opts.includeAppScan ? ["dynamodb:Scan"] : []),
+            "dynamodb:TransactWriteItems",
+            "dynamodb:UpdateItem",
+          ],
+          resources: ddbResources,
+        }),
+      );
+
+      // CloudWatch metrics read access — used by the admin Ops page to surface
+      // Lambda invocation counts, latency p50/p95, error rates, DynamoDB
+      // throttle counters, and S3 bucket sizes. CloudWatch metric reads are
+      // not resource-scoped so we use "*". (WS6-014 — moving this read grant to
+      // the admin role only — is a contingent follow-up NOT in this backlog; the
+      // grant deliberately stays on BOTH roles for now.)
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CloudWatchMetricsRead",
+          actions: [
+            "cloudwatch:GetMetricStatistics",
+            "cloudwatch:ListMetrics",
+            "cloudwatch:GetMetricData",
+          ],
+          resources: ["*"],
+        }),
+      );
+
+      // CloudWatch metrics write access — the server emits custom operational
+      // metrics (e.g. StripeCancellationFailure via putOpsMetric) that a backend
+      // alarm pages on. PutMetricData isn't resource-scoped, so we constrain it to
+      // the ChapterFlow/Ops namespace instead.
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CloudWatchMetricsWrite",
+          actions: ["cloudwatch:PutMetricData"],
+          resources: ["*"],
+          conditions: {
+            StringEquals: { "cloudwatch:namespace": "ChapterFlow/Ops" },
+          },
+        }),
+      );
+
+      // DynamoDB access — ISR cache table
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "CacheDynamoDbAccess",
+          actions: [
+            "dynamodb:BatchGetItem",
+            "dynamodb:BatchWriteItem",
+            "dynamodb:DeleteItem",
+            "dynamodb:GetItem",
+            "dynamodb:PutItem",
+            "dynamodb:Query",
+            "dynamodb:Scan",
+            "dynamodb:UpdateItem",
+            "dynamodb:DescribeTable",
+          ],
+          resources: [cacheTable.tableArn, `${cacheTable.tableArn}/index/*`],
+        }),
+      );
+
+      // S3 access — app buckets (same as App Runner role)
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AppS3Access",
+          actions: ["s3:GetObject", "s3:PutObject"],
+          resources: [
+            `${ingestBucketArn}/*`,
+            `${contentBucketArn}/*`,
+          ],
+        }),
+      );
+
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AppS3MetadataAccess",
+          actions: ["s3:GetBucketLocation"],
+          resources: [ingestBucketArn, contentBucketArn],
+        }),
+      );
+
+      // S3 access — static assets + cache bucket
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "AssetsBucketAccess",
+          actions: [
+            "s3:GetObject",
+            "s3:PutObject",
+            "s3:DeleteObject",
+            "s3:ListBucket",
+          ],
+          resources: [assetsBucket.bucketArn, `${assetsBucket.bucketArn}/*`],
+        }),
+      );
+
+      // SSM access — scoped to THIS env's parameter namespace only.
+      // getServerEnv() (app/app/api/_lib/server-env.ts) resolves every value from
+      // process.env first and only falls back to SSM; when it does, it tries the
+      // prefixed parameter (`${SSM_PARAMETER_PREFIX}/<KEY>`) BEFORE any bare-name
+      // candidate, so the role never needs access outside the prefix. The
+      // unreachable bare-name fallbacks now return AccessDenied instead of
+      // ParameterNotFound — server-env treats both as skippable (isMissingParameterError).
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "SsmConfigAccess",
+          actions: ["ssm:GetParameter"],
+          resources: [
+            `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
+          ],
+        }),
+      );
+
+      // SecureString values may use either the AWS-managed SSM key or an
+      // owner-managed key. The resource wildcard is constrained to decrypts made
+      // through SSM for this environment's exact parameter ARN namespace, so the
+      // Lambda cannot call KMS directly or decrypt another prefix's ciphertext.
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "KmsDecryptSsmConfig",
+          actions: ["kms:Decrypt"],
+          resources: ["*"],
+          conditions: {
+            StringEquals: {
+              "kms:ViaService": `ssm.${cdk.Aws.REGION}.amazonaws.com`,
+            },
+            ArnLike: {
+              "kms:EncryptionContext:PARAMETER_ARN":
+                `arn:${cdk.Aws.PARTITION}:ssm:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:parameter${props.ssmPrefix}/*`,
+            },
+          },
+        }),
+      );
+
+      // SES access — transactional/notification emails are sent from an address
+      // on the app's verified domain (e.g. info@chapterflow.ca via SES_SENDER_EMAIL).
+      // Scope SendEmail to that domain's SES identity so the role can't send as an
+      // arbitrary identity.
+      //
+      // WS6-003: all three envs share ONE AWS account and SES is account-global, so
+      // a "*" resource here would reach the PROD SES identities from a dev/staging
+      // role. We therefore add this statement ONLY when this env's verified domain is
+      // known at synth (prod always has it — bin/app.ts asserts it). A non-prod synth
+      // without a domain gets NO SES grant at all, so an email send there fails closed
+      // with AccessDenied in that env instead of gaining an account-wide send.
+      if (props.domainName) {
+        role.addToPolicy(
+          new iam.PolicyStatement({
+            sid: "SesSendAccess",
+            actions: ["ses:SendEmail", "sesv2:SendEmail"],
+            resources: [
+              `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${props.domainName}`,
+            ],
+          }),
+        );
+      }
+
+      // Cognito admin access — the admin "erase user" tool resolves a user by
+      // sub (ListUsers) and removes them from the pool (AdminDeleteUser) as part
+      // of a GDPR-style complete erasure. AdminUserGlobalSignOut additionally
+      // revokes a user's outstanding refresh tokens server-side on self-delete /
+      // deactivate (step-up auth, #5 Tier 2) so a stolen refresh token dies
+      // immediately. Scoped to the configured pool.
+      //
+      // WS6-003: all three envs share ONE AWS account and Cognito is account-global,
+      // so a "*" resource here would grant AdminDeleteUser on the PROD user pool from
+      // a dev/staging role. We therefore add this statement ONLY when this env's pool
+      // id is known at synth (prod always has it — bin/app.ts asserts it). A non-prod
+      // synth without COGNITO_USER_POOL_ID gets NO Cognito grant at all, so the
+      // admin-erasure tool there fails closed with AccessDenied in that env instead of
+      // reaching the prod pool.
+      //
+      // DEPLOY ORDER (HIGH if mis-ordered): ship this IAM grant BEFORE the
+      // app code that calls AdminUserGlobalSignOut, or the call fails AccessDenied,
+      // is swallowed into an ops-failure, and the delete still returns success
+      // (sessions look revoked but aren't).
+      if (cognitoUserPoolId) {
+        role.addToPolicy(
+          new iam.PolicyStatement({
+            sid: "CognitoAdminUserErasure",
+            actions: [
+              "cognito-idp:ListUsers",
+              "cognito-idp:AdminDeleteUser",
+              "cognito-idp:AdminUserGlobalSignOut",
+            ],
+            resources: [
+              `arn:${cdk.Aws.PARTITION}:cognito-idp:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:userpool/${cognitoUserPoolId}`,
+            ],
+          }),
+        );
+      }
+
+      // SQS access — revalidation queue
+      role.addToPolicy(
+        new iam.PolicyStatement({
+          sid: "RevalidationQueueAccess",
+          actions: [
+            "sqs:SendMessage",
+            "sqs:ReceiveMessage",
+            "sqs:DeleteMessage",
+            "sqs:GetQueueAttributes",
+            "sqs:GetQueueUrl",
+          ],
+          resources: [revalidationQueue.queueArn],
+        }),
+      );
+    };
+
+    // Public server role: NO app-table Scan (WS6-005).
+    addAppRuntimePolicies(lambdaRole, { includeAppScan: false });
+
+    // -------------------------------------------------------------------
+    // IAM — Admin Lambda execution role (WS6-005)
+    // -------------------------------------------------------------------
+    // The split admin OpenNext function (server-functions/admin) runs the same
+    // app code as the public server but ONLY serves /app/api/book/admin/*, so it
+    // gets an identical grant set PLUS dynamodb:Scan on the app/analytics tables.
+    // It is the sole holder of app-table Scan now.
+    const adminRole = new iam.Role(this, "AdminRole", {
+      roleName: name("ChapterFlowAdminRole"),
+      assumedBy: new iam.ServicePrincipal("lambda.amazonaws.com"),
+      managedPolicies: [
+        iam.ManagedPolicy.fromAwsManagedPolicyName(
+          "service-role/AWSLambdaBasicExecutionRole",
+        ),
+      ],
+    });
+    addAppRuntimePolicies(adminRole, { includeAppScan: true });
 
     // -------------------------------------------------------------------
     // Common Lambda environment variables
@@ -393,15 +557,37 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       NODE_ENV: "production",
     };
 
-    // Server-only env: the infra vars PLUS the caller-provided secrets (Stripe
-    // secret/webhook/price keys, Anthropic + ElevenLabs API keys,
-    // AUTH_STATE_SECRET, full Cognito config — see infra/bin/app.ts). Only the
-    // server Lambda needs these, so they are NOT spread into the auxiliary
-    // functions below (least-privilege secret blast radius).
+    // WS6-002 interim origin lock. Only the two inbound-HTTP functions (server +
+    // image) enforce the shared secret, so it goes ONLY into their env — never
+    // into baseInfraEnv, which is spread into the revalidation / warmer / dynamo
+    // provider functions. (The revalidation fn separately receives the SECRET
+    // alone — not via baseInfraEnv — because its outbound ISR self-fetch hits
+    // the raw server Function URL and must stamp the header; see its wrapper.)
+    // Emitted only when the secret is set, so unset = no env diff.
+    const originVerifySecret = props.originVerifySecret;
+    const originVerifyEnv: Record<string, string> = originVerifySecret
+      ? {
+          ORIGIN_VERIFY_SECRET: originVerifySecret,
+          ORIGIN_VERIFY_MODE: props.originVerifyMode ?? "enforce",
+        }
+      : {};
+
+    const runtimeSecretNames = new Set<string>(
+      FRONTEND_SSM_RUNTIME_SECRET_NAMES,
+    );
+    const projectedServerEnv = Object.fromEntries(
+      Object.entries(props.serverEnv ?? {}).filter(
+        ([name]) => !runtimeSecretNames.has(name),
+      ),
+    );
+
+    // Server-only non-secret env. The audited secret class is resolved through
+    // the cached SSM runtime path and is defensively stripped even if a caller
+    // accidentally supplies one of those names here.
     const commonEnv: Record<string, string> = {
       ...baseInfraEnv,
-      // Merge caller-provided env vars (secrets come from here)
-      ...(props.serverEnv ?? {}),
+      ...projectedServerEnv,
+      ...originVerifyEnv,
     };
 
     // -------------------------------------------------------------------
@@ -416,11 +602,32 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         path.join(openNextDir, "server-functions/default"),
       ),
       memorySize: 1024,
-      timeout: cdk.Duration.seconds(30),
+      // Apple's official Production verifier allows an OCSP responder up to
+      // 30s before returning a retryable failure. Leave enough time to map that
+      // failure to the stable 503 response rather than hard-killing Lambda.
+      timeout: cdk.Duration.seconds(45),
+      // WS6-001: reserved concurrency caps this fan-out hop's blast radius on
+      // downstream DynamoDB/SES/Cognito/Stripe AND guarantees it a floor
+      // immune to the other Lambdas' bursts (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.server
+        : undefined,
       role: lambdaRole,
       environment: commonEnv,
+      // WS6-013: stays x86_64 until OpenNext emits arm64 build artifacts for
+      // this function — the committed backend cron bundles moved to arm64
+      // (they're architecture-agnostic pure-JS), but this asset is built by
+      // the OpenNext toolchain, not our esbuild step. Track: evaluate
+      // OpenNext's arm64 support for `server-functions/default` before
+      // flipping.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: the server Lambda is the fan-out hop (DynamoDB/S3/Stripe/
+      // Cognito/Anthropic/ElevenLabs) that ServerFnDurationAlarm watches at
+      // p99>=20s; ACTIVE tracing is what lets an operator see WHERE that time
+      // went. The auxiliary OpenNext functions below (Image/Revalidation/
+      // Warmer/DynamoProvider) are single-hop plumbing and stay untraced.
+      tracing: lambda.Tracing.ACTIVE,
     });
 
     // authType NONE — public Function URL fronted by CloudFront. An earlier
@@ -428,11 +635,61 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // signing against a RESPONSE_STREAM Function URL was rejected at runtime:
     // every route 403'd with Lambda "Forbidden / Function URL authorization"
     // (AccessDeniedException), a failure cdk synth cannot catch. Reverted to
-    // restore service. Data is still gated by the app's own auth (requireUser /
-    // requireActiveBookUser); re-locking via OAC is a tracked follow-up that MUST
-    // be validated on a non-prod deploy (custom origin-request policy excluding
-    // Host + Authorization, and UNSIGNED-PAYLOAD signing for the stream).
+    // restore service.
+    //
+    // WS6-002 interim mitigation (current): when originVerifySecret is set,
+    // CloudFront injects a shared-secret x-origin-verify header on this origin
+    // and middleware.ts rejects any request lacking it (the image origin is
+    // guarded the same way by the origin-verify wrapper). That closes the
+    // direct-Function-URL bypass without SigV4. Data is also still gated by the
+    // app's own auth (requireUser / requireActiveBookUser).
+    //
+    // The AWS_IAM + OAC re-lock remains the tracked follow-up and MUST be
+    // validated on a non-prod deploy before shipping (custom origin-request
+    // policy excluding Host + Authorization, and UNSIGNED-PAYLOAD signing for the
+    // stream) — cdk synth cannot catch the runtime 403 failure mode.
     const serverFnUrl = this.serverFunction.addFunctionUrl({
+      authType: lambda.FunctionUrlAuthType.NONE,
+      invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
+    });
+
+    // -------------------------------------------------------------------
+    // Lambda — Admin server function (WS6-005)
+    // -------------------------------------------------------------------
+    // The admin OpenNext split function serves ONLY /app/api/book/admin/* (see
+    // open-next.config.ts `functions.admin`). It is otherwise identical to
+    // ServerFn — same OpenNext streaming wrapper, same commonEnv (so middleware.ts
+    // enforces the WS6-002 origin lock here too, and SSM-resolved secrets work),
+    // same timeout/tracing — but runs under adminRole, which is the sole holder of
+    // app-table dynamodb:Scan. Unlike ServerFn it carries NO reserved concurrency:
+    // admin is low-volume internal traffic, and adding a reserved slice would eat
+    // into the account-wide budget the WS6-001 guard tracks; it draws from the
+    // shared unreserved pool instead.
+    const adminFn = new lambda.Function(this, "AdminFn", {
+      functionName: name("ChapterFlowAdmin"),
+      runtime: lambda.Runtime.NODEJS_20_X,
+      handler: "index.handler",
+      code: lambda.Code.fromAsset(
+        path.join(openNextDir, "server-functions/admin"),
+      ),
+      memorySize: 1024,
+      timeout: cdk.Duration.seconds(45),
+      role: adminRole,
+      environment: commonEnv,
+      // WS6-013: stays x86_64 alongside ServerFn — OpenNext build artifact.
+      architecture: lambda.Architecture.X86_64,
+      logRetention: logs.RetentionDays.ONE_MONTH,
+      // Same rationale as ServerFn: this is a fan-out hop worth tracing.
+      tracing: lambda.Tracing.ACTIVE,
+    });
+
+    // authType NONE — public Function URL fronted by CloudFront, exactly like
+    // serverFnUrl (OAC lock reverted; see that note above). WS6-002 interim
+    // origin lock: when originVerifySecret is set, CloudFront stamps
+    // x-origin-verify on this origin (below) and middleware.ts rejects any
+    // request lacking it. Task 20 (WS6-002 OAC re-lock) MUST include this
+    // Function URL in its scope.
+    const adminFnUrl = adminFn.addFunctionUrl({
       authType: lambda.FunctionUrlAuthType.NONE,
       invokeMode: lambda.InvokeMode.RESPONSE_STREAM,
     });
@@ -441,23 +698,63 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // Lambda — Image optimization
     // -------------------------------------------------------------------
 
+    // The image Function URL is authType NONE too, so it gets the same interim
+    // origin lock — but as a Lambda (no middleware in front), the check runs in a
+    // thin wrapper prepended to the generated handler. Bundle the generated dir
+    // PLUS infra/assets/origin-verify-wrapper.mjs into the asset and point the
+    // handler at the wrapper. The wrapper no-ops without ORIGIN_VERIFY_SECRET, so
+    // it is applied unconditionally. Bundling uses a LOCAL bundler only (a plain
+    // fs.cpSync copy) and never docker: tryBundle throws on failure rather than
+    // returning false, so CDK cannot silently fall back to the (unavailable)
+    // docker path. The `image` is a required field but is never invoked.
+    const imageSourceDir = path.join(openNextDir, "image-optimization-function");
+    const originVerifyWrapper = path.join(
+      __dirname,
+      "../assets/origin-verify-wrapper.mjs",
+    );
     const imageFn = new lambda.Function(this, "ImageFn", {
       functionName: name("ChapterFlowImage"),
       runtime: lambda.Runtime.NODEJS_20_X,
-      handler: "index.handler",
-      code: lambda.Code.fromAsset(
-        path.join(openNextDir, "image-optimization-function"),
-      ),
+      handler: "origin-verify-wrapper.handler",
+      code: lambda.Code.fromAsset(imageSourceDir, {
+        bundling: {
+          image: cdk.DockerImage.fromRegistry(
+            "public.ecr.aws/docker/library/node:20",
+          ),
+          local: {
+            tryBundle(outputDir: string): boolean {
+              fs.cpSync(imageSourceDir, outputDir, { recursive: true });
+              fs.cpSync(
+                originVerifyWrapper,
+                path.join(outputDir, "origin-verify-wrapper.mjs"),
+              );
+              return true;
+            },
+          },
+        },
+      }),
       memorySize: 1536,
       timeout: cdk.Duration.seconds(25),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.image
+        : undefined,
       // Least-privilege: its own auto-created role (basic execution) plus read
       // on the assets bucket only (granted below). No app secrets, no
       // DynamoDB / SES / Cognito access — image optimization needs none of it.
+      // The origin-verify secret (server-only class) is added ONLY when set so
+      // the wrapper can enforce; unset = no env diff.
       environment: {
         BUCKET_NAME: assetsBucket.bucketName,
         BUCKET_KEY_PREFIX: "_assets",
         ...baseInfraEnv,
+        ...originVerifyEnv,
       },
+      // WS6-013: stays x86_64 until OpenNext emits arm64 build artifacts —
+      // this bundles arch-specific `sharp` binaries, so open-next.config.ts
+      // would need the arm64 build option (e.g.
+      // `imageOptimization: { arch: "arm64" }`) evaluated and enabled before
+      // this can flip.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -473,18 +770,65 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     // Lambda — Revalidation (triggered by SQS)
     // -------------------------------------------------------------------
 
+    // The revalidation adapter re-renders a stale ISR page with a HEAD request
+    // to the host the server saw when enqueuing — which is the RAW server
+    // Function URL domain (CloudFront strips the viewer Host header), so the
+    // self-fetch bypasses CloudFront and would be 403'd by the origin lock in
+    // enforce mode (breaking ISR and paging RevalidationDlqDepthAlarm). The
+    // wrapper injects x-origin-verify into this function's outbound HTTPS so the
+    // self-fetch stays authorized — see origin-verify-revalidation-wrapper.mjs.
+    // Same local-only bundling contract as ImageFn above (throws, never docker).
+    const revalidationSourceDir = path.join(
+      openNextDir,
+      "revalidation-function",
+    );
+    const revalidationWrapper = path.join(
+      __dirname,
+      "../assets/origin-verify-revalidation-wrapper.mjs",
+    );
     const revalidationFn = new lambda.Function(this, "RevalidationFn", {
       functionName: name("ChapterFlowRevalidation"),
       runtime: lambda.Runtime.NODEJS_20_X,
-      handler: "index.handler",
-      code: lambda.Code.fromAsset(
-        path.join(openNextDir, "revalidation-function"),
-      ),
+      handler: "origin-verify-revalidation-wrapper.handler",
+      code: lambda.Code.fromAsset(revalidationSourceDir, {
+        bundling: {
+          image: cdk.DockerImage.fromRegistry(
+            "public.ecr.aws/docker/library/node:20",
+          ),
+          local: {
+            tryBundle(outputDir: string): boolean {
+              fs.cpSync(revalidationSourceDir, outputDir, { recursive: true });
+              fs.cpSync(
+                revalidationWrapper,
+                path.join(
+                  outputDir,
+                  "origin-verify-revalidation-wrapper.mjs",
+                ),
+              );
+              return true;
+            },
+          },
+        },
+      }),
       memorySize: 256,
       timeout: cdk.Duration.seconds(30),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.revalidation
+        : undefined,
       // Least-privilege: its own auto-created role plus the ISR cache table; SQS
-      // consume permissions are granted by addEventSource() below. No secrets.
-      environment: baseInfraEnv,
+      // consume permissions are granted by addEventSource() below. No app
+      // secrets — the origin-verify secret is the one exception, carried ONLY so
+      // the wrapper can stamp the OUTBOUND self-fetch (this fn takes no inbound
+      // HTTP); emitted only when set, so unset = no env diff.
+      environment: {
+        ...baseInfraEnv,
+        ...(originVerifySecret
+          ? { ORIGIN_VERIFY_SECRET: originVerifySecret }
+          : {}),
+      },
+      // WS6-013: pinned to x86_64 alongside ServerFn/ImageFn above — see
+      // those comments; OpenNext build artifacts, not our esbuild step.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -507,8 +851,16 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       ),
       memorySize: 256,
       timeout: cdk.Duration.minutes(15),
+      // WS6-001: this runs during every deploy (ISR tag-cache init) — keep its
+      // floor at 2, never 1, so a deploy is never starved by a stuck prior
+      // invocation (see env-config.ts doc for the account-wide-sum rules).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.dynamoProvider
+        : undefined,
       // Least-privilege: its own auto-created role plus the ISR cache table only.
       environment: baseInfraEnv,
+      // WS6-013: pinned to x86_64 alongside ServerFn/ImageFn above — see
+      // those comments; OpenNext build artifacts, not our esbuild step.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -525,6 +877,10 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       code: lambda.Code.fromAsset(path.join(openNextDir, "warmer-function")),
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.warmer
+        : undefined,
       // Least-privilege: its own auto-created role plus invoke on the server
       // function only (granted below via a constructed ARN). No secrets.
       environment: {
@@ -532,6 +888,8 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         CONCURRENCY: "1",
         ...baseInfraEnv,
       },
+      // WS6-013: pinned to x86_64 alongside ServerFn/ImageFn above — see
+      // those comments; OpenNext build artifacts, not our esbuild step.
       architecture: lambda.Architecture.X86_64,
       logRetention: logs.RetentionDays.ONE_MONTH,
     });
@@ -618,12 +976,21 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
 
     let certificate: acm.ICertificate | undefined;
     let hostedZone: route53.IHostedZone | undefined;
+    const hostedZoneId = resolveFrontendHostedZoneId(
+      domainName,
+      props.hostedZoneId,
+    );
 
     // Only create certificate and DNS records if we have a domain
-    if (domainName) {
-      hostedZone = route53.HostedZone.fromLookup(this, "HostedZone", {
-        domainName,
-      });
+    if (domainName && hostedZoneId) {
+      hostedZone = route53.HostedZone.fromHostedZoneAttributes(
+        this,
+        "HostedZone",
+        {
+          hostedZoneId,
+          zoneName: domainName,
+        },
+      );
 
       certificate = new acm.Certificate(this, "Certificate", {
         domainName: `app.${domainName}`,
@@ -645,17 +1012,56 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       { originPath: "/_assets" },
     );
 
+    // WS6-012: serve library covers from the content bucket through CloudFront
+    // via Origin Access Control, so the bucket can drop its public-read grant
+    // (BLOCK_ALL, PR2). The path pattern `book-content/library/covers/*` equals
+    // the S3 key prefix, so NO originPath rewrite is used — the request key is
+    // passed through verbatim. The backend stack owns the bucket resource policy
+    // (CloudFrontReadLibraryCovers, conditioned on aws:SourceAccount): CDK cannot
+    // auto-attach a policy to an imported (fromBucketName) bucket and will WARN —
+    // that is intended, the grant is authored in chapterflow-backend-stack.ts and
+    // keyed on the account (not this distribution's ARN) to avoid a deploy cycle.
+    const contentCoversOrigin = origins.S3BucketOrigin.withOriginAccessControl(
+      bookContentBucket,
+    );
+
     // Plain Function URL origins (no OAC). The OAC lock (X2) is reverted here —
-    // see the serverFnUrl note above for why and the re-locking follow-up.
-    const serverOrigin = new origins.FunctionUrlOrigin(serverFnUrl, {
+    // see the serverFnUrl note above for why and the re-locking follow-up. The
+    // interim origin lock rides on custom origin headers instead: CloudFront
+    // injects x-origin-verify (WS6-002) alongside the existing x-forwarded-host.
+    const serverCustomHeaders: Record<string, string> = {
       // Tell OpenNext the public host (custom domain). With no custom domain
       // (dev/staging), omit it — OpenNext falls back to the CloudFront host.
-      ...(appDomain
-        ? { customHeaders: { "x-forwarded-host": appDomain } }
+      ...(appDomain ? { "x-forwarded-host": appDomain } : {}),
+      // WS6-002 shared secret; omitted when unset so the header (and its diff)
+      // only appear once the secret is introduced.
+      ...(originVerifySecret ? { "x-origin-verify": originVerifySecret } : {}),
+    };
+    const serverOrigin = new origins.FunctionUrlOrigin(serverFnUrl, {
+      // Must exceed ServerFn's timeout so CloudFront never closes first during
+      // the official verifier's worst-case OCSP timeout path.
+      readTimeout: cdk.Duration.seconds(60),
+      ...(Object.keys(serverCustomHeaders).length > 0
+        ? { customHeaders: serverCustomHeaders }
         : {}),
     });
 
-    const imageOrigin = new origins.FunctionUrlOrigin(imageFnUrl);
+    // Admin origin (WS6-005) — same treatment as serverOrigin: x-forwarded-host
+    // for OpenNext's public-host resolution plus the WS6-002 x-origin-verify
+    // shared secret so middleware.ts in AdminFn accepts the CloudFront-fronted
+    // request and rejects any direct Function-URL hit.
+    const adminOrigin = new origins.FunctionUrlOrigin(adminFnUrl, {
+      readTimeout: cdk.Duration.seconds(60),
+      ...(Object.keys(serverCustomHeaders).length > 0
+        ? { customHeaders: serverCustomHeaders }
+        : {}),
+    });
+
+    const imageOrigin = originVerifySecret
+      ? new origins.FunctionUrlOrigin(imageFnUrl, {
+          customHeaders: { "x-origin-verify": originVerifySecret },
+        })
+      : new origins.FunctionUrlOrigin(imageFnUrl);
 
     // Cache policies
     const serverCachePolicy = new cloudfront.CachePolicy(
@@ -755,6 +1161,19 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           cloudfront.ResponseHeadersPolicy.SECURITY_HEADERS,
       },
       additionalBehaviors: {
+        // WS6-005: the admin API surface is served by its own OpenNext function
+        // (AdminFn) so its IAM role — not the public server role — holds
+        // dynamodb:Scan. Same policies as the default server behavior.
+        "app/api/book/admin/*": {
+          origin: adminOrigin,
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: serverCachePolicy,
+          originRequestPolicy: serverOriginRequestPolicy,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
+          responseHeadersPolicy:
+            cloudfront.ResponseHeadersPolicy.SECURITY_HEADERS,
+        },
         "_next/static/*": {
           origin: s3Origin,
           viewerProtocolPolicy:
@@ -819,6 +1238,16 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
           viewerProtocolPolicy:
             cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
           cachePolicy: staticCachePolicy,
+        },
+        // WS6-012: library covers on the app origin, routed to the content
+        // bucket via OAC (contentCoversOrigin). library-catalog.ts mints
+        // `${appBaseUrl}/book-content/library/covers/<key>` for coverImage.
+        "book-content/library/covers/*": {
+          origin: contentCoversOrigin,
+          viewerProtocolPolicy:
+            cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,
+          cachePolicy: staticCachePolicy,
+          allowedMethods: cloudfront.AllowedMethods.ALLOW_GET_HEAD,
         },
       },
       ...(certificate && appDomain && domainName
@@ -910,12 +1339,28 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
     );
     const opsAction = new cloudwatchActions.SnsAction(opsTopic);
 
+    // Critical (paging) topic (WS6-034) — reconstructed by ARN, same
+    // cross-stack-by-name convention as opsTopic above. Subscriptions live on
+    // the backend topic (CHAPTERFLOW_OPS_PAGER_URL / CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL).
+    const opsCriticalTopic = sns.Topic.fromTopicArn(
+      this,
+      "OpsCriticalTopic",
+      `arn:${cdk.Aws.PARTITION}:sns:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:ChapterFlowOpsCritical${suffix}`,
+    );
+    const criticalAction = new cloudwatchActions.SnsAction(opsCriticalTopic);
+
     const makeAlarm = (
       id: string,
       metric: cloudwatch.IMetric,
       threshold: number,
       alarmDescription: string,
-      opts?: { evaluationPeriods?: number; datapointsToAlarm?: number },
+      opts?: {
+        evaluationPeriods?: number;
+        datapointsToAlarm?: number;
+        // WS6-034: "critical" ADDS criticalAction alongside opsAction (never
+        // instead of) so the existing inbox keeps full visibility.
+        severity?: "critical" | "warning";
+      },
     ): cloudwatch.Alarm => {
       const alarm = new cloudwatch.Alarm(this, id, {
         metric,
@@ -928,30 +1373,44 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
         alarmDescription,
       });
       alarm.addAlarmAction(opsAction);
+      if (opts?.severity === "critical") {
+        alarm.addAlarmAction(criticalAction);
+      }
       return alarm;
     };
 
     const alarmPeriod = cdk.Duration.minutes(5);
 
-    // Server Lambda — errors, throttles, and latency approaching the 30s timeout.
+    // Server Lambda — errors, throttles, and latency trending toward the 45s timeout.
     makeAlarm(
       "ServerFnErrorsAlarm",
       this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" }),
       5,
       "ChapterFlow server Lambda returned ≥5 errors in 5 minutes (elevated 5xx).",
+      { severity: "critical" },
     );
     makeAlarm(
       "ServerFnThrottlesAlarm",
       this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" }),
       1,
       "ChapterFlow server Lambda is being throttled (concurrency limit hit).",
+      { severity: "critical" },
     );
     makeAlarm(
       "ServerFnDurationAlarm",
       this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
       20000,
-      "ChapterFlow server Lambda p99 duration ≥20s — approaching the 30s timeout.",
+      "ChapterFlow server Lambda p99 duration ≥20s — early warning below the 45s timeout.",
       { evaluationPeriods: 3, datapointsToAlarm: 2 },
+    );
+
+    // Admin Lambda (WS6-005) — its own error alarm so a failing admin dashboard
+    // surfaces even though admin traffic is a small share of server traffic.
+    makeAlarm(
+      "AdminFnErrorsAlarm",
+      adminFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      5,
+      "ChapterFlow admin Lambda returned ≥5 errors in 5 minutes — admin dashboards/tools may be broken.",
     );
 
     // Revalidation Lambda errors + dead-letter / stuck-queue depth.
@@ -969,6 +1428,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       1,
       "Revalidation messages have landed in the DLQ — ISR revalidation is failing.",
+      { severity: "critical" },
     );
     makeAlarm(
       "RevalidationQueueAgeAlarm",
@@ -980,6 +1440,28 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       "Oldest revalidation message is >5 min old — the queue is backing up.",
     );
 
+    // Image optimization, warmer, and Dynamo cache-provider Lambda errors
+    // (WS6-007) — these had no error alarms despite ServerFn/RevalidationFn
+    // being covered above.
+    makeAlarm(
+      "ImageFnErrorsAlarm",
+      imageFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "Image optimization Lambda is erroring — images may be serving broken sitewide.",
+    );
+    makeAlarm(
+      "WarmerFnErrorsAlarm",
+      warmerFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "Warmer Lambda is erroring — the server Lambda may be going cold between requests.",
+    );
+    makeAlarm(
+      "DynamoProviderFnErrorsAlarm",
+      dynamoProviderFn.metricErrors({ period: alarmPeriod, statistic: "sum" }),
+      1,
+      "OpenNext Dynamo cache provider Lambda is erroring — ISR tag-cache init may be broken.",
+    );
+
     // CloudFront edge 5xx rate (percent). Sustained over 3 periods to avoid
     // paging on a transient blip.
     makeAlarm(
@@ -987,7 +1469,7 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" }),
       1,
       "CloudFront is serving >1% 5xx responses at the edge.",
-      { evaluationPeriods: 3, datapointsToAlarm: 3 },
+      { evaluationPeriods: 3, datapointsToAlarm: 3, severity: "critical" },
     );
 
     // Stripe webhook processing failures — the server emits this custom metric
@@ -1003,6 +1485,295 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       }),
       1,
       "A Stripe webhook delivery failed to process (post-signature). Stripe will retry; check the billing webhook logs and reconciliation tool.",
+      { severity: "critical" },
+    );
+
+    // -------------------------------------------------------------------
+    // SLO burn-rate alerting — edge availability (WS6-030)
+    // -------------------------------------------------------------------
+    // Multi-window multi-burn-rate alerts on the edge-availability SLI, per the
+    // Google SRE Workbook (Ch. 5) and docs/SLOS.md. The static CloudFront5xx
+    // alarm above pages on a fixed 1% threshold regardless of how fast the
+    // monthly error budget is actually burning — it over-pages on a low-traffic
+    // blip and under-pages on a slow leak. These page on budget burn RATE
+    // instead, so the alert stays calibrated as traffic grows.
+    //
+    // SLI: edge availability = 1 − CloudFront 5xxErrorRate. This is the paging
+    // SLI because it is what users see, including cached / CDN-served paths the
+    // server Lambda never handles (see docs/SLOS.md).
+    //
+    // These constants ARE the SLO objective — every threshold below is derived
+    // from them; changing one here must change docs/SLOS.md too.
+    const SLO_EDGE_AVAILABILITY_TARGET = 0.999; // 99.9% monthly = 43.2 min/mo budget — docs/SLOS.md
+    const SLO_FAST_BURN_MULTIPLE = 14.4; // page: 2% of the monthly budget in 1h — docs/SLOS.md
+    const SLO_SLOW_BURN_MULTIPLE = 6; // page: 5% of the monthly budget in 6h — docs/SLOS.md
+
+    // burn rate = (5xxErrorRate% / 100) / (1 − target). One MathExpression per
+    // window; the window is set by the underlying metric's period (kept equal to
+    // the expression's to avoid a period-mismatch warning).
+    const edgeBurnRateMetric = (
+      label: string,
+      window: cdk.Duration,
+    ): cloudwatch.MathExpression =>
+      new cloudwatch.MathExpression({
+        expression: `rate5xx / 100 / (1 - ${SLO_EDGE_AVAILABILITY_TARGET})`,
+        usingMetrics: {
+          rate5xx: this.distribution.metric5xxErrorRate({
+            period: window,
+            statistic: "Average",
+          }),
+        },
+        period: window,
+        label,
+      });
+
+    // Four threshold alarms with NO actions of their own — the two
+    // CompositeAlarms below (long-window AND short-window) carry the paging
+    // action. Requiring the short window too stops stale paging: once the
+    // incident clears, the 5m/30m window recovers within one period and drops
+    // the composite, instead of holding ALARM for the whole long window.
+    const burnAlarm = (
+      id: string,
+      alarmName: string,
+      metric: cloudwatch.IMetric,
+      multiple: number,
+      alarmDescription: string,
+    ): cloudwatch.Alarm =>
+      new cloudwatch.Alarm(this, id, {
+        alarmName,
+        metric,
+        threshold: multiple,
+        evaluationPeriods: 1,
+        datapointsToAlarm: 1,
+        comparisonOperator:
+          cloudwatch.ComparisonOperator.GREATER_THAN_OR_EQUAL_TO_THRESHOLD,
+        treatMissingData: cloudwatch.TreatMissingData.NOT_BREACHING,
+        alarmDescription,
+      });
+
+    const sloFastBurn1h = burnAlarm(
+      "SloFastBurn1hAlarm",
+      `ChapterFlowSloFastBurn1h${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (1h)", cdk.Duration.hours(1)),
+      SLO_FAST_BURN_MULTIPLE,
+      "SLO edge-availability fast-burn member (1h window): edge 5xx burning the 99.9% monthly budget at ≥14.4× sustainable (5xx ≥1.44%). Long window of the fast-burn pair; page only via ChapterFlowSloFastBurn.",
+    );
+    const sloFastBurn5m = burnAlarm(
+      "SloFastBurn5mAlarm",
+      `ChapterFlowSloFastBurn5m${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (5m)", cdk.Duration.minutes(5)),
+      SLO_FAST_BURN_MULTIPLE,
+      "SLO edge-availability fast-burn member (5m window): edge 5xx burn ≥14.4× sustainable. Short window of the fast-burn pair — clears within one period on recovery.",
+    );
+    const sloSlowBurn6h = burnAlarm(
+      "SloSlowBurn6hAlarm",
+      `ChapterFlowSloSlowBurn6h${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (6h)", cdk.Duration.hours(6)),
+      SLO_SLOW_BURN_MULTIPLE,
+      "SLO edge-availability slow-burn member (6h window): edge 5xx burning the 99.9% monthly budget at ≥6× sustainable (5xx ≥0.6%). Long window of the slow-burn pair; page only via ChapterFlowSloSlowBurn.",
+    );
+    const sloSlowBurn30m = burnAlarm(
+      "SloSlowBurn30mAlarm",
+      `ChapterFlowSloSlowBurn30m${suffix}`,
+      edgeBurnRateMetric("edge availability burn rate (30m)", cdk.Duration.minutes(30)),
+      SLO_SLOW_BURN_MULTIPLE,
+      "SLO edge-availability slow-burn member (30m window): edge 5xx burn ≥6× sustainable. Short window of the slow-burn pair — clears within one period on recovery.",
+    );
+
+    // Composite alarms carry the paging action. Fast-burn additionally pages
+    // opsCriticalTopic (WS6-034) — a budget exhausted in ~50h is a "needs a
+    // human NOW" outage; slow-burn (~5 days to exhaustion) stays on the
+    // existing ticket-grade topic only.
+    const sloFastBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloFastBurnAlarm", {
+      compositeAlarmName: `ChapterFlowSloFastBurn${suffix}`,
+      alarmRule: cloudwatch.AlarmRule.allOf(
+        cloudwatch.AlarmRule.fromAlarm(sloFastBurn1h, cloudwatch.AlarmState.ALARM),
+        cloudwatch.AlarmRule.fromAlarm(sloFastBurn5m, cloudwatch.AlarmState.ALARM),
+      ),
+      alarmDescription:
+        "PAGE — SLO edge-availability FAST burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥14.4× sustainable on BOTH the 1h and 5m windows (5xx ≥1.44%); at this rate the whole month's budget is exhausted in ~50h (2% per hour). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
+    });
+    sloFastBurnAlarm.addAlarmAction(opsAction);
+    sloFastBurnAlarm.addAlarmAction(criticalAction);
+
+    const sloSlowBurnAlarm = new cloudwatch.CompositeAlarm(this, "SloSlowBurnAlarm", {
+      compositeAlarmName: `ChapterFlowSloSlowBurn${suffix}`,
+      alarmRule: cloudwatch.AlarmRule.allOf(
+        cloudwatch.AlarmRule.fromAlarm(sloSlowBurn6h, cloudwatch.AlarmState.ALARM),
+        cloudwatch.AlarmRule.fromAlarm(sloSlowBurn30m, cloudwatch.AlarmState.ALARM),
+      ),
+      alarmDescription:
+        "PAGE — SLO edge-availability SLOW burn (99.9% monthly). Edge 5xx is burning the 43.2-min/mo error budget at ≥6× sustainable on BOTH the 6h and 30m windows (5xx ≥0.6%); at this rate the whole month's budget is exhausted in ~5 days (5% per 6h). Runbook: docs/OPERATIONS.md §4 → docs/SLOS.md.",
+    });
+    sloSlowBurnAlarm.addAlarmAction(opsAction);
+
+    // -------------------------------------------------------------------
+    // CloudWatch dashboard — golden signals (WS6-033)
+    // -------------------------------------------------------------------
+    // Version-controlled, out-of-band view of this stack's health. The in-app
+    // admin Ops dashboard is served BY the server Lambda, so it disappears
+    // exactly when an incident takes that Lambda down; this dashboard reads
+    // straight from CloudWatch and survives that failure mode. One dashboard
+    // per stack — this one binds only metrics the frontend stack can
+    // reference without a cross-stack CloudFormation export (constructs
+    // in-stack; ChapterFlow/Ops + the DynamoDB table names by-name, same
+    // convention as the alarms above).
+    const goldenSignalsDashboard = new cloudwatch.Dashboard(this, "GoldenSignalsDashboard", {
+      dashboardName: `ChapterFlowGoldenSignals${suffix}`,
+      // Keep each widget's own 5-minute period (matching the alarms) instead
+      // of letting it drift with the dashboard's selected time range.
+      periodOverride: cloudwatch.PeriodOverride.INHERIT,
+    });
+
+    // TRAFFIC
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda invocations (sum)",
+        left: [this.serverFunction.metricInvocations({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "CloudFront requests (sum)",
+        left: [this.distribution.metricRequests({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+    );
+
+    // LATENCY
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda duration — p50 / p95 / p99 (ms)",
+        left: [
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p50" }),
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p95" }),
+          this.serverFunction.metricDuration({ period: alarmPeriod, statistic: "p99" }),
+        ],
+        width: 24,
+      }),
+    );
+
+    // ERRORS
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda errors (sum)",
+        left: [this.serverFunction.metricErrors({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda throttles (sum)",
+        left: [this.serverFunction.metricThrottles({ period: alarmPeriod, statistic: "sum" })],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "CloudFront 4xxErrorRate (%)",
+        left: [this.distribution.metric4xxErrorRate({ period: alarmPeriod, statistic: "Average" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "CloudFront 5xxErrorRate (%)",
+        left: [this.distribution.metric5xxErrorRate({ period: alarmPeriod, statistic: "Average" })],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "OpsFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "OpsFailure",
+            statistic: "Sum",
+            period: alarmPeriod,
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "StripeWebhookFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "StripeWebhookFailure",
+            statistic: "Sum",
+            period: alarmPeriod,
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    // SATURATION
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Server Lambda concurrent executions (max)",
+        left: [this.serverFunction.metric("ConcurrentExecutions", { period: alarmPeriod, statistic: "max" })],
+        width: 24,
+      }),
+    );
+
+    // ISR — revalidation queue + DLQ
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Revalidation queue depth (messages visible, max)",
+        left: [
+          revalidationQueue.metricApproximateNumberOfMessagesVisible({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Revalidation queue oldest message age (s, max)",
+        left: [
+          revalidationQueue.metricApproximateAgeOfOldestMessage({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Revalidation DLQ depth (messages visible, max)",
+        left: [
+          revalidationDlq.metricApproximateNumberOfMessagesVisible({
+            period: alarmPeriod,
+            statistic: "max",
+          }),
+        ],
+        width: 24,
+      }),
+    );
+
+    // DYNAMODB — app + analytics tables, referenced by name (see
+    // buildThrottleMetricByName/tableLatencyMetricByName above).
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table throttled requests (sum)",
+        left: [buildThrottleMetricByName(props.appTableName)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table throttled requests (sum)",
+        left: [buildThrottleMetricByName(props.analyticsTableName)],
+        width: 12,
+      }),
+    );
+    goldenSignalsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table successful request latency (avg, ms)",
+        left: [tableLatencyMetricByName(props.appTableName)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table successful request latency (avg, ms)",
+        left: [tableLatencyMetricByName(props.analyticsTableName)],
+        width: 12,
+      }),
     );
 
     // -------------------------------------------------------------------
@@ -1021,9 +1792,13 @@ export class ChapterFlowFrontendStack extends cdk.Stack {
       value: this.serverFunction.functionArn,
     });
 
-    new cdk.CfnOutput(this, "ServerFunctionUrl", {
-      value: serverFnUrl.url,
+    new cdk.CfnOutput(this, "GoldenSignalsDashboardName", {
+      value: goldenSignalsDashboard.dashboardName,
     });
+
+    // WS6-002: the ServerFunctionUrl output was removed — it leaked the raw
+    // public Function URL (the very endpoint the origin lock exists to keep
+    // traffic off) and no workflow consumes it. ServerFunctionArn stays.
 
     if (certificate) {
       new cdk.CfnOutput(this, "AppUrl", {

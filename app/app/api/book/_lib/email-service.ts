@@ -1,12 +1,14 @@
 import "server-only";
 
 import { SESv2Client, SendEmailCommand } from "@aws-sdk/client-sesv2";
+import { logger } from "@/lib/logging/logger";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 let sesClient: SESv2Client | null = null;
 
 function getSES(): SESv2Client {
   if (!sesClient) {
-    sesClient = new SESv2Client({});
+    sesClient = new SESv2Client({ ...awsClientConfig });
   }
   return sesClient;
 }
@@ -47,7 +49,7 @@ export async function sendEmail(params: SendEmailParams): Promise<{ sent: boolea
     );
     return { sent: true };
   } catch (error: unknown) {
-    console.error("[email-service] send failed:", String(error));
+    logger.error("email_service_send_failed", { err: error });
     return { sent: false, error: String(error) };
   }
 }

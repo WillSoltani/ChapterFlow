@@ -4,6 +4,7 @@ import { useState, type ReactNode } from "react";
 import Link from "next/link";
 import { m, AnimatePresence } from "framer-motion";
 import { Check, Minus, ChevronDown } from "lucide-react";
+import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
 import { SectionReveal } from "@/components/ui/SectionReveal";
 import { SectionLabel } from "@/components/ui/SectionLabel";
 import { AUTH_LOGIN_BOOK_URL } from "@/app/_lib/chapterflow-brand";
@@ -22,11 +23,10 @@ import {
 } from "@/lib/pricing";
 
 /**
- * §05 Pricing — the TERMS SHEET.
+ * Public pricing and plan comparison.
  *
  * Not a centered SaaS pricing block: a left-aligned spec sheet matching the
- * Ledger / CatalogIndex / Science panels. A §05 SectionLabel + mono running-head,
- * the two tiers as hairline-ruled spec rows on a flat --cf-surface panel (no
+ * The two tiers use hairline-ruled rows on a flat --cf-surface panel (no
  * floating glassy scale cards, no glow halos), prices in mono tabular datum style,
  * benefit/exclusion chips inline. ONE accent — cyan — for the work; the Pro CTA is
  * the same cyan as the hero/science CTAs (no gold/amber gradient, no second hue).
@@ -75,12 +75,11 @@ const faqs = [
   },
 ];
 
-/* ---- a tier as a spec row -------------------------------------------------- */
+/* ---- a plan row ------------------------------------------------------------ */
 
 type TierFeature = { label: string; granted: boolean };
 
 function TierRow({
-  call,
   name,
   price,
   unit,
@@ -91,7 +90,6 @@ function TierRow({
   cta,
   terms,
 }: {
-  call: string;
   name: string;
   price: string;
   unit: string;
@@ -107,22 +105,14 @@ function TierRow({
       className="grid grid-cols-1 gap-6 px-6 py-8 md:grid-cols-[minmax(0,18rem)_1fr] md:gap-10 md:px-9 md:py-9"
       style={{ background: "var(--cf-surface)" }}
     >
-      {/* LEFT — call number, name, price datum */}
+      {/* Plan name and price */}
       <div className="flex flex-col">
-        <div className="flex items-center gap-2">
-          <span
-            className="cf-folio tabular-nums"
-            style={{ color: accent ? "var(--accent-cyan)" : "var(--cf-axis-tint)" }}
-          >
-            {call}
-          </span>
-          <span
-            className="cf-folio"
-            style={{ color: accent ? "var(--accent-cyan)" : "var(--text-tertiary)" }}
-          >
-            {name}
-          </span>
-        </div>
+        <span
+          className="font-(family-name:--font-display) text-cf-label font-semibold uppercase tracking-[0.12em]"
+          style={{ color: accent ? "var(--accent-cyan)" : "var(--text-tertiary)" }}
+        >
+          {name}
+        </span>
 
         <div className="mt-4 flex items-baseline gap-1.5">
           <span
@@ -131,17 +121,17 @@ function TierRow({
           >
             {price}
           </span>
-          <span className="text-[14px] text-(--text-muted)">{unit}</span>
+          <span className="text-cf-body-sm text-(--text-muted)">{unit}</span>
         </div>
 
         {subline && (
-          <p className="mt-1.5 text-[13px]" style={{ color: "var(--accent-cyan)" }}>
+          <p className="mt-1.5 text-cf-label" style={{ color: "var(--accent-cyan)" }}>
             {subline}
           </p>
         )}
 
         <p
-          className="mt-3 max-w-[28ch] text-[14px] leading-[1.6] text-(--text-secondary)"
+          className="mt-3 max-w-[28ch] text-cf-body-sm leading-[1.6] text-(--text-secondary)"
           style={{ fontFamily: "var(--font-body)" }}
         >
           {blurb}
@@ -151,12 +141,12 @@ function TierRow({
         {terms && <div className="mt-3">{terms}</div>}
       </div>
 
-      {/* RIGHT — the spec list */}
+      {/* Included features */}
       <ul className="grid grid-cols-1 gap-x-8 gap-y-3 self-center sm:grid-cols-2">
         {features.map((f) => (
           <li
             key={f.label}
-            className="flex items-center gap-2.5 text-[14px]"
+            className="flex items-center gap-2.5 text-cf-body-sm"
             style={{
               fontFamily: "var(--font-body)",
               color: f.granted ? "var(--text-secondary)" : "var(--text-muted)",
@@ -216,12 +206,13 @@ export function Pricing() {
     : formatAmount(perMonthAmount);
 
   return (
+    <MotionFeatureProvider>
     <section id="pricing" className="relative">
       <div className="mx-auto max-w-[1180px] px-5 pt-(--section-pad-sm) pb-(--section-pad-lg) md:px-8 md:pt-(--section-pad-md)">
-        {/* ---- Section head — left-aligned, folio system ---- */}
+        {/* Clear plan summary */}
         <SectionReveal>
           <div className="max-w-2xl">
-            <SectionLabel>§05 · PRICING</SectionLabel>
+            <SectionLabel>Plans</SectionLabel>
             <h2
               className="mt-4 font-bold leading-[1.05] text-balance"
               style={{
@@ -234,7 +225,7 @@ export function Pricing() {
               Two tiers. One method. No lock-in.
             </h2>
             <p
-              className="mt-4 max-w-xl text-[16px] leading-[1.6] text-(--text-secondary)"
+              className="mt-4 max-w-xl text-cf-body-lg leading-[1.6] text-(--text-secondary)"
               style={{ fontFamily: "var(--font-body)" }}
             >
               Read {FREE_OFFER_LABEL} with no card. Start a {PRICING.trialDays}-day
@@ -244,26 +235,26 @@ export function Pricing() {
           </div>
         </SectionReveal>
 
-        {/* ---- The terms-sheet panel ---- */}
+        {/* Plan comparison */}
         <SectionReveal delay={0.08}>
           <div
             className="relative mt-12 overflow-hidden rounded-2xl border"
             style={{ borderColor: "var(--border-subtle)", background: "var(--cf-surface)" }}
           >
-            {/* running head — billing cadence toggle as a mono datum control */}
+            {/* Billing cadence */}
             <div
               className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3 px-6 py-4 md:px-9"
               style={{ borderBottom: "1px solid var(--border-subtle)" }}
             >
               <span className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
-                Terms sheet · effective on signup
+                Choose your billing cadence
               </span>
 
               <div className="flex items-center gap-3">
                 <button
                   type="button"
                   onClick={() => setIsAnnual(false)}
-                  className="cf-folio min-h-9 px-1 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio min-h-11 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-muted)" : "var(--text-heading)" }}
                 >
                   MONTHLY
@@ -273,18 +264,23 @@ export function Pricing() {
                   role="switch"
                   aria-checked={isAnnual}
                   aria-label="Toggle annual pricing"
-                  className="relative h-5 w-10 rounded-full transition-colors cursor-pointer border border-transparent forced-colors:border-[ButtonText] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
-                  style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
+                  className="relative flex min-h-11 min-w-11 cursor-pointer items-center justify-center rounded-full border border-transparent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                 >
                   <span
-                    className="absolute top-0.5 h-4 w-4 rounded-full bg-(--cf-toggle-knob) shadow transition-transform border border-transparent forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
-                    style={{ transform: isAnnual ? "translateX(22px)" : "translateX(2px)" }}
-                  />
+                    aria-hidden="true"
+                    className="relative block h-5 w-10 rounded-full border border-transparent transition-colors forced-colors:border-[ButtonText]"
+                    style={{ background: isAnnual ? "var(--accent-cyan)" : "var(--bg-elevated)" }}
+                  >
+                    <span
+                      className="absolute top-0.5 h-4 w-4 rounded-full border border-transparent bg-(--cf-toggle-knob) shadow transition-transform forced-colors:border-[ButtonText] forced-colors:bg-[Highlight]"
+                      style={{ transform: isAnnual ? "translateX(22px)" : "translateX(2px)" }}
+                    />
+                  </span>
                 </button>
                 <button
                   type="button"
                   onClick={() => setIsAnnual(true)}
-                  className="cf-folio flex items-center gap-1.5 min-h-9 px-1 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
+                  className="cf-folio flex min-h-11 items-center gap-1.5 px-2 transition-colors cursor-pointer rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                   style={{ color: isAnnual ? "var(--text-heading)" : "var(--text-muted)" }}
                 >
                   ANNUAL
@@ -297,8 +293,7 @@ export function Pricing() {
 
             {/* FREE row */}
             <TierRow
-              call="CF-FREE"
-              name="FREE"
+              name="Free"
               price="$0"
               unit="forever"
               blurb="Try ChapterFlow with two complete books — no card, no expiry."
@@ -306,9 +301,10 @@ export function Pricing() {
               accent={false}
               cta={
                 <Link
+                  data-public-sticky-cta-suppress
                   href={freeHref}
                   onClick={() => track("cta_click", { source: "pricing_free" })}
-                  className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-[15px] font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
+                  className="inline-flex w-full items-center justify-center rounded-xl border border-(--border-medium) px-5 py-3 text-cf-body font-semibold text-(--text-heading) transition-colors hover:bg-(--bg-glass) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   Get {FREE_OFFER_LABEL}
@@ -321,8 +317,7 @@ export function Pricing() {
 
             {/* PRO row */}
             <TierRow
-              call="CF-PRO"
-              name="PRO"
+              name="Pro"
               price={proPrice}
               unit={`${PRICING.currency} / ${isAnnual ? "year" : "month"}`}
               subline={
@@ -345,13 +340,14 @@ export function Pricing() {
                 // ONE accent: cyan = the work. The Pro CTA carries the SAME cyan as
                 // the hero/science CTAs — no gold/amber gradient, no glow halo.
                 <Link
+                  data-public-sticky-cta-suppress
                   href={proHref}
                   onClick={() =>
                     track("cta_click", {
                       source: isPro ? "pricing_manage" : "pricing_pro",
                     })
                   }
-                  className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-[15px] font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-(--accent-cyan) px-5 py-3 text-cf-body font-semibold text-(--primary-foreground) transition-transform hover:scale-[1.01] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-cyan)/60 focus-visible:ring-offset-2 sm:w-auto sm:min-w-[16rem]"
                   style={{ fontFamily: "var(--font-display)" }}
                 >
                   {proCtaLabel}
@@ -362,7 +358,7 @@ export function Pricing() {
                 // hide them for Pro users (the CTA is "Manage subscription").
                 !isPro ? (
                   <p
-                    className="max-w-[34ch] text-[12px] leading-[1.6] text-(--text-muted)"
+                    className="max-w-[34ch] text-cf-label-sm leading-[1.6] text-(--text-muted)"
                     style={{ fontFamily: "var(--font-body)" }}
                   >
                     {PRICING.trialDays}-day free trial, then{" "}
@@ -385,11 +381,11 @@ export function Pricing() {
           </div>
         </SectionReveal>
 
-        {/* ---- FAQ — mono spec footnotes (disclosure rows) ---- */}
+        {/* Plan questions */}
         <SectionReveal delay={0.16}>
           <div className="mt-12">
             <p className="cf-folio" style={{ color: "var(--cf-axis-tint)" }}>
-              Footnotes
+              Questions about plans
             </p>
             <div className="mt-3 border-t border-(--border-subtle)">
               {faqs.map((faq, index) => {
@@ -404,7 +400,7 @@ export function Pricing() {
                       className="flex w-full items-center justify-between gap-4 py-4 text-left rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--ring) focus-visible:ring-offset-2"
                     >
                       <span
-                        className="text-[15px] font-medium text-(--text-heading)"
+                        className="text-cf-body font-medium text-(--text-heading)"
                         style={{ fontFamily: "var(--font-display)" }}
                       >
                         {faq.question}
@@ -432,7 +428,7 @@ export function Pricing() {
                           className="overflow-hidden"
                         >
                           <p
-                            className="max-w-[60ch] pb-4 text-[14px] leading-[1.6] text-(--text-secondary)"
+                            className="max-w-[60ch] pb-4 text-cf-body-sm leading-[1.6] text-(--text-secondary)"
                             style={{ fontFamily: "var(--font-body)" }}
                           >
                             {faq.answer}
@@ -448,5 +444,6 @@ export function Pricing() {
         </SectionReveal>
       </div>
     </section>
+    </MotionFeatureProvider>
   );
 }

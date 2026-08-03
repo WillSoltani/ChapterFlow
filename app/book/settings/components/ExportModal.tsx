@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { X, Download, Loader2, AlertCircle } from "lucide-react";
 import type { ExportFormat } from "../types/settings";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { Dialog } from "@/components/ui/Dialog";
 import { redirectToReauth } from "@/app/book/_lib/book-api";
 

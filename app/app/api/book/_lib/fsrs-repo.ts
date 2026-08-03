@@ -4,7 +4,7 @@ import {
   GetCommand,
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { bookUserPk, fsrsCardSk, fsrsReviewLogSk, nowIso } from "./keys";
+import { bookUserPk, fsrsCardSk, fsrsReviewLogSk } from "./keys";
 import {
   createNewCard,
   scheduleCard,
@@ -80,10 +80,18 @@ export async function initializeCardsForChapter(
   return results.filter((card): card is FSRSCardState => card !== null);
 }
 
-export async function getDueCards(
+/**
+ * The FULL sorted+filtered due-card set (every card past its `dueAt`,
+ * optionally scoped to `bookIds`, oldest-due-first) with no page slice
+ * applied. `getDueCards` below is the pre-existing, behavior-unchanged
+ * wrapper most callers should keep using; this export exists so the reviews
+ * route can paginate the due set with `paginateArray` (WS4-004) — a bare
+ * `getDueCards(limit)` call discards everything past `limit` before the
+ * route can even tell whether a next page exists.
+ */
+export async function getDueCardsSorted(
   tableName: string,
   userId: string,
-  limit: number = 20,
   bookIds?: string[]
 ): Promise<FSRSCardState[]> {
   const allItems: FSRSCardState[] = [];
@@ -114,8 +122,17 @@ export async function getDueCards(
       }
       return isDue(card, now);
     })
-    .sort((a, b) => new Date(a.dueAt).getTime() - new Date(b.dueAt).getTime())
-    .slice(0, limit);
+    .sort((a, b) => new Date(a.dueAt).getTime() - new Date(b.dueAt).getTime());
+}
+
+export async function getDueCards(
+  tableName: string,
+  userId: string,
+  limit: number = 20,
+  bookIds?: string[]
+): Promise<FSRSCardState[]> {
+  const sorted = await getDueCardsSorted(tableName, userId, bookIds);
+  return sorted.slice(0, limit);
 }
 
 export async function getAllCards(
@@ -184,6 +201,29 @@ async function resolveDesiredRetentionForUser(
   } catch {
     return DEFAULT_DESIRED_RETENTION;
   }
+}
+
+/**
+ * Read a single FSRS card by its decoded cardId. Moved verbatim from
+ * me/reviews/[cardId]/route.ts (WS3-002) — returns the raw item cast, matching
+ * the route's own unparsed read (used to check for a duplicate-submit inside
+ * the dedupe window before calling recordReview).
+ */
+export async function getFSRSCard(
+  tableName: string,
+  userId: string,
+  cardId: string
+): Promise<FSRSCardState | null> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: fsrsCardSk(cardId),
+      },
+    })
+  );
+  return (res.Item as FSRSCardState | undefined) ?? null;
 }
 
 export async function recordReview(

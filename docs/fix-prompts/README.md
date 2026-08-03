@@ -1,6 +1,6 @@
 # ChapterFlow — fix prompts (by category)
 
-Ready-to-dispatch agent prompts for every confirmed finding from the production-readiness re-audit of `main`: 200 findings + 2 re-confirmed carry-overs. Each prompt is self-contained — copy one block, give it to one agent. It tells the agent which branch to use, how to verify, and how to commit. IDs match `docs/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md`.
+Ready-to-dispatch agent prompts for every confirmed finding from the production-readiness re-audit of `main`: 200 findings + 2 re-confirmed carry-overs. Each prompt is self-contained — copy one block, give it to one agent. It tells the agent which branch to use, how to verify, and how to commit. IDs match `docs/archive/CHAPTERFLOW-PRODUCTION-READINESS-2026-06-14.md`.
 
 **▶ Running them in parallel? Paste from [PARALLEL-TASKS.md](PARALLEL-TASKS.md)** — all 202 findings consolidated into 132 file-disjoint tasks, sorted by priority. Each is one copy-paste block that makes an agent create its own worktree+branch, fix, verify, and commit autonomously. That is the file to dispatch from.
 

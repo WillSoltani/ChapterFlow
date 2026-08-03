@@ -1,24 +1,22 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { BookOpen } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, TableSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const ScenarioUsageChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/ContentCharts").then(
+      (module) => module.ScenarioUsageChart,
+    ),
+  { ssr: false },
+);
 
 type BookStat = {
   bookId: string;
@@ -49,18 +47,18 @@ export function ContentClient() {
   const [error, setError] = useState<string | null>(null);
   const [sort, setSort] = useState<Sort>("readingMinutes");
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<ContentResponse>(`/metrics/content?range=${range}`)
       .then(setData)
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Failed to load"))
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   const sortedBooks = data ? [...data.books].sort((a, b) => b[sort] - a[sort]) : [];
   const scenarioCombined = useMemo(() => {
@@ -69,7 +67,7 @@ export function ContentClient() {
     for (const s of data.scenarioSubmissions) map[s.date] = { date: s.date, submitted: s.value, approved: 0 };
     for (const a of data.scenarioApprovals) {
       if (!map[a.date]) map[a.date] = { date: a.date, submitted: 0, approved: 0 };
-      map[a.date].approved = a.value;
+      map[a.date]!.approved = a.value; // assigned above if absent
     }
     return Object.values(map).sort((a, b) => a.date.localeCompare(b.date));
   }, [data]);
@@ -90,7 +88,7 @@ export function ContentClient() {
         title="Books"
         description="Sorted by activity in range"
         action={
-          <div className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) p-0.5 text-[11px] shadow-(--cf-input-inset-shadow)">
+          <div className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) p-0.5 text-cf-caption shadow-(--cf-input-inset-shadow)">
             {(
               [
                 ["readingMinutes", "Reading"],
@@ -127,9 +125,9 @@ export function ContentClient() {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-[12px]">
+            <table className="w-full min-w-[640px] text-cf-label-sm">
               <thead>
-                <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Book</th>
                   <th className="py-2 pr-3">Categories</th>
                   <th className="py-2 pr-3 text-right">Reading</th>
@@ -146,7 +144,7 @@ export function ContentClient() {
                   >
                     <td className="py-2 pr-3 text-(--cf-text-1)">
                       <p className="font-medium">{b.title}</p>
-                      <p className="text-[11px] text-(--cf-text-3)">{b.author}</p>
+                      <p className="text-cf-caption text-(--cf-text-3)">{b.author}</p>
                     </td>
                     <td className="py-2 pr-3 text-(--cf-text-3)">
                       {b.categories.slice(0, 2).join(", ") || "—"}
@@ -160,7 +158,7 @@ export function ContentClient() {
                     <td className="py-2 pr-3 text-right">
                       <span
                         className={[
-                          "rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+                          "rounded-md px-1.5 py-0.5 text-cf-caption font-medium",
                           b.passRatePercent >= 70
                             ? "bg-(--cf-success-soft) text-(--cf-success-text)"
                             : b.passRatePercent >= 40
@@ -188,30 +186,11 @@ export function ContentClient() {
             <ChartSkeleton />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart data={scenarioCombined} margin={{ top: 10, right: 10, bottom: 0, left: -10 }}>
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={fmtDate}
-                  />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: 11, color: "var(--cf-text-3)" }} />
-                  <Bar dataKey="submitted" name="Submitted" fill="var(--cf-text-soft)" isAnimationActive={false} radius={[4, 4, 0, 0]} />
-                  <Bar dataKey="approved" name="Approved" fill="var(--cf-success-text)" isAnimationActive={false} radius={[4, 4, 0, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              <ScenarioUsageChart data={scenarioCombined} />
             </div>
           )}
         </AdminCard>
       </div>
     </div>
   );
-}
-
-function fmtDate(d: string): string {
-  const date = new Date(d);
-  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }

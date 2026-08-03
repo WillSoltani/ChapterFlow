@@ -71,7 +71,7 @@ export function GeographyClient() {
       {data?.warnings?.length ? (
         <div
           role="status"
-          className="mb-4 flex items-start gap-2 rounded-xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-3 text-[13px] text-(--cf-warning-text)"
+          className="mb-4 flex items-start gap-2 rounded-xl border border-(--cf-warning-border) bg-(--cf-warning-soft) p-3 text-cf-label text-(--cf-warning-text)"
         >
           <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" aria-hidden="true" />
           <p className="min-w-0 flex-1 leading-relaxed">{data.warnings.join(" · ")}</p>
@@ -117,7 +117,7 @@ export function GeographyClient() {
                       `geography-countries-${new Date().toISOString().slice(0, 10)}.csv`,
                     )
                   }
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[11px] text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-cf-caption text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                 >
                   <Download className="h-3 w-3" />
                   CSV
@@ -128,9 +128,9 @@ export function GeographyClient() {
                 <TableSkeleton rows={8} cols={5} />
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[520px] text-[12px]">
+                  <table className="w-full min-w-[520px] text-cf-label-sm">
                     <thead>
-                      <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                      <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                         <th className="py-2 pr-3">Country</th>
                         <th className="py-2 pr-3 text-right">Users</th>
                         <th className="py-2 pr-3 text-right">PRO</th>
@@ -140,7 +140,7 @@ export function GeographyClient() {
                     </thead>
                     <tbody>
                       {data.countries.map((c) => {
-                        const max = data.countries[0].count;
+                        const max = data.countries[0]?.count ?? 1;
                         const pct = (c.count / max) * 100;
                         return (
                           <tr
@@ -182,8 +182,8 @@ export function GeographyClient() {
             <AdminCard title="Top timezones" description="Last 20">
               <ul className="space-y-1.5">
                 {data.topTimezones.map((t) => (
-                  <li key={t.tz} className="flex items-center justify-between text-[12px]">
-                    <span className="truncate font-mono text-[11px] text-(--cf-text-2)">
+                  <li key={t.tz} className="flex items-center justify-between text-cf-label-sm">
+                    <span className="truncate font-mono text-cf-caption text-(--cf-text-2)">
                       {t.tz}
                     </span>
                     <span className="tabular-nums text-(--cf-text-3)">{t.count}</span>
@@ -196,9 +196,9 @@ export function GeographyClient() {
           <div className="mt-6">
             <AdminCard title={`Top cities (${data.topCities.length})`}>
               <div className="overflow-x-auto">
-                <table className="w-full text-[12px]">
+                <table className="w-full text-cf-label-sm">
                   <thead>
-                    <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                    <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                       <th className="py-2 pr-3">City</th>
                       <th className="py-2 pr-3">Country</th>
                       <th className="py-2 pr-3 text-right">Users</th>
@@ -211,7 +211,7 @@ export function GeographyClient() {
                         className="border-b border-(--cf-border)/50"
                       >
                         <td className="py-2 pr-3 text-(--cf-text-1)">{c.city}</td>
-                        <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-3)">
+                        <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-3)">
                           {c.country}
                         </td>
                         <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-2)">
@@ -239,7 +239,7 @@ export function GeographyClient() {
                         `geography-clusters-${new Date().toISOString().slice(0, 10)}.csv`,
                       )
                     }
-                    className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[11px] text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                    className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-cf-caption text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                   >
                     <Download className="h-3 w-3" />
                     CSV
@@ -247,9 +247,9 @@ export function GeographyClient() {
                 }
               >
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[520px] text-[12px]">
+                  <table className="w-full min-w-[520px] text-cf-label-sm">
                     <thead>
-                      <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                      <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                         <th className="py-2 pr-3">Approx. coordinates</th>
                         <th className="py-2 pr-3">Country</th>
                         <th className="py-2 pr-3 text-right">Users</th>
@@ -258,17 +258,17 @@ export function GeographyClient() {
                     </thead>
                     <tbody>
                       {data.locationClusters.map((c, i) => {
-                        const max = data.locationClusters![0].count;
+                        const max = data.locationClusters![0]?.count ?? 1;
                         const pct = (c.count / max) * 100;
                         return (
                           <tr
                             key={`${c.lat},${c.lng}-${i}`}
                             className="border-b border-(--cf-border)/50 transition hover:bg-(--cf-surface-muted)/40"
                           >
-                            <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-1)">
+                            <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-1)">
                               {c.lat.toFixed(1)}, {c.lng.toFixed(1)}
                             </td>
-                            <td className="py-2 pr-3 font-mono text-[11px] text-(--cf-text-3)">
+                            <td className="py-2 pr-3 font-mono text-cf-caption text-(--cf-text-3)">
                               {c.country ?? "—"}
                             </td>
                             <td className="py-2 pr-3 text-right tabular-nums text-(--cf-text-2)">

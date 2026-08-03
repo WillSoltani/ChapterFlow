@@ -33,8 +33,8 @@ export async function getStripeClient(): Promise<Stripe> {
   // namespaced type that may move again across SDK majors.
   const stripe = new stripeMod.default(key, {
     apiVersion: "2024-06-20" as NonNullable<
-      ConstructorParameters<typeof stripeMod.default>[1]
-    >["apiVersion"],
+      NonNullable<ConstructorParameters<typeof stripeMod.default>[1]>["apiVersion"]
+    >,
   });
   cachedClient = { key, stripe };
   return stripe;

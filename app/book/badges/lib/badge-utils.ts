@@ -26,7 +26,9 @@ const LEVELS: LevelEntry[] = [
 ];
 
 export function getLevel(fp: number) {
-  let current = LEVELS[0];
+  const first = LEVELS[0];
+  if (first === undefined) throw new Error("getLevel: LEVELS is empty");
+  let current = first;
   for (const level of LEVELS) {
     if (fp >= level.fpThreshold) current = level;
     else break;
@@ -305,54 +307,19 @@ export function setLastSeenTimestamp(): void {
 // ── Tier border colors (inline styles) ──────────────────────────────────────
 
 export const TIER_BORDER_COLORS: Record<BadgeTier, string> = {
-  bronze: "#cd7f32",
-  silver: "#c0c0c0",
-  gold: "#ffd700",
-  platinum: "#8b7dff",
-  unique: "#f59e0b",
-  secret: "#8b5cf6",
+  bronze: "var(--cf-badge-bronze)",
+  silver: "var(--cf-badge-silver)",
+  gold: "var(--cf-badge-gold)",
+  platinum: "var(--cf-badge-platinum-border)",
+  unique: "var(--cf-badge-unique-border)",
+  secret: "var(--cf-badge-secret-border)",
 };
 
 export const TIER_GLOW_STYLES: Record<BadgeTier, string> = {
-  bronze: "0 0 20px rgba(205,127,50,0.08), inset 0 1px 0 rgba(205,127,50,0.1)",
-  silver: "0 0 20px rgba(192,192,192,0.08), inset 0 1px 0 rgba(192,192,192,0.1)",
-  gold: "0 0 20px rgba(255,215,0,0.1), inset 0 1px 0 rgba(255,215,0,0.12)",
-  platinum: "0 0 25px rgba(139,125,255,0.1), inset 0 1px 0 rgba(139,125,255,0.12)",
-  unique: "0 0 15px rgba(245,158,11,0.07), inset 0 1px 0 rgba(245,158,11,0.08)",
-  secret: "0 0 20px rgba(139,92,246,0.1), inset 0 1px 0 rgba(139,92,246,0.1)",
-};
-
-// ── Metallic tier pill styles (inline) ──────────────────────────────────────
-
-export const TIER_PILL_STYLES: Record<BadgeTier, { background: string; color: string; textShadow: string }> = {
-  bronze: {
-    background: "linear-gradient(135deg, #CD7F32, #E8A862)",
-    color: "#1a0f00",
-    textShadow: "0 1px 0 rgba(255,200,120,0.3)",
-  },
-  silver: {
-    background: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
-    color: "#1a1a1a",
-    textShadow: "0 1px 0 rgba(255,255,255,0.4)",
-  },
-  gold: {
-    background: "linear-gradient(135deg, #FFD700, #FFF0A0)",
-    color: "#1a1200",
-    textShadow: "0 1px 0 rgba(255,240,150,0.4)",
-  },
-  platinum: {
-    background: "linear-gradient(135deg, #E5E4E2, #FFFFFF)",
-    color: "#1a1a2e",
-    textShadow: "0 1px 0 rgba(200,180,255,0.4)",
-  },
-  unique: {
-    background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-    color: "#ffffff",
-    textShadow: "0 1px 0 rgba(139,92,246,0.3)",
-  },
-  secret: {
-    background: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-    color: "#ffffff",
-    textShadow: "0 1px 0 rgba(139,92,246,0.5)",
-  },
+  bronze: "var(--cf-badge-glow-bronze)",
+  silver: "var(--cf-badge-glow-silver)",
+  gold: "var(--cf-badge-glow-gold)",
+  platinum: "var(--cf-badge-glow-platinum)",
+  unique: "var(--cf-badge-glow-unique)",
+  secret: "var(--cf-badge-glow-secret)",
 };

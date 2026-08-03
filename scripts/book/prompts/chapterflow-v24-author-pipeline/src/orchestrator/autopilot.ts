@@ -3077,7 +3077,7 @@ async function handleReady(bookId: string, status: BookStatus, autoPublish: bool
       status: "published",
       bookId,
       roundId: roundId ?? "",
-      message: `PUBLISHED — publish-final shipped ${bookId}: package committed + pushed, origin synced 0/0, per-book debris cleaned. ⚠ NOT live until the separate manual deploy — run the 3 steps printed above (upload-book-packages-to-s3 → gh workflow run deploy.yml → npm run verify:live); ${bookId} stays tracked in book-packages/.pending-deploy.json until verify:live confirms parity.`,
+      message: `PUBLISHED — publish-final shipped ${bookId}: package committed + pushed, origin synced 0/0, per-book debris cleaned. ⚠ NOT live until the separate manual deploy — run the 4 steps printed above (upload-book-packages-to-s3 → gh workflow run deploy.yml → register-api-books → npm run verify:live); ${bookId} stays tracked in book-packages/.pending-deploy.json until verify:live confirms parity on every surface (S3, deployed app, API catalog).`,
     };
   }
 

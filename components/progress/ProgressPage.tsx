@@ -4,13 +4,13 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
-import { TopNav } from "@/app/book/home/components/TopNav";
-import { useOnboardingState } from "@/app/book/hooks/useOnboardingState";
-import { useBookAnalytics } from "@/app/book/hooks/useBookAnalytics";
-import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { useInsightPoints } from "@/app/book/hooks/useInsightPoints";
-import { useBadgeSystem } from "@/app/book/hooks/useBadgeSystem";
-import { useKeyboardShortcut } from "@/app/book/hooks/useKeyboardShortcut";
+import { TopNav } from "@/components/navigation/TopNav";
+import { useOnboardingState } from "@/hooks/book/useOnboardingState";
+import { useBookAnalytics } from "@/hooks/book/useBookAnalytics";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
+import { useInsightPoints } from "@/hooks/book/useInsightPoints";
+import { useBadgeSystem } from "@/hooks/book/useBadgeSystem";
+import { useKeyboardShortcut } from "@/hooks/useKeyboardShortcut";
 import type {
   ProgressPageData,
   ActiveBook,
@@ -22,10 +22,14 @@ import type {
 } from "./progressTypes";
 import { getBookCoverPath } from "@/lib/book-covers";
 import { deriveReaderLevel, deriveReaderLevelProgress } from "@/lib/reader-levels";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
-import { aggregateHourlyForDay } from "@/app/book/library/hooks/readingActivityStorage";
-import { ReviewSessionFSRS } from "@/app/book/components/ReviewSessionFSRS";
-import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
+import { fetchBookJson } from "@/lib/client/book-api";
+import {
+  fetchBookJsonCached,
+  invalidateBookCache,
+} from "@/lib/client/book-api-cache";
+import { aggregateHourlyForDay } from "@/lib/client/reading-activity-storage";
+import { ReviewSessionFSRS } from "@/components/review/ReviewSessionFSRS";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
 import { HeroSection } from "./HeroSection";
 import { DailyQuests } from "./DailyQuests";
 import { WeeklySummary } from "./WeeklySummary";
@@ -87,6 +91,10 @@ const LOOP_STEP_MAP: Record<string, { step: LearningStep; stepNumber: StepNumber
 
 const DAY_MS = 86_400_000;
 
+// Cache keys for this page's independent server reads (WS3-022).
+const REVIEWS_ALL_KEY = "/app/api/book/me/reviews?mode=all";
+const STREAK_KEY = "/app/api/book/me/streak";
+
 /** Lite shape of an FSRS card row as returned by GET /me/reviews?mode=all. */
 type FSRSCardLite = { dueAt: string; lastReviewAt: string; reps: number };
 
@@ -125,17 +133,18 @@ function buildReviewDataFromCards(cards: FSRSCardLite[]): ReviewData {
   let dueTodayCount = 0;
   let upcomingThisWeekCount = 0;
 
+  // forecast always has 7 buckets (index 0..6); every index below is in-bounds.
   for (const card of cards) {
     const offset = dayOffsetFromToday(card.dueAt, todayMs);
     if (offset < 0) {
       overdueCount += 1;
-      forecast[0].count += 1;
+      forecast[0]!.count += 1;
     } else if (offset === 0) {
       dueTodayCount += 1;
-      forecast[0].count += 1;
+      forecast[0]!.count += 1;
     } else if (offset <= 7) {
       upcomingThisWeekCount += 1;
-      if (offset <= 6) forecast[offset].count += 1;
+      if (offset <= 6) forecast[offset]!.count += 1;
     }
   }
 
@@ -175,7 +184,8 @@ function buildProgressData(
   const activeBooks: ActiveBook[] = analytics.recentlyOpenedSnapshots.map(
     (snapshot) => {
       const loopStep = snapshot.currentLoopStep ?? "summary";
-      const { step, stepNumber } = LOOP_STEP_MAP[loopStep] ?? LOOP_STEP_MAP.summary;
+      // "summary" is a statically-defined key of LOOP_STEP_MAP, so the fallback is always present.
+      const { step, stepNumber } = LOOP_STEP_MAP[loopStep] ?? LOOP_STEP_MAP.summary!;
       return {
         id: snapshot.book.id,
         title: snapshot.book.title,
@@ -476,17 +486,11 @@ export function ProgressPage() {
 
   const viewerName = viewerIdentity.displayName || "Reader";
 
-  // Fetch real entitlement status. The route returns a NESTED shape
-  // ({ entitlement: { plan }, paywall: {...} }) — bookOk does not flatten an
-  // envelope — so the plan lives under `entitlement.plan`, not at the top level.
-  const [isPro, setIsPro] = useState(false);
-  useEffect(() => {
-    fetchBookJson<{ entitlement?: { plan?: string } }>(
-      "/app/api/book/me/entitlements"
-    )
-      .then((e) => setIsPro(e.entitlement?.plan === "PRO"))
-      .catch(() => {});
-  }, []);
+  // isPro derives from the dashboard aggregate's `entitlement.plan` (already
+  // loaded by useBookAnalytics) — no separate /me/entitlements round trip
+  // (WS3-023). The entitlement is CRITICAL dashboard data, so an outage surfaces
+  // as a dashboard error and NEVER silently collapses PRO to FREE.
+  const isPro = analytics?.isPro ?? false;
 
   // Source the KnowledgeReview counts, the "Review 5 concepts" quest, and the
   // Streak Shield count from the server (FSRS deck + streak store) so this page
@@ -496,13 +500,13 @@ export function ProgressPage() {
   const [reviewedTodayCount, setReviewedTodayCount] = useState(0);
   const [shieldsHeld, setShieldsHeld] = useState(0);
   useEffect(() => {
-    fetchBookJson<{ cards: FSRSCardLite[] }>("/app/api/book/me/reviews?mode=all")
+    fetchBookJsonCached<{ cards: FSRSCardLite[] }>(REVIEWS_ALL_KEY)
       .then(({ cards }) => {
         setReviewData(buildReviewDataFromCards(cards));
         setReviewedTodayCount(countReviewedToday(cards));
       })
       .catch(() => {});
-    fetchBookJson<{ shieldsHeld?: number }>("/app/api/book/me/streak")
+    fetchBookJsonCached<{ shieldsHeld?: number }>(STREAK_KEY)
       .then((s) => setShieldsHeld(s.shieldsHeld ?? 0))
       .catch(() => {});
   }, [refreshKey]);
@@ -544,24 +548,30 @@ export function ProgressPage() {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [analytics, viewerName, insightPointsPayload, badgeMilestones, isPro, reviewData, reviewedTodayCount, shieldsHeld, refreshKey]);
 
-  // Fetch daily reader metrics for active books.
+  // Fetch daily reader metrics for the active books in ONE batched request
+  // (WS3-023) instead of an HTTP fan-out of one /books/[id]/metrics call per book.
   const [readerMetrics, setReaderMetrics] = useState<Record<string, number>>({});
   useEffect(() => {
     if (!data?.activeBooks.length) return;
     const ids = data.activeBooks.map((b) => b.id);
-    Promise.allSettled(
-      ids.map((bookId) =>
-        fetchBookJson<{ readersToday?: number }>(
-          `/app/api/book/books/${encodeURIComponent(bookId)}/metrics`
-        ).then((res) => [bookId, res.readersToday ?? 0] as const)
-      )
-    ).then((results) => {
-      const map: Record<string, number> = {};
-      for (const r of results) {
-        if (r.status === "fulfilled") map[r.value[0]] = r.value[1];
-      }
-      setReaderMetrics(map);
-    });
+    let cancelled = false;
+    fetchBookJson<{ metrics?: Record<string, { readersToday?: number }> }>(
+      "/app/api/book/books/reader-metrics",
+      { method: "POST", body: JSON.stringify({ bookIds: ids }) }
+    )
+      .then((res) => {
+        if (cancelled) return;
+        const map: Record<string, number> = {};
+        for (const id of ids) {
+          const readersToday = res.metrics?.[id]?.readersToday;
+          if (typeof readersToday === "number") map[id] = readersToday;
+        }
+        setReaderMetrics(map);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
   }, [data?.activeBooks.length]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Allow switching primary book via ContinueLearningCard
@@ -583,23 +593,16 @@ export function ProgressPage() {
 
     const reordered = [...merged.activeBooks];
     const [selected] = reordered.splice(idx, 1);
-    reordered.unshift(selected);
+    if (selected !== undefined) reordered.unshift(selected); // idx guarded ≥ 0 and < length
     return { ...merged, activeBooks: reordered };
   }, [data, primaryBookId, readerMetrics]);
 
   // ── Determine which sections to show (progressive disclosure) ──
   const totalDaysWithData = displayData?.readingActivity.totalDaysWithData ?? 0;
-  const hasQuizData = (displayData?.weekSummary.quizAccuracy ?? null) !== null;
-  const hasCompletedChapters =
-    (displayData?.activeBooks.reduce((s, b) => s + b.completedChapters, 0) ??
-      0) > 0;
-  const isNewUser = totalDaysWithData < 2;
 
   // Recent badge for celebration banner
-  const recentBadgeName =
-    recentlyEarned.length > 0 ? recentlyEarned[0].name : null;
-  const recentBadgeId =
-    recentlyEarned.length > 0 ? recentlyEarned[0].id : null;
+  const recentBadgeName = recentlyEarned[0]?.name ?? null;
+  const recentBadgeId = recentlyEarned[0]?.id ?? null;
 
   // ── Loading state ──
   if (!onboardingHydrated || !hydrated || !onboarding.setupComplete) {
@@ -804,6 +807,10 @@ export function ProgressPage() {
           key={refreshKey}
           onClose={() => {
             setShowReviewSession(false);
+            // The session mutated the FSRS deck + streak store — drop their cached
+            // reads so the refreshKey-driven refetch pulls fresh data, not a hit.
+            invalidateBookCache(REVIEWS_ALL_KEY);
+            invalidateBookCache(STREAK_KEY);
             setRefreshKey((k) => k + 1);
           }}
         />

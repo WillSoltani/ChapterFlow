@@ -40,7 +40,7 @@ export default function MiniScenario({ onContinue }: MiniScenarioProps) {
         gap: 16,
       }}
     >
-      {sections.map((section, i) => (
+      {sections.map((section, _i) => (
         <motion.div
           key={section.label}
           variants={staggerItem}

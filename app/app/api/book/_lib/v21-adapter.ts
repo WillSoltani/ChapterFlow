@@ -30,6 +30,25 @@ import type {
  * still bundles the original v21 JSON via `app/book/lib/v21-adapter.ts`,
  * which keeps v21-only fields (hook, memorable lines) accessible to the
  * reader. The catalog stores the adapted v13-shape.
+ *
+ * ── Deliberate divergence from the CLIENT adapter (WS3-008) ────────────────
+ * A sibling adapter lives at `app/book/lib/v21-adapter.ts`. The two are NOT
+ * force-mergeable — they target different lifecycle STAGES and callers, so a
+ * shared implementation would change behavior for at least one of them. Only
+ * the TYPE families they emit are single-sourced (lib/book-package-types.ts).
+ * Concrete differences:
+ *   - Output stage: this server adapter emits the RAW (tone-keyed,
+ *     `{gentle,direct,competitive}`) shape via `toToneKeyed`; the client
+ *     adapter emits the RESOLVED (tone-flattened, `string`) reader shape.
+ *   - Caller: this feeds ingestion/validation/catalog and attaches `v21Extras`
+ *     ONTO the chapter; the client adapter exposes v21-only extras SEPARATELY
+ *     (`extractV21ChapterExtras`) for the reader.
+ *   - Default quiz `passingScorePercent`: 70 here vs 80 client-side.
+ *   - Server-only work done only here: `format`/`bloomsLevel`/`depthLevel`
+ *     passthrough, bookId kebab-normalization (`adaptBook`), and content-hashed
+ *     packageId derivation (`deriveStablePackageId`, which uses `node:crypto` —
+ *     a server-only dependency, the reason the shared home holds only TYPES).
+ * Keep the two in sync in spirit; do not collapse them.
  */
 
 function toToneKeyed(value: string): ToneKeyed {

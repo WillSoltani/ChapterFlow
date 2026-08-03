@@ -1,233 +1,59 @@
-export type VariantFamily = "EMH" | "PBC";
+import type { ProSource } from "@/lib/entitlement-types";
 
-export type VariantKey = "easy" | "medium" | "hard" | "precise" | "balanced" | "challenging";
+// ── BookPackage domain model (RAW / tone-keyed stage) ───────────────────────
+//
+// The BookPackage type family is single-sourced in `lib/book-package-types.ts`
+// (see WS3-008). This module is the RAW-stage surface: it re-exports the raw
+// (tone-keyed) definitions under their historical server names so every existing
+// `./types` consumer keeps working unchanged. The tone-FLATTENED reader stage
+// lives in `app/book/data/book-package-core.ts`. Do not redefine these here — edit
+// the canonical module.
+import type {
+  VariantFamily,
+  VariantKey,
+  ToneKeyed,
+  OneMinuteRecapToneKeyed,
+  SummaryBlock as ChapterSummaryBlock,
+  RawVariantContent as ChapterVariantContent,
+  RawQuizQuestion as BookPackageQuizQuestion,
+  RawQuiz as BookPackageQuiz,
+  RawExample as BookPackageExample,
+  RawReviewCard as ReviewCard,
+  RawImplementationPlan as ImplementationPlan,
+  V21ReaderPattern,
+  V21ExperiencePlan,
+  V21ChapterExtras,
+  RawChapter as BookPackageChapter,
+  BookPackageEdition,
+  RawBook as BookPackageBook,
+  ConceptNode,
+  ConceptEdge,
+  ConceptGraph,
+  RawBookPackage as BookPackage,
+} from "@/lib/book-package-types";
 
-export type ChapterSummaryBlock =
-  | {
-      type: "paragraph";
-      text: string;
-    }
-  | {
-      type: "bullet";
-      text: string;
-      detail?: string;
-    };
-
-/** Tone-keyed content: { gentle: string, direct: string, competitive: string } */
-export type ToneKeyed = {
-  gentle: string;
-  direct: string;
-  competitive: string;
-};
-
-export type OneMinuteRecapToneKeyed = ToneKeyed | {
-  retrieve: ToneKeyed;
-  connect: ToneKeyed;
-  preview: ToneKeyed;
-};
-
-export type ChapterVariantContent = {
-  importantSummary?: string;
-  summaryBullets?: string[];
-  summaryBlocks?: ChapterSummaryBlock[];
-  takeaways?: string[];
-  practice?: string[];
-  /** Modern format: tone-keyed chapter breakdown narrative */
-  chapterBreakdown?: ToneKeyed;
-  /** Modern format: tone-keyed takeaway objects */
-  keyTakeaways?: Array<{ point: ToneKeyed; moreDetails?: ToneKeyed }>;
-  /** Modern format: tone-keyed one-minute recap */
-  oneMinuteRecap?: OneMinuteRecapToneKeyed;
-  activationPrompt?: ToneKeyed;
-  selfCheckPrompt?: ToneKeyed;
-  selfCheckPrompts?: ToneKeyed[];
-  reflectionPrompts?: ToneKeyed[];
-  predictionPrompt?: ToneKeyed;
-};
-
-export type BookPackageQuizQuestion = {
-  questionId: string;
-  prompt?: string;
-  stem?: string;
-  choices?: string[];
-  options?: string[];
-  correctAnswerIndex?: number;
-  correctIndex?: number;
-  explanation?: string | ToneKeyed;
-  bloomsLevel?: string;
-  depthLevel?: string;
-};
-
-export type BookPackageQuiz = {
-  chapterId?: string;
-  chapterNumber?: number;
-  chapterTitle?: string;
-  title?: string;
-  passingScorePercent: number;
-  questions: BookPackageQuizQuestion[];
-  retryQuestions?: BookPackageQuizQuestion[];
-};
-
-export type BookPackageExample = {
-  exampleId?: string;
-  title?: string;
-  scenario: string | ToneKeyed;
-  whatToDo: string[] | ToneKeyed;
-  whyItMatters: string | ToneKeyed;
-  contexts?: string[];
-  category?: string;
-  format?: string;
-  endingType?: string;
-};
-
-/** Tone-keyed review card for spaced repetition */
-export type ReviewCard = {
-  cardId?: string;
-  front: ToneKeyed;
-  back: ToneKeyed;
-  difficulty?: "easy" | "medium" | "hard";
-};
-
-/** Tone-keyed implementation plan */
-export type ImplementationPlan = {
-  coreSkill?: ToneKeyed;
-  concreteAction?: ToneKeyed;
-  ifThenPlans?: Array<{
-    context: string;
-    plan: ToneKeyed;
-  }>;
-  ifThenPlan?: ToneKeyed;
-  twentyFourHourChallenge?: ToneKeyed;
-  weeklyPractice?: ToneKeyed;
-  friction?: ToneKeyed;
-  checkpoint?: ToneKeyed;
-};
-
-/**
- * v21-only chapter fields that have no v13/tone-keyed equivalent. The v21 → v13
- * adapter and validator carry these through unchanged so the reader can render
- * the hook banner, counterintuition, "try this now" directive, and memorable
- * lines. Absent for native v13 packages.
- */
-/** v21 behavior-change layer (Layer A). Sub-objects are surfaced only when
- *  complete (the adapter drops partial/empty shapes), so the reader contract is
- *  all-or-nothing per sub-object. Mirrors the client `V21ExperiencePlan`. */
-export type V21ReaderPattern = {
-  id: string;
-  label: string;
-  mapsToPlanIndex?: number;
-  mapsToExampleIndex?: number;
-};
-
-export type V21ExperiencePlan = {
-  failureRecovery?: {
-    normalizingLine: string;
-    cueQuestion: string;
-    options: string[];
-    repairLine: string;
-  };
-  transferPrompt?: {
-    prompt: string;
-    contexts: string[];
-  };
-  /** Optional "which pattern fits you?" personalization layer (RDRP*). */
-  behaviorLoop?: {
-    readerPatterns?: V21ReaderPattern[];
-  };
-};
-
-export type V21ChapterExtras = {
-  hook?: string;
-  counterintuition?: string;
-  tryThisNow?: string;
-  keyTakeaway?: string;
-  memorableLines?: Array<{ text: string; location?: string; why?: string }>;
-  experiencePlan?: V21ExperiencePlan;
-};
-
-export type BookPackageChapter = {
-  book?: {
-    bookId?: string;
-    title?: string;
-    author?: string;
-  };
-  chapterId: string;
-  number: number;
-  title: string;
-  readingTimeMinutes: number;
-  contentHash?: string;
-  contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
-  examples: BookPackageExample[];
-  quiz: BookPackageQuiz;
-  implementationPlan?: ImplementationPlan;
-  reviewCards?: ReviewCard[];
-  keyTakeawayCard?: ToneKeyed;
-  v21Extras?: V21ChapterExtras;
-};
-
-export type BookPackageEdition = {
-  name: string;
-  publishedYear?: number | null;
-  publisher?: string;
-  publishedDate?: string;
-  imprintFamily?: string[];
-  isbn10?: string;
-  isbn13?: string;
-  format?: string;
-  language?: string;
-  translator?: string;
-  translationYear?: number | null;
-  openLibraryEdition?: string;
-  sourceText?: string;
-  sourceProvenance?: string;
-};
-
-export type BookPackageBook = {
-  bookId: string;
-  title: string;
-  author: string;
-  categories: string[];
-  tags?: string[];
-  cover?: {
-    emoji?: string;
-    color?: string;
-  };
-  edition?: string | BookPackageEdition;
-  variantFamily: VariantFamily;
-  chapterRange?: string;
-};
-
-// ── Concept Dependency Graph ──────────────────────────────────────────────────
-
-export type ConceptNode = {
-  id: string;
-  label: string;
-  introducedIn: string;
-  summary?: string;
-};
-
-export type ConceptEdge = {
-  from: string;
-  to: string;
-  type: "prerequisite";
-};
-
-export type ConceptGraph = {
-  concepts: ConceptNode[];
-  edges: ConceptEdge[];
-  chapterIntroduces: Record<string, string[]>;
-  chapterRequires: Record<string, string[]>;
-};
-
-export type BookPackage = {
-  schemaVersion: string;
-  packageId: string;
-  createdAt: string;
-  contentOwner: string;
-  licenseNotes?: string;
-  book: BookPackageBook;
-  chapters: BookPackageChapter[];
-  conceptGraph?: ConceptGraph;
+export type {
+  VariantFamily,
+  VariantKey,
+  ToneKeyed,
+  OneMinuteRecapToneKeyed,
+  ChapterSummaryBlock,
+  ChapterVariantContent,
+  BookPackageQuizQuestion,
+  BookPackageQuiz,
+  BookPackageExample,
+  ReviewCard,
+  ImplementationPlan,
+  V21ReaderPattern,
+  V21ExperiencePlan,
+  V21ChapterExtras,
+  BookPackageChapter,
+  BookPackageEdition,
+  BookPackageBook,
+  ConceptNode,
+  ConceptEdge,
+  ConceptGraph,
+  BookPackage,
 };
 
 export type ChapterSummaryPayload = {
@@ -237,10 +63,10 @@ export type ChapterSummaryPayload = {
   readingTimeMinutes: number;
   contentVariants: Partial<Record<VariantKey, ChapterVariantContent>>;
   examples: BookPackageExample[];
-  implementationPlan?: ImplementationPlan;
-  reviewCards?: ReviewCard[];
-  keyTakeawayCard?: ToneKeyed;
-  v21Extras?: V21ChapterExtras;
+  implementationPlan?: ImplementationPlan | undefined;
+  reviewCards?: ReviewCard[] | undefined;
+  keyTakeawayCard?: ToneKeyed | undefined;
+  v21Extras?: V21ChapterExtras | undefined;
 };
 
 export type ChapterQuizPayload = {
@@ -249,7 +75,7 @@ export type ChapterQuizPayload = {
   title: string;
   passingScorePercent: number;
   questions: BookPackageQuizQuestion[];
-  retryQuestions?: BookPackageQuizQuestion[];
+  retryQuestions?: BookPackageQuizQuestion[] | undefined;
 };
 
 export type BookManifestChapter = {
@@ -283,13 +109,13 @@ export type BookCatalogItem = {
   categories: string[];
   tags: string[];
   cover?: {
-    emoji?: string;
-    color?: string;
-  };
+    emoji?: string | undefined;
+    color?: string | undefined;
+  } | undefined;
   variantFamily: VariantFamily;
   status: "DRAFT" | "PUBLISHED" | "ARCHIVED";
   latestVersion: number;
-  currentPublishedVersion?: number;
+  currentPublishedVersion?: number | undefined;
   updatedAt: string;
 };
 
@@ -303,60 +129,69 @@ export type BookVersionItem = {
   manifestKey: string;
   createdAt: string;
   createdBy: string;
-  publishedAt?: string;
-  publishedBy?: string;
+  publishedAt?: string | undefined;
+  publishedBy?: string | undefined;
 };
 
 export type BookUserEntitlement = {
   userId: string;
   plan: "FREE" | "PRO";
-  proStatus?: "inactive" | "active" | "past_due" | "canceled";
-  /** How the user obtained PRO — "stripe" for a paid Stripe subscription, "apple" for an App Store / StoreKit in-app subscription, "license" for a free-pass key, "flow_points" for a timed reward pass, "gift_code" for a gifted Pro window. license/flow_points/gift_code are time-limited and expire at read time; stripe/apple are driven by webhooks/notifications (see getUserEntitlement). */
-  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin";
+  proStatus?: "inactive" | "active" | "past_due" | "canceled" | undefined;
+  /** How the user obtained PRO. Single-sourced as `ProSource` in
+   *  lib/entitlement-types.ts so the client billing hook cannot drift from this
+   *  server definition (WS3-014). See that module for the per-value semantics. */
+  proSource?: ProSource | undefined;
   freeBookSlots: number;
   unlockedBookIds: string[];
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
   /** Stripe Price id of the current subscription (for plan reconciliation). */
-  stripePriceId?: string;
+  stripePriceId?: string | undefined;
   /** Stripe recurring interval ("month" | "year") of the current subscription. */
-  subscriptionInterval?: string;
-  currentPeriodEnd?: string;
+  subscriptionInterval?: string | undefined;
+  currentPeriodEnd?: string | undefined;
   /** True if the Stripe subscription is set to cancel at the end of the current period (no auto-renew) */
-  cancelAtPeriodEnd?: boolean;
+  cancelAtPeriodEnd?: boolean | undefined;
   /** The license key code that granted PRO access (if proSource === "license") */
-  licenseKey?: string;
+  licenseKey?: string | undefined;
   /** ISO date when the license-based PRO expires (if proSource === "license") */
-  licenseExpiresAt?: string;
+  licenseExpiresAt?: string | undefined;
   /** Billing intelligence — populated from Stripe webhooks (null for license/flow_points sources) */
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  discountCouponId?: string;
-  failedPaymentLastReason?: string;
+  billingCountry?: string | undefined;
+  billingCurrency?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  lastInvoiceAmountCents?: number | undefined;
+  lastInvoiceCurrency?: string | undefined;
+  lastInvoicePaidAt?: string | undefined;
+  discountCouponId?: string | undefined;
+  failedPaymentLastReason?: string | undefined;
   /**
    * High-water mark of the most recent Stripe webhook `event.created` (epoch
    * seconds) applied to this entitlement. Set by updateUserEntitlementFromStripe
    * to reject out-of-order/reordered Stripe events; see
    * stripe-entitlement-write-core.ts. Dispute writes do not touch it.
    */
-  lastStripeEventAt?: number;
+  lastStripeEventAt?: number | undefined;
   /** Apple `originalTransactionId` — stable identity of the App Store subscription (if proSource === "apple") */
-  appleOriginalTransactionId?: string;
+  appleOriginalTransactionId?: string | undefined;
   /** Apple product id of the current App Store subscription (if proSource === "apple") */
-  appleProductId?: string;
+  appleProductId?: string | undefined;
   /**
    * High-water mark of the most recent Apple `signedDate` (epoch MILLISECONDS)
    * applied to this entitlement. Set by updateUserEntitlementFromApple to reject
    * out-of-order App Store Server Notifications / re-verifications; see
    * apple-entitlement-write-core.ts. The Apple mirror of lastStripeEventAt.
    */
-  lastAppleSignedDate?: number;
+  lastAppleSignedDate?: number | undefined;
+  /**
+   * Sticky chargeback marker set by charge.dispute.created and cleared only when
+   * the dispute is won. Blocks Stripe re-activation (the webhook grant write is
+   * refused by attribute_not_exists(disputeOpen)) and new Stripe Checkout until
+   * the dispute is resolved. Absent when no dispute is open.
+   */
+  disputeOpen?: boolean | undefined;
   updatedAt: string;
 };
 
@@ -366,11 +201,11 @@ export type LicenseKeyItem = {
   plan: "PRO";
   validMonths: number;
   status: "available" | "redeemed" | "revoked";
-  redeemedBy?: string;
-  redeemedAt?: string;
+  redeemedBy?: string | undefined;
+  redeemedAt?: string | undefined;
   createdAt: string;
   /** Optional human note for tracking (e.g., "Given to John Doe") */
-  note?: string;
+  note?: string | undefined;
 };
 
 export type BookUserProgress = {
@@ -383,15 +218,15 @@ export type BookUserProgress = {
   unlockedThroughChapterNumber: number;
   completedChapters: number[];
   bestScoreByChapter: Record<string, number>;
-  lastOpenedAt?: string;
-  lastActiveAt?: string;
-  streakDays?: number;
-  preferredVariant?: VariantKey;
+  lastOpenedAt?: string | undefined;
+  lastActiveAt?: string | undefined;
+  streakDays?: number | undefined;
+  preferredVariant?: VariantKey | undefined;
   // Monotonic optimistic-concurrency counter for the canonical PROGRESS#<bookId> item.
   // Bumped on every quiz-pass mutation and used as the write guard so a stale full-row
   // write can't clobber a concurrently-advanced row. Absent on legacy items (treated
   // as 0). See progress-write-core.ts.
-  progressRev?: number;
+  progressRev?: number | undefined;
   updatedAt: string;
   createdAt: string;
 };
@@ -400,7 +235,7 @@ export type QuizAttemptItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   quizId: string;
   attemptNumber: number;
   passingScorePercent: number;
@@ -409,7 +244,7 @@ export type QuizAttemptItem = {
   totalQuestions: number;
   passed: boolean;
   cooldownSeconds: number;
-  nextEligibleAttemptAt?: string | null;
+  nextEligibleAttemptAt?: string | null | undefined;
   unlockedNextChapter: boolean;
   responses: Array<{
     questionId: string;
@@ -424,7 +259,7 @@ export type QuizAttemptItem = {
     correctIndex: number;
     isCorrect: boolean;
   }>;
-  timeSpentSeconds?: number;
+  timeSpentSeconds?: number | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -433,7 +268,7 @@ export type BookUserQuizStateItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   quizId: string;
   attemptsCount: number;
   failureStreak: number;
@@ -442,13 +277,13 @@ export type BookUserQuizStateItem = {
   lastScorePercent: number;
   lastCorrectCount: number;
   lastTotalQuestions: number;
-  lastAttemptAt?: string;
-  lastAttemptNumber?: number;
-  nextEligibleAttemptAt?: string | null;
-  passedAt?: string;
+  lastAttemptAt?: string | undefined;
+  lastAttemptNumber?: number | undefined;
+  nextEligibleAttemptAt?: string | null | undefined;
+  passedAt?: string | undefined;
   unlockedNextChapter: boolean;
   /** ISO timestamp set when the loop pipeline (streak/tier/achievement/spark) finished cleanly. */
-  loopPipelineCompletedAt?: string;
+  loopPipelineCompletedAt?: string | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -461,7 +296,7 @@ export type BookUserScenarioSubmissionItem = {
   submissionId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   title: string;
   scenario: string;
   whatToDo: string;
@@ -471,11 +306,11 @@ export type BookUserScenarioSubmissionItem = {
   pointsAwarded: number;
   createdAt: string;
   updatedAt: string;
-  reviewedAt?: string;
-  reviewedBy?: string;
-  reviewNotes?: string;
-  userEmail?: string;
-  userName?: string;
+  reviewedAt?: string | undefined;
+  reviewedBy?: string | undefined;
+  reviewNotes?: string | undefined;
+  userEmail?: string | undefined;
+  userName?: string | undefined;
   aiValidation?: {
     decision: "auto_approve" | "auto_reject" | "queue_for_review";
     reason: string;
@@ -496,8 +331,8 @@ export type BookScenarioLookupItem = {
   createdAt: string;
   status: ScenarioSubmissionStatus;
   pointsAwarded: number;
-  queuedAt?: string;
-  approvedAt?: string;
+  queuedAt?: string | undefined;
+  approvedAt?: string | undefined;
   updatedAt: string;
 };
 
@@ -506,7 +341,7 @@ export type BookApprovedScenarioItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   title: string;
   scenario: string;
   whatToDo: string;
@@ -520,10 +355,10 @@ export type BookApprovedScenarioItem = {
 export type BookUserEngagementItem = {
   userId: string;
   points: number;
-  lifetimeEarned?: number;
-  lifetimeSpent?: number;
-  totalEarnEvents?: number;
-  totalSpendEvents?: number;
+  lifetimeEarned?: number | undefined;
+  lifetimeSpent?: number | undefined;
+  totalEarnEvents?: number | undefined;
+  totalSpendEvents?: number | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -700,8 +535,8 @@ export type BookUserFlowPointsLedgerItem = {
   amount: number;
   sourceType: FlowPointsSourceType;
   sourceId: string;
-  rewardId?: FlowPointsRewardId;
-  metadata?: Record<string, unknown>;
+  rewardId?: FlowPointsRewardId | undefined;
+  metadata?: Record<string, unknown> | undefined;
   createdAt: string;
   updatedAt: string;
 };
@@ -761,10 +596,10 @@ export type BookUserReferralClaimItem = {
   inviteCode: string;
   status: "pending" | "activated" | "paid" | "blocked" | "expired";
   claimedAt: string;
-  activationQualifiedAt?: string;
-  activationRewardedAt?: string;
-  proRewardedAt?: string;
-  blockedReason?: string;
+  activationQualifiedAt?: string | undefined;
+  activationRewardedAt?: string | undefined;
+  proRewardedAt?: string | undefined;
+  blockedReason?: string | undefined;
   updatedAt: string;
 };
 
@@ -784,9 +619,9 @@ export type BookRiskEventItem = {
   eventType: BookRiskEventType;
   userId: string;
   createdAt: string;
-  emailVerified?: boolean;
-  deviceId?: string;
-  metadata?: Record<string, unknown>;
+  emailVerified?: boolean | undefined;
+  deviceId?: string | undefined;
+  metadata?: Record<string, unknown> | undefined;
 };
 
 export type BookUserSettingsItem = {
@@ -802,9 +637,9 @@ export type AccountStatusItem = {
   userId: string;
   status: AccountStatus;
   statusChangedAt: string;
-  statusReason?: string;
-  previousPlan?: "FREE" | "PRO";
-  previousProSource?: string;
+  statusReason?: string | undefined;
+  previousPlan?: "FREE" | "PRO" | undefined;
+  previousProSource?: string | undefined;
 };
 
 /**
@@ -814,11 +649,11 @@ export type AccountStatusItem = {
 export type AccountStatusChangeItem = {
   userId: string;
   status: AccountStatus;
-  previousStatus?: AccountStatus | null;
+  previousStatus?: AccountStatus | null | undefined;
   changedAt: string;
   /** "self" | "admin:<adminUserId>" | "system" */
   changedBy: string;
-  reason?: string;
+  reason?: string | undefined;
 };
 
 export type OpsFailureKind =
@@ -845,15 +680,15 @@ export type OpsFailureItem = {
   /** Where the failure occurred, e.g. "account_delete" | "account_deactivate". */
   context: string;
   userId: string;
-  subscriptionId?: string;
-  stripeCustomerId?: string;
-  errorCode?: string;
-  errorMessage?: string;
+  subscriptionId?: string | undefined;
+  stripeCustomerId?: string | undefined;
+  errorCode?: string | undefined;
+  errorMessage?: string | undefined;
   createdAt: string;
-  resolvedAt?: string;
+  resolvedAt?: string | undefined;
   /** Admin userId who resolved it (or "auto" when a retry succeeded). */
-  resolvedBy?: string;
-  resolutionNote?: string;
+  resolvedBy?: string | undefined;
+  resolutionNote?: string | undefined;
 };
 
 export type BookUserSavedBookItem = {
@@ -861,9 +696,9 @@ export type BookUserSavedBookItem = {
   bookId: string;
   savedAt: string;
   updatedAt: string;
-  source?: string;
-  priority?: number;
-  pinned?: boolean;
+  source?: string | undefined;
+  priority?: number | undefined;
+  pinned?: boolean | undefined;
 };
 
 export type BookUserBookStateItem = {
@@ -884,7 +719,7 @@ export type BookUserChapterStateItem = {
   userId: string;
   bookId: string;
   chapterNumber: number;
-  chapterId?: string;
+  chapterId?: string | undefined;
   state: Record<string, unknown>;
   createdAt: string;
   updatedAt: string;
@@ -895,7 +730,7 @@ export type BookUserReadingDayItem = {
   dayKey: string;
   totalActiveMs: number;
   updatedAt: string;
-  lastActivityAt?: string;
+  lastActivityAt?: string | undefined;
 };
 
 export type BookUserBadgeAwardItem = {
@@ -903,7 +738,7 @@ export type BookUserBadgeAwardItem = {
   badgeId: string;
   earnedAt: string;
   updatedAt: string;
-  tier?: string;
+  tier?: string | undefined;
 };
 
 // ── FSRS Spaced Repetition (§ Algorithm Feature 4) ──────────────────────────
@@ -995,7 +830,7 @@ export type BookUserCommitmentItem = {
   status: CommitmentStatus;
   followThroughReflection: string | null;
   followThroughSubmittedAt: string | null;
-  outcome?: CommitmentOutcome | null;
+  outcome?: CommitmentOutcome | null | undefined;
   ipAwarded: number;
   notificationSentAt: string | null;
   createdAt: string;
@@ -1076,9 +911,9 @@ export type BookUserShareEventItem = {
   shareId: string;
   cardType: "chapter" | "badge" | "streak" | "book";
   destination: "clipboard" | "twitter" | "linkedin" | "download";
-  bookId?: string;
-  chapterNumber?: number;
-  badgeId?: string;
+  bookId?: string | undefined;
+  chapterNumber?: number | undefined;
+  badgeId?: string | undefined;
   referralCode: string;
   createdAt: string;
 };

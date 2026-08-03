@@ -27,8 +27,28 @@ env:
   AWS_REGION: us-east-1
 
 jobs:
+  # workflow_call inputs are strings, so reject anything outside the three
+  # configured GitHub Environments before a deployment job can bind an
+  # environment, receive its secrets, or request an OIDC token.
+  validate-environment:
+    name: Validate deployment environment
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions: {}
+    env:
+      DEPLOY_ENVIRONMENT: ${{ inputs.environment }}
+    steps:
+      - name: Require a configured environment
+        run: |
+          set -euo pipefail
+          case "$DEPLOY_ENVIRONMENT" in
+            dev|staging|prod) ;;
+            *) echo "::error::invalid environment '$DEPLOY_ENVIRONMENT'"; exit 1 ;;
+          esac
+
   deploy-app:
     name: Frontend stack (${{ inputs.environment }})
+    needs: validate-environment
     runs-on: ubuntu-latest
     timeout-minutes: 40
     environment: ${{ inputs.environment }}
@@ -40,7 +60,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version-file: ".nvmrc"
           cache: npm
 
       - name: Resolve env/stack names
@@ -81,6 +101,35 @@ jobs:
 
       - name: Build OpenNext (includes Next.js build)
         run: npx open-next build
+        env:
+          # NEXT_PUBLIC_* values are compiled into the browser bundle. They
+          # belong at build time and are never injected into the server Lambda.
+          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
+
+      # Raw Cognito subject IDs exist only in this process environment. The
+      # helper validates canonical UUIDs and writes one-way SHA-256 values to
+      # GITHUB_ENV; CDK/CloudFormation/Lambda configuration never receive raw
+      # account identifiers. Error output is code-only.
+      - name: Derive protected TestFlight QA subject hashes
+        env:
+          APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED: ${{ vars.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED || '0' }}
+          APPLE_IAP_TESTFLIGHT_QA_USER_IDS: ${{ vars.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED == '1' && secrets.APPLE_IAP_TESTFLIGHT_QA_USER_IDS || '' }}
+        run: |
+          set -euo pipefail
+          case "$APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED" in
+            1)
+              HASHES="$(node --import tsx scripts/ci/hash-apple-testflight-qa-users.ts)"
+              echo "::add-mask::$HASHES"
+              echo "APPLE_IAP_TESTFLIGHT_QA_USER_HASHES=$HASHES" >> "$GITHUB_ENV"
+              ;;
+            0|"")
+              echo "APPLE_IAP_TESTFLIGHT_QA_USER_HASHES=" >> "$GITHUB_ENV"
+              ;;
+            *)
+              echo "::error::E_APPLE_IAP_TESTFLIGHT_FLAG_INVALID"
+              exit 1
+              ;;
+          esac
 
       # The server reads authored book packages from S3 at runtime (quiz/audio/ask)
       # instead of bundling all ~37.6 MB into the ServerFn (which would exceed
@@ -101,35 +150,50 @@ jobs:
           CDK_DEFAULT_ACCOUNT: ${{ secrets.AWS_ACCOUNT_ID }}
           CHAPTERFLOW_ENV: ${{ env.CHAPTERFLOW_ENV }}
           CHAPTERFLOW_COMMIT_SHA: ${{ github.sha }}
+          CHAPTERFLOW_VALIDATE_APPLE_IAP_CONFIG: '1'
           # App + domain
           CHAPTERFLOW_APP_BASE_URL: ${{ secrets.CHAPTERFLOW_APP_BASE_URL }}
           CHAPTERFLOW_DOMAIN_NAME: ${{ secrets.CHAPTERFLOW_DOMAIN_NAME }}
+          CHAPTERFLOW_HOSTED_ZONE_ID: ${{ vars.CHAPTERFLOW_HOSTED_ZONE_ID }}
           # Cognito
           COGNITO_DOMAIN: ${{ secrets.COGNITO_DOMAIN }}
+          COGNITO_CUSTOM_DOMAIN: ${{ secrets.COGNITO_CUSTOM_DOMAIN }}
           COGNITO_CLIENT_ID: ${{ secrets.COGNITO_CLIENT_ID }}
           COGNITO_REGION: ${{ secrets.COGNITO_REGION }}
           COGNITO_USER_POOL_ID: ${{ secrets.COGNITO_USER_POOL_ID }}
           COGNITO_REDIRECT_URI: ${{ secrets.COGNITO_REDIRECT_URI }}
           COGNITO_LOGOUT_REDIRECT_URI: ${{ secrets.COGNITO_LOGOUT_REDIRECT_URI }}
-          AUTH_STATE_SECRET: ${{ secrets.AUTH_STATE_SECRET }}
           AUTH_COOKIE_DOMAIN: ${{ secrets.AUTH_COOKIE_DOMAIN }}
+          # Origin lock (WS6-002). The shared secret CloudFront injects as
+          # x-origin-verify and middleware/the image wrapper enforce; prod synth
+          # REQUIRES it (>=32 chars — bin/app.ts fails closed without it). For a
+          # first observe-only rollout set the environment variable
+          # CHAPTERFLOW_ORIGIN_VERIFY_MODE=log (Settings → Environments → <env>
+          # → Variables) — mismatches log `origin_verify_mismatch` but requests
+          # proceed; after confirming CloudFront traffic carries the header,
+          # delete the variable and re-deploy to enforce.
+          CHAPTERFLOW_ORIGIN_VERIFY_SECRET: ${{ secrets.CHAPTERFLOW_ORIGIN_VERIFY_SECRET }}
+          CHAPTERFLOW_ORIGIN_VERIFY_MODE: ${{ vars.CHAPTERFLOW_ORIGIN_VERIFY_MODE || '' }}
+          # StoreKit / native mobile configuration (nonsecret, environment-bound)
+          APPLE_IAP_BUNDLE_ID: ${{ vars.APPLE_IAP_BUNDLE_ID }}
+          APPLE_IAP_APP_APPLE_ID: ${{ vars.APPLE_IAP_APP_APPLE_ID }}
+          APPLE_IAP_SUBSCRIPTION_GROUP_ID: ${{ vars.APPLE_IAP_SUBSCRIPTION_GROUP_ID }}
+          IOS_STOREKIT_PRODUCT_IDS: ${{ vars.IOS_STOREKIT_PRODUCT_IDS }}
+          IOS_APP_STORE_URL: ${{ vars.IOS_APP_STORE_URL }}
+          APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED: ${{ vars.APPLE_IAP_TESTFLIGHT_SANDBOX_ENABLED || '0' }}
+          # APPLE_IAP_TESTFLIGHT_QA_USER_HASHES is inherited from GITHUB_ENV
+          # after the one-way derivation step; raw subjects never cross CDK.
           # Stripe
-          BOOK_STRIPE_SECRET_KEY: ${{ secrets.BOOK_STRIPE_SECRET_KEY }}
-          BOOK_STRIPE_WEBHOOK_SECRET: ${{ secrets.BOOK_STRIPE_WEBHOOK_SECRET }}
           BOOK_STRIPE_PRICE_ID: ${{ secrets.BOOK_STRIPE_PRICE_ID }}
           BOOK_STRIPE_PRICE_ID_ANNUAL: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL }}
           BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT: ${{ secrets.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT }}
-          NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY }}
-          # AI providers
-          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          ELEVENLABS_API_KEY: ${{ secrets.ELEVENLABS_API_KEY }}
           # Same-origin / CSRF guard (#6/#293). Defaults to "1" (ENFORCE) when the
-          # variable is unset. Set the environment variable CSRF_ORIGIN_ENFORCE=0
+          # variable is unset. Dev/staging may set CSRF_ORIGIN_ENFORCE=0
           # (Settings → Environments → <env> → Variables, or `gh variable set
-          # CSRF_ORIGIN_ENFORCE --env <env> --body 0`) to bring a deploy up in
-          # OBSERVE-ONLY mode — rejections log `csrf_origin_rejected`/
-          # `csrf_origin_observe_only` but requests proceed. After confirming no
-          # legitimate host trips a 403, delete the variable and re-deploy to enforce.
+          # CSRF_ORIGIN_ENFORCE --env <env> --body 0`) for an OBSERVE-ONLY
+          # validation window, then delete the variable and re-deploy to enforce.
+          # Production always enforces and ignores every off spelling; there is no
+          # production break-glass bypass.
           CSRF_ORIGIN_ENFORCE: ${{ vars.CSRF_ORIGIN_ENFORCE || '1' }}
 
       - name: Resolve CloudFront distribution
@@ -145,8 +209,13 @@ jobs:
 
       - name: Invalidate CloudFront cache
         run: |
-          aws cloudfront create-invalidation \
-            --distribution-id "${{ steps.cf.outputs.distribution_id }}" --paths "/*"
+          set -euo pipefail
+          INVALIDATION_ID=$(aws cloudfront create-invalidation \
+            --distribution-id "${{ steps.cf.outputs.distribution_id }}" --paths "/*" \
+            --query 'Invalidation.Id' --output text)
+          aws cloudfront wait invalidation-completed \
+            --distribution-id "${{ steps.cf.outputs.distribution_id }}" \
+            --id "${INVALIDATION_ID}"
 
       # BLOCKING health gate — a non-2xx on any critical surface fails the deploy.
       - name: Health gate
@@ -156,7 +225,7 @@ jobs:
           echo "Health-checking ${APP_URL} (allowing warm-up)..."
           sleep 10
           fail=0
-          for p in "/" "/pricing" "/api/health"; do
+          for p in "/" "/pricing" "/api/health" "/app/api/book/config/ios"; do
             code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 \
               --retry 4 --retry-delay 10 --retry-all-errors "${APP_URL}${p}")
             echo "  ${p} -> HTTP ${code}"

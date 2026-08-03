@@ -156,12 +156,12 @@ export function UsersClient() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Search by email"
-                  className="w-full sm:w-72 rounded-lg border border-(--cf-border) bg-(--cf-surface) py-1.5 pl-8 pr-3 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
+                  className="w-full sm:w-72 rounded-lg border border-(--cf-border) bg-(--cf-surface) py-1.5 pl-8 pr-3 text-cf-label-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
                 />
               </div>
               <button
                 type="submit"
-                className="rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
+                className="rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
               >
                 Search
               </button>
@@ -175,7 +175,7 @@ export function UsersClient() {
                 )
               }
               disabled={users.length === 0}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
               title="Export visible rows as CSV"
             >
               <Download className="h-3.5 w-3.5" />
@@ -199,9 +199,9 @@ export function UsersClient() {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-[12px]">
+            <table className="w-full min-w-[640px] text-cf-label-sm">
               <thead>
-                <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Email</th>
                   <th className="py-2 pr-3">Plan</th>
                   <th className="py-2 pr-3 text-right">IP</th>
@@ -231,7 +231,7 @@ export function UsersClient() {
                   >
                     <td className="py-2 pr-3 text-(--cf-text-1)" title={u.userId}>
                       {u.email ?? (
-                        <span className="font-mono text-[11px] text-(--cf-text-3)">
+                        <span className="font-mono text-cf-caption text-(--cf-text-3)">
                           {u.userId.slice(0, 12)}…
                         </span>
                       )}
@@ -240,7 +240,7 @@ export function UsersClient() {
                       <div className="flex items-center gap-1.5">
                         <span
                           className={[
-                            "inline-block rounded-md px-1.5 py-0.5 text-[11px] font-medium",
+                            "inline-block rounded-md px-1.5 py-0.5 text-cf-caption font-medium",
                             u.plan === "PRO"
                               ? "border border-(--cf-accent-border) bg-(--cf-accent-soft) text-(--cf-accent)"
                               : "border border-(--cf-border) bg-(--cf-surface-muted) text-(--cf-text-soft)",
@@ -341,7 +341,7 @@ function UserDetailDrawer({
             <h2 className="truncate text-base font-semibold tracking-tight text-(--cf-text-1)">
               {user.email ?? user.userId}
             </h2>
-            <p className="font-mono text-[11px] text-(--cf-text-3)">{user.userId}</p>
+            <p className="font-mono text-cf-caption text-(--cf-text-3)">{user.userId}</p>
           </div>
           <button
             type="button"
@@ -418,17 +418,17 @@ function UserDetailDrawer({
                     {detail.progress.map((p) => (
                       <div
                         key={p.bookId}
-                        className="cf-panel-muted rounded-lg px-3 py-2 text-[12px]"
+                        className="cf-panel-muted rounded-lg px-3 py-2 text-cf-label-sm"
                       >
                         <div className="flex items-center justify-between">
-                          <span className="font-mono text-[11px] text-(--cf-text-2)">
+                          <span className="font-mono text-cf-caption text-(--cf-text-2)">
                             {p.bookId}
                           </span>
                           <span className="text-(--cf-text-3)">
                             ch{p.currentChapterNumber} · unlocked {p.unlockedThroughChapterNumber}
                           </span>
                         </div>
-                        <p className="mt-0.5 text-[11px] text-(--cf-text-soft)">
+                        <p className="mt-0.5 text-cf-caption text-(--cf-text-soft)">
                           {p.completedChapters.length} completed · last active{" "}
                           {formatRelative(p.lastActiveAt)}
                           {p.preferredVariant ? ` · variant ${p.preferredVariant}` : ""}
@@ -441,10 +441,10 @@ function UserDetailDrawer({
 
               <Section title={`Recent events (${detail.events.length})`}>
                 {detail.events.length === 0 ? (
-                  <p className="text-[12px] text-(--cf-text-soft)">No recent events.</p>
+                  <p className="text-cf-label-sm text-(--cf-text-soft)">No recent events.</p>
                 ) : (
                   <div className="cf-panel-muted max-h-80 overflow-y-auto rounded-lg">
-                    <table className="w-full text-[11px]">
+                    <table className="w-full text-cf-caption">
                       <tbody>
                         {detail.events.map((e) => (
                           <tr
@@ -545,13 +545,13 @@ function AccountLifecycleSection({
     <Section title="Account lifecycle">
       <div className="space-y-3">
         <div className="flex items-center gap-2">
-          <span className={`inline-flex rounded-md border px-1.5 py-0.5 text-[11px] font-medium ${statusStyle}`}>
+          <span className={`inline-flex rounded-md border px-1.5 py-0.5 text-cf-caption font-medium ${statusStyle}`}>
             {status}
           </span>
         </div>
 
         {err && (
-          <div className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) p-2 text-[12px] text-(--cf-danger-text)">
+          <div className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) p-2 text-cf-label-sm text-(--cf-danger-text)">
             {err}
           </div>
         )}
@@ -562,7 +562,7 @@ function AccountLifecycleSection({
               type="button"
               disabled={busy !== null}
               onClick={() => runStatus("reactivate")}
-              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-cf-label-sm font-medium text-(--cf-text-1) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
             >
               <RotateCcw className="h-3.5 w-3.5" /> Reactivate
             </button>
@@ -572,7 +572,7 @@ function AccountLifecycleSection({
               type="button"
               disabled={busy !== null}
               onClick={() => runStatus("deactivate")}
-              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
+              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2.5 py-1 text-cf-label-sm font-medium text-(--cf-text-2) transition hover:bg-(--cf-surface-muted) disabled:opacity-50"
             >
               <UserX className="h-3.5 w-3.5" /> Deactivate
             </button>
@@ -582,7 +582,7 @@ function AccountLifecycleSection({
               type="button"
               disabled={busy !== null}
               onClick={() => runStatus("delete")}
-              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-danger-border) bg-(--cf-surface) px-2.5 py-1 text-[12px] font-medium text-(--cf-danger-text) transition hover:bg-(--cf-danger-soft) disabled:opacity-50"
+              className="inline-flex items-center gap-1 rounded-lg border border-(--cf-danger-border) bg-(--cf-surface) px-2.5 py-1 text-cf-label-sm font-medium text-(--cf-danger-text) transition hover:bg-(--cf-danger-soft) disabled:opacity-50"
             >
               <Trash2 className="h-3.5 w-3.5" /> Mark deleted
             </button>
@@ -591,7 +591,7 @@ function AccountLifecycleSection({
             type="button"
             disabled={busy !== null}
             onClick={() => setEraseOpen((v) => !v)}
-            className="inline-flex items-center gap-1 rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2.5 py-1 text-[12px] font-semibold text-(--cf-danger-text) transition hover:opacity-90 disabled:opacity-50"
+            className="inline-flex items-center gap-1 rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2.5 py-1 text-cf-label-sm font-semibold text-(--cf-danger-text) transition hover:opacity-90 disabled:opacity-50"
           >
             <ShieldAlert className="h-3.5 w-3.5" /> Erase permanently…
           </button>
@@ -599,7 +599,7 @@ function AccountLifecycleSection({
 
         {eraseOpen && (
           <div className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft)/40 p-3">
-            <p className="text-[12px] text-(--cf-danger-text)">
+            <p className="text-cf-label-sm text-(--cf-danger-text)">
               Irreversibly erases this user across DynamoDB, analytics, Stripe, and Cognito. Type{" "}
               <span className="font-mono font-semibold">ERASE</span> to confirm.
             </p>
@@ -608,13 +608,13 @@ function AccountLifecycleSection({
                 value={eraseConfirm}
                 onChange={(e) => setEraseConfirm(e.target.value.toUpperCase())}
                 placeholder="ERASE"
-                className="w-32 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[12px] font-mono text-(--cf-text-1) focus:border-(--cf-danger-border) focus:outline-none"
+                className="w-32 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-label-sm font-mono text-(--cf-text-1) focus:border-(--cf-danger-border) focus:outline-none"
               />
               <button
                 type="button"
                 disabled={eraseConfirm !== "ERASE" || busy !== null}
                 onClick={runErase}
-                className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2.5 py-1 text-[12px] font-semibold text-(--cf-danger-text) transition hover:opacity-90 disabled:opacity-40"
+                className="rounded-lg border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2.5 py-1 text-cf-label-sm font-semibold text-(--cf-danger-text) transition hover:opacity-90 disabled:opacity-40"
               >
                 {busy === "erase" ? "Erasing…" : "Erase now"}
               </button>
@@ -626,7 +626,7 @@ function AccountLifecycleSection({
 
         {history.length > 0 && (
           <div className="cf-panel-muted max-h-56 overflow-y-auto rounded-lg">
-            <table className="w-full text-[11px]">
+            <table className="w-full text-cf-caption">
               <tbody>
                 {history.map((h, i) => (
                   <tr key={i} className="border-b border-(--cf-border)/40 last:border-0">
@@ -652,7 +652,7 @@ function AccountLifecycleSection({
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div>
-      <h3 className="mb-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-(--cf-text-soft)">
+      <h3 className="mb-2 text-cf-caption font-semibold uppercase tracking-[0.08em] text-(--cf-text-soft)">
         {title}
       </h3>
       {children}
@@ -688,7 +688,7 @@ function formatCents(value: unknown, currency: unknown): string {
  */
 function EntitlementView({ entitlement }: { entitlement: Record<string, unknown> }) {
   const e = entitlement;
-  const rows: Array<{ label: string; value: string; hint?: string }> = [
+  const rows: Array<{ label: string; value: string; hint?: string | undefined }> = [
     { label: "Plan", value: asString(e.plan) },
     { label: "PRO status", value: asString(e.proStatus) },
     { label: "PRO source", value: asString(e.proSource) },
@@ -753,7 +753,7 @@ function EraseSummaryView({ summary }: { summary: Record<string, unknown> }) {
     <div className="space-y-2">
       <div
         className={[
-          "rounded-lg border px-3 py-2 text-[12px] font-medium",
+          "rounded-lg border px-3 py-2 text-cf-label-sm font-medium",
           partial
             ? "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)"
             : "border-(--cf-success-border) bg-(--cf-success-soft) text-(--cf-success-text)",
@@ -776,10 +776,10 @@ function EraseSummaryView({ summary }: { summary: Record<string, unknown> }) {
 
       {warnings.length > 0 && (
         <div className="rounded-lg border border-(--cf-warning-border) bg-(--cf-warning-soft)/50 p-2.5">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-(--cf-warning-text)">
+          <p className="text-cf-caption font-semibold uppercase tracking-[0.08em] text-(--cf-warning-text)">
             Residual warnings
           </p>
-          <ul className="mt-1 list-disc space-y-0.5 pl-4 text-[12px] text-(--cf-warning-text)">
+          <ul className="mt-1 list-disc space-y-0.5 pl-4 text-cf-label-sm text-(--cf-warning-text)">
             {warnings.map((w, i) => (
               <li key={i}>{w}</li>
             ))}
@@ -796,10 +796,10 @@ function EraseSummaryView({ summary }: { summary: Record<string, unknown> }) {
 function RawDetails({ data }: { data: unknown }) {
   return (
     <details className="cf-panel-muted rounded-lg">
-      <summary className="cursor-pointer select-none px-3 py-2 text-[11px] font-medium text-(--cf-text-soft) transition hover:text-(--cf-text-2)">
+      <summary className="cursor-pointer select-none px-3 py-2 text-cf-caption font-medium text-(--cf-text-soft) transition hover:text-(--cf-text-2)">
         Show raw
       </summary>
-      <pre className="overflow-x-auto px-3 pb-3 text-[11px] text-(--cf-text-2)">
+      <pre className="overflow-x-auto px-3 pb-3 text-cf-caption text-(--cf-text-2)">
         {JSON.stringify(data, null, 2)}
       </pre>
     </details>

@@ -1,662 +1,43 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import {
-  motion,
-  AnimatePresence,
-  useMotionValue,
-  useTransform,
-  useAnimation,
-  useReducedMotion,
-  type PanInfo,
-} from "framer-motion";
-import { X, Heart, Clock, Check, ArrowRight } from "lucide-react";
-import { useOnboarding } from "@/app/onboarding/hooks/useOnboarding";
-import type { OnboardingBook } from "@/app/onboarding/data/books";
-import { getBookCoverPath } from "@/app/onboarding/data/books";
-import { generateSwipeDeck, getTopPicks } from "@/app/onboarding/data/recommendations";
-import { DUR, EASE } from "@/lib/motion";
-import { PRICING } from "@/lib/pricing";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { useStarterShelfSelection } from "@/app/onboarding/hooks/useStarterShelfSelection";
+import { MAX_STARTER_SHELF_PICKS } from "@/app/onboarding/hooks/starter-shelf-selection-core";
 import { MicroCelebration } from "@/app/book/settings/components/MicroCelebration";
-import type { CelebrationEvent } from "@/app/book/settings/types/settings";
+import { DUR } from "@/lib/motion";
+import { PRICING } from "@/lib/pricing";
+import { StarterShelfComplete } from "./StarterShelfComplete";
+import { StarterShelfDeck } from "./StarterShelfDeck";
+import { StarterShelfSelectionSlots } from "./StarterShelfSelectionSlots";
 
 interface StepStarterShelfProps {
   onNext: () => void;
 }
 
-const MAX_PICKS = 3;
-
-// Token-based difficulty tint (works in both themes). Returns a style object —
-// the old `bg-[var(--accent-cyan)]/10` form is invalid Tailwind v4 and the
-// opacity modifier on an arbitrary CSS var is silently dropped.
-function difficultyStyle(d: string): React.CSSProperties {
-  const accent = d === "Hard" ? "var(--accent-amber)" : "var(--accent-cyan)";
-  return {
-    background: `color-mix(in srgb, ${accent} 12%, transparent)`,
-    color: accent,
-    border: `1px solid color-mix(in srgb, ${accent} 25%, transparent)`,
-  };
-}
-
-/* ── BookCoverImage — shows real cover or gradient fallback ── */
-
-function BookCoverImage({
-  book,
-  width,
-  height,
-  radius = 14,
-  showTitle = true,
-  titleSize = 15,
-}: {
-  book: OnboardingBook;
-  width: number;
-  height: number;
-  radius?: number;
-  showTitle?: boolean;
-  titleSize?: number;
-}) {
-  const coverPath = getBookCoverPath(book.id);
-  const [imgFailed, setImgFailed] = useState(false);
-  const showImg = coverPath && !imgFailed;
-
-  return (
-    <div
-      style={{
-        width,
-        height,
-        borderRadius: radius,
-        background: book.gradient,
-        boxShadow: "var(--cf-shadow-lg)",
-        overflow: "hidden",
-        position: "relative",
-        flexShrink: 0,
-      }}
-    >
-      {showImg ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={coverPath}
-          alt={book.title}
-          draggable={false}
-          onError={() => setImgFailed(true)}
-          style={{
-            width: "100%",
-            height: "100%",
-            objectFit: "cover",
-            display: "block",
-            pointerEvents: "none",
-            userSelect: "none",
-          }}
-        />
-      ) : showTitle ? (
-        <div
-          style={{
-            width: "100%",
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            padding: 12,
-          }}
-        >
-          <span
-            style={{
-              color: "white",
-              fontSize: titleSize,
-              fontWeight: 700,
-              textAlign: "center",
-              lineHeight: 1.25,
-              maxWidth: width - 24,
-              textShadow: "0 1px 4px color-mix(in srgb, black 50%, transparent)",
-            }}
-          >
-            {book.title}
-          </span>
-        </div>
-      ) : null}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════
-   SwipeCard — the front draggable card
-   ═══════════════════════════════════════ */
-
-interface SwipeCardProps {
-  book: OnboardingBook;
-  onSwipe: (dir: "left" | "right") => void;
-  onButtonSwipe: React.MutableRefObject<((dir: "left" | "right") => void) | null>;
-}
-
-/* framer can't interpolate `var()` or `color-mix()` — it needs concrete colors.
- * The old code fed the raw DARK rose/cyan accent values, which are the wrong hue
- * on the default LIGHT theme. We instead resolve each accent at the requested
- * alpha against the live theme by letting the browser compute `color-mix(...)`
- * on a throwaway probe element and reading back the concrete computed color
- * (handles hex/rgb/hsl tokens in either theme). Mirrors the resolveColor
- * pattern in components/ui/Confetti.tsx.
- *
- * `alphaPct` is the token's opacity 0–100; the remainder is transparent. */
-function resolveAccent(token: string, alphaPct: number): string {
-  if (typeof window === "undefined") return "transparent";
-  const probe = document.createElement("span");
-  probe.style.color = `color-mix(in srgb, var(${token}) ${alphaPct}%, transparent)`;
-  probe.style.position = "absolute";
-  probe.style.opacity = "0";
-  probe.style.pointerEvents = "none";
-  document.body.appendChild(probe);
-  const resolved = getComputedStyle(probe).color;
-  document.body.removeChild(probe);
-  return resolved || "transparent";
-}
-
-function SwipeCard({ book, onSwipe, onButtonSwipe }: SwipeCardProps) {
-  const reducedMotion = useReducedMotion();
-  const controls = useAnimation();
-  const x = useMotionValue(0);
-  const busy = useRef(false);
-
-  // Resolve the rose/cyan accents (at the alphas the transforms need) once on
-  // mount against the active theme, so the swipe tint is the correct hue on
-  // both light and dark. Defaults stay transparent until resolved (SSR-safe).
-  const [accents, setAccents] = useState({
-    rose60: "transparent",
-    rose20: "transparent",
-    rose15: "transparent",
-    cyan60: "transparent",
-    cyan20: "transparent",
-    cyan15: "transparent",
-  });
-  useEffect(() => {
-    // Theme accents can only be resolved client-side (getComputedStyle is
-    // unavailable during SSR), so this must seed state after mount.
-    // eslint-disable-next-line react-hooks/set-state-in-effect
-    setAccents({
-      rose60: resolveAccent("--accent-rose", 60),
-      rose20: resolveAccent("--accent-rose", 20),
-      rose15: resolveAccent("--accent-rose", 15),
-      cyan60: resolveAccent("--accent-cyan", 60),
-      cyan20: resolveAccent("--accent-cyan", 20),
-      cyan15: resolveAccent("--accent-cyan", 15),
-    });
-  }, []);
-
-  const rotate = useTransform(x, [-200, 200], reducedMotion ? [0, 0] : [-25, 25]);
-  const keepOpacity = useTransform(x, [0, 100], [0, 1]);
-  const skipOpacity = useTransform(x, [-100, 0], [1, 0]);
-  const borderColor = useTransform(
-    x,
-    [-150, -50, 0, 50, 150],
-    [
-      accents.rose60,
-      accents.rose20,
-      "var(--cf-border-strong)",
-      accents.cyan20,
-      accents.cyan60,
-    ]
-  );
-  const cardShadow = useTransform(
-    x,
-    [-150, 0, 150],
-    [
-      `0 0 30px ${accents.rose15}`,
-      "var(--cf-shadow-lg)",
-      `0 0 30px ${accents.cyan15}`,
-    ]
-  );
-
-  const doSwipe = useCallback(
-    async (dir: "left" | "right") => {
-      if (busy.current) return;
-      busy.current = true;
-      const targetX = dir === "right" ? 500 : -500;
-      if (reducedMotion) {
-        await controls.start({ opacity: 0, transition: { duration: DUR.instant } });
-      } else {
-        await controls.start({
-          x: targetX,
-          opacity: 0,
-          transition: { duration: DUR.fast, ease: "easeOut" },
-        });
-      }
-      onSwipe(dir);
-    },
-    [controls, onSwipe, reducedMotion]
-  );
-
-  // Register button trigger — set synchronously every render so it's always current
-  onButtonSwipe.current = doSwipe;
-
-  const handleDragEnd = useCallback(
-    async (_: MouseEvent | TouchEvent | PointerEvent, info: PanInfo) => {
-      const offset = info.offset.x;
-      const velocity = info.velocity.x;
-      if (offset > 150 || velocity > 500) {
-        await doSwipe("right");
-      } else if (offset < -150 || velocity < -500) {
-        await doSwipe("left");
-      } else {
-        controls.start({
-          x: 0,
-          transition: reducedMotion
-            ? { duration: DUR.instant }
-            : { type: "spring", stiffness: 300, damping: 25 },
-        });
-      }
-    },
-    [controls, doSwipe, reducedMotion]
-  );
-
-  return (
-    <motion.div
-      drag="x"
-      dragConstraints={{ left: 0, right: 0 }}
-      dragElastic={0.9}
-      dragMomentum={false}
-      onDragEnd={handleDragEnd}
-      animate={controls}
-      style={{
-        x,
-        rotate,
-        borderColor,
-        boxShadow: cardShadow,
-        touchAction: "none",
-        position: "absolute",
-        inset: 0,
-        borderRadius: 24,
-        background: "var(--cf-surface)",
-        borderWidth: 1,
-        borderStyle: "solid",
-        padding: "24px 24px 20px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        cursor: "grab",
-        userSelect: "none",
-        overflow: "hidden",
-        zIndex: 10,
-      }}
-      whileTap={{ cursor: "grabbing" }}
-    >
-      {/* KEEP stamp */}
-      <motion.div
-        className="absolute top-6 left-6 z-20 px-4 py-2 rounded-lg pointer-events-none select-none"
-        style={{
-          opacity: keepOpacity,
-          rotate: -12,
-          borderWidth: 3,
-          borderStyle: "solid",
-          borderColor: "var(--accent-cyan)",
-          color: "var(--accent-cyan)",
-          fontFamily: "var(--font-display, sans-serif)",
-          fontWeight: 700,
-          fontSize: 22,
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-        }}
-        aria-hidden="true"
-      >
-        Keep
-      </motion.div>
-
-      {/* SKIP stamp */}
-      <motion.div
-        className="absolute top-6 right-6 z-20 px-4 py-2 rounded-lg pointer-events-none select-none"
-        style={{
-          opacity: skipOpacity,
-          rotate: 12,
-          borderWidth: 3,
-          borderStyle: "solid",
-          borderColor: "var(--accent-rose)",
-          color: "var(--accent-rose)",
-          fontFamily: "var(--font-display, sans-serif)",
-          fontWeight: 700,
-          fontSize: 22,
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-        }}
-        aria-hidden="true"
-      >
-        Skip
-      </motion.div>
-
-      {/* Book cover */}
-      <BookCoverImage book={book} width={130} height={185} />
-
-      {/* Title */}
-      <p
-        style={{
-          fontFamily: "var(--font-display, sans-serif)",
-          fontSize: 18,
-          fontWeight: 600,
-          color: "var(--cf-text-1)",
-          textAlign: "center",
-          marginTop: 16,
-          lineHeight: 1.3,
-        }}
-      >
-        {book.title}
-      </p>
-
-      {/* Author */}
-      <p
-        style={{
-          fontFamily: "var(--font-body, sans-serif)",
-          fontSize: 14,
-          color: "var(--cf-text-3)",
-          textAlign: "center",
-          marginTop: 4,
-        }}
-      >
-        {book.author}
-      </p>
-
-      {/* Badges */}
-      <div className="flex items-center justify-center gap-2 flex-wrap" style={{ marginTop: 12 }}>
-        <span
-          className="rounded-full px-3 py-1 text-xs"
-          style={{
-            background: "var(--cf-surface-muted)",
-            border: "1px solid var(--cf-border-strong)",
-            color: "var(--cf-text-3)",
-            fontFamily: "var(--font-body, sans-serif)",
-          }}
-        >
-          {book.category}
-        </span>
-        <span
-          className="rounded-full px-3 py-1 text-xs"
-          style={{ ...difficultyStyle(book.difficulty), fontFamily: "var(--font-body, sans-serif)" }}
-        >
-          {book.difficulty}
-        </span>
-        <span
-          className="flex items-center gap-1 text-xs"
-          style={{ color: "var(--cf-text-soft)", fontFamily: "var(--font-body, sans-serif)" }}
-        >
-          <Clock size={12} />~{book.estimatedHours}h
-        </span>
-      </div>
-
-      {/* Tagline */}
-      <p
-        style={{
-          fontFamily: "var(--font-body, sans-serif)",
-          fontSize: 13,
-          color: "var(--cf-text-soft)",
-          fontStyle: "italic",
-          textAlign: "center",
-          marginTop: 12,
-          lineHeight: 1.5,
-          maxWidth: 240,
-        }}
-      >
-        &ldquo;{book.tagline}&rdquo;
-      </p>
-    </motion.div>
-  );
-}
-
-/* ═══════════════════════════════════════
-   BackCard — solid opaque card behind the front
-   ═══════════════════════════════════════ */
-
-function BackCard({ book }: { book: OnboardingBook }) {
-  const coverPath = getBookCoverPath(book.id);
-  return (
-    <div
-      style={{
-        position: "absolute",
-        inset: 0,
-        borderRadius: 24,
-        background: "var(--cf-surface)",
-        border: "1px solid var(--cf-border)",
-        boxShadow: "var(--cf-shadow-md)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        overflow: "hidden",
-      }}
-    >
-      {coverPath ? (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={coverPath}
-          alt=""
-          draggable={false}
-          style={{ width: 60, height: 85, objectFit: "cover", borderRadius: 8, opacity: 0.35, pointerEvents: "none", userSelect: "none" }}
-        />
-      ) : (
-        <div
-          style={{
-            width: 60,
-            height: 85,
-            borderRadius: 8,
-            background: book.gradient,
-            opacity: 0.25,
-          }}
-        />
-      )}
-    </div>
-  );
-}
-
-/* ═══════════════════════════════════════
-   ShelfComplete — brief celebration
-   ═══════════════════════════════════════ */
-
-function ShelfComplete({ books, onDone }: { books: OnboardingBook[]; onDone: () => void }) {
-  const reducedMotion = useReducedMotion();
-
-  useEffect(() => {
-    const timer = setTimeout(onDone, 2000);
-    return () => clearTimeout(timer);
-  }, [onDone]);
-
-  return (
-    <motion.div
-      initial={reducedMotion ? false : { opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: DUR.normal }}
-      className="flex flex-col items-center text-center"
-      style={{ padding: "40px 20px" }}
-    >
-      <motion.h2
-        initial={reducedMotion ? false : { opacity: 0, y: 15 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: DUR.page, ease: EASE.standard }}
-        style={{
-          fontFamily: "var(--font-display, sans-serif)",
-          fontSize: 28,
-          fontWeight: 600,
-          color: "var(--cf-text-1)",
-          marginBottom: 32,
-        }}
-      >
-        Your shelf is set!
-      </motion.h2>
-
-      <div className="flex items-start justify-center gap-6">
-        {books.map((book, i) => (
-          <motion.div
-            key={book.id}
-            initial={reducedMotion ? false : { opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 + i * 0.15, duration: DUR.page, ease: EASE.standard }}
-            className="flex flex-col items-center"
-            style={{ maxWidth: 120 }}
-          >
-            <BookCoverImage book={book} width={100} height={140} radius={12} titleSize={11} />
-            <p
-              style={{
-                fontFamily: "var(--font-body, sans-serif)",
-                fontSize: 13,
-                fontWeight: 500,
-                color: "var(--cf-text-1)",
-                marginTop: 8,
-                textAlign: "center",
-                lineHeight: 1.3,
-              }}
-            >
-              {book.title}
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-body, sans-serif)",
-                fontSize: 11,
-                color: "var(--cf-text-soft)",
-                textAlign: "center",
-              }}
-            >
-              {book.author}
-            </p>
-          </motion.div>
-        ))}
-      </div>
-
-      <motion.div
-        initial={reducedMotion ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.0, duration: DUR.normal }}
-        style={{ marginTop: 24 }}
-      >
-        <Check size={24} style={{ color: "var(--accent-cyan)" }} />
-      </motion.div>
-    </motion.div>
-  );
-}
-
-/* ═══════════════════════════════════════
-   StepStarterShelf — main orchestrator
-   ═══════════════════════════════════════ */
-
 export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
   const router = useRouter();
-  const { motivation, interests, setStarterShelf } = useOnboarding();
-  const reducedMotion = useReducedMotion();
-
-  const deck = useMemo(
-    () => generateSwipeDeck(interests, motivation),
-    [interests, motivation]
-  );
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [selectedBooks, setSelectedBooks] = useState<OnboardingBook[]>([]);
-  // Books the user explicitly swiped left on. We never re-offer these when
-  // auto-filling the remaining shelf slots — re-suggesting a just-rejected book
-  // reads as ignoring the user's choice. getTopPicks falls back to the next
-  // ranked books once these (and the selected ones) are excluded.
-  const [rejectedIds, setRejectedIds] = useState<string[]>([]);
-  const [isComplete, setIsComplete] = useState(false);
-  // The gold MicroCelebration (batch 10) fired on each book "like" — the missing
-  // reward beat that gives the first swipe a payoff in the brand's celebration
-  // language. likeCount keys the toast so consecutive likes re-fire it; the
-  // component no-ops under reduced motion.
-  const [celebEvent, setCelebEvent] = useState<CelebrationEvent | null>(null);
-  const [likeCount, setLikeCount] = useState(0);
-
-  // Ref for the button-triggered swipe — set synchronously by SwipeCard each render
-  const buttonSwipeRef = useRef<((dir: "left" | "right") => void) | null>(null);
-
-  const frontBook = currentIndex < deck.length ? deck[currentIndex] : null;
-
-  const handleSwipe = useCallback(
-    (dir: "left" | "right") => {
-      if (!frontBook) return;
-
-      if (dir === "right") {
-        // Reward beat on the "like". On the 3rd pick the shelf transitions to
-        // ShelfComplete (its own celebration), so this naturally fires on the
-        // first two likes — exactly where the first swipe needed a payoff.
-        setCelebEvent("profile-selected");
-        setLikeCount((c) => c + 1);
-
-        const newSelected = [...selectedBooks, frontBook];
-        setSelectedBooks(newSelected);
-
-        if (newSelected.length >= MAX_PICKS) {
-          setIsComplete(true);
-          setStarterShelf(newSelected);
-          return;
-        }
-      } else {
-        // Remember left-swiped books so auto-fill never re-offers them.
-        setRejectedIds((prev) =>
-          prev.includes(frontBook.id) ? prev : [...prev, frontBook.id],
-        );
-      }
-      setCurrentIndex((prev) => prev + 1);
-    },
-    [frontBook, selectedBooks, setStarterShelf]
-  );
-
-  const handleComplete = useCallback(() => {
-    onNext();
-  }, [onNext]);
-
-  // Keyboard support
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (isComplete || !frontBook) return;
-      // Don't hijack arrow keys from text controls or modified shortcuts so the
-      // global listener can never trap keyboard or screen-reader users editing
-      // an input/textarea/contenteditable on this step.
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
-      const active = document.activeElement;
-      if (
-        active instanceof HTMLElement &&
-        (active.tagName === "INPUT" ||
-          active.tagName === "TEXTAREA" ||
-          active.isContentEditable)
-      ) {
-        return;
-      }
-      if (e.key === "ArrowRight") {
-        e.preventDefault();
-        buttonSwipeRef.current?.("right");
-      } else if (e.key === "ArrowLeft") {
-        e.preventDefault();
-        buttonSwipeRef.current?.("left");
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isComplete, frontBook]);
-
-  const backBooks = deck.slice(currentIndex + 1, currentIndex + 3);
-  const selectedCount = selectedBooks.length;
-  const deckEmpty = !frontBook && selectedCount < MAX_PICKS;
-
-  // Deck ran out before MAX_PICKS (e.g. the user swiped left on everything).
-  // Round out the shelf with the top remaining recommendations so the promise
-  // "we'll fill your remaining slots" is actually kept — and the step never
-  // dead-ends on an empty card with no way forward.
-  const fillerPicks = useMemo(
-    () =>
-      deckEmpty
-        ? getTopPicks(
-            interests,
-            motivation,
-            // Exclude both already-selected AND explicitly-rejected books so we
-            // never round out the shelf with something the user just swiped away.
-            [...selectedBooks.map((b) => b.id), ...rejectedIds],
-            MAX_PICKS - selectedCount,
-          )
-        : [],
-    [deckEmpty, interests, motivation, selectedBooks, rejectedIds, selectedCount],
-  );
-
-  const handleContinueWithPicks = useCallback(() => {
-    const finalShelf = [...selectedBooks, ...fillerPicks].slice(0, MAX_PICKS);
-    setStarterShelf(finalShelf);
-    onNext();
-  }, [selectedBooks, fillerPicks, setStarterShelf, onNext]);
+  const {
+    backBooks,
+    buttonSwipeRef,
+    celebEvent,
+    currentIndex,
+    deck,
+    deckEmpty,
+    fillerPicks,
+    frontBook,
+    handleComplete,
+    handleContinueWithPicks,
+    handleSwipe,
+    isComplete,
+    likeCount,
+    reducedMotion,
+    selectedBooks,
+    selectedCount,
+  } = useStarterShelfSelection({ onNext });
 
   if (isComplete) {
-    return <ShelfComplete books={selectedBooks} onDone={handleComplete} />;
+    return <StarterShelfComplete books={selectedBooks} onDone={handleComplete} />;
   }
 
   return (
@@ -665,11 +46,12 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
       role="region"
       aria-label="Book selection - swipe or use buttons to choose books"
     >
-      {/* Reward beat on each book "like" — gold toast in the brand's celebration
-          language (fixed overlay; no-ops under reduced motion). */}
-      <MicroCelebration key={likeCount} event={celebEvent} reducedMotion={!!reducedMotion} />
+      <MicroCelebration
+        key={likeCount}
+        event={celebEvent}
+        reducedMotion={!!reducedMotion}
+      />
 
-      {/* Header */}
       <h2
         style={{
           fontFamily: "var(--font-display, sans-serif)",
@@ -695,7 +77,6 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         Swipe right on books you want. Pick 3.
       </p>
 
-      {/* Counter */}
       <p
         style={{
           fontFamily: "var(--font-body, sans-serif)",
@@ -703,7 +84,7 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           color:
             selectedCount === 0
               ? "var(--cf-text-soft)"
-              : selectedCount >= MAX_PICKS
+              : selectedCount >= MAX_STARTER_SHELF_PICKS
                 ? "var(--accent-cyan)"
                 : "var(--accent-cyan)",
           textAlign: "center",
@@ -711,16 +92,15 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
           transition: "color 200ms ease",
         }}
       >
-        {selectedCount} of {MAX_PICKS} selected
+        {selectedCount} of {MAX_STARTER_SHELF_PICKS} selected
       </p>
 
-      {/* Indicator dots */}
       <div className="flex items-center justify-center gap-3" style={{ marginBottom: 24 }}>
-        {Array.from({ length: MAX_PICKS }, (_, i) => {
-          const filled = i < selectedCount;
+        {Array.from({ length: MAX_STARTER_SHELF_PICKS }, (_, index) => {
+          const filled = index < selectedCount;
           return (
             <motion.div
-              key={i}
+              key={index}
               initial={false}
               animate={{
                 scale: filled ? 1.2 : 1,
@@ -742,203 +122,23 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         })}
       </div>
 
-      {/* Card stack */}
-      <div
-        className="relative mx-auto"
-        style={{
-          width: "min(320px, calc(100vw - 80px))",
-          height: 440,
-          marginBottom: 8,
-        }}
-      >
-        {/* Back cards — rendered first, behind */}
-        {backBooks.map((book, i) => (
-          <motion.div
-            key={book.id}
-            className="absolute inset-0"
-            initial={false}
-            animate={{
-              scale: 1 - (i + 1) * 0.05,
-              y: (i + 1) * 12,
-            }}
-            transition={
-              reducedMotion
-                ? { duration: DUR.instant }
-                : { duration: DUR.normal, ease: "easeOut" }
-            }
-            style={{ opacity: 1 - (i + 1) * 0.2, zIndex: 2 - i }}
-          >
-            <BackCard book={book} />
-          </motion.div>
-        ))}
+      <StarterShelfDeck
+        backBooks={backBooks}
+        buttonSwipeRef={buttonSwipeRef}
+        deckEmpty={deckEmpty}
+        fillerPicks={fillerPicks}
+        frontBook={frontBook ?? null}
+        onContinueWithPicks={handleContinueWithPicks}
+        onSwipe={handleSwipe}
+        reducedMotion={reducedMotion}
+        selectedCount={selectedCount}
+      />
 
-        {/* Front card */}
-        <AnimatePresence mode="popLayout">
-          {frontBook && (
-            <motion.div
-              key={frontBook.id}
-              className="absolute inset-0"
-              initial={reducedMotion ? false : { scale: 0.95, y: 12, opacity: 0.85 }}
-              animate={{ scale: 1, y: 0, opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={
-                reducedMotion
-                  ? { duration: DUR.instant }
-                  : { duration: DUR.normal, ease: EASE.standard }
-              }
-              style={{ zIndex: 10 }}
-            >
-              <SwipeCard
-                book={frontBook}
-                onSwipe={handleSwipe}
-                onButtonSwipe={buttonSwipeRef}
-              />
-            </motion.div>
-          )}
-        </AnimatePresence>
+      <StarterShelfSelectionSlots
+        books={selectedBooks}
+        reducedMotion={reducedMotion}
+      />
 
-        {/* Empty state — deck exhausted before MAX_PICKS. We round out the
-            shelf with top picks (shown below) so the user is never stranded. */}
-        {deckEmpty && (
-          <div
-            className="flex flex-col items-center justify-center text-center"
-            style={{
-              width: "100%",
-              height: "100%",
-              borderRadius: 24,
-              border: "1px dashed var(--cf-border-strong)",
-              background: "var(--cf-surface-muted)",
-              padding: 24,
-              gap: 16,
-            }}
-          >
-            <p
-              style={{
-                fontFamily: "var(--font-display, sans-serif)",
-                fontSize: 18,
-                fontWeight: 600,
-                color: "var(--cf-text-1)",
-                margin: 0,
-              }}
-            >
-              {selectedCount === 0 ? "We picked a starter set for you" : "We rounded out your shelf"}
-            </p>
-            <p
-              style={{
-                fontFamily: "var(--font-body, sans-serif)",
-                fontSize: 14,
-                color: "var(--cf-text-3)",
-                margin: 0,
-                lineHeight: 1.5,
-                maxWidth: 260,
-              }}
-            >
-              {selectedCount === 0
-                ? "These match your interests — you can swap any of them anytime."
-                : `Added ${fillerPicks.length} top ${fillerPicks.length === 1 ? "pick" : "picks"} to fill your remaining ${fillerPicks.length === 1 ? "slot" : "slots"}.`}
-            </p>
-            {fillerPicks.length > 0 && (
-              <div className="flex items-end justify-center gap-3">
-                {fillerPicks.map((book) => (
-                  <BookCoverImage
-                    key={book.id}
-                    book={book}
-                    width={56}
-                    height={80}
-                    radius={8}
-                    titleSize={8}
-                  />
-                ))}
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-
-      {/* Action buttons — X (skip) and Heart (keep). Hover/focus state is now
-          className-driven so it responds to keyboard focus and touch, not just a
-          mouse pointer (the old onMouseEnter/onMouseLeave style mutation was
-          mouse-only and skipped keyboard + touch users). */}
-      {frontBook && (
-        <div className="flex items-center justify-center gap-8" style={{ marginTop: 8 }}>
-          <button
-            type="button"
-            onClick={() => buttonSwipeRef.current?.("left")}
-            aria-label="Skip this book"
-            className="cf-pressable flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) transition-[border-color,background-color,transform] duration-200 hover:border-[color-mix(in_srgb,var(--accent-rose)_50%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent-rose)_10%,transparent)] focus-visible:border-[color-mix(in_srgb,var(--accent-rose)_50%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--accent-rose)_10%,transparent)] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
-          >
-            <X size={24} style={{ color: "var(--accent-rose)" }} />
-          </button>
-
-          <button
-            type="button"
-            onClick={() => buttonSwipeRef.current?.("right")}
-            aria-label="Add to shelf"
-            className="cf-pressable flex h-14 w-14 cursor-pointer items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted) transition-[border-color,background-color,transform] duration-200 hover:border-[color-mix(in_srgb,var(--accent-cyan)_50%,transparent)] hover:bg-[color-mix(in_srgb,var(--accent-cyan)_10%,transparent)] focus-visible:border-[color-mix(in_srgb,var(--accent-cyan)_50%,transparent)] focus-visible:bg-[color-mix(in_srgb,var(--accent-cyan)_10%,transparent)] hover:scale-110 motion-reduce:transition-none motion-reduce:hover:scale-100"
-          >
-            <Heart size={24} style={{ color: "var(--accent-cyan)" }} />
-          </button>
-        </div>
-      )}
-
-      {/* Explicit continue when the deck is exhausted — never a dead end */}
-      {deckEmpty && (
-        <div className="flex justify-center" style={{ marginTop: 8 }}>
-          <Button
-            size="lg"
-            className="w-full max-w-80"
-            onClick={handleContinueWithPicks}
-          >
-            Continue with these picks
-            <ArrowRight size={18} strokeWidth={2} />
-          </Button>
-        </div>
-      )}
-
-      {/* Selected books thumbnails */}
-      <div className="flex items-center justify-center gap-3" style={{ marginTop: 24 }}>
-        {Array.from({ length: MAX_PICKS }, (_, i) => {
-          const book = selectedBooks[i];
-          return (
-            <div key={i} style={{ width: 48, height: 68 }}>
-              {book ? (
-                <motion.div
-                  initial={reducedMotion ? false : { scale: 0.5, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: DUR.normal, ease: EASE.standard }}
-                >
-                  <BookCoverImage book={book} width={48} height={68} radius={8} titleSize={7} />
-                </motion.div>
-              ) : (
-                <div
-                  style={{
-                    width: 48,
-                    height: 68,
-                    borderRadius: 8,
-                    border: "1px dashed var(--cf-border-strong)",
-                    background: "var(--cf-surface-muted)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-body, sans-serif)",
-                      fontSize: 14,
-                      color: "var(--cf-border-strong)",
-                    }}
-                  >
-                    {i + 1}
-                  </span>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-
-      {/* Bottom text */}
       <p
         style={{
           fontFamily: "var(--font-body, sans-serif)",
@@ -960,7 +160,6 @@ export default function StepStarterShelf({ onNext }: StepStarterShelfProps) {
         </button>
       </p>
 
-      {/* Screen reader live region */}
       <div className="sr-only" aria-live="polite" role="status">
         {frontBook &&
           `Book ${currentIndex + 1} of ${deck.length}: ${frontBook.title} by ${frontBook.author}. ${frontBook.category}, ${frontBook.difficulty} difficulty, approximately ${frontBook.estimatedHours} hours.`}

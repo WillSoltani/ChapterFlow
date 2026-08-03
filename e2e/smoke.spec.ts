@@ -1,4 +1,4 @@
-import { test, expect, type Page } from "@playwright/test";
+import { test, expect, type Locator, type Page } from "@playwright/test";
 import {
   ORPHAN_BOOK_SLUGS,
   CANONICAL_BOOK_SLUGS,
@@ -20,6 +20,56 @@ async function expectNoErrorOverlay(page: Page): Promise<void> {
 async function expectNotBlank(page: Page): Promise<void> {
   const text = (await page.locator("body").innerText()).trim();
   expect(text.length).toBeGreaterThan(20);
+}
+
+async function expectMinimumTouchTarget(
+  target: Locator,
+  label: string,
+): Promise<void> {
+  await expect(target, `${label} should be visible`).toBeVisible();
+  const box = await target.boundingBox();
+  expect(box, `${label} should have a layout box`).toBeTruthy();
+  expect(box!.height, `${label} height`).toBeGreaterThanOrEqual(44);
+  expect(box!.width, `${label} width`).toBeGreaterThanOrEqual(44);
+}
+
+async function scrollToViewportCenter(target: Locator): Promise<void> {
+  await target.evaluate((element) => {
+    const root = document.documentElement;
+    const previousBehavior = root.style.scrollBehavior;
+    const top = window.scrollY + element.getBoundingClientRect().top;
+    root.style.scrollBehavior = "auto";
+    window.scrollTo(0, Math.max(0, top - window.innerHeight / 2));
+    root.style.scrollBehavior = previousBehavior;
+  });
+}
+
+async function expectReducedMotionFinalState(page: Page): Promise<void> {
+  await expect(page.getByRole("heading", { name: /stop forgetting/i })).toBeVisible();
+  await expect(page.locator(".rl-plate-wrap")).toHaveCSS("transform", "none");
+  await expect(page.locator(".rl-plate-scan")).toBeHidden();
+  await expect(page.locator(".recall-reader-demo")).toBeVisible();
+  await expect(page.locator(".recall-reader-demo")).toHaveCSS("opacity", "1");
+
+  const library = page.locator("#library");
+  await library.scrollIntoViewIfNeeded();
+  await expect(library.locator(".rl-lib-stage")).toHaveCSS("position", "static");
+  await expect(
+    library.getByRole("heading", { name: /books, all real/i }),
+  ).toBeVisible();
+
+  const continuousAnimations = await page.evaluate(() =>
+    document
+      .getAnimations()
+      .filter((animation) => animation.effect?.getTiming().iterations === Infinity)
+      .map((animation) => {
+        const target = (animation.effect as KeyframeEffect | null)?.target;
+        return target instanceof Element
+          ? target.tagName.toLowerCase() + "." + Array.from(target.classList).join(".")
+          : "unknown-target";
+      }),
+  );
+  expect(continuousAnimations).toEqual([]);
 }
 
 // Public marketing / funnel pages — server-rendered, no auth or DB needed.
@@ -113,6 +163,381 @@ test.describe("landing redesign", () => {
   });
 });
 
+const PUBLIC_RECALL_ROUTES = [
+  "/",
+  "/pricing",
+  "/books",
+  "/contact",
+  "/legal",
+  "/legal/privacy",
+  "/legal/cookies",
+] as const;
+
+test.describe("shared Recall public chrome", () => {
+  for (const path of PUBLIC_RECALL_ROUTES) {
+    test(`${path} has one shared shell and no mobile overflow`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      const res = await page.goto(path);
+      expect(res?.status()).toBeLessThan(400);
+      await expectNoErrorOverlay(page);
+      await expect(page.locator("header.rl-nav")).toHaveCount(1);
+      await expect(page.locator("main#main")).toHaveCount(1);
+      await expect(page.locator("footer.rl-public-footer")).toHaveCount(1);
+      expect(
+        await page.evaluate(
+          () => document.documentElement.scrollWidth <= window.innerWidth + 1,
+        ),
+        `${path} must not overflow horizontally at 390px`,
+      ).toBe(true);
+    });
+  }
+
+  for (const [path, label] of [
+    ["/books", "Books"],
+    ["/pricing", "Pricing"],
+    ["/contact", "Support"],
+  ] as const) {
+    test(`${path} desktop navigation has a non-color current-route marker`, async ({
+      page,
+    }) => {
+      await page.setViewportSize({ width: 1440, height: 900 });
+      await page.goto(path);
+      const current = page
+        .locator("header.rl-nav nav[aria-label='Primary']")
+        .getByRole("link", { name: label });
+      await expect(current).toHaveAttribute("aria-current", "page");
+      await expect(current.locator("[data-public-current-marker]")).toBeVisible();
+    });
+  }
+
+  test("mobile menu traps focus, restores it, and unlocks after navigation", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/pricing");
+
+    const trigger = page.getByRole("button", { name: "Open navigation menu" });
+    const triggerBox = await trigger.boundingBox();
+    expect(triggerBox?.width).toBeGreaterThanOrEqual(44);
+    expect(triggerBox?.height).toBeGreaterThanOrEqual(44);
+
+    await trigger.focus();
+    await page.keyboard.press("Enter");
+    const dialog = page.getByRole("dialog", { name: "Navigation" });
+    const close = page.getByRole("button", { name: "Close navigation menu" });
+    await expect(dialog).toBeVisible();
+    await expect(close).toBeFocused();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("hidden");
+
+    // Auth status resolves asynchronously. Wait until the final menu action is
+    // present before asserting first↔last wraparound, otherwise the trap can
+    // correctly wrap to the last navigation link that existed at keydown time.
+    const menuAction = dialog.getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    await expect(menuAction).toBeVisible();
+    await page.keyboard.press("Shift+Tab");
+    await expect(menuAction).toBeFocused();
+    await page.keyboard.press("Tab");
+    await expect(close).toBeFocused();
+
+    await page.keyboard.press("Escape");
+    await expect(dialog).toHaveCount(0);
+    await expect(trigger).toBeFocused();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+
+    await page.keyboard.press("Space");
+    await page
+      .getByRole("dialog", { name: "Navigation" })
+      .getByRole("link", { name: "Books" })
+      .click();
+    await expect(page).toHaveURL(/\/books$/);
+    await expect(page.getByRole("dialog", { name: "Navigation" })).toHaveCount(0);
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+  });
+
+  test("skip link is first and moves keyboard focus to main", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/contact");
+    await page.keyboard.press("Tab");
+    await expect(
+      page.getByRole("link", { name: "Skip to main content" }),
+    ).toBeFocused();
+    await page.keyboard.press("Enter");
+    await expect(page.locator("main#main")).toBeFocused();
+  });
+
+  test("paper folio keyboard focus uses the contrast-safe Recall ink", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/legal/privacy");
+    const policyLink = page.getByRole("link", { name: "Cookie Policy" });
+    await policyLink.focus();
+    await expect(policyLink).toHaveCSS("outline-color", "rgb(82, 101, 194)");
+    await expect(policyLink).toHaveCSS("outline-width", "2px");
+  });
+
+  test("1024px breakpoint closes the mobile dialog without an orphan lock", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 1023, height: 900 });
+    await page.goto("/pricing");
+    const trigger = page.getByRole("button", { name: "Open navigation menu" });
+    await expect(trigger).toBeVisible();
+    await expect(
+      page.locator("header.rl-nav nav[aria-label='Primary']"),
+    ).toBeHidden();
+    await trigger.click();
+    await expect(page.getByRole("dialog", { name: "Navigation" })).toBeVisible();
+
+    await page.setViewportSize({ width: 1024, height: 900 });
+    await expect(page.getByRole("dialog", { name: "Navigation" })).toHaveCount(0);
+    await expect(trigger).toBeHidden();
+    await expect(
+      page.locator("header.rl-nav nav[aria-label='Primary']"),
+    ).toBeVisible();
+    await expect(page.getByRole("link", { name: "ChapterFlow home" })).toBeFocused();
+    expect(await page.evaluate(() => document.body.style.overflow)).toBe("");
+  });
+
+  test("home persistent CTA appears only after the hero boundary", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    const heroAction = page
+      .getByRole("link", { name: "Start reading free" })
+      .first();
+    await expect(heroAction).toBeVisible();
+    const heroActionBox = await heroAction.boundingBox();
+    expect(heroActionBox?.height).toBeGreaterThanOrEqual(44);
+    await expect(headerAction).toHaveCount(0);
+
+    await page.evaluate(() => {
+      const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+      if (!sentinel) throw new Error("missing public hero boundary");
+      window.scrollTo(0, sentinel.offsetTop + 120);
+    });
+    await expect(headerAction).toHaveCount(1);
+
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await expect(headerAction).toHaveCount(0);
+  });
+
+  for (const path of ["/contact", "/legal/privacy"] as const) {
+    test(`${path} defers the persistent CTA until after its masthead`, async ({ page }) => {
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto(path);
+      const headerAction = page.locator("header.rl-nav").getByRole("link", {
+        name: /start free|dashboard/i,
+      });
+      await expect(headerAction).toHaveCount(0);
+
+      await page.evaluate(() => {
+        const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+        if (!sentinel) throw new Error("missing public masthead boundary");
+        window.scrollTo(0, sentinel.offsetTop + 120);
+      });
+      await expect(headerAction).toHaveCount(1);
+    });
+  }
+
+  test("books persistent CTA yields only to an in-view equivalent CTA", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/books");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    await expect(headerAction).toHaveCount(0);
+
+    await page.evaluate(() => {
+      const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+      if (!sentinel) throw new Error("missing public hero boundary");
+      window.scrollTo(0, sentinel.offsetTop + 120);
+    });
+    await expect(headerAction).toHaveCount(1);
+
+    const requestHeading = page.getByRole("heading", {
+      name: /not finding what you are looking for/i,
+    });
+    await scrollToViewportCenter(requestHeading);
+    await expect(requestHeading).toBeInViewport();
+    await expect(headerAction).toHaveCount(1);
+
+    const suppressionZone = page.locator(
+      "main [data-public-sticky-cta-suppress]",
+    );
+    await suppressionZone.scrollIntoViewIfNeeded();
+    await expect(suppressionZone).toBeInViewport();
+    await expect(headerAction).toHaveCount(0);
+  });
+
+  test("home persistent CTA yields only while replacement signup links are visible", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+
+    await page.evaluate(() => {
+      const sentinel = document.querySelector<HTMLElement>("[data-public-hero-end]");
+      if (!sentinel) throw new Error("missing public hero boundary");
+      window.scrollTo(0, sentinel.offsetTop + 120);
+    });
+    await expect(headerAction).toHaveCount(1);
+
+    const pricingHeading = page.locator("#recall-pricing-headline");
+    await scrollToViewportCenter(pricingHeading);
+    await expect(pricingHeading).toBeInViewport();
+    await expect(headerAction).toHaveCount(1);
+
+    const pricingAction = page
+      .locator("#pricing [data-public-sticky-cta-suppress]")
+      .first();
+    const closingAction = page.locator(
+      '[aria-labelledby="recall-close-headline"] [data-public-sticky-cta-suppress]',
+    );
+
+    for (const zone of [pricingAction, closingAction]) {
+      await zone.scrollIntoViewIfNeeded();
+      await expect(zone).toBeInViewport();
+      await expect(headerAction).toHaveCount(0);
+
+      await scrollToViewportCenter(pricingHeading);
+      await expect(zone).not.toBeInViewport();
+      await expect(headerAction).toHaveCount(1);
+    }
+  });
+
+  test("pricing suppresses only visible signup links and returns through its FAQ", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/pricing");
+    const headerAction = page.locator("header.rl-nav").getByRole("link", {
+      name: /start free|dashboard/i,
+    });
+    const pricingAction = page
+      .locator("#pricing [data-public-sticky-cta-suppress]")
+      .first();
+    const lastFaq = page.locator("#pricing button[aria-expanded]").last();
+
+    await scrollToViewportCenter(lastFaq);
+    await expect(lastFaq).toBeInViewport();
+    await expect(headerAction).toHaveCount(1);
+
+    await pricingAction.scrollIntoViewIfNeeded();
+    await expect(pricingAction).toBeInViewport();
+    await expect(headerAction).toHaveCount(0);
+
+    await scrollToViewportCenter(lastFaq);
+    await expect(lastFaq).toBeInViewport();
+    for (const action of await page
+      .locator("#pricing [data-public-sticky-cta-suppress]")
+      .all()) {
+      await expect(action).not.toBeInViewport();
+    }
+    await expect(headerAction).toHaveCount(1);
+
+    const footerAction = page.locator("footer [data-public-sticky-cta-suppress]");
+    await footerAction.scrollIntoViewIfNeeded();
+    await expect(footerAction).toBeInViewport();
+    await expect(headerAction).toHaveCount(0);
+  });
+
+  test("primary public actions retain 44px mobile touch targets", async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    for (const path of [
+      "/",
+      "/pricing",
+      "/books",
+      "/contact",
+      "/legal",
+      "/legal/privacy",
+      "/legal/cookies",
+    ] as const) {
+      await page.goto(path);
+      const actions = page.locator(
+        'main a[href^="/auth/login"], main button[type="submit"], footer a[href^="/auth/login"]',
+      );
+      const boxes = await actions.evaluateAll((elements) =>
+        elements.flatMap((element) => {
+          const rect = element.getBoundingClientRect();
+          const style = window.getComputedStyle(element);
+          return rect.width > 0 &&
+            rect.height > 0 &&
+            style.display !== "none" &&
+            style.visibility !== "hidden"
+            ? [{ width: rect.width, height: rect.height }]
+            : [];
+        }),
+      );
+      expect(boxes.length, `${path} should expose at least one primary action`).toBeGreaterThan(0);
+
+      for (const [index, box] of boxes.entries()) {
+        expect(box.height, `${path} primary action ${index} height`).toBeGreaterThanOrEqual(44);
+        expect(box.width, `${path} primary action ${index} width`).toBeGreaterThanOrEqual(44);
+      }
+    }
+
+    await page.goto("/books");
+    await expectMinimumTouchTarget(
+      page.getByRole("link", { name: /^start reading/i }).first(),
+      "/books featured reading action",
+    );
+
+    await page.getByRole("textbox", { name: "Search books" }).fill("atomic");
+    await expectMinimumTouchTarget(
+      page.getByRole("button", { name: "Clear search" }),
+      "/books search clear action",
+    );
+  });
+
+  test("cookie inventory keeps labels and duration values visible on phones", async ({
+    page,
+  }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/legal/cookies");
+    const essential = page.locator('dl[aria-label="Essential cookies"]');
+    await expect(essential).toBeVisible();
+    await expect(essential.locator("div").first()).toContainText("Duration");
+    await expect(essential.locator("div").first()).toContainText("1 hour");
+    await expect(page.locator('table[aria-label="Essential cookies"]')).toBeHidden();
+    expect(
+      await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth + 1),
+    ).toBe(true);
+  });
+
+  test("OS reduced motion renders the meaningful final state", async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: "reduce" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expectReducedMotionFinalState(page);
+  });
+
+  test("in-app reduced motion matches the OS final state", async ({ page }) => {
+    await page.addInitScript(() => {
+      window.localStorage.setItem(
+        "book-accelerator:preferences:v2",
+        JSON.stringify({
+          appearance: { theme: "dark", reducedMotion: true },
+        }),
+      );
+    });
+    await page.emulateMedia({ reducedMotion: "no-preference" });
+    await page.setViewportSize({ width: 390, height: 844 });
+    await page.goto("/");
+    await expect(page.locator("html")).toHaveAttribute("data-motion", "reduced");
+    await expectReducedMotionFinalState(page);
+  });
+});
+
 // Authenticated app shell — reachable locally via DEV_AUTH_BYPASS=1 (set by the
 // `dev` script). Book data may be empty without BOOK_TABLE_NAME, so we assert
 // the shell renders and the route does not bounce to auth or crash.
@@ -156,7 +581,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
         { maxRedirects: 0 },
       );
       expect(res.status(), `${orphan} should 308`).toBe(308);
-      const loc = new URL(res.headers()["location"], BASE);
+      const loc = new URL(res.headers()["location"]!, BASE);
       expect(loc.pathname).toBe(`/book/library/${canonical}`);
     });
   }
@@ -167,7 +592,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
       { maxRedirects: 0 },
     );
     expect(res.status()).toBe(308);
-    const loc = new URL(res.headers()["location"], BASE);
+    const loc = new URL(res.headers()["location"]!, BASE);
     expect(loc.pathname).toBe(
       "/book/library/the-art-of-war/chapter/laying-plans",
     );
@@ -180,7 +605,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
       maxRedirects: 0,
     });
     expect(res.status()).toBe(308);
-    const loc = new URL(res.headers()["location"], BASE);
+    const loc = new URL(res.headers()["location"]!, BASE);
     expect(loc.pathname).toBe("/book/library/you-cant-hurt-me");
   });
 
@@ -192,7 +617,7 @@ test.describe("orphan book-slug redirects (PROD-DUP)", () => {
       const path = `/book/library/${canonical}`;
       const res = await request.get(path, { maxRedirects: 0 });
       if (res.status() >= 300 && res.status() < 400) {
-        const loc = new URL(res.headers()["location"], BASE);
+        const loc = new URL(res.headers()["location"]!, BASE);
         expect(loc.pathname, `${path} must not redirect to itself`).not.toBe(
           path,
         );
@@ -234,7 +659,7 @@ test.describe("prod-build smoke (@prod)", () => {
       expect(res.status()).toBeLessThan(400);
       const location = res.headers()["location"];
       expect(location, `${path} redirect must carry a Location header`).toBeTruthy();
-      const loc = new URL(location, "http://127.0.0.1:3000");
+      const loc = new URL(location!, "http://127.0.0.1:3000");
       expect(loc.pathname).toBe("/auth/login");
       expect(loc.searchParams.get("returnTo")).toBe(path);
     });

@@ -3,10 +3,8 @@
 import { useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
-import { cn } from "@/app/book/components/ui/cn";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
-import { TIER_BORDER_COLORS } from "../lib/badge-utils";
 
 type BadgeTimelineProps = {
   earnedBadges: BadgeWithProgress[];
@@ -101,7 +99,7 @@ export function BadgeTimeline({ earnedBadges, onBadgeClick }: BadgeTimelineProps
                           </p>
                           {isRecent && (
                             <span
-                              className="inline-flex items-center rounded-full px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wider text-white"
+                              className="inline-flex items-center rounded-full px-1.5 py-0.5 text-cf-caption font-bold uppercase tracking-wider text-white"
                               style={{ background: "var(--accent-emerald)" }}
                             >
                               NEW

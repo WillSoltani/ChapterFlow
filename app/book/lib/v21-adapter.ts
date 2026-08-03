@@ -9,6 +9,25 @@
  * tiers fastRead / deepRead / fullRead map to legacy `easy / medium / hard`
  * variants, and v21-only fields are surfaced separately so the reader can
  * branch on `schemaVersion` to render hooks, reflections, etc.
+ *
+ * ── Deliberate divergence from the SERVER adapter (WS3-008) ────────────────
+ * A sibling adapter lives at `app/app/api/book/_lib/v21-adapter.ts`. The two
+ * are NOT force-mergeable — they target different lifecycle STAGES and callers,
+ * so a shared implementation would change behavior for at least one of them.
+ * Only the TYPE families they emit are single-sourced (lib/book-package-types.ts).
+ * Concrete differences:
+ *   - Output stage: this client adapter emits the RESOLVED (tone-flattened,
+ *     `string`) reader shape; the server adapter emits the RAW (tone-keyed,
+ *     `{gentle,direct,competitive}`) shape via `toToneKeyed`.
+ *   - Caller: this feeds the reader bundle and exposes v21-only extras
+ *     SEPARATELY (`extractV21ChapterExtras`); the server adapter feeds
+ *     ingestion/validation/catalog and attaches `v21Extras` ONTO the chapter.
+ *   - Default quiz `passingScorePercent`: 80 here vs 70 server-side.
+ *   - Server-only work not done here: `format`/`bloomsLevel`/`depthLevel`
+ *     passthrough, bookId kebab-normalization, and content-hashed packageId
+ *     derivation (which pulls in `node:crypto`, a server-only dependency — the
+ *     reason the shared home can only hold the TYPES, not the transform).
+ * Keep the two in sync in spirit; do not collapse them.
  */
 import type {
   BookPackage,
@@ -59,20 +78,20 @@ export type V21ExperiencePlan = {
 
 export type V21ChapterExtras = {
   schemaVersion: typeof V21_SCHEMA_VERSION;
-  hook?: string;
-  counterintuition?: string;
+  hook?: string | undefined;
+  counterintuition?: string | undefined;
   /** Mid-chapter directive (30–90s action). Replaces reflectionBefore/After. */
-  tryThisNow?: string;
+  tryThisNow?: string | undefined;
   /**
    * DEPRECATED: replaced by `tryThisNow`. Retained for backwards-compat parsing
    * of v21 packages that shipped with these fields populated (e.g. tiny-habits).
    * The reader UI no longer renders them.
    */
-  reflectionBefore?: string;
-  reflectionAfter?: string;
-  keyTakeaway?: string;
-  memorableLines?: V21MemorableLine[];
-  experiencePlan?: V21ExperiencePlan;
+  reflectionBefore?: string | undefined;
+  reflectionAfter?: string | undefined;
+  keyTakeaway?: string | undefined;
+  memorableLines?: V21MemorableLine[] | undefined;
+  experiencePlan?: V21ExperiencePlan | undefined;
 };
 
 function asRecord(value: unknown): Record<string, unknown> | null {

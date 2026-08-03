@@ -75,10 +75,13 @@ export function pruneScrollResumeMap(
   const newest = keys
     // Newest first by save time; on a tie, the alphabetically-earlier key wins
     // (a deterministic, arbitrary tiebreak so prune is stable across runs).
-    .sort((a, b) => map[b].t - map[a].t || (a < b ? -1 : a > b ? 1 : 0))
+    .sort((a, b) => (map[b]?.t ?? 0) - (map[a]?.t ?? 0) || (a < b ? -1 : a > b ? 1 : 0))
     .slice(0, maxEntries);
   const out: ScrollResumeMap = {};
-  for (const key of newest) out[key] = map[key];
+  for (const key of newest) {
+    const entry = map[key];
+    if (entry !== undefined) out[key] = entry;
+  }
   return out;
 }
 

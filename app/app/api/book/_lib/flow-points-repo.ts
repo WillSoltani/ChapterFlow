@@ -22,6 +22,9 @@ import {
   entitlementSk,
   flowPointsGrantSk,
   flowPointsLedgerSk,
+  giftCodePk,
+  giftCodeSk,
+  inventorySk,
   nowIso,
   referralClaimSk,
   referralCodePk,
@@ -571,7 +574,7 @@ export async function awardFlowPoints(
   awarded: boolean;
   reason: AwardFlowPointsFailureReason;
   state: BookUserEngagementItem;
-  transactionId?: string;
+  transactionId?: string | undefined;
 }> {
   const amount = Math.max(0, Math.floor(params.amount));
   const sourceId = params.sourceId.trim();
@@ -705,7 +708,7 @@ export async function reverseFlowPointsAward(
   reason: ReverseFlowPointsFailureReason;
   pointsDeducted: number;
   state: BookUserEngagementItem;
-  transactionId?: string;
+  transactionId?: string | undefined;
 }> {
   const amount = Math.max(0, Math.floor(params.amount));
   const sourceId = params.sourceId.trim();
@@ -845,9 +848,9 @@ export async function redeemFlowPointsReward(
     userId: string;
     rewardId: FlowPointsRewardId;
     costPoints: number;
-    metadata?: Record<string, unknown>;
-    bookSlotDelta?: number;
-    passExpiresAt?: string;
+    metadata?: Record<string, unknown> | undefined;
+    bookSlotDelta?: number | undefined;
+    passExpiresAt?: string | undefined;
   }
 ): Promise<{ state: BookUserEngagementItem; redemptionId: string }> {
   const now = nowIso();
@@ -1347,6 +1350,283 @@ export async function markReferralProRewarded(
     return true;
   } catch (error: unknown) {
     if (isConditionalCheckFailed(error)) return false;
+    throw error;
+  }
+}
+
+// ── Admin point adjustment (§9.4) ────────────────────────────────────────────
+//
+// Moved verbatim from admin/insight-points/adjust/route.ts (WS3-002): the
+// TransactWriteCommand (engagement delta + ledger entry) and its
+// TransactionCanceledException → insufficient_balance mapping are unchanged.
+
+export async function adjustEngagementPointsAdmin(
+  tableName: string,
+  params: {
+    userId: string;
+    amount: number;
+    reason: string;
+    adminUserId: string;
+    adminEmail?: string | undefined;
+  }
+): Promise<{ transactionId: string; now: string }> {
+  const now = nowIso();
+  const transactionId = crypto.randomUUID();
+  const isPositive = params.amount > 0;
+  const absAmount = Math.abs(params.amount);
+
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            Update: {
+              TableName: tableName,
+              Key: { PK: bookUserPk(params.userId), SK: engagementSk() },
+              UpdateExpression: isPositive
+                ? "SET entity = :entity, userId = :userId, createdAt = if_not_exists(createdAt, :now), updatedAt = :now ADD points :delta, lifetimeEarned :posDelta, totalEarnEvents :one"
+                : "SET entity = :entity, userId = :userId, createdAt = if_not_exists(createdAt, :now), updatedAt = :now ADD points :delta, lifetimeSpent :absDelta, totalSpendEvents :one",
+              ...(isPositive
+                ? {}
+                : { ConditionExpression: "attribute_exists(points) AND points >= :absDelta" }),
+              ExpressionAttributeValues: {
+                ":entity": "BOOK_USER_ENGAGEMENT",
+                ":userId": params.userId,
+                ":now": now,
+                ":delta": params.amount,
+                ...(isPositive
+                  ? { ":posDelta": absAmount, ":one": 1 }
+                  : { ":absDelta": absAmount, ":one": 1 }),
+              },
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(params.userId),
+                SK: flowPointsLedgerSk(now, transactionId),
+                entity: "BOOK_USER_FLOW_POINTS_LEDGER",
+                userId: params.userId,
+                transactionId,
+                direction: "adjustment",
+                amount: absAmount,
+                sourceType: "admin_adjustment",
+                sourceId: `admin:${params.adminUserId}:${transactionId}`,
+                metadata: {
+                  reason: params.reason,
+                  adminUserId: params.adminUserId,
+                  adminEmail: params.adminEmail,
+                  originalAmount: params.amount,
+                },
+                createdAt: now,
+                updatedAt: now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+        ],
+      })
+    );
+  } catch (error: unknown) {
+    if (
+      error &&
+      typeof error === "object" &&
+      (error as Record<string, unknown>).name === "TransactionCanceledException"
+    ) {
+      throw new BookApiError(
+        400,
+        "insufficient_balance",
+        "User does not have enough points for this deduction."
+      );
+    }
+    throw error;
+  }
+
+  return { transactionId, now };
+}
+
+// ── Shop / personalization purchases (§5.1) ──────────────────────────────────
+//
+// Moved verbatim from me/shop/route.ts (WS3-002): the inventory ownership
+// check and the two TransactWriteCommand purchase flows (Gift a Friend +
+// catalog item), including their TransactionCanceledException → 400 mapping,
+// are unchanged.
+
+export async function hasInventoryItem(
+  tableName: string,
+  userId: string,
+  itemType: string,
+  itemId: string
+): Promise<boolean> {
+  const res = await ddbDoc.send(
+    new GetCommand({
+      TableName: tableName,
+      Key: {
+        PK: bookUserPk(userId),
+        SK: inventorySk(itemType, itemId),
+      },
+      ProjectionExpression: "PK",
+    })
+  );
+  return Boolean(res.Item);
+}
+
+export async function purchaseGiftAFriend(
+  tableName: string,
+  params: {
+    userId: string;
+    cost: number;
+    giftCode: string;
+    now: string;
+    transactionId: string;
+    sourceId: string;
+    rewardName: string;
+  }
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            Update: {
+              TableName: tableName,
+              Key: { PK: bookUserPk(params.userId), SK: engagementSk() },
+              UpdateExpression:
+                "SET updatedAt = :now ADD points :negativeCost, lifetimeSpent :cost, totalSpendEvents :one",
+              ConditionExpression: "attribute_exists(points) AND points >= :cost",
+              ExpressionAttributeValues: {
+                ":now": params.now,
+                ":negativeCost": -params.cost,
+                ":cost": params.cost,
+                ":one": 1,
+              },
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(params.userId),
+                SK: flowPointsLedgerSk(params.now, params.transactionId),
+                entity: "BOOK_USER_FLOW_POINTS_LEDGER",
+                userId: params.userId,
+                transactionId: params.transactionId,
+                direction: "spend",
+                amount: params.cost,
+                sourceType: "reward_redemption",
+                sourceId: params.sourceId,
+                metadata: { rewardName: params.rewardName },
+                createdAt: params.now,
+                updatedAt: params.now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: giftCodePk(),
+                SK: giftCodeSk(params.giftCode),
+                entity: "BOOK_USER_GIFT_CODE",
+                code: params.giftCode,
+                giverUserId: params.userId,
+                giftType: "pro_week",
+                ipCost: params.cost,
+                status: "available",
+                createdAt: params.now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+        ],
+      })
+    );
+  } catch (error: unknown) {
+    if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
+      throw new BookApiError(400, "insufficient_points", "Insufficient Insight Points balance.");
+    }
+    throw error;
+  }
+}
+
+export async function purchasePersonalizationItem(
+  tableName: string,
+  params: {
+    userId: string;
+    cost: number;
+    itemId: string;
+    itemType: string;
+    itemName: string;
+    now: string;
+    transactionId: string;
+  }
+): Promise<void> {
+  try {
+    await ddbDoc.send(
+      new TransactWriteCommand({
+        TransactItems: [
+          {
+            Update: {
+              TableName: tableName,
+              Key: { PK: bookUserPk(params.userId), SK: engagementSk() },
+              UpdateExpression:
+                "SET updatedAt = :now ADD points :negativeCost, lifetimeSpent :cost, totalSpendEvents :one",
+              ConditionExpression: "attribute_exists(points) AND points >= :cost",
+              ExpressionAttributeValues: {
+                ":now": params.now,
+                ":negativeCost": -params.cost,
+                ":cost": params.cost,
+                ":one": 1,
+              },
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(params.userId),
+                SK: inventorySk(params.itemType, params.itemId),
+                entity: "BOOK_USER_INVENTORY",
+                userId: params.userId,
+                itemId: params.itemId,
+                itemType: params.itemType,
+                acquiredAt: params.now,
+                equipped: false,
+                ipCost: params.cost,
+                createdAt: params.now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+          {
+            Put: {
+              TableName: tableName,
+              Item: {
+                PK: bookUserPk(params.userId),
+                SK: flowPointsLedgerSk(params.now, params.transactionId),
+                entity: "BOOK_USER_FLOW_POINTS_LEDGER",
+                userId: params.userId,
+                transactionId: params.transactionId,
+                direction: "spend",
+                amount: params.cost,
+                sourceType: "reward_redemption",
+                sourceId: params.itemId,
+                metadata: { rewardName: params.itemName, itemType: params.itemType },
+                createdAt: params.now,
+                updatedAt: params.now,
+              },
+              ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
+            },
+          },
+        ],
+      })
+    );
+  } catch (error: unknown) {
+    if (error && typeof error === "object" && (error as Record<string, unknown>).name === "TransactionCanceledException") {
+      throw new BookApiError(400, "insufficient_points", "Insufficient Insight Points balance.");
+    }
     throw error;
   }
 }

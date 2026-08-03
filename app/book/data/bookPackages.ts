@@ -1462,7 +1462,7 @@ export function getBookPackageByIdForTone(
 
 function formatSynopsisTopics(topics: string[]): string {
   if (topics.length === 0) return "practical thinking and real world decision making";
-  if (topics.length === 1) return topics[0];
+  if (topics.length === 1) return topics[0] ?? "";
   if (topics.length === 2) return `${topics[0]} and ${topics[1]}`;
   return `${topics.slice(0, -1).join(", ")}, and ${topics[topics.length - 1]}`;
 }
@@ -1527,7 +1527,9 @@ function inferPresentationIcon(bookPackage: BookPackage): string {
   else if (source.includes("business") || source.includes("startup")) pool = businessPool;
   else if (source.includes("psychology") || source.includes("behavior")) pool = psychologyPool;
 
-  return pool[hashText(bookPackage.book.bookId) % pool.length];
+  // pools are non-empty and hashText is non-negative, so the modulo is in-bounds;
+  // the generic book glyph is a defensive fallback that never fires.
+  return pool[hashText(bookPackage.book.bookId) % pool.length] ?? "📘";
 }
 
 function inferPresentationDifficulty(categories: string[]): BookPackagePresentation["difficulty"] {

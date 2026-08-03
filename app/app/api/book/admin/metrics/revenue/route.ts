@@ -11,6 +11,7 @@ import {
   scanAllEntitlements,
 } from "@/app/app/api/book/_lib/admin-metrics";
 import { PRICING, BILLING_CURRENCY } from "@/lib/pricing";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -35,15 +36,15 @@ export async function GET(req: Request) {
 
     const [subSeries, licenseSeries, entitlements] = await Promise.all([
       dailySeries(analyticsTable, days, "subscription_change").catch((err) => {
-        console.warn("[admin-revenue] subscription_change query failed:", err);
+        logger.warn("admin_revenue_subscription_change_query_failed", { err });
         return [];
       }),
       dailySeries(analyticsTable, days, "license_redemption_attempt").catch((err) => {
-        console.warn("[admin-revenue] license_redemption_attempt query failed:", err);
+        logger.warn("admin_revenue_license_redemption_query_failed", { err });
         return [];
       }),
       scanAllEntitlements(tableName).catch((err) => {
-        console.warn("[admin-revenue] entitlement scan failed:", err);
+        logger.warn("admin_revenue_entitlement_scan_failed", { err });
         warnings.push("Entitlement data unavailable (database scan failed).");
         return [];
       }),

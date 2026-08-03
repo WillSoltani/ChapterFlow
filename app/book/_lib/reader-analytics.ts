@@ -18,7 +18,7 @@ export type ReaderFunnelEvent =
  */
 export function trackReaderFunnel(
   event: ReaderFunnelEvent,
-  payload: { bookId: string; chapterNumber?: number } & Record<string, unknown>,
+  payload: { bookId: string; chapterNumber?: number | undefined } & Record<string, unknown>,
 ): void {
   void fetchBookJson("/app/api/book/me/analytics/track", {
     method: "POST",

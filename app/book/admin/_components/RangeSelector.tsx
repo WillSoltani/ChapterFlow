@@ -15,7 +15,7 @@ export function RangeSelector({
     <div
       role="tablist"
       aria-label="Time range"
-      className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) p-0.5 text-[12px] shadow-(--cf-input-inset-shadow)"
+      className="inline-flex items-center gap-1 rounded-lg border border-(--cf-border) bg-(--cf-surface) p-0.5 text-cf-label-sm shadow-(--cf-input-inset-shadow)"
     >
       {options.map((d) => {
         const active = value === d;

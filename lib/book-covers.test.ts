@@ -50,7 +50,7 @@ const SAMPLE = [
 
 test("each sampled cover's primary candidate is a real raster on disk", () => {
   for (const id of SAMPLE) {
-    const primary = getBookCoverCandidates(id)[0];
+    const primary = getBookCoverCandidates(id)[0]!;
     assert.ok(primary, `no cover candidate produced for ${id}`);
     assert.match(
       primary,
@@ -92,7 +92,7 @@ test("cover aliases resolve to a real raster", () => {
     "the-great-mental-models-vol-1", // → the-great-mental-models-v-1
     "you-cant-hurt-me", // → you-can't-hurt-me (apostrophe variant)
   ]) {
-    const primary = getBookCoverCandidates(id)[0];
+    const primary = getBookCoverCandidates(id)[0]!;
     assert.ok(
       existsSync(publicFileFor(primary)),
       `aliased cover missing for ${id}: ${primary}`,

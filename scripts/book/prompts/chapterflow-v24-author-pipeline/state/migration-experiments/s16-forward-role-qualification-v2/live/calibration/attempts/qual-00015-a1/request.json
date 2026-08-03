@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "825c72c6d9ff84cd460eb86ee860d58a0cb2889b18592e3134afde3b485a3417",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00015",
+    "attemptId": "qual-00015-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "quiz",
+    "partition": "calibration",
+    "caseId": "QUIZ-V2-CALIBRATION-genuine-ambiguity-power-of-moments-ch02-q01",
+    "family": "genuine-ambiguity",
+    "profileId": "gpt-5.6-sol@xhigh",
+    "model": "gpt-5.6-sol",
+    "effort": "xhigh",
+    "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+    "promptSha256": "3475378e4d82ee0bca918a8367015d900c9ed49fd35995d3fa0c045250e00f56",
+    "freezeSha256": "0d25f7ddeb0c7dea1f50498ad7f819f46434e6040b175678e53f125dc25a7456",
+    "task": {
+      "sha256": "3475378e4d82ee0bca918a8367015d900c9ed49fd35995d3fa0c045250e00f56",
+      "bytes": 2206
+    },
+    "artifacts": [
+      {
+        "kind": "phase2-doc",
+        "relPath": "quiz/QUIZ-V2-CALIBRATION-genuine-ambiguity-power-of-moments-ch02-q01.phase2.md",
+        "sha256": "aaeeaeefdf3219a423334a76f2fffd3ddf816ce84e58848205a8177ab0a030d4",
+        "bytes": 13310
+      }
+    ]
+  }
+}

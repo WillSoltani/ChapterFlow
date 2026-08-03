@@ -16,7 +16,7 @@ export default function NotFound() {
         </div>
 
         <div
-          className="text-[72px] font-bold mb-4"
+          className="text-7xl font-bold mb-4"
           style={{
             fontFamily: "var(--font-display)",
             color: "rgba(245, 158, 11, 0.15)",
@@ -26,7 +26,7 @@ export default function NotFound() {
         </div>
 
         <h1
-          className="text-[24px] font-bold mb-3"
+          className="text-2xl font-bold mb-3"
           style={{
             color: "var(--text-heading)",
             fontFamily: "var(--font-display)",
@@ -36,7 +36,7 @@ export default function NotFound() {
         </h1>
 
         <p
-          className="text-[16px] mb-8 leading-relaxed"
+          className="text-cf-body-lg mb-8 leading-relaxed"
           style={{ color: "var(--text-secondary)" }}
         >
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
@@ -45,7 +45,7 @@ export default function NotFound() {
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href="/"
-            className="px-6 py-3 font-semibold rounded-full text-[14px] transition-colors hover:brightness-110"
+            className="px-6 py-3 font-semibold rounded-full text-cf-body-sm transition-colors hover:brightness-110"
             style={{
               background: "var(--accent-cyan)",
               color: "var(--bg-base)",
@@ -55,7 +55,7 @@ export default function NotFound() {
           </Link>
           <Link
             href="/books"
-            className="px-6 py-3 font-medium rounded-full text-[14px] transition-colors"
+            className="px-6 py-3 font-medium rounded-full text-cf-body-sm transition-colors"
             style={{
               background: "var(--bg-surface-2)",
               color: "var(--text-heading)",
@@ -66,7 +66,7 @@ export default function NotFound() {
           </Link>
         </div>
 
-        <p className="mt-8 text-[13px]" style={{ color: "var(--text-muted)" }}>
+        <p className="mt-8 text-cf-label" style={{ color: "var(--text-muted)" }}>
           Think this is a mistake?{" "}
           <Link href="/contact" className="underline" style={{ color: "var(--accent-cyan)" }}>
             Contact us

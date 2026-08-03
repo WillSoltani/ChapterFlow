@@ -1,14 +1,18 @@
 import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
-import { selectDevicesToEvict, type DeviceRowRef } from "@/app/app/api/book/_lib/device-cap-core";
+import { selectDevicesToEvict } from "@/app/app/api/book/_lib/device-cap-core";
 import { parseDeviceRegistration } from "@/app/app/api/book/_lib/device-register-core";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookErr, bookOk, requireBodyObject, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { bookUserPk, deviceTokenSk, nowIso } from "@/app/app/api/book/_lib/keys";
 import { isAllowedPushEndpoint } from "@/app/app/api/book/_lib/push-endpoint-allowlist";
-import { DeleteCommand, PutCommand, QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
+import {
+  deleteDeviceTokenBySk,
+  listUserDeviceTokens,
+  putDeviceToken,
+} from "@/app/app/api/book/_lib/device-token-repo";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -75,7 +79,7 @@ export async function POST(req: Request) {
             lastSeenAt: now,
           };
 
-    await ddbDoc.send(new PutCommand({ TableName: tableName, Item: item }));
+    await putDeviceToken(tableName, item);
 
     // Cap registered devices per user (E4): without a bound, distinct push
     // endpoints accumulate one DEVICE# row each (the SK is a hash of the
@@ -85,23 +89,13 @@ export async function POST(req: Request) {
     // prune must not fail the registration the client already depends on, and
     // the send-time `MAX_PUSH_FANOUT` cap bounds the loop regardless.
     try {
-      const existing = await ddbDoc.send(
-        new QueryCommand({
-          TableName: tableName,
-          KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-          ExpressionAttributeValues: { ":pk": pk, ":prefix": "DEVICE#" },
-          ProjectionExpression: "SK, lastSeenAt",
-        })
-      );
-      const rows = (existing.Items ?? []) as DeviceRowRef[];
+      const rows = await listUserDeviceTokens(tableName, user.sub);
       const evictions = selectDevicesToEvict(rows, sk);
       for (const { SK } of evictions) {
-        await ddbDoc.send(
-          new DeleteCommand({ TableName: tableName, Key: { PK: pk, SK } })
-        );
+        await deleteDeviceTokenBySk(tableName, user.sub, SK);
       }
     } catch (e) {
-      console.error("[devices/register] device-cap pruning failed:", e);
+      logger.error("devices_register_device_cap_pruning_failed", { err: e });
     }
 
     return bookOk({ registered: true });

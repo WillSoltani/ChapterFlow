@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c29-a1",
+  "requestSha256": "704ae7532479d91748a3e883e2a4281f77f16d01f2b47aa28f23e553343910c9",
+  "receiptSha256": "6ce6d064ace38c0cf93225e12d4932b1baef9c851aa90f741d9bfa3a7818becf",
+  "executionEvidenceSha256": "1061a7824e6e177af4fc468f076b164e42cb8e18b8f20d790e4c84237cd094f2",
+  "rawOutputSha256": "0dff69ab814551a9177e6bb2ef1e5e8c70b5890c4d0d0549e815c303db8690a6",
+  "evaluationSha256": "d951626e5eaa147e328d602791d885ce3ab41bc8423009fb0276dea8ec07084d",
+  "parsedOutputSha256": "7d8a8bca996a507379b9af32a5268ea133ee6c2108a412ab074777f990e99afc",
+  "assembledReviewSha256": "190e1b9639108bea266c59f2278598be2ceb4e50ea16dbc1eb084443859535e3",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter segment stays within the plan's generic operational-scenario allowance, uses only permitted generic role/action/workflow details, does not require visible framing, and introduces no named or source-dependent specifics."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "bfba21eedcdf8a8cdb9c68a81c9c8b84bf4a159e84af3f84e97757784ce9c954",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "dd1ad657bf39f09adbc91b0be919712b583e87a50ec64d4af2ac1cfb6ccf3ac3",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_generic",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter segment stays within the plan's generic operational-scenario allowance, uses only permitted generic role/action/workflow details, does not require visible framing, and introduces no named or source-dependent specifics.",
+          "unitId": "unit.ch01.generic-scenario",
+          "expectedOrigin": "generic",
+          "expectedForm": "operational_scenario",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": false,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter segment stays within the plan's generic operational-scenario allowance, uses only permitted generic role/action/workflow details, does not require visible framing, and introduces no named or source-dependent specifics."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "9fbb12d5d18db7fb155eacc82312bddde882aecc4977112801091de0a57afa73"
+}

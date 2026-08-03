@@ -7,13 +7,17 @@ import { AuthError } from "@/app/app/api/_lib/auth";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { getAskBookModel, getAnthropicClient, recordAiUsage } from "@/app/app/api/book/_lib/ai-config";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { GetCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
-import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
-import { bookUserPk, aiQuestionCountSk, aiCachedAnswerPk, aiCachedAnswerSk } from "@/app/app/api/book/_lib/keys";
+import {
+  getAiQuestionCount,
+  getCachedAiAnswer,
+  incrementCachedAiAnswerHitCount,
+  putCachedAiAnswer,
+  reserveDailyAiQuestionSlot,
+} from "@/app/app/api/book/_lib/ai-ask-repo";
 import { createHash } from "crypto";
 import { getUserEntitlement } from "@/app/app/api/book/_lib/repo";
 import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -78,28 +82,23 @@ export async function POST(req: Request, ctx: Params) {
     // The Messages API requires the first message to be a user turn; dropping
     // leading assistant turns also stops a fabricated assistant turn from
     // opening the conversation.
-    while (history.length && history[0].role === "assistant") {
+    while (history.length && history[0]?.role === "assistant") {
       history.shift();
     }
 
     // Daily question cap.
     const today = new Date().toISOString().slice(0, 10);
-    const pk = bookUserPk(user.sub);
-    const countSk = aiQuestionCountSk(today);
 
     const entitlement = await getUserEntitlement(tableName, user.sub);
     const isPro = entitlement?.plan === "PRO";
     const limit = isPro ? 20 : 5;
 
     // Cheap fast-path: reject callers already over the cap before doing any
-    // content work. This GetItem is NOT the authoritative gate — a stale read
+    // content work. This read is NOT the authoritative gate — a stale read
     // here can let concurrent requests through. The atomic conditional
     // increment right before the Claude call below is the real serialization
     // point (see H10).
-    const countResult = await ddbDoc.send(
-      new GetCommand({ TableName: tableName, Key: { PK: pk, SK: countSk } }),
-    );
-    const currentCount = (countResult.Item as { count?: number })?.count ?? 0;
+    const currentCount = await getAiQuestionCount(tableName, user.sub, today);
     if (currentCount >= limit) {
       return bookErr(req, 429, "question_limit", `Daily question limit reached (${limit}/day)`);
     }
@@ -202,26 +201,14 @@ export async function POST(req: Request, ctx: Params) {
 
     if (isStandalone && questionHash) {
       try {
-        const cached = await ddbDoc.send(
-          new GetCommand({
-            TableName: tableName,
-            Key: { PK: aiCachedAnswerPk(bookId), SK: aiCachedAnswerSk(questionHash) },
-          }),
-        );
-        if (cached.Item && typeof cached.Item.answer === "string") {
+        const cached = await getCachedAiAnswer(tableName, bookId, questionHash);
+        if (cached && typeof cached.answer === "string") {
           // Increment hit count in background
-          ddbDoc.send(
-            new UpdateCommand({
-              TableName: tableName,
-              Key: { PK: aiCachedAnswerPk(bookId), SK: aiCachedAnswerSk(questionHash) },
-              UpdateExpression: "SET hitCount = if_not_exists(hitCount, :zero) + :one",
-              ExpressionAttributeValues: { ":zero": 0, ":one": 1 },
-            }),
-          ).catch(() => {});
+          incrementCachedAiAnswerHitCount(tableName, bookId, questionHash).catch(() => {});
 
           // Stream cached answer in word-level chunks with delays for a typing feel
           const encoder = new TextEncoder();
-          const words = (cached.Item.answer as string).split(/(\s+)/);
+          const words = (cached.answer as string).split(/(\s+)/);
           const chunks: string[] = [];
           let buf = "";
           for (const w of words) {
@@ -257,7 +244,7 @@ export async function POST(req: Request, ctx: Params) {
           });
         }
       } catch (e) {
-        console.warn("[ask-book] Cache lookup failed, proceeding without cache:", e);
+        logger.warn("ask_book_cache_lookup_failed", { err: e });
       }
     }
 
@@ -276,30 +263,9 @@ export async function POST(req: Request, ctx: Params) {
     // invoked, so a client that aborts the stream mid-flight can't farm free
     // tokens. Cache hits returned above never reach here, so they stay free.
     const countTtl = Math.floor(Date.now() / 1000) + 3 * 86400;
-    try {
-      await ddbDoc.send(
-        new UpdateCommand({
-          TableName: tableName,
-          Key: { PK: pk, SK: countSk },
-          UpdateExpression:
-            "SET #count = if_not_exists(#count, :zero) + :one, updatedAt = :now, entity = :entity, #ttl = :ttl",
-          ConditionExpression: "attribute_not_exists(#count) OR #count < :limit",
-          ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
-          ExpressionAttributeValues: {
-            ":zero": 0,
-            ":one": 1,
-            ":now": new Date().toISOString(),
-            ":entity": "AI_QUESTION_COUNT",
-            ":ttl": countTtl,
-            ":limit": limit,
-          },
-        }),
-      );
-    } catch (e) {
-      if (e instanceof ConditionalCheckFailedException) {
-        return bookErr(req, 429, "question_limit", `Daily question limit reached (${limit}/day)`);
-      }
-      throw e;
+    const reserved = await reserveDailyAiQuestionSlot(tableName, user.sub, today, limit, countTtl);
+    if (!reserved) {
+      return bookErr(req, 429, "question_limit", `Daily question limit reached (${limit}/day)`);
     }
 
     // Stream Claude response. The question is already counted (reserved above),
@@ -351,7 +317,7 @@ ${bookContext}`,
             err && typeof err === "object" && "status" in err
               ? (err as { status?: number }).status
               : undefined;
-          console.error("[ask-book] Anthropic stream failed:", {
+          logger.error("ask_book_anthropic_stream_failed", {
             status,
             name: err instanceof Error ? err.name : typeof err,
             message: err instanceof Error ? err.message : String(err),
@@ -403,24 +369,13 @@ ${bookContext}`,
           // success, for standalone (no-history) questions.
           if (streamSuccess && isStandalone && questionHash && fullAnswer) {
             const cacheTtl = Math.floor(Date.now() / 1000) + 30 * 86400; // 30 days
-            await ddbDoc.send(
-              new PutCommand({
-                TableName: tableName,
-                Item: {
-                  PK: aiCachedAnswerPk(bookId),
-                  SK: aiCachedAnswerSk(questionHash),
-                  entity: "AI_CACHED_ANSWER",
-                  bookId,
-                  questionHash,
-                  question,
-                  answer: fullAnswer,
-                  tone: "direct",
-                  hitCount: 0,
-                  ttl: cacheTtl,
-                  createdAt: new Date().toISOString(),
-                },
-              }),
-            ).catch((e) => console.error("[ask-book] Failed to write cache:", e));
+            await putCachedAiAnswer(tableName, {
+              bookId,
+              questionHash,
+              question,
+              answer: fullAnswer,
+              ttlEpochSeconds: cacheTtl,
+            }).catch((e) => logger.error("ask_book_cache_write_failed", { err: e }));
           }
         }
       },
@@ -450,7 +405,7 @@ ${bookContext}`,
     if (isBookApiError(err)) {
       return bookErr(req, err.status, err.code, err.message, err.details);
     }
-    console.error("[ask-book] Error:", err);
+    logger.error("ask_book_error", { err });
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }
 }

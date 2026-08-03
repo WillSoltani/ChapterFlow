@@ -19,20 +19,20 @@ import {
 type SubscriptionCardProps = {
   plan: "FREE" | "PRO";
   freeBookSlots: number;
-  currentPeriodEnd?: string;
-  cancelAtPeriodEnd?: boolean;
+  currentPeriodEnd?: string | undefined;
+  cancelAtPeriodEnd?: boolean | undefined;
   /** How the user obtained Pro — drives whether we show the Stripe portal or the
    *  App Store management link for a Pro subscriber. */
-  proSource?: EntitlementsResponse["entitlement"]["proSource"];
+  proSource?: EntitlementsResponse["entitlement"]["proSource"] | undefined;
   price: string;
-  pricingTiers?: PricingTier[];
+  pricingTiers?: PricingTier[] | undefined;
   /** Billing interval to pre-select (e.g. carried from the landing "Annual"
    *  toggle via the upgrade deep-link). Only honored when it's an offered tier. */
-  initialInterval?: BillingInterval;
+  initialInterval?: BillingInterval | undefined;
   onUpgrade: (interval?: BillingInterval) => Promise<string | null>;
   onManage: () => Promise<string | null>;
   onRedeemKey: (code: string) => Promise<string | null>;
-  reducedMotion?: boolean;
+  reducedMotion?: boolean | undefined;
 };
 
 const TIER_DISPLAY: Record<BillingInterval, { name: string; badge?: string }> = {
@@ -141,7 +141,7 @@ export function SubscriptionCard({
               : "Monthly billing"}
         </p>
         {cancelAtPeriodEnd && (
-          <p className="mt-1 text-xs text-(--cf-warning-text, #b45309)">
+          <p className="mt-1 text-xs text-(--cf-warning-text)">
             Your Pro access will end on the date above and won&apos;t auto-renew.
           </p>
         )}

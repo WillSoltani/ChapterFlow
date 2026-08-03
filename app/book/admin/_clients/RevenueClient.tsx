@@ -1,20 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Wallet } from "lucide-react";
-import {
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Cell,
-  Legend,
-  Pie,
-  PieChart,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
@@ -22,7 +10,30 @@ import { ErrorAlert } from "@/app/book/admin/_components/ErrorAlert";
 import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton, TableSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const SubscriptionEventsChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/RevenueCharts").then(
+      (module) => module.SubscriptionEventsChart,
+    ),
+  { ssr: false },
+);
+
+const ProSourceMixChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/RevenueCharts").then(
+      (module) => module.ProSourceMixChart,
+    ),
+  { ssr: false },
+);
+
+const LicenseRedemptionsChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/RevenueCharts").then(
+      (module) => module.LicenseRedemptionsChart,
+    ),
+  { ssr: false },
+);
 
 type RevenueResponse = {
   generatedAt: string;
@@ -49,20 +60,13 @@ type RevenueResponse = {
   }>;
 };
 
-const SOURCE_COLORS: Record<string, string> = {
-  stripe: "var(--cf-accent)",
-  license: "var(--cf-success-text)",
-  flow_points: "var(--cf-warm-text, var(--cf-accent))",
-  unknown: "var(--cf-text-soft)",
-};
-
 export function RevenueClient() {
   const [range, setRange] = useState(30);
   const [data, setData] = useState<RevenueResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<RevenueResponse>(`/metrics/revenue?range=${range}`)
@@ -71,11 +75,11 @@ export function RevenueClient() {
         setError(err instanceof Error ? err.message : "Failed to load revenue"),
       )
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   const sourceData = useMemo(() => {
     if (!data) return [];
@@ -132,27 +136,7 @@ export function RevenueClient() {
             <ChartSkeleton />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart
-                  data={data?.subscriptionEvents ?? []}
-                  margin={{ top: 10, right: 10, bottom: 0, left: 0 }}
-                >
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={fmtDate}
-                  />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={40} allowDecimals={false} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar
-                    dataKey="value"
-                    fill="var(--cf-accent)"
-                    isAnimationActive={false}
-                    radius={[4, 4, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <SubscriptionEventsChart data={data?.subscriptionEvents ?? []} />
             </div>
           )}
         </AdminCard>
@@ -160,30 +144,7 @@ export function RevenueClient() {
         <AdminCard title="PRO source mix" description="New PROs by acquisition channel">
           {sourceData.length > 0 ? (
             <div className="h-48">
-              <ResponsiveContainer>
-                <PieChart>
-                  <Pie
-                    data={sourceData}
-                    cx="50%"
-                    cy="50%"
-                    innerRadius={36}
-                    outerRadius={72}
-                    paddingAngle={2}
-                    dataKey="value"
-                    isAnimationActive={false}
-                  >
-                    {sourceData.map((entry) => (
-                      <Cell
-                        key={entry.name}
-                        fill={SOURCE_COLORS[entry.name] ?? "var(--cf-text-soft)"}
-                        stroke="var(--cf-surface)"
-                      />
-                    ))}
-                  </Pie>
-                  <Tooltip content={<DarkTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: 11, color: "var(--cf-text-3)" }} iconSize={8} />
-                </PieChart>
-              </ResponsiveContainer>
+              <ProSourceMixChart data={sourceData} />
             </div>
           ) : (
             <EmptyState
@@ -202,27 +163,7 @@ export function RevenueClient() {
             <ChartSkeleton height="h-48" />
           ) : (
             <div className="h-48">
-              <ResponsiveContainer>
-                <BarChart
-                  data={data?.licenseRedemptions ?? []}
-                  margin={{ top: 10, right: 10, bottom: 0, left: 0 }}
-                >
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={fmtDate}
-                  />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={40} allowDecimals={false} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar
-                    dataKey="value"
-                    fill="var(--cf-amber-text, var(--cf-accent))"
-                    isAnimationActive={false}
-                    radius={[4, 4, 0, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <LicenseRedemptionsChart data={data?.licenseRedemptions ?? []} />
             </div>
           )}
         </AdminCard>
@@ -243,9 +184,9 @@ export function RevenueClient() {
             />
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[640px] text-[12px]">
+              <table className="w-full min-w-[640px] text-cf-label-sm">
                 <thead>
-                  <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                  <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                     <th className="py-2 pr-3">Email / User</th>
                     <th className="py-2 pr-3">Status</th>
                     <th className="py-2 pr-3">Source</th>
@@ -262,7 +203,7 @@ export function RevenueClient() {
                     >
                       <td className="py-2 pr-3 text-(--cf-text-1)" title={u.userId}>
                         {u.email ?? (
-                          <span className="font-mono text-[11px] text-(--cf-text-3)">
+                          <span className="font-mono text-cf-caption text-(--cf-text-3)">
                             {u.userId.slice(0, 12)}…
                           </span>
                         )}
@@ -282,11 +223,6 @@ export function RevenueClient() {
       </div>
     </div>
   );
-}
-
-function fmtDate(d: string): string {
-  const date = new Date(d);
-  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }
 
 function fmtFull(iso: string | null): string {

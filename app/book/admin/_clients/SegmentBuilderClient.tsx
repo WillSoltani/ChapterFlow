@@ -162,7 +162,7 @@ export function SegmentBuilderClient() {
     ]);
   };
 
-  const updateFilter = (idx: number, patch: Partial<SegmentFilter>) => {
+  const updateFilter = (idx: number, patch: { [K in keyof SegmentFilter]?: SegmentFilter[K] | undefined }) => {
     setFilters((fs) =>
       fs.map((f, i) => (i === idx ? ({ ...f, ...patch } as SegmentFilter) : f)),
     );
@@ -235,7 +235,7 @@ export function SegmentBuilderClient() {
                       value: "",
                     })
                   }
-                  className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[12px] text-(--cf-text-1)"
+                  className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-label-sm text-(--cf-text-1)"
                 >
                   {(Object.keys(FIELD_LABELS) as FilterField[]).map((fld) => (
                     <option key={fld} value={fld}>
@@ -248,7 +248,7 @@ export function SegmentBuilderClient() {
                   onChange={(e) =>
                     updateFilter(idx, { operator: e.target.value as Operator })
                   }
-                  className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[12px] text-(--cf-text-1)"
+                  className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-label-sm text-(--cf-text-1)"
                 >
                   {OPERATORS_BY_FIELD[f.field].map((op) => (
                     <option key={op} value={op}>
@@ -262,7 +262,7 @@ export function SegmentBuilderClient() {
                     value={String(f.value ?? "")}
                     onChange={(e) => updateFilter(idx, { value: e.target.value })}
                     placeholder={filterPlaceholder(f.field)}
-                    className="flex-1 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) min-w-[120px]"
+                    className="flex-1 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-label-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) min-w-[120px]"
                   />
                 )}
                 {f.operator === "between" && (
@@ -273,7 +273,7 @@ export function SegmentBuilderClient() {
                       updateFilter(idx, { valueMax: Number(e.target.value) })
                     }
                     placeholder="and"
-                    className="w-24 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[12px] text-(--cf-text-1)"
+                    className="w-24 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-label-sm text-(--cf-text-1)"
                   />
                 )}
                 <button
@@ -290,7 +290,7 @@ export function SegmentBuilderClient() {
             <button
               type="button"
               onClick={addFilter}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-dashed border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
             >
               <Plus className="h-3.5 w-3.5" />
               Add filter
@@ -299,12 +299,12 @@ export function SegmentBuilderClient() {
 
           <div className="mt-5 space-y-2 rounded-xl border border-(--cf-accent-border)/30 bg-(--cf-accent-soft)/20 p-3">
             <div className="flex items-center justify-between">
-              <span className="text-[12px] text-(--cf-text-3)">Matches</span>
-              <span className="tabular-nums text-[18px] font-semibold text-(--cf-accent)">
+              <span className="text-cf-label-sm text-(--cf-text-3)">Matches</span>
+              <span className="tabular-nums text-lg font-semibold text-(--cf-accent)">
                 {previewing ? "…" : matchCount.toLocaleString()}
               </span>
             </div>
-            <p className="text-[11px] text-(--cf-text-soft)">
+            <p className="text-cf-caption text-(--cf-text-soft)">
               of {preview?.totalScanned.toLocaleString() ?? "—"} users scanned
             </p>
           </div>
@@ -315,21 +315,21 @@ export function SegmentBuilderClient() {
               value={name}
               onChange={(e) => setName(e.target.value)}
               placeholder="Segment name (e.g. 'PRO users in CA inactive 14d')"
-              className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-[13px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
+              className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-cf-label text-(--cf-text-1) placeholder:text-(--cf-text-soft) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
             />
             <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               placeholder="Description (optional)"
-              className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-[13px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) focus:border-(--cf-accent) focus:outline-none"
+              className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-cf-label text-(--cf-text-1) placeholder:text-(--cf-text-soft) focus:border-(--cf-accent) focus:outline-none"
             />
             <div className="flex items-center gap-2">
               <button
                 type="button"
                 onClick={saveSegment}
                 disabled={!name.trim() || filters.length === 0 || saving}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-cf-label font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60"
               >
                 <Save className="h-3.5 w-3.5" />
                 {saving ? "Saving..." : "Save segment"}
@@ -344,7 +344,7 @@ export function SegmentBuilderClient() {
                     );
                     if (!exported) setToast("Nothing to export.");
                   }}
-                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                 >
                   <Download className="h-3.5 w-3.5" />
                   CSV preview
@@ -367,7 +367,7 @@ export function SegmentBuilderClient() {
               {preview?.preview.map((u) => (
                 <div
                   key={u.userId}
-                  className="rounded-lg border border-(--cf-border)/50 bg-(--cf-surface-muted)/40 px-2.5 py-1.5 text-[11px]"
+                  className="rounded-lg border border-(--cf-border)/50 bg-(--cf-surface-muted)/40 px-2.5 py-1.5 text-cf-caption"
                 >
                   <p className="truncate text-(--cf-text-1)">{u.email ?? u.userId.slice(0, 12)}</p>
                   <p className="text-(--cf-text-soft)">
@@ -410,11 +410,11 @@ export function SegmentBuilderClient() {
                 >
                   <div className="flex items-start justify-between gap-3">
                     <div className="min-w-0 flex-1">
-                      <p className="text-[14px] font-medium text-(--cf-text-1)">{s.name}</p>
+                      <p className="text-cf-body-sm font-medium text-(--cf-text-1)">{s.name}</p>
                       {s.description && (
-                        <p className="mt-0.5 text-[12px] text-(--cf-text-3)">{s.description}</p>
+                        <p className="mt-0.5 text-cf-label-sm text-(--cf-text-3)">{s.description}</p>
                       )}
-                      <p className="mt-1 text-[11px] text-(--cf-text-soft)">
+                      <p className="mt-1 text-cf-caption text-(--cf-text-soft)">
                         {s.filters.length} filter{s.filters.length === 1 ? "" : "s"} ·
                         {s.lastRunCount !== undefined
                           ? ` last run: ${s.lastRunCount} users`
@@ -425,7 +425,7 @@ export function SegmentBuilderClient() {
                       <button
                         type="button"
                         onClick={() => setNotifyOpen(s)}
-                        className="inline-flex items-center gap-1 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[11px] text-(--cf-text-2) hover:bg-(--cf-accent-soft) hover:text-(--cf-accent)"
+                        className="inline-flex items-center gap-1 rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-caption text-(--cf-text-2) hover:bg-(--cf-accent-soft) hover:text-(--cf-accent)"
                       >
                         <Send className="h-3 w-3" />
                         Notify
@@ -435,7 +435,7 @@ export function SegmentBuilderClient() {
                           <button
                             type="button"
                             onClick={() => deleteSegment(s.segmentId)}
-                            className="inline-flex items-center gap-1 rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2 py-1 text-[11px] font-semibold text-(--cf-danger-text) hover:opacity-90"
+                            className="inline-flex items-center gap-1 rounded-md border border-(--cf-danger-border) bg-(--cf-danger-soft) px-2 py-1 text-cf-caption font-semibold text-(--cf-danger-text) hover:opacity-90"
                           >
                             <Trash2 className="h-3 w-3" />
                             Confirm delete
@@ -443,7 +443,7 @@ export function SegmentBuilderClient() {
                           <button
                             type="button"
                             onClick={() => setConfirmDeleteId(null)}
-                            className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-[11px] text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
+                            className="rounded-md border border-(--cf-border) bg-(--cf-surface) px-2 py-1 text-cf-caption text-(--cf-text-2) hover:bg-(--cf-surface-muted)"
                           >
                             Cancel
                           </button>
@@ -552,7 +552,7 @@ function NotifyModal({
             <h2 className="text-base font-semibold text-(--cf-text-1)">
               Send notification
             </h2>
-            <p className="mt-0.5 text-[12px] text-(--cf-text-3)">
+            <p className="mt-0.5 text-cf-label-sm text-(--cf-text-3)">
               To segment: <span className="font-medium">{segment.name}</span>
             </p>
           </div>
@@ -569,15 +569,15 @@ function NotifyModal({
         <div className="space-y-3">
           <div className="rounded-xl border border-(--cf-accent-border)/30 bg-(--cf-accent-soft)/20 px-3 py-2.5">
             {countLoading ? (
-              <p className="text-[13px] text-(--cf-text-3)">
+              <p className="text-cf-label text-(--cf-text-3)">
                 Counting recipients…
               </p>
             ) : matchCount === null ? (
-              <p className="text-[13px] text-(--cf-danger-text)">
+              <p className="text-cf-label text-(--cf-danger-text)">
                 Could not load the recipient count. Re-run the segment before sending.
               </p>
             ) : (
-              <p className="text-[13px] text-(--cf-text-1)">
+              <p className="text-cf-label text-(--cf-text-1)">
                 This will notify{" "}
                 <span className="font-semibold tabular-nums text-(--cf-accent)">
                   {matchCount.toLocaleString()}
@@ -598,7 +598,7 @@ function NotifyModal({
               setConfirming(false);
             }}
             placeholder="Notification title"
-            className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-[13px] text-(--cf-text-1) focus:border-(--cf-accent) focus:outline-none"
+            className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-cf-label text-(--cf-text-1) focus:border-(--cf-accent) focus:outline-none"
           />
           <textarea
             value={message}
@@ -608,11 +608,11 @@ function NotifyModal({
             }}
             placeholder="Message body"
             rows={4}
-            className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-[13px] text-(--cf-text-1) focus:border-(--cf-accent) focus:outline-none"
+            className="w-full rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-2 text-cf-label text-(--cf-text-1) focus:border-(--cf-accent) focus:outline-none"
           />
-          {error && <p className="text-[12px] text-(--cf-danger-text)">{error}</p>}
+          {error && <p className="text-cf-label-sm text-(--cf-danger-text)">{error}</p>}
           {confirming && !sending && (
-            <p className="text-[12px] font-medium text-(--cf-danger-text)">
+            <p className="text-cf-label-sm font-medium text-(--cf-danger-text)">
               This sends an in-app and email notification to{" "}
               {matchCount !== null ? matchCount.toLocaleString() : "these"} user
               {matchCount === 1 ? "" : "s"} and cannot be undone. Send anyway?
@@ -624,7 +624,7 @@ function NotifyModal({
                 type="button"
                 onClick={send}
                 disabled={!canSend || sending || countLoading}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-danger-text) px-3.5 py-1.5 text-[13px] font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-danger-text) px-3.5 py-1.5 text-cf-label font-semibold text-white transition hover:brightness-110 disabled:opacity-60"
               >
                 <Send className="h-3.5 w-3.5" />
                 {sending
@@ -638,7 +638,7 @@ function NotifyModal({
                 type="button"
                 onClick={() => setConfirming(true)}
                 disabled={!canSend || sending || countLoading}
-                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-[13px] font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
+                className="inline-flex items-center gap-1.5 rounded-xl bg-(--cf-accent) px-3.5 py-1.5 text-cf-label font-semibold text-(--cf-accent-contrast) transition hover:brightness-110 disabled:opacity-60"
               >
                 <Send className="h-3.5 w-3.5" />
                 Send now
@@ -648,7 +648,7 @@ function NotifyModal({
               type="button"
               onClick={confirming ? () => setConfirming(false) : onClose}
               disabled={sending}
-              className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3.5 py-1.5 text-[13px] font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted) disabled:opacity-60"
+              className="rounded-xl border border-(--cf-border) bg-(--cf-surface) px-3.5 py-1.5 text-cf-label font-medium text-(--cf-text-2) hover:bg-(--cf-surface-muted) disabled:opacity-60"
             >
               Cancel
             </button>

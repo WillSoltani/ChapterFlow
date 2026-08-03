@@ -1,0 +1,22 @@
+{
+  "schema": "codex-process-diagnostics-v1",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-source-a1",
+  "requestSha256": "b9fae6757398a123f030cedfb2ad28dc5e96211742309a556d1b22fb50ab7623",
+  "sessionId": "imp24e-schema-probe-6a8da15d9411495a2fc2c2bd5116544cdc9f3092d7cd6ace354425b35b7518a9",
+  "invocation": "RUNNER_RETURNED",
+  "classification": "completed",
+  "failureKind": null,
+  "errorName": null,
+  "errorMessage": null,
+  "timedOut": false,
+  "exitCode": 0,
+  "stdoutBytes": 302,
+  "stderrBytes": 1288,
+  "stdoutSha256": "db0576e85e7734d8207363426e79e3f9f04951884c57c0f881d99f07b8e61ab9",
+  "stderrSha256": "789f224777f8b0c55c0e19757f3e4e373372280c66e49b2ea3023b3728df086c",
+  "stdoutRetained": "{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"probe.target.1\",\"visibleRegister\":\"clearly_generic\",\"supportStatus\":\"NOT_APPLICABLE\",\"framingAdequate\":null,\"claimStrengthFit\":null,\"namedSpecificityAllowed\":null,\"findings\":[],\"rationale\":\"Synthetic transport probe output.\"}]}\n",
+  "stderrRetained": "Reading additional input from stdin...\nOpenAI Codex v0.144.1\n--------\nworkdir: /private/tmp/imp24b-v3-live.6FvE6D/repo/scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-schema-probes/live/workspaces/source\nmodel: gpt-5.6-sol\nprovider: openai\napproval: never\nsandbox: read-only\nreasoning effort: xhigh\nreasoning summaries: none\nsession id: 019f6193-3e0d-7493-b30e-05662c628287\n--------\nuser\nIMP-24E source transport-schema probe only.\nThis is synthetic and must not be treated as a review or qualification judgment.\nReturn exactly the following smallest valid JSON object and no prose:\n{\"assessments\":[{\"claimStrengthFit\":null,\"findings\":[],\"framingAdequate\":null,\"namedSpecificityAllowed\":null,\"rationale\":\"Synthetic transport probe output.\",\"supportStatus\":\"NOT_APPLICABLE\",\"targetRef\":\"probe.target.1\",\"visibleRegister\":\"clearly_generic\"}],\"schema\":\"source-integrity-model-output-v2\"}\ncodex\n{\"schema\":\"source-integrity-model-output-v2\",\"assessments\":[{\"targetRef\":\"probe.target.1\",\"visibleRegister\":\"clearly_generic\",\"supportStatus\":\"NOT_APPLICABLE\",\"framingAdequate\":null,\"claimStrengthFit\":null,\"namedSpecificityAllowed\":null,\"findings\":[],\"rationale\":\"Synthetic transport probe output.\"}]}\ntokens used\n13,843\n",
+  "stdoutTruncated": false,
+  "stderrTruncated": false,
+  "diagnosticsSha256": "30fcfb38a43b86a768a8ede9cb991a991b70992887e1f69e77eda8f131ef3491"
+}

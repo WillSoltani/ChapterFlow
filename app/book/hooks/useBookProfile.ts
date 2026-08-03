@@ -2,6 +2,9 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { useBookQuery, invalidateBookCache } from "@/app/book/_lib/book-api-cache";
+
+const PROFILE_KEY = "/app/api/book/me/profile";
 
 export type ProfileVisibility = "private" | "friends" | "public";
 
@@ -161,25 +164,16 @@ export function useBookProfile(seed: BookProfileSeed) {
     setHydrated(true);
   }, [stableSeed]);
 
+  // Cached GET — dedups with useBookViewer's /me/profile read when co-mounted.
+  const profileQuery = useBookQuery<{ profile: Partial<BookProfileState> | null }>(PROFILE_KEY);
   useEffect(() => {
-    let mounted = true;
-    fetchBookJson<{ profile: Partial<BookProfileState> | null }>("/app/api/book/me/profile")
-      .then((payload) => {
-        if (!mounted || !payload.profile) return;
-        setState((prev) => ({
-          ...prev,
-          ...payload.profile,
-        }));
-        setServerReady(true);
-      })
-      .catch(() => {
-        if (!mounted) return;
-        setServerReady(true);
-      });
-    return () => {
-      mounted = false;
-    };
-  }, []);
+    if (profileQuery.data === undefined && profileQuery.error === undefined) return;
+    const profile = profileQuery.data?.profile;
+    if (profile) {
+      setState((prev) => ({ ...prev, ...profile }));
+    }
+    setServerReady(true); // on data AND on error — matches the old .catch path
+  }, [profileQuery.data, profileQuery.error]);
 
   useEffect(() => {
     if (!hydrated) return;
@@ -191,12 +185,18 @@ export function useBookProfile(seed: BookProfileSeed) {
     const timeout = window.setTimeout(() => {
       dirtyRef.current = false;
       setLastSaveError(null);
-      fetchBookJson("/app/api/book/me/profile", {
+      fetchBookJson(PROFILE_KEY, {
         method: "PATCH",
         body: JSON.stringify({ profile: state }),
-      }).catch((err) => {
-        setLastSaveError(err instanceof Error ? err.message : "Profile save failed");
-      });
+      })
+        .then(() => {
+          // The write changed server-side profile state — drop the cached GET so
+          // co-mounted readers (e.g. useBookViewer) revalidate against fresh data.
+          invalidateBookCache(PROFILE_KEY);
+        })
+        .catch((err) => {
+          setLastSaveError(err instanceof Error ? err.message : "Profile save failed");
+        });
     }, 250);
     return () => window.clearTimeout(timeout);
   }, [hydrated, serverReady, state]);

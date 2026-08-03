@@ -1,0 +1,38 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p2-holdout-c28-a1",
+  "requestSha256": "434b74170f4a5aefec3a36be491e6ead5b4646016829db9e8ef82d4f47285482",
+  "receiptSha256": "925f2148db7a7c043fc78da807d0b39fbc63ca884adc044c8387ec33f7479c8c",
+  "executionEvidenceSha256": "a4d5c9e342aa6c93c780825dcd343281475e2f447ed5d8ff8a7157661ce4b557",
+  "rawOutputSha256": "350971be89b49441139a6de19286133c8d942a08c35f2deadfbfab56209bce99",
+  "evaluationSha256": "4abc98f2abbee70682d3128fae99be97ce23728350715da6fde9d7e933810fa5",
+  "parsedOutputSha256": null,
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "bed5fa053e15e8fdec895699f4e5d7fd494f638c460847dc45d2470533cfc566",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": false,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": false,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source model output v2: source-model-output-v2.assessments[0].findings[0]: primaryCategory violates frozen precedence; expected claim_strength_overreach",
+    "metricObservations": {},
+    "parsedOutput": null,
+    "parseError": "source model output v2: source-model-output-v2.assessments[0].findings[0]: primaryCategory violates frozen precedence; expected claim_strength_overreach",
+    "assembledReview": null,
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "NOT_APPLICABLE",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "e08bb9602ae98fe133536d2fd1fa965a5c59188f5aed6bfe68acdd930ce3b4f9"
+}

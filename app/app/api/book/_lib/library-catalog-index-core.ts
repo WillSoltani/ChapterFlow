@@ -17,13 +17,13 @@ import type { BookDifficulty } from "@/app/book/_lib/library-data";
 
 export type LibraryCatalogIndexBook = {
   bookId: string;
-  icon?: string;
-  difficulty?: BookDifficulty;
-  synopsis?: string;
-  pages?: number;
-  estimatedMinutes?: number;
-  chapterCount?: number;
-  coverAssetKey?: string;
+  icon?: string | undefined;
+  difficulty?: BookDifficulty | undefined;
+  synopsis?: string | undefined;
+  pages?: number | undefined;
+  estimatedMinutes?: number | undefined;
+  chapterCount?: number | undefined;
+  coverAssetKey?: string | undefined;
 };
 
 export type LibraryCatalogIndex = {
@@ -74,4 +74,28 @@ export function shouldDegradeLibraryCatalogIndex(
   error: unknown
 ): boolean {
   return true;
+}
+
+/**
+ * List-path chapter-count resolution (WS3-005 extraction): prefer the
+ * presentation-index's `chapterCount` when it's a real positive number,
+ * otherwise fall back to the caller-supplied count, then floor the result to
+ * at least 1 (rounded) so the list never renders "0 chapters". Used by
+ * `buildLibraryCatalogBook` in library-catalog.ts.
+ *
+ * This is the LIST-path floor only (documents the DI-4 symptom): without a
+ * presentation-index entry it collapses to 1 — "1 chapter · ~24 min" — which
+ * is exactly the placeholder `lib/library-catalog-stub.ts`'s DI-4 guard
+ * exists to catch upstream at publish time. The detail path is always correct
+ * because it overwrites this with the real manifest chapter count afterward.
+ * Exported (not inlined in library-catalog.ts, which is `server-only`) so it
+ * can be unit-tested directly instead of hand-reproduced in a test.
+ */
+export function resolveListChapterCount(
+  extraChapterCount: number | undefined,
+  chapterCountParam: number | undefined
+): number {
+  const resolved =
+    extraChapterCount && extraChapterCount > 0 ? extraChapterCount : chapterCountParam ?? 0;
+  return Math.max(1, Math.round(resolved || 1));
 }

@@ -25,7 +25,7 @@ const skip = BUCKET ? false : "set AUDIO_PLAN_ITEST_BUCKET (+ AWS creds/region) 
 
 test("presigned S3 URL serves Range → 206 with Content-Range", { skip }, async () => {
   const bucket = BUCKET as string;
-  const s3 = new S3Client({});
+  const s3 = new S3Client(process.env.AWS_REGION !== undefined ? { region: process.env.AWS_REGION } : {});
   const key = `book-content/_itest/range-probe-${Date.now()}.bin`;
   // 100 deterministic bytes so we can assert exact Range slicing.
   const body = Buffer.from(Array.from({ length: 100 }, (_, i) => i % 256));

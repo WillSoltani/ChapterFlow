@@ -31,7 +31,7 @@ type Item = Record<string, Attr | undefined>;
 function tokenize(expr: string): string[] {
   const re = /\s*(<>|<=|>=|=|<|>|\(|\)|,|[#:\w]+)/g;
   const out: string[] = [];
-  for (let m = re.exec(expr); m; m = re.exec(expr)) out.push(m[1]);
+  for (let m = re.exec(expr); m; m = re.exec(expr)) out.push(m[1]!);
   return out;
 }
 
@@ -46,9 +46,9 @@ function evalCondition(
   const toks = tokenize(expr);
   let i = 0;
   const peek = () => toks[i];
-  const next = () => toks[i++];
+  const next = (): string => toks[i++] ?? "";
 
-  const pathOf = (tok: string): string => (tok.startsWith("#") ? names[tok] : tok);
+  const pathOf = (tok: string): string => (tok.startsWith("#") ? names[tok] ?? tok : tok);
   type Resolved =
     | { kind: "absent" }
     | { kind: "null" }
@@ -90,7 +90,7 @@ function evalCondition(
     // comparison: <path/#name> OP <:valueRef>
     const left = resolvePath(next());
     const op = next();
-    const right = values[next()];
+    const right = values[next()] ?? "";
     switch (op) {
       case "=":
         return left.kind === "S" && left.v === right;

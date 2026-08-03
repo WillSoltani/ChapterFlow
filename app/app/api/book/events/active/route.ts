@@ -10,7 +10,7 @@ import type { EventDefinition, EventParticipationItem } from "@/app/app/api/book
 export const runtime = "nodejs";
 
 export type ActiveEventWithParticipation = EventDefinition & {
-  participation?: EventParticipationItem;
+  participation?: EventParticipationItem | undefined;
 };
 
 export async function GET(req: Request) {

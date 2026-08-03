@@ -112,20 +112,20 @@ async function getAuthConfig(): Promise<AuthConfig> {
 
 export type AuthedUser = {
   sub: string;
-  email?: string;
-  emailVerified?: boolean;
-  name?: string;
-  givenName?: string;
-  familyName?: string;
-  preferredUsername?: string;
-  groups?: string[];
+  email?: string | undefined;
+  emailVerified?: boolean | undefined;
+  name?: string | undefined;
+  givenName?: string | undefined;
+  familyName?: string | undefined;
+  preferredUsername?: string | undefined;
+  groups?: string[] | undefined;
   /**
    * OIDC `auth_time` claim — seconds since epoch at which the END-USER actually
    * authenticated (NOT when the token was minted; a silent refresh keeps the
    * original auth_time). Used by `requireRecentAuth` for step-up auth (#5).
    * Undefined when the IdP did not emit the claim.
    */
-  authTime?: number;
+  authTime?: number | undefined;
 };
 
 export async function requireUser(): Promise<AuthedUser> {

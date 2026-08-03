@@ -2,7 +2,7 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
+import { getAppBaseUrl, getBookContentBucket, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { getJourneyProgress } from "@/app/app/api/book/_lib/journey-repo";
 import { listPublishedLibraryCatalog } from "@/app/app/api/book/_lib/library-catalog";
 import journeyDefinitions from "@/content/journeys/journeys.json";
@@ -24,14 +24,15 @@ export async function GET(req: Request, ctx: Params) {
       return bookErr(req, 404, "not_found", "Journey not found");
     }
 
-    const [tableName, contentBucket] = await Promise.all([
+    const [tableName, contentBucket, appBaseUrl] = await Promise.all([
       getBookTableName(),
       getBookContentBucket(),
+      getAppBaseUrl(req.url),
     ]);
 
     const [progress, catalog] = await Promise.all([
       getJourneyProgress(tableName, user.sub, journeyId),
-      listPublishedLibraryCatalog({ tableName, contentBucket }),
+      listPublishedLibraryCatalog({ tableName, contentBucket, appBaseUrl }),
     ]);
 
     const catalogMap = new Map(catalog.map((b) => [b.id, b]));

@@ -16,6 +16,10 @@
  *
  * Edge-safe: depends only on the alias map (no node/server-only imports), so it
  * can run in scripts, server code, and tests.
+ *
+ * Live invokers: lib/catalog-integrity-gate.test.ts (CI gate that fails the
+ * suite if an unknown fork re-enters lib/books-catalog.metadata.json) and
+ * scripts/book/reconcile-prod-catalog.ts (operator-run dry-run reconcile).
  */
 import { isOrphanBookSlug } from "./book-slug-aliases";
 
@@ -83,12 +87,16 @@ function divergentFields(records: CatalogRecordLike[]): string[] {
 function pickCanonical(records: CatalogRecordLike[]): CatalogRecordLike {
   const nonOrphans = records.filter((r) => !isOrphanBookSlug(r.bookId));
   const pool = nonOrphans.length > 0 ? nonOrphans : records;
-  return [...pool].sort((a, b) => {
+  const [canonical] = [...pool].sort((a, b) => {
     const versionDelta =
       (b.currentPublishedVersion ?? 0) - (a.currentPublishedVersion ?? 0);
     if (versionDelta !== 0) return versionDelta;
     return a.bookId.localeCompare(b.bookId);
-  })[0];
+  });
+  if (canonical === undefined) {
+    throw new Error("pickCanonical: called with an empty record group");
+  }
+  return canonical;
 }
 
 /**
@@ -130,4 +138,19 @@ export function findDuplicateTitleGroups(
   }
 
   return groups.sort((a, b) => a.title.localeCompare(b.title));
+}
+
+/**
+ * Duplicate-title groups NOT fully explained by the alias map — i.e. at least
+ * one non-canonical sibling is not a known retired slug from
+ * book-slug-aliases.ts. These are the unknown/future forks the CI gate
+ * (lib/catalog-integrity-gate.test.ts) fails the build on; known forks stay
+ * report-only in scripts/book/reconcile-prod-catalog.ts.
+ */
+export function findUnknownDuplicateTitleGroups(
+  records: CatalogRecordLike[]
+): DuplicateTitleGroup[] {
+  return findDuplicateTitleGroups(records).filter(
+    (group) => !group.orphanBookIds.every(isOrphanBookSlug)
+  );
 }

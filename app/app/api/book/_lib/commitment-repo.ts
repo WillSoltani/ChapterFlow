@@ -8,6 +8,7 @@ import {
 } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { bookUserPk, commitmentSk, nowIso } from "./keys";
+import { queryAllItems } from "./repo-shared";
 import type { BookUserCommitmentItem, CommitmentStatus, CommitmentOutcome } from "./types";
 
 const EXPIRY_GRACE_MS = 7 * 86400000;
@@ -176,4 +177,29 @@ export async function updateCommitmentStatus(
     }),
   );
   return (result.Attributes as BookUserCommitmentItem) ?? null;
+}
+
+/**
+ * Single-page (unpaginated) raw scan of a user's COMMITMENT# rows for the
+ * Notebook feed. Moved verbatim from me/notebook/route.ts's GET handler
+ * (WS3-002) — deliberately distinct from `listCommitments` above, which also
+ * auto-expires stale commitments as a side effect and maps to the typed
+ * `BookUserCommitmentItem[]` shape; the Notebook route only reads
+ * `followThroughReflection`/`ifThenPlan`/`followThroughSubmittedAt` off the
+ * raw item and must not trigger the auto-expiry write on every notebook load.
+ */
+export async function queryCommitmentItemsForNotebook(
+  tableName: string,
+  userId: string,
+): Promise<Record<string, unknown>[]> {
+  // WS4-009: paginate to completion (was a single unpaginated QueryCommand,
+  // which silently truncated at the first 1MB page).
+  return queryAllItems({
+    TableName: tableName,
+    KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+    ExpressionAttributeValues: {
+      ":pk": bookUserPk(userId),
+      ":prefix": "COMMITMENT#",
+    },
+  });
 }

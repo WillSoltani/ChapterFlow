@@ -11,6 +11,8 @@ import {
 // clause being put in the wrong place or AND-joined incorrectly.
 const PROSOURCE_GUARD =
   "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)";
+const ACTIVATION_PROSOURCE_GUARD =
+  "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource OR (proSource = :appleSource AND ((attribute_exists(activePaidIntentAtMs) AND activePaidIntentAtMs <= :paidIntentAtMs) OR (attribute_not_exists(activePaidIntentAtMs) AND (attribute_not_exists(lastAppleSignedDate) OR lastAppleSignedDate <= :paidIntentAtMs)))))";
 const ORDERING_GUARD =
   "(attribute_not_exists(lastStripeEventAt) OR lastStripeEventAt <= :eventCreated)";
 const DISPUTE_GUARD = "attribute_not_exists(disputeOpen)";
@@ -19,13 +21,32 @@ const STAMP_SET = "lastStripeEventAt = :eventCreated";
 
 const UPDATED_AT = "2026-06-24T00:00:00.000Z";
 
+function assertExactExpressionValues(input: {
+  updateExpression: string;
+  conditionExpression: string;
+  expressionAttributeValues: Record<string, unknown>;
+}): void {
+  const references = new Set(
+    `${input.updateExpression} ${input.conditionExpression}`.match(
+      /:[A-Za-z][A-Za-z0-9]*/g,
+    ) ?? [],
+  );
+  assert.deepEqual(
+    Object.keys(input.expressionAttributeValues).sort(),
+    [...references].sort(),
+    "DynamoDB rejects both missing and unused expression values",
+  );
+}
+
 type StoredItem = {
   // Whether the entitlement row exists at all (for attribute_exists(PK)).
   // Defaults to true — an existing item is the common case.
   pkExists?: boolean;
-  proSource?: "stripe" | "license" | "flow_points" | "gift_code" | "admin" | null;
+  proSource?: "stripe" | "apple" | "license" | "flow_points" | "gift_code" | "admin" | null;
   lastStripeEventAt?: number;
   disputeOpen?: boolean;
+  activePaidIntentAtMs?: number;
+  lastAppleSignedDate?: number;
 };
 
 /**
@@ -41,11 +62,19 @@ function conditionApplies(
   stored: StoredItem,
 ): boolean {
   return conditionParts.every((clause) => {
-    if (clause === PROSOURCE_GUARD) {
-      // attribute_not_exists(proSource) OR == "stripe" OR == null
+    if (clause === PROSOURCE_GUARD || clause === ACTIVATION_PROSOURCE_GUARD) {
+      // Activation additionally permits Apple as the prior paid source.
       return (
         stored.proSource === undefined ||
         stored.proSource === eav[":stripeSource"] ||
+        (clause === ACTIVATION_PROSOURCE_GUARD &&
+          stored.proSource === eav[":appleSource"] &&
+          (stored.activePaidIntentAtMs !== undefined
+            ? stored.activePaidIntentAtMs <=
+              (eav[":paidIntentAtMs"] as number)
+            : stored.lastAppleSignedDate === undefined ||
+              stored.lastAppleSignedDate <=
+                (eav[":paidIntentAtMs"] as number))) ||
         stored.proSource === eav[":nullSource"]
       );
     }
@@ -85,14 +114,31 @@ const downgrade = (
   stripeEventCreatedAt,
 });
 
+// WS4-014: the webhook sends plan:"PRO" with proStatus:"past_due" on FAILED
+// payments (invoice.payment_failed, invoice.payment_action_required, and
+// customer.subscription.updated via mapSubscriptionStatus). This fixture
+// mirrors that exact shape — it must NOT be treated as a paid activation.
+const proPastDue = (
+  stripeEventCreatedAt?: number,
+): StripeEntitlementWriteParams => ({
+  plan: "PRO",
+  proStatus: "past_due",
+  proSource: "stripe",
+  stripeCustomerId: "cus_1",
+  failedPaymentLastReason: "card_declined",
+  stripeEventCreatedAt,
+});
+
 // ── Structural assertions ────────────────────────────────────────────────────
 
 test("PRO-activation: proSource + ordering + disputeOpen guards present, stamps lastStripeEventAt", () => {
   const built = buildEntitlementUpdateFromStripe(proActivation(1000), UPDATED_AT);
-  assert.ok(built.conditionParts.includes(PROSOURCE_GUARD));
+  assert.ok(built.conditionParts.includes(ACTIVATION_PROSOURCE_GUARD));
   assert.ok(built.conditionParts.includes(ORDERING_GUARD));
   assert.ok(built.conditionParts.includes(DISPUTE_GUARD));
   assert.ok(built.setParts.includes(STAMP_SET));
+  assert.ok(built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"));
+  assert.equal(built.expressionAttributeValues[":paidIntentAtMs"], 1_000_000);
   assert.equal(built.expressionAttributeValues[":eventCreated"], 1000);
   // The ordering clause must live in the ConditionExpression, not the SET.
   assert.match(built.conditionExpression, /lastStripeEventAt <= :eventCreated/);
@@ -152,6 +198,7 @@ test("missing stripeEventCreatedAt: no ordering clause, no stamp (back-compat / 
   assert.equal(built.expressionAttributeValues[":eventCreated"], undefined);
   // The proSource guard is unconditional and must still be present.
   assert.ok(built.conditionParts.includes(PROSOURCE_GUARD));
+  assert.ok(!built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"));
 });
 
 test("non-finite stripeEventCreatedAt (NaN) is treated as absent — never marshals a NULL into the compare", () => {
@@ -159,6 +206,64 @@ test("non-finite stripeEventCreatedAt (NaN) is treated as absent — never marsh
   assert.ok(!built.conditionParts.includes(ORDERING_GUARD));
   assert.ok(!built.setParts.includes(STAMP_SET));
   assert.equal(built.expressionAttributeValues[":eventCreated"], undefined);
+});
+
+test("every Stripe write emits exactly the DynamoDB values it references", () => {
+  for (const params of [
+    proActivation(1_000),
+    proActivation(undefined),
+    downgrade(2_000),
+    {
+      ...downgrade(3_000),
+      setDisputeOpen: true,
+    },
+  ]) {
+    assertExactExpressionValues(
+      buildEntitlementUpdateFromStripe(params, UPDATED_AT),
+    );
+  }
+});
+
+// WS4-014 (RED): a failed-payment write (plan:"PRO", proStatus:"past_due") is
+// NOT a paid activation. Pinning the fix contract: isPaidActivation must key
+// off proStatus === "active", not merely plan === "PRO" — otherwise this
+// past_due write both stamps a paid-intent high-water mark it never earned
+// AND carries the Apple-takeover clause, letting a FAILED payment overwrite a
+// proSource:"apple" entitlement. Currently (pre-fix) isProActivation is true
+// for every plan==="PRO" write regardless of proStatus, so this test fails
+// red: the buggy build includes activePaidIntentAtMs/:appleSource and the
+// ACTIVATION_PROSOURCE_GUARD instead of the plain PROSOURCE_GUARD.
+test("WS4-014 RED: failed-payment (past_due) write is not a paid intent", () => {
+  const built = buildEntitlementUpdateFromStripe(proPastDue(1000), UPDATED_AT);
+
+  assert.ok(
+    !built.setParts.includes("activePaidIntentAtMs = :paidIntentAtMs"),
+    "a past_due write must never stamp the paid-intent high-water mark",
+  );
+  assert.ok(
+    !(":appleSource" in built.expressionAttributeValues),
+    "a past_due write must not carry the Apple-takeover eav",
+  );
+  assert.ok(
+    !(":paidIntentAtMs" in built.expressionAttributeValues),
+    "a past_due write must not carry a paid-intent timestamp eav",
+  );
+  assert.ok(
+    built.conditionParts.includes(PROSOURCE_GUARD),
+    "a past_due write must use the PLAIN proSource guard, not the activation/takeover guard",
+  );
+  assert.ok(
+    !built.conditionParts.includes(ACTIVATION_PROSOURCE_GUARD),
+    "a past_due write must not carry the Apple-takeover condition clause",
+  );
+  // The ordering guard and disputeOpen guard stay keyed on ALL plan==="PRO"
+  // writes — a past_due PRO write still stamps lastStripeEventAt and is still
+  // refused while disputeOpen exists.
+  assert.ok(built.conditionParts.includes(ORDERING_GUARD));
+  assert.ok(built.conditionParts.includes(DISPUTE_GUARD));
+  assert.ok(built.setParts.includes(STAMP_SET));
+
+  assertExactExpressionValues(built);
 });
 
 // ── Semantic sequence assertions (the actual leak) ───────────────────────────
@@ -193,6 +298,115 @@ test("in-order activation: a newer event applies", () => {
   assert.equal(
     conditionApplies(built.conditionParts, built.expressionAttributeValues, stored),
     true,
+  );
+});
+
+test("completed Stripe payment takes over Apple, but terminal Stripe writes do not", () => {
+  const stored: StoredItem = { proSource: "apple" };
+  const activation = buildEntitlementUpdateFromStripe(
+    proActivation(2000),
+    UPDATED_AT,
+  );
+  const terminal = buildEntitlementUpdateFromStripe(downgrade(3000), UPDATED_AT);
+
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      stored,
+    ),
+    true,
+    "a paid Checkout completion must not become paid-without-access",
+  );
+  assert.equal(
+    conditionApplies(
+      terminal.conditionParts,
+      terminal.expressionAttributeValues,
+      stored,
+    ),
+    false,
+    "a later Stripe terminal event cannot revoke Apple access",
+  );
+});
+
+test("Stripe activation cannot displace a newer Apple paid intent", () => {
+  const activation = buildEntitlementUpdateFromStripe(
+    proActivation(3),
+    UPDATED_AT,
+  );
+
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      { proSource: "apple", activePaidIntentAtMs: 4_000 },
+    ),
+    false,
+  );
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      { proSource: "apple", activePaidIntentAtMs: 2_000 },
+    ),
+    true,
+  );
+  assert.equal(
+    conditionApplies(
+      activation.conditionParts,
+      activation.expressionAttributeValues,
+      { proSource: "apple", lastAppleSignedDate: 4_000 },
+    ),
+    false,
+    "legacy rows fall back to Apple's millisecond high-water mark",
+  );
+});
+
+// WS4-014 (RED): the actual leak. A FAILED payment (past_due) must never be
+// able to take over — let alone overwrite — an Apple-source entitlement. The
+// stored Apple mark here (1_000) is OLDER than the failed-payment event's
+// paid-intent timestamp (2_000ms, from stripeEventCreatedAt=2), so under the
+// CURRENT buggy code the takeover clause's "stored mark is not newer than the
+// (bogus) paid intent" test is satisfied and the write would apply — flipping
+// a legitimate Apple subscriber's proSource to "stripe" off of a bounced card.
+test("WS4-014 RED: past_due cannot take over an Apple entitlement", () => {
+  const built = buildEntitlementUpdateFromStripe(proPastDue(2), UPDATED_AT);
+  assert.equal(
+    conditionApplies(built.conditionParts, built.expressionAttributeValues, {
+      proSource: "apple",
+      lastAppleSignedDate: 1_000,
+    }),
+    false,
+    "a failed payment must never take over an Apple entitlement",
+  );
+});
+
+// WS4-014 (PINS FR-2): the ordering guard and the disputeOpen guard remain
+// keyed on every plan==="PRO" write (activation OR past_due) — only the
+// paid-intent stamp and the Apple-takeover clause are scoped down to
+// proStatus==="active". These pin the parts of the contract the fix must NOT
+// change; they are expected to hold both before and after the fix.
+test("WS4-014 PIN: past_due still blocked by disputeOpen and ordering", () => {
+  const disputeBlocked = buildEntitlementUpdateFromStripe(proPastDue(1000), UPDATED_AT);
+  assert.equal(
+    conditionApplies(
+      disputeBlocked.conditionParts,
+      disputeBlocked.expressionAttributeValues,
+      { proSource: null, disputeOpen: true },
+    ),
+    false,
+    "an unresolved chargeback must still block a past_due PRO write",
+  );
+
+  const staleOrdering = buildEntitlementUpdateFromStripe(proPastDue(1000), UPDATED_AT);
+  assert.equal(
+    conditionApplies(
+      staleOrdering.conditionParts,
+      staleOrdering.expressionAttributeValues,
+      { proSource: "stripe", lastStripeEventAt: 5000 },
+    ),
+    false,
+    "a stale (out-of-order) past_due write must still be rejected by the ordering guard",
   );
 });
 

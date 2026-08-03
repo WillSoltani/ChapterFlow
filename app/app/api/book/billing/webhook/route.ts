@@ -25,6 +25,7 @@ import { extractBillingDetails } from "@/app/app/api/book/_lib/billing-details";
 import { BILLING_CURRENCY } from "@/lib/pricing";
 import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 import { sendTrialEndingEmail } from "@/app/app/api/book/_lib/trial-ending-email";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -102,7 +103,7 @@ export async function POST(req: Request) {
     if (claim === "done") {
       // Already fully processed under the claim-lease (or the legacy record-last
       // scheme) — safe to acknowledge.
-      return bookOk({ ok: true, duplicate: true });
+      return bookOk({ received: true, duplicate: true });
     }
     if (claim === "in_progress") {
       // Another delivery holds a live PROCESSING lease (or a crashed worker's
@@ -222,9 +223,11 @@ export async function POST(req: Request) {
           // means a misconfigured Stripe Price or an unplanned market — admin MRR
           // assumes one currency, so flag it. Do NOT reject: dropping the event
           // would desync the entitlement from Stripe.
-          console.warn(
-            `[stripe-webhook] subscription ${subscription.id} billed in ${subCurrency}, expected ${BILLING_CURRENCY}`,
-          );
+          logger.warn("stripe_webhook_subscription_unexpected_currency", {
+            subscriptionId: subscription.id,
+            billedCurrency: subCurrency,
+            expectedCurrency: BILLING_CURRENCY,
+          });
         }
         const subAmountCents = firstItem?.unit_amount;
         const subPriceId = firstItem?.id;
@@ -625,7 +628,7 @@ export async function POST(req: Request) {
       // Unhandled event type. We still record it as processed below (so Stripe
       // stops retrying an event we will never act on), but log it so a newly
       // relevant event type isn't silently swallowed during future work.
-      console.warn(`[stripe-webhook] unhandled event type: ${event.type}`);
+      logger.warn("stripe_webhook_unhandled_event_type", { eventType: event.type });
     }
 
     // Complete the lease only AFTER all side effects above succeed: flip the
@@ -636,7 +639,7 @@ export async function POST(req: Request) {
     // processed (preserving the prior retry-after-failure guarantee).
     await completeStripeWebhookEvent(tableName, event.id);
 
-    return bookOk({ ok: true });
+    return bookOk({ received: true });
     } catch (err) {
       // Release our PROCESSING lease so a Stripe retry can re-claim and reprocess
       // immediately rather than waiting out the full lease. Conditional on

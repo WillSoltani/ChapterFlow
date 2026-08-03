@@ -1,5 +1,12 @@
 import { NextResponse } from "next/server";
 import { createHash, randomUUID } from "node:crypto";
+import {
+  persistBookRequestRecord,
+  reserveBookRequestRateLimitSlot,
+  type BookRequestRecord,
+} from "./_lib/book-request-repo";
+import { logger } from "@/lib/logging/logger";
+import { jsonErrorResponse } from "@/lib/api/error-envelope";
 
 /**
  * Public book-request intake endpoint.
@@ -29,18 +36,6 @@ export const dynamic = "force-dynamic";
 const MAX = { title: 200, author: 160, email: 254, note: 1000 } as const;
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-interface BookRequestRecord {
-  requestId: string;
-  title: string;
-  author?: string;
-  email: string;
-  note?: string;
-  createdAt: string;
-  source: string;
-  userAgent?: string;
-  ip?: string;
-}
-
 function cleanString(value: unknown, max: number): string {
   // Collapse embedded newlines/tabs to spaces so values stay single-line when
   // used in the SES notification subject/body (defense-in-depth; the SES
@@ -50,8 +45,8 @@ function cleanString(value: unknown, max: number): string {
     : "";
 }
 
-function jsonError(status: number, error: string, message: string) {
-  return NextResponse.json({ ok: false, error, message }, { status });
+function jsonError(req: Request, status: number, code: string, message: string) {
+  return jsonErrorResponse(req, status, code, message);
 }
 
 // --- Abuse controls --------------------------------------------------------
@@ -107,7 +102,7 @@ function readClientIp(req: Request): string | null {
       // Trust the Nth entry from the right (appended by our edge), never the
       // leftmost client-controlled token.
       const idx = Math.max(0, chain.length - TRUSTED_PROXY_HOPS);
-      return chain[idx] ?? chain[chain.length - 1];
+      return chain[idx] ?? chain[chain.length - 1] ?? null;
     }
   }
   const realIp = req.headers.get("x-real-ip")?.trim();
@@ -164,25 +159,13 @@ async function reserveSlot(
   const windowStart =
     Math.floor(Date.now() / 1000 / RATE_WINDOW_SECONDS) * RATE_WINDOW_SECONDS;
   try {
-    const { ddbDoc } = await import("@/app/app/api/_lib/aws");
-    const { UpdateCommand } = await import("@aws-sdk/lib-dynamodb");
-    await ddbDoc.send(
-      new UpdateCommand({
-        TableName: tableName,
-        Key: { PK: `REQLIMIT#${scope}#${key}`, SK: `WINDOW#${windowStart}` },
-        UpdateExpression:
-          "SET #count = if_not_exists(#count, :zero) + :one, entity = :entity, updatedAt = :now, #ttl = :ttl",
-        ConditionExpression: "attribute_not_exists(#count) OR #count < :max",
-        ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
-        ExpressionAttributeValues: {
-          ":zero": 0,
-          ":one": 1,
-          ":max": max,
-          ":entity": "BOOK_REQUEST_RATELIMIT",
-          ":now": new Date().toISOString(),
-          ":ttl": windowStart + RATE_WINDOW_SECONDS * 2,
-        },
-      }),
+    await reserveBookRequestRateLimitSlot(
+      tableName,
+      scope,
+      key,
+      max,
+      windowStart,
+      RATE_WINDOW_SECONDS,
     );
     return true;
   } catch (err) {
@@ -190,7 +173,7 @@ async function reserveSlot(
       return false; // window cap reached
     }
     // Unexpected limiter failure: log and apply the configured fail direction.
-    console.warn("book_request_ratelimit_failed", { scope, err });
+    logger.warn("book_request_ratelimit_failed", { scope, err });
     return !failClosed;
   }
 }
@@ -228,7 +211,7 @@ async function verifyCaptcha(
     const data = (await res.json()) as { success?: boolean };
     return data?.success === true;
   } catch (err) {
-    console.warn("book_request_captcha_failed", err);
+    logger.warn("book_request_captcha_failed", { err });
     return true;
   }
 }
@@ -238,7 +221,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   try {
     body = await req.json();
   } catch {
-    return jsonError(400, "invalid_json", "Request body must be valid JSON.");
+    return jsonError(req, 400, "invalid_json", "Request body must be valid JSON.");
   }
 
   const obj =
@@ -264,10 +247,10 @@ export async function POST(req: Request): Promise<NextResponse> {
   }
 
   if (title.length < 2) {
-    return jsonError(400, "invalid_title", "Please enter the book title.");
+    return jsonError(req, 400, "invalid_title", "Please enter the book title.");
   }
   if (!EMAIL_RE.test(email)) {
-    return jsonError(400, "invalid_email", "Please enter a valid email address.");
+    return jsonError(req, 400, "invalid_email", "Please enter a valid email address.");
   }
 
   const clientIp = readClientIp(req);
@@ -282,6 +265,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   );
   if (!withinIpLimit) {
     return jsonError(
+      req,
       429,
       "rate_limited",
       "You’ve sent several requests recently. Please try again in a little while.",
@@ -292,6 +276,7 @@ export async function POST(req: Request): Promise<NextResponse> {
   // outbound siteverify calls.
   if (!(await verifyCaptcha(obj, clientIp))) {
     return jsonError(
+      req,
       403,
       "captcha_failed",
       "Please complete the verification challenge and try again.",
@@ -313,8 +298,9 @@ export async function POST(req: Request): Promise<NextResponse> {
   try {
     await persist(record);
   } catch (err) {
-    console.error("book_request_persist_failed", err);
+    logger.error("book_request_persist_failed", { err });
     return jsonError(
+      req,
       500,
       "server_error",
       "We couldn’t save your request just now. Please try again.",
@@ -342,12 +328,9 @@ export async function POST(req: Request): Promise<NextResponse> {
  * in production — book requests contain reader emails and must never be served
  * publicly; in prod they live in DynamoDB behind the team's normal access.
  */
-export async function GET(): Promise<NextResponse> {
+export async function GET(req: Request): Promise<NextResponse> {
   if (process.env.NODE_ENV === "production") {
-    return NextResponse.json(
-      { ok: false, error: "not_found" },
-      { status: 404 },
-    );
+    return jsonError(req, 404, "not_found", "Not found.");
   }
   try {
     const [{ readFile }, os, path] = await Promise.all([
@@ -370,8 +353,8 @@ export async function GET(): Promise<NextResponse> {
       .filter(Boolean);
     return NextResponse.json({ ok: true, count: requests.length, requests });
   } catch (err) {
-    console.error("book_request_read_failed", err);
-    return jsonError(500, "server_error", "Unable to read requests.");
+    logger.error("book_request_read_failed", { err });
+    return jsonError(req, 500, "server_error", "Unable to read requests.");
   }
 }
 
@@ -379,19 +362,7 @@ async function persist(record: BookRequestRecord): Promise<void> {
   const tableName = process.env.BOOK_TABLE_NAME;
 
   if (tableName) {
-    const { ddbDoc } = await import("@/app/app/api/_lib/aws");
-    const { PutCommand } = await import("@aws-sdk/lib-dynamodb");
-    await ddbDoc.send(
-      new PutCommand({
-        TableName: tableName,
-        Item: {
-          PK: `BOOKREQUEST#${record.requestId}`,
-          SK: `REQUEST#${record.createdAt}`,
-          entity: "BOOK_REQUEST",
-          ...record,
-        },
-      }),
-    );
+    await persistBookRequestRecord(tableName, record);
     return;
   }
 
@@ -437,11 +408,13 @@ async function notifyTeam(record: BookRequestRecord): Promise<void> {
     const to = await getServerEnv("BOOK_REQUESTS_TO_EMAIL");
     if (!sender || !to) return;
 
-    const { SESv2Client, SendEmailCommand } = await import(
-      "@aws-sdk/client-sesv2"
-    );
+    const [{ SESv2Client, SendEmailCommand }, { awsClientConfig }] = await Promise.all([
+      import("@aws-sdk/client-sesv2"),
+      import("@/app/app/api/_lib/aws"),
+    ]);
     const client = new SESv2Client({
       region: process.env.AWS_REGION ?? "us-east-1",
+      ...awsClientConfig,
     });
     const lines = [
       `Title:  ${record.title}`,
@@ -466,6 +439,6 @@ async function notifyTeam(record: BookRequestRecord): Promise<void> {
       }),
     );
   } catch (err) {
-    console.warn("book_request_notify_failed", err);
+    logger.warn("book_request_notify_failed", { err });
   }
 }

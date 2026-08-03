@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-source-1783911581558-9-e62e4ab7-a91d-4879-a2f2-ecc39a4c12d7",
+  "status": "completed",
+  "role": "source",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "39a53ae139a90d05407d986f10b7d10517b2948178db431cb2c69edf0162e296",
+  "rawOutput": "{\"schema\":\"source-integrity-review-v1\",\"units\":[{\"unitId\":\"unit.ch01.constructed-application\",\"expectedOrigin\":\"constructed\",\"expectedForm\":\"application\",\"claimStrengthExpected\":\"descriptive\",\"visibleRegister\":\"clearly_constructed\",\"supportStatus\":\"SUPPORTED\",\"framingAdequate\":true,\"claimStrengthFit\":true,\"namedSpecificityAllowed\":true,\"chapterEvidenceSpans\":[\"Consider a hypothetical product team applying this idea: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"sourceEvidenceSpans\":[\"ch01.fact.1: The 2007 iPhone launch framed the device as a practical convergence of phone, iPod, and internet communicator, not as a permanent social-feed companion.\"],\"findings\":[]}],\"result\":\"PASS\",\"blockingFindingIds\":[],\"rationale\":\"The application is visibly hypothetical at first entry, and its only specific historical claim is directly supported verbatim by ch01.fact.1. It adds no unsupported participants, events, outcomes, numbers, or causal claims.\"}"
+}

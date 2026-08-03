@@ -3,10 +3,10 @@
 import { motion, useReducedMotion } from "framer-motion";
 import { DUR, EASE } from "@/lib/motion";
 import { Lock } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeWithProgress } from "../lib/badge-types";
 import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "../lib/badge-ui-definitions";
-import { TIER_BORDER_COLORS, TIER_GLOW_STYLES, TIER_PILL_STYLES, getProgressText } from "../lib/badge-utils";
+import { TIER_BORDER_COLORS, TIER_GLOW_STYLES, getProgressText } from "../lib/badge-utils";
 
 type BadgeCardProps = {
   badge: BadgeWithProgress;
@@ -18,12 +18,12 @@ type BadgeCardProps = {
 // TierPillDisplay imports this so the two pill renderers can never drift apart.
 // (Lives here rather than badge-utils.ts to stay within this change's scope.)
 export const METALLIC_GRADIENTS: Record<string, string> = {
-  bronze: "linear-gradient(135deg, #CD7F32, #E8A862)",
-  silver: "linear-gradient(135deg, #C0C0C0, #E8E8E8)",
-  gold: "linear-gradient(135deg, #FFD700, #FFF0A0)",
-  platinum: "linear-gradient(135deg, #E5E4E2, #FFFFFF)",
-  unique: "linear-gradient(135deg, #8B5CF6, #EC4899)",
-  secret: "linear-gradient(135deg, #8B5CF6, #EC4899)",
+  bronze: "linear-gradient(135deg, var(--cf-badge-bronze), var(--cf-badge-bronze-highlight))",
+  silver: "linear-gradient(135deg, var(--cf-badge-silver), var(--cf-badge-silver-highlight))",
+  gold: "linear-gradient(135deg, var(--cf-badge-gold), var(--cf-badge-gold-highlight))",
+  platinum: "linear-gradient(135deg, var(--cf-badge-platinum), var(--cf-palette-white))",
+  unique: "linear-gradient(135deg, var(--cf-badge-unique), var(--cf-badge-unique-highlight))",
+  secret: "linear-gradient(135deg, var(--cf-badge-unique), var(--cf-badge-unique-highlight))",
 };
 
 function TierPill({ tier, earned }: { tier: string; earned: boolean }) {
@@ -40,8 +40,8 @@ function TierPill({ tier, earned }: { tier: string; earned: boolean }) {
         earned
           ? {
               background: gradient,
-              color: tier === "platinum" || tier === "silver" ? "#1a1a2e" : tier === "unique" || tier === "secret" ? "#ffffff" : "#1a0f00",
-              textShadow: tier === "platinum" ? "0 1px 0 rgba(255,255,255,0.4)" : "none",
+              color: tier === "platinum" || tier === "silver" ? "var(--cf-badge-text-cool)" : tier === "unique" || tier === "secret" ? "var(--cf-palette-white)" : "var(--cf-badge-text-warm)",
+              textShadow: tier === "platinum" ? "0 1px 0 color-mix(in srgb, var(--cf-palette-white) 40%, transparent)" : "none",
             }
           : { background: "var(--cf-surface-strong)", color: "var(--cf-text-soft)" }
       }
@@ -87,7 +87,7 @@ function EarnedBadgeCard({
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
-      whileHover={reduced ? undefined : { y: -3 }}
+      {...(reduced ? {} : { whileHover: { y: -3 } })}
       whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
@@ -107,7 +107,7 @@ function EarnedBadgeCard({
     >
       <div className="flex items-start justify-between gap-2">
         <Icon
-          className={cn("h-12 w-12 shrink-0", !reduced && "badge-icon-pulse")}
+          className="h-12 w-12 shrink-0"
           style={{ color: "var(--accent-amber)" }}
           aria-hidden
         />
@@ -154,7 +154,7 @@ function LockedBadgeCard({
       initial={reduced ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: DUR.normal, delay: index * 0.05, ease: EASE.standard }}
-      whileHover={reduced ? undefined : { y: -1, opacity: 1 }}
+      {...(reduced ? {} : { whileHover: { y: -1, opacity: 1 } })}
       whileTap={{ scale: 0.97 }}
       className={cn(
         "group relative overflow-hidden rounded-2xl border p-4 text-left",
@@ -230,8 +230,8 @@ function SecretBadgeCard({ index, onClick }: { index: number; onClick: () => voi
       onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); onClick(); } }}
     >
       <div className="flex items-start justify-between gap-2">
-        <div className="secret-badge-icon relative flex h-12 w-12 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
-          <span className="badge-shimmer text-xl text-(--cf-text-soft)">?</span>
+        <div className="relative flex h-12 w-12 items-center justify-center rounded-full border border-(--cf-border) bg-(--cf-surface-muted)">
+          <span className="text-xl text-(--cf-text-soft)">?</span>
         </div>
       </div>
 

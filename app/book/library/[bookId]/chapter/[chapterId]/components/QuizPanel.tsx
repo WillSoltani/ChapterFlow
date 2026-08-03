@@ -12,7 +12,6 @@ import {
   LoaderCircle,
   RotateCcw,
   Target,
-  Trophy,
   X,
 } from "lucide-react";
 import type {
@@ -20,7 +19,6 @@ import type {
   QuizSessionView,
 } from "@/app/book/library/[bookId]/chapter/[chapterId]/hooks/useQuizSession";
 import {
-  CHAPTER_FP,
   QUIZ_RETRIES_PER_QUESTION,
   QUIZ_AUTO_ADVANCE_DELAY,
 } from "@/app/book/_lib/flow-points-economy";
@@ -487,7 +485,7 @@ function ReviewMistakesView({
 // ─── Results Screen ──────────────────────────────────────────────────────────
 
 function ResultsScreen({
-  session, learningMode, cooldownSeconds, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
+  session, learningMode: _learningMode, cooldownSeconds, onReviewSummary, onRetry, onContinueToPractice, onReviewMistakes,
 }: {
   session: QuizSessionView;
   learningMode: LearningMode;
@@ -530,7 +528,7 @@ function ResultsScreen({
       </div>
 
       {/* 3. Score text */}
-      <p className="text-[15px] text-(--cr-text-secondary)">
+      <p className="text-cf-body text-(--cr-text-secondary)">
         {result.correctAnswers} of {result.totalQuestions} correct &middot; {result.scorePercent}%
       </p>
 
@@ -646,11 +644,12 @@ export function QuizPanel({
       const seed = session.attemptNumber;
       for (let i = questions.length - 1; i > 0; i--) {
         const j = ((seed * 2654435761 + i * 40503) >>> 0) % (i + 1);
-        [questions[i], questions[j]] = [questions[j], questions[i]];
+        // Fisher-Yates: i ∈ (0, len) and j ∈ [0, i] are both in-bounds.
+        [questions[i], questions[j]] = [questions[j]!, questions[i]!];
       }
     }
     return questions;
-  }, [session, shuffleQuestions, retryIncorrectOnly, session?.attemptNumber, previousIncorrectIds]);
+  }, [session, shuffleQuestions, retryIncorrectOnly, previousIncorrectIds]);
 
   // Reset local quiz state when session refreshes (e.g. retry)
   const prevSessionRef = useRef(session);
@@ -732,7 +731,7 @@ export function QuizPanel({
         const used = (retriesUsed[questionId] ?? 0) + 1;
         setRetriesUsed((prev) => ({ ...prev, [questionId]: used }));
         setDisabledChoices((prev) => {
-          const next = new Set(prev[questionId] ?? new Set());
+          const next = new Set<string>(prev[questionId] ?? []);
           next.add(choiceId);
           return { ...prev, [questionId]: next };
         });
@@ -908,7 +907,7 @@ export function QuizPanel({
             WebkitBackdropFilter: "blur(8px)",
           }}
         >
-          <span className="text-[13px] font-semibold whitespace-nowrap text-(--cr-text-heading)">
+          <span className="text-cf-label font-semibold whitespace-nowrap text-(--cr-text-heading)">
             Question {safeCurrentIndex + 1} of {displayQuestions.length}
           </span>
           <div className="flex-1 h-0.5 rounded-full overflow-hidden bg-(--cr-glass-border)">
@@ -961,8 +960,8 @@ export function QuizPanel({
                   answerChoiceId={answers[displayQuestions[oneByOneIndex].questionId]}
                   correctChoiceId={correctByQuestion[displayQuestions[oneByOneIndex].questionId]}
                   learningMode={learningMode}
-                  onAnswer={(choiceId) => handleAnswer(displayQuestions[oneByOneIndex].questionId, choiceId)}
-                  onToggleExplanation={() => onToggleExplanation(displayQuestions[oneByOneIndex].questionId)}
+                  onAnswer={(choiceId) => handleAnswer(displayQuestions[oneByOneIndex]?.questionId ?? "", choiceId)}
+                  onToggleExplanation={() => onToggleExplanation(displayQuestions[oneByOneIndex]?.questionId ?? "")}
                   explanationOpen={Boolean(explanationOpen[displayQuestions[oneByOneIndex].questionId])}
                   feedbackState={questionFeedback[displayQuestions[oneByOneIndex].questionId] ?? null}
                   disabledChoices={disabledChoices[displayQuestions[oneByOneIndex].questionId] ?? new Set()}

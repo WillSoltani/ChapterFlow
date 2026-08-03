@@ -8,23 +8,26 @@ import { AnimatedBackground } from "./AnimatedBackground";
 import { CompactHeader } from "./CompactHeader";
 import { HeroSessionCard } from "./HeroSessionCard";
 import { WeeklyMomentumStrip } from "./WeeklyMomentumStrip";
-import { BookRow } from "./BookRow";
+import { WorkspaceBookRow } from "./WorkspaceBookRow";
 import { RewardsCard } from "./RewardsCard";
 import { NextAchievementCard } from "./NextAchievementCard";
 import { DiscoveryRow } from "./DiscoveryRow";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { TopNav } from "@/app/book/home/components/TopNav";
-import { PartnerProgressCard } from "@/app/book/home/components/PartnerProgressCard";
-import { fetchBookJson, BookClientError } from "@/app/book/_lib/book-api";
+import { TopNav } from "@/components/navigation/TopNav";
+import { PartnerProgressCard } from "@/components/workspace/PartnerProgressCard";
+import { fetchBookJson, BookClientError } from "@/lib/client/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { COMMITMENTS_KEY } from "@/lib/client/book-read-keys";
 import type { BookUserCommitmentItem, CommitmentOutcome } from "@/app/app/api/book/_lib/types";
-import { useBookAnalytics, type AnalyticsState } from "@/app/book/hooks/useBookAnalytics";
-import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { BOOKS_CATALOG, getBookMetadata } from "@/app/book/data/booksCatalog";
-import { getBookRating } from "@/app/book/data/bookRatings";
+import { useBookAnalytics, type AnalyticsState } from "@/hooks/book/useBookAnalytics";
+import { DASHBOARD_KEY } from "@/hooks/book/useDashboardQuery";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
+import { BOOKS_CATALOG, getBookMetadata } from "@/lib/books-catalog";
+import { getBookRating } from "@/lib/book-ratings";
 import { getBookCoverPath } from "@/lib/book-covers";
-import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
-import { evaluateBadges } from "@/app/book/badges/lib/badge-ui-definitions";
-import { INSIGHT_POINTS_REWARDS } from "@/app/book/_lib/flow-points-economy";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { evaluateBadges } from "@/lib/badges/badge-ui-definitions";
+import { INSIGHT_POINTS_REWARDS } from "@/lib/flow-points-economy";
 import { CATALOG_BOOK_COUNT_DISPLAY } from "@/lib/catalog-stats";
 
 const jetBrainsMono = JetBrains_Mono({
@@ -142,7 +145,7 @@ function toSlug(value: string): string {
 function titleizeSlug(slug: string): string {
   return slug
     .split("-")
-    .map((word) => (word ? word[0].toUpperCase() + word.slice(1) : word))
+    .map((word) => (word ? word.charAt(0).toUpperCase() + word.slice(1) : word))
     .join(" ");
 }
 
@@ -213,7 +216,7 @@ function toRecommendationCard(
     rating: rating?.rating ?? 0,
     readerCount: rating?.ratingsCount ?? 0,
     category: snap.book.category ?? "General",
-    reason: reason ?? undefined,
+    ...(reason != null ? { reason } : {}),
   };
 }
 
@@ -662,10 +665,16 @@ function CommitmentFollowUpSection() {
   const [skippingId, setSkippingId] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
+  // Cached read: routes the ?status=active commitments GET through the shared
+  // client cache (dedupes the dev StrictMode double-invoke and serves back-nav
+  // from memory). Kept as an imperative effect + async setDue — mirroring the
+  // prior structure — so the clock read and the state write both stay out of
+  // render, and a mutation elsewhere reconciles this via invalidateBookCache's
+  // prefix drop of COMMITMENTS_KEY on the next mount.
   useEffect(() => {
     let cancelled = false;
-    fetchBookJson<{ commitments: BookUserCommitmentItem[] }>(
-      "/app/api/book/me/commitments?status=active",
+    fetchBookJsonCached<{ commitments: BookUserCommitmentItem[] }>(
+      `${COMMITMENTS_KEY}?status=active`,
     )
       .then((data) => {
         if (cancelled) return;
@@ -702,6 +711,7 @@ function CommitmentFollowUpSection() {
           ...(outcomes[activeId] ? { outcome: outcomes[activeId] } : {}),
         }),
       });
+      invalidateBookCache(COMMITMENTS_KEY);
       setReflections((prev) => {
         const next = { ...prev };
         delete next[activeId];
@@ -734,6 +744,7 @@ function CommitmentFollowUpSection() {
           method: "PATCH",
           body: JSON.stringify({ action: "skip" }),
         });
+        invalidateBookCache(COMMITMENTS_KEY);
         removeCommitment(id);
         if (activeId === id) setActiveId(null);
       } catch (e) {
@@ -754,7 +765,7 @@ function CommitmentFollowUpSection() {
     <section className="cf-panel rounded-3xl border border-(--cf-warning-border) bg-(--cf-surface) p-5 sm:p-6">
       <div className="mb-3 flex items-center gap-2">
         <Clock className="h-4 w-4 text-(--cf-warning-text)" />
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
+        <p className="text-cf-caption font-semibold uppercase tracking-[0.2em] text-(--cf-warning-text)">
           Time to Check In
         </p>
       </div>
@@ -959,7 +970,7 @@ function DashboardContent({
       <SectionWrapper
         {...(prefersReducedMotion ? {} : { variants: itemVariants })}
       >
-        <BookRow
+        <WorkspaceBookRow
           userBooks={data.userBooks}
           recommendedProBooks={data.recommendedProBooks}
           isNewUser={isNewUser}
@@ -1049,11 +1060,13 @@ export function WorkspacePage() {
     if (!billing) return;
     if (billing === "success") {
       sessionStorage.setItem("cf:billing-upgraded", "1");
+      invalidateBookCache(DASHBOARD_KEY);
+      refetch();
     }
     const url = new URL(window.location.href);
     url.searchParams.delete("billing");
     router.replace(url.pathname + url.search);
-  }, [searchParams, router]);
+  }, [searchParams, router, refetch]);
 
   return (
     <div

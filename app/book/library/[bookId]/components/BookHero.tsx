@@ -7,13 +7,13 @@ import { DUR, EASE } from "@/lib/motion";
 import { ArrowRight, RefreshCw, Clock, Sparkles } from "lucide-react";
 import { BookCover } from "@/components/ui/BookCover";
 import { BookSaveButton } from "@/app/book/components/BookSaveButton";
-import { ProgressRing } from "./ProgressRing";
+import { BookHeroProgressRing } from "./BookHeroProgressRing";
 import type { LibraryBookEntry } from "@/app/book/_lib/library-data";
 
 type BookHeroProps = {
   entry: LibraryBookEntry;
   /** Real page count from the book package; omitted when unknown (never estimated). */
-  pages?: number;
+  pages?: number | undefined;
   progressPercent: number;
   avgScore: number;
   unlockedCount: number;
@@ -78,7 +78,7 @@ export function BookHero({
 
   return (
     <motion.section
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 30 }}
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 30 } })}
       animate={{ opacity: 1, y: 0 }}
       transition={
         prefersReducedMotion
@@ -97,7 +97,7 @@ export function BookHero({
         <div className="flex flex-col items-center gap-6 md:flex-row md:items-start md:gap-8">
           {/* Book cover */}
           <motion.div
-            initial={prefersReducedMotion ? undefined : { opacity: 0, x: -20 }}
+            {...(prefersReducedMotion ? {} : { initial: { opacity: 0, x: -20 } })}
             animate={{ opacity: 1, x: 0 }}
             transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.2 }}
             className="shrink-0"
@@ -119,7 +119,7 @@ export function BookHero({
           {/* Info column */}
           <div className="flex min-w-0 flex-1 flex-col items-center text-center md:items-start md:text-left">
             <motion.h1
-              initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+              {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
               animate={{ opacity: 1 }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.4 }}
               className="text-2xl font-bold tracking-tight text-(--cf-text-1) sm:text-3xl md:text-4xl"
@@ -128,7 +128,7 @@ export function BookHero({
               {entry.title}
             </motion.h1>
             <motion.p
-              initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+              {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
               animate={{ opacity: 1 }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.45 }}
               className="mt-1 text-base text-(--cf-text-3)"
@@ -138,7 +138,7 @@ export function BookHero({
 
             {/* Tag pills */}
             <motion.div
-              initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+              {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
               animate={{ opacity: 1 }}
               transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.5 }}
               className="mt-3 flex flex-wrap justify-center gap-2 md:justify-start"
@@ -159,7 +159,7 @@ export function BookHero({
                 The long-form About (tags, pace, difficulty) lives in the accordion below. */}
             {synopsis && (
               <motion.div
-                initial={prefersReducedMotion ? undefined : { opacity: 0 }}
+                {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
                 animate={{ opacity: 1 }}
                 transition={prefersReducedMotion ? { duration: 0 } : { duration: DUR.page, delay: 0.52 }}
                 className="mt-3 max-w-prose"
@@ -184,7 +184,7 @@ export function BookHero({
 
             {/* CTA + Save */}
             <motion.div
-              initial={prefersReducedMotion ? undefined : { opacity: 0, scale: 0.95 }}
+              {...(prefersReducedMotion ? {} : { initial: { opacity: 0, scale: 0.95 } })}
               animate={{ opacity: 1, scale: 1 }}
               transition={
                 prefersReducedMotion
@@ -217,7 +217,7 @@ export function BookHero({
             {/* Progress (real data only) vs. forward-looking zero-state */}
             {hasProgress ? (
               <div className="mt-5 flex flex-wrap items-center justify-center gap-4 md:justify-start">
-                <ProgressRing percent={progressPercent} size={56} strokeWidth={4} />
+                <BookHeroProgressRing percent={progressPercent} size={56} strokeWidth={4} />
                 <div className="flex flex-wrap items-center gap-3">
                   {avgScore > 0 && (
                     <span className="cf-panel-muted rounded-lg px-2.5 py-1.5 text-xs font-medium text-(--cf-text-2)">

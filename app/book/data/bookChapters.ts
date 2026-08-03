@@ -19,63 +19,25 @@ import {
   type V21ExperiencePlan,
   type V21MemorableLine,
 } from "@/app/book/lib/v21-adapter";
-
-export type ReadingDepth = "simple" | "standard" | "deeper";
-export type ExampleScope = "work" | "school" | "personal";
-
-export type ChapterQuizQuestion = {
-  id: string;
-  prompt: string;
-  options: string[];
-  correctIndex: number;
-  explanation: string;
-};
-
-export type ChapterSummaryBlock =
-  | {
-      id: string;
-      type: "paragraph";
-      text: string;
-    }
-  | {
-      id: string;
-      type: "bullet";
-      text: string;
-      detail?: string;
-    };
-
-export type ScenarioDecisionOption = {
-  id: string;
-  text: string;
-  isRecommended: boolean;
-};
-
-export type ChapterExample = {
-  id: string;
-  title: string;
-  scope: ExampleScope;
-  scenario: string;
-  whatToDo: string;
-  whyItMatters: string;
-  /** Per-scenario decision options. If absent, auto-generated from content. */
-  decisionOptions?: ScenarioDecisionOption[];
-  /** Reflective prompt shown before revealing analysis. Falls back to generic if absent. */
-  reflectionPrompt?: string;
-};
-
-export type ImplementationPlanItem = {
-  coreSkill: string;
-  ifThenPlans: Array<{ context: string; plan: string }>;
-  twentyFourHourChallenge: string;
-  weeklyPractice: string;
-};
-
-export type ReviewCardItem = {
-  id: string;
-  front: string;
-  back: string;
-  difficulty: "easy" | "medium" | "hard";
-};
+import type {
+  ChapterExample,
+  ChapterQuizQuestion,
+  ChapterSummaryBlock,
+  ExampleScope,
+  ImplementationPlanItem,
+  ReadingDepth,
+  ReviewCardItem,
+} from "@/lib/reader-content-types";
+export type {
+  ChapterExample,
+  ChapterQuizQuestion,
+  ChapterSummaryBlock,
+  ExampleScope,
+  ImplementationPlanItem,
+  ReadingDepth,
+  ReviewCardItem,
+  ScenarioDecisionOption,
+} from "@/lib/reader-content-types";
 
 export type BookChapter = {
   bookId: string;
@@ -87,22 +49,22 @@ export type BookChapter = {
   summaryByDepth: Record<ReadingDepth, ChapterSummaryBlock[]>;
   takeaways: string[];
   takeawaysByDepth: Record<ReadingDepth, string[]>;
-  recap?: string;
+  recap?: string | undefined;
   recapByDepth: Record<ReadingDepth, string[]>;
-  activationPrompt?: string;
-  activationPromptByDepth: Partial<Record<ReadingDepth, string>>;
-  selfCheckPrompt?: string;
-  selfCheckPrompts?: string[];
-  selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
-  reflectionPrompts?: string[];
-  reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[]>>;
-  closingPrompt?: string;
-  closingPromptByDepth: Partial<Record<ReadingDepth, string>>;
-  predictionPrompt?: string;
-  predictionPromptByDepth: Partial<Record<ReadingDepth, string>>;
-  keyTakeawayCard?: string;
-  implementationPlan?: ImplementationPlanItem;
-  reviewCards?: ReviewCardItem[];
+  activationPrompt?: string | undefined;
+  activationPromptByDepth: Partial<Record<ReadingDepth, string | undefined>>;
+  selfCheckPrompt?: string | undefined;
+  selfCheckPrompts?: string[] | undefined;
+  selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>>;
+  reflectionPrompts?: string[] | undefined;
+  reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>>;
+  closingPrompt?: string | undefined;
+  closingPromptByDepth: Partial<Record<ReadingDepth, string | undefined>>;
+  predictionPrompt?: string | undefined;
+  predictionPromptByDepth: Partial<Record<ReadingDepth, string | undefined>>;
+  keyTakeawayCard?: string | undefined;
+  implementationPlan?: ImplementationPlanItem | undefined;
+  reviewCards?: ReviewCardItem[] | undefined;
   examplesDetailed: ChapterExample[];
   quiz: ChapterQuizQuestion[];
   quizByDepth: Record<ReadingDepth, ChapterQuizQuestion[]>;
@@ -110,27 +72,27 @@ export type BookChapter = {
   quizPassingScorePercent: number;
   isStrictV12: boolean;
   /** Source schema marker. Set to "chapterflow-v21-authored" for v21 books. */
-  schemaVersion?: string;
+  schemaVersion?: string | undefined;
   /** v21-only: arresting one-liner shown above the chapter title. */
-  hook?: string;
+  hook?: string | undefined;
   /** v21-only: 1–2 sentence framing of why the idea is non-obvious. */
-  counterintuition?: string;
+  counterintuition?: string | undefined;
   /**
    * v21-only: a single 30–90s directive shown as a mid-chapter callout.
    * Replaces the deprecated reflectionBefore/After fields.
    */
-  tryThisNow?: string;
+  tryThisNow?: string | undefined;
   /**
    * DEPRECATED v21 fields. Kept for parsing legacy v21 packages (tiny-habits)
    * cleanly; the reader UI no longer renders them.
    */
-  reflectionBefore?: string;
-  reflectionAfter?: string;
+  reflectionBefore?: string | undefined;
+  reflectionAfter?: string | undefined;
   /** v21-only: 3 quotable sentences from the chapter for share/highlight. */
-  memorableLines?: V21MemorableLine[];
+  memorableLines?: V21MemorableLine[] | undefined;
   /** v21-only: the behavior-change layer (failureRecovery + transferPrompt),
    *  rendered at chapter end in the Practice phase. */
-  experiencePlan?: V21ExperiencePlan;
+  experiencePlan?: V21ExperiencePlan | undefined;
 };
 
 type BookChapterBundle = {
@@ -187,7 +149,9 @@ function normalizeQuizPrompt(prompt: string): string {
 }
 
 function pickScenarioName(seed: string): string {
-  return SCENARIO_NAMES[hashString(seed) % SCENARIO_NAMES.length];
+  // hashString is non-negative and SCENARIO_NAMES is non-empty, so the modulo is
+  // always in-bounds; SCENARIO_NAMES[0] is a provably-present tuple element.
+  return SCENARIO_NAMES[hashString(seed) % SCENARIO_NAMES.length] ?? SCENARIO_NAMES[0];
 }
 
 function normalizeScenarioPerspective(scenario: string, seed: string): string {
@@ -498,7 +462,7 @@ function normalizeQuizQuestion(
     explanation:
       strictV12
         ? authoredExplanation
-        : authoredExplanation || buildQuizExplanation(chapter, prompt, options[correctIndex], family),
+        : authoredExplanation || buildQuizExplanation(chapter, prompt, options[correctIndex] ?? "", family),
   };
 }
 
@@ -684,7 +648,7 @@ export function buildBundle(
             standard: legacyRecap,
             deeper: legacyRecap,
           };
-      const activationPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+      const activationPromptByDepth: Partial<Record<ReadingDepth, string | undefined>> = strictV12
         ? {
             simple: exactActivationPrompt(chapter, family, "simple"),
             standard: exactActivationPrompt(chapter, family, "standard"),
@@ -693,7 +657,7 @@ export function buildBundle(
         : {
             standard: newFields.activationPrompt,
           };
-      const selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[]>> = strictV12
+      const selfCheckPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>> = strictV12
         ? {
             simple: exactSelfCheckPrompts(chapter, family, "simple"),
             standard: exactSelfCheckPrompts(chapter, family, "standard"),
@@ -703,7 +667,7 @@ export function buildBundle(
             standard: newFields.selfCheckPrompt ? [newFields.selfCheckPrompt] : undefined,
             deeper: newFields.selfCheckPrompts,
           };
-      const predictionPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+      const predictionPromptByDepth: Partial<Record<ReadingDepth, string | undefined>> = strictV12
         ? {
             simple: exactPredictionPrompt(chapter, family, "simple"),
             standard: exactPredictionPrompt(chapter, family, "standard"),
@@ -712,14 +676,14 @@ export function buildBundle(
         : {
             deeper: newFields.predictionPrompt,
           };
-      const reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[]>> = strictV12
+      const reflectionPromptsByDepth: Partial<Record<ReadingDepth, string[] | undefined>> = strictV12
         ? {
             simple: exactReflectionPrompts(chapter, family, "simple"),
             standard: exactReflectionPrompts(chapter, family, "standard"),
             deeper: exactReflectionPrompts(chapter, family, "deeper"),
           }
         : {};
-      const closingPromptByDepth: Partial<Record<ReadingDepth, string>> = strictV12
+      const closingPromptByDepth: Partial<Record<ReadingDepth, string | undefined>> = strictV12
         ? {
             simple: exactClosingPrompt(chapter, family, "simple"),
             standard: exactClosingPrompt(chapter, family, "standard"),
@@ -835,10 +799,10 @@ export function buildBookChapterFromRawV21(
   rawChapter: Record<string, unknown>,
   book: {
     bookId: string;
-    title?: string;
-    author?: string;
-    categories?: string[];
-    tags?: string[];
+    title?: string | undefined;
+    author?: string | undefined;
+    categories?: string[] | undefined;
+    tags?: string[] | undefined;
   },
 ): BookChapter {
   const rawPackage = {
@@ -862,7 +826,11 @@ export function buildBookChapterFromRawV21(
   const bundle = buildBundle(pkg, [rawChapter], "direct", {
     suppressEmptyQuizWarning: true,
   });
-  return bundle.chapters[0];
+  const chapter = bundle.chapters[0];
+  if (chapter === undefined) {
+    throw new Error("buildBookChapterFromRawV21: buildBundle produced no chapters");
+  }
+  return chapter;
 }
 
 // ── Slim chapter metadata (replaces the former all-books corpus) ──────────────

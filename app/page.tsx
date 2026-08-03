@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
+import { headers } from "next/headers";
 import {
   CHAPTERFLOW_NAME,
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
 import { AuthErrorBanner } from "@/components/auth/AuthErrorBanner";
-import { RecallNav } from "@/components/landing/recall/RecallNav";
 import { RecallAmbient } from "@/components/landing/recall/RecallAmbient";
 import { RecallReveal } from "@/components/landing/recall/RecallReveal";
 import { RecallHeroSplit } from "@/components/landing/recall/RecallHeroSplit";
@@ -17,6 +17,8 @@ import { RecallFaq } from "@/components/landing/recall/RecallFaq";
 import { recallFaqJsonLd } from "@/components/landing/recall/recall-faq-data";
 import { RecallPricing } from "@/components/landing/recall/RecallPricing";
 import { RecallClose } from "@/components/landing/recall/RecallClose";
+import { LandingMotionProvider } from "@/components/landing/LandingMotionProvider";
+import { PublicSiteShell } from "@/components/marketing/PublicSiteShell";
 
 export const metadata: Metadata = {
   title: `${CHAPTERFLOW_NAME} | Stop forgetting what you read`,
@@ -54,7 +56,12 @@ export const metadata: Metadata = {
  * right. The earlier ?v=a|b|c variant switcher and its alternate heroes are gone.
  * Server Component.
  */
-export default function Home() {
+export default async function Home() {
+  // Per-request nonce from middleware.ts (WS8-001). The JSON-LD below is a
+  // non-executable data block that browsers do NOT gate under script-src, so
+  // this is belt-and-suspenders — but the nonce keeps it consistent with the
+  // enforcing policy (and reading headers() makes the page dynamic anyway).
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   const siteUrl = getChapterFlowSiteUrl();
   const jsonLd = [
     {
@@ -82,72 +89,61 @@ export default function Home() {
   ];
 
   return (
-    <div className="landing-dark relative min-h-screen">
-      <script
-        type="application/ld+json"
-        // Escape `<` so a literal "</script>" inside any JSON-LD string (e.g. a
-        // future FAQ answer) can't close this inline tag early. < is valid
-        // JSON and renders identically in the parsed structured data.
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+    <LandingMotionProvider>
+      <PublicSiteShell>
+        <script
+          type="application/ld+json"
+          nonce={nonce}
+          // Escape `<` so a literal "</script>" inside any JSON-LD string (e.g. a
+          // future FAQ answer) can't close this inline tag early. < is valid
+          // JSON and renders identically in the parsed structured data.
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+          }}
+        />
 
-      {/* Skip to main content (WCAG 2.4.1) */}
-      <a
-        href="#main"
-        className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:rounded-lg focus:font-semibold focus-visible:outline-none"
-        style={{
-          background: "var(--cf-recall-accent)",
-          color: "var(--cf-recall-bg)",
-        }}
-      >
-        Skip to main content
-      </a>
+        {/* The page's depth field — a fixed, parallaxing ambient layer the
+            transparent sections read through. Sits behind all content. */}
+        <RecallAmbient />
 
-      {/* The page's depth field — a fixed, parallaxing ambient layer the
-          transparent sections read through. Sits behind all content. */}
-      <RecallAmbient />
+        {/* Failed Cognito sign-ins bounce back to /?auth=… — surface a dismissible
+            retry banner. Reads useSearchParams, so it needs its own Suspense
+            boundary to keep the page statically renderable. */}
+        <Suspense fallback={null}>
+          <AuthErrorBanner />
+        </Suspense>
 
-      {/* Failed Cognito sign-ins bounce back to /?auth=… — surface a dismissible
-          retry banner. Reads useSearchParams, so it needs its own Suspense
-          boundary to keep the page statically renderable. */}
-      <Suspense fallback={null}>
-        <AuthErrorBanner />
-      </Suspense>
-
-      <RecallNav />
-
-      {/* Hero animates on first paint (above the fold); every section below it
-          reveals on scroll-in (RecallReveal) so the page stays alive as you go.
-          RecallLibrary is the exception: it is scroll-PINNED (an inner
-          position:sticky stage), and a RecallReveal wrapper would set a
-          transform on the ancestor, which makes that sticky stage stick to the
-          wrapper instead of the viewport — killing the pin. It owns its own
-          scroll-in choreography, so it is rendered directly. */}
-      <main id="main" tabIndex={-1} className="relative z-10 focus:outline-none">
-        <RecallHeroSplit />
-        <RecallReveal>
-          <RecallHowItWorks />
-        </RecallReveal>
-        <RecallReveal>
-          <RecallWhyItWorks />
-        </RecallReveal>
-        <RecallLibrary />
-        <RecallReveal>
-          <RecallRequestSection />
-        </RecallReveal>
-        <RecallReveal>
-          <RecallFaq />
-        </RecallReveal>
-        <RecallReveal>
-          <RecallPricing />
-        </RecallReveal>
-      </main>
-
-      <RecallReveal className="relative z-10">
-        <RecallClose />
-      </RecallReveal>
-    </div>
+        {/* Hero animates on first paint (above the fold); every section below it
+            reveals on scroll-in (RecallReveal) so the page stays alive as you go.
+            RecallLibrary owns its sticky choreography and stays unwrapped. */}
+        <main id="main" tabIndex={-1} className="relative z-10 focus:outline-none">
+          <RecallHeroSplit />
+          <div
+            data-public-hero-end
+            aria-hidden="true"
+            className="pointer-events-none h-px w-full"
+          />
+          <RecallReveal>
+            <RecallHowItWorks />
+          </RecallReveal>
+          <RecallReveal>
+            <RecallWhyItWorks />
+          </RecallReveal>
+          <RecallLibrary />
+          <RecallReveal>
+            <RecallRequestSection />
+          </RecallReveal>
+          <RecallReveal>
+            <RecallFaq />
+          </RecallReveal>
+          <RecallReveal>
+            <RecallPricing />
+          </RecallReveal>
+          <RecallReveal>
+            <RecallClose />
+          </RecallReveal>
+        </main>
+      </PublicSiteShell>
+    </LandingMotionProvider>
   );
 }

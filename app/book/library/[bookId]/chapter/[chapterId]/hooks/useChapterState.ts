@@ -1,14 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJson } from "@/lib/client/book-api";
 import { getChapterReaderStorageKey } from "@/app/book/_lib/reader-storage";
-import type { ReadingDepth } from "@/app/book/data/bookChapters";
-import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
-
-export type ChapterTab = "summary" | "examples" | "quiz" | "practice";
-export type ExampleFilter = "all" | "work" | "school" | "personal";
-export type FontScale = "sm" | "md" | "lg";
+import type { ReadingDepth } from "@/lib/reader-content-types";
+import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
+import type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
+export type { ChapterTab, ExampleFilter, FontScale } from "@/lib/reader-state-types";
 
 export type QuizResult = {
   score: number;
@@ -343,7 +341,7 @@ function mergeServerChapterState(
             local.bookmarkedTakeawayTexts[key] ?? server.bookmarkedTakeawayTexts[key];
           return [key, text] as const;
         })
-        .filter(([, text]) => typeof text === "string" && text.trim().length > 0)
+        .filter((entry): entry is readonly [string, string] => typeof entry[1] === "string" && entry[1].trim().length > 0)
     ),
   };
 }
@@ -386,6 +384,11 @@ export function useChapterState(
     });
     setHasPersistedState(Boolean(parsed));
     setHydrated(true);
+    // preferredFocusMode/preferredFontScale intentionally excluded: this
+    // effect must hydrate exactly once per storageKey (mount / chapter
+    // change), not re-run and clobber persisted user state whenever a
+    // parent re-render passes a fresh default-param value.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [
     preferredActiveTab,
     preferredExampleFilter,

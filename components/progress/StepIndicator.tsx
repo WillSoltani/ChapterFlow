@@ -1,6 +1,5 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
 import {
   LEARNING_LOOP_STEPS as STEP_LABELS,
   LEARNING_LOOP_STEPS_SHORT as STEP_LABELS_SHORT,
@@ -18,7 +17,6 @@ export function StepIndicator({
   totalSteps = 4,
   size = "md",
 }: StepIndicatorProps) {
-  const prefersReduced = useReducedMotion();
   const lineHeight = 2;
 
   // Compact mode for "sm" — just dots + "Step X/4" text, no lines
@@ -67,7 +65,7 @@ export function StepIndicator({
               {/* Dot */}
               <div className="relative flex items-center justify-center">
                 {isCurrent ? (
-                  <motion.div
+                  <div
                     className="rounded-full"
                     style={{
                       width: 12,
@@ -75,12 +73,6 @@ export function StepIndicator({
                       background: "var(--cf-accent)",
                       boxShadow: "0 0 12px var(--cf-accent-shadow)",
                     }}
-                    animate={prefersReduced ? { scale: 1 } : { scale: [1, 1.25, 1] }}
-                    transition={
-                      prefersReduced
-                        ? { duration: 0 }
-                        : { repeat: Infinity, duration: 2, ease: "easeInOut" }
-                    }
                     aria-label={`Step ${stepNum} of ${totalSteps}: ${STEP_LABELS[i]} (current)`}
                   />
                 ) : (

@@ -1,0 +1,68 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p1-holdout-c24-a1",
+  "requestSha256": "140efc251bef18f0502561188c26f91ba912f1274363d6177d5e4db7ccb627c4",
+  "receiptSha256": "91aafd28eb75bb26b65a34f8042263e0d82c13f40e93068870903b6f33045703",
+  "executionEvidenceSha256": "7e31e3d5c5b3f8496ae4a0f9d9df7005f927cc84499282fd805a5d43f73d9be2",
+  "rawOutputSha256": "f7e4403f8ca13a28e596fff0c56055dc86c8ae6db13a08e5fca78683b3dc20ca",
+  "evaluationSha256": "33623a091b53a4bafa7e20f6ec8056ee15fc051d1c4d4728cc3a5e70f45e019e",
+  "parsedOutputSha256": "ca130cbf6ca7a6c64c1b98758206a5828b5c914b8706d5de33f4b5d72f82e467",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "ce04c3fae755a64b807b9f4a44b17d361f59384fbcdd015d9fa629f6f9efc7b8",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": false,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [
+            {
+              "primaryCategory": "missing_visible_framing",
+              "secondaryCategories": [],
+              "severity": "major",
+              "explanation": "The constructed application is written as a factual past-tense event without visible hypothetical or illustrative framing, despite the plan requiring such framing.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The generic service-team action is permitted and remains descriptive, but the required visible framing for constructed material is absent."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "ReviewModelOutputV2Error",
+        "message": "source.U1.findings[0]: constructed/generic register finding requires plan evidence",
+        "code": "INVALID_EVIDENCE",
+        "refId": null
+      }
+    }
+  },
+  "evaluationArtifactSha256": "1a9fe5c2b2eea60a429620a2ae38e1d94f625b9cdf30019dec3bc60ea42c718e"
+}

@@ -1,0 +1,71 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c26-a1",
+  "requestSha256": "c22cfc450dba3bc61e6ef498e75699ff656eee3b65aea7cbc8c721593c3aa536",
+  "receiptSha256": "3e0d6fbf2013e89c5169c021b8e244f5b997d93e000159205de7867b47bf0b1d",
+  "executionEvidenceSha256": "81d44e435347993066616149678ee70fd1b23dee48969db7c9f4d1853016c9aa",
+  "rawOutputSha256": "f0156bd2a7405462afc57631ebf91936e9524fab368c791dfdf3da716505e9a7",
+  "evaluationSha256": "f18d06b2536f552a97aff41edfef3a6b7a9f4484aa7ab4686a88a657e60caba5",
+  "parsedOutputSha256": "c70eaf70e8389142a7df5e9d89b79aa71bf49ee6fba21aefaa62ee42c986cc8e",
+  "assembledReviewSha256": null,
+  "evidenceReferenceResolutionSha256": "d081ad0ddc7211ff14d1d003b6c26c288364d36b62aaa56e295d0780184b3dd9",
+  "terminalReason": "completed with protocol-invalid output",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": false,
+    "authorityCompliant": true,
+    "complete": false,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": false,
+    "semanticCorrect": false,
+    "semanticSummary": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "metricObservations": {},
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "presented_as_fact",
+          "supportStatus": "PARTIALLY_SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": false,
+          "findings": [
+            {
+              "primaryCategory": "generic_specificity_leak",
+              "secondaryCategories": [
+                "invented_detail"
+              ],
+              "severity": "major",
+              "explanation": "The chapter uses a named organization in a packet whose plan licenses only generic operational-scenario detail and explicitly forbids named organizations. The role and action are otherwise within the allowed generic workflow/action detail types.",
+              "chapterEvidenceRefIds": [
+                "CH-U001-001",
+                "PLAN-U001"
+              ],
+              "sourceEvidenceRefIds": []
+            }
+          ],
+          "rationale": "The claim is descriptive and does not require framing under the plan, but the named organization exceeds the generic-origin license and is not permitted by the allowed detail set."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": null,
+    "assemblyError": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+    "evidenceReferenceResolution": {
+      "status": "FAILED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": {
+        "name": "EvidenceReferenceResolutionError",
+        "message": "source.U1.findings[0].chapterEvidenceRefIds: evidence reference \"PLAN-U001\" has kind \"plan\"; expected chapter",
+        "code": "WRONG_KIND",
+        "refId": "PLAN-U001"
+      }
+    }
+  },
+  "evaluationArtifactSha256": "8676967e13168e54d5ca3339afa500267009c6e8a81b67148baeceab2681d83b"
+}

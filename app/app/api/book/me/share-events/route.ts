@@ -57,6 +57,11 @@ export async function POST(req: Request) {
 
     await putShareEvent(tableName, user.sub, event);
 
+    // ok:true is retained here on purpose (WS4-007 allowlist). This response is
+    // pinned by the native-contract op `share-event.post` with authority pointer
+    // "/ok" and decoded by the live iOS `ShareEventResponse` model. Dropping /ok
+    // is a native-contract deprecation that requires an iOS-coordinated release
+    // (relates to WS4-006 versioning); do not remove without that.
     return bookOk({ ok: true, shareId });
   });
 }

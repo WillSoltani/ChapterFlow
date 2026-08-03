@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c39-a1",
+  "requestSha256": "c15e3870b5c08c7822c0dc4bf4e926bc6e4e14812c27aa2616ad0e30ddc39a8f",
+  "receiptSha256": "da20964a17b75081d112c941f1a788c37c3fd1af3735455a65368120fdd0918c",
+  "executionEvidenceSha256": "134963ec316ad714c9e72515746d8f06365e835da6194b02f177eefc04ffc5bb",
+  "rawOutputSha256": "23265dcf3a6bcf9ce460f5bef28edbcfbb5764283f6cbc3f2382f3521b173230",
+  "evaluationSha256": "e80eacfaae69ac6d7784ac273e6d827614114502fedc588d04a03794ef2f768e",
+  "parsedOutputSha256": "e29f036efa88546fcd5d8ee42d2364c913bed1b813bd9613f651214aea521310",
+  "assembledReviewSha256": "d42b365d24986f0ad2a7f8d68ad9e3a8bc7285007e8bb5172e49aaa504f67433",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is directly supported by the allowed source claim and mechanism in SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001. The wording stays within the plan's source-bound, explanatory, mechanistic allowance and introduces no unsupported specifics or required framing gap."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "c2ed9e355f7389974f027014dabacaa31773f0c64a9e33a640fdba042c8af975",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1fefb7a64ddce347aa49ac494cbf6f1ac7b28157517e4bd04075dbdfe3430406",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "CH-U001-001 is directly supported by the allowed source claim and mechanism in SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001. The wording stays within the plan's source-bound, explanatory, mechanistic allowance and introduces no unsupported specifics or required framing gap.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: CH-U001-001 is directly supported by the allowed source claim and mechanism in SRC-U001-CLAIM-001, SRC-U001-MECHANISM-001, and SRC-U001-ANCHOR-001. The wording stays within the plan's source-bound, explanatory, mechanistic allowance and introduces no unsupported specifics or required framing gap."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "34c40cad23cbe66f7d1b3517f4d8cca4420b6b88b44027ef28f91382185aae06"
+}

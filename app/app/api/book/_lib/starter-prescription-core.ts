@@ -223,9 +223,9 @@ function buildReason(
 export function buildStarterPrescription(params: {
   motivation: string;
   interests: string[];
-  starterShelf?: string[];
+  starterShelf?: string[] | undefined;
   catalog: PrescriptionCatalogBook[];
-  now?: Date;
+  now?: Date | undefined;
 }): StarterPrescription | null {
   const { motivation, interests, starterShelf, catalog } = params;
   const mot = coerceMotivation(motivation);
@@ -247,13 +247,16 @@ export function buildStarterPrescription(params: {
   if (candidates.length === 0) return null;
 
   let best = candidates[0];
+  if (best === undefined) return null;
   let bestScore = scoreBook(best, mot, interests);
   for (let i = 1; i < candidates.length; i++) {
-    const s = scoreBook(candidates[i], mot, interests);
+    const candidate = candidates[i];
+    if (candidate === undefined) continue; // i ∈ [1, candidates.length)
+    const s = scoreBook(candidate, mot, interests);
     // Strictly-greater keeps the first candidate on ties → shelf order wins,
     // which is the order the user expressed their preference in.
     if (s > bestScore) {
-      best = candidates[i];
+      best = candidate;
       bestScore = s;
     }
   }

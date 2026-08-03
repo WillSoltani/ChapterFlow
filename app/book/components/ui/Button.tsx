@@ -1,7 +1,6 @@
-"use client";
-
-import type { ButtonHTMLAttributes } from "react";
-import { cn } from "@/app/book/components/ui/cn";
+import type { ButtonHTMLAttributes, ComponentProps } from "react";
+import { Button as CanonicalButton } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "success";
 type ButtonSize = "sm" | "md" | "lg";
@@ -12,18 +11,21 @@ type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   fullWidth?: boolean;
 };
 
-const variantClass: Record<ButtonVariant, string> = {
-  primary: "cf-btn-primary",
-  secondary: "cf-btn-secondary",
-  ghost: "cf-btn-ghost",
-  danger: "cf-btn-danger",
-  success: "cf-btn-success",
+type CanonicalVariant = NonNullable<ComponentProps<typeof CanonicalButton>["variant"]>;
+type CanonicalSize = NonNullable<ComponentProps<typeof CanonicalButton>["size"]>;
+
+const variantMap: Record<ButtonVariant, CanonicalVariant> = {
+  primary: "default",
+  secondary: "secondary",
+  ghost: "ghost",
+  danger: "destructive",
+  success: "success",
 };
 
-const sizeClass: Record<ButtonSize, string> = {
-  sm: "h-(--cf-control-height-sm) rounded-xl px-3 text-sm",
-  md: "h-(--cf-control-height-md) rounded-2xl px-4 text-sm",
-  lg: "h-(--cf-control-height-lg) rounded-2xl px-5 text-base",
+const sizeMap: Record<ButtonSize, CanonicalSize> = {
+  sm: "sm",
+  md: "default",
+  lg: "lg",
 };
 
 export function Button({
@@ -35,15 +37,11 @@ export function Button({
   ...props
 }: ButtonProps) {
   return (
-    <button
+    <CanonicalButton
       type={type}
-      className={cn(
-        "cf-btn inline-flex items-center justify-center gap-2 font-medium",
-        variantClass[variant],
-        sizeClass[size],
-        fullWidth && "w-full",
-        className
-      )}
+      variant={variantMap[variant]}
+      size={sizeMap[size]}
+      className={cn(fullWidth && "w-full", className)}
       {...props}
     />
   );

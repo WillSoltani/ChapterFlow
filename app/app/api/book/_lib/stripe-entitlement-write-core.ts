@@ -34,33 +34,51 @@
  * ordering guard and do NOT touch `lastStripeEventAt`: a chargeback revocation
  * must always win regardless of timestamps, and dispute re-activation is
  * blocked by the orthogonal sticky `disputeOpen` marker, not by ordering.
+ *
+ * ## Paid-intent high-water mark & Apple takeover
+ *
+ * A *completed paid* activation — plan "PRO" AND proStatus "active"
+ * (`isPaidActivation`) — stamps `activePaidIntentAtMs` (`event.created` × 1000)
+ * and carries a clause letting a Stripe write activate over a proSource:"apple"
+ * row when its paid intent is at least as new as Apple's. That closes the
+ * Checkout race where money is taken but Apple already owns the row.
+ *
+ * A FAILED payment is plan "PRO" with proStatus "past_due" — the shape the
+ * webhook feeds on `invoice.payment_failed` / `invoice.payment_action_required`
+ * / a `customer.subscription.updated` whose status maps to past_due. A bounced
+ * card is NOT a paid intent: it must never advance the paid-intent high-water
+ * mark nor displace an Apple lineage. So both the stamp and the Apple-takeover
+ * clause key off `isPaidActivation` (proStatus "active"), NOT `isProActivation`
+ * (plan "PRO"). A past_due PRO write is still `isProActivation`: it stays
+ * ordering-guarded, stays refused while `disputeOpen` exists, and stays
+ * same-source only (the plain proSource guard).
  */
 export type StripeEntitlementWriteParams = {
   plan: "FREE" | "PRO";
   proStatus: "inactive" | "active" | "past_due" | "canceled";
-  proSource?: "stripe";
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
-  stripePriceId?: string;
-  subscriptionInterval?: string;
-  currentPeriodEnd?: string;
-  cancelAtPeriodEnd?: boolean;
+  proSource?: "stripe" | undefined;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
+  stripePriceId?: string | undefined;
+  subscriptionInterval?: string | undefined;
+  currentPeriodEnd?: string | undefined;
+  cancelAtPeriodEnd?: boolean | undefined;
   // Billing intelligence (optional)
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  failedPaymentLastReason?: string;
+  billingCountry?: string | undefined;
+  billingCurrency?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  lastInvoiceAmountCents?: number | undefined;
+  lastInvoiceCurrency?: string | undefined;
+  lastInvoicePaidAt?: string | undefined;
+  failedPaymentLastReason?: string | undefined;
   // Sticky chargeback marker (L13).
-  setDisputeOpen?: boolean;
-  clearDisputeOpen?: boolean;
+  setDisputeOpen?: boolean | undefined;
+  clearDisputeOpen?: boolean | undefined;
   // Stripe webhook envelope `event.created` (epoch seconds). When present (and
   // finite) on a non-dispute write, enables the event-ordering guard above.
-  stripeEventCreatedAt?: number;
+  stripeEventCreatedAt?: number | undefined;
 };
 
 export type EntitlementUpdate = {
@@ -89,6 +107,17 @@ export function buildEntitlementUpdateFromStripe(
   const proSourceValue =
     params.plan === "PRO" ? params.proSource ?? "stripe" : null;
   const isProActivation = params.plan === "PRO";
+  // A completed *paid* activation, narrower than any plan==="PRO" write. The
+  // webhook feeds plan:"PRO" with proStatus:"past_due" on FAILED payments
+  // (invoice.payment_failed / invoice.payment_action_required, and a
+  // customer.subscription.updated whose status maps to past_due). A bounced card
+  // is not a paid intent, so the paid-intent stamp and the Apple-takeover clause
+  // below key off this (proStatus==="active"), not isProActivation. isProActivation
+  // still gates the plain proSource guard, the ordering guard, and the disputeOpen
+  // guard — a past_due PRO write remains ordering-guarded, dispute-blocked, and
+  // same-source only.
+  const isPaidActivation =
+    params.plan === "PRO" && params.proStatus === "active";
   const isDisputeWrite =
     params.setDisputeOpen === true || params.clearDisputeOpen === true;
   // Only order-guard non-dispute writes that carry a valid envelope timestamp.
@@ -196,6 +225,17 @@ export function buildEntitlementUpdateFromStripe(
     setParts.push("lastStripeEventAt = :eventCreated");
     eav[":eventCreated"] = params.stripeEventCreatedAt;
   }
+  // Paid-intent high-water mark (activePaidIntentAtMs, epoch ms): the newest
+  // *completed* Stripe payment. Only a paid activation (proStatus "active")
+  // earns it. A past_due/failed-payment PRO write must never advance it — a
+  // bounced card would otherwise masquerade as the latest paid intent and win
+  // the Apple-takeover comparison below off money that never cleared.
+  const hasPaidIntentTimestamp = isPaidActivation && hasEventTime;
+  if (hasPaidIntentTimestamp) {
+    setParts.push("activePaidIntentAtMs = :paidIntentAtMs");
+    eav[":paidIntentAtMs"] =
+      (params.stripeEventCreatedAt as number) * 1000;
+  }
 
   // Sticky chargeback marker (L13). The dispute downgrade sets it; a "won"
   // dispute clears it. setDisputeOpen wins if both are passed (defensive).
@@ -207,12 +247,23 @@ export function buildEntitlementUpdateFromStripe(
     removeParts.push("disputeOpen");
   }
 
-  // Guard: only allow Stripe to write entitlement when the existing proSource is
-  // absent or already "stripe". This prevents a delayed Stripe webhook from
-  // clobbering a user who upgraded via license key or flow_points after the
-  // Stripe subscription ended.
+  // A completed Stripe payment is the newest paid intent and may activate over
+  // an Apple source. This closes the Checkout-session race where an Apple
+  // purchase lands after session creation but before Stripe completion: money
+  // must never be accepted without granting access. Stripe terminal/dispute
+  // writes remain same-source only, so they cannot later revoke Apple access.
+  // Timed promos and administrative grants remain protected. A FAILED payment
+  // (past_due) is NOT a paid intent: hasPaidIntentTimestamp is false, so this
+  // clause stays empty and the isProActivation branch below collapses to the
+  // plain same-source proSource guard — a bounced card can never displace Apple.
+  const appleTakeoverGuard = hasPaidIntentTimestamp
+    ? " OR (proSource = :appleSource AND ((attribute_exists(activePaidIntentAtMs) AND activePaidIntentAtMs <= :paidIntentAtMs) OR (attribute_not_exists(activePaidIntentAtMs) AND (attribute_not_exists(lastAppleSignedDate) OR lastAppleSignedDate <= :paidIntentAtMs))))"
+    : "";
+  if (hasPaidIntentTimestamp) eav[":appleSource"] = "apple";
   const conditionParts = [
-    "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
+    isProActivation
+      ? `(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource${appleTakeoverGuard})`
+      : "(attribute_not_exists(proSource) OR proSource = :stripeSource OR proSource = :nullSource)",
   ];
   // Event-ordering guard: refuse an out-of-order (stale) Stripe event. Uniform
   // across activations and downgrades so the high-water mark only moves forward.
@@ -221,13 +272,14 @@ export function buildEntitlementUpdateFromStripe(
       "(attribute_not_exists(lastStripeEventAt) OR lastStripeEventAt <= :eventCreated)",
     );
   }
-  // Additionally, a PRO-activation must not re-grant access while an unresolved
+  // Additionally, any plan==="PRO" write (a paid activation OR a past_due
+  // failed-payment write) must not re-grant/re-touch access while an unresolved
   // chargeback marker is present (L13). After a dispute downgrade proSource is
   // null, which the proSource guard alone treats as writable — so a stale,
   // redelivered invoice.paid / customer.subscription.* could otherwise
   // re-activate a chargebacked user. The dispute downgrade itself (plan FREE,
-  // setDisputeOpen) and the dispute-won clear are not PRO activations, so they
-  // are intentionally exempt from this guard.
+  // setDisputeOpen) and the dispute-won clear are not plan==="PRO" writes, so
+  // they are intentionally exempt from this guard.
   if (isProActivation && !params.setDisputeOpen) {
     conditionParts.push("attribute_not_exists(disputeOpen)");
   }

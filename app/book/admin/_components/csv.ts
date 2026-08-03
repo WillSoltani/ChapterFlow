@@ -19,7 +19,7 @@ export function downloadCSV<T extends Record<string, unknown>>(
 
   const cols =
     headers ??
-    (Object.keys(rows[0]) as Array<keyof T>).map((k) => ({ key: k, label: String(k) }));
+    (Object.keys(rows[0]!) as Array<keyof T>).map((k) => ({ key: k, label: String(k) })); // rows non-empty (guarded above)
 
   const normalized = cols.map((c) =>
     typeof c === "object" && c !== null && "key" in c

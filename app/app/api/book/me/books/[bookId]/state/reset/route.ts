@@ -10,6 +10,7 @@ import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-servic
 import {
   getUserProgress,
   putUserBookState,
+  resetProgressGating,
   resetUserBookLearningState,
 } from "@/app/app/api/book/_lib/repo";
 import { resolvePinnedManifestChapters } from "@/app/app/api/book/_lib/pinned-manifest-core";
@@ -17,9 +18,7 @@ import { isResetFullyCleared } from "@/app/app/api/book/_lib/progress-write-core
 import { readJsonFromS3 } from "@/app/app/api/book/_lib/storage";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import type { BookManifest, BookUserBookStateItem } from "@/app/app/api/book/_lib/types";
-import { bookUserPk, nowIso, progressSk } from "@/app/app/api/book/_lib/keys";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
+import { nowIso } from "@/app/app/api/book/_lib/keys";
 
 export const runtime = "nodejs";
 
@@ -98,43 +97,7 @@ export async function POST(
       // only the gating + activity attributes — rather than a spread+Put of the
       // stale snapshot — preserves the identity/version fields and never clobbers
       // a write another tab committed in the meantime.
-      let progressStillExists = true;
-      try {
-        await ddbDoc.send(
-          new UpdateCommand({
-            TableName: tableName,
-            Key: { PK: bookUserPk(user.sub), SK: progressSk(bookId) },
-            ConditionExpression: "attribute_exists(SK)",
-            // Bump progressRev as part of the reset. The quiz-pass write is guarded by an
-            // optimistic `progressRev = :expectedRev` check (buildQuizPassProgressUpdate);
-            // incrementing it here CANCELS any concurrently in-flight quiz-pass that read
-            // the pre-reset rev, so it can't commit a completion on top of the just-reset
-            // row using its stale snapshot. (if_not_exists covers legacy rows with no rev.)
-            UpdateExpression:
-              "SET currentChapterNumber = :one, unlockedThroughChapterNumber = :one, completedChapters = :empty, bestScoreByChapter = :emptyMap, lastOpenedAt = :now, lastActiveAt = :now, updatedAt = :now, progressRev = if_not_exists(progressRev, :zero) + :one",
-            ExpressionAttributeValues: {
-              ":one": 1,
-              ":zero": 0,
-              ":empty": [] as number[],
-              ":emptyMap": {} as Record<string, number>,
-              ":now": now,
-            },
-          })
-        );
-      } catch (error: unknown) {
-        const name =
-          error && typeof error === "object"
-            ? (error as Record<string, unknown>).name ??
-              (error as Record<string, unknown>).__type
-            : undefined;
-        if (name === "ConditionalCheckFailedException") {
-          // The entitlement row vanished between read and write — do not resurrect
-          // it, and skip the projection write so we leave the partition untouched.
-          progressStillExists = false;
-        } else {
-          throw error;
-        }
-      }
+      const progressStillExists = await resetProgressGating(tableName, user.sub, bookId, now);
 
       // Rebuild the projection to match the now-reset entitlement. Only written
       // when the entitlement row still exists, so this can't resurrect a row in an

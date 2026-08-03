@@ -166,8 +166,8 @@ export type ParsedHighlightCreate = {
   color: HighlightColor;
   snippet: string;
   anchor: HighlightAnchor;
-  bookTitle?: string;
-  chapterTitle?: string;
+  bookTitle?: string | undefined;
+  chapterTitle?: string | undefined;
 };
 
 /**

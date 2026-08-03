@@ -1,7 +1,5 @@
 import "server-only";
 
-import { GetCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
   bookOk,
@@ -10,10 +8,9 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { bookUserPk, fsrsCardSk } from "@/app/app/api/book/_lib/keys";
-import { recordReview } from "@/app/app/api/book/_lib/fsrs-repo";
+import { getFSRSCard, recordReview } from "@/app/app/api/book/_lib/fsrs-repo";
 import { getRetrievability } from "@/app/app/api/book/_lib/fsrs";
-import type { FSRSCardState, FSRSRating } from "@/app/app/api/book/_lib/types";
+import type { FSRSRating } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
 
@@ -68,17 +65,7 @@ export async function POST(
     // re-running the (stateful) scheduler. recordReview itself has no
     // optimistic-concurrency guard, so without this a retry/double-click would
     // advance the card a second time and write a duplicate review log.
-    const existing = await ddbDoc.send(
-      new GetCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(user.sub),
-          SK: fsrsCardSk(decodedCardId),
-        },
-      })
-    );
-
-    const current = existing.Item as FSRSCardState | undefined;
+    const current = await getFSRSCard(tableName, user.sub, decodedCardId);
     if (!current) {
       throw new BookApiError(404, "card_not_found", "FSRS card not found.");
     }

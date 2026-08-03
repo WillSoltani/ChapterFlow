@@ -74,7 +74,7 @@ function PrimaryButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...rest}
-      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
+      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-60 ${className}`}
     />
   );
 }
@@ -84,7 +84,7 @@ function SecondaryButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...rest}
-      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) px-4 text-[14px] font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-muted) ${className}`}
+      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl border border-(--cf-border-strong) px-4 text-cf-body-sm font-medium text-(--cf-text-1) transition-colors duration-(--duration-fast) hover:bg-(--cf-surface-muted) ${className}`}
     />
   );
 }
@@ -165,9 +165,9 @@ export default function GiftClaimPage() {
     body = (
       <GiftCard icon={<CheckCircle2 className="h-7 w-7" />} tone="accent">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">You&apos;re all set</h1>
-        <p className="mb-2 text-[14px] leading-relaxed text-(--cf-text-3)">{claimResult.message}</p>
+        <p className="mb-2 text-cf-body-sm leading-relaxed text-(--cf-text-3)">{claimResult.message}</p>
         {expiryLabel && (
-          <p className="mb-6 text-[14px] font-medium leading-relaxed text-(--cf-text-1)">
+          <p className="mb-6 text-cf-body-sm font-medium leading-relaxed text-(--cf-text-1)">
             Pro is yours through {expiryLabel}.
           </p>
         )}
@@ -183,13 +183,13 @@ export default function GiftClaimPage() {
     body = (
       <GiftCard icon={<Gift className="h-7 w-7" />} tone="accent">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Sign in to claim your gift</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           You&apos;ll need to be signed in to add this gift to your account. Sign in
           and we&apos;ll bring you right back here.
         </p>
         <a
           href={`/auth/login?returnTo=${returnTo}`}
-          className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+          className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
         >
           Sign in to continue
         </a>
@@ -201,7 +201,7 @@ export default function GiftClaimPage() {
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">
           {previewError.notFound ? "We couldn't find that gift" : "Something went wrong"}
         </h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           {previewError.notFound
             ? "This gift code isn't valid. Double-check the link, or ask the sender to share it again."
             : previewError.message}
@@ -213,7 +213,7 @@ export default function GiftClaimPage() {
     body = (
       <GiftCard icon={<CheckCircle2 className="h-7 w-7" />} tone="muted">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">This gift was already claimed</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           This code has already been redeemed and can&apos;t be used again.
         </p>
         <SecondaryButton onClick={() => router.push("/book/library")}>Browse the library</SecondaryButton>
@@ -223,7 +223,7 @@ export default function GiftClaimPage() {
     body = (
       <GiftCard icon={<Clock className="h-7 w-7" />} tone="muted">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">This gift has expired</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           This gift code is no longer active. Ask the sender to send a fresh one.
         </p>
         <SecondaryButton onClick={() => router.push("/book/library")}>Browse the library</SecondaryButton>
@@ -233,11 +233,11 @@ export default function GiftClaimPage() {
     body = (
       <GiftCard icon={<Gift className="h-7 w-7" />} tone="muted">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">This is your gift to give</h1>
-        <p className="mb-2 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-2 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           You created this code. Share it with a friend so they can unlock{" "}
           {proWindowLabel(preview.proDays)}.
         </p>
-        <p className="mb-6 text-[13px] text-(--cf-text-3)">
+        <p className="mb-6 text-cf-label text-(--cf-text-3)">
           Code: <span className="font-mono font-semibold text-(--cf-text-1)">{code}</span>
         </p>
         <SecondaryButton onClick={() => router.push("/book/library")}>Back to the library</SecondaryButton>
@@ -250,11 +250,11 @@ export default function GiftClaimPage() {
       : `You've been sent ${proWindowLabel(preview.proDays)}`;
     body = (
       <GiftCard icon={<Gift className="h-7 w-7" />} tone="accent">
-        <p className="mb-1 text-[13px] font-medium uppercase tracking-wide text-(--cf-accent)">
+        <p className="mb-1 text-cf-label font-medium uppercase tracking-wide text-(--cf-accent)">
           A gift for you
         </p>
         <h1 className="mb-3 text-[22px] font-bold leading-snug text-(--cf-text-1)">{headline}</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           Pro unlocks the full library and every learning tool. Claim it now — it&apos;s yours to keep
           for the gift window.
         </p>
@@ -263,7 +263,7 @@ export default function GiftClaimPage() {
         <p
           role="alert"
           aria-live="assertive"
-          className="mb-3 text-[13px] text-(--cf-danger-text) empty:hidden"
+          className="mb-3 text-cf-label text-(--cf-danger-text) empty:hidden"
         >
           {claimError}
         </p>

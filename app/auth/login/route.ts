@@ -3,8 +3,10 @@ import { mustServerEnv } from "@/app/app/api/_lib/server-env";
 import { resolvePublicOrigin } from "@/app/app/_lib/server-origin";
 import { resolveCognitoDomain } from "../_lib/cognito-domain";
 import { getAuthCookieBase } from "../_lib/auth-cookie";
+import { rotateAuthCacheGeneration } from "../_lib/auth-cache-generation";
 import { sanitizeReturnTo } from "../_lib/return-to";
 import { encryptState } from "../_lib/state-crypto";
+import { logger } from "@/lib/logging/logger";
 
 // Identity providers the branded entry screen is allowed to deep-link into.
 // Validated server-side so a crafted ?identity_provider= value can never be
@@ -66,6 +68,7 @@ export async function GET(req: NextRequest) {
       // session (soft-delete is a DynamoDB status, not a Cognito disable).
       res.cookies.set("refresh_token", "", { ...cookieBase, maxAge: 0 });
       res.cookies.set("auth_expires_at", "", { ...cookieBase, httpOnly: false, maxAge: 0 });
+      rotateAuthCacheGeneration(res);
       return res;
     }
 
@@ -165,9 +168,7 @@ export async function GET(req: NextRequest) {
 
     return res;
   } catch (error: unknown) {
-    console.error("auth_login_error", {
-      message: error instanceof Error ? error.message : String(error),
-    });
+    logger.error("auth_login_error", { err: error });
     return NextResponse.redirect(new URL("/?auth=server_error", origin));
   }
 }

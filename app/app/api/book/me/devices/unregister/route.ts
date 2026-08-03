@@ -4,9 +4,7 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { parseDeviceUnregistration } from "@/app/app/api/book/_lib/device-register-core";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { bookErr, bookOk, requireBodyObject, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { bookUserPk, deviceTokenSk } from "@/app/app/api/book/_lib/keys";
-import { DeleteCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { deleteDeviceTokenByIdentifier } from "@/app/app/api/book/_lib/device-token-repo";
 
 export const runtime = "nodejs";
 
@@ -24,15 +22,7 @@ export async function POST(req: Request) {
 
     const tableName = await getBookTableName();
 
-    await ddbDoc.send(
-      new DeleteCommand({
-        TableName: tableName,
-        Key: {
-          PK: bookUserPk(user.sub),
-          SK: deviceTokenSk(parsed.identifier),
-        },
-      })
-    );
+    await deleteDeviceTokenByIdentifier(tableName, user.sub, parsed.identifier);
 
     return bookOk({ unregistered: true });
   });

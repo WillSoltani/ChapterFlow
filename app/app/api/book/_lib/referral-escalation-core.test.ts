@@ -23,7 +23,7 @@ function milestoneAt(activations: number): EscalationMilestone {
 test("a 3rd activation grants the 300 IP mentor-frame milestone", () => {
   const newly = selectNewMilestones(3, 0);
   assert.equal(newly.length, 1, "exactly the 3-activation milestone is newly reached");
-  const milestone = newly[0];
+  const milestone = newly[0]!;
   assert.equal(milestone.activations, 3);
   assert.equal(milestone.ipBonus, 300);
   assert.equal(milestone.exclusiveReward, "mentor-frame");

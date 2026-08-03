@@ -9,14 +9,10 @@ import { ddbDoc } from "@/app/app/api/_lib/aws";
 import {
   achievementSk,
   bookUserPk,
-  loopSk,
   nowIso,
 } from "@/app/app/api/book/_lib/keys";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
-import {
-  ACHIEVEMENT_DEFINITIONS,
-  getAchievementById,
-} from "@/app/book/badges/lib/achievement-definitions";
+import { getAchievementById } from "@/app/book/badges/lib/achievement-definitions";
 import type { BookUserTierItem, BookUserStreakItem } from "@/app/app/api/book/_lib/types";
 
 // ── Types ───────────────────────────────────────────────────────────────────
@@ -25,26 +21,26 @@ export type AchievementCheckContext = {
   userId: string;
   tableName: string;
   // Current streak state (from streak update)
-  streak?: BookUserStreakItem;
+  streak?: BookUserStreakItem | undefined;
   // Current tier state (from tier update)
-  tier?: BookUserTierItem;
+  tier?: BookUserTierItem | undefined;
   // Latest quiz result
-  latestQuizScore?: number;
-  latestLearningMode?: string;
-  latestIsFirstAttempt?: boolean;
+  latestQuizScore?: number | undefined;
+  latestLearningMode?: string | undefined;
+  latestIsFirstAttempt?: boolean | undefined;
   // Book-level info
-  bookId?: string;
-  bookCompleted?: boolean;
-  bookChapterCount?: number;
+  bookId?: string | undefined;
+  bookCompleted?: boolean | undefined;
+  bookChapterCount?: number | undefined;
   // Loop completion context (for hidden achievements)
-  loopCompletedAt?: string; // ISO timestamp
-  userTimezone?: string;
+  loopCompletedAt?: string; // ISO timestamp | undefined
+  userTimezone?: string | undefined;
   /** Number of books completed in distinct categories */
-  completedBooksInDistinctCategories?: number;
+  completedBooksInDistinctCategories?: number | undefined;
   /** Date the current book was started (ISO) — for Full Circle detection */
-  bookStartedAt?: string;
+  bookStartedAt?: string | undefined;
   /** Days of inactivity before this loop (for Second Wind detection) */
-  inactiveDaysBeforeReturn?: number;
+  inactiveDaysBeforeReturn?: number | undefined;
 };
 
 export type AchievementAwardResult = {

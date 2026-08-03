@@ -13,8 +13,6 @@ import {
   LOOP_COMPLETE_IP,
   INSIGHT_POINTS_AMOUNTS,
 } from "@/app/book/_lib/flow-points-economy";
-import { STREAK_MILESTONES } from "@/app/app/api/book/_lib/streak-repo";
-
 // ── Types ───────────────────────────────────────────────────────────────────
 
 export type IPConfig = {

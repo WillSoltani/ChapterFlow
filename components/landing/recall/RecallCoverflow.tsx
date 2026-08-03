@@ -34,10 +34,15 @@ import {
 } from "react";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
+import {
+  VISIBLE_PER_SIDE,
+  getCoverflowPresentation,
+} from "./RecallCoverflowPresentation";
 
 /** A typed style bag so we can pass Tailwind ring CSS custom-properties through
  *  inline `style` without `any` or scattered `@ts-expect-error` directives. */
 type RingStyle = CSSProperties & {
+  "--recall-cover-opacity"?: number;
   "--tw-ring-color"?: string;
   "--tw-ring-offset-color"?: string;
 };
@@ -72,11 +77,6 @@ type CoverflowProps = {
   onPausedChange?: (paused: boolean) => void;
 };
 
-/** How many covers deep on each side of center we actually render in 3D. Covers
- *  further than this collapse to the back plane (kept mounted for a clean loop,
- *  but pushed off-stage + fully dimmed so only ~5 read as "the shelf"). */
-const VISIBLE_PER_SIDE = 2;
-
 /** Auto-advance cadence. Slow + calm, never frantic. */
 const AUTOPLAY_MS = 3500;
 
@@ -86,7 +86,6 @@ const STEP_ROTATE_DEG = 42; // rotateY per side
 const STEP_TRANSLATE_X = 56; // % of a cover width, per step out from center
 const STEP_TRANSLATE_Z = 130; // px pushed back, per step
 const STEP_SCALE = 0.12; // scale lost per step
-const STEP_OPACITY = 0.34; // opacity lost per step
 
 export function RecallCoverflow({
   books,
@@ -210,6 +209,7 @@ export function RecallCoverflow({
   if (count === 0) return null;
 
   const focused = books[active];
+  if (focused === undefined) return null;
 
   // Typed style bag — the variable annotation lets the ring custom-properties
   // pass through inline `style` without an excess-property error or `any`.
@@ -319,7 +319,7 @@ export function RecallCoverflow({
 
             const distance = Math.abs(offset);
             const isFocused = offset === 0;
-            const beyond = distance > VISIBLE_PER_SIDE;
+            const { beyond, desktopOpacity } = getCoverflowPresentation(distance);
 
             // Covers past the visible window collapse to the back plane: pushed
             // fully out + transparent so only the near five read as the shelf.
@@ -334,15 +334,11 @@ export function RecallCoverflow({
             const scale = beyond
               ? 1 - STEP_SCALE * (VISIBLE_PER_SIDE + 1)
               : 1 - distance * STEP_SCALE;
-            const opacity = beyond
-              ? 0
-              : Math.max(0, 1 - distance * STEP_OPACITY);
-
             // Per-cover transform — compositor-safe: ONLY transform + opacity
             // animate. Typed bag so the ring custom-property type-checks.
             const coverStyle: RingStyle = {
               transform: `translate(-50%, -50%) translateX(${translateX}%) translateZ(${translateZ}px) rotateY(${rotateY}deg) scale(${scale})`,
-              opacity,
+              "--recall-cover-opacity": desktopOpacity,
               zIndex: 100 - distance,
               transformStyle: "preserve-3d",
               transition:
@@ -382,7 +378,7 @@ export function RecallCoverflow({
                 // so we keep it at lg+ but drop it below lg, where single (correct)
                 // centering is what makes the compact mobile/tablet stage clear the
                 // header.
-                className="absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(12rem,34vw,23rem)] rounded-[12px] focus-visible:outline-none focus-visible:ring-2 lg:-translate-x-1/2 lg:-translate-y-1/2"
+                className="absolute left-1/2 top-1/2 aspect-[2/3] h-[clamp(12rem,34vw,23rem)] rounded-[12px] opacity-(--recall-cover-opacity) focus-visible:outline-none focus-visible:ring-2 lg:-translate-x-1/2 lg:-translate-y-1/2"
                 style={coverStyle}
               >
                 <CoverFrame book={book} focused={isFocused} withReflection />
@@ -524,7 +520,7 @@ function CaptionPlate({
       {author ? (
         <p
           aria-hidden="true"
-          className="mt-1.5 font-(family-name:--font-mono) text-[11px] uppercase tracking-[0.22em]"
+          className="mt-1.5 font-(family-name:--font-mono) text-cf-caption uppercase tracking-[0.22em]"
           style={{ color: "var(--cf-recall-ink-faint)" }}
         >
           {author}
@@ -610,6 +606,7 @@ function pickStaticRow(
 ): CoverflowBook[] {
   const count = books.length;
   if (count <= 3) return books;
-  const at = (i: number) => books[((i % count) + count) % count];
+  // count > 3 here (short rows returned above), so the wrapped index is in-bounds.
+  const at = (i: number) => books[((i % count) + count) % count]!;
   return [at(active - 1), at(active), at(active + 1)];
 }

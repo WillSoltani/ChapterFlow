@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-canary-c01-a1",
+  "requestSha256": "ba500675c9522dcc98f8fbe3a5cdc83ddaeeaab9aa70e7fdf92615361cc8501e",
+  "receiptSha256": "001a3be175fc3dc4a8dd17dad14695aeb5f503e9b09af0656707b35ea3c02daf",
+  "executionEvidenceSha256": "642dbe8275e9504e496a6c0ce3db078639c857039bf0b706681f3bd40df783e2",
+  "rawOutputSha256": "7071eaf066c31640bae443582574c2cd16169e8285da1b68c9290c6a1ff542fd",
+  "evaluationSha256": "273e261af867a7d292457858626324d883c067a99a7d8d1f09ee476e6136a6eb",
+  "parsedOutputSha256": "823474d8cb2285ceab94f8826e9240796e9f58dd37a7667e5104bcb9e274e85d",
+  "assembledReviewSha256": "8b1eaecd0fd52d83b48eda146994f511e5b0603c30cedeb450c848b5c2a6a3b0",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter accurately and visibly attributes both the launch-framing claim and the subsequent-use mechanism to the permitted source evidence. Its specificity and claim strength remain within the plan, and no contradictory, invented, leaked, or unsupported detail is present."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a555b78ef4ba2dc2140f17ef564f5b25cf68944ba7af173e56fd7c8c98702d0e",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "3c1e469f59859a2bc3dbd4cf6a2235b2a246e387ad74288eacbfa1dadd4889b4",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter accurately and visibly attributes both the launch-framing claim and the subsequent-use mechanism to the permitted source evidence. Its specificity and claim strength remain within the plan, and no contradictory, invented, leaked, or unsupported detail is present.",
+          "unitId": "unit.fact.ch01.fact.1",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter accurately and visibly attributes both the launch-framing claim and the subsequent-use mechanism to the permitted source evidence. Its specificity and claim strength remain within the plan, and no contradictory, invented, leaked, or unsupported detail is present."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "1ad28f93c05a5e433df399b0585596c9b1e35fd7aa814f13d15cbae4cb213468"
+}

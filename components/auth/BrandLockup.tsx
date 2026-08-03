@@ -59,7 +59,7 @@ export function BrandLockup({
           strokeLinecap="round"
         />
       </svg>
-      <span className="text-[18px] font-bold tracking-tight text-(--cf-text-1)">
+      <span className="text-lg font-bold tracking-tight text-(--cf-text-1)">
         ChapterFlow
       </span>
     </Link>

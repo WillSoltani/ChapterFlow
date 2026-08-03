@@ -38,8 +38,8 @@ export function rollInsightSpark(
   }
 
   // Use next byte to select amount from the 7 options
-  const amountIdx = hash[4] % SPARK_AMOUNTS.length;
-  const amount = SPARK_AMOUNTS[amountIdx];
+  const amountIdx = (hash[4] ?? 0) % SPARK_AMOUNTS.length;
+  const amount = SPARK_AMOUNTS[amountIdx] ?? 0;
 
   return { triggered: true, amount };
 }

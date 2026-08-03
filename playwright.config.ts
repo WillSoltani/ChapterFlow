@@ -1,4 +1,5 @@
 import { defineConfig, devices } from "@playwright/test";
+import { buildSyntheticRuntimeEnvironment } from "./app/app/api/_lib/boot-env-core";
 
 // Smoke E2E config. Drives the real app in a browser to catch "page loads but
 // is broken" regressions that unit tests miss.
@@ -25,18 +26,31 @@ const IS_PROD = E2E_MODE === "prod";
 const RUN_VISUAL = process.env.RUN_VISUAL === "1";
 const BASE_URL = process.env.E2E_BASE_URL ?? "http://127.0.0.1:3000";
 
-// Production smoke build: a real `next build` + `next start`, with the COGNITO
-// vars set so middleware.ts runs its real auth check (it skips auth in
-// non-production when those are absent — but NODE_ENV is "production" under
-// `next start` regardless, so the bounce fires). NEXT_DIST_DIR keeps the prod
-// build out of the dev `.next-chapterflow` dir. DEV_AUTH_BYPASS is intentionally
-// NOT set — under NODE_ENV=production it is a no-op anyway.
-const PROD_ENV = [
-  "NEXT_DIST_DIR=.next-prod-e2e",
-  "NEXT_TELEMETRY_DISABLED=1",
-  "COGNITO_REGION=us-east-1",
-  "COGNITO_USER_POOL_ID=e2e-user-pool",
-].join(" ");
+// Production smoke build: a real `next build` + `next start`. Test-only,
+// non-secret placeholders satisfy the same boot contract as a deployed server
+// while middleware.ts still runs its real unauthenticated redirect path. The
+// @prod suite never follows that redirect into Cognito or reaches the data
+// plane. NEXT_DIST_DIR keeps the prod build out of the dev
+// `.next-chapterflow` dir. DEV_AUTH_BYPASS is intentionally NOT set — under
+// NODE_ENV=production it is a no-op anyway.
+export const PROD_E2E_ENV: Readonly<Record<string, string>> = {
+  ...buildSyntheticRuntimeEnvironment("prod"),
+  // The server listens on loopback, but production redirects must use the same
+  // trusted public authority as a deployed environment. A loopback public base
+  // is intentionally rejected by the middleware origin boundary.
+  CHAPTERFLOW_APP_BASE_URL: "https://app.chapterflow.ca",
+  NEXT_DIST_DIR: ".next-prod-e2e",
+  NEXT_TELEMETRY_DISABLED: "1",
+};
+export const PROD_E2E_HEADERS: Readonly<Record<string, string>> = {
+  // Production traffic reaches the public Function URL through CloudFront,
+  // which injects this header. The direct local/CI harness must emulate that
+  // edge hop now that the runtime manifest correctly requires enforcement.
+  "x-origin-verify": PROD_E2E_ENV.ORIGIN_VERIFY_SECRET ?? "",
+};
+const PROD_ENV = Object.entries(PROD_E2E_ENV)
+  .map(([name, value]) => `${name}=${value}`)
+  .join(" ");
 const PROD_COMMAND =
   `${PROD_ENV} next build && ` +
   `${PROD_ENV} next start --hostname 127.0.0.1 --port 3000`;
@@ -46,7 +60,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 1 : 0,
-  workers: process.env.CI ? 1 : undefined,
+  ...(process.env.CI ? { workers: 1 } : {}),
   reporter: process.env.CI ? "github" : "list",
   timeout: 90_000,
   expect: { timeout: 15_000 },
@@ -55,12 +69,13 @@ export default defineConfig({
   // baselines are host-specific (committed as chromium-darwin) and would fail on
   // the Linux CI runner. They are a LOCAL gate, opted into with RUN_VISUAL=1
   // (`npm run test:visual`), which flips the selection to ONLY @visual.
-  grep: IS_PROD ? /@prod/ : RUN_VISUAL ? /@visual/ : undefined,
-  grepInvert: IS_PROD ? undefined : RUN_VISUAL ? undefined : /@prod|@visual/,
+  ...(IS_PROD ? { grep: /@prod/ } : RUN_VISUAL ? { grep: /@visual/ } : {}),
+  ...(IS_PROD || RUN_VISUAL ? {} : { grepInvert: /@prod|@visual/ }),
   use: {
     baseURL: BASE_URL,
     headless: true,
     trace: "on-first-retry",
+    extraHTTPHeaders: IS_PROD ? PROD_E2E_HEADERS : undefined,
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],
   webServer: {

@@ -5,13 +5,36 @@ import * as cdk from "aws-cdk-lib";
 import { ChapterFlowBackendStack } from "../lib/chapterflow-backend-stack";
 import { ChapterFlowFrontendStack } from "../lib/chapterflow-frontend-stack";
 import { resolveEnvConfig } from "../lib/env-config";
+import {
+  assertAppleIapDeploymentConfig,
+  shouldAssertAppleIapDeploymentConfig,
+} from "../lib/apple-iap-config";
+import {
+  buildFrontendRuntimeConfig,
+  resolveFrontendHostedZoneId,
+} from "../lib/frontend-runtime-config";
+import { SensitiveWildcardGuard } from "../lib/iam-guards";
 
 const app = new cdk.App();
+// WS6-003: fail synth closed if any stack (this app, any env) grants a
+// sensitive account-global IAM action on Resource "*".
+cdk.Aspects.of(app).add(new SensitiveWildcardGuard());
 
 // dev | staging | prod — selected with `-c env=<env>` (or CHAPTERFLOW_ENV).
 // prod maps to the existing unsuffixed stacks/resources (zero-diff); dev and
 // staging stand up as independent suffixed stacks in the same account.
 const cfg = resolveEnvConfig(app);
+
+// Native purchase/config identity is required in every deployed environment.
+// Run this before constructing either stack so `cdk deploy` cannot mutate AWS
+// and only then discover that the runtime routes will fail closed.
+if (
+  shouldAssertAppleIapDeploymentConfig(
+    process.env.CHAPTERFLOW_VALIDATE_APPLE_IAP_CONFIG,
+  )
+) {
+  assertAppleIapDeploymentConfig(cfg.env, process.env);
+}
 
 const env = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
@@ -34,6 +57,8 @@ new ChapterFlowBackendStack(app, cfg.backendStackId, {
   // Sign-in-with-Apple PreSignUp linking Lambda + scoped IAM. Omitted → no
   // trigger resources (dev/staging without the secret synth cleanly).
   cognitoUserPoolId: process.env.COGNITO_USER_POOL_ID?.trim() || undefined,
+  lambdaConcurrencyEnforced: cfg.lambdaConcurrencyEnforced,
+  lambdaConcurrency: cfg.lambdaConcurrency,
 });
 
 // Backend resource names are the single source of truth published by the
@@ -90,56 +115,17 @@ if (!skipFrontend && openNextExists) {
     );
   }
 
-  // Prod must never ship a silently-degraded frontend. Every launch-critical
-  // secret below is injected via a conditional spread (`...(process.env.X && …)`),
-  // so a MISSING one is quietly omitted and the app would boot without Stripe,
-  // Cognito/auth, the live app URL, or AI config. Assert their presence here and
-  // fail the prod synth loudly instead. dev/staging may run degraded. (Annual
-  // price IDs, logout redirect, cookie domain, and ElevenLabs stay optional —
-  // they degrade gracefully.)
-  if (cfg.env === "prod") {
-    const requiredSecrets = [
-      "BOOK_STRIPE_SECRET_KEY",
-      "BOOK_STRIPE_WEBHOOK_SECRET",
-      "BOOK_STRIPE_PRICE_ID",
-      "NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
-      "COGNITO_DOMAIN",
-      "COGNITO_CLIENT_ID",
-      "COGNITO_REGION",
-      "COGNITO_USER_POOL_ID",
-      "COGNITO_REDIRECT_URI",
-      "AUTH_STATE_SECRET",
-      "CHAPTERFLOW_APP_BASE_URL",
-      "ANTHROPIC_API_KEY",
-    ];
-    const missing = requiredSecrets.filter((key) => !process.env[key]?.trim());
-    if (missing.length > 0) {
-      throw new Error(
-        "Refusing to synth the prod ChapterFlowFrontend stack — launch-critical " +
-          `secrets are missing from the deploy environment: ${missing.join(", ")}. ` +
-          "Set them as prod GitHub Environment secrets before deploying.",
-      );
-    }
-
-    // OAuth strictness (#15): AUTH_STATE_SECRET keys the AES-256-GCM encryption
-    // of the OAuth `state` (PKCE verifier + returnTo + nonce). A short secret
-    // weakens that integrity guarantee, and the app code (app/auth/_lib/
-    // state-crypto.ts getSecret) hard-rejects anything < 32 chars at RUNTIME —
-    // which would silently degrade every login to the weaker cookie-only
-    // fallback in prod. Fail the prod SYNTH loudly instead so the deploy can't
-    // ship a too-short secret. Literal kept in sync with state-crypto.ts (infra
-    // is a separate package; do NOT import app code).
-    const AUTH_STATE_SECRET_MIN_LENGTH = 32; // MUST match app/auth/_lib/state-crypto.ts
-    const authStateSecret = process.env.AUTH_STATE_SECRET ?? "";
-    if (authStateSecret.length < AUTH_STATE_SECRET_MIN_LENGTH) {
-      throw new Error(
-        "Refusing to synth the prod ChapterFlowFrontend stack — AUTH_STATE_SECRET " +
-          `must be at least ${AUTH_STATE_SECRET_MIN_LENGTH} characters (got ` +
-          `${authStateSecret.length}). Rotate the prod secret to a longer value ` +
-          "before deploying.",
-      );
-    }
-  }
+  const frontendRuntimeConfig = buildFrontendRuntimeConfig({
+    deploymentEnvironment: cfg.env,
+    appTableName,
+    contentBucketName,
+    ssmParameterPrefix: cfg.ssmPrefix,
+    deployEnv: process.env,
+  });
+  const hostedZoneId = resolveFrontendHostedZoneId(
+    cfg.domainName,
+    process.env.CHAPTERFLOW_HOSTED_ZONE_ID,
+  );
 
   new ChapterFlowFrontendStack(app, cfg.frontendStackId, {
     env,
@@ -151,83 +137,15 @@ if (!skipFrontend && openNextExists) {
     contentBucketName,
     ssmPrefix: cfg.ssmPrefix,
     domainName: cfg.domainName,
-    serverEnv: {
-      // These are populated from GitHub Secrets in CI/CD.
-      // For local synth/deploy, set them as env vars or omit for dry-run.
-      ...(process.env.CHAPTERFLOW_COMMIT_SHA && {
-        CHAPTERFLOW_COMMIT_SHA: process.env.CHAPTERFLOW_COMMIT_SHA,
-      }),
-      ...(process.env.CHAPTERFLOW_APP_BASE_URL && {
-        CHAPTERFLOW_APP_BASE_URL: process.env.CHAPTERFLOW_APP_BASE_URL,
-      }),
-      ...(process.env.COGNITO_DOMAIN && {
-        COGNITO_DOMAIN: process.env.COGNITO_DOMAIN,
-      }),
-      ...(process.env.COGNITO_CLIENT_ID && {
-        COGNITO_CLIENT_ID: process.env.COGNITO_CLIENT_ID,
-      }),
-      ...(process.env.COGNITO_REGION && {
-        COGNITO_REGION: process.env.COGNITO_REGION,
-      }),
-      ...(process.env.COGNITO_USER_POOL_ID && {
-        COGNITO_USER_POOL_ID: process.env.COGNITO_USER_POOL_ID,
-      }),
-      ...(process.env.COGNITO_REDIRECT_URI && {
-        COGNITO_REDIRECT_URI: process.env.COGNITO_REDIRECT_URI,
-      }),
-      ...(process.env.COGNITO_LOGOUT_REDIRECT_URI && {
-        COGNITO_LOGOUT_REDIRECT_URI: process.env.COGNITO_LOGOUT_REDIRECT_URI,
-      }),
-      ...(process.env.AUTH_STATE_SECRET && {
-        AUTH_STATE_SECRET: process.env.AUTH_STATE_SECRET,
-      }),
-      ...(process.env.AUTH_COOKIE_DOMAIN && {
-        AUTH_COOKIE_DOMAIN: process.env.AUTH_COOKIE_DOMAIN,
-      }),
-      // CSRF/same-origin guard (#6). Injected UNCONDITIONALLY (default "1" = ON)
-      // so the value is present in the Lambda config and can be flipped to "0"
-      // (observe-only: log, don't block) directly on the live function for a
-      // brief confirmation window after a deploy. CDK resets it to this default
-      // on the next deploy. Read via raw process.env (isCsrfEnforcementOn).
-      CSRF_ORIGIN_ENFORCE: process.env.CSRF_ORIGIN_ENFORCE ?? "1",
-      ...(process.env.BOOK_STRIPE_SECRET_KEY && {
-        BOOK_STRIPE_SECRET_KEY: process.env.BOOK_STRIPE_SECRET_KEY,
-      }),
-      ...(process.env.BOOK_STRIPE_WEBHOOK_SECRET && {
-        BOOK_STRIPE_WEBHOOK_SECRET: process.env.BOOK_STRIPE_WEBHOOK_SECRET,
-      }),
-      ...(process.env.BOOK_STRIPE_PRICE_ID && {
-        BOOK_STRIPE_PRICE_ID: process.env.BOOK_STRIPE_PRICE_ID,
-      }),
-      ...(process.env.BOOK_STRIPE_PRICE_ID_ANNUAL && {
-        BOOK_STRIPE_PRICE_ID_ANNUAL: process.env.BOOK_STRIPE_PRICE_ID_ANNUAL,
-      }),
-      ...(process.env.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT && {
-        BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT:
-          process.env.BOOK_STRIPE_PRICE_ID_ANNUAL_UPFRONT,
-      }),
-      ...(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY && {
-        NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY:
-          process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY,
-      }),
-      // AI providers
-      ...(process.env.ANTHROPIC_API_KEY && {
-        ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY,
-      }),
-      ...(process.env.ELEVENLABS_API_KEY && {
-        ELEVENLABS_API_KEY: process.env.ELEVENLABS_API_KEY,
-      }),
-      // iOS Universal Links / shared web credentials — the AASA route
-      // (app/.well-known/apple-app-site-association) reads these at request time
-      // to build the appID "<TeamID>.<bundleId>". Optional: if unset the route
-      // still serves a valid document with a placeholder Team ID + default
-      // bundle id (see docs/ENVIRONMENT.md §3.F).
-      ...(process.env.IOS_APP_TEAM_ID && {
-        IOS_APP_TEAM_ID: process.env.IOS_APP_TEAM_ID,
-      }),
-      ...(process.env.IOS_APP_BUNDLE_ID && {
-        IOS_APP_BUNDLE_ID: process.env.IOS_APP_BUNDLE_ID,
-      }),
-    },
+    hostedZoneId,
+    // WS6-002 interim origin lock. Secret unset → byte-identical to today (no
+    // header, no enforcement). Mode is passed through ONLY when exactly "log"
+    // (the two-phase observation window); anything else leaves it undefined so
+    // the stack defaults to "enforce".
+    originVerifySecret: frontendRuntimeConfig.originVerifySecret,
+    originVerifyMode: frontendRuntimeConfig.originVerifyMode,
+    serverEnv: frontendRuntimeConfig.serverEnv,
+    lambdaConcurrencyEnforced: cfg.lambdaConcurrencyEnforced,
+    lambdaConcurrency: cfg.lambdaConcurrency,
   });
 }

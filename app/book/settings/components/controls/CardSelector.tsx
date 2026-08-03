@@ -2,13 +2,13 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Check } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 
 /** Personality gradient lookup by card label keyword */
 const PERSONALITY_GRADIENTS: Record<string, string> = {
-  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), #38BDF8)",
-  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), #14B8A6)",
-  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), #F97316)",
+  "Quick Learner": "linear-gradient(90deg, var(--accent-cyan), var(--cf-data-sky))",
+  "Balanced Reader": "linear-gradient(90deg, var(--accent-emerald), var(--cf-data-teal))",
+  "Deep Diver": "linear-gradient(90deg, var(--accent-amber), var(--cf-data-orange))",
 };
 
 type CardOption<T extends string> = {
@@ -16,10 +16,10 @@ type CardOption<T extends string> = {
   emoji: string;
   label: string;
   description: string;
-  tint?: string;
-  selectedTint?: string;
-  badge?: string;
-  prominentValue?: string;
+  tint?: string | undefined;
+  selectedTint?: string | undefined;
+  badge?: string | undefined;
+  prominentValue?: string | undefined;
 };
 
 type CardSelectorProps<T extends string> = {
@@ -57,7 +57,7 @@ export function CardSelector<T extends string>({
             aria-checked={isSelected}
             onClick={() => onChange(opt.value)}
             whileTap={{ scale: 0.97 }}
-            whileHover={!isSelected ? { scale: 1.01, borderColor: "var(--cf-border-strong)" } : undefined}
+            {...(!isSelected ? { whileHover: { scale: 1.01, borderColor: "var(--cf-border-strong)" } } : {})}
             animate={isSelected ? { scale: 1.02 } : { scale: 1 }}
             transition={{ type: "spring", stiffness: 400, damping: 25 }}
             className={cn(
@@ -103,7 +103,7 @@ export function CardSelector<T extends string>({
                 "absolute top-2 right-2 rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wider",
                 isSelected
                   ? "bg-(--cf-accent) text-(--cf-accent-contrast)"
-                  : "bg-(--cf-accent-soft) text-(--cf-accent) animate-pulse"
+                  : "bg-(--cf-accent-soft) text-(--cf-accent)"
               )}>
                 {isSelected ? "\u2713" : opt.badge}
               </span>

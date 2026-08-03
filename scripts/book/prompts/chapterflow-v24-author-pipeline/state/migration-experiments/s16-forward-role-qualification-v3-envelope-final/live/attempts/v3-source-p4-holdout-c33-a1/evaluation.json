@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c33-a1",
+  "requestSha256": "026a93936590314703b6896388ab0ee68017b3b8b0908bc064d0b0c86bd59592",
+  "receiptSha256": "42da7c6757ec124d8a86d804ea19b2a0fd56fbeef16485d0deeb2eb82391c235",
+  "executionEvidenceSha256": "3d10b0dab25b6f4a8f264588845c2b1c9c8931c1d0daf0943a847ec4f8adc924",
+  "rawOutputSha256": "187a6003243959dc6628c83e868cd2fe93a853f3470395438c10fcefd7c41fba",
+  "evaluationSha256": "c49b32e48fcebdf14fedaaf82f962934fa063b79394e5b96e58925fc8cb27e0a",
+  "parsedOutputSha256": "85d76fdac916826f4e711a273ecc780f00e59c0a6ca311509a6745d12b3753e0",
+  "assembledReviewSha256": "c756a03a77a19b0ee1761baa5be7dfe20eb7d56f43529d34acfeb5cdd0201eba",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter statement is source-framed and matches the allowed anchor claim and mechanism without adding unsupported specificity, quantified effects, or stronger causal guarantees. The mechanistic strength fits the plan maximum, and framing was not required."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "e3aa4cb292ea577b81496091fb02fba73460409e0fcb7474f457b766860580e7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "9909d27c42ec5d6045cd022d3d7c49e67e1c1e5b1f5e5b6781b58ba4ffe938d1",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter statement is source-framed and matches the allowed anchor claim and mechanism without adding unsupported specificity, quantified effects, or stronger causal guarantees. The mechanistic strength fits the plan maximum, and framing was not required.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter statement is source-framed and matches the allowed anchor claim and mechanism without adding unsupported specificity, quantified effects, or stronger causal guarantees. The mechanistic strength fits the plan maximum, and framing was not required."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "9f19a8a4d2adf192eae16a194e5e33c650716e3ca68f166682eb2495ae849cdc"
+}

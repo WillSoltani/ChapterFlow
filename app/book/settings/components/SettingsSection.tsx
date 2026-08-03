@@ -4,7 +4,7 @@ import { type ReactNode, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import { ChevronDown } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { DUR, EASE } from "@/lib/motion";
 
 type SettingsSectionProps = {
@@ -68,7 +68,7 @@ export function SettingsSection({
           <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-(--cf-surface-muted) text-(--cf-text-2)">
             <Icon className="h-4 w-4" />
           </div>
-          <h2 className="text-[15px] font-semibold text-(--cf-text-1)">{title}</h2>
+          <h2 className="text-cf-body font-semibold text-(--cf-text-1)">{title}</h2>
           {badge && (
             <span className="rounded-full bg-(--cf-surface-muted) px-2 py-0.5 text-[10px] font-medium text-(--cf-text-soft)">
               {badge}
@@ -82,7 +82,7 @@ export function SettingsSection({
               <motion.span
                 initial={reducedMotion ? false : { opacity: 0, x: 8 }}
                 animate={{ opacity: 1, x: 0 }}
-                exit={reducedMotion ? undefined : { opacity: 0, x: 8 }}
+                {...(reducedMotion ? {} : { exit: { opacity: 0, x: 8 } })}
                 transition={{ duration: DUR.micro }}
                 className="hidden min-w-0 truncate text-right text-xs text-(--cf-text-soft) sm:block"
               >
@@ -107,7 +107,7 @@ export function SettingsSection({
             aria-label={`${title} settings`}
             initial={reducedMotion ? false : { height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
-            exit={reducedMotion ? undefined : { height: 0, opacity: 0 }}
+            {...(reducedMotion ? {} : { exit: { height: 0, opacity: 0 } })}
             transition={
               reducedMotion
                 ? { duration: 0 }

@@ -4,10 +4,8 @@ import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
 import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
-import { giftCodePk, giftCodeSk } from "@/app/app/api/book/_lib/keys";
 import { getUserProfileItem } from "@/app/app/api/book/_lib/repo";
-import { GetCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
+import { getGiftCode } from "@/app/app/api/book/_lib/gift-repo";
 import { GIFT_PRO_DAYS } from "../_constants";
 
 export const runtime = "nodejs";
@@ -31,13 +29,7 @@ export async function GET(
     const normalizedCode = code.toUpperCase();
     const tableName = await getBookTableName();
 
-    const codeRes = await ddbDoc.send(
-      new GetCommand({
-        TableName: tableName,
-        Key: { PK: giftCodePk(), SK: giftCodeSk(normalizedCode) },
-      })
-    );
-    const gift = codeRes.Item;
+    const gift = await getGiftCode(tableName, normalizedCode);
     if (!gift) {
       throw new BookApiError(404, "gift_not_found", "Gift code not found.");
     }

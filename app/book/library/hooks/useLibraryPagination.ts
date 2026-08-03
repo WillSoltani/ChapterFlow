@@ -44,7 +44,7 @@ function parseQueryState(search: string, pageSizeOptions: number[]): StoredPagin
   if (!hasPageSize && !hasPage) return null;
 
   return {
-    pageSize: hasPageSize ? pageSize : pageSizeOptions[0],
+    pageSize: hasPageSize ? pageSize : pageSizeOptions[0] ?? 10,
     currentPage: hasPage ? Math.floor(currentPage) : 1,
   };
 }
@@ -56,7 +56,7 @@ function parseStoredState(raw: string | null, pageSizeOptions: number[]): Stored
     const pageSize = Number(parsed.pageSize);
     const currentPage = Number(parsed.currentPage);
     return {
-      pageSize: pageSizeOptions.includes(pageSize) ? pageSize : pageSizeOptions[0],
+      pageSize: pageSizeOptions.includes(pageSize) ? pageSize : pageSizeOptions[0] ?? 10,
       currentPage: Number.isFinite(currentPage) && currentPage > 0 ? Math.floor(currentPage) : 1,
     };
   } catch {
@@ -106,7 +106,7 @@ export function useLibraryPagination<T>({
       stored ??
       {
         currentPage: 1,
-        pageSize: normalizedOptions.includes(defaultPageSize) ? defaultPageSize : normalizedOptions[0],
+        pageSize: normalizedOptions.includes(defaultPageSize) ? defaultPageSize : normalizedOptions[0] ?? defaultPageSize,
       };
     setPagination((current) => {
       if (
@@ -188,7 +188,7 @@ export function useLibraryPagination<T>({
       }));
     },
     setPageSize: (pageSize: number) => {
-      const safePageSize = normalizedOptions.includes(pageSize) ? pageSize : normalizedOptions[0];
+      const safePageSize = normalizedOptions.includes(pageSize) ? pageSize : normalizedOptions[0] ?? defaultPageSize;
       setPagination((current) => {
         const firstVisibleIndex = (current.currentPage - 1) * current.pageSize;
         const nextPage = Math.floor(firstVisibleIndex / safePageSize) + 1;

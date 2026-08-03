@@ -1,13 +1,17 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import crypto from "crypto";
-import { DeleteCommand, PutCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookAnalyticsTableName, getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { getSegment } from "@/app/app/api/book/_lib/admin-segments-repo";
+import {
+  checkpointBulkNotifyAudit,
+  claimSegmentNotifyDedup,
+  getSegment,
+  releaseSegmentNotifyDedup,
+} from "@/app/app/api/book/_lib/admin-segments-repo";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 import { buildSegmentUsers } from "@/app/app/api/book/_lib/admin-metrics";
 import { runSegment } from "@/app/app/api/book/_lib/segment-engine";
@@ -18,11 +22,11 @@ import { MAX_SYNC_RECIPIENTS } from "@/app/app/api/book/admin/segments/notify-li
 export const runtime = "nodejs";
 
 // MAX_SYNC_RECIPIENTS (imported above) caps synchronous fan-out FAR below what a
-// 30s Lambda can safely flush: each recipient costs a settings read + an in-app
+// 45s Lambda can safely flush: each recipient costs a settings read + an in-app
 // write and, when enabled, a CASL/CAN-SPAM-compliant SES send and a per-device
 // push Query. Anything larger must run through an async worker (see the H9 handoff
 // note): OpenNext ignores Next's `maxDuration` export, so the single default
-// ServerFn's 30s timeout (infra/lib/chapterflow-frontend-stack.ts) is a hard wall.
+// ServerFn's 45s timeout (infra/lib/chapterflow-frontend-stack.ts) is a hard wall.
 
 // How many sends run concurrently. Bounded so we don't open hundreds of
 // simultaneous DynamoDB/SES sockets, but high enough to clear the capped
@@ -33,14 +37,6 @@ const SEND_CONCURRENCY = 15;
 // retry of the same dispatch (API Gateway / client / Lambda async retries all
 // fire within minutes). Two UTC days comfortably covers a same-day re-fire.
 const DEDUP_TTL_SECONDS = 2 * 86400;
-
-function isConditionalCheckFailed(err: unknown): boolean {
-  const rec = err as { name?: string; __type?: string } | null;
-  return (
-    rec?.name === "ConditionalCheckFailedException" ||
-    rec?.__type === "ConditionalCheckFailedException"
-  );
-}
 
 type Ctx = { params: Promise<{ segmentId: string }> };
 
@@ -109,41 +105,21 @@ export async function POST(req: Request, { params }: Ctx) {
     // ran. (The old code wrote the audit only AFTER the loop wrapped in
     // .catch(()=>{}), so a timeout mid-loop lost the audit entry entirely.)
     const auditSk = `${nowIso()}#bulk_notify`;
-    const writeAudit = async (
+    const writeAudit = (
       status: "started" | "in_progress" | "completed",
       counts: { sent: number; failed: number; skipped: number },
-    ) => {
-      try {
-        await ddbDoc.send(
-          new UpdateCommand({
-            TableName: tableName,
-            Key: { PK: `BOOKAUDIT#${admin.sub}`, SK: auditSk },
-            UpdateExpression:
-              "SET #entity = :entity, #action = :action, segmentId = :seg, dispatchId = :did, targetedCount = :targeted, affectedUserCount = :sent, failedCount = :failed, skippedCount = :skipped, #status = :status, params = :params, createdAt = if_not_exists(createdAt, :now), updatedAt = :now",
-            ExpressionAttributeNames: {
-              "#entity": "entity",
-              "#action": "action",
-              "#status": "status",
-            },
-            ExpressionAttributeValues: {
-              ":entity": "ADMIN_AUDIT",
-              ":action": "bulk_notify",
-              ":seg": segmentId,
-              ":did": dispatchId,
-              ":targeted": matches.length,
-              ":sent": counts.sent,
-              ":failed": counts.failed,
-              ":skipped": counts.skipped,
-              ":status": status,
-              ":params": { title, messagePreview: message.slice(0, 120) },
-              ":now": nowIso(),
-            },
-          }),
-        );
-      } catch (err) {
-        console.warn("[admin-segment-notify] audit checkpoint failed", err);
-      }
-    };
+    ) =>
+      checkpointBulkNotifyAudit(tableName, {
+        adminUserId: admin.sub,
+        auditSk,
+        segmentId,
+        dispatchId,
+        targetedCount: matches.length,
+        title,
+        message,
+        status,
+        counts,
+      });
 
     let sent = 0;
     let failed = 0;
@@ -158,32 +134,14 @@ export async function POST(req: Request, { params }: Ctx) {
     const sendOne = async (
       user: { userId: string; email: string | null },
     ): Promise<"sent" | "skipped" | "failed"> => {
-      const dedupKey = {
-        PK: `ADMINNOTIFYDISPATCH#${dispatchId}`,
-        SK: `USER#${user.userId}`,
-      };
-      try {
-        await ddbDoc.send(
-          new PutCommand({
-            TableName: tableName,
-            Item: {
-              ...dedupKey,
-              entity: "ADMIN_NOTIFY_DEDUP",
-              dispatchId,
-              segmentId,
-              userId: user.userId,
-              createdAt: nowIso(),
-              ttl: Math.floor(Date.now() / 1000) + DEDUP_TTL_SECONDS,
-            },
-            ConditionExpression:
-              "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-          }),
-        );
-      } catch (err) {
-        if (isConditionalCheckFailed(err)) return "skipped";
-        console.warn("[admin-segment-notify] dedup claim failed for", user.userId, err);
-        return "failed";
-      }
+      const claim = await claimSegmentNotifyDedup(tableName, {
+        dispatchId,
+        segmentId,
+        userId: user.userId,
+        ttlSeconds: DEDUP_TTL_SECONDS,
+      });
+      if (claim === "skipped") return "skipped";
+      if (claim === "error") return "failed";
 
       try {
         await createNotification(tableName, {
@@ -196,11 +154,9 @@ export async function POST(req: Request, { params }: Ctx) {
         });
         return "sent";
       } catch (err) {
-        console.warn("[admin-segment-notify] failed for", user.userId, err);
+        logger.warn("admin_segment_notify_failed", { userId: user.userId, err });
         // Release the claim so this user can be retried on a later dispatch.
-        await ddbDoc
-          .send(new DeleteCommand({ TableName: tableName, Key: dedupKey }))
-          .catch(() => {});
+        await releaseSegmentNotifyDedup(tableName, dispatchId, user.userId).catch(() => {});
         return "failed";
       }
     };

@@ -1,6 +1,6 @@
 "use client";
 
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import type { BadgeFilter, BadgeWithProgress } from "../lib/badge-types";
 import { FILTER_OPTIONS } from "../lib/badge-utils";
 
@@ -17,7 +17,7 @@ export function BadgeFilters({ activeFilter, onChange, badges }: BadgeFiltersPro
   }
 
   return (
-    <div className="hide-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0">
+    <div className="scrollbar-hide -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0">
       {FILTER_OPTIONS.map((opt) => {
         const isActive = activeFilter === opt.value;
         const count = getCount(opt.value);

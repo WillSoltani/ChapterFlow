@@ -6,12 +6,17 @@ import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/
 import { getUserAccessibleChapter } from "@/app/app/api/book/_lib/content-service";
 import { isBookApiError } from "@/app/app/api/book/_lib/errors";
 import { AuthError } from "@/app/app/api/_lib/auth";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { GetCommand, PutCommand, DeleteCommand } from "@aws-sdk/lib-dynamodb";
-import { bookUserPk, reflectionFeedbackSk, feedbackLimitSk, nowIso } from "@/app/app/api/book/_lib/keys";
+import { reflectionFeedbackSk, feedbackLimitSk, nowIso } from "@/app/app/api/book/_lib/keys";
+import {
+  claimFeedbackRateLimitSlot,
+  getReflectionFeedbackCache,
+  putReflectionFeedbackCache,
+  releaseFeedbackRateLimitSlot,
+} from "@/app/app/api/book/_lib/reflection-feedback-repo";
 import { streamReflectionFeedback } from "@/app/app/api/book/_lib/ai-service";
 import { getReflectionFeedbackModel } from "@/app/app/api/book/_lib/ai-config";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
+import { logger } from "@/lib/logging/logger";
 
 // Upper bound for the free-text prompt fields echoed into the Sonnet message.
 // Mirrors the maxLength the scenarios route applies via requireString — keeps
@@ -89,18 +94,15 @@ export async function POST(req: Request, ctx: Params) {
       return bookErr(req, 400, "invalid_example_id", "exampleId not found in chapter");
     }
 
-    const pk = bookUserPk(user.sub);
     const today = new Date().toISOString().slice(0, 10);
     const limitSk = feedbackLimitSk(today, exampleId);
 
     // Check cache before claiming the rate-limit slot, so a repeat of the same
     // reflection still serves the cached feedback for free.
     const feedbackSk = reflectionFeedbackSk(bookId, chapterNumber, exampleId);
-    const cacheCheck = await ddbDoc.send(
-      new GetCommand({ TableName: tableName, Key: { PK: pk, SK: feedbackSk } }),
-    );
-    const cachedText = (cacheCheck.Item as { feedbackText?: string })?.feedbackText;
-    const cachedHash = (cacheCheck.Item as { reflectionHash?: string })?.reflectionHash;
+    const cached = await getReflectionFeedbackCache(tableName, user.sub, feedbackSk);
+    const cachedText = (cached as { feedbackText?: string } | null)?.feedbackText;
+    const cachedHash = (cached as { reflectionHash?: string } | null)?.reflectionHash;
     const currentHash = simpleHash(reflectionText);
 
     if (cachedText && cachedHash === currentHash) {
@@ -117,34 +119,22 @@ export async function POST(req: Request, ctx: Params) {
     // a caller cannot exceed the once-per-example-per-day limit (and the paid
     // Sonnet calls it gates) by racing or aborting.
     const limitTtl = Math.floor(Date.now() / 1000) + 2 * 86400;
-    try {
-      await ddbDoc.send(
-        new PutCommand({
-          TableName: tableName,
-          Item: {
-            PK: pk,
-            SK: limitSk,
-            entity: "FEEDBACK_RATE_LIMIT",
-            createdAt: nowIso(),
-            ttl: limitTtl,
-          },
-          ConditionExpression: "attribute_not_exists(PK) AND attribute_not_exists(SK)",
-        }),
-      );
-    } catch (err) {
-      if (isConditionalCheckFailed(err)) {
-        return bookErr(req, 429, "rate_limited", "Feedback already requested for this example today");
-      }
-      throw err;
+    const claimed = await claimFeedbackRateLimitSlot(
+      tableName,
+      user.sub,
+      limitSk,
+      nowIso(),
+      limitTtl,
+    );
+    if (!claimed) {
+      return bookErr(req, 429, "rate_limited", "Feedback already requested for this example today");
     }
 
     // The rate-limit slot was claimed above to close the concurrent/abort race.
     // If generation cannot actually proceed (no API key) or fails, release the
     // slot so a transient failure doesn't burn the user's once-per-day attempt.
     const releaseLimitSlot = () =>
-      ddbDoc.send(
-        new DeleteCommand({ TableName: tableName, Key: { PK: pk, SK: limitSk } }),
-      );
+      releaseFeedbackRateLimitSlot(tableName, user.sub, limitSk);
 
     // Get API key
     const apiKey = await getServerEnv("ANTHROPIC_API_KEY");
@@ -187,26 +177,18 @@ export async function POST(req: Request, ctx: Params) {
           if (fullText.length > 50) {
             const now = nowIso();
             const ttl = Math.floor(Date.now() / 1000) + 90 * 86400;
-            await ddbDoc.send(
-              new PutCommand({
-                TableName: tableName,
-                Item: {
-                  PK: pk,
-                  SK: feedbackSk,
-                  entity: "BOOK_USER_REFLECTION_FEEDBACK",
-                  userId: user.sub,
-                  bookId,
-                  chapterNumber,
-                  exampleId,
-                  reflectionHash: currentHash,
-                  feedbackText: fullText,
-                  model,
-                  createdAt: now,
-                  updatedAt: now,
-                  ttl,
-                },
-              }),
-            );
+            await putReflectionFeedbackCache(tableName, {
+              userId: user.sub,
+              bookId,
+              chapterNumber,
+              exampleId,
+              feedbackSk,
+              reflectionHash: currentHash,
+              feedbackText: fullText,
+              model,
+              now,
+              ttlEpochSeconds: ttl,
+            });
           }
         } catch (err) {
           // Release the daily slot ONLY when no usable feedback was produced, so
@@ -224,7 +206,7 @@ export async function POST(req: Request, ctx: Params) {
             err && typeof err === "object" && "status" in err
               ? (err as { status?: number }).status
               : undefined;
-          console.error("[reflection-feedback] stream failed:", {
+          logger.error("reflection_feedback_stream_failed", {
             status,
             name: err instanceof Error ? err.name : typeof err,
             message: err instanceof Error ? err.message : String(err),
@@ -266,18 +248,9 @@ export async function POST(req: Request, ctx: Params) {
     if (isBookApiError(err)) {
       return bookErr(req, err.status, err.code, err.message, err.details);
     }
-    console.error("[feedback] Error:", err);
+    logger.error("reflection_feedback_error", { err });
     return bookErr(req, 500, "internal_error", "An unexpected error occurred");
   }
-}
-
-function isConditionalCheckFailed(error: unknown): boolean {
-  if (!error || typeof error !== "object") return false;
-  const rec = error as Record<string, unknown>;
-  return (
-    rec.name === "ConditionalCheckFailedException" ||
-    rec.__type === "ConditionalCheckFailedException"
-  );
 }
 
 function simpleHash(text: string): string {

@@ -2,7 +2,8 @@
  * Single source of truth for catalog-size marketing claims. Previously every
  * surface hardcoded "95+ books across 21 categories" / "93 more books", which
  * overstated the live catalog. Every count here is DERIVED from the live
- * catalog (app/book/data/booksCatalog) — never hardcoded.
+ * catalog (lib/books-catalog, re-exported at app/book/data/booksCatalog for
+ * its many existing importers) — never hardcoded.
  *
  * The *_DISPLAY strings are deliberately CONSERVATIVE display floors (rounded
  * DOWN to the nearest 10) so a public claim can never overstate the catalog and
@@ -10,12 +11,12 @@
  * needs the real number (and for the CI guard that asserts the floors never
  * exceed the live counts).
  *
- * Client-safe: booksCatalog only imports the metadata JSON + lib/book-covers.
+ * Client-safe: books-catalog only imports the metadata JSON + lib/book-covers.
  */
 import {
   BOOKS_CATALOG,
   BOOKS_CATALOG_METADATA,
-} from "@/app/book/data/booksCatalog";
+} from "@/lib/books-catalog";
 import { canonicalizeCategory } from "@/lib/category-taxonomy";
 
 /** Round DOWN to the nearest `step` and suffix "+", e.g. a 106-book catalog floors to "100+". */
@@ -28,9 +29,10 @@ function median(values: number[]): number {
   if (values.length === 0) return 0;
   const sorted = [...values].sort((a, b) => a - b);
   const mid = Math.floor(sorted.length / 2);
+  // length ≥ 1 here, so mid and mid-1 (even case, length ≥ 2) are in-bounds.
   return sorted.length % 2 === 1
-    ? sorted[mid]
-    : Math.round((sorted[mid - 1] + sorted[mid]) / 2);
+    ? sorted[mid]!
+    : Math.round((sorted[mid - 1]! + sorted[mid]!) / 2);
 }
 
 /** Exact number of published books in the live catalog (derived from BOOKS_CATALOG). */

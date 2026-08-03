@@ -79,12 +79,12 @@ test("scheduleCard: interval is monotonically non-increasing as the target rises
   );
   for (let i = 1; i < intervals.length; i += 1) {
     assert.ok(
-      intervals[i] <= intervals[i - 1],
-      `interval at ${targets[i]} (${intervals[i]}d) should be ≤ interval at ${targets[i - 1]} (${intervals[i - 1]}d)`
+      intervals[i]! <= intervals[i - 1]!,
+      `interval at ${targets[i]} (${intervals[i]!}d) should be ≤ interval at ${targets[i - 1]} (${intervals[i - 1]!}d)`
     );
   }
   // And the band endpoints are strictly ordered (not all collapsed to the floor).
-  assert.ok(intervals[intervals.length - 1] < intervals[0]);
+  assert.ok(intervals[intervals.length - 1]! < intervals[0]!);
 });
 
 test("scheduleCard: omitting the target keeps the proven 0.9 default (backward-compatible)", () => {

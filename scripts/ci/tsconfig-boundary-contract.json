@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "planningBaseSha": "ff0696e08b20f462f050d1df71a71149891ecb06",
+  "selectorContract": {
+    "compilerOptions": {
+      "target": "ES2017",
+      "lib": [
+        "dom",
+        "dom.iterable",
+        "esnext"
+      ],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "noEmit": true,
+      "esModuleInterop": true,
+      "module": "esnext",
+      "moduleResolution": "bundler",
+      "resolveJsonModule": true,
+      "isolatedModules": true,
+      "jsx": "react-jsx",
+      "incremental": true,
+      "plugins": [
+        {
+          "name": "next"
+        }
+      ],
+      "paths": {
+        "@/*": [
+          "./*"
+        ]
+      }
+    },
+    "include": [
+      "next-env.d.ts",
+      "**/*.ts",
+      "**/*.tsx",
+      ".next/types/**/*.ts",
+      "**/*.mts",
+      ".next/dev/types/**/*.ts",
+      ".next-chapterflow/types/**/*.ts",
+      ".next-chapterflow/dev/types/**/*.ts",
+      ".next-review/types/**/*.ts",
+      ".next-review/dev/types/**/*.ts"
+    ],
+    "exclude": [
+      "node_modules",
+      "infra/**",
+      "cdk.out/**",
+      "scripts/book/prompts/*/scratch/**",
+      ".next-chapterflow/**",
+      ".next-cf-dev/**"
+    ],
+    "filesAbsent": true,
+    "referencesAbsent": true
+  },
+  "advancedFlags": [
+    "noUncheckedIndexedAccess",
+    "noImplicitReturns",
+    "noFallthroughCasesInSwitch",
+    "exactOptionalPropertyTypes"
+  ],
+  "advancedFlagPolicy": {
+    "forbiddenConfigs": [
+      "tsconfig.base.json",
+      "tsconfig.surface.json",
+      "tsconfig.book.json"
+    ],
+    "appConfig": "tsconfig.app.json",
+    "rootConfig": "tsconfig.json"
+  },
+  "baselineBookSourceExceptions": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/calibrate-cast-containment.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/calibrate-pedagogy.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/calibrate-readability.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/chb-block.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/chb7-corpus.ts"
+  ],
+  "approvedPostBaseNonSourceExceptions": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-o-qualification-runner.mts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-o-v2-runner.mts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/stage-q-v3-runner.mts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/code/experimentTypes.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/code/qualification.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/code/runExperiment.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/code/thresholds.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/review-code/authorReview.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/review-code/readerReview.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/review-code/renderReaderDoc.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/review-code/reviewFindings.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/review-code/reviewerWorkspace.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/bar-review.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/exec-cli-qualification.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/migration-conductor.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/migration-helpers.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/migration-qualification.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/migrationFixtures.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/reader-review.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/review-blind-lane.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/layer-n-static-review-bundle/tests/review-doc-integrity.test.ts"
+  ]
+}

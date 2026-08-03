@@ -75,12 +75,12 @@ const FONT_MAX = 24;
 export type ReaderSettingsMenuProps = {
   open: boolean;
   onClose: () => void;
-  anchorClassName?: string;
+  anchorClassName?: string | undefined;
   learningMode: LearningMode;
   onChangeLearningMode: (mode: LearningMode) => void;
   showDepthSelector: boolean;
-  readingDepth?: ReadingDepth;
-  onChangeReadingDepth?: (depth: ReadingDepth) => void;
+  readingDepth?: ReadingDepth | undefined;
+  onChangeReadingDepth?: ((depth: ReadingDepth) => void) | undefined;
   focusMode: boolean;
   onToggleFocus: () => void;
   // Typography controls (Kindle-style), wired to the reading-pref CSS-var pipeline.
@@ -93,8 +93,8 @@ export type ReaderSettingsMenuProps = {
   // NS-2 typeface (Serif/Sans). Optional so the reader compiles before the
   // single prefs instance is wired through (batch-05 handoff); the control only
   // renders once onChangeFontFamily is provided.
-  fontFamily?: FontFamily;
-  onChangeFontFamily?: (value: FontFamily) => void;
+  fontFamily?: FontFamily | undefined;
+  onChangeFontFamily?: ((value: FontFamily) => void) | undefined;
 };
 
 export function ReaderSettingsMenu({
@@ -182,7 +182,7 @@ export function ReaderSettingsMenu({
           style={{
             background: "var(--cr-bg-surface-2)",
             border: "1px solid var(--cr-glass-border)",
-            boxShadow: "0 16px 48px rgba(0,0,0,0.45)",
+            boxShadow: "0 16px 48px color-mix(in srgb, var(--cf-palette-black) 45%, transparent)",
           }}
           initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
@@ -223,7 +223,7 @@ export function ReaderSettingsMenu({
                   depth selector exists (showDepthSelector) — otherwise it would
                   expand to nothing, so hide the helper alongside the selector. */}
               {showDepthSelector && (
-                <p className="mt-2 text-[11px] leading-snug text-(--cr-text-disabled)">
+                <p className="mt-2 text-cf-caption leading-snug text-(--cr-text-disabled)">
                   Difficulty is set during onboarding.{" "}
                   <button
                     type="button"
@@ -408,13 +408,13 @@ function RadioGroup<T extends string>({
               >
                 {option.label}
                 {option.recommended && (
-                  <span className="rounded-full bg-(--cr-accent-muted) px-1.5 py-0.5 text-[9px] font-bold text-(--cr-accent)">
+                  <span className="rounded-full bg-(--cr-accent-muted) px-1.5 py-0.5 text-cf-caption font-bold text-(--cr-accent)">
                     REC
                   </span>
                 )}
               </p>
               {option.description && (
-                <p className="mt-0.5 text-[11px] text-(--cr-text-disabled)">
+                <p className="mt-0.5 text-cf-caption text-(--cr-text-disabled)">
                   {option.description}
                 </p>
               )}
@@ -491,7 +491,7 @@ function ToggleRow({
       <div className="min-w-0">
         <p className="text-xs font-semibold text-(--cr-text-primary)">{label}</p>
         {description && (
-          <p className="mt-0.5 text-[11px] text-(--cr-text-disabled)">{description}</p>
+          <p className="mt-0.5 text-cf-caption text-(--cr-text-disabled)">{description}</p>
         )}
       </div>
       <span

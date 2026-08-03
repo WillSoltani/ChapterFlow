@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c01-a1",
+  "requestSha256": "a6456b9fa79f09ff0c54b5a9a4b70e679df0318f6c333462114b9fabd02db377",
+  "receiptSha256": "398323d5908a9f535b5657f0f709a3cfa12eb0e70f6859d7693e251c080608fd",
+  "executionEvidenceSha256": "9afd6fa2aa998b4b5fcb96e39d8644b8064f9d69379c7544d4050de50e4ba273",
+  "rawOutputSha256": "e0cb4da35ecb3c2c2a14c865cdeabaa58030dabe1583291b3bc2d9f718435cb9",
+  "evaluationSha256": "403db3587c16b0b588ae746242f10f3462faa376c115d4756ace7edb140a501d",
+  "parsedOutputSha256": "70e917dcdca8cf7c5b7272b63654c347bb295ef3f2ba12955be405d8ad27e244",
+  "assembledReviewSha256": "4fbca000012507d32e9aa92663aeb2be57df9ca7c3cb6ac5d2d61cbcf6fde2a4",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is explicitly framed as a source statement and matches the packet-local source claim supported by the allowed anchor. It stays within the plan’s source-bound, concept-only allowance and does not add unsupported mechanisms, quantified effects, or sibling-source detail."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "7001f6a40767495775036bf263b0b916f0105b9775d74ee2d16d4f42fa8edc69",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "b70b14b37735ebcdff6c68c90613e8a6462b82040413b4c7fc48e9681a20b324",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter target is explicitly framed as a source statement and matches the packet-local source claim supported by the allowed anchor. It stays within the plan’s source-bound, concept-only allowance and does not add unsupported mechanisms, quantified effects, or sibling-source detail.",
+          "unitId": "unit.fact.ch01.fact.2",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter target is explicitly framed as a source statement and matches the packet-local source claim supported by the allowed anchor. It stays within the plan’s source-bound, concept-only allowance and does not add unsupported mechanisms, quantified effects, or sibling-source detail."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "6bf3b09959a54ebebc323901d512d5215f803b7dbcc4fed2779ca6fd9559f619"
+}

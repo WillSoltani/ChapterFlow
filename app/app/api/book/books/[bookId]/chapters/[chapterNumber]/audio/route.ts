@@ -1,9 +1,13 @@
 import "server-only";
 
+import { NextResponse } from "next/server";
+
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import { resolveBookIdentity } from "@/app/app/api/book/_lib/identity";
 import { resolveLearningMode } from "@/app/app/api/book/_lib/learning-mode";
-import { bookErr } from "@/app/app/api/book/_lib/http";
+import { withBookApiErrors, bookErr } from "@/app/app/api/book/_lib/http";
+import { isBookApiError } from "@/app/app/api/book/_lib/errors";
+import { AuthError } from "@/app/app/api/_lib/auth";
 import { getBookTableName, getBookContentBucket } from "@/app/app/api/book/_lib/env";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import {
@@ -15,7 +19,8 @@ import {
 } from "@/app/app/api/book/_lib/repo";
 import { getOrCreateStreak } from "@/app/app/api/book/_lib/streak-repo";
 import { getOrCreateTier } from "@/app/app/api/book/_lib/tier-repo";
-import { S3Client, GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { GetObjectCommand, PutObjectCommand, HeadObjectCommand } from "@aws-sdk/client-s3";
+import { s3 } from "@/app/app/api/_lib/aws";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 import { getServerBookPackage } from "@/app/app/api/book/_lib/book-package-source";
 import type { ToneKey, VariantKey } from "@/app/book/data/book-package-core";
@@ -34,10 +39,9 @@ import {
   type TimeOfDay,
   type NarrationContext,
 } from "@/app/app/api/book/_lib/audio-narration";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
-
-const s3 = new S3Client({});
 
 // Presigned segment URLs in the ?mode=plan manifest live for 6 hours — the
 // contract minimum (docs/ios/AUDIO-CONTRACT.md §8). The client refreshes by
@@ -47,12 +51,12 @@ const PLAN_URL_TTL_SECONDS = 6 * 60 * 60;
 // Per-request diagnostic logging is gated behind a debug flag so the audio hot
 // path stays quiet in production (CloudWatch cost/noise) and never writes
 // user-derived strings (display name, Cognito sub) into logs. Genuine failures
-// still use console.error unconditionally.
+// still log via logger.error unconditionally.
 const AUDIO_DEBUG =
   process.env.NODE_ENV !== "production" || process.env.AUDIO_DEBUG_LOG === "1";
 
 function audioDebug(message: string): void {
-  if (AUDIO_DEBUG) console.log(message);
+  if (AUDIO_DEBUG) logger.info("audio_debug", { message });
 }
 
 type Params = { params: Promise<{ bookId: string; chapterNumber: string }> };
@@ -318,7 +322,7 @@ async function generateAndCacheBodySegment(
     if (!res.ok) {
       let errBody = "";
       try { errBody = await res.text(); } catch {}
-      console.error(`[audio] TTS failed for ${segment}: ${res.status} ${errBody.slice(0, 300)}`);
+      logger.error("audio_tts_failed", { segment, status: res.status, errBody: errBody.slice(0, 300) });
       return null;
     }
     audioChunks.push(Buffer.from(await res.arrayBuffer()));
@@ -345,7 +349,7 @@ async function generateAndCacheBodySegment(
       await put;
       audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
     } catch (err) {
-      console.error(`[audio] S3 cache write failed for ${segment}:`, err);
+      logger.error("audio_s3_cache_write_failed", { segment, cacheKey, err });
       return null;
     }
   } else {
@@ -354,7 +358,7 @@ async function generateAndCacheBodySegment(
         audioDebug(`[audio] Cached ${segment}: ${cacheKey} (${buffer.length} bytes)`);
       })
       .catch((err) => {
-        console.error(`[audio] S3 cache write failed for ${segment}:`, err);
+        logger.error("audio_s3_cache_write_failed", { segment, cacheKey, err });
       });
   }
 
@@ -364,6 +368,10 @@ async function generateAndCacheBodySegment(
 // ── Main handler ─────────────────────────────────────────────────────
 
 export async function GET(req: Request, ctx: Params) {
+  return withBookApiErrors(req, () => handleAudioGet(req, ctx));
+}
+
+async function handleAudioGet(req: Request, ctx: Params): Promise<NextResponse<unknown>> {
   try {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
@@ -397,7 +405,7 @@ export async function GET(req: Request, ctx: Params) {
     const totalChapters = pkg.chapters.length;
 
     // Gather user context in parallel
-    const [profile, streak, tier, progress, userSettings, prevQuizState, prevPrevQuizState] =
+    const [profile, streak, tier, _progress, userSettings, prevQuizState, prevPrevQuizState] =
       await Promise.all([
         getUserProfileItem(tableName, user.sub),
         getOrCreateStreak(tableName, user.sub),
@@ -538,7 +546,7 @@ export async function GET(req: Request, ctx: Params) {
       audioDebug(
         `[audio] Plan: ${result.plan.segments.length}/${descriptors.length} segments, expires ${result.plan.expiresAt}`,
       );
-      return new Response(JSON.stringify(result.plan), {
+      return new NextResponse(JSON.stringify(result.plan), {
         status: 200,
         headers: {
           "Content-Type": "application/json",
@@ -617,7 +625,7 @@ export async function GET(req: Request, ctx: Params) {
     // Generate missing body segments in parallel
     const missingBody = loadResults.filter((r) => !r.buffer && r.bodyType !== null);
     if (missingBody.length > 0 && !elevenLabsKey) {
-      console.error("[audio] Body segments missing and no ELEVENLABS_API_KEY set");
+      logger.error("audio_body_segments_missing_no_api_key", { bookId, chapterNumber });
       return bookErr(req, 503, "tts_unavailable", "Audio generation is not available — chapter audio has not been cached yet");
     }
     if (missingBody.length > 0 && elevenLabsKey) {
@@ -632,14 +640,17 @@ export async function GET(req: Request, ctx: Params) {
       // Patch results — handle both fulfilled and rejected
       for (let i = 0; i < missingBody.length; i++) {
         const result = generated[i];
-        const idx = loadResults.indexOf(missingBody[i]);
-        if (idx >= 0 && result.status === "fulfilled" && result.value) {
-          loadResults[idx].buffer = result.value;
-          audioDebug(`[audio] Generated ${missingBody[i].bodyType}: ${missingBody[i].key} (${result.value.length} bytes)`);
+        const seg = missingBody[i];
+        if (result === undefined || seg === undefined) continue; // i ∈ [0, missingBody.length)
+        const idx = loadResults.indexOf(seg);
+        const target = idx >= 0 ? loadResults[idx] : undefined;
+        if (target && result.status === "fulfilled" && result.value) {
+          target.buffer = result.value;
+          audioDebug(`[audio] Generated ${seg.bodyType}: ${seg.key} (${result.value.length} bytes)`);
         } else if (result.status === "rejected") {
-          console.error(`[audio] Failed to generate ${missingBody[i].bodyType}:`, result.reason);
+          logger.error("audio_generate_segment_failed", { bodyType: seg.bodyType, err: result.reason });
         } else {
-          audioDebug(`[audio] No content for ${missingBody[i].bodyType} (empty chapter section)`);
+          audioDebug(`[audio] No content for ${seg.bodyType} (empty chapter section)`);
         }
       }
     }
@@ -675,7 +686,7 @@ export async function GET(req: Request, ctx: Params) {
     // concat happens per request.
 
     // Return the full MP3 directly
-    return new Response(finalAudio, {
+    return new NextResponse(finalAudio, {
       status: 200,
       headers: {
         "Content-Type": "audio/mpeg",
@@ -684,7 +695,11 @@ export async function GET(req: Request, ctx: Params) {
       },
     });
   } catch (err) {
-    console.error("[audio] Unexpected error:", err);
+    // Auth/API errors carry their own status (401 signed-out, 403 account,
+    // 503 verifier outage) — let withBookApiErrors map them; collapsing them
+    // here made every stale-token audio request a 500.
+    if (err instanceof AuthError || isBookApiError(err)) throw err;
+    logger.error("audio_unexpected_error", { err });
     return bookErr(req, 500, "internal_error", "Audio generation failed");
   }
 }

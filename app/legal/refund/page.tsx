@@ -16,13 +16,13 @@ export default function RefundPolicyPage() {
       >
         Refund &amp; Cancellation Policy
       </h1>
-      <p className="text-[14px] mb-10" style={{ color: "var(--text-muted)" }}>
+      <p className="text-cf-body-sm mb-10" style={{ color: "var(--text-muted)" }}>
         Effective date: June 10, 2026
       </p>
 
-      <div className="space-y-8 text-[15px] leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
+      <div className="space-y-8 text-cf-body leading-[1.75]" style={{ color: "var(--text-secondary)" }}>
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             1. Free Plan
           </h2>
           <p>
@@ -33,7 +33,7 @@ export default function RefundPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             2. Free Trial
           </h2>
           <p className="mb-3">
@@ -50,7 +50,7 @@ export default function RefundPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             3. Cancellation
           </h2>
           <p className="mb-3">
@@ -67,7 +67,7 @@ export default function RefundPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             4. Refunds
           </h2>
           <p className="mb-3">
@@ -97,7 +97,7 @@ export default function RefundPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             5. Chargebacks
           </h2>
           <p>
@@ -109,7 +109,7 @@ export default function RefundPolicyPage() {
         </section>
 
         <section>
-          <h2 className="text-[18px] font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
+          <h2 className="text-lg font-semibold mb-3" style={{ color: "var(--text-heading)" }}>
             6. Contact
           </h2>
           <p>

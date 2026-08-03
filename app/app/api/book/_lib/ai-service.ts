@@ -8,6 +8,7 @@ import {
   type ScenarioValidationResult,
 } from "@/app/app/api/book/_lib/ai-config";
 import { wrapUntrustedField } from "@/app/app/api/book/_lib/scenario-prefilter";
+import { logger } from "@/lib/logging/logger";
 
 // Re-exported so existing importers (scenarios route) keep working unchanged.
 export type { ScenarioValidationResult } from "@/app/app/api/book/_lib/ai-config";
@@ -107,7 +108,7 @@ export async function validateScenario(params: {
       err && typeof err === "object" && "status" in err
         ? (err as { status?: number }).status
         : undefined;
-    console.error("[scenario-validation] Anthropic request failed:", {
+    logger.error("scenario_validation_anthropic_request_failed", {
       status,
       name: err instanceof Error ? err.name : typeof err,
       message: err instanceof Error ? err.message : String(err),
@@ -179,12 +180,12 @@ export async function* streamReflectionFeedback(params: {
       err && typeof err === "object" && "status" in err
         ? (err as { status?: number }).status
         : undefined;
-    console.error("[reflection-feedback] Anthropic stream failed:", {
+    logger.error("reflection_feedback_anthropic_stream_failed", {
       status,
       name: err instanceof Error ? err.name : typeof err,
       message: err instanceof Error ? err.message : String(err),
     });
-    const wrapped = new Error("AI feedback failed") as Error & { status?: number };
+    const wrapped = new Error("AI feedback failed") as Error & { status?: number | undefined };
     wrapped.status = status;
     throw wrapped;
   } finally {

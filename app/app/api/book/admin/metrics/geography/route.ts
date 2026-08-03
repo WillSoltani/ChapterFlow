@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { requireAdminUser } from "@/app/app/api/book/_lib/admin-auth";
 import { bookOk, bookErr, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookAnalyticsTableName } from "@/app/app/api/book/_lib/env";
@@ -23,7 +24,7 @@ export async function GET(req: Request) {
         "userId, countryCode, countryName, regionCode, regionName, city, viewerTimezone, plan, lastActiveAt, latitude, longitude",
       );
     } catch (err) {
-      console.warn("[admin-geography] scan failed:", err);
+      logger.warn("admin_geography_scan_failed", { err });
       warnings.push("Geography data unavailable (database scan failed).");
     }
 

@@ -1,0 +1,19 @@
+{
+  "schema": "imp24e-schema-probe-request-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "role": "quiz",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaRelPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/contracts/schemas/quiz-integrity-model-output-v2.schema.json",
+  "schemaSha256": "98373c4632969fc96c2019a02daf613c00881437eca01be556379a3a88631d96",
+  "task": "IMP-24E quiz transport-schema probe only.\nThis is synthetic and must not be treated as a review or qualification judgment.\nReturn exactly the following smallest valid JSON object and no prose:\n{\"items\":[{\"defensibleAnswerIndices\":[0],\"evidenceRefIds\":[\"probe.question.1\"],\"keyCorrect\":\"correct\",\"keyedMechanismSupported\":true,\"questionRef\":\"probe.question.1\",\"rationale\":\"Synthetic transport probe output.\"}],\"schema\":\"quiz-integrity-model-output-v2\"}",
+  "taskSha256": "d27cc2c2a5302036b8d68d0635d51df8e26ef6d65bb5db9999726180bb05503e",
+  "expectedMinimumOutputSha256": "acdba0a0823089ec12343c2b2550ce4dae7b5ac4d65b2ccee1a277362489b510",
+  "timeoutMs": 300000,
+  "qualificationMetricsIncluded": false,
+  "apiCalls": 0,
+  "requestSha256": "59febfb4ff3022ef263a0dc64827f14e99c082d38018a9cd28683e3d57ba90cb"
+}

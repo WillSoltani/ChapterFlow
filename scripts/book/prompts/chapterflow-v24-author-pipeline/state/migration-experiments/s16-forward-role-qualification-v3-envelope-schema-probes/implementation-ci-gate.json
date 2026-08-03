@@ -1,0 +1,80 @@
+{
+  "schema": "imp24-implementation-ci-gate-v4",
+  "branch": "feat/v25-pipeline-live",
+  "headSha": "a2cda54222c5931d0c2e90ced968194f6200988f",
+  "repository": {
+    "nameWithOwner": "WillSoltani/ChapterFlow",
+    "url": "https://github.com/WillSoltani/ChapterFlow"
+  },
+  "workflow": {
+    "displayName": "ChapterFlow V25 Pipeline",
+    "workflowFile": ".github/workflows/chapterflow-v25-pipeline.yml",
+    "runId": 29351112643,
+    "headBranch": "feat/v25-pipeline-live",
+    "headSha": "a2cda54222c5931d0c2e90ced968194f6200988f",
+    "status": "completed",
+    "conclusion": "success",
+    "requiredJob": {
+      "name": "V25 Pipeline Typecheck, Contracts, and Tests",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  },
+  "pullRequest": {
+    "number": 401,
+    "state": "OPEN",
+    "isDraft": true,
+    "merged": false,
+    "mergedAt": null,
+    "mergeCommitSha": null,
+    "headBranch": "feat/v25-pipeline-live",
+    "headSha": "a2cda54222c5931d0c2e90ced968194f6200988f"
+  },
+  "trustedEvidence": {
+    "method": "git-and-gh-cli-live-query-v3",
+    "raw": {
+      "checkout": {
+        "branch": "feat/v25-pipeline-live",
+        "headSha": "a2cda54222c5931d0c2e90ced968194f6200988f",
+        "implementationClean": true
+      },
+      "pullRequest": {
+        "headRefName": "feat/v25-pipeline-live",
+        "headRefOid": "a2cda54222c5931d0c2e90ced968194f6200988f",
+        "isDraft": true,
+        "mergeCommit": null,
+        "mergedAt": null,
+        "number": 401,
+        "state": "OPEN"
+      },
+      "repository": {
+        "nameWithOwner": "WillSoltani/ChapterFlow",
+        "url": "https://github.com/WillSoltani/ChapterFlow"
+      },
+      "workflowRun": {
+        "conclusion": "success",
+        "databaseId": 29351112643,
+        "displayName": "ChapterFlow V25 Pipeline",
+        "headBranch": "feat/v25-pipeline-live",
+        "headSha": "a2cda54222c5931d0c2e90ced968194f6200988f",
+        "jobs": [
+          {
+            "conclusion": "success",
+            "name": "V25 Pipeline Typecheck, Contracts, and Tests",
+            "status": "completed"
+          }
+        ],
+        "status": "completed",
+        "workflowFile": ".github/workflows/chapterflow-v25-pipeline.yml"
+      }
+    },
+    "checkoutSha256": "9b0acf0f90b9ad0fb6666be9d58351eddbe8924266c3a89a41bb47ccc2c3a4e4",
+    "repositorySha256": "4435aa1ef584cf22c64eda7cd7e9e345b82bea0c29d323d117495c68191803ed",
+    "workflowRunSha256": "bdafc6e35c5ca4ca67ead80de730476c68f1c9a48cdbf80a804438dbaea17e60",
+    "pullRequestSha256": "f19b54f9e8e1e3672857def65e8a9792eea6425079f1c2309ca0d5a3e4a6266f"
+  },
+  "verifiedAt": "2026-07-14T17:00:56.295Z",
+  "modelCalls": 0,
+  "apiCalls": 0,
+  "gateSha256": "542e9a3d0364444d38e2b6b94b946c019c80e41257626bbfb305bf5817dbffe7"
+}

@@ -7,6 +7,7 @@ import {
   bucketDeviceFields,
   scanAllUserSnapshots,
 } from "@/app/app/api/book/_lib/admin-metrics";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -26,7 +27,7 @@ export async function GET(req: Request) {
         "deviceType, browserName, osName, totalSessionCount, lastActiveAt",
       );
     } catch (err) {
-      console.warn("[admin-devices] snapshot scan failed:", err);
+      logger.warn("admin_devices_snapshot_scan_failed", { err });
       warnings.push("Device data unavailable (database scan failed).");
     }
 

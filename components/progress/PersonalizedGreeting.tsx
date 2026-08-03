@@ -15,13 +15,6 @@ interface PersonalizedGreetingProps {
   targetMinutes: number;
 }
 
-const LEVEL_THRESHOLDS: Record<ReaderLevel, number> = {
-  "Curious Reader": 0,
-  "Active Learner": 5,
-  "Knowledge Builder": 25,
-  "Thought Leader": 100,
-};
-
 const LEVEL_COLORS: Record<ReaderLevel, string> = {
   "Curious Reader": "var(--accent-cyan)",
   "Active Learner": "var(--accent-emerald)",

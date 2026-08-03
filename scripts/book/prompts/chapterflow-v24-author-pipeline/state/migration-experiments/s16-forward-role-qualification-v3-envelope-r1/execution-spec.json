@@ -1,0 +1,63 @@
+{
+  "apiCalls": 0,
+  "continuationPromptId": "IMP-24C",
+  "executionId": "s16-forward-role-qualification-v3-envelope-r1",
+  "executionSpecSha256": "dece02d64395514a743f2897821bb9879375d0f6939dc2f1766a620681a2acd1",
+  "firstLiveCallOccurred": false,
+  "frozenBindings": {
+    "callBudgetSha256": "6251236d264e79f38b2d418d82d3448ac0aabfca805f2d213c439e480c87ccb5",
+    "candidateAvailabilityPolicySha256": "1f7801eb55bc848b34525c0abb7fb572b16bfad75301c10e3f306ad3f32db90d",
+    "candidateOrderSha256": "b688f64ae66f211b2c62270a79157d997bd4dee269dcacd969f7cd9741b44190",
+    "certificationSha256": "cd3c6450337a3c29be5812c52608f9805cb50606d8de066c6ac1e8f94ca2bc4f",
+    "corpusBundleSha256": "sha256:4501809686161a541ad776bdbfea9c716ec402d89ef397a072f93143ce28fcac",
+    "productionInstrumentSealSha256": "22bda57b70062160cc560adb46b9ab32b2ba316c901898727cafba10faaabab5",
+    "productionQualificationParitySha256": "7ab47df0aeea82c83c7e6c8db8c7fbeaa7e9488dc76916ea6ddace105aa508d4",
+    "promptBundleHashes": {
+      "quiz": "0410e806c808ffc8265105947d872611e116565c598f81cfb239d103c08c7b48",
+      "reader": "a9c4b9fc62cbf56186172fc09c7aaa377d58056dcb8d6cf8a2ccf1b80e2fcf7f",
+      "source": "2e63ba2c639c652c9ef35456ca440cabece6d341e7e123f5f18564c3d8a4d4ff"
+    },
+    "scheduleSha256": "dd7c3c1235c86cbbaf20c954398bcb57880efd5c7629f95bc494cb4d0fa8e22c",
+    "schemaInventorySha256": "d514ddfeff0a8e987fcaabe1c80ee7562dd8987e426266a1ef075ac6b573ca3e",
+    "thresholdsSha256": "8f16369a655a8ea6bf392a5d00c875c1619e4c9c43ec605474c892f75f6450aa"
+  },
+  "liveStateCopiedFromPredecessor": false,
+  "modelCalls": 0,
+  "predecessorExecution": {
+    "apiCalls": 0,
+    "canResume": false,
+    "disposition": "BLOCKED_ZERO_CALL_CONTROL_PLANE_DEFECT",
+    "executionId": "s16-forward-role-qualification-v3-envelope",
+    "liveCalls": 0,
+    "mayQualifyProfiles": false
+  },
+  "promptId": "IMP-24",
+  "protocolIdentity": {
+    "qualificationProtocolId": "s16-forward-role-qualification-v3-envelope",
+    "reviewEvidenceEnvelope": "review-evidence-envelope-v1",
+    "semanticsChanged": false
+  },
+  "routePolicy": {
+    "apiFallbackAllowed": false,
+    "apiKeyPresent": false,
+    "authMode": "chatgpt",
+    "directHttpOrSdkAllowed": false,
+    "maxParallel": 2
+  },
+  "schema": "imp24c-successor-execution-spec-v1",
+  "stateRoot": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/s16-forward-role-qualification-v3-envelope-r1",
+  "taskBoundary": {
+    "authorizedLivePhase": "ROLE_QUALIFICATION_ONLY",
+    "automaticFollowOnAllowed": false,
+    "contentDesignScore": false,
+    "deploy": false,
+    "forcePush": false,
+    "gold": false,
+    "localSolActivation": false,
+    "merge": false,
+    "pilot": false,
+    "promote": false,
+    "publish": false,
+    "upload": false
+  }
+}

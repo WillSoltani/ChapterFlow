@@ -1,0 +1,33 @@
+{
+  "schema": "imp22-role-qualification-request-record-v1",
+  "requestSha256": "d05dda4ee4418002b9cccc7d986004773d37324890086bf5d9d3a06375bed09d",
+  "request": {
+    "schema": "imp22-role-qualification-execution-request-v1",
+    "scheduleId": "qual-00016",
+    "attemptId": "qual-00016-a1",
+    "replayOfAttemptId": null,
+    "attemptNumber": 1,
+    "role": "reader",
+    "partition": "calibration",
+    "caseId": "READER-V2-CALIBRATION-reader-visible-hard-blocker-make-it-stick-ch02",
+    "family": "reader-visible-hard-blocker",
+    "profileId": "gpt-5.6-sol@high",
+    "model": "gpt-5.6-sol",
+    "effort": "high",
+    "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+    "promptSha256": "7f32603c1502e9b7a3ecf1f6a55b279bf8ca3986c898b0a59e384bee571a23d9",
+    "freezeSha256": "5400e52da484aa31a6617aa379f8efe3b09cc91ebc4178e1f60a05f9eed7bbda",
+    "task": {
+      "sha256": "7f32603c1502e9b7a3ecf1f6a55b279bf8ca3986c898b0a59e384bee571a23d9",
+      "bytes": 5848
+    },
+    "artifacts": [
+      {
+        "kind": "phase1-doc",
+        "relPath": "reader/READER-V2-CALIBRATION-reader-visible-hard-blocker-make-it-stick-ch02.phase1.md",
+        "sha256": "43217e5d0c94d5f80d7a89cea0cc7bee1cd72aa5e5f383fb44762fe60e9f0ac5",
+        "bytes": 17006
+      }
+    ]
+  }
+}

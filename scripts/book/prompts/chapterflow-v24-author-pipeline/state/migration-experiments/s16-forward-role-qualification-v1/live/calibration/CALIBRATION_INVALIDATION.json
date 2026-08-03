@@ -1,0 +1,61 @@
+{
+  "schema": "imp23-role-calibration-invalidation-v1",
+  "experimentId": "s16-forward-role-qualification-v1",
+  "decision": "INVALID_INSTRUMENT_DO_NOT_ATTEST",
+  "calibrationSha256": "4cd4ad8254bf1a8cbfdcb528996554064d8058533568c9b1c69c2f08bbdfdf66",
+  "inspectedBy": "owner-delegated-gpt56-sol-max-session",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "scheduledCaseCount": 24,
+  "retainedAttemptCount": 24,
+  "completedReceiptCount": 24,
+  "routeSidecarCount": 24,
+  "allRoutesChatgptSubscription": true,
+  "apiKeyPresent": false,
+  "apiFallbackAllowed": false,
+  "infrastructureReplays": 0,
+  "maxPlanCapacityEvents": 0,
+  "safeguardsOrRefusals": 0,
+  "apiCallsMade": 0,
+  "holdoutStarted": false,
+  "nonExactEvidenceSpanAttemptCount": 7,
+  "defects": [
+    {
+      "id": "reader-clean-control-send-activation-risk",
+      "classification": "GOLD_DEFECT",
+      "caseId": "READER-V2-CALIBRATION-clean-behave-ch02"
+    },
+    {
+      "id": "quiz-phase2-support-evidence-omitted",
+      "classification": "RENDERER_DEFECT",
+      "caseId": "QUIZ-V2-CALIBRATION-mechanism-causal-key-power-of-moments-ch02-q01"
+    },
+    {
+      "id": "source-target-unit-not-bound-and-first-unit-fallback",
+      "classification": "PROMPT_AND_SCORER_DEFECT"
+    },
+    {
+      "id": "calibration-validity-ignored-evidence-span-validity",
+      "classification": "SCORER_DEFECT",
+      "affectedAttemptCount": 7
+    },
+    {
+      "id": "source-block-status-without-blocker-severity",
+      "classification": "SCORER_DEFECT",
+      "attemptId": "qual-00019-a1"
+    }
+  ],
+  "instrumentSnapshot": {
+    "readerCorpusBytesSha256": "081bd230c47d4853b9e66656123c1a65a611ecc9424f6931f5d50d717eac55bd",
+    "readerCorpusProvenanceBytesSha256": "32427ca81cf503485d1927159e5237fca809c4be97a2df31403317685bff98ff",
+    "readerCorpusSpecBytesSha256": "7e831f3a5cefcf917bb3155e6db574f6a0245a95c67f6b01c5f3abe5e762c365"
+  },
+  "correctedExperimentId": "s16-forward-role-qualification-v2",
+  "correctedRerunOrdinal": 1,
+  "furtherCorrectedRerunsAllowed": false,
+  "holdoutCasesChanged": false,
+  "thresholdsChanged": false,
+  "candidateOrderChanged": false,
+  "caseReplacementAfterOutput": false,
+  "goldRelabeling": false
+}

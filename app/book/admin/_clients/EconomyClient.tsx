@@ -1,19 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import dynamic from "next/dynamic";
+import { useCallback, useEffect, useState } from "react";
 import { AlertTriangle, AlertCircle, Coins } from "lucide-react";
-import {
-  Area,
-  AreaChart,
-  Bar,
-  BarChart,
-  CartesianGrid,
-  Legend,
-  ResponsiveContainer,
-  Tooltip,
-  XAxis,
-  YAxis,
-} from "recharts";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
 import { KPITile } from "@/app/book/admin/_components/KPITile";
@@ -22,7 +11,30 @@ import { EmptyState } from "@/components/ui/EmptyState";
 import { ChartSkeleton, KPITileSkeleton, StatBoxSkeleton } from "@/app/book/admin/_components/Skeleton";
 import { StatBox } from "@/app/book/admin/_components/StatBox";
 import { RangeSelector } from "@/app/book/admin/_components/RangeSelector";
-import { DarkTooltip } from "@/app/book/admin/_components/DarkTooltip";
+
+const DailyFlowChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/EconomyCharts").then(
+      (module) => module.DailyFlowChart,
+    ),
+  { ssr: false },
+);
+
+const EarnedBySourceChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/EconomyCharts").then(
+      (module) => module.EarnedBySourceChart,
+    ),
+  { ssr: false },
+);
+
+const SpentByRewardChart = dynamic(
+  () =>
+    import("@/app/book/admin/_components/charts/EconomyCharts").then(
+      (module) => module.SpentByRewardChart,
+    ),
+  { ssr: false },
+);
 
 type Metrics = {
   computedAt: string;
@@ -61,18 +73,18 @@ export function EconomyClient() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const reload = () => {
+  const reload = useCallback(() => {
     setLoading(true);
     setError(null);
     adminGet<EconomyResponse>(`/metrics/economy?range=${range}`)
       .then(setData)
       .catch((err: unknown) => setError(err instanceof Error ? err.message : "Failed to load"))
       .finally(() => setLoading(false));
-  };
+  }, [range]);
 
   useEffect(() => {
     reload();
-  }, [range]);
+  }, [reload]);
 
   return (
     <div>
@@ -94,7 +106,7 @@ export function EconomyClient() {
             <div
               key={`w-${i}`}
               role="status"
-              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-[13px] text-(--cf-text-2)"
+              className="flex items-start gap-2 rounded-xl border border-(--cf-border) bg-(--cf-surface-muted) p-3 text-cf-label text-(--cf-text-2)"
             >
               <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0 text-(--cf-text-soft)" />
               <span>{w}</span>
@@ -110,7 +122,7 @@ export function EconomyClient() {
               key={i}
               role="alert"
               className={[
-                "flex items-start gap-2 rounded-xl border p-3 text-[13px]",
+                "flex items-start gap-2 rounded-xl border p-3 text-cf-label",
                 a.severity === "alert"
                   ? "border-(--cf-danger-border) bg-(--cf-danger-soft) text-(--cf-danger-text)"
                   : "border-(--cf-warning-border) bg-(--cf-warning-soft) text-(--cf-warning-text)",
@@ -161,42 +173,7 @@ export function EconomyClient() {
             <ChartSkeleton />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <AreaChart
-                  data={data?.dailyFlow ?? []}
-                  margin={{ top: 10, right: 10, bottom: 0, left: -10 }}
-                >
-                  <CartesianGrid stroke="var(--cf-border)" vertical={false} />
-                  <XAxis
-                    dataKey="date"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    tickFormatter={fmtDate}
-                  />
-                  <YAxis tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} width={32} />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Legend wrapperStyle={{ fontSize: 11, color: "var(--cf-text-3)" }} />
-                  <Area
-                    type="monotone"
-                    dataKey="earned"
-                    name="Earned"
-                    stroke="var(--cf-success-text)"
-                    strokeWidth={1.5}
-                    fill="var(--cf-success-text)"
-                    fillOpacity={0.25}
-                    isAnimationActive={false}
-                  />
-                  <Area
-                    type="monotone"
-                    dataKey="spent"
-                    name="Spent"
-                    stroke="var(--cf-amber-text, var(--cf-accent))"
-                    strokeWidth={1.5}
-                    fill="var(--cf-amber-text, var(--cf-accent))"
-                    fillOpacity={0.25}
-                    isAnimationActive={false}
-                  />
-                </AreaChart>
-              </ResponsiveContainer>
+              <DailyFlowChart data={data?.dailyFlow ?? []} />
             </div>
           )}
         </AdminCard>
@@ -228,29 +205,7 @@ export function EconomyClient() {
             />
           ) : (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart
-                  data={data?.earnedBySource ?? []}
-                  layout="vertical"
-                  margin={{ top: 10, right: 10, bottom: 0, left: 80 }}
-                >
-                  <CartesianGrid stroke="var(--cf-border)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} />
-                  <YAxis
-                    dataKey="source"
-                    type="category"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    width={130}
-                  />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar
-                    dataKey="amount"
-                    fill="var(--cf-success-text)"
-                    isAnimationActive={false}
-                    radius={[0, 4, 4, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <EarnedBySourceChart data={data?.earnedBySource ?? []} />
             </div>
           )}
         </AdminCard>
@@ -258,29 +213,7 @@ export function EconomyClient() {
         <AdminCard title="IP spent by reward" description="Period total">
           {(data?.spentByReward.length ?? 0) > 0 ? (
             <div className="h-56">
-              <ResponsiveContainer>
-                <BarChart
-                  data={data?.spentByReward ?? []}
-                  layout="vertical"
-                  margin={{ top: 10, right: 10, bottom: 0, left: 80 }}
-                >
-                  <CartesianGrid stroke="var(--cf-border)" horizontal={false} />
-                  <XAxis type="number" tick={{ fill: "var(--cf-text-3)", fontSize: 11 }} />
-                  <YAxis
-                    dataKey="rewardId"
-                    type="category"
-                    tick={{ fill: "var(--cf-text-3)", fontSize: 11 }}
-                    width={130}
-                  />
-                  <Tooltip content={<DarkTooltip />} />
-                  <Bar
-                    dataKey="amount"
-                    fill="var(--cf-amber-text, var(--cf-accent))"
-                    isAnimationActive={false}
-                    radius={[0, 4, 4, 0]}
-                  />
-                </BarChart>
-              </ResponsiveContainer>
+              <SpentByRewardChart data={data?.spentByReward ?? []} />
             </div>
           ) : (
             <EmptyState
@@ -299,9 +232,4 @@ export function EconomyClient() {
 function pct(part?: number, total?: number): string {
   if (!total) return "0%";
   return `${(((part ?? 0) / total) * 100).toFixed(0)}%`;
-}
-
-function fmtDate(d: string): string {
-  const date = new Date(d);
-  return date.toLocaleDateString(undefined, { month: "short", day: "numeric" });
 }

@@ -14,6 +14,7 @@ import {
   type BillingEventRecord,
 } from "@/app/app/api/book/_lib/repo";
 import { BILLING_CURRENCY, monthlySubscriptionCents } from "@/lib/pricing";
+import { logger } from "@/lib/logging/logger";
 
 export const runtime = "nodejs";
 
@@ -39,7 +40,7 @@ export async function GET(req: Request) {
     try {
       entitlements = await scanAllEntitlements(tableName);
     } catch (err) {
-      console.warn("[admin-billing] entitlement scan failed:", err);
+      logger.warn("admin_billing_entitlement_scan_failed", { err });
       warnings.push("Entitlement data unavailable (scan failed).");
     }
 

@@ -9,6 +9,7 @@ import * as events from "aws-cdk-lib/aws-events";
 import * as targets from "aws-cdk-lib/aws-events-targets";
 import * as iam from "aws-cdk-lib/aws-iam";
 import * as lambda from "aws-cdk-lib/aws-lambda";
+import * as logs from "aws-cdk-lib/aws-logs";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as ses from "aws-cdk-lib/aws-ses";
 import * as sqs from "aws-cdk-lib/aws-sqs";
@@ -130,6 +131,18 @@ export interface ChapterFlowBackendStackProps extends cdk.StackProps {
    * resources (so a dev/staging synth without the secret stays clean).
    */
   readonly cognitoUserPoolId?: string;
+  /**
+   * WS6-001 per-function reserved concurrency (see env-config.ts's
+   * ChapterFlowEnvConfig.lambdaConcurrency doc for the account-wide-sum
+   * rules this must respect).
+   */
+  /** Applies lambdaConcurrency only when true — see ChapterFlowEnvConfig.lambdaConcurrencyEnforced (account quota gate). */
+  readonly lambdaConcurrencyEnforced: boolean;
+  readonly lambdaConcurrency: {
+    readonly reminder: number;
+    readonly suppression: number;
+    readonly preSignUp: number;
+  };
 }
 
 export class ChapterFlowBackendStack extends cdk.Stack {
@@ -153,6 +166,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      encryption: dynamodb.TableEncryption.AWS_MANAGED,
       // Cron + app writers stamp a numeric `ttl` on ephemeral records only
       // (nudge dedup markers, pairing invites, Ask-the-Book cache, rate-limit
       // counters). Without this attribute DynamoDB never reaps them: the
@@ -180,6 +194,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       partitionKey: { name: "PK", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "SK", type: dynamodb.AttributeType.STRING },
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,
+      encryption: dynamodb.TableEncryption.AWS_MANAGED,
       // App writers stamp a numeric `ttl` (epoch seconds) on the high-volume,
       // append-only analytics EVENT rows only (`putEvent` in analytics-repo.ts).
       // The durable per-user analytics SNAPSHOT row is written via UpdateCommand
@@ -200,6 +215,14 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: props.removalPolicy,
     });
 
+    // KEEP ProjectionType.ALL. queryEventsForDay (admin-metrics.ts) feeds ~12
+    // admin routes that read event-type-specific payload fields off the returned
+    // items (deltaMs, subscription_change, beacon_performance, scenario/quiz
+    // payloads). An INCLUDE union would silently DROP attributes for any future
+    // event type — DynamoDB returns only the projected attributes with NO error,
+    // so an under-projection here surfaces as missing metrics, not a failure.
+    // Because a single query needs the whole item, ALL is the correct projection.
+    // See docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
       indexName: "eventDate-eventType-index",
       partitionKey: { name: "eventDate", type: dynamodb.AttributeType.STRING },
@@ -207,19 +230,45 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       projectionType: dynamodb.ProjectionType.ALL,
     });
 
+    // plan-updatedAt-index (original, ALL) was DELETED in WS6-008 stage 3 — all
+    // readers query plan-updatedAt-index-v2. See
+    // docs/architecture/adr-analytics-gsi-projection.md.
+
+    // INCLUDE only the attributes the admin users/search reader consumes
+    // (formatUser + readTime in app/app/api/book/admin/users/search/route.ts).
+    // plan/updatedAt (index keys) and PK/SK (table keys) are auto-projected and
+    // MUST NOT be listed. The two COUNT queries in admin-metrics.ts
+    // (activeUsersByPlan/totalUsersByPlan) use Select:COUNT and need keys only.
+    // This stops replicating the wide snapshot Sets (readingDays, activeBookIds,
+    // completedBookIds, badgeIds) into the index on every snapshot UpdateCommand.
+    // GUARD: any attribute newly read off listRecentUsersByPlan results must be
+    // added to this list. CloudFormation cannot change a GSI projection in place;
+    // see the staged (v2) rollout in
+    // docs/architecture/adr-analytics-gsi-projection.md.
     this.analyticsTable.addGlobalSecondaryIndex({
-      indexName: "plan-updatedAt-index",
+      indexName: "plan-updatedAt-index-v2",
       partitionKey: { name: "plan", type: dynamodb.AttributeType.STRING },
       sortKey: { name: "updatedAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
+      projectionType: dynamodb.ProjectionType.INCLUDE,
+      nonKeyAttributes: [
+        "userId",
+        "email",
+        "proStatus",
+        "proSource",
+        "firstSeenAt",
+        "lastActiveAt",
+        "totalReadingMs",
+        "totalQuizAttempts",
+        "totalQuizPasses",
+        "flowPoints",
+        "booksCompleted",
+        "badgeCount",
+        "onboardingCompletedAt",
+      ],
     });
 
-    this.analyticsTable.addGlobalSecondaryIndex({
-      indexName: "contextKey-occurredAt-index",
-      partitionKey: { name: "contextKey", type: dynamodb.AttributeType.STRING },
-      sortKey: { name: "occurredAt", type: dynamodb.AttributeType.STRING },
-      projectionType: dynamodb.ProjectionType.ALL,
-    });
+    // contextKey-occurredAt-index was DELETED in WS6-008 stage 2 (write-only, zero
+    // query consumers). See docs/architecture/adr-analytics-gsi-projection.md.
 
     this.ingestBucket = new s3.Bucket(this, "ChapterFlowIngestBucket", {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
@@ -246,12 +295,7 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
 
     this.contentBucket = new s3.Bucket(this, "ChapterFlowContentBucket", {
-      blockPublicAccess: new s3.BlockPublicAccess({
-        blockPublicAcls: true,
-        ignorePublicAcls: true,
-        blockPublicPolicy: false,
-        restrictPublicBuckets: false,
-      }),
+      blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL,
       encryption: s3.BucketEncryption.S3_MANAGED,
       enforceSSL: true,
       versioned: true,
@@ -265,13 +309,30 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       removalPolicy: cdk.RemovalPolicy.RETAIN,
     });
 
+    // WS6-012 (PR2): covers are read by the CloudFront distribution (frontend
+    // stack) via Origin Access Control only — the bucket is BLOCK_ALL and the
+    // former AnyPrincipal `PublicReadLibraryCovers` statement has been removed.
+    // This statement is NON-public (conditioned on the CloudFront service
+    // principal AND our own account), so restrictPublicBuckets does not strip it.
+    //
+    // The condition uses aws:SourceAccount (our account id) rather than the
+    // distribution's SourceArn on purpose: keying on the distribution ARN would
+    // make this backend stack depend on the frontend distribution, but the
+    // frontend stack already imports the content bucket by name from the backend
+    // stack — a distribution SourceArn condition would create a deploy cycle
+    // (backend needs distribution, distribution needs bucket). SourceAccount
+    // breaks that cycle while still scoping the grant to this account's
+    // CloudFront service. Deploy order stays backend stack then frontend stack.
     this.contentBucket.addToResourcePolicy(
       new iam.PolicyStatement({
-        sid: "PublicReadLibraryCovers",
+        sid: "CloudFrontReadLibraryCovers",
         effect: iam.Effect.ALLOW,
-        principals: [new iam.AnyPrincipal()],
+        principals: [new iam.ServicePrincipal("cloudfront.amazonaws.com")],
         actions: ["s3:GetObject"],
         resources: [`${this.contentBucket.bucketArn}/book-content/library/covers/*`],
+        conditions: {
+          StringEquals: { "aws:SourceAccount": cdk.Aws.ACCOUNT_ID },
+        },
       })
     );
 
@@ -280,7 +341,8 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     // The former `ChapterFlowAppRuntimeRole` (assumed by tasks.apprunner.amazonaws.com)
     // had no consumer and stood as broad unused privilege — removed. Its CI
     // counterparts (apprunner:* + iam:PassRole) were dropped from
-    // infra/iam/github-actions-dev-policy.json.
+    // generated github-actions-<env>-additive-policy.json; see
+    // infra/iam/README.md.
 
     const parameterNames = [
       `${this.ssmPrefix}/BOOK_TABLE_NAME`,
@@ -327,6 +389,40 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     }
     const opsAlarmAction = new cloudwatchActions.SnsAction(opsAlertsTopic);
 
+    // Critical (paging) SNS topic (WS6-034). Email is not a pager — a 3am
+    // outage can sit unread in opsAlertsTopic above. This topic is ADDITIVE:
+    // the small set of "needs a human NOW" alarms (severity table in
+    // docs/OPERATIONS.md §4) add this action ALONGSIDE opsAlarmAction, so the
+    // existing inbox keeps full visibility and nothing is removed from it.
+    // Subscribe a pager by setting CHAPTERFLOW_OPS_PAGER_URL (an https
+    // PagerDuty/Opsgenie/ntfy webhook) and/or CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL
+    // at synth time.
+    const opsCriticalTopic = new sns.Topic(this, "ChapterFlowOpsCritical", {
+      topicName: `ChapterFlowOpsCritical${suffix}`,
+      displayName: "ChapterFlow critical (paging) alerts",
+    });
+    const opsCriticalAlertEmail = process.env.CHAPTERFLOW_OPS_CRITICAL_ALERT_EMAIL;
+    if (opsCriticalAlertEmail) {
+      opsCriticalTopic.addSubscription(
+        new snsSubscriptions.EmailSubscription(opsCriticalAlertEmail),
+      );
+    }
+    const opsPagerUrl = process.env.CHAPTERFLOW_OPS_PAGER_URL;
+    if (opsPagerUrl) {
+      // SNS HTTPS delivery requires https — an http (or malformed) endpoint
+      // would silently never deliver, so fail soft (warn + skip) rather than
+      // wiring a subscription that can never page anyone.
+      if (opsPagerUrl.startsWith("https://")) {
+        opsCriticalTopic.addSubscription(new snsSubscriptions.UrlSubscription(opsPagerUrl));
+      } else {
+        console.warn(
+          "⚠ CHAPTERFLOW_OPS_PAGER_URL is set but does not start with https:// — " +
+            "skipping the pager subscription (SNS HTTPS delivery requires it).",
+        );
+      }
+    }
+    const criticalAlarmAction = new cloudwatchActions.SnsAction(opsCriticalTopic);
+
     const appTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAppTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.appTable),
       threshold: 1,
@@ -336,6 +432,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       alarmDescription: "Alerts when ChapterFlow operational table experiences throttling.",
     });
     appTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): throttling on the operational table can wedge live
+    // reader traffic — page in addition to the existing email.
+    appTableThrottlesAlarm.addAlarmAction(criticalAlarmAction);
 
     const analyticsTableThrottlesAlarm = new cloudwatch.Alarm(this, "ChapterFlowAnalyticsTableThrottlesAlarm", {
       metric: buildThrottleMetric(this.analyticsTable),
@@ -346,6 +445,9 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       alarmDescription: "Alerts when ChapterFlow analytics table experiences throttling.",
     });
     analyticsTableThrottlesAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): throttling here is the same failure mode as the app
+    // table above — page in addition to the existing email.
+    analyticsTableThrottlesAlarm.addAlarmAction(criticalAlarmAction);
 
     // Alarm on the unified `OpsFailure` metric the server Lambda emits
     // (recordOpsFailure → putOpsMetric, namespace "ChapterFlow/Ops"). One metric
@@ -373,6 +475,10 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       },
     );
     opsFailureAlarm.addAlarmAction(opsAlarmAction);
+    // CRITICAL (WS6-034): a failed Stripe cancellation/customer-delete or
+    // Cognito delete leaves the user's account in an inconsistent state —
+    // page in addition to the existing email.
+    opsFailureAlarm.addAlarmAction(criticalAlarmAction);
 
     // -------------------------------------------------------------------
     // Lambda — Reading reminder cron (hourly)
@@ -455,9 +561,21 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "reading-reminder-cron.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      // WS6-013: the committed bundle is pure-JS esbuild output built with
+      // `--platform=node --target=node20` and @aws-sdk marked external, so it
+      // is architecture-agnostic — arm64 is a free cost/perf win here.
+      architecture: lambda.Architecture.ARM_64,
       memorySize: 512,
       timeout: reminderTimeout,
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.reminder
+        : undefined,
       deadLetterQueue: reminderDlq,
+      logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: this Lambda is multi-hop (DynamoDB read/write + SES send + SSM),
+      // so ACTIVE tracing lets an operator see where a slow/erroring run spent time.
+      tracing: lambda.Tracing.ACTIVE,
       environment: {
         BOOK_TABLE_NAME: this.appTable.tableName,
         SES_SENDER_EMAIL: reminderSenderEmail,
@@ -482,19 +600,26 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
 
     this.appTable.grantReadWriteData(reminderFn);
-    // Scope SendEmail to the env's verified domain identity when known (prod);
-    // dev/staging without a verified domain fall back to "*" — same conditional
-    // shape as the frontend stack's SesSendAccess statement.
-    reminderFn.addToRolePolicy(
-      new iam.PolicyStatement({
-        actions: ["ses:SendEmail", "sesv2:SendEmail"],
-        resources: reminderSenderDomain
-          ? [
-              `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
-            ]
-          : ["*"],
-      })
-    );
+    // Scope SendEmail to the env's verified domain identity.
+    //
+    // WS6-003: all three envs share ONE AWS account and SES is account-global, so a
+    // "*" resource here would let this dev/staging reminder role send as the PROD
+    // SES identities. We therefore add this statement ONLY when this env's verified
+    // domain is known at synth (prod always has it — bin/app.ts asserts it). A
+    // non-prod synth without a domain gets NO SES grant at all, so a reminder send
+    // there fails closed with AccessDenied in that env (commercial sends already
+    // stay disabled by the EMAIL_POSTAL_ADDRESS kill-switch) instead of gaining an
+    // account-wide send. Same contract as the frontend stack's SesSendAccess grant.
+    if (reminderSenderDomain) {
+      reminderFn.addToRolePolicy(
+        new iam.PolicyStatement({
+          actions: ["ses:SendEmail", "sesv2:SendEmail"],
+          resources: [
+            `arn:${cdk.Aws.PARTITION}:ses:${cdk.Aws.REGION}:${cdk.Aws.ACCOUNT_ID}:identity/${reminderSenderDomain}`,
+          ],
+        })
+      );
+    }
     // Read the owner email config (EMAIL_*) from SSM at runtime.
     reminderFn.addToRolePolicy(
       new iam.PolicyStatement({
@@ -635,10 +760,20 @@ export class ChapterFlowBackendStack extends cdk.Stack {
       runtime: lambda.Runtime.NODEJS_20_X,
       handler: "suppression-handler.handler",
       code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+      // WS6-013: same architecture-agnostic pure-JS bundle as the other
+      // committed lambda/dist crons — arm64 is a free cost/perf win here.
+      architecture: lambda.Architecture.ARM_64,
       memorySize: 256,
       timeout: cdk.Duration.minutes(1),
+      // WS6-001: reserved floor/ceiling (see env-config.ts doc).
+      reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.suppression
+        : undefined,
       environment: { BOOK_TABLE_NAME: this.appTable.tableName },
       deadLetterQueue: suppressionDlq,
+      logRetention: logs.RetentionDays.ONE_MONTH,
+      // WS6-029: SNS -> DynamoDB write hop; ACTIVE tracing surfaces DynamoDB latency.
+      tracing: lambda.Tracing.ACTIVE,
     });
     this.appTable.grantWriteData(suppressionFn);
     emailEventsTopic.addSubscription(new snsSubscriptions.LambdaSubscription(suppressionFn));
@@ -657,6 +792,103 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         "The SES suppression Lambda is erroring (likely DynamoDB write failures). After async retries are exhausted, failed bounce/complaint events land in ChapterFlowSuppressionDlq — inspect/replay them.",
     });
     suppressionErrorsAlarm.addAlarmAction(opsAlarmAction);
+
+    // -------------------------------------------------------------------
+    // CloudWatch dashboard — backend ops (WS6-033)
+    // -------------------------------------------------------------------
+    // Version-controlled, out-of-band view of this stack's health. The in-app
+    // admin Ops dashboard is served BY the frontend stack's server Lambda, so
+    // it disappears exactly when an incident takes that Lambda down; this
+    // dashboard reads straight from CloudWatch and survives that failure
+    // mode. One dashboard per stack — this one binds only metrics the
+    // backend stack can reference in-stack (constructs) or by name
+    // (ChapterFlow/Ops, same convention as the OpsFailure alarm above). The
+    // Cognito PreSignUp widget is added further down, inside the conditional
+    // block where preSignUpFn is actually created.
+    const backendOpsDashboard = new cloudwatch.Dashboard(this, "BackendOpsDashboard", {
+      dashboardName: `ChapterFlowBackendOps${suffix}`,
+      // Keep each widget's own 5-minute period (matching the alarms) instead
+      // of letting it drift with the dashboard's selected time range.
+      periodOverride: cloudwatch.PeriodOverride.INHERIT,
+    });
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Reading-reminder cron errors (sum)",
+        left: [reminderFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Reading-reminder cron duration vs 10-min budget (max, ms)",
+        left: [
+          reminderFn.metricDuration({ period: cdk.Duration.minutes(5), statistic: "Maximum" }),
+        ],
+        leftAnnotations: [
+          {
+            value: reminderTimeout.toMilliseconds() * 0.8,
+            label: "80% of budget",
+            color: cloudwatch.Color.ORANGE,
+          },
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Email suppression handler errors (sum)",
+        left: [suppressionFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" })],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "OpsFailure (ChapterFlow/Ops, dimensionless rollup — sum)",
+        left: [
+          new cloudwatch.Metric({
+            namespace: "ChapterFlow/Ops",
+            metricName: "OpsFailure",
+            statistic: "Sum",
+            period: cdk.Duration.minutes(5),
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "Reminder DLQ depth (messages visible, max)",
+        left: [
+          reminderDlq.metricApproximateNumberOfMessagesVisible({
+            period: cdk.Duration.minutes(5),
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Suppression DLQ depth (messages visible, max)",
+        left: [
+          suppressionDlq.metricApproximateNumberOfMessagesVisible({
+            period: cdk.Duration.minutes(5),
+            statistic: "max",
+          }),
+        ],
+        width: 12,
+      }),
+    );
+
+    backendOpsDashboard.addWidgets(
+      new cloudwatch.GraphWidget({
+        title: "App table throttled requests (sum)",
+        left: [buildThrottleMetric(this.appTable)],
+        width: 12,
+      }),
+      new cloudwatch.GraphWidget({
+        title: "Analytics table throttled requests (sum)",
+        left: [buildThrottleMetric(this.analyticsTable)],
+        width: 12,
+      }),
+    );
 
     // Expose the config-set name to the app runtime (read via getServerEnv → SSM).
     new ssm.StringParameter(this, "SesConfigurationSetParameter", {
@@ -698,10 +930,24 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         runtime: lambda.Runtime.NODEJS_20_X,
         handler: "cognito-pre-signup.handler",
         code: lambda.Code.fromAsset(path.join(__dirname, "../lambda/dist")),
+        // WS6-013: same architecture-agnostic pure-JS bundle as the other
+        // committed lambda/dist crons — arm64 is a free cost/perf win here.
+        architecture: lambda.Architecture.ARM_64,
         memorySize: 256,
         // A sign-in trigger runs inline on the auth path — keep it short so a
         // hung ListUsers/AdminLink can never wedge the user's sign-in.
         timeout: cdk.Duration.seconds(10),
+        // WS6-001: this runs synchronously on the sign-in path for EVERY Apple
+        // sign-in, so its floor stays generous (10, never 1-2) — a starved
+        // reservation here fails closed and blocks sign-in, not just a
+        // background job (see env-config.ts doc).
+        reservedConcurrentExecutions: props.lambdaConcurrencyEnforced
+        ? props.lambdaConcurrency.preSignUp
+        : undefined,
+        logRetention: logs.RetentionDays.ONE_MONTH,
+        // WS6-029: inline on the auth path and calls Cognito (ListUsers/
+        // AdminLinkProviderForUser); ACTIVE tracing shows where a slow sign-in went.
+        tracing: lambda.Tracing.ACTIVE,
       });
 
       // Least privilege: ONLY the two calls the linker makes, scoped to THIS pool.
@@ -742,6 +988,21 @@ export class ChapterFlowBackendStack extends cdk.Stack {
         }
       );
       preSignUpErrorsAlarm.addAlarmAction(opsAlarmAction);
+      // CRITICAL (WS6-034): this trigger fails closed and blocks the
+      // affected Apple sign-in — page in addition to the existing email.
+      preSignUpErrorsAlarm.addAlarmAction(criticalAlarmAction);
+
+      // preSignUpFn only exists in this conditional block (external pool id
+      // known at synth), so its dashboard widget is added here too.
+      backendOpsDashboard.addWidgets(
+        new cloudwatch.GraphWidget({
+          title: "Cognito PreSignUp (Sign-in-with-Apple linking) errors (sum)",
+          left: [
+            preSignUpFn.metricErrors({ period: cdk.Duration.minutes(5), statistic: "sum" }),
+          ],
+          width: 24,
+        }),
+      );
 
       // The pool is external, so surface the ARN operators must wire to it.
       new cdk.CfnOutput(this, "CognitoPreSignUpFunctionArn", {
@@ -770,6 +1031,12 @@ export class ChapterFlowBackendStack extends cdk.Stack {
     });
     new cdk.CfnOutput(this, "OpsAlertsTopicArn", {
       value: opsAlertsTopic.topicArn,
+    });
+    new cdk.CfnOutput(this, "OpsCriticalTopicArn", {
+      value: opsCriticalTopic.topicArn,
+    });
+    new cdk.CfnOutput(this, "BackendOpsDashboardName", {
+      value: backendOpsDashboard.dashboardName,
     });
   }
 }

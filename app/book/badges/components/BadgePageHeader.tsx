@@ -1,8 +1,7 @@
 "use client";
 
-import { cn } from "@/app/book/components/ui/cn";
 import type { UserAchievementProfile } from "../lib/badge-types";
-import { ProgressRing } from "./ProgressRing";
+import { BadgesProgressRing } from "./BadgesProgressRing";
 
 type BadgePageHeaderProps = {
   profile: UserAchievementProfile;
@@ -29,9 +28,9 @@ export function BadgePageHeader({ profile }: BadgePageHeaderProps) {
           className="flex items-center gap-3 rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5 backdrop-blur-xl"
           style={{ borderTopWidth: 2, borderTopColor: "var(--accent-cyan)" }}
         >
-          <ProgressRing size={40} strokeWidth={3} progress={progressPercent} />
+          <BadgesProgressRing size={40} strokeWidth={3} progress={progressPercent} />
           <div>
-            <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Earned</p>
+            <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">Earned</p>
             <p className="mt-0.5 text-lg font-semibold text-(--accent-cyan)">
               {profile.totalEarned}{" "}
               <span className="text-sm font-normal text-(--cf-text-soft)">/ {profile.totalAvailable}</span>
@@ -44,7 +43,7 @@ export function BadgePageHeader({ profile }: BadgePageHeaderProps) {
           className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5 backdrop-blur-xl"
           style={{ borderTopWidth: 2, borderTopColor: "var(--accent-violet)" }}
         >
-          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Reader Level</p>
+          <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">Reader Level</p>
           <p className="mt-0.5 text-lg font-semibold text-(--cf-text-1)">
             Level {profile.level}{" "}
             <span className="text-sm font-normal" style={{ color: "var(--accent-violet)" }}>&mdash; {profile.levelName}</span>
@@ -67,7 +66,7 @@ export function BadgePageHeader({ profile }: BadgePageHeaderProps) {
           className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) px-4 py-3.5 backdrop-blur-xl"
           style={{ borderTopWidth: 2, borderTopColor: "var(--accent-amber)" }}
         >
-          <p className="text-[11px] uppercase tracking-[0.2em] text-(--cf-text-soft)">Almost There</p>
+          <p className="text-cf-caption uppercase tracking-[0.2em] text-(--cf-text-soft)">Almost There</p>
           <p className="mt-0.5 text-lg font-semibold text-(--cf-text-1)">
             {profile.nearlyUnlockedCount}{" "}
             <span className="text-sm font-normal text-(--cf-text-3)">

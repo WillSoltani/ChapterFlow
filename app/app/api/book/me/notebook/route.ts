@@ -9,10 +9,11 @@ import {
 } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { BookApiError } from "@/app/app/api/book/_lib/errors";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { QueryCommand } from "@aws-sdk/lib-dynamodb";
-import { bookUserPk } from "@/app/app/api/book/_lib/keys";
+import { queryChapterStatesForNotebook } from "@/app/app/api/book/_lib/book-state-repo";
+import { queryCommitmentItemsForNotebook } from "@/app/app/api/book/_lib/commitment-repo";
+import { loadNotebookReads } from "@/app/app/api/book/_lib/notebook-read-core";
 import { buildChapterStateNotebookEntries } from "@/app/app/api/book/_lib/notebook-entries";
+import { paginateArray, parseListPaginationParams } from "@/app/app/api/book/_lib/list-pagination-core";
 import {
   buildHighlightNotebookEntries,
   highlightItemToNotebookEntry,
@@ -28,6 +29,16 @@ import {
 import type { BookUserHighlightItem, NotebookEntry } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
+
+// WS4-004: default/max page size for `?limit=&cursor=`. Deliberately generous
+// — unlike saved.get (whose `savedBookIds` iOS treats as the complete
+// authoritative set and so must never cap by default), notebook.get's
+// `entries` becomes the current PAGE below, so a too-small default would be a
+// real regression for any account with more than one page of notes/
+// bookmarks/commitments/highlights. Sized well past any realistic account so
+// `entries` is unaffected in practice; the cap only engages for outliers.
+const NOTEBOOK_DEFAULT_PAGE_SIZE = 500;
+const NOTEBOOK_MAX_PAGE_SIZE = 2000;
 
 /** Parse an optional integer `chapter` query param; null when absent/invalid. */
 function parseChapterFilter(url: URL): number | null {
@@ -51,28 +62,28 @@ export async function GET(req: Request) {
   return withBookApiErrors(req, async () => {
     const user = await requireActiveBookUser();
     const tableName = await getBookTableName();
-    const pk = bookUserPk(user.sub);
 
     const url = new URL(req.url);
     const bookIdFilter = url.searchParams.get("bookId");
     const chapterFilter = parseChapterFilter(url);
     const searchFilter = url.searchParams.get("search")?.toLowerCase();
 
-    // Query chapter states for notes + bookmarks
-    const chapterStatesResult = await ddbDoc.send(
-      new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-        ExpressionAttributeValues: {
-          ":pk": pk,
-          ":prefix": "CHAPTERSTATE#",
-        },
-      }),
-    );
+    // WS4-009: the three reads below are independent (no read depends on
+    // another's result), so fan them out concurrently instead of paying each
+    // one's full round-trip serially.
+    const {
+      chapterStates: chapterStatesItems,
+      commitments: commitmentItems,
+      highlights,
+    } = await loadNotebookReads({
+      chapterStates: () => queryChapterStatesForNotebook(tableName, user.sub),
+      commitments: () => queryCommitmentItemsForNotebook(tableName, user.sub),
+      highlights: () => listHighlights(tableName, user.sub),
+    });
 
     const entries: NotebookEntry[] = [];
 
-    for (const item of chapterStatesResult.Items ?? []) {
+    for (const item of chapterStatesItems) {
       const state = item.state as Record<string, unknown> | undefined;
       if (!state) continue;
 
@@ -99,19 +110,9 @@ export async function GET(req: Request) {
       );
     }
 
-    // Query commitments for follow-through reflections
-    const commitmentsResult = await ddbDoc.send(
-      new QueryCommand({
-        TableName: tableName,
-        KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
-        ExpressionAttributeValues: {
-          ":pk": pk,
-          ":prefix": "COMMITMENT#",
-        },
-      }),
-    );
-
-    for (const item of commitmentsResult.Items ?? []) {
+    // Commitments → follow-through reflections (read above, fanned out with
+    // the chapter-state and highlight reads).
+    for (const item of commitmentItems) {
       const reflection = item.followThroughReflection as string | null;
       if (!reflection) continue;
 
@@ -132,8 +133,8 @@ export async function GET(req: Request) {
     }
 
     // Reader highlights (Feature B6) — first-class user-created entries, filtered
-    // by book/chapter exactly like the derived types above.
-    const highlights = await listHighlights(tableName, user.sub);
+    // by book/chapter exactly like the derived types above (read above, fanned
+    // out with the chapter-state and commitment reads).
     entries.push(
       ...buildHighlightNotebookEntries(highlights, {
         bookId: bookIdFilter,
@@ -162,7 +163,22 @@ export async function GET(req: Request) {
     // Sort by date descending
     filtered.sort((a, b) => (b.createdAt || "").localeCompare(a.createdAt || ""));
 
-    return bookOk({ entries: filtered, totalCount: filtered.length });
+    // WS4-004: `?limit=&cursor=` pagination, additive alongside the existing
+    // entries/totalCount keys (NotebookResponse / NotebookClient.tsx keep
+    // reading `entries` unchanged for any account within one page).
+    const params = parseListPaginationParams(url, {
+      defaultLimit: NOTEBOOK_DEFAULT_PAGE_SIZE,
+      maxLimit: NOTEBOOK_MAX_PAGE_SIZE,
+    });
+    const page = paginateArray(filtered, { limit: params.limit, cursor: params.cursor });
+
+    return bookOk({
+      entries: page.items,
+      items: page.items,
+      totalCount: filtered.length,
+      nextCursor: page.nextCursor,
+      hasMore: page.hasMore,
+    });
   });
 }
 
@@ -233,6 +249,6 @@ export async function DELETE(req: Request) {
     );
 
     await deleteHighlight(tableName, user.sub, highlightId);
-    return bookOk({ ok: true });
+    return bookOk({ deleted: true });
   });
 }

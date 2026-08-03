@@ -9,6 +9,6 @@ export function adminGet<T>(path: string): Promise<T> {
 export function adminPost<T>(path: string, body?: unknown): Promise<T> {
   return fetchBookJson<T>(`/app/api/book/admin${path}`, {
     method: "POST",
-    body: body !== undefined ? JSON.stringify(body) : undefined,
+    ...(body !== undefined ? { body: JSON.stringify(body) } : {}),
   });
 }

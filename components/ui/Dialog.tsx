@@ -1,10 +1,11 @@
 "use client";
 
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, m, useReducedMotion } from "framer-motion";
 import { useEffect, useRef, useState, type ReactNode, type RefObject } from "react";
 import { createPortal } from "react-dom";
 import { DUR } from "@/lib/motion";
 import { useBodyScrollLock } from "@/components/ui/use-body-scroll-lock";
+import { MotionFeatureProvider } from "@/components/MotionFeatureProvider";
 
 const FOCUSABLE =
   'a[href],area[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),button:not([disabled]),[tabindex]:not([tabindex="-1"]),iframe,object,embed,[contenteditable="true"],audio[controls],video[controls]';
@@ -27,16 +28,16 @@ interface BaseOverlayProps {
   open: boolean;
   onClose: () => void;
   /** id of the element labelling the dialog (e.g. its <h2 id>). */
-  labelledBy?: string;
+  labelledBy?: string | undefined;
   /** Accessible label when there is no visible title to point at. */
-  ariaLabel?: string;
+  ariaLabel?: string | undefined;
   /** Element to focus when the overlay opens. Falls back to the first focusable. */
-  initialFocusRef?: RefObject<HTMLElement | null>;
+  initialFocusRef?: RefObject<HTMLElement | null> | undefined;
   /** Clicking the backdrop closes (default true). */
-  closeOnBackdrop?: boolean;
+  closeOnBackdrop?: boolean | undefined;
   /** Escape closes (default true). */
-  closeOnEscape?: boolean;
-  className?: string;
+  closeOnEscape?: boolean | undefined;
+  className?: string | undefined;
   children: ReactNode;
 }
 
@@ -44,7 +45,7 @@ interface OverlayShellProps extends BaseOverlayProps {
   layout: "center" | "bottom";
   panelClassName: string;
   /** Edge-to-edge: drop the centered/padded container so the panel fills the viewport. */
-  fullBleed?: boolean;
+  fullBleed?: boolean | undefined;
 }
 
 /**
@@ -160,6 +161,7 @@ function OverlayShell({
       }
       const first = items[0];
       const last = items[items.length - 1];
+      if (first === undefined || last === undefined) return; // items is non-empty here
       const active = document.activeElement as HTMLElement;
       if (e.shiftKey) {
         if (active === first || !panel.contains(active)) {
@@ -209,42 +211,44 @@ function OverlayShell({
   const zIndex = OVERLAY_BASE_Z + Math.max(stackIndex, 0) * 10;
 
   return createPortal(
-    <AnimatePresence>
-      {open && (
-        <div
-          className={`fixed inset-0 flex ${containerAlign}`}
-          style={{ zIndex }}
-          onClick={(e) => {
-            if (closeOnBackdrop && e.target === e.currentTarget) onClose();
-          }}
-        >
-          <motion.div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={backdropTransition}
-          />
-          <motion.div
-            ref={panelRef}
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={labelledBy}
-            aria-label={labelledBy ? undefined : ariaLabel}
-            tabIndex={-1}
-            className={`relative border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-1) outline-none ${panelClassName} ${className}`}
-            style={{ boxShadow: "var(--shadow-modal)" }}
-            initial={panelMotion.initial}
-            animate={panelMotion.animate}
-            exit={panelMotion.exit}
-            transition={panelTransition}
+    <MotionFeatureProvider>
+      <AnimatePresence>
+        {open && (
+          <div
+            className={`fixed inset-0 flex ${containerAlign}`}
+            style={{ zIndex }}
+            onClick={(e) => {
+              if (closeOnBackdrop && e.target === e.currentTarget) onClose();
+            }}
           >
-            {children}
-          </motion.div>
-        </div>
-      )}
-    </AnimatePresence>,
+            <m.div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-0 bg-(--cf-overlay) backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={backdropTransition}
+            />
+            <m.div
+              ref={panelRef}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby={labelledBy}
+              aria-label={labelledBy ? undefined : ariaLabel}
+              tabIndex={-1}
+              className={`relative border border-(--cf-border) bg-(--cf-surface) text-(--cf-text-1) outline-none ${panelClassName} ${className}`}
+              style={{ boxShadow: "var(--shadow-modal)" }}
+              initial={panelMotion.initial}
+              animate={panelMotion.animate}
+              exit={panelMotion.exit}
+              transition={panelTransition}
+            >
+              {children}
+            </m.div>
+          </div>
+        )}
+      </AnimatePresence>
+    </MotionFeatureProvider>,
     document.body,
   );
 }

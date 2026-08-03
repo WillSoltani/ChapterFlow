@@ -4,6 +4,8 @@
 // (and, transitively in its callers, `server-only`). server-origin.ts owns the
 // `headers()` I/O and passes a plain env snapshot into `resolvePublicOriginCore`.
 
+import { logger } from "@/lib/logging/logger";
+
 export function normalizeOrigin(value: string): string {
   return value.trim().replace(/\/+$/, "");
 }
@@ -84,10 +86,10 @@ export function trustedHostsFromEnv(env: Record<string, string | undefined>): Se
 }
 
 export type ResolveOriginEnv = {
-  appBaseUrl?: string;
-  chapterFlowAppBaseUrl?: string;
-  allowAppBaseUrlInDev?: string;
-  nodeEnv?: string;
+  appBaseUrl?: string | undefined;
+  chapterFlowAppBaseUrl?: string | undefined;
+  allowAppBaseUrlInDev?: string | undefined;
+  nodeEnv?: string | undefined;
   /** Full env snapshot used to derive the trusted-host allowlist. */
   trustedHosts: Set<string>;
 };
@@ -128,10 +130,9 @@ export function resolvePublicOriginCore(
 
     if (isProd) {
       if (!isLocalOrigin(normalizedConfigured)) return normalizedConfigured;
-      console.warn(
-        "Ignoring APP_BASE_URL loopback value in production:",
-        normalizedConfigured
-      );
+      logger.warn("origin_apps_base_url_loopback_ignored", {
+        normalizedConfigured,
+      });
     } else if (allowConfiguredInDev || isLocalOrigin(normalizedConfigured)) {
       return normalizedConfigured;
     }
@@ -147,10 +148,7 @@ export function resolvePublicOriginCore(
     return normalizeOrigin(`${proto}://${host}`);
   }
   if (host) {
-    console.warn(
-      "Ignoring untrusted request host for public-origin resolution:",
-      host
-    );
+    logger.warn("origin_untrusted_request_host_ignored", { host });
   }
 
   if (params.fallbackOrigin) return normalizeOrigin(params.fallbackOrigin);

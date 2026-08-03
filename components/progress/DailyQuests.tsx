@@ -1,7 +1,8 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { BookOpen, Brain, RotateCcw, Check } from "lucide-react";
 import type { DailyQuest } from "./progressTypes";
 
@@ -18,22 +19,20 @@ function getQuestAccent(questId: string): {
 } {
   switch (questId) {
     case "q1":
-      return { color: "var(--accent-cyan)", bg: "rgba(34,211,238,0.15)", Icon: BookOpen };
+      return { color: "var(--accent-cyan)", bg: "color-mix(in srgb, var(--accent-cyan) 15%, transparent)", Icon: BookOpen };
     case "q2":
-      return { color: "var(--accent-amber)", bg: "rgba(245,158,11,0.15)", Icon: Brain };
+      return { color: "var(--accent-amber)", bg: "color-mix(in srgb, var(--accent-amber) 15%, transparent)", Icon: Brain };
     case "q3":
-      return { color: "var(--accent-violet)", bg: "rgba(139,92,246,0.15)", Icon: RotateCcw };
+      return { color: "var(--accent-violet)", bg: "color-mix(in srgb, var(--accent-violet) 15%, transparent)", Icon: RotateCcw };
     default:
-      return { color: "var(--accent-cyan)", bg: "rgba(34,211,238,0.15)", Icon: BookOpen };
+      return { color: "var(--accent-cyan)", bg: "color-mix(in srgb, var(--accent-cyan) 15%, transparent)", Icon: BookOpen };
   }
 }
 
 export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
   const allComplete = quests.every((q) => q.completed);
   const completedCount = quests.filter((q) => q.completed).length;
-  const allPartiallyStarted =
-    quests.length > 0 && quests.every((q) => q.current > 0 && !q.completed);
 
   return (
     <motion.section
@@ -43,10 +42,10 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
         backdropFilter: "blur(16px)",
         WebkitBackdropFilter: "blur(16px)",
         border: allComplete
-          ? "1px solid rgba(16,185,129,0.3)"
+          ? "1px solid color-mix(in srgb, var(--accent-emerald) 30%, transparent)"
           : "1px solid var(--cf-border)",
         boxShadow: allComplete
-          ? "0 0 20px rgba(16,185,129,0.1)"
+          ? "0 0 20px color-mix(in srgb, var(--accent-emerald) 10%, transparent)"
           : "var(--cf-shadow-md)",
       }}
       initial={{ opacity: prefersReduced ? 1 : 0, y: prefersReduced ? 0 : 15 }}
@@ -61,25 +60,15 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
         >
           Today&apos;s Quests
         </h2>
-        <motion.span
+        <span
           className="rounded-lg px-2 py-0.5 text-xs font-medium"
           style={{
-            background: "rgba(139,92,246,0.15)",
+            background: "color-mix(in srgb, var(--accent-violet) 15%, transparent)",
             color: "var(--accent-violet)",
           }}
-          animate={
-            allPartiallyStarted && !prefersReduced
-              ? { opacity: [1, 0.7, 1] }
-              : undefined
-          }
-          transition={
-            allPartiallyStarted
-              ? { repeat: Infinity, duration: 2, ease: "easeInOut" }
-              : undefined
-          }
         >
           {"\u{1F3AF}"} {completedCount}/{quests.length} done
-        </motion.span>
+        </span>
       </div>
 
       {/* All complete banner */}
@@ -87,7 +76,7 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
         <div
           className="mt-3 rounded-xl px-3 py-2 text-center text-xs font-medium"
           style={{
-            background: "rgba(16,185,129,0.1)",
+            background: "color-mix(in srgb, var(--accent-emerald) 10%, transparent)",
             color: "var(--accent-emerald)",
           }}
         >
@@ -114,7 +103,7 @@ export function DailyQuests({ quests, onQuestClick }: DailyQuestsProps) {
               className={`flex items-center gap-3 rounded-xl px-3 py-2${isClickable ? " cursor-pointer transition-colors hover:brightness-110" : ""}`}
               style={{
                 background: quest.completed
-                  ? "rgba(16,185,129,0.06)"
+                  ? "color-mix(in srgb, var(--accent-emerald) 6%, transparent)"
                   : "var(--cf-surface-muted)",
               }}
             >

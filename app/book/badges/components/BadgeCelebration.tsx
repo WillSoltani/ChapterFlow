@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { DUR } from "@/lib/motion";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { Dialog } from "@/components/ui/Dialog";
 import { Confetti } from "@/components/ui/Confetti";
 import type { BadgeWithProgress, BadgeTier } from "../lib/badge-types";
@@ -416,7 +416,7 @@ function ShimmerOverlay() {
         className="absolute inset-0"
         style={{
           background:
-            "linear-gradient(105deg, transparent 40%, rgba(255,215,0,0.04) 45%, rgba(255,215,0,0.04) 50%, transparent 55%)",
+            "linear-gradient(105deg, transparent 40%, color-mix(in srgb, var(--cf-badge-gold) 4%, transparent) 45%, color-mix(in srgb, var(--cf-badge-gold) 4%, transparent) 50%, transparent 55%)",
           backgroundSize: "200% 100%",
           animation: "badge-shimmer 1.5s ease-in-out forwards",
         }}

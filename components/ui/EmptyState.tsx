@@ -13,25 +13,25 @@ interface EmptyStateProps {
    * (a component) it is rendered as `<Icon />` inside the admin accent-chip / panel
    * treatment; otherwise it is rendered inline in the plain ui/progress layout.
    */
-  icon?: React.ReactNode | LucideIcon;
+  icon?: React.ReactNode | LucideIcon | undefined;
   /** Only applies to the inline node/emoji rendering path (plain/progress default 64). */
-  iconSize?: number;
+  iconSize?: number | undefined;
   title: string;
-  description?: string;
+  description?: string | undefined;
   /** CTA — label + handler (progress / ui style). Renders an internal styled button. */
-  ctaLabel?: string;
-  onCtaClick?: () => void;
+  ctaLabel?: string | undefined;
+  onCtaClick?: (() => void) | undefined;
   /** Caller-supplied rendered node (admin style). */
-  action?: React.ReactNode;
+  action?: React.ReactNode | undefined;
   /** Admin panel density toggle (default false). Only affects the panel variant. */
-  compact?: boolean;
+  compact?: boolean | undefined;
   /**
    * `panel` = admin card chrome (cf-panel-muted + accent chip). `plain` = ui/progress
    * centered flex column. Defaults to `panel` when a LucideIcon component is passed,
    * otherwise `plain`.
    */
-  variant?: EmptyStateVariant;
-  className?: string;
+  variant?: EmptyStateVariant | undefined;
+  className?: string | undefined;
 }
 
 function isComponentIcon(
@@ -114,7 +114,7 @@ export function EmptyState({
         )}
         <p className="mt-3 text-base font-semibold text-(--cf-text-1)">{title}</p>
         {description && (
-          <p className="mx-auto mt-1 max-w-md text-[13px] leading-relaxed text-(--cf-text-3)">
+          <p className="mx-auto mt-1 max-w-md text-cf-label leading-relaxed text-(--cf-text-3)">
             {description}
           </p>
         )}

@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
+import {
+  type ErrorEnvelope,
+  jsonErrorResponse,
+  requestIdFromHeaders,
+} from "@/lib/api/error-envelope";
 import { AuthError } from "@/app/app/api/_lib/auth";
 import { isHeaderAuthenticatedRequest } from "@/app/app/api/_lib/auth-credential-core";
+import { logger } from "@/lib/logging/logger";
+import { runWithRequestContext } from "@/lib/logging/request-context";
 import { BookApiError, isBookApiError } from "./errors";
+import { classifyRetryableAwsError } from "./aws-retryable-error-core";
+import { resolveApiVersion } from "./api-version-core";
 import { getAppBaseUrl } from "./env";
 import {
   evaluateSameOrigin,
-  isCsrfEnforcementOn,
   originOf,
+  shouldEnforceCsrfOrigin,
   UNSAFE_METHODS,
 } from "./http-guards-core";
 
@@ -20,23 +29,11 @@ export {
   isWithinDailyLimit,
   evaluateSameOrigin,
   isCsrfEnforcementOn,
+  shouldEnforceCsrfOrigin,
   SETTINGS_VALUE_MAX_CHARS,
   SETTINGS_TOTAL_MAX_CHARS,
   CHAPTER_NOTES_MAX_CHARS,
 } from "./http-guards-core";
-
-type ErrorEnvelope = {
-  error: {
-    code: string;
-    message: string;
-    requestId: string;
-    details?: unknown;
-  };
-};
-
-function requestIdFromHeaders(req: Request): string {
-  return req.headers.get("x-amzn-trace-id") || crypto.randomUUID();
-}
 
 // ─── Same-origin / CSRF guard (#6) ───────────────────────────────────────────
 //
@@ -56,20 +53,21 @@ function requestIdFromHeaders(req: Request): string {
 // (see `isHeaderAuthenticatedRequest`); cookie-authed mutations keep the guard
 // exactly as before.
 //
-// ENFORCEMENT FLAG: set env `CSRF_ORIGIN_ENFORCE=0` (or "false"/"off"/"no") to
-// run in OBSERVE-ONLY mode — a would-be rejection is logged via console.warn
-// (with the offending origin + path) but the request proceeds. Any other value
-// (or unset) = ENFORCING (the safe default). Use observe-only as a brief
-// confirmation window after first deploy to confirm no legitimate host/alias
-// trips a 403, then remove the env to re-enforce. See docs/ENVIRONMENT.md.
+// ENFORCEMENT FLAG: non-production deployments (`CHAPTERFLOW_ENV=dev|staging`)
+// may set `CSRF_ORIGIN_ENFORCE=0` (or "false"/"off"/"no") to run in
+// OBSERVE-ONLY mode — a would-be rejection is logged (structured
+// `csrf_origin_observe_only`, with the offending origin + path) but the request
+// proceeds. Production always enforces regardless of that flag; there is no
+// production break-glass bypass. Any other value (or unset) = ENFORCING (the
+// safe default). See docs/ENVIRONMENT.md.
 
 /**
  * Server-side same-origin/CSRF guard. Resolves the canonical app origin
  * (`getAppBaseUrl`) and runs the pure {@link evaluateSameOrigin} decision over
  * the request's method + `Origin`/`Sec-Fetch-Site` headers. Throws
  * `BookApiError(403, "forbidden_origin")` on rejection. In observe-only mode
- * (`CSRF_ORIGIN_ENFORCE` off) it logs and returns instead of throwing. No-op on
- * safe methods.
+ * (`CSRF_ORIGIN_ENFORCE` off in dev/staging) it logs and returns instead of
+ * throwing. Production always enforces. No-op on safe methods.
  */
 export async function requireSameOrigin(req: Request): Promise<void> {
   const method = req.method.toUpperCase();
@@ -109,12 +107,17 @@ export async function requireSameOrigin(req: Request): Promise<void> {
     }
   })();
 
-  if (!isCsrfEnforcementOn()) {
-    console.warn("csrf_origin_observe_only", { method, path, reason: decision.reason });
+  const enforce = shouldEnforceCsrfOrigin({
+    nodeEnvironment: process.env.NODE_ENV,
+    deploymentEnvironment: process.env.CHAPTERFLOW_ENV,
+    enforcementFlag: process.env.CSRF_ORIGIN_ENFORCE,
+  });
+  if (!enforce) {
+    logger.warn("csrf_origin_observe_only", { method, path, reason: decision.reason });
     return;
   }
 
-  console.warn("csrf_origin_rejected", { method, path, reason: decision.reason });
+  logger.warn("csrf_origin_rejected", { method, path, reason: decision.reason });
   throw new BookApiError(
     403,
     "forbidden_origin",
@@ -122,6 +125,14 @@ export async function requireSameOrigin(req: Request): Promise<void> {
   );
 }
 
+// Mutation ACK conventions (WS4-007): book API mutation endpoints return either
+// the affected resource (e.g. the updated `saved` list) or ONE documented ack
+// shape — `{ recorded: true }` / `{ deleted: true }` / `{ created }` /
+// `{ applied, reason }` / `{ received: true, duplicate?: true }` — never a bare
+// `{ ok: true }`. The sole exceptions are `me/share-events` and
+// `me/flow-points/redeem`, whose `/ok` field is pinned by the native contract
+// and decoded by live iOS models; those retire from the allowlist only when an
+// iOS-coordinated release drops `/ok` (see mutation-ack-shape.test.ts).
 export function bookOk<T>(data: T, init?: number | ResponseInit): NextResponse<T> {
   const resInit = typeof init === "number" ? { status: init } : init;
   return NextResponse.json(data, resInit);
@@ -135,17 +146,10 @@ export function bookErr(
   details?: unknown,
   requestId?: string
 ): NextResponse<ErrorEnvelope> {
-  return NextResponse.json(
-    {
-      error: {
-        code,
-        message,
-        requestId: requestId ?? requestIdFromHeaders(req),
-        details,
-      },
-    },
-    { status }
-  );
+  return jsonErrorResponse(req, status, code, message, {
+    details,
+    requestId,
+  }) as NextResponse<ErrorEnvelope>;
 }
 
 /**
@@ -185,87 +189,133 @@ export async function withBookApiErrors<T>(
   // Compute the correlation id once so the logged line and the client envelope
   // carry the SAME requestId — needed to tie a user's 500 to its log entry.
   const requestId = requestIdFromHeaders(req);
-  try {
-    // CSRF / same-origin guard runs BEFORE the route body so a rejected
-    // cross-site mutation never touches auth, DynamoDB, or Stripe. No-op on
-    // safe methods and when explicitly opted out.
-    if (!opts?.skipOriginCheck) {
-      await requireSameOrigin(req);
-    }
-    return await fn();
-  } catch (error: unknown) {
-    if (error instanceof AuthError) {
-      // A transient JWKS-verifier outage is reported as AuthError
-      // "VERIFIER_UNAVAILABLE" — surface it as 503 (not a definitive 401) so
-      // clients retry instead of treating a still-valid session as unauthenticated.
-      if (error.message === "VERIFIER_UNAVAILABLE") {
+  // Bind requestId to the ALS request context for the whole handler so any log
+  // emitted by the route body — or by requireSameOrigin, which runs inside this
+  // scope — resolves the correlation id automatically (WS6-031).
+  return runWithRequestContext(requestId, async () => {
+    try {
+      // API version negotiation (WS4-006) runs BEFORE anything else — a
+      // request naming an unsupported version never touches CSRF, auth,
+      // DynamoDB, or Stripe. See docs/API-VERSIONING.md. Absent header, plain
+      // application/json, and browser Accept lists all default to v1, so
+      // every existing web/native client is unaffected.
+      const versionResolution = resolveApiVersion(req.headers.get("accept"));
+      if (!versionResolution.supported) {
         return bookErr(
+          req,
+          406,
+          "unsupported_api_version",
+          "This API version is not supported. This endpoint currently serves v1 only.",
+          { requested: versionResolution.requested },
+          requestId
+        );
+      }
+
+      // CSRF / same-origin guard runs BEFORE the route body so a rejected
+      // cross-site mutation never touches auth, DynamoDB, or Stripe. No-op on
+      // safe methods and when explicitly opted out.
+      if (!opts?.skipOriginCheck) {
+        await requireSameOrigin(req);
+      }
+      const res = await fn();
+      res.headers.set("X-ChapterFlow-Api-Version", String(versionResolution.version));
+      return res;
+    } catch (error: unknown) {
+      if (error instanceof AuthError) {
+        // A transient JWKS-verifier outage is reported as AuthError
+        // "VERIFIER_UNAVAILABLE" — surface it as 503 (not a definitive 401) so
+        // clients retry instead of treating a still-valid session as unauthenticated.
+        if (error.message === "VERIFIER_UNAVAILABLE") {
+          return bookErr(
+            req,
+            503,
+            "verifier_unavailable",
+            "Authentication is temporarily unavailable. Please retry.",
+            undefined,
+            requestId
+          );
+        }
+        // Step-up auth (#5): the token is valid but the authentication is too old
+        // for this sensitive action. A DISTINCT 401 code (`reauth_required`) the
+        // client detects to force a fresh login then retry — NOT a plain
+        // "unauthenticated" (which would log the user out). The `details.reauth`
+        // hint tells the client to redirect through a forced re-auth.
+        if (error.message === "REAUTH_REQUIRED") {
+          return bookErr(
+            req,
+            401,
+            "reauth_required",
+            "Please re-authenticate to continue. This action requires a recent sign-in.",
+            { reauth: true },
+            requestId
+          );
+        }
+        // INVALID_TOKEN: a credential WAS presented but is genuinely bad (bad
+        // signature, expired, wrong `token_use`, or no matching JWKS key). Per RFC
+        // 6750 §3.1 this is a distinct 401 `invalid_token` — separate from
+        // `unauthenticated` (no credential at all) — so a Bearer client can tell
+        // "your token is bad, obtain a fresh one" from "you sent nothing". Still a
+        // 401 either way; only the machine code differs (the web client keys its
+        // redirect off status + `reauth_required`, not this code).
+        if (error.message === "INVALID_TOKEN") {
+          return bookErr(
+            req,
+            401,
+            "invalid_token",
+            "Your session is no longer valid. Please sign in again.",
+            undefined,
+            requestId
+          );
+        }
+        return bookErr(req, 401, "unauthenticated", "Authentication is required.", undefined, requestId);
+      }
+      if (isBookApiError(error)) {
+        return bookErr(req, error.status, error.code, error.message, error.details, requestId);
+      }
+
+      const name = error instanceof Error ? error.name : "UnknownError";
+      const message = error instanceof Error ? error.message : String(error);
+
+      // AWS SDK throttling (DynamoDB ProvisionedThroughputExceeded, S3
+      // SlowDown, etc.) is a transient upstream-capacity signal, not an
+      // unhandled bug — surface it as a retryable 503 with a Retry-After
+      // hint instead of the generic 500. `logger.warn` (not `.error`) and NO
+      // `reportUnhandledError` call: throttling must not trip the OpsFailure
+      // alarm that unhandled 500s do.
+      const throttle = classifyRetryableAwsError(error);
+      if (throttle) {
+        logger.warn("book_api_upstream_throttled", { name, requestId });
+        const res = bookErr(
           req,
           503,
-          "verifier_unavailable",
-          "Authentication is temporarily unavailable. Please retry.",
+          "throttled",
+          "The service is temporarily busy. Please retry.",
           undefined,
           requestId
         );
+        res.headers.set("Retry-After", String(throttle.retryAfterSeconds));
+        return res;
       }
-      // Step-up auth (#5): the token is valid but the authentication is too old
-      // for this sensitive action. A DISTINCT 401 code (`reauth_required`) the
-      // client detects to force a fresh login then retry — NOT a plain
-      // "unauthenticated" (which would log the user out). The `details.reauth`
-      // hint tells the client to redirect through a forced re-auth.
-      if (error.message === "REAUTH_REQUIRED") {
-        return bookErr(
-          req,
-          401,
-          "reauth_required",
-          "Please re-authenticate to continue. This action requires a recent sign-in.",
-          { reauth: true },
-          requestId
-        );
-      }
-      // INVALID_TOKEN: a credential WAS presented but is genuinely bad (bad
-      // signature, expired, wrong `token_use`, or no matching JWKS key). Per RFC
-      // 6750 §3.1 this is a distinct 401 `invalid_token` — separate from
-      // `unauthenticated` (no credential at all) — so a Bearer client can tell
-      // "your token is bad, obtain a fresh one" from "you sent nothing". Still a
-      // 401 either way; only the machine code differs (the web client keys its
-      // redirect off status + `reauth_required`, not this code).
-      if (error.message === "INVALID_TOKEN") {
-        return bookErr(
-          req,
-          401,
-          "invalid_token",
-          "Your session is no longer valid. Please sign in again.",
-          undefined,
-          requestId
-        );
-      }
-      return bookErr(req, 401, "unauthenticated", "Authentication is required.", undefined, requestId);
-    }
-    if (isBookApiError(error)) {
-      return bookErr(req, error.status, error.code, error.message, error.details, requestId);
-    }
 
-    const name = error instanceof Error ? error.name : "UnknownError";
-    const message = error instanceof Error ? error.message : String(error);
-    // Cap the message so a runaway error string can't bloat the log line, and
-    // never log the full stack in production: stacks can incidentally surface
-    // identifiers, and CloudWatch is for correlation, not forensic dumps. In
-    // non-production we keep the stack to aid local/staging debugging.
-    const shortMessage = message.length > 300 ? `${message.slice(0, 300)}…` : message;
-    if (process.env.NODE_ENV === "production") {
-      console.error("book_api_unhandled_error", { name, message: shortMessage, requestId });
-      reportUnhandledError(name);
-    } else {
-      console.error("book_api_unhandled_error", {
-        name,
-        message: shortMessage,
-        requestId,
-        stack: error instanceof Error ? error.stack : undefined,
-      });
+      // Cap the message so a runaway error string can't bloat the log line, and
+      // never log the full stack in production: stacks can incidentally surface
+      // identifiers, and CloudWatch is for correlation, not forensic dumps. In
+      // non-production we keep the stack to aid local/staging debugging.
+      const shortMessage = message.length > 300 ? `${message.slice(0, 300)}…` : message;
+      if (process.env.NODE_ENV === "production") {
+        logger.error("book_api_unhandled_error", { name, message: shortMessage, requestId });
+        reportUnhandledError(name);
+      } else {
+        logger.error("book_api_unhandled_error", {
+          name,
+          message: shortMessage,
+          requestId,
+          stack: error instanceof Error ? error.stack : undefined,
+        });
+      }
+      return bookErr(req, 500, "server_error", "An unexpected server error occurred.", undefined, requestId);
     }
-    return bookErr(req, 500, "server_error", "An unexpected server error occurred.", undefined, requestId);
-  }
+  });
 }
 
 export function requireBodyObject(reqBody: unknown): Record<string, unknown> {

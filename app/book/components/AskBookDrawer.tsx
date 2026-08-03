@@ -42,7 +42,8 @@ function pickFollowUps(messages: Message[]): string[] {
   const seed = messages.length;
   for (let i = available.length - 1; i > 0; i--) {
     const j = ((seed * 2654435761 + i * 40503) >>> 0) % (i + 1);
-    [available[i], available[j]] = [available[j], available[i]];
+    // Fisher-Yates: i ∈ (0, len) and j ∈ [0, i] are both in-bounds.
+    [available[i], available[j]] = [available[j]!, available[i]!];
   }
   return available.slice(0, 2);
 }
@@ -172,6 +173,7 @@ export function AskBookDrawer({ bookId, bookTitle, chapterNumber }: AskBookDrawe
       const id = setTimeout(() => inputRef.current?.focus(), 100);
       return () => clearTimeout(id);
     }
+    return undefined;
   }, [open]);
 
   const handleClear = useCallback(() => {

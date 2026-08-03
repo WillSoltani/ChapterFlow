@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-quiz-1783911852084-16-fafce44d-d89c-4e12-ac6e-3d47b726acb7",
+  "status": "completed",
+  "role": "quiz",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "schemaSha256": "c8fd66b5b6461d8fe72a1b2f34c3da261dd33b8814bebf80c7e0c8c2b1262365",
+  "rawOutput": "{\"schema\":\"quiz-integrity-adjudication-v1\",\"items\":[{\"itemId\":\"ch02-q01\",\"keyedAnswerIndex\":1,\"derivedAnswerIndex\":0,\"agreement\":false,\"keyCorrect\":\"ambiguous\",\"rationale\":\"Choices 0 and 1 are both defensible from the question’s wording and the supplied chapter evidence, so the keyed choice is not uniquely supported.\",\"defensibleAnswerIndices\":[0,1],\"keyedMechanismSupported\":true}]}"
+}

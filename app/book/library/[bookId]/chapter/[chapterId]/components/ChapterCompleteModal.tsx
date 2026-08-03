@@ -35,15 +35,15 @@ interface Props {
   hasNextChapter: boolean;
   onNext: () => void;
   onLibrary: () => void;
-  onShare?: () => Promise<"shared" | "copied" | "unsupported"> | void;
+  onShare?: () => Promise<"shared" | "copied" | "unsupported"> | void | undefined;
   /** Two-axis completion (feedback #4): the chapter's DERIVED application state.
    *  Display/celebration only — gates nothing, awards no IP. Defaults to "none". */
-  applicationState?: ChapterApplicationState | null;
+  applicationState?: ChapterApplicationState | null | undefined;
   /** Whether a CommitmentPrompt will actually render below (children). The "none"
    *  invitation points at that prompt, so it's suppressed when none exists (a chapter
    *  without if-then plans) to avoid copy that dangles. Defaults to true. */
-  commitmentAvailable?: boolean;
-  children?: React.ReactNode;
+  commitmentAvailable?: boolean | undefined;
+  children?: React.ReactNode | undefined;
 }
 
 type IconCmp = typeof Check;
@@ -188,7 +188,7 @@ export function ChapterCompleteModal({
             >
               Chapter {chapterNumber} Complete
             </h2>
-            <p className="text-[14px] text-(--cr-text-disabled)">{chapterTitle}</p>
+            <p className="text-cf-body-sm text-(--cr-text-disabled)">{chapterTitle}</p>
           </div>
 
           {/* Lead with emotion — the big gold IP count-up and the loud gold streak
@@ -203,7 +203,7 @@ export function ChapterCompleteModal({
                   >
                     +{shownIP}
                   </p>
-                  <p className="mt-1 text-[11px] text-(--cr-text-disabled)">insight points earned</p>
+                  <p className="mt-1 text-cf-caption text-(--cr-text-disabled)">insight points earned</p>
                 </div>
               )}
               {streak > 1 && (
@@ -215,7 +215,7 @@ export function ChapterCompleteModal({
                     <Flame className="h-7 w-7" aria-hidden="true" style={{ color: "var(--accent-gold)" }} />
                     {streak}
                   </span>
-                  <p className="mt-1 text-[11px] text-(--cr-text-disabled)">day streak</p>
+                  <p className="mt-1 text-cf-caption text-(--cr-text-disabled)">day streak</p>
                 </div>
               )}
             </div>
@@ -226,7 +226,7 @@ export function ChapterCompleteModal({
             {phases.map((p) => (
               <span
                 key={p.label}
-                className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-[12px] font-medium text-(--cr-accent)"
+                className="inline-flex items-center gap-1 rounded-full px-3 py-1 text-cf-label-sm font-medium text-(--cr-accent)"
                 style={{
                   background: "color-mix(in srgb, var(--cr-accent) 12%, transparent)",
                   border: "1px solid color-mix(in srgb, var(--cr-accent) 26%, transparent)",
@@ -242,7 +242,7 @@ export function ChapterCompleteModal({
           {/* Achievements unlocked — a calm in-modal row (no detached toasts). */}
           {achievements.length > 0 && (
             <div className="mb-5">
-              <p className="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
+              <p className="mb-2 flex items-center gap-1.5 text-cf-caption font-semibold uppercase tracking-[0.14em] text-(--cr-text-disabled)">
                 <Trophy className="h-3.5 w-3.5" style={{ color: "var(--accent-gold)" }} aria-hidden="true" />
                 {achievements.length === 1 ? "Achievement unlocked" : `${achievements.length} achievements unlocked`}
               </p>
@@ -254,13 +254,13 @@ export function ChapterCompleteModal({
                   >
                     <Trophy className="h-5 w-5 shrink-0" style={{ color: "var(--accent-gold)" }} aria-hidden="true" />
                     <div className="min-w-0 flex-1">
-                      <p className="truncate text-[14px] font-bold text-(--cr-text-heading)">{a.name}</p>
+                      <p className="truncate text-cf-body-sm font-bold text-(--cr-text-heading)">{a.name}</p>
                       {a.celebrationCopy && (
-                        <p className="mt-0.5 line-clamp-2 text-[12px] text-(--cr-text-secondary)">{a.celebrationCopy}</p>
+                        <p className="mt-0.5 line-clamp-2 text-cf-label-sm text-(--cr-text-secondary)">{a.celebrationCopy}</p>
                       )}
                     </div>
                     {a.ip > 0 && (
-                      <span className="shrink-0 text-[12px] font-bold tabular-nums" style={{ color: "var(--cf-gold-text)" }}>
+                      <span className="shrink-0 text-cf-label-sm font-bold tabular-nums" style={{ color: "var(--cf-gold-text)" }}>
                         +{a.ip} IP
                       </span>
                     )}
@@ -279,7 +279,7 @@ export function ChapterCompleteModal({
                 onClick={() => setLedgerOpen((o) => !o)}
                 aria-expanded={ledgerOpen}
                 aria-controls="ip-ledger"
-                className="cf-pressable flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-(--cr-text-disabled) transition hover:text-(--cr-text-secondary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
+                className="cf-pressable flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-cf-caption font-semibold uppercase tracking-[0.14em] text-(--cr-text-disabled) transition hover:text-(--cr-text-secondary) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
                 style={{
                   background: "color-mix(in srgb, var(--accent-gold) 6%, transparent)",
                   border: "1px solid color-mix(in srgb, var(--accent-gold) 18%, transparent)",
@@ -302,7 +302,7 @@ export function ChapterCompleteModal({
                 >
                   <div className="space-y-2">
                     {lines.map((line) => (
-                      <div key={line.key} className="flex items-center justify-between text-[13px]">
+                      <div key={line.key} className="flex items-center justify-between text-cf-label">
                         <span className="flex items-center gap-2 text-(--cr-text-secondary)">
                           <line.Icon
                             className="h-4 w-4 shrink-0"
@@ -333,7 +333,7 @@ export function ChapterCompleteModal({
            *  it hides once a commitment exists, so it's correct under either ordering. */}
           <div className="mb-5 flex flex-col gap-2" role="group" aria-label="Completion status">
             <div
-              className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] text-(--cr-text-heading)"
+              className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-cf-label text-(--cr-text-heading)"
               style={{
                 background: "color-mix(in srgb, var(--accent-emerald) 10%, transparent)",
                 border: "1px solid color-mix(in srgb, var(--accent-emerald) 24%, transparent)",
@@ -355,7 +355,7 @@ export function ChapterCompleteModal({
             {(!appView.isInvitation || commitmentAvailable) &&
               (appView.tone === "applied" ? (
               <div
-                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] font-medium"
+                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-cf-label font-medium"
                 style={{
                   background: "color-mix(in srgb, var(--accent-gold) 12%, transparent)",
                   border: "1px solid color-mix(in srgb, var(--accent-gold) 30%, transparent)",
@@ -373,7 +373,7 @@ export function ChapterCompleteModal({
               </div>
             ) : appView.tone === "committed" ? (
               <div
-                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] text-(--cr-text-secondary)"
+                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-cf-label text-(--cr-text-secondary)"
                 style={{
                   background: "color-mix(in srgb, var(--cr-accent) 10%, transparent)",
                   border: "1px solid color-mix(in srgb, var(--cr-accent) 24%, transparent)",
@@ -391,7 +391,7 @@ export function ChapterCompleteModal({
               </div>
             ) : (
               <div
-                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-[13px] text-(--cr-text-secondary)"
+                className="flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-left text-cf-label text-(--cr-text-secondary)"
                 style={{
                   background: "var(--cr-bg-surface-3)",
                   border: "1px dashed color-mix(in srgb, var(--cr-accent) 30%, transparent)",
@@ -419,7 +419,7 @@ export function ChapterCompleteModal({
               <button
                 type="button"
                 onClick={onNext}
-                className="cf-pressable w-full rounded-full py-3.5 text-[15px] font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2"
+                className="cf-pressable w-full rounded-full py-3.5 text-cf-body font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_60%,transparent)] focus-visible:ring-offset-2"
                 style={{
                   // The single gold-gradient CTA — the reward action, visually
                   // distinct from every cyan "work" CTA. Dark gold-ink label clears
@@ -442,7 +442,7 @@ export function ChapterCompleteModal({
                     setTimeout(() => setShareFeedback(false), 2000);
                   }
                 }}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full py-3 text-[14px] font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full py-3 text-cf-body-sm font-medium transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
                 style={{
                   borderWidth: "1px",
                   borderColor: "color-mix(in srgb, var(--cr-accent) 25%, transparent)",
@@ -457,7 +457,7 @@ export function ChapterCompleteModal({
             <button
               type="button"
               onClick={onLibrary}
-              className="w-full rounded-full border border-(--cr-glass-border) py-3 text-[14px] font-medium text-(--cr-text-secondary) transition hover:text-(--cr-text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
+              className="w-full rounded-full border border-(--cr-glass-border) py-3 text-cf-body-sm font-medium text-(--cr-text-secondary) transition hover:text-(--cr-text-heading) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[color-mix(in_srgb,var(--cr-accent)_55%,transparent)] focus-visible:ring-offset-2"
             >
               Back to Library
             </button>

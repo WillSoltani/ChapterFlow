@@ -1,0 +1,23 @@
+{
+  "extends": "./tsconfig.base.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    "**/*.mts",
+    ".next/dev/types/**/*.ts",
+    ".next-chapterflow/types/**/*.ts",
+    ".next-chapterflow/dev/types/**/*.ts",
+    ".next-review/types/**/*.ts",
+    ".next-review/dev/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "infra/**",
+    "cdk.out/**",
+    "scripts/book/prompts/*/scratch/**",
+    ".next-chapterflow/**",
+    ".next-cf-dev/**"
+  ]
+}

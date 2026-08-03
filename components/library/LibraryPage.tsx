@@ -4,16 +4,16 @@ import { useState, useCallback, useMemo, useEffect, useRef } from "react";
 import { useSearchParams } from "next/navigation";
 import { TriangleAlert } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { DUR, EASE } from "@/lib/motion";
-import { TopNav } from "@/app/book/home/components/TopNav";
-import { Toast, type ToastTone } from "@/app/book/components/ui/Toast";
-import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
-import { useLibraryDashboard } from "@/app/book/hooks/useLibraryDashboard";
-import { emitBookStorageChanged } from "@/app/book/hooks/bookStorageEvents";
-import { useBookViewer } from "@/app/book/hooks/useBookViewer";
-import { useSavedBooks } from "@/app/book/hooks/useSavedBooks";
+import { TopNav } from "@/components/navigation/TopNav";
+import { Toast } from "@/components/ui/Toast";
+import { useToast } from "@/hooks/book/useToast";
+import { ErrorBanner } from "@/components/ui/ErrorBanner";
+import { useLibraryDashboard } from "@/hooks/book/useLibraryDashboard";
+import { emitBookStorageChanged } from "@/lib/client/book-storage-events";
+import { useBookViewer } from "@/hooks/book/useBookViewer";
+import { useSavedBooks } from "@/hooks/book/useSavedBooks";
 import { BookCover } from "@/components/ui/BookCover";
-import { deriveReaderLevel, type ReaderLevel } from "@/lib/reader-levels";
+import { deriveReaderLevel } from "@/lib/reader-levels";
 import { HeroRecommendation } from "./HeroRecommendation";
 import { ActiveReads } from "./ActiveReads";
 import { WeeklyChallenge } from "./WeeklyChallenge";
@@ -25,59 +25,6 @@ import { LibraryProvider, type LibraryContextValue } from "./LibraryContext";
 import { toLibraryBooks, toUserStats, WEEKLY_CHALLENGE } from "./dashboardToLibraryUi";
 import { CURATED_SECTIONS, type LibraryBook } from "./libraryData";
 
-/** Completion celebration toast (Change 11) */
-function CelebrationToast({
-  bookTitle,
-  xp,
-  readerLevel,
-  visible,
-  onDismiss,
-}: {
-  bookTitle: string;
-  xp: number;
-  readerLevel: ReaderLevel;
-  visible: boolean;
-  onDismiss: () => void;
-}) {
-  useEffect(() => {
-    if (!visible) return;
-    const t = setTimeout(onDismiss, 5000);
-    return () => clearTimeout(t);
-  }, [visible, onDismiss]);
-
-  return (
-    <AnimatePresence>
-      {visible && (
-        <motion.div
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: 100 }}
-          transition={{ duration: DUR.normal, ease: EASE.standard }}
-          className="fixed right-4 top-20 z-50 max-w-[calc(100vw-2rem)] overflow-hidden rounded-xl sm:right-5 sm:max-w-sm"
-          style={{
-            background: "var(--bg-glass)",
-            backdropFilter: "blur(12px)",
-            border: "1px solid var(--border-emphasis)",
-            borderLeft: "4px solid var(--accent-amber)",
-            boxShadow: "var(--shadow-modal)",
-          }}
-        >
-          <div className="px-5 py-4">
-            <p className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
-              You&apos;ve mastered {bookTitle}!
-            </p>
-            <p className="mt-1 text-[13px]" style={{ color: "var(--accent-amber)" }}>
-              {/* Only claim IP when there's a real, non-zero figure. */}
-              {xp > 0 ? `+${xp} IP earned · ` : ""}
-              {readerLevel}
-            </p>
-          </div>
-        </motion.div>
-      )}
-    </AnimatePresence>
-  );
-}
-
 function LibraryStateMessage({ title, body }: { title: string; body: string }) {
   return (
     <div className="px-5 pb-24 pt-16 md:px-7">
@@ -85,10 +32,10 @@ function LibraryStateMessage({ title, body }: { title: string; body: string }) {
         className="mx-auto max-w-md rounded-2xl px-8 py-12 text-center"
         style={{ background: "var(--bg-glass)", border: "1px solid var(--border-subtle)" }}
       >
-        <p className="text-[16px] font-semibold" style={{ color: "var(--text-heading)" }}>
+        <p className="text-cf-body-lg font-semibold" style={{ color: "var(--text-heading)" }}>
           {title}
         </p>
-        <p className="mt-2 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+        <p className="mt-2 text-cf-label" style={{ color: "var(--text-secondary)" }}>
           {body}
         </p>
       </div>
@@ -107,7 +54,7 @@ export function LibraryPage() {
   const { savedSet, toggleSaved } = useSavedBooks(true);
 
   const firstName = useMemo(
-    () => (identity.givenName || identity.displayName || "Reader").split(" ")[0],
+    () => (identity.givenName || identity.displayName || "Reader").split(" ")[0] ?? "Reader",
     [identity.givenName, identity.displayName],
   );
 
@@ -137,22 +84,22 @@ export function LibraryPage() {
   );
 
   // ── Save (Read Next) + toast ──
-  const [toast, setToast] = useState<{ message: string; tone: ToastTone } | null>(null);
+  const { toast, showToast } = useToast(3000);
   const onToggleSave = useCallback(
     async (bookId: string, title: string) => {
       const result = await toggleSaved(bookId, { source: "library" });
       if (result.error) {
-        setToast({ message: "Couldn't update Read Next. Please try again.", tone: "error" });
+        showToast("Couldn't update Read Next. Please try again.", "error");
         return;
       }
-      setToast({
-        message: result.saved
+      showToast(
+        result.saved
           ? `Saved “${title}” to Read Next`
           : `Removed “${title}” from Read Next`,
-        tone: "success",
-      });
+        "success",
+      );
     },
-    [toggleSaved],
+    [showToast, toggleSaved],
   );
 
   const libraryContext = useMemo<LibraryContextValue>(
@@ -226,7 +173,7 @@ export function LibraryPage() {
   // Completion celebration (Change 11) — fires once per newly completed book
   const completedParam = searchParams.get("completed");
   const [celebrationBook, setCelebrationBook] = useState<string | null>(null);
-  const [showCelebrationToast, setShowCelebrationToast] = useState(false);
+  const celebrationToastKeyRef = useRef<string | null>(null);
 
   useEffect(() => {
     if (!completedParam) return;
@@ -235,12 +182,22 @@ export function LibraryPage() {
       localStorage.setItem(key, "true");
       /* eslint-disable react-hooks/set-state-in-effect */
       setCelebrationBook(completedParam);
-      setShowCelebrationToast(true);
       /* eslint-enable react-hooks/set-state-in-effect */
     }
   }, [completedParam]);
 
   const celebratedBookData = celebrationBook ? booksById.get(celebrationBook) ?? null : null;
+  useEffect(() => {
+    if (!celebrationBook || !celebratedBookData) return;
+    if (celebrationToastKeyRef.current === celebrationBook) return;
+    celebrationToastKeyRef.current = celebrationBook;
+    const xp = celebratedBookData.userProgress?.xpEarned ?? 0;
+    showToast(`You've mastered ${celebratedBookData.title}!`, "success", {
+      autoDismissMs: 5000,
+      detail: `${xp > 0 ? `+${xp} IP earned · ` : ""}${readerLevel}`,
+      presentation: "celebration",
+    });
+  }, [celebratedBookData, celebrationBook, readerLevel, showToast]);
 
   // Search query from navbar / URL → auto-scroll to Browse All
   const navSearchQuery = searchParams.get("q") ?? "";
@@ -251,6 +208,7 @@ export function LibraryPage() {
       }, 300);
       return () => clearTimeout(t);
     }
+    return undefined;
   }, [navSearchQuery]);
 
   // Up to 3 Pro books (catalog order) for the exhaustion banner — no fake ranking.
@@ -340,10 +298,10 @@ export function LibraryPage() {
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div>
-                      <p className="text-[15px] font-semibold" style={{ color: "var(--text-heading)" }}>
+                      <p className="text-cf-body font-semibold" style={{ color: "var(--text-heading)" }}>
                         You&apos;ve explored your free books — unlock the full library with Pro
                       </p>
-                      <p className="mt-1 text-[13px]" style={{ color: "var(--text-secondary)" }}>
+                      <p className="mt-1 text-cf-label" style={{ color: "var(--text-secondary)" }}>
                         Your reading progress is saved — upgrade to continue your journey.
                       </p>
                       <div className="mt-3 flex items-center gap-3">
@@ -364,7 +322,7 @@ export function LibraryPage() {
                         ))}
                         <a
                           href="/pricing"
-                          className="ml-2 rounded-lg px-4 py-2 text-[13px] font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
+                          className="ml-2 rounded-lg px-4 py-2 text-cf-label font-semibold text-black transition-transform focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-(--accent-amber) focus-visible:ring-offset-2 focus-visible:ring-offset-(--cf-page-bg)"
                           style={{ background: "var(--cf-upgrade-accent)" }}
                         >
                           Upgrade to Pro →
@@ -414,23 +372,13 @@ export function LibraryPage() {
       )}
       </main>
 
-      {/* Completion celebration toast (Change 11) */}
-      {celebratedBookData && (
-        <CelebrationToast
-          bookTitle={celebratedBookData.title}
-          xp={celebratedBookData.userProgress?.xpEarned ?? 0}
-          readerLevel={readerLevel}
-          visible={showCelebrationToast}
-          onDismiss={() => setShowCelebrationToast(false)}
-        />
-      )}
-
-      {/* Save (Read Next) feedback */}
+      {/* Completion and Save (Read Next) feedback */}
       <Toast
-        open={Boolean(toast)}
-        message={toast?.message ?? ""}
-        tone={toast?.tone ?? "info"}
-        onClose={() => setToast(null)}
+        open={toast.open}
+        message={toast.message}
+        tone={toast.tone}
+        detail={toast.detail}
+        presentation={toast.presentation}
       />
     </div>
   );

@@ -1,37 +1,41 @@
 import "server-only";
 
-import { QueryCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import {
+  QueryCommand,
+  ScanCommand,
+  type ScanCommandOutput,
+} from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 
 export type EntitlementSnapshot = {
   userId: string;
   plan: "FREE" | "PRO";
-  proStatus?: string;
-  proSource?: string;
-  stripeCustomerId?: string;
-  stripeSubscriptionId?: string;
-  stripePriceId?: string;
-  subscriptionInterval?: string;
-  currentPeriodEnd?: string;
-  cancelAtPeriodEnd?: boolean;
-  licenseKey?: string;
-  licenseExpiresAt?: string;
+  proStatus?: string | undefined;
+  proSource?: string | undefined;
+  stripeCustomerId?: string | undefined;
+  stripeSubscriptionId?: string | undefined;
+  stripePriceId?: string | undefined;
+  subscriptionInterval?: string | undefined;
+  currentPeriodEnd?: string | undefined;
+  cancelAtPeriodEnd?: boolean | undefined;
+  licenseKey?: string | undefined;
+  licenseExpiresAt?: string | undefined;
   // Billing intelligence — written by the Stripe webhook (absent for
   // license / flow_points / gift sources). These MUST stay in lockstep with
   // the ProjectionExpression AND the item mapping in scanAllEntitlements
   // below: a field listed here but not projected reads back `undefined` at
   // runtime, which is exactly how the admin billing dashboard silently
   // reported $0 MRR while the data sat in DynamoDB.
-  billingCountry?: string;
-  billingCurrency?: string;
-  subscriptionAmountCents?: number;
-  cardBrand?: string;
-  cardCountry?: string;
-  lastInvoiceAmountCents?: number;
-  lastInvoiceCurrency?: string;
-  lastInvoicePaidAt?: string;
-  failedPaymentLastReason?: string;
-  updatedAt?: string;
+  billingCountry?: string | undefined;
+  billingCurrency?: string | undefined;
+  subscriptionAmountCents?: number | undefined;
+  cardBrand?: string | undefined;
+  cardCountry?: string | undefined;
+  lastInvoiceAmountCents?: number | undefined;
+  lastInvoiceCurrency?: string | undefined;
+  lastInvoicePaidAt?: string | undefined;
+  failedPaymentLastReason?: string | undefined;
+  updatedAt?: string | undefined;
 };
 
 /**
@@ -43,7 +47,7 @@ export type EntitlementSnapshot = {
  *   USER#<userId>         EVENT#<isoTs>#<eventType>
  *
  * GSI1 "eventDate-eventType-index"  PK=eventDate (YYYY-MM-DD), SK=eventType
- * GSI2 "plan-updatedAt-index"       PK=plan, SK=updatedAt
+ * GSI2 "plan-updatedAt-index-v2"    PK=plan, SK=updatedAt (readers query v2)
  */
 
 export function dayKey(date: Date = new Date()): string {
@@ -161,7 +165,7 @@ export async function activeUsersByPlan(
     const res = await ddbDoc.send(
       new QueryCommand({
         TableName: analyticsTable,
-        IndexName: "plan-updatedAt-index",
+        IndexName: "plan-updatedAt-index-v2",
         KeyConditionExpression: "#p = :p AND updatedAt >= :since",
         ExpressionAttributeNames: { "#p": "plan" },
         ExpressionAttributeValues: { ":p": plan, ":since": sinceIso },
@@ -188,7 +192,7 @@ export async function totalUsersByPlan(
     const res = await ddbDoc.send(
       new QueryCommand({
         TableName: analyticsTable,
-        IndexName: "plan-updatedAt-index",
+        IndexName: "plan-updatedAt-index-v2",
         KeyConditionExpression: "#p = :p",
         ExpressionAttributeNames: { "#p": "plan" },
         ExpressionAttributeValues: { ":p": plan },
@@ -586,7 +590,7 @@ export type CohortRetentionRow = {
 };
 
 export function buildCohortRetention(
-  snapshots: Array<{ firstSeenAt?: string; readingDays?: Set<string> | string[] }>,
+  snapshots: Array<{ firstSeenAt?: string | undefined; readingDays?: Set<string> | string[] | undefined }>,
   weeksToShow = 8,
 ): CohortRetentionRow[] {
   const cohorts = new Map<string, { size: number; activeByWeek: number[] }>();
@@ -684,9 +688,9 @@ export function bucketReadingFrequency(
  */
 export function bucketDeviceFields(
   snapshots: Array<{
-    deviceType?: string;
-    browserName?: string;
-    osName?: string;
+    deviceType?: string | undefined;
+    browserName?: string | undefined;
+    osName?: string | undefined;
   }>,
 ): {
   deviceType: Array<{ key: string; count: number }>;
@@ -729,7 +733,7 @@ export function percentile(sortedValues: number[], p: number): number {
     sortedValues.length - 1,
     Math.max(0, Math.floor((p / 100) * sortedValues.length)),
   );
-  return sortedValues[idx];
+  return sortedValues[idx]!; // idx is clamped to [0, length-1] and length > 0 here
 }
 
 /**
@@ -750,6 +754,13 @@ export function countActiveDays(
 
 /**
  * List most recently active users by plan, capped to `limit`.
+ *
+ * GSI PROJECTION GUARD: this reads full items off "plan-updatedAt-index-v2",
+ * which is projected INCLUDE (not ALL). Every attribute a caller reads off these
+ * results (via formatUser in admin/users/search/route.ts) MUST be in the GSI's
+ * nonKeyAttributes list in infra/lib/chapterflow-backend-stack.ts. A missing
+ * attribute is NOT an error — DynamoDB silently omits it and formatUser emits
+ * null/0. See docs/architecture/adr-analytics-gsi-projection.md.
  */
 export async function listRecentUsersByPlan(
   analyticsTable: string,
@@ -759,7 +770,7 @@ export async function listRecentUsersByPlan(
   const res = await ddbDoc.send(
     new QueryCommand({
       TableName: analyticsTable,
-      IndexName: "plan-updatedAt-index",
+      IndexName: "plan-updatedAt-index-v2",
       KeyConditionExpression: "#p = :p",
       ExpressionAttributeNames: { "#p": "plan" },
       ExpressionAttributeValues: { ":p": plan },
@@ -768,4 +779,70 @@ export async function listRecentUsersByPlan(
     }),
   );
   return res.Items ?? [];
+}
+
+// ── Admin dashboard, single-page scan wrappers (WS3-002) ─────────────────────
+//
+// These three are deliberately THIN — one ScanCommand per call, returning the
+// raw SDK page — rather than a full paginate-to-completion helper like
+// scanAllEntitlements/scanAllUserSnapshots above. Their callers
+// (admin/metrics/acquisition, admin/metrics/notifications route.ts) wrap the
+// do-while pagination loop in a try/catch that keeps whatever partial results
+// were accumulated before a mid-scan failure and reports a "database scan
+// failed" warning instead of 500ing the whole dashboard. Collapsing the loop
+// into this module would lose that partial-results-on-error behavior, so only
+// the raw command construction+send moved — the loop, the partial-accumulation
+// variables, and the try/catch all stay in the routes, unchanged.
+
+/** One page of a BOOK_USER_PROFILE scan, projected to just `profile`. */
+export async function scanBookUserProfilesPage(
+  tableName: string,
+  exclusiveStartKey?: Record<string, unknown>,
+): Promise<ScanCommandOutput> {
+  return ddbDoc.send(
+    new ScanCommand({
+      TableName: tableName,
+      FilterExpression: "entity = :e",
+      ExpressionAttributeValues: { ":e": "BOOK_USER_PROFILE" },
+      ProjectionExpression: "profile",
+      ExclusiveStartKey: exclusiveStartKey,
+      Limit: 1000,
+    }),
+  );
+}
+
+/** One page of a BOOK_USER_NOTIFICATION scan, bounded to `createdAt >= cutoff`. */
+export async function scanBookUserNotificationsPage(
+  tableName: string,
+  cutoff: string,
+  exclusiveStartKey?: Record<string, unknown>,
+): Promise<ScanCommandOutput> {
+  return ddbDoc.send(
+    new ScanCommand({
+      TableName: tableName,
+      FilterExpression: "entity = :e AND createdAt >= :cut",
+      ExpressionAttributeValues: { ":e": "BOOK_USER_NOTIFICATION", ":cut": cutoff },
+      ProjectionExpression: "#t, channel, readAt, createdAt",
+      ExpressionAttributeNames: { "#t": "type" },
+      ExclusiveStartKey: exclusiveStartKey,
+      Limit: 1000,
+    }),
+  );
+}
+
+/** One page of a BOOK_USER_SETTINGS scan, projected to just `settings`. */
+export async function scanBookUserSettingsPage(
+  tableName: string,
+  exclusiveStartKey?: Record<string, unknown>,
+): Promise<ScanCommandOutput> {
+  return ddbDoc.send(
+    new ScanCommand({
+      TableName: tableName,
+      FilterExpression: "entity = :e",
+      ExpressionAttributeValues: { ":e": "BOOK_USER_SETTINGS" },
+      ProjectionExpression: "settings",
+      ExclusiveStartKey: exclusiveStartKey,
+      Limit: 1000,
+    }),
+  );
 }

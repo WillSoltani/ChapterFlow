@@ -5,7 +5,7 @@ import { bookOk, withBookApiErrors } from "@/app/app/api/book/_lib/http";
 import { getBookTableName } from "@/app/app/api/book/_lib/env";
 import { listUserJourneys } from "@/app/app/api/book/_lib/journey-repo";
 import journeyDefinitions from "@/content/journeys/journeys.json";
-import type { JourneyDefinition, BookUserJourneyItem } from "@/app/app/api/book/_lib/types";
+import type { JourneyDefinition } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
 

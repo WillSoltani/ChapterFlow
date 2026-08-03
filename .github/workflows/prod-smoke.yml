@@ -1,0 +1,111 @@
+name: Prod smoke
+
+# Scheduled deep-health smoke against the live prod origin.
+#
+# NOTE: GitHub Actions `schedule:` triggers only fire on the default branch,
+# and GitHub automatically disables scheduled workflows after 60 days of
+# repository inactivity (no pushes/commits) — re-enable via the Actions tab
+# (Workflows → Prod smoke → "Enable workflow") if that happens.
+#
+# This job intentionally does NOT check out the repo or assume AWS
+# credentials: it only makes anonymous HTTP GETs against the public prod
+# origin, mirroring (a subset of) the Health gate / Readiness smoke steps in
+# _deploy-app.yml.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: prod-smoke
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    env:
+      APP_URL: ${{ vars.PROD_APP_URL || 'https://app.chapterflow.ca' }}
+    steps:
+      # Shallow probes — same critical-surface set as the Health gate step in
+      # _deploy-app.yml. Do NOT add any audio endpoint here: `?mode=plan` is
+      # billable (known repo trap), so audio surfaces must never be probed
+      # synthetically.
+      - name: Shallow probes
+        run: |
+          set -uo pipefail
+          fail=0
+          for p in "/" "/pricing" "/api/health" "/app/api/book/config/ios"; do
+            code=$(curl -s -o /dev/null -w "%{http_code}" --max-time 20 \
+              --retry 4 --retry-delay 10 --retry-all-errors "${APP_URL}${p}")
+            echo "  ${p} -> HTTP ${code}"
+            if [ "${code}" -lt 200 ] || [ "${code}" -ge 400 ]; then
+              echo "::error::shallow probe FAILED for ${p} (HTTP ${code})"
+              fail=1
+            fi
+          done
+          if [ "${fail}" -ne 0 ]; then
+            echo "## ❌ Prod smoke FAILED shallow probes" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          echo "Shallow probes PASSED" >> "$GITHUB_STEP_SUMMARY"
+
+      # Deep health — /api/health?deep=1 always returns HTTP 200 (status:
+      # "degraded" in the body when a dependency fails), so HTTP-code checks
+      # alone can't catch it. Parse the body's `status` field instead.
+      - name: Deep health
+        run: |
+          set -uo pipefail
+          body=$(curl -s --max-time 25 --retry 2 --retry-delay 5 --retry-all-errors \
+            "${APP_URL}/api/health?deep=1" || echo '{}')
+          echo "Deep health: ${body}"
+          status=$(echo "${body}" | jq -r '.status // "unknown"')
+          {
+            echo "### Deep health (status: \`${status}\`)"
+            echo ""
+            echo "| Check | OK |"
+            echo "|-------|----|"
+            echo "${body}" | jq -r '(.checks // {}) | to_entries[] | "| \(.key) | \(if .value then "✅" else "❌" end) |"'
+          } >> "$GITHUB_STEP_SUMMARY" || true
+          if [ "${status}" != "ok" ]; then
+            echo "::error::prod deep health FAILED — status is '${status}' (expected 'ok')."
+            exit 1
+          fi
+
+      # GitHub-native failure notification. Uses a STABLE title (no SHA) so
+      # repeated failures across scheduled runs comment on the same open
+      # issue instead of opening a new one every 15 minutes.
+      - name: Open/update smoke-failure issue
+        if: failure()
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const title = `🚨 Prod smoke failing`;
+            const body = [
+              `Prod smoke failed in run ${context.runId}.`,
+              ``,
+              `- Actor: ${context.actor}`,
+              `- Run: ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              ``,
+              `Check the job summary in the run above for the failing probe / deep-health check.`,
+            ].join("\n");
+            const existing = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: "open", labels: "prod-smoke-failure", per_page: 100,
+            });
+            const dup = existing.data.find((i) => i.title === title);
+            if (dup) {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: dup.number, body,
+              });
+            } else {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title, body, labels: ["prod-smoke-failure"],
+              });
+            }

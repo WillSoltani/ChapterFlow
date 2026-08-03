@@ -78,6 +78,7 @@ export function PhaseInterstitial({ from, to, onComplete }: PhaseInterstitialPro
       const timer = setTimeout(onComplete, FADE_OUT_MS);
       return () => clearTimeout(timer);
     }
+    return undefined;
   }, [phase, onComplete]);
 
   // Escape to dismiss

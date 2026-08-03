@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p4-holdout-c15-a1",
+  "requestSha256": "00081f4b120fda79d6e34371dd704fbb3eea5d2b7056d664e4a474e546bcc9e9",
+  "receiptSha256": "b78e7116f2355ecc803168070168671425897cc7c159e900134e0145004b4379",
+  "executionEvidenceSha256": "a482e017694d08a7465312d7ffb98a6734f8f971496f661bdeacad3bd2095cca",
+  "rawOutputSha256": "3853fa05f4e8cd0f43e6f402eda8eb555a114257d65f4fe605f7c6665e26dedc",
+  "evaluationSha256": "1f0d1d8f5be1348474dc5b46e388677ee2b952229fb213896676d258be1bcc91",
+  "parsedOutputSha256": "6ce4f5aec4b4290e07f7702973711cb2aab76289de53ace7e8897ccc9574636c",
+  "assembledReviewSha256": "f11cc3166df82f1914cbd2a1de495414ab450c2b40f7575d131840bf98a532e1",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter stays within the source-bound claim and mechanism for the allowed anchor. Its non-universal framing is compatible with the plan, and the specific short-duration detail is grounded in the provided source evidence."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "6f42a87bf9fad00a50837e5739d78f0f8edef813e8bd30439d23712883d07d69",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1db8fd53d1cb8924d596980ff02d39e9f37357acefa9a46a34163eeec56ed22f",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter stays within the source-bound claim and mechanism for the allowed anchor. Its non-universal framing is compatible with the plan, and the specific short-duration detail is grounded in the provided source evidence.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter stays within the source-bound claim and mechanism for the allowed anchor. Its non-universal framing is compatible with the plan, and the specific short-duration detail is grounded in the provided source evidence."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "19e89a78b06a839e2b8bed40685904c1e6a6de6bfea1b5fa0c8055b62cd2e391"
+}

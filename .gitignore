@@ -12,6 +12,8 @@
 
 # testing
 /coverage
+/coverage-text.txt
+/.nyc_output
 
 # next.js
 /.next/
@@ -32,6 +34,8 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# …the committed values-free template is the one exception:
+!.env.example
 
 # vercel
 .vercel
@@ -43,6 +47,9 @@ next-env.d.ts
 # CDK build artifacts — never commit generated output
 infra/cdk.out/
 infra/.cache/
+# Account-bound lookup caches and generated IAM outputs are local artifacts.
+infra/cdk.context.json
+infra/iam/generated/
 
 # Infra dependencies — installed locally, not versioned
 infra/node_modules/

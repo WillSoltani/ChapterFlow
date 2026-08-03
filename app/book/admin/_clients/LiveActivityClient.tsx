@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Pause, Play, RefreshCw, Radio } from "lucide-react";
 import { adminGet } from "@/app/book/admin/_components/admin-api";
 import { AdminCard, PageHeader } from "@/app/book/admin/_components/AdminCard";
@@ -33,7 +33,7 @@ export function LiveActivityClient() {
   const [typeFilter, setTypeFilter] = useState<string>("");
   const intervalRef = useRef<number | null>(null);
 
-  const reload = async () => {
+  const reload = useCallback(async () => {
     setError(null);
     try {
       const params = new URLSearchParams({ limit: "200" });
@@ -45,11 +45,11 @@ export function LiveActivityClient() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [typeFilter]);
 
   useEffect(() => {
     reload();
-  }, [typeFilter]);
+  }, [reload]);
 
   useEffect(() => {
     if (paused) {
@@ -63,7 +63,7 @@ export function LiveActivityClient() {
     return () => {
       if (intervalRef.current) window.clearInterval(intervalRef.current);
     };
-  }, [paused, typeFilter]);
+  }, [paused, reload]);
 
   const filtered = filter
     ? events.filter((e) => {
@@ -88,7 +88,7 @@ export function LiveActivityClient() {
             <button
               type="button"
               onClick={() => setPaused((p) => !p)}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1)"
             >
               {paused ? <Play className="h-3.5 w-3.5" /> : <Pause className="h-3.5 w-3.5" />}
               {paused ? "Resume" : "Pause"}
@@ -97,7 +97,7 @@ export function LiveActivityClient() {
               type="button"
               onClick={reload}
               disabled={loading}
-              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-[12px] font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
+              className="inline-flex items-center gap-1.5 rounded-lg border border-(--cf-border) bg-(--cf-surface) px-3 py-1.5 text-cf-label-sm font-medium text-(--cf-text-2) shadow-(--cf-input-inset-shadow) transition hover:bg-(--cf-surface-muted) hover:text-(--cf-text-1) disabled:cursor-not-allowed disabled:opacity-60"
             >
               <RefreshCw className={`h-3.5 w-3.5 ${loading ? "animate-spin" : ""}`} />
               Refresh
@@ -116,12 +116,12 @@ export function LiveActivityClient() {
               value={filter}
               onChange={(e) => setFilter(e.target.value)}
               placeholder="Filter (user / book / type)"
-              className="rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1.5 text-[12px] text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
+              className="rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1.5 text-cf-label-sm text-(--cf-text-1) placeholder:text-(--cf-text-soft) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
             />
             <select
               value={typeFilter}
               onChange={(e) => setTypeFilter(e.target.value)}
-              className="rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1.5 text-[12px] text-(--cf-text-1) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
+              className="rounded-lg border border-(--cf-border) bg-(--cf-surface-muted) px-3 py-1.5 text-cf-label-sm text-(--cf-text-1) shadow-(--cf-input-inset-shadow) focus:border-(--cf-accent) focus:outline-none focus:ring focus:ring-(--cf-accent)/20"
             >
               <option value="">All event types</option>
               {eventTypes.map((t) => (
@@ -148,9 +148,9 @@ export function LiveActivityClient() {
           />
         ) : (
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[640px] text-[12px]">
+            <table className="w-full min-w-[640px] text-cf-label-sm">
               <thead>
-                <tr className="border-b border-(--cf-border) text-left text-[11px] uppercase tracking-[0.08em] text-(--cf-text-soft)">
+                <tr className="border-b border-(--cf-border) text-left text-cf-caption uppercase tracking-[0.08em] text-(--cf-text-soft)">
                   <th className="py-2 pr-3">Time</th>
                   <th className="py-2 pr-3">Event</th>
                   <th className="py-2 pr-3">User</th>
@@ -169,12 +169,12 @@ export function LiveActivityClient() {
                       {formatTime(e.occurredAt)}
                     </td>
                     <td className="py-1.5 pr-3">
-                      <span className="rounded-md border border-(--cf-accent-border) bg-(--cf-accent-soft) px-1.5 py-0.5 text-[11px] font-medium text-(--cf-accent)">
+                      <span className="rounded-md border border-(--cf-accent-border) bg-(--cf-accent-soft) px-1.5 py-0.5 text-cf-caption font-medium text-(--cf-accent)">
                         {e.eventType}
                       </span>
                     </td>
                     <td
-                      className="py-1.5 pr-3 font-mono text-[11px] text-(--cf-text-2)"
+                      className="py-1.5 pr-3 font-mono text-cf-caption text-(--cf-text-2)"
                       title={e.userId}
                     >
                       {e.userId.slice(0, 8)}…

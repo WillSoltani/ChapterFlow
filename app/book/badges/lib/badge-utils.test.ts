@@ -3,6 +3,8 @@ import assert from "node:assert/strict";
 
 import { evaluateBadges, type BadgeProgressStats } from "./badge-ui-definitions";
 import { getLevel } from "./badge-utils";
+import * as badgeUtils from "./badge-utils";
+import { TIER_BORDER_COLORS, TIER_GLOW_STYLES } from "./badge-utils";
 
 // Honesty contract for the Achievements level curve (finding UF-2):
 // a brand-new account that has done NOTHING but set up / browse should derive to
@@ -124,4 +126,19 @@ test("a genuine reader still earns the reading-gated starter badges", () => {
   ]) {
     assert.equal(earned.has(id), true, `expected ${id} earned for a genuine reader`);
   }
+});
+
+test("WS5-013: tier color maps reference design tokens, not raw color literals", () => {
+  for (const [tier, value] of [
+    ...Object.entries(TIER_BORDER_COLORS),
+    ...Object.entries(TIER_GLOW_STYLES),
+  ]) {
+    assert.match(value, /var\(--(?:cf|accent)-[a-z0-9-]+\)/, `${tier}: ${value}`);
+    assert.ok(!/#[0-9a-fA-F]{3,8}\b/.test(value), `${tier} has raw hex: ${value}`);
+    assert.ok(!/\brgba?\(/.test(value), `${tier} has raw rgba: ${value}`);
+  }
+  assert.ok(
+    !("TIER_PILL_STYLES" in badgeUtils),
+    "TIER_PILL_STYLES is a dead export and must stay deleted",
+  );
 });

@@ -4,7 +4,7 @@ import "server-only";
 // Designed to run as a scheduled Lambda function (weekly).
 // Computes metrics from ENGAGEMENT and LEDGER records.
 
-import { QueryCommand, ScanCommand } from "@aws-sdk/lib-dynamodb";
+import { ScanCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 
 // ── Types ───────────────────────────────────────────────────────────────────
@@ -114,7 +114,7 @@ export async function computeEconomyHealth(
   const totalUsers = balances.length;
   const sum = balances.reduce((a, b) => a + b, 0);
   const averageBalance = Math.round(sum / totalUsers);
-  const medianBalance = balances[Math.floor(totalUsers / 2)];
+  const medianBalance = balances[Math.floor(totalUsers / 2)] ?? 0;
 
   // Gini coefficient
   const gini = computeGini(balances);
@@ -240,7 +240,7 @@ function computeGini(sortedValues: number[]): number {
 
   let numerator = 0;
   for (let i = 0; i < n; i++) {
-    numerator += (2 * (i + 1) - n - 1) * sortedValues[i];
+    numerator += (2 * (i + 1) - n - 1) * (sortedValues[i] ?? 0);
   }
   return numerator / (n * sum);
 }

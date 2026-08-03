@@ -9,11 +9,14 @@ import type { FSRSCardState, FSRSRating } from "./types";
 
 // ── Default FSRS-5 Parameters ────────────────────────────────────────────────
 
+// `as const` tuple: fixed 19-element weight vector. Literal-index reads below
+// (DEFAULT_W[4]..DEFAULT_W[16]) are provably in-bounds and stay non-undefined
+// under noUncheckedIndexedAccess; only the dynamic `rating - 1` read needs a guard.
 const DEFAULT_W = [
   0.4072, 1.1829, 3.1262, 15.4722, 7.2102, 0.5316, 1.0651, 0.0589, 1.5330,
   0.1670, 1.0019, 1.9395, 0.1100, 0.2939, 2.2697, 0.2315, 2.9898, 0.5163,
   0.6571,
-];
+] as const;
 
 const DECAY = -0.5;
 const FACTOR = 0.9 ** (1 / DECAY) - 1;
@@ -25,7 +28,9 @@ function initDifficulty(rating: FSRSRating): number {
 }
 
 function initStability(rating: FSRSRating): number {
-  return Math.max(DEFAULT_W[rating - 1], 0.1);
+  // rating is 1..4 ⇒ index 0..3, always in-bounds; ?? 0 is unreachable but keeps
+  // the read total, and Math.max floors the result at 0.1 either way.
+  return Math.max(DEFAULT_W[rating - 1] ?? 0, 0.1);
 }
 
 function nextDifficulty(d: number, rating: FSRSRating): number {

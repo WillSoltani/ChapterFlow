@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c19-a1",
+  "requestSha256": "30d43f64c49ed64d01c1635aaa268932f3707c7d4ee8c560e8a4279f5a041075",
+  "receiptSha256": "8c762dc6c8cdba0296c86ff1f0bd322cfaa25a2d0872f6c4dd497b389a3e0bb3",
+  "executionEvidenceSha256": "c0c01a7bf7c35ebc0be2cd7bbda00737653964c74e496c6489dba8c9bf4dc8b2",
+  "rawOutputSha256": "9e251fb4066d66c8272a544e9c2ec239fe229ce862e55ca72b009c48e198c048",
+  "evaluationSha256": "568ef0da373087102ffc53abbda599048032043b25f251bb793826e8651d31c1",
+  "parsedOutputSha256": "d12339be012846e7de0bc48a01f46477d1cd7ae79fcff2e5d807620ffbed1591",
+  "assembledReviewSha256": "ecccd61857f22a8ac86babf3122d7db6e2be886b124266e3fa636d5c37d1985d",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": false,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": false,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The passage is visibly framed as hypothetical and fictional, stays within descriptive application, and introduces no prohibited factual, historical, statistical, or attributed detail."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "9f92891d4c41a0f217ebbaf1d35ee6e0011318e4dabe498dd0820335ccd13ec7",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "190a2119e4f6b0a95b0edd2d1a08931ee114121242446af927f9dfef8a16ee23",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_constructed",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The passage is visibly framed as hypothetical and fictional, stays within descriptive application, and introduces no prohibited factual, historical, statistical, or attributed detail.",
+          "unitId": "unit.ch01.constructed-application",
+          "expectedOrigin": "constructed",
+          "expectedForm": "application",
+          "claimStrengthExpected": "descriptive",
+          "framingRequired": true,
+          "requiredSourceSupport": false
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The passage is visibly framed as hypothetical and fictional, stays within descriptive application, and introduces no prohibited factual, historical, statistical, or attributed detail."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "f7ba2c2a2836c13c4f2efd6a47e3e554ed11bdf550dfc83637fa2eaa17e2b7d6"
+}

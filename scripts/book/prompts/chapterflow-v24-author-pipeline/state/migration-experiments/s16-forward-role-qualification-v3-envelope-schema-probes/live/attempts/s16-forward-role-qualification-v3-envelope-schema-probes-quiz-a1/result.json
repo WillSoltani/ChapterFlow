@@ -1,0 +1,56 @@
+{
+  "schema": "imp24e-schema-probe-result-v1",
+  "cycle": 1,
+  "executionId": "s16-forward-role-qualification-v3-envelope-schema-probes",
+  "role": "quiz",
+  "attemptId": "s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1",
+  "requestSha256": "59febfb4ff3022ef263a0dc64827f14e99c082d38018a9cd28683e3d57ba90cb",
+  "profileId": "gpt-5.6-sol@xhigh",
+  "model": "gpt-5.6-sol",
+  "effort": "xhigh",
+  "processDiagnosticsSha256": "5546a3a3a4b3afeafc7dc1806c9aaa9fb2ff29a41ccaaea8ee8c40949fb55329",
+  "runnerBoundaryCrossed": true,
+  "schemaBoundAtRunner": true,
+  "chatgptAuthVerified": true,
+  "apiCalls": 0,
+  "finalMessageSource": "output-file",
+  "authoritativeOutputFileProduced": true,
+  "authoritativeOutputRelPath": "live/attempts/s16-forward-role-qualification-v3-envelope-schema-probes-quiz-a1/authoritative-output.json",
+  "rawOutput": "{\"schema\":\"quiz-integrity-model-output-v2\",\"items\":[{\"questionRef\":\"probe.question.1\",\"keyCorrect\":\"correct\",\"defensibleAnswerIndices\":[0],\"keyedMechanismSupported\":true,\"rationale\":\"Synthetic transport probe output.\",\"evidenceRefIds\":[\"probe.question.1\"]}]}",
+  "rawOutputSha256": "9a7652fb057fb18d2b9abceb848282ceecc902fc29d03120c188c391ddca4dda",
+  "rawOutputBytes": 258,
+  "parsedJson": true,
+  "deterministicValidatorPassed": true,
+  "sidecars": [
+    {
+      "kind": "effective-context-manifest",
+      "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.manifest.json",
+      "bytes": 3467,
+      "bytesSha256": "2f9634a10714301d4149a870a55574dc78e2713a16e5f8dd7fae5442d0354a9e"
+    },
+    {
+      "kind": "route",
+      "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.route.json",
+      "bytes": 642,
+      "bytesSha256": "347a1261367b737fb0798fe19438d2d9fe8c8f396d379e5bca2d0a47eea8fec3"
+    },
+    {
+      "kind": "structured-output",
+      "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.structured.json",
+      "bytes": 595,
+      "bytesSha256": "b735ba29a5d2cf7da2c0ab60b38caec73ba931db49f2d5f3f11ce1e06c6f4fcd"
+    },
+    {
+      "kind": "exec-result",
+      "relPath": "live/exec/logs/2026-07-14-170114-imp24e-schema-probe-9a94140c459183f20ff7b0209317449c2df73b20e5c39aca1bd5991b51b9.result.json",
+      "bytes": 581,
+      "bytesSha256": "3b06be0021d1e88fa6303b27ca5258e8368c8577e7cee0ce19229edd14937d40"
+    }
+  ],
+  "missingRequiredSidecars": [],
+  "qualificationMetricsIncluded": false,
+  "passed": true,
+  "failureClassification": null,
+  "failureDetail": null,
+  "resultSha256": "716d7991ae3b7a9dee78a24f8d910cd0a220094824e5bfffcb6e6f7efc1e22f4"
+}

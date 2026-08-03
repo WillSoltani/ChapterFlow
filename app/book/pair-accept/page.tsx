@@ -42,7 +42,7 @@ function PrimaryButton(props: React.ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
     <button
       {...rest}
-      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 ${className}`}
+      className={`inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110 ${className}`}
     />
   );
 }
@@ -147,7 +147,7 @@ function PairAcceptInner() {
     body = (
       <PairCard icon={<CheckCircle2 className="h-7 w-7" />} tone="success">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">You&apos;re reading partners!</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">
           Head to your dashboard to see your partner and keep each other accountable.
         </p>
         <PrimaryButton onClick={() => router.push("/dashboard")}>Go to dashboard</PrimaryButton>
@@ -168,18 +168,18 @@ function PairAcceptInner() {
     body = (
       <PairCard icon={<AlertCircle className="h-7 w-7" />} tone="danger">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">{friendly.title}</h1>
-        <p className="mb-6 text-[14px] leading-relaxed text-(--cf-text-3)">{friendly.body}</p>
+        <p className="mb-6 text-cf-body-sm leading-relaxed text-(--cf-text-3)">{friendly.body}</p>
         {errorStatus === 401 ? (
           <>
             <a
               href={`/auth/login?returnTo=${returnTo}`}
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-[14px] font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
+              className="inline-flex min-h-11 w-full items-center justify-center rounded-xl bg-(--cf-accent) px-4 text-cf-body-sm font-semibold text-(--cf-accent-contrast) transition duration-(--duration-fast) hover:brightness-110"
             >
               Sign in to continue
             </a>
             <button
               onClick={() => router.push("/dashboard")}
-              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-xl px-4 text-[14px] font-semibold text-(--cf-text-3) transition duration-(--duration-fast) hover:text-(--cf-text-1)"
+              className="mt-3 inline-flex min-h-11 w-full items-center justify-center rounded-xl px-4 text-cf-body-sm font-semibold text-(--cf-text-3) transition duration-(--duration-fast) hover:text-(--cf-text-1)"
             >
               Go to dashboard
             </button>
@@ -193,7 +193,7 @@ function PairAcceptInner() {
     body = (
       <PairCard icon={<Users className="h-7 w-7" />} tone="accent">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
-        <p className="text-[14px] text-(--cf-text-3)">Accepting your invite…</p>
+        <p className="text-cf-body-sm text-(--cf-text-3)">Accepting your invite…</p>
       </PairCard>
     );
   }
@@ -206,7 +206,7 @@ function PairAcceptFallback() {
     <AuthScreen>
       <PairCard icon={<Users className="h-7 w-7" />} tone="accent">
         <h1 className="mb-2 text-[22px] font-bold text-(--cf-text-1)">Reading partner invite</h1>
-        <p className="text-[14px] text-(--cf-text-3)">Loading…</p>
+        <p className="text-cf-body-sm text-(--cf-text-3)">Loading…</p>
       </PairCard>
     </AuthScreen>
   );

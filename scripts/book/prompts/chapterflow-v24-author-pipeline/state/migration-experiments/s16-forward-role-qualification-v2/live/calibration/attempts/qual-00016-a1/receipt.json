@@ -1,0 +1,11 @@
+{
+  "schema": "imp22-role-qualification-execution-receipt-v1",
+  "executionId": "forward-reader-1783911874570-17-ac21e527-d2da-4cff-965b-84c79a47b2ab",
+  "status": "completed",
+  "role": "reader",
+  "profileId": "gpt-5.6-sol@high",
+  "model": "gpt-5.6-sol",
+  "effort": "high",
+  "schemaSha256": "96be560b412f18eb33b67df3baf8f56b3ee466b0a706eb4ea89ab12250413fd3",
+  "rawOutput": "{\"schema\":\"reader-experience-review-v1\",\"scores\":{\"retention\":0,\"quizzes\":0,\"transfer\":0,\"practical\":0,\"summaries\":0,\"tone\":0,\"limits\":0,\"insight\":0,\"density\":0,\"beginner\":0},\"quizDerivation\":{\"answers\":[],\"mechanisms\":[],\"confidence\":[],\"ambiguities\":[],\"tells\":[]},\"recommendation\":\"BLOCK\",\"blockingFindings\":[],\"escalationSignals\":[],\"advisoryFindings\":[],\"strongestEvidence\":[],\"weakestEvidence\":[],\"oneParagraphVerdict\":\"The review could not be completed because the supplied chapter file was inaccessible in the execution environment. No on-page findings or verbatim evidence can be reported without inventing content; the zero scores are placeholders, not judgments of the chapter.\"}"
+}

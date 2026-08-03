@@ -45,24 +45,18 @@ export function CompactHeader({
             WebkitTextFillColor: "transparent",
             backgroundClip: "text",
           }}
-          initial={prefersReducedMotion ? undefined : { opacity: 0, y: 12 }}
-          animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-          transition={
-            prefersReducedMotion ? undefined : { duration: DUR.slow, ease: EASE.standard }
-          }
+          {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 12 } })}
+          {...(prefersReducedMotion ? {} : { animate: { opacity: 1, y: 0 } })}
+          {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, ease: EASE.standard } })}
         >
           Good {getTimeOfDay()}, {firstName}
         </motion.h1>
         <motion.p
           className="mt-1 text-sm"
           style={{ color: "var(--cf-text-3)" }}
-          initial={prefersReducedMotion ? undefined : { opacity: 0 }}
-          animate={prefersReducedMotion ? undefined : { opacity: 1 }}
-          transition={
-            prefersReducedMotion
-              ? undefined
-              : { duration: DUR.page, delay: 0.15, ease: EASE.standard }
-          }
+          {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
+          {...(prefersReducedMotion ? {} : { animate: { opacity: 1 } })}
+          {...(prefersReducedMotion ? {} : { transition: { duration: DUR.page, delay: 0.15, ease: EASE.standard } })}
         >
           {subtitle}
         </motion.p>
@@ -71,13 +65,9 @@ export function CompactHeader({
       {/* Right: Inline metrics */}
       <motion.div
         className="flex items-center gap-4"
-        initial={prefersReducedMotion ? undefined : { opacity: 0 }}
-        animate={prefersReducedMotion ? undefined : { opacity: 1 }}
-        transition={
-          prefersReducedMotion
-            ? undefined
-            : { duration: DUR.slow, delay: 0.2, ease: EASE.standard }
-        }
+        {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
+        {...(prefersReducedMotion ? {} : { animate: { opacity: 1 } })}
+        {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, delay: 0.2, ease: EASE.standard } })}
       >
         <Link href="/book/progress" className="inline-flex">
           <StreakBadge count={streakCount} />

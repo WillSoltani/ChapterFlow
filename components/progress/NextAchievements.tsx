@@ -1,11 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { DUR } from "@/lib/motion";
+import { usePrefersReducedMotion } from "@/components/ui/usePrefersReducedMotion";
 import { X } from "lucide-react";
-import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/app/book/badges/lib/badge-ui-definitions";
+import { BADGE_ICONS, FALLBACK_BADGE_ICON } from "@/lib/badges/badge-ui-definitions";
 import type { Milestone } from "./progressTypes";
 
 interface NextAchievementsProps {
@@ -19,7 +20,7 @@ export function NextAchievements({
   recentlyEarnedBadge = null,
   recentlyEarnedBadgeId = null,
 }: NextAchievementsProps) {
-  const prefersReduced = useReducedMotion();
+  const prefersReduced = usePrefersReducedMotion();
   const [dismissed, setDismissed] = useState(false);
 
   // Check localStorage for previously dismissed badge banners
@@ -32,6 +33,13 @@ export function NextAchievements({
     }
   }, [recentlyEarnedBadgeId]);
 
+  const handleDismiss = useCallback(() => {
+    setDismissed(true);
+    if (recentlyEarnedBadgeId) {
+      localStorage.setItem(`badge_dismissed_${recentlyEarnedBadgeId}`, "true");
+    }
+  }, [recentlyEarnedBadgeId]);
+
   // Auto-dismiss after 5 seconds
   useEffect(() => {
     if (recentlyEarnedBadge && !dismissed) {
@@ -40,14 +48,8 @@ export function NextAchievements({
       }, 5000);
       return () => clearTimeout(timer);
     }
-  }, [recentlyEarnedBadge, dismissed]);
-
-  function handleDismiss() {
-    setDismissed(true);
-    if (recentlyEarnedBadgeId) {
-      localStorage.setItem(`badge_dismissed_${recentlyEarnedBadgeId}`, "true");
-    }
-  }
+    return undefined;
+  }, [recentlyEarnedBadge, dismissed, handleDismiss]);
 
   if (milestones.length === 0) return null;
 
@@ -86,9 +88,21 @@ export function NextAchievements({
               border: "1px solid color-mix(in srgb, var(--accent-amber) 25%, transparent)",
             }}
             initial={{ opacity: 0, height: 0, marginTop: 0 }}
-            animate={{ opacity: 1, height: "auto", marginTop: 12, backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"] }}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              marginTop: 12,
+              backgroundPosition: prefersReduced
+                ? "0% 50%"
+                : ["0% 50%", "100% 50%", "0% 50%"],
+            }}
             exit={{ opacity: 0, height: 0, marginTop: 0 }}
-            transition={{ duration: DUR.normal, backgroundPosition: { repeat: Infinity, duration: 3, ease: "easeInOut" } }}
+            transition={{
+              duration: DUR.normal,
+              backgroundPosition: prefersReduced
+                ? { duration: 0 }
+                : { duration: 1.2, ease: "easeInOut" },
+            }}
           >
             <span
               className="text-xs font-medium"

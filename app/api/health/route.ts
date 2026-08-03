@@ -1,4 +1,6 @@
 import { NextResponse } from "next/server";
+import { resolveBillingSecretReadiness } from "./billing-readiness-core";
+import { awsClientConfig } from "@/app/app/api/_lib/aws";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
@@ -70,7 +72,7 @@ async function probeDynamo(): Promise<boolean> {
     const { DynamoDBClient, DescribeTableCommand } = await import(
       "@aws-sdk/client-dynamodb"
     );
-    const client = new DynamoDBClient({ region: REGION });
+    const client = new DynamoDBClient({ region: REGION, ...awsClientConfig });
     await client.send(new DescribeTableCommand({ TableName: tableName }));
     return true;
   } catch {
@@ -110,7 +112,7 @@ async function probeContent(): Promise<boolean> {
     const { S3Client, GetBucketLocationCommand } = await import(
       "@aws-sdk/client-s3"
     );
-    const client = new S3Client({ region: REGION });
+    const client = new S3Client({ region: REGION, ...awsClientConfig });
     await client.send(new GetBucketLocationCommand({ Bucket: bucket }));
     return true;
   } catch {
@@ -119,20 +121,17 @@ async function probeContent(): Promise<boolean> {
 }
 
 /**
- * Billing config — the Stripe secret + webhook secret are configured and the
- * central pricing config is structurally valid. Reads process.env directly
- * (secrets are deployed as Lambda env vars), so there is no Stripe API call and
- * no SSM round-trip — keeping the probe fast and network-free.
+ * Billing config — the Stripe secret + webhook secret resolve through the
+ * process-cached SSM runtime resolver and the central pricing config is valid.
+ * There is no Stripe API call; after boot hydration this remains cache-local.
  */
 async function probeBilling(): Promise<boolean> {
-  if (
-    !process.env.BOOK_STRIPE_SECRET_KEY ||
-    !process.env.BOOK_STRIPE_WEBHOOK_SECRET
-  ) {
-    return false;
-  }
   try {
-    const pricing = await import("@/lib/pricing");
+    const [{ getServerEnv }, pricing] = await Promise.all([
+      import("@/app/app/api/_lib/server-env"),
+      import("@/lib/pricing"),
+    ]);
+    if (!(await resolveBillingSecretReadiness(getServerEnv))) return false;
     return (
       typeof pricing.PRICING?.monthlyAmount === "number" &&
       Boolean(pricing.BILLING_CURRENCY)

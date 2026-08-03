@@ -1,10 +1,9 @@
 // ── Extended library data for the psychology-driven redesign ──
 
-import { getBookCoverPath } from "@/lib/book-covers";
 import type {
   LibraryCatalogBook,
   LibraryBookEntry,
-} from "@/app/book/_lib/library-data";
+} from "@/lib/library-data";
 
 export type Category =
   | "Psychology"
@@ -25,17 +24,17 @@ export interface UserProgress {
   lastReadAt: Date;
   /** Real insight points earned for this book. Undefined when the backend
    *  exposes no per-book figure — never fabricate a number. */
-  xpEarned?: number;
+  xpEarned?: number | undefined;
   isCompleted: boolean;
-  completedAt?: Date;
+  completedAt?: Date | undefined;
 }
 
 export interface LibraryBook {
   id: string;
   title: string;
   author: string;
-  authorCredentials?: string;
-  coverImage?: string;
+  authorCredentials?: string | undefined;
+  coverImage?: string | undefined;
   coverGradient: string;
   hook: string;
   description: string;
@@ -47,9 +46,9 @@ export interface LibraryBook {
   estimatedReadingTimeMinutes: number;
   isPro: boolean;
   badges: BadgeType[];
-  staffPickReason?: string;
-  similarBookId?: string;
-  userProgress?: UserProgress;
+  staffPickReason?: string | undefined;
+  similarBookId?: string | undefined;
+  userProgress?: UserProgress | undefined;
 }
 
 export interface UserStats {
@@ -102,7 +101,8 @@ function inferCoverGradient(bookId: string): string {
   for (let index = 0; index < bookId.length; index += 1) {
     hash = ((hash << 5) - hash + bookId.charCodeAt(index)) | 0;
   }
-  return gradients[Math.abs(hash) % gradients.length];
+  // gradients is non-empty, so the hashed index is in-bounds.
+  return gradients[Math.abs(hash) % gradients.length]!;
 }
 
 function buildLearningPoints(tags: string[] | undefined, categories: string[]): string[] {

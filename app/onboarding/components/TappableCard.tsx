@@ -8,14 +8,51 @@ import { DUR } from "@/lib/motion";
 interface TappableCardProps {
   selected: boolean;
   onSelect: () => void;
+  tabStop: boolean;
+  positionInSet: number;
+  setSize: number;
   disabled?: boolean;
   children: React.ReactNode;
   className?: string;
 }
 
+type RadioNavigationTarget = Pick<HTMLElement, "focus" | "click">;
+
+export function moveRadioSelectionByArrow(
+  targets: readonly RadioNavigationTarget[],
+  currentIndex: number,
+  key: string,
+): boolean {
+  if (
+    targets.length === 0 ||
+    currentIndex < 0 ||
+    currentIndex >= targets.length
+  ) {
+    return false;
+  }
+
+  const direction =
+    key === "ArrowRight" || key === "ArrowDown"
+      ? 1
+      : key === "ArrowLeft" || key === "ArrowUp"
+        ? -1
+        : 0;
+  if (direction === 0) return false;
+
+  const nextIndex = (currentIndex + direction + targets.length) % targets.length;
+  const target = targets[nextIndex];
+  if (target === undefined) return false; // empty targets ⇒ NaN index
+  target.focus();
+  target.click();
+  return true;
+}
+
 export default function TappableCard({
   selected,
   onSelect,
+  tabStop,
+  positionInSet,
+  setSize,
   disabled = false,
   children,
   className = "",
@@ -23,8 +60,28 @@ export default function TappableCard({
   const prefersReducedMotion = useReducedMotion();
 
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: React.KeyboardEvent<HTMLDivElement>) => {
       if (disabled) return;
+
+      const group = e.currentTarget.closest('[role="radiogroup"]');
+      const radios = group
+        ? Array.from(
+            group.querySelectorAll<HTMLElement>(
+              '[role="radio"]:not([aria-disabled="true"])',
+            ),
+          )
+        : [];
+      if (
+        moveRadioSelectionByArrow(
+          radios,
+          radios.indexOf(e.currentTarget),
+          e.key,
+        )
+      ) {
+        e.preventDefault();
+        return;
+      }
+
       if (e.key === "Enter" || e.key === " ") {
         e.preventDefault();
         onSelect();
@@ -38,7 +95,9 @@ export default function TappableCard({
       role="radio"
       aria-checked={selected}
       aria-disabled={disabled}
-      tabIndex={disabled ? -1 : 0}
+      aria-posinset={positionInSet}
+      aria-setsize={setSize}
+      tabIndex={disabled ? -1 : tabStop ? 0 : -1}
       onClick={disabled ? undefined : onSelect}
       onKeyDown={handleKeyDown}
       whileHover={

@@ -18,13 +18,12 @@ import {
   NotebookPen,
   Sparkles,
   Target,
-  Trophy,
 } from "lucide-react";
 import { TopNav } from "@/app/book/home/components/TopNav";
 import { InfoModal } from "@/app/book/home/components/InfoModal";
 import { Button } from "@/app/book/components/ui/Button";
 import { ErrorBanner } from "@/app/book/components/ui/ErrorBanner";
-import { Toast } from "@/app/book/components/ui/Toast";
+import { Toast } from "@/components/ui/Toast";
 import { CATALOG_BOOK_COUNT, CATALOG_CATEGORY_COUNT } from "@/lib/catalog-stats";
 import {
   getBookProgressStorageKey,
@@ -49,34 +48,30 @@ import {
   ProgressToNextBadgeCard,
 } from "@/app/book/badges/components/BadgeSystemCards";
 import { EditProfileModal } from "@/app/book/profile/components/EditProfileModal";
-import {
-  ActiveBookCard,
-  ActiveDaysRing,
-  CategoryMap,
-  CompletionByModeChart,
-  FadeIn,
-  HeatmapCalendar,
-  IdentityHeroBanner,
-  MomentumCard,
-  MomentumEmptyState,
-  NewBadgeDot,
-  NotePreviewCard,
-  PinnedTakeawayCard,
-  ProfileSkeleton,
-  ProStatusCard,
-  QuizBarChart,
-  SectionCard,
-  SectionNav,
-  Sparkline,
-  StaggeredBadgeGrid,
-  StaggeredBadgeItem,
-  StatCard,
-  StickyMiniHeader,
-  ThisWeekStrip,
-  TimelineRow,
-  UpgradeCard,
-  UpNextPreview,
-} from "@/app/book/profile/components/ProfilePrimitives";
+import { ActiveBookCard } from "@/app/book/profile/components/ActiveBookCard";
+import { ActiveDaysRing } from "@/app/book/profile/components/ActiveDaysRing";
+import { CategoryMap } from "@/app/book/profile/components/CategoryMap";
+import { CompletionByModeChart } from "@/app/book/profile/components/CompletionByModeChart";
+import { FadeIn } from "@/app/book/profile/components/FadeIn";
+import { HeatmapCalendar } from "@/app/book/profile/components/HeatmapCalendar";
+import { IdentityHeroBanner } from "@/app/book/profile/components/IdentityHeroBanner";
+import { MomentumCard } from "@/app/book/profile/components/MomentumCard";
+import { MomentumEmptyState } from "@/app/book/profile/components/MomentumEmptyState";
+import { NotePreviewCard } from "@/app/book/profile/components/NotePreviewCard";
+import { PinnedTakeawayCard } from "@/app/book/profile/components/PinnedTakeawayCard";
+import { ProfileSkeleton } from "@/app/book/profile/components/ProfileSkeleton";
+import { ProStatusCard } from "@/app/book/profile/components/ProStatusCard";
+import { QuizBarChart } from "@/app/book/profile/components/QuizBarChart";
+import { SectionCard } from "@/app/book/profile/components/SectionCard";
+import { SectionNav } from "@/app/book/profile/components/SectionNav";
+import { Sparkline } from "@/app/book/profile/components/Sparkline";
+import { StaggeredBadgeGrid } from "@/app/book/profile/components/StaggeredBadgeGrid";
+import { StaggeredBadgeItem } from "@/app/book/profile/components/StaggeredBadgeItem";
+import { StatCard } from "@/app/book/profile/components/StatCard";
+import { ThisWeekStrip } from "@/app/book/profile/components/ThisWeekStrip";
+import { TimelineRow } from "@/app/book/profile/components/TimelineRow";
+import { UpgradeCard } from "@/app/book/profile/components/UpgradeCard";
+import { UpNextPreview } from "@/app/book/profile/components/UpNextPreview";
 
 // ─── Types ───
 
@@ -247,7 +242,7 @@ const SECTION_IDS = [
 export function BookProfileClient({ userEmail }: BookProfileClientProps) {
   const router = useRouter();
   const heroRef = useRef<HTMLDivElement>(null);
-  const [showMiniHeader, setShowMiniHeader] = useState(false);
+  const [showMiniHeader, _setShowMiniHeader] = useState(false);
   const [revision, setRevision] = useState(0);
   const [editOpen, setEditOpen] = useState(false);
   const [selectedBadge, setSelectedBadge] = useState<BadgeState | null>(null);
@@ -329,7 +324,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
         if (visible.length > 0) {
-          const idx = SECTION_IDS.findIndex((s) => s.id === visible[0].target.id);
+          const idx = SECTION_IDS.findIndex((s) => s.id === visible[0]?.target.id);
           if (idx >= 0) setActiveSectionIdx(idx);
         }
       },
@@ -848,7 +843,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                   {/* B4: "Also in progress" / up-next preview */}
                   {activeBooks.length > 1 ? (
                     <div className="space-y-3">
-                      <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Also in progress</p>
+                      <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Also in progress</p>
                       <div className="grid gap-4 lg:grid-cols-2">
                         {activeBooks.filter((s) => s.book.id !== currentSnapshot.book.id).slice(0, 2).map((snapshot) => {
                           const progress = parseStoredBookProgress(
@@ -997,7 +992,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
               eyebrow="Activity"
               title="Monthly summary"
               icon={<Calendar className="h-5 w-5" />}
-              right={<span className="cf-pill px-3 py-1 text-[11px] uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
+              right={<span className="cf-pill px-3 py-1 text-cf-caption uppercase tracking-[0.18em] text-(--cf-text-3)">Last 30 days</span>}
             >
               <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
                 {/* Left: Stats + D3 ring + D2 sparkline + heatmap */}
@@ -1022,7 +1017,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
                   {/* D1: Heatmap with today indicator */}
                   <div className="rounded-2xl border border-(--cf-border) bg-(--cf-surface-muted) p-4">
-                    <p className="mb-3 text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
+                    <p className="mb-3 text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Reading activity</p>
                     <HeatmapCalendar cells={analytics?.heatmapCells ?? []} />
                     {/* E1: This Week strip */}
                     {statsSummary.currentStreak > 0 || monthlySummary.activeDays > 0 ? (
@@ -1045,7 +1040,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                         <div key={group.dateKey}>
                           <div className="mb-2 flex items-center gap-3">
                             <div className="h-px flex-1 bg-(--cf-border)" />
-                            <span className="text-[11px] font-medium uppercase tracking-[0.18em] text-(--cf-text-soft)">{group.label}</span>
+                            <span className="text-cf-caption font-medium uppercase tracking-[0.18em] text-(--cf-text-soft)">{group.label}</span>
                             <div className="h-px flex-1 bg-(--cf-border)" />
                           </div>
                           <div className="space-y-2">
@@ -1227,7 +1222,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
 
                   {/* G2: Recent takeaways as quote cards */}
                   <div className="space-y-3">
-                    <p className="text-[11px] uppercase tracking-[0.22em] text-(--cf-text-soft)">Top recent insights</p>
+                    <p className="text-cf-caption uppercase tracking-[0.22em] text-(--cf-text-soft)">Top recent insights</p>
                     {localInsights.notes.slice(0, 3).map((note) => (
                       <PinnedTakeawayCard key={`${note.id}:pinned`} text={firstLine(note.body)} source={note.title} />
                     ))}
@@ -1323,7 +1318,7 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                               Finished &bull; {new Date(snapshot.lastActivityAt).toLocaleDateString(undefined, { month: "short", day: "numeric" })}
                             </p>
                           </div>
-                          <span className="cf-pill cf-pill-success px-3 py-1 text-[11px] uppercase tracking-[0.18em]">Completed</span>
+                          <span className="cf-pill cf-pill-success px-3 py-1 text-cf-caption uppercase tracking-[0.18em]">Completed</span>
                         </div>
                       ))
                     ) : (
@@ -1368,10 +1363,10 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
                   ) : localInsights.recentQuizEntries.length === 1 ? (
                     <div className="mt-4">
                       <QuizBarChart
-                        scores={[localInsights.recentQuizEntries[0].score]}
-                        avg={localInsights.recentQuizEntries[0].score}
-                        best={localInsights.recentQuizEntries[0].score}
-                        last={localInsights.recentQuizEntries[0].score}
+                        scores={[localInsights.recentQuizEntries[0]?.score ?? 0]}
+                        avg={localInsights.recentQuizEntries[0]?.score ?? 0}
+                        best={localInsights.recentQuizEntries[0]?.score ?? 0}
+                        last={localInsights.recentQuizEntries[0]?.score ?? 0}
                         trend="steady"
                       />
                       <p className="mt-2 text-xs text-(--cf-text-soft)">Complete more quizzes to see your trend</p>
@@ -1429,7 +1424,13 @@ export function BookProfileClient({ userEmail }: BookProfileClientProps) {
         ) : null}
       </InfoModal>
 
-      <Toast open={toast.open} message={toast.message} tone={toast.tone} />
+      <Toast
+        open={toast.open}
+        message={toast.message}
+        tone={toast.tone}
+        detail={toast.detail}
+        presentation={toast.presentation}
+      />
     </main>
   );
 }

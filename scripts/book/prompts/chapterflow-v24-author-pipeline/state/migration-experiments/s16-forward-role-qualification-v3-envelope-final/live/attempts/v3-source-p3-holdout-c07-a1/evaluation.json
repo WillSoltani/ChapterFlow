@@ -1,0 +1,93 @@
+{
+  "schema": "imp24-role-qualification-live-attempt-evaluation-v3",
+  "attemptId": "v3-source-p3-holdout-c07-a1",
+  "requestSha256": "b40ceab4b4f300a34a666bc2e47df234e9268dc11ae72f285aa9387e9dd317d9",
+  "receiptSha256": "1267d8f0afd7da91eeae0ad22d4694e73db639572a84517c7eeaedb87fa22856",
+  "executionEvidenceSha256": "8727364763e290272512d1605da51d88594ec5ef993c58cc3015d4c6b16719ba",
+  "rawOutputSha256": "94cafbc323f4792012ce45aa041ca4554cfddb79857d09af8e76b5cbb3bf7a6f",
+  "evaluationSha256": "6e61e57286d57c5a45a4374c38f2517af6bdfea87e5e4e7a8040108b89e938a0",
+  "parsedOutputSha256": "7de5e4fce789dd640dc6cb59ba5718713d2acee68e405ea7d3c29ae373d6cb77",
+  "assembledReviewSha256": "6cf29ad73a933fa56d42e908eb76c3c6ada2c6ce9758ebee6f5fdf0a262e0f7e",
+  "evidenceReferenceResolutionSha256": "918cd396ed6160490410fb304f09ca05ae6fd01929367adf95d4a912e254d3ba",
+  "terminalReason": "completed",
+  "evaluation": {
+    "schemaValid": true,
+    "envelopeBound": true,
+    "evidenceReferenceValid": true,
+    "authorityCompliant": true,
+    "complete": true,
+    "fileAccessFailure": false,
+    "prohibitedConductorEcho": false,
+    "resolved": true,
+    "semanticCorrect": true,
+    "semanticSummary": "PASS; primary=none",
+    "metricObservations": {
+      "supportStatusAccuracy": true,
+      "visibleRegisterAccuracy": true,
+      "highSeverityFalsePositiveFree": true,
+      "cleanCasePassRate": true
+    },
+    "parsedOutput": {
+      "schema": "source-integrity-model-output-v2",
+      "assessments": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is directly supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, with consistent mechanism evidence in SRC-U001-MECHANISM-001."
+        }
+      ]
+    },
+    "parseError": null,
+    "assembledReview": {
+      "schema": "source-integrity-review-v2",
+      "reviewerRole": "source-integrity",
+      "chapterContentSha256": "a9a3fed7fba6082e1b3c1f0f0e713733b52b3d6b68258d2533752db66151d73f",
+      "sourceUsePlanSha256": "bf2bf7f279d948e4da7f91eaad30c526492bc1bf92cb88b1943d2ba4b3de3f47",
+      "sourcePacketSha256": "sha256:6a344f22c042d56a9f6f9bdb4a7d703994649e2ac6ce76fe6342622e587eae8b",
+      "sidecarSha256": "sha256:8f6f00f3f029b077930d1ec62a72a555747616f4b77b8b9334e018a8ed7c1927",
+      "evidenceEnvelopeSha256": "1ef888b5f6a11f9fab8ef9e782a8bb994008bbd04fad9b789137774126f70b72",
+      "schemaSha256": "3e097b1248c219178368082fdd74f83b03ac6c483b7ba7ee3ee71463e01fc400",
+      "routeEvidence": {
+        "model": "model-free-certification-fixture",
+        "effort": "not-invoked",
+        "routeReceiptSha256": "sha256:0000000000000000000000000000000000000000000000000000000000000000"
+      },
+      "units": [
+        {
+          "targetRef": "U1",
+          "visibleRegister": "clearly_sourced",
+          "supportStatus": "SUPPORTED",
+          "framingAdequate": true,
+          "claimStrengthFit": true,
+          "namedSpecificityAllowed": true,
+          "findings": [],
+          "rationale": "The chapter claim is directly supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, with consistent mechanism evidence in SRC-U001-MECHANISM-001.",
+          "unitId": "unit.fact.ch01.fact.5",
+          "expectedOrigin": "source_bound",
+          "expectedForm": "explanation",
+          "claimStrengthExpected": "mechanistic",
+          "framingRequired": false,
+          "requiredSourceSupport": true
+        }
+      ],
+      "unresolvedTargetRefs": [],
+      "result": "PASS",
+      "blockingFindingIds": [],
+      "rationale": "U1: The chapter claim is directly supported by SRC-U001-CLAIM-001 and SRC-U001-ANCHOR-001, with consistent mechanism evidence in SRC-U001-MECHANISM-001."
+    },
+    "assemblyError": null,
+    "evidenceReferenceResolution": {
+      "status": "RESOLVED",
+      "bindings": [],
+      "unresolvedTargetRefs": [],
+      "unresolvedQuestionRefs": [],
+      "error": null
+    }
+  },
+  "evaluationArtifactSha256": "a8cc0272a6f805be05a9b9c0be4bdc0586194d436daeece84fddcaf7c12281e5"
+}

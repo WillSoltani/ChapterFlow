@@ -2,6 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import { fetchBookJson } from "@/app/book/_lib/book-api";
+import { fetchBookJsonCached, invalidateBookCache } from "@/lib/client/book-api-cache";
+import { SETTINGS_KEY } from "./book-read-keys";
 import { applyDocumentTheme } from "@/app/_lib/document-theme";
 import type { ExtendedSettings } from "@/app/book/settings/types/settings";
 import { defaultExtendedSettings, INTENSITY_TO_QUIZ_STYLE } from "@/app/book/settings/constants/defaults";
@@ -856,7 +858,8 @@ export function useBookPreferences() {
             concise: "guided", balanced: "standard", deep: "challenge",
           };
           if (typeof ob.learningStyle === "string" && ob.learningStyle in learningMap) {
-            seeds.learningMode = learningMap[ob.learningStyle];
+            const mappedLearningMode = learningMap[ob.learningStyle];
+            if (mappedLearningMode !== undefined) seeds.learningMode = mappedLearningMode;
           }
           if (ob.dailyGoalMinutes === 10 || ob.dailyGoalMinutes === 20 || ob.dailyGoalMinutes === 30) {
             seeds.dailyGoalPreset = ob.dailyGoalMinutes;
@@ -884,12 +887,10 @@ export function useBookPreferences() {
   }, []);
 
   useEffect(() => {
-    let mounted = true;
-    fetchBookJson<{ settings: Record<string, unknown> | null; updatedAt: string | null }>(
-      "/app/api/book/me/settings"
+    fetchBookJsonCached<{ settings: Record<string, unknown> | null; updatedAt: string | null }>(
+      SETTINGS_KEY
     )
       .then((payload) => {
-        if (!mounted) return;
         if (!payload.settings) return;
 
         // Decide whether the server copy should overwrite local state. Two cases
@@ -927,12 +928,7 @@ export function useBookPreferences() {
           );
         }
       })
-      .catch(() => {
-        if (!mounted) return;
-      });
-    return () => {
-      mounted = false;
-    };
+      .catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -974,8 +970,8 @@ export function useBookPreferences() {
       const mins = now.getHours() * 60 + now.getMinutes();
       const [startH, startM] = state.extended.darkModeFrom.split(":").map(Number);
       const [endH, endM] = state.extended.darkModeTo.split(":").map(Number);
-      const start = startH * 60 + startM;
-      const end = endH * 60 + endM;
+      const start = (startH ?? NaN) * 60 + (startM ?? NaN);
+      const end = (endH ?? NaN) * 60 + (endM ?? NaN);
       const isDark = start > end ? mins >= start || mins < end : mins >= start && mins < end;
       const root = document.documentElement;
       root.classList.toggle("dark", isDark);
@@ -1012,7 +1008,6 @@ export function useBookPreferences() {
   // Apply CSS variables for extended reading settings
   useEffect(() => {
     if (!hydrated) return;
-    const ext = state.extended;
     const root = document.documentElement;
 
     const fontMap: Record<string, string> = {
@@ -1029,16 +1024,22 @@ export function useBookPreferences() {
       "sans-serif": "var(--font-jakarta), system-ui, sans-serif",
       "opendyslexic": '"OpenDyslexic", sans-serif',
     };
-    root.style.setProperty("--reading-font-family", fontMap[ext.fontFamily] || fontMap["sans-serif"]);
+    root.style.setProperty(
+      "--reading-font-family",
+      fontMap[state.extended.fontFamily] || fontMap["sans-serif"] || "",
+    );
     root.style.setProperty("--reading-font-size", `${state.reading.fontSize}px`);
 
     const lineMap: Record<string, string> = { compact: "1.4", comfortable: "1.6", relaxed: "1.8" };
-    root.style.setProperty("--reading-line-height", lineMap[ext.lineSpacing] || "1.6");
+    root.style.setProperty("--reading-line-height", lineMap[state.extended.lineSpacing] || "1.6");
 
     const letterMap: Record<string, string> = { tight: "-0.01em", normal: "0", wide: "0.03em" };
-    root.style.setProperty("--reading-letter-spacing", letterMap[ext.letterSpacing] || "0");
+    root.style.setProperty(
+      "--reading-letter-spacing",
+      letterMap[state.extended.letterSpacing] || "0",
+    );
 
-    root.dataset.colorBlindMode = ext.colorBlindMode;
+    root.dataset.colorBlindMode = state.extended.colorBlindMode;
   }, [
     hydrated,
     state.reading.fontSize,
@@ -1074,6 +1075,10 @@ export function useBookPreferences() {
             lastSyncedAt.current = payload.updatedAt;
             window.localStorage.setItem(LAST_SYNCED_KEY, payload.updatedAt);
           }
+          // Refetch subscribed settings readers from the server echo of our own
+          // write. Ordered AFTER recording lastSyncedAt so the refetch is
+          // recognized as our own save (H27) and not re-applied as remote.
+          invalidateBookCache(SETTINGS_KEY);
         })
         .catch((err) => console.error("[settings] server save failed:", err));
     }, 500);

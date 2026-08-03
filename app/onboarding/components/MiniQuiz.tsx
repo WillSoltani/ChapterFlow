@@ -31,7 +31,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
   const question = questions[currentQuestion];
   const isCorrect =
     selectedLetter !== null &&
-    question.options.find((o) => o.letter === selectedLetter)?.isCorrect;
+    question?.options.find((o) => o.letter === selectedLetter)?.isCorrect;
 
   const isLastQuestion = currentQuestion >= questions.length - 1;
 
@@ -42,7 +42,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
     setShowFeedback(true);
 
     const correct =
-      question.options.find((o) => o.letter === letter)?.isCorrect ?? false;
+      question?.options.find((o) => o.letter === letter)?.isCorrect ?? false;
 
     if (correct) {
       setScore((s) => s + 1);
@@ -159,7 +159,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               marginBottom: 20,
             }}
           >
-            {question.question}
+            {question?.question}
           </p>
 
           {/* Answer options — full glass cards, no radio circles */}
@@ -170,7 +170,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               gap: 10,
             }}
           >
-            {question.options.map((option) => {
+            {question?.options.map((option) => {
               const isThisCorrect = option.isCorrect;
               const isThisSelected = selectedLetter === option.letter;
               const dimmed =
@@ -293,7 +293,7 @@ export default function MiniQuiz({ onComplete }: MiniQuizProps) {
               >
                 {isCorrect
                   ? feedback.correct
-                  : question.explanation}
+                  : question?.explanation}
               </motion.p>
             )}
           </AnimatePresence>

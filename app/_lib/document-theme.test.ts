@@ -84,7 +84,7 @@ function runBootstrap(
   // params exercises the real shipped string with a fixed clock.
   const fn = new Function("document", "window", "localStorage", "Date", script);
   fn(documentStub, windowStub, localStorageStub, FakeDate);
-  return { dark: classes.has("dark"), colorScheme: root.style.colorScheme };
+  return { dark: classes.has("dark"), colorScheme: root.style.colorScheme ?? "" };
 }
 
 const scheduled = (theme: string, over: Record<string, unknown> = {}) => ({
@@ -191,7 +191,7 @@ function withSystemTheme(
   try {
     run({
       hasDark: () => classes.has("dark"),
-      colorScheme: () => root.style.colorScheme,
+      colorScheme: () => root.style.colorScheme ?? "",
     });
   } finally {
     g.document = prevDocument;

@@ -336,7 +336,7 @@ export function usePhaseCompletion(params: {
 
       // Each phase requires the previous one to be completed
       const previousPhase = phaseOrder[phaseIndex - 1];
-      return completedPhases.has(previousPhase);
+      return previousPhase !== undefined && completedPhases.has(previousPhase);
     },
     [completedPhases, allPhasesCompletedOnce, quizPassed]
   );

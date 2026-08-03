@@ -1,9 +1,9 @@
 # Contributing
 
 ## Scope
-This repository contains two active product domains. Changes should be made with explicit awareness of which domain is affected:
-- `Cloud Portfolio`
-- `ChapterFlow`
+This repository contains a single active product: `ChapterFlow`. (An earlier
+`Cloud Portfolio` document-workflow domain was removed from HEAD; only
+ChapterFlow remains.)
 
 ## Expectations
 - Keep pull requests focused
@@ -13,7 +13,7 @@ This repository contains two active product domains. Changes should be made with
 
 ## Before opening changes
 - Read [DEVELOPMENT.md](DEVELOPMENT.md)
-- Review [ARCHITECTURE.md](ARCHITECTURE.md) for the relevant domain
+- Review [ARCHITECTURE.md](ARCHITECTURE.md) for the relevant area
 - If working on ChapterFlow content or backend flows, review [BOOK_ACCELERATOR.md](BOOK_ACCELERATOR.md)
 
 ## Quality bar

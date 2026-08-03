@@ -114,6 +114,12 @@ export async function POST(req: Request) {
       })
       .catch(() => {});
 
+    // ok:true is retained here on purpose (WS4-007 allowlist). This response is
+    // pinned by the native-contract op `flow-points-redeem.post` with authority
+    // pointers "/ok" and "/balance" and decoded by the live iOS
+    // `RedeemFlowPointsResponse` model. Dropping /ok is a native-contract
+    // deprecation that requires an iOS-coordinated release (relates to WS4-006
+    // versioning); do not remove without that.
     return bookOk({
       ok: true,
       rewardId: reward.rewardId,

@@ -48,8 +48,8 @@ test("POST short title → 400 invalid_title", () =>
     );
     assert.equal(res.status, 400);
     const body = await res.json();
-    assert.equal(body.ok, false);
-    assert.equal(body.error, "invalid_title");
+    assert.equal(body.error.code, "invalid_title");
+    assert.equal(typeof body.error.requestId, "string");
   }));
 
 test("POST bad email → 400 invalid_email", () =>
@@ -59,8 +59,8 @@ test("POST bad email → 400 invalid_email", () =>
     );
     assert.equal(res.status, 400);
     const body = await res.json();
-    assert.equal(body.ok, false);
-    assert.equal(body.error, "invalid_email");
+    assert.equal(body.error.code, "invalid_email");
+    assert.equal(typeof body.error.requestId, "string");
   }));
 
 test("POST with honeypot filled → silent 201, no error surfaced", () =>
@@ -82,5 +82,6 @@ test("POST invalid JSON → 400 invalid_json", () =>
     const res = await POST(post("{not json", { "x-forwarded-for": "203.0.113.14" }));
     assert.equal(res.status, 400);
     const body = await res.json();
-    assert.equal(body.error, "invalid_json");
+    assert.equal(body.error.code, "invalid_json");
+    assert.equal(typeof body.error.requestId, "string");
   }));

@@ -2,7 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { X } from "lucide-react";
-import { cn } from "@/app/book/components/ui/cn";
+import { cn } from "@/lib/utils";
 import { DUR, EASE } from "@/lib/motion";
 
 type PersonalizationMeterProps = {
@@ -25,7 +25,7 @@ export function PersonalizationMeter({
     <motion.div
       initial={reducedMotion ? false : { opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      exit={reducedMotion ? undefined : { opacity: 0, height: 0, marginBottom: 0 }}
+      {...(reducedMotion ? {} : { exit: { opacity: 0, height: 0, marginBottom: 0 } })}
       transition={{ duration: DUR.normal, ease: EASE.standard }}
       className="relative overflow-hidden rounded-2xl border border-(--cf-border-strong) bg-(--cf-surface-muted) p-5 backdrop-blur-lg"
     >
@@ -39,7 +39,7 @@ export function PersonalizationMeter({
       </button>
 
       <div className="flex items-center gap-2">
-        <span className={cn("text-sm", !reducedMotion && "animate-pulse")}>&#10024;</span>
+        <span className="text-sm">&#10024;</span>
         <span className="text-sm font-semibold text-(--cf-text-1)">
           {isComplete
             ? "Fully personalized!"
@@ -60,17 +60,13 @@ export function PersonalizationMeter({
               : "bg-gradient-to-r from-[var(--accent-emerald)] to-[var(--accent-cyan)]"
           )}
         >
-          {/* Shimmer overlay on the filled bar */}
-          {!reducedMotion && !isComplete && (
-            <span className="absolute inset-0 -translate-x-full animate-[shimmer_3s_ease-in-out_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent" />
-          )}
           {/* Glow at the tip */}
           <span
             className="absolute right-0 top-0 h-full w-4 rounded-full"
             style={{
               background: isComplete
-                ? "radial-gradient(circle at right, rgba(16,185,129,0.5), transparent)"
-                : "radial-gradient(circle at right, rgba(34,211,238,0.5), transparent)",
+                ? "radial-gradient(circle at right, color-mix(in srgb, var(--accent-emerald) 50%, transparent), transparent)"
+                : "radial-gradient(circle at right, color-mix(in srgb, var(--accent-cyan) 50%, transparent), transparent)",
             }}
           />
         </motion.div>
@@ -95,7 +91,7 @@ export function PersonalizationMeter({
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-1 text-[11px] text-(--cf-text-soft)"
+            className="mt-1 text-cf-caption text-(--cf-text-soft)"
           >
             Halfway there!
           </motion.p>

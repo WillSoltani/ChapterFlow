@@ -21,6 +21,8 @@ export function OnboardingFlow() {
 
   // Ref for the First Loop step (final step) sub-step back navigation
   const loopBackRef = useRef<(() => void) | null>(null);
+  const stepContainerRef = useRef<HTMLDivElement>(null);
+  const pendingFocusStepRef = useRef<number | null>(null);
 
   const normalizeStarterShelfItem = (item: StarterShelfItem): string =>
     typeof item === "string" ? item : item.id ?? "";
@@ -34,8 +36,34 @@ export function OnboardingFlow() {
   }, [currentStep, prevStep]);
 
   const handleSkip = useCallback(() => {
+    pendingFocusStepRef.current = currentStep + 1;
     skipStep();
-  }, [skipStep]);
+  }, [currentStep, skipStep]);
+
+  const handleNext = useCallback(() => {
+    pendingFocusStepRef.current = currentStep + 1;
+    nextStep();
+  }, [currentStep, nextStep]);
+
+  const handleStepAnimationComplete = useCallback(() => {
+    const stepContainer = stepContainerRef.current;
+    const pendingStep = pendingFocusStepRef.current;
+    if (
+      !stepContainer ||
+      pendingStep === null ||
+      Number(stepContainer.dataset.onboardingStep) !== pendingStep
+    ) {
+      return;
+    }
+
+    const heading = stepContainer.querySelector<HTMLElement>(
+      'h1, h2, [role="heading"]',
+    );
+    if (!heading) return;
+    heading.tabIndex = -1;
+    heading.focus({ preventScroll: true });
+    pendingFocusStepRef.current = null;
+  }, []);
 
   // Awaited by the celebration's CTA so it can show a loading state and, on
   // failure, an inline retry. Throws on a failed save — the server route is
@@ -212,7 +240,7 @@ export function OnboardingFlow() {
         {currentStep < 5 && (
           <button
             onClick={handleSkip}
-            className="flex min-h-12 cursor-pointer items-center border-none bg-transparent font-(family-name:--font-body) text-[13px] text-(--text-muted) transition-colors duration-200 hover:text-(--text-secondary)"
+            className="flex min-h-12 cursor-pointer items-center border-none bg-transparent font-(family-name:--font-body) text-cf-label text-(--text-muted) transition-colors duration-200 hover:text-(--text-secondary)"
           >
             Skip
           </button>
@@ -224,6 +252,8 @@ export function OnboardingFlow() {
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentStep}
+            ref={stepContainerRef}
+            data-onboarding-step={currentStep}
             className="w-full flex justify-center"
             custom={direction}
             variants={stepVariants}
@@ -231,18 +261,19 @@ export function OnboardingFlow() {
             animate="center"
             exit="exit"
             transition={stepTransition}
+            onAnimationComplete={handleStepAnimationComplete}
           >
             {currentStep === 1 && (
-              <StepMotivation onNext={nextStep} />
+              <StepMotivation onNext={handleNext} />
             )}
             {currentStep === 2 && (
-              <StepInterests onNext={nextStep} onSkip={nextStep} />
+              <StepInterests onNext={handleNext} onSkip={handleNext} />
             )}
             {currentStep === 3 && (
-              <StepPace onNext={nextStep} />
+              <StepPace onNext={handleNext} />
             )}
             {currentStep === 4 && (
-              <StepStarterShelf onNext={nextStep} />
+              <StepStarterShelf onNext={handleNext} />
             )}
             {currentStep === 5 && (
               <StepFirstLoop onFinish={handleFinish} onBack={prevStep} backRef={loopBackRef} />

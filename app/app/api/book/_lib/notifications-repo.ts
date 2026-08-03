@@ -1,5 +1,6 @@
 import "server-only";
 
+import { logger } from "@/lib/logging/logger";
 import { PutCommand, QueryCommand, UpdateCommand } from "@aws-sdk/lib-dynamodb";
 import { ddbDoc } from "@/app/app/api/_lib/aws";
 import { MAX_PUSH_FANOUT } from "@/app/app/api/book/_lib/device-cap-core";
@@ -42,9 +43,9 @@ type CreateNotificationParams = {
   type: BookUserNotificationItem["type"];
   title: string;
   body: string;
-  metadata?: Record<string, unknown>;
-  userEmail?: string;
-  userName?: string;
+  metadata?: Record<string, unknown> | undefined;
+  userEmail?: string | undefined;
+  userName?: string | undefined;
 };
 
 export async function createNotification(
@@ -189,11 +190,28 @@ export async function createNotification(
         }
       }
     } catch (e) {
-      console.error("[notifications-repo] push send failed:", e);
+      logger.error("notifications_repo_push_send_failed", { err: e });
     }
   }
 
   return { created: inAppCreated, emailSent, pushSent };
+}
+
+function toNotificationItem(
+  userId: string,
+  item: Record<string, unknown>
+): BookUserNotificationItem {
+  return {
+    userId,
+    notificationId: String(item.notificationId ?? ""),
+    type: String(item.type ?? "badge_earned") as BookUserNotificationItem["type"],
+    title: String(item.title ?? ""),
+    body: String(item.body ?? ""),
+    channel: (item.channel as BookUserNotificationItem["channel"]) ?? "in_app",
+    readAt: typeof item.readAt === "string" ? item.readAt : null,
+    metadata: (item.metadata as Record<string, unknown>) ?? {},
+    createdAt: String(item.createdAt ?? ""),
+  };
 }
 
 export async function listNotifications(
@@ -226,17 +244,49 @@ export async function listNotifications(
 
   const capped = limit === undefined ? items : items.slice(0, limit);
 
-  return capped.map((item) => ({
-    userId,
-    notificationId: String(item.notificationId ?? ""),
-    type: String(item.type ?? "badge_earned") as BookUserNotificationItem["type"],
-    title: String(item.title ?? ""),
-    body: String(item.body ?? ""),
-    channel: (item.channel as BookUserNotificationItem["channel"]) ?? "in_app",
-    readAt: typeof item.readAt === "string" ? item.readAt : null,
-    metadata: (item.metadata as Record<string, unknown>) ?? {},
-    createdAt: String(item.createdAt ?? ""),
-  }));
+  return capped.map((item) => toNotificationItem(userId, item));
+}
+
+export interface NotificationsPage {
+  items: BookUserNotificationItem[];
+  lastEvaluatedKey?: Record<string, unknown> | undefined;
+}
+
+/**
+ * One logical page of a user's notifications, for the `?limit=&cursor=`
+ * contract (WS4-004) — distinct from `listNotifications`'s "follow until we
+ * have `limit` items" loop above. That loop's own `QueryCommand` has no
+ * `Limit`, so a single 1MB Query page can return far more than the caller's
+ * requested cap; the `LastEvaluatedKey` from that call then points PAST every
+ * item the page fetched, not after the `limit`-th one, so resuming a "page 2"
+ * from it would silently skip items. This function instead puts `Limit` on
+ * the `QueryCommand` itself, so DynamoDB — not a client-side slice — decides
+ * the page boundary, and its `LastEvaluatedKey` accurately resumes right
+ * after the last item this call actually returned.
+ */
+export async function listNotificationsPage(
+  tableName: string,
+  userId: string,
+  opts: { limit: number; exclusiveStartKey?: Record<string, unknown> | undefined }
+): Promise<NotificationsPage> {
+  const res = await ddbDoc.send(
+    new QueryCommand({
+      TableName: tableName,
+      KeyConditionExpression: "PK = :pk AND begins_with(SK, :prefix)",
+      ExpressionAttributeValues: {
+        ":pk": bookUserPk(userId),
+        ":prefix": "NOTIF#",
+      },
+      ScanIndexForward: false,
+      Limit: opts.limit,
+      ExclusiveStartKey: opts.exclusiveStartKey,
+    })
+  );
+
+  return {
+    items: (res.Items ?? []).map((item) => toNotificationItem(userId, item)),
+    lastEvaluatedKey: res.LastEvaluatedKey as Record<string, unknown> | undefined,
+  };
 }
 
 // The notification bell caps its badge at "99+" (see NotificationBell.tsx), so

@@ -66,6 +66,7 @@ export function lockedRecall(t: number): number {
   for (let i = 1; i < REVIEWS.length; i++) {
     const rv = REVIEWS[i];
     const prev = REVIEWS[i - 1]; // real low point uses the PREVIOUS stability
+    if (rv === undefined || prev === undefined) continue; // i ∈ [1, len) ⇒ both in-bounds
     // Cap the rise so it can't reach back past the midpoint of the gap to the
     // previous review — otherwise (when reviews are close, e.g. day 0 → day 1)
     // it overlaps that review's POST shoulder and a value/slope kink appears
@@ -82,6 +83,7 @@ export function lockedRecall(t: number): number {
   // POST — eased shoulder leaving each crest (crest → real decay).
   for (let i = 0; i < REVIEWS.length; i++) {
     const rv = REVIEWS[i];
+    if (rv === undefined) continue; // i ∈ [0, len) ⇒ in-bounds
     // Symmetric cap: the shoulder can't extend past the midpoint of the gap to
     // the NEXT review, so it never overlaps that review's PRE rise (see above).
     const next = REVIEWS[i + 1];
@@ -203,9 +205,11 @@ export function buildCurveGeometry(box: CurveBox): CurveGeometry {
   const RECOVERY_SUBSAMPLES = 14;
   const denseRecoveryDays: number[] = [];
   for (let i = 0; i < REVIEWS.length; i++) {
+    const rvi = REVIEWS[i];
+    if (rvi === undefined) continue; // i ∈ [0, len) ⇒ in-bounds
     // PRE rise window (non-initial reviews only).
     if (i >= 1) {
-      const start = REVIEWS[i].t - RECOVERY_DAYS;
+      const start = rvi.t - RECOVERY_DAYS;
       for (let k = 0; k <= RECOVERY_SUBSAMPLES; k++) {
         denseRecoveryDays.push(start + (k / RECOVERY_SUBSAMPLES) * RECOVERY_DAYS);
       }
@@ -213,7 +217,7 @@ export function buildCurveGeometry(box: CurveBox): CurveGeometry {
     // POST shoulder window (every review crest).
     for (let k = 0; k <= RECOVERY_SUBSAMPLES; k++) {
       denseRecoveryDays.push(
-        REVIEWS[i].t + (k / RECOVERY_SUBSAMPLES) * PEAK_SHOULDER_DAYS,
+        rvi.t + (k / RECOVERY_SUBSAMPLES) * PEAK_SHOULDER_DAYS,
       );
     }
   }
@@ -236,6 +240,9 @@ export function buildCurveGeometry(box: CurveBox): CurveGeometry {
 
   const last = lockedPts[lockedPts.length - 1];
   const first = lockedPts[0];
+  if (last === undefined || first === undefined) {
+    throw new Error("buildCurveGeometry: no sample points produced");
+  }
   const areaD = `${lockedD} L${last.x.toFixed(2)} ${yBot.toFixed(2)} L${first.x.toFixed(
     2,
   )} ${yBot.toFixed(2)} Z`;
@@ -302,15 +309,17 @@ export function buildCurveGeometry(box: CurveBox): CurveGeometry {
  * draw-on works cleanly.
  */
 function smoothPath(pts: Pt[]): string {
-  if (pts.length === 0) return "";
-  if (pts.length === 1) return `M${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
+  const head = pts[0];
+  if (head === undefined) return "";
+  if (pts.length === 1) return `M${head.x.toFixed(2)} ${head.y.toFixed(2)}`;
 
-  let d = `M${pts[0].x.toFixed(2)} ${pts[0].y.toFixed(2)}`;
+  let d = `M${head.x.toFixed(2)} ${head.y.toFixed(2)}`;
   for (let i = 0; i < pts.length - 1; i++) {
     const p0 = pts[i === 0 ? 0 : i - 1];
     const p1 = pts[i];
     const p2 = pts[i + 1];
     const p3 = pts[i + 2 < pts.length ? i + 2 : pts.length - 1];
+    if (!p0 || !p1 || !p2 || !p3) continue; // all indices provably in-bounds
 
     // Catmull-Rom tension 0.5 → cubic control points.
     const c1x = p1.x + (p2.x - p0.x) / 6;

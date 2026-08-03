@@ -35,14 +35,10 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
   return (
     <motion.div
       className="mt-9"
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
-      whileInView={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 16 } })}
+      {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
       viewport={{ once: true, margin: "-50px" }}
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: DUR.slow, ease: EASE.standard }
-      }
+      {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, ease: EASE.standard } })}
     >
       {/* Header */}
       <h2
@@ -54,7 +50,7 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
 
       {/* Book cards */}
       <div
-        className="hide-scrollbar flex gap-3 overflow-x-auto pb-2"
+        className="scrollbar-hide flex gap-3 overflow-x-auto pb-2"
         role="list"
         style={{ scrollSnapType: "x mandatory" }}
       >
@@ -63,18 +59,10 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
             key={book.id}
             className="flex flex-col"
             style={{ scrollSnapAlign: "start" }}
-            initial={
-              prefersReducedMotion ? undefined : { opacity: 0, y: 12 }
-            }
-            whileInView={
-              prefersReducedMotion ? undefined : { opacity: 1, y: 0 }
-            }
+            {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 12 } })}
+            {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1, y: 0 } })}
             viewport={{ once: true }}
-            transition={
-              prefersReducedMotion
-                ? undefined
-                : { duration: DUR.page, delay: i * 0.06, ease: EASE.standard }
-            }
+            {...(prefersReducedMotion ? {} : { transition: { duration: DUR.page, delay: i * 0.06, ease: EASE.standard } })}
           >
             {book.reason && (
               <p
@@ -109,14 +97,10 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
             WebkitBackdropFilter: "blur(12px)",
             border: "1px solid var(--cf-border)",
           }}
-          initial={prefersReducedMotion ? undefined : { opacity: 0 }}
-          whileInView={prefersReducedMotion ? undefined : { opacity: 1 }}
+          {...(prefersReducedMotion ? {} : { initial: { opacity: 0 } })}
+          {...(prefersReducedMotion ? {} : { whileInView: { opacity: 1 } })}
           viewport={{ once: true }}
-          transition={
-            prefersReducedMotion
-              ? undefined
-              : { duration: DUR.slow, delay: 0.3, ease: EASE.standard }
-          }
+          {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, delay: 0.3, ease: EASE.standard } })}
         >
           <p className="text-sm" style={{ color: "var(--cf-text-3)" }}>
             Unlock your full library — {CATALOG_BOOK_COUNT_DISPLAY} books across{" "}
@@ -132,8 +116,8 @@ export function DiscoveryRow({ books, isPro }: DiscoveryRowProps) {
               background: "var(--cf-upgrade-accent)",
               boxShadow: "var(--cf-upgrade-accent-shadow)",
             }}
-            whileHover={prefersReducedMotion ? undefined : { scale: 1.03 }}
-            whileTap={prefersReducedMotion ? undefined : { scale: 0.97 }}
+            {...(prefersReducedMotion ? {} : { whileHover: { scale: 1.03 } })}
+            {...(prefersReducedMotion ? {} : { whileTap: { scale: 0.97 } })}
           >
             Go Pro — {MONTHLY_PRICE}/mo
           </motion.span>

@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import "./globals.css";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Newsreader } from "next/font/google";
 import localFont from "next/font/local";
@@ -8,6 +9,7 @@ import {
   getChapterFlowSiteUrl,
 } from "@/app/_lib/chapterflow-brand";
 import { MotionProvider } from "@/components/MotionProvider";
+import { AuthCacheBoundary } from "@/components/auth/AuthCacheBoundary";
 import { buildDocumentThemeBootstrapScript } from "@/app/_lib/document-theme";
 
 const satoshi = localFont({
@@ -31,6 +33,7 @@ const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-jetbrains",
   display: "swap",
+  preload: false,
 });
 
 // Literary serif reading voice (NS-1). Provides the --font-newsreader variable
@@ -43,6 +46,7 @@ const newsreader = Newsreader({
   variable: "--font-newsreader",
   display: "swap",
   style: ["normal", "italic"],
+  preload: false,
 });
 
 export const viewport: Viewport = {
@@ -90,11 +94,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  // Per-request nonce minted by middleware.ts (WS8-001) and forwarded on the
+  // request headers. The theme bootstrap below is EXECUTABLE inline JS, so under
+  // the enforcing strict-dynamic CSP it MUST carry this nonce or it is blocked
+  // (white-screening the app). Reading headers() opts the whole tree into
+  // dynamic rendering — intended.
+  const nonce = (await headers()).get("x-nonce") ?? undefined;
   return (
     <html
       lang="en"
@@ -103,12 +113,14 @@ export default function RootLayout({
     >
       <head>
         <script
+          nonce={nonce}
           dangerouslySetInnerHTML={{
             __html: buildDocumentThemeBootstrapScript(),
           }}
         />
       </head>
       <body className="min-h-screen w-full overflow-x-hidden antialiased font-(--font-body)">
+        <AuthCacheBoundary />
         <MotionProvider>{children}</MotionProvider>
         {/* Color-blind support no longer uses an SVG feColorMatrix filter on
             <html>. That global url() filter forced a full-page raster on every

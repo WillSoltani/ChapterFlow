@@ -6,6 +6,7 @@ import { BookApiError } from "./errors";
 import { nowIso, opsFailurePk, opsFailureSk, ttlEpochSeconds, RETENTION_DAYS_18_MONTHS } from "./keys";
 import { putOpsMetric } from "./cloudwatch-metrics";
 import type { OpsFailureItem, OpsFailureKind } from "./types";
+import { logger } from "@/lib/logging/logger";
 
 function readStr(value: unknown): string | undefined {
   return typeof value === "string" ? value : undefined;
@@ -38,10 +39,10 @@ export type RecordOpsFailureInput = {
   kind: OpsFailureKind;
   context: string;
   userId: string;
-  subscriptionId?: string;
-  stripeCustomerId?: string;
-  errorCode?: string;
-  errorMessage?: string;
+  subscriptionId?: string | undefined;
+  stripeCustomerId?: string | undefined;
+  errorCode?: string | undefined;
+  errorMessage?: string | undefined;
 };
 
 /**
@@ -87,10 +88,10 @@ export async function recordOpsFailure(
     );
     persisted = ref;
   } catch (error) {
-    console.error("ops_failure_record_error", {
+    logger.error("ops_failure_record_error", {
       context: input.context,
       userId: input.userId,
-      message: error instanceof Error ? error.message : String(error),
+      err: error,
     });
   }
   // Always emit the alarm metric — even if persistence failed, the operator
@@ -140,7 +141,7 @@ export async function listRecentOpsFailures(
 }
 
 /** Extract a Stripe SDK error's `code` and `message` defensively. */
-export function stripeErrorParts(error: unknown): { code?: string; message: string } {
+export function stripeErrorParts(error: unknown): { code?: string | undefined; message: string } {
   const e = error as { code?: unknown; message?: unknown } | null;
   const code = typeof e?.code === "string" ? e.code : undefined;
   const message = typeof e?.message === "string" ? e.message : String(error);
@@ -159,13 +160,13 @@ export async function captureStripeCancelFailure(
     kind: OpsFailureKind;
     context: string;
     userId: string;
-    subscriptionId?: string;
-    stripeCustomerId?: string;
+    subscriptionId?: string | undefined;
+    stripeCustomerId?: string | undefined;
     error: unknown;
   }
 ): Promise<void> {
   const { code, message } = stripeErrorParts(input.error);
-  console.error("stripe_cancellation_failed", {
+  logger.error("stripe_cancellation_failed", {
     context: input.context,
     userId: input.userId,
     subscriptionId: input.subscriptionId,

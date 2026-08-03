@@ -15,7 +15,8 @@ const MON_LETTERS = ["M", "T", "W", "T", "F", "S", "S"];
 
 /** Monday-based weekday letter for the day `daysAgo` before today (todayWeekday is Mon=0…Sun=6). */
 function weekdayLabel(todayWeekday: number, daysAgo: number): string {
-  return MON_LETTERS[((todayWeekday - daysAgo) % 7 + 7) % 7];
+  // MON_LETTERS has 7 entries and the index is reduced mod 7, so it is in-bounds.
+  return MON_LETTERS[((todayWeekday - daysAgo) % 7 + 7) % 7]!;
 }
 
 export function WeeklyMomentumStrip({
@@ -50,13 +51,9 @@ export function WeeklyMomentumStrip({
         WebkitBackdropFilter: "blur(12px)",
         border: "1px solid var(--cf-border-strong)",
       }}
-      initial={prefersReducedMotion ? undefined : { opacity: 0, y: 16 }}
-      animate={prefersReducedMotion ? undefined : { opacity: 1, y: 0 }}
-      transition={
-        prefersReducedMotion
-          ? undefined
-          : { duration: DUR.slow, delay: 0.25, ease: EASE.standard }
-      }
+      {...(prefersReducedMotion ? {} : { initial: { opacity: 0, y: 16 } })}
+      {...(prefersReducedMotion ? {} : { animate: { opacity: 1, y: 0 } })}
+      {...(prefersReducedMotion ? {} : { transition: { duration: DUR.slow, delay: 0.25, ease: EASE.standard } })}
     >
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         {/* 7-day heatmap */}
@@ -69,17 +66,9 @@ export function WeeklyMomentumStrip({
               <motion.div
                 key={i}
                 className="flex flex-col items-center gap-1.5"
-                initial={
-                  prefersReducedMotion ? undefined : { opacity: 0, scale: 0.5 }
-                }
-                animate={
-                  prefersReducedMotion ? undefined : { opacity: 1, scale: 1 }
-                }
-                transition={
-                  prefersReducedMotion
-                    ? undefined
-                    : { duration: DUR.normal, delay: 0.3 + i * 0.05 }
-                }
+                {...(prefersReducedMotion ? {} : { initial: { opacity: 0, scale: 0.5 } })}
+                {...(prefersReducedMotion ? {} : { animate: { opacity: 1, scale: 1 } })}
+                {...(prefersReducedMotion ? {} : { transition: { duration: DUR.normal, delay: 0.3 + i * 0.05 } })}
               >
                 <span
                   className="text-[10px] font-medium"

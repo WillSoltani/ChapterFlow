@@ -25,6 +25,7 @@ import {
   putScenarioLookup,
   putScenarioModerationItem,
   putUserScenarioSubmission,
+  reserveScenarioSubmitSlot,
 } from "@/app/app/api/book/_lib/repo";
 import { awardFlowPoints } from "@/app/app/api/book/_lib/flow-points-repo";
 import { validateScenario, type ScenarioValidationResult } from "@/app/app/api/book/_lib/ai-service";
@@ -38,10 +39,6 @@ import { putOpsMetric } from "@/app/app/api/book/_lib/cloudwatch-metrics";
 import { getServerEnv } from "@/app/app/api/_lib/server-env";
 import { createNotification } from "@/app/app/api/book/_lib/notifications-repo";
 import { getPublishedBookManifest } from "@/app/app/api/book/_lib/content-service";
-import { ddbDoc } from "@/app/app/api/_lib/aws";
-import { UpdateCommand } from "@aws-sdk/lib-dynamodb";
-import { ConditionalCheckFailedException } from "@aws-sdk/client-dynamodb";
-import { bookUserPk } from "@/app/app/api/book/_lib/keys";
 import type {
   BookScenarioLookupItem,
   BookScenarioModerationItem,
@@ -211,34 +208,20 @@ export async function POST(
     // counter self-cleans a few days after the day it tracks.
     const submitDay = createdAt.slice(0, 10);
     const submitLimitTtl = Math.floor(Date.now() / 1000) + 3 * 86400;
-    try {
-      await ddbDoc.send(
-        new UpdateCommand({
-          TableName: tableName,
-          Key: { PK: bookUserPk(user.sub), SK: `SCENARIO_SUBMIT_LIMIT#${submitDay}` },
-          UpdateExpression:
-            "SET #count = if_not_exists(#count, :zero) + :one, updatedAt = :now, entity = :entity, #ttl = :ttl",
-          ConditionExpression: "attribute_not_exists(#count) OR #count < :limit",
-          ExpressionAttributeNames: { "#count": "count", "#ttl": "ttl" },
-          ExpressionAttributeValues: {
-            ":zero": 0,
-            ":one": 1,
-            ":now": createdAt,
-            ":entity": "SCENARIO_SUBMIT_LIMIT",
-            ":ttl": submitLimitTtl,
-            ":limit": SCENARIO_SUBMIT_DAILY_LIMIT,
-          },
-        }),
+    const submitReserved = await reserveScenarioSubmitSlot(
+      tableName,
+      user.sub,
+      submitDay,
+      SCENARIO_SUBMIT_DAILY_LIMIT,
+      createdAt,
+      submitLimitTtl
+    );
+    if (!submitReserved) {
+      throw new BookApiError(
+        429,
+        "submission_limit",
+        `Daily scenario submission limit reached (${SCENARIO_SUBMIT_DAILY_LIMIT}/day). Try again tomorrow.`
       );
-    } catch (e) {
-      if (e instanceof ConditionalCheckFailedException) {
-        throw new BookApiError(
-          429,
-          "submission_limit",
-          `Daily scenario submission limit reached (${SCENARIO_SUBMIT_DAILY_LIMIT}/day). Try again tomorrow.`
-        );
-      }
-      throw e;
     }
 
     // ── Deterministic pre-filter (before any model call) ─────────────────────
