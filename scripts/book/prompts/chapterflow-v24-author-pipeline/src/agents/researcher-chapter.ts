@@ -79,6 +79,38 @@ const META_VERBS: RegExp[] = [
 ];
 
 /**
+ * The retry card for a meta-reference hit.
+ *
+ * Two things this must not do, both learned from a live Franklin run that died
+ * here 3/3 on `"the author"`:
+ *
+ * 1. It must not carry ANOTHER book's vocabulary. The old text enumerated
+ *    `"Allen writes"` and told the model to state facts "about
+ *    people/thought/circumstances" — As a Man Thinketh's thesis, baked into the
+ *    universal researcher contract. On a book about an eighteenth-century printer
+ *    that guidance is actively misdirecting, and it is exactly the leak bookScars
+ *    exists to prevent ("one book's scar tissue became a house-voice force in
+ *    every OTHER book"). The section writers were migrated to that mechanism; the
+ *    researcher never was. Note the old text was stale on its own terms too:
+ *    META_VERBS has no `allen` entry, so the example it cited could not fire.
+ *
+ * 2. It must say what to DO, not just what is banned. Finding 11ad already
+ *    established that enumerating banned forms raises the degenerate-response
+ *    rate. `"the author"` is the sharp case: in an autobiography the author IS
+ *    the subject, so a model told only "don't say the author" has no legal move
+ *    for a sentence that is genuinely about that person. Naming them resolves it —
+ *    "Franklin left Boston", never "the author left Boston" — and the fix
+ *    generalises, because every book has an author to name.
+ */
+function metaReferenceProblem(match: string, author: string): string {
+  const named = author.trim();
+  const remedy = named.length > 0
+    ? `Name the person or thing instead — for this book, write "${named}" rather than "the author".`
+    : "Name the person or thing instead of referring to the text.";
+  return `meta-reference "${match}" found. A sidecar states standalone facts about the world, never facts about a text: drop "this chapter", "the chapter", "this book", "the book", "the author", and chapter/section numbers. ${remedy} Rewrite the sentence so it would read correctly to someone who has never seen the book.`;
+}
+
+/**
  * Max words in a single hardSpecific. A hardSpecific is a SHORT verbatim source
  * TOKEN — a proper name, number, measurement, or striking phrase — not a
  * sentence or clause. The floor exists because downstream composition gates
@@ -532,7 +564,7 @@ function collectChapterResearchProblems(r: ChapterResearchResult, input: Chapter
   for (const re of META_REGEXES) {
     const m = allText.match(re);
     if (m) {
-      problems.push(`meta-reference "${m[0]}" found — paraphrase the claim directly. BANNED everywhere in every field: "this chapter", "the chapter", "this book", "the book", "the author", "Allen writes", chapter/section numbers. State the claim as a standalone fact about people/thought/circumstances.`);
+      problems.push(metaReferenceProblem(m[0], input.bibliography.author));
       break;
     }
   }
