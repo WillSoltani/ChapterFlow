@@ -549,6 +549,83 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
     2,
     "retry exhaustion must stop before another compile phase starts",
   );
+
+  // A SIGINT during the deterministic retry — the CLI's own documented
+  // cancellation path — leaves that run terminal-CANCELLED. Observed live on the
+  // Franklin canary: every subsequent resume re-selected the cancelled run and
+  // the compiler port threw MODEL_RUN_CANCELLED, a permanent wedge. CANCELLED now
+  // counts as a consumed slot: an unflagged resume fails closed with a message
+  // naming the way out, and a flagged resume grants the next operator slot
+  // instead of resuming the cancelled run.
+  const cancelledParentRunId = "book-run-compiler-retry-cancelled";
+  const cancelledBaseRunId = `compiler-run-${createHash("sha256").update(cancelledParentRunId).digest("hex").slice(0, 32)}`;
+  const cancelledRetryRunId = `compiler-retry-1-run-${createHash("sha256").update(cancelledParentRunId).digest("hex").slice(0, 32)}`;
+  for (const childRunId of [cancelledBaseRunId, cancelledRetryRunId] as const) {
+    const created = await runStore.createRun({
+      schemaVersion: "1",
+      bookId: BOOK,
+      runId: childRunId,
+      commandId: "compiler-candidate",
+      sourceGitSha: SOURCE_SHA,
+      requiredStages: ["compiler-candidate"],
+      requiredInventory: [],
+      inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
+      attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } },
+      createdAt: now(),
+    });
+    assert.ok(created.ok);
+  }
+  const cancelledBaseFailed = await runStore.finishRun({
+    bookId: BOOK,
+    runId: cancelledBaseRunId,
+    status: "FAILED",
+    finishedAt: now(),
+    reason: "COMPILER_SECTION_PROCESS_FAILED:learning-pack:after 3 attempts",
+  });
+  assert.ok(cancelledBaseFailed.ok);
+  const cancelRequested = await runStore.requestCancel({
+    bookId: BOOK,
+    runId: cancelledRetryRunId,
+    reason: "SIGINT",
+    requestedAt: now(),
+  });
+  assert.ok(cancelRequested.ok);
+  const retryCancelled = await runStore.finishRun({
+    bookId: BOOK,
+    runId: cancelledRetryRunId,
+    status: "CANCELLED",
+    finishedAt: now(),
+    reason: "MODEL_RUN_CANCELLED:compiler cancellation requested",
+  });
+  assert.ok(retryCancelled.ok);
+  const cancelledAt = now();
+  events.push(
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "intake", status: "COMPLETED", at: cancelledAt, detail: "expectedBookRevision=0" },
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "research", status: "COMPLETED", at: cancelledAt },
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "seed", status: "COMPLETED", at: cancelledAt, candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest } },
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "compile", status: "STARTED", at: cancelledAt },
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "compile", status: "FAILED", at: cancelledAt, detail: "COMPILER_SECTION_PROCESS_FAILED:learning-pack:after 3 attempts" },
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "compile", status: "STARTED", at: cancelledAt },
+    { schemaVersion: "1", runId: cancelledParentRunId, bookId: BOOK, phase: "compile", status: "FAILED", at: cancelledAt, detail: "MODEL_RUN_CANCELLED:compiler cancellation requested" },
+  );
+
+  const cancelledUnflagged = await service.run({ ...request, resumeRunId: cancelledParentRunId });
+  assert.equal(cancelledUnflagged.ok, false, "unflagged resume over a cancelled retry must fail closed");
+  if (!cancelledUnflagged.ok) {
+    assert.equal(cancelledUnflagged.error.code, "BOOK_RUN_COMPILER_RETRY_EXHAUSTED");
+    assert.match(cancelledUnflagged.error.message, /cancelled/, "the message must name cancellation, not claim a failure");
+    assert.match(cancelledUnflagged.error.message, /--reconcile-unsettled/, "the message must name the way out");
+  }
+
+  const callsBeforeCancelledGrant = compilerRunIds.length;
+  await service.run({ ...request, resumeRunId: cancelledParentRunId, reconcileUnsettled: true });
+  const cancelledOpRetryRunId = `compiler-operator-retry-1-run-${createHash("sha256").update(cancelledParentRunId).digest("hex").slice(0, 32)}`;
+  assert.equal(compilerRunIds.length, callsBeforeCancelledGrant + 1, "a flagged resume must grant the next compile slot");
+  assert.equal(
+    compilerRunIds[compilerRunIds.length - 1],
+    cancelledOpRetryRunId,
+    "the grant must mint the operator retry run, never resume the cancelled one",
+  );
 });
 
 requiredTest("reconcile resume grants one operator-authorized compile attempt past an exhausted budget", async (context: TestContext) => {

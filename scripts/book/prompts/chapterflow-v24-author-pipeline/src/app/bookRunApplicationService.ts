@@ -991,7 +991,18 @@ export class BookRunApplicationService {
           const retryAt = safeNow(this.#dependencies.clock);
           if (!retryAt.ok) return retryAt;
           const retryCompiler = await this.#dependencies.runStore.readRun(input.bookId, retryRunId, retryAt.value);
-          if (retryCompiler.ok && retryCompiler.value.status === "FAILED") {
+          // CANCELLED joins FAILED as a consumed slot. A SIGINT during the
+          // deterministic retry — the CLI's own documented cancellation path —
+          // leaves the retry run terminal-CANCELLED; resuming it verbatim just
+          // makes the compiler port throw MODEL_RUN_CANCELLED on every resume,
+          // wedging the book forever (observed live on the Franklin canary).
+          // Cancellation stays terminal for THAT run; stepping past it costs the
+          // same explicit per-invocation consent as an exhausted retry.
+          const retryConsumed = retryCompiler.ok
+            && (retryCompiler.value.status === "FAILED"
+              || retryCompiler.value.status === "CANCELLED"
+              || retryCompiler.value.status === "CANCEL_REQUESTED");
+          if (retryConsumed) {
             // The single deterministic compiler retry (service-level, one shot) has
             // already failed. Default (no flag): fail closed, preserving the exhausted
             // contract verbatim. The service-level retry budget cannot tell "failed
@@ -1005,7 +1016,12 @@ export class BookRunApplicationService {
             // and the in-run deterministic retry / MAX_SECTION_ATTEMPTS logic is
             // untouched — this is a resume-boundary decision only.
             if (input.reconcileUnsettled !== true) {
-              return failed("BOOK_RUN_COMPILER_RETRY_EXHAUSTED", "single deterministic compiler retry already failed");
+              return failed(
+                "BOOK_RUN_COMPILER_RETRY_EXHAUSTED",
+                retryCompiler.ok && retryCompiler.value.status === "FAILED"
+                  ? "single deterministic compiler retry already failed"
+                  : "single deterministic compiler retry was cancelled; resume with --reconcile-unsettled to grant the next compile slot",
+              );
             }
             const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value, input.reconcileUnsettled === true);
             if (!granted.ok) return granted;
