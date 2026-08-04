@@ -18,10 +18,10 @@ export interface ModelProcessRoute {
   /** Optional route-supplied process env, a guarded additive channel: the
    *  gateway merges the result over the policy-built environment AFTER the
    *  env-strip and rejects any malformed name or forbidden provider key, so it
-   *  can never reintroduce a stripped API key. Unused by the shipped routes
-   *  today — the claude route conveys its effort tier via the `--effort` argv
-   *  flag, not env (live probe 2026-07-22) — but retained as defense-in-depth
-   *  for any future route that needs a non-secret env var. */
+   *  can never reintroduce a stripped API key. The claude route uses it for
+   *  CLAUDE_CODE_MAX_OUTPUT_TOKENS (its effort tier still travels via the
+   *  `--effort` argv flag, live probe 2026-07-22); see createClaudeRoute for
+   *  the live evidence behind that value. */
   env?(profile: ExecutionProfile): Readonly<Record<string, string>>;
   /** Optional stdout normalizer (Task 7: claude's `--output-format json`
    *  envelope is unwrapped to the inner-JSON contract the gateway validates —

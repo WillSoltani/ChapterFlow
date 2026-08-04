@@ -148,6 +148,22 @@ export function createClaudeRoute(model: string, effort: string): ModelProcessRo
       const mode = profile.mode === "READ_ONLY" ? READ_ONLY_LOCKDOWN_ARGS : WORKSPACE_WRITE_ARGS;
       return { command: "claude", args: [...base, ...mode] };
     },
+    env() {
+      // Model-output ceiling. The claude CLI defaults to 32k output tokens and
+      // extended-thinking spend counts against it: on the Franklin canary, ch01
+      // learning-pack at Sonnet@high generated for ~21 minutes and then died
+      // `API Error: Claude's response exceeded the 32000 output token maximum`
+      // (is_error=true, exit 1) on two of three operator attempts, while the
+      // third produced a complete 20KB pack — the cap sat exactly astride this
+      // workload's natural variance. Two earlier compile rounds burned on the
+      // SAME call as 900s timeouts with stdoutBytes=0: the identical failure not
+      // yet at its cliff (claude -p buffers all stdout until completion). 64000
+      // is claude-sonnet-5's actual output maximum. Supplied HERE via the
+      // guarded route-env channel — the policy env-strip stays authoritative,
+      // and a reproducible pipeline must not read this from ambient shell env.
+      // The API error message itself names this variable as the knob.
+      return { CLAUDE_CODE_MAX_OUTPUT_TOKENS: "64000" };
+    },
     normalizeStdout(stdout: Uint8Array) {
       return normalizeClaudeStdout(stdout);
     },
