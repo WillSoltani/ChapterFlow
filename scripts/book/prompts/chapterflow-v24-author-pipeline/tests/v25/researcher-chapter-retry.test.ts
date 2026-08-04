@@ -241,6 +241,19 @@ requiredTest("2 content-guard (meta-reference) rejection retries the same way an
   const retryPrompt = subject.prompts[1];
   assert.match(retryPrompt, /PREVIOUS ATTEMPT WAS REJECTED/);
   assert.match(retryPrompt, /meta-reference/);
+
+  // The card must NAME the book's own author as the remedy. A live Franklin run
+  // died 3/3 on "the author": in an autobiography the author IS the subject, so a
+  // model told only what is banned has no legal move. Naming them is the move.
+  assert.match(retryPrompt, /Chip Heath and Dan Heath/,
+    "the remedy must name THIS book's author, not describe the ban abstractly");
+
+  // ...and must carry no OTHER book's vocabulary. The old card enumerated
+  // "Allen writes" and told the model to state facts about
+  // "people/thought/circumstances" — As a Man Thinketh's thesis, hardcoded into
+  // the universal researcher contract. That is the leak bookScars exists to stop.
+  assert.doesNotMatch(retryPrompt, /Allen writes/, "no foreign book's scar tissue in a universal contract");
+  assert.doesNotMatch(retryPrompt, /thought\/circumstances/, "no foreign book's thesis vocabulary");
 });
 
 requiredTest("3 persistently invalid output fails closed after MAX_ATTEMPTS(3) with accumulated validator errors", async () => {
