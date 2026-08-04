@@ -2478,6 +2478,26 @@ test("v23 SEC35 ignores sentence-initial temporal adverbs (Later, Meanwhile) —
   assert.deepEqual(sec35.map((f) => f.message), [], sec35.map((f) => f.message).join("\n"));
 });
 
+test("v23 SEC35 ignores positional openers and scene prepositions (Partway, Beside) — not undealt names", () => {
+  // Live hit on the Franklin canary: "Partway through the week, …" flagged
+  // undealt protagonist "Partway" on three consecutive drafts and killed a
+  // compile slot — the same Task 11u family, positional/prepositional rather
+  // than temporal. Stopwords are exclusion-only, so covering the family cannot
+  // suppress a real protagonist.
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Partway through the week, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Beside the statement sits an unread alert. Halfway to payday, ${dealt} makes the balance match the careful behavior already in place before money moves anywhere near the limit.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(
+    sec35.map((f) => f.message),
+    [],
+    `positional openers must not register as undealt names:\n${sec35.map((f) => f.message).join("\n")}`,
+  );
+});
+
 test("v23 SEC35 ignores capitalized hyphenated prefixes (Mid-career) — not undealt names (Task 11r)", () => {
   const fx = compileFixture();
   const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
