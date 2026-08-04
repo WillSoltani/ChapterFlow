@@ -1618,7 +1618,7 @@ test("successor QC fence rejects canonical filename or byte drift before reviewe
   const qcService = { runFresh: async () => { qcCalls++; throw new Error("must not run"); } } as unknown as QcService;
   const review: CanonicalReviewResult = { schemaVersion: "1", reviewId: "review-2", candidate: { candidateId: "candidate-2", manifestDigest: "digest-2" }, outcome: "PASS", issues: [], completedAt: "2026-07-21T00:00:01.000Z" };
   const operation = createSuccessorQcOperation({ qcService, deps: resolveDeps(), maxParallel: 1, readCanonical: () => different });
-  const result = await operation.run({ bookId: "canary", roundId: "round-2", candidate, canonicalReview: review });
+  const result = await operation.run({ bookId: "canary", roundId: "round-2", candidate, canonicalReview: review, sourceGitSha: "sha-autopilot-fixture", signal: new AbortController().signal });
   assert.equal(result.ok, false);
   assert.equal(qcCalls, 0);
 });
@@ -1773,7 +1773,7 @@ test("successor QC operation projects completed dry-run reviewer evidence and ca
     },
   } as unknown as QcService;
   const operation = createSuccessorQcOperation({ qcService, deps, maxParallel: 1, readCanonical: () => canonical });
-  const result = await operation.run({ bookId: "canary", roundId: "round-2", candidate, canonicalReview: review });
+  const result = await operation.run({ bookId: "canary", roundId: "round-2", candidate, canonicalReview: review, sourceGitSha: "sha-autopilot-fixture", signal: new AbortController().signal });
   assert.equal(result.ok && result.value.outcome, "PASS");
   assert.deepEqual(calls, { qc: 1, create: 1, finalize: 1 });
 });

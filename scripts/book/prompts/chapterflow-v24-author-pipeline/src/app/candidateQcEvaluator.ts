@@ -16,6 +16,11 @@ import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
 import type { ChapterV21 } from "../types.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
 
+/** Max model attempts per quiz-key-judge question (1 retry). Shared with
+ *  freshQcRunDefinition's attempt capacity so a retry can never exhaust the
+ *  judge run's admission budget. */
+export const QUIZ_JUDGE_MAX_ATTEMPTS = 2;
+
 export interface CandidateQcRequest {
   readonly candidate: CandidateSnapshot;
   readonly canonicalReview: CanonicalReviewResult;
@@ -371,15 +376,29 @@ export class CandidateQcEvaluator {
         const number = entry.chapter.number;
         try {
           const report = await judgeQuizKeys(entry.chapter, {
-            ask: (args) => {
+            ask: async (args) => {
               judgeOrdinal += 1;
               const suffix = `ch${String(number).padStart(2, "0")}-q${String(judgeOrdinal).padStart(3, "0")}`;
-              const judgeCtx: ModelTaskContext = {
-                ...base,
-                attemptId: `${base.attemptId}-quizjudge-${suffix}`,
-                operationId: `quiz-key-judge-${suffix}`,
-              };
-              return makeLiveAskModel({ execution: { runner, context: judgeCtx } })(args);
+              // Bounded per-question retry with a DISTINCT attempt id per try —
+              // the gateway rejects a reused attemptId within a run, and the
+              // run's capacity is sized questionCount * QUIZ_JUDGE_MAX_ATTEMPTS
+              // to host it. Single-shot judging meant one transient timeout or
+              // malformed judgment became a durable blocker no repair could
+              // scope and no resume could re-run.
+              let lastError: unknown;
+              for (let attempt = 1; attempt <= QUIZ_JUDGE_MAX_ATTEMPTS; attempt += 1) {
+                const judgeCtx: ModelTaskContext = {
+                  ...base,
+                  attemptId: `${base.attemptId}-quizjudge-${suffix}-a${attempt}`,
+                  operationId: `quiz-key-judge-${suffix}-a${attempt}`,
+                };
+                try {
+                  return await makeLiveAskModel({ execution: { runner, context: judgeCtx } })(args);
+                } catch (error) {
+                  lastError = error;
+                }
+              }
+              throw lastError;
             },
           });
           for (const verdict of report.flagged) {

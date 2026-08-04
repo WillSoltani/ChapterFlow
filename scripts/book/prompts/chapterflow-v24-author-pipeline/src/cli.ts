@@ -4934,6 +4934,7 @@ async function runBookAutopilot(
           expectedInventory,
           files,
           createdAt,
+          sourceGitSha: v25.value.sourceGitSha,
           taskContext: {
             bookId,
             runId,
