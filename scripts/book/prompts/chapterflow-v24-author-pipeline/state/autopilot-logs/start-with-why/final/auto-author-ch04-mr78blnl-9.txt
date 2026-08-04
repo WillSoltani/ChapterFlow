@@ -1,0 +1,15 @@
+Wrote the chapter file at [state/chapters/start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Verification:
+- `quiz-verify`: 9/9 match
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 10 minors
+- `evidence-audit`: no evidence-integrity candidates
+- Rendered chars: 16,355
+- Breakdown Flesch: 77.2
+- Reading-surface anchor repeats: `neocortex` 4, `limbic` 4
+
+Distractor parity lengths, with keyed choice marked `*`:
+`q01 108/99*/92`, `q02 115/85/98*`, `q03 79*/88/94`, `q04 100/97/81*`, `q05 83*/82/89`, `q06 91/91*/89`, `q07 93/92*/95`, `q08 92*/105/85`, `q09 95/75/85*`.
+
+Note: `git status --short -- state/chapters/start-with-why-ch04.v21-native.chapter.json` reports `??`, so this path is untracked in the current checkout state.

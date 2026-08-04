@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q2 and Q9 make the keyed answer slightly more attractive through the chapter's exact marker language: 'scope mark' and 'second venue.'", "Several correct choices echo distinctive prose phrases very closely, especially 'hard specifics,' 'separate jobs,' and 'belief, method, and returned proof.'"]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 86,
+    "transfer": 74,
+    "practical": 80,
+    "summaries": 84,
+    "tone": 83,
+    "limits": 82,
+    "insight": 81,
+    "density": 78,
+    "beginner": 79
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The WHY does not make the HOW small; the HOW keeps the WHY honest.",
+      "why": "Strongest line: compact, memorable, and captures the chapter's core mechanism."
+    },
+    {
+      "quote": "Ask where proof comes back.",
+      "why": "Strong retention hook because it gives the reader a short usable diagnostic."
+    },
+    {
+      "quote": "A partnership is not two famous names; it is a belief tied to the method that can carry it.",
+      "why": "Strong conceptual clarification that prevents the founder examples from becoming celebrity trivia."
+    },
+    {
+      "quote": "Brandon replies with a clean belief, and Beau points back to Bill Gates and Paul Allen founding Microsoft in 1975: \"What comes back?\"",
+      "why": "Weakest example texture: named characters act as placeholders, and the promise being judged remains abstract."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 5",
+      "problem": "The example stages names and dialogue but never specifies the actual promise, decision, or consequence; it mostly restates the lesson that HOW and WHAT must be asked for.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "Several examples use invented people as thin handles for the lesson rather than showing a concrete before-to-after business, team, or personal situation with stakes.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The founder chronology is memorable, but the chapter leans heavily on the same WHY/HOW/WHAT distinction and sometimes repeats the mechanism instead of deepening it.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner accessibility",
+      "problem": "Terms like 'return point,' 'carrier,' 'scope mark,' and 'venue' are understandable in context but may feel abstract for a cold beginner.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid, coherent chapter with a memorable core move: start with WHY, then demand HOW and WHAT as return proof. The quiz is mostly fair and the answer key is sound. The main weakness is transfer: the practical examples often feel like internal teaching sketches rather than lived situations with concrete stakes, decisions, and consequences. I would not ship at a professional 84 bar until at least one or two examples are rebuilt into specific real-world promise checks that prove the move works beyond founder-story comparison."
+}
+```

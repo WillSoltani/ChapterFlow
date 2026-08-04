@@ -1,0 +1,33 @@
+[
+  {
+    "chapterNumber": 2,
+    "contentHash": "b8065e42a9433d20",
+    "at": "2026-07-09T04:06:13.506Z",
+    "outcome": "fail-stands",
+    "overriddenComplaints": [
+      "quiz Q3: The stem asks what earlier step caused the weak lesson, but the keyed answer names the corrective action. This makes the key unsound for a why/caused stem. (must fix)",
+      "quiz Q8: The answer is derivable, but the '180 teams' detail makes the intended choice unusually easy to spot without reasoning through the prose.",
+      "example 2: Thin-but-usable example: it mostly replays the 2014-anchor lesson and names no real before-to-after consequence beyond avoiding timelessness."
+    ],
+    "reads": [
+      {
+        "reviewerSessionId": "auto-author-review-ch02-mrczedyh-7",
+        "composite": 83.6,
+        "ship": false,
+        "valid": true
+      },
+      {
+        "reviewerSessionId": "auto-author-review-ch02-tiebreak-r2-mrczgq0m-15",
+        "composite": 86.5,
+        "ship": true,
+        "valid": true
+      },
+      {
+        "reviewerSessionId": "auto-author-review-ch02-tiebreak-r3-mrczho7c-16",
+        "composite": 85.2,
+        "ship": false,
+        "valid": true
+      }
+    ]
+  }
+]

@@ -1,0 +1,10 @@
+Created [state/chapters/start-with-why-ch11.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch11.v21-native.chapter.json).
+
+Validation passed:
+- `author-check` clean
+- `gate-chapter` PASS: 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 matched required key pattern `2,2,2,1,1,0,1,0,0`
+- `evidence-audit`: no evidence-integrity candidates
+- Length self-check: rendered estimate `16,504`, inside `12,800-19,200`
+- Distractor parity: 0 uniquely-longest keys, 4 uniquely-shortest keys
+- Breakdown Flesch estimate: `79.3`, inside target band

@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "forward-author-operation-receipt.schema.json",
+  "title": "Forward author operation receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "operation", "chapterId", "artifactPath", "artifactSha256"],
+  "properties": {
+    "schema": { "const": "forward-author-operation-receipt-v1" },
+    "operation": { "enum": ["author-first-write", "author-regeneration"] },
+    "chapterId": { "type": "string", "minLength": 1 },
+    "artifactPath": { "type": "string", "minLength": 1 },
+    "artifactSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" }
+  }
+}

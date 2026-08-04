@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q5: the keyed option is the only one with the chapter's distinctive named details, Apple Store and 2001, making it more guessable by specificity.", "Q8: the keyed option closely echoes the prose phrase about Cupertino as a stop line, while the distractors are obviously wrong transfers."]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 82,
+    "transfer": 88,
+    "practical": 86,
+    "summaries": 87,
+    "tone": 84,
+    "limits": 89,
+    "insight": 88,
+    "density": 83,
+    "beginner": 80
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "What did the basket make them hear before the words arrived?",
+      "why": "Strongest memory hook: it compresses the whole listening-before-speaking move into a concrete image."
+    },
+    {
+      "quote": "If a symbol leads too soon, it has to carry a job it was never built to carry.",
+      "why": "Clear mechanism: it explains why the sequence matters, not just what the sequence is."
+    },
+    {
+      "quote": "Cupertino marks where that account should stop.",
+      "why": "Weakest beginner moment: the intended boundary is understandable later, but this sentence is opaque on first contact."
+    },
+    {
+      "quote": "A third account should not restamp the first one.",
+      "why": "Useful transfer rule: it gives readers a compact test for whether examples are doing new work."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The correct answer is much more concrete than the distractors because it uniquely names Apple Store and 2001, so a test-wise reader could guess it by specificity.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer repeats the prose's Cupertino-as-stop-line language, and the wrong answers are too implausible to teach much.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The Cupertino boundary is introduced before a cold reader has enough context to understand why that place name limits the Apple Store account.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "A few phrases feel abstract or internally coined, especially around 'account,' 'ground,' and 'return set,' which slightly raises the scaffold smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 84 bar. The core move is memorable, concrete, and transferable: say the promise, make the visible act carry it, then listen to what the audience can read without your explanation. The strongest parts explain mechanism through repeated images rather than slogans. The main weaknesses are quiz specificity tells and a few opaque boundary phrases, especially Cupertino on first mention, but none rise to a blocking defect."
+}
+```

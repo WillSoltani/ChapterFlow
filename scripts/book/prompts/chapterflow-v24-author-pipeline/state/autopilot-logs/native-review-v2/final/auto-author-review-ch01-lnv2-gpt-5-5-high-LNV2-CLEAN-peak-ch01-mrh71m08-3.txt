@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the recurring miss, gets close feedback, and changes the next attempt.",
+      "The redox-only set matches the chapter's move from broad study to a narrow drill around the last exact error.",
+      "The chapter repeatedly rejects replaying the whole performance when one weak point remains hidden.",
+      "The lane-line cue, video check, and repeat create a visible target, feedback signal, and adjusted next rep.",
+      "Faloon is used to show misses becoming instructions for the next attempt rather than blind repetition.",
+      "The knife-cut claim lacks a visible size target and immediate correction, so repetition can preserve the same miss.",
+      "Feedback matters only when it changes the next attempt while the mistake is still traceable.",
+      "Plan B shortens the loop: small batch, template comparison, adjustment, then another small batch.",
+      "The outside-pedal and chalk-line target is visible, countable, and correctable before the next turn."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger because it adds the visible target needed for correction.", "", "", ""],
+    "tells": [
+      "b is the longest and the only option with isolate-record-change mechanics.",
+      "a carries all the chapter's positive loop verbs while b and c use broad/full practice language the chapter rejects.",
+      "c nearly restates the lesson with 'whole performance' and 'one weak point keeps surviving.'",
+      "b is the only concrete cue-feedback-repeat option and is visibly more specific.",
+      "b uses giveaway terms: miss, next attempt, feedback.",
+      "b contains the chapter's visible-target language, though a is also plausible.",
+      "c directly repeats the chapter's 'change the next attempt' formula.",
+      "a is longer and explicitly says feedback alters the next small batch.",
+      "c is the only observable, countable target."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 80,
+    "transfer": 90,
+    "practical": 92,
+    "summaries": 93,
+    "tone": 88,
+    "limits": 90,
+    "insight": 93,
+    "density": 87,
+    "beginner": 93
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the chapter's core move in a compact, memorable line."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "It gives beginners a practical test for whether their practice target is usable."
+    },
+    {
+      "quote": "Purposeful practice is not the full gold standard of a mature field with expert coaches and proven training systems.",
+      "why": "This honestly limits the claim instead of overselling purposeful practice."
+    },
+    {
+      "quote": "a) Enjoyable repetition may build comfort while leaving size differences untouched.\n   b) Uneven cuts can become fluent unless a visible size target guides the next cut.",
+      "why": "These two Q6 choices overlap enough that both can be defended from the prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Choices a and b are both supported by the chapter: comfort can leave weak spots hidden, and visible targets guide correction. The stem does not fully force one cause.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are guessable because they are uniquely concrete, longer, and loaded with the chapter's loop vocabulary while distractors use broad repetition language.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The middle repeats the isolate-feedback-adjust lesson through several parallel vignettes, which slightly lowers density even though the examples are usable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core idea is clear, memorable, and transferable: stop repeating the whole task, isolate the miss, get fast feedback, and change the next attempt. The summaries layer well, the examples are concrete, and the limits section keeps the claim honest. The main weakness is the quiz craft: Q6 is mildly underdetermined, and several correct choices are easier to guess because they carry the chapter's exact vocabulary and greater specificity."
+}
+```

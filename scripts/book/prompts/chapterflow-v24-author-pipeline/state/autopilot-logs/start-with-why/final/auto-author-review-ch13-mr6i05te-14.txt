@@ -1,0 +1,53 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": ["Q1 key is unsound against the stem. The stem asks which earlier step caused the failure; choice b states the remedy, while choice a names the reversed-order cause the prose shows."],
+    "tells": []
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 88,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 89,
+    "insight": 88,
+    "density": 87,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The mechanism is not fame; it is comparison.",
+      "why": "Strongest compression of the chapter's actual mechanism."
+    },
+    {
+      "quote": "Origin is not a timestamp; it is a ledger.",
+      "why": "Memorable and portable line that anchors retention."
+    },
+    {
+      "quote": "The final sentence should feel like a receipt, not a wish.",
+      "why": "Concrete image that makes the practical test easy to remember."
+    },
+    {
+      "quote": "Which earlier step caused the failure?",
+      "why": "Worst defect: the quiz stem asks for a cause, but the keyed choice is a remedy."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem asks what caused the failure, but the keyed answer states the corrective step. The supported cause is starting with contribution before repeated past moments.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several named scenarios are useful but slightly overstuffed with props and names, which can slow a beginner before the core ledger move lands.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter with a clear core move: trace past patterns, contribution, and impact before trusting a WHY statement, then use multiple anchors to prevent a neat slogan from floating free. The mechanism is explained, the summaries layer well, and the practical actions are small enough to do. The main blocker-level issue is quiz Q1: it violates cause-question soundness by keying a remedy rather than the cause named by the prose. Fix that stem or key and the chapter clears the professional bar."
+}
+```

@@ -112,12 +112,20 @@ function snapshot(dir: string): Map<string, string> {
 }
 
 const stubVerify = () => true;
+const fixtureRunner = (cmd: string, args: string[], cwd: string): void => {
+  assert.equal(cmd, "npx", "publish fixture should only invoke catalog regeneration through runner seam");
+  assert.deepEqual(args.slice(0, 1), ["tsx"]);
+  const script = readFileSync(args[1], "utf8");
+  const result = spawnSync(process.execPath, ["--input-type=module", "--eval", script], { cwd, encoding: "utf8" });
+  assert.equal(result.status, 0, `fixture catalog generator failed: ${result.stderr}`);
+};
 const commonOpts = (fx: ReturnType<typeof makeFixture>) => ({
   outerRoot: fx.outer,
   localPackagePath: fx.localPkg,
   lockDir: fx.lockDir,
   branch: fx.branch,
   verify: stubVerify,
+  runner: fixtureRunner,
 });
 
 test("happy E2E: bridge → register → commit → push → 0/0 sync → cleanup, structured steps", async () => {

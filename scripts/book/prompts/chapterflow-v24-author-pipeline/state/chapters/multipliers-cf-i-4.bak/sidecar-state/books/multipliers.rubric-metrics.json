@@ -1,0 +1,1575 @@
+{
+  "schemaVersion": "rubric-metrics-v1",
+  "bookId": "multipliers",
+  "generatedAt": "2026-07-09T04:21:02.005Z",
+  "thresholds": {
+    "schemaVersion": "rubric-thresholds-v1",
+    "fleschEase": {
+      "min": 72,
+      "max": 84,
+      "warnTolerance": 4
+    },
+    "fkGrade": {
+      "min": 7,
+      "max": 8,
+      "warnTolerance": 1
+    },
+    "tellRateMax": 0.2,
+    "transferMin": 0.7,
+    "memorableCleanMin": 2,
+    "houseTicDensityWarnMax": 1,
+    "nominalizationRateWarnMax": 8,
+    "cardQuality": {
+      "echoKeyThreshold": 5,
+      "echoDistractorCeiling": 4,
+      "lengthTellShortestMax": 4,
+      "lengthTellLongestMax": 9
+    }
+  },
+  "chapters": [
+    {
+      "chapterId": "multipliers-ch01",
+      "chapterNumber": 1,
+      "metrics": {
+        "fleschEase": {
+          "value": 72.536,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 6.236,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "fleschEaseWhole": {
+          "value": 65.182,
+          "verdict": "warn",
+          "note": "whole-chapter ease outside [72,84] (advisory — ease band is the gate)"
+        },
+        "fkGradeWhole": {
+          "value": 7.206,
+          "verdict": "pass"
+        },
+        "tellRate": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.889,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 2,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 3.07,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "lengthTell": {
+          "value": 2,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 1,
+        "echo": {
+          "chapterNumber": 1,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 4,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [],
+          "fail": false
+        },
+        "length": {
+          "chapterNumber": 1,
+          "questionCount": 9,
+          "uniquelyShortest": 2,
+          "uniquelyLongest": 0,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 1,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": []
+      }
+    },
+    {
+      "chapterId": "multipliers-ch02",
+      "chapterNumber": 2,
+      "metrics": {
+        "fleschEase": {
+          "value": 77.352,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 5.069,
+          "verdict": "warn",
+          "note": "FK grade outside [7,8] (advisory — ease band is the gate)"
+        },
+        "fleschEaseWhole": {
+          "value": 69.411,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGradeWhole": {
+          "value": 6.565,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "tellRate": {
+          "value": 0.111,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.778,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 2.39,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "lengthTell": {
+          "value": 2,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 2,
+        "echo": {
+          "chapterNumber": 2,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [],
+          "fail": false
+        },
+        "length": {
+          "chapterNumber": 2,
+          "questionCount": 9,
+          "uniquelyShortest": 2,
+          "uniquelyLongest": 1,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 2,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": []
+      }
+    },
+    {
+      "chapterId": "multipliers-ch03",
+      "chapterNumber": 3,
+      "metrics": {
+        "fleschEase": {
+          "value": 77.704,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 5.202,
+          "verdict": "warn",
+          "note": "FK grade outside [7,8] (advisory — ease band is the gate)"
+        },
+        "fleschEaseWhole": {
+          "value": 68.128,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGradeWhole": {
+          "value": 6.843,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "tellRate": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 1,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 1.861,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "lengthTell": {
+          "value": 4,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 3,
+        "echo": {
+          "chapterNumber": 3,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [],
+          "fail": false
+        },
+        "length": {
+          "chapterNumber": 3,
+          "questionCount": 9,
+          "uniquelyShortest": 4,
+          "uniquelyLongest": 0,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 3,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": []
+      }
+    },
+    {
+      "chapterId": "multipliers-ch04",
+      "chapterNumber": 4,
+      "metrics": {
+        "fleschEase": {
+          "value": 78.516,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 5.137,
+          "verdict": "warn",
+          "note": "FK grade outside [7,8] (advisory — ease band is the gate)"
+        },
+        "fleschEaseWhole": {
+          "value": 71.142,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGradeWhole": {
+          "value": 6.373,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "tellRate": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.778,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 2.258,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 1,
+          "verdict": "warn",
+          "note": "echo-tell (advisory): 1 question(s) lift a key phrase (q06) — prefer a paraphrased key"
+        },
+        "lengthTell": {
+          "value": 2,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 4,
+        "echo": {
+          "chapterNumber": 4,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 5,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": true
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [
+            "q06"
+          ],
+          "fail": true
+        },
+        "length": {
+          "chapterNumber": 4,
+          "questionCount": 9,
+          "uniquelyShortest": 2,
+          "uniquelyLongest": 0,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 4,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": [
+          "echo-tell: quiz q06 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)"
+        ]
+      }
+    },
+    {
+      "chapterId": "multipliers-ch05",
+      "chapterNumber": 5,
+      "metrics": {
+        "fleschEase": {
+          "value": 71.35,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGrade": {
+          "value": 6.255,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "fleschEaseWhole": {
+          "value": 64.995,
+          "verdict": "warn",
+          "note": "whole-chapter ease outside [72,84] (advisory — ease band is the gate)"
+        },
+        "fkGradeWhole": {
+          "value": 7.387,
+          "verdict": "pass"
+        },
+        "tellRate": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.889,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 3.774,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "lengthTell": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 5,
+        "echo": {
+          "chapterNumber": 5,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [],
+          "fail": false
+        },
+        "length": {
+          "chapterNumber": 5,
+          "questionCount": 9,
+          "uniquelyShortest": 3,
+          "uniquelyLongest": 0,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 5,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": []
+      }
+    },
+    {
+      "chapterId": "multipliers-ch06",
+      "chapterNumber": 6,
+      "metrics": {
+        "fleschEase": {
+          "value": 78.543,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 4.776,
+          "verdict": "warn",
+          "note": "FK grade outside [7,8] (advisory — ease band is the gate)"
+        },
+        "fleschEaseWhole": {
+          "value": 69.275,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGradeWhole": {
+          "value": 6.623,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "tellRate": {
+          "value": 0.111,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.778,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 2,
+          "verdict": "warn",
+          "note": "house-tic density 2 above diagnostic ceiling 1"
+        },
+        "nominalizationRate": {
+          "value": 2.451,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "lengthTell": {
+          "value": 1,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 6,
+        "echo": {
+          "chapterNumber": 6,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [],
+          "fail": false
+        },
+        "length": {
+          "chapterNumber": 6,
+          "questionCount": 9,
+          "uniquelyShortest": 1,
+          "uniquelyLongest": 1,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 6,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": []
+      }
+    },
+    {
+      "chapterId": "multipliers-ch07",
+      "chapterNumber": 7,
+      "metrics": {
+        "fleschEase": {
+          "value": 76.423,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 5.097,
+          "verdict": "warn",
+          "note": "FK grade outside [7,8] (advisory — ease band is the gate)"
+        },
+        "fleschEaseWhole": {
+          "value": 67.967,
+          "verdict": "warn",
+          "note": "whole-chapter ease outside [72,84] (advisory — ease band is the gate)"
+        },
+        "fkGradeWhole": {
+          "value": 6.867,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "tellRate": {
+          "value": 0.111,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.778,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 1.913,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "lengthTell": {
+          "value": 2,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 7,
+        "echo": {
+          "chapterNumber": 7,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                3
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [],
+          "fail": false
+        },
+        "length": {
+          "chapterNumber": 7,
+          "questionCount": 9,
+          "uniquelyShortest": 2,
+          "uniquelyLongest": 1,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 7,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": []
+      }
+    },
+    {
+      "chapterId": "multipliers-ch08",
+      "chapterNumber": 8,
+      "metrics": {
+        "fleschEase": {
+          "value": 69.494,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGrade": {
+          "value": 6.319,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "fleschEaseWhole": {
+          "value": 65.241,
+          "verdict": "warn",
+          "note": "whole-chapter ease outside [72,84] (advisory — ease band is the gate)"
+        },
+        "fkGradeWhole": {
+          "value": 7.095,
+          "verdict": "pass"
+        },
+        "tellRate": {
+          "value": 0.111,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.778,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 4.632,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 1,
+          "verdict": "warn",
+          "note": "echo-tell (advisory): 1 question(s) lift a key phrase (q05) — prefer a paraphrased key"
+        },
+        "lengthTell": {
+          "value": 4,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 8,
+        "echo": {
+          "chapterNumber": 8,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 4,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 5,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": true
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                4,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 0,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [
+            "q05"
+          ],
+          "fail": true
+        },
+        "length": {
+          "chapterNumber": 8,
+          "questionCount": 9,
+          "uniquelyShortest": 4,
+          "uniquelyLongest": 1,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 8,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": [
+          "echo-tell: quiz q05 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)"
+        ]
+      }
+    },
+    {
+      "chapterId": "multipliers-ch09",
+      "chapterNumber": 9,
+      "metrics": {
+        "fleschEase": {
+          "value": 75.189,
+          "verdict": "pass"
+        },
+        "fkGrade": {
+          "value": 5.27,
+          "verdict": "warn",
+          "note": "FK grade outside [7,8] (advisory — ease band is the gate)"
+        },
+        "fleschEaseWhole": {
+          "value": 68.263,
+          "verdict": "warn",
+          "note": "outside [72,84] but within ±4"
+        },
+        "fkGradeWhole": {
+          "value": 6.705,
+          "verdict": "warn",
+          "note": "outside [7,8] but within ±1"
+        },
+        "tellRate": {
+          "value": 0.111,
+          "verdict": "pass"
+        },
+        "transferRatio": {
+          "value": 0.889,
+          "verdict": "pass"
+        },
+        "memorableClean": {
+          "value": 3,
+          "verdict": "pass"
+        },
+        "houseTicDensity": {
+          "value": 0,
+          "verdict": "pass"
+        },
+        "nominalizationRate": {
+          "value": 3.086,
+          "verdict": "pass"
+        },
+        "echoTell": {
+          "value": 2,
+          "verdict": "warn",
+          "note": "echo-tell (advisory): 2 question(s) lift a key phrase (q05, q07) — prefer a paraphrased key"
+        },
+        "lengthTell": {
+          "value": 1,
+          "verdict": "pass"
+        },
+        "practiceFloor": {
+          "value": 2,
+          "verdict": "pass"
+        }
+      },
+      "verdict": "warn",
+      "failing": [],
+      "cardQuality": {
+        "chapterNumber": 9,
+        "echo": {
+          "chapterNumber": 9,
+          "questions": [
+            {
+              "questionId": "q01",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                2,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q02",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q03",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q04",
+              "keyNgram": 2,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q05",
+              "keyNgram": 5,
+              "distractorNgrams": [
+                2,
+                0
+              ],
+              "tell": true
+            },
+            {
+              "questionId": "q06",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q07",
+              "keyNgram": 5,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": true
+            },
+            {
+              "questionId": "q08",
+              "keyNgram": 3,
+              "distractorNgrams": [
+                0,
+                0
+              ],
+              "tell": false
+            },
+            {
+              "questionId": "q09",
+              "keyNgram": 4,
+              "distractorNgrams": [
+                0,
+                2
+              ],
+              "tell": false
+            }
+          ],
+          "flagged": [
+            "q05",
+            "q07"
+          ],
+          "fail": true
+        },
+        "length": {
+          "chapterNumber": 9,
+          "questionCount": 9,
+          "uniquelyShortest": 0,
+          "uniquelyLongest": 1,
+          "shortestFail": false,
+          "longestFail": false,
+          "fail": false
+        },
+        "practice": {
+          "chapterNumber": 9,
+          "passingItems": [
+            "tryThisNow",
+            "twentyFourHourChallenge"
+          ],
+          "fail": false
+        },
+        "fail": false,
+        "reasons": [
+          "echo-tell: quiz q05, q07 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)"
+        ]
+      }
+    }
+  ],
+  "summary": {
+    "pass": 0,
+    "warn": 9,
+    "fail": 0
+  },
+  "verdict": "warn",
+  "findings": []
+}

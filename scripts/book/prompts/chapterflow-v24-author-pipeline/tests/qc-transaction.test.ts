@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -21,6 +21,11 @@ import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 
 const BOOK = "zz-fixture-qc-transaction";
 const ROUND = "r-transaction";
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
 
 const T0 = Date.parse("2026-06-23T00:00:00.000Z");
 const at = (ms: number): Date => new Date(T0 + ms);
@@ -33,10 +38,28 @@ function cleanupRound(round: string): void {
 function cleanup(...extraRounds: string[]): void {
   cleanTmp();
   for (const round of [ROUND, ...extraRounds]) cleanupRound(round);
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
+  if (!QC_ROUNDS_DIR_EXISTED && existsSync(QC_ROUNDS_DIR) && readdirSync(QC_ROUNDS_DIR).length === 0) rmdirSync(QC_ROUNDS_DIR);
 }
 
 function readLock(round: string = ROUND): QcTransactionRecord {
   return JSON.parse(readFileSync(qcTransactionLockPath(BOOK, round), "utf8")) as QcTransactionRecord;
+}
+
+function snapshotTree(root: string): Record<string, string> {
+  const files: Record<string, string> = {};
+  const walk = (dir: string, prefix = ""): void => {
+    if (!existsSync(dir)) return;
+    for (const entry of readdirSync(dir, { withFileTypes: true }).sort((a, b) => a.name.localeCompare(b.name))) {
+      const path = resolve(dir, entry.name);
+      const rel = prefix ? `${prefix}/${entry.name}` : entry.name;
+      if (entry.isDirectory()) walk(path, rel);
+      else files[rel] = readFileSync(path).toString("base64");
+    }
+  };
+  walk(root);
+  return files;
 }
 
 function withSession<T>(sessionId: string, fn: () => T): T {
@@ -229,7 +252,7 @@ test("concurrent submit/finalize attempts serialize through the owned transactio
   }
 });
 
-test("concurrent status/finalize attempts serialize with no lost status event", () => {
+test("finalize dry-run bypasses a held mutation lock and performs zero mutation", () => {
   try {
     cleanup();
     const finalizeLease = acquireQcTransaction(BOOK, ROUND, "finalize");
@@ -239,12 +262,15 @@ test("concurrent status/finalize attempts serialize with no lost status event", 
     );
     commitQcTransaction(finalizeLease);
 
-    const statusLease = acquireQcTransaction(BOOK, ROUND, "status");
-    assert.throws(() => finalizeQcRound(BOOK, ROUND, { dryRun: true }), /QC transaction already active/);
-    commitQcTransaction(statusLease);
-
     const wrote = appendStatusEvents(BOOK, ROUND, [{ findingId: "qcf-a", status: "still_open", reason: "serialized after finalize" }]);
     assert.equal(wrote, 1);
+    const statusLease = acquireQcTransaction(BOOK, ROUND, "status");
+    const before = snapshotTree(orchestratorRoundDir(BOOK, ROUND));
+    const result = finalizeQcRound(BOOK, ROUND, { dryRun: true });
+    assert.ok(result, "dry-run computes a result without acquiring the mutation lock");
+    assert.deepEqual(snapshotTree(orchestratorRoundDir(BOOK, ROUND)), before, "dry-run must preserve all round bytes, including held lock and ledger");
+    commitQcTransaction(statusLease);
+
     const events = readLedgerEvents(BOOK, ROUND);
     assert.equal(events.length, 1);
     assert.equal(events[0].event, "status");

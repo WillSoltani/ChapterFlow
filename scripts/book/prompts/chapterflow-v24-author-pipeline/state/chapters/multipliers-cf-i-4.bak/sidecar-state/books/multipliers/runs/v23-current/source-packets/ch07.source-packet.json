@@ -1,0 +1,729 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch07",
+  "chapterNumber": 7,
+  "chapterTitle": "The Accidental Diminisher",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch07.source.json",
+  "sourceHash": "sha256:fe343214b5d1b91147ceeac830b9a2b4a9c52d5adfd4fe9f500959cc86b45e41",
+  "facts": [
+    {
+      "id": "ch07.fact.1",
+      "claim": "HarperCollins states that the revised edition added two new chapters.",
+      "mechanism": "Because the publisher metadata explains why accidental Diminisher material belongs to the revised edition.",
+      "commonError": "Assuming accidental diminishing was necessarily part of the original 2010 release.",
+      "whyWrong": "The public revised-edition page specifically names added chapters.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2",
+        "2010"
+      ],
+      "groundedEntities": [
+        "HarperCollins",
+        "Diminisher",
+        "Assuming"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch07.fact.2",
+      "claim": "One added revised-edition topic is accidental Diminishers.",
+      "mechanism": "Because the added topic turns the model toward self-diagnosis by well-intentioned leaders.",
+      "commonError": "Thinking only openly controlling leaders can diminish people.",
+      "whyWrong": "Well-intentioned leaders can reduce contribution through impact rather than motive.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "One",
+        "Diminishers. Because",
+        "Thinking",
+        "Well-intentioned"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch07.fact.3",
+      "claim": "Another added revised-edition topic is how to deal with Diminishers.",
+      "mechanism": "Because the revised close includes both self-diagnosis and tactics for people experiencing diminishing behavior.",
+      "commonError": "Merging accidental diminishing with coping tactics as the same lesson.",
+      "whyWrong": "One topic diagnoses one's own habits; the other addresses working under someone else.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Another",
+        "Diminishers. Because",
+        "Merging",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch07.fact.4",
+      "claim": "Google Project Oxygen treated manager effectiveness as observable behavior.",
+      "mechanism": "Because behavior-based diagnosis makes accidental diminishing visible even when intention is positive.",
+      "commonError": "Judging manager quality only by what the manager meant to do.",
+      "whyWrong": "Impact appears in repeated behaviors and team experience.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Google Project Oxygen",
+        "Judging",
+        "Impact"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch07.fact.5",
+      "claim": "Project Oxygen is a Google manager-research case.",
+      "mechanism": "Because the case gives the diagnostic idea a concrete organization and named project.",
+      "commonError": "Using unnamed management research as generic proof.",
+      "whyWrong": "The project name and company make the case checkable.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Project Oxygen",
+        "Google",
+        "Using"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.5"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch07.fact.6",
+      "claim": "Radical Candor pairs care personally with challenge directly.",
+      "mechanism": "Because the two-part frame shows that good leadership impact requires more than one positive intention.",
+      "commonError": "Assuming care alone is enough to grow people.",
+      "whyWrong": "Care without challenge can protect people from growth; challenge without care can become threat.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "2"
+      ],
+      "groundedEntities": [
+        "Radical Candor",
+        "Assuming",
+        "Care"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.6"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch07.fact.7",
+      "claim": "Accidental diminishing is defined by impact rather than malicious motive.",
+      "mechanism": "Because people can be crowded out by helpful over-functioning, the absence of bad intent does not guarantee good effect.",
+      "commonError": "Waiting to change until someone proves bad intent.",
+      "whyWrong": "Leadership impact can be harmful without malicious intent.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Accidental",
+        "Waiting",
+        "Leadership"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch07.fact.8",
+      "claim": "Rescuing too quickly can be an accidental diminishing pattern.",
+      "mechanism": "Because quick rescue takes the problem back before people finish building judgment and ownership.",
+      "commonError": "Calling every rescue supportive leadership.",
+      "whyWrong": "Support that removes the hard thinking can reduce future capability.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Rescuing",
+        "Calling",
+        "Support"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch07.fact.9",
+      "claim": "A useful repair starts with one observable behavior, not a full personality rewrite.",
+      "mechanism": "Because replacing a repeatable habit gives the team a visible difference and lowers defensiveness for the leader.",
+      "commonError": "Trying to become a completely different person overnight.",
+      "whyWrong": "Broad identity change is harder to sustain than one specific behavior change.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Trying",
+        "Broad"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch07.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch07.ex.harper-new-chapters",
+      "label": "HarperCollins revised new chapters",
+      "summary": "HarperCollins says the revised edition includes two new chapters, one on accidental Diminishers and one on how to deal with Diminishers. That public metadata fixes accidental diminishing as revised-edition material.",
+      "realWorld": true,
+      "naturalSetting": "HarperCollins",
+      "hardSpecifics": [
+        "two new chapters",
+        "accidental Diminishers",
+        "deal with Diminishers"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch07.ex.google-oxygen",
+      "label": "Google Project Oxygen",
+      "summary": "Google Project Oxygen publicly identified manager behaviors associated with effective management. The case supports the idea that leadership impact can be diagnosed behaviorally rather than guessed from intention.",
+      "realWorld": true,
+      "naturalSetting": "Google Project Oxygen Google Project",
+      "hardSpecifics": [
+        "Project Oxygen",
+        "manager behaviors",
+        "Google"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch07.ex.radical-candor",
+      "label": "Kim Scott Radical Candor",
+      "summary": "Kim Scott's Radical Candor framework pairs care personally with challenge directly. The framework is a useful boundary for accidental diminishing because imbalance can look helpful while still reducing growth.",
+      "realWorld": true,
+      "naturalSetting": "Kim Scott Radical Candor Kim",
+      "hardSpecifics": [
+        "Kim Scott",
+        "Radical Candor",
+        "care personally and challenge directly"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Intention-impact diagnosis",
+      "members": [
+        "notice the helpful intent",
+        "observe the team impact",
+        "name the diminishing pattern",
+        "replace one behavior"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch07.concept",
+      "kind": "concept",
+      "label": "accidental diminishing",
+      "text": "Accidental diminishing occurs when a leader intends to help, inspire, or move quickly but behaves in ways that crowd out other people's thinking. The harm comes from impact, not motive. Readers gain a less defensive route into change. Instead of deciding whether they are bad leaders, they can inspect repeatable habits that unintentionally reduce contribution.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.harper-new-chapters",
+      "kind": "named_example",
+      "label": "HarperCollins revised new chapters",
+      "text": "HarperCollins says the revised edition includes two new chapters, one on accidental Diminishers and one on how to deal with Diminishers. That public metadata fixes accidental diminishing as revised-edition material. The revised edition explicitly moves from five disciplines into self-diagnosis and coping.",
+      "hardSpecifics": [
+        "two new chapters",
+        "accidental Diminishers",
+        "deal with Diminishers"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.google-oxygen",
+      "kind": "named_example",
+      "label": "Google Project Oxygen",
+      "text": "Google Project Oxygen publicly identified manager behaviors associated with effective management. The case supports the idea that leadership impact can be diagnosed behaviorally rather than guessed from intention. Observable management habits matter more than private motives.",
+      "hardSpecifics": [
+        "Project Oxygen",
+        "manager behaviors",
+        "Google"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.ex.radical-candor",
+      "kind": "named_example",
+      "label": "Kim Scott Radical Candor",
+      "text": "Kim Scott's Radical Candor framework pairs care personally with challenge directly. The framework is a useful boundary for accidental diminishing because imbalance can look helpful while still reducing growth. Good intent needs behavioral balance to avoid weakening contribution.",
+      "hardSpecifics": [
+        "Kim Scott",
+        "Radical Candor",
+        "care personally and challenge directly"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.1",
+      "kind": "testable_fact",
+      "label": "HarperCollins states that the revised edition added two new chapters.",
+      "text": "HarperCollins states that the revised edition added two new chapters. Because the publisher metadata explains why accidental Diminisher material belongs to the revised edition. Assuming accidental diminishing was necessarily part of the original 2010 release. The public revised-edition page specifically names added chapters.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.2",
+      "kind": "testable_fact",
+      "label": "One added revised-edition topic is accidental Diminishers.",
+      "text": "One added revised-edition topic is accidental Diminishers. Because the added topic turns the model toward self-diagnosis by well-intentioned leaders. Thinking only openly controlling leaders can diminish people. Well-intentioned leaders can reduce contribution through impact rather than motive.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.3",
+      "kind": "testable_fact",
+      "label": "Another added revised-edition topic is how to deal with Diminishers.",
+      "text": "Another added revised-edition topic is how to deal with Diminishers. Because the revised close includes both self-diagnosis and tactics for people experiencing diminishing behavior. Merging accidental diminishing with coping tactics as the same lesson. One topic diagnoses one's own habits; the other addresses working under someone else.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.4",
+      "kind": "testable_fact",
+      "label": "Google Project Oxygen treated manager effectiveness as observable behavior.",
+      "text": "Google Project Oxygen treated manager effectiveness as observable behavior. Because behavior-based diagnosis makes accidental diminishing visible even when intention is positive. Judging manager quality only by what the manager meant to do. Impact appears in repeated behaviors and team experience.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.5",
+      "kind": "testable_fact",
+      "label": "Project Oxygen is a Google manager-research case.",
+      "text": "Project Oxygen is a Google manager-research case. Because the case gives the diagnostic idea a concrete organization and named project. Using unnamed management research as generic proof. The project name and company make the case checkable.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.6",
+      "kind": "testable_fact",
+      "label": "Radical Candor pairs care personally with challenge directly.",
+      "text": "Radical Candor pairs care personally with challenge directly. Because the two-part frame shows that good leadership impact requires more than one positive intention. Assuming care alone is enough to grow people. Care without challenge can protect people from growth; challenge without care can become threat.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.7",
+      "kind": "testable_fact",
+      "label": "Accidental diminishing is defined by impact rather than malicious motive.",
+      "text": "Accidental diminishing is defined by impact rather than malicious motive. Because people can be crowded out by helpful over-functioning, the absence of bad intent does not guarantee good effect. Waiting to change until someone proves bad intent. Leadership impact can be harmful without malicious intent.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.8",
+      "kind": "testable_fact",
+      "label": "Rescuing too quickly can be an accidental diminishing pattern.",
+      "text": "Rescuing too quickly can be an accidental diminishing pattern. Because quick rescue takes the problem back before people finish building judgment and ownership. Calling every rescue supportive leadership. Support that removes the hard thinking can reduce future capability.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.fact.9",
+      "kind": "testable_fact",
+      "label": "A useful repair starts with one observable behavior, not a full personality rewrite.",
+      "text": "A useful repair starts with one observable behavior, not a full personality rewrite. Because replacing a repeatable habit gives the team a visible difference and lowers defensiveness for the leader. Trying to become a completely different person overnight. Broad identity change is harder to sustain than one specific behavior change.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch07.framework.intention.impact.diagnosis",
+      "kind": "framework",
+      "label": "Intention-impact diagnosis",
+      "text": "notice the helpful intent, observe the team impact, name the diminishing pattern, replace one behavior",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2",
+    "2010",
+    "1"
+  ],
+  "allowedEntities": [
+    "The Accidental Diminisher",
+    "Well-intentioned",
+    "Accidental Diminishers",
+    "Accidental",
+    "Readers",
+    "Instead",
+    "Diminishers",
+    "Common",
+    "Project Oxygen",
+    "Google",
+    "Kim Scott's Radical Candor",
+    "HarperCollins",
+    "Diminishers. That",
+    "Google Project Oxygen",
+    "Observable",
+    "Kim Scott Radical Candor",
+    "Good",
+    "Kim Scott",
+    "Radical Candor",
+    "Detailed",
+    "Accidental Diminisher",
+    "Keep",
+    "Intention-impact",
+    "Diminisher",
+    "Assuming",
+    "One",
+    "Thinking",
+    "Another",
+    "Merging",
+    "Judging",
+    "Impact",
+    "Using",
+    "Care",
+    "Waiting",
+    "Leadership",
+    "Rescuing",
+    "Calling",
+    "Support",
+    "Trying",
+    "Broad",
+    "HarperCollins revised new chapters"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch07.ex.harper-new-chapters",
+      "warning": "Keep examples about HarperCollins revised new chapters source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.ex.google-oxygen",
+      "warning": "Keep examples about Google Project Oxygen source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch07.ex.radical-candor",
+      "warning": "Keep examples about Kim Scott Radical Candor source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch07.fact.1"
+}

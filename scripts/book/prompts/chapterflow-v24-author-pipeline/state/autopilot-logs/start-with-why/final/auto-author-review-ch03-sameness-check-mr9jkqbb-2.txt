@@ -1,0 +1,57 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct choices reuse chapter-specific terms such as checkable ground, contrast, limit, and hard detail, while distractors use obvious overreach words like every, only, and by itself.",
+      "Q1's correct answer is less direct than the prose because it says 'expose a nearby misconception' instead of the clearer idea that the King scene marks a limit."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 83,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 78,
+    "limits": 90,
+    "insight": 86,
+    "density": 80,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Use the order as a question, not a chant. What belief comes first? What way makes it visible? What thing can bear the price?",
+      "why": "Strongest moment: it turns the Golden Circle into an inspectable diagnostic move."
+    },
+    {
+      "quote": "A hard detail is a promise tied to one source. Move it and you may make the whole claim feel made up.",
+      "why": "Strong retention line with a clear mechanism and consequence."
+    },
+    {
+      "quote": "### Example 4: Brock Repairs The Drift",
+      "why": "Weakest defect: the title names Brock, but the example body centers Sylvia, creating needless actor confusion."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The title says Brock repairs the drift, but the body says founder Sylvia names and repairs the miss; the actor mismatch is confusing but the lesson remains usable.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed answer is sound, but 'expose a nearby misconception' is vaguer than the prose's clearer point that the King scene marks a limit and prevents flattening public causes into the Apple pattern.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated phrases such as 'price the default,' 'bear the price,' and 'priced the promise' create a house style that may slow beginners even though the underlying idea is clear.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a real, memorable move: put WHY before HOW and WHAT, then keep hard details attached to the source that can prove them. Its summaries, limits, and quiz keys are mostly sound, and the Apple/Wright/King anchors give the lesson transfer beyond one business example. I would hold it just below ship because the prose sometimes turns its own vocabulary into friction, several distractors are easier to reject by wording, and example 4 has an avoidable actor mismatch."
+}
+```

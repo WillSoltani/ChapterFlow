@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF7",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding S-06-05: the passage misrepresents the source's claim about diffusion timing.\",\"The idea spread once a critical share of the team had adopted it, which is when the rest followed quickly.\",\"A plausible concern is not an upheld defect without direct or contextual chapter evidence.\",\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.\"],\"rationale\":\"The finding alleges that the candidate misrepresents a source claim about diffusion timing, but the materials provide no source passage or contextual chapter evidence showing a different timing claim. The candidate sentence itself states a coherent diffusion sequence, and under the review contract a plausible concern is unsupported when the quoted evidence does not demonstrate the alleged problem.\"}"
+}

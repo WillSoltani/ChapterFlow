@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "bcecee16b6861bbf3921d19807c73116f52b3d8dad3e58416a58d9f00613360d",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 0,
+      "agreement": false,
+      "keyCorrect": "ambiguous",
+      "rationale": "Both a and b isolate the same two-measure fault, add recording feedback, and make a concrete next-attempt adjustment; the stem gives no basis to prefer fingering over hand motion."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a uniquely isolates the repeated redox error and uses step-level feedback to revise the first failing step."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c correctly identifies the flaw as whole-performance repetition that lets the same weak slide persist."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b uniquely supplies a targeted cue, feedback by video, and repeated correction before adding distance."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b captures the feedback loop in which each miss changes the next grouping strategy."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choice b is stronger, but a is also defensible because it says repetition can build comfort while leaving the uneven cuts unchanged."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c is the only option that makes feedback useful by changing the next attempt while the error remains traceable."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a correctly favors the shorter practice loop where template feedback alters the next small batch."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely turns the vague goal into a specific, visible, repeatable target with clean feedback."
+    }
+  ]
+}
+```

@@ -28,16 +28,19 @@
  */
 
 import { createHash } from "crypto";
-import { existsSync, mkdirSync, readFileSync } from "fs";
+import { mkdirSync } from "fs";
 import { resolve } from "path";
 
 import { ChapterV21 } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { CANONICAL_STATE, parseChapterId } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { loadQcRound, type QcRoundRole } from "../qc/qcRound.js";
+import type { QcRoundRole } from "../qc/qcRound.js";
 import { isNoApiCodexQcMode } from "../qc/noApiMode.js";
-import { checkBarConfirmArtifactsForPublishable } from "../qc/orchestrator/artifacts.js";
-import { classifySessionProvenance, loadAuthorProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
+import { classifySessionProvenance, violatesSessionIndependence } from "../qc/sessionProvenance.js";
+import type { CandidateIdentity } from "../contracts/v4Core.js";
+import type { QcRoundResult } from "../qc/qcTypes.js";
+import { openCriticCandidateEntries } from "./schema.js";
 
 export const QC_DIR = resolve(CANONICAL_STATE, "qc");
 
@@ -233,11 +236,11 @@ export function attestationPath(bookId: string, chapterNumber: number): string {
   return resolve(QC_DIR, `${bookId}-ch${String(chapterNumber).padStart(2, "0")}.qc.json`);
 }
 
-export function loadAttestation(bookId: string, chapterNumber: number): QcAttestation | null {
-  const p = attestationPath(bookId, chapterNumber);
-  if (!existsSync(p)) return null;
+export function loadAttestation(bookId: string, chapterNumber: number, bytes?: Uint8Array): QcAttestation | null {
+  if (!bytes) return null;
   try {
-    return JSON.parse(readFileSync(p, "utf8")) as QcAttestation;
+    const attestation = JSON.parse(Buffer.from(bytes).toString("utf8")) as QcAttestation;
+    return attestation.bookId === bookId && attestation.chapterNumber === chapterNumber ? attestation : null;
   } catch {
     return null;
   }
@@ -286,15 +289,40 @@ export function isApprovedReviewer(reviewer: string): boolean {
  * still matches the chapter as it is on disk now AND whose reviewer is an
  * approved QC role (not the writer that produced it).
  */
-export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFinding[] {
+export function checkQcAttestation(
+  chapter: ChapterV21,
+  enforce: boolean,
+  authority: Readonly<{
+    attestation?: QcAttestation | null;
+    expectedCandidate?: CandidateIdentity;
+    expectedRoundId?: string;
+    expectedReviewId?: string;
+    qcRound?: QcRoundResult | null;
+    authorSessionId?: string;
+    legacyRoundPresent?: boolean;
+    artifactFindings?: QcFinding[];
+  }> = {},
+): QcFinding[] {
   const sev = enforce ? "blocker" : "advisory";
   const parsed = chapter.chapterId ? parseChapterId(chapter.chapterId) : null;
   const bookId = parsed?.bookId ?? "";
   const num = chapter.number;
-  const att = loadAttestation(bookId, num);
+  const att = authority.attestation ?? null;
   if (!att) {
     return [{ checkId: "QC0.missing_attestation", severity: sev,
       message: `No QC attestation at ${attestationPath(bookId, num)}. A Claude reviewer must read this chapter and run \`qc-attest\` before it can ship.` }];
+  }
+  if (authority.expectedCandidate || authority.expectedRoundId || authority.expectedReviewId || authority.qcRound) {
+    const round = authority.qcRound;
+    const candidate = authority.expectedCandidate;
+    if (!round || !candidate || round.outcome !== "PASS" ||
+        round.candidate.candidateId !== candidate.candidateId ||
+        round.candidate.manifestDigest !== candidate.manifestDigest ||
+        round.roundId !== authority.expectedRoundId ||
+        round.reviewId !== authority.expectedReviewId) {
+      return [{ checkId: "QC0.stale_round_binding", severity: sev,
+        message: "QC round candidate ID, manifest digest, round ID, review ID, and PASS outcome must match exactly." }];
+    }
   }
   if (att.verdict !== "PUBLISHABLE") {
     return [{ checkId: "QC0.not_publishable", severity: sev,
@@ -314,8 +342,7 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
   // are recorded, refuse a verdict the authoring session graded itself. Absence
   // of either id short-circuits, so legacy/un-stamped books are never blocked.
   {
-    const author = loadAuthorProvenance(chapter.chapterId);
-    if (violatesSessionIndependence(author?.authorSessionId, att.reviewerSessionId)) {
+    if (violatesSessionIndependence(authority.authorSessionId, att.reviewerSessionId)) {
       return [{ checkId: "QC0.author_graded_own_work", severity: sev,
         message: `QC session "${att.reviewerSessionId}" is the SAME session that authored ${chapter.chapterId} — the author cannot grade its own work. Re-QC in a fresh session (different CHAPTERFLOW_SESSION_ID).` }];
     }
@@ -326,7 +353,7 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
       return [{ checkId: "QC0.legacy_unknown_reviewer_session", severity: sev,
         message: `No-api QC mode requires recorded reviewer session provenance; ${reviewerState.reason}. Re-review in a fresh session with CHAPTERFLOW_SESSION_ID set.` }];
     }
-    const authorState = classifySessionProvenance(loadAuthorProvenance(chapter.chapterId)?.authorSessionId, `author ${chapter.chapterId}`);
+    const authorState = classifySessionProvenance(authority.authorSessionId, `author ${chapter.chapterId}`);
     // A PUBLISHABLE attestation is ITSELF a certificate that independence was verified WHEN IT WAS WRITTEN:
     // finalize only stamps PUBLISHABLE after certificationSessionFailures passes (author present + distinct
     // from every reviewer — OR a carried chapter inheriting a prior such certificate). The author-provenance
@@ -347,12 +374,54 @@ export function checkQcAttestation(chapter: ChapterV21, enforce: boolean): QcFin
       return [{ checkId: "QC0.no_api_round_missing", severity: sev,
         message: `No-api QC mode requires a fresh round-backed attestation (qc-attest --round <roundId> --token <bar|confirm|attest token>). Legacy attestations remain readable but cannot promote in this mode.` }];
     }
-    if (!loadQcRound(att.bookId, att.roundId)?.roles?.[att.roundRole]) {
+    if (!authority.legacyRoundPresent) {
       return [{ checkId: "QC0.no_api_round_missing", severity: sev,
         message: `No-api QC mode requires an attestation backed by an existing QC round file. Re-open a round and re-attest ${chapter.chapterId}.` }];
     }
-    const artifactFindings = checkBarConfirmArtifactsForPublishable(chapter, att, enforce);
+    const artifactFindings = authority.artifactFindings ?? [];
     if (artifactFindings.length > 0) return artifactFindings;
   }
   return [];
+}
+
+export async function checkQcAttestationFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    chapterLogicalPath: string;
+    attestation: QcAttestation;
+    qcRound: QcRoundResult;
+    roundId: string;
+    reviewId: string;
+    enforce: boolean;
+  }>,
+): Promise<QcFinding[]> {
+  const opened = await openCriticCandidateEntries(reader, {
+    bookId: input.bookId,
+    candidateId: input.candidateId,
+    manifestDigest: input.manifestDigest,
+    logicalPaths: [input.chapterLogicalPath],
+  });
+  const chapter = opened.values[0] as ChapterV21;
+  const attestation = input.attestation;
+  if (attestation.bookId !== input.bookId ||
+      attestation.chapterNumber !== chapter.number ||
+      attestation.chapterId !== chapter.chapterId ||
+      attestation.roundId !== input.roundId) {
+    return [{
+      checkId: "QC0.stale_attestation_binding",
+      severity: input.enforce ? "blocker" : "advisory",
+      message: "QC attestation book ID, chapter number, chapter ID, and round ID must match opened chapter and request exactly.",
+    }];
+  }
+  return checkQcAttestation(chapter, input.enforce, {
+    attestation,
+    expectedCandidate: { candidateId: input.candidateId, manifestDigest: opened.snapshot.manifest.manifestDigest },
+    expectedRoundId: input.roundId,
+    expectedReviewId: input.reviewId,
+    qcRound: input.qcRound,
+    legacyRoundPresent: true,
+  });
 }

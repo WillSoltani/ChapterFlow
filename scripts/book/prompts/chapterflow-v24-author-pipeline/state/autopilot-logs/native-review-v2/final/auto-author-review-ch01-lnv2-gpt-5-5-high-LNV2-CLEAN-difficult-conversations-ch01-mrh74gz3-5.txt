@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The prose defines identity as questions about competence, goodness, loyalty, or respect, and the manager's fear is about being too junior to have authority.",
+      "The chapter says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map exactly to those layers.",
+      "The diagnostic move is to separate documentable facts from feelings and identity/reputation threats instead of answering only with records.",
+      "The chapter warns that visible facts can be real while feelings such as trust still steer the tone underneath.",
+      "The prose says reactions grow larger when the surface issue starts asking an identity question about what kind of person someone is.",
+      "The preparation names facts, feelings, and identity privately, which prevents the student from treating belonging as only an authorship issue.",
+      "The chapter says adding facts can intensify defense when the other person is defending dignity or identity.",
+      "The prose explicitly says to use the frame privately first because labeling someone else's layer can sound like a verdict.",
+      "The dishes are the visible issue, while respect signals a deeper layer that must be diagnosed before arguing counts."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: a is uniquely longest and repeats the chapter's competence/authority identity wording.",
+      "Q2: b is uniquely longest and lists all three layers in chapter order.",
+      "Q3: c is uniquely longest and mirrors the fact/feeling/identity pattern.",
+      "Q4: a is uniquely longest; c is visibly outside the chapter's frame.",
+      "Q5: b repeats the stem's 'bad friend' identity language; c uses the giveaway absolute 'always'.",
+      "Q6: c is uniquely longest; a says 'script', which the chapter explicitly rejects.",
+      "Q7: c is uniquely longest and contains the lesson wording; b is a straw inference.",
+      "Q8: b is uniquely longest and repeats the private-diagnosis warning; a and c are absolutes.",
+      "Q9: a is the only option that names layers; b and c stay in the visible issue."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 68,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 86,
+    "limits": 94,
+    "insight": 90,
+    "density": 82,
+    "beginner": 89
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "A compact, memorable line that captures the core move."
+    },
+    {
+      "quote": "If you cannot answer the last question, look for the moment where the reaction became larger than the visible issue.",
+      "why": "This gives a usable diagnostic trigger, not just a label."
+    },
+    {
+      "quote": "Which layers are active: the promise, the resentment, and the fear of being the only responsible child.",
+      "why": "This quiz answer is so complete and chapter-shaped that it becomes guessable."
+    },
+    {
+      "quote": "Title: The core skill is diagnostic attention\nCore skill: The core skill is diagnostic attention.",
+      "why": "The implementation plan briefly exposes a template-like repetition."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are repeatedly the longest, most specific options and often mirror chapter vocabulary, while distractors rely on obvious overreach or out-of-frame moves.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples/main reads",
+      "problem": "Sarah, Mathieu, and Ingrid recur across unrelated scenarios in different roles, which can make the case set feel unintentionally continuous.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and core-skill line repeat the same phrase, creating a mild scaffold/template smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches one clean move well: sort facts, feelings, and identity before choosing words. It is memorable, beginner-friendly, practical, and unusually honest about limits. I would not ship it as-is against a professional assessment bar because the quiz pattern is too easy to game without reading; the prose can carry the lesson, but the quiz needs tighter, less telegraphed distractors."
+}
+```

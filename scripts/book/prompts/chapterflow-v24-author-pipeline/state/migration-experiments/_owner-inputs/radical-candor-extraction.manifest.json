@@ -1,0 +1,258 @@
+{
+  "schema": "s16-b2-substitution-extraction-v1",
+  "zipSha256": "5e7ec1179d444e99f2a30d6a0c0cfd0c5cd33ead945b1c0cd8778fbf8c8149a2",
+  "files": [
+    {
+      "relPath": "state/books/radical-candor/current-run.json",
+      "sha256": "6a4df224e1e121967ecde2145c49be62780cb07e71257f75e1de66d6a6f0b6b5",
+      "bytes": 231
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch01.source-packet.json",
+      "sha256": "9f5695c57cf61dfddb8277d34a753da31f7ebcd57c9c844e734f50dbd699ac15",
+      "bytes": 26036
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch02.source-packet.json",
+      "sha256": "e738889b8e17f3dabc0b5243f9e847f137043ce82388f8de73be8cb221bb77b2",
+      "bytes": 24852
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch03.source-packet.json",
+      "sha256": "db5d9c12cbf1021cbf136b88530be17dcbbb9419d6c9f5cadcbd316d7b548757",
+      "bytes": 24101
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch04.source-packet.json",
+      "sha256": "7639a7e3d1faf3b02215aeb6ee2d91170d932a48f43120cce03102069680bd47",
+      "bytes": 24917
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch05.source-packet.json",
+      "sha256": "3e64b8a576dbc742e7587b1f607dea38cdad792355b0f0d29280469d9c838568",
+      "bytes": 24797
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch06.source-packet.json",
+      "sha256": "36a3da6a60c4c6e04392ed1d5815c195cb7a75451b49d17f7df4c6e64aa453c6",
+      "bytes": 24454
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch07.source-packet.json",
+      "sha256": "0c065e8219de39b1f3e410ddb132126a683ce029f2fc375ccb0401ed8099020e",
+      "bytes": 24185
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch08.source-packet.json",
+      "sha256": "7e0ca7345d040286354f18bbdb7f6945aaf737f70da84d8546a7e9a678967b35",
+      "bytes": 23608
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/source-packets/ch09.source-packet.json",
+      "sha256": "08e4d7a3386baf98de1230c7143b4e8bb1a7b2cc13f1bf96cfddd96323041ccf",
+      "bytes": 24947
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch01.brief.json",
+      "sha256": "b01369dc472be64159f9c2ea73ef7447854c3de1998021e1ff5c39b70c98ee16",
+      "bytes": 4562
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch01.brief.md",
+      "sha256": "7c27670448f879d5286b54222bae47ec1de219c8371755590b9030ea4a4e1d96",
+      "bytes": 10226
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch02.brief.json",
+      "sha256": "05156360c7aa19c80bff1769615c85329609321a1e26f94861a81c2a1b463e8f",
+      "bytes": 5023
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch02.brief.md",
+      "sha256": "29d16fa1a4cb0fd265297342aa76d0dc4d78b5496cb9d1b1c6e78de61de65e10",
+      "bytes": 10559
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch03.brief.json",
+      "sha256": "ebadd9cd17d0de2a83c9e79b032ef1d29c0d5f1d1cf970686b4ad783319a2b44",
+      "bytes": 4849
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch03.brief.md",
+      "sha256": "c71cb8aade3fbeea7000e3b53d5e621c3d11b4e1132679748d787351cf23f159",
+      "bytes": 10075
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch04.brief.json",
+      "sha256": "025bcf15c2dcdc1befc087804341c0e7208346005a01c0385476fc569400aa7f",
+      "bytes": 4709
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch04.brief.md",
+      "sha256": "fdf162131430be351290299da2946fc091754767732c92a0b1b52c4643fccef4",
+      "bytes": 10026
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch05.brief.json",
+      "sha256": "b626c595ec6cdaff1e02c5848c8d881e48b38fa9548a1559b11e1bfbdf4bcd5c",
+      "bytes": 5050
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch05.brief.md",
+      "sha256": "315bd8fc6028a285391607d14a5eb7ee5d05c459fdd3f86746a66e96646f8887",
+      "bytes": 10411
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch06.brief.json",
+      "sha256": "31a6660b2fa1baf2e68c67bc9137fc55cf5a38e11e102ade062c4db2028e6abb",
+      "bytes": 4790
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch06.brief.md",
+      "sha256": "fdd242f27fe64ea38aeed6bff493eac6cb85acc7b76df03ba0e3326096ab1657",
+      "bytes": 10415
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch07.brief.json",
+      "sha256": "787cd1e535159961ab3918d640019931031df239c8609496cb929651171228ca",
+      "bytes": 4686
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch07.brief.md",
+      "sha256": "b5e2aaa513e97adf9dd3c4b094bf274bcabe109ed121c065abdfde2c04244196",
+      "bytes": 10033
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch08.brief.json",
+      "sha256": "14f642bf709ed22ac100f0f067004fc541d563470c56c06b8ddc145c439dc108",
+      "bytes": 4938
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch08.brief.md",
+      "sha256": "5410de553d49e004c55ffd02a7ad2b4901c876d71691bd7b1a7ae5b9235e7b9b",
+      "bytes": 10351
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch09.brief.json",
+      "sha256": "9daa0660afd2b938a7421ec06379e279c24fccb1765e0f3b361b43ea34bee53f",
+      "bytes": 4715
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch09.brief.md",
+      "sha256": "cc1129433f7c333c56b6630a8116dc17886cc03b6d2f3d0a54b61a43f937173b",
+      "bytes": 10273
+    },
+    {
+      "relPath": "state/books/radical-candor/runs/v23-current/briefs/ch09.lead-override.json",
+      "sha256": "b79290b5b7a88d4a1b6b645a6d3038f549c61dfa544aa642218f635edc1412fb",
+      "bytes": 447
+    },
+    {
+      "relPath": "state/indexes/radical-candor.json",
+      "sha256": "53a719b2b24ab98390c26c77950d75c4952241564f505862ae316dfbcf577120",
+      "bytes": 1084
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/research-run.manifest.json",
+      "sha256": "7074b90c7b28c2d66e471c46d8740ce275cd17f53b0b4d58c0cf2d3042dbd3a8",
+      "bytes": 6309
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/source-freeze/toc.json",
+      "sha256": "3ab98783757f5c4949750e532328599fad88c408191531a4edf18e7f86132c48",
+      "bytes": 3249
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch01.source.json",
+      "sha256": "2dc9c07336175c39dc7ace8012cd4433924a7f990d112c791e48b371d8c451e9",
+      "bytes": 10424
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch01.source.txt",
+      "sha256": "3c3d3feac4b0489bb351493846eac1e12e35fd1bf888c8a5d5002e76c5980238",
+      "bytes": 4927
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch02.source.json",
+      "sha256": "1bcd8e2b0729ff99acce0b911d9ea0f15acca48ee100994314ee8019c440e3d4",
+      "bytes": 9717
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch02.source.txt",
+      "sha256": "d242101ce720b82ce65d8161aa1b821fddaefb3f364db880742bde558e7a8c64",
+      "bytes": 4395
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch03.source.json",
+      "sha256": "7571e2accd82cbfd653cab58c15ea9a61d357aa26430b23c1cd2ab5ec7f8c824",
+      "bytes": 9273
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch03.source.txt",
+      "sha256": "6f4ef571baf6a7bf13fa3d7fb4df0a7405d9f784ad80accda74819e3c93595ea",
+      "bytes": 4298
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch04.source.json",
+      "sha256": "edf68e02c00d64e0d101324d96000538ca9677ee94967a9f90a91c3d0c5b4579",
+      "bytes": 9292
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch04.source.txt",
+      "sha256": "88f339a10172c7f26eea04e498dc5d13a08766d539d645f448ee25176a6ff2b6",
+      "bytes": 4323
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch05.source.json",
+      "sha256": "41611d19a6d2ed3f101f811039d7d20949a142f6c961d3a06676db1749bac3d0",
+      "bytes": 9385
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch05.source.txt",
+      "sha256": "83d24ababc004c10e30679f1c627f6cd852b67650510b56f5e5cc1915d19ec3d",
+      "bytes": 4218
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch06.source.json",
+      "sha256": "ac009455b60f313919ac885164a762c94619fb18031392e75e1e96a1252f2558",
+      "bytes": 8842
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch06.source.txt",
+      "sha256": "b78532685272e7e7b31989f7027d801120b188e445dedcf7a61e035705364bc4",
+      "bytes": 4044
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch07.source.json",
+      "sha256": "83c18da2c98324e91d60466442c0e052ab025d0ca7367e6bf491ef30c529ccdf",
+      "bytes": 9256
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch07.source.txt",
+      "sha256": "104c8427cd4c66e306c5647b6033b8d837714a8bd9363f23c4ea9f90754aab2d",
+      "bytes": 4098
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch08.source.json",
+      "sha256": "d8e73be861eaf94be77d5e60981157a15b67f2e75484ecdc69ded990e61d38af",
+      "bytes": 8960
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch08.source.txt",
+      "sha256": "1598174d7b0a5f9df7267bf292ead16e9542d69d56ed37ef8149e049456a3589",
+      "bytes": 3891
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch09.source.json",
+      "sha256": "9b01a1a20e611e77b56cddad5aa032c0d5cbfe5e81c38b9c177c7d48396198ba",
+      "bytes": 9676
+    },
+    {
+      "relPath": ".chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch09.source.txt",
+      "sha256": "c669fae2d1663355bb3d0d768cbecec24ad722b6bf98d430b2a846347e3e1981",
+      "bytes": 4421
+    }
+  ],
+  "byteMatchVsArchive": "all files verified sha256(zip-stream)==sha256(staging)==sha256(installed)",
+  "overwrites": 0
+}

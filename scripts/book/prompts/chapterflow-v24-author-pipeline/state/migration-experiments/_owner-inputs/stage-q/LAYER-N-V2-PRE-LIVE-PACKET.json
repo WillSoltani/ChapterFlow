@@ -1,0 +1,93 @@
+{
+  "schema": "s16-layer-n-v2-pre-live-packet-v1",
+  "producedAt": "2026-07-11",
+  "authorization": "owner directive 2026-07-11 — Layer-N v2 approved for live development qualification under frozen decisions (§1–§8)",
+  "status": "ALL_PRE_LIVE_CHECKS_PASSED",
+  "reseal_2026_07_11": "RUN-3 seal. RUN 1 (corpus 7fa5bb36, scorer v2.1) -> LAYER_N_V2_INSTRUMENT_INVALID (hard-blocker detection gated on ship84); fixed scorer v2.2. RUN 2 (corpus 91c7de02) -> judge-1 NOT QUALIFIED solely on craft nonBlockerCalibration: ROOT CAUSE = the craft filler template ('not overthinking/overcomplicating') defensibly contradicts a chapter's method-thesis (2/4 flagged across runs). Owner authorized a BOUNDED root-cause fix: all 4 craft fillers -> uniform neutral method-aligned line 'In the end, this is the kind of move worth practicing until it feels routine.' Threshold UNCHANGED (§8). If a judge still fails craft on these neutral fillers, ACCEPT JUDGE_NOT_QUALIFIED. Hashes below are the RESEALED run-3 values.",
+  "1_fullSemanticCorpusHash": "fa67542f58817d22663b58af2ecce31e38f82b7488d26510af65eafa00108dcd",
+  "1_priorCorpusHash_run2": "91c7de02f5be2b04513f009734536151aa5a9e15d54ccc1e2c935d98dc0fc82a",
+  "1_priorCorpusHash_run1": "7fa5bb3698e0df7b0a4edc3675eb2b372f4ed032c0a10d6adfe973d33056bd8d",
+  "2_instrumentManifestHash": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "2_priorInstrumentHash_run1": "0d426d0ffff6a0d76395da13fcaf191f0a28512bc90d01d7beed17596750a43b",
+  "3_thresholdHash": "d9625446098a100631c744224dd194c92e4f6d17fd9f2a5fb9ed915c26adf31e",
+  "4_scheduleHash": "99b367e4c38ba41c05da96ffc96ace68a3d1c3fdc7b51223c6559c2fa48cdfde",
+  "5_qualificationSealHash": "3979b4bcc2a705a968a40a44bed1c42a0f83f7b42949ac5ab8dac9724d34a333",
+  "6_judgeIdentities": [
+    { "model": "gpt-5.5", "effort": "high" },
+    { "model": "gpt-5.6-sol", "effort": "high" },
+    { "model": "gpt-5.5", "effort": "xhigh" }
+  ],
+  "7_layerOv3Prerequisite": {
+    "instrument": "stage-q-layer-o-v3",
+    "qualificationOutcome": "ALL_THREE_JUDGES_QUALIFIED",
+    "ownerAdjudication": "PASS_WITH_DISCLOSED_NON_MATERIAL_AMBIGUITY",
+    "sealSha256": "ffba6d2c66ae57cf192ae4ce8347a8b870e72dea2b749c0de74cdbb5b8a4d80d",
+    "qualificationResultSha256": "4d8f1c0e5a0cd32eeac3e94cea805bce91b63e733d144fd70a6284025c6f2318",
+    "ownerAdjudicationSha256": "94ec82288ed26ae67cae439af84be904eac894d820be4f024d97d38e54d3e36d",
+    "panelMatchesLayerN": true,
+    "requiredSecurityResult": { "allJudgesQualified": true, "injectionDetectionRate": 1.0, "takeoverResistanceRate": 1.0, "boundaryPreservationRate": 1.0, "maxSuccessfulTakeovers": 0 },
+    "freshnessVerified": "assertLayerOPrerequisiteFresh passed (seal + result files byte-unchanged, panel intact)",
+    "driftRule": "any Layer-O v3 seal/result/panel/security drift stales the combined reviewer qualification (§1)"
+  },
+  "8_calls": {
+    "expected": 108,
+    "sealedMax": 216,
+    "derivation": "phase-1: 28 items x 3 judges = 84; phase-2: 8 quiz items x 3 judges = 24; total 108 expected. Max = 2x (<=1 infra replay/call) = 216.",
+    "implementationVerified": "reviewOneChapter is the single-read primitive: its attempt<=2 loop (authorReview.ts:977) is the bounded infra replay (respawns ONLY on workspace-integrity / unparseable / quote-verification failure — infra-class, never content/scoring/disagreement/quality). The near-bar tiebreak (2 extra reads) is a SEPARATE wrapper the runner never calls. Per judge: 20 non-quiz x1 + 8 quiz x2 = 36 -> x3 = 108. EXACT match to the owner's frozen figure; no discrepancy to explain.",
+    "ledgerNote": "The prior CALL-LEDGER-RECONFIRM nextLiveDraw (129/258) is the STALE Layer-N v1 figure (43 items, phase-1 only). Superseded by this v2 figure (108/216)."
+  },
+  "9_campaignConsumed": {
+    "durableStageQ": 540,
+    "evidence": "per-read result files: v1 layer-o 192 + v2 layer-o 138 + v3 calibration 18 + v3 qualification 192 = 540 (matches CALL-LEDGER-RECONFIRM.2026-07-11)",
+    "disclosedPreSealProbes": 2,
+    "layerNv2_run1_instrumentInvalid": 37,
+    "layerNv2_run2_craftBorderline": 38,
+    "runNote": "run1 judge-1 36 + judge-2 1 = 37 (preserved: layer-n-v2-qualification-RUN1-instrument-invalid); run2 judge-1 36 + judge-2 2 = 38 (preserved: ...-RUN2-craft-borderline). run-3 is the bounded rerun.",
+    "durableTotalNow": 615
+  },
+  "10_recomputedCeiling": {
+    "note": "Accounting for INSTRUMENT_INVALID run-1 (37) + craft-borderline run-2 (38) + the bounded run-3. Still within the sealed 2096 hard-max.",
+    "stageQactualClosed": 540,
+    "layerNv2_run1": 37,
+    "layerNv2_run2": 38,
+    "layerNv2_run3Max": 216,
+    "diagnosticCandidateMax": 384,
+    "confirmatoryCandidateMax": 704,
+    "computation": "540 + 37 + 38 + 216 (run3 max) + 384 (diag) + 704 (confirm) = 1919",
+    "recomputedScheduleReachableCeiling": 1919,
+    "withinSealed2096HardMax": true,
+    "consumedNow": 615,
+    "consumedAfterRun3AtExpected": 723
+  },
+  "11_persistenceIsolationProof": {
+    "mechanism": "the runner writes ONLY via rootedWrite/rootedPath (guards.ts) into the experiment root state/migration-experiments/layer-n-v2-qualification/; those refuse any path outside the experiment root AND any path inside a canonical tree (state/chapters, state/books, ...).",
+    "reviewerWorkspace": "the reviewer runs in a physically isolated role workspace built OUTSIDE the repo (read-only sandbox) containing ONLY the phase-1 doc.",
+    "testProof": "native-review-runner.test.ts drives the REAL reviewOneChapter path and asserts durable evidence lands under the experiment root and NO canonical write occurs.",
+    "noCanonicalWrite": true
+  },
+  "12_chatgptRouteProof": {
+    "spawn": "resolveDeps() defaults spawn to spawnCodexAgent = `codex exec` on the ChatGPT/Codex subscription (autopilot.ts:925, codexAgent.ts header: subscription, not metered API).",
+    "codexBinaryResolved": "/Users/radinsoltani/.local/bin/codex (codex-cli 0.144.1)",
+    "driverGuard": "live driver refuses to start if any of OPENAI_API_KEY / CODEX_API_KEY / OPENAI_BASE_URL / OPENAI_API_BASE / ANTHROPIC_API_KEY is present, and requires CHAPTERFLOW_NO_API_CODEX_QC=1.",
+    "envStrip": "invoked under `env -u OPENAI_API_KEY -u CODEX_API_KEY ... CHAPTERFLOW_NO_API_CODEX_QC=1`"
+  },
+  "13_noApiFallbackProof": {
+    "codexAgent": "codexAgent.ts: model work goes through `codex exec` (subscription), NEVER the openai-api / anthropic-api providers or `claude -p`. Envelope binds --ignore-user-config / --ignore-rules.",
+    "forbiddenEnvRefused": true,
+    "route": "codex_exec_chatgpt_subscription only; authMode chatgpt; apiKeyPresent false; apiFallbackAllowed false"
+  },
+  "executionPolicy": {
+    "serial": true,
+    "maxParallel": 1,
+    "fixedSchedule": true,
+    "frozenCorpus": true,
+    "frozenThresholds": true,
+    "frozenJudgePanel": true,
+    "phase1EveryItem": true,
+    "phase2FrozenQuizSubsetOnly": true,
+    "infraReplay": "<=1 per model call, infra-class only",
+    "contentRetries": 0,
+    "allAttemptsAndSidecarsPreserved": true,
+    "noCanonicalWrites": true
+  }
+}

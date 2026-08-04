@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["CHAPTER 1 Q8 key says b, but the chapter supports a: copied tools fail when the receiving factory keeps a different starting belief."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 58,
+    "transfer": 80,
+    "practical": 70,
+    "summaries": 76,
+    "tone": 67,
+    "limits": 73,
+    "insight": 70,
+    "density": 66,
+    "beginner": 79
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, portable line that captures the chapter's lens in memorable form."
+    },
+    {
+      "quote": "A bought response is not the same as a chosen return.",
+      "why": "Compact and useful distinction that readers can apply beyond the RAZR example."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template artifact leaks into every implementation plan, which is a publishability defect."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence structure breaks reader trust and suggests generated scaffold damage."
+    },
+    {
+      "quote": "A Motorola status lesson follows a fashion buyer has celebrity mockups on one side of the table and repeat-purchase data on the other.",
+      "why": "Another malformed example opening; the repeated construction makes the sample feel machine-stamped."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "Strongest trust-chapter line: plain, memorable, and meaningfully differentiates satisfaction from trust."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a solid instructional core: each chapter usually offers a transferable lens, plain prose, scenario-based quizzes, and several genuinely memorable lines. It is not publishable as-is because the Chapter 1 answer key contradicts the prose on Q8, and visible template artifacts plus malformed example sentences leak into the reader-facing text. Cross-chapter churn is high: the same Hook/Fast/Deep/Full/Examples/Implementation shell, repeated limit paragraph, repeated practice form, and repeated rhetorical cadence make the chapters feel stamped from one mold rather than individually authored. With cleanup, key correction, and more varied examples, this could become a strong draft, but the current sample fails the correctness gate."
+}
+```

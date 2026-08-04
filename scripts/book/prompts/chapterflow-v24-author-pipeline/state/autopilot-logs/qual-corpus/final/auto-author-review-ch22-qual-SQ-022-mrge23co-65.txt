@@ -1,0 +1,107 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "The quiz contains no questions or answer choices, so there are no answers to derive or guess."
+    ]
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 6,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 2,
+    "density": 5,
+    "beginner": 8
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "She must decide whether to open the file as a verdict or as information, so she writes, \"I am competent and this model may contain an error and I can learn from it.\"",
+      "why": "This is the only concrete moment and hints at separating self-worth from corrective information."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "Five promised learning layers are empty, leaving no actual chapter instruction before the example."
+    },
+    {
+      "quote": "Why it matters: It transfers the idea to practice.",
+      "why": "This is circular placeholder language rather than an explanation of the mechanism or benefit."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "All three concluding learning components are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status placeholder text and does not identify the topic, problem, or core move.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its promised stand-alone summary function; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its promised stand-alone explanatory function; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and therefore fails its promised stand-alone teaching function; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states its core lesson; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader without an actionable exercise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example names a person and decision but gives no resulting action or consequence, while its instructions merely say to apply an undefined move; it is thin but potentially usable after expansion.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The Title and Scenario fields run together on one line, making the example read like an unprocessed template.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or choices, so it cannot test learning; this is a broken quiz and therefore STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised retrieval-practice component is missing; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the promised retention aid is missing; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "whole chapter",
+      "problem": "No prose defines, explains, bounds, or demonstrates the chapter's core move; a reader genuinely cannot learn it from the page, making the chapter UNUSABLE.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. One scenario suggests a potentially useful idea—treating critical feedback as information rather than a verdict on competence—but the text never names or explains that move, shows its mechanism, supplies an actionable exercise, discusses limits, or demonstrates a consequence. The three reading layers, takeaway, quiz, review cards, and memorable lines are empty, so retention, assessment, transfer, and beginner accessibility cannot function. The isolated example is thin rather than fabricated, but it cannot compensate for the missing instructional core."
+}
+```

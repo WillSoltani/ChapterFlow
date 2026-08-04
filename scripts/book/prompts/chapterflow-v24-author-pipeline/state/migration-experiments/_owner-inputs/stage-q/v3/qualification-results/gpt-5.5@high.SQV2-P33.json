@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P33",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / templated scenario structure\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director, with the first page of a performance memo.\",\"Zanele steadies a dented clipboard at Thursday 5:11 a.m. in dock door 3 at the Albany bakery, shipping lead, with a stack of warm bread crates.\",\"Ruxandra she must decide whether to lead with dates or name the three layers before Derek arrives.\",\"Zanele she must decide whether to win the count or draw both paths on the back of the sheet.\"],\"rationale\":\"The two examples change the names, industries, props, and conflict nouns, but they reuse the same narrative machinery: a chapter lesson title, a named character physically handling a damaged object, a precise timestamp and workplace location, a role label, a concrete document or goods detail, a dispute with competing factual/emotional realities, and a final forced choice framed as “must decide whether to X or Y.” The repeated ungrammatical construction “Ruxandra/Zanele she must decide” further signals template reuse rather than independent scenario construction.\"}"
+}

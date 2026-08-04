@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "033b976955c8a087c40db4f53362057617d02391683e20cd52d0b34953060d27",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 0,
+      "agreement": false,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b both isolate the same two-measure fault, record it, and alter the next attempt; the stem gives no basis to prefer fingering over hand motion."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a directly narrows the vague effort to the repeated redox error and uses step-level feedback to change the next attempt."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c identifies the core flaw: whole-demo repetition is preserving the recurring weak slide instead of isolating and correcting it."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b gives a visible cue, checks video feedback, and repeats the corrected movement before adding distance."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b captures the purposeful-practice mechanism: each miss reshapes the next grouping strategy rather than merely adding repetitions."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b best rebuts the claim by explaining that repetition can ingrain uneven cuts unless a visible size target guides correction."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c states the needed condition for feedback: it must affect the next attempt while the mistake can still be traced."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is supported because Plan B shortens the feedback loop enough to adjust the next small batch."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c turns the vague goal into a specific, visible, repeatable target that can be corrected."
+    }
+  ]
+}
+```

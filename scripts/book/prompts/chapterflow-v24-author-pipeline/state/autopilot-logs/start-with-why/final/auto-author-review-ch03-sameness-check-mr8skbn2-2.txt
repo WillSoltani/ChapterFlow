@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q7's correct answer is the only option with a dense specific date/place anchor, which may make it easier to guess without reading.", "Several correct answers use the chapter's favored wording around anchors, proof, and limits, while distractors sound broadly overreaching."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 87,
+    "limits": 90,
+    "insight": 86,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Move WHY before proof.",
+      "why": "The core move is short, memorable, and repeated without getting muddy."
+    },
+    {
+      "quote": "A product is a receipt for a reason.",
+      "why": "This is the chapter's strongest mechanism line: it explains why WHAT cannot invent WHY."
+    },
+    {
+      "quote": "The dashboard glow lights the parked car.",
+      "why": "This image is vivid but decorative enough that it may distract from the otherwise clean example logic."
+    },
+    {
+      "quote": "Every unowned promise costs another week of pretending.",
+      "why": "Strong practical pressure: it turns abstract order into a concrete workplace cost."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The parked-car image is vivid but not needed for the decision-and-consequence pattern; the example would transfer more cleanly if the setting detail served the proof test.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct choice is much more specific than the distractors, so readers may infer the key from date/place density rather than derivation.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The named workshop/office characters give useful practice scenes, but several examples reuse the same Apple/Sylvia repair shape, reducing transfer variety.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship. The chapter has a clear, memorable core move: put WHY before HOW and WHAT, then require visible behavior to prove it. The Apple Inc. anchor, Wright brothers comparison, and Lincoln Memorial limit are handled with unusual restraint, so the lesson avoids generic purpose-talk. The quiz is mostly fair and derivable, with no key-soundness failures, though a few correct answers are signaled by their specificity. Transfer is solid but slightly narrowed by repeated Sylvia/Apple repair scenes."
+}
+```

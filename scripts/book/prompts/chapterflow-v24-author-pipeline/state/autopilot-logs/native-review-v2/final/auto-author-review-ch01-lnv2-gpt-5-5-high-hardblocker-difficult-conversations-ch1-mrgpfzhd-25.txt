@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The prose defines identity as questions about competence, goodness, loyalty, or respect; fear of seeming too junior is a competence/authority self-question.",
+      "The chapter says hard exchanges have facts, feelings, and identity layers; the promise, resentment, and responsible-child fear map to those three layers.",
+      "The diagnostic move is to separate documented facts from dismissed feelings and identity/reputation fears instead of adding more facts.",
+      "The prose warns that the visible facts layer can be less powerful while feelings like trust steer the room.",
+      "The chapter says reactions become larger than the visible issue when the identity layer asks what kind of person someone is.",
+      "Writing facts, feelings, and identity separately prevents the student from treating the poster dispute as only an authorship problem.",
+      "The chapter warns that more facts alone can fail when evidence has entered an identity conversation.",
+      "The prose explicitly says the frame works best as private diagnosis and can sound like an accusation when pasted onto someone else.",
+      "The best first diagnosis is to distinguish the visible topic from the respect/identity layer underneath it."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "All nine correct answers are the uniquely longest option.",
+      "Correct choices repeatedly reuse the chapter's exact triad language: facts/feelings/identity, competence, trust, diagnosis, and private labeling."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 66,
+    "transfer": 72,
+    "practical": 80,
+    "summaries": 92,
+    "tone": 88,
+    "limits": 93,
+    "insight": 91,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "Memorable compression of the chapter's core distinction."
+    },
+    {
+      "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer. They will hear a new accusation wearing thoughtful clothes.",
+      "why": "Strong mechanism and boundary for using the frame privately."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script. They do not solve the exchange. They keep you from walking into the wrong one.",
+      "why": "Clear limit that prevents overselling the skill."
+    },
+    {
+      "quote": "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.",
+      "why": "This directly contradicts the chapter's central advice inside a What to do section."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The What to do section tells Sarah to prepare only deadline facts and skip feelings/identity stakes, which directly contradicts the chapter's core instruction and the example's own Why it matters.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Every correct answer is the uniquely longest option, often with the chapter's exact vocabulary, so a reader can guess the key without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Names are reused across unrelated roles, especially Ingrid and Mathieu, which can make the scenario set feel unintentionally continuous or confusing.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear, useful diagnostic move with strong summaries, memorable lines, and practical transfer across work, family, community, and creative settings. It would be shippable on substance, but Example 1 contains a direct contradictory instruction in a What to do block, which is reader-harming because it tells the reader to do the opposite of the lesson. The quiz is also too guessable because the correct answer is always the longest and most chapter-shaped option."
+}
+```

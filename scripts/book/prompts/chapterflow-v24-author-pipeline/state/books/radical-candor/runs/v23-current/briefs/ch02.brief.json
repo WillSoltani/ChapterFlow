@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch02",
+  "chapterNumber": 2,
+  "title": "Get, Give, and Encourage Guidance",
+  "coreMove": "Because short-term comfort can hide needed information, the employee loses a chance to improve.",
+  "thesis": "Ruinous Empathy appears at Ch. 2 p. 33 as care without direct challenge.",
+  "readerPromise": "After this chapter, a reader can because short-term comfort can hide needed information, the employee loses a chance to improve.",
+  "ownedCases": [
+    {
+      "id": "ch02.ex.sheryl-sandberg-feedback",
+      "label": "Sheryl Sandberg direct feedback"
+    },
+    {
+      "id": "ch02.ex.bob-juice-software",
+      "label": "Bob at Juice Software"
+    },
+    {
+      "id": "ch02.ex.order-of-operations-feedback",
+      "label": "Order of Operations feedback sequence"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Aristotle persuasion triad",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "CORE feedback framework",
+    "Care Personally plus Challenge Directly compass",
+    "Center for Creative Leadership SBI",
+    "GSD Wheel",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Kim Scott at Google and Apple",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Meeting creep",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg at Google"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    2,
+    2,
+    1,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\"",
+    "opener (ch08): \"The Results discussion prompts state the standard before\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on delayed criticism",
+    "venue: a working note on direct reports",
+    "venue: a kitchen table",
+    "frame: two stakeholders disagree about build trust before deciding",
+    "frame: a first encounter with ch p that sets a benchmark"
+  ],
+  "architectureFamily": "failure-autopsy",
+  "openerType": "question",
+  "challengeFrame": "pre-write-the-exact-line",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "ask",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target"
+  ],
+  "questionFactOrder": [
+    2,
+    9,
+    6,
+    8,
+    5,
+    1,
+    4,
+    3,
+    7
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Sheryl Sandberg direct feedback"
+  },
+  "adjacentJobs": {
+    "prev": "Because whole-person concern lowers defensiveness, direct guidance is more likely to be heard as help.",
+    "next": "Because trajectory changes over time, management must diagnose current motivation instead of assigning fixed talent labels."
+  }
+}

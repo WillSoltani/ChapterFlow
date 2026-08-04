@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -7,16 +7,22 @@ import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
 import { collectQcRound } from "../src/qc/orchestrator/index.js";
 import { appendFindingsFromSubmission, effectiveLedger, effectiveLedgerResilient, quarantineMalformedLedger, readLedgerEvents } from "../src/qc/orchestrator/ledger.js";
 import { orchestratorRoundDir, repairLedgerPath, submissionsDir } from "../src/qc/orchestrator/artifacts.js";
-import { sweepRecordPath } from "../src/qc/sweep.js";
+import { chapterClearsPath, sweepHistoryPath, sweepRecordPath } from "../src/qc/sweep.js";
 import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js";
 
 const BOOK = "zz-fixture-ledger";
 const ROUND = "r-ledger";
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
 
 function cleanup(): void {
-  rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
   rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
   rmSync(sweepRecordPath(BOOK), { force: true });
+  rmSync(sweepHistoryPath(BOOK), { force: true });
+  rmSync(chapterClearsPath(BOOK), { force: true });
 }
 
 function sweepSubmission(problem = "The same scene skeleton repeats across chapters."): ValidatedSweepSubmission {
@@ -137,7 +143,7 @@ test("repair ledger readers fail closed and report the malformed JSONL line", ()
   }
 });
 
-test("effectiveLedgerResilient AUTO-quarantines a malformed ledger instead of throwing — the unattended finalize/publish path self-heals instead of wedging (I5·W2)", () => {
+test("effectiveLedgerResilient fails closed without mutating malformed ledger bytes", () => {
   try {
     cleanup();
     const path = repairLedgerPath(BOOK, ROUND);
@@ -146,15 +152,15 @@ test("effectiveLedgerResilient AUTO-quarantines a malformed ledger instead of th
       JSON.stringify({ schemaVersion: "qc-repair-ledger-event-v1", event: "status", findingId: "qcf-x", bookId: BOOK, roundId: ROUND, status: "still_open", reason: "valid first line", updatedAt: "2026-06-23T00:00:00.000Z" }),
       "{ torn partial line from a killed append",
     ].join("\n") + "\n", "utf8");
-    // The strict reader (supervised audit path) still throws — corruption stays LOUD there.
-    assert.throws(() => effectiveLedger(BOOK, ROUND), /malformed/i);
-    // The resilient reader (unattended path) self-heals: no throw, the corrupt line is quarantined.
+    const before = readFileSync(path);
     let msg = "";
-    const findings = effectiveLedgerResilient(BOOK, ROUND, (m) => { msg = m; });
-    assert.ok(Array.isArray(findings), "resilient reader returns events instead of throwing");
-    assert.match(msg, /quarantined/i, "the malformed line is reported as quarantined (raw line preserved in a sibling .quarantine file)");
-    // The ledger is now clean, so a strict re-read no longer throws — the wedge is gone.
-    assert.doesNotThrow(() => effectiveLedger(BOOK, ROUND), "ledger self-healed");
+    assert.throws(
+      () => effectiveLedgerResilient(BOOK, ROUND, (m) => { msg = m; }),
+      /repair-ledger\.jsonl:2[\s\S]*malformed/i,
+      "pure projection must propagate ledger integrity failure",
+    );
+    assert.match(msg, /run named ledger repair with explicit confirmation/i);
+    assert.deepEqual(readFileSync(path), before, "projection must preserve malformed ledger bytes exactly");
   } finally {
     cleanup();
   }

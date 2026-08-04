@@ -10,8 +10,13 @@
  */
 
 import { ChapterV21 } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
-import { BookPatternAuditReport, runBookPatternAudit } from "./bookPatternAudit.js";
+import {
+  BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+  BookPatternAuditReport,
+  parseBookPatternAuditReport,
+} from "./bookPatternAudit.js";
 import {
   checkBookQuizCrossChapterDuplicates,
   checkBookQuizNgramTemplates,
@@ -35,6 +40,7 @@ import {
   checkBookVenueStamping,
 } from "./bookRepetition.js";
 import { RuntimeSchemaFinding, validateBookGateInput } from "../runtimeSchemas.js";
+import { openCriticCandidateEntries } from "./schema.js";
 
 export type BookGateFinding = {
   catalogId: string;            // F1, F3, etc. (from FAILURE-MODES.md)
@@ -104,6 +110,13 @@ export type BookGateOptions = {
   requirePlanArtifacts?: boolean;
   /** Defaults to true, matching production source-alignment diagnostics. */
   checkSourceAlignment?: boolean;
+  /** Frozen candidate-bound pattern audit; avoids ambient plan/source discovery. */
+  patternAudit?: BookPatternAuditReport;
+  /** Explicit candidate-bound source-v2 values for BP26. Presence disables
+   * legacy ambient source-sidecar discovery. */
+  exemplarSourceSidecars?: readonly unknown[];
+  /** Optional caller-owned BP26 framework terms. */
+  exemplarWhitelistTerms?: readonly string[];
 };
 
 /**
@@ -426,13 +439,14 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   // Per-chapter C8 catches templates inside one chapter. This catches the
   // Codex-session failure mode: hooks, counters, tryThisNow fields, quiz
   // explanations, and example shells repeated across many chapters.
-  const patternAudit = runBookPatternAudit({
-    bookId,
-    chapters,
-    stateDir: options.stateDir,
-    requirePlanArtifacts: options.requirePlanArtifacts,
-    checkSourceAlignment: options.checkSourceAlignment,
-  });
+  const patternAudit = options.patternAudit ?? emptyPatternAudit(bookId, chapters.length);
+  if (!options.patternAudit) {
+    findings.push({
+      catalogId: "BOOK_PATTERN_AUDIT_UNBOUND",
+      severity: "blocker",
+      message: "BOOK_PATTERN_AUDIT_UNBOUND: explicit candidate-bound patternAudit is required; ambient plan/source discovery is forbidden.",
+    });
+  }
   for (const f of patternAudit.findings) {
     findings.push({
       catalogId: f.code,
@@ -489,7 +503,10 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
   }
 
   // ── BP26/BP27 — book-level repetition of marquee exemplars and venues. ───
-  for (const f of checkBookExemplarChapterReuse(bookId, chapters)) {
+  for (const f of checkBookExemplarChapterReuse(bookId, chapters, {
+    sourceSidecars: options.exemplarSourceSidecars,
+    whitelistTerms: options.exemplarWhitelistTerms,
+  })) {
     findings.push({
       catalogId: f.checkId,
       severity: f.severity as "blocker" | "major" | "minor",
@@ -687,6 +704,51 @@ export function runBookGate(bookId: string, chapters: ChapterV21[], options: Boo
       patternAudit,
     },
   };
+}
+
+export async function runBookGateFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    chapterLogicalPaths: readonly string[];
+    /** One candidate source-v2 sidecar path paired with each chapter path. */
+    sourceSidecarLogicalPaths?: readonly string[];
+    patternAuditLogicalPath: string;
+  }>,
+): Promise<BookGateReport> {
+  if (input.patternAuditLogicalPath !== BOOK_PATTERN_AUDIT_LOGICAL_PATH) {
+    throw new Error(`CANDIDATE_ENTRY_INVALID: expected ${BOOK_PATTERN_AUDIT_LOGICAL_PATH}`);
+  }
+  if (
+    !input.sourceSidecarLogicalPaths ||
+    input.sourceSidecarLogicalPaths.length !== input.chapterLogicalPaths.length ||
+    input.sourceSidecarLogicalPaths.some((path) => typeof path !== "string" || path.length === 0)
+  ) {
+    throw new Error("CANDIDATE_ENTRY_INVALID: one explicit source-v2 sidecar path is required per chapter");
+  }
+  const opened = await openCriticCandidateEntries(reader, {
+    ...input,
+    logicalPaths: [
+      ...input.chapterLogicalPaths,
+      ...input.sourceSidecarLogicalPaths,
+      input.patternAuditLogicalPath,
+    ],
+  });
+  const auditFile = opened.snapshot.files.find((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH);
+  if (!auditFile || auditFile.kind !== "SIDECAR" || auditFile.mediaType !== "application/json") {
+    throw new Error(`CANDIDATE_ENTRY_INVALID: ${BOOK_PATTERN_AUDIT_LOGICAL_PATH} must be an application/json SIDECAR`);
+  }
+  const patternAudit = parseBookPatternAuditReport(opened.values[opened.values.length - 1], {
+    bookId: input.bookId,
+    chapterCount: input.chapterLogicalPaths.length,
+  });
+  const chapterCount = input.chapterLogicalPaths.length;
+  return runBookGate(input.bookId, opened.values.slice(0, chapterCount) as ChapterV21[], {
+    patternAudit,
+    exemplarSourceSidecars: opened.values.slice(chapterCount, chapterCount * 2),
+  });
 }
 
 /**

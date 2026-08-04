@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "",
+  "at": "2026-07-08T06:52:11.729Z",
+  "bar": 80,
+  "beatShipped": 72.1,
+  "accepted": false,
+  "sampledChapters": [
+    1,
+    2,
+    6,
+    11
+  ],
+  "docSha256": "e1a5e5e6e959d5bb9d0083e75a22ccfe57f3ea46434cc1fe26a51ef9eb491239",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 75,
+    "factors": {
+      "retention": 78,
+      "quizzes": 74,
+      "transfer": 82,
+      "practical": 75,
+      "summaries": 79,
+      "tone": 68,
+      "limits": 80,
+      "insight": 72,
+      "density": 64,
+      "beginner": 73
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-p3-mrbpy5se-12",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 77,
+          "quizzes": 78,
+          "transfer": 82,
+          "practical": 72,
+          "summaries": 79,
+          "tone": 70,
+          "limits": 82,
+          "insight": 73,
+          "density": 64,
+          "beginner": 74
+        },
+        "composite": 75.5,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is sound on basic quiz correctness: I found no keyed answer contradicted by the chapter prose. Its best material teaches a real reusable lens: separate cause from visible result, keep source details with the setting that earned them, and test a pattern in a second context. The problem is churn. Across chapters, the same machinery keeps returning: named company detail, second setting, warning against purpose talk, source detail stays home, four-term order, if-then plan, memorable line. That makes the book feel more assembled than authored. It is a solid draft with useful tools, but not premium: clarity and limits are strong, while density, tone, and freshness suffer from repetition.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-p3-mrbpy5sj-13",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 68,
+          "transfer": 82,
+          "practical": 76,
+          "summaries": 80,
+          "tone": 63,
+          "limits": 80,
+          "insight": 72,
+          "density": 61,
+          "beginner": 70
+        },
+        "composite": 73.5,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is factually coherent and the answer key is supported by the prose, so it passes the correctness gate. As a book sample, though, it feels heavily templated: nearly every chapter teaches by ordering terms, anchoring named examples, warning against borrowed details, adding a second setting, and ending with similar if-then practice shells. The best lines are genuinely sticky, and the core lenses transfer well, but quiz design is too often obvious, examples rely on thin proxy scenes, and the prose repeats its own diagnostic machinery until density and voice suffer.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-p3-mrbpy5sn-14",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 74,
+          "transfer": 82,
+          "practical": 75,
+          "summaries": 76,
+          "tone": 68,
+          "limits": 78,
+          "insight": 70,
+          "density": 68,
+          "beginner": 73
+        },
+        "composite": 74.6,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is internally sound and generally useful: the quizzes are answerable from the chapters, the keys match the prose, and several chapters produce memorable diagnostic questions. The book’s weakness is sameness. Across unrelated topics, the chapters repeatedly use the same machinery: define an order, keep hard details with their source, add a second setting, warn against purpose talk, then turn it into nearly identical if-then practice. That makes the sample feel competent but manufactured. It would ship as a solid draft, not a premium learning product, unless later chapters show more varied scenes, fresher practice design, and less reliance on the same comparison scaffold.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-p3-mrbpy5se-12",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 77,
+        "quizzes": 78,
+        "transfer": 82,
+        "practical": 72,
+        "summaries": 79,
+        "tone": 70,
+        "limits": 82,
+        "insight": 73,
+        "density": 64,
+        "beginner": 74
+      },
+      "composite": 75.5,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is sound on basic quiz correctness: I found no keyed answer contradicted by the chapter prose. Its best material teaches a real reusable lens: separate cause from visible result, keep source details with the setting that earned them, and test a pattern in a second context. The problem is churn. Across chapters, the same machinery keeps returning: named company detail, second setting, warning against purpose talk, source detail stays home, four-term order, if-then plan, memorable line. That makes the book feel more assembled than authored. It is a solid draft with useful tools, but not premium: clarity and limits are strong, while density, tone, and freshness suffer from repetition.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-p3-mrbpy5sj-13",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 68,
+        "transfer": 82,
+        "practical": 76,
+        "summaries": 80,
+        "tone": 63,
+        "limits": 80,
+        "insight": 72,
+        "density": 61,
+        "beginner": 70
+      },
+      "composite": 73.5,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is factually coherent and the answer key is supported by the prose, so it passes the correctness gate. As a book sample, though, it feels heavily templated: nearly every chapter teaches by ordering terms, anchoring named examples, warning against borrowed details, adding a second setting, and ending with similar if-then practice shells. The best lines are genuinely sticky, and the core lenses transfer well, but quiz design is too often obvious, examples rely on thin proxy scenes, and the prose repeats its own diagnostic machinery until density and voice suffer.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-p3-mrbpy5sn-14",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 74,
+        "transfer": 82,
+        "practical": 75,
+        "summaries": 76,
+        "tone": 68,
+        "limits": 78,
+        "insight": 70,
+        "density": 68,
+        "beginner": 73
+      },
+      "composite": 74.6,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is internally sound and generally useful: the quizzes are answerable from the chapters, the keys match the prose, and several chapters produce memorable diagnostic questions. The book’s weakness is sameness. Across unrelated topics, the chapters repeatedly use the same machinery: define an order, keep hard details with their source, add a second setting, warn against purpose talk, then turn it into nearly identical if-then practice. That makes the sample feel competent but manufactured. It would ship as a solid draft, not a premium learning product, unless later chapters show more varied scenes, fresher practice design, and less reliance on the same comparison scaffold.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 3,
+    "composite": 74.2,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": true
+  },
+  "structuralSameness": {
+    "mode": "advisory",
+    "archAxes": [
+      {
+        "id": "ARCH1.practice_shell_monoculture",
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "archSevere": false,
+    "contentOverCap": [
+      {
+        "id": "practice-shell",
+        "frac": 0.86,
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "contentSevere": false
+  }
+}

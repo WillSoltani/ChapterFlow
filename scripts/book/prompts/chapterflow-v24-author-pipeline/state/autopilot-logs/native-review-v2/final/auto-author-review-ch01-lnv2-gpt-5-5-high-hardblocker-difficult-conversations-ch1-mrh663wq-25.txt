@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "The fear is not just anxiety; it is a question about whether she is competent and authoritative enough to challenge him.",
+      "The prose says to sort what happened, feelings, and identity before responding to a hard exchange.",
+      "The board has facts, residents name dismissal, and the board has an identity/reputation fear about negligence.",
+      "The chapter warns that accepting the surface label can trap the exchange in facts while feelings steer the room.",
+      "Hearing the question as 'you are a bad friend' makes the surface dinner issue into an identity judgment.",
+      "Her notes separate facts, feelings, and identity, keeping the belonging threat from being hidden by the authorship issue.",
+      "The attendance fact has started to carry an identity question about parenting, so repeating facts alone may heighten defense.",
+      "The prose says the frame works first as private diagnosis because labeling someone else's layer can sound accusatory.",
+      "The diagnostic move is to separate the visible chore dispute from the respect layer driving the repeated fight."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "b is partly defensible if the reader keys only on 'terrified,' but the competence/authority wording points to identity.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "a is the longest and echoes the prose's competence/authority language; b has giveaway absolutism with 'only issue that matters now.'",
+      "b is uniquely comprehensive and lists all three layers, while a and c are narrow.",
+      "c is much longer and names all three layers; b is plainly dismissive.",
+      "a mirrors the chapter's timeline-versus-trust mechanism; c is a weak joke distractor.",
+      "b contains the explicit identity phrasing; c uses giveaway absolutism with 'always.'",
+      "c is the longest and uses the chapter's 'belonging' and 'only a problem' framing.",
+      "c is much more nuanced and longer than the other choices.",
+      "b closely paraphrases the prose; a and c are extreme.",
+      "a is the only answer that uses the chapter's layer language."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 74,
+    "practical": 78,
+    "summaries": 93,
+    "tone": 89,
+    "limits": 94,
+    "insight": 90,
+    "density": 87,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "Strongest memorable line: concrete, brief, and repeats the chapter's core distinction."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "Best limit statement: it prevents the frame from being oversold."
+    },
+    {
+      "quote": "In truth, prepare only the deadline facts and skip the feelings and identity stakes, since sorting those extra layers just clouds a clean evidence-based review.",
+      "why": "Worst defect: it directly reverses the chapter's core advice inside a 'What to do' section."
+    },
+    {
+      "quote": "A person who already feels exposed will rarely thank you for diagnosing their identity layer.",
+      "why": "Strong practical boundary: it explains why the tool should first be used privately."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The 'What to do' section first tells Sarah to sort facts, feelings, and identity, then directly tells her to skip feelings and identity; this contradicts the chapter's core move and could teach the opposite behavior.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "Distractor b is weakened by giveaway absolutism: 'anxiety is the only issue that matters now' is obviously false in the chapter's framework.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "Distractor b is too obviously dismissive, so the item is easier to answer by tone than by deriving the mechanism.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, memorable core move: sort hard conversations into facts, feelings, and identity before choosing words. The prose is concrete, layered, and honest about limits, and the quiz is mostly fair and derivable. The blocking issue is Example 1, where the 'What to do' section includes a sentence that explicitly tells the reader to skip the very layers the chapter teaches them to sort. That source-contradictory instruction makes the chapter unshippable until fixed, though the surrounding material is strong."
+}
+```

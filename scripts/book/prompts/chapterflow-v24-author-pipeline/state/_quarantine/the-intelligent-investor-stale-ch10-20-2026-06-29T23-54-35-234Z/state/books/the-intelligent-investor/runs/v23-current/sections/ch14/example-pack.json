@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch14",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Kitchen Table Size Shortcut",
+      "scenario": "Rina sits at the kitchen table with Caleb while a decision deadline gets close. Her old default is to favor the smallest company on the page because fast growth sounds easier from a small base. Caleb points to the blank spots in the record she has not checked: size, available history, liquidity, and resilience. The default fails in a concrete moment when Rina realizes that a promising story cannot replace the records that Standard & Poor's stock data is meant to supply.",
+      "whatToDo": "Pause the deadline triage before approving the idea. Check whether the company has adequate size and whether the available record includes historical earnings, dividends, and balance-sheet figures. If the appeal depends mainly on being small, move it out of the defensive pile.",
+      "whyItMatters": "Adequate size is part of the defensive checklist because very small companies can carry limited records, liquidity, and resilience. Standard & Poor's stock data matters here because a screen depends on checked records rather than impressions.",
+      "sourceAnchorIds": [
+        "ch14.fact.1",
+        "ch14.example.1"
+      ],
+      "sourceFactIds": [
+        "ch14.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch14.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The One-on-One Balance Sheet Test",
+      "scenario": "Caleb brings a candidate into a manager one-on-one with Naomi and starts with the product story. Naomi asks for the published investment reference data before they decide. Caleb opens the bond and stock records from Moody's manuals and sees the weak financial condition he had treated as secondary. The small experiment changes the decision: the candidate stops being an approval item and becomes a reminder that a good product does not cancel debt and liquidity risk.",
+      "whatToDo": "Run the one-on-one as a source-record check. Before discussing the product appeal, require the balance-sheet evidence and decide whether financial condition is strong enough for a defensive screen. If debt and liquidity look weak, reject the candidate instead of saving it with a story.",
+      "whyItMatters": "Strong financial condition is a defensive requirement because weak balance sheets can turn ordinary business setbacks into shareholder losses. Moody's manuals stand for the published records that keep the decision tied to evidence.",
+      "sourceAnchorIds": [
+        "ch14.fact.2",
+        "ch14.example.2"
+      ],
+      "sourceFactIds": [
+        "ch14.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch14.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Phone Call After the Peak Year",
+      "scenario": "Naomi calls Julian after Tessa flags a candidate that looks impressive because of one excellent year. The first pass is awkward: Julian wants to keep it because the peak year feels like proof, while Naomi asks for earnings stability across years. They do not get an instant clean answer. Tessa reads back the seven defensive tests, and the group repairs the call by moving the candidate to pending until the earnings record supports conservative appraisal.",
+      "whatToDo": "Use the phone call as a feedback loop. Separate a single excellent year from stable earning power, then compare the candidate against the seven defensive tests instead of letting one strong line carry the decision. If the earnings record is erratic, keep it out of the defensive list.",
+      "whyItMatters": "Earnings stability across years is required because erratic profits make conservative appraisal unreliable. The seven defensive tests work as a procedure, so a peak year should not override the need for a steadier record.",
+      "sourceAnchorIds": [
+        "ch14.fact.3",
+        "ch14.example.3"
+      ],
+      "sourceFactIds": [
+        "ch14.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch14.example.3"
+      ]
+    }
+  ]
+}

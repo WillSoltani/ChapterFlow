@@ -1,0 +1,78 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers use extreme overreach such as any/every/harmless/at all, making the conservative bounded answer guessable in Q2, Q6, Q7, and Q8.", "Q5's correct answer repeats the chapter's phrase 'another venue,' while the distractors overclaim proof or authority."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 68,
+    "practical": 72,
+    "summaries": 88,
+    "tone": 76,
+    "limits": 86,
+    "insight": 82,
+    "density": 74,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Belief does not follow trust; trust follows returned proof.",
+      "why": "Strongest compressed line; it makes the causal order memorable."
+    },
+    {
+      "quote": "Trust should not be bought on credit.",
+      "why": "Plain, sticky phrasing that turns the lesson into a usable test."
+    },
+    {
+      "quote": "After the Continental Airlines turnaround had already played out, Daniel traces the Houston file under one gray binder clip.",
+      "why": "The specificity feels decorative because it does not lead to a real decision or consequence."
+    },
+    {
+      "quote": "Georges sees the early signal before anyone has flagged it: a blue circle around 1994.",
+      "why": "This reads manufactured and book-internal, not like a transferable real-world example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 1: Dallas Return Point",
+      "problem": "It has place and company anchors, but no named actor, no before-to-after decision, and no consequence; it mostly restates the trust sequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2: Continental Afterward",
+      "problem": "Daniel and the gray binder clip add invented texture without showing what Daniel decides or what changes afterward.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4: Bethune Scope Mark",
+      "problem": "Georges and the blue circle feel like scaffold fiction; the example teaches boundary-marking but does not show a real applied situation beyond annotating source facts.",
+      "mustFix": true
+    },
+    {
+      "unit": "transfer",
+      "problem": "Most transfer stays inside airline/source-handling examples, so the chapter underdelivers on applying the trust move to ordinary work outside the book's own evidence system.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated phrases like return point, proof comes back, and anchors create a template smell even though the individual sentences are usually clear.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical",
+      "problem": "The action of marking a promise is low-friction, but 'say aloud' and some source-bound drills feel more like classroom theater than a natural workplace behavior.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz is mostly sound, but several distractors are too obviously overbroad, which weakens discrimination.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear and memorable core: belief must precede predictable conduct, and trust is earned only when proof returns under pressure. The summaries are coherent, the answer key is sound, and the best lines stick. I would not ship it yet because the transfer layer is too inward-facing and several examples feel manufactured rather than lived: they name airlines and invented handlers, but often do not show a real decision producing a consequence. Fix the examples so they demonstrate the move in concrete non-airline situations, and this could clear a professional bar."
+}
+```

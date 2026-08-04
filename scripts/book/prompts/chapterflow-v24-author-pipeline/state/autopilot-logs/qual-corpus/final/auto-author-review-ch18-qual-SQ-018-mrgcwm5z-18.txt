@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 10,
+    "summaries": 0,
+    "tone": 35,
+    "limits": 0,
+    "insight": 0,
+    "density": 10,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "The promised layered reads are present only as empty headings."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The practice instruction is placeholder-like and does not teach an actionable move."
+    },
+    {
+      "quote": "she closes the sheet and asks what user risk he sees that her dashboard does not.",
+      "why": "This is the chapter's strongest concrete moment: it shows a possible behavior, even though the mechanism is not explained."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and retention aids are missing entirely."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read/deep read/full read",
+      "problem": "The chapter promises three layered reading modes but provides no prose under any of them, so the sections fail their stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The key takeaway section is empty, leaving no stated core move. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The practice section is empty, so a reader is given no concrete action to try. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, making the quiz impossible to answer or score. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty, so the promised retention aid is missing. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines section is empty, so the chapter provides no explicit memory hooks. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example has concrete staging, but it never states the chapter concept or shows before-to-after consequence; it is thin and mostly a placeholder.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It has a scene fragment that hints at a useful move, but nearly every instructional section is empty, the quiz is absent, and the reader cannot reliably learn, practice, review, or transfer the intended idea from what is on the page. The defects are structural rather than merely stylistic."
+}
+```

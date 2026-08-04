@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-018",
+  "parsed": {
+    "caseId": "SQ-018",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Scenario: Which risk is missing from the dashboard?"
+      }
+    ],
+    "explanation": "The provenance explicitly states the examples and scenarios are invented, and the candidate labels the named vignette as a scenario, so it is sufficiently marked as constructed despite vivid narrative details.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-018\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Scenario: Which risk is missing from the dashboard?\"}],\"explanation\":\"The provenance explicitly states the examples and scenarios are invented, and the candidate labels the named vignette as a scenario, so it is sufficiently marked as constructed despite vivid narrative details.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

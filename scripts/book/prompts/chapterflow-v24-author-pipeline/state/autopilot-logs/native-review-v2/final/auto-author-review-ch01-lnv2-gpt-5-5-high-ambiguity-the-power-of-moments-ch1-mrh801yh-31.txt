@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "b", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can make the longer, painful episode remembered as preferable.",
+      "The red phone lesson is that a modest setting can create a tellable peak through a vivid object and changed script.",
+      "Naming the next unit before applause marks the threshold before the transition becomes private logistics.",
+      "The prose names elevation, insight, pride, and connection as the four common ingredients.",
+      "The red phone works because a concrete visible object tells people the ordinary script has changed.",
+      "The snack becomes memorable when delivery turns it into a small event, not just a free item.",
+      "The threshold idea says to mark the shared crossing before the next stage becomes private logistics.",
+      "The prose explicitly says memory does not average each minute equally.",
+      "The mint is like the quiet free item: it lacks a vivid, tellable format."
+    ],
+    "confidence": ["high", "high", "medium", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "Choice a is also defensible because the same described action includes public clapping and witnessed effort, which the YES Prep prose directly supports.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "No strong tell; the correct choice is not uniquely longest.",
+      "Choice b uses giveaway phrasing: vivid, tellable, changes the ordinary arrival.",
+      "Choice b repeats the distinctive phrase private logistics, but choice a is also strongly cued by team claps.",
+      "Choice c is the only positive, complete four-part answer; a and b are implausible.",
+      "Choice a repeats visible object and script changed almost verbatim.",
+      "Choice b is cued by small event, request, and reveal.",
+      "Choice c repeats before/private logistics phrasing from the chapter.",
+      "Choice a is giveaway phrasing because the chapter says memory does not average each minute.",
+      "Choice c gives away the red-phone contrast with tellable format."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 92,
+    "insight": 86,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's strongest memory hook and it echoes cleanly through the examples."
+    },
+    {
+      "quote": "A gentle final minute is not permission to make the first part careless.",
+      "why": "This keeps the lesson honest and prevents the peak-end idea from becoming manipulative advice."
+    },
+    {
+      "quote": "Q3. New nurses finish a hard training course. The director can file their certificates or ask them to name their next unit before the team claps.",
+      "why": "The stem supports both public recognition and threshold marking, creating a two-answer quiz item."
+    },
+    {
+      "quote": "The four common ingredients are elevation, insight, pride, and connection.",
+      "why": "Clear, compressed framework statement, though later examples weight elevation, pride, and connection more than insight."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The item is underdetermined: b is forced by naming the next unit before logistics, but a is also supported by the team clapping and the prose about peers and adults seeing effort.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers repeat distinctive chapter phrases, especially visible object, script changed, private logistics, and tellable format, making some items guessable without reading deeply.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The distractors are too obviously wrong; only c contains the four positive ingredients, so the item tests recognition more than understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The workshop threshold example is usable but thin: it borrows the YES Prep pattern without showing a concrete before-after consequence for a named learner or organizer.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The later examples lean heavily on restating the cold-water and YES Prep lessons, so transfer is narrower than the chapter's general promise.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, teachable chapter with a memorable central image, clear layered reads, practical next actions, and unusually good limits around not using a better ending to excuse a bad experience. The main blocker is quiz Q3, which has two defensible answers from the prose. The transfer work is solid but somewhat repetitive, and several quiz choices are phrase-matched enough to be guessed. Fix Q3 and sharpen the weaker distractors, and this would clear a professional bar."
+}
+```

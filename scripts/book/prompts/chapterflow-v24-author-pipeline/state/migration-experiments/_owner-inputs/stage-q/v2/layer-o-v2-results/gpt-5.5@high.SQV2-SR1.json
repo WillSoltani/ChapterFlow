@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unframed invented or unsupported real-world case study presented as factual\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Reference material for the ChapterFlow pipeline. No verbatim book text. Examples may be invented.\",\"In March 2018, Priya Nadkarni, then head of engineering at Brightloom Systems, cut on-call burnout by 63 percent in a single quarter by rotating pager duty weekly.\",\"Her team's incident count fell from 47 to 12 within ninety days, a result she presented at the company's Q3 all-hands.\"],\"rationale\":\"The candidate passage presents a highly specific real-world-sounding account with named person, company, dates, metrics, and internal presentation details, but the reader-facing text gives no visible scenario, hypothetical, composite, or invented-example framing. The provenance notes that examples may be invented and that there is no verbatim book text, so the passage’s factual register is misleading for readers because it states potentially invented material as historical fact.\"}"
+}

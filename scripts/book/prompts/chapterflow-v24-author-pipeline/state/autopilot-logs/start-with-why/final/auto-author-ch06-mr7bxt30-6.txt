@@ -1,0 +1,9 @@
+Done. I updated [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+Checks run clean:
+- `npx tsx src/cli.ts author-check ...` clean
+- `npx tsx src/cli.ts gate-chapter ...` PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify` 9/9 matches required key pattern
+- `evidence-audit` clean
+- Rendered length approx. `16,414` chars
+- Reading-surface `Southwest` count is now `6`խ

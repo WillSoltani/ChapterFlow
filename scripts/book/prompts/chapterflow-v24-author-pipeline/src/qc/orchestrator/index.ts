@@ -9,7 +9,8 @@ import { checkPlanEnforcement } from "../planEnforcement.js";
 import { evaluateDeterministic } from "./deterministicGate.js";
 import { checkAuthoringContract } from "../../critics/authoringContract.js";
 import { loadChapterSidecar } from "../../critics/sourceGrounding.js";
-import { chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
+import { attestationPath, chapterContentHash, isApprovedReviewer, approvedReviewerRoles, isAttestationFresh, loadAttestation } from "../../critics/qcAttestation.js";
+import { parseBookPatternAuditReport, type BookPatternAuditReport } from "../../critics/bookPatternAudit.js";
 import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type PublishableVerdict } from "../../critics/semantic/publishableBar.js";
 import type { ChapterV21 } from "../../types.js";
 import { runIntraBookChecks } from "../../critics/intraBook.js";
@@ -63,6 +64,8 @@ export type QcOrchestratorRoundRecord = {
   };
   taskCards: string[];
   chapterContentHashes?: Record<string, string>;
+  /** Validated frozen record copied from selected candidate. */
+  patternAudit?: BookPatternAuditReport;
   /** P2 incremental re-QC (present only on incremental rounds). `chapters` stays
    *  the FULL book (finalize must span it for the cross-chapter sweep);
    *  `reviewChapters` got fresh per-chapter bar/key/confirm cards this round,
@@ -111,7 +114,10 @@ function chapterHashRecord(chapters: ChapterV21[]): Record<string, string> {
  *  the round record) is the authority: a forged round can never carry a chapter
  *  no independent reviewer has passed at these exact bytes. */
 export function carryableChapter(bookId: string, ch: ChapterV21): boolean {
-  const att = loadAttestation(bookId, ch.number);
+  let att: ReturnType<typeof loadAttestation> = null;
+  try {
+    att = loadAttestation(bookId, ch.number, readFileSync(attestationPath(bookId, ch.number)));
+  } catch { /* missing/unreadable remains non-carryable */ }
   return !!att && att.verdict === "PUBLISHABLE" && isAttestationFresh(att, ch);
 }
 
@@ -219,7 +225,7 @@ export function checkRoundFreshness(bookId: string, roundId: string, chapters?: 
   return { fresh: staleChapters.length === 0, staleChapters, missingHashes: false };
 }
 
-export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean; tiebreak?: boolean; noSweepCarry?: boolean } = {}): OrchestratorResult {
+export function createQcOrchestrationRound(bookId: string, options: { chapters?: number[]; roundId?: string; allowDirtyPreflight?: boolean; incremental?: boolean; tiebreak?: boolean; noSweepCarry?: boolean; patternAudit?: BookPatternAuditReport } = {}): OrchestratorResult {
   const errors: string[] = [];
   const messages: string[] = [];
   if (!isNoApiCodexQcMode()) {
@@ -234,10 +240,18 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
   const allChapters = loadBookChapters(bookId);
   const only = options.chapters?.length ? new Set(options.chapters) : null;
   const selected = allChapters.filter((ch) => !only || only.has(ch.number));
+  let patternAudit: BookPatternAuditReport | undefined;
+  if (options.patternAudit) {
+    try {
+      patternAudit = parseBookPatternAuditReport(options.patternAudit, { bookId, chapterCount: allChapters.length });
+    } catch (err) {
+      return { ok: false, roundId: "", roundDir: "", errors: [(err as Error).message], messages };
+    }
+  }
 
   const source = checkSourceV2Gate(bookId, selected.map((ch) => ch.number));
   messages.push(`source-v2-gate: ${source.passed ? "PASS" : "BLOCK"} (${source.findings.length} blocker(s))`);
-  const bookGate = runBookGate(bookId, allChapters);
+  const bookGate = runBookGate(bookId, allChapters, { patternAudit });
   messages.push(`book-gate: ${bookGate.passed ? "PASS" : "BLOCK"} (${bookGate.findings.length} finding(s))`);
   const productionMajors = unresolvedMajors(bookId, selected, true);
   messages.push(`major-status: ${productionMajors.length === 0 ? "PASS" : "BLOCK"} (${productionMajors.length} unresolved major(s))`);
@@ -359,6 +373,7 @@ export function createQcOrchestrationRound(bookId: string, options: { chapters?:
     },
     taskCards: cards,
     chapterContentHashes: chapterHashRecord(selected),
+    ...(patternAudit ? { patternAudit } : {}),
     ...(incremental ? { reviewChapters: reviewChapters.map((ch) => ch.number), carriedChapters: carriedChapters.map((ch) => ch.number) } : {}),
     ...(options.tiebreak ? { tiebreak: true } : {}),
     ...(sweepOnlyConfirmation ? { sweepOnlyConfirmation: true } : {}),
@@ -419,7 +434,15 @@ export function generateConfirmCandidates(bookId: string, roundId: string, optio
   // then REVISE'd at finalize on a plan it failed) cannot recur. The round-specific SEMANTIC
   // evidence (sweep, manual-key-judge, bar/tiebreak, ledger, majors) is checked per chapter
   // below; evaluateDeterministic does NOT cover those.
-  const detReport = evaluateDeterministic(bookId, chapters, allChapters);
+  let patternAudit: BookPatternAuditReport | undefined;
+  if (roundRecord?.patternAudit) {
+    try {
+      patternAudit = parseBookPatternAuditReport(roundRecord.patternAudit, { bookId, chapterCount: allChapters.length });
+    } catch (err) {
+      errors.push((err as Error).message);
+    }
+  }
+  const detReport = evaluateDeterministic(bookId, chapters, allChapters, patternAudit);
   const DET_GATES = ["sourceV2", "shipGate", "authorCheck", "intraBook", "bookGate", "planEnforcement"] as const;
   const majorFindings = unresolvedMajors(bookId, chapters, true);
   const taskCards: string[] = [];

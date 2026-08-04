@@ -1,0 +1,173 @@
+{
+  "schema": "s16-stage-q-v2-review-finding-readjudication-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "diagnosticOnly": "This re-adjudication is DIAGNOSTIC and development-only. It is NOT used to make Stage-Q v2 pass and NOT used as a v3 qualification holdout.",
+  "rule": "owner sufficiency definitions 2026-07-11; consistency SUPPORTED/PARTIALLY_SUPPORTED/UNSUPPORTED\u21d2SUFFICIENT, INCONCLUSIVE\u21d2INSUFFICIENT; assertion is not evidence for itself",
+  "changes": {
+    "SQV2-RF4": "SUPPORTED\u2192UNSUPPORTED (owner-directed)",
+    "SQV2-RF6": "PARTIALLY_SUPPORTED\u2192UNSUPPORTED",
+    "others": "validity unchanged; RF7 sufficiency coordinate resolves the v2 ambiguity"
+  },
+  "cases": [
+    {
+      "caseId": "SQV2-RF1",
+      "oldGold": {
+        "findingValidity": "UNSUPPORTED",
+        "candidateContentVerdict": "CLEAN"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "UNSUPPORTED",
+        "severityIfSupported": "NONE"
+      },
+      "exactEvidenceSpans": [
+        "The section states its one job in the first line, gives a worked example, then a two-question check that maps to that job.",
+        "Evidence class: score-only. No chapter-level rationale supplied."
+      ],
+      "reasonForChangeOrNoChange": "No change. The record is sufficient to assess the finding; the score-only complaint supplies no evidence and the passage is well aligned, so the finding is not established \u2192 UNSUPPORTED.",
+      "ambiguityFound": false,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF2",
+      "oldGold": {
+        "findingValidity": "UNSUPPORTED",
+        "candidateContentVerdict": "CLEAN"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "UNSUPPORTED",
+        "severityIfSupported": "NONE"
+      },
+      "exactEvidenceSpans": [
+        "Imagine, as a hypothetical, a manager who opens a review by asking what the team already knows is wrong.",
+        "The scene is explicitly invented to isolate the ordering."
+      ],
+      "reasonForChangeOrNoChange": "No change. Sufficient to decide; the passage is explicitly hypothetical so the 'fabricated' allegation is not established \u2192 UNSUPPORTED.",
+      "ambiguityFound": false,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF3",
+      "oldGold": {
+        "findingValidity": "SUPPORTED",
+        "candidateContentVerdict": "DEFECT"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "SUPPORTED",
+        "severityIfSupported": "MATERIAL"
+      },
+      "exactEvidenceSpans": [
+        "Q: Which step comes first? A) gather the facts  B) escalate  C) schedule a review. Answer key: B.",
+        "Explanation: escalation ensures visibility."
+      ],
+      "reasonForChangeOrNoChange": "Validity unchanged (SUPPORTED). All quiz content is present (sufficient). The key marks B=escalate as the answer to 'which comes FIRST' while 'gather the facts' is the shown first option, and the explanation ('ensures visibility') justifies escalating but not escalating FIRST \u2014 a genuine quiz-key defect. AMBIGUITY: a strict reader (as one v2 judge did) can argue the materials do not FORMALLY prove the intended ordering, yielding UNSUPPORTED. Because reasonable adjudicators differ, this case is development-only and unfit as a qualification holdout.",
+      "ambiguityFound": true,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF4",
+      "oldGold": {
+        "findingValidity": "SUPPORTED",
+        "candidateContentVerdict": "DEFECT"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "UNSUPPORTED",
+        "severityIfSupported": "NONE"
+      },
+      "exactEvidenceSpans": [
+        "No such study is cited or supportable.",
+        "A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years."
+      ],
+      "reasonForChangeOrNoChange": "CHANGED SUPPORTED\u2192UNSUPPORTED (owner-directed). The record is sufficient to assess the FINDING. The finding merely ASSERTS invention ('No such study is cited or supportable') without supplying any evidence that establishes non-existence; an assertion is not evidence for itself, so the finding is not established \u2192 UNSUPPORTED. (This was my v2 gold-authoring error \u2014 the same assertion-vs-proof confusion that invalidated v1.)",
+      "ambiguityFound": false,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF5",
+      "oldGold": {
+        "findingValidity": "PARTIALLY_SUPPORTED",
+        "candidateContentVerdict": "DEFECT"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "PARTIALLY_SUPPORTED",
+        "severityIfSupported": "MATERIAL"
+      },
+      "exactEvidenceSpans": [
+        "the demos alone turned the quarter around",
+        "(The section is four sentences.)"
+      ],
+      "reasonForChangeOrNoChange": "No change. Sufficient to decide. Element (a) causal overreach is supported ('the demos alone turned the quarter around' = sole-causation); element (b) 'far too long' is refuted by the four-sentence passage. The finding materially overstates by bundling a false claim \u2192 PARTIALLY_SUPPORTED.",
+      "ambiguityFound": false,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF6",
+      "oldGold": {
+        "findingValidity": "PARTIALLY_SUPPORTED",
+        "candidateContentVerdict": "DEFECT"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "UNSUPPORTED",
+        "severityIfSupported": "NONE"
+      },
+      "exactEvidenceSpans": [
+        "Consider a generic anonymous case: a team that ships on Fridays and spends Mondays on rollbacks.",
+        "The wording 'consider a generic case' frames it"
+      ],
+      "reasonForChangeOrNoChange": "CHANGED PARTIALLY_SUPPORTED\u2192UNSUPPORTED. Sufficient to decide. The finding's actual allegation is 'entirely fabricated and misleading, P0, must block' \u2014 that allegation is fully refuted by the visible 'generic anonymous case' framing. PARTIALLY_SUPPORTED requires a NARROWER version of THE FINDING to hold; the finding was about fabrication, not signposting, so no narrower fabrication claim survives \u2192 UNSUPPORTED. AMBIGUITY: if 'misleading' is read loosely and the candidate's own 'could be signposted more clearly' is treated as a narrower defect, PARTIALLY_SUPPORTED is arguable \u2014 hence development-only.",
+      "ambiguityFound": true,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF7",
+      "oldGold": {
+        "findingValidity": "INCONCLUSIVE",
+        "candidateContentVerdict": "INCONCLUSIVE"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "INSUFFICIENT_TO_DECIDE",
+        "findingValidity": "INCONCLUSIVE",
+        "severityIfSupported": "NONE"
+      },
+      "exactEvidenceSpans": [
+        "the passage misrepresents the source's claim about diffusion timing"
+      ],
+      "reasonForChangeOrNoChange": "Validity unchanged (INCONCLUSIVE); the new evidenceSufficiency coordinate now RESOLVES the v2 ambiguity. Deciding whether the passage misrepresents THE SOURCE requires the source's claim, which is not provided \u2014 materially-required evidence is absent \u2192 INSUFFICIENT_TO_DECIDE \u2192 INCONCLUSIVE. (Under v2 this looked like UNSUPPORTED-vs-INCONCLUSIVE; the sufficiency rule disambiguates: missing required evidence is INCONCLUSIVE, not UNSUPPORTED.)",
+      "ambiguityFound": false,
+      "developmentUseOnly": true
+    },
+    {
+      "caseId": "SQV2-RF8",
+      "oldGold": {
+        "findingValidity": "UNSUPPORTED",
+        "candidateContentVerdict": "CLEAN"
+      },
+      "newGold": {
+        "targetType": "REVIEW_FINDING",
+        "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+        "findingValidity": "UNSUPPORTED",
+        "severityIfSupported": "NONE"
+      },
+      "exactEvidenceSpans": [
+        "Contribution mapping does not imply equal fault.",
+        "Naming your part does not mean the split was even; one person may hold most of the responsibility"
+      ],
+      "reasonForChangeOrNoChange": "No change. Sufficient to decide (contract AND passage present). The finding alleges a contradiction, but the passage AGREES with the contract \u2014 the finding's own quoted evidence shows agreement, not contradiction \u2192 UNSUPPORTED.",
+      "ambiguityFound": false,
+      "developmentUseOnly": true
+    }
+  ]
+}

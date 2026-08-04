@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says danger in expert systems lives between people when ownership blurs, not in lack of talent.",
+      "The lesson repeatedly says to map transitions by named owner before the rush or window begins.",
+      "The Ingrid example says not to blame the last visible person until the path across handoffs is rebuilt.",
+      "The chapter says dense work fails where cues or timing cross roles, so inspect explicit handoffs first.",
+      "The pharmacy example shows completed departmental tasks still failed at the crossings between departments.",
+      "The storm example directly recommends assigning the cross-department overlap to one named owner before peak load.",
+      "The museum example says the danger lives where separate readiness claims meet, not in each expert's own task.",
+      "The core reasoning is that excellent people still need visible ownership at role crossings.",
+      "The chapter says lone mastery is too small; the diagnostic is which transition lived in memory instead of structure."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b uses the chapter's exact signature phrasing: handoff seam and ownership thinned out.",
+      "Choice c is the only option with the repeated answer pattern: named owner before the window.",
+      "Choice a echoes the Ingrid example almost verbatim: trace the order across the whole path.",
+      "Choice b is the only option using the chapter's core term handoffs.",
+      "Choice c is much more precise and chapter-specific than the moralizing distractors.",
+      "Choice a closely mirrors Example 6, including named owner and before the storm peaks.",
+      "Choice c is the only option that rejects both over-centralization and hardest-task assumptions.",
+      "Choice b repeats the core phrase make ownership visible where work crosses roles.",
+      "Choice c is the only option phrased in the chapter's system-over-memory frame."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 82,
+    "tone": 86,
+    "limits": 88,
+    "insight": 90,
+    "density": 83,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "This is the chapter's sharpest compressed mechanism and is easy to remember."
+    },
+    {
+      "quote": "The mistake hides in the word moves. Movement creates seams, and seams create assumptions.",
+      "why": "A strong explanatory line that turns an abstract lesson into a repeatable diagnostic."
+    },
+    {
+      "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+      "why": "Memorable, but the wording is slightly awkward and may momentarily trip a beginner."
+    },
+    {
+      "quote": "On second thought, leave the warm-fluid setup unassigned and just trust the team's competence, since a skilled room handles every handoff on its own and naming an owner is needless friction.",
+      "why": "This reads like an accidental wrong-answer insert inside an example's action step."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The 'What to do' section gives the correct action, then adds an opposite 'On second thought' instruction that contradicts the chapter's core lesson and could confuse a reader applying the example.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The sentence 'The save lives in the chain' is memorable but grammatically compressed enough to slow comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is invoked as important, but the chapter gives almost no concrete details about it, so the reference carries less teaching weight than the later invented scenarios.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers are strongly signposted by exact chapter language such as 'named owner,' 'handoff seam,' and 'ownership changed hands,' making some items guessable by vocabulary matching.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong opening chapter: the core move is clear, memorable, practical, and transferable across medicine, rail, logistics, museums, storm response, and postmortems. The best lines explain the mechanism rather than merely naming it, and the quiz is fair and derivable. The main blocking issue is Example 1's contradictory 'On second thought' sentence, which reads like an accidental inserted wrong answer inside the advice. Fix that, and the chapter clears a professional ship bar comfortably."
+}
+```

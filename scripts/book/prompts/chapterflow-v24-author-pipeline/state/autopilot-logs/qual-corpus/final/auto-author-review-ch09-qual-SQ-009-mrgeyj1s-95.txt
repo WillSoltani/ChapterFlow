@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 15,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 25,
+    "summaries": 5,
+    "tone": 25,
+    "limits": 0,
+    "insight": 20,
+    "density": 15,
+    "beginner": 30
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "One firm could solve comfort, another could solve play, and another could show what the team has missed.",
+      "why": "Strongest mechanism: it explains why parallel first passes might beat an early single-vendor choice."
+    },
+    {
+      "quote": "He asks each design firm for a small, comparable pass before naming a winner.",
+      "why": "Strongest practical move: it gives the reader one concrete action."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst scaffold smell: this is production-process placeholder text, not a reader hook."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst structural defect: required sections are present as headings but contain no learning content."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/scaffold text and does not introduce the chapter's idea or create a reader-facing opening; STRUCTURALLY INVALID section promise failure.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read only says 'A concise idea' and never states the actual idea; STRUCTURALLY INVALID stand-alone summary failure.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read only says 'One added angle' and gives no angle; STRUCTURALLY INVALID stand-alone summary failure.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty; STRUCTURALLY INVALID missing required content.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter gives no reader-facing exercise; STRUCTURALLY INVALID missing required content.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples section is empty; STRUCTURALLY INVALID missing required content.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so there are no answerable questions; STRUCTURALLY INVALID broken quiz.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty; STRUCTURALLY INVALID missing required content.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty; STRUCTURALLY INVALID missing required content.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The only substantive passage names HopeLab, Steve Cole, and a 'first lap' without enough context for a cold beginner to understand the source or stakes.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The advice has no limits or failure modes, such as when parallel passes would be too costly, slow, or unfair to vendors.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. The full read contains the seed of a useful lesson about keeping an early vendor choice parallel long enough to compare different kinds of learning, but nearly every other required learning layer is blank or placeholder text. With no quiz questions, no takeaway, no exercise, no examples, no review cards, and no memorable lines, the reader cannot get a complete lesson or be tested fairly."
+}
+```

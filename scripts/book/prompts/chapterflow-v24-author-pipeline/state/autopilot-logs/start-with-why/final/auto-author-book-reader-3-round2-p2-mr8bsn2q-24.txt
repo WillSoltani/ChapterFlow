@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 73,
+    "transfer": 82,
+    "practical": 76,
+    "summaries": 80,
+    "tone": 64,
+    "limits": 78,
+    "insight": 70,
+    "density": 61,
+    "beginner": 70
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong, compact, portable opening claim."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable reversal that carries the chapter's mechanism."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Excellent atomic line; easy to remember and reuse."
+    },
+    {
+      "quote": "Hard facts need the same discipline. Diffusion of Innovations belongs with Everett Rogers. About 250,000 people belongs with the March on Washington. A digital video recorder belongs with TiVo.",
+      "why": "Shows the repeated hard-detail/source-discipline scaffold across chapters."
+    },
+    {
+      "quote": "What to do: When the standard is stated, write the action that must return without the perk. Keep the employee discount inside the General Motors story.",
+      "why": "Practical, but the example shell feels mechanical and over-prescribed."
+    },
+    {
+      "quote": "Two stakeholders can disagree without making the move grand. Heath can ask Hazel for one behavior by Friday. Hazel can ask Nadine which metric changed and what act came back.",
+      "why": "Proxy-character handling feels artificial and contributes to house-style sameness."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound on keyed correctness and usually gives the reader a usable lens, but it reads heavily engineered. The best moments are compact and sticky, especially the receipt/reason lines, and the quizzes are answerable from the chapters. The main weakness is churn: every chapter repeats the same architecture of named anchors, second settings, edge details, source discipline, proxy characters, if-then plans, and scenario quizzes. That makes the book feel coherent but not individually authored. It is a solid draft with publishable mechanics, not a premium reading experience yet."
+}
+```

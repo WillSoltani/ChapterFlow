@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "c59d90da55ae36462941c5085b0eae5deed2859ef895fd30870e8fdbdf2454d2",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice b is best supported because the calmer, less painful ending improves remembered experience; choice c says to leave the finish alone."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The bright welcome cart is a vivid, tellable surprise that changes an ordinary arrival."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Publicly naming the next unit and receiving applause makes the achievement witnessed and meaningful."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c directly maps to elevation, insight, pride, and connection."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The red-phone lesson supports using one visible object to signal a changed script."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "A request and reveal turn a quiet free item into a memorable event."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The shared threshold should be marked before the group disperses into private logistics."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The unsupported assumption is that callers average all minutes equally rather than overweighting peak and end."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The mint vanishes because it lacks a tellable format, not because it is too cheap or the fixtures are inadequate."
+    }
+  ]
+}
+```

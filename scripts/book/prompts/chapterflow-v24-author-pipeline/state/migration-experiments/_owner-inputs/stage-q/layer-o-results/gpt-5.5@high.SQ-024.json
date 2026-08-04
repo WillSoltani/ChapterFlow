@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-024",
+  "parsed": {
+    "caseId": "SQ-024",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Title: Emily Rewrites the Co-Parent Opener Scenario:"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "You see the child's rain boots by the front door"
+      }
+    ],
+    "explanation": "The provenance explicitly marks examples as invented, and the candidate labels the item as a scenario using second-person setup rather than presenting Emily as a documented real event.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-024\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Title: Emily Rewrites the Co-Parent Opener Scenario:\"},{\"materialIndex\":1,\"quote\":\"You see the child's rain boots by the front door\"}],\"explanation\":\"The provenance explicitly marks examples as invented, and the candidate labels the item as a scenario using second-person setup rather than presenting Emily as a documented real event.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,57 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several keyed choices reuse the chapter's exact teaching vocabulary, especially \"second venue,\" \"separate jobs,\" \"edge,\" \"checkable anchors,\" and \"true fact started grounding the wrong comparison.\"",
+      "Some distractors are visibly extreme or self-defeating without close reading, such as proving the full model alone, copying fast, or making one universal script."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 90,
+    "insight": 84,
+    "density": 79,
+    "beginner": 75
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Memorable, practical test a reader could use later."
+    },
+    {
+      "quote": "When anchors vanish, advice floats.",
+      "why": "Good compression, but it also shows how some examples lean toward aphorism over concrete before-after action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "The five examples use named fictional leads but mostly restate the framework instead of showing a concrete before-to-after decision with consequences; they are usable but thin.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some correct answers are easier to infer from repeated chapter vocabulary and obviously extreme distractors than from independent reasoning.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner framing",
+      "problem": "Terms like \"source packet,\" \"benchmark return,\" \"venue,\" and \"anchors\" are used confidently but can feel internal to the course system for a cold reader.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter teaches a useful and memorable move: let a rival alert you to pressure, then bring the decision back to your own benchmark before calling it progress. The summaries layer well, the limits section is unusually concrete, and the review cards reinforce the lesson. I would not ship it yet at a professional 84+ bar because the examples feel staged and repetitive, and the quiz has noticeable vocabulary tells, but there are no must-fix structural, factual, safety, or source-contradictory defects on the page."
+}
+```

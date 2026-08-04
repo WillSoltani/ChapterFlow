@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-056",
+  "parsed": {
+    "caseId": "SQ-056",
+    "verdict": "DEFECT",
+    "defectClass": "REUSED_NARRATIVE_MACHINERY",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ulric has a speech about how nobody listens to data."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ulric he must decide whether to accuse the room or speak from his own view."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "the old angry speech rushes back."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Hester she must decide whether to follow the sequence or chase the heat."
+      }
+    ],
+    "explanation": "Both examples use the same conflict engine: a worker enters a precisely staged meeting with prepared communication, an earlier grievance triggers an angry speech, and the scene ends with a choice between reactive confrontation and disciplined self-expression.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-056\",\"verdict\":\"DEFECT\",\"defectClass\":\"REUSED_NARRATIVE_MACHINERY\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ulric has a speech about how nobody listens to data.\"},{\"materialIndex\":0,\"quote\":\"Ulric he must decide whether to accuse the room or speak from his own view.\"},{\"materialIndex\":1,\"quote\":\"the old angry speech rushes back.\"},{\"materialIndex\":1,\"quote\":\"Hester she must decide whether to follow the sequence or chase the heat.\"}],\"explanation\":\"Both examples use the same conflict engine: a worker enters a precisely staged meeting with prepared communication, an earlier grievance triggers an angry speech, and the scene ends with a choice between reactive confrontation and disciplined self-expression.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

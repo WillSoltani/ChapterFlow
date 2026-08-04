@@ -1,0 +1,109 @@
+{
+  "schemaVersion": "shipped-control-v1",
+  "bookId": "start-with-why",
+  "pin": "66d104666925103688cde9bed8244860be43e971",
+  "composite": 72.1,
+  "gate": "FAIL",
+  "churn": "HIGH",
+  "validCount": 3,
+  "readers": [
+    {
+      "reviewerSessionId": "auto-shipped-control-r1-mrbpqwh8-3",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 76,
+        "quizzes": 62,
+        "transfer": 80,
+        "practical": 68,
+        "summaries": 78,
+        "tone": 70,
+        "limits": 72,
+        "insight": 73,
+        "density": 61,
+        "beginner": 76
+      },
+      "composite": 71.7,
+      "keyCheck": {
+        "matches": 35,
+        "of": 36,
+        "disagreements": [
+          "ch1 Q8: derived a vs key b"
+        ]
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample has a clear teaching spine and several strong, memorable lines, but it fails the correctness gate. Chapter 1 Q8 is keyed against the chapter's own lesson, and multiple examples contain visibly corrupted sentence assembly. Across chapters the structure repeats heavily: hook, fast/deep/full reads, six similarly staged examples, nine scenario quizzes, five review cards, implementation plan, and three memorable lines. The ideas transfer reasonably well, and the summaries are generally faithful, but the recurring shell, repeated rhetorical moves, 'Title: undefined' artifacts, and malformed example prose keep this from feeling like a polished, individually authored book sample.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-shipped-control-r2-mrbprvbj-4",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 58,
+        "transfer": 82,
+        "practical": 70,
+        "summaries": 77,
+        "tone": 63,
+        "limits": 72,
+        "insight": 68,
+        "density": 62,
+        "beginner": 76
+      },
+      "composite": 70.8,
+      "keyCheck": {
+        "matches": 35,
+        "of": 36,
+        "disagreements": [
+          "ch1 Q8: derived a vs key b"
+        ]
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample has useful teaching kernels and several strong, portable lines, especially around source assumptions, manipulation versus loyalty, trust, and fuzzy WHY. It fails the correctness gate because Chapter 1 Q8 is keyed to an answer the chapter does not support, and because repeated scaffold artifacts and corrupted example sentences leak into the reader-facing prose. The chapters also show high churn: the same Hook/Fast/Deep/Full/Examples/Quiz/Cards/Implementation/Memorable-lines shell, repeated limit paragraph, repeated if-then plan structure, and similarly shaped examples make the book feel templated rather than individually authored.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-shipped-control-r3-mrbptns7-5",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 78,
+        "quizzes": 82,
+        "transfer": 83,
+        "practical": 60,
+        "summaries": 77,
+        "tone": 70,
+        "limits": 75,
+        "insight": 72,
+        "density": 66,
+        "beginner": 79
+      },
+      "composite": 74.5,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample teaches the core Start With Why ideas clearly and the quiz keys are sound, with mostly scenario-based questions that are answerable from the chapters. The strongest material has real retention value: several lines are compact, portable, and faithful to the source concepts. The book is not publishable as-is because reader-facing artifacts and corrupted example prose remain in the sample, especially repeated 'Title: undefined' implementation plans and several broken sentence constructions. Across chapters, the same section shell, example rhythm, and practice format create noticeable churn, though the chapter ideas themselves are distinct. With cleanup and less templated practice design, this could move from a solid draft into shippable territory.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "at": "2026-07-08T06:48:06.938Z"
+}

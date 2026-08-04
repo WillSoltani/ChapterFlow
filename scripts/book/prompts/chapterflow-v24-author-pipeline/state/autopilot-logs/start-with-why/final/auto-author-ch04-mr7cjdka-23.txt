@@ -1,0 +1,11 @@
+Updated [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- Rendered length: 16,251 chars, within target
+- Quiz key pattern: `1,2,0,2,0,1,1,0,2`
+- Distractor parity: key uniquely longest in 1 question, uniquely shortest in 4
+- Scaffold scan: clean
+
+One extra `quiz-blind` helper run was blocked by a `tsx` IPC sandbox error, so I verified quiz keys directly from the JSON instead.

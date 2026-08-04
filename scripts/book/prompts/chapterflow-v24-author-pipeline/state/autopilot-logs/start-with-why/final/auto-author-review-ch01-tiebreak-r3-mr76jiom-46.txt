@@ -1,0 +1,77 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q2: the correct answer echoes the chapter's exact order language, while the distractors are procedural extremes.",
+      "Q7: the correct answer is much closer to the chapter's memorable phrasing than the other choices.",
+      "Q8: the correct answer uses the prose's 'one-off' comparison logic; the other choices are obviously weak."
+    ]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 78,
+    "transfer": 72,
+    "practical": 84,
+    "summaries": 80,
+    "tone": 70,
+    "limits": 84,
+    "insight": 82,
+    "density": 74,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known is not a mood; it is a receipt you can point to.",
+      "why": "Strongest line: compact, memorable, and tied directly to the chapter's core move."
+    },
+    {
+      "quote": "The second setting does not make the first story stronger; it makes the first story answer harder questions.",
+      "why": "Strong mechanism: it explains why comparison matters instead of merely saying to add examples."
+    },
+    {
+      "quote": "American Airlines is a carrier founded in 1926 and based near Fort Worth.",
+      "why": "Worst defect: factual detail appears specific but does not pay off in a concrete boarding decision or measured consequence."
+    },
+    {
+      "quote": "Plant analyst Gregoire pauses at the counter while a phone reminder says: fit the door early.",
+      "why": "The hook is cryptic before the reader has enough context, so it risks confusion rather than curiosity."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image is too opaque: 'counter' and 'fit the door early' are not grounded enough for a cold beginner to know what problem is starting.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The American Airlines/Fort Worth material names a real carrier and place but never gives a concrete boarding before-state, changed action, metric, or consequence; it reads partly manufactured.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples 3-4",
+      "problem": "The boarding examples keep saying proof has not returned or no enough-line was named, but they do not show an actual operating choice and result threshold in concrete terms.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Several sentences sound like a scaffold rather than lived prose, especially repeated abstractions around 'promise,' 'return,' 'setting,' and 'count.'",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Most questions are derivable and keyed correctly, but several correct options are easier to spot because they reuse the chapter's signature wording while distractors are simplistic extremes.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The chapter gives useful if-then practice, but its non-auto transfer example needs more real before-to-after evidence to meet the promise of applying the move outside factory stories.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful core move: separate known data, assumptions, decisions, and results before a guess hardens into policy. Its best lines are memorable, the quiz is mostly fair, and the practical exercise is low-friction. I would not ship it yet against a professional bar because the main transfer example, airline boarding, carries too much weight without a concrete operating change, threshold, or returned consequence. Fixing that would also reduce the scaffold smell and make the chapter easier for beginners to trust."
+}
+```

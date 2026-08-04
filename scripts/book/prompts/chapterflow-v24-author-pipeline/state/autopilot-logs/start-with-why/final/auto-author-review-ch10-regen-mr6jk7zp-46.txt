@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q5's keyed choice is the only one that contains the highly specific pair 'Apple Store and 2001,' making it easier to spot by surface matching.", "Q8's keyed choice repeats the chapter's distinctive 'Cupertino' stop-line framing, while the distractors are visibly absurd."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 85,
+    "practical": 82,
+    "summaries": 86,
+    "tone": 81,
+    "limits": 89,
+    "insight": 84,
+    "density": 82,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The audience hears the choice before it hears the claim.",
+      "why": "This is the chapter's strongest portable idea: short, memorable, and mechanistic."
+    },
+    {
+      "quote": "This is not a purity rule. A basket with Oreos is not wrong by itself, and a symbol is not weak by itself.",
+      "why": "This keeps the lesson honest and prevents the grocery example from becoming moralistic."
+    },
+    {
+      "quote": "Three promises out and no return set is not clear speech. It is a balance with nothing due.",
+      "why": "The 'return set' and 'balance' language is compressed and may confuse a cold beginner."
+    },
+    {
+      "quote": "Cupertino is the stop sign inside that account.",
+      "why": "The limit is useful, but the phrasing feels like internal scaffold language until the reader infers the mechanism."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The phrase 'return set' appears before it is made concrete, so the otherwise practical listening move briefly turns abstract.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The Cupertino limit is conceptually sound but under-explained for beginners; readers may not know why Cupertino specifically functions as the boundary marker.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed answer is easier to guess because it is the only option with the chapter's distinctive specific pair, 'Apple Store and 2001.'",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer repeats the chapter's stop-line wording while the distractors are obviously wrong, weakening diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The scheduling advice is usable, but the 'signal return' framing risks sounding like a template term rather than plain workplace language.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong but not quite ship-ready chapter. The core mechanism is memorable: people read visible choices before they hear explanations, so promises need proof that can be seen. The examples build well from grocery cart to motorcycle identity to retail setting, and the limits section prevents overreach. The main weakness is beginner clarity: phrases like 'return set,' 'proof due,' and the Cupertino stop-line idea need a little more plain explanation. The quiz is mostly fair and sound, but a couple of keyed answers are too easy to spot by distinctive wording."
+}
+```

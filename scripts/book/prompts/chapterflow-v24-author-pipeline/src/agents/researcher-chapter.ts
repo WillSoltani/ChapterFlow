@@ -15,35 +15,45 @@
  */
 
 import { readFileSync } from "fs";
+import { isQuotaExhaustedMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
+import { evaluateSourceV2Integrity, isResearchRouteBlockingFinding } from "../source/sourceIntegrity.js";
+import type { NamedFramework, TestableFact } from "../source/sidecarSchema.js";
 import { BibliographyResult } from "./researcher-bibliography.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
 
 export type ChapterResearchResult = {
+  schemaVersion?: "source-v2";
   chapterNumber: number;
   chapterTitle: string;
   focus: string;
   coreClaim: string;
   centralConcept: {
+    id?: string;
     name: string;
     plainDefinition: string;
     whyItMatters: string;
   };
   keyClaims: string[];
   namedExamples: Array<{
+    id?: string;
     label: string;
     summary: string;
     teachesWhat: string;
+    hardSpecifics?: string[];
+    realWorld?: boolean;
   }>;
   hardEdge: string;
   voiceCues: string[];
   forbiddenLeakage?: string[];
   paraphraseNotes: string;
+  testableFacts?: TestableFact[];
+  frameworks?: NamedFramework[];
 };
 
 export type ChapterResearchInput = {
@@ -68,45 +78,350 @@ const META_VERBS: RegExp[] = [
   /\b(clear|kahneman|taleb|housel|tetlock|cialdini|greene|machiavelli|duhigg|eyal|covey|ries|brown|kolb|gladwell|fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
 ];
 
-export async function runResearcherChapter(input: ChapterResearchInput): Promise<ChapterResearchResult> {
-  const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
-  const userPrompt = buildUserPrompt(input);
+/**
+ * Max words in a single hardSpecific. A hardSpecific is a SHORT verbatim source
+ * TOKEN — a proper name, number, measurement, or striking phrase — not a
+ * sentence or clause. The floor exists because downstream composition gates
+ * embed a case's hardSpecifics VERBATIM inside word-budgeted units: SEC16
+ * requires a memorable line (8-14 words) to contain >=2 of its cited case's
+ * hardSpecifics verbatim, and SEC14/33 embed them in equally tight budgets. Two
+ * clause-length specifics ("neglected plot of ground, with no idle middle
+ * option" = 8 words) cannot compose into a 14-word line, making SEC16
+ * structurally unsatisfiable. Capping each specific at 5 words keeps the
+ * downstream budgets satisfiable while leaving the >=2-per-case floor
+ * (SV2.hard_specifics_floor / SV2.named_examples) intact — short specifics make
+ * that floor easy to satisfy, not harder.
+ */
+export const MAX_HARD_SPECIFIC_WORDS = 5;
 
-  let attempt = 0;
-  let lastErr: Error | null = null;
-  while (attempt < 3) {
-    attempt += 1;
-    try {
-      const retryUser =
-        attempt === 1
-          ? userPrompt
-          : [
-              userPrompt,
-              "",
-              "# Your previous draft was rejected.",
-              "Reasons:",
-              lastErr ? lastErr.message.replace(/^chapter research invalid:\s*/, "- ").replace(/;\s*/g, "\n- ") : "",
-              "",
-              `Rewrite the ChapterResearchResult JSON for chapter ${input.chapter.number} "${input.chapter.title}". Address every reason. Be specific and paraphrase only. No "this chapter says…" or "the author argues…" anywhere.`,
-            ].join("\n");
-      const result = await callClaude<ChapterResearchResult>({
-        tier: "researcher",
-        stage: "researcher-chapter",
-        bookId: input.bibliography.bookId,
-        chapterId: `${input.bibliography.bookId}-ch${String(input.chapter.number).padStart(2, "0")}`,
-        system: systemPrompt,
-        user: retryUser,
-        maxTokens: 4000,
-        temperature: 0.5,
-        jsonMode: true,
-        timeoutMs: 240_000,
-      });
-      return validateChapterResearch(result.content, input);
-    } catch (err) {
-      lastErr = err as Error;
+function hardSpecificWordCount(text: string): number {
+  return text.trim().split(/\s+/).filter((word) => word.length > 0).length;
+}
+
+/**
+ * Per-specific word-cap check: reject any NON-EMPTY hardSpecific longer than
+ * {@link MAX_HARD_SPECIFIC_WORDS} words. Returns [] when every specific is a
+ * short token (or empty). Empty / whitespace-only specifics are deliberately NOT
+ * flagged here — they are left to the >=2-non-empty-per-case floor
+ * (SV2.hard_specifics_floor), so empty/duplicate behavior is unchanged. Exported
+ * and shared by BOTH the researcher-chapter validator (so a fresh clause-length
+ * output is rejected and the retry loop feeds the violation back to the model)
+ * AND the durable-sidecar reuse hook (so a STALE clause-specific sidecar is
+ * rejected on reuse and falls through to re-research) — a single source of truth
+ * for the short-token research contract.
+ */
+export function collectHardSpecificLengthProblems(
+  namedExamples: ChapterResearchResult["namedExamples"] | undefined,
+): string[] {
+  const problems: string[] = [];
+  if (!Array.isArray(namedExamples)) return problems;
+  for (const example of namedExamples) {
+    const specifics = Array.isArray(example?.hardSpecifics) ? example.hardSpecifics : [];
+    for (const specific of specifics) {
+      if (typeof specific !== "string") continue;
+      const trimmed = specific.trim();
+      if (trimmed.length === 0) continue;
+      const words = hardSpecificWordCount(trimmed);
+      if (words > MAX_HARD_SPECIFIC_WORDS) {
+        problems.push(
+          `hardSpecific too long (${words} words) in namedExamples "${example?.label ?? ""}": ${JSON.stringify(trimmed)} — give a short verbatim token (a name, number, phrase of <=${MAX_HARD_SPECIFIC_WORDS} words), not a sentence or clause`,
+        );
+      }
     }
   }
-  throw lastErr ?? new Error(`chapter ${input.chapter.number} researcher failed after retries`);
+  return problems;
+}
+
+/** Total chapter-research attempts (initial + retries). Sonnet occasionally
+ *  returns a model-minted schema or trips the meta-reference content guard on
+ *  the first try; a bounded retry that hands the validator's own error list
+ *  back to the model recovers those cases without a route/envelope change. */
+export const MAX_CHAPTER_RESEARCH_ATTEMPTS = 3;
+
+/** Feedback line handed back to the model when the GATEWAY (not the in-process
+ *  validator) rejected the previous output against its source-controlled schema.
+ *  The raw invalid output never leaves the gateway, so — unlike an in-process
+ *  rejection — there is no prior-output echo to include. */
+const GATEWAY_SCHEMA_REJECTION_FEEDBACK = "gateway schema validation rejected the previous output";
+
+/** Aggregate-error line for an attempt lost to a transient model process
+ *  failure (rate-limit / overload / abrupt subprocess exit). No output ever
+ *  reached this process, so there is nothing to echo — only the transient
+ *  cause is reported. */
+const TRANSIENT_PROCESS_FAILURE_FEEDBACK = "a transient model process failure occurred before any output was produced";
+
+/** Aggregate-error line for an attempt killed at the profile timeout horizon
+ *  (Task 11k, outcome TIMED_OUT). No output ever reached this process — a
+ *  timeout says nothing about progress (claude -p buffers all stdout until
+ *  completion) — so nothing is echoed; only the timeout cause is reported. */
+const TIMED_OUT_FEEDBACK = "the previous attempt timed out before any output was produced";
+
+/**
+ * In-loop backoff schedule (ms) between transient-process-failure retries,
+ * indexed by (attempt − 1): the wait BEFORE attempt 2 is index 0, before
+ * attempt 3 is index 1, clamping to the last entry for any higher attempt cap.
+ * A provider rate-limit/overload incident clears on a short delay far more often
+ * than on an immediate re-spawn, so a bounded escalating backoff turns a single
+ * transient subprocess failure into a recovered chapter rather than a dead stage.
+ */
+export const TRANSIENT_RETRY_BACKOFF_MS: readonly number[] = Object.freeze([2000, 8000]);
+
+/** Injectable dependencies for {@link runResearcherChapter}. The `sleep` hook
+ *  is faked to resolve instantly in tests so the backoff schedule is asserted
+ *  deterministically without a real wall-clock wait. Production uses setTimeout. */
+export interface ChapterResearchRetryOptions {
+  readonly sleep?: (ms: number) => Promise<void>;
+}
+
+const defaultSleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
+
+function backoffMsForAttempt(attempt: number): number {
+  const index = Math.min(Math.max(attempt - 1, 0), TRANSIENT_RETRY_BACKOFF_MS.length - 1);
+  return TRANSIENT_RETRY_BACKOFF_MS[index];
+}
+
+/** Per-attempt failure record. Drives both the next attempt's retry feedback
+ *  and the final fail-closed aggregate message. */
+type AttemptFailure =
+  | { readonly kind: "validator"; readonly problems: string[]; readonly output: unknown }
+  | { readonly kind: "gateway-schema" }
+  | { readonly kind: "transient-process" }
+  | { readonly kind: "quota-exhausted"; readonly message: string }
+  | { readonly kind: "timed-out" };
+
+function failureProblems(failure: AttemptFailure): string[] {
+  if (failure.kind === "validator") return failure.problems;
+  if (failure.kind === "gateway-schema") return [GATEWAY_SCHEMA_REJECTION_FEEDBACK];
+  if (failure.kind === "timed-out") return [TIMED_OUT_FEEDBACK];
+  // Task 11af: a durable quota cap is reported in the provider's own words —
+  // the operator needs the reset horizon, not a "transient" euphemism.
+  if (failure.kind === "quota-exhausted") return [failure.message];
+  return [TRANSIENT_PROCESS_FAILURE_FEEDBACK];
+}
+
+function describeFailure(failure: AttemptFailure): string {
+  return failureProblems(failure).join("; ");
+}
+
+/**
+ * Classify a thrown `runJsonModelTask` error as a gateway-level schema
+ * rejection (validator-class, retryable) versus genuine model infrastructure
+ * (cancellation, capacity, admission collision — propagate immediately).
+ *
+ * `runJsonModelTask` throws `MODEL_TASK_${outcome}:${errorCode}:${message}`. The
+ * gateway emits `MODEL_OUTPUT_INVALID` (with outcome FAILED) ONLY when a bounded,
+ * exit-0 model process produced output that failed the route's output schema —
+ * exactly the same variance class the in-process validator catches, just caught
+ * one layer out. Every other `MODEL_TASK_*` code (MODEL_RUN_CANCELLED,
+ * MODEL_ATTEMPT_EXISTS, MODEL_CAPACITY_EXHAUSTED, MODEL_EXECUTION_UNCERTAIN, …)
+ * is real infrastructure and must NOT burn a retry.
+ */
+function isGatewaySchemaRejection(message: string): boolean {
+  return /^MODEL_TASK_FAILED:MODEL_OUTPUT_INVALID(:|$)/.test(message);
+}
+
+/**
+ * Classify a thrown error as a TRANSIENT model-process failure: a bounded,
+ * exit-nonzero subprocess (`outcome=FAILED`, `MODEL_PROCESS_FAILED`) — the shape
+ * a rate-limited / overloaded provider CLI returns when it writes a small error
+ * envelope and exits 1. Unlike a cancellation, capacity, or admission-collision
+ * code (real, non-retryable infrastructure state), a transient process failure
+ * routinely clears on a short backoff, so it is retried with a fresh attempt.
+ * Scoped to `outcome=FAILED` only: TIMED_OUT / UNKNOWN teardown carry the same
+ * error code but a different outcome and stay fail-closed.
+ */
+function isTransientProcessFailure(message: string): boolean {
+  return /^MODEL_TASK_FAILED:MODEL_PROCESS_FAILED(:|$)/.test(message);
+}
+
+/**
+ * Classify a thrown error as a TIMEOUT (Task 11k): a bounded process killed at
+ * the profile timeout horizon surfaces as `outcome=TIMED_OUT` (the gateway
+ * stamps code MODEL_PROCESS_FAILED, but this matches ANY code on the TIMED_OUT
+ * outcome). Because `claude -p` buffers all stdout until completion, a timeout
+ * reveals nothing about progress, and a fresh re-spawn against the same bounded
+ * budget routinely completes — so it is a transient class retried after a
+ * bounded backoff. Scoped to `outcome=TIMED_OUT` only: CANCELLED (operator
+ * intent) and UNKNOWN (uncertain teardown) carry different outcomes and stay
+ * fail-closed.
+ */
+function isTimedOut(message: string): boolean {
+  return /^MODEL_TASK_TIMED_OUT(:|$)/.test(message);
+}
+
+export async function runResearcherChapter(
+  input: ChapterResearchInput,
+  execution?: ModelCallerExecution,
+  options?: ChapterResearchRetryOptions,
+): Promise<ChapterResearchResult> {
+  const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
+  const baseUserPrompt = buildUserPrompt(input);
+  const sleep = options?.sleep ?? defaultSleep;
+
+  const attemptFailures: AttemptFailure[] = [];
+
+  for (let attempt = 1; attempt <= MAX_CHAPTER_RESEARCH_ATTEMPTS; attempt++) {
+    const userPrompt = attempt === 1
+      ? baseUserPrompt
+      : `${baseUserPrompt}\n\n${buildRetryFeedback(attemptFailures[attemptFailures.length - 1])}`;
+
+    // A model-infrastructure failure (cancellation = operator intent, admission
+    // collision, capacity, UNKNOWN uncertain teardown) throws out of
+    // runJsonModelTask and is NOT retried — let it propagate immediately. Three
+    // thrown classes ARE retried:
+    //  - GATEWAY-level schema rejection (MODEL_OUTPUT_INVALID): the model
+    //    produced output that failed the route's source-controlled schema one
+    //    layer out from the in-process validator — the same variance class the
+    //    retry loop exists for — retried with schema-reminder feedback (the raw
+    //    invalid output is unavailable from the gateway, so there is no echo).
+    //  - TRANSIENT process failure (MODEL_PROCESS_FAILED, outcome FAILED): a
+    //    rate-limited/overloaded subprocess that exited nonzero. Retried after a
+    //    bounded in-loop backoff so one provider blip does not kill the stage.
+    //  - TIMED_OUT (Task 11k, any code): killed at the profile horizon before any
+    //    output. claude -p buffers all stdout until completion, so a timeout says
+    //    nothing about progress; retried after the same bounded backoff.
+    let output: ChapterResearchResult;
+    try {
+      output = await runJsonModelTask<ChapterResearchResult>(execution, "researcher-chapter", systemPrompt, userPrompt);
+    } catch (error) {
+      const message = (error as Error).message;
+      if (isGatewaySchemaRejection(message)) {
+        attemptFailures.push({ kind: "gateway-schema" });
+        continue;
+      }
+      if (isTransientProcessFailure(message)) {
+        // Task 11af: fail FAST on a durable quota cap — retrying inside the
+        // same exhausted window cannot succeed and hides the reset horizon.
+        if (isQuotaExhaustedMessage(message)) {
+          attemptFailures.push({ kind: "quota-exhausted", message });
+          break;
+        }
+        attemptFailures.push({ kind: "transient-process" });
+        if (attempt < MAX_CHAPTER_RESEARCH_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
+        continue;
+      }
+      // TIMED_OUT (Task 11k): same transient class as a process failure — the
+      // attempt was killed at the profile horizon before any output. Retry after
+      // the same bounded backoff with a timeout-specific note.
+      if (isTimedOut(message)) {
+        attemptFailures.push({ kind: "timed-out" });
+        if (attempt < MAX_CHAPTER_RESEARCH_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
+        continue;
+      }
+      throw error;
+    }
+
+    const problems = collectChapterResearchProblems(output, input);
+    if (problems.length === 0) return output;
+
+    attemptFailures.push({ kind: "validator", problems, output });
+  }
+
+  const accumulated = attemptFailures
+    .map((failure, index) => `attempt ${index + 1}: ${describeFailure(failure)}`)
+    .join(" | ");
+  throw new Error(`chapter research invalid after ${MAX_CHAPTER_RESEARCH_ATTEMPTS} attempts: ${accumulated}`);
+}
+
+/**
+ * True when a rejected model output carries NO repairable content: a bare `{}`,
+ * a non-object (null / array / string), or an object in which every core field
+ * is empty/blank (the finding-40 canary7 shape — the model returned `{}` on the
+ * retry, and the all-empty "chapterflow-analysis-v1" canary before it). A
+ * substantive-but-wrong draft (one real focus/claim/example, even if it trips
+ * the meta guard) is repairable and NOT degenerate.
+ *
+ * Exported for direct classification tests. The retry loop uses it to decide the
+ * retry framing: echoing a degenerate `{}` back as "your previous draft — repair
+ * it" is worthless AND entrenching — it hands the model a skeleton to mimic with
+ * nothing to build from, which is exactly why finding-40 went empty→empty (2/2)
+ * across attempts 2 and 3 instead of recovering. When the prior output is
+ * degenerate, the loop drops the echo and demands a COMPLETE object instead.
+ */
+export function isDegenerateChapterResearchOutput(output: unknown): boolean {
+  if (!output || typeof output !== "object" || Array.isArray(output)) return true;
+  const r = output as Record<string, unknown>;
+  const nonEmptyString = (value: unknown): boolean => typeof value === "string" && value.trim().length > 0;
+  const nonEmptyArray = (value: unknown): boolean => Array.isArray(value) && value.length > 0;
+  for (const key of ["chapterTitle", "focus", "coreClaim", "hardEdge", "paraphraseNotes"]) {
+    if (nonEmptyString(r[key])) return false;
+  }
+  for (const key of ["keyClaims", "namedExamples", "voiceCues", "testableFacts"]) {
+    if (nonEmptyArray(r[key])) return false;
+  }
+  if (r.centralConcept && typeof r.centralConcept === "object" && !Array.isArray(r.centralConcept)) {
+    const concept = r.centralConcept as Record<string, unknown>;
+    for (const key of ["name", "plainDefinition", "whyItMatters"]) {
+      if (nonEmptyString(concept[key])) return false;
+    }
+  }
+  return true;
+}
+
+/** Build the retry block appended to the user prompt after a failed attempt.
+ *  For a validator/gateway rejection it names the exact errors (and, for a
+ *  repairable in-process rejection, echoes the prior output as REFERENCE) so the
+ *  model repairs precisely what failed. Two finding-40 (canary7) hardenings:
+ *   1. The block LEADS with a task restatement, not the accusation. The prior
+ *      accusatory "fix exactly these" + newly-enumerated banned-form list
+ *      measurably raised the model's degenerate-empty rate on the retry (live
+ *      A/B: the old short meta note produced substantive retries, the enumerated
+ *      list went empty). Leading with the task and framing the prior draft as
+ *      reference lowers that pressure while keeping the banned list intact.
+ *   2. A DEGENERATE prior output (bare `{}` / all-empty) is NOT echoed — the
+ *      echo is worthless and entrenches the emptiness; instead the block states
+ *      the prior attempt was almost-empty and demands a complete object.
+ *  For a transient process failure / timeout there is nothing wrong with the
+ *  model's content and no output to echo — the note simply asks for a correct
+ *  result. */
+function buildRetryFeedback(failure: AttemptFailure): string {
+  const lines: string[] = [];
+  if (failure.kind === "transient-process" || failure.kind === "timed-out") {
+    // Both are non-completions with no output to echo: nothing was wrong with the
+    // model's content, so the note names the cause (transient error vs timeout)
+    // and simply asks for a correct result this time.
+    const cause = failure.kind === "timed-out"
+      ? "it timed out before any output was produced"
+      : "a transient model process error occurred before any output was produced";
+    lines.push(`PREVIOUS ATTEMPT DID NOT COMPLETE — ${cause}. Nothing was wrong with your content; simply produce a correct result this time.`);
+    lines.push("");
+  } else {
+    // Task-first lead: restate the goal before the correction list so the retry
+    // reads as "keep going, refine" rather than an accusation that pushes the
+    // model toward a degenerate empty response.
+    lines.push("Continue the SAME task: produce ONE complete ChapterResearchResult JSON object. Keep everything that was already correct and change ONLY the items listed below.");
+    lines.push("");
+    lines.push("PREVIOUS ATTEMPT WAS REJECTED — fix exactly these:");
+    for (const problem of failureProblems(failure)) lines.push(`- ${problem}`);
+    lines.push("");
+    if (failure.kind === "validator") {
+      if (isDegenerateChapterResearchOutput(failure.output)) {
+        // Degenerate prior output: echoing an empty/skeleton object back is
+        // worthless and entrenches the emptiness (finding-40: 2/2 empty across
+        // retries). Demand a complete object instead of handing back the void.
+        lines.push("Your previous attempt returned an almost-empty object with the required fields missing or blank. Do NOT return an empty or skeleton object — populate EVERY required field with substantive, specific content this time.");
+      } else {
+        // Repairable draft: echo it as REFERENCE to fix, not an accusation.
+        lines.push("For reference, here is your previous attempt — repair it, do not restart from scratch, and do not reproduce the problems listed above:");
+        lines.push(safeJson(failure.output));
+      }
+    } else {
+      // Gateway-level schema rejection: the raw invalid output stays inside the
+      // gateway and is not available to echo back. Do not fabricate one.
+      lines.push("Your previous output was rejected by the output-schema gate before it reached this process, so it cannot be echoed back here.");
+    }
+    lines.push("");
+  }
+  lines.push('Return a corrected ChapterResearchResult JSON. Output MUST be a single JSON object whose schemaVersion is exactly "source-v2". Never invent a different schemaVersion.');
+  return lines.join("\n");
+}
+
+function safeJson(value: unknown): string {
+  try {
+    return JSON.stringify(value);
+  } catch {
+    return String(value);
+  }
 }
 
 function buildUserPrompt(input: ChapterResearchInput): string {
@@ -129,9 +444,13 @@ function buildUserPrompt(input: ChapterResearchInput): string {
   return parts.join("\n");
 }
 
-function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearchInput): ChapterResearchResult {
+/** Gather every validator + content-guard + source-v2-integrity problem with a
+ *  rejected chapter-research output. Returns [] when the output is admissible.
+ *  Kept separate from the throwing wrapper so the retry loop can feed the exact
+ *  error lines back to the model. */
+function collectChapterResearchProblems(r: ChapterResearchResult, input: ChapterResearchInput): string[] {
   const problems: string[] = [];
-  if (!r || typeof r !== "object") throw new Error("chapter researcher returned non-object");
+  if (!r || typeof r !== "object") return ["chapter researcher returned a non-object output"];
 
   if (r.chapterNumber !== input.chapter.number) {
     problems.push(`chapterNumber mismatch: got ${r.chapterNumber}, expected ${input.chapter.number}`);
@@ -169,6 +488,12 @@ function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearc
       if (typeof ex.teachesWhat !== "string" || !ex.teachesWhat) problems.push(`namedExamples "${ex.label}" teachesWhat missing`);
     }
   }
+
+  // Short-token policy: each hardSpecific must be a SHORT verbatim source token
+  // (<=5 words), never a sentence or clause, so it can compose verbatim into the
+  // word-budgeted downstream units (SEC14/16/33). Runs regardless of the floor
+  // branch above; the retry loop feeds any violation back to the model.
+  problems.push(...collectHardSpecificLengthProblems(r.namedExamples));
   if (typeof r.hardEdge !== "string" || r.hardEdge.length < 80) {
     problems.push(`hardEdge too short (${r.hardEdge?.length ?? 0}) — write 2-3 sentences about typical misreadings`);
   }
@@ -177,6 +502,19 @@ function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearc
   }
   if (typeof r.paraphraseNotes !== "string" || r.paraphraseNotes.length < 600 || r.paraphraseNotes.length > 3000) {
     problems.push(`paraphraseNotes length ${r.paraphraseNotes?.length ?? 0} outside 600-3000 char range (target 200-400 words ≈ 1200-2400 chars)`);
+  }
+
+  const sourceV2 = evaluateSourceV2Integrity(r, {
+    chapterNumber: input.chapter.number,
+    chapterTitle: input.chapter.title,
+  });
+  // Admission MUST mirror the port's route-blocking decision (requireSourceV2),
+  // not a subset of it — otherwise a structurally-complete but fabricated
+  // sidecar (SV2.realness_fabricated_sidecar, advisory severity) is admitted on
+  // attempt 1 with zero retries and then hard-rejected by the port, aborting the
+  // whole research stage. Sharing isResearchRouteBlockingFinding keeps them in lockstep.
+  for (const finding of sourceV2.findings) {
+    if (isResearchRouteBlockingFinding(finding)) problems.push(`${finding.checkId}: ${finding.message}`);
   }
 
   // Meta-reference checks across every text field.
@@ -194,7 +532,7 @@ function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearc
   for (const re of META_REGEXES) {
     const m = allText.match(re);
     if (m) {
-      problems.push(`meta-reference "${m[0]}" found — paraphrase the claim directly without naming the chapter`);
+      problems.push(`meta-reference "${m[0]}" found — paraphrase the claim directly. BANNED everywhere in every field: "this chapter", "the chapter", "this book", "the book", "the author", "Allen writes", chapter/section numbers. State the claim as a standalone fact about people/thought/circumstances.`);
       break;
     }
   }
@@ -213,10 +551,7 @@ function validateChapterResearch(r: ChapterResearchResult, input: ChapterResearc
     }
   }
 
-  if (problems.length > 0) {
-    throw new Error(`chapter research invalid: ${problems.join("; ")}`);
-  }
-  return r;
+  return problems;
 }
 
 /** Render a ChapterResearchResult to the plain-text sidecar shape that

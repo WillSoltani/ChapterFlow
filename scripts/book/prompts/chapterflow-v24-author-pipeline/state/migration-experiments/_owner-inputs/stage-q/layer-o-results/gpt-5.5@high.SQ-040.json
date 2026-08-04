@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-040",
+  "parsed": {
+    "caseId": "SQ-040",
+    "verdict": "DEFECT",
+    "defectClass": "Duplicated item relabels same generic answer",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Start from a shared fact about the draft, name the concern, and invite revision rather than verdict."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Start from a shared fact about the draft, name the concern, and invite revision rather than verdict."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers and creates room for new information."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The best choice keeps the conversation tied to clear self-speaking and creates room for new information."
+      }
+    ],
+    "explanation": "Both instances use the same scenario, wording, choices, and correct answer. Only the chapter-skill label and a phrase in the explanation change, so the duplicate does not separately assess both mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-040\",\"verdict\":\"DEFECT\",\"defectClass\":\"Duplicated item relabels same generic answer\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?\"},{\"materialIndex\":1,\"quote\":\"Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?\"},{\"materialIndex\":0,\"quote\":\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\"},{\"materialIndex\":1,\"quote\":\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers and creates room for new information.\"},{\"materialIndex\":1,\"quote\":\"The best choice keeps the conversation tied to clear self-speaking and creates room for new information.\"}],\"explanation\":\"Both instances use the same scenario, wording, choices, and correct answer. Only the chapter-skill label and a phrase in the explanation change, so the duplicate does not separately assess both mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

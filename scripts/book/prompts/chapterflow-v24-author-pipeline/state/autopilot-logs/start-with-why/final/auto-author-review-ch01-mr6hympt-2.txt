@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed options are the most chapter-specific/named-detail choice, especially Q5 and Q9.", "Q6 uses the odd phrase \"United States token,\" which feels like key-language rather than reader-language."]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 92,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 90,
+    "insight": 89,
+    "density": 86,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The mechanism is travel, not volume. If a premise only works in one setting, it may be luck, habit, or a neat story.",
+      "why": "Strongest mechanism line: it explains the core transfer test in plain language."
+    },
+    {
+      "quote": "A result is a receipt for the guess you let travel.",
+      "why": "Memorable and useful; it compresses the ledger idea into an image a reader can retain."
+    },
+    {
+      "quote": "That last phrase matters. Some parts do not travel. Jidoka belongs with car-door assembly; dragging it into an airline routine would make a true detail false.",
+      "why": "Strong boundary teaching: it prevents overgeneralizing the examples."
+    },
+    {
+      "quote": "In an operations memo for a supplier change, the writer gives Detroit and Japanese factories the same place-date wording.",
+      "why": "Weakest quiz moment: the stem is syntactically awkward and tests a brittle wording distinction."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The question turns on the artificial phrase \"same place-date wording\" and the answer-key phrase \"United States token,\" which feels more like metadata than a natural comprehension target.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "\"Three named anchors\" is derivable, but the chapter does not label the anchors that way, so the item tests recognition of the chapter scaffold more than the volunteer-transfer scenario.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The travel/ledger/account language is effective but repeated enough that a few paragraphs start to feel patterned rather than freshly explanatory.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable above an 84 bar. The chapter has a clear core move: put known facts before assumptions, make the decision small enough to test, and use a second setting to see what actually travels. Its best lines are memorable, its examples create useful boundaries, and the practical prompts are realistic. The main weakness is quiz polish: a couple of items lean on scaffold-language or oddly specific tokens instead of natural reader reasoning, but the keys are sound and the defects do not block publication."
+}
+```

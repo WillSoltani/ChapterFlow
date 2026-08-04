@@ -1,0 +1,22 @@
+Wrote the chapter file: [start-with-why-ch10.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch10.v21-native.chapter.json).
+
+Validation passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no candidates
+- Rendered length: 18,812 chars, within budget
+- Quiz key pattern: `2,1,0,1,1,0,2,2,0`
+
+Distractor parity lengths:
+- q01 `122/101/108`, key `2`
+- q02 `110/99/97`, key `1`
+- q03 `106/127/102`, key `0`
+- q04 `105/112/113`, key `1`
+- q05 `125/112/103`, key `1`
+- q06 `93/103/91`, key `0`
+- q07 `109/106/100`, key `2`
+- q08 `103/103/81`, key `2`
+- q09 `112/120/106`, key `0`
+
+Key uniquely longest: `0`; key uniquely shortest: `2`.

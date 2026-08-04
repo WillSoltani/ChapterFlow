@@ -1,0 +1,59 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are easy to eliminate by overclaiming: rank decides proof, any true detail can ground any case, or impressive output proves belief wherever it appears."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 90,
+    "insight": 87,
+    "density": 81,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A product is not the promise; it is the receipt.",
+      "why": "Strongest line: compact, memorable, and carries the chapter's core diagnostic move."
+    },
+    {
+      "quote": "Keep each hard detail with the product that earned it.",
+      "why": "Strong practical rule that turns the abstract WHY/HOW/WHAT sequence into an editorial check."
+    },
+    {
+      "quote": "Project contributor Sabrina applies the same order to a small promise at her own desk.",
+      "why": "Weak transfer moment: it gestures at everyday use but gives no actual promise, decision, or consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read / Sabrina desk transfer",
+      "problem": "The small-promise example is a slot-filler: it names a person but no specific promise, place, stakes, before-after decision, or consequence; it mostly restates the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some wrong choices are caricatured overclaims, so a test-taker can often eliminate them without closely deriving the answer from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The phrase about giving Dell DJ the same broad product label is harder to parse than the underlying lesson, and the keyed idea depends on the odd term 'token.'",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats 'proof back,' 'return,' and WHY/HOW/WHAT phrasing often enough that a few paragraphs feel templated rather than additive.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move, good limits, memorable receipt language, and mostly fair quiz keys. It falls short of ship because one transfer example is too generic to satisfy the chapter's promise that the reader can apply the move outside the named product cases. Tightening that example into a concrete before-after decision would likely move this above the bar."
+}
+```

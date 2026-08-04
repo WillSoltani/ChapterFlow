@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": ["Q5: I chose a as the least-wrong answer, but the phrase \"without inventing a new anchor\" conflicts with the prose, which explicitly calls the airline scene \"The third anchor.\" The cause shown is changed cast/setting/friction, not avoiding a new anchor."],
+    "tells": ["Several keyed answers are guessable because they contain the chapter's signature terms while distractors lean on obvious bad moves: ledger, anchors, proof, setting, contrast, true detail.", "Q2's keyed phrase \"the guess led the count\" closely echoes the chapter's core language, making it easy to pick without full reading.", "Q6 uses the odd phrase \"country-level token\" and the keyed answer is the only one that sounds like the chapter's preferred abstraction: contrast over stamping."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 74,
+    "transfer": 66,
+    "practical": 82,
+    "summaries": 80,
+    "tone": 76,
+    "limits": 84,
+    "insight": 82,
+    "density": 76,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known is not a feeling; it is a receipt you can point to.",
+      "why": "Strong, memorable phrasing that makes the core move sticky."
+    },
+    {
+      "quote": "The second anchor does not make the first look stronger; it makes the first answer harder questions.",
+      "why": "Best insight in the chapter: comparison is for pressure-testing, not decoration."
+    },
+    {
+      "quote": "Celine is already changing the boarding order; yesterday's demand for less friction is behind her.",
+      "why": "This example gestures at a before state but gives no concrete decision consequence or measurable result."
+    },
+    {
+      "quote": "Settle later; the ledger is open.",
+      "why": "Too compressed to teach transfer; it sounds like scaffold shorthand rather than a usable example payoff."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed answer says the airline routine is added \"without inventing a new anchor,\" but the prose explicitly calls airline operations the third anchor.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "\"Second country-level token\" is jargon-heavy and less beginner-friendly than the prose; it tests decoding the author's abstraction more than applying the idea.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples use named characters but do not complete a concrete before-to-after chain with a decision and consequence, especially the Celine boarding examples.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier example reads like a slot-filler: the supplier lead is unnamed, the effect is vague, the result is still out, and the paragraph mostly restates the comparison lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated internal terms such as anchor, ledger, token, return point, and route sometimes create a scaffold smell and may slow a cold beginner.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The chapter says the move travels beyond factories and airlines, but the transfer cases often stay generic instead of showing a real decision with a priced result.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: separate known data, assumptions, decisions, and returning results before a familiar fix hardens into wisdom. Its best lines are memorable, and the limit section is unusually honest. I would not ship it yet because the transfer layer is weaker than the concept: too many examples feel manufactured or unresolved, and Q5 has a real key-soundness problem. Tighten the examples into concrete before-to-after cases and repair the flawed quiz wording, and this could clear a professional bar."
+}
+```

@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch18",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch18.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.1"
+        ],
+        "prompt": "A single company looks attractive on its own. What first move best reduces one-company tunnel vision?",
+        "choices": [
+          "Set it beside an alternative claim on capital so opportunity cost becomes visible.",
+          "Judge it fully in isolation because comparison adds unnecessary distraction.",
+          "Accept the initial valuation as complete once the company appears attractive."
+        ],
+        "correctIndex": 0,
+        "explanation": "Paired comparison reduces one-company tunnel vision because valuation changes when it is set beside an alternative claim on capital. Opportunity cost becomes visible through comparison.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch18.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.2"
+        ],
+        "prompt": "Two real-estate names share a sector label. What question should come before treating their risk as equal?",
+        "choices": [
+          "Whether the labels are similar enough to make the investment character the same.",
+          "Whether leverage, assets, earnings stability, and management differ inside the sector.",
+          "Whether the sector label alone makes structure and finances irrelevant."
+        ],
+        "correctIndex": 1,
+        "explanation": "Similar industry labels do not create equal risk. Structure and finances can diverge sharply because leverage, assets, earnings stability, and management differ within a sector.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch18.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.3"
+        ],
+        "prompt": "A superior business trades at a large premium over a weaker peer. Which test protects against overpaying for quality?",
+        "choices": [
+          "Assume the better company is always the better stock because quality settles the decision.",
+          "Ignore the premium because business superiority cannot be overcapitalized by price.",
+          "Ask whether the premium exceeds the value of the quality difference."
+        ],
+        "correctIndex": 2,
+        "explanation": "A superior business may still be overpriced relative to a weaker peer when the premium exceeds the value of the quality difference. Price can overcapitalize quality.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch18.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.4"
+        ],
+        "prompt": "A peer has the lower multiple in a pair. What should be checked before calling it the better value?",
+        "choices": [
+          "Whether the lower multiple alone identifies the better purchase.",
+          "Whether weaker balance sheets or cyclical exposure justify the discount.",
+          "Whether cheapness can replace any need to explain the business condition."
+        ],
+        "correctIndex": 1,
+        "explanation": "A low-priced peer may be cheap for valid reasons. Weaker balance sheets or cyclical exposure may justify a discount, so cheapness must be explained.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch18.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.5"
+        ],
+        "prompt": "McGraw Edison and McGraw-Hill share overlapping words. What should control appraisal instead of name similarity?",
+        "choices": [
+          "The overlapping words, because similar names imply similar investment merits.",
+          "Name familiarity, because business differences matter less when names resemble each other.",
+          "Business economics, because the companies represent different businesses despite similar names."
+        ],
+        "correctIndex": 2,
+        "explanation": "McGraw Edison and McGraw-Hill name similarity is irrelevant to valuation because they represent different businesses despite overlapping words. Business economics control appraisal.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch18.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.6"
+        ],
+        "prompt": "A stable-growth company earns a premium valuation. Which limit should keep the premium from becoming automatic?",
+        "choices": [
+          "Paying too high a multiple can consume the benefit of stability and lower expected return.",
+          "Stable growth deserves unlimited valuation because stability removes price risk.",
+          "Expected return rises as price rises whenever growth appears stable."
+        ],
+        "correctIndex": 0,
+        "explanation": "Growth stability earns a premium only up to a point. Paying too high a multiple can consume the benefit of stability because expected return falls as price rises.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch18.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.7"
+        ],
+        "prompt": "A market favorite commands a premium over its pair. What skeptical question should guide the comparison?",
+        "choices": [
+          "How popular is the favorite, since popularity itself proves the premium is deserved?",
+          "How quickly can the favorite be accepted without testing the advantage behind the premium?",
+          "What concrete advantage justifies the premium, if any?"
+        ],
+        "correctIndex": 2,
+        "explanation": "Pair analysis trains skepticism toward market favorites by asking what concrete advantage justifies the premium. Popularity is evidence to test, not accept.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch18.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.8"
+        ],
+        "prompt": "A cyclical company looks cheap using current earnings. What adjustment best protects the pair comparison?",
+        "choices": [
+          "Use normalized earnings because peak or trough results can distort relative cheapness.",
+          "Use current earnings only because cycle position does not affect the denominator.",
+          "Treat trough results as permanent because cyclicality removes the need for interpretation."
+        ],
+        "correctIndex": 0,
+        "explanation": "Cyclical companies need normalized earnings in pair comparisons because peak or trough results can distort relative cheapness. Cycle position changes the denominator.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch18.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch18.fact.9"
+        ],
+        "prompt": "A table of pairs shows one company with the lower ratio. What is the right way to use that signal?",
+        "choices": [
+          "Treat the lower ratio as a formula that automatically identifies the buy.",
+          "Use the ratio as a judgment tool whose value depends on inputs and business interpretation.",
+          "Ignore business context because ratios require no interpretation once a pair is listed."
+        ],
+        "correctIndex": 1,
+        "explanation": "A table of pairs is a tool for judgment, not a formula. Final appraisal depends on the quality of the inputs and business interpretation because ratios require context.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch18.fact.1"
+        ],
+        "front": "How does paired comparison reduce one-company tunnel vision?",
+        "back": "It sets a valuation beside an alternative claim on capital. That comparison makes opportunity cost visible and prevents judging a company as though isolation were enough.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch18.fact.2"
+        ],
+        "front": "Why do similar industry labels fail to create equal risk?",
+        "back": "Companies inside a sector can differ in leverage, assets, earnings stability, and management. Structure and finances can diverge sharply even when the industry label looks similar.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch18.fact.3"
+        ],
+        "front": "Why can a superior business still be overpriced relative to a weaker peer?",
+        "back": "The premium can exceed the value of the quality difference. A better company is not automatically a better stock because price can overcapitalize quality.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch18.fact.4"
+        ],
+        "front": "Why might a low-priced peer be cheap for valid reasons?",
+        "back": "A discount may be justified by weaker balance sheets or cyclical exposure. The lower multiple member of a pair is not automatically better because cheapness must be explained.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch18.fact.5"
+        ],
+        "front": "Why is McGraw Edison and McGraw-Hill name similarity irrelevant to valuation?",
+        "back": "McGraw Edison and McGraw-Hill represent different businesses despite overlapping words. Similar names do not imply similar investment merits because business economics control appraisal.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch18.fact.6"
+        ],
+        "front": "Why does growth stability earn a premium only up to a point?",
+        "back": "Paying too high a multiple can consume the benefit of stability. Stable growth does not deserve unlimited valuation because expected return falls as price rises.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch18.fact.7"
+        ],
+        "front": "How does pair analysis train skepticism toward market favorites?",
+        "back": "It asks what concrete advantage justifies the premium. A market favorite does not deserve its premium by definition because popularity is evidence to test, not accept.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

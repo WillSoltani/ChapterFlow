@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 76,
+    "transfer": 73,
+    "practical": 76,
+    "summaries": 77,
+    "tone": 61,
+    "limits": 76,
+    "insight": 68,
+    "density": 59,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Compact, portable, and genuinely memorable."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "A useful diagnostic question that transfers cleanly."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "Strong aphorism: short, concrete, and faithful to the chapter."
+    },
+    {
+      "quote": "Success is not the proof; it is the weather that can hide the proof.",
+      "why": "The best reversal in the sample, and easy to remember."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "Shows the repeated house shorthand that becomes opaque and template-like."
+    },
+    {
+      "quote": "Move a true detail to the wrong story and it stops grounding the claim; it starts making fiction sound factual.",
+      "why": "Accurate, but the same source-boundary warning recurs so often that it exposes the template."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is keyed sound and often useful, with several strong portable lines and scenario-based quizzes that are answerable from the prose. Its main weakness is not correctness but manufacture: nearly every chapter follows the same architecture of named character, source-boundary warning, second-setting comparison, return proof, and hard-detail caution. That repetition drags down tone, density, and insight, making the book feel less like individually authored chapters and more like one production template filled with different nouns. It is a solid draft with publishable parts, but not yet premium."
+}
+```

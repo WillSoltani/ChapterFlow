@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch03",
+  "chapterNumber": 3,
+  "contentHash": "a2cd6385ba9af3dc",
+  "reviewerSessionId": "auto-author-review-ch03-mrczedyj-8",
+  "scores": {
+    "retention": 91,
+    "quizzes": 76,
+    "transfer": 83,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 89,
+    "density": 86,
+    "beginner": 88
+  },
+  "composite": 86.4,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 8,
+    "of": 9,
+    "disagreements": [
+      "Q1: reader=c key=b"
+    ]
+  },
+  "quotes": [
+    {
+      "quote": "The price of the quiet yes is a cleaner report and a worse miss.",
+      "why": "Memorable, concrete line that makes the core risk stick.",
+      "verified": true
+    },
+    {
+      "quote": "Standards without safety train people to hide the very signal you need.",
+      "why": "Best mechanism sentence: it explains why the move matters, not just what to do.",
+      "verified": true
+    },
+    {
+      "quote": "c) They accepted a clean status count as proof that the group condition was already safe enough for dissent.",
+      "why": "This rejected Q1 option is directly supported by the chapter's silence-as-warning lesson.",
+      "verified": true
+    },
+    {
+      "quote": "Q1: b — Project Aristotle points away from resumes alone and toward group conditions. The status-count answer tempts, but it treats thin proof as settled evidence.",
+      "why": "The answer key chooses the broader lens while dismissing a causally supported sibling answer.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem asks what caused the miss. The keyed answer b is supported as a broad diagnosis, but option c names the direct, repeatedly taught cause: accepting clean yeses/silence as proof of safety. This creates an unsound key with an equally or more supported sibling answer.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "It reuses Holly/Oscar and the same weak-assumption rescue from example 1, so it broadens transfer less than a distinct setting would.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core move: keep the standard high while making dissent speakable, and treat silence as data rather than agreement. The prose is clear, practical, and mechanism-rich, with good limits around comfort, standards, and personal critique. I would not ship as-is because Q1 has a key-soundness problem on a causal stem; after that quiz fix, the chapter would be publishable.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "7d9ea4a1e959f9e6c9ff2f3f29a1942237df0d3e3ce4a947023eb75403b15256",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:08.019Z"
+}

@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-026",
+  "parsed": {
+    "caseId": "SQ-026",
+    "verdict": "DEFECT",
+    "defectClass": "generic_or_mismatched_locator",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Biological explanation is not moral pardon, because identifying causes can support prediction"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=oxytocin+trust+game+Kosfeld+2005"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A locator must address the same entity, mechanism, relation, and degree of certainty as the claim."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The proposed PubMed search for oxytocin/trust-game/Kosfeld does not address the claim's mechanism about biological explanation, moral pardon, and prediction, and it is a search URL rather than claim-specific evidence.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-026\",\"verdict\":\"DEFECT\",\"defectClass\":\"generic_or_mismatched_locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Biological explanation is not moral pardon, because identifying causes can support prediction\"},{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=oxytocin+trust+game+Kosfeld+2005\"},{\"materialIndex\":1,\"quote\":\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim.\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The proposed PubMed search for oxytocin/trust-game/Kosfeld does not address the claim's mechanism about biological explanation, moral pardon, and prediction, and it is a search URL rather than claim-specific evidence.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

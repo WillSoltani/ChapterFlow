@@ -13,12 +13,12 @@
  */
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { test } from "./harness.js";
-import { makeChapter } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR } from "./helpers.js";
 import {
   ARCHITECTURE_FAMILIES,
   EXAMPLE_ENTRY_POINTS,
@@ -59,6 +59,8 @@ import { computeRegenLineage } from "../src/orchestrator/authorRegenLedger.js";
 import { checkReaderBudgets, measureQuizKeyEcho, measureStemOpenerMolds } from "../src/critics/readerBudgets.js";
 
 const BOOK = "zz-fixture-stier2";
+const BOOK_RUNS_DIR = join(PIPELINE_DIR, "state", "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
 
 function mkPacket(n: number, opts: { claims?: string[]; numbers?: string[]; cases?: Array<{ id: string; label: string }> } = {}): SourcePacketV1 {
   const claims = opts.claims ?? [
@@ -139,13 +141,22 @@ test("P12: stem shapes + failure modes deal 4 distinct per chapter; question ord
 
 // ── P11: lead thread ───────────────────────────────────────────────────────────
 
+/** IMP-09: selection-field projection — leadThread gained ADDITIVE metadata
+ *  (caseId + compiler-derived aliases); these pins assert WHICH lead is
+ *  selected, so they compare the selection fields only. */
+const sel = (l: ReturnType<typeof resolveLeadThread>) => (l ? { kind: l.kind, name: l.name } : l);
+
 test("P11: resolveLeadThread — case-led when preferred and anchored, invented otherwise; ~half the book prefers case-led", () => {
   const cases = [{ id: "c1", label: "Honeywell 1999 integration" }];
-  assert.deepEqual(resolveLeadThread(true, cases, ["Mara"]), { kind: "owned-case", name: "Honeywell 1999 integration" });
-  assert.deepEqual(resolveLeadThread(false, cases, ["Mara"]), { kind: "invented", name: "Mara" });
+  assert.deepEqual(sel(resolveLeadThread(true, cases, ["Mara"])), { kind: "owned-case", name: "Honeywell 1999 integration" });
+  // IMP-09: the packet case id + the compiler-derived alias set now RIDE the deal.
+  const dealt = resolveLeadThread(true, cases, ["Mara"]);
+  assert.equal(dealt?.caseId, "c1", "the case id survives onto the brief");
+  assert.ok(dealt?.aliases?.includes("Honeywell"), "compiler-derived aliases ride the deal");
+  assert.deepEqual(sel(resolveLeadThread(false, cases, ["Mara"])), { kind: "invented", name: "Mara" });
   // A label with no anchor token degrades to invented — and the BR8 gate for that
   // degenerate all-invented state is ADVISORY (deal-detector invariant).
-  assert.deepEqual(resolveLeadThread(true, [{ id: "c1", label: "the turnaround" }], ["Mara"]), { kind: "invented", name: "Mara" });
+  assert.deepEqual(sel(resolveLeadThread(true, [{ id: "c1", label: "the turnaround" }], ["Mara"])), { kind: "invented", name: "Mara" });
   assert.equal(resolveLeadThread(true, [], []), undefined);
   const prefs = dealLeadPreference(BOOK, 9);
   const trueCount = prefs.filter(Boolean).length;
@@ -162,21 +173,21 @@ test("resolveLeadThread prefers a real NAMED case over a framework CONCEPT (star
     { id: "ch04.ex.antonio-damasio-descartes-error", label: "Antonio Damasio / Descartes' Error" },
   ];
   assert.deepEqual(
-    resolveLeadThread(true, ch04Cases, ["Zane"]),
+    sel(resolveLeadThread(true, ch04Cases, ["Zane"])),
     { kind: "owned-case", name: "Antonio Damasio / Descartes' Error" },
     "a named person/study (>=2 proper nouns or a '/' attribution) is preferred over a bare concept",
   );
   // Regression-safe: a single-name real case still wins when it is the first with a
   // token (behavior unchanged for companies / one-name people).
   assert.deepEqual(
-    resolveLeadThread(true, [{ id: "c1", label: "Apple retail signals" }, { id: "c2", label: "Harley identity" }], ["Mara"]),
+    sel(resolveLeadThread(true, [{ id: "c1", label: "Apple retail signals" }, { id: "c2", label: "Harley identity" }], ["Mara"])),
     { kind: "owned-case", name: "Apple retail signals" },
     "no named-case signal anywhere → the original first-with-token pick stands",
   );
   // Concepts everywhere, no named case → falls back to the first concept (unchanged),
   // never crashes.
   assert.deepEqual(
-    resolveLeadThread(true, [{ id: "c1", label: "Neocortex" }, { id: "c2", label: "Limbic system" }], ["Mara"]),
+    sel(resolveLeadThread(true, [{ id: "c1", label: "Neocortex" }, { id: "c2", label: "Limbic system" }], ["Mara"])),
     { kind: "owned-case", name: "Neocortex" },
     "all-concept list keeps the prior first-token behavior",
   );
@@ -247,35 +258,42 @@ function mkV3Brief(n: number): ChapterBriefV1 {
   } as ChapterBriefV1;
 }
 
-test("v3 VARIETY render: every dealt lever line present; v2 briefs render untouched (back-compat)", () => {
+test("v3 VARIETY render (IMP-06 de-reciped): compact outcome lines present; internal taxonomy ABSENT; v2 briefs still render", () => {
   const brief = mkV3Brief(5);
   const lines = briefVarietyInstructionLines(brief).join("\n");
-  assert.ok(lines.includes("EXAMPLE PLAN: write EXACTLY"), "arc table present");
-  assert.ok(lines.includes("+anchor"), "dealt prop slots marked");
+  // Retained (book allocation / outcome preference), expressed compactly:
+  assert.ok(lines.includes("EXAMPLES: write EXACTLY"), "dealt example count still binds");
+  assert.ok(lines.includes("ANCHORS: give 2-3 examples exactly ONE concrete"), "anchor budget stated as an outcome");
   assert.ok(lines.includes("LEAD THREAD"), "lead thread present");
   assert.ok(lines.includes("QUIZ STEMS"), "stem shapes present");
   assert.ok(lines.includes("DISTRACTOR MODES"), "failure modes present");
   assert.ok(lines.includes("QUESTION ORDER"), "fact-order permutation present");
-  assert.ok(lines.includes("PRACTICE SLOT SHAPES"), "per-slot shapes present");
-  assert.ok(lines.includes("MEMORABLE LINES"), "memorable shapes present");
+  assert.ok(lines.includes("PRACTICE SURFACES"), "surfaces-must-differ outcome present");
+  assert.ok(lines.includes("MEMORABLE LINES"), "memorable-line outcome present");
   assert.ok(lines.includes("LIMITS PLACEMENT"), "limits placement present");
-  assert.ok(lines.includes("FIRST-MENTION GROUNDING"), "grounding form present");
-  assert.ok(lines.includes("FRAMEWORK IDIOM"), "STIER-3 idiom line present");
-  assert.ok(lines.includes("EXAMPLE SHELL REGISTER"), "STIER-3 shell line present");
-  // The arc table is the single source of the failure slot — no duplicate friction
-  // prose even when the flag is set (forced TRUE so the assertion can't pass vacuously).
+  assert.ok(lines.includes("FIRST-MENTION GROUNDING"), "grounding rules present");
+  // IMP-06 (F-008/F-016): the writer-visible NARRATIVE PROCEDURES and internal
+  // taxonomy labels are GONE — the deal still allocates them (lineage/BR6 stable),
+  // but no card exposes a named scene/rhetoric recipe.
+  for (const leaked of [
+    "EXAMPLE PLAN", "+anchor", "PRACTICE SLOT SHAPES", "FRAMEWORK IDIOM", "EXAMPLE SHELL REGISTER",
+    "PRACTICE VERB:", "prop-tableau", "dialogue-beat", "at-the-demand", "mid-behavior",
+    "mechanism-speak", "ledger-speak", "verb-first", "cost-statement", "appositive",
+  ]) {
+    assert.ok(!lines.includes(leaked), `internal taxonomy leaked to the writer surface: "${leaked}"`);
+  }
+  // Friction is a dealt OUTCOME and renders as one prose sentence when dealt (the
+  // arc table that used to carry the failure slot no longer renders).
   const frictionLines = briefVarietyInstructionLines({ ...brief, requireFrictionExample: true } as ChapterBriefV1).join("\n");
-  assert.ok(!frictionLines.includes("At least ONE of your examples must show the move failing"), "v2 friction sentence suppressed when arcs carry the slot");
-  // v2 brief (no v3 fields): the original lines render, none of the v3 lines do.
-  // Force the friction flag TRUE — whether ch5 is friction-dealt is the dealer's
-  // business; this assertion is about the v2 RENDER path, not the deal.
+  assert.ok(frictionLines.includes("At least ONE example must show the move failing"), "friction outcome renders when dealt");
+  // v2 brief (no v3 fields): the compact example outcome + friction still render.
   const v2 = { ...brief } as Record<string, unknown>;
   for (const k of ["rotationSchemaVersion", "exampleCount", "exampleArcs", "practiceSlotShapes", "quizStemShapes", "quizFailureModes", "questionFactOrder", "memorableShapes", "limitsPlacement", "groundingForm", "leadThread", "idiomFamilies", "shellRegister"]) delete v2[k];
   v2.requireFrictionExample = true;
   const v2lines = briefVarietyInstructionLines(v2 as ChapterBriefV1).join("\n");
-  assert.ok(!v2lines.includes("EXAMPLE PLAN"), "no v3 lines on a v2 brief");
-  assert.ok(!v2lines.includes("FRAMEWORK IDIOM") && !v2lines.includes("EXAMPLE SHELL REGISTER"), "no v4 lines on a v2 brief");
-  assert.ok(v2lines.includes("At least ONE of your examples must show the move failing"), "v2 friction sentence still renders on v2 briefs");
+  assert.ok(v2lines.includes("EXAMPLES: write EXACTLY"), "v2 briefs render the same compact outcome");
+  assert.ok(!v2lines.includes("PRACTICE SURFACES"), "no v3-field lines on a v2 brief");
+  assert.ok(v2lines.includes("At least ONE example must show the move failing"), "friction renders on v2 briefs");
 });
 
 // ── B0: card single-render + real-size pin ─────────────────────────────────────
@@ -287,8 +305,8 @@ test("B0: the card carries each dealt VARIETY line exactly ONCE (md section stri
   const briefMd = `# Chapter 5 — The Return Point\n\n## THE MOVE\ntie every promise to a named return point\n\n## PROMISE\nAfter this chapter…\n\n${varietyBlock}\n\n## YOUR CASES\n- Honeywell 1999 integration\n\n## LENGTH\n~16000 chars`;
   const packet = mkPacket(5, { cases: [{ id: "c1", label: "Honeywell 1999 integration" }] });
   const card = buildAuthorCard({ bookId: BOOK, chapterNumber: 5, briefMd, packet, voice: null, brief });
-  const marker = "EXAMPLE PLAN: write EXACTLY";
-  assert.equal(card.split(marker).length - 1, 1, "arc table appears exactly once in the card");
+  const marker = "EXAMPLES: write EXACTLY";
+  assert.equal(card.split(marker).length - 1, 1, "the dealt example-outcome line appears exactly once in the card");
   assert.ok(card.includes("## YOUR CASES"), "non-VARIETY md sections survive the strip");
   // Without the machine brief the md keeps its own VARIETY section (graceful degrade).
   const cardNoBrief = buildAuthorCard({ bookId: BOOK, chapterNumber: 5, briefMd, packet, voice: null });
@@ -316,16 +334,19 @@ test("B0 real-size pin: a full v3 brief + realistic packet keeps the card ≤ 24
 
 // ── card text pins ─────────────────────────────────────────────────────────────
 
-test("card pins: TRANSFORM recipe + de-theatered rule 3 + VOICE block + pruned INSIGHT clause + dealt LIMITS placement", () => {
-  assert.ok(AUTHOR_QUALITY_BAR.includes("5. DISTRACTOR TRANSFORM"), "rule 5 is the transform recipe");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("ECHO SYMMETRY"), "echo symmetry named");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("polish/announce/slides"), "banned families still named (grill 2b #17)");
-  assert.ok(!AUTHOR_QUALITY_BAR.includes("exact object to touch"), "rule 3's theater-minting shape is gone");
-  assert.ok(AUTHOR_QUALITY_BAR.includes("never default to a touch-this-object"), "rule 3 bans the ritual instead");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("- VOICE:"), "VOICE block replaces the TONE bullet");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs"), "voice move 1 (scoped to tiers — never the dealt hook)");
-  assert.ok(!AUTHOR_PREMIUM_BLOCK.includes("At least one example ends in failure"), "INSIGHT failure clause pruned — the dealt arcs carry it");
-  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("dealt LIMITS PLACEMENT"), "limits paragraph rides the dealt placement");
+test("card pins (IMP-05 dieted): compact quiz-distractor + practice + VOICE/LIMITS axes; the theater/mechanical-word prose is gone", () => {
+  // IMP-05 removed the verbose STIER prose (transform recipe, echo symmetry,
+  // mechanical-word list, the touch-this-object ban, the VOICE 4-move formula,
+  // the dealt-LIMITS-placement clause) — those protections live in their gates/
+  // critics/deals now (see the ledger). The card carries the compact targets.
+  assert.ok(AUTHOR_QUALITY_BAR.includes("QUIZ DISTRACTORS [GATED]"), "quiz-distractor craft target present");
+  assert.match(AUTHOR_QUALITY_BAR, /warp it into each distractor by one of the brief's dealt failure modes/i, "key-first warp derivation named");
+  assert.ok(!AUTHOR_QUALITY_BAR.includes("polish/announce/slides"), "mechanical-word list moved off the card to the CHB12 gate");
+  assert.ok(!AUTHOR_QUALITY_BAR.includes("touch-this-object"), "the ritual-ban prose is gone; PRACTICE names the dealt shape instead");
+  assert.match(AUTHOR_QUALITY_BAR, /the FORM is your dealt practice shape, not a fixed ritual/i, "practice form points to the dealt shape");
+  assert.ok(AUTHOR_PREMIUM_BLOCK.includes("- VOICE:"), "VOICE axis present");
+  assert.ok(!AUTHOR_PREMIUM_BLOCK.includes("never let more than 2 consecutive paragraphs"), "the VOICE 4-move formula is removed (fixed formula = the anti-pattern)");
+  assert.match(AUTHOR_PREMIUM_BLOCK, /- LIMITS: one honest passage/i, "LIMITS axis present, compact (placement is the dealt LIMITS PLACEMENT in the brief)");
 });
 
 // ── D7/D9: write-time contract ─────────────────────────────────────────────────
@@ -445,32 +466,29 @@ test("lineage: an UNSTAMPED (v2) brief under the v3 binary reproduces the v2-era
 
 test("B15: A16's example floor honors the brief's dealt count; write contract enforces it exactly", async () => {
   const { dealtExampleFloor } = await import("../src/critics/finalGate.js");
-  const root = mkdtempSync(join(tmpdir(), "stier2-b15-"));
-  try {
-    const chapter = makeChapter(BOOK, 3);
-    // No brief on disk → the historical floor 6 (fail-closed for partial generation).
-    assert.equal(dealtExampleFloor(chapter, root), 6, "absent brief → floor 6");
-    // A v3-stamped brief dealing 4 → the floor is the dealt design, not the pad target.
-    writeJsonFile(chapterBriefPath(BOOK, 3, { stateRoot: root }), { rotationSchemaVersion: ROTATION_SCHEMA_VERSION, exampleCount: 4 });
-    assert.equal(dealtExampleFloor(chapter, root), 4, "dealt count wins for v3 briefs");
-    // An UNSTAMPED brief never lowers the floor (v2 briefs have no count deal).
-    writeJsonFile(chapterBriefPath(BOOK, 3, { stateRoot: root }), { exampleCount: 4 });
-    assert.equal(dealtExampleFloor(chapter, root), 6, "unstamped brief → floor 6");
+  const chapter = makeChapter(BOOK, 3);
+  // No dealt brief → the historical floor 6 (fail-closed for partial generation).
+  assert.equal(dealtExampleFloor(chapter), 6, "absent brief → floor 6");
+  // A v3-stamped brief dealing 4 → the floor is the dealt design, not the pad target.
+  assert.equal(
+    dealtExampleFloor(chapter, { rotationSchemaVersion: ROTATION_SCHEMA_VERSION, exampleCount: 4 }),
+    4,
+    "dealt count wins for v3 briefs",
+  );
+  // An UNSTAMPED brief never lowers the floor (v2 briefs have no count deal).
+  assert.equal(dealtExampleFloor(chapter, { exampleCount: 4 }), 6, "unstamped brief → floor 6");
 
-    // Write contract: EXACT count — padding past the deal is the density defect.
-    const brief = mkV3Brief(5);
-    brief.leadThread = undefined;
-    const packet = mkPacket(5, {});
-    const ch = makeChapter(BOOK, 5);
-    const dealt = brief.exampleCount!;
-    while ((ch.examples?.length ?? 0) > dealt) ch.examples!.pop();
-    assert.equal(authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count")).length, 0, "exact count is clean");
-    ch.examples = [...ch.examples!, { ...ch.examples![0], exampleId: "ex-extra" }];
-    const over = authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count"));
-    assert.ok(over.length === 1 && over[0].includes(`EXACTLY ${dealt}`), "padding past the deal complains with the cut instruction");
-  } finally {
-    rmSync(root, { recursive: true, force: true });
-  }
+  // Write contract: EXACT count — padding past the deal is the density defect.
+  const brief = mkV3Brief(5);
+  brief.leadThread = undefined;
+  const packet = mkPacket(5, {});
+  const ch = makeChapter(BOOK, 5);
+  const dealt = brief.exampleCount!;
+  while ((ch.examples?.length ?? 0) > dealt) ch.examples!.pop();
+  assert.equal(authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count")).length, 0, "exact count is clean");
+  ch.examples = [...ch.examples!, { ...ch.examples![0], exampleId: "ex-extra" }];
+  const over = authorWriteContractFindings(ch, brief, packet).filter((c) => c.startsWith("example count"));
+  assert.ok(over.length === 1 && over[0].includes(`EXACTLY ${dealt}`), "padding past the deal complains with the cut instruction");
 });
 
 // ── calibration contract: the inverted meters never gate ───────────────────────
@@ -497,21 +515,22 @@ test("resolveLeadThread avoidInvented: a proxy-banned chapter never deals an inv
   // observed live collision: ch01 "Willow"×8 on a proxy-banned chapter).
   const conceptOnly = [{ id: "c1", label: "the turnaround" }];
   assert.deepEqual(
-    resolveLeadThread(false, conceptOnly, ["Mara"], { avoidInvented: true }),
+    sel(resolveLeadThread(false, conceptOnly, ["Mara"], { avoidInvented: true })),
     { kind: "owned-case", name: "the turnaround" },
   );
   // avoidInvented forces the case path even when the parity preference said invented.
   assert.deepEqual(
-    resolveLeadThread(false, [{ id: "c1", label: "Honeywell 1999 integration" }], ["Mara"], { avoidInvented: true }),
+    sel(resolveLeadThread(false, [{ id: "c1", label: "Honeywell 1999 integration" }], ["Mara"], { avoidInvented: true })),
     { kind: "owned-case", name: "Honeywell 1999 integration" },
   );
   // True last resort: a packet with zero cases still gets a lead (invented), never undefined-by-ban.
   assert.deepEqual(
-    resolveLeadThread(false, [], ["Mara"], { avoidInvented: true }),
+    sel(resolveLeadThread(false, [], ["Mara"], { avoidInvented: true })),
     { kind: "invented", name: "Mara" },
   );
-  // Behavior WITHOUT the flag is byte-identical to the pre-fix dealer (regression pin).
-  assert.deepEqual(resolveLeadThread(false, conceptOnly, ["Mara"]), { kind: "invented", name: "Mara" });
+  // SELECTION WITHOUT the flag is identical to the pre-fix dealer (regression pin;
+  // IMP-09 adds caseId/alias METADATA without moving any pick).
+  assert.deepEqual(sel(resolveLeadThread(false, conceptOnly, ["Mara"])), { kind: "invented", name: "Mara" });
   // Composed invariant over a 16-chapter book: every proxy-banned chapter with ≥1 owned
   // case resolves to an owned-case lead when the compile passes the ban flag.
   for (let n = 1; n <= 16; n++) {
@@ -535,4 +554,8 @@ test("proxy-banned owned-case chapters deal an EMPTY cast and a no-stand-ins lea
   assert.match(withCast, /Invented cast appears only in supporting scenes/);
   assert.match(noCast, /NO invented stand-in characters/);
   assert.doesNotMatch(noCast, /supporting scenes\./);
+});
+
+test("stier2 fixtures remove owned run directories", () => {
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
 });

@@ -12,12 +12,13 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import {
   appendSweepHistory,
+  chapterClearsPath,
   loadSweepHistory,
   sweepChapterStatus,
   sweepDefectFingerprintV2,
@@ -191,11 +192,14 @@ test("corroboration: CHANGED bytes permit a fresh defect to BLOCK on the FIRST r
 // ── 3. v1 history compatibility + new-record storage (requirements 12 & 13) ──────────────────
 
 const DISK_BOOK = "zz-fixture-sweep-fp-disk";
+const QC_ORCHESTRATOR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
 
 function diskReset(): void {
   rmSync(sweepHistoryPath(DISK_BOOK), { force: true });
+  rmSync(chapterClearsPath(DISK_BOOK), { force: true });
   rmSync(sweepRecordPath(DISK_BOOK), { force: true });
   rmSync(resolve(QC_ORCHESTRATOR_DIR, DISK_BOOK), { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
 }
 
 const DISK_HASHES: Record<string, string> = { "1": "d1", "2": "d2" };

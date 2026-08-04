@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 90,
+    "transfer": 76,
+    "practical": 82,
+    "summaries": 86,
+    "tone": 82,
+    "limits": 88,
+    "insight": 84,
+    "density": 80,
+    "beginner": 78
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Biology means sorting jobs, not crowning feeling.",
+      "why": "This is the cleanest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "What would you trust here if the words were still missing?",
+      "why": "A strong practical diagnostic question that keeps feeling useful but bounded."
+    },
+    {
+      "quote": "She uses neocortex, cerebral cortex, and sensory processing to explain why the service offer is clear.",
+      "why": "This shows the weakest pattern: examples sometimes feel like jargon placed into thin scenarios."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: the service offer has a named person and consequence, but no concrete offer content or before-to-after wording, so it mostly restates the lesson with brain terms inserted.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: the dispatch-board scene is hard to picture and does not specify the weekend route decision clearly enough to make the transfer feel fully independent.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The opening phrase 'Feeling needed biology' is compressed enough to sound slightly awkward on a cold read.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable against the bar. Its main lesson is clear and memorable: use biology to separate the sayable side, the felt side, and the limiting source anchor rather than letting feeling or brain terms overclaim. The quiz is fair and derivable, with sound keys and no obvious answer-pattern tells. The main weakness is transfer: several examples are usable but thin, with generic invented scenes that sometimes carry the same jargon rather than showing a vivid decision and consequence. That lowers polish, but it does not block understanding or application."
+}
+```

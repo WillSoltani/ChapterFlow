@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the exact fault, uses close feedback, and changes the next attempt rather than replaying the whole task.",
+      "The chapter's first move is to turn vague whole-task effort into a narrow drill around the repeated error with immediate comparison.",
+      "The stated failure mode is whole-performance repetition that lets one weak point stay hidden and survive.",
+      "The plateau/video example calls for a visible target, short stretch, feedback, and repetition before returning to distance.",
+      "Faloon is used to show that misses directed the next attempt, not that repetition alone built skill.",
+      "The claim trusts repetition, while the chapter requires a visible, correctable target that changes the next rep.",
+      "The prose says feedback matters when it is close enough to alter the next attempt while the miss is still traceable.",
+      "Plan B creates a short feedback loop; Plan A delays feedback until after too many repeated attempts.",
+      "The revised target must be visible, countable, comparable, and correctable before the next attempt."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the prose says comfort can hide the weak spot; b is stronger because it names the missing visible target.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Many correct choices are the most concrete option and echo chapter language such as feedback, next attempt, visible target, or before returning.",
+      "Q1, Q4, Q8, and Q9 can partly be guessed by choosing the option with the narrowest drill plus immediate correction.",
+      "Q3's correct choice closely mirrors the chapter's repeated wording about the whole performance hiding one weak point."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 90,
+    "practical": 91,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 90,
+    "insight": 91,
+    "density": 88,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Strong memorable line that compresses the chapter's mechanism into a durable image."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "Clear practical test for whether a practice goal is usable."
+    },
+    {
+      "quote": "Comfort is a poor coach because it lets the weak spot stay hidden.",
+      "why": "Strong explanatory sentence that links comfort to the failure mode."
+    },
+    {
+      "quote": "Nightly repetition will eventually fix uneven knife cuts.",
+      "why": "The quiz stem creates a mild ambiguity because two answer choices plausibly reject this claim from the prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Choices a and b both reject blind repetition using supported chapter mechanisms; b is more specific, but a is not clearly wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Correct answers are often guessable by selecting the most concrete option with feedback and next-attempt language.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The rowing term 'catch' is not explained, which slightly raises the entry cost for a cold beginner.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core move is clear, memorable, and repeated through varied domains without feeling mechanical: isolate the miss, stretch narrowly, get fast feedback, and change the next attempt. The examples are concrete enough to transfer, the practical steps are realistic, and the limits section avoids overselling. The main weakness is quiz construction: several right answers can be guessed from specificity and repeated chapter phrasing, and Q6 has a plausible competing answer. That lowers quiz polish but does not block release."
+}
+```

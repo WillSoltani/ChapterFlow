@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P14",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_SCENE_AND_DIALOGUE\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.\",\"\\\"The forecast is careful,\\\" he says. The investment partner answers, \\\"Careful about which future?\\\"\",\"The analyst reads the downside risk aloud, then the upside potential.\"],\"rationale\":\"The source supports only that Byron Penstock evaluated Coinstar by comparing upside potential and downside risk. The candidate adds an undocumented call, physical action, spreadsheet, analyst and partner roles, verbatim dialogue, and a narrated sequence of events. Although the text is labeled a scenario, it embeds these inventions around the real Coinstar case in an unqualified factual register, so readers could mistake them for sourced history.\"}"
+}

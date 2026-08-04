@@ -16,6 +16,7 @@ import {
   UnitCriticResult,
   UnitLocation,
 } from "../types.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
 import {
   checkDecisionPoint,
   checkNamedProtagonist,
@@ -33,6 +34,7 @@ import {
 import {
   checkAnswerPositionBalance,
   checkEnumValidity,
+  openCriticCandidateEntries,
 } from "./schema.js";
 import { allTones, iterateUnits, pickEvidence } from "./shared.js";
 
@@ -174,6 +176,25 @@ export function runAllCritics(
       byCheck: byCheck as Record<CriticCheckId, { pass: number; fail: number }>,
     },
   };
+}
+
+export async function runAllCriticsFromCandidate(
+  reader: BookContentReader,
+  input: Readonly<{
+    bookId: string;
+    candidateId: string;
+    manifestDigest: string;
+    packageLogicalPath: string;
+    generatedAt?: string;
+  }>,
+): Promise<BookCriticReport> {
+  const opened = await openCriticCandidateEntries(reader, {
+    ...input,
+    logicalPaths: [input.packageLogicalPath],
+  });
+  const report = runAllCritics(opened.values[0] as BookPackage, input.packageLogicalPath);
+  if (report.bookId !== input.bookId) throw new Error("CANDIDATE_MISMATCH: critic package bookId differs");
+  return input.generatedAt ? { ...report, generatedAt: input.generatedAt } : report;
 }
 
 function exampleFullText(ex: Example): string {

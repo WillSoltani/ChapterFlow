@@ -1,0 +1,11 @@
+Done: wrote [start-with-why-ch10.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch10.v21-native.chapter.json).
+
+Verification:
+- `author-check` clean.
+- `gate-chapter` PASS: 0 blockers, 0 majors, 3 minors.
+- Quiz verifier: 9/9 matched the required key pattern `2,1,0,1,1,0,2,2,0`.
+- Rendered length: 16,908 chars.
+- Distractor parity: 0 uniquely-longest keys, 4 uniquely-shortest keys.
+- Scaffold and forbidden-case scans clean.
+
+`major-status` still reports unrelated issues in other chapters, but chapter 10 is clear.

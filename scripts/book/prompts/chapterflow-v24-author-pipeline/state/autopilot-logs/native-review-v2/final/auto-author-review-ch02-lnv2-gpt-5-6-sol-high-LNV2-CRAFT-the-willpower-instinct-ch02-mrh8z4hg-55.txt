@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as adaptive beat-to-beat adjustment and links higher variability with stronger self-regulation.",
+      "The Trier task shows that silent social judgment can trigger a threat response without physical danger.",
+      "The chapter says stress narrows attention toward immediate comfort while obscuring the long-term goal.",
+      "Tang's training is presented as strengthening attention and reducing stress reactivity so an urge can be noticed before action.",
+      "The prose says slow breathing alters the bodily state supporting arousal, attention, and choice.",
+      "The pause-and-plan response requires reduced arousal so attention can widen and future consequences remain available.",
+      "The sleep section says tired attention can lose a planned goal when a louder cue competes with it.",
+      "The chapter says movement can improve mood, stress regulation, and executive function, reducing the load on later choices.",
+      "The chapter explicitly warns that waiting until a craving peaks denies the body the runway needed for pause-and-plan."
+    ],
+    "confidence": ["high", "high", "high", "high", "medium", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "Choice a is also compatible with the observed log: fewer angry replies after breathing does not by itself distinguish direct regulation from distraction followed by mood change.",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice b repeats the chapter's distinctive beat-to-beat flexibility language.",
+      "Choice c echoes the prose's social-judgment-without-physical-danger formulation.",
+      "Choice c is the only option using the chapter's linked vocabulary of stress, quick relief, and returning goals.",
+      "Choice a closely reproduces the stated meditation mechanism; the other choices use unsupported absolutes.",
+      "Choice b closely matches Review Card 5's wording about body signals, arousal, and attention.",
+      "Choice b repeats the chapter's room metaphor and goal-weighing mechanism.",
+      "Choice a nearly restates the sleep paragraph's tired-attention and competing-cue explanation.",
+      "Choice a reproduces the exact three benefits of movement listed in the prose.",
+      "Choice c repeats the chapter's signature wording about runway before the craving peaks."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 78,
+    "transfer": 74,
+    "practical": 84,
+    "summaries": 82,
+    "tone": 83,
+    "limits": 94,
+    "insight": 88,
+    "density": 73,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "A compact, memorable statement of both the problem and the core mechanism."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "This gives the method an unusually clear and useful boundary."
+    },
+    {
+      "quote": "The visible cost buys Landon the flexible state Amelie will need when the pastry feels urgent.",
+      "why": "This misleadingly treats leaving a snack table as if it demonstrably produces the physiological flexibility discussed in the cited research."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "Generic closing language adds no mechanism, consequence, or transferable detail."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The example claims that paying a visible social cost buys a flexible physiological state, but the chapter only establishes that variability is associated with self-regulation; it does not show that leaving the table produces that state. This is a misleading example.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scenario ends after calmer rehearsal and never shows the analyst update or any consequence, making it a thin-but-usable illustration rather than a demonstrated before-to-after transfer case.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Sierra takes one breath and immediately 'sees the lesson,' but the example shows no later temptation, decision, or consequence; it largely restates the teaching.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Most correct choices closely reproduce distinctive phrases from the chapter while distractors rely on conspicuous absolutes or mechanisms never mentioned, allowing recognition and test-taking strategy to substitute for understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "A simple day-level association between breathing and fewer angry replies cannot identify whether direct physiological regulation or temporary distraction caused the change, although the stem asks for the mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Six examples repeatedly perform the same calm-before-choice move, with several paragraphs devoted to a separate 'first cost' frame that is not established as part of this chapter's core mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "Sliding the chair back is concrete, but the exercise does not instruct the reader to slow breathing, restore the long goal, or complete the hard action, so it only partially rehearses the chapter's core sequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "review card 6",
+      "problem": "The card depends on unexplained Chapter 1 terminology ('I won't,' 'I will,' and 'I want'), so it is not approachable as a standalone review item for a cold reader.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a memorable core move, strong bodily metaphors, clear mechanisms, practical low-friction actions, and excellent limits around avoidance and emergencies. Its quiz is derivable but too often gives away the answers through near-verbatim wording, and Q5 overstates what its observational setup can establish. Transfer is weakened by repetitive scenarios, thin outcomes, and especially Example 1's unsupported causal leap from leaving a snack table to acquiring physiological flexibility. That misleading example blocks shipment despite otherwise professional teaching quality."
+}
+```

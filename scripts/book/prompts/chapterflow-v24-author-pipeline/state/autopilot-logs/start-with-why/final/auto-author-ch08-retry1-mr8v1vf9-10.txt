@@ -1,0 +1,11 @@
+Wrote the chapter file: [start-with-why-ch08.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch08.v21-native.chapter.json)
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 matched the required key pattern
+- Rendered length: 15,018 chars, inside budget
+- Evidence audit: no invented-witness or attribution candidates
+- Distractor parity: 0 uniquely-longest keys, 3 uniquely-shortest keys
+
+The gate still reports 7 non-blocking minors, all short quiz-prompt advisories.

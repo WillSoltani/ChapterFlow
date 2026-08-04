@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: I derived a; the key says b, but the prose supports the idea that the copied tool failed because the receiving factory used it with a different starting belief."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 80,
+    "quizzes": 54,
+    "transfer": 80,
+    "practical": 70,
+    "summaries": 76,
+    "tone": 70,
+    "limits": 72,
+    "insight": 68,
+    "density": 66,
+    "beginner": 78
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, compact, portable line that captures the chapter's lens."
+    },
+    {
+      "quote": "A bought response is not the same as a chosen return.",
+      "why": "Memorable distinction between manipulation and loyalty."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "Clear aphorism with real retention value."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template artifact leaking into reader-facing prose."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence structure that reads like scaffold fragments stitched together."
+    },
+    {
+      "quote": "The Motorola promotion warning shadows the nonprofit appeal beat last year's response after a fear-heavy letter, and the next mailing deadline is close.",
+      "why": "Incoherent prose and a clear pasted-template artifact."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a useful learning architecture and several sticky lines, but it is not publishable as-is. The largest hard failure is quiz soundness: Chapter 1 Q8 is keyed to b even though the chapter clearly supports a. There are also visible production artifacts such as repeated \"Title: undefined\" blocks and multiple garbled example openings that look like template stitching. Across chapters, the structure and rhetorical moves repeat heavily: hook, fast/deep/full, six examples, identical implementation-plan shells, review cards, and memorable lines. The teaching lens is often sound, but the book currently feels generated from a rigid scaffold rather than individually shaped chapters."
+}
+```

@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the most specific option and reuse the chapter's exact anchor language, especially Southwest/Kelleher/Apple/Dallas, while distractors often use generic fixes like broader audience, smoother bridge, or familiar company."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 78,
+    "practical": 84,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 86,
+    "insight": 85,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A cheap ticket can point up to belief, not down to price.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Keep the proof with its promise.",
+      "why": "Clear, portable rule that anchors the practical test."
+    },
+    {
+      "quote": "The move half-works; hiring is named, but the comparison rule stays thin.",
+      "why": "This is honest but also reveals that one example is underdeveloped as a teaching scenario."
+    },
+    {
+      "quote": "A birthday-card envelope lies between them.",
+      "why": "This detail feels arbitrary and does not repay its space."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 2",
+      "problem": "The example names people and a setting, but the birthday-card detail reads like filler and the before-to-after consequence is thin; the lesson is mostly stated rather than dramatized.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "Several examples are about drafting, training, or explaining the chapter's own examples rather than showing outside-world transfer in a new business situation.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz tells",
+      "problem": "Correct options often carry the chapter's exact hard specifics while wrong options are visibly generic, which lets a test-wise reader guess some keys without fully reading.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable against a professional bar. The core lesson is clear, memorable, and bounded: WHY only becomes credible when HOW and WHAT return as inspectable proof. The summaries layer well, the quiz keys are sound, and the practical plan is low-friction. The main weakness is transfer: some examples feel like meta-teaching scenes about handling the book's own anchors rather than fresh situations where a reader can watch a decision create a consequence."
+}
+```

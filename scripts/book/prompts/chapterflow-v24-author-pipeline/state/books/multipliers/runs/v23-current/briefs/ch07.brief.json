@@ -1,0 +1,189 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch07",
+  "chapterNumber": 7,
+  "title": "The Accidental Diminisher",
+  "coreMove": "Because the publisher metadata explains why accidental Diminisher material belongs to the revised edition.",
+  "thesis": "HarperCollins states that the revised edition added two new chapters.",
+  "readerPromise": "After this chapter, a reader can because the publisher metadata explains why accidental Diminisher material belongs to the revised edition.",
+  "ownedCases": [
+    {
+      "id": "ch07.ex.harper-new-chapters",
+      "label": "HarperCollins revised new chapters"
+    },
+    {
+      "id": "ch07.ex.google-oxygen",
+      "label": "Google Project Oxygen"
+    },
+    {
+      "id": "ch07.ex.radical-candor",
+      "label": "Kim Scott Radical Candor"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "HarperCollins revised edition",
+    "Harvard Business Review article",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Netflix freedom and responsibility",
+    "Original HarperBusiness release",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor",
+    "Satya Nadella / Microsoft culture shift",
+    "Space Shuttle Challenger decision record"
+  ],
+  "cast": [
+    "Sabrina",
+    "Eleanor",
+    "Blake",
+    "Ethan"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"A source analyst sees May 2010 as the\"",
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch09): \"Years on the job are the early signal\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a doorway conversation",
+    "venue: a shared photo album",
+    "venue: a bulletin board note",
+    "frame: a first attempt at candid feedback practice that gets corrected",
+    "frame: a first-time experience that sets a lasting benchmark"
+  ],
+  "architectureFamily": "single-deep-case",
+  "openerType": "question",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "numbers-detective",
+    "prop-tableau",
+    "dialogue-beat"
+  ],
+  "practiceVerb": "say",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "partial",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    5,
+    4,
+    3,
+    8,
+    7,
+    6,
+    9,
+    2,
+    1
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "people-speak",
+    "artifact-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Sabrina"
+  },
+  "adjacentJobs": {
+    "prev": "Because a 2009 written artifact makes the case checkable rather than relying on vague reputation.",
+    "next": "Because the publisher page names dealing with Diminishers as added revised material, coping tactics belong in the 2017 sequence."
+  }
+}

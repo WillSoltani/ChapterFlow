@@ -36,7 +36,7 @@ import { resolve } from "path";
 
 import type { ChapterV21 } from "../types.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
-import { isAttestationFresh, loadAttestation } from "../critics/qcAttestation.js";
+import { attestationPath, isAttestationFresh, loadAttestation, type QcAttestation } from "../critics/qcAttestation.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { AUTHOR_BOOK_READERS, type AuthorAcceptanceRecord } from "./authorReview.js";
 
@@ -45,6 +45,15 @@ export type DurableAcceptanceResult = {
   /** A human-legible reason acceptance did NOT hold (empty when accepted). */
   reason: string;
 };
+
+function loadStoredAttestation(bookId: string, chapterNumber: number): QcAttestation | null {
+  try {
+    const bytes = readFileSync(attestationPath(bookId, chapterNumber));
+    return loadAttestation(bookId, chapterNumber, bytes);
+  } catch {
+    return null;
+  }
+}
 
 /** Load the newest persisted acceptance record for a book, or null. "Newest" =
  *  the record with the greatest `at` ISO timestamp (round2 supersedes round1;
@@ -85,7 +94,7 @@ export function deriveDurableAcceptance(
   // (a) EVERY chapter carries a FRESH PUBLISHABLE attestation with bookAcceptance.
   for (const ch of chapters) {
     const bookIdOfCh = bookId; // attestations are keyed by (bookId, chapterNumber)
-    const att = loadAttestation(bookIdOfCh, ch.number);
+    const att = loadStoredAttestation(bookIdOfCh, ch.number);
     if (!att) return { accepted: false, reason: `ch${ch.number}: no attestation` };
     if (att.verdict !== "PUBLISHABLE") return { accepted: false, reason: `ch${ch.number}: attestation verdict ${att.verdict}, not PUBLISHABLE` };
     if (att.dimensions?.bookAcceptance !== true) return { accepted: false, reason: `ch${ch.number}: attestation does not carry dimensions.bookAcceptance === true` };

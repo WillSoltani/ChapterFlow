@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch02",
+  "chapterNumber": 2,
+  "contentHash": "889c1772ad3cbac5",
+  "reviewerSessionId": "auto-author-review-ch02-mr75vuil-6",
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 87,
+    "density": 82,
+    "beginner": 83
+  },
+  "composite": 84.9,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "c",
+      "b",
+      "a",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong hook: short, memorable, and gives the chapter its governing distinction.",
+      "verified": true
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "This is the clearest transferable diagnostic question in the chapter.",
+      "verified": true
+    },
+    {
+      "quote": "The remote is still in Gabriel's hand when he calls Novelty a reason.",
+      "why": "This example has an invented-scene feel and the concrete object does not add much causal proof.",
+      "verified": true
+    },
+    {
+      "quote": "Before attention gets counted, ask what it proves.",
+      "why": "The idea is sound, but the example's action step is too compressed to teach a real workflow.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Some distractors are too obviously foolish or absolute, especially Q2a, Q4c, Q8c, and Q9c.",
+    "Correct answers often contain the named anchor plus the precise mechanism, while wrong answers often use giveaway overreach such as proof-by-rank, familiarity, or purpose language."
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "The Gabriel/TiVo example is thin: it names a person and object, but the before-to-after decision and consequence are mostly abstract.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The Noah example largely restates the Peer pressure lesson instead of showing a specific decision with a concrete consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong choices are giveaway overclaims, such as treating attention as settled proof or letting rank decide the label.",
+      "mustFix": false
+    },
+    {
+      "unit": "Q6",
+      "problem": "The keyed answer is sound, but 'venue changes how far the idea can honestly travel' is more abstract than the TiVo prose's simpler warning about novelty versus buying reason.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80-point professional bar. The core move is memorable, the General Motors/MCI/TiVo anchors do real teaching work, and the return-pass question gives readers something practical to do. The main weakness is not concept but execution in a few manufactured examples and quiz distractors: some scenes feel lightly staged, and several wrong options are too easy to reject without deep reading. Still, the chapter is clear, useful, bounded, and mostly well layered.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "d26870873b45489b2ac08567e7fa7e3ad759a282fb7d2e12f02c100496f4712b",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:18:58.201Z"
+}

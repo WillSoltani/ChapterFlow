@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch12",
+  "chapterNumber": 12,
+  "title": "Task-Relevant Maturity",
+  "coreMove": "because capability and confidence vary across different kinds of work",
+  "thesis": "Task-relevant maturity is specific to the task.",
+  "readerPromise": "After this chapter, a reader can because capability and confidence vary across different kinds of work",
+  "ownedCases": [
+    {
+      "id": "ch12.ex.newTaskVeteran",
+      "label": "Experienced employee on a new task"
+    },
+    {
+      "id": "ch12.ex.noviceTraining",
+      "label": "Novice learning a task"
+    },
+    {
+      "id": "ch12.ex.expertDelegation",
+      "label": "Expert delegated task"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure",
+    "Intel manager output formula"
+  ],
+  "cast": [
+    "Malcolm",
+    "Claire",
+    "Helena",
+    "Veronica"
+  ],
+  "answerIndexPattern": [
+    0,
+    0,
+    0,
+    2,
+    2,
+    1,
+    1,
+    1,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on agreed expectations",
+    "venue: a working note on below standard performance",
+    "venue: a working note on business unit coordination",
+    "frame: measurement surprise after the obvious fix looked good",
+    "frame: a stranger's small gesture that becomes a story worth repeating"
+  ],
+  "architectureFamily": "two-way-contrast",
+  "openerType": "question",
+  "challengeFrame": "audit-one-artifact",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "failure",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move"
+  ],
+  "quizFailureModes": [
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof"
+  ],
+  "questionFactOrder": [
+    1,
+    5,
+    2,
+    7,
+    3,
+    6,
+    4,
+    9,
+    8
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Experienced employee on a new task"
+  }
+}

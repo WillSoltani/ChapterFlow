@@ -1,0 +1,34 @@
+2026-07-08T08:07:26.378Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-08T08:07:28.159Z [MAJOR] PHASE write written 8/16 · gated 6 · qc'd 0
+2026-07-08T08:07:30.062Z [info]  author source-packets: compile-source-packets: PASS (16 packet(s))
+2026-07-08T08:07:31.406Z [info]  author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-08T08:07:32.862Z [info]  author book-design: compile-book-design: PASS
+2026-07-08T08:07:34.169Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T08:07:35.969Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+2026-07-08T08:07:37.265Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T08:07:37.274Z [info]  author write: 8 missing chapter(s) of 16 (parallel ≤6)
+2026-07-08T08:07:37.292Z [info]  author ch09: card is 26099 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:07:37.295Z [info]  author ch09: whole-chapter writer working (attempt 1, card 26099 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:07:37.318Z [info]  author ch10: card is 25632 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:07:37.327Z [info]  author ch10: whole-chapter writer working (attempt 1, card 25632 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:07:37.335Z [info]  author ch11: card is 25769 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:07:37.336Z [info]  author ch11: whole-chapter writer working (attempt 1, card 25769 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:07:37.341Z [info]  author ch12: card is 25553 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:07:37.341Z [info]  author ch12: whole-chapter writer working (attempt 1, card 25553 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:07:37.352Z [info]  author ch13: card is 25743 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:07:37.353Z [info]  author ch13: whole-chapter writer working (attempt 1, card 25743 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:07:37.362Z [info]  author ch14: card is 25757 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:07:37.363Z [info]  author ch14: whole-chapter writer working (attempt 1, card 25757 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:17:58.968Z [info]  author ch12: ch12: STIER-2 write contract FAIL — lead thread: the dealt lead case "Experienced employee on a new task" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Experienced) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T08:17:58.969Z [info]  author ch12: whole-chapter writer working (attempt 2, card 26084 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:21:58.356Z [info]  author ch13: ch13: STIER-2 write contract FAIL — lead thread: the dealt lead case "Manager as judge and jury" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Manager) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T08:21:58.357Z [info]  author ch13: whole-chapter writer working (attempt 2, card 26261 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:23:35.725Z [info]  author ch11: ch11: STIER-2 write contract FAIL — lead thread: the dealt lead (Brock) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T08:23:35.725Z [info]  author ch11: whole-chapter writer working (attempt 2, card 26094 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:24:51.639Z [info]  author ch09: ch09: rubric preflight FAIL — ch09: FAIL ease=67.847✗ fk=6.755~ tell=0 transfer=0.889 memClean=2 tic=0 nom=2.799 echo=0 lenTell=4 practice=2 — FAIL: fleschEase
+2026-07-08T08:24:51.640Z [info]  author ch09: whole-chapter writer working (attempt 2, card 27195 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:27:21.099Z [info]  author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T08:27:21.100Z [info]  author ch14: whole-chapter writer working (attempt 2, card 26089 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:27:38.465Z [info]  author ch13: done (gate-chapter clean)
+2026-07-08T08:27:38.469Z [info]  author ch15: card is 25728 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:27:38.470Z [info]  author ch15: whole-chapter writer working (attempt 1, card 25728 chars, gpt-5.5 @ xhigh, timeout 60min)

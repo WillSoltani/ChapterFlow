@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": ["Q1 key says b, but b preserves the sequence. The stem asks which rewrite breaks it; a breaks it by blending Known data and Assumptions, and c also breaks it by starting with Decisions and Results."],
+    "tells": ["Several correct choices are the only ones using the chapter's exact anchor vocabulary, such as Fort Worth boundary thinking, hard anchors, false grounding, and behavior-based evidence.", "Many distractors are visibly bad because they endorse overreach, authority, or repeating the lesson, so readers can often eliminate them without close prose recall."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 68,
+    "transfer": 78,
+    "practical": 82,
+    "summaries": 80,
+    "tone": 77,
+    "limits": 86,
+    "insight": 82,
+    "density": 76,
+    "beginner": 74
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The fix is not the end repair; it is the first weak guess.",
+      "why": "Strongest compressed statement of the chapter's core move."
+    },
+    {
+      "quote": "Known data is the load your choice has to carry.",
+      "why": "Memorable and practical image for why assumptions need evidence first."
+    },
+    {
+      "quote": "Q1: b — Choice 1 keeps the jobs distinct.",
+      "why": "Worst defect: the key marks the answer that does not satisfy the stem."
+    },
+    {
+      "quote": "A true detail can become false grounding when it travels without its setting.",
+      "why": "Strong mechanism for the boundary lesson, not just a rule."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed answer is unsound. Choice b preserves the four steps, while the stem asks for the rewrite that breaks the sequence. Choice a is the clearest break, and c is also supported as a break.",
+      "mustFix": true
+    },
+    {
+      "unit": "answer key Q1",
+      "problem": "The explanation uses 'Choice 1' while the displayed answer is lettered b, and the explanation contradicts the stem by saying the keyed choice keeps the jobs distinct.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct options often carry the exact lesson vocabulary while distractors are broad straw positions, making some answers guessable by tone and phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are plausible but feel manufactured because the human decision and consequence are thin; they often restate the lesson rather than showing a concrete operational before-to-after.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep/full read",
+      "problem": "The chapter leans heavily on abstract scaffolding phrases such as setting, mechanism, anchor, boundary, and proof, which may make the beginner path feel less natural.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: put Known data before Assumptions, then let Decisions and Results prove or revise the guess. Its best lines are memorable, and the boundary discussion around Fort Worth, Detroit, and Japanese assembly gives the idea useful limits. I would not ship it yet because Q1 has a blocking key-soundness failure, and the quiz design sometimes telegraphs the right answer through lesson-coded phrasing. Fix Q1 and sharpen a few examples into more concrete before-and-after decisions, and this is close to a professional pass."
+}
+```

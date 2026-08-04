@@ -1,0 +1,78 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation.",
+      "The Trier description says public speaking and arithmetic under evaluators create social judgment, so injury is not required.",
+      "The prose says stress makes fast relief feel like shelter and narrows attention before the long goal returns.",
+      "Tang's training is described as brief practice that steadies attention and softens stress reactivity before urges peak.",
+      "The chapter frames slow breathing as a body-state change that keeps choice online, not as mere delay.",
+      "The pause-and-plan response slows the body so arousal does not crowd out goal comparison.",
+      "The sleep section says tired attention loses its grip and loud cues can beat the intended goal.",
+      "The movement section says activity can improve mood, stress regulation, and executive function.",
+      "The chapter says waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Several correct answers use the chapter's exact mechanism language while distractors overstate with words like only, mainly, proved, or separate.",
+      "Q4 and Q8 are especially guessable by keyword match because the correct choices directly echo attention stability and mood, stress regulation, and executive function."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 84,
+    "transfer": 72,
+    "practical": 82,
+    "summaries": 91,
+    "tone": 87,
+    "limits": 94,
+    "insight": 88,
+    "density": 83,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Calm gives the future a vote.",
+      "why": "This is the chapter's core move in a memorable, portable line."
+    },
+    {
+      "quote": "A slower body can also become a hiding place.",
+      "why": "This is a strong limit that prevents the technique from becoming avoidance."
+    },
+    {
+      "quote": "When delay is the danger, the willpower move is to move now.",
+      "why": "The boundary condition is clear, practical, and reader-protective."
+    },
+    {
+      "quote": "Actually, the stronger move is to pump himself up and chase that panic before speaking, because a spike of adrenaline right at the peak is what proves the body is ready.",
+      "why": "This directly contradicts the chapter's body-first advice."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The What to do section first tells Adam to lower arousal, then says the stronger move is to chase panic and prove readiness with an adrenaline spike. This is SOURCE-CONTRADICTORY.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "The meditation example is thin-but-usable: it shows a classroom realization more than a before-to-after decision with a real consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are too visibly wrong because they rely on absolute or reductive claims, making several answers guessable without full reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The phrase fatigue tracking is introduced without enough plain-language explanation for a cold beginner.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, memorable core: willpower is partly a body-state problem, and readers should calm the body before asking it to choose. The layered reads, limits, and practical if-then plan are strong. I would not ship it yet because example 2 contains a direct contradiction that teaches the opposite behavior at the exact point where readers expect instruction. Fix that, sharpen a few quiz distractors, and the chapter is close to a professional bar."
+}
+```

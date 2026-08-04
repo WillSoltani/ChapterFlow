@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-006",
+  "parsed": {
+    "caseId": "SQ-006",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "The 90-second trial did not become shorter because it ended less painfully."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "People still endured more total discomfort than in the 60-second trial."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "It also warns you not to use a better ending as cover for needless pain."
+      }
+    ],
+    "explanation": "The candidate preserves total duration and added discomfort while explicitly rejecting use of a better ending to excuse needless pain or broken promises.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-006\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"The 90-second trial did not become shorter because it ended less painfully.\"},{\"materialIndex\":1,\"quote\":\"People still endured more total discomfort than in the 60-second trial.\"},{\"materialIndex\":1,\"quote\":\"It also warns you not to use a better ending as cover for needless pain.\"}],\"explanation\":\"The candidate preserves total duration and added discomfort while explicitly rejecting use of a better ending to excuse needless pain or broken promises.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

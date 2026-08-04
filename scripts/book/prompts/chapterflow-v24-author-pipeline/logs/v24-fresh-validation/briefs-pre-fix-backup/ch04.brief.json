@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch04",
+  "chapterNumber": 4,
+  "title": "Meetings--The Medium of Managerial Work",
+  "coreMove": "because the person doing the work has the freshest view of problems, decisions, and blocked dependencies",
+  "thesis": "One-on-ones should be shaped heavily by the subordinate's agenda.",
+  "readerPromise": "After this chapter, a reader can because the person doing the work has the freshest view of problems, decisions, and blocked dependencies",
+  "ownedCases": [
+    {
+      "id": "ch04.ex.oneOnOne",
+      "label": "One-on-one meeting"
+    },
+    {
+      "id": "ch04.ex.staffMeeting",
+      "label": "Staff meeting"
+    },
+    {
+      "id": "ch04.ex.operationsReview",
+      "label": "Operations review"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture"
+  ],
+  "cast": [
+    "Nova",
+    "Isabelle",
+    "Bradley",
+    "Sabine"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    1,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a text thread with a friend",
+    "venue: a lunch break",
+    "venue: a bulletin board note",
+    "frame: two stakeholders disagree about agreed expectations before deciding",
+    "frame: a first encounter with assigned owners that sets a benchmark"
+  ],
+  "architectureFamily": "two-way-contrast",
+  "openerType": "claim",
+  "challengeFrame": "audit-one-artifact",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "cross-out",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "failure",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "two-step-sequence",
+    "observe-then-note",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move"
+  ],
+  "quizFailureModes": [
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof"
+  ],
+  "questionFactOrder": [
+    2,
+    9,
+    4,
+    6,
+    5,
+    8,
+    7,
+    1,
+    3
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "One-on-one meeting"
+  }
+}

@@ -32,6 +32,10 @@ import {
   loadNamePolicy,
   type NamePolicyV1,
 } from "./namePolicy.js";
+import { createBookWriteLock } from "../books/bookLease.js";
+import { assertV4LibrarianWriterPreflight } from "../books/legacyLibrarianStateAdapter.js";
+import type { BookWriteLock } from "../books/leaseTypes.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -151,6 +155,11 @@ export type LibraryStateOptions = {
   }>;
 };
 
+export type LibraryStateV4Options = LibraryStateOptions & {
+  writeLock?: BookWriteLock;
+  legacyWriterEnabled?: boolean;
+};
+
 export type LibraryStateDriftReport = {
   statePath: string;
   drift: boolean;
@@ -173,12 +182,20 @@ const NAME_STOPWORDS = new Set([
   "So","Her","His","Then","Because","Before","After","While","Once","During","Without",
   "Within","Even","Only","Often","Now","Whenever","Here","There","Judge","Dr",
   "For","Under","Inter","Over","About","Between","Through","Beyond","Against","Among",
-  "Morning","Evening","Today","Tomorrow","Yesterday",
+  "Morning","Evening","Today","Tomorrow","Yesterday","Later","Earlier","Meanwhile",
+  "Afterward","Afterwards","Eventually","Suddenly","Finally","Soon","Sometimes","Usually",
+  "Tonight","Midnight","Noon","Instead","Otherwise","However","Somewhere","Everywhere","Nowhere",
   "You","Your","Yours","We","Us","Our","Ours","My","Mine","Their","Theirs",
   "I","Me","Myself","Yourself","Ourselves","Themselves","Himself","Herself","Itself",
   "Him","Them","Who","Whom","Whose","Which","What",
   "One","Two","Three","Four","Five","Six","Seven","Eight","Nine","Ten",
-  "Both","Neither","Either","Each","Every","Some","Another","Other",
+  "Both","Neither","Either","Each","Every","Some","Another","Other","None","Nothing",
+  "Nobody","Anyone","Everyone","Someone","Anybody","Everybody","Somebody","Anything",
+  "Everything","Something","Most","Many","Much","Few","Fewer","Several","All","Any",
+  "Half","Plenty","Enough","Less","More","Nowadays","First","Second","Third","Last","Next",
+  "Further","Furthermore","Moreover","Nevertheless","Nonetheless","Besides","Additionally",
+  "Similarly","Likewise","Certainly","Surely","Clearly","Obviously","Naturally","Ultimately",
+  "Altogether","Regardless","Indeed","Rather","Otherwise","Thus","Hence","Therefore","Accordingly",
   "Bed","Room","Desk","Office","Floor","Table","Counter","Kitchen","Lab",
   "Rereading","Reading","Looking","Walking","Sitting","Standing",
   "Reject","Accept","Call","Ask","Start","Stop","Wait","Keep","Pull","Push",
@@ -684,6 +701,51 @@ export async function saveLibraryState(state: LibraryState, opts: LibraryStateOp
   } finally {
     lease.release();
   }
+}
+
+/** V4 authority route: optimistic revision check under one short lock, then one replacement. */
+export async function saveLibraryStateV4(
+  state: LibraryState,
+  opts: LibraryStateV4Options = {},
+): Promise<LibraryState> {
+  assertV4LibrarianWriterPreflight(opts.legacyWriterEnabled);
+  const paths = pathsFor(opts);
+  mkdirSync(paths.stateDir, { recursive: true });
+  const writeLock = opts.writeLock ?? createBookWriteLock({ booksRoot: paths.stateDir, timeoutMs: 1_000, pollMs: 1 });
+  const locked = await writeLock.run("library-state", async () => {
+    try {
+      const before = existsSync(paths.ledgerPath) ? loadLibraryState(opts) : emptyState(opts);
+      if (state.revision !== before.revision) {
+        return {
+          ok: false,
+          error: {
+            code: "LIBRARIAN_STATE_STALE",
+            message: `library state revision ${state.revision} does not match stored revision ${before.revision}`,
+          },
+        } as const;
+      }
+      const normalized = normalizeState(state, opts);
+      normalized.revision = before.revision + 1;
+      normalized.lastUpdatedAt = iso(nowMs(opts));
+      writeFileAtomic(paths.ledgerPath, JSON.stringify(normalized, null, 2), "utf8");
+      Object.assign(state, normalized);
+      return { ok: true, value: state } as const;
+    } catch (cause) {
+      return { ok: false, error: { code: "LIBRARIAN_STATE_IO", message: (cause as Error).message } } as const;
+    }
+  });
+  if (!locked.ok) throw new Error(`${locked.error.code}: ${locked.error.message}`);
+  return locked.value;
+}
+
+export async function withLibraryStateV4(
+  mutate: (state: LibraryState) => LibraryState | void | Promise<LibraryState | void>,
+  opts: LibraryStateV4Options = {},
+): Promise<LibraryState> {
+  assertV4LibrarianWriterPreflight(opts.legacyWriterEnabled);
+  const before = existsSync(pathsFor(opts).ledgerPath) ? loadLibraryState(opts) : emptyState(opts);
+  const after = ((await mutate(before)) ?? before) as LibraryState;
+  return saveLibraryStateV4(after, opts);
 }
 
 export async function withLibraryState(

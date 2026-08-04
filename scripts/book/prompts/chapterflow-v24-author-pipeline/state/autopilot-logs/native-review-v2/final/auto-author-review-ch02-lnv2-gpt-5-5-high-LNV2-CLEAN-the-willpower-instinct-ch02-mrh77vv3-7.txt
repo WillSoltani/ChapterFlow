@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation.",
+      "The Trier description says public speaking/arithmetic under evaluators create social judgment without physical danger; the example adds low control.",
+      "The chapter says stress makes fast comfort feel like shelter and narrows attention before the long goal returns.",
+      "Tang's brief meditation practice is described as training attention and softening stress reactivity before an urge peaks.",
+      "The prose says slow exhale keeps the choosing part online by altering the body state, not by proving the message trivial.",
+      "Pause-and-plan asks for calm bodily room before choice; extra arousal would make the room louder and crowd out future goals.",
+      "The sleep section says tired attention loses its grip and loud cues can beat a goal the reader meant to remember.",
+      "The movement section says activity can improve mood, stress regulation, and executive function, lowering the next choice's load.",
+      "The chapter repeatedly says waiting until the craving peaks is unfair; the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "Choice c is clearly intended, but 'low control' is not established in the Trier description until an example, so a reader using only the deep read may see social judgment as better-supported than low control.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice b is the only option using the chapter's technical phrase 'beat-to-beat' and the most mechanistic wording.",
+      "Choice c is much more complete and uses the chapter's exact causal language.",
+      "Choice c is the only answer that treats stress as causal rather than blaming character.",
+      "Choice a is the only positive, evidence-aligned mechanism; b and c are plainly extreme.",
+      "Choice b is the uniquely mechanistic answer and echoes the review card wording.",
+      "Choice b is the only answer that mentions arousal and weighing goals, making it visibly chapter-aligned.",
+      "Choice a is the only answer with the chapter's phrase 'tired attention.'",
+      "Choice a lists the exact trio from the prose: mood, stress regulation, and executive function.",
+      "Choice c uses the chapter's giveaway phrase 'before the craving peaked.'"
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 83,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 86,
+    "tone": 88,
+    "limits": 92,
+    "insight": 88,
+    "density": 82,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "A compact, memorable statement of the core move."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "Strong limit-setting prevents the technique from becoming avoidance."
+    },
+    {
+      "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+      "why": "This is the weakest attribution: useful action, but the research link feels stretched."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The answer is derivable, but the phrase 'low control' is not explained in the main Trier description and appears mainly in Example 2, making part of the causal detail less well-grounded than social judgment.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The object-placement tactic is practical, but tying it directly to Yi-Yuan Tang's return practice overstates the example's research connection.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples teach the same move of stepping away, breathing, or delaying before an urge, so transfer is useful but somewhat repetitive across contexts.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core move is clear, memorable, and practical: change the body state before asking willpower to decide. The quiz is mostly fair and strongly derivable, though several correct answers are visibly longer and more mechanistic than the distractors. The best parts are the limits around delay and avoidance, plus concrete body-first tactics. The main weakness is not validity but range: a few examples lean on thin research bridges or repeat the same delay pattern instead of showing more varied consequences."
+}
+```

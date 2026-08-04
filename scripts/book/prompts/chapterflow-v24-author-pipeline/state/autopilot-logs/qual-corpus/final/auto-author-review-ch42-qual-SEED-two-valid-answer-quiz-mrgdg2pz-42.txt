@@ -1,0 +1,81 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present; the hook also telegraphs that Q2 would have two defensible answers, but Q2 does not exist."]
+  },
+  "scores": {
+    "retention": 0,
+    "quizzes": 0,
+    "transfer": 0,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 10,
+    "limits": 0,
+    "insight": 0,
+    "density": 0,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review. Quiz Q2 has two defensible answers by design.",
+      "why": "Worst defect: the chapter is meta-placeholder text, not reader-facing instruction, and it references a nonexistent quiz item."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "Worst defect: the layered read sections exist only as empty headings, so none can stand alone."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: the assessment and retention apparatus is entirely absent."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "chapter",
+      "problem": "The chapter contains headings and meta-review placeholder text but no teachable prose, so a reader cannot learn the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and fails its standalone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and fails its standalone explanation promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and fails its standalone full-instruction promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "No quiz questions or answer choices are present, despite the hook referencing Quiz Q2.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples section is empty, so there is no transfer model to evaluate or learn from.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The practice section is empty, so the chapter gives no actionable learner behavior.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty, so the retention layer is missing.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is not a chapter yet; it is a skeleton of section headings plus a meta note about review status and a nonexistent ambiguous Q2. Because there is no instructional prose, no examples, no practice task, no quiz, and no review material, the product promise fails structurally rather than merely needing polish."
+}
+```

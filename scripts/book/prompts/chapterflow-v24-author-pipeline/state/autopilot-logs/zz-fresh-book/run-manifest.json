@@ -1,0 +1,20 @@
+{
+  "schemaVersion": "autopilot-run-manifest-v1",
+  "bookId": "zz-fresh-book",
+  "arch": "legacy",
+  "flags": {
+    "autoPublish": false,
+    "regen": false,
+    "plan": false,
+    "maxRepairRounds": 4,
+    "maxParallel": 6
+  },
+  "bar": null,
+  "readerCount": null,
+  "beatShipped": null,
+  "startedAt": "2026-07-12T23:30:52.612Z",
+  "finishedAt": "2026-07-12T23:30:52.612Z",
+  "terminal": "shipped",
+  "packageSha": null,
+  "packageSize": null
+}

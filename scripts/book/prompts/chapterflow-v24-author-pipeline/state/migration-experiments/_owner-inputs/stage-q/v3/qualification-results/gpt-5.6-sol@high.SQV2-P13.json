@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P13",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_REAL_CASE_SPECIFICS\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"On the second morning in Lexicon Branding's naming studio, the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste.\",\"Later the product naming wall holds three routes from multiple teams: one descriptive, one suggestive, one short and invented.\"],\"rationale\":\"The source plan supports only the general facts that Lexicon Branding uses multiple teams and naming routes during product and brand-name development. The candidate presents an exact morning, studio setting, naming lead, wall exercise, initial favorite, room reaction, and a specific three-route taxonomy as events in the real case, although none of those details is sourced. Because these invented particulars form the scenario's central factual narrative rather than incidental color, the defect is material and should block publication.\"}"
+}

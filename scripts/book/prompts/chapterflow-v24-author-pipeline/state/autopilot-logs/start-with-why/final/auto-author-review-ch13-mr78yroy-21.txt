@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers reuse the chapter's exact governing language while distractors are plainly wrong, especially Q3 'second anchor', Q4 'hard specifics', Q8 'bicycle shop token', and Q9 'left Sinek's background'.", "Some distractors are too self-disqualifying without reading, such as approving a blurred motto before splitting it, trusting the line first, or applying one retail idea to every organization."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 84,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 87,
+    "insight": 86,
+    "density": 82,
+    "beginner": 80
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The past does not trap the WHY; it earns it.",
+      "why": "Strongest compact line: it makes the chapter's core move memorable without adding jargon."
+    },
+    {
+      "quote": "Send the detail home.",
+      "why": "A sticky operational phrase that turns source discipline into a concrete action."
+    },
+    {
+      "quote": "That is not discovery. That is a sales tactic with older nouns.",
+      "why": "Sharpest limit: it names the failure mode behind cherry-picking origins."
+    },
+    {
+      "quote": "The blue share icon is still lit when he adds Wilbur Wright, Orville Wright, and the bicycle shop as the second anchor.",
+      "why": "This detail feels decorative and slightly artificial compared with the chapter's otherwise clean mechanism."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Correct answers often echo the chapter's exact phrases while distractors are implausible, creating key-guessing tells rather than forcing derivation from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The 'blue share icon' detail supplies scene texture but no meaningful before-to-after consequence, so it reads like manufactured specificity.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The ledger/accounting metaphor is useful but repeated enough that a few paragraphs restate the same warning instead of adding new distinction.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner path",
+      "problem": "Past patterns, Contribution, Impact, WHY statement, anchors, venues, and tokens are all introduced quickly; a cold beginner can follow it, but the chapter asks them to hold many labels at once.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable. The core lesson is clear and memorable: do not write a WHY from a smooth slogan; trace past patterns, keep details attached to their source, then name contribution and impact. Its best lines are genuinely sticky, the examples mostly show decisions and consequences, and the limits section prevents overreach. The main weakness is the quiz design: several keys are guessable because the right choices reuse the chapter's signature terms while distractors sound obviously unsound. I would ship it, with a recommended quiz polish pass."
+}
+```

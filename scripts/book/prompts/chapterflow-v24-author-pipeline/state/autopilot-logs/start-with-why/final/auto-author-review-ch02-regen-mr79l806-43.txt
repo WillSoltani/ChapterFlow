@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often reuse exact chapter labels or phrasing while distractors use broad absolutes like everywhere, already, only, every, and master pattern.", "Several correct choices are the most specifically grounded option, making the answer guessable from specificity even without full comprehension."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 90,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong hook: concise, memorable, and it frames the whole chapter."
+    },
+    {
+      "quote": "The concrete price of a borrowed spike is a stale reason and another push next week.",
+      "why": "Best mechanism line: it makes the hidden cost of mistaking motion for loyalty vivid."
+    },
+    {
+      "quote": "What to do: At the first newness spike, split notice from need.",
+      "why": "Useful action, but the surrounding example is thinner than the GM and MCI examples."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The correct answers are often easy to spot because they contain the chapter's exact named mechanism or specific anchor, while distractors are broad, overclaiming, or obviously wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The TiVo example teaches the right distinction but has a thin before-to-after sequence; it says attention stood where a reason should be, but the decision and consequence are less concrete than in stronger examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Noah feels like a lightly invented carrier for the MCI lesson rather than a fully concrete case with a place, measured outcome, or distinctive consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears a professional bar. The core move is memorable, practical, and repeated through distinct anchors: GM for price cuts, MCI for social pull, and TiVo for novelty. The best material explains the mechanism instead of merely warning against discounts. The main weakness is quiz construction: the right answers often announce themselves through specificity and familiar phrasing. A couple of examples also feel thinner than the chapter's strongest passages, but they do not break the learning promise."
+}
+```

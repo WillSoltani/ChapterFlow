@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch04",
+  "chapterNumber": 4,
+  "contentHash": "07bdd8ae8de352fc",
+  "reviewerSessionId": "auto-author-review-ch04-mrdyz9kd-7",
+  "scores": {
+    "retention": 89,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 81,
+    "limits": 88,
+    "insight": 87,
+    "density": 84,
+    "beginner": 83
+  },
+  "composite": 85.8,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Debate is the rock tumbler, not the rock fight.",
+      "why": "Strong memorable image that cleanly separates useful friction from personal conflict.",
+      "verified": true
+    },
+    {
+      "quote": "What looks like speed becomes debt.",
+      "why": "Concise mechanism line that makes the chapter's main warning memorable.",
+      "verified": true
+    },
+    {
+      "quote": "The blue calendar block is the only hard detail: execution has stalled.",
+      "why": "Weakest example moment: the scene is thin and generic, with little concrete before-to-after action.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers are the only choices using the chapter's exact constructive vocabulary, especially Q2's 'focused friction' and Q6's 'seven jobs,' which makes some keys guessable without full reading."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer is more guessable because it is the only option phrased in the chapter's positive lesson language, while both distractors sound plainly avoidant.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it has a role and setting, but the concrete situation is mostly a calendar block and stalled execution, with little specific decision consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The phrase 'Aristotle three elements, the trio emotion credibility logic' is awkward and slightly scaffold-like for a beginner reader.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. It teaches the GSD Wheel as a diagnostic tool rather than a vague collaboration slogan, and its best lines make the core move stick. The quizzes are fair and key-sound, though a few correct choices are easier to spot from lesson-shaped wording. The main craft weakness is that one example is thin and some source-label phrasing feels mechanical, but none of that prevents a reader from learning or applying the chapter.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "503fe2ab85f5c132f06c27b7daa03ea7c1d82bc9261d596024af43a4ea1f6e86",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:39:39.706Z"
+}

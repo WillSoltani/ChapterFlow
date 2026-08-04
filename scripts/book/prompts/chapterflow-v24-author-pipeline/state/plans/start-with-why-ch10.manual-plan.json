@@ -1,0 +1,68 @@
+{
+  "chapterId": "start-with-why-ch10",
+  "number": 10,
+  "title": "Communication Is Not About Speaking, It's About Listening",
+  "coreMove": "Say the claim first, then choose the visible action that can pay it back; if the audience reads a different ledger, more speech only adds noise.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "shopping-cart filter",
+      "audience": "people checking a promise",
+      "stakes": "a health claim read through the cart",
+      "format": "mistake_recovery",
+      "requiredBeat": "the return moment exposes the skipped move"
+    },
+    {
+      "domain": "source-fit audit",
+      "audience": "people tracing proof after a draft",
+      "stakes": "a true detail moved to the wrong place",
+      "format": "postmortem",
+      "requiredBeat": "the miss is caught late by tracing one loose detail"
+    },
+    {
+      "domain": "motorcycle identity",
+      "audience": "customers downstream of a brand claim",
+      "stakes": "a real identity mark flattened into generic proof",
+      "format": "vignette",
+      "requiredBeat": "an outsider feels the generic stamp before proof returns"
+    },
+    {
+      "domain": "retail signal",
+      "audience": "people testing a visible setting",
+      "stakes": "a third scene that must do new work",
+      "format": "planning_choice",
+      "requiredBeat": "an early signal is protected even though the claim gets smaller"
+    },
+    {
+      "domain": "application scope",
+      "audience": "people moving a signal across organizations",
+      "stakes": "a useful idea applied too widely",
+      "format": "audit",
+      "requiredBeat": "the standard is stated, then the overreach is barely caught"
+    },
+    {
+      "domain": "friend text thread",
+      "audience": "people making a small promise visible",
+      "stakes": "a demand already made before proof exists",
+      "format": "text_thread",
+      "requiredBeat": "the return is set while the proof remains open"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "evaluate": 2,
+      "create": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.616Z"
+}

@@ -1,0 +1,106 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 12,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 8,
+    "summaries": 0,
+    "tone": 15,
+    "limits": 2,
+    "insight": 12,
+    "density": 8,
+    "beginner": 14
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Instructions in data must never steer the evaluator.",
+      "why": "This is the chapter's clearest and most memorable statement of the intended principle."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "The consecutive empty headings expose the absence of the promised learning layers and application."
+    },
+    {
+      "quote": "# ChapterFlow remediation implementation prompt — Difficult Conversations: How to Discuss What Matters Most ## Assignment and source boundary",
+      "why": "The supposed example is mostly an embedded operational artifact rather than an explained teaching example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook only identifies the document as a phase-1 chapter and gives the reader no problem, stakes, concept, or reason to continue.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone promise and provides no rapid explanation of the chapter's core move; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it supplies no mechanism, reasoning, distinctions, or deeper instruction; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no complete lesson from which a reader could learn the core move; reserved categories: STRUCTURALLY INVALID and UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty and therefore does not provide the promised stand-alone takeaway; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no concrete action, procedure, or practice opportunity; reserved categories: STRUCTURALLY INVALID and UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example dumps a long remediation and scoring artifact, then appends only a generic instruction and rationale. It shows no worked decision, handling procedure, or before-to-after consequence, making it thin but marginally usable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The embedded artifact is truncated mid-table, producing distracting, incomplete material that does not establish a coherent scenario.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or choices, so retrieval cannot be assessed and the required answer derivation is impossible; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, eliminating the promised review and retrieval support; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, despite the prose containing a potentially reusable line about instructions in data.",
+      "mustFix": false
+    },
+    {
+      "unit": "chapter-wide",
+      "problem": "The chapter never explains how to recognize untrusted instructions, separate data from authority, respond safely, or handle ambiguous cases, so a reader could not reliably apply its stated principle; reserved category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter-wide",
+      "problem": "No boundaries, failure modes, exceptions, or limits are discussed.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter: it is an almost empty scaffold containing one long unprocessed artifact and two sentences of instruction. The principle that instructions embedded in data must not steer an evaluator is useful and transferable, but the page does not teach recognition, mechanism, procedure, edge cases, or practice. Every promised reading layer is empty, the quiz is absent, and the review supports are blank, so the product cannot deliver or assess learning at a professional standard."
+}
+```

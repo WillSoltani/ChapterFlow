@@ -1,0 +1,49 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Mild tell: several correct choices echo the chapter's repeated diagnostic words, especially 'setting,' 'conduct,' 'carry,' and 'scope edge,' while distractors often sound broadly promotional or overgeneralized."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 87,
+    "limits": 89,
+    "insight": 90,
+    "density": 86,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Success is not the proof; it is the weather that can hide the proof.",
+      "why": "Strongest memory hook: it cleanly reverses the common metric-as-proof mistake."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Best compression of the chapter's core diagnostic distinction."
+    },
+    {
+      "quote": "Rain clicks on the windshield as Heath traces back the error: Walmart, 1962, Bentonville; Starbucks, Seattle, 1971; Microsoft, 1975 founding, Redmond headquarters.",
+      "why": "Weakest example moment: scene texture crowds a repeated lesson without adding much decision consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: the rainy scene dressing and list of company details mostly repeat the chapter's existing pattern rather than showing a fresh before-to-after application.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed option is somewhat easier to spot because it uses the chapter's own 'Seattle' and contrast language while the distractors introduce less-supported abstractions.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear core move: do not let a rising count stand in for WHY; force the count to return with visible conduct in the right setting. The summaries, review cards, examples, and implementation plan all reinforce that move without contradicting each other. The main weakness is that a few examples and quiz choices lean heavily on the same company-detail pattern, so transfer feels narrower than the best practical sections. Still, the mechanism is memorable, applicable, bounded, and fair to a cold reader."
+}
+```

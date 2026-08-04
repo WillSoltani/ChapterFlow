@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch11",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Yield Shortcut in Chat",
+      "scenario": "Eli drops a bond candidate into the team chat with a short note: \"highest yield, so it looks best.\" Sofia runs the before-after audit. Before, the choice rests on yield attraction alone, and the old default fails when Jonah asks whether earnings cover interest charges by a safe margin. After, the chat note changes to a simplified practical check borrowed from the Security Analysis tradition: yield comes second to whether the issuer can keep paying the coupon.",
+      "whatToDo": "Rewrite the chat recommendation before acting on it. Put the coverage question ahead of the yield claim: can earnings cover interest charges by a safe margin, or is the high yield warning that coverage may be weak?",
+      "whyItMatters": "A high coupon is not useful if the issuer cannot keep paying it. The practical lay version of professional security analysis starts by testing bond safety, not by rewarding the most attractive yield label.",
+      "sourceAnchorIds": [
+        "ch11.fact.1",
+        "ch11.example.1"
+      ],
+      "sourceFactIds": [
+        "ch11.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch11.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Handoff That Slows the Latest Number",
+      "scenario": "Sofia is finishing a clinic handoff when Jonah points to a stock note and says the latest earnings number should be the value base. Iris repairs the conversation before the decision is logged. She asks for normalized earnings power first, because one year's profit can be distorted by cycles or unusual items. The handoff changes from \"approve on the latest profit\" to \"wait until the earnings record is normalized,\" then future cash flow valuation can be discussed without pretending one year is enough.",
+      "whatToDo": "In the handoff, replace the latest-earnings shortcut with a normalized-earnings question. Use the John Burr Williams / Theory of Investment Value reference only after the base earnings power is less dependent on one year's profit.",
+      "whyItMatters": "Future cash flow valuation depends on estimates, and the starting earnings base matters. A normalized record reduces one-year distortion, so the decision changes from fast approval to a more restrained valuation step.",
+      "sourceAnchorIds": [
+        "ch11.fact.2",
+        "ch11.example.2"
+      ],
+      "sourceFactIds": [
+        "ch11.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch11.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Dashboard Memo That Gives Back Precision",
+      "scenario": "Jonah writes a tradeoff memo inside a banking dashboard and gives the stock valuation a precise growth estimate. Iris challenges the memo because small changes in assumed growth can produce large changes in valuation. Marcus tries to recover by pointing to a bond tab, but the first revision still treats the forecast as exact. The final memo keeps the growth estimate conservative and adds the bond safety arithmetic reminder: coverage ratios test whether earnings cover interest charges before a bond comparison can be useful.",
+      "whatToDo": "Edit the dashboard memo in stages. First, mark the growth assumption as conservative rather than exact. Then add the recovery note: when comparing against bonds, check interest coverage and earnings against interest charges instead of treating the bond label as automatic safety.",
+      "whyItMatters": "Forecast precision often exceeds available evidence. The recovery has friction because the memo has to give up a clean-looking number and replace it with conservative assumptions plus bond coverage checks.",
+      "sourceAnchorIds": [
+        "ch11.fact.3",
+        "ch11.example.3"
+      ],
+      "sourceFactIds": [
+        "ch11.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch11.example.3"
+      ]
+    }
+  ]
+}

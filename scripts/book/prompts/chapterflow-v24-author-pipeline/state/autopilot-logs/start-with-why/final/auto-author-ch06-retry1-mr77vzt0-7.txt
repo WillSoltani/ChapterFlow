@@ -1,0 +1,10 @@
+Completed [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+Validation in the active v24 author pipeline:
+- `author-check` clean
+- `gate-chapter` PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify` 9/9 matches
+- rubric preflight now clears the prior issue: `memorableClean=3`, `tellRate=0`, `lengthTell=3`, `transfer=0.778`, ease `74.871`
+- rendered visible length: `15,551` chars
+
+One note: I also tried the sibling legacy `chapterflow-v21-authored` gate because the pasted AGENTS file names that directory. It blocks on a stale six-example floor, which conflicts with this brief’s explicit “EXACTLY 4 examples” requirement, so I did not change the chapter to satisfy that incompatible rule.

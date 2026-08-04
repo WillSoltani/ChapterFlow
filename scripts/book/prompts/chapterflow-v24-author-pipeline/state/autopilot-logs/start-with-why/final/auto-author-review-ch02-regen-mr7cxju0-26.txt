@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers carry the chapter's exact anchor phrases while distractors are plainly extreme: Q5 uses 'MCI's 1991 Friends & Family marker,' Q6 uses 'digital video recorder detail mark the edge,' and Q9 uses 'employee discount belongs with General Motors.'"]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 72,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 84,
+    "insight": 85,
+    "density": 78,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A discount can win the sale and still lose the buyer because it hides why they moved.",
+      "why": "Strongest compact statement of the chapter's core distinction."
+    },
+    {
+      "quote": "Cross out the carrot before it writes the reason for you.",
+      "why": "Memorable and actionable; it gives the reader a portable move."
+    },
+    {
+      "quote": "Partner Noah feels the offer through people tied to the choice.",
+      "why": "This example turns vague and synthetic; the person and situation do not feel real enough to carry transfer."
+    },
+    {
+      "quote": "The concrete price of the default is another push with no better reason behind it.",
+      "why": "Opaque phrasing that sounds weighty but is hard to parse cold."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 3",
+      "problem": "The Noah example is too vague to prove transfer: no concrete venue, metric, decision context, or observable before-to-after consequence beyond restating that peer pressure is borrowed.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples section",
+      "problem": "Several named people appear invented and thinly specified, so the examples sometimes feel like lesson-shaped scenarios rather than real applications with stakes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some correct choices are easier to guess because they preserve the chapter's exact named anchors while distractors make exaggerated claims such as proving every future case or using attention as settled proof.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The sentence about 'the concrete price of the default' is abstract and unclear, briefly weakening an otherwise plain mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "density",
+      "problem": "The core loop is repeated many times in similar language: name the push, ask what returns, do not call it preference. The repetition aids memory but leaves some paragraphs feeling padded.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a clear, useful chapter with a memorable core move: separate the push from the reason, then ask what still happens after the push disappears. The summaries layer well, the mechanism is mostly plain, and the practical exercise is something a reader could actually do. I would not ship it yet at a professional 84 bar because the transfer section depends too much on thin, synthetic examples, especially Example 3, and the quiz has a few answer-pattern tells. Tightening the invented applications into more concrete before-and-after cases would likely make it shippable."
+}
+```

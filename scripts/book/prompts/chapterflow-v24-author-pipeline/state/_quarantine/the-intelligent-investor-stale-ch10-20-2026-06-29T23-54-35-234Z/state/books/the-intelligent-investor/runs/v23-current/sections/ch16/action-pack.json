@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch16",
+  "tryThisNow": "Start a receipt check for the next convertible or warrant: write separate lines for bond protection, conversion price, income, and whether the option can expire without value.",
+  "tryThisNowSourceAnchorIds": [
+    "ch16.fact.1",
+    "ch16.fact.2",
+    "ch16.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Run a Hybrid Receipt Check",
+    "titleSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ],
+    "coreSkill": "Use a short receipt before treating a hybrid security as attractive. Separate bond protection from option value, make conversion price visible, and do not treat a low warrant price as safety when there is no income and the warrant can expire without value.",
+    "coreSkillSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch16.fact.1",
+        "sourceAnchorIds": [
+          "ch16.fact.1",
+          "ch16.example.1"
+        ],
+        "context": "phone call",
+        "plan": "If a convertible is being praised mainly for its conversion feature, then write two receipt lines before continuing: bond protection and equity option value."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.2",
+        "sourceAnchorIds": [
+          "ch16.fact.2",
+          "ch16.example.1"
+        ],
+        "context": "shared spreadsheet",
+        "plan": "If any conversion privilege is being treated as valuable by default, then add a conversion price row and mark the option unproven until the common stock must rise enough above that price."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.3",
+        "sourceAnchorIds": [
+          "ch16.fact.3",
+          "ch16.example.2"
+        ],
+        "context": "email draft",
+        "plan": "If a warrant looks conservative because it costs less than shares, then add the receipt line that it usually pays no income and can expire without value before sending the decision."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, complete one receipt check on a convertible or warrant already under consideration. Keep it out of the active list unless bond protection, conversion price, income, and expiry risk are all written down.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ],
+    "weeklyPractice": "Once a week, run a three-minute scoreboard on any hybrid security still on the list: one mark for separate bond and option analysis, one mark for visible conversion price, and one mark for no-income or expiry risk when a warrant is involved.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ]
+  }
+}

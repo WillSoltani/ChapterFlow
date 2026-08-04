@@ -1,0 +1,71 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several distractors are easy to reject without reading because they rely on rank, fame, or authority overriding evidence.",
+      "Correct choices repeatedly use the chapter's favored vocabulary: evidence, separate jobs, local mark, wrong anchor, scope mark, comparison."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 85,
+    "summaries": 88,
+    "tone": 79,
+    "limits": 86,
+    "insight": 87,
+    "density": 81,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The audience is not waiting for your speech; your choices have already spoken.",
+      "why": "Strongest line: memorable, concrete, and central to the chapter's mechanism."
+    },
+    {
+      "quote": "Make the promise come back.",
+      "why": "Strong compression of the practical move; easy to remember and apply."
+    },
+    {
+      "quote": "source-fit reader Derek traced the fault back to rice milk.",
+      "why": "Worst defect: the examples start to expose production scaffolding instead of feeling like natural reader-facing cases."
+    },
+    {
+      "quote": "The 2001 retail setting gives the stop sign.",
+      "why": "The metaphor is useful but under-explained; it may confuse a cold beginner."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples feel like internal revision/workflow scenes rather than clean real-world applications, with phrases such as source-fit reader, pass, draft, and scope analyst creating scaffold smell.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Distractors lean too often on obviously bad authority shortcuts, so readers can often guess the answer by rejecting rank/fame/status rather than deriving from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Apple Store/Cupertino scope logic is conceptually sound but abstract; the chapter never gives enough concrete Apple retail behavior to make the third anchor as vivid as the grocery cart.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Terms like anchor, venue, return, scope mark, and false ground accumulate quickly and may burden beginners despite the plain central idea.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The practical transfer is strongest for communication audits but weaker for interpersonal or operational settings because many examples stay close to text, memos, recaps, and drafts.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core: behavior speaks before explanation, and the best signals make a promise visibly return. The summaries, memorable lines, and quiz keys are mostly sound. I would not ship it yet at a professional 84 bar because the examples sometimes reveal the machinery of chapter construction instead of teaching through natural cases, and the Apple Store/Cupertino anchor is less concrete than the cart and Harley-Davidson material. Clean up the scaffold language, make the third anchor more inspectable, and sharpen quiz distractors so they teach rather than telegraph."
+}
+```

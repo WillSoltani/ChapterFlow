@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "atomic-habits-ch07",
+  "chapterNumber": 7,
+  "contentHash": "1455cceb44702775",
+  "reviewerSessionId": "eval-proxy-atomic-habits-ch07-1783022480949",
+  "scores": {
+    "retention": 94,
+    "quizzes": 68,
+    "transfer": 92,
+    "practical": 94,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 86,
+    "insight": 90,
+    "density": 84,
+    "beginner": 93
+  },
+  "composite": 87.9,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "If a habit keeps winning, it is not weakness. It is geography.",
+      "why": "Strongest memorable compression of the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "Most of what you call self-control is not a feeling. It is a floor plan.",
+      "why": "Clear, sticky mechanism that reframes self-control as design.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Obvious production artifact that should not ship.",
+      "verified": true
+    },
+    {
+      "quote": "Explanation: Moving the bowl removes the cue, so the craving fades without daily resistance.",
+      "why": "The quiz gives away the answer directly beneath the choices.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Each quiz item includes an explanation immediately under the choices that reveals the correct answer before the bottom answer key.",
+    "The correct option is usually the most concrete environmental-friction choice and is often the longest or most detailed answer."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Every quiz question includes an explanation immediately after the options, so the reader can infer the keyed answer without using the answer key or deriving it from the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Correct answers follow a visible pattern: they are usually the most specific environmental-change option and often the longest, while distractors are shorter willpower, tracking, or reward options.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The line 'Title: undefined' is a visible generation/scaffold artifact.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The six examples are useful but somewhat repetitive: most restate the same cue-removal mechanism with only surface-context changes, which slightly lowers density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is conceptually strong, memorable, practical, and beginner-friendly. Its core idea lands cleanly through concrete images like cookies across the hall, phones in a basket, and a rerouted walk home. I would not ship it yet because the quiz section is structurally compromised: explanations reveal the answers before the answer key, and the correct choices have a repeated tell pattern. The visible 'Title: undefined' artifact also blocks a professional release. Fix those production and assessment issues and this would likely clear the 84 bar."
+}

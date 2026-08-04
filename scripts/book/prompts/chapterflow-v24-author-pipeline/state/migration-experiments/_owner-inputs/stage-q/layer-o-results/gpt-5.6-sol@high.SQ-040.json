@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-040",
+  "parsed": {
+    "caseId": "SQ-040",
+    "verdict": "DEFECT",
+    "defectClass": "GENERIC_ANSWER_RELABELING",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Start from a shared fact about the draft, name the concern, and invite revision rather than verdict."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "keeps the conversation tied to three layers"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Start from a shared fact about the draft, name the concern, and invite revision rather than verdict."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "keeps the conversation tied to clear self-speaking"
+      }
+    ],
+    "explanation": "The question, choices, and correct answer are identical. Only the explanation swaps in the chapter label, while the answer does not distinctly assess sorting the three conversations versus speaking clearly for oneself.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-040\",\"verdict\":\"DEFECT\",\"defectClass\":\"GENERIC_ANSWER_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\"},{\"materialIndex\":0,\"quote\":\"keeps the conversation tied to three layers\"},{\"materialIndex\":1,\"quote\":\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\"},{\"materialIndex\":1,\"quote\":\"keeps the conversation tied to clear self-speaking\"}],\"explanation\":\"The question, choices, and correct answer are identical. Only the explanation swaps in the chapter label, while the answer does not distinctly assess sorting the three conversations versus speaking clearly for oneself.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

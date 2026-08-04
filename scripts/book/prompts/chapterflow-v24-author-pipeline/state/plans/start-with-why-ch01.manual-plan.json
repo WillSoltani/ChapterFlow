@@ -1,0 +1,68 @@
+{
+  "chapterId": "start-with-why-ch01",
+  "number": 1,
+  "title": "Assume You Know",
+  "coreMove": "When a fix looks smart, walk backward: put known data before assumptions, spend a small decision, and use the named cases to see what changed.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "auto assembly",
+      "audience": "operations team",
+      "stakes": "late correction becomes normal",
+      "format": "walkthrough",
+      "requiredBeat": "early signal before late correction"
+    },
+    {
+      "domain": "automobile manufacturing",
+      "audience": "quality group",
+      "stakes": "visible defects get solved late",
+      "format": "postmortem",
+      "requiredBeat": "standard stated before premise is caught"
+    },
+    {
+      "domain": "airline operations",
+      "audience": "gate staff",
+      "stakes": "routine defended as obvious",
+      "format": "counterfactual",
+      "requiredBeat": "return set before proof arrives"
+    },
+    {
+      "domain": "airline operations",
+      "audience": "operations group",
+      "stakes": "proof returns unclear",
+      "format": "source-fit-audit",
+      "requiredBeat": "return moment with proof still weak"
+    },
+    {
+      "domain": "operations training",
+      "audience": "process coaches",
+      "stakes": "true detail used in the wrong place",
+      "format": "live-correction",
+      "requiredBeat": "stop the true detail before it travels"
+    },
+    {
+      "domain": "automobile manufacturing",
+      "audience": "supplier team",
+      "stakes": "late-fix habit travels",
+      "format": "comparison-ledger",
+      "requiredBeat": "second factual token before late correction is approved"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 2,
+      "evaluate": 2,
+      "understand": 2
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.614Z"
+}

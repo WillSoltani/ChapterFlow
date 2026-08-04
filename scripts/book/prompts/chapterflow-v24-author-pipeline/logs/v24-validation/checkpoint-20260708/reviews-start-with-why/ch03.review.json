@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch03",
+  "chapterNumber": 3,
+  "contentHash": "8ccb6fb4f8e96a21",
+  "reviewerSessionId": "auto-author-review-ch03-mrb9vni6-3",
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 83,
+    "summaries": 86,
+    "tone": 82,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 81
+  },
+  "composite": 84.8,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A hard detail is a promise tied to one source. Move it and you may make the whole claim feel made up.",
+      "why": "Strongest retention line: concrete, portable, and central to the chapter's warning.",
+      "verified": true
+    },
+    {
+      "quote": "Use the order as a question, not a chant. What belief comes first? What way makes it visible? What thing can bear the price?",
+      "why": "Best practical moment: it turns the framework into a usable diagnostic.",
+      "verified": true
+    },
+    {
+      "quote": "### Example 4: Brock Repairs The Drift\nAt the workshop check-in, founder Sylvia names the miss after it has already played out.",
+      "why": "Worst defect: the example title and body point to different actors.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several distractors are made easier by broad overreach words such as 'every,' 'only,' 'by itself,' and 'already treated as settled.'",
+    "Q7's correct choice is the only specific, checkable anchor while the other choices visibly overclaim from one example."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "Some distractors are too easy to reject because they overclaim with words like 'every,' 'only,' 'by itself,' and 'already treated as settled.'",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed option's 'nearby misconception' wording is vaguer than the prose's sharper limit/boundary-marker point, though b is still the best answer.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The heading names Brock as the repair actor, but the example body centers Sylvia, creating avoidable actor confusion.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The recurring 'price' metaphor carries several jobs before it is fully grounded, which makes the chapter a little harder for a cold beginner.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a clear core move: put WHY before HOW and WHAT, then keep visible proof and hard details attached to the source that can actually bear them. Its best material is memorable and practical, especially the warnings against borrowed specificity and sloganized purpose. The main weaknesses are not blocking defects: a few quiz distractors are guessable by overreach, one example has an actor mismatch, and the 'price' metaphor asks beginners to work a little harder than necessary.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "f3b0293686d64acb1439a01e43047a2cc6aa36b5bf8493ab5fe9f2bc98e5e6ee",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-07T23:22:08.328Z"
+}

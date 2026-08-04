@@ -1,0 +1,92 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "No quiz questions or answer choices are present, so answer-choice tells cannot be assessed."
+    ]
+  },
+  "scores": {
+    "retention": 42,
+    "quizzes": 0,
+    "transfer": 24,
+    "practical": 22,
+    "summaries": 8,
+    "tone": 55,
+    "limits": 66,
+    "insight": 70,
+    "density": 35,
+    "beginner": 74
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Letting go means processing it somewhere real. Suppression means leaving it underground.",
+      "why": "A compact, memorable distinction that makes the chapter's central mechanism clear."
+    },
+    {
+      "quote": "If the person cannot hear it, nothing would change, and you would not feel genuinely resolved after saying it, raising it may keep the grievance alive in a new form.",
+      "why": "This gives a useful three-part test for deciding whether confrontation will help."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder text and does not communicate the chapter's idea."
+    },
+    {
+      "quote": "One added angle.",
+      "why": "The deep read is also placeholder text and fails its promised explanatory role."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status scaffolding rather than reader-facing chapter content.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only placeholder text and cannot stand alone as a summary.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only placeholder text and cannot stand alone as a deeper explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so its promised standalone takeaway is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving readers without the promised practical exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so readers receive no concrete demonstration or before-to-after application.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions or choices and is therefore broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised retention aid is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the full read containing material suitable for recall.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The full read contains a clear and potentially useful distinction between processing a grievance and suppressing it, plus a practical test for whether confrontation is likely to resolve anything. However, nearly every surrounding product component is empty or placeholder copy: the layered summaries do not summarize, and the takeaway, exercise, examples, quiz, review cards, and memorable-lines sections provide no content. The central prose is approachable and shows genuine mechanism, but this is structurally incomplete and cannot ship as a professional learning chapter."
+}
+```

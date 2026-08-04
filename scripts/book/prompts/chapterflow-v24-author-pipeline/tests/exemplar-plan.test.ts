@@ -5,10 +5,11 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "fs";
-import { dirname, resolve } from "path";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
+import { resolve } from "path";
 
 import { formatExemplarPlan, formatExemplarForbidden, planExemplars, writeExemplarPlan } from "../src/librarian/exemplarPlan.js";
+import type { BookContentReader } from "../src/books/candidateTypes.js";
 import { checkPlanEnforcement } from "../src/qc/planEnforcement.js";
 import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, runCli, writeResearchRunManifestFixture } from "./helpers.js";
@@ -17,7 +18,27 @@ const BOOK = "zz-fixture-exemplars";
 const REPO_ROOT = PIPELINE_DIR;
 const RUN_BOOK_DIR = resolve(REPO_ROOT, ".chapterflow", "runs", BOOK);
 const RUN_DIR = resolve(RUN_BOOK_DIR, "99999999-test");
-const PLAN_PATH = resolve(PIPELINE_DIR, "state", "exemplar-plans", `${BOOK}.exemplar-plan.json`);
+const PLAN_PARENT = resolve(PIPELINE_DIR, "state", "exemplar-plans");
+const PLAN_PARENT_EXISTED = existsSync(PLAN_PARENT);
+const PLAN_PATH = resolve(PLAN_PARENT, `${BOOK}.exemplar-plan.json`);
+const CANDIDATE = "exemplar-plan-candidate";
+
+function candidateReader(bookId: string): BookContentReader {
+  return { async open() {
+    const files = [] as Array<{ kind: "SIDECAR"; logicalPath: string; mediaType: "application/json"; byteLength: number; bytes: Buffer }>;
+    for (let chapter = 1; chapter <= 100; chapter++) {
+      const path = resolve(RUN_DIR, "sidecars", "source", `ch${String(chapter).padStart(2, "0")}.source.json`);
+      if (!existsSync(path)) continue;
+      const bytes = Buffer.from(readFileSync(path));
+      files.push({ kind: "SIDECAR", logicalPath: `sidecars/ch${String(chapter).padStart(2, "0")}.json`, mediaType: "application/json", byteLength: bytes.length, bytes });
+    }
+    return { ok: true, value: { manifest: { schemaVersion: "1", bookId, candidateId: CANDIDATE, createdByRunId: "test", entries: [], manifestDigest: "0".repeat(64), createdAt: new Date(0).toISOString() }, files } };
+  } };
+}
+
+function planFor(from: number, to: number) {
+  return planExemplars(BOOK, from, to, candidateReader(BOOK), CANDIDATE);
+}
 
 function writeSidecar(chapter: number, data: Record<string, unknown>): void {
   const dir = resolve(RUN_DIR, "sidecars", "source");
@@ -28,6 +49,7 @@ function writeSidecar(chapter: number, data: Record<string, unknown>): void {
 function resetFixture(): void {
   rmSync(RUN_BOOK_DIR, { recursive: true, force: true });
   rmSync(PLAN_PATH, { force: true });
+  if (!PLAN_PARENT_EXISTED && existsSync(PLAN_PARENT) && readdirSync(PLAN_PARENT).length === 0) rmdirSync(PLAN_PARENT);
 }
 
 function writeFixtureSidecars(): void {
@@ -83,10 +105,10 @@ function writeFixtureSidecars(): void {
   });
 }
 
-test("exemplar-plan deals contested exemplars to exactly one owner with symmetric forbiddens", () => {
+test("exemplar-plan deals contested exemplars to exactly one owner with symmetric forbiddens", async () => {
   try {
     writeFixtureSidecars();
-    const plan = planExemplars(BOOK, 1, 3);
+    const plan = await planFor(1, 3);
     assert.equal(plan.diagnostics.contested, 2);
     assert.deepEqual(plan.diagnostics.chaptersWithoutSidecar, []);
 
@@ -105,11 +127,11 @@ test("exemplar-plan deals contested exemplars to exactly one owner with symmetri
   }
 });
 
-test("exemplar-plan is deterministic across runs", () => {
+test("exemplar-plan is deterministic across runs", async () => {
   try {
     writeFixtureSidecars();
-    const a = planExemplars(BOOK, 1, 3);
-    const b = planExemplars(BOOK, 1, 3);
+    const a = await planFor(1, 3);
+    const b = await planFor(1, 3);
     assert.deepEqual(a.allocation, b.allocation);
     assert.equal(formatExemplarPlan(a), formatExemplarPlan({ ...b, createdAt: a.createdAt }));
   } finally {
@@ -117,45 +139,32 @@ test("exemplar-plan is deterministic across runs", () => {
   }
 });
 
-test("exemplar-plan warns but still plans chapters with missing sidecars", () => {
+test("exemplar-plan blocks candidate with missing sidecars", async () => {
   try {
     writeFixtureSidecars();
     rmSync(resolve(RUN_DIR, "sidecars", "source", "ch03.source.json"), { force: true });
-    const warnings: string[] = [];
-    const oldWarn = console.warn;
-    console.warn = (message?: unknown) => { warnings.push(String(message)); };
-    try {
-      const plan = planExemplars(BOOK, 1, 3);
-      assert.deepEqual(plan.diagnostics.chaptersWithoutSidecar, [3]);
-      assert.deepEqual(plan.allocation[3], { assigned: [], forbidden: [] });
-    } finally {
-      console.warn = oldWarn;
-    }
-    assert.ok(warnings.some((line) => line.includes("ch03")), `expected ch03 warning, got ${warnings.join("\n")}`);
+    await assert.rejects(planFor(1, 3), /CANDIDATE_ENTRY_MISSING: sidecars\/ch03\.json/);
   } finally {
     resetFixture();
   }
 });
 
-test("exemplar-plan CLI writes the plan and prints ownership", () => {
+test("exemplar-plan CLI blocks without explicit candidate selector", () => {
   try {
-    writeFixtureSidecars();
     const { status, out } = runCli(["exemplar-plan", BOOK, "--from", "1", "--to", "3"]);
-    assert.equal(status, 0, out.slice(-400));
-    assert.match(out, /Exemplar plan/);
-    assert.match(out, /Tiger Woods/);
-    assert.match(out, /Written:/);
+    assert.equal(status, 2, out.slice(-400));
+    assert.match(out, /V25_CANDIDATE_READER_REQUIRED/);
   } finally {
     resetFixture();
   }
 });
 
-test("WS-2 deal↔gate contract: the OWNERSHIP the plan deals is exactly what the SP5 gate enforces (whole-book vs partial)", () => {
+test("WS-2 deal↔gate contract: the OWNERSHIP the plan deals is exactly what the SP5 gate enforces (whole-book vs partial)", async () => {
   try {
     writeFixtureSidecars(); // Tiger Woods is shared by ch1 + ch2; owner resolves to ch2.
     // The DEAL: derive ownership over the WHOLE book (what fanout now persists for
     // every range) and write the artifact the gate reads.
-    writeExemplarPlan(planExemplars(BOOK, 1, 3));
+    writeExemplarPlan(await planFor(1, 3));
     // The GATE's view: a chapter-1 draft that stages Tiger Woods (owned by ch2) must
     // be flagged SP5 — proving the card a writer is dealt and the gate that judges it
     // agree on ownership.
@@ -167,14 +176,14 @@ test("WS-2 deal↔gate contract: the OWNERSHIP the plan deals is exactly what th
     // The CARD a writer is dealt renders the SAME ownership the gate enforces (one
     // renderer, no producer↔validator drift): the fanout MARQUEE EXEMPLARS forbidden
     // line names the exact exemplar+owner SP5 flagged.
-    const cardForbidden = formatExemplarForbidden(planExemplars(BOOK, 1, 3).allocation[1]);
+    const cardForbidden = formatExemplarForbidden((await planFor(1, 3)).allocation[1]);
     assert.match(cardForbidden, /Tiger Woods \(ch2\)/, "the card's FORBIDDEN line must name the exemplar+owner the SP5 gate flags");
 
     // The BUG the fix prevents: a PARTIAL (single-chapter) deal computes forbidden=∅
     // because it never sees ch2's claim — so the persisted plan and the gate silently
     // DISAGREE and the violation only surfaces at publish. This is what fanout used to
     // write when an operator pulled cards per chapter.
-    writeExemplarPlan(planExemplars(BOOK, 1, 1));
+    writeExemplarPlan(await planFor(1, 1));
     const missed = checkPlanEnforcement(BOOK, [ch1]).filter((f) => f.checkId === "SP5.exemplar_ownership_violation");
     assert.equal(missed.length, 0, "a partial-range plan loses cross-chapter ownership — exactly the deal↔gate gap the whole-book fix closes");
   } finally {
@@ -182,7 +191,7 @@ test("WS-2 deal↔gate contract: the OWNERSHIP the plan deals is exactly what th
   }
 });
 
-test("entity unification: superstring forms share ONE owner; single-token noise dropped", () => {
+test("entity unification: superstring forms share ONE owner; single-token noise dropped", async () => {
   try {
     resetFixture();
     // ch1 treats Tiger Woods most centrally (order 0); ch2's sidecar carries
@@ -208,7 +217,7 @@ test("entity unification: superstring forms share ONE owner; single-token noise 
         { number: 2, title: "Exemplar Two" },
       ],
     });
-    const plan = planExemplars(BOOK, 1, 2);
+    const plan = await planFor(1, 2);
     const ch1 = plan.allocation[1], ch2 = plan.allocation[2];
     // every Woods-family form is owned by ch1; ch2 only forbids, never owns
     const ch2WoodsOwned = ch2.assigned.filter((a) => a.includes("Woods"));
@@ -226,35 +235,22 @@ test("entity unification: superstring forms share ONE owner; single-token noise 
 test("C7 plan-skip honors FRESH deals only — carried (already-authored) allocations never license a banned-pool name", () => {
   const { runShipGate } = require("../src/critics/finalGate.js") as typeof import("../src/critics/finalGate.js");
   const { makeChapter } = require("./helpers.js") as typeof import("./helpers.js");
-  const NAME_PLAN = resolve(PIPELINE_DIR, "state", "name-plans", "zz-fixture-cseven.name-plan.json");
-  try {
-    // Hermetic: create the fixture's own target dir (a purged/bare checkout has no
-    // state/name-plans/ yet — the test wrote its fixture assuming a prior run had
-    // populated state/). mkdirSync makes the test self-provisioning.
-    mkdirSync(dirname(NAME_PLAN), { recursive: true });
-    writeFileSync(
-      NAME_PLAN,
-      JSON.stringify({
-        bookId: "zz-fixture-cseven",
-        allocation: { 1: ["Priya"], 2: ["Omar"] },
-        diagnostics: { alreadyAuthored: [2] },
-      }),
-      "utf8",
-    );
+  const namePlan = {
+    bookId: "zz-fixture-cseven",
+    allocation: { 1: ["Priya"], 2: ["Omar"] },
+    diagnostics: { alreadyAuthored: [2] },
+  };
     // ch1: Priya was FRESH-dealt -> C7 skip applies, no blocker for Priya.
     const ch1 = makeChapter("zz-fixture-cseven", 1);
     ch1.examples[0].scenario = "Priya reviews the intake queue while the clinic empties out, and she rewrites the triage order before the next arrival reaches the desk today.";
-    const r1 = runShipGate(ch1);
+    const r1 = runShipGate(ch1, { namePlan });
     const all1 = [...r1.blockers, ...r1.majors, ...r1.minors];
     assert.ok(!all1.some((f) => f.catalogId === "C7" && f.message.includes("Priya")), "fresh-dealt Priya must not trip C7");
     // ch2 is listed alreadyAuthored: its allocation is an ECHO of on-disk
     // text, not a license — C7 must still fire on Omar.
     const ch2 = makeChapter("zz-fixture-cseven", 2);
     ch2.examples[0].scenario = "Omar reviews the intake queue while the clinic empties out, and he rewrites the triage order before the next arrival reaches the desk today.";
-    const r2 = runShipGate(ch2);
+    const r2 = runShipGate(ch2, { namePlan });
     const all2 = [...r2.blockers, ...r2.majors, ...r2.minors];
     assert.ok(all2.some((f) => f.catalogId === "C7" && f.message.includes("Omar")), "carried-chapter Omar must still trip C7 (echo loophole)");
-  } finally {
-    rmSync(NAME_PLAN, { force: true });
-  }
 });

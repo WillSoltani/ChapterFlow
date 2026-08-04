@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-001",
+  "parsed": {
+    "caseId": "SQ-001",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "It is not a polite way to say everyone is equally at fault."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Your ten percent does not erase their ninety."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "while still naming the ninety clearly."
+      }
+    ],
+    "explanation": "The candidate explicitly rejects equal-fault framing, preserves asymmetry, and treats naming one's smaller contribution as a changeable lever without erasing the other's larger responsibility.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-001\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"It is not a polite way to say everyone is equally at fault.\"},{\"materialIndex\":1,\"quote\":\"Your ten percent does not erase their ninety.\"},{\"materialIndex\":1,\"quote\":\"while still naming the ninety clearly.\"}],\"explanation\":\"The candidate explicitly rejects equal-fault framing, preserves asymmetry, and treats naming one's smaller contribution as a changeable lever without erasing the other's larger responsibility.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch14",
+  "chapterNumber": 14,
+  "contentHash": "49b51a564abe757a",
+  "reviewerSessionId": "auto-author-review-ch14-mr78yuzf-22",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 72,
+    "practical": 78,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 88,
+    "insight": 84,
+    "density": 80,
+    "beginner": 76
+  },
+  "composite": 82.7,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "b",
+      "b",
+      "c",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Let the rival warn you, not define you.",
+      "why": "Strong, memorable compression of the chapter's central move.",
+      "verified": true
+    },
+    {
+      "quote": "External rival comes first because it names the pressure. Internal benchmark comes next because someone must say what your own promise now owes.",
+      "why": "Clear mechanism: the chapter explains why the sequence matters.",
+      "verified": true
+    },
+    {
+      "quote": "At the teaching handoff, writer Edmund writes the proof rule first: no purpose advice without evidence.",
+      "why": "Weak transfer moment because the example turns inward toward writing proof rather than showing a real competitive decision.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct answers often echo the chapter's exact technical phrasing and hard specifics, while distractors lean on absolutes or obviously bad moves like removing Dallas, copying quickly, or using one detail everywhere."
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "Several examples are about revising drafts, placing facts, or proving the chapter's own anchors rather than showing a real person making a competitive decision and living with the consequence. That weakens transfer beyond the book's own proof machinery.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example names anchors and specifics but ends with 'Final proof is still due,' so the before-after change remains incomplete and does not fully deliver a consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated phrases such as 'own mark,' 'proof comes back,' and 'anchor that earned it' are useful but can feel like internal scaffold language before they are fully naturalized for beginners.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz is mostly sound, but many correct choices are the only ones that preserve the chapter's exact vocabulary and concrete details, which creates a mild pattern tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter has a strong core distinction: let rivals signal pressure, then return the decision to your own benchmark, purpose fit, and improvement proof. The summaries, limits, and quiz keys are largely sound, and several lines are memorable. I would not ship it yet because the examples too often demonstrate how to repair the chapter's own evidence structure rather than how someone would apply self-referenced competition in a real operating, product, writing, or strategy choice with a consequence. Fixing that transfer gap would likely move it above the professional bar.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "144a51ac4299d63dee74db9559a20eea8799172513dd2a9b75b40efa6eba2aca",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T03:45:00.515Z"
+}

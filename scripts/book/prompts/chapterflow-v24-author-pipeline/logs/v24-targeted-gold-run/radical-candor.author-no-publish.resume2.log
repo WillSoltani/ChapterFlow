@@ -1,0 +1,56 @@
+2026-07-09T20:22:46.960Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T20:22:47.847Z [MAJOR] PHASE write written 7/9 · gated 7 · qc'd 0
+2026-07-09T20:22:48.659Z [info]  author source-packets: compile-source-packets: PASS (9 packet(s))
+2026-07-09T20:22:49.117Z [info]  author source-packet-gate:   [ADVISORY SP16.atomic_specifics] ch04: hardSpecific "Listen Clarify Debate Decide Persuade Execute Learn…" is a long label-phrase; prefer short atomic specifics ("red phone", "90-second trial") — long phrases force recitation into prose (/namedCases/0/hardSpecifics)
+2026-07-09T20:22:49.566Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T20:22:49.994Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T20:22:50.483Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (18 file(s))
+2026-07-09T20:22:50.956Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T20:22:50.957Z [info]  author write: 2 missing chapter(s) of 9 (parallel ≤6)
+2026-07-09T20:22:50.960Z [info]  author ch04: card is 28286 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T20:22:50.960Z [info]  author ch04: whole-chapter writer working (attempt 1, card 28286 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T20:22:50.963Z [info]  author ch09: card is 28605 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T20:22:50.963Z [info]  author ch09: whole-chapter writer working (attempt 1, card 28605 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T20:33:36.177Z [info]  author ch09: done (gate-chapter clean)
+2026-07-09T20:35:12.209Z [info]  author ch04: done (gate-chapter clean)
+2026-07-09T20:35:12.306Z [info]  author write: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-09T20:35:12.306Z [info]  author write: advisory [CHB1.anchor_repetition] ch03 reading surface mentions "growth" (distinctive token of case "Growth Management") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T20:35:12.306Z [info]  author write: advisory [CHB1.anchor_repetition] ch04 reading surface mentions "wheel" (distinctive token of case "GSD Wheel") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T20:35:12.306Z [info]  author write: advisory [CHB2.length_budget] ch02 estimated rendered length 19885 chars is 24% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T20:35:14.322Z [MAJOR] PHASE gate written 9/9 · gated 9 · qc'd 0
+2026-07-09T20:35:16.373Z [MAJOR] GATE REPAIR attempt 1/4 (deterministic gates)
+2026-07-09T20:39:03.705Z [info]  compiler gate: deterministic blockers + blocking majors clean; skipping legacy broad pre-QC scouts → advancing to formal QC
+2026-07-09T20:39:05.675Z [MAJOR] PHASE qc written 9/9 · gated 9 · qc'd 0
+2026-07-09T20:39:05.758Z [info]  author review budgets: reader budgets clean (3 advisory finding(s)) — advancing
+2026-07-09T20:39:05.759Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch03 reading surface mentions "growth" (distinctive token of case "Growth Management") 10 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T20:39:05.759Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch04 reading surface mentions "wheel" (distinctive token of case "GSD Wheel") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-09T20:39:05.759Z [info]  author review budgets: advisory [CHB2.length_budget] ch02 estimated rendered length 19885 chars is 24% over the 16000-char budget (allowed window 12800–19200; within the advisory band — polish, not a halt); readers rejected ~40% inflation.
+2026-07-09T20:39:05.762Z [info]  author review: 9 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-09T20:39:39.710Z [info]  author review ch04: composite 85.8 ship=true keys 9/9 → PASS
+2026-07-09T20:39:40.186Z [info]  author review ch02: composite 86 ship=true keys 9/9 → PASS
+2026-07-09T20:39:40.904Z [info]  author review ch03: composite 87.3 ship=true keys 9/9 → PASS
+2026-07-09T20:39:41.030Z [info]  author review ch06: composite 86.3 ship=true keys 9/9 → PASS
+2026-07-09T20:39:41.544Z [info]  author review ch05: composite 88.4 ship=true keys 9/9 → PASS
+2026-07-09T20:39:53.735Z [info]  author review ch01: composite 87.6 ship=true keys 9/9 → PASS
+2026-07-09T20:40:09.730Z [info]  author review ch08: composite 90 ship=true keys 9/9 → PASS
+2026-07-09T20:40:20.755Z [info]  author review ch07: composite 85.7 ship=true keys 9/9 → PASS
+2026-07-09T20:40:44.325Z [info]  author review ch09: composite 87.6 ship=true keys 9/9 → PASS
+2026-07-09T20:40:44.342Z [info]  author acceptance: sampled ch 1, 3, 5, 8 → 65207 chars; spawning 3 independent book readers
+2026-07-09T20:42:23.324Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/radical-candor/acceptance.round1.50c17792.r1.json
+2026-07-09T20:42:23.325Z [info]  author acceptance: pooled composite 78.9 over 1 read(s) (band ±3.7) gate PASS churn MEDIUM valid 3/3 vs floor 74 (premium target 80) → ACCEPT
+2026-07-09T20:42:23.330Z [info]  author evidence: 9/9 chapter(s) need fresh keys (ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9) — deriving ONLY those (per-chapter production, E3)
+2026-07-09T20:44:07.641Z [info]  author evidence: keyA derivation written by session auto-author-key-keyA-mrdz3i0n-16 (9 stale chapter(s))
+2026-07-09T20:45:47.855Z [info]  author evidence: keyB derivation written by session auto-author-key-keyB-mrdz5qhl-17 (9 stale chapter(s))
+2026-07-09T20:45:47.878Z [info]  author evidence: manual key-judge PASS for all 9 chapter(s) (round r20260709204223-456b08)
+2026-07-09T20:47:42.121Z [info]  author evidence: sweep attestation written by session auto-author-sweep-mrdz7vu5-18 (round r20260709204223-456b08)
+2026-07-09T20:47:42.138Z [info]  author acceptance PASSED — key-judge + sweep evidence complete; wrote 9 PUBLISHABLE attestation(s) + bar/confirm artifacts (round r20260709204223-456b08)
+2026-07-09T20:47:44.324Z [MAJOR] PHASE ready written 9/9 · gated 9 · qc'd 9
+2026-07-09T20:47:44.329Z [info]  ── cost report — radical-candor [ready] ──
+  grand total spawns: 18  (minted ids 18; verb ids 0)
+  by type: author-review:9  author-book-reader:3  writer:2  key:2  gate-repair:1  sweep:1
+  by phase: qc:15  write:2  gate:1
+  retries by cause: gate-repair-1:1
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 9 miss
+  wall (spawn ms) by phase: write:1382973  qc:929753  gate:224602  total:2537328
+2026-07-09T20:47:44.330Z [FINAL] READY AUTOPILOT — radical-candor: READY TO PUBLISH — all 9 chapters gated + QC PUBLISHABLE. Review, then ship:
+  npx tsx src/cli.ts publish-final "radical-candor"

@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 15,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 20,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 5,
+    "density": 10,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: this is placeholder scaffolding, not a hook or teachable opening."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "Worst defect: the layered reading sections exist as headings only and fail their stand-alone purpose."
+    },
+    {
+      "quote": "I am competent and this model may contain an error and I can learn from it.",
+      "why": "Strongest moment: this is the only concrete reader-facing move in the chapter."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: the assessment and retention supports are entirely empty."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone promise as a fast version of the chapter. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so there is no mechanism, explanation, or developed lesson. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so the main chapter body is missing. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz heading contains no questions, making the quiz broken and impossible to answer. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter",
+      "problem": "The reader cannot learn the chapter's core move from the empty instructional sections and placeholder prose. Category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is thin but usable: it names a person and situation, but gives no before-to-after consequence and the 'what to do' and 'why it matters' lines only restate the assignment.",
+      "mustFix": false
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, removing a retention aid the chapter promises.",
+      "mustFix": false
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the chapter offers no deliberate echo or phrasing for later recall.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable. It is mostly a scaffold: the fast, deep, and full reads are empty, the quiz has no questions, and the review-card and memorable-line sections provide no retention support. The lone scenario gives one potentially useful sentence about treating review notes as information rather than verdict, but the chapter does not explain the mechanism, limits, practice steps, or assessment well enough for a beginner to learn or transfer the move."
+}
+```

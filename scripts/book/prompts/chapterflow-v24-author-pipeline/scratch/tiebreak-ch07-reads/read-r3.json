@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "execution-ch07",
+  "chapterNumber": 7,
+  "contentHash": "f449d6b1c95b2a61",
+  "reviewerSessionId": "auto-author-review-ch07-tiebreak-r3-mr4njnsq-2",
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 90,
+    "practical": 84,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 88,
+    "insight": 89,
+    "density": 87,
+    "beginner": 90
+  },
+  "composite": 88.6,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "make each promise answer to a lead, a visible proof point, and a return date.",
+      "why": "Strongest core move: short, repeatable, and turns strategy into inspectable execution.",
+      "verified": true
+    },
+    {
+      "quote": "Customers meet the work, not the review.",
+      "why": "Memorable mechanism line that explains why operating design matters more than polished strategy language.",
+      "verified": true
+    },
+    {
+      "quote": "A budget line is one way the room tells the truth.",
+      "why": "Concrete image for resource discipline; it makes a common failure easy to remember.",
+      "verified": true
+    },
+    {
+      "quote": "Write exactly: \"One promise had no person to test it.\"",
+      "why": "The weakest practical moment: low-friction, but too small and awkward to create much real behavior change.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct choices are often the most concrete operating answer, while distractors often advertise themselves as cosmetic, motivational, or avoidance moves.",
+    "Several correct answers echo recurring chapter words such as lead, proof, system, funding, and fact, so a test-wise reader could often pick without full reading."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors are frequently too easy because they are visibly cosmetic, motivational, or evasive, while correct answers contain concrete operating nouns from the chapter.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The action asks the reader to write a canned sentence instead of naming the actual promise, owner gap, and next proof point; it is memorable but underpowered.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The same three cases recur heavily, which reinforces memory but slightly narrows the sense of transfer beyond Southwest, Dell, and Intel.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 84 bar. The chapter has a clear executable idea: strategy becomes real when a promise has an owner, proof, resources, and a return date. The prose is plain, memorable, and well layered across fast, deep, full, examples, cards, and implementation plan. The main weakness is quiz predictability: many wrong answers are so obviously fluffy or avoidant that the key can often be guessed by choosing the concrete operating move. The practical exercise is also smaller than the chapter's own standard. Still, the core lesson is strong, transferable, and likely to stick.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 84,
+  "docHash": "61f49abff526ca44f4c61be22a134f75751f5e0ccdb866f5941ce63548339685",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-03T08:09:39.598Z"
+}

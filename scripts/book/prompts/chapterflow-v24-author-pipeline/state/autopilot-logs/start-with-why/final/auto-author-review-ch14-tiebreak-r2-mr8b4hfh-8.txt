@@ -1,0 +1,57 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct choices reuse the chapter's exact teaching vocabulary, while distractors often use exaggerated absolutes such as proving the whole model alone, copying fast, or applying one universal script.",
+      "Q7's correct answer is the most specific and distinctive choice because it combines Southwest, 1971, changed setting, and a mistake-test phrase; it can be guessed by density."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 78,
+    "limits": 90,
+    "insight": 84,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Memorable practical test a reader can recall and use."
+    },
+    {
+      "quote": "When anchors vanish, advice floats.",
+      "why": "Effective summary, but also shows the examples sometimes compress into slogan-like phrasing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed choice is fair, but it is unusually dense and specific compared with the distractors, making it guessable without fully reading the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example names the anchors but shows little before-to-after consequence beyond pausing the copy request, so it is thin-but-usable rather than fully demonstrative.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated marker language such as company identity, headquarters marker, and venue can feel like source-scaffold residue rather than natural chapter prose.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 80-point professional bar. The chapter teaches a clear, memorable move: let the rival signal pressure, then make the internal benchmark judge the response. The layered reads, review cards, limits, and implementation plan mostly stand alone. The main weaknesses are craft-level: some example names and marker language feel synthetic, and a few quiz distractors are easier to eliminate by tone than by reasoning. I found no broken quiz, unsafe advice, factual contradiction on the page, or unusable section."
+}
+```

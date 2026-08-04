@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 74,
+    "transfer": 78,
+    "practical": 72,
+    "summaries": 76,
+    "tone": 63,
+    "limits": 83,
+    "insight": 75,
+    "density": 62,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong, compact, portable line that carries the chapter's reversal."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable and cleanly reverses a common default assumption."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Excellent retention line: short, complete, and useful beyond the example."
+    },
+    {
+      "quote": "Known data goes before Assumptions. Decisions come after that. Results have to return.",
+      "why": "Shows the useful but mechanical ordering style that recurs across chapters."
+    },
+    {
+      "quote": "If one place detail moves, then write the company it belongs to and put the detail back before using the count.",
+      "why": "The practice shell feels artificial and repeats the same boundary-detail move."
+    },
+    {
+      "quote": "Use 1994 to mark where the Continental story applies before asking it to travel.",
+      "why": "Overweights a trivia-like detail as scope control, making the prose feel templated."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is coherent and I found no keyed quiz contradiction, so it passes the correctness gate. Its strongest material has real learning value: several chapters produce compact, memorable reversals and usable lenses. The major weakness is churn. The chapters repeatedly use the same architecture: named company anchor, second setting, hard detail must stay home, order must not reverse, proof must return. That makes the book feel engineered rather than individually authored. It is publishable as a solid draft, but not premium: the ideas are often strong, while the prose, examples, and practice plans need more variety, more natural behavior, and less visible scaffolding."
+}
+```

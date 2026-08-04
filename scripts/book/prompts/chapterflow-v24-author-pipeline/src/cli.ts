@@ -18,7 +18,8 @@
 
 import { existsSync as existsSyncFs, readFileSync, writeFileSync, mkdirSync, readdirSync, statSync, rmSync, renameSync } from "fs";
 import { execSync, execFileSync } from "child_process";
-import { resolve, dirname, basename } from "path";
+import { randomUUID } from "crypto";
+import { resolve, dirname, basename, isAbsolute } from "path";
 import { fileURLToPath } from "url";
 
 import { BookCriticReport, BookPackage, BookPackageV21, ChapterV21 } from "./types.js";
@@ -33,6 +34,83 @@ import { writeFileAtomic } from "./lib/atomicWrite.js";
 import type { ProviderName } from "./providers/types.js";
 import type { AxisId, AxisScore, FailureTier } from "./critics/semantic/publishableBar.js";
 import { formatRuntimeFindings, validateAllConfigFiles } from "./runtimeSchemas.js";
+import { CommandRegistry } from "./commands/commandRegistry.js";
+import type { CommandContext, CommandSpec } from "./commands/commandSpec.js";
+
+const COMMAND_IDS = [
+  "critic", "ping", "ledger", "verify-library-state", "rebuild-library-state", "pipeline", "flow", "policy",
+  "generate-book", "next-task", "runbook", "diagnose", "check-source", "source-verify", "source-verify-check",
+  "source-verify-schema", "source-verify-workbench", "source-verify-import", "source-fit", "prune-book-state",
+  "derive-artifacts", "research", "generate", "publish", "publish-to-live", "publish-final", "qc-stamp-author",
+  "book-status", "doctor", "exec-qualify", "contract-validate", "evidence-reconstruct", "evidence-cleanup",
+  "diversity-report", "authoring-guardrails", "promote-book", "verify-production-package", "gate-chapter", "book-gate",
+  "publishable-rubric", "name-plan", "shape-plan", "exemplar-plan", "venue-plan", "answer-key-plan", "rhetoric-plan",
+  "pedagogy-plan", "qc-open-round", "qc-orchestrate", "qc-submit", "qc-schema", "roles", "qc-auto", "publish-after-qc",
+  "qc-ledger-status", "qc-ledger-repair", "qc-repair-brief", "qc-repair-prompt", "qc-diagnose", "qc-metrics",
+  "source-v2-gate", "qc-converge", "book-autopilot", "book-run", "migration-bakeoff", "diversify-book",
+  "content-repair-book", "compile-source-packets", "source-packet-gate", "compile-book-design", "book-design-gate",
+  "compile-chapter-briefs", "chapter-brief-gate", "compile-blueprints", "blueprint-gate", "deal-section-tasks",
+  "validate-sections", "assemble-sections", "build-evidence-maps", "evidence-gate", "risk-score", "rubric-metrics",
+  "reader-budget-check", "codex-agent-run", "key-pack", "key-derive", "key-resolve", "bar-pack", "bar-attest",
+  "sweep-pack", "sweep-attest", "sweep-status", "major-status", "major-disposition", "qc-attest", "qc-verdict",
+  "qc-status", "qc-stats", "qc-rehash", "qc-run", "quiz-judge", "quiz-blind", "evidence-audit", "catalog-audit",
+  "quiz-verify", "fanout", "categorize", "register-web", "batch", "author-check", "calibration-scan", "fix-chapter-ids",
+  "migrate-chapter-identity", "toc-migrate", "migrate-state", "state-status", "quarantine-book", "unquarantine-book",
+  "eval-reader-proxy", "eval-book-proxy", "help",
+] as const;
+
+const READ_COMMANDS = new Set<string>([
+  "help", "policy", "next-task", "runbook", "diagnose", "check-source", "source-verify-check", "source-verify-schema",
+  "source-fit", "book-status", "doctor", "contract-validate", "diversity-report", "verify-production-package",
+  "gate-chapter", "publishable-rubric", "qc-schema", "roles", "qc-ledger-status", "qc-diagnose", "qc-metrics",
+  "source-v2-gate", "source-packet-gate", "book-design-gate", "chapter-brief-gate", "blueprint-gate", "evidence-gate",
+  "risk-score", "rubric-metrics", "reader-budget-check", "sweep-status", "major-status", "qc-verdict", "qc-status",
+  "qc-stats", "evidence-audit", "catalog-audit", "state-status",
+]);
+
+const MODEL_COMMANDS = new Set<string>([
+  "ping", "pipeline", "flow", "generate-book", "research", "generate", "qc-auto", "book-autopilot", "book-run",
+  "migration-bakeoff", "diversify-book", "content-repair-book", "codex-agent-run", "quiz-judge", "fanout", "categorize",
+  "batch", "eval-reader-proxy", "eval-book-proxy",
+]);
+
+const LEGACY_DISABLED_COMMANDS = new Set<string>([
+  "ping", "pipeline", "flow", "generate-book", "generate",
+]);
+
+const V4_RESEARCH_USAGE = 'research "<title>" "<author>" [--book-id <slug>] --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--concurrency N] [--force-refresh]';
+const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha> [--round <id>]";
+const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
+
+function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+}
+
+function firstUnsupportedFlag(
+  flags: Record<string, string | boolean>,
+  commandFlags: readonly string[],
+): string | undefined {
+  const allowed = new Set([...commandFlags, "allow-noncanonical", "config-dir"]);
+  return Object.keys(flags).sort().find((flag) => !allowed.has(flag));
+}
+
+const commandRegistry = new CommandRegistry();
+const runRegisteredCommand: CommandSpec["run"] = async (context) => {
+  const parsed = parseArgs([...context.argv]);
+  return {
+    ok: true,
+    value: await runExistingCommand({
+      id: normalizeCommandId(parsed.cmd),
+      args: parsed.args,
+      flags: parsed.flags,
+      signal: context.abortSignal,
+    }),
+  };
+};
+for (const id of COMMAND_IDS) {
+  const mode: CommandSpec["mode"] = READ_COMMANDS.has(id) ? "READ" : MODEL_COMMANDS.has(id) ? "MODEL" : "WRITE";
+  commandRegistry.register({ id, mode, requiredConfig: mode === "READ" ? [] : ["runtime"], run: runRegisteredCommand });
+}
 
 /** Refuse to run if a repo-root shadow state/chapters dir holds chapters
  *  (the dual-directory divergence hazard). Returns an exit code on failure. */
@@ -64,6 +142,481 @@ const REPO_ROOT = resolve(__dirname, "..");
 const BOOK_PACKAGES_DIR = resolve(REPO_ROOT, "book-packages");
 const DEFAULT_REPORTS_DIR = resolve(__dirname, "../reports");
 
+type CliV25Composition = Readonly<{
+  app: import("./app/createChapterFlowApp.js").ChapterFlowApp;
+  candidate: import("./books/candidateTypes.js").CandidateSnapshot;
+  candidateStore: import("./books/candidateTypes.js").CandidateStore;
+  contentReader: import("./books/candidateTypes.js").BookContentReader;
+  reviewService: import("./review/reviewTypes.js").ReviewService;
+  qcService: import("./qc/qcTypes.js").QcService;
+  qcStore: import("./qc/qcStore.js").QcStore;
+  promotionService: import("./release/promotionTypes.js").PromotionService;
+  patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
+  writeLock: import("./books/leaseTypes.js").BookWriteLock;
+  runStore: import("./run-state/runStore.js").RunStore;
+  runner: import("./app/modelTaskRunner.js").ModelTaskRunner;
+  ids: import("./app/pipeline.js").ChapterFlowIdFactory;
+  sourceGitSha: string;
+}>;
+
+type CliCandidateReaderProjection = Readonly<{
+  candidate: import("./books/candidateTypes.js").CandidateSnapshot;
+  candidateStore: import("./books/candidateTypes.js").CandidateStore;
+  contentReader: import("./books/candidateTypes.js").BookContentReader;
+  currentPointerStore: import("./books/currentPointer.js").CurrentPointerStore;
+  writeLock: import("./books/leaseTypes.js").BookWriteLock;
+}>;
+
+async function createCliCandidateReaderProjection(
+  bookId: string,
+  flags: Record<string, string | boolean>,
+): Promise<{ ok: true; value: CliCandidateReaderProjection } | { ok: false; error: string }> {
+  const v25Root = flags["v25-root"];
+  const candidateId = flags["candidate-id"];
+  const manifestDigest = flags["manifest-digest"];
+  if (
+    typeof v25Root !== "string" || !isAbsolute(v25Root) ||
+    typeof candidateId !== "string" || candidateId.length === 0 ||
+    typeof manifestDigest !== "string" || manifestDigest.length === 0
+  ) {
+    return { ok: false, error: "V25_CANDIDATE_READER_REQUIRED: --v25-root, --candidate-id, and --manifest-digest are required" };
+  }
+  const booksRoot = resolve(v25Root, "books");
+  const [{ createBookWriteLock }, { createCurrentPointerStore }, { createCandidateStore }, { createBookContentReader }] = await Promise.all([
+    import("./books/bookLease.js"),
+    import("./books/currentPointer.js"),
+    import("./books/candidateStore.js"),
+    import("./books/bookContentReader.js"),
+  ]);
+  const writeLock = createBookWriteLock({ booksRoot });
+  const currentPointerStore = createCurrentPointerStore({ booksRoot, writeLock });
+  const candidateStore = createCandidateStore({ booksRoot, writeLock, currentPointerStore });
+  const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
+  const candidate = await contentReader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!candidate.ok) return { ok: false, error: `${candidate.error.code}:${candidate.error.message}` };
+  if (candidate.value.manifest.manifestDigest !== manifestDigest) {
+    return { ok: false, error: "V25_CANDIDATE_MISMATCH:selected candidate manifest digest differs" };
+  }
+  return { ok: true, value: { candidate: candidate.value, candidateStore, contentReader, currentPointerStore, writeLock } };
+}
+
+async function createCliV25Composition(
+  bookId: string,
+  flags: Record<string, string | boolean>,
+): Promise<{ ok: true; value: CliV25Composition } | { ok: false; error: string }> {
+  const v25Root = flags["v25-root"];
+  const attemptRoot = flags["attempt-root"];
+  const candidateId = flags["candidate-id"];
+  const manifestDigest = flags["manifest-digest"];
+  const sourceGitSha = flags["source-git-sha"];
+  if (
+    typeof v25Root !== "string" || !isAbsolute(v25Root) ||
+    typeof attemptRoot !== "string" || !isAbsolute(attemptRoot) ||
+    typeof candidateId !== "string" || typeof manifestDigest !== "string" ||
+    typeof sourceGitSha !== "string" || sourceGitSha.length === 0
+  ) {
+    return { ok: false, error: "V25_COMPOSITION_REQUIRED: --v25-root, --attempt-root, --candidate-id, --manifest-digest, and --source-git-sha are required" };
+  }
+
+  mkdirSync(v25Root, { recursive: true });
+  mkdirSync(attemptRoot, { recursive: true });
+  const projection = await createCliCandidateReaderProjection(bookId, flags);
+  if (!projection.ok) return projection;
+  const { candidate, candidateStore, contentReader, currentPointerStore, writeLock } = projection.value;
+  const booksRoot = resolve(v25Root, "books");
+  const runRoot = resolve(v25Root, "run-state");
+
+  const [{ createFileRunStore, createFileStageCoordinator }, { createProcessSupervisor }, { createExecutionPolicy }, { createModelGateway }] = await Promise.all([
+    import("./run-state/index.js"),
+    import("./runtime/processSupervisor.js"),
+    import("./runtime/executionPolicy.js"),
+    import("./runtime/modelGateway.js"),
+  ]);
+  const runStore = createFileRunStore(runRoot);
+  const stageCoordinator = createFileStageCoordinator(runRoot);
+  const clock = { now: () => new Date().toISOString() };
+  const modelGateway = createModelGateway({
+    runStore,
+    processSupervisor: createProcessSupervisor(),
+    executionPolicy: createExecutionPolicy({ pipelineRoot: REPO_ROOT, attemptRoot }),
+    now: clock.now,
+  });
+  const { createModelTaskRunner } = await import("./app/modelTaskRunner.js");
+  const runner = createModelTaskRunner(modelGateway);
+  const { ModelGatewayReviewEvaluator } = await import("./app/modelGatewayReviewEvaluator.js");
+  const { createReviewServiceFactory } = await import("./review/reviewService.js");
+  const reviewService = createReviewServiceFactory({ booksRoot, contentReader, now: clock.now })
+    .create(new ModelGatewayReviewEvaluator(runner));
+  const [{ createQcService }, { createQcStore }] = await Promise.all([
+    import("./qc/qcService.js"),
+    import("./qc/qcStore.js"),
+  ]);
+  const qcService = createQcService({ booksRoot, contentReader, reviewService, writeLock, now: clock.now });
+  const qcStore = createQcStore({ booksRoot });
+  const { createPromotionService } = await import("./release/promotionService.js");
+  const promotionService = createPromotionService({ candidateStore, contentReader, reviewService, qcService, currentPointerStore, clock: clock.now });
+  const chapterLogicalPaths = candidate.files
+    .filter((file) => file.kind === "CHAPTER")
+    .map((file) => file.logicalPath);
+  let sourceSidecarLogicalPaths: string[];
+  let patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
+  try {
+    sourceSidecarLogicalPaths = chapterLogicalPaths.map((_chapterPath, index) => {
+      const packetPath = `compiler/ch${String(index + 1).padStart(2, "0")}/source-packet.json`;
+      const packet = candidate.files.find((file) => file.logicalPath === packetPath);
+      if (!packet || packet.mediaType !== "application/json") throw new Error(`missing ${packetPath}`);
+      const value = JSON.parse(Buffer.from(packet.bytes).toString("utf8")) as { sourceSidecarPath?: unknown };
+      if (typeof value.sourceSidecarPath !== "string" || value.sourceSidecarPath.length === 0) {
+        throw new Error(`${packetPath} lacks sourceSidecarPath`);
+      }
+      return value.sourceSidecarPath;
+    });
+    const [{ runBookGateFromCandidate }, { BOOK_PATTERN_AUDIT_LOGICAL_PATH, parseBookPatternAuditReport }] = await Promise.all([
+      import("./critics/bookGate.js"),
+      import("./critics/bookPatternAudit.js"),
+    ]);
+    const candidateGate = await runBookGateFromCandidate(contentReader, {
+      bookId,
+      candidateId: candidate.manifest.candidateId,
+      manifestDigest: candidate.manifest.manifestDigest,
+      chapterLogicalPaths,
+      sourceSidecarLogicalPaths,
+      patternAuditLogicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH,
+    });
+    patternAudit = parseBookPatternAuditReport(candidateGate.stats.patternAudit, {
+      bookId,
+      chapterCount: chapterLogicalPaths.length,
+    });
+  } catch (err) {
+    return { ok: false, error: `V25_PATTERN_AUDIT_INVALID:${(err as Error).message}` };
+  }
+  const ids: import("./app/pipeline.js").ChapterFlowIdFactory = {
+    nextRunId: () => `cli-${randomUUID()}`,
+    candidateId: (runId) => `${runId}-candidate`,
+    modelAttemptId: (runId) => `${runId}-model`,
+    reviewAttemptId: (runId) => `${runId}-review-attempt`,
+    reviewId: (runId) => `${runId}-review`,
+    qcRoundId: (runId) => `${runId}-qc`,
+  };
+  const { createChapterFlowApp } = await import("./app/createChapterFlowApp.js");
+  const app = createChapterFlowApp({
+    runStore, stageCoordinator, modelGateway, candidateStore, contentReader, reviewService, qcService,
+    promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
+  });
+  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, writeLock, runStore, runner, ids, sourceGitSha } };
+}
+
+function hasCliV25Selection(flags: Record<string, string | boolean>): boolean {
+  return ["v25-root", "attempt-root", "candidate-id", "manifest-digest", "source-git-sha"]
+    .some((name) => flags[name] !== undefined);
+}
+
+function v4BookId(title: string, explicit: string | boolean | undefined): string {
+  if (typeof explicit === "string" && explicit.length > 0) return explicit;
+  return title
+    .normalize("NFKD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+async function runV4Research(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  signal: AbortSignal,
+): Promise<number> {
+  const unsupported = firstUnsupportedFlag(flags, [
+    "book-id", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "concurrency", "force-refresh",
+  ]);
+  const title = args[0] ?? "";
+  const author = args[1] ?? "";
+  const v25Root = flags["v25-root"];
+  const attemptRoot = flags["attempt-root"];
+  const sourceGitSha = flags["source-git-sha"];
+  const bookId = v4BookId(title, flags["book-id"]);
+  const chapterConcurrency = typeof flags["concurrency"] === "string" ? Number(flags["concurrency"]) : undefined;
+  if (unsupported !== undefined) {
+    console.error(`UNSUPPORTED_OPTION:research:--${unsupported}`);
+    return 2;
+  }
+  if (args.length !== 2 || !title || !author || !bookId || typeof v25Root !== "string" || !isAbsolute(v25Root)
+    || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
+    || typeof sourceGitSha !== "string" || sourceGitSha.length === 0
+    || (flags["book-id"] !== undefined && typeof flags["book-id"] !== "string")
+    || (flags["resume-run-id"] !== undefined && typeof flags["resume-run-id"] !== "string")
+    || (flags["concurrency"] !== undefined && (chapterConcurrency === undefined || !Number.isSafeInteger(chapterConcurrency) || chapterConcurrency < 1))
+    || (flags["force-refresh"] !== undefined && flags["force-refresh"] !== true)) {
+    console.error(`Usage: ${V4_RESEARCH_USAGE}`);
+    return 2;
+  }
+  const { createProductionBookRunComposition } = await import("./app/bookRunComposition.js");
+  try {
+    const composition = await createProductionBookRunComposition({
+      bookId,
+      pipelineRoot: REPO_ROOT,
+      v25Root,
+      attemptRoot,
+    });
+    if (!composition.app.research) throw new Error("V4 research application route is unavailable");
+    const result = await composition.app.research.run({
+      bookId,
+      title,
+      author,
+      sourceGitSha,
+      v25Root,
+      attemptRoot: resolve(attemptRoot, "research"),
+      ...(typeof flags["resume-run-id"] === "string" ? { resumeRunId: flags["resume-run-id"] } : {}),
+      ...(chapterConcurrency === undefined ? {} : { chapterConcurrency }),
+      forceRefresh: flags["force-refresh"] === true,
+      signal,
+    });
+    console.log(JSON.stringify(result, null, 2));
+    return 0;
+  } catch (cause) {
+    console.error((cause as Error).message);
+    return 1;
+  }
+}
+
+async function runV4BookProduction(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  command: "book-run" | "book-autopilot",
+  signal: AbortSignal,
+): Promise<number> {
+  for (const forbidden of ["publish", "publish-final", "commit", "push", "deploy"]) {
+    if (flags[forbidden] !== undefined) {
+      console.error(`BOOK_RUN_LOCAL_ONLY:--${forbidden} is not supported by V4 production route`);
+      return 2;
+    }
+  }
+  const unsupported = firstUnsupportedFlag(flags, [
+    "title", "author", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "research-run-id", "regen",
+    "max-repair", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
+  ]);
+  if (unsupported !== undefined) {
+    console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
+    return 2;
+  }
+  // The research-run pin selects a research BUNDLE for a FRESH run; --resume-run-id
+  // names a CONTROL run whose durable seed is rehydrated without calling the
+  // research port at all. Combining them is never meaningful, so reject it here
+  // (after the allowlist, so an unsupported flag still reports first).
+  if (flags["research-run-id"] !== undefined && flags["resume-run-id"] !== undefined) {
+    console.error("BOOK_RUN_FLAG_CONFLICT:--research-run-id cannot be combined with --resume-run-id");
+    return 2;
+  }
+  const bookId = args[0] ?? "";
+  const title = typeof flags["title"] === "string" ? flags["title"] : "";
+  const author = typeof flags["author"] === "string" ? flags["author"] : "";
+  const v25Root = flags["v25-root"];
+  const attemptRoot = flags["attempt-root"];
+  const sourceGitSha = flags["source-git-sha"];
+  const logPath = command === "book-run" && typeof flags["log"] === "string" ? flags["log"] : undefined;
+  const maxRepair = flags["max-repair"] === undefined ? 1
+    : typeof flags["max-repair"] === "string" ? Number(flags["max-repair"]) : Number.NaN;
+  if (args.length !== 1 || !bookId || !title || !author
+    || typeof v25Root !== "string" || !isAbsolute(v25Root)
+    || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
+    || typeof sourceGitSha !== "string" || sourceGitSha.length === 0
+    || maxRepair !== 1
+    || (flags["resume-run-id"] !== undefined && typeof flags["resume-run-id"] !== "string")
+    || (flags["research-run-id"] !== undefined && (typeof flags["research-run-id"] !== "string" || flags["research-run-id"].length === 0))
+    || (flags["regen"] !== undefined && flags["regen"] !== true)
+    || (flags["promote-local"] !== undefined && flags["promote-local"] !== true)
+    || (flags["no-publish"] !== undefined && flags["no-publish"] !== true)
+    || (flags["reconcile-unsettled"] !== undefined && flags["reconcile-unsettled"] !== true)
+    || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
+    console.error(`Usage: ${v4BookProductionUsage(command)}`);
+    return 2;
+  }
+  const { createProductionBookRunComposition } = await import("./app/bookRunComposition.js");
+  try {
+    const composition = await createProductionBookRunComposition({
+      bookId,
+      pipelineRoot: REPO_ROOT,
+      v25Root,
+      attemptRoot,
+      ...(logPath === undefined ? {} : { logPath }),
+    });
+    if (!composition.app.bookRun) throw new Error("V4 book-run application route is unavailable");
+    const result = await composition.app.bookRun.run({
+      bookId,
+      title,
+      author,
+      sourceGitSha,
+      v25Root,
+      attemptRoot,
+      ...(typeof flags["resume-run-id"] === "string" ? { resumeRunId: flags["resume-run-id"] } : {}),
+      // Content repair (F5): pin an existing research run so a FRESH run reuses
+      // its sidecars and every non-evicted section pack instead of re-minting
+      // the bibliography. Fails closed in the research port.
+      ...(typeof flags["research-run-id"] === "string" ? { researchRunId: flags["research-run-id"] } : {}),
+      regen: flags["regen"] === true,
+      maxRepairRounds: 1,
+      promoteLocal: flags["promote-local"] === true,
+      // Crash recovery: settle a hard-killed run's admitted-but-unsettled model
+      // attempts so a resume can proceed instead of fail-closing forever. No-op
+      // on a clean run; only meaningful with --resume-run-id.
+      reconcileUnsettled: flags["reconcile-unsettled"] === true,
+      // Compatibility confirmation only: V4 never publishes externally, while
+      // --promote-local may still atomically advance the local V25 pointer.
+      signal,
+    });
+    if (!result.ok) {
+      console.error(`${result.error.code}:${result.error.message}`);
+      return 1;
+    }
+    console.log(JSON.stringify(result.value, null, 2));
+    console.log("package publish, registry update, commit, push, and deploy NOT PERFORMED");
+    return 0;
+  } catch (cause) {
+    console.error((cause as Error).message);
+    return 1;
+  }
+}
+
+async function runV4SelectedCandidateQc(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  signal: AbortSignal,
+): Promise<number> {
+  const unsupported = firstUnsupportedFlag(flags, [
+    "pass", "round", "v25-root", "attempt-root", "candidate-id", "manifest-digest", "source-git-sha",
+  ]);
+  const bookId = args[0] ?? "";
+  const roundId = typeof flags["round"] === "string" ? flags["round"] : `qc-${randomUUID()}`;
+  if (unsupported !== undefined) {
+    console.error(`UNSUPPORTED_OPTION:qc-auto:--${unsupported}`);
+    return 2;
+  }
+  if (args.length !== 1 || !bookId || flags["pass"] !== true
+    || (flags["round"] !== undefined && (typeof flags["round"] !== "string" || flags["round"].length === 0))) {
+    console.error(`Usage: ${V4_QC_AUTO_USAGE}`);
+    return 2;
+  }
+  const v25 = await createCliV25Composition(bookId, flags);
+  if (!v25.ok) {
+    console.error(v25.error);
+    return 2;
+  }
+  const reviewed = await reviewCliV25Candidate(bookId, roundId, v25.value, signal);
+  if (!reviewed.ok || reviewed.value.outcome !== "PASS") {
+    console.error(reviewed.ok ? `V25_CANONICAL_REVIEW_${reviewed.value.outcome}` : reviewed.error);
+    return 1;
+  }
+  const { CandidateQcEvaluator } = await import("./app/candidateQcEvaluator.js");
+  const { countQuizQuestions, freshQcRunDefinition } = await import("./app/bookRunApplicationService.js");
+  // qc-auto's fresh-qc runs the LLM answer-key judge through the composition's
+  // runner (role "qc"). The judge is per-question model work the gateway admits
+  // against run-state, so open a dedicated fresh-qc run sized to the quiz-question
+  // count; the judge's READ_ONLY profile pins its workDir to the pipeline root.
+  const qcJudgeRunId = v25.value.ids.nextRunId();
+  const qcJudgeRun = await v25.value.runStore.createRun(freshQcRunDefinition({
+    bookId,
+    runId: qcJudgeRunId,
+    sourceGitSha: v25.value.sourceGitSha,
+    candidate: v25.value.candidate,
+    createdAt: new Date().toISOString(),
+    questionCount: countQuizQuestions(v25.value.candidate),
+  }));
+  if (!qcJudgeRun.ok || qcJudgeRun.value.status !== "RUNNING") {
+    console.error(qcJudgeRun.ok ? "FRESH_QC_JUDGE_RUN_NOT_RUNNING" : `${qcJudgeRun.error.code}:${qcJudgeRun.error.message}`);
+    return 1;
+  }
+  const evaluation = await new CandidateQcEvaluator(v25.value.contentReader, { runner: v25.value.runner }).run({
+    candidate: v25.value.candidate,
+    canonicalReview: reviewed.value,
+    roundId,
+    taskContext: {
+      bookId,
+      runId: qcJudgeRunId,
+      attemptId: `${roundId}-quiz-key-judge`,
+      stageId: "fresh-qc",
+      operationId: "fresh-qc",
+      workDir: REPO_ROOT,
+      signal,
+    },
+  });
+  await v25.value.runStore.finishRun({
+    bookId,
+    runId: qcJudgeRunId,
+    status: evaluation.ok ? "COMPLETED" : "FAILED",
+    finishedAt: new Date().toISOString(),
+    ...(evaluation.ok ? {} : { reason: evaluation.error.code }),
+  });
+  if (!evaluation.ok) {
+    console.error(`${evaluation.error.code}:${evaluation.error.message}`);
+    return 1;
+  }
+  const fresh = await v25.value.qcService.runFresh({
+    roundId,
+    candidate: v25.value.candidate,
+    canonicalReview: reviewed.value,
+    evaluation: evaluation.value,
+  });
+  if (!fresh.ok) {
+    console.error(`${fresh.error.code}:${fresh.error.message}`);
+    return 1;
+  }
+  console.log(JSON.stringify(fresh.value, null, 2));
+  return fresh.value.outcome === "PASS" ? 0 : 1;
+}
+
+async function reviewCliV25Candidate(
+  bookId: string,
+  roundId: string,
+  composition: CliV25Composition,
+  signal: AbortSignal = new AbortController().signal,
+): Promise<
+  | { ok: true; value: import("./review/reviewTypes.js").CanonicalReviewResult }
+  | { ok: false; error: string }
+> {
+  const runId = composition.ids.nextRunId();
+  const reviewId = `qc-${roundId}`;
+  const createdAt = new Date().toISOString();
+  const created = await composition.runStore.createRun({
+    schemaVersion: "1",
+    bookId,
+    runId,
+    commandId: "cli-canonical-review",
+    sourceGitSha: composition.sourceGitSha,
+    requiredStages: ["canonical-review"],
+    requiredInventory: composition.candidate.manifest.entries.map(({ byteLength: _byteLength, ...entry }) => entry),
+    inputCandidate: {
+      candidateId: composition.candidate.manifest.candidateId,
+      manifestDigest: composition.candidate.manifest.manifestDigest,
+    },
+    attemptLimits: { run: 1, byStage: { "canonical-review": 1 } },
+    createdAt,
+  });
+  if (!created.ok) return { ok: false, error: `${created.error.code}:${created.error.message}` };
+  const reviewed = await composition.reviewService.reviewCanonical({
+    reviewId,
+    candidate: composition.candidate,
+    taskContext: {
+      bookId,
+      runId,
+      attemptId: composition.ids.reviewAttemptId(runId),
+      stageId: "canonical-review",
+      operationId: "canonical-review",
+      workDir: REPO_ROOT,
+      signal,
+    },
+  });
+  await composition.runStore.finishRun({
+    bookId,
+    runId,
+    status: reviewed.ok ? "COMPLETED" : "FAILED",
+    finishedAt: new Date().toISOString(),
+    ...(!reviewed.ok ? { reason: reviewed.error.code } : {}),
+  });
+  return reviewed.ok
+    ? { ok: true, value: reviewed.value }
+    : { ok: false, error: `${reviewed.error.code}:${reviewed.error.message}` };
+}
+
 function printHelp() {
   console.log(`ChapterFlow v21 CLI
 
@@ -71,7 +624,7 @@ Commands:
   critic <book.json>                 Run the critic suite on one book
   critic --all [--report <dir>]      Score every JSON in book-packages/
   critic --all --csv <file>          Emit a single-file CSV scoreboard
-  ping                               Verify the claude CLI is installed + authenticated
+  ping                               LEGACY_ROUTE_DISABLED. V4 application routes own model execution.
   ledger status                      Show cross-book library state summary
   ledger forbidden-names [--book X]  List protagonist names off-limits for the next book
   ledger ingest <chapter.json> --book-id X --title X --author X
@@ -127,25 +680,13 @@ Commands:
                                      chapters, before generate-book. Preserves a reviewed/diverged
                                      voiceCharter by default (other fields re-derive); --force-voice
                                      re-derives the voiceCharter from the TOC.
-  research "<title>" "<author>" [--book-id <slug>] [--concurrency N] [--force-refresh]
-                                     SUBPROCESS MODE: run the researcher via claude -p subprocess
-                                     calls. Counts against your Max subscription quota.
-  generate "<title>" "<author>" [--book-id <slug>] [--from N] [--to N] [--skip-research] [--force]
-                                     SUBPROCESS MODE: end-to-end fresh generation.
-                                     Counts against your Max subscription quota.
-  pipeline <bookId> --title X --author Y [--policy economy|standard|premium|publish] [--research|--skip-research]
-                                     Preferred v22 optimized autonomous run with live terminal phases, cost telemetry,
-                                     adaptive examples, risk-gated polish, deterministic final gates.
-  flow <bookId> --title X --author Y [--policy economy|standard|premium|publish] [--research|--skip-research]
-                                     Alias of pipeline, retained for compatibility.
+  ${V4_RESEARCH_USAGE}
+                                     V4-only research intake. Writes immutable candidate inputs through
+                                     production application composition. Legacy researcher route is disabled.
+  generate | pipeline | flow        LEGACY_ROUTE_DISABLED. Use book-run or book-autopilot.
   policy [economy|standard|premium|publish]
                                      Print the v22 run policy cost/quality contract.
-  generate-book <bookId> --title X --author Y [--from N] [--to N] [--policy economy|standard|premium|publish] [--force] [--no-categorizer --categories A,B --tags x,y]
-                                     Lower-level: generate (or resume) every chapter of a book
-                                     using an existing chapter index. Full canonical runs auto-promote
-                                     on success; --from/--to range runs stop before production promotion.
-                                     For inline-operator mode (no subprocess calls), pre-populate
-                                     state/chapters/ and use --no-categorizer with manual metadata.
+  generate-book                      LEGACY_ROUTE_DISABLED. Use book-run or book-autopilot.
   promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
                                      Final gate. Requires the complete canonical index, then re-validates
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
@@ -188,9 +729,13 @@ Commands:
                                      The whole lifecycle in one view: research → written → gate-clean →
                                      QC'd → publishable, a cross-book variety read (advisory), and the
                                      single exact next command. Read-only.
-  doctor [<bookId>] [--json]         Preflight: catches the shadow state dir, dual brief shapes,
+  doctor [<bookId>] [--json] [--v25-root <absolute>] [--attempt-root <absolute>]
+                                     Preflight: catches the shadow state dir, dual brief shapes,
                                      chapter-number drift, and untracked-but-imported source files before
-                                     they cost a run. Exit 0 healthy / 1 warnings / 2 blocking trap.
+                                     they cost a run; also checks the V4 route (model CLI preflight,
+                                     v25-root writability, production composition constructs — SKIPs the
+                                     model-CLI probe under CHAPTERFLOW_NO_API_CODEX_QC=1). Exit 0 healthy /
+                                     1 warnings / 2 blocking trap.
   authoring-guardrails <bookId> [--chapters N]
                                      Write the pre-authoring sheet (per-chapter reserved names +
                                      banned-phrase registry: house tics, forbidden moves, salting
@@ -254,14 +799,12 @@ Commands:
                                      structured-output response_format (the CLI still re-checks cross-field rules).
   roles [<roleId>]                   List the pipeline roles with recommended GPT reasoning/verbosity,
                                      or print one role's full profile (roles/ROLE-DEFINITIONS.json).
-  qc-auto "<book name or id>" --pass [--round <id>] [--chapters 1,2] [--incremental] [--tiebreak] [--max-agents N] [--dry-run] [--no-attest] [--allow-stale-round]
-                                     One-command no-api Codex QC autopilot. Creates/reuses a round,
-                                     writes workflow tasking, collects submissions, finalizes evidence,
-                                     and reports PASS/REPAIR/INCOMPLETE without using paid APIs.
-                                     --tiebreak: borderline bar reads get extra independent reads, combined by median.
-  qc-diagnose <bookId> --round <roundId>
-                                     Explain evidence-matrix verdicts, common failures, repair prompt,
-                                     and the exact next QC command.
+  ${V4_QC_AUTO_USAGE}
+                                     V4 candidate-native QC. Opens exact immutable candidate, runs canonical
+                                     review, then one fresh QC round. No CURRENT or ambient discovery.
+  ${V4_QC_DIAGNOSE_USAGE}
+                                     Diagnose selected V4 candidate round. Without V4 selector flags,
+                                     legacy evidence-matrix diagnosis remains available.
   publish-after-qc "<book name or id>" --round <roundId> [--title "..."] [--author "..."] [--commit] [--push] [--cleanup transient|none|audit-unsafe] [--include-state] [--dry-run]
                                      Verifies no-api QC pass, promotes/registers the book, removes
                                      one-time token/task/repair artifacts, and optionally commits/pushes
@@ -283,20 +826,57 @@ Commands:
                                      reports DETERMINISTIC-CLEAN / DIRTY WITHOUT opening a formal QC round.
                                      Run after every repair until CLEAN, THEN qc-auto — so a formal round
                                      never burns submissions rediscovering a mechanical nit. Exit 0=clean, 1=dirty.
-  book-autopilot <bookId> [--regen] [--plan] [--no-publish] [--author] [--legacy] [--max-repair N] [--max-parallel N]
-                                     END-TO-END conductor. Drives research → write → gate → QC(+≤3 repair)
-                                     → ready-to-publish, spawning codex exec agentic sub-sessions for the
-                                     WORK (distinct CHAPTERFLOW_SESSION_ID each) while deterministic code owns
-                                     the DECISIONS. Runs on the Codex subscription (NO API metering). On QC
-                                     convergence AUTO-PUBLISHES (full promote gate, then commit+push to main —
-                                     NOT a live deploy); --no-publish halts for review. --plan previews the plan.
-                                     --regen RE-RUNS an already-published book (else it's skipped as "shipped").
-  book-run <bookId> [--regen] [--max-parallel N] [--max-repair N] [--plan] [--no-publish] [--author] [--legacy] [--no-notify] [--sound] [--log <file>]
-                                     SAME conductor as book-autopilot, wrapped to print a clean timestamped
-                                     update AND a macOS notification on every MAJOR event (research / write /
-                                     gate / QC round + publishable tally / repair / warnings / final). One
-                                     input, walk away, get pinged. --no-notify = terminal only; --log appends
-                                     an event log. Changes no pipeline behavior; same gates, env, exit code.
+  ${v4BookProductionUsage("book-autopilot")}
+                                     V4 production lifecycle through shared BookRunApplicationService.
+  ${v4BookProductionUsage("book-run")}
+                                     Same V4 production lifecycle. --log must be absolute and adds an event-log
+                                     mirror. Route is always local-only: no package/registry/Git/remote/deploy.
+                                     --no-publish explicitly confirms that boundary; --promote-local remains valid.
+                                     --research-run-id pins an existing research run so a content repair reuses its
+                                     sidecars and section-pack cache instead of re-minting the bibliography; it fails
+                                     closed if the pinned run is missing, foreign, incompatible, or not fully reusable,
+                                     and cannot be combined with --resume-run-id.
+  migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
+                                     IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
+                                     Stage D prompt-stack diagnostic → Stage C confirmatory four-way
+                                     (55-H/55-XH/56S-H/56S-XH) under frozen sealed manifests: one-attempt
+                                     samples (no retry/repair), blinded QUALIFIED judges, cluster-aware
+                                     stats, precision-honest thresholds, machine-readable decision file.
+                                     Never promotes, publishes, or touches canonical state; activation is
+                                     IMP-13's separately authorized package.
+  migration-bakeoff <close-legacy-campaign|build-reader-corpus|build-source-corpus|build-quiz-corpus|build-reader-corpus-v2|build-source-corpus-v2|build-quiz-corpus-v2|retrospective|recovery-preflight|recovery-pilot-dryrun> [--write] [--json]
+                                     IMP-20 split-lane reviewer & §16-recovery subverbs. ALL no-model,
+                                     no-write by default (pass --write to persist committed artifacts):
+                                     verify the mechanical §16 closure freeze; build the hermetic
+                                     reader/source/quiz role corpora (fail-closed, never shrink); regenerate
+                                     the static Layer-N v2 retrospective; preflight the recovery spec/seal-prep
+                                     (fail-closed until a role-qualified reviewer set exists); and the no-model
+                                     recovery pilot dry run (ZERO model/API calls). Never spawns, never
+                                     promotes/publishes; live qualification + pilot need SEPARATE authorization.
+  migration-bakeoff <role-qualification-calibrate|role-qualification-holdout> --execute-live [--timeout-ms N] [--json]
+                                     IMP-22 ChatGPT-subscription codex-exec qualification. Calibration is
+                                     a 24-call barrier and cannot start holdout; holdout requires its valid,
+                                     hash-bound seal plus a durable human inspection attestation. Attempts
+                                     are crash-safe and exact resumes reuse receipts.
+  migration-bakeoff role-qualification-attest-calibration --inspector ID
+                                     --confirm-calibration-sha SHA --approve-holdout [--note TEXT] [--json]
+                                     IMP-22 zero-call operator gate. Hash-binds inspection of all retained
+                                     calibration results before any holdout request can start.
+  migration-bakeoff forward-materialize-production-instrument-seal [--output FILE] [--write] [--json]
+                                     IMP-22 zero-model/API production-instrument materializer. Dry mode
+                                     prints the current hash and target path; --write atomically writes and
+                                     validates the retained canonical artifact. Default artifact:
+                                     state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json
+  migration-bakeoff <forward-pilot|forward-gold> --execute-live
+                                     --phase-dir DIR --manifest FILE --input-freeze FILE --input-materialization FILE
+                                     --production-instrument-seal FILE
+                                     (normally state/migration-experiments/contracts/imp22/forward-production-instrument-seal.json)
+                                     --calibration-seal FILE --calibration-inspection FILE
+                                     --qualification-result FILE --qualification-bundle FILE --role-freeze FILE
+                                     [--gold-evaluator-config FILE] [--json]
+                                     IMP-22 forward-only live validation. Dry by default: without --execute-live
+                                     it makes zero model/API calls. Every retained artifact path is explicit;
+                                     no publish, promote, deploy, upload, API route, or fallback exists.
   compile-source-packets <bookId>    v23 compiler: compile source-v2 sidecars into compact source packets.
   source-packet-gate <bookId>        v23 compiler: validate compiled source packets before blueprints.
   compile-book-design <bookId>       v23 compiler: derive the per-book variety pools artifact.
@@ -416,8 +996,9 @@ Commands:
 Examples:
   npx tsx src/cli.ts critic book-packages/atomic-habits.modern.json
   npx tsx src/cli.ts critic --all
-  npx tsx src/cli.ts research "Atomic Habits" "James Clear"
-  npx tsx src/cli.ts generate "Atomic Habits" "James Clear"
+  npx tsx src/cli.ts research "Atomic Habits" "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha>
+  npx tsx src/cli.ts book-run atomic-habits --title "Atomic Habits" --author "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha> --no-publish
+  npx tsx src/cli.ts book-run atomic-habits --title "Atomic Habits" --author "James Clear" --v25-root /tmp/chapterflow-v25 --attempt-root /tmp/chapterflow-attempts --source-git-sha <sha> --no-publish --research-run-id 20260728T101112131Z-<uuid>
 `);
 }
 
@@ -853,7 +1434,7 @@ async function runMigrateChapterIdentity(args: string[], flags: Record<string, s
     console.error("Usage: migrate-chapter-identity <bookId> [--apply] [--json]");
     return 2;
   }
-  const { planChapterIdentityMigration, applyChapterIdentityMigration } = await import("./librarian/identityMigration.js");
+  const { planChapterIdentityMigration, applyChapterIdentityMigrationV4 } = await import("./librarian/identityMigration.js");
   const mopts = process.env.CHAPTERFLOW_STATE_DIR ? { stateDir: resolve(process.env.CHAPTERFLOW_STATE_DIR) } : {};
   const plan = planChapterIdentityMigration(bookId, mopts);
   const apply = flags["apply"] === true;
@@ -890,7 +1471,7 @@ async function runMigrateChapterIdentity(args: string[], flags: Record<string, s
     return 0;
   }
 
-  const result = applyChapterIdentityMigration(plan, mopts);
+  const result = await applyChapterIdentityMigrationV4(plan, mopts);
   if (json) console.log(JSON.stringify({ plan, result }, null, 2));
   else {
     console.log(`migrate-chapter-identity — ${plan.bookId}: applied ${result.applied.length} change(s), index ${result.indexUpdated ? "updated" : "unchanged"}.`);
@@ -1662,17 +2243,74 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     console.error("Both --title and --author are required.");
     return 2;
   }
-  const { promoteBook, formatPromotionResult } = await import("./promoteBook.js");
-  const { loadChapterIndex } = await import("./generateBook.js");
-  const chapters = loadChapterIndex(bookId);
-
+  const candidateRelease = hasCliV25Selection(flags);
   let categories = parseCsvFlag(flags["categories"]);
   let tags = parseCsvFlag(flags["tags"]);
 
-  // Auto-fill categories/tags with the NO-API deterministic categorizer when the
-  // operator doesn't pass them (the default). It reads the book's own content, so
-  // it works without the model API and never ships empty (which the strict
-  // package validator rejects). --categories/--tags always override.
+  if (candidateRelease && (!categories || !tags)) {
+    console.error("V25_RELEASE_REQUIRED: --categories and --tags must be explicit for candidate release");
+    return 2;
+  }
+  if (candidateRelease) {
+    const reviewId = flags["review-id"];
+    const qcRoundId = flags["qc-round-id"] ?? flags["round"];
+    const revisionRaw = flags["expected-book-revision"];
+    const expectedBookRevision = typeof revisionRaw === "string" ? Number(revisionRaw) : NaN;
+    if (
+      typeof reviewId !== "string" || reviewId.length === 0 ||
+      typeof qcRoundId !== "string" || qcRoundId.length === 0 ||
+      !Number.isSafeInteger(expectedBookRevision) || expectedBookRevision < 0
+    ) {
+      console.error("V25_RELEASE_REQUIRED: --review-id, --qc-round-id (or --round), and non-negative --expected-book-revision are required");
+      return 2;
+    }
+    const v25 = await createCliV25Composition(bookId, flags);
+    if (!v25.ok) {
+      console.error(v25.error);
+      return 2;
+    }
+    const promotedAt = new Date().toISOString();
+    const { CanonicalPackageAdapter } = await import("./release/canonicalPackageAdapter.js");
+    const release = new CanonicalPackageAdapter({
+      contentReader: v25.value.contentReader,
+      promotionService: v25.value.promotionService,
+      packageWriter: ({ package: value }) => {
+        writeFileAtomic(resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`), `${JSON.stringify(value, null, 2)}\n`);
+      },
+    });
+    const result = await release.release({
+      bookId,
+      candidate: {
+        candidateId: v25.value.candidate.manifest.candidateId,
+        manifestDigest: v25.value.candidate.manifest.manifestDigest,
+      },
+      reviewId,
+      qcRoundId,
+      expectedBookRevision,
+      promotedAt,
+      metadata: {
+        title,
+        author,
+        packageId: `${bookId}-v21-${Date.parse(promotedAt)}`,
+        createdAt: promotedAt,
+        contentOwner: "chapterflow",
+        categories,
+        tags,
+      },
+    });
+    if (!result.ok) {
+      console.error(`${result.error.code}:${result.error.message}`);
+      return 1;
+    }
+    console.log(`V25 RELEASED — ${bookId} revision ${result.value.bookRevision} (${result.value.readback})`);
+    return 0;
+  }
+
+  const { promoteBook, formatPromotionResult } = await import("./promoteBook.js");
+  const { loadChapterIndex } = await import("./generateBook.js");
+  const chapters = loadChapterIndex(bookId);
+  // Auto-fill categories/tags with the NO-API deterministic categorizer for the
+  // explicit legacy path. Candidate release uses only candidate-bound content.
   if (!categories || !tags) {
     const { deriveCategoriesAndTags } = await import("./agents/autoCategorize.js");
     const auto = deriveCategoriesAndTags(bookId, { title, chapterTitles: chapters.map((c) => c.chapterTitle) });
@@ -1680,7 +2318,6 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     if (!tags) tags = auto.tags;
     console.log(`Auto-categorized (no-API, source: ${auto.source}): categories=[${categories.join(", ")}]  tags=[${tags.join(", ")}]`);
   }
-
   const result = promoteBook({ bookId, title, author, chapters, categories, tags });
   console.log(formatPromotionResult(result));
   return result.promoted ? 0 : 1;
@@ -1914,8 +2551,14 @@ async function runDoctor(args: string[], _flags: Record<string, string | boolean
     bookId = resolved.ok === false ? input : resolved.bookId;
     if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
   }
-  const { runDoctorChecks, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
-  const findings = runDoctorChecks(bookId);
+  const { runDoctorChecks, checkV4Route, formatDoctor, doctorExitCode } = await import("./lifecycle/doctor.js");
+  const v25RootFlag = _flags["v25-root"];
+  const attemptRootFlag = _flags["attempt-root"];
+  const v4RouteFindings = await checkV4Route({
+    v25Root: typeof v25RootFlag === "string" ? v25RootFlag : undefined,
+    attemptRoot: typeof attemptRootFlag === "string" ? attemptRootFlag : undefined,
+  });
+  const findings = [...runDoctorChecks(bookId), ...v4RouteFindings];
   const exitCode = doctorExitCode(findings);
   if (_flags.json === true) {
     const fatal = findings.filter((f) => f.level === "fatal").length;
@@ -1953,10 +2596,21 @@ async function runAuthoringGuardrails(args: string[], flags: Record<string, stri
   const resolved = resolveBookIdentifier(input);
   const bookId = resolved.ok === false ? input : resolved.bookId;
   if (resolved.ok === false) console.log(`note: could not resolve "${input}" to a known book — using raw id "${bookId}".`);
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) {
+    console.error(binding.error);
+    return 2;
+  }
   const chapters = typeof flags["chapters"] === "string" ? parseInt(flags["chapters"], 10) : undefined;
-  const { writeAuthoringGuardrails } = await import("./librarian/authoringGuardrails.js");
+  const { writeAuthoringGuardrailsV4 } = await import("./librarian/authoringGuardrails.js");
   try {
-    const path = writeAuthoringGuardrails(bookId, { chapters: Number.isInteger(chapters) ? chapters : undefined });
+    const stateDir = process.env.CHAPTERFLOW_STATE_DIR ? resolve(process.env.CHAPTERFLOW_STATE_DIR) : undefined;
+    const path = await writeAuthoringGuardrailsV4(bookId, {
+      chapters: Number.isInteger(chapters) ? chapters : undefined,
+      stateDir,
+      reader: binding.value.contentReader,
+      candidateId: binding.value.candidate.manifest.candidateId,
+    });
     console.log(`authoring-guardrails: wrote ${path}`);
     console.log("Paste this into every chapter authoring prompt before writing.");
     return 0;
@@ -1980,7 +2634,7 @@ async function runAuthoringGuardrails(args: string[], flags: Record<string, stri
  *  report Codex uses to converge in-session. Exit 1 on any finding so a write
  *  loop (`author-check && gate-chapter`) iterates to clean. SHADOW: these are
  *  advisory and do NOT affect the ship gate's blocker count yet. */
-async function runAuthorCheck(args: string[]): Promise<number> {
+async function runAuthorCheck(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const chapterFile = args[0];
   if (!chapterFile) {
     console.error("Usage: author-check <path/to/chapter.json>");
@@ -2004,7 +2658,17 @@ async function runAuthorCheck(args: string[]): Promise<number> {
   // normSlug via parseChapterId so capital-cased chapterIds (e.g. Unreasonable-Hospitality-Ch01)
   // resolve to the canonical bookId the answer-key plan is filed under.
   const bookId = parseChapterId(chapter.chapterId)?.bookId ?? chapter.chapterId.replace(/-ch\d+$/i, "");
-  const balance = checkChapterAnswerBalance(chapter, loadAnswerKeyPlan(bookId));
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) {
+    console.error(binding.error);
+    return 2;
+  }
+  const answerKeyPlan = await loadAnswerKeyPlan(
+    bookId,
+    binding.value.contentReader,
+    binding.value.candidate.manifest.candidateId,
+  );
+  const balance = checkChapterAnswerBalance(chapter, answerKeyPlan);
   for (const f of balance) console.log(`  [${f.checkId}] ${f.message}`);
   return findings.length === 0 ? 0 : 1;
 }
@@ -2388,7 +3052,7 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
   const { computeNextTask } = await import("./next-task.js");
   const { runShipGate } = await import("./critics/finalGate.js");
   const { runBookGate } = await import("./critics/bookGate.js");
-  const { loadAttestation, isAttestationFresh } = await import("./critics/qcAttestation.js");
+  const { attestationPath, loadAttestation, isAttestationFresh } = await import("./critics/qcAttestation.js");
   const STATE = resolve(__dirname, "../state");
   const REPO = resolve(__dirname, "..");
   const chaptersDir = resolve(STATE, "chapters");
@@ -2427,7 +3091,9 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
         stage = "GATE_FIX"; detail = `${blockers} gate blocker(s)`; action = "gatefix";
       } else {
         const qcPassed = chapters.filter((ch) => {
-          const a = loadAttestation(bookId, ch.number);
+          let a: ReturnType<typeof loadAttestation> = null;
+          try { a = loadAttestation(bookId, ch.number, readFileSync(attestationPath(bookId, ch.number))); }
+          catch { /* missing/unreadable remains not passed */ }
           // isAttestationFresh, NOT a raw hash compare — attestations carry a
           // hashVersion and a raw compare goes wrong the moment the hash evolves.
           return a && a.verdict === "PUBLISHABLE" && isAttestationFresh(a, ch);
@@ -2657,6 +3323,13 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
     console.error("Usage: fanout <bookId> [--from N --to M] [--all] [--write-dir <path>]");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) {
+    console.error(binding.error);
+    return 2;
+  }
+  const candidateReader = binding.value.contentReader;
+  const candidateId = binding.value.candidate.manifest.candidateId;
   const { planNames, writeNamePlan } = await import("./librarian/namePlan.js");
   const { planShapes, writeShapePlan, loadSceneShapes } = await import("./librarian/shapePlan.js");
   const { planOpeners, formatOpenerPlanForChapter } = await import("./librarian/openerPlan.js");
@@ -2732,10 +3405,10 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   // on. Deriving whole-book gives chapter N its disjoint slice regardless of the range.
   // The `--all` redo stays range-scoped (a TARGETED refresh of the offender only).
   const plan = includeAll
-    ? planNames(bookId, from, to, 7, { forceFresh: true })
-    : planNames(bookId, fullFrom, fullTo, 7, { forceFresh: false });
+    ? await planNames(bookId, from, to, 7, { forceFresh: true }, candidateReader, candidateId)
+    : await planNames(bookId, fullFrom, fullTo, 7, { forceFresh: false }, candidateReader, candidateId);
   writeNamePlan(plan);
-  const shapePlan = planShapes(bookId, from, to, 6, { forceFresh: includeAll });
+  const shapePlan = await planShapes(bookId, from, to, 6, { forceFresh: includeAll }, candidateReader, candidateId);
   writeShapePlan(shapePlan);
   // Per-example scenario-opener archetypes (the missing twin of shapePlan/venuePlan): deals a
   // distinct opening CONSTRUCTION per slot so scenarios are born varied instead of defaulting
@@ -2747,7 +3420,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   const stakesPlan = planStakes(bookId, from, to, 3);
   writeStakesPlan(stakesPlan);
   const shapeDefs = new Map(loadSceneShapes().map((s) => [s.id, s.definition]));
-  const pedagogyPlan = planPedagogy(bookId, from, to, { forceFresh: includeAll });
+  const pedagogyPlan = await planPedagogy(bookId, from, to, { forceFresh: includeAll }, candidateReader, candidateId);
   writePedagogyPlan(pedagogyPlan);
   const pedagogyPalettes = loadPedagogyPalettes();
   const hookDefs = new Map(pedagogyPalettes.hookShapes.map((s) => [s.id, s.definition]));
@@ -2763,7 +3436,7 @@ async function runFanout(args: string[], flags: Record<string, string | boolean>
   // block). Always derive ownership over every chapter (fullFrom..fullTo, computed
   // above) so the card a writer sees and the gate that judges it read one identical,
   // complete plan.
-  const exemplarPlan = planExemplars(bookId, fullFrom, fullTo);
+  const exemplarPlan = await planExemplars(bookId, fullFrom, fullTo, candidateReader, candidateId);
   writeExemplarPlan(exemplarPlan);
   const venuePlan = planVenues(bookId, fullFrom, fullTo);
   writeVenuePlan(venuePlan);
@@ -3165,8 +3838,10 @@ async function runShapePlan(args: string[], flags: Record<string, string | boole
     console.error("Usage: shape-plan <bookId> --from N --to M");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planShapes, writeShapePlan, formatShapePlan } = await import("./librarian/shapePlan.js");
-  const plan = planShapes(bookId, from, to);
+  const plan = await planShapes(bookId, from, to, 6, {}, binding.value.contentReader, binding.value.candidate.manifest.candidateId);
   const path = writeShapePlan(plan);
   console.log(formatShapePlan(plan));
   console.log(`\nWritten: ${path}`);
@@ -3186,8 +3861,10 @@ async function runPedagogyPlan(args: string[], flags: Record<string, string | bo
     console.error("Usage: pedagogy-plan <bookId> --from N --to M");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planPedagogy, writePedagogyPlan, formatPedagogyPlan } = await import("./librarian/pedagogyPlan.js");
-  const plan = planPedagogy(bookId, from, to);
+  const plan = await planPedagogy(bookId, from, to, {}, binding.value.contentReader, binding.value.candidate.manifest.candidateId);
   const path = writePedagogyPlan(plan);
   console.log(formatPedagogyPlan(plan));
   console.log(`\nWritten: ${path}`);
@@ -3207,9 +3884,13 @@ async function runExemplarPlan(args: string[], flags: Record<string, string | bo
     console.error("Usage: exemplar-plan <bookId> [--from N --to M]");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planExemplars, writeExemplarPlan, formatExemplarPlan } = await import("./librarian/exemplarPlan.js");
-  const { expectedSourceChapters } = await import("./qc/sourceV2Gate.js");
-  const nums = expectedSourceChapters(bookId);
+  const nums = binding.value.candidate.files
+    .map((file) => file.logicalPath.match(/^sidecars\/ch(\d+)\.json$/)?.[1])
+    .filter((value): value is string => value !== undefined)
+    .map(Number);
   let from: number;
   let to: number;
   if (nums.length > 0) {
@@ -3225,7 +3906,7 @@ async function runExemplarPlan(args: string[], flags: Record<string, string | bo
       return 2;
     }
   }
-  const plan = planExemplars(bookId, from, to);
+  const plan = await planExemplars(bookId, from, to, binding.value.contentReader, binding.value.candidate.manifest.candidateId);
   const path = writeExemplarPlan(plan);
   console.log(formatExemplarPlan(plan));
   console.log(`\nWritten: ${path}`);
@@ -3263,9 +3944,11 @@ async function runAnswerKeyPlan(args: string[], flags: Record<string, string | b
     console.error("Usage: answer-key-plan <bookId> --from N --to M [--questions Q]");
     return 2;
   }
-  const questions = typeof flags["questions"] === "string" ? parseInt(flags["questions"] as string, 10) : undefined;
-  const { planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
-  const plan = planAnswerKeys(bookId, from, to, questions);
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
+  const { DEFAULT_POSITIONS, DEFAULT_QUESTIONS, planAnswerKeys, writeAnswerKeyPlan } = await import("./librarian/answerKeyPlan.js");
+  const questions = typeof flags["questions"] === "string" ? parseInt(flags["questions"] as string, 10) : DEFAULT_QUESTIONS;
+  const plan = planAnswerKeys(bookId, from, to, questions, DEFAULT_POSITIONS);
   const path = writeAnswerKeyPlan(plan);
   for (let n = from; n <= to; n++) console.log(`  ch${String(n).padStart(2, "0")}: [${(plan.allocation[n] ?? []).join(",")}]`);
   console.log(`\naggregate counts=[${plan.aggregate.counts.join(",")}] maxFraction=${plan.aggregate.maxFraction.toFixed(3)} (ceiling ${0.4})`);
@@ -3284,6 +3967,8 @@ async function runRhetoricPlan(args: string[], flags: Record<string, string | bo
     console.error("Usage: rhetoric-plan <bookId> --from N --to M");
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planRhetoric, writeRhetoricPlan, formatRhetoricPlan } = await import("./librarian/rhetoricPlan.js");
   const plan = planRhetoric(bookId, from, to);
   const path = writeRhetoricPlan(plan);
@@ -3310,11 +3995,21 @@ async function runNamePlan(args: string[], flags: Record<string, string | boolea
     console.error(`--per-chapter must be a positive integer (got "${String(flags["per-chapter"])}")`);
     return 2;
   }
+  const binding = await createCliCandidateReaderProjection(bookId, flags);
+  if (!binding.ok) { console.error(binding.error); return 2; }
   const { planNames, writeNamePlan, formatNamePlan } = await import("./librarian/namePlan.js");
   // --force-fresh: deal fresh catalog-exclusive names even for authored
   // chapters — the refresh path uses this to build old→new RENAME maps
   // (carried allocations only echo the on-disk names, collisions included).
-  const plan = planNames(bookId, from, to, perChapter, { forceFresh: flags["force-fresh"] === true });
+  const plan = await planNames(
+    bookId,
+    from,
+    to,
+    perChapter,
+    { forceFresh: flags["force-fresh"] === true },
+    binding.value.contentReader,
+    binding.value.candidate.manifest.candidateId,
+  );
   const path = writeNamePlan(plan);
   console.log(formatNamePlan(plan));
   console.log("");
@@ -3954,6 +4649,33 @@ async function runQcMetrics(flags: Record<string, string | boolean>): Promise<nu
 }
 
 async function runQcDiagnose(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  if (hasCliV25Selection(flags)) {
+    const unsupported = firstUnsupportedFlag(flags, [
+      "round", "v25-root", "attempt-root", "candidate-id", "manifest-digest", "source-git-sha",
+    ]);
+    const bookId = args[0] ?? "";
+    const roundId = typeof flags["round"] === "string" ? flags["round"] : "";
+    if (unsupported !== undefined) {
+      console.error(`UNSUPPORTED_OPTION:qc-diagnose:--${unsupported}`);
+      return 2;
+    }
+    if (args.length !== 1 || !bookId || !roundId) {
+      console.error(`Usage: ${V4_QC_DIAGNOSE_USAGE}`);
+      return 2;
+    }
+    const v25 = await createCliV25Composition(bookId, flags);
+    if (!v25.ok) {
+      console.error(v25.error);
+      return 2;
+    }
+    const diagnosis = await v25.value.qcService.diagnose(bookId, roundId);
+    if (!diagnosis.ok) {
+      console.error(`${diagnosis.error.code}:${diagnosis.error.message}`);
+      return 1;
+    }
+    console.log(JSON.stringify(diagnosis.value, null, 2));
+    return 0;
+  }
   const g = shadowGuard();
   if (g) return g;
   const input = args.join(" ").trim();
@@ -4042,28 +4764,312 @@ async function runQcConverge(args: string[], flags: Record<string, string | bool
  *  push the package to main — NOT a live deploy); pass --no-publish to halt at
  *  ready-to-publish for review. Runs entirely on the Codex subscription — no API
  *  metering. `--plan` previews the spawn plan. */
-async function runBookAutopilot(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+async function runBookAutopilot(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  app?: import("./app/createChapterFlowApp.js").ChapterFlowApp,
+): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
     console.error("Usage: book-autopilot <bookId> [--plan] [--no-publish] [--max-repair N] [--max-parallel N]");
     return 2;
   }
   const { runAutopilot, formatOutcome, architectureFromFlags } = await import("./orchestrator/autopilot.js");
+  const { resolveStandardForwardAutopilotControl } = await import("./orchestrator/forwardLocalAutopilot.js");
   const maxRepair = typeof flags["max-repair"] === "string" ? parseInt(flags["max-repair"], 10) : undefined;
   const maxParallel = typeof flags["max-parallel"] === "string" ? parseInt(flags["max-parallel"], 10) : undefined;
+  let forwardControl: ReturnType<typeof resolveStandardForwardAutopilotControl>;
+  try { forwardControl = resolveStandardForwardAutopilotControl(); }
+  catch (error) {
+    console.error(`forward local runtime preflight failed: ${(error as Error).message}`);
+    return 1;
+  }
+  const requestedArchitecture = architectureFromFlags(flags);
+  const explicitLegacy = "legacy" in flags || "legacy-whole-chapter-writer" in flags;
+  const architecture = forwardControl.runtime.mode === "FORWARD_ACTIVE" && !explicitLegacy
+    ? "author"
+    : requestedArchitecture;
+  let contentRepairCanary: import("./orchestrator/autopilot.js").ContentRepairCanaryBinding | undefined;
+  if ("content-repair-canary" in flags) {
+    if (flags["content-repair-canary"] !== true) {
+      console.error("--content-repair-canary does not accept a value");
+      return 2;
+    }
+    if (flags["author"] !== true || !("no-publish" in flags) || architecture !== "author") {
+      console.error("--content-repair-canary requires explicit --author --no-publish");
+      return 2;
+    }
+    const failedRoundId = flags["failed-round-id"];
+    if (typeof failedRoundId !== "string" || failedRoundId.length === 0) {
+      console.error("--content-repair-canary requires --failed-round-id");
+      return 2;
+    }
+    const diagnosisId = flags["diagnosis-id"];
+    if (diagnosisId !== undefined && (typeof diagnosisId !== "string" || diagnosisId.length === 0)) {
+      console.error("--diagnosis-id must be a non-empty string when supplied");
+      return 2;
+    }
+    const v25 = await createCliV25Composition(bookId, flags);
+    if (!v25.ok) {
+      console.error(v25.error);
+      return 2;
+    }
+    const autopilot = await import("./orchestrator/autopilot.js");
+    const failedRound = await v25.value.qcService.getRound(bookId, failedRoundId);
+    const predecessorIdentity = {
+      candidateId: v25.value.candidate.manifest.candidateId,
+      manifestDigest: v25.value.candidate.manifest.manifestDigest,
+    };
+    if (!failedRound.ok
+      || failedRound.value.outcome !== "FAIL"
+      || failedRound.value.candidate.candidateId !== predecessorIdentity.candidateId
+      || failedRound.value.candidate.manifestDigest !== predecessorIdentity.manifestDigest) {
+      console.error("REPAIR_FAILED_QC_STALE:failed round does not bind selected predecessor candidate");
+      return 2;
+    }
+    const runId = `content-repair-${failedRoundId}`;
+    const repairId = `repair-${failedRoundId}`;
+    const successorCandidateId = `successor-${failedRoundId}`;
+    const reviewId = `review-${failedRoundId}`;
+    const freshRoundId = `fresh-${failedRoundId}`;
+    const attemptId = `attempt-${failedRoundId}`;
+    if ([runId, repairId, successorCandidateId, reviewId, freshRoundId, attemptId]
+      .some((id) => id.length > 128 || !/^[A-Za-z0-9._-]+$/.test(id))) {
+      console.error("REPAIR_ID_INVALID:failed round ID cannot form bounded deterministic repair IDs");
+      return 2;
+    }
+    const createdAt = failedRound.value.completedAt;
+    const existingSuccessor = await v25.value.candidateStore.open({
+      bookId,
+      selector: { kind: "CANDIDATE", candidateId: successorCandidateId },
+    });
+    let resumePending = false;
+    let canaryFenceCandidate = v25.value.candidate;
+    if (existingSuccessor.ok) {
+      const manifest = existingSuccessor.value.manifest;
+      if (manifest.bookId !== bookId
+        || manifest.candidateId !== successorCandidateId
+        || manifest.parentCandidateId !== predecessorIdentity.candidateId
+        || manifest.createdByRunId !== runId
+        || manifest.createdAt !== createdAt) {
+        console.error("REPAIR_SUCCESSOR_CONFLICT:staged successor metadata does not match deterministic repair transition");
+        return 2;
+      }
+      resumePending = true;
+      canaryFenceCandidate = existingSuccessor.value;
+    } else if (existingSuccessor.error.code !== "CANDIDATE_NOT_FOUND") {
+      console.error(`${existingSuccessor.error.code}:${existingSuccessor.error.message}`);
+      return 2;
+    }
+    const candidateFence = autopilot.fenceCandidateToCanonicalChapters(canaryFenceCandidate, bookId);
+    if (!candidateFence.ok) {
+      console.error(`${candidateFence.error.code}:${candidateFence.error.message}`);
+      return 2;
+    }
+    const [{ CandidateRepairService }, { FileRepairHistoryStore }, { runContentRepairWorkflow }, { candidateManifestDigest }] = await Promise.all([
+      import("./qc/repairCoordinator.js"),
+      import("./qc/repairHistoryStore.js"),
+      import("./app/contentRepairWorkflow.js"),
+      import("./books/candidateDigest.js"),
+    ]);
+    const history = new FileRepairHistoryStore({ booksRoot: resolve(String(flags["v25-root"]), "books"), writeLock: v25.value.writeLock });
+    const repairs = new CandidateRepairService({
+      candidates: v25.value.candidateStore,
+      history,
+      qc: v25.value.qcService,
+      diagnoses: v25.value.qcStore,
+    });
+    contentRepairCanary = {
+      failedRoundId,
+      resumePending,
+      preflight: () => autopilot.fenceCandidateToCanonicalChapters(canaryFenceCandidate, bookId),
+      async run({ deps, maxParallel }) {
+        const files = autopilot.readCanonicalChapterFiles(bookId);
+        if (files.length === 0) {
+          return { ok: false, error: { code: "REPAIR_OUTPUT_INVALID", message: "canonical successor has no CHAPTER files" } };
+        }
+        const expectedInventory = files.map(({ bytes: _bytes, ...file }) => file);
+        const successorMetadata = {
+          schemaVersion: "1" as const,
+          bookId,
+          candidateId: successorCandidateId,
+          parentCandidateId: predecessorIdentity.candidateId,
+          createdByRunId: runId,
+          entries: files.map((file) => ({
+            kind: file.kind,
+            logicalPath: file.logicalPath,
+            mediaType: file.mediaType,
+            byteLength: file.bytes.byteLength,
+          })),
+          createdAt,
+        };
+        let successorManifestDigest: string;
+        try {
+          successorManifestDigest = candidateManifestDigest(successorMetadata, files);
+        } catch (error) {
+          return { ok: false, error: { code: "REPAIR_OUTPUT_INVALID", message: (error as Error).message } };
+        }
+        const run = await v25.value.runStore.createRun({
+          schemaVersion: "1",
+          bookId,
+          runId,
+          commandId: "content-repair-canary",
+          sourceGitSha: v25.value.sourceGitSha,
+          requiredStages: ["content-repair-canary"],
+          requiredInventory: expectedInventory,
+          inputCandidate: { candidateId: successorCandidateId, manifestDigest: successorManifestDigest },
+          attemptLimits: { run: 1, byStage: { "content-repair-canary": 1 } },
+          createdAt,
+        });
+        if (!run.ok) return { ok: false, error: run.error };
+        const workflow = await runContentRepairWorkflow({
+          bookId,
+          failedCandidate: predecessorIdentity,
+          failedRoundId,
+          ...(typeof diagnosisId === "string" ? { diagnosisId } : {}),
+          repairId,
+          successorCandidateId,
+          reviewId,
+          freshRoundId,
+          expectedInventory,
+          files,
+          createdAt,
+          taskContext: {
+            bookId,
+            runId,
+            attemptId,
+            stageId: "content-repair-canary",
+            operationId: repairId,
+            workDir: REPO_ROOT,
+            signal: new AbortController().signal,
+          },
+        }, {
+          candidates: v25.value.candidateStore,
+          repairs,
+          reviews: v25.value.reviewService,
+          history,
+          successorQc: autopilot.createSuccessorQcOperation({ qcService: v25.value.qcService, deps, maxParallel }),
+        });
+        const storedReview = await v25.value.reviewService.get(bookId, reviewId);
+        if (storedReview.ok) {
+          const finished = await v25.value.runStore.finishRun({
+            bookId,
+            runId,
+            status: "COMPLETED",
+            finishedAt: storedReview.value.completedAt,
+          });
+          if (!finished.ok) return { ok: false, error: finished.error };
+        } else if (storedReview.error.code !== "REVIEW_NOT_FOUND") {
+          return { ok: false, error: storedReview.error };
+        }
+        return workflow;
+      },
+    };
+  }
+  let resolvedApp = app;
+  let compiler: import("./orchestrator/compilerRun.js").CompilerPortBinding | undefined;
+  let compilerSuccessor: { candidateId: string; manifestDigest: string } | undefined;
+  if (architecture === "compiler") {
+    const candidateId = flags["candidate-id"];
+    const manifestDigest = flags["manifest-digest"];
+    const sourceGitSha = flags["source-git-sha"];
+    const attemptRoot = flags["attempt-root"];
+    const indexLogicalPath = flags["index-path"];
+    const sectionTaskContextLogicalPath = flags["section-task-context-path"];
+    const sourceMap = flags["source-map"];
+    if (
+      typeof candidateId !== "string" ||
+      typeof manifestDigest !== "string" ||
+      typeof sourceGitSha !== "string" ||
+      sourceGitSha.length === 0 ||
+      typeof attemptRoot !== "string" ||
+      !isAbsolute(attemptRoot) ||
+      typeof indexLogicalPath !== "string" ||
+      typeof sectionTaskContextLogicalPath !== "string" ||
+      typeof sourceMap !== "string"
+    ) {
+      console.error("compiler requires --candidate-id, --manifest-digest, --source-git-sha, absolute --attempt-root, --index-path, --section-task-context-path, and JSON --source-map");
+      return 2;
+    }
+    let sources: Parameters<NonNullable<NonNullable<typeof app>["compiler"]>["run"]>[0]["sources"];
+    try {
+      const parsed = JSON.parse(sourceMap) as unknown;
+      if (!Array.isArray(parsed)) throw new Error("source map must be an array");
+      sources = parsed as typeof sources;
+    } catch (error) {
+      console.error(`invalid --source-map: ${(error as Error).message}`);
+      return 2;
+    }
+    if (!resolvedApp) {
+      const v25 = await createCliV25Composition(bookId, flags);
+      if (!v25.ok) {
+        console.error(v25.error);
+        return 2;
+      }
+      resolvedApp = v25.value.app;
+    }
+    if (!resolvedApp.compiler) {
+      console.error("compiler application composition is required");
+      return 2;
+    }
+    const compilerPort = resolvedApp.compiler;
+    const capturingPort = new Proxy(compilerPort, {
+      get(target, property) {
+        if (property !== "run") return Reflect.get(target, property, target);
+        return async (request: Parameters<typeof compilerPort.run>[0]) => {
+          const successor = await compilerPort.run(request);
+          compilerSuccessor = successor;
+          return successor;
+        };
+      },
+    });
+    compiler = {
+      port: capturingPort,
+      request: {
+        candidateId,
+        manifestDigest,
+        sourceGitSha,
+        attemptRoot,
+        indexLogicalPath,
+        sectionTaskContextLogicalPath,
+        sources,
+        profileId: "attempt-read-json-v1",
+        signal: new AbortController().signal,
+      },
+    };
+  }
   const outcome = await runAutopilot({
     bookId,
     plan: flags["plan"] === true,
     // Auto-publish ON by default; --no-publish (in any form) halts for review. Presence-
     // check, not `!== true`, so a parser that binds a following token as the flag's value
     // can't make the opt-out fail OPEN.
-    autoPublish: !("no-publish" in flags),
+    autoPublish: architecture === "compiler" ? false : !("no-publish" in flags),
     regen: "regen" in flags,
     // --author = v24 author arch; --legacy keeps meaning legacy; default stays compiler.
-    architecture: architectureFromFlags(flags),
+    architecture,
+    ...(compiler ? { compiler } : {}),
+    ...(architecture === "author" ? {
+      authorWriteOneChapter: forwardControl.writeOneChapter,
+      forwardAutopilotControl: forwardControl,
+      ...(contentRepairCanary ? { contentRepairCanary } : {}),
+    } : {}),
     maxRepairRounds: Number.isInteger(maxRepair) ? maxRepair : undefined,
     maxParallel: Number.isInteger(maxParallel) ? maxParallel : undefined,
   });
+  if (architecture === "compiler" && flags["plan"] !== true && outcome.status === "ready") {
+    if (!compilerSuccessor) {
+      console.error("book-autopilot: compiler returned READY without a captured successor");
+      return 2;
+    }
+    return runQcAuto([bookId], {
+      ...flags,
+      pass: true,
+      "candidate-id": compilerSuccessor.candidateId,
+      "manifest-digest": compilerSuccessor.manifestDigest,
+      "no-publish": true,
+    });
+  }
   console.log(formatOutcome(outcome));
   return outcome.status === "halt" ? 1 : 0;
 }
@@ -4380,6 +5386,169 @@ async function runReaderBudgetCheck(args: string[], flags: Record<string, string
   return blockers > 0 ? 1 : 0;
 }
 
+/** `exec-qualify` — IMP-00 operator preflight: probe the installed codex binary
+ *  (`--version` + `exec --help`, NO model call), report which envelope-required
+ *  flags it supports, and persist the qualification record the hermetic spawn
+ *  path caches against. Run after any codex upgrade; a missing required flag
+ *  means every real spawn will fail closed until the CLI supports it. */
+async function runExecQualify(flags: Record<string, string | boolean>): Promise<number> {
+  const { findCodexBinary, codexAvailable } = await import("./orchestrator/codexAgent.js");
+  const { qualifyCodexCli, PROBED_FLAGS } = await import("./exec/cliQualification.js");
+  const { defaultManifestSink, EXECUTION_PROFILES } = await import("./exec/executionEnvelope.js");
+  const bin = typeof flags["bin"] === "string" ? flags["bin"] : findCodexBinary();
+  if (!codexAvailable(bin)) {
+    console.error(`codex binary not found (${bin}). Install codex or set CHAPTERFLOW_CODEX_BIN.`);
+    return 2;
+  }
+  const qual = await qualifyCodexCli({ bin, cacheDir: defaultManifestSink() });
+  console.log(`codex: ${qual.version} (${qual.binPath})`);
+  const required = new Set<string>();
+  for (const p of Object.values(EXECUTION_PROFILES)) for (const f of p.requiredCliFlags) required.add(f);
+  let missingRequired = 0;
+  for (const flag of PROBED_FLAGS) {
+    const ok = qual.flags[flag];
+    const req = required.has(flag);
+    if (req && !ok) missingRequired++;
+    console.log(`  ${ok ? "✓" : "✗"} ${flag}${req ? "  (required)" : ""}`);
+  }
+  console.log(missingRequired === 0
+    ? "exec-qualify: PASS — every envelope-required flag is supported; qualification cached."
+    : `exec-qualify: FAIL — ${missingRequired} required flag(s) unsupported; hermetic spawns will fail closed.`);
+  return missingRequired === 0 ? 0 : 1;
+}
+
+/** `contract-validate` — IMP-12 CI entry point (no model/network): assert the
+ *  Phase-0 frozen contract manifest still matches the live contract source, and
+ *  validate every landed worker report against the frozen worker-report schema.
+ *  A parallel agent that forked a schema, or a report that dropped an adverse
+ *  field, fails CI here before any suite runs. */
+async function runContractValidate(): Promise<number> {
+  const { existsSync, readFileSync, readdirSync } = await import("fs");
+  const { resolve, dirname } = await import("path");
+  const { fileURLToPath } = await import("url");
+  const { contractFreezeDivergences } = await import("./contracts/index.js");
+  const { validateWorkerReport } = await import("./contracts/workerReport.js");
+  let failures = 0;
+  const divergences = contractFreezeDivergences();
+  if (divergences.length > 0) {
+    failures += divergences.length;
+    console.log(`contract-freeze: FAIL — ${divergences.length} divergence(s) from the frozen manifest:`);
+    for (const d of divergences) console.log(`  ✗ ${d}`);
+    console.log("  Fix: bump the changed contract's version and rerun `npx tsx src/contracts/generateManifest.ts`.");
+  } else {
+    console.log("contract-freeze: PASS — the live contracts match the frozen manifest.");
+  }
+  const here = dirname(fileURLToPath(import.meta.url));
+  const reportsDir = resolve(here, "..", "..", "..", "..", "..", "docs", "v25", "reports");
+  if (existsSync(reportsDir)) {
+    const reports = readdirSync(reportsDir).filter((f) => /^implementation-report\.imp-\d\d\.json$/.test(f)).sort();
+    for (const file of reports) {
+      let errors: string[] = [];
+      try { errors = validateWorkerReport(JSON.parse(readFileSync(resolve(reportsDir, file), "utf8"))); }
+      catch (err) { errors = [`unreadable: ${(err as Error).message}`]; }
+      if (errors.length > 0) { failures += errors.length; console.log(`worker-report ${file}: FAIL — ${errors.slice(0, 4).join("; ")}`); }
+      else console.log(`worker-report ${file}: PASS`);
+    }
+    if (reports.length === 0) console.log("worker-report: (no landed reports found — nothing to validate)");
+  } else {
+    console.log(`worker-report: (reports dir not present at ${reportsDir} — skipped)`);
+  }
+  console.log(failures === 0 ? "contract-validate: PASS" : `contract-validate: FAIL — ${failures} issue(s)`);
+  return failures === 0 ? 0 : 1;
+}
+
+/** `evidence-reconstruct <attemptId>` — IMP-10: rebuild one attempt's lineage
+ *  chronologically from the durable evidence store (no debris scan). With no
+ *  attemptId, prints the whole-store lineage graph. Non-network. */
+async function runEvidenceReconstruct(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const { resolveEvidenceRoot } = await import("./evidence/attemptRecorder.js");
+  const { reconstructAttempt, evidenceLineageGraph, evidenceStoreSize, validateStoredManifest } = await import("./evidence/evidenceStore.js");
+  const root = resolveEvidenceRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) { console.error("no evidence root — set CHAPTERFLOW_EVIDENCE_ROOT or pass --root <dir>"); return 2; }
+  const attemptId = args[0];
+  if (!attemptId) {
+    const graph = evidenceLineageGraph(root);
+    console.log(`evidence store: ${root} (${graph.length} attempt(s), ${Math.round(evidenceStoreSize(root) / 1024)} KiB)`);
+    for (const n of graph) console.log(`  ${n.attemptId}  [${n.taskClass}] → ${n.terminalState ?? "?"}  (${n.retentionClass})${n.parentAttemptId ? `  ⤸ ${n.parentAttemptId}` : ""}`);
+    return 0;
+  }
+  const recon = reconstructAttempt(root, attemptId);
+  if (!recon) { console.error(`no evidence for attempt ${attemptId}`); return 1; }
+  const schemaErrors = validateStoredManifest(root, attemptId);
+  console.log(`attempt ${attemptId}  [${recon.manifest.taskClass}]  book ${recon.manifest.bookId}${recon.manifest.chapterNumber ? ` ch${recon.manifest.chapterNumber}` : ""}`);
+  console.log(`  schema: ${schemaErrors.length === 0 ? "valid" : `INVALID — ${schemaErrors.join("; ")}`}`);
+  console.log(`  exec-context: ${recon.manifest.executionContextManifestPath}${recon.manifest.routeResultPath ? `  route: ${recon.manifest.routeResultPath}` : ""}`);
+  console.log("  transitions:");
+  for (const t of recon.transitions) console.log(`    ${t.atIso}  ${t.state}`);
+  console.log("  objects:");
+  for (const o of recon.objectsVerified) console.log(`    ${o.ok ? "✓" : "✗"} ${o.kind}  ${o.sha256.slice(0, 16)}…`);
+  const bad = recon.objectsVerified.filter((o) => !o.ok).length;
+  console.log(`evidence-reconstruct: ${schemaErrors.length === 0 && bad === 0 ? "PASS" : "FAIL"} (terminal ${recon.terminalState ?? "?"}, ${bad} unverified object(s))`);
+  return schemaErrors.length === 0 && bad === 0 ? 0 : 1;
+}
+
+/** `evidence-cleanup [--execute]` — IMP-10: bounded retention cleanup. Dry-run by
+ *  default; refuses to delete active or cited evidence. Non-network. */
+async function runEvidenceCleanup(flags: Record<string, string | boolean>): Promise<number> {
+  const { resolveEvidenceRoot } = await import("./evidence/attemptRecorder.js");
+  const { planEvidenceCleanup } = await import("./evidence/evidenceStore.js");
+  const root = resolveEvidenceRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) { console.error("no evidence root — set CHAPTERFLOW_EVIDENCE_ROOT or pass --root <dir>"); return 2; }
+  const plan = planEvidenceCleanup(root, { now: Date.now(), execute: flags["execute"] === true });
+  console.log(`evidence-cleanup (${plan.dryRun ? "DRY-RUN — pass --execute to delete" : "EXECUTED"}): ${plan.deletable.length} deletable, ${plan.protected.length} protected`);
+  for (const id of plan.deletable) console.log(`  delete: ${id}`);
+  for (const p of plan.protected.slice(0, 40)) console.log(`  keep:   ${p.attemptId} — ${p.reason}`);
+  return 0;
+}
+
+/** `diversity-report <bookId>` — IMP-06: the SHADOW diversity report. Feature
+ *  concentration over the immutable FIRST-WRITE ledger records (never inferred
+ *  from final chapters) + exact/near clone scan of the CURRENT canonical
+ *  chapters (labeled as such). Report-only: no gate, no rejection, no writer
+ *  effect — activation is governed by the versioned diversity config. */
+async function runDiversityReport(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  const bookId = args[0];
+  if (!bookId) { console.error("usage: diversity-report <bookId> [--root <ledger-dir>]"); return 2; }
+  const { resolveDiversityLedgerRoot, readDiversityLedger, firstWriteRecords, featureConcentration } = await import("./telemetry/diversityLedger.js");
+  const { detectClones } = await import("./critics/cloneDetection.js");
+  const { DEFAULT_DIVERSITY_CONFIG, diversityConfigHash, validateDiversityConfig } = await import("./telemetry/diversityConfig.js");
+  const { loadBookChapters } = await import("./qc/manualKeyJudge.js");
+
+  const config = DEFAULT_DIVERSITY_CONFIG;
+  const configErrors = validateDiversityConfig(config);
+  console.log(`diversity-report ${bookId} (config ${diversityConfigHash(config).slice(0, 12)}, all-shadow${configErrors.length ? ` — CONFIG INVALID: ${configErrors.join("; ")}` : ""})`);
+
+  const root = resolveDiversityLedgerRoot(typeof flags["root"] === "string" ? flags["root"] : undefined);
+  if (!root) {
+    console.log("  first-write ledger: DISABLED (set CHAPTERFLOW_DIVERSITY_LEDGER_ROOT or pass --root) — first-write concentration unavailable");
+  } else {
+    const records = readDiversityLedger(root, bookId);
+    const first = firstWriteRecords(records);
+    console.log(`  first-write ledger: ${records.length} record(s), ${first.length} immutable first write(s)`);
+    if (first.length > 0) {
+      const maxShareBar = config.checks["feature-concentration"].thresholds.maxShare ?? 0.67;
+      for (const c of featureConcentration(first)) {
+        const flag = c.maxShare >= maxShareBar && first.length >= 4 ? "  ⚠ concentrated (shadow — report only)" : "";
+        console.log(`    ${String(c.feature).padEnd(22)} max ${(c.maxShare * 100).toFixed(0)}% = ${c.dominantValue}${flag}`);
+      }
+      const leaks = first.flatMap((r) => r.taxonomyLeaks.map((l) => `ch${r.chapterNumber}:${l}`));
+      if (leaks.length > 0) console.log(`    taxonomy leaks in prose: ${leaks.join(", ")}`);
+    }
+  }
+
+  const chapters = loadBookChapters(bookId);
+  if (chapters.length === 0) {
+    console.log("  clone scan: no canonical chapters on disk");
+    return 0;
+  }
+  const clones = detectClones(chapters, config);
+  console.log(`  clone scan (CURRENT canonical bytes, ${chapters.length} chapter(s)): ${clones.length} finding(s)`);
+  for (const f of clones) {
+    console.log(`    [${f.class}] ${f.kind} ch${f.chapters.join("+ch")} (${f.measure}) — ${f.evidence}`);
+  }
+  return 0;
+}
+
 /** `codex-agent-run <task-file>` — debug verb: spawn ONE headless codex agent with
  *  a task file as its instruction and print the result. Proves `codex exec` works
  *  in-environment before relying on the autopilot. Needs a real codex binary. */
@@ -4398,7 +5567,7 @@ async function runCodexAgentRun(args: string[], flags: Record<string, string | b
   const sessionId = typeof flags["session"] === "string" ? flags["session"] : `debug-${Date.now().toString(36)}`;
   const sandbox = (typeof flags["sandbox"] === "string" ? flags["sandbox"] : "workspace-write") as "read-only" | "workspace-write" | "danger-full-access";
   const timeoutMs = typeof flags["timeout-ms"] === "string" ? parseInt(flags["timeout-ms"], 10) : undefined;
-  const r = await spawnCodexAgent({ task, sessionId, cwd: process.cwd(), sandbox, timeoutMs });
+  const r = await spawnCodexAgent({ task, role: "cli-adhoc", sessionId, cwd: process.cwd(), sandbox, timeoutMs });
   console.log(`codex-agent-run: exit ${r.exitCode} (${r.durationMs}ms), session ${r.sessionId}`);
   console.log(`--- final message ---\n${r.finalMessage}`);
   if (!r.ok && r.stderr) console.error(r.stderr.slice(0, 1000));
@@ -4651,7 +5820,7 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
     }
     roundRole = role as "bar" | "confirm" | "attest";
   }
-  const { chapterContentHash, writeAttestation, loadAttestation, isAttestationFresh } =
+  const { attestationPath, chapterContentHash, writeAttestation, loadAttestation, isAttestationFresh } =
     await import("./critics/qcAttestation.js");
   const dimensions: Record<string, boolean> = {};
   for (const kv of parseCsvFlag(flags["dimensions"]) ?? []) {
@@ -4669,7 +5838,9 @@ async function runQcAttest(args: string[], flags: Record<string, string | boolea
   // only legitimate when the content actually changed since that review
   // (hash differs → the redo loop worked). Same content → refuse, unless
   // --supersede "<reason>" records an explicit, auditable override.
-  const existing = loadAttestation(parsed.bookId, chapter.number);
+  let existing: ReturnType<typeof loadAttestation> = null;
+  try { existing = loadAttestation(parsed.bookId, chapter.number, readFileSync(attestationPath(parsed.bookId, chapter.number))); }
+  catch { /* missing/unreadable means no existing attestation */ }
   if (
     existing &&
     existing.verdict !== "PUBLISHABLE" &&
@@ -5131,16 +6302,15 @@ async function runQcRun(args: string[], flags: Record<string, string | boolean>)
  *  a wrong-key flag. Writes a per-chapter result to
  *  state/qc/<bookId>-chNN.keyjudge.json that the promote gate ENFORCES
  *  (QC1.wrong_quiz_key), so the catch is independent of the writer's honesty.
- *  Exit 0 clean / 1 wrong key(s) / 2 infra (fail-OPEN: an infra error must never
- *  look like a clean semantic pass). */
+ *  Exit 0 clean / 1 wrong key(s) / 2 missing composition or model failure. */
 async function runQuizJudge(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+  if (flags["provider"] !== undefined || flags["model"] !== undefined) {
+    console.error("quiz-judge: --provider and --model are unsupported; model execution is selected by application composition");
+    return 2;
+  }
   const g = shadowGuard();
   if (g) return g;
-  // #14: quiz-judge defaults to the BILLED openai-api provider and makes ~1 call per quiz
-  // question. In no-API mode the wrong-key catch is the MANUAL keyA/keyB judge (run via
-  // qc-orchestrate), not this billed verb — so refuse here rather than silently spend money the
-  // mode promises it won't. (The provider-router choke point would also block it; this is the
-  // clear early error.)
+  // In no-API mode wrong-key review stays on the manual keyA/keyB lane.
   const { isNoApiCodexQcMode } = await import("./qc/noApiMode.js");
   if (isNoApiCodexQcMode()) {
     console.error("quiz-judge makes BILLED model calls and is disabled in no-API mode (CHAPTERFLOW_NO_API_CODEX_QC=1). The no-API wrong-key catch is the manual keyA/keyB judge via qc-orchestrate (see QC-SESSION-PROMPT). Unset CHAPTERFLOW_NO_API_CODEX_QC to run the billed judge intentionally.");
@@ -5158,22 +6328,51 @@ async function runQuizJudge(args: string[], flags: Record<string, string | boole
     return 2;
   }
   const only = (parseCsvFlag(flags["chapters"]) ?? []).map((s) => Number(s)).filter((n) => Number.isFinite(n));
-  const providerFlag = typeof flags["provider"] === "string" ? (flags["provider"] as string) : process.env.CHAPTERFLOW_PROVIDER;
-  const provider = providerFlag as ProviderName | undefined;
-
   const { judgeQuizKeys, makeLiveAskModel, formatQuizKeyReport } = await import("./critics/semantic/quizKeyJudge.js");
   const { recordFromReport, writeKeyJudge } = await import("./critics/quizKeyGate.js");
   const { findRunArtifact } = await import("./lib/runDirs.js");
   const RUNS = resolve(__dirname, "../.chapterflow/runs");
 
-  const ask = makeLiveAskModel(provider ? { provider } : undefined);
-  const reviewer = `keyjudge:${provider ?? "openai-api"}`;
+  const reviewer = "keyjudge:model-task-runner";
   const chapters = files
     .map((f) => JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21)
     .filter((ch) => only.length === 0 || only.includes(ch.number))
     .sort((a, b) => a.number - b.number);
 
-  console.log(`Judging quiz answer keys for ${bookId} — ${chapters.length} chapter(s) via provider=${provider ?? "openai-api"}...\n`);
+  const v25 = await createCliV25Composition(bookId, flags);
+  if (!v25.ok) {
+    console.error(v25.error);
+    return 2;
+  }
+  const runId = v25.value.ids.nextRunId();
+  const stageIds = chapters.map((ch) => `quiz-judge-ch${String(ch.number).padStart(2, "0")}`);
+  const modelCallCount = chapters.reduce((total, chapter) => total + (chapter.quiz?.questions?.length ?? 0), 0);
+  if (stageIds.length > 0) {
+    const created = await v25.value.runStore.createRun({
+      schemaVersion: "1",
+      bookId,
+      runId,
+      commandId: "quiz-judge",
+      sourceGitSha: v25.value.sourceGitSha,
+      requiredStages: stageIds,
+      requiredInventory: v25.value.candidate.manifest.entries.map(({ byteLength: _byteLength, ...entry }) => entry),
+      inputCandidate: {
+        candidateId: v25.value.candidate.manifest.candidateId,
+        manifestDigest: v25.value.candidate.manifest.manifestDigest,
+      },
+      attemptLimits: {
+        run: modelCallCount,
+        byStage: Object.fromEntries(chapters.map((chapter, index) => [stageIds[index], chapter.quiz?.questions?.length ?? 0])),
+      },
+      createdAt: new Date().toISOString(),
+    });
+    if (!created.ok) {
+      console.error(`${created.error.code}:${created.error.message}`);
+      return 2;
+    }
+  }
+
+  console.log(`Judging quiz answer keys for ${bookId} — ${chapters.length} chapter(s) via application model runner...\n`);
 
   let totalFlagged = 0;
   let totalReview = 0;
@@ -5181,6 +6380,25 @@ async function runQuizJudge(args: string[], flags: Record<string, string | boole
   try {
     for (const ch of chapters) {
       const numStr = String(ch.number).padStart(2, "0");
+      const stageId = `quiz-judge-ch${numStr}`;
+      let modelCall = 0;
+      const ask = async (request: Parameters<ReturnType<typeof makeLiveAskModel>>[0]) => {
+        const callId = String(++modelCall).padStart(3, "0");
+        return makeLiveAskModel({
+          execution: {
+            runner: v25.value.runner,
+            context: {
+              bookId,
+              runId,
+              attemptId: `${runId}-${stageId}-q${callId}`,
+              stageId,
+              operationId: `${stageId}-q${callId}`,
+              workDir: REPO_ROOT,
+              signal: new AbortController().signal,
+            },
+          },
+        })(request);
+      };
       let sourceContext: string | undefined;
       const scPath = findRunArtifact(RUNS, bookId, `sidecars/source/ch${numStr}.source.json`);
       if (scPath) {
@@ -5195,14 +6413,34 @@ async function runQuizJudge(args: string[], flags: Record<string, string | boole
       judged++;
     }
   } catch (err) {
-    // Fail OPEN: a provider/infra error must never be recorded or read as a
-    // clean semantic pass. Loud, distinct marker; only chapters that actually
-    // completed were written, so a half-run can't masquerade as full coverage.
-    console.error("\n⚠️  SEMANTIC JUDGE DID NOT RUN — provider/infra error (NOT a clean pass):");
+    if (stageIds.length > 0) {
+      await v25.value.runStore.finishRun({
+        bookId,
+        runId,
+        status: "FAILED",
+        finishedAt: new Date().toISOString(),
+        reason: "QUIZ_JUDGE_FAILED",
+      });
+    }
+    // Missing composition/model failure never records a clean semantic pass.
+    console.error("\n⚠️  SEMANTIC JUDGE DID NOT RUN — application model error (NOT a clean pass):");
     console.error("   " + (err as Error).message);
-    console.error("   Set a funded OPENAI_API_KEY / ANTHROPIC_API_KEY (or CHAPTERFLOW_PROVIDER) and retry.");
+    console.error("   Configure application model composition and retry.");
     console.error(`   (${judged}/${chapters.length} chapter(s) judged before the error.)`);
     return 2;
+  }
+
+  if (stageIds.length > 0) {
+    const finished = await v25.value.runStore.finishRun({
+      bookId,
+      runId,
+      status: "COMPLETED",
+      finishedAt: new Date().toISOString(),
+    });
+    if (!finished.ok) {
+      console.error(`${finished.error.code}:${finished.error.message}`);
+      return 2;
+    }
   }
 
   console.log(`Quiz answer-key judge: ${totalFlagged === 0 ? "PASS" : "BLOCK"} for ${bookId}`);
@@ -5303,12 +6541,14 @@ async function runQcStatus(args: string[]): Promise<number> {
     console.error(`No chapters found for "${bookId}".`);
     return 2;
   }
-  const { isAttestationFresh, loadAttestation } = await import("./critics/qcAttestation.js");
+  const { attestationPath, isAttestationFresh, loadAttestation } = await import("./critics/qcAttestation.js");
   let ready = 0;
   const lines: string[] = [];
   for (const f of files) {
     const ch = JSON.parse(readFileSync(resolve(chaptersDir, f), "utf8")) as ChapterV21;
-    const att = loadAttestation(bookId, ch.number);
+    let att: ReturnType<typeof loadAttestation> = null;
+    try { att = loadAttestation(bookId, ch.number, readFileSync(attestationPath(bookId, ch.number))); }
+    catch { /* missing/unreadable remains MISSING */ }
     let status: string;
     if (!att) status = "MISSING";
     else if (att.verdict !== "PUBLISHABLE") status = att.verdict;
@@ -5439,7 +6679,6 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error("Usage: gate-chapter <path/to/chapter.json>");
     return 2;
   }
-  const { runShipGate, formatGateReport } = await import("./critics/finalGate.js");
   let chapter: ChapterV21;
   try {
     chapter = JSON.parse(readFileSync(resolve(chapterFile), "utf8")) as ChapterV21;
@@ -5447,164 +6686,52 @@ async function runGateChapter(args: string[]): Promise<number> {
     console.error(`Could not read/parse ${chapterFile}: ${(err as Error).message}`);
     return 2;
   }
-  // H5 defense: a malformed authored chapter could make a critic throw. The repair agent runs
-  // gate-chapter to converge — it needs an actionable BLOCK report, not a raw stack trace (which
-  // gives it nothing to fix and drives the conductor's no-progress HALT). Surface a crash as a
-  // gate failure with the message instead.
-  let report;
+  const parsedChapter = parseChapterId(chapter.chapterId ?? "");
+  if (!parsedChapter) {
+    console.error(`Could not resolve book identity from chapterId ${JSON.stringify(chapter.chapterId)}.`);
+    return 2;
+  }
+  const siblingDir = dirname(resolve(chapterFile));
+  let siblings: ChapterV21[];
   try {
-    report = runShipGate(chapter);
+    siblings = readdirSync(siblingDir)
+      .filter((name) => isSiblingFile(name, parsedChapter.bookId))
+      .map((name) => JSON.parse(readFileSync(resolve(siblingDir, name), "utf8")) as ChapterV21)
+      .filter((candidate) => candidate.chapterId !== chapter.chapterId && candidate.number < chapter.number);
   } catch (err) {
-    console.error(`gate-chapter: ship gate CRASHED on a malformed chapter (${(err as Error)?.message ?? String(err)}). Fix the malformed field (likely a quiz question: missing/null choices, out-of-range correctIndex, or non-string bloomsLevel) and re-run.`);
+    console.error(`Could not bind sibling chapters from ${siblingDir}: ${(err as Error).message}`);
+    return 2;
+  }
+  // IMP-01: the full composition (ship gate + intra-book siblings + IDN identity
+  // + advisory layers + the combined "Gate verdict:" line + the STUCK/FORM-SHIFTING
+  // circuit breakers) lives in critics/chapterGateComposite — shared VERBATIM with
+  // the conductor's candidate validation so the CLI and the transaction can never
+  // drift. Sibling context = the file's own path; the gate-attempt history stays
+  // keyed by the RAW argument spelling (relative "state/chapters/…" for the
+  // conductor's calls), preserving pre-refactor history rows.
+  const { runChapterGateComposite } = await import("./critics/chapterGateComposite.js");
+  type GateAttemptState = NonNullable<NonNullable<Parameters<typeof runChapterGateComposite>[3]>["gateAttemptState"]>;
+  const gateAttemptStatePath = resolve(__dirname, "../state/gate-attempts.json");
+  let gateAttemptState: GateAttemptState = {};
+  try {
+    if (existsSyncFs(gateAttemptStatePath)) {
+      gateAttemptState = JSON.parse(readFileSync(gateAttemptStatePath, "utf8")) as GateAttemptState;
+    }
+  } catch (err) {
+    console.error(`Could not read/parse ${gateAttemptStatePath}: ${(err as Error).message}`);
+    return 2;
+  }
+  const result = await runChapterGateComposite(chapter, chapterFile, chapterFile, {
+    siblings,
+    gateAttemptState,
+    persistGateAttemptState: (state) => writeFileAtomic(gateAttemptStatePath, `${JSON.stringify(state, null, 2)}\n`),
+  });
+  if (result.crashed) {
+    console.error(result.report);
     return 1;
   }
-  console.log(formatGateReport(report));
-
-  // Intra-book quiz similarity check — runs AFTER the chapter-only ship gate.
-  // Loads sibling chapters of the same book from state/chapters/ and checks
-  // for templated quiz content (AS5 prompt similarity + AS6 distractor reuse).
-  // This is the early-detection version of AS4 / BP20 which only fire at
-  // book-gate time. Catches the May 2026 "7 Habits Step 2" defect class:
-  // writer agents producing one quiz and reusing it across chapters with
-  // name substitution. Without this, the writer wastes 10+ chapters of work
-  // before book-gate surfaces the structural issue.
-  const { runIntraBookChecks, loadSiblingChapters } = await import("./critics/intraBook.js");
-  const siblingLoad = loadSiblingChapters(chapter, chapterFile);
-  if (siblingLoad.warning) console.log(`  WARN: ${siblingLoad.warning}`);
-  const intraFindings = runIntraBookChecks(chapter, siblingLoad.siblings);
-  let extraBlockers = 0;
-  let extraMajors = 0;
-  if (intraFindings.length > 0) {
-    console.log("");
-    console.log("Intra-book quiz similarity findings (compared against prior chapters of same book):");
-    for (const f of intraFindings) {
-      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-      if (f.severity === "blocker") extraBlockers++;
-    }
-  }
-
-  // ── Identity guard (IDN, Phase 0) — chapterId must equal its filename stem ──
-  // The intra-book critics above match siblings on chapterId; a mismatch can
-  // silently skip them (the verified casing bug). Surface it here. Ships as
-  // `major` (shadow) so the casing fix doesn't simultaneously hard-block the
-  // already-mismatched chapters; promotes to blocker after `fix-chapter-ids`.
-  const identityFindings = checkChapterIdentity(chapter, chapterFile);
-  if (identityFindings.length > 0) {
-    console.log("");
-    console.log("Identity findings (chapterId vs filename):");
-    for (const f of identityFindings) {
-      console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-      if (f.severity === "blocker") extraBlockers++;
-      else if (f.severity === "major") extraMajors++;
-    }
-  }
-
-  // ── Authoring-contract findings (Phase 1, advisory/shadow) ──────────────
-  // The field-JOB layer the structural gate lacks (concept-as-actor, templated
-  // loops, echo-template explanations, bare-label card fronts, scaffold leaks,
-  // proposition-whatToDo). Calibrated to ZERO fires on the clean corpus. SHADOW:
-  // surfaced for the writer to fix in-session via `author-check`, but does NOT
-  // affect the ship-gate blocker count until promoted out of shadow.
-  try {
-    const { checkAuthoringContract } = await import("./critics/authoringContract.js");
-    const { loadChapterSidecar } = await import("./critics/sourceGrounding.js");
-    const acFindings = checkAuthoringContract(chapter, { sidecar: loadChapterSidecar(chapter.chapterId), filePath: resolve(chapterFile) });
-    if (acFindings.length > 0) {
-      console.log("");
-      console.log(`Authoring-contract findings (advisory/shadow — ${acFindings.length}; run \`author-check\` for the full JOB report):`);
-      for (const f of acFindings) console.log(`  [${f.checkId}] ${f.unit}: ${f.message.slice(0, 140)}`);
-    }
-  } catch {
-    /* non-fatal — advisory layer */
-  }
-
-  // ── Quiz answer-key judge (advisory) ────────────────────────────────────
-  // Surface any wrong-key result the model judge recorded for this chapter
-  // (run out-of-band via `quiz-judge`). ADVISORY here so authoring iteration is
-  // never blocked by it; it BLOCKS at promote (QC1.wrong_quiz_key). A missing
-  // result is silent — gate-chapter never requires the judge to have run.
-  try {
-    const { checkKeyJudge } = await import("./critics/quizKeyGate.js");
-    const kjFindings = checkKeyJudge(chapter, false);
-    if (kjFindings.length > 0) {
-      console.log("");
-      console.log("Quiz answer-key judge findings (advisory — blocks at promote):");
-      for (const f of kjFindings) console.log(`  [${f.checkId} ${f.severity}] ${f.message}`);
-    }
-  } catch {
-    /* non-fatal — advisory layer */
-  }
-
-  // ── Authoritative combined verdict ──────────────────────────────────────
-  // formatGateReport prints "Ship gate: PASS/BLOCK" for the CHAPTER-ONLY ship
-  // gate. The intra-book blockers above are computed separately and are NOT in
-  // that count, so a chapter with 0 chapter-blockers but an AS5/AS6 intra-book
-  // blocker used to print "Ship gate: PASS" up top while exiting non-zero —
-  // the headline disagreed with the exit code (a trust hazard: a human or a
-  // writer agent reads "PASS" and ships a templated chapter). Print a single
-  // final line that combines both sources and matches the exit code exactly.
-  const combinedBlockers = report.blockers.length + extraBlockers;
-  console.log("");
-  if (combinedBlockers > 0) {
-    console.log(
-      `Gate verdict: BLOCK — ${report.blockers.length} chapter blocker(s) + ${extraBlockers} intra-book blocker(s) = ${combinedBlockers} total. (exit 1)`,
-    );
-  } else {
-    console.log(
-      `Gate verdict: PASS — 0 blockers (${report.majors.length + extraMajors} major(s), ${report.minors.length} minor(s) above are non-blocking). (exit 0)`,
-    );
-  }
-
-  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
-
-  // Gate-attempt tracking — added after the May 2026 Covey incident. We persist
-  // a per-chapter counter of (attempt, blocker_signature) so an agent that
-  // re-runs the gate against the same chapter many times with the same blocker
-  // pattern gets a SCREAMING warning that it's probably trying to game the
-  // critic. Most legitimate fixes converge in 1-3 attempts; 4+ on the same
-  // blocker is a structural issue requiring upstream resolution, not retry.
-  // Record the COMBINED failure (chapter + intra-book blockers) so the breakers
-  // engage for intra-book-only failures too (the common case — a chapter can pass
-  // the chapter-only gate while failing AS5–AS12 against its siblings).
-  const intraBlockerSig = intraFindings.filter((f) => f.severity === "blocker").map((f) => ({ catalogId: f.checkId }));
-  const combinedReport = {
-    blockers: [...report.blockers, ...intraBlockerSig],
-    passed: report.blockers.length === 0 && extraBlockers === 0,
-  };
-  const attempts = recordGateAttempt(chapterFile, combinedReport);
-  // Two circuit-breakers: STUCK (same blocker repeats) and FORM-SHIFTING (the
-  // blocker relocates each attempt — the writer editing surface to dodge the
-  // critic, the let-them-theory failure mode). Either trips a halt (exit 3).
-  let breakerTripped = false;
-  if (attempts.sameBlockerStreak >= 3) {
-    breakerTripped = true;
-    console.log("");
-    console.log("⚠️  STUCK-BLOCKER — CIRCUIT BREAKER TRIPPED ⚠️");
-    console.log(`This chapter has been gate-checked ${attempts.total} times; the SAME blocker signature fired ${attempts.sameBlockerStreak} times in a row:`);
-    console.log(`  ${attempts.lastSignature}`);
-    console.log("");
-    console.log("STOP. A blocker that survives 3+ attempts is structural, not a surface edit.");
-    console.log("Re-author the field from the source notes, or surface a one-paragraph status to");
-    console.log("the user (the source notes may not differentiate this chapter — a Step-1 issue).");
-  } else if (attempts.distinctSigStreak >= 3 && attempts.nonPassTotal >= 3) {
-    breakerTripped = true;
-    console.log("");
-    console.log("⚠️  FORM-SHIFTING REPAIR — CIRCUIT BREAKER TRIPPED ⚠️");
-    console.log(`This chapter has failed ${attempts.nonPassTotal} times and the blocker MOVED each attempt:`);
-    console.log(`  ${attempts.recentSigs.join("  →  ")}`);
-    console.log("");
-    console.log("A defect that relocates instead of resolving means you are editing SURFACE FORM");
-    console.log("to evade the critic, not fixing the field — the underlying template just hides in");
-    console.log("whichever field isn't yet covered. STOP patching surfaces. Re-author the failing");
-    console.log("field from the source notes (the Bind Block), or escalate to the user / a different");
-    console.log("author. Do NOT run gate-chapter again on another surface edit — it will just relocate.");
-  }
-  if (breakerTripped) console.log("\n(gate-chapter exit code 3 — halt the repair loop.)");
-
-  // Combined block: ship-gate blockers OR intra-book similarity blockers. Exit 3
-  // when a circuit-breaker tripped (so an orchestrating loop halts, not spins).
-  if (breakerTripped) return 3;
-  return report.blockers.length === 0 && extraBlockers === 0 ? 0 : 1;
+  console.log(result.report);
+  return result.exitCode;
 }
 
 
@@ -5612,56 +6739,9 @@ function escapeRegex(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
-/** Persists gate-attempt history per chapter file to track stuck-blocker
- *  patterns. Returns the running totals so the caller can warn the operator. */
-type GateAttemptEntry = {
-  total: number;
-  lastSignature: string;
-  sameBlockerStreak: number;
-  /** ++ each attempt where the non-PASS signature CHANGED from the prior one. */
-  distinctSigStreak: number;
-  /** count of consecutive non-PASS attempts (resets on PASS). */
-  nonPassTotal: number;
-  /** last few non-PASS signatures, for the form-shift message. */
-  recentSigs: string[];
-};
+// (gate-attempt tracking moved to critics/chapterGateComposite.ts — IMP-01)
 
-function recordGateAttempt(
-  chapterFile: string,
-  report: { blockers: Array<{ catalogId: string }>; passed: boolean },
-): { total: number; sameBlockerStreak: number; lastSignature: string; distinctSigStreak: number; nonPassTotal: number; recentSigs: string[] } {
-  const STATE_FILE = resolve(__dirname, "../state/gate-attempts.json");
-  let state: Record<string, GateAttemptEntry> = {};
-  try {
-    if (existsSyncFs(STATE_FILE)) state = JSON.parse(readFileSync(STATE_FILE, "utf8"));
-  } catch {
-    state = {};
-  }
-  // Signature: sorted unique blocker catalogIds (e.g., "AS4,BP20"). Used to
-  // detect "same blocker repeating" (stuck) vs "blocker changing each attempt"
-  // (form-shifting — the writer relocating the defect to dodge the critic).
-  const sig = report.passed
-    ? "PASS"
-    : [...new Set(report.blockers.map((b) => b.catalogId))].sort().join(",");
-  const prev: GateAttemptEntry = state[chapterFile] ?? { total: 0, lastSignature: "", sameBlockerStreak: 0, distinctSigStreak: 0, nonPassTotal: 0, recentSigs: [] };
-  const isPass = sig === "PASS";
-  const sameBlockerStreak = !isPass && sig === prev.lastSignature ? prev.sameBlockerStreak + 1 : isPass ? 0 : 1;
-  const shifted = !isPass && prev.lastSignature && prev.lastSignature !== "PASS" && sig !== prev.lastSignature;
-  const distinctSigStreak = isPass ? 0 : shifted ? prev.distinctSigStreak + 1 : prev.distinctSigStreak;
-  const nonPassTotal = isPass ? 0 : prev.nonPassTotal + 1;
-  const recentSigs = isPass ? [] : [...(prev.recentSigs ?? []), sig].slice(-4);
-  state[chapterFile] = { total: prev.total + 1, lastSignature: sig, sameBlockerStreak, distinctSigStreak, nonPassTotal, recentSigs };
-  try {
-    mkdirSync(dirname(STATE_FILE), { recursive: true });
-    writeFileSync(STATE_FILE, JSON.stringify(state, null, 2), "utf8");
-  } catch {
-    // Non-fatal — tracking is informational.
-  }
-  return { total: state[chapterFile].total, sameBlockerStreak, lastSignature: sig, distinctSigStreak, nonPassTotal, recentSigs };
-}
-
-async function main() {
-  const { cmd, args, flags } = parseArgs(process.argv.slice(2));
+function canonicalWorkspaceTripwire(flags: Record<string, string | boolean>): number {
   // CANONICAL-WORKSPACE TRIPWIRE (2026-06-12). The legacy checkout at
   // ~/ChapterFlow (app campaigns, other branches) carries stale pipeline
   // state; commands run there embed wrong paths into generated prompts/
@@ -5677,11 +6757,22 @@ async function main() {
     );
     return 3;
   }
-  const configFindings = validateAllConfigFiles();
-  if (configFindings.length > 0) {
-    console.error(`Config schema validation failed:\n${formatRuntimeFindings(configFindings)}`);
-    return 2;
-  }
+  return 0;
+}
+
+function normalizeCommandId(cmd: string | undefined): string {
+  return cmd === undefined || cmd === "--help" || cmd === "-h" ? "help" : cmd;
+}
+
+type ParsedCommandContext = Readonly<{
+  id: string;
+  args: string[];
+  flags: Record<string, string | boolean>;
+  signal: AbortSignal;
+}>;
+
+async function runExistingCommand(context: ParsedCommandContext): Promise<number> {
+  const { id: cmd, args, flags, signal } = context;
   switch (cmd) {
     case "critic":
       return runCritic(args, flags);
@@ -5731,7 +6822,7 @@ async function main() {
     case "derive-artifacts":
       return runDeriveArtifacts(args, flags);
     case "research":
-      return runResearch(args, flags);
+      return runV4Research(args, flags, signal);
     case "generate":
       return runGenerate(args, flags);
     case "publish":
@@ -5746,6 +6837,16 @@ async function main() {
       return runBookStatus(args, flags);
     case "doctor":
       return runDoctor(args, flags);
+    case "exec-qualify":
+      return runExecQualify(flags);
+    case "contract-validate":
+      return runContractValidate();
+    case "evidence-reconstruct":
+      return runEvidenceReconstruct(args, flags);
+    case "evidence-cleanup":
+      return runEvidenceCleanup(flags);
+    case "diversity-report":
+      return runDiversityReport(args, flags);
     case "authoring-guardrails":
       return runAuthoringGuardrails(args, flags);
     case "promote-book":
@@ -5783,7 +6884,7 @@ async function main() {
     case "roles":
       return runRoles(args);
     case "qc-auto":
-      return runQcAuto(args, flags);
+      return hasCliV25Selection(flags) ? runV4SelectedCandidateQc(args, flags, signal) : runQcAuto(args, flags);
     case "publish-after-qc":
       return runPublishAfterQc(args, flags);
     case "qc-ledger-status":
@@ -5803,9 +6904,11 @@ async function main() {
     case "qc-converge":
       return runQcConverge(args, flags);
     case "book-autopilot":
-      return runBookAutopilot(args, flags);
+      return runV4BookProduction(args, flags, "book-autopilot", signal);
     case "book-run":
-      return (await import("./orchestrator/liveRun.js")).runLive(args, flags);
+      return runV4BookProduction(args, flags, "book-run", signal);
+    case "migration-bakeoff":
+      return (await import("./bakeoff/migration/cli.js")).runMigrationBakeoffCli(args, flags);
     case "diversify-book":
       return (await import("./orchestrator/liveRun.js")).runDiversify(args, flags);
     case "content-repair-book":
@@ -5895,7 +6998,7 @@ async function main() {
     case "batch":
       return runBatch(args, flags);
     case "author-check":
-      return runAuthorCheck(args);
+      return runAuthorCheck(args, flags);
     case "calibration-scan":
       return runCalibrationScan(args, flags);
     case "fix-chapter-ids":
@@ -5917,9 +7020,6 @@ async function main() {
     case "eval-book-proxy":
       return (await import("./review/evalBookProxy.js")).runEvalBookProxy(args, flags);
     case "help":
-    case undefined:
-    case "--help":
-    case "-h":
       printHelp();
       return 0;
     default:
@@ -5929,10 +7029,93 @@ async function main() {
   }
 }
 
-main().then(
-  (code) => process.exit(code ?? 0),
+async function main(signal: AbortSignal) {
+  const { cmd, args, flags } = parseArgs(process.argv.slice(2));
+  const id = normalizeCommandId(cmd);
+  if (LEGACY_DISABLED_COMMANDS.has(id)) {
+    console.error(`LEGACY_ROUTE_DISABLED:V4_APPLICATION_ROUTE_REQUIRED:cli.${id}`);
+    return 2;
+  }
+  const tripwire = canonicalWorkspaceTripwire(flags);
+  if (tripwire !== 0) return tripwire;
+  const spec = commandRegistry.resolve(id);
+  if (!spec) {
+    console.error(`Unknown command: ${id}`);
+    printHelp();
+    return 2;
+  }
+  if (id === "quiz-judge" && (flags["provider"] !== undefined || flags["model"] !== undefined)) {
+    console.error("quiz-judge: --provider and --model are unsupported; model execution is selected by application composition");
+    return 2;
+  }
+  if (spec.requiredConfig.includes("runtime")) {
+    const configFindings = validateAllConfigFiles(
+      typeof flags["config-dir"] === "string" ? flags["config-dir"] : undefined,
+    );
+    if (configFindings.length > 0) {
+      console.error(`Config schema validation failed:\n${formatRuntimeFindings(configFindings)}`);
+      return 2;
+    }
+  }
+  const result = await spec.run({
+    argv: process.argv.slice(2),
+    sourceGitSha: process.env.CHAPTERFLOW_SOURCE_GIT_SHA ?? "",
+    abortSignal: signal,
+  });
+  if (!result.ok) {
+    console.error(`${result.error.code}: ${result.error.message}`);
+    return 2;
+  }
+  return typeof result.value === "number" ? result.value : 0;
+}
+
+const cliAbortController = new AbortController();
+process.once("SIGINT", () => {
+  console.error("Cancellation requested (SIGINT).");
+  cliAbortController.abort(new Error("SIGINT"));
+});
+
+/**
+ * Exit only once stdout and stderr have drained.
+ *
+ * `process.exit()` discards whatever is still queued in an asynchronous stream,
+ * and stdout is asynchronous whenever it is a PIPE rather than a TTY or file —
+ * i.e. under CI, `| tee`, `$(...)`, and spawnSync. Exiting directly truncated
+ * every command whose output exceeded the pipe buffer: `help` measured 37410
+ * bytes to a file but exactly 8192 to a pipe, silently losing 78% of it. Any
+ * consumer parsing piped CLI output (`--json` readers, captured CI logs) was
+ * reading a prefix and could not tell.
+ *
+ * A zero-length write queues its callback BEHIND the data already buffered on
+ * that stream, so it fires once that stream has flushed. The timer is a liveness
+ * backstop for a reader that never drains us — it exits with the real code
+ * rather than hanging the CLI forever — and is unref'd so it never itself keeps
+ * the process alive.
+ */
+function exitAfterFlush(code: number): void {
+  process.exitCode = code;
+  let pending = 2;
+  let exited = false;
+  const finish = (): void => {
+    if (exited) return;
+    exited = true;
+    process.exit(code);
+  };
+  const drained = (): void => {
+    if (exited) return;
+    pending -= 1;
+    if (pending === 0) finish();
+  };
+  const backstop = setTimeout(finish, 5000);
+  backstop.unref();
+  process.stdout.write("", drained);
+  process.stderr.write("", drained);
+}
+
+main(cliAbortController.signal).then(
+  (code) => exitAfterFlush(cliAbortController.signal.aborted ? 130 : (code ?? 0)),
   (err) => {
-    console.error(err);
-    process.exit(1);
+    if (!cliAbortController.signal.aborted) console.error(err);
+    exitAfterFlush(cliAbortController.signal.aborted ? 130 : 1);
   },
 );

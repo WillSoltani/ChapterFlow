@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chapterflow.local/schemas/worker-dispatch-receipt-1.0.0.json",
+  "title": "ChapterFlow blind-worker dispatch receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "issuer", "pair_id", "issued_at_utc",
+    "run_id", "book_id", "source_hash", "inventory_sha256", "role", "job_id",
+    "worker_task_id", "worker_session_id", "binding_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "chapterflow_worker_dispatch_receipt"},
+    "issuer": {"const": "chapterflow_evaluation_orchestrator"},
+    "pair_id": {"type": "string", "minLength": 1},
+    "issued_at_utc": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 1},
+    "book_id": {"type": "string", "minLength": 1},
+    "source_hash": {"$ref": "#/$defs/sha256"},
+    "inventory_sha256": {"$ref": "#/$defs/sha256"},
+    "role": {"enum": ["primary", "verification"]},
+    "job_id": {"type": "string", "minLength": 1},
+    "worker_task_id": {"type": "string", "minLength": 1},
+    "worker_session_id": {"type": "string", "minLength": 1},
+    "binding_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {"sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+}

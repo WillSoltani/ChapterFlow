@@ -1,0 +1,9 @@
+Wrote [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json).
+
+Validation results:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 matched required index pattern `1,1,0,2,0,1,2,0,2`
+- `evidence-audit`: no evidence-integrity candidates
+- Read-only rubric metrics: no failing metrics; ease `72.931`, tell `0`, transfer `0.889`, memClean `3`, echoTell `0`, lengthTell `4`, practiceFloor `2`
+- Rendered length: `16,836` chars

@@ -1,0 +1,15 @@
+{
+  "packageId": "fixture-archive-duplicate",
+  "book": {
+    "bookId": "fixture-archive-duplicate",
+    "title": "Archive and Directory Duplicate"
+  },
+  "chapters": [
+    {
+      "chapterId": "only",
+      "number": 1,
+      "title": "Same Content",
+      "fullRead": "This exact synthetic package is stored once as a directory and once in a test-created archive."
+    }
+  ]
+}

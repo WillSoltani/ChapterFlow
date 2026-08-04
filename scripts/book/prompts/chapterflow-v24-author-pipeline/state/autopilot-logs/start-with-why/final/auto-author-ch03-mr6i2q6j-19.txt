@@ -1,0 +1,23 @@
+Authored chapter 03 in [start-with-why-ch03.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch03.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match
+- `evidence-audit`: no candidates
+- Estimated rendered length: 13,960 chars, inside the 16k ±20% window
+- Scaffold scan: 0 leaks
+- Distractor parity: key uniquely longest 1/9, uniquely shortest 4/9
+
+Quiz choice lengths by question, with the keyed choice position matching `1,1,2,0,1,0,0,2,2`:
+- q1 `114/105/106`
+- q2 `100/93/94`
+- q3 `112/91/102`
+- q4 `68/78/81`
+- q5 `109/84/96`
+- q6 `107/99/87`
+- q7 `102/105/92`
+- q8 `108/90/101`
+- q9 `85/102/91`
+
+`reader-budget-check` has no ch03 blocker; it reports one unrelated ch01 advisory. The chapter file currently appears as untracked in git.

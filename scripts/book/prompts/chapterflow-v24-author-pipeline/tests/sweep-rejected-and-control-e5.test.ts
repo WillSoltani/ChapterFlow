@@ -11,7 +11,7 @@
  * (no git, no real reader spawn).
  */
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -39,6 +39,13 @@ import type { BookPackageV21, ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-e5-control";
 const RUN = "20260703T000000Z";
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
+const QC_PACKS_DIR_EXISTED = existsSync(QC_PACKS_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+
+function pruneSharedDir(path: string, existedBefore: boolean): void {
+  if (!existedBefore && existsSync(path) && readdirSync(path).length === 0) rmdirSync(path);
+}
 
 // ── fixture state (evidence-style) ────────────────────────────────────────────
 
@@ -72,6 +79,9 @@ function cleanup(): void {
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   rmMatching(QC_DIR, BOOK);
   rmSync(resolve(REPO_ROOT, "scratch/review", BOOK), { recursive: true, force: true });
+  pruneSharedDir(QC_ROUNDS_DIR, QC_ROUNDS_DIR_EXISTED);
+  pruneSharedDir(QC_PACKS_DIR, QC_PACKS_DIR_EXISTED);
+  pruneSharedDir(QC_ORCHESTRATOR_DIR, QC_ORCHESTRATOR_DIR_EXISTED);
 }
 
 function setup(): { chapters: ChapterV21[]; round: AuthorEvidenceRound } {
@@ -360,7 +370,7 @@ test("control-read (F-05): a CACHED below-quorum record (validCount 2) is NOT tr
     const io = mkControlIo();
     // Seed a cached record at the matching pin with only 2 valid readers.
     const rec: ShippedControlRecord = {
-      schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "PIN0",
+      schemaVersion: "shipped-control-v2", bookId: CTRL_BOOK, pin: "PIN0",
       composite: 70, gate: "PASS", churn: "LOW", validCount: 2,
       readers: [{ valid: true }, { valid: true }, { valid: false }] as any,
       at: "2026-07-08T00:00:00Z",
@@ -379,7 +389,7 @@ test("control-read (F-05): a CACHED full-quorum record (validCount 3) IS trusted
   try {
     const io = mkControlIo();
     const rec: ShippedControlRecord = {
-      schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "PIN0",
+      schemaVersion: "shipped-control-v2", bookId: CTRL_BOOK, pin: "PIN0",
       composite: 82, gate: "PASS", churn: "LOW", validCount: 3,
       readers: [{ valid: true }, { valid: true }, { valid: true }] as any,
       at: "2026-07-08T00:00:00Z",
@@ -391,34 +401,33 @@ test("control-read (F-05): a CACHED full-quorum record (validCount 3) IS trusted
   } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
 });
 
-test("control-read (F-05): an OLD cached record with no validCount DERIVES the count from readers (3 valid → trusted; 2 valid → floor-only)", async () => {
+test("control-read (IMP-08): a cached v1 (legacy-instrument) record is NOT loaded — the control panel re-runs on the phase-1 instrument", async () => {
   const prev = process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
   delete process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE;
   try {
-    // (a) old record shape (no validCount field) with 3 valid readers — like the
-    //     live start-with-why control (72.7, 3/3 valid): DERIVED count 3 → trusted.
+    // A v1 record was measured on the legacy KEY-BEARING book doc. Trusting it
+    // as the beat-shipped baseline would compare across instruments, so the
+    // loader must reject it by schema version and a FRESH phase-1 control read
+    // must run instead. (The validCount-derivation fallback it used to pin is
+    // covered at the unit level by the effectiveControlValidCount test below.)
     const io = mkControlIo();
-    const oldTrusted = {
+    const legacyRecord = {
       schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "PIN0",
       composite: 72.7, gate: "FAIL", churn: "HIGH",
       readers: [{ valid: true }, { valid: true }, { valid: true }],
       at: "2026-07-07T00:00:00Z",
     };
-    writeFileSync(io.controlRecordPath(CTRL_BOOK), JSON.stringify(oldTrusted), "utf8");
-    const rA = await resolveBeatShippedBar(CTRL_BOOK, mkDeps(() => { throw new Error("no spawn"); }).deps, mkEvIo(), io);
-    assert.ok(rA.ok && rA.source === "control" && rA.composite === 72.7, `old 3-valid record derives quorum → trusted: ${JSON.stringify(rA)}`);
-
-    // (b) old record shape with only 2 valid readers → DERIVED count 2 → floor-only.
-    const io2 = mkControlIo();
-    const oldDegraded = { ...oldTrusted, readers: [{ valid: true }, { valid: true }, { valid: false }] };
-    writeFileSync(io2.controlRecordPath(CTRL_BOOK), JSON.stringify(oldDegraded), "utf8");
-    const rB = await resolveBeatShippedBar(CTRL_BOOK, mkDeps(() => { throw new Error("no spawn"); }).deps, mkEvIo(), io2);
-    assert.ok(rB.ok && rB.source === "degraded" && rB.composite === null, `old 2-valid record derives sub-quorum → floor-only: ${JSON.stringify(rB)}`);
+    writeFileSync(io.controlRecordPath(CTRL_BOOK), JSON.stringify(legacyRecord), "utf8");
+    const { deps } = mkDeps((o) => (o.sessionId.includes("shipped-control") ? { finalMessage: bookReadReply(controlPkg().chapters, 82) } : {}));
+    const r = await resolveBeatShippedBar(CTRL_BOOK, deps, mkEvIo(), io);
+    assert.ok(r.ok && r.source === "control" && r.composite === 82, `stale v1 record ignored, fresh phase-1 read taken: ${JSON.stringify(r)}`);
+    const rec = loadShippedControlRecord(CTRL_BOOK, io);
+    assert.ok(rec && rec.schemaVersion === "shipped-control-v2", `the re-run persists a v2 record: ${JSON.stringify(rec?.schemaVersion)}`);
   } finally { if (prev !== undefined) process.env.CHAPTERFLOW_BEAT_SHIPPED_COMPOSITE = prev; }
 });
 
 test("effectiveControlValidCount: prefers the stored count, else derives from readers, else 0", () => {
-  const base = { schemaVersion: "shipped-control-v1", bookId: CTRL_BOOK, pin: "P", composite: 80, gate: "PASS", churn: "LOW", at: "x" } as const;
+  const base = { schemaVersion: "shipped-control-v2", bookId: CTRL_BOOK, pin: "P", composite: 80, gate: "PASS", churn: "LOW", at: "x" } as const;
   assert.equal(effectiveControlValidCount({ ...base, validCount: 3, readers: [] as any }), 3, "stored validCount wins");
   assert.equal(effectiveControlValidCount({ ...base, readers: [{ valid: true }, { valid: true }, { valid: true }] as any }), 3, "derives 3 from readers");
   assert.equal(effectiveControlValidCount({ ...base, readers: [{ valid: true }, { valid: false }, { valid: true }] as any }), 2, "derives 2 from readers");

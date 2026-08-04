@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several distractors are easy to reject without reading because they lean on senior precedent, status, copying, or broad purpose language.",
+      "The correct answer is often the most concrete, source-attached option, especially Q4, Q7, Q8, and Q9."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 84,
+    "tone": 80,
+    "limits": 90,
+    "insight": 85,
+    "density": 75,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The fastest fix can be the slowest way to learn.",
+      "why": "Strong, compact line that makes the chapter's mechanism memorable."
+    },
+    {
+      "quote": "A result is not a trophy; it is the trip back from a guess.",
+      "why": "Best expression of the chapter's core move: results test assumptions."
+    },
+    {
+      "quote": "Gregoire's airline case is about a routine people can defend as obvious. American Airlines was founded in 1926 and is based near Fort Worth.",
+      "why": "The factual insert feels bolted on rather than naturally tied to the lesson."
+    },
+    {
+      "quote": "The result changes: final fit stops being the answer and becomes the return signal.",
+      "why": "This before-after is abstract; it names a conceptual shift but not a concrete consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several wrong answers are too obviously bad because they endorse rank, status, copying, or broad purpose language, so a test-wise reader can often find the key without fully using the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The example has a named person and source terms, but the before-to-after consequence is mostly phrased as lesson language rather than an observable operational result.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The example mostly restates the need for a second venue and a return question; it does not show a concrete decision producing a concrete consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "Some source facts, especially the American Airlines founding and Fort Worth sentence, read like required fact placement rather than integrated teaching.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats venue, return, ledger, and hard-detail language enough that density drops after the mechanism is already clear.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner support",
+      "problem": "Andon and jidoka are treated as important source details, but a cold beginner gets little plain-language help understanding what they are.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: separate known data, assumptions, decisions, and returning results before letting a fix look obvious. The strongest lines and limit language are publishable, and the quiz keys are sound. I would not ship it yet because the transfer section leans on manufactured examples that sometimes restate the lesson instead of showing concrete decisions and consequences, while some quiz distractors and inserted source facts make the product feel more constructed than lived."
+}
+```

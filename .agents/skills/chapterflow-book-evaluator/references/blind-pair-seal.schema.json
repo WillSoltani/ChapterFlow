@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chapterflow.local/schemas/blind-pair-seal-1.0.0.json",
+  "title": "ChapterFlow sealed blind-worker pair receipt",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_type", "issuer", "pair_id", "sealed_at_utc",
+    "run_id", "book_id", "source_hash", "inventory_sha256", "workers", "binding_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "artifact_type": {"const": "chapterflow_blind_pair_seal"},
+    "issuer": {"const": "chapterflow_evaluation_orchestrator"},
+    "pair_id": {"type": "string", "minLength": 1},
+    "sealed_at_utc": {"type": "string", "format": "date-time"},
+    "run_id": {"type": "string", "minLength": 1},
+    "book_id": {"type": "string", "minLength": 1},
+    "source_hash": {"$ref": "#/$defs/sha256"},
+    "inventory_sha256": {"$ref": "#/$defs/sha256"},
+    "workers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary", "verification"],
+      "properties": {
+        "primary": {"$ref": "#/$defs/worker"},
+        "verification": {"$ref": "#/$defs/worker"}
+      }
+    },
+    "binding_sha256": {"$ref": "#/$defs/sha256"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "job_id", "worker_task_id", "worker_session_id", "dispatch_receipt_sha256",
+        "result_canonical_sha256", "judgment_sha256"
+      ],
+      "properties": {
+        "job_id": {"type": "string", "minLength": 1},
+        "worker_task_id": {"type": "string", "minLength": 1},
+        "worker_session_id": {"type": "string", "minLength": 1},
+        "dispatch_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "result_canonical_sha256": {"$ref": "#/$defs/sha256"},
+        "judgment_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

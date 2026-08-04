@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-033",
+  "parsed": {
+    "caseId": "SQ-033",
+    "verdict": "DEFECT",
+    "defectClass": "GENERIC_ITEM_RELABELING",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Stop Arguing About Who's Right"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "State the impact, own the concern, and ask for a specific repair date or alternative plan."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers and creates room for new information."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The best choice keeps the conversation tied to different stories and creates room for new information."
+      }
+    ],
+    "explanation": "The two instances use identical scenarios, choices, and correct answers while changing only the chapter-skill label and a vague phrase in the explanation. The generic recommended draft does not require demonstrating either chapter's distinct mechanism, so the duplication merely relabels the same answer.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-033\",\"verdict\":\"DEFECT\",\"defectClass\":\"GENERIC_ITEM_RELABELING\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Stop Arguing About Who's Right\"},{\"materialIndex\":0,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"},{\"materialIndex\":1,\"quote\":\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers and creates room for new information.\"},{\"materialIndex\":1,\"quote\":\"The best choice keeps the conversation tied to different stories and creates room for new information.\"}],\"explanation\":\"The two instances use identical scenarios, choices, and correct answers while changing only the chapter-skill label and a vague phrase in the explanation. The generic recommended draft does not require demonstrating either chapter's distinct mechanism, so the duplication merely relabels the same answer.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,88 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": ["Q8: I chose a as the best available answer, but the stem says a 'third example' failed; the prose supports a point about the third anchor/pass needing a different job, not an actual failed third example."],
+    "tells": ["Q4: the stem says sensory processing was used on the felt-side anchor, and the correct answer nearly repeats that as 'a true detail was moved to the wrong anchor.'", "Q8: 'restamped' is unusual wording and points strongly to the prose line about the third anchor not restamping the brain terms.", "Q9: the correct answer lists the four named terms, making it visibly more text-anchored than the distractors."]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 74,
+    "transfer": 61,
+    "practical": 72,
+    "summaries": 84,
+    "tone": 66,
+    "limits": 80,
+    "insight": 76,
+    "density": 69,
+    "beginner": 65
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun. The price of the default is a clean reason that never comes back.",
+      "why": "Strongest memorable line; it gives the chapter a compact governing test."
+    },
+    {
+      "quote": "What would make this feeling come back in daylight? That question changes the tone. It does not mock the signal. It also keeps a mood from wearing a lab coat.",
+      "why": "Best practical mechanism: respect the signal while requiring evidence."
+    },
+    {
+      "quote": "Rachel can run this with no title. She writes the choice as a WHAT sentence, then writes the felt pull beside it.",
+      "why": "Shows the recurring abstraction problem: named person, but no real situation, stakes, or consequence."
+    },
+    {
+      "quote": "The rollout queue answers the question: pause when memory is doing the moving. Name the remembered worry, then set the proof due back.",
+      "why": "The example teaches the slogan again instead of showing the actual worry or proof."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples overall",
+      "problem": "Several examples use named roles but no concrete organization, place, number, artifact, or specific before-to-after proof; they often restate the lesson rather than demonstrating a decision and consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The customer problem is generic: customers avoid an offer because an unnamed value is unnamed. It does not show what value was protected or what proof returned.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The training-page scenario is mostly a paraphrase of the Damasio rule; the 'red margin line' is a prop, not a concrete consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The cancellation handoff says repeat questions stay high, but it never names the remembered worry or shows what proof would reduce the repeats.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The budget example says a favored choice feels aligned, but never names the spend, criterion, amount, or evidence needed to release the hold.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The stem refers to a failed third example, but the chapter only clearly teaches that the third anchor/pass should catch a neighboring error. This makes the item less sound than the key implies.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is too easy to infer from the stem wording because it restates that a detail was placed under the wrong anchor.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated phrases such as proof returning, proof due back, and spending trust become scaffold-like by the examples section.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner access",
+      "problem": "The brain terms are defined, but the chapter assumes the reader can follow abstract contrasts among neocortex, limbic system, source edge, and proof return without enough grounded cases.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a real core move: let feeling start a decision only if it can return with public proof. The summaries and memorable lines are strong, and the Damasio boundary keeps the biology claim from becoming pure preference. It does not clear a professional 80 bar because the transfer section leans on manufactured examples that name people but rarely show concrete stakes, evidence, or consequences. The quiz is mostly derivable, but Q8 has a soundness problem and a few items have giveaway phrasing."
+}
+```

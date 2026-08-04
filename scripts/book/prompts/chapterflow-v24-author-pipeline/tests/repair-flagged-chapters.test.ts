@@ -7,7 +7,8 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
+import { dirname } from "node:path";
 
 import { test } from "./harness.js";
 import { flaggedChapterNumbers } from "../src/orchestrator/autopilot.js";
@@ -15,6 +16,14 @@ import { evidenceMatrixPath, orchestratorRoundDir } from "../src/qc/orchestrator
 
 const BOOK = "zz-fixture-flagged";
 const ROUND = "r-flagged-test";
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+
+function cleanup(): void {
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
+}
 
 function writeMatrix(chapters: Array<{ chapterNumber: number; finalVerdict: string }>): void {
   mkdirSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true });
@@ -34,11 +43,11 @@ test("flaggedChapterNumbers: returns every non-PUBLISHABLE chapter; PUBLISHABLE 
     assert.deepEqual([...flagged].sort((a, b) => a - b), [2, 3, 4], "all non-publishable chapters are flagged");
     assert.ok(!flagged.has(1) && !flagged.has(5), "PUBLISHABLE chapters are NOT flagged (the collateral guard protects them)");
   } finally {
-    rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+    cleanup();
   }
 });
 
 test("flaggedChapterNumbers: a missing/unreadable matrix yields an empty set (guard then no-ops, never false-warns)", () => {
-  rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+  cleanup();
   assert.equal(flaggedChapterNumbers(BOOK, ROUND).size, 0);
 });

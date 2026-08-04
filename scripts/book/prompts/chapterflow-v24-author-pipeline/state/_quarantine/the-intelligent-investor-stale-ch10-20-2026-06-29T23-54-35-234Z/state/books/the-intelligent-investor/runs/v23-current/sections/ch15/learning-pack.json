@@ -1,0 +1,249 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch15",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch15.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.1"
+        ],
+        "prompt": "A low P/E screen produces a short list of candidates. Which first response best fits enterprising stock selection?",
+        "choices": [
+          "Use the low P/E group as a starting screen, then test whether financial condition is acceptable.",
+          "Buy the lowest P/E stock automatically because the cheapest multiple is always best.",
+          "Reject low P/E groups because low expectations can never create favorable odds."
+        ],
+        "correctIndex": 0,
+        "explanation": "Low P/E groups can start the search because low expectations may create favorable odds, but some low multiples signal real deterioration and still require financial-condition review.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch15.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.2"
+        ],
+        "prompt": "A candidate is described as net-net because its price is low relative to total assets. What correction is needed?",
+        "choices": [
+          "Net-net means the price is low compared with total assets before liabilities are considered.",
+          "Net-net compares market price with current assets minus all liabilities, using a stricter asset cushion.",
+          "Net-net assigns full value to operations before checking current assets."
+        ],
+        "correctIndex": 1,
+        "explanation": "Net-net selection is stricter than total book value because it compares market price with current assets after subtracting all liabilities before assigning value to operations.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch15.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.3"
+        ],
+        "prompt": "Samir finds one bargain stock that looks far better than the rest. What policy best handles the hidden-problem risk?",
+        "choices": [
+          "Concentrate in the single strongest-looking bargain because the best case should dominate the group.",
+          "Skip bargain stocks unless every candidate can be proven free of slow realization.",
+          "Use a 20-stock group approach because diversification absorbs appraisal mistakes in cheap companies."
+        ],
+        "correctIndex": 2,
+        "explanation": "A 20-stock group approach matters for bargain stocks because any one cheap company may hide problems or take too long to realize value. Diversification absorbs appraisal mistakes.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch15.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.4"
+        ],
+        "prompt": "A low-multiple stock looks cheap, and Tessa wants to ignore dividend history. Why can that be a mistake?",
+        "choices": [
+          "Dividend record is irrelevant once the P/E ratio is low enough to look cheap.",
+          "Dividend record can support the filter because cash distributions help test whether earnings are accounting artifacts.",
+          "Dividend record should replace every other test, including price and financial strength."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dividend record can help filter low-multiple stocks because cash distributions provide evidence that reported earnings are not purely accounting artifacts. Cheap earnings can still be low quality.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch15.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.5"
+        ],
+        "prompt": "A bargain appears cheap on asset value, but the balance sheet is weak. What concern should govern the decision?",
+        "choices": [
+          "A bargain price offsets any balance-sheet weakness if the quoted discount is large enough.",
+          "Financial strength matters only for defensive selection, not enterprising bargains.",
+          "Financial strength remains necessary because leverage can destroy the asset cushion during stress."
+        ],
+        "correctIndex": 2,
+        "explanation": "Financial strength remains necessary for enterprising bargains because leverage can claim the value first and destroy the asset cushion during business stress.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch15.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.6"
+        ],
+        "prompt": "A numerical screen returns several apparent bargains. What should happen before any candidate becomes a purchase?",
+        "choices": [
+          "Review each candidate because a screen can surface fraud, obsolescence, cyclical collapse, or a real bargain.",
+          "Treat the screen output as a buy list because the numerical bargain already finished the analysis.",
+          "Ignore the screen entirely because numbers cannot help identify possible bargains."
+        ],
+        "correctIndex": 0,
+        "explanation": "Screens are only the beginning of analysis. A numerical bargain can be caused by fraud, obsolescence, or cyclical collapse, so each candidate still needs review.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch15.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.7"
+        ],
+        "prompt": "Elena expects an undervalued holding to reprice within weeks. Which expectation better matches the required patience horizon?",
+        "choices": [
+          "A bargain should reprice quickly once the initial screen identifies it.",
+          "A short holding period is safer because market neglect cannot persist.",
+          "A three-to-five-year horizon is needed because recognition of value can take years."
+        ],
+        "correctIndex": 2,
+        "explanation": "Undervaluation strategies require a three-to-five-year patience horizon because value recognition can take years rather than weeks and market neglect can persist.",
+        "bloomsLevel": "understand",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch15.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.8"
+        ],
+        "prompt": "An unpopular stock appears neglected, and Avery wants to treat that alone as value. What is the better test?",
+        "choices": [
+          "Pair low popularity with evidence, because neglected securities may be cheap for valid reasons.",
+          "Buy unpopular stocks automatically because unpopularity alone is value.",
+          "Avoid all unpopular stocks because low popularity can never improve the odds."
+        ],
+        "correctIndex": 0,
+        "explanation": "Low popularity can improve odds only when paired with evidence. Neglected securities may be cheap for valid reasons, so unpopularity alone is not value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch15.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch15.fact.9"
+        ],
+        "prompt": "Julian is too busy to maintain records, screens, and follow-up decisions, but wants an active method. What is the main risk?",
+        "choices": [
+          "Active methods are suitable for any busy investor once the initial screen is simple.",
+          "Insufficient attention can turn enterprise into speculation because enterprising selection demands more time.",
+          "Defensive selection requires more time than enterprising selection because it uses fewer records."
+        ],
+        "correctIndex": 1,
+        "explanation": "Enterprising selection demands more time than defensive selection because the investor must maintain records, screens, and follow-up decisions. Insufficient attention turns enterprise into speculation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch15.fact.1"
+        ],
+        "front": "How should low P/E groups be used in enterprising stock selection?",
+        "back": "They can be used as a starting screen because low expectations may create favorable odds when financial condition is acceptable. The lowest P/E stock is not automatically best because some low multiples signal real deterioration.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch15.fact.2"
+        ],
+        "front": "What does net-net selection compare market price against?",
+        "back": "It compares market price with current assets minus all liabilities. The test is harsher than low price relative to total assets because it demands an asset cushion before assigning value to operations.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch15.fact.3"
+        ],
+        "front": "Why does a bargain-stock method need a 20-stock group approach?",
+        "back": "Any one cheap company may have hidden problems or slow realization. A 20-stock group approach lets diversification absorb appraisal mistakes instead of relying on the best single bargain.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch15.fact.4"
+        ],
+        "front": "Why can dividend record help filter low-multiple stocks?",
+        "back": "Cash distributions provide evidence that earnings are not purely accounting artifacts. A low P/E ratio alone does not make dividend history unnecessary because cheap earnings can still be low quality.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch15.fact.5"
+        ],
+        "front": "Why does financial strength still matter for enterprising bargains?",
+        "back": "Leverage can destroy the asset cushion during business stress. A bargain price does not offset every balance-sheet weakness because debt can claim the value first.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch15.fact.6"
+        ],
+        "front": "Why are screens only the beginning of analysis?",
+        "back": "A numerical bargain can be caused by fraud, obsolescence, or cyclical collapse. Screen output is not a buy list because each candidate still needs review.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch15.fact.7"
+        ],
+        "front": "What patience horizon is required for undervaluation strategies?",
+        "back": "A three-to-five-year horizon is required because recognition of value can take years rather than weeks. A bargain should not be expected to reprice quickly, since market neglect can persist.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}
+

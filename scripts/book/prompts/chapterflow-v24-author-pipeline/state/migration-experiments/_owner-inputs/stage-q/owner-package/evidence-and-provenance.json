@@ -1,0 +1,1733 @@
+{
+  "schemaVersion": "chapterflow-stage-q-provenance-v1",
+  "cases": [
+    {
+      "caseId": "SQ-001",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/04-source-sidecars-or-citations/historical-source-sidecars/ch04.source.json",
+          "sha256": "99c0ad1dbf34243635aede928d332edf13b40bdeaab1faacf6bd37ecd3bc7081",
+          "pointer": "/frameworks/3 + /limits/0"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-04-abandon-blame.json",
+          "sha256": "151010c95864b265fd630f8ffea97b94fd7fc868d813d72d462a87f7460763b3",
+          "pointer": "/breakdown/deepRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-002",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/04-source-sidecars-or-citations/historical-source-sidecars/ch07.source.json",
+          "sha256": "26342a812e5d0fef6724744398795ccc0a417186ed2149d28af9529a6f479453",
+          "pointer": "/concepts[id=letting-go]/definition"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-07-what-s-your-purpose-when-to-raise-it-when-to-let-go.json",
+          "sha256": "b8a4aff65c0fd24269dade71f6251a058c2f70ec3c3e38d574b6b759defd017d",
+          "pointer": "/breakdown/deepRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-003",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch01.source.json",
+          "sha256": "dd6ba9325028dd44913d157984380c760f50dc6a383d753ab1b47d3be56bb7e8",
+          "pointer": "/centralConcept + /keyClaims"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-01-the-four-villains-of-decision-making.json",
+          "sha256": "df5481d90684b2f581d9e12b53820160097d83768b4ad6998dbca5b04f868985",
+          "pointer": "/breakdown/deepRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-004",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch06.source.json",
+          "sha256": "1a9a35f62e0f0b7b665572002b05603938b7b9a3e7c837b1b34e6419f47541ce",
+          "pointer": "/coreClaim + /keyClaims"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-06-zoom-out-zoom-in.json",
+          "sha256": "f27e13c5f8b50339e6815d7c5474b6fd1a50596d73c5dedcaa4bf0c6ed285190",
+          "pointer": "/breakdown/deepRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-005",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "02_The_Willpower_Instinct/04-source-sidecars-or-citations/source-verification-the-willpower-instinct.md",
+          "sha256": "752aa1d58524da99246100cf5fe2db67d6bc92775b57cbcb15aa8b3e2f4fc5c0",
+          "pointer": "chapter 8 / ch08.ex.christakis-fowler-obesity"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "02_The_Willpower_Instinct/01-final-book-and-chapters/the-willpower-instinct.v21.json",
+          "sha256": "bdb4cc4a889bf416628549a33ad6d3f2431fbd8d42d5d4de774211366bed5de3",
+          "pointer": "/chapters/7/breakdown/deepRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-006",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "03_The_Power_of_Moments/04-source-sidecars-or-citations/source-verification-the-power-of-moments.md",
+          "sha256": "d78986192e53f189c7146a066b6970643ef9d4b78cc5ceaf453f283aabe85a3f",
+          "pointer": "chapter 1 / ch01.fact.4"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "03_The_Power_of_Moments/01-final-book-and-chapters/the-power-of-moments.v21.json",
+          "sha256": "97947324e025d908512f5df93f682cc94966cdf3a45f02a9a1c41eb951c98ace",
+          "pointer": "/chapters/0/breakdown/fullRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-007",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gates: Ethics and reader autonomy"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/01-final-book-and-chapters/behave.v21.json",
+          "sha256": "7ba9171c057a9ee9077d4f96cd75bc00336d96f0f3e8db0dea0097c8712bbda9",
+          "pointer": "/chapters/0/breakdown/fullRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-008",
+      "category": "CLEAN_CONTROL",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/04-source-sidecars-or-citations/historical-source-sidecars/ch06.source.json",
+          "sha256": "07bfe82bb4f68b1bd3477ef9b7e835729a5e85d5a69a40d456a4338361d82f68",
+          "pointer": "identity frameworks"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-06-ground-your-identity.json",
+          "sha256": "d61a8d9cd839ab032d3294d44e94c09cd33701ea4c0404e9d3fbb53b1f5db62f",
+          "pointer": "/breakdown/deepRead"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-009",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch01.source.json",
+          "sha256": "dd6ba9325028dd44913d157984380c760f50dc6a383d753ab1b47d3be56bb7e8",
+          "pointer": "/namedExamples[id=ch01.ex.steve-cole-hopelab]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-01-the-four-villains-of-decision-making.json",
+          "sha256": "df5481d90684b2f581d9e12b53820160097d83768b4ad6998dbca5b04f868985",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-010",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch01.source.json",
+          "sha256": "dd6ba9325028dd44913d157984380c760f50dc6a383d753ab1b47d3be56bb7e8",
+          "pointer": "/namedExamples[id=ch01.ex.andy-grove-intel]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-01-the-four-villains-of-decision-making.json",
+          "sha256": "df5481d90684b2f581d9e12b53820160097d83768b4ad6998dbca5b04f868985",
+          "pointer": "/examples/2"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-011",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch02.source.json",
+          "sha256": "9d76a5cbe25257e903d1324555fdad4c7f74334bc4780b3908e8242cd5433325",
+          "pointer": "/namedExamples[id=ch02.ex.claireabelle]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-02-avoid-a-narrow-frame.json",
+          "sha256": "6c25a7757581973e8c23cf412dd06c75109b9a71d079aae3c6c0c9b289fc96d9",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-012",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch02.source.json",
+          "sha256": "9d76a5cbe25257e903d1324555fdad4c7f74334bc4780b3908e8242cd5433325",
+          "pointer": "/namedExamples[id=ch02.ex.quaker-snapple]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-02-avoid-a-narrow-frame.json",
+          "sha256": "6c25a7757581973e8c23cf412dd06c75109b9a71d079aae3c6c0c9b289fc96d9",
+          "pointer": "/examples/1"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-013",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch03.source.json",
+          "sha256": "ea4a678e4593eb93ceae35ed0ed3d747eddf7afa06b3ce975e913d2c75b3ddb4",
+          "pointer": "/namedExamples[id=ch03.ex.lexicon-branding]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-03-multitrack.json",
+          "sha256": "3caa3fdfbdbb25e5f2f259242cb546693a8d73bda0c202c795346bd20ff91dc7",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-014",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch10.source.json",
+          "sha256": "852a5d2f4f87f564302b9cfa0f3e25f905740962afde226112560f32e0c20b48",
+          "pointer": "/namedExamples[id=ch10.ex.coinstar]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-10-bookend-the-future.json",
+          "sha256": "a40353614e1c71a86e1f81a67002f6818d06bba8fec2475464f03473dc13558e",
+          "pointer": "/examples/4"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-015",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch11.source.json",
+          "sha256": "f1386910fa9304515938118a60b5e4862d61ffb2f29db62ecd31ccdf3084ebf6",
+          "pointer": "/namedExamples[id=ch11.ex.zappos-offer]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-11-set-a-tripwire.json",
+          "sha256": "4b998fcddf04b10e390ecfe112d4ba5ada2a728f37c43e0ada245b8a8d962ac7",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-016",
+      "category": "SOURCED_FABRICATION_OR_INVENTED_HISTORY",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch12.source.json",
+          "sha256": "98d7ccfb515862517e7b7679c339f4ab3a9203192515a58b5015dff7db14384a",
+          "pointer": "/namedExamples[id=ch12.ex.paul-nutt]"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/01-final-book-and-chapters/chapters/chapter-12-trusting-the-process.json",
+          "sha256": "ca1c36f6148cfebf8cd322d05a820ae397cd5e8824200c86535542242b3bda46",
+          "pointer": "/examples/1"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-017",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-01-sort-out-the-three-conversations.json",
+          "sha256": "7b0ccd64afd9dff739bbf4c507ad5461aef29f5cb398c6f1f616e3bd3fd8f404",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-018",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-02-stop-arguing-about-who-s-right.json",
+          "sha256": "67c3230a542291c9117705fdea0e6da46c93df6787267061c4463a4acfd4b761",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-019",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-03-don-t-assume-they-meant-it.json",
+          "sha256": "1f2ae8c0f681277af9e65cfed70002ce52a35c728a5e6a97670bea1cbd2a31c7",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-020",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-04-abandon-blame.json",
+          "sha256": "151010c95864b265fd630f8ffea97b94fd7fc868d813d72d462a87f7460763b3",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-021",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-05-have-your-feelings-or-they-will-have-you.json",
+          "sha256": "1812149157287cc34a9438e464e164dc1f2d969b48c95b5056a8c027fcb5373c",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-022",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-06-ground-your-identity.json",
+          "sha256": "d61a8d9cd839ab032d3294d44e94c09cd33701ea4c0404e9d3fbb53b1f5db62f",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-023",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-07-what-s-your-purpose-when-to-raise-it-when-to-let-go.json",
+          "sha256": "b8a4aff65c0fd24269dade71f6251a058c2f70ec3c3e38d574b6b759defd017d",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-024",
+      "category": "AMBIGUOUS_SOURCE_REGISTER",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/historical-validated-review-packages/ch04.review-package.json",
+          "sha256": "e898cb502415e98246ed96087d25234923abc5b3899c6046ba8c8e7457b7cad8",
+          "pointer": "/book/edition/sourceProvenance"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/01-final-book-and-chapters/chapters/chapter-08-begin-from-the-third-story.json",
+          "sha256": "5c675fd1fa3d2469870107443f1a1ab07ff288d2a1380f1de1ccbdc9ae13a0b6",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-025",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.2"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-026",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.3"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-027",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.4"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-028",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.5"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-029",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.6"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-030",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.7"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-031",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.8"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-032",
+      "category": "UNSUPPORTED_CAUSAL_MECHANISM",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/04-source-sidecars-or-citations/source-verification-behave.md",
+          "sha256": "3f0aa90e6afbb55baf898a0bc1710cbac4a622d26a64bc992ccef7517837bf9d",
+          "pointer": "chapter 1 / ch01.fact.9"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Hard gate: External accuracy / Domain 1 claim-support fit"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-033",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/quiz/questions/6"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch02.v21-native.chapter.json",
+          "sha256": "ba190e8a62073285e81650fda4d1badc6681ea754844d8ed740586cbcbb56875",
+          "pointer": "/quiz/questions/6"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-034",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch02.v21-native.chapter.json",
+          "sha256": "ba190e8a62073285e81650fda4d1badc6681ea754844d8ed740586cbcbb56875",
+          "pointer": "/quiz/questions/6"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch03.v21-native.chapter.json",
+          "sha256": "d60f11787f37b2f793304b0ee290101150bfe3a331dd8916bf445312e8625c2c",
+          "pointer": "/quiz/questions/6"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-035",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch03.v21-native.chapter.json",
+          "sha256": "d60f11787f37b2f793304b0ee290101150bfe3a331dd8916bf445312e8625c2c",
+          "pointer": "/quiz/questions/6"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch06.v21-native.chapter.json",
+          "sha256": "1acd9fbb9df2dd79d7170116b78f91844a4459ee64b55711763ae66cffeb6e34",
+          "pointer": "/quiz/questions/6"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-036",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/quiz/questions/2"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch05.v21-native.chapter.json",
+          "sha256": "8669fd1e335d861b795c90e1cb9429b491de7b905841f2845c03402a4beb5731",
+          "pointer": "/quiz/questions/2"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-037",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/quiz/questions/4"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch07.v21-native.chapter.json",
+          "sha256": "c40572ba67bccadd9f5a22d354e637c912d61342ee4dd6f64f192f6228ac2d23",
+          "pointer": "/quiz/questions/4"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-038",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/quiz/questions/5"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch08.v21-native.chapter.json",
+          "sha256": "bbdce3cecd192a4cb21c2aa44917419b0fd5504ae100e14573990d85d30faaec",
+          "pointer": "/quiz/questions/5"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-039",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/quiz/questions/3"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch04.v21-native.chapter.json",
+          "sha256": "b636b8c3220390db48ac8f76302c996e2765bcbb36511ba4a9311875033dd947",
+          "pointer": "/quiz/questions/3"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-040",
+      "category": "QUIZ_MECHANISM_OR_KEY_DEFECT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/quiz/questions/8"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch10.v21-native.chapter.json",
+          "sha256": "7181bb0eb94e114e303e1cc622c7b3bbc4e52d635224e452b5c46da7ddf2231e",
+          "pointer": "/quiz/questions/8"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-041",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "f051aa4809d67eff5c633e737f8b5015dfc56c98d4033c59fa3636f27e2b25a5",
+          "pointer": "/remediation/conditions[id=S-08-04]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-042",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "f051aa4809d67eff5c633e737f8b5015dfc56c98d4033c59fa3636f27e2b25a5",
+          "pointer": "/remediation/conditions[id=S-04-04]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-043",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "02_The_Willpower_Instinct/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "fc55c608348b1b29e7386f019c208a301ef8d767307ee93b8d57592fa23275ad",
+          "pointer": "/remediation/conditions[id=S-01-01]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-044",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "02_The_Willpower_Instinct/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "fc55c608348b1b29e7386f019c208a301ef8d767307ee93b8d57592fa23275ad",
+          "pointer": "/remediation/conditions[id=S-05-02]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-045",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "03_The_Power_of_Moments/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "5c5cf100ce426190cd618dab30415277c34388dc6179df83cdeb9a175e427c53",
+          "pointer": "/remediation/conditions[id=S-01-02]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-046",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "85e7893a2cefb6996c95842f92784d9fa68f77116fdcad14566d94d91ea59f9d",
+          "pointer": "/remediation/conditions[id=S-02-03]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-047",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "40f2b44629342bfd7fc4eaba01b609b139a44d682b2bfc626a93b2157cc32f80",
+          "pointer": "/remediation/conditions[id=D-02]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-048",
+      "category": "UNSUPPORTED_REVIEWER_COMPLAINT",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "05_Behave/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "40f2b44629342bfd7fc4eaba01b609b139a44d682b2bfc626a93b2157cc32f80",
+          "pointer": "/remediation/conditions[id=S-06-03]"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence and rater rules"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-049",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/examples/0"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch02.v21-native.chapter.json",
+          "sha256": "ba190e8a62073285e81650fda4d1badc6681ea754844d8ed740586cbcbb56875",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-050",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/examples/1"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch03.v21-native.chapter.json",
+          "sha256": "d60f11787f37b2f793304b0ee290101150bfe3a331dd8916bf445312e8625c2c",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-051",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch01.v21-native.chapter.json",
+          "sha256": "55070143a4923aa979a4517421bb5d548944527f9dde65a459ac880b32534857",
+          "pointer": "/examples/2"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch04.v21-native.chapter.json",
+          "sha256": "b636b8c3220390db48ac8f76302c996e2765bcbb36511ba4a9311875033dd947",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-052",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch02.v21-native.chapter.json",
+          "sha256": "ba190e8a62073285e81650fda4d1badc6681ea754844d8ed740586cbcbb56875",
+          "pointer": "/examples/1"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch05.v21-native.chapter.json",
+          "sha256": "8669fd1e335d861b795c90e1cb9429b491de7b905841f2845c03402a4beb5731",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-053",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch03.v21-native.chapter.json",
+          "sha256": "d60f11787f37b2f793304b0ee290101150bfe3a331dd8916bf445312e8625c2c",
+          "pointer": "/examples/1"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch06.v21-native.chapter.json",
+          "sha256": "1acd9fbb9df2dd79d7170116b78f91844a4459ee64b55711763ae66cffeb6e34",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-054",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch04.v21-native.chapter.json",
+          "sha256": "b636b8c3220390db48ac8f76302c996e2765bcbb36511ba4a9311875033dd947",
+          "pointer": "/examples/1"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch08.v21-native.chapter.json",
+          "sha256": "bbdce3cecd192a4cb21c2aa44917419b0fd5504ae100e14573990d85d30faaec",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-055",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch05.v21-native.chapter.json",
+          "sha256": "8669fd1e335d861b795c90e1cb9429b491de7b905841f2845c03402a4beb5731",
+          "pointer": "/examples/2"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch09.v21-native.chapter.json",
+          "sha256": "2dbf2950d66b52adff286859ac17cb3536e4f93d38e536d66eec212b834269e7",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-056",
+      "category": "STRUCTURAL_CLONE",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": true,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch10.v21-native.chapter.json",
+          "sha256": "7181bb0eb94e114e303e1cc622c7b3bbc4e52d635224e452b5c46da7ddf2231e",
+          "pointer": "/examples/0"
+        },
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/10-repaired-or-rejected-versions/pre-step2-versions/difficult-conversations-ch12.v21-native.chapter.json",
+          "sha256": "80860de0224dc978632f7d7729f6f3e0ea6363eaa8eac862b1da56a058aa570c",
+          "pointer": "/examples/0"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-057",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "v24",
+          "relativePath": "AGENTS.md",
+          "sha256": "a94f1ab888fc44827dc445095171687f91513343284e69a3c2fd6f4ed124d154",
+          "pointer": "AGENTS.md"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-058",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "v24",
+          "relativePath": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
+          "sha256": "9d8e9964ead108dfa10688040a296f085cec00c630e1a23039fb62afaef24d82",
+          "pointer": "agent-prompts/STEP-2-WRITE-CHAPTERS.md"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-059",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "v24",
+          "relativePath": "agent-prompts/V22-WRITER-CARD.md",
+          "sha256": "9c5a8e74f2d4429606155dce438f0455b1caefd192097a762d6919f3358bc387",
+          "pointer": "agent-prompts/V22-WRITER-CARD.md"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-060",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/06-writer-cards/historical-writer-role-card.md",
+          "sha256": "2516133c5d5a002e8a4874b4ec66068613226fe437ef5d06cf2cb102eebe99a1",
+          "pointer": "historical writer role card"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-061",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch01.source.json",
+          "sha256": "dd6ba9325028dd44913d157984380c760f50dc6a383d753ab1b47d3be56bb7e8",
+          "pointer": "ch01.paraphraseNotes"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-062",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "04_Decisive/04-source-sidecars-or-citations/chapter-source-sidecars/ch06.source.json",
+          "sha256": "1a9a35f62e0f0b7b665572002b05603938b7b9a3e7c837b1b34e6419f47541ce",
+          "pointer": "ch06.paraphraseNotes"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-063",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "01_Difficult_Conversations/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "f051aa4809d67eff5c633e737f8b5015dfc56c98d4033c59fa3636f27e2b25a5",
+          "pointer": "remediation.prompt_markdown"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    },
+    {
+      "caseId": "SQ-064",
+      "category": "PROMPT_INJECTION_IN_UNTRUSTED_DATA",
+      "historicalArtifactBased": true,
+      "assembledFromRealArtifacts": false,
+      "syntheticContent": false,
+      "labelPreparedBy": "GPT-5.6 Pro under explicit product-owner delegation",
+      "owner": "Will",
+      "ownerDelegationStatement": "Use your best judgement to fill it in yourself on my behalf.",
+      "ownerDelegationTimestamp": "2026-07-11T03:16:18Z",
+      "independentHumanRater": false,
+      "ownerRatificationRecommended": true,
+      "sources": [
+        {
+          "namespace": "top5",
+          "relativePath": "02_The_Willpower_Instinct/09-reviewer-or-critic-reports/v25-evaluator-review.json",
+          "sha256": "fc55c608348b1b29e7386f019c208a301ef8d767307ee93b8d57592fa23275ad",
+          "pointer": "remediation.prompt_markdown"
+        },
+        {
+          "namespace": "rubric",
+          "relativePath": "ChapterFlow_v2_Rubric_Standard(1).md",
+          "sha256": "e42cf6716c2236ec489a35036d039d8ed4221b0b389c1ca5019c097c8699b4bc",
+          "pointer": "Evidence boundary used for Stage-Q control"
+        }
+      ]
+    }
+  ]
+}

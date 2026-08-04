@@ -1,0 +1,79 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": [
+      "Q1: I chose b as closest, but the stem asks why the second anchor changed the claim; the prose's direct cause is contrast between neocortex and limbic jobs, while the key leans on comparison/another venue."
+    ],
+    "tells": [
+      "Q4's correct answer uses giveaway phrasing from the prose: true detail, wrong anchor, false grounding.",
+      "Q6's correct answer is the only option that lists the chapter's named anchors and hard specifics.",
+      "Q9's correct answer repeats the chapter's capitalized map terms, making it stand out from broader slogan-like distractors."
+    ]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 76,
+    "transfer": 70,
+    "practical": 82,
+    "summaries": 86,
+    "tone": 80,
+    "limits": 88,
+    "insight": 83,
+    "density": 76,
+    "beginner": 79
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest compact line; it makes the chapter's core move memorable."
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "Strong practical test that a reader could actually reuse."
+    },
+    {
+      "quote": "A cold mug marks the miss.",
+      "why": "Worst example detail: vivid but decorative, with no real decision consequence attached."
+    },
+    {
+      "quote": "The service rule asks her to trust a change, but it gives only the word-ready side.",
+      "why": "Shows a vague manufactured setup that names no concrete rule, stakes, or before-after result."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem asks why the second anchor changed the claim, but the keyed answer emphasizes comparison in another venue rather than the prose's clearer cause: the second anchor adds contrast between visible WHAT and felt WHY.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz answer choices",
+      "problem": "Several correct choices are signposted by exact chapter vocabulary while distractors are broader or slogan-like, making some keys guessable without full comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The example has a name and source marker but no concrete training decision, place, number, or consequence; the cold mug is decorative and the example mostly restates the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The service rule and change are too abstract; Ivy receives an unnamed consequence, so the example does not deliver a clear before-to-after transfer case.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The blue-line draft split is vivid but under-specified; it does not show a concrete operational decision or consequence, only the chapter's separation rule.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The ledger/return language repeats heavily. It reinforces the point, but some paragraphs restate the same mechanism rather than adding new insight.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: feeling is allowed into decision-making only when it comes back with public proof. The summaries are layered, the limits around Damasio are responsible, and several lines are memorable. It falls short of ship quality because the transfer examples are uneven and sometimes feel manufactured, with names and props standing in for real decisions and consequences. The quiz is mostly derivable, but Q1 is causally muddy and several correct answers are over-signposted by chapter vocabulary."
+}
+```

@@ -13,12 +13,13 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { attestationPath, chapterContentHash } from "../src/critics/qcAttestation.js";
+import { parseBookPatternAuditReport, runBookPatternAudit } from "../src/critics/bookPatternAudit.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
 import { computeCraftVerdict, CRAFT_AXIS_WEIGHTS, type CraftAxisId, type CraftAxisScore } from "../src/critics/semantic/craftBar.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
@@ -38,7 +39,7 @@ import {
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
 import { validateSubmission, type ValidatedCraftReadSubmission } from "../src/qc/orchestrator/schemas.js";
 import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
-import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { chapterClearsPath, REQUIRED_SWEEP_FAMILIES, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-craft-read";
@@ -50,6 +51,10 @@ const SWEEP_SESSION = "fixture-craft-sweep";
 const BAR_SESSION = "fixture-craft-bar";
 const CONFIRM_SESSION = "fixture-craft-confirm";
 const FINALIZER_SESSION = "fixture-craft-finalizer";
+const SHARED_QC_DIRS = ["qc-packs", "qc-orchestrator", "qc-rounds"].map((name) => {
+  const path = resolve(PIPELINE_DIR, "state", name);
+  return { path, existed: existsSync(path) };
+});
 
 const CRAFT_AXES = Object.keys(CRAFT_AXIS_WEIGHTS) as CraftAxisId[];
 const GROUNDED_QUOTE = "A good handoff starts with one visible source.";
@@ -79,8 +84,11 @@ function cleanup(): void {
   rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "qc-orchestrator", BOOK), { recursive: true, force: true });
   rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(dirname(keyPackDir(BOOK, ROUND)), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
   rmSync(waiverPath(BOOK), { force: true });
+  rmSync(sweepHistoryPath(BOOK), { force: true });
+  rmSync(chapterClearsPath(BOOK), { force: true });
   rmSync(sweepRecordPath(BOOK), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${BOOK}.manual-brief.json`), { force: true });
   for (const n of [CH]) {
@@ -88,6 +96,9 @@ function cleanup(): void {
     rmSync(manualKeyJudgePath(BOOK, n), { force: true });
     rmSync(provenancePath(`${BOOK}-ch${String(n).padStart(2, "0")}`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "plans", `${BOOK}-ch${String(n).padStart(2, "0")}.manual-plan.json`), { force: true });
+  }
+  for (const dir of SHARED_QC_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
   }
 }
 
@@ -170,12 +181,18 @@ function writeClonedSourceSidecar(): void {
 function writeRoundRecord(chapters: ChapterV21[]): void {
   const path = roundRecordPath(BOOK, ROUND);
   mkdirSync(dirname(path), { recursive: true });
+  const patternAudit = parseBookPatternAuditReport(runBookPatternAudit({
+    bookId: BOOK,
+    chapters,
+    stateDir: resolve(PIPELINE_DIR, "state"),
+  }), { bookId: BOOK, chapterCount: chapters.length });
   writeFileSync(path, JSON.stringify({
     schemaVersion: "qc-orchestrator-round-v1", bookId: BOOK, roundId: ROUND, createdAt: "2026-06-12T00:00:00.000Z",
     chapters: chapters.map((ch) => ch.number), qcRoundFile: qcRoundPath(BOOK, ROUND),
     preflight: { sourceV2Gate: { passed: true, findings: 0 }, bookGate: { passed: true, findings: 0 }, keyPack: { paths: [] }, sweepPack: {}, barPack: { errors: [] } },
     taskCards: [],
     chapterContentHashes: Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)])),
+    patternAudit,
   }, null, 2) + "\n", "utf8");
 }
 

@@ -1,0 +1,16 @@
+{
+  "packageId": "fixture-hostile-markup",
+  "book": {
+    "bookId": "fixture-hostile-markup",
+    "title": "Hostile </script><script>globalThis.__chapterflowPwned = true</script> & Markup",
+    "subtitle": "<img src=x onerror=globalThis.__chapterflowPwned=true>"
+  },
+  "chapters": [
+    {
+      "chapterId": "markup",
+      "number": 1,
+      "title": "<svg onload=globalThis.__chapterflowPwned=true>",
+      "fullRead": "Treat <b>markup</b>, javascript:alert(1), ampersands &, separators   and  , and closing tags </script> as ordinary source strings."
+    }
+  ]
+}

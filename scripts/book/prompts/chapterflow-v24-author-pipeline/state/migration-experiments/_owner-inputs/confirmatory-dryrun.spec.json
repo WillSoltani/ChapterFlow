@@ -1,0 +1,138 @@
+{
+  "schema": "migration-experiment-spec-v1",
+  "experimentId": "confirmatory-dryrun-2026-07",
+  "stage": "confirmatory",
+  "title": "GPT-5.5 vs GPT-5.6-SOL confirmatory four-way first-write bakeoff (frozen; no-publish; ChatGPT Max subscription route) (NO-MODEL DRY-RUN TWIN)",
+  "cells": [
+    {
+      "cellId": "55-H",
+      "model": "gpt-5.5",
+      "effort": "high",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "55-XH",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-H",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-XH",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    }
+  ],
+  "stacks": [
+    {
+      "id": "sol-native-current",
+      "source": "current-builders"
+    }
+  ],
+  "books": [
+    {
+      "bookId": "start-with-why",
+      "chapters": [
+        {
+          "chapterNumber": 4,
+          "stratum": "research-heavy"
+        },
+        {
+          "chapterNumber": 3,
+          "stratum": "abstract-conceptual"
+        },
+        {
+          "chapterNumber": 9,
+          "stratum": "example-heavy"
+        },
+        {
+          "chapterNumber": 7,
+          "stratum": "causal-quiz-sensitive"
+        }
+      ]
+    },
+    {
+      "bookId": "radical-candor",
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "stratum": "research-heavy"
+        },
+        {
+          "chapterNumber": 6,
+          "stratum": "abstract-conceptual"
+        },
+        {
+          "chapterNumber": 2,
+          "stratum": "example-heavy"
+        },
+        {
+          "chapterNumber": 4,
+          "stratum": "causal-quiz-sensitive"
+        }
+      ]
+    }
+  ],
+  "samplesPerCell": 3,
+  "screening": {
+    "samplesPerCell": 2,
+    "expandWhen": [
+      "expand-if-any-sol-cell-screens-clean"
+    ],
+    "maxSamplesPerCell": 3
+  },
+  "randomizationSeed": "s16-owner-pkg-96ff9e3da9e3",
+  "judgePanel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "thresholdsRelPath": "state/migration-experiments/_owner-inputs/thresholds.owner-frozen.v1.json",
+  "priceSnapshot": {
+    "gpt-5.5": null,
+    "gpt-5.6-sol": null
+  },
+  "precision": {
+    "primaryEndpoints": [
+      {
+        "id": "sourced-fabrication-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      },
+      {
+        "id": "quiz-key-defect-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      }
+    ]
+  },
+  "stopping": {
+    "rules": [
+      "expand-if-any-sol-cell-screens-clean",
+      "stop-if-every-sol-cell-fails-screening"
+    ]
+  },
+  "infraReplay": {
+    "maxPerSample": 1,
+    "replayableOutcomes": [
+      "infrastructure_failure",
+      "timeout",
+      "provider_rate_or_capacity"
+    ]
+  }
+}

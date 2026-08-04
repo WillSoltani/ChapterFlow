@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch19",
+  "hook": {
+    "hook": "Eli drags a proxy reminder into a calendar block, then stops treating the holding as just a price line.",
+    "counterintuition": "The easy move is to watch the quotation and leave management alone. Owner thinking asks what happens to retained profits, dividends, voting rights, and capital decisions because common stock carries economic and governance claims.",
+    "sourceAnchorIds": [
+      "ch19.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3",
+      "ch19.fact.4",
+      "ch19.framework.owner.rights"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "A shareholder is an owner, not just someone watching a market quote. Common stock carries residual claims and voting rights, so management's use of retained earnings is part of the investor's result. Retained profits belong to shareholders and should create at least comparable value; otherwise insiders may hoard or waste capital. Dividend policy is therefore not separate from valuation. Cash distributions affect income and reveal capital allocation discipline. Proxy voting is limited, but real, because shareholders elect directors and vote on selected matters through proxy materials. A low dividend can make sense when reinvestment is strong, but it needs evidence.",
+    "deepRead": "The central shift is from price-watching to ownership. A shareholder has residual economic claims and voting rights, so the relevant question is not only whether the quotation moved. The question is how corporate capital is being used on the shareholder's behalf. That makes management's treatment of retained earnings a direct investment issue. Retained profits belong to shareholders, and management should justify keeping them by showing that retention can create at least comparable value. Trusting insiders automatically is the error, because insiders can waste capital or hoard it without enough pressure.\n\nDividend policy belongs inside return analysis. A payout is not just an income feature, and a low payout is not automatically a sign of superior growth. Cash distributions affect owner income and also serve as evidence of how management allocates capital. When reinvestment opportunities are strong, retaining earnings can compound value inside a capable business. When reinvestment opportunities are weak, distributing cash may better protect owners from low-return expansion.\n\nGovernance is part of the same discipline. Proxy voting gives public shareholders a formal channel to elect directors and vote on selected corporate matters. The channel is limited, but it is not imaginary. Owner thinking treats voting rights, reports, directors, and dividends as connected evidence about whether management respects outside owners.",
+    "fullRead": "The practical starting point is simple: a shareholder owns a claim on the business, not merely a claim on a changing quotation. Common stock carries residual claims and voting rights, which means the owner has both an economic stake and a governance stake. That changes how market price should be interpreted. A rising or falling quote is only one signal. The deeper question is whether management is using corporate capital in a way that respects the owners who supplied it.\n\nRetained earnings are the first test of that owner mindset. When profits stay inside the business, they have not become management's private resource. They still belong economically to shareholders, so retention needs a reason. The standard is not whether management prefers to keep the money, or whether retention sounds like growth. The standard is whether the retained profits can create at least comparable value for the owners. Without that discipline, insiders can hoard capital, waste it, or use it for weak expansion while shareholders absorb the result through every share they hold.\n\nDividend policy therefore belongs inside investment return. Dividends are not a side topic detached from valuation. Cash distributions affect income, and payout policy changes owner outcomes. A dividend record can also give evidence about management's attitude toward outside owners, because cash returned to owners is a visible capital allocation choice. The right question is not whether every company should pay a high dividend. A low dividend can be sensible when retained earnings can compound value inside a capable business. Berkshire Hathaway is a modern source-local example of retention being rational when management can redeploy capital effectively. But that is a demanding justification, not a blanket excuse for every low payout.\n\nThe opposite case matters too. A high dividend can be sensible when reinvestment opportunities are poor, because distributing excess cash can prevent low-return empire building. Retaining earnings is not automatically a growth signal. Retention can fund waste when management lacks strong opportunities or accountability. The dividend-policy test is to compare earnings retained, return on reinvestment, cash distributed, and shareholder value created. The same policy can be wise or unwise depending on whether capital kept inside the business produces enough value for owners.\n\nProxy voting supplies the governance side of the same ownership frame. Public shareholders vote through proxy materials on directors and selected corporate matters. Small shareholders should not overstate their power, but they should not pretend they have no role. Voting is limited but real. Shareholder passivity can enable weak capital allocation because managers face less pressure to explain retained profits or acquisitions. Owner rights include voting, receiving reports, electing directors, and receiving dividends when declared. Used together, those rights push the investor away from passive quotation watching and toward an audit of capital policy, management justification, and owner treatment.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch19.fact.1",
+        "ch19.fact.2",
+        "ch19.fact.3",
+        "ch19.fact.4",
+        "ch19.fact.5"
+      ],
+      "deepRead": [
+        "ch19.fact.1",
+        "ch19.fact.2",
+        "ch19.fact.3",
+        "ch19.fact.4",
+        "ch19.fact.5",
+        "ch19.fact.6",
+        "ch19.fact.8",
+        "ch19.framework.owner.rights"
+      ],
+      "fullRead": [
+        "ch19.fact.1",
+        "ch19.fact.2",
+        "ch19.fact.3",
+        "ch19.fact.4",
+        "ch19.fact.5",
+        "ch19.fact.6",
+        "ch19.fact.7",
+        "ch19.fact.8",
+        "ch19.fact.9",
+        "ch19.example.1",
+        "ch19.example.2",
+        "ch19.example.3",
+        "ch19.framework.dividend.policy.test",
+        "ch19.framework.owner.rights"
+      ]
+    }
+  },
+  "keyTakeaway": "Think like an owner: require management to justify retained earnings, judge dividends as part of return, and use voting rights as evidence about capital discipline.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch19.fact.1",
+    "ch19.fact.2",
+    "ch19.fact.3",
+    "ch19.fact.4",
+    "ch19.fact.7"
+  ],
+  "tryThisNow": "Run a two-minute audit on one holding: list earnings retained, cash distributed, the stated reinvestment case, and whether proxy materials give a governance action worth taking.",
+  "tryThisNowSourceAnchorIds": [
+    "ch19.fact.1",
+    "ch19.fact.2",
+    "ch19.fact.3",
+    "ch19.fact.4",
+    "ch19.framework.dividend.policy.test"
+  ],
+  "sourceFactIds": [
+    "ch19.fact.1",
+    "ch19.fact.2",
+    "ch19.fact.3",
+    "ch19.fact.4",
+    "ch19.fact.5",
+    "ch19.fact.6",
+    "ch19.fact.7",
+    "ch19.fact.8",
+    "ch19.fact.9"
+  ]
+}

@@ -1,0 +1,17 @@
+Done. I edited chapter content only in:
+
+- [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json:104)
+- [start-with-why-ch07.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch07.v21-native.chapter.json:164)
+- [start-with-why-ch13.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json:151)
+
+Changes made:
+- Removed the repeated `"the cost of skipping the"` phrase from chapters 1, 7, and 13.
+- Reworked chapter 1 examples 5 and 6 so their shapes are unique: `live-correction` and `comparison-ledger`, with matching scenario/beat rewrites.
+
+Verification:
+- `gate-chapter` ch01: PASS, 0 blockers
+- `gate-chapter` ch07: PASS, 0 blockers
+- `gate-chapter` ch13: PASS, 0 blockers
+- `npx tsx src/cli.ts qc-converge start-with-why`: `DETERMINISTIC-CLEAN`
+
+I did not edit pipeline code/config.

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch01",
+  "chapterNumber": 1,
+  "contentHash": "7d8544444242f445",
+  "reviewerSessionId": "auto-author-review-ch01-mrdyz9k4-4",
+  "scores": {
+    "retention": 89,
+    "quizzes": 84,
+    "transfer": 85,
+    "practical": 89,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 90,
+    "insight": 87,
+    "density": 85,
+    "beginner": 88
+  },
+  "composite": 87.6,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Care does not soften truth; it helps truth arrive as help.",
+      "why": "Strong, memorable mechanism: it explains why care matters without turning candor into softness.",
+      "verified": true
+    },
+    {
+      "quote": "Care is evidence, not decoration.",
+      "why": "This is the chapter's cleanest boundary against fake warmth or performative cushioning.",
+      "verified": true
+    },
+    {
+      "quote": "Reporting in 2017 linked her style to visible vulnerability.",
+      "why": "This is the weakest evidentiary patch: it gestures at a source but stays vague about what happened.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q7's correct option is noticeably fuller and more lesson-shaped than the distractors, making it somewhat guessable without reading.",
+    "The keyed choices often contain the chapter's exact paired language while distractors use exaggerated absolutes like 'enough guidance,' 'avoid,' or 'only,' which makes several answers easier to spot."
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The Sandberg example is real and on-topic but thin: it names broad roles and 'Reporting in 2017' without a concrete before-to-after incident, decision, or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed answer is more complete and chapter-shaped than its distractors, creating a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The phrase 'Reporting in 2017' is vague and weakens confidence in the public example, though it does not create an on-page factual contradiction.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable. It teaches one clear move, repeats it through useful variations, and gives readers a practical test: count visible care before direct words. The strongest material distinguishes real care from softness or performance, and the chapter is honest about limits. The main weaknesses are craft-level: one public example is thinly evidenced, and a few quiz distractors are easier to eliminate than ideal. Nothing here prevents a reader from learning and applying the core move.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "7be6db8f0bfec76244fec85bc44fb907899cd3800d99674d596926dc8b5e4da7",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:39:53.733Z"
+}

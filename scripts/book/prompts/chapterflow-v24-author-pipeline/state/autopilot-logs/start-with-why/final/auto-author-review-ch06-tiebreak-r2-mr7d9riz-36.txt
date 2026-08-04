@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices echo the chapter's exact abstract wording, especially Q2/Q6 with 'overreach' and Q8 with 'checkable ground,' making them easier to guess without reading closely."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 79,
+    "limits": 90,
+    "insight": 86,
+    "density": 78,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is permission to rely before every detail is rechecked.",
+      "why": "Strong, memorable definition of the chapter's core mechanism."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt for proof that came back.",
+      "why": "Best retention line; it cleanly reverses a common mistake."
+    },
+    {
+      "quote": "In a bicycle shop staff huddle, service lead Daniel hears the early signal: 1994, and no one has flagged it yet.",
+      "why": "The example feels manufactured and implausible as a real transfer setting."
+    },
+    {
+      "quote": "What to do: Why does it work?",
+      "why": "The repeated prompt format has a scaffold smell and weakens the professional finish."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "The bicycle shop transfer is strained: Daniel noticing '1994' in a staff huddle feels invented to fit the lesson rather than like a real before-to-after workplace decision.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The repeated 'What to do' and 'Why it matters' question labels sometimes feel templated rather than natural, especially when the question does not match the action cleanly.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some correct answers are signposted by distinctive chapter language such as 'overreach,' 'checkable ground,' and 'visible operating pattern,' which creates mild answer-key tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Hailey and Daniel are introduced as teaching devices, but only Daniel's bicycle shop has a concrete customer-facing consequence; Hailey's scene leans on analysis rather than a decision with stakes.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter conceptually: the belief-conduct-trust-loyalty sequence is clear, memorable, and bounded by useful warnings about weak service, vague belief, and overextended stories. The quizzes are mostly fair and the answer key is sound. I would not ship it yet because at least one transfer example, Daniel's bicycle shop scene, feels visibly manufactured and undercuts the promise that the move travels beyond the airline material. Tighten that example into a real-feeling decision with a consequence, and reduce the scaffold smell in the example labels, and this would likely clear a professional bar."
+}
+```

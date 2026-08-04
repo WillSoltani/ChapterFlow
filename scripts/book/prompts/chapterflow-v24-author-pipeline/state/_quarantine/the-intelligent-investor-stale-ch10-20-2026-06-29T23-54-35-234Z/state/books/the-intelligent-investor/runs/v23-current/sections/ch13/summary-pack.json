@@ -1,0 +1,77 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch13",
+  "hook": {
+    "hook": "Theo drags 4 company rows across a banking dashboard, then watches the famous name lose its shortcut power once price sits beside record.",
+    "counterintuition": "The obvious shortcut is to buy the strongest reputation. The harder rule is to compare price with earnings, assets, dividends, debt, growth record, and business quality before ranking the investment.",
+    "sourceAnchorIds": [
+      "ch13.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch13.fact.1",
+      "ch13.fact.2",
+      "ch13.framework.four.company.comparison.factors"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "The four-company comparison turns reputation into evidence. A familiar name is not enough, because the buyer still has to ask what price is being paid for earnings and assets. Emerson Electric can be a high-quality business and still demand caution if a premium valuation already assumes too much. Growth deserves the same treatment: a growth reputation can be overpaid for when high multiples leave little room for disappointment. The balance sheet belongs in the ranking because debt can make growth fragile and change the value of earnings. Dividends add another cross-check, showing whether reported prosperity has reached shareholders as cash. The practical move is side-by-side judgment: compare price, earnings, dividends, assets, debt, growth record, and business quality before letting prestige decide.",
+    "deepRead": "The central discipline is to stop ranking companies by reputation alone. The four-company method compares price with record because names and narratives can obscure what the buyer is actually paying for earnings and assets. Recognition may make a company easier to admire, but recognition is not valuation. A side-by-side view forces the buyer to ask whether the market price is justified by the record rather than by familiarity.\n\nEmerson Electric makes the quality trap visible. A high-quality business can still require valuation caution, because a premium price reduces future return if expectations are already high. The issue is not whether business quality matters. It matters. The issue is whether the purchase price has already capitalized that quality so fully that the buyer has little protection against ordinary disappointment.\n\nGrowth-company comparisons require the same skepticism. A fast-growing company is not automatically cheap. High multiples can leave little room for disappointment, so growth must be judged by how much of it is already reflected in price. Balance-sheet strength adds another layer because leverage changes both downside risk and the value of earnings. Reported growth is weaker when debt makes it fragile. Dividend record supplies a further cross-check, since cash distributions show whether earnings reached shareholders. A ranking built from all these pieces is less exciting than a story, but it is more useful.",
+    "fullRead": "A company comparison becomes useful only when reputation is forced to compete with record. The four-company method does that by putting price beside earnings, assets, dividends, debt, growth record, and business quality. That side-by-side structure matters because names and narratives can obscure what the buyer is paying for earnings and assets. A famous company may deserve respect as a business, but respect does not answer the investment question. Recognition is not valuation.\n\nQuality is the first place where the obvious advice can backfire. Emerson Electric can be a high-quality business and still require valuation caution. If the market has attached a premium valuation, the buyer may already be paying for much of the admired quality. A premium price reduces future return when expectations are already high. That does not make quality irrelevant. It means quality must be bought at a price that leaves room for a satisfactory result. The strongest company should not automatically be bought first, because investment result depends on price as well as quality.\n\nGrowth creates a second trap. A growth-company comparison must ask how much growth is already capitalized. A fast-growing company can still be an unattractive purchase if high multiples leave little room for disappointment. Growth can be overpaid for, especially when the story is so appealing that the buyer stops asking what the current price already assumes. Emery Air Freight brings that growth reputation into the comparison, but the useful lesson is broader: growth is not a free bonus. It is one part of value, and it can be priced too richly.\n\nThe balance sheet changes the ranking because leverage changes both downside risk and the value of earnings. Income statement growth is not enough to rank companies. Debt can make growth fragile, so two companies with similar earnings records may deserve different treatment when their financial strength differs. Assets and debt are not background details; they shape how reliable the earnings appear and how much risk sits behind them.\n\nDividends add a separate test of prosperity. A dividend record supplies a cross-check on reported earnings because cash distributions show whether earnings reached shareholders. Dividends are not the whole case for a company, but they are one visible test of financial maturity. A company that reports attractive results but offers little evidence of shareholder cash return deserves closer questioning.\n\nThe final discipline is comparative, not narrative. ELTRA Corporation, Emerson Electric, Emery Air Freight, and Emhart Corporation are not judged by labels alone. Each role in the comparison points back to the same question: what does the price buy relative to record and financial characteristics? A lower-quality company may be more attractive at a sufficiently low price, while a superior company may be less attractive at an excessive price. Side-by-side tables discipline judgment because they force multiple facts into view at once instead of letting a single story dominate.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch13.fact.1",
+        "ch13.fact.2",
+        "ch13.fact.3",
+        "ch13.fact.4",
+        "ch13.fact.5",
+        "ch13.framework.four.company.comparison.factors"
+      ],
+      "deepRead": [
+        "ch13.fact.1",
+        "ch13.fact.2",
+        "ch13.fact.3",
+        "ch13.fact.4",
+        "ch13.fact.5"
+      ],
+      "fullRead": [
+        "ch13.fact.1",
+        "ch13.fact.2",
+        "ch13.fact.3",
+        "ch13.fact.4",
+        "ch13.fact.5",
+        "ch13.fact.6",
+        "ch13.fact.9",
+        "ch13.example.1",
+        "ch13.example.2",
+        "ch13.example.3",
+        "ch13.example.4",
+        "ch13.framework.four.company.comparison.factors"
+      ]
+    }
+  },
+  "keyTakeaway": "Compare companies by what the price buys in earnings, assets, dividends, debt, growth record, and business quality; reputation alone cannot settle investment merit.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch13.fact.1",
+    "ch13.fact.2",
+    "ch13.fact.4",
+    "ch13.fact.5",
+    "ch13.framework.four.company.comparison.factors"
+  ],
+  "tryThisNow": "Swap the default ranking rule on the next shortlist: sort by valuation evidence first, then let business quality and growth reputation argue for their place.",
+  "tryThisNowSourceAnchorIds": [
+    "ch13.fact.1",
+    "ch13.fact.2",
+    "ch13.fact.3",
+    "ch13.framework.four.company.comparison.factors"
+  ],
+  "sourceFactIds": [
+    "ch13.fact.1",
+    "ch13.fact.2",
+    "ch13.fact.3",
+    "ch13.fact.4",
+    "ch13.fact.5",
+    "ch13.fact.6",
+    "ch13.fact.9"
+  ]
+}

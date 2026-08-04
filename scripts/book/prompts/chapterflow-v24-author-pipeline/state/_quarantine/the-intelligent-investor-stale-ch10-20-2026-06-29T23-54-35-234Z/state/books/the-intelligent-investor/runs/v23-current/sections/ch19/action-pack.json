@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch19",
+  "tryThisNow": "Open a calendar block and write one owner-audit note for a holding: what cash was distributed, what earnings were retained, and what management must justify.",
+  "tryThisNowSourceAnchorIds": [
+    "ch19.fact.1",
+    "ch19.fact.2",
+    "ch19.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Run a Dividend Owner Audit",
+    "titleSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ],
+    "coreSkill": "Use a two-minute owner audit before accepting management's capital policy. Check whether you are acting like an owner, whether retained earnings have a clear justification, and whether dividend policy affects income and capital-allocation evidence.",
+    "coreSkillSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch19.fact.1",
+        "sourceAnchorIds": [
+          "ch19.fact.1",
+          "ch19.example.1"
+        ],
+        "context": "calendar block",
+        "plan": "If a price move is the only item in your calendar block, then add one owner-rights line covering residual claims, voting rights, proxy materials, and director elections."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.2",
+        "sourceAnchorIds": [
+          "ch19.fact.2",
+          "ch19.example.2"
+        ],
+        "context": "front desk",
+        "plan": "If management retains earnings without a clear explanation at the front desk of your review, then mark the decision pending until the retained earnings case addresses shareholder distributions and comparable value."
+      },
+      {
+        "sourceAnchorId": "ch19.fact.3",
+        "sourceAnchorIds": [
+          "ch19.fact.3",
+          "ch19.example.3"
+        ],
+        "context": "budget app",
+        "plan": "If your budget app treats dividends as separate from valuation, then move payout policy into the return note and ask whether retained earnings and capital redeployment justify the trust."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, choose one holding and complete a two-minute audit note with three lines: owner rights, retained earnings justification, and dividend policy as part of return.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ],
+    "weeklyPractice": "During a weekly calendar review, repeat the same audit for one active holding. Leave any decision pending when management keeps profits without a clear owner-facing reason or when payout policy is ignored.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch19.fact.1",
+      "ch19.fact.2",
+      "ch19.fact.3"
+    ]
+  }
+}

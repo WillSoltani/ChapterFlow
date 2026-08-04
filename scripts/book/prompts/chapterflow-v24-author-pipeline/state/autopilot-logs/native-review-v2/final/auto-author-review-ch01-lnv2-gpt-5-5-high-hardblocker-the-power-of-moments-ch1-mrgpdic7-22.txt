@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a longer trial with a milder final stretch was remembered as preferable, so the calm finish can reshape recall.",
+      "The Magic Castle example shows a modest setting can create a peak through a vivid object and tellable surprise.",
+      "YES Prep turns a private college step into public pride by having peers and adults witness the choice.",
+      "The full read names elevation, insight, pride, and connection as the four common ingredients.",
+      "The red phone lesson is that a concrete visible object can signal that the ordinary script has changed.",
+      "The prose says the delivery matters as much as the free item: request, phone, and tray turn a snack into an event.",
+      "The threshold should be marked before the next stage becomes private logistics.",
+      "The chapter explicitly says memory does not average each minute; peaks and endings carry special weight.",
+      "The mint is a quiet free item, not a designed, tellable event like the red phone and silver tray."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q4 gives away c because it is the only option that lists four positive ingredients after the stem asks for four ingredients.",
+      "Q5 a closely echoes the prose phrase about a visible object changing the script.",
+      "Q7 c repeats the chapter's threshold/private-logistics language almost verbatim.",
+      "Q8's negative wording is fair but makes the true/false logic do more work than the scenario."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 68,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 84,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A red phone by a pool can outshine a whole hotel stay when it gives guests a story.",
+      "why": "Strong hook: concrete, memorable, and it carries the core idea without abstraction."
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish. It is to see that a finish has power, so it deserves design.",
+      "why": "Strong boundary: it prevents the peak-end lesson from becoming manipulative advice."
+    },
+    {
+      "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+      "why": "Worst defect: this directly contradicts the chapter's cold-water lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "The What to do section says memory records total duration and final moments carry no special weight, which contradicts the chapter's central cold-water mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is guessable because it is the only option that maps cleanly onto four positive ingredients.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct answer repeats the chapter's threshold/private-logistics phrasing too closely, making it easier to guess by phrase matching.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The named student is generic and the scene gives no concrete before-after consequence beyond restating the YES Prep lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and beginner-friendly, with a strong core image in the red pool phone and useful boundaries around not using a better ending to hide a broken experience. The quiz is mostly fair and derivable, though several answers are made easy by copied phrasing. The main blocker is Example 3: its What to do section states the opposite of the chapter's central peak-end lesson, which would actively misteach the reader. Fix that contradiction and the chapter is close to shippable above a professional bar."
+}
+```

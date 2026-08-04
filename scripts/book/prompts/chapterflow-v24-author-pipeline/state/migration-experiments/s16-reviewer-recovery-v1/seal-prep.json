@@ -1,0 +1,47 @@
+{
+  "schema": "split-lane-recovery-seal-prep-v1",
+  "experimentId": "s16-reviewer-recovery-v1",
+  "specSha256": "6005796c2956cb29cfc7bc27834221a13623b9373eba1dbb7ac6e2f1dd669ee1",
+  "instrumentManifestSha256": "a8222e72fea6d88ab4df3330ecef7b0d2f63fd7cc95d17ea68feec49e90a4f50",
+  "roleThresholdsSha256": "bb10c5b436e4f06e04ba4b615648928e117e8ab3a126ab8150b9cbc68541aa01",
+  "fixedRoleAssignmentSha256": "e5753e17630af228c6985c6c21d3f144b0efddd6b591052fa4027e1a8ad70717",
+  "contractSchemaIds": [
+    "reader-experience-review-v1",
+    "source-integrity-review-v1",
+    "quiz-integrity-result-v1",
+    "aggregated-chapter-review-v1",
+    "judge-capability-qualification-v1"
+  ],
+  "corpusHashes": {
+    "reader": "3259e622019088ba9922edb98e1d48c60ce6d4d8afa62c4478bd8f9ef8cc8952",
+    "source": "44f187ba45eeda8723d07934d59787bb7db980ed41ac05cedc4c3c2803d5b286",
+    "quiz": "4ea2031d99c17ee2ff6ecb3f8a5f521de68d2e3f6faeeffa45881e590fd0bdc4"
+  },
+  "sealed": false,
+  "sealBlockedReason": "role-qualified reviewer set does not exist: empty registry: no qualified profiles for any role",
+  "roleQualifiedSetExists": false,
+  "requiredRoles": {
+    "schema": "split-lane-required-role-set-v1",
+    "reader": {
+      "primary": true,
+      "backup": true
+    },
+    "source": {
+      "primary": true,
+      "independentAdjudicator": true,
+      "blindHumanAdjudicationPath": false
+    },
+    "quiz": {
+      "deterministicChecker": true,
+      "semanticAdjudicator": true
+    }
+  },
+  "proposedQualificationCalls": 440,
+  "proposedPilotCalls": 72,
+  "proposedHardCeiling": 640,
+  "humanAdjudicationPauseRequired": true,
+  "imp13Dormant": true,
+  "productionActivation": false,
+  "separateAuthorizationRequired": true,
+  "preparedAt": "2026-07-12T00:00:00.000Z"
+}

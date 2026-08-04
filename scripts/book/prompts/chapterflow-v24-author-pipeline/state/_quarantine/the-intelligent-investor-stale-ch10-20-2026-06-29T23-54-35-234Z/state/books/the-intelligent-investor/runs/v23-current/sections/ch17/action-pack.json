@@ -1,0 +1,66 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch17",
+  "tryThisNow": "Open a shared spreadsheet and add one decision log row before considering any security: famous name, acquisition growth, financing complexity, and pending evidence.",
+  "tryThisNowSourceAnchorIds": [
+    "ch17.fact.1",
+    "ch17.fact.2",
+    "ch17.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Keep a Case-History Decision Log",
+    "titleSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ],
+    "coreSkill": "Use a decision log to slow attractive cases under pressure. Mark whether a famous name hides weak finances or merger problems, whether acquisition growth depends on conglomerate accounting and leverage, and whether layered securities make owner economics hard to see.",
+    "coreSkillSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch17.fact.1",
+        "sourceAnchorIds": [
+          "ch17.fact.1",
+          "ch17.example.1"
+        ],
+        "context": "shared spreadsheet",
+        "plan": "If a familiar corporate name makes a security feel safe, then add a shared spreadsheet row that checks for weak finances and merger problems before treating prominence as protection."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.2",
+        "sourceAnchorIds": [
+          "ch17.fact.2",
+          "ch17.example.2"
+        ],
+        "context": "email draft",
+        "plan": "If rapid acquisition growth is the main reason for approval in an email draft, then pause the send and add a line asking whether conglomerate accounting and leverage make expansion look better than economic reality."
+      },
+      {
+        "sourceAnchorId": "ch17.fact.3",
+        "sourceAnchorIds": [
+          "ch17.fact.3",
+          "ch17.example.3"
+        ],
+        "context": "calendar block",
+        "plan": "If layered securities make a deal hard to appraise during a calendar block, then leave the decision pending until the log shows who bears the risk and how owner economics can be seen."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, create one decision log row for a security that looks attractive. Leave it pending unless the row addresses name prominence, acquisition growth, and financing complexity.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ],
+    "weeklyPractice": "Once a week, repeat the same audit on one active idea. Keep the decision pending when a famous name substitutes for credit analysis, acquisition growth hides leverage, or financing complexity makes owner economics unclear.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch17.fact.1",
+      "ch17.fact.2",
+      "ch17.fact.3"
+    ]
+  }
+}

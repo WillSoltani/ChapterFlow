@@ -1,0 +1,98 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "No answer-choice tells can be assessed because the Quiz section contains no questions or options."
+    ]
+  },
+  "scores": {
+    "retention": 0,
+    "quizzes": 0,
+    "transfer": 0,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 10,
+    "limits": 0,
+    "insight": 0,
+    "density": 0,
+    "beginner": 0
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review. Quiz Q2 has two defensible answers by design.",
+      "why": "This production note replaces reader-facing instruction and refers to a Q2 that does not exist."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "All three promised reading layers are empty, so none can stand alone or teach the chapter."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The assessment and retention sections are headings without any usable content."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "entire chapter",
+      "problem": "The file contains only a production-oriented hook and empty section headings; it provides no lesson, core move, explanation, or application. Reserved category: STRUCTURALLY INVALID and UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook claims that Quiz Q2 has two defensible answers, but the chapter contains no quiz questions at all. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and therefore fails its stand-alone reading-layer promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving the chapter without a stated takeaway. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no practical action. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so the chapter supplies no example from which a reader could understand transfer. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The section contains no questions or answer choices, making the quiz impossible to answer or review. Reserved category: STRUCTURALLY INVALID and SCHEMA / APP-BREAKING.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no review material. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies no retention aid. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a reviewable learning chapter. It offers no subject matter, mechanism, examples, action, summaries, review cards, memorable lines, or quiz questions; consequently, no quiz key can be derived and no reader could learn or apply a core move. The production-note hook also announces a deliberately ambiguous Q2 that is absent from the file. It cannot ship at any professional threshold."
+}
+```

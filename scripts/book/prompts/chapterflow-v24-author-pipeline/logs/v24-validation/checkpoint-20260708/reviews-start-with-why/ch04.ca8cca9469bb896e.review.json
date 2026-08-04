@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch04",
+  "chapterNumber": 4,
+  "contentHash": "ca8cca9469bb896e",
+  "reviewerSessionId": "auto-author-review-ch04-mr78xwcr-16",
+  "scores": {
+    "retention": 86,
+    "quizzes": 79,
+    "transfer": 67,
+    "practical": 80,
+    "summaries": 78,
+    "tone": 81,
+    "limits": 88,
+    "insight": 83,
+    "density": 75,
+    "beginner": 77
+  },
+  "composite": 79.5,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strongest line: memorable, concrete, and captures the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "Strong practical question that turns the idea into a reusable test.",
+      "verified": true
+    },
+    {
+      "quote": "Partner Ivy feels the effect first. The service rule asks her to trust a change, but it gives only the word-ready side.",
+      "why": "Worst transfer defect: the example gestures at a case but leaves the rule, change, and stakes generic.",
+      "verified": true
+    },
+    {
+      "quote": "A felt claim needed a second anchor. Everyone agreed; no one knew who would bring back proof.",
+      "why": "This hook is sharp, but repeating it verbatim in the fast read weakens the layered-read structure.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct choices carry the chapter's exact hard phrases while distractors are visibly vague or sloppy, especially Q4 'false grounding', Q5 'edge marker', Q7 'visible side frames', and Q9 the four named map parts.",
+    "No consistent uniquely-longest-choice tell."
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The first paragraph repeats the hook verbatim, wasting the fast-read layer before it starts doing summary work.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz choices",
+      "problem": "Correct options often use the chapter's precise hard-language while distractors use broad giveaway wording, making some answers guessable by style.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem says 'second anchor' but the keyed explanation leans on second-example comparison; b is still the best answer, but anchor/example language is blurred.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3: Ivy Gets The Consequence",
+      "problem": "Reads like a slot-filler: 'service rule' and 'change' are unnamed, with no concrete decision, setting, number, or visible consequence beyond restating the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6: The Draft Splits",
+      "problem": "The operations example stays abstract: it names a draft split and anchors but not the actual choice, consequence, or before-to-after result.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Several paragraphs restate the same ledger/return-proof distinction with only small wording changes, lowering density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear and memorable core: feeling can start a claim, but proof has to bring it back into daylight. The limits around Damasio and brain language are unusually responsible, and the quiz keys are mostly sound. I would not ship it yet because transfer is weaker than the promise: some examples feel manufactured, generic, and interchangeable, especially Ivy and the draft split. Tighten those into concrete before-to-after cases and reduce repeated ledger language, and this would likely clear a professional bar.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "3ac04756f71462b2d6709862f56694370043db08ecc17a473c92b9c727168696",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T03:44:38.930Z"
+}

@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch11",
+  "tryThisNow": "Create a calendar review titled Security Analysis check and add fields for bond coverage, normalized earnings power, and conservative growth assumptions before any security stays on the list.",
+  "tryThisNowSourceAnchorIds": [
+    "ch11.fact.1",
+    "ch11.fact.2",
+    "ch11.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Schedule Conservative Security Analysis Checks",
+    "titleSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ],
+    "coreSkill": "Use a calendar trigger to make each security pass basic evidence checks before it stays on the list. Put bond coverage before yield attraction, normalize stock earnings power before using profit as a value base, and keep John Burr Williams-style growth estimates conservative.",
+    "coreSkillSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch11.fact.1",
+        "sourceAnchorIds": [
+          "ch11.fact.1"
+        ],
+        "context": "weekly calendar review",
+        "plan": "If a bond looks attractive because the yield is high, then pause the calendar review until interest coverage is written before yield."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.2",
+        "sourceAnchorIds": [
+          "ch11.fact.2"
+        ],
+        "context": "weekly calendar review",
+        "plan": "If a stock note relies on the latest earnings number, then replace it with normalized earnings power before treating the note as usable."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.3",
+        "sourceAnchorIds": [
+          "ch11.fact.3",
+          "ch11.example.2"
+        ],
+        "context": "weekly calendar review",
+        "plan": "If a growth estimate feels precise, then mark it as a conservative John Burr Williams-style assumption before using it in valuation."
+      }
+    ],
+    "twentyFourHourChallenge": "Add the Security Analysis check to the next calendar review and test it on one current security note by filling coverage, normalized earnings power, and conservative growth before keeping the note active.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ],
+    "weeklyPractice": "During each weekly calendar review, keep only security notes that show bond coverage before yield, normalized earnings power before stock value, and conservative growth assumptions before valuation.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ]
+  }
+}

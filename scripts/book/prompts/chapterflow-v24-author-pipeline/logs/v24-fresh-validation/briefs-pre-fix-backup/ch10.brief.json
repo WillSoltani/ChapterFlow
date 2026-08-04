@@ -1,0 +1,179 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch10",
+  "chapterNumber": 10,
+  "title": "Modes of Control",
+  "coreMove": "because different tasks have different measurability, uncertainty, and interdependence",
+  "thesis": "Most organizations mix market, contract, and cultural controls.",
+  "readerPromise": "After this chapter, a reader can because different tasks have different measurability, uncertainty, and interdependence",
+  "ownedCases": [
+    {
+      "id": "ch10.ex.marketControl",
+      "label": "Free-market control"
+    },
+    {
+      "id": "ch10.ex.contractControl",
+      "label": "Contractual obligation"
+    },
+    {
+      "id": "ch10.ex.culturalControl",
+      "label": "Cultural values"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Corrective performance conversation",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure",
+    "Intel manager output formula",
+    "Intel planning cycle"
+  ],
+  "cast": [
+    "Noah",
+    "Isabella",
+    "Emmett",
+    "Sylvain"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    0,
+    1,
+    1,
+    0,
+    2,
+    2,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a morning routine",
+    "venue: a wallet receipt",
+    "venue: a doorway conversation",
+    "frame: failed small experiment with a revised second attempt",
+    "frame: a public recognition that shifts how someone sees themselves"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "statistic",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "say-aloud-script",
+  "exampleLenses": [
+    "walkthrough",
+    "counterfactual",
+    "outsider-witness"
+  ],
+  "practiceVerb": "ask",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "say-aloud-script",
+    "two-step-sequence",
+    "observe-then-note",
+    "measure-one-number"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    7,
+    3,
+    5,
+    9,
+    6,
+    4,
+    1,
+    2,
+    8
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "artifact-speak",
+    "cost-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Free-market control"
+  }
+}

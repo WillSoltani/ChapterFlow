@@ -79,6 +79,73 @@ export type BookPatternAuditReport = {
   };
 };
 
+export const BOOK_PATTERN_AUDIT_LOGICAL_PATH = "critics/book-pattern-audit.json";
+
+function auditRecord(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function auditInteger(value: unknown): value is number {
+  return typeof value === "number" && Number.isInteger(value) && value >= 0;
+}
+
+/** Validate frozen candidate audit bytes before any consumer treats them as trusted gate input. */
+export function parseBookPatternAuditReport(
+  value: unknown,
+  expected: Readonly<{ bookId: string; chapterCount: number }>,
+): BookPatternAuditReport {
+  if (!auditRecord(value)) throw new Error("BOOK_PATTERN_AUDIT_INVALID: report must be an object");
+  if (value.bookId !== expected.bookId) {
+    throw new Error(`BOOK_PATTERN_AUDIT_MISMATCH: expected bookId ${expected.bookId}`);
+  }
+  if (value.chapterCount !== expected.chapterCount) {
+    throw new Error(`BOOK_PATTERN_AUDIT_MISMATCH: expected chapterCount ${expected.chapterCount}`);
+  }
+  if (typeof value.passed !== "boolean" || !Array.isArray(value.findings) || !auditRecord(value.stats)) {
+    throw new Error("BOOK_PATTERN_AUDIT_INVALID: report shape is invalid");
+  }
+  for (const finding of value.findings) {
+    if (
+      !auditRecord(finding) ||
+      typeof finding.code !== "string" ||
+      (finding.severity !== "blocker" && finding.severity !== "major" && finding.severity !== "minor") ||
+      typeof finding.message !== "string" ||
+      (finding.chapters !== undefined && (!Array.isArray(finding.chapters) || !finding.chapters.every(auditInteger))) ||
+      (finding.unit !== undefined && typeof finding.unit !== "string") ||
+      (finding.evidence !== undefined && typeof finding.evidence !== "string") ||
+      (finding.count !== undefined && !auditInteger(finding.count)) ||
+      (finding.maxScoreCap !== undefined && typeof finding.maxScoreCap !== "number")
+    ) {
+      throw new Error("BOOK_PATTERN_AUDIT_INVALID: finding shape is invalid");
+    }
+  }
+  const blockerCount = value.findings.filter((finding) => (finding as Record<string, unknown>).severity === "blocker").length;
+  if (value.passed !== (blockerCount === 0)) {
+    throw new Error("BOOK_PATTERN_AUDIT_INVALID: passed must match blocker findings");
+  }
+  const stats = value.stats;
+  const integerStats = [
+    "repeatedQuizExplanationGroups",
+    "repeatedSurfaceFrameGroups",
+    "repeatedExampleFrameGroups",
+    "repeatedConcreteAnchors",
+    "templatedBreakdownShellGroups",
+    "shortParagraphDuplicateGroups",
+    "literalSubstringGroups",
+    "quizPositionTemplateDuplicates",
+    "sourceAlignmentWarnings",
+  ] as const;
+  if (
+    integerStats.some((key) => !auditInteger(stats[key])) ||
+    !Array.isArray(stats.missingPlanChapters) ||
+    !stats.missingPlanChapters.every(auditInteger) ||
+    typeof stats.missingBrief !== "boolean"
+  ) {
+    throw new Error("BOOK_PATTERN_AUDIT_INVALID: stats shape is invalid");
+  }
+  return value as unknown as BookPatternAuditReport;
+}
+
 export type BookPatternAuditOptions = {
   bookId: string;
   chapters: ChapterV21[];

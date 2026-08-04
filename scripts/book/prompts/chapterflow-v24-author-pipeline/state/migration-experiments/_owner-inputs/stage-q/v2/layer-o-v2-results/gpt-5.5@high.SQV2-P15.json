@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P15",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative specifics\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Zappos, $1,000 offer, new hires, training\",\"The Zappos trainer closes the Zappos training binder, then stops before the usual applause.\",\"New hires are still in their seats, name tags curled at the corners.\",\"She gives the room a quiet minute before anyone signs the final form.\"],\"rationale\":\"The source plan permits only the core real-world facts that Zappos offered new hires $1,000 to leave after training as a conscious choice point. The candidate presents invented scene details, including a trainer closing a binder, stopping before applause, curled name tags, a quiet minute, and signing a final form, in the same factual register as the sourced case. Those details are not supported by the source plan and materially dramatize the historical scenario.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P32",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Duplicated generic item relabeled across chapter skills\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it? Choices: [\\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\", \\\"Start from a shared fact about the draft, name the concern, and invite revision rather than verdict.\\\"] Correct index: 2\",\"Explanation: The best choice keeps the conversation tied to clear self-speaking and creates room for new information.\"],\"rationale\":\"The two quiz instances use the exact same scenario, wording, choices, and correct answer while only swapping the chapter-skill label and lightly editing the explanation. The selected answer is broadly good feedback-opening advice, but the item does not force a distinction between sorting the three conversations and speaking for yourself with clarity and power; it merely reinterprets the same generic response under each mechanism. That makes the duplicate a material assessment defect rather than evidence that both chapter mechanisms are genuinely being tested.\"}"
+}

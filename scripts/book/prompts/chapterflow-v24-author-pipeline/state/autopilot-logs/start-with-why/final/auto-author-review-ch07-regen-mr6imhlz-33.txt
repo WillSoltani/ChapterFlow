@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers repeat the same transparent anti-pattern: sponsor, rank, borrowed credibility, or moving a hard fact to the wrong source. A reader could often eliminate them without fully reading.", "Correct choices often contain the named anchor/date/place detail from the prose, making some answers stand out as the only concrete option."]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 88,
+    "insight": 88,
+    "density": 85,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The price of aiming at everyone first is a promise with no proof coming back.",
+      "why": "Strongest line: it makes the chapter's core move memorable and diagnostic."
+    },
+    {
+      "quote": "The majority is not lazy; it is waiting for the risk to look paid.",
+      "why": "Strong mechanism: it explains why the middle waits without blaming the audience."
+    },
+    {
+      "quote": "A paper cup trembles.",
+      "why": "Weakest texture: the sensory insert feels decorative rather than instructional."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors overuse the same easy-to-spot wrong patterns: rank, sponsor approval, borrowed credibility, and moving facts to the wrong source. This creates elimination tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "A few concrete props feel bolted on rather than meaningful to the teaching, especially sensory details that do not affect the decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The chapter repeats the return-proof idea many times. The repetition helps retention, but a few paragraphs restate the same move instead of adding new diagnostic leverage.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable. The chapter has a clear mechanism, memorable language, useful limits, and strong transfer from diffusion theory to practical audience sequencing. The best move is the repeated distinction between early motion and returned proof. The main weakness is quiz construction: too many wrong answers advertise themselves through rank/sponsor/borrowed-frame phrasing, so the quiz is fair but easier to game than it should be."
+}
+```

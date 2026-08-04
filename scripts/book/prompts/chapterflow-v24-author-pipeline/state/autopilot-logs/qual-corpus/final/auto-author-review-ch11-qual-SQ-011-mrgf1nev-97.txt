@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 35,
+    "summaries": 10,
+    "tone": 45,
+    "limits": 5,
+    "insight": 35,
+    "density": 30,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The tiny cursor after the question is doing the narrowing work.",
+      "why": "Strongest moment: concrete image plus mechanism for how a narrow prompt shapes thinking."
+    },
+    {
+      "quote": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin",
+      "why": "Strong practical move: it shows the reader exactly how to widen a false binary."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "Worst defect: this is placeholder text, not a usable fast-read summary."
+    },
+    {
+      "quote": "## Quiz\n## Review cards",
+      "why": "Worst defect: the quiz heading is immediately followed by the next empty section, so there are no questions to answer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is scaffold text about phase-1 review rather than a reader-facing opening.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read is placeholder text and does not summarize the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is placeholder text and does not add a real explanatory layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present but empty, so the promised practice layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is present but empty, leaving no transfer examples.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is present but contains no questions, making the assessment broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present but empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The only substantive prose gives one scenario but almost no general rule, boundary condition, or failure mode.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable as a chapter. The full read contains a usable seed: notice when a question has narrowed the decision space, then add the missing repair and boundary questions. But most of the product structure is empty or placeholder text, including the quiz, examples, review cards, key takeaway, and practice section. A reader could glimpse the intended lesson, but they could not reliably study, test, retain, or transfer it from what is on the page."
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "MEDIUM",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "b", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 82,
+    "transfer": 83,
+    "practical": 60,
+    "summaries": 77,
+    "tone": 70,
+    "limits": 75,
+    "insight": 72,
+    "density": 66,
+    "beginner": 79
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, portable retention line with a complete claim."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "Compact distinction that is memorable and transferable."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template artifact appears in reader-facing implementation plans and triggers the correctness gate."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted prose breaks coherence in an example."
+    },
+    {
+      "quote": "The Motorola promotion warning shadows the nonprofit appeal beat last year's response after a fear-heavy letter, and the next mailing deadline is close.",
+      "why": "Another garbled sentence, suggesting generated scaffold leakage or insufficient editing."
+    },
+    {
+      "quote": "Growth is a poor substitute for a clear cause.",
+      "why": "Strong principle statement that fits the book's central lens."
+    }
+  ],
+  "oneParagraphVerdict": "The sample teaches the core Start With Why ideas clearly and the quiz keys are sound, with mostly scenario-based questions that are answerable from the chapters. The strongest material has real retention value: several lines are compact, portable, and faithful to the source concepts. The book is not publishable as-is because reader-facing artifacts and corrupted example prose remain in the sample, especially repeated 'Title: undefined' implementation plans and several broken sentence constructions. Across chapters, the same section shell, example rhythm, and practice format create noticeable churn, though the chapter ideas themselves are distinct. With cleanup and less templated practice design, this could move from a solid draft into shippable territory."
+}
+```

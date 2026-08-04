@@ -1,0 +1,156 @@
+{
+  "schema": "migration-experiment-spec-v1",
+  "experimentId": "OWNER-DECISION--proposed--confirmatory-sol-2026-07",
+  "stage": "confirmatory",
+  "title": "GPT-5.5 vs GPT-5.6-SOL confirmatory four-way first-write bakeoff (§16 Stage B; frozen; no-publish)",
+  "_status": "DRAFT sealed-protocol manifest. Fields marked OWNER-DECISION are unresolved; the spec validator enumerates exactly what is missing (validation command below). Freezing happens at `migration-bakeoff seal` — after that, verifySealIntact + the unblind hash gate make every field immutable for the run.",
+  "_validationCommand": "npx tsx ../../../../docs/v25/reports/S16_OWNER_INPUTS/tools/validate-owner-inputs.mts spec <file> (from the pipeline dir; expected to FAIL while OWNER-DECISION placeholders remain)",
+  "cells": [
+    {
+      "cellId": "55-H",
+      "model": "gpt-5.5",
+      "effort": "high",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "55-XH",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-H",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-XH",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    }
+  ],
+  "stacks": [
+    {
+      "id": "sol-native-current",
+      "source": "current-builders"
+    }
+  ],
+  "books": [
+    {
+      "bookId": "OWNER-DECISION--book-1",
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "stratum": "research-heavy"
+        },
+        {
+          "chapterNumber": 2,
+          "stratum": "abstract-conceptual"
+        },
+        {
+          "chapterNumber": 3,
+          "stratum": "example-heavy"
+        },
+        {
+          "chapterNumber": 4,
+          "stratum": "causal-quiz-sensitive"
+        }
+      ]
+    },
+    {
+      "bookId": "OWNER-DECISION--book-2",
+      "chapters": [
+        {
+          "chapterNumber": 1,
+          "stratum": "research-heavy"
+        },
+        {
+          "chapterNumber": 2,
+          "stratum": "abstract-conceptual"
+        },
+        {
+          "chapterNumber": 3,
+          "stratum": "example-heavy"
+        },
+        {
+          "chapterNumber": 4,
+          "stratum": "causal-quiz-sensitive"
+        }
+      ]
+    }
+  ],
+  "_booksNote": "OWNER-DECISION: ≥2 books from different categories (plan §16), each with compiled v24 artifacts (briefs + source packets) present in pipeline state — they become the frozen shared inputs. Every chapter is spec-tagged with one of the four strata (no pipeline auto-tagging exists; the tag is the owner's design assertion). All four strata must appear. 4 chapters/book × 2 books shown as the minimum shape; more chapters = more blocks = tighter CIs (see _precisionNote).",
+  "samplesPerCell": 3,
+  "screening": {
+    "samplesPerCell": 2,
+    "expandWhen": [
+      "expand-if-any-sol-cell-screens-clean"
+    ],
+    "maxSamplesPerCell": 3
+  },
+  "_samplingNote": "Proposed: screening wave = 2 independent first-write samples per cell per chapter; expansion to 3 only if a SOL cell screens clean (frozen rule; evaluated ONCE on interim metrics; decision persisted). With 8 chapters: screening = 8×2×4 = 64 samples, full = 96. Every sample is ONE attempt (firstWriteOnly) — no retries, ≤1 infra replay, never for content/safeguard outcomes.",
+  "randomizationSeed": "OWNER-DECISION--any-string-frozen-at-seal",
+  "judgePanel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "_judgePanelNote": "OWNER-DECISION (proposal shown): a mixed-family panel of 3 — both model families judge, tempering same-family style preference (§13 reviewer-bias row); EVERY judge must pass Stage-Q qualification on the human-labeled C1 corpus or the review phase refuses it. Panel rotation is deterministic; sampleIndex-1 samples get a prespecified second read for the T8 agreement metrics.",
+  "thresholdsRelPath": "state/migration-experiments/_owner-inputs/thresholds.owner-frozen.v1.json",
+  "_thresholdsNote": "OWNER-FREEZE: the approved C4 file copied to this pipeline-relative path before seal; sealed by hash.",
+  "priceSnapshot": {
+    "gpt-5.5": null,
+    "gpt-5.6-sol": null
+  },
+  "_priceNote": "null = prices unavailable ⇒ cost fields are MARKED unavailable, never estimated (tokens are structurally unavailable on this route regardless — see C5).",
+  "precision": {
+    "primaryEndpoints": [
+      {
+        "id": "sourced-fabrication-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      },
+      {
+        "id": "quiz-key-defect-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      }
+    ]
+  },
+  "_precisionNote": "Honesty pre-declared: with the 8-chapter minimum shape, a zero-event cell supports only a ~37.5% one-sided upper bound per cell (rule-of-three 300/8) and ~9.4% pooled across 32 SOL-cell chapter-blocks — NOT a 1-2% claim. The declared endpoints therefore require 150 independent chapter-units to support a 2% claim; until the design reaches that N, the report marks rare-defect claims 'unproven at this sample size' (PRECISION_STATEMENT) instead of inventing them. Owner may either accept unproven-rare-rate reporting at the small design or grow books/chapters toward the endpoint N.",
+  "stopping": {
+    "rules": [
+      "expand-if-any-sol-cell-screens-clean",
+      "stop-if-every-sol-cell-fails-screening"
+    ]
+  },
+  "infraReplay": {
+    "maxPerSample": 1,
+    "replayableOutcomes": [
+      "infrastructure_failure",
+      "timeout",
+      "provider_rate_or_capacity"
+    ]
+  },
+  "_unresolvedOwnerFields": [
+    "experimentId (slug)",
+    "books[].bookId + real chapterNumber per stratum tag (chapterNumbers 1-4 are placeholders)",
+    "randomizationSeed",
+    "judgePanel (approve or change the proposed mix)",
+    "thresholdsRelPath file must exist = approved+frozen C4 (with C5 merged)",
+    "priceSnapshot (optional real prices)",
+    "samplesPerCell / screening counts (approve proposal or resize)",
+    "precision.primaryEndpoints (approve targets or accept unproven-rare-rate reporting)"
+  ]
+}

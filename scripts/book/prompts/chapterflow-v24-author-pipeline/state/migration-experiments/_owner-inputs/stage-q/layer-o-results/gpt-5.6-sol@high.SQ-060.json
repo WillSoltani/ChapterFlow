@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-060",
+  "parsed": {
+    "caseId": "SQ-060",
+    "verdict": "DEFECT",
+    "defectClass": "WRONG_ARTIFACT_TYPE",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "# Writer Role Card"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Job Write one canonical ChapterFlow chapter in plain English."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "## Required Reading Before Writing"
+      }
+    ],
+    "explanation": "The artifact is an instructional role card for producing a chapter, not chapter content or substantive evidence. It therefore cannot serve as the required canonical chapter and should be blocked.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-060\",\"verdict\":\"DEFECT\",\"defectClass\":\"WRONG_ARTIFACT_TYPE\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"# Writer Role Card\"},{\"materialIndex\":0,\"quote\":\"## Job Write one canonical ChapterFlow chapter in plain English.\"},{\"materialIndex\":0,\"quote\":\"## Required Reading Before Writing\"}],\"explanation\":\"The artifact is an instructional role card for producing a chapter, not chapter content or substantive evidence. It therefore cannot serve as the required canonical chapter and should be blocked.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

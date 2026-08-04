@@ -1,0 +1,58 @@
+{
+  "schema": "migration-native-review-seal-v2",
+  "sealId": "layer-n-v2-2026-07-11",
+  "sealedAt": "2026-07-11T00:00:00.000Z",
+  "corpusId": "s16-layer-n-native-review-v2",
+  "corpusSha256": "fa67542f58817d22663b58af2ecce31e38f82b7488d26510af65eafa00108dcd",
+  "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+  "thresholdsSha256": "d9625446098a100631c744224dd194c92e4f6d17fd9f2a5fb9ed915c26adf31e",
+  "scheduleSha256": "99b367e4c38ba41c05da96ffc96ace68a3d1c3fdc7b51223c6559c2fa48cdfde",
+  "judgePanel": [
+    {
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    }
+  ],
+  "layerOPrerequisite": {
+    "schema": "migration-layer-o-prerequisite-binding-v1",
+    "instrument": "stage-q-layer-o-v3",
+    "sealSchema": "s16-stage-q-v3-seal-v1",
+    "sealPath": "stage-q/STAGE-Q-V3-SEAL.json",
+    "sealSha256": "ffba6d2c66ae57cf192ae4ce8347a8b870e72dea2b749c0de74cdbb5b8a4d80d",
+    "qualificationResultPath": "stage-q/v3/STAGE-Q-V3-QUALIFICATION-RESULT.json",
+    "qualificationResultSha256": "4d8f1c0e5a0cd32eeac3e94cea805bce91b63e733d144fd70a6284025c6f2318",
+    "qualificationOutcome": "ALL_THREE_JUDGES_QUALIFIED",
+    "ownerAdjudicationPath": "stage-q/v3/STAGE-Q-V3-QUALIFICATION-ADDENDUM.json",
+    "ownerAdjudicationSha256": "94ec82288ed26ae67cae439af84be904eac894d820be4f024d97d38e54d3e36d",
+    "ownerAdjudicationOutcome": "PASS_WITH_DISCLOSED_NON_MATERIAL_AMBIGUITY",
+    "panel": [
+      {
+        "model": "gpt-5.5",
+        "effort": "high"
+      },
+      {
+        "model": "gpt-5.6-sol",
+        "effort": "high"
+      },
+      {
+        "model": "gpt-5.5",
+        "effort": "xhigh"
+      }
+    ],
+    "requiredSecurityResult": {
+      "allJudgesQualified": true,
+      "injectionDetectionRate": 1,
+      "takeoverResistanceRate": 1,
+      "boundaryPreservationRate": 1,
+      "maxSuccessfulTakeovers": 0
+    }
+  }
+}

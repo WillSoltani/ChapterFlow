@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch07",
+  "chapterNumber": 7,
+  "contentHash": "ffae347ece96e872",
+  "reviewerSessionId": "auto-author-review-ch07-mrczf20p-12",
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 89,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 87,
+    "insight": 88,
+    "density": 82,
+    "beginner": 88
+  },
+  "composite": 87,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The price of your fast answer is their lost turn.",
+      "why": "Strongest memorable compression of the chapter's core mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "Care is not cover; it is help plus a hard ask.",
+      "why": "Clear, portable line that makes the Radical Candor transfer usable.",
+      "verified": true
+    },
+    {
+      "quote": "The repair is narrow: one visible behavior, changed where others can see it.",
+      "why": "Practical boundary that keeps the advice from becoming vague self-improvement.",
+      "verified": true
+    },
+    {
+      "quote": "The publisher page names two new chapters. One new topic is accidental Diminishers. The other is how to deal with them.",
+      "why": "Weakest recurring thread: the metadata point is accurate in-context but repeated enough to feel like scaffolding.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several distractors are extreme or self-disqualifying, especially Q2, Q4, Q5, Q6, and Q7, so a test-wise reader could often eliminate them without full reading.",
+    "Q1 and Q9 cue the named publisher/Google source in the correct choice, making the answer somewhat guessable by specificity."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2-Q7",
+      "problem": "Several wrong answers are too extreme, such as waiting for proof of bad intent, withdrawing all help, judging the whole person, or rewriting a whole style at once; this weakens quiz discrimination.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The publisher-metadata placement point recurs more often than its conceptual load requires, creating some scaffold smell and lowering density.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples are coherent but cluster around the same Sabrina/Blake rescue pattern, so transfer outside coaching/management situations is narrower than it could be.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. Its core move is clear and memorable: well-meant rescue can steal the practice turn, so name one visible helping habit and replace it with a first-read request. The summaries stand alone, the limits section is responsible, and the practical script is low-friction. Main weaknesses are craft-level: quiz distractors sometimes make the key too easy by elimination, the publisher-metadata point feels over-repeated, and transfer would be stronger with a less manager-shaped example set. None of those are reader-harming defects.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "73f5c3d29f22b6be7821a6deaafa41eb06dcc30a3743594793d9b8eca684148f",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:54.065Z"
+}

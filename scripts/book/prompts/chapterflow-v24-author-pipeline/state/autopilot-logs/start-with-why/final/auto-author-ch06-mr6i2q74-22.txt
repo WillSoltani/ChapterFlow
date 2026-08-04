@@ -1,0 +1,10 @@
+Wrote [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+Validation passed:
+- JSON parse: valid
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers / 0 majors / 0 minors
+- `evidence-audit`: clean
+- Self-check: quiz key pattern `1,2,2,0,1,1,0,0,2`, distractor parity pass, reader length `15496` chars, scaffold scan pass
+
+Note: the sandbox blocked the normal `tsx` launcher’s IPC pipe, so I compiled the CLI to `/private/tmp` and ran the same checks from the required v21 command directory.

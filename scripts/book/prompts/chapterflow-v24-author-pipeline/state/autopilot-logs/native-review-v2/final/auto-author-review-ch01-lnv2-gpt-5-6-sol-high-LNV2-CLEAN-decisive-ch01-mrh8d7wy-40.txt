@@ -1,0 +1,114 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four distinct moves applied in sequence to four different decision dangers.",
+      "A yes-or-no choice is narrow framing, so widening the live option set must precede further evidence gathering.",
+      "Reality-testing requires seeking evidence that could weaken the favored plan while the decision remains open.",
+      "The prose says emotion may contain information but needs distance so short-term attachment does not control the long-term call.",
+      "Prepare to be wrong counters overconfidence by naming a wider range of plausible futures.",
+      "Cole's approach used parallel first passes to generate comparison and learning before an expensive commitment.",
+      "Grove's question creates distance by asking what a fresh leader, unburdened by legacy attachment, would do.",
+      "Each villain affects a different part of the choice and therefore calls for its matching intervention.",
+      "The chapter explicitly says a sound process improves the odds without guaranteeing a good outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "Choice a is weakly defensible because the chapter does present WRAP as a sequence that cools and checks a decision, while choice b imprecisely calls the four dangers 'choice stages.'",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Many correct choices repeat distinctive chapter phrases such as 'disconfirming evidence,' 'plausible outcomes,' 'outsider question,' and 'improving odds,' making lexical matching sufficient.",
+      "Several distractors are plainly unreasonable absolutes or reversals, such as treating confidence as proof, waiting indefinitely for emotion to fade, or promising that WRAP makes outcomes right.",
+      "In Q1, the keyed choice is the only option that spells out the WRAP components and is also the most detailed choice."
+    ]
+  },
+  "scores": {
+    "retention": 93,
+    "quizzes": 84,
+    "transfer": 72,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 95,
+    "insight": 91,
+    "density": 87,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "A compact, memorable image explains the mechanism of confirmation bias."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "This states the chapter's central limitation with unusual clarity."
+    },
+    {
+      "quote": "The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.",
+      "why": "This presents an unsupported invented scene around a real company without labeling it hypothetical."
+    },
+    {
+      "quote": "The team lead texts from the train platform before the decision meeting: \"WRAP check. Which of the four villains is loudest?\"",
+      "why": "The unmarked invented setting and dialogue create false documentary specificity."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The chapter invents an after-lunch HopeLab project-room scene and an unnamed planner's thoughts around a real case without identifying the vignette as hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The Monday-morning HopeLab planning-room scene, budget wall, and prototype planner are unsupported fictional specifics presented without a hypothetical marker; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "The Intel reviewer, strategy review, and two pages in his folder are invented details attached to a real historical case without being labeled fictional; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "The product-office scene and quoted exchange are invented but presented as a concrete event rather than an explicit hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "Yvonne and the forecast-board reveal are introduced as a concrete event with no source or hypothetical framing; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 6",
+      "problem": "The train-platform text exchange is fabricated dialogue presented without hypothetical framing; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed choice calls WRAP's four target dangers 'choice stages,' although the prose describes dangers or parts of a choice rather than formal stages.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Many distractors are obvious reversals or extreme claims, while keyed choices echo the chapter's signature wording, reducing the quiz's ability to test understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The instruction to record the 'cue, shortcut, and likely villain' does not define what counts as the shortcut or explicitly require the matching WRAP response.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a strong, memorable core move: diagnose which part of a decision is being distorted, then apply the matching WRAP intervention. Its causal explanations, layered summaries, practical prompts, memorable lines, and explicit boundary for emergencies are professionally strong, and the quiz is readily derivable. Transfer suffers because all six examples use unmarked fictional scenes, people, thoughts, settings, or dialogue, including invented specificity around HopeLab and Intel; those reader-misleading examples block shipment until they are labeled as hypothetical or replaced with supported cases. The quiz would also benefit from less lexical matching and more plausible distractors."
+}
+```

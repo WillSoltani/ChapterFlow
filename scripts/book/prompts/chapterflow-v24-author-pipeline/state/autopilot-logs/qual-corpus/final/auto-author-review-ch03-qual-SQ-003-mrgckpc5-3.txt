@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 5,
+    "summaries": 10,
+    "tone": 20,
+    "limits": 5,
+    "insight": 35,
+    "density": 20,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The four moves name the repair job: Widen your options, Reality-test your assumptions, Attain distance before deciding, Prepare to be wrong.",
+      "why": "This is the chapter's strongest usable content: a clear framework with named moves."
+    },
+    {
+      "quote": "Each move meets a different danger.",
+      "why": "This gives a real mechanism, linking actions to decision-making failure modes."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads like internal scaffold text, not finished reader-facing prose."
+    },
+    {
+      "quote": "## Quiz\n## Review cards",
+      "why": "The quiz section is empty, so there is no assessment for the reader to answer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so the chapter's quiz is broken and cannot be reviewed or used.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway header has no content, so a promised standalone summary section is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now header has no content, so the chapter gives no concrete action despite promising one.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples header has no content, so the chapter provides no transfer cases or applied scenarios.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards header has no content, so a promised retention aid is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines header has no content, so a promised memory layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder-like process text rather than a reader-facing opening.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only 'A concise idea.' and does not summarize the chapter's actual idea.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only 'One added angle.' and does not provide a standalone deeper explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The only substantive paragraph names the WRAP moves and matching dangers but gives no examples, practice, limits, or decision scenario.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter; it is mostly a skeleton with one useful paragraph. The full read contains a clear core framework, but the fast read, deep read, quiz, examples, practice, review cards, memorable lines, and takeaway either contain placeholder text or no content at all. A reader could infer the basic WRAP mapping, but they could not practice it, test themselves, or retain it through the promised chapter layers."
+}
+```

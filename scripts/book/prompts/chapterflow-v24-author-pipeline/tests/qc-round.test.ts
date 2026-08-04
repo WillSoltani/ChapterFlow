@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
-import { readFileSync, rmSync } from "fs";
+import { existsSync, readdirSync, readFileSync, rmdirSync, rmSync } from "fs";
+import { dirname } from "path";
 
 import { test } from "./harness.js";
 import { openQcRound, qcRoundPath, verifyQcRoundToken } from "../src/qc/qcRound.js";
 
 const BOOK = "zz-fixture-qc-round";
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, "r-test"));
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
 
 test("qc round tokens verify only for the correct role, and plaintext is never stored", () => {
   const roundId = "r-test";
@@ -24,5 +27,6 @@ test("qc round tokens verify only for the correct role, and plaintext is never s
     assert.match(stored, /salt/);
   } finally {
     rmSync(path, { force: true });
+    if (!QC_ROUNDS_DIR_EXISTED && existsSync(QC_ROUNDS_DIR) && readdirSync(QC_ROUNDS_DIR).length === 0) rmdirSync(QC_ROUNDS_DIR);
   }
 });

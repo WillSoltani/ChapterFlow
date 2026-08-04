@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 45,
+    "quizzes": 0,
+    "transfer": 35,
+    "practical": 10,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 65,
+    "insight": 50,
+    "density": 35,
+    "beginner": 40
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "It also warns you not to use a better ending as cover for needless pain.",
+      "why": "Strongest usable lesson: it states the boundary clearly and prevents a harmful overread."
+    },
+    {
+      "quote": "A red phone cannot make an unsafe pool feel fine.",
+      "why": "Concrete, memorable image that makes the limit of the principle stick."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: six promised product sections are present only as empty headings."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Placeholder language breaks the illusion of a finished reader-facing chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "key takeaway",
+      "problem": "The section heading exists but has no content, so the promised standalone takeaway is missing. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section heading exists but has no exercise or action, so the chapter gives no practical step. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section heading exists but has no examples, weakening transfer beyond the brief full-read references. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so there are no questions to answer or assess. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section heading exists but has no review cards, so the retention layer is missing. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section heading exists but has no memorable-line content, despite the product format promising that layer. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook contains placeholder production language instead of a reader-facing opening. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only 'A concise idea,' which does not stand alone or teach the chapter's core move. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only 'One added angle,' which does not provide a deeper standalone layer. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The full read has a real, useful caution about peak-end effects and honest limits, with a few memorable concrete images, but most of the chapter is structurally absent. The quiz, examples, key takeaway, practice step, review cards, and memorable lines are empty, while the fast and deep reads are placeholders. A reader can infer part of the concept from the full read, but the chapter fails the product format and cannot meet a professional 80+ bar."
+}
+```

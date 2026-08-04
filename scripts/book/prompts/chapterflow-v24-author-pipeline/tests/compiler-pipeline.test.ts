@@ -16,6 +16,7 @@ import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
 import { assembleChapterV21OrThrow } from "../src/assembler.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
+import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
@@ -222,6 +223,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   // P07: the contract is now a layered brief — the cross-chapter gate awareness is
   // preserved as DESIGN-AROUND rules (each names its check id), so these assert the new
@@ -246,6 +248,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/summary-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   assert.match(summaryTask, /chapter-specific skeleton/);
   assert.match(summaryTask, /reusable five-word connective run/);
@@ -257,6 +260,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/example-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   assert.match(exampleTask, /sceneFrame\/requiredBeat/);
   assert.match(exampleTask, /six DIFFERENT scene engines/);
@@ -267,6 +271,7 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
     blueprint: fx.blueprint,
     sourcePacket: fx.packet,
     outputPath: "/tmp/action-pack.json",
+    context: { voiceCard: null, bookScars: null },
   });
   assert.match(actionTask, /AS8 compares implementationPlan fields across chapters/);
   assert.match(actionTask, /action\.ifThenPlanShapes\[\]/);
@@ -275,6 +280,251 @@ test("v23 section task prompts warn learning and summary writers about cross-cha
   assert.match(actionTask, /classify\/choose\/predict worksheet/);
   // A non-scar book (money-book) must NOT inherit another book's scar tissue.
   assert.doesNotMatch(actionTask, /transition, milestone, or pit/);
+});
+
+// ── Task 11ai — the quiz/cards must be derivable from THIS chapter's own prose ──
+// Finding 45: each section pack is drafted independently from the same SOURCE PACKET,
+// so the learning writer saw every allowed fact/anchor — not the SUBSET the summary
+// writer actually put into the reader-visible prose. The blind reader panel failed all
+// four canary chapters on one class: quiz stems and cards naming facts ("Dr. Thomas
+// Bond", "1751", "Temperance") that appear nowhere in the Fast/Deep/Full read. The fix
+// is two-sided — the writer SEES the drafted prose (Part A) and a deterministic gate
+// backstops it (Part B, SEC120).
+
+/** Render a learning-pack card with (or without) this chapter's drafted prose. */
+function renderLearningTask(
+  fx: ReturnType<typeof compileFixture>,
+  chapterProse?: SummaryPackV1,
+  deliveryMode?: "FILE_WRITE" | "DIRECT_JSON",
+): string {
+  return buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    deliveryMode,
+    chapterProse,
+  });
+}
+
+test("learning-pack task card carries THIS chapter's drafted prose and the derivable-from-prose rule (Task 11ai)", () => {
+  const fx = compileFixture();
+  const bare = renderLearningTask(fx);
+  const withProse = renderLearningTask(fx, fx.summary);
+
+  // Absent prose = today's card, unchanged (every existing task-card test stays green).
+  assert.doesNotMatch(bare, /CHAPTER PROSE/, "no prose supplied → no prose block");
+
+  assert.match(withProse, /CHAPTER PROSE/, "the drafted prose block must be rendered");
+  // Each drafted passage reaches the card, clamped to its documented cap (Task 11ai
+  // review, minor a — this fixture's tiers are synthetic repeats far past any aim
+  // band, so they exercise the clamp; the hook and keyTakeaway are under their caps
+  // and must render verbatim).
+  for (const [key, passage] of [
+    ["hook", fx.summary.hook.hook],
+    ["counterintuition", fx.summary.hook.counterintuition],
+    ["fastRead", fx.summary.breakdown.fastRead],
+    ["deepRead", fx.summary.breakdown.deepRead],
+    ["fullRead", fx.summary.breakdown.fullRead],
+    ["keyTakeaway", fx.summary.keyTakeaway],
+  ] as const) {
+    assert.ok(passage, "fixture summary must supply every reader-visible passage");
+    const rendered = clampProsePassage(passage!, CHAPTER_PROSE_CARD_CAPS[key]);
+    assert.ok(withProse.includes(rendered), `prose block must carry the drafted passage: ${passage!.slice(0, 40)}…`);
+  }
+  assert.ok(withProse.includes(fx.summary.hook.hook!), "a passage inside its cap is carried verbatim");
+  assert.ok(withProse.includes(fx.summary.keyTakeaway!), "a passage inside its cap is carried verbatim");
+  // The rule: derivable from the prose alone, and a packet fact absent from the prose
+  // is simply unavailable.
+  assert.match(withProse, /every quiz stem[\s\S]{0,200}review card must be answerable from the CHAPTER PROSE above ALONE/);
+  assert.match(withProse, /not in the prose, it is NOT available/);
+  assert.match(withProse, /SEC120/, "the rule names its enforcing validator");
+
+  // The block is learning-pack-only: the other three renders are byte-identical with
+  // and without the field.
+  for (const kind of ["summary-pack", "example-pack", "action-pack"] as const) {
+    const args = { bookId: "money-book", kind, blueprint: fx.blueprint, sourcePacket: fx.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: null, bookScars: null } };
+    assert.equal(
+      buildSectionTaskMarkdown({ ...args, chapterProse: fx.summary }),
+      buildSectionTaskMarkdown(args),
+      `${kind}: chapter prose is a learning-pack input only`,
+    );
+  }
+  // The live compiler drafts through DIRECT_JSON — the block must reach that card too.
+  assert.match(renderLearningTask(fx, fx.summary, "DIRECT_JSON"), /CHAPTER PROSE/);
+});
+
+test("SEC120 blocks a quiz stem whose cited specific never appears in the chapter's drafted prose (Task 11ai)", () => {
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchor, "fixture needs a specifics-rich quiz-capable anchor");
+  const specific = anchor!.hardSpecifics![0];
+  assert.equal(fx.summary.breakdown.fullRead.includes(specific), false, "fixture prose must not already name the specific");
+
+  const bad = cloneLearning(fx.learning);
+  const q = bad.quiz.questions[0];
+  q.sourceAnchorIds = [anchor!.id];
+  q.keyEvidenceAnchorIds = [anchor!.id];
+  q.prompt = `A reader checks the ${specific} recorded in 1751 before the next snapshot. Which move changes what a lender can read?`;
+  q.explanation = `The keyed move changes the ${specific} the report shows, while the other options leave it untouched.`;
+
+  // No prose supplied (legacy/other callers) → the check MUST no-op.
+  const legacy = validateLearningPack(bad, fx.blueprint, fx.packet);
+  assert.deepEqual(legacy.filter((f) => f.checkId.startsWith("SEC120")), [], "absent prose must no-op, never fire");
+
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.equal(hits.length, 1, hits.map((f) => f.message).join("\n"));
+  assert.equal(hits[0].severity, "blocker", "SEC120 is a blocker, like its SEC55–SEC58 learning-family siblings");
+  assert.equal(hits[0].section, "learning-pack");
+  assert.equal(hits[0].path, "/quiz/questions/0");
+  assert.match(hits[0].message, new RegExp(specific.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")), "the blocker names the offending specific");
+  assert.match(hits[0].message, /1751/, "a 4-digit year absent from the prose is flagged too");
+
+  // Zero false positive: prose that actually shows the specific and the year clears it.
+  const grounded = cloneSummary(fx.summary);
+  grounded.breakdown.deepRead = `${grounded.breakdown.deepRead} The ${specific} written down in 1751 is the number a lender reads first.`;
+  assert.deepEqual(
+    validateLearningPack(bad, fx.blueprint, fx.packet, grounded).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "a specific the prose actually shows must never fire",
+  );
+});
+
+test("SEC120 blocks a review card that introduces a term the chapter's prose never uses (Task 11ai)", () => {
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("review_card") && (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchor, "fixture needs a specifics-rich card-capable anchor");
+  const specific = anchor!.hardSpecifics![0];
+
+  const bad = cloneLearning(fx.learning);
+  bad.cards.cards[0].sourceAnchorIds = [anchor!.id];
+  bad.cards.cards[0].back = `Retrieve the ${specific} first, because that is the account information a lender can read before any payment lands.`;
+
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.ok(hits.some((f) => f.path === "/cards/cards/0"), hits.map((f) => `${f.path}: ${f.message}`).join("\n"));
+  // Unused anchor specifics are NOT the card's problem — only what the unit itself cites.
+  const untouched = cloneLearning(fx.learning);
+  untouched.cards.cards[0].sourceAnchorIds = [anchor!.id];
+  assert.deepEqual(
+    validateLearningPack(untouched, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable" && f.path === "/cards/cards/0"),
+    [],
+    "citing an anchor without naming its specifics is not a derivability failure",
+  );
+});
+
+// Task 11ai REVIEW — the year branch was the one asymmetric path: years were pulled
+// from the RAW unit text but tested against the NORMALISED haystack, where
+// normalizeProseText turns "$1,800" into "1 800". A figure that IS on the page then
+// read as a phantom, emitting an unactionable retry line ("remove 1800") and burning
+// bounded retries on money/quantity books. Both sides now collapse digit-group
+// separators and compare on digit boundaries.
+test("SEC120's year rule normalises BOTH sides: a comma-grouped figure on the page is not a phantom (Task 11ai review)", () => {
+  const fx = compileFixture();
+  assert.deepEqual(
+    validateLearningPack(cloneLearning(fx.learning), fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "baseline: the untouched fixture pack is derivable from its own prose",
+  );
+  const missingFor = (prompt: string, proseSentence: string): string[] => {
+    const bad = cloneLearning(fx.learning);
+    bad.quiz.questions[0].prompt = prompt;
+    const prose = cloneSummary(fx.summary);
+    prose.breakdown.deepRead = `${prose.breakdown.deepRead} ${proseSentence}`;
+    return validateLearningPack(bad, fx.blueprint, fx.packet, prose)
+      .filter((f) => f.checkId === "SEC120.learning_prose_derivable" && f.path === "/quiz/questions/0")
+      .map((f) => f.message);
+  };
+  // Same number, different punctuation on each side — must NOT fire.
+  assert.deepEqual(missingFor(
+    "A reader keeps a 1800 dollar buffer before the statement closes. Which move protects it?",
+    "She kept a $1,800 buffer on hand while the statement closed.",
+  ), [], "a thousands-separated figure in the prose is the same figure as the bare one in the stem");
+  assert.deepEqual(missingFor(
+    "A reader walks 2000 steps a day between statement dates. Which habit shows up first?",
+    "She walked 2,000 steps a day while the balance sat unpaid.",
+  ), [], "2,000 in the prose answers 2000 in the stem");
+  assert.deepEqual(missingFor(
+    "A reader compares the 1600 point swing against the next snapshot. Which move matters?",
+    "The report showed a 1,600 point swing after the payment landed.",
+  ), [], "1,600 in the prose answers 1600 in the stem");
+  assert.deepEqual(missingFor(
+    "A reader reads the 1751 charter before the reporting date arrives. Which move helps?",
+    "The 1751st charter in the file still governs how the balance is read.",
+  ), [], "digit-boundary matching: the number is on the page even inside an ordinal");
+
+  // Still a blocker when the figure genuinely is not on the page.
+  const absent = missingFor(
+    "A reader checks the 1751 charter before the reporting date arrives. Which move helps?",
+    "The charter in the file still governs how the balance is read.",
+  );
+  assert.equal(absent.length, 1, absent.join("\n"));
+  assert.match(absent[0], /1751/, "a year the prose never states is still blocked");
+  // And a longer number that merely CONTAINS the digits is not a match.
+  const swallowed = missingFor(
+    "A reader checks the 1751 charter before the reporting date arrives. Which move helps?",
+    "The charter numbered 11751 in the file still governs how the balance is read.",
+  );
+  assert.equal(swallowed.length, 1, "1751 inside 11751 is a different number, not a match");
+});
+
+// Task 11ai REVIEW (minor b) — checkSectionGate reads the sibling summary pack off
+// disk without re-gating it, so a stub pack (a hook and nothing else) could become a
+// near-empty haystack that fails everything. The chapter the reader sees is the read
+// tiers; without them there is nothing to be derivable FROM.
+test("SEC120 no-ops against a summary pack with no drafted read tiers (Task 11ai review)", () => {
+  const fx = compileFixture();
+  const bad = cloneLearning(fx.learning);
+  bad.quiz.questions[0].prompt = "A reader checks the 1751 charter before the reporting date arrives. Which move helps?";
+  assert.ok(
+    validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).some((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    "control: against the real drafted prose the same pack IS blocked",
+  );
+  const stub = cloneSummary(fx.summary);
+  stub.breakdown = { ...stub.breakdown, fastRead: "", deepRead: "", fullRead: "" } as SummaryPackV1["breakdown"];
+  assert.deepEqual(
+    validateLearningPack(bad, fx.blueprint, fx.packet, stub).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "a summary pack with no read tiers is not this chapter's prose — the backstop no-ops",
+  );
+});
+
+test("the section gate feeds a chapter's own summary prose into its learning-pack check (Task 11ai)", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v25-prose-derivable-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 0)!;
+  const specific = anchor.hardSpecifics![0];
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), fx.packet);
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+
+    const bad = cloneLearning(fx.learning);
+    const q = bad.quiz.questions[0];
+    q.sourceAnchorIds = [anchor.id];
+    q.keyEvidenceAnchorIds = [anchor.id];
+    q.prompt = `A reader checks the ${specific} before the next snapshot. Which move changes what a lender can read?`;
+    q.explanation = `The keyed move changes the ${specific} the report shows, while the other options leave it untouched.`;
+    writeJsonFile(sectionPath("money-book", 1, "learning-pack", roots), bad);
+
+    // No summary pack on disk yet → nothing to compare against → the check no-ops.
+    const withoutProse = checkSectionGate("money-book", roots, { chapters: [1], sections: ["learning-pack"] });
+    assert.equal(withoutProse.findings.some((f) => f.checkId === "SEC120.learning_prose_derivable"), false, "no drafted prose → no SEC120 finding");
+
+    // With the sibling summary pack present, the gate sees the chapter's own prose.
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["learning-pack"] });
+    assert.equal(report.passed, false);
+    assert.ok(
+      report.findings.some((f) => f.checkId === "SEC120.learning_prose_derivable" && f.chapterNumber === 1 && f.section === "learning-pack"),
+      report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+    );
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
 });
 
 test("v23 source packet compiler turns source-v2 into authoring-ready typed facts/cases", () => {
@@ -2105,6 +2355,45 @@ test("v23 example-pack validator rejects whyItMatters lines that explain a neigh
   );
 });
 
+test("learning-pack task pre-lists each quiz slot's required verbatim specifics (Task 11z)", () => {
+  const fx = compileFixture();
+  const md = buildSectionTaskMarkdown({
+    kind: "learning-pack",
+    bookId: "money-book",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning.json",
+    context: { bookScars: { bookId: "money-book", phrases: [], frames: [], notes: [], prohibitions: [] }, voiceCard: null },
+    deliveryMode: "DIRECT_JSON",
+  });
+  assert.match(md, /REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT/, "preflight block missing");
+  const anchored = fx.packet.allowedAnchors.filter((a) => (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchored.length > 0, "fixture needs a specifics-rich anchor");
+  for (const a of anchored) {
+    for (const spec of a.hardSpecifics ?? []) {
+      assert.ok(md.includes(`"${spec}"`), `missing specific ${spec}`);
+    }
+  }
+  assert.match(md, /at least 1 of its case's specifics verbatim/i);
+  assert.match(md, /into the prompt AND at least 1 into the explanation/i);
+});
+
+test("SEC12 assembled-ease blocker names per-tier eases and the lowest tier (Task 11s)", () => {
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  const dense = " The institutionalization of habitual cognitive predispositions necessitates deliberate metacognitive intervention, notwithstanding considerable psychological resistance characteristically encountered.";
+  bad.breakdown.fastRead = dense.repeat(3).trim();
+  bad.breakdown.deepRead = dense.repeat(6).trim();
+  bad.breakdown.fullRead = dense.repeat(14).trim();
+
+  const findings = validateSummaryPack(bad, fx.blueprint, fx.packet);
+  const assembled = findings.filter((f) => f.checkId === "SEC12.summary_readability" && f.message.includes("assembled breakdown"));
+  assert.ok(assembled.length > 0, "dense text must trip the assembled-ease floor");
+  for (const f of assembled) {
+    assert.match(f.message, /Per-tier ease: fastRead -?\d+\.\d, deepRead -?\d+\.\d, fullRead -?\d+\.\d; lift (fastRead|deepRead|fullRead) first\./, f.message);
+  }
+});
+
 test("v23 example-pack validator rejects source-figure names as fictional actors", () => {
   const fx = compileFixture();
   const packet = { ...fx.packet, allowedEntities: [...fx.packet.allowedEntities, "Graham"] };
@@ -2128,6 +2417,43 @@ test("v23 example-pack validator rejects undealt fictional protagonist names", (
   assert.ok(
     findings.some((f) => f.checkId === "SEC35.example_dealt_name" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+  );
+});
+
+test("v23 SEC35 ignores sentence-initial gerunds (Copying, Balancing) — not undealt names (Task 11v)", () => {
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Copying the worn ledger by hand, ${dealt} traces each line before the card app opens. Balancing the numbers first, ${dealt} decides whether to pay a small amount before the balance becomes visible, and makes the total match the careful behavior already in place.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(sec35.map((f) => f.message), [], sec35.map((f) => f.message).join("\n"));
+});
+
+test("v23 SEC35 ignores sentence-initial temporal adverbs (Later, Meanwhile) — not undealt names (Task 11u)", () => {
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Later, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. None of the alerts have fired yet. Meanwhile the statement waits unread. Everything hinges on the next choice. Eventually ${dealt} makes the balance match the careful behavior already in place before money moves anywhere.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(sec35.map((f) => f.message), [], sec35.map((f) => f.message).join("\n"));
+});
+
+test("v23 SEC35 ignores capitalized hyphenated prefixes (Mid-career) — not undealt names (Task 11r)", () => {
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Mid-career, ${dealt} has the card app open at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Self-control decides the order: ${dealt} makes the balance match the careful behavior already in place before money moves.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(
+    sec35.map((f) => f.message),
+    [],
+    `hyphenated prefixes must not register as undealt names:\n${sec35.map((f) => f.message).join("\n")}`,
   );
 });
 

@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-034",
+  "parsed": {
+    "caseId": "SQ-034",
+    "verdict": "DEFECT",
+    "defectClass": "duplicated_generic_relabel",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Stop Arguing About Who's Right"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Don't Assume They Meant It"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Correct index: 0 Explanation: The best choice keeps the conversation tied to different stories and creates room for new information."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Correct index: 0 Explanation: The best choice keeps the conversation tied to intent and impact and creates room for new information."
+      }
+    ],
+    "explanation": "The two quiz instances use the same scenario, question, choices, and correct answer while swapping only the chapter label and a phrase in the explanation. The item does not independently assess the distinct mechanisms; it relabels a generic difficult-conversation answer.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-034\",\"verdict\":\"DEFECT\",\"defectClass\":\"duplicated_generic_relabel\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Stop Arguing About Who's Right\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Don't Assume They Meant It\"},{\"materialIndex\":0,\"quote\":\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":1,\"quote\":\"Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\"},{\"materialIndex\":0,\"quote\":\"Correct index: 0 Explanation: The best choice keeps the conversation tied to different stories and creates room for new information.\"},{\"materialIndex\":1,\"quote\":\"Correct index: 0 Explanation: The best choice keeps the conversation tied to intent and impact and creates room for new information.\"}],\"explanation\":\"The two quiz instances use the same scenario, question, choices, and correct answer while swapping only the chapter label and a phrase in the explanation. The item does not independently assess the distinct mechanisms; it relabels a generic difficult-conversation answer.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

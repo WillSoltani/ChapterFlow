@@ -1,0 +1,59 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 74,
+    "transfer": 80,
+    "practical": 73,
+    "summaries": 77,
+    "tone": 66,
+    "limits": 76,
+    "insight": 72,
+    "density": 63,
+    "beginner": 79
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong compact opener: portable, clear, and memorable."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Best retention line in the sample; it compresses the chapter's lens without over-explaining."
+    },
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "A strong mechanism line that makes the diffusion idea easier to remember."
+    },
+    {
+      "quote": "What to do: Why does 1994 help?",
+      "why": "The example prose shows scaffold friction; the prompt-like label feels generated rather than authored."
+    },
+    {
+      "quote": "A second setting lets you compare what moved and keeps the lesson from becoming a one-off anecdote.",
+      "why": "This useful idea recurs so often across chapters that it becomes a visible template move."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound enough to pass the correctness gate: I found no contradicted keyed answers, no unsupported quiz keys, and no fatal factual or coherence break from the chapters themselves. As a book sample, it is a solid but visibly templated draft. The best lines are sticky and the core lenses are transferable, especially around separating visible tactics from underlying reasons. The main weakness is churn: nearly every chapter uses the same architecture of named anchors, second setting, edge detail, order reversal, hard facts staying with their source, and a short Friday-style practice. That repetition makes the prose feel engineered rather than individually authored, lowers density, and weakens the book voice despite generally clear beginner-friendly writing."
+}
+```

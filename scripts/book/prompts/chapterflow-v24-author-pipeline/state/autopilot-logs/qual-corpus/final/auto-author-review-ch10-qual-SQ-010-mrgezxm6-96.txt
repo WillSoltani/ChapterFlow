@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 25,
+    "summaries": 5,
+    "tone": 30,
+    "limits": 5,
+    "insight": 30,
+    "density": 25,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Andy Grove's outsider question gives him a way through: what would a new leader do without the memory-chip attachment?",
+      "why": "Strongest usable teaching moment: it states the core decision move clearly."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst tone defect: this is production-process placeholder text, not reader-facing teaching."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read promises a summary but only gives scaffold text."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Shows multiple required learning sections present as empty headers."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "Placeholder metadata appears as chapter prose, so the hook does not introduce the lesson or stand alone. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section says only \"A concise idea.\" and does not actually summarize the chapter. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section says only \"One added angle.\" and provides no deeper explanation. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter gives no standalone practice prompt. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples section is empty. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so there is no derivable quiz. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards section is empty. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines section is empty. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The Intel scenario is on-topic but thin: it names the tension and action without showing a concrete before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The core mechanism is underexplained; \"cooler vantage point\" gestures at why the outsider question works but does not unpack when it fails or how to apply it in other contexts.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The chapter has one usable seed: the outsider question helps separate a decision from attachment to the old identity. But most of the product structure is empty or placeholder text, the quiz is missing entirely, and the practical/summary/review layers do not do their jobs. A reader could infer the basic move from the full read, but the chapter is far below a professional learning-product bar."
+}
+```

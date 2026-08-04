@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong choices are visibly over-permissive or authority-based without needing the prose, especially Q4, Q6, and Q7.", "Correct choices often echo the chapter's exact phrases: visible offer, hard details, promise first, second anchor."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 80,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 83,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "Strongest compression of the chapter's core move; memorable and operational."
+    },
+    {
+      "quote": "If it does not appear, she has not proved speed. She has only named it.",
+      "why": "Clear mechanism: named belief is not evidence until behavior appears."
+    },
+    {
+      "quote": "Product lead Vincent catches the first unmarked clue: the blue circle around plausible.",
+      "why": "Weakest tonal moment; it feels like internal worksheet scaffolding rather than a real example."
+    },
+    {
+      "quote": "What to do: Vincent starts by telling you what to do: circle the first useful-looking product, then name the belief and conduct it must make visible.",
+      "why": "Template smell and awkward self-reference reduce polish."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples",
+      "problem": "The example section sometimes reads like meta-review of a draft rather than outward transfer to real product or workplace situations; Example 1 is especially worksheet-like.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The phrase 'blue circle around plausible' is unexplained and artificial, making the example feel manufactured despite using named products.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The before-to-after is weaker than the others: it says 'Partly' and names the miss, but the consequence of fixing the handoff is thin.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are too obviously bad because they rely on rank, borrowed authority, or 'any useful device,' so a test-wise reader could eliminate them without fully learning the lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The central lesson is clear, memorable, and bounded: name WHY, name HOW, then let WHAT act only as visible evidence. The iPod, Dell DJ, and Phaeton contrasts do real teaching work, and the Sabrina desk example gives useful transfer. The main weakness is polish in the Examples section, where some scenes feel like internal editing exercises with template labels rather than fully natural situations. The quiz keys are sound, but a few distractors are too easy to reject."
+}
+```

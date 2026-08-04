@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
-import { generateChapter, type BookMeta, type ChapterSpec } from "../src/generateChapter.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { promoteBook } from "../src/promoteBook.js";
 import { blockedReportsForBook, listBlockedReports } from "../src/publish/blockedReportRetention.js";
@@ -16,16 +15,12 @@ const BOOK = "zz-fixture-source-integrity";
 const PROMOTION_BOOK = "zz-fixture-source-integrity-promote";
 const RUN = "run-source-integrity";
 
-function chapterSpec(bookId = BOOK, n = 1): ChapterSpec {
+function chapterSpec(bookId = BOOK, n = 1) {
   return {
     chapterId: `${bookId}-ch${String(n).padStart(2, "0")}`,
     chapterNumber: n,
     chapterTitle: `Integrity Chapter ${n}`,
   };
-}
-
-function bookMeta(bookId = BOOK): BookMeta {
-  return { bookId, title: "Source Integrity", author: "Fixture Author" };
 }
 
 function specificSidecar(chapterNumber = 1): any {
@@ -234,6 +229,46 @@ test("source integrity surfaces concept-only, placeholder, fabricated, and boile
   }
 });
 
+test("non-testable mechanisms plus paraphrased specifics do not alone synthesize a fabricated-sidecar finding", () => {
+  const root = fixtureRoot("realness-false-positive");
+  rmSync(root, { recursive: true, force: true });
+  try {
+    const sidecar = specificSidecar();
+    sidecar.namedExamples[0] = {
+      ...sidecar.namedExamples[0],
+      realWorld: true,
+      hardSpecifics: [
+        "Northstar Lab reduced ticket reopenings from 37 to 12 after adding its May 2026 intake checkpoint.",
+        "The intake checkpoint preserved the original failed-ticket record before reassignment.",
+      ],
+    };
+    sidecar.namedExamples[1] = {
+      ...sidecar.namedExamples[1],
+      realWorld: true,
+      hardSpecifics: [
+        "Harbor Clinic identified 18 missing consent forms ahead of its Friday discharge review.",
+        "Reviewing paperwork before discharge let staff correct forms while visit details remained available.",
+      ],
+    };
+    sidecar.testableFacts[0].becauseMechanism = "The intake checkpoint captures failed tickets before reassignment and preserves their original records.";
+    sidecar.testableFacts[1].becauseMechanism = "The discharge review exposes missing consent forms while staff still remember each visit.";
+    sidecar.testableFacts[2].becauseMechanism = "The launch delay preserves sensor evidence and isolates the failed cold-chain device.";
+
+    const { stateRoot, runsRoot } = writeSourceFixture(root, BOOK, [sidecar]);
+    const report = checkSourceV2Gate(BOOK, undefined, { stateRoot, runsRoot });
+    const ids = report.findings.map((finding) => finding.checkId);
+
+    assert.ok(ids.includes("SV2.realness_non_testable_fact"), "causal prose without a connector remains advisory");
+    assert.ok(ids.includes("SV2.realness_unsupported_entity"), "full-sentence paraphrased specifics remain advisory");
+    assert.equal(ids.includes("SV2.realness_placeholder_example"), false);
+    assert.equal(ids.includes("SV2.realness_repeated_boilerplate"), false);
+    assert.equal(ids.includes("SV2.realness_fabricated_sidecar"), false,
+      "low-confidence realness advisories alone must not imply fabricated source material");
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
 
 test("prewrite source gate escalates thin realness advisories before writer fanout without changing structural gate semantics", () => {
   const root = fixtureRoot("prewrite-realness");
@@ -358,7 +393,7 @@ test("prompt-injection text from source evidence is rendered as inert data", () 
   }
 });
 
-test("authoring and promotion block the same STRUCTURAL source-integrity defect with matching check ids", async () => {
+test("authoring and promotion block the same STRUCTURAL source-integrity defect with matching check ids", () => {
   // Realness heuristics are advisory now; the cross-lifecycle consistency this pins is a
   // STRUCTURAL blocker. placeholderSidecar's testableFacts cite an undeclared source anchor,
   // so both authoring (loadPlanningSourceEvidence) and promotion (checkSourceV2Gate) reject it
@@ -367,26 +402,12 @@ test("authoring and promotion block the same STRUCTURAL source-integrity defect 
   const expectedCheck = "SV2.anchor_reference_unknown";
   const root = fixtureRoot("lifecycle-match");
   rmSync(root, { recursive: true, force: true });
-  const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
   try {
-    process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = "1";
-    const { stateRoot, runsRoot } = writeSourceFixture(root, BOOK, [bad]);
-    let editorCalls = 0;
-    await assert.rejects(
-      generateChapter(bookMeta(), chapterSpec(), {
-        stateRoot,
-        runsRoot,
-        sourceV2Required: true,
-        agents: {
-          runEditorInChief: async () => {
-            editorCalls += 1;
-            throw new Error("editor should not run after source-integrity failure");
-          },
-        },
-      }),
+    const { runsRoot } = writeSourceFixture(root, BOOK, [bad]);
+    assert.throws(
+      () => loadPlanningSourceEvidence(BOOK, 1, { runsRoot, requireSourceV2: true }),
       new RegExp(expectedCheck),
     );
-    assert.equal(editorCalls, 0, "authoring must stop before editor planning");
 
     const blockedDir = resolve(PIPELINE_DIR, "state", "books", "_blocked");
     const beforeTotal = listBlockedReports(blockedDir).length;
@@ -411,8 +432,6 @@ test("authoring and promotion block the same STRUCTURAL source-integrity defect 
     assert.equal(listBlockedReports(blockedDir).length, beforeTotal,
       "source-integrity test must leave state/books/_blocked count unchanged");
   } finally {
-    if (priorAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-    else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = priorAllow;
     rmSync(root, { recursive: true, force: true });
     cleanupPromotionFixture(PROMOTION_BOOK);
   }

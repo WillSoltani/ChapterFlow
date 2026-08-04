@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-05T06:00:38.100Z",
+  "bookId": "start-with-why",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author review: 5 chapter(s) still fail independent review after the regen cap (2 write attempts each):\n  ch01 — Example 1: Gregoire is introduced as an airline gate lead, then appears as an operations lead in Japanese car-door assembly without explanation; this blurs venue discipline in a chapter teaching venue discipline. (must fix); examples section: Several examples feel constructed to rehearse the lesson rather than show lived before-to-after stakes; they name roles and venues but often lack concrete nu\n  ch02 — Example 3: The Noah example is too vague to prove transfer: no concrete venue, metric, decision context, or observable before-to-after consequence beyond restating that peer pressure is borrowed. (must fix); Examples section: Several named people appear invented and thinly specified, so the examples sometimes feel like lesson-shaped scenarios rather than real applications with stakes.; quiz: Some \n  ch04 — ch04: STIER-2 write contract FAIL — lead thread: the dealt lead (Antonio) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.\n  ch06 — deep read / full read: The chapter names Southwest, Dallas, employees, low fares, Continental, Houston, 1934, and 1994, but rarely shows the actual conduct that returned under pressure. The reader gets the framework more than the witnessed proof. (must fix); Example 2: Hailey 'counts the conduct,' but the example does not name the conduct or show a concrete before-to-after consequence. The cold co\n  ch14 — tone: The chapter often sounds like an internal curriculum scaffold, with repeated terms such as anchor, token, venue, and proof due back carrying more weight than plain explanation.; examples: Some examples feel manufactured around the lesson mechanics rather than like naturally occurring decisions, especially Christophe and Pierre.; quiz Q8: The keyed answer closely mirrors the prose phrase abou",
+  "findings": [],
+  "artifacts": [
+    "state/qc/start-with-why.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge start-with-why",
+    "npx tsx src/cli.ts book-run start-with-why --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run start-with-why --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260705060038.575d4fef.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260705060038.575d4fef.repair.json"
+}

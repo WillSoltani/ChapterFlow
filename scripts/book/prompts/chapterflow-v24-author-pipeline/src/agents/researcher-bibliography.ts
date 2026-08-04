@@ -12,10 +12,11 @@
  */
 
 import { readFileSync } from "fs";
+import { isQuotaExhaustedMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
@@ -62,46 +63,109 @@ export type BibliographyInput = {
 const REGISTER_VALUES = new Set(["warm", "analytical", "plainspoken", "literary", "clinical"]);
 const CONFIDENCE_VALUES = new Set(["high", "medium", "low"]);
 
-/** Run bibliography research with retry. Up to 3 attempts; if all attempts fail
- *  validation, the last error propagates. */
-export async function runResearcherBibliography(input: BibliographyInput): Promise<BibliographyResult> {
-  const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-bibliography.system.md"), "utf8");
-  const userPrompt = buildUserPrompt(input);
+/** Task 11ag: bibliography is step 1 of a book run and was the ONE research
+ *  surface without bounded retry — a single degenerate or transient response
+ *  aborted the whole run before any chapter work began (live 2026-07-28: a bare
+ *  {} killed the Franklin canary). Mirrors researcher-chapter's proven shape. */
+export const MAX_BIBLIOGRAPHY_ATTEMPTS = 3;
 
-  let attempt = 0;
-  let lastErr: Error | null = null;
-  while (attempt < 3) {
-    attempt += 1;
+/** Backoff before attempt N+1, indexed by (attempt - 1). Same schedule as
+ *  chapter research so operators see one cadence across the research stage. */
+const BIBLIOGRAPHY_BACKOFF_MS = Object.freeze([2000, 8000]);
+
+export interface BibliographyRetryOptions {
+  /** Injectable for tests; production uses a real timer. */
+  readonly sleep?: (ms: number) => Promise<void>;
+}
+
+function backoffMsForAttempt(attempt: number): number {
+  return BIBLIOGRAPHY_BACKOFF_MS[attempt - 1] ?? BIBLIOGRAPHY_BACKOFF_MS[BIBLIOGRAPHY_BACKOFF_MS.length - 1] ?? 8000;
+}
+
+/** A structurally empty/near-empty record carries nothing to repair; echoing it
+ *  back entrenches the empty (11ad). Detect it so the retry demands a COMPLETE
+ *  object instead of quoting the blob. */
+export function isDegenerateBibliographyOutput(output: unknown): boolean {
+  if (output === null || typeof output !== "object" || Array.isArray(output)) return true;
+  const record = output as Record<string, unknown>;
+  const substantive = ["bookId", "title", "author", "edition", "thesis", "teachingArc", "authorVoice", "sections", "flatChapters"]
+    .filter((key) => {
+      const value = record[key];
+      if (value === undefined || value === null) return false;
+      if (typeof value === "string") return value.trim().length > 0;
+      if (Array.isArray(value)) return value.length > 0;
+      if (typeof value === "object") return Object.keys(value as object).length > 0;
+      return true;
+    });
+  return substantive.length === 0;
+}
+
+function retryDirective(problems: readonly string[], degenerate: boolean): string {
+  const lines: string[] = ["", "---", ""];
+  // Task 11ad: lead with the TASK, not the accusation — an accusatory frame
+  // measurably raises the degenerate-empty rate on retries.
+  lines.push("Continue the SAME task: return the canonical BibliographyResult JSON for this book.");
+  if (degenerate) {
+    lines.push("Your previous response was empty or missing every required field. Return a COMPLETE object with every required field populated — do not return a partial or empty object.");
+  } else {
+    lines.push("Your previous draft was rejected by the validator. Keep what is correct and change ONLY the listed items:");
+    for (const problem of problems) lines.push(`- ${problem}`);
+  }
+  return lines.join("\n");
+}
+
+export async function runResearcherBibliography(
+  input: BibliographyInput,
+  execution?: ModelCallerExecution,
+  options?: BibliographyRetryOptions,
+): Promise<BibliographyResult> {
+  let lastProblems: string[] = [];
+  let lastDegenerate = false;
+  const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-bibliography.system.md"), "utf8");
+  const basePrompt = buildUserPrompt(input);
+  const sleep = options?.sleep ?? ((ms: number) => new Promise<void>((r) => setTimeout(r, ms)));
+  const failures: string[] = [];
+
+  for (let attempt = 1; attempt <= MAX_BIBLIOGRAPHY_ATTEMPTS; attempt += 1) {
+    const userPrompt = attempt === 1 ? basePrompt : basePrompt + retryDirective(lastProblems, lastDegenerate);
+    let output: BibliographyResult;
     try {
-      const retryUser =
-        attempt === 1
-          ? userPrompt
-          : [
-              userPrompt,
-              "",
-              "# Your previous draft was rejected.",
-              "Reasons:",
-              lastErr ? lastErr.message.replace(/^bibliography invalid:\s*/, "- ").replace(/;\s*/g, "\n- ") : "",
-              "",
-              "Rewrite the BibliographyResult JSON, addressing every reason. Take more care on chapter list accuracy; if you're not sure of the chapter count, set confidence to low and explain.",
-            ].join("\n");
-      const result = await callClaude<BibliographyResult>({
-        tier: "researcher",
-        stage: "researcher-bibliography",
-        bookId: input.bookIdHint,
-        system: systemPrompt,
-        user: retryUser,
-        maxTokens: 8000,
-        temperature: 0.3, // low temperature for factual recall
-        jsonMode: true,
-        timeoutMs: 360_000,
-      });
-      return validateBibliography(result.content, input);
-    } catch (err) {
-      lastErr = err as Error;
+      output = await runJsonModelTask<BibliographyResult>(execution, "researcher-bibliography", systemPrompt, userPrompt);
+    } catch (error) {
+      const message = (error as Error).message;
+      if (isTransientBibliographyFailure(message)) {
+        // Task 11af: a durable quota cap cannot clear inside this window.
+        if (isQuotaExhaustedMessage(message)) throw error;
+        failures.push(`attempt ${attempt}: ${message}`);
+        if (attempt < MAX_BIBLIOGRAPHY_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
+        continue;
+      }
+      throw error;
+    }
+    lastDegenerate = isDegenerateBibliographyOutput(output);
+    if (lastDegenerate) {
+      lastProblems = ["the previous response was empty or missing every required field"];
+      failures.push(`attempt ${attempt}: bibliography invalid: empty or all-missing record`);
+      continue;
+    }
+    try {
+      return validateBibliography(output, input);
+    } catch (error) {
+      const message = (error as Error).message;
+      lastProblems = message.replace(/^bibliography invalid:\s*/, "").split("; ").filter(Boolean);
+      failures.push(`attempt ${attempt}: ${message}`);
     }
   }
-  throw lastErr ?? new Error("bibliography researcher failed after retries");
+  throw new Error(`bibliography invalid after ${MAX_BIBLIOGRAPHY_ATTEMPTS} attempts: ${failures.join(" | ")}`);
+}
+
+/** Transient model-process / timeout classes — the same set chapter research
+ *  retries. CANCELLED (operator intent) and UNKNOWN (uncertain teardown) are
+ *  deliberately absent and stay fail-closed. */
+function isTransientBibliographyFailure(message: string): boolean {
+  return /^MODEL_TASK_FAILED:MODEL_PROCESS_FAILED(:|$)/.test(message)
+    || /^MODEL_TASK_FAILED:MODEL_OUTPUT_INVALID(:|$)/.test(message)
+    || /^MODEL_TASK_TIMED_OUT(:|$)/.test(message);
 }
 
 function buildUserPrompt(input: BibliographyInput): string {

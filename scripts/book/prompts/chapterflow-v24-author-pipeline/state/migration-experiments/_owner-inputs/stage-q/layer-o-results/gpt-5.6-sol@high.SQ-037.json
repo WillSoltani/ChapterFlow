@@ -1,0 +1,36 @@
+{
+  "caseId": "SQ-037",
+  "parsed": {
+    "caseId": "SQ-037",
+    "verdict": "DEFECT",
+    "defectClass": "RELABELED_DUPLICATE_CONSTRUCT_MISMATCH",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Sort Out the Three Conversations"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Write the purpose in one sentence and remove any line whose real aim is punishment."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The best choice keeps the conversation tied to three layers and creates room for new information."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: What's Your Purpose? When to Raise It, When to Let Go"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Write the purpose in one sentence and remove any line whose real aim is punishment."
+      }
+    ],
+    "explanation": "Both instances use the identical prompt, choices, and purpose-focused correct answer. That answer directly assesses clarifying purpose, but Material 0 merely asserts a connection to three layers without requiring the learner to distinguish the three-conversations mechanism.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-037\",\"verdict\":\"DEFECT\",\"defectClass\":\"RELABELED_DUPLICATE_CONSTRUCT_MISMATCH\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Sort Out the Three Conversations\"},{\"materialIndex\":0,\"quote\":\"Write the purpose in one sentence and remove any line whose real aim is punishment.\"},{\"materialIndex\":0,\"quote\":\"The best choice keeps the conversation tied to three layers and creates room for new information.\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: What's Your Purpose? When to Raise It, When to Let Go\"},{\"materialIndex\":1,\"quote\":\"Write the purpose in one sentence and remove any line whose real aim is punishment.\"}],\"explanation\":\"Both instances use the identical prompt, choices, and purpose-focused correct answer. That answer directly assesses clarifying purpose, but Material 0 merely asserts a connection to three layers without requiring the learner to distinguish the three-conversations mechanism.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

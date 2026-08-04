@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["No uniquely-longest answer pattern. A mild tell is that several wrong answers lean on obviously weak authority or smoothing moves, while correct answers reuse the chapter's named anchors and ledger/proof language."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 84,
+    "practical": 82,
+    "summaries": 88,
+    "tone": 85,
+    "limits": 86,
+    "insight": 86,
+    "density": 82,
+    "beginner": 81
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "What did the audience count before your words arrived?",
+      "why": "Strongest line: it compresses the whole chapter into a memorable diagnostic question."
+    },
+    {
+      "quote": "A detail proves only what it belongs to.",
+      "why": "Strong transfer principle: clear, portable, and useful beyond the examples."
+    },
+    {
+      "quote": "If celery is absent and Oreos win after health, what did the audience hear?",
+      "why": "Worst beginner moment: memorable, but initially cryptic before the Celery test is explained."
+    },
+    {
+      "quote": "A store cannot carry every promise. Neither can a cart or a motorcycle mark.",
+      "why": "Good limits statement: it keeps the framework from overselling symbolic action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening question is catchy but opaque for a cold beginner because celery, Oreos, and health arrive before the scenario is grounded.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "This is thin-but-usable and overlaps heavily with Example 1: health words, Oreos/M&Ms, celery, and a corrected buy all teach nearly the same move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The name Presley reappears after Example 2 in an unrelated scenario, which can briefly make the reader look for a connection that is not there.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The distractors are fair but somewhat easy: both wrong options visibly weaken the named-anchor discipline the chapter repeatedly stresses.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter ships. The core move is clear and memorable: words name the claim, visible action pays it back, and the audience audits the result. The quiz is sound, derivable, and has no key disagreement. The main weaknesses are craft-level: the hook is initially cryptic, a couple of examples repeat the celery pattern instead of expanding transfer, and one quiz item has easy distractors. None of that prevents a reader from learning or applying the chapter."
+}
+```

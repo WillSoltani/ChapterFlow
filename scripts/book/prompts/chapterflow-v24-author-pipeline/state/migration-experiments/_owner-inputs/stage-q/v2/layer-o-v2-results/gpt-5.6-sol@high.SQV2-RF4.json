@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF4",
+  "target": "REVIEW_FINDING",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":\"“A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years.” “A plausible concern is not an upheld defect without direct or contextual chapter evidence.”\",\"rationale\":\"The candidate makes the statistical claim, but the supplied materials contain no evidence proving that the study or statistic was invented or unsupportable. Under the review contract, the absence of supporting evidence for the complaint means the alleged factual defect cannot be upheld; therefore the finding is unsupported and the candidate passage is clean on the evidence provided.\"}"
+}

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["CHAPTER 1 Q8: I derived a; the key says b. The prose supports copied tools failing when the receiving system lacks the upstream belief, not the old factory hiding a better checklist."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 58,
+    "transfer": 84,
+    "practical": 74,
+    "summaries": 70,
+    "tone": 64,
+    "limits": 76,
+    "insight": 72,
+    "density": 61,
+    "beginner": 82
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, compact, portable line that carries Chapter 1's idea."
+    },
+    {
+      "quote": "A bought response is not the same as a chosen return.",
+      "why": "Memorable distinction that makes the manipulation-versus-inspiration lesson stick."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template artifact leaks into the reader-facing implementation plan in multiple chapters."
+    },
+    {
+      "quote": "The old factory must have hidden a better version of the same checklist.",
+      "why": "This is the keyed answer for Chapter 1 Q8, but the chapter's prose supports the opposite diagnosis."
+    },
+    {
+      "quote": "The Motorola promotion warning shadows the nonprofit appeal beat last year's response after a fear-heavy letter, and the next mailing deadline is close.",
+      "why": "Corrupted sentence structure; it reads like pasted scaffolding fragments rather than clean prose."
+    },
+    {
+      "quote": "Success can keep the lights on while the meaning goes dim.",
+      "why": "One of the stronger aphorisms, clear and faithful to the fuzzy-WHY chapter."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has real teaching value: the core lenses are transferable, the prose is usually plain, and several memorable lines would likely survive a week. But it fails the correctness gate because Chapter 1 Q8 is keyed to an answer the chapter does not support, and because visible scaffold artifacts and corrupted generated sentences appear in reader-facing sections. The book also shows high template churn: each chapter uses the same tier structure, example rhythm, limits paragraph, implementation shell, and repeated rhetorical moves. It is a solid draft with useful ideas, but not publishable as shipped."
+}
+```

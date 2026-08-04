@@ -1,0 +1,88 @@
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorReview.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/bookSamenessRun.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/src/promoteBook.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/src/qc/sessionProvenance.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-provenance.test.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/tests/content-device-verify.test.ts
+ M scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-anchored-planning.test.ts
+?? .agents/
+?? scripts/book/prompts/chapterflow-v21-authored/scratch/
+?? scripts/book/prompts/chapterflow-v21-authored/state/autopilot-locks/
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782418498706.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782486282584.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782486383673.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782486512275.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782494241711.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782502063927.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782503792558.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782507836559.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508017274.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508156427.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508281466.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782508471790.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782509246555.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782511182285.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782511380589.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782511555057.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782528401416.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782528521987.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782529260919.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782535007314.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782535141978.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782568279522.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782573650097.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/books/_blocked/zz-fixture-source-integrity-promote.1782579734978.report.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/library-state.json.journal.jsonl
+?? scripts/book/prompts/chapterflow-v21-authored/state/name-plans/execution.name-plan.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/provenance/
+?? scripts/book/prompts/chapterflow-v21-authored/state/qc-orchestrator/zz-fixture-grounded-numbers/
+?? scripts/book/prompts/chapterflow-v21-authored/state/qc/zz-fixture-converge-ch01.manual-keyjudge.json
+?? scripts/book/prompts/chapterflow-v21-authored/state/qc/zz-fixture-converge-ch02.manual-keyjudge.json
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/.github/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/FAILURE-MODES.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/MASTER-PLAN.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/PHASE1-HANDOFF.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/PIPELINE-10of10-FIX-BACKLOG.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/PIPELINE-FINDINGS-step2-qc-2026-06.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/PIPELINE-HANDOFF.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/PIPELINE-QC-FINDINGS.md
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/archive/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/logs/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/calibrate-bp33.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/execution-ch03-ch05.json
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/phase3-author-write.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/phase3-regen.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/phase4-oldbook-read.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/repair-ch01-q1.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/repair-ch09-q1.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/review/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/run-panel3.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/run-panel4.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/stier-budget-check.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/stier-migrate-ledger.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/stier-render-sanity.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/surgical-repair-ch03-ch05.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/sweep-repair-all.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/tiebreak-ch07-reads/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/scratch/tiebreak-ch07.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/_quarantine/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/autopilot-logs/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/book-design/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/books/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/gate-attempts.json
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/indexes/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/library-state.json.journal.jsonl
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/metrics/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/plans/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/provenance/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/qc-orchestrator/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/qc/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/tests/calibration-scan.test.ts
+?? scripts/book/prompts/chapterflow-v24-author-pipeline/tests/promote-key-evidence-cli.test.ts

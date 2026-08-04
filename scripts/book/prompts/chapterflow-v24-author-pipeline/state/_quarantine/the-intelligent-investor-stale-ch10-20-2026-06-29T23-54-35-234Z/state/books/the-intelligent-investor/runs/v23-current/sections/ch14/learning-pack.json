@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch14",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch14.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.1"
+        ],
+        "prompt": "A stock looks exciting because the company is very small and could grow fast. What defensive test is being skipped?",
+        "choices": [
+          "Treat small size as safer because growth can be faster.",
+          "Ignore company size if the story sounds promising.",
+          "Require adequate company size because very small companies can carry limited records, liquidity, and resilience."
+        ],
+        "correctIndex": 2,
+        "explanation": "Adequate size is part of the defensive checklist. Very small companies can carry size risk that overwhelms growth hopes.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch14.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.2"
+        ],
+        "prompt": "A company has a popular product but a weak balance sheet. What should a defensive screen do?",
+        "choices": [
+          "Require strong financial condition because debt and liquidity still matter.",
+          "Accept the stock because a good product offsets a weak balance sheet.",
+          "Focus only on the product and ignore ordinary business setbacks."
+        ],
+        "correctIndex": 0,
+        "explanation": "Strong financial condition is a defensive requirement. Weak balance sheets can turn ordinary business setbacks into shareholder losses.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch14.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.3"
+        ],
+        "prompt": "A stock shows one excellent year of profits after an uneven record. What is the better defensive response?",
+        "choices": [
+          "Accept the latest peak because one excellent year qualifies the stock.",
+          "Require earnings stability across years because a single peak may not represent earning power.",
+          "Ignore earnings records because conservative appraisal does not use profits."
+        ],
+        "correctIndex": 1,
+        "explanation": "Earnings stability across years is required. Erratic profits make conservative appraisal unreliable, and a single peak may misstate earning power.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch14.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.4"
+        ],
+        "prompt": "A stock is dismissed because dividends are seen as relevant only to income investors. What does the defensive checklist say?",
+        "choices": [
+          "A long dividend record belongs in the test set because sustained payments indicate durability and shareholder orientation.",
+          "Dividends should be ignored because they do not evidence financial consistency.",
+          "Dividend records matter only when no earnings record exists."
+        ],
+        "correctIndex": 0,
+        "explanation": "A long dividend record is part of the defensive test set. Sustained payments can evidence durability, shareholder orientation, and financial consistency.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch14.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.5"
+        ],
+        "prompt": "A screen rejects any company without explosive growth. What adjustment fits a defensive approach?",
+        "choices": [
+          "Demand explosive growth because defensive stocks need glamour forecasts.",
+          "Look for some demonstrated earnings growth, since stagnant long-term earnings can erode real value.",
+          "Ignore growth entirely because moderate growth is never relevant."
+        ],
+        "correctIndex": 1,
+        "explanation": "Some earnings growth is required, but not as a glamour forecast. Moderate demonstrated growth is the conservative aim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch14.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.6"
+        ],
+        "prompt": "A stable company looks high quality, but the price to earnings multiple is excessive. What risk remains?",
+        "choices": [
+          "Quality makes any P/E acceptable.",
+          "A stable company cannot deliver poor returns.",
+          "Overpaying can still produce poor returns because valuation controls return."
+        ],
+        "correctIndex": 2,
+        "explanation": "Moderate price to earnings prevents overpaying for quality. Even stable companies can disappoint shareholders when the multiple is excessive.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch14.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.7"
+        ],
+        "prompt": "A stock passes an earnings-based valuation test, but price to assets is ignored as irrelevant. What is missing?",
+        "choices": [
+          "Asset value is irrelevant to common stocks when earnings look good.",
+          "Moderate price to assets supplies a second guard because earnings can be temporarily inflated.",
+          "Only price to earnings matters because assets never affect downside."
+        ],
+        "correctIndex": 1,
+        "explanation": "Moderate price to assets supplies another valuation check. Assets affect downside and appraisal when earnings may be temporarily inflated.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch14.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.8"
+        ],
+        "prompt": "A stock passes one famous metric but fails several other defensive tests. How should the result be read?",
+        "choices": [
+          "Passing one famous metric is enough for a defensive investor.",
+          "The strongest feature offsets several failures.",
+          "The tests work as a group, so one strong feature cannot offset several failures."
+        ],
+        "correctIndex": 2,
+        "explanation": "The checklist is cumulative. All tests work as a group rather than isolated proofs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch14.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch14.fact.9"
+        ],
+        "prompt": "A screen is criticized because it may reject some future winners. What is the defensive purpose of the checklist?",
+        "choices": [
+          "Keep doubtful issues out, since a defensive screen first limits error.",
+          "Maximize upside by accepting every possible winner.",
+          "Replace exclusion with story buying whenever upside appears large."
+        ],
+        "correctIndex": 0,
+        "explanation": "The checklist is designed for exclusion. Its purpose is to keep doubtful issues out, not to find every possible winner.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch14.fact.1"
+        ],
+        "front": "Why does adequate company size belong in a defensive stock checklist?",
+        "back": "Very small companies can carry limited records, liquidity, and resilience. Size risk can overwhelm growth hopes.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch14.fact.2"
+        ],
+        "front": "Why is strong financial condition a defensive requirement?",
+        "back": "Weak balance sheets can turn ordinary business setbacks into shareholder losses. Debt and liquidity still matter even when the product looks good.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch14.fact.3"
+        ],
+        "front": "Why is one excellent earnings year not enough?",
+        "back": "A single peak may not represent earning power. Earnings stability across years is needed because erratic profits make conservative appraisal unreliable.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch14.fact.4"
+        ],
+        "front": "What does a long dividend record add to a defensive test?",
+        "back": "Sustained payments can indicate durability and shareholder orientation. They also evidence financial consistency.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch14.fact.5"
+        ],
+        "front": "What kind of earnings growth fits a defensive screen?",
+        "back": "Some demonstrated earnings growth is required because stagnant long-term earnings can erode real value. The aim is moderate growth, not a glamour forecast.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch14.fact.6"
+        ],
+        "front": "Why does moderate price to earnings matter for a quality company?",
+        "back": "Even stable companies can deliver poor returns from excessive multiples. Valuation still controls return.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch14.fact.7"
+        ],
+        "front": "Why use moderate price to assets as a second valuation guard?",
+        "back": "Earnings can be temporarily inflated, while asset value gives another check. Assets affect downside and appraisal.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

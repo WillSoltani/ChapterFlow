@@ -1,0 +1,120 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 12,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 12,
+    "limits": 0,
+    "insight": 8,
+    "density": 6,
+    "beginner": 7
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "These consecutive empty headings expose the chapter's structurally incomplete scaffold."
+    },
+    {
+      "quote": "After everyone leaves, Pascal sees the narrow lane, the late change to the pickup door, and his own missing traffic cone.",
+      "why": "This is the strongest moment: concrete details reveal several contributions to an initially simple blame story."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The instruction is unusably circular because the chapter never identifies or teaches the move."
+    },
+    {
+      "quote": "Gita she must decide whether to open with accusation or a story they can both recognize.",
+      "why": "The sentence contains a grammatical error and ends before showing the decision or its consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status placeholder text and introduces neither a problem nor the chapter's subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone explanatory promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no chapter instruction to read; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the core move is never stated; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, providing no exercise or actionable procedure; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "Malformed phrases such as \"at Friday 5:54 p.m. in behind\" and \"Pascal he writes\" obstruct the scene, while the generic instruction never explains how to reproduce its move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The vignette shows a contribution list but no resulting decision or consequence, limiting transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Malformed phrases such as \"at Monday 9:24 p.m. in the dark dining table\" and \"Gita she\" make the scene read like an unedited template.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The vignette stops at a choice between accusation and a shared story, so it shows neither what Gita chooses nor what happens afterward.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples repeat \"Follow the scene's move\" and \"It shows the skill in context\" without ever naming the skill or giving operational steps.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or answer choices, making it broken; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no retention aid; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies none of the promised material; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "A reader can infer a possible theme about replacing blame with a shared contribution story, but the chapter never defines, explains, limits, or teaches that move; reserved category: UNUSABLE.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unshippable scaffold rather than a completed chapter. Nearly every instructional and retention section is empty, the quiz has no questions, and the two grammatically damaged vignettes ask readers to follow an unnamed move without supplying a method, boundary, exercise, or demonstrated consequence. Pascal's recognition of multiple contributions briefly suggests a potentially useful lesson about moving beyond blame, but that isolated implication cannot substitute for prose that teaches the skill."
+}
+```

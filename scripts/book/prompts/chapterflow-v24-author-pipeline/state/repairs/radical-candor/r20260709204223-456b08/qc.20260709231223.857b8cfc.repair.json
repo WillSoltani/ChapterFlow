@@ -1,0 +1,28 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T23:12:23.572Z",
+  "bookId": "radical-candor",
+  "runId": "r20260709204223-456b08",
+  "stage": "qc",
+  "severity": "infra",
+  "summary": "unexpected failure: codex exec timed out after 1800000ms — re-run `book-autopilot radical-candor` to resume from the current phase (logs: state/autopilot-logs/radical-candor).",
+  "findings": [],
+  "artifacts": [
+    "state/qc/radical-candor.sweep.json",
+    "state/qc/radical-candor.sweep-history.jsonl",
+    "state/qc-orchestrator/radical-candor/r20260709204223-456b08/sweep-record.json",
+    "state/qc-orchestrator/radical-candor/r20260709204223-456b08/evidence-matrix.json",
+    "state/qc-orchestrator/radical-candor/r20260709204223-456b08/repair-prompt.md"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge radical-candor",
+    "npx tsx src/cli.ts book-run radical-candor --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run radical-candor --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/r20260709204223-456b08/qc.20260709231223.857b8cfc.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/r20260709204223-456b08/qc.20260709231223.857b8cfc.repair.json"
+}

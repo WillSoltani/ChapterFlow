@@ -1,0 +1,11 @@
+Authored [start-with-why-ch14.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 match with required key pattern `2,2,0,0,1,1,1,2,0`
+- Evidence audit: clean
+- Rendered chars: `16316`
+- Distractor parity: key uniquely longest in `1/9`, uniquely shortest in `4/9`
+
+Note: the required `gate-chapter` command also maintained the pipeline’s untracked `state/gate-attempts.json` attempt log; the authored chapter output itself is the requested file.

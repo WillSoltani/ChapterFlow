@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-054",
+  "parsed": {
+    "caseId": "SQ-054",
+    "verdict": "DEFECT",
+    "defectClass": "reused narrative machinery / structural template",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The florist blamed the driver. The driver blamed the loading crew."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Gita's first line is you keep doing this."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "After everyone leaves, Pascal sees the narrow lane, the late change to the pickup door, and his own missing traffic cone."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The calendar shows a narrower start: we both touched the schedule and one of us was surprised."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Pascal he writes a contribution list before calling anyone careless."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Gita she must decide whether to open with accusation or a story they can both recognize."
+      }
+    ],
+    "explanation": "Both examples use the same machinery: a concrete object/time/place setup, an initial blame or accusation frame, a reframing toward shared contribution/context, and a final choice to avoid accusation in favor of a more recognizable joint story.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-054\",\"verdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / structural template\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The florist blamed the driver. The driver blamed the loading crew.\"},{\"materialIndex\":1,\"quote\":\"Gita's first line is you keep doing this.\"},{\"materialIndex\":0,\"quote\":\"After everyone leaves, Pascal sees the narrow lane, the late change to the pickup door, and his own missing traffic cone.\"},{\"materialIndex\":1,\"quote\":\"The calendar shows a narrower start: we both touched the schedule and one of us was surprised.\"},{\"materialIndex\":0,\"quote\":\"Pascal he writes a contribution list before calling anyone careless.\"},{\"materialIndex\":1,\"quote\":\"Gita she must decide whether to open with accusation or a story they can both recognize.\"}],\"explanation\":\"Both examples use the same machinery: a concrete object/time/place setup, an initial blame or accusation frame, a reframing toward shared contribution/context, and a final choice to avoid accusation in favor of a more recognizable joint story.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

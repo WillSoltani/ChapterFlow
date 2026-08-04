@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-005",
+  "parsed": {
+    "caseId": "SQ-005",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "source supports the hard specifics or causal claim, with contested science hedged"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "reported that obesity clustered in the Framingham Heart Study network"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "That claim is debated, so do not read it as proof"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A careful reading says your standards can shift"
+      }
+    ],
+    "explanation": "The candidate preserves the supported specific finding while clearly marking the claim as debated and warning against treating it as proof, which is proportionate uncertainty for contested science.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-005\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"source supports the hard specifics or causal claim, with contested science hedged\"},{\"materialIndex\":1,\"quote\":\"reported that obesity clustered in the Framingham Heart Study network\"},{\"materialIndex\":1,\"quote\":\"That claim is debated, so do not read it as proof\"},{\"materialIndex\":1,\"quote\":\"A careful reading says your standards can shift\"}],\"explanation\":\"The candidate preserves the supported specific finding while clearly marking the claim as debated and warning against treating it as proof, which is proportionate uncertainty for contested science.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

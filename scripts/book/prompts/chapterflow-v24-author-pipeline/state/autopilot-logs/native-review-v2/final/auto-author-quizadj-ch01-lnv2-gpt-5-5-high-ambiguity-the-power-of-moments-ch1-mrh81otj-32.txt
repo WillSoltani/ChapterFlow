@@ -1,0 +1,19 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "ada6e5679ba9bdfbf5b2e2ef8cc50d805c187fccfb9652acf77e773456178782",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {"itemId":"q01","keyedAnswerIndex":1,"derivedAnswerIndex":1,"agreement":true,"keyCorrect":"correct","rationale":"Choice b is best because the calm ending directly invokes the peak-end lesson rather than total duration."},
+    {"itemId":"q02","keyedAnswerIndex":1,"derivedAnswerIndex":1,"agreement":true,"keyCorrect":"correct","rationale":"Choice b is best because a vivid welcome cart creates a tellable arrival peak in an otherwise plain setting."},
+    {"itemId":"q03","keyedAnswerIndex":0,"derivedAnswerIndex":1,"agreement":false,"keyCorrect":"ambiguous","rationale":"Choices a and b are both defensible: the clapping publicly honors effort, while naming the next unit marks a threshold before private logistics."},
+    {"itemId":"q04","keyedAnswerIndex":2,"derivedAnswerIndex":2,"agreement":true,"keyCorrect":"correct","rationale":"Choice c explicitly matches elevation, insight, pride, and connection."},
+    {"itemId":"q05","keyedAnswerIndex":0,"derivedAnswerIndex":0,"agreement":true,"keyCorrect":"correct","rationale":"Choice a captures the red-phone lesson that one visible object can alter the expected script."},
+    {"itemId":"q06","keyedAnswerIndex":1,"derivedAnswerIndex":1,"agreement":true,"keyCorrect":"correct","rationale":"Choice b is best because the gift becomes memorable through staged delivery, request, and reveal."},
+    {"itemId":"q07","keyedAnswerIndex":2,"derivedAnswerIndex":2,"agreement":true,"keyCorrect":"correct","rationale":"Choice c directly applies the threshold idea by marking the shared crossing before assignments scatter."},
+    {"itemId":"q08","keyedAnswerIndex":0,"derivedAnswerIndex":0,"agreement":true,"keyCorrect":"correct","rationale":"Choice a is the false assumption because recall is not an equal-weight average of every minute."},
+    {"itemId":"q09","keyedAnswerIndex":2,"derivedAnswerIndex":2,"agreement":true,"keyCorrect":"correct","rationale":"Choice c is best because the mint is free but lacks a vivid, narratable format."}
+  ]
+}
+```

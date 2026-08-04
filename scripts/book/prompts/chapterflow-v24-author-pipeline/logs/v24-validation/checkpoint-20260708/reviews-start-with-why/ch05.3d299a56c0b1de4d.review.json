@@ -1,0 +1,101 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch05",
+  "chapterNumber": 5,
+  "contentHash": "3d299a56c0b1de4d",
+  "reviewerSessionId": "auto-author-review-ch05-mr78xwcu-17",
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 74,
+    "practical": 80,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 86,
+    "insight": 82,
+    "density": 79,
+    "beginner": 81
+  },
+  "composite": 81.9,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Keep the proof with its promise.",
+      "why": "Strong, memorable compression of the chapter's central move.",
+      "verified": true
+    },
+    {
+      "quote": "A cheap ticket can point up to belief, not down to price.",
+      "why": "Concrete image that helps the reader remember how WHAT can prove WHY.",
+      "verified": true
+    },
+    {
+      "quote": "The move half-works; hiring is named, but the comparison rule stays thin.",
+      "why": "The example diagnoses itself as thin, which weakens its teaching power.",
+      "verified": true
+    },
+    {
+      "quote": "Purpose sounded clean, but it never returned through Southwest Airlines as a 1971 low-fare carrier, Herb Kelleher as cofounder, or Apple design consistency in Cupertino with the 1998 iMac.",
+      "why": "This is accurate but overpacked and reads more like scaffold coverage than lived example.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several correct answers are made guessable by repeating the chapter's exact vocabulary while distractors sound obviously wrong, especially Q3(c), Q4(c), Q5(a), and Q8(c).",
+    "Q5(a) is much more specific and complete than its distractors, naming all three functions directly: reason, conduct, and visible proof."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers often echo the chapter's exact phrasing while distractors are broad or plainly wrong, so a test-wise reader could guess several keys without doing much derivation.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The scene contains names and a small prop, but the actual before-to-after is weak; it says the move half-works and the rule stays thin, then mostly restates the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example feels manufactured around required anchors rather than a real decision with consequence; it mostly repeats that proof must return.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "Most transfer examples are about drafting, training, or strategy talk inside the chapter's own teaching apparatus, so the skill applies less clearly to ordinary work outside the book-learning context.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter sometimes repeats the same loop vocabulary without adding new mechanism, especially around WHY/HOW/WHAT returning as proof.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a coherent, mostly professional chapter with a memorable core: proof has to return to the promise. The summaries layer well, the limits are unusually honest, and the Southwest/Dallas/Kelleher/Apple anchors keep the abstract model inspectable. I would not ship it yet against an 84 bar because the quiz has visible answer tells and some examples feel engineered to satisfy the lesson rather than to show a realistic decision and consequence. Tightening distractors and replacing one or two meta examples with lived workplace cases would likely move it over the line.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "42a6c8f7cea1cf718c51d2d20bee06c1941104b3899bbef478d1ccf74c513218",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T03:49:57.487Z"
+}

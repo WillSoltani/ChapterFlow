@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch12",
+  "hook": {
+    "hook": "A clean EPS headline can feel like the answer, until the footnotes show which costs were moved out of view.",
+    "counterintuition": "Per-share earnings are not self-explanatory. The safer habit is to inspect adjustments, footnotes, special charges, dilution, and cash generation before using EPS in valuation.",
+    "sourceAnchorIds": [
+      "ch12.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3",
+      "ch12.fact.4",
+      "ch12.fact.5",
+      "ch12.framework.eps.quality.checks"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "EPS is useful only after it is checked. Per-share earnings should be read with footnotes and adjustments because headline EPS may exclude or reclassify important costs. Averaging earnings across years can reduce cyclical distortion when a recent result sits at an unusually good or bad point. Special charges need judgment, not automatic removal, because repeated exceptions stop being exceptional. Dilution from options, convertibles, or warrants can spread earnings over more shares. Accounting profit also needs comparison with cash generation, since accrual earnings can look strong while cash flow is weak.",
+    "deepRead": "The first move is to stop treating EPS as a clean fact. Per-share earnings should be read with footnotes and adjustments because headline EPS may exclude or reclassify important costs. A reported number can be technically present and still incomplete for valuation if the costs behind it have been shifted into an adjustment, special item, or definition that changes the meaning.\n\nRecent earnings also need context. Averaging earnings across years can reduce cyclical distortion because one unusually good or bad year may not represent earning power. The most recent year can matter, but it should not automatically dominate valuation when recent results may be a cyclical extreme.\n\nSpecial charges require judgment rather than a reflex. The easy shortcut is to ignore every special charge and focus on an adjusted figure. That can be wrong because recurring unusual charges may reveal a real business problem. If exceptions keep returning, they are no longer safely exceptional.\n\nShare count and cash add two more tests. Dilution matters when options, convertibles, or warrants can increase share count, because future shares spread earnings over more owners. Basic EPS may miss that pressure. Accounting profit should also be compared with cash generation because accrual earnings can look strong while cash flow is weak. Profit and cash are not interchangeable when revenue recognition and working capital diverge.",
+    "fullRead": "EPS becomes dangerous when it is treated as the end of the analysis instead of the start. Per-share earnings should be read with footnotes and adjustments because headline EPS may exclude or reclassify important costs. The visible number may be convenient, but accounting choices can change its meaning. A cost that has been moved into an adjustment, described as special, or excluded from a preferred presentation may still affect the business owner. The practical question is not whether EPS was reported, but what had to be assumed, removed, or reclassified to produce it.\n\nThe next safeguard is to widen the time frame. Averaging earnings across years can reduce cyclical distortion because one unusually good or bad year may not represent earning power. A recent result can be informative, but it should not automatically control valuation. When current earnings sit at a cyclical extreme, the investor who capitalizes that figure may mistake a temporary condition for normal earning power. A smoother view across years helps separate durable performance from a short-lived peak or trough.\n\nSpecial charges demand the same skepticism in both directions. Ignoring every special charge is too generous, because recurring unusual charges may reveal a real business problem. Treating every charge as fully ordinary can also blur useful distinctions. The disciplined move is judgment: ask what the charge represents, whether the pattern repeats, and whether the adjusted figure removes a real cost. Repeated exceptions stop being exceptional, so an adjustment that appears again and again should not be accepted as harmless presentation.\n\nDilution changes the claim each share has on earnings. Options, convertibles, or warrants can increase share count, and future shares spread earnings over more owners. Basic EPS can therefore make shareholder economics look cleaner than they are. A per-share figure is only meaningful if the denominator deserves trust. When potential claims can become shares, diluted figures and share-count footnotes belong in the valuation check.\n\nCash generation is the final cross-check in the core earnings review. Accounting profit should be compared with cash generation because accrual earnings can look strong while cash flow is weak. Profit and cash are not always interchangeable: revenue recognition and working capital can diverge. If reported profit rises while cash generation lags, the investor should slow down before treating the earnings as high quality.\n\nThe useful routine is plain: read footnotes and adjustments, average earnings across years where cyclicality may distort the recent result, judge special charges instead of automatically excluding them, inspect dilution, and compare accounting profit with cash flow. EPS can still guide valuation, but only after the number survives those checks.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch12.fact.1",
+        "ch12.fact.2",
+        "ch12.fact.3",
+        "ch12.fact.4",
+        "ch12.fact.5"
+      ],
+      "deepRead": [
+        "ch12.fact.1",
+        "ch12.fact.2",
+        "ch12.fact.3",
+        "ch12.fact.4",
+        "ch12.fact.5"
+      ],
+      "fullRead": [
+        "ch12.fact.1",
+        "ch12.fact.2",
+        "ch12.fact.3",
+        "ch12.fact.4",
+        "ch12.fact.5",
+        "ch12.framework.eps.quality.checks"
+      ]
+    }
+  },
+  "keyTakeaway": "Do not value a stock from headline EPS alone; check footnotes, adjustments, cyclicality, special charges, dilution, and cash generation first.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch12.fact.1",
+    "ch12.fact.2",
+    "ch12.fact.3",
+    "ch12.fact.4",
+    "ch12.fact.5",
+    "ch12.framework.eps.quality.checks"
+  ],
+  "tryThisNow": "For the next EPS figure you review, save one template line: footnotes and adjustments checked, earnings averaged across years, special charges judged, dilution inspected, cash flow compared.",
+  "tryThisNowSourceAnchorIds": [
+    "ch12.fact.1",
+    "ch12.fact.2",
+    "ch12.fact.3",
+    "ch12.fact.4",
+    "ch12.fact.5"
+  ],
+  "sourceFactIds": [
+    "ch12.fact.1",
+    "ch12.fact.2",
+    "ch12.fact.3",
+    "ch12.fact.4",
+    "ch12.fact.5"
+  ]
+}

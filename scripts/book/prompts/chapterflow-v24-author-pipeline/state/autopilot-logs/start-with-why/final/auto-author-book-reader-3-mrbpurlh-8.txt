@@ -1,0 +1,59 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 83,
+    "quizzes": 70,
+    "transfer": 82,
+    "practical": 80,
+    "summaries": 78,
+    "tone": 64,
+    "limits": 83,
+    "insight": 78,
+    "density": 62,
+    "beginner": 75
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Strong compact line: portable, surprising, and easy to recall."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "One of the best retention lines; it cleanly reverses a common mistake."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Useful boundary principle, but the same move repeats heavily across chapters."
+    },
+    {
+      "quote": "One story can make you nod; two let you compare what actually repeats.",
+      "why": "Good transfer lens, but its near-equivalent appears across the sample, driving churn."
+    },
+    {
+      "quote": "Before, price carries the claim. After, employees carry it. Loyalty is still not earned.",
+      "why": "Shows the book's practical before/after teaching style, but also the templated cadence."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is correct and often useful, with strong central lenses: separate premise from tactic, keep source details scoped, and make proof return as visible behavior. The best aphorisms are genuinely sticky, and the quizzes are mostly answerable from the prose. The main weakness is severe cross-chapter sameness: each chapter leans on the same named-example ladder, same boundary warning, same comparison move, same repair cadence, and same quiz pattern. That makes the book feel engineered rather than individually authored. It ships as a solid draft on correctness and utility, but it needs more tonal variety, denser examples, real wrong-answer explanations, and less scaffold repetition before it feels premium."
+}
+```

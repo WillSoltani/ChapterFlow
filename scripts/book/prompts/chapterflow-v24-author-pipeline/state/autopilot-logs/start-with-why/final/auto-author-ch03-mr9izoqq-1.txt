@@ -1,0 +1,13 @@
+Done: [state/chapters/start-with-why-ch03.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch03.v21-native.chapter.json)
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 1 non-blocking minor
+- `quiz-verify`: 9/9 match with pattern `1,1,2,0,1,0,0,2,2`
+- `evidence-audit`: no evidence-integrity candidates
+- Rendered length: 16,289 chars, within the brief range
+
+Quiz choice lengths, key marked `*`:
+`q01 110/102*/99`, `q02 94/87*/82`, `q03 106/83/79*`, `q04 93*/111/83`, `q05 112/105*/98`, `q06 108*/133/83`, `q07 89*/89/81`, `q08 84/86/82*`, `q09 76/113/84*`.
+
+The remaining minor is `C27.exotic_name_density`, a false positive from source proper nouns like Apple, Cupertino, Inc, and Wright being counted as cast names.

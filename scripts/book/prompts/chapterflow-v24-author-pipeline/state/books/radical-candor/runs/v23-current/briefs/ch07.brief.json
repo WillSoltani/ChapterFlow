@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch07",
+  "chapterNumber": 7,
+  "title": "Team",
+  "coreMove": "Because the tool has a named designer and page span, it should be taught as a specific sequence.",
+  "thesis": "Career Conversations are credited to Russ Laraway and documented at Ch. 7 pp. 177-182.",
+  "readerPromise": "After this chapter, a reader can because the tool has a named designer and page span, it should be taught as a specific sequence.",
+  "ownedCases": [
+    {
+      "id": "ch07.ex.russ-laraway-career-conversations",
+      "label": "Russ Laraway Career Conversations"
+    },
+    {
+      "id": "ch07.ex.life-story-dreams-plan",
+      "label": "Life Story, Dreams, Eighteen-Month Plan"
+    },
+    {
+      "id": "ch07.ex.team-book-club-prompts",
+      "label": "Team discussion prompts"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Aristotle persuasion triad",
+    "Bob at Juice Software",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "CORE feedback framework",
+    "Care Personally plus Challenge Directly compass",
+    "Center for Creative Leadership SBI",
+    "GSD Wheel",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Kim Scott at Google and Apple",
+    "Meeting creep",
+    "Order of Operations feedback sequence",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Sheryl Sandberg at Google"
+  ],
+  "cast": [
+    "Spencer",
+    "Vera",
+    "Suzanne",
+    "Ryder"
+  ],
+  "answerIndexPattern": [
+    2,
+    1,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch08): \"The Results discussion prompts state the standard before\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared photo album",
+    "venue: a bulletin board note",
+    "venue: an unsent email draft",
+    "frame: a first attempt at ch pp and that gets corrected",
+    "frame: a first-time experience that sets a lasting benchmark"
+  ],
+  "architectureFamily": "single-deep-case",
+  "openerType": "question",
+  "challengeFrame": "timebox-N-minutes",
+  "practiceShape": "measure-one-number",
+  "exampleLenses": [
+    "numbers-detective",
+    "prop-tableau",
+    "dialogue-beat"
+  ],
+  "practiceVerb": "move",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "partial",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "measure-one-number",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain"
+  ],
+  "quizFailureModes": [
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority"
+  ],
+  "questionFactOrder": [
+    9,
+    4,
+    1,
+    7,
+    5,
+    8,
+    6,
+    2,
+    3
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Spencer"
+  },
+  "adjacentJobs": {
+    "prev": "Because each member guards a different delivery risk, the checklist keeps directness from becoming careless.",
+    "next": "Because Results follows the philosophy and team tools, it turns collaboration into operating routines."
+  }
+}

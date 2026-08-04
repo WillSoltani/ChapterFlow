@@ -1,0 +1,57 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "a", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several distractors are easy to reject because they overclaim with absolutes such as making every cause work like a company story, using named anchors to do all the teaching, or saying nothing important changes.",
+      "The keyed choices are often the only moderate, mechanism-based options, which makes some answers guessable from test-wise elimination."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 84,
+    "limits": 90,
+    "insight": 88,
+    "density": 85,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "WHY, HOW, and WHAT do separate work: reason, way, visible result. Blend them and you cannot tell whether the pitch has a belief, a method, or a thing to sell.",
+      "why": "Strongest mechanism: it makes the Golden Circle actionable instead of slogan-like."
+    },
+    {
+      "quote": "The product does not create the reason; the reason gives the product a job.",
+      "why": "Memorable core sentence that a reader is likely to retain."
+    },
+    {
+      "quote": "Two other source markers keep the Apple Inc line honest without turning the lesson into a tour.",
+      "why": "Worst clarity point: 'source markers' is abstract and may slow a beginner."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Several distractors are visibly wrong because they overstate the claim or use absolute framing, so some answers can be reached by elimination rather than prose recall.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The Wright brothers and Martin Luther King Jr. anchors are used mostly as boundary markers; they support transfer, but they do not fully demonstrate a before-to-after application outside Apple.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Terms such as 'return question,' 'return point,' and 'source markers' are useful but slightly underdefined for a cold beginner.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear, memorable move: put WHY before proof, keep HOW and WHAT in their own jobs, and make behavior verify the promise. The Apple through-line is concrete enough, the summaries stand alone, and the practical prompts are usable at paragraph or email scale. The main weaknesses are craft-level: some quiz distractors are too obviously extreme, and the transfer material around the Wright brothers and Martin Luther King Jr. is more boundary-setting than fully worked application."
+}
+```

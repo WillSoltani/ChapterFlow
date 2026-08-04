@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-015",
+  "parsed": {
+    "caseId": "SQ-015",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_FACTUAL_EMBELLISHMENT",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "The Zappos trainer closes the Zappos training binder, then stops before the usual applause."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "New hires are still in their seats, name tags curled at the corners."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "She gives the room a quiet minute before anyone signs the final form."
+      }
+    ],
+    "explanation": "The candidate presents invented scene details, actions, and procedures as events in the real Zappos case, although the source plan supports only the company, new hires, training, and the $1,000 offer.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-015\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_FACTUAL_EMBELLISHMENT\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"The Zappos trainer closes the Zappos training binder, then stops before the usual applause.\"},{\"materialIndex\":1,\"quote\":\"New hires are still in their seats, name tags curled at the corners.\"},{\"materialIndex\":1,\"quote\":\"She gives the room a quiet minute before anyone signs the final form.\"}],\"explanation\":\"The candidate presents invented scene details, actions, and procedures as events in the real Zappos case, although the source plan supports only the company, new hires, training, and the $1,000 offer.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

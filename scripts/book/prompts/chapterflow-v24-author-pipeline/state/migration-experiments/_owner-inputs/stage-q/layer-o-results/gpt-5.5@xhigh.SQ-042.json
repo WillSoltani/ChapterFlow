@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-042",
+  "parsed": {
+    "caseId": "SQ-042",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Evidence class: score-only"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "No chapter-level rationale was supplied"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Score-only conditions are navigation hypotheses and require fresh source review."
+      }
+    ],
+    "explanation": "The proposed finding is explicitly score-only and lacks chapter-level rationale; the contract says such concerns require fresh source evidence before they can be upheld as defects.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-042\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Evidence class: score-only\"},{\"materialIndex\":0,\"quote\":\"No chapter-level rationale was supplied\"},{\"materialIndex\":1,\"quote\":\"Score-only conditions are navigation hypotheses and require fresh source review.\"}],\"explanation\":\"The proposed finding is explicitly score-only and lacks chapter-level rationale; the contract says such concerns require fresh source evidence before they can be upheld as defects.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

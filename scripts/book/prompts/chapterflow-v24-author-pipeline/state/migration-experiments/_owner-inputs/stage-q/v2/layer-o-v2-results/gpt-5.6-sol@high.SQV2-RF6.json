@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF6",
+  "target": "REVIEW_FINDING",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":\"“Consider a generic anonymous case: a team that ships on Fridays and spends Mondays on rollbacks.” “A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.”\",\"rationale\":\"The candidate explicitly presents the scenario as a generic anonymous case, so the material does not support the allegation that it misleadingly represents a real case. The review contract requires direct or contextual evidence of the alleged problem, and none is provided; the note that the framing could be slightly clearer does not establish a defect or justify severe P0 treatment.\"}"
+}

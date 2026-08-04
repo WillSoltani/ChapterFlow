@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices echo the chapter's exact teaching vocabulary more strongly than the distractors, especially Q8's 'checkable ground' and Q9's 'visible operating pattern', but no item has a decisive length or phrasing tell."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 89,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 87,
+    "density": 78,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Trust is permission to rely before every detail is rechecked.",
+      "why": "Strongest compression of the mechanism; it is memorable and operational."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt for proof that came back.",
+      "why": "A clear, durable reversal that anchors the chapter's sequence."
+    },
+    {
+      "quote": "After a Houston operating debrief, analyst Hailey traces Continental Airlines, founded in 1934 and later based in Houston, back through the cost of rebuilding trust through action.",
+      "why": "The transfer scene is overloaded and reads partly manufactured."
+    },
+    {
+      "quote": "In a bicycle shop staff huddle, service lead Daniel hears the early signal: 1994, and no one has flagged it yet.",
+      "why": "The setup feels contrived and less like a real workplace moment."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The phrase 'Continental Airlines adds a second bill' is unclear; 'bill' does not land naturally and briefly interrupts comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 2",
+      "problem": "The scene carries too many stacked facts and one atmospheric detail, making the application feel more assembled than lived.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The bicycle-shop transfer is plausible in structure but artificial in presentation; the 'early signal: 1994' moment feels staged rather than like a decision a real team would face.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The belief-act-trust-loyalty sequence is repeated many times in similar language, which lowers density even though the core idea is strong.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable: the chapter has a clear mechanism, strong memorable lines, fair quizzes, honest limits, and a practical move a beginner can use. Its main weakness is not correctness but texture: several transfer scenes feel constructed around the lesson rather than discovered from real decisions, and the core sequence gets repeated enough to soften density. The trust-before-loyalty reversal is strong enough to carry the chapter, but tightening the manufactured examples would make it feel more professional."
+}
+```

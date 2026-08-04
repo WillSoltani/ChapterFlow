@@ -1,0 +1,9 @@
+Completed chapter 08 in [state/chapters/start-with-why-ch08.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch08.v21-native.chapter.json).
+
+Verification:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 6 minors
+- `quiz-verify`: 9/9 matched expected keys
+- `evidence-audit`: no evidence-integrity candidates
+- Length: 15,242 rendered chars
+- Prior complaint fixed: reading surface now has `Allen` 2 times and `Disney` 5 times.

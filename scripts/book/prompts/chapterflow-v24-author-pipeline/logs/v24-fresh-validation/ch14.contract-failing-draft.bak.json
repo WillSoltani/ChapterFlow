@@ -1,0 +1,643 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "high-output-management-ch14",
+  "number": 14,
+  "title": "Two Difficult Tasks",
+  "readingTimeMinutes": 7,
+  "hook": "The fair interview is the narrow one; it gives charm fewer places to hide.",
+  "hookSourceAnchorIds": [
+    "ch14.fact.1",
+    "ch14.fact.9"
+  ],
+  "counterintuition": "Open-ended talks look fair. In these two hard tasks, fairness starts when the proof is narrow enough for the other person to inspect.",
+  "counterintuitionSourceAnchorIds": [
+    "ch14.fact.1",
+    "ch14.fact.5",
+    "ch14.fact.9"
+  ],
+  "tryThisNow": "Take 10 minutes: cross-out one interview or correction line that asks for a mood read, then write the evidence line beside it.",
+  "tryThisNowSourceAnchorIds": [
+    "ch14.fact.2",
+    "ch14.fact.5",
+    "ch14.fact.9"
+  ],
+  "keyTakeaway": "Interviews and correction need the same line: define the task first; ask for evidence; name behavior, target, and stake before the promise moves.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch14.fact.2",
+    "ch14.fact.3",
+    "ch14.fact.5",
+    "ch14.fact.6",
+    "ch14.fact.7"
+  ],
+  "breakdown": {
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch14.ex.interviewQuestions",
+        "ch14.ex.correctiveConversation",
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.8",
+        "ch14.fact.9"
+      ],
+      "deepRead": [
+        "ch14.ex.interviewQuestions",
+        "ch14.ex.correctiveConversation",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.9"
+      ],
+      "fullRead": [
+        "ch14.ex.jobInterview",
+        "ch14.ex.interviewQuestions",
+        "ch14.ex.correctiveConversation",
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8",
+        "ch14.fact.9"
+      ]
+    },
+    "fastRead": "The fair interview is the narrow one.\n\nYou feel the risk when a smooth answer starts to stand in for fit. In a job interview, the short window asks you to predict future task fit from limited proof. Task-focused interview questions keep that guess honest only if the job demand is named first.\n\nLacey's better screen asks for past behavior examples and job-related problems tied to the role. Skip that, and the cost does not stay in the interview. A poor fit moves into team output, coaching time, and later correction.\n\nAfter a performance gap, Nash needs the same evidence rule. The employee needs supporting evidence, expected change and consequence. Name the evidence before the heat.",
+    "deepRead": "Evidence works because it gives both people the same object to inspect. In an interview, that object is not a mood; it is a past action, a job-related problem, or a role demand.\n\nLacey catches the drift before the candidate arrives. Her first prompts ask what the person would do in broad terms. That is too late to learn much. She crosses out the future guess and writes one demand from the role. Then she asks for past behavior examples. Fair means the question has a job to do.\n\nPast behavior examples let you inspect how a person acted. Job-related problems show how the person thinks against the actual demand. Requirements make both answers useful as evidence. Without the requirement, evidence is just a story with no scale.\n\nThe same rule carries into correction. A performance gap needs supporting evidence, expected change and consequence. Authority can get a nod. It cannot tell the employee which behavior created the concern.\n\nName the evidence first. Then name the change. If the target is missing, dissatisfaction sounds like advice. If the consequence is missing, the message may feel optional. Consequence is not punishment by default; it is the stake that says the gap now matters.\n\nThis costs prep time. Pay it early. When you skip it, the promise drifts: the hire enters with the wrong proof, or the employee leaves with a mood instead of a target.",
+    "fullRead": "Daniel inherits the miss after the hire starts the real task. The first fault happened earlier, when specific job requirements were treated as a title rather than as demands. Once that happened, every answer had too much freedom.\n\nWhat failed first? The requirement. Candidate evidence only means something against the work the person must do. A story about drive or judgment may be true and still miss the role. The short interview window then rewards the answer that feels best.\n\nSecond, the questions invited self-description. The candidate could say how they would handle a future problem. That can sound clean. It is weaker than past behavior examples because it does not prove how the person acted when a real task pressed back.\n\nThird, no job-related problems tested the reasoning the role needs. A hard puzzle is not useful by itself. The useful problem maps to the job demand, so the interviewer can compare the candidate's approach with the task itself. That is requirements-based evidence. Hard but unrelated is noise with a serious face.\n\nNow the cost moves. The poor fit affects team output. Daniel spends time on later correction. Other people adjust around a gap that should have been caught before the promise moved from candidate to colleague. Delay turns one weak prediction into a chain of repair.\n\nNash can fail the same way in a corrective talk. He can say, \"This has to improve,\" and still give the employee no way to act. The hard part is not saying the hard thing; it is proving which thing is hard. If the behavior or result is unnamed, the concern becomes fog.\n\nSo the line has to carry the performance gap, supporting evidence, expected change, and consequence. The employee must understand what behavior or result created the concern. The target tells them what success would look like. The consequence tells them this is not ordinary advice.\n\nThere is a limit. If you cannot name the behavior, the result, or the job demand, the serious message is not ready. Do the slower thing first: gather the fact, define the role, or ask the task-focused question. A hard line without proof is not brave. It is early.\n\nThis still works when you have no title. Before you ask to be considered, challenge a teammate, or promise a change, make the proof visible. Cross out the vague line. Replace \"I think this is not working\" with \"here is the behavior I saw and the change I need.\" Then the other person can answer the real claim.\n\nThe failure teaches a plain lesson. Comfort is not fairness. A short interview and a corrective talk both feel human because they are face to face, but the fair part is the evidence. Without it, the other person is left to guess what mattered, and the cost keeps moving."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch14.ex.interviewQuestions",
+      "sourceAnchorIds": [
+        "ch14.ex.interviewQuestions"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.interviewQuestions"
+      ],
+      "title": "Daniel Inherits The Screen",
+      "tags": [
+        "interview",
+        "cost"
+      ],
+      "planSpec": {
+        "domain": "task-focused interview questions",
+        "audience": "people choosing a hire",
+        "stakes": "a weak screen moves cost into the team",
+        "format": "failure autopsy",
+        "requiredBeat": "the team feels the cost before the better question is named"
+      },
+      "scenario": "Daniel first feels the effect after the new hire reaches a task the interview never sampled. He was not part of the call; he inherits the gap in team output and coaching time. The earlier questions asked for broad confidence instead of past behavior examples. Repair works, but late: the next screen uses job-related problems. Before: smooth fit. After: requirements-based evidence.",
+      "whatToDo": "What did the skipped question cost? Daniel pays in team output and time. Put one requirement before each prompt, then ask for a past behavior example.",
+      "whyItMatters": "Where did the cost travel? Into later correction. Task-focused interview questions keep the burden inside the hiring call, where it is still cheap to fix."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch14.ex.interviewQuestions",
+      "sourceAnchorIds": [
+        "ch14.ex.interviewQuestions"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.interviewQuestions"
+      ],
+      "title": "Lacey Catches The Drift",
+      "tags": [
+        "requirements",
+        "bias"
+      ],
+      "planSpec": {
+        "domain": "interview preparation",
+        "audience": "interviewers under time pressure",
+        "stakes": "liking can outrun proof",
+        "format": "late catch",
+        "requiredBeat": "an early signal is caught just before mood takes over"
+      },
+      "scenario": "Hiring lead Lacey spots the early signal nobody has flagged: her list has future guesses, not past behavior examples or job-related problems. The cursor blinks in the empty task field. She is close to letting liking carry the interview, then crosses out the broad prompt and writes one problem tied to the role. The catch is late. It barely keeps mood from becoming requirements-based evidence.",
+      "whatToDo": "Why does the late catch work? It gives the question a role demand. Cross-out the broad prompt, then ask for a past behavior example.",
+      "whyItMatters": "What changed before the call? Lacey still pays delay, but job-related problems turn the filter from mood to evidence before she advances."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch14.ex.correctiveConversation",
+      "sourceAnchorIds": [
+        "ch14.ex.correctiveConversation"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.correctiveConversation"
+      ],
+      "title": "Nash Makes It Vague",
+      "tags": [
+        "correction",
+        "limit"
+      ],
+      "planSpec": {
+        "domain": "corrective performance conversation",
+        "audience": "people giving serious feedback",
+        "stakes": "authority can win a nod and lose the change",
+        "format": "failed exchange",
+        "requiredBeat": "a serious standard is stated without evidence"
+      },
+      "scenario": "Lead Nash states the demand at the close of a shift: \"This has to improve.\" The employee asks what that means. Nash says, \"You know the standard.\" The talk has force, but no supporting evidence, no expected change, and no consequence. The miss lands right there. The employee leaves with pressure, not a target, and the same performance gap comes back.",
+      "whatToDo": "What should Nash have had? One cited behavior, one target, and one stake. If he cannot name those, the serious line is not ready.",
+      "whyItMatters": "Why does the nod mislead? The employee heard rank and worry, but not the act to change. Agreement nods; commitment signs."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch14.ex.jobInterview",
+      "sourceAnchorIds": [
+        "ch14.ex.jobInterview"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.jobInterview"
+      ],
+      "title": "Grace Slows The Yes",
+      "tags": [
+        "job-interview",
+        "decision"
+      ],
+      "planSpec": {
+        "domain": "job interview",
+        "audience": "people making a hiring call",
+        "stakes": "a fast yes can become a slow correction",
+        "format": "decision repair",
+        "requiredBeat": "the hiring demand is already past when the evidence is rebuilt"
+      },
+      "scenario": "Grace crosses out likable on the paper note after the candidate has left. The hiring demand is already in the past: a short interview, little candidate evidence, no match to specific job requirements. She slows the yes and rebuilds the call around task fit. The role waits, but the decision now rests on proof instead of mood.",
+      "whatToDo": "Who slows the yes? Grace compares candidate evidence with the role demand before she accepts the comfort of the call. The open role waits.",
+      "whyItMatters": "Why take the pause? A fast yes can move cost into team output; a slow one keeps the miss inside the interview decision, where it is cheaper."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch14.fact.5",
+        "prompt": "A supervisor gets compliance but no clear change after a corrective talk; which explanation best fits?",
+        "choices": [
+          "The talk moved to the future target before the employee could inspect the behavior that caused concern.",
+          "The warning came from too few people, so the employee had no clear reason to trust one speaker's view of the gap.",
+          "The concern was not tied to a behavior or result, so the employee could not know what had to change."
+        ],
+        "correctIndex": 2,
+        "explanation": "Evidence has to name the act or result behind concern. The future-target choice is a real step, but it fires too soon when the employee still cannot see the cause.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch14.fact.4",
+        "prompt": "Why did a clever hiring puzzle fail to predict the role?",
+        "choices": [
+          "It came too early in the interview, so the candidate had not yet had a chance to show broad strengths.",
+          "It was not hard enough to expose reasoning under pressure inside a short interview window.",
+          "It did not map to actual task demands, so the answer could not show the reasoning the role required."
+        ],
+        "correctIndex": 2,
+        "explanation": "The puzzle is useful only when it maps to job demands. Making it harder or warmer would still leave the interviewer comparing the wrong signal.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch14.fact.9",
+        "prompt": "Before a panel meets a candidate, which priority comes first?",
+        "choices": [
+          "Set role requirements and task questions in advance, so the exchange has to follow evidence rather than mood.",
+          "Invite each interviewer to improvise from recent memories, so the group can catch cues a fixed set might miss.",
+          "Let the senior interviewer name the standard afterward, so rank can absorb gaps in the first round."
+        ],
+        "correctIndex": 0,
+        "explanation": "Preparation narrows attention to proof before mood takes over. Improvised recent memories feel flexible, but they are where bias can enter.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch14.fact.7",
+        "prompt": "A serious warning was heard as ordinary advice; what earlier missing part best explains that?",
+        "choices": [
+          "The speaker never named the consequence if the gap stayed open, so the warning had no clear stake.",
+          "The speaker gave concrete evidence too soon, so the employee treated the facts as a debate rather than a serious gap.",
+          "The speaker named the target before the concern, so the employee heard a coaching tip instead of a formal warning."
+        ],
+        "correctIndex": 0,
+        "explanation": "Consequence is the stake that separates serious correction from advice. Evidence matters too, but the stem asks why the warning felt optional.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch14.fact.1",
+        "prompt": "Why can a strong interview still point toward the wrong hire?",
+        "choices": [
+          "The panel treated selected history as useless once the conversation felt strong, so it lost a signal it should inspect.",
+          "The exchange was a short prediction from limited proof, and charm in that window can differ from task fit.",
+          "The candidate sounded less certain than expected, so confidence became a safer signal than task evidence."
+        ],
+        "correctIndex": 1,
+        "explanation": "Interviewing is a prediction made from thin proof. Throwing out selected history would make the screen worse; the limit is that talk and history can mislead.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch14.fact.8",
+        "prompt": "After a marginal hire stayed, why did the cost grow?",
+        "choices": [
+          "The lead waited because weak fit can be fixed later with little added cost when the team has patience.",
+          "The poor fit began to affect team output, consume lead time, and require later correction.",
+          "The first screen was too tied to the role, so unrelated strengths had no chance to balance the miss."
+        ],
+        "correctIndex": 1,
+        "explanation": "Delay moves the miss into team output and later correction. The patience answer repeats the error that a marginal fit can be fixed without cost.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch14.fact.2",
+        "prompt": "For a school club choosing a student helper, what maps first?",
+        "choices": [
+          "Begin with a friendly talk and infer the job from the answer that sounds most mature.",
+          "Define the helper's tasks first, so each answer can be weighed against the work the helper must do.",
+          "Ask for broad strengths, then shape the helper role around the student who sounds strongest for the group."
+        ],
+        "correctIndex": 1,
+        "explanation": "The helper role still needs a demand before judgment. A friendly talk may feel fair, but it lets broad likability replace task fit.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch14.fact.6",
+        "prompt": "When an employee has heard the evidence but asks what success would look like, what should come next?",
+        "choices": [
+          "Raise the consequence first, because pressure can make the desired conduct clear without another detail.",
+          "Have another lead repeat the concern, because an official second voice can make the target clearer.",
+          "State the future behavior that would count as improvement, because evidence alone does not set the target."
+        ],
+        "correctIndex": 2,
+        "explanation": "After evidence, the person needs the target. A consequence can make the issue serious, but pressure does not define the behavior that will count as better.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch14.fact.3",
+        "prompt": "A candidate gives a smooth answer about what they would do; what should the interviewer ask for?",
+        "choices": [
+          "Ask for a concrete past example, so the interviewer can inspect prior action against the role.",
+          "Ask for a cleaner future scenario, so the candidate can show how they would reason under a new prompt.",
+          "Ask for broad self-description, so different candidates can be compared on the same general traits."
+        ],
+        "correctIndex": 0,
+        "explanation": "Past action gives inspectable proof. A future scenario can sound ready while avoiding the harder question of what the candidate has actually done.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorIds": [
+        "ch14.fact.2"
+      ],
+      "front": "Why define role demands before an interview?",
+      "back": "Answers only become evidence against a defined task. Without the demand, a strong answer can show comfort rather than fit.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorIds": [
+        "ch14.fact.3"
+      ],
+      "front": "What beats abstract self-description?",
+      "back": "A concrete past example, because it shows how the person acted. A future answer can be shaped without proving behavior.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorIds": [
+        "ch14.fact.4"
+      ],
+      "front": "When is a hard interview problem useful?",
+      "back": "When it maps to the role's real demand. A hard puzzle that does not match the job only shows puzzle handling.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorIds": [
+        "ch14.fact.5",
+        "ch14.fact.6"
+      ],
+      "front": "What must corrective evidence let the employee see?",
+      "back": "The behavior or result that caused concern, plus the future target. Without both, the person may nod and still not know what to change.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorIds": [
+        "ch14.fact.7"
+      ],
+      "front": "Why name a consequence in serious correction?",
+      "back": "Because without a stake, the message can sound like ordinary advice. A clear consequence makes the performance gap real.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorIds": [
+        "ch14.fact.8"
+      ],
+      "front": "Why does a delayed hiring miss get expensive?",
+      "back": "The poor fit starts to affect team output, interviewer time, and later correction effort. The cost moves after the call.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c07",
+      "sourceAnchorIds": [
+        "ch14.fact.9"
+      ],
+      "front": "How does interview prep reduce bias?",
+      "back": "Predetermined requirements and questions keep attention on evidence. Improvisation can overweight liking and the most recent answer.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Draft The Evidence Line",
+    "titleSourceAnchorIds": [
+      "ch14.fact.5"
+    ],
+    "coreSkill": "Before a hard exchange, draft the proof the other person can inspect. In hiring, tie each question to a role demand. In correction, name the behavior, target, and stake before you expect change.",
+    "coreSkillSourceAnchorIds": [
+      "ch14.fact.2",
+      "ch14.fact.3",
+      "ch14.fact.4",
+      "ch14.fact.5",
+      "ch14.fact.6",
+      "ch14.fact.7"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorIds": [
+          "ch14.fact.2",
+          "ch14.fact.9"
+        ],
+        "context": "When an interview is scheduled",
+        "plan": "If an interview is scheduled, then write one role demand above the first question."
+      },
+      {
+        "sourceAnchorIds": [
+          "ch14.fact.3",
+          "ch14.fact.4"
+        ],
+        "context": "When a hiring question asks for a future guess",
+        "plan": "If a hiring question asks for a future guess, then cross-out the guess and ask for a past example."
+      },
+      {
+        "sourceAnchorIds": [
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7"
+        ],
+        "context": "When a correction line says only improve",
+        "plan": "If a correction line says only improve, then draft the behavior, target, and stake before the talk."
+      }
+    ],
+    "twentyFourHourChallenge": "Spend 10 minutes before the hard moment: cross-out the vague opener and draft the exact sentence you will use, with the behavior and target named.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch14.fact.5",
+      "ch14.fact.6"
+    ],
+    "weeklyPractice": "Measure one number during the week: how many interviews or serious talks began with role demand, evidence, target, or stake named before mood took over.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch14.fact.5",
+      "ch14.fact.7",
+      "ch14.fact.9"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "Name the evidence before the heat.",
+      "location": "breakdown.fastRead",
+      "why": "It is the short command that links interviews and correction.",
+      "sourceAnchorIds": [
+        "ch14.fact.5",
+        "ch14.fact.9"
+      ]
+    },
+    {
+      "text": "The hard part is not saying the hard thing; it is proving which thing is hard.",
+      "location": "breakdown.fullRead",
+      "why": "It reverses the usual focus from courage in the talk to evidence before the talk.",
+      "sourceAnchorIds": [
+        "ch14.fact.5"
+      ]
+    },
+    {
+      "text": "Fair means the question has a job to do.",
+      "location": "breakdown.deepRead",
+      "why": "It redefines fairness as a question tied to a real task.",
+      "sourceAnchorIds": [
+        "ch14.fact.2",
+        "ch14.fact.9"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:975448630b165d14147db7b8f367f2be632572f90452539d0e3f12ff7fdaade9",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/high-output-management/20260708T072522266Z-6ab8af26-379d-4f30-8db2-2d36d6b819e3/sidecars/source/ch14.source.json",
+      "observedAnchorIds": [
+        "ch14.concept",
+        "ch14.ex.jobInterview",
+        "ch14.ex.interviewQuestions",
+        "ch14.ex.correctiveConversation",
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8",
+        "ch14.fact.9",
+        "ch14.framework.interview.evidence.path"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch14.fact.1",
+          "ch14.fact.9"
+        ],
+        "counterintuition": [
+          "ch14.fact.1",
+          "ch14.fact.5",
+          "ch14.fact.9"
+        ],
+        "tryThisNow": [
+          "ch14.fact.2",
+          "ch14.fact.5",
+          "ch14.fact.9"
+        ],
+        "keyTakeaway": [
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7"
+        ],
+        "breakdown.fastRead": [
+          "ch14.ex.interviewQuestions",
+          "ch14.ex.correctiveConversation",
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.8",
+          "ch14.fact.9"
+        ],
+        "breakdown.deepRead": [
+          "ch14.ex.interviewQuestions",
+          "ch14.ex.correctiveConversation",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.9"
+        ],
+        "breakdown.fullRead": [
+          "ch14.ex.jobInterview",
+          "ch14.ex.interviewQuestions",
+          "ch14.ex.correctiveConversation",
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.8",
+          "ch14.fact.9"
+        ],
+        "examples[0]": [
+          "ch14.ex.interviewQuestions"
+        ],
+        "examples[1]": [
+          "ch14.ex.interviewQuestions"
+        ],
+        "examples[2]": [
+          "ch14.ex.correctiveConversation"
+        ],
+        "examples[3]": [
+          "ch14.ex.jobInterview"
+        ],
+        "quiz.questions[0]": [
+          "ch14.fact.5"
+        ],
+        "quiz.questions[1]": [
+          "ch14.fact.4"
+        ],
+        "quiz.questions[2]": [
+          "ch14.fact.9"
+        ],
+        "quiz.questions[3]": [
+          "ch14.fact.7"
+        ],
+        "quiz.questions[4]": [
+          "ch14.fact.1"
+        ],
+        "quiz.questions[5]": [
+          "ch14.fact.8"
+        ],
+        "quiz.questions[6]": [
+          "ch14.fact.2"
+        ],
+        "quiz.questions[7]": [
+          "ch14.fact.6"
+        ],
+        "quiz.questions[8]": [
+          "ch14.fact.3"
+        ],
+        "reviewCards[0]": [
+          "ch14.fact.2"
+        ],
+        "reviewCards[1]": [
+          "ch14.fact.3"
+        ],
+        "reviewCards[2]": [
+          "ch14.fact.4"
+        ],
+        "reviewCards[3]": [
+          "ch14.fact.5",
+          "ch14.fact.6"
+        ],
+        "reviewCards[4]": [
+          "ch14.fact.7"
+        ],
+        "reviewCards[5]": [
+          "ch14.fact.8"
+        ],
+        "reviewCards[6]": [
+          "ch14.fact.9"
+        ],
+        "implementationPlan.title": [
+          "ch14.fact.5"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch14.fact.2",
+          "ch14.fact.9"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch14.fact.3",
+          "ch14.fact.4"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch14.fact.5",
+          "ch14.fact.6"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch14.fact.5",
+          "ch14.fact.7",
+          "ch14.fact.9"
+        ],
+        "memorableLines[0]": [
+          "ch14.fact.5",
+          "ch14.fact.9"
+        ],
+        "memorableLines[1]": [
+          "ch14.fact.5"
+        ],
+        "memorableLines[2]": [
+          "ch14.fact.2",
+          "ch14.fact.9"
+        ]
+      }
+    }
+  }
+}

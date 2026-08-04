@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, utimesSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
+import { manualKeyJudgePath } from "../src/qc/manualKeyJudge.js";
 import { openQcRound, qcRoundPath } from "../src/qc/qcRound.js";
 import { orchestratorRoundDir, roundRecordPath } from "../src/qc/orchestrator/artifacts.js";
 import { finalizeQcRound } from "../src/qc/orchestrator/finalize.js";
@@ -21,6 +22,42 @@ import type { ChapterV21 } from "../src/types.js";
 
 const BOOK = "zz-fixture-converge";
 const ROUND = "r-converge";
+
+type TestFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+function snapshotTestFile(path: string): TestFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreTestFile(snapshot: TestFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  mkdirSync(dirname(snapshot.path), { recursive: true });
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
+
+function snapshotParentDirs(paths: string[]): Array<{ path: string; existed: boolean }> {
+  return [...new Set(paths)]
+    .sort((a, b) => b.split("/").length - a.split("/").length)
+    .map((path) => ({ path, existed: existsSync(path) }));
+}
+
+function pruneAbsentEmptyParents(parents: Array<{ path: string; existed: boolean }>): void {
+  for (const parent of parents) {
+    if (!parent.existed && existsSync(parent.path) && readdirSync(parent.path).length === 0) rmSync(parent.path, { recursive: true, force: true });
+  }
+}
 
 function cleanup(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -80,6 +117,16 @@ test("evaluateDeterministic flags a ship-gate blocker (em-dash B5) and reports D
 test("FIDELITY: evaluateDeterministic's six checks EQUAL finalize's (no drift â€” they share the evaluator)", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const oldWarn = console.warn;
+  const manualKeySnapshots = [1, 2].map((n) => snapshotTestFile(manualKeyJudgePath(BOOK, n)));
+  const runBookDir = resolve(REPO_ROOT, ".chapterflow/runs", BOOK);
+  const parentSnapshots = snapshotParentDirs([
+    dirname(manualKeyJudgePath(BOOK, 1)),
+    dirname(orchestratorRoundDir(BOOK, ROUND)),
+    dirname(dirname(orchestratorRoundDir(BOOK, ROUND))),
+    dirname(qcRoundPath(BOOK, ROUND)),
+    dirname(runBookDir),
+    dirname(dirname(runBookDir)),
+  ]);
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     console.warn = () => {};
@@ -113,6 +160,8 @@ test("FIDELITY: evaluateDeterministic's six checks EQUAL finalize's (no drift â€
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
     console.warn = oldWarn;
     cleanup();
+    for (const snapshot of manualKeySnapshots) restoreTestFile(snapshot);
+    pruneAbsentEmptyParents(parentSnapshots);
   }
 });
 

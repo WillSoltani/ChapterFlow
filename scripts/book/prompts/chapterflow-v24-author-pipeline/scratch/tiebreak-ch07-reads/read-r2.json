@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "execution-ch07",
+  "chapterNumber": 7,
+  "contentHash": "f449d6b1c95b2a61",
+  "reviewerSessionId": "auto-author-review-ch07-tiebreak-r2-mr4njnso-1",
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 91,
+    "practical": 86,
+    "summaries": 92,
+    "tone": 93,
+    "limits": 88,
+    "insight": 90,
+    "density": 86,
+    "beginner": 91
+  },
+  "composite": 89.3,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Discovery is honest only when it has a test.",
+      "why": "Strongest compact line; it names the chapter's governing move in memorable form.",
+      "verified": true
+    },
+    {
+      "quote": "Customers meet the work, not the review.",
+      "why": "A clear mechanism for why strategy must connect to operations.",
+      "verified": true
+    },
+    {
+      "quote": "1971: Southwest Airlines began service, and its low-cost model had to fit.",
+      "why": "The hook is accurate but very thin; it does not yet create much curiosity or scene.",
+      "verified": true
+    },
+    {
+      "quote": "Write exactly: \"One promise had no person to test it.\"",
+      "why": "The action is low-friction, but the exact sentence feels less useful than asking the reader to assign owner, proof, and date.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct choices often contain the only concrete operating action while distractors use obviously weak moves such as clearer emails, morale, polish, or pushing harder; this makes some answers guessable by practicality rather than chapter recall."
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening is too compressed to do much work as a hook; it states the fact and thesis but gives no tension, consequence, or concrete image.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are obviously bad generic moves, so readers can often pick the practical answer without needing the specific case logic.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The task stops at noticing an owner gap; it would better match the chapter if it also asked for a proof point or return date.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples teach well but repeat the same three company cases heavily, which slightly lowers density by the end.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 84 bar. The chapter has a strong, memorable core: strategy becomes real when a market promise has an owner, proof, resources, and a return date. The prose is plain, concrete, and beginner-friendly, with good transfer from Southwest, Dell, and Intel into everyday planning decisions. The main weaknesses are not fatal: the hook is underpowered, the quiz distractors are sometimes too easy, and the immediate exercise could push one step further into proof and cadence.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 84,
+  "docHash": "61f49abff526ca44f4c61be22a134f75751f5e0ccdb866f5941ce63548339685",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-03T08:09:36.812Z"
+}

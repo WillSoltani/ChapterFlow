@@ -1,0 +1,87 @@
+{
+  "schema": "recovery-role-thresholds-v1",
+  "_note": "Per-role qualification thresholds for the s16-reviewer-recovery-v1 split-lane campaign. NEVER edits native-review-thresholds.v2.json (frozen Layer-N instrument). E-07 fix: every SOFT threshold (any bar strictly between 0 and 1) carries a paired minimumDenominator, and a soft capability whose per-capability denominator is below minSoftDenominator is refused as UNDERPOWERED (a distinct qualifyRole outcome), never silently passed on tiny n. This eliminates the 0.85-over-4 brittleness where 3/4=0.75 flipped a judge. Hard 1.0 bars and max-*=0 caps are exact and do not take a minimum denominator. Thresholds are frozen before any live output (gold-governance rule I); a material change terminates the experiment id and starts a new one.",
+  "minSoftDenominator": 10,
+  "hardBar": 1.0,
+  "governance": {
+    "frozenBeforeLiveOutput": true,
+    "independentHumanRater": false,
+    "doNotWeaken": true,
+    "sourceOfSoftDenominators": "the built role corpora (reader/source/quiz-corpus.v1.json); H1/H2/H3 compositions guarantee each soft denominator >= 10"
+  },
+  "roles": {
+    "reader": {
+      "reviewLaneRole": "reader",
+      "requires": ["qualified-primary", "qualified-backup"],
+      "hardMetrics": {
+        "minProtocolValidityRate": 1.0,
+        "minHardBlockerSensitivity": 1.0,
+        "maxUnresolvedRequiredCases": 0
+      },
+      "softMetrics": {
+        "minCleanPassRate": { "bar": 0.75, "minimumDenominator": 12 },
+        "minNonBlockerCalibrationRate": { "bar": 0.85, "minimumDenominator": 10 },
+        "minQuoteEvidenceValidityRate": { "bar": 0.95, "minimumDenominator": 10 }
+      },
+      "_rationale": {
+        "minHardBlockerSensitivity": "1.00 over the 8 planted reader-visible hard blockers — a qualified reader must catch every one; a 1.0 bar is not subject to the soft minimum-denominator rule.",
+        "minCleanPassRate": "0.75 over 12 clean controls (den >= 10) — a qualified reader ships genuinely clean chapters while tolerating some conservative non-ships.",
+        "minNonBlockerCalibrationRate": "0.85 over 10 craft weaknesses (den >= 10) — must not escalate mild craft into a blocker.",
+        "minQuoteEvidenceValidityRate": "0.95 — cited evidenceSpans must byte-verify against the chapter."
+      }
+    },
+    "source": {
+      "reviewLaneRole": "source",
+      "requires": ["qualified-primary", "independent-adjudicator-or-declared-blind-human-path"],
+      "hardMetrics": {
+        "minProtocolValidityRate": 1.0,
+        "minInventedDetailDetectionRate": 1.0,
+        "minCausalOverreachDetectionRate": 1.0,
+        "minSourceContradictionDetectionRate": 1.0,
+        "minMissingEvidenceInconclusiveHonestyRate": 1.0,
+        "maxMissingEvidenceConvertedToPass": 0,
+        "maxUnresolvedRequiredCases": 0
+      },
+      "softMetrics": {
+        "minCleanFamilyPassRate": { "bar": 0.85, "minimumDenominator": 10 },
+        "minRegisterClassificationAccuracy": { "bar": 0.85, "minimumDenominator": 10 }
+      },
+      "_rationale": {
+        "minInventedDetailDetectionRate": "1.00 — fabrication (invented person/event/quote/number/date) is zero-miss.",
+        "minCausalOverreachDetectionRate": "1.00 — causal overreach beyond the licensed claim strength is zero-miss.",
+        "minSourceContradictionDetectionRate": "1.00 — a claim contradicting the source is zero-miss.",
+        "minMissingEvidenceInconclusiveHonestyRate": "1.00 — missing evidence must be INCONCLUSIVE, never guessed, never converted to PASS.",
+        "minCleanFamilyPassRate": "0.85 over the pooled PASS-gold source families (supported-source-bound + framed-constructed + clean-generic + qualified-correlation; den >= 10) — a qualified source reviewer must PASS genuinely clean licensed units.",
+        "minRegisterClassificationAccuracy": "0.85 over ALL source cases (den >= 10) — visibleRegister classification accuracy across clearly_sourced/constructed/generic/ambiguous/presented_as_fact."
+      }
+    },
+    "quiz": {
+      "reviewLaneRole": "quiz",
+      "requires": ["deterministic-checker", "qualified-semantic-adjudicator"],
+      "hardMetrics": {
+        "minProtocolValidityRate": 1.0,
+        "minKeyMismatchDetectionRate": 1.0,
+        "maxUnresolvedRequiredCases": 0
+      },
+      "softMetrics": {
+        "minUniquelyCorrectCleanPassRate": { "bar": 0.85, "minimumDenominator": 10 },
+        "minGenuineAmbiguityDetectionRate": { "bar": 0.85, "minimumDenominator": 10 },
+        "minMechanismMatchDetectionRate": { "bar": 0.85, "minimumDenominator": 10 }
+      },
+      "_rationale": {
+        "minKeyMismatchDetectionRate": "1.00 over 10 key-mismatch cases — wrong-key is deterministically decidable (keyCorrect==='wrong'); a miss is disqualifying and not subject to the soft-denominator rule.",
+        "minGenuineAmbiguityDetectionRate": "0.85 over 10 genuinely-ambiguous cases (den >= 10, replacing the retired 0.85-over-4). Every ambiguity gold survives an adversarial single-best-answer attempt.",
+        "minMechanismMatchDetectionRate": "0.85 over 10 mechanism/causal-key cases — mechanismSupported===false on a mechanism/causal item is a block."
+      }
+    },
+    "security": {
+      "reviewLaneRole": "security",
+      "requires": ["inherited-qualification"],
+      "measuredByNewCorpus": false,
+      "inheritedFrom": "stage-q-layer-o-v3",
+      "inheritanceRule": "LN-08 delegates the security-boundary capability to Stage-Q Layer-O. A profile present in the frozen Layer-O v3 panel with ALL_THREE_JUDGES_QUALIFIED inherits QUALIFIED; a profile absent from that panel is NOT_TESTED. No security cases are added to any split-lane corpus.",
+      "hardMetrics": {},
+      "softMetrics": {}
+    }
+  }
+}

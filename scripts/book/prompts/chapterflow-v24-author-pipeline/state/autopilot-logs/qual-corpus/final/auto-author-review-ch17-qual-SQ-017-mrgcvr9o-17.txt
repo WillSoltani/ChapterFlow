@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 0,
+    "density": 5,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads as internal placeholder text, not chapter prose."
+    },
+    {
+      "quote": "Before she drafts the first sentence, she writes, I am afraid he will think I am pretending to be a leader.",
+      "why": "This is the only concrete, memorable moment in the file."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction depends on an undefined move, so the reader cannot act on it."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Required learning sections appear as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "chapter overall",
+      "problem": "The chapter does not explain a core move; nearly all instructional sections are empty, so a reader cannot learn or apply the chapter from the page.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "Section is empty and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Section is empty and provides no layered explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Section is empty and provides no complete teaching prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "Section is empty, leaving the chapter without an explicit retained lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "Section is empty, so there is no practical action for the reader.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario is concrete, but the application says only 'Apply the move' without defining the move or showing a before-to-after result.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the quiz is structurally broken and cannot be answered.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "Section is empty, so the review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "Section is empty despite being a promised retention device.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder production text rather than reader-facing instruction.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It contains one vivid applied-scenario fragment, but the actual teaching body, summaries, quiz, review cards, takeaway, practice prompt, and memorable lines are empty or placeholder-level. Because the core move is never explained and the quiz has no questions, the chapter fails as a learning unit rather than merely needing polish."
+}
+```

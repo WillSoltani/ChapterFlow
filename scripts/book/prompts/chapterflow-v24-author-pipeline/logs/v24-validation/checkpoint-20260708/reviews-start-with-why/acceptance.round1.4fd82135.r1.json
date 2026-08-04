@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "",
+  "at": "2026-07-07T23:26:32.949Z",
+  "bar": 80,
+  "beatShipped": 72.7,
+  "accepted": false,
+  "sampledChapters": [
+    1,
+    2,
+    6,
+    11
+  ],
+  "docSha256": "4fd82135028bc4ecb6c8541f9a13c289a90bac7357c06d0a6d0fd38e322e585d",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 74.6,
+    "factors": {
+      "retention": 80,
+      "quizzes": 78,
+      "transfer": 81,
+      "practical": 74,
+      "summaries": 77,
+      "tone": 66,
+      "limits": 78,
+      "insight": 69,
+      "density": 61,
+      "beginner": 75
+    },
+    "gate": "FAIL",
+    "gateVotes": "1P/2F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-mrba1663-13",
+        "valid": true,
+        "gateVerdict": "FAIL",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 74,
+          "transfer": 82,
+          "practical": 77,
+          "summaries": 74,
+          "tone": 66,
+          "limits": 78,
+          "insight": 69,
+          "density": 61,
+          "beginner": 75
+        },
+        "composite": 73.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample has a strong learning architecture: compact takeaways, mostly sound keys, scenario-based quizzes, useful review cards, and several memorable reversals. The main problem is not comprehension but production texture. The chapters repeatedly use the same moves: named company anchors, a four-part sequence, source-detail boundary warnings, second-setting comparison, if-then drills, and similar quiz distractor logic. That makes the book feel templated rather than individually authored. I would also gate it as FAIL because at least one sentence appears corrupted or incoherent. With that repaired, the material could become a solid draft, but it needs more varied examples, less repeated scaffolding, and more natural human scenes before it feels premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-mrba1666-14",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 80,
+          "quizzes": 78,
+          "transfer": 81,
+          "practical": 73,
+          "summaries": 82,
+          "tone": 66,
+          "limits": 80,
+          "insight": 69,
+          "density": 64,
+          "beginner": 77
+        },
+        "composite": 75.6,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is publishable in correctness terms: I found no keyed answer unsupported by the prose, and no hard factual or scaffold-leak failure. The book is strongest at compact reversals, review-card clarity, and reusable diagnostic lenses: proof versus repair, push versus reason, belief before trust, metric versus meaning. Its main weakness is churn. The chapters repeatedly use the same architecture: named company detail, second setting, borrowed-detail warning, four-term order, visible conduct, limit paragraph, and similar quiz patterns. That gives the sample coherence, but it also makes the book feel engineered from one durable mold rather than individually authored. The result is a solid draft with good learning mechanics, but the voice and density need more variation before it feels premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-mrba1666-15",
+        "valid": true,
+        "gateVerdict": "FAIL",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 82,
+          "quizzes": 84,
+          "transfer": 78,
+          "practical": 74,
+          "summaries": 77,
+          "tone": 61,
+          "limits": 76,
+          "insight": 66,
+          "density": 59,
+          "beginner": 72
+        },
+        "composite": 73.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The keyed quizzes are sound against the chapter prose, but the sample fails the correctness gate because at least one sentence reads as corrupted residue, and the whole book shows high cross-chapter churn. The strongest material is the compact diagnostic language: several memorable lines are genuinely portable and the quizzes mostly test scenario transfer rather than bare recall. The main weakness is that every chapter runs the same machine: named source detail, source-bound specificity, second-setting comparison, order-of-operations warning, borrowed-detail warning, then nearly identical practice shells. That repetition weakens tone, density, and insight, making the sample feel engineered rather than individually authored.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-mrba1663-13",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 74,
+        "transfer": 82,
+        "practical": 77,
+        "summaries": 74,
+        "tone": 66,
+        "limits": 78,
+        "insight": 69,
+        "density": 61,
+        "beginner": 75
+      },
+      "composite": 73.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample has a strong learning architecture: compact takeaways, mostly sound keys, scenario-based quizzes, useful review cards, and several memorable reversals. The main problem is not comprehension but production texture. The chapters repeatedly use the same moves: named company anchors, a four-part sequence, source-detail boundary warnings, second-setting comparison, if-then drills, and similar quiz distractor logic. That makes the book feel templated rather than individually authored. I would also gate it as FAIL because at least one sentence appears corrupted or incoherent. With that repaired, the material could become a solid draft, but it needs more varied examples, less repeated scaffolding, and more natural human scenes before it feels premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-mrba1666-14",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 80,
+        "quizzes": 78,
+        "transfer": 81,
+        "practical": 73,
+        "summaries": 82,
+        "tone": 66,
+        "limits": 80,
+        "insight": 69,
+        "density": 64,
+        "beginner": 77
+      },
+      "composite": 75.6,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is publishable in correctness terms: I found no keyed answer unsupported by the prose, and no hard factual or scaffold-leak failure. The book is strongest at compact reversals, review-card clarity, and reusable diagnostic lenses: proof versus repair, push versus reason, belief before trust, metric versus meaning. Its main weakness is churn. The chapters repeatedly use the same architecture: named company detail, second setting, borrowed-detail warning, four-term order, visible conduct, limit paragraph, and similar quiz patterns. That gives the sample coherence, but it also makes the book feel engineered from one durable mold rather than individually authored. The result is a solid draft with good learning mechanics, but the voice and density need more variation before it feels premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-mrba1666-15",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 82,
+        "quizzes": 84,
+        "transfer": 78,
+        "practical": 74,
+        "summaries": 77,
+        "tone": 61,
+        "limits": 76,
+        "insight": 66,
+        "density": 59,
+        "beginner": 72
+      },
+      "composite": 73.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The keyed quizzes are sound against the chapter prose, but the sample fails the correctness gate because at least one sentence reads as corrupted residue, and the whole book shows high cross-chapter churn. The strongest material is the compact diagnostic language: several memorable lines are genuinely portable and the quizzes mostly test scenario transfer rather than bare recall. The main weakness is that every chapter runs the same machine: named source detail, source-bound specificity, second-setting comparison, order-of-operations warning, borrowed-detail warning, then nearly identical practice shells. That repetition weakens tone, density, and insight, making the sample feel engineered rather than individually authored.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 74.6,
+    "gate": "FAIL",
+    "noiseBand": 3.7,
+    "capped": false
+  }
+}

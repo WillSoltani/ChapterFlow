@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the only options that preserve the named case detail while the distractors are visibly overbroad or absurd, especially Q4, Q7, and Q9."]
+  },
+  "scores": {
+    "retention": 87,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 82,
+    "insight": 86,
+    "density": 83,
+    "beginner": 85
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong opening: plain, memorable, and carries the chapter's core distinction."
+    },
+    {
+      "quote": "If nothing does, the carrot bought motion, not loyalty.",
+      "why": "Strongest retention line because it compresses the test into a concrete image."
+    },
+    {
+      "quote": "At the first newness spike, split notice from need.",
+      "why": "Useful rule, but Example 4 is too compressed to show a real before-to-after decision."
+    },
+    {
+      "quote": "When the launch standard is stated, founder Dawson keeps the employee discount with General Motors instead of making it borrowed proof for his small offer.",
+      "why": "This example feels manufactured: a named founder appears without a concrete setting, consequence, or real scenario."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "The TiVo example restates the lesson but does not show a concrete decision and consequence; the before-to-after learning moment is thin.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Founder Dawson is a generic invented actor with no place, number, product, or consequence; the example mainly repeats the lesson about not borrowing General Motors proof.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is easy to guess because it is the only grounded, non-silly option; the other choices are visibly weak without needing the chapter.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct answer is the only option that keeps the named anchors, while the distractors ask to remove evidence; this creates a test-taking tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The practical loop transfers well, but several examples lean on invented office roles instead of showing a specific situation with stakes and aftermath.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, useful core: separate the push from the reason, then ask what behavior returns after the push disappears. The fast/deep/full layering works, the named anchors are mostly disciplined, and the memorable lines are strong enough to stick. I would not ship at an 84+ professional bar yet because the transfer section is weakened by manufactured-feeling examples that restate the lesson instead of proving it through concrete before-and-after decisions, and a few quiz items are too guessable from answer shape."
+}
+```

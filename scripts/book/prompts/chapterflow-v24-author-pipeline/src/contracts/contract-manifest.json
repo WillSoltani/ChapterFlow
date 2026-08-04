@@ -1,0 +1,90 @@
+{
+  "schema": "contract-manifest-v1",
+  "frozenAtIso": "2026-07-10T09:52:47.272Z",
+  "contracts": [
+    {
+      "name": "aggregated-chapter-review",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "47643cc6450888304fff0c4d4ad7110a8d2b401c8a3b0dcd190d77425f658215"
+    },
+    {
+      "name": "attempt-evidence-manifest",
+      "version": 1,
+      "ownerPrompt": "IMP-10",
+      "hash": "fecbfaaf645ec1634d3fb7e8c61445f495c333c3eb1023aa79dc76461ecfa9d9"
+    },
+    {
+      "name": "candidate-transaction",
+      "version": 1,
+      "ownerPrompt": "IMP-01",
+      "hash": "531916c55fb467e71053455a8b22c1fe20896687cf523cfc030de80f6393eb68"
+    },
+    {
+      "name": "effective-context-manifest",
+      "version": 1,
+      "ownerPrompt": "IMP-00",
+      "hash": "11901cface6f421ddf959b4ba137fc87e97179dd6e30144b89dab13022b2bd5a"
+    },
+    {
+      "name": "execution-profile",
+      "version": 1,
+      "ownerPrompt": "IMP-00",
+      "hash": "aa9a95b242d686ca3ab146aaada810af66eb55cb17eba2727b3be0d398cd5963"
+    },
+    {
+      "name": "judge-capability-qualification",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "e05136e482673ccda68d939f1ebfa4fca0393c081c7e6c4c2be3629e18e9718b"
+    },
+    {
+      "name": "quiz-integrity-result",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "4d904135f0a101a24380fb840eb2ae67fd0e2d0025c74b57debc50649a3b62e2"
+    },
+    {
+      "name": "reader-experience-review",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "0fe113b60b7c323f993da1ba84759d3f3946749b1790df98448c31034900083b"
+    },
+    {
+      "name": "repair",
+      "version": 1,
+      "ownerPrompt": "IMP-07",
+      "hash": "6641ed79c7fe682cf92d0ae3733a33c6f6fc513a888fb3d6a027b2a8db24b149"
+    },
+    {
+      "name": "review-output",
+      "version": 1,
+      "ownerPrompt": "IMP-08",
+      "hash": "f23414bbce201f5ffaa684cec569dae83bed8a99a44a5dbd6b37ef6396c9254f"
+    },
+    {
+      "name": "route-result",
+      "version": 2,
+      "ownerPrompt": "IMP-02",
+      "hash": "bf7ffa7405ae0dbf3a54d6562e9e8089d62df2e00f247b5240de91ada6dca9fc"
+    },
+    {
+      "name": "source-integrity-review",
+      "version": 1,
+      "ownerPrompt": "IMP-20",
+      "hash": "cd0f720288b732877025cb7de68bda4e1af52318c879acc3cad6304e072981cc"
+    },
+    {
+      "name": "source-use-plan",
+      "version": 1,
+      "ownerPrompt": "IMP-03",
+      "hash": "8a07e86f23c3a40c585067cc6e85015600b1fde5ba2e51e7d9f15da2d9314b67"
+    },
+    {
+      "name": "worker-implementation-report",
+      "version": 1,
+      "ownerPrompt": "IMP-00",
+      "hash": "9fbb345945e86da7b19575a15532d82df6d8d119e1aced02c0c897b2dc7c3f0d"
+    }
+  ]
+}

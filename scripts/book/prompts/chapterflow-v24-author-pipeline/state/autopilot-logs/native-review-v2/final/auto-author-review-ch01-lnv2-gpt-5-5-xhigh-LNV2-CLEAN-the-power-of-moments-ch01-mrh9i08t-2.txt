@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water comparison shows that a milder final stretch can improve later memory of an otherwise longer or harder episode.",
+      "The Magic Castle example shows a modest setting can create a memorable peak through a vivid object and tellable delivery.",
+      "YES Prep turns a private college choice into public pride by having peers and adults witness the achievement.",
+      "The full read names elevation, insight, pride, and connection as the four ingredients of defining moments.",
+      "The red phone lesson is that one concrete visible object can signal that the ordinary script has changed.",
+      "The prose says the popsicle matters because the phone, request, and tray turn a free snack into a small event.",
+      "The threshold idea says to mark crossings before the next stage becomes private logistics.",
+      "The prose explicitly says memory does not average each minute; peak stress and the ending shape recall, while a better close does not erase harm.",
+      "The mint is just a quiet free item; the chapter says gifts become memorable when they have a tellable format or event-like delivery."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "The stem foregrounds a calm, less-painful ending, and only b treats the finish as causally important.",
+      "b is the only active design option and echoes the chapter's tellable-surprise language; a and c deny the lesson.",
+      "a is the only option with public witnessing; b and c both hide or defer the moment.",
+      "The stem asks for the four ingredients and c simply lists them, making the answer guessable.",
+      "a repeats the chapter phrase 'script has changed'; b and c are absolute inaction foils.",
+      "b is the only option that turns the gift into an event; a and c focus on cost or quiet availability.",
+      "c repeats the 'before private logistics' wording almost directly.",
+      "a stands out as the only false assumption because 'equal weight' is an absolute the chapter directly rejects.",
+      "c uses the lesson vocabulary 'tellable format'; a and b are higher-cost/upscale foils already rejected by the chapter."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 76,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 92,
+    "insight": 86,
+    "density": 84,
+    "beginner": 93
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "Strongest mechanism: plain, memorable, and central to the chapter."
+    },
+    {
+      "quote": "That does not mean pain is fake. The extra discomfort still happened. The move is not to excuse a bad process with a pretty finish.",
+      "why": "Strongest limit: it prevents the peak-end idea from becoming manipulative."
+    },
+    {
+      "quote": "c) Lift the mood, spark insight, honor effort, and help people meet.",
+      "why": "Worst quiz tell: it hands over the four ingredients when the stem asks for them."
+    },
+    {
+      "quote": "c) Mark the shared crossing now, before the next stage becomes private logistics.",
+      "why": "A correct answer repeats chapter phrasing closely enough to be guessed."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The stem asks for the four ingredients and the keyed option lists them, so the question tests recognition more than transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed option repeats the chapter's 'before private logistics' language too closely, creating a giveaway.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative stem makes the item more about noticing 'not assume' than applying the concept; the other two options are true chapter claims.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Thin-but-usable example: the trainer setup mostly restates the cold-water lesson and shows little before-to-after decision or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-2",
+      "problem": "Named stand-ins such as Margaret and Lorne are not clearly marked as illustrative or factual, which slightly muddies example status.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong beginner chapter with a memorable core image, clean layered summaries, useful limits, and practical actions a reader could try immediately. The main weakness is assessment quality: the quiz is fair and derivable, but several answers are over-signaled by wording or by obvious foil choices. Transfer is solid overall, though a few examples feel more like lesson restatements than lived before-and-after cases."
+}
+```

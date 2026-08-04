@@ -1,0 +1,9 @@
+Wrote [start-with-why-ch05.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json).
+
+Validation:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 4 non-blocking minors
+- `major-status start-with-why`: PASS, no unresolved majors; no chapter 5 majors remain
+- Self-checks: quiz key pattern/fact order verified, 5 examples, 9 quiz questions, 7 cards, 3 memorable lines, reader text ~16,706 chars, breakdown Flesch estimate 83.7
+
+Note: Git reports this chapter file as untracked (`??`). I did not modify the other dirty files already present in the worktree.

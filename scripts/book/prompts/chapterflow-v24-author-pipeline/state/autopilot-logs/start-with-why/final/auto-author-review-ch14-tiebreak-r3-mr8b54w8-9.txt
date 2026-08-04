@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q4's correct answer is the only option that cleanly names all four framework jobs, making it easier to spot without close reading.", "Q7's correct answer is the most specific option and repeats the exact Southwest/1971 marker from the prose."]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 86,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 73,
+    "limits": 86,
+    "insight": 84,
+    "density": 78,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "Strongest compact statement of the core move."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Memorable, practical test a reader can use later."
+    },
+    {
+      "quote": "Apple Inc. (the company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make the tension plain.",
+      "why": "Awkward source-packet phrasing breaks the plain teaching voice."
+    },
+    {
+      "quote": "When the standard is demanded, name the three anchors.",
+      "why": "The action is underdeveloped and feels more like recalling chapter tokens than applying judgment."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Parenthetical identifiers like 'the company in the Apple-Dell product contrast' and 'the Apple product marker from 2001' create scaffold/source-packet smell and make the prose less natural.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: it mostly lists the three anchors and pauses the copy request, but shows little before-to-after decision consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed option is noticeably more complete and framework-shaped than the distractors, creating a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples use named fictional-seeming roles but give limited concrete stakes, so transfer is somewhat weaker than the core principle.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid, mostly shippable chapter with a memorable core move: let the rival supply pressure, then make the internal benchmark judge the response. The summaries, limits, review cards, and implementation plan are coherent, and the quiz keys are sound. The main weakness is polish and transfer: some prose still sounds like source-packet scaffolding, and a few examples feel constructed to carry markers rather than showing a lived decision with stakes. I would not ship it at a professional 84 bar without a light revision, but there are no must-fix reader-harming defects."
+}
+```

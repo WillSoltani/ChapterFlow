@@ -28,6 +28,7 @@ import { MemorableLine } from "./agents/memorable-lines.js";
 import type { PlanningSourceEvidence } from "./source/sourceEvidence.js";
 import type { GenerationRunManifestV1 } from "./generationDegradation.js";
 import { formatRuntimeFindings, RuntimeSchemaFinding, validateAssembleInput } from "./runtimeSchemas.js";
+import type { BookContentReader, CandidateSelector, CandidateSnapshot } from "./books/candidateTypes.js";
 
 export type AssembleInput = {
   plan: ChapterDesignDoc;
@@ -45,6 +46,44 @@ export type AssembleInput = {
   sourceEvidence?: PlanningSourceEvidence;
   generation?: GenerationRunManifestV1;
 };
+
+export interface AuthorV4ContentSelection {
+  readonly bookId: string;
+  readonly selector: CandidateSelector;
+  readonly snapshot: CandidateSnapshot;
+}
+
+export async function openAuthorV4ContentSelection(
+  reader: BookContentReader,
+  input: Readonly<{ bookId: string; selector: CandidateSelector }>,
+): Promise<AuthorV4ContentSelection> {
+  if (input.selector.kind !== "CANDIDATE") throw new Error("V4 content selector blocked: CURRENT/ambient fallback is forbidden");
+  const opened = await reader.open(input);
+  if (!opened.ok) throw new Error(`V4 content selector blocked: ${opened.error.code}: ${opened.error.message}`);
+  const selection = { ...input, snapshot: opened.value };
+  const invalid = authorV4SelectionError(selection);
+  if (invalid) throw new Error(`V4 content selector blocked: ${invalid}`);
+  return selection;
+}
+
+export function authorV4SelectionError(selection: AuthorV4ContentSelection): string | null {
+  if (selection.snapshot.manifest.bookId !== selection.bookId) return "candidate snapshot bookId differs from explicit selector context";
+  if (selection.selector.kind !== "CANDIDATE") return "CURRENT/ambient fallback is forbidden";
+  if (selection.snapshot.manifest.candidateId !== selection.selector.candidateId) return "candidate snapshot differs from explicit candidate selector";
+  return null;
+}
+
+export function readAuthorV4SelectedText(selection: AuthorV4ContentSelection, logicalPath: string): string {
+  const invalid = authorV4SelectionError(selection);
+  if (invalid) throw new Error(`V4 content selector blocked: ${invalid}`);
+  const matches = selection.snapshot.files.filter((file) => file.logicalPath === logicalPath);
+  if (matches.length !== 1) throw new Error(`V4 content selector blocked: expected one ${logicalPath}, found ${matches.length}`);
+  return Buffer.from(matches[0].bytes).toString("utf8");
+}
+
+export function readAuthorV4SelectedJson<T>(selection: AuthorV4ContentSelection, logicalPath: string): T {
+  return JSON.parse(readAuthorV4SelectedText(selection, logicalPath)) as T;
+}
 
 export type AssembleChapterResult =
   | { ok: true; chapter: ChapterV21; findings: [] }

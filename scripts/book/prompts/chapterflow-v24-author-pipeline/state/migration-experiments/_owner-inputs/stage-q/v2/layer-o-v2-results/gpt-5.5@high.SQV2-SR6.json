@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR6",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[\"Reference material for the ChapterFlow pipeline. No verbatim book text. Examples may be invented.\",\"A new manager often discovers that the first one-on-one sets the tone for the year.\",\"When the meeting stays a status readout, the relationship stays transactional; when it makes room for one real concern, it starts to build trust.\",\"None of this requires a special personality — only the decision to ask.\"],\"rationale\":\"The candidate passage is framed as general management guidance and does not visibly claim to be a quotation, paraphrase, case study, or specific source-derived example. The provenance says the reference material contains no verbatim book text and that examples may be invented, but the judgment does not need hidden metadata to excuse or condemn the candidate: on its face, the passage reads as adequately reader-facing advice rather than misleading source-register prose.\"}"
+}

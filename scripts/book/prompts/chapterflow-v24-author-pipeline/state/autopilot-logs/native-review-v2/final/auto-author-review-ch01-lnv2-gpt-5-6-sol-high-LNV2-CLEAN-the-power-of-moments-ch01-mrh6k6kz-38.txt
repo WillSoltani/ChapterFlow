@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study shows that a milder ending can improve recall even when the episode lasts longer.",
+      "The red-phone example shows that one vivid, tellable surprise can elevate an otherwise modest setting.",
+      "YES Prep makes effort visible before peers and adults, combining pride with connection.",
+      "The prose explicitly names elevation, insight, pride, and connection as the four common ingredients.",
+      "The chapter says a concrete object can signal that the ordinary script has changed.",
+      "The popsicle becomes memorable because its request and silver-tray delivery turn the gift into an event.",
+      "The chapter advises marking a threshold before the next stage dissolves into private logistics.",
+      "The peak-end account explicitly says memory does not average every minute equally.",
+      "The quiet mint lacks the vivid, structured delivery that would make it an easy story to retell."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b closely echoes the chapter's central peak-end claim; a and c conspicuously dismiss endings.",
+      "Choice b is the only vivid, affirmative design action, while a uses the giveaway absolute “no guest moments.”",
+      "Choice a restates the YES Prep example; b and c defer recognition without support.",
+      "Choice c simply enumerates all four ingredients from the prose, making retrieval nearly automatic.",
+      "Choice a nearly quotes a memorable line, while b uses the giveaway absolute “all changes.”",
+      "Choice b is the only option that describes an event; a reduces memory to price and c preserves the stated problem.",
+      "Choice c closely paraphrases the threshold passage; a and b both postpone or avoid the chapter's move.",
+      "Choice a directly negates the sentence that memory does not average each minute; b and c are plainly endorsed claims.",
+      "Choice c is substantially more explanatory and chapter-specific than the two distractors."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 80,
+    "transfer": 72,
+    "practical": 90,
+    "summaries": 92,
+    "tone": 90,
+    "limits": 96,
+    "insight": 89,
+    "density": 78,
+    "beginner": 95
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This compact line makes the chapter's core move memorable and portable."
+    },
+    {
+      "quote": "A gentle final minute is not permission to make the first part careless.",
+      "why": "This states the ethical limit of peak-end design clearly and without hedging."
+    },
+    {
+      "quote": "Parent Margaret expects a plain pool afternoon at the Magic Castle Hotel in Los Angeles.",
+      "why": "The chapter presents a named person inside a real venue without identifying her as hypothetical or sourced."
+    },
+    {
+      "quote": "Lorne waits at YES Prep, a Houston public charter network, during its college acceptance celebration.",
+      "why": "This similarly inserts an apparently factual named participant into a real organization's event without support or disclosure."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The example invents a named guest, Margaret, and presents her experience at a real hotel as an event without labeling it hypothetical or providing support; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example invents a named YES Prep student, Lorne, and places him in a real organization's celebration without labeling the scenario hypothetical or providing support; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 4",
+      "problem": "The example presents the named trainer Tristan and his volunteer session as a concrete event without indicating that the person and event are hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read and example 5",
+      "problem": "Leah is presented as a named mentor making a concrete decision, then reused as evidence-like material, without being identified as fictional or hypothetical; this is a FABRICATED / MISLEADING EXAMPLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 3",
+      "problem": "The trainer scenario mostly restates the cold-water finding and supplies no observed before-to-after consequence, so it adds little transfer evidence beyond the preceding explanation.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The unnamed community-workshop scenario has no specific place, person, result, or consequence and therefore reads as a thin but usable slot-filler.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 3-5",
+      "problem": "The cold-water comparison is repeated across three consecutive examples, reducing density without adding substantially different mechanisms or failure cases.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Many correct choices closely paraphrase memorable lines while distractors rely on conspicuous absolutes, delay, or inaction, making several answers guessable without reading closely.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a clear, memorable move: design peaks, thresholds, and endings without using them to conceal a broken underlying experience. Its red phone, cold-water contrast, practical prompts, layered summaries, and unusually explicit limits make it approachable and useful. The quiz is fully derivable but often too easy because correct choices echo the prose while distractors are obvious strawmen. Transfer and density suffer from repetitive examples, and the named invented participants placed inside real institutions are materially misleading unless clearly labeled as hypothetical or replaced with sourced cases. I would ship after fixing those fabricated presentations, but not at the professional bar in its current form."
+}
+```

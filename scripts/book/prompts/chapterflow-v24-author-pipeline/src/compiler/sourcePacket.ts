@@ -10,12 +10,17 @@ import { buildSourceAnchorCatalog } from "../source/sourceEvidence.js";
 import { canonicalJsonSha256 } from "../lib/canonicalJson.js";
 import {
   sourcePacketPath,
+  sourceUsePlanPath,
   writeJsonFile,
   type CompilerStoreRoots,
 } from "../artifacts/artifactStore.js";
 import type { SourcePacketV1, SourcePacketCase, SourcePacketFramework } from "../artifacts/artifactTypes.js";
 import { SOURCE_PACKET_SCHEMA_VERSION } from "../artifacts/artifactTypes.js";
 import { REQUIRED_QUIZ_FACT_FLOOR, applyTeachingRanking, asText, compiledFactsFromSidecar, extractGroundedNumbers, properNounTokens, uniq } from "./sourcePacketFacts.js";
+// NOTE: sourceUsePlanCompiler imports sourcePacketHash back from this module —
+// a deliberate cycle (one hash authority); both edges are function CALLS at
+// runtime, never module-init reads, so ESM hoisting resolves it.
+import { compileSourceUsePlan } from "./sourceUsePlanCompiler.js";
 
 export { extractGroundedNumbers, REQUIRED_QUIZ_FACT_FLOOR };
 
@@ -199,6 +204,18 @@ export function compileSourcePackets(bookId: string, roots: CompilerStoreRoots =
     applyTeachingRanking(packet);
     writeJsonFile(path, packet);
     written.push(path);
+    // IMP-03: the compiler-owned source-use plan, hash-bound to the FINAL packet
+    // bytes just written (compile AFTER the dedup/re-rank mutations above, or the
+    // recorded sourcePacketSha256 would not match the artifact on disk). This is
+    // the only production packet-write path, so plan and packet can never drift
+    // apart on a recompile — authoring fail-closes on a stale plan.
+    const { plan, findings: planFindings } = compileSourceUsePlan(packet);
+    const planPath = sourceUsePlanPath(normalized, packet.chapterNumber, roots);
+    writeJsonFile(planPath, plan);
+    written.push(planPath);
+    for (const f of planFindings) {
+      findings.push(`ch${String(packet.chapterNumber).padStart(2, "0")}: source-plan: ${f}`);
+    }
   }
   return { bookId: normalized, written, findings };
 }

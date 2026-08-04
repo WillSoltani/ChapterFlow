@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits; welcome, awards, and complaints are those categories.",
+      "The John Deere lesson is that purpose should arrive before forms and routine tasks define the job.",
+      "Mary Kay's pink Cadillac works because it makes a private sales milestone visible and public.",
+      "The Joshie recovery repaired the meaning of the loss with proof of care, not just the returned object.",
+      "The chapter directly says more forms do not improve the first day; purpose tied to real users must come before the packet.",
+      "The leader should check whether the achievement has a visible marker people can picture, not just private data.",
+      "The clinic has completed the practical fix and apology, but the pit lesson requires a concrete care story around recovery.",
+      "Eric's correction is to ask where meaning and later retelling happen before following the busiest step.",
+      "The pit lesson warns that a practical fix is not enough if the low point still defines the memory."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "The correct answer maps almost verbatim to the chapter's three named categories through welcome/award/complaint.",
+      "The correct answer repeats the chapter phrase 'customer purpose at the start'; the other choices are direct reversals.",
+      "The correct answer repeats the chapter's visible/public marker language.",
+      "The correct answer uses the giveaway phrase 'proof of care' from the Joshie section.",
+      "The correct answer repeats 'purpose before the packet' almost exactly.",
+      "The correct answer repeats 'marker people can picture,' a near-summary of the Mary Kay point.",
+      "The correct answer is the only one that mentions a story around recovery, matching the chapter's pit vocabulary.",
+      "The correct answer uses the chapter's 'sum up the relationship' framing; distractors are obvious process-first mistakes.",
+      "The correct answer repeats 'low point hardens,' a distinctive phrase from the prose."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 88,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 81,
+    "limits": 86,
+    "insight": 88,
+    "density": 83,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "This is the chapter's strongest memorable compression of the core move."
+    },
+    {
+      "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+      "why": "This cleanly turns the concept into three usable actions."
+    },
+    {
+      "quote": "In the end, it really just comes down to paying attention to this instead of overcomplicating things.",
+      "why": "This is filler that weakens an otherwise concrete example."
+    },
+    {
+      "quote": "Title: Practice finding the part of a process that already has feeling in it\nCore skill: Practice finding the part of a process that already has feeling in it.",
+      "why": "The implementation plan briefly shows scaffold repetition."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic filler and does not add mechanism, consequence, or transfer value.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The chore-chart example is thin: it has a plausible action but little before-to-after consequence beyond restating that visible progress matters.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and core-skill line repeat the same wording, creating a mild template/scaffold smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Most correct choices reuse distinctive chapter phrases, so a test-wise reader could often choose by phrase matching rather than reasoning through the scenarios.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the core move is clear, memorable, and practical, with strong layering from fast read through full read and review cards. The quizzes are fair and derivable, though somewhat easy because the right answers often echo the prose too directly. The main weaknesses are craft-level: a few examples repeat the same cases rather than widening transfer, one example contains obvious filler, and the implementation plan has a small scaffold smell. None of that blocks learning, but tightening those spots would make the chapter feel more professional."
+}
+```

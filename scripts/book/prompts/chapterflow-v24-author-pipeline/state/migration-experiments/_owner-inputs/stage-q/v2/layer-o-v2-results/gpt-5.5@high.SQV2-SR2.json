@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR2",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported empirical source claim presented as factual\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Reference material for the ChapterFlow pipeline. No verbatim book text. Examples may be invented.\",\"A 2016 Stanford study of 4,200 first-time managers found that those who ran weekly one-on-ones were 2.3 times more likely to retain their reports over two years.\",\"The effect held across every industry the researchers sampled.\"],\"rationale\":\"The candidate passage presents a highly specific empirical claim as established fact, naming Stanford, a year, sample size, effect size, duration, and universal industry coverage, with no reader-facing caveat that it is hypothetical, illustrative, or invented. The provenance permits invented examples, but that hidden pipeline context does not make the passage adequate for readers because the candidate itself reads as a factual citation to a real study.\"}"
+}

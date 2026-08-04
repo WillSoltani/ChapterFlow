@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-050",
+  "parsed": {
+    "caseId": "SQ-050",
+    "verdict": "DEFECT",
+    "defectClass": "REUSED_NARRATIVE_MACHINERY",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Osias touches a bent visitor badge at Friday 9:18 p.m."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Yara touches a cold coffee cup at Monday 8:16 a.m."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "with a phone buzzing with his sister's texts"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "with a group chat open on her laptop"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Osias he has to say whether they are arguing about paperwork, fear, or being the good child."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Yara she has to decide whether to answer the impact as intent or ask what he meant in private."
+      }
+    ],
+    "explanation": "Both examples use the same scene template: a named character touches a symbolic object at an exact weekday and time in a specific workplace-like location, faces conflict through digital communication, suppresses an escalating reply, and ends with a forced interpretive choice. The nouns and lesson topics differ, but the narrative machinery and even sentence structure substantially repeat.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-050\",\"verdict\":\"DEFECT\",\"defectClass\":\"REUSED_NARRATIVE_MACHINERY\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Osias touches a bent visitor badge at Friday 9:18 p.m.\"},{\"materialIndex\":1,\"quote\":\"Yara touches a cold coffee cup at Monday 8:16 a.m.\"},{\"materialIndex\":0,\"quote\":\"with a phone buzzing with his sister's texts\"},{\"materialIndex\":1,\"quote\":\"with a group chat open on her laptop\"},{\"materialIndex\":0,\"quote\":\"Osias he has to say whether they are arguing about paperwork, fear, or being the good child.\"},{\"materialIndex\":1,\"quote\":\"Yara she has to decide whether to answer the impact as intent or ask what he meant in private.\"}],\"explanation\":\"Both examples use the same scene template: a named character touches a symbolic object at an exact weekday and time in a specific workplace-like location, faces conflict through digital communication, suppresses an escalating reply, and ends with a forced interpretive choice. The nouns and lesson topics differ, but the narrative machinery and even sentence structure substantially repeat.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

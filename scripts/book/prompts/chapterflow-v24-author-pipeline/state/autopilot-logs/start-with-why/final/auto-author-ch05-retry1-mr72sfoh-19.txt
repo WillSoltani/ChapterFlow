@@ -1,0 +1,14 @@
+Wrote the complete chapter file here:
+
+[state/chapters/start-with-why-ch05.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json)
+
+Validation passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 matched the required key pattern
+- `evidence-audit`: no candidates
+- Rendered length: 17,667 chars
+- Examples: exactly 5
+- Distractor parity: key uniquely longest 1/9, uniquely shortest 3/9
+
+Note: `git status` reports this chapter file as untracked.

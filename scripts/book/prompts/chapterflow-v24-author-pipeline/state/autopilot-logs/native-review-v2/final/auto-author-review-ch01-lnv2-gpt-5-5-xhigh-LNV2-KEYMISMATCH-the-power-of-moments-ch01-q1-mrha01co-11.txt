@@ -1,0 +1,87 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can change how a longer painful episode is remembered.",
+      "The red phone lesson is that a modest setting can create one vivid, tellable peak.",
+      "YES Prep turns a private achievement into a witnessed public milestone.",
+      "The prose names elevation, insight, pride, and connection as the four ingredients.",
+      "The red pool phone shows that a visible object can signal the ordinary script has changed.",
+      "The popsicle works because the request and tray turn a free item into a small event.",
+      "The threshold should be marked before the next stage turns into private logistics.",
+      "The prose says memory does not average each minute; it weighs the sharpest part and the ending.",
+      "A quiet free item lacks the tellable format that made the red phone and tray memorable."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q2: choice b is the only vivid/tellable option and closely restates the chapter's language.",
+      "Q3: choice a repeats the public/witness logic from the YES Prep section.",
+      "Q4: choice c lists all four named ingredients while the other choices are obvious nonfits.",
+      "Q5: choice a directly echoes 'visible object' and 'script has changed.'",
+      "Q7: choice c repeats the threshold/private-logistics phrasing almost verbatim.",
+      "Q8: the negative stem adds test-taking friction, and choice a is keyed by the explicit 'average each minute' idea."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 89,
+    "summaries": 93,
+    "tone": 88,
+    "limits": 92,
+    "insight": 88,
+    "density": 84,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the cleanest memorable line and carries the chapter's core move."
+    },
+    {
+      "quote": "The move is not to excuse a bad process with a pretty finish.",
+      "why": "This gives the lesson an important ethical boundary."
+    },
+    {
+      "quote": "c) Mark the shared crossing now, before the next stage becomes private logistics.",
+      "why": "This quiz option is highly guessable because it repeats the chapter's threshold language."
+    },
+    {
+      "quote": "The cold-water study gives her a different test: the 90-second trial with milder ending can be remembered better than the 60-second painful trial.",
+      "why": "The same study is reused heavily, which weakens example variety."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is mostly a direct list of the four ingredients, while the distractors do not teach much.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct option repeats the chapter's 'threshold' and 'private logistics' phrasing, making it guessable.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative wording tests careful negation as much as it tests the memory principle.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 3-5",
+      "problem": "The cold-water comparison is reused several times in close succession, so transfer feels narrower than it could.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The training-close scenario is usable but thin; it has a generic named trainer and limited concrete consequence beyond restating the lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a strong central image, clear layered summaries, fair derivable quiz keys, and unusually good limits around not using a nice ending to excuse a bad experience. Its main weakness is craft-level: several quiz answers are signposted by repeated language, and the examples lean too often on the same cold-water study instead of showing a wider range of decisions and consequences. Still, a beginner would understand and likely remember the core move."
+}
+```

@@ -4,7 +4,7 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync } from "fs";
+import { existsSync, readdirSync, rmdirSync, rmSync } from "fs";
 import { resolve } from "path";
 
 import { loadVenuePalette, planVenues } from "../src/librarian/venuePlan.js";
@@ -64,7 +64,9 @@ test("venue-plan is deterministic per book and varies across books", () => {
 });
 
 test("venue-plan CLI writes the plan and prints allocations", () => {
-  const planPath = resolve(PIPELINE_DIR, "state", "venue-plans", `${BOOK}.venue-plan.json`);
+  const planParent = resolve(PIPELINE_DIR, "state", "venue-plans");
+  const planParentExisted = existsSync(planParent);
+  const planPath = resolve(planParent, `${BOOK}.venue-plan.json`);
   try {
     const { status, out } = runCli(["venue-plan", BOOK, "--from", "1", "--to", "3"]);
     assert.equal(status, 0, out.slice(-400));
@@ -73,5 +75,6 @@ test("venue-plan CLI writes the plan and prints allocations", () => {
     assert.match(out, /Written:/);
   } finally {
     rmSync(planPath, { force: true });
+    if (!planParentExisted && existsSync(planParent) && readdirSync(planParent).length === 0) rmdirSync(planParent);
   }
 });

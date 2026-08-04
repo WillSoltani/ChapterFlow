@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water lesson says a milder ending can improve remembered experience even when the episode lasts longer.",
+      "The Magic Castle example shows a modest setting can create a memorable peak through a vivid object and tellable surprise.",
+      "YES Prep works by making a private achievement public so peers and adults witness the effort.",
+      "The prose names elevation, insight, pride, and connection as the four common ingredients.",
+      "The red phone is the model: one concrete visible object signals that the ordinary script has changed.",
+      "The popsicle matters because the request, phone, and tray turn a free snack into a small event.",
+      "The threshold logic says to mark the crossing before the next stage becomes private logistics.",
+      "The prose explicitly says memory does not average each minute and is shaped by the sharpest part and ending.",
+      "A quiet free mint is like a quiet free item, not a designed event with a story people retell."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b is the only option aligned with the chapter's repeated calmer-ending lesson; a and c are directly contradicted.",
+      "Choice b uses giveaway wording: vivid, tellable, surprise, and ordinary arrival all echo the chapter's phrasing.",
+      "Choice a is much closer to the YES Prep wording than the distractors, which are easy negations.",
+      "Choice c simply lists the four ingredients in synonym form and is the uniquely comprehensive answer.",
+      "Choice a nearly restates the memorable line about a concrete object changing the script.",
+      "Choice b contains the giveaway phrase small event and the exact delivery mechanism from the prose.",
+      "Choice c repeats the chapter's threshold/private-logistics language almost directly.",
+      "The negative stem makes a the only false claim; b and c are both chapter teachings.",
+      "Choice c uses the chapter's tellable-story framing while a and b are contradicted by the red-phone lesson."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 80,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 92,
+    "insight": 87,
+    "density": 84,
+    "beginner": 93
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "This is the clearest, most memorable statement of the chapter's core mechanism."
+    },
+    {
+      "quote": "A gentle final minute is not permission to make the first part careless.",
+      "why": "This gives the chapter useful ethical limits instead of overselling moment design."
+    },
+    {
+      "quote": "Margaret must decide whether this is a snack or the story of the stay.",
+      "why": "The example is useful, but the named character feels staged and weakens the documentary feel."
+    },
+    {
+      "quote": "The peak-end memory pattern forces duration to give up its claim as the only judge.",
+      "why": "Strong mechanism language, though the examples repeat this point enough that it starts to feel overworked."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are signposted by near-verbatim chapter phrasing while distractors are direct contradictions, so a reader could often guess without fully reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The training close is usable but thin: it repeats the cold-water lesson without a concrete place, consequence, or before-after result beyond the role statement.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The mentor example is emotionally clear but overlaps heavily with the Full read Leah scene and does not add much new transfer beyond trimming advice and closing warmly.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The workshop threshold example is on-topic but generic; it names no specific learner, stakes, or consequence after the ritual.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the core move is clear, concrete, and memorable, with the red phone, cold-water trial, and YES Prep ceremony giving beginners enough handles to apply the idea. Its best strength is the boundary-setting around endings: it teaches memory design without excusing bad experiences. The main weakness is quiz and example polish. The quiz is fair but sometimes too easy to reverse-engineer from phrasing, and a few later examples are thin variations rather than fresh transfer cases. Still, the chapter meets a professional bar because the mechanism, limits, summaries, and practical actions are all coherent and usable."
+}
+```

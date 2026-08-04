@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as starting a useful act, stopping a tempting act, and keeping the larger value visible.",
+      "Miller and Cohen are cited for the claim that prefrontal control keeps goals active and biases attention and action.",
+      "Gage retained speech and basic ability while planning and social restraint changed after frontal injury.",
+      "The chapter says change begins by noticing the cue, urge, or movement before the action hardens.",
+      "The prose explicitly connects self-control with promises, shared resources, conflict repair, and functioning group life.",
+      "A genuine value can lose when it is quiet at the choice point, so the running goal must be made active.",
+      "The shorter and longer wants can both be real; attention, preparation, and support determine which guides action.",
+      "The method favors a concrete behavior, an observable trigger, and feedback over a vague declaration.",
+      "Prefrontal control is described as biasing the response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice c is the only option containing all three powers and largely repeats the chapter title and central formula.",
+      "Choice a is the only neurologically plausible option; b and c use plainly contradictory claims.",
+      "Choice a restates the stem's contrast, while b and c contain giveaway absolutes such as \"no value\" and \"only.\"",
+      "Choice b is the only option focused on the moment before action; a and c conspicuously occur afterward.",
+      "Choice b is the only cooperative answer; a and c use implausible anti-social absolutes.",
+      "Choice b is the only nonabsolute option; a declares the value false and c says the cue must be fully removed.",
+      "Choice a is uniquely nuanced, while b and c use \"must be fake\" and \"should be obeyed.\"",
+      "Choice c is the only option involving observation or feedback; a and b explicitly reject learning from evidence.",
+      "Choice c mirrors the prose, while a and b are exaggerated claims using \"only\" and \"every.\""
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 76,
+    "transfer": 72,
+    "practical": 82,
+    "summaries": 78,
+    "tone": 84,
+    "limits": 82,
+    "insight": 88,
+    "density": 76,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The loudest want is not always the deepest want.",
+      "why": "A compact, memorable distinction that captures the chapter's central mechanism."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This turns the neuroscience into a portable rule a reader can recall at the choice point."
+    },
+    {
+      "quote": "'I thought you saw it,' someone says through the screen door after dinner, and Warren checks the family thread from the back porch step.",
+      "why": "The detailed quotation and scene are presented without being identified as hypothetical or sourced."
+    },
+    {
+      "quote": "For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+      "why": "The exercise deliberately preserves a known-unhelpful rule for half a week and produces a weak, confounded comparison."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples 1-6",
+      "problem": "The named characters, detailed events, and direct quotations are presented as concrete cases without being labeled hypothetical or attributed to a source. This makes invented instructional vignettes look like reported events, a FABRICATED / MISLEADING EXAMPLE defect.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Most distractors rely on conspicuous absolutes or positions the prose directly ridicules, so test-wise readers can identify the consistently nuanced answer without understanding the mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The scene ends after Brooklyn states the goal and supplies no resulting choice or consequence, so it lacks a complete before-to-after demonstration.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan — Weekly practice",
+      "problem": "The reader is told to retain an all-or-nothing rule for half the week; the two halves are not comparable, and the exercise needlessly delays use of the chapter's method.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples repeat the same goal-must-be-active explanation with only a changed setting, lowering transfer value and density instead of testing meaningful boundary cases.",
+      "mustFix": false
+    },
+    {
+      "unit": "Hook",
+      "problem": "The opening sentence is compressed and syntactically awkward, so it is less approachable and less standalone than the strong fast-read explanation that follows.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, teachable core: willpower is not merely refusal but the coordination of an action to start, an action to stop, and a larger value that must remain mentally active. Its best lines are memorable, the neuroscience is translated clearly, the Gage caveat shows restraint, and the central exercise is concrete enough for beginners. The quiz is fully derivable but too easy to game because correct choices are consistently nuanced while distractors are implausibly absolute. Transfer is also weakened by repetitive scenarios and, more seriously, by detailed named and quoted vignettes that are not disclosed as hypothetical or sourced. With those examples clearly framed and the quiz distractors strengthened, the chapter would be close to a professional shipping standard."
+}
+```

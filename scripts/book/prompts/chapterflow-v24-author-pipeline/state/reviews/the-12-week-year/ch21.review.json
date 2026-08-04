@@ -1,0 +1,119 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "the-12-week-year-ch21",
+  "chapterNumber": 21,
+  "contentHash": "7ed77c6e23c17dc0",
+  "reviewerSessionId": "eval-proxy-the-12-week-year-ch21-1783022657615",
+  "scores": {
+    "retention": 88,
+    "quizzes": 52,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 82,
+    "limits": 78,
+    "insight": 84,
+    "density": 80,
+    "beginner": 87
+  },
+  "composite": 80.3,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The handoff called the 13th Week is where one cycle tells the next one what to change.",
+      "why": "Strong central mechanism in memorable, repeatable language.",
+      "verified": true
+    },
+    {
+      "quote": "If the review produces no changed tactic, no cleaner score, no different commitment, and no protected time, the ending was mostly emotional.",
+      "why": "Best practical test: it turns reflection into visible proof.",
+      "verified": true
+    },
+    {
+      "quote": "Explanation: The correct choice applies Final Thoughts and the 13th Week by making 13th Week visible in action for Vienna research consortium.",
+      "why": "Worst quiz defect: Q6 is about a credit union, so the explanation exposes careless templating.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Unfinished implementation-plan artifact that should not ship.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Across Q1-Q9, the correct option is always the only constructive action; the other two are plainly negative skip/downtime options.",
+    "Correct answers repeat in a predictable a/b/c pattern by scenario group, making keys guessable without reading.",
+    "Explanations are templated and sometimes name the wrong scenario, which weakens confidence in quiz construction."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Distractors are too obviously wrong: they repeatedly say to skip the 13th week or treat it as downtime, so a reader can answer without reading the chapter.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "The correct choices repeat as near-synonyms of the key takeaway and follow a visible a/b/c pattern across the quiz.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6 explanation",
+      "problem": "The explanation says Vienna research consortium, but the question scenario is a regional credit union strategy review.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q7 explanation",
+      "problem": "The explanation says 13th week leadership review, but the question scenario is a rural cooperative seed exchange wrap-up.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8 explanation",
+      "problem": "The explanation says family business quarterly reset, but the question scenario is a language academy teacher review week.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q9 explanation",
+      "problem": "The explanation says hospital quality-improvement retrospective, but the question scenario is an indie press fall list review.",
+      "mustFix": true
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "It contains the unfinished field 'Title: undefined'.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "Card 2 introduces sliding into a 14th and 15th week, which is not developed in the prose readers were given.",
+      "mustFix": false
+    },
+    {
+      "unit": "review cards",
+      "problem": "Card 4 introduces a crisis-compression reversal that is useful but not taught in the main chapter.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Quiz explanations have a template/scaffold smell because they repeat the same sentence structure rather than teaching from the specific scenario.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter body is strong: the keep/change/recommit frame is memorable, practical, and easy for a beginner to apply, and the best lines make the 13th week feel like a concrete handoff rather than a vague reflection period. I would not ship it yet because the assessment layer is below a professional bar: the quiz is highly guessable, several explanations name the wrong scenario, and the implementation plan contains an unfinished 'undefined' artifact. Fixing the quiz and cleanup issues would likely move this into shippable range."
+}

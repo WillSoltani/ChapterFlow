@@ -1,0 +1,71 @@
+2026-07-08T06:44:11.570Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-08T06:44:16.567Z [MAJOR] PHASE qc written 14/14 · gated 14 · qc'd 0
+2026-07-08T06:44:16.634Z [info]  author review budgets: 12 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch02, ch03, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14)
+2026-07-08T06:44:16.769Z [info]  author review budgets: reader budgets clean (7 advisory finding(s)) — advancing
+2026-07-08T06:44:16.769Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch05 reading surface mentions "southwest" (distinctive token of case "Southwest Airlines") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T06:44:16.769Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch06 reading surface mentions "southwest" (distinctive token of case "Southwest Airlines employee trust") 9 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T06:44:16.769Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch06 reading surface mentions "continental" (distinctive token of case "Continental Airlines turnaround") 11 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T06:44:16.770Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch08 reading surface mentions "disney" (distinctive token of case "Walt Disney and Roy O. Disney") 7 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T06:44:16.770Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch10 reading surface mentions "celery" (distinctive token of case "Celery test") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T06:44:16.770Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch12 reading surface mentions "walmart" (distinctive token of case "Walmart leadership after Sam Walton") 11 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T06:44:16.770Z [info]  author review budgets: advisory [CHB8.case_stem_band] 53% of 126 stems name a chapter case/entity verbatim — over the 30% cap; case-name anchoring telegraphs the taught case. Rebuild some stems as novel-scenario transfer.
+2026-07-08T06:44:16.778Z [info]  author review: 14 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-08T06:44:16.788Z [info]  author review ch02: CARRIED durable review (composite 86.7, reviewer auto-author-review-ch02-regen-mr79l806-43) — no reader spawned
+2026-07-08T06:44:16.791Z [info]  author review ch03: CARRIED durable review (composite 84.8, reviewer auto-author-review-ch03-mrb9vni6-3) — no reader spawned
+2026-07-08T06:44:16.801Z [info]  author review ch05: CARRIED durable review (composite 86, reviewer auto-author-review-ch05-mrb9vnif-5) — no reader spawned
+2026-07-08T06:44:16.806Z [info]  author review ch06: CARRIED durable review (composite 84.8, reviewer auto-author-review-ch06-mrb9w9hf-6) — no reader spawned
+2026-07-08T06:44:16.809Z [info]  author review ch07: CARRIED durable review (composite 86.1, reviewer auto-author-review-ch07-mrb9wcxt-7) — no reader spawned
+2026-07-08T06:44:16.812Z [info]  author review ch08: CARRIED durable review (composite 86.9, reviewer auto-author-review-ch08-mrb9weuv-8) — no reader spawned
+2026-07-08T06:44:16.814Z [info]  author review ch09: CARRIED durable review (composite 85.6, reviewer auto-author-review-ch09-r2-mr8wb0yx-11) — no reader spawned
+2026-07-08T06:44:16.817Z [info]  author review ch10: CARRIED durable review (composite 85.5, reviewer auto-author-review-ch10-mr8wa3d4-7) — no reader spawned
+2026-07-08T06:44:16.822Z [info]  author review ch11: CARRIED durable review (composite 87.1, reviewer auto-author-review-ch11-mr8z5xb4-4) — no reader spawned
+2026-07-08T06:44:16.825Z [info]  author review ch12: CARRIED durable review (composite 85, reviewer auto-author-review-ch12-mr8z5xb9-5) — no reader spawned
+2026-07-08T06:44:16.828Z [info]  author review ch13: CARRIED durable review (composite 86.2, reviewer auto-author-review-ch13-mrb9wzmq-9) — no reader spawned
+2026-07-08T06:44:16.832Z [info]  author review ch14: CARRIED durable review (composite 86.8, reviewer auto-author-review-ch14-mr8z6uf1-6) — no reader spawned
+2026-07-08T06:44:54.693Z [info]  author review ch04: composite 85.5 ship=true keys 9/9 → PASS
+2026-07-08T06:45:06.603Z [info]  author review ch01: composite 87.1 ship=true keys 9/9 → PASS
+2026-07-08T06:45:06.603Z [info]  author review: carried 12/14 chapter review(s) unchanged — spawned 2 fresh reader(s)
+2026-07-08T06:48:06.961Z [info]  author acceptance: sampled ch 1, 2, 6, 11 → 63944 chars; spawning 3 independent book readers
+2026-07-08T06:49:10.543Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/start-with-why/acceptance.round1.e1a5e5e6.r1.json
+2026-07-08T06:49:10.544Z [info]  author acceptance: pooled composite 73.9 is within ±3.7 of the binding boundary 77.1 — spawning independent panel read 2/3
+2026-07-08T06:49:10.544Z [info]  author acceptance-p2: sampled ch 1, 2, 6, 11 → 63944 chars; spawning 3 independent book readers
+2026-07-08T06:50:45.325Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/start-with-why/acceptance.round1.e1a5e5e6.r2.json
+2026-07-08T06:50:45.326Z [info]  author acceptance: pooled composite 74.05000000000001 is within ±3.7 of the binding boundary 77.1 — spawning independent panel read 3/3
+2026-07-08T06:50:45.326Z [info]  author acceptance-p3: sampled ch 1, 2, 6, 11 → 63944 chars; spawning 3 independent book readers
+2026-07-08T06:52:11.731Z [info]  author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/start-with-why/acceptance.round1.e1a5e5e6.r3.json
+2026-07-08T06:52:11.731Z [info]  author acceptance: pooled composite 74.2 over 3 read(s) (band ±3.7) gate PASS churn HIGH valid 3/3 vs floor 74 + beat-shipped 72.1+5 (premium target 80) → REJECT
+2026-07-08T06:52:11.753Z [info]  [content-deal] start-with-why: device ubiquity — named-anchor-lead 50%, proxy-cast 36%, second-setting 43%, return-proof 29%, hard-detail-boundary 43%, three-part-split 14%, practice-shell 86%⚠
+2026-07-08T06:52:11.761Z [info]  [content-deal] start-with-why: repairing 4 chapter(s) (ch02[drop practice-shell], ch03[drop practice-shell], ch05[drop practice-shell], ch06[drop practice-shell]); preserving ch01, ch04, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch14.
+2026-07-08T06:52:11.767Z [info]  [sameness] ch02: already consumed its content-deal-repair grant for this lineage — skipping (bounded).
+2026-07-08T06:52:11.770Z [info]  [sameness] ch03: already consumed its content-deal-repair grant for this lineage — skipping (bounded).
+2026-07-08T06:52:11.774Z [info]  [sameness] ch05: already consumed its content-deal-repair grant for this lineage — skipping (bounded).
+2026-07-08T06:52:11.777Z [info]  [sameness] ch06: already consumed its content-deal-repair grant for this lineage — skipping (bounded).
+2026-07-08T06:52:11.777Z [info]  [content-deal] start-with-why: repair summary — kept-and-clean 0, devices-persisted 0, reverted-quality 0, write-failed 0, skipped-cap 4.
+2026-07-08T06:52:11.782Z [info]  [content-deal] start-with-why: AFTER — named-anchor-lead 50%, proxy-cast 36%, second-setting 43%, return-proof 29%, hard-detail-boundary 43%, three-part-split 14%, practice-shell 86%⚠
+2026-07-08T06:52:11.783Z [info]  author acceptance: content-device repair lane ran — kept+PASS none; unfixed→regen ch02, ch03, ch05, ch06.
+2026-07-08T06:52:11.803Z [info]  author acceptance: churn-driven repair routing — targets ch02, ch03, ch05 (named: none; saturation-ranked fill), churn pack 1 measured line(s)
+2026-07-08T06:52:11.808Z [info]  author acceptance: 1 target chapter(s) already consumed their regen (2 total write attempts is a GLOBAL cap): ch02
+2026-07-08T06:52:11.808Z [info]  author acceptance REJECTED — one targeted regen round over 2 chapter(s): ch03, ch05
+2026-07-08T06:52:11.823Z [info]  author ch03: card is 29591 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T06:52:11.827Z [info]  author ch03: whole-chapter writer working (attempt 1, card 29591 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T06:52:11.834Z [info]  author ch05: card is 30969 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T06:52:11.836Z [info]  author ch05: whole-chapter writer working (attempt 1, card 30969 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T07:05:07.672Z [info]  author ch05: done (gate-chapter clean)
+2026-07-08T07:06:02.399Z [info]  author review ch05-bookregen: composite 85.4 ship=true keys 9/9 → PASS
+2026-07-08T07:09:08.894Z [info]  author ch03: done (gate-chapter clean)
+2026-07-08T07:09:53.045Z [info]  author review ch03-bookregen: composite 87 ship=true keys 9/9 → PASS
+2026-07-08T07:09:53.101Z [info]  author acceptance-round2: sampled ch 2, 3, 5, 6 → 60717 chars; spawning 3 independent book readers
+2026-07-08T07:11:02.799Z [info]  author acceptance-round2: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/start-with-why/acceptance.round2.62a242a4.r1.json
+2026-07-08T07:11:02.799Z [info]  author acceptance-round2: pooled composite 73.1 over 1 read(s) (band ±3.7) gate PASS churn HIGH valid 3/3 vs floor 74 + beat-shipped 72.1+5 (premium target 80) → REJECT
+2026-07-08T07:11:02.801Z [info]  ── cost report — start-with-why [halt:content] ──
+  grand total spawns: 21  (minted ids 21; verb ids 0)
+  by type: author-book-reader:12  author-review:4  shipped-control:3  writer:2
+  by phase: qc:21
+  retries by cause: respawn:1
+  carry: acceptance 0 hit / 1 miss · reviews 12 hit / 2 miss
+  wall (spawn ms) by phase: qc:2936098  total:2936098
+2026-07-08T07:11:02.805Z [FINAL] HALT AUTOPILOT HALT — start-with-why [phase qc · content]: author acceptance still REJECTED after the one targeted regen round (composite 73.1, gate PASS, churn HIGH, floor 74):
+  reader auto-author-book-reader-1-round2-mrbqmrf1-19: comp=74.9 gate=PASS churn=HIGH valid=yes — The sample is sound enough on correctness: I found no keyed answer contradicted by the prose, and the major factual anchors appear supportable from the chapter text. As a book sample, though, it reads heavily engineered. The strongest material is the repeated insistence on inspecting behavior, keepi
+  reader auto-author-book-reader-2-round2-mrbqmrf5-20: comp=73.9 gate=PASS churn=HIGH valid=yes — The sample is sound on quiz support: I found no keyed answer contradicted by the chapter prose, and most questions are scenario-based rather than pure recall. The strongest learning value comes from a few sticky diagnostic lines and a useful source-discipline lens: do not let visible tactics, borrow
+  reader auto-author-book-reader-3-round2-mrbqmrf8-21: comp=70.3 gate=PASS churn=HIGH valid=yes — The sample is coherent and mostly quiz-sound, with no hard contradiction between prose and key. Its best teaching move is a reusable lens: separate the stated reason, the visible conduct, and the concrete setting before trusting a result. But across the sample, the chapters feel heavily templated: n
+2026-07-08T07:11:02.805Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260708071102.94b8aa15.repair.md

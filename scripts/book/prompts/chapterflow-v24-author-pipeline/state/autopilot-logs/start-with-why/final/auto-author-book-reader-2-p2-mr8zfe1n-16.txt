@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 74,
+    "transfer": 77,
+    "practical": 72,
+    "summaries": 79,
+    "tone": 64,
+    "limits": 77,
+    "insight": 66,
+    "density": 60,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Compact, portable, and likely to stick."
+    },
+    {
+      "quote": "Trust is a belief you can watch under pressure.",
+      "why": "Strong retention line that turns an abstract concept into a test."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Clear reversal with a memorable distinction."
+    },
+    {
+      "quote": "Move a true detail to the wrong story and it stops grounding the claim; it starts making fiction sound factual.",
+      "why": "Useful limit, but this same hard-detail warning repeats across chapters."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "The phrase recurs as a template move and contributes to visible sameness."
+    },
+    {
+      "quote": "If one approval depends on a rising count, then hold the yes until the count comes back with visible conduct.",
+      "why": "Specific and actionable, though the if-then shells often feel mechanically generated."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is correct enough to pass: the keyed quiz answers are supported by the prose, and I did not find a hard contradiction or corrupted passage. As a book sample, though, it has severe cross-chapter sameness. Each chapter teaches a useful lens, usually with good hard boundaries and some strong memorable lines, but the underlying machinery is highly exposed: named company anchor, second setting, borrowed-detail warning, return proof, invented operator, if-then plan. The quizzes are mostly answerable and scenario-based, but they rarely surprise because the wrong choices often announce themselves as overreach or borrowed-detail errors. This reads like a solid instructional draft with real pedagogical value, not a premium finished book voice."
+}
+```

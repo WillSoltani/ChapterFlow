@@ -1,0 +1,12 @@
+{
+  "$schema": "./model-routing.schema.json",
+  "_comment": "P/Task 7 Step 6 — D1 production defaults: Claude Sonnet 5 via the claude-cli route (subscription auth), effort-tiered per role (research/structural-QC=medium; author/repair=high; canonical review + quiz-key judge=xhigh). The codex route (gpt-5.5) is retained in code as a config-switchable fallback, never the default. Live-smoke evidence: docs/v25/reports/CLAUDE_ROUTE_SMOKE_2026-07.md. No ownerOverride: the NO-GPT-5.5 tripwire passes because no role uses gpt-5.5.",
+  "defaultRoute": { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "high" },
+  "roles": {
+    "research": { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "medium" },
+    "author":   { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "high" },
+    "repair":   { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "high" },
+    "review":   { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "xhigh" },
+    "qc":       { "route": "claude-cli", "model": "claude-sonnet-5", "effort": "xhigh" }
+  }
+}

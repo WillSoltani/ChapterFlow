@@ -9,6 +9,7 @@
  */
 
 import { STRICT_ENV_ASSIGNMENTS, STRICT_ENV_VAR_NAMES } from "./lib/strictEnv.js";
+import type { QualificationBlocker } from "./app/finalQualification.js";
 
 /** The strict env, as `NAME=1` assignments — threaded verbatim into the next command.
  *  Canonical list lives in lib/strictEnv (shared with the codex worker spawn + the
@@ -41,6 +42,8 @@ export interface RunbookStatus {
   blockers: { kind: string; message: string }[];
   /** Non-blocking reminders (e.g. the REVIEW-PACKET token note in QC/Publish). */
   notes: string[];
+  /** Optional failed final-qualification case. Local/optional data; no telemetry exporter required. */
+  qualification?: QualificationBlocker;
 }
 
 /** Pure: each strict-env var marked set (=== "1") or not. */
@@ -123,6 +126,15 @@ export function formatRunbook(bookId: string, plan: RunbookPlan, status: Runbook
     L.push("notes:");
     for (const n of status.notes) L.push(`  ${n}`);
   }
+  if (status.qualification) {
+    L.push("");
+    L.push("qualification:");
+    L.push(`  [${status.qualification.owner}] BLOCKED — ${status.qualification.message}`);
+    L.push(`  safe diagnostic: ${status.qualification.safeDiagnostic?.trim() ? status.qualification.safeDiagnostic : "not recorded"}`);
+    L.push(`  rollback boundary: ${status.qualification.rollbackBoundary?.trim() ? status.qualification.rollbackBoundary : "not recorded"}`);
+    L.push(`  manual owner: ${status.qualification.manualOwner?.trim() ? status.qualification.manualOwner : "not recorded"}`);
+    L.push("  data: local/optional; telemetry exporter not required");
+  }
   return L.join("\n");
 }
 
@@ -143,6 +155,7 @@ export function runbookJson(bookId: string, plan: RunbookPlan, status: RunbookSt
     qcRound: status.qcRound,
     blockers: status.blockers,
     notes: status.notes,
+    qualification: status.qualification ?? null,
     next: { prompt: plan.openPrompt, command: plan.next },
   };
 }

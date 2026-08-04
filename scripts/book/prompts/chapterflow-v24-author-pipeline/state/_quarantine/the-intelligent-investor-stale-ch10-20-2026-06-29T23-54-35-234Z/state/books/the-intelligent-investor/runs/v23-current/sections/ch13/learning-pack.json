@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch13",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch13.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.1"
+        ],
+        "prompt": "An investor ranks the four listed companies by which name feels most familiar. What is the main mistake?",
+        "choices": [
+          "Familiarity should be used before price because recognition proves value.",
+          "Price must be compared with the record because reputation alone can hide what is being paid for earnings and assets.",
+          "A familiar name should be avoided because recognition always signals overvaluation."
+        ],
+        "correctIndex": 1,
+        "explanation": "Recognition is not valuation. The four-company method compares price with record rather than reputation alone.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch13.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.2"
+        ],
+        "prompt": "Emerson Electric looks like the strongest business in a comparison. What should still be checked before buying?",
+        "choices": [
+          "Whether the company is famous enough to ignore valuation.",
+          "Whether business quality removes the effect of a premium price.",
+          "Whether the price already reflects high expectations and reduces future return."
+        ],
+        "correctIndex": 2,
+        "explanation": "A high-quality business can still require valuation caution. Investment result depends on price as well as quality.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch13.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.3"
+        ],
+        "prompt": "A growth-company comparison shows strong growth reputation and a high multiple. What question disciplines the judgment?",
+        "choices": [
+          "How much of the growth is already capitalized in the price?",
+          "Whether growth reputation alone makes the company cheap.",
+          "Whether disappointment is irrelevant when growth has been strong."
+        ],
+        "correctIndex": 0,
+        "explanation": "Growth can be overpaid for. High multiples can leave little room for disappointment if expectations are already capitalized.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch13.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.4"
+        ],
+        "prompt": "Two companies show appealing income statement growth, but one relies more heavily on debt. What should change in the comparison?",
+        "choices": [
+          "Debt should be ignored because growth alone ranks the companies.",
+          "The company with more debt should automatically rank higher because leverage increases earnings.",
+          "Balance-sheet strength should be weighed because leverage changes downside risk and the value of earnings."
+        ],
+        "correctIndex": 2,
+        "explanation": "Balance-sheet strength affects the comparison. Debt can make growth fragile and change how earnings should be valued.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch13.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.5"
+        ],
+        "prompt": "A comparison shows reported prosperity, but the dividend record is being dismissed as irrelevant. What is being missed?",
+        "choices": [
+          "Cash distributions are a cross-check on whether earnings reached shareholders.",
+          "Dividends settle every valuation question without looking at price.",
+          "Dividend records matter only when earnings are ignored."
+        ],
+        "correctIndex": 0,
+        "explanation": "Dividend record supplies one visible test of financial maturity because cash distributions show whether earnings reached shareholders.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch13.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.6"
+        ],
+        "prompt": "A lower-quality company appears beside a stronger one, but its price is much lower relative to its prospects. What conclusion fits disciplined comparison?",
+        "choices": [
+          "The lower-quality company must be rejected because quality rankings and investment rankings are identical.",
+          "The lower-quality company may be more attractive if valuation compensates for weaker prospects within limits.",
+          "The strongest company must rank first regardless of price."
+        ],
+        "correctIndex": 1,
+        "explanation": "Price can reverse the order. A lower-quality company may be more attractive when valuation compensates for weaker prospects within limits.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch13.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.7"
+        ],
+        "prompt": "An investor wants to settle the ranking from one annual report because the latest comparison looks clear. What is the problem?",
+        "choices": [
+          "Cyclical or temporary conditions can distort apparent standing, so multi-year records are needed.",
+          "One annual report is enough when the narrative is compelling.",
+          "Multi-year records should be avoided because they weaken recent evidence."
+        ],
+        "correctIndex": 0,
+        "explanation": "A single comparison year is not enough. Temporary or cyclical conditions can distort how each company appears.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch13.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.8"
+        ],
+        "prompt": "Emerson Electric and Emery Air Freight both report earnings, but their businesses have different capital needs and margins. What should the comparison avoid?",
+        "choices": [
+          "Treating industry context as relevant to capitalization.",
+          "Giving all earnings dollars the same multiple without considering business economics.",
+          "Comparing companies from different businesses at all."
+        ],
+        "correctIndex": 1,
+        "explanation": "Industry context matters because capital needs and margins differ across industrial, electrical, and freight businesses. Business economics change capitalization.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch13.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch13.fact.9"
+        ],
+        "prompt": "A compelling company story conflicts with a side-by-side table showing unfavorable ratios. What should carry more weight?",
+        "choices": [
+          "The narrative, because a single story is clearer than multiple facts.",
+          "The story, as long as the ratios are inconvenient rather than favorable.",
+          "The side-by-side evidence, because tables force multiple facts into view at once."
+        ],
+        "correctIndex": 2,
+        "explanation": "Side-by-side tables discipline judgment. Narratives can hide unfavorable ratios, while tables force several facts to be confronted together.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch13.fact.1"
+        ],
+        "front": "What does the four-company method compare instead of reputation alone?",
+        "back": "It compares price with record. Names and narratives can obscure what the buyer is paying for earnings and assets.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch13.fact.2"
+        ],
+        "front": "Why can Emerson Electric still require valuation caution?",
+        "back": "A high-quality business can be priced so richly that future return is reduced. Investment result depends on price as well as quality.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch13.fact.3"
+        ],
+        "front": "What must a growth-company comparison ask?",
+        "back": "It must ask how much growth is already capitalized. High multiples can leave little room for disappointment.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch13.fact.4"
+        ],
+        "front": "Why does balance-sheet strength affect a company comparison?",
+        "back": "Leverage changes both downside risk and the value of earnings. Debt can make growth fragile.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch13.fact.5"
+        ],
+        "front": "What does dividend record cross-check?",
+        "back": "It checks whether reported prosperity has reached shareholders through cash distributions. Dividends are one visible test of financial maturity.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch13.fact.6"
+        ],
+        "front": "How can price reverse a quality ranking?",
+        "back": "A lower-quality company may be more attractive if its valuation sufficiently compensates for weaker prospects within limits.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch13.fact.7"
+        ],
+        "front": "Why is a single comparison year not enough?",
+        "back": "Cyclical or temporary conditions can distort each company's apparent standing. Multi-year records are needed.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "2ff474ed10629f816feec646e47c68b3c17263a0baaf64fb5fa01af4ca4f9f40",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice b is best supported because it isolates the recurring passage, supplies immediate feedback, and changes the next attempt; choice c merely avoids the fault."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a uniquely converts the repeated redox error into a focused check-and-correct loop."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c directly diagnoses that whole-demo repetition is allowing the same localized weakness to survive."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b uniquely targets the observed crossover with a cue, prompt video feedback, and immediate repetition."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b identifies the defining mechanism: each failure changes the strategy used in the next attempt."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b are both defensible because each explains how repetition can leave uneven cuts unchanged, with b adding the need for a visible target."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c alone states the operative condition that feedback must alter the next attempt while the error remains traceable."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is uniquely supported because Plan B provides feedback soon enough to correct the following small batch."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely replaces the vague goal with observable technique and outcome criteria over a defined number of turns."
+    }
+  ]
+}
+```

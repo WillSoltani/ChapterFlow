@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": ["Q2: I derived 'a' from the prose because the stem says Microsoft is written with the same product-date phrasing as Apple and Dell; the prose says Microsoft needs a different token so it does not feel stamped from the first. The keyed 'c' describes the corrected version, not what to notice downstream from the flawed version."],
+    "tells": ["Several distractors are weakened by absolute giveaway phrasing such as 'drop all factual tokens,' 'universal recipe,' 'every organization,' and 'delete the 2001 iPod from every paragraph.'", "Correct choices often reuse the chapter's exact technical language, especially 'visible setting,' 'four jobs,' 'boundary marker,' and 'named anchors,' making some keys guessable without full comprehension."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 86,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 90,
+    "insight": 87,
+    "density": 82,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the ruler; it is the starter's mark.",
+      "why": "Strongest line: it compresses the chapter's core distinction into a memorable image."
+    },
+    {
+      "quote": "The external rival opens the loop; the internal benchmark closes it.",
+      "why": "Clear mechanism and order; this is the practical move readers can retain."
+    },
+    {
+      "quote": "When an analyst writes Microsoft with the same product-date phrasing as Apple and Dell, what should they notice downstream?",
+      "why": "Worst defect: this quiz stem points to the flawed phrasing, but the answer key rewards the corrected phrasing."
+    },
+    {
+      "quote": "The order has four jobs. External rival means the outside pressure you name first. Internal benchmark means the prior standard you return to.",
+      "why": "Useful but somewhat abstract; a cold beginner may need a plainer worked example before the labels stack up."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The key appears unsound. The stem describes Microsoft being written with the same product-date phrasing as Apple and Dell, so the best answer is the downstream problem in choice a, not the corrected distinction in choice c.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are too easy to reject because they use extreme language such as dropping all factual tokens, universal recipes, or deleting the 2001 iPod everywhere.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The four-job framework is accurate but label-heavy on first contact; outside rival, internal benchmark, purpose fidelity, and continuous improvement arrive before enough concrete action is shown.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The Southwest boundary point is valuable, but 'Dallas' as the boundary marker is asserted more than demonstrated; the reader is told it marks the edge without much causal explanation.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several named characters serve mainly as carriers for the same teaching move, which gives the section a slight scaffold smell despite the concrete company details.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable central move: let the rival start the comparison, then make your own benchmark close it. The summaries layer well, the limits section is unusually honest, and the hard-detail discipline around Apple, Microsoft, and Southwest gives the idea real shape. I would not ship yet because Q2 has a key-soundness problem and the quiz has some guessable distractor patterns, but the prose itself is close to the professional bar."
+}
+```

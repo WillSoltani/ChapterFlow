@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch09",
+  "chapterNumber": 9,
+  "title": "A Radically Candid Performance Review",
+  "coreMove": "Because it is separated from the eight numbered units, the material extends the tools into formal review systems.",
+  "thesis": "The official guide lists A Radically Candid Performance Review as a Bonus Chapter after Ch. 8.",
+  "readerPromise": "After this chapter, a reader can because it is separated from the eight numbered units, the material extends the tools into formal review systems.",
+  "ownedCases": [
+    {
+      "id": "ch09.ex.bonus-performance-review",
+      "label": "Bonus performance review unit"
+    },
+    {
+      "id": "ch09.ex.measurement-problem",
+      "label": "The Measurement Problem"
+    },
+    {
+      "id": "ch09.ex.core-sbi-review-evidence",
+      "label": "CORE and SBI review evidence"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Aristotle persuasion triad",
+    "Bob at Juice Software",
+    "CORE feedback framework",
+    "Care Personally plus Challenge Directly compass",
+    "Center for Creative Leadership SBI",
+    "GSD Wheel",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Kim Scott at Google and Apple",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Meeting creep",
+    "Order of Operations feedback sequence",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg at Google"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    0,
+    0,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a car ride conversation",
+    "venue: a coffee-shop table",
+    "venue: a weekend plan",
+    "frame: post-decision consequence that forces a correction",
+    "frame: a shared ritual observed in mid-action as it builds connection"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "claim",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "say",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "partial",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    7,
+    5,
+    3,
+    9,
+    6,
+    2,
+    1,
+    4,
+    8
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "motion-speak",
+    "ledger-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "The Measurement Problem"
+  },
+  "adjacentJobs": {
+    "prev": "Because Results follows the philosophy and team tools, it turns collaboration into operating routines."
+  }
+}

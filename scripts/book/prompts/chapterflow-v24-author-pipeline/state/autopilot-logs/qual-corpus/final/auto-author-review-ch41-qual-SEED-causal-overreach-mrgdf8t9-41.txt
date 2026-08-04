@@ -1,0 +1,93 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "No quiz questions or answer options are present, so there are no answerable items or option-level tells to audit."
+    ]
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 0,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 45,
+    "limits": 5,
+    "insight": 0,
+    "density": 10,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "They claim the memo alone caused the turnaround.",
+      "why": "This is the only concrete causal idea on the page, but it is asserted rather than developed."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "The promised read layers are present only as empty headings."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The assessment and retention supports are structurally missing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its standalone promise as a summary layer.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, leaving no explanation or mechanism for the chapter's claim.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so the chapter has no teachable body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the reader is not given a core move to retain.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so there is no practical action a reader can perform.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so there are no examples to support transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions or options, making the quiz broken and unscoreable.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the retention aid is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the promised memory support is absent.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook asserts a causal story about a memo and a turnaround but gives no context, evidence, or learning frame.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter. It is essentially a scaffold: one hook sentence plus empty required sections. There is no quiz to answer, no layered summary, no explanation, no examples, no practical exercise, and no review material. The central claim about a memo causing a turnaround might become useful, but on the page it is unsupported and not teachable."
+}
+```

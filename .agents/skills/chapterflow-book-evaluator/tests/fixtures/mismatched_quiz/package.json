@@ -1,0 +1,29 @@
+{
+  "packageId": "fixture-mismatched-quiz",
+  "book": {
+    "bookId": "fixture-mismatched-quiz",
+    "title": "A Quiz With the Wrong Explanation"
+  },
+  "chapters": [
+    {
+      "chapterId": "safe-choice",
+      "number": 1,
+      "title": "Choose Safely",
+      "fullRead": "The lesson says to pause when a decision could cause harm.",
+      "quiz": {
+        "questions": [
+          {
+            "questionId": "q-semantic-mismatch",
+            "prompt": "What should you do when a decision could cause harm?",
+            "choices": [
+              "Pause and seek appropriate help",
+              "Act immediately"
+            ],
+            "correctIndex": 0,
+            "explanation": "Blue triangles have three sides and are easy to draw."
+          }
+        ]
+      }
+    }
+  ]
+}

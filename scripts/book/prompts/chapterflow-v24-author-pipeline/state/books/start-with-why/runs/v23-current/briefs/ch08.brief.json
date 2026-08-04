@@ -1,0 +1,178 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "start-with-why-ch08",
+  "chapterNumber": 8,
+  "title": "Start with WHY, But Know HOW",
+  "coreMove": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+  "thesis": "Walt Disney and Roy O. Disney adds a second anchor for WHY and HOW partnership with Walt Disney and Roy O. Disney.",
+  "readerPromise": "After this chapter, a reader can since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+  "ownedCases": [
+    {
+      "id": "ch08.ex.bill-gates-and-paul-allen",
+      "label": "Bill Gates and Paul Allen"
+    },
+    {
+      "id": "ch08.ex.walt-disney-and-roy-o-disney",
+      "label": "Walt Disney and Roy O. Disney"
+    },
+    {
+      "id": "ch08.ex.steve-jobs-and-steve-wozniak",
+      "label": "Steve Jobs and Steve Wozniak"
+    }
+  ],
+  "notYours": [
+    "American Airlines boarding assumptions",
+    "Antonio Damasio / Descartes' Error",
+    "Apple Inc.",
+    "Apple after Steve Jobs's 1985 exit",
+    "Apple and Dell contrast",
+    "Apple design consistency",
+    "Apple iPod",
+    "Apple retail and product signals",
+    "Celery test",
+    "Continental Airlines turnaround",
+    "Dell DJ",
+    "Detroit automakers",
+    "Everett Rogers diffusion model",
+    "Ford Motor Company founder legacy",
+    "General Motors employee-discount promotions",
+    "Gordon Bethune",
+    "Harley-Davidson identity",
+    "Herb Kelleher",
+    "Howard Schultz and Starbucks experience",
+    "Japanese car-door assembly"
+  ],
+  "cast": [
+    "Anais",
+    "Brandon",
+    "Beau",
+    "Charles"
+  ],
+  "answerIndexPattern": [
+    0,
+    2,
+    0,
+    2,
+    1,
+    1,
+    2,
+    1,
+    0
+  ],
+  "avoid": [
+    "opener (ch02): \"At the return moment, a sales analyst at\"",
+    "opener (ch03): \"Why does Sylvia's pitch still feel thin? Founder\"",
+    "opener (ch04): \"At the return point, service lead Rachel brings\"",
+    "opener (ch05): \"1971 is the fact nobody has flagged in\"",
+    "opener (ch06): \"Trainer Denise marks the fare line at a\"",
+    "opener (ch07): \"In Keith's launch, interest comes from people who\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a direct-message thread",
+    "venue: a long text thread",
+    "venue: a living-room couch",
+    "frame: two stakeholders disagree about bicycle shop before deciding",
+    "frame: a peak moment recalled vividly long after the day it happened"
+  ],
+  "openerType": "statistic",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "ask",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "case",
+    "different",
+    "third",
+    "language",
+    "test",
+    "boundary"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v4",
+  "exampleCount": 5,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    6,
+    8,
+    4,
+    3,
+    9,
+    5,
+    1,
+    7,
+    2
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Bill Gates and Paul Allen"
+  }
+}

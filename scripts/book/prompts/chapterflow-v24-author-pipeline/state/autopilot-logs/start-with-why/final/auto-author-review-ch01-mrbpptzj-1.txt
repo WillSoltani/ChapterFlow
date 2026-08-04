@@ -1,0 +1,62 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q3: the keyed answer is the only option that mentions checkable details and named examples; the distractors lean on status or vague breadth.",
+      "Q7: the keyed answer closely echoes the chapter's repeated wording about keeping jidoka with Japanese car-door assembly and carrying only the plain order elsewhere."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 83,
+    "practical": 84,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 92,
+    "insight": 88,
+    "density": 86,
+    "beginner": 85
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A bad guess charges twice. It charges once when it points capable action at the wrong problem. It charges again when the later correction looks like skill, so the same bad premise gets to travel further.",
+      "why": "Strong mechanism: it explains why a clean-looking fix can preserve the original error."
+    },
+    {
+      "quote": "Known data is the part you can point to before the guess starts spending.",
+      "why": "Memorable, concrete wording that makes the core move easy to retain."
+    },
+    {
+      "quote": "What stays broken is the replacement guess. It has not yet shown which hidden friction it removed, so Results remain thin.",
+      "why": "Useful limitation, but also shows one example staying abstract rather than dramatizing the before-to-after."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed answer is fair, but the distractors are comparatively easy to reject because they rely on status or vague breadth rather than plausible misuse of the chapter's method.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct option is strongly cued by the stem and by repeated chapter phrasing about jidoka staying with factory work.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: it names a setting but gives no concrete decision, evidence, or consequence beyond saying the answer is partial.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: it restates the lesson about withholding credit until the habit shrinks, but does not show a specific before-to-after decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear, memorable core: put known data before assumptions, spend the guess with a small decision, and check results before praising the repair. The summaries layer well, the limits around jidoka and Fort Worth are unusually disciplined, and the quiz keys are sound. The main weaknesses are craft-level: a couple of examples are more abstract than lived, and a few quiz distractors are easy to eliminate without much reading. None of that blocks publication."
+}
+```

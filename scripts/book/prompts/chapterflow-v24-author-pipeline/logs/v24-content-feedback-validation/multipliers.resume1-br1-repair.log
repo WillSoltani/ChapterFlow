@@ -1,0 +1,57 @@
+2026-07-09T02:23:46.359Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T02:23:46.387Z [MAJOR] PHASE write written 0/9 · gated 0 · qc'd 0
+2026-07-09T02:23:47.544Z [info]  author source-packets: compile-source-packets: PASS (9 packet(s))
+2026-07-09T02:23:48.089Z [info]  author source-packet-gate: source-packet-gate: PASS (9 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-09T02:23:48.602Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T02:23:49.073Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T02:23:49.625Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (18 file(s))
+2026-07-09T02:23:50.098Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T02:23:50.099Z [info]  author write: 9 missing chapter(s) of 9 (parallel ≤6)
+2026-07-09T02:23:50.101Z [info]  author ch01: card is 29094 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:23:50.102Z [info]  author ch01: whole-chapter writer working (attempt 1, card 29094 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:23:50.105Z [info]  author ch02: card is 27916 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:23:50.105Z [info]  author ch02: whole-chapter writer working (attempt 1, card 27916 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:23:50.107Z [info]  author ch03: card is 27778 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:23:50.107Z [info]  author ch03: whole-chapter writer working (attempt 1, card 27778 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:23:50.109Z [info]  author ch04: card is 28180 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:23:50.109Z [info]  author ch04: whole-chapter writer working (attempt 1, card 28180 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:23:50.111Z [info]  author ch05: card is 27936 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:23:50.111Z [info]  author ch05: whole-chapter writer working (attempt 1, card 27936 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:23:50.113Z [info]  author ch06: card is 28003 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:23:50.113Z [info]  author ch06: whole-chapter writer working (attempt 1, card 28003 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:36:41.078Z [info]  author ch02: ch02: rubric preflight FAIL — ch02: FAIL ease=75.746 fk=5.576~ tell=0.111 transfer=0.778 memClean=1✗ tic=0 nom=2.069 echo=0 lenTell=3 practice=2 — FAIL: memorableClean
+2026-07-09T02:36:41.078Z [info]  author ch02: whole-chapter writer working (attempt 2, card 29020 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:37:38.093Z [info]  author ch06: done (gate-chapter clean)
+2026-07-09T02:37:38.096Z [info]  author ch07: card is 28196 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:37:38.097Z [info]  author ch07: whole-chapter writer working (attempt 1, card 28196 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:39:52.518Z [info]  author ch03: done (gate-chapter clean)
+2026-07-09T02:39:52.521Z [info]  author ch08: card is 28022 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:39:52.521Z [info]  author ch08: whole-chapter writer working (attempt 1, card 28022 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:42:23.985Z [info]  author ch05: done (gate-chapter clean)
+2026-07-09T02:42:23.989Z [info]  author ch09: card is 28247 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-09T02:42:23.990Z [info]  author ch09: whole-chapter writer working (attempt 1, card 28247 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:43:27.748Z [info]  author ch04: ch04: rubric preflight FAIL — ch04: FAIL ease=78.354 fk=4.92~ tell=0 transfer=0.667✗ memClean=2 tic=0 nom=2.536 echo=1~ lenTell=2 practice=2 — FAIL: transferRatio
+ch04 fix: echo-tell: quiz q09 key lifts a ≥5-content-token verbatim phrase from the chapter (paraphrase the key)
+2026-07-09T02:43:27.748Z [info]  author ch04: whole-chapter writer working (attempt 2, card 29392 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T02:45:13.504Z [info]  author ch01: done (gate-chapter clean)
+2026-07-09T02:50:20.278Z [info]  author ch04: ch04: STIER-2 write contract FAIL — lead thread: the dealt lead (John) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T02:50:20.280Z [info]  author ch04: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+2026-07-09T02:51:49.762Z [info]  author ch02: done (gate-chapter clean)
+2026-07-09T02:57:12.500Z [info]  author ch07: done (gate-chapter clean)
+2026-07-09T02:57:26.684Z [info]  author ch09: done (gate-chapter clean)
+2026-07-09T02:58:10.538Z [info]  author ch08: ch08: rubric preflight FAIL — ch08: FAIL ease=74.431 fk=5.645~ tell=0 transfer=0.667✗ memClean=3 tic=0 nom=3.616 echo=0 lenTell=1 practice=2 — FAIL: transferRatio
+2026-07-09T02:58:10.539Z [info]  author ch08: whole-chapter writer working (attempt 2, card 29121 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-09T03:16:51.752Z [info]  author ch08: ch08: STIER-2 write contract FAIL — lead thread: the dealt lead (Getting) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T03:16:51.753Z [info]  author ch08: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).
+2026-07-09T03:16:51.755Z [info]  ── cost report — multipliers [halt:content] ──
+  grand total spawns: 12  (minted ids 12; verb ids 0)
+  by type: writer:12
+  by phase: write:12
+  retries by cause: retry1:3
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 0 miss
+  wall (spawn ms) by phase: write:11733328  total:11733328
+2026-07-09T03:16:51.757Z [FINAL] HALT AUTOPILOT HALT — multipliers [phase write · content]: author write: 2 chapter(s) failed to author within the retry budget:
+ch04: STIER-2 write contract FAIL — lead thread: the dealt lead (John) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+
+ch08: STIER-2 write contract FAIL — lead thread: the dealt lead (Getting) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-09T03:16:51.757Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/multipliers/book-run/chapter-generation.20260709031651.80d4b82b.repair.md

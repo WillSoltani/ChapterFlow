@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 3,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 3,
+    "density": 8,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "silence leads to check-ins, check-ins lead to more silence, then marks her own arrow.",
+      "why": "This is the sole concrete causal loop and the chapter's strongest potentially memorable moment."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "All three promised reading layers are empty, leaving no chapter explanation or standalone summary."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction refers to an unexplained move and gives the reader no executable procedure."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and both retention aids are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is an internal phase-review placeholder rather than reader-facing subject matter.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast/deep/full reads",
+      "problem": "All three reading layers are empty, so none fulfills its stand-alone explanatory promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states its core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving no practical exercise or actionable sequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario invokes drawing a loop and marking one's own arrow without defining either operation; its generic instruction merely says to apply an unidentified move.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or choices, making the required assessment structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised review aid does not exist.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the promised retention aid does not exist.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. One scenario hints at a potentially useful feedback-loop technique—identify how a response reinforces the condition and mark one's own contribution—but the prose never defines that technique, explains its mechanism, supplies a usable procedure, or states its limits. Every principal learning layer and retention component is empty, and the quiz is absent, so a beginner cannot learn, practice, review, or demonstrate the intended move from what is on the page."
+}
+```

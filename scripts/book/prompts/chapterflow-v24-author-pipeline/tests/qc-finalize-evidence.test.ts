@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test, skip } from "./harness.js";
 import { PIPELINE_DIR, STATE_CHAPTERS, makeChapter, makeGateCleanChapter, makeSourceV2SidecarFixture, runCli, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { checkQcAttestation, attestationPath, chapterContentHash, loadAttestation, writeAttestation } from "../src/critics/qcAttestation.js";
 import { runBookGate } from "../src/critics/bookGate.js";
+import type { BookPatternAuditReport } from "../src/critics/bookPatternAudit.js";
 import { AXIS_WEIGHTS, computeVerdict, type AxisId, type AxisScore } from "../src/critics/semantic/publishableBar.js";
 import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import type { ChapterV21 } from "../src/types.js";
@@ -31,7 +32,7 @@ import { collectQcRound, generateConfirmCandidates } from "../src/qc/orchestrato
 import { evaluateDeterministic } from "../src/qc/orchestrator/deterministicGate.js";
 import { effectiveLedger, appendFindings } from "../src/qc/orchestrator/ledger.js";
 import { checkSourceV2Gate, sourceHashFor } from "../src/qc/sourceV2Gate.js";
-import { REQUIRED_SWEEP_FAMILIES, checkSweep, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { chapterClearsPath, REQUIRED_SWEEP_FAMILIES, checkSweep, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const BOOK = "zz-fixture-finalize-evidence";
@@ -46,6 +47,10 @@ const SWEEP_SESSION = "fixture-sweep-session";
 const BAR_SESSION = "fixture-bar-session";
 const CONFIRM_SESSION = "fixture-confirm-session";
 const FINALIZER_SESSION = "fixture-finalizer-session";
+const OWNED_EMPTY_DIRS = ["qc-packs", "qc-orchestrator", "qc-rounds", "shape-plans", "venue-plans", "exemplar-plans"].map((name) => {
+  const path = resolve(PIPELINE_DIR, "state", name);
+  return { path, existed: existsSync(path) };
+});
 
 function withSession<T>(sessionId: string, fn: () => T): T {
   const prev = process.env.CHAPTERFLOW_SESSION_ID;
@@ -62,6 +67,36 @@ function finalizeWithSession(...args: Parameters<typeof finalizeQcRound>): Retur
   return withSession(FINALIZER_SESSION, () => finalizeQcRound(...args));
 }
 
+function cleanPatternAudit(bookId: string, chapterCount: number): BookPatternAuditReport {
+  return {
+    bookId,
+    chapterCount,
+    passed: true,
+    findings: [],
+    stats: {
+      repeatedQuizExplanationGroups: 0,
+      repeatedSurfaceFrameGroups: 0,
+      repeatedExampleFrameGroups: 0,
+      repeatedConcreteAnchors: 0,
+      templatedBreakdownShellGroups: 0,
+      shortParagraphDuplicateGroups: 0,
+      literalSubstringGroups: 0,
+      quizPositionTemplateDuplicates: 0,
+      missingPlanChapters: [],
+      missingBrief: false,
+      sourceAlignmentWarnings: 0,
+    },
+  };
+}
+
+function readAttestation(bookId: string, chapterNumber: number) {
+  try {
+    return loadAttestation(bookId, chapterNumber, readFileSync(attestationPath(bookId, chapterNumber)));
+  } catch {
+    return null;
+  }
+}
+
 function cleanup(): void {
   for (const bookId of [BOOK, GREEN_BOOK, MAJOR_BOOK]) {
     for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -70,11 +105,17 @@ function cleanup(): void {
     rmSync(resolve(REPO_ROOT, ".chapterflow/runs", bookId), { recursive: true, force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "qc-orchestrator", bookId), { recursive: true, force: true });
     rmSync(keyPackDir(bookId, ROUND), { recursive: true, force: true });
+    rmSync(dirname(keyPackDir(bookId, ROUND)), { recursive: true, force: true });
     rmSync(qcRoundPath(bookId, ROUND), { force: true });
     rmSync(waiverPath(bookId), { force: true });
+    if (bookId === GREEN_BOOK || bookId === MAJOR_BOOK) {
+      rmSync(sweepHistoryPath(bookId), { force: true });
+      rmSync(chapterClearsPath(bookId), { force: true });
+    }
     rmSync(sweepRecordPath(bookId), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${bookId}.manual-brief.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "shape-plans", `${bookId}.shape-plan.json`), { force: true });
+    rmSync(resolve(PIPELINE_DIR, "state", "venue-plans", `${bookId}.venue-plan.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "exemplar-plans", `${bookId}.exemplar-plan.json`), { force: true });
     for (const n of [1, 2, 3, 4, 5, 6]) {
       rmSync(attestationPath(bookId, n), { force: true });
@@ -82,6 +123,9 @@ function cleanup(): void {
       rmSync(provenancePath(`${bookId}-ch${String(n).padStart(2, "0")}`), { force: true });
       rmSync(resolve(PIPELINE_DIR, "state", "plans", `${bookId}-ch${String(n).padStart(2, "0")}.manual-plan.json`), { force: true });
     }
+  }
+  for (const dir of OWNED_EMPTY_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
   }
 }
 
@@ -237,6 +281,7 @@ function writeRoundRecord(bookId: string, chapters: ChapterV21[]): void {
     // major gate) actually run, instead of qc-auto short-circuiting on a
     // hashless round now that checkRoundFreshness fails closed.
     chapterContentHashes: Object.fromEntries(chapters.map((ch) => [String(ch.number), chapterContentHash(ch)])),
+    patternAudit: cleanPatternAudit(bookId, chapters.length),
   }, null, 2) + "\n", "utf8");
 }
 
@@ -406,7 +451,10 @@ function noApiQcBlockers(bookId: string, chapters: ChapterV21[]): string[] {
       ...chapters.flatMap((ch) => checkManualKeyJudge(ch, true).map((f) => f.checkId)),
       ...checkSweep(chapters, true).map((f) => f.checkId),
       ...unresolvedMajors(bookId, chapters, true).map(() => "QC4.major_unresolved"),
-      ...chapters.flatMap((ch) => checkQcAttestation(ch, true).map((f) => f.checkId)),
+      ...chapters.flatMap((ch) => checkQcAttestation(ch, true, {
+        attestation: readAttestation(bookId, ch.number),
+        legacyRoundPresent: existsSync(qcRoundPath(bookId, ROUND)),
+      }).map((f) => f.checkId)),
     ];
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
@@ -480,17 +528,18 @@ goldTest("finalize writes PUBLISHABLE attestation with evidence paths when all n
     const chapter = clonedCleanChapter(GREEN_BOOK);
     setupGreenEvidence(GREEN_BOOK, [chapter]);
     const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
-    const det = evaluateDeterministic(GREEN_BOOK, [chapter], [chapter]).perChapter.get(SOURCE_CHAPTER_NUMBER);
+    const patternAudit = cleanPatternAudit(GREEN_BOOK, 1);
+    const det = evaluateDeterministic(GREEN_BOOK, [chapter], [chapter], patternAudit).perChapter.get(SOURCE_CHAPTER_NUMBER);
     assert.equal(result.allPublishable, true, JSON.stringify({
       finalVerdict: result.chapters[0].finalVerdict,
       reason: result.chapters[0].reason,
       checks: result.chapters[0].checks,
       majorStatus: result.chapters[0].majorStatus,
       detFindings: det?.findings,
-      bookGateFindings: runBookGate(GREEN_BOOK, [chapter]).findings.map((f) => ({ id: f.catalogId, severity: f.severity, message: f.message })),
+      bookGateFindings: runBookGate(GREEN_BOOK, [chapter], { patternAudit }).findings.map((f) => ({ id: f.catalogId, severity: f.severity, message: f.message })),
     }));
     assert.equal(result.attestationsWritten, 1);
-    const att = loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER);
+    const att = readAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER);
     assert.equal(att?.verdict, "PUBLISHABLE");
     assert.equal(att?.evidence?.evidenceMatrixPath, evidenceMatrixPath(GREEN_BOOK, ROUND));
     assert.ok(att?.evidence?.manualKeyJudgePath);
@@ -777,7 +826,7 @@ goldTest("P2: an incremental round CARRIES an unchanged-PUBLISHABLE chapter with
     const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
     assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", JSON.stringify(result.chapters[0]));
     assert.equal(result.attestationsWritten, 0, "carried-green chapter keeps its prior attestation (no re-attest)");
-    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.roundId, "r-prior", "prior attestation + its valid artifacts preserved for promote");
+    assert.equal(readAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.roundId, "r-prior", "prior attestation + its valid artifacts preserved for promote");
   } finally {
     cleanup();
   }
@@ -854,7 +903,7 @@ goldTest("P2 GUARD (Fix 2): an UNGROUNDED sweep FAIL does NOT demote a carried c
     assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", "an ungrounded sweep mention must not un-bank a carried chapter");
     assert.equal(result.chapters[0].checks.sweep, "PASS", "the ungrounded FAIL is re-validated back to PASS");
     assert.equal(result.attestationsWritten, 0, "the prior PUBLISHABLE attestation is preserved (not overwritten)");
-    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.roundId, "r-prior", "high-water-mark intact");
+    assert.equal(readAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.roundId, "r-prior", "high-water-mark intact");
   } finally {
     cleanup();
   }
@@ -891,7 +940,7 @@ goldTest("P2 GUARD (Fix 2): a GROUNDED sweep FAIL STILL demotes a carried chapte
     const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
     assert.equal(result.chapters[0].checks.sweep, "FAIL", "a grounded sweep finding keeps the chapter FAILed");
     assert.equal(result.chapters[0].finalVerdict, "REVISE", "a real cross-chapter collision still demotes a carried chapter");
-    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "a real demotion overwrites the prior PUBLISHABLE so it is re-reviewed, never carried/promoted on a stale pass");
+    assert.equal(readAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "a real demotion overwrites the prior PUBLISHABLE so it is re-reviewed, never carried/promoted on a stale pass");
   } finally {
     cleanup();
   }
@@ -1121,7 +1170,7 @@ goldTest("P1.4: a complete fresh positive read supersedes a STALE prior-round RE
     const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
     assert.equal(result.chapters[0].finalVerdict, "PUBLISHABLE", JSON.stringify(result.chapters[0]));
     assert.match(result.chapters[0].reason, /superseded a stale prior-round/);
-    const att = loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER);
+    const att = readAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER);
     assert.equal(att?.verdict, "PUBLISHABLE");
     assert.ok(
       att?.history?.some((h) => h.verdict === "REVISE" && h.roundId === "r-prior"),
@@ -1169,7 +1218,7 @@ goldTest("P1.4: a SAME-reviewer confirm does NOT supersede a stale REVISE (autho
     const result = finalizeWithSession(GREEN_BOOK, ROUND, { chapters: [SOURCE_CHAPTER_NUMBER] });
     assert.notEqual(result.chapters[0].finalVerdict, "PUBLISHABLE", "same-reviewer confirm must not launder a stale REVISE");
     assert.match(result.chapters[0].reason, /confirm reviewer must differ/);
-    assert.equal(loadAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "stale REVISE attestation stays untouched");
+    assert.equal(readAttestation(GREEN_BOOK, SOURCE_CHAPTER_NUMBER)?.verdict, "REVISE", "stale REVISE attestation stays untouched");
   } finally {
     cleanup();
   }

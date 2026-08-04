@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-053",
+  "parsed": {
+    "caseId": "SQ-053",
+    "verdict": "DEFECT",
+    "defectClass": "reused narrative machinery / templated scenario structure",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Brisa starts to defend the audition list."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Dima has a reply ready about protocol"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Brisa she must answer the hurt without pretending she knows the parent's motive."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Dima he must decide whether to defend his identity or check the order like a doctor who can learn."
+      }
+    ],
+    "explanation": "Both examples use the same underlying beat pattern: protagonist in a role-specific setting with a handled object, challenged by another person, prepared to defend, then reframed into an internal decision to avoid defensive certainty and respond more constructively. The repeated malformed closing construction also signals template reuse.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-053\",\"verdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / templated scenario structure\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Brisa starts to defend the audition list.\"},{\"materialIndex\":1,\"quote\":\"Dima has a reply ready about protocol\"},{\"materialIndex\":0,\"quote\":\"Brisa she must answer the hurt without pretending she knows the parent's motive.\"},{\"materialIndex\":1,\"quote\":\"Dima he must decide whether to defend his identity or check the order like a doctor who can learn.\"}],\"explanation\":\"Both examples use the same underlying beat pattern: protagonist in a role-specific setting with a handled object, challenged by another person, prepared to defend, then reframed into an internal decision to avoid defensive certainty and respond more constructively. The repeated malformed closing construction also signals template reuse.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

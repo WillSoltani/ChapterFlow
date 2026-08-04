@@ -1,0 +1,972 @@
+{
+  "schema": "s16-layer-n-static-review-bundle-manifest-v1",
+  "date": "2026-07-11",
+  "head": "23c4ede4efe88722a658130ad536a2fcf34ef51d",
+  "result": "LAYER_N_INSTRUMENT_INVALID_PENDING_STATIC_REVIEW",
+  "fileCount": 123,
+  "execRecordCount": 301,
+  "scrub": {
+    "tokenPatternScan": "ran over every bundle file",
+    "matchedFiles": [
+      "review-code/authorReview.ts"
+    ],
+    "matchedFilesAreWordMentionsOnly": true,
+    "hardSecretHits": [],
+    "credentialFree": true,
+    "note": "matches are literal word mentions of env-var names in source/docs (e.g. 'OPENAI_API_KEY' as a forbidden-env identifier), NOT token values; no auth.json/OAuth/Codex-home material is included."
+  },
+  "categories": [
+    "code",
+    "fixtures",
+    "git",
+    "results",
+    "review-code",
+    "seals",
+    "tests",
+    "top"
+  ],
+  "entries": [
+    {
+      "path": "code/experimentTypes.ts",
+      "category": "code",
+      "role": "corpus/threshold/qualification types + QUAL_CLASSES",
+      "sha256": "344e3435ad2d88d29d337475720ecd5563648c2cf72ebbbe84b6020a89d7dc97",
+      "bytes": 12255,
+      "sourceRepoPath": "src/bakeoff/migration/experimentTypes.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "03f6738c26005713277e1b86b29ecbb97c59bc7a"
+    },
+    {
+      "path": "code/qualification.ts",
+      "category": "code",
+      "role": "validator validateQualCorpus, scorer scoreJudgeQualification, detector anchorMatched, DEFAULT_QUAL_THRESHOLDS, gate assertJudgeQualified, runner runJudgeQualification",
+      "sha256": "606cd1fa05b902a9ef2d57e97f7115997e8ddf948e1e931db6c617a917b4e6d0",
+      "bytes": 14882,
+      "sourceRepoPath": "src/bakeoff/migration/qualification.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "72b92b2e647fef05d80dcfe3b4bcee03aadf3075"
+    },
+    {
+      "path": "code/runExperiment.ts",
+      "category": "code",
+      "role": "conductor: qualify phase = the Layer-N gate driver (halts before candidate work if any judge unqualified)",
+      "sha256": "1a0fcd17e13dce3a9edb83ade3448416213f19fcbe4a48960d4de02af5e4e1a0",
+      "bytes": 28004,
+      "sourceRepoPath": "src/bakeoff/migration/runExperiment.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "320cee5aa9d457d28cb3e0e53a9c9f1f9f785fe0"
+    },
+    {
+      "path": "code/thresholds.ts",
+      "category": "code",
+      "role": "diagnostic decision thresholds (context; not the qual thresholds)",
+      "sha256": "e4c10c7bac7bcccc60c822368491deb920e66a865f53f9d98d35af54aaacef63",
+      "bytes": 19849,
+      "sourceRepoPath": "src/bakeoff/migration/thresholds.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "9d45d1bf7211b355788596d8f091d60dd65deafe"
+    },
+    {
+      "path": "fixtures/corpus/layer-n-corpus.owner-approved.v1.json",
+      "category": "fixtures",
+      "role": "Layer-N corpus / seed fixtures / mapping",
+      "sha256": "a127d8ce93a2473a8c0cf3a7388056e97ee7df85056aa23561db0576630b6498",
+      "bytes": 77386,
+      "sourceRepoPath": "state/migration-experiments/_owner-inputs/stage-q/layer-n-corpus.owner-approved.v1.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "653a1ecd591389d187bf074fd1cb3ae445113ff4"
+    },
+    {
+      "path": "fixtures/corpus/layer-n-corpus.pending-ratification.json",
+      "category": "fixtures",
+      "role": "Layer-N corpus / seed fixtures / mapping",
+      "sha256": "8d1c3f8ea20c88aa0a9d1f7e6da6e140eebe571d48ccd1506e0baa87d5a73243",
+      "bytes": 77645,
+      "sourceRepoPath": "state/migration-experiments/_owner-inputs/stage-q/layer-n-corpus.pending-ratification.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "5c3d4c502d538cc34e74bd44acef6682cc4e43b8"
+    },
+    {
+      "path": "fixtures/corpus/mapping-table.md",
+      "category": "fixtures",
+      "role": "Layer-N corpus / seed fixtures / mapping",
+      "sha256": "3c557df8d3ae690942865b18e1997580221785ad87ba8ca42d92d44ef71c479b",
+      "bytes": 13754,
+      "sourceRepoPath": "state/migration-experiments/_owner-inputs/stage-q/mapping-table.md",
+      "sourceTracked": false,
+      "sourceGitBlob": "984c3416be0aedea22ec1ef87491a25822e927a2"
+    },
+    {
+      "path": "fixtures/corpus/seed-fixtures.sealed.json",
+      "category": "fixtures",
+      "role": "Layer-N corpus / seed fixtures / mapping",
+      "sha256": "3a952e0ede7b2f0c99195fc60cf8a861754532e4977cb3c97ca5e4cc4e561ca7",
+      "bytes": 5972,
+      "sourceRepoPath": "state/migration-experiments/_owner-inputs/stage-q/seed-fixtures.sealed.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "e5588aa6add0b00f56354e94f3f1bcfa124b1292"
+    },
+    {
+      "path": "fixtures/expectations.json",
+      "category": "fixtures",
+      "role": "per-item class/cleanControl/planted-anchors/injectionMarker/provenance/renderedBytes",
+      "sha256": "4af9aa0b58515cd00a91f1bf0e7a1a4fea6f5adbe4668182618fda5af9492449",
+      "bytes": 26976
+    },
+    {
+      "path": "fixtures/original/SEED-causal-overreach.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SEED-causal-overreach (causal-overreach)",
+      "sha256": "84ee65e22aeb25eb281e8d3cacdb52957ac0f7d13cd5ee7440d36dbb500922fd",
+      "bytes": 243
+    },
+    {
+      "path": "fixtures/original/SEED-two-valid-answer-quiz.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SEED-two-valid-answer-quiz (two-valid-answer-quiz)",
+      "sha256": "a4f6a0e133117ad7d56021d47b2fc72eb78d3d451955b66e3b0e1cc1d00b7171",
+      "bytes": 240
+    },
+    {
+      "path": "fixtures/original/SEED-unsupported-complaint-bait.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SEED-unsupported-complaint-bait (unsupported-complaint-bait)",
+      "sha256": "1e75a533f9ececf47056571c9149adb2645a8e9fb7f85086f9c0be759e00f214",
+      "bytes": 258
+    },
+    {
+      "path": "fixtures/original/SQ-001.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-001 (clean-control)",
+      "sha256": "baf4e9f5dc9930a1bf1c927bf0e8ac764399484e7c992bf264473ca507427981",
+      "bytes": 724
+    },
+    {
+      "path": "fixtures/original/SQ-002.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-002 (clean-control)",
+      "sha256": "c8c924ff8a14491d014b97b3089afe8c8881ca6c5c877fadb34c1fa9d0db8476",
+      "bytes": 772
+    },
+    {
+      "path": "fixtures/original/SQ-003.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-003 (clean-control)",
+      "sha256": "57c8a92a1933efd2ebe23ac440cc36cbdbd29ff35e034b1039530eb454d3fc48",
+      "bytes": 640
+    },
+    {
+      "path": "fixtures/original/SQ-004.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-004 (clean-control)",
+      "sha256": "cc04fbddb3aa280bb57e9a730c83990f99b2e442750dbcdde5ccc6271b34e955",
+      "bytes": 1566
+    },
+    {
+      "path": "fixtures/original/SQ-005.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-005 (clean-control)",
+      "sha256": "233e8e56eab9d9eb70cda0c28476b3851c68920ddcb99898ba8fde70fc3b489a",
+      "bytes": 686
+    },
+    {
+      "path": "fixtures/original/SQ-006.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-006 (clean-control)",
+      "sha256": "000649109769fb5e6417bc091c394ee6d58a370bd9947f700a954a91c2c887c0",
+      "bytes": 1001
+    },
+    {
+      "path": "fixtures/original/SQ-007.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-007 (clean-control)",
+      "sha256": "2686022d676c97a523d8952120a3bb9b7cc9d84810d9e8516fb3589fbe5fa132",
+      "bytes": 670
+    },
+    {
+      "path": "fixtures/original/SQ-008.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-008 (clean-control)",
+      "sha256": "5be2568000ec3313e787ecf67567f61cd554de0216a2e69579d4d0d774ddf90c",
+      "bytes": 791
+    },
+    {
+      "path": "fixtures/original/SQ-009.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-009 (sourced-fabrication)",
+      "sha256": "ddc19beba9108a99bf308e9baae742624435df044b3adb3526e73574ff0893a0",
+      "bytes": 859
+    },
+    {
+      "path": "fixtures/original/SQ-010.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-010 (sourced-fabrication)",
+      "sha256": "a7aaf1eea9263f338ade67575c7b8c7f9e7844534f2c4f9ae0fca28c482756c8",
+      "bytes": 877
+    },
+    {
+      "path": "fixtures/original/SQ-011.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-011 (sourced-fabrication)",
+      "sha256": "133985348d75c2f1e9c9156d1eba7ba99522a9415ee6a1e7f244d53c522978f7",
+      "bytes": 821
+    },
+    {
+      "path": "fixtures/original/SQ-012.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-012 (sourced-fabrication)",
+      "sha256": "40ceba3aa344573fc6a8eb6d14e73160ca1c18bfac31bbe5a77acb6f0e2fe20c",
+      "bytes": 824
+    },
+    {
+      "path": "fixtures/original/SQ-013.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-013 (sourced-fabrication)",
+      "sha256": "cb4cd2b9dfd1727cd58143e37e2c0dcd052b15199ba9b07c2f10639dfa9ca5aa",
+      "bytes": 916
+    },
+    {
+      "path": "fixtures/original/SQ-014.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-014 (sourced-fabrication)",
+      "sha256": "a27535ecc30aebd1f1b9964d4a9002c6cc65121c67525f822d0a374c8d784a87",
+      "bytes": 881
+    },
+    {
+      "path": "fixtures/original/SQ-015.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-015 (sourced-fabrication)",
+      "sha256": "67c3fb1ef9dd350c9a7ed7bd988acabc9e40254cf19dd80792401e9778f29e06",
+      "bytes": 828
+    },
+    {
+      "path": "fixtures/original/SQ-016.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-016 (sourced-fabrication)",
+      "sha256": "be600d98799e21bca2813c39ab06b30794ba98f8539cfe30c1fd5cd090c38bc8",
+      "bytes": 867
+    },
+    {
+      "path": "fixtures/original/SQ-017.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-017 (ambiguous-constructed)",
+      "sha256": "6a1442700ad1c8cf7bacc859947e5cf06b2aa01cb1f9fe887f434e2bcffba89a",
+      "bytes": 840
+    },
+    {
+      "path": "fixtures/original/SQ-018.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-018 (ambiguous-constructed)",
+      "sha256": "1b739d7a044663ab97e4b2ff81aa47f06b18cd10dac79dcfb3693f383aa66f02",
+      "bytes": 808
+    },
+    {
+      "path": "fixtures/original/SQ-019.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-019 (ambiguous-constructed)",
+      "sha256": "c4464f8ab5fbd11dd1fa71b89288ed29e2a8ccf935e2792c1a9f54755afd361a",
+      "bytes": 792
+    },
+    {
+      "path": "fixtures/original/SQ-020.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-020 (ambiguous-constructed)",
+      "sha256": "932082407a400e70220da65ae13eb726f82afa58b7aa446dc97a790f67092a4a",
+      "bytes": 797
+    },
+    {
+      "path": "fixtures/original/SQ-021.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-021 (ambiguous-constructed)",
+      "sha256": "be173cd406fbe6ac0dc2779991169c33ab4fd2362d2e28afc7c77ed539fe18c7",
+      "bytes": 751
+    },
+    {
+      "path": "fixtures/original/SQ-022.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-022 (ambiguous-constructed)",
+      "sha256": "3867c3271f65bc34c2a912259ae8e922796fe9f18600eea28f5198cd5dcb61bd",
+      "bytes": 747
+    },
+    {
+      "path": "fixtures/original/SQ-023.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-023 (ambiguous-constructed)",
+      "sha256": "d05e45647874918c6f2a110c632f6056062a7e2e588e04d4b45018859d171fe2",
+      "bytes": 756
+    },
+    {
+      "path": "fixtures/original/SQ-024.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-024 (ambiguous-constructed)",
+      "sha256": "76aabfc878f7055fecbcf9217e9ac586da46d1d20fe090629e02b760760b96b4",
+      "bytes": 755
+    },
+    {
+      "path": "fixtures/original/SQ-049.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-049 (structural-clone)",
+      "sha256": "a4536d17e9972dcd3923a9a7d1001c472a91892bd2346d5894bc35f842d4dd83",
+      "bytes": 1448
+    },
+    {
+      "path": "fixtures/original/SQ-050.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-050 (structural-clone)",
+      "sha256": "eaf804e1fa2c0b1e14800b971ce00e5ed84a9b202ce42493d2dcee6045c11f1e",
+      "bytes": 1458
+    },
+    {
+      "path": "fixtures/original/SQ-051.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-051 (structural-clone)",
+      "sha256": "aa838d5c01a894e452d5f88033e92c4388eb8c7d05e29de5a282fd91b44842c2",
+      "bytes": 1445
+    },
+    {
+      "path": "fixtures/original/SQ-052.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-052 (structural-clone)",
+      "sha256": "0d38dbcd68ce288ec65f33472bf520e56ab3beb0e0582f87b92935b32dcc0991",
+      "bytes": 1435
+    },
+    {
+      "path": "fixtures/original/SQ-053.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-053 (structural-clone)",
+      "sha256": "029862e312016a90d3e0710338d7821fd2c5582259711255c7052e972c4a3c23",
+      "bytes": 1445
+    },
+    {
+      "path": "fixtures/original/SQ-054.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-054 (structural-clone)",
+      "sha256": "bb8f3522c1c4e264bb1c53e3fad5c5330eb939971f6a5d73635104a3a3e88a2a",
+      "bytes": 1426
+    },
+    {
+      "path": "fixtures/original/SQ-055.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-055 (structural-clone)",
+      "sha256": "05fce97a9cdaccf8d112863ebd1e0fdb4152e3a63087b9e8aa831f73e9139aad",
+      "bytes": 1433
+    },
+    {
+      "path": "fixtures/original/SQ-056.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-056 (structural-clone)",
+      "sha256": "cb65971a0c9cec1bc87de6674bf4a899cdbd9a7fc56f1cb226178b1ad07855c7",
+      "bytes": 1429
+    },
+    {
+      "path": "fixtures/original/SQ-057.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-057 (prompt-injection)",
+      "sha256": "fbf84b474496a27dc5bbee007bf419fd3b1793670130f5c9e689e1c24f7a92d9",
+      "bytes": 2229
+    },
+    {
+      "path": "fixtures/original/SQ-058.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-058 (prompt-injection)",
+      "sha256": "530437fd06d7a99497ce29630d46925e8506602c8428c5b32dabd50b7769e3b3",
+      "bytes": 2279
+    },
+    {
+      "path": "fixtures/original/SQ-059.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-059 (prompt-injection)",
+      "sha256": "5930388df07d1c89bc8d7d7119c5202c82d89068271178e451614dd6ea1d4aed",
+      "bytes": 2235
+    },
+    {
+      "path": "fixtures/original/SQ-060.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-060 (prompt-injection)",
+      "sha256": "d3f35091f83c0ebb9fa7cee6ea0fef60f142b04e1c1f5e6e9c2c36dc7ff087df",
+      "bytes": 1836
+    },
+    {
+      "path": "fixtures/original/SQ-061.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-061 (prompt-injection)",
+      "sha256": "5c26892a3cba28d8e2f042db75c4e7a194bb195f1b4caab9bbb8ab7d9f1a1ec2",
+      "bytes": 1628
+    },
+    {
+      "path": "fixtures/original/SQ-062.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-062 (prompt-injection)",
+      "sha256": "6f358e6b21f81c20426199c4f4c53ffd41785200d71b497940ed66db5212e335",
+      "bytes": 1450
+    },
+    {
+      "path": "fixtures/original/SQ-063.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-063 (prompt-injection)",
+      "sha256": "c2ee057ef37b35b6e5c0cbbc1297b57dbbb882bcc91c02976d180a4672f69e01",
+      "bytes": 2240
+    },
+    {
+      "path": "fixtures/original/SQ-064.chapter.json",
+      "category": "fixtures",
+      "role": "original chapter for SQ-064 (prompt-injection)",
+      "sha256": "59f2c743b8ec1dd5a631a9d9931bd10648950142d2f7d24de58f2cc5010a55f8",
+      "bytes": 2240
+    },
+    {
+      "path": "fixtures/rendered/SEED-causal-overreach.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SEED-causal-overreach",
+      "sha256": "aba5bef2e5f5ee5cae91e637f08a70d661588e660ae691ab025e8dc6951f3694",
+      "bytes": 251
+    },
+    {
+      "path": "fixtures/rendered/SEED-two-valid-answer-quiz.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SEED-two-valid-answer-quiz",
+      "sha256": "b01202c01758ece4c630fde0955adba6c1657026c8c98fc0d445518a5785fbfe",
+      "bytes": 248
+    },
+    {
+      "path": "fixtures/rendered/SEED-unsupported-complaint-bait.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SEED-unsupported-complaint-bait",
+      "sha256": "fef7e393190d839c8feecde81745d283d0cc2210c79affd7de2a68c3130d817f",
+      "bytes": 266
+    },
+    {
+      "path": "fixtures/rendered/SQ-001.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-001",
+      "sha256": "49c579868c3227f12538188e351eaeb6e03f0cd12961eb55ec17e81cc957487b",
+      "bytes": 659
+    },
+    {
+      "path": "fixtures/rendered/SQ-002.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-002",
+      "sha256": "873ea5b1bd9849de143aa730715ba671784f8bdf19ddfc99cb5318a259a288a6",
+      "bytes": 707
+    },
+    {
+      "path": "fixtures/rendered/SQ-003.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-003",
+      "sha256": "6da13f8b35b2165cb5951d24e5d68b79f70afcdee06e41ce766d22f73b56f6ca",
+      "bytes": 575
+    },
+    {
+      "path": "fixtures/rendered/SQ-004.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-004",
+      "sha256": "2126ac6a8999ea913e9966e0521172a50fd6074e6f7bea406810e122aa98b54e",
+      "bytes": 1501
+    },
+    {
+      "path": "fixtures/rendered/SQ-005.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-005",
+      "sha256": "af4b57bd7b8a5937fb2b2440e4e24ffc2fad78b0ccbccbfef5dd12f19ed4da46",
+      "bytes": 621
+    },
+    {
+      "path": "fixtures/rendered/SQ-006.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-006",
+      "sha256": "34b200216be41e7834cbe55202110a6700e6c970812e12082fd304b788658ec3",
+      "bytes": 936
+    },
+    {
+      "path": "fixtures/rendered/SQ-007.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-007",
+      "sha256": "6f1a91626a33ff039a92417515127581ecaf8d41d15d6a69b68f24edadf2fe92",
+      "bytes": 605
+    },
+    {
+      "path": "fixtures/rendered/SQ-008.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-008",
+      "sha256": "ff683c5870f3f77df544706d2d90d6f607c19006350ecf3680c0b653fe64d304",
+      "bytes": 720
+    },
+    {
+      "path": "fixtures/rendered/SQ-009.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-009",
+      "sha256": "e0b968c2cd905ec22e0f790267c4274d0c1af100e743af432e421db2358dccd9",
+      "bytes": 794
+    },
+    {
+      "path": "fixtures/rendered/SQ-010.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-010",
+      "sha256": "ab2e371a53433a6dbcd1bd243732d92b0c9a0509952586e80073ec036b01725c",
+      "bytes": 811
+    },
+    {
+      "path": "fixtures/rendered/SQ-011.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-011",
+      "sha256": "5eb8b1e884a09911aeb86dccfd13af80f5c8746302a9f369fe858faa4bd8a247",
+      "bytes": 755
+    },
+    {
+      "path": "fixtures/rendered/SQ-012.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-012",
+      "sha256": "98dae828244f65b999d9dcf00e04a9ca66e1b7aee35892a554d470ebed227d20",
+      "bytes": 748
+    },
+    {
+      "path": "fixtures/rendered/SQ-013.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-013",
+      "sha256": "078648adf29f713008263e45ba9f65c1e60d40016a4a53cf77d42d74773ae280",
+      "bytes": 850
+    },
+    {
+      "path": "fixtures/rendered/SQ-014.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-014",
+      "sha256": "ac0a9743fc62470d03aac8f28adf455fe93c034e2d6565b5cdab59dce2bbf082",
+      "bytes": 811
+    },
+    {
+      "path": "fixtures/rendered/SQ-015.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-015",
+      "sha256": "0fa1e91a1427f26caaf123a9a1ee76f51888f3b4e03d80cbe6d97aab464045e5",
+      "bytes": 762
+    },
+    {
+      "path": "fixtures/rendered/SQ-016.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-016",
+      "sha256": "b2a98329fe3cba16c5a061cd8877b34848caad880da58e16680c6221c2f0e7b6",
+      "bytes": 801
+    },
+    {
+      "path": "fixtures/rendered/SQ-017.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-017",
+      "sha256": "8f20ed247f1d8b9fbb552f18e1384b1cf4223a5f4a0c382a80c7ed521bfa200e",
+      "bytes": 778
+    },
+    {
+      "path": "fixtures/rendered/SQ-018.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-018",
+      "sha256": "61806c5537e3448d26057b0a84105a0068ef0b122001021cd580515b93429b2a",
+      "bytes": 746
+    },
+    {
+      "path": "fixtures/rendered/SQ-019.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-019",
+      "sha256": "690bb3135748fd30d878a37d023bf5cfdb03974b7c36af56e2c84291f12ffade",
+      "bytes": 726
+    },
+    {
+      "path": "fixtures/rendered/SQ-020.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-020",
+      "sha256": "8fc6df9b481566636e84cf99acf59aafe25cd32f9e48aa2fa0f94608f1c7fc94",
+      "bytes": 735
+    },
+    {
+      "path": "fixtures/rendered/SQ-021.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-021",
+      "sha256": "e885369add4b9d6204e5cdeb011e9c9b5228a3252ca83c25e9b16ef1ea6cc9f1",
+      "bytes": 689
+    },
+    {
+      "path": "fixtures/rendered/SQ-022.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-022",
+      "sha256": "29cd0cfd0b4ac4c9a0067d4d997e5adb7256572aadd49f4dbbbf7f0ffbb2dc10",
+      "bytes": 683
+    },
+    {
+      "path": "fixtures/rendered/SQ-023.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-023",
+      "sha256": "dc76e1df95b54777148eb21e10e6e21b77fbc44a2058afc2171ba778f0a68c99",
+      "bytes": 694
+    },
+    {
+      "path": "fixtures/rendered/SQ-024.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-024",
+      "sha256": "86db1e36e64aac095f939d57fab9796e3b2863073c4b8c04c7076aaaea09cd01",
+      "bytes": 689
+    },
+    {
+      "path": "fixtures/rendered/SQ-049.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-049",
+      "sha256": "9cd948265026aaa8078f33d2fd76b587df4364b15531f011995e124459602f42",
+      "bytes": 1335
+    },
+    {
+      "path": "fixtures/rendered/SQ-050.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-050",
+      "sha256": "ffb1f933928a25ce4f530d703353f578893f7519e285d2b55c9126a55fff8391",
+      "bytes": 1345
+    },
+    {
+      "path": "fixtures/rendered/SQ-051.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-051",
+      "sha256": "b29eb7a1190540f002018a920907d9583e00f0a7bcce82774097d58b726374c4",
+      "bytes": 1332
+    },
+    {
+      "path": "fixtures/rendered/SQ-052.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-052",
+      "sha256": "d2198a285fc01af38fd17568851f6e3cdaf40b0e9702ee195c7c24c382ff06d6",
+      "bytes": 1322
+    },
+    {
+      "path": "fixtures/rendered/SQ-053.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-053",
+      "sha256": "14e707a14b46ea5ccf7aac0420479f037d0cf27d9cdfd932337f38347969c5dc",
+      "bytes": 1332
+    },
+    {
+      "path": "fixtures/rendered/SQ-054.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-054",
+      "sha256": "70b30039ce87e44a9a5fb2115f1403a056476f04ae6ef25ee50bc8ae4db40cb7",
+      "bytes": 1313
+    },
+    {
+      "path": "fixtures/rendered/SQ-055.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-055",
+      "sha256": "bc9230e7454aa2e36cc5e2f712e746ad38f9a52080b02da3ff335e5a14b0f4f7",
+      "bytes": 1320
+    },
+    {
+      "path": "fixtures/rendered/SQ-056.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-056",
+      "sha256": "5f02ddbbf6d9f2b91991435cb1d14304e6b3d9e9e7dda9244e75a56040f09bc1",
+      "bytes": 1316
+    },
+    {
+      "path": "fixtures/rendered/SQ-057.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-057",
+      "sha256": "e879c04708588ec55e5d3707d27e6379410acfb66e4c62006e60e1eae05344ce",
+      "bytes": 2165
+    },
+    {
+      "path": "fixtures/rendered/SQ-058.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-058",
+      "sha256": "59b3cf85937191c4301e0af3aa9b9c9e949d3fea62fd3a05c0675d40ff68cd87",
+      "bytes": 2186
+    },
+    {
+      "path": "fixtures/rendered/SQ-059.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-059",
+      "sha256": "d6a0b4e67d88b42dad2fc70cc3ec137c82b48b23808b789e6f866571ad2d80ab",
+      "bytes": 2173
+    },
+    {
+      "path": "fixtures/rendered/SQ-060.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-060",
+      "sha256": "607292838fe074e3f1d8c37289cfd0db403d4c1c01ddfbd269facfc271f81ff3",
+      "bytes": 1757
+    },
+    {
+      "path": "fixtures/rendered/SQ-061.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-061",
+      "sha256": "89d040bf00b10d97eab7b22684f72a0940c983d4cc036c15c3f8e963383eab35",
+      "bytes": 1566
+    },
+    {
+      "path": "fixtures/rendered/SQ-062.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-062",
+      "sha256": "aa8fb2b8f8354b02e611fa6bf3db20b02a796fd6be64d0a76a5ba98c9b8ed147",
+      "bytes": 1388
+    },
+    {
+      "path": "fixtures/rendered/SQ-063.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-063",
+      "sha256": "c42217b3696817e266110615386c67c2067c6543c4b48ccecbbba1ebba27e136",
+      "bytes": 2175
+    },
+    {
+      "path": "fixtures/rendered/SQ-064.phase1.txt",
+      "category": "fixtures",
+      "role": "rendered phase-1 doc read by judges for SQ-064",
+      "sha256": "006dcfd16de02892bec01fa9791aa1457908ba07b1a22d20579149f7c9fb9265",
+      "bytes": 2175
+    },
+    {
+      "path": "git-context.txt",
+      "category": "git",
+      "role": "HEAD + working-tree status + Layer-N implementation history",
+      "sha256": "33154db25603adb66b3de3123cdb5ade9b99aba2ba78b092b3c2c6aa03d9ead5",
+      "bytes": 7179
+    },
+    {
+      "path": "results/driver-log.txt",
+      "category": "results",
+      "role": "driver stdout: per-item composites + verdicts (incl. partial judge-3)",
+      "sha256": "f22b4fb240476882770ff2ab412955c626dbc0825d14bf074f26571b2bda8fa7",
+      "bytes": 14576
+    },
+    {
+      "path": "results/exec-records-checksums.json",
+      "category": "results",
+      "role": "index+sha256 of 301 token-free per-spawn exec records in results/exec-records/",
+      "sha256": "f2adb442c3e3e1232d8aa956d38b9f4d27ddf334a92bbf92cae78c7421ff9e95",
+      "bytes": 46689
+    },
+    {
+      "path": "results/qualification/gpt-5-5-high.qualification.json",
+      "category": "results",
+      "role": "authoritative per-judge Layer-N scores",
+      "sha256": "083aff59f7805b54ccc45d3a8e3a762388f664750c2f636b95faef5ea3fd546b",
+      "bytes": 1545
+    },
+    {
+      "path": "results/qualification/gpt-5-6-sol-high.qualification.json",
+      "category": "results",
+      "role": "authoritative per-judge Layer-N scores",
+      "sha256": "5c89415c1e34410a7ade20c4bcfc7ea842dc6df1c062ac93c43d11aa5b2ca48b",
+      "bytes": 1574
+    },
+    {
+      "path": "review-code/authorReview.ts",
+      "category": "review-code",
+      "role": "reviewOneChapter \u2014 phase-1 reader review + phase-2 quiz adjudication + prompt construction",
+      "sha256": "053b61d5bd9f5b07ce31e3d5d0aa998d50cdc188f9dcfa12e3977b92a59c8baf",
+      "bytes": 135097,
+      "sourceRepoPath": "src/orchestrator/authorReview.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "efd6914aba0ee44ca98791ac26a42e56cefef5a4"
+    },
+    {
+      "path": "review-code/readerReview.ts",
+      "category": "review-code",
+      "role": "AUTHOR_CHAPTER_BAR=80, READER_RUBRIC_VERSION, buildReaderReviewTask (phase-1 prompt)",
+      "sha256": "663f3d6bbbdfb83c88b81cdef66d2c28830726b94ecbbf4c85d134270ca2e832",
+      "bytes": 32726,
+      "sourceRepoPath": "src/review/readerReview.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "4368c1838889c025290986d0b03ef2ae27c880aa"
+    },
+    {
+      "path": "review-code/renderReaderDoc.ts",
+      "category": "review-code",
+      "role": "renderChapterReaderDocPhase1 \u2014 renders the doc a judge reads",
+      "sha256": "754092fc22ca646fa2f194585833930795b7313c2a6e43231d5331c439d4ee12",
+      "bytes": 5481,
+      "sourceRepoPath": "src/review/renderReaderDoc.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "7d8a793d134772eb998523bc1ba33aed2d479679"
+    },
+    {
+      "path": "review-code/reviewFindings.ts",
+      "category": "review-code",
+      "role": "complaintQuotedRuns + finding parsing used by anchor matching",
+      "sha256": "747ad10dd63c8252f0ccc5e7dded92597c771cf0b8b51dac2e9d0fc1eb21a857",
+      "bytes": 4815,
+      "sourceRepoPath": "src/review/reviewFindings.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "a29568488187ce9365117a3f8b9268feca72cb88"
+    },
+    {
+      "path": "review-code/reviewerWorkspace.ts",
+      "category": "review-code",
+      "role": "isolated reviewer workspace / byte-verified quotes",
+      "sha256": "e5b3f2c65d7403e4f577044199433ebdcb1fb7d89137078ffaefa7119f776cfd",
+      "bytes": 8393,
+      "sourceRepoPath": "src/review/reviewerWorkspace.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "ed42e373440de74ad471cc2a39628ce10ee151df"
+    },
+    {
+      "path": "seals/manifest.json",
+      "category": "seals",
+      "role": "sealed diagnostic schedule/spec/thresholds/manifest",
+      "sha256": "4e8fb5f577055d979815929fb0fcbfb3a2a0986d510019efeda595e45c82f173",
+      "bytes": 299,
+      "sourceRepoPath": "state/migration-experiments/diagnostic-stack-2026-07/manifest.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "65cf87663252cf88480f10c3f2ce5f86ee26e955"
+    },
+    {
+      "path": "seals/schedule.json",
+      "category": "seals",
+      "role": "sealed diagnostic schedule/spec/thresholds/manifest",
+      "sha256": "218a11d7fae8c84a073a8b00e7187d4982018fa5906eff5ca7fc6743fe3e9505",
+      "bytes": 12356,
+      "sourceRepoPath": "state/migration-experiments/diagnostic-stack-2026-07/schedule.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "6a42c45b700a43aedfc3c31e85bc1b17832ab852"
+    },
+    {
+      "path": "seals/sealed.json",
+      "category": "seals",
+      "role": "sealed diagnostic schedule/spec/thresholds/manifest",
+      "sha256": "e8e5d4bb0e98c195c9207a7149cf0361a13ddbe357a3328ded9504fbe3234241",
+      "bytes": 7283,
+      "sourceRepoPath": "state/migration-experiments/diagnostic-stack-2026-07/sealed.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "fb3be191b34529991d2b6cbabcc6e7ddf7704880"
+    },
+    {
+      "path": "seals/spec.sealed.json",
+      "category": "seals",
+      "role": "sealed diagnostic schedule/spec/thresholds/manifest",
+      "sha256": "5f27cc1e862b2921e51184d6c98c34a6430bbcbc2c23cf921502f6f18d560616",
+      "bytes": 2998,
+      "sourceRepoPath": "state/migration-experiments/diagnostic-stack-2026-07/spec.sealed.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "2884aca199610000395e0d7590f63a087622e40d"
+    },
+    {
+      "path": "seals/thresholds.sealed.json",
+      "category": "seals",
+      "role": "sealed diagnostic schedule/spec/thresholds/manifest",
+      "sha256": "6a90acea1c94f124a5d14ba15d1dcab42ba0b8f64e9ef01df1cab7ca2dcc8c44",
+      "bytes": 3197,
+      "sourceRepoPath": "state/migration-experiments/diagnostic-stack-2026-07/thresholds.sealed.json",
+      "sourceTracked": false,
+      "sourceGitBlob": "7f0ce7f932f4625d5c66c28fd87faf90e893abc7"
+    },
+    {
+      "path": "tests/bar-review.test.ts",
+      "category": "tests",
+      "role": "chapter-bar review tests",
+      "sha256": "545fa8e36b4489cf02194e09869b96bac57d798c6b86ee0d682a055706e3061a",
+      "bytes": 5975,
+      "sourceRepoPath": "tests/bar-review.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "d8eb9b30df63e75ddd0659ac3f94757edc3df4d9"
+    },
+    {
+      "path": "tests/exec-cli-qualification.test.ts",
+      "category": "tests",
+      "role": "exec-cli qualification path tests",
+      "sha256": "ed864455d730182948ab4296d5c2861969233160e80893c633a0bcb3ea024221",
+      "bytes": 5034,
+      "sourceRepoPath": "tests/exec-cli-qualification.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "7c26471ac22ce881f9220cc7a9224e76581a394c"
+    },
+    {
+      "path": "tests/migration-conductor.test.ts",
+      "category": "tests",
+      "role": "conductor phase-ladder incl. qualify gate/halt",
+      "sha256": "09111ba735c9e72e3a369b4127778cfb1ad54b04a82d2315d53349766dd1d5d0",
+      "bytes": 16870,
+      "sourceRepoPath": "tests/migration-conductor.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "8556683288f73ed2ad8891aa877dc0b93ed67548"
+    },
+    {
+      "path": "tests/migration-helpers.ts",
+      "category": "tests",
+      "role": "shared migration test helpers",
+      "sha256": "219dda7e8d03ac6ed0feb2ea8a825a5b448995f08bc57b2c47743e3cea06227f",
+      "bytes": 9296,
+      "sourceRepoPath": "tests/migration-helpers.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "86af5503711ad7c7d87326b21ce4be6a01f3c895"
+    },
+    {
+      "path": "tests/migration-qualification.test.ts",
+      "category": "tests",
+      "role": "Stage-Q Layer-N qualification tests (perfect-oracle + scoring + gate)",
+      "sha256": "34ffd893b6793084110d50ac3f1d590e8115777647586eb2c25ed69b9542790d",
+      "bytes": 8748,
+      "sourceRepoPath": "tests/migration-qualification.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "bfa93ffcd1a39bdd7773bb4739bd819fde4893ac"
+    },
+    {
+      "path": "tests/migrationFixtures.ts",
+      "category": "tests",
+      "role": "shared migration test fixtures (synthetic corpus builders)",
+      "sha256": "391a19fc7d84485fc63608fe29f31d8cc6b697a00d25922122746fa1e561070a",
+      "bytes": 11865,
+      "sourceRepoPath": "tests/migrationFixtures.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "32464709a03d140aa6b06f2ec18680255f9e26c8"
+    },
+    {
+      "path": "tests/reader-review.test.ts",
+      "category": "tests",
+      "role": "real reader-review instrument tests",
+      "sha256": "786b9750e1b291edb6651aab8138c9728b17b1bb5c139bfe631890dbc6cbe35d",
+      "bytes": 30072,
+      "sourceRepoPath": "tests/reader-review.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "aa533c5ff8931afb41c9ce5e6f0c7eb7e5ca1139"
+    },
+    {
+      "path": "tests/review-blind-lane.test.ts",
+      "category": "tests",
+      "role": "blind-lane review tests",
+      "sha256": "78e6ad659c07a6fe15befc64e95d756233661f74af05f3b8b95be4347088197b",
+      "bytes": 14677,
+      "sourceRepoPath": "tests/review-blind-lane.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "2882c2a9ae693a255222c7116beababb1a6b7fda"
+    },
+    {
+      "path": "tests/review-doc-integrity.test.ts",
+      "category": "tests",
+      "role": "reader-doc integrity tests",
+      "sha256": "80887b279d351f94dfc078abb6b4ff608bb78cf0d2db7b1ec6fe538d23dc4791",
+      "bytes": 5067,
+      "sourceRepoPath": "tests/review-doc-integrity.test.ts",
+      "sourceTracked": true,
+      "sourceGitBlob": "d38dbff21e0350d40aedf6a22a2254f499810d31"
+    },
+    {
+      "path": "LAYER-N-FAILURE-EVIDENCE.json",
+      "category": "top",
+      "role": "machine-readable evidence",
+      "sha256": "ed21b275b59199f4d6d40e7db1286fc18cccb5c43a49d7ef31775be01364cf6b",
+      "bytes": 9642
+    },
+    {
+      "path": "LAYER-N-GATE-FAILURE-REPORT.md",
+      "category": "top",
+      "role": "narrative failure report",
+      "sha256": "4f4228bc47740896a2051fde63377bf372fc03afa948b8c0ef5312cb4fec3b17",
+      "bytes": 6168
+    },
+    {
+      "path": "README.md",
+      "category": "top",
+      "role": "bundle orientation index",
+      "sha256": "692f8167c27c672ec757b5d35594a613357c224ca0ff54546e3a365e5ce8ca3d",
+      "bytes": 4264
+    },
+    {
+      "path": "RESULT.json",
+      "category": "top",
+      "role": "classification record",
+      "sha256": "53c1640e9277f2a32557fef854a425718cff857ab79cb7ee948d88aee41ac52f",
+      "bytes": 5733
+    }
+  ]
+}

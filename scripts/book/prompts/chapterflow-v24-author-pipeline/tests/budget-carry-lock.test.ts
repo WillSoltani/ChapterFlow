@@ -16,12 +16,12 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdtempSync, rmSync } from "node:fs";
+import { existsSync, mkdtempSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import { test } from "./harness.js";
-import { makeChapter } from "./helpers.js";
+import { makeChapter, PIPELINE_DIR } from "./helpers.js";
 import type { ChapterV21 } from "../src/types.js";
 import {
   CHAPTER_REVIEW_SCHEMA_VERSION,
@@ -48,6 +48,8 @@ import {
 import type { AutopilotDeps } from "../src/orchestrator/autopilot.js";
 
 const BOOK = "zz-fixture-carry-lock";
+const BOOK_RUNS_DIR = join(PIPELINE_DIR, "state", "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
 
 function mkPacket(n: number, caseLabels: string[]): SourcePacketV1 {
   return {
@@ -257,4 +259,8 @@ test("ensureReaderBudgetsClean: write-entry (bar omitted) is INERT — a PASS-lo
     assert.ok(logs.some((l) => /budget-repair round over/.test(l) && /ch01/.test(l)), "with no bar, the blocker routes (pre-fix behavior)");
     assert.ok(outcome && outcome.status === "halt", "fail-closed unchanged at the write entry");
   } finally { rmSync(reviewDir(BOOK), { recursive: true, force: true }); }
+});
+
+test("budget-carry-lock fixtures remove owned run directories", () => {
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
 });

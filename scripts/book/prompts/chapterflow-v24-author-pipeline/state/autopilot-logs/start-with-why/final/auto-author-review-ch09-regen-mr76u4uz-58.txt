@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct answers are the most lesson-shaped or most complete sentence in the set, especially Q1, Q2, Q5, Q8, and Q9.", "Wrong choices often announce themselves with absolute or obviously bad moves such as borrowing authority, choosing the offer first, or letting usefulness supply belief."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 70,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 78,
+    "limits": 88,
+    "insight": 85,
+    "density": 80,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "Strongest memorable line: short, portable, and it cleanly captures the chapter's core move."
+    },
+    {
+      "quote": "If any part is missing, do the honest thing: narrow the claim, delay the verdict, or stop calling the offer proof.",
+      "why": "Strong practical boundary: tells the reader exactly what to do when the model does not fit."
+    },
+    {
+      "quote": "Product lead Vincent catches the first unmarked clue: the blue circle around plausible.",
+      "why": "Worst defect: the example reads like internal drafting theater rather than a real-world transfer case."
+    },
+    {
+      "quote": "What to do: Vincent starts by telling you what to do: circle the first useful-looking product, then name the belief and conduct it must make visible.",
+      "why": "Awkward scaffold smell: the sentence is self-referential and less polished than the main chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples section",
+      "problem": "The examples mostly dramatize fictional reviewers manipulating chapter details rather than showing a real person applying the lesson in a concrete workplace or life setting. They often feel manufactured and inward-facing.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The blue-circle clue is unclear without external drafting context, so the example does not stand alone for a beginner.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The example says the facts are in the right places but the handoff is broken; that is a useful diagnostic, but the setup names no concrete before-state, decision, or consequence beyond the abstract missing behavior.",
+      "mustFix": false
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The correct options often sound like the chapter's polished thesis while distractors are visibly reckless or authority-borrowing, which creates answer tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "Tone",
+      "problem": "Some phrasing in examples has template/scaffold smell, especially repeated What to do / Why it matters blocks and lines like 'Vincent starts by telling you what to do.'",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The core chapter is strong: it has a memorable governing line, clean mechanism, honest limits, and a practical filter readers can use when a visible offer is being asked to prove a belief. The quiz is mostly fair and the answer key is sound, but several distractors are too easy to eliminate. The main blocker is transfer quality in the Examples section: too many examples feel like artificial review-process vignettes about the chapter's own construction rather than lived applications with concrete before-to-after stakes. I would revise before shipping at a professional bar."
+}
+```

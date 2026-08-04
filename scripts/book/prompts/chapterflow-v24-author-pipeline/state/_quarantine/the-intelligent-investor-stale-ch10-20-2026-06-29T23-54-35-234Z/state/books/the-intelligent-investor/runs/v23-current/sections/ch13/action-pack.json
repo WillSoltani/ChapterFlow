@@ -1,0 +1,69 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch13",
+  "tryThisNow": "Open the next candidate in your banking dashboard and add a default comparison row before keeping it: price, earnings, dividends, assets, debt, growth record, and business quality.",
+  "tryThisNowSourceAnchorIds": [
+    "ch13.fact.1",
+    "ch13.fact.2",
+    "ch13.fact.3",
+    "ch13.framework.four.company.comparison.factors"
+  ],
+  "implementationPlan": {
+    "title": "Run a Sunday Valuation Reset",
+    "titleSourceAnchorIds": [
+      "ch13.fact.1",
+      "ch13.fact.2",
+      "ch13.fact.3"
+    ],
+    "coreSkill": "Replace name-first judgment with a default comparison row. Before a candidate stays on the list, compare price with record, treat premium quality as a valuation question, and mark whether growth is already reflected in the price.",
+    "coreSkillSourceAnchorIds": [
+      "ch13.fact.1",
+      "ch13.fact.2",
+      "ch13.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch13.fact.1",
+        "sourceAnchorIds": [
+          "ch13.fact.1",
+          "ch13.framework.four.company.comparison.factors"
+        ],
+        "context": "banking dashboard",
+        "plan": "If a familiar name is being kept without a comparison row, then add price, earnings, dividends, assets, debt, growth record, and business quality before leaving it on the list."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.2",
+        "sourceAnchorIds": [
+          "ch13.fact.2",
+          "ch13.example.2"
+        ],
+        "context": "kitchen table",
+        "plan": "If Emerson Electric looks attractive because business quality is high, then write the premium valuation caution beside the name before treating it as a buy candidate."
+      },
+      {
+        "sourceAnchorId": "ch13.fact.3",
+        "sourceAnchorIds": [
+          "ch13.fact.3",
+          "ch13.example.3"
+        ],
+        "context": "manager one-on-one",
+        "plan": "If Emery Air Freight looks cheap because growth reputation is strong, then write whether that growth is already capitalized before ranking it ahead of another candidate."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, pick one current candidate and complete the default comparison row. Remove the candidate from active consideration if price, record, and growth capitalization cannot all be written down.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch13.fact.1",
+      "ch13.fact.2",
+      "ch13.fact.3",
+      "ch13.framework.four.company.comparison.factors"
+    ],
+    "weeklyPractice": "Each Sunday reset, review the active list and keep only candidates with a completed comparison row. The row must show price beside record, quality beside valuation, and growth beside the question of how much is already capitalized.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch13.fact.1",
+      "ch13.fact.2",
+      "ch13.fact.3",
+      "ch13.framework.four.company.comparison.factors"
+    ]
+  }
+}

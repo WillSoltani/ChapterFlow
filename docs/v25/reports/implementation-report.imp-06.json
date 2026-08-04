@@ -1,0 +1,90 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-06",
+  "baselineHash": "ebac39cecc195ee37d90699d57e89710137695ec",
+  "resultHash": "9f46d77df55144df0dd74e201cc852ed18187fa1d62dfef82d0dbf8cc30d196f",
+  "contractVersions": {
+    "source-use-plan": 1,
+    "candidate-transaction": 1,
+    "attempt-evidence-manifest": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/chapterBrief.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/compiler/briefRotation.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/telemetry/diversityConfig.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/telemetry/diversityFeatures.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/telemetry/diversityLedger.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/telemetry/internalTaxonomy.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/cloneDetection.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/diversity-telemetry.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/clone-detection.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/stier-levers.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/stier2-levers.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/architecture-monoculture.test.ts",
+    "docs/v25/reports/IMP-06-REPORT.md"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP06-R01", "status": "implemented", "note": "Inventory + classification of every dealt creative form (report table): product invariants and book allocations retained; exampleArcs/exampleLenses/memorableShapes/idiomFamilies/shellRegister/practiceVerb/groundingForm-taxonomy classified obsolete recipes; architecture instructions' ban text classified overlapping-ban debt." },
+    { "requirementId": "IMP06-R02", "status": "implemented", "note": "Demoted from writer-visible hard requirements: the per-slot arc table, the named lens taxonomy, memorable-line formulas, idiom/shell/verb registers, grounding-form taxonomy, and the architecture instructions' embedded device bans. RENDER-ONLY demotion — no gate/critic consumed these fields (verified), so dealt state, lineage hashes, regen budgets, and BR6/BR7 are byte-stable." },
+    { "requirementId": "IMP06-R03", "status": "implemented", "note": "Retained decisions express as compact outcomes: exact example count, entry/outcome variety, anchor budget (2-3), friction outcome, surfaces-must-differ, memorable no-shared-mold, grounding safety rules, architecture shape outcomes. The CONTENT DEVICES deal is the single ban owner." },
+    { "requirementId": "IMP06-R04", "status": "implemented", "note": "src/critics/cloneDetection.ts: normalized hook-exact, cross-chapter memorable-line-exact, >=12-word shared n-grams, scenario shingle-Jaccard >=0.82, opener stem families, taxonomy wording. Thresholds calibrated on clean fixtures (clean varied book => zero findings); the fixture's own first draft was flagged for real shared boilerplate — a live calibration proof." },
+    { "requirementId": "IMP06-R05", "status": "implemented", "note": "13 passive features (opener function, setting category, actor register, source origin/form from the IMP-03 plan, tension source, discovery/resolution/rescue timing, prop dependence, narrative container, before/after shape, practice action family, memorable-line pattern) with honest unknown/none values; a structure-preserving noun swap extracts the identical vector (tested)." },
+    { "requirementId": "IMP06-R06", "status": "implemented", "note": "First-write ledger: records at every commit via post-commit hooks in authorRun+authorRepair; firstWrite=true only for author-initial generation-1; repaired versions recorded as diagnosis rows and excluded from the first-write denominator (firstWriteRecords). Diversity is never inferred from accepted final chapters; the CLI report labels its clone scan as current-bytes." },
+    { "requirementId": "IMP06-R07", "status": "implemented", "note": "Telemetry hidden from the writer: no render path (import audit — consumers are the CLI verb and the two post-commit hooks); default configuration is shadow (DEFAULT_DIVERSITY_CONFIG all-shadow); recording is OPT-IN via CHAPTERFLOW_DIVERSITY_LEDGER_ROOT (zero suite writes)." },
+    { "requirementId": "IMP06-R08", "status": "implemented", "note": "Activation contract: validateDiversityConfig requires non-empty evidenceRef + selectionReason + frozen thresholds to activate; configVersion + sha256 hash; an INVALID config degrades to shadow while RETURNING the error list (fail-safe, not silent). Tested: ad hoc activation rejected; valid evidenced activation accepted." },
+    { "requirementId": "IMP06-R09", "status": "implemented", "note": "maxActiveConstraintsPerChapter validated <=2; selectionReason required on any active check; the label->outcome phrasing responsibility is documented in diversityConfig so an active render can never expose a taxonomy label. No active render path exists in v1 (all-shadow), so exposure is structurally zero." },
+    { "requirementId": "IMP06-R10", "status": "implemented", "note": "Exact-clone separated from broad similarity: exact-clone is the ONLY class the validator accepts for blocking; near-clone and feature-concentration are rejected at blocking in v1 (shadow-first permanently until held-out calibration). Exact-clone itself still SHIPS shadow — promotion is a config change with evidence, never a code default." },
+    { "requirementId": "IMP06-R11", "status": "implemented", "note": "Anti-taxonomy leakage: CARD_FORBIDDEN_LABELS (demoted set — pinned absent from renders in stier-levers/stier2-levers) + PROSE_FORBIDDEN_LABELS (distinctive-only forms; single dictionary words excluded as an FP guard) + taxonomyLeaksInProse riding every ledger record and the clone scan." },
+    { "requirementId": "IMP06-R12", "status": "implemented", "note": "Config hash (recursive key-sorted canonical JSON) + feature schema version stamped on every ledger record; when IMP-10 evidence is opted-in the record also rides the attempt's evidence objects (recordAttemptObject 'diversity-features'). Bakeoff evidence integration is the IMP-11 consumer." }
+  ],
+  "testsRequired": [
+    "classification tests for retained/demoted deal fields",
+    "exact/near-clone positive and negative tests",
+    "shadow-mode test proving no writer card, acceptance, or gate changes",
+    "feature extraction across varied valid structures and disguised clones",
+    "first-write versus repaired-version ledger tests",
+    "anti-taxonomy leakage tests",
+    "activation-contract tests requiring evidence/config version and rejecting ad hoc changes",
+    "cross-book false-positive calibration fixtures"
+  ],
+  "testsRun": [
+    "tests/diversity-telemetry.test.ts (10, new: features vary + honest unknowns; disguised-clone equality; plan-driven origin/form; ledger opt-in/zero-writes/contained-failures/first-write-vs-repair/config-stamp/tolerant-read; activation-contract rejections + loud shadow degradation + valid activation; prose-scan distinctiveness; card-forbidden vs retained dials)",
+    "tests/clone-detection.test.ts (8, new: clean-book zero findings; hook-exact; memorable dup; 12-word fires / 8-word doesn't; copied scenario fires while noun-swap doesn't; stem family; taxonomy wording; normalization/Jaccard)",
+    "tests/stier-levers.test.ts + tests/stier2-levers.test.ts + tests/architecture-monoculture.test.ts (render pins RETARGETED to compact outcomes + taxonomy-absence scans; demoted guardrails annotated with their enforcement owners)",
+    "full hermetic suite (241 files)"
+  ],
+  "testResults": {
+    "pass": 2217,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts diversity-report zz-nonexistent-book (smoke)"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "NO diversity-improvement claim is made: the de-recipe removes writer-visible procedure and the telemetry measures outcomes, but whether first-write quality/diversity improves is exactly the IMP-11 bakeoff question (F-008's hypothesis). If first-write quality drops, the compact outcomes can be selectively re-expanded on evidence — the deals still allocate everything needed to re-render.",
+    "Feature classifiers are honest regex heuristics; their real-corpus distributions need one calibration pass before any concentration threshold is trusted (IMP-11).",
+    "The prose taxonomy scan is distinctive-labels-only by design; a single-word pool label reproduced in prose (e.g. 'walkthrough') is undetected — accepted FP/FN tradeoff, documented.",
+    "The first-write ledger records only where CHAPTERFLOW_DIVERSITY_LEDGER_ROOT is set (opt-in, IMP-10 pattern) — production/bakeoff runs must set it or first-write concentration is unavailable (the CLI report says so explicitly)."
+  ],
+  "dependencyAssumptions": [
+    "IMP-07 consumes the de-reciped repair card (the anchor-allocation line is the only slot-level dealt constraint a patch must respect).",
+    "IMP-10 evidence attach uses recordAttemptObject('diversity-features') when the attempt has an evidence root; disabled evidence loses nothing from the ledger itself.",
+    "IMP-11 owns clone-threshold and feature-distribution calibration on held-out data and ANY activation (the config's evidenceRef points at its outputs); it sets CHAPTERFLOW_DIVERSITY_LEDGER_ROOT for bakeoff first-write measurement.",
+    "IMP-13's canary runbook may enable the ledger env in production (one line, same class as CHAPTERFLOW_EVIDENCE_ROOT).",
+    "baselineHash is the IMP-04 commit (full sha); resultHash is sha256 of the staged unified diff (code + narrative report, excluding this JSON)."
+  ]
+}

@@ -1,0 +1,196 @@
+{
+  "schemaVersion": "autopilot-cost-report-v1",
+  "bookId": "zz",
+  "terminal": "halt:progress",
+  "at": "2026-07-12T23:29:43.487Z",
+  "grandTotalSessions": 14,
+  "mintedIds": 16,
+  "verbIds": 2,
+  "byType": {
+    "gate-repair": 1,
+    "variety-scout": 1,
+    "readiness-scout": 1,
+    "sweep": 2,
+    "key": 4,
+    "qc-review": 5
+  },
+  "byPhase": {
+    "gate": 3,
+    "qc": 11
+  },
+  "retriesByCause": {
+    "gate-repair-1": 1
+  },
+  "carry": {
+    "hits": 0,
+    "misses": 0
+  },
+  "reviewCarry": {
+    "hits": 0,
+    "misses": 0
+  },
+  "wallClockMsByPhase": {
+    "gate": 3,
+    "qc": 11
+  },
+  "totalWallClockMs": 14,
+  "unloggedSpawnIds": [],
+  "invariantOk": true,
+  "sessions": [
+    {
+      "sessionId": "gate-repair-1#1",
+      "label": "gate-repair-1",
+      "type": "gate-repair",
+      "phase": "gate",
+      "logged": true,
+      "cause": "gate-repair-1",
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "pre-qc-variety-scout#2",
+      "label": "pre-qc-variety-scout",
+      "type": "variety-scout",
+      "phase": "gate",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "pre-qc-readiness-scout#3",
+      "label": "pre-qc-readiness-scout",
+      "type": "readiness-scout",
+      "phase": "gate",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-t-00-sweep#4",
+      "label": "qc-t-00-sweep",
+      "type": "sweep",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-t-01-keyA#5",
+      "label": "qc-t-01-keyA",
+      "type": "key",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-t-02-keyB#6",
+      "label": "qc-t-02-keyB",
+      "type": "key",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-bar-ch01#7",
+      "label": "qc-bar-ch01",
+      "type": "qc-review",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-bar-ch02#8",
+      "label": "qc-bar-ch02",
+      "type": "qc-review",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "finalize#9",
+      "label": "finalize",
+      "type": "verb",
+      "phase": "qc",
+      "logged": false
+    },
+    {
+      "sessionId": "qc-repair-1#10",
+      "label": "qc-repair-1",
+      "type": "qc-review",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-t-00-sweep#11",
+      "label": "qc-t-00-sweep",
+      "type": "sweep",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-t-01-keyA#12",
+      "label": "qc-t-01-keyA",
+      "type": "key",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-t-02-keyB#13",
+      "label": "qc-t-02-keyB",
+      "type": "key",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-bar-ch01#14",
+      "label": "qc-bar-ch01",
+      "type": "qc-review",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "qc-bar-ch02#15",
+      "label": "qc-bar-ch02",
+      "type": "qc-review",
+      "phase": "qc",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "finalize#16",
+      "label": "finalize",
+      "type": "verb",
+      "phase": "qc",
+      "logged": false
+    }
+  ]
+}

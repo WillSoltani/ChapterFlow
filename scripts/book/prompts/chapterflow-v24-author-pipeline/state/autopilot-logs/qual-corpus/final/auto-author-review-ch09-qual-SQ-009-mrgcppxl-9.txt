@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 5,
+    "insight": 25,
+    "density": 30,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "He asks each design firm for a small, comparable pass before naming a winner.",
+      "why": "This is the clearest actionable move in the chapter."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads as production scaffold rather than finished reader prose."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read promises compression but does not state the idea."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section exists only as a header, so there are no questions to derive or assess."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/scaffold text rather than a reader-facing opening.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section does not state the chapter's idea, so it fails its stand-alone summary function.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only a placeholder sentence and does not provide the promised deeper explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving no practical action for the reader.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so the chapter has a broken quiz and no answerable questions.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable as a professional chapter. The full read contains one usable teaching move, keeping an early vendor decision parallel through small comparable passes, but almost every product-critical layer is either placeholder text or empty. The missing quiz alone makes the chapter structurally invalid, and the empty takeaway, practice, examples, review cards, and memorable lines mean a reader cannot reliably retain, test, or apply the lesson."
+}
+```

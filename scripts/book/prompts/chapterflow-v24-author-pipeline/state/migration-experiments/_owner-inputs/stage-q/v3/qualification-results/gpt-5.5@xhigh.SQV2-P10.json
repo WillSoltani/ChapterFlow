@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P10",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported invented scene details\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\",\"The Intel reviewer writes the outsider question at the top of the review page and judges the options from that cooler vantage point.\"],\"rationale\":\"The source plan only supports the broad Intel/Grove memory-to-microprocessors case and the outsider-question framing. The candidate adds concrete narrative mechanics, including an Intel reviewer, a strategy review, two pages in a folder, and writing the question atop a review page. Those details are not supported by the supplied source plan and are presented in the same factual register as the real case, so this is a material defect.\"}"
+}

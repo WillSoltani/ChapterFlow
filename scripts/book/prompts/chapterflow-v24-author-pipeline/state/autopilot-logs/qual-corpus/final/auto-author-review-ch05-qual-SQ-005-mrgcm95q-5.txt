@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 10,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 70,
+    "insight": 45,
+    "density": 30,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: the hook is meta-placeholder text, not reader-facing instruction."
+    },
+    {
+      "quote": "A careful reading says your standards can shift when the people close to you act as if a behavior is ordinary.",
+      "why": "Strongest moment: it gives the chapter's usable mechanism in plain language."
+    },
+    {
+      "quote": "That claim is debated, so do not read it as proof that body size jumps from mind to mind.",
+      "why": "Strong limit: it prevents overclaiming from the Framingham example."
+    },
+    {
+      "quote": "## Key takeaway",
+      "why": "Worst defect: this promised section is present only as an empty header."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/meta text and does not introduce the reader-facing idea, so the section fails its stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only \"A concise idea.\" and contains no actual idea, so the section fails its stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only \"One added angle.\" and gives no angle, so the section fails its stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section opens with \"That is why\" without an antecedent in the preceding sections, making the main explanation feel broken.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The key takeaway section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The practical application section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The examples section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so the chapter has no answerable assessment. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The review cards section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The memorable lines section is empty. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The one substantive paragraph has a useful, bounded idea about social standards shifting through nearby behavior, and it handles the debated Framingham claim responsibly. But the chapter is mostly scaffold: fast/deep/key takeaway/practice/examples/quiz/review/memorable sections are empty or placeholders, so it cannot meet a professional learning-product bar."
+}
+```

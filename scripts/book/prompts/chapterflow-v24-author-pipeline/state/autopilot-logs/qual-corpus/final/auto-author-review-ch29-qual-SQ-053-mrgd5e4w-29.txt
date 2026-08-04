@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 35,
+    "limits": 0,
+    "insight": 10,
+    "density": 30,
+    "beginner": 15
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Core instructional sections are present only as empty headings, so the chapter cannot stand alone."
+    },
+    {
+      "quote": "Dima touches a crooked hospital badge at Monday 6:58 a.m. in the cardiac ICU locker room, new attending, with steam on the mirror.",
+      "why": "The strongest material uses concrete scene detail that could make the lesson memorable if the lesson existed."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The practical instruction is circular because no move has been named or taught."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The assessment and retention aids are empty, leaving no way to test or reinforce the chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is an empty heading, so the promised quick standalone layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is an empty heading, so the chapter provides no developed explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is an empty heading, so the full instructional layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the reader is never given the core move to remember.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so there is no actionable exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, making the assessment structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the chapter lacks the promised memory hooks.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The instruction 'Follow the scene's move' is circular because the chapter never defines the move.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The instruction 'Follow the scene's move' is circular because the chapter never defines the move.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Brisa she must answer...' has a grammatical error that interrupts comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Dima he must decide...' has a grammatical error that interrupts comprehension.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The file is a scaffold with two vivid but incomplete examples and nearly all instructional, summary, practice, retention, and quiz sections empty. A reader cannot learn the chapter's core move, test themselves, or apply the lesson from what is on the page."
+}
+```

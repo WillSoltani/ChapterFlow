@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { appendFileSync, existsSync, mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { appendFileSync, existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, runCli, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
+import { PIPELINE_DIR, STATE_CHAPTERS, makeGateCleanChapter, makeSourceV2SidecarFixture, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import type { ChapterV21 } from "../src/types.js";
 import { chapterContentHash, attestationPath, writeAttestation } from "../src/critics/qcAttestation.js";
@@ -12,10 +12,11 @@ import { REPO_ROOT } from "../src/lib/chapterPaths.js";
 import { keyDerivationPath, keyPackDir, loadKeyPack, manualKeyJudgePath, writeKeyPacks, type KeyDerivation } from "../src/qc/manualKeyJudge.js";
 import { qcRoundPath, openQcRound } from "../src/qc/qcRound.js";
 import { repairLedgerPath, roundRecordPath, orchestratorRoundDir, writeBarReadArtifact, writeConfirmReadArtifact } from "../src/qc/orchestrator/artifacts.js";
-import { REQUIRED_SWEEP_FAMILIES, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
+import { chapterClearsPath, REQUIRED_SWEEP_FAMILIES, sweepHistoryPath, sweepRecordPath, writeSweepRecordFromSubmission } from "../src/qc/sweep.js";
 import { sourceHashFor } from "../src/qc/sourceV2Gate.js";
 import { publishAfterQc, formatPreflightChecklist, hermeticSelfTestEnv } from "../src/qc/publishAfterQc.js";
 import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvenance.js";
+import { productionManifestSidecarPath } from "../src/promoteBook.js";
 
 const GREEN_BOOK = "zz-fixture-publish-green";
 const REVISE_BOOK = "zz-fixture-publish-revise";
@@ -28,6 +29,10 @@ const SWEEP_SESSION = "fixture-publish-sweep";
 const BAR_SESSION = "fixture-publish-bar";
 const CONFIRM_SESSION = "fixture-publish-confirm";
 const ATTEST_SESSION = "fixture-publish-attest";
+const OWNED_EMPTY_DIRS = ["qc-packs", "qc-orchestrator", "qc-rounds", "shape-plans", "venue-plans", "exemplar-plans"].map((name) => {
+  const path = resolve(PIPELINE_DIR, "state", name);
+  return { path, existed: existsSync(path) };
+});
 
 function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
   for (const bookId of bookIds) {
@@ -40,6 +45,10 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(keyPackDir(bookId, ROUND), { recursive: true, force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "qc-packs", bookId), { recursive: true, force: true });
     rmSync(qcRoundPath(bookId, ROUND), { force: true });
+    if (bookId === GREEN_BOOK || bookId === REVISE_BOOK) {
+      rmSync(sweepHistoryPath(bookId), { force: true });
+      rmSync(chapterClearsPath(bookId), { force: true });
+    }
     rmSync(sweepRecordPath(bookId), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${bookId}.json`), { force: true });
     rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${bookId}.manual-brief.json`), { force: true });
@@ -51,6 +60,10 @@ function cleanup(bookIds = [GREEN_BOOK, REVISE_BOOK, INCOMPLETE_BOOK]): void {
     rmSync(manualKeyJudgePath(bookId, SOURCE_CHAPTER_NUMBER), { force: true });
     rmSync(provenancePath(`${bookId}-ch${String(SOURCE_CHAPTER_NUMBER).padStart(2, "0")}`), { force: true });
     rmSync(sourceVerifyRecordPath(bookId), { force: true });
+    rmSync(productionManifestSidecarPath(bookId), { force: true });
+  }
+  for (const dir of OWNED_EMPTY_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
   }
 }
 
@@ -468,28 +481,47 @@ test("formatPreflightChecklist marks passed checks ✓ and failed checks ✗ wit
   assert.match(out, /✓ majors/);
 });
 
-test("publish-after-qc all-green fixture passes dry-run without staging or publishing", () => {
+test("publish-after-qc rejects ambient all-green legacy state without dry-run mutations", () => {
   const prev = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   // This fixture ships a real VERIFIED source-verify record (setupGreen), so source-reality
   // resolves required-and-verified regardless of CHAPTERFLOW_REQUIRE_SOURCE_VERIFY — the strip
   // below only keeps the assertion hermetic against an ambient strict env from the host shell.
   const prevSV = process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
-  const stagedBefore = runCli(["help"]).status; // cheap CLI smoke; dry-run should not need git.
-  assert.equal(stagedBefore, 0);
   try {
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
     delete process.env.CHAPTERFLOW_REQUIRE_SOURCE_VERIFY;
     cleanup([GREEN_BOOK]);
     setupGreen(GREEN_BOOK);
     const pkgPath = resolve(REPO_ROOT, "book-packages", `${GREEN_BOOK}.v21.json`);
+    const sidecarPath = productionManifestSidecarPath(GREEN_BOOK);
+    const transactionsPath = resolve(PIPELINE_DIR, "state", "books", "_transactions");
+    const transactionNames = () => {
+      try {
+        return readdirSync(transactionsPath).filter((name) => name.startsWith(`${GREEN_BOOK}.`)).sort();
+      } catch {
+        return [];
+      }
+    };
+    const watched = [
+      attestationPath(GREEN_BOOK, SOURCE_CHAPTER_NUMBER),
+      qcRoundPath(GREEN_BOOK, ROUND),
+      roundRecordPath(GREEN_BOOK, ROUND),
+      sweepRecordPath(GREEN_BOOK),
+      repairLedgerPath(GREEN_BOOK, ROUND),
+    ];
+    const snapshot = () => watched.map((path) => existsSync(path) ? readFileSync(path, "utf8") : null);
     rmSync(pkgPath, { force: true });
+    rmSync(sidecarPath, { force: true });
+    const before = snapshot();
+    const transactionsBefore = transactionNames();
     const result = publishAfterQc({ input: GREEN_BOOK, roundId: ROUND, title: "Publish Fixture", author: "Test Author", dryRun: true });
-    assert.equal(result.ok, true, result.errors.join("\n"));
-    assert.equal(existsSync(pkgPath), false, "dry-run must not promote a package");
-    assert.ok(result.next?.some((line) => line.includes("would promote")));
-    // The definition-of-done checklist is populated and every item passed on the green fixture.
-    assert.ok((result.checks?.length ?? 0) >= 10, "preflight checklist should enumerate every DoD check");
-    assert.ok(result.checks!.every((c) => c.blockers.length === 0), "every preflight check should PASS on the all-green fixture");
+    assert.equal(result.ok, false, "ambient legacy files cannot authorize V4 release");
+    assert.match(result.errors.join("\n"), /QC0\.missing_attestation/);
+    assert.match(result.errors.join("\n"), /BOOK_PATTERN_AUDIT_UNBOUND/);
+    assert.equal(existsSync(pkgPath), false, "blocked dry-run must not promote a package");
+    assert.equal(existsSync(sidecarPath), false, "blocked dry-run must not write a manifest sidecar");
+    assert.deepEqual(transactionNames(), transactionsBefore, "blocked dry-run must not create or reap promotion transactions");
+    assert.deepEqual(snapshot(), before, "blocked dry-run preflight must not mutate ambient QC evidence");
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;

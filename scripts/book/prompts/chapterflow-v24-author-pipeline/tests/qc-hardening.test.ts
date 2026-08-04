@@ -9,7 +9,7 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
@@ -17,6 +17,7 @@ import { PIPELINE_DIR, STATE_CHAPTERS, TMP_DIR, makeChapter, writeFixtureBook } 
 import {
   chapterContentHash,
   checkQcAttestation,
+  loadAttestation,
   writeAttestation,
   attestationPath,
   type QcAttestation,
@@ -28,6 +29,10 @@ import { provenancePath, recordAuthorProvenance } from "../src/qc/sessionProvena
 
 const BOOK = "zz-hardening-fixture";
 const ROUND = "rtest-hardening";
+const QC_ORCHESTRATOR_DIR = resolve(PIPELINE_DIR, "state", "qc-orchestrator");
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
 
 function cleanup(): void {
   for (const n of [1, 2]) {
@@ -35,8 +40,10 @@ function cleanup(): void {
     rmSync(attestationPath(BOOK, n), { force: true });
     rmSync(provenancePath(`${BOOK}-ch${String(n).padStart(2, "0")}`), { force: true });
   }
-  rmSync(resolve(PIPELINE_DIR, "state", "qc-orchestrator", BOOK), { recursive: true, force: true });
+  rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
+  if (!QC_ROUNDS_DIR_EXISTED && existsSync(QC_ROUNDS_DIR) && readdirSync(QC_ROUNDS_DIR).length === 0) rmdirSync(QC_ROUNDS_DIR);
   rmSync(TMP_DIR, { recursive: true, force: true });
 }
 
@@ -49,6 +56,13 @@ function withSession<T>(sessionId: string, fn: () => T): T {
     if (prev === undefined) delete process.env.CHAPTERFLOW_SESSION_ID;
     else process.env.CHAPTERFLOW_SESSION_ID = prev;
   }
+}
+
+function readAttestation(chapterNumber: number): QcAttestation {
+  const path = attestationPath(BOOK, chapterNumber);
+  const attestation = loadAttestation(BOOK, chapterNumber, readFileSync(path));
+  assert.ok(attestation, `invalid attestation fixture at ${path}`);
+  return attestation;
 }
 
 function writeRoundRecord(hashes: Record<string, string> | undefined): void {
@@ -207,17 +221,30 @@ test("checkQcAttestation: enforcement ON but no author provenance ⇒ no finding
     writeAttestation(att);
 
     process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = "1";
-    assert.deepEqual(checkQcAttestation(ch, true), [], "no author provenance ⇒ must not block (absence-safe)");
+    const attestation = readAttestation(1);
+    assert.deepEqual(checkQcAttestation(ch, true, {
+      attestation,
+      authorSessionId: undefined,
+      legacyRoundPresent: false,
+    }), [], "no author provenance ⇒ must not block (absence-safe)");
 
     // Same session authored AND reviewed ⇒ blocked.
     recordAuthorProvenance(ch.chapterId, "qc-session-1");
-    const blocked = checkQcAttestation(ch, true);
+    const blocked = checkQcAttestation(ch, true, {
+      attestation,
+      authorSessionId: "qc-session-1",
+      legacyRoundPresent: false,
+    });
     assert.equal(blocked.length, 1);
     assert.equal(blocked[0].checkId, "QC0.author_graded_own_work");
 
     // A different authoring session ⇒ clean again.
     recordAuthorProvenance(ch.chapterId, "author-session-9");
-    assert.deepEqual(checkQcAttestation(ch, true), []);
+    assert.deepEqual(checkQcAttestation(ch, true, {
+      attestation,
+      authorSessionId: "author-session-9",
+      legacyRoundPresent: false,
+    }), []);
   } finally {
     if (prevEnf === undefined) delete process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE;
     else process.env.CHAPTERFLOW_ENFORCE_SESSION_INDEPENDENCE = prevEnf;
@@ -248,7 +275,11 @@ test("checkQcAttestation: no-api mode classifies missing provenance as legacy/un
     });
 
     process.env.CHAPTERFLOW_NO_API_CODEX_QC = "1";
-    const findings = checkQcAttestation(ch, true);
+    const findings = checkQcAttestation(ch, true, {
+      attestation: readAttestation(1),
+      authorSessionId: undefined,
+      legacyRoundPresent: false,
+    });
     assert.equal(findings[0].checkId, "QC0.legacy_unknown_reviewer_session");
     assert.match(findings[0].message, /legacy\/unknown/i);
   } finally {
@@ -278,14 +309,23 @@ test("checkQcAttestation: a PUBLISHABLE attestation is not re-blocked on a LOST 
 
     // (1) PUBLISHABLE + reviewer recorded + author sidecar ABSENT (lost on checkout) ⇒ NOT re-blocked on author.
     attest("PUBLISHABLE");
-    const lostSidecar = checkQcAttestation(ch, true);
+    const attestation = readAttestation(1);
+    const lostSidecar = checkQcAttestation(ch, true, {
+      attestation,
+      authorSessionId: undefined,
+      legacyRoundPresent: true,
+    });
     assert.ok(!lostSidecar.some((f) => f.checkId === "QC0.legacy_unknown_author_session"),
       `a PUBLISHABLE attestation must not re-block on a lost author sidecar: ${JSON.stringify(lostSidecar)}`);
 
     // (2) The exemption does NOT launder a RECORDED self-grade: author sidecar present AND equal to the
     // reviewer session ⇒ author_graded_own_work still fires (caught at line 307, before the exemption).
     recordAuthorProvenance(ch.chapterId, "auto-finalize-xyz");
-    const selfGrade = checkQcAttestation(ch, true);
+    const selfGrade = checkQcAttestation(ch, true, {
+      attestation,
+      authorSessionId: "auto-finalize-xyz",
+      legacyRoundPresent: true,
+    });
     assert.ok(selfGrade.some((f) => f.checkId === "QC0.author_graded_own_work"),
       `a recorded author==reviewer self-grade must still be caught: ${JSON.stringify(selfGrade)}`);
   } finally {

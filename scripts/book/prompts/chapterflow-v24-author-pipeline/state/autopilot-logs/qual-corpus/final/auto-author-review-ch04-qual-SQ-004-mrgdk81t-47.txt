@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 38,
+    "quizzes": 0,
+    "transfer": 62,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 68,
+    "limits": 73,
+    "insight": 82,
+    "density": 70,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The skill is not picking numbers over stories. The skill is making each lens do its own job.",
+      "why": "This crisply states the chapter's core move and corrects a plausible false binary."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "The fast read is placeholder text rather than a standalone summary of the chapter."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Three required learning and retention sections appear as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook is production-status placeholder language and gives the reader no motivating problem, scene, or promise.",
+      "mustFix": false
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section says only \"A concise idea.\" and does not communicate the chapter's idea, so it fails its standalone-summary promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section says only \"One added angle.\" and contains neither the core lesson nor an added angle, so it fails its standalone-summary promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty, leaving the chapter without its promised takeaway (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, so readers receive no exercise for applying the two-distance forecasting method (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The dedicated examples section is empty (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz contains no questions, making the assessment and requested answer derivation impossible (STRUCTURALLY INVALID: broken quiz).",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty, removing the promised retrieval-practice material (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty despite the full read containing a suitable memorable formulation (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The prose explains the complementary lenses well but gives no explicit repeatable procedure for selecting a reference class, gathering close-up evidence, or reconciling disagreement between them.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The full read contains a clear, beginner-friendly insight: safer forecasts assign different jobs to base-rate evidence and lived detail, with a strong explanation of why neither lens should govern alone. That useful core is surrounded by an unfinished chapter shell, however: the fast and deep reads are placeholders, and the takeaway, exercise, examples, quiz, review cards, and memorable-lines sections are empty. With no quiz questions, no retrieval practice, and no concrete application workflow, this is structurally incomplete and cannot ship at a professional standard."
+}
+```

@@ -1,0 +1,71 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several wrong answers are giveaway extremes about rank, status, slogans, or copying universally, making the keyed choice easy without reading closely.",
+      "Q4, Q5, Q6, and Q7 all contrast the correct boundary/setting answer against obviously overreaching brand-borrowing answers."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 76,
+    "transfer": 72,
+    "practical": 82,
+    "summaries": 78,
+    "tone": 80,
+    "limits": 88,
+    "insight": 84,
+    "density": 76,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known data is a receipt. It is not perfect truth. It is the line you can bring back when the argument starts.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "The fix is not proof. A late repair can make a weak premise look smart because everyone can see the repair and few people ask why the miss was allowed to travel.",
+      "why": "Clear mechanism: visible action can hide a bad premise."
+    },
+    {
+      "quote": "American Airlines adds the edge. It is an airline founded in 1926 and based near Fort Worth, and its boarding assumptions show how a routine can feel obvious until friction shows. What comes back?",
+      "why": "The airline case is asserted through biographical facts, but the actual boarding assumption and friction are not shown."
+    },
+    {
+      "quote": "Quality lead Celine first feels the outside effect when a supplier prices correction as normal before anyone names the cause.",
+      "why": "This example reads abstract and manufactured; it gestures at a situation without a concrete decision and consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The American Airlines summary ends with the dangling question 'What comes back?' instead of standing alone as a clear compressed read.",
+      "mustFix": false
+    },
+    {
+      "unit": "American Airlines thread",
+      "problem": "The chapter repeatedly says the boarding routine exposes hidden friction, but it never names the concrete boarding assumption, what changed, or what result came back.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier example reads like a slot-filler: it has no specific place, number, visible before-to-after decision, or concrete consequence beyond restating the late-fix lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Many distractors are too obviously wrong because they appeal to rank, famous brands, slogans, or universal copying; this creates answer tells and weakens diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The repeated organization facts about American Airlines and General Motors sometimes act as stamps of concreteness rather than evidence of behavior.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core lesson: separate known facts, assumptions, choices, and returning proof before trusting a fix. Its best lines are memorable and the limits around borrowed details are honest. I would not ship it yet because the airline transfer case is under-shown, one example feels manufactured, and the quiz is easier to game than it should be. The chapter is close, but it needs more concrete before-to-after evidence in the non-car setting before it clears a professional bar."
+}
+```

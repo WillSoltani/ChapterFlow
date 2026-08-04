@@ -1,0 +1,887 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chapterflow.local/schemas/report-data.schema.json",
+  "title": "ChapterFlow Canonical Full-Content Report Dataset v2.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "rubric_version", "generated_at_utc", "run", "rubric", "books", "chapter_filter_index", "rankings", "category_winners", "cross_book_analysis", "limitations", "csv_downloads"],
+  "properties": {
+    "schema_version": {"const": "2.0.0"},
+    "rubric_version": {"const": "2.0"},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "run": {"$ref": "#/$defs/run"},
+    "rubric": {"$ref": "#/$defs/rubric"},
+    "books": {"type": "array", "items": {"$ref": "#/$defs/reportBook"}},
+    "remediation_summary": {"type": "object"},
+    "chapter_filter_index": {"$ref": "#/$defs/chapterFilterIndex"},
+    "rankings": {"type": "array", "items": {"$ref": "#/$defs/ranking"}},
+    "category_winners": {"type": "array", "items": {"$ref": "#/$defs/categoryWinner"}},
+    "cross_book_analysis": {"$ref": "#/$defs/crossBookAnalysis"},
+    "limitations": {"$ref": "#/$defs/stringArray"},
+    "csv_downloads": {"type": "object", "additionalProperties": {"type": "string"}}
+  },
+  "$defs": {
+    "nonNegativeInteger": {"type": "integer", "minimum": 0},
+    "nullableString": {"type": ["string", "null"]},
+    "stringArray": {"type": "array", "items": {"type": "string"}},
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["package_path", "chapter", "section", "item_id", "paraphrase"],
+      "properties": {
+        "package_path": {"type": "string", "minLength": 1},
+        "chapter": {"type": "string", "minLength": 1},
+        "section": {"$ref": "#/$defs/nullableString"},
+        "item_id": {"$ref": "#/$defs/nullableString"},
+        "paraphrase": {"type": "string", "minLength": 1}
+      }
+    },
+    "evidenceArray": {"type": "array", "items": {"$ref": "#/$defs/evidence"}},
+    "componentInventory": {
+      "type": "object", "additionalProperties": false,
+      "required": ["examples", "quiz_questions", "review_cards", "implementation_items", "exercises", "memorable_lines", "other"],
+      "properties": {
+        "examples": {"$ref": "#/$defs/nonNegativeInteger"},
+        "quiz_questions": {"$ref": "#/$defs/nonNegativeInteger"},
+        "review_cards": {"$ref": "#/$defs/nonNegativeInteger"},
+        "implementation_items": {"$ref": "#/$defs/nonNegativeInteger"},
+        "exercises": {"$ref": "#/$defs/nonNegativeInteger"},
+        "memorable_lines": {"$ref": "#/$defs/nonNegativeInteger"},
+        "other": {"type": "object", "additionalProperties": {"$ref": "#/$defs/nonNegativeInteger"}}
+      }
+    },
+    "bookMetadata": {
+      "type": "object", "additionalProperties": false,
+      "required": ["book_id", "slug", "title", "subtitle", "package_path", "package_format", "nonfiction_type", "declared_or_inferred_audience", "assumed_prior_knowledge", "declared_or_inferred_purpose", "intended_outcomes", "contexts_and_exclusions", "chapter_count_expected", "chapter_count_read_full", "chapter_count_partial", "chapter_count_inaccessible", "all_accessible_chapters_read", "word_count_estimate", "component_inventory"],
+      "properties": {
+        "book_id": {"type": "string", "minLength": 1},
+        "slug": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "subtitle": {"$ref": "#/$defs/nullableString"},
+        "package_path": {"type": "string", "minLength": 1},
+        "package_format": {"type": "string", "minLength": 1},
+        "nonfiction_type": {"type": "string", "minLength": 1},
+        "declared_or_inferred_audience": {"type": "string", "minLength": 1},
+        "assumed_prior_knowledge": {"type": "string", "minLength": 1},
+        "declared_or_inferred_purpose": {"type": "string", "minLength": 1},
+        "intended_outcomes": {"$ref": "#/$defs/stringArray"},
+        "contexts_and_exclusions": {"$ref": "#/$defs/stringArray"},
+        "chapter_count_expected": {"$ref": "#/$defs/nonNegativeInteger"},
+        "chapter_count_read_full": {"$ref": "#/$defs/nonNegativeInteger"},
+        "chapter_count_partial": {"const": 0},
+        "chapter_count_inaccessible": {"const": 0},
+        "all_accessible_chapters_read": {"const": true},
+        "word_count_estimate": {"$ref": "#/$defs/nonNegativeInteger"},
+        "component_inventory": {"$ref": "#/$defs/componentInventory"}
+      }
+    },
+    "technicalFinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["severity", "type", "locator", "description", "reader_facing", "scoring_treatment"],
+      "properties": {
+        "severity": {"enum": ["info", "warning", "error"]},
+        "type": {"enum": ["missing", "duplicate", "malformed", "inaccessible", "ambiguous", "other"]},
+        "locator": {"type": "string", "minLength": 1},
+        "description": {"type": "string", "minLength": 1},
+        "reader_facing": {"type": "boolean"},
+        "scoring_treatment": {"type": "string", "minLength": 1}
+      }
+    },
+    "gate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "rationale", "evidence"],
+      "properties": {
+        "status": {"enum": ["pass", "conditional", "fail", "not_assessed", "unevaluable"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      }
+    },
+    "gates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["technical_completeness", "epistemic_instructional_safety", "ethics_reader_autonomy", "purpose_audience_declaration", "external_accuracy"],
+      "properties": {
+        "technical_completeness": {"$ref": "#/$defs/gate"},
+        "epistemic_instructional_safety": {"$ref": "#/$defs/gate"},
+        "ethics_reader_autonomy": {"$ref": "#/$defs/gate"},
+        "purpose_audience_declaration": {"$ref": "#/$defs/gate"},
+        "external_accuracy": {
+          "allOf": [{"$ref": "#/$defs/gate"}, {"properties": {"status": {"const": "not_assessed"}}}]
+        }
+      }
+    },
+    "chapterEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["chapter_index", "chapter_id", "title", "read_status", "central_ideas", "mental_model_contribution", "engagement_and_pacing", "learning_support", "retention_support", "transfer_support", "trust_qa_safety_issues", "evidence"],
+      "properties": {
+        "chapter_index": {"type": "integer", "minimum": 1},
+        "chapter_id": {"$ref": "#/$defs/nullableString"},
+        "title": {"type": "string", "minLength": 1},
+        "read_status": {"const": "full"},
+        "central_ideas": {"$ref": "#/$defs/stringArray"},
+        "mental_model_contribution": {"type": "string"},
+        "engagement_and_pacing": {"type": "string"},
+        "learning_support": {"type": "string"},
+        "retention_support": {"type": "string"},
+        "transfer_support": {"type": "string"},
+        "trust_qa_safety_issues": {"$ref": "#/$defs/stringArray"},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      }
+    },
+    "domainKey": {
+      "enum": [
+        "epistemic_integrity",
+        "audience_fit",
+        "mental_model_coherence",
+        "learning_architecture",
+        "retention_retrieval",
+        "transfer_action_judgment",
+        "motivation_autonomy",
+        "engagement_momentum",
+        "whole_book_coherence"
+      ]
+    },
+    "subcriterionKey": {
+      "enum": [
+        "claim_support_fit",
+        "uncertainty_limitations",
+        "internal_consistency_qa",
+        "misuse_safeguards",
+        "language_clarity",
+        "beginner_onboarding",
+        "signal_noise_framework_load",
+        "audience_context_accessibility",
+        "central_model",
+        "mechanism_causal_explanation",
+        "cross_concept_integration",
+        "nuance_diagnostic_power",
+        "sequencing_scaffolding",
+        "worked_examples_contrasts",
+        "active_processing",
+        "feedback_metacognitive_calibration",
+        "meaningful_retrieval_cues",
+        "cumulative_reinforcement",
+        "quiz_retrieval_depth",
+        "interference_control_consolidation",
+        "concrete_actions",
+        "cross_context_transfer",
+        "implementation_feedback_support",
+        "boundaries_adaptation_tradeoffs",
+        "personal_relevance",
+        "achievable_progress",
+        "autonomy_non_shaming_tone",
+        "calibrated_confidence",
+        "curiosity_momentum",
+        "narrative_example_vividness",
+        "emotional_relevance",
+        "instructional_alignment",
+        "chapter_necessity_order",
+        "quality_consistency_pacing",
+        "redundancy_cumulative_load",
+        "synthesis_completion_value"
+      ]
+    },
+    "chapterResolution": {
+      "enum": [
+        "exact_id",
+        "exact_title",
+        "chapter_number",
+        "chapter_number_and_title",
+        "number_list",
+        "number_range",
+        "id_list",
+        "id_range",
+        "array_index",
+        "mixed_explicit"
+      ]
+    },
+    "chapterDomainAssociation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["domain_key", "subcriterion_key", "polarity", "evidence_index", "resolution"],
+      "properties": {
+        "domain_key": {"$ref": "#/$defs/domainKey"},
+        "subcriterion_key": {"$ref": "#/$defs/subcriterionKey"},
+        "polarity": {"enum": ["strength", "limitation"]},
+        "evidence_index": {"$ref": "#/$defs/nonNegativeInteger"},
+        "resolution": {"$ref": "#/$defs/chapterResolution"}
+      }
+    },
+    "chapterIssueAssociation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["technical_finding_index", "severity", "type", "resolution"],
+      "properties": {
+        "technical_finding_index": {"$ref": "#/$defs/nonNegativeInteger"},
+        "severity": {"enum": ["info", "warning", "error"]},
+        "type": {"enum": ["missing", "duplicate", "malformed", "inaccessible", "ambiguous", "other"]},
+        "resolution": {"$ref": "#/$defs/chapterResolution"}
+      }
+    },
+    "chapterFilterEntry": {
+      "type": "object", "additionalProperties": false,
+      "required": ["chapter_key", "book_id", "chapter_index", "chapter_id", "domain_keys", "domain_associations", "max_issue_severity", "issue_associations", "untyped_observation_count"],
+      "properties": {
+        "chapter_key": {"type": "string", "minLength": 1},
+        "book_id": {"type": "string", "minLength": 1},
+        "chapter_index": {"type": "integer", "minimum": 1},
+        "chapter_id": {"$ref": "#/$defs/nullableString"},
+        "domain_keys": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/domainKey"},
+          "uniqueItems": true
+        },
+        "domain_associations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/chapterDomainAssociation"},
+          "uniqueItems": true
+        },
+        "max_issue_severity": {"enum": ["none", "info", "warning", "error"]},
+        "issue_associations": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/chapterIssueAssociation"},
+          "uniqueItems": true
+        },
+        "untyped_observation_count": {"$ref": "#/$defs/nonNegativeInteger"}
+      }
+    },
+    "bookScopeDomainEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["book_id", "domain_key", "subcriterion_key", "polarity", "evidence_index", "locator"],
+      "properties": {
+        "book_id": {"type": "string", "minLength": 1},
+        "domain_key": {"$ref": "#/$defs/domainKey"},
+        "subcriterion_key": {"$ref": "#/$defs/subcriterionKey"},
+        "polarity": {"enum": ["strength", "limitation"]},
+        "evidence_index": {"$ref": "#/$defs/nonNegativeInteger"},
+        "locator": {"type": "string", "minLength": 1}
+      }
+    },
+    "bookScopeTechnicalFinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["book_id", "technical_finding_index", "locator"],
+      "properties": {
+        "book_id": {"type": "string", "minLength": 1},
+        "technical_finding_index": {"$ref": "#/$defs/nonNegativeInteger"},
+        "locator": {"type": "string", "minLength": 1}
+      }
+    },
+    "unresolvedDomainEvidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["book_id", "domain_key", "subcriterion_key", "polarity", "evidence_index", "locator", "reason"],
+      "properties": {
+        "book_id": {"type": "string", "minLength": 1},
+        "domain_key": {"$ref": "#/$defs/domainKey"},
+        "subcriterion_key": {"$ref": "#/$defs/subcriterionKey"},
+        "polarity": {"enum": ["strength", "limitation"]},
+        "evidence_index": {"$ref": "#/$defs/nonNegativeInteger"},
+        "locator": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "unresolvedTechnicalFinding": {
+      "type": "object", "additionalProperties": false,
+      "required": ["book_id", "technical_finding_index", "locator", "reason"],
+      "properties": {
+        "book_id": {"type": "string", "minLength": 1},
+        "technical_finding_index": {"$ref": "#/$defs/nonNegativeInteger"},
+        "locator": {"type": "string", "minLength": 1},
+        "reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "chapterFilterIndex": {
+      "type": "object", "additionalProperties": false,
+      "required": ["index_version", "domain_filter_semantics", "severity_filter_semantics", "chapters", "book_scope_domain_evidence", "book_scope_technical_findings", "unresolved_domain_evidence", "unresolved_technical_findings"],
+      "properties": {
+        "index_version": {"const": "1.0.0"},
+        "domain_filter_semantics": {"type": "string", "minLength": 1},
+        "severity_filter_semantics": {"type": "string", "minLength": 1},
+        "chapters": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/chapterFilterEntry"},
+          "uniqueItems": true
+        },
+        "book_scope_domain_evidence": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/bookScopeDomainEvidence"},
+          "uniqueItems": true
+        },
+        "book_scope_technical_findings": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/bookScopeTechnicalFinding"},
+          "uniqueItems": true
+        },
+        "unresolved_domain_evidence": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/unresolvedDomainEvidence"},
+          "uniqueItems": true
+        },
+        "unresolved_technical_findings": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/unresolvedTechnicalFinding"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "finalRatingRecord": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rating", "rationale", "strength_evidence", "limitation_evidence"],
+      "properties": {
+        "rating": {"type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5},
+        "rationale": {"type": "string", "minLength": 1},
+        "strength_evidence": {"$ref": "#/$defs/evidenceArray"},
+        "limitation_evidence": {"$ref": "#/$defs/evidenceArray"}
+      }
+    },
+    "domainBase": {
+      "type": "object", "additionalProperties": false,
+      "required": ["weight", "subcriteria", "whole_book_pattern", "domain_score", "weighted_points"],
+      "properties": {
+        "weight": {"type": "number"},
+        "subcriteria": {"type": "object"},
+        "whole_book_pattern": {"type": "string", "minLength": 1},
+        "domain_score": {"type": "number", "minimum": 0, "maximum": 4},
+        "weighted_points": {"type": "number", "minimum": 0, "maximum": 15}
+      }
+    },
+    "epistemicSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["claim_support_fit", "uncertainty_limitations", "internal_consistency_qa", "misuse_safeguards"],
+      "properties": {
+        "claim_support_fit": {"$ref": "#/$defs/finalRatingRecord"},
+        "uncertainty_limitations": {"$ref": "#/$defs/finalRatingRecord"},
+        "internal_consistency_qa": {"$ref": "#/$defs/finalRatingRecord"},
+        "misuse_safeguards": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "audienceSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["language_clarity", "beginner_onboarding", "signal_noise_framework_load", "audience_context_accessibility"],
+      "properties": {
+        "language_clarity": {"$ref": "#/$defs/finalRatingRecord"},
+        "beginner_onboarding": {"$ref": "#/$defs/finalRatingRecord"},
+        "signal_noise_framework_load": {"$ref": "#/$defs/finalRatingRecord"},
+        "audience_context_accessibility": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "mentalModelSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["central_model", "mechanism_causal_explanation", "cross_concept_integration", "nuance_diagnostic_power"],
+      "properties": {
+        "central_model": {"$ref": "#/$defs/finalRatingRecord"},
+        "mechanism_causal_explanation": {"$ref": "#/$defs/finalRatingRecord"},
+        "cross_concept_integration": {"$ref": "#/$defs/finalRatingRecord"},
+        "nuance_diagnostic_power": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "learningSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["sequencing_scaffolding", "worked_examples_contrasts", "active_processing", "feedback_metacognitive_calibration"],
+      "properties": {
+        "sequencing_scaffolding": {"$ref": "#/$defs/finalRatingRecord"},
+        "worked_examples_contrasts": {"$ref": "#/$defs/finalRatingRecord"},
+        "active_processing": {"$ref": "#/$defs/finalRatingRecord"},
+        "feedback_metacognitive_calibration": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "retentionSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["meaningful_retrieval_cues", "cumulative_reinforcement", "quiz_retrieval_depth", "interference_control_consolidation"],
+      "properties": {
+        "meaningful_retrieval_cues": {"$ref": "#/$defs/finalRatingRecord"},
+        "cumulative_reinforcement": {"$ref": "#/$defs/finalRatingRecord"},
+        "quiz_retrieval_depth": {"$ref": "#/$defs/finalRatingRecord"},
+        "interference_control_consolidation": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "transferSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["concrete_actions", "cross_context_transfer", "implementation_feedback_support", "boundaries_adaptation_tradeoffs"],
+      "properties": {
+        "concrete_actions": {"$ref": "#/$defs/finalRatingRecord"},
+        "cross_context_transfer": {"$ref": "#/$defs/finalRatingRecord"},
+        "implementation_feedback_support": {"$ref": "#/$defs/finalRatingRecord"},
+        "boundaries_adaptation_tradeoffs": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "motivationSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["personal_relevance", "achievable_progress", "autonomy_non_shaming_tone", "calibrated_confidence"],
+      "properties": {
+        "personal_relevance": {"$ref": "#/$defs/finalRatingRecord"},
+        "achievable_progress": {"$ref": "#/$defs/finalRatingRecord"},
+        "autonomy_non_shaming_tone": {"$ref": "#/$defs/finalRatingRecord"},
+        "calibrated_confidence": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "engagementSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["curiosity_momentum", "narrative_example_vividness", "emotional_relevance", "instructional_alignment"],
+      "properties": {
+        "curiosity_momentum": {"$ref": "#/$defs/finalRatingRecord"},
+        "narrative_example_vividness": {"$ref": "#/$defs/finalRatingRecord"},
+        "emotional_relevance": {"$ref": "#/$defs/finalRatingRecord"},
+        "instructional_alignment": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "wholeBookSubcriteria": {
+      "type": "object", "additionalProperties": false,
+      "required": ["chapter_necessity_order", "quality_consistency_pacing", "redundancy_cumulative_load", "synthesis_completion_value"],
+      "properties": {
+        "chapter_necessity_order": {"$ref": "#/$defs/finalRatingRecord"},
+        "quality_consistency_pacing": {"$ref": "#/$defs/finalRatingRecord"},
+        "redundancy_cumulative_load": {"$ref": "#/$defs/finalRatingRecord"},
+        "synthesis_completion_value": {"$ref": "#/$defs/finalRatingRecord"}
+      }
+    },
+    "domains": {
+      "type": "object", "additionalProperties": false,
+      "required": ["epistemic_integrity", "audience_fit", "mental_model_coherence", "learning_architecture", "retention_retrieval", "transfer_action_judgment", "motivation_autonomy", "engagement_momentum", "whole_book_coherence"],
+      "properties": {
+        "epistemic_integrity": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 15}, "subcriteria": {"$ref": "#/$defs/epistemicSubcriteria"}}}]},
+        "audience_fit": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 12}, "subcriteria": {"$ref": "#/$defs/audienceSubcriteria"}}}]},
+        "mental_model_coherence": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 15}, "subcriteria": {"$ref": "#/$defs/mentalModelSubcriteria"}}}]},
+        "learning_architecture": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 12}, "subcriteria": {"$ref": "#/$defs/learningSubcriteria"}}}]},
+        "retention_retrieval": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 10}, "subcriteria": {"$ref": "#/$defs/retentionSubcriteria"}}}]},
+        "transfer_action_judgment": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 15}, "subcriteria": {"$ref": "#/$defs/transferSubcriteria"}}}]},
+        "motivation_autonomy": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 8}, "subcriteria": {"$ref": "#/$defs/motivationSubcriteria"}}}]},
+        "engagement_momentum": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 8}, "subcriteria": {"$ref": "#/$defs/engagementSubcriteria"}}}]},
+        "whole_book_coherence": {"allOf": [{"$ref": "#/$defs/domainBase"}, {"properties": {"weight": {"const": 5}, "subcriteria": {"$ref": "#/$defs/wholeBookSubcriteria"}}}]}
+      }
+    },
+    "classification": {
+      "enum": [
+        "Reference-standard design, subject to gate and core-domain rules",
+        "Strong design with identifiable improvements",
+        "Valuable but materially uneven; targeted redesign needed",
+        "Substantial redesign needed",
+        "Not ready as a ChapterFlow learning product",
+        "Unevaluable"
+      ]
+    },
+    "engagementCurveItem": {
+      "type": "object", "additionalProperties": false,
+      "required": ["chapter_range", "direction", "explanation"],
+      "properties": {
+        "chapter_range": {"type": "string", "minLength": 1},
+        "direction": {"enum": ["rises", "steady", "falls", "mixed"]},
+        "explanation": {"type": "string", "minLength": 1}
+      }
+    },
+    "analysis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["overall_reader_experience", "strongest_qualities", "weakest_qualities", "engagement_curve", "comprehension_and_retention_support", "practical_use_and_judgment", "best_fit_reader", "readers_who_may_struggle", "highest_impact_improvements", "final_verdict"],
+      "properties": {
+        "overall_reader_experience": {"type": "string", "minLength": 1},
+        "strongest_qualities": {"$ref": "#/$defs/stringArray"},
+        "weakest_qualities": {"$ref": "#/$defs/stringArray"},
+        "engagement_curve": {"type": "array", "items": {"$ref": "#/$defs/engagementCurveItem"}},
+        "comprehension_and_retention_support": {"type": "string", "minLength": 1},
+        "practical_use_and_judgment": {"type": "string", "minLength": 1},
+        "best_fit_reader": {"type": "string", "minLength": 1},
+        "readers_who_may_struggle": {"type": "string", "minLength": 1},
+        "highest_impact_improvements": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "string", "minLength": 1}},
+        "final_verdict": {"type": "string", "minLength": 1}
+      }
+    },
+    "qa": {
+      "type": "object", "additionalProperties": false,
+      "required": ["all_36_subcriteria_present", "evidence_minimums_pass", "calculation_check_pass", "semantic_quiz_issues", "formulaic_pattern_notes", "unsupported_outcome_claims_found", "self_validation_notes"],
+      "properties": {
+        "all_36_subcriteria_present": {"const": true},
+        "evidence_minimums_pass": {"const": true},
+        "calculation_check_pass": {"const": true},
+        "semantic_quiz_issues": {"$ref": "#/$defs/stringArray"},
+        "formulaic_pattern_notes": {"$ref": "#/$defs/stringArray"},
+        "unsupported_outcome_claims_found": {"const": false},
+        "self_validation_notes": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "ratingPath": {
+      "enum": [
+        "domains.epistemic_integrity.subcriteria.claim_support_fit",
+        "domains.epistemic_integrity.subcriteria.uncertainty_limitations",
+        "domains.epistemic_integrity.subcriteria.internal_consistency_qa",
+        "domains.epistemic_integrity.subcriteria.misuse_safeguards",
+        "domains.audience_fit.subcriteria.language_clarity",
+        "domains.audience_fit.subcriteria.beginner_onboarding",
+        "domains.audience_fit.subcriteria.signal_noise_framework_load",
+        "domains.audience_fit.subcriteria.audience_context_accessibility",
+        "domains.mental_model_coherence.subcriteria.central_model",
+        "domains.mental_model_coherence.subcriteria.mechanism_causal_explanation",
+        "domains.mental_model_coherence.subcriteria.cross_concept_integration",
+        "domains.mental_model_coherence.subcriteria.nuance_diagnostic_power",
+        "domains.learning_architecture.subcriteria.sequencing_scaffolding",
+        "domains.learning_architecture.subcriteria.worked_examples_contrasts",
+        "domains.learning_architecture.subcriteria.active_processing",
+        "domains.learning_architecture.subcriteria.feedback_metacognitive_calibration",
+        "domains.retention_retrieval.subcriteria.meaningful_retrieval_cues",
+        "domains.retention_retrieval.subcriteria.cumulative_reinforcement",
+        "domains.retention_retrieval.subcriteria.quiz_retrieval_depth",
+        "domains.retention_retrieval.subcriteria.interference_control_consolidation",
+        "domains.transfer_action_judgment.subcriteria.concrete_actions",
+        "domains.transfer_action_judgment.subcriteria.cross_context_transfer",
+        "domains.transfer_action_judgment.subcriteria.implementation_feedback_support",
+        "domains.transfer_action_judgment.subcriteria.boundaries_adaptation_tradeoffs",
+        "domains.motivation_autonomy.subcriteria.personal_relevance",
+        "domains.motivation_autonomy.subcriteria.achievable_progress",
+        "domains.motivation_autonomy.subcriteria.autonomy_non_shaming_tone",
+        "domains.motivation_autonomy.subcriteria.calibrated_confidence",
+        "domains.engagement_momentum.subcriteria.curiosity_momentum",
+        "domains.engagement_momentum.subcriteria.narrative_example_vividness",
+        "domains.engagement_momentum.subcriteria.emotional_relevance",
+        "domains.engagement_momentum.subcriteria.instructional_alignment",
+        "domains.whole_book_coherence.subcriteria.chapter_necessity_order",
+        "domains.whole_book_coherence.subcriteria.quality_consistency_pacing",
+        "domains.whole_book_coherence.subcriteria.redundancy_cumulative_load",
+        "domains.whole_book_coherence.subcriteria.synthesis_completion_value"
+      ]
+    },
+    "disagreement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "primary", "verification", "final", "adjudication_rationale", "source_rechecked", "evidence"],
+      "properties": {
+        "path": {"$ref": "#/$defs/ratingPath"},
+        "primary": {"type": "integer", "minimum": 0, "maximum": 4},
+        "verification": {"type": "integer", "minimum": 0, "maximum": 4},
+        "final": {"type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5},
+        "adjudication_rationale": {"type": "string", "minLength": 1},
+        "source_rechecked": {"type": "boolean"},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      }
+    },
+    "gateConflict": {
+      "type": "object", "additionalProperties": false,
+      "required": ["gate", "primary", "verification", "final", "rationale", "source_rechecked", "evidence"],
+      "properties": {
+        "gate": {"enum": ["technical_completeness", "epistemic_instructional_safety", "ethics_reader_autonomy", "purpose_audience_declaration", "external_accuracy"]},
+        "primary": {"enum": ["pass", "conditional", "fail", "not_assessed", "unevaluable"]},
+        "verification": {"enum": ["pass", "conditional", "fail", "not_assessed", "unevaluable"]},
+        "final": {"enum": ["pass", "conditional", "fail", "not_assessed", "unevaluable"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "source_rechecked": {"type": "boolean"},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      }
+    },
+    "raterAgreement": {
+      "type": "object", "additionalProperties": false,
+      "required": ["mean_absolute_subcriterion_difference", "maximum_subcriterion_difference", "overall_score_difference", "gate_conflicts", "disagreements"],
+      "properties": {
+        "mean_absolute_subcriterion_difference": {"type": "number", "minimum": 0, "maximum": 4},
+        "maximum_subcriterion_difference": {"type": "number", "minimum": 0, "maximum": 4},
+        "overall_score_difference": {"type": "number", "minimum": 0, "maximum": 100},
+        "gate_conflicts": {"type": "array", "items": {"$ref": "#/$defs/gateConflict"}},
+        "disagreements": {"type": "array", "items": {"$ref": "#/$defs/disagreement"}}
+      }
+    },
+    "confidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["level", "rationale", "chapter_completeness_ratio", "package_ambiguity", "unresolved_issues"],
+      "properties": {
+        "level": {"enum": ["high", "medium", "low"]},
+        "rationale": {"type": "string", "minLength": 1},
+        "chapter_completeness_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+        "package_ambiguity": {"enum": ["none", "minor", "material"]},
+        "unresolved_issues": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "calibrationChange": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "original", "final", "reason", "evidence"],
+      "properties": {
+        "path": {"$ref": "#/$defs/ratingPath"},
+        "original": {"type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5},
+        "final": {"type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence": {"$ref": "#/$defs/evidenceArray"}
+      }
+    },
+    "raterValue": {
+      "type": "object", "additionalProperties": false,
+      "required": ["primary", "verification", "final"],
+      "properties": {
+        "primary": {"type": ["integer", "null"], "minimum": 0, "maximum": 4},
+        "verification": {"type": ["integer", "null"], "minimum": 0, "maximum": 4},
+        "final": {"type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5}
+      }
+    },
+    "raterValues": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "domains.epistemic_integrity.subcriteria.claim_support_fit",
+        "domains.epistemic_integrity.subcriteria.uncertainty_limitations",
+        "domains.epistemic_integrity.subcriteria.internal_consistency_qa",
+        "domains.epistemic_integrity.subcriteria.misuse_safeguards",
+        "domains.audience_fit.subcriteria.language_clarity",
+        "domains.audience_fit.subcriteria.beginner_onboarding",
+        "domains.audience_fit.subcriteria.signal_noise_framework_load",
+        "domains.audience_fit.subcriteria.audience_context_accessibility",
+        "domains.mental_model_coherence.subcriteria.central_model",
+        "domains.mental_model_coherence.subcriteria.mechanism_causal_explanation",
+        "domains.mental_model_coherence.subcriteria.cross_concept_integration",
+        "domains.mental_model_coherence.subcriteria.nuance_diagnostic_power",
+        "domains.learning_architecture.subcriteria.sequencing_scaffolding",
+        "domains.learning_architecture.subcriteria.worked_examples_contrasts",
+        "domains.learning_architecture.subcriteria.active_processing",
+        "domains.learning_architecture.subcriteria.feedback_metacognitive_calibration",
+        "domains.retention_retrieval.subcriteria.meaningful_retrieval_cues",
+        "domains.retention_retrieval.subcriteria.cumulative_reinforcement",
+        "domains.retention_retrieval.subcriteria.quiz_retrieval_depth",
+        "domains.retention_retrieval.subcriteria.interference_control_consolidation",
+        "domains.transfer_action_judgment.subcriteria.concrete_actions",
+        "domains.transfer_action_judgment.subcriteria.cross_context_transfer",
+        "domains.transfer_action_judgment.subcriteria.implementation_feedback_support",
+        "domains.transfer_action_judgment.subcriteria.boundaries_adaptation_tradeoffs",
+        "domains.motivation_autonomy.subcriteria.personal_relevance",
+        "domains.motivation_autonomy.subcriteria.achievable_progress",
+        "domains.motivation_autonomy.subcriteria.autonomy_non_shaming_tone",
+        "domains.motivation_autonomy.subcriteria.calibrated_confidence",
+        "domains.engagement_momentum.subcriteria.curiosity_momentum",
+        "domains.engagement_momentum.subcriteria.narrative_example_vividness",
+        "domains.engagement_momentum.subcriteria.emotional_relevance",
+        "domains.engagement_momentum.subcriteria.instructional_alignment",
+        "domains.whole_book_coherence.subcriteria.chapter_necessity_order",
+        "domains.whole_book_coherence.subcriteria.quality_consistency_pacing",
+        "domains.whole_book_coherence.subcriteria.redundancy_cumulative_load",
+        "domains.whole_book_coherence.subcriteria.synthesis_completion_value"
+      ],
+      "properties": {
+        "domains.epistemic_integrity.subcriteria.claim_support_fit": {"$ref": "#/$defs/raterValue"},
+        "domains.epistemic_integrity.subcriteria.uncertainty_limitations": {"$ref": "#/$defs/raterValue"},
+        "domains.epistemic_integrity.subcriteria.internal_consistency_qa": {"$ref": "#/$defs/raterValue"},
+        "domains.epistemic_integrity.subcriteria.misuse_safeguards": {"$ref": "#/$defs/raterValue"},
+        "domains.audience_fit.subcriteria.language_clarity": {"$ref": "#/$defs/raterValue"},
+        "domains.audience_fit.subcriteria.beginner_onboarding": {"$ref": "#/$defs/raterValue"},
+        "domains.audience_fit.subcriteria.signal_noise_framework_load": {"$ref": "#/$defs/raterValue"},
+        "domains.audience_fit.subcriteria.audience_context_accessibility": {"$ref": "#/$defs/raterValue"},
+        "domains.mental_model_coherence.subcriteria.central_model": {"$ref": "#/$defs/raterValue"},
+        "domains.mental_model_coherence.subcriteria.mechanism_causal_explanation": {"$ref": "#/$defs/raterValue"},
+        "domains.mental_model_coherence.subcriteria.cross_concept_integration": {"$ref": "#/$defs/raterValue"},
+        "domains.mental_model_coherence.subcriteria.nuance_diagnostic_power": {"$ref": "#/$defs/raterValue"},
+        "domains.learning_architecture.subcriteria.sequencing_scaffolding": {"$ref": "#/$defs/raterValue"},
+        "domains.learning_architecture.subcriteria.worked_examples_contrasts": {"$ref": "#/$defs/raterValue"},
+        "domains.learning_architecture.subcriteria.active_processing": {"$ref": "#/$defs/raterValue"},
+        "domains.learning_architecture.subcriteria.feedback_metacognitive_calibration": {"$ref": "#/$defs/raterValue"},
+        "domains.retention_retrieval.subcriteria.meaningful_retrieval_cues": {"$ref": "#/$defs/raterValue"},
+        "domains.retention_retrieval.subcriteria.cumulative_reinforcement": {"$ref": "#/$defs/raterValue"},
+        "domains.retention_retrieval.subcriteria.quiz_retrieval_depth": {"$ref": "#/$defs/raterValue"},
+        "domains.retention_retrieval.subcriteria.interference_control_consolidation": {"$ref": "#/$defs/raterValue"},
+        "domains.transfer_action_judgment.subcriteria.concrete_actions": {"$ref": "#/$defs/raterValue"},
+        "domains.transfer_action_judgment.subcriteria.cross_context_transfer": {"$ref": "#/$defs/raterValue"},
+        "domains.transfer_action_judgment.subcriteria.implementation_feedback_support": {"$ref": "#/$defs/raterValue"},
+        "domains.transfer_action_judgment.subcriteria.boundaries_adaptation_tradeoffs": {"$ref": "#/$defs/raterValue"},
+        "domains.motivation_autonomy.subcriteria.personal_relevance": {"$ref": "#/$defs/raterValue"},
+        "domains.motivation_autonomy.subcriteria.achievable_progress": {"$ref": "#/$defs/raterValue"},
+        "domains.motivation_autonomy.subcriteria.autonomy_non_shaming_tone": {"$ref": "#/$defs/raterValue"},
+        "domains.motivation_autonomy.subcriteria.calibrated_confidence": {"$ref": "#/$defs/raterValue"},
+        "domains.engagement_momentum.subcriteria.curiosity_momentum": {"$ref": "#/$defs/raterValue"},
+        "domains.engagement_momentum.subcriteria.narrative_example_vividness": {"$ref": "#/$defs/raterValue"},
+        "domains.engagement_momentum.subcriteria.emotional_relevance": {"$ref": "#/$defs/raterValue"},
+        "domains.engagement_momentum.subcriteria.instructional_alignment": {"$ref": "#/$defs/raterValue"},
+        "domains.whole_book_coherence.subcriteria.chapter_necessity_order": {"$ref": "#/$defs/raterValue"},
+        "domains.whole_book_coherence.subcriteria.quality_consistency_pacing": {"$ref": "#/$defs/raterValue"},
+        "domains.whole_book_coherence.subcriteria.redundancy_cumulative_load": {"$ref": "#/$defs/raterValue"},
+        "domains.whole_book_coherence.subcriteria.synthesis_completion_value": {"$ref": "#/$defs/raterValue"}
+      }
+    },
+    "deterministicAdjustment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "worker_value", "deterministic_value"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "worker_value": {"type": ["number", "null"]},
+        "deterministic_value": {"type": "number"}
+      }
+    },
+    "reportBook": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "schema_version", "run_id", "job_id", "rater_role", "source_hash", "book",
+        "technical_findings", "gates", "chapter_evidence", "domains", "overall_score",
+        "classification", "certification_status", "analysis", "qa", "rater_agreement",
+        "confidence", "calibration_changes", "rank", "tie_group", "rater_values"
+      ],
+      "properties": {
+        "schema_version": {"const": "2.0.0"},
+        "run_id": {"type": "string", "minLength": 1},
+        "job_id": {"type": "string", "minLength": 1},
+        "rater_role": {"const": "adjudicated"},
+        "source_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "book": {"$ref": "#/$defs/bookMetadata"},
+        "technical_findings": {"type": "array", "items": {"$ref": "#/$defs/technicalFinding"}},
+        "gates": {"$ref": "#/$defs/gates"},
+        "chapter_evidence": {"type": "array", "items": {"$ref": "#/$defs/chapterEvidence"}},
+        "domains": {"$ref": "#/$defs/domains"},
+        "overall_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "classification": {"$ref": "#/$defs/classification"},
+        "certification_status": {"enum": ["pass", "conditional", "fail", "unevaluable"]},
+        "analysis": {"$ref": "#/$defs/analysis"},
+        "qa": {"$ref": "#/$defs/qa"},
+        "rater_agreement": {"$ref": "#/$defs/raterAgreement"},
+        "confidence": {"$ref": "#/$defs/confidence"},
+        "calibration_changes": {"type": "array", "items": {"$ref": "#/$defs/calibrationChange"}},
+        "rank": {"type": "integer", "minimum": 1},
+        "tie_group": {"$ref": "#/$defs/nullableString"},
+        "rater_values": {"$ref": "#/$defs/raterValues"},
+        "deterministic_adjustments": {"type": "array", "items": {"$ref": "#/$defs/deterministicAdjustment"}},
+        "remediation": {"type": "object"}
+      }
+    },
+    "manifestPackage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["package_id", "title", "source_path", "source_hash", "canonical", "scoreable", "duplicate_of_id", "chapter_count", "warnings"],
+      "properties": {
+        "package_id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "source_path": {"type": "string", "minLength": 1},
+        "source_hash": {"type": "string"},
+        "canonical": {"type": "boolean"},
+        "scoreable": {"type": "boolean"},
+        "duplicate_of_id": {"$ref": "#/$defs/nullableString"},
+        "chapter_count": {"$ref": "#/$defs/nonNegativeInteger"},
+        "warnings": {"$ref": "#/$defs/stringArray"}
+      }
+    },
+    "agentConfiguration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["requested_max_threads", "max_depth", "orchestration"],
+      "properties": {
+        "requested_max_threads": {"type": "integer", "minimum": 1},
+        "max_depth": {"type": "integer", "minimum": 0},
+        "orchestration": {"type": "string", "minLength": 1}
+      }
+    },
+    "validationStatus": {
+      "type": "object", "additionalProperties": false,
+      "required": ["tests", "book_results", "report", "audit"],
+      "properties": {
+        "tests": {"type": "string"},
+        "book_results": {"type": "string"},
+        "report": {"type": "string"},
+        "audit": {"type": "string"}
+      }
+    },
+    "run": {
+      "type": "object",
+      "required": ["schema_version", "rubric_version", "run_id", "generated_at_utc", "repository_root", "package_directory", "isolation_mode", "external_verification_enabled", "status", "packages_found", "canonical_books", "duplicates", "unscoreable_packages", "chapters_expected", "component_counts", "agent_configuration", "validation", "limitations", "packages"],
+      "properties": {
+        "schema_version": {"const": "2.0.0"},
+        "rubric_version": {"const": "2.0"},
+        "run_id": {"type": "string", "minLength": 1},
+        "generated_at_utc": {"type": "string", "format": "date-time"},
+        "repository_root": {"type": "string", "minLength": 1},
+        "package_directory": {"type": "string", "minLength": 1},
+        "isolation_mode": {"type": "string", "minLength": 1},
+        "external_verification_enabled": {"const": false},
+        "status": {"type": "string", "minLength": 1},
+        "packages_found": {"$ref": "#/$defs/nonNegativeInteger"},
+        "canonical_books": {"$ref": "#/$defs/nonNegativeInteger"},
+        "duplicates": {"$ref": "#/$defs/nonNegativeInteger"},
+        "unscoreable_packages": {"$ref": "#/$defs/nonNegativeInteger"},
+        "chapters_expected": {"$ref": "#/$defs/nonNegativeInteger"},
+        "books_adjudicated": {"$ref": "#/$defs/nonNegativeInteger"},
+        "chapters_read_full": {"$ref": "#/$defs/nonNegativeInteger"},
+        "chapters_partial": {"$ref": "#/$defs/nonNegativeInteger"},
+        "chapters_inaccessible": {"$ref": "#/$defs/nonNegativeInteger"},
+        "component_counts": {"type": "object", "additionalProperties": {"$ref": "#/$defs/nonNegativeInteger"}},
+        "agent_configuration": {"$ref": "#/$defs/agentConfiguration"},
+        "validation": {"$ref": "#/$defs/validationStatus"},
+        "limitations": {"$ref": "#/$defs/stringArray"},
+        "packages": {"type": "array", "items": {"$ref": "#/$defs/manifestPackage"}}
+      },
+      "additionalProperties": true
+    },
+    "rubricDomain": {
+      "type": "object", "additionalProperties": false,
+      "required": ["name", "weight", "subcriteria"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "weight": {"type": "number"},
+        "subcriteria": {"type": "object"}
+      }
+    },
+    "rubricDomains": {
+      "type": "object", "additionalProperties": false,
+      "required": ["epistemic_integrity", "audience_fit", "mental_model_coherence", "learning_architecture", "retention_retrieval", "transfer_action_judgment", "motivation_autonomy", "engagement_momentum", "whole_book_coherence"],
+      "properties": {
+        "epistemic_integrity": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Epistemic Integrity and Intellectual Honesty"}, "weight": {"const": 15}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["claim_support_fit", "uncertainty_limitations", "internal_consistency_qa", "misuse_safeguards"], "properties": {"claim_support_fit": {"const": "Claim-support fit"}, "uncertainty_limitations": {"const": "Uncertainty and limitations"}, "internal_consistency_qa": {"const": "Internal consistency and instructional QA"}, "misuse_safeguards": {"const": "Misuse safeguards"}}}}}]},
+        "audience_fit": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Audience Fit, Comprehensibility, and Cognitive Economy"}, "weight": {"const": 12}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["language_clarity", "beginner_onboarding", "signal_noise_framework_load", "audience_context_accessibility"], "properties": {"language_clarity": {"const": "Language clarity"}, "beginner_onboarding": {"const": "Beginner onboarding"}, "signal_noise_framework_load": {"const": "Signal-to-noise and framework load"}, "audience_context_accessibility": {"const": "Audience and context accessibility"}}}}}]},
+        "mental_model_coherence": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Mental-Model Coherence and Explanatory Depth"}, "weight": {"const": 15}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["central_model", "mechanism_causal_explanation", "cross_concept_integration", "nuance_diagnostic_power"], "properties": {"central_model": {"const": "Central model"}, "mechanism_causal_explanation": {"const": "Mechanism and causal explanation"}, "cross_concept_integration": {"const": "Cross-concept integration"}, "nuance_diagnostic_power": {"const": "Nuance and diagnostic power"}}}}}]},
+        "learning_architecture": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Learning Architecture and Productive Processing"}, "weight": {"const": 12}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["sequencing_scaffolding", "worked_examples_contrasts", "active_processing", "feedback_metacognitive_calibration"], "properties": {"sequencing_scaffolding": {"const": "Sequencing and scaffolding"}, "worked_examples_contrasts": {"const": "Worked examples and contrasts"}, "active_processing": {"const": "Active processing"}, "feedback_metacognitive_calibration": {"const": "Feedback and metacognitive calibration"}}}}}]},
+        "retention_retrieval": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Retention and Retrieval Support"}, "weight": {"const": 10}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["meaningful_retrieval_cues", "cumulative_reinforcement", "quiz_retrieval_depth", "interference_control_consolidation"], "properties": {"meaningful_retrieval_cues": {"const": "Meaningful retrieval cues"}, "cumulative_reinforcement": {"const": "Cumulative reinforcement"}, "quiz_retrieval_depth": {"const": "Quiz and retrieval depth"}, "interference_control_consolidation": {"const": "Interference control and consolidation"}}}}}]},
+        "transfer_action_judgment": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Purpose-Appropriate Transfer, Action, and Practical Judgment"}, "weight": {"const": 15}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["concrete_actions", "cross_context_transfer", "implementation_feedback_support", "boundaries_adaptation_tradeoffs"], "properties": {"concrete_actions": {"const": "Concrete actions"}, "cross_context_transfer": {"const": "Cross-context transfer"}, "implementation_feedback_support": {"const": "Implementation and feedback support"}, "boundaries_adaptation_tradeoffs": {"const": "Boundaries, adaptation, and tradeoffs"}}}}}]},
+        "motivation_autonomy": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Motivation, Autonomy, and Calibrated Agency"}, "weight": {"const": 8}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["personal_relevance", "achievable_progress", "autonomy_non_shaming_tone", "calibrated_confidence"], "properties": {"personal_relevance": {"const": "Personal relevance"}, "achievable_progress": {"const": "Achievable progress"}, "autonomy_non_shaming_tone": {"const": "Autonomy and non-shaming tone"}, "calibrated_confidence": {"const": "Calibrated confidence"}}}}}]},
+        "engagement_momentum": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Instructionally Aligned Engagement and Reading Momentum"}, "weight": {"const": 8}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["curiosity_momentum", "narrative_example_vividness", "emotional_relevance", "instructional_alignment"], "properties": {"curiosity_momentum": {"const": "Curiosity and momentum"}, "narrative_example_vividness": {"const": "Narrative and example vividness"}, "emotional_relevance": {"const": "Emotional relevance"}, "instructional_alignment": {"const": "Instructional alignment and absence of decoration"}}}}}]},
+        "whole_book_coherence": {"allOf": [{"$ref": "#/$defs/rubricDomain"}, {"properties": {"name": {"const": "Whole-Book Coherence, Consistency, and Completion Value"}, "weight": {"const": 5}, "subcriteria": {"type": "object", "additionalProperties": false, "required": ["chapter_necessity_order", "quality_consistency_pacing", "redundancy_cumulative_load", "synthesis_completion_value"], "properties": {"chapter_necessity_order": {"const": "Chapter necessity and order"}, "quality_consistency_pacing": {"const": "Quality consistency and pacing"}, "redundancy_cumulative_load": {"const": "Redundancy and cumulative load"}, "synthesis_completion_value": {"const": "Synthesis and completion value"}}}}}]}
+      }
+    },
+    "rubric": {
+      "type": "object", "additionalProperties": false,
+      "required": ["markdown", "domains", "formula"],
+      "properties": {
+        "markdown": {"type": "string", "minLength": 1},
+        "domains": {"$ref": "#/$defs/rubricDomains"},
+        "formula": {"type": "string", "minLength": 1}
+      }
+    },
+    "ranking": {
+      "type": "object", "additionalProperties": false,
+      "required": ["rank", "book_id", "title", "score", "tie_group"],
+      "properties": {
+        "rank": {"type": "integer", "minimum": 1},
+        "book_id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "score": {"type": "number", "minimum": 0, "maximum": 100},
+        "tie_group": {"$ref": "#/$defs/nullableString"}
+      }
+    },
+    "domainKey": {"enum": ["epistemic_integrity", "audience_fit", "mental_model_coherence", "learning_architecture", "retention_retrieval", "transfer_action_judgment", "motivation_autonomy", "engagement_momentum", "whole_book_coherence"]},
+    "categoryWinner": {
+      "type": "object", "additionalProperties": false,
+      "required": ["category", "domain_key", "score", "book_ids"],
+      "properties": {
+        "category": {"type": "string", "minLength": 1},
+        "domain_key": {"$ref": "#/$defs/domainKey"},
+        "score": {"type": "number", "minimum": 0, "maximum": 4},
+        "book_ids": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "domainAverageScores": {
+      "type": "object", "additionalProperties": false,
+      "required": ["epistemic_integrity", "audience_fit", "mental_model_coherence", "learning_architecture", "retention_retrieval", "transfer_action_judgment", "motivation_autonomy", "engagement_momentum", "whole_book_coherence"],
+      "properties": {
+        "epistemic_integrity": {"type": "number", "minimum": 0, "maximum": 4},
+        "audience_fit": {"type": "number", "minimum": 0, "maximum": 4},
+        "mental_model_coherence": {"type": "number", "minimum": 0, "maximum": 4},
+        "learning_architecture": {"type": "number", "minimum": 0, "maximum": 4},
+        "retention_retrieval": {"type": "number", "minimum": 0, "maximum": 4},
+        "transfer_action_judgment": {"type": "number", "minimum": 0, "maximum": 4},
+        "motivation_autonomy": {"type": "number", "minimum": 0, "maximum": 4},
+        "engagement_momentum": {"type": "number", "minimum": 0, "maximum": 4},
+        "whole_book_coherence": {"type": "number", "minimum": 0, "maximum": 4}
+      }
+    },
+    "crossBookAnalysis": {
+      "type": "object", "additionalProperties": false,
+      "required": ["best_overall_content_design", "meaningful_score_differences", "greatest_targeted_improvement_opportunity", "greatest_redesign_need", "choose_this_book_if", "content_team_lesson", "domain_average_scores", "category_winners", "limitations"],
+      "properties": {
+        "best_overall_content_design": {"type": "string", "minLength": 1},
+        "meaningful_score_differences": {"type": "string", "minLength": 1},
+        "greatest_targeted_improvement_opportunity": {"type": "string", "minLength": 1},
+        "greatest_redesign_need": {"type": "string", "minLength": 1},
+        "choose_this_book_if": {"type": "object", "additionalProperties": {"type": "string", "minLength": 1}},
+        "content_team_lesson": {"type": "string", "minLength": 1},
+        "domain_average_scores": {"$ref": "#/$defs/domainAverageScores"},
+        "category_winners": {"type": "array", "items": {"$ref": "#/$defs/categoryWinner"}},
+        "limitations": {"$ref": "#/$defs/stringArray"},
+        "overall_ranking": {"type": "array", "items": {"$ref": "#/$defs/ranking"}},
+        "domain_leaders": {"type": "array", "items": {"$ref": "#/$defs/categoryWinner"}},
+        "strongest_mental_model": {"type": "string", "minLength": 1},
+        "strongest_epistemic_care": {"type": "string", "minLength": 1},
+        "most_readable_cognitively_economical": {"type": "string", "minLength": 1},
+        "strongest_learning_architecture": {"type": "string", "minLength": 1},
+        "strongest_retention_support": {"type": "string", "minLength": 1},
+        "strongest_transfer_practical_judgment": {"type": "string", "minLength": 1},
+        "strongest_motivation_autonomy_support": {"type": "string", "minLength": 1},
+        "strongest_engagement": {"type": "string", "minLength": 1},
+        "strongest_whole_book_coherence": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

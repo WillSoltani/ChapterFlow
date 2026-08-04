@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-P1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q: Which comes first, listen or decide? A) listen  B) decide. Answer key: B. Explanation: you must hear the context before choosing, so listening precedes deciding.\",\"Suppose a hypothetical lead who listens before deciding. (The example is explicitly imagined; no real person is named.)\",\"Uphold a finding only to the extent the supplied evidence proves it. A plausible accusation is not proof. An assertion is not evidence for itself.\"],\"rationale\":\"The supplied record is sufficient to decide both parts of the finding. Part (a) is supported because the quiz asks which comes first, the explanation says listening precedes deciding, but the answer key selects B, decide, rather than A, listen. Part (b) is unsupported because the candidate text explicitly says the example is hypothetical, imagined, and names no real person, so the record does not prove fabrication of a named executive. Because only one of the two alleged problems is proven, the finding is partially supported.\"}"
+}

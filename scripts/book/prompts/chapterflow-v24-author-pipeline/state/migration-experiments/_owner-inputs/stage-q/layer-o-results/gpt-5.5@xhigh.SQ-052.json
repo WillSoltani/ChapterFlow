@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-052",
+  "parsed": {
+    "caseId": "SQ-052",
+    "verdict": "DEFECT",
+    "defectClass": "Narrative machinery reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "The video shows both: muddy shoes and a shaking terrier."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The towel tightens in her hands because the real feeling is embarrassment, not scheduling."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ludo he has to choose between proving the shoe rule and asking what each of them was trying to handle."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Odette she must decide whether to accuse him of not caring or say what feeling is already steering her."
+      }
+    ],
+    "explanation": "Both examples use the same decision-machine: a domestic prop anchors a conflict, the surface dispute is reframed as a deeper issue, and the character must choose between accusation/proving a point and addressing the underlying driver.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-052\",\"verdict\":\"DEFECT\",\"defectClass\":\"Narrative machinery reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"The video shows both: muddy shoes and a shaking terrier.\"},{\"materialIndex\":1,\"quote\":\"The towel tightens in her hands because the real feeling is embarrassment, not scheduling.\"},{\"materialIndex\":0,\"quote\":\"Ludo he has to choose between proving the shoe rule and asking what each of them was trying to handle.\"},{\"materialIndex\":1,\"quote\":\"Odette she must decide whether to accuse him of not caring or say what feeling is already steering her.\"}],\"explanation\":\"Both examples use the same decision-machine: a domestic prop anchors a conflict, the surface dispute is reframed as a deeper issue, and the character must choose between accusation/proving a point and addressing the underlying driver.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

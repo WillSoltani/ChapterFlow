@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-06T07:28:01.228Z",
+  "bookId": "start-with-why",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author review: 1 chapter(s) fail independent review and have ALREADY consumed their durable regen budget across prior entries (cap 2 write attempts/chapter, global):\n  ch14 — example 1: The scene introduces product lead Edmund and a blue launch tag as if they are concrete case facts, but the chapter gives no signal that this is hypothetical or sourced; this is a fabricated/misleading example. (must fix); example 2: The scene introduces strategy analyst Cyrus and a postmortem as concrete narrative facts without grounding or hypothetical framing; this is a fabricated/mis",
+  "findings": [],
+  "artifacts": [
+    "state/qc/start-with-why.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge start-with-why",
+    "npx tsx src/cli.ts book-run start-with-why --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run start-with-why --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260706072801.c4a3fbdf.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260706072801.c4a3fbdf.repair.json"
+}

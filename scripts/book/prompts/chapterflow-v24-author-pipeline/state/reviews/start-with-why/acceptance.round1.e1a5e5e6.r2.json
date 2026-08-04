@@ -1,0 +1,284 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "",
+  "at": "2026-07-08T06:50:45.323Z",
+  "bar": 80,
+  "beatShipped": 72.1,
+  "accepted": false,
+  "sampledChapters": [
+    1,
+    2,
+    6,
+    11
+  ],
+  "docSha256": "e1a5e5e6e959d5bb9d0083e75a22ccfe57f3ea46434cc1fe26a51ef9eb491239",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 74.2,
+    "factors": {
+      "retention": 78,
+      "quizzes": 75,
+      "transfer": 82,
+      "practical": 74,
+      "summaries": 78,
+      "tone": 62,
+      "limits": 82,
+      "insight": 70,
+      "density": 58,
+      "beginner": 78
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      1,
+      2,
+      6,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-p2-mrbpw4nk-9",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 78,
+          "quizzes": 69,
+          "transfer": 82,
+          "practical": 74,
+          "summaries": 77,
+          "tone": 62,
+          "limits": 86,
+          "insight": 72,
+          "density": 58,
+          "beginner": 73
+        },
+        "composite": 73.5,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample is correct and mostly answerable from the page, with no keyed quiz contradiction I found. Its main strength is a real transferable lens: put causes, settings, and visible conduct in order before trusting outcomes. The weakness is severe churn. Every chapter uses the same machinery: named company detail, second-setting comparison, hard-detail boundary, purpose-talk warning, if-then practice, and compact aphorisms. That makes the book feel engineered rather than individually authored. It ships as a solid draft for clarity and limits, but tone, density, and quiz sophistication keep it below premium.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-p2-mrbpw4nn-10",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 74,
+          "quizzes": 75,
+          "transfer": 77,
+          "practical": 70,
+          "summaries": 78,
+          "tone": 62,
+          "limits": 76,
+          "insight": 61,
+          "density": 58,
+          "beginner": 80
+        },
+        "composite": 71.5,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is clean enough to pass the correctness gate: the quiz keys are supported by the prose, and I found no direct contradiction or corrupt artifact. As a book sample, though, it shows high cross-chapter churn. Each chapter has the same machinery: named company setting, source detail must stay home, second setting prevents one-story proof, sequence of four terms, practical mark/read-aloud exercise, then a caution about purpose talk. The result is usable, clear, and beginner-friendly, but it often feels like a house template wearing different nouns rather than chapters authored from the specific spirit of Start With Why. The best lines are memorable, and the quizzes are mostly sound, but density, tone, and insight suffer from repetition.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-p2-mrbpw4no-11",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 82,
+          "quizzes": 76,
+          "transfer": 83,
+          "practical": 79,
+          "summaries": 78,
+          "tone": 68,
+          "limits": 82,
+          "insight": 70,
+          "density": 66,
+          "beginner": 78
+        },
+        "composite": 76.7,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is sound and answerable: I found no keyed quiz contradiction, corrupted prose, or unsupported answer-key failure. Its best moments are genuinely sticky, especially the lines about repair, perks, trust, and metrics, and the chapters teach reusable lenses rather than isolated tips. The major weakness is churn: nearly every chapter repeats the same architecture, same kind of named-company grounding, same warning about hard details staying with their source, same comparison logic, and same practice shell. That keeps it publishable but not premium; it reads more like a strong instructional template filled competently four times than four individually authored chapters.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-p2-mrbpw4nk-9",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 69,
+        "transfer": 82,
+        "practical": 74,
+        "summaries": 77,
+        "tone": 62,
+        "limits": 86,
+        "insight": 72,
+        "density": 58,
+        "beginner": 73
+      },
+      "composite": 73.5,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample is correct and mostly answerable from the page, with no keyed quiz contradiction I found. Its main strength is a real transferable lens: put causes, settings, and visible conduct in order before trusting outcomes. The weakness is severe churn. Every chapter uses the same machinery: named company detail, second-setting comparison, hard-detail boundary, purpose-talk warning, if-then practice, and compact aphorisms. That makes the book feel engineered rather than individually authored. It ships as a solid draft for clarity and limits, but tone, density, and quiz sophistication keep it below premium.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-p2-mrbpw4nn-10",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 74,
+        "quizzes": 75,
+        "transfer": 77,
+        "practical": 70,
+        "summaries": 78,
+        "tone": 62,
+        "limits": 76,
+        "insight": 61,
+        "density": 58,
+        "beginner": 80
+      },
+      "composite": 71.5,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is clean enough to pass the correctness gate: the quiz keys are supported by the prose, and I found no direct contradiction or corrupt artifact. As a book sample, though, it shows high cross-chapter churn. Each chapter has the same machinery: named company setting, source detail must stay home, second setting prevents one-story proof, sequence of four terms, practical mark/read-aloud exercise, then a caution about purpose talk. The result is usable, clear, and beginner-friendly, but it often feels like a house template wearing different nouns rather than chapters authored from the specific spirit of Start With Why. The best lines are memorable, and the quizzes are mostly sound, but density, tone, and insight suffer from repetition.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-p2-mrbpw4no-11",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 82,
+        "quizzes": 76,
+        "transfer": 83,
+        "practical": 79,
+        "summaries": 78,
+        "tone": 68,
+        "limits": 82,
+        "insight": 70,
+        "density": 66,
+        "beginner": 78
+      },
+      "composite": 76.7,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is sound and answerable: I found no keyed quiz contradiction, corrupted prose, or unsupported answer-key failure. Its best moments are genuinely sticky, especially the lines about repair, perks, trust, and metrics, and the chapters teach reusable lenses rather than isolated tips. The major weakness is churn: nearly every chapter repeats the same architecture, same kind of named-company grounding, same warning about hard details staying with their source, same comparison logic, and same practice shell. That keeps it publishable but not premium; it reads more like a strong instructional template filled competently four times than four individually authored chapters.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 2,
+    "composite": 74.05000000000001,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  },
+  "structuralSameness": {
+    "mode": "advisory",
+    "archAxes": [
+      {
+        "id": "ARCH1.practice_shell_monoculture",
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "archSevere": false,
+    "contentOverCap": [
+      {
+        "id": "practice-shell",
+        "frac": 0.86,
+        "chapters": [
+          2,
+          3,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14
+        ]
+      }
+    ],
+    "contentSevere": false
+  }
+}

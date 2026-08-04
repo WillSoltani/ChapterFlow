@@ -1,0 +1,97 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "No quiz questions or answer choices are present, so there are no answers to derive or guess."
+    ]
+  },
+  "scores": {
+    "retention": 30,
+    "quizzes": 0,
+    "transfer": 18,
+    "practical": 12,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 5,
+    "density": 15,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "She deletes the sentence and writes first: \"I can see that comment made you uncomfortable in front of the team.\"",
+      "why": "This concrete before-and-after revision is the chapter's only memorable demonstration of its apparent move."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production scaffolding rather than a reader-facing promise, problem, or idea."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction never identifies the move or gives the reader executable steps."
+    },
+    {
+      "quote": "Why it matters: It transfers the idea to practice.",
+      "why": "This circular placeholder supplies neither a mechanism nor a consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its promised stand-alone summary function; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its promised stand-alone explanatory function; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no chapter prose from which the core move, mechanism, boundaries, or quiz answers could be learned; reserved categories: STRUCTURALLY INVALID and UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never explicitly states its core move; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter provides no defined exercise or actionable procedure; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario shows a promising sentence revision but no resulting consequence, while its instructions merely say to apply an unnamed move and that doing so transfers the idea to practice.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or choices, making it impossible to answer or assess; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no review material; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies none of the promised retention aids; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook describes the artifact's review status instead of introducing a reader problem or chapter promise.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Its lone scenario hints at a useful move—replace an intent-based defense with acknowledgment of impact—and the sentence-level revision is concrete enough to remember, but no prose names or explains that move, establishes when it applies, discusses limits, or turns it into a usable exercise. Every principal learning and retention section is empty, and the quiz has no questions, so the required derivation is impossible. The example's generic instructions also fail to convert its promising moment into transferable practice."
+}
+```

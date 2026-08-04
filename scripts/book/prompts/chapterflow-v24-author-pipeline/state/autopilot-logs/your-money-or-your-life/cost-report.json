@@ -1,0 +1,52 @@
+{
+  "schemaVersion": "autopilot-cost-report-v1",
+  "bookId": "your-money-or-your-life",
+  "terminal": "halt:progress",
+  "at": "2026-07-12T23:27:03.346Z",
+  "grandTotalSessions": 2,
+  "mintedIds": 2,
+  "verbIds": 0,
+  "byType": {
+    "research": 2
+  },
+  "byPhase": {
+    "research": 2
+  },
+  "retriesByCause": {},
+  "carry": {
+    "hits": 0,
+    "misses": 0
+  },
+  "reviewCarry": {
+    "hits": 0,
+    "misses": 0
+  },
+  "wallClockMsByPhase": {
+    "research": 2
+  },
+  "totalWallClockMs": 2,
+  "unloggedSpawnIds": [],
+  "invariantOk": true,
+  "sessions": [
+    {
+      "sessionId": "research#1",
+      "label": "research",
+      "type": "research",
+      "phase": "research",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    },
+    {
+      "sessionId": "research-retry-2#2",
+      "label": "research-retry-2",
+      "type": "research",
+      "phase": "research",
+      "logged": true,
+      "ok": true,
+      "exitCode": 0,
+      "durationMs": 1
+    }
+  ]
+}

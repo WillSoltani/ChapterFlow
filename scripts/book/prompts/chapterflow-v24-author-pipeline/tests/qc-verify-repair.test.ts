@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { readFileSync, rmSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { existsSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { makeChapter, STATE_CHAPTERS, writeFixtureBook } from "./helpers.js";
@@ -11,10 +11,14 @@ import type { ValidatedSweepSubmission } from "../src/qc/orchestrator/schemas.js
 
 const BOOK = "zz-fixture-verify-repair";
 const ROUND = "r-verify";
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
 
 function cleanup(): void {
   rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
-  rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) rmdirSync(QC_ORCHESTRATOR_DIR);
 }
 
 function setup(): void {

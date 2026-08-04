@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch20",
+  "tryThisNow": "Create one calendar reminder named Safety allowance check; attach a saved template with price, conservatively appraised value, diversification, and coverage lines.",
+  "tryThisNowSourceAnchorIds": [
+    "ch20.fact.1",
+    "ch20.fact.2",
+    "ch20.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Build a Safety Allowance Template",
+    "titleSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ],
+    "coreSkill": "Use one saved template at a calendar trigger before committing capital: first separate price from conservatively appraised value, then check diversification, then require earnings coverage when the decision involves a bond.",
+    "coreSkillSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch20.fact.1",
+        "sourceAnchorIds": [
+          "ch20.fact.1"
+        ],
+        "context": "calendar trigger",
+        "plan": "If the calendar reminder opens before an investment decision, then fill the template line that compares price with conservatively appraised value before treating the idea as safe."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.2",
+        "sourceAnchorIds": [
+          "ch20.fact.2"
+        ],
+        "context": "budget app",
+        "plan": "If the budget app shows one well-priced security as the whole plan, then use the template to mark whether diversification is missing because appraisal error and bad luck remain."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.3",
+        "sourceAnchorIds": [
+          "ch20.fact.3"
+        ],
+        "context": "notebook margin",
+        "plan": "If a bond decision reaches the notebook margin, then write the earnings coverage line before relying on face value as the source of safety."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, save one reusable safety allowance template with four blanks: price, conservatively appraised value, diversification check, and bond coverage check.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ],
+    "weeklyPractice": "Once a week, let the calendar reminder open the saved template for one active idea. Keep the idea pending unless the template shows a price-value gap, diversification protection, and coverage when a bond is involved.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ]
+  }
+}

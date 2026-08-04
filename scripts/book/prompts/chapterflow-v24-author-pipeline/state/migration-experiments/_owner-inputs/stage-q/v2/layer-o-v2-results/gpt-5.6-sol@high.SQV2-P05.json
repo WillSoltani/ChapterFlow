@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P05",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":\"[\\\"Nicholas Christakis and James Fowler reported that obesity clustered in the Framingham Heart Study network.\\\", \\\"That claim is debated, so do not read it as proof that body size jumps from mind to mind.\\\", \\\"A careful reading says your standards can shift when the people close to you act as if a behavior is ordinary.\\\"]\",\"rationale\":\"The candidate accurately attributes the reported network clustering, explicitly identifies the finding as debated, and warns against treating it as proof of interpersonal transmission. Its proposed social-norm mechanism is framed with the qualified phrase \\\"can shift,\\\" so the uncertainty is proportionate to the contested evidence.\"}"
+}

@@ -8,14 +8,13 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 
 import { promoteBook, stripInternalFields, productionManifestSidecarPath } from "../src/promoteBook.js";
 import { attestationPath, chapterContentHash, writeAttestation } from "../src/critics/qcAttestation.js";
 import { loadChapterIndex } from "../src/generateBook.js";
 import { verifyProductionPackage } from "../src/verifyProductionPackage.js";
-import { hostname as osHostname } from "os";
 import { test } from "./harness.js";
 import { makeChapter, makeGateCleanChapter, makeSourceV2SidecarFixture, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture, writeVerifiedSourceVerifyRecord } from "./helpers.js";
 import {
@@ -31,6 +30,8 @@ import type { ChapterV21 } from "../src/types.js";
 const BOOK = "zz-fixture-promote";
 const MAJOR_BOOK = "zz-fixture-promote-major-clean";
 const SUBSET_BOOK = "zz-fixture-promote-subset";
+const WAIVERS_DIR = dirname(waiverPath(MAJOR_BOOK));
+const WAIVERS_DIR_EXISTED = existsSync(WAIVERS_DIR);
 
 function cleanupFixture(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -43,6 +44,7 @@ function cleanupFixture(): void {
   rmSync(resolve(PIPELINE_DIR, "state", "indexes", `${MAJOR_BOOK}.json`), { force: true });
   rmSync(resolve(PIPELINE_DIR, "state", "briefs", `${MAJOR_BOOK}.manual-brief.json`), { force: true });
   rmSync(waiverPath(MAJOR_BOOK), { force: true });
+  if (!WAIVERS_DIR_EXISTED && existsSync(WAIVERS_DIR) && readdirSync(WAIVERS_DIR).length === 0) rmdirSync(WAIVERS_DIR);
   rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
   rmSync(productionManifestSidecarPath(MAJOR_BOOK), { force: true });
   rmSync(sourceVerifyRecordPath(BOOK), { force: true });
@@ -373,20 +375,6 @@ function loadMajorFixtureChapters(): any[] {
   );
 }
 
-function promoteMajorFixture(chapters = loadChapterIndex(MAJOR_BOOK), faultAt?: string) {
-  return promoteBook({
-    bookId: MAJOR_BOOK,
-    title: "Major Clean Fixture",
-    author: "Test Author",
-    chapters,
-    categories: ["Business"],
-    tags: ["fixture"],
-  }, {
-    ...(faultAt ? { faultAt, transactionId: `tx-${faultAt}` } : {}),
-    now: () => new Date("2026-06-23T00:00:00.000Z"),
-  } as any);
-}
-
 function withPromotionEnvCleared<T>(fn: () => T): T {
   const prevNoApi = process.env.CHAPTERFLOW_NO_API_CODEX_QC;
   const prevRequireKeyJudge = process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
@@ -399,20 +387,6 @@ function withPromotionEnvCleared<T>(fn: () => T): T {
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prevNoApi;
     if (prevRequireKeyJudge === undefined) delete process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE;
     else process.env.CHAPTERFLOW_REQUIRE_KEYJUDGE = prevRequireKeyJudge;
-  }
-}
-
-/** Opt in to deterministic-major enforcement. Majors are ADVISORY by default
- *  (the calibrated empty-by-design behavior); CHAPTERFLOW_ENFORCE_MAJORS=1 turns
- *  the content-bound-waiver enforcement back on for the tests that exercise it. */
-function withMajorsEnforced<T>(fn: () => T): T {
-  const prev = process.env.CHAPTERFLOW_ENFORCE_MAJORS;
-  try {
-    process.env.CHAPTERFLOW_ENFORCE_MAJORS = "1";
-    return fn();
-  } finally {
-    if (prev === undefined) delete process.env.CHAPTERFLOW_ENFORCE_MAJORS;
-    else process.env.CHAPTERFLOW_ENFORCE_MAJORS = prev;
   }
 }
 
@@ -511,172 +485,80 @@ test("promoteBook fails closed when the canonical index is missing or malformed 
   }
 });
 
-test("promoteBook still promotes a complete correctly ordered canonical book", () => {
-  // Hermetic: promote the full synthetic fixture book (was: the `drive` gold corpus,
-  // absent on a bare checkout — F-12). The fixture carries an advisory major, exactly
-  // like a real clean-corpus book (majors are advisory by default), so this exercises
-  // the real "promotes GREEN with advisory majors present" production path.
+test("ambient legacy release state cannot authorize promotion or mutate package state", () => {
   const oldWarn = console.warn;
   try {
     console.warn = () => {};
     withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      const result = promoteMajorFixture(index);
-
-      assert.equal(result.promoted, true, result.reason);
-      const pkg = JSON.parse(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"));
-      assert.deepEqual(pkg.chapters.map((ch: any) => ch.chapterId), index.map((spec) => spec.chapterId));
-    });
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
-  }
-});
-
-test("promoteBook writes a slim package (no embedded manifest, human-readable packageId) plus a state-side manifest sidecar", () => {
-  // Hermetic: promote the synthetic fixture book (was: `drive`, absent — F-12).
-  const bookId = MAJOR_BOOK;
-  const oldWarn = console.warn;
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      const result = promoteMajorFixture(index);
-
-      assert.equal(result.promoted, true, result.reason);
-      const pkg = JSON.parse(readFileSync(productionPackagePath(bookId), "utf8"));
-      // K1: the shipped package carries reader content only — no embedded manifest.
-      assert.equal(pkg.productionManifest, undefined, "the shipped package must NOT embed a production manifest (it moved to the sidecar)");
-      assert.match(pkg.packageId, new RegExp(`^${bookId}-v21-\\d+$`), "packageId must be human-readable <bookId>-v21-<epochMs>, not a sha256");
-      // The manifest lives in the state-side sidecar; its contentId is a sha256 of
-      // the canonical payload and matches the sidecar's + package's identity fields.
-      const sidecar = JSON.parse(readFileSync(productionManifestSidecarPath(bookId), "utf8"));
-      assert.equal(sidecar.schemaVersion, "chapterflow-production-manifest-sidecar-v1");
-      assert.equal(sidecar.packageId, pkg.packageId, "sidecar packageId binds the shipped package");
-      assert.equal(sidecar.createdAt, pkg.createdAt, "sidecar createdAt binds the shipped package");
-      assert.match(sidecar.manifest.contentId, /^sha256:/, "the manifest carries a recomputable canonical content id");
-      assert.equal(typeof sidecar.manifest.payloadHash, "string", "manifest must carry a recomputable canonical payload hash");
-    });
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
-  }
-});
-
-test("promoteBook treats unresolved majors as ADVISORY by default and blocks them only under CHAPTERFLOW_ENFORCE_MAJORS=1", () => {
-  const oldWarn = console.warn;
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      const chapters = loadMajorFixtureChapters();
-      assert.ok(currentMajorFindings(MAJOR_BOOK, chapters).length > 0, "fixture must expose current deterministic majors");
-
-      // Default = advisory: the unresolved majors are surfaced but do NOT block.
-      const advisory = promoteMajorFixture(index);
-      assert.equal(advisory.promoted, true, `majors are advisory by default; promote should succeed: ${advisory.reason}`);
-      assert.equal(advisory.majorBlockerCount, 0, "no major blockers in advisory (default) mode");
-      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
-
-      // Opt-in enforcement: the same unresolved majors now block production.
-      const enforced = withMajorsEnforced(() => promoteMajorFixture(index));
-      assert.equal(enforced.promoted, false, "under CHAPTERFLOW_ENFORCE_MAJORS=1 unresolved majors block");
-      assert.ok(enforced.majorBlockerCount > 0, "enforced majors are counted as blockers");
-      assert.match(enforced.reason, /major/i);
-      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "blocked major policy must leave no production package");
-    });
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
-  }
-});
-
-test("content-bound major waivers permit only the exact finding/content and stale after edits", () => {
-  const oldWarn = console.warn;
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => withMajorsEnforced(() => {
       const index = setupMajorCleanFixture();
       waiveCurrentMajors(MAJOR_BOOK);
-      const promoted = promoteMajorFixture(index);
-      assert.equal(promoted.promoted, true, promoted.reason);
-      const packageBefore = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
+      const packagePath = productionPackagePath(MAJOR_BOOK);
+      const sidecarPath = productionManifestSidecarPath(MAJOR_BOOK);
+      const transactionsPath = resolve(PIPELINE_DIR, "state", "books", "_transactions");
+      const ownerHostname = "legacy-release-test-host";
+      const transactionNames = () => {
+        try {
+          return readdirSync(transactionsPath).filter((name) => name.startsWith(`${MAJOR_BOOK}.`)).sort();
+        } catch {
+          return [];
+        }
+      };
+      const seedTransaction = (transactionId: string, pid: number) => {
+        const dir = resolve(transactionsPath, `${MAJOR_BOOK}.${transactionId}`);
+        const bytes = `${JSON.stringify({ staged: transactionId })}\n`;
+        mkdirSync(dir, { recursive: true });
+        writeFileSync(resolve(dir, "owner.json"), `${JSON.stringify({
+          schemaVersion: "promotion-tx-owner-v1",
+          bookId: MAJOR_BOOK,
+          transactionId,
+          ownerId: `legacy-${transactionId}`,
+          ownerToken: `legacy-token-${transactionId}`,
+          pid,
+          hostname: ownerHostname,
+          createdAt: "2026-06-22T00:00:00.000Z",
+        }, null, 2)}\n`, "utf8");
+        writeFileSync(resolve(dir, "package.v21.json"), bytes, "utf8");
+        return { dir, bytes };
+      };
+      const dead = seedTransaction("dead-owner", 41001);
+      const live = seedTransaction("live-owner", 41002);
+      const unknown = seedTransaction("unknown-owner", 41003);
+      const freshDir = resolve(transactionsPath, `${MAJOR_BOOK}.fresh-blocked`);
 
-      const chPath = resolve(STATE_CHAPTERS, `${MAJOR_BOOK}-ch01.v21-native.chapter.json`);
-      const chapter = JSON.parse(readFileSync(chPath, "utf8"));
-      chapter.tryThisNow = `${chapter.tryThisNow} Write the result in one plain sentence before moving on.`;
-      writeFileSync(chPath, JSON.stringify(chapter, null, 2), "utf8");
-      writeAttestation({
-        schemaVersion: "qc-attest-v1",
+      const result = promoteBook({
         bookId: MAJOR_BOOK,
-        chapterNumber: chapter.number,
-        chapterId: chapter.chapterId,
-        verdict: "PUBLISHABLE",
-        contentHash: chapterContentHash(chapter),
-        hashVersion: "v2",
-        reviewer: "human:major-clean-fixture",
-        reviewedAt: "2026-06-23T00:01:00.000Z",
-        roundId: "r-major-clean",
-        roundRole: "confirm",
+        title: "Major Clean Fixture",
+        author: "Test Author",
+        chapters: index,
+        categories: ["Business"],
+        tags: ["fixture"],
+      }, {
+        now: () => new Date("2026-06-23T00:00:00.000Z"),
+        transactionId: "fresh-blocked",
+        leaseHostname: ownerHostname,
+        leaseLiveness: ({ pid }) => pid === 41001 ? "dead" : pid === 41002 ? "alive" : "unknown",
       });
 
-      const blocked = promoteMajorFixture(index);
-      assert.equal(blocked.promoted, false, "editing content must stale the prior major waivers");
-      assert.match(blocked.reason, /major/i);
-      assert.equal(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"), packageBefore, "stale waiver must not overwrite the last verified package");
-    }));
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
-  }
-});
-
-test("promotion transaction fault injection leaves no visible package and reruns deterministically", () => {
-  const oldWarn = console.warn;
-  const faultPoints = ["beforeStaging", "afterStaging", "afterVerification", "beforeFinalRename", "beforeRegistryUpdate"];
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      waiveCurrentMajors(MAJOR_BOOK);
-      let expectedBytes: string | null = null;
-      for (const point of faultPoints) {
-        if (process.env.CHAPTERFLOW_TEST_TRACE === "1") console.log(`    fault point ${point}`);
-        rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
-        rmSync(gateReportPath(MAJOR_BOOK), { force: true });
-        assert.throws(() => promoteMajorFixture(index, point), new RegExp(point), `fault ${point} must abort promotion`);
-        assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, `${point} must not expose a production package`);
-
-        const recovered = promoteMajorFixture(index);
-        assert.equal(recovered.promoted, true, recovered.reason);
-        const verification = verifyProductionPackage({ packagePath: productionPackagePath(MAJOR_BOOK), compareLooseState: true });
-        assert.equal(verification.ok, true, verification.findings.map((f) => f.message).join("\n"));
-        const bytes = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
-        if (expectedBytes === null) expectedBytes = bytes;
-        assert.equal(bytes, expectedBytes, `recovery after ${point} must produce byte-identical package output`);
-      }
-    });
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
-  }
-});
-
-test("re-promoting the identical manifest is idempotent and resolves to a verified package", () => {
-  const oldWarn = console.warn;
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      waiveCurrentMajors(MAJOR_BOOK);
-      const first = promoteMajorFixture(index);
-      assert.equal(first.promoted, true, first.reason);
-      const firstBytes = readFileSync(productionPackagePath(MAJOR_BOOK), "utf8");
-      const second = promoteMajorFixture(index);
-      assert.equal(second.promoted, true, second.reason);
-      assert.equal(readFileSync(productionPackagePath(MAJOR_BOOK), "utf8"), firstBytes, "identical re-promote must keep package bytes stable");
-      const verified = verifyProductionPackage({ packagePath: productionPackagePath(MAJOR_BOOK), compareLooseState: true });
-      assert.equal(verified.ok, true, verified.findings.map((f) => f.message).join("\n"));
+      assert.equal(result.promoted, false, "ambient chapters, attestations, and waivers cannot authorize release");
+      assert.match(result.reason, /QC0\.missing_attestation/);
+      const report = JSON.parse(readFileSync(gateReportPath(MAJOR_BOOK), "utf8"));
+      const qcIds = (report.qcAttestation?.findings ?? []).map((finding: any) => finding.checkId);
+      const bookIds = (report.bookGate?.findings ?? []).map((finding: any) => finding.catalogId ?? finding.checkId);
+      assert.ok(qcIds.includes("QC0.missing_attestation"), `missing candidate-bound QC blocker: ${qcIds.join(", ")}`);
+      assert.ok(bookIds.includes("BOOK_PATTERN_AUDIT_UNBOUND"), `missing candidate-bound pattern-audit blocker: ${bookIds.join(", ")}`);
+      assert.equal(existsSync(dead.dir), false, "provably dead prior-owner transaction must be reaped");
+      assert.ok(existsSync(live.dir), "live prior-owner transaction name must survive");
+      assert.ok(existsSync(unknown.dir), "unknown prior-owner transaction name must survive");
+      assert.equal(readFileSync(resolve(live.dir, "package.v21.json"), "utf8"), live.bytes, "live staged bytes must survive unchanged");
+      assert.equal(readFileSync(resolve(unknown.dir, "package.v21.json"), "utf8"), unknown.bytes, "unknown staged bytes must survive unchanged");
+      assert.deepEqual(
+        transactionNames(),
+        [`${MAJOR_BOOK}.live-owner`, `${MAJOR_BOOK}.unknown-owner`],
+        "only live and unknown prior-owner transaction names may remain",
+      );
+      assert.equal(existsSync(freshDir), false, "blocked release must not create a fresh transaction");
+      assert.equal(existsSync(packagePath), false, "blocked legacy path must not write a package");
+      assert.equal(existsSync(sidecarPath), false, "blocked legacy path must not write a manifest sidecar");
     });
   } finally {
     console.warn = oldWarn;
@@ -1047,110 +929,5 @@ test("CLI promote-book exits nonzero WITHOUT a raw stack trace when a canonical 
     assert.doesNotMatch(out, /\n\s+at .+:\d+:\d+/, `a raw stack trace leaked:\n${out.slice(-2000)}`);
   } finally {
     cleanupLoaderFixture(bookId);
-  }
-});
-
-// ── Crash-safe promotion: transactional staging + owner-proven recovery ───────
-// promoteBook used to call recoverPromotionTransactions(bookId) at the start of
-// every publish, broadly `rmSync`-removing EVERY `<bookId>.*` staging directory
-// with no ownership/liveness/age check — a second promotion's "recovery" could
-// delete a live promotion's staging transaction. These pin the replacement:
-// staging goes live via a single atomic rename, and recovery (reapAbandoned-
-// TransactionDirs) removes ONLY directories proven to belong to a DEAD prior
-// owner. No cross-process lease — the autopilot serializes per-book work.
-
-const PROMO_TX_DIR = resolve(PIPELINE_DIR, "state", "books", "_transactions");
-const FIXED_NOW = "2026-06-23T00:00:00.000Z";
-
-/** Fabricate a leftover staging transaction directory with an owner stamp,
- *  standing in for a prior (crashed) promotion's transaction. */
-function writeFakeStagingTx(bookId: string, txId: string, owner: { pid: number; hostname: string; ownerToken?: string }): string {
-  const dir = resolve(PROMO_TX_DIR, `${bookId}.${txId}`);
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(resolve(dir, "owner.json"), JSON.stringify({
-    schemaVersion: "promotion-tx-owner-v1",
-    bookId,
-    transactionId: txId,
-    ownerId: `promote-fake-${txId}`,
-    ownerToken: owner.ownerToken ?? `fake-owner-token-${txId}`,
-    pid: owner.pid,
-    hostname: owner.hostname,
-    createdAt: FIXED_NOW,
-  }, null, 2) + "\n", "utf8");
-  // Staged bytes that the old broad delete would have destroyed.
-  writeFileSync(resolve(dir, "package.v21.json"), `{"staged":"${txId}"}\n`, "utf8");
-  return dir;
-}
-
-function promoteMajorWith(index: ReturnType<typeof loadChapterIndex>, options: Record<string, unknown>) {
-  return promoteBook({
-    bookId: MAJOR_BOOK,
-    title: "Major Clean Fixture",
-    author: "Test Author",
-    chapters: index,
-    categories: ["Business"],
-    tags: ["fixture"],
-  }, { now: () => new Date(FIXED_NOW), ...options } as any);
-}
-
-test("promotion fault injection leaves owner-attributed, recoverable transaction evidence", () => {
-  const oldWarn = console.warn;
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      waiveCurrentMajors(MAJOR_BOOK);
-      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
-
-      assert.throws(() => promoteMajorFixture(index, "afterStaging"), /afterStaging/);
-
-      const txDir = resolve(PROMO_TX_DIR, `${MAJOR_BOOK}.tx-afterStaging`);
-      assert.ok(existsSync(txDir), "the faulted transaction directory survives as recovery evidence");
-      const owner = JSON.parse(readFileSync(resolve(txDir, "owner.json"), "utf8"));
-      assert.equal(owner.schemaVersion, "promotion-tx-owner-v1");
-      assert.equal(owner.transactionId, "tx-afterStaging");
-      assert.equal(owner.pid, process.pid, "the evidence attributes the transaction to its owner pid");
-      assert.ok(typeof owner.ownerToken === "string" && owner.ownerToken.length > 0, "owner token recorded");
-      const journal = JSON.parse(readFileSync(resolve(txDir, "journal.json"), "utf8"));
-      assert.equal(journal.state, "staged", "the journal records the last durable transition reached");
-      assert.ok(existsSync(resolve(txDir, "package.v21.json")), "the staged package bytes are recoverable");
-      assert.equal(existsSync(productionPackagePath(MAJOR_BOOK)), false, "a fault exposes no production package");
-    });
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
-  }
-});
-
-test("recovery removes only the dead prior owner's transaction, never a live or unknown one", () => {
-  const oldWarn = console.warn;
-  const DEAD_PID = 424242;
-  const LIVE_PID = 424243;
-  try {
-    console.warn = () => {};
-    withPromotionEnvCleared(() => {
-      const index = setupMajorCleanFixture();
-      waiveCurrentMajors(MAJOR_BOOK);
-      rmSync(productionPackagePath(MAJOR_BOOK), { force: true });
-
-      // Two orphan staging directories from prior runs on this host.
-      const deadDir = writeFakeStagingTx(MAJOR_BOOK, "dead-orphan", { pid: DEAD_PID, hostname: osHostname() });
-      const liveDir = writeFakeStagingTx(MAJOR_BOOK, "live-orphan", { pid: LIVE_PID, hostname: osHostname() });
-
-      // Promote with an injected probe: only DEAD_PID is provably dead. (The probe
-      // is consulted only by recovery here — the fresh lease wx-creates cleanly.)
-      const result = promoteMajorWith(index, {
-        leaseLiveness: (owner: { pid: number }) =>
-          owner.pid === DEAD_PID ? "dead" : owner.pid === LIVE_PID ? "alive" : "unknown",
-      });
-
-      assert.equal(result.promoted, true, result.reason);
-      assert.equal(existsSync(deadDir), false, "the provably-dead owner's transaction is reaped");
-      assert.ok(existsSync(liveDir), "a live (or unknown) owner's transaction is NEVER reaped");
-      assert.ok(existsSync(resolve(liveDir, "package.v21.json")), "the spared owner's staged bytes are intact");
-    });
-  } finally {
-    console.warn = oldWarn;
-    cleanupFixture();
   }
 });

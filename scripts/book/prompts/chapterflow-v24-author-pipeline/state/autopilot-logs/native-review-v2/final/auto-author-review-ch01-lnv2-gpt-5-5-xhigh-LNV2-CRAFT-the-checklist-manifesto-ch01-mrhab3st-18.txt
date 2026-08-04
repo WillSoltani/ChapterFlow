@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says danger in expert systems lives between people when ownership blurs, not in missing medical knowledge.",
+      "The implementation plan says that when specialists say their pieces are ready, map the final transition by named owner before approving the window.",
+      "The Ingrid example explicitly rebuilds the path across nursing-like handoffs before blaming the last visible person.",
+      "The chapter says failures hide where cues, timing, and handoffs cross roles, so the first inspection is the department handoff.",
+      "The pharmacy example shows each department can complete its part while reliability fails at the crossings.",
+      "The Hadiya example says to give the overlap across plow, police, and ambulance access a named owner before peak load.",
+      "The Sofia example says the danger lives where separate readiness claims meet, not inside any single expert task.",
+      "The core reasoning is that excellent people still need ownership made visible where work crosses roles.",
+      "The chapter rejects lone mastery and asks what transition was being carried by memory or command instead of the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Many correct choices repeat the chapter's exact vocabulary: handoff, ownership, transition, named owner, crossing.",
+      "Several correct choices are the most specific or longest option, especially Q3, Q4, Q6, Q7, and Q9.",
+      "Distractors often use blunt straw moves such as work harder, blame the person, or appoint one commander."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 87,
+    "summaries": 88,
+    "tone": 85,
+    "limits": 86,
+    "insight": 89,
+    "density": 82,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "This is the chapter's strongest compressed mechanism."
+    },
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "Memorable, transferable, and easy to retrieve later."
+    },
+    {
+      "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+      "why": "The rescue is invoked as evidence but not concretely developed on the page."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "This line feels generic and less tied to the rail example than the surrounding prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The Austrian drowning rescue is named as important evidence, but the chapter gives too little concrete detail about it for the reference to carry much weight.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Correct options are often signaled by exact chapter vocabulary and higher specificity, while several distractors are obvious blame-or-command straw choices.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic practice-language rather than a rail-specific consequence or decision outcome.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The storm example identifies the seam clearly but gives less before-to-after consequence than the strongest examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The title and core skill repeat the same phrase, giving this section a slight template feel.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core move is clear, memorable, and practical: stop blaming isolated competence first and inspect the seam where ownership thins out. The prose has strong mechanisms, layered summaries, useful if-then transfer, and fair quizzes. Its main weaknesses are craft-level rather than blocking: some quiz answers are too easy to spot by vocabulary, one cited rescue is under-grounded, and a few examples repeat the same shape without adding much consequence."
+}
+```

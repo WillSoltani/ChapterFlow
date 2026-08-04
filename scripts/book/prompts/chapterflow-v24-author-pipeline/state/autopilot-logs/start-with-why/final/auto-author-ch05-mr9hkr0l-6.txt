@@ -1,0 +1,9 @@
+Updated exactly one file: [state/chapters/start-with-why-ch05.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json).
+
+Validation passed:
+- `author-check` clean
+- `gate-chapter` PASS, 0 blockers, 0 majors
+- `quiz-verify` 9/9 matches
+- `evidence-audit` clean
+
+Note: I ran the validation from the active v24 workspace against the requested v24 file. The sibling v21 directory exists but has no local `tsx` binary under the restricted network policy.

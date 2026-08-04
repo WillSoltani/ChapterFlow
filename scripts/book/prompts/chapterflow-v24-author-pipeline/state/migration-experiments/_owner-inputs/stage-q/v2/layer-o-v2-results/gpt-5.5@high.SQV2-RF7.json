@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF7",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Finding S-06-05: the passage misrepresents the source's claim about diffusion timing.\",\"The idea spread once a critical share of the team had adopted it, which is when the rest followed quickly.\",\"A plausible concern is not an upheld defect without direct or contextual chapter evidence.\"],\"rationale\":\"The finding alleges a misrepresentation of the source's claim about diffusion timing, but the materials provide no source passage or contextual chapter evidence showing what the source actually claimed. The candidate sentence is internally plausible and does not, by itself, demonstrate a timing error. Under the review contract, a plausible concern without direct or contextual evidence is unsupported, so the complaint cannot be upheld and the candidate passage should be treated as clean on the provided record.\"}"
+}

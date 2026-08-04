@@ -1,0 +1,177 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch04",
+  "chapterNumber": 4,
+  "title": "Drive Results Collaboratively",
+  "coreMove": "Because each step does a different job, skipping one creates a specific collaboration failure.",
+  "thesis": "The GSD Wheel contains seven steps: Listen, Clarify, Debate, Decide, Persuade, Execute, and Learn.",
+  "readerPromise": "After this chapter, a reader can because each step does a different job, skipping one creates a specific collaboration failure.",
+  "ownedCases": [
+    {
+      "id": "ch04.ex.gsd-wheel",
+      "label": "GSD Wheel"
+    },
+    {
+      "id": "ch04.ex.steve-jobs-rock-tumbler",
+      "label": "Steve Jobs rock tumbler metaphor"
+    },
+    {
+      "id": "ch04.ex.aristotle-persuasion",
+      "label": "Aristotle persuasion triad"
+    }
+  ],
+  "notYours": [
+    "1:1 meeting practice",
+    "Bob at Juice Software",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "CORE feedback framework",
+    "Care Personally plus Challenge Directly compass",
+    "Center for Creative Leadership SBI",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Kim Scott at Google and Apple",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Meeting creep",
+    "Order of Operations feedback sequence",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Results discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg at Google"
+  ],
+  "cast": [
+    "Nathan",
+    "Camden",
+    "Noemie",
+    "Reid"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    1,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a lunch break",
+    "venue: a spare-room desk",
+    "venue: a family group chat",
+    "frame: two stakeholders disagree about ch p before deciding",
+    "frame: a first encounter with ch pp and that sets a benchmark"
+  ],
+  "architectureFamily": "misconception-reversal",
+  "openerType": "claim",
+  "challengeFrame": "before-your-next-X",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "outsider-witness",
+    "numbers-detective",
+    "prop-tableau"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "failure",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "single-imperative",
+    "if-then-trigger",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why",
+    "ordering-priority"
+  ],
+  "quizFailureModes": [
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger",
+    "over-correction"
+  ],
+  "questionFactOrder": [
+    8,
+    4,
+    9,
+    7,
+    2,
+    1,
+    6,
+    5,
+    3
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "early-aside",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "mechanism-speak",
+    "people-speak"
+  ],
+  "shellRegister": "condition-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "GSD Wheel"
+  },
+  "adjacentJobs": {
+    "prev": "Because trajectory changes over time, management must diagnose current motivation instead of assigning fixed talent labels.",
+    "next": "Because the tools section begins with trust, later feedback methods are built on relationship capacity."
+  }
+}

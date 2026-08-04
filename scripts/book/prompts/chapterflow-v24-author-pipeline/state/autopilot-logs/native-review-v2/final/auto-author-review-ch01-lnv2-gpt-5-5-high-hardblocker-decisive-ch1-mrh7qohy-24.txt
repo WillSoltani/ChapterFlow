@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose says WRAP is a four-part repair process and that each move meets a different danger.",
+      "A narrow yes-or-no frame is the first villain, and the repair is widening with live alternatives before evidence narrows around it.",
+      "The confirmation-bias section says reality-testing asks for evidence that can surprise or hurt the favorite answer.",
+      "The Intel/Grove section says emotion can carry information, but distance keeps short-term attachment from ruling the long-term call.",
+      "The forecasting section says the final WRAP move names wider futures because one neat forecast can feel falsely firm.",
+      "HopeLab's design race used parallel first passes so comparison could teach the team before commitment.",
+      "Grove's outsider question works by imagining what a fresh outsider would do without Intel's memory-chip attachment.",
+      "The four-villain model assigns different repairs to framing, evidence, emotion, and forecasting rather than one generic final check.",
+      "The prose says good process raises the odds without promising the outcome because uncertainty remains."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: Correct choice is uniquely the only one naming all four WRAP components.",
+      "Q2: Correct choice uses the chapter's giveaway phrase 'yes-or-no frame' and 'alternatives'.",
+      "Q3: Correct choice is signaled by the explicit term 'disconfirming evidence'.",
+      "Q4: No major tell; distractors are plainly extreme.",
+      "Q5: Correct choice echoes 'wider range of plausible outcomes'.",
+      "Q6: Correct choice repeats the HopeLab phrase 'parallel first passes' and 'comparison teaches before commitment'.",
+      "Q7: Correct choice almost restates the outsider-question example.",
+      "Q8: Correct choice is the only one that preserves four separate villains and moves.",
+      "Q9: Correct choice repeats the chapter's line about improving odds while uncertainty remains."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 72,
+    "practical": 83,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 82,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strong, memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Clear mechanism for confirmation bias, phrased in a way readers will remember."
+    },
+    {
+      "quote": "On reflection, gather only the evidence that supports the plan you already favor, because disconfirming views just add noise and slow the decision down.",
+      "why": "This directly contradicts the chapter's advice and would teach the wrong action."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Concise limit-setting that prevents the process from being oversold."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The What to do section first recommends seeking disconfirming evidence, then tells the reader to gather only supporting evidence because disconfirming views add noise. This is SOURCE-CONTRADICTORY and teaches the opposite of the chapter's confirmation-bias lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it largely repeats HopeLab Example 1 with another planner and budget framing, adding little new before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct choices are easier to guess because they echo exact chapter terms while distractors are broad or obviously wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The laptop-lid cue is concrete but slightly arbitrary; it does not explain why that cue is the best low-friction trigger for all readers.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is clear, memorable, and mostly professionally shippable: WRAP is explained as a sequence of repairs, the examples generally transfer the idea, and the limits section honestly says process improves odds without guaranteeing outcomes. The quiz is fair and highly derivable, though sometimes too easy from repeated wording. The blocking issue is Example 4, where a stray sentence tells readers to gather only confirming evidence, directly contradicting the chapter's central reality-testing lesson. Fix that before shipping."
+}
+```

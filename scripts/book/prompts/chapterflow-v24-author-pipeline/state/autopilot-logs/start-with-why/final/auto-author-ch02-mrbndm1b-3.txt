@@ -1,0 +1,11 @@
+Wrote [start-with-why-ch02.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch02.v21-native.chapter.json).
+
+Validation passed:
+
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify`: 9/9 matched the required key pattern `2,2,1,1,0,2,1,0,0`
+- `evidence-audit`: no evidence-integrity candidates
+- Rendered length: `16245` chars
+- Breakdown Flesch estimate: `76.2` 
+- Quiz parity: keyed answer uniquely longest `0/9`, uniquely shortest `3/9`

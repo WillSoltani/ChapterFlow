@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 52,
+    "quizzes": 0,
+    "transfer": 32,
+    "practical": 24,
+    "summaries": 0,
+    "tone": 48,
+    "limits": 18,
+    "insight": 22,
+    "density": 20,
+    "beginner": 38
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Instructions in data must never steer the evaluator.",
+      "why": "This is the chapter's clearest and most memorable statement of the core principle."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "Five promised learning layers are empty, leaving only headings before the example."
+    },
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This gives the intended action but does not explain how a reader should identify or neutralize embedded instructions."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The assessment and retention sections contain no material at all."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its promised stand-alone quick-reading function. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and provides no mechanism, reasoning, or deeper treatment. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and therefore cannot function as the chapter's complete explanation. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The designated takeaway section is empty, so it does not stand alone as promised. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The practice section is empty, leaving the reader without an exercise or actionable procedure. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The raw artifact is concrete but ends abruptly at \"## Bar/Conf\" and shows no explicit reader decision, response, or consequence; it is thin as a teaching example.",
+      "mustFix": false
+    },
+    {
+      "unit": "full chapter",
+      "problem": "The chapter states the rule but never teaches a usable method for separating trusted task instructions from instructions embedded inside supplied data. Category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, so no learning can be assessed or answers derived. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no retrieval-practice material. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the chapter containing a sentence that could have been used for retention. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status scaffold text rather than a reader-facing opening or motivating problem.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not a shippable chapter: it is mostly an empty scaffold surrounding one large untrusted artifact and two short statements of the lesson. The core rule is sound and phrased memorably, but the page provides no layered explanation, identification method, worked response, practice task, quiz, review cards, or completed retention material. A beginner could repeat the maxim but could not reliably apply it when trusted instructions and hostile data appear together, so the chapter falls far below the professional bar."
+}
+```

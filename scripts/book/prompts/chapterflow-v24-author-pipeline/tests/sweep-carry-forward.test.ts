@@ -6,17 +6,51 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { makeChapter } from "./helpers.js";
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
-import { REQUIRED_SWEEP_FAMILIES, carryForwardSweep, loadSweepRecord, sweepCarryable, sweepRecordPath, type SweepRecord } from "../src/qc/sweep.js";
+import {
+  REQUIRED_SWEEP_FAMILIES,
+  carryForwardSweep,
+  chapterClearsPath,
+  loadSweepRecord,
+  sweepCarryable,
+  sweepHistoryPath,
+  sweepRecordPath,
+  type SweepRecord,
+} from "../src/qc/sweep.js";
 import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
 
 const BOOK = "zz-fixture-sweep-carry";
 const ROUND = "r-prior-sweep";
+const QC_ORCHESTRATOR_DIR_EXISTED_BEFORE_TESTS = existsSync(QC_ORCHESTRATOR_DIR);
+
+type FixtureFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+function snapshotFixtureFile(path: string): FixtureFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreFixtureFile(snapshot: FixtureFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  mkdirSync(dirname(snapshot.path), { recursive: true });
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
 
 function passRec(chapters: ReturnType<typeof makeChapter>[], opts: { verdict?: SweepRecord["verdict"]; families?: readonly SweepRecord["checkedFamilies"][number][] } = {}): SweepRecord {
   return {
@@ -61,6 +95,11 @@ test("sweepCarryable: a non-PASS prior, an incomplete family set, or no prior ne
 });
 
 test("carryForwardSweep: re-stamps the prior PASS onto a new round without re-judging", () => {
+  const snapshots = [
+    sweepRecordPath(BOOK),
+    sweepHistoryPath(BOOK),
+    chapterClearsPath(BOOK),
+  ].map(snapshotFixtureFile);
   try {
     const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
     const prior = passRec(chapters);
@@ -71,7 +110,10 @@ test("carryForwardSweep: re-stamps the prior PASS onto a new round without re-ju
     assert.equal(loaded?.verdict, "PASS", "the real prior verdict is preserved");
     assert.deepEqual(loaded?.contentHashes, prior.contentHashes, "the carried hashes still match the book");
   } finally {
-    rmSync(sweepRecordPath(BOOK), { force: true });
     rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
+    for (const snapshot of snapshots) restoreFixtureFile(snapshot);
+    if (!QC_ORCHESTRATOR_DIR_EXISTED_BEFORE_TESTS && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) {
+      rmdirSync(QC_ORCHESTRATOR_DIR);
+    }
   }
 });

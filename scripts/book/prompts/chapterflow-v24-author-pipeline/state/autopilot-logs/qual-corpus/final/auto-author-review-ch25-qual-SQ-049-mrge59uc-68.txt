@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 6,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 2,
+    "density": 8,
+    "beginner": 3
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room.",
+      "why": "The strongest sentence creates a concrete tension between factual accuracy and emotional impact."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Five consecutive headings have no content, leaving the chapter without instruction, summaries, or an exercise."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The prescribed action is unusable because neither the move nor how to perform it is explained."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The quiz and both retention aids are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The sentence is a production-status placeholder rather than a reader-facing hook or introduction.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone explanatory promise (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty; the chapter never defines, teaches, or explains its core move (STRUCTURALLY INVALID and UNUSABLE).",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so no core lesson is stated.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader with no practical exercise or application steps.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example introduces an undefined choice to 'name the three layers'; no layers, method, action, or consequence are supplied, so it cannot demonstrate the absent lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Ruxandra she must decide' is grammatically malformed.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The proposed move, 'draw both paths,' is undefined, and the scene ends before any decision or consequence demonstrates transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Zanele she must decide' is grammatically malformed.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples repeat the generic directions 'Follow the scene's move' and 'It shows the skill in context' without naming the skill or giving executable guidance.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, making it broken and impossible to answer or assess (STRUCTURALLY INVALID).",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and provides no retrieval practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and provides no retention aid.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Two concrete scenes hint at a potentially useful idea about holding competing realities instead of merely proving one side correct, but the prose never defines that idea, explains its mechanism, demonstrates a completed decision and consequence, or tells the reader what to do. Every instructional and retention section is empty, and the quiz has no questions, so the chapter cannot teach, test, summarize, or support application of its core move."
+}
+```

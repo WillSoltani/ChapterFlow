@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch03",
+  "chapterNumber": 3,
+  "contentHash": "335494d7718031b5",
+  "reviewerSessionId": "auto-author-review-ch03-regen-mrd01gwa-19",
+  "scores": {
+    "retention": 90,
+    "quizzes": 88,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 86,
+    "insight": 88,
+    "density": 87,
+    "beginner": 90
+  },
+  "composite": 88,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Safety without challenge becomes ease. Challenge without safety becomes fear.",
+      "why": "This is the chapter's clearest durable mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "Do not cash silence as proof.",
+      "why": "Short, memorable, and directly actionable.",
+      "verified": true
+    },
+    {
+      "quote": "The miss is caught late, barely.",
+      "why": "This recurring ending makes several examples feel narrow and same-shaped.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "No reliable answer-key tells. Correct choices vary across a/b/c, and the longest option is not consistently correct."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The scenario is useful but thin on consequence: it names the blocked handoff and says the miss is caught late, but does not show a concrete before-to-after result.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "This example repeats Holly and Project Aristotle in a similar late-catch pattern, so it broadens transfer less than a distinct setting with clearer consequences would.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem asks for an earlier mistake, while the keyed answer is close to the mistaken diagnosis itself; still derivable, but slightly less clean than the other quiz items.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter ships against an 84 bar. The core move is memorable, practical, and well layered: keep the standard visible, lower the social cost of speaking, and treat silence as data. The quiz is fair and mostly well keyed. The main weakness is transfer breadth: several examples circle the same clean-yes or late-catch pattern instead of showing more varied before-to-after consequences, but that is a craft limitation rather than a reader-harming defect.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "433f24e2130bbdab80f08686f608be6232f6c7d1f55969b23874745538f22c6d",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:21:31.733Z"
+}

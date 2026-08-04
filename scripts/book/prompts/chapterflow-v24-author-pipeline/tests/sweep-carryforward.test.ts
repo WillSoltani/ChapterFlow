@@ -11,7 +11,7 @@
  */
 
 import assert from "node:assert/strict";
-import { rmSync } from "node:fs";
+import { existsSync, readdirSync, rmdirSync, rmSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { test } from "./harness.js";
@@ -32,6 +32,7 @@ import {
 import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
 
 const BOOK = "zz-fixture-sweep-carryfwd";
+const QC_ORCHESTRATOR_DIR_EXISTED_BEFORE_TESTS = existsSync(QC_ORCHESTRATOR_DIR);
 const CHAPTERS = [1, 2, 3, 4, 5].map((n) => makeChapter(BOOK, n));
 const HASHES = Object.fromEntries(CHAPTERS.map((ch) => [String(ch.number), chapterContentHash(ch)]));
 
@@ -46,6 +47,9 @@ function reset(): void {
   rmSync(sweepRecordPath(BOOK), { force: true });
   rmSync(chapterClearsPath(BOOK), { force: true });
   rmSync(resolve(QC_ORCHESTRATOR_DIR, BOOK), { recursive: true, force: true });
+  if (!QC_ORCHESTRATOR_DIR_EXISTED_BEFORE_TESTS && existsSync(QC_ORCHESTRATOR_DIR) && readdirSync(QC_ORCHESTRATOR_DIR).length === 0) {
+    rmdirSync(QC_ORCHESTRATOR_DIR);
+  }
 }
 
 /** A gating finding on `chapters` — location_stamping is NOT a distinctiveness-demotable family, so

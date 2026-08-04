@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch09",
+  "chapterNumber": 9,
+  "contentHash": "5bab03930518c25d",
+  "reviewerSessionId": "auto-author-review-ch09-mrczflpx-14",
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 79,
+    "practical": 90,
+    "summaries": 92,
+    "tone": 88,
+    "limits": 89,
+    "insight": 90,
+    "density": 86,
+    "beginner": 87
+  },
+  "composite": 87.8,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "a",
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Count the signal before you trust the glow.",
+      "why": "Strongest memorable line: it compresses the chapter's mechanism into a durable image.",
+      "verified": true
+    },
+    {
+      "quote": "A cue with no practice is a wish. Practice with no impact feedback is rehearsal in private.",
+      "why": "Clear, useful diagnostic distinction for applying the idea beyond the chapter.",
+      "verified": true
+    },
+    {
+      "quote": "A coffee cup cools.",
+      "why": "Worst defect: this image appears abruptly and does not clarify the example's before-to-after action.",
+      "verified": true
+    },
+    {
+      "quote": "The return point is set, not met: when the first question lands, the if-then line must carry the action before memory has to.",
+      "why": "Strong mechanism explanation for why cue planning matters under pressure.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q5 gives away the key because only one option names the specific research anchor and article.",
+    "Several keyed answers are the only options using the chapter's core vocabulary, while distractors are exaggerated or obviously anti-lesson."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it names the research idea but gives no concrete person, setting, decision, or visible before-to-after consequence; the cooling coffee image is unexplained.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it stays generic around a discussion lead and does not show a completed action or consequence, only the setup for the if-then cue.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The key is sound, but the correct answer is easier to guess because it is the only option naming Gollwitzer and the article.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable: the core move is memorable, practical, and repeatedly framed as visible behavior plus cue plus impact feedback rather than private intention. The summaries layer well, the quiz keys are derivable, and the limits around deliberate practice and growth mindset are handled honestly. The main weakness is transfer: a couple of examples are thin and abstract, especially example 1, so they lower confidence that a cold reader will see the move in a lived situation. That is craft drag, not a blocking defect.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "6bbc4a3e766562cf93e9e01bb9050b5c37354acc2703d16fc1ba8e80fe3b6336",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:30.732Z"
+}

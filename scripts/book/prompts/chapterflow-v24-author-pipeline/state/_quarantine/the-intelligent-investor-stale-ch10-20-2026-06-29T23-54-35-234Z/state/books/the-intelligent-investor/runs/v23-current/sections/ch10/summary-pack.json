@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch10",
+  "hook": {
+    "hook": "A signed advice agreement can feel like handing off risk, but the losses still land with the owner who accepted the recommendation.",
+    "counterintuition": "Help is useful only when it sharpens judgment. The safer default is not blind trust, but a disciplined review of incentives, duties, records, promises, and authority before money is entrusted.",
+    "sourceAnchorIds": [
+      "ch10.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3",
+      "ch10.fact.4",
+      "ch10.fact.5",
+      "ch10.framework.adviser.due.diligence"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "Using an adviser does not transfer responsibility away from the investor. The owner still bears the losses and must judge whether advice is prudent. That judgment starts with incentives: commissions, asset-based fees, and hourly fees can reward different recommendations, so compensation is part of the advice. It also requires knowing the role being performed, because a broker selling securities and an adviser giving ongoing fiduciary advice are not identical services. Background checks matter because registration and disciplinary records can reveal risks before money is entrusted. Reliable counsel should also be conservative about promises, since good advice cannot guarantee superior market performance.",
+    "deepRead": "Advice can reduce confusion, but it cannot remove ownership of the result. The investor remains exposed to loss, so hiring help should be treated as a decision to add judgment, not replace it. The central mistake is assuming that a professional title moves accountability somewhere else. It does not. The practical question is whether the advice is prudent enough to accept.\n\nCompensation is one of the first things to inspect because fee structures change incentives. Commissions, asset-based fees, and hourly fees can reward different recommendations. None is automatically wrong, but each can shape what gets emphasized, sold, or ignored. Treating all advisers as motivated in the same way hides conflicts that should be visible before a recommendation is accepted.\n\nRole clarity matters as much as compensation. Broker and adviser roles can differ legally and practically because selling securities and giving ongoing fiduciary advice are not identical services. A referral or credential can help screen candidates, but it cannot replace due diligence. Registration and disciplinary records are part of selecting help because they can reveal risks before money is entrusted. The same caution applies to promises: reliable counsel should be conservative, since forecasting markets accurately is not the core service most investors should expect.",
+    "fullRead": "The useful way to work with advisers starts from a hard boundary: using an adviser does not remove the investor's responsibility. The capital owner still bears the losses and still has to judge whether advice is prudent. That does not make professional help useless. It means help should be judged as a tool for better policy, discipline, and understanding, not as a transfer of accountability.\n\nThe first audit point is incentive. Fee structure affects adviser incentives because commissions, asset-based fees, and hourly fees can reward different recommendations. A commission can make transactions matter. An asset-based fee can make retained assets matter. An hourly fee can change the emphasis again. The point is not that one form is always superior, but that compensation changes conflicts and behavior. A recommendation becomes clearer when the investor can see how the adviser is paid and what that payment structure rewards.\n\nThe second audit point is role. Broker and adviser roles can differ legally and practically because selling securities and giving ongoing fiduciary advice are not identical services. Assuming every financial professional has the same duty is a serious shortcut. The investor needs to know the scope of the relationship: what service is being provided, what duty applies, and whether the professional is acting as a salesperson, an ongoing adviser, or something narrower.\n\nThe third audit point is evidence before trust. Background checks are part of selecting help because registration and disciplinary records can reveal risks before money is entrusted. Personal trust, a referral, or a polished presentation does not replace records. FINRA BrokerCheck represents the kind of practical habit that makes trust more concrete by allowing review of registration and disclosure records, plus broker and firm history. Credentials can also help screen advisers, but the Certified Financial Planner Board example points to the same limit: certification standards are evidence to evaluate, not a substitute for compensation and scope questions.\n\nThe fourth audit point is restraint around promises. Investment counsel should be conservative about promises because reliable advice cannot guarantee superior market performance. A good adviser need not prove value by forecasting markets accurately. For many defensive investors, help with allocation, taxes, behavior, and restraint may matter more than selecting individual issues. Strong advice should make the investor's policy more understandable and durable; it should not ask for blind faith in market prediction, opaque complexity, or authority that the investor cannot review.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch10.fact.1",
+        "ch10.fact.2",
+        "ch10.fact.3",
+        "ch10.fact.4",
+        "ch10.fact.5"
+      ],
+      "deepRead": [
+        "ch10.fact.1",
+        "ch10.fact.2",
+        "ch10.fact.3",
+        "ch10.fact.4",
+        "ch10.fact.5"
+      ],
+      "fullRead": [
+        "ch10.fact.1",
+        "ch10.fact.2",
+        "ch10.fact.3",
+        "ch10.fact.4",
+        "ch10.fact.5",
+        "ch10.fact.6",
+        "ch10.example.2",
+        "ch10.example.3",
+        "ch10.framework.adviser.due.diligence"
+      ]
+    }
+  },
+  "keyTakeaway": "Use advisers without surrendering judgment: check incentives, duties, records, scope, and promises before accepting recommendations.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch10.fact.1",
+    "ch10.fact.2",
+    "ch10.fact.3",
+    "ch10.fact.4",
+    "ch10.fact.5"
+  ],
+  "tryThisNow": "Before acting on advice, list how the adviser is paid, what role is being performed, and what registration or disciplinary records you checked.",
+  "tryThisNowSourceAnchorIds": [
+    "ch10.fact.1",
+    "ch10.fact.2",
+    "ch10.fact.3",
+    "ch10.fact.4"
+  ],
+  "sourceFactIds": [
+    "ch10.fact.1",
+    "ch10.fact.2",
+    "ch10.fact.3",
+    "ch10.fact.4",
+    "ch10.fact.5",
+    "ch10.fact.6"
+  ]
+}

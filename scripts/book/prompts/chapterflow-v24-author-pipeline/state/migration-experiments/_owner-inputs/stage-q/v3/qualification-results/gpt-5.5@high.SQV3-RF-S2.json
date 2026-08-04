@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-S2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Reported attrition fell from 20% to 15% over the year.\",\"After the change, attrition was cut by more than half.\"],\"rationale\":\"The supplied record is sufficient because it includes both the candidate claim and the cited source statement needed to compare them. A drop from 20% to 15% is a reduction of 5 percentage points, or 25% relative to the original 20%, not more than half. Therefore the review finding that the candidate overstates the source is supported.\"}"
+}

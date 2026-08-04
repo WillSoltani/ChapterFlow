@@ -1,7 +1,8 @@
 import { existsSync, mkdirSync, readdirSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 
-import { chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
+import { attestationPath, chapterContentHash, isAttestationFresh, loadAttestation, writeAttestation, type QcAttestation, type QcVerdict } from "../../critics/qcAttestation.js";
+import { parseBookPatternAuditReport, type BookPatternAuditReport } from "../../critics/bookPatternAudit.js";
 import { writeFileAtomic } from "../../lib/atomicWrite.js";
 import { AXIS_WEIGHTS, combineBarAxes, computeVerdict, type AxisScore, type FailureTier } from "../../critics/semantic/publishableBar.js";
 import { computeCraftVerdict, craftReadMode, type CraftReadMode } from "../../critics/semantic/craftBar.js";
@@ -121,6 +122,14 @@ function readJson(path: string): any | null {
   }
 }
 
+function readAttestation(bookId: string, chapterNumber: number): QcAttestation | null {
+  try {
+    return loadAttestation(bookId, chapterNumber, readFileSync(attestationPath(bookId, chapterNumber)));
+  } catch {
+    return null;
+  }
+}
+
 function selectedChapterNumbers(bookId: string, roundId: string, options: { chapters?: number[] }): number[] | undefined {
   if (options.chapters?.length) return [...new Set(options.chapters)].sort((a, b) => a - b);
   const round = readJson(roundRecordPath(bookId, roundId));
@@ -178,14 +187,14 @@ function ledgerFindingsForChapter(bookId: string, roundId: string, chapterNumber
 }
 
 function currentNegativeAttestationBlocksPublishable(bookId: string, chapter: ChapterV21): string | null {
-  const existing = loadAttestation(bookId, chapter.number);
+  const existing = readAttestation(bookId, chapter.number);
   if (!existing || existing.verdict === "PUBLISHABLE") return null;
   if (!isAttestationFresh(existing, chapter)) return null;
   return `fresh ${existing.verdict} attestation on unchanged content requires repair or a human supersede`;
 }
 
 function attestationForDecision(chapter: ChapterV21, decision: EvidenceChapterDecision, verdict: QcVerdict, findings: string[]): QcAttestation {
-  const existing = loadAttestation(decision.bookId, chapter.number);
+  const existing = readAttestation(decision.bookId, chapter.number);
   const { history: _history, ...existingSansHistory } = existing ?? {};
   const publishable = verdict === "PUBLISHABLE";
   // Idempotent re-finalize: if an existing attestation already records THIS verdict on
@@ -382,7 +391,15 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
   // repair-ledger, majors) are still computed per-chapter below. Book-gate +
   // plan-enforcement are evaluated once over the whole book inside the evaluator
   // (exemplar ownership + cross-chapter patterns are book-wide).
-  const det = evaluateDeterministic(bookId, chapters, allChapters);
+  let patternAudit: BookPatternAuditReport | undefined;
+  if (roundRecord?.patternAudit) {
+    try {
+      patternAudit = parseBookPatternAuditReport(roundRecord.patternAudit, { bookId, chapterCount: allChapters.length });
+    } catch (err) {
+      errors.push((err as Error).message);
+    }
+  }
+  const det = evaluateDeterministic(bookId, chapters, allChapters, patternAudit);
   const bookGate = det.bookGate;
   let sweepRecord: ReturnType<typeof loadSweepRecord> = null;
   try {
@@ -514,7 +531,7 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
     // is NOT carried (→ NEEDS_MORE_QC, correctly re-reviewed).
     let carriedPublishable = false;
     if (carriedSet?.has(ch.number) && checks.barRead === "MISSING") {
-      const carried = loadAttestation(bookId, ch.number);
+      const carried = readAttestation(bookId, ch.number);
       if (carried && carried.verdict === "PUBLISHABLE" && isAttestationFresh(carried, ch)) {
         checks.barRead = "GREEN";
         checks.confirmRead = "PUBLISHABLE";
@@ -678,7 +695,7 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
       // while still reading "fresh", so a legacy v1 REVISE is NOT self-superseded
       // (it falls through to the block → NEEDS_MORE_QC, human supersede). Current-
       // flow attestations are always v2, so this never affects a normal round.
-      const existing = loadAttestation(bookId, ch.number);
+      const existing = readAttestation(bookId, ch.number);
       const priorRoundStale = !!existing && existing.hashVersion === "v2" && !!existing.roundId && existing.roundId !== roundId;
       if (block && !(completeFreshPositive && priorRoundStale)) {
         reason = block;
@@ -864,5 +881,8 @@ function finalizeQcRoundUnlocked(bookId: string, roundId: string, options: { cha
 }
 
 export function finalizeQcRound(bookId: string, roundId: string, options: { chapters?: number[]; attest?: boolean; dryRun?: boolean } = {}): FinalizeQcRoundResult {
+  // Dry-run is a pure projection. Avoid transaction-lock creation/removal and
+  // parent-directory metadata changes while answering it.
+  if (options.dryRun) return finalizeQcRoundUnlocked(bookId, roundId, options);
   return withQcTransaction(bookId, roundId, "finalize", () => finalizeQcRoundUnlocked(bookId, roundId, options));
 }

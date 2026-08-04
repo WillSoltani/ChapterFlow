@@ -1,0 +1,85 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-05",
+  "baselineHash": "e076c9ff1decaf682608fcdc26fca6fb12262213",
+  "resultHash": "c2deff1a076dd3ccf28e7bebae42f0d3f7d26e0d886ece2abb49913de933f7e5",
+  "contractVersions": {
+    "source-use-plan": 1,
+    "execution-profile": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRun.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/critics/readerBudgets.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/author-arch.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/stier-levers.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/stier2-levers.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/content-machinery.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-use-plan.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/card-diet.test.ts",
+    "docs/v25/IMP-05-REQUIREMENT-LEDGER.md"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP05-R01", "status": "implemented", "note": "docs/v25/IMP-05-REQUIREMENT-LEDGER.md: every current card instruction with intent, enforcement owner (GATE/SCORED/CRITIC/COMPILER/SELF), and retain/move/delete decision + replacement evidence." },
+    { "requirementId": "IMP05-R02", "status": "implemented", "note": "Global invariants only: complete valid artifact; source-plan obedience; no invented facts; quiz key-is-a-move + exclusivity; identity/product limits; plain+dense. AUTHOR_HOUSE_RULES rewritten." },
+    { "requirementId": "IMP05-R03", "status": "implemented", "note": "AUTHOR_PRECEDENCE: safety/source/identity → schema/completeness → thesis/evidence/quiz → chapter objective → book constraints → optional style; rendered first on the card." },
+    { "requirementId": "IMP05-R04", "status": "implemented", "note": "Removed: duplicate factuality statements, copied incident lessons (~100 comment lines → ledger), the VOICE 4-move formula, fixed memorable formulas, the mechanical-word list, the tell-length audit protocol, overlapping negative lists." },
+    { "requirementId": "IMP05-R05", "status": "implemented", "note": "The priority-completion rule replaces 'be concise/cut before padding': finish every required field first; drop optional ornament before anything required; never make a product field optional." },
+    { "requirementId": "IMP05-R06", "status": "implemented", "note": "Source projection + prior findings ride the IMP-03 typed untrusted-data envelope (cannot alter role/tools/model/effort/retry/acceptance/schema); control blocks render outside any envelope. Pinned." },
+    { "requirementId": "IMP05-R07", "status": "partial", "note": "Complaint strings are data-quarantined in the reviewer-finding envelope now; a fully TYPED structured-finding schema arrives with IMP-07/08. The envelope holds the boundary meanwhile.", "deferredTo": "IMP-07/IMP-08" },
+    { "requirementId": "IMP05-R08", "status": "implemented", "note": "Chapter-specific objective (brief + source-use plan + active deals) stays compact and local as its own card sections; the global card no longer duplicates them." },
+    { "requirementId": "IMP05-R09", "status": "implemented", "note": "Creative strategies removed, not replaced with a new named-scene menu. The no-scene-taxonomy-leakage test enforces that no mold vocabulary reappears in the control blocks." },
+    { "requirementId": "IMP05-R10", "status": "implemented", "note": "Self-verify shortened to 4 ordered high-risk checks (KEYS/FACTS/SCAFFOLD/COMPLETE), <=900 chars, structured-evidence answers — not a restatement of the prompt." },
+    { "requirementId": "IMP05-R11", "status": "implemented", "note": "Retry/regeneration use the SAME dieted core card + the enveloped findings section; the retry/regen-parity test proves no removed legacy block re-enters." },
+    { "requirementId": "IMP05-R12", "status": "implemented", "note": "authorCardMetrics reports chars + directive-line count + control-char total; size tests pin the diet (control <=4,600; fixture card <=15,000) for representative chapters." },
+    { "requirementId": "IMP05-R13", "status": "implemented", "note": "CARD_BLOCK_VERSIONS stamps each control block; authorCardComposition() returns versions + a deterministic sha256 of the control text for IMP-10 drift detection." },
+    { "requirementId": "IMP05-R14", "status": "implemented", "note": "Root/role AGENTS.md is neutralized by the IMP-00 envelope (project_doc_max_bytes=0 + empty isolated home), so no approved root instruction can duplicate/conflict with the card; owned + tested by exec-envelope + hostile-context." }
+  ],
+  "testsRequired": [
+    "requirement-ledger completeness (artifact)",
+    "prompt snapshot/semantic tests for representative chapter types",
+    "card-size + instruction-count regression with justified budgets",
+    "removed protections enforced by schema/compiler/critic/test owner",
+    "precedence-conflict (concreteness vs source, style vs schema)",
+    "untrusted-data injection for source/brief/prior findings",
+    "full-artifact tests proving brevity does not suppress fields",
+    "retry/regeneration parity (no legacy block re-enters)",
+    "no named-scene-taxonomy leakage"
+  ],
+  "testsRun": [
+    "tests/card-diet.test.ts (10, new)",
+    "tests/author-arch.test.ts (6 CF-era pins consolidated into IMP-05 tests + enforcement-owner checks)",
+    "tests/stier-levers / stier2-levers / content-machinery (retargeted to compact invariants + the CHB12 gate)",
+    "tests/source-use-plan.test.ts (plan-block-header assertions disambiguated from the invariant text)",
+    "full hermetic suite (238 files) + contract-validate"
+  ],
+  "testResults": {
+    "pass": 2178,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "CONTENT-QUALITY EFFECT IS UNMEASURED and NOT claimed: the plan gates any quality claim on the controlled bakeoff (IMP-11/Section 16), which needs the billed/owner-controlled API and cannot run here. The diet is justified structurally (smaller prompt, invariants preserved, enforcement owners intact); whether it helps or harms first-draft quality is the bakeoff's question.",
+    "The verbose QUALITY BAR's first-draft-pass-rate rationale (avoiding the ~19-min whole-chapter retry) is a latency/cost tradeoff the bakeoff measures, not a protection; if the diet raises retry rate materially, the craft targets can be selectively re-expanded on evidence.",
+    "Fully TYPED structured findings (instruction 7) await IMP-07/08; today complaint strings are envelope-quarantined data but not yet a typed schema.",
+    "The owner explicitly chose the FULL diet over the conservative-structural option; this report records that decision."
+  ],
+  "dependencyAssumptions": [
+    "IMP-04 lands its concreteness/stand-in/register critics as the SCORED/CRITIC enforcement owners the dieted card points to; the card carries no new scene recipe for IMP-06 to fight.",
+    "IMP-07/08 replace the complaint-string envelope with a typed structured-finding schema.",
+    "IMP-11/Section 16 measures whether the diet helped or harmed content quality (the only place a quality claim may be made).",
+    "IMP-10 consumes authorCardComposition() for card-drift detection.",
+    "baselineHash is the IMP-10 commit (full sha); resultHash is sha256 of the staged unified diff."
+  ]
+}

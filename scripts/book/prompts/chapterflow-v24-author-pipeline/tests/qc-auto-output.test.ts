@@ -7,9 +7,9 @@ import { PIPELINE_DIR } from "./helpers.js";
 
 test("qc-auto PASS output points to publish-after-qc dry-run, not raw promote-book", () => {
   const cli = readFileSync(resolve(PIPELINE_DIR, "src/cli.ts"), "utf8");
-  const start = cli.indexOf("QC AUTO PASS");
-  assert.notEqual(start, -1, "could not find QC AUTO PASS output block");
-  const end = cli.indexOf("return 0;", start);
+  const start = cli.indexOf('const passLabel = isSubset ? "QC AUTO PASS (SUBSET)" : "QC AUTO PASS";');
+  assert.notEqual(start, -1, "could not find canonical full/subset QC AUTO PASS output block");
+  const end = cli.indexOf('if (result.outcome === "QC_STATUS_FAIL")', start);
   assert.notEqual(end, -1, "could not find end of QC AUTO PASS output block");
   const block = cli.slice(start, end);
   assert.match(block, /publish-after-qc/, "qc-auto success path must route through publish-after-qc");

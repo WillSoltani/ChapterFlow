@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says purposeful practice isolates the recurring fault, uses close feedback, and changes the next attempt.",
+      "The chapter repeatedly turns broad work into a narrow drill around the last exact miss with immediate comparison.",
+      "The flaw is replaying the whole task while the same weak point remains hidden inside it.",
+      "The plateau plus video signal calls for a specific cue, short rep, feedback, and repeat before widening.",
+      "Faloon improves because each miss tells the next attempt where to work, not because repetition accumulates.",
+      "The claim lacks a visible size target and a next-cut correction, so uneven cuts can become practiced rather than fixed.",
+      "Feedback matters when it arrives soon enough to alter the next attempt while the miss is traceable.",
+      "Plan B has the short correction loop: small batch, template comparison, adjustment, next batch.",
+      "A useful target must be seen, counted, compared, or corrected; the chalk line and pedal cue make 'corner better' testable."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the chapter says comfort can leave the weak spot hidden; b is stronger because it names the visible target and next correction.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "b is the longest and contains the chapter's signature sequence: isolate, record, change before next attempt.",
+      "a is the only answer with a narrow set, checking, and rewriting the failing step.",
+      "c is the only option that repeats the chapter's 'whole performance hides one weak point' language.",
+      "b is the only concrete feedback loop; the other choices are generic volume or rest.",
+      "b echoes the chapter's exact feedback-loop phrasing.",
+      "b is the most tailored to the stem and contains the visible-target cue, though a is a plausible distractor.",
+      "c is the only option with 'changes the next attempt,' a giveaway phrase from the chapter.",
+      "a is obviously stronger because it explicitly says feedback alters the next small batch.",
+      "c is uniquely concrete and longest, making it guessable without reading."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 89,
+    "density": 84,
+    "beginner": 92
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the chapter's strongest memorable compression of the core mechanism."
+    },
+    {
+      "quote": "Actually, skip the taped strip and just shoot more full rounds, because a higher repetition count is what builds the skill and isolating one miss only slows you down.",
+      "why": "This directly contradicts the lesson inside a 'What to do' instruction."
+    },
+    {
+      "quote": "Some feedback is late. Some goals are chosen badly. Some days reveal that the problem you named is only a symptom of a different one.",
+      "why": "This gives honest limits and keeps the method from sounding magical."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The 'What to do' section gives the correct action and then reverses it with advice to skip the taped strip and shoot more full rounds, contradicting the chapter's own core instruction.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Two choices are defensible: a matches the comfort/repetition warning, while b matches the visible-target mechanism more precisely.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are guessable because they are the only concrete multi-step correction loops and often the longest options.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear, memorable core move: stop repeating the whole task, isolate the miss, get close feedback, and change the next rep. The layered reads, examples, review cards, and implementation plan mostly reinforce the same mechanism without much drift, and the prose is accessible for a cold beginner. I would not ship as-is because Example 1 contains a direct contradictory instruction inside the 'What to do' field; after that fix, this is likely above the professional bar, with only minor quiz ambiguity and answer-tell polish remaining."
+}
+```

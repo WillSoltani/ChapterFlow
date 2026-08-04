@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": ["Q2: I chose c, but the keyed option is phrased as a remedy ('should have tested...') rather than the clean prior cause requested by the stem. The cause shown by the prose is that the TiVo/product-launch example repeated the discount lesson instead of changing the angle."],
+    "tells": ["Several correct choices echo exact chapter tokens while distractors are implausibly shallow, especially Q4, Q5, Q7, and Q9. This makes some answers guessable by choosing the option with named facts and rejecting slogans, even without full reading."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 77,
+    "transfer": 83,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 89,
+    "insight": 87,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Discounts can move the buyer without winning the buyer, and that is the problem.",
+      "why": "Strong hook: compact, memorable, and frames the distinction the chapter teaches."
+    },
+    {
+      "quote": "The cost of a borrowed lift is paying for it again.",
+      "why": "Best retention line; it gives the abstract idea a durable economic image."
+    },
+    {
+      "quote": "General Motors keeps the first lesson visible because the employee discount belongs there.",
+      "why": "Useful evidence discipline, but also shows the chapter’s occasional meta-focus on where examples belong."
+    },
+    {
+      "quote": "The added launch should have tested a nearby misconception in a new setting instead of repeating the first lesson.",
+      "why": "Quiz defect: for a cause stem, this answer is worded as a remedy rather than a clean cause."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The stem asks which earlier step caused the failure, but the keyed answer is phrased as what the trainer should have done. The derivable cause is present, but the wording violates the chapter’s own cause/remedy distinction.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are too obviously wrong because they rely on empty proxies like name recognition, audience preference, or wording comfort, while correct answers carry exact chapter tokens.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "A noticeable portion teaches how the examples function as evidence rather than deepening the incentive mechanism itself, which gives parts of the chapter a meta-scaffold feel.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples revolve around analysts, trainers, producers, and project leads reasoning about the lesson rather than people applying it in messier live contexts, which slightly weakens transfer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core distinction: a lift is not belief until behavior returns without the push. The summaries layer well, the practical moves are low-friction, and the examples give concrete anchors. I would not ship it yet against an 84 professional bar because the quiz needs tightening: Q2 has a cause/remedy wording problem, and several questions are easier to answer by spotting named-fact options than by truly deriving the lesson. Fix the quiz and reduce the meta-feel around example placement, and the chapter is close."
+}
+```

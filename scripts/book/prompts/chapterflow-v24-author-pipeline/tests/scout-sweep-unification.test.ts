@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { readFileSync, rmSync, readdirSync, existsSync } from "node:fs";
-import { resolve } from "node:path";
+import { readFileSync, rmdirSync, rmSync, readdirSync, existsSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
 import { keyPackDir } from "../src/qc/manualKeyJudge.js";
 import { writeSweepPack } from "../src/qc/sweep.js";
+import { orchestratorRoundDir } from "../src/qc/orchestrator/artifacts.js";
 import { writeReviewPacket } from "../src/qc/orchestrator/reviewPacket.js";
 import { validateSubmission } from "../src/qc/orchestrator/schemas.js";
 import {
@@ -37,11 +38,17 @@ import { CANONICAL_STATE } from "../src/lib/chapterPaths.js";
 const SWEEP_PACK_GOLDEN_SHA256 = "078d4c15052275151681e9eebbdcf87391a2a33a14a7f6ea8677b6503a409e51";
 const PACK_BOOK = "zz-fixture-packsnap";
 const PACK_ROUND = "r-packsnap";
+const QC_PACK_BOOK_DIR = dirname(keyPackDir(PACK_BOOK, PACK_ROUND));
+const QC_PACKS_DIR = dirname(QC_PACK_BOOK_DIR);
+const QC_PREFLIGHT_DIR = resolve(CANONICAL_STATE, "qc-preflight");
+const QC_PACKS_DIR_EXISTED = existsSync(QC_PACKS_DIR);
+const QC_PREFLIGHT_DIR_EXISTED = existsSync(QC_PREFLIGHT_DIR);
 
 function cleanupPack(): void {
   rmSync(resolve(STATE_CHAPTERS, `${PACK_BOOK}-ch01.v21-native.chapter.json`), { force: true });
   rmSync(resolve(STATE_CHAPTERS, `${PACK_BOOK}-ch02.v21-native.chapter.json`), { force: true });
-  rmSync(keyPackDir(PACK_BOOK, PACK_ROUND), { recursive: true, force: true });
+  rmSync(QC_PACK_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_PACKS_DIR_EXISTED && existsSync(QC_PACKS_DIR) && readdirSync(QC_PACKS_DIR).length === 0) rmdirSync(QC_PACKS_DIR);
 }
 
 test("STEP 1: sweep-pack snapshot is byte-identical to the pre-extraction golden (pure extraction proof)", () => {
@@ -81,6 +88,8 @@ test("the formal QC sweep card (review packet) quotes the SAME sweepSpec family 
   const ROUND = "r-reviewpacket";
   const chapters = [makeChapter(BOOK, 1), makeChapter(BOOK, 2)];
   const tokens = { sweep: "t-sweep", keyA: "t-a", keyB: "t-b", bar: "t-bar", confirm: "t-c", major: "t-m", attest: "t-at" } as any;
+  const roundDir = orchestratorRoundDir(BOOK, ROUND);
+  const parentDirs = [dirname(roundDir), dirname(dirname(roundDir))].map((path) => ({ path, existed: existsSync(path) }));
   try {
     writeFixtureBook(STATE_CHAPTERS, chapters);
     const packet = readFileSync(writeReviewPacket(BOOK, ROUND, chapters, tokens), "utf8");
@@ -89,6 +98,10 @@ test("the formal QC sweep card (review packet) quotes the SAME sweepSpec family 
   } finally {
     rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
     rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch02.v21-native.chapter.json`), { force: true });
+    rmSync(roundDir, { recursive: true, force: true });
+    for (const parent of parentDirs) {
+      if (!parent.existed && existsSync(parent.path) && readdirSync(parent.path).length === 0) rmdirSync(parent.path);
+    }
   }
 });
 
@@ -151,7 +164,7 @@ test("scout non-distinctiveness parity: a scene_skeleton REVISE on a SHORT commo
 // ── STEP 4 — persisted scout reads are NOT QC evidence ──────────────────────────
 test("STEP 4: a persisted scout read is marked role 'preqc-scout' and is REJECTED by the sweep validator (can never be ingested as QC evidence)", () => {
   const BOOK = "zz-fixture-preflight-persist";
-  const dir = resolve(CANONICAL_STATE, "qc-preflight", BOOK);
+  const dir = resolve(QC_PREFLIGHT_DIR, BOOK);
   rmSync(dir, { recursive: true, force: true });
   try {
     const parsed = validateSubmission(BOOK, "r-persist", "sweep", {
@@ -173,5 +186,6 @@ test("STEP 4: a persisted scout read is marked role 'preqc-scout' and is REJECTE
     assert.equal(asEvidence.ok, false, "a persisted scout read is invalid as a qc-sweep-submission — never QC evidence");
   } finally {
     rmSync(dir, { recursive: true, force: true });
+    if (!QC_PREFLIGHT_DIR_EXISTED && existsSync(QC_PREFLIGHT_DIR) && readdirSync(QC_PREFLIGHT_DIR).length === 0) rmdirSync(QC_PREFLIGHT_DIR);
   }
 });

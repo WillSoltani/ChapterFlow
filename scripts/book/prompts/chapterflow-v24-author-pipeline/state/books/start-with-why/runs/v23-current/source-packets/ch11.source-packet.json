@@ -1,0 +1,741 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "start-with-why",
+  "chapterId": "start-with-why-ch11",
+  "chapterNumber": 11,
+  "chapterTitle": "When WHY Goes Fuzzy",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch11.source.json",
+  "sourceHash": "sha256:a74026c052aa1a8b54fd521f5386a57f4d6053d7d7c2a22b323798bcf0f9c378",
+  "facts": [
+    {
+      "id": "ch11.fact.1",
+      "claim": "Wal-Mart after Sam Walton makes success fog concrete through Walmart and 1962.",
+      "mechanism": "Because Walmart gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan.",
+      "commonError": "The safe move is to treat Wal-Mart after Sam Walton as colorful background.",
+      "whyWrong": "The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1962"
+      ],
+      "groundedEntities": [
+        "Wal-Mart",
+        "Sam Walton",
+        "Walmart",
+        "Because Walmart"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch11.fact.2",
+      "claim": "Starbucks rapid expansion adds a second anchor for success fog with Starbucks and 1971.",
+      "mechanism": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+      "commonError": "One example is enough to prove the whole model.",
+      "whyWrong": "One example can illustrate; comparison is what exposes the transferable pattern.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "1971"
+      ],
+      "groundedEntities": [
+        "Starbucks",
+        "Since",
+        "One"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch11.fact.3",
+      "claim": "Microsoft after early founding supplies a third checkable scene using Microsoft and 1975 founding.",
+      "mechanism": "Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case.",
+      "commonError": "A third case should simply repeat the first case's lesson.",
+      "whyWrong": "The third case should test a neighboring misconception, not restamp the same sentence.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1975"
+      ],
+      "groundedEntities": [
+        "Microsoft"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch11.fact.4",
+      "claim": "success fog depends on the sequence Founding WHY before Growth.",
+      "mechanism": "Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone.",
+      "commonError": "Order is stylistic, so any sequence works if the message sounds polished.",
+      "whyWrong": "Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Founding WHY",
+        "Growth. Because",
+        "Order"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.4"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch11.fact.5",
+      "claim": "Founding WHY, Growth, Metrics, Fuzziness form the local framework for When WHY Goes Fuzzy.",
+      "mechanism": "Because each member names a different job, the writer can assign claims to distinct functions rather than blending them.",
+      "commonError": "The framework is a slogan and can be shortened to one word.",
+      "whyWrong": "Shortening removes the distinctions the quiz and examples need to test.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Founding WHY",
+        "Growth",
+        "Metrics",
+        "Fuzziness",
+        "When WHY Goes Fuzzy. Because",
+        "Shortening"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.5"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch11.fact.6",
+      "claim": "Bentonville is a hard detail that should stay attached to Wal-Mart after Sam Walton.",
+      "mechanism": "Because hard specifics are portable only inside their case, moving Bentonville to another example creates false grounding.",
+      "commonError": "Any true detail can be reused wherever it sounds useful.",
+      "whyWrong": "A true detail becomes misleading when it is attached to the wrong case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Bentonville",
+        "Wal-Mart",
+        "Sam Walton. Because",
+        "Any"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.6"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch11.fact.7",
+      "claim": "Seattle gives Starbucks rapid expansion a different factual token from Wal-Mart after Sam Walton.",
+      "mechanism": "Since the factual token is different, comparison can teach contrast rather than repeating a generic success story.",
+      "commonError": "All business examples can use the same date-place-scale language.",
+      "whyWrong": "Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Seattle",
+        "Starbucks",
+        "Wal-Mart",
+        "Sam Walton. Since",
+        "All",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.7"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch11.fact.8",
+      "claim": "Redmond headquarters helps mark the boundary of success fog.",
+      "mechanism": "Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case.",
+      "commonError": "A useful concept should apply the same way to every named organization.",
+      "whyWrong": "The mechanism changes by venue; boundary details keep the application honest.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Redmond"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.8"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch11.fact.9",
+      "claim": "When WHY Goes Fuzzy should teach success fog through Wal-Mart after Sam Walton, Starbucks rapid expansion, and Microsoft after early founding, not through generic leadership advice.",
+      "mechanism": "Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes.",
+      "commonError": "Purpose language alone is enough to ground a leadership lesson.",
+      "whyWrong": "Purpose language without checkable anchors becomes motivational abstraction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "3"
+      ],
+      "groundedEntities": [
+        "When WHY Goes Fuzzy",
+        "Wal-Mart",
+        "Sam Walton",
+        "Starbucks",
+        "Microsoft",
+        "Purpose"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch11.fact.9"
+      ],
+      "teachingPriority": 5
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch11.ex.wal-mart-after-sam-walton",
+      "label": "Wal-Mart after Sam Walton",
+      "summary": "Walmart began in 1962 and is associated with Bentonville and Sam Walton. The post-founder scale case shows purpose becoming harder to feel.",
+      "realWorld": true,
+      "naturalSetting": "Wal-Mart",
+      "hardSpecifics": [
+        "Walmart",
+        "1962",
+        "Bentonville",
+        "Sam Walton"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1962"
+      ]
+    },
+    {
+      "id": "ch11.ex.starbucks-rapid-expansion",
+      "label": "Starbucks rapid expansion",
+      "summary": "Starbucks began in Seattle in 1971 and later scaled under Howard Schultz. The case shows experience-led meaning under pressure from expansion.",
+      "realWorld": true,
+      "naturalSetting": "Starbucks",
+      "hardSpecifics": [
+        "Starbucks",
+        "1971",
+        "Seattle",
+        "Howard Schultz"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1971"
+      ]
+    },
+    {
+      "id": "ch11.ex.microsoft-after-early-founding",
+      "label": "Microsoft after early founding",
+      "summary": "Microsoft's 1975 founding, Redmond headquarters, and software company identity keep the focus on growth making original intent harder to hear.",
+      "realWorld": true,
+      "naturalSetting": "Microsoft",
+      "hardSpecifics": [
+        "Microsoft",
+        "1975 founding",
+        "Redmond headquarters",
+        "software company"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1975 founding",
+        "software company"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "When WHY Goes Fuzzy framework",
+      "members": [
+        "Founding WHY",
+        "Growth",
+        "Metrics",
+        "Fuzziness"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch11.concept",
+      "kind": "concept",
+      "label": "success fog",
+      "text": "Growth can make the original purpose less vivid as metrics, scale, and outside expectations become louder than belief. A reader learns to treat success as a threat to clarity, not only as proof that the strategy works.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.ex.wal-mart-after-sam-walton",
+      "kind": "named_example",
+      "label": "Wal-Mart after Sam Walton",
+      "text": "Walmart began in 1962 and is associated with Bentonville and Sam Walton. The post-founder scale case shows purpose becoming harder to feel. Wal-Mart after Sam Walton turns Walmart into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Walmart",
+        "1962",
+        "Bentonville",
+        "Sam Walton"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.ex.starbucks-rapid-expansion",
+      "kind": "named_example",
+      "label": "Starbucks rapid expansion",
+      "text": "Starbucks began in Seattle in 1971 and later scaled under Howard Schultz. The case shows experience-led meaning under pressure from expansion. Starbucks rapid expansion turns Starbucks into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Starbucks",
+        "1971",
+        "Seattle",
+        "Howard Schultz"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.ex.microsoft-after-early-founding",
+      "kind": "named_example",
+      "label": "Microsoft after early founding",
+      "text": "Microsoft's 1975 founding, Redmond headquarters, and software company identity keep the focus on growth making original intent harder to hear. Microsoft after early founding turns Microsoft into a concrete test of the unit's central mechanism.",
+      "hardSpecifics": [
+        "Microsoft",
+        "1975 founding",
+        "Redmond headquarters",
+        "software company"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.1",
+      "kind": "testable_fact",
+      "label": "Wal-Mart after Sam Walton makes success fog concrete through Walmart and 1962.",
+      "text": "Wal-Mart after Sam Walton makes success fog concrete through Walmart and 1962. Because Walmart gives the idea a visible setting, the reader can test the claim against behavior instead of accepting a slogan. The safe move is to treat Wal-Mart after Sam Walton as colorful background. The case carries the mechanism, so treating it as decoration removes the lesson's evidence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.2",
+      "kind": "testable_fact",
+      "label": "Starbucks rapid expansion adds a second anchor for success fog with Starbucks and 1971.",
+      "text": "Starbucks rapid expansion adds a second anchor for success fog with Starbucks and 1971. Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote. One example is enough to prove the whole model. One example can illustrate; comparison is what exposes the transferable pattern.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.3",
+      "kind": "testable_fact",
+      "label": "Microsoft after early founding supplies a third checkable scene using Microsoft and 1975 founding.",
+      "text": "Microsoft after early founding supplies a third checkable scene using Microsoft and 1975 founding. Because the third scene changes the cast and setting, the writer can vary examples without inventing a new case. A third case should simply repeat the first case's lesson. The third case should test a neighboring misconception, not restamp the same sentence.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.4",
+      "kind": "testable_fact",
+      "label": "success fog depends on the sequence Founding WHY before Growth.",
+      "text": "success fog depends on the sequence Founding WHY before Growth. Because the first term frames the second, reversing them makes the visible tactic carry a job it cannot carry alone. Order is stylistic, so any sequence works if the message sounds polished. Order changes diagnosis; a polished tactic cannot repair a wrong premise.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.5",
+      "kind": "testable_fact",
+      "label": "Founding WHY, Growth, Metrics, Fuzziness form the local framework for When WHY Goes Fuzzy.",
+      "text": "Founding WHY, Growth, Metrics, Fuzziness form the local framework for When WHY Goes Fuzzy. Because each member names a different job, the writer can assign claims to distinct functions rather than blending them. The framework is a slogan and can be shortened to one word. Shortening removes the distinctions the quiz and examples need to test.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.6",
+      "kind": "testable_fact",
+      "label": "Bentonville is a hard detail that should stay attached to Wal-Mart after Sam Walton.",
+      "text": "Bentonville is a hard detail that should stay attached to Wal-Mart after Sam Walton. Because hard specifics are portable only inside their case, moving Bentonville to another example creates false grounding. Any true detail can be reused wherever it sounds useful. A true detail becomes misleading when it is attached to the wrong case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.7",
+      "kind": "testable_fact",
+      "label": "Seattle gives Starbucks rapid expansion a different factual token from Wal-Mart after Sam Walton.",
+      "text": "Seattle gives Starbucks rapid expansion a different factual token from Wal-Mart after Sam Walton. Since the factual token is different, comparison can teach contrast rather than repeating a generic success story. All business examples can use the same date-place-scale language. Generic stamping makes real cases feel invented and blurs the chapter-specific spine.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.8",
+      "kind": "testable_fact",
+      "label": "Redmond headquarters helps mark the boundary of success fog.",
+      "text": "Redmond headquarters helps mark the boundary of success fog. Because boundary details tell the reader where the idea stops, they prevent overgeneralizing from a single attractive case. A useful concept should apply the same way to every named organization. The mechanism changes by venue; boundary details keep the application honest.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.fact.9",
+      "kind": "testable_fact",
+      "label": "When WHY Goes Fuzzy should teach success fog through Wal-Mart after Sam Walton, Starbucks rapid expansion, and Microsoft after early founding, not through generic leadership advice.",
+      "text": "When WHY Goes Fuzzy should teach success fog through Wal-Mart after Sam Walton, Starbucks rapid expansion, and Microsoft after early founding, not through generic leadership advice. Because three named anchors carry separate hard specifics, the unit can make a testable claim without inventing scenes. Purpose language alone is enough to ground a leadership lesson. Purpose language without checkable anchors becomes motivational abstraction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch11.framework.when.why.goes.fuzzy.framework",
+      "kind": "framework",
+      "label": "When WHY Goes Fuzzy framework",
+      "text": "Founding WHY, Growth, Metrics, Fuzziness",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1962",
+    "1",
+    "1971",
+    "1975",
+    "3"
+  ],
+  "allowedEntities": [
+    "When WHY Goes Fuzzy",
+    "Growth",
+    "Wal-Mart",
+    "Sam Walton",
+    "Starbucks",
+    "Microsoft",
+    "Founding WHY",
+    "Metrics",
+    "Fuzziness",
+    "Walmart",
+    "Bentonville",
+    "Sam Walton. The",
+    "Seattle",
+    "Howard Schultz. The",
+    "Howard Schultz",
+    "Microsoft's",
+    "Redmond",
+    "WHY",
+    "WHAT",
+    "Keep Walmart",
+    "WHY-WHAT",
+    "Because Walmart",
+    "Since",
+    "One",
+    "Order",
+    "Shortening",
+    "Any",
+    "All",
+    "Generic",
+    "Purpose",
+    "Wal-Mart after Sam Walton",
+    "Starbucks rapid expansion",
+    "Microsoft after early founding"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch11.ex.wal-mart-after-sam-walton",
+      "warning": "Keep examples about Wal-Mart after Sam Walton source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch11.ex.starbucks-rapid-expansion",
+      "warning": "Keep examples about Starbucks rapid expansion source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch11.ex.microsoft-after-early-founding",
+      "warning": "Keep examples about Microsoft after early founding source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch11.fact.1"
+}

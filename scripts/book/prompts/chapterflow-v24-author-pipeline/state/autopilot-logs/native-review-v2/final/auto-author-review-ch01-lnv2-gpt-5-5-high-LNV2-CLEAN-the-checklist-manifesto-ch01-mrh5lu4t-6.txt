@@ -1,0 +1,79 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says misses in expert systems often live between people where ownership blurs, not in lack of talent.",
+      "The lesson repeatedly says to map the transition by named owner before pressure arrives.",
+      "The Ingrid example says to rebuild the path across every handoff before blaming the last visible person.",
+      "The chapter defines the risk as cues, timing, and handoffs crossing roles without explicit ownership.",
+      "The pharmacy example shows completed departmental tasks can still fail at crossings between departments.",
+      "The storm example says to mark the overlap and give the street a named owner before peak load.",
+      "The museum crate example says the danger lives where separate readiness claims meet.",
+      "The chapter says excellence does not make handoffs visible; ownership must be visible where work crosses roles.",
+      "The leader's presence likely held a transition in memory, while the chapter says reliability must be designed into the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: choice b uses the chapter's exact phrase 'handoff seam where ownership thinned out,' making it easy to spot.",
+      "Q3: choice a is much more specific and chapter-shaped than the other two blame-oriented distractors.",
+      "Q6: choice a echoes the chapter's named-owner formula almost verbatim."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 88,
+    "practical": 90,
+    "summaries": 78,
+    "tone": 84,
+    "limits": 86,
+    "insight": 89,
+    "density": 86,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "A compact, memorable line that captures the chapter's mechanism."
+    },
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "Strong transfer sentence: it turns the idea into a reusable diagnostic."
+    },
+    {
+      "quote": "The Austrian drowning rescue matters because the save depends on a sequence, not a single heroic act.",
+      "why": "Worst clarity defect: this named rescue appears without enough setup in the chapter itself."
+    },
+    {
+      "quote": "The save lives in the chain, not in one brilliant pair of hands.",
+      "why": "Memorable but syntactically awkward enough to slow comprehension."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The 'Austrian drowning rescue' is invoked as if already established, but the chapter has not clearly introduced that specific event, so the section is slightly less standalone.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The sentence 'The save lives in the chain' is grammatically strained and may briefly confuse beginners.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer repeats the chapter's own wording very closely, creating a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The correct answer uses the chapter's named-owner formula almost verbatim while the distractors are plainly less aligned.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is clear, memorable, and transferable: stop blaming the nearest person and inspect the seam where ownership thins out. The examples give enough range across medicine, rail, pharmacy, storms, museums, and logistics to make the concept portable, and the practical actions are low-friction. The main weaknesses are small craft issues: one unexplained rescue reference, one awkward memorable line, and a few quiz answers that echo the teaching language so closely that they become guessable. None of those defects prevents a reader from learning or applying the chapter."
+}
+```

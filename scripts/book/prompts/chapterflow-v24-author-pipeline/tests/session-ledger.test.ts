@@ -11,8 +11,8 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync, rmSync } from "node:fs";
-import { resolve } from "node:path";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, utimesSync, writeFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
@@ -188,10 +188,21 @@ test("every deps.spawn call site is paired with a deps.logSession in the same fu
     // AFTER it (the choke-point pattern: spawn → log). autopilot's spawnAndLog logs on BOTH the
     // success and the catch path; every other module logs immediately after the await. A 1200-char
     // window comfortably spans the widest spawn→log gap (authorReview's ~110-char options block).
+    // IMP-22's forward live repair lane is intentionally accounted by the
+    // crash-safe ForwardLiveCallLedger instead of the legacy SessionLedger. It
+    // may use the local deps.spawn wrapper only when that wrapper is visibly
+    // bound to runLedgeredForwardModelOperation and the returned producer is
+    // branded liveLedgerBound. This narrow structural exception prevents a
+    // duplicate canonical session log while still failing if the live ledger
+    // choke point or brand is removed.
     let idx = 0;
     while ((idx = src.indexOf("deps.spawn(", idx)) !== -1) {
       const window = src.slice(idx, idx + 1200);
-      if (!window.includes("deps.logSession(")) {
+      const forwardLiveLedgerBound = f === "forwardLiveValidationDriver.ts"
+        && src.slice(0, idx).includes("spawn: async (spawnOptions: SpawnCodexAgentOptions) => {")
+        && src.slice(0, idx).includes("runLedgeredForwardModelOperation({")
+        && src.slice(idx).includes('Object.defineProperty(producer, "liveLedgerBound"');
+      if (!window.includes("deps.logSession(") && !forwardLiveLedgerBound) {
         const lineNo = src.slice(0, idx).split("\n").length;
         offenders.push(`${f}:${lineNo}`);
       }
@@ -259,6 +270,30 @@ function ledgerRunDeps(statuses: BookStatus[]): { deps: Partial<AutopilotDeps>; 
   return { deps, spawns, loggedIds };
 }
 
+type FixtureFileSnapshot = {
+  path: string;
+  existed: boolean;
+  bytes: Buffer | null;
+  atime: Date | null;
+  mtime: Date | null;
+};
+
+function snapshotFixtureFile(path: string): FixtureFileSnapshot {
+  if (!existsSync(path)) return { path, existed: false, bytes: null, atime: null, mtime: null };
+  const stat = statSync(path);
+  return { path, existed: true, bytes: readFileSync(path), atime: stat.atime, mtime: stat.mtime };
+}
+
+function restoreFixtureFile(snapshot: FixtureFileSnapshot): void {
+  if (!snapshot.existed) {
+    rmSync(snapshot.path, { force: true });
+    return;
+  }
+  mkdirSync(dirname(snapshot.path), { recursive: true });
+  writeFileSync(snapshot.path, snapshot.bytes!);
+  utimesSync(snapshot.path, snapshot.atime!, snapshot.mtime!);
+}
+
 test("runAutopilot writes cost-report.json + run-manifest.json at a READY terminal, reconciled to the counter", async () => {
   const statuses = [
     makeStatus({ writtenChapters: 0, expectedChapters: 2, stage: "write-chapter" }),
@@ -267,6 +302,12 @@ test("runAutopilot writes cost-report.json + run-manifest.json at a READY termin
   ];
   const { deps, spawns } = ledgerRunDeps(statuses);
   const logDir = resolve(PIPELINE_DIR, "state", "autopilot-logs", "zz-ledger-int");
+  const provenanceSnapshots = [1, 2].map((n) => snapshotFixtureFile(resolve(
+    PIPELINE_DIR,
+    "state",
+    "provenance",
+    `zz-ledger-int-ch0${n}.json`,
+  )));
   try {
     const outcome = await runAutopilot({ architecture: "legacy", bookId: "zz-ledger-int", deps });
     assert.equal(outcome.status, "ready", `expected READY, got ${outcome.status} (${(outcome as { reason?: string }).reason ?? ""})`);
@@ -296,6 +337,7 @@ test("runAutopilot writes cost-report.json + run-manifest.json at a READY termin
     assert.ok(man.startedAt && man.finishedAt, "manifest start + finish stamped");
   } finally {
     rmSync(logDir, { recursive: true, force: true });
+    for (const snapshot of provenanceSnapshots) restoreFixtureFile(snapshot);
   }
 });
 

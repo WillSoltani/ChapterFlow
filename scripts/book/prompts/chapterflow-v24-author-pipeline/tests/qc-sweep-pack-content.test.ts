@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { readFileSync, rmSync } from "fs";
-import { resolve } from "path";
+import { existsSync, readdirSync, readFileSync, rmdirSync, rmSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { STATE_CHAPTERS, makeChapter, writeFixtureBook } from "./helpers.js";
@@ -9,10 +9,14 @@ import { writeSweepPack } from "../src/qc/sweep.js";
 
 const BOOK = "zz-fixture-sweep-pack";
 const ROUND = "r-sweep-pack";
+const QC_PACK_BOOK_DIR = dirname(keyPackDir(BOOK, ROUND));
+const QC_PACKS_DIR = dirname(QC_PACK_BOOK_DIR);
+const QC_PACKS_DIR_EXISTED = existsSync(QC_PACKS_DIR);
 
 function cleanup(): void {
   rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
-  rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(QC_PACK_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_PACKS_DIR_EXISTED && existsSync(QC_PACKS_DIR) && readdirSync(QC_PACKS_DIR).length === 0) rmdirSync(QC_PACKS_DIR);
 }
 
 test("sweep-pack contains reader-facing content and omits hidden/internal fields", () => {

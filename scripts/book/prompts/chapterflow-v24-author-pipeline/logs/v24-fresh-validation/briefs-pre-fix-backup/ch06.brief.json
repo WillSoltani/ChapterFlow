@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch06",
+  "chapterNumber": 6,
+  "title": "Planning: Today's Actions for Tomorrow's Output",
+  "coreMove": "because future results are changed only by present resource commitments, priorities, and work",
+  "thesis": "Planning's output is action taken now.",
+  "readerPromise": "After this chapter, a reader can because future results are changed only by present resource commitments, priorities, and work",
+  "ownedCases": [
+    {
+      "id": "ch06.ex.intelPlanning",
+      "label": "Intel planning cycle"
+    },
+    {
+      "id": "ch06.ex.environmentDemand",
+      "label": "Environmental demand assessment"
+    },
+    {
+      "id": "ch06.ex.milestones",
+      "label": "Milestone plan"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure"
+  ],
+  "cast": [
+    "Lorraine",
+    "Avery",
+    "Kathleen",
+    "Lola"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    2,
+    0,
+    1,
+    1,
+    0,
+    0,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on bonus category",
+    "venue: a kitchen table",
+    "venue: a sticky note on the fridge",
+    "frame: two stakeholders disagree about ambiguous interdependent tasks before deciding",
+    "frame: a small ceremony that marks a transition so it feels earned"
+  ],
+  "architectureFamily": "failure-autopsy",
+  "openerType": "tension-thesis",
+  "challengeFrame": "pre-write-the-exact-line",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "prop-tableau",
+    "dialogue-beat",
+    "before-after-ledger"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "failure",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target"
+  ],
+  "questionFactOrder": [
+    2,
+    7,
+    6,
+    8,
+    1,
+    5,
+    4,
+    9,
+    3
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Intel planning cycle"
+  }
+}

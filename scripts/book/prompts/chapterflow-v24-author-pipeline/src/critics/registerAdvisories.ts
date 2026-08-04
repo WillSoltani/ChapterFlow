@@ -27,6 +27,7 @@
  */
 
 import { ChapterV21, CriticFinding } from "../types.js";
+import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { truncate } from "./shared.js";
 import { checkExampleRegister } from "./exampleRegister.js";
 import { checkMetaCaseProtagonist } from "./metaCaseProtagonist.js";
@@ -34,6 +35,7 @@ import { checkBeatVocabularyEcho } from "./beatVocabularyEcho.js";
 import { checkCitationDateDoorway } from "./citationDateDoorway.js";
 import { checkLineageKeyQuiz } from "./lineageKeyQuiz.js";
 import { checkApparatusLeakage } from "./apparatusLeakage.js";
+import { checkSourceRegister } from "./sourceRegister.js";
 
 /** The C31–C36 register/machinery advisory family, collected on one chapter draft.
  *  Every finding is MINOR (advisory) — this function does not gate anything; it only
@@ -41,7 +43,7 @@ import { checkApparatusLeakage } from "./apparatusLeakage.js";
  *  (C36 — source-guide apparatus leakage, CF-J 2026-07-09 — rides the SAME routing
  *  as its siblings by construction: write-retry cards, the review-repair directive,
  *  and the regen attempt-1 card all render this collection.) */
-export function collectRegisterAdvisories(chapter: ChapterV21): CriticFinding[] {
+export function collectRegisterAdvisories(chapter: ChapterV21, plan: SourceUsePlanV1 | null = null): CriticFinding[] {
   return [
     ...checkExampleRegister(chapter),
     ...checkMetaCaseProtagonist(chapter),
@@ -49,13 +51,16 @@ export function collectRegisterAdvisories(chapter: ChapterV21): CriticFinding[] 
     ...checkCitationDateDoorway(chapter),
     ...checkLineageKeyQuiz(chapter),
     ...checkApparatusLeakage(chapter),
+    // IMP-04 (C37): plan-aware source-register family. No-op without a plan, so
+    // legacy callers (no 2nd arg) get exactly the C31-C36 set as before.
+    ...checkSourceRegister(chapter, plan),
   ];
 }
 
 /** Concise per-finding fix lines for a retry card / repair directive — `- [Cxx] …`.
  *  Messages are truncated so the block stays lean on the card. Pure; [] = clean. */
-export function registerAdvisoryFixLines(chapter: ChapterV21): string[] {
-  return collectRegisterAdvisories(chapter).map(
+export function registerAdvisoryFixLines(chapter: ChapterV21, plan: SourceUsePlanV1 | null = null): string[] {
+  return collectRegisterAdvisories(chapter, plan).map(
     (f) => `- [${f.checkId}] ${truncate(f.message, 260)}`,
   );
 }
@@ -64,8 +69,8 @@ export function registerAdvisoryFixLines(chapter: ChapterV21): string[] {
  *  The heading states plainly that these are ADVISORY (they never fail the gate) so a
  *  writer does not read them as new blockers — the point is that the reviewers CAN
  *  see them, so clear them while rewriting for the real blocker. Pure. */
-export function registerAdvisoryRetryBlock(chapter: ChapterV21): string {
-  const lines = registerAdvisoryFixLines(chapter);
+export function registerAdvisoryRetryBlock(chapter: ChapterV21, plan: SourceUsePlanV1 | null = null): string {
+  const lines = registerAdvisoryFixLines(chapter, plan);
   if (lines.length === 0) return "";
   return (
     "\n\nADVISORY REGISTER NOTES (these never fail the gate — fix them while you rewrite)\n" +

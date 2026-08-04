@@ -1,0 +1,107 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "The Quiz section contains no questions or choices, so answer-pattern tells cannot be assessed."
+    ]
+  },
+  "scores": {
+    "retention": 28,
+    "quizzes": 0,
+    "transfer": 30,
+    "practical": 42,
+    "summaries": 3,
+    "tone": 40,
+    "limits": 5,
+    "insight": 24,
+    "density": 25,
+    "beginner": 38
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "One firm could solve comfort, another could solve play, and another could show what the team has missed.",
+      "why": "This is the clearest statement of why parallel exploration can reveal distinct kinds of value."
+    },
+    {
+      "quote": "He asks each design firm for a small, comparable pass before naming a winner.",
+      "why": "This gives the chapter its one concrete, transferable decision rule."
+    },
+    {
+      "quote": "A concise idea.\n\n## Deep read\nOne added angle.",
+      "why": "The fast and deep reads are scaffold placeholders rather than standalone explanations."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six required learning components appear as consecutive empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The meta-description says the chapter is under review but does not hook the reader or introduce its subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The placeholder does not state the core move and therefore fails its standalone summary promise; this is structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The placeholder supplies neither an added angle nor enough information to understand the lesson independently; this is structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The references to HopeLab and Steve Cole's broader first lap are unexplained, leaving a cold reader without the context needed to understand their significance.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The vendor scenario is usable and shows a decision, but it gives no resulting observation or consequence demonstrating what the parallel passes revealed.",
+      "mustFix": false
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty, which is a structurally invalid missing learning component.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, so the chapter provides no exercise through which readers can apply its core move; this is structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The dedicated section is empty, which is a structurally invalid missing section.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The section contains no questions or answer choices, making the quiz broken and structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty, which is a structurally invalid missing retention component.",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty, which is a structurally invalid missing retention component.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The prose implies that parallel trials expose different strengths and blind spots, but it never explicitly explains when this method is worth its added time or when it should not be used.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a skeletal chapter scaffold, not a shippable professional lesson. Its single useful move—commission small, comparable parallel passes before choosing a vendor—is concrete and potentially transferable, and the comfort/play/blind-spot contrast hints at a sound mechanism. However, the fast and deep reads are placeholders, six learning sections are empty, the quiz does not exist, the scenario has no outcome, and neither boundaries nor failure modes are discussed. A reader can infer the basic tactic from the full read, but the product's promised summary, practice, assessment, and retention layers are absent."
+}
+```

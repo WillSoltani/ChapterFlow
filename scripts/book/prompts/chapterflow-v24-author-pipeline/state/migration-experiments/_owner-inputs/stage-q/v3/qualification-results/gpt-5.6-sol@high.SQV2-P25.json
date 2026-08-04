@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P25",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_ITEM_WITH_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\",\"Chapter skill: Stop Arguing About Who's Right Question: A founder is writing to a contractor who missed a launch date. Which draft is strongest for a difficult conversation?\",\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\",\"The best choice keeps the conversation tied to different stories and creates room for new information.\"],\"rationale\":\"The two instances use the identical scenario, question, choices, correct index, and generic preferred response despite claiming to assess different chapter skills. Only the skill label and a brief explanation phrase change from “three layers” to “different stories”; the prompt and answer do not require learners to distinguish or apply either mechanism. The duplicate therefore merely relabels the same generic difficult-conversation answer and fails to genuinely assess both stated mechanisms.\"}"
+}

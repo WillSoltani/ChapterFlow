@@ -1,0 +1,12 @@
+Fixed content only in:
+
+- [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json:8): removed the banned “The trap is not” counterintuition opener.
+- [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json:252): rewrote q08’s absolute-trigger distractor.
+- [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json:116): fixed the additional current non-advisory C20 overlap major that `major-status` surfaced.
+
+Verification:
+
+- `npx tsx src/cli.ts qc-converge start-with-why` → `DETERMINISTIC-CLEAN`
+- `npx tsx src/cli.ts major-status start-with-why` → `PASS (21 current major(s), 0 unresolved)`
+
+Advisory lines remain, as requested.

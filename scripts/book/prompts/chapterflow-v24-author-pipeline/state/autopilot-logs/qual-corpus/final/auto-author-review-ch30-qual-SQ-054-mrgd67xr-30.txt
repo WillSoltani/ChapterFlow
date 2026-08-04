@@ -1,0 +1,115 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 5,
+    "density": 15,
+    "beginner": 25
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway",
+      "why": "Multiple promised learning layers are present only as empty headings."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The action instruction is circular and does not name the move a reader should practice."
+    },
+    {
+      "quote": "Pascal he writes a contribution list before calling anyone careless.",
+      "why": "This is the closest the chapter gets to a concrete usable skill, though it is underexplained and ungrammatical."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook reads like production scaffolding rather than chapter content."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone promise as a quick version of the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, so it fails its stand-alone promise as a fuller explanation of the lesson.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so the chapter has no complete instructional body.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving no explicit core move for retention.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter gives no executable practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the assessment is structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the promised memory aids are missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "A reader cannot learn or apply the core move because the chapter never defines it, explains it, or gives a usable procedure.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/scaffold language rather than reader-facing instruction.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is vivid but thin as teaching: it names a gesture without explaining the decision rule or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example is vivid but thin as teaching: it frames a choice without showing what Gita does or what follows.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Pascal he writes' is ungrammatical.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Gita she must decide' is ungrammatical.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The chapter has a few concrete scene details, and the implied move may be shifting from blame to contribution, but nearly every instructional layer is empty. There is no quiz to answer, no summary stack, no practice instruction, no stated boundary, and no complete explanation of the mechanism. The result is structurally invalid and unusable as a book-learning chapter."
+}
+```

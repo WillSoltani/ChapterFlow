@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "MEDIUM",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 78,
+    "transfer": 83,
+    "practical": 76,
+    "summaries": 78,
+    "tone": 69,
+    "limits": 82,
+    "insight": 73,
+    "density": 67,
+    "beginner": 78
+  },
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong, portable opening claim that gives the chapter a memorable handle."
+    },
+    {
+      "quote": "The concrete price of a borrowed spike is a stale reason and another push next week.",
+      "why": "One of the sample's best aphorisms: compact, causal, and easy to reuse."
+    },
+    {
+      "quote": "Before you agree to a handoff, write one line: we believe this, so I will do that, and this person will see it by this time.",
+      "why": "A genuinely practical translation of an abstract trust idea into behavior."
+    },
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Strong retention line that captures the diffusion chapter's mechanism."
+    },
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Excellent compact distinction; it is memorable and transfers across settings."
+    },
+    {
+      "quote": "What to do: What does skipping cost? Stop the copy before price becomes the whole lesson.",
+      "why": "Shows the recurring scaffold problem: the example shell starts to feel template-driven."
+    }
+  ],
+  "oneParagraphVerdict": "This is a publishable-quality sample with no hard correctness veto: the quizzes are supported, the company facts generally hold, and the core teaching repeatedly gives readers a usable lens. Its strongest assets are compact memorable distinctions, scenario-based quiz prompts, and clear transfer from business cases to everyday decisions. The main weakness is churn: chapters repeatedly use the same machinery of named anchors, second settings, edge details, order reversals, and hard facts staying with their source, so the book voice starts to feel more like a house template than individually authored chapters. The practical sections are useful but sometimes slightly performative, and the density drops in the examples where the same proof-return scaffold repeats."
+}
+```

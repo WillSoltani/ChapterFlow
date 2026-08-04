@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF8",
+  "target": "REVIEW_FINDING",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":\"\\\"Contribution mapping does not imply equal fault.\\\"; \\\"Naming your part does not mean the split was even; one person may hold most of the responsibility, and identifying your piece is still what lets you change something.\\\"; \\\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.\\\"\",\"rationale\":\"The candidate directly agrees with the source contract: it explicitly rejects an even split, recognizes that one person may bear most responsibility, and preserves the point that identifying one's own contribution enables change. The quoted evidence therefore does not demonstrate the alleged contradiction, so the finding is unsupported and the candidate passage is clean.\"}"
+}

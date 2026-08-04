@@ -1,0 +1,81 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-07",
+  "baselineHash": "e6f38dc16576d096464e4a58765ae46a96751e43",
+  "resultHash": "e4aebb4f2aeb934d757ef3dd0b67f75e703bf77d8765fe8bedab9cdc5b0a1d45",
+  "contractVersions": {
+    "repair": 1,
+    "candidate-transaction": 1,
+    "source-use-plan": 1,
+    "attempt-evidence-manifest": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/repairPatch.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/authorRepair.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/orchestrator/chapterTransaction.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/repair-patch.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/source-use-plan.test.ts",
+    "docs/v25/reports/IMP-07-REPORT.md"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP07-R01", "status": "implemented", "note": "RepairFindingV1 was frozen by IMP-00; this package makes it the lane's working input: findingsFromComplaints bridges complaint strings into frozen findings (reviewer prose = bounded evidenceQuotes only), IMP-04's C37 critics already emit them, and validateRepairFinding is enforced before routing." },
+    { "requirementId": "IMP07-R02", "status": "implemented", "note": "FINDING_FORBIDDEN_CONTROL_FIELDS (model/tools/permissions/paths/retries/gates/acceptance/output/publication/…) is enforced at route time — a control-plane-carrying finding fails the frozen validator and classifyRepairRoute refuses to route on it (restore + reason). Tested with a hostile finding." },
+    { "requirementId": "IMP07-R03", "status": "implemented", "note": "ChapterPatchV1 (frozen) is the only accepted surgical/section output: chapterId + expectedBaseHash + sourcePlanHash + findingIds + operations{path, expectedOldValueHash, replacement, dependencyUnitIds}. legacy books use the explicit 'legacy-no-plan' sentinel — an empty plan hash never passes." },
+    { "requirementId": "IMP07-R04", "status": "implemented", "note": "Explicit per-route allowlists (SURGICAL_PATCH_PATHS / SECTION_PATCH_PATHS): leaf-only content fields; ids, source metadata (sourceAnchorId(s)/keyEvidenceAnchorIds), planSpec, tags, blooms/depth, passingScorePercent, title, authoring, experiencePlan have NO patchable path on any route (tested)." },
+    { "requirementId": "IMP07-R05", "status": "implemented", "note": "classifyRepairRoute: deterministic escalation lattice (restore/surgical/section/regeneration/upstream-source); must-fix causal|thesis|architecture categories and out-of-surface scopes escalate to regeneration; source-plan changes route upstream; ambiguity never widens a patch. The lane accepts surgical/section and returns a typed refusal otherwise." },
+    { "requirementId": "IMP07-R06", "status": "implemented", "note": "The repair agent's card (patchProtocol block) instructs patch.json ONLY, with the base/plan hashes and an OP MENU of concrete allowlisted paths + current-value hash prefixes. The isolated workspace remains the only writable surface (IMP-00/01); canonical and repo are untouched; the seeded chapter is read-only reference (edits ignored). Full regeneration keeps the complete-ChapterV21 path through IMP-01 — the two paths never mix (a whole chapter fails the patch contract, tested)." },
+    { "requirementId": "IMP07-R07", "status": "implemented", "note": "applyChapterPatch verifies expectedBaseHash (exact canonical bytes), sourcePlanHash, and every expectedOldValueHash (>=16-hex prefix, conductor recomputes from its own value) before any mutation; generation/CAS is enforced at commit by the IMP-01 attempt identity. Stale patches reject with a named reason — rebasing does not exist in the code." },
+    { "requirementId": "IMP07-R08", "status": "implemented", "note": "In-memory apply on a deep clone with: duplicate + ancestor-overlap rejection, allowlist containment, strict resolution (missing segments, out-of-bounds, append-as-insert), string/number type preservation, per-op and whole-patch no-op rejection, <=12-operation ceiling (rewrite-disguised-as-patches), and the frozen validator's prototype-pollution/absolute-path rejection. Array-index drift is structurally impossible (replacement-only, no insert/delete)." },
+    { "requirementId": "IMP07-R09", "status": "implemented", "note": "dependencyClosureChecks names the semantic closure per touched surface (quiz key/explanation, example register, claim-strength for takeaway/breakdown/hook/memorable, practice timers) and is logged per repair; the closure is SATISFIED by running the full battery (R10), never by selective checking." },
+    { "requirementId": "IMP07-R10", "status": "implemented", "note": "The patched chapter runs the same full battery as before: gate composite (whole chapter + committed siblings), rubric preflight, author write contract, embedded-plan-mutation scan, and the IMP-03 plan-freshness re-read at commit. A local patch exempts nothing (unchanged code path, now fed by the patch lane)." },
+    { "requirementId": "IMP07-R11", "status": "implemented", "note": "nonScopeDrift proves every leaf outside the touched paths byte-identical (canonical-JSON hash) before the battery runs; a drift is a typed rejection. Byte equality is the v1 standard for ALL non-scope fields — the in-memory apply gives no field a reason to reformat, so no field requires semantic-hash tolerance (documented). The proof's non-vacuity is tested by sabotage." },
+    { "requirementId": "IMP07-R12", "status": "implemented", "note": "The validated result commits through the existing conductor-owned candidate + compare-and-swap (IMP-01), unchanged; reviews/acceptance invalidation stays with the existing successful-commit callers." },
+    { "requirementId": "IMP07-R13", "status": "implemented", "note": "Every failure path finalizes the attempt (validation_failed / stale_base) with the original canonical bytes untouched (IMP-01 workspace isolation — there is never anything to restore); the raw patch + issued findings ride the attempt's evidence objects when evidence is enabled, so a failed repair cannot hide its finding; the existing bounded retry/regen policy is untouched." },
+    { "requirementId": "IMP07-R14", "status": "implemented", "note": "Origin/form/claim-strength/source-plan changes cannot ride a patch: no plan field has a patchable path, patches pin sourcePlanHash, the plan-mutation scan still runs, and classifyRepairRoute sends source-plan categories upstream. Dependent-evidence invalidation on upstream rebuild stays with the compile/commit owners (IMP-03/IMP-01)." }
+  ],
+  "testsRequired": [
+    "finding schema, patch paths, hashes, dependency closure, route classification units",
+    "valid isolated and linked-section patches",
+    "negatives: stale base, changed old value, source-plan mismatch, identity/source-metadata edit, out-of-scope path, duplicate op, array drift, prototype pollution, no-op, control-plane injection",
+    "regression: defects introduced by a patch are caught by the unchanged battery",
+    "concurrency: two patches from the same base",
+    "failed validation/commit leaves prior chapter/review/acceptance authoritative",
+    "full regeneration path remains distinct from the patch path"
+  ],
+  "testsRun": [
+    "tests/repair-patch.test.ts (12, new: allowlists + never-paths, op menu, route lattice incl. causal escalation + control-plane refusal, isolated + section successes with drift proof, 15 negative shapes, same-base concurrency (stale never rebased), sabotage-detected drift, hostile path parsing, findings bridge)",
+    "tests/source-use-plan.test.ts (lane integration RETARGETED to the patch protocol: compliant fake spawn drops patch.json; relabel-targeting op rejects at the allowlist pre-commit with zero canonical writes; clean typed patch commits once and the leaf lands; stale-plan refuse-before-spawn unchanged)",
+    "full hermetic suite (242 files)"
+  ],
+  "testResults": {
+    "pass": 2229,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "NO convergence-improvement claim: whether typed patches repair better/faster than whole-chapter splices is runtime evidence (IMP-11 / §18 smoke). The failure mode of agent non-compliance with the patch protocol is a typed rejection feeding the existing bounded regen policy — never a bad commit — but the compliance RATE is unmeasured until live runs.",
+    "The OP MENU grows the repair card ~60 chars per in-scope path (quiz worst case ~50 paths). Not under the author-card budget and well within model context; pagination-by-scope is the knob if a future scope explodes.",
+    "correctIndex is deliberately patchable (key fixes are legitimate quiz repairs); a key-breaking patch is caught by the unchanged gate battery (dealt answer-index pattern), not the allowlist — single-owner enforcement, documented.",
+    "spliceRepairScopes is retained as the @deprecated legacy artifact path with its regression tests; removing it (and its tests) is a follow-on cleanup once IMP-08 emits structured findings natively."
+  ],
+  "dependencyAssumptions": [
+    "IMP-01's attempt workspace + CAS commit are the transaction substrate (expectedBaseSha256 minted from the seeded bytes; commit rejects on base movement).",
+    "IMP-03's plan hash + freshness checks bind the patch's source lineage; 'legacy-no-plan' is the explicit sentinel for pre-plan books.",
+    "IMP-08 will emit RepairFindingV1 directly from blinded review, replacing the complaint bridge as the finding source; the route classifier and patch lane are the ready consumers.",
+    "IMP-10 records repair-findings + chapter-patch evidence kinds when evidence is enabled.",
+    "IMP-11 owns patch-lane compliance/convergence measurement.",
+    "baselineHash is the IMP-06 commit (full sha); resultHash is sha256 of the staged unified diff (code + narrative report, excluding this JSON)."
+  ]
+}

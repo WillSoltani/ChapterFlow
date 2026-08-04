@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-035",
+  "parsed": {
+    "caseId": "SQ-035",
+    "verdict": "DEFECT",
+    "defectClass": "Duplicated generic item relabeled across chapter mechanisms",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Chapter skill: Don't Assume They Meant It Question: A founder is writing to a contractor who missed a launch date."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Chapter skill: Ground Your Identity Question: A founder is writing to a contractor who missed a launch date."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Choices: [\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\", \"Lead with the strongest proof so the other person cannot dodge the facts.\", \"Wait until the feeling fades, then avoid the topic unless it comes up again.\"]"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Choices: [\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\", \"Lead with the strongest proof so the other person cannot dodge the facts.\", \"Wait until the feeling fades, then avoid the topic unless it comes up again.\"]"
+      }
+    ],
+    "explanation": "The two instances use the same scenario, choices, and correct answer while only changing the chapter skill label and swapping explanation wording from intent/impact to identity. The item does not distinctly assess both chapter mechanisms.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-035\",\"verdict\":\"DEFECT\",\"defectClass\":\"Duplicated generic item relabeled across chapter mechanisms\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Chapter skill: Don't Assume They Meant It Question: A founder is writing to a contractor who missed a launch date.\"},{\"materialIndex\":1,\"quote\":\"Chapter skill: Ground Your Identity Question: A founder is writing to a contractor who missed a launch date.\"},{\"materialIndex\":0,\"quote\":\"Choices: [\\\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\\\", \\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\"]\"},{\"materialIndex\":1,\"quote\":\"Choices: [\\\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\\\", \\\"Lead with the strongest proof so the other person cannot dodge the facts.\\\", \\\"Wait until the feeling fades, then avoid the topic unless it comes up again.\\\"]\"}],\"explanation\":\"The two instances use the same scenario, choices, and correct answer while only changing the chapter skill label and swapping explanation wording from intent/impact to identity. The item does not distinctly assess both chapter mechanisms.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

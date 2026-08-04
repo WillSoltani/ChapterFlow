@@ -1,0 +1,89 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study and fast read say memory does not average minutes; a milder ending can improve later recall.",
+      "The red phone shows a modest place can create a vivid, tellable arrival peak through an object and delivery ritual.",
+      "YES Prep makes a private achievement public so peers and adults witness the effort.",
+      "The full read names elevation, insight, pride, and connection; choice c maps directly to those four ingredients.",
+      "The red-phone lesson says one concrete object can signal that the ordinary script has changed.",
+      "The popsicle works because the request and silver-tray delivery turn a free item into a small event.",
+      "The chapter says to mark doorways and thresholds before the next stage becomes private logistics.",
+      "The prose says memory does not average each minute and is shaped by the sharpest part and the ending.",
+      "The mint is only a quiet free item; the red-phone lesson requires a tellable format."
+    ],
+    "confidence": ["medium", "high", "high", "high", "high", "high", "high", "medium", "high"],
+    "ambiguities": [
+      "c is weakly defensible only because Example 3's What to do wrongly says to make every episode short and denies special weight to final moments; the main prose supports b.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "b is weakly defensible as the thing not to assume if a reader follows the contradictory Example 3 line denying special weight to final moments; the main prose supports a.",
+      ""
+    ],
+    "tells": [
+      "Q4: the correct answer is the only four-part positive list, making it guessable from the stem's phrase 'four ingredients'.",
+      "Q8: the negative stem makes choice a stand out because it mirrors the chapter's repeated 'does not average' claim.",
+      "No answer-pattern tell: the keys are evenly distributed across a, b, and c."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 74,
+    "transfer": 66,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 87,
+    "limits": 86,
+    "insight": 85,
+    "density": 83,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A small peak can become the story of the whole stay.",
+      "why": "This is the chapter's clearest memorable compression of the core move."
+    },
+    {
+      "quote": "The ending can rewrite the remembered weight.",
+      "why": "Strong mechanism line: short, concrete, and tied to the cold-water evidence."
+    },
+    {
+      "quote": "This idea fails when the basic promise is broken.",
+      "why": "The chapter usefully names a boundary instead of overselling moment design."
+    },
+    {
+      "quote": "The real takeaway is to make every episode as short as possible, because memory simply records total duration and the final moments carry no special weight.",
+      "why": "This directly contradicts the chapter's central lesson and would mislead a reader."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "SOURCE-CONTRADICTORY: the What to do paragraph teaches the opposite of the cold-water lesson, saying memory records total duration and final moments have no special weight.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct choice is a direct restatement of the four ingredients while the distractors are obviously off-lesson, so it tests recognition more than transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The negative wording plus the contradictory Example 3 sentence makes the item more fragile than it needs to be.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The Core skill line repeats the title before giving the useful action steps, adding a little padding.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, readable chapter with a memorable central image, layered summaries that work, useful limits, and practical transfer prompts. I would not ship it yet because Example 3 contains a direct source-contradictory instruction that reverses the chapter's main mechanism and can contaminate the quiz logic. Fix that paragraph and tighten the most guessable quiz items, and the chapter is close to a professional bar."
+}
+```

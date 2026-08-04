@@ -236,18 +236,24 @@ export const OPENER_INSTRUCTION: Record<OpenerType, string> = {
 
 /** The whole-skeleton directive for each architecture family — rendered as the
  *  FIRST, top-level structural instruction in the brief so the writer chooses the
- *  chapter's SHAPE before anything else. Each one names what to do AND what NOT to
- *  do, because the default (3 named anchors → proxy chorus → return-point drill)
- *  is the writer's fallback and the source of the book-level monoculture. */
+ *  chapter's SHAPE before anything else.
+ *
+ *  IMP-06 (F-008/F-016): compacted to the shape OUTCOME. The old values doubled as
+ *  ban lists ("Do NOT add a second setting… do NOT staff with proxies…"), which
+ *  overlapped the CONTENT DEVICES deal — two systems banning the same devices in
+ *  different words is exactly the "overlapping bans" recipe debt. The device deal
+ *  is now the single ban owner; each family states positively what carries the
+ *  chapter (the exact counts — ONE case, exactly TWO — keep the anti-default
+ *  force without the procedural ban prose). */
 export const ARCHITECTURE_INSTRUCTION: Record<ArchitectureFamily, string> = {
-  "single-deep-case": "Build the WHOLE chapter on ONE case, developed end to end. Do NOT add a 'second setting proves it travels' case or a third 'edge' case, and do NOT staff it with a chorus of invented role+name proxies — one real situation, followed all the way through.",
-  "two-way-contrast": "Structure the chapter as exactly TWO cases held in tension — the contrast itself is the lesson. No third edge case, no proxy chorus; let the two do all the work.",
-  "research-lead": "Open on a study, mechanism, or measured finding and let the IDEA drive; named company cases are secondary and sparse. Do NOT open on a famous founder/brand, and keep invented cast to at most one.",
-  "failure-autopsy": "Dissect ONE failure and exactly what it cost, step by step. No frictionless-win second case, and do NOT close on the stock 'drag the proof back' reversal drill — end on the lesson the failure teaches.",
-  "everyday-first-person": "Ground the chapter in the READER's own moment — write to 'you', a decision they actually face. No famous brand/founder anchor and no invented proxy cast; the reader is the protagonist.",
-  "misconception-reversal": "Open on the specific belief the reader already holds, then overturn it with argument and one clean illustration. Argument-driven — do NOT run the 3-anchor 'concrete → travels → edge' sequence.",
-  "historical-narrative": "Tell ONE case as a chronological story with real dates, actors, and stakes. No invented stand-in characters and no second/third mirror case — the single narrative carries it.",
-  "direct-conceptual": "Frame the idea directly and unfold it with ONE worked illustration. Examples SUPPORT the concept rather than lead it; skip the named-anchor parade and the stock reversal-drill close.",
+  "single-deep-case": "Build the WHOLE chapter on ONE case, developed end to end — one real situation, followed all the way through, carries everything.",
+  "two-way-contrast": "Structure the chapter as exactly TWO cases held in tension — the contrast itself is the lesson; let the two do all the work.",
+  "research-lead": "Open on a study, mechanism, or measured finding and let the IDEA drive; named company cases are secondary and sparse.",
+  "failure-autopsy": "Dissect ONE failure and exactly what it cost, step by step — end on the lesson the failure teaches.",
+  "everyday-first-person": "Ground the chapter in the READER's own moment — write to 'you', a decision they actually face; the reader is the protagonist.",
+  "misconception-reversal": "Open on the specific belief the reader already holds, then overturn it with argument and one clean illustration.",
+  "historical-narrative": "Tell ONE case as a chronological story with real dates, actors, and stakes — the single narrative carries it.",
+  "direct-conceptual": "Frame the idea directly and unfold it with ONE worked illustration; examples SUPPORT the concept rather than lead it.",
 };
 
 export const PRACTICE_INSTRUCTION: Record<PracticeShape, string> = {

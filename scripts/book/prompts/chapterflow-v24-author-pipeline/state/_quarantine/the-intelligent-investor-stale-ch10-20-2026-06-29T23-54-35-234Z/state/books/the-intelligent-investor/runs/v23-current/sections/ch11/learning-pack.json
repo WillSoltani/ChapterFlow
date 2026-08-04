@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch11",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch11.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.1"
+        ],
+        "prompt": "A bond shows an unusually high yield, but its interest coverage looks weak. What should come first in the analysis?",
+        "choices": [
+          "Choose the bond because the highest yield is always best.",
+          "Ignore coverage because yield already states the full return.",
+          "Check whether earnings can keep covering the interest payments."
+        ],
+        "correctIndex": 2,
+        "explanation": "Bond analysis starts with interest coverage before yield attraction. A coupon matters only if the issuer can keep paying it, and high yield can signal weak coverage.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch11.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.2"
+        ],
+        "prompt": "A stock looks cheap after one strong profit year. What earnings base should a careful appraisal start with?",
+        "choices": [
+          "Normalized earnings power that reduces distortion from cycles or unusual items.",
+          "Only the latest earnings number, because recent profit is the full value base.",
+          "No earnings record, because stock analysis should ignore business results."
+        ],
+        "correctIndex": 0,
+        "explanation": "Stock analysis starts with normalized earnings power. One year's profit can be distorted, so a normalized record gives a sturdier value base.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch11.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.3"
+        ],
+        "prompt": "A valuation depends heavily on a growth estimate. Which treatment best fits a John Burr Williams-style appraisal?",
+        "choices": [
+          "Use a precise growth forecast because precision makes valuation objective.",
+          "Use conservative growth estimates because small assumption changes can move valuation sharply.",
+          "Remove growth assumptions because future cash flow valuation never uses them."
+        ],
+        "correctIndex": 1,
+        "explanation": "John Burr Williams-style growth estimates should be conservative. Small changes in assumed growth can create large valuation changes, and forecast precision can exceed the evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch11.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.4"
+        ],
+        "prompt": "Profit estimates for a stock look uncertain. Which additional evidence can change the downside risk appraisal?",
+        "choices": [
+          "Balance-sheet assets that may provide support if earnings disappoint.",
+          "Only earnings, because assets never matter in stock analysis.",
+          "The latest market excitement, because it replaces balance-sheet value."
+        ],
+        "correctIndex": 0,
+        "explanation": "Assets matter when earnings are uncertain. Balance-sheet value can provide support if profit estimates disappoint, so asset backing can affect downside risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch11.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.5"
+        ],
+        "prompt": "Sales are growing, but the common stock sits behind large fixed claims. What risk should not be ignored?",
+        "choices": [
+          "Debt is irrelevant whenever sales are growing.",
+          "Debt can magnify business setbacks because fixed claims stand ahead of shareholders.",
+          "Leverage always improves common stock value without adding fragility."
+        ],
+        "correctIndex": 1,
+        "explanation": "Debt changes both value and risk for common stock. Fixed claims stand ahead of shareholders, and leverage can turn growth into fragility.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch11.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.6"
+        ],
+        "prompt": "A stock has a low P/E, but its earning power appears to be deteriorating. What is the better interpretation?",
+        "choices": [
+          "A low P/E always proves the stock is cheap.",
+          "The multiple should be ignored because price per dollar of earnings has no meaning.",
+          "The low multiple may reflect real deterioration rather than a bargain."
+        ],
+        "correctIndex": 2,
+        "explanation": "A valuation multiple capitalizes expected earning power. The price paid per dollar of earnings sets implied return and risk, and low multiples can reflect real deterioration.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch11.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.7"
+        ],
+        "prompt": "A spreadsheet gives an exact intrinsic value, but the inputs are estimates. What discipline should a lay investor apply?",
+        "choices": [
+          "Treat the spreadsheet result as exact because formulas remove appraisal error.",
+          "Use conservative assumptions because appraisal error is unavoidable.",
+          "Increase precision until the estimate stops depending on judgment."
+        ],
+        "correctIndex": 1,
+        "explanation": "The lay investor should avoid false precision. Appraisal error is unavoidable, so conservative assumptions must absorb uncertainty because inputs are estimates, not facts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch11.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.8"
+        ],
+        "prompt": "Accounting profits look attractive, and there is also a dividend record. How can that record help the appraisal?",
+        "choices": [
+          "It should be ignored because dividends are unrelated to security analysis.",
+          "It proves all accounting profits are durable.",
+          "It checks whether profits translated into cash paid to shareholders over time."
+        ],
+        "correctIndex": 2,
+        "explanation": "Dividend record can support an earnings appraisal. Cash paid over time provides evidence about durability and capital policy by checking accounting profits against shareholder returns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch11.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch11.fact.9"
+        ],
+        "prompt": "A common stock looks attractive in isolation. What market context still belongs in the valuation decision?",
+        "choices": [
+          "Bond yields and other available returns, because opportunity cost affects required return.",
+          "No market context, because a company can be valued without alternatives.",
+          "Only the company's own story, because available returns are unrelated to value."
+        ],
+        "correctIndex": 0,
+        "explanation": "Comparing common stocks with bond yields is part of valuation. A stock's attractiveness depends partly on bond yields and other available returns because opportunity cost affects required return.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch11.fact.1"
+        ],
+        "front": "What should bond analysis check before yield attraction?",
+        "back": "Bond analysis should check interest coverage before yield attraction. The coupon matters only if the issuer can keep paying it, and high yield can signal weak coverage.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch11.fact.2"
+        ],
+        "front": "Why should stock analysis start with normalized earnings power?",
+        "back": "Stock analysis starts with normalized earnings power because one year's profit can be distorted by cycles or unusual items. A normalized record reduces that distortion.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch11.fact.3"
+        ],
+        "front": "Why should John Burr Williams-style growth estimates be conservative?",
+        "back": "They should be conservative because small changes in assumed growth can produce large changes in valuation. Forecast precision often exceeds available evidence.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch11.fact.4"
+        ],
+        "front": "When do assets matter in a stock appraisal?",
+        "back": "Assets matter when earnings are uncertain. Balance-sheet value can provide support if profit estimates disappoint, and asset backing can change downside risk.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch11.fact.5"
+        ],
+        "front": "How does debt change common stock risk?",
+        "back": "Debt changes common stock risk because fixed claims stand ahead of shareholders and magnify business setbacks. Leverage can turn growth into fragility.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch11.fact.6"
+        ],
+        "front": "What does a valuation multiple capitalize?",
+        "back": "A valuation multiple capitalizes expected earning power. The price paid per dollar of earnings sets the buyer's implied return and risk, so a low P/E is not automatically cheap.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch11.fact.7"
+        ],
+        "front": "Why should the lay investor avoid false precision?",
+        "back": "The lay investor should avoid false precision because appraisal error is unavoidable. Inputs are estimates, not facts, so conservative assumptions must absorb uncertainty.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

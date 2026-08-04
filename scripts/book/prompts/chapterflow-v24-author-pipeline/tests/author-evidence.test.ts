@@ -20,14 +20,14 @@
  * budget (2 key readers + 1 sweep reader per book).
  */
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { makeChapter, STATE_CHAPTERS, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
 import { CANONICAL_STATE, REPO_ROOT } from "../src/lib/chapterPaths.js";
-import { openQcRound, QC_ROUNDS_DIR } from "../src/qc/qcRound.js";
+import { loadQcRound, openQcRound, QC_ROUNDS_DIR } from "../src/qc/qcRound.js";
 import {
   checkManualKeyJudge,
   keyDerivationPath,
@@ -37,8 +37,9 @@ import {
   QC_PACKS_DIR,
 } from "../src/qc/manualKeyJudge.js";
 import { checkSweep, loadSweepHistory, loadSweepRecord } from "../src/qc/sweep.js";
-import { attestationPath, checkQcAttestation } from "../src/critics/qcAttestation.js";
-import { QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
+import { attestationPath, checkQcAttestation, loadAttestation } from "../src/critics/qcAttestation.js";
+import { checkBarConfirmArtifactsForPublishable, QC_ORCHESTRATOR_DIR } from "../src/qc/orchestrator/artifacts.js";
+import { loadAuthorProvenance } from "../src/qc/sessionProvenance.js";
 import {
   buildKeyJudgeDoc,
   renderBlindedChapterDoc,
@@ -54,6 +55,9 @@ import type { ChapterV21 } from "../src/types.js";
 const BOOK = "zz-fixture-author-evidence";
 const RUN = "20260702T000000Z";
 const ROUND = "r-authorev";
+const BOOK_RUNS_DIR = resolve(CANONICAL_STATE, "books", BOOK, "runs");
+const BOOK_RUNS_DIR_EXISTED = existsSync(BOOK_RUNS_DIR);
+const SHARED_QC_DIRS = [QC_PACKS_DIR, QC_ORCHESTRATOR_DIR, QC_ROUNDS_DIR].map((path) => ({ path, existed: existsSync(path) }));
 
 // ── fixture state (real writers, real state dirs, zz-fixture ids, full cleanup) ──
 
@@ -97,6 +101,10 @@ function cleanup(): void {
   rmMatching(QC_DIR, BOOK);
   rmMatching(resolve(CANONICAL_STATE, "provenance"), `${BOOK}-`);
   rmSync(resolve(REPO_ROOT, "scratch/review", BOOK), { recursive: true, force: true });
+  if (!BOOK_RUNS_DIR_EXISTED) rmSync(BOOK_RUNS_DIR, { recursive: true, force: true });
+  for (const dir of SHARED_QC_DIRS) {
+    if (!dir.existed && existsSync(dir.path) && readdirSync(dir.path).length === 0) rmdirSync(dir.path);
+  }
 }
 
 /** Chapters + sidecars + research manifest on real fixture state (no round). */
@@ -560,7 +568,21 @@ test("doAuthorReview E2E: acceptance produces keyA/keyB + sweep + attestation re
     await withNoApiEnv(() => {
       for (const ch of onDisk) {
         const key = checkManualKeyJudge(ch, true);
-        const att = checkQcAttestation(ch, true);
+        const parsedAttestation = loadAttestation(BOOK, ch.number, readFileSync(attestationPath(BOOK, ch.number)));
+        assert.ok(parsedAttestation, `attestation bytes must parse for ch${ch.number}`);
+        const authorProvenance = loadAuthorProvenance(ch.chapterId);
+        const qcRound = parsedAttestation.roundId ? loadQcRound(BOOK, parsedAttestation.roundId) : null;
+        const legacyRoundPresent = !!(
+          parsedAttestation.roundRole &&
+          qcRound?.roles?.[parsedAttestation.roundRole]
+        );
+        const artifactFindings = checkBarConfirmArtifactsForPublishable(ch, parsedAttestation, true);
+        const att = checkQcAttestation(ch, true, {
+          attestation: parsedAttestation,
+          authorSessionId: authorProvenance?.authorSessionId,
+          legacyRoundPresent,
+          artifactFindings,
+        });
         console.log(`  [proof] ch0${ch.number}: checkManualKeyJudge=${JSON.stringify(key)} checkQcAttestation=${JSON.stringify(att)}`);
         assert.deepEqual(key, [], `checkManualKeyJudge must PASS for ch${ch.number}`);
         assert.deepEqual(att, [], `checkQcAttestation must PASS for ch${ch.number}`);

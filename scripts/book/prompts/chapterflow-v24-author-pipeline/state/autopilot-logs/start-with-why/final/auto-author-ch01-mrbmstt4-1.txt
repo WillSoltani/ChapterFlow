@@ -1,0 +1,11 @@
+Done: [start-with-why-ch01.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch01.v21-native.chapter.json)
+
+Validation:
+- `author-check` clean
+- `gate-chapter` PASS: 0 blockers, 0 majors, 1 minor
+- `quiz-verify`: 9/9 matched required indexes
+- Rendered length: 16,688 chars
+- Breakdown Flesch: 77.5
+- Quiz parity: 1 uniquely longest key, 1 uniquely shortest key
+
+Note: `gate-chapter` also updated the pipeline’s `state/gate-attempts.json` run log as a validation side effect.

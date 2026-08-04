@@ -1,0 +1,41 @@
+{
+  "schema": "migration-thresholds-v1",
+  "version": "owner-proposed-2026-07-10",
+  "_status": "PROPOSAL — NOT FROZEN. The owner must approve (or tighten) this file explicitly; only then copy it to the path named in the spec's thresholdsRelPath. sealExperiment hashes the frozen bytes; unblinding refuses if the copy ever differs from the seal. Do not edit after seal.",
+  "_purpose": "The twelve §16 threshold groups (plan @3499-3514) evaluated at the decide phase (thresholds.ts evaluateProfile). Every group except T10 economics is INCONCLUSIVE on missing evidence; verdicts carry statisticallySupported flags; thresholds cannot change after unblinding (hash-gated).",
+  "_validationCommand": "npx tsx ../../../../docs/v25/reports/S16_OWNER_INPUTS/tools/validate-owner-inputs.mts c4 <file> (from the pipeline dir)",
+  "_requiredFor": "SEAL (thresholdsRelPath is hashed at seal) and DECIDE. Absent ⇒ the experiment cannot be sealed.",
+  "nonInferiority": {
+    "minPooledAcceptancePct": 75,
+    "maxPointsBelowBaselinePct": 10,
+    "intervalRule": "ci-lower-above-floor",
+    "_rationale": "Plan §16 threshold 3 verbatim. Metric: pooled first-write acceptance per SOL cell. Direction: higher is better. Denominator: content attempts (infra replays reported separately). Sample unit: (book, chapter) blocks — the cluster bootstrap resamples blocks, so within-chapter samples never inflate N. Blocking: a SOL cell failing this group cannot QUALIFY. Sensitivity: the CI-lower rule makes small samples fail toward INCONCLUSIVE, not toward pass."
+  },
+  "margins": {
+    "sourceFramingPct": 2,
+    "quizAmbiguityPct": 2,
+    "causalMaterialPct": 2,
+    "_rationale": "Plan §16 thresholds 4-6: observed MATERIAL rates (framing ambiguity, quiz ambiguity, causal material overreach) may not exceed the 55-XH baseline rate by more than this margin (percentage points). Direction: lower is better. Denominator: reviewed accepted outputs per cell. Blocking: yes (T4b/T5b/T6b), with statisticallySupported=false marking margin verdicts the sample cannot support; the zero-tolerance halves (T4a/T5a/T6a) use HUMAN-UPHELD counts from C3. Tightening to 1pp roughly doubles the sample needed for a supported verdict."
+  },
+  "reviewerReliability": {
+    "minRawAgreement": 0.75,
+    "minChanceCorrected": 0.5,
+    "maxMaterialDisagreementPct": 10,
+    "_rationale": "Plan §16 threshold 8 (plan gives no numerics — these are the proposed operational values). Metrics: raw agreement and Cohen's kappa over the prespecified double-read pairs, plus the share of pairs whose composite gap exceeds the bakeoff noise band (3.7 pts). Direction: agreement higher / disagreement lower. Denominator: double-read sample pairs. Blocking: yes (T8), and T8 also requires C3's highSeverityHumanReviewComplete=true. Kappa 0.5 = 'moderate' — below it the review signal is too unstable to compare cells."
+  },
+  "repairDemand": {
+    "maxRelativeIncrease": 0.25,
+    "maxAbsoluteIncreasePerChapter": 0.5,
+    "_rationale": "Plan §16 threshold 9 vs 55-XH. Metric: projectedRepairPerChapter = (1−fwPass)×AUTHOR_WRITE_GATE_RETRIES + (1−acceptance)×1 (frozen repair-projection-v1 — a PROJECTION from first-write outcomes, labeled as such; §16 runs no repairs). Direction: lower is better. Denominator: chapters per cell. Blocking: yes (T9). Both bounds must hold: ≤ +25% relative AND ≤ +0.5 repair-units/chapter absolute."
+  },
+  "economics": {
+    "maxCostPerAcceptedChapterUsd": null,
+    "maxLatencyP95Ms": null,
+    "_rationale": "DELIBERATELY left null in this proposal pending the owner's C5 decision — see C5_PROPOSED_ECONOMICS_BOUNDS.json for the two options and their consequences. WARNING: null bounds make T10 the ONLY group that passes on missing data ('no bound declared'). C5 recommends real values; merge the chosen values here before freezing."
+  },
+  "highVsXhigh": {
+    "minQualityGainPts": 2,
+    "_rationale": "Plan §16 threshold 11: when both SOL profiles qualify, xhigh is recommended for a task class only if its quality composite beats high by ≥2 pts (half the 3.7 noise band rounded up); otherwise prefer high (cost/latency). Non-blocking — a route-matrix shaping rule, not a gate."
+  },
+  "_ownerActions": "APPROVE values (or tighten — the plan permits stricter only), DECIDE economics via C5 and merge into economics{}, then FREEZE: copy to <PIPE>/state/migration-experiments/_owner-inputs/thresholds.owner-frozen.v1.json (the spec's thresholdsRelPath) and do not touch it again. The seal records its sha256."
+}

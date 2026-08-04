@@ -1,0 +1,678 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "radical-candor-ch08",
+  "number": 8,
+  "title": "Results",
+  "readingTimeMinutes": 7,
+  "hook": "You write one more recurring invite, and the hour it steals is the hour the task needed.",
+  "hookSourceAnchorIds": [
+    "ch08.fact.7",
+    "ch08.fact.8"
+  ],
+  "counterintuition": "Results gets softer and stricter at once. You do not prove care by adding time together; you prove it by naming the job and cutting what steals execution.",
+  "counterintuitionSourceAnchorIds": [
+    "ch08.concept",
+    "ch08.fact.7",
+    "ch08.fact.8"
+  ],
+  "tryThisNow": "Write a 10-minute job line for the recurring invite most likely to steal execution time.",
+  "tryThisNowSourceAnchorIds": [
+    "ch08.fact.7",
+    "ch08.fact.8"
+  ],
+  "keyTakeaway": "Turn collaboration into routines with one test: each recurring slot must protect listening, idea care, debate, decision, or execution, and vague slots get cut.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch08.concept",
+    "ch08.fact.2",
+    "ch08.fact.3",
+    "ch08.fact.5",
+    "ch08.fact.6",
+    "ch08.fact.8"
+  ],
+  "breakdown": {
+    "fastRead": "You are writing one more recurring invite when the Results prompts ask what it is for. The official guide puts Results in Part 2, the tools-and-techniques part. Its prompts are concrete: 1:1 time, new ideas, staff time, Big Debate, Big Decision, total load, and creep risk.\n\nA 1:1 is recurring time for the direct report's priorities. Big Debate tests an idea before people commit. Big Decision is the separate place where the choice closes. Creep risk is the slow spread of recurring slots until execution has no air.\n\nThe rule is plain. Write the purpose, then guard the slot. Who pays when a calendar says yes to every invite? The person who needed the hour to do the task pays first.",
+    "deepRead": "Results prompts work because they put two questions in tension. What kind of collaboration does this slot protect, and what execution does it steal? You need both questions. One without the other makes a crowded calendar.\n\nMeeting architecture means giving each recurring slot one job. The Results prompts name the jobs. Listen in 1:1s. Give new ideas a place before full debate. Keep staff time from becoming a catch-all. Test ideas in Big Debate, and close choices in Big Decision. That is the split side of the lesson. It keeps raw ideas from being judged too soon, and it keeps debate from dragging on after a choice is due.\n\nMeeting creep pushes from the other side. It starts when each concern earns one more invite. That can feel kind, because no voice is left out and no risk is rushed. It is costly. Every unpriced invite asks someone to make up the lost execution later.\n\nThe 1:1 shows the price clearly. The source guide ties that practice to Creating Effective 1:1 Meetings and Meet Like a Boss. Use it as a status toll and the manager gets a fast scan, but direct reports lose the protected channel for priorities and obstacles. Use it for direct reports first, and the manager gives up speed for better guidance. Write the job before you protect the slot.\n\nYou can use this without rank. Ask which talk is for listening, which forum is for testing, and when the choice will close. If no one can answer, the routine is not aligned. It is only full.",
+    "fullRead": "The hard case is not the useless slot. It is the useful slot that has started to lie. The 1:1 still has the right name, but status takes it over. The staff slot still looks normal, but it now holds idea care, debate, decisions, and updates. Big Debate has the right name, but someone tries to choose before the idea has been tested. Big Decision has the right name, but people reopen debate to avoid closure.\n\nThat is why Results and meeting creep belong in the same frame. Results prompts say: split the jobs so each kind of collaboration gets the conditions it needs. Creep says each split can become another claim on the same scarce execution time. Too few slots blur the job. Too many slots bury it.\n\nSo price the default. A 1:1 taken over by status costs the direct report a listening channel. Judging a raw idea in the same place where choices are made costs the group a thought that might have grown. Deciding before debate costs you a brittle commitment. Debating after the choice costs you a start. Waiting for formal cycles to guide performance costs the person a chance to change while the task is live.\n\nSubtraction is part of the craft. A slot can be useful and still be too expensive this week. A question can deserve an answer and still not deserve a recurring invite. The test is plain: if cutting the slot would free execution without harming listening, idea care, debate, or choice, cut it. If cutting it would break one of those jobs, redesign it until the cost is clear.\n\nAddition has a narrow place. If rough ideas have no safe forum, make one. If tested debate has no close, make one. Add only when the new slot buys back the job it names.\n\nAsk smaller, sharper questions. Who is this for? What kind of task does it protect? What would get worse if we cut it? What would finally start if we redesigned it? These questions keep the tool open to people without title power. You can ask for your own 1:1 to start with your priority. You can ask whether a rough idea is being weighed too early. You can name the cost of one more recurring slot.\n\nThe move fails when the slot exists to dodge a harder act. If a choice is overdue, another debate is not brave. If guidance is needed now, a later formal cycle is not fair. If the calendar is full because no one wants to remove a ritual, one more invite is not care. Cut or redesign the slot that cannot name its job. Results do not sit after care; they test whether care can run."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch08.ex.results-book-club-prompts",
+      "sourceAnchorIds": [
+        "ch08.ex.results-book-club-prompts"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.1",
+        "ch08.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.results-book-club-prompts"
+      ],
+      "title": "Prompt Names the Standard",
+      "tags": [
+        "Results prompts",
+        "calendar design",
+        "unresolved"
+      ],
+      "planSpec": {
+        "domain": "Results discussion prompts",
+        "audience": "readers turning collaboration into routines",
+        "stakes": "a crowded calendar hides which job each slot serves",
+        "format": "audit",
+        "requiredBeat": "open when the Results prompts state the standard, then cut away before any calendar change proves out",
+        "exemplar": "ch08.ex.results-book-club-prompts"
+      },
+      "scenario": "The Results discussion prompts state the standard before anyone can defend a familiar invite. 1:1s, new ideas, staff time, Big Debate, Big Decision, total load, and meeting creep all need answers. The demand is not more talk. It is a calendar where each slot serves one collaboration job. The open problem remains: which current invite has no job?",
+      "whatToDo": "Ask which slot has no job. Write the purpose in one plain line, then reject any defense that only says people expect the invite.",
+      "whyItMatters": "Ask who pays. Price the vague invite as lost execution, then make someone name the listening, idea, debate, or decision job it protects."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch08.ex.one-to-one-meetings",
+      "sourceAnchorIds": [
+        "ch08.ex.one-to-one-meetings"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.one-to-one-meetings"
+      ],
+      "title": "1:1 Time Moves Back",
+      "tags": [
+        "1:1 practice",
+        "direct reports",
+        "protected channel"
+      ],
+      "planSpec": {
+        "domain": "1:1 practice",
+        "audience": "readers who use recurring individual time for status",
+        "stakes": "the direct report loses the protected listening channel",
+        "format": "before_after",
+        "requiredBeat": "open mid-action after the status demand is already past, then show the cost paid for the move to work",
+        "exemplar": "ch08.ex.one-to-one-meetings"
+      },
+      "scenario": "The status sweep is already off the 1:1 agenda. The manager gives up the fast scan and starts with the direct report's priority, as Creating Effective 1:1 Meetings and Meet Like a Boss point the slot toward the employee. The shared calendar invite still says 1:1. Its blue dot stays on the week. The cost is less control for the manager; the result is help close enough to change the task.",
+      "whatToDo": "What skipping this costs is the direct report's protected channel; move status elsewhere and begin with the employee's priority.",
+      "whyItMatters": "What the cost buys is earlier help: the manager loses a fast scan, but the employee gets room to name the priority while it can move."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch08.ex.results-book-club-prompts",
+      "sourceAnchorIds": [
+        "ch08.ex.results-book-club-prompts"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.5",
+        "ch08.fact.6"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.results-book-club-prompts"
+      ],
+      "title": "Decision Holds the Line",
+      "tags": [
+        "Results prompts",
+        "Big Debate",
+        "Big Decision"
+      ],
+      "planSpec": {
+        "domain": "debate and decision split",
+        "audience": "readers whose choices keep reopening",
+        "stakes": "execution cannot start while debate keeps returning",
+        "format": "business_case",
+        "requiredBeat": "open at the return moment where an earlier debate commitment is answered for, then pull back from a miss",
+        "exemplar": "ch08.ex.results-book-club-prompts"
+      },
+      "scenario": "The Results discussion prompts reach the Big Decision forum after Big Debate has done its job. The idea has been tested, and now the choice should close. A fresh concern tries to reopen the argument. The forum starts slipping until the risk is named as part of the choice, not as a reason to restart debate. The decision closes barely in time for execution to start.",
+      "whatToDo": "Why the split works: the test happened before the choice, so name the remaining risk and close instead of sending the group back to debate.",
+      "whyItMatters": "What fails without the split is timing. Debate too soon commits early; debate too late keeps execution waiting after the choice is due."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch08.ex.meeting-creep",
+      "sourceAnchorIds": [
+        "ch08.ex.meeting-creep"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.4",
+        "ch08.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.meeting-creep"
+      ],
+      "title": "Staff Time Swells",
+      "tags": [
+        "staff slot",
+        "creep risk",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "staff meeting purpose",
+        "audience": "readers whose staff time absorbs every issue",
+        "stakes": "listening, debate, and decisions blur into one ritual",
+        "format": "postmortem",
+        "requiredBeat": "open after it is over by tracing back why the staff slot grew, then cut away before the repair is known",
+        "exemplar": "ch08.ex.meeting-creep"
+      },
+      "scenario": "Why did the staff slot swell after it was over? It had absorbed listening, idea care, debate, decisions, and status because each need felt too small for its own home. Meeting creep, the spread of recurring time into execution time, had already taken space. The trace is clear. The repair is not. The next calendar has not yet been cut.",
+      "whatToDo": "Which leak came first: the staff slot lost its single purpose. Split the jobs, then decide whether the ritual stays, shrinks, or ends.",
+      "whyItMatters": "Why the answer is not enough: naming the leak does not remove it, and delay keeps charging execution time for the same blur."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch08.ex.meeting-creep",
+      "sourceAnchorIds": [
+        "ch08.ex.meeting-creep"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.9"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.meeting-creep"
+      ],
+      "title": "Guidance Lands While Useful",
+      "tags": [
+        "impromptu feedback",
+        "execution",
+        "early guidance"
+      ],
+      "planSpec": {
+        "domain": "feedback frequency",
+        "audience": "readers who wait for formal cycles",
+        "stakes": "late guidance cannot shape current execution",
+        "format": "live_intervention",
+        "requiredBeat": "open during execution as repeated delay is happening, then deliver feedback close enough to change the current task",
+        "exemplar": "ch08.ex.meeting-creep"
+      },
+      "scenario": "Meeting creep shows up during the current handoff, where the same delay appears for the third time while everyone is still trying to protect execution. The manager almost saves the note for the formal cycle, then stops beside the task instead. Results includes impromptu feedback frequency because guidance near execution can still move the work. The correction lands while the file is open, and the later review only records what already traveled.",
+      "whatToDo": "Give the note while the task can change. Keep the later formal cycle for evidence that has already reached the work, and do not let the number of meetings hide the missed guidance.",
+      "whyItMatters": "Late guidance can explain a miss, but it cannot improve the current result. Close feedback keeps meeting creep from turning execution trouble into review-season surprise."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch08.ex.meeting-creep",
+      "sourceAnchorIds": [
+        "ch08.ex.meeting-creep"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.7",
+        "ch08.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.meeting-creep"
+      ],
+      "title": "Calendar Loses Air",
+      "tags": [
+        "slot load",
+        "execution time",
+        "redesign"
+      ],
+      "planSpec": {
+        "domain": "meeting load",
+        "audience": "readers who solve overload by adding slots",
+        "stakes": "execution time disappears before anyone names the loss",
+        "format": "mistake_recovery",
+        "requiredBeat": "open on the quiet failure before anyone flags it, then pull back barely in time",
+        "exemplar": "ch08.ex.meeting-creep"
+      },
+      "scenario": "The number of meetings looks harmless before anyone calls it a problem. More recurring slots were added to cure confusion, and execution time has less space. The risk needs a plain signal, not another invite. The week is a solid block of color. The creep is pulled back late when one slot from staff meetings is removed or redesigned before a new slot can be added.",
+      "whatToDo": "Ask where the air went. Count current recurring slots before adding one; remove or redesign the weakest old invite first today.",
+      "whyItMatters": "What must stay open is execution time. Guard it from good intent that keeps asking for another recurring invite today."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch08.fact.2",
+        "prompt": "A volunteer tutor has a standing 1:1 with a student, but keeps using it to gather updates for the program director. What maps from Results?",
+        "choices": [
+          "Use the 1:1 for the student's priorities and obstacles before collecting updates elsewhere.",
+          "Keep the 1:1 focused on the director's report because rank sets the useful agenda.",
+          "Save the student's concerns for the end of term because a formal cycle is cleaner evidence."
+        ],
+        "correctIndex": 0,
+        "explanation": "A 1:1 protects the other person's priorities. The director-focused choice borrows rank as proof, but it loses the listening channel the slot exists to guard.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch08.fact.4",
+        "prompt": "After a community board call fails, the recap shows updates, raw ideas, hard debate, and final choices all collided. Which earlier step was missing?",
+        "choices": [
+          "Ask the chair to settle every item sooner so the board can move through the packed agenda.",
+          "Move the hardest item to a private 1:1, even though the failure involved the whole recurring group slot.",
+          "Give the recurring staff-style slot a clear job instead of letting it absorb every collaboration need."
+        ],
+        "correctIndex": 2,
+        "explanation": "The failure is a catch-all staff slot. Asking the chair to push faster still leaves listening, debate, and choice blurred in the same place.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch08.fact.3",
+        "prompt": "When a school club kills each fresh idea during the same session where it votes on events, members stop bringing rough options. What is actually wrong?",
+        "choices": [
+          "New ideas are being judged before they have a safer place to take shape.",
+          "The club should let the oldest member approve ideas before anyone else reacts.",
+          "The vote should happen even earlier so weak ideas stop taking group time."
+        ],
+        "correctIndex": 0,
+        "explanation": "Young ideas need a place before full debate. Letting the oldest member decide only swaps premature judgment for borrowed authority.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch08.fact.7",
+        "prompt": "Your nonprofit says alignment is low, so it wants two more recurring calls. What should happen before another invite goes out?",
+        "choices": [
+          "Copy the cadence used by a larger nonprofit because its size makes the model safer.",
+          "Ask the busiest volunteer which call feels least painful, then protect the rest for consistency.",
+          "Count the current calendar load against execution time and add only what earns its cost."
+        ],
+        "correctIndex": 2,
+        "explanation": "The number of slots competes with doing time. Copying a larger group treats outside practice as proof instead of pricing the load here.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch08.fact.6",
+        "prompt": "The launch slipped because the group kept reopening argument after argument, and no one would close the choice. What caused the miss?",
+        "choices": [
+          "The group skipped early idea care, so the proposal had no place to become clear before debate.",
+          "The group lacked a separate decision forum that would turn tested debate into closure.",
+          "The group asked for fewer updates, so status details stopped giving enough proof."
+        ],
+        "correctIndex": 1,
+        "explanation": "The cause is endless debate where closure was needed. More early idea care would not fix a choice that already needs to close.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch08.fact.5",
+        "prompt": "Before a product change is tested, a senior sponsor wants the group to choose today so the launch can move. Which move fits the Results split?",
+        "choices": [
+          "Let the sponsor decide now because senior rank can stand in for debate when time is tight.",
+          "Hold the idea in Big Debate first, so the group tests it before commitment.",
+          "Send the proposal straight to Big Decision, then treat later concerns as execution details."
+        ],
+        "correctIndex": 1,
+        "explanation": "Big Debate protects friction before commitment. Senior rank may feel efficient, but it can close on an untested idea too soon.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch08.fact.9",
+        "prompt": "In a choir rehearsal, the director saves every correction for the seasonal written evaluation while singers keep repeating the same miss. Which Results move transfers best?",
+        "choices": [
+          "Wait for the written evaluation because formal records carry better evidence than practice moments.",
+          "Ask the section lead to rank singers first, then give notes only to the weakest voice.",
+          "Give guidance near rehearsal while the singer can still change the current performance."
+        ],
+        "correctIndex": 2,
+        "explanation": "Guidance close to the act can change current performance. The formal-record choice arrives too late to shape the singing now.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch08.fact.1",
+        "prompt": "A supervisor under deadline treats Results as pressure added after relationship work, then wonders why the routines feel punitive. What is the cold diagnosis?",
+        "choices": [
+          "The supervisor should set care aside because routines matter more once output is due.",
+          "The supervisor is missing that Results turns collaboration into routines for how work gets done.",
+          "The supervisor should cite the most senior process owner and follow that person's cadence."
+        ],
+        "correctIndex": 1,
+        "explanation": "Results is not pressure tacked on after care. It turns collaboration into routine, while the senior-process answer outsources the judgment.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch08.fact.8",
+        "prompt": "After a design studio adds a recurring sync to cure overload, makers ship less and the calendar fills again. Which earlier move would have helped?",
+        "choices": [
+          "Remove or redesign an existing recurring slot before adding another one to the calendar.",
+          "Keep the new sync but aim it at the makers who already have the least execution time to spare.",
+          "Accept the full calendar as proof that people are aligned enough to ship soon."
+        ],
+        "correctIndex": 0,
+        "explanation": "Calendar creep deepens the bottleneck when overload is solved with another slot. Targeting makers with less time worsens the same cost.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorIds": [
+        "ch08.fact.2"
+      ],
+      "front": "What should a 1:1 protect before it becomes a status sweep?",
+      "back": "It should protect the direct report's priorities and current obstacles. Status can be gathered elsewhere, but protected listening is hard to recover once the slot is spent.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorIds": [
+        "ch08.fact.3"
+      ],
+      "front": "Why do rough ideas need a place before full debate?",
+      "back": "Early ideas can be useful before they are strong. If they are judged in the same place where choices are made, they may die before the group learns what they could become.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorIds": [
+        "ch08.fact.5",
+        "ch08.fact.6"
+      ],
+      "front": "How do Big Debate and Big Decision split the job?",
+      "back": "Big Debate tests an idea before commitment. Big Decision closes the choice after that testing, so argument does not stay open forever and execution can begin.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorIds": [
+        "ch08.fact.4",
+        "ch08.fact.8"
+      ],
+      "front": "How can staff time become a trap?",
+      "back": "It becomes a trap when it absorbs listening, idea care, debate, decisions, and updates at once. The label stays familiar, but the purpose blurs.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorIds": [
+        "ch08.fact.7",
+        "ch08.fact.8"
+      ],
+      "front": "What should happen before adding another recurring invite?",
+      "back": "Ask what execution time the new slot will take and whether an existing slot can be removed or redesigned. More time together is not the same as better alignment.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorIds": [
+        "ch08.fact.9"
+      ],
+      "front": "Why does frequent impromptu feedback belong with Results?",
+      "back": "Feedback close to the task can change the result while it is still being made. Waiting for a formal cycle turns guidance into late commentary.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Write the Calendar Job",
+    "titleSourceAnchorIds": [
+      "ch08.concept",
+      "ch08.fact.7",
+      "ch08.fact.8"
+    ],
+    "coreSkill": "Write the Calendar Job. Put one plain job beside a recurring invite before you defend it. If the job is listening, debate, decision, idea care, or guidance, protect the conditions it needs; if the job is vague, cut or redesign the slot.",
+    "coreSkillSourceAnchorIds": [
+      "ch08.concept",
+      "ch08.fact.2",
+      "ch08.fact.3",
+      "ch08.fact.5",
+      "ch08.fact.6",
+      "ch08.fact.8",
+      "ch08.fact.9"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorIds": [
+          "ch08.fact.2"
+        ],
+        "context": "If a 1:1 starts with your status questions",
+        "plan": "If a 1:1 starts with your status questions, then say, \"This slot starts with your priority; I will ask for status after that.\""
+      },
+      {
+        "sourceAnchorIds": [
+          "ch08.fact.5",
+          "ch08.fact.6"
+        ],
+        "context": "If debate keeps reopening after a choice is due",
+        "plan": "If debate keeps reopening after a choice is due, then say, \"We tested the idea; now we are naming the risk and closing the choice.\""
+      },
+      {
+        "sourceAnchorIds": [
+          "ch08.fact.8"
+        ],
+        "context": "If overload tempts you to add another recurring invite",
+        "plan": "If overload tempts you to add another recurring invite, then say, \"We cut or redesign one old slot before we add a new one.\""
+      }
+    ],
+    "twentyFourHourChallenge": "Audit one existing calendar invite for 15 minutes: write its job, who it serves, and what execution time it protects.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch08.fact.7",
+      "ch08.fact.8"
+    ],
+    "weeklyPractice": "Once this week, observe where a recurring slot blurred listening, debate, decision, or doing; note the one invite you will cut or redesign.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch08.concept",
+      "ch08.fact.4",
+      "ch08.fact.5",
+      "ch08.fact.6",
+      "ch08.fact.8"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "Who pays when a calendar says yes to every invite?",
+      "location": "breakdown.fastRead",
+      "why": "It turns calendar creep into a cost the reader can feel."
+    },
+    {
+      "text": "Write the job before you protect the slot.",
+      "location": "breakdown.deepRead",
+      "why": "It gives the chapter's practice as a short command."
+    },
+    {
+      "text": "Results do not sit after care; they test whether care can run.",
+      "location": "breakdown.fullRead",
+      "why": "It reverses the idea that results are separate from care."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:d8e73be861eaf94be77d5e60981157a15b67f2e75484ecdc69ded990e61d38af",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch08.source.json",
+      "observedAnchorIds": [
+        "ch08.concept",
+        "ch08.ex.results-book-club-prompts",
+        "ch08.ex.one-to-one-meetings",
+        "ch08.ex.meeting-creep",
+        "ch08.fact.1",
+        "ch08.fact.2",
+        "ch08.fact.3",
+        "ch08.fact.4",
+        "ch08.fact.5",
+        "ch08.fact.6",
+        "ch08.fact.7",
+        "ch08.fact.8",
+        "ch08.fact.9",
+        "ch08.framework.results.meeting.architecture"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "counterintuition": [
+          "ch08.concept",
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "tryThisNow": [
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "keyTakeaway": [
+          "ch08.concept",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.8"
+        ],
+        "breakdown.fastRead": [
+          "ch08.concept",
+          "ch08.ex.results-book-club-prompts",
+          "ch08.fact.1",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.8"
+        ],
+        "breakdown.deepRead": [
+          "ch08.concept",
+          "ch08.ex.results-book-club-prompts",
+          "ch08.ex.one-to-one-meetings",
+          "ch08.ex.meeting-creep",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "breakdown.fullRead": [
+          "ch08.concept",
+          "ch08.ex.results-book-club-prompts",
+          "ch08.ex.meeting-creep",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.8",
+          "ch08.fact.9"
+        ],
+        "examples[0]": [
+          "ch08.ex.results-book-club-prompts"
+        ],
+        "examples[1]": [
+          "ch08.ex.one-to-one-meetings"
+        ],
+        "examples[2]": [
+          "ch08.ex.results-book-club-prompts"
+        ],
+        "examples[3]": [
+          "ch08.ex.meeting-creep"
+        ],
+        "examples[4]": [
+          "ch08.ex.meeting-creep"
+        ],
+        "examples[5]": [
+          "ch08.ex.meeting-creep"
+        ],
+        "quiz.questions[0]": [
+          "ch08.fact.2"
+        ],
+        "quiz.questions[1]": [
+          "ch08.fact.4"
+        ],
+        "quiz.questions[2]": [
+          "ch08.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch08.fact.7"
+        ],
+        "quiz.questions[4]": [
+          "ch08.fact.6"
+        ],
+        "quiz.questions[5]": [
+          "ch08.fact.5"
+        ],
+        "quiz.questions[6]": [
+          "ch08.fact.9"
+        ],
+        "quiz.questions[7]": [
+          "ch08.fact.1"
+        ],
+        "quiz.questions[8]": [
+          "ch08.fact.8"
+        ],
+        "reviewCards[0]": [
+          "ch08.fact.2"
+        ],
+        "reviewCards[1]": [
+          "ch08.fact.3"
+        ],
+        "reviewCards[2]": [
+          "ch08.fact.5",
+          "ch08.fact.6"
+        ],
+        "reviewCards[3]": [
+          "ch08.fact.4",
+          "ch08.fact.8"
+        ],
+        "reviewCards[4]": [
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "reviewCards[5]": [
+          "ch08.fact.9"
+        ],
+        "implementationPlan.title": [
+          "ch08.concept",
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch08.concept",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.8",
+          "ch08.fact.9"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch08.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch08.fact.5",
+          "ch08.fact.6"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch08.fact.8"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch08.concept",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.8"
+        ],
+        "memorableLines[0]": [
+          "ch08.fact.8"
+        ],
+        "memorableLines[1]": [
+          "ch08.fact.7",
+          "ch08.fact.8"
+        ],
+        "memorableLines[2]": [
+          "ch08.fact.1"
+        ]
+      }
+    }
+  }
+}

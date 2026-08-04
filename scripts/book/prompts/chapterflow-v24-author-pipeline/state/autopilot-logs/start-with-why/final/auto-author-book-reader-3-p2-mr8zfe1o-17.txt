@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 73,
+    "transfer": 82,
+    "practical": 72,
+    "summaries": 77,
+    "tone": 64,
+    "limits": 76,
+    "insight": 68,
+    "density": 61,
+    "beginner": 73
+  },
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong portable line; it compresses the chapter's reversal into a memorable claim."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "One of the clearest aphorisms in the sample and likely to stick a week later."
+    },
+    {
+      "quote": "This is why hard details must stay home.",
+      "why": "Shows the repeated house mechanism that appears across chapters with different nouns."
+    },
+    {
+      "quote": "The return is set, not met.",
+      "why": "A compact but artificial phrase that exposes the template-like rhythm."
+    },
+    {
+      "quote": "The factual token is now the United States, not Japanese factories.",
+      "why": "Awkward scaffold language; it sounds like production metadata leaking into reader prose."
+    },
+    {
+      "quote": "Bentonville belongs there. Move it into Starbucks or Microsoft and a true fact starts doing false work.",
+      "why": "Good limit-setting moment, even though the same hard-detail warning repeats heavily."
+    }
+  ],
+  "oneParagraphVerdict": "The sample clears the correctness gate: the quiz keys are supported by the prose, and I found no direct contradiction or corrupted chapter. As a book-learning product, it is a solid but visibly mechanized draft. The strongest parts are the portable reversals and reusable lenses: proof must return, pushes are not reasons, trust needs visible conduct, metrics do not prove meaning. The weakness is churn. Nearly every chapter uses the same architecture of named companies, hard details staying home, second settings, return points, and borrowed proof, so the book begins to feel stamped rather than individually authored. Practical exercises are doable but often performative, and the prose is plain enough for beginners while still carrying odd internal terms. I would ship only after reducing template repetition and giving each chapter more distinct human texture."
+}
+```

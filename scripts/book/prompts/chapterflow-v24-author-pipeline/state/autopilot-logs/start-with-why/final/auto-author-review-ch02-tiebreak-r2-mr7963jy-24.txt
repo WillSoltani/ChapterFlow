@@ -1,0 +1,67 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q8: option a copies the full six-part taxonomy from the prose, while b and c are plainly bad shortcuts.",
+      "Q9: option a is the only choice that preserves the chapter's boundary-detail rule; b and c are obvious misuse/appeal-to-authority distractors.",
+      "Several correct answers are the ones that name the source anchor directly, making the quiz somewhat easier by surface matching."
+    ]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 72,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Treat a spike from Price, Promotion, Fear, Aspiration, Peer pressure, or Novelty as borrowed until the action returns without the push and the reason still holds.",
+      "why": "This is the chapter's core move, stated in a memorable and usable way."
+    },
+    {
+      "quote": "The concrete price of a borrowed spike is a stale reason and another push next week.",
+      "why": "Strongest line: concrete, causal, and likely to stick."
+    },
+    {
+      "quote": "The remote is still in Gabriel's hand when he calls Novelty a reason.",
+      "why": "This reads staged rather than observed; it gestures at a scene without showing a real decision or consequence."
+    },
+    {
+      "quote": "On the small launch spreadsheet, founder Dawson draws a hard line: the perk cannot become the reason.",
+      "why": "The transfer example is generic and mostly restates the lesson instead of proving it in a real setting."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "Gabriel is a manufactured product-lead scene with no real organization, metric, decision, or consequence; the example mainly restates the TiVo warning.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Dawson's launch spreadsheet is a slot-filler transfer example: no concrete product, place, number, before-to-after action, or observed result.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer is fair, but it is also a tell because it reproduces the exact six-term list while the distractors are implausible shortcuts.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer is sound, but the distractors make the key easy to guess because only one option respects evidence boundaries.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear central distinction: a push can move behavior without proving durable preference. The GM, MCI, and TiVo anchors are well chosen, the summary layers are clean, and the practical return-pass test is easy to remember. I would not ship it at a professional bar yet because the later transfer examples become visibly manufactured and weaken the promise that readers can apply the idea beyond the named cases; replace those with concrete before-after scenarios and tighten a few quiz tells."
+}
+```

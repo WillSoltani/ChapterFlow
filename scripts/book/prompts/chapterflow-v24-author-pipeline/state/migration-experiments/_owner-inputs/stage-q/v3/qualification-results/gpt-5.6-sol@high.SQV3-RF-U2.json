@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-U2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"In a widely shared 2014 conference talk, an engineering leader argued that a stopped line is information, not failure.\",\"A plausible accusation is not proof. An assertion is not evidence for itself. If a specifically required piece of evidence is absent from the supplied record, the finding is INCONCLUSIVE; otherwise decide it on the record.\"],\"rationale\":\"The candidate asserts that a 2014 conference talk existed, while the finding merely asserts that it was fabricated. The record supplies no source, identity, conference details, search results, or other verification evidence capable of proving or disproving the talk’s existence. Because that specifically required evidence is absent, the fabrication claim cannot be decided and is INCONCLUSIVE.\"}"
+}

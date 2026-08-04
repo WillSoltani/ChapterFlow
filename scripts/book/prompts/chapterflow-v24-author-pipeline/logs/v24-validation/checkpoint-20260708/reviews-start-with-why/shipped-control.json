@@ -1,0 +1,110 @@
+{
+  "schemaVersion": "shipped-control-v1",
+  "bookId": "start-with-why",
+  "pin": "a3a21e2f06c334c46ab00bd2eddcee628abb86fc",
+  "composite": 72.7,
+  "gate": "FAIL",
+  "churn": "HIGH",
+  "readers": [
+    {
+      "reviewerSessionId": "auto-shipped-control-r1-mrb9xrvp-10",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 78,
+        "quizzes": 61,
+        "transfer": 82,
+        "practical": 70,
+        "summaries": 78,
+        "tone": 74,
+        "limits": 77,
+        "insight": 75,
+        "density": 71,
+        "beginner": 80
+      },
+      "composite": 74.4,
+      "keyCheck": {
+        "matches": 35,
+        "of": 36,
+        "disagreements": [
+          "ch1 Q8: derived a vs key b"
+        ]
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample has real editorial strengths: the core lenses are useful, many summaries are clear, and several memorable lines would stick for a reader. But it fails the correctness gate because Chapter 1 Q8 is miskeyed, and the implementation sections leak scaffold text while several examples contain stitched, incoherent phrasing. Across chapters, the structure is also noticeably repetitive: hook, three-tier summary, six similarly shaped examples, quiz, cards, implementation plan, memorable lines. This is a solid draft with strong concept transfer, but it is not publishable without key repair, artifact cleanup, and a pass to make the chapters feel less templated.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-shipped-control-r2-mrb9yv5z-11",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 78,
+        "quizzes": 58,
+        "transfer": 84,
+        "practical": 74,
+        "summaries": 70,
+        "tone": 64,
+        "limits": 76,
+        "insight": 72,
+        "density": 61,
+        "beginner": 82
+      },
+      "composite": 71.8,
+      "keyCheck": {
+        "matches": 35,
+        "of": 36,
+        "disagreements": [
+          "ch1 Q8: derived a vs key b"
+        ]
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample has real teaching value: the core lenses are transferable, the prose is usually plain, and several memorable lines would likely survive a week. But it fails the correctness gate because Chapter 1 Q8 is keyed to an answer the chapter does not support, and because visible scaffold artifacts and corrupted generated sentences appear in reader-facing sections. The book also shows high template churn: each chapter uses the same tier structure, example rhythm, limits paragraph, implementation shell, and repeated rhetorical moves. It is a solid draft with useful ideas, but not publishable as shipped.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-shipped-control-r3-mrba038u-12",
+      "valid": true,
+      "gateVerdict": "FAIL",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 80,
+        "quizzes": 54,
+        "transfer": 80,
+        "practical": 70,
+        "summaries": 76,
+        "tone": 70,
+        "limits": 72,
+        "insight": 68,
+        "density": 66,
+        "beginner": 78
+      },
+      "composite": 71.4,
+      "keyCheck": {
+        "matches": 35,
+        "of": 36,
+        "disagreements": [
+          "ch1 Q8: derived a vs key b"
+        ]
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample has a useful learning architecture and several sticky lines, but it is not publishable as-is. The largest hard failure is quiz soundness: Chapter 1 Q8 is keyed to b even though the chapter clearly supports a. There are also visible production artifacts such as repeated \"Title: undefined\" blocks and multiple garbled example openings that look like template stitching. Across chapters, the structure and rhetorical moves repeat heavily: hook, fast/deep/full, six examples, identical implementation-plan shells, review cards, and memorable lines. The teaching lens is often sound, but the book currently feels generated from a rigid scaffold rather than individually shaped chapters.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "at": "2026-07-07T23:25:11.923Z"
+}

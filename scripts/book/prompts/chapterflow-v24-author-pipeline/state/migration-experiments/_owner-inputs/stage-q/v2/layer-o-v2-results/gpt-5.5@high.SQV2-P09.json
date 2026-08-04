@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P09",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported factual embellishment\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Steve Cole, HopeLab, portable activity device, multiple design firms\",\"The HopeLab planner stands after lunch in HopeLab's project room, one portable activity device sketch clipped beside three firm names. No one else speaks yet.\",\"One firm could solve comfort, another could solve play, and another could show what the team has missed.\"],\"rationale\":\"The source plan supports the high-level HopeLab case: Steve Cole used a parallel first phase with multiple design firms for a portable activity device, allowing comparison and combination of strengths. The candidate preserves that core structure, but narrates concrete scene details and mental-state specifics such as the lunch timing, project room, clipped sketch, three firm names, silence in the room, and specific firm capabilities around comfort and play. These are not among the allowed hard specifics and are presented in the same factual register as the sourced case, so the candidate contains material unsupported embellishment.\"}"
+}

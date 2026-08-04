@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 63,
+    "transfer": 76,
+    "practical": 72,
+    "summaries": 80,
+    "tone": 55,
+    "limits": 79,
+    "insight": 70,
+    "density": 62,
+    "beginner": 74
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Strong compact line; portable and likely to stick."
+    },
+    {
+      "quote": "Known data is the part you can point to before the guess starts spending.",
+      "why": "Clear, memorable phrasing that makes the abstraction usable."
+    },
+    {
+      "quote": "The sequence can travel; the factory word stays home.",
+      "why": "Good boundary-setting sentence and a useful transfer rule."
+    },
+    {
+      "quote": "A true detail can still mislead when it rides with the wrong setting.",
+      "why": "Sharp limit, but the same source-detail warning recurs so often it becomes the house template."
+    },
+    {
+      "quote": "If-then 1: [If a tactic is the first thing everyone can name.] If a tactic is the first thing everyone can name, then mark the belief it is meant to serve before you keep the tactic.",
+      "why": "Bracketed repetition feels like scaffold residue and makes the practice section less natural."
+    },
+    {
+      "quote": "Shorten all of that to purpose talk and the useful split is gone.",
+      "why": "Accurately names the book's best recurring move, though it also exposes how often chapters make the same move."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is coherent, keyed correctly, and often useful at the sentence level, with several sticky lines and reasonable limits. Its main weakness is sameness: every chapter leans on the same machinery of ordered terms, named company details, second-setting comparison, source-detail boundaries, and anti-purpose-talk warnings. That gives the lessons a dependable lens, but it also makes them feel generated from one mold rather than individually authored. The quizzes are answerable and mostly scenario-based, but the wrong answers are often obviously bad, with no real explanations. This is a solid draft with publishable pieces, not a premium reading experience."
+}
+```

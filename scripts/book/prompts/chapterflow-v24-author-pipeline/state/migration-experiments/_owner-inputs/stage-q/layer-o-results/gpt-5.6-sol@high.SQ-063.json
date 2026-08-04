@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-063",
+  "parsed": {
+    "caseId": "SQ-063",
+    "verdict": "DEFECT",
+    "defectClass": "EVIDENTIARY_ROLE_MISMATCH",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "this supplied score record alone is not a chapter-level diagnosis"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Evaluation mode: Single-evaluator screening audit"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "score lift requires a fresh evaluation"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "external_accuracy`: **Not assessed**"
+      }
+    ],
+    "explanation": "The artifact is a remediation prompt containing a partial screening score snapshot, not source-level diagnostic evidence. It expressly disclaims chapter-level diagnostic sufficiency and leaves external accuracy unassessed, so it cannot support or validate remediation decisions.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-063\",\"verdict\":\"DEFECT\",\"defectClass\":\"EVIDENTIARY_ROLE_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"this supplied score record alone is not a chapter-level diagnosis\"},{\"materialIndex\":0,\"quote\":\"Evaluation mode: Single-evaluator screening audit\"},{\"materialIndex\":0,\"quote\":\"score lift requires a fresh evaluation\"},{\"materialIndex\":0,\"quote\":\"external_accuracy`: **Not assessed**\"}],\"explanation\":\"The artifact is a remediation prompt containing a partial screening score snapshot, not source-level diagnostic evidence. It expressly disclaims chapter-level diagnostic sufficiency and leaves external accuracy unassessed, so it cannot support or validate remediation decisions.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

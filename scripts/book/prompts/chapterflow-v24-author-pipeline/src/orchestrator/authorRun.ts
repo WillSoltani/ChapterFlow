@@ -26,8 +26,16 @@ import { fileURLToPath } from "url";
 import type { AutopilotDeps, AutopilotOutcome, HaltCategory, VerbResult } from "./autopilot.js";
 import type { ChapterV21 } from "../types.js";
 import type { ChapterBriefV1, SourcePacketV1 } from "../artifacts/artifactTypes.js";
-import { chapterBriefMdPath, chapterBriefPath, leadOverridePath, readJsonFile, sourcePacketPath } from "../artifacts/artifactStore.js";
-import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
+import { chapterBriefMdPath, chapterBriefPath, leadOverridePath, readJsonFile, sourcePacketPath, sourceUsePlanPath } from "../artifacts/artifactStore.js";
+import { WRITER_PACKET_PROJECTION_SCHEMA_VERSION, writerPacketProjection } from "../compiler/sourcePacketProjection.js";
+import { sourcePacketHash } from "../compiler/sourcePacket.js";
+import {
+  embeddedPlanMutationFindings,
+  renderSourceUsePlanLines,
+  sourceUsePlanStale,
+} from "../compiler/sourceUsePlanCompiler.js";
+import { sourceUsePlanHash, validateSourceUsePlan, type SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
+import { UNTRUSTED_ARTIFACT_RENDERER_VERSION, untrustedArtifact } from "../exec/untrustedArtifact.js";
 import {
   DEFAULT_LENGTH_BUDGET_CHARS,
   LENGTH_BUDGET_TOLERANCE,
@@ -43,11 +51,17 @@ import { manualBriefRotationLines } from "../compiler/briefRotation.js";
 import { voiceCard, voiceRegisterLine } from "../lib/voiceCard.js";
 import { chapterFileName, normSlug, CHAPTERS_DIR } from "../lib/chapterPaths.js";
 import { buildBudgetRepairComplaints, checkReaderBudgets, type BudgetFinding } from "../critics/readerBudgets.js";
+import { anyAliasPresent, leadAliasSet, suppressGenericSuffixAliases } from "../critics/leadAliases.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { loadBookChapters } from "../qc/manualKeyJudge.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { registerAdvisoryRetryBlock } from "../critics/registerAdvisories.js";
-import { loadAuthorProvenance, recordAuthorProvenance } from "../qc/sessionProvenance.js";
+import {
+  loadAuthorProvenance,
+  provenancePath,
+  recordAuthorProvenance,
+  type AuthorProvenance,
+} from "../qc/sessionProvenance.js";
 import {
   RegenLedgerError,
   budgetRepairConsumedFor,
@@ -57,6 +71,29 @@ import {
   recordBudgetRepairConsumed,
 } from "./authorRegenLedger.js";
 import { appendReopenNote, holdsDurablePass } from "./authorReviewLedger.js";
+import {
+  ATTEMPTS_ROOT,
+  commitChapterCandidate,
+  finalizeChapterCommitEvidence,
+  finalizeAttempt,
+  gateCandidate,
+  importCandidate,
+  mintChapterAttempt,
+  reconcileCommittedChapterCandidate,
+  rubricMetricsWithCandidate,
+  unexpectedAttemptWrites,
+  type ChapterAttempt,
+} from "./chapterTransaction.js";
+import { recordAttemptObject, recordSpawnEvidence } from "../evidence/attemptRecorder.js";
+import { recordChapterDiversity } from "../telemetry/diversityLedger.js";
+import { hashCanonical, sha256Hex } from "../contracts/contractUtil.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
+import { BASELINE_MODEL } from "./modelPolicy.js";
+import type {
+  LegacyAuthorShadowProjectionPlan,
+  LegacyAuthorShadowProjectionReport,
+  LegacyAuthorStateAdapter,
+} from "../contracts/legacyAuthorStateAdapter.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -90,6 +127,11 @@ export type AuthorIo = {
   readBrief: (bookId: string, chapterNumber: number) => ChapterBriefV1 | null;
   /** The compiled source packet for a chapter, or null when absent. */
   readPacket: (bookId: string, chapterNumber: number) => SourcePacketV1 | null;
+  /** IMP-03: the compiler-owned source-use plan for a chapter, or null when the
+   *  book predates plans (legacy path — absence grants nothing and blocks
+   *  nothing). A PRESENT plan is validated + freshness-checked fail-closed
+   *  before any writer/repair spawn. */
+  readSourcePlan: (bookId: string, chapterNumber: number) => SourceUsePlanV1 | null;
   /** All on-disk chapters of the book (canonical state). */
   loadChapters: (bookId: string) => ChapterV21[];
   /** True iff config/name-bank.json loads and is non-empty. readerBudgets
@@ -103,6 +145,11 @@ export type AuthorIo = {
   authorSessionOf: (chapterId: string) => string | undefined;
   /** Stamp author provenance bound to the authored content hash. */
   recordProvenance: (chapterId: string, sessionId: string, contentHash?: string) => void;
+  /** Read-back/rollback seam for required author provenance. A successful
+   * forward commit is not acknowledged until the exact session+content binding
+   * can be read from this same destination. */
+  readProvenance: (chapterId: string) => AuthorProvenance | null;
+  restoreProvenance: (chapterId: string, previous: AuthorProvenance | null) => void;
   /** Raw chapter-file bytes (null when absent) — the write-failure restore hooks
    *  (fresh-gold live finding, 2026-07-08): a writer session lands its draft on
    *  disk BEFORE the gate/rubric/contract self-checks, so a fully-failed
@@ -117,26 +164,48 @@ export type AuthorIo = {
    *  only when a degraded attempt lands a passing chapter. */
   readLeadOverride: (bookId: string, chapterNumber: number) => LeadThreadOverrideV1 | null;
   writeLeadOverride: (bookId: string, chapterNumber: number, override: LeadThreadOverrideV1) => void;
+  removeLeadOverride: (bookId: string, chapterNumber: number) => void;
+  /** IMP-01 candidate validation seam. The conductor gates CANDIDATE bytes (the
+   *  attempt-workspace draft) in process — never by exposing them at the
+   *  canonical path. Tests that previously stubbed the `gate-chapter` /
+   *  `rubric-metrics` runVerb calls override these two instead. */
+  gateCandidate: (candidate: ChapterV21, canonicalAbsPath: string, attemptKey: string) => Promise<{ code: number; stdout: string; stderr: string }>;
+  rubricWithCandidate: (bookId: string, chapterNumber: number, candidate: ChapterV21) => Promise<{ code: number; stdout: string; stderr: string }>;
+  /** Root for per-attempt workspaces/evidence (.attempts by default; tests use
+   *  tmp roots so unit runs never write the real pipeline tree). */
+  attemptsRoot: () => string;
+  /** Optional explicit durable-evidence root.  When omitted the normal
+   * pipeline keeps the historical CHAPTERFLOW_EVIDENCE_ROOT resolution; live
+   * experiments provide this method so ambient process state cannot redirect
+   * evidence outside their destination. */
+  evidenceRoot?: () => string | null;
+  /** Optional explicit passive-diversity telemetry root.  Same isolation rule
+   * as evidenceRoot: ordinary callers may omit it, experiment callers must
+   * bind it. */
+  diversityLedgerRoot?: () => string | null;
 };
 
 /** Disk implementations of the F-1 sidecar, exported so the repair lane
  *  (authorRepair) resolves the same EFFECTIVE brief its contract re-check needs. */
-export function readLeadOverrideFromDisk(bookId: string, chapterNumber: number): LeadThreadOverrideV1 | null {
+export function readLeadOverrideFromDisk(bookId: string, chapterNumber: number, stateRoot?: string): LeadThreadOverrideV1 | null {
   try {
-    const p = leadOverridePath(normSlug(bookId), chapterNumber);
+    const p = leadOverridePath(normSlug(bookId), chapterNumber, stateRoot ? { stateRoot } : {});
     if (!existsSync(p)) return null;
     const rec = readJsonFile<LeadThreadOverrideV1>(p);
     return rec?.schemaVersion === "lead-thread-override-v1" ? rec : null;
   } catch { return null; }
 }
 
-export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, override: LeadThreadOverrideV1): void {
-  const p = leadOverridePath(normSlug(bookId), chapterNumber);
+export function writeLeadOverrideToDisk(bookId: string, chapterNumber: number, override: LeadThreadOverrideV1, stateRoot?: string): void {
+  const p = leadOverridePath(normSlug(bookId), chapterNumber, stateRoot ? { stateRoot } : {});
   mkdirSync(dirname(p), { recursive: true });
   writeFileSync(p, JSON.stringify(override, null, 2) + "\n");
 }
 
 export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
+  // Hoisted: the candidate-rubric default substitutes the candidate into the
+  // SAME chapter set the rest of the io reads (fixture/slot roots included).
+  const loadChaptersResolved = over?.loadChapters ?? ((bookId: string) => loadBookChapters(bookId));
   return {
     chapterExists: over?.chapterExists
       ?? ((bookId, n) => existsSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))))),
@@ -144,8 +213,11 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
       const p = resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n)));
       try { return existsSync(p) ? readFileSync(p, "utf8") : null; } catch { return null; }
     }),
+    // IMP-01: the canonical write default is ATOMIC (tmp + rename). A plain
+    // writeFileSync here was the torn-read wedge (F-001): a concurrent status/
+    // key-judge read could parse a half-written file and brick the conductor.
     writeChapterFile: over?.writeChapterFile
-      ?? ((bookId, n, bytes) => writeFileSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), bytes)),
+      ?? ((bookId, n, bytes) => writeFileAtomic(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), bytes)),
     removeChapterFile: over?.removeChapterFile
       ?? ((bookId, n) => rmSync(resolve(CHAPTERS_DIR, chapterFileName(authorChapterId(bookId, n))), { force: true })),
     readBriefMd: over?.readBriefMd ?? ((bookId, n) => {
@@ -166,7 +238,17 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
         return existsSync(p) ? readJsonFile<SourcePacketV1>(p) : null;
       } catch { return null; }
     }),
-    loadChapters: over?.loadChapters ?? ((bookId) => loadBookChapters(bookId)),
+    // IMP-03: side-effect-free read (sourceUsePlanPath never mkdirs — fixture
+    // book ids in tests must not mint state/books/<book>/runs/ dirs). ABSENT →
+    // null (legacy path). PRESENT but unreadable/corrupt → THROW: swallowing it
+    // into null would silently promote a broken plan to "no plan" and author
+    // fail-open; callers convert the throw into a fail-closed refusal.
+    readSourcePlan: over?.readSourcePlan ?? ((bookId, n) => {
+      const p = sourceUsePlanPath(normSlug(bookId), n);
+      if (!existsSync(p)) return null;
+      return readJsonFile<SourceUsePlanV1>(p);
+    }),
+    loadChapters: loadChaptersResolved,
     nameBankOk: over?.nameBankOk ?? (() => {
       try { return loadNameBank().length > 0; } catch { return false; }
     }),
@@ -174,8 +256,21 @@ export function resolveAuthorIo(over?: Partial<AuthorIo>): AuthorIo {
     authorSessionOf: over?.authorSessionOf ?? ((chapterId) => loadAuthorProvenance(chapterId)?.authorSessionId ?? undefined),
     recordProvenance: over?.recordProvenance
       ?? ((chapterId, sessionId, contentHash) => { recordAuthorProvenance(chapterId, sessionId, contentHash); }),
+    readProvenance: over?.readProvenance ?? ((chapterId) => loadAuthorProvenance(chapterId)),
+    restoreProvenance: over?.restoreProvenance ?? ((chapterId, previous) => {
+      const p = provenancePath(chapterId);
+      if (previous === null) rmSync(p, { force: true });
+      else writeFileAtomic(p, JSON.stringify(previous, null, 2) + "\n");
+    }),
     readLeadOverride: over?.readLeadOverride ?? readLeadOverrideFromDisk,
     writeLeadOverride: over?.writeLeadOverride ?? writeLeadOverrideToDisk,
+    removeLeadOverride: over?.removeLeadOverride ?? ((bookId, n) => rmSync(leadOverridePath(normSlug(bookId), n), { force: true })),
+    gateCandidate: over?.gateCandidate ?? gateCandidate,
+    rubricWithCandidate: over?.rubricWithCandidate
+      ?? ((bookId, n, candidate) => rubricMetricsWithCandidate(bookId, n, candidate, loadChaptersResolved)),
+    attemptsRoot: over?.attemptsRoot ?? (() => ATTEMPTS_ROOT),
+    ...(over?.evidenceRoot ? { evidenceRoot: over.evidenceRoot } : {}),
+    ...(over?.diversityLedgerRoot ? { diversityLedgerRoot: over.diversityLedgerRoot } : {}),
   };
 }
 
@@ -215,141 +310,75 @@ async function mapPool<T, R>(items: T[], limit: number, fn: (item: T, i: number)
 // ── The card ──────────────────────────────────────────────────────────────────
 
 /** HOUSE STYLE rules — verbatim per the B4 spec; do not reword. */
+/**
+ * IMP-05 (F-008/F-009/F-016/F-019/F-021) — the writer card is dieted to global
+ * INVARIANTS + one explicit precedence order + compact chapter-local craft
+ * targets. Every protection removed from the card text is enforced by a
+ * deterministic gate, an advisory critic (C31-C35), the source-use plan
+ * (IMP-03), the brief/deal compiler, or the blinded reviewers — the full
+ * inventory + moved-enforcement map is docs/v25/IMP-05-REQUIREMENT-LEDGER.md.
+ * No gate, threshold, blocker, retry cap, critic severity, or public schema
+ * changed. The accumulated incident-lesson prose (CF-A..CF-J, STIER, W1-W4)
+ * moved to that ledger; blocks are version-stamped (CARD_BLOCK_VERSIONS) so
+ * evidence can identify card drift.
+ */
+
+/** Precedence (IMP-05 instruction 3): the conflict-resolution contract, rendered
+ *  first so a lower-priority style/deal line can never override source or schema. */
+export const AUTHOR_PRECEDENCE =
+  "PRECEDENCE — when any two instructions conflict, the earlier wins:\n" +
+  "1. Safety, source obedience, identity and product limits.\n" +
+  "2. Schema and product completeness — a valid ChapterV21 with every required field.\n" +
+  "3. Thesis, evidence, and quiz correctness.\n" +
+  "4. This chapter's objective (the brief and the source-use plan).\n" +
+  "5. Active book-level constraints (the VARIETY and CONTENT DEVICES deals).\n" +
+  "6. Optional style and creative choices — these yield to everything above.";
+
+/** The global INVARIANTS (IMP-05 instruction 2) — the minimal set that is true of
+ *  every chapter, stated once. Export name kept for import stability. */
 export const AUTHOR_HOUSE_RULES =
-  "Plain verbs, short words, Flesch ease 72-84. Teach through this chapter's real cases as lived moments. " +
-  "Honest about limits — say when the idea fails. No corporate filler, no template smell, no aphorism-stacking. " +
-  "Every quiz key must be derivable from your prose alone; follow the brief's answer-key pattern exactly " +
-  "(correctIndex per question, in order). Respect the brief's length budget — density beats coverage; cut " +
-  "before padding. Never transcribe scaffold vocabulary (slot names, shape labels, anchor ids) into reader prose.";
+  "GLOBAL INVARIANTS (these outrank every style choice):\n" +
+  "- COMPLETE: emit a valid ChapterV21 with every required field. If space is tight, finish every required field first and drop optional ornament before anything required — never make a product field optional to save length.\n" +
+  "- FACTUAL: obey the SOURCE-USE PLAN; every claim, number, name, and case detail traces to the SOURCE PACKET — invent connective narration, never facts. Hedge any below-robust claim; never state it as settled.\n" +
+  "- QUIZ: every key is derivable from your prose alone and tests a MOVE the reader makes, not a source; each distractor is the key warped by one of the brief's dealt failure modes; follow the brief's answer-key pattern exactly.\n" +
+  "- IDENTITY: the reader never meets the machinery — no scaffold vocabulary (slot, shape, or beat labels, anchor ids, \"Fact 2\" numbering), no internal artifact or beat label as an acting subject, no drafting narration. Write the beat, not its name.\n" +
+  "- PLAIN & DENSE: Flesch ease 72-84 on the breakdown; short words, one idea per sentence; every paragraph adds new information; be honest about where the move fails.";
 
 /**
- * W1 (plan §WS5) QUALITY BAR — the write-time rules that the deterministic
- * preflight (W2) enforces after the fact. These live in the ALWAYS-SENT card, not
- * only the retry card: shipping them on the FIRST draft is what stops every draft
- * from paying a ~19-minute whole-chapter retry (first-draft preflight pass rate
- * was 40% — 10/10 first drafts failed tellRate). Each rule is stated as a concrete
- * write-time self-check, not an abstract goal, and is SYMMETRIC where a one-sided
- * fix would just mint the next detectable artifact (the longest-key tell v24 fixed
- * became a shortest-key tell).
- *
- * S-TIER CHANGE (2026-07-03, plan docs/v24/STIER-PLAN-2026-07-03.md): rule 1 gains
- * the mechanical length-audit protocol (the halted `execution` run still paid 5/9
- * first-draft tellRate rewrites — B7) and rule 5 (DISTRACTOR CRAFT) is new — 12.3%
- * of that run's distractors were tone-rejectable strawmen vs 0.5-4.8% in the top-5
- * corpus (B3).
- *
- * STIER-2 CHANGE (2026-07-03, plan docs/v24/STIER2-PLAN-2026-07-03.md): rule 1
- * loses its meta-parentheticals (prune ledger); rule 3 drops the "exact object to
- * touch" shape — that wording itself minted "touch X and say Y" theater across 6+
- * chapters (RC1); rule 5 becomes the TRANSFORM recipe (key-first, dealt failure
- * modes, echo symmetry) — the scan-only version just moved the wrongness
- * monoculture to the next lexicon (RC2; all 5 flip-tiebreaks led with quiz tells).
- *
- * STIER-2 LIVE FIX (2026-07-03, rerun round 1 — bottleneck B12): rule 1's original
- * "uniquely longest in at most 3" CONTRADICTED the binding gate. The score.py-ported
- * tellRate FAILS above 0.20 → at most ONE uniquely-longest key per 9 questions
- * (config/rubric-thresholds.json, calibration-frozen); W2's longestMax=9 is the
- * loose historical bound, and "at most 3" was an invented middle band that
- * satisfied neither — writers obeyed the card (2-3 longest keys) and the preflight
- * rejected them (ch01 twice, ch02, ch09 → write-phase halt). The card now states
- * the REAL constraint. Gates unchanged.
- * 2026-07-04 FINAL-HARDENING-PLAN: per-rule [GATED]/[SCORED] tags replace the false
- * blanket enforcement claim (D-audit: only rules 1/3-floor/4 + the strawman rate are
- * deterministic); D1/D2/D3/D5/D9 wording reconciled to the gates; W3 causal-stem clause.
- * Verbatim; do not reword outside a documented plan change.
- * 2026-07-06 CONTENT-DEAL CAMPAIGN: rule 6 drops the "who owns it, what proof returns,
- * when it comes back" close and rule 7 drops the "specific actor" invented-proxy default —
- * both hard-mandated the return-proof + proxy-cast devices in EVERY chapter (measured 93%
- * ubiquity), which the book-acceptance panel rejected as "one template, different nouns".
- * They now point to the per-chapter CONTENT DEVICES deal (contentDeviceDeal.ts); the
- * anti-thin-example + anti-fabrication protections are preserved verbatim.
- * 2026-07-08 CONTENT-FEEDBACK CF-A (G1): rule 8 (HOOK CARRIES A STAKE + DOORWAY) —
- * HOM ch8's hook was a flat activity description ("maps functions to shared standards")
- * and scored the book's lowest chapter; the pipeline had no per-hook tension bar (the
- * schema asked only "60-120 chars"). Rule 8 is mode-agnostic (satisfiable by all five
- * OPENER_TYPES) and scored, not a blocker; OPENER_TYPES / titles / rubric / C26 untouched.
- * 2026-07-08 CONTENT-FEEDBACK CF-B (F3/F5/F13/F17): rule 7 (EXAMPLE CRAFT) drops the
- * rubric-shaped "what MEASURABLY CHANGED … before→after" phrasing — echoed verbatim into
- * HOM ch8's evaluator-Q&A example fields, the same disease the ~435 label-strip patched —
- * for a REGISTER rule (consequence narrated in the scene's own voice; no field opens with
- * an evaluator question answered in the next clause) + a CONDITIONAL competing-interests
- * staging clause (only where legitimate interests collide — NOT a universal conflict
- * mandate) + the F17 humanization guardrail (no new named cast, honor the deal's
- * proxy/stand-in bans). Substance preserved: decision + completed consequence,
- * "set, not met" = FAILED, no invented facts. New advisory critic C31
- * (exampleRegister.ts) is the deterministic complement; MINOR, no gate/blocker touched.
- * 2026-07-08 CONTENT-FEEDBACK CF-E (F9/F10/F14): the implementation-plan take-home
- * surfaces. TITLE-DROP TRACE (emitted-and-dropped): ChapterV21.implementationPlan
- * (types.ts ImplementationPlanV21) carries `title` and the schema hint asks for it, but
- * the app projection has NO title field at four layers — PackageImplementationPlan
- * (book-package-core.ts), the bridge (~380, never reads title), the validator
- * (validate-book-package.ts, never reads title), and the reader (ImplementationPlanCard
- * renders coreSkill/ifThenPlans only). So the written skill name never reaches the reader.
- * Fix WITHOUT app changes: rule 9 (TAKE-HOME SURFACES) + the schema hint make the skill
- * name the REQUIRED opener of coreSkill (which DOES render), carry one generic reviewer
- * exemplar, and require >=1 memorableLine to hold the chapter's central image (this
- * chapter's own, never reused across chapters). PLAIN WORDS gains a zero-coined-shorthand
- * clause for the action fields (coordinates with CF-D's inherited-terms text). Self-verify
- * item 7 added. Rule 3 timebox floor + D9 timers untouched. An app-side `title` surfacing
- * is a CF-H/follow-up decision.
- * 2026-07-08 ATTENTION-ECONOMY TRIM (post-campaign cleanup): the CF-A/B/D/E additions
- * (rules 7/8/9, the PLAIN WORDS extension, self-verify items 5-7, schema-hint notes)
- * compressed to fit the card's attention budget — every requirement above survives,
- * wording only. Net campaign delta across QUALITY_BAR + PREMIUM_BLOCK + schemaHint +
- * selfVerify: +1,395 chars (pre-trim +2,613), of which +142 is CF-C's rule-6 job wording.
- * 2026-07-09 CF-I-2 (machinery-leakage): rule 8 gains a REGISTER clause + a DOORWAY
- * tightening — the reader never meets the pipeline machinery (no internal artifact or
- * dealt beat label as the acting subject, no drafting-process narration; write the beat,
- * not its name), and a doorway is someone acting or a cost landing, never a citation/
- * publication date on its own (the C34 gaming path). Self-verify item 4's scaffold list
- * adds "beat labels". Net CF-I-2 card delta +391 chars (QUALITY_BAR +386, selfVerify +5);
- * card measures ~18.6k, under the 18,700 pin. Advisory critics C31-C35 (exampleRegister,
- * metaCaseProtagonist, beatVocabularyEcho, citationDateDoorway, lineageKeyQuiz) are the
- * deterministic complement; all MINOR, no gate/blocker/severity touched. The quiz-key
- * principle here is the compact statement; CF-I-3 adds the fuller quiz application-over-
- * lineage instruction on the same card.
- * 2026-07-09 CF-I-3 (quiz application-over-lineage): rule 5 gains "KEY IS A MOVE" — the
- * graded answer is a move the reader makes, not a source; a citation belongs in a
- * distractor or the explanation, never the tested skill. schemaHint's explanation hint
- * gains "why the move works"; self-verify item 1 (KEYS) gains "A key tests a move, not a
- * source." CONSISTENCY with the C35 detector (critics/lineageKeyQuiz.ts): its fixture key
- * "Tie the move to Getting to Yes … so the frame is traceable" (tests/lineage-key-quiz.ts
- * LINEAGE_Q1) cites a source AS the graded answer — exactly what "KEY IS A MOVE … never
- * the tested skill" forbids; the advisory catches at gate what this rule prevents at write
- * time. Net CF-I-3 card delta +209 chars (rule 5 +155, schemaHint +20, selfVerify +34);
- * whole CF-I campaign card delta +600 (CF-I-2 +391 + CF-I-3 +209), at the +600 cap;
- * card measures ~18.8k so the 18,700 pin rises to 18,820 (≤19,000 per campaign). No gate,
- * sourceGrounding, keyEvidence, quiz schema, or bloom/depth enum touched.
+ * CRAFT TARGETS (was the W1 QUALITY BAR) — IMP-05 diet. The first-draft craft aims
+ * whose PROTECTION lives in a deterministic gate ([GATED]) or the blinded reviewers
+ * ([SCORED]); the card states each as a compact aim, not the accumulated
+ * incident-lesson prose (that history + the moved-enforcement map is
+ * docs/v25/IMP-05-REQUIREMENT-LEDGER.md). The mechanical-distractor word list, the
+ * tell-length audit protocol, and the VOICE formula were REMOVED from the card
+ * (their gates/critics/reviewers still enforce them) — naming banned words on the
+ * card is the repeated-"X not Y" pattern the SOL guidance warns against.
+ * Version-stamped CARD_BLOCK_VERSIONS.qualityBar.
  */
 export const AUTHOR_QUALITY_BAR =
-  "QUALITY BAR — hit these on the FIRST draft. Caps marked [GATED] are enforced by a deterministic preflight (missing one forces a full rewrite); [SCORED] rules are scored by the blinded reviewers who decide ship:\n" +
-  "1. DISTRACTOR PARITY [GATED]. Write every distractor as substantial as the key. Before you declare done: list the 9 keys' character lengths beside their distractors. HARD CONSTRAINTS (deterministic gates fail the chapter above EITHER): the key may be the uniquely LONGEST choice in AT MOST ONE of the 9 questions, AND the uniquely SHORTEST in AT MOST FOUR. Do not fix one tell by minting the other — never trim every key; land most keys mid-length by growing a distractor past a long key and lengthening a too-short key. A few uniquely-shortest keys are natural (up to 4 of 9) — do not purge them all; just never make shortest the rule.\n" +
-  "2. KEY PARAPHRASE [SCORED; advisory meter]. The keyed answer must PARAPHRASE the idea in fresh words — never reuse 5 or more consecutive content words from anywhere in the chapter, INCLUDING the review cards and the implementation plan. If a key echoes a sentence you already wrote, reword the key.\n" +
-  "3. PRACTICE CONCRETENESS [GATED floor: at least ONE of tryThisNow / the 24-hour challenge must be imperative-led with a number or timebox]. Write BOTH concrete [SCORED]: each names ONE action with a number or a timebox, concrete enough to start within a minute. The action's FORM comes from your dealt practice shapes — never default to a touch-this-object or say-this-aloud ritual (the same staging in every chapter reads as theater). No \"a, b, or c\" option menus — one move, not a menu.\n" +
-  "4. PLAIN LANGUAGE FROM SENTENCE ONE [GATED]. The gate measures Flesch ease 72-84 on the BREAKDOWN prose (fastRead+deepRead+fullRead) — land the band there; keep the rest of the chapter just as plain. Short sentences, common words, one idea per sentence. Open plain — no throat-clearing abstraction before the first concrete beat.\n" +
-  "5. DISTRACTOR TRANSFORM [SCORED; strawman-rate gate]. Write the KEY first, then TRANSFORM it: every wrong answer is the key warped by ONE of your brief's dealt failure modes — a smart half-reader would defend it out loud; a reader of YOUR prose can settle exactly why it fails. Never a generic bad practice; never rejectable without reading the chapter (unless the chapter explicitly teaches against that named move). KEY SUPPORT: every key must be defensible by pointing at a specific breakdown sentence that teaches it — a key the chapter never actually taught reads as arbitrary to the reader who did the work. CAUSAL STEMS: when a stem asks WHY something happened (what caused / what led to / what explains / the main reason), the key names the ONE specific cause your prose shows — never the outcome restated, never a remedy or lesson — and the distractors are plausible SIBLING causes a specific sentence of yours refutes. ECHO SYMMETRY: if the key uses the chapter's signature vocabulary, at least two distractors must too — the key is never the only choice that sounds like the chapter. Every explanation names why one tempting wrong answer fails, in varied wording each time — NEVER a fixed stem like \"If you chose (b):\" (identical stems ×81 is its own template). A deterministic gate still counts mechanical-distractor words (polish/announce/slides/deck/morale/optics/louder/inspire/motivate) book-wide and blocks above 7% — build from your dealt failure modes and these never appear. KEY IS A MOVE: the graded answer is a move the reader makes, not a source — a citation belongs in a distractor or the explanation, never the tested skill.\n" +
-  "6. SURFACES THAT TRANSFER [SCORED]. Review cards drill the reusable TOOL, not source trivia — at most 2 cards may hinge on a named source case; every other must be answerable by a reader applying the move in their own life. Practice prompts must be actions a person would do unprompted at a desk — if a prompt reads as a ritual or meta-exercise, write the plain version: a concrete action the reader can check they did (its FORM is dealt per chapter — do NOT reuse one 'return-proof' close everywhere). Each example must advance THIS CHAPTER'S JOB (declared in the VARIETY block) through a DIFFERENT facet or failure-mode — no two examples may teach the same lesson. If two would, merge them and spend the freed slot on a facet you have not shown yet; never invent a facet the source cannot ground.\n" +
-  "7. EXAMPLE CRAFT [SCORED]. Every example must dramatize a DECISION and its COMPLETED CONSEQUENCE — not relay the lesson: an actor with a real stake, their concrete action, the consequence landing, NARRATED in the scene's own voice. Never open a field with an evaluator question answered in the next clause. Vary WHO carries it per the CONTENT DEVICES deal — never a default invented proxy or a named person beyond the dealt cast; honor its proxy/stand-in bans. Where legitimate interests collide, one example must STAGE the clash — who pulls the other way, what it costs. An arc that never lands ('set, not met') is a FAILED example — finish it. Never let a scenario restate the move; if no source case has a concrete consequence, pick one that does — never invent facts to manufacture one.\n" +
-  "8. HOOK CARRIES A STAKE [SCORED]. Whatever opener mode is dealt, make the STAKE visible in plain words — who loses/pays/misses what; a bare activity or diagram description is a FAILED hook. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\" DOORWAY: land one concrete fastRead beat — someone acting or a cost landing, never a citation/publication date on its own — BEFORE the first abstract term. REGISTER: the reader never meets the machinery — no internal artifact or dealt beat label as the acting subject (not \"the case stops…\" or \"the return point\"), no drafting narration (\"in the weak version…\"); write the beat, not its name; quiz keys test what a reader can DO, not name the source lineage.\n" +
-  "9. TAKE-HOME SURFACES [SCORED]. The implementation plan leads with a SKILL NAME — imperative verb + concrete object, 2-5 words, never a virtue-noun (excellence/ownership) — e.g. \"Name the Local Signal\"; coreSkill OPENS with it. ≥1 memorableLine carries THIS chapter's central image; none reused across chapters.";
+  "CRAFT TARGETS — hit these on the first draft ([GATED] = a deterministic check forces a rewrite if missed; [SCORED] = the blinded reviewers weigh it):\n" +
+  "1. QUIZ DISTRACTORS [GATED]. Write the key first, then warp it into each distractor by one of the brief's dealt failure modes — a half-reader would defend a wrong answer aloud, and a reader of your prose settles exactly why it fails. Keep keys mid-length: a deterministic check caps uniquely-longest keys at one of nine and uniquely-shortest at four. For a WHY stem, the key names the one cause your prose shows — never the outcome restated or a remedy. A key tests a move the reader makes, never a source.\n" +
+  "2. PRACTICE [GATED floor]. tryThisNow and the 24-hour challenge each name one action with a number or a timebox, concrete enough to start within a minute; the FORM is your dealt practice shape, not a fixed ritual, and never an \"a, b, or c\" menu.\n" +
+  "3. EXAMPLES [SCORED]. Each example dramatizes a decision and its completed consequence in the scene's own voice, advances THIS chapter's job through a distinct facet, and carries whoever the CONTENT DEVICES deal assigns — never a default proxy. An arc that never lands is unfinished. Review cards drill the reusable move, not source trivia.\n" +
+  "4. HOOK [SCORED]. Make the stake visible in plain words — who loses, pays, or misses what — before the first abstract term. FAIL: \"The team maps functions to shared standards.\" PASS: \"It shipped late because no one owned the date.\"\n" +
+  "5. TAKE-HOME [SCORED]. coreSkill opens with a 2-5 word skill name (imperative verb + concrete object, never a virtue noun); at least one memorable line carries this chapter's central image.";
 
 /**
- * S-tier P5 (plan §C, fixes B10) — the acceptance rubric's demands, stated to the
- * writer. The blinded reviewers score insight/limits/density/tone/quizzes against
- * RUBRIC.md definitions the writer otherwise never sees: the halted `execution`
- * run scored insight 66 / density 62 / tone 67 while every chapter individually
- * passed — writers were graded on rules they were never given. Compact on purpose
- * (rule-count dilution is real — B7); every line is checkable while writing.
+ * WHAT THE REVIEWERS SCORE (was AUTHOR_PREMIUM_BLOCK) — IMP-05 diet. The blinded
+ * reviewers own scoring against RUBRIC.md; the card names each axis compactly. The
+ * VOICE 4-move mechanical formula was removed (a fixed formula is the anti-pattern
+ * the diet targets). History + moved-enforcement: docs/v25/IMP-05-REQUIREMENT-LEDGER.md.
+ * Version-stamped CARD_BLOCK_VERSIONS.premium.
  */
 export const AUTHOR_PREMIUM_BLOCK =
-  "WHAT PREMIUM MEANS — the independent reviewers score exactly these; hit them in the draft, not the retry:\n" +
-  "- INSIGHT: the counterintuition must REVERSE a default the reader actually holds, not restate the thesis politely. Your dealt example arcs already assign the outcomes — write the failure/partial slots as REAL friction, not staged stumbles.\n" +
-  "- LIMITS: say plainly when this chapter's move does NOT apply, what it costs, and when to do the opposite — one honest passage, living where your dealt LIMITS PLACEMENT puts it (not the same slot every chapter). Overselling is a scored defect.\n" +
-  "- DENSITY: every paragraph adds NEW information. Never restate the previous paragraph in fresh words; never reuse a sentence across fastRead/deepRead/fullRead — each tier must ADD, not re-say.\n" +
-  "- PLAIN WORDS: any load-bearing term — COINED here (a 'return pass') or INHERITED from the source — must be unpacked in plain words at first use, one clause in the flow. Never dodge a vocabulary budget by minting jargon. Action fields (tryThisNow/24h challenge/weeklyPractice) carry ZERO coined shorthand — restate needed terms plainly in the same sentence.\n" +
-  "- READER AGENCY: teach the move so a reader with NO title power can run it today — at least one example or paragraph applies it to the reader's own promises, projects, or role choices, not only to people they manage.\n" +
-  "- VOICE: this book's voice, not a house voice — four concrete moves: (1) in deepRead/fullRead, never let more than 2 consecutive paragraphs open on an abstraction; break runs with a person, scene, or object. (2) At least twice per tier, land a ≤6-word sentence beside a ≥25-word one — varied placement, not a ritual pair. (3) Ask 1-3 real rhetorical questions somewhere in the chapter. (4) Only the dealt +anchor example slots carry a physical/sensory detail — everywhere else, none.\n" +
-  "- QUIZZES: a reader who skipped the chapter should score ~33%, not 60% — wrong answers must tempt someone who half-read. Explanations teach why the wrong answer fails, not only why the right one is right.";
+  "WHAT THE REVIEWERS SCORE — name the axis, hit it in the draft (not the retry):\n" +
+  "- INSIGHT: the counterintuition reverses a default the reader actually holds, not a polite restatement of the thesis.\n" +
+  "- LIMITS: one honest passage on where the move does NOT apply, what it costs, and when to do the opposite. Overselling is a scored defect.\n" +
+  "- DENSITY: every paragraph and every read-tier (fastRead/deepRead/fullRead) adds new information — never restate.\n" +
+  "- PLAIN WORDS: unpack every load-bearing term, coined or inherited, in plain words at first use; action fields carry zero coined shorthand.\n" +
+  "- READER AGENCY: someone with no title power can run the move today — at least one example applies it to the reader's own choices, not only to people they manage.\n" +
+  "- VOICE: this book's voice, not a house voice — vary sentence length and rhythm; break long abstract runs with a person, scene, or object.\n" +
+  "- QUIZZES: a chapter-skipper scores ~33%, not 60%; every explanation teaches why the tempting wrong answer fails, not only why the key is right.";
 
 /** Compact ChapterV21 schema hint — field names + types only, one line, the same
  *  style sectionTasks.ts uses for section artifacts. */
@@ -358,23 +387,17 @@ export function authorSchemaHint(bookId: string, chapterNumber: number): string 
   return `{"schemaVersion":"chapterflow-v21-authored","chapterId":"${chapterId}","number":${chapterNumber},"title":"...","readingTimeMinutes":7,"hook":"...(60-120 chars)","counterintuition":"...(1-2 sentences)","tryThisNow":"...(80-220 chars)","keyTakeaway":"...(140-220 chars)","breakdown":{"fastRead":"...(~400-700 chars)","deepRead":"...(~1200-1800 chars)","fullRead":"...(~2500-3500 chars)"},"examples":[{"exampleId":"ex01","title":"...","tags":["..."],"planSpec":{"domain":"...","audience":"...","stakes":"...","format":"...","requiredBeat":"..."},"scenario":"...(280-520 chars)","whatToDo":"...(120-240 chars)","whyItMatters":"...(120-240 chars)"}],"quiz":{"passingScorePercent":70,"questions":[{"questionId":"q01","prompt":"...","choices":["...","...","..."],"correctIndex":0,"explanation":"...(120-300 chars; why the move works)","bloomsLevel":"apply","depthLevel":"standard"}]},"reviewCards":[{"cardId":"c01","front":"...(30-200 chars)","back":"...(80-400 chars)","difficulty":"medium"}],"implementationPlan":{"title":"...(2-5 word skill name)","coreSkill":"<skill name>. ...(2-4 sentences)","ifThenPlans":[{"context":"...","plan":"If X, then Y."}],"twentyFourHourChallenge":"...","weeklyPractice":"..."},"memorableLines":[{"text":"...(exact sentence from the chapter; >=1 carries the central image)","location":"breakdown.deepRead","why":"..."}]}`;
 }
 
-/** SELF-VERIFY block (7 checks; kept <= 1400 chars — pinned by test. The ceiling rose
- *  from 1200 to 1300 for the CF-A HOOK, CF-D TERMS and CF-E TAKE-HOME items (5-7),
- *  net of a KEYS/LENGTH tightening; 1300 → 1400 for the CF-J item-4 SCAFFOLD clause
- *  (page/section citations are internal coordinates, never reader prose — the
- *  radical-candor §7 apparatus-leakage class; measured 1381). The cap still fights
- *  rule-count dilution). */
+/** SELF-VERIFY (IMP-05 instruction 10): the ordered HIGHEST-RISK checks whose
+ *  answer is structured evidence, not a restatement of the whole prompt. Four
+ *  checks; the rest of the old seven are owned by their gates/critics (see the
+ *  ledger). Kept <= 900 chars — pinned by test. */
 export function authorSelfVerify(bookId: string, chapterNumber: number, outputRelPath?: string): string {
   const relPath = outputRelPath ?? authorChapterRelPath(bookId, chapterNumber);
-  return `SELF-VERIFY before declaring done — run ALL SEVEN:
-1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex, and its explanation argue for exactly that choice. A key tests a move, not a source. Mismatch: re-key or rewrite.
-2. FACTS — confirm every claim, number, name, and case detail traces to the SOURCE PACKET above. Anything you cannot trace: delete or soften it. Never invent precision.
-3. LENGTH — confirm the chapter fits the brief's length budget. Over: cut, never compress by jargon. Under: deepen a real case, never pad.
-4. SCAFFOLD — scan every reader-facing field for scaffold vocabulary (slot names, shape/beat labels, anchor ids, "Fact 2"-style numbering, internal " / " label seams). Page/section citations (Ch./p./pp./"on page N") are internal coordinates, never reader prose. None may appear.
-5. HOOK — point at the stake (who loses/pays/misses what) and the fastRead's concrete beat before its first abstract term.
-6. TERMS — name the 2-4 terms this chapter stands on; confirm each got a plain first-use unpacking.
-7. TAKE-HOME — coreSkill opens with the skill name; no coined shorthand in actions; one memorableLine carries the central image, none reused.
-Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fix and re-run until clean.`;
+  return `SELF-VERIFY before you exit — the conductor gates ${relPath} the moment you do, and a blocker costs a full rewrite:
+1. KEYS — derive every quiz answer from your prose alone, blind; each must hit the stored correctIndex and test a move, not a source. Mismatch: re-key or rewrite.
+2. FACTS — every claim, number, name, and case detail traces to the SOURCE PACKET and obeys the SOURCE-USE PLAN. Untraceable: delete or soften.
+3. SCAFFOLD — no reader-facing field carries scaffold vocabulary (slot/shape/beat labels, anchor ids, "Fact 2" numbering, page/section citations, " / " label seams) or names the machinery.
+4. COMPLETE — every required field present and full: hook, the three read tiers, the dealt example count, nine quiz questions, cards, the implementation plan (coreSkill opens with the skill name), memorable lines.`;
 }
 
 /** STIER-2 D7/D9 — deterministic write-time contract checks that need the BRIEF in
@@ -390,6 +413,43 @@ Then run: npx tsx src/cli.ts gate-chapter ${relPath} — 0 blockers required; fi
  *  run shipped a "19-minute challenge" and a 12-vs-10-minute discrepancy. */
 export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
 
+/** IMP-05 instruction 13: version-stamp each control block so evidence (IMP-10)
+ *  can identify card drift independent of the per-chapter data payload. Bump the
+ *  matching version whenever a block's text changes. */
+export const CARD_BLOCK_VERSIONS = {
+  precedence: "precedence-v1",
+  invariants: "invariants-v1",     // was AUTHOR_HOUSE_RULES
+  qualityBar: "quality-bar-v2",    // v2 = IMP-05 diet
+  premium: "premium-v2",           // v2 = IMP-05 diet
+  schemaHint: "schema-hint-v1",
+  selfVerify: "self-verify-v2",    // v2 = IMP-05 diet (7→4 checks)
+  dataEnvelope: UNTRUSTED_ARTIFACT_RENDERER_VERSION,
+} as const;
+
+/** The version-stamped CONTROL text of the card (invariant blocks only — excludes
+ *  the per-chapter brief/packet/plan data payload and the relPath-specific
+ *  self-verify tail), plus its hash. Lets IMP-10 evidence detect a card-composition
+ *  change without diffing the whole rendered card. */
+export function authorCardComposition(): { versions: typeof CARD_BLOCK_VERSIONS; controlSha256: string } {
+  const control = [
+    AUTHOR_PRECEDENCE,
+    AUTHOR_HOUSE_RULES,
+    AUTHOR_QUALITY_BAR,
+    AUTHOR_PREMIUM_BLOCK,
+    JSON.stringify(CARD_BLOCK_VERSIONS),
+  ].join("\n\n");
+  return { versions: CARD_BLOCK_VERSIONS, controlSha256: sha256Hex(control) };
+}
+
+/** IMP-05 instruction 12: prompt-size telemetry. `chars` is the normalized card
+ *  length; `instructions` counts the numbered/bulleted directive lines across the
+ *  control blocks (the rule-count-dilution signal). Pure. */
+export function authorCardMetrics(card: string): { chars: number; instructions: number; controlChars: number } {
+  const instructions = (card.match(/^\s*(?:\d+\.|-)\s+\S/gm) ?? []).length;
+  const controlChars = AUTHOR_PRECEDENCE.length + AUTHOR_HOUSE_RULES.length + AUTHOR_QUALITY_BAR.length + AUTHOR_PREMIUM_BLOCK.length;
+  return { chars: card.length, instructions, controlChars };
+}
+
 /** STIER-2 M-lane (owner-directed): the author WRITE/REGEN sessions are pinned to an
  *  explicit model + reasoning effort instead of inheriting whatever the operator's
  *  ~/.codex/config.toml says that day. xhigh = the top codex tier — one level above
@@ -397,7 +457,7 @@ export const ROUND_TIMER_MINUTES = new Set<number>(ROUND_TIMER_MINUTES_LIST);
  *  halted run's ambient default was very likely already xhigh, so NO content gain is
  *  booked to this pin — it buys provenance, reproducibility, and timeout headroom.
  *  Reviewers/readers/QC/research stay untouched (instrument stability). */
-export const AUTHOR_WRITER_MODEL = process.env.CHAPTERFLOW_AUTHOR_MODEL ?? "gpt-5.5";
+export const AUTHOR_WRITER_MODEL = process.env.CHAPTERFLOW_AUTHOR_MODEL ?? BASELINE_MODEL;
 export const AUTHOR_WRITER_EFFORT = (process.env.CHAPTERFLOW_AUTHOR_EFFORT ?? "xhigh") as
   "minimal" | "low" | "medium" | "high" | "xhigh";
 /** xhigh whole-chapter writes need headroom over the 30-min codex default; the same-host
@@ -429,21 +489,38 @@ export function authorWriteContractFindings(
   }
 
   // D7 — lead-thread presence (v3 briefs only; legacy briefs skip by construction).
+  //
+  // IMP-09 (F-016): the old check reduced the case label to its FIRST
+  // capitalized ASCII token ("Vincent van Gogh" → "Vincent") and rejected
+  // chapters that carried the thread under the SURNAME ("Van Gogh",
+  // "Malamud" — the R2 false negatives that burned regens and halted entry 1).
+  // The invariant is unchanged — the dealt lead must carry the fastRead and
+  // ≥2 examples — but presence is now judged against the COMPILER-DERIVED
+  // alias set (brief.leadThread.aliases when dealt; else derived at check time
+  // from the SAME deterministic utility): full label, family name with
+  // particles, given name, diacritic-folded variants. A chapter using NO form
+  // of the dealt name still fails — matching normalizes presentation
+  // (case/diacritics/possessives/hyphens), never word choice, and no alias is
+  // ever inferred beyond the label (leadAliases.ts).
   const lead = brief?.leadThread;
   if (lead?.name) {
-    const token = lead.kind === "invented"
-      ? lead.name
-      : (lead.name.split(/\s+/).find((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !/^(The|This|That|When|What|From|Into|With)$/.test(w)) ?? "");
-    if (token) {
-      const hasToken = (text: string | undefined) => new RegExp(`\\b${token.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\b`).test(text ?? "");
-      if (!hasToken(chapter.breakdown?.fastRead)) {
-        complaints.push(`lead thread: the dealt lead ${lead.kind === "invented" ? lead.name : `case "${lead.name}"`} never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line).`);
+    // Suffix demotion (G3) runs at CHECK time too: dealt briefs minted before
+    // the hardening carry raw alias arrays that still list bare suffix tokens.
+    const aliases = suppressGenericSuffixAliases(
+      lead.name,
+      (lead.aliases && lead.aliases.length > 0 ? lead.aliases : leadAliasSet(lead.name))
+        .filter((a) => typeof a === "string" && a.trim().length >= 3),
+    );
+    if (aliases.length > 0) {
+      const hasLead = (text: string | undefined) => anyAliasPresent(text, aliases);
+      if (!hasLead(chapter.breakdown?.fastRead)) {
+        complaints.push(`lead thread: the dealt lead ${lead.kind === "invented" ? lead.name : `case "${lead.name}"`} never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). Any natural form of the name counts (full name, surname).`);
       }
       const exampleHits = (chapter.examples ?? []).filter((ex) =>
-        hasToken(typeof ex.scenario === "string" ? ex.scenario : undefined) || hasToken(ex.title) || hasToken(ex.whatToDo) || hasToken(ex.whyItMatters),
+        hasLead(typeof ex.scenario === "string" ? ex.scenario : undefined) || hasLead(ex.title) || hasLead(ex.whatToDo) || hasLead(ex.whyItMatters),
       ).length;
       if (exampleHits < 2) {
-        complaints.push(`lead thread: the dealt lead (${token}) appears in ${exampleHits} example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.`);
+        complaints.push(`lead thread: the dealt lead (${lead.name}) appears in ${exampleHits} example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.`);
       }
     }
   }
@@ -530,6 +607,10 @@ export type AuthorCardArgs = {
    *  EXPLICIT writer instructions. null when the brief md is present but the json is not
    *  readable (the md already carries the VARIETY section, so the card degrades gracefully). */
   brief?: ChapterBriefV1 | null;
+  /** IMP-03: the compiler-owned source-use plan. Renders the binding license
+   *  block (origin/form/claim-strength/detail permissions) + plan hash. Omitted/
+   *  null → legacy books render exactly the pre-plan card (no block). */
+  plan?: SourceUsePlanV1 | null;
   /** Model-bakeoff isolation: write the chapter to this pipeline-relative path instead of
    *  the canonical state/chapters/ path. ORCHESTRATION DATA ONLY — the card's substantive
    *  content is byte-identical across candidates; only this path (and the session id, which
@@ -551,6 +632,10 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
     "(fastRead ⊂ deepRead ⊂ fullRead), 4-6 examples, a 9-question quiz, review cards, implementation plan " +
     "(2-3 if-then plans + 24-hour challenge + weekly practice), memorable lines.",
   );
+
+  // IMP-05 instruction 3: the precedence contract rides first, so no lower-priority
+  // style/deal line can override a source or schema invariant.
+  sections.push("", AUTHOR_PRECEDENCE);
 
   // B0 (STIER-2, grill 2b #1): the card used to carry every dealt VARIETY line TWICE —
   // once inside the embedded brief md and once in the explicit block below — doubling
@@ -619,20 +704,42 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   styleLines.push("", AUTHOR_PREMIUM_BLOCK);
   sections.push(...styleLines);
 
+  // IMP-03: research-derived material is DATA and rides inside the typed
+  // untrusted-artifact envelope — instruction-like text inside the packet
+  // (or a reviewer complaint) is quoted evidence, never a new instruction
+  // channel. The conductor's own instructions stay OUTSIDE the blocks.
   sections.push(
     "",
     "SOURCE PACKET (writer projection)",
     "This is the ONLY allowed factual material. Every claim, number, name, and case detail must trace to it. Invent connective narration, not facts.",
     "Facts marked \"sharedSpine\" are the book's shared framework — EVERY chapter carries them. Reference them briefly through this chapter's own angle; never re-derive them at full length (nine chapters each re-teaching the spine is how a book becomes one stamped template). Your chapter's OWN core move is never spine-marked: teach it in full — the fast read alone must still leave the core idea.",
-    JSON.stringify(writerPacketProjection(packet), null, 1),
+    "Facts carrying \"replicationStatus\" below robust are contested evidence: hedge them (\"evidence is mixed…\"), never state them as settled law. Case \"doNotRestamp\" specifics are protected: never move them onto other people, places, or dates.",
+    untrustedArtifact(
+      "source-packet-projection",
+      `${bookId}/ch${nn}`,
+      WRITER_PACKET_PROJECTION_SCHEMA_VERSION,
+      JSON.stringify(writerPacketProjection(packet), null, 1),
+      "json",
+    ),
   );
+
+  // IMP-03: the compiler-owned license table — conductor-rendered instruction
+  // text (trusted), bound to this attempt by the plan hash it carries.
+  if (args.plan) {
+    sections.push("", ...renderSourceUsePlanLines(args.plan));
+  }
 
   if (args.complaints && args.complaints.length > 0) {
     sections.push(
       "",
       "PRIOR-ATTEMPT COMPLAINTS",
-      "Your previous attempt failed independent review for the following specific reasons. Do not repeat them:",
-      ...args.complaints.map((c) => `- ${c}`),
+      "Your previous attempt failed independent review. Fix every defect described in the data block below — the same independent review will re-read your new draft:",
+      untrustedArtifact(
+        "reviewer-finding",
+        `${bookId}/ch${nn} prior-attempt complaints`,
+        "complaint-lines-v1",
+        args.complaints.map((c) => `- ${c}`).join("\n"),
+      ),
     );
   }
 
@@ -652,8 +759,86 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
 // ── One whole-chapter writer ──────────────────────────────────────────────────
 
 export type AuthorWriteOneResult =
-  | { ok: true; sessionId: string }
-  | { ok: false; reason: string };
+  | { ok: true; sessionId: string; committed?: true }
+  | { ok: true; sessionId: string; committed: false; pending: PreparedAuthorCandidate }
+  | {
+      ok: false;
+      reason: string;
+      /** Structured producer failure; forward validation must never reinterpret
+       * infrastructure/state/schema failures as weak prose and spend a new
+       * author candidate. Optional only for legacy injected test doubles. */
+      failureKind?: "CONTENT" | "INFRASTRUCTURE" | "STATE_OR_PROVENANCE" | "PROMPT_OR_CONTRACT";
+    };
+
+/**
+ * A fully generated and deterministically validated chapter that is still held
+ * inside the conductor-owned attempt workspace.  It has not touched canonical
+ * chapter state.  IMP-22's forward review conductor owns this value until the
+ * reader, source, and quiz lanes aggregate to PASS, then calls
+ * `commitPreparedAuthorCandidate` exactly once.
+ */
+export type PreparedAuthorCandidate = {
+  bookId: string;
+  chapterNumber: number;
+  chapterId: string;
+  sessionId: string;
+  attempt: ChapterAttempt;
+  bytes: string;
+  chapter: ChapterV21;
+  plan: SourceUsePlanV1 | null;
+  pendingLeadOverride: LeadThreadOverrideV1 | null;
+  /** The exact IO instance that minted the attempt and therefore owns its CAS
+   * base. Keeping it bound prevents a caller from reviewing under one fixture
+   * root and committing into another. */
+  io: AuthorIo;
+};
+
+export type PreparedAuthorCompilerInputsV1 = {
+  sourcePacket: SourcePacketV1;
+  sourcePlan: SourceUsePlanV1;
+  sourcePacketSha256: string;
+  sourcePlanSha256: string;
+};
+
+/**
+ * Re-read the compiler-owned packet AND source-use plan through the exact IO
+ * instance that minted a prepared candidate.  This is the authoritative
+ * commit-boundary freshness check: in-memory objects cannot prove that either
+ * on-disk compiler artifact stayed unchanged during a long review.
+ */
+export function readPreparedAuthorCompilerInputs(
+  prepared: PreparedAuthorCandidate,
+): PreparedAuthorCompilerInputsV1 | { error: string } {
+  const { bookId, chapterNumber, chapterId, plan, attempt, io } = prepared;
+  if (!plan) return { error: "prepared candidate has no compiler-owned source-use plan" };
+  let sourcePacket: SourcePacketV1 | null;
+  let sourcePlan: SourceUsePlanV1 | null;
+  try { sourcePacket = io.readPacket(bookId, chapterNumber); }
+  catch (error) { return { error: `current source packet is unreadable (${(error as Error).message})` }; }
+  try { sourcePlan = io.readSourcePlan(bookId, chapterNumber); }
+  catch (error) { return { error: `current source-use plan is unreadable (${(error as Error).message})` }; }
+  if (!sourcePacket) return { error: "current source packet is missing" };
+  if (!sourcePlan) return { error: "current compiler-owned source-use plan is missing" };
+  if (sourcePacket.bookId !== bookId || sourcePacket.chapterNumber !== chapterNumber || sourcePacket.chapterId !== chapterId) {
+    return { error: "current source packet identity differs from the prepared candidate" };
+  }
+  if (sourcePlan.bookId !== bookId || sourcePlan.chapterNumber !== chapterNumber) {
+    return { error: "current source-use plan identity differs from the prepared candidate" };
+  }
+  const sourcePacketSha256 = sourcePacketHash(sourcePacket);
+  const sourcePlanSha256 = sourceUsePlanHash(sourcePlan);
+  const expectedPacketSha256 = attempt.identity.inputHashes.sourcePacket;
+  const expectedPlanSha256 = attempt.identity.inputHashes.sourceUsePlan ?? attempt.identity.sourcePlanHash;
+  if (sourcePacketSha256 !== expectedPacketSha256) return { error: "current source packet hash differs from the prepared/reviewed packet" };
+  if (sourcePlanSha256 !== expectedPlanSha256 || sourcePlanSha256 !== sourceUsePlanHash(plan)) {
+    return { error: "current source-use plan hash differs from the prepared/reviewed plan" };
+  }
+  const planErrors = validateSourceUsePlan(sourcePlan);
+  if (planErrors.length > 0) return { error: `current source-use plan fails its frozen contract (${planErrors.slice(0, 3).join("; ")})` };
+  const stale = sourceUsePlanStale(sourcePlan, sourcePacket);
+  if (stale) return { error: `current source-use plan is stale against the current source packet (${stale})` };
+  return { sourcePacket, sourcePlan, sourcePacketSha256, sourcePlanSha256 };
+}
 
 export type AuthorWriteOneOpts = {
   complaints?: string[];
@@ -671,7 +856,207 @@ export type AuthorWriteOneOpts = {
    *  CHAPTERFLOW_AUTHOR_EFFORT, defaults unchanged). */
   model?: string;
   effort?: "minimal" | "low" | "medium" | "high" | "xhigh";
+  /** IMP-11 migration-experiment seam: exactly ONE first-write attempt — no gate
+   *  retry, no lead degradation (the experiment's one-attempt rule; a bounded
+   *  infrastructure replay lives at the SAMPLE layer, never here). Production
+   *  callers never set this; the default budget is unchanged. */
+  firstWriteOnly?: boolean;
+  /** IMP-11 Stage-D prompt-stack seam: transform the fully-built author card
+   *  before the first spawn (frozen snapshot stacks substitute their template).
+   *  Consulted once for the base card; production callers never set this. */
+  cardOverride?: (base: string, ctx: { bookId: string; chapterNumber: number; outputRelPath: string }) => string;
+  /** Additional immutable experiment-control hashes to stamp into every minted
+   * attempt identity (for example the IMP-22 production instrument seal). */
+  attemptInputHashes?: Record<string, string>;
+  /** IMP-22 forward-only production seam.  When true, return the validated
+   * candidate without committing canonical state.  Only the forward review
+   * conductor may later commit it, after split-lane aggregation returns PASS. */
+  deferCommit?: boolean;
 };
+
+export type CommitPreparedAuthorCandidateDeps = Pick<AutopilotDeps, "log"> & {
+  /** ACTIVE conductor evidence persisted after the canonical/provenance writes
+   * land but before the required-evidence bracket closes. The callback returns
+   * an undo action for CAS rollback paths. */
+  forwardReviewEvidence?: {
+    resultSha256: string;
+    persistAndReadBack: () => void | (() => void);
+  };
+};
+
+/**
+ * Commit a prepared author candidate after semantic acceptance.  The helper
+ * rechecks source lineage after the potentially long review window and then
+ * performs the existing compare-and-swap transaction.  Provenance, lead
+ * override, diversity evidence, and attempt finalization happen only after the
+ * atomic replacement succeeds.
+ */
+export function commitPreparedAuthorCandidate(
+  prepared: PreparedAuthorCandidate,
+  deps: CommitPreparedAuthorCandidateDeps,
+): AuthorWriteOneResult {
+  const {
+    bookId, chapterNumber, chapterId, sessionId, attempt, bytes, chapter, plan,
+    pendingLeadOverride, io,
+  } = prepared;
+  const nn = String(chapterNumber).padStart(2, "0");
+
+  if (plan) {
+    const fresh = readPreparedAuthorCompilerInputs(prepared);
+    if ("error" in fresh) {
+      const reason = `ch${nn}: source lineage went STALE during split-lane review (${fresh.error}) — candidate rejected; recompile packets+plans and re-run`;
+      finalizeAttempt(attempt, "validation_failed", reason);
+      deps.log(`[autopilot] author ch${nn}: ${reason}`);
+      return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
+    }
+  }
+
+  // Preserve every companion record before entering the canonical bracket. If
+  // a required write/read-back fails after the chapter swap, reconciliation can
+  // restore the exact prior state instead of leaving a PASS-looking hybrid.
+  const previousLeadOverride = pendingLeadOverride ? io.readLeadOverride(bookId, chapterNumber) : null;
+  const previousProvenance = io.readProvenance(chapterId);
+  const contentHash = chapterContentHash(chapter);
+  const requiredEvidence = {
+    authorProvenanceBindingSha256: hashCanonical({ chapterId, sessionId, contentHash }),
+    leadOverrideSha256: pendingLeadOverride ? hashCanonical(pendingLeadOverride) : null,
+    ...(deps.forwardReviewEvidence ? { forwardReviewResultSha256: deps.forwardReviewEvidence.resultSha256 } : {}),
+  };
+
+  const committed = commitChapterCandidate({ attempt, bytes, io, requiredEvidence });
+  if (!committed.ok) {
+    let detail = committed.reason;
+    if (committed.outcome === "infrastructure_failure" && committed.canonicalLanded) {
+      const reconciled = reconcileCommittedChapterCandidate({
+        attempt,
+        committedSha256: committed.committedSha256,
+        previousBytes: committed.previousBytes,
+        io,
+        cause: committed.reason,
+      });
+      detail += reconciled.ok
+        ? `; ${reconciled.detail}`
+        : `; ${reconciled.detail}; operator reconciliation required`;
+    }
+    const reason = `ch${nn}: ${detail}`;
+    finalizeAttempt(attempt, committed.outcome, detail);
+    deps.log(`[autopilot] author ch${nn}: ${reason}`);
+    return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
+  }
+
+  let rollbackForwardReviewEvidence: (() => void) | null = null;
+  const failRequiredEvidence = (label: string, error: unknown, restoreLeadOverride: boolean, restoreProvenance: boolean): AuthorWriteOneResult => {
+    const baseCause = `${label}: ${(error as Error).message.split("\n")[0]}`;
+    const companionFailures: string[] = [];
+    if (rollbackForwardReviewEvidence) {
+      try { rollbackForwardReviewEvidence(); }
+      catch (restoreError) {
+        companionFailures.push(`forward-review evidence rollback failed: ${(restoreError as Error).message.split("\n")[0]}`);
+      }
+      rollbackForwardReviewEvidence = null;
+    }
+    if (restoreLeadOverride && pendingLeadOverride) {
+      try {
+        if (previousLeadOverride) io.writeLeadOverride(bookId, chapterNumber, previousLeadOverride);
+        else io.removeLeadOverride(bookId, chapterNumber);
+      } catch (restoreError) {
+        companionFailures.push(`lead-override rollback failed: ${(restoreError as Error).message.split("\n")[0]}`);
+      }
+    }
+    if (restoreProvenance) {
+      try { io.restoreProvenance(chapterId, previousProvenance); }
+      catch (restoreError) {
+        companionFailures.push(`provenance rollback failed: ${(restoreError as Error).message.split("\n")[0]}`);
+      }
+    }
+    const cause = baseCause + (companionFailures.length > 0 ? `; ${companionFailures.join("; ")}` : "");
+    const reconciliation = reconcileCommittedChapterCandidate({
+      attempt,
+      committedSha256: committed.committedSha256,
+      previousBytes: committed.previousBytes,
+      io,
+      cause,
+      companionStateUnreconciled: companionFailures.length > 0,
+    });
+    const reconciliationDetail = reconciliation.ok
+      ? reconciliation.detail
+      : `${reconciliation.detail}; operator reconciliation required`;
+    const reason = `ch${nn}: required commit evidence did not persist (${cause}); ${reconciliationDetail}`;
+    finalizeAttempt(attempt, "infrastructure_failure", reason);
+    deps.log(`[autopilot] author ch${nn}: ${reason}`);
+    return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
+  };
+
+  if (pendingLeadOverride) {
+    try {
+      io.writeLeadOverride(bookId, chapterNumber, pendingLeadOverride);
+      const persisted = io.readLeadOverride(bookId, chapterNumber);
+      if (!persisted || hashCanonical(persisted) !== hashCanonical(pendingLeadOverride)) {
+        throw new Error("lead override read-back does not match the accepted override");
+      }
+      deps.log(`[autopilot] author ch${nn}: lead override persisted after accepted commit (chNN.lead-override.json).`);
+    } catch (err) {
+      return failRequiredEvidence("lead override persistence failed", err, true, false);
+    }
+  }
+
+  try {
+    io.recordProvenance(chapterId, sessionId, contentHash);
+    const persisted = io.readProvenance(chapterId);
+    if (
+      !persisted
+      || persisted.schemaVersion !== "author-provenance-v2"
+      || persisted.chapterId !== chapterId
+      || persisted.authorSessionId !== sessionId
+      || persisted.contentHash !== contentHash
+    ) {
+      throw new Error("author provenance read-back does not match the accepted session/content binding");
+    }
+  } catch (err) {
+    return failRequiredEvidence("author provenance persistence failed", err, pendingLeadOverride !== null, true);
+  }
+
+  if (deps.forwardReviewEvidence) {
+    try {
+      const undo = deps.forwardReviewEvidence.persistAndReadBack();
+      rollbackForwardReviewEvidence = typeof undo === "function" ? undo : null;
+    } catch (err) {
+      return failRequiredEvidence("forward review-result persistence failed", err, pendingLeadOverride !== null, true);
+    }
+  }
+
+  const evidenceFinalized = finalizeChapterCommitEvidence({
+    attempt,
+    committedSha256: committed.committedSha256,
+    requiredEvidence,
+    io,
+  });
+  if (!evidenceFinalized.ok) {
+    return failRequiredEvidence(
+      "required commit-evidence finalization failed",
+      new Error(evidenceFinalized.reason),
+      pendingLeadOverride !== null,
+      true,
+    );
+  }
+  rollbackForwardReviewEvidence = null;
+
+  const divRec = recordChapterDiversity({
+    root: io.diversityLedgerRoot?.(),
+    bookId,
+    chapterNumber,
+    chapter,
+    plan,
+    attemptKind: attempt.identity.attemptKind,
+    committedGeneration: attempt.identity.expectedBaseGeneration + 1,
+  });
+  if (divRec && attempt.evidenceRoot) {
+    recordAttemptObject(attempt.evidenceRoot, attempt.identity.attemptId, "diversity-features", JSON.stringify(divRec) + "\n");
+  }
+  finalizeAttempt(attempt, "committed");
+  deps.log(`[autopilot] author ch${nn}: done (accepted candidate committed atomically)`);
+  return { ok: true, sessionId, committed: true };
+}
 
 /**
  * Author ONE chapter: build the card, spawn the writer (workspace-write, a
@@ -695,19 +1080,43 @@ export async function authorWriteOneChapter(
   const writerEffort = opts.effort ?? AUTHOR_WRITER_EFFORT;
 
   const briefMd = io.readBriefMd(bookId, chapterNumber);
-  if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first` };
+  if (!briefMd) return { ok: false, reason: `ch${nn}: no rendered brief (chNN.brief.md) — run compile-chapter-briefs first`, failureKind: "STATE_OR_PROVENANCE" };
   const packet = io.readPacket(bookId, chapterNumber);
-  if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first` };
+  if (!packet) return { ok: false, reason: `ch${nn}: no source packet — run compile-source-packets first`, failureKind: "STATE_OR_PROVENANCE" };
 
-  // Write-failure restore (fresh-gold live finding, 2026-07-08): writer sessions land
-  // their draft on disk BEFORE the gate/rubric/contract self-checks below. When every
-  // attempt fails, disk must not keep an UNREVIEWED failing draft: restore the prior
-  // bytes (they were reviewed or at least gate-known), or REMOVE the orphan when no
-  // chapter existed before — otherwise the next entry sees the failed draft as an
-  // existing chapter and blindly reviews it as if it had passed its write checks
-  // (observed live: high-output-management ch14 — an 87-composite original was
-  // replaced by a lead-contract-failing draft and lost).
-  const preWriteBytes = io.readChapterFile(bookId, chapterNumber);
+  // IMP-03: load the compiler-owned source-use plan. ABSENT → legacy path
+  // (pre-plan books author exactly as before; absence grants nothing). PRESENT →
+  // fail-closed: contract-invalid, unreadable, or stale-against-the-packet all
+  // REFUSE to author — a plan that no longer matches its packet must be
+  // recompiled upstream, never silently ignored or trusted.
+  let plan: SourceUsePlanV1 | null = null;
+  try {
+    plan = io.readSourcePlan(bookId, chapterNumber);
+  } catch (err) {
+    return { ok: false, reason: `ch${nn}: source-use plan exists but is unreadable (${(err as Error).message.split("\n")[0]}) — recompile source packets`, failureKind: "STATE_OR_PROVENANCE" };
+  }
+  if (plan) {
+    const planErrors = validateSourceUsePlan(plan);
+    if (planErrors.length > 0) {
+      return { ok: false, reason: `ch${nn}: source-use plan fails its frozen contract — ${planErrors.slice(0, 3).join("; ")} — recompile source packets`, failureKind: "PROMPT_OR_CONTRACT" };
+    }
+    const stale = sourceUsePlanStale(plan, packet);
+    if (stale) {
+      return { ok: false, reason: `ch${nn}: source-use plan is STALE — ${stale} — recompile source packets before authoring`, failureKind: "STATE_OR_PROVENANCE" };
+    }
+  }
+
+  // IMP-01 (F-001/F-020): the writer never touches the canonical path. Every
+  // attempt gets an isolated workspace (the agent's cwd and ONLY writable dir);
+  // the candidate is validated in memory against the COMMITTED book and lands
+  // via one compare-and-swap atomic commit. The 2026-07-08 preWriteBytes
+  // restore lane this replaced is structurally unnecessary now — a failed
+  // attempt never changed canonical bytes to begin with, so there is nothing
+  // to restore and no window where an unreviewed draft shadows reviewed bytes.
+  const candidateName = chapterFileName(chapterId);
+  // Sibling/gate context follows the same override the io hooks use (bakeoff
+  // slot roots pass outputRelPath + slot-rooted io; production = canonical).
+  const canonicalAbs = resolve(PIPELINE_DIR, relPath);
 
   const machineBrief = io.readBrief(bookId, chapterNumber);
   // Authoritative total-chapter count (works before all chapters exist on disk) —
@@ -737,11 +1146,16 @@ export async function authorWriteOneChapter(
   // card would carry two disagreeing LEAD THREAD/cast signals.
   const voice = io.voiceCard(bookId);
   const mkCard = (brief: ChapterBriefV1 | null, md: string): string => buildAuthorCard({
-    bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief,
-    outputRelPath: opts.outputRelPath,
+    bookId, chapterNumber, totalChapters, briefMd: md, packet, voice, complaints: opts.complaints, brief, plan,
+    // IMP-01: the agent-facing output path is the candidate file in its own
+    // working directory — never a repository path.
+    outputRelPath: candidateName,
   });
   const briefMdEffective = effectiveBrief !== machineBrief && effectiveBrief ? renderBriefMd(effectiveBrief) : briefMd;
-  const baseCard = mkCard(effectiveBrief, briefMdEffective);
+  const builtCard = mkCard(effectiveBrief, briefMdEffective);
+  const baseCard = opts.cardOverride
+    ? opts.cardOverride(builtCard, { bookId, chapterNumber, outputRelPath: candidateName })
+    : builtCard;
   if (baseCard.length > AUTHOR_CARD_MAX_CHARS) {
     deps.log(`[autopilot] author ch${nn}: card is ${baseCard.length} chars (> ${AUTHOR_CARD_MAX_CHARS} target) — proceeding, but the packet/brief deserve a diet`);
   }
@@ -761,16 +1175,22 @@ export async function authorWriteOneChapter(
 
   let card = baseCard;
   let lastReason = "";
+  let lastFailureKind: "CONTENT" | "INFRASTRUCTURE" | "STATE_OR_PROVENANCE" | "PROMPT_OR_CONTRACT" = "CONTENT";
   // CF-I-2 (owner decision 4): the C31–C35 register/machinery advisories surfaced as
   // retry fix lines. This closure loads the just-written draft and returns the labelled
   // block (or "" when clean/unreadable). It is ONLY ever appended to a card already
   // built for a BLOCKING failure (gate blocker, rubric FAIL, write-contract FAIL), so
   // an advisory NEVER triggers a retry by itself and NEVER changes a pass/fail predicate
   // — it only changes the TEXT the next attempt sees. Best-effort, deterministic.
-  const advisoryRegisterBlock = (): string => {
+  const advisoryRegisterBlock = (candidate?: ChapterV21): string => {
     try {
-      const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-      return draft ? registerAdvisoryRetryBlock(draft) : "";
+      // IMP-01: in-loop retries pass the failed CANDIDATE (it is not on disk);
+      // the attempt-1 regen seed still reads the prior committed draft.
+      const draft = candidate ?? io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+      // IMP-04: pass the source-use plan so the C37 source-register advisories
+      // (claim-strength overreach, unsupported scene, generic-specific leak) ride
+      // the same retry/repair routing as C31-C36. No-op without a plan.
+      return draft ? registerAdvisoryRetryBlock(draft, plan) : "";
     } catch { return ""; }
   };
   // CF-I regen surfacing (live re-mint, multipliers ch02): a REGEN is always requested
@@ -794,7 +1214,8 @@ export async function authorWriteOneChapter(
   let activeBrief = effectiveBrief;
   let degraded: { from: string; to: { kind: "invented" | "owned-case"; name: string }; castEmptied: boolean } | null = null;
   let degradedFailedOnLead = false;
-  for (let attempt = 1; attempt <= baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES; attempt++) {
+  const maxAttempts = opts.firstWriteOnly === true ? 1 : baseAttempts + AUTHOR_WRITE_LEAD_DEGRADE_RETRIES;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
     if (attempt > baseAttempts) {
       // The extra slot exists ONLY for bounded lead degradation (F-1).
       if (nonLeadFailure || leadOnlyContractFails !== baseAttempts) break;
@@ -826,6 +1247,32 @@ export async function authorWriteOneChapter(
     }
     const label = attempt === 1 ? `author-ch${nn}` : attempt > baseAttempts ? `author-ch${nn}-degraded` : `author-ch${nn}-retry${attempt - 1}`;
     const sessionId = deps.mkSessionId(label);
+    // IMP-01: mint the attempt AFTER the card is final (its hash is part of the
+    // immutable identity). The workspace is the writer's cwd — its ONLY writable
+    // directory; the canonical path is not reachable by this session at all.
+    const chAttempt = mintChapterAttempt({
+      bookId,
+      chapterNumber,
+      chapterId,
+      attemptKind: isRegen ? "author-regeneration" : "author-initial",
+      attemptSequence: attempt,
+      promptSha256: sha256Hex(card),
+      // IMP-03 lineage: the attempt is bound to the exact plan/packet/projection/
+      // brief/renderer it was authored under — a change to any of them changes
+      // these hashes, staling every dependent artifact (F-004..F-007 requirement 14).
+      sourcePlanHash: plan ? sourceUsePlanHash(plan) : undefined,
+      inputHashes: {
+        sourcePacket: sourcePacketHash(packet),
+        writerProjection: sha256Hex(JSON.stringify(writerPacketProjection(packet))),
+        briefMd: sha256Hex(briefMdEffective),
+        ...(plan ? { sourceUsePlan: sourceUsePlanHash(plan) } : {}),
+        untrustedArtifactRenderer: UNTRUSTED_ARTIFACT_RENDERER_VERSION,
+        ...(opts.attemptInputHashes ?? {}),
+      },
+      io,
+      attemptsRoot: io.attemptsRoot(),
+      evidenceRoot: io.evidenceRoot?.(),
+    });
     deps.log(`[autopilot] author ch${nn}: whole-chapter writer working (attempt ${attempt}, card ${card.length} chars, ${writerModel} @ ${writerEffort}, timeout ${Math.round(AUTHOR_WRITE_TIMEOUT_MS / 60000)}min)`);
     // M-lane: pinned model/effort/timeout. The runner REJECTS on timeout (SIGKILL) —
     // catch it into the structured retry path; an unhandled throw here would escape
@@ -834,9 +1281,11 @@ export async function authorWriteOneChapter(
     try {
       r = await deps.spawn({
         task: card,
+        role: "author-writer",
         sessionId,
-        cwd: PIPELINE_DIR,
+        cwd: chAttempt.workspaceDir,
         sandbox: "workspace-write",
+        skipGitRepoCheck: true,
         model: writerModel,
         reasoningEffort: writerEffort,
         timeoutMs: AUTHOR_WRITE_TIMEOUT_MS,
@@ -856,35 +1305,89 @@ export async function authorWriteOneChapter(
           stderr: (err as Error)?.message ?? String(err), durationMs: 0, sessionId,
         });
       } catch { /* best-effort: never convert a spawn error into a log error */ }
+      finalizeAttempt(chAttempt, "infrastructure_failure", lastReason);
+      lastFailureKind = "INFRASTRUCTURE";
       card = `${baseCard}\n\nPREVIOUS ATTEMPT DID NOT COMPLETE\nYour previous session was cut off before finishing. Write the complete chapter file this time.`;
       nonLeadFailure = true;
       continue;
     }
     try { deps.logSession(bookId, label, r); } catch { /* best-effort */ }
-    if (!r.ok) deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
+    // The broker may replace the minted request id with a distinct id for the
+    // one permitted infrastructure replay. Provenance must name the execution
+    // that actually produced the candidate, never the pre-spawn placeholder.
+    const authorSessionId = typeof r.sessionId === "string" && r.sessionId.length > 0 ? r.sessionId : sessionId;
+    // IMP-10: link the spawn's IMP-00 effective-context manifest + store the
+    // rendered card and final message content-addressed (no-op unless evidence
+    // is enabled for this attempt). Best-effort — observability never gates.
+    if (chAttempt.evidenceRoot) {
+      recordSpawnEvidence({
+        evidenceRoot: chAttempt.evidenceRoot,
+        attemptId: chAttempt.identity.attemptId,
+        taskCard: card,
+        finalMessage: r.finalMessage,
+        executionContextManifestPath: (r as { manifestPath?: string }).manifestPath,
+        atIso: new Date().toISOString(),
+      });
+    }
+    if (!r.ok) {
+      deps.log(`[autopilot] author ch${nn}: writer exited ${r.exitCode}`);
+      lastFailureKind = "INFRASTRUCTURE";
+    }
 
-    if (!io.chapterExists(bookId, chapterNumber)) {
-      lastReason = `ch${nn}: writer session ${sessionId} exited ${r.exitCode} without writing ${relPath}`;
-      card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${relPath}. Write the complete chapter file this time.`;
+    // IMP-01: anything in the workspace beyond the single candidate file is an
+    // unexpected write — a first-class attempt failure, never tolerated (F-020).
+    const smuggled = unexpectedAttemptWrites(chAttempt);
+    if (smuggled.length > 0) {
+      lastReason = `ch${nn}: writer session ${authorSessionId} wrote unexpected workspace file(s): ${smuggled.join(", ")}`;
+      finalizeAttempt(chAttempt, "unexpected_write", lastReason);
+      lastFailureKind = "STATE_OR_PROVENANCE";
+      card = `${baseCard}\n\nPREVIOUS ATTEMPT WROTE UNEXPECTED FILES\nWrite EXACTLY one file (${candidateName}). Your previous session also wrote: ${smuggled.join(", ")} — do not create any other file.`;
+      nonLeadFailure = true;
+      continue;
+    }
+    const imported = importCandidate(chAttempt);
+    if (!imported.ok) {
+      const missing = imported.reason.startsWith("no candidate file");
+      lastReason = `ch${nn}: writer session ${authorSessionId} exited ${r.exitCode} — ${imported.reason}`;
+      finalizeAttempt(chAttempt, imported.outcome, imported.reason);
+      lastFailureKind = "PROMPT_OR_CONTRACT";
+      card = missing
+        ? `${baseCard}\n\nPREVIOUS ATTEMPT WROTE NO FILE\nYour previous session ended without creating ${candidateName}. Write the complete chapter file this time.`
+        : `${baseCard}\n\nPREVIOUS ATTEMPT WROTE A MALFORMED FILE\nYour previous session's ${candidateName} was rejected: ${imported.reason}. Write the complete, valid chapter JSON this time.`;
+      nonLeadFailure = true;
+      continue;
+    }
+    const candidate = imported.chapter;
+
+    // IMP-03 (requirement 5/13): a candidate carrying source-plan control fields
+    // is an attempted downstream relabel of compiler-owned semantics (origin/
+    // form/claim-strength/permissions) — writers may REQUEST an upstream change,
+    // never mutate those fields in their output. First-class attempt failure.
+    const planMutation = embeddedPlanMutationFindings(candidate);
+    if (planMutation.length > 0) {
+      lastReason = `ch${nn}: writer session ${authorSessionId} embedded source-plan control field(s) in the chapter output (${planMutation.slice(0, 5).join(", ")}) — origin/form/claim-strength changes route upstream through source-plan recompile, never through writer output`;
+      finalizeAttempt(chAttempt, "validation_failed", lastReason);
+      lastFailureKind = "STATE_OR_PROVENANCE";
+      deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
+      card = `${baseCard}\n\nPREVIOUS ATTEMPT EMBEDDED PLAN CONTROL FIELDS\nYour previous ${candidateName} carried compiler-owned source-plan fields (${planMutation.slice(0, 5).join(", ")}). The source-use plan is not yours to write or edit: remove every such field and write ONLY the ChapterV21 content schema. If you believe a license is wrong, say so in prose in your final message — do not relabel.`;
       nonLeadFailure = true;
       continue;
     }
 
-    const gate = await deps.runVerb(["gate-chapter", relPath]);
+    const gate = await io.gateCandidate(candidate, canonicalAbs, relPath);
     if (gate.code === 0) {
       if (priorHash) {
-        let freshHash: string | undefined;
-        try {
-          const fresh = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-          freshHash = fresh ? chapterContentHash(fresh) : undefined;
-        } catch { /* fall through — unreadable counts as changed */ }
-        if (freshHash && freshHash === priorHash) {
+        // IMP-01: the no-op check reads the CANDIDATE (the prior draft is still
+        // the committed canonical — a regen that reproduces it produced nothing).
+        const freshHash = chapterContentHash(candidate);
+        if (freshHash === priorHash) {
           // Fail immediately, no retry: the gate-retry budget exists for gate
           // blockers, not for a session that ignored explicit complaints. The
           // chapter stays failing and the caller's cap/halt logic reports it.
-          const reason = `ch${nn}: regen session ${sessionId} left the chapter byte-identical — a failing chapter regenerated to the same bytes is still failing`;
+          const reason = `ch${nn}: regen session ${authorSessionId} left the chapter byte-identical — a failing chapter regenerated to the same bytes is still failing`;
+          finalizeAttempt(chAttempt, "validation_failed", reason);
           deps.log(`[autopilot] author ch${nn}: ${reason}`);
-          return { ok: false, reason };
+          return { ok: false, reason, failureKind: "CONTENT" };
         }
       }
       // Rubric preflight for THIS chapter (Phase-3 live finding, 2026-07-02:
@@ -892,7 +1395,7 @@ export async function authorWriteOneChapter(
       // deterministic reader-facing metrics (Flesch band, distractor tell,
       // transfer ratio, memorable lines) are as binding as the ship gate in
       // the author arch — a FAIL feeds the retry card like a gate blocker.
-      const rubric = await deps.runVerb(["rubric-metrics", bookId]);
+      const rubric = await io.rubricWithCandidate(bookId, chapterNumber, candidate);
       // Capture THIS chapter's `chNN:` verdict line AND its follow-on
       // `chNN fix: …` reason lines. formatRubricMetrics emits the W2 card-quality
       // repair instructions (length-tell / practice-floor) as indented `chNN fix:`
@@ -913,7 +1416,7 @@ export async function authorWriteOneChapter(
         let tellEvidence = "";
         if (/tellRate/.test(rubricBlock)) {
           try {
-            const draft = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
+            const draft = candidate;
             const evid: string[] = [];
             for (const q of draft?.quiz?.questions ?? []) {
               const choices = (q.choices ?? []).map((c) => {
@@ -934,19 +1437,18 @@ export async function authorWriteOneChapter(
             }
           } catch { /* best-effort evidence — the metric block still stands */ }
         }
+        finalizeAttempt(chAttempt, "validation_failed", lastReason);
         card = `${baseCard}\n\nRUBRIC PREFLIGHT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but FAILED the deterministic reader-metrics preflight. Rewrite the chapter so ALL of these clear:\n${rubricBlock}${tellEvidence}\nHow to read it: ease must land in 72-84 (write plainer, shorter sentences); tell must be <= 0.2 (at most ONE of the 9 keys may be the uniquely longest choice — fix the listed questions); transfer must be >= 0.7 (most quiz questions test a NEW scenario, not recall); memClean >= 2 (short portable memorable lines); lenTell — the key may be the uniquely SHORTEST choice in at most 4 of 9 questions and the uniquely LONGEST in at most 1 of 9 (the same caps as your quality bar — fix only the questions over a cap; do NOT purge every length extreme, that mints the opposite tell); practice — tryThisNow or the 24-hour challenge must be imperative-led with a concrete number/timebox; echo (advisory) — paraphrase any key that reuses 5+ consecutive words from the chapter.`;
-        card += advisoryRegisterBlock();
+        card += advisoryRegisterBlock(candidate);
         nonLeadFailure = true;
         continue;
       }
       // STIER-2 D7/D9 — the write-time contract (lead thread + timer sanity) runs with
       // the BRIEF in scope, same retry semantics as the rubric preflight. Deterministic,
-      // evidence-first complaints (the proven repair pattern).
-      let writtenChapter: ChapterV21 | undefined;
-      try {
-        writtenChapter = io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-      } catch { /* unreadable → skip the contract check; the gate already passed */ }
-      if (writtenChapter) {
+      // evidence-first complaints (the proven repair pattern). IMP-01: the contract
+      // reads the CANDIDATE directly — no disk round-trip, no unreadable case.
+      const writtenChapter: ChapterV21 = candidate;
+      {
         // F-1: the contract runs against the ACTIVE brief — the effective (override-
         // resolved) brief normally, the degraded-lead brief on the extra attempt —
         // so a degraded lead is verified at exactly the same strength.
@@ -957,68 +1459,70 @@ export async function authorWriteOneChapter(
             if (attempt > baseAttempts) degradedFailedOnLead = true; // the DEGRADED lead is now proven uncarriable too
           } else nonLeadFailure = true;
           lastReason = `ch${nn}: STIER-2 write contract FAIL — ${contract.join(" | ")}`;
+          finalizeAttempt(chAttempt, "validation_failed", lastReason);
           deps.log(`[autopilot] author ch${nn}: ${lastReason}`);
           card = `${baseCard}\n\nWRITE-CONTRACT FAILURES FROM YOUR PREVIOUS ATTEMPT\nYour previous draft passed the structural gate but broke the dealt write contract. Rewrite the chapter so ALL of these clear:\n${contract.map((c) => `- ${c}`).join("\n")}`;
-          card += advisoryRegisterBlock();
+          card += advisoryRegisterBlock(candidate);
           continue;
         }
       }
-      // F-1: a degraded lead that LANDED is persisted to the sidecar so every future
-      // entry (write, review-regen, repair contract re-check) resolves the chapter's
-      // ACTUAL lead instead of re-dealing the proven-uncarriable one. Keyed on the
-      // COMPILED brief's dealt lead (the staleness guard); best-effort but LOUD —
-      // a persist failure means the next entry re-degrades from scratch.
-      if (degraded) {
-        try {
-          io.writeLeadOverride(bookId, chapterNumber, {
-            schemaVersion: "lead-thread-override-v1",
-            bookId: normSlug(bookId),
-            chapterNumber,
-            failedLead: machineBrief?.leadThread?.name ?? degraded.from,
-            lead: degraded.to,
-            cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
-            failedLeads: [...new Set([degraded.from, ...(leadMemory?.failedLeads ?? [])])],
-            reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
-            at: new Date().toISOString(),
-          });
-          deps.log(`[autopilot] author ch${nn}: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "${degraded.to.name}".`);
-        } catch (err) {
-          deps.log(`[autopilot] author ch${nn}: degraded lead LANDED but the lead-override sidecar could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will re-fail on the dealt lead and re-degrade; fix the briefs dir permissions.`);
+      // F-1 / IMP-22: prepare the degraded-lead sidecar, but do not persist it
+      // before the candidate itself is semantically accepted and atomically
+      // committed.  A rejected pending candidate must leave every canonical
+      // acceptance surface untouched.
+      const pendingLeadOverride: LeadThreadOverrideV1 | null = degraded ? {
+        schemaVersion: "lead-thread-override-v1",
+        bookId: normSlug(bookId),
+        chapterNumber,
+        failedLead: machineBrief?.leadThread?.name ?? degraded.from,
+        lead: degraded.to,
+        cast: degraded.castEmptied ? [] : (activeBrief?.cast ?? []),
+        failedLeads: [...new Set([degraded.from, ...(leadMemory?.failedLeads ?? [])])],
+        reason: `lead-thread contract failed ${leadOnlyContractFails}× on "${degraded.from}"; degraded per F-1 (bounded write-time recovery)`,
+        at: new Date().toISOString(),
+      } : null;
+      // IMP-03 freshness: the plan was verified against the packet at ENTRY; the
+      // writer ran for many minutes since. Re-verify the source lineage right
+      // before commit — a packet recompiled mid-attempt means this candidate was
+      // authored under licenses that no longer exist. Reject; never rebase.
+      if (plan) {
+        const freshPacket = io.readPacket(bookId, chapterNumber);
+        if (!freshPacket || sourceUsePlanStale(plan, freshPacket)) {
+          const reason = `ch${nn}: source lineage went STALE mid-attempt (the source packet changed since this attempt's plan was verified) — candidate rejected; recompile packets+plans and re-run`;
+          finalizeAttempt(chAttempt, "validation_failed", reason);
+          deps.log(`[autopilot] author ch${nn}: ${reason}`);
+          return { ok: false, reason, failureKind: "STATE_OR_PROVENANCE" };
         }
       }
-      // Success: bind author provenance to the authored content (create-once per
-      // content; a conflict means a prior author of identical bytes stands).
-      try {
-        const chapter = writtenChapter ?? io.loadChapters(bookId).find((c) => c.number === chapterNumber);
-        io.recordProvenance(chapterId, sessionId, chapter ? chapterContentHash(chapter) : undefined);
-      } catch (err) {
-        deps.log(`[autopilot] author ch${nn}: provenance unchanged (${(err as Error).message.split(".")[0]})`);
+      const prepared: PreparedAuthorCandidate = {
+        bookId,
+        chapterNumber,
+        chapterId,
+        sessionId: authorSessionId,
+        attempt: chAttempt,
+        bytes: imported.bytes,
+        chapter: candidate,
+        plan,
+        pendingLeadOverride,
+        io,
+      };
+      if (opts.deferCommit === true) {
+        deps.log(`[autopilot] author ch${nn}: deterministic validation clean; candidate held in attempt workspace pending split-lane review`);
+        return { ok: true, sessionId: authorSessionId, committed: false, pending: prepared };
       }
-      deps.log(`[autopilot] author ch${nn}: done (gate-chapter clean)`);
-      return { ok: true, sessionId };
+      return commitPreparedAuthorCandidate(prepared, deps);
     }
     const report = reportOf(gate);
     lastReason = `ch${nn}: gate-chapter still blocks after attempt ${attempt}:\n${report.slice(0, 1500)}`;
-    card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${relPath} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared, then re-run gate-chapter until clean:\n${report.slice(0, 2000)}`;
-    card += advisoryRegisterBlock();
+    finalizeAttempt(chAttempt, "validation_failed", lastReason);
+    card = `${baseCard}\n\nGATE BLOCKERS FROM YOUR PREVIOUS ATTEMPT\nYour previous draft of ${candidateName} failed the deterministic gate. Rewrite the chapter (regenerate — do not minimally patch) so every blocker below is cleared:\n${report.slice(0, 2000)}`;
+    card += advisoryRegisterBlock(candidate);
     nonLeadFailure = true;
   }
-  // All attempts failed — never leave the last (unreviewed, self-check-failing)
-  // draft on disk. Restore the pre-write bytes, or remove the orphan draft when
-  // this was a missing-chapter write. Best-effort: a cleanup error must not mask
-  // the real failure reason.
-  try {
-    const nowBytes = io.readChapterFile(bookId, chapterNumber);
-    if (preWriteBytes !== null && nowBytes !== preWriteBytes) {
-      io.writeChapterFile(bookId, chapterNumber, preWriteBytes);
-      deps.log(`[autopilot] author ch${nn}: all write attempts failed — restored the pre-write chapter bytes (a failed draft must not replace known bytes).`);
-    } else if (preWriteBytes === null && nowBytes !== null) {
-      io.removeChapterFile(bookId, chapterNumber);
-      deps.log(`[autopilot] author ch${nn}: all write attempts failed — removed the unreviewed failed draft (no prior chapter existed; the next entry must re-write it, not review it).`);
-    }
-  } catch (err) {
-    deps.log(`[autopilot] author ch${nn}: write-failure cleanup itself failed (${(err as Error).message.split("\n")[0]}) — disk may hold an unreviewed failed draft.`);
-  }
+  // All attempts failed. IMP-01: nothing to restore — no attempt ever wrote the
+  // canonical path, so the last reviewed/known bytes are exactly what disk holds
+  // (the 2026-07-08 restore lane this replaced is structurally unnecessary).
+  deps.log(`[autopilot] author ch${nn}: all write attempts failed — canonical bytes untouched (candidates retained under .attempts/ for forensics).`);
   // F-1 honesty: when the bounded degradation also failed, the halt names BOTH
   // leads — the operator must see that the fallback was tried, not just the last
   // attempt's complaint. Failure MEMORY persists so the NEXT entry's degradation
@@ -1048,9 +1552,9 @@ export async function authorWriteOneChapter(
     } catch (err) {
       deps.log(`[autopilot] author ch${nn}: lead-failure memory could not be persisted (${(err as Error).message.split("\n")[0]}) — the next entry will replay this degradation cycle.`);
     }
-    return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}` };
+    return { ok: false, reason: `ch${nn}: lead degradation did not converge — dealt lead "${degraded.from}" failed ${baseAttempts} lead-only contract attempts and the degraded lead "${degraded.to.name}" also failed: ${lastReason || "no reason recorded"}`, failureKind: "CONTENT" };
   }
-  return { ok: false, reason: lastReason || `ch${nn}: writer failed` };
+  return { ok: false, reason: lastReason || `ch${nn}: writer failed`, failureKind: lastFailureKind };
 }
 
 // ── The write phase ───────────────────────────────────────────────────────────
@@ -1059,7 +1563,33 @@ export type AuthorWriteOptions = {
   maxParallel: number;
   heartbeat?: () => boolean;
   io?: Partial<AuthorIo>;
+  /** Central future-authoring seam. The default remains the established local
+   * baseline writer; an explicitly resolved ACTIVE forward runtime injects the
+   * chapter writer returned by createForwardAuthorChapterWriter. */
+  writeOneChapter?: AuthorWriteOneInvoker;
+  /** Temporary V4 shadow. Legacy writer always completes first and remains the
+   * returned authority; shadow failures/mismatches are report-only. */
+  legacyStateShadow?: {
+    adapter: LegacyAuthorStateAdapter;
+    planFor: (input: Readonly<{
+      bookId: string;
+      chapterNumber: number;
+      legacyResult: AuthorWriteOneResult;
+    }>) => LegacyAuthorShadowProjectionPlan | null;
+    report?: (input: Readonly<{
+      bookId: string;
+      chapterNumber: number;
+      report: LegacyAuthorShadowProjectionReport;
+    }>) => void;
+  };
 };
+
+export type AuthorWriteOneInvoker = (
+  bookId: string,
+  chapterNumber: number,
+  deps: AutopilotDeps,
+  opts: Omit<AuthorWriteOneOpts, "model" | "effort" | "deferCommit">,
+) => Promise<AuthorWriteOneResult>;
 
 const AUTHOR_WRITE_VERBS: ReadonlyArray<readonly [string[], string]> = [
   [["compile-source-packets"], "source-packets"],
@@ -1140,9 +1670,28 @@ export async function doAuthorWrite(
   deps.log(`[autopilot] author write: ${missing.length} missing chapter(s) of ${expected.length} (parallel ≤${opts.maxParallel})`);
 
   const failures: string[] = [];
+  const writeOneChapter = opts.writeOneChapter ?? authorWriteOneChapter;
   await mapPool(missing, opts.maxParallel, async (n) => {
     heartbeat(); // keep the run lock fresh across a long write phase
-    const r = await authorWriteOneChapter(bookId, n, deps, { io: opts.io });
+    const r = await writeOneChapter(bookId, n, deps, { io: opts.io });
+    // Temporary migration shadow: the established legacy operation above is
+    // complete before any V4 port runs. No shadow exception/result can replace
+    // `r`, suppress its failure, or turn it into success.
+    if (opts.legacyStateShadow) {
+      try {
+        const plan = opts.legacyStateShadow.planFor({ bookId, chapterNumber: n, legacyResult: r });
+        if (plan) {
+          const report = await opts.legacyStateShadow.adapter.projectLegacyAuthorOperation(plan);
+          opts.legacyStateShadow.report?.({ bookId, chapterNumber: n, report });
+          if (!report.ok) {
+            const failed = report.steps.filter((step) => !step.ok).map((step) => `${step.name}:${step.code ?? "FAILED"}`);
+            deps.log(`[autopilot] author ch${String(n).padStart(2, "0")}: V4 shadow mismatch/block (${failed.join(", ") || "semantic mismatch"}); legacy result remains authoritative`);
+          }
+        }
+      } catch (error) {
+        deps.log(`[autopilot] author ch${String(n).padStart(2, "0")}: V4 shadow exception (${(error as Error).message}); legacy result remains authoritative`);
+      }
+    }
     if (!r.ok) failures.push(r.reason);
   });
   if (failures.length > 0) {
@@ -1155,6 +1704,7 @@ export async function doAuthorWrite(
     haltPhase: "write",
     label: "author write",
     io: opts.io,
+    writeOneChapter: opts.writeOneChapter,
   });
 }
 
@@ -1213,6 +1763,10 @@ export async function ensureReaderBudgetsClean(
     haltPhase: "write" | "qc";
     label: string;
     io?: Partial<AuthorIo>;
+    /** Keep bounded budget repairs on the same central writer/reviewer route as
+     * first writes; otherwise an ACTIVE book could regress through a legacy
+     * direct-commit repair after passing the split lanes. */
+    writeOneChapter?: AuthorWriteOneInvoker;
     /** CONVERGENCE-SAFE PASS (2026-07-05): the current review bar. When present
      *  (review re-entry), a chapter holding a durable PASS at this bar is never
      *  full-re-authored by the budget-repair round. Omitted at the WRITE entry
@@ -1357,9 +1911,10 @@ export async function ensureReaderBudgetsClean(
     }
     deps.log(`[autopilot] ${opts.label}: reader budgets BLOCK (${blockers.length} finding(s)) — ONE bounded budget-repair round over ${targets.size} chapter(s): ${[...targets.keys()].sort((a, b) => a - b).map((n) => `ch${String(n).padStart(2, "0")}`).join(", ")}`);
     const repairFailures: string[] = [];
+    const writeOneChapter = opts.writeOneChapter ?? authorWriteOneChapter;
     await mapPool([...targets.entries()], opts.maxParallel, async ([n, complaints]) => {
       heartbeat();
-      const r = await authorWriteOneChapter(bookId, n, deps, { complaints, io: opts.io });
+      const r = await writeOneChapter(bookId, n, deps, { complaints, io: opts.io });
       if (!r.ok) repairFailures.push(r.reason);
     });
     if (repairFailures.length > 0) {

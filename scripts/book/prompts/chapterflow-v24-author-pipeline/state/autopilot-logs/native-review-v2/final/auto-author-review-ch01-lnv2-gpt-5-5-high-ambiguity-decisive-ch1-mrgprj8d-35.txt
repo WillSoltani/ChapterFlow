@@ -1,0 +1,89 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "b", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named moves matched to four different decision dangers, not as a generic pause or final check.",
+      "The yes-or-no vendor frame is the narrow-frame villain, and the prose says the first repair is widening live options.",
+      "Reality-testing asks for evidence that can surprise or hurt the favorite answer before the search becomes advocacy.",
+      "The old service line maps to Intel's memory-chip attachment, and the outsider question is the chapter's concrete distance move.",
+      "Overconfidence is countered by naming a wider range of futures, not by trusting one neat forecast line.",
+      "Steve Cole's logic is to fund parallel first passes so comparison teaches before commitment gets expensive.",
+      "The outsider question asks what a fresh leader would do without the legacy attachment; the prose rejects outsider superiority as the reason.",
+      "The chapter says the four villains affect framing, evidence, emotion, and forecasting, each requiring a different move.",
+      "The prose explicitly says good process raises the odds without promising that the happy ending arrives."
+    ],
+    "confidence": ["high", "high", "high", "medium", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "c is also defensible because the implementation plan says that when feeling drives the call, the reader should ask what will still matter after the mood cools.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q1 b gives away itself by listing all four WRAP terms while the distractors are generic.",
+      "Q2 b, Q3 c, Q5 a, Q6 c, Q7 a, Q8 a, and Q9 b reuse the chapter's exact phrasing or near-phrasing, making several answers guessable by vocabulary matching.",
+      "Correct answers are often the most specific procedural option, while distractors are broad, extreme, or plainly contrary."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 81,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 83,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "This is the chapter's strongest memorable line: concrete, compact, and tied to the core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "This cleanly explains confirmation bias as a mechanism rather than a label."
+    },
+    {
+      "quote": "If the current feeling starts driving the call, then Name the Villain First and ask what will still matter after the mood cools.",
+      "why": "This supports Q4 option c, making the intended key less clean."
+    },
+    {
+      "quote": "c) You should let the attachment speak, then ask what will still matter later.",
+      "why": "This quiz distractor is supported by the chapter's own implementation plan."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "STRUCTURALLY INVALID: the likely key is b because the stem mirrors Intel's outsider question, but c is also supported by the implementation plan's instruction to ask what will still matter after the mood cools.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are easy to guess by matching exact chapter phrasing, so the quiz tests recognition more than derivation in places.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: it names the four villains but shows little concrete decision consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-2",
+      "problem": "The two HopeLab examples overlap heavily, which weakens transfer variety even though both are on-topic and usable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong introductory chapter with a clear core model, memorable mechanism lines, good layering across fast/deep/full reads, and practical if-then guidance. Its biggest problem is quiz reliability: Q4 has two defensible answers from the prose, and several other items telegraph the correct choice by reusing the chapter's own phrases. I would not ship it yet against a professional bar until Q4 is repaired, but the prose itself is close."
+}
+```

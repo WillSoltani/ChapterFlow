@@ -1,0 +1,24 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-06T09:01:01.240Z",
+  "bookId": "start-with-why",
+  "runId": "book-run",
+  "stage": "qc",
+  "severity": "blocker",
+  "summary": "author acceptance REJECTED and every targeted chapter has already consumed its regen budget (cap 2 write attempts/chapter, global across review + acceptance rounds):\n  reader auto-author-book-reader-1-p3-mr8zoaep-18: comp=72.5 gate=PASS churn=HIGH — The sample is mostly sound and often useful: the quizzes are answerable, the core lenses transfer, and several lines would stick a week later. The main problem is not correctness but manufacture. Across chapters, the same machinery keeps reappearing: named company anchor, hard detail stays home, sec\n  reader auto-author-book-reader-2-p3-mr8zoaes-19: comp=71.3 gate=PASS churn=HIGH — The sample is quiz-sound and mostly clear, with no hard contradiction between prose and answer key. Its best moments are compact diagnostic lines that readers could actually reuse. The main weakness is severe cross-chapter sameness: each chapter leans on the same machinery of named anchors, second s\n  reader auto-author-book-reader-3-p3-mr8zoaeu-20: comp=77.5 gate=PASS churn=HIGH — The sample clears the correctness gate: I found the keyed quiz answers supported by the prose, with no hard contradiction or obvious factual corruption. As a learning product, it has real strengths: the review cards are mostly atomic, the quizzes are scenario based, and the best memorable lines are ",
+  "findings": [],
+  "artifacts": [
+    "state/qc/start-with-why.sweep.json"
+  ],
+  "recommendedFixes": [
+    "Use the QC repair brief/prompt for the latest round. Repair content only; never attest your own repair.",
+    "After edits, run qc-converge and then a fresh QC round."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge start-with-why",
+    "npx tsx src/cli.ts book-run start-with-why --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run start-with-why --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260706090101.7b833a64.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/qc.20260706090101.7b833a64.repair.json"
+}

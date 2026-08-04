@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Some distractors are weakened by absolutes such as \"every founder pair,\" \"only shorter wording,\" and \"only historical color,\" but I did not see a uniquely longest-choice tell."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 80,
+    "practical": 85,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 87,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The WHY does not make HOW smaller; HOW keeps WHY honest.",
+      "why": "Strong, memorable compression of the chapter's main move."
+    },
+    {
+      "quote": "Ask what comes back.",
+      "why": "Portable phrase that a reader could remember and use later."
+    },
+    {
+      "quote": "The pause is the consequence.",
+      "why": "This example consequence feels asserted more than shown, making transfer thinner than the main explanation."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The paused software order is thin-but-usable: it names a consequence but does not show a concrete decision path or enough before-to-after detail to make the example fully persuasive.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples rely on invented workplace names and compressed scenarios, so they transfer the rule but sometimes feel like lesson carriers rather than lived cases.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "A few wrong options are easier to eliminate because they use broad absolutes or obviously overextended claims, which slightly weakens diagnostic value.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. The core move is clear and sticky: begin with WHY, require a HOW that can carry it, and ask what proof comes back. The quiz is fair and the answer key is sound. The main weakness is transfer texture: the examples are usable but sometimes feel manufactured and compressed, especially where consequences are asserted rather than dramatized. Still, the summaries, limits, review cards, and implementation plan give a beginner enough structure to remember and apply the chapter."
+}
+```

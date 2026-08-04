@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "a", "c", "c", "b", "b", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers are giveaway phrased as authority/fame shortcuts, especially Q1c, Q2c, Q6c, and Q7c, so a reader can often reject them without close reading.", "No uniquely-longest-choice tell stood out as systematic."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 87,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 84,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "If HOW comes first, a neat tactic has to pretend it knows what it serves, and the price is a crowd of people nodding at words no one can judge.",
+      "why": "Strongest mechanism: it explains why sequence matters in memorable, concrete terms."
+    },
+    {
+      "quote": "Keep the hard detail with the story that earned it.",
+      "why": "Compact and sticky; it captures the chapter's transfer rule."
+    },
+    {
+      "quote": "Then it split.",
+      "why": "Weakest moment: abrupt wording makes the fast read feel clipped rather than clear."
+    },
+    {
+      "quote": "Because Sam Walton died in 1992 after building Walmart from Bentonville, yet the draft has stamped it to sound like Apple after 1985.",
+      "why": "This is vivid, but Chantal appears suddenly, which may momentarily distract a cold reader."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The sentence \"Then it split.\" is too abrupt; the referent and meaning are clear only after later context.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Chantal and Harper appear without setup, adding named-person friction in an otherwise direct teaching chapter.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer is derivable, but \"test a nearby mistake\" is less plain than the prose's stronger Ford idea: a stopping edge or scope check.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Some distractors are too easy to eliminate because they openly endorse fame, authority, or slogans, which the chapter repeatedly rejects.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against an 84 bar. The core move is clear and memorable: assign WHY holder, HOW operators, WHAT scale, and succession before letting visible growth stand in for proof. The chapter has strong mechanism, useful transfer, honest limits, and good layered summaries. Its main weaknesses are small clarity and quiz-design issues: a clipped fast-read sentence, a few sudden named examples, and some distractors that are easier to reject by tone than by derivation."
+}
+```

@@ -1,0 +1,185 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch09",
+  "chapterNumber": 9,
+  "title": "Dual Reporting",
+  "coreMove": "because some work must satisfy both professional standards and mission output",
+  "thesis": "Dual reporting gives two organizational dimensions a formal claim on the same work.",
+  "readerPromise": "After this chapter, a reader can because some work must satisfy both professional standards and mission output",
+  "ownedCases": [
+    {
+      "id": "ch09.ex.matrixEngineer",
+      "label": "Matrixed engineer"
+    },
+    {
+      "id": "ch09.ex.geographicSales",
+      "label": "Geographic sales overlay"
+    },
+    {
+      "id": "ch09.ex.conflictEscalation",
+      "label": "Escalated matrix conflict"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory control system",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "In-process quality inspection",
+    "Intel decision culture",
+    "Intel hybrid structure",
+    "Intel manager output formula"
+  ],
+  "cast": [
+    "Raymond",
+    "Addison",
+    "Beatrice",
+    "Theodore"
+  ],
+  "answerIndexPattern": [
+    0,
+    0,
+    2,
+    2,
+    1,
+    1,
+    0,
+    1,
+    2
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch02): venue: a living-room couch"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on assigned owners",
+    "venue: a working note on branch customer patterns",
+    "venue: a dinner table",
+    "frame: post-decision consequence that forces a correction",
+    "frame: a shared ritual observed in mid-action as it builds connection"
+  ],
+  "architectureFamily": "historical-narrative",
+  "openerType": "claim",
+  "challengeFrame": "replace-one-Y",
+  "practiceShape": "observe-then-note",
+  "exampleLenses": [
+    "dialogue-beat",
+    "before-after-ledger",
+    "postmortem"
+  ],
+  "practiceVerb": "count",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "partial",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "observe-then-note",
+    "single-imperative",
+    "if-then-trigger",
+    "two-step-sequence"
+  ],
+  "quizStemShapes": [
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis"
+  ],
+  "quizFailureModes": [
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing"
+  ],
+  "questionFactOrder": [
+    9,
+    6,
+    7,
+    5,
+    4,
+    2,
+    1,
+    8,
+    3
+  ],
+  "memorableShapes": [
+    "imperative",
+    "reversal",
+    "redefinition"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "appositive",
+  "idiomFamilies": [
+    "sensory-speak",
+    "mechanism-speak"
+  ],
+  "shellRegister": "verb-first",
+  "leadThread": {
+    "kind": "invented",
+    "name": "Raymond"
+  }
+}

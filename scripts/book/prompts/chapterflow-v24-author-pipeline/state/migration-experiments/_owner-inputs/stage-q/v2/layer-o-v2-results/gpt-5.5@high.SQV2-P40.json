@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P40",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery / templated scenario structure\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Ulric squares a marked-up agenda at Tuesday 8:57 a.m. in Conference Room C at Pelham Transit, operations analyst, with a water glass sweating onto the table.\",\"Hester touches two untouched coffees at Monday 7:03 a.m. in a corner table at Rowan's Cafe, school counselor, with a notebook with five bullet points.\",\"Ulric has a speech about how nobody listens to data.\",\"When he walks in smiling, the old angry speech rushes back.\",\"Ulric he must decide whether to accuse the room or speak from his own view.\",\"Hester she must decide whether to follow the sequence or chase the heat.\"],\"rationale\":\"The two examples use the same underlying machinery with nouns swapped: a named protagonist is placed in a highly specific timestamped setting with a tactile object, a workplace/interpersonal grievance is introduced, an emotionally charged prepared speech or impulse is contrasted with a more disciplined communication approach, and the final sentence frames an explicit either/or decision. The repeated syntax of the decision line, including the awkward pronoun construction, reinforces that this is structural reuse rather than merely shared theme.\"}"
+}

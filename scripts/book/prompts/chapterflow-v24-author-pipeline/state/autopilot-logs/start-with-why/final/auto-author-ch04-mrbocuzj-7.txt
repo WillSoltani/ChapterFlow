@@ -1,0 +1,11 @@
+Done: [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json)
+
+Verification passed:
+- `author-check` clean
+- `gate-chapter` PASS, 0 blockers, 0 majors, 0 minors
+- `quiz-verify` 9/9 matches with required key pattern `1,2,0,2,0,1,1,0,2`
+- `evidence-audit` found no evidence-integrity candidates
+- Rendered chars: `16,077`, inside the 12,800-19,200 budget
+- Distractor parity: 0 uniquely-longest keys, 2 uniquely-shortest keys
+
+Note: this checkout already has many unrelated dirty/untracked paths; I only edited the requested chapter file.

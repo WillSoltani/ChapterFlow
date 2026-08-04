@@ -1,0 +1,61 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Q3 choice c is the only option that preserves all three named anchors from the stem, making it partly guessable.",
+      "Q5 choice b echoes the prose very directly with 'belongs with Everett Rogers' and 'wrong source', so the answer stands out."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 87,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 89,
+    "insight": 88,
+    "density": 86,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Every broad ask sent too soon spends evidence the first believers have not earned.",
+      "why": "Strongest compact statement of the chapter's core mechanism."
+    },
+    {
+      "quote": "Early love can be real and still stop at the edge.",
+      "why": "Memorable limit that keeps the adoption lesson from overselling early enthusiasm."
+    },
+    {
+      "quote": "The source gives him a consumer-tech warning.",
+      "why": "This has a visible scaffold smell and sounds more like production metadata than reader-facing prose."
+    },
+    {
+      "quote": "What maps from the diffusion move before the club claims a pattern?",
+      "why": "The phrasing is abstract and makes the quiz item harder than the underlying concept."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct answer is plausible, but the stem is abstract and the 'second setting with its own hard marker' move is less directly taught before the quiz than most other quiz targets.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The setup is wordy and repeats 'bicycle shop' while using source-facing phrasing, which weakens the example's naturalness.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1, 3, and 5",
+      "problem": "Repeated phrases like 'The source gives...' make the examples feel slightly templated instead of fully reader-facing.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. The core move is clear and memorable: count first believers before widening the ask, keep evidence attached to its source, and do not mistake early enthusiasm for majority adoption. The summaries layer well, the practical advice is concrete, and the TiVo/Rogers/March anchors give the idea checkable ground. The main weaknesses are craft-level: a few examples show scaffold phrasing, and Q2 is more abstract than the rest of the quiz. None of that blocks learning or application."
+}
+```

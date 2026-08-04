@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors can be rejected without reading because they lean on rank, fame, title, or authority as obviously bad shortcuts.", "Correct options often carry the chapter's exact named anchors or vocabulary, while distractors sound generically bureaucratic or implausible."]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 82,
+    "transfer": 80,
+    "practical": 83,
+    "summaries": 88,
+    "tone": 78,
+    "limits": 88,
+    "insight": 86,
+    "density": 84,
+    "beginner": 81
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The audience is not waiting for your speech; your choices have already spoken.",
+      "why": "Strongest memorable line; it compresses the chapter's mechanism into a sentence a reader can reuse."
+    },
+    {
+      "quote": "Purity is not the aim.",
+      "why": "Good boundary-setting; it prevents the celery example from turning into moralizing."
+    },
+    {
+      "quote": "After lunch, source-fit reader Derek traced the fault back to rice milk.",
+      "why": "Worst tone defect; it sounds like internal production process rather than a real learner-facing example."
+    },
+    {
+      "quote": "The pass is headed for a miss because every named organization is being treated alike.",
+      "why": "Scaffold smell; 'pass' and 'miss' make the example feel like review machinery, not lived communication."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples 2-5",
+      "problem": "Several examples use internal review/process language such as source-fit reader, draft, pass, scope analyst, and headed for a miss. That weakens beginner approachability and makes the chapter feel authored from a QA pipeline rather than from reader-facing situations.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Distractors repeatedly telegraph wrongness through authority shortcuts: founder rank, club president title, Harley-Davidson fame, senior sponsor, respected consultant. A reader can often pick the answer by rejecting status-based options rather than deriving from the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The title promises listening, but the chapter mostly teaches visible signal consistency. Audience listening is named, but the actual act of listening is thinner than words/actions/symbols.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The named characters and time markers often add load without adding transfer value; the useful lesson is the anchor-fit rule, but the scenarios are cluttered with Presley, Derek, Lionel, Melanie, after lunch, near the end, and similar framing.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical sections",
+      "problem": "The action advice is directionally usable, but it stays abstract: schedule time, audit a page, mark parts. It would be stronger with one completed miniature before/after.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a coherent, memorable chapter with a strong central image: the cart speaks before the pitch. The layered reads work, the key mechanism is clear, and the limits section is unusually honest. I would not ship it at a professional 84 bar yet because the examples repeatedly expose process scaffolding and the quiz distractors are too easy to game through anti-authority tells. Clean those two issues and the chapter would be close."
+}
+```

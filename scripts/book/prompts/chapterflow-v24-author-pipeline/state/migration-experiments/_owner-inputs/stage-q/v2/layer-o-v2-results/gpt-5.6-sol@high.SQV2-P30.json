@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P30",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_ITEM_WITH_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations\",\"Chapter skill: Begin from the Third Story\",\"A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?\",\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to third story and creates room for new information.\"],\"rationale\":\"The two quiz instances duplicate the same scenario, choices, correct index, and substantive answer while changing only the chapter-skill label and a phrase in the explanation. The answer specifically invokes contrasting stories or viewpoints, which can assess beginning from the third story, but it does not separately test sorting out the three conversations or distinguish that mechanism's layers. The duplicated item therefore merely relabels one generic conversational response as evidence of two distinct chapter skills.\"}"
+}

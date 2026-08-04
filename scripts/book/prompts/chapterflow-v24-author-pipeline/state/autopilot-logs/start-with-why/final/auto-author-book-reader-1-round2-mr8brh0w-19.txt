@@ -1,0 +1,59 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 76,
+    "quizzes": 77,
+    "transfer": 81,
+    "practical": 73,
+    "summaries": 78,
+    "tone": 65,
+    "limits": 78,
+    "insight": 70,
+    "density": 62,
+    "beginner": 72
+  },
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Compact, portable, and likely to stick a week later."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Strong reversal with plain language and a clean memory hook."
+    },
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "A precise line that turns diffusion into a usable lens."
+    },
+    {
+      "quote": "A true detail becomes false grounding when it is moved to the wrong setting.",
+      "why": "Accurate, but this same meta-lesson repeats across chapters and drives noticeable churn."
+    },
+    {
+      "quote": "People owe people proof by a time they both understand.",
+      "why": "Shows the abstract house voice at its blurriest; it sounds clean but not natural."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is publishable on correctness: I found no keyed answer contradicted by the prose, no obvious fabricated facts, and no scaffold artifacts severe enough to veto. As a book sample, it is useful but highly templated. The strongest material gives readers durable lenses: separate push from reason, put belief before behavior, count first believers, and make metrics answer back with visible conduct. The weakness is sameness: each chapter leans on the same machinery of named anchors, hard details staying in their settings, second examples proving transfer, proxy characters, return points, and if-then drills. That makes the product coherent, but it also makes the chapters feel stamped from one architecture rather than individually authored."
+}
+```

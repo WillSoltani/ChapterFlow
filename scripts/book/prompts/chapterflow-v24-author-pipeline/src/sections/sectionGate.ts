@@ -17,6 +17,7 @@ import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { checkSentenceSanity } from "../critics/integrity.js";
 import { checkReadingLevel, checkBreakdownReadingEase } from "../critics/readingLevel.js";
+import { fleschReadingEase } from "../metrics/rubricMetrics.js";
 import { loadBannedPhrases } from "../critics/shared.js";
 import { checkBannedPhrases } from "../critics/register.js";
 import { longestCommonRunWords, sidecarSourceText } from "../critics/authoringContract.js";
@@ -25,6 +26,7 @@ import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { memorableLineScore } from "../optimizers/memorableLines.js";
 import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
+import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, type ChapterProseSource } from "./chapterProse.js";
 import {
   QUIZ_TELL_MAX_PER_CHAPTER,
   quizTransferFloor,
@@ -40,6 +42,14 @@ export type SectionFinding = {
   section?: SectionKind;
   path?: string;
   message: string;
+  /** Task 11aa — the cross-chapter grouping key (e.g. "venue:kitchen table") for
+   *  findings emitted by an anti-sameness gate that compares packs across
+   *  chapters. Lets the compiler port reconstruct the colliding phrase and the
+   *  full set of implicated chapters WITHOUT parsing the human message, so an
+   *  assembly blocker can evict the exact implicated cached packs and feed
+   *  cross-chapter avoid-context into the re-draft. Absent on per-chapter
+   *  findings. */
+  signature?: string;
 };
 
 export type SectionGateReport = {
@@ -234,9 +244,25 @@ export function validateAnchorHardSpecifics(
   value: unknown,
   label: string,
   min = 2,
+  // Cross-anchor combination over the cited specifics-rich anchors:
+  //   "all" (default) — EVERY specifics-rich cited anchor must be grounded (AND).
+  //     Correct for tier/example/quiz units, whose prose carries a 60+ word (or
+  //     350-2400 char) budget that can host every cited case's details.
+  //   "any" — grounding ONE specifics-rich cited anchor is enough (OR). Used ONLY
+  //     by the memorable-line check (SEC16): a memorable candidate inherits its
+  //     whole tier's sourceAnchorIds, so a tier citing several specifics-rich cases
+  //     would otherwise demand 2 verbatim specifics from EVERY case inside one
+  //     8-14-word aphorism — structurally unsatisfiable (Finding 20). The gate's
+  //     own intent ("build the unit from THE ANCHOR'S concrete details", singular)
+  //     is per-ONE-anchor grounding. When NO cited case is grounded we still emit
+  //     one blocker per unsatisfied anchor (message shape unchanged) so the retry
+  //     card can enumerate every option. Vacuous skip (no specifics-rich cited
+  //     anchor) still passes under both modes.
+  combine: "all" | "any" = "all",
 ): string[] {
   const haystack = text(value).toLowerCase();
   const problems: string[] = [];
+  let anySatisfied = false;
   for (const id of anchorArray(ids)) {
     const anchor = anchors.get(id);
     if (!anchor?.supportsClaimTypes?.includes(claimType)) continue;
@@ -245,8 +271,13 @@ export function validateAnchorHardSpecifics(
     const present = specifics.filter((specific) => specific && haystack.includes(specific.toLowerCase())).length;
     if (present < min) {
       problems.push(`${label} cites ${id} but uses ${present}/${min} required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
+    } else {
+      anySatisfied = true;
     }
   }
+  // OR: a single fully-grounded cited case clears the whole check; only when none
+  // is grounded do the per-anchor blockers surface (as alternatives to satisfy).
+  if (combine === "any" && anySatisfied) return [];
   return problems;
 }
 
@@ -1048,8 +1079,8 @@ function loadPacketSidecar(packet: SourcePacketV1): any | null {
   }
 }
 
-function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
-  const sidecar = loadPacketSidecar(packet);
+function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, selectedSidecar?: unknown): SectionFinding[] {
+  const sidecar = selectedSidecar === undefined ? loadPacketSidecar(packet) : selectedSidecar;
   if (!sidecar) {
     const p = packet.sourceSidecarPath;
     const pathDesc = typeof p === "string" && p ? p : "(not set)";
@@ -1246,6 +1277,13 @@ function crossChapterShellFindings(shells: ExampleShellOccurrence[]): SectionFin
       if (hit.reportable === false) continue;
       findings.push({
         checkId: synthetic ? "SEC37.example_synthetic_scene_shell" : "SEC80.example_cross_chapter_opening_shape",
+        // Task 11ae — stamp the grouping signature so the compiler port can evict the
+        // implicated cached packs (registry-driven). SEC37 is a synthetic-shell ban
+        // (fires at a single chapter, no keep-earliest-N semantics) — DELIBERATELY
+        // left unstamped so it keeps failing loud without eviction, and registered as
+        // a documented exemption in CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS
+        // (compilerApplicationPort) alongside SEC86 and SEC95.
+        signature: synthetic ? undefined : hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1272,6 +1310,7 @@ function crossChapterGenericContainerFindings(containers: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC85.example_repeated_action_container",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1303,6 +1342,10 @@ function crossChapterVenueStampingFindings(venues: ExampleShellOccurrence[]): Se
         section: hit.section,
         path: hit.path,
         message: `${hit.message}; appears in ${chapters.size} chapters`,
+        // Task 11aa — the venue signature ("venue:<venue>") groups this collision
+        // across chapters so the compiler port can evict exactly the implicated
+        // example packs and record the colliding venue as re-draft avoid-context.
+        signature: hit.signature,
       });
     }
   }
@@ -1324,6 +1367,7 @@ function crossChapterShortcutDefaultFrameFindings(frames: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC96.example_shortcut_default_failure_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1350,6 +1394,7 @@ function crossChapterDecidesAfterFrameFindings(frames: ExampleShellOccurrence[])
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC97.example_decides_after_not_before_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1376,6 +1421,7 @@ function crossChapterPendingUntilFrameFindings(frames: ExampleShellOccurrence[])
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC98.example_pending_until_evidence_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1402,6 +1448,7 @@ function crossChapterPartialNextActionFrameFindings(frames: ExampleShellOccurren
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC100.example_partial_next_action_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1428,6 +1475,7 @@ function crossChapterWaitingAnswerFrameFindings(frames: ExampleShellOccurrence[]
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC101.example_waiting_answer_scene_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1454,6 +1502,7 @@ function crossChapterBroadProcessOnePointFindings(frames: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC108.example_broad_process_one_point_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1480,6 +1529,7 @@ function crossChapterPleasantAveragePeakEndFindings(frames: ExampleShellOccurren
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC112.example_pleasant_average_peak_end_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1506,6 +1556,7 @@ function crossChapterActionPendingTemplateFindings(units: ExampleShellOccurrence
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC102.action_pending_template_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1532,6 +1583,7 @@ function crossChapterActionClassifyLeverFindings(units: ExampleShellOccurrence[]
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC109.action_classify_lever_practice_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1558,6 +1610,7 @@ function crossChapterActionSocialPressurePauseFindings(units: ExampleShellOccurr
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC115.action_social_pressure_pause_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1584,6 +1637,7 @@ function crossChapterTryThisNowOpenerFindings(openers: ExampleShellOccurrence[])
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC94.action_try_this_now_opener_reuse",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1610,6 +1664,7 @@ function crossChapterActionChallengeOpenerFindings(openers: ExampleShellOccurren
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC114.action_challenge_opener_saturation",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1636,6 +1691,7 @@ function crossChapterCoreSkillCloserFindings(closers: ExampleShellOccurrence[]):
       if (hit.reportable === false) continue;
       findings.push({
         checkId: "SEC84.action_repeated_core_skill_closer",
+        signature: hit.signature,
         severity: "blocker",
         chapterNumber: hit.chapterNumber,
         section: hit.section,
@@ -1667,6 +1723,13 @@ function crossChapterQuizChoiceTailFindings(tails: ExampleShellOccurrence[]): Se
         section: hit.section,
         path: hit.path,
         message: `${hit.message}; repeated across ${chapters.size} chapter(s) and ${group.length} choice(s)`,
+        // Task 11ae — DELIBERATELY unstamped (no `signature`), so this never enters
+        // the assembly eviction machinery. The firing condition is compound
+        // (`chapters.size >= 3 || group.length >= 5`): the choice-count arm can trip
+        // inside one or two chapters, where a chapter-keep-earliest-N eviction evicts
+        // nothing and the shared tail survives the re-draft. It fails loud the
+        // ordinary way (assembly throws) and is registered as a documented exemption
+        // in CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS (compilerApplicationPort).
       });
     }
   }
@@ -1943,6 +2006,13 @@ function summaryHookFirstWordCapFindings(hooks: SummaryHookFirstWordOccurrence[]
         section: "summary-pack",
         path: hit.path,
         message: `summary hook opens with "${firstWord}", which appears in ${group.length} of ${hooks.length} selected summary hooks (B13 cap ${threshold}, ${Math.round(SUMMARY_HOOK_FIRST_WORD_CAP * 100)}% of batch). Vary hook first words across the parallel batch. Chapters: ${chapters.join(", ")}.`,
+        // Task 11ae — DELIBERATELY unstamped (no `signature`), so this never enters
+        // the assembly eviction machinery. The cap is BATCH-RELATIVE
+        // (`ceil(hooks.length * cap)`), not a static keep-count, so no fixed
+        // maxKeptChapters mirrors the gate across books of differing chapter counts.
+        // It fails loud the ordinary way (assembly throws) and is registered as a
+        // documented exemption in CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS
+        // (compilerApplicationPort).
       });
     }
   }
@@ -2035,10 +2105,32 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   // three tiers concatenated) must clear the rubric band, not just each tier
   // alone. Blocker, same as the per-tier SEC12 reading-level check.
   const assembledBreakdown = tiers.map((tier) => text(pack.breakdown?.[tier])).join("\n\n");
-  for (const f of checkBreakdownReadingEase(assembledBreakdown)) push("SEC12.summary_readability", "blocker", f.message, "/breakdown");
+  for (const f of checkBreakdownReadingEase(assembledBreakdown)) {
+    // Task 11s: the aggregate number alone gives the writer no lever — name each
+    // tier's ease and the one dragging the assembly down so the retry targets it.
+    const tierEases = tiers.map((tier) => ({ tier, ease: fleschReadingEase(text(pack.breakdown?.[tier])) }));
+    const lowest = tierEases.reduce((a, b) => (b.ease < a.ease ? b : a));
+    const perTier = tierEases.map(({ tier, ease }) => `${tier} ${ease.toFixed(1)}`).join(", ");
+    push("SEC12.summary_readability", "blocker", `${f.message} Per-tier ease: ${perTier}; lift ${lowest.tier} first.`, "/breakdown");
+  }
   const usedMemorableKeys = new Set<string>();
+  // Grounding-aware selection (Finding 21): SEC16 validates the top-3 harvested
+  // candidates, but harvest order was pure aphorism score — blind to grounding.
+  // A prettier UNgroundable sentence could outscore a lower-scoring one carrying
+  // a cited case's verbatim specifics, so SEC16 failed even though a groundable
+  // candidate existed, and the retry card could not beat the selector (the model
+  // does not control which sentences are picked). Prefer candidates that would
+  // SATISFY SEC16 — computed with THE SAME validateAnchorHardSpecifics call the
+  // gate runs below (memorable_line, min 2, OR-semantics) — then by score. This
+  // is selection policy, not gate weakening: SEC16/SEC17/clean-floor still enforce
+  // on the selected set, so when NO candidate is groundable the sort collapses to
+  // pure score and SEC16 blocks exactly as before. A vacuously-passing (specifics-
+  // poor) tier makes every candidate groundable, so the preference is a no-op there.
+  const memorableGroundable = (candidate: { text: string; ids: unknown }): boolean =>
+    validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any").length === 0;
   const selectedMemorable = memorableCandidates
-    .sort((a, b) => b.score - a.score)
+    .map((candidate) => ({ ...candidate, groundable: memorableGroundable(candidate) }))
+    .sort((a, b) => (a.groundable === b.groundable ? b.score - a.score : a.groundable ? -1 : 1))
     .filter((candidate) => {
       const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
       if (usedMemorableKeys.has(key)) return false;
@@ -2071,7 +2163,10 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   }
   for (const candidate of selectedMemorable) {
     for (const p of validateAnchorClaimType(candidate.ids, anchors, "memorable_line", `selected memorable line in breakdown.${candidate.tier}`)) push("SEC15.summary_memorable_anchor_claim_type", "blocker", p, `/breakdown/${candidate.tier}`);
-    for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`)) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
+    // OR across the tier's cited specifics-rich cases (Finding 20): the candidate
+    // inherits the WHOLE tier's sourceAnchorIds, so grounding ONE cited case in the
+    // aphorism suffices; AND-per-anchor here was structurally unsatisfiable.
+    for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any")) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
   }
   if (text(pack.keyTakeaway).length < 50) push("SEC9.takeaway_length", "blocker", "keyTakeaway too short", "/keyTakeaway");
   if (wordCount(pack.keyTakeaway) > 30) push("SEC18.takeaway_word_cap", "blocker", `keyTakeaway is ${wordCount(pack.keyTakeaway)} words (cap 30)`, "/keyTakeaway");
@@ -2146,7 +2241,26 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
       }
     }
     const slotAllowedNames = new Set([...(bp.sections.examples[i]?.allowedNames ?? []), ...bp.reservedVariety.allowedNames]);
-    const scenarioNames = extractNamesFromText(text(ex.scenario));
+    const scenarioText = text(ex.scenario);
+    // Task 11r: extractNamesFromText treats a hyphen as a word boundary, so
+    // capitalized hyphenated prefixes ("Mid-career", "Self-control") — and the
+    // halves of dealt hyphenated names ("Anne-Marie") — surface as standalone
+    // undealt "names". A token that only ever appears hyphen-attached in the
+    // scenario is not a protagonist name; drop it before the dealt-name check.
+    const asciiScenario = scenarioText.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    const scenarioNames = extractNamesFromText(scenarioText).filter((name) => {
+      const bare = new RegExp(`\\b${name}\\b(?![-\u2010\u2011])`, "u");
+      if (!bare.test(asciiScenario)) return false;
+      // Task 11v: a capitalized -ing token that only opens sentences is a
+      // fronted gerund ("Copying the ledger, …"), not a protagonist name.
+      // Mid-sentence -ing surnames (Fleming) keep firing.
+      if (/ing$/.test(name)) {
+        const total = (asciiScenario.match(new RegExp(`\\b${name}\\b`, "g")) ?? []).length;
+        const atStarts = (asciiScenario.match(new RegExp(`(?:^|[.!?]\\s+)${name}\\b`, "gm")) ?? []).length;
+        if (total > 0 && total === atStarts) return false;
+      }
+      return true;
+    });
     const undealtNames = [...new Set(scenarioNames.filter((name) => !slotAllowedNames.has(name) && !sourceNames.has(name) && !sourceReferenceNames.has(name)))];
     if (undealtNames.length) {
       push("SEC35.example_dealt_name", "blocker", `example ${i + 1} uses undealt protagonist/name(s): ${undealtNames.join(", ")}; use only this slot's dealt fictional names`, `${root}/scenario`);
@@ -2211,7 +2325,110 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
   return findings;
 }
 
-export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+/** A 4-digit NUMBER in 1500-2099 — the band where a figure is most likely to be a
+ *  year a reader must reason about (old-style dating, a founding date, a study year).
+ *  The band is the whole rule, not a semantic test: a quantity that happens to land
+ *  inside it ("1,800 dollars", "2,000 steps") is checked exactly like a year, which is
+ *  correct — the requirement is only that the FIGURE appears on the page, and
+ *  digit-group separators are collapsed on both sides so formatting never decides it.
+ *  Below 1500 and above 2099 the check stays silent by design (a bare "1200
+ *  employees" is out of band), so it under-fires rather than over-fires.
+ *  Digit boundaries, not \b: "1751" inside "1751st" is the same number, while "1751"
+ *  inside "11751" is not — and the same regex form is used on both sides. */
+const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
+
+/**
+ * SEC120 (Task 11ai) — DERIVABILITY BACKSTOP. Every section pack is drafted
+ * independently from one source packet; the section gates validate each pack against
+ * the PACKET and the cross-chapter gates compare packs for sameness, so nothing
+ * checked that a quiz/card is answerable from THIS chapter's own reader-visible
+ * prose. That gap is the dominant blind-reader BLOCKER class (finding 45): stems
+ * naming "Dr. Thomas Bond" or reasoning about "1705/1706" and cards introducing
+ * "Temperance" when no read tier ever says any of it.
+ *
+ * TWO independent rules, both bounded:
+ *   1. ANCHOR SPECIFICS — only the hardSpecifics of anchors the unit ITSELF cites
+ *      under the claim class SEC56/SEC58 already resolve (never every packet
+ *      specific, never a general proper-noun sweep), and only the specifics the unit
+ *      actually USES, since an unused specific makes no claim.
+ *   2. YEAR-BAND FIGURES — every 4-digit number in 1500-2099 in the unit's own
+ *      reader-facing text, INDEPENDENT of rule 1: this one fires on a stem that cites
+ *      no specifics-rich anchor at all, which is the point (the panel's Q9 asked a
+ *      reader to reason about a birth year the prose never states).
+ *
+ * Both rules compare through ONE normalisation applied to BOTH sides
+ * (chapterProse.normalizeDerivabilityText: case, punctuation and digit-group
+ * separators), so "Dr Thomas Bond" answers "Dr. Thomas Bond" and "$1,800" answers
+ * "1800". The prose is hook + counterintuition + all three read tiers + keyTakeaway.
+ * The check NO-OPS entirely — never fires on a thin haystack — when no prose is
+ * supplied (legacy callers, a summary pack not drafted yet) or when the supplied pack
+ * has no drafted read tiers (a stub the reporting CLI happened to find on disk).
+ */
+export function learningProseDerivabilityFindings(
+  pack: LearningPackV1,
+  bp: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  prose: ChapterProseSource | null | undefined,
+): SectionFinding[] {
+  const haystack = normalizeDerivabilityText(chapterProseText(prose));
+  if (haystack.length === 0 || !hasDraftedReadTiers(prose)) return [];
+  const anchors = sourceAnchorById(packet);
+  const findings: SectionFinding[] = [];
+  const push = (message: string, path: string) => findings.push({
+    checkId: "SEC120.learning_prose_derivable",
+    severity: "blocker",
+    chapterNumber: bp.chapterNumber,
+    section: "learning-pack",
+    message,
+    path,
+  });
+  const undeliverable = (unitText: string, claimTypes: readonly SourceClaimType[], ids: readonly unknown[]): string[] => {
+    const unit = normalizeDerivabilityText(unitText);
+    const missing = new Set<string>();
+    for (const id of ids.flatMap((value) => anchorArray(value))) {
+      const anchor = anchors.get(id);
+      if (!anchor) continue;
+      if (!claimTypes.some((claimType) => anchor.supportsClaimTypes?.includes(claimType))) continue;
+      for (const specific of anchor.hardSpecifics ?? []) {
+        const normalized = normalizeDerivabilityText(text(specific));
+        if (normalized.length < 3) continue;
+        if (!unit.includes(normalized)) continue;
+        if (haystack.includes(normalized)) continue;
+        missing.add(text(specific));
+      }
+    }
+    // The unit's years are read off the SAME normalised form the haystack is built
+    // from, so a stem saying "1800" and prose saying "$1,800" are one number.
+    for (const year of unit.match(PROSE_YEAR_RE) ?? []) {
+      if (new RegExp(`(?<!\\d)${year}(?!\\d)`).test(haystack)) continue;
+      missing.add(year);
+    }
+    return [...missing];
+  };
+  const blocker = (label: string, missing: readonly string[]): string =>
+    `${label} names ${missing.map((value) => `"${value}"`).join(", ")}, which ${missing.length === 1 ? "appears" : "appear"} nowhere in this chapter's drafted prose (hook, fastRead, deepRead, fullRead, keyTakeaway); a reader of this chapter cannot derive it from the page — use only the names, dates, numbers, and terms the prose actually shows`;
+  for (const [i, q] of (pack.quiz?.questions ?? []).entries()) {
+    const choices = Array.isArray(q.choices) ? q.choices.map((choice) => text(choice)).join(" ") : "";
+    const unitText = `${text(q.prompt)} ${choices} ${text(q.explanation)}`;
+    const missing = undeliverable(unitText, ["quiz_prompt", "quiz_explanation", "quiz_key_evidence"], [q.sourceAnchorIds ?? (q as { sourceAnchorId?: unknown }).sourceAnchorId, q.keyEvidenceAnchorIds]);
+    if (missing.length > 0) push(blocker(`q${i + 1}`, missing), `/quiz/questions/${i}`);
+  }
+  for (const [i, card] of (pack.cards?.cards ?? []).entries()) {
+    const unitText = `${text(card.front)} ${text(card.back)}`;
+    const missing = undeliverable(unitText, ["review_card"], [card.sourceAnchorIds ?? card.sourceAnchorId]);
+    if (missing.length > 0) push(blocker(`card ${i + 1}`, missing), `/cards/cards/${i}`);
+  }
+  return findings;
+}
+
+export function validateLearningPack(
+  pack: LearningPackV1,
+  bp: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  /** Task 11ai — THIS chapter's drafted summary pack. Absent for legacy/other
+   *  callers, and SEC120 then no-ops. */
+  chapterProse?: ChapterProseSource | null,
+): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
@@ -2348,6 +2565,7 @@ export function validateLearningPack(pack: LearningPackV1, bp: ChapterBlueprintV
   }
   findings.push(...repeatedQuestionNgramFindings(pack, ch));
   findings.push(...quizPromptNgramReuseFindings(pack, ch));
+  findings.push(...learningProseDerivabilityFindings(pack, bp, packet, chapterProse));
   return findings;
 }
 
@@ -2391,12 +2609,21 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   return findings;
 }
 
-export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateSectionPack(
+  pack: SectionPackV1,
+  bp: ChapterBlueprintV1,
+  packet: SourcePacketV1,
+  selectedSidecar?: unknown,
+  /** Task 11ai — this chapter's already-drafted summary pack, carried in so the
+   *  learning-pack gate can check SEC120 derivability against the prose the reader
+   *  will actually see. Absent → SEC120 no-ops. */
+  chapterProse?: ChapterProseSource | null,
+): SectionFinding[] {
   const findings = (() => {
     switch (pack.artifactType) {
       case "summary-pack": return validateSummaryPack(pack, bp, packet);
       case "example-pack": return validateExamplePack(pack, bp, packet);
-      case "learning-pack": return validateLearningPack(pack, bp, packet);
+      case "learning-pack": return validateLearningPack(pack, bp, packet, chapterProse);
       case "action-pack": return validateActionPack(pack, bp, packet);
       default: return [{ checkId: "SEC99.unknown", severity: "blocker" as const, chapterNumber: bp.chapterNumber, message: `unknown section artifact ${(pack as any)?.artifactType}` }];
     }
@@ -2404,7 +2631,7 @@ export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1,
   const readerFields = collectSoftBannedTextFields(pack, bp.chapterNumber, true);
   return [
     ...findings,
-    ...sourcePasteFindings(pack, bp, packet),
+    ...sourcePasteFindings(pack, bp, packet, selectedSidecar),
     ...hardBannedPhraseFindings(pack, bp),
     ...readerPunctuationFindings(readerFields),
     ...readerSentenceSeamFindings(readerFields),
@@ -2417,11 +2644,24 @@ export function validateSectionPack(pack: SectionPackV1, bp: ChapterBlueprintV1,
 export type SectionGateOptions = {
   chapters?: number[];
   sections?: SectionKind[];
+  /** Complete immutable input already opened through BookContentReader. */
+  selectedChapters?: readonly Readonly<{
+    chapterNumber: number;
+    blueprint: ChapterBlueprintV1;
+    sourcePacket: SourcePacketV1;
+    sourceSidecar: unknown;
+    packs: Readonly<Record<SectionKind, SectionPackV1>>;
+  }>[];
 };
 
 export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {}, options: SectionGateOptions = {}): SectionGateReport {
   const normalized = normSlug(bookId);
-  const resolved = resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
+  const selectedByChapter = options.selectedChapters
+    ? new Map(options.selectedChapters.map((chapter) => [chapter.chapterNumber, chapter]))
+    : null;
+  const resolved = selectedByChapter
+    ? { ok: selectedByChapter.size > 0, chapters: [...selectedByChapter.keys()].sort((a, b) => a - b), findings: [] }
+    : resolveExpectedSourceChapters(normalized, { stateRoot: roots.stateRoot });
   const expected = resolved.chapters;
   const requested = options.chapters?.length ? options.chapters : expected;
   const expectedSet = new Set(expected);
@@ -2456,6 +2696,26 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
   const summaryTierFields: CrossFieldOccurrence[] = [];
   const summaryHookFirstWords: SummaryHookFirstWordOccurrence[] = [];
   const softBannedFields: SoftBannedTextOccurrence[] = [];
+  const readBlueprint = (chapterNumber: number): ChapterBlueprintV1 => {
+    const selected = selectedByChapter?.get(chapterNumber);
+    return selected ? selected.blueprint : readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
+  };
+  const readPacket = (chapterNumber: number): SourcePacketV1 => {
+    const selected = selectedByChapter?.get(chapterNumber);
+    return selected ? selected.sourcePacket : readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
+  };
+  const hasPack = (chapterNumber: number, kind: SectionKind): boolean => {
+    if (selectedByChapter) return selectedByChapter.get(chapterNumber)?.packs[kind] !== undefined;
+    return existsSync(sectionPath(normalized, chapterNumber, kind, roots));
+  };
+  const readPack = (chapterNumber: number, kind: SectionKind): SectionPackV1 => {
+    const selected = selectedByChapter?.get(chapterNumber);
+    if (selected) return selected.packs[kind];
+    return readJsonFile<SectionPackV1>(sectionPath(normalized, chapterNumber, kind, roots));
+  };
+  const packPath = (chapterNumber: number, kind: SectionKind): string => selectedByChapter
+    ? `candidate://chapter/${chapterNumber}/${kind}`
+    : sectionPath(normalized, chapterNumber, kind, roots);
   for (const chapterNumber of invalidChapters) {
     findings.push({ checkId: "SEC0.invalid_chapter", severity: "blocker", chapterNumber, message: `chapter ${chapterNumber} is not in the canonical source/index set for ${normalized}` });
   }
@@ -2469,8 +2729,8 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     let bp: ChapterBlueprintV1;
     let packet: SourcePacketV1;
     try {
-      bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
-      packet = readJsonFile<SourcePacketV1>(sourcePacketPath(normalized, chapterNumber, roots));
+      bp = readBlueprint(chapterNumber);
+      packet = readPacket(chapterNumber);
     } catch (err) {
       findings.push({ checkId: "SEC0.prereq", severity: "blocker", chapterNumber, message: `missing blueprint/source packet: ${(err as Error).message}` });
       continue;
@@ -2480,21 +2740,31 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     // still contains leaks. No example pack yet → empty cast → no findings.
     let usedCast = new Set<string>();
     try {
-      const exPath = sectionPath(normalized, chapterNumber, "example-pack", roots);
-      if (existsSync(exPath)) {
-        const exPack = readJsonFile<SectionPackV1>(exPath);
+      if (hasPack(chapterNumber, "example-pack")) {
+        const exPack = readPack(chapterNumber, "example-pack");
         if (exPack.artifactType === "example-pack") usedCast = usedExampleCast(bp, exPack);
       }
     } catch { /* unreadable example pack → its own gate run reports it */ }
+    // Task 11ai (SEC120): the chapter's OWN drafted prose, read once from the sibling
+    // summary pack — independent of which sections were requested, so a
+    // `--section learning-pack` run still checks derivability. No summary pack yet →
+    // no prose → the check no-ops (never fires on an empty haystack).
+    let chapterProse: SummaryPackV1 | undefined;
+    try {
+      if (hasPack(chapterNumber, "summary-pack")) {
+        const summaryPack = readPack(chapterNumber, "summary-pack");
+        if (summaryPack.artifactType === "summary-pack") chapterProse = summaryPack;
+      }
+    } catch { /* unreadable summary pack → its own gate run reports it */ }
     for (const kind of validSections) {
-      const p = sectionPath(normalized, chapterNumber, kind, roots);
-      if (!existsSync(p)) {
+      const p = packPath(chapterNumber, kind);
+      if (!hasPack(chapterNumber, kind)) {
         findings.push({ checkId: "SEC0.missing", severity: "blocker", chapterNumber, section: kind, path: p, message: `missing ${kind} artifact` });
         continue;
       }
       try {
-        const pack = readJsonFile<SectionPackV1>(p);
-        findings.push(...validateSectionPack(pack, bp, packet));
+        const pack = readPack(chapterNumber, kind);
+        findings.push(...validateSectionPack(pack, bp, packet, selectedByChapter?.get(chapterNumber)?.sourceSidecar, chapterProse));
         findings.push(...castContainmentFindings(pack, usedCast, bp.chapterNumber));
         softBannedFields.push(...collectSoftBannedTextFields(pack, bp.chapterNumber, true));
         if (kind === "example-pack" && pack.artifactType === "example-pack") {
@@ -2542,12 +2812,11 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     const requestedSet = new Set(chapters);
     for (const chapterNumber of expected) {
       if (requestedSet.has(chapterNumber)) continue;
-      const p = sectionPath(normalized, chapterNumber, "example-pack", roots);
-      if (!existsSync(p)) continue;
+      if (!hasPack(chapterNumber, "example-pack")) continue;
       try {
-        const pack = readJsonFile<SectionPackV1>(p);
+        const pack = readPack(chapterNumber, "example-pack");
         if (pack.artifactType === "example-pack") {
-          const bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
+          const bp = readBlueprint(chapterNumber);
           exampleShells.push(...collectExampleShells(pack, bp, false));
           exampleContainers.push(...collectExampleActionContainers(pack, bp, false));
           exampleShortcutDefaultFrames.push(...collectExampleShortcutDefaultFrames(pack, bp, false));
@@ -2571,13 +2840,12 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
     for (const chapterNumber of expected) {
       if (requestedSet.has(chapterNumber)) continue;
       for (const kind of validSections) {
-        const p = sectionPath(normalized, chapterNumber, kind, roots);
-        if (!existsSync(p)) continue;
+        if (!hasPack(chapterNumber, kind)) continue;
         try {
-          const pack = readJsonFile<SectionPackV1>(p);
+          const pack = readPack(chapterNumber, kind);
           softBannedFields.push(...collectSoftBannedTextFields(pack, chapterNumber, false));
           if (kind === "action-pack" && pack.artifactType === "action-pack") {
-            const bp = readJsonFile<ChapterBlueprintV1>(blueprintPath(normalized, chapterNumber, roots));
+            const bp = readBlueprint(chapterNumber);
             actionPendingTemplateUnits.push(...collectActionPendingTemplateUnits(pack, bp, false));
             actionClassifyLeverUnits.push(...collectActionClassifyLeverPracticeUnits(pack, bp, false));
             actionSocialPressurePauseUnits.push(...collectActionSocialPressurePausePlans(pack, bp, false));

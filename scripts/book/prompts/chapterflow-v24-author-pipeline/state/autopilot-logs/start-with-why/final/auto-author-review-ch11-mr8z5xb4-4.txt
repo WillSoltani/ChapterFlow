@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong choices use overbroad words like \"every,\" \"wherever,\" \"only,\" or obvious overclaiming, which can make the correct answer easier to guess by moderation alone."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 87,
+    "summaries": 89,
+    "tone": 88,
+    "limits": 90,
+    "insight": 89,
+    "density": 86,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Success is not the proof; it is the weather that can hide the proof.",
+      "why": "Strongest memorable reversal; it makes the core distinction stick."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "A compact, transferable line that clearly names what metrics can and cannot prove."
+    },
+    {
+      "quote": "The cursor blinks while product lead Danielle deletes Bentonville from the software-company paragraph.",
+      "why": "The example is useful, but it starts in a writing-workshop situation rather than a broadly recognizable business decision."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are visibly extreme or overbroad, so a test-wise reader could sometimes guess the key by avoiding absolutist phrasing rather than deriving from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The example is real enough for the lesson, but it is thinner than the others because the concrete action is copy editing rather than a lived organizational decision with a clearer consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The opening is cryptic on a cold read because \"bigger count\" and \"what it made visible\" arrive before the reader has any frame for success fog.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The core move is memorable, repeated without feeling mechanical, and practically usable: put the founding reason before the rising metric, then demand visible conduct. The summaries layer well, the limits section prevents overselling, and the quiz is mostly fair and derivable. The main weaknesses are craft-level rather than blocking: a few distractors are guessable by tone, and one example leans more toward editorial repair than a fully concrete business consequence."
+}
+```

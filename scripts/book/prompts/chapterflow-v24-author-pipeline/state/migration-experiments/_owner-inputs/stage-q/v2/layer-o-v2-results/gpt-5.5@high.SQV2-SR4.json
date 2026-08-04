@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR4",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unframed invented or unsupported factual anecdote\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Reference material for the ChapterFlow pipeline. No verbatim book text. Examples may be invented.\",\"When Meridian Regional Bank collapsed in the autumn of 2009, its chief executive spent the final board meeting defending the quarterly dashboard instead of naming the liquidity risk everyone in the room already knew about.\"],\"rationale\":\"The candidate passage presents a highly specific institutional collapse and boardroom episode as a factual historical account, with no visible reader-facing framing such as hypothetical, scenario, composite, or example. The provenance says examples may be invented, but that hidden metadata cannot make the reader-facing prose adequate. Because the passage reads as a real sourced event while the materials provide no visible source-register framing, it is materially misleading.\"}"
+}

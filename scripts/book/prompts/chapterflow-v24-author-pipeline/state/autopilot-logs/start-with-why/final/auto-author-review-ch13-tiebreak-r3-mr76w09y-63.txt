@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": ["Q1: I chose b, matching the key, but the stem's specific event is shaky: the prose does not clearly show 'Tobias's service line failed'; it shows an order almost collapsing and a separate family-chat drift."],
+    "tells": ["Several keyed choices reuse the chapter's exact teaching language while distractors sound obviously overbroad or cosmetic: Q4 'hard specifics,' Q6 'stamp,' Q7 'nearby error,' Q8 'generic business stamp.'"]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 77,
+    "transfer": 82,
+    "practical": 87,
+    "summaries": 88,
+    "tone": 83,
+    "limits": 86,
+    "insight": 85,
+    "density": 82,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trace the root before you name the promise.",
+      "why": "Strongest compact memory line; it captures the whole chapter move."
+    },
+    {
+      "quote": "A WHY is not a slogan; it is the past pattern made plain.",
+      "why": "Clear mechanism, not just advice."
+    },
+    {
+      "quote": "The espresso hiss is the return point; no one has proved yet that the new line earns it.",
+      "why": "This feels decorative and slightly opaque; the sensory detail does not add much to the transfer lesson."
+    },
+    {
+      "quote": "A red pen cap rolls under Gerald's chair as he catches it late.",
+      "why": "This is a manufactured-feeling detail that does not teach the concept."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem says 'Tobias's service line failed,' but the prose does not clearly establish that exact event; it blends the service-launch example with later drift language.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some correct answers are telegraphed by exact chapter phrasing while wrong answers are plainly foolish or cosmetic, which weakens assessment value.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The 'espresso hiss' return-point image feels decorative and under-explained; it gestures at the idea more than showing a concrete decision and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The red pen cap detail reads like scene filler and would fit almost any chapter without changing the learning.",
+      "mustFix": false
+    },
+    {
+      "unit": "Hook",
+      "problem": "The phrase '2 roots make small-service founder Xavier choose' is compressed and unnatural, giving the opening a scaffold smell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a memorable core move: put roots before the WHY line, then test contribution, impact, and stopping points. The summaries layer well, the practical action is low-friction, and the limits are unusually honest. I would not ship it yet because Q1 has a source-event mismatch and the quiz leans on repeated phrasing enough to create tells. Tightening that question and trimming a few decorative example details would likely bring it over the professional bar."
+}
+```

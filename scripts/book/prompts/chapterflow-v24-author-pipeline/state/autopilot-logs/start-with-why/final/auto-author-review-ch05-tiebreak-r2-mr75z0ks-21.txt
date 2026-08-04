@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": ["Q1: the correct choice is the longest and most specific, naming Apple, Cupertino, and the intended error while the distractors stay generic.", "Q3: the correct choice is the only one that repeats all three named anchors from the chapter, making it easier to guess without full comprehension.", "Q8: the stem already names Dallas inside Apple design, and option c nearly restates the taught rule about details staying with their source."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 87,
+    "limits": 90,
+    "insight": 86,
+    "density": 84,
+    "beginner": 78
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Keep the proof with its promise.",
+      "why": "This is the chapter's strongest compact rule and is easy to remember a week later."
+    },
+    {
+      "quote": "A cheap ticket can point up to belief, not down to price.",
+      "why": "Concrete, visual, and tied directly to the WHY/HOW/WHAT mechanism."
+    },
+    {
+      "quote": "Neil cannot answer that with a motto. He needs behavior he can see.",
+      "why": "Strong mechanism: credibility comes from observable conduct, not language."
+    },
+    {
+      "quote": "Neil sees the problem during a family video call.",
+      "why": "Neil appears without enough grounding for a cold beginner reader, which slightly muddies entry."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Neil is introduced as if already known, but a blinded cold reader gets no context for who he is or why he matters.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is uniquely long and specific, with Apple, Cupertino, and the diagnostic purpose all packed into one option.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer is signaled by being the only option that names the three anchors the prose repeatedly emphasizes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The stem gives away the source error, and the correct option restates that exact source-grounding rule.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example is somewhat abstract: it names anchors but shows less before-to-after consequence than the stronger Dallas and Apple examples.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against a professional bar. The chapter has a clear, memorable core: a WHY becomes credible only when disciplined conduct produces visible proof, and hard details must stay with the source that earned them. The summaries layer well, the examples mostly transfer the move, and the limits section is unusually honest. The main weaknesses are quiz tells in a few items and a slightly cold introduction of Neil, but the keys are sound and the teaching mechanism is strong enough to pass."
+}
+```

@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want: start the useful act, block the tempting act, and keep the larger value awake.",
+      "The Miller/Cohen passage says prefrontal control keeps goals active and tilts attention and action toward them while louder cues compete.",
+      "The Gage passage says he survived and could speak, but steadiness, planning, and social restraint did not return the same way.",
+      "The full read says change requires noticing the moment before action, not explaining regret after the reply is already sent.",
+      "The prose frames self-control as social: waiting turns, keeping promises, sharing resources, softening anger, and repairing conflict.",
+      "The snack/run example says a real value can lose if it is absent at the cue and must be made present at the choice point.",
+      "The chapter says the relief-now self and deeper-goal self can both be real; the practical issue is which motive gets support and attention.",
+      "The concrete-method passage says specific actions expose start cues, barriers, values, and feedback better than vague discipline declarations.",
+      "The Amelia routine example says control biases attention and response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q2 and Q9 correct answers closely mirror the chapter's technical phrasing about biasing attention and response.",
+      "Several distractors are extreme or moralizing, especially Q5 and Q7, making the moderate social/dual-motive answer guessable.",
+      "Q1's correct option is the only one that explicitly contains the full three-part structure."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 84,
+    "tone": 88,
+    "limits": 82,
+    "insight": 86,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's sharpest retention line and cleanly reframes the core misconception."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "A compact mechanism statement that explains why the method matters."
+    },
+    {
+      "quote": "Some details of his life have been turned into legend, but the core warning remains useful.",
+      "why": "This is a useful limits sentence: it keeps the Gage example from overclaiming."
+    },
+    {
+      "quote": "For the first half of this week, use your usual all-or-nothing rule.",
+      "why": "This is the weakest practical instruction because it asks the reader to spend half the week using the less effective strategy."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct answer repeats the prose's distinctive 'bias attention and response' language, so it is partly guessable by phrase matching rather than only understanding.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The wrong answers are too absolute, especially 'little social pressure' and 'avoid cooperation,' which makes the correct answer easy to spot.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The distractors overstate the bad interpretations with 'must be fake' and 'should be obeyed first,' weakening the test of the actual concept.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 4-6",
+      "problem": "The Miller/Cohen attribution becomes formulaic and sometimes feels pasted onto the example rather than adding a fresh mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The weekly practice asks the reader to use the all-or-nothing rule for half the week, which is less directly useful than comparing remembered recent attempts against the Three-Power Check.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter: the central move is memorable, beginner-friendly, and repeatedly grounded in a clear mechanism rather than scolding. The quiz is fair and fully derivable, though several items are easier than they need to be because the correct choices mirror the prose while distractors are extreme. The examples are concrete and mostly useful, but the neuroscience tags grow repetitive. No must-fix defect blocks publication."
+}
+```

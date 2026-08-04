@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "b", "c", "a", "c", "b", "c"],
+    "mechanisms": [
+      "The prose says dense work fails when ownership blurs between capable roles, not from lack of knowledge.",
+      "The lesson repeatedly says to map transitions by named owner before the rush/window arrives.",
+      "The Ingrid example says to rebuild the path across every handoff before blaming the last visible person.",
+      "The set fails when cues cross departments, matching the chapter's claim that danger lives in seams between experts.",
+      "The transplant/courier example shows that separate completed tasks can still fail at crossings.",
+      "The storm example explicitly recommends giving the cross-department timing point a named owner before peak load.",
+      "The museum crate example shows the danger in dependencies between specialists despite each expert doing their job.",
+      "The core reasoning says expertise is still insufficient unless ownership is visible where roles cross.",
+      "The chapter says reliability cannot live only in one capable mind; transitions must be held by the system."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b uses giveaway chapter phrasing: handoff seam and ownership thinned out.",
+      "Choice c is the only option with the chapter's named-owner move; a and b are obvious straw options.",
+      "Choice a is longest and closely mirrors the Ingrid/prose language.",
+      "Choice b directly repeats the chapter's handoff-between-departments logic.",
+      "Choice c is longest and restates the chapter's inside/across-departments distinction.",
+      "Choice a mirrors Example 6 almost exactly.",
+      "Choice c has the chapter's abstract vocabulary while b uses the giveaway absolute 'always'.",
+      "Choice b directly states the thesis; c is an obvious false distractor.",
+      "Choice c is longest and uses the chapter's signature idea of memory versus system."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 86,
+    "tone": 82,
+    "limits": 86,
+    "insight": 89,
+    "density": 80,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Complexity changes the location of danger.",
+      "why": "Strong, memorable compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "Movement creates seams, and seams create assumptions.",
+      "why": "Concrete transferable line that makes the abstract lesson easy to retrieve."
+    },
+    {
+      "quote": "In the end, it really just comes down to being careful about this and not overthinking it.",
+      "why": "Weakens the example by flattening a precise systems lesson into generic caution."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers reuse the chapter's exact thesis language while distractors are broad straw options, making some answers guessable without reading carefully.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence in 'Why it matters' undercuts the lesson by reducing seam ownership to generic carefulness.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The sentence 'The save lives in the chain' is grammatically awkward and may slow comprehension.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear, memorable core move: stop blaming capable people first and inspect the seam where ownership changes hands. The prose is concrete, practical, and beginner-friendly, and the examples transfer well across medicine, rail, logistics, civic operations, and museums. I would not ship it yet against a professional bar mainly because the quiz is too easy to game from signature phrasing and a few distractors are weak; the underlying teaching is solid, but assessment quality needs tightening."
+}
+```

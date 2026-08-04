@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "a", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want, so the response must include starting, stopping, and remembering the value.",
+      "The Miller/Cohen passage says prefrontal control keeps goals active and tilts attention and action toward them.",
+      "The Gage passage says survival and speech remained, while steadiness, planning, and social restraint changed.",
+      "The self-awareness section says change begins by noticing the moment before action hardens, not by regret afterward.",
+      "The social-cost passage says self-control helps people wait, keep promises, share resources, and repair conflict.",
+      "The Brooklyn example says a real value can lose when it is quiet and the cue is vivid.",
+      "The chapter says the short-term relief motive and the long-term saving motive can both be real; support and attention decide which guides action.",
+      "The concrete-challenge section says specific actions create feedback about cues, barriers, and values.",
+      "The Amelia example and Miller/Cohen account say control biases attention and response when a routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "b is also defensible because the prose and review card say the long-term goal has to be active at the choice point to guide action.", "", "", ""],
+    "tells": [
+      "c is the only choice that gives a three-part answer after the stem names the three powers.",
+      "a echoes the chapter's technical wording; b and c are implausible extremes.",
+      "a is the uniquely nuanced and longer option; b and c use extreme dismissive claims.",
+      "b is the only before-action option, while a and c are after-the-fact.",
+      "b is the only cooperative/social option; a and c use extreme wording.",
+      "a is much longer than b/c, while b is also substantively true.",
+      "a is the only balanced option; b and c contain giveaway absolutist language.",
+      "c is the only option with experiment/feedback; a and b are plainly anti-method.",
+      "c repeats the prose's 'biases attention and response' language; a and b are obvious extremes."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 82,
+    "limits": 82,
+    "insight": 88,
+    "density": 80,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+      "why": "Strongest compact reframing of the chapter's core move."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "Memorable mechanism line that makes the advice portable."
+    },
+    {
+      "quote": "   a) Being important is not the same as being vivid; a value can matter and still lose to a cue that feels louder right now.\n   b) The long-term goal needs attention at the choice point to compete.",
+      "why": "Worst quiz defect: both choices are supported by the prose."
+    },
+    {
+      "quote": "If-then 1: [If your hand moves before your reason catches up] If your hand moves before your reason catches up,",
+      "why": "The duplicated bracketed cue creates a visible scaffold smell."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Choices a and b are both directly supported: a states the vividness/value mechanism and b states the choice-point attention mechanism, so a single key is underdetermined.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q1/Q3/Q5/Q7/Q9",
+      "problem": "Several distractors are extreme or obviously anti-method, and correct choices often echo chapter wording or are uniquely nuanced, making them easier to guess without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The if-then lines repeat the bracketed cue immediately in the sentence, which reads like unresolved template scaffolding.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 4-6",
+      "problem": "The why-it-matters lines repeatedly invoke Miller/Cohen without adding much new causal detail, so the later examples feel less distinct than the earlier ones.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, beginner-friendly chapter with a memorable central move, concrete images, and a practical exercise that a reader could actually try. The blocker is the quiz: Q6 has two defensible answers, and several other questions are weakened by obvious distractors and answer-shape tells. Repairing that quiz ambiguity and polishing the scaffold smell in the implementation plan would likely bring it over a professional ship bar."
+}
+```

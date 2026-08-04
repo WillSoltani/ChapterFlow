@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often echo chapter language very closely: visible evidence, stopping edge, checkable, comparison, and named hard details.", "Several distractors give themselves away with overbroad or obviously wrong moves such as borrowing force, trusting usefulness, or letting rank decide proof."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 82,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 91,
+    "insight": 88,
+    "density": 81,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is not the promise; it is the receipt.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Keep each hard detail with the product that earned it.",
+      "why": "Turns factual grounding into a usable judgment rule."
+    },
+    {
+      "quote": "If the WHAT is impressive but points in another direction, the reader should doubt the claim, not admire the size of the move.",
+      "why": "Best limit: it blocks overapplying product-as-proof."
+    },
+    {
+      "quote": "What stayed broken is the missing handoff: no one has said which HOW will bring proof back.",
+      "why": "Weakest example moment because the invented audit state is a little under-contextualized."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "The example has a useful lesson, but the before-to-after is compressed; the reader is told what stayed broken more than shown the decision and consequence that made it break.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz answer choices",
+      "problem": "Some correct answers are easier to spot because they reuse the chapter's exact teaching tokens while distractors sound obviously reckless or generic.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the receipt/proof/return phrasing heavily. The repetition helps memory, but a few paragraphs feel scaffolded rather than newly informative.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The exercise starts from a useful visible offer and then asks for WHY and HOW, which could blur the chapter's own insistence that WHY comes before judging WHAT.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship. The chapter has a clear core move, memorable language, fair quizzes, real limits, and enough named product contrast to keep the idea from floating as purpose talk. Its main weakness is a slight template feel: some examples and quiz choices announce the lesson too cleanly, and Example 4 is less embodied than the stronger iPod/Dell/Phaeton passages. Still, the mechanism is understandable, transferable, and professionally above the bar."
+}
+```

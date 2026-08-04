@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch06",
+  "chapterNumber": 6,
+  "contentHash": "2b2893a2fe7e472e",
+  "reviewerSessionId": "auto-author-review-ch06-mrczedyv-11",
+  "scores": {
+    "retention": 91,
+    "quizzes": 88,
+    "transfer": 84,
+    "practical": 90,
+    "summaries": 92,
+    "tone": 89,
+    "limits": 88,
+    "insight": 90,
+    "density": 86,
+    "beginner": 87
+  },
+  "composite": 88.6,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Help without a return bill becomes rescue. A demand with no help becomes neglect. Neither builds capacity.",
+      "why": "Strongest compact statement of the chapter's core distinction.",
+      "verified": true
+    },
+    {
+      "quote": "Hand back the pen.",
+      "why": "Memorable, concrete line that makes the behavior easy to recall.",
+      "verified": true
+    },
+    {
+      "quote": "On the table, after the autonomy claim is made, the single dated file is still missing.",
+      "why": "The weakest example opening feels staged and abstract rather than like a real transfer case.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q9's keyed answer is mildly giveaway-prone because it uniquely repeats the chapter's exact phrase \"freedom-and-responsibility pair.\""
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it mostly restates the Netflix proof lesson from example 1 and does not show a concrete person making a decision and facing a consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed answer is somewhat telegraphed because it alone uses the chapter's exact paired phrase, while the distractors are framed as obvious distortions.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable. The chapter has a clear durable move: keep help, choice, and consequence in the same ledger. It teaches the mechanism rather than only naming the virtue, and the practical prompts are usable without becoming performative. The quiz is sound and derivable, with only a mild phrasing tell in Q9. The main craft weakness is that one Netflix example is redundant and abstract, but that is a transfer polish issue, not a blocker.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "9feba98b3861da629f65c8f719a00fbcb5fa86b55820f26f9419a891071c6686",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:03:36.311Z"
+}

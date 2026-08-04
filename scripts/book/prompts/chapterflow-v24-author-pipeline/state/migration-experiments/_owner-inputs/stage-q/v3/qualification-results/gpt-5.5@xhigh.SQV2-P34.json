@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P34",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"template-level narrative machinery reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Osias touches a bent visitor badge at Friday 9:18 p.m. in outside room 512 at Mercy South, older brother, with a phone buzzing with his sister's texts.\",\"Yara touches a cold coffee cup at Monday 8:16 a.m. in the second-floor teachers' lounge, history teacher, with a group chat open on her laptop.\",\"Osias he has to say whether they are arguing about paperwork, fear, or being the good child.\",\"Yara she has to decide whether to answer the impact as intent or ask what he meant in private.\"],\"rationale\":\"The examples reuse the same scene engine: a named protagonist physically touches a symbolic object, at an exact day/time and location, with a role descriptor and a communication channel open; an interpersonal slight or accusation arrives through that channel; the protagonist is poised to respond; the closing beat reframes the conflict as a forced distinction between interpretations. The nouns and settings differ, but the narrative mechanics, sentence slots, and decision-shape are substantially the same.\"}"
+}

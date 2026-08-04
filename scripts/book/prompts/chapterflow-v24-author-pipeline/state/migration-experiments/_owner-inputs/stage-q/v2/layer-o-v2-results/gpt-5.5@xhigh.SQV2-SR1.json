@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unframed synthetic anecdote presented as factual case evidence\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Reference material for the ChapterFlow pipeline. No verbatim book text. Examples may be invented.\",\"In March 2018, Priya Nadkarni, then head of engineering at Brightloom Systems, cut on-call burnout by 63 percent in a single quarter by rotating pager duty weekly.\",\"Her team's incident count fell from 47 to 12 within ninety days, a result she presented at the company's Q3 all-hands.\"],\"rationale\":\"The candidate is written as a concrete factual business anecdote, naming a person, company, date, metric, incident counts, and internal presentation, but it gives the reader no visible scenario, hypothetical, composite, or invented-example framing. The provenance says examples may be invented and contains no verbatim book text, so the reader-facing passage risks presenting synthetic or unsupported case material as real-world evidence. Hidden provenance cannot make that framing adequate, and the candidate itself does not disclose the register.\"}"
+}

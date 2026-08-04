@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 74,
+    "summaries": 77,
+    "tone": 61,
+    "limits": 76,
+    "insight": 66,
+    "density": 59,
+    "beginner": 72
+  },
+  "quotes": [
+    {
+      "quote": "The repair is not the proof.",
+      "why": "Strong portable line: compact, memorable, and tied to the chapter's core reversal."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Good transfer lens: it gives readers a reusable diagnostic question."
+    },
+    {
+      "quote": "Trust is belief made visible under pressure.",
+      "why": "One of the clearest retention moments; complete, short, and usable outside the example."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "Strong aphorism that preserves the distinction the chapter teaches."
+    },
+    {
+      "quote": "Three promises out, one balance checked.",
+      "why": "Worst defect: it reads like corrupted or scaffold residue and does not cohere with the surrounding lesson."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra support; it is false ground.",
+      "why": "Good sentence locally, but its idea recurs so often that the book starts to feel template-stamped."
+    }
+  ],
+  "oneParagraphVerdict": "The keyed quizzes are sound against the chapter prose, but the sample fails the correctness gate because at least one sentence reads as corrupted residue, and the whole book shows high cross-chapter churn. The strongest material is the compact diagnostic language: several memorable lines are genuinely portable and the quizzes mostly test scenario transfer rather than bare recall. The main weakness is that every chapter runs the same machine: named source detail, source-bound specificity, second-setting comparison, order-of-operations warning, borrowed-detail warning, then nearly identical practice shells. That repetition weakens tone, density, and insight, making the sample feel engineered rather than individually authored."
+}
+```

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P16",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_NARRATIVE_SPECIFICS\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"At a March project review in the back office, the facilitator watches a neat agenda end in a quick vote and three weeks of quiet resistance.\",\"At the June review, the same table holds Paul C. Nutt's process notes, a bargaining column, and an implementation map.\",\"The meeting takes longer. The follow-up takes less.\"],\"rationale\":\"The source plan supports only Paul C. Nutt, bargaining, decision outcomes, and implementation. The candidate presents invented dates, setting, meeting artifacts, participant behavior, a three-week resistance period, and comparative timing outcomes in the same concrete factual register as the real research-based case. Calling it a “Scenario” does not clearly identify these details as hypothetical, so the unsupported narration is materially misleading and should be blocked.\"}"
+}

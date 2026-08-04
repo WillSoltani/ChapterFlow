@@ -1,0 +1,72 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct choices are often the longest and most specific, especially Q1, Q4, Q5, and Q6.",
+      "Several distractors give themselves away with extreme or implausible phrasing such as 'whole rule,' 'every named organization,' and 'all three anchors.'",
+      "The correct answers repeatedly reuse exact chapter terms such as anchor, marker, Dallas, product contrast, pressure, benchmark, fit, and improvement."
+    ]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 76,
+    "transfer": 68,
+    "practical": 78,
+    "summaries": 86,
+    "tone": 72,
+    "limits": 88,
+    "insight": 82,
+    "density": 78,
+    "beginner": 80
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Let the rival warn you, not define you. Then bring the choice back to your own mark: what stayed true, what got better, and what proof came back?",
+      "why": "Strongest compact statement of the chapter's core move."
+    },
+    {
+      "quote": "Competition is the loop that brings a rival signal back to your own mark.",
+      "why": "Memorable mechanism; it explains the sequence rather than just naming it."
+    },
+    {
+      "quote": "At the return mark, product lead Edmund sees the miss with one yellow pencil mark beside 2003.",
+      "why": "This example feels manufactured and meta; it teaches editing the chapter's evidence, not using competition in a real decision."
+    },
+    {
+      "quote": "If those facts are flattened into the same product-year rhythm as Apple and Dell, the contrast stops comparing.",
+      "why": "Useful distinction, but the phrasing shows the chapter's recurring scaffold smell around anchors and factual tokens."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "Most examples are about revising a draft, placing facts under the right anchor, or satisfying proof rules, rather than a real person making a competitive decision and living with the consequence. That weakens transfer beyond this chapter's own evidence-management task.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The scenario is overly manufactured: Edmund, a yellow pencil mark, and '2003' are props around a paragraph-revision move. It does not show a product team choosing differently because of self-referenced competition.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example ends with 'Final proof is still due,' so the before-to-after consequence is incomplete. It names anchors and specifics but does not demonstrate the promised learning outcome.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz is derivable and the keys are sound, but answer tells are visible: correct options tend to be longer, more concrete, and closer to the chapter's repeated vocabulary than the distractors.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "The chapter often sounds like it is managing a source/evidence template rather than teaching a business idea, with repeated language about anchors, tokens, markers, and details going home.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear and memorable central move: treat competitors as signals, then return to your own benchmark, purpose fit, and improvement proof. The summaries, limits, and quiz keys are mostly strong. I would not ship it at a professional 84+ bar because the examples are too inward-facing and synthetic; they mostly model how to arrange chapter evidence rather than how someone should act when a rival pressures a real choice. Fix the example set with concrete competitive decisions and consequences, and this could clear the bar."
+}
+```

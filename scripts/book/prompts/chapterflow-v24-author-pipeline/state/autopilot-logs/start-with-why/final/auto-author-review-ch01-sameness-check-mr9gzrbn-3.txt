@@ -1,0 +1,53 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 91,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The repair is not the proof. A bad guess charges twice.",
+      "why": "Strongest memorable compression of the chapter's core warning."
+    },
+    {
+      "quote": "Known data is what stands before the guess. It is not perfect truth.",
+      "why": "Clear beginner-safe definition that prevents overreach."
+    },
+    {
+      "quote": "Three promises out, one balance checked.",
+      "why": "The most cryptic line; it weakens an otherwise plain explanation."
+    },
+    {
+      "quote": "What to do: Ask what shrank.",
+      "why": "Thin practical instruction compared with the stronger examples."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The sentence \"Three promises out, one balance checked\" is opaque and does not clearly advance the mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example is thin-but-usable: it has a real comparison anchor, but the action and consequence are compressed into generic lines rather than a concrete before-to-after decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The central move is memorable, the quiz is fair and derivable, and the examples transfer the method across factory, airline, volunteer, school, clinic, library, and workshop settings without pretending the source settings prove more than they do. Its main weakness is occasional compression that turns sharp phrasing into opacity, especially in one deep-read line and the shortest example. Those are craft issues, not reader-harming defects."
+}
+```

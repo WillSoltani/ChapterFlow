@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch01",
+  "chapterNumber": 1,
+  "contentHash": "268e92bde8bf6c64",
+  "reviewerSessionId": "auto-author-review-ch01-mrczedyc-6",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 90,
+    "insight": 86,
+    "density": 84,
+    "beginner": 83
+  },
+  "composite": 86.1,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The smartest answer in the room can be the reason the room gets less smart.",
+      "why": "Strong memorable line that makes the leadership mechanism concrete.",
+      "verified": true
+    },
+    {
+      "quote": "Edition drift is how a careful person makes a false bridge: the idea is real, the source is real, and the join between them is weak.",
+      "why": "Best explanation of the chapter's core source-boundary problem.",
+      "verified": true
+    },
+    {
+      "quote": "The move half-works because the article does not settle which revised material came later.",
+      "why": "Shows the example set repeating the same source-boundary lesson rather than broadening transfer much.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1 and Q9 have correct answers that are the only choices carrying the precise date/name source markers, so a pattern-aware test taker could lean on specificity.",
+    "Q8's distractors both preserve the charisma framing while the key is the only option that reframes it as practice, making it easier than the prose support alone."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "Distractor a overlaps with the keyed idea because a happiness-only reading could plausibly lead to a comfort program while leaving capability unused; the key is still best, but the distractor is not clean.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The learnable-practices answer is supported most explicitly by the review card after the quiz rather than by the main explanatory prose, so the item is fair but thinly grounded.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-6",
+      "problem": "The examples are real and usable, but several rehearse the same 2010-versus-2017 boundary move with limited variation in setting, decision, and consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship. The chapter has a clear core move, memorable language, strong limits, and a usable bridge from source hygiene to leadership behavior. Its main weakness is range: the examples cluster around the same edition-boundary scenario, and a couple of quiz items have mild tell or support issues. Those are craft weaknesses, not reader-harming defects.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "3ca685415c5fcf27f34eca6759f209ddf722f620a243492b292653fd06e98631",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:02.551Z"
+}

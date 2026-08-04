@@ -1,0 +1,626 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch11",
+  "number": 11,
+  "title": "Security Analysis for the Lay Investor: General Approach",
+  "readingTimeMinutes": 8,
+  "hook": "The highest bond yield looks like the obvious winner, until the coverage line asks whether the issuer can keep paying the coupon.",
+  "counterintuition": "The obvious move is to chase the larger quoted return or the latest profit number. The disciplined response is to test payment strength, normalized earning power, conservative growth, asset backing, and debt before trusting price.",
+  "tryThisNow": "Create a calendar review titled Security Analysis check and add fields for bond coverage, normalized earnings power, and conservative growth assumptions before any security stays on the list.",
+  "keyTakeaway": "Analyze securities by testing payment strength, normalized earning power, conservative growth, assets, debt, and market context before trusting yield, a single earnings number, or a precise forecast.",
+  "breakdown": {
+    "fastRead": "Security analysis begins by refusing the easy headline. For a bond, the coupon is attractive only if the issuer can keep paying it, so interest coverage comes before yield. For a stock, the latest profit number is not enough because one year's result can be distorted by cycles or unusual items; normalized earnings power is the better base. Growth estimates should stay conservative because small changes in assumed growth can make valuation swing too far. Assets matter when earnings are uncertain because balance-sheet value can support the appraisal if profit estimates disappoint. Debt also changes common-stock value because fixed claims stand ahead of shareholders and magnify setbacks. The lay investor's job is not exact prophecy. It is to use practical checks before price excitement becomes a decision.",
+    "deepRead": "The first check is payment strength. A bond can advertise a high yield, but the yield is useful only if the issuer can keep paying the coupon. That turns bond analysis away from attraction and toward coverage: earnings before interest, interest charges, and the margin between them. High yield can be a warning when weak coverage is the reason the market demands more return.\n\nStock analysis has a parallel discipline. The latest earnings figure may feel current and therefore decisive, but one year's profit can be distorted by cycles or unusual items. Normalized earnings power gives the appraisal a steadier base. That does not make the number perfect. It simply reduces the chance that a single good or bad year becomes the whole valuation.\n\nGrowth then needs restraint. John Burr Williams-style valuation points attention toward future cash flows, but growth assumptions are powerful inputs. A small change in assumed growth can create a large change in value, so precision can become a disguise for guesswork. Assets and debt keep the analysis grounded. Assets matter when earnings are uncertain because balance-sheet value can change downside risk. Debt matters because fixed claims stand ahead of common shareholders and can turn business weakness into shareholder fragility. The useful lay approach is modest: earnings power, assets, debt, dividends, growth rate, and capitalization multiple are inputs to judgment, not permission to pretend that an exact value has been found.",
+    "fullRead": "The general approach is a disciplined narrowing of professional security analysis into checks a lay investor can actually use. The point is not to imitate a full analyst staff. The point is to ask the right questions before a quoted return, a fresh profit figure, or a confident forecast takes over the decision.\n\nBonds show the order of work most plainly. A high coupon or high yield may look like the prize, but the coupon matters only if the issuer can keep paying it. Bond analysis therefore starts with interest coverage before yield attraction. The safety test asks whether earnings before interest cover interest charges with a margin. If coverage is weak, a higher yield may be compensation for danger instead of evidence of opportunity. Credit safety has to be measured against obligations, not guessed from reputation.\n\nCommon-stock analysis starts somewhere different but follows the same habit of skepticism. The latest earnings number is not automatically the right value base because one year's profit can be distorted by cycles or unusual items. Normalized earnings power gives the investor a more durable starting point. From there, a capitalization multiple turns expected earning power into a price judgment: the price paid per dollar of earnings sets the buyer's implied return and risk. A low multiple is not proof of cheapness, because low multiples can reflect real deterioration.\n\nGrowth is the most tempting place to overreach. John Burr Williams-style estimates connect value to future cash flows, and the 1938 Theory of Investment Value clarifies why growth assumptions and discount rates matter. Yet small changes in assumed growth can produce large changes in valuation. That makes conservative assumptions essential. A precise growth forecast does not make valuation objective when the inputs are estimates.\n\nAssets provide a second support when earnings are uncertain. If profit estimates disappoint, balance-sheet value can still affect downside risk. That does not mean assets solve every problem, only that earnings are not the only relevant evidence for all stocks. Debt cuts the other way. Fixed claims stand ahead of common shareholders, so debt changes both value and risk. Sales growth does not erase leverage; leverage can turn business setbacks into shareholder fragility.\n\nOther evidence can strengthen or weaken the appraisal. A dividend record can support an earnings appraisal because cash paid over time checks whether accounting profits translated into shareholder returns. Common stocks also need market context. Comparing them with bond yields is part of valuation because attractiveness depends partly on other available returns. The final discipline is humility: avoid false precision. Earnings power, assets, debt, dividends, growth rate, and capitalization multiple can guide judgment, but appraisal error remains unavoidable and has to be absorbed by conservative assumptions."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch11.example.1",
+      "sourceAnchorIds": [
+        "ch11.example.1"
+      ],
+      "title": "The Yield Shortcut in Chat",
+      "tags": [
+        "decision_point",
+        "chat",
+        "audit"
+      ],
+      "planSpec": {
+        "domain": "team chat: before-after audit",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Laurel drops a bond candidate into the team chat with a short note: \"highest yield, so it looks best.\" Ina runs the before-after audit. Before, the choice rests on yield attraction alone, and the old default fails when Myles asks whether earnings cover interest charges by a safe margin. After, the chat note changes to a simplified practical check borrowed from the Security Analysis tradition: yield comes second to whether the issuer can keep paying the coupon.",
+      "whatToDo": "Rewrite the chat recommendation before acting on it. Put the coverage question ahead of the yield claim: can earnings cover interest charges by a safe margin, or is the high yield warning that coverage may be weak?",
+      "whyItMatters": "A high coupon is not useful if the issuer cannot keep paying it. The practical lay version of professional security analysis starts by testing bond safety, not by rewarding the most attractive yield label. Security Analysis tradition gives the concrete check: 1934 Graham-Dodd tradition; professional security analysis."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch11.example.2",
+      "sourceAnchorIds": [
+        "ch11.example.2"
+      ],
+      "title": "The Handoff That Slows the Latest Number",
+      "tags": [
+        "before_after",
+        "clinic",
+        "conversation"
+      ],
+      "planSpec": {
+        "domain": "clinic handoff: conversation repair",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Ina is finishing a clinic handoff when Myles points to a stock note and says the latest earnings number should be the value base. Otto repairs the conversation before the decision is logged. She asks for normalized earnings power first, because one year's profit can be distorted by cycles or unusual items. The handoff changes from \"approve on the latest profit\" to \"wait until the earnings record is normalized,\" then future cash flow valuation can be discussed without pretending one year is enough.",
+      "whatToDo": "In the handoff, replace the latest-earnings shortcut with a normalized-earnings question. Use the John Burr Williams / Theory of Investment Value reference only after the base earnings power is less dependent on one year's profit.",
+      "whyItMatters": "Future cash flow valuation depends on estimates, and the starting earnings base matters. A normalized record reduces one-year distortion, so the decision changes from fast approval to a more restrained valuation step. John Burr Williams / Theory of Investment Value keeps two details visible, John Burr Williams and 1938 Theory of Investment Value."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch11.example.3",
+      "sourceAnchorIds": [
+        "ch11.example.3"
+      ],
+      "title": "The Dashboard Memo That Gives Back Precision",
+      "tags": [
+        "mistake_recovery",
+        "banking",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "banking dashboard: tradeoff memo",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "Myles writes a tradeoff memo inside a banking dashboard and gives the stock valuation a precise growth estimate. Otto challenges the memo because small changes in assumed growth can produce large changes in valuation. Norah tries to recover by pointing to a bond tab, but the first revision still treats the forecast as exact. The final memo keeps the growth estimate conservative and adds the bond safety arithmetic reminder: coverage ratios test whether earnings cover interest charges before a bond comparison can be useful.",
+      "whatToDo": "Edit the dashboard memo in stages. First, mark the growth assumption as conservative instead of exact. Then add the recovery note: when comparing against bonds, check interest coverage and earnings against interest charges instead of treating the bond label as automatic safety.",
+      "whyItMatters": "Forecast precision often exceeds available evidence. The recovery has friction because the memo has to give up a clean-looking number and replace it with conservative assumptions plus bond coverage checks. Bond interest coverage also brings in earnings cover interest charges and bond safety arithmetic."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch11.example.1",
+      "sourceAnchorIds": [
+        "ch11.example.1"
+      ],
+      "title": "Market card logs Security Analysis tradition",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "training room: Security Analysis tradition",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Paige logs a market card beside the margin table; the firm index screens the page toward a quick riskcard. The proxytablet stays closed.",
+      "whatToDo": "Screen 1934 Graham-Dodd tradition beside professional security analysis; settle simplified practical checks.",
+      "whyItMatters": "Security Analysis tradition: simplified practical checks."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch11.example.2",
+      "sourceAnchorIds": [
+        "ch11.example.2"
+      ],
+      "title": "Savings form pencils John Burr Williams",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "archive cart: John Burr Williams",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Rhys binds a savings form beside the proxy stand; the gentle rail audits the page toward a rural filetab. The safetyschedule stays closed.",
+      "whatToDo": "Review John Burr Williams beside 1938 Theory of Investment Value; settle future cash flow valuation.",
+      "whyItMatters": "John Burr Williams / Theory of Investment Value: future cash flow valuation."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch11.example.3",
+      "sourceAnchorIds": [
+        "ch11.example.3"
+      ],
+      "title": "Portfolio tile numbers Bond interest coverage",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "station platform: Bond interest coverage",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Serena tapes a portfolio tile beside the safety bench; the honest balance matches the page toward a steady bondnote. The valuepacket stays closed.",
+      "whatToDo": "Audit interest coverage ratio beside earnings cover interest charges; settle bond safety arithmetic.",
+      "whyItMatters": "Bond interest coverage: bond safety arithmetic."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch11.fact.1",
+        "prompt": "A bond shows an unusually high yield, but its interest coverage looks weak. What should come first in the analysis?",
+        "choices": [
+          "Choose the bond in this case because the yield looks most attractive.",
+          "Check whether earnings can keep covering the interest payments.",
+          "Ignore coverage because yield already states the full return."
+        ],
+        "correctIndex": 1,
+        "explanation": "Bond analysis starts with interest coverage before yield attraction. A coupon matters only if the issuer can keep paying it, and high yield can signal weak coverage.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch11.fact.2",
+        "prompt": "A stock looks cheap after one strong profit year. What earnings base should a careful appraisal start with?",
+        "choices": [
+          "Only the latest earnings number, because recent profit is the full value base.",
+          "No earnings record, because stock analysis should ignore business results.",
+          "Normalized earnings power that reduces distortion from cycles or unusual items."
+        ],
+        "correctIndex": 2,
+        "explanation": "Stock analysis starts with normalized earnings power. One year's profit can be distorted, so a normalized record gives a sturdier value base.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch11.fact.3",
+        "prompt": "A valuation depends heavily on a growth estimate. Which treatment best fits a John Burr Williams-style appraisal?",
+        "choices": [
+          "Use conservative growth estimates because small assumption changes can move valuation sharply.",
+          "Use a precise growth forecast because precision makes valuation objective.",
+          "Remove the growth estimate because the forecast feels too uncertain."
+        ],
+        "correctIndex": 0,
+        "explanation": "John Burr Williams-style growth estimates should be conservative. Small changes in assumed growth can create large valuation changes, and forecast precision can exceed the evidence.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch11.fact.4",
+        "prompt": "Profit estimates for a stock look uncertain. Which additional evidence can change the downside risk appraisal?",
+        "choices": [
+          "Use earnings alone here because assets feel secondary to reported profit.",
+          "The latest market excitement, because it replaces balance-sheet value.",
+          "Balance-sheet assets that may provide support if earnings disappoint."
+        ],
+        "correctIndex": 2,
+        "explanation": "Assets matter when earnings are uncertain. Balance-sheet value can provide support if profit estimates disappoint, so asset backing can affect downside risk.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch11.fact.5",
+        "prompt": "Sales are growing, but the common stock sits behind large fixed claims. What risk should not be ignored?",
+        "choices": [
+          "Debt is irrelevant whenever sales are growing.",
+          "Debt can magnify business setbacks because fixed claims stand ahead of shareholders.",
+          "Treat leverage as helpful here because it lifts earnings during good periods."
+        ],
+        "correctIndex": 1,
+        "explanation": "Debt changes both value and risk for common stock. Fixed claims stand ahead of shareholders, and leverage can turn growth into fragility.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch11.fact.6",
+        "prompt": "A stock has a low P/E, but its earning power appears to be deteriorating. What is the better interpretation?",
+        "choices": [
+          "Treat the low P/E as proof enough unless deterioration is already obvious.",
+          "The multiple should be ignored because price per dollar of earnings has no meaning.",
+          "The low multiple may reflect real deterioration instead of a bargain."
+        ],
+        "correctIndex": 2,
+        "explanation": "A valuation multiple capitalizes expected earning power. The price paid per dollar of earnings sets implied return and risk, and low multiples can reflect real deterioration.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch11.fact.7",
+        "prompt": "A spreadsheet gives an exact intrinsic value, but the inputs are estimates. What discipline should a lay investor apply?",
+        "choices": [
+          "Use conservative assumptions because appraisal error is unavoidable.",
+          "Treat the spreadsheet result as exact because formulas remove appraisal error.",
+          "Increase precision until the estimate stops depending on judgment."
+        ],
+        "correctIndex": 0,
+        "explanation": "The lay investor should avoid false precision. Appraisal error is unavoidable, so conservative assumptions must absorb uncertainty because inputs are estimates, not facts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch11.fact.8",
+        "prompt": "Accounting profits look attractive, and there is also a dividend record. How can that record help the appraisal?",
+        "choices": [
+          "It should be ignored because dividends are unrelated to security analysis.",
+          "It checks whether profits translated into cash paid to shareholders over time.",
+          "It proves all accounting profits are durable."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dividend record can support an earnings appraisal. Cash paid over time provides evidence about durability and capital policy by checking accounting profits against shareholder returns.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch11.fact.9",
+        "prompt": "A common stock looks attractive in isolation. What market context still belongs in the valuation decision?",
+        "choices": [
+          "Bond yields and other available returns, because opportunity cost affects required return.",
+          "No market context, because a company can be valued without alternatives.",
+          "Only the company's own story, because available returns are unrelated to value."
+        ],
+        "correctIndex": 0,
+        "explanation": "Comparing common stocks with bond yields is part of valuation. A stock's attractiveness depends partly on bond yields and other available returns because opportunity cost affects required return.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch11.fact.1",
+      "sourceAnchorIds": [
+        "ch11.fact.1"
+      ],
+      "front": "What should bond analysis check before yield attraction?",
+      "back": "Bond analysis should check interest coverage before yield attraction. The coupon matters only if the issuer can keep paying it, and high yield can signal weak coverage.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch11.fact.2",
+      "sourceAnchorIds": [
+        "ch11.fact.2"
+      ],
+      "front": "Why should stock analysis start with normalized earnings power?",
+      "back": "Stock analysis starts with normalized earnings power because one year's profit can be distorted by cycles or unusual items. A normalized record reduces that distortion.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch11.fact.3",
+      "sourceAnchorIds": [
+        "ch11.fact.3"
+      ],
+      "front": "Why should John Burr Williams-style growth estimates be conservative?",
+      "back": "They should be conservative because small changes in assumed growth can produce large changes in valuation. Forecast precision often exceeds available evidence.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch11.fact.4",
+      "sourceAnchorIds": [
+        "ch11.fact.4"
+      ],
+      "front": "When do assets matter in a stock appraisal?",
+      "back": "Assets matter when earnings are uncertain. Balance-sheet value can provide support if profit estimates disappoint, and asset backing can change downside risk.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch11.fact.5",
+      "sourceAnchorIds": [
+        "ch11.fact.5"
+      ],
+      "front": "How does debt change common stock risk?",
+      "back": "Debt changes common stock risk because fixed claims stand ahead of shareholders and magnify business setbacks. Leverage can turn growth into fragility.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch11.fact.6",
+      "sourceAnchorIds": [
+        "ch11.fact.6"
+      ],
+      "front": "What does a valuation multiple capitalize?",
+      "back": "A valuation multiple capitalizes expected earning power. The price paid per dollar of earnings sets the buyer's implied return and risk, so a low P/E is not automatically cheap.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch11.fact.7",
+      "sourceAnchorIds": [
+        "ch11.fact.7"
+      ],
+      "front": "Why should the lay investor avoid false precision?",
+      "back": "The lay investor should avoid false precision because appraisal error is unavoidable. Inputs are estimates, not facts, so conservative assumptions must absorb uncertainty.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Schedule Conservative Security Analysis Checks",
+    "titleSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ],
+    "coreSkill": "Use a calendar trigger to make each security pass basic evidence checks before it stays on the list. Put bond coverage before yield attraction, normalize stock earnings power before using profit as a value base, and keep John Burr Williams-style growth estimates conservative.",
+    "coreSkillSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch11.fact.1",
+        "sourceAnchorIds": [
+          "ch11.fact.1"
+        ],
+        "context": "weekly calendar review",
+        "plan": "If a bond looks attractive because the yield is high, then pause the calendar review until interest coverage is written before yield."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.2",
+        "sourceAnchorIds": [
+          "ch11.fact.2"
+        ],
+        "context": "weekly calendar review",
+        "plan": "If a stock note relies on the latest earnings number, then replace it with normalized earnings power before treating the note as usable."
+      },
+      {
+        "sourceAnchorId": "ch11.fact.3",
+        "sourceAnchorIds": [
+          "ch11.fact.3"
+        ],
+        "context": "weekly calendar review",
+        "plan": "If a growth estimate feels precise, then mark it as a conservative John Burr Williams-style assumption before using it in valuation."
+      }
+    ],
+    "twentyFourHourChallenge": "Add the Security Analysis check to the next calendar review and test it on one current security note by filling coverage, normalized earnings power, and conservative growth before keeping the note active.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ],
+    "weeklyPractice": "During each weekly calendar review, keep only security notes that show bond coverage before yield, normalized earnings power before stock value, and conservative growth assumptions before valuation.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch11.fact.1",
+      "ch11.fact.2",
+      "ch11.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "For a bond, the coupon is attractive only if the issuer can keep paying it, so interest coverage comes before yield.",
+      "location": "breakdown.fastRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "That turns bond analysis away from attraction and toward coverage: earnings before interest, interest charges, and the margin between them.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "The point is to ask the right questions before a quoted return, a fresh profit figure, or a confident forecast takes over the decision.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:5d462e596a581c2b918bf5497fbc262b58a6ba4914ee9df1340ab788a7975ccf",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch11.source.json",
+      "observedAnchorIds": [
+        "ch11.concept",
+        "ch11.example.1",
+        "ch11.example.2",
+        "ch11.example.3",
+        "ch11.fact.1",
+        "ch11.fact.2",
+        "ch11.fact.3",
+        "ch11.fact.4",
+        "ch11.fact.5",
+        "ch11.fact.6",
+        "ch11.fact.7",
+        "ch11.fact.8",
+        "ch11.fact.9",
+        "ch11.framework.lay.analysis.inputs",
+        "ch11.framework.bond.safety.test"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch11.example.1"
+        ],
+        "examples[1]": [
+          "ch11.example.2"
+        ],
+        "examples[2]": [
+          "ch11.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch11.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch11.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch11.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch11.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch11.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch11.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch11.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch11.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch11.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch11.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch11.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch11.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch11.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch11.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch11.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch11.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch11.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch11.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch11.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch11.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch11.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch11.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch11.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch11.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch11.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch11.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch11.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch11.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3"
+        ],
+        "hook": [
+          "ch11.fact.1"
+        ],
+        "counterintuition": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3",
+          "ch11.fact.4",
+          "ch11.fact.5",
+          "ch11.framework.lay.analysis.inputs",
+          "ch11.framework.bond.safety.test"
+        ],
+        "keyTakeaway": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3",
+          "ch11.fact.4",
+          "ch11.fact.5",
+          "ch11.fact.7",
+          "ch11.fact.9"
+        ],
+        "tryThisNow": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3",
+          "ch11.fact.4",
+          "ch11.fact.5",
+          "ch11.framework.lay.analysis.inputs",
+          "ch11.framework.bond.safety.test"
+        ],
+        "breakdown.deepRead": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3",
+          "ch11.fact.4",
+          "ch11.fact.5",
+          "ch11.fact.7",
+          "ch11.framework.lay.analysis.inputs",
+          "ch11.framework.bond.safety.test"
+        ],
+        "breakdown.fullRead": [
+          "ch11.fact.1",
+          "ch11.fact.2",
+          "ch11.fact.3",
+          "ch11.fact.4",
+          "ch11.fact.5",
+          "ch11.fact.6",
+          "ch11.fact.7",
+          "ch11.fact.8",
+          "ch11.fact.9",
+          "ch11.framework.lay.analysis.inputs",
+          "ch11.framework.bond.safety.test"
+        ]
+      }
+    }
+  }
+}

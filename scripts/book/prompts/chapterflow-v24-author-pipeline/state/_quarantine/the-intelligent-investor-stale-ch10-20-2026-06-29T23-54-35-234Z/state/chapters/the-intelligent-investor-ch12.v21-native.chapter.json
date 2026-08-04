@@ -1,0 +1,613 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch12",
+  "number": 12,
+  "title": "Things to Consider About Per-Share Earnings",
+  "readingTimeMinutes": 8,
+  "hook": "A clean EPS headline can feel like the answer, until the footnotes show which costs were moved out of view.",
+  "counterintuition": "Per-share earnings are not self-explanatory. The safer habit is to inspect adjustments, footnotes, special charges, dilution, and cash generation before using EPS in valuation.",
+  "tryThisNow": "Save one EPS request template: Show the footnotes, adjustments, multi-year average, and any special charges that should stay in earnings.",
+  "keyTakeaway": "Do not value a stock from headline EPS alone; check footnotes, adjustments, cyclicality, special charges, dilution, and cash generation first.",
+  "breakdown": {
+    "fastRead": "EPS is useful only after it is checked. Per-share earnings should be read with footnotes and adjustments because headline EPS may exclude or reclassify important costs. Averaging earnings across years can reduce cyclical distortion when a recent result sits at an unusually good or bad point. Special charges need judgment, not automatic removal, because repeated exceptions stop being exceptional. Dilution from options, convertibles, or warrants can spread earnings over more shares. Accounting profit also needs comparison with cash generation, since accrual earnings can look strong while cash flow is weak.",
+    "deepRead": "The first move is to stop treating EPS as a clean fact. Per-share earnings should be read with footnotes and adjustments because headline EPS may exclude or reclassify important costs. A reported number can be technically present and still incomplete for valuation if the costs behind it have been shifted into an adjustment, special item, or definition that changes the meaning.\n\nRecent earnings also need context. Averaging earnings across years can reduce cyclical distortion because one unusually good or bad year may not represent earning power. The most recent year can matter, but it should not automatically dominate valuation when recent results may be a cyclical extreme.\n\nSpecial charges require judgment instead of a reflex. The easy shortcut is to ignore every special charge and focus on an adjusted figure. That can be wrong because recurring unusual charges may reveal a real business problem. If exceptions keep returning, they are no longer safely exceptional.\n\nShare count and cash add two more tests. Dilution matters when options, convertibles, or warrants can increase share count, because future shares spread earnings over more owners. Basic EPS may miss that pressure. Accounting profit should also be compared with cash generation because accrual earnings can look strong while cash flow is weak. Profit and cash are not interchangeable when revenue recognition and working capital diverge.",
+    "fullRead": "EPS becomes dangerous when it is treated as the end of the analysis instead of the start. Per-share earnings should be read with footnotes and adjustments because headline EPS may exclude or reclassify important costs. The visible number may be convenient, but accounting choices can change its meaning. A cost that has been moved into an adjustment, described as special, or excluded from a preferred presentation may still affect the business owner. The practical question is not whether EPS was reported, but what had to be assumed, removed, or reclassified to produce it.\n\nThe next safeguard is to widen the time frame. Averaging earnings across years can reduce cyclical distortion because one unusually good or bad year may not represent earning power. A recent result can be informative, but it should not automatically control valuation. When current earnings sit at a cyclical extreme, the investor who capitalizes that figure may mistake a temporary condition for normal earning power. A smoother view across years helps separate durable performance from a short-lived peak or trough.\n\nSpecial charges demand the same skepticism in both directions. Ignoring every special charge is too generous, because recurring unusual charges may reveal a real business problem. Treating every charge as fully ordinary can also blur useful distinctions. The disciplined move is judgment: ask what the charge represents, whether the pattern repeats, and whether the adjusted figure removes a real cost. Repeated exceptions stop being exceptional, so an adjustment that appears again and again should not be accepted as harmless presentation.\n\nDilution changes the claim each share has on earnings. Options, convertibles, or warrants can increase share count, and future shares spread earnings over more owners. Basic EPS can therefore make shareholder economics look cleaner than they are. A per-share figure is only meaningful if the denominator deserves trust. When potential claims can become shares, diluted figures and share-count footnotes belong in the valuation check.\n\nCash generation is the final cross-check in the core earnings review. Accounting profit should be compared with cash generation because accrual earnings can look strong while cash flow is weak. Profit and cash are not always interchangeable: revenue recognition and working capital can diverge. If reported profit rises while cash generation lags, the investor should slow down before treating the earnings as high quality.\n\nThe useful routine is plain: read footnotes and adjustments, average earnings across years where cyclicality may distort the recent result, judge special charges instead of automatically excluding them, inspect dilution, and compare accounting profit with cash flow. EPS can still guide valuation, but only after the number survives those checks."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch12.example.1",
+      "sourceAnchorIds": [
+        "ch12.example.1"
+      ],
+      "title": "The Handoff That Treats EPS as Finished",
+      "tags": [
+        "decision_point",
+        "clinic",
+        "conversation"
+      ],
+      "planSpec": {
+        "domain": "clinic handoff: conversation repair",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "What fails when EPS is treated as a complete answer during a clinic handoff? Declan points to a dashboard note and tells Celine the headline EPS is enough to move the decision along. Elisea interrupts because the handoff has skipped footnotes and adjustments. The old the shortcut shows up in the file moment: a clean-looking per-share figure is being treated as self-explanatory even though headline EPS may exclude or reclassify important costs, the same reason Alcoa's 1970 earnings presentation needs scrutiny around special charges and presentation choices.",
+      "whatToDo": "Repair the handoff before the decision moves. Add a plain line under the EPS note: which costs, charges, or accounting choices sit outside the headline figure? Then mark the decision as incomplete until the footnotes and adjustments have been checked.",
+      "whyItMatters": "The failure is not that EPS is useless. The failure is letting the headline number end the conversation. Accounting choices can change the meaning of per-share earnings, so the reader-facing move is to inspect what sits behind the figure before relying on it. Alcoa 1970 earnings presentation gives the concrete check: Alcoa; 1970 earnings presentation."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch12.example.2",
+      "sourceAnchorIds": [
+        "ch12.example.2"
+      ],
+      "title": "The Banking Dashboard Memo That Changes the Choice",
+      "tags": [
+        "before_after",
+        "banking",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "banking dashboard: tradeoff memo",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "How does the choice change when the latest EPS stops dominating a banking dashboard? Celine drafts a short tradeoff memo beside the dashboard: before, the most recent result was going to drive the valuation; after, Elisea asks for an average across years because one unusually good or bad year may not represent earning power. Ford adds the warning from Enron's accounting failure: reported results can mask economic weakness, especially when adjusted earnings and off-balance-sheet structures deserve questioning.",
+      "whatToDo": "Use the memo to separate recent performance from earning power. Keep the recent EPS visible, but add an averaged-earnings line and a question about whether reported results are masking weakness. Let the averaged view change the decision if the latest year looks like a cyclical extreme.",
+      "whyItMatters": "That shift turns accepting the freshest figure to testing whether the figure represents durable earning power. Averaging across years can reduce cyclical distortion because recent results can sit at an extreme. Enron accounting failure keeps two details visible, Enron and 2001 bankruptcy."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch12.example.3",
+      "sourceAnchorIds": [
+        "ch12.example.3"
+      ],
+      "title": "The elevator-lobby grid Charge Check",
+      "tags": [
+        "mistake_recovery",
+        "kitchen",
+        "deadline"
+      ],
+      "planSpec": {
+        "domain": "elevator-lobby grid: deadline triage",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "When does deadline triage make a special charge check harder? At the elevator-lobby grid, Elisea is rushing and writes that every special charge should be excluded. Ford catches the shortcut, but the recovery is not clean. Giselle has to reopen SEC EDGAR, compare the headline EPS with annual and quarterly reports, and read the financial statement footnotes. The first pass only labels the charge as unusual; the second pass asks whether repeated exceptions have stopped being exceptional.",
+      "whatToDo": "Triage the deadline with a charge log. For each special charge, write whether it is a one-off adjustment or a sign of a recurring problem. If the footnotes do not support ignoring it, leave the charge in the judgment instead of automatically removing it.",
+      "whyItMatters": "Special charges require judgment instead of automatic exclusion. Recurring unusual charges may reveal a real business problem, so recovery means slowing down enough to test the exception against filed statements and footnotes. SEC EDGAR filings also brings in annual and quarterly reports and financial statement footnotes."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch12.example.1",
+      "sourceAnchorIds": [
+        "ch12.example.1"
+      ],
+      "title": "Statement line separates Alcoa 1970 earnings presentation",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "lobby chair: Alcoa 1970 earnings presentation",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Tristan folds a statement line beside the value rack; the inward metric prices the page toward a true cashnote. The northseal stays closed.",
+      "whatToDo": "Trace Alcoa beside 1970 earnings presentation; settle special charges.",
+      "whyItMatters": "Alcoa 1970 earnings presentation: special charges."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch12.example.2",
+      "sourceAnchorIds": [
+        "ch12.example.2"
+      ],
+      "title": "Review pad brackets Enron accounting failure",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "ledger drawer: Enron accounting failure",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Adair scores a review pad beside the north alcove; the joint clause tilts the page toward a useful proxyline. The eastledger stays closed.",
+      "whatToDo": "Match Enron beside 2001 bankruptcy; settle off-balance-sheet structures.",
+      "whyItMatters": "Enron accounting failure: off-balance-sheet structures."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch12.example.3",
+      "sourceAnchorIds": [
+        "ch12.example.3"
+      ],
+      "title": "Desk copy scores SEC EDGAR filings",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "side desk: SEC EDGAR filings",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Bianca traces a desk copy beside the east desk; the known record carries the page toward a varied quotegrid. The westanchor stays closed.",
+      "whatToDo": "Price SEC EDGAR beside annual and quarterly reports; settle financial statement footnotes.",
+      "whyItMatters": "SEC EDGAR filings: financial statement footnotes."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch12.fact.1",
+        "prompt": "A company highlights EPS in a short summary, but the filing includes footnotes and adjustments. What should an investor do first?",
+        "choices": [
+          "Treat EPS as self-explanatory because accounting choices cannot change its meaning.",
+          "Read the per-share figure with the footnotes and adjustments before treating it as evidence.",
+          "Ignore adjustments because the headline number already includes every important cost."
+        ],
+        "correctIndex": 1,
+        "explanation": "Per-share earnings need footnotes and adjustments because headline EPS can exclude or reclassify important costs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch12.fact.2",
+        "prompt": "Recent earnings look unusually strong after a cyclical upswing. Which valuation habit reduces the risk of overreading that result?",
+        "choices": [
+          "Let the most recent year dominate because it is the freshest information.",
+          "Average earnings across years so one unusually good or bad year does not define earning power.",
+          "Use only the strongest year because valuation should reward peak conditions."
+        ],
+        "correctIndex": 1,
+        "explanation": "Averaging earnings across years can reduce cyclical distortion because a recent result may be an extreme.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch12.fact.3",
+        "prompt": "A company repeatedly labels costs as special charges and asks investors to ignore them. What is the disciplined response?",
+        "choices": [
+          "Exclude the special charge this time because the unusual label sounds nonrecurring.",
+          "Accept the adjusted figure whenever management separates the charge from reported earnings.",
+          "Judge whether the charges keep recurring, because repeated exceptions may reveal a real business problem."
+        ],
+        "correctIndex": 2,
+        "explanation": "Special charges require judgment instead of automatic exclusion. Repeated exceptions stop being exceptional.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch12.fact.4",
+        "prompt": "Basic EPS looks attractive, but options, convertibles, or warrants could increase the share count. What risk should be checked?",
+        "choices": [
+          "Whether dilution could spread earnings over more owners and reduce each share's interest.",
+          "Whether basic EPS is high enough to make future share claims irrelevant.",
+          "Whether the company can avoid reporting diluted claims once basic EPS is available."
+        ],
+        "correctIndex": 0,
+        "explanation": "Dilution matters because future shares can spread earnings over more owners. Basic EPS may not capture that shareholder economics issue.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch12.fact.5",
+        "prompt": "Reported profit looks strong, but cash generation is weak. What question should come before trusting the profit figure?",
+        "choices": [
+          "Whether profit and cash can be treated as interchangeable whenever accounting profit is positive.",
+          "Whether weak cash flow can be dismissed because revenue recognition settles the issue.",
+          "Whether accrual earnings are diverging from cash flow through revenue recognition or working capital."
+        ],
+        "correctIndex": 2,
+        "explanation": "Accounting profit should be compared with cash generation because accrual earnings can look strong while cash flow is weak.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch12.fact.6",
+        "prompt": "Management presents adjusted earnings as cleaner than GAAP because several costs are removed. What is the right default response?",
+        "choices": [
+          "Review the adjustments independently because incentives favor presenting results in the most flattering light.",
+          "Prefer adjusted earnings in this case because management says the removed costs distort GAAP.",
+          "Accept any removed cost as irrelevant once management calls the figure adjusted."
+        ],
+        "correctIndex": 0,
+        "explanation": "Management's adjusted figures need independent review. Adjustments can remove real costs, especially when incentives favor flattering presentation.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch12.fact.7",
+        "prompt": "A low P/E looks cheap, but current earnings may be temporarily inflated. Why can the low multiple mislead?",
+        "choices": [
+          "The denominator may fall when conditions normalize, so the apparent cheapness can disappear.",
+          "Treat the low multiple as cheap because the market price seems to reflect the risk.",
+          "A low P/E proves the earnings base will remain stable when conditions normalize."
+        ],
+        "correctIndex": 0,
+        "explanation": "A low P/E can mislead when earnings are temporarily inflated because the earnings base can be overstated.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch12.fact.8",
+        "prompt": "A high P/E looks expensive, but current earnings may be temporarily depressed. What should an investor test before rejecting it?",
+        "choices": [
+          "Whether this high multiple is too expensive before checking normalized earnings.",
+          "Whether normalized profits may be higher than the trough, making the current denominator understated.",
+          "Whether the current trough should be treated as permanent because it is the reported figure."
+        ],
+        "correctIndex": 1,
+        "explanation": "A high P/E can mislead if current earnings are temporarily depressed because normalized profits may be higher than the trough.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch12.fact.9",
+        "prompt": "A promotional summary presents attractive EPS, while filed statements include definitions, charges, and share counts. What evidence should carry more weight?",
+        "choices": [
+          "The promotional summary, because valuation only needs the headline EPS.",
+          "The shorter document, because added context usually distracts from valuation.",
+          "The filed statements, because audited reports and footnotes expose the context behind the number."
+        ],
+        "correctIndex": 2,
+        "explanation": "Filed statements are better evidence than summaries or promotion because audited reports and footnotes expose definitions, charges, and share counts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch12.fact.1",
+      "sourceAnchorIds": [
+        "ch12.fact.1"
+      ],
+      "front": "Why should per-share earnings be read with footnotes and adjustments?",
+      "back": "Headline EPS may exclude or reclassify important costs. Footnotes and adjustments help show how accounting choices affect the meaning of the number.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch12.fact.2",
+      "sourceAnchorIds": [
+        "ch12.fact.2"
+      ],
+      "front": "How can averaging earnings across years improve valuation judgment?",
+      "back": "Averaging can reduce cyclical distortion because one unusually good or bad year may not represent earning power. Recent results can be a cyclical extreme.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch12.fact.3",
+      "sourceAnchorIds": [
+        "ch12.fact.3"
+      ],
+      "front": "Why should special charges be judged instead of automatically excluded?",
+      "back": "Recurring unusual charges may reveal a real business problem. When exceptions repeat, they stop being exceptional and should not be ignored mechanically.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch12.fact.4",
+      "sourceAnchorIds": [
+        "ch12.fact.4"
+      ],
+      "front": "Why does dilution matter for EPS analysis?",
+      "back": "Options, convertibles, or warrants can increase share count. Future shares spread earnings over more owners and can reduce each share's interest.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch12.fact.5",
+      "sourceAnchorIds": [
+        "ch12.fact.5"
+      ],
+      "front": "Why compare accounting profit with cash generation?",
+      "back": "Accrual earnings can look strong while cash flow is weak. Revenue recognition and working capital can make profit and cash diverge.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch12.fact.6",
+      "sourceAnchorIds": [
+        "ch12.fact.6"
+      ],
+      "front": "Why do management's adjusted figures need independent review?",
+      "back": "Incentives favor presenting results in the most flattering light. Adjustments can remove real costs, so adjusted earnings are not automatically more truthful than GAAP.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch12.fact.7",
+      "sourceAnchorIds": [
+        "ch12.fact.7"
+      ],
+      "front": "Why can a low P/E be misleading when earnings are temporarily inflated?",
+      "back": "The earnings base can be overstated. If the denominator falls when conditions normalize, the low multiple may no longer signal cheapness.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Request Evidence Behind Headline EPS",
+    "titleSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ],
+    "coreSkill": "Use one saved request before relying on headline EPS. The skill is to make the decision surface show footnotes and adjustments, compare earnings across years, and judge special charges instead of excluding them by default.",
+    "coreSkillSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch12.fact.1",
+        "sourceAnchorIds": [
+          "ch12.fact.1"
+        ],
+        "context": "banking dashboard",
+        "plan": "If headline EPS is the only number visible, then paste the saved request for footnotes and adjustments before treating EPS as usable evidence."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.2",
+        "sourceAnchorIds": [
+          "ch12.fact.2"
+        ],
+        "context": "kitchen table",
+        "plan": "If the recent result is dominating the decision, then ask for earnings averaged across years before using recent EPS as earning power."
+      },
+      {
+        "sourceAnchorId": "ch12.fact.3",
+        "sourceAnchorIds": [
+          "ch12.fact.3"
+        ],
+        "context": "clinic handoff",
+        "plan": "If a special charge is being removed automatically, then ask whether similar charges recur and keep the charge in view until the reason is clear."
+      }
+    ],
+    "twentyFourHourChallenge": "Before relying on any headline EPS, save the request template where it can be pasted into the next earnings check.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ],
+    "weeklyPractice": "Once a week, use the saved template on one EPS decision and leave the decision pending until footnotes, adjustments, averaged earnings, and special-charge judgment are present.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch12.fact.1",
+      "ch12.fact.2",
+      "ch12.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The practical question is not whether EPS was reported, but what had to be assumed, removed, or reclassified to produce it.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "A cost that has been moved into an adjustment, described as special, or excluded from a preferred presentation may still affect the business owner.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "The disciplined move is judgment: ask what the charge represents, whether the pattern repeats, and whether the adjusted figure removes a real cost.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:8d4d53b8d597c149e93e52a4a8a9a68151bd8b6d86f5d696b00dee060fd2335f",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch12.source.json",
+      "observedAnchorIds": [
+        "ch12.concept",
+        "ch12.example.1",
+        "ch12.example.2",
+        "ch12.example.3",
+        "ch12.fact.1",
+        "ch12.fact.2",
+        "ch12.fact.3",
+        "ch12.fact.4",
+        "ch12.fact.5",
+        "ch12.fact.6",
+        "ch12.fact.7",
+        "ch12.fact.8",
+        "ch12.fact.9",
+        "ch12.framework.eps.quality.checks"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch12.example.1"
+        ],
+        "examples[1]": [
+          "ch12.example.2"
+        ],
+        "examples[2]": [
+          "ch12.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch12.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch12.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch12.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch12.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch12.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch12.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch12.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch12.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch12.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch12.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch12.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch12.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch12.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch12.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch12.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch12.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch12.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch12.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch12.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch12.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch12.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch12.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch12.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch12.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch12.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch12.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch12.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch12.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3"
+        ],
+        "hook": [
+          "ch12.fact.1"
+        ],
+        "counterintuition": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3",
+          "ch12.fact.4",
+          "ch12.fact.5",
+          "ch12.framework.eps.quality.checks"
+        ],
+        "keyTakeaway": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3",
+          "ch12.fact.4",
+          "ch12.fact.5",
+          "ch12.framework.eps.quality.checks"
+        ],
+        "tryThisNow": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3",
+          "ch12.fact.4",
+          "ch12.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3",
+          "ch12.fact.4",
+          "ch12.fact.5"
+        ],
+        "breakdown.fullRead": [
+          "ch12.fact.1",
+          "ch12.fact.2",
+          "ch12.fact.3",
+          "ch12.fact.4",
+          "ch12.fact.5",
+          "ch12.framework.eps.quality.checks"
+        ]
+      }
+    }
+  }
+}

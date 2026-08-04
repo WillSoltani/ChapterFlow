@@ -6,7 +6,7 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, readdirSync, rmdirSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { promoteBook } from "../src/promoteBook.js";
@@ -15,6 +15,7 @@ import { makeChapter, PIPELINE_DIR, runCli, STATE_CHAPTERS, writeFixtureBook } f
 
 const BOOK = "zz-fixture-quarantine";
 const QUARANTINE_DIR = resolve(PIPELINE_DIR, "state", "books", "_quarantined");
+const QUARANTINE_DIR_EXISTED = existsSync(QUARANTINE_DIR);
 
 function cleanup(): void {
   for (const f of readdirSync(STATE_CHAPTERS)) {
@@ -25,6 +26,7 @@ function cleanup(): void {
       if (f.startsWith(`${BOOK}.`)) rmSync(resolve(QUARANTINE_DIR, f), { force: true });
     }
   } catch {}
+  if (!QUARANTINE_DIR_EXISTED && existsSync(QUARANTINE_DIR) && readdirSync(QUARANTINE_DIR).length === 0) rmdirSync(QUARANTINE_DIR);
   // The released-tombstone test runs promoteBook, which gets gate-BLOCKED and
   // writes a report + a timestamped _blocked quarantine copy — clean both, or
   // every suite run leaks a file into real state.

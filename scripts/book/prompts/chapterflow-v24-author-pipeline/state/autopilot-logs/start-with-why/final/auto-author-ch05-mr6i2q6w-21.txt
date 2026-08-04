@@ -1,0 +1,10 @@
+Wrote [start-with-why-ch05.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json).
+
+Validation:
+- `author-check` clean
+- `gate-chapter` PASS: 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match
+- Rendered length: 16,456 chars, inside budget
+- Evidence audit: no invented-witness or attribution candidates
+
+Note: the active v24 gate accepts the brief’s exact 5-example requirement. The sibling v21 CLI still has an older 6-example floor, so I used the requested v24 `src/cli.ts` command for the final gate.

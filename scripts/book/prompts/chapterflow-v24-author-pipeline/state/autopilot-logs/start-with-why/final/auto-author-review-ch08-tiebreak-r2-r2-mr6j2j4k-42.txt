@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are guessably wrong because they use extreme language such as 'every', 'only', 'all', or 'the only part', which makes the correct moderate answer easier to spot without full reading."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 81,
+    "practical": 89,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 88,
+    "insight": 84,
+    "density": 80,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Partnership is proof with a name, not support in the dark.",
+      "why": "Strongest compression of the chapter's core move."
+    },
+    {
+      "quote": "The builder does not follow the belief; the builder proves it.",
+      "why": "Memorable mechanism: HOW is not decorative support, it is the test of WHY."
+    },
+    {
+      "quote": "Keep 1975 with Gates and Allen, 1923 with Walt and Roy, and 1976 with Jobs and Wozniak.",
+      "why": "Useful anchor, but the chapter leans so hard on date-pair policing that broader transfer feels thinner."
+    },
+    {
+      "quote": "The move works, but only after the bright idea stops pretending it can pay for itself.",
+      "why": "Good plain-language insight, though the surrounding example scaffolding feels somewhat manufactured."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The core point is repeated through the same anchor/year/pair frame several times, which lowers density even though the idea is clear.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The chapter transfers best to source-checking and promise handoffs, but broader application beyond founder examples arrives late and briefly.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Some wrong answers are too obviously absolute or foolish, so a test-wise reader could eliminate them without fully deriving the answer from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The recurring named workplace characters sometimes feel like scaffolding for the lesson rather than natural cases.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 84 bar: the chapter has a clear core move, concrete anchors, fair keys, memorable lines, and a practical ask a reader could use immediately. Its main weakness is over-reliance on the same date-and-founder proof pattern, which makes transfer and density a little weaker than the strongest parts. The quiz is sound, but several distractors are easier to reject by tone than by understanding."
+}
+```

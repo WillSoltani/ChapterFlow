@@ -1,0 +1,240 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "start-with-why",
+  "roundLabel": "-round2",
+  "at": "2026-07-05T21:51:14.633Z",
+  "bar": 80,
+  "beatShipped": 73.1,
+  "accepted": false,
+  "sampledChapters": [
+    2,
+    6,
+    7,
+    11
+  ],
+  "docSha256": "729d1f192ab483db76f5574d9ff555c7f1b5770cd099cbd7abb5852096fd6b7e",
+  "verdict": {
+    "id": "start-with-why",
+    "medianComposite": 75.8,
+    "factors": {
+      "retention": 79,
+      "quizzes": 77,
+      "transfer": 81,
+      "practical": 73,
+      "summaries": 78,
+      "tone": 69,
+      "limits": 82,
+      "insight": 73,
+      "density": 67,
+      "beginner": 76
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "HIGH",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      2,
+      6,
+      7,
+      11
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-round2-mr8brh0w-19",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 76,
+          "quizzes": 77,
+          "transfer": 81,
+          "practical": 73,
+          "summaries": 78,
+          "tone": 65,
+          "limits": 78,
+          "insight": 70,
+          "density": 62,
+          "beginner": 72
+        },
+        "composite": 73.8,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "The sample is publishable on correctness: I found no keyed answer contradicted by the prose, no obvious fabricated facts, and no scaffold artifacts severe enough to veto. As a book sample, it is useful but highly templated. The strongest material gives readers durable lenses: separate push from reason, put belief before behavior, count first believers, and make metrics answer back with visible conduct. The weakness is sameness: each chapter leans on the same machinery of named anchors, hard details staying in their settings, second examples proving transfer, proxy characters, return points, and if-then drills. That makes the product coherent, but it also makes the chapters feel stamped from one architecture rather than individually authored.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-round2-mr8brh0z-20",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 79,
+          "quizzes": 76,
+          "transfer": 80,
+          "practical": 72,
+          "summaries": 78,
+          "tone": 71,
+          "limits": 82,
+          "insight": 74,
+          "density": 69,
+          "beginner": 76
+        },
+        "composite": 75.9,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "The sample is sound and often useful, with no key contradictions or obvious corrupted prose. Its best moments are compact reversals that turn business ideas into testable lenses: receipt not reason, loyalty as receipt, count the first believers. The main weakness is heavy cross-chapter churn. Nearly every chapter follows the same architecture: named anchor, second setting, edge example, hard facts must stay with their source, then a desk-level owed-proof exercise. That repetition makes the book feel engineered rather than individually authored. It is publishable as a solid draft, but not premium: the lessons transfer, the limits are better than average, and the quizzes are answerable, yet the practice sections can feel performative and the examples blur into one repeated scaffold.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-round2-mr8brh10-21",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "MEDIUM",
+        "scores": {
+          "retention": 82,
+          "quizzes": 78,
+          "transfer": 83,
+          "practical": 76,
+          "summaries": 78,
+          "tone": 69,
+          "limits": 82,
+          "insight": 73,
+          "density": 67,
+          "beginner": 78
+        },
+        "composite": 77,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is a publishable-quality sample with no hard correctness veto: the quizzes are supported, the company facts generally hold, and the core teaching repeatedly gives readers a usable lens. Its strongest assets are compact memorable distinctions, scenario-based quiz prompts, and clear transfer from business cases to everyday decisions. The main weakness is churn: chapters repeatedly use the same machinery of named anchors, second settings, edge details, order reversals, and hard facts staying with their source, so the book voice starts to feel more like a house template than individually authored chapters. The practical sections are useful but sometimes slightly performative, and the density drops in the examples where the same proof-return scaffold repeats.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-round2-mr8brh0w-19",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 76,
+        "quizzes": 77,
+        "transfer": 81,
+        "practical": 73,
+        "summaries": 78,
+        "tone": 65,
+        "limits": 78,
+        "insight": 70,
+        "density": 62,
+        "beginner": 72
+      },
+      "composite": 73.8,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "The sample is publishable on correctness: I found no keyed answer contradicted by the prose, no obvious fabricated facts, and no scaffold artifacts severe enough to veto. As a book sample, it is useful but highly templated. The strongest material gives readers durable lenses: separate push from reason, put belief before behavior, count first believers, and make metrics answer back with visible conduct. The weakness is sameness: each chapter leans on the same machinery of named anchors, hard details staying in their settings, second examples proving transfer, proxy characters, return points, and if-then drills. That makes the product coherent, but it also makes the chapters feel stamped from one architecture rather than individually authored.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-round2-mr8brh0z-20",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 79,
+        "quizzes": 76,
+        "transfer": 80,
+        "practical": 72,
+        "summaries": 78,
+        "tone": 71,
+        "limits": 82,
+        "insight": 74,
+        "density": 69,
+        "beginner": 76
+      },
+      "composite": 75.9,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "The sample is sound and often useful, with no key contradictions or obvious corrupted prose. Its best moments are compact reversals that turn business ideas into testable lenses: receipt not reason, loyalty as receipt, count the first believers. The main weakness is heavy cross-chapter churn. Nearly every chapter follows the same architecture: named anchor, second setting, edge example, hard facts must stay with their source, then a desk-level owed-proof exercise. That repetition makes the book feel engineered rather than individually authored. It is publishable as a solid draft, but not premium: the lessons transfer, the limits are better than average, and the quizzes are answerable, yet the practice sections can feel performative and the examples blur into one repeated scaffold.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-round2-mr8brh10-21",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 82,
+        "quizzes": 78,
+        "transfer": 83,
+        "practical": 76,
+        "summaries": 78,
+        "tone": 69,
+        "limits": 82,
+        "insight": 73,
+        "density": 67,
+        "beginner": 78
+      },
+      "composite": 77,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is a publishable-quality sample with no hard correctness veto: the quizzes are supported, the company facts generally hold, and the core teaching repeatedly gives readers a usable lens. Its strongest assets are compact memorable distinctions, scenario-based quiz prompts, and clear transfer from business cases to everyday decisions. The main weakness is churn: chapters repeatedly use the same machinery of named anchors, second settings, edge details, order reversals, and hard facts staying with their source, so the book voice starts to feel more like a house template than individually authored chapters. The practical sections are useful but sometimes slightly performative, and the density drops in the examples where the same proof-return scaffold repeats.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 75.8,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  }
+}

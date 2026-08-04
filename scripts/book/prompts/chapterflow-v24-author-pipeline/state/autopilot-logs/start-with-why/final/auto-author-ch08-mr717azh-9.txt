@@ -1,0 +1,7 @@
+Wrote [start-with-why-ch08.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch08.v21-native.chapter.json).
+
+Verification:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match
+- Self-check: rendered length 15,228 chars, quiz pattern `0,2,0,2,1,1,2,1,0`, distractor parity within limits, no forbidden case hits, no scaffold hits.

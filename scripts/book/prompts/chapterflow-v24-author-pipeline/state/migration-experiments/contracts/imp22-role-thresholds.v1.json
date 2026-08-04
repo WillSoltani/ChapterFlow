@@ -1,0 +1,35 @@
+{
+  "schema": "recovery-role-thresholds-v1",
+  "thresholdsVersion": "imp22-forward-role-thresholds-v1",
+  "reader": {
+    "schemaValidity": { "minRate": 1.0, "minDenominator": 30, "zeroMiss": true },
+    "hardBlockerSensitivity": { "minRate": 1.0, "minDenominator": 10, "zeroMiss": true },
+    "hardBlockerFalsePositiveFree": { "minRate": 1.0, "minDenominator": 10, "zeroMiss": true },
+    "cleanControlPassRate": { "minRate": 0.9, "minDenominator": 10, "zeroMiss": false },
+    "craftCalibrationAccuracy": { "minRate": 0.8, "minDenominator": 10, "zeroMiss": false },
+    "evidenceSpanValidity": { "minRate": 0.95, "minDenominator": 10, "zeroMiss": false },
+    "requiredCasesResolved": { "minRate": 1.0, "minDenominator": 30, "zeroMiss": true }
+  },
+  "source": {
+    "schemaValidity": { "minRate": 1.0, "minDenominator": 40, "zeroMiss": true },
+    "fabricationSensitivity": { "minRate": 1.0, "minDenominator": 4, "zeroMiss": true },
+    "causalOverreachSensitivity": { "minRate": 1.0, "minDenominator": 4, "zeroMiss": true },
+    "sourceContradictionSensitivity": { "minRate": 1.0, "minDenominator": 2, "zeroMiss": true },
+    "highSeverityFalsePositiveFree": { "minRate": 1.0, "minDenominator": 20, "zeroMiss": true },
+    "cleanCasePassRate": { "minRate": 0.9, "minDenominator": 20, "zeroMiss": false },
+    "supportStatusAccuracy": { "minRate": 0.9, "minDenominator": 40, "zeroMiss": false },
+    "visibleRegisterAccuracy": { "minRate": 0.9, "minDenominator": 40, "zeroMiss": false },
+    "evidenceSpanValidity": { "minRate": 1.0, "minDenominator": 40, "zeroMiss": true },
+    "missingEvidenceInconclusive": { "minRate": 1.0, "minDenominator": 1, "zeroMiss": true },
+    "requiredCasesResolved": { "minRate": 1.0, "minDenominator": 40, "zeroMiss": true }
+  },
+  "quiz": {
+    "schemaValidity": { "minRate": 1.0, "minDenominator": 40, "zeroMiss": true },
+    "wrongKeyDetection": { "minRate": 1.0, "minDenominator": 10, "zeroMiss": true },
+    "cleanUniquePassRate": { "minRate": 0.9, "minDenominator": 10, "zeroMiss": false },
+    "ambiguityDetection": { "minRate": 0.9, "minDenominator": 10, "zeroMiss": false },
+    "mechanismAccuracy": { "minRate": 0.9, "minDenominator": 10, "zeroMiss": false },
+    "evidenceSpanValidity": { "minRate": 0.95, "minDenominator": 10, "zeroMiss": false },
+    "requiredCasesResolved": { "minRate": 1.0, "minDenominator": 40, "zeroMiss": true }
+  }
+}

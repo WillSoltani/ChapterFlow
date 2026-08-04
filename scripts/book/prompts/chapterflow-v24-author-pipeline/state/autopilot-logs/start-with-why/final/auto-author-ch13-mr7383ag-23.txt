@@ -1,0 +1,13 @@
+Done: [start-with-why-ch13.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json)
+
+I reduced the reading-surface `wright` count from 8 to 4 while preserving the case substance and quiz key structure.
+
+Verification run:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 match, pattern `1,0,1,2,1,0,0,2,2`
+- Reader-facing length: 17,847 chars, within the ±20% target
+- Scaffold scan: clean
+- Evidence audit: no integrity candidates
+
+Note: the target file shows as untracked in this checkout, consistent with the broader `state/` tree being untracked.

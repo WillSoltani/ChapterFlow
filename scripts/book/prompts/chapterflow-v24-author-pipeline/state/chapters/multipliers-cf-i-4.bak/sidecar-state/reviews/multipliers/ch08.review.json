@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "multipliers-ch08",
+  "chapterNumber": 8,
+  "contentHash": "b3957e689bc91d24",
+  "reviewerSessionId": "auto-author-review-ch08-mrczfarj-13",
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 90,
+    "limits": 88,
+    "insight": 89,
+    "density": 87,
+    "beginner": 86
+  },
+  "composite": 88,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "c",
+      "a",
+      "c",
+      "b",
+      "b",
+      "c",
+      "b",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The price of blank compliance is hidden risk with your name still near it.",
+      "why": "Strong, memorable line that carries the safety mechanism clearly.",
+      "verified": true
+    },
+    {
+      "quote": "What can you influence before status eats the facts?",
+      "why": "Compact statement of the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "Use this only where a reply can protect facts or ownership. If speaking would bring serious personal risk, get help outside the exchange.",
+      "why": "Clear limit that prevents the tactic from becoming unsafe compliance advice.",
+      "verified": true
+    },
+    {
+      "quote": "At the return point, Roger Fisher and William Ury's Getting to Yes frame has one plain check: did the exchange move from position to interest?",
+      "why": "Useful but slightly abstract example opening; it explains the move more than it dramatizes it.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q1 and Q4 both make the sourced-lineage answer the only option with the named authority, which is mildly guessable without full comprehension.",
+    "Several wrong answers repeat obvious anti-lessons from the chapter, especially rank-as-proof and quiet-as-proof, making some items easier by elimination."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is the only one with the named source lineage, making it somewhat guessable by test-taking rather than derivation.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The keyed option is the only specific named-source answer, so the item partly rewards spotting the authority cue.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it names the conceptual miss but gives no concrete person, setting, decision, or consequence beyond restating the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples teach the mechanism but stay generic, so transfer is more conceptual than situational.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear, memorable core move: split control from influence, move from positions to interests, use how-questions to make constraints visible, and do not let silence masquerade as safety. The summaries layer well, the limits are responsible, and the quiz is mostly fair and keyed soundly. The main weakness is that some examples are thin and some quiz answers are mildly telegraphed by named-source cues, but these are craft issues rather than reader-harming defects.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "ab7e648f26cc3d3e629c4ac6e97abb58238f2db65b6936f73fcf4af947cc0d2e",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T04:04:19.657Z"
+}

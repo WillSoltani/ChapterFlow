@@ -1,0 +1,54 @@
+{
+  "chapterId": "start-with-why-ch03",
+  "number": 3,
+  "title": "The Golden Circle",
+  "coreMove": "Use the Golden Circle as an order you can inspect: move WHY before HOW, let WHAT show the claim, and keep each hard detail in its own case.",
+  "exampleCount": 4,
+  "exampleSpecs": [
+    {
+      "domain": "brand messaging",
+      "audience": "founders",
+      "stakes": "a promise that cannot yet be proved",
+      "format": "before_after",
+      "requiredBeat": "Apple Inc. becomes evidence, not decoration"
+    },
+    {
+      "domain": "teaching a framework",
+      "audience": "workshop leads",
+      "stakes": "one vivid story doing too much",
+      "format": "dialogue",
+      "requiredBeat": "the Apple Inc. thread earns its own proof"
+    },
+    {
+      "domain": "public cause communication",
+      "audience": "community organizers",
+      "stakes": "a belief reduced to bullets",
+      "format": "mistake_recovery",
+      "requiredBeat": "belief goes before the visible list"
+    },
+    {
+      "domain": "message repair",
+      "audience": "small teams",
+      "stakes": "true facts used in the wrong place",
+      "format": "postmortem",
+      "requiredBeat": "hard specifics stay inside their source"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "apply": 3,
+      "analyze": 3,
+      "evaluate": 2,
+      "understand": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.614Z"
+}

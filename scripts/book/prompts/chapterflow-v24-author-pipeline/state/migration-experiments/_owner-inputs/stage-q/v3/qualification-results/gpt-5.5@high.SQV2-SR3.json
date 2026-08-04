@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR3",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Misleading source-register / unsupported fabricated quotation attribution\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Examples may be invented.\",\"As Toyota's chief production engineer Kenji Watanabe put it in his 2011 leadership address, 'A stopped line is not a failure; it is the system telling the truth.'\"],\"rationale\":\"The candidate presents a precise, reader-facing historical quotation attributed to a named Toyota official and a specific 2011 leadership address, but the available provenance says examples may be invented and provides no basis for treating the quote as documented source text. Because the passage does not visibly frame the line as illustrative, hypothetical, or reconstructed, a reader would understand it as an authentic quotation and attribution. That is a material source-register defect.\"}"
+}

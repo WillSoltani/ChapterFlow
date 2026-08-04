@@ -1,0 +1,614 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "multipliers-ch05",
+  "number": 5,
+  "title": "The Debate Maker",
+  "readingTimeMinutes": 7,
+  "hook": "1986 fixes the warning: when risk stays weak, people pay for a bad launch call.",
+  "hookSourceAnchorIds": [
+    "ch05.fact.5"
+  ],
+  "counterintuition": "A sharper argument can be a kinder act. The danger is rank closing the question before risk has a fair path in.",
+  "counterintuitionSourceAnchorIds": [
+    "ch05.fact.7",
+    "ch05.fact.9"
+  ],
+  "tryThisNow": "Move one live decision to the top of your notes for 5 minutes. Write one number beside it: how many contrary facts have been named.",
+  "tryThisNowSourceAnchorIds": [
+    "ch05.concept",
+    "ch05.fact.9"
+  ],
+  "keyTakeaway": "Make the hard question safe before the choice is closed: invite evidence, keep rank quiet, decide, then stop replaying the fight.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch05.fact.7",
+    "ch05.fact.8",
+    "ch05.fact.9"
+  ],
+  "breakdown": {
+    "fastRead": "1986 is the number product lead Janelle writes before anyone states a preference. The Space Shuttle Challenger disaster, a public launch decision case later investigated by the Rogers Commission, is not a vague risk tale. Risk concerns were present, yet they did not become strong enough input before launch.\n\nJanelle's choice is smaller, but the shape is familiar. The senior voice wants speed. One quiet fact still needs a path. A Debate Maker asks who tests the danger before authority seals the choice. Debate is a risk path, not a volume contest. Argue with evidence, decide, then stop reopening the call.",
+    "deepRead": "Janelle starts with restraint. She does not ask, \"Do we all agree?\" She asks, \"What evidence would make this choice unsafe?\" That change keeps the hard fact from sounding like disloyalty. Evidence-based disagreement tests assumptions, risks, and tradeoffs; it does not attack motives.\n\nUse this move with a limit in view. If a rule, hazard, or duty already requires a stop, do the stop; do not turn duty into a seminar. If people are using debate to bruise status, stop the fight and move back to facts. Debate surfaces risk; it does not reward volume.\n\nIntel, the company tied here to constructive confrontation, shows the useful version. Constructive confrontation means hard argument aimed at the business problem and held by shared norms. Grove, the key Intel management figure in this case, gives the norm a real home. Rank can end the search.\n\nAmazon leadership principle is the plain anchor for disagree and commit, and it adds the close. The phrase means dissent while the choice is open, then decision commitment after the choice is made. You do not pretend the disagreement never happened. You stop relitigating once the boundary has been crossed.\n\n1986 is a pin in the map, not a decoration. The Challenger record matters because the Rogers Commission, the public investigation into the disaster, treated it as more than a machine story. The record makes you ask a harder question: who has to probe the hazard before the senior cue closes the choice?",
+    "fullRead": "Janelle's first draft of the choice has a neat order: gather views, pick, move. The Challenger case ruins that neat order. Before launch, risk concerns existed. The failure was not that no one could ever disagree; it was that those concerns did not gain enough weight in the decision record. Then came the 1986 Challenger disaster. Afterward, the Rogers Commission investigated the disaster and the decision factors around launch.\n\nThat order teaches Janelle where to put heat. Not after the choice, when people defend the old call. Not at the start, with her sponsor's answer on top. The useful heat belongs in the middle, while the question can still change the answer. The price of early certainty is missing evidence.\n\nThe full order is short: frame the question, spark evidence-based debate, test assumptions, decide and align. In plain words, ask what choice is being made, invite the best case against it, make the risk answerable, then close the issue so people can act together. The close is not a gag. It is the sign that the argument did its job.\n\nIntel gives one guardrail. Constructive confrontation is not a license to humiliate someone with status. It is hard pressure on the business problem. Amazon leadership principle, disagree and commit, gives the other guardrail: decision commitment is not fake consent. It lets dissent stand in the record while the group stops dragging the old fight into execution.\n\nYou can use this with no title. When your project, household choice, or volunteer promise is about to harden, ask one narrow question: what fact would make this unsafe, unfair, or wasteful? Then ask who can answer it before the close. A quiet question can beat a loud preference.\n\nThe move also has a cost. It slows the easy yes. It may make a senior person wait. It can expose that your own favored path has the weakest proof. That sting is the fee. If no one pays it before closure, the cost shifts to the people who must live with the choice.\n\nDo the opposite when the choice is not truly open. If a hazard is clear, stop. If the rule is set, follow it. If the group is using argument to punish a person, end the fight and return to the claim, the risk, and the tradeoff. Personal conflict burns trust without making the decision smarter.\n\nJanelle keeps the 1986 case close for one reason: it stops the lesson from floating. The year, the Challenger name, and the Rogers Commission record make the caution public and checkable. The same habit scales down to your desk. Put the unresolved risk where the choice can still see it. Who checks the risk before rank closes the choice?"
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch05.ex.challenger-commission",
+      "sourceAnchorIds": [
+        "ch05.ex.challenger-commission"
+      ],
+      "namedCaseIds": [
+        "ch05.ex.challenger-commission"
+      ],
+      "title": "The Quiet Risk",
+      "tags": [
+        "early signal",
+        "evidence"
+      ],
+      "planSpec": {
+        "domain": "product choice",
+        "audience": "a project lead",
+        "stakes": "a favored option with weak contrary input",
+        "format": "before_after",
+        "requiredBeat": "open on the unflagged signal and show the cost of making it visible"
+      },
+      "scenario": "Product lead Janelle asks the question no one has flagged: who has the strongest fact against the favored option? She has the 1986 Space Shuttle Challenger case in mind, where risk concerns did not become strong enough input before launch and the Rogers Commission later examined the disaster. Before: preference named, risk unnamed. After: risk owned. Her sponsor loses the easy close.",
+      "whatToDo": "Janelle starts by turning the quiet risk into a question with a name attached. She asks for evidence before the senior preference becomes the answer.",
+      "whyItMatters": "Janelle makes the early signal count. If the first contrary fact has no path, debate becomes agreement with nicer words."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch05.ex.intel-constructive-confrontation",
+      "sourceAnchorIds": [
+        "ch05.ex.intel-constructive-confrontation"
+      ],
+      "namedCaseIds": [
+        "ch05.ex.intel-constructive-confrontation"
+      ],
+      "title": "Push the Evidence",
+      "tags": [
+        "Intel",
+        "constructive confrontation"
+      ],
+      "planSpec": {
+        "domain": "operating norm",
+        "audience": "an operations director",
+        "stakes": "hard argument becoming personal conflict",
+        "format": "dialogue",
+        "requiredBeat": "state the standard and catch the miss late",
+        "exemplar": "Intel constructive confrontation"
+      },
+      "scenario": "Ops director Noel states the standard before anyone argues: Intel's constructive confrontation, linked here to Andy Grove, is pressure on the business problem, not on the person. A yellow badge sits near his elbow. \"So I push until they fold?\" Janelle asks. \"No. Push the evidence.\" The late catch saves the call, but it leaves less time to test the strongest risk.",
+      "whatToDo": "Noel states the boundary: attack the claim, not status. He asks for one risk and one tradeoff before anyone rates the option.",
+      "whyItMatters": "Noel proves confrontation can be a norm. The late save is costly, but it keeps Intel's case from being misread as personal license."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch05.ex.amazon-disagree-commit",
+      "sourceAnchorIds": [
+        "ch05.ex.amazon-disagree-commit"
+      ],
+      "namedCaseIds": [
+        "ch05.ex.amazon-disagree-commit"
+      ],
+      "title": "Closed But Not Tested",
+      "tags": [
+        "Amazon",
+        "commitment"
+      ],
+      "planSpec": {
+        "domain": "launch decision",
+        "audience": "a program lead",
+        "stakes": "a closed choice with one unresolved risk",
+        "format": "mistake_recovery",
+        "requiredBeat": "open mid-action and name what stayed broken",
+        "exemplar": "Amazon disagree and commit"
+      },
+      "scenario": "Program lead Julia is already deleting the reopen request. The choice was made yesterday under Amazon leadership principle, disagree and commit, a decision commitment rule: dissent first, commitment after. The blue send button waits. She writes, \"I still disagree, and I will back the call.\" It half-works. The group stops replaying the choice, but the untested risk remains unowned.",
+      "whatToDo": "Julia separates dissent from drag. Copy the split: state the objection while the choice is open, then back the call once it closes.",
+      "whyItMatters": "Julia leaves one risk unowned; do not copy that part. Closure is not a substitute for testing the fact that still bothers you."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch05.ex.amazon-disagree-commit",
+      "sourceAnchorIds": [
+        "ch05.ex.amazon-disagree-commit"
+      ],
+      "namedCaseIds": [
+        "ch05.ex.amazon-disagree-commit"
+      ],
+      "title": "The Return Pass",
+      "tags": [
+        "return moment",
+        "alignment"
+      ],
+      "planSpec": {
+        "domain": "project follow-up",
+        "audience": "a project lead",
+        "stakes": "a contrary fact that changes the preferred path",
+        "format": "reset_moment",
+        "requiredBeat": "open at the return moment and show the cost paid"
+      },
+      "scenario": "Product lead Janelle returns at the follow-up under Amazon leadership principle, disagree and commit. The risk changed the choice, so decision commitment now means backing a different path, not replaying the old one. The sponsor loses a fast yes. Janelle loses ease. The decision lands cleaner because dissent had a deadline.",
+      "whatToDo": "Janelle returns before the old choice hardens; skipping that return lets rank win by inertia. She brings the contrary fact back and closes the call.",
+      "whyItMatters": "Janelle pays in speed; skipping the pass costs a sounder choice. The return moment turns dissent from noise into useful input."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch05.ex.challenger-commission",
+      "sourceAnchorIds": [
+        "ch05.ex.challenger-commission"
+      ],
+      "namedCaseIds": [
+        "ch05.ex.challenger-commission"
+      ],
+      "title": "After the Launch",
+      "tags": [
+        "Challenger",
+        "postmortem"
+      ],
+      "planSpec": {
+        "domain": "risk review",
+        "audience": "an analyst",
+        "stakes": "a launch choice with weak risk input",
+        "format": "postmortem",
+        "requiredBeat": "trace backward after the outcome and catch the miss late",
+        "exemplar": "Space Shuttle Challenger decision record"
+      },
+      "scenario": "Analyst Aline traces the miss after it is over: 1986, Space Shuttle Challenger, then the Rogers Commission record. The paper edge is bent. Risk concerns existed before launch, but they did not become strong enough input. Her own launch note was headed the same way until she caught it late and made the risk owner answer before sign-off.",
+      "whatToDo": "Aline traces cause before cure because the record is about decision process. She moves the risk from background worry to required input before sign-off.",
+      "whyItMatters": "Aline shows why 1986 matters, then copies the move at a smaller scale. The public record keeps the caution tied to a real choice."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch05.fact.9",
+        "prompt": "Several volunteers disagree about a safety rule, and one person sounds irritated. Which action comes first if the group wants useful debate?",
+        "choices": [
+          "Turn the irritation into a question about evidence, risk, and tradeoffs before anyone judges motives.",
+          "Ask the chair to decide whose tone is acceptable, then let that ruling settle the safety rule.",
+          "Move the irritated person out of the exchange until trust feels repaired, then return to safety facts."
+        ],
+        "correctIndex": 0,
+        "explanation": "The key separates evidence-based disagreement from personal conflict. The chair option is tempting, but it shifts the judgment to rank instead of testing the safety claim.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch05.fact.6",
+        "prompt": "After a robotics launch fails before a regional event, the club wants a postmortem. Which focus maps best to the Rogers Commission lesson?",
+        "choices": [
+          "Treat the failure as a parts problem and give the repair to the person who owns the broken gear.",
+          "Trace how warnings entered the choice path, since the record must test more than the machine.",
+          "Ask the longest-serving sponsor to confirm that the launch standard matched past club practice."
+        ],
+        "correctIndex": 1,
+        "explanation": "The Rogers Commission makes Challenger a decision-process source, not just a technical story. The parts answer sounds practical, but it misses how warnings were handled.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch05.fact.3",
+        "prompt": "Your family is choosing a shared budget rule, and two relatives still object before the bill is paid. What maps from Amazon's disagree and commit principle?",
+        "choices": [
+          "Let the oldest person set the rule after hearing concerns, since a clear authority keeps the budget calm.",
+          "Keep discussing the rule until everyone feels fully convinced, so no one has to carry a private budget objection.",
+          "Invite dissent before the rule is chosen, then back the chosen rule without pretending agreement was total."
+        ],
+        "correctIndex": 2,
+        "explanation": "Disagree and commit separates dissent before closure from alignment after. Waiting for total comfort feels fair, but it turns the budget rule into an endless reopen.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch05.fact.4",
+        "prompt": "A fundraiser picked a vendor, but every errand restarts the vendor debate while supplies wait. What earlier failure best explains the drag?",
+        "choices": [
+          "They asked for objections too soon, before anyone could picture what the vendor would provide.",
+          "They let the organizer's title carry the vendor call, so later helpers felt no duty to act.",
+          "They never closed the argument after choosing, so execution stayed trapped in the old dispute."
+        ],
+        "correctIndex": 2,
+        "explanation": "Endless relitigation drains the chosen work after the decision. The title answer is plausible, but the symptom is the old debate staying open during errands.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch05.fact.5",
+        "prompt": "A speaker uses Challenger in a civic training talk as a vague warning about risk, with no year or public record. What is actually wrong?",
+        "choices": [
+          "The case has lost its 1986 anchor, so the warning floats instead of pointing to a specific public event.",
+          "The speaker should replace Challenger with a current brand, so listeners can connect the warning to today.",
+          "The story needs a senior expert to endorse it first, so the audience knows the warning is serious."
+        ],
+        "correctIndex": 0,
+        "explanation": "The 1986 date fixes Challenger in history. A current brand might feel closer, but it would dodge the factual anchor that makes the caution checkable.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch05.fact.2",
+        "prompt": "When a startup borrows Intel's confrontation norm while building decision rules, which grounding should come before it copies the style?",
+        "choices": [
+          "Tie the norm to Grove's Intel management tradition, so the style has a real source home.",
+          "Let the most forceful founder model the style first, so others can match the expected tone.",
+          "Adopt the phrase without the management anchor, so the startup can make the norm its own."
+        ],
+        "correctIndex": 0,
+        "explanation": "Grove gives the Intel case a management anchor. The founder-model choice borrows authority from a local rank cue, which is not the same as grounding the source.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch05.fact.7",
+        "prompt": "Cold read: a director opens a budget call with her preferred answer, asks for dissent, and hears only small edits. What broke?",
+        "choices": [
+          "The director waited too long to share her view, so people had no model for the kind of answer she wanted.",
+          "The senior cue arrived too early, so people trimmed their evidence around the answer already signaled.",
+          "The group needed a stronger final commitment before dissent, so comments would stay tied to action."
+        ],
+        "correctIndex": 1,
+        "explanation": "Early rank certainty can silence contrary evidence. Sharing the preferred answer first may seem efficient, but it turns dissent into careful compliance.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch05.fact.8",
+        "prompt": "A neighborhood co-op is split on a repair choice before a weather window closes. Which move avoids both forced consensus and one-person closure?",
+        "choices": [
+          "Keep the repair choice open until every member can defend the same answer without hesitation.",
+          "Let the treasurer choose because the budget sits with her, then ask members to stop objecting.",
+          "Argue the repair evidence before the choice, then align once the co-op selects a path."
+        ],
+        "correctIndex": 2,
+        "explanation": "A Debate Maker holds both parts: argument first, alignment later. The treasurer answer may look clean, but it skips the shared thinking before closure.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch05.fact.1",
+        "prompt": "A startup copies Intel during product planning by holding sharper debates, but people leave feeling attacked. Which diagnosis fits best?",
+        "choices": [
+          "The startup used too little confrontation, so the business problem did not receive enough pressure from peers.",
+          "The startup missed the bounded norm: confrontation must aim at the issue, not the person's status.",
+          "The startup should ask a senior founder to approve each challenge before the debate begins."
+        ],
+        "correctIndex": 1,
+        "explanation": "Intel's example is constructive because confrontation is bounded by norms and aimed at the business problem. Founder approval would add rank, not the missing boundary.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorId": "ch05.fact.9",
+      "sourceAnchorIds": [
+        "ch05.fact.9"
+      ],
+      "front": "How do you tell useful disagreement from personal conflict?",
+      "back": "Useful disagreement tests assumptions, risks, and tradeoffs. Personal conflict attacks status or motives, which can burn trust without making the choice smarter.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorId": "ch05.fact.7",
+      "sourceAnchorIds": [
+        "ch05.fact.7"
+      ],
+      "front": "Why should the highest-rank voice wait before naming a preferred answer?",
+      "back": "People often shape their input around authority cues. When the senior answer arrives too early, contrary evidence can shrink into polite edits.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorId": "ch05.fact.8",
+      "sourceAnchorIds": [
+        "ch05.fact.8"
+      ],
+      "front": "What two moments must a Debate Maker keep separate?",
+      "back": "Keep argument before the decision and commitment after it. The first improves the choice; the second lets people act together once the choice closes.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorId": "ch05.fact.3",
+      "sourceAnchorIds": [
+        "ch05.fact.3",
+        "ch05.fact.4"
+      ],
+      "front": "What does disagree and commit preserve after a choice is made?",
+      "back": "It preserves the record that dissent was allowed before closure, while preventing the same decision from being reopened during execution.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorId": "ch05.fact.5",
+      "sourceAnchorIds": [
+        "ch05.fact.5",
+        "ch05.fact.6"
+      ],
+      "front": "Why does 1986 matter when Challenger is used as a caution?",
+      "back": "The year pins the warning to the Space Shuttle Challenger disaster, a public event investigated by the Rogers Commission, not a loose office story.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorId": "ch05.fact.1",
+      "sourceAnchorIds": [
+        "ch05.fact.1",
+        "ch05.fact.9"
+      ],
+      "front": "What boundary makes confrontation constructive?",
+      "back": "The pressure stays on the business problem and the evidence. Once the pressure moves to status or motive, the argument stops improving the decision.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Frame the Risk Question",
+    "titleSourceAnchorIds": [
+      "ch05.concept",
+      "ch05.fact.7"
+    ],
+    "coreSkill": "Frame the Risk Question. Before a choice hardens, ask what evidence would change it and who can bring that evidence in. Keep rank quiet long enough for the risk to surface, then close the choice so action can begin.",
+    "coreSkillSourceAnchorIds": [
+      "ch05.concept",
+      "ch05.fact.7",
+      "ch05.fact.8",
+      "ch05.fact.9"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch05.fact.7",
+        "sourceAnchorIds": [
+          "ch05.fact.7"
+        ],
+        "context": "First the senior person names a preference; then the group grows quiet.",
+        "plan": "If rank has already tilted the choice, then ask what fact would change the answer before anyone agrees."
+      },
+      {
+        "sourceAnchorId": "ch05.fact.9",
+        "sourceAnchorIds": [
+          "ch05.fact.9"
+        ],
+        "context": "First the exchange feels personal; then the actual risk disappears.",
+        "plan": "If the argument moves toward motive, then restate the claim, the risk, and the tradeoff in one plain line."
+      },
+      {
+        "sourceAnchorId": "ch05.fact.8",
+        "sourceAnchorIds": [
+          "ch05.fact.8"
+        ],
+        "context": "First dissent has been heard; then the same choice starts reopening.",
+        "plan": "If the old fight returns after closure, then name the prior objection and commit to the chosen action."
+      }
+    ],
+    "twentyFourHourChallenge": "Replace one status update with this: move the unresolved risk to line one, name who can answer it, and decide after 10 minutes.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch05.concept",
+      "ch05.fact.9"
+    ],
+    "weeklyPractice": "When a choice is about to close this week, if no contrary fact has been named, then move the risk question before the yes and tally one mark.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch05.fact.7",
+      "ch05.fact.8",
+      "ch05.fact.9"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "1986 is a pin in the map, not a decoration.",
+      "location": "breakdown.deepRead",
+      "why": "It redefines the date as the anchor that keeps the caution public and checkable.",
+      "sourceAnchorIds": [
+        "ch05.fact.5"
+      ]
+    },
+    {
+      "text": "The price of early certainty is missing evidence.",
+      "location": "breakdown.fullRead",
+      "why": "It names the cost of rank closing the question too soon.",
+      "sourceAnchorIds": [
+        "ch05.fact.7"
+      ]
+    },
+    {
+      "text": "Who checks the risk before rank closes the choice?",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader the sharp question to carry into real decisions.",
+      "sourceAnchorIds": [
+        "ch05.fact.7",
+        "ch05.fact.9"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:4990a8bac9173d02863b028a6492d3aa89f010414b4e2da29dbd3eab318d2416",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch05.source.json",
+      "observedAnchorIds": [
+        "ch05.concept",
+        "ch05.ex.intel-constructive-confrontation",
+        "ch05.ex.amazon-disagree-commit",
+        "ch05.ex.challenger-commission",
+        "ch05.fact.1",
+        "ch05.fact.2",
+        "ch05.fact.3",
+        "ch05.fact.4",
+        "ch05.fact.5",
+        "ch05.fact.6",
+        "ch05.fact.7",
+        "ch05.fact.8",
+        "ch05.fact.9",
+        "ch05.framework.debate.maker.process"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch05.fact.5"
+        ],
+        "counterintuition": [
+          "ch05.fact.7",
+          "ch05.fact.9"
+        ],
+        "tryThisNow": [
+          "ch05.concept",
+          "ch05.fact.9"
+        ],
+        "keyTakeaway": [
+          "ch05.fact.7",
+          "ch05.fact.8",
+          "ch05.fact.9"
+        ],
+        "breakdown.fastRead": [
+          "ch05.fact.5",
+          "ch05.fact.6",
+          "ch05.fact.7",
+          "ch05.fact.8",
+          "ch05.fact.9"
+        ],
+        "breakdown.deepRead": [
+          "ch05.ex.intel-constructive-confrontation",
+          "ch05.ex.amazon-disagree-commit",
+          "ch05.ex.challenger-commission",
+          "ch05.fact.1",
+          "ch05.fact.2",
+          "ch05.fact.3",
+          "ch05.fact.4",
+          "ch05.fact.5",
+          "ch05.fact.6",
+          "ch05.fact.7",
+          "ch05.fact.9"
+        ],
+        "breakdown.fullRead": [
+          "ch05.concept",
+          "ch05.ex.intel-constructive-confrontation",
+          "ch05.ex.amazon-disagree-commit",
+          "ch05.ex.challenger-commission",
+          "ch05.fact.1",
+          "ch05.fact.3",
+          "ch05.fact.4",
+          "ch05.fact.5",
+          "ch05.fact.6",
+          "ch05.fact.7",
+          "ch05.fact.8",
+          "ch05.fact.9",
+          "ch05.framework.debate.maker.process"
+        ],
+        "examples[0]": [
+          "ch05.ex.challenger-commission"
+        ],
+        "examples[1]": [
+          "ch05.ex.intel-constructive-confrontation"
+        ],
+        "examples[2]": [
+          "ch05.ex.amazon-disagree-commit"
+        ],
+        "examples[3]": [
+          "ch05.ex.amazon-disagree-commit"
+        ],
+        "examples[4]": [
+          "ch05.ex.challenger-commission"
+        ],
+        "quiz.questions[0]": [
+          "ch05.fact.9"
+        ],
+        "quiz.questions[1]": [
+          "ch05.fact.6"
+        ],
+        "quiz.questions[2]": [
+          "ch05.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch05.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch05.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch05.fact.2"
+        ],
+        "quiz.questions[6]": [
+          "ch05.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch05.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch05.fact.1"
+        ],
+        "reviewCards[0]": [
+          "ch05.fact.9"
+        ],
+        "reviewCards[1]": [
+          "ch05.fact.7"
+        ],
+        "reviewCards[2]": [
+          "ch05.fact.8"
+        ],
+        "reviewCards[3]": [
+          "ch05.fact.3",
+          "ch05.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch05.fact.5",
+          "ch05.fact.6"
+        ],
+        "reviewCards[5]": [
+          "ch05.fact.1",
+          "ch05.fact.9"
+        ],
+        "implementationPlan.title": [
+          "ch05.concept",
+          "ch05.fact.7"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch05.concept",
+          "ch05.fact.7",
+          "ch05.fact.8",
+          "ch05.fact.9"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch05.fact.7"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch05.fact.9"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch05.fact.8"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch05.concept",
+          "ch05.fact.9"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch05.fact.7",
+          "ch05.fact.8",
+          "ch05.fact.9"
+        ],
+        "memorableLines[0]": [
+          "ch05.fact.5"
+        ],
+        "memorableLines[1]": [
+          "ch05.fact.7"
+        ],
+        "memorableLines[2]": [
+          "ch05.fact.7",
+          "ch05.fact.9"
+        ]
+      }
+    }
+  }
+}

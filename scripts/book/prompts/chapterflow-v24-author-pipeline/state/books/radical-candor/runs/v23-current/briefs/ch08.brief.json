@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "radical-candor-ch08",
+  "chapterNumber": 8,
+  "title": "Results",
+  "coreMove": "Because Results follows the philosophy and team tools, it turns collaboration into operating routines.",
+  "thesis": "The official guide identifies Results as Ch. 8 in Part 2 Tools and Techniques.",
+  "readerPromise": "After this chapter, a reader can because Results follows the philosophy and team tools, it turns collaboration into operating routines.",
+  "ownedCases": [
+    {
+      "id": "ch08.ex.results-book-club-prompts",
+      "label": "Results discussion prompts"
+    },
+    {
+      "id": "ch08.ex.one-to-one-meetings",
+      "label": "1:1 meeting practice"
+    },
+    {
+      "id": "ch08.ex.meeting-creep",
+      "label": "Meeting creep"
+    }
+  ],
+  "notYours": [
+    "Aristotle persuasion triad",
+    "Bob at Juice Software",
+    "Bonus performance review unit",
+    "CORE and SBI review evidence",
+    "CORE feedback framework",
+    "Care Personally plus Challenge Directly compass",
+    "Center for Creative Leadership SBI",
+    "GSD Wheel",
+    "Growth Management",
+    "HHIPP feedback checklist",
+    "Kim Scott at Google and Apple",
+    "Life Story, Dreams, Eighteen-Month Plan",
+    "Order of Operations feedback sequence",
+    "Order of Operations in Relationships",
+    "Radical Candor LLC training context",
+    "Relationships discussion prompts",
+    "Rock Star Mode",
+    "Russ Laraway Career Conversations",
+    "Sheryl Sandberg at Google",
+    "Sheryl Sandberg direct feedback"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    0,
+    2,
+    0,
+    2,
+    1,
+    1,
+    2,
+    1,
+    0
+  ],
+  "avoid": [
+    "opener (ch01): \"Kim Scott's Google AdSense and Apple executive record\"",
+    "opener (ch02): \"What would you ask before copying Sandberg's directness?\"",
+    "opener (ch03): \"The phone reminder glowed after the transfer failed.\"",
+    "opener (ch05): \"After the Friday handoff on the support floor,\"",
+    "opener (ch06): \"In the draft, HHIPP states the standard first:\"",
+    "opener (ch07): \"Analyst Spencer had already left the staffing huddle\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a working note on direct reports",
+    "venue: a kitchen table",
+    "venue: a shared calendar invite",
+    "frame: two stakeholders disagree about ch pp and before deciding",
+    "frame: a peak moment recalled vividly long after the day it happened"
+  ],
+  "architectureFamily": "two-way-contrast",
+  "openerType": "scene",
+  "challengeFrame": "audit-one-artifact",
+  "practiceShape": "single-imperative",
+  "exampleLenses": [
+    "before-after-ledger",
+    "postmortem",
+    "walkthrough"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "since",
+    "team",
+    "guide",
+    "rather",
+    "official",
+    "assuming"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "still-open",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "single-imperative",
+    "two-step-sequence",
+    "observe-then-note",
+    "say-aloud-script"
+  ],
+  "quizStemShapes": [
+    "transfer-new-domain",
+    "failure-postmortem",
+    "cold-diagnosis",
+    "choose-next-move"
+  ],
+  "quizFailureModes": [
+    "borrowed-authority",
+    "wrong-target",
+    "wrong-timing",
+    "wrong-proof"
+  ],
+  "questionFactOrder": [
+    2,
+    4,
+    3,
+    7,
+    6,
+    5,
+    9,
+    1,
+    8
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "cost-speak",
+    "question-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Results discussion prompts"
+  },
+  "adjacentJobs": {
+    "prev": "Because the tool has a named designer and page span, it should be taught as a specific sequence.",
+    "next": "Because it is separated from the eight numbered units, the material extends the tools into formal review systems."
+  }
+}

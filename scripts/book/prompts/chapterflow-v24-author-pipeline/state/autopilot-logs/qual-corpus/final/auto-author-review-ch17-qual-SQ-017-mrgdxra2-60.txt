@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present, so there are no answers to derive or guess."]
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 3,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 0,
+    "density": 4,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The stapled incident log glows under the medication-room fluorescents at 7:35 a.m.",
+      "why": "This is the chapter's strongest concrete, memorable image."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production-status scaffolding rather than reader-facing instruction."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The action is unusable because the chapter never defines the move."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz heading has no questions beneath it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook contains only review-stage scaffolding and introduces no topic, problem, promise, or core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and provides no explanation or mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving the chapter without instructional prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states its core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty and supplies no practical exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario offers a vivid setup but no completed decision, consequence, or before-to-after demonstration; its instruction merely says to apply an undefined move.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The section contains no questions or choices, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and provides no retrieval practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies no deliberate retention aid.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "Because the core move is never named or explained, a reader cannot learn or apply the chapter from what is on the page.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. One scenario opens with a memorable physical image and a plausible management tension, but the fast, deep, and full reads are empty; the core move is never defined; the exercise, quiz, review cards, and memorable lines contain no content; and the sole instruction asks readers to apply something they have not been taught. The example itself is thin rather than misleading, but the missing instructional and assessment content makes the product structurally invalid and unusable."
+}
+```

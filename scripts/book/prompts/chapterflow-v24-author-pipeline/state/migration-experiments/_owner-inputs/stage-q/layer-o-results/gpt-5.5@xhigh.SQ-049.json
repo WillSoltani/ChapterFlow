@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-049",
+  "parsed": {
+    "caseId": "SQ-049",
+    "verdict": "DEFECT",
+    "defectClass": "template-level narrative machinery reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director, with the first page of a performance memo."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Zanele steadies a dented clipboard at Thursday 5:11 a.m. in dock door 3 at the Albany bakery, shipping lead, with a stack of warm bread crates."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Zanele can prove the timestamp, yet the driver's empty shelves are also real."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ruxandra she must decide whether to lead with dates or name the three layers before Derek arrives."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Zanele she must decide whether to win the count or draw both paths on the back of the sheet."
+      }
+    ],
+    "explanation": "Both examples use the same scaffold: named character with damaged handheld object, exact timestamp and workplace role, a provable-facts conflict complicated by a human reality, then the same ungrammatical 'X she must decide whether...' binary choice. The nouns and settings change, but the narrative machinery is reused.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-049\",\"verdict\":\"DEFECT\",\"defectClass\":\"template-level narrative machinery reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director, with the first page of a performance memo.\"},{\"materialIndex\":1,\"quote\":\"Zanele steadies a dented clipboard at Thursday 5:11 a.m. in dock door 3 at the Albany bakery, shipping lead, with a stack of warm bread crates.\"},{\"materialIndex\":0,\"quote\":\"The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room.\"},{\"materialIndex\":1,\"quote\":\"Zanele can prove the timestamp, yet the driver's empty shelves are also real.\"},{\"materialIndex\":0,\"quote\":\"Ruxandra she must decide whether to lead with dates or name the three layers before Derek arrives.\"},{\"materialIndex\":1,\"quote\":\"Zanele she must decide whether to win the count or draw both paths on the back of the sheet.\"}],\"explanation\":\"Both examples use the same scaffold: named character with damaged handheld object, exact timestamp and workplace role, a provable-facts conflict complicated by a human reality, then the same ungrammatical 'X she must decide whether...' binary choice. The nouns and settings change, but the narrative machinery is reused.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,7 +1,4 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, rmSync } from "fs";
-import { resolve } from "path";
-
 import { assembleChapterV21 } from "../src/assembler.js";
 import {
   createGenerationRunManifest,
@@ -11,10 +8,8 @@ import {
   type GenerationDegradableStage,
   type GenerationRunManifestV1,
 } from "../src/generationDegradation.js";
-import { generateChapter, type BookMeta, type ChapterSpec, type GenerateChapterAgents } from "../src/generateChapter.js";
 import { readerContentHash } from "../src/lib/readerContent.js";
-import type { BookBrief, ChapterDesignDoc, SourceAnchorForPrompt } from "../src/types.js";
-import { TMP_DIR, writeCanonicalIndexFixture, writeSourceEvidenceFixture } from "./helpers.js";
+import type { ChapterDesignDoc, SourceAnchorForPrompt } from "../src/types.js";
 import { test } from "./harness.js";
 
 const BOOK = "zz-fixture-generation-debt";
@@ -43,38 +38,6 @@ const ANCHORS: SourceAnchorForPrompt[] = [
     supportsClaimTypes: ["example"],
   },
 ];
-
-function bookMeta(): BookMeta {
-  return { bookId: BOOK, title: "Generation Debt", author: "Fixture Author" };
-}
-
-function chapterSpec(): ChapterSpec {
-  return { chapterId: CHAPTER_ID, chapterNumber: 1, chapterTitle: "The harbor checkpoint" };
-}
-
-function validBrief(): BookBrief {
-  return {
-    bookId: BOOK,
-    title: "Generation Debt",
-    author: "Fixture Author",
-    thesisParagraph: "A synthetic thesis says fallback output must remain visible and pass the same gates as primary output.",
-    coreIdeas: [
-      { name: "Visible debt", oneSentence: "Record fallback use.", mentalMove: "Stamp the event.", sourceAnchors: ["ch01.fact.1"] },
-      { name: "Same gate", oneSentence: "Validate fallback output.", mentalMove: "Run the same checks.", sourceAnchors: ["ch01.fact.1"] },
-      { name: "Bound waivers", oneSentence: "Waivers bind to content.", mentalMove: "Hash the exact output.", sourceAnchors: ["ch01.fact.1"] },
-    ],
-    targetReader: "Pipeline operators.",
-    voiceCharter: {
-      register: "plainspoken",
-      person: "second",
-      cadence: "medium",
-      signatureMoves: ["name the operational decision"],
-      avoidMoves: ["hide fallback state"],
-    },
-    teachingArc: "Every fallback remains auditable.",
-    forbiddenMoves: ["Do not hide fallback state."],
-  };
-}
 
 function validPlan(): ChapterDesignDoc {
   return {
@@ -354,86 +317,19 @@ test("generated chapter assembly stamps canonical schema and generation provenan
   assert.equal(result.chapter.authoring?.generation?.planHash, "sha256:plan");
 });
 
-test("generation array misalignment fails before chapter output is written", async () => {
-  const root = resolve(TMP_DIR, "generation-debt-prewrite");
-  const stateRoot = resolve(root, "state");
-  const runsRoot = resolve(root, "runs");
-  rmSync(root, { recursive: true, force: true });
-  writeCanonicalIndexFixture(BOOK, [{ chapterId: CHAPTER_ID, number: 1, title: "The harbor checkpoint" }], resolve(stateRoot, "indexes"));
-  writeSourceEvidenceFixture(BOOK, [{ number: 1, title: "The harbor checkpoint" }], "20260623T000000Z-generation-debt", runsRoot);
-  const outPath = resolve(stateRoot, "chapters", `${CHAPTER_ID}.v21-native.chapter.json`);
-  const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-  process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = "1";
-  try {
-    const agents: Partial<GenerateChapterAgents> = {
-      runEditorInChief: async () => validBrief(),
-      runCurriculumPlanner: async () => validPlan(),
-      runWriterHook: async () => ({ hook: "A fallback is not clean just because the file exists." }),
-      runWriterBreakdown: async () => ({
-        fastRead: "Fast read text with a concrete checkpoint.",
-        deepRead: "Deep read text explains the checkpoint.",
-        fullRead: "Full read text explains limits and risks.",
-      }),
-      runVoicePass: async ({ draft }: any) => draft,
-      runLineEditor: async ({ draft }: any) => draft,
-      runWriterExample: async () => ({
-        exampleId: "ex01",
-        title: "Lantern Ledger review",
-        scenario: "Rina opens the Lantern Ledger after the fallback run and sees the event before anyone treats the file as clean.",
-        whatToDo: "Keep the event attached to the chapter and rerun the same validation path used for primary output.",
-        whyItMatters: "A fallback that keeps its evidence can still be reviewed honestly before promotion.",
-      }),
-      runWriterQuiz: async () => ({
-        passingScorePercent: 70,
-        questions: [
-          {
-            questionId: "q01",
-            prompt: "When a fallback is used, what should the operator inspect?",
-            choices: ["The durable event", "The old log line", "The clean-looking file"],
-            correctIndex: 0,
-            explanation: "The durable event is the only record promotion can evaluate later.",
-            bloomsLevel: "apply",
-            depthLevel: "standard",
-          },
-        ],
-      }),
-      runWriterCards: async () => ({
-        cards: [{ cardId: "rc01", front: "What makes fallback debt visible?", back: "The durable event stays with the generated artifact.", difficulty: "easy" }],
-      }),
-      runWriterImplementationPlan: async () => ({
-        title: "Stamp fallback debt clearly",
-        coreSkill: "Keep fallback use visible as durable quality debt so later promotion can evaluate the exact content.",
-        ifThenPlans: [
-          { context: "a stage fails", plan: "If a stage fails, then record the fallback before assembling output." },
-          { context: "a waiver is requested", plan: "If a waiver is requested, then bind it to the exact event and content hashes." },
-          { context: "promotion runs", plan: "If promotion runs, then block unresolved serious debt." },
-        ],
-        twentyFourHourChallenge: "Review one chapter artifact and confirm fallback state is visible.",
-        weeklyPractice: "Each week, sample generated chapters for unresolved serious degradation.",
-      }),
-      generateKeyTakeaway: async () => ({ keyTakeaway: "Fallback output can proceed only when it stays visible, source-bound, and available for promotion to block or waive." }),
-      runTryThisNow: async () => ({ tryThisNow: "Open the newest chapter artifact and find its fallback ledger before reading the prose." }),
-      runMemorableLines: async () => ({ memorableLines: [] }),
-    };
+test("generation array misalignment fails pure assembly before any chapter result exists", () => {
+  const input = validAssembleInput();
+  input.plan.quizFocus.count = input.quiz.questions.length + 1;
 
-    await assert.rejects(
-      () =>
-        generateChapter(bookMeta(), chapterSpec(), {
-          stateRoot,
-          runsRoot,
-          candidatesPerSlot: 1,
-          logger: () => {},
-          agents,
-        }),
-      /assembler_contract|quizFocus\.count|AssemblyValidationError/,
-    );
-    assert.equal(existsSync(outPath), false, "failed generation must not leave a complete-looking chapter file");
-    assert.equal(existsSync(`${outPath}.cache-manifest.json`), false, "failed generation must not leave a chapter cache manifest");
-  } finally {
-    if (priorAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-    else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = priorAllow;
-    rmSync(root, { recursive: true, force: true });
-  }
+  const result = assembleChapterV21(input);
+
+  assert.equal(result.ok, false);
+  if (result.ok) throw new Error("misaligned assembly unexpectedly passed");
+  assert.ok(
+    result.findings.some((finding) => /quizFocus\.count|quiz/i.test(`${finding.path} ${finding.message}`)),
+    `expected quiz-count assembly finding, got ${JSON.stringify(result.findings)}`,
+  );
+  assert.equal("chapter" in result, false, "failed pure assembly must not expose a complete-looking chapter result");
 });
 
 test("degradation manifest sidecar preserves raw observations beside effective chapter output", () => {

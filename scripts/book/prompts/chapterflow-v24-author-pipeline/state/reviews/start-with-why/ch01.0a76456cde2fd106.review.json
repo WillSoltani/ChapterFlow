@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch01",
+  "chapterNumber": 1,
+  "contentHash": "0a76456cde2fd106",
+  "reviewerSessionId": "auto-author-review-ch01-mrb9vnhz-2",
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 88,
+    "insight": 89,
+    "density": 82,
+    "beginner": 86
+  },
+  "composite": 86.5,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "a",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The repair is not the proof. A bad guess charges twice.",
+      "why": "Strongest memorable compression of the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "Known data is what stands before the guess. It is not perfect truth.",
+      "why": "Clear beginner-safe definition that prevents the tool from becoming perfectionism.",
+      "verified": true
+    },
+    {
+      "quote": "Three promises out, one balance checked.",
+      "why": "The most cryptic line; it sounds scaffolded and does not pay off clearly.",
+      "verified": true
+    },
+    {
+      "quote": "His phone hums once with the count still open.",
+      "why": "A thin atmospheric detail in an otherwise practical example; it adds little to transfer.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several distractors telegraph themselves with overreach or authority shortcuts such as 'no uncertainty remained', 'any patient routine', and 'deciding authority', but I did not see a consistent uniquely-longest-answer tell."
+  ],
+  "complaints": [
+    {
+      "unit": "deep read",
+      "problem": "The sentence 'Three promises out, one balance checked' is opaque and briefly interrupts an otherwise clear explanation of comparing repeated patterns.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "The example is usable but thin in its before-to-after consequence; details like the phone hum add scene texture without making the decision or measured result more concrete.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some wrong answers are made too easy by extreme wording or obvious authority errors, which weakens the diagnostic value of the quiz even though the keys are sound.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable against a professional bar. The central move is memorable, practical, and repeatedly anchored: put known data before assumptions, make a small decision, then read the result without letting the repair claim all the credit. The quizzes are fair and the answer key is sound, including the why-stems. The main weaknesses are craft-level: a few lines feel cryptic or staged, and some examples could show cleaner before-to-after consequences, but none of that prevents a reader from learning and applying the chapter.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "ad1f0ca90009bc504862bcc7fccdca6026122d4d99cc0edb85553307814ee3b2",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-07T23:21:27.416Z"
+}

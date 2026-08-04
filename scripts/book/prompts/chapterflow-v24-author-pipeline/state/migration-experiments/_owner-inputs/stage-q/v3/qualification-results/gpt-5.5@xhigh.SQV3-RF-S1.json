@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-S1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q: What does the andon cord signal? A) a problem to inspect  B) a scheduled break  C) a finished shift.\",\"Answer key: C. Explanation: it lets any worker flag a defect the moment they see it.\"],\"rationale\":\"The supplied quiz instance contains all required evidence: it shows option A is \\\"a problem to inspect,\\\" option C is \\\"a finished shift,\\\" the answer key marks C, and the explanation says the andon cord lets a worker flag a defect immediately. That explanation aligns with option A rather than option C, so the proposed finding is supported on the record.\"}"
+}

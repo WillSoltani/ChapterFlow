@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P35",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery / structural template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Scenario: Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer, with the landlord's revised lease.\",\"Scenario: Imani touches a broken brass drawer pull at Wednesday 7:09 a.m. in the preschool kitchen on Laurel Avenue, center director, with sticky oatmeal bowls in the sink.\",\"Ferne replays it and sees that she spent twenty minutes proving the math while Mrs. Abel was asking whether anyone respected her years in the building.\",\"She also knows the drawer sticks, the morning shift is short, and she delayed the repair request.\"],\"rationale\":\"The examples reuse the same underlying scene engine: a named woman performs a tactile action with an object at an exact weekday/time in a specific workplace-like setting, followed by a recent conflict or damage event, then a reflective pivot from an obvious surface interpretation to a deeper systemic or relational explanation. Even the closing construction repeats the awkward subject pattern, with “Ferne she writes” and “Imani she must decide.” The nouns and domains differ, but the narrative machinery is materially the same.\"}"
+}

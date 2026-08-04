@@ -1,0 +1,86 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch03",
+  "chapterNumber": 3,
+  "contentHash": "bba323975e0fd677",
+  "reviewerSessionId": "auto-author-review-ch03-mr8w9czu-2",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 87,
+    "summaries": 90,
+    "tone": 85,
+    "limits": 90,
+    "insight": 88,
+    "density": 84,
+    "beginner": 80
+  },
+  "composite": 85.5,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "A product is a receipt for a reason.",
+      "why": "Strongest compression of the chapter's core mechanism; memorable and useful.",
+      "verified": true
+    },
+    {
+      "quote": "Hard details are not spare parts. They belong where they can be verified.",
+      "why": "Clear boundary that keeps the advice from becoming generic purpose talk.",
+      "verified": true
+    },
+    {
+      "quote": "The dashboard glow lights the parked car.",
+      "why": "The image feels decorative and does not clarify the Apple/Sylvia transfer move.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several distractors advertise themselves with absolutes or overclaims: Q1a 'every cause', Q4b 'Nothing important changes', Q9b 'Any verified location'.",
+    "Q2a is a giveaway because 'one clear word' directly contradicts the chapter's repeated insistence that WHY, HOW, and WHAT do separate work."
+  ],
+  "complaints": [
+    {
+      "unit": "example 1",
+      "problem": "The dashboard image is vivid but not functionally tied to the lesson, so it adds atmosphere more than transferable decision logic.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 3",
+      "problem": "Jerome is introduced only to restate the same WHY-before-WHAT correction already shown by Sylvia and Yann; the example is usable but redundant.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The stem says Yann adds Orville Wright, but Yann is not the person associated with that comparison in the prose; the intended answer remains derivable.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against an 80 bar. The chapter has a clean core move, strong memorable lines, honest limits, and practical one-paragraph/email-level application. The main weakness is transfer: most examples orbit the same Sylvia/Apple rewrite and some named scenarios feel like restatements rather than fresh cases. The quiz is mostly fair and key-sound, though some distractors are too obviously wrong and Q6 loosely attributes an action to Yann that the prose does not actually show.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "18f7ae5a412aff310165ecdfa0d1b4f4d4e2d512b3ec62550d4669992bced6d7",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-06T07:24:50.751Z"
+}

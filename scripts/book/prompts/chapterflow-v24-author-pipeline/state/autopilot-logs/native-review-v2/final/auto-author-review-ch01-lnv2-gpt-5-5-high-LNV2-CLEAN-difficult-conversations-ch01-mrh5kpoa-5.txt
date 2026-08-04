@@ -1,0 +1,74 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "a", "b", "c", "c", "b", "a"],
+    "mechanisms": [
+      "Her fear that the meeting says something about her competence and authority is the chapter's identity layer.",
+      "The prose says to sort what happened, feelings, and identity; the promise, resentment, and responsible-child fear map exactly to those layers.",
+      "The diagnostic move is to separate documented facts from feelings and identity or reputation threats.",
+      "The chapter warns that the visible facts can be real while feelings such as trust still steer the exchange.",
+      "Hearing the question as a judgment about being a bad friend makes the surface dinner issue an identity threat.",
+      "Writing facts, feelings, and identity separately prevents the student from treating the authorship problem as only a factual dispute.",
+      "The attendance fact has become a parenting identity accusation, so repeating facts alone may increase defensiveness.",
+      "The prose says to use the frame privately first because labeling another person's layer can sound accusatory.",
+      "The repeated respect ending shows a separate layer beneath the dishes facts, so the first question is how those layers differ."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Across most questions, the correct option is the longest and most mechanism-rich choice.",
+      "Several distractors are weakened by absolute or obviously unhelpful wording such as 'only,' 'always,' 'save feelings,' or quick avoidance.",
+      "Correct answers often repeat chapter terms directly: identity conversation, layers, facts, feelings, diagnosis."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 80,
+    "transfer": 87,
+    "practical": 89,
+    "summaries": 92,
+    "tone": 90,
+    "limits": 93,
+    "insight": 90,
+    "density": 86,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The log is evidence. It is not the whole map.",
+      "why": "A compact, memorable statement of the core move."
+    },
+    {
+      "quote": "They will hear a new accusation wearing thoughtful clothes.",
+      "why": "Strong warning against misusing the frame on someone else."
+    },
+    {
+      "quote": "The three conversations are a diagnostic tool, not a script.",
+      "why": "Clearly marks the boundary of the lesson."
+    },
+    {
+      "quote": "because anxiety is the only issue that matters now.",
+      "why": "A quiz distractor is too plainly wrong because of its absolute phrasing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often the longest, most nuanced options, while distractors sometimes use absolutes or obviously poor tactics, creating answer tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples overall",
+      "problem": "The same names recur across unrelated roles, which may make some scenario tracking needlessly confusing for beginners.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The facts-feelings-identity mechanism is repeated in several close phrasings, slightly lowering density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The core distinction is clear, memorable, and repeatedly grounded in concrete situations; it also stays honest that diagnosis is preparation, not a full conversation script. The main weakness is quiz construction: the right answers are too often visibly longer and more chapter-shaped than the distractors. That lowers assessment quality but does not break the chapter."
+}
+```

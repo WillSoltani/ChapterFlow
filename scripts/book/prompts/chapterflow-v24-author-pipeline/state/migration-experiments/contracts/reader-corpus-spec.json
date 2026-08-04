@@ -1,0 +1,83 @@
+{
+  "schema": "split-lane-corpus-mutation-spec-v1",
+  "role": "reader",
+  "corpusId": "s16-split-lane-reader-corpus-v1",
+  "_note": "Committed, hermetic mutation spec for the reader-experience role corpus (H1). Replaces the ephemeral /private/tmp spec of E-09: it is in-repo and versioned, so a builder never silently drops variants. A builder MUST fail closed if this file is missing (never treat missing as []), and MUST fail closed rather than shrink below expectedComposition. All paths here are RELATIVE to this directory or are bookIds resolved against an INJECTED bookPackagesDir (no absolute /Users or temp paths, and never a canonical pipeline state-dir literal).",
+  "governance": {
+    "definitionsFrozenBeforeLiveOutput": true,
+    "calibrationVsHoldoutSeparated": true,
+    "holdoutImmutableOnceLiveQualificationBegins": true,
+    "noInCampaignInstrumentTreadmill": "a material instrument defect terminates the experiment id and starts a NEW id; no in-campaign v3/v4 re-scoring",
+    "independentHumanRater": false,
+    "cleanStatusNeverInferredFromOverallScore": true
+  },
+  "cleanBaseScoreLedger": "clean-base-score-ledger.v1.json",
+  "minRenderBytes": 8000,
+  "basePool": [
+    "difficult-conversations",
+    "the-willpower-instinct",
+    "the-power-of-moments",
+    "decisive",
+    "behave",
+    "peak",
+    "make-it-stick",
+    "the-checklist-manifesto"
+  ],
+  "expectedComposition": {
+    "clean": 12,
+    "reader-visible-hard-blocker": 8,
+    "craft-nonblocker": 10,
+    "total": 30
+  },
+  "softDenominators": {
+    "minCleanPassRate": 12,
+    "minNonBlockerCalibrationRate": 10,
+    "note": "each soft denominator >= 10 (E-07 fix); the 8 hard-blocker cases feed the 1.0 minHardBlockerSensitivity bar, which is exempt from the soft minimum-denominator rule"
+  },
+  "variantShape": "{ variantKey, baseBookId, baseChapter, kind, targetUnit?, ops:[{path,op,value}], expected, goldRationale, builderGenerated?, ownerAuthoredOps? }. op in {append,replace}; path is a JSON pointer into the ChapterV21 base. kind 'clean' has ops:[] (unmutated base). kind 'craft-nonblocker' is builderGenerated (a benign generic append the builder mints deterministically from appendText). kind 'reader-visible-hard-blocker' is ownerAuthoredOps (the reader-visible blocker prose is owner-authored gold, never fabricated here); the builder fails closed until ops are supplied.",
+  "readerBlockerCategories": [
+    "unsafe",
+    "internal_contradiction",
+    "structurally_invalid",
+    "schema_or_app_breaking",
+    "unusable"
+  ],
+  "readerBlockerCategoriesExcluded": {
+    "excluded": ["fabricated", "factually_wrong", "source_contradictory"],
+    "reason": "external source-truth is NOT reader-visible; those move to the source-integrity lane. Internal contradiction stays a reader blocker (on-page decidable)."
+  },
+  "variants": [
+    { "variantKey": "READER-CLEAN-difficult-conversations-ch01", "baseBookId": "difficult-conversations", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "top-ranked (140-eval 90.1) reference-standard clean base, unmutated ch01." },
+    { "variantKey": "READER-CLEAN-the-willpower-instinct-ch01", "baseBookId": "the-willpower-instinct", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (89.7), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-the-power-of-moments-ch01", "baseBookId": "the-power-of-moments", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (89.0), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-decisive-ch01", "baseBookId": "decisive", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (88.0), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-behave-ch01", "baseBookId": "behave", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (87.9), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-peak-ch01", "baseBookId": "peak", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (87.9), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-make-it-stick-ch01", "baseBookId": "make-it-stick", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (87.4), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-the-checklist-manifesto-ch01", "baseBookId": "the-checklist-manifesto", "baseChapter": 1, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "clean base (87.1), unmutated ch01." },
+    { "variantKey": "READER-CLEAN-difficult-conversations-ch02", "baseBookId": "difficult-conversations", "baseChapter": 2, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "second clean chapter from the reference-standard base." },
+    { "variantKey": "READER-CLEAN-the-willpower-instinct-ch02", "baseBookId": "the-willpower-instinct", "baseChapter": 2, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "second clean chapter." },
+    { "variantKey": "READER-CLEAN-the-power-of-moments-ch02", "baseBookId": "the-power-of-moments", "baseChapter": 2, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "second clean chapter." },
+    { "variantKey": "READER-CLEAN-decisive-ch02", "baseBookId": "decisive", "baseChapter": 2, "kind": "clean", "ops": [], "expected": { "expectedRecommendation": "SHIP", "prohibitBlockingFindings": true }, "goldRationale": "second clean chapter." },
+
+    { "variantKey": "READER-HARDBLOCK-difficult-conversations-ch03-internal", "baseBookId": "difficult-conversations", "baseChapter": 3, "kind": "reader-visible-hard-blocker", "targetUnit": "breakdown.deep", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction" }, "goldRationale": "deep-read directly contradicts the fast-read claim within the same chapter (on-page decidable)." },
+    { "variantKey": "READER-HARDBLOCK-the-willpower-instinct-ch03-internal", "baseBookId": "the-willpower-instinct", "baseChapter": 3, "kind": "reader-visible-hard-blocker", "targetUnit": "keyTakeaway", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction" }, "goldRationale": "key takeaway contradicts the hook's stated premise." },
+    { "variantKey": "READER-HARDBLOCK-the-power-of-moments-ch03-unsafe", "baseBookId": "the-power-of-moments", "baseChapter": 3, "kind": "reader-visible-hard-blocker", "targetUnit": "tryThisNow", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unsafe" }, "goldRationale": "try-this-now advises a plainly harmful action." },
+    { "variantKey": "READER-HARDBLOCK-decisive-ch03-structural", "baseBookId": "decisive", "baseChapter": 3, "kind": "reader-visible-hard-blocker", "targetUnit": "breakdown", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "structurally_invalid" }, "goldRationale": "a required breakdown section is absent, leaving the chapter structurally incomplete." },
+    { "variantKey": "READER-HARDBLOCK-behave-ch02-schema", "baseBookId": "behave", "baseChapter": 2, "kind": "reader-visible-hard-blocker", "targetUnit": "quiz.questions", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "schema_or_app_breaking" }, "goldRationale": "a quiz question is malformed (option set breaks the reader app), on-page visible." },
+    { "variantKey": "READER-HARDBLOCK-peak-ch02-unusable", "baseBookId": "peak", "baseChapter": 2, "kind": "reader-visible-hard-blocker", "targetUnit": "examples", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "unusable" }, "goldRationale": "an example is incoherent to the point of being unusable to a reader." },
+    { "variantKey": "READER-HARDBLOCK-make-it-stick-ch02-internal", "baseBookId": "make-it-stick", "baseChapter": 2, "kind": "reader-visible-hard-blocker", "targetUnit": "memorableLines", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "internal_contradiction" }, "goldRationale": "a memorable line asserts the opposite of the chapter body." },
+    { "variantKey": "READER-HARDBLOCK-the-checklist-manifesto-ch02-structural", "baseBookId": "the-checklist-manifesto", "baseChapter": 2, "kind": "reader-visible-hard-blocker", "targetUnit": "implementationPlan", "ops": [], "ownerAuthoredOps": true, "expected": { "expectedRecommendation": "BLOCK", "expectedBlockingCategory": "structurally_invalid" }, "goldRationale": "an implementation-plan step references a unit that does not exist in the chapter." },
+
+    { "variantKey": "READER-CRAFT-difficult-conversations-ch04-ex1", "baseBookId": "difficult-conversations", "baseChapter": 4, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness that lowers craft scores but is NOT a reserved-harm blocker." },
+    { "variantKey": "READER-CRAFT-the-willpower-instinct-ch04-ex1", "baseBookId": "the-willpower-instinct", "baseChapter": 4, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-the-power-of-moments-ch04-ex1", "baseBookId": "the-power-of-moments", "baseChapter": 4, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-decisive-ch04-ex1", "baseBookId": "decisive", "baseChapter": 4, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-behave-ch03-ex1", "baseBookId": "behave", "baseChapter": 3, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-peak-ch03-ex1", "baseBookId": "peak", "baseChapter": 3, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-make-it-stick-ch03-ex1", "baseBookId": "make-it-stick", "baseChapter": 3, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-the-checklist-manifesto-ch03-ex1", "baseBookId": "the-checklist-manifesto", "baseChapter": 3, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-difficult-conversations-ch05-ex1", "baseBookId": "difficult-conversations", "baseChapter": 5, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." },
+    { "variantKey": "READER-CRAFT-the-willpower-instinct-ch05-ex1", "baseBookId": "the-willpower-instinct", "baseChapter": 5, "kind": "craft-nonblocker", "targetUnit": "example 1", "builderGenerated": true, "ops": [{ "path": "/examples/0/whyItMatters", "op": "append", "value": " In the end, this is the kind of move worth practicing until it feels routine." }], "expected": { "expectedRecommendation": "REVISE", "prohibitBlockingFindings": true, "expectAdvisoryOnly": true, "targetUnits": ["example 1"] }, "goldRationale": "mild generic-phrasing craft weakness, non-blocking." }
+  ]
+}

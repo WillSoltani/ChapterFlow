@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed answers are the only options preserving named anchors or limits, while distractors use extreme moves like remove, only, or universalize; this is a mild pattern but not enough to answer reliably without reading."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 88,
+    "transfer": 76,
+    "practical": 82,
+    "summaries": 79,
+    "tone": 68,
+    "limits": 88,
+    "insight": 84,
+    "density": 78,
+    "beginner": 74
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "This is the chapter's core move in a memorable, portable line."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready.",
+      "why": "Concrete diagnostic that a reader could actually use after reading."
+    },
+    {
+      "quote": "Apple Inc. (the company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make the tension plain.",
+      "why": "The parenthetical source-card phrasing makes the prose feel assembled rather than naturally taught."
+    },
+    {
+      "quote": "When the standard is demanded, name the three anchors.",
+      "why": "This example action is thin; it names content but barely shows a real-world decision procedure."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Parenthetical labels such as company, marker, and contrast read like internal source scaffolding, which weakens tone and beginner flow.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 1-5",
+      "problem": "The named mini-scenarios are usable but feel staged; most show the lesson being restated more than a before-to-after decision with a consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The instruction 'name the three anchors' is too thin to demonstrate how a real team would decide what to do next.",
+      "mustFix": false
+    },
+    {
+      "unit": "summaries",
+      "problem": "The fast read and early deep read repeat the same rival-first/internal-benchmark idea before adding much new beginner context.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful, memorable move: treat rivals as signals, then let an internal benchmark judge the response. The quiz is fair and the limits section is unusually strong. I would not ship it yet at a professional 80+ bar because the prose often exposes its source-card machinery, and the examples are more theatrical than operational. Nothing here is structurally broken or reader-harming, but the chapter needs a tone pass and stronger real-world example texture before it feels publication-ready."
+}
+```

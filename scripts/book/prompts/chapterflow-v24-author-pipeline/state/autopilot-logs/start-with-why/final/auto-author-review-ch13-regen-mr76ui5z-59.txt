@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "c", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices reuse the chapter's signature phrasing while distractors sound transparently wrong: Q4 uses 'floats' and 'hard specifics,' Q9 uses 'true detail' and 'home,' and Q6 uses 'stamp' and 'earns.'"]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 83,
+    "limits": 87,
+    "insight": 84,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A WHY is not a slogan; it is the past pattern made plain.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "The story does not serve the line; the line serves the story.",
+      "why": "Clear reversal that gives the lesson a memorable test."
+    },
+    {
+      "quote": "A red pen cap rolls under Gerald's chair as he catches it late.",
+      "why": "A concrete detail that adds scene texture but does not affect the decision or consequence."
+    },
+    {
+      "quote": "The return point is set, but the roots are not back yet.",
+      "why": "This is abstract and slightly cloudy after an example that promises transfer beyond the main cases."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The stem says Tobias's service line failed and asks what caused the drift, but the Tobias service-launch example says the order almost collapsed, while a different Tobias example has a family group chat drift. The keyed cause is directionally right, but the stem blends two scenes.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz choices overall",
+      "problem": "Correct answers often carry the chapter's exact vocabulary while distractors are exaggerated or obviously bad, creating key tells without requiring full reading.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Gerald's scene includes a sensory detail, but the before-to-after decision is thin: the red pen cap is texture, not a consequence, and the example mostly restates the lesson about details belonging to sources.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The family group chat transfer case has a before-after line, but it is under-specified: no concrete role, person, place, or consequence shows what changed after the origin check.",
+      "mustFix": true
+    },
+    {
+      "unit": "transfer examples",
+      "problem": "Several examples stay inside the same Sinek/Wrights/Schultz anchor set instead of showing a fresh applied domain with a concrete decision and result.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong near-ship chapter with a memorable core move, layered summaries, and a useful practical sequence: Past patterns, Contribution, Impact, WHY statement. It does explain the mechanism instead of only naming it. I would not ship yet because the quiz has some answer tells and Q1 blends Tobias scenes, while the transfer section leans too heavily on repeated anchor material and a few manufactured examples do not fully deliver concrete before-to-after application."
+}
+```

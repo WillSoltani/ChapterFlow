@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 12,
+    "quizzes": 0,
+    "transfer": 5,
+    "practical": 2,
+    "summaries": 0,
+    "tone": 18,
+    "limits": 0,
+    "insight": 3,
+    "density": 8,
+    "beginner": 4
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production-status placeholder text rather than reader-facing instruction."
+    },
+    {
+      "quote": "Ulric he must decide whether to accuse the room or speak from his own view.",
+      "why": "This grammatical error obstructs an already unexplained decision point."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The prescribed action is unusably circular because the chapter never defines the move."
+    },
+    {
+      "quote": "Why it matters: It shows the skill in context.",
+      "why": "This generic rationale names neither the skill nor its mechanism or consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook contains only an internal phase-review placeholder and introduces no topic, promise, or core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty, so it fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty, leaving the chapter without an explanation of the skill or its mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so there is no complete lesson from which a reader can learn.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty and supplies no statement of the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no executable practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The named, highly specific Ulric/Pelham Transit event is presented without any indication that it is hypothetical, making it a fabricated or misleading example; it also contains the malformed sentence \"Ulric he must decide\" and never defines the move to follow.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 2",
+      "problem": "The named, highly specific Hester/Rowan's Cafe event is presented without any indication that it is hypothetical, making it a fabricated or misleading example; it also contains the malformed sentence \"Hester she must decide\" and never explains the sequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples reuse generic \"follow the move\" and \"shows the skill\" scaffolding without identifying the skill, showing a completed action, or giving its consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the required assessment is broken and no answers can be derived.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and therefore provides no review material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and therefore provides no retention aid.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Nearly every promised section is empty, the quiz has no questions, and the two specific scenes refer to an undefined skill through circular placeholder language. Although the scenes contain a few concrete sensory details and appear to gesture toward replacing accusation with first-person observation and following a prepared conversational sequence, the prose never teaches either mechanism, reconciles them into one core move, demonstrates an outcome, supplies practice, or states boundaries. A beginner could not determine what to learn or do, and the absent quiz makes assessment impossible."
+}
+```

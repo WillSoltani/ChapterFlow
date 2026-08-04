@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "b", "a", "b", "b", "a", "c", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several distractors are guessable without reading because they lean on obviously bad authority shortcuts: founder rank, president title, senior sponsor, fame, respected consultant.", "Correct answers often carry the chapter's exact anchor terms, such as Words/Actions/Symbols/Audience listening, Apple Store and 2001, Cupertino, Harley-Davidson and 1903."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 80,
+    "limits": 87,
+    "insight": 85,
+    "density": 78,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What does the cart say before the pitch catches up?",
+      "why": "Strongest memorable image; it compresses the chapter's core move into a usable test."
+    },
+    {
+      "quote": "Words name the promise first. Actions give it a road. Symbols stand only after behavior gives them weight. Audience listening reads the return.",
+      "why": "Clear, layered summary of the model in plain language."
+    },
+    {
+      "quote": "After lunch, source-fit reader Derek traced the fault back to rice milk.",
+      "why": "Worst tonal defect; the named scenario feels manufactured and exposes the production scaffold."
+    },
+    {
+      "quote": "Three promises out, one return set. Two symbols named, one behavior behind them.",
+      "why": "The accounting metaphor is useful, but this phrasing turns abstract and slightly cryptic for beginners."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "Several examples feel like internal review simulations rather than natural real-world situations, especially the source-fit reader and scope analyst roles.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Distractors repeat the same authority-shortcut pattern, which makes many wrong answers easy to eliminate without fully understanding the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The final accounting language is memorable but somewhat compressed and abstract, making the ending less beginner-friendly than the cart image.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "The Apple Store/Cupertino anchor is less concretely explained than the cart and Harley-Davidson anchors, so the scope-mark lesson has weaker visible proof.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable central device, a clear four-part model, and practical transfer into promises, actions, symbols, and audience return. It explains the mechanism well and is honest about scope, especially around true details becoming false ground. I would not ship it yet at a professional 84 bar because the quiz has a repeated guessable distractor pattern and the examples sometimes sound like artifact-repair scenarios rather than lived situations. Fix those two issues and the chapter would likely clear the bar."
+}
+```

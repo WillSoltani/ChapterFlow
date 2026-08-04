@@ -1,0 +1,70 @@
+2026-07-08T08:30:50.833Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-08T08:30:53.338Z [MAJOR] PHASE write written 14/16 · gated 12 · qc'd 0
+2026-07-08T08:30:53.930Z [info]  author source-packets: compile-source-packets: PASS (16 packet(s))
+2026-07-08T08:30:54.415Z [info]  author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-08T08:30:54.890Z [info]  author book-design: compile-book-design: PASS
+2026-07-08T08:30:55.340Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T08:30:55.883Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+2026-07-08T08:30:56.382Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T08:30:56.382Z [info]  author write: 2 missing chapter(s) of 16 (parallel ≤6)
+2026-07-08T08:30:56.385Z [info]  author ch15: card is 25823 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:30:56.385Z [info]  author ch15: whole-chapter writer working (attempt 1, card 25823 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:30:56.388Z [info]  author ch16: card is 25804 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T08:30:56.389Z [info]  author ch16: whole-chapter writer working (attempt 1, card 25804 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T08:44:24.782Z [info]  author ch15: done (gate-chapter clean)
+2026-07-08T08:45:39.303Z [info]  author ch16: done (gate-chapter clean)
+2026-07-08T08:45:39.613Z [info]  author write: reader budgets clean (2 advisory finding(s)) — advancing
+2026-07-08T08:45:39.613Z [info]  author write: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "bonus" (distinctive token of case "Bonus signal") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T08:45:39.613Z [info]  author write: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "market" (distinctive token of case "Market and internal equity") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T08:45:49.762Z [MAJOR] PHASE gate written 16/16 · gated 14 · qc'd 0
+2026-07-08T08:45:57.855Z [MAJOR] GATE REPAIR attempt 1/4 (deterministic gates)
+2026-07-08T08:56:21.024Z [MAJOR] GATE MAJOR REPAIR attempt 1/4 (blocking majors)
+2026-07-08T08:56:21.030Z [info] GATE MAJOR ch08 working · 3 major(s)
+2026-07-08T08:58:42.818Z [info] GATE MAJOR ch08 exited 0
+2026-07-08T08:58:55.665Z [info]  compiler gate: deterministic blockers + blocking majors clean; skipping legacy broad pre-QC scouts → advancing to formal QC
+2026-07-08T08:59:05.538Z [MAJOR] PHASE qc written 16/16 · gated 16 · qc'd 0
+2026-07-08T08:59:05.676Z [info]  author review budgets: reader budgets clean (2 advisory finding(s)) — advancing
+2026-07-08T08:59:05.676Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "bonus" (distinctive token of case "Bonus signal") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T08:59:05.677Z [info]  author review budgets: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "market" (distinctive token of case "Market and internal equity") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+2026-07-08T08:59:05.688Z [info]  author review: 16 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+2026-07-08T08:59:35.857Z [info]  author review ch05: composite 87.2 ship=true keys 9/9 → PASS
+2026-07-08T08:59:38.816Z [info]  author review ch01: composite 88.8 ship=true keys 9/9 → PASS
+2026-07-08T08:59:59.439Z [info]  author review ch03: composite 87.2 ship=true keys 9/9 → PASS
+2026-07-08T09:00:03.716Z [info]  author review ch04: composite 87 ship=true keys 9/9 → PASS
+2026-07-08T09:00:08.179Z [info]  author review ch02: composite 85.9 ship=true keys 9/9 → PASS
+2026-07-08T09:00:11.986Z [info]  author review ch08: composite 85 ship=true keys 9/9 → PASS
+2026-07-08T09:00:12.021Z [info]  author review ch06: composite 86.4 ship=true keys 9/9 → PASS
+2026-07-08T09:00:32.962Z [info]  author review ch10: composite 86.5 ship=true keys 9/9 → PASS
+2026-07-08T09:00:36.527Z [info]  author review ch07: composite 84.8 ship=false keys 9/9 → FAIL
+2026-07-08T09:00:45.666Z [info]  author review ch09: composite 86.6 ship=true keys 9/9 → PASS
+2026-07-08T09:00:51.852Z [info]  author review ch11: composite 86.8 ship=true keys 9/9 → PASS
+2026-07-08T09:00:56.093Z [info]  author review ch13: composite 88.2 ship=true keys 9/9 → PASS
+2026-07-08T09:01:05.938Z [info]  author review ch12: composite 88.1 ship=true keys 9/9 → PASS
+2026-07-08T09:01:06.735Z [info]  author review ch15: composite 89 ship=true keys 9/9 → PASS
+2026-07-08T09:01:18.048Z [info]  author review ch16: composite 85.7 ship=true keys 9/9 → PASS
+2026-07-08T09:01:20.892Z [info]  author review ch14: composite 87 ship=false keys 9/9 → FAIL
+2026-07-08T09:01:20.893Z [info]  author review ch07: FAIL is near the bar (composite 84.8, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-08T09:01:20.897Z [info]  author review ch14: FAIL is near the bar (composite 87, bar 80, keys 9/9, ship=false) — spawning 2 tiebreak readers (median-of-3, no cap consumed)
+2026-07-08T09:01:57.444Z [info]  author review ch07-tiebreak-r2: composite 86.7 ship=true keys 9/9 → PASS
+2026-07-08T09:02:16.635Z [info]  author review ch14-tiebreak-r2: composite 87 ship=false keys 9/9 → FAIL
+2026-07-08T09:02:32.204Z [info]  author review ch07-tiebreak-r3: composite 86 ship=true keys 9/9 → PASS
+2026-07-08T09:02:32.212Z [info]  author review ch07: tiebreak median 86 ≥ bar 80 via ship-majority (ship 2/3, reads 84.8, 86.7, 86) — deciding PASS 86.7 persisted; original FAIL's complaints preserved in tiebreak notes
+2026-07-08T09:02:48.228Z [info]  author review ch14-tiebreak-r3: composite 85.7 ship=false keys 9/9 → FAIL
+2026-07-08T09:02:48.234Z [info]  author review ch14: tiebreak upheld the FAIL (median 87, reads 87, 85.7) — regen proceeds with merged complaints
+2026-07-08T09:02:48.237Z [info]  author review: 1 chapter(s) failed independent review — regenerating with complaints (1 regen each; 2 total attempts/chapter, durable ledger loaded)
+2026-07-08T09:02:48.238Z [info]  author review ch14: repair lane not eligible (outlier scope examples[1] outside the convergent set) — regen proceeds
+2026-07-08T09:02:48.247Z [info]  author ch14: card is 28349 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T09:02:48.255Z [info]  author ch14: whole-chapter writer working (attempt 1, card 28349 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T09:18:12.406Z [info]  author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T09:18:12.407Z [info]  author ch14: whole-chapter writer working (attempt 2, card 28879 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T09:30:16.104Z [info]  author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead (Task-focused) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T09:30:16.107Z [info]  ── cost report — high-output-management [halt:content] ──
+  grand total spawns: 26  (minted ids 26; verb ids 0)
+  by type: author-review:20  writer:4  gate-repair:1  major-repair:1
+  by phase: qc:22  write:2  gate:2
+  retries by cause: respawn:2  gate-repair-1:1  gate-major-repair-1:1  retry1:1
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 16 miss
+  wall (spawn ms) by phase: qc:2524766  write:1682544  gate:757812  total:4965122
+2026-07-08T09:30:16.109Z [FINAL] HALT AUTOPILOT HALT — high-output-management [phase qc · content]: author review: 1 chapter(s) still fail independent review after the regen cap (2 write attempts each):
+  ch14 — ch14: STIER-2 write contract FAIL — lead thread: the dealt lead (Task-focused) appears in 1 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T09:30:16.109Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/high-output-management/book-run/qc.20260708093016.62c71950.repair.md

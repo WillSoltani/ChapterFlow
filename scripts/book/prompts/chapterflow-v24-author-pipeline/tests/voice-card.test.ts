@@ -14,6 +14,7 @@ import { resolve } from "path";
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 import { voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
+import { loadBookScars } from "../src/lib/bookScars.js";
 import { formatVoiceBible } from "../src/lib/voiceBible.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
@@ -70,7 +71,7 @@ function blueprint(bookId: string): ChapterBlueprintV1 {
 const PACKET = { schemaVersion: "source-packet-v1", facts: [] } as unknown as SourcePacketV1;
 
 function task(bookId: string, kind: SectionKind): string {
-  return buildSectionTaskMarkdown({ bookId, kind, blueprint: blueprint(bookId), sourcePacket: PACKET, outputPath: `/tmp/${kind}.json` });
+  return buildSectionTaskMarkdown({ bookId, kind, blueprint: blueprint(bookId), sourcePacket: PACKET, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard(bookId), bookScars: loadBookScars(bookId) } });
 }
 
 test("voiceCard from a brief carries register + guard line and strips the specimen", () => {

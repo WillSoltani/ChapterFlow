@@ -1,0 +1,601 @@
+
+📖 Book run — high-output-management
+   codex=/Applications/Codex.app/Contents/Resources/codex · notify=on · architecture=v24 author · --no-publish (halt for review)
+   --no-publish: will halt at ready-to-publish and print the manual ship command.
+
+15:24:58 🔒 START run started · strict invariants enforced · lock acquired
+15:25:01 📊 PHASE write written 15/16 · gated 15 · qc'd 0
+15:25:01   · author source-packets: compile-source-packets: PASS (16 packet(s))
+15:25:02   · author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+15:25:02   · author book-design: compile-book-design: PASS
+15:25:03   · author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+15:25:03   · author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+15:25:04   · author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+15:25:04   · author write: 1 missing chapter(s) of 16 (parallel ≤6)
+15:25:04   · author ch14: card is 26626 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+15:25:04   · author ch14: whole-chapter writer working (attempt 1, card 26626 chars, gpt-5.5 @ xhigh, timeout 60min)
+15:42:31   · author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+15:42:31   · author ch14: whole-chapter writer working (attempt 2, card 27156 chars, gpt-5.5 @ xhigh, timeout 60min)
+15:55:33   · author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+15:55:33   · author ch14: lead degraded: "Task-focused interview questions" → "Daniel" after 2 contract failures (bounded +1 attempt; the lead-thread contract enforces the NEW lead at full strength).
+15:55:33   · author ch14: whole-chapter writer working (attempt 3, card 26793 chars, gpt-5.5 @ xhigh, timeout 60min)
+16:07:34   · author ch14: lead override persisted (chNN.lead-override.json) — future regens/repairs enforce the contract against "Daniel".
+16:07:34   · author ch14: done (gate-chapter clean)
+16:07:35   · author write: reader budgets clean (2 advisory finding(s)) — advancing
+16:07:35   · author write: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "bonus" (distinctive token of case "Bonus signal") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+16:07:35   · author write: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "market" (distinctive token of case "Market and internal equity") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+16:07:50 📊 PHASE qc written 16/16 · gated 16 · qc'd 0
+16:07:50   · author review budgets: 15 chapter(s) hold a durable PASS at bar 80 — protected from full re-author (ch01, ch02, ch03, ch04, ch05, ch06, ch07, ch08, ch09, ch10, ch11, ch12, ch13, ch15, ch16)
+16:07:50   · author review budgets: reader budgets clean (2 advisory finding(s)) — advancing
+16:07:50   · author review budgets: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "bonus" (distinctive token of case "Bonus signal") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+16:07:50   · author review budgets: advisory [CHB1.anchor_repetition] ch15 reading surface mentions "market" (distinctive token of case "Market and internal equity") 8 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.
+16:07:50   · author review: 16 chapter(s), one blinded reader each (parallel ≤6, bar 80)
+16:07:50   · author review ch01: CARRIED durable review (composite 88.8, reviewer auto-author-review-ch01-mrbuj7fe-5) — no reader spawned
+16:07:50   · author review ch02: CARRIED durable review (composite 85.9, reviewer auto-author-review-ch02-mrbuj7fh-6) — no reader spawned
+16:07:50   · author review ch03: CARRIED durable review (composite 87.2, reviewer auto-author-review-ch03-mrbuj7fl-7) — no reader spawned
+16:07:50   · author review ch04: CARRIED durable review (composite 87, reviewer auto-author-review-ch04-mrbuj7fp-8) — no reader spawned
+16:07:50   · author review ch05: CARRIED durable review (composite 87.2, reviewer auto-author-review-ch05-mrbuj7fu-9) — no reader spawned
+16:07:50   · author review ch06: CARRIED durable review (composite 86.4, reviewer auto-author-review-ch06-mrbuj7fx-10) — no reader spawned
+16:07:50   · author review ch07: CARRIED durable review (composite 86.7, reviewer auto-author-review-ch07-tiebreak-r2-mrbum3r2-21) — no reader spawned
+16:07:50   · author review ch08: CARRIED durable review (composite 85, reviewer auto-author-review-ch08-mrbujwzl-12) — no reader spawned
+16:07:50   · author review ch09: CARRIED durable review (composite 86.6, reviewer auto-author-review-ch09-mrbukcwh-13) — no reader spawned
+16:07:50   · author review ch10: CARRIED durable review (composite 86.5, reviewer auto-author-review-ch10-mrbukg79-14) — no reader spawned
+16:07:50   · author review ch11: CARRIED durable review (composite 86.8, reviewer auto-author-review-ch11-mrbukjn9-15) — no reader spawned
+16:07:50   · author review ch12: CARRIED durable review (composite 88.1, reviewer auto-author-review-ch12-mrbukmkz-16) — no reader spawned
+16:07:50   · author review ch13: CARRIED durable review (composite 88.2, reviewer auto-author-review-ch13-mrbukmly-17) — no reader spawned
+16:07:50   · author review ch15: CARRIED durable review (composite 89, reviewer auto-author-review-ch15-mrbul5is-19) — no reader spawned
+16:07:50   · author review ch16: CARRIED durable review (composite 85.7, reviewer auto-author-review-ch16-mrbulckk-20) — no reader spawned
+16:08:31   · author review ch14: composite 88.9 ship=true keys 9/9 → PASS
+16:08:31   · author review: carried 15/16 chapter review(s) unchanged — spawned 1 fresh reader(s)
+16:08:31   · author acceptance: sampled ch 9, 10, 11, 12 → 63485 chars; spawning 3 independent book readers
+16:10:13   · author acceptance: durable read record → /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/reviews/high-output-management/acceptance.round1.871d00db.r1.json
+16:10:13   · author acceptance: pooled composite 78.8 over 1 read(s) (band ±3.7) gate PASS churn MEDIUM valid 3/3 vs floor 74 (premium target 80) → ACCEPT
+16:10:13   · author evidence: 16/16 chapter(s) need fresh keys (ch1, ch2, ch3, ch4, ch5, ch6, ch7, ch8, ch9, ch10, ch11, ch12, ch13, ch14, ch15, ch16) — deriving ONLY those (per-chapter production, E3)
+16:13:20   · author evidence: keyA derivation written by session auto-author-key-keyA-mrcgd4g7-8 (16 stale chapter(s))
+16:16:15   · author evidence: keyB derivation written by session auto-author-key-keyB-mrcgh4wm-9 (16 stale chapter(s))
+16:16:15   · author evidence: manual key-judge PASS for all 16 chapter(s) (round r20260708191013-e0ab5f)
+16:18:12   · author evidence: sweep attestation written by session auto-author-sweep-mrcgkw14-10 (round r20260708191013-e0ab5f)
+16:18:12   · author evidence: 2 texture advisory finding(s) (scored, non-blocking):
+16:18:12   · author evidence: advisory texture[scene_skeleton] ch 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16: The example scenes repeatedly use the same dramatic transaction with only chapter nouns swapped: someone first feels a downstream miss, an early signal or retur (scored by the acceptance panel, not blocked)
+16:18:12   · author evidence: advisory texture[repeated_unit] ch 2, 5, 8, 11: The exact distinctive line recurs across multiple chapters as a portable teaching tag. It does not by itself gate the book, but it contributes to the templated  (scored by the acceptance panel, not blocked)
+16:18:12   · author acceptance PASSED — key-judge + sweep evidence complete; wrote 16 PUBLISHABLE attestation(s) + bar/confirm artifacts (round r20260708191013-e0ab5f)
+16:18:18 📊 PHASE ready written 16/16 · gated 16 · qc'd 16
+16:18:18   · ── cost report — high-output-management [ready] ──
+  grand total spawns: 10  (minted ids 10; verb ids 0)
+  by type: writer:3  author-book-reader:3  key:2  author-review:1  sweep:1
+  by phase: qc:7  write:3
+  retries by cause: retry1:1
+  carry: acceptance 0 hit / 1 miss · reviews 15 hit / 1 miss
+  wall (spawn ms) by phase: write:2538032  qc:797783  total:3335815
+
+AUTOPILOT — high-output-management: READY TO PUBLISH — all 16 chapters gated + QC PUBLISHABLE. Review, then ship:
+  npx tsx src/cli.ts publish-final "high-output-management"   (53 min)
+
+──────────────────────────────────────────────────────────────────────
+📄 Middle chapter for review — chapter 8 of 16: "Hybrid Organizations"
+──────────────────────────────────────────────────────────────────────
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "high-output-management-ch08",
+  "number": 8,
+  "title": "Hybrid Organizations",
+  "readingTimeMinutes": 7,
+  "hook": "Jude maps engineering, manufacturing, sales, and finance functions to shared professional standards.",
+  "hookSourceAnchorIds": [
+    "ch08.ex.functionalOrg",
+    "ch08.fact.1"
+  ],
+  "counterintuition": "A clean chart feels like the cure for crossed wires. The real choice is which promise needs shared expertise, which needs market speed, and where the two must meet.",
+  "counterintuitionSourceAnchorIds": [
+    "ch08.fact.3",
+    "ch08.fact.4",
+    "ch08.fact.5",
+    "ch08.fact.9"
+  ],
+  "tryThisNow": "In 5 minutes, mark one current promise with F for shared expertise and M for market speed; then write the interface that must be explicit.",
+  "tryThisNowSourceAnchorIds": [
+    "ch08.fact.1",
+    "ch08.fact.2",
+    "ch08.fact.8"
+  ],
+  "keyTakeaway": "Functional groups protect depth and scale. Mission groups protect speed and one business aim. Hybrid design works when the interface states who decides, advises, and executes.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch08.fact.1",
+    "ch08.fact.2",
+    "ch08.fact.5",
+    "ch08.fact.8"
+  ],
+  "breakdown": {
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch08.ex.functionalOrg",
+        "ch08.ex.missionOrg",
+        "ch08.fact.1",
+        "ch08.fact.2",
+        "ch08.fact.3",
+        "ch08.fact.4",
+        "ch08.fact.5",
+        "ch08.fact.8"
+      ],
+      "deepRead": [
+        "ch08.ex.functionalOrg",
+        "ch08.ex.missionOrg",
+        "ch08.fact.1",
+        "ch08.fact.2",
+        "ch08.fact.3",
+        "ch08.fact.4",
+        "ch08.fact.5",
+        "ch08.fact.8"
+      ],
+      "fullRead": [
+        "ch08.ex.functionalOrg",
+        "ch08.ex.missionOrg",
+        "ch08.ex.hybridIntel",
+        "ch08.fact.1",
+        "ch08.fact.2",
+        "ch08.fact.3",
+        "ch08.fact.4",
+        "ch08.fact.5",
+        "ch08.fact.6",
+        "ch08.fact.7",
+        "ch08.fact.8",
+        "ch08.fact.9"
+      ]
+    },
+    "fastRead": "Jude is still marking engineering, manufacturing, sales, and finance functions on the envelope. A functional organization concentrates centralized expertise and shared professional standards, so it is not just red tape.\n\nA mission-oriented organization works differently: dedicated resources gather around a product or business-unit objective so single output accountability has a clear path. That speed can copy expertise; pure function can slow decisions as business questions cross departments. Hybrid design exists because both promises matter.\n\nMake the interface explicit. Who decides, who advises, who executes? Agreement nods; commitment signs.",
+    "deepRead": "Functional design earns its place when specialized work has to get better together. Engineering, manufacturing, sales, and finance functions can protect centralized expertise, shared professional standards, and scale economies that one product unit would struggle to rebuild. If you call that mere bureaucracy, you miss the output value.\n\nThe gain has a bill. A business answer that must cross each specialty can move slowly, and each specialty may protect a local standard even when the product or market promise needs a combined answer. Every vague interface spends response time before anyone admits it.\n\nMission structure reverses the pull. Estelle can gather dedicated resources around a product or business-unit objective, so single output accountability has a clear path. That brings speed. It also tempts the unit to rebuild its own engineering, manufacturing, sales, or finance depth. Local focus can pay twice for skill it could have shared.\n\nThe useful question is which cost you are paying. Which promise is the chart making easier, and which promise is it making slower? If quality depends on deep craft, keep the craft near its peers. If a market answer needs fast cross-specialty action, gather the needed people around that aim.\n\nA hybrid is not indecision when it preserves both strengths on purpose. The counterfeit is informal goodwill: people talk, nod, and assume the matrix will sort itself out. The real move names who decides, who advises, and who executes before the promise drifts.",
+    "fullRead": "Nathan's Intel-style case is where the limit shows. Semiconductor manufacturing needs engineering expertise and process discipline; a product unit cannot simply own its way into technical excellence. The craft has to live with people who share standards. Keep the depth.\n\nBut the customer never buys an isolated function. Markets feel the combined result: the product answer, cost answer, quality answer, and timing answer arriving together. A function-heavy company still needs business-unit coordination, because local wins can conflict before they become a market result.\n\nThat is why a hybrid asks for explicit interfaces. In plain words, an interface is the line where one side's call must meet another side's expertise. Who decides? Who advises? Who executes? If those are left to private bargaining, the promise travels back and forth until delay feels normal.\n\nFunctional design is useful when engineering, manufacturing, sales, and finance functions need centralized expertise and shared professional standards more than local speed. Mission design is useful when a product or business-unit objective needs dedicated resources and single output accountability. Hybrid design is useful when both are true. That common case still needs a named handoff.\n\nEstelle's product unit can move faster when engineering, manufacturing, sales, and finance sit near the product aim. The cost arrives later if each product unit rebuilds the same professional depth. Nathan's functional side can hold standards, but the cost arrives when a business choice has to cross groups that prize different things.\n\nSo do not ask for the best chart. Ask for the trade you are willing to manage: speed, quality, cost, expertise, and accountability. If you cannot name the trade, you are not choosing a structure; you are choosing a picture.\n\nYou can use this without title power. On any cross-specialty promise, mark the promise itself, then mark the first place where the answer must leave one specialty and meet another. Ask the small version: should this stay with the craft, move with the market, or be tied by an explicit interface?\n\nThe hard case is conflict that looks polite. Sales wants speed. Manufacturing wants discipline. Finance wants cost clarity. Engineering wants standards. None of these is foolish. The structure fails when each good aim signs its own paper and the customer gets the sum too late.\n\nThe path back matters. A hybrid works only when the commitment can travel: a decision named, advice named, execution named. Without that, the chart has two strengths and no way for either to help the other on time."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch08.ex.functionalOrg",
+      "sourceAnchorIds": [
+        "ch08.ex.functionalOrg"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.1",
+        "ch08.fact.3",
+        "ch08.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.functionalOrg"
+      ],
+      "title": "Caroline Gets Pieces",
+      "tags": [
+        "functional",
+        "outsider-witness"
+      ],
+      "planSpec": {
+        "domain": "functional organization",
+        "audience": "teams with specialized departments",
+        "stakes": "customers feel separate answers as one delay",
+        "format": "outside witness",
+        "requiredBeat": "downstream effect appears before the combined answer is named"
+      },
+      "scenario": "Caroline first feels the miss when the product answer reaches her in pieces. Engineering, manufacturing, sales, and finance functions each protected a local win, but no one joined the business answer. Jude keeps the centralized expertise and shared professional standards, then names the answer those functions must send together. The cost is a slower first pass; the gain is no false yes.",
+      "whatToDo": "Who needs the whole answer? Name the business answer before one function declares success.",
+      "whyItMatters": "What changed? Separate expertise stopped passing as customer value."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch08.ex.missionOrg",
+      "sourceAnchorIds": [
+        "ch08.ex.missionOrg"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.2",
+        "ch08.fact.4"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.missionOrg"
+      ],
+      "title": "Estelle Spots The Repeat",
+      "tags": [
+        "mission-oriented",
+        "numbers-detective",
+        "prop-tableau"
+      ],
+      "planSpec": {
+        "domain": "mission-oriented organization",
+        "audience": "product and business-unit leads",
+        "stakes": "local speed can recreate scarce expertise",
+        "format": "late catch",
+        "requiredBeat": "early duplication signal is caught before the miss hardens"
+      },
+      "scenario": "One line does not add up before anyone flags it: Estelle's unit wants dedicated resources for a product or business-unit objective, including its own engineering, manufacturing, sales, and finance capacity. She marks duplicate on the returned-call slip. Single output accountability stays, but shared standards return to the path. The catch is late; local speed had already begun copying depth the unit should not rebuild.",
+      "whatToDo": "Where did capacity get copied? Keep the product aim, mark the duplicate resource, and send scarce expertise back to the shared discipline.",
+      "whyItMatters": "What nearly failed? Mission speed was about to pay twice for one skill and lose professional depth."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch08.ex.hybridIntel",
+      "sourceAnchorIds": [
+        "ch08.ex.hybridIntel"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.6",
+        "ch08.fact.7",
+        "ch08.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.hybridIntel"
+      ],
+      "title": "Nathan Names The Gap",
+      "tags": [
+        "hybrid",
+        "intel-style",
+        "limit"
+      ],
+      "planSpec": {
+        "domain": "Intel-style hybrid structure",
+        "audience": "functional and business-unit partners",
+        "stakes": "technical depth and market response can stall each other",
+        "format": "unresolved interface",
+        "requiredBeat": "standard is stated and the return point is set"
+      },
+      "scenario": "The standard is stated first: semiconductor manufacturing needs engineering expertise and process discipline, while the business unit still needs coordination around the customer answer. Nathan refuses to call goodwill an interface. He names who decides, who advises, and who executes. The decision line is visible now, but the hybrid still carries delay until the answer moves.",
+      "whatToDo": "What does skipping this cost? Delay hides inside polite agreement; name the decision, advice, and execution lines before the promise travels.",
+      "whyItMatters": "Where does the move break? If no one can answer at the check, hybrid strength has only moved the delay."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch08.ex.functionalOrg",
+      "sourceAnchorIds": [
+        "ch08.ex.functionalOrg"
+      ],
+      "sourceFactIds": [
+        "ch08.fact.1",
+        "ch08.fact.3",
+        "ch08.fact.8",
+        "ch08.fact.9"
+      ],
+      "namedCaseIds": [
+        "ch08.ex.functionalOrg"
+      ],
+      "title": "Jude Pulls Back The Yes",
+      "tags": [
+        "functional",
+        "prop-tableau",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "functional organization",
+        "audience": "specialists serving one business promise",
+        "stakes": "local approval can become a late customer answer",
+        "format": "mid-action repair",
+        "requiredBeat": "demand is already past when the interface is fixed"
+      },
+      "scenario": "Jude is already changing the answer after Sales promised speed and Manufacturing protected quality. A black marker squeaks once. He pays the cost: the first yes is pulled back. Engineering, manufacturing, sales, and finance functions keep shared professional standards, but centralized expertise must now meet one customer tradeoff before the answer leaves.",
+      "whatToDo": "Why does it work? The market answer travels through expertise before it leaves; name the specialty that can veto speed, then name the shared answer.",
+      "whyItMatters": "What was paid? The old yes came back late, but the new answer no longer lets one function win alone."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch08.fact.8",
+        "prompt": "A hybrid group leaves the interface informal after people agree to cooperate. What happens downstream?",
+        "choices": [
+          "They must name who decides, who advises, and who executes, because informal matrix bargaining turns into delay.",
+          "They should remove all shared expertise from the structure, because any cross-line tension proves the hybrid was the wrong form.",
+          "They can keep the hybrid if everyone agrees to consult, even without a stated decision or execution line."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first answer fits the interface rule: delay grows when decision, advice, and execution lines stay vague. The consult-only answer sounds cooperative, but it stops before the lines that settle action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch08.fact.6",
+        "prompt": "Product ownership takes over semiconductor quality and treats specialist communities as optional. Which principle does this violate?",
+        "choices": [
+          "It gives the business unit too little market accountability, even though customer response is the only source of technical quality.",
+          "It keeps engineering and manufacturing too close to shared standards, even when product speed would be easier without them.",
+          "It ignores that engineering and manufacturing quality depend on deep specialist knowledge and process discipline."
+        ],
+        "correctIndex": 2,
+        "explanation": "The last choice names the technical-depth claim. The market-accountability answer is tempting in a mission frame, but the source says product focus alone cannot carry semiconductor excellence.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch08.fact.4",
+        "prompt": "A product unit rebuilds its own engineering, manufacturing, sales, and finance capacity to move faster. What risk follows?",
+        "choices": [
+          "It may duplicate expertise and weaken scale or professional depth while trying to move faster locally.",
+          "It may keep the product aim accountable but slow the response because the unit gives each specialty a separate veto.",
+          "It should duplicate every specialty fully, since mission focus removes the cost of repeated expertise."
+        ],
+        "correctIndex": 0,
+        "explanation": "The key captures the cost of pure mission design: local focus can copy professional capacity. The full-duplication answer overcorrects by treating repeated expertise as free.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch08.fact.9",
+        "prompt": "Someone proposes one universal org chart for every business pressure. What should come first instead?",
+        "choices": [
+          "Choose the simplest chart first, then let speed, quality, cost, expertise, and accountability adjust around it.",
+          "Pick the form with the least tension, because tension means the design has already failed its purpose.",
+          "Judge the design by output tradeoffs: speed, quality, cost, expertise, and accountability."
+        ],
+        "correctIndex": 2,
+        "explanation": "The last answer matches the diagnostic standard. The least-tension answer is attractive, but different pressures often require a balance rather than a tension-free chart.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch08.fact.2",
+        "prompt": "A market team gathers different specialties around one product promise. Why does that form help?",
+        "choices": [
+          "It makes every person do the same kind of task, so coordination across specialties no longer matters.",
+          "It combines different kinds of work around one product, market, or business aim that needs coordinated action.",
+          "It keeps specialties apart until each one finishes locally, then asks the product promise to catch up."
+        ],
+        "correctIndex": 1,
+        "explanation": "The middle choice gives the mechanism for mission-oriented structure. The same-task answer repeats the common error; mission focus combines specialties, not identical tasks.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch08.fact.3",
+        "prompt": "Specialists deliver excellent local answers, yet business response slows. What best explains the slowdown?",
+        "choices": [
+          "Each specialty became too weak, so the answer is to add more isolated expertise before any business call is made.",
+          "Business choices must travel across departments with different priorities, so the decision path can fragment.",
+          "The business tried to move across specialties before each function finished its local review, so another review step should restore response."
+        ],
+        "correctIndex": 1,
+        "explanation": "The second choice explains why functional excellence can still slow response. Adding more isolated expertise would deepen the same travel problem, not repair it.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch08.fact.1",
+        "prompt": "During a redesign, functional structure is dismissed as mere bureaucracy. What is missing from that critique?",
+        "choices": [
+          "It should apply only to finance, because engineering and manufacturing standards are better handled inside product units.",
+          "It should be avoided whenever a market is changing, because shared discipline has no real operating benefit.",
+          "Grouping similar expertise can improve specialized work through shared standards, discipline, and scale."
+        ],
+        "correctIndex": 2,
+        "explanation": "The final answer states the functional benefit the critique misses. The finance-only answer narrows the idea too much; the source names several specialties that can gain from shared standards.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch08.fact.5",
+        "prompt": "After both pure options look cleaner than a hybrid, why might the hybrid still be deliberate?",
+        "choices": [
+          "It hides indecision behind a complex chart when neither side is willing to choose a single pressure.",
+          "Both expertise and market accountability matter, and neither pure form serves all needs at once.",
+          "It proves every unit should be half functional and half mission-oriented, no matter what pressure it faces."
+        ],
+        "correctIndex": 1,
+        "explanation": "The middle answer gives the reason hybrids are common. The indecision answer is plausible as a bad version, but this logic treats many hybrids as intentional tradeoff designs.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch08.fact.7",
+        "prompt": "Separate functions each improve their own measures, and customers still feel a poor result. Why?",
+        "choices": [
+          "Customers and markets experience the combined result, so isolated functional wins can conflict.",
+          "Functions improved too little separately, so each group should optimize further before coordination starts.",
+          "Business-unit coordination was added too soon, before local functional wins could add up on their own."
+        ],
+        "correctIndex": 0,
+        "explanation": "The first answer matches the customer-facing mechanism. The optimize-further answer is tempting, but this structure says isolated wins can clash instead of adding up.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorIds": [
+        "ch08.fact.1",
+        "ch08.ex.functionalOrg"
+      ],
+      "front": "When is a functional structure useful?",
+      "back": "Use it when engineering, manufacturing, sales, and finance functions need centralized expertise and shared professional standards. Similar work gets stronger when its craft is grouped.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorIds": [
+        "ch08.fact.2",
+        "ch08.fact.4"
+      ],
+      "front": "What trade does mission-oriented design make?",
+      "back": "It puts resources around a product or business aim, which helps speed and accountability. The cost is possible duplication of scarce expertise.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorIds": [
+        "ch08.fact.5"
+      ],
+      "front": "Why are hybrid organizations common?",
+      "back": "Both expertise and market accountability matter. A hybrid can preserve two needed strengths when either pure form would overpay for one of them.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorIds": [
+        "ch08.fact.8"
+      ],
+      "front": "What must a hybrid interface state?",
+      "back": "It must say who decides, who advises, and who executes. Without those lines, informal negotiation becomes friction and delay.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorIds": [
+        "ch08.ex.hybridIntel",
+        "ch08.fact.6",
+        "ch08.fact.7"
+      ],
+      "front": "What does the Intel-style case teach?",
+      "back": "Semiconductor manufacturing needs engineering depth and process discipline, yet customers and markets still experience the combined business result.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorIds": [
+        "ch08.fact.9"
+      ],
+      "front": "How should you choose among organization forms?",
+      "back": "Judge the tradeoff you need: speed, quality, cost, expertise, and accountability. No chart is best apart from the pressure it must serve.",
+      "difficulty": "medium"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Mark The Interface",
+    "titleSourceAnchorIds": [
+      "ch08.fact.8"
+    ],
+    "coreSkill": "Use the chart as a tradeoff map, not a status object. Mark the promise, then choose where depth lives, where speed matters, and where the interface must be explicit. The useful contrast is simple: agreement nods; commitment signs.",
+    "coreSkillSourceAnchorIds": [
+      "ch08.fact.1",
+      "ch08.fact.2",
+      "ch08.fact.5",
+      "ch08.fact.8",
+      "ch08.fact.9"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorIds": [
+          "ch08.fact.3",
+          "ch08.fact.7"
+        ],
+        "context": "When a function gives a local yes",
+        "plan": "If a function gives a local yes, then mark the business answer it must join."
+      },
+      {
+        "sourceAnchorIds": [
+          "ch08.fact.4"
+        ],
+        "context": "When a product unit asks for its own specialist capacity",
+        "plan": "If a product unit asks to rebuild a specialty, then mark the shared standard it would leave."
+      },
+      {
+        "sourceAnchorIds": [
+          "ch08.fact.8"
+        ],
+        "context": "When hybrid roles feel polite but slow",
+        "plan": "If the path is polite and slow, then mark who decides, advises, and executes."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next status pass, mark one cross-specialty promise and write who decides, advises, and executes in 10 minutes.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch08.fact.8",
+      "ch08.fact.9"
+    ],
+    "weeklyPractice": "At the next cross-specialty status pass, measure one number: how many promises had named decision, advice, and execution lines before action moved.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch08.fact.5",
+      "ch08.fact.8",
+      "ch08.fact.9"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "Every vague interface spends response time before anyone admits it.",
+      "location": "breakdown.deepRead",
+      "why": "It names the concrete price of leaving hybrid lines informal.",
+      "sourceAnchorIds": [
+        "ch08.fact.8"
+      ]
+    },
+    {
+      "text": "Which promise is the chart making easier, and which promise is it making slower?",
+      "location": "breakdown.deepRead",
+      "why": "It turns organization design into a tradeoff question instead of a chart preference.",
+      "sourceAnchorIds": [
+        "ch08.fact.9"
+      ]
+    },
+    {
+      "text": "Make the interface explicit.",
+      "location": "breakdown.fastRead",
+      "why": "It gives the reader the shortest usable command for hybrid work.",
+      "sourceAnchorIds": [
+        "ch08.fact.8"
+      ]
+    }
+  ],
+  "authoring": {
+    "sourceAnchors": {
+      "effectiveAnchors": {
+        "hook": [
+          "ch08.ex.functionalOrg",
+          "ch08.fact.1"
+        ],
+        "counterintuition": [
+          "ch08.fact.3",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.9"
+        ],
+        "tryThisNow": [
+          "ch08.fact.1",
+          "ch08.fact.2",
+          "ch08.fact.8"
+        ],
+        "keyTakeaway": [
+          "ch08.fact.1",
+          "ch08.fact.2",
+          "ch08.fact.5",
+          "ch08.fact.8"
+        ],
+        "breakdown.fastRead": [
+          "ch08.ex.functionalOrg",
+          "ch08.ex.missionOrg",
+          "ch08.fact.1",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.8"
+        ],
+        "breakdown.deepRead": [
+          "ch08.ex.functionalOrg",
+          "ch08.ex.missionOrg",
+          "ch08.fact.1",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.8"
+        ],
+        "breakdown.fullRead": [
+          "ch08.ex.functionalOrg",
+          "ch08.ex.missionOrg",
+          "ch08.ex.hybridIntel",
+          "ch08.fact.1",
+          "ch08.fact.2",
+          "ch08.fact.3",
+          "ch08.fact.4",
+          "ch08.fact.5",
+          "ch08.fact.6",
+          "ch08.fact.7",
+          "ch08.fact.8",
+          "ch08.fact.9"
+        ]
+      }
+    }
+  }
+}

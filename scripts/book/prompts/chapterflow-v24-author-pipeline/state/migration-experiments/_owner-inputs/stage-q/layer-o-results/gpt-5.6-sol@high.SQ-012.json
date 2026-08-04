@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-012",
+  "parsed": {
+    "caseId": "SQ-012",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_SCENE_FABRICATION",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "\"Snapple is the growth answer,\" he says."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The strategist keeps his pencil on the $1.8 billion line."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The Quaker executive changes the meeting question from \"Should Quaker buy Snapple?\" to \"What are the growth paths this money could fund?\""
+      }
+    ],
+    "explanation": "The candidate presents an invented meeting scene, physical actions, dialogue, and a specific executive decision as historical events. The source plan supports only the acquisition facts and the general one-option framing, not these narrated particulars.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-012\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_SCENE_FABRICATION\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder.\"},{\"materialIndex\":1,\"quote\":\"\\\"Snapple is the growth answer,\\\" he says.\"},{\"materialIndex\":1,\"quote\":\"The strategist keeps his pencil on the $1.8 billion line.\"},{\"materialIndex\":1,\"quote\":\"The Quaker executive changes the meeting question from \\\"Should Quaker buy Snapple?\\\" to \\\"What are the growth paths this money could fund?\\\"\"}],\"explanation\":\"The candidate presents an invented meeting scene, physical actions, dialogue, and a specific executive decision as historical events. The source plan supports only the acquisition facts and the general one-option framing, not these narrated particulars.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four distinct moves matched to four distinct dangers, not a loose pause.",
+      "Narrow framing is the first villain, so the yes-or-no vendor frame should be widened before evidence review.",
+      "Reality-testing asks for evidence that can surprise or weaken the favorite answer.",
+      "The Intel section says emotion can carry information, but distance quiets short-term attachment so long-term fit can be judged.",
+      "Overconfidence is countered by naming better, worse, or different futures instead of trusting one neat forecast.",
+      "Cole's HopeLab move used parallel first passes so the team could learn before committing.",
+      "Grove's question works by imagining what a fresh outsider would do without Intel's memory-chip attachment.",
+      "The chapter says each villain bends a different part of the choice and each WRAP move repairs a different danger.",
+      "The chapter explicitly says good process raises the odds without promising the outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Choice b is the only one that names all four WRAP moves, matching the stem's phrase about structure.",
+      "Choice b mirrors the chapter's repeated yes-or-no/narrow-frame language; a and c delay or preserve the known villain.",
+      "Choice c contains the giveaway term disconfirming evidence; a and b are plainly confirmation-bias behaviors.",
+      "Choices a and b are extreme; c is the only nuanced option and echoes the emotion lesson.",
+      "Choice a repeats the chapter's range-of-futures language; b and c openly trust confidence.",
+      "Choice c closely paraphrases the HopeLab example's comparison-before-commitment line.",
+      "Choice a restates the Grove outsider question almost verbatim.",
+      "Choice a is the only option that names all four decision stages and different moves.",
+      "Choice b paraphrases the memorable line about raising odds without promising outcomes; a and c are extreme."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 90,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strongest compact line: concrete, memorable, and central to the chapter's first move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Explains confirmation bias with a vivid mechanism instead of a bland definition."
+    },
+    {
+      "quote": "The team lead asks the group to name one villain first, then pick the matching WRAP move instead of trying to be broadly careful.",
+      "why": "This is the clearest transfer move from concept to repeatable action."
+    },
+    {
+      "quote": "The team lead types four short lines: narrow frame, friendly evidence, hot feeling, single forecast.",
+      "why": "Useful compression, though the example is more illustrative than consequential."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed answer is too guessable because it restates the outsider question directly while the distractors are obviously wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer is telegraphed by near-verbatim reuse of the chapter's memorable line, and the distractors are extreme.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "Thin-but-usable example: it restates the four villains as labels but has little before-to-after consequence beyond naming the process.",
+      "mustFix": false
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The laptop-lid cue is concrete but slightly arbitrary; the action would be stronger if tied to an actual pending decision.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. It teaches one clean move: diagnose which villain is distorting the decision, then apply the matching WRAP repair. The prose is plain, memorable, and mechanism-heavy, with good boundaries around uncertainty and emergencies. The main weakness is quiz craftsmanship: several answers are fair but too easy to guess from mirrored wording and extreme distractors. Transfer is solid, though one later example feels more like a label drill than a consequential scenario."
+}
+```

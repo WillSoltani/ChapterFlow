@@ -1,0 +1,679 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch02",
+  "chapterNumber": 2,
+  "chapterTitle": "The Talent Magnet",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch02.source.json",
+  "sourceHash": "sha256:d206e0117f727ee6f05a42f2ae2ea450329d37a2b505a7c119c3077e8be08c37",
+  "facts": [
+    {
+      "id": "ch02.fact.1",
+      "claim": "Satya Nadella became Microsoft CEO in 2014.",
+      "mechanism": "Because the 2014 CEO transition marks the leadership context for Microsoft's culture shift, it gives the talent example a fixed date.",
+      "commonError": "Treating Microsoft's culture story as timeless and undated.",
+      "whyWrong": "The CEO transition provides the historical anchor for the growth mindset case.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "2014"
+      ],
+      "groundedEntities": [
+        "Satya Nadella",
+        "Microsoft CEO",
+        "CEO",
+        "Microsoft's",
+        "Treating Microsoft's",
+        "The CEO"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch02.fact.2",
+      "claim": "Nadella publicly tied Microsoft's renewal to growth mindset rather than fixed genius.",
+      "mechanism": "Because growth mindset treats capability as developable, it aligns with talent magnetism better than ranking people once and freezing them.",
+      "commonError": "Thinking talent management means sorting people into permanent winners and losers.",
+      "whyWrong": "A growth frame asks what people can learn and contribute next.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Nadella",
+        "Microsoft's",
+        "Thinking"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch02.fact.3",
+      "claim": "Google Project Aristotle studied 180 teams.",
+      "mechanism": "Because a 180-team internal study makes the team-effectiveness point more concrete than a single manager opinion.",
+      "commonError": "Assuming one famous Google team proved the rule by itself.",
+      "whyWrong": "The public Project Aristotle account describes a broader team study.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "180"
+      ],
+      "groundedEntities": [
+        "Google Project Aristotle",
+        "Assuming",
+        "Google",
+        "Project Aristotle"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.3"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch02.fact.4",
+      "claim": "Project Aristotle highlighted psychological safety as central to effective teams.",
+      "mechanism": "Because people contribute more information when interpersonal risk feels manageable, talent becomes usable rather than hidden.",
+      "commonError": "Believing raw talent automatically produces team performance.",
+      "whyWrong": "Talent can stay silent or defensive without safety for questions and candor.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Project Aristotle",
+        "Believing",
+        "Talent"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch02.fact.5",
+      "claim": "Pixar's Braintrust is associated with candid peer review rather than executive command.",
+      "mechanism": "Because peer critique puts multiple strong minds on the problem, the work improves without making one leader the bottleneck.",
+      "commonError": "Assuming a creative leader must personally solve every story problem.",
+      "whyWrong": "The Braintrust pattern uses distributed judgment to improve the film.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1"
+      ],
+      "groundedEntities": [
+        "Pixar's Braintrust",
+        "Assuming",
+        "The Braintrust"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.5"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch02.fact.6",
+      "claim": "A Talent Magnet releases people into bigger opportunities when their capability has outgrown the role.",
+      "mechanism": "Because release keeps the leader's orbit attractive, talented people trust that growth will not be punished by captivity.",
+      "commonError": "Keeping the best people close at any cost.",
+      "whyWrong": "Hoarding may protect a manager briefly but damages the talent system.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "A Talent Magnet",
+        "Keeping",
+        "Hoarding"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.6"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch02.fact.7",
+      "claim": "Naming native genius is different from giving generic praise.",
+      "mechanism": "Because a precise capability label helps a person and team know where that strength should be deployed.",
+      "commonError": "Telling everyone they are great and calling that multiplication.",
+      "whyWrong": "Generic praise does not guide work assignment or growth.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Naming",
+        "Telling",
+        "Generic"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.7"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch02.fact.8",
+      "claim": "Talent magnetism depends on deployment as much as attraction.",
+      "mechanism": "Because unused capability produces little value, attracting strong people only matters when their strengths meet real work.",
+      "commonError": "Measuring the discipline only by hiring impressive resumes.",
+      "whyWrong": "The discipline is proven when capability is used on meaningful challenges.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Talent",
+        "Measuring"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch02.fact.9",
+      "claim": "A talent-rich team can still underperform when candor is unsafe.",
+      "mechanism": "Because people withhold doubts, ideas, and mistakes when interpersonal risk is too high, the group loses information it already has.",
+      "commonError": "Assuming brilliant people will speak up no matter what.",
+      "whyWrong": "Even experts respond to team norms and perceived risk.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Assuming",
+        "Even"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch02.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch02.ex.microsoft-nadella",
+      "label": "Satya Nadella / Microsoft culture shift",
+      "summary": "Satya Nadella became Microsoft CEO in 2014 and publicly connected Microsoft's renewal to growth mindset. The case gives talent magnetism a concrete corporate setting: capability expands when leaders expect learning rather than fixed genius.",
+      "realWorld": true,
+      "naturalSetting": "Satya Nadella",
+      "hardSpecifics": [
+        "Satya Nadella",
+        "2014 CEO appointment",
+        "growth mindset"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2014 CEO appointment"
+      ]
+    },
+    {
+      "id": "ch02.ex.pixar-braintrust",
+      "label": "Pixar Braintrust",
+      "summary": "Pixar's Pixar Braintrust, associated with Ed Catmull, uses a candid feedback practice around unfinished films. The practice shows talent being gathered for the work, not for leader-centered display.",
+      "realWorld": true,
+      "naturalSetting": "Pixar Braintrust Pixar's Pixar Braintrust",
+      "hardSpecifics": [
+        "Pixar Braintrust",
+        "Ed Catmull",
+        "candid feedback practice"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Talent Magnet discipline",
+      "members": [
+        "look for native genius",
+        "name the genius",
+        "utilize people at their fullest",
+        "remove blockers to growth"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch02.concept",
+      "kind": "concept",
+      "label": "talent magnetism",
+      "text": "Talent magnetism is the leadership discipline of attracting capable people, recognizing their strongest contribution, and moving them into work where that contribution is stretched. It treats talent as something to be deployed and grown rather than possessed and protected. A manager who learns this stops hoarding good people or defining them by job boxes. Teams become more adaptive because capability is matched to meaningful challenges.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.microsoft-nadella",
+      "kind": "named_example",
+      "label": "Satya Nadella / Microsoft culture shift",
+      "text": "Satya Nadella became Microsoft CEO in 2014 and publicly connected Microsoft's renewal to growth mindset. The case gives talent magnetism a concrete corporate setting: capability expands when leaders expect learning rather than fixed genius. A leader can attract and renew talent by making learning status-safe and strategically central.",
+      "hardSpecifics": [
+        "Satya Nadella",
+        "2014 CEO appointment",
+        "growth mindset"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.ex.pixar-braintrust",
+      "kind": "named_example",
+      "label": "Pixar Braintrust",
+      "text": "Pixar's Pixar Braintrust, associated with Ed Catmull, uses a candid feedback practice around unfinished films. The practice shows talent being gathered for the work, not for leader-centered display. High-caliber people stay engaged when their judgment improves consequential work.",
+      "hardSpecifics": [
+        "Pixar Braintrust",
+        "Ed Catmull",
+        "candid feedback practice"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.1",
+      "kind": "testable_fact",
+      "label": "Satya Nadella became Microsoft CEO in 2014.",
+      "text": "Satya Nadella became Microsoft CEO in 2014. Because the 2014 CEO transition marks the leadership context for Microsoft's culture shift, it gives the talent example a fixed date. Treating Microsoft's culture story as timeless and undated. The CEO transition provides the historical anchor for the growth mindset case.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.2",
+      "kind": "testable_fact",
+      "label": "Nadella publicly tied Microsoft's renewal to growth mindset rather than fixed genius.",
+      "text": "Nadella publicly tied Microsoft's renewal to growth mindset rather than fixed genius. Because growth mindset treats capability as developable, it aligns with talent magnetism better than ranking people once and freezing them. Thinking talent management means sorting people into permanent winners and losers. A growth frame asks what people can learn and contribute next.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.3",
+      "kind": "testable_fact",
+      "label": "Google Project Aristotle studied 180 teams.",
+      "text": "Google Project Aristotle studied 180 teams. Because a 180-team internal study makes the team-effectiveness point more concrete than a single manager opinion. Assuming one famous Google team proved the rule by itself. The public Project Aristotle account describes a broader team study.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.4",
+      "kind": "testable_fact",
+      "label": "Project Aristotle highlighted psychological safety as central to effective teams.",
+      "text": "Project Aristotle highlighted psychological safety as central to effective teams. Because people contribute more information when interpersonal risk feels manageable, talent becomes usable rather than hidden. Believing raw talent automatically produces team performance. Talent can stay silent or defensive without safety for questions and candor.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.5",
+      "kind": "testable_fact",
+      "label": "Pixar's Braintrust is associated with candid peer review rather than executive command.",
+      "text": "Pixar's Braintrust is associated with candid peer review rather than executive command. Because peer critique puts multiple strong minds on the problem, the work improves without making one leader the bottleneck. Assuming a creative leader must personally solve every story problem. The Braintrust pattern uses distributed judgment to improve the film.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.6",
+      "kind": "testable_fact",
+      "label": "A Talent Magnet releases people into bigger opportunities when their capability has outgrown the role.",
+      "text": "A Talent Magnet releases people into bigger opportunities when their capability has outgrown the role. Because release keeps the leader's orbit attractive, talented people trust that growth will not be punished by captivity. Keeping the best people close at any cost. Hoarding may protect a manager briefly but damages the talent system.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.7",
+      "kind": "testable_fact",
+      "label": "Naming native genius is different from giving generic praise.",
+      "text": "Naming native genius is different from giving generic praise. Because a precise capability label helps a person and team know where that strength should be deployed. Telling everyone they are great and calling that multiplication. Generic praise does not guide work assignment or growth.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.8",
+      "kind": "testable_fact",
+      "label": "Talent magnetism depends on deployment as much as attraction.",
+      "text": "Talent magnetism depends on deployment as much as attraction. Because unused capability produces little value, attracting strong people only matters when their strengths meet real work. Measuring the discipline only by hiring impressive resumes. The discipline is proven when capability is used on meaningful challenges.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.fact.9",
+      "kind": "testable_fact",
+      "label": "A talent-rich team can still underperform when candor is unsafe.",
+      "text": "A talent-rich team can still underperform when candor is unsafe. Because people withhold doubts, ideas, and mistakes when interpersonal risk is too high, the group loses information it already has. Assuming brilliant people will speak up no matter what. Even experts respond to team norms and perceived risk.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch02.framework.talent.magnet.discipline",
+      "kind": "framework",
+      "label": "Talent Magnet discipline",
+      "text": "look for native genius, name the genius, utilize people at their fullest, remove blockers to growth",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "2014",
+    "1",
+    "180"
+  ],
+  "allowedEntities": [
+    "The Talent Magnet",
+    "Talent Magnets",
+    "People",
+    "Talent",
+    "Teams",
+    "Microsoft's",
+    "Satya Nadella",
+    "Google's Project Aristotle",
+    "Pixar's Braintrust",
+    "Microsoft",
+    "Microsoft CEO",
+    "CEO",
+    "Pixar Braintrust",
+    "Pixar's Pixar Braintrust",
+    "Ed Catmull",
+    "High-caliber",
+    "Talent Magnet",
+    "Liberator",
+    "Investor",
+    "Accidental Diminisher",
+    "Multiplier",
+    "Google Project Aristotle",
+    "Pixar",
+    "Braintrust",
+    "Keep",
+    "For",
+    "Treating Microsoft's",
+    "The CEO",
+    "Nadella",
+    "Thinking",
+    "Assuming",
+    "Google",
+    "Project Aristotle",
+    "Believing",
+    "The Braintrust",
+    "A Talent Magnet",
+    "Keeping",
+    "Hoarding",
+    "Naming",
+    "Telling",
+    "Generic",
+    "Measuring",
+    "Even",
+    "Satya Nadella / Microsoft culture shift"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch02.ex.microsoft-nadella",
+      "warning": "Keep examples about Satya Nadella / Microsoft culture shift source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch02.ex.pixar-braintrust",
+      "warning": "Keep examples about Pixar Braintrust source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch02.fact.1"
+}

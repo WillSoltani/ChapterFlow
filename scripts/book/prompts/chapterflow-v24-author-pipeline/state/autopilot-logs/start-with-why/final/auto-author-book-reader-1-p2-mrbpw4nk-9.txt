@@ -1,0 +1,59 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 69,
+    "transfer": 82,
+    "practical": 74,
+    "summaries": 77,
+    "tone": 62,
+    "limits": 86,
+    "insight": 72,
+    "density": 58,
+    "beginner": 73
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "Compact, portable, and memorable; this is the sample at its strongest."
+    },
+    {
+      "quote": "A metric is a receipt for spread, not a receipt for meaning.",
+      "why": "A strong aphorism that captures the chapter's reversal cleanly."
+    },
+    {
+      "quote": "The sequence can travel; the factory word stays home.",
+      "why": "Clear transfer principle, but also a repeated house move across chapters."
+    },
+    {
+      "quote": "Keep the details with the source that earned them. Employees stays with Southwest. The Houston base stays with Continental. 1994 stays with Bethune and Continental.",
+      "why": "Shows the sample's mechanical scope-policing pattern and awkward phrasing."
+    },
+    {
+      "quote": "The four terms keep the thought clean.",
+      "why": "Representative of the repeated scaffold: named terms, fixed order, then warning against blur."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is correct and mostly answerable from the page, with no keyed quiz contradiction I found. Its main strength is a real transferable lens: put causes, settings, and visible conduct in order before trusting outcomes. The weakness is severe churn. Every chapter uses the same machinery: named company detail, second-setting comparison, hard-detail boundary, purpose-talk warning, if-then practice, and compact aphorisms. That makes the book feel engineered rather than individually authored. It ships as a solid draft for clarity and limits, but tone, density, and quiz sophistication keep it below premium."
+}
+```

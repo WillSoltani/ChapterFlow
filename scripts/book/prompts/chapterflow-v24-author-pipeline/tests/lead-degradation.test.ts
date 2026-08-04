@@ -16,9 +16,12 @@
  */
 
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
-import { dirname, resolve } from "node:path";
+import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { chapterFileName } from "../src/lib/chapterPaths.js";
 
 import { test } from "./harness.js";
 import {
@@ -36,6 +39,7 @@ import {
 import { dealContentDeviceBans } from "../src/compiler/contentDeviceDeal.js";
 import { CHAPTER_BRIEF_SCHEMA_VERSION, type ChapterBriefV1, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterV21 } from "../src/types.js";
+import type { AuthorProvenance } from "../src/qc/sessionProvenance.js";
 
 const HERE = dirname(fileURLToPath(import.meta.url));
 const GOLDEN_PACKET = JSON.parse(
@@ -124,9 +128,15 @@ type Rig = {
   removed: number[];
 };
 
-/** In-memory rig: the writer stub LANDS its draft in `files` (exactly like the
- *  real session lands bytes on disk before the self-checks), gate/rubric verbs
- *  are scriptable, contract runs REAL. */
+const RIG_TMP = mkdtempSync(join(tmpdir(), "lead-degradation-"));
+let rigSeq = 0;
+
+/** In-memory rig. IMP-01: the writer stub LANDS its draft as the CANDIDATE in
+ *  the attempt WORKSPACE (the spawn's cwd) — exactly like the real session,
+ *  which has no path to canonical at all. The old gate/rubric runVerb scripts
+ *  are routed through the io candidate-validation seam UNCHANGED (same args
+ *  shape, same call counter), so per-test scripts keep working verbatim.
+ *  Contract runs REAL. */
 function mkRig(opts: {
   n: number;
   brief: ChapterBriefV1;
@@ -140,14 +150,16 @@ function mkRig(opts: {
   const files = new Map<number, string>();
   const overrides: LeadThreadOverrideV1[] = [];
   const removed: number[] = [];
+  const provenance = new Map<string, AuthorProvenance>();
+  let persistedOverride = opts.storedOverride ?? null;
   let verbCalls = 0;
   let sid = 0;
   const deps = {
     runVerb: async (args: string[]) => opts.runVerb ? opts.runVerb(args, ++verbCalls) : { code: 0, stdout: "", stderr: "" },
-    spawn: (async (o: { sessionId: string; task: string }) => {
+    spawn: (async (o: { sessionId: string; task: string; cwd?: string }) => {
       spawns.push({ sessionId: o.sessionId, task: o.task });
       const draft = opts.drafts[Math.min(spawns.length - 1, opts.drafts.length - 1)];
-      files.set(opts.n, JSON.stringify(draft));
+      if (o.cwd) writeFileSync(join(o.cwd, chapterFileName(draft.chapterId)), JSON.stringify(draft));
       return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++sid}`,
@@ -166,10 +178,30 @@ function mkRig(opts: {
     loadChapters: () => [...files.values()].map((f) => JSON.parse(f) as ChapterV21),
     nameBankOk: () => true,
     voiceCard: () => null,
-    authorSessionOf: () => undefined,
-    recordProvenance: () => {},
-    readLeadOverride: () => opts.storedOverride ?? null,
-    writeLeadOverride: (_b, _n, o) => { overrides.push(o); },
+    authorSessionOf: (chapterId) => provenance.get(chapterId)?.authorSessionId,
+    recordProvenance: (chapterId, sessionId, contentHash) => {
+      assert.ok(contentHash, "a successful author commit must bind provenance to content");
+      provenance.set(chapterId, {
+        schemaVersion: "author-provenance-v2",
+        chapterId,
+        authorSessionId: sessionId,
+        stampedAt: "2026-07-12T00:00:00.000Z",
+        contentHash,
+      });
+    },
+    readProvenance: (chapterId) => provenance.get(chapterId) ?? null,
+    restoreProvenance: (chapterId, previous) => {
+      if (previous) provenance.set(chapterId, previous);
+      else provenance.delete(chapterId);
+    },
+    readLeadOverride: () => persistedOverride,
+    writeLeadOverride: (_b, _n, o) => { persistedOverride = o; overrides.push(o); },
+    removeLeadOverride: () => { persistedOverride = null; },
+    attemptsRoot: () => join(RIG_TMP, `attempts-${rigSeq++}`),
+    gateCandidate: async (_c, _abs, attemptKey) =>
+      opts.runVerb ? opts.runVerb(["gate-chapter", attemptKey], ++verbCalls) : { code: 0, stdout: "", stderr: "" },
+    rubricWithCandidate: async (bookId) =>
+      opts.runVerb ? opts.runVerb(["rubric-metrics", bookId], ++verbCalls) : { code: 0, stdout: "", stderr: "" },
   };
   return { deps, spawns, logs, io, files, overrides, removed };
 }
@@ -178,16 +210,21 @@ const BASE_ATTEMPTS = 1 + AUTHOR_WRITE_GATE_RETRIES;
 
 // ── unit: the pure candidate order ───────────────────────────────────────────
 
+/** IMP-09: candidates gained ADDITIVE metadata (caseId + compiler-derived
+ *  aliases); these pins assert ORDER/SELECTION, so compare those fields. */
+const selOf = (c: { kind: string; name: string } | null | undefined) => (c ? { kind: c.kind, name: c.name } : c);
+
 test("degradedLeadCandidates: next token-bearing owned case in packet order, minus failed", () => {
   const cases = [{ id: "1", label: LEAD_A }, { id: "2", label: LEAD_B }, { id: "3", label: "Cadence-audit walkthrough" }];
   const got = degradedLeadCandidates(cases, ["Willow"], false, [LEAD_A]);
-  assert.deepEqual(got[0], { kind: "owned-case", name: LEAD_B }, "packet order, failed lead excluded");
+  assert.deepEqual(selOf(got[0]), { kind: "owned-case", name: LEAD_B }, "packet order, failed lead excluded");
+  assert.equal(got[0].caseId, "2", "IMP-09: the packet case id rides the candidate");
   assert.deepEqual(got.map((c) => c.name), [LEAD_B, "Cadence-audit walkthrough", "Willow"], "cases first, invented last");
 });
 
 test("degradedLeadCandidates: all cases failed + proxy ALLOWED → invented cast[0]; proxy BANNED → empty (halt path)", () => {
   const cases = [{ id: "1", label: LEAD_A }];
-  assert.deepEqual(degradedLeadCandidates(cases, ["Willow", "Preston"], false, [LEAD_A]), [{ kind: "invented", name: "Willow" }], "exactly one invented fallback (cast[0] semantics)");
+  assert.deepEqual(degradedLeadCandidates(cases, ["Willow", "Preston"], false, [LEAD_A]).map(selOf), [{ kind: "invented", name: "Willow" }], "exactly one invented fallback (cast[0] semantics)");
   assert.deepEqual(degradedLeadCandidates(cases, ["Willow", "Preston"], true, [LEAD_A]), [], "proxy ban closes the invented door — honest halt");
 });
 
@@ -234,7 +271,7 @@ test("F-1: lead-only contract failures on every attempt → ONE degraded attempt
   assert.ok(rig.logs.some((l) => l.includes(`lead degraded: "${LEAD_A}" → "${LEAD_B}"`)), "loud degradation log");
   assert.equal(rig.overrides.length, 1, "override persisted on success");
   assert.equal(rig.overrides[0].failedLead, LEAD_A, "override keyed on the COMPILED brief's dealt lead (staleness guard)");
-  assert.deepEqual(rig.overrides[0].lead, { kind: "owned-case", name: LEAD_B });
+  assert.deepEqual(selOf(rig.overrides[0].lead), { kind: "owned-case", name: LEAD_B });
 });
 
 test("F-1: rubric failures do NOT trigger degradation (the writer, not the lead, is the problem)", async () => {
@@ -283,7 +320,10 @@ test("F-1: proxy-banned chapter whose ONLY owned case failed → honest halt nam
     assert.match(r.reason, new RegExp(`"${LEAD_A}"`), "the exhausted lead is named");
   }
   assert.ok(!rig.spawns.some((s) => s.task.includes(`LEAD THREAD: Willow carries`)), "the banned invented lead was never dealt");
-  assert.deepEqual(rig.removed, [n], "the failed orphan draft was removed (write-failure restore still fires)");
+  // IMP-01: no orphan ever exists — the drafts lived and died in their attempt
+  // workspaces; canonical was never written, so there is nothing to remove.
+  assert.deepEqual(rig.removed, [], "nothing to remove — canonical untouched by construction");
+  assert.equal(rig.files.has(n), false, "no failed draft ever reached the canonical store");
   assert.equal(rig.overrides.length, 0);
 });
 
@@ -298,7 +338,9 @@ test("F-1: the degraded attempt ALSO failing → bounded halt naming BOTH leads;
     assert.match(r.reason, new RegExp(`"${LEAD_A}"`), "names the original lead");
     assert.match(r.reason, new RegExp(`"${LEAD_B}"`), "names the degraded lead");
   }
-  assert.deepEqual(rig.removed, [n], "restore block fires after the degraded attempt too");
+  // IMP-01: canonical untouched across the dealt AND degraded attempts alike.
+  assert.deepEqual(rig.removed, [], "nothing to remove — canonical untouched by construction");
+  assert.equal(rig.files.has(n), false, "no failed draft ever reached the canonical store");
   // Cross-entry convergence (live: the 2026-07-08 resume replayed the identical
   // dealt→degraded cycle): a FAILED degradation persists pure failure MEMORY —
   // no overlay (lead null), but every proven-uncarriable name recorded.
@@ -323,7 +365,7 @@ test("F-1: the NEXT entry advances PAST the persisted failure memory to the inve
   assert.equal(rig.spawns.length, BASE_ATTEMPTS + 1);
   assert.ok(rig.logs.some((l) => l.includes(`lead degraded: "${LEAD_A}" → "Willow"`)), "degraded PAST the remembered candidate to the invented one");
   assert.equal(rig.overrides.length, 1, "the landed override replaces the memory record");
-  assert.deepEqual(rig.overrides[0].lead, { kind: "invented", name: "Willow" });
+  assert.deepEqual(selOf(rig.overrides[0].lead), { kind: "invented", name: "Willow" });
   assert.ok((rig.overrides[0].failedLeads ?? []).includes(LEAD_B), "history is carried forward");
 });
 

@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": ["Q3: c is the closest answer, but the prose shows the missing element as behavior tied to the named anchors, not just 'separate hard specifics'; the key rationale is clearer than the option text."],
+    "tells": ["Q4 a and Q6 b are weakened by overbroad phrasing such as 'each added organization' and 'enough for transfer across the whole chapter,' which makes them easier to eliminate without full reading."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 80,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 83,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 81
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "What would a stranger see before the promise spoke?",
+      "why": "Strong memorable line that turns the abstract loop into a usable inspection test."
+    },
+    {
+      "quote": "Make the act owe the reason.",
+      "why": "Compact core move; easy to remember and apply later."
+    },
+    {
+      "quote": "True facts can lie when they travel to the wrong place.",
+      "why": "Strong boundary condition that deepens the chapter beyond generic alignment advice."
+    },
+    {
+      "quote": "A blue badge sits between her and Neil.",
+      "why": "Arbitrary scenic detail that adds fiction noise without helping the lesson."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed choice says the talk lacked separate hard specifics, but the prose more precisely says it lacked behavior tied to those specifics; the item remains derivable but slightly imprecise.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The blue badge detail is unexplained and does not affect the before-to-after learning move.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The repeated source tokens sometimes feel engineered rather than natural, especially when Southwest, Kelleher, Cupertino, and iMac details are packed together.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable: the chapter has a clear, memorable core move, strong summaries, honest limits, and practical checks a reader can use. The main weakness is quiz and prose polish: one quiz item blurs 'hard specifics' with 'behavior tied to specifics,' and a few examples carry artificial props or heavily stacked source tokens. None of that blocks learning, but it keeps the chapter from feeling fully natural."
+}
+```

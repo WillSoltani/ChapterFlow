@@ -1,0 +1,88 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch10",
+  "chapterNumber": 10,
+  "contentHash": "44a20a45421d9090",
+  "reviewerSessionId": "auto-author-review-ch10-tiebreak-r3-mr776h8t-70",
+  "scores": {
+    "retention": 86,
+    "quizzes": 89,
+    "transfer": 81,
+    "practical": 87,
+    "summaries": 86,
+    "tone": 82,
+    "limits": 90,
+    "insight": 86,
+    "density": 80,
+    "beginner": 82
+  },
+  "composite": 85.1,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c",
+      "c",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Words give the visible act its job.",
+      "why": "Strongest compact mechanism: it explains why sequence matters.",
+      "verified": true
+    },
+    {
+      "quote": "Schedule the proof before the sign travels.",
+      "why": "Memorable and practical; it turns the chapter into an action.",
+      "verified": true
+    },
+    {
+      "quote": "Cupertino is not a magic pass for every group that likes clean design or famous retail.",
+      "why": "Good boundary-setting; it prevents lazy transfer from the Apple Store example.",
+      "verified": true
+    },
+    {
+      "quote": "The hard part is cost.",
+      "why": "The paragraph is useful, but this opener repeats a point already made and slightly flattens density.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The phrase \"The hard part is cost\" repeats immediately after \"That cost is not a side issue,\" making the sequence feel padded even though the examples that follow are useful.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The example is intentionally proof-pending, but it stops before showing the friend's actual read-back, so the before-to-after consequence is thinner than the chapter's listening promise.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner accessibility",
+      "problem": "\"Cupertino\" is used as shorthand for Apple context without being explicitly named as Apple's place cue; most readers will infer it, but cold beginners may pause.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The core move is memorable, mechanically explained, and reinforced through distinct visible anchors: cart, motorcycle mark, and store environment. The quiz is fair and the answer key is sound, including the why-question in Q4, which correctly names wrong placement as the cause. The main weaknesses are modest density issues and one example that schedules proof without showing the audience's final read-back, but neither blocks shipping.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "73d028f42cf2e82da969e3d99fad858d4e2d3803004af0e7a096cd8b96577670",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:55:16.605Z"
+}

@@ -1,0 +1,78 @@
+{
+  "schema": "s16-layer-n-v2-final-qualification-result-v1",
+  "date": "2026-07-12",
+  "halted": "HALTED BEFORE DIAGNOSTIC GENERATION (owner directive). No diagnostic call made.",
+  "diagnosticCallsMade": 0,
+
+  "reviewerRoleQualificationResult": "PANEL_NOT_QUALIFIED (1 of 3 judges qualified). This is a REVIEWER-role qualification only.",
+  "authoringRoleImplication": "NOT DETERMINED — Layer-N v2 qualifies the reviewer role only. It does NOT test GPT-5.6-SOL authoring, and no inference about SOL authoring quality may be drawn from this result.",
+
+  "instrumentValidityResult": {
+    "verdict": "STRUCTURALLY_VALID_WITH_UNRESOLVED_CLEAN_CONTROL_ADJUDICATION",
+    "explanation": "The scoring mechanics are correct and self-consistent (the run-1 ship84 scoring defect was fixed in scorer v2.2 and validated 8/8; thresholds were never changed). The scorer correctly recorded each judge's behavior. HOWEVER, one disclosed, unresolved question remains: gpt-5.6-sol raised reserved-category 'fabricated/misleading source' mustFixes on the clean controls' named-character examples that the gpt-5.5 judges did not (14 disputed cases). Whether those are gpt-5.6-sol false positives, or the clean controls are not actually clean (a gold/rendering issue), is NOT yet adjudicated — see SOL_JUDGE_SOURCE_REGISTER_DIVERGENCE_PACKET. Until adjudicated, the instrument is structurally valid but its clean-control gold has an open question."
+  },
+
+  "perJudgeThresholdResults": {
+    "gpt-5.5@high": {
+      "qualified": true, "itemsProcessed": "28/28",
+      "metrics": { "protocolValidity": 1.0, "quoteEvidenceValidity": 1.0, "cleanPass": 0.875, "hardBlockerSensitivity": 1.0, "hardBlockerEvidenceAccuracy": 1.0, "quizKeyMismatchDetection": 1.0, "quizAmbiguityDetection": 1.0, "nonBlockerCalibration": 1.0, "observableDefectSensitivity": 1.0, "pairedDirectionality": 1.0, "unresolvedRequiredCases": 0, "security": "NOT_APPLICABLE (delegated to Layer-O v3)" },
+      "failingChecks": []
+    },
+    "gpt-5.6-sol@high": {
+      "qualified": false, "itemsProcessed": "20/28 (run halted to surface the finding; all 8 clean-pass items processed, so cleanPass is conclusive)",
+      "metrics": { "cleanPass": 0.125, "note": "7 of 8 clean controls blocked; only 1 clean-passed. 14 items carried reserved-category fabrication/misleading-source mustFixes." },
+      "failingChecks": ["cleanPass (0.125 < 0.75)"],
+      "failureCharacter": "Systematic reserved-category 'fabricated/misleading example' mustFixes on the books' named-character illustrative examples (see divergence packet). NOT a craft failure. NOT a scoring bug. DISPUTED vs the gpt-5.5 judges — pending adjudication."
+    },
+    "gpt-5.5@xhigh": {
+      "qualified": false, "itemsProcessed": "28/28",
+      "metrics": { "protocolValidity": 1.0, "quoteEvidenceValidity": 1.0, "cleanPass": 0.875, "hardBlockerSensitivity": 1.0, "hardBlockerEvidenceAccuracy": 1.0, "quizKeyMismatchDetection": 1.0, "quizAmbiguityDetection": 0.75, "nonBlockerCalibration": 1.0, "observableDefectSensitivity": 0.9375, "pairedDirectionality": 1.0, "unresolvedRequiredCases": 0, "security": "NOT_APPLICABLE (delegated to Layer-O v3)" },
+      "failingChecks": ["quizAmbiguityDetection (0.75 < 0.85)"],
+      "failureCharacter": "Missed ONE genuinely-two-defensible-answer ambiguity item (ambiguity-decisive-ch1, the observer-distance vs temporal-distance 'attain distance' pair). The 4/4 craft AND ambiguity bars (0.85 over 4 soft items) are fragile to a single soft miss. Craft calibrated 1.0."
+    }
+  },
+
+  "perCapabilityResults": {
+    "protocolValidity_min1.00": { "gpt-5.5@high": 1.0, "gpt-5.6-sol@high": "partial", "gpt-5.5@xhigh": 1.0 },
+    "hardBlockerSensitivity_min1.00": { "gpt-5.5@high": 1.0, "gpt-5.6-sol@high": "n/a-partial", "gpt-5.5@xhigh": 1.0, "note": "The v2.2 scoring fix (detection = mustFix-in-target-unit + verified evidence, ship bit not gating) is validated: gpt-5.5 judges detect 8/8." },
+    "quizKeyMismatchDetection_min1.00": { "gpt-5.5@high": 1.0, "gpt-5.5@xhigh": 1.0 },
+    "quizAmbiguityDetection_min0.85": { "gpt-5.5@high": 1.0, "gpt-5.5@xhigh": 0.75, "note": "xhigh missed 1 of 4 (decisive-ch1)." },
+    "nonBlockerCalibration_min0.85": { "gpt-5.5@high": 1.0, "gpt-5.5@xhigh": 1.0, "note": "The neutralized craft fillers (run-3 fix) calibrated for BOTH gpt-5.5 judges." },
+    "cleanPass_min0.75": { "gpt-5.5@high": 0.875, "gpt-5.6-sol@high": 0.125, "gpt-5.5@xhigh": 0.875 },
+    "quoteEvidenceValidity_min0.95": { "gpt-5.5@high": 1.0, "gpt-5.5@xhigh": 1.0 },
+    "observableDefectSensitivity_min0.85": { "gpt-5.5@high": 1.0, "gpt-5.5@xhigh": 0.9375 },
+    "unresolvedRequiredCases_max0": { "gpt-5.5@high": 0, "gpt-5.5@xhigh": 0 },
+    "security": "NOT_APPLICABLE in Layer-N — delegated to the bound Layer-O v3 prerequisite (never recorded as a Layer-N pass)."
+  },
+
+  "exactCallLedger": {
+    "stageQ_layerO_durable": 540,
+    "layerN_run1_instrumentInvalid": 37,
+    "layerN_run2_craftBorderline": 38,
+    "layerN_run3_final": 96,
+    "layerN_total": 171,
+    "campaignTotalConsumed": 711,
+    "sealedHardMax": 2096,
+    "diagnosticCallsMade": 0,
+    "confirmatoryCallsMade": 0,
+    "run3Breakdown": { "gpt-5.5@high": 36, "gpt-5.6-sol@high": 24, "gpt-5.5@xhigh": 36 }
+  },
+
+  "sealHashes": {
+    "corpusSha256": "fa67542f58817d22663b58af2ecce31e38f82b7488d26510af65eafa00108dcd",
+    "instrumentManifestSha256": "fd34fd95e0b1c6685dbad951658df3680f78993aea466792e6281208ff12b00e",
+    "thresholdsSha256": "d9625446098a100631c744224dd194c92e4f6d17fd9f2a5fb9ed915c26adf31e",
+    "scheduleSha256": "99b367e4c38ba41c05da96ffc96ace68a3d1c3fdc7b51223c6559c2fa48cdfde",
+    "sealFileSha256": "3979b4bcc2a705a968a40a44bed1c42a0f83f7b42949ac5ab8dac9724d34a333",
+    "layerOv3PrerequisiteBound": "ffba6d2c… (ALL_THREE_JUDGES_QUALIFIED)"
+  },
+
+  "preservedRuns": {
+    "run1": "layer-n-v2-qualification-RUN1-instrument-invalid (37 calls; ship84 scoring defect)",
+    "run2": "layer-n-v2-qualification-RUN2-craft-borderline (38 calls; borderline craft filler)",
+    "run3": "layer-n-v2-qualification (96 calls; final — the qualification result above)"
+  },
+
+  "nextStepGate": "No further live call authorized until (1) the 14 disputed source-register cases are adjudicated and (2) the reviewer-panel design is explicitly decided. Diagnostic generation remains HALTED.",
+  "prohibitions_honored": ["no rerun", "no corpus change", "no gold change", "no threshold change", "no judge replacement", "no diagnostic generation", "no SOL-authoring inference", "no IMP-13 activation", "no implementation change while preparing this packet"]
+}

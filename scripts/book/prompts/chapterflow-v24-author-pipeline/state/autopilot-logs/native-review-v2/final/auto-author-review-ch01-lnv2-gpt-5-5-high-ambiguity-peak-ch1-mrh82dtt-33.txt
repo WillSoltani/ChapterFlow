@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says to stop replaying the whole performance, isolate the breaking place, get close feedback, and change the next attempt.",
+      "The redox-only set isolates the repeated error and makes each checked step change the next attempt.",
+      "The chapter repeatedly criticizes whole-task repetition that lets one weak point survive.",
+      "The lane-line cue plus video creates a visible target, immediate feedback, and a changed next rep before more distance.",
+      "Faloon's improvement is framed as each miss telling the next attempt where to work.",
+      "The chapter says vague repetition must become a visible, comparable target that guides the next attempt.",
+      "Feedback matters only when it is close enough to alter the next repetition while the miss is traceable.",
+      "Plan B shortens the loop: small batch, template comparison, adjustment, next small batch.",
+      "The chalk-line target is visible, specific, countable, and correctable before the next attempt."
+    ],
+    "confidence": ["low", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "b is equally defensible: changing fingering is also a concrete adjustment to the same isolated two-measure passage before the next attempt.",
+      "",
+      "",
+      "",
+      "",
+      "a is also defensible because the prose says comfort can leave the weak spot hidden; b is stronger only because it adds a visible size target.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choices a and b are near twins, which exposes the under-keying rather than helping a clean guess.",
+      "b and c use the condemned broad/full-work patterns, making a easy to spot.",
+      "c closely restates the chapter's core criticism.",
+      "a uses giveaway phrasing with 'hope'; b is the only option with cue plus feedback.",
+      "b contains the chapter keyword 'feedback'.",
+      "",
+      "c repeats the chapter's 'next attempt' language almost verbatim.",
+      "a is longest and contains the obvious feedback-loop wording.",
+      "c is uniquely concrete while a and b are vague/heroic."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 70,
+    "transfer": 89,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 90,
+    "density": 84,
+    "beginner": 91
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "Memorable, compact statement of the chapter's core mechanism."
+    },
+    {
+      "quote": "Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.",
+      "why": "The key takeaway is accurate, complete, and standalone."
+    },
+    {
+      "quote": "b) Slow the two-measure turn, record only that passage, and change fingering before the next attempt.",
+      "why": "This is also a valid purposeful-practice answer, making Q1 underdetermined."
+    },
+    {
+      "quote": "a) Enjoyable repetition may build comfort while leaving size differences untouched.",
+      "why": "This overlaps with the likely Q6 key enough to weaken quiz fairness."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "STRUCTURALLY INVALID: choices a and b both isolate the same two-measure fault, record feedback, and change the next attempt; the prose gives no basis to prefer hand motion over fingering.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "Distractor overlap: choice a also follows the chapter's comfort-leaves-the-weak-spot-hidden logic, though b is the better fit because it adds a visible size target.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several keys are guessable because the correct option alone uses the chapter's repeated feedback-loop wording while distractors say 'hope,' broad rereading, or full-volume practice.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear correction-loop model, memorable lines, varied domains, practical if-then transfer, and honest limits about late feedback and badly chosen goals. I would not ship it yet because Q1 is genuinely broken: two answers are supported by the prose. After that fix, the chapter is comfortably professional, with only minor quiz-tell and distractor-overlap cleanup needed."
+}
+```

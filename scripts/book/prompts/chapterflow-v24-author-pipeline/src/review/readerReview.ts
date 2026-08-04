@@ -40,7 +40,7 @@ import {
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
-import { renderChapterReaderDoc } from "./renderReaderDoc.js";
+import { READER_DOC_PHASE1_VERSION, renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
 
 export type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 
@@ -50,16 +50,23 @@ export type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
  *  scores. Bumping this frozen constant is how the doc-hash ALGORITHM evolves:
  *  a new value re-stales every carried review the moment it is recomputed, so it
  *  MUST NOT be edited in place (add a new version + branch, like the v2 exclude
- *  set). Persisted on each ChapterReviewV1 as hashVersion. */
-export const REVIEW_DOC_HASH_VERSION = "v2" as const;
+ *  set). Persisted on each ChapterReviewV1 as hashVersion.
+ *
+ *  "v3" (IMP-08): the hash moved onto the PHASE-1 document bytes (key-free,
+ *  renderChapterReaderDocPhase1) because that is now the exact document a
+ *  direct reader scores. The bump EXPLICITLY invalidates every pre-split
+ *  carried review — a v2 record can never satisfy the reuse predicate again
+ *  (plan instruction 5's incompatible-carry invalidation). */
+export const REVIEW_DOC_HASH_VERSION = "v3" as const;
 
 /** sha256 of the EXACT rendered reader doc a reader scores — the
- *  trailing-newline-terminated renderChapterReaderDoc output. This is the ONE
- *  source of truth for docHash both at the write site (adjudicateReview) and at
- *  the reuse site (doAuthorReview), so a doc-render drift that leaves the chapter
- *  contentHash unchanged still invalidates a carried review. */
+ *  trailing-newline-terminated renderChapterReaderDocPhase1 output (v3). This
+ *  is the ONE source of truth for docHash both at the write site
+ *  (adjudicateReview) and at the reuse site (doAuthorReview), so a doc-render
+ *  drift that leaves the chapter contentHash unchanged still invalidates a
+ *  carried review. */
 export function chapterReaderDocHash(chapter: ChapterV21): string {
-  return createHash("sha256").update(ensureTrailingNewline(renderChapterReaderDoc(chapter))).digest("hex");
+  return createHash("sha256").update(ensureTrailingNewline(renderChapterReaderDocPhase1(chapter))).digest("hex");
 }
 
 // ── Doc-integrity error (shared by the chapter + book review paths) ───────────
@@ -121,12 +128,44 @@ export const REVIEW_WEIGHTS: Record<ReviewFactor, number> = {
  *  those trip. A chapter below 80 (outside the noise band) repairs/regenerates
  *  through the normal bounded process.
  *
+ *  Decision 2026-07-29: lowered 80 -> 70, calibrated against the product's own
+ *  shipped corpus rather than against an aspiration. Evidence — the 140-book
+ *  content-design screening of the LIVE catalogue
+ *  (docs/v25/chapterflow-140-evaluation, rubric v2.0, 140 books / 1,903
+ *  chapters) bands shipped books as:
+ *
+ *      Strong                 80.0 - 89.7   n=88
+ *      Valuable but uneven    70.0 - 79.9   n=46   <- ships today
+ *      Substantial redesign   64.1 - 69.0   n=3
+ *      Gate failure           48.1 - 58.1   n=2
+ *
+ *  70.0 is therefore ChapterFlow's OWN boundary between "valuable, ships" and
+ *  "needs substantial redesign". A bar of 80 demanded that every chapter reach
+ *  the top band, which only 64% of whole books reach and fewer chapters do
+ *  (chapter scores disperse around the book mean, so a median-81 book carries
+ *  chapters in the 70s). Held at 80 the V25 panel rejected 100% of candidates,
+ *  including chapters better than a quarter of the live catalogue — a gate that
+ *  never passes provides no signal and blocks QC and promotion outright.
+ *
+ *  At 70 the gate discriminates instead: on the Franklin canary it admits
+ *  72.3 / 73.2 / 77.4 and still fails 66.3, which genuinely sits in the
+ *  redesign band. This moves ONLY the soft quality threshold. Every categorical
+ *  blocker — safety, factual contradiction, on-page derivability, schema,
+ *  source fidelity, quote integrity, key soundness — is enforced independently
+ *  and still fails closed at any score, exactly as before.
+ *
  *  The JSON contract field stays `ship84` (a fixed schema name) regardless of
  *  the bar value; only the GATE line's number moves. The orchestrator resolves
  *  an optional CHAPTERFLOW_CHAPTER_BAR override (authorReview.resolveChapterBar)
  *  and threads it explicitly; this constant is the production default the pure
  *  helpers fall back to. */
-export const AUTHOR_CHAPTER_BAR = 80;
+export const AUTHOR_CHAPTER_BAR = 70;
+
+/** The reader-rubric version (IMP-08, plan instruction 5). Identifies the task
+ *  card + factor rubric a review was produced under; stamped on every
+ *  adjudicated review so an instrument change is attributable in evidence.
+ *  Bump when buildReaderReviewTask's rubric semantics change. */
+export const READER_RUBRIC_VERSION = "reader-rubric-v3-phase1" as const;
 
 // ── The blinded reader task ─────────────────────────────────────────────────
 
@@ -141,7 +180,7 @@ One chapter of a book-learning product is at: ${docRelPath}
 Read ONLY this file. Do not write any files.
 
 PROCESS (strict order):
-1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose BEFORE looking at the ANSWER KEY at the document bottom. Record your answers, any disagreement with the key (key-soundness), and any tell that would let someone guess keys without reading (uniquely longest choice, hedging, giveaway phrasing). For any stem asking WHY something happened (what caused / led to / explains): the key must name the ONE cause the prose actually shows — a key that restates the outcome, states a remedy, or has a sibling cause the prose supports equally is a key-soundness disagreement; say so.
+1. Read the chapter top to bottom. Answer its quiz YOURSELF from the prose. This document contains NO answer key — your derivation IS the review's key evidence, so for each question record: your answer (a|b|c), a one-line mechanism (what in the prose forces that choice), your confidence (low|medium|high), and any ambiguity (a second choice that is also defensible, or wording that under-determines the answer — name the competing choice and why). Also record any tell that would let someone guess answers without reading (uniquely longest choice, hedging, giveaway phrasing). For any stem asking WHY something happened (what caused / led to / explains): derive the ONE cause the prose actually shows — if a sibling cause is supported equally, that is an ambiguity; say so.
 2. Score the chapter 0-100 on each factor: retention, quizzes, transfer, practical, summaries, tone, limits, insight, density, beginner.
    - retention: will a reader remember the core move in a week (memorable lines, concrete images, echoes)
    - quizzes: fair, derivable from prose, sound keys, no tells, distractors that teach
@@ -158,19 +197,32 @@ PROCESS (strict order):
 
 FINAL MESSAGE: exactly one fenced json block, no prose outside it:
 {
-  "quizDerivation": {"answers": ["a|b|c", ...], "keyDisagreements": ["..."], "tells": ["..."]},
+  "quizDerivation": {"answers": ["a|b|c", ...], "mechanisms": ["...", ...], "confidence": ["low|medium|high", ...], "ambiguities": ["" , ...], "tells": ["..."]},
   "scores": {"retention": 0, "quizzes": 0, "transfer": 0, "practical": 0, "summaries": 0, "tone": 0, "limits": 0, "insight": 0, "density": 0, "beginner": 0},
   "ship84": false,
   "quotes": [{"quote": "...", "why": "..."}],
   "complaints": [{"unit": "...", "problem": "...", "mustFix": false}],
   "oneParagraphVerdict": "..."
-}`;
+}
+(quizDerivation arrays are positional with the questions; use "" for a question with no ambiguity.)`;
 }
 
 // ── Parsing ─────────────────────────────────────────────────────────────────
 
 export type ParsedReaderReview = {
-  quizDerivation: { answers: string[]; keyDisagreements: string[]; tells: string[] };
+  quizDerivation: {
+    answers: string[];
+    /** Legacy field (pre-IMP-08 readers reported disagreements WITH the key
+     *  they could see). Phase-1 readers see no key; parsed tolerantly so old
+     *  transcripts/fixtures still parse. */
+    keyDisagreements: string[];
+    tells: string[];
+    /** IMP-08 per-question derivation detail (positional; all optional —
+     *  buildQuizDerivation defaults conservatively when absent). */
+    mechanisms?: string[];
+    confidence?: string[];
+    ambiguities?: string[];
+  };
   scores: Record<ReviewFactor, number>;
   ship84: boolean;
   quotes: Array<{ quote: string; why: string }>;
@@ -249,6 +301,9 @@ export function parseReaderReview(stdout: string): ParsedReaderReview | null {
       answers: asStringArray(qd.answers),
       keyDisagreements: asStringArray(qd.keyDisagreements),
       tells: asStringArray(qd.tells),
+      mechanisms: asStringArray(qd.mechanisms),
+      confidence: asStringArray(qd.confidence),
+      ambiguities: asStringArray(qd.ambiguities),
     },
     scores,
     ship84: obj.ship84,
@@ -309,9 +364,11 @@ export function chapterDocQuestionLineCount(docText: string): number {
   return count;
 }
 
-/** Q2 (chapter analog) — certify the single-chapter reader doc before spawning:
+/** Q2 (chapter analog) — certify the LEGACY key-bearing reader doc before use:
  *  question-line count === quiz question count === answer-key-row count, and the
- *  doc ends with a newline. Throws DocIntegrityError on mismatch. */
+ *  doc ends with a newline. Throws DocIntegrityError on mismatch. Retained for
+ *  the surfaces that still render the combined shape; the phase-1 review lane
+ *  certifies with assertPhase1KeyIsolated below (key ABSENT, not present). */
 export function assertChapterReaderDocIntegrity(docText: string, chapter: ChapterV21): void {
   const expected = (chapter.quiz?.questions ?? []).length;
   const problems: string[] = [];
@@ -322,6 +379,41 @@ export function assertChapterReaderDocIntegrity(docText: string, chapter: Chapte
   if (keyRows !== expected) problems.push(`${keyRows} answer-key row(s) vs ${expected} quiz question(s)`);
   if (problems.length > 0) {
     throw new DocIntegrityError(`chapter ${chapter.number} reader-doc integrity check FAILED — the rendered doc does not match the chapter, so no reader may score it:\n  ${problems.join("\n  ")}`);
+  }
+}
+
+// ── IMP-08 phase-1 key-isolation proof (Q2's phase-1 analog + F-015) ──────────
+
+/** A chapter key row (`Q3: b — …`) or a book combined-key row
+ *  (`CHAPTER 4 Q3: b`) anywhere in the doc — the leak shapes. */
+const PHASE1_KEY_ROW_RE = /^(?:CHAPTER \d+ )?Q\d+: [abc?](?: — .*)?$/m;
+
+/** Certify a phase-1 document BEFORE any key-blind reviewer spawns:
+ *   (a) structural integrity — trailing newline + question-line count matches
+ *       the chapter (the Q2 half that still applies);
+ *   (b) key isolation — NO answer-key header, NO key-row line in either
+ *       rendered shape, NO per-question explanation text (explanations argue
+ *       for the stored key), and NO raw correctIndex metadata.
+ *  Throws DocIntegrityError — machine truth, the caller halts infra rather
+ *  than spawning a reader over a key-contaminated document. */
+export function assertPhase1KeyIsolated(docText: string, chapter: ChapterV21): void {
+  const expected = (chapter.quiz?.questions ?? []).length;
+  const problems: string[] = [];
+  if (!docText.endsWith("\n")) problems.push("doc does not end with a trailing newline");
+  const questionLines = chapterDocQuestionLineCount(docText);
+  if (questionLines !== expected) problems.push(`${questionLines} question line(s) vs ${expected} quiz question(s)`);
+  if (docText.includes(CHAPTER_ANSWER_KEY_HEADER)) problems.push("ANSWER KEY header present in a phase-1 doc");
+  if (PHASE1_KEY_ROW_RE.test(docText)) problems.push("answer-key row line present in a phase-1 doc");
+  if (/\bcorrectIndex\b/.test(docText)) problems.push("raw correctIndex metadata present in a phase-1 doc");
+  const docNorm = normalizeForQuoteMatch(docText);
+  (chapter.quiz?.questions ?? []).forEach((q, i) => {
+    const expl = typeof q.explanation === "string" ? q.explanation.trim() : "";
+    if (expl.length >= 12 && docNorm.includes(normalizeForQuoteMatch(expl))) {
+      problems.push(`Q${i + 1} explanation text leaked into the phase-1 doc (explanations disclose the key)`);
+    }
+  });
+  if (problems.length > 0) {
+    throw new DocIntegrityError(`chapter ${chapter.number} PHASE-1 key-isolation check FAILED — no key-blind reader may score this document:\n  ${problems.join("\n  ")}`);
   }
 }
 
@@ -347,6 +439,12 @@ export function screenChapterStructuralClaims(
 ): ChapterReviewStructuralScreen {
   const screen: ChapterReviewStructuralScreen = { claimsScanned: 0, decisions: [] };
   if (parsed.ship84 !== false) return screen;
+  // IMP-08: a PHASE-1 doc contains no answer key BY DESIGN (certified by
+  // assertPhase1KeyIsolated pre-spawn), so key-coverage omission claims have no
+  // key section to be about — a reader mentioning one is confused, not evidence
+  // of a render defect. Without this guard every such claim would "confirm"
+  // against the empty key-row map and halt infra on reader confusion.
+  if (!docText.includes(CHAPTER_ANSWER_KEY_HEADER)) return screen;
   const keyRows = chapterDocKeyRowLines(docText);
   const fields = [
     parsed.oneParagraphVerdict,
@@ -489,6 +587,8 @@ export function adjudicateReview(
     bar,
     docHash: chapterReaderDocHash(chapter),
     hashVersion: REVIEW_DOC_HASH_VERSION,
+    phase1DocVersion: READER_DOC_PHASE1_VERSION,
+    rubricVersion: READER_RUBRIC_VERSION,
     reviewedAt: new Date().toISOString(),
   };
 }

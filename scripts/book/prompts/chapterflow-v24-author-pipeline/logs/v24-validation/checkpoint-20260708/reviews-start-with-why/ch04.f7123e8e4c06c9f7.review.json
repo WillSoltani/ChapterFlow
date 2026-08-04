@@ -1,0 +1,96 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch04",
+  "chapterNumber": 4,
+  "contentHash": "f7123e8e4c06c9f7",
+  "reviewerSessionId": "auto-author-review-ch04-mr75vuip-8",
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 72,
+    "practical": 84,
+    "summaries": 87,
+    "tone": 82,
+    "limits": 86,
+    "insight": 84,
+    "density": 80,
+    "beginner": 77
+  },
+  "composite": 82,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "a",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Proof is the return trip, not the starting gun.",
+      "why": "Strong, memorable compression of the chapter's core move.",
+      "verified": true
+    },
+    {
+      "quote": "What would make this feeling come back in daylight?",
+      "why": "Practical diagnostic question that transfers beyond the examples.",
+      "verified": true
+    },
+    {
+      "quote": "What to do: The chore chart says: keep Damasio narrow.",
+      "why": "This is too thin to function as a teaching example or actionable transfer.",
+      "verified": true
+    },
+    {
+      "quote": "The return has been set, not met.",
+      "why": "Evocative, but in the example it substitutes for a shown consequence.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several distractors are visibly extreme or corrupt the method with rank, famous-reference cover, strongest-preference logic, or 'replace' language, so a test-wise reader can often eliminate them without full reading.",
+    "Q6's correct answer is the only option that names all three chapter anchors directly, making it easier to guess from surface vocabulary."
+  ],
+  "complaints": [
+    {
+      "unit": "Examples / Example 5",
+      "problem": "Reads like a slot-filler: it names a chore chart but shows no real before-to-after decision, consequence, or concrete repair beyond restating 'keep Damasio narrow.'",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples / Example 6",
+      "problem": "The scene gestures at an operations choice and an open return, but it does not show what decision changed or what consequence followed, so the example underdelivers on transfer.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "Distractors often advertise themselves as wrong through obvious overreach, such as rank deciding trust, confident feeling outranking reason, or using science as cover.",
+      "mustFix": false
+    },
+    {
+      "unit": "Beginner accessibility",
+      "problem": "The chapter introduces neocortex, cerebral cortex, limbic system, Damasio, sensory processing, memory processing, and motivation circuits quickly; a cold beginner may track the labels without fully grounding them.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move: feeling can start a signal, but it earns decision weight only when it returns with proof. The summaries, memorable lines, and practical prompt are solid, and the answer key is sound. I would not ship yet because a couple of later examples feel manufactured rather than demonstrated, and the quiz is weakened by distractors that are too easy to reject. Fix the slot-filler examples by showing actual decisions and consequences, then tighten a few quiz distractors so they test understanding instead of obvious bad methods.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "ac2abfb1cc054316ba4c0775a78437e8e7c9f3e2bc133c1262dcfcd90c14f94d",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T02:18:47.466Z"
+}

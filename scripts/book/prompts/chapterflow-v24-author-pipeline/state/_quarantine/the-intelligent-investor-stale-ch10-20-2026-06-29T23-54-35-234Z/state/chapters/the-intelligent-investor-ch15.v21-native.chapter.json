@@ -1,0 +1,615 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch15",
+  "number": 15,
+  "title": "Stock Selection for the Enterprising Investor",
+  "readingTimeMinutes": 8,
+  "hook": "A stock can look irresistible at a low multiple, until the same screen reveals why the market may be right to distrust it.",
+  "counterintuition": "Cheap is not enough. Low expectations can create favorable odds only when financial condition, dividend evidence, asset coverage, diversification, and follow-up review keep cheapness from becoming a trap.",
+  "tryThisNow": "Pull up the current shortlist and add three columns before keeping any bargain candidate: low P/E group, net-net test, and 20-stock group slot.",
+  "keyTakeaway": "Use bargain screens to find candidates, then require asset discipline, dividend evidence, financial strength, diversification, and follow-up review before treating cheapness as value.",
+  "breakdown": {
+    "fastRead": "Enterprising stock selection starts with bargain screens, not instant buy decisions. Low P/E groups can be useful because low expectations may create favorable odds when financial condition is acceptable, but the lowest multiple is not automatically best. Net-net selection is stricter: it compares market price with current assets minus all liabilities. Bargain stocks also need a group approach, ideally 20 holdings, because any 1 cheap company can hide problems or take years to be recognized. Dividend record and financial strength help separate low-quality cheapness from a genuine opportunity.",
+    "deepRead": "The central discipline is to treat cheapness as an invitation to investigate, not as proof of value. Enterprising stock selection can begin with low P/E groups because low expectations may create favorable odds when financial condition is acceptable. The danger is assuming the lowest P/E stock is automatically best. Some low multiples are warnings, not gifts, because real deterioration can make a business deserve its low price.\n\nNet-net selection applies an even harsher bargain test. It compares market price with current assets minus all liabilities, which is stricter than using total assets or total book value. The test demands an asset cushion before assigning value to operations. Even then, a single apparent bargain is not enough. A 20-stock group approach matters because any 1 cheap company may have hidden problems or slow realization. Diversification absorbs appraisal mistakes.\n\nQuality filters keep the search from becoming blind contrarianism. Dividend record can help filter low-multiple stocks because cash distributions provide evidence that earnings are not purely accounting artifacts. Financial strength also remains necessary because leverage can destroy the asset cushion during business stress. A bargain price does not offset every weak balance sheet; debt can claim the value first.",
+    "fullRead": "Enterprising selection is a disciplined statistical search, not a hunt for the most dramatic bargain. Low P/E groups can be a starting screen because low expectations may create favorable odds when financial condition is acceptable. That condition is essential. A low multiple can mean neglect, but it can also signal real deterioration. The obvious shortcut is to rank the list and buy the cheapest name. The better habit is to ask why the security is cheap and whether the evidence supports the market's pessimism or challenges it.\n\nThe old screening idea behind Standard & Poor's Stock Guide shows the practical nature of the work: compact company data could be sorted for low P/E, dividends, and balance-sheet measures. The useful point is not the romance of finding one overlooked issue. It is the discipline of records, comparable data, and repeatable filters. A screen creates candidates. It does not create conclusions.\n\nNet-net selection is one of the stricter bargain methods. It compares market price with current assets minus all liabilities, demanding a harsh asset cushion before assigning value to operations. That is very different from saying a stock is cheap relative to total assets. Total assets may include items that are harder to realize, while the net-net test subtracts all liabilities first. Even a severe asset test still needs caution because individual liquidation value can disappoint.\n\nThat is why group diversification matters. A 20-stock group approach is important for bargain stocks because any 1 cheap company may have hidden problems or slow realization. Concentrating in the single best-looking bargain can feel decisive, but it makes one appraisal error too important. The group approach accepts that some cheap stocks will disappoint and tries to let the broader bargain category carry the result instead of demanding perfection from one selection.\n\nDividend record and financial strength add quality checks to the bargain screen. Dividend record can help filter low-multiple stocks because cash distributions provide evidence that earnings are not purely accounting artifacts. Low P/E alone does not make dividend history unnecessary, since cheap earnings can still be low quality. Financial strength remains necessary for enterprising bargains because leverage can destroy the asset cushion during business stress. A bargain price cannot protect the common stockholder if debt claims the value first.\n\nThe final lesson is restraint. Cheapness, low popularity, and screen output all need evidence. A neglected security may be cheap for valid reasons, and a numerical bargain can be caused by fraud, obsolescence, or cyclical collapse. Enterprising selection therefore demands records, screens, follow-up decisions, and patience. Recognition of value can take 3 to 5 years instead of weeks. The method is active, but it is not suitable for any busy investor who cannot maintain the work."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch15.example.1",
+      "sourceAnchorIds": [
+        "ch15.example.1"
+      ],
+      "title": "The One-on-One Low P/E Trap",
+      "tags": [
+        "decision_point",
+        "manager",
+        "small"
+      ],
+      "planSpec": {
+        "domain": "manager one-on-one: small experiment",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Remy brings a small experiment into a manager one-on-one with Celine: sort compact company data from Standard & Poor's Stock Guide by low P/E and mark the first name as the likely bargain. The old default fails immediately. One line has a low multiple, but the balance-sheet sorting field does not support treating it as automatically best. Celine does not need a dramatic forecast to slow the decision; the screen has only shown low expectations, and some low multiples can point to real deterioration.",
+      "whatToDo": "Use the low P/E sort only as the first screen. Before advancing a candidate, add a financial-condition check beside the multiple and reject the shortcut that the lowest P/E line deserves the top slot by default.",
+      "whyItMatters": "A cheap-looking multiple can be either a favorable starting point or a warning. The practical move is to make low expectations earn their place with acceptable financial condition before any decision follows. Standard & Poor's Stock Guide gives the concrete check: Standard & Poor's Stock Guide; compact company data."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch15.example.2",
+      "sourceAnchorIds": [
+        "ch15.example.2"
+      ],
+      "title": "The Phone Call Asset Cushion Check",
+      "tags": [
+        "before_after",
+        "phone",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "phone call: feedback loop",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "On a phone call, Thane tells Paxton he has found a Net-net candidate because the price looks low beside total assets. Reina repeats the test back as a feedback loop: current assets first, then subtract all liabilities, then compare market price with what remains. The decision changes on the call. Thane stops treating total assets as the standard and moves the name back to review until the harsher asset cushion is visible.",
+      "whatToDo": "When a Net-net idea appears, restate the calculation before acting: market price against current assets minus all liabilities. If the note only compares price with total assets, mark it incomplete instead of treating it as a bargain.",
+      "whyItMatters": "The stricter calculation prevents a weak cushion from passing as value. Operations are not being given credit until the asset test survives after all liabilities are subtracted. Net-net stocks keeps two details visible, net current asset value and all liabilities subtracted."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch15.example.3",
+      "sourceAnchorIds": [
+        "ch15.example.3"
+      ],
+      "title": "The Spreadsheet Recovery From One Bargain",
+      "tags": [
+        "mistake_recovery",
+        "shared",
+        "checklist"
+      ],
+      "planSpec": {
+        "domain": "shared spreadsheet: checklist walkthrough",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "In a shared spreadsheet, Graham highlights one low price-earnings group candidate and wants to concentrate the decision there. Thane walks through the checklist with Paxton, but the recovery is not clean at first: the sheet has a financial weakness check column, yet most rows are blank, and the single highlighted line keeps pulling attention. They add the missing checks, keep the group broad, and rebuild the list toward a 20-stock approach because any one cheap company may hide problems or take time to be recognized.",
+      "whatToDo": "Treat the spreadsheet as a group checklist, not a trophy case for one bargain. Fill the financial weakness check across the list, keep the broad application visible, and do not let one cheap line become the whole decision.",
+      "whyItMatters": "Diversification absorbs appraisal mistakes. A broad low price-earnings group can handle hidden problems better than a concentrated bet on the one name that looks cheapest. Low price-earnings groups also brings in financial weakness check and broad application."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch15.example.1",
+      "sourceAnchorIds": [
+        "ch15.example.1"
+      ],
+      "title": "Scenario card prices Standard & Poor's Stock Guide",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "project bay: Standard & Poor's Stock Guide",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Ivan carries a scenario card beside the linen drawer; the rural proofmark tests the page toward a humble essaypage. The slatefilter stays closed.",
+      "whatToDo": "Confirm Standard & Poor's Stock Guide beside compact company data; settle low P/E and balance-sheet sorting.",
+      "whyItMatters": "Standard & Poor's Stock Guide: low P/E and balance-sheet sorting."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch15.example.2",
+      "sourceAnchorIds": [
+        "ch15.example.2"
+      ],
+      "title": "Evidence strip matches Net-net stocks",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "training room: Net-net stocks",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Jolie steadies a evidence strip beside the slate cabinet; the steady riskcard holds the page toward a intent ledger. The ivorysignal stays closed.",
+      "whatToDo": "Test net current asset value beside all liabilities subtracted; settle group approach.",
+      "whyItMatters": "Net-net stocks: group approach."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch15.example.3",
+      "sourceAnchorIds": [
+        "ch15.example.3"
+      ],
+      "title": "Bank form records Low price-earnings groups",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "archive cart: Low price-earnings groups",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Knox narrows a bank form beside the ivory stand; the true filetab checks the page toward a light compass. The brassdocket stays closed.",
+      "whatToDo": "Check low price-earnings groups beside financial weakness check; settle broad application.",
+      "whyItMatters": "Low price-earnings groups: broad application."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch15.fact.1",
+        "prompt": "A low P/E screen produces a short list of candidates. Which first response best fits enterprising stock selection?",
+        "choices": [
+          "Use the low P/E group as a starting screen, then test whether financial condition is acceptable.",
+          "Buy the lowest P/E candidate first because the multiple looks cheapest.",
+          "Reject this low P/E group because low expectations look like a trap."
+        ],
+        "correctIndex": 0,
+        "explanation": "Low P/E groups can start the search because low expectations may create favorable odds, but some low multiples signal real deterioration and still require financial-condition review.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch15.fact.2",
+        "prompt": "A candidate is described as net-net because its price is low relative to total assets. What correction is needed?",
+        "choices": [
+          "Net-net means the price is low compared with total assets before liabilities are considered.",
+          "Net-net assigns full value to operations before checking current assets.",
+          "Net-net compares market price with current assets minus all liabilities, using a stricter asset cushion."
+        ],
+        "correctIndex": 2,
+        "explanation": "Net-net selection is stricter than total book value because it compares market price with current assets after subtracting all liabilities before assigning value to operations.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch15.fact.3",
+        "prompt": "Samir finds one bargain stock that looks far better than the rest. What policy best handles the hidden-problem risk?",
+        "choices": [
+          "Concentrate in the single strongest-looking bargain because the best case should dominate the group.",
+          "Use a 20-stock group approach because diversification absorbs appraisal mistakes in cheap companies.",
+          "Skip bargain stocks unless every candidate can be proven free of slow realization."
+        ],
+        "correctIndex": 1,
+        "explanation": "A 20-stock group approach matters for bargain stocks because any one cheap company may hide problems or take too long to realize value. Diversification absorbs appraisal mistakes.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch15.fact.4",
+        "prompt": "A low-multiple stock looks cheap, and Tessa wants to ignore dividend history. Why can that be a mistake?",
+        "choices": [
+          "Dividend record can support the filter because cash distributions help test whether earnings are accounting artifacts.",
+          "Dividend record is irrelevant once the P/E ratio is low enough to look cheap.",
+          "Dividend record should replace every other test, including price and financial strength."
+        ],
+        "correctIndex": 0,
+        "explanation": "Dividend record can help filter low-multiple stocks because cash distributions provide evidence that reported earnings are not purely accounting artifacts. Cheap earnings can still be low quality.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch15.fact.5",
+        "prompt": "A bargain appears cheap on asset value, but the balance sheet is weak. What concern should govern the decision?",
+        "choices": [
+          "A bargain price offsets any balance-sheet weakness if the quoted discount is large enough.",
+          "Financial strength matters only for defensive selection, not enterprising bargains.",
+          "Financial strength remains necessary because leverage can destroy the asset cushion during stress."
+        ],
+        "correctIndex": 2,
+        "explanation": "Financial strength remains necessary for enterprising bargains because leverage can claim the value first and destroy the asset cushion during business stress.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch15.fact.6",
+        "prompt": "A numerical screen returns several apparent bargains. What should happen before any candidate becomes a purchase?",
+        "choices": [
+          "Treat the screen output as a buy list because the numerical bargain already finished the analysis.",
+          "Review each candidate because a screen can surface fraud, obsolescence, cyclical collapse, or a real bargain.",
+          "Set aside the screen because numbers feel too blunt for bargain hunting."
+        ],
+        "correctIndex": 1,
+        "explanation": "Screens are only the beginning of analysis. A numerical bargain can be caused by fraud, obsolescence, or cyclical collapse, so each candidate still needs review.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch15.fact.7",
+        "prompt": "Elena expects an undervalued holding to reprice within weeks. Which expectation better matches the required patience horizon?",
+        "choices": [
+          "A three-to-five-year horizon is needed because recognition of value can take years.",
+          "A bargain should reprice quickly once the initial screen identifies it.",
+          "A short holding period is safer because market neglect cannot persist."
+        ],
+        "correctIndex": 0,
+        "explanation": "Undervaluation strategies require a three-to-five-year patience horizon because value recognition can take years instead of weeks and market neglect can persist.",
+        "bloomsLevel": "understand",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch15.fact.8",
+        "prompt": "An unpopular stock appears neglected, and Avery wants to treat that alone as value. What is the better test?",
+        "choices": [
+          "Buy the unpopular stock here because neglect alone looks like value.",
+          "Pair low popularity with evidence, because neglected securities may be cheap for valid reasons.",
+          "Avoid this unpopular stock because low popularity looks like a warning."
+        ],
+        "correctIndex": 1,
+        "explanation": "Low popularity can improve odds only when paired with evidence. Neglected securities may be cheap for valid reasons, so unpopularity alone is not value.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch15.fact.9",
+        "prompt": "Julian is too busy to maintain records, screens, and follow-up decisions, but wants an active method. What is the main risk?",
+        "choices": [
+          "Active methods are suitable for any busy investor once the initial screen is simple.",
+          "Defensive selection requires more time than enterprising selection because it uses fewer records.",
+          "Insufficient attention can turn enterprise into speculation because enterprising selection demands more time."
+        ],
+        "correctIndex": 2,
+        "explanation": "Enterprising selection demands more time than defensive selection because the investor must maintain records, screens, and follow-up decisions. Insufficient attention turns enterprise into speculation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch15.fact.1",
+      "sourceAnchorIds": [
+        "ch15.fact.1"
+      ],
+      "front": "How should low P/E groups be used in enterprising stock selection?",
+      "back": "They can be used as a starting screen because low expectations may create favorable odds when financial condition is acceptable. The lowest P/E stock is not automatically best because some low multiples signal real deterioration.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch15.fact.2",
+      "sourceAnchorIds": [
+        "ch15.fact.2"
+      ],
+      "front": "What does net-net selection compare market price against?",
+      "back": "It compares market price with current assets minus all liabilities. The test is harsher than low price relative to total assets because it demands an asset cushion before assigning value to operations.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch15.fact.3",
+      "sourceAnchorIds": [
+        "ch15.fact.3"
+      ],
+      "front": "Why does a bargain-stock method need a 20-stock group approach?",
+      "back": "Any one cheap company may have hidden problems or slow realization. A 20-stock group approach lets diversification absorb appraisal mistakes instead of relying on the best single bargain.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch15.fact.4",
+      "sourceAnchorIds": [
+        "ch15.fact.4"
+      ],
+      "front": "Why can dividend record help filter low-multiple stocks?",
+      "back": "Cash distributions provide evidence that earnings are not purely accounting artifacts. A low P/E ratio alone does not make dividend history unnecessary because cheap earnings can still be low quality.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch15.fact.5",
+      "sourceAnchorIds": [
+        "ch15.fact.5"
+      ],
+      "front": "Why does financial strength still matter for enterprising bargains?",
+      "back": "Leverage can destroy the asset cushion during business stress. A bargain price does not offset every balance-sheet weakness because debt can claim the value first.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch15.fact.6",
+      "sourceAnchorIds": [
+        "ch15.fact.6"
+      ],
+      "front": "Why are screens only the beginning of analysis?",
+      "back": "A numerical bargain can be caused by fraud, obsolescence, or cyclical collapse. Screen output is not a buy list because each candidate still needs review.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch15.fact.7",
+      "sourceAnchorIds": [
+        "ch15.fact.7"
+      ],
+      "front": "What patience horizon is required for undervaluation strategies?",
+      "back": "A three-to-five-year horizon is required because recognition of value can take years instead of weeks. A bargain should not be expected to reprice quickly, since market neglect can persist.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Build a Bargain Screen Friction Check",
+    "titleSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ],
+    "coreSkill": "Turn bargain selection into a repeatable screen before any candidate stays active. Start with low P/E groups, test net-net candidates against current assets minus all liabilities, and keep the decision tied to a 20-stock group instead of one favorite bargain.",
+    "coreSkillSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch15.fact.1",
+        "sourceAnchorIds": [
+          "ch15.fact.1"
+        ],
+        "context": "manager one-on-one",
+        "plan": "If Julian wants to keep a low P/E candidate after a manager one-on-one, then he adds a low P/E group row and checks financial condition before treating cheapness as favorable odds."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.2",
+        "sourceAnchorIds": [
+          "ch15.fact.2"
+        ],
+        "context": "phone call",
+        "plan": "If Tessa calls a candidate net-net during a phone call, then she pauses until market price has been compared with current assets minus all liabilities."
+      },
+      {
+        "sourceAnchorId": "ch15.fact.3",
+        "sourceAnchorIds": [
+          "ch15.fact.3"
+        ],
+        "context": "shared spreadsheet",
+        "plan": "If Samir is tempted to concentrate in 1 cheap company in the shared spreadsheet, then he marks the 20-stock group slot first and leaves the candidate pending until group diversification is visible."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, create one shared spreadsheet row for a current bargain candidate. Leave it pending unless the row shows low P/E group status, net-net comparison, and the 20-stock group slot.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ],
+    "weeklyPractice": "Use one recurring conversation each week to review the shared spreadsheet. Keep only candidates with a low P/E group note, a net-net comparison when claimed, and a visible place inside the 20-stock group.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch15.fact.1",
+      "ch15.fact.2",
+      "ch15.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "A low multiple can mean neglect, but it can also signal real deterioration.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "It compares market price with current assets minus all liabilities, demanding a harsh asset cushion before assigning value to operations.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "Enterprising stock selection can begin with low P/E groups because low expectations may create favorable odds when financial condition is acceptable.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:4ad9a534ff05dc37308392f4e56031488a85e907929bd671c3286cc9c6ddaf80",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch15.source.json",
+      "observedAnchorIds": [
+        "ch15.concept",
+        "ch15.example.1",
+        "ch15.example.2",
+        "ch15.example.3",
+        "ch15.fact.1",
+        "ch15.fact.2",
+        "ch15.fact.3",
+        "ch15.fact.4",
+        "ch15.fact.5",
+        "ch15.fact.6",
+        "ch15.fact.7",
+        "ch15.fact.8",
+        "ch15.fact.9",
+        "ch15.framework.enterprising.selection.tools"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch15.example.1"
+        ],
+        "examples[1]": [
+          "ch15.example.2"
+        ],
+        "examples[2]": [
+          "ch15.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch15.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch15.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch15.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch15.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch15.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch15.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch15.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch15.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch15.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch15.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch15.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch15.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch15.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch15.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch15.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch15.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch15.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch15.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch15.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch15.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch15.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch15.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch15.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch15.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch15.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch15.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch15.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch15.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3"
+        ],
+        "hook": [
+          "ch15.fact.1"
+        ],
+        "counterintuition": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3",
+          "ch15.fact.4",
+          "ch15.fact.5"
+        ],
+        "keyTakeaway": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3",
+          "ch15.fact.4",
+          "ch15.fact.5",
+          "ch15.fact.6"
+        ],
+        "tryThisNow": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3",
+          "ch15.fact.4",
+          "ch15.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3",
+          "ch15.fact.4",
+          "ch15.fact.5"
+        ],
+        "breakdown.fullRead": [
+          "ch15.fact.1",
+          "ch15.fact.2",
+          "ch15.fact.3",
+          "ch15.fact.4",
+          "ch15.fact.5",
+          "ch15.fact.6",
+          "ch15.fact.7",
+          "ch15.fact.8",
+          "ch15.fact.9"
+        ]
+      }
+    }
+  }
+}

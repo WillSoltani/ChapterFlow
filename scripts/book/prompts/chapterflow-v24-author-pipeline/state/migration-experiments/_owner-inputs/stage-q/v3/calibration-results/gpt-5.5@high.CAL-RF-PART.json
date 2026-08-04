@@ -1,0 +1,7 @@
+{
+  "caseId": "CAL-RF-PART",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Because we shipped weekly, quality rose — shipping alone fixed everything. (Two sentences total.)\",\"Uphold a finding only to the extent the supplied evidence proves it.\"],\"rationale\":\"The supplied record is sufficient because it includes the finding, the full candidate passage, and the review contract. The causal-overreach portion is supported: the candidate asserts a sweeping causal conclusion that weekly shipping alone fixed everything. The length complaint is unsupported because the passage is only two sentences and the record contains no evidence that it is far too long. Therefore the finding is only partially supported.\"}"
+}

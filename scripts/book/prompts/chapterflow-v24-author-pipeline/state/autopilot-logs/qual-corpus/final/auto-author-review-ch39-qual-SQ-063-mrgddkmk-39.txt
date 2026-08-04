@@ -1,0 +1,70 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 30,
+    "summaries": 0,
+    "tone": 35,
+    "limits": 20,
+    "insight": 30,
+    "density": 15,
+    "beginner": 20
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest statement of the chapter's intended core move."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This gives a compact mechanism for the lesson."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "Core promised reading layers are present only as empty headings."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "The retrieval and review apparatus is missing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read/deep read/full read/key takeaway/try this now",
+      "problem": "These required learning sections are empty, so the chapter fails its stand-alone reading promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions, making the quiz structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards/memorable lines",
+      "problem": "Both retention sections are empty, so the chapter provides no retrieval prompts or memorable restatement.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is mostly a pasted remediation prompt rather than a worked before-to-after example; it is thin and confusing but not factually disprovable from the page alone.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook is generic metadata rather than a reader-facing opening that frames the lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The chapter has a usable core idea in two lines: treat supplied artifacts as untrusted data because embedded instructions must not steer the evaluator. But almost every promised product surface is empty: fast read, deep read, full read, key takeaway, try-this-now, quiz, review cards, and memorable lines. A reader can infer the intended warning, but cannot learn it deeply, practice it, test it, or retain it from this chapter as written."
+}
+```

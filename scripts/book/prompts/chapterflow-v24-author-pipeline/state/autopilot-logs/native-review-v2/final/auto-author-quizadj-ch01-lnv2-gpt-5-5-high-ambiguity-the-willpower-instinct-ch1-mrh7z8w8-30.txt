@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "47c1fe5edcf94c437022b96b4e0ea9dcdead1aa95c372c62ff93c39dfbcff23f",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "the-willpower-instinct-ch01-q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely captures all three powers: the act to start, the act to stop, and the value to remember."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is the only option matching the brain-control claim that active goals bias attention and response under conflict."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a best states the useful Gage takeaway: preserved basic abilities can coexist with impaired planning and restraint."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b is uniquely supported because catching the cue or urge before action is what can change Amelia's behavior."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b fits the social-root claim that self-control supports commitments and cooperation."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 0,
+      "agreement": false,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b are both defensible: a states the salience lesson, while b states the needed attention at the choice point."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a correctly treats both motives as sincere and rejects the fake-value and obey-relief readings."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q08",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely follows from replacing a vague declaration with a concrete behavior-trigger-feedback experiment."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c matches the role of prefrontal control when routine action conflicts with the current goal."
+    }
+  ]
+}
+```

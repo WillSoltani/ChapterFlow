@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines HRV as beat-to-beat rhythm shifting and links higher variability with self-regulation under demand.",
+      "The Trier description says public speaking, arithmetic, evaluators, social judgment, and low control can trigger stress without physical danger.",
+      "Stress is described as narrowing attention toward fast relief, making candy or sharp replies feel like shelter before goals return.",
+      "Tang's brief practice is tied to trained attention, softer stress reactivity, and noticing an urge before obeying it.",
+      "The chapter says slow exhaling keeps the choosing system online by changing the body state, not by proving the message trivial.",
+      "Pause-and-plan argues that extra arousal can make the body too loud for future consequences and long goals to be weighed.",
+      "The sleep section says tired attention loses grip, so stronger cues can crowd out the planned care task.",
+      "The movement section says activity can improve mood, stress regulation, and executive function, lowering the load on later choices.",
+      "The chapter repeatedly says waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "b has the only precise, non-absolute mechanism; a and c are visibly weaker.",
+      "c is the only answer framed as a general stress mechanism; a and b sound artificially narrow.",
+      "c is the only answer that does not blame character or isolate stress from the craving.",
+      "a is the only answer without an absolute or odd causal claim.",
+      "b is the only option with real mechanism language; a and c are dismissive.",
+      "b directly addresses the 'fired up' detail; a and c dodge the stem.",
+      "a repeats the stem's sleep/cue structure; b and c dismiss sleep too bluntly.",
+      "a copies the prose's three-item list; b and c use giveaway 'only/mostly' framing.",
+      "c repeats the chapter's runway/before-peak language; a and b introduce unsupported fixes."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 92,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 94,
+    "insight": 88,
+    "density": 84,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "Strong, memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Use the opposite move when speed protects life, health, or trust.",
+      "why": "Excellent limits language; it prevents the pause technique from becoming universal advice."
+    },
+    {
+      "quote": "In the end, this is the kind of move worth practicing until it feels routine.",
+      "why": "Weakest tonal moment: generic wrap-up that could fit almost any chapter."
+    },
+    {
+      "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+      "why": "The source linkage feels stretched; the practical move is good, but the attribution is ornamental."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "Several distractors are too easy because they use blunt dismissal or absolutes while the keyed answer uses balanced mechanism language.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct option repeats the exact prose list of mood, stress regulation, and executive function, making it more recognition than transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct option closely echoes the chapter's 'runway before the craving peaked' phrasing, creating a mild giveaway.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic and lowers density after an otherwise specific scenario.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The Tang connection is overextended; moving a pill bottle into view is practical, but the source reference does not add much mechanism.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the core move is clear, memorable, practical, and bounded by useful failure cases. The best material turns willpower into a body-state problem without making calm into a moral performance, and the examples mostly show concrete before-to-after choices. The main weakness is quiz construction: the keyed answers are fair, but too often easier by tone and copied mechanism language than by genuine reasoning. No must-fix defects surfaced."
+}
+```

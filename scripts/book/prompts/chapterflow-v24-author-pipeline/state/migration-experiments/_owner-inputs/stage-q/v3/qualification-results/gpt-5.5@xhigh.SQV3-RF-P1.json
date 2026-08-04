@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-P1",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q: Which comes first, listen or decide? A) listen  B) decide. Answer key: B. Explanation: you must hear the context before choosing, so listening precedes deciding.\",\"Suppose a hypothetical lead who listens before deciding. (The example is explicitly imagined; no real person is named.)\"],\"rationale\":\"The record is sufficient to assess both parts of the finding. The quiz item asks which comes first, listen or decide, and its explanation says listening precedes deciding, while the answer key selects B, decide; that supports the complaint that the quiz key is wrong. The fabrication complaint is contradicted by the candidate text, which says the lead is hypothetical, explicitly imagined, and that no real person is named. Because only one of the two alleged problems is proven on the supplied record, the finding is partially supported.\"}"
+}

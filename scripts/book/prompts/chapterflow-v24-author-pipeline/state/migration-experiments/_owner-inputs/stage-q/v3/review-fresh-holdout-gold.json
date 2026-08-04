@@ -1,0 +1,71 @@
+{
+  "schema": "s16-stage-q-v3-review-holdout-gold-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "cases": [
+    {
+      "caseId": "SQV3-RF-S1",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "SUPPORTED",
+      "severityIfSupported": "MATERIAL"
+    },
+    {
+      "caseId": "SQV3-RF-S2",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "SUPPORTED",
+      "severityIfSupported": "MATERIAL"
+    },
+    {
+      "caseId": "SQV3-RF-P1",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "PARTIALLY_SUPPORTED",
+      "severityIfSupported": "MATERIAL"
+    },
+    {
+      "caseId": "SQV3-RF-P2",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "PARTIALLY_SUPPORTED",
+      "severityIfSupported": "MATERIAL"
+    },
+    {
+      "caseId": "SQV3-RF-U1",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "UNSUPPORTED",
+      "severityIfSupported": "NONE"
+    },
+    {
+      "caseId": "SQV3-RF-U2",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "SUFFICIENT_TO_DECIDE",
+      "findingValidity": "UNSUPPORTED",
+      "severityIfSupported": "NONE"
+    },
+    {
+      "caseId": "SQV3-RF-I1",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "INSUFFICIENT_TO_DECIDE",
+      "findingValidity": "INCONCLUSIVE",
+      "severityIfSupported": "NONE"
+    },
+    {
+      "caseId": "SQV3-RF-I2",
+      "primaryTarget": "REVIEW_FINDING",
+      "family": "REVIEW_FINDING_FRESH_V3",
+      "evidenceSufficiency": "INSUFFICIENT_TO_DECIDE",
+      "findingValidity": "INCONCLUSIVE",
+      "severityIfSupported": "NONE"
+    }
+  ]
+}

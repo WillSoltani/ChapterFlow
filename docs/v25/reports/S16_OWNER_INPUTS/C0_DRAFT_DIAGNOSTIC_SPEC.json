@@ -1,0 +1,113 @@
+{
+  "schema": "migration-experiment-spec-v1",
+  "experimentId": "OWNER-DECISION--proposed--diagnostic-stack-2026-07",
+  "stage": "diagnostic",
+  "title": "Legacy-v24 vs SOL-native prompt-stack diagnostic factorial (§16 Stage A; frozen; no-publish; never production qualification)",
+  "_status": "DRAFT. Runs BEFORE the confirmatory experiment under its own experiment ID; its results choose/confirm the final stack and are NEVER production qualification (§13 conflict row). Fields marked OWNER-DECISION are unresolved.",
+  "_validationCommand": "npx tsx ../../../../docs/v25/reports/S16_OWNER_INPUTS/tools/validate-owner-inputs.mts spec <file> (from the pipeline dir; expected to FAIL while placeholders remain)",
+  "cells": [
+    {
+      "cellId": "55-XH-L",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "stackId": "legacy-v24"
+    },
+    {
+      "cellId": "55-XH-S",
+      "model": "gpt-5.5",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-H-L",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "stackId": "legacy-v24"
+    },
+    {
+      "cellId": "56S-H-S",
+      "model": "gpt-5.6-sol",
+      "effort": "high",
+      "stackId": "sol-native-current"
+    },
+    {
+      "cellId": "56S-XH-L",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "stackId": "legacy-v24"
+    },
+    {
+      "cellId": "56S-XH-S",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh",
+      "stackId": "sol-native-current"
+    }
+  ],
+  "_cellsNote": "The validator's minimum diagnostic factorial: {55-XH, 56S-H, 56S-XH} × {both stacks} = 6 cells (55-H optional). This isolates the prompt-stack effect and the model×stack interaction (effectsReport computes the difference-in-differences).",
+  "stacks": [
+    {
+      "id": "legacy-v24",
+      "source": "snapshot",
+      "snapshotDirRelPath": "OWNER-FILLED-FROM-C2",
+      "combinedSha256": "OWNER-FILLED-FROM-C2"
+    },
+    {
+      "id": "sol-native-current",
+      "source": "current-builders"
+    }
+  ],
+  "books": [],
+  "samplesPerCell": 2,
+  "screening": {
+    "samplesPerCell": 2,
+    "expandWhen": [
+      "never-expand"
+    ],
+    "maxSamplesPerCell": 2
+  },
+  "randomizationSeed": "OWNER-DECISION--any-string-frozen-at-seal",
+  "judgePanel": [],
+  "thresholdsRelPath": "state/migration-experiments/_owner-inputs/thresholds.owner-frozen.v1.json",
+  "priceSnapshot": {
+    "gpt-5.5": null,
+    "gpt-5.6-sol": null
+  },
+  "precision": {
+    "primaryEndpoints": [
+      {
+        "id": "sourced-fabrication-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      },
+      {
+        "id": "quiz-key-defect-upper",
+        "targetUpperBoundPct": 2,
+        "minIndependentUnits": 150
+      }
+    ]
+  },
+  "_precisionNote": "The validator requires declared primary endpoints before execution. The diagnostic's job is EFFECT estimation (stack, model, model x stack difference-in-differences with cluster bootstrap CIs); at diagnostic N these rare-defect endpoints will report 'unproven at this sample size' (PRECISION_STATEMENT) — declared for honesty, not as claims.",
+  "stopping": {
+    "rules": [
+      "never-expand"
+    ]
+  },
+  "infraReplay": {
+    "maxPerSample": 1,
+    "replayableOutcomes": [
+      "infrastructure_failure",
+      "timeout",
+      "provider_rate_or_capacity"
+    ]
+  },
+  "_unresolvedOwnerFields": [
+    "experimentId",
+    "books (JSON array as in the confirmatory draft)",
+    "stacks[legacy-v24].snapshotDirRelPath + combinedSha256 (from executed C2)",
+    "randomizationSeed",
+    "judgePanel (JSON array)",
+    "thresholdsRelPath file must exist (approved C4)"
+  ],
+  "_booksNote": "OWNER-DECISION: same JSON shape as the confirmatory draft's books[] (may reuse the same >=2 books; every (bookId, chapterNumber) needs a C2 legacy card template; all four strata must appear).",
+  "_judgePanelNote": "OWNER-DECISION: same qualified panel as the confirmatory draft (JSON array of {model, effort}); Stage-Q qualification binds corpus + instrument versions."
+}

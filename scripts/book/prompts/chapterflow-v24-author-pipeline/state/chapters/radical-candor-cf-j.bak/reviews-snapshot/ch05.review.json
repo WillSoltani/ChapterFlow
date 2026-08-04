@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch05",
+  "chapterNumber": 5,
+  "contentHash": "070753ed67d182c9",
+  "reviewerSessionId": "auto-author-review-ch05-mrdyz9kf-8",
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 88,
+    "practical": 89,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 90,
+    "density": 87,
+    "beginner": 88
+  },
+  "composite": 88.4,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Every advice-first habit charges trust before anyone has a chance to earn it.",
+      "why": "Strong, memorable mechanism for why receiving first matters.",
+      "verified": true
+    },
+    {
+      "quote": "Trust routines are not delay tactics.",
+      "why": "The chapter gives a useful boundary against overusing listening to avoid decisions.",
+      "verified": true
+    },
+    {
+      "quote": "Price the trust signal before you ask for candor.",
+      "why": "Compact phrase that makes the core move portable.",
+      "verified": true
+    },
+    {
+      "quote": "Several actions look useful at the start of a tools section when a new lead wants better candor after a guarded exchange.",
+      "why": "Quiz language is fair but somewhat pattern-heavy and easier to game by eliminating extreme wrong answers.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several wrong choices are self-disqualifying by phrasing, such as rank replacing proof, asking others to absorb strain, or a handbook carrying trust; a reader could often eliminate them by tone."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Some distractors are too obviously wrong because they endorse rank, borrowed standing, or shifting strain onto the lower-power person; this weakens discrimination even though the keys are sound.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scene has concrete objects and a decision, but the consequence is muted because the answer has not arrived when the call ends; it teaches the move but gives less before-to-after payoff than stronger examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The 5-minute read-aloud request is actionable, but 'the first power signal you hear' may be abstract for a cold beginner without one sample of what counts.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable. The chapter has a clear core move: receive before advising so candor is reciprocal rather than extracted from the lower-power person. The summaries stand alone, the examples transfer the idea beyond the workplace, and the limit section prevents the advice from becoming endless listening. The main weakness is quiz craft: the correct answers are derivable, but several wrong answers are so plainly unwise that readers can often guess by tone. That is a polish issue, not a blocker.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b96ebdc515c8c61d0ebf22d5f648b6e0216a3c297f1569c3ebb8df416aead8fd",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:39:41.543Z"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-P2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MINOR\",\"evidenceSpans\":[\"Q1: What comes first? A) notice  B) act. Key: A. Explanation: you notice before acting.\",\"Q2: What does the cord signal? A) a problem  B) a break. Key: A. Explanation: it flags a problem to inspect.\",\"Q3: Which is the earliest step? A) gather facts  B) escalate. Key: B. Explanation: gather the facts first, then escalate.\",\"Uphold a finding only to the extent the supplied evidence proves it. A plausible accusation is not proof. An assertion is not evidence for itself.\"],\"rationale\":\"The supplied quiz instance is sufficient to evaluate the claim. Q1 and Q2 have keys that match their explanations, so the assertion that all three quiz keys are wrong is not proven. Q3 is internally inconsistent because the key is B, but the explanation says gather facts first and then escalate, meaning A is the earliest step. The finding is therefore only partially supported: one key appears wrong, but the record does not support that the entire quiz is broken or that all three keys are wrong.\"}"
+}

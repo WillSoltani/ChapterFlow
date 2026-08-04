@@ -1,0 +1,72 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct choices are usually the only options using the chapter's exact working terms: promise, conduct, visible offer, hard detail, anchor, proof.",
+      "Several distractors are easy to reject without reading because they lean on irrelevant authority or delay: senior sponsor, senior reviewer, trusted club, product sponsor.",
+      "In most questions the correct answer is the most concrete and operational choice, while wrong choices sound inflated or evasive."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 74,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 77,
+    "limits": 91,
+    "insight": 86,
+    "density": 80,
+    "beginner": 78
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "This is the strongest compressed version of the chapter's core move."
+    },
+    {
+      "quote": "If meaning is still unsettled, shrink the claim before you call the offer proof.",
+      "why": "This gives a clear boundary and prevents over-application."
+    },
+    {
+      "quote": "Product lead Vincent sees the early signal nobody flagged: the blue circle around plausible.",
+      "why": "This sounds like internal drafting machinery and is hard for a cold reader to picture."
+    },
+    {
+      "quote": "c) A senior reviewer should choose where the Apple Inc detail sounds most useful in the draft.",
+      "why": "This distractor is so plainly wrong by authority cue that it creates a quiz tell."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "Several wrong answers are cartoonishly weak because they rely on rank, sponsorship, or borrowed authority, making the keyed answer guessable without full comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is usable but inward-facing: it describes a postmortem and a marked-up draft rather than a concrete business or personal decision with a visible before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The phrase 'challenger-design WHY and HOW' is introduced without enough prior explanation, which adds jargon at the point where the example should clarify transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "The examples mostly rehearse chapter-drafting and review behavior, so transfer beyond product/comparison writing is thinner than the implementation plan promises.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read and full read",
+      "problem": "The iPod, Dell DJ, and Phaeton contrast is repeated in several similar formulations, which slightly lowers density even though the point remains clear.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against an 80 bar: the chapter has a memorable core, a strong boundary condition, and a practical test readers can apply: name the promise, name the conduct, then ask what proof comes back. Its main weaknesses are craft-level rather than blocking: the quizzes are fair but too guessable, and the examples lean heavily toward internal drafting scenarios instead of broader transfer. No must-fix defect rises to the reserved severity categories."
+}
+```

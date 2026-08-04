@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR3",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Invented quotation presented as a factual historical attribution\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"As Toyota's chief production engineer Kenji Watanabe put it in his 2011 leadership address, 'A stopped line is not a failure; it is the system telling the truth.'\",\"Examples may be invented.\"],\"rationale\":\"The candidate presents a named speaker, corporate role, dated address, and direct quotation as historical fact, with no reader-facing indication that the attribution may be invented. The provenance explicitly allows invented examples, but that hidden metadata cannot adequately frame an apparently factual quotation for readers.\"}"
+}

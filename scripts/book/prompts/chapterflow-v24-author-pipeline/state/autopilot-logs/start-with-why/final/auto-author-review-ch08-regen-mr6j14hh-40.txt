@@ -1,0 +1,54 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 81,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 82,
+    "limits": 86,
+    "insight": 82,
+    "density": 78,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Keep the year with the pair.",
+      "why": "Strongest compact memory hook; it captures the chapter's fact-discipline move in one line."
+    },
+    {
+      "quote": "Partnership is proof with a name, not support in the dark.",
+      "why": "Good mechanism line: it explains why the HOW person matters instead of merely naming them."
+    },
+    {
+      "quote": "The Gates and Allen thread leads because it is easy to get wrong.",
+      "why": "This exposes the chapter's main weakness: repeated explanation of the same anchor risk begins to feel circular."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the anchor-protection point across Gates-Allen, Walt-Roy, and Jobs-Wozniak more than it develops new transfer situations, so density drops.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples are editing/source-pass scenarios rather than ordinary promise or project situations, which narrows practical transfer beyond the book's own fact-checking frame.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some phrasing has a scaffold smell, especially repeated pair/year/venue language, even though the prose is mostly plain.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear core move, fair quizzes, strong key soundness, and memorable lines, especially around keeping facts anchored to the pair that proves them. I would not ship it yet at a professional 84 bar because too much of the middle keeps reworking the same named-founder anchor instead of giving the reader more varied, everyday transfer cases. Tighten the repeated founder exposition and add one or two non-editorial situations where someone asks for proof back from a live promise."
+}
+```

@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Many correct choices are the only options using the chapter's exact named anchors or terms, such as General Motors, MCI Friends & Family, TiVo, return pass, and the six-pull list.",
+      "Several distractors are too obviously wrong because they endorse rank, familiarity, elevated language, or moving details between examples."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 74,
+    "transfer": 68,
+    "practical": 82,
+    "summaries": 91,
+    "tone": 84,
+    "limits": 86,
+    "insight": 82,
+    "density": 80,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong, memorable hook that cleanly states the chapter's central distinction."
+    },
+    {
+      "quote": "Cut the perk before it writes the reason for you.",
+      "why": "Best practical compression of the core move."
+    },
+    {
+      "quote": "Why does partner Noah feel a long-distance calling offer before he studies it?",
+      "why": "The example feels manufactured and vague rather than like a real before-to-after transfer case."
+    },
+    {
+      "quote": "The remote is still in Gabriel's hand when he calls Novelty a reason.",
+      "why": "The image is vivid, but the scene is staged and does not show a concrete decision consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples, overall",
+      "problem": "Several examples are invented workplace mini-scenes that mostly restate the lesson instead of showing a concrete before-to-after decision and consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3: The Downstream Pull",
+      "problem": "Noah has no specific organization, stakes, number, place, or consequence; the example mainly repeats that social pull is not belief.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4: The Novelty Miss",
+      "problem": "Gabriel's scene names TiVo and time shifting but does not show what the product team decided or what happened because attention was mistaken for reason.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5: The Perk Standard",
+      "problem": "Dawson's launch spreadsheet is generic and could fit many chapters about not confusing proof with persuasion; it lacks a concrete outcome.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Correct answers are often guessable because they alone preserve the chapter's exact named details while distractors are transparently bad advice.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q4, Q5, Q7, Q9",
+      "problem": "These questions partly test source-handling and anti-generic-writing rules rather than only the reader's ability to apply the business concept.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear, useful core: separate the push from the reason, then ask what returns after the push is gone. The summaries, key takeaway, and review cards reinforce that move well, and the named GM, MCI, and TiVo anchors keep the lesson from becoming pure abstraction. I would not ship it at a professional bar yet because the transfer section leans on thin invented scenes that do not consistently show real before-to-after decisions, and the quiz is fair but sometimes too easy to game from wording alone."
+}
+```

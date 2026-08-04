@@ -1,0 +1,11 @@
+Updated [start-with-why-ch13.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json).
+
+I reduced the repeated `Wright` wording in the lesson surface from 7 to 5 while preserving the facts, structure, and quiz key pattern. The quiz indexes remain `1,0,1,2,1,0,0,2,2`.
+
+Validation passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 6 non-blocking minors
+- `quiz-verify`: 9/9 match
+- Length: 17,604 rendered chars, within budget
+- Scaffold scan: none found
+- Not-yours scan: none found

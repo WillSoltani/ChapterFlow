@@ -1,0 +1,59 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+      "keyDisagreements": []
+    },
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 74,
+    "transfer": 82,
+    "practical": 76,
+    "summaries": 79,
+    "tone": 65,
+    "limits": 78,
+    "insight": 70,
+    "density": 63,
+    "beginner": 75
+  },
+  "quotes": [
+    {
+      "quote": "A clean repair can be the wrong win.",
+      "why": "A compact, portable line that makes the chapter's reversal easy to remember."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "A strong practical diagnostic question that transfers beyond the named business examples."
+    },
+    {
+      "quote": "Success is not the proof; it is the weather that can hide the proof.",
+      "why": "The best retention line in the sample: short, vivid, and conceptually useful."
+    },
+    {
+      "quote": "Keep the details with the source that earned them. Employees stays with Southwest. The Houston base stays with Continental. 1994 stays with Bethune and Continental.",
+      "why": "Shows the repeated house mechanism; useful, but the same scaffold recurs across chapters."
+    },
+    {
+      "quote": "The order is plain: Belief, Predictable behavior, Trust, Loyalty. Belief names what is protected. Predictable behavior makes it visible. Trust grows after that. Loyalty comes last.",
+      "why": "Clear, but it illustrates the formulaic sequence-and-definition rhythm repeated throughout the sample."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound on the page: I found no keyed quiz contradiction, corrupted prose, or unsupported answer key failure. Its main strength is a reusable diagnostic lens in each chapter, backed by concrete named settings and several memorable lines. The main weakness is severe cross-chapter churn: each chapter uses the same machinery of ordered terms, source-bound details, second-setting comparison, purpose-talk warnings, and similar if-then practice shells. That makes the book feel engineered more than individually authored. It is useful and mostly publishable as learning material, but not premium until the repeated scaffolding is broken up and the examples feel less like swapped nouns inside one template."
+}
+```

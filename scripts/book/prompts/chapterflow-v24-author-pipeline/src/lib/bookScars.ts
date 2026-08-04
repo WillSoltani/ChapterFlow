@@ -20,6 +20,7 @@
  * voice card).
  */
 
+import { createHash } from "crypto";
 import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
@@ -37,6 +38,19 @@ export type BookScars = {
   frames: string[];
   /** Free-text reminders specific to this book. */
   notes: string[];
+  /**
+   * NON-NEGOTIABLE rules for this book — safety verdicts from a reader panel, and
+   * fact pins where surfaces contradicted each other.
+   *
+   * A separate channel because `phrases`/`frames`/`notes` render under an OVER-USE
+   * header that grants a quota of one and tells the writer to paraphrase the item
+   * everywhere else. That is right for scar tissue and exactly inverted for a
+   * prohibition: it would instruct the model to restate an unsafe line in other
+   * words. as-a-man-thinketh's panel-blocker safety rules shipped in `notes` and
+   * were rendered that way. Prohibitions render in their own block, first, as
+   * absolute rules with no quota.
+   */
+  prohibitions: string[];
 };
 
 function fail(bookId: string, msg: string): never {
@@ -57,6 +71,17 @@ function stringArray(raw: unknown, bookId: string, where: string): string[] {
 export function validateBookScars(raw: unknown, expectedBookId: string): BookScars {
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) fail(expectedBookId, "root must be an object");
   const obj = raw as Record<string, unknown>;
+  // Reject unknown keys. The schema declares additionalProperties:false but NOTHING
+  // executes it — validateAllConfigFiles reads config/ non-recursively, so
+  // config/book-scars/ is never reached. Without this, misspelling `prohibitions`
+  // as `prohibition` silently drops every safety rule in the file while the rest
+  // still loads, and the "no actionable content" guard below does not fire either:
+  // exactly the silent no-op class the near-miss filename guard exists to kill.
+  const KNOWN_KEYS = ["$schema", "_comment", "bookId", "phrases", "frames", "notes", "prohibitions"];
+  const unknown = Object.keys(obj).filter((k) => !KNOWN_KEYS.includes(k));
+  if (unknown.length > 0) {
+    fail(expectedBookId, `unknown key(s): ${unknown.join(", ")} — known keys are ${KNOWN_KEYS.join(", ")}`);
+  }
   if (typeof obj.bookId !== "string" || obj.bookId.trim().length === 0) fail(expectedBookId, "bookId must be a non-empty string");
   if (normSlug(obj.bookId) !== normSlug(expectedBookId)) fail(expectedBookId, `bookId "${obj.bookId}" does not match its filename`);
   return {
@@ -64,7 +89,74 @@ export function validateBookScars(raw: unknown, expectedBookId: string): BookSca
     phrases: stringArray(obj.phrases, expectedBookId, "phrases"),
     frames: stringArray(obj.frames, expectedBookId, "frames"),
     notes: stringArray(obj.notes, expectedBookId, "notes"),
+    // Optional so the four scar files that predate this channel stay valid; absent
+    // means "this book has no hard rules", not "unknown".
+    prohibitions: obj.prohibitions === undefined ? [] : stringArray(obj.prohibitions, expectedBookId, "prohibitions"),
   };
+}
+
+/** Leading articles a bookId slug may or may not carry. `v4BookId` slugifies the
+ *  title verbatim, so "The Autobiography of Benjamin Franklin" becomes
+ *  `the-autobiography-…` while a hand-named scar file may drop the article. */
+const LEADING_ARTICLES = ["the-", "a-", "an-"] as const;
+
+function articleVariants(slug: string): string[] {
+  const bare = LEADING_ARTICLES.reduce((s, a) => (s.startsWith(a) ? s.slice(a.length) : s), slug);
+  return [...new Set([bare, ...LEADING_ARTICLES.map((a) => `${a}${bare}`)])].filter((s) => s !== slug);
+}
+
+/**
+ * A scar file that differs from the requested bookId only by a leading article is
+ * almost certainly meant for this book, and silence is the worst outcome: a
+ * missing file is a legitimate no-op for most books, so a misnamed one produced
+ * NO signal at all. autobiography-of-benjamin-franklin.json sat unread for the
+ * whole canary while its book compiled as the-autobiography-of-benjamin-franklin,
+ * including a fact pin written straight off a panel FAIL. Fail loud instead.
+ *
+ * Deliberate trade-off: if two DISTINCT books ever have slugs differing only by a
+ * leading article ("brief-history" and "the-brief-history"), the one without a
+ * scar file will throw here even though nothing is wrong. That is accepted — the
+ * scar directory is a hand-maintained config of a handful of files, the error
+ * names both paths and the two ways out, and an ambiguous pairing is itself worth
+ * surfacing. Silent misapplication of a safety rule is the worse failure.
+ */
+function assertNoNearMissScarFile(slug: string): void {
+  for (const candidate of articleVariants(slug)) {
+    if (existsSync(resolve(SCARS_DIR, `${candidate}.json`))) {
+      fail(
+        slug,
+        `no ${slug}.json, but ${candidate}.json exists — a scar file whose name differs only by a leading article would silently never load; rename it to ${slug}.json (and set its bookId to match) or delete it`,
+      );
+    }
+  }
+}
+
+/**
+ * sha256 over a book's scar content, or null when it has none.
+ *
+ * Field-tagged and order-sensitive: reordering `prohibitions` changes the rendered
+ * writer block, so it must change the digest too. Two consumers depend on it —
+ * the section-pack cache identity (a pack drafted without a rule must not be
+ * served under it) and the repair port's divergence check (the candidate's frozen
+ * rules versus what is on disk now). One definition so those cannot disagree.
+ */
+export function bookScarsDigest(scars: BookScars | null): string | null {
+  if (scars === null) return null;
+  const hash = createHash("sha256");
+  hash.update(scars.bookId);
+  for (const [field, values] of [
+    ["prohibitions", scars.prohibitions],
+    ["phrases", scars.phrases],
+    ["frames", scars.frames],
+    ["notes", scars.notes],
+  ] as const) {
+    hash.update(`\0${field}\0`);
+    for (const value of values) {
+      hash.update(value);
+      hash.update("\0");
+    }
+  }
+  return hash.digest("hex");
 }
 
 const _cache = new Map<string, BookScars | null>();
@@ -77,6 +169,7 @@ export function loadBookScars(bookId: string): BookScars | null {
   if (cached !== undefined) return cached;
   const path = resolve(SCARS_DIR, `${slug}.json`);
   if (!existsSync(path)) {
+    assertNoNearMissScarFile(slug);
     _cache.set(slug, null);
     return null;
   }
@@ -88,8 +181,8 @@ export function loadBookScars(bookId: string): BookScars | null {
   }
   const scars = validateBookScars(raw, slug);
   // A file that exists but carries nothing actionable is a mistake worth surfacing.
-  if (scars.phrases.length === 0 && scars.frames.length === 0 && scars.notes.length === 0) {
-    fail(slug, "scar file exists but has no phrases, frames, or notes");
+  if (scars.phrases.length === 0 && scars.frames.length === 0 && scars.notes.length === 0 && scars.prohibitions.length === 0) {
+    fail(slug, "scar file exists but has no phrases, frames, notes, or prohibitions");
   }
   _cache.set(slug, scars);
   return scars;

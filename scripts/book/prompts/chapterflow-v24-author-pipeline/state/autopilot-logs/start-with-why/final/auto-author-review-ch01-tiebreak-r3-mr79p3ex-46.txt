@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["No uniquely-longest-choice pattern stood out, but many distractors advertise themselves by overreaching with words or ideas like every, all, replace, copy, final authority, or drop; the keyed answer is often the scoped/bounded one."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 83,
+    "transfer": 76,
+    "practical": 82,
+    "summaries": 87,
+    "tone": 84,
+    "limits": 85,
+    "insight": 84,
+    "density": 78,
+    "beginner": 83
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strong, memorable compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "Known data is the receipt you can bring back when confidence gets loud.",
+      "why": "Concrete image that makes the abstract sequence easier to retain."
+    },
+    {
+      "quote": "The airline material has its own edge. The proof is narrow. A changed boarding premise must expose hidden friction.",
+      "why": "This names the needed test, but the chapter never makes the boarding friction concrete enough."
+    },
+    {
+      "quote": "A phone reminder marks the return point.",
+      "why": "The prop feels invented and thin; it does not show a real decision consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The counter note and late door fix are vivid but underspecified; the reader never learns what the note says or what first guess caused the late fix.",
+      "mustFix": false
+    },
+    {
+      "unit": "American Airlines boarding example",
+      "problem": "The chapter gives founding date and Fort Worth as anchors, but not a concrete old boarding decision, changed premise, observed friction, or measurable consequence. The transfer case stays too abstract.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "Gregoire suddenly appears in a boarding-order situation after being tied to the car-door material, and the before-to-after is mostly a generic reminder to set a return point.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier-team transfer is thin: the team is generic and the consequence, 'correction no longer gets approved as normal,' is not tied to a specific operating decision or observable result.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "The keys are sound, but several distractors are weakened by obvious overreach, making the bounded/moderate answer guessable without fully reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The known-data sequence and proof-return idea are repeated many times with only small variation, which lowers density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: separate known data, assumptions, decisions, and returning results before letting a fix claim success. The best lines are sticky, the quiz keys are derivable, and the limits are more honest than usual. I would not ship yet because the airline transfer case, which is supposed to prove the idea travels beyond factories, lacks a concrete before-to-after decision and consequence. Tighten that example and remove the invented-feeling props, and this is close to a professional pass."
+}
+```

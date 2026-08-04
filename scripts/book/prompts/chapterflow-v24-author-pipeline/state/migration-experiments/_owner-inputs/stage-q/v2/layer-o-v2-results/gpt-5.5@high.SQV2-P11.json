@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P11",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported invented scene details\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: claireabelle, teen relationship, family interactions, whether-or-not frame Real-world case: True\",\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\",\"No one has moved yet.\",\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\"],\"rationale\":\"The source plan allows only the handle claireabelle, a teen relationship, family interactions, and the whether-or-not break-up frame. The candidate adds concrete narrative details such as the time after dinner, a bedroom floor, a quilt, the claim that no one has moved, and Claire underlining and writing in a margin. Those details are not supported by the source plan but are presented in the same factual register as the verified case, so the candidate contains a material defect.\"}"
+}

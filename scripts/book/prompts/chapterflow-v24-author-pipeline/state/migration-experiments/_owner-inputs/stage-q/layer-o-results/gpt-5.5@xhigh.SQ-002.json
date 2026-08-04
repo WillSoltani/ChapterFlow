@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-002",
+  "parsed": {
+    "caseId": "SQ-002",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Letting go is deliberate, acknowledged to the self, and routed elsewhere"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "suppression is unprocessed and underground"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Letting go means processing it somewhere real. Suppression means leaving it underground."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Some grievances need a friend, a journal, time, or a private reckoning rather than a confrontation"
+      }
+    ],
+    "explanation": "The candidate preserves the key distinction: letting go is acknowledged and processed elsewhere rather than used in confrontation, while suppression remains underground and unprocessed.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-002\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Letting go is deliberate, acknowledged to the self, and routed elsewhere\"},{\"materialIndex\":0,\"quote\":\"suppression is unprocessed and underground\"},{\"materialIndex\":1,\"quote\":\"Letting go means processing it somewhere real. Suppression means leaving it underground.\"},{\"materialIndex\":1,\"quote\":\"Some grievances need a friend, a journal, time, or a private reckoning rather than a confrontation\"}],\"explanation\":\"The candidate preserves the key distinction: letting go is acknowledged and processed elsewhere rather than used in confrontation, while suppression remains underground and unprocessed.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,623 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch16",
+  "number": 16,
+  "title": "Convertible Issues and Warrants",
+  "readingTimeMinutes": 8,
+  "hook": "A convertible can look like built-in upside, but the bond protection and the option have to pass separate tests.",
+  "counterintuition": "Hybrid securities are not automatically safer middle grounds. Interest safety, conversion value, conversion price, call terms, yield sacrifice, dilution, and accounting treatment can each change the real bargain.",
+  "tryThisNow": "Start a receipt check for the next convertible or warrant: write separate lines for bond protection, conversion price, income, and whether the option can expire without value.",
+  "keyTakeaway": "Treat convertibles or warrants as priced packages: test bond protection, option value, conversion or exercise terms, call risk, income sacrifice, dilution, and reporting effects before accepting the hybrid label.",
+  "breakdown": {
+    "fastRead": "A convertible bond must be judged as both a bond and an equity option because interest safety and conversion value are separate sources of return. The conversion feature alone does not make the security attractive. Conversion price determines how much the option is worth because the common stock must rise enough above that price to create value. Warrants are even more speculative than senior securities because they usually pay no income and can expire without value. Callable terms can limit upside when issuers redeem securities after conversion becomes favorable. The buyer also has to compare convertible yield with straight bond yield, since foregone income is part of the option cost.",
+    "deepRead": "A convertible bond is not one simple bargain. It is a senior security with an equity option attached, so the buyer has to test both parts. The bond side asks whether the interest and protection are good enough. The option side asks whether conversion value is real enough to justify the terms. Treating the conversion feature alone as the attraction misses the core risk: a weak bond with a poor option can still be bad.\n\nThe conversion price is the first hard term to inspect because it determines how much the option is worth. A conversion privilege has value only if the common stock can rise enough above the stated price to create value. The label does not define the payoff; the terms do. Call provisions add another constraint. Once conversion becomes favorable to holders, issuers may redeem securities and force a decision, so holders may not keep all apparent upside.\n\nYield sacrifice is part of the price. A buyer should compare the sacrificed income with a straight-bond alternative and ask whether the conversion terms pay for that sacrifice. Warrants require still more caution. They usually pay no income and can expire without value, so a low dollar price can hide total loss risk instead of prove conservatism.",
+    "fullRead": "Convertible issues and warrants require a split analysis. A convertible bond must be analyzed as both a bond and an equity option because interest safety and conversion value are separate sources of return. That split prevents the most tempting shortcut: assuming the conversion feature alone makes the security attractive. The bond still needs protection, and the option still needs worthwhile terms. A weak bond with a poor option can still be bad even when the hybrid label sounds appealing.\n\nThe conversion price controls much of the option side. The stock has to clear that hurdle by enough to make the privilege meaningful, so conversion rights differ sharply by terms. Warrants need the same term-by-term reading: the stated exercise price and the time left to use the warrant decide whether the right has practical value. Warrants are more speculative than senior securities because they usually pay no income and can expire without value. Their low dollar price can hide total loss risk.\n\nCallable terms can also change the apparent upside. Bondholders do not necessarily keep all upside once conversion value appears. Issuers may redeem securities when conversion becomes favorable to holders, and call provisions can force a decision. The buyer therefore has to look past the headline promise of participation in common stock gains and ask how the issuer can alter the holder's choices when the option becomes valuable.\n\nIncome comparison supplies another discipline. The income given up on a convertible has to be compared with a similar straight bond; a lower coupon is acceptable only when the option feature earns its keep. Lower yield is not irrelevant just because upside exists. Foregone income is part of the option cost. If the income sacrifice is large and the conversion terms are weak, the package may serve the issuer better than the buyer.\n\nThe wider issue is complexity. Hybrid securities require more expertise than ordinary defensive holdings because small term differences can change downside and upside materially. Dilution affects common shareholders when conversion occurs, since new shares can spread earnings over a larger base. Accounting treatment can obscure the cost of convertibles and warrants because interest, dilution, and option value may appear in different parts of reports. Reported EPS is not enough when diluted analysis is needed. Complex financing and accounting, as in NVF's Sharon Steel acquisition, show why financial engineering can make apparent opportunity harder to judge. Convertible issues need a clean split between bond protection and conversion value, with Sharon Steel style cheapness checked against earnings power instead of price alone."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch16.example.1",
+      "sourceAnchorIds": [
+        "ch16.example.1"
+      ],
+      "title": "The Phone Call That Chases Conversion",
+      "tags": [
+        "decision_point",
+        "phone",
+        "feedback"
+      ],
+      "planSpec": {
+        "domain": "phone call: feedback loop",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "Reina is reviewing notes beside Graham while a convertible bond note moves across her desk. Her old default is to hear conversion right and treat the issue as attractive before asking whether the bond side protects her. Graham asks what supports the interest safety and what makes the conversion value worth having under the stated terms. The call stalls because Stefan has only praised the conversion feature. The concrete failure is visible: a weak bond with a poor option would still be bad, but her first note never tested either source of return.",
+      "whatToDo": "Turn the phone call into a receipt check before any approval. Write one line for bond protection and one line for conversion value under the stated terms. If either line is blank or weak, mark the convertible bond as unresolved instead of letting the conversion feature carry the decision.",
+      "whyItMatters": "A convertible bond combines interest plus a conversion right, so the label is not enough. Interest safety and conversion value are separate sources of return, and a purchase needs both tests before the hybrid structure can be judged attractive. Convertible bonds gives the concrete check: convertible bonds; interest plus conversion right."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch16.example.2",
+      "sourceAnchorIds": [
+        "ch16.example.2"
+      ],
+      "title": "The Shared Spreadsheet Price Check",
+      "tags": [
+        "before_after",
+        "shared",
+        "checklist"
+      ],
+      "planSpec": {
+        "domain": "shared spreadsheet: checklist walkthrough",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "Graham and Reina review stock warrants in a shared spreadsheet while Ivan watches the decision cell. Before the checklist, the sheet treats any conversion privilege as useful. Graham adds fields for specified exercise price, limited exercise period, and the common stock level needed for value. The decision changes as soon as the missing terms appear: the warrant no longer passes just because it has option-like upside, because the payoff depends on future stock price relative to the exercise price.",
+      "whatToDo": "Use the shared spreadsheet as a checklist walkthrough. For each warrant, enter the specified exercise price, the limited exercise period, and whether the common stock would have to rise enough above that price to create value. If the terms do not support the payoff, do not treat the privilege as equally valuable.",
+      "whyItMatters": "Conversion price determines how much the option is worth because terms define the payoff. A stock warrant can look exciting in the abstract, but the exercise price and exercise period decide whether the right to buy shares has practical value. Stock warrants keeps two details visible, stock warrants and specified exercise price."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch16.example.3",
+      "sourceAnchorIds": [
+        "ch16.example.3"
+      ],
+      "title": "The Email Draft That Stops Cheapness",
+      "tags": [
+        "mistake_recovery",
+        "email",
+        "decisionunderpressure"
+      ],
+      "planSpec": {
+        "domain": "email draft: decision-under-pressure",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "Reina starts an email draft to Ivan about NVF and the Sharon Steel acquisition, then almost writes that a warrant is conservative because it costs less than shares. Jolie flags the sentence before it is sent. The repair is uncomfortable: Stefan deletes the cheapness claim, adds that warrants usually pay no income, and notes that they can expire without value. The draft remains unfinished because complex financing and accounting still make risk and value harder to judge.",
+      "whatToDo": "Revise the email draft before forwarding it. Replace any low-price comfort with a receipt check: whether the warrant pays income, whether it can expire without value, and whether the financing or accounting makes the risk harder to see. Leave the recommendation pending until those points are clear.",
+      "whyItMatters": "Warrants are more speculative than senior securities because low dollar price can hide total loss risk. The NVF / Sharon Steel financing reminder keeps complex securities from being treated as conservative merely because the first visible cost looks small. NVF / Sharon Steel financing also brings in Sharon Steel acquisition and complex financing and accounting."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch16.example.1",
+      "sourceAnchorIds": [
+        "ch16.example.1"
+      ],
+      "title": "Filing note lists Convertible bonds",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "tax counter: Convertible bonds",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Lyra redirects a filing note beside the brass station; the useful bondnote slows the page toward a modern margin. The walnutclause stays closed.",
+      "whatToDo": "Name convertible bonds beside interest plus conversion right; settle stated conversion terms.",
+      "whyItMatters": "Convertible bonds: stated conversion terms."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch16.example.2",
+      "sourceAnchorIds": [
+        "ch16.example.2"
+      ],
+      "title": "Calculator slip folds Stock warrants",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "lobby chair: Stock warrants",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Morganne frames a calculator slip beside the walnut bench; the varied cashnote filters the page toward a neutral docket. The ashmarker stays closed.",
+      "whatToDo": "Hold stock warrants beside specified exercise price; settle limited exercise period.",
+      "whyItMatters": "Stock warrants: limited exercise period."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch16.example.3",
+      "sourceAnchorIds": [
+        "ch16.example.3"
+      ],
+      "title": "Comparison page opens NVF",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "ledger drawer: NVF",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Nevin catches a comparison page beside the ash console; the whole proxyline weighs the page toward a private ribbon. The birchswitch stays closed.",
+      "whatToDo": "Mark NVF beside Sharon Steel acquisition; settle complex financing and accounting.",
+      "whyItMatters": "NVF / Sharon Steel financing: complex financing and accounting."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch16.fact.1",
+        "prompt": "A convertible bond looks appealing because it can turn into common stock. What must be checked before treating it as attractive?",
+        "choices": [
+          "Only the conversion feature, because the bond side stops mattering once common stock upside exists.",
+          "Trust the issuer's label here because the convertible structure sounds balanced.",
+          "Both bond protection and option value, because interest safety and conversion value are separate return sources."
+        ],
+        "correctIndex": 2,
+        "explanation": "A convertible bond is both a bond and an equity option. A weak bond with a poor option can still be bad.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch16.fact.2",
+        "prompt": "Two convertibles both include conversion privileges. What term most directly changes how valuable that privilege is?",
+        "choices": [
+          "The conversion price, because common stock must rise enough above it to create value.",
+          "The presence of any conversion privilege, because every conversion right has the same payoff.",
+          "The bond label, because stated terms do not affect the embedded option."
+        ],
+        "correctIndex": 0,
+        "explanation": "Terms define the payoff. Conversion price determines how far the common stock must rise before the option has value.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch16.fact.3",
+        "prompt": "A warrant has a low dollar price, so it feels safer than buying shares. What risk does that reasoning miss?",
+        "choices": [
+          "Warrants are senior securities, so they mainly need an interest-safety test.",
+          "Warrants usually pay no income and can expire without value, so low price can hide total loss risk.",
+          "A warrant's cost is low enough that expiration risk becomes irrelevant."
+        ],
+        "correctIndex": 1,
+        "explanation": "Warrants are more speculative than senior securities because they usually pay no income and can expire worthless.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch16.fact.4",
+        "prompt": "A convertible's conversion value has become favorable to holders. Which term can still limit the upside?",
+        "choices": [
+          "Treat the income payment as protection because interest suggests holders keep upside.",
+          "A call provision, because the issuer may redeem and force a decision.",
+          "The common stock feature, because option value removes issuer control."
+        ],
+        "correctIndex": 1,
+        "explanation": "Callable terms can limit upside. Issuers may redeem securities when conversion becomes favorable to holders.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch16.fact.5",
+        "prompt": "A convertible offers lower income than a comparable straight bond. What comparison shows whether the tradeoff is sensible?",
+        "choices": [
+          "Ignore the income gap because any upside feature makes lower yield irrelevant.",
+          "Compare only the stock story, because foregone income is not part of option cost.",
+          "Compare convertible yield with straight bond yield, then judge whether the conversion privilege is fairly priced."
+        ],
+        "correctIndex": 2,
+        "explanation": "Foregone income is part of the option cost. Lower yield only makes sense if the conversion privilege is fairly priced.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch16.fact.6",
+        "prompt": "A company sells a complex convertible package and presents it as flexible financing. What should the buyer ask about issuer incentives?",
+        "choices": [
+          "Whether the package is cheaper for the company than straight financing and may favor the issuer.",
+          "Whether complexity proves the package was designed mainly for investor benefit.",
+          "Whether issuer incentives can be ignored once a security includes both debt and equity features."
+        ],
+        "correctIndex": 0,
+        "explanation": "Issuer incentives matter because companies often sell convertibles when the package is cheaper for them than straight financing.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch16.fact.7",
+        "prompt": "Common shareholders dismiss a convertible issue as only a bondholder concern. What effect should they still analyze?",
+        "choices": [
+          "Dilution, because conversion can create new shares and spread earnings over a larger base.",
+          "Interest safety only, because common owners do not share any eventual claim.",
+          "The coupon alone, because conversion cannot affect common shareholders."
+        ],
+        "correctIndex": 0,
+        "explanation": "Convertibles can affect common owners. When conversion occurs, new shares can spread earnings over a larger base.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch16.fact.8",
+        "prompt": "Reported EPS looks clean even though convertibles and warrants are outstanding. What should be checked before relying on it?",
+        "choices": [
+          "Whether reported EPS alone fully captures every hybrid security effect.",
+          "Check the interest line alone because option value and dilution seem separate.",
+          "Diluted analysis, because interest, dilution, and option value may appear in different report areas."
+        ],
+        "correctIndex": 2,
+        "explanation": "Accounting treatment can obscure hybrid security costs. Diluted analysis is needed because effects can appear in different places.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch16.fact.9",
+        "prompt": "A hybrid security is marketed as a simple middle ground between defensive holdings and equity upside. What is the disciplined response?",
+        "choices": [
+          "Accept the middle label because hybrid securities are ordinary defensive holdings.",
+          "Require more expertise, because small term differences can materially change downside and upside.",
+          "Treat small term differences as unimportant because the basic structure is balanced."
+        ],
+        "correctIndex": 1,
+        "explanation": "Hybrid securities are not automatically simple. Small term differences can materially change both downside and upside.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch16.fact.1",
+      "sourceAnchorIds": [
+        "ch16.fact.1"
+      ],
+      "front": "Why must a convertible bond be analyzed as both a bond and an equity option?",
+      "back": "Interest safety and conversion value are separate return sources. A conversion feature alone does not make a weak bond with a poor option attractive.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch16.fact.2",
+      "sourceAnchorIds": [
+        "ch16.fact.2"
+      ],
+      "front": "Why does conversion price matter to the value of a conversion privilege?",
+      "back": "The common stock must rise enough above the conversion price to create value. The stated terms define the payoff.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch16.fact.3",
+      "sourceAnchorIds": [
+        "ch16.fact.3"
+      ],
+      "front": "Why are warrants more speculative than senior securities?",
+      "back": "Warrants usually pay no income and can expire without value. A low dollar price can hide the risk of total loss.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch16.fact.4",
+      "sourceAnchorIds": [
+        "ch16.fact.4"
+      ],
+      "front": "How can callable terms limit upside in convertibles?",
+      "back": "The issuer may redeem securities when conversion becomes favorable to holders. A call provision can force a decision instead of letting holders keep all upside.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch16.fact.5",
+      "sourceAnchorIds": [
+        "ch16.fact.5"
+      ],
+      "front": "Why compare convertible yield with straight bond yield?",
+      "back": "Accepting lower income only makes sense if the conversion privilege is fairly priced. Foregone income is part of the option cost.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch16.fact.6",
+      "sourceAnchorIds": [
+        "ch16.fact.6"
+      ],
+      "front": "Why do issuer incentives matter in hybrid securities?",
+      "back": "Companies often sell convertibles when the package is cheaper for them than straight financing. Complex terms can favor the issuer instead of the buyer.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch16.fact.7",
+      "sourceAnchorIds": [
+        "ch16.fact.7"
+      ],
+      "front": "How can conversion affect common shareholders?",
+      "back": "Conversion can create new shares and spread earnings over a larger base. Common owners share the eventual claim through dilution.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Run a Hybrid Receipt Check",
+    "titleSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ],
+    "coreSkill": "Use a short receipt before treating a hybrid security as attractive. Separate bond protection from option value, make conversion price visible, and do not treat a low warrant price as safety when there is no income and the warrant can expire without value.",
+    "coreSkillSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch16.fact.1",
+        "sourceAnchorIds": [
+          "ch16.fact.1"
+        ],
+        "context": "phone call",
+        "plan": "If a convertible is being praised mainly for its conversion feature, then write two receipt lines before continuing: bond protection and equity option value."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.2",
+        "sourceAnchorIds": [
+          "ch16.fact.2"
+        ],
+        "context": "shared spreadsheet",
+        "plan": "If any conversion privilege is being treated as valuable by default, then add a conversion price row and mark the option unproven until the common stock must rise enough above that price."
+      },
+      {
+        "sourceAnchorId": "ch16.fact.3",
+        "sourceAnchorIds": [
+          "ch16.fact.3"
+        ],
+        "context": "email draft",
+        "plan": "If a warrant looks conservative because it costs less than shares, then add the receipt line that it usually pays no income and can expire without value before sending the decision."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, complete one receipt check on a convertible or warrant already under consideration. Keep it out of the active list unless bond protection, conversion price, income, and expiry risk are all written down.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ],
+    "weeklyPractice": "Once a week, run a three-minute scoreboard on any hybrid security still on the list: one mark for separate bond and option analysis, one mark for visible conversion price, and one mark for no-income or expiry risk when a warrant is involved.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The buyer also has to compare convertible yield with straight bond yield, since foregone income is part of the option cost.",
+      "location": "breakdown.fastRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "Accounting treatment can obscure the cost of convertibles and warrants because interest, dilution, and option value may appear in different parts of reports.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "Issuers may redeem securities when conversion becomes favorable to holders, and call provisions can force a decision.",
+      "location": "breakdown.fullRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:fb7a6205162a9a563ad6d20ed0770484721b953dc8b08337b71793fc8a02544a",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch16.source.json",
+      "observedAnchorIds": [
+        "ch16.concept",
+        "ch16.example.1",
+        "ch16.example.2",
+        "ch16.example.3",
+        "ch16.fact.1",
+        "ch16.fact.2",
+        "ch16.fact.3",
+        "ch16.fact.4",
+        "ch16.fact.5",
+        "ch16.fact.6",
+        "ch16.fact.7",
+        "ch16.fact.8",
+        "ch16.fact.9",
+        "ch16.framework.convertible.analysis"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch16.example.1"
+        ],
+        "examples[1]": [
+          "ch16.example.2"
+        ],
+        "examples[2]": [
+          "ch16.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch16.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch16.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch16.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch16.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch16.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch16.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch16.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch16.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch16.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch16.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch16.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch16.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch16.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch16.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch16.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch16.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch16.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch16.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch16.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch16.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch16.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch16.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch16.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch16.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch16.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch16.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch16.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch16.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3"
+        ],
+        "hook": [
+          "ch16.fact.1"
+        ],
+        "counterintuition": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3",
+          "ch16.fact.4",
+          "ch16.fact.5",
+          "ch16.fact.7",
+          "ch16.fact.8",
+          "ch16.fact.9",
+          "ch16.framework.convertible.analysis"
+        ],
+        "keyTakeaway": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3",
+          "ch16.fact.4",
+          "ch16.fact.5",
+          "ch16.fact.7",
+          "ch16.fact.8",
+          "ch16.fact.9",
+          "ch16.framework.convertible.analysis"
+        ],
+        "tryThisNow": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3",
+          "ch16.fact.4",
+          "ch16.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3",
+          "ch16.fact.4",
+          "ch16.fact.5"
+        ],
+        "breakdown.fullRead": [
+          "ch16.fact.1",
+          "ch16.fact.2",
+          "ch16.fact.3",
+          "ch16.fact.4",
+          "ch16.fact.5",
+          "ch16.fact.6",
+          "ch16.fact.7",
+          "ch16.fact.8",
+          "ch16.fact.9",
+          "ch16.framework.convertible.analysis"
+        ]
+      }
+    }
+  }
+}

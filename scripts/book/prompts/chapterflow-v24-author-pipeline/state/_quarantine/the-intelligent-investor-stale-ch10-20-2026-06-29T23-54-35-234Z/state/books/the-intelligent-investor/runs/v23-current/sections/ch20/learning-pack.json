@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch20",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch20.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.1"
+        ],
+        "prompt": "A security feels comfortable because the company seems familiar. What actually creates a margin of safety?",
+        "choices": [
+          "A company that feels safe because its business is easy to recognize.",
+          "A price that has recently looked stable in the market.",
+          "The difference between price and conservatively appraised value."
+        ],
+        "correctIndex": 2,
+        "explanation": "Margin of safety comes from price versus value. The gap below conservatively appraised value absorbs valuation error and adverse business outcomes.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch20.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.2"
+        ],
+        "prompt": "A position appears well priced, so the buyer wants to concentrate everything there. What principle pushes back?",
+        "choices": [
+          "Graham-Newman-style diversification still supports margin of safety because appraisal error and bad luck remain.",
+          "A large margin removes the need to diversify across securities.",
+          "Diversification matters only when individual securities are obviously overpriced."
+        ],
+        "correctIndex": 0,
+        "explanation": "Even well-priced individual securities can suffer unexpected failure. Diversification adds protection because appraisal error and bad luck remain.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch20.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.3"
+        ],
+        "prompt": "A bond is judged safe because its face value looks fixed. Which check better captures bond margin of safety?",
+        "choices": [
+          "Whether the bond has a face value that appears reliable.",
+          "Whether excess earnings coverage leaves profits well above required payments.",
+          "Whether market trading makes the bond look steady."
+        ],
+        "correctIndex": 1,
+        "explanation": "Bond safety depends on coverage. Interest is safer when profits exceed required payments by a large amount.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch20.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.4"
+        ],
+        "prompt": "A stock has a low quoted price, and that alone is treated as protection. What is the better test?",
+        "choices": [
+          "Whether business value and earning power sit above the market price.",
+          "Whether the stock price is low compared with other quoted prices.",
+          "Whether a low price removes the need to appraise value."
+        ],
+        "correctIndex": 0,
+        "explanation": "A low stock price alone does not create a margin. Stock margin of safety appears when price is low relative to business value and earning power.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch20.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.5"
+        ],
+        "prompt": "A growth estimate looks attractive because the business quality seems strong. What discipline is still needed?",
+        "choices": [
+          "Paying for the growth estimate without a discount because good businesses avoid forecast risk.",
+          "Requiring a margin of safety because optimistic forecasts can fail even for good businesses.",
+          "Treating growth as certain once the business appears better than average."
+        ],
+        "correctIndex": 1,
+        "explanation": "Growth is uncertain and can be overpaid for. A margin of safety is needed because optimistic forecasts can fail even for good businesses.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch20.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.6"
+        ],
+        "prompt": "A purchase depends mainly on selling later at a higher price. Which label best fits that operation?",
+        "choices": [
+          "Investment, because a profitable resale would prove the operation was sound.",
+          "Investment, because market demand can become an independent value cushion.",
+          "Speculation, because no independent value cushion protects the buyer."
+        ],
+        "correctIndex": 2,
+        "explanation": "Speculation lacks margin of safety when profit depends mainly on a higher resale price. A favorable outcome does not change the original operation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch20.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.7"
+        ],
+        "prompt": "A careful analysis feels complete, so the buyer treats uncertainty as gone. What assumption should be rejected?",
+        "choices": [
+          "Analysis can reduce error when it uses evidence and price discipline.",
+          "Careful analysis eliminates uncertainty from accounting, business conditions, interest rates, and temperament.",
+          "Every estimate can be wrong, so a margin must allow for error."
+        ],
+        "correctIndex": 1,
+        "explanation": "The mistaken assumption is that analysis eliminates uncertainty. Analysis reduces but never removes error from accounting, business conditions, interest rates, and temperament.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch20.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.8"
+        ],
+        "prompt": "A buyer treats safety and return as opposing goals in every case. What does undervaluation change?",
+        "choices": [
+          "It separates satisfactory return from safety.",
+          "It proves return can be pursued without protection.",
+          "It can improve both downside protection and expected return when the price is protected."
+        ],
+        "correctIndex": 2,
+        "explanation": "A satisfactory return is tied to safety. Paying a protected price can improve both downside protection and expected return.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch20.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch20.fact.9"
+        ],
+        "prompt": "A market participant prizes trading skill above purchase standards. What is the more businesslike standard?",
+        "choices": [
+          "Treat securities as ownership claims bought only with evidence, price discipline, and a safety allowance.",
+          "Treat market trading skill as the highest form of investing.",
+          "Commit capital once market movement suggests other buyers may pay more."
+        ],
+        "correctIndex": 0,
+        "explanation": "Investment is most businesslike when securities are treated as ownership claims. Business buyers demand evidence, price discipline, and protection before committing capital.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch20.fact.1"
+        ],
+        "front": "What creates a margin of safety?",
+        "back": "A margin of safety is the difference between price and conservatively appraised value. Safety comes from price versus value, not from comfort.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch20.fact.2"
+        ],
+        "front": "Why does Graham-Newman-style diversification support margin of safety?",
+        "back": "Even well-priced individual securities can suffer unexpected failure. Diversification helps because appraisal error and bad luck remain.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch20.fact.3"
+        ],
+        "front": "How does bond margin of safety appear?",
+        "back": "Bond margin of safety appears through excess earnings coverage. Interest is safer when profits exceed required payments by a large amount.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch20.fact.4"
+        ],
+        "front": "How does stock margin of safety appear?",
+        "back": "Stock margin of safety appears through undervaluation and earning power. The buyer needs business value above market price.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch20.fact.5"
+        ],
+        "front": "Why do growth estimates need a margin of safety?",
+        "back": "Optimistic forecasts can fail even for good businesses. Growth is uncertain and can be overpaid for without a discount.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch20.fact.6"
+        ],
+        "front": "When does speculation lack margin of safety?",
+        "back": "Speculation lacks margin of safety when profit depends mainly on a higher resale price. No independent value cushion protects the buyer.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch20.fact.7"
+        ],
+        "front": "Why is margin of safety central to investment judgment?",
+        "back": "Every estimate can be wrong. Accounting, business conditions, interest rates, and temperament all introduce uncertainty that analysis cannot remove.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

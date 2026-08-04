@@ -14,6 +14,7 @@ import {
   checkBookVenueStamping,
 } from "../src/critics/bookRepetition.js";
 import { runBookGate } from "../src/critics/bookGate.js";
+import { runBookPatternAudit } from "../src/critics/bookPatternAudit.js";
 import type { ChapterV21 } from "../src/types.js";
 import { skip, test } from "./harness.js";
 import { cleanCorpusChapterFiles, goldChapterFiles, makeChapter, STATE_CHAPTERS } from "./helpers.js";
@@ -39,6 +40,18 @@ test("BP26 fires when the same marquee proper noun anchors multiple chapters", (
     "Marie Curie stands in the example as the repeated teaching case. The chapter should have used a different source figure for its scene.";
   const findings = quietWarn(() => checkBookExemplarChapterReuse(book, [ch1, ch2]));
   assert.ok(findings.some((f) => f.checkId === "BP26.exemplar_chapter_reuse" && f.severity === "minor"), JSON.stringify(findings));
+});
+
+test("BP26 uses explicit candidate sidecars as whitelist input", () => {
+  const book = "zz-fixture-bp26-candidate";
+  const ch1 = makeChapter(book, 1);
+  const ch2 = makeChapter(book, 2);
+  ch1.breakdown.fastRead += " Marie Curie turns the laboratory result into the teaching case.";
+  ch2.breakdown.fastRead += " Marie Curie anchors the second teaching case.";
+  const findings = checkBookExemplarChapterReuse(book, [ch1, ch2], {
+    sourceSidecars: [{ centralConcept: { name: "Marie Curie" } }],
+  });
+  assert.equal(findings.some((f) => f.checkId === "BP26.exemplar_chapter_reuse"), false, JSON.stringify(findings));
 });
 
 test("BP27 fires when one venue appears as an example setting in more than two chapters", () => {
@@ -221,7 +234,14 @@ for (const { bookId, files, stateDir } of goldChapterFiles()) {
 
   test(`gold: ${bookId} — runBookGate emits ZERO blockers across ${files.length} chapters`, () => {
     const chapters = files.map((file) => JSON.parse(readFileSync(file, "utf8")) as ChapterV21);
-    const report = quietWarn(() => runBookGate(bookId, chapters, { stateDir }));
+    const patternAudit = runBookPatternAudit({
+      bookId,
+      chapters,
+      stateDir,
+      requirePlanArtifacts: false,
+      checkSourceAlignment: false,
+    });
+    const report = quietWarn(() => runBookGate(bookId, chapters, { stateDir, patternAudit }));
     const blockers = report.findings.filter((finding) => finding.severity === "blocker");
     assert.deepEqual(
       blockers.map((finding) => `${finding.catalogId}: ${finding.message.slice(0, 120)}`),

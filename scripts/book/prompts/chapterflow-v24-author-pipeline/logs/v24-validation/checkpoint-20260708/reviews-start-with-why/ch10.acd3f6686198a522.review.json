@@ -1,0 +1,95 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch10",
+  "chapterNumber": 10,
+  "contentHash": "acd3f6686198a522",
+  "reviewerSessionId": "auto-author-review-ch10-mr78yna3-20",
+  "scores": {
+    "retention": 86,
+    "quizzes": 84,
+    "transfer": 76,
+    "practical": 80,
+    "summaries": 86,
+    "tone": 80,
+    "limits": 84,
+    "insight": 82,
+    "density": 78,
+    "beginner": 80
+  },
+  "composite": 81.8,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "b",
+      "a",
+      "b",
+      "b",
+      "a",
+      "c",
+      "c",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "What did the audience hear before you spoke? Ask that before you fix the wording.",
+      "why": "Strongest memorable line; it compresses the chapter's listening move into a usable diagnostic.",
+      "verified": true
+    },
+    {
+      "quote": "Words start the claim, but the cart, bike, or store lets people decide what they heard; choose the visible act that can carry it back.",
+      "why": "The takeaway is clear, concrete, and anchored to the chapter's recurring images.",
+      "verified": true
+    },
+    {
+      "quote": "The draft is about to make celery and Oreos, Harley-Davidson in Milwaukee, and Apple Store in 2001 prove the same broad lesson.",
+      "why": "This example turns inward toward the chapter's own construction instead of adding a fresh transfer situation.",
+      "verified": true
+    },
+    {
+      "quote": "Cupertino is not a magic pass for every group that likes clean design or famous retail.",
+      "why": "Useful boundary, but Cupertino arrives as shorthand that may not be fully legible to a cold beginner.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "No uniquely-longest-choice tell found, but several correct answers echo the chapter's favorite phrasing around visible acts, carrying claims, and proper homes while distractors rely on obviously weak authority/copying moves."
+  ],
+  "complaints": [
+    {
+      "unit": "Example 5",
+      "problem": "The transfer example is mostly about the chapter's own examples and a draft about them, so it feels self-referential rather than showing the skill in a genuinely new setting.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Cupertino is used as a boundary marker without enough explanation of why that location matters to the Apple Store claim.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep/full read",
+      "problem": "The cart-bike-store pattern is repeated enough that some paragraphs restate the move instead of adding new mechanism or pressure.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Distractors are mostly fair, but several wrong answers are weakened by obvious authority/copying phrasing, making some questions easier to guess without full comprehension.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a memorable core move: words make a claim, visible behavior lets the audience decide what they heard. The summaries, review cards, and quiz mostly line up, and the celery/Harley/Apple sequence gives the idea useful range. I would not ship it yet at a professional bar because the transfer section partially collapses into meta-examples about arranging the chapter's own evidence, and a few repetitions thin the density. Fix Example 5 with a fresh real-world transfer case and clarify the Cupertino boundary, and the chapter would likely clear the bar.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "b55307549d1128870c4636d89fbe5a16a7bb4130b7f8e4cb146223a062af7349",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T03:45:02.518Z"
+}

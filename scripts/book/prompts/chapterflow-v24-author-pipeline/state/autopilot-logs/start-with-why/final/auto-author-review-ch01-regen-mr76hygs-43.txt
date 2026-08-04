@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices reuse the chapter's exact conceptual vocabulary while distractors are openly bad moves such as borrowing rank, adding a motto, or repeating a moral.", "Correct answers are often the most qualified/mechanistic option, which makes some items guessable by test-taking style."]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 82,
+    "transfer": 80,
+    "practical": 86,
+    "summaries": 88,
+    "tone": 83,
+    "limits": 84,
+    "insight": 85,
+    "density": 78,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known is not a mood; it is a receipt you can point to.",
+      "why": "Strong, memorable phrasing that makes the core move concrete."
+    },
+    {
+      "quote": "The promise comes back on a day, or it drifts.",
+      "why": "Good practical compression of the chapter's proof-return mechanism."
+    },
+    {
+      "quote": "Airline operations add a harder edge because a routine can feel true after people have seen it often.",
+      "why": "Useful mechanism, but the airline example stays abstract and thin."
+    },
+    {
+      "quote": "The result is due; it is still out.",
+      "why": "The repeated open-result pattern weakens example satisfaction and transfer."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "full read",
+      "problem": "The American Airlines/Fort Worth material names a carrier and place but gives no concrete before-to-after boarding decision, measured consequence, or specific friction observed.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The boarding example says the line bends and proof has not come back, but it does not show a completed consequence or what changed after the decision.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier example is mostly a relay of the lesson; it has named people but no concrete supplier action, result, number, or consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Distractors are frequently too obviously wrong because they endorse rank, slogans, or generic repetition, while correct answers carry the chapter's favored mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep/full read",
+      "problem": "The chapter repeats the Known-Assumption-Decision-Result order often enough that some paragraphs feel like reinforcement rather than new insight.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a clear and memorable core: separate known facts from assumptions, choose from that count, and make proof return before the story hardens. The best lines are sticky and the practical move is low-friction. I would not ship it yet against a professional 84 bar because some transfer examples, especially the airline and supplier material, are under-realized: they name settings but do not consistently show a before-to-after decision and consequence. The quiz is mostly sound, but several distractors are too easy to reject."
+}
+```

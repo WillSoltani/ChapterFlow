@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present, so no answer-choice tells can be evaluated."]
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 10,
+    "summaries": 0,
+    "tone": 35,
+    "limits": 0,
+    "insight": 10,
+    "density": 20,
+    "beginner": 25
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads as production scaffolding, not reader-facing teaching."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "The promised reading layers exist only as empty headings."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The action advice is generic and does not tell the reader what to do."
+    },
+    {
+      "quote": "His own notes show a cleaner truth: I felt dismissed when the signal failure was moved to new business.",
+      "why": "This is the clearest glimpse of a usable mechanism: translate accusation into owned perception."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The chapter has a Quiz heading but no quiz questions, so the quiz is structurally missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and fails its standalone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving the core move unstated.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no practical exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and cannot function as review material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the chapter provides no explicit retention hooks.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Ulric he must decide' is ungrammatical and disrupts comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Hester she must decide' is ungrammatical and disrupts comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples end with the same generic What to do and Why it matters lines, so they do not teach distinct decisions or consequences.",
+      "mustFix": false
+    },
+    {
+      "unit": "chapter",
+      "problem": "The chapter never explains the named skill, sequence, or scene move well enough for a reader to learn or apply it.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The file is mostly scaffolding: the teaching layers, takeaway, exercise, quiz, review cards, and memorable lines are empty. The two scenes contain a hint of a useful move, especially shifting from accusation toward owned perception, but the chapter never names, explains, practices, or tests that move. As written, a reader could not reliably learn the chapter's skill, and the product would present missing sections as finished content."
+}
+```

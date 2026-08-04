@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["CHAPTER 1 Q8: prose supports a, because the lesson says copied tools fail when the receiving system lacks the upstream belief; key gives b, which claims the old factory hid a better checklist and is unsupported."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 62,
+    "transfer": 79,
+    "practical": 66,
+    "summaries": 75,
+    "tone": 63,
+    "limits": 72,
+    "insight": 70,
+    "density": 67,
+    "beginner": 76
+  },
+  "quotes": [
+    {
+      "quote": "Title: undefined",
+      "why": "Template artifact leaks into every implementation plan and triggers the correctness gate."
+    },
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong compact retention line; portable and faithful to the chapter."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted prose: two sentence frames are spliced together incoherently."
+    },
+    {
+      "quote": "The strongest warning is not that manipulation fails; it is that manipulation works too easily.",
+      "why": "Memorable, counterintuitive phrasing that captures the chapter's mechanism."
+    },
+    {
+      "quote": "A Motorola status lesson follows a fashion buyer has celebrity mockups on one side of the table and repeat-purchase data on the other.",
+      "why": "Another malformed template splice that makes the example feel machine-assembled."
+    },
+    {
+      "quote": "Growth is a poor substitute for a clear cause.",
+      "why": "Clean aphorism with strong transfer value across business and personal contexts."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has a strong conceptual spine: most chapters teach a real lens, the quizzes are mostly scenario-based, and several memorable lines would survive a week. But it is not publishable as-is. The hard veto is Chapter 1 Q8, where the prose supports answer a while the key says b. The larger quality problem is repeated scaffold churn: each chapter follows the same machinery, every implementation plan exposes 'Title: undefined,' and multiple examples contain garbled source/template splices. The result feels useful but not fully authored; it teaches the ideas, yet the visible artifacts and one bad key answer break reader trust."
+}
+```

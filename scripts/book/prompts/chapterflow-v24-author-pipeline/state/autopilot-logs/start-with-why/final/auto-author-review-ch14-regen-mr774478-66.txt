@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q3's keyed choice closely echoes the prose phrase about being less likely to be one neat anecdote; this is phrase-matchable after skimming, though not guessable cold."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 85,
+    "transfer": 72,
+    "practical": 80,
+    "summaries": 84,
+    "tone": 78,
+    "limits": 88,
+    "insight": 86,
+    "density": 77,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the judge; it is the alarm.",
+      "why": "Strongest memory hook; it compresses the chapter's core move into a durable line."
+    },
+    {
+      "quote": "Name what the rival changed. Name what your older promise required. Then name the proof due before the choice moves.",
+      "why": "Clear, practical sequence a reader could actually use."
+    },
+    {
+      "quote": "Self-referenced competition is not permission to ignore the world; it is a way to stop the world from naming your purpose.",
+      "why": "Best limits statement; it prevents the advice from becoming inward-looking dogma."
+    },
+    {
+      "quote": "The team writes the return point: rival pressure, old promise, proof owed. The answer is not back yet.",
+      "why": "Weak example moment; it recites the framework without showing a concrete decision and consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 5",
+      "problem": "Reads like a slot-filler: Christophe's team recites the chapter's named examples and framework, but there is no concrete before-to-after decision or consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "Implementation plan if-then 2",
+      "problem": "Too tied to the book's own Apple-Dell/Microsoft artifact instead of transferring the principle to a general case where a true fact is used in the wrong comparison.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer is fair and sound, but it closely repeats the prose wording about one neat anecdote, making it more phrase-matchable than the surrounding items.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read and examples",
+      "problem": "The repeated pressure/return/proof wording is coherent but becomes a visible scaffold, reducing density and making some passages feel template-driven.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core move: rivals alert you to pressure, but your own promise has to judge the response. The hook, limits paragraph, review cards, and quiz keys are mostly sound, and the reader can derive the answers from the prose. I would not ship it yet because the transfer layer leans too hard on chapter-internal examples, especially Example 5 and the iPod/Microsoft if-then, which teach the artifact more than a reusable professional habit."
+}
+```

@@ -1,0 +1,11 @@
+Created [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+Verification passed:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 match with required key pattern `1,2,2,0,1,1,0,0,2`
+- Evidence audit: clean, no candidates to disposition
+- Estimated rendered length: ~15,328 chars, inside the 16,000 ±20% budget
+- Reader-facing scaffold and forbidden-case scans: clean
+
+`gate-chapter` still reports 4 non-blocking majors and 8 minors, but no blockers.

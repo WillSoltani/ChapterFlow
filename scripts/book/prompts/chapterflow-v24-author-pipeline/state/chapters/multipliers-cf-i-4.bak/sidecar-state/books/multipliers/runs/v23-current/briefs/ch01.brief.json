@@ -1,0 +1,183 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "multipliers-ch01",
+  "chapterNumber": 1,
+  "title": "The Multiplier Effect",
+  "coreMove": "Because edition date controls which added material is included, the May 16, 2017 listing separates the revised source from the 2010 original.",
+  "thesis": "HarperCollins lists the revised Multipliers edition with an on-sale date of May 16, 2017.",
+  "readerPromise": "After this chapter, a reader can because edition date controls which added material is included, the May 16, 2017 listing separates the revised source from the 2010 original.",
+  "ownedCases": [
+    {
+      "id": "ch01.ex.harper-revised-edition",
+      "label": "HarperCollins revised edition"
+    },
+    {
+      "id": "ch01.ex.hbr-article",
+      "label": "Harvard Business Review article"
+    },
+    {
+      "id": "ch01.ex.wikipedia-bibliography",
+      "label": "Original HarperBusiness release"
+    }
+  ],
+  "notYours": [
+    "Amazon disagree and commit",
+    "Amy Edmondson hospital-team research",
+    "Amy Edmondson voice and silence",
+    "Anders Ericsson deliberate practice",
+    "Atlassian ShipIt",
+    "Carol Dweck growth mindset",
+    "Chris Voss calibrated questions",
+    "Getting to Yes negotiation frame",
+    "Google Project Aristotle",
+    "Google Project Oxygen",
+    "HarperCollins revised new chapters",
+    "Intel constructive confrontation",
+    "John F. Kennedy Moon goal",
+    "Kim Scott Radical Candor",
+    "Netflix freedom and responsibility",
+    "Peter Gollwitzer implementation intentions",
+    "Pixar Braintrust",
+    "Pixar Braintrust candor",
+    "Satya Nadella / Microsoft culture shift",
+    "Space Shuttle Challenger decision record"
+  ],
+  "cast": [],
+  "answerIndexPattern": [
+    1,
+    1,
+    0,
+    2,
+    0,
+    1,
+    2,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch02): \"At the return moment in Microsoft's 2014 CEO\"",
+    "opener (ch03): \"On a project call, delivery lead Holly hears\"",
+    "opener (ch05): \"Product lead Janelle asks the question no one\"",
+    "opener (ch06): \"Reed Hastings and Patty McCord reach the return\"",
+    "opener (ch07): \"Sabrina catches the early signal on the publisher\"",
+    "opener (ch09): \"Years on the job are the early signal\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a text thread with a friend",
+    "venue: a doorway conversation",
+    "venue: a shared photo album",
+    "frame: a first attempt at andon cord that gets corrected",
+    "frame: a first encounter with andon cord that sets a benchmark"
+  ],
+  "architectureFamily": "research-lead",
+  "openerType": "tension-thesis",
+  "challengeFrame": "teach-it-to-someone",
+  "practiceShape": "if-then-trigger",
+  "exampleLenses": [
+    "counterfactual",
+    "outsider-witness",
+    "numbers-detective"
+  ],
+  "practiceVerb": "circle",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "leader",
+    "rather",
+    "assuming",
+    "thinking",
+    "team",
+    "concrete"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "clean-win",
+      "fieldStyle": "cost-first",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "averted-late",
+      "fieldStyle": "mechanism-first",
+      "prop": true
+    },
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "partial",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "clean-win",
+      "fieldStyle": "shortest-possible",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "averted-late",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    }
+  ],
+  "practiceSlotShapes": [
+    "if-then-trigger",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation",
+    "best-explanation-why"
+  ],
+  "quizFailureModes": [
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure",
+    "right-move-wrong-trigger"
+  ],
+  "questionFactOrder": [
+    1,
+    7,
+    3,
+    6,
+    2,
+    8,
+    9,
+    4,
+    5
+  ],
+  "memorableShapes": [
+    "pointed-question",
+    "imperative",
+    "reversal"
+  ],
+  "limitsPlacement": "closing-paragraph",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "people-speak",
+    "artifact-speak"
+  ],
+  "shellRegister": "cost-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Harvard Business Review article"
+  },
+  "adjacentJobs": {
+    "next": "Because the 2014 CEO transition marks the leadership context for Microsoft's culture shift, it gives the talent example a fixed date."
+  }
+}

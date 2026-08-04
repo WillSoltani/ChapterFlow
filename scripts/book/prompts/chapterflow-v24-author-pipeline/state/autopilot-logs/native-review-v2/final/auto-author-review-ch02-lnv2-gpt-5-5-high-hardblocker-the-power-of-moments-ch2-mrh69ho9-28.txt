@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits, which map to welcome, award, and complaint moments.",
+      "The John Deere lesson says the first-day ritual should link factory work to real users before routine tasks take over.",
+      "The Mary Kay example works because the pink Cadillac makes a sales milestone visible and public.",
+      "Joshie shows that finding the item is not enough; the repair needs proof of care that changes the story.",
+      "The chapter explicitly says more forms do not improve the first day; purpose has to arrive before procedure.",
+      "The prose says progress needs a marker before it becomes a memory, not just a private or data-only record.",
+      "The pit lesson says a practical fix plus a polished apology can still miss the moment unless care becomes concrete.",
+      "Eric's correction is to ask where meaning and memory are assigned, not to follow the busiest handoff automatically.",
+      "The chapter warns that a low point gets sticky unless the ending people carry away is changed."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct choice c lists welcome, award, complaint, visibly mapping to transition, milestone, pit.",
+      "Correct choice c repeats the chapter's distinctive 'customer purpose' phrasing.",
+      "Correct choice b repeats the chapter's visible/public milestone language.",
+      "Correct choice b uses the giveaway phrase 'proof of care.'",
+      "Correct choice a repeats 'purpose before the packet' from the prose.",
+      "Correct choice c is the only option with the chapter's marker/image logic.",
+      "Correct choice b repeats the chapter's 'care story' mechanism.",
+      "Correct choice a is the only option using the chapter's 'sum up the relationship' idea.",
+      "Correct choice a repeats the chapter's warning that a low point can harden."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 70,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 82,
+    "insight": 87,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The busy middle is not the whole story.",
+      "why": "This is the chapter's strongest memorable compression of the core move."
+    },
+    {
+      "quote": "At a transition, frame the purpose; at a milestone, make progress visible; at a pit, repair the meaning.",
+      "why": "This gives a clear, transferable if-then structure."
+    },
+    {
+      "quote": "Then again, he should move the circle back to the crowded handoff, since the busiest, highest-traffic step is exactly the moment people use to sum up the whole relationship.",
+      "why": "This directly contradicts the same example's lesson and the chapter's repeated warning."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "The 'What to do' first says Eric should move attention from the crowded handoff to the first encounter, then says he should move it back because the busiest step is exactly what people use to sum up the relationship. This contradicts the chapter's own mechanism.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers reuse exact chapter phrases, making some questions guessable without reading closely.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The chore-chart transfer is usable but thin: it gives a small before-after move without much consequence beyond restating that visible markers help progress.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a strong, memorable core move: scan for transitions, milestones, and pits instead of polishing the busy middle. The summaries layer well, the prose is beginner-friendly, and the practical prompts are concrete enough to use. The quiz is fair but somewhat over-signaled by repeated wording. The main blocker is Example 4, where the action step contradicts the chapter's central claim and would teach the wrong choice; with that fixed, this would likely clear a professional bar."
+}
+```

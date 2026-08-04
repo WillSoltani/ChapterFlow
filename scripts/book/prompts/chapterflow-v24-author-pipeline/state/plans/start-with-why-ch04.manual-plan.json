@@ -1,0 +1,67 @@
+{
+  "chapterId": "start-with-why-ch04",
+  "number": 4,
+  "title": "This Is Not Opinion, This Is Biology",
+  "coreMove": "Use biology to narrow the claim: start with what can be said, add what was felt, then ask whether a second anchor repeats the pattern.",
+  "exampleCount": 6,
+  "exampleSpecs": [
+    {
+      "domain": "service choice",
+      "audience": "readers with a fact-heavy promise",
+      "stakes": "clear facts fail to move choice",
+      "format": "postmortem",
+      "requiredBeat": "open at the check-in and let the miss land"
+    },
+    {
+      "domain": "training choice",
+      "audience": "readers splitting facts from felt value",
+      "stakes": "a true source turns into permission for taste",
+      "format": "mistake_recovery",
+      "requiredBeat": "trace back after the choice and catch the miss late"
+    },
+    {
+      "domain": "customer handoff",
+      "audience": "readers downstream from a choice",
+      "stakes": "people remember words but not why to act",
+      "format": "vignette",
+      "requiredBeat": "open when the outside person first feels the effect"
+    },
+    {
+      "domain": "product change",
+      "audience": "readers weighing a second anchor",
+      "stakes": "a remembered miss gets dismissed as noise",
+      "format": "decision_memo",
+      "requiredBeat": "open on the early signal and pay the cost"
+    },
+    {
+      "domain": "budget choice",
+      "audience": "readers whose tactic is outrunning the reason",
+      "stakes": "a felt preference gets dressed as science",
+      "format": "dialogue",
+      "requiredBeat": "open when the standard is stated and catch the miss late"
+    },
+    {
+      "domain": "operations choice",
+      "audience": "readers tempted by purpose talk",
+      "stakes": "science turns into generic advice",
+      "format": "reset_moment",
+      "requiredBeat": "open mid-action after the demand and leave the return unmet"
+    }
+  ],
+  "quizFocus": {
+    "count": 9,
+    "bloomsMix": {
+      "analyze": 4,
+      "apply": 4,
+      "evaluate": 1
+    },
+    "transferEmphasis": 1
+  },
+  "cardFocus": {
+    "count": 6,
+    "retrievalPractice": true
+  },
+  "readingTimeMinutes": 7,
+  "derivedFromInlineMode": true,
+  "derivedAt": "2026-07-07T23:11:34.615Z"
+}

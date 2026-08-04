@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "e66562ab422364d6015c2fd9017e2ab3129c88dc8d10b6c5507f58d01d1a5dce",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice b, not c, isolates the recurring two-measure fault and uses feedback before the next attempt."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a turns the vague study goal into a focused redox drill with step-level feedback."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c names the defect: full-demo repetition lets the same weak slide survive."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b gives a specific cue, checks video feedback, and repeats before adding distance."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b captures the correction loop where each miss changes the next grouping strategy."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b both plausibly state why repetition alone can leave uneven cuts unchanged, though b is more specific."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c states the necessary condition: feedback must alter the next attempt while the error is traceable."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is stronger because feedback arrives soon enough to correct the next small batch."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c makes the target concrete, visible, and repeatable enough to practice."
+    }
+  ]
+}
+```

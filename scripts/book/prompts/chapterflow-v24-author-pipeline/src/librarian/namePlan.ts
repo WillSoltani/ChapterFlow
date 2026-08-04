@@ -27,15 +27,15 @@
  * connectives guidance handed to each agent plus the post-hoc BP13 gate.
  */
 
-import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "fs";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { ChapterV21 } from "../types.js";
-import { CHAPTERS_DIR, isSiblingFile, normSlug } from "../lib/chapterPaths.js";
+import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
+import { isSiblingFile, normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
-import { extractNamesFromText, loadLibraryState, type LibraryStateOptions } from "./libraryState.js";
-import { findSourceSidecar } from "./sourceSidecars.js";
+import { extractNamesFromText, type LibraryState } from "./libraryState.js";
 import { fnv1a } from "../lib/fnv1a.js";
 import { forbiddenNamesByPolicy, loadNamePolicy, type NamePolicyV1 } from "./namePolicy.js";
 
@@ -145,38 +145,43 @@ export function loadBannedConnectives(): BannedConnectivesConfig {
  *  stays correct even under the chapterId/filename casing drift. Robust to
  *  chapters on disk that were never ingested into the ledger. A present-but-empty
  *  chapter still registers a key (so it counts as authored). */
-export function usedNamesByChapter(bookId: string): Record<number, string[]> {
+function usedNamesByChapterFromCandidate(bookId: string, snapshot: CandidateSnapshot): Record<number, string[]> {
   const out: Record<number, string[]> = {};
-  let files: string[] = [];
-  try {
-    files = readdirSync(CHAPTERS_DIR).filter((f) => isSiblingFile(f, bookId));
-  } catch {
-    return out;
-  }
-  for (const f of files) {
-    const m = f.match(/-ch(\d{1,3})\.v21-native\.chapter\.json$/i);
+  for (const file of snapshot.files) {
+    const name = file.logicalPath.split("/").at(-1) ?? "";
+    if (!isSiblingFile(name, bookId)) continue;
+    const m = name.match(/-ch(\d{1,3})\.v21-native\.chapter\.json$/i);
     if (!m) continue;
     const num = parseInt(m[1], 10);
     try {
-      const ch = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, f), "utf8")) as ChapterV21;
+      const ch = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ChapterV21;
       const names = new Set<string>();
       for (const ex of ch.examples ?? []) {
         for (const n of extractNamesFromText(ex.scenario ?? "")) names.add(n);
       }
       out[num] = Array.from(names);
-    } catch {
-      // skip unparseable file (do NOT register a key — we can't carry its names)
+    } catch (cause) {
+      throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${file.logicalPath}: ${(cause as Error).message}`);
     }
   }
   return out;
 }
 
+export async function usedNamesByChapter(
+  bookId: string,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<Record<number, string[]>> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  return usedNamesByChapterFromCandidate(bookId, opened.value);
+}
+
 /** Flattened audit union of usedNamesByChapter. Not a policy/accounting source. */
-export function usedNamesInBook(bookId: string): Set<string> {
+export async function usedNamesInBook(bookId: string, reader: BookContentReader, candidateId: string): Promise<Set<string>> {
   const used = new Set<string>();
-  for (const names of Object.values(usedNamesByChapter(bookId))) {
-    for (const n of names) used.add(n);
-  }
+  const byChapter = await usedNamesByChapter(bookId, reader, candidateId);
+  for (const names of Object.values(byChapter)) for (const n of names) used.add(n);
   return used;
 }
 
@@ -184,37 +189,42 @@ export function usedNamesInBook(bookId: string): Set<string> {
  *  ONLY (the diagnostics.crossBookReused count). Policy exclusion comes from the
  *  ledger cooldown, not this heuristic scan. Only BANK members count: junk
  *  capitalized tokens from prose must not poison the audit signal. */
-export function bankNamesUsedByOtherBooks(bookId: string): Set<string> {
+function bankNamesUsedByOtherBooksFromCandidate(bookId: string, snapshot: CandidateSnapshot): Set<string> {
   const bank = new Set(loadNameBank());
   const used = new Set<string>();
-  let files: string[] = [];
-  try {
-    files = readdirSync(CHAPTERS_DIR).filter((f) => f.endsWith(".chapter.json"));
-  } catch {
-    return used;
-  }
-  for (const f of files) {
-    if (isSiblingFile(f, bookId)) continue; // this book's own names are handled separately
+  for (const file of snapshot.files) {
+    const name = file.logicalPath.split("/").at(-1) ?? "";
+    if (!name.endsWith(".chapter.json") || isSiblingFile(name, bookId)) continue;
     try {
-      const ch = JSON.parse(readFileSync(resolve(CHAPTERS_DIR, f), "utf8")) as ChapterV21;
+      const ch = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ChapterV21;
       for (const ex of ch.examples ?? []) {
         for (const n of extractNamesFromText(ex.scenario ?? "")) {
           if (bank.has(n)) used.add(n);
         }
       }
-    } catch {
-      // unreadable chapter — skip
+    } catch (cause) {
+      throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${file.logicalPath}: ${(cause as Error).message}`);
     }
   }
   return used;
 }
 
-function plannedNamesByChapter(bookId: string, opts: Pick<LibraryStateOptions, "stateDir" | "namePlansDir"> = {}): Record<number, string[]> {
-  const stateDir = opts.stateDir ? resolve(opts.stateDir) : resolve(__dirname, "../../state");
-  const dir = opts.namePlansDir ? resolve(opts.namePlansDir) : resolve(stateDir, "name-plans");
-  const path = resolve(dir, `${bookId}.name-plan.json`);
+export async function bankNamesUsedByOtherBooks(
+  bookId: string,
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<Set<string>> {
+  const opened = await reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId } });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  return bankNamesUsedByOtherBooksFromCandidate(bookId, opened.value);
+}
+
+function plannedNamesByChapter(bookId: string, snapshot: CandidateSnapshot): Record<number, string[]> {
+  const logicalPath = `state/name-plans/${bookId}.name-plan.json`;
+  const file = snapshot.files.find((entry) => entry.logicalPath === logicalPath);
+  if (!file) return {};
   try {
-    const raw = JSON.parse(readFileSync(path, "utf8"));
+    const raw = JSON.parse(Buffer.from(file.bytes).toString("utf8"));
     if (!isRecord(raw) || !isRecord(raw.allocation)) return {};
     const out: Record<number, string[]> = {};
     for (const [chapter, names] of Object.entries(raw.allocation)) {
@@ -223,8 +233,8 @@ function plannedNamesByChapter(bookId: string, opts: Pick<LibraryStateOptions, "
       out[n] = [...new Set(names.filter((name): name is string => typeof name === "string").map((name) => name.trim()).filter(Boolean))].sort();
     }
     return out;
-  } catch {
-    return {};
+  } catch (cause) {
+    throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(cause as Error).message}`);
   }
 }
 
@@ -258,20 +268,17 @@ function sidecarNameTexts(sidecar: unknown): string[] {
   return texts;
 }
 
-function sourceFigureBankNames(bookId: string, fromChapter: number, toChapter: number, bank: Set<string>): Set<string> {
+function sourceFigureBankNames(bookId: string, fromChapter: number, toChapter: number, bank: Set<string>, snapshot: CandidateSnapshot): Set<string> {
   const excluded = new Set<string>();
   for (let chapter = fromChapter; chapter <= toChapter; chapter++) {
-    const path = findSourceSidecar(bookId, chapter);
-    if (!path) {
-      console.warn(`name-plan: no source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}; source-figure name exclusion skipped for this chapter.`);
-      continue;
-    }
+    const logicalPath = `sidecars/ch${String(chapter).padStart(2, "0")}.json`;
+    const file = snapshot.files.find((entry) => entry.logicalPath === logicalPath);
+    if (!file) throw new Error(`CANDIDATE_ENTRY_MISSING: ${logicalPath}`);
     let sidecar: unknown;
     try {
-      sidecar = JSON.parse(readFileSync(path, "utf8"));
+      sidecar = JSON.parse(Buffer.from(file.bytes).toString("utf8"));
     } catch (err) {
-      console.warn(`name-plan: unreadable source sidecar for "${bookId}" ch${String(chapter).padStart(2, "0")}: ${(err as Error).message}`);
-      continue;
+      throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${logicalPath}: ${(err as Error).message}`);
     }
     for (const text of sidecarNameTexts(sidecar)) {
       for (const name of extractNamesFromText(text)) {
@@ -282,11 +289,11 @@ function sourceFigureBankNames(bookId: string, fromChapter: number, toChapter: n
   return excluded;
 }
 
-export function planNames(
+export async function planNames(
   rawBookId: string,
   fromChapter: number,
   toChapter: number,
-  perChapter = 7,
+  perChapter: number,
   opts: {
     lookback?: number;
     /** Deal fresh names even for already-planned chapters. The refresh path
@@ -296,20 +303,30 @@ export function planNames(
     stateDir?: string;
     namePlansDir?: string;
     namePolicy?: NamePolicyV1;
-  } = {},
-): NamePlan {
+  },
+  reader: BookContentReader,
+  candidateId: string,
+): Promise<NamePlan> {
+  const opened = await reader.open({ bookId: normSlug(rawBookId), selector: { kind: "CANDIDATE", candidateId } });
+  if (!opened.ok) throw new Error(`${opened.error.code}: ${opened.error.message}`);
+  const snapshot = opened.value;
   if (toChapter < fromChapter) throw new Error(`toChapter (${toChapter}) < fromChapter (${fromChapter})`);
   if (perChapter < 1) throw new Error(`perChapter must be >= 1 (got ${perChapter})`);
   // Normalize once so usedNamesByChapter (isSiblingFile) and the written plan
   // filename key off the SAME id (the case-sensitivity asymmetry the review flagged).
   const bookId = normSlug(rawBookId);
 
-  const usedByChapter = plannedNamesByChapter(bookId, opts);
+  const usedByChapter = plannedNamesByChapter(bookId, snapshot);
   const usedAll = new Set<string>();
   for (const names of Object.values(usedByChapter)) for (const n of names) usedAll.add(n);
 
   const policy = opts.namePolicy ?? loadNamePolicy();
-  const ledger = loadLibraryState({ stateDir: opts.stateDir, namePlansDir: opts.namePlansDir, namePolicy: policy });
+  const ledgerPath = "state/library-state.json";
+  const ledgerFile = snapshot.files.find((entry) => entry.logicalPath === ledgerPath);
+  if (!ledgerFile) throw new Error(`CANDIDATE_ENTRY_MISSING: ${ledgerPath}`);
+  let ledger: LibraryState;
+  try { ledger = JSON.parse(Buffer.from(ledgerFile.bytes).toString("utf8")) as LibraryState; }
+  catch (cause) { throw new Error(`CANDIDATE_ENTRY_MALFORMED: ${ledgerPath}: ${(cause as Error).message}`); }
   const policyForbidden = forbiddenNamesByPolicy(
     Object.values(ledger.books).map((book) => ({ bookId: book.bookId, generatedAt: book.generatedAt, namesUsed: book.namesUsed })),
     bookId,
@@ -322,8 +339,8 @@ export function planNames(
   // cooldown names. Capitalized-word extraction is only a diagnostic/audit signal.
   const bank = loadNameBank();
   const bankSet = new Set(bank);
-  const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet);
-  const crossBook = bankNamesUsedByOtherBooks(bookId);
+  const sourceFigures = sourceFigureBankNames(bookId, fromChapter, toChapter, bankSet, snapshot);
+  const crossBook = bankNamesUsedByOtherBooksFromCandidate(bookId, snapshot);
   const offset = bank.length ? fnv1a(bookId) % bank.length : 0;
   const rotated = bank.slice(offset).concat(bank.slice(0, offset));
   // Never DEAL a name the C7 ship-gate bans (single source of truth: C7_BANNED_NAMES).

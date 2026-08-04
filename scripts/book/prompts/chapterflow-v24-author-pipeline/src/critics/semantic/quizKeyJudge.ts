@@ -20,16 +20,16 @@
  * Design guarantees:
  *   - SEPARATE TIER. This never runs inside runShipGate/runBookGate; those stay
  *     deterministic, offline, fast. This is opt-in and model-backed.
- *   - INJECTABLE model fn (`AskModel`) so the detection/veto/report logic is
- *     unit-testable with a deterministic oracle — no live API needed to prove
- *     the harness. The live implementation (`liveAskModel`) calls the model
- *     through the existing provider router (callClaude), defaulting to the
- *     cheap `critic` tier.
- *   - FAIL-OPEN on infra. The runner decides what to do when no provider is
- *     configured; the judge itself just surfaces what the model said.
+ *   - INJECTABLE model fn (`AskModel`) so detection/veto/report logic remains
+ *     unit-testable with a deterministic oracle.
+ *   - Model-backed execution requires injected `ModelTaskRunner` context.
+ *     This module owns no provider, process, credential, or fallback route.
  */
 
-import { callClaude } from "../../claudeClient.js";
+import {
+  jsonPromptRequest,
+  type ModelCallerExecution,
+} from "../../app/modelTaskRunner.js";
 import type { ChapterV21 } from "../../types.js";
 import type { ProviderName } from "../../providers/types.js";
 
@@ -105,33 +105,44 @@ export function buildJudgeUserPrompt(args: {
     .join("\n\n");
 }
 
-/** Live model implementation — routes through the existing provider layer.
- *  Defaults to the cheap `critic` tier; provider/model overridable. */
-export function makeLiveAskModel(opts?: { provider?: ProviderName; model?: string }): AskModel {
+/** Model-backed implementation. Execution must be supplied by app composition;
+ *  this critic owns no provider, process, credential, or fallback route. */
+export function makeLiveAskModel(opts?: {
+  execution?: ModelCallerExecution;
+  /** Retained only so old callers fail at runtime instead of selecting a provider. */
+  provider?: ProviderName;
+  model?: string;
+}): AskModel {
   return async (args) => {
-    const r = await callClaude<{ index: number; confidence: Confidence; correctText: string; reason: string }>({
-      tier: "critic",
-      provider: opts?.provider ?? "openai-api",
-      model: opts?.model,
-      jsonMode: true,
-      temperature: 0,
-      maxTokens: 400,
-      system: JUDGE_SYSTEM,
-      user: buildJudgeUserPrompt(args),
+    if (opts?.provider !== undefined || opts?.model !== undefined) {
+      throw new Error("UNSUPPORTED_MODEL_SELECTOR");
+    }
+    const execution = opts?.execution;
+    if (!execution) throw new Error("MODEL_TASK_RUNNER_REQUIRED");
+    const result = await execution.runner.run({
+      profileId: "pipeline-read-json-v1",
+      prompt: jsonPromptRequest(JUDGE_SYSTEM, buildJudgeUserPrompt(args)),
+      context: execution.context,
     });
+    if (result.outcome !== "SUCCEEDED" || !isModelJudgment(result.output)) {
+      const detail = result.error ? `${result.error.code}:${result.error.message}` : "invalid model output";
+      throw new Error(`QUIZ_KEY_MODEL_${result.outcome}:${detail}`);
+    }
     return {
-      index: r.content.index,
-      confidence: r.content.confidence,
-      correctText: r.content.correctText,
-      reason: r.content.reason,
-      usage: {
-        inputTokens: r.inputTokens ?? 0,
-        outputTokens: r.outputTokens ?? 0,
-        estimatedCostUsd: r.estimatedCostUsd ?? 0,
-        model: r.model,
-      },
+      index: result.output.index,
+      confidence: result.output.confidence,
+      correctText: result.output.correctText,
+      reason: result.output.reason,
     };
   };
+}
+
+function isModelJudgment(value: unknown): value is Omit<ModelJudgment, "usage"> {
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return false;
+  const output = value as Record<string, unknown>;
+  return Number.isInteger(output.index) && Number(output.index) >= 0 && Number(output.index) <= 2 &&
+    (output.confidence === "high" || output.confidence === "medium" || output.confidence === "low") &&
+    typeof output.correctText === "string" && typeof output.reason === "string";
 }
 
 /** Judge every quiz question's answer key in one chapter. */

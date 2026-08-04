@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named repairs matched to four villains, not as a generic pause.",
+      "A yes-or-no vendor frame is narrow framing, and the prose says widening must happen before evidence decorates a cramped choice.",
+      "Confirmation bias is guarded against by seeking evidence that can surprise or hurt the favorite answer.",
+      "The Intel section says emotion can carry information, but distance asks what matters after the short-term surge quiets.",
+      "Overconfidence is countered by naming better, worse, or different futures rather than trusting one neat forecast.",
+      "Steve Cole's HopeLab logic is to run parallel first passes so comparison teaches before commitment.",
+      "Grove's outsider question works by imagining what a fresh leader would do without Intel's memory-chip attachment.",
+      "The chapter says each villain bends a different stage and needs a different WRAP move.",
+      "The prose explicitly says good process raises odds without promising the happy outcome."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q2: option c telegraphs itself as wrong because 'keep the frame tight' openly opposes the chapter's widening move.",
+      "Q3: options a and b both flatter the favorite plan, leaving c as the only anti-bias answer even without reading closely.",
+      "Q5: options b and c treat confidence as evidence or mood, so a is the only real countermeasure.",
+      "Q7: option b gives outsiders superior technical knowledge, which is an exaggerated claim the chapter never needs."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 80,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 91,
+    "insight": 88,
+    "density": 81,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "This is the chapter's strongest mechanism in a memorable line."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "It states the key limit cleanly and prevents process overclaiming."
+    },
+    {
+      "quote": "The team lead texts from the train platform before the decision meeting: \"WRAP check. Which of the four villains is loudest?\"",
+      "why": "This example feels staged and thinner than the stronger HopeLab and Intel cases."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "The action is concrete, but 'shortcut' is underdefined at the point where it appears."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The two wrong answers both openly intensify confirmation bias, making the correct answer guessable from test-taking logic.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The distractors are weak because they equate confidence with proof or mood, so the range-mapping answer stands out too plainly.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example introduces Yvonne and a launch board without concrete stakes, product context, or consequence, so it is thin but usable.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The train-platform text exchange mostly restates the framework and gives little before-to-after decision pressure.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The word 'shortcut' is not yet explained in that section, so the action is slightly less standalone than the surrounding material.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: it has a clear core move, strong mechanism language, honest limits, and quizzes that are mostly fair and derivable. The best material links each WRAP move to a specific failure mode instead of treating decision quality as generic thoughtfulness. The main weaknesses are craft-level: a few quiz distractors are too easy to eliminate, and the later invented examples thin out compared with the HopeLab and Intel anchors."
+}
+```

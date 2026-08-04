@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P14",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported fictionalized case details presented as sourced history\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.\",\"\\\"The forecast is careful,\\\" he says.\",\"The investment partner answers, \\\"Careful about which future?\\\"\",\"The analyst reads the downside risk aloud, then the upside potential.\"],\"rationale\":\"The source plan verifies only that Byron Penstock analyzed Coinstar by comparing upside potential and downside risk rather than relying on a single forecast. The candidate adds a specific call setting, physical spreadsheet action, dialogue, an investment partner, a page naming a middle case, and aloud reading of scenarios. These details are not supported by the source plan and are narrated in the same factual register as the real case, so the content contains a material unsupported-history defect.\"}"
+}

@@ -13,15 +13,14 @@ import {
   buildBriefCacheInputs,
   buildChapterCacheInputs,
   buildPlanCacheInputs,
-  generateChapter,
   type BookMeta,
   type ChapterSpec,
 } from "../src/generateChapter.js";
 import { stripInternalFields } from "../src/lib/readerContent.js";
 import { buildProductionManifest } from "../src/productionManifest.js";
 import { collectSourceVerifyItems } from "../src/qc/sourceRealityPolicy.js";
-import { loadPlanningSourceEvidence } from "../src/source/sourceEvidence.js";
-import type { BookBrief, ChapterDesignDoc, ChapterV21 } from "../src/types.js";
+import { loadPlanningSourceEvidence, renderBookSourceForEditor, renderChapterSourceForPlanner } from "../src/source/sourceEvidence.js";
+import type { ChapterV21 } from "../src/types.js";
 import { makeChapter, TMP_DIR, writeCanonicalIndexFixture, writeResearchRunManifestFixture } from "./helpers.js";
 import { test } from "./harness.js";
 
@@ -121,53 +120,6 @@ function chapterSpec(bookId = BOOK, n = 1): ChapterSpec {
     chapterId: `${bookId}-ch${String(n).padStart(2, "0")}`,
     chapterNumber: n,
     chapterTitle: "The harbor principle",
-  };
-}
-
-function validBrief(): BookBrief {
-  return {
-    bookId: BOOK,
-    title: "Source Anchors",
-    author: "Fixture Author",
-    thesisParagraph: "A synthetic thesis says source evidence must precede every design decision in the chapter pipeline.",
-    sourceAnchorIds: ["ch01.fact.1"],
-    coreIdeas: [
-      { name: "Evidence first", oneSentence: "Load evidence before planning.", mentalMove: "Check the sidecar.", sourceAnchors: ["ch01.fact.1"] },
-      { name: "Anchors travel", oneSentence: "Carry anchors to each unit.", mentalMove: "Attach IDs.", sourceAnchors: ["ch01.fact.2"] },
-      { name: "Projection strips", oneSentence: "Reader payloads omit internals.", mentalMove: "Project public content.", sourceAnchors: ["ch01.fact.3"] },
-    ],
-    targetReader: "Operators hardening a generation pipeline.",
-    voiceCharter: {
-      register: "plainspoken",
-      person: "second",
-      cadence: "medium",
-      signatureMoves: ["open concretely", "name the decision"],
-      avoidMoves: ["generic planning", "memory-only claims"],
-    },
-    teachingArc: "Evidence flows from source to plan to prose.",
-    forbiddenMoves: ["Do not plan from memory.", "Do not fabricate anchors.", "Do not ship authoring internals."],
-  };
-}
-
-function validPlan(): ChapterDesignDoc {
-  return {
-    chapterId: `${BOOK}-ch01`,
-    number: 1,
-    title: "The harbor principle",
-    coreMove: "Check the validated source sidecar before choosing the chapter's teaching move.",
-    coreMoveSourceAnchorIds: ["ch01.fact.1"],
-    exampleCount: 3,
-    exampleSpecs: [0, 1, 2].map((i) => ({
-      domain: `source audit workflow ${i + 1}`,
-      audience: "a pipeline operator",
-      stakes: "preventing memory-based planning from shipping",
-      format: "vignette",
-      requiredBeat: "the operator checks the anchor before writing the unit",
-      sourceAnchorIds: ["ch01.ex.lantern"],
-    })),
-    quizFocus: { count: 6, bloomsMix: { apply: 6 }, transferEmphasis: 1, sourceAnchorIds: ["ch01.fact.2"] },
-    cardFocus: { count: 3, retrievalPractice: true, sourceAnchorIds: ["ch01.fact.3"] },
-    readingTimeMinutes: 7,
   };
 }
 
@@ -423,83 +375,38 @@ test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satis
   assert.ok(boundHits.length >= 1, "with the real specific absent, SC11.2 still blocks — the tolerance covers ONLY citation-shaped specifics");
 });
 
-test("generation loads and passes validated source evidence before editor and planner calls", async () => {
+test("source evidence loader validates before rendering explicit editor and planner inputs", () => {
   const root = fixtureRoot("order");
   rmSync(root, { recursive: true, force: true });
-  const { stateRoot, runsRoot } = writeSourceRun(root);
-  const calls: string[] = [];
-  const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-  process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = "1";
+  const { runsRoot } = writeSourceRun(root);
   try {
-    await assert.rejects(
-      generateChapter(bookMeta(), chapterSpec(), {
-        stateRoot,
-        runsRoot,
-        sourceV2Required: true,
-        agents: {
-          runEditorInChief: async (input) => {
-            calls.push("editor");
-            assert.match(input.sourceExcerpt ?? "", /Validated source-v2 anchor catalog/);
-            return validBrief();
-          },
-          runCurriculumPlanner: async (input) => {
-            calls.push("planner");
-            assert.deepEqual(calls, ["editor", "planner"]);
-            assert.match(input.chapterSource ?? "", /Exact validated chapter sidecar/);
-            assert.equal(input.sourceAnchors?.some((anchor) => anchor.id === "ch01.fact.1"), true);
-            throw new Error("STOP_AFTER_PLANNER");
-          },
-        },
-      }),
-      /STOP_AFTER_PLANNER/,
-    );
-    assert.deepEqual(calls, ["editor", "planner"]);
+    const evidence = loadPlanningSourceEvidence(BOOK, 1, { runsRoot, requireSourceV2: true, chapterTitle: "The harbor principle" });
+    assert.equal(evidence.sourceV2, true);
+    assert.equal(evidence.anchors.some((anchor) => anchor.id === "ch01.fact.1"), true);
+    assert.match(renderBookSourceForEditor(evidence) ?? "", /Validated source-v2 anchor catalog/);
+    assert.match(renderChapterSourceForPlanner(evidence) ?? "", /Exact validated chapter sidecar/);
+    assert.match(renderChapterSourceForPlanner(evidence) ?? "", /Allowed source anchors/);
   } finally {
-    if (priorAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-    else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = priorAllow;
     rmSync(root, { recursive: true, force: true });
   }
 });
 
-test("missing or invalid required source-v2 evidence stops generation before planning agents run", async () => {
+test("missing or invalid required source-v2 evidence fails closed during pure evidence loading", () => {
   for (const variant of ["missing", "invalid"] as const) {
     const root = fixtureRoot(`fail-closed-${variant}`);
     rmSync(root, { recursive: true, force: true });
-    const stateRoot = resolve(root, "state");
     const runsRoot = resolve(root, "runs");
     if (variant === "invalid") {
       const invalid = sidecar();
       delete invalid.centralConcept.id;
       writeSourceRun(root, BOOK, 1, invalid);
     }
-    let editorCalls = 0;
-    let plannerCalls = 0;
-    const priorAllow = process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-    process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = "1";
     try {
-      await assert.rejects(
-        generateChapter(bookMeta(), chapterSpec(), {
-          stateRoot,
-          runsRoot,
-          sourceV2Required: true,
-          agents: {
-            runEditorInChief: async () => {
-              editorCalls += 1;
-              return validBrief();
-            },
-            runCurriculumPlanner: async () => {
-              plannerCalls += 1;
-              return validPlan();
-            },
-          },
-        }),
+      assert.throws(
+        () => loadPlanningSourceEvidence(BOOK, 1, { runsRoot, requireSourceV2: true, chapterTitle: "The harbor principle" }),
         /source evidence blocked/,
       );
-      assert.equal(editorCalls, 0, `${variant}: editor must not run`);
-      assert.equal(plannerCalls, 0, `${variant}: planner must not run`);
     } finally {
-      if (priorAllow === undefined) delete process.env.CHAPTERFLOW_ALLOW_MODEL_GEN;
-      else process.env.CHAPTERFLOW_ALLOW_MODEL_GEN = priorAllow;
       rmSync(root, { recursive: true, force: true });
     }
   }

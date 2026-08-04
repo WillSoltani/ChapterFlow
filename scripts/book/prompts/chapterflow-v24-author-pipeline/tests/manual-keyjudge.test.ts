@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { makeChapter, PIPELINE_DIR, STATE_CHAPTERS, TMP_DIR, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
@@ -18,6 +18,17 @@ import {
 
 const BOOK = "zz-fixture-manual-key";
 const RUN = "20260612T000000Z";
+const QC_PACK_BOOK_DIR = dirname(keyPackDir(BOOK, "r-manual"));
+const QC_PACKS_DIR = dirname(QC_PACK_BOOK_DIR);
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, "r-manual"));
+const QC_PACKS_DIR_EXISTED = existsSync(QC_PACKS_DIR);
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
+
+function cleanupQcContainers(): void {
+  rmSync(QC_PACK_BOOK_DIR, { recursive: true, force: true });
+  if (!QC_PACKS_DIR_EXISTED && existsSync(QC_PACKS_DIR) && readdirSync(QC_PACKS_DIR).length === 0) rmdirSync(QC_PACKS_DIR);
+  if (!QC_ROUNDS_DIR_EXISTED && existsSync(QC_ROUNDS_DIR) && readdirSync(QC_ROUNDS_DIR).length === 0) rmdirSync(QC_ROUNDS_DIR);
+}
 
 function sourceSidecar(chapterNumber: number): any {
   return {
@@ -65,12 +76,12 @@ function setup(): { chapter: ReturnType<typeof makeChapter>; tokens: ReturnType<
 function cleanup(): void {
   rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
   rmSync(resolve(TMP_DIR, `${BOOK}.answers.json`), { force: true });
-  rmSync(keyPackDir(BOOK, "r-manual"), { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, "r-manual"), { force: true });
   rmSync(manualKeyJudgePath(BOOK, 1), { force: true });
   rmSync(keyDerivationPath(BOOK, "r-manual", "keyA"), { force: true });
   rmSync(keyDerivationPath(BOOK, "r-manual", "keyB"), { force: true });
   rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
+  cleanupQcContainers();
 }
 
 function writeAnswers(chapter: ReturnType<typeof makeChapter>, wrong = false, partial = false, confidence: number | "low" | "medium" | "high" = 0.95, omitFacts = false): string {
@@ -251,12 +262,12 @@ test("manual keyjudge: an incremental round CARRIES FORWARD a prior resolution f
   const cleanup2 = () => {
     rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
     for (const r of [OLD, NEW]) {
-      rmSync(keyPackDir(BOOK, r), { recursive: true, force: true });
       rmSync(qcRoundPath(BOOK, r), { force: true });
     }
     rmSync(manualKeyJudgePath(BOOK, 1), { force: true });
     rmSync(resolve(TMP_DIR, `${BOOK}.answers.json`), { force: true });
     rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch01.v21-native.chapter.json`), { force: true });
+    cleanupQcContainers();
   };
   const answersForRound = (chapter: ReturnType<typeof makeChapter>, round: string): string => {
     const packHash = JSON.parse(readFileSync(resolve(keyPackDir(BOOK, round), "ch01.key-pack.json"), "utf8")).packHash;
@@ -319,7 +330,6 @@ test("manual keyjudge: subset resolution does not clobber unreviewed sibling cha
   const cleanup2 = () => {
     rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
     for (const r of [OLD, NEW]) {
-      rmSync(keyPackDir(BOOK, r), { recursive: true, force: true });
       rmSync(qcRoundPath(BOOK, r), { force: true });
     }
     for (const n of [1, 2]) {
@@ -327,6 +337,7 @@ test("manual keyjudge: subset resolution does not clobber unreviewed sibling cha
       rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
     }
     rmSync(resolve(TMP_DIR, `${BOOK}.answers.json`), { force: true });
+    cleanupQcContainers();
   };
   const answersFor = (chapter: ReturnType<typeof makeChapter>, round: string): string => {
     const packHash = JSON.parse(readFileSync(resolve(keyPackDir(BOOK, round), `ch${String(chapter.number).padStart(2, "0")}.key-pack.json`), "utf8")).packHash;

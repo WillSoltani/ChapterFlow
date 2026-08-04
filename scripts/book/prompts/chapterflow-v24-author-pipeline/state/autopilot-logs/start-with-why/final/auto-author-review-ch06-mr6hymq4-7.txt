@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Q8: the keyed answer is the only choice that mentions the chapter's exact anchor logic, while the distractors are visibly distorted.", "Several distractors are too obviously wrong because they endorse abstraction, slogans, or overgeneralization the chapter repeatedly rejects."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 80,
+    "transfer": 84,
+    "practical": 78,
+    "summaries": 76,
+    "tone": 72,
+    "limits": 88,
+    "insight": 83,
+    "density": 77,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The terms are plain, but the order does real labor. Put behavior first and you have a script in search of a why.",
+      "why": "Strongest compact statement of the chapter's mechanism."
+    },
+    {
+      "quote": "Do not use this move when skill is weak, service is broken, or the promise cannot be kept. Repair the operation first.",
+      "why": "Clear boundary that keeps the trust advice from overselling itself."
+    },
+    {
+      "quote": "A true detail in the wrong place becomes false help.",
+      "why": "Memorable and useful rule for source discipline."
+    },
+    {
+      "quote": "Denise pauses at the Southwest Airlines counter in Dallas while an employee sets proof's return.",
+      "why": "Worst opening defect: the phrase is strained and unclear before the reader has the model."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening sentence is syntactically awkward and opaque; 'sets proof's return' reads like internal shorthand rather than plain prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "Random capitalization in 'Predictable behavior' and 'Trust' gives the prose a scaffold smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "'Who checks, and when?' is useful, but it lands abruptly before the reader has enough context for why this question matters.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Hailey, Daniel, and Georges feel like artificial training names rather than necessary people, which weakens tone and beginner approachability.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The 'Dallas-style place language' issue is derivable, but less directly taught than most quiz points, so the item is a little fuzzier than the rest.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "Saying the sentence aloud for 30 seconds feels like performative practice; the useful action is marking one live promise.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a real mechanism: belief frames behavior, returned proof lowers guessing costs, and source details must stay bounded. The strongest pieces are the limits, the return-point idea, and the warning against moving true details into false settings. I would not ship it yet against an 84 bar because the opening is unclear, the prose sometimes shows its instructional scaffolding, and a few named mini-scenes feel manufactured rather than necessary."
+}
+```

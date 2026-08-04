@@ -1,0 +1,6 @@
+note: could not resolve "radical-candor" to a known book — using raw id "radical-candor".
+DOCTOR — 1 fatal, 2 warning(s)
+  ⚠ [pending-deploy] DEPLOY PENDING — high-output-management published 23h ago, not yet served by the app; 3 step(s) remaining: upload-book-packages-to-s3 → deploy-workflow → verify-live-sync (docs/v24/DEPLOY-RUNBOOK.md)
+  ⚠ [pending-deploy] DEPLOY PENDING — multipliers published 8h ago, not yet served by the app; 3 step(s) remaining: upload-book-packages-to-s3 → deploy-workflow → verify-live-sync (docs/v24/DEPLOY-RUNBOOK.md)
+  ✗ [canonical-chapter-set] CHSET.index_missing: Canonical chapter index is missing at /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/indexes/radical-candor.json. Existing chapter files are not an inferred production index.
+  ✓ 7 check(s) passed

@@ -1,0 +1,86 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz questions or answer choices are present, so there are no option-pattern tells to inspect."]
+  },
+  "scores": {
+    "retention": 45,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 20,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 65,
+    "insight": 55,
+    "density": 35,
+    "beginner": 60
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Your ten percent does not erase their ninety. It gives you a place to stop feeding the pattern while still naming the ninety clearly.",
+      "why": "Strongest moment: concrete, memorable, and clarifies the core boundary."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: required product sections are present as headings but contain no usable content."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst tone defect: scaffold-facing placeholder language appears in the reader-facing chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, so the assessment is broken and cannot test comprehension.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the chapter gives no concrete action despite promising one.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is empty, so there are no cases showing transfer beyond the abstract point.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the review layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite a strong candidate line in the full read.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "Uses internal review-placeholder language instead of a reader-facing hook.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The sentence is a placeholder and does not summarize the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The sentence is a placeholder and does not provide a deeper standalone explanation.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This chapter has one clear, useful idea in the full read: owning a small contribution can give a person agency without falsely equalizing blame. The ten-percent/ninety-percent line is memorable and the limits are handled responsibly. But the chapter is structurally incomplete: the quiz is empty, the action step is empty, the examples are empty, and multiple promised learning layers are either missing or placeholder text. It should not ship against an 80+ professional bar until the missing sections are actually written."
+}
+```

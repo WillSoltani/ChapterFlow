@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: I derive a because the prose says copied visible tools fail when the receiving system keeps a different upstream belief; the key gives b, which the prose does not support."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 58,
+    "transfer": 82,
+    "practical": 70,
+    "summaries": 77,
+    "tone": 63,
+    "limits": 72,
+    "insight": 68,
+    "density": 62,
+    "beginner": 76
+  },
+  "quotes": [
+    {
+      "quote": "Design the result into the start; when the opening assumption is wrong, end-stage fixes only make the bad premise look competent.",
+      "why": "Strong portable takeaway; compact and memorable."
+    },
+    {
+      "quote": "a) The receiving factory likely used the tool with a different starting belief.",
+      "why": "This is the prose-supported answer for Chapter 1 Q8."
+    },
+    {
+      "quote": "CHAPTER 1 Q8: b",
+      "why": "The key selects an unsupported answer, causing the correctness gate failure."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Template/scaffold artifact leaks into every implementation plan."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence structure damages confidence in the prose."
+    },
+    {
+      "quote": "A Motorola status lesson follows a fashion buyer has celebrity mockups on one side of the table and repeat-purchase data on the other.",
+      "why": "Another pasted-template sentence with broken grammar."
+    }
+  ],
+  "oneParagraphVerdict": "The sample has useful teaching kernels and several strong, portable lines, especially around source assumptions, manipulation versus loyalty, trust, and fuzzy WHY. It fails the correctness gate because Chapter 1 Q8 is keyed to an answer the chapter does not support, and because repeated scaffold artifacts and corrupted example sentences leak into the reader-facing prose. The chapters also show high churn: the same Hook/Fast/Deep/Full/Examples/Quiz/Cards/Implementation/Memorable-lines shell, repeated limit paragraph, repeated if-then plan structure, and similarly shaped examples make the book feel templated rather than individually authored."
+}
+```

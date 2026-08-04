@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q4: the correct answer is the only option that preserves named chapter terms in the taught order; the distractors are broad blending moves.", "Q8: the correct answer echoes prose phrasing about the visible tactic carrying too much, making it easier to guess by language match.", "Several distractors use extreme moves like drop, replace, only, or everywhere, while correct answers sound more measured and chapter-specific."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 82,
+    "transfer": 80,
+    "practical": 85,
+    "summaries": 88,
+    "tone": 76,
+    "limits": 89,
+    "insight": 84,
+    "density": 78,
+    "beginner": 81
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is a warning light, not a finish line. No proof, no progress.",
+      "why": "Strongest compact memory line; it carries the chapter's practical rule."
+    },
+    {
+      "quote": "Start outside, then come back inside. Name the External rival. Name the Internal benchmark that existed before the rival moved.",
+      "why": "Clear, repeatable procedure that a reader could use after finishing the chapter."
+    },
+    {
+      "quote": "The Microsoft anchor changes the decision because it is not Apple-Dell in new clothes.",
+      "why": "Good mechanism: it explains why a second venue matters rather than just adding another example."
+    },
+    {
+      "quote": "When proof is demanded, stop the claim until each anchor carries its hard fact and someone names what must come back before it leaves.",
+      "why": "This is useful, but it also shows the chapter's recurring scaffold smell around anchors and proof."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "tone",
+      "problem": "The chapter often sounds like an internal curriculum scaffold, with repeated terms such as anchor, token, venue, and proof due back carrying more weight than plain explanation.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Some examples feel manufactured around the lesson mechanics rather than like naturally occurring decisions, especially Christophe and Pierre.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer closely mirrors the prose phrase about the visible tactic carrying too much, creating a language-match tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "density",
+      "problem": "Several sections repeat the same outside-rival/internal-mark/proof loop with only small wording changes, lowering idea density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable as a useful teaching chapter in substance, but not at a professional 84+ bar without smoothing. The core move is memorable, the summaries layer well, the quiz keys are sound, and the limits section is unusually honest. The main weakness is not correctness; it is presentation. The prose keeps exposing its scaffold, and a few examples feel built to satisfy the framework rather than to reveal lived decisions. Tightening repetition and making the applied scenes less synthetic would raise it materially."
+}
+```

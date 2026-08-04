@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "b", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four specific repairs mapped to narrow framing, confirmation bias, short-term emotion, and overconfidence.",
+      "The chapter says a narrow yes-or-no frame hides better paths, so widening options comes before more evidence.",
+      "Reality-testing asks what would make the favorite answer fail and looks for evidence that can hurt it.",
+      "The Intel/Grove passage says attachment should be made quieter by asking what a fresh outsider would do.",
+      "The final WRAP move counters overconfidence by naming wider possible futures, not trusting one neat forecast.",
+      "HopeLab's lesson is to fund parallel first passes so comparison teaches before commitment.",
+      "Grove's outsider question is explicitly framed as asking what a fresh outsider would do without the memory-chip attachment.",
+      "The prose says each villain affects a different part of the choice and each needs a different repair move.",
+      "The chapter states good process raises odds without promising the outcome."
+    ],
+    "confidence": ["high", "high", "high", "medium", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "Choice c is also partly defensible because the prose says emotion can carry real information and the implementation plan says to ask what will still matter after the mood cools; b is stronger because it uses the Intel outsider mechanism.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "b is the only option that names all four WRAP moves; a and c are vague or structurally wrong.",
+      "b is the only option using the chapter's core phrase pattern about yes-or-no frames hiding paths.",
+      "c gives away the key with the term 'disconfirming evidence'; a and b are openly pro-confirmation.",
+      "b repeats the Intel outsider-question template closely; a is an obvious overstatement.",
+      "a is the only choice with 'wider range of plausible outcomes,' a near-direct recall phrase.",
+      "c repeats 'parallel first passes' and 'comparison before commitment' almost verbatim.",
+      "a closely paraphrases the review-card answer; b is plainly false by saying outsiders know technology better.",
+      "a is the only option that preserves the four-part structure; b and c flatten it.",
+      "b repeats the takeaway about improving odds while uncertainty remains; a is an obvious impossible promise."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Memorable, concrete line that makes confirmation bias stick."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Clear boundary that prevents overselling WRAP."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "Practical but slightly odd; the laptop-lid cue may feel arbitrary."
+    },
+    {
+      "quote": "The product lead should seek disconfirming evidence before the favorite plan sets the search.",
+      "why": "Quiz answer is fair, but the key term makes the right answer easy to spot."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The intended answer is b, but c is also supported by the chapter's claim that emotion can carry information and by the implementation plan's 'what will still matter after the mood cools' move.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer uses the giveaway phrase 'disconfirming evidence' while the distractors are transparently wrong pro-favorite-plan actions.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct answer closely repeats the review-card wording, making it easy to answer by surface matching.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The laptop-lid action is concrete but oddly specific; a reader without that context may see it as ritual rather than a transferable decision habit.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example is useful but mostly restates the four villains and WRAP mapping rather than showing a before-to-after decision consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: clear, beginner-friendly, and unusually good at explaining the mechanism behind WRAP rather than merely naming the acronym. Its best lines are memorable, the summaries layer well, and the practical advice mostly gives readers actions they could use. The main weakness is quiz design: several answers are too easy to spot by vocabulary matching, and Q4 has a real sibling answer. Transfer is solid but a few examples would teach better if they showed sharper consequences instead of mainly restating the model."
+}
+```

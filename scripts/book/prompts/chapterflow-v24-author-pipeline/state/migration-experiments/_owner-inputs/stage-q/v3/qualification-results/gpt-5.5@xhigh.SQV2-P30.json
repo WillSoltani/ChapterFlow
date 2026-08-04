@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P30",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"duplicated generic item relabeled across distinct chapter mechanisms\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations Question: A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?\",\"Chapter skill: Begin from the Third Story Question: A coach hears a player reject feedback as favoritism. Which next sentence keeps the talk open?\",\"Say what you heard in the player's story, then add your own view as one view, not the whole truth.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to third story and creates room for new information.\"],\"rationale\":\"The two quiz instances use the same scenario, question, choices, and correct answer, with only the chapter-skill label and a phrase in the explanation changed. The selected answer is a broad keep-the-conversation-open move that can be described as acknowledging another story and adding one’s own view, but the item does not actually require distinguishing the Three Conversations mechanism from the Third Story mechanism. Because the duplicated item merely swaps terminology in the explanation rather than testing both mechanisms separately, it is a material assessment-validity defect.\"}"
+}

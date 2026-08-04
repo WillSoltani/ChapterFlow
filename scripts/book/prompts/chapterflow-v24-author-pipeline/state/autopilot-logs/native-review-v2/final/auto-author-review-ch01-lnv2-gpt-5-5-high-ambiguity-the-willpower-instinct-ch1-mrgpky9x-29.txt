@@ -1,0 +1,88 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "a", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as three powers: I will starts, I won't blocks, and I want keeps the larger value awake.",
+      "Miller and Cohen are used to explain prefrontal control as keeping goals active so attention and action tilt toward them.",
+      "Gage survived and could speak, but steadiness, planning, and social restraint changed after frontal damage.",
+      "The chapter says self-awareness must notice the moment before the action hardens, including the hand moving toward the reply.",
+      "The prose frames self-control as social: waiting turns, keeping promises, sharing resources, softening anger, and repairing conflict.",
+      "Brooklyn's example says the snack is vivid while the quieter running want needs a voice at the cue.",
+      "The chapter says the short-term relief self and long-term goal self can both be real; the issue is which motive gets support.",
+      "The three-power method uses concrete next actions, barriers, values, and feedback from what still fails.",
+      "The Amelia desk routine shows control biasing attention and response when an automatic routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "b is also defensible because the prose explicitly says the long-term goal needs attention at the choice point to compete.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Several correct answers are the longest or most explanatory option, especially Q1, Q2, Q3, Q6, and Q7.",
+      "Distractors often use giveaway absolutes or obviously wrong moral claims such as fixed character, fake goals, only, mainly, or avoid cooperation."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 72,
+    "transfer": 82,
+    "practical": 83,
+    "summaries": 84,
+    "tone": 86,
+    "limits": 86,
+    "insight": 88,
+    "density": 82,
+    "beginner": 88
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's cleanest memorable compression of the core move."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "A strong mechanism line that explains why the three-power check matters."
+    },
+    {
+      "quote": "Brooklyn values running, yet the snack cue wins when the run goal is only a vague thought. What should she infer?",
+      "why": "This quiz stem invites both the vividness answer and the attention-at-choice-point answer."
+    },
+    {
+      "quote": "For the first half of this week, use your usual all-or-nothing rule.",
+      "why": "The weekly practice adds friction by asking readers to preserve a weaker strategy before trying the useful one."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "Structurally invalid: choices a and b are both directly derivable from the prose, so the item has two defensible answers.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several correct answers are longer and more qualified than the distractors, creating answer-pattern tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The example set overuses the pharmacy/family pickup thread, narrowing transfer variety across different willpower domains.",
+      "mustFix": false
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "The comparison exercise asks readers to spend half a week using the weaker all-or-nothing rule, which feels more like product theater than a low-friction practice step.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong, memorable core: willpower is not just refusal but a three-part check that makes the larger want active before the easy choice runs. It is beginner-friendly, concrete, and mechanistic without becoming technical. I would not ship it yet because Q6 is under-keyed with two prose-supported answers, and the quiz pattern is a little too guessable, but the prose itself is close to professional quality."
+}
+```

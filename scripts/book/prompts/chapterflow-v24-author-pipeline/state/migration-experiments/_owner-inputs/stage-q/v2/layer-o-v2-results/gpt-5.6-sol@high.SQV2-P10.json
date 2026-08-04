@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P10",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported factualized scene details in a real-world case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":\"\\\"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\\\"; \\\"The Intel reviewer writes the outsider question at the top of the review page\\\"; \\\"Hard specifics allowed: Andy Grove, Intel, memory chips, microprocessors\\\"\",\"rationale\":\"The candidate presents an invented reviewer, a strategy-review scene, two pages in a folder, and the act of writing on a review page as historical events, although the source plan supports only Intel's move from memory chips toward microprocessors and Grove's outsider-question framing. These unsupported details are narrated in the same factual register as the verified case, creating a material fabrication defect.\"}"
+}

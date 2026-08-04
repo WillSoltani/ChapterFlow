@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-05T01:48:34.144Z",
+  "bookId": "start-with-why",
+  "runId": "book-run",
+  "stage": "chapter-generation",
+  "severity": "blocker",
+  "summary": "author write: reader budgets STILL BLOCK after the one bounded repair round (1 finding(s)):\n  [CHB1.anchor_repetition] ch08: ch08 reading surface mentions \"allen\" (distinctive token of case \"Bill Gates and Paul Allen\") 7 times — over the per-chapter cap of 6; readers flagged anchor hammering. Vary the reference or cut mentions.",
+  "findings": [],
+  "artifacts": [],
+  "recommendedFixes": [
+    "Edit only the failing chapter content unless the report names missing source/plans as the root cause.",
+    "Fix blocker-level findings first. Preserve chapterId, number, title, sourceAnchorIds, and quiz keys unless the finding explicitly targets them.",
+    "Run author-check and gate-chapter for the edited chapter, then rerun book-gate to catch cross-chapter regressions."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge start-with-why",
+    "npx tsx src/cli.ts book-run start-with-why --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run start-with-why --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/chapter-generation.20260705014834.f12a7c00.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/start-with-why/book-run/chapter-generation.20260705014834.f12a7c00.repair.json"
+}

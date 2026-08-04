@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says to stop replaying the whole performance, isolate the breaking point, get close feedback, and change the next rep.",
+      "A repeated redox error matches the chapter's 'last error pattern' and 'ten-minute drill around only that pattern' implementation move.",
+      "The chapter identifies naive practice as repeating the whole task while the weak point stays hidden.",
+      "The plateau plus videoed crossover calls for a visible cue, immediate check, and another short rep before returning to volume.",
+      "Faloon improves because each miss tells the next attempt where to work, not because he repeats recall blindly.",
+      "The knife-cut claim fails because it offers repetition without a visible target that changes the next cut.",
+      "The chapter says feedback matters when it is close enough to alter the next attempt while the miss is traceable.",
+      "Plan B creates short feedback loops; Plan A delays the signal until after a large block.",
+      "The revised target is visible, countable, and correctable across five turns."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is also defensible because the prose says comfort can leave weak spots hidden; b is stronger because it names the visible target and next-attempt change.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Correct choice b is the most chapter-coded option: isolate passage, record feedback, change before next attempt.",
+      "Correct choice a contains the whole loop and is the only redox-specific answer.",
+      "Correct choice c reuses the chapter's 'whole performance' versus 'weak point' contrast.",
+      "Correct choice b is the only option with cue, feedback, and repeat-before-volume structure.",
+      "Correct choice b closely paraphrases the Faloon paragraph.",
+      "Correct choice b is somewhat telegraphed by 'visible size target' and 'next cut.'",
+      "Correct choice c is a near giveaway because it repeats the key-takeaway idea of changing the next attempt.",
+      "Correct choice a explains itself with the chapter's short-loop language.",
+      "Correct choice c is the only concrete, measurable option."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "A compact, memorable line that captures the chapter's core mechanism."
+    },
+    {
+      "quote": "A useful target can be seen, heard, counted, compared, or corrected before the next attempt begins.",
+      "why": "This gives beginners a usable test for whether a practice target is specific enough."
+    },
+    {
+      "quote": "The limit is important. Purposeful practice is not the full gold standard of a mature field with expert coaches and proven training systems.",
+      "why": "The chapter honestly bounds the method instead of overselling it."
+    },
+    {
+      "quote": "a) Enjoyable repetition may build comfort while leaving size differences untouched.\n   b) Uneven cuts can become fluent unless a visible size target guides the next cut.",
+      "why": "These two Q6 answers are both partly supported, making the item less clean than the rest."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The intended answer is probably b, but a is also supported by the prose's point that comfort can leave weak spots hidden.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The correct option closely repeats the key-takeaway wording, making it guessable without much reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples section",
+      "problem": "Several examples follow the same isolate-the-miss pattern so closely that transfer is broad but a little repetitive.",
+      "mustFix": false
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "The instruction to delete any routine without visible correction is more absolute than the limits paragraph; some full-task routines may still serve integration or maintenance.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The central move is clear, memorable, and repeatedly shown through concrete short-loop examples: isolate the miss, stretch slightly, get immediate feedback, and change the next attempt. The layered reads and review cards stand alone well, the tone is plain, and the limits paragraph keeps the method honest. The main weakness is quiz polish: Q6 has a plausible competing answer, and a few correct options are telegraphed by chapter-keyword phrasing. Those are quality issues, not blockers."
+}
+```

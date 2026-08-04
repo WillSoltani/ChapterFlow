@@ -1,0 +1,24 @@
+2026-07-08T09:41:12.676Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-08T09:41:15.302Z [MAJOR] PHASE write written 15/16 · gated 15 · qc'd 0
+2026-07-08T09:41:15.850Z [info]  author source-packets: compile-source-packets: PASS (16 packet(s))
+2026-07-08T09:41:16.302Z [info]  author source-packet-gate: source-packet-gate: PASS (16 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-08T09:41:16.749Z [info]  author book-design: compile-book-design: PASS
+2026-07-08T09:41:17.204Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T09:41:17.756Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (32 file(s))
+2026-07-08T09:41:18.245Z [info]  author chapter-brief-gate: chapter-brief-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-08T09:41:18.245Z [info]  author write: 1 missing chapter(s) of 16 (parallel ≤6)
+2026-07-08T09:41:18.252Z [info]  author ch14: card is 26626 chars (> 25000 target) — proceeding, but the packet/brief deserve a diet
+2026-07-08T09:41:18.253Z [info]  author ch14: whole-chapter writer working (attempt 1, card 26626 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T09:56:27.714Z [info]  author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T09:56:27.715Z [info]  author ch14: whole-chapter writer working (attempt 2, card 27156 chars, gpt-5.5 @ xhigh, timeout 60min)
+2026-07-08T10:15:17.500Z [info]  author ch14: ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T10:15:17.502Z [info]  ── cost report — high-output-management [halt:content] ──
+  grand total spawns: 2  (minted ids 2; verb ids 0)
+  by type: writer:2
+  by phase: write:2
+  retries by cause: retry1:1
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 0 miss
+  wall (spawn ms) by phase: write:2035209  total:2035209
+2026-07-08T10:15:17.504Z [FINAL] HALT AUTOPILOT HALT — high-output-management [phase write · content]: author write: 1 chapter(s) failed to author within the retry budget:
+ch14: STIER-2 write contract FAIL — lead thread: the dealt lead case "Task-focused interview questions" never appears in the fastRead — the fastRead and at least 2 examples must carry this chapter's thread (dealt LEAD THREAD line). | lead thread: the dealt lead (Task-focused) appears in 0 example(s) — at least 2 examples must live on this thread; keep other cast in supporting roles.
+2026-07-08T10:15:17.504Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/high-output-management/book-run/chapter-generation.20260708101517.a42c5784.repair.md

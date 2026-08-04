@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P12",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_SCENE_AND_DIALOGUE_IN_REAL_CASE\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Real-world case: True\",\"In a Quaker strategy room, the Quaker executive taps the Snapple packet beside the deal binder.\",\"\\\"Snapple is the growth answer,\\\" he says.\",\"The strategist keeps his pencil on the $1.8 billion line.\",\"The Quaker executive changes the meeting question from \\\"Should Quaker buy Snapple?\\\" to \\\"What are the growth paths this money could fund?\\\"\"],\"rationale\":\"The candidate presents an invented strategy-room setting, physical actions, dialogue, participants, and a specific change to the meeting question as though they were verified events in the real Quaker–Snapple case. The source plan supports only the acquisition, the approximately $1.8 billion price, the later major loss, and the abstract lesson about broadening the search for growth paths; it does not support these narrated particulars or identify them as hypothetical.\"}"
+}

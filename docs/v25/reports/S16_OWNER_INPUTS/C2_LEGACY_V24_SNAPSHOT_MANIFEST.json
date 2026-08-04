@@ -1,0 +1,31 @@
+{
+  "schema": "s16-owner-input-c2-legacy-snapshot-manifest-draft",
+  "_purpose": "Identify and pin the EXACT legacy-v24 writer-card snapshot for the diagnostic control arm (prompt-stack factorial: legacy vs SOL-native). The §16 diagnostic isolates the PROMPT-STACK effect, so the legacy arm must be the authentic pre-migration card text rendered from the authoritative archive — never reconstructed from memory or from the migrated implementation.",
+  "_authoritativeArchive": "git commit b8815ca028a492e09e62be57c17b29346bcce3a6 — the pre-campaign v24 baseline (merge of PR #394). This commit IS the original v24 archive: it contains the exact card builders (buildAuthorCard/mkCard in src/orchestrator/authorRun.ts) that wrote the shipped v24 books, before IMP-03/04/05/06 changed the prompt stack.",
+  "_renderProcedure": [
+    "1. git worktree add <tmp>/v24-legacy-snapshot b8815ca028a492e09e62be57c17b29346bcce3a6  (read-only checkout; never edit)",
+    "2. For every (bookId, chapterNumber) in the experiment spec's books[]: render that chapter's writer card using the WORKTREE's own builder code, fed with the EXPERIMENT'S frozen shared inputs (the same briefs/packets the SOL-native arm uses) so the two arms differ ONLY in prompt stack.",
+    "3. In each rendered card, replace the concrete output path with the literal placeholder <<BAKEOFF-OUTPUT-PATH>> (constant CARD_OUTPUT_PLACEHOLDER, src/bakeoff/freeze.ts:35). The harness substitutes the per-sample candidate path at run time and re-hash-verifies the template against the sealed pin on EVERY use (sampleRunner cardOverride).",
+    "4. Save as <bookId>.ch<NN>.card.txt (NN zero-padded, e.g. atomic-habits.ch03.card.txt) under the snapshot directory.",
+    "5. Hash: per-file sha256, then combinedSha256 = combineHashes([{relPath, sha256}...]) — the same src/bakeoff/paths.ts combineHashes the seal uses. Record both here and in the spec's stacks[] entry.",
+    "6. Remove the worktree. The snapshot directory + this manifest are the durable artifact."
+  ],
+  "_verification": "sealExperiment pins combinedSha256; verifySealIntact re-hashes the snapshot dir before qualify/generate/metrics/analyze — any drift halts the run. A missing template for any (book, chapter) in the design halts at seal.",
+  "_expectedPath": "scripts/book/prompts/chapterflow-v24-author-pipeline/state/migration-experiments/_owner-inputs/legacy-v24-stack/<snapshotId>/",
+  "_requiredFor": "DIAGNOSTIC stage only (both-stacks factorial). The confirmatory stage runs on ONE stack (current-builders) and does not need this input.",
+  "_absenceBehavior": "No diagnostic experiment can be sealed with a snapshot stack (spec validation requires the snapshot entry's dir + combinedSha256; seal halts if templates are missing). The confirmatory experiment is unaffected.",
+  "_specPinningExample": {
+    "stacks": [
+      { "id": "legacy-v24", "source": "snapshot", "snapshotDirRelPath": "state/migration-experiments/_owner-inputs/legacy-v24-stack/v24-b8815ca02-v1", "combinedSha256": "OWNER-FILLED-AFTER-RENDER" },
+      { "id": "sol-native-current", "source": "current-builders" }
+    ]
+  },
+  "snapshotId": "OWNER-DECISION (proposed: v24-b8815ca02-v1)",
+  "sourceCommit": "b8815ca028a492e09e62be57c17b29346bcce3a6",
+  "books": "OWNER-DECISION — must exactly match the diagnostic spec's books[] (every (bookId, chapterNumber) needs a template)",
+  "renderedBy": null,
+  "renderedAtIso": null,
+  "perFileSha256": {},
+  "combinedSha256": null,
+  "_ownerActions": "APPROVE the source commit (or name a different authoritative archive), DECIDE the book/chapter list (with the spec), then have the render executed and the hashes filled in. The rendering can be done by the assistant under this manifest's procedure — it reads git history only."
+}

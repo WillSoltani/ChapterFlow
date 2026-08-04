@@ -1,0 +1,91 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch05",
+  "chapterNumber": 5,
+  "contentHash": "8b378aeeabc2b919",
+  "reviewerSessionId": "auto-author-review-ch05-regen-mr79v3gx-48",
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 89,
+    "tone": 80,
+    "limits": 88,
+    "insight": 85,
+    "density": 82,
+    "beginner": 84
+  },
+  "composite": 84.9,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "c",
+      "a",
+      "a",
+      "b",
+      "c",
+      "b"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The fare did not make the belief; the belief made the fare readable.",
+      "why": "Strongest compact statement of the chapter's causal move.",
+      "verified": true
+    },
+    {
+      "quote": "What would a stranger see before the slogan spoke?",
+      "why": "Memorable practical test that turns an abstract idea into inspection.",
+      "verified": true
+    },
+    {
+      "quote": "The other miss is making the words too clean.",
+      "why": "Good limit: it warns that polished purpose language can hide absent behavior.",
+      "verified": true
+    },
+    {
+      "quote": "A coffee ring dries beside him.",
+      "why": "This detail reads ornamental and slightly manufactured compared with the chapter's useful proof logic.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Correct answers often contain the chapter's signature vocabulary while distractors sound generic: Q5a has 'reason, conduct, and visible proof'; Q9b has 'visible behavior'.",
+    "Several correct choices are also the most concrete and specific option, especially Q3c, Q5a, Q8c, and Q9b."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers often carry the chapter's exact vocabulary and specificity while distractors are broadly wrong, creating some answer-key tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The coffee-ring detail adds scene texture without improving the decision chain, giving the example a lightly manufactured feel.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The Neil, Nancy, Holly, and Preston people-debt thread is useful but starts to feel system-generated because the named examples are tightly engineered around the lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear core move: WHY frames HOW, and WHAT returns as inspectable proof. The Southwest/Kelleher/Apple anchors are narrow enough to prevent overreach, and the practical advice is low-friction. The main weakness is not soundness but polish: the quiz can sometimes be guessed by following signature vocabulary, and a few invented workplace details feel constructed rather than lived. Still, the prose teaches the mechanism, gives useful limits, and leaves the reader with a memorable diagnostic question.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "979164c534bab82b67cf7ce416ffebf8777417dc0949d58a16079d34977cc1e2",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T04:09:56.817Z"
+}

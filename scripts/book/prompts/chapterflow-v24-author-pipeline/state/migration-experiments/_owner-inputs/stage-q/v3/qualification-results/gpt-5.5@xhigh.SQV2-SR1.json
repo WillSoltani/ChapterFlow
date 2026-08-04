@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"misleading source register: unframed invented or unsupported factual anecdote\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"In March 2018, Priya Nadkarni, then head of engineering at Brightloom Systems, cut on-call burnout by 63 percent in a single quarter by rotating pager duty weekly.\",\"Her team's incident count fell from 47 to 12 within ninety days, a result she presented at the company's Q3 all-hands.\"],\"rationale\":\"The candidate is written as a concrete historical business case, naming a person, company, date, metrics, and an internal presentation, but it gives the reader no visible framing that the scenario is invented, illustrative, hypothetical, or otherwise unsupported. Because the passage presents highly specific factual claims as if they are real-world events, its source register is misleading for the reader.\"}"
+}

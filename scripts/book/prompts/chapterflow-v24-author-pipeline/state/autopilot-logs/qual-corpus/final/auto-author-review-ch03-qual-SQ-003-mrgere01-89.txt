@@ -1,0 +1,75 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 5,
+    "summaries": 15,
+    "tone": 20,
+    "limits": 10,
+    "insight": 35,
+    "density": 20,
+    "beginner": 25
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The four moves name the repair job: Widen your options, Reality-test your assumptions, Attain distance before deciding, Prepare to be wrong.",
+      "why": "Strongest moment: it names the core framework clearly and compactly."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "Worst defect: the hook is placeholder production text rather than reader-facing teaching."
+    },
+    {
+      "quote": "A concise idea.",
+      "why": "Worst defect: the fast read does not state an idea."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Worst defect: multiple required sections are empty, including the quiz."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook contains placeholder production wording rather than a reader-facing opening; this section fails its stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only \"A concise idea.\" and does not teach the chapter's idea; this section fails its stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only \"One added angle.\" and provides no added angle; this section fails its stand-alone promise. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The only substantive paragraph is too compressed to support practice or transfer: it names four moves and four dangers but gives no concrete decision scenario, action sequence, or before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway / try this now / examples / review cards / memorable lines",
+      "problem": "These headings have no content, leaving required learning and reinforcement sections missing. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section has no questions or answer choices, so the quiz cannot be answered or reviewed. Category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This reads like a scaffold, not a finished chapter: one useful compressed paragraph names the four decision moves and pairs them with their dangers, but the hook, summaries, practice, examples, review material, memorable lines, and quiz are either placeholders or empty. A reader can glimpse the intended framework, but cannot reliably practice it, test themselves on it, or remember it from the chapter as written, so it falls far below a professional shipping bar."
+}
+```

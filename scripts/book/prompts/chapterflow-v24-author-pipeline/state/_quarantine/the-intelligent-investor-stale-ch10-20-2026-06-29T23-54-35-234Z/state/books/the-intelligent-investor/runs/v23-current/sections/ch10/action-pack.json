@@ -1,0 +1,68 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "action-pack",
+  "chapterId": "the-intelligent-investor-ch10",
+  "tryThisNow": "Open one adviser note and run a two-minute audit: mark who bears the loss, how the adviser is paid, and whether the role is broker, adviser, or planner.",
+  "tryThisNowSourceAnchorIds": [
+    "ch10.fact.1",
+    "ch10.fact.2",
+    "ch10.fact.3"
+  ],
+  "implementationPlan": {
+    "title": "Audit Advice Before Accepting It",
+    "titleSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ],
+    "coreSkill": "Use advice without surrendering judgment. Before accepting a recommendation, confirm that the capital owner still bears the outcome, identify whether compensation creates an incentive, and separate broker sales activity from ongoing fiduciary advice.",
+    "coreSkillSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch10.fact.1",
+        "sourceAnchorIds": [
+          "ch10.fact.1",
+          "ch10.example.1"
+        ],
+        "context": "notebook margin",
+        "plan": "If regulation makes an adviser feel automatically safe, then write in the notebook margin: legal status is a starting point, but the owner still bears the loss and must judge the advice."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.2",
+        "sourceAnchorIds": [
+          "ch10.fact.2",
+          "ch10.example.3"
+        ],
+        "context": "team chat",
+        "plan": "If a recommendation arrives without a clear pay explanation, then post a team chat request for the compensation and scope questions before treating the advice as neutral."
+      },
+      {
+        "sourceAnchorId": "ch10.fact.3",
+        "sourceAnchorIds": [
+          "ch10.fact.3",
+          "ch10.example.2"
+        ],
+        "context": "clinic handoff",
+        "plan": "If a broker, adviser, or planner label is being used as if all duties match, then pause the clinic handoff and check registration and disclosure records before relying on the role."
+      }
+    ],
+    "twentyFourHourChallenge": "Within the next day, pick one current or potential adviser and complete a two-minute audit: responsibility, compensation, and role. Leave the decision pending if any line is blank.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3"
+    ],
+    "weeklyPractice": "Once a week, use a two-trigger checklist. Trigger one: before accepting advice, note who bears the loss and how the adviser is paid. Trigger two: before relying on a professional title, check whether the role is sales, ongoing advice, or planning.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch10.fact.1",
+      "ch10.fact.2",
+      "ch10.fact.3",
+      "ch10.example.2",
+      "ch10.example.3"
+    ]
+  }
+}

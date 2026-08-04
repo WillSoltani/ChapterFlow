@@ -29,17 +29,21 @@
  */
 
 import { randomUUID } from "crypto";
-import { existsSync, mkdirSync, readFileSync, readdirSync, statSync } from "fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, realpathSync, statSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { BibliographyResult, flattenChapters, runResearcherBibliography } from "./agents/researcher-bibliography.js";
 import {
-  ChapterResearchInput,
-  ChapterResearchResult,
+  type BibliographyInput,
+  type BibliographyResult,
+  flattenChapters,
+} from "./agents/researcher-bibliography.js";
+import {
+  type ChapterResearchInput,
+  type ChapterResearchResult,
   renderChapterSidecar,
-  runResearcherChapter,
 } from "./agents/researcher-chapter.js";
+import { MODEL_CALLER_PROFILES, MODEL_TASK_RUNNER_REQUIRED } from "./app/modelTaskRunner.js";
 import {
   SourceCoherenceFinding,
   SourceCoherenceReport,
@@ -47,7 +51,8 @@ import {
   runSourceCoherenceCheck,
 } from "./critics/sourceCoherence.js";
 import { writeFileAtomic } from "./lib/atomicWrite.js";
-import { checkSourceV2Gate, formatSourceV2GateReport } from "./qc/sourceV2Gate.js";
+import { formatSourceV2GateReport, type SourceV2GateReport } from "./qc/sourceV2Gate.js";
+import { evaluateSourceV2Integrity } from "./source/sourceIntegrity.js";
 import { buildCanonicalToc } from "./lib/tocContract.js";
 import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
@@ -64,8 +69,14 @@ import {
   findCompatibleResearchRun,
   hashJson,
   hashString,
+  listResearchRunIds,
+  pathWithin,
+  pinnedResearchRunDir,
   readResearchRunManifest,
   researchInputHash,
+  researchRunManifestPath,
+  researchRunPinRejectionReasons,
+  RESEARCH_RUN_MANIFEST_FILE,
   sourceJsonPath,
   sourceTextPath,
   withManifestUpdateLock,
@@ -94,11 +105,29 @@ export type ResearchBookOptions = {
   /** If true, re-research a chapter even if its source file already exists.
    *  Default false (resume-aware). */
   forceRefresh?: boolean;
+  /** Optional: validate a durable/cached chapter sidecar before REUSING it on a
+   *  resume. Returns false to reject the cached chapter and re-research it — e.g.
+   *  a durable sidecar that still parses and hash-matches its manifest entry but
+   *  no longer passes the caller's source-v2 route validator. Never expected to
+   *  throw; a throwing validator is treated as reject (re-research), never a
+   *  crash. Default: accept every cached chapter. */
+  validateReusedChapter?: (chapter: ChapterResearchResult) => boolean;
+  /** Operator-supplied pin naming an EXISTING research run directory under
+   *  <runsRoot>/<bookId>/. Resolve-then-adopt: the pinned run's own bibliography
+   *  is loaded (hash-verified) and NO bibliography model call is made, so every
+   *  chapter reuses its durable sidecar and every downstream section-pack cache
+   *  key stays stable. Mutually exclusive with forceRefresh. Requires bookId.
+   *  Fails closed on ANY validation failure — it NEVER falls back to scanning
+   *  (findCompatibleResearchRun) or to creating a run (createResearchRun),
+   *  because either fallback would silently charge a full re-research while the
+   *  operator believes they pinned, and would turn the pin into a
+   *  research-substitution primitive. */
+  pinnedRunId?: string;
   /** Test/tooling hook: override the run root. Defaults to repo .chapterflow/runs. */
   runsRoot?: string;
   /** Test/tooling hook: override the state root. Defaults to pipeline state/. */
   stateRoot?: string;
-  /** Test/tooling hook: hermetic provider injection. Production uses the real providers. */
+  /** Explicit application wiring. Tests supply deterministic fakes. */
   deps?: Partial<ResearcherDeps>;
   /** Test/tooling hook: deterministic clocks for manifest/lease tests. */
   clock?: () => Date;
@@ -113,7 +142,7 @@ export type ResearchBookOptions = {
 };
 
 export type ResearcherDeps = {
-  runBibliography: typeof runResearcherBibliography;
+  runBibliography: (input: BibliographyInput) => Promise<BibliographyResult>;
   runChapter: (input: ChapterResearchInput) => Promise<ChapterResearchResult>;
 };
 
@@ -145,9 +174,12 @@ export async function researchBook(
 
   log(`=== researchBook: "${title}" by ${author} ===`);
 
+  if (!options.deps?.runBibliography || !options.deps.runChapter) {
+    throw new Error(MODEL_TASK_RUNNER_REQUIRED);
+  }
   const deps: ResearcherDeps = {
-    runBibliography: options.deps?.runBibliography ?? runResearcherBibliography,
-    runChapter: options.deps?.runChapter ?? runResearcherChapter,
+    runBibliography: options.deps.runBibliography,
+    runChapter: options.deps.runChapter,
   };
   const runsRoot = options.runsRoot ?? CHAPTERFLOW_RUNS;
   const stateRoot = options.stateRoot ?? STATE;
@@ -166,7 +198,34 @@ export async function researchBook(
   let manifest: ResearchRunManifest | null = null;
   let bundlePath: string | null = null;
 
-  if (!options.forceRefresh) {
+  if (options.pinnedRunId !== undefined && options.forceRefresh === true) {
+    throw new Error("RESEARCH_RUN_PIN_INVALID:pinned run cannot be combined with forceRefresh");
+  }
+
+  if (options.pinnedRunId !== undefined) {
+    if (options.bookId === undefined) {
+      throw new Error("RESEARCH_RUN_PIN_INVALID:bookId is required to resolve a pinned research run");
+    }
+    // Resolve-then-adopt. Every failure inside throws a distinct
+    // RESEARCH_RUN_PIN_* code, so `deps.runBibliography` below is provably
+    // unreachable on the pinned path and the second compatible-run probe (which
+    // lives inside `if (!bibliography)`) is never entered. The pin REPLACES that
+    // probe rather than skipping it: instead of minting a fresh chapter list and
+    // comparing — the very nondeterminism F5 is about — it proves the pinned run
+    // internally consistent (bibliography <-> manifest <-> expectedChaptersHash).
+    const pinned = resolvePinnedResearchRun({
+      runsRoot,
+      bookId: options.bookId,
+      pinnedRunId: options.pinnedRunId,
+      inputHash: inputIdentity.hash,
+      compatibility,
+      ...(options.validateReusedChapter === undefined ? {} : { validateReusedChapter: options.validateReusedChapter }),
+    });
+    bundlePath = pinned.runDir;
+    manifest = pinned.manifest;
+    bibliography = pinned.bibliography;
+    log(`Step 1/4: bibliography research skipped — pinned research run ${manifest.runId} adopted (0 model calls)`);
+  } else if (!options.forceRefresh) {
     const resume = findCompatibleResearchRun({
       runsRoot,
       bookIdHint: options.bookId,
@@ -270,7 +329,13 @@ export async function researchBook(
       ownerId,
       clock,
       leaseTtlMs,
-      forceRefresh: options.forceRefresh ?? false,
+      // A pin is an explicit operator adoption of a fully-validated run (every
+      // chapter was already proven manifest-succeeded and hash-matched at
+      // resolve time), so per-chapter durable reuse is exactly what was asked
+      // for. Each reused sidecar is still re-validated through
+      // validateReusedChapter before acceptance.
+      forceRefresh: options.pinnedRunId !== undefined ? false : (options.forceRefresh ?? false),
+      validateReusedChapter: options.validateReusedChapter,
       runChapter: deps.runChapter,
       log,
     },
@@ -309,7 +374,26 @@ export async function researchBook(
   });
   if (v2SidecarsPresent) {
     log("Step 3.5/4: source integrity gate...");
-    const integrity = checkSourceV2Gate(bookId, chapterList.map((ch) => ch.number), { runsRoot, stateRoot });
+    // Evaluate exact in-memory/durable outputs from this active run. The normal
+    // run-discovery reader intentionally exposes only completed runs, so using it
+    // here (before this manifest is marked complete) would falsely report every
+    // just-written sidecar as missing.
+    const findings = chapters.flatMap((chapter) => evaluateSourceV2Integrity(chapter, {
+      chapterNumber: chapter.chapterNumber,
+      chapterTitle: chapter.chapterTitle,
+      rawText: JSON.stringify(chapter),
+    }).findings.map((finding) => ({
+      checkId: finding.checkId,
+      severity: finding.severity,
+      ...(finding.chapterNumber === undefined ? {} : { chapterNumber: finding.chapterNumber }),
+      message: finding.message,
+    })));
+    const integrity: SourceV2GateReport = {
+      bookId,
+      passed: !findings.some((finding) => finding.severity === "blocker"),
+      chaptersChecked: chapters.length,
+      findings,
+    };
     log("  " + formatSourceV2GateReport(integrity).replace(/\n/g, "\n  "));
     updateManifest(activeBundlePath, runId, ownerId, clock, leaseTtlMs, (m, nowIso) => {
       appendResearchEvent(m, {
@@ -369,6 +453,7 @@ async function researchChaptersInParallel(
     clock: () => Date;
     leaseTtlMs: number;
     forceRefresh: boolean;
+    validateReusedChapter?: (chapter: ChapterResearchResult) => boolean;
     runChapter: ResearcherDeps["runChapter"];
     log: (m: string) => void;
   },
@@ -385,11 +470,18 @@ async function researchChaptersInParallel(
       const chapter = chapterList[myIndex];
       const numStr = chapterKey(chapter.number);
 
-      const cached = !opts.forceRefresh ? loadSucceededChapter(opts.bundlePath, opts.manifest, chapter.number) : null;
+      const cachedRaw = !opts.forceRefresh ? loadSucceededChapter(opts.bundlePath, opts.manifest, chapter.number) : null;
+      const cached = cachedRaw !== null && acceptReusedChapter(opts.validateReusedChapter, cachedRaw) ? cachedRaw : null;
       if (cached) {
         opts.log(`  ch${numStr} manifest-complete — skipping`);
         results[myIndex] = cached;
         continue;
+      }
+      if (cachedRaw !== null && cached === null) {
+        // Durable sidecar exists and hash-matches its manifest entry but failed
+        // the caller's reuse validator (e.g. no longer source-v2 route-valid) —
+        // do NOT reuse it; fall through to re-research this chapter.
+        opts.log(`  ch${numStr} durable sidecar failed reuse validation — re-researching`);
       }
 
       const claim = acquireChapterClaim({
@@ -490,8 +582,8 @@ function buildCompatibilityFingerprint(options: ResearchBookOptions): ResearchCo
       chapter: readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8"),
     }),
     configHash: options.compatibility?.configHash ?? hashJson({ version: RESEARCH_RUN_CONFIG_VERSION }),
-    provider: options.compatibility?.provider ?? process.env.CHAPTERFLOW_PROVIDER ?? "anthropic-cli",
-    model: options.compatibility?.model ?? process.env.CHAPTERFLOW_RESEARCHER_MODEL ?? "provider-default",
+    provider: "model-gateway-v1",
+    model: `${MODEL_CALLER_PROFILES["researcher-bibliography"]}+${MODEL_CALLER_PROFILES["researcher-chapter"]}`,
   };
 }
 
@@ -539,6 +631,128 @@ function createResearchRun(args: {
   writeResearchRunManifest(bundlePath, manifest);
   args.log(`  created research run: ${runId}`);
   return { bundlePath, manifest };
+}
+
+const PINNED_SOURCE_FREEZE_ARTIFACTS = [
+  "source-freeze/toc.json",
+  "source-freeze/book-source.md",
+  RAW_BIBLIOGRAPHY_REL_PATH,
+] as const;
+
+/**
+ * Resolve an operator-supplied `--research-run-id` pin to an adoptable research
+ * bundle, or throw. Every stage fails CLOSED with a distinct code; there is no
+ * fallback to `findCompatibleResearchRun` and none to `createResearchRun`.
+ *
+ * This is the first place an attacker-influenced value is ever interpolated into
+ * a research path (`runDirs.resolveResearchRun` needs no such guard because it
+ * only consumes `readdirSync` names), so confinement is checked twice: once on
+ * the RESOLVED path and once on its REALPATH, because a symlinked run directory
+ * passes `resolve()` containment while pointing outside the research root.
+ */
+function resolvePinnedResearchRun(args: {
+  runsRoot: string;
+  bookId: string;
+  pinnedRunId: string;
+  inputHash: string;
+  compatibility: ResearchCompatibility;
+  validateReusedChapter?: (chapter: ChapterResearchResult) => boolean;
+}): { runDir: string; manifest: ResearchRunManifest; bibliography: BibliographyResult } {
+  const root = resolve(args.runsRoot, args.bookId);
+  const runDir = pinnedResearchRunDir(args.runsRoot, args.bookId, args.pinnedRunId);
+
+  // Symlink containment. A missing directory is NOT an error here — it falls
+  // through to the not-found message below, which is far more useful.
+  let realRunDir: string | null = null;
+  try {
+    realRunDir = realpathSync(runDir);
+  } catch {
+    realRunDir = null;
+  }
+  if (realRunDir !== null) {
+    let realRoot = root;
+    try {
+      realRoot = realpathSync(root);
+    } catch {
+      realRoot = root;
+    }
+    if (realRunDir === realRoot || !pathWithin(realRoot, realRunDir)) {
+      throw new Error(`RESEARCH_RUN_PIN_ESCAPED:pinned research run resolves outside ${root} via symlink`);
+    }
+  }
+
+  if (!existsSync(researchRunManifestPath(runDir))) {
+    const available = listResearchRunIds(args.runsRoot, args.bookId);
+    throw new Error(
+      `RESEARCH_RUN_PIN_NOT_FOUND:${runDir} has no ${RESEARCH_RUN_MANIFEST_FILE} (available under ${root}: ${available.length > 0 ? available.join(", ") : "none"})`,
+    );
+  }
+
+  const parsed = readResearchRunManifest(runDir);
+  if (!parsed.ok) throw new Error(`RESEARCH_RUN_PIN_UNREADABLE:${parsed.errors.join("; ")}`);
+  const manifest = parsed.manifest;
+
+  const reasons = researchRunPinRejectionReasons(manifest, {
+    bookId: args.bookId,
+    pinnedRunId: args.pinnedRunId,
+    inputHash: args.inputHash,
+    compatibility: args.compatibility,
+  });
+  if (reasons.length > 0) throw new Error(`RESEARCH_RUN_PIN_INVALID:${reasons.join("; ")}`);
+
+  const bibliography = loadRunBibliography(runDir, manifest);
+  if (!bibliography) {
+    // The scan path merely logs and creates a new run here. A pin must not.
+    throw new Error("RESEARCH_RUN_PIN_INVALID:bibliography bytes do not match manifest hash");
+  }
+
+  // Bibliography <-> chapter-list binding. loadRunBibliography verifies bytes
+  // against manifest.bibliography.hash ONLY, so an operator who rewrites BOTH
+  // the raw bibliography and that hash would otherwise get a manifest whose
+  // expectedChapters describe one book while the bibliography that actually
+  // feeds toc.json, book-source.md and the chapter index describes another.
+  const bibliographyChapters = flattenChapters(bibliography).map((ch) => ({ number: ch.number, title: ch.title }));
+  if (expectedChaptersHash(bibliographyChapters) !== manifest.expectedChaptersHash) {
+    throw new Error("RESEARCH_RUN_PIN_INVALID:bibliography chapter list does not match expectedChaptersHash");
+  }
+
+  if (manifest.coherence.status !== "passed") {
+    throw new Error(`RESEARCH_RUN_PIN_INVALID:coherence status ${manifest.coherence.status} is not passed`);
+  }
+
+  const missingArtifacts = PINNED_SOURCE_FREEZE_ARTIFACTS.filter((rel) => !existsSync(resolve(runDir, rel)));
+  if (missingArtifacts.length > 0) {
+    throw new Error(`RESEARCH_RUN_PIN_INCOMPLETE:missing source-freeze artifact(s): ${missingArtifacts.join(", ")}`);
+  }
+
+  // A pin requires a FULLY reusable run. Partial reuse would re-research at
+  // least one chapter, which rewrites the BOOK-level book-source.md and
+  // therefore changes every chapter's packetDigest — invalidating all 4N cached
+  // section packs and delivering none of the pin's promise while charging for
+  // it.
+  //
+  // This gate MUST apply the same predicate reuse itself applies. Acceptance at
+  // reuse time (see researchChaptersInParallel) is
+  // `loadSucceededChapter(...) !== null && acceptReusedChapter(validateReusedChapter, ...)`,
+  // and the application port injects `chapterRouteValid` — a LIVE code predicate,
+  // not a durable property. Gating on `loadSucceededChapter` alone would admit a
+  // run that then fails route validation per-chapter and silently re-researches
+  // it: exactly the F5 failure this pin exists to prevent, with the operator
+  // believing they were protected. A validator tightening — not just post-hoc
+  // bundle damage — is enough to strand a run, so the pin must fail loud here.
+  const notReusable = manifest.expectedChapters
+    .filter((ch) => {
+      const cached = loadSucceededChapter(runDir, manifest, ch.number);
+      return cached === null || !acceptReusedChapter(args.validateReusedChapter, cached);
+    })
+    .map((ch) => ch.number);
+  if (notReusable.length > 0) {
+    throw new Error(
+      `RESEARCH_RUN_PIN_INCOMPLETE:chapters [${notReusable.join(", ")}] are not durably reusable (missing, not succeeded, or hash-mismatched); use --resume-run-id --reconcile-unsettled for partial durable reuse`,
+    );
+  }
+
+  return { runDir, manifest, bibliography };
 }
 
 function loadRunBibliography(runDir: string, manifest: ResearchRunManifest): BibliographyResult | null {
@@ -642,6 +856,22 @@ function updateManifest(
       return manifest;
     },
   });
+}
+
+/** Apply the optional reuse validator to a durable/cached chapter. Absent
+ *  validator accepts unconditionally (legacy behavior). A throwing validator is
+ *  treated as reject — a corrupt cached sidecar must fall back to re-research,
+ *  never crash the run. */
+function acceptReusedChapter(
+  validate: ((chapter: ChapterResearchResult) => boolean) | undefined,
+  chapter: ChapterResearchResult,
+): boolean {
+  if (!validate) return true;
+  try {
+    return validate(chapter) === true;
+  } catch {
+    return false;
+  }
 }
 
 function loadSucceededChapter(runDir: string, manifest: ResearchRunManifest, chapterNumber: number): ChapterResearchResult | null {

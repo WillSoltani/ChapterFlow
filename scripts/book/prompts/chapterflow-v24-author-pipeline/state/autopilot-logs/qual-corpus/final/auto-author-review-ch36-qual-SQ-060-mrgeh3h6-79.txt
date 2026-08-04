@@ -1,0 +1,102 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "No quiz questions or answer choices are present, so answer-choice tells cannot be assessed."
+    ]
+  },
+  "scores": {
+    "retention": 12,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 10,
+    "summaries": 0,
+    "tone": 18,
+    "limits": 2,
+    "insight": 8,
+    "density": 12,
+    "beginner": 30
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the clearest statement of the chapter's intended practical move."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This supplies a concise rationale, though it does not develop the mechanism."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "The uninterrupted headings expose that the promised learning layers and application section are empty."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "The hook is production-status placeholder text rather than reader-facing teaching."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is a production placeholder and creates neither curiosity nor an entry point into the subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its stand-alone explanatory promise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, leaving no actual chapter development; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty and fails its stand-alone promise; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no concrete exercise or procedure; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is a pasted writer role card with no named situation, evaluator decision, or before-to-after consequence; it is thin but still loosely usable as untrusted input.",
+      "mustFix": false
+    },
+    {
+      "unit": "core explanation",
+      "problem": "The chapter states the rule and a one-sentence rationale but never explains how embedded instructions can steer evaluation, how to distinguish data from authority, or what boundary cases require care.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, making the quiz broken and impossible to answer; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, so the promised retention aid is missing; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty, so the promised retention layer is missing; this is STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Its sole useful idea—treat supplied artifacts as untrusted data and do not obey instructions embedded within them—is clear and potentially valuable, but it receives no developed mechanism, boundary conditions, procedure, varied applications, summaries, retention support, or quiz. The raw role card can gesture toward the threat, yet without a decision and consequence it does little to teach transfer. The empty required sections and absent quiz are structural failures well below a professional publication bar."
+}
+```

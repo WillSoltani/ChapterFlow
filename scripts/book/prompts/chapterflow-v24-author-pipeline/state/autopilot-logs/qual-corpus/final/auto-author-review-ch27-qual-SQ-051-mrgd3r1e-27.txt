@@ -1,0 +1,105 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 30,
+    "limits": 0,
+    "insight": 20,
+    "density": 20,
+    "beginner": 15
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Imani knows which aide was closing. She also knows the drawer sticks, the morning shift is short, and she delayed the repair request.",
+      "why": "Strongest moment: it implies a useful causal move from blame toward system conditions."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "Worst structural defect: the promised layered reads are empty."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "Worst practical defect: the instruction names no action a reader can perform."
+    },
+    {
+      "quote": "Ferne she writes the three conversations in the margin for next time.",
+      "why": "Worst prose defect: the sentence is grammatically broken and obscures the intended move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "Section heading is present but contains no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Section heading is present but contains no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Section heading is present but contains no content, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "Section heading is present but contains no takeaway, leaving the core move unstated.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "Section heading is present but contains no exercise or action, so the chapter is not practically usable.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Quiz section contains no questions, so the quiz is structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "Section heading is present but contains no review cards.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "Section heading is present but contains no memorable lines.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence 'Ferne she writes...' is grammatically broken.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The sentence 'Imani she must decide...' is grammatically broken.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example gives placeholders for what to do and why it matters instead of naming the transferable move.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example gives placeholders for what to do and why it matters instead of naming the transferable move.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable. The file is mostly a scaffold: the layered reads, takeaway, exercise, quiz, review cards, and memorable lines are empty. The two examples have concrete scenes and faintly imply a useful lesson about finding the real human or system cause instead of arguing the surface issue, but the chapter never states that move, teaches it, tests it, or turns it into an action a beginner could use."
+}
+```

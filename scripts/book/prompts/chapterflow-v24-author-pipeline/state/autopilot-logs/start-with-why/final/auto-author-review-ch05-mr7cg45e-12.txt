@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices reuse the chapter's exact diagnostic vocabulary, especially Q5 and Q8, making them easier to spot even without full comprehension."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 80,
+    "limits": 90,
+    "insight": 87,
+    "density": 82,
+    "beginner": 80
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The fare did not make the belief; the belief made the fare readable.",
+      "why": "Strongest concise expression of the chapter's mechanism."
+    },
+    {
+      "quote": "What would a stranger see before the slogan spoke?",
+      "why": "Memorable transfer question that turns the concept into an inspection habit."
+    },
+    {
+      "quote": "Use people-debt, not grand talk.",
+      "why": "The phrase is sticky but slightly artificial and may slow a cold beginner."
+    },
+    {
+      "quote": "The new interview question helps, but the score still rewards charm without proof.",
+      "why": "Good concrete before/after tension, though the example still feels staged."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The correct answer closely mirrors the prose phrase about blending the three jobs, so it has some giveaway phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct answer is strongly signposted by repeated chapter language about Dallas leaving its home, while distractors are visibly weak.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The phrase 'people-debt' is memorable but not immediately plain; a beginner may need to infer the metaphor before using the method.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The recurring Neil/Nancy/Holly/Preston scenes are concrete enough to pass, but they sometimes feel manufactured around the lesson rather than observed from a lived setting.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable: the chapter has a clear core move, memorable lines, sound quiz keys, real limits, and enough concrete action to transfer beyond Southwest and Apple. Its main weakness is not correctness but texture: some examples feel staged, and a few quiz answers are made easier by repeating the chapter's own diagnostic language. Those are polish issues rather than blockers."
+}
+```

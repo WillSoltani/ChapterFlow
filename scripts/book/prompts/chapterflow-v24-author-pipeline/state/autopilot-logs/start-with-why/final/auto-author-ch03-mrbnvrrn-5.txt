@@ -1,0 +1,11 @@
+Wrote the chapter JSON here: [start-with-why-ch03.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch03.v21-native.chapter.json).
+
+Validation:
+- v24 `author-check`: clean
+- v24 `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match with required key pattern
+- `evidence-audit`: no candidates
+- Rendered length: 14,678 chars, inside the brief range
+- Scaffold scan: clean
+
+One instruction conflict remains: the sibling `chapterflow-v21-authored` gate blocks on `A16.examples_count_floor` because that older gate expects 6 examples. I did not add two examples because the current brief and v24 manual plan both require exactly 4 examples.

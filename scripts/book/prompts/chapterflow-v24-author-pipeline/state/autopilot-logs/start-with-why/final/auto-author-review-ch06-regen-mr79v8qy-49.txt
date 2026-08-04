@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers are guessably extreme or decorative without needing the prose: 'generic executive face', 'color', 'can drop out', 'every pitch', and 'only after loyalty has already appeared.'", "Correct answers often contain the chapter's repeated signal words: 'setting', 'ground', 'visible behavior', 'checkable ground', and 'where the story applies.'"]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 86,
+    "tone": 81,
+    "limits": 88,
+    "insight": 87,
+    "density": 80,
+    "beginner": 78
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Strongest memorable compression of the chapter's core sequence."
+    },
+    {
+      "quote": "A performative return makes the speaker look aligned; a real return lets another person spend less time rechecking the promise.",
+      "why": "Strong mechanism: it explains why visible proof matters, not just that it matters."
+    },
+    {
+      "quote": "Denise stops at the counter while a low fare waits for employees to make it mean trust.",
+      "why": "Weak opening: compressed to the point of being murky for a cold beginner."
+    },
+    {
+      "quote": "The return is set and not yet met.",
+      "why": "This blurs the promised before-to-after learning moment in Example 1; the consequence is more asserted than observed."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening image is memorable but too cryptic: 'a low fare waits for employees to make it mean trust' requires the reader to decode the abstraction before the chapter has taught the frame.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "Denise is introduced as if she is part of a concrete scene, but she does not do anything specific beyond stopping at the counter; the image is more atmospheric than explanatory.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The example names Denise and Dallas but gives an incomplete before-to-after: it says she marks employees and that price no longer carries the trust claim alone, but it also says the return is 'not yet met,' so the consequence is conceptual rather than shown.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some phrasing has a scaffold smell: repeated 'bill,' 'ground,' 'return,' and 'setting' language sometimes sounds more like lesson architecture than natural prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong choices are easy to reject from tone alone because they sound obviously generic or overbroad, especially 'generic executive face,' 'color,' and 'carry it broadly.'",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against the professional bar. The chapter has a clear central move, strong mechanism, useful limits, and a quiz whose keys are sound and derivable. Its best material explains that trust reduces another person's need to recheck a promise, which is concrete and transferable. The main weaknesses are presentation-level: the hook is opaque, some repeated framing language feels manufactured, and a few quiz distractors are too easy to eliminate by tone. Example 1 could show a cleaner consequence, but the chapter as a whole teaches the promised skill."
+}
+```

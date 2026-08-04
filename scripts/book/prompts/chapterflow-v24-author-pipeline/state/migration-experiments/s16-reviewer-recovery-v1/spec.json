@@ -1,0 +1,259 @@
+{
+  "schema": "split-lane-recovery-experiment-spec-v1",
+  "experimentId": "s16-reviewer-recovery-v1",
+  "stage": "diagnostic",
+  "title": "§16 split-lane reviewer recovery — diagnostic (prepared, not sealed)",
+  "contractSchemaIds": {
+    "readerExperienceReview": "reader-experience-review-v1",
+    "sourceIntegrityReview": "source-integrity-review-v1",
+    "quizIntegrityResult": "quiz-integrity-result-v1",
+    "aggregatedChapterReview": "aggregated-chapter-review-v1",
+    "judgeCapabilityQualification": "judge-capability-qualification-v1"
+  },
+  "instrumentManifest": {
+    "schema": "split-lane-instrument-manifest-v1",
+    "readerRubricVersion": "reader-experience-review-v1",
+    "sourceRubricVersion": "source-integrity-review-v1",
+    "readerSchemaSha256": "8292b6e4ee21a5a2155e951624aa3baf85b6bdad46340b96c23b9c67dad7f990",
+    "sourceSchemaSha256": "61837e67aa03af454043012ab8a95b6fd90f48dbe888c7e2e4aa5ed9c804f62f",
+    "quizAdjudicationSchemaSha256": "33a0fb5eca0c23e6169d925fd7d08f012d2a8574c1df91f0236ef6cfe7309823",
+    "quizPhase2Version": "quiz-integrity-adjudication-v1",
+    "aggregationVersion": "aggregated-chapter-review-v1",
+    "roleAssignmentPolicyVersion": "recovery-fixed-role-policy-v1",
+    "fixedRoleAssignmentSha256": "e5753e17630af228c6985c6c21d3f144b0efddd6b591052fa4027e1a8ad70717",
+    "executionProfileHash": "3d9d2f58b0aa6e2b67c8fe0f75178c63c0146910a7bb865f309552c36024e644",
+    "routePolicyVersion": "route-policy-v1.0",
+    "thresholdsSha256": "bb10c5b436e4f06e04ba4b615648928e117e8ab3a126ab8150b9cbc68541aa01",
+    "readerCorpusSha256": "3259e622019088ba9922edb98e1d48c60ce6d4d8afa62c4478bd8f9ef8cc8952",
+    "sourceCorpusSha256": "44f187ba45eeda8723d07934d59787bb7db980ed41ac05cedc4c3c2803d5b286",
+    "quizCorpusSha256": "4ea2031d99c17ee2ff6ecb3f8a5f521de68d2e3f6faeeffa45881e590fd0bdc4"
+  },
+  "roleThresholdsSha256": "bb10c5b436e4f06e04ba4b615648928e117e8ab3a126ab8150b9cbc68541aa01",
+  "candidateJudgeProfiles": [
+    {
+      "profileId": "gpt-5.5@high",
+      "model": "gpt-5.5",
+      "effort": "high"
+    },
+    {
+      "profileId": "gpt-5.5@xhigh",
+      "model": "gpt-5.5",
+      "effort": "xhigh"
+    },
+    {
+      "profileId": "gpt-5.6-sol@high",
+      "model": "gpt-5.6-sol",
+      "effort": "high"
+    },
+    {
+      "profileId": "gpt-5.6-sol@xhigh",
+      "model": "gpt-5.6-sol",
+      "effort": "xhigh"
+    }
+  ],
+  "roleAssignment": {
+    "schema": "split-lane-fixed-role-assignment-v1",
+    "readerPrimary": {
+      "profileId": "pending-role-qualification",
+      "model": "pending",
+      "effort": "high"
+    },
+    "readerBackup": {
+      "profileId": "pending-role-qualification",
+      "model": "pending",
+      "effort": "high"
+    },
+    "sourcePrimary": {
+      "profileId": "pending-role-qualification",
+      "model": "pending",
+      "effort": "high"
+    },
+    "sourceAdjudicator": {
+      "profileId": "pending-role-qualification",
+      "model": "pending",
+      "effort": "high"
+    },
+    "quizChecker": {
+      "deterministic": true,
+      "checkerVersion": "quiz-integrity-adjudication-v1"
+    },
+    "quizAdjudicator": {
+      "profileId": "pending-role-qualification",
+      "model": "pending",
+      "effort": "high"
+    }
+  },
+  "roleAssignmentPolicyVersion": "recovery-fixed-role-policy-v1",
+  "requiredRoles": {
+    "schema": "split-lane-required-role-set-v1",
+    "reader": {
+      "primary": true,
+      "backup": true
+    },
+    "source": {
+      "primary": true,
+      "independentAdjudicator": true,
+      "blindHumanAdjudicationPath": false
+    },
+    "quiz": {
+      "deterministicChecker": true,
+      "semanticAdjudicator": true
+    }
+  },
+  "escalation": {
+    "sourceHighSeverityRequiresAdjudicator": true,
+    "quizAmbiguityRequiresAdjudicator": true,
+    "readerEscalationAdvisoryOnly": true
+  },
+  "strata": [
+    "research-heavy",
+    "abstract-conceptual",
+    "example-heavy",
+    "causal-quiz-sensitive"
+  ],
+  "candidateInputs": {
+    "diagnostic": [
+      {
+        "cellId": "research-heavy--cfg-1",
+        "authoringConfigId": "cfg-1",
+        "bookId": "pilot-research-heavy",
+        "chapterNumber": 1,
+        "stratum": "research-heavy"
+      },
+      {
+        "cellId": "research-heavy--cfg-2",
+        "authoringConfigId": "cfg-2",
+        "bookId": "pilot-research-heavy",
+        "chapterNumber": 1,
+        "stratum": "research-heavy"
+      },
+      {
+        "cellId": "research-heavy--cfg-3",
+        "authoringConfigId": "cfg-3",
+        "bookId": "pilot-research-heavy",
+        "chapterNumber": 1,
+        "stratum": "research-heavy"
+      },
+      {
+        "cellId": "research-heavy--cfg-4",
+        "authoringConfigId": "cfg-4",
+        "bookId": "pilot-research-heavy",
+        "chapterNumber": 1,
+        "stratum": "research-heavy"
+      },
+      {
+        "cellId": "abstract-conceptual--cfg-1",
+        "authoringConfigId": "cfg-1",
+        "bookId": "pilot-abstract-conceptual",
+        "chapterNumber": 2,
+        "stratum": "abstract-conceptual"
+      },
+      {
+        "cellId": "abstract-conceptual--cfg-2",
+        "authoringConfigId": "cfg-2",
+        "bookId": "pilot-abstract-conceptual",
+        "chapterNumber": 2,
+        "stratum": "abstract-conceptual"
+      },
+      {
+        "cellId": "abstract-conceptual--cfg-3",
+        "authoringConfigId": "cfg-3",
+        "bookId": "pilot-abstract-conceptual",
+        "chapterNumber": 2,
+        "stratum": "abstract-conceptual"
+      },
+      {
+        "cellId": "abstract-conceptual--cfg-4",
+        "authoringConfigId": "cfg-4",
+        "bookId": "pilot-abstract-conceptual",
+        "chapterNumber": 2,
+        "stratum": "abstract-conceptual"
+      },
+      {
+        "cellId": "example-heavy--cfg-1",
+        "authoringConfigId": "cfg-1",
+        "bookId": "pilot-example-heavy",
+        "chapterNumber": 3,
+        "stratum": "example-heavy"
+      },
+      {
+        "cellId": "example-heavy--cfg-2",
+        "authoringConfigId": "cfg-2",
+        "bookId": "pilot-example-heavy",
+        "chapterNumber": 3,
+        "stratum": "example-heavy"
+      },
+      {
+        "cellId": "example-heavy--cfg-3",
+        "authoringConfigId": "cfg-3",
+        "bookId": "pilot-example-heavy",
+        "chapterNumber": 3,
+        "stratum": "example-heavy"
+      },
+      {
+        "cellId": "example-heavy--cfg-4",
+        "authoringConfigId": "cfg-4",
+        "bookId": "pilot-example-heavy",
+        "chapterNumber": 3,
+        "stratum": "example-heavy"
+      },
+      {
+        "cellId": "causal-quiz-sensitive--cfg-1",
+        "authoringConfigId": "cfg-1",
+        "bookId": "pilot-causal-quiz-sensitive",
+        "chapterNumber": 4,
+        "stratum": "causal-quiz-sensitive"
+      },
+      {
+        "cellId": "causal-quiz-sensitive--cfg-2",
+        "authoringConfigId": "cfg-2",
+        "bookId": "pilot-causal-quiz-sensitive",
+        "chapterNumber": 4,
+        "stratum": "causal-quiz-sensitive"
+      },
+      {
+        "cellId": "causal-quiz-sensitive--cfg-3",
+        "authoringConfigId": "cfg-3",
+        "bookId": "pilot-causal-quiz-sensitive",
+        "chapterNumber": 4,
+        "stratum": "causal-quiz-sensitive"
+      },
+      {
+        "cellId": "causal-quiz-sensitive--cfg-4",
+        "authoringConfigId": "cfg-4",
+        "bookId": "pilot-causal-quiz-sensitive",
+        "chapterNumber": 4,
+        "stratum": "causal-quiz-sensitive"
+      }
+    ],
+    "confirmatory": []
+  },
+  "randomizationSeed": "s16-recovery-v1-seed-0001",
+  "schedules": {
+    "pilotSeed": "s16-recovery-v1-pilot-seed-0001",
+    "diagnosticSeed": "s16-recovery-v1-diagnostic-seed-0001"
+  },
+  "execution": {
+    "authMode": "chatgpt-subscription-codex-exec",
+    "routePolicyVersion": "route-policy-v1.0",
+    "boundedRetry": {
+      "maxReplaysPerCall": 1,
+      "replayableOutcomes": [
+        "infrastructure_failure",
+        "timeout",
+        "provider_rate_or_capacity"
+      ]
+    },
+    "callCeiling": 640
+  },
+  "humanAdjudicationPause": {
+    "required": true,
+    "unadjudicatedDisputes": [
+      "14 sol source-register cases UNADJUDICATED (owner gate) — see LAYER_N_V2_SPLIT_LANE_RETROSPECTIVE"
+    ]
+  },
+  "imp13Dormant": true,
+  "productionActivation": false,
+  "separateAuthorizationRequired": true,
+  "bookSpecificExceptions": []
+}

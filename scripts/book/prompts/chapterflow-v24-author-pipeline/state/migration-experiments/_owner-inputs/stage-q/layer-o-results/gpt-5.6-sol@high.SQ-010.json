@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-010",
+  "parsed": {
+    "caseId": "SQ-010",
+    "verdict": "DEFECT",
+    "defectClass": "UNSUPPORTED_SCENE_DETAILS",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 1,
+        "quote": "The Intel reviewer reaches the Intel strategy review with two bad pages in his folder."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The Intel reviewer writes the outsider question at the top of the review page"
+      }
+    ],
+    "explanation": "The candidate presents an invented Intel reviewer, folder, pages, and review-page action as historical scene details, although the source plan supports only Grove's outsider question and Intel's shift from memory chips toward microprocessors.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-010\",\"verdict\":\"DEFECT\",\"defectClass\":\"UNSUPPORTED_SCENE_DETAILS\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":1,\"quote\":\"The Intel reviewer reaches the Intel strategy review with two bad pages in his folder.\"},{\"materialIndex\":1,\"quote\":\"The Intel reviewer writes the outsider question at the top of the review page\"}],\"explanation\":\"The candidate presents an invented Intel reviewer, folder, pages, and review-page action as historical scene details, although the source plan supports only Grove's outsider question and Intel's shift from memory chips toward microprocessors.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

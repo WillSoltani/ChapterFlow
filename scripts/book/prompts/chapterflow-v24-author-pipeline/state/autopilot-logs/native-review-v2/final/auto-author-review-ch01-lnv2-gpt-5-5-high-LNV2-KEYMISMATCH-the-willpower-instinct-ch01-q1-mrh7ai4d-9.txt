@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as three jobs: I will starts, I won't blocks, and I want keeps the larger value awake.",
+      "The Miller/Cohen passage says prefrontal control keeps goals active and tilts attention and action toward them.",
+      "The Gage passage says speech survived, while steadiness, planning, and social restraint changed after frontal injury.",
+      "The self-awareness section says change starts by noticing the moment before the action hardens into a story.",
+      "The chapter says self-control supports promises, turn-taking, shared resources, softened anger, and repaired conflict.",
+      "The chapter says a value can be real but lose if it is absent when the vivid cue appears.",
+      "The prose says the shorter want and longer want can both be real; the practical issue is which one gets support.",
+      "The concrete-challenge section says specific actions produce feedback about cue, barrier, and value.",
+      "The Amelia material says control biases attention and response when a routine conflicts with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct choice c is the longest and mirrors the chapter's exact three-part formula.",
+      "Correct choice a uses the chapter's distinctive phrase 'bias attention and response choice'; b and c are caricatures.",
+      "Correct choice a is the only non-absolute option and closely echoes the Gage paragraph.",
+      "Correct choice b is the only option set before the lapse; a and c are after-the-fact traps.",
+      "Correct choice b repeats the chapter's social-purpose language; a and c are obviously extreme.",
+      "Correct choice b repeats the 'choice point' / long-term goal language from the review cards.",
+      "Correct choice a is the only balanced answer; b and c use giveaway absolutes about the 'real' want.",
+      "Correct choice c is the only answer that includes experiment and feedback; a and b reject the method.",
+      "Correct choice c repeats the Miller/Cohen wording; a and b are exaggerated distractors."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 78,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 82,
+    "insight": 88,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower.",
+      "why": "This is the chapter's strongest portable line: short, corrective, and easy to remember."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "This cleanly explains the mechanism behind the three-power method."
+    },
+    {
+      "quote": "What to do: Brooklyn says the larger want in plain words before touching the wrapper again.",
+      "why": "The action is concrete enough to try immediately, though the example itself is relatively thin."
+    },
+    {
+      "quote": "Jonathan D. Cohen's 2001 control model helps show why the wanted commitment must guide the next response.",
+      "why": "This example applies the source somewhat generically instead of showing a sharper before-to-after consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer is visibly cued by being the only option that contains all three chapter terms: start, stop, and value.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct answer borrows the chapter's technical wording while the distractors are implausible extremes.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The distractors are too easy because they reject cooperation or social pressure in obviously foolish ways.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: it has a person and scene, but the consequence is mostly implied and the lesson is restated rather than tested through a clear before-to-after result.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: it repeats the family ride scenario and attaches the control model generically without much new decision consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is memorable, practical, and beginner-friendly: stop treating willpower as mere refusal and sort the moment into I will, I won't, and I want. The brain mechanism is explained plainly, the summaries stand alone, and the exercises are low-friction. The main weakness is quiz subtlety: several correct answers are easy to spot from wording alone, and a couple of examples teach the point without adding much transfer depth. Those are craft issues, not blocking defects."
+}
+```

@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-049",
+  "parsed": {
+    "caseId": "SQ-049",
+    "verdict": "DEFECT",
+    "defectClass": "template-level narrative machinery reuse",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Zanele steadies a dented clipboard at Thursday 5:11 a.m. in dock door 3 at the Albany bakery, shipping lead"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Zanele can prove the timestamp, yet the driver's empty shelves are also real."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ruxandra she must decide whether to lead with dates or name the three layers"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Zanele she must decide whether to win the count or draw both paths"
+      }
+    ],
+    "explanation": "Both examples use the same narrative engine: named professional in a precisely timed workplace holding a damaged object, competing factual claims, proof-versus-human-impact tension, and an identical final decision frame, including the same 'Name she must decide whether' construction.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-049\",\"verdict\":\"DEFECT\",\"defectClass\":\"template-level narrative machinery reuse\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ruxandra holds a chipped blue mug at Tuesday 6:42 p.m. in the Midtown design studio review room, creative director\"},{\"materialIndex\":1,\"quote\":\"Zanele steadies a dented clipboard at Thursday 5:11 a.m. in dock door 3 at the Albany bakery, shipping lead\"},{\"materialIndex\":0,\"quote\":\"The facts are right, but Ruxandra keeps deleting the opening line because she can already hear the shame in the room.\"},{\"materialIndex\":1,\"quote\":\"Zanele can prove the timestamp, yet the driver's empty shelves are also real.\"},{\"materialIndex\":0,\"quote\":\"Ruxandra she must decide whether to lead with dates or name the three layers\"},{\"materialIndex\":1,\"quote\":\"Zanele she must decide whether to win the count or draw both paths\"}],\"explanation\":\"Both examples use the same narrative engine: named professional in a precisely timed workplace holding a damaged object, competing factual claims, proof-versus-human-impact tension, and an identical final decision frame, including the same 'Name she must decide whether' construction.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

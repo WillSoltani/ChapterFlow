@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P31",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATE_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations\",\"Chapter skill: Abandon Blame\",\"Map each person's contribution and the system pressures before deciding what must change next time.\",\"The best choice keeps the conversation tied to three layers and creates room for new information.\",\"The best choice keeps the conversation tied to contribution and creates room for new information.\"],\"rationale\":\"The two instances duplicate the scenario, choices, and correct answer, changing only the skill label and a phrase in the explanation. The keyed response directly assesses replacing blame with a contribution-and-systems frame, but it does not require learners to distinguish or work across the three conversations; the first explanation merely asserts “three layers” without showing them. The item therefore assesses Abandon Blame twice rather than genuinely assessing both stated mechanisms.\"}"
+}

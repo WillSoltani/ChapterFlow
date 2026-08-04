@@ -1,0 +1,11 @@
+Wrote [start-with-why-ch03.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch03.v21-native.chapter.json).
+
+Validation passed from the required `chapterflow-v21-authored` command root:
+
+- `author-check`: clean
+- `gate-chapter`: PASS, `0 blockers`, `0 majors`, `0 minors`
+- `quiz-verify`: `9/9` match
+- `evidence-audit`: no candidates
+- Length/self-check: `14,637` rendered chars, breakdown Flesch `82.6`
+- Quiz pattern: `1,1,2,0,1,0,0,2,2`
+- Distractor parity: uniquely longest key in `1/9`, uniquely shortest key in `3/9`

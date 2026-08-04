@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "summary-pack",
+  "chapterId": "the-intelligent-investor-ch16",
+  "hook": {
+    "hook": "A convertible can look like built-in upside, but the bond protection and the option have to pass separate tests.",
+    "counterintuition": "Hybrid securities are not automatically safer middle grounds. Interest safety, conversion value, conversion price, call terms, yield sacrifice, dilution, and accounting treatment can each change the real bargain.",
+    "sourceAnchorIds": [
+      "ch16.fact.1"
+    ],
+    "counterintuitionSourceAnchorIds": [
+      "ch16.fact.1",
+      "ch16.fact.2",
+      "ch16.fact.3",
+      "ch16.fact.4",
+      "ch16.fact.5",
+      "ch16.fact.7",
+      "ch16.fact.8",
+      "ch16.fact.9",
+      "ch16.framework.convertible.analysis"
+    ]
+  },
+  "breakdown": {
+    "fastRead": "A convertible bond must be judged as both a bond and an equity option because interest safety and conversion value are separate sources of return. The conversion feature alone does not make the security attractive. Conversion price determines how much the option is worth because the common stock must rise enough above that price to create value. Warrants are even more speculative than senior securities because they usually pay no income and can expire without value. Callable terms can limit upside when issuers redeem securities after conversion becomes favorable. The buyer also has to compare convertible yield with straight bond yield, since foregone income is part of the option cost.",
+    "deepRead": "A convertible bond is not one simple bargain. It is a senior security with an equity option attached, so the buyer has to test both parts. The bond side asks whether the interest and protection are good enough. The option side asks whether conversion value is real enough to justify the terms. Treating the conversion feature alone as the attraction misses the core risk: a weak bond with a poor option can still be bad.\n\nThe conversion price is the first hard term to inspect because it determines how much the option is worth. A conversion privilege has value only if the common stock can rise enough above the stated price to create value. The label does not define the payoff; the terms do. Call provisions add another constraint. Once conversion becomes favorable to holders, issuers may redeem securities and force a decision, so holders may not keep all apparent upside.\n\nYield sacrifice is part of the price. A buyer should compare convertible yield with straight bond yield because accepting lower income only makes sense if the conversion privilege is fairly priced. Warrants require still more caution. They usually pay no income and can expire without value, so a low dollar price can hide total loss risk rather than prove conservatism.",
+    "fullRead": "Convertible issues and warrants require a split analysis. A convertible bond must be analyzed as both a bond and an equity option because interest safety and conversion value are separate sources of return. That split prevents the most tempting shortcut: assuming the conversion feature alone makes the security attractive. The bond still needs protection, and the option still needs worthwhile terms. A weak bond with a poor option can still be bad even when the hybrid label sounds appealing.\n\nThe conversion price controls much of the option side. Conversion price determines how much the option is worth because the common stock must rise enough above that price to create value. Any conversion privilege is not equally valuable. Terms define the payoff. The same caution applies to warrants, which give the holder a right to buy shares at a specified price for a limited exercise period. Warrants are more speculative than senior securities because they usually pay no income and can expire without value. Their low dollar price can hide total loss risk.\n\nCallable terms can also change the apparent upside. Bondholders do not necessarily keep all upside once conversion value appears. Issuers may redeem securities when conversion becomes favorable to holders, and call provisions can force a decision. The buyer therefore has to look past the headline promise of participation in common stock gains and ask how the issuer can alter the holder's choices when the option becomes valuable.\n\nIncome comparison supplies another discipline. The buyer should compare convertible yield with straight bond yield because accepting lower income only makes sense if the conversion privilege is fairly priced. Lower yield is not irrelevant just because upside exists. Foregone income is part of the option cost. If the income sacrifice is large and the conversion terms are weak, the package may serve the issuer better than the buyer.\n\nThe wider issue is complexity. Hybrid securities require more expertise than ordinary defensive holdings because small term differences can change downside and upside materially. Dilution affects common shareholders when conversion occurs, since new shares can spread earnings over a larger base. Accounting treatment can obscure the cost of convertibles and warrants because interest, dilution, and option value may appear in different parts of reports. Reported EPS is not enough when diluted analysis is needed. Complex financing and accounting, as in NVF's Sharon Steel acquisition, show why financial engineering can make apparent opportunity harder to judge.",
+    "sourceAnchorIds": {
+      "fastRead": [
+        "ch16.fact.1",
+        "ch16.fact.2",
+        "ch16.fact.3",
+        "ch16.fact.4",
+        "ch16.fact.5"
+      ],
+      "deepRead": [
+        "ch16.fact.1",
+        "ch16.fact.2",
+        "ch16.fact.3",
+        "ch16.fact.4",
+        "ch16.fact.5"
+      ],
+      "fullRead": [
+        "ch16.fact.1",
+        "ch16.fact.2",
+        "ch16.fact.3",
+        "ch16.fact.4",
+        "ch16.fact.5",
+        "ch16.fact.6",
+        "ch16.fact.7",
+        "ch16.fact.8",
+        "ch16.fact.9",
+        "ch16.example.2",
+        "ch16.example.3",
+        "ch16.framework.convertible.analysis"
+      ]
+    }
+  },
+  "keyTakeaway": "Treat every convertible or warrant as a priced package: test the bond protection, option value, conversion or exercise terms, call risk, income sacrifice, dilution, and reporting effects before accepting the hybrid label.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch16.fact.1",
+    "ch16.fact.2",
+    "ch16.fact.3",
+    "ch16.fact.4",
+    "ch16.fact.5",
+    "ch16.fact.7",
+    "ch16.fact.8",
+    "ch16.fact.9",
+    "ch16.framework.convertible.analysis"
+  ],
+  "tryThisNow": "For any convertible or warrant under review, make a receipt check with separate lines for bond protection, conversion or exercise price, call terms, yield sacrifice, expiration risk, dilution, and diluted reporting.",
+  "tryThisNowSourceAnchorIds": [
+    "ch16.fact.1",
+    "ch16.fact.2",
+    "ch16.fact.3",
+    "ch16.fact.4",
+    "ch16.fact.5",
+    "ch16.fact.7",
+    "ch16.fact.8",
+    "ch16.framework.convertible.analysis"
+  ],
+  "sourceFactIds": [
+    "ch16.fact.1",
+    "ch16.fact.2",
+    "ch16.fact.3",
+    "ch16.fact.4",
+    "ch16.fact.5",
+    "ch16.fact.6",
+    "ch16.fact.7",
+    "ch16.fact.8",
+    "ch16.fact.9"
+  ]
+}

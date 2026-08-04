@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": ["Q5: The intended idea is derivable, but the keyed option says the airline routine exposes error \"without inventing a new anchor\" even though the prose explicitly calls airline operations \"The third anchor.\" A careful reader could reject the keyed option on that contradiction."],
+    "tells": ["Several correct answers reuse chapter-specific vocabulary such as ledger, proof, comparison, and setting, so a test-wise reader could sometimes guess by matching house language. No consistent uniquely-longest-choice tell."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 74,
+    "transfer": 82,
+    "practical": 86,
+    "summaries": 87,
+    "tone": 83,
+    "limits": 86,
+    "insight": 84,
+    "density": 80,
+    "beginner": 78
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known is not a feeling; it is a receipt you can point to.",
+      "why": "Strong memorable line that makes the chapter's core move concrete."
+    },
+    {
+      "quote": "The second anchor does not make the first look stronger; it makes the first answer harder questions.",
+      "why": "Best mechanism sentence: it explains why comparison matters rather than just naming it."
+    },
+    {
+      "quote": "The third anchor belongs to airline operations, where a routine can feel true because people have seen it so many times.",
+      "why": "This conflicts with Q5's keyed wording about not inventing a new anchor."
+    },
+    {
+      "quote": "Raymond may discover that his obvious order was obvious only to people who already knew the path.",
+      "why": "A late, lightly introduced named example may confuse a cold beginner before the examples section clarifies it."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed option contains a contradiction: it says the airline routine works \"without inventing a new anchor,\" while the prose explicitly calls airline operations the third anchor. The underlying answer is teachable, but the option wording is unsound.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "Raymond and Colleen appear as named cases before the reader has enough grounding for them, which creates a slight scaffold/template feel and can distract beginners.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Some examples rely on invented workplace names and abstract consequences rather than fully shown before-to-after outcomes; Example 6 in particular says the supplier lead feels the effect but leaves the actual effect vague.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "The chapter sometimes repeats its teaching terms, especially anchor, ledger, result, and proof, in a way that helps retention but slightly lowers density and naturalness.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a clear core move: separate known data from assumptions, then make results return before confidence hardens. The Toyota/GM/American Airlines sequence gives it more transfer than a single anecdote would, and the best lines are memorable. I would not ship yet because Q5 has a real key-soundness problem: the correct option contradicts the prose's own label of the airline routine as a third anchor. Fix that, and tighten the vaguest invented example, and the chapter is likely above the professional bar."
+}
+```

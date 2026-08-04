@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four specific moves matched to four decision dangers, not as a generic pause or final check.",
+      "A yes-or-no frame is the narrow-frame villain, and the repair is to widen the option set before evidence decorates the cramped choice.",
+      "Confirmation bias is guarded by reality-testing: looking for evidence that can surprise or hurt the favored answer.",
+      "The Intel/Grove section says emotion can carry information, but distance quiets short-term attachment so longer-term value can be judged.",
+      "Overconfidence is countered by naming wider possible futures rather than trusting one neat forecast.",
+      "Cole's logic is parallel first passes from multiple firms so the team learns before committing.",
+      "Grove's outsider question asks what a fresh leader would do without the legacy attachment.",
+      "The chapter says each villain hits a different part of the choice and needs a different WRAP move.",
+      "The prose explicitly says good process raises the odds without promising the outcome because uncertainty remains."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q1: b is the only option that names all four WRAP verbs and is uniquely longest.",
+      "Q2: b carries the chapter's signature yes-or-no/frame language; c is plainly anti-lesson.",
+      "Q3: c is the only option with disconfirming evidence, while a/b openly advocate for the favorite.",
+      "Q4: a/b are extreme, so c is guessable by moderation.",
+      "Q5: a is the only option with the chapter's range-of-outcomes language.",
+      "Q6: c repeats the signature parallel-first-passes/comparison-before-commitment pattern.",
+      "Q7: a closely repeats the outsider-question wording.",
+      "Q8: a is the only answer preserving four distinct villains and moves.",
+      "Q9: b echoes the memorable line about improving odds while uncertainty remains."
+    ]
+  },
+  "scores": {
+    "retention": 93,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 86,
+    "summaries": 93,
+    "tone": 89,
+    "limits": 94,
+    "insight": 92,
+    "density": 88,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "This is the chapter's strongest retention line: concrete, short, and central to the first WRAP move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "It explains confirmation bias through a memorable mechanism rather than a definition."
+    },
+    {
+      "quote": "The process earns trust when it fits the tempo of the choice.",
+      "why": "This gives the chapter an honest limit and prevents WRAP from sounding universal."
+    },
+    {
+      "quote": "touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "This is the weakest practical moment because the physical cue is oddly narrow and slightly underexplained."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz set",
+      "problem": "Several correct answers are signposted by exact model vocabulary while distractors are extreme or anti-lesson, reducing no-tell quiz quality.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The laptop-lid cue is too device-specific and may feel arbitrary before the later sticky-note implementation plan clarifies the behavior.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "This repeats the HopeLab parallel-first-pass lesson from example 1 with only a budget angle, so it adds limited new transfer range.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The forecast vignette is usable but thin: Yvonne, the launch, and the consequence remain generic, so it teaches the move without much before-to-after specificity.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The train-platform text exchange mostly restates the four villains and matching move without showing a concrete decision consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Ship. The chapter is clear, memorable, and unusually good about mechanism and limits: it explains why each villain distorts a different part of the decision and why WRAP improves odds without guaranteeing outcomes. The main weaknesses are craft-level, not blocking: quiz answers are often too easy to spot from signature phrasing, and a few transfer examples are thin or repetitive."
+}
+```

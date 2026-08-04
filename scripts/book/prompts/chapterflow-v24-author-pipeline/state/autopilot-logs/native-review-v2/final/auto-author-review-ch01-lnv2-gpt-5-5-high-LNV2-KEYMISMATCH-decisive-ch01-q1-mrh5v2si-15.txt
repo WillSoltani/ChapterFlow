@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "c", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four named moves matched to four different dangers, not a loose pause or final check.",
+      "The chapter says a narrow yes-or-no frame should be repaired by widening live options before evidence decorates the cramped choice.",
+      "Reality-testing requires evidence that can surprise or weaken the favorite answer, not a stronger advocacy file.",
+      "The Intel/Grove section says emotion can carry information, but distance quiets short-term attachment so the long term can be judged.",
+      "The overconfidence repair is to name a wider range of futures rather than trust one neat forecast line.",
+      "Cole's HopeLab logic is parallel first passes so comparison teaches the team before commitment gets expensive.",
+      "Grove's outsider question asks what a fresh leader would do without attachment, and the prose explicitly says outsiders were not smarter.",
+      "The chapter says each villain bends a different part of the choice and each needs a different WRAP move.",
+      "The prose says good process raises the odds without promising the outcome because uncertainty remains."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "Choice b says 'four choice stages,' while the prose more often frames them as four dangers/repair moves; still clearly the best fit.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Correct choice b is the only option naming all four WRAP moves; a reader could pick it by specificity.",
+      "Correct choice b uses the chapter's signature yes-or-no/narrow-frame language; c is an obvious anti-WRAP distractor.",
+      "Correct choice c is the only option with 'disconfirming evidence,' a giveaway term from the prose.",
+      "Distractors a and b are extreme; c is the only balanced answer.",
+      "Correct choice a is the only option mentioning a wider range, directly echoing the forecast section.",
+      "Correct choice c repeats 'parallel first passes' and 'comparison before commitment,' making it easy to spot.",
+      "Correct choice a closely paraphrases the Grove example; b contradicts a sentence in the prose.",
+      "Correct choice a is much more structurally precise than the generic distractors.",
+      "Correct choice b repeats the chapter's memorable line about odds and uncertainty."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 80,
+    "practical": 82,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 90,
+    "insight": 88,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strong, memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Vivid mechanism for confirmation bias, easy to remember and apply."
+    },
+    {
+      "quote": "Good process raises the odds without promising the outcome.",
+      "why": "Clean boundary-setting that prevents the framework from being oversold."
+    },
+    {
+      "quote": "touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "The action is concrete but a little ritualized, and 'shortcut' is under-explained at that point."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed answer says 'four choice stages,' while the chapter mainly teaches four villains and matching repair moves; the intended answer is still derivable.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct options are signposted by exact chapter vocabulary while distractors are extreme or obviously anti-WRAP, reducing diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "This repeats the HopeLab parallel-pass lesson from example 1 with a budget wrapper, so transfer broadening is thinner than it could be.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The train-platform scenario mostly restates the framework and shows little before-to-after consequence beyond naming the villain.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The laptop-lid cue is low-friction but slightly theatrical, and 'shortcut' is not yet defined clearly enough for a cold reader.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the core WRAP sequence is clear, memorable, and bounded by useful limits, with especially strong lines for narrow framing, confirmation bias, and process humility. The quiz is fair and answerable from the prose, though its correct choices are often easier to spot than they need to be. Transfer is solid but narrowed by repeated HopeLab/Intel scenarios and one thin framework-only example; still, a beginner would leave knowing what to do next."
+}
+```

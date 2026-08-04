@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
-import { existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
-import { resolve } from "path";
+import { existsSync, mkdirSync, readdirSync, readFileSync, rmdirSync, rmSync, writeFileSync } from "fs";
+import { dirname, resolve } from "path";
 
 import { test } from "./harness.js";
 import { makeChapter, makeSourceV2SidecarFixture, STATE_CHAPTERS, STATE_INDEXES, writeCanonicalIndexFixture, writeFixtureBook, writeResearchRunManifestFixture } from "./helpers.js";
@@ -16,15 +16,30 @@ import { qcRoundPath } from "../src/qc/qcRound.js";
 const BOOK = "zz-fixture-qc-orch-create";
 const ROUND = "r-orch-create";
 const RUN = "20260612T000000Z";
+const QC_PACK_BOOK_DIR = dirname(keyPackDir(BOOK, ROUND));
+const QC_PACKS_DIR = dirname(QC_PACK_BOOK_DIR);
+const QC_ORCHESTRATOR_BOOK_DIR = dirname(orchestratorRoundDir(BOOK, ROUND));
+const QC_ORCHESTRATOR_DIR = dirname(QC_ORCHESTRATOR_BOOK_DIR);
+const QC_ROUNDS_DIR = dirname(qcRoundPath(BOOK, ROUND));
+const QC_PACKS_DIR_EXISTED = existsSync(QC_PACKS_DIR);
+const QC_ORCHESTRATOR_DIR_EXISTED = existsSync(QC_ORCHESTRATOR_DIR);
+const QC_ROUNDS_DIR_EXISTED = existsSync(QC_ROUNDS_DIR);
+
+function pruneSharedDir(path: string, existedBefore: boolean): void {
+  if (!existedBefore && existsSync(path) && readdirSync(path).length === 0) rmdirSync(path);
+}
 
 function cleanup(): void {
   for (const n of [1, 2]) rmSync(attestationPath(BOOK, n), { force: true });
   for (const n of [1, 2]) rmSync(resolve(STATE_CHAPTERS, `${BOOK}-ch${String(n).padStart(2, "0")}.v21-native.chapter.json`), { force: true });
   rmSync(resolve(STATE_INDEXES, `${BOOK}.json`), { force: true });
   rmSync(resolve(REPO_ROOT, ".chapterflow/runs", BOOK), { recursive: true, force: true });
-  rmSync(orchestratorRoundDir(BOOK, ROUND), { recursive: true, force: true });
-  rmSync(keyPackDir(BOOK, ROUND), { recursive: true, force: true });
+  rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
+  rmSync(QC_PACK_BOOK_DIR, { recursive: true, force: true });
   rmSync(qcRoundPath(BOOK, ROUND), { force: true });
+  pruneSharedDir(QC_ORCHESTRATOR_DIR, QC_ORCHESTRATOR_DIR_EXISTED);
+  pruneSharedDir(QC_PACKS_DIR, QC_PACKS_DIR_EXISTED);
+  pruneSharedDir(QC_ROUNDS_DIR, QC_ROUNDS_DIR_EXISTED);
 }
 
 function setup(): void {
@@ -173,7 +188,7 @@ test("item B (F1): when ALL chapters carry, a normal incremental round opens NOT
   } finally {
     if (prev === undefined) delete process.env.CHAPTERFLOW_NO_API_CODEX_QC;
     else process.env.CHAPTERFLOW_NO_API_CODEX_QC = prev;
-    rmSync(orchestratorRoundDir(BOOK, "r-itemb-skip"), { recursive: true, force: true });
+    rmSync(QC_ORCHESTRATOR_BOOK_DIR, { recursive: true, force: true });
     cleanup();
   }
 });

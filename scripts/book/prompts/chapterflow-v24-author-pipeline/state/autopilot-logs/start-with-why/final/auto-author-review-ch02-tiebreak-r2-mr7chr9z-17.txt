@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q2's correct answer is the only option that names TiVo and directly matches the stem's attention-without-reason language.", "Q7's correct answer is the only option that preserves all three named anchors, making it more obviously aligned with the chapter's structure."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 87,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong hook: compact, memorable, and sets up the chapter's core distinction."
+    },
+    {
+      "quote": "The concrete price of a borrowed spike is a stale reason and another push next week.",
+      "why": "Best retention line; it gives the abstract diagnostic a consequence the reader can remember."
+    },
+    {
+      "quote": "At the first newness spike, split notice from need.",
+      "why": "Practical and transferable; it turns the TiVo lesson into a usable test."
+    },
+    {
+      "quote": "Partner Noah is downstream of MCI's Friends & Family pattern, so the force reaches him through people tied to the choice.",
+      "why": "Weakest example moment; the invented setup is thin and reads more like a restated lesson than a concrete before-and-after."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 3",
+      "problem": "The Noah example feels manufactured: it has a named person but no concrete setting, number, decision context, or clear consequence beyond restating that peer pressure is not belief.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Founder Dawson's small-offer case is useful but generic; it would be stronger with a specific offer, actual before-to-after decision, and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q2",
+      "problem": "The keyed answer is sound, but it has a mild tell because it is the only option naming TiVo and echoing the stem's attention-versus-reason contrast.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed answer is sound, but the distractors are both obviously anti-specificity while the chapter repeatedly rewards named anchors, making the correct answer easier to spot.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears a professional shipping bar. Its central move is memorable, concrete, and repeatedly tested across General Motors, MCI, and TiVo without collapsing them into one generic business lesson. The strongest material teaches a real diagnostic order: name the push, then ask what returns without it. The quizzes are mostly fair and key-sound, though a couple of answers are easier to spot because they preserve the chapter's named anchors while distractors flatten them. The main weakness is that two later examples feel lightly staged rather than fully lived, but they do not break the chapter's learning promise."
+}
+```

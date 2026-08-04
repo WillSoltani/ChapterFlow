@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-U2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"INSUFFICIENT_TO_DECIDE\",\"findingValidity\":\"INCONCLUSIVE\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Finding S-09-01: the passage cites a fabricated conference talk. The talk is invented and must be cut.\",\"In a widely shared 2014 conference talk, an engineering leader argued that a stopped line is information, not failure.\",\"A plausible accusation is not proof. An assertion is not evidence for itself.\"],\"rationale\":\"The candidate passage mentions a 2014 conference talk, and the review finding asserts that the talk was fabricated, but the supplied record contains no independent evidence identifying the talk or proving that it was invented. Under the review contract, the finding's assertion cannot serve as proof for itself, and the specific evidence needed to decide the fabrication claim is absent from the record.\"}"
+}

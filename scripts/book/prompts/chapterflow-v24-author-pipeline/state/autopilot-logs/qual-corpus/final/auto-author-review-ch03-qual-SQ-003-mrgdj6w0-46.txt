@@ -1,0 +1,96 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 15,
+    "quizzes": 0,
+    "transfer": 10,
+    "practical": 0,
+    "summaries": 5,
+    "tone": 25,
+    "limits": 5,
+    "insight": 22,
+    "density": 25,
+    "beginner": 35
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Narrow framing needs more live paths. Confirmation bias needs better evidence. Short-term emotion needs distance. Overconfidence needs a wider range of futures.",
+      "why": "This is the chapter's strongest passage because it concisely maps four decision dangers to four corrective directions."
+    },
+    {
+      "quote": "## Fast read\nA concise idea.",
+      "why": "The fast read describes its intended function instead of supplying a concise idea."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six consecutive required sections contain no content, leaving the chapter structurally incomplete."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook is production-status scaffolding rather than a reader-facing opening and gives no reason to engage with the topic.",
+      "mustFix": false
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section contains only the placeholder-like phrase \"A concise idea.\" and therefore fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section contains only \"One added angle.\" without stating any angle, so it fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "It names four moves and pairs them with dangers but never explains how to perform any move, recognize success, or choose among them.",
+      "mustFix": false
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, so the chapter provides no actionable exercise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The section is empty, leaving no concrete decision, consequence, or demonstration of the framework.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz contains no questions or choices, making the assessment structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty, so the promised review material is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty, weakening retention and leaving a required section incomplete.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter-wide",
+      "problem": "No boundaries, failure modes, tradeoffs, or situations where the four-move framework may be insufficient are discussed.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfinished scaffold, not a shippable chapter. The full read contains one compact and potentially useful mapping between four decision hazards and four corrective moves, but virtually every other section is empty or placeholder text. With no worked example, application instructions, quiz, review cards, takeaway, or retention material, a beginner cannot reliably understand, practice, test, or retain the framework. The numerous missing or nonfunctional sections are structurally invalid and place the chapter far below the professional bar."
+}
+```

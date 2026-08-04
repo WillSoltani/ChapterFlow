@@ -1,0 +1,69 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "b", "c", "b", "a", "a", "a", "c"],
+    "keyDisagreements": [
+      "Q3: I chose b as the closest offered answer, but the key is not sound as written. The stem says 'Your founder story,' and the prose warns against borrowing famous names; the correct action should be to find a second setting/root from the founder's own evidence, not add the Wright brothers.",
+      "Q8: I derived a, because moving the Wright detail into Schultz's retail story is exactly the wrong-source-detail error the prose describes. The keyed c is also supported, but for a WHY/cause stem the prose supports sibling causes too equally for c to be the one clear cause."
+    ],
+    "tells": [
+      "Q3: The keyed choice is uniquely specific with Wilbur and Orville, which makes it look key-like even though it is pedagogically suspect.",
+      "Q6: The keyed choice contains the chapter's exact stop/edge logic, while the distractors are more absolute and easier to reject."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 72,
+    "transfer": 76,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 85,
+    "density": 83,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trace the root before you name the promise.",
+      "why": "Strongest compact line; it states the core move in a sentence a reader can remember."
+    },
+    {
+      "quote": "The story does not serve the line; the line serves the story.",
+      "why": "This gives the chapter a useful reversal that explains the mechanism, not just the rule."
+    },
+    {
+      "quote": "b) Add the Wright brothers' workshop roots, so Wilbur and Orville make the pattern travel beyond one life.",
+      "why": "Worst quiz defect; it tells a founder to borrow the chapter's famous anchor instead of finding their own second root."
+    },
+    {
+      "quote": "Do not borrow a famous name to make a weak promise sound deep.",
+      "why": "This directly undercuts the Q3 keyed answer and makes the quiz soundness issue concrete."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed answer says to add the Wright brothers to 'your founder story,' but the prose says not to borrow famous names to make a weak promise sound deep. The answer should require a second setting from the founder's own history.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The key chooses c, but a is equally or more directly supported by the prose's warning that true details become false support when moved to the wrong story. For a cause stem, the key does not isolate one shown cause.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The example is mostly a restatement of the lesson: a group has no anchors, Tobias sends it back through the rows, and 'the return has not happened yet.' It lacks a concrete before-to-after consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "hook",
+      "problem": "The opening '2 anchors make Xavier pause' is compressed enough to feel like scaffold shorthand rather than a natural hook.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong chapter with a memorable core move: root first, contribution second, impact third, WHY last. The summaries layer well, the prose has several durable lines, and the limits are unusually honest about where a warm origin story should stop. I would not ship it yet because the quiz has two cause/key problems, especially Q3, where the keyed answer violates the chapter's own warning against borrowed famous-name support. Fix those quiz items and tighten the weakest transfer example, and the chapter would clear a professional bar."
+}
+```

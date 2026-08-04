@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 18,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 5,
+    "summaries": 0,
+    "tone": 25,
+    "limits": 0,
+    "insight": 18,
+    "density": 12,
+    "beginner": 8
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "After the door closed, Fenna saw the older feeling under it: fear that another rejected claim would wreck payroll.",
+      "why": "The chapter’s strongest moment identifies the fear beneath reactive behavior through a concrete scene."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now\n## Examples",
+      "why": "Five promised instructional sections are empty, leaving no lesson before the examples."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The instruction refers to an undefined move and gives the reader no reproducible action."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "All three closing learning components are present only as empty headings."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is an internal production-status placeholder rather than a reader-facing opening.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read, deep read, full read, key takeaway, and try this now",
+      "problem": "All five sections are empty, so their stand-alone promises fail and the chapter never teaches a core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, making it structurally broken and impossible to answer or assess.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards and memorable lines",
+      "problem": "Both required retention sections are empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "Both examples tell readers to follow an undefined “scene's move”; without preceding instruction, the core skill cannot be learned or reliably applied.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scene suggests naming an underlying fear before apologizing but gives no completed before-to-after consequence; its generic what-to-do and why-it-matters lines add no guidance.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The sentence “Fenna she writes” contains a duplicated subject and disrupts comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scene ends at a choice without showing the decision or consequence, so it is a thin example rather than a demonstrated application.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The prose contains the duplicate “Jae Jae” and the ungrammatical constructions “at Wednesday 2:08 p.m.” and “in the patient relations desk.”",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfinished scaffold, not a shippable chapter. Two concrete scenes hint at potentially useful moves—naming the fear beneath defensiveness and choosing curiosity over procedural self-defense—but no prose defines, explains, limits, summarizes, or operationalizes either move. The instructional layers and retention aids are empty, the examples point to an undefined action, and the quiz has no questions. The chapter therefore cannot satisfy a professional learning-product bar without substantive completion."
+}
+```

@@ -1,0 +1,80 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines heart rate variability as beat-to-beat rhythm shifting and links higher variability with stronger self-regulation.",
+      "The Trier description says public speaking/arithmetic under evaluator judgment can trigger bodily stress without being chased or injured.",
+      "The chapter says stress narrows attention toward fast relief, making cookies, purchases, or sharp replies feel like shelter.",
+      "Tang's training is presented as brief practice that steadies attention and softens stress reactivity before an urge peaks.",
+      "The prose and review card say slow breathing changes body state, arousal, attention, and control rather than merely distracting.",
+      "Pause-and-plan questions extra arousal because a loud body state can crowd out future consequences and goal attention.",
+      "The sleep section says tired attention loses grip and loud cues can beat the goal meant to be remembered.",
+      "The movement paragraph says activity can improve mood, stress regulation, and executive function, lowering the next choice's load.",
+      "The chapter says waiting until the craving peaks is unfair because the body needs runway before the hardest moment."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Q2: the correct choice repeats the chapter/example phrase 'social judgment and low control' almost verbatim.",
+      "Q4, Q6, Q7, Q8, and Q9: the correct choices are often the most mechanistic and chapter-shaped, making them easier to spot by test-taking pattern.",
+      "Q9: 'runway before the craving peaked' is a direct giveaway phrase from the prose."
+    ]
+  },
+  "scores": {
+    "retention": 89,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 90,
+    "summaries": 87,
+    "tone": 82,
+    "limits": 93,
+    "insight": 89,
+    "density": 84,
+    "beginner": 91
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "Strongest compact expression of the chapter's core mechanism."
+    },
+    {
+      "quote": "Pause-and-plan is not a way to avoid the hard act; it is a way to arrive at it with more of yourself present.",
+      "why": "Excellent boundary-setting that prevents the technique from becoming avoidance."
+    },
+    {
+      "quote": "In the end, it really just comes down to applying this consistently and not overthinking it.",
+      "why": "Weakest tone moment: generic filler that undercuts an otherwise concrete example."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The correct answer echoes 'social judgment and low control' from the prose/example closely enough to be guessable.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer uses the chapter's distinctive 'runway before the craving peaked' language, creating a phrasing tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The final sentence is generic advice rather than example-specific mechanism, giving the example a template smell.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The line connecting Kelsey's object placement to Yi-Yuan Tang's attention training is compressed and a little forced.",
+      "mustFix": false
+    },
+    {
+      "unit": "review card 6",
+      "problem": "It imports Ch 1 terminology without explanation, so it is less standalone for a cold reader than the other cards.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter: the core move is memorable, bodily, and practical, with strong limits around when not to pause. The quiz is fair and fully derivable, though several correct answers reveal themselves through chapter-specific phrasing. The examples mostly transfer well because they show a small cost before the urge peaks, but a few lines feel generic or over-compressed. No must-fix reader-harming defect appears on the page."
+}
+```

@@ -1,0 +1,28 @@
+{
+  "caseId": "SQ-028",
+  "parsed": {
+    "caseId": "SQ-028",
+    "verdict": "DEFECT",
+    "defectClass": "generic or topically unrelated locator",
+    "severity": "HIGH",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "A single label such as aggression is too crude"
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Adverse+Childhood+Experiences+Study"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "A generic or topically unrelated search is not verification."
+      }
+    ],
+    "explanation": "The claim concerns aggression being too crude a label for mechanisms such as attack, defense, dominance, and protection, but the locator is only a generic PubMed search for the Adverse Childhood Experiences Study and does not address the same mechanism or relation.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-028\",\"verdict\":\"DEFECT\",\"defectClass\":\"generic or topically unrelated locator\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"A single label such as aggression is too crude\"},{\"materialIndex\":0,\"quote\":\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=Adverse+Childhood+Experiences+Study\"},{\"materialIndex\":1,\"quote\":\"A generic or topically unrelated search is not verification.\"}],\"explanation\":\"The claim concerns aggression being too crude a label for mechanisms such as attack, defense, dominance, and protection, but the locator is only a generic PubMed search for the Adverse Childhood Experiences Study and does not address the same mechanism or relation.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

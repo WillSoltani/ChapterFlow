@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong answers are giveaway strawmen using overreach or rank/familiarity as proof, e.g. letting the club president decide, using the better-known company to set timing, or treating attention as settled proof.", "Correct choices often carry the chapter's exact vocabulary and named anchors, making some answers guessable by matching terms rather than deriving the reasoning."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 76,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 88,
+    "insight": 86,
+    "density": 82,
+    "beginner": 87
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A discount can move the sale and still fail to win the buyer.",
+      "why": "Strong compact hook; it names the core distinction in memorable language."
+    },
+    {
+      "quote": "What would still move if the offer were gone?",
+      "why": "Best transferable test in the chapter; a reader can apply it immediately."
+    },
+    {
+      "quote": "The remote is still in Gabriel's hand when he calls Novelty a reason.",
+      "why": "This manufactured detail feels theatrical and does not add real before-to-after evidence."
+    },
+    {
+      "quote": "Before attention gets counted, ask what it proves.",
+      "why": "Too thin for an example payoff; it restates the lesson instead of showing a consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 4",
+      "problem": "The Gabriel/TiVo scene feels manufactured: it names a person but gives no concrete decision, consequence, place, number, or real before-to-after beyond restating that novelty is not a reason.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are too obviously wrong because they endorse rank, familiarity, abstract purpose language, or proof from attention; this creates answer tells without requiring close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 3",
+      "problem": "The Noah scenario is abstract and odd: 'feels a long-distance calling offer' is not a realistic business action, so the transfer example is less usable than the principle it is meant to demonstrate.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep/full read",
+      "problem": "The chapter repeats the same return-pass distinction many times. The repetition helps retention, but some paragraphs have lower density because they circle the same push-versus-reason claim.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, readable chapter with a memorable core move: separate the push from the durable reason, then ask what returns after the push is gone. The summaries, limits, and practical prompts are clear. I would not ship it yet at a professional bar because at least one transfer example, especially the Gabriel/TiVo scene, reads like a fabricated slot-filler that restates the lesson instead of showing a concrete decision and consequence. Tightening the weakest examples and making quiz distractors less strawman-like would likely move it over the line."
+}
+```

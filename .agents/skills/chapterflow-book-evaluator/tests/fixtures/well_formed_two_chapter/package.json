@@ -1,0 +1,92 @@
+{
+  "schemaVersion": "fixture-1",
+  "packageId": "fixture-well-formed",
+  "book": {
+    "bookId": "fixture-well-formed",
+    "title": "The Small Practice Loop",
+    "subtitle": "A Synthetic ChapterFlow Fixture",
+    "audience": "Interested adults with no specialist background",
+    "purpose": "Teach a safe observe-practice-review loop"
+  },
+  "chapters": [
+    {
+      "chapterId": "observe",
+      "number": 1,
+      "title": "Notice the Cue",
+      "hook": "A missed reminder shows why cues need to be visible.",
+      "fullRead": "Begin with one ordinary situation. Observe the cue, name the intended response, and note what could make the response inappropriate. The loop is a planning aid, not a guarantee. Stop when the context changes or the action could affect another person's safety or consent.",
+      "examples": [
+        {
+          "id": "ex-observe-1",
+          "scenario": "A learner puts a review card beside tomorrow's materials.",
+          "contrast": "A vague intention has no observable cue."
+        }
+      ],
+      "tryThisNow": [
+        "Name one visible cue and one reason not to act on it automatically."
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "questionId": "q-observe-1",
+            "prompt": "Which plan includes a usable cue and a boundary?",
+            "choices": [
+              "Try harder whenever possible",
+              "When the card is visible, review once unless the situation is unsafe"
+            ],
+            "correctIndex": 1,
+            "explanation": "The second choice names both an observable cue and a reason to stop."
+          }
+        ]
+      },
+      "reviewCards": [
+        {
+          "front": "What starts the loop?",
+          "back": "A visible, relevant cue rather than a vague intention."
+        }
+      ],
+      "memorableLines": [
+        "A cue invites judgment; it does not replace it."
+      ]
+    },
+    {
+      "chapterId": "review",
+      "number": 2,
+      "title": "Review and Adjust",
+      "fullRead": "After a small attempt, compare what happened with the intended result. Keep the observation separate from blame. Adjust the cue, the action, or the context. If the consequence is serious or outside your competence, pause and seek qualified help rather than repeating the loop mechanically.",
+      "examples": [
+        {
+          "id": "ex-review-1",
+          "scenario": "The learner notices that the review cue appears during a busy transition.",
+          "contrast": "Moving the cue is more useful than blaming motivation."
+        }
+      ],
+      "exercises": [
+        "Retrieve the three parts of the loop, then adapt them to a different low-risk situation."
+      ],
+      "implementationPlan": [
+        {
+          "cue": "A chosen card appears",
+          "action": "Complete one short retrieval",
+          "feedback": "Record whether the cue and timing helped",
+          "boundary": "Stop if the action is unsafe or requires professional guidance"
+        }
+      ],
+      "quiz": {
+        "questions": [
+          {
+            "questionId": "q-review-1",
+            "prompt": "What should happen after the first attempt?",
+            "choices": [
+              "Repeat it unchanged",
+              "Compare the result, then adapt or stop"
+            ],
+            "correctIndex": 1,
+            "explanation": "Review uses feedback and preserves the option to adapt or stop."
+          }
+        ]
+      },
+      "keyTakeaway": "Observe, attempt, review, and adapt within clear boundaries."
+    }
+  ]
+}

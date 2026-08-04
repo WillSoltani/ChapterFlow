@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 20,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 35,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 5,
+    "insight": 35,
+    "density": 30,
+    "beginner": 55
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The tiny cursor after the question is doing the narrowing work.",
+      "why": "This is the strongest line: concrete, memorable, and it names the mechanism."
+    },
+    {
+      "quote": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin",
+      "why": "This gives the chapter its usable core move: widen a false binary into repair and boundary questions."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "These promised sections are present only as headings, so the chapter is structurally unfinished."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads like production scaffolding rather than reader-facing instructional prose."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz",
+      "problem": "The Quiz section contains no questions, so there is no quiz to answer or validate.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The Key takeaway heading has no content, so the section fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The Try this now heading has no content, so the reader gets no concrete practice step.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The Examples heading has no content, leaving transfer unsupported beyond the single Claire scenario.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The Review cards heading has no content, so the retention layer is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The Memorable lines heading has no content, so the chapter's recall aid is missing.",
+      "mustFix": true
+    },
+    {
+      "unit": "hook",
+      "problem": "The hook says 'A reader-facing chapter under phase-1 review,' which is scaffolding language rather than a real reader hook.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only 'A concise idea,' which does not summarize the chapter's actual move.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only 'One added angle,' which does not provide a deeper explanation and fails as a stand-alone read.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The full read contains a usable seed: when a question narrows the reader into a false binary, mark the narrow wording and add the missing adjacent questions. But most of the chapter is empty scaffolding, including the quiz, examples, key takeaway, practice, review cards, and memorable lines. A reader could infer the core move from the Claire paragraph, but the product chapter is structurally incomplete and far below a professional 80/100 bar."
+}
+```

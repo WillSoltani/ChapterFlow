@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often reuse the chapter's exact house language, such as known facts/guesses/choices/proof, venue, hard detail, and borrowed proof.", "Several distractors are easy rejects because they are cartoonishly wrong: rank settling the work, famous labels proving the claim, skipping local facts, or borrowing terms only."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 78,
+    "transfer": 74,
+    "practical": 83,
+    "summaries": 85,
+    "tone": 82,
+    "limits": 84,
+    "insight": 83,
+    "density": 76,
+    "beginner": 86
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known data is a receipt. It is not perfect truth. It is the line you can bring back when the argument starts.",
+      "why": "Strong, memorable framing that makes the core move easy to recall."
+    },
+    {
+      "quote": "A late repair can make a weak premise look smart because everyone can see the repair and few people ask why the miss was allowed to travel.",
+      "why": "Best mechanism sentence: it explains why visible fixes can hide bad assumptions."
+    },
+    {
+      "quote": "Gate lead Gregoire is changing the boarding sequence before anyone has agreed what would count as proof.",
+      "why": "The example has a useful before state, but the concrete consequence remains thin."
+    },
+    {
+      "quote": "Quality lead Celine first feels the outside effect when a supplier prices correction as normal before anyone names the cause.",
+      "why": "This reads like a manufactured placeholder: no specific supplier, number, decision, or visible after-effect."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "examples",
+      "problem": "Several examples feel manufactured rather than observed. They use named roles and borrowed venues, but often lack concrete numbers, named organizations beyond source anchors, or a clear decision-and-consequence chain.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier example is a slot-filler: it names no supplier, gives no price or scale, and mainly restates the lesson about keeping proof open.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "Most correct answers are derivable, but many distractors are too obviously bad because they endorse rank, slogans, fame, or universal copying.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The prose repeats the same anchors, especially Japanese car-door assembly, General Motors, American Airlines, jidoka, and Fort Worth, more often than the learning load requires.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer",
+      "problem": "The chapter teaches the order well, but transfer beyond the provided examples depends on abstract prompts more than fully worked new situations.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a solid chapter with a memorable core: facts before guesses, small choices, and proof returning. The mechanism is clear, the summaries layer well, and the limits around borrowed details are unusually honest. I would not ship it yet at a professional bar because the examples still have a scaffold smell: too many are neatly invented role-scenes that restate the model without enough concrete before-after consequence. The quiz is fair on key soundness, but its wrong answers are often too easy to eliminate."
+}
+```

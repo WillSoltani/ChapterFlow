@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Mild tell: correct choices often reuse the chapter's exact load-bearing language and concrete anchors, while distractors lean into absolutes or obviously weak overclaims."]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 88,
+    "practical": 86,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 88,
+    "density": 84,
+    "beginner": 89
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Success is the moment WHY needs more proof, not less.",
+      "why": "Strong, memorable core mechanism."
+    },
+    {
+      "quote": "Metrics are receipts, not reasons.",
+      "why": "Concise line that cleanly separates evidence from purpose."
+    },
+    {
+      "quote": "Sometimes the opposite is right: when the original reason is already clear, the growth sign is narrow, and the measure simply reports a task, do not turn every update into a purpose audit.",
+      "why": "Good boundary condition; it prevents the tool from becoming theater."
+    },
+    {
+      "quote": "Why did Danielle's purpose note fail after the update was over? Because it floated above Walmart with 1962 and Bentonville, Starbucks with 1971 and Seattle, and Microsoft with its 1975 founding and Redmond headquarters.",
+      "why": "This slightly muddles Danielle's earlier causal thread by shifting from promise/motion failure to detached company anchors."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers often contain the chapter's exact vocabulary and concrete anchors, making some choices guessable by pattern even before close reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The stem says \"Wal-Mart\" while the chapter consistently uses \"Walmart\"; minor naming inconsistency.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Danielle's failure is earlier explained as growth signs without a served promise, but this example explains it as floating above company anchors, which blurs the cause.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The company-year-place anchors are repeated enough that a few paragraphs feel more like reinforcement than new movement.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable against an 84 bar. The chapter has a clear central move, memorable language, useful limits, and practical transfer beyond the named companies. The quizzes are fair and the answer key is sound, though the correct choices have a mild tell because they often carry the chapter's exact terms and concrete anchors. The main craft weakness is repetition around the Walmart/Starbucks/Microsoft details, plus a small causal blur in Danielle's final example, but neither blocks publication."
+}
+```

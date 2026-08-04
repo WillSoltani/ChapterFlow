@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "FAIL",
+  "book3_churn": "MEDIUM",
+  "quizDerivation": {
+    "1": {
+      "answers": ["a", "b", "c", "a", "b", "c", "a", "a", "c"],
+      "keyDisagreements": ["Q8: I derived a, but the key says b. The prose supports diagnosing a copied practice as failing because the receiver copied the tool without the upstream belief."]
+    },
+    "2": {
+      "answers": ["b", "c", "a", "b", "c", "a", "b", "c", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["c", "b", "a", "c", "b", "a", "c", "b", "a"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "a", "c", "b", "a", "b", "c", "b", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 70,
+    "summaries": 80,
+    "tone": 72,
+    "limits": 82,
+    "insight": 73,
+    "density": 68,
+    "beginner": 77
+  },
+  "quotes": [
+    {
+      "quote": "A clean finish can still hide a broken start.",
+      "why": "Strong, portable retention line that captures the chapter's lens cleanly."
+    },
+    {
+      "quote": "Reliability says the job was done; trust says the people are safe with you.",
+      "why": "Memorable distinction with real transfer value beyond the airline example."
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Scaffold artifact leaking into reader-facing prose; this is a hard gate failure."
+    },
+    {
+      "quote": "An American assembly lesson reframes a Friday release report shows the same defect escaping through final QA for the third sprint.",
+      "why": "Corrupted sentence in an example; it reads like stitched template output."
+    },
+    {
+      "quote": "The Motorola promotion warning shadows the nonprofit appeal beat last year's response after a fear-heavy letter, and the next mailing deadline is close.",
+      "why": "Incoherent prose weakens trust in the chapter despite an otherwise clear idea."
+    },
+    {
+      "quote": "A founder story has value only if it still constrains present action.",
+      "why": "Sharp, compact statement of the fuzzy-WHY failure mode."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is conceptually coherent and mostly useful: the chapters teach clear lenses, the quizzes are generally answerable from the prose, and the summary tiers usually preserve the core idea. However, it is not publishable as-is. The repeated product structure creates medium churn, several examples use the same staged decision-room skeleton, and reader-facing scaffold leaks like \"Title: undefined\" are hard defects. There are also malformed example sentences that look mechanically assembled. The book has strong bones, but it needs a cleanup pass focused on corrupted prose, artifact removal, and reducing template feel before it can pass."
+}
+```

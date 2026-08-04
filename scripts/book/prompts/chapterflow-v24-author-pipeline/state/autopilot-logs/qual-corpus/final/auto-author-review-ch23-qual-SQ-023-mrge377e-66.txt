@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 4,
+    "practical": 3,
+    "summaries": 0,
+    "tone": 20,
+    "limits": 0,
+    "insight": 0,
+    "density": 5,
+    "beginner": 10
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This placeholder describes production status instead of introducing anything the reader can learn."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read\n## Key takeaway\n## Try this now",
+      "why": "These consecutive empty headings expose the chapter's missing instructional core and broken standalone layers."
+    },
+    {
+      "quote": "She copies the useful goal into the agenda: agree on review-ready handoff by Thursday noon.",
+      "why": "This is the chapter's strongest moment because it gives the otherwise abstract scenario a concrete, observable target."
+    },
+    {
+      "quote": "What to do: Apply the move to the situation.",
+      "why": "The instruction is unusable because the chapter never identifies or teaches the move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is only a phase-review placeholder and contains no reader-facing premise or lesson. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its standalone quick-read promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and therefore fails its standalone explanatory promise. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty and therefore supplies no complete chapter instruction. Reserved categories: STRUCTURALLY INVALID and UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, so the chapter never states its core move. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving the reader with no exercise or executable action. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example refers to 'the move' without defining it and gives no demonstrated application steps or consequence, so a reader cannot learn how to reproduce the result. Reserved category: UNUSABLE.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scenario names a person and target but shows no before-to-after decision and consequence; its 'What to do' and 'Why it matters' lines merely restate generic lesson labels.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or choices, making derivation and assessment impossible. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and provides no review material. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and provides none of the promised retention support. Reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Nearly every promised instructional layer is empty, the sole scenario invokes an undefined move, and the quiz has no questions, so there is no prose-based answer derivation to perform. One concrete deadline offers a glimmer of practical specificity, but without a concept, mechanism, exercise, summary, review aid, or assessment, a beginner cannot determine what to learn or how to apply it."
+}
+```

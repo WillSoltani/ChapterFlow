@@ -1,0 +1,184 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "start-with-why-ch04",
+  "chapterNumber": 4,
+  "title": "This Is Not Opinion, This Is Biology",
+  "coreMove": "Since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+  "thesis": "Limbic system adds a second anchor for biological decision language with limbic system and emotion processing.",
+  "readerPromise": "After this chapter, a reader can since a second case repeats the pattern in a different venue, the mechanism is less likely to be a one-off anecdote.",
+  "ownedCases": [
+    {
+      "id": "ch04.ex.neocortex",
+      "label": "Neocortex"
+    },
+    {
+      "id": "ch04.ex.limbic-system",
+      "label": "Limbic system"
+    },
+    {
+      "id": "ch04.ex.antonio-damasio-descartes-error",
+      "label": "Antonio Damasio / Descartes' Error"
+    }
+  ],
+  "notYours": [
+    "American Airlines boarding assumptions",
+    "Apple Inc.",
+    "Apple after Steve Jobs's 1985 exit",
+    "Apple and Dell contrast",
+    "Apple design consistency",
+    "Apple iPod",
+    "Apple retail and product signals",
+    "Bill Gates and Paul Allen",
+    "Celery test",
+    "Continental Airlines turnaround",
+    "Dell DJ",
+    "Detroit automakers",
+    "Everett Rogers diffusion model",
+    "Ford Motor Company founder legacy",
+    "General Motors employee-discount promotions",
+    "Gordon Bethune",
+    "Harley-Davidson identity",
+    "Herb Kelleher",
+    "Howard Schultz and Starbucks experience",
+    "Japanese car-door assembly"
+  ],
+  "cast": [
+    "Zane",
+    "Rachel",
+    "Ivy",
+    "Malcolm"
+  ],
+  "answerIndexPattern": [
+    1,
+    2,
+    0,
+    2,
+    0,
+    1,
+    1,
+    0,
+    2
+  ],
+  "avoid": [
+    "opener (ch02): \"At the return moment, a sales analyst at\"",
+    "opener (ch03): \"Why does Sylvia's pitch still feel thin? Founder\"",
+    "opener (ch05): \"1971 is the fact nobody has flagged in\"",
+    "opener (ch06): \"Trainer Denise marks the fare line at a\"",
+    "opener (ch07): \"In Keith's launch, interest comes from people who\"",
+    "opener (ch08): \"\"Why can't Brandon keep 1975 in the supplier\""
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a shared grocery list",
+    "venue: a coffee-shop table",
+    "venue: a household chore chart",
+    "frame: two stakeholders disagree about airline operations before deciding",
+    "frame: a first encounter with bicycle shop that sets a benchmark"
+  ],
+  "openerType": "tension-thesis",
+  "challengeFrame": "pre-write-the-exact-line",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "walkthrough",
+    "counterfactual",
+    "outsider-witness"
+  ],
+  "practiceVerb": "write",
+  "requireFrictionExample": true,
+  "frameworkNouns": [
+    "case",
+    "different",
+    "third",
+    "language",
+    "test",
+    "boundary"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v4",
+  "exampleCount": 6,
+  "exampleArcs": [
+    {
+      "entry": "at-the-return-moment",
+      "outcome": "failure",
+      "fieldStyle": "direct-imperative",
+      "prop": false
+    },
+    {
+      "entry": "aftermath-looking-back",
+      "outcome": "averted-late",
+      "fieldStyle": "cost-first",
+      "prop": true
+    },
+    {
+      "entry": "outsider-arrives",
+      "outcome": "still-open",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "clean-win",
+      "fieldStyle": "question-then-answer",
+      "prop": false
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "averted-late",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "still-open",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "single-imperative",
+    "if-then-trigger",
+    "observe-then-note"
+  ],
+  "quizStemShapes": [
+    "best-explanation-why",
+    "ordering-priority",
+    "transfer-new-domain",
+    "failure-postmortem"
+  ],
+  "quizFailureModes": [
+    "right-move-wrong-trigger",
+    "over-correction",
+    "borrowed-authority",
+    "wrong-target"
+  ],
+  "questionFactOrder": [
+    2,
+    7,
+    1,
+    6,
+    8,
+    9,
+    4,
+    3,
+    5
+  ],
+  "memorableShapes": [
+    "redefinition",
+    "cost-statement",
+    "pointed-question"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "prior-sentence-setup",
+  "idiomFamilies": [
+    "motion-speak",
+    "ledger-speak"
+  ],
+  "shellRegister": "artifact-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Antonio Damasio / Descartes' Error"
+  }
+}

@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "cd0103f70ded8c5ee192c2db130c68c463d1693bff7897f991be2116e71142ec",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "q01",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The wording directly supports the peak-end memory lesson: a calmer finish can improve recall of the whole visit."
+    },
+    {
+      "itemId": "q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "A bright welcome cart is best understood as a vivid, tellable surprise rather than a luxury upgrade or quiet free value."
+    },
+    {
+      "itemId": "q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "ambiguous",
+      "rationale": "Both a and b are defensible because the ceremony publicly recognizes effort while naming the next unit also explicitly marks a threshold before logistics take over."
+    },
+    {
+      "itemId": "q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c names elevation, insight, pride, and connection, matching the four ingredients of memorable experiences."
+    },
+    {
+      "itemId": "q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The red-phone lesson is that one visible object can alter the expected script without a full redesign."
+    },
+    {
+      "itemId": "q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The gift becomes memorable when its delivery is staged as a small request-and-reveal event."
+    },
+    {
+      "itemId": "q07",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The threshold idea supports marking the shared crossing before the group disperses into private next-stage logistics."
+    },
+    {
+      "itemId": "q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The team should not assume equal averaging because recall can overweight the stressful peak and the ending."
+    },
+    {
+      "itemId": "q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The quiet mint disappears because it lacks a tellable format, not because it needs higher cost or better fixtures."
+    }
+  ]
+}
+```

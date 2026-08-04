@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P13",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported factual embellishment in real-world case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Hard specifics allowed: Lexicon Branding, product naming, multiple teams, brand-name development\",\"Lexicon uses multiple teams and naming routes to explore associations before converging on product names.\",\"On the second morning in Lexicon Branding's naming studio, the naming lead first tapes one favorite product name at the center of the wall and hears the room argue taste.\",\"Later the product naming wall holds three routes from multiple teams: one descriptive, one suggestive, one short and invented.\"],\"rationale\":\"The source plan only supports Lexicon Branding, product naming, multiple teams, brand-name development, and the general idea of multiple naming routes used to explore associations before convergence. The candidate presents a specific studio scene, timing, wall setup, actions by a naming lead, room reactions, and exact route categories as if they are verified case facts. Those details are not in the allowed hard specifics or supported summary, so the candidate narrates unsupported details in the factual register of a real sourced case.\"}"
+}

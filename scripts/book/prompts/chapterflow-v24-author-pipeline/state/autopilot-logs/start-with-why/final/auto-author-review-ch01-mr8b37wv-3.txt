@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["No strong mechanical tells. Several correct answers are the most prose-faithful and use chapter-specific terms, but they are not consistently the uniquely longest choices."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 90,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 86,
+    "tone": 88,
+    "limits": 89,
+    "insight": 87,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A clean fix can be the place a bad guess hides.",
+      "why": "Strongest compact statement of the chapter's core mechanism."
+    },
+    {
+      "quote": "Known data is the receipt you can bring back when confidence gets loud.",
+      "why": "Memorable image that makes the abstract sequence easy to retain."
+    },
+    {
+      "quote": "The right move is smaller and cleaner: keep jidoka with Japanese car-door assembly and use the known-data order in the new setting.",
+      "why": "Clear boundary rule that prevents false transfer."
+    },
+    {
+      "quote": "Gregoire is already changing the boarding order; the demand for smoother movement came earlier.",
+      "why": "The example is usable but slightly disorienting because Gregoire shifts from the car-door thread into boarding."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "Gregoire suddenly appears in the boarding example after being established in the car-door material, which makes the transfer example feel a little muddy rather than cleanly staged.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The stated standard 'cut visible defects' arrives without much before-after consequence, so the example teaches the comparison but feels thinner than the stronger examples.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed answer is derivable, but 'without inventing a new source' is less directly established than the chapter's clearer reason: the airline case bounds the claim and tests a boarding assumption.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. Its core move is memorable, repeatedly explained, and bounded: put known data before assumptions, make decisions answer to returning proof, and keep hard details in the setting that earned them. The quizzes are fair and the answer key is sound. The main weakness is that a few examples are thinner or slightly muddier than the best ones, especially the boarding example that reuses Gregoire, but these are craft-level issues rather than reader-harming defects."
+}
+```

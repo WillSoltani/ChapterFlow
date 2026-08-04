@@ -16,6 +16,21 @@ export type SourceIntegrityFinding = {
   evidence?: string;
 };
 
+/** The realness heuristic that fires on a STRUCTURALLY COMPLETE but fabricated
+ *  sidecar (2+ fabrication signals + fabrication shape). It is emitted at
+ *  advisory severity, but it is the one advisory finding that must gate the
+ *  research route — a padded/fabricated Sonnet output otherwise sails past the
+ *  retry loop and then hard-fails at the port. */
+export const FABRICATED_SIDECAR_CHECK_ID = "SV2.realness_fabricated_sidecar";
+
+/** Single source of truth for "does this finding block the research route?".
+ *  Shared by the researcher-chapter retry admission predicate and the port's
+ *  requireSourceV2 gate so the two can never diverge — a finding that the port
+ *  would reject MUST also drive a retry rather than being admitted on attempt 1. */
+export function isResearchRouteBlockingFinding(finding: SourceIntegrityFinding): boolean {
+  return finding.severity === "blocker" || finding.checkId === FABRICATED_SIDECAR_CHECK_ID;
+}
+
 export type RejectedSourceField = {
   path: string;
   reason: string;
@@ -488,7 +503,13 @@ function realnessFindings(
       message: "Source sidecar does not contain enough concrete entities, dates, numbers, or verifiable specifics to ground authoring.",
     }));
   }
-  if ((placeholderExamples.length > 0 ? 1 : 0) + (nonTestableFacts.length >= 3 ? 1 : 0) + (unsupportedExamples.length >= 2 ? 1 : 0) + (repeated.length > 0 ? 1 : 0) >= 2) {
+  const fabricatedSignalCount =
+    (placeholderExamples.length > 0 ? 1 : 0) +
+    (nonTestableFacts.length >= 3 ? 1 : 0) +
+    (unsupportedExamples.length >= 2 ? 1 : 0) +
+    (repeated.length > 0 ? 1 : 0);
+  const hasFabricationShape = placeholderExamples.length > 0 || repeated.length > 0;
+  if (fabricatedSignalCount >= 2 && hasFabricationShape) {
     findings.push(finding({
       checkId: "SV2.realness_fabricated_sidecar",
       severity: "advisory",

@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "a", "c", "c", "b", "b", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["No uniquely-longest-choice pattern stood out, but several distractors are giveaway overreaches or authority shortcuts: 'any founder return stand as proof', 'oldest company decide the rule', and 'higher-ranked sponsor' can be rejected without much chapter knowledge."]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 88,
+    "summaries": 92,
+    "tone": 88,
+    "limits": 90,
+    "insight": 89,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A return is not proof. It is where proof is owed.",
+      "why": "Strongest compression of the chapter's core move."
+    },
+    {
+      "quote": "Every unowned promise costs trust before output can prove anything.",
+      "why": "Memorable mechanism: it explains why sequence matters."
+    },
+    {
+      "quote": "At her desk during a hypothetical source pass, writer Sloane looks back after the Apple line finally works.",
+      "why": "This example turns inward toward draft repair rather than a broader reader situation."
+    },
+    {
+      "quote": "The phone buzz cuts through the line.",
+      "why": "A thin sensory beat that does not add decision, consequence, or transfer value."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Several distractors teach by obvious overreach or rank/authority shortcuts rather than plausible misunderstanding, making some answers guessable without full reading.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The Sloane example is thin-but-usable: it is a hypothetical writing-process repair that mostly restates the lesson sequence and shows limited transfer beyond chapter production.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The Harper example is thin-but-usable: it has a named person and signal, but little before-to-after consequence beyond restoring Bentonville.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Apple/Walmart/Ford source-fit language repeats across several paragraphs, which slightly lowers density even though the point remains clear.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The core distinction is memorable, the Apple/Walmart/Ford contrast is coherent, and the practical move is simple enough to use: do not let WHAT prove WHY until holders, operators, and returning proof are named. The main weakness is craft, not validity: a few quiz distractors are too easy to dismiss, and two hypothetical examples feel more like internal drafting demonstrations than rich transfer cases. No must-fix defect blocks shipping."
+}
+```

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P32",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_GENERIC_ITEM_WITH_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Sort Out the Three Conversations Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?\",\"Chapter skill: Speak for Yourself with Clarity and Power Question: A teacher has to tell a student the scholarship essay is weak. Which opening is most likely to help the student hear it?\",\"The best choice keeps the conversation tied to clear self-speaking and creates room for new information.\"],\"rationale\":\"The two instances use the identical scenario, question, choices, correct index, and generic decision logic despite claiming to assess different chapter skills. Instance A does not require distinguishing the three conversations, while Instance B does not specifically test speaking from one’s own perspective with clarity and power; only the skill label and a few words in the explanation change. The shared correct answer is broadly constructive communication advice, so the duplication merely relabels one generic item rather than genuinely assessing both mechanisms.\"}"
+}

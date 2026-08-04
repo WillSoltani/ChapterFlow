@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Mild tell: correct answers often carry the chapter's exact vocabulary and fuller causal phrasing, while several distractors lean on obviously weak authority shortcuts like rank, sponsor approval, or borrowed confidence."]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 84,
+    "transfer": 81,
+    "practical": 84,
+    "summaries": 90,
+    "tone": 85,
+    "limits": 86,
+    "insight": 88,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is a receipt, not a reason.",
+      "why": "Strongest memory line; it compresses the chapter's whole mechanism into a durable test."
+    },
+    {
+      "quote": "The price of leading with WHAT is later pretending WHY was clear.",
+      "why": "Sharp causal explanation of the failure mode, not just a slogan."
+    },
+    {
+      "quote": "Had Dell DJ been skipped, the rule would rest on one clean success.",
+      "why": "This clearly explains why contrast matters and protects against overlearning from one example."
+    },
+    {
+      "quote": "Product lead Vincent opens at the return moment with the question you would ask: is the 2001 iPod digital music player and the 2003 Dell DJ digital audio player contrast enough?",
+      "why": "Worst rough patch: the sentence is clunky and the example stays inside draft-review mechanics rather than a lived transfer setting."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable transfer example: it is mostly about repairing a teaching note, so it rehearses the chapter's own drafting logic more than showing a reader how to apply the move in a different real situation.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The setup is somewhat abstract: 'the blue circle around plausible' and 'No one has met it yet' assume the reader can infer a workflow that is not fully shown.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "Several distractors are weaker because they use easy-to-reject authority or shortcut logic, so the quiz sometimes tests recognition of bad management theater rather than close derivation from the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "Vincent appears as if already established, which creates a small cold-reader bump in an otherwise standalone summary.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable: the core move is memorable, mechanically clear, and repeated across summary, prose, quiz, cards, and practice without feeling badly padded. The strongest value is the receipt-not-reason distinction and the iPod/Dell DJ/Phaeton contrast, which gives the reader both a positive case and a boundary. The main weakness is transfer freshness: several examples remain close to drafting, source-pass, or teaching-note situations instead of showing more ordinary non-writing applications. That lowers range, but it does not block the chapter because the practical rule is still learnable and usable."
+}
+```

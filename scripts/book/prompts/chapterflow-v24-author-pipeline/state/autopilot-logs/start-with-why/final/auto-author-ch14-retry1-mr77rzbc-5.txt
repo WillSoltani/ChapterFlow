@@ -1,0 +1,13 @@
+Wrote chapter 14 to [start-with-why-ch14.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch14.v21-native.chapter.json).
+
+Validation run:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers
+- `quiz-verify`: 9/9 matches
+- Evidence audit: no candidates
+- Reader metrics: ease `72.56`, echo `0`, lenTell `4`, practice `2`
+- Rendered reader chars: `15,917`
+- Scaffold scan: `0` hits
+- Quiz parity: 1 uniquely-longest key, 4 uniquely-shortest keys
+
+Note: `git status` reports the target chapter file as untracked in this checkout.

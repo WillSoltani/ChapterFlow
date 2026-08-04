@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "b", "b", "a", "b", "c"],
+    "keyDisagreements": ["Q5: I chose b, matching the key, but a is also defensible from the prose because using the same wording treats the cases as interchangeable; the keyed rationale and distractor overlap."],
+    "tells": ["Several distractors are giveaway authority/fame shortcuts rather than plausible reader errors, especially phrases like 'famous name,' 'authority,' and 'settle doubt.'", "The correct choices often reuse the chapter's exact moral vocabulary while wrong choices overstate bad behavior, making some keys guessable without close reading."]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 78,
+    "transfer": 86,
+    "practical": 84,
+    "summaries": 88,
+    "tone": 87,
+    "limits": 89,
+    "insight": 86,
+    "density": 84,
+    "beginner": 85
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A product is not the promise; it is the receipt.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "Every unowned promise costs trust before the product ever appears.",
+      "why": "Gives the abstract WHY/HOW/WHAT sequence a concrete consequence."
+    },
+    {
+      "quote": "Do not say, \"have purpose,\" and then search for a product that sounds like it fits.",
+      "why": "Useful boundary that prevents the chapter from becoming generic purpose advice."
+    },
+    {
+      "quote": "Q5. Janet says Dell DJ can use the same product wording as iPod. Why is that wrong?",
+      "why": "This stem produces the main quiz weakness because two answer choices name overlapping supported causes."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed answer b is reasonable, but option a is also supported because same wording would make the product names interchangeable; the why-question does not isolate one cause cleanly.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several distractors are too obviously wrong because they lean on fame, authority, or inferring the model later, while correct choices echo the prose's exact moral language.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Some scenarios carry revision-process language such as broken handoffs and red cursors, which gives a light scaffold smell instead of feeling like naturally observed workplace action.",
+      "mustFix": false
+    },
+    {
+      "unit": "implementation plan",
+      "problem": "The actions are concrete but repetitive; the reader is repeatedly told to circle/name WHY/HOW/WHAT without much help for distinguishing a real HOW from a dressed-up WHAT in messy cases.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a clear, memorable core: products prove belief only when WHY, HOW, and WHAT stay in order. The iPod, Dell DJ, and Phaeton anchors make the idea concrete and transferable, and the chapter is unusually honest about limits. The main weakness is quiz craft: Q5 has overlapping causes, and several distractors are too easy because they caricature authority-based reasoning. Fixing that would move the chapter from solid professional to cleaner instructional product."
+}
+```

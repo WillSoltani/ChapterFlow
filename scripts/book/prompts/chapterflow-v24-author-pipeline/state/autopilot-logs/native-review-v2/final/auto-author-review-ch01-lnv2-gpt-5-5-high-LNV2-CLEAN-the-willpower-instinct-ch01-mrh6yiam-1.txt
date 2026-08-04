@@ -1,0 +1,84 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "a", "a", "b", "b", "b", "a", "c", "c"],
+    "mechanisms": [
+      "The prose defines willpower as I will, I won't, and I want, so the response must include starting, stopping, and remembering the value.",
+      "The Miller/Cohen explanation says prefrontal control keeps goals active and biases attention and action while cues compete.",
+      "The Gage passage says he survived and could speak, but steadiness, planning, and social restraint changed after frontal injury.",
+      "The self-awareness passage says change begins by noticing the moment before action, not regret after the lapse.",
+      "The chapter frames self-control as social: waiting turns, keeping promises, repairing conflict, and protecting trust.",
+      "The snack example says a real value can lose if it is quiet or absent at the cue, so it must be made present at choice time.",
+      "The chapter rejects hero/villain splitting and says both shorter relief and longer goals can be real; support determines which guides action.",
+      "The concrete-challenge section says specific actions reveal cues, barriers, values, and feedback for the next experiment.",
+      "The Amelia/form conflict shows prefrontal control biasing attention and response when an automatic routine clashes with the current goal."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Several wrong answers are guessable because they use absolutes or cartoon claims such as 'only,' 'fake,' 'no value,' and 'avoid cooperation.'",
+      "Q1's correct answer closely mirrors the chapter's exact three-part formula, while the distractors are narrower or moralizing.",
+      "No consistent uniquely-longest-choice tell appears."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 78,
+    "transfer": 82,
+    "practical": 81,
+    "summaries": 88,
+    "tone": 86,
+    "limits": 85,
+    "insight": 89,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Refusal is only one third of willpower. When a lapse repeats, ask which power went quiet before you call yourself weak.",
+      "why": "This is the chapter's clearest, most memorable reframing."
+    },
+    {
+      "quote": "A goal must be present to have power.",
+      "why": "Short line that captures the mechanism behind the whole lesson."
+    },
+    {
+      "quote": "Weekly practice: For the first half of this week, use your usual all-or-nothing rule. For the second half, swap in the Three-Power Check and compare which half made the next action clearer.",
+      "why": "The comparison task is more artificial than the otherwise low-friction advice."
+    },
+    {
+      "quote": "b) The saving goal must be fake whenever opening the sale tab feels relieving.",
+      "why": "This distractor is so extreme that it weakens the quiz as evidence of understanding."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1-Q9",
+      "problem": "Several distractors are implausibly absolute or moralizing, letting a reader eliminate them without relying much on the prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct option repeats the chapter's three-part formula almost verbatim, making the item easier than it needs to be.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: it names the cue and value but gives little before-to-after consequence after Brooklyn names the running goal.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples 2-6",
+      "problem": "The repeated Miller/Cohen explanation makes several transfer examples feel formulaic rather than distinct.",
+      "mustFix": false
+    },
+    {
+      "unit": "weekly practice",
+      "problem": "Asking readers to spend half the week using the weaker all-or-nothing rule is a slightly theatrical comparison exercise, not the chapter's most practical move.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong opening chapter: the core move is memorable, concrete, and well explained through the three-power frame, with enough brain mechanism to make it feel grounded without becoming technical. The quizzes are fair and derivable, but too many distractors are obvious straw choices, so the assessment under-measures real comprehension. Transfer is usable across spending, food, anger, clinical work, and family obligations, though a few examples repeat the same explanatory beat. No must-fix reader-harming defects appear; it ships, with quiz sharpening as the main improvement."
+}
+```

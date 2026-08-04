@@ -1,0 +1,94 @@
+{
+  "schema": "split-lane-corpus-mutation-spec-v1",
+  "role": "quiz",
+  "corpusId": "s16-split-lane-quiz-corpus-v1",
+  "_note": "Committed, hermetic mutation spec for the quiz-integrity role corpus (H3). Replaces the ephemeral /private/tmp spec of E-09. A builder MUST fail closed if this file is missing (never []), and MUST fail closed rather than shrink below expectedComposition. Every case runs the two-phase blindness protocol (phase-1 key-blind derivation committed by hash BEFORE phase-2 key-visible adjudication). The deterministic answer-tell heuristic and key-correctness are model-independent; the semantic adjudicator elicits defensibleAnswerIndices + keyedMechanismSupported (quiz-integrity-adjudication-v1). All paths RELATIVE or bookIds against an INJECTED bookPackagesDir; no absolute or temp paths, no canonical state-dir literal.",
+  "governance": {
+    "definitionsFrozenBeforeLiveOutput": true,
+    "calibrationVsHoldoutSeparated": true,
+    "holdoutImmutableOnceLiveQualificationBegins": true,
+    "noInCampaignInstrumentTreadmill": "a material instrument defect terminates the experiment id and starts a NEW id",
+    "independentHumanRater": false,
+    "everyAmbiguityGoldSurvivesAdversarialSingleBestAnswer": true,
+    "noBorderlineAmbiguityAsHoldout": true
+  },
+  "cleanBaseScoreLedger": "clean-base-score-ledger.v1.json",
+  "minRenderBytes": 8000,
+  "requiresPhase2": true,
+  "basePool": [
+    "difficult-conversations",
+    "the-willpower-instinct",
+    "the-power-of-moments",
+    "decisive",
+    "behave",
+    "peak",
+    "make-it-stick",
+    "the-checklist-manifesto"
+  ],
+  "expectedComposition": {
+    "uniquely-correct-clean": 10,
+    "key-mismatch": 10,
+    "genuine-ambiguity": 10,
+    "mechanism-causal-key": 10,
+    "total": 40
+  },
+  "softDenominators": {
+    "minUniquelyCorrectCleanPassRate": 10,
+    "minGenuineAmbiguityDetectionRate": 10,
+    "minMechanismMatchDetectionRate": 10,
+    "note": "each soft denominator >= 10 (E-07 fix, replacing the retired 0.85-over-4 quiz-ambiguity brittleness); minKeyMismatchDetectionRate is a 1.0 bar over the 10 key-mismatch cases and is exempt from the soft floor"
+  },
+  "variantShape": "{ variantKey, baseBookId, baseChapter, kind, targetQuestionIndex1?, ops:[{path,op,value}], expected, goldRationale, builderGenerated?, ownerAuthoredOps? }. 'uniquely-correct-clean' has ops:[] (unmutated). 'key-mismatch' is builderGenerated (the builder mints a correctIndex swap deterministically to a wrong option at /quiz/questions/<i>/correctIndex). 'genuine-ambiguity' and 'mechanism-causal-key' are ownerAuthoredOps (two-defensible-answer questions and mechanism-dependent keyed answers are owner-authored gold, never fabricated here); the builder fails closed until ops are supplied.",
+  "resultComposition": {
+    "keyCorrectFalse": "BLOCK",
+    "uniqueAnswerFalse": "BLOCK",
+    "mechanismSupportedFalseOnMechanismItem": "BLOCK",
+    "allKeyCorrectAndUniqueAndMechanismSupported": "PASS",
+    "tellDetected": "advisory only (REVISE signal, never a hard block)"
+  },
+  "variants": [
+    { "variantKey": "QUIZ-CLEAN-difficult-conversations-ch01", "baseBookId": "difficult-conversations", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "reference-standard base, unmutated quiz — every keyed answer uniquely correct." },
+    { "variantKey": "QUIZ-CLEAN-the-willpower-instinct-ch01", "baseBookId": "the-willpower-instinct", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-the-power-of-moments-ch01", "baseBookId": "the-power-of-moments", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-decisive-ch01", "baseBookId": "decisive", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-behave-ch01", "baseBookId": "behave", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-peak-ch01", "baseBookId": "peak", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-make-it-stick-ch01", "baseBookId": "make-it-stick", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-the-checklist-manifesto-ch01", "baseBookId": "the-checklist-manifesto", "baseChapter": 1, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "clean base, unmutated quiz." },
+    { "variantKey": "QUIZ-CLEAN-difficult-conversations-ch02", "baseBookId": "difficult-conversations", "baseChapter": 2, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "second clean chapter." },
+    { "variantKey": "QUIZ-CLEAN-the-willpower-instinct-ch02", "baseBookId": "the-willpower-instinct", "baseChapter": 2, "kind": "uniquely-correct-clean", "ops": [], "expected": { "goldResult": "PASS", "allKeyCorrect": true, "allUnique": true }, "goldRationale": "second clean chapter." },
+
+    { "variantKey": "QUIZ-KEYM-difficult-conversations-ch03-q1", "baseBookId": "difficult-conversations", "baseChapter": 3, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "correctIndex points to a demonstrably wrong option; phase-2 keyCorrect==='wrong'." },
+    { "variantKey": "QUIZ-KEYM-the-willpower-instinct-ch03-q1", "baseBookId": "the-willpower-instinct", "baseChapter": 3, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-the-power-of-moments-ch03-q1", "baseBookId": "the-power-of-moments", "baseChapter": 3, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-decisive-ch03-q1", "baseBookId": "decisive", "baseChapter": 3, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-behave-ch02-q1", "baseBookId": "behave", "baseChapter": 2, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-peak-ch02-q1", "baseBookId": "peak", "baseChapter": 2, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-make-it-stick-ch02-q1", "baseBookId": "make-it-stick", "baseChapter": 2, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-the-checklist-manifesto-ch02-q1", "baseBookId": "the-checklist-manifesto", "baseChapter": 2, "kind": "key-mismatch", "targetQuestionIndex1": 1, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/0/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [1] }, "goldRationale": "wrong keyed answer." },
+    { "variantKey": "QUIZ-KEYM-difficult-conversations-ch04-q2", "baseBookId": "difficult-conversations", "baseChapter": 4, "kind": "key-mismatch", "targetQuestionIndex1": 2, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/1/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [2] }, "goldRationale": "wrong keyed answer on question 2." },
+    { "variantKey": "QUIZ-KEYM-the-willpower-instinct-ch04-q2", "baseBookId": "the-willpower-instinct", "baseChapter": 4, "kind": "key-mismatch", "targetQuestionIndex1": 2, "builderGenerated": true, "ops": [{ "path": "/quiz/questions/1/correctIndex", "op": "replace", "value": "wrong-option" }], "expected": { "goldResult": "BLOCK", "expectedKeyMismatchQuestions": [2] }, "goldRationale": "wrong keyed answer on question 2." },
+
+    { "variantKey": "QUIZ-AMBIG-the-power-of-moments-ch04-q1", "baseBookId": "the-power-of-moments", "baseChapter": 4, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored: two independently defensible answers on-page; keyCorrect==='ambiguous' (uniqueAnswer false)." },
+    { "variantKey": "QUIZ-AMBIG-decisive-ch04-q1", "baseBookId": "decisive", "baseChapter": 4, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-behave-ch03-q1", "baseBookId": "behave", "baseChapter": 3, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-peak-ch03-q1", "baseBookId": "peak", "baseChapter": 3, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-make-it-stick-ch03-q1", "baseBookId": "make-it-stick", "baseChapter": 3, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-the-checklist-manifesto-ch03-q1", "baseBookId": "the-checklist-manifesto", "baseChapter": 3, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-difficult-conversations-ch05-q1", "baseBookId": "difficult-conversations", "baseChapter": 5, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-the-willpower-instinct-ch05-q1", "baseBookId": "the-willpower-instinct", "baseChapter": 5, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-the-power-of-moments-ch05-q1", "baseBookId": "the-power-of-moments", "baseChapter": 5, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+    { "variantKey": "QUIZ-AMBIG-decisive-ch05-q1", "baseBookId": "decisive", "baseChapter": 5, "kind": "genuine-ambiguity", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "expectedAmbiguousQuestions": [1], "survivesAdversarialSingleBest": true }, "goldRationale": "owner-authored genuine ambiguity." },
+
+    { "variantKey": "QUIZ-MECH-behave-ch04-q1-supported", "baseBookId": "behave", "baseChapter": 4, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "PASS", "mechanismGold": "SUPPORTED" }, "goldRationale": "owner-authored: keyed answer requires a causal mechanism that the chapter genuinely supports (mechanismSupported true)." },
+    { "variantKey": "QUIZ-MECH-peak-ch04-q1-supported", "baseBookId": "peak", "baseChapter": 4, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "PASS", "mechanismGold": "SUPPORTED" }, "goldRationale": "owner-authored mechanism-supported keyed answer." },
+    { "variantKey": "QUIZ-MECH-make-it-stick-ch04-q1-supported", "baseBookId": "make-it-stick", "baseChapter": 4, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "PASS", "mechanismGold": "SUPPORTED" }, "goldRationale": "owner-authored mechanism-supported keyed answer." },
+    { "variantKey": "QUIZ-MECH-decisive-ch06-q1-supported", "baseBookId": "decisive", "baseChapter": 6, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "PASS", "mechanismGold": "SUPPORTED" }, "goldRationale": "owner-authored mechanism-supported keyed answer." },
+    { "variantKey": "QUIZ-MECH-difficult-conversations-ch06-q1-supported", "baseBookId": "difficult-conversations", "baseChapter": 6, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "PASS", "mechanismGold": "SUPPORTED" }, "goldRationale": "owner-authored mechanism-supported keyed answer." },
+    { "variantKey": "QUIZ-MECH-behave-ch05-q1-unsupported", "baseBookId": "behave", "baseChapter": 5, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "mechanismGold": "UNSUPPORTED" }, "goldRationale": "owner-authored: keyed answer asserts a causal mechanism the chapter does NOT support (mechanismSupported false)." },
+    { "variantKey": "QUIZ-MECH-peak-ch05-q1-unsupported", "baseBookId": "peak", "baseChapter": 5, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "mechanismGold": "UNSUPPORTED" }, "goldRationale": "owner-authored mechanism-unsupported keyed answer." },
+    { "variantKey": "QUIZ-MECH-make-it-stick-ch05-q1-unsupported", "baseBookId": "make-it-stick", "baseChapter": 5, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "mechanismGold": "UNSUPPORTED" }, "goldRationale": "owner-authored mechanism-unsupported keyed answer." },
+    { "variantKey": "QUIZ-MECH-the-checklist-manifesto-ch04-q1-unsupported", "baseBookId": "the-checklist-manifesto", "baseChapter": 4, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "mechanismGold": "UNSUPPORTED" }, "goldRationale": "owner-authored mechanism-unsupported keyed answer." },
+    { "variantKey": "QUIZ-MECH-the-power-of-moments-ch06-q1-unsupported", "baseBookId": "the-power-of-moments", "baseChapter": 6, "kind": "mechanism-causal-key", "targetQuestionIndex1": 1, "ops": [], "ownerAuthoredOps": true, "expected": { "goldResult": "BLOCK", "mechanismGold": "UNSUPPORTED" }, "goldRationale": "owner-authored mechanism-unsupported keyed answer." }
+  ]
+}

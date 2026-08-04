@@ -1,0 +1,718 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "multipliers",
+  "chapterId": "multipliers-ch05",
+  "chapterNumber": 5,
+  "chapterTitle": "The Debate Maker",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/multipliers/20260709T020631645Z-b8e7894b-2287-4faf-9ef6-e4da421b5316/sidecars/source/ch05.source.json",
+  "sourceHash": "sha256:4990a8bac9173d02863b028a6492d3aa89f010414b4e2da29dbd3eab318d2416",
+  "facts": [
+    {
+      "id": "ch05.fact.1",
+      "claim": "Intel is publicly associated with constructive confrontation as a management norm.",
+      "mechanism": "Because a named company norm shows debate can be part of operating culture rather than an ad hoc argument.",
+      "commonError": "Treating confrontation as inherently toxic.",
+      "whyWrong": "Confrontation can be constructive when it is directed at the business problem and bounded by norms.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Intel",
+        "Treating",
+        "Confrontation"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.1"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch05.fact.2",
+      "claim": "Andy Grove is a key Intel figure linked to hard-edged management debate.",
+      "mechanism": "Because Grove's Intel role gives the constructive confrontation example a concrete leadership anchor.",
+      "commonError": "Discussing Intel debate norms without naming a responsible management tradition.",
+      "whyWrong": "The case is stronger when tied to the company and the executive culture around it.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Andy Grove",
+        "Intel",
+        "Because Grove's Intel",
+        "Discussing Intel"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.2"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch05.fact.3",
+      "claim": "Amazon lists disagree and commit as a leadership principle.",
+      "mechanism": "Because the principle explicitly separates dissent during decision-making from alignment after a decision.",
+      "commonError": "Believing commitment requires pretending there was never disagreement.",
+      "whyWrong": "The principle preserves dissent before closure and execution after closure.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Amazon",
+        "Believing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.3"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch05.fact.4",
+      "claim": "Disagree and commit prevents endless relitigation after a decision.",
+      "mechanism": "Because teams cannot execute well if every decision remains permanently open.",
+      "commonError": "Assuming debate should continue indefinitely until everyone feels fully convinced.",
+      "whyWrong": "Debate needs a close so energy moves to execution.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Disagree",
+        "Assuming",
+        "Debate"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.4"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch05.fact.5",
+      "claim": "The Space Shuttle Challenger disaster occurred in 1986.",
+      "mechanism": "Because the 1986 date fixes the cautionary decision case in a specific public event.",
+      "commonError": "Using Challenger as a generic risk story with no historical anchor.",
+      "whyWrong": "The year and mission record matter for factual grounding.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1986"
+      ],
+      "groundedEntities": [
+        "The Space Shuttle Challenger",
+        "Using Challenger"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.5"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch05.fact.6",
+      "claim": "The Rogers Commission investigated the Challenger disaster.",
+      "mechanism": "Because the commission record makes the case a public decision-process source rather than office folklore.",
+      "commonError": "Treating Challenger as only a technical failure with no decision lessons.",
+      "whyWrong": "The investigation addressed organizational and decision factors around launch.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "The Rogers Commission",
+        "Challenger",
+        "Treating Challenger"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch05.fact.7",
+      "claim": "Debate loses value when senior rank signals the answer too early.",
+      "mechanism": "Because people often adjust their contributions around authority cues, early leader certainty can silence contrary evidence.",
+      "commonError": "Thinking the leader should open debate by announcing the preferred answer.",
+      "whyWrong": "That move turns debate into compliance theater.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Debate",
+        "Thinking"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.7"
+      ],
+      "teachingPriority": 9
+    },
+    {
+      "id": "ch05.fact.8",
+      "claim": "A Debate Maker distinguishes argument before the decision from commitment after it.",
+      "mechanism": "Because the team needs both better thinking and coordinated action.",
+      "commonError": "Choosing between total consensus and authoritarian closure.",
+      "whyWrong": "Structured debate offers dissent first and alignment later.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "A Debate Maker",
+        "Choosing",
+        "Structured"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.8"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch05.fact.9",
+      "claim": "Evidence-based disagreement is different from personal conflict.",
+      "mechanism": "Because the argument should test assumptions, risks, and tradeoffs rather than attack status or motives.",
+      "commonError": "Letting meetings become personality contests and calling it candor.",
+      "whyWrong": "Personal conflict consumes trust without necessarily improving the decision.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Evidence-based",
+        "Letting",
+        "Personal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch05.fact.9"
+      ],
+      "teachingPriority": 8
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch05.ex.intel-constructive-confrontation",
+      "label": "Intel constructive confrontation",
+      "summary": "Intel and Andy Grove are associated with constructive confrontation, a norm of arguing hard about business problems. The case makes debate a disciplined management practice rather than a personality conflict.",
+      "realWorld": true,
+      "naturalSetting": "Intel",
+      "hardSpecifics": [
+        "Intel",
+        "Andy Grove",
+        "constructive confrontation"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.ex.amazon-disagree-commit",
+      "label": "Amazon disagree and commit",
+      "summary": "Amazon publicly uses disagree and commit as an Amazon leadership principle about decision commitment. The phrase captures the boundary: debate before decision, commitment after decision.",
+      "realWorld": true,
+      "naturalSetting": "Amazon",
+      "hardSpecifics": [
+        "Amazon leadership principle",
+        "disagree and commit",
+        "decision commitment"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch05.ex.challenger-commission",
+      "label": "Space Shuttle Challenger decision record",
+      "summary": "The 1986 Space Shuttle Challenger disaster and Rogers Commission record are a cautionary anchor for decision debate. Concerns about risk did not become strong enough decision input before launch.",
+      "realWorld": true,
+      "naturalSetting": "Space Shuttle Challenger",
+      "hardSpecifics": [
+        "Space Shuttle Challenger",
+        "1986",
+        "Rogers Commission"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "1986"
+      ]
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Debate Maker process",
+      "members": [
+        "frame the question",
+        "spark evidence-based debate",
+        "test assumptions",
+        "decide and align"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch05.concept",
+      "kind": "concept",
+      "label": "constructive debate",
+      "text": "Constructive debate is a deliberate decision process where opposing views are invited, evidence is tested, and the leader avoids premature closure. Debate is bounded by a real decision so argument produces clarity rather than theater. A reader learns to stop treating disagreement as disloyalty. The point is to make the decision smarter before execution begins.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.intel-constructive-confrontation",
+      "kind": "named_example",
+      "label": "Intel constructive confrontation",
+      "text": "Intel and Andy Grove are associated with constructive confrontation, a norm of arguing hard about business problems. The case makes debate a disciplined management practice rather than a personality conflict. Useful conflict can be institutionalized so disagreement improves decisions.",
+      "hardSpecifics": [
+        "Intel",
+        "Andy Grove",
+        "constructive confrontation"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.amazon-disagree-commit",
+      "kind": "named_example",
+      "label": "Amazon disagree and commit",
+      "text": "Amazon publicly uses disagree and commit as an Amazon leadership principle about decision commitment. The phrase captures the boundary: debate before decision, commitment after decision. A decision process can welcome dissent without allowing permanent resistance.",
+      "hardSpecifics": [
+        "Amazon leadership principle",
+        "disagree and commit",
+        "decision commitment"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.ex.challenger-commission",
+      "kind": "named_example",
+      "label": "Space Shuttle Challenger decision record",
+      "text": "The 1986 Space Shuttle Challenger disaster and Rogers Commission record are a cautionary anchor for decision debate. Concerns about risk did not become strong enough decision input before launch. Suppressed or mishandled dissent can turn a decision process into a failure point.",
+      "hardSpecifics": [
+        "Space Shuttle Challenger",
+        "1986",
+        "Rogers Commission"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.1",
+      "kind": "testable_fact",
+      "label": "Intel is publicly associated with constructive confrontation as a management norm.",
+      "text": "Intel is publicly associated with constructive confrontation as a management norm. Because a named company norm shows debate can be part of operating culture rather than an ad hoc argument. Treating confrontation as inherently toxic. Confrontation can be constructive when it is directed at the business problem and bounded by norms.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.2",
+      "kind": "testable_fact",
+      "label": "Andy Grove is a key Intel figure linked to hard-edged management debate.",
+      "text": "Andy Grove is a key Intel figure linked to hard-edged management debate. Because Grove's Intel role gives the constructive confrontation example a concrete leadership anchor. Discussing Intel debate norms without naming a responsible management tradition. The case is stronger when tied to the company and the executive culture around it.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.3",
+      "kind": "testable_fact",
+      "label": "Amazon lists disagree and commit as a leadership principle.",
+      "text": "Amazon lists disagree and commit as a leadership principle. Because the principle explicitly separates dissent during decision-making from alignment after a decision. Believing commitment requires pretending there was never disagreement. The principle preserves dissent before closure and execution after closure.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.4",
+      "kind": "testable_fact",
+      "label": "Disagree and commit prevents endless relitigation after a decision.",
+      "text": "Disagree and commit prevents endless relitigation after a decision. Because teams cannot execute well if every decision remains permanently open. Assuming debate should continue indefinitely until everyone feels fully convinced. Debate needs a close so energy moves to execution.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.5",
+      "kind": "testable_fact",
+      "label": "The Space Shuttle Challenger disaster occurred in 1986.",
+      "text": "The Space Shuttle Challenger disaster occurred in 1986. Because the 1986 date fixes the cautionary decision case in a specific public event. Using Challenger as a generic risk story with no historical anchor. The year and mission record matter for factual grounding.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.6",
+      "kind": "testable_fact",
+      "label": "The Rogers Commission investigated the Challenger disaster.",
+      "text": "The Rogers Commission investigated the Challenger disaster. Because the commission record makes the case a public decision-process source rather than office folklore. Treating Challenger as only a technical failure with no decision lessons. The investigation addressed organizational and decision factors around launch.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.7",
+      "kind": "testable_fact",
+      "label": "Debate loses value when senior rank signals the answer too early.",
+      "text": "Debate loses value when senior rank signals the answer too early. Because people often adjust their contributions around authority cues, early leader certainty can silence contrary evidence. Thinking the leader should open debate by announcing the preferred answer. That move turns debate into compliance theater.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.8",
+      "kind": "testable_fact",
+      "label": "A Debate Maker distinguishes argument before the decision from commitment after it.",
+      "text": "A Debate Maker distinguishes argument before the decision from commitment after it. Because the team needs both better thinking and coordinated action. Choosing between total consensus and authoritarian closure. Structured debate offers dissent first and alignment later.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.fact.9",
+      "kind": "testable_fact",
+      "label": "Evidence-based disagreement is different from personal conflict.",
+      "text": "Evidence-based disagreement is different from personal conflict. Because the argument should test assumptions, risks, and tradeoffs rather than attack status or motives. Letting meetings become personality contests and calling it candor. Personal conflict consumes trust without necessarily improving the decision.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch05.framework.debate.maker.process",
+      "kind": "framework",
+      "label": "Debate Maker process",
+      "text": "frame the question, spark evidence-based debate, test assumptions, decide and align",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1986"
+  ],
+  "allowedEntities": [
+    "The Debate Maker",
+    "Debate Makers",
+    "Constructive",
+    "Debate",
+    "Intel's",
+    "Amazon's",
+    "The Challenger",
+    "Intel",
+    "Andy Grove",
+    "Useful",
+    "Amazon",
+    "Space Shuttle Challenger",
+    "Rogers Commission",
+    "Concerns",
+    "Suppressed",
+    "Debate Maker",
+    "Real",
+    "Investor",
+    "Diminisher",
+    "Keep",
+    "For",
+    "Treating",
+    "Confrontation",
+    "Because Grove's Intel",
+    "Discussing Intel",
+    "Believing",
+    "Disagree",
+    "Assuming",
+    "The Space Shuttle Challenger",
+    "Using Challenger",
+    "The Rogers Commission",
+    "Challenger",
+    "Treating Challenger",
+    "Thinking",
+    "A Debate Maker",
+    "Choosing",
+    "Structured",
+    "Evidence-based",
+    "Letting",
+    "Personal",
+    "Intel constructive confrontation",
+    "Amazon disagree and commit",
+    "Space Shuttle Challenger decision record"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch05.ex.intel-constructive-confrontation",
+      "warning": "Keep examples about Intel constructive confrontation source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.amazon-disagree-commit",
+      "warning": "Keep examples about Amazon disagree and commit source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch05.ex.challenger-commission",
+      "warning": "Keep examples about Space Shuttle Challenger decision record source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch05.fact.5"
+}

@@ -1,0 +1,12 @@
+Wrote the chapter file here: [start-with-why-ch05.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch05.v21-native.chapter.json).
+
+Verification passed:
+- `author-check` clean
+- `gate-chapter` PASS with `0 blockers`, `0 majors`
+- `quiz-verify` `9/9 match`
+- `evidence-audit` clear
+- Rendered length: `16,656` chars
+- Quiz key pattern: `0,1,2,2,0,0,1,2,1`
+- Distractor parity: `0` uniquely-longest keys, `3` uniquely-shortest keys
+
+One book-level `major-status` finding remains, but it now affects only chapters 3, 4, and 6, not chapter 5.

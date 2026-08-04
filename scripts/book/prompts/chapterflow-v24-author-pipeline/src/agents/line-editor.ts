@@ -12,7 +12,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { callClaude } from "../claudeClient.js";
+import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 import { BookBrief, ChapterDesignDoc } from "../types.js";
 import { BreakdownOutput } from "./writer-breakdown.js";
 
@@ -25,7 +25,10 @@ export type LineEditInput = {
   draft: BreakdownOutput;
 };
 
-export async function runLineEditor(input: LineEditInput): Promise<BreakdownOutput> {
+export async function runLineEditor(
+  input: LineEditInput,
+  execution?: ModelCallerExecution,
+): Promise<BreakdownOutput> {
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "line-editor.system.md"), "utf8");
 
   const parts: string[] = [];
@@ -49,20 +52,8 @@ export async function runLineEditor(input: LineEditInput): Promise<BreakdownOutp
   parts.push("");
   parts.push(`Polish at the sentence level. Return the LineEditOutput JSON now.`);
 
-  const result = await callClaude<BreakdownOutput>({
-    tier: "writer",
-    stage: "line-editor",
-    bookId: input.brief.bookId,
-    chapterId: input.plan.chapterId,
-    system: systemPrompt,
-    user: parts.join("\n"),
-    maxTokens: 6000,
-    temperature: 0.5,
-    jsonMode: true,
-    timeoutMs: 240_000,
-  });
-
-  return validate(result.content, input.draft);
+  const output = await runJsonModelTask<BreakdownOutput>(execution, "line-editor", systemPrompt, parts.join("\n"));
+  return validate(output, input.draft);
 }
 
 function validate(out: BreakdownOutput, draft: BreakdownOutput): BreakdownOutput {

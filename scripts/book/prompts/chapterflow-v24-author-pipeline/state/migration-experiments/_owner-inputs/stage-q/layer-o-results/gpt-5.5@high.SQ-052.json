@@ -1,0 +1,40 @@
+{
+  "caseId": "SQ-052",
+  "parsed": {
+    "caseId": "SQ-052",
+    "verdict": "DEFECT",
+    "defectClass": "same narrative machinery / structural template reuse",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Ludo turns a phone with a paused doorbell clip at Sunday 4:08 p.m. in the split-level living room in Parma, homeowner, with mud on the welcome mat."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Odette touches a wet dish towel at Sunday 8:41 p.m. in the galley kitchen of apartment 4B, partner, with a pan soaking with rice stuck to the bottom."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "The video shows both: muddy shoes and a shaking terrier."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "The towel tightens in her hands because the real feeling is embarrassment, not scheduling."
+      },
+      {
+        "materialIndex": 0,
+        "quote": "Ludo he has to choose between proving the shoe rule and asking what each of them was trying to handle."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Odette she must decide whether to accuse him of not caring or say what feeling is already steering her."
+      }
+    ],
+    "explanation": "Both examples use the same scene engine: a named character in a timestamped domestic setting with a tactile/visual object, a surface conflict, evidence or bodily cue reframing the issue, and a final forced choice between arguing the surface point and addressing the underlying need or feeling.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-052\",\"verdict\":\"DEFECT\",\"defectClass\":\"same narrative machinery / structural template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Ludo turns a phone with a paused doorbell clip at Sunday 4:08 p.m. in the split-level living room in Parma, homeowner, with mud on the welcome mat.\"},{\"materialIndex\":1,\"quote\":\"Odette touches a wet dish towel at Sunday 8:41 p.m. in the galley kitchen of apartment 4B, partner, with a pan soaking with rice stuck to the bottom.\"},{\"materialIndex\":0,\"quote\":\"The video shows both: muddy shoes and a shaking terrier.\"},{\"materialIndex\":1,\"quote\":\"The towel tightens in her hands because the real feeling is embarrassment, not scheduling.\"},{\"materialIndex\":0,\"quote\":\"Ludo he has to choose between proving the shoe rule and asking what each of them was trying to handle.\"},{\"materialIndex\":1,\"quote\":\"Odette she must decide whether to accuse him of not caring or say what feeling is already steering her.\"}],\"explanation\":\"Both examples use the same scene engine: a named character in a timestamped domestic setting with a tactile/visual object, a surface conflict, evidence or bodily cue reframing the issue, and a final forced choice between arguing the surface point and addressing the underlying need or feeling.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

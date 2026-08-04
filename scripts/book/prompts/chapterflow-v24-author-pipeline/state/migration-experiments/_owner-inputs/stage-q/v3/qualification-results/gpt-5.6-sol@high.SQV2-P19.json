@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P19",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"CLAIM_LOCATOR_MISMATCH\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":[\"Fast neural events and slow social histories can both affect one response\",\"https://pubmed.ncbi.nlm.nih.gov/?term=testosterone+challenge+hypothesis+Wingfield\",\"A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is a generic PubMed search about testosterone, the challenge hypothesis, and Wingfield; it does not provide claim-specific evidence for the recorded mechanism linking fast neural events and slow social histories to a single response. It therefore fails the contract’s same-entity, mechanism, and relation requirements and should be blocked.\"}"
+}

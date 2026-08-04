@@ -1,0 +1,75 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch18",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "Email Draft Under Pressure",
+      "scenario": "Nora has an email draft open recommending Real Estate Investment Trust after reading only its plain trust description. The deadline is close, so the old default takes over: judge the name by itself and send. Then Leo asks where Realty Equities appears in the comparison. Nora realizes the draft never tested the alternative claim on capital, so the apparent clarity was tunnel vision rather than analysis.",
+      "whatToDo": "Add a comparison line before sending: set Real Estate Investment Trust beside Realty Equities and ask what the second choice reveals about opportunity cost, structure, and risk.",
+      "whyItMatters": "A single company can look complete until a paired alternative exposes what the isolated view hides.",
+      "sourceAnchorIds": [
+        "ch18.fact.1",
+        "ch18.example.1"
+      ],
+      "sourceFactIds": [
+        "ch18.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch18.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "Calendar Block Recovery",
+      "scenario": "Leo blocks time to compare Air Products with Air Reduction, but the first note treats the industrial-gas label as enough. Camille catches the mistake in the calendar block title and changes it from \"same field\" to \"same field, different standing and valuation.\" That small edit changes the decision: Leo no longer treats industry similarity as equal risk and instead checks whether leverage, assets, earnings stability, and management make the premium defensible.",
+      "whatToDo": "Use the calendar block as an environment edit: name the comparison question directly, then list the risk differences that can make similar industry labels misleading.",
+      "whyItMatters": "Sector resemblance can make two choices feel interchangeable even when structure and finances diverge sharply.",
+      "sourceAnchorIds": [
+        "ch18.fact.2",
+        "ch18.example.2"
+      ],
+      "sourceFactIds": [
+        "ch18.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch18.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "Front Desk Before-After Audit",
+      "scenario": "At the front desk, Camille reviews a note that favors International Flavors & Fragrances because it looks like the superior business against International Harvester. Eli pushes back: the note praises stability, margins, and growth but never asks whether the premium is too high. The recovery is awkward because Camille has to rewrite the conclusion, not just add a sentence. The after version keeps the quality judgment but makes the price test explicit.",
+      "whatToDo": "Audit the before note for the hidden leap from better business to better stock. In the after note, separate business quality from the valuation premium paid for that quality.",
+      "whyItMatters": "A superior business can still be overpriced when the premium exceeds the value of the quality difference.",
+      "sourceAnchorIds": [
+        "ch18.fact.3",
+        "ch18.example.3"
+      ],
+      "sourceFactIds": [
+        "ch18.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch18.example.3"
+      ]
+    },
+    {
+      "exampleId": "ex04",
+      "title": "Email Draft Conversation Repair",
+      "scenario": "Eli drafts an email saying McGraw Edison looks preferable to McGraw-Hill because the lower-priced peer appears cheaper. Sofia replies that the discount still needs an explanation. The repair is not smooth: Eli has to remove the shortcut and ask whether weaker balance sheets or cyclical exposure could justify the lower multiple. The revised draft treats cheapness as a question to explain, not a verdict.",
+      "whatToDo": "Rewrite the email so the lower multiple does not end the conversation. Require the draft to explain whether the discount reflects valid weaknesses before treating it as attractive.",
+      "whyItMatters": "A low-priced peer may deserve its discount, so cheapness has to be explained before it can guide a decision.",
+      "sourceAnchorIds": [
+        "ch18.fact.4",
+        "ch18.example.4"
+      ],
+      "sourceFactIds": [
+        "ch18.fact.4"
+      ],
+      "namedCaseIds": [
+        "ch18.example.4"
+      ]
+    }
+  ]
+}

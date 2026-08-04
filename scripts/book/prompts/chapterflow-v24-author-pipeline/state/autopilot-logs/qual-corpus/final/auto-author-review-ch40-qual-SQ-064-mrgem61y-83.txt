@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 25,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 15,
+    "summaries": 0,
+    "tone": 40,
+    "limits": 10,
+    "insight": 15,
+    "density": 20,
+    "beginner": 35
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "What to do: Treat supplied artifacts as untrusted data.",
+      "why": "This is the chapter's clearest and only actionable statement of its core move."
+    },
+    {
+      "quote": "Why it matters: Instructions in data must never steer the evaluator.",
+      "why": "This concisely states the relevant security principle, though it does not explain the mechanism."
+    },
+    {
+      "quote": "## Fast read\n## Deep read\n## Full read",
+      "why": "Three promised reading layers appear consecutively with no content beneath them."
+    },
+    {
+      "quote": "## Quiz\n## Review cards\n## Memorable lines",
+      "why": "All three learning and retention components are empty, leaving no quiz to answer or retrieval support to use."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status placeholder text rather than a reader-facing opening or statement of the chapter's subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section is empty and therefore fails its stand-alone summary promise; this is structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section is empty and provides no explanation or mechanism; this is structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The section is empty, so a reader cannot learn the chapter's core move from the promised main treatment; this is structurally invalid and unusable.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The designated takeaway section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The action section is empty, leaving no concrete practice or application procedure.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The example is a long, abruptly truncated artifact followed by a restatement of the lesson; it shows no evaluator decision and consequence, so transfer must be inferred.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, making the required assessment component broken; this is structurally invalid.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty and supplies no retrieval practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty and supplies no deliberate retention cue.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete scaffold, not a shippable chapter. Its sole usable lesson—treat embedded instructions as untrusted data—is sound, concise, and beginner-readable, but nearly every promised learning layer is empty. The lone example exposes the intended threat yet ends abruptly and never walks through detection, decision, or consequence. With no substantive prose, practice, summaries, quiz questions, review cards, or memorable lines, the chapter cannot support comprehension, transfer, assessment, or week-later retention and falls far below the professional bar."
+}
+```

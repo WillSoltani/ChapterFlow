@@ -1,0 +1,90 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch03",
+  "chapterNumber": 3,
+  "contentHash": "7b920f6f4eb44ea7",
+  "reviewerSessionId": "auto-author-review-ch03-mrdyz9k9-6",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 89,
+    "limits": 86,
+    "insight": 87,
+    "density": 86,
+    "beginner": 90
+  },
+  "composite": 87.3,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "b",
+      "c",
+      "a",
+      "b",
+      "a",
+      "a",
+      "c",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Growth is a route, not a rank.",
+      "why": "This is the chapter's core move in a compact, memorable form.",
+      "verified": true
+    },
+    {
+      "quote": "The role does not rank the person; the person changes the role.",
+      "why": "Strong retention line that corrects the likely beginner mistake.",
+      "verified": true
+    },
+    {
+      "quote": "Do not use this move when the issue is clear harm, a missed standard, or a skill gap that must be fixed now.",
+      "why": "The limits section gives a real boundary instead of overselling the tool.",
+      "verified": true
+    },
+    {
+      "quote": "b) Keep the same style for both people, because equal treatment proves the lead is not playing favorites with growth paths, even when needs diverge.",
+      "why": "This distractor is so plainly wrong against the chapter's repeated mechanism that it weakens quiz difficulty.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several distractors are visibly extreme or backwards, especially Q4, Q7, and Q8, so a test-wise reader could often eliminate them without deep reading."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "The wrong answers are extreme: one grants title immediately without fit evidence, the other delays all stretch. This makes the calibrated key easier to guess.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q7",
+      "problem": "The same-style and full-autonomy distractors are broad reversals of the lesson, so they test elimination more than close comprehension.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The two wrong answers reverse the stated mechanism so clearly that the key is fairly obvious without much retrieval work.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. It has a clear central distinction, memorable phrasing, practical if-then transfer, and honest limits around when growth-mode thinking should not be used. The quiz keys are sound and derivable, including the why/cause questions, but a few distractors are too obviously extreme or inverted, which lowers quiz rigor without creating a blocking defect.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "5352c45d4e19a9aa336a78ef409998a3cbc12e13961ac9462beea320423113c7",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:39:40.902Z"
+}

@@ -1,0 +1,90 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 8,
+    "quizzes": 0,
+    "transfer": 6,
+    "practical": 0,
+    "summaries": 0,
+    "tone": 15,
+    "limits": 0,
+    "insight": 2,
+    "density": 8,
+    "beginner": 5
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The coffee has gone gray at the rim.",
+      "why": "A concise sensory image that gives the otherwise incomplete chapter a moment of texture."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This is production-status placeholder text rather than a hook or lesson."
+    },
+    {
+      "quote": "Osias he has to say whether they are arguing about paperwork, fear, or being the good child.",
+      "why": "The broken syntax obstructs an already unexplained decision point."
+    },
+    {
+      "quote": "What to do: Follow the scene's move.",
+      "why": "The instruction is unusably circular because the chapter never defines the move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is an internal review placeholder and introduces no subject, promise, tension, or core move.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read, deep read, and full read",
+      "problem": "All three promised reading layers are empty, so none functions as a standalone explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty, leaving the chapter's core move unstated.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, so the reader receives no concrete action or practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 1",
+      "problem": "The scene has broken syntax, never identifies the skill, shows no completed decision or consequence, and ends with generic placeholder instructions.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The scene has broken syntax, never identifies the skill, shows no completed decision or consequence, and ends with generic placeholder instructions.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions or answer choices, making the assessment structurally broken.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards and memorable lines",
+      "problem": "Both sections are empty and therefore cannot support review or retention.",
+      "mustFix": true
+    },
+    {
+      "unit": "chapter overall",
+      "problem": "No prose defines or explains the supposed skill, so a reader cannot learn or apply the chapter's core move.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an unfilled chapter scaffold, not a shippable learning chapter. Two concrete conflict scenes offer isolated sensory details, but the teaching sections, takeaway, exercise, quiz, review cards, and memorable lines contain no content. The examples refer circularly to an undefined move, include grammatical breakage, and stop before showing decisions or consequences. With no actual quiz questions, there is nothing to derive or assess, and a beginner could not identify—much less transfer or practice—the intended skill."
+}
+```

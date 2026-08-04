@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch15",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "slotId": "ex01",
+      "title": "The One-on-One Low P/E Trap",
+      "scenario": "Julian brings a small experiment into a manager one-on-one with Tessa: sort compact company data from Standard & Poor's Stock Guide by low P/E and mark the first name as the likely bargain. The old default fails immediately. One line has a low multiple, but the balance-sheet sorting field does not support treating it as automatically best. Tessa does not need a dramatic forecast to slow the decision; the screen has only shown low expectations, and some low multiples can point to real deterioration.",
+      "whatToDo": "Use the low P/E sort only as the first screen. Before advancing a candidate, add a financial-condition check beside the multiple and reject the shortcut that the lowest P/E line deserves the top slot by default.",
+      "whyItMatters": "A cheap-looking multiple can be either a favorable starting point or a warning. The practical move is to make low expectations earn their place with acceptable financial condition before any decision follows.",
+      "sourceAnchorIds": [
+        "ch15.fact.1",
+        "ch15.example.1"
+      ],
+      "sourceFactIds": [
+        "ch15.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch15.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "slotId": "ex02",
+      "title": "The Phone Call Asset Cushion Check",
+      "scenario": "On a phone call, Samir tells Elena he has found a Net-net candidate because the price looks low beside total assets. Elena repeats the test back as a feedback loop: current assets first, then subtract all liabilities, then compare market price with what remains. The decision changes on the call. Samir stops treating total assets as the standard and moves the name back to review until the harsher asset cushion is visible.",
+      "whatToDo": "When a Net-net idea appears, restate the calculation before acting: market price against current assets minus all liabilities. If the note only compares price with total assets, mark it incomplete rather than treating it as a bargain.",
+      "whyItMatters": "The stricter calculation prevents a weak cushion from passing as value. Operations are not being given credit until the asset test survives after all liabilities are subtracted.",
+      "sourceAnchorIds": [
+        "ch15.fact.2",
+        "ch15.example.2"
+      ],
+      "sourceFactIds": [
+        "ch15.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch15.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "slotId": "ex03",
+      "title": "The Spreadsheet Recovery From One Bargain",
+      "scenario": "In a shared spreadsheet, Graham highlights one low price-earnings group candidate and wants to concentrate the decision there. Samir walks through the checklist with Elena, but the recovery is not clean at first: the sheet has a financial weakness check column, yet most rows are blank, and the single highlighted line keeps pulling attention. They add the missing checks, keep the group broad, and rebuild the list toward a 20-stock approach because any one cheap company may hide problems or take time to be recognized.",
+      "whatToDo": "Treat the spreadsheet as a group checklist, not a trophy case for one bargain. Fill the financial weakness check across the list, keep the broad application visible, and do not let one cheap line become the whole decision.",
+      "whyItMatters": "Diversification absorbs appraisal mistakes. A broad low price-earnings group can handle hidden problems better than a concentrated bet on the one name that looks cheapest.",
+      "sourceAnchorIds": [
+        "ch15.fact.3",
+        "ch15.example.3"
+      ],
+      "sourceFactIds": [
+        "ch15.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch15.example.3"
+      ]
+    }
+  ]
+}

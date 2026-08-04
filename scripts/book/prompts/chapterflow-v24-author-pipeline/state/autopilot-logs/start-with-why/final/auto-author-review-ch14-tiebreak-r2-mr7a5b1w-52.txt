@@ -1,0 +1,82 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Several correct answers carry the chapter's exact loaded vocabulary while distractors are reversals or overstatements, especially Q4, Q6, and Q9.",
+      "Q4's correct answer is visibly the most complete because it lists all four framework jobs by name.",
+      "Q9's correct answer nearly repeats the prose's warning about the 2001 iPod leaving Apple-Dell, making it guessable."
+    ]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 78,
+    "transfer": 69,
+    "practical": 80,
+    "summaries": 82,
+    "tone": 63,
+    "limits": 86,
+    "insight": 81,
+    "density": 72,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Self-referenced competition means this: let the rival warn you, then let your old promise judge the move.",
+      "why": "This is the chapter's clearest, most memorable formulation of the core move."
+    },
+    {
+      "quote": "If the second line is blank, the decision is not ready. If the second line only says \"match them,\" the rival has become the ruler.",
+      "why": "Strong practical diagnostic that a reader could use immediately."
+    },
+    {
+      "quote": "Apple Inc. (the company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make the tension plain.",
+      "why": "The parenthetical scaffolding sounds like source-packet residue rather than finished prose."
+    },
+    {
+      "quote": "When the standard is demanded, name the three anchors.",
+      "why": "This is too thin as an action; it restates the lesson instead of showing a useful decision move."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The parenthetical explanations of Apple, Dell, iPod, and Dell DJ feel like production scaffolding and make the prose less professional.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Some mechanism language is abstract and recursive: pressure, benchmark, purpose fidelity, and improvement are named repeatedly before being grounded in a concrete business decision.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The example reads like a slot-filler: the demand is generic, the action is mostly naming anchors, and the consequence is only that a copy request is paused while the benchmark remains due.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "Several examples use invented named workers but do not give enough before-to-after consequence beyond restating the chapter's framework.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is signaled by listing the four exact framework jobs; distractors are implausible reversals.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The correct answer is too close to the chapter's wording about the 2001 iPod leaving Apple-Dell, so it is guessable without much reasoning.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Phrases like source packet markers, anchors, venue, and proof point create a template smell that may distract beginners from the business lesson.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful and memorable move: use a rival as pressure, then bring the decision back to an internal benchmark before calling it progress. The summaries, review cards, and limits are mostly sound, and the quiz keys are derivable. I would not ship it yet at a professional 84+ bar because too much of the chapter still sounds assembled from source constraints, and several examples feel manufactured rather than lived. The main repair is to strip source-packet phrasing and replace the weaker examples with decisions that show a real before, action, and consequence."
+}
+```

@@ -1,0 +1,153 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chapterflow.local/schemas/portfolio-book-update.schema.json",
+  "title": "ChapterFlow Full-Content Portfolio Book Update v1.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "evaluation_mode", "book_id", "source_hash", "book"],
+  "properties": {
+    "schema_version": {"const": "1.0.0"},
+    "evaluation_mode": {"const": "full_content"},
+    "book_id": {"type": "string", "minLength": 1},
+    "source_hash": {"$ref": "#/$defs/sha256"},
+    "book": {"$ref": "#/$defs/book"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "score": {"type": "number", "minimum": 0, "maximum": 100},
+    "domainScore": {"type": "number", "minimum": 0, "maximum": 4},
+    "gateStatus": {
+      "enum": ["Pass", "Conditional", "Fail", "Not Assessed", "Unevaluable"]
+    },
+    "subcriterion": {
+      "type": "object",
+      "required": ["domain", "subcriterion", "rating", "evidence_proxy", "rationale", "evidence"],
+      "properties": {
+        "domain": {"type": "string", "minLength": 1},
+        "subcriterion": {"type": "string", "minLength": 1},
+        "rating": {"type": "number", "minimum": 0, "maximum": 4, "multipleOf": 0.5},
+        "evidence_proxy": {"type": "integer", "minimum": 0},
+        "rationale": {"type": "string", "minLength": 1},
+        "evidence": {"type": "array", "minItems": 1, "items": {"type": "object"}}
+      },
+      "additionalProperties": true
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "evaluation_mode",
+        "run_id",
+        "job_id",
+        "source_hash",
+        "chapter_count_expected",
+        "chapter_count_read_full",
+        "all_chapters_read",
+        "rater_pair_validated",
+        "primary_job_id",
+        "verification_job_id",
+        "blind_pair_id",
+        "blind_pair_inventory_sha256",
+        "primary_dispatch_receipt_sha256",
+        "verification_dispatch_receipt_sha256",
+        "blind_pair_seal_sha256",
+        "primary_worker_task_id",
+        "primary_worker_session_id",
+        "verification_worker_task_id",
+        "verification_worker_session_id",
+        "evaluator_thread_id",
+        "evaluated_at_utc"
+      ],
+      "properties": {
+        "method": {"const": "full_book_blind_dual_rater_adjudication"},
+        "evaluation_mode": {"const": "full_content"},
+        "run_id": {"type": "string", "minLength": 1},
+        "job_id": {"type": "string", "minLength": 1},
+        "source_hash": {"$ref": "#/$defs/sha256"},
+        "chapter_count_expected": {"type": "integer", "minimum": 1},
+        "chapter_count_read_full": {"type": "integer", "minimum": 1},
+        "all_chapters_read": {"const": true},
+        "rater_pair_validated": {"const": true},
+        "primary_job_id": {"type": "string", "minLength": 1},
+        "verification_job_id": {"type": "string", "minLength": 1},
+        "blind_pair_id": {"type": "string", "minLength": 1},
+        "blind_pair_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "primary_dispatch_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "verification_dispatch_receipt_sha256": {"$ref": "#/$defs/sha256"},
+        "blind_pair_seal_sha256": {"$ref": "#/$defs/sha256"},
+        "primary_worker_task_id": {"type": "string", "minLength": 1},
+        "primary_worker_session_id": {"type": "string", "minLength": 1},
+        "verification_worker_task_id": {"type": "string", "minLength": 1},
+        "verification_worker_session_id": {"type": "string", "minLength": 1},
+        "evaluator_thread_id": {"type": ["string", "null"]},
+        "evaluated_at_utc": {"type": "string", "format": "date-time"}
+      }
+    },
+    "book": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "file",
+        "chapters",
+        "score",
+        "band",
+        "confidence",
+        "gates",
+        "domains",
+        "subcriteria",
+        "weighted_points",
+        "chapter_evidence",
+        "evaluation_provenance"
+      ],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "title": {"type": "string", "minLength": 1},
+        "file": {"type": "string", "minLength": 1},
+        "chapters": {"type": "integer", "minimum": 1},
+        "score": {"$ref": "#/$defs/score"},
+        "band": {"type": "string", "minLength": 1},
+        "confidence": {"type": "string", "minLength": 1},
+        "gates": {
+          "type": "object",
+          "required": ["technical", "epistemic", "ethics", "purpose_audience", "external_accuracy", "note"],
+          "properties": {
+            "technical": {"$ref": "#/$defs/gateStatus"},
+            "epistemic": {"$ref": "#/$defs/gateStatus"},
+            "ethics": {"$ref": "#/$defs/gateStatus"},
+            "purpose_audience": {"$ref": "#/$defs/gateStatus"},
+            "external_accuracy": {"$ref": "#/$defs/gateStatus"},
+            "note": {"type": "string"}
+          },
+          "additionalProperties": false
+        },
+        "domains": {
+          "type": "object",
+          "minProperties": 9,
+          "maxProperties": 9,
+          "additionalProperties": {"$ref": "#/$defs/domainScore"}
+        },
+        "subcriteria": {
+          "type": "array",
+          "minItems": 36,
+          "maxItems": 36,
+          "items": {"$ref": "#/$defs/subcriterion"}
+        },
+        "weighted_points": {
+          "type": "object",
+          "minProperties": 9,
+          "maxProperties": 9,
+          "additionalProperties": {"type": "number", "minimum": 0, "maximum": 15}
+        },
+        "chapter_evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "object"}
+        },
+        "evaluation_provenance": {"$ref": "#/$defs/provenance"}
+      },
+      "additionalProperties": true
+    }
+  }
+}

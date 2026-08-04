@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "f4d3b3ae11373cd0280f0ed8d2984ea466496893c69cd67914f8c3cb3893a043",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "the-willpower-instinct-ch01-q01",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 2,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice c directly names the I will, I won't, and I want powers, while keyed choice a addresses refusal alone."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a uniquely explains how an active goal can bias attention and response when an alert competes for control."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a captures the supported lesson that frontal injury can impair planning and restraint despite survival and preserved basic abilities."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b identifies the cue and choice point that Amelia must notice before she can interrupt the automatic reply."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b is the only option supported by the failures of commitment, trust, and repair described in the social scenario."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b correctly distinguishes valuing the run from keeping that goal salient when the snack cue appears."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a correctly allows both motives to be sincere and explains action through their relative support at the choice point."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q08",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely uses the concrete behavior, observed trigger, and feedback as a small adjustable experiment."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c accurately describes prefrontal control as biasing attention and response when routine behavior conflicts with a current goal."
+    }
+  ]
+}
+```

@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 35,
+    "quizzes": 0,
+    "transfer": 20,
+    "practical": 30,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 15,
+    "insight": 35,
+    "density": 20,
+    "beginner": 40
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "\"The forecast is careful,\" he says. The investment partner answers, \"Careful about which future?\"",
+      "why": "This is the strongest memorable line because it compresses the chapter's core move into a useful challenge."
+    },
+    {
+      "quote": "The page names the middle case, but Byron Penstock's logic asks for the edges too.",
+      "why": "This gives the mechanism: a single forecast is incomplete until low and high cases are tested."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "These required learning sections are empty, including the quiz."
+    },
+    {
+      "quote": "On the call, analyst the analyst taps a Coinstar spreadsheet beside his keyboard.",
+      "why": "The duplicated wording is a visible copy defect in the only substantive section."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "fast read",
+      "problem": "The fast read is only the placeholder sentence \"A concise idea.\" and does not state the chapter's core move, so it fails its standalone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read is only the placeholder sentence \"One added angle.\" and does not add an actual angle, so it fails its standalone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is an empty heading with no takeaway.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is an empty heading, so the chapter gives no immediate practice action.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is an empty heading, so the chapter has no example section despite promising one.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section is empty, so there are no questions to answer or derive.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is an empty heading with no review material.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is an empty heading with no memorable lines.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The phrase \"analyst the analyst\" is a copyediting error in the only substantive prose.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Byron Penstock is named without context, so a cold beginner has to infer the principle from the surrounding sentence rather than being taught it directly.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The only scenario is thin but usable: it shows a forecast conversation but gives no numbers, threshold, decision consequence, or before-to-after result beyond the call changing.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "Do not ship. The one real idea is understandable: do not judge a forecast only by its middle case; test the low and high cases before making the investment call. But the chapter is mostly a scaffold, with empty takeaway, practice, examples, quiz, review cards, and memorable-lines sections. The prose has one useful challenge line, but the product chapter is structurally incomplete and cannot meet a professional learning bar."
+}
+```

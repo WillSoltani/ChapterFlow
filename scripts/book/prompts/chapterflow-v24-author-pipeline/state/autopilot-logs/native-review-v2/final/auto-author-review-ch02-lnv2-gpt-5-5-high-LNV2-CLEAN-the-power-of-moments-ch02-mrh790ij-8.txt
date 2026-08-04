@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "mechanisms": [
+      "The prose says to look first at transitions, milestones, and pits, which map to welcome, awards, and complaint calls.",
+      "The John Deere lesson is that purpose should arrive before forms and routine tasks define the first day.",
+      "Mary Kay's Cadillac works because it makes a sales milestone visible and public.",
+      "Joshie shows that returning the object is not enough; the repair needs proof of care and a changed ending.",
+      "The chapter explicitly says more forms do not make a better first day and purpose must come before procedure.",
+      "The Mary Kay section says progress needs a marker before it becomes a memory.",
+      "The pit lesson says a polished apology can miss the feeling; recovery needs a concrete care story.",
+      "Eric's mistake shows the busiest step is not always what people retell, so meaning/memory comes first.",
+      "The pit warning is that a practical fix may leave the low-point feeling intact unless the ending is changed."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is partly defensible if the dashboard is public and pictureable, but the prose favors a marker people can notice and name, not data visibility alone.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Choice c mirrors the chapter's transition/milestone/pit triad almost directly.",
+      "Choice c repeats the chapter's 'customer purpose at the start' phrasing.",
+      "Choice b echoes 'visible' and 'notice' from the milestone section.",
+      "Choice b uses the giveaway phrase 'proof of care' from the Joshie discussion.",
+      "Choice a closely echoes 'purpose before the packet/forms.'",
+      "Choice c is the only option with the chapter's marker/image language.",
+      "Choice b is signaled by 'concrete care story,' a direct fit with the prose.",
+      "Choice a is the only option using the chapter's memory/relationship test.",
+      "Choice a repeats the warning that a low point can harden into the story."
+    ]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 86,
+    "insight": 88,
+    "density": 87,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Do not smooth every minute with equal care. Look first at transitions, milestones, and pits, since those points already have feeling in them.",
+      "why": "This is the chapter's core move in a memorable, usable form."
+    },
+    {
+      "quote": "A pit is not done just because the item is found. The repair has to change the ending people carry away.",
+      "why": "Strong mechanism: it explains why practical repair and memory repair differ."
+    },
+    {
+      "quote": "This method can go wrong when the signal is fake or too loud.",
+      "why": "The chapter names a real limit instead of overselling moment design."
+    },
+    {
+      "quote": "Trust the dashboard because the team can see data there.",
+      "why": "This distractor partly overlaps with the visibility principle, creating mild Q6 ambiguity."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The dashboard distractor is partly compatible with the milestone lesson because it is visible to the team; c is still best, but the contrast is not fully clean.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct answer lists the chapter's three target moment types almost directly, so the item can be guessed from repeated phrasing.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Mostly restates the Mary Kay case rather than transferring the move to a substantially new setting.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Reuses John Deere onboarding again for the busy-step test, which teaches the point but narrows transfer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. The central move is clear, memorable, and practical: do not improve the whole process evenly; scan for transitions, milestones, and pits, then match the intervention to the kind of charged moment. The quiz is mostly fair and derivable, though several correct answers are heavily signposted and Q6 has a mildly muddy distractor. Transfer is good enough, but the examples lean hard on the same anchor cases instead of showing the method in more varied domains."
+}
+```

@@ -1,0 +1,63 @@
+```json
+{
+  "gate_verdict": "PASS",
+  "book3_churn": "HIGH",
+  "quizDerivation": {
+    "2": {
+      "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+      "keyDisagreements": []
+    },
+    "6": {
+      "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "7": {
+      "answers": ["c", "b", "c", "a", "b", "b", "a", "a", "c"],
+      "keyDisagreements": []
+    },
+    "11": {
+      "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+      "keyDisagreements": []
+    }
+  },
+  "scores": {
+    "retention": 79,
+    "quizzes": 76,
+    "transfer": 80,
+    "practical": 72,
+    "summaries": 78,
+    "tone": 71,
+    "limits": 82,
+    "insight": 74,
+    "density": 69,
+    "beginner": 76
+  },
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Strong compact line: portable, complete, and likely to stick."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable reversal that captures the chapter's mechanism in one sentence."
+    },
+    {
+      "quote": "Every broad push sent too soon spends proof the early believers have not earned yet.",
+      "why": "Clear, useful phrasing that turns diffusion into a practical diagnostic."
+    },
+    {
+      "quote": "Hard facts need the same discipline.",
+      "why": "This exact move recurs across chapters and exposes the sample's template churn."
+    },
+    {
+      "quote": "Move a true detail to the wrong source and the claim looks grounded while the ground has shifted.",
+      "why": "A useful warning, but it is repeated so often that it starts to feel like a house scaffold."
+    },
+    {
+      "quote": "Who owes the count back? What act must come with it? By when?",
+      "why": "Practical and concrete, though the repeated owed-proof framing appears throughout the sample."
+    }
+  ],
+  "oneParagraphVerdict": "The sample is sound and often useful, with no key contradictions or obvious corrupted prose. Its best moments are compact reversals that turn business ideas into testable lenses: receipt not reason, loyalty as receipt, count the first believers. The main weakness is heavy cross-chapter churn. Nearly every chapter follows the same architecture: named anchor, second setting, edge example, hard facts must stay with their source, then a desk-level owed-proof exercise. That repetition makes the book feel engineered rather than individually authored. It is publishable as a solid draft, but not premium: the lessons transfer, the limits are better than average, and the quizzes are answerable, yet the practice sections can feel performative and the examples blur into one repeated scaffold."
+}
+```

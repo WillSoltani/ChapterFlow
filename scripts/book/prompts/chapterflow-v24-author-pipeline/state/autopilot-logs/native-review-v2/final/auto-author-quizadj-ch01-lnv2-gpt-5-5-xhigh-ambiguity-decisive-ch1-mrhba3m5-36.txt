@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "6358495c8333f5ff2fe7e6ed909c43d083d27b39fb904c05dcc9079b35ee029c",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "decisive-ch01-q01",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "WRAP is structurally matched to four decision stages, so b is the uniquely supported answer."
+    },
+    {
+      "itemId": "decisive-ch01-q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "A yes-or-no vendor frame is narrow framing, so adding real alternatives first is best supported."
+    },
+    {
+      "itemId": "decisive-ch01-q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Confirmation bias is directly countered by seeking disconfirming evidence before the favorite controls the search."
+    },
+    {
+      "itemId": "decisive-ch01-q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "The old service-line attachment specifically supports b's new-leader outsider question more strongly than c's later-perspective test."
+    },
+    {
+      "itemId": "decisive-ch01-q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "A wider range of plausible outcomes directly counters overconfidence in one neat forecast."
+    },
+    {
+      "itemId": "decisive-ch01-q06",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Steve Cole's HopeLab logic favors parallel first passes to learn by comparison before commitment."
+    },
+    {
+      "itemId": "decisive-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The outsider question is meant to create distance from legacy attachment, not outsource technical judgment."
+    },
+    {
+      "itemId": "decisive-ch01-q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The four villains occur at different stages and require different interventions, making a the best answer."
+    },
+    {
+      "itemId": "decisive-ch01-q09",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "WRAP improves decision odds under uncertainty without guaranteeing a good outcome."
+    }
+  ]
+}
+```

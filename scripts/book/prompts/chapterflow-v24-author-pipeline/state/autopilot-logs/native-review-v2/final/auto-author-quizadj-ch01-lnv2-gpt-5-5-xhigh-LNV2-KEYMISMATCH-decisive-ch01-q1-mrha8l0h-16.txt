@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "c3c60f6d6cd67a0a885ae7a4fe98334f47a973837548b593d4844f765b1b4ae2",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "decisive-ch01-q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 1,
+      "agreement": false,
+      "keyCorrect": "wrong",
+      "rationale": "Choice b is best because WRAP's named moves map to stages; choice c incorrectly saves WRAP for after commitment."
+    },
+    {
+      "itemId": "decisive-ch01-q02",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The yes-or-no vendor frame is narrow framing, so adding real alternatives before data review is best supported."
+    },
+    {
+      "itemId": "decisive-ch01-q03",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Seeking disconfirming evidence directly counters confirmation bias around an already-favored plan."
+    },
+    {
+      "itemId": "decisive-ch01-q04",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Letting attachment speak while asking what matters later captures emotional distance without dismissing emotion."
+    },
+    {
+      "itemId": "decisive-ch01-q05",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Mapping a wider range of plausible outcomes directly counters overconfidence in a single neat forecast."
+    },
+    {
+      "itemId": "decisive-ch01-q06",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Funding parallel first passes fits Steve Cole's comparison-before-commitment logic."
+    },
+    {
+      "itemId": "decisive-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The outsider question creates distance by asking what a fresh leader would do without legacy attachment."
+    },
+    {
+      "itemId": "decisive-ch01-q08",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "The four villains affect different decision stages and require distinct interruptions, not one final review."
+    },
+    {
+      "itemId": "decisive-ch01-q09",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "WRAP improves decision odds under uncertainty but cannot guarantee a good outcome."
+    }
+  ]
+}
+```

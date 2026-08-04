@@ -1,0 +1,574 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "start-with-why-ch02",
+  "number": 2,
+  "title": "Carrots and Sticks",
+  "readingTimeMinutes": 7,
+  "hook": "A discount can move the sale and still fail to win the buyer.",
+  "counterintuition": "General Motors (the Detroit company in the 2005 employee discount promotion) makes the trap plain. A spike can prove the carrot worked without proving anyone cared more.",
+  "tryThisNow": "Cross out 1 perk in a live offer for 10 minutes; write the behavior that must come back when the perk is gone.",
+  "keyTakeaway": "When a spike comes from Price, Promotion, Fear, Aspiration, Peer pressure, or Novelty, treat it as borrowed until people act again without that push.",
+  "breakdown": {
+    "fastRead": "A discount can move the sale and still fail to win the buyer. General Motors makes that claim visible through the 2005 employee discount. The discount could move volume, but volume does not prove preference. Read Price before Promotion: first name the cut, then ask what the public offer made easy. If you reverse the order, the offer gets asked to prove a reason it cannot prove alone. What comes back after the cut is gone? If nothing does, the carrot bought motion, not loyalty.",
+    "deepRead": "The mechanism is simple: the push and the reason owe you different things. Price is the cost or cut the buyer sees. Promotion is the wrapper that makes that cut hard to miss. Put Price first and you can ask whether the buyer wanted the thing, wanted the deal, feared missing out, followed people they knew, chased a better self, or liked the newness. Put Promotion first and all those causes blur into one happy line. The sale happened. So what?\n\nGeneral Motors keeps the lesson from floating away. In 2005, the employee discount belongs to that Detroit story; it is not a loose proof to attach wherever an offer needs weight. The loop that closes is plain: after the discount ends, what action should still show up, and what reason would carry it? The concrete price of a borrowed spike is a stale reason and another push next week.\n\nMCI (the long-distance calling company behind the 1991 Friends & Family program) repeats the pattern from another angle. Friends & Family worked through Peer pressure: the pull of people you know. That pull can help. It can lower the risk of saying yes. But it does not prove the same thing as belief. MCI matters because it gives you a second setting. Compare it with General Motors and the shared shape appears: behavior moved before durable preference was clear.\n\nTiVo (the 1999 digital video recorder service built around time shifting) adds the hard edge. Newness can make people look, and a digital video recorder can sound smart, but Novelty is not yet a buying reason. You are not hunting for a noble story behind every response. You are sorting the push from the reason, then asking whether the action comes back without being dragged.",
+    "fullRead": "TiVo is where the idea stops being a complaint about discounts. Its service made time shifting visible, so people could see a new way to watch. New can be real value. It can also steal the whole conversation. If the buying reason stays unclear, Novelty has done its job too well: it has gathered attention and hidden the missing why.\n\nThat is why the list matters. Price changes the cost. Promotion makes the offer visible. Fear says the cost of not acting is high. Aspiration promises a better version of the buyer. Peer pressure borrows force from other people. Novelty wins attention because it feels fresh. These are not one word with six costumes. Once their jobs are separate, the diagnosis gets simple enough to use at a desk.\n\nGeneral Motors gives the first hard pass. Do not say, \"people bought, so they preferred us.\" Say what the employee discount did, then ask what stayed when that move no longer carried the sale. MCI gives the second pass. Do not say, \"people joined because the brand was stronger.\" Say Friends & Family used the pull of known people in long-distance calling, then ask what remained after that pull had done its job. TiVo gives the edge. Do not say, \"people noticed it, so they were ready.\" Say the digital video recorder made time shifting novel, then ask whether the reason to buy had become plain.\n\nYou can run the same loop without a title. If you write an offer, request, or small launch, cross out the carrot before you trust the response. What would still move if the offer were gone? A clear answer means the push may help. A vague answer means the push is carrying too much. Cut the perk before it writes the reason for you.\n\nThe order is the quiet guardrail. Price before Promotion means the premise has to stand before the tactic gets credit. Fear before the urgent ask means the real risk must be named before pressure is used. Peer pressure before referral copy means the social pull must be marked as social pull, not confused with belief. This does not make carrots and sticks useless. It makes them honest.\n\nLimits matter. Sometimes a push is the right tool when the task is openly short term. The move fails when you treat every prompt as shallow or every buyer as manipulated. Do the opposite when the task is only to move a near-term action and nobody is pretending it proves loyalty. Just keep the receipt: name the push, name the behavior it bought, and do not call it preference until the behavior returns without the push."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch02.ex.general-motors-employee-discount-promotion",
+      "sourceAnchorIds": [
+        "ch02.ex.general-motors-employee-discount-promotion"
+      ],
+      "sourceFactIds": [
+        "ch02.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch02.ex.general-motors-employee-discount-promotion"
+      ],
+      "title": "The Late Catch",
+      "tags": [
+        "sales diagnosis",
+        "price",
+        "preference"
+      ],
+      "planSpec": {
+        "domain": "sales diagnosis",
+        "audience": "readers who confuse a lift with loyalty",
+        "stakes": "a price cut gets mistaken for preference",
+        "format": "numbers-detective",
+        "requiredBeat": "open at the return moment and catch the miss late"
+      },
+      "scenario": "At the return moment, a sales analyst at General Motors is headed for the easy miss. The 2005 employee discount in Detroit has moved volume, so the tempting read is preference. The late catch is to stop the count from doing that job. The discount explains the lift; it does not show what buyers do when the cut no longer carries the sale.",
+      "whatToDo": "When skipping this step would turn borrowed volume into loyalty, first state what the employee discount bought and what buyer action still has to return.",
+      "whyItMatters": "If you skip it, the cost is another push that must make demand look healthy. The sale rises, but the reason stays unproved."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch02.ex.mci-friends-and-family",
+      "sourceAnchorIds": [
+        "ch02.ex.mci-friends-and-family"
+      ],
+      "sourceFactIds": [
+        "ch02.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch02.ex.mci-friends-and-family"
+      ],
+      "title": "The Unmet Mark",
+      "tags": [
+        "membership offer",
+        "peer pressure",
+        "comparison"
+      ],
+      "planSpec": {
+        "domain": "membership offer",
+        "audience": "readers testing their own asks",
+        "stakes": "a short-term response is misread as belief",
+        "format": "prop-tableau",
+        "requiredBeat": "start after the offer and leave the return point unmet"
+      },
+      "scenario": "After the offer is over, membership lead William traces the response against MCI's 1991 Friends & Family pattern in long-distance calling. One blue pencil line marks the unresolved part: known people helped the yes come sooner, but William still cannot say who would choose the service after that social pull was gone.",
+      "whatToDo": "After the response fades, name why the pull worked: known people lowered the risk of yes. Then mark the behavior that has not come back yet.",
+      "whyItMatters": "While that mark stays open, the response is useful but borrowed. Calling it belief would hide the Peer pressure that did the early job."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch02.ex.mci-friends-and-family",
+      "sourceAnchorIds": [
+        "ch02.ex.mci-friends-and-family"
+      ],
+      "sourceFactIds": [
+        "ch02.fact.7"
+      ],
+      "namedCaseIds": [
+        "ch02.ex.mci-friends-and-family"
+      ],
+      "title": "The Downstream Yes",
+      "tags": [
+        "long-distance calling",
+        "outsider witness",
+        "peer pressure"
+      ],
+      "planSpec": {
+        "domain": "long-distance calling",
+        "audience": "readers sorting social pull from belief",
+        "stakes": "a useful nudge is mistaken for a deeper reason",
+        "format": "outsider-witness",
+        "requiredBeat": "open when someone downstream feels the effect"
+      },
+      "scenario": "Why would a customer feel a long-distance calling offer before weighing it? Partner Noah is downstream of MCI's Friends & Family pattern, so the force reaches him through people tied to the choice. He records the response as Peer pressure, not belief. The move works, but it costs him the easy claim that the offer has already won preference.",
+      "whatToDo": "When the first yes arrives through someone familiar, count the social pull before you count preference; the order keeps the result honest.",
+      "whyItMatters": "Because the nudge can be useful and still borrowed, you keep the gain without pretending the deeper reason has been earned."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch02.ex.tivo-early-adoption-problem",
+      "sourceAnchorIds": [
+        "ch02.ex.tivo-early-adoption-problem"
+      ],
+      "sourceFactIds": [
+        "ch02.fact.8"
+      ],
+      "namedCaseIds": [
+        "ch02.ex.tivo-early-adoption-problem"
+      ],
+      "title": "The Novelty Miss",
+      "tags": [
+        "product launch",
+        "novelty",
+        "edge"
+      ],
+      "planSpec": {
+        "domain": "product launch",
+        "audience": "readers tempted by newness",
+        "stakes": "attention is counted as a buying reason",
+        "format": "novelty-signal",
+        "requiredBeat": "open on the early signal and let the miss land"
+      },
+      "scenario": "At TiVo, a product lead sees the 1999 early signal in the digital video recorder itself: people notice the fresh way to watch before the buying reason is clear. TiVo lets Novelty carry too much of the job. The miss lands as the early adoption problem, with attention standing where a reason should be.",
+      "whatToDo": "At the first newness spike, split notice from need.",
+      "whyItMatters": "Before attention counts, ask what it settles."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch02.ex.general-motors-employee-discount-promotion",
+      "sourceAnchorIds": [
+        "ch02.ex.general-motors-employee-discount-promotion"
+      ],
+      "sourceFactIds": [
+        "ch02.fact.6"
+      ],
+      "namedCaseIds": [
+        "ch02.ex.general-motors-employee-discount-promotion"
+      ],
+      "title": "The Perk Standard",
+      "tags": [
+        "small launch",
+        "agency",
+        "hard detail"
+      ],
+      "planSpec": {
+        "domain": "small launch",
+        "audience": "readers with no title power",
+        "stakes": "a perk becomes a fake reason",
+        "format": "demand-stated",
+        "requiredBeat": "open at the demand and leave the return point open"
+      },
+      "scenario": "When the launch standard is stated, founder Dawson keeps the employee discount with General Motors instead of making it borrowed proof for his small offer. That decision changes the ask: the perk may help, but it cannot be the reason. The unresolved item is clear now: show what action returns after the perk leaves.",
+      "whatToDo": "When the standard is stated, write the action that must return without the perk. Keep the employee discount inside the General Motors story.",
+      "whyItMatters": "If the perk starts to explain the whole ask, cross it out. Demand proof from your own offer before you borrow confidence."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch02.fact.2",
+        "prompt": "A nonprofit gets a lift from one referral drive and wants to call the method proven everywhere. What maps from the MCI comparison?",
+        "choices": [
+          "Let the longest-running drive set the model, since a method with history can stand in for a second setting and future choices.",
+          "Treat the lift as transferable once sign-ups rise, then study only the people who ignored the referral.",
+          "Add another setting and compare what moved there; one lift can show the idea without proving the pattern travels."
+        ],
+        "correctIndex": 2,
+        "explanation": "MCI matters as a second setting, not as decoration. The first-lift answer is tempting, but one response can illustrate the idea without proving transfer.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch02.fact.3",
+        "prompt": "The product drew attention, yet buyers still could not say why they needed it. What should the failure postmortem find?",
+        "choices": [
+          "Attention should count as settled evidence, because a noticed product has already crossed the main barrier.",
+          "The first sales story should be repeated with new names, because consistency matters more than a new setting.",
+          "Use the TiVo warning: a fresh thing can draw notice while the reason to buy remains unsettled."
+        ],
+        "correctIndex": 2,
+        "explanation": "TiVo adds the nearby miss: Novelty can gather attention without settling the reason. Repeating the first sales story would flatten the warning.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch02.fact.4",
+        "prompt": "After a coupon push disappoints, the public offer got credit before anyone named the cost premise. Which earlier step caused the miss?",
+        "choices": [
+          "The public offer was approved by the most senior seller before the team had enough internal agreement.",
+          "Promotion was judged before Price, so the visible tactic had to carry a premise it could not repair.",
+          "The final response count was read too late, after the offer had already stopped shaping buyer action."
+        ],
+        "correctIndex": 1,
+        "explanation": "The order is Price before Promotion. The response-count choice points to later evidence; the cause was letting the tactic frame the premise.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch02.fact.1",
+        "prompt": "A sales team calls a rebate proof of devotion but never checks it against the General Motors pattern. What is actually wrong?",
+        "choices": [
+          "The team should leave General Motors as a colorful opener and move quickly to broader buyer lessons about any rebate.",
+          "General Motors must stay central because the 2005 behavior makes the claim visible instead of slogan-like.",
+          "The rebate can prove devotion if the buyer-facing words sound confident enough to carry the lesson."
+        ],
+        "correctIndex": 1,
+        "explanation": "General Motors is the evidence, not trim. Broad buyer talk can sound clean, but without the 2005 employee discount it loses the visible behavior.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch02.fact.7",
+        "prompt": "Someone stamps every business example with the same era and scale cues. What should change before the comparison is trusted?",
+        "choices": [
+          "Keep MCI's 1991 Friends & Family marker distinct, so contrast teaches more than a generic success story.",
+          "Give both examples the General Motors timing, since matched cues make comparison easier for the reader across both stories.",
+          "Let the more familiar company supply the era for both, so the contrast feels smoother and less crowded."
+        ],
+        "correctIndex": 0,
+        "explanation": "MCI's 1991 marker keeps the contrast real. Matching the timing may feel tidy, but it turns separate evidence into a stamped pattern.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch02.fact.8",
+        "prompt": "A team loves TiVo and wants one famous example to set the rule for every other named company. What maps from the digital video recorder detail?",
+        "choices": [
+          "Use the famous example as the master pattern, because a clear company story can define every later setting.",
+          "Aim the diagnosis only at sales behavior, since product details do not change how the push works.",
+          "Let the device mark the edge: the setting changes how far the idea can honestly travel."
+        ],
+        "correctIndex": 2,
+        "explanation": "The digital video recorder detail marks an edge. The master-pattern answer overreaches; TiVo shows why venue details keep the use honest.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch02.fact.9",
+        "prompt": "An advice memo on Carrots and Sticks sounds broad, clean, and ungrounded. Which revision would fix the real weakness?",
+        "choices": [
+          "Remove the company names so the memo can stay universal and avoid distracting the reader with old examples.",
+          "Teach through General Motors, MCI Friends & Family, and TiVo, because their hard specifics carry the claim.",
+          "Choose the single clearest company and drop the others, since one strong anchor is easier to remember."
+        ],
+        "correctIndex": 1,
+        "explanation": "Use all three named anchors. The single-company answer sounds simpler, but comparison keeps the advice from becoming loose.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch02.fact.5",
+        "prompt": "A school club lumps discounts, deadlines, referrals, self-improvement appeals, and new features into one bucket. What should change?",
+        "choices": [
+          "Separate cost cuts, offers, fear, self-betterment, people pressure, and newness before judging the result.",
+          "Start with the strongest pull and let the rest share its label until the drive ends.",
+          "Name the result first, then decide which pull sounds closest after people have already responded and the drive feels easier to explain."
+        ],
+        "correctIndex": 0,
+        "explanation": "The six pulls do separate jobs. The strongest-pull shortcut may feel faster, but it erases the distinctions needed for a clean read.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch02.fact.6",
+        "prompt": "A launch memo borrows the employee discount detail to make an unrelated offer feel proven. What is the best correction?",
+        "choices": [
+          "Leave employee discount with General Motors; a true detail can mislead when it is attached to the wrong offer.",
+          "Use the detail where it adds weight, because a real promotion stays true even when the setting changes.",
+          "Ask the audience whether the borrowed detail feels familiar enough to make the new offer easier to trust at first glance."
+        ],
+        "correctIndex": 0,
+        "explanation": "The employee discount belongs with General Motors. The useful-detail answer fails because truth can become false grounding in the wrong place.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorId": "ch02.fact.4",
+      "sourceAnchorIds": [
+        "ch02.fact.4"
+      ],
+      "front": "Why does Price need to come before Promotion?",
+      "back": "Price names the premise the tactic depends on. If Promotion comes first, the visible offer gets credit before you know whether the reason can stand.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorId": "ch02.fact.1",
+      "sourceAnchorIds": [
+        "ch02.fact.1"
+      ],
+      "front": "What does the General Motors story keep you from doing?",
+      "back": "It keeps you from treating the lesson as a slogan. The 2005 employee discount gives behavior you can inspect, not just words you can agree with.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorId": "ch02.fact.5",
+      "sourceAnchorIds": [
+        "ch02.fact.5"
+      ],
+      "front": "What should you ask when a response jumps?",
+      "back": "Ask which pull did the job: Price, Promotion, Fear, Aspiration, Peer pressure, or Novelty. Then ask what comes back when that pull is gone.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorId": "ch02.fact.8",
+      "sourceAnchorIds": [
+        "ch02.fact.8"
+      ],
+      "front": "How does an edge detail protect the idea?",
+      "back": "It stops you from applying one attractive example everywhere. The setting changes the mechanism, so the honest move is to mark where the idea stops.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorId": "ch02.fact.2",
+      "sourceAnchorIds": [
+        "ch02.fact.2"
+      ],
+      "front": "Why is one lift not enough to trust a pattern?",
+      "back": "One lift can show what happened once. A second setting lets you compare what moved and keeps the lesson from becoming a one-off anecdote.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorId": "ch02.fact.6",
+      "sourceAnchorIds": [
+        "ch02.fact.6"
+      ],
+      "front": "When does a true detail turn false?",
+      "back": "A hard detail misleads when it is moved into the wrong example. Keep the employee discount with General Motors, and use your own proof for your own offer.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Price First, Push Second",
+    "titleSourceAnchorIds": [
+      "ch02.fact.4"
+    ],
+    "coreSkill": "The core skill is to name the push before you trust the response. Price, Promotion, Fear, Aspiration, Peer pressure, and Novelty can help move action. They cannot write the reason for you. The loop closes only when the action returns without the push.",
+    "coreSkillSourceAnchorIds": [
+      "ch02.fact.5"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch02.fact.4",
+        "sourceAnchorIds": [
+          "ch02.fact.4"
+        ],
+        "context": "A price cut starts to explain the whole offer.",
+        "plan": "If the price cut starts carrying the sale, then say aloud: \"This is the push, not the reason; the reason has to stand after it ends.\""
+      },
+      {
+        "sourceAnchorId": "ch02.fact.8",
+        "sourceAnchorIds": [
+          "ch02.fact.8"
+        ],
+        "context": "A new feature gets more attention than the buying reason.",
+        "plan": "If newness is doing most of the carrying, then say aloud: \"Attention is the signal; the reason still has to earn the repeat.\""
+      },
+      {
+        "sourceAnchorId": "ch02.fact.6",
+        "sourceAnchorIds": [
+          "ch02.fact.6"
+        ],
+        "context": "A borrowed detail makes your offer sound stronger.",
+        "plan": "If a detail belongs to another example, then say aloud: \"That proof stays there; my offer needs its own returning action.\""
+      }
+    ],
+    "twentyFourHourChallenge": "Audit 1 existing artifact for 10 minutes: cross out every perk, then write the behavior that must return without it.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch02.fact.5"
+    ],
+    "weeklyPractice": "Each Friday, observe one decision that rose after a push; note the pull used, the behavior it bought, and whether the reason remained after the push faded.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch02.fact.5"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "The concrete price of a borrowed spike is a stale reason and another push next week.",
+      "location": "breakdown.deepRead",
+      "why": "It names the cost of trusting behavior that only appeared under pressure.",
+      "sourceAnchorIds": [
+        "ch02.concept"
+      ]
+    },
+    {
+      "text": "What would still move if the offer were gone?",
+      "location": "breakdown.fullRead",
+      "why": "It turns the lesson into a question a reader can ask before trusting any spike.",
+      "sourceAnchorIds": [
+        "ch02.concept"
+      ]
+    },
+    {
+      "text": "Cut the perk before it writes the reason for you.",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader a short command for separating carrots from real preference.",
+      "sourceAnchorIds": [
+        "ch02.fact.6"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:f1b5bad79cf3b3dc64e13945029384213d9fd493898db6460343c0df9ee60d73",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch02.source.json",
+      "observedAnchorIds": [
+        "ch02.concept",
+        "ch02.ex.general-motors-employee-discount-promotion",
+        "ch02.ex.mci-friends-and-family",
+        "ch02.ex.tivo-early-adoption-problem",
+        "ch02.fact.1",
+        "ch02.fact.2",
+        "ch02.fact.3",
+        "ch02.fact.4",
+        "ch02.fact.5",
+        "ch02.fact.6",
+        "ch02.fact.7",
+        "ch02.fact.8",
+        "ch02.fact.9",
+        "ch02.framework.carrots.and.sticks.framework"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch02.concept"
+        ],
+        "counterintuition": [
+          "ch02.fact.1",
+          "ch02.ex.general-motors-employee-discount-promotion"
+        ],
+        "tryThisNow": [
+          "ch02.fact.5"
+        ],
+        "keyTakeaway": [
+          "ch02.fact.5"
+        ],
+        "breakdown.fastRead": [
+          "ch02.fact.1",
+          "ch02.ex.general-motors-employee-discount-promotion",
+          "ch02.fact.4"
+        ],
+        "breakdown.deepRead": [
+          "ch02.fact.1",
+          "ch02.fact.2",
+          "ch02.fact.3",
+          "ch02.fact.4",
+          "ch02.fact.5"
+        ],
+        "breakdown.fullRead": [
+          "ch02.fact.3",
+          "ch02.fact.5",
+          "ch02.fact.6",
+          "ch02.fact.8",
+          "ch02.fact.9"
+        ],
+        "examples[0]": [
+          "ch02.ex.general-motors-employee-discount-promotion"
+        ],
+        "examples[1]": [
+          "ch02.ex.mci-friends-and-family"
+        ],
+        "examples[2]": [
+          "ch02.ex.mci-friends-and-family"
+        ],
+        "examples[3]": [
+          "ch02.ex.tivo-early-adoption-problem"
+        ],
+        "examples[4]": [
+          "ch02.ex.general-motors-employee-discount-promotion"
+        ],
+        "quiz.questions[0]": [
+          "ch02.fact.2"
+        ],
+        "quiz.questions[1]": [
+          "ch02.fact.3"
+        ],
+        "quiz.questions[2]": [
+          "ch02.fact.4"
+        ],
+        "quiz.questions[3]": [
+          "ch02.fact.1"
+        ],
+        "quiz.questions[4]": [
+          "ch02.fact.7"
+        ],
+        "quiz.questions[5]": [
+          "ch02.fact.8"
+        ],
+        "quiz.questions[6]": [
+          "ch02.fact.9"
+        ],
+        "quiz.questions[7]": [
+          "ch02.fact.5"
+        ],
+        "quiz.questions[8]": [
+          "ch02.fact.6"
+        ],
+        "reviewCards[0]": [
+          "ch02.fact.4"
+        ],
+        "reviewCards[1]": [
+          "ch02.fact.1"
+        ],
+        "reviewCards[2]": [
+          "ch02.fact.5"
+        ],
+        "reviewCards[3]": [
+          "ch02.fact.8"
+        ],
+        "reviewCards[4]": [
+          "ch02.fact.2"
+        ],
+        "reviewCards[5]": [
+          "ch02.fact.6"
+        ],
+        "implementationPlan.title": [
+          "ch02.fact.4"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch02.fact.5"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch02.fact.4"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch02.fact.8"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch02.fact.6"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch02.fact.5"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch02.fact.5"
+        ],
+        "memorableLines[0]": [
+          "ch02.concept"
+        ],
+        "memorableLines[1]": [
+          "ch02.concept"
+        ],
+        "memorableLines[2]": [
+          "ch02.fact.6"
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 30,
+    "quizzes": 0,
+    "transfer": 25,
+    "practical": 0,
+    "summaries": 5,
+    "tone": 45,
+    "limits": 78,
+    "insight": 55,
+    "density": 30,
+    "beginner": 30
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A gentle final minute is not permission to make the first part careless.",
+      "why": "The chapter’s clearest and most memorable statement of its ethical boundary."
+    },
+    {
+      "quote": "Moments work best when the base is sound enough, and the design gives memory something true to keep.",
+      "why": "This concisely connects experience design, underlying quality, and memory."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six required learning components appear only as empty headings."
+    },
+    {
+      "quote": "A red phone cannot make an unsafe pool feel fine. A ceremony cannot replace real college support.",
+      "why": "These unexplained references assume context the chapter never supplies."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Hook",
+      "problem": "The hook is production-status scaffold text rather than a reader-facing opening.",
+      "mustFix": false
+    },
+    {
+      "unit": "Fast read",
+      "problem": "The section contains only the placeholder-like sentence “A concise idea.” and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Deep read",
+      "problem": "The section contains only the placeholder-like sentence “One added angle.” and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "Full read",
+      "problem": "The cold-water study is invoked without explaining who participated, what differed between trials, or what outcome was measured, leaving the evidence under-contextualized.",
+      "mustFix": false
+    },
+    {
+      "unit": "Full read",
+      "problem": "The red-phone/pool and ceremony/college-support references are introduced without setup, so a cold reader cannot understand their specific relevance.",
+      "mustFix": false
+    },
+    {
+      "unit": "Key takeaway",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "Try this now",
+      "problem": "The section is empty, so the chapter supplies no practical action.",
+      "mustFix": true
+    },
+    {
+      "unit": "Examples",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "Quiz",
+      "problem": "The quiz is empty, making the required assessment impossible to answer or derive.",
+      "mustFix": true
+    },
+    {
+      "unit": "Review cards",
+      "problem": "The section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "Memorable lines",
+      "problem": "The section is empty.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The single substantive paragraph contains a useful, bounded insight: a better ending can shape memory but cannot excuse avoidable harm or repair a broken underlying experience. Its caution is responsible, and two lines are memorable. However, nearly the entire learning product is absent: the hook and shorter reads are scaffold text, six sections are empty, there is no activity, and there are no quiz questions to answer. The unexplained study and analogies also make the remaining prose harder for a beginner to follow. This is structurally incomplete and cannot ship."
+}
+```

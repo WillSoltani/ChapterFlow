@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "a", "c", "a", "b", "b", "a", "c"],
+    "keyDisagreements": ["Q8 is answerable by elimination, but the keyed choice adds 'changed cast and setting,' which the prose does not clearly teach; the prose supports Damasio adding a boundary against misuse more directly than a cast/setting variation."],
+    "tells": ["No uniquely-longest correct-answer pattern found. Some distractors are giveaway because they use obviously suspect phrases such as 'borrow a science label,' 'sounds smoother,' and 'restamp.'"]
+  },
+  "scores": {
+    "retention": 86,
+    "quizzes": 78,
+    "transfer": 80,
+    "practical": 82,
+    "summaries": 86,
+    "tone": 76,
+    "limits": 88,
+    "insight": 84,
+    "density": 72,
+    "beginner": 68
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Proof is not a mood; it is the return of a claim to the behavior it promised.",
+      "why": "Strongest line: compact, memorable, and it carries the chapter's core test."
+    },
+    {
+      "quote": "When a person needs a plain term, give the term first and stop. Do the opposite when the choice needs trust.",
+      "why": "Good limit: it tells readers when not to use the move."
+    },
+    {
+      "quote": "One source can show. A second can compare.",
+      "why": "Weak spot: too compressed for a cold beginner and does not say what source or comparison means yet."
+    },
+    {
+      "quote": "The coffee ring is dark.",
+      "why": "Worst texture: an atmospheric detail that reads like generated scene dressing and does not improve the teaching."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8",
+      "problem": "The key is mostly right by elimination, but the answer's 'changed cast and setting' requirement is not clearly taught by the prose; the taught point is Damasio as a boundary against overreach.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "Phrases like 'One source can show. A second can compare.' are too cryptic before the reader has a stable map of which sources are being compared.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "Several examples add stage props or titles without much causal force, especially details like the coffee ring, which creates template smell and lowers density.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner accessibility",
+      "problem": "The chapter assumes the reader can track 'visible side,' 'felt side,' 'source,' 'return,' and 'account' as technical terms before they are made concrete enough.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong core: biology should not be used as decorative authority, and every claim should return as fact, feeling, and behavior. The best lines are memorable and the limits are unusually honest. It falls short of a professional 84 bar because parts of the teaching are over-compressed for beginners, several examples feel staged rather than necessary, and Q8's keyed rationale imports a detail the prose does not clearly earn. I would revise before shipping."
+}
+```

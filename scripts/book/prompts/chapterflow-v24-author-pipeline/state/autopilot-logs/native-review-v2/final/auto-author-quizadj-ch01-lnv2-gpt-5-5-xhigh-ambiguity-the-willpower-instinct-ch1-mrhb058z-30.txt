@@ -1,0 +1,82 @@
+```json
+{
+  "schema": "quiz-adjudication-v1",
+  "derivationSha256": "0049a183f790650be23286805e136d14ac2f1df74d14cf9f6753523f1c7f4bba",
+  "documentSha256": "",
+  "reviewerSessionId": "",
+  "items": [
+    {
+      "itemId": "the-willpower-instinct-ch01-q01",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c uniquely names the three powers: an act to start, an act to stop, and the value to remember."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q02",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a is the only brain-based account matching active goals biasing attention and response under competition."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q03",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a captures the useful Gage takeaway that basic abilities can remain while frontal damage disrupts regulation."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q04",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b best targets the pre-action cue or urge, which is necessary before Amelia can interrupt the sharp replies."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q05",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 1,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice b uniquely connects self-control with keeping commitments and sustaining cooperative group life."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q06",
+      "keyedAnswerIndex": 1,
+      "derivedAnswerIndex": 0,
+      "agreement": false,
+      "keyCorrect": "ambiguous",
+      "rationale": "Choices a and b are both defensible: a states the salience-vs-importance lesson, while b states the needed attention-at-choice-point implication."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q07",
+      "keyedAnswerIndex": 0,
+      "derivedAnswerIndex": 0,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice a correctly treats both motives as sincere and makes support, not relief or temptation, decisive."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q08",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c fits the three-power method by using a concrete behavior, trigger, and feedback loop."
+    },
+    {
+      "itemId": "the-willpower-instinct-ch01-q09",
+      "keyedAnswerIndex": 2,
+      "derivedAnswerIndex": 2,
+      "agreement": true,
+      "keyCorrect": "correct",
+      "rationale": "Choice c correctly limits prefrontal control to moments when routine action conflicts with a current goal."
+    }
+  ]
+}
+```

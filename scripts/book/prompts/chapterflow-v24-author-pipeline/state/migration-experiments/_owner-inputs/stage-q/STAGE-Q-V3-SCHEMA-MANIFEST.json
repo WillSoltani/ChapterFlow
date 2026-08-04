@@ -1,0 +1,34 @@
+{
+  "schema": "s16-stage-q-v3-schema-manifest-v1",
+  "ownerApprovedForDevelopmentBakeoff": true,
+  "independentHumanRater": false,
+  "purpose": "D1 correction: execution-layer typed structured output via codex exec --output-schema. Every Stage-Q v3 judge call binds one of these JSON Schemas so the FINAL response is constrained at the execution layer.",
+  "toolingConstraintProven": {
+    "finding": "codex exec --output-schema uses OpenAI STRICT structured-outputs (response_format json_schema). A pre-seal live probe returned HTTP 400 invalid_json_schema on the original schemas: it requires every property to carry an explicit 'type' key (bare 'const'/'enum' rejected), requires ALL properties in 'required' (no optional fields), and does NOT support 'minLength'.",
+    "resolution": "Schemas use the strict subset: const\u2192{type:string,enum:[value]}, every enum carries type:string, ALL properties required (candidate defectClass is required; the judge emits 'NONE' when clean), and 'minLength:1' is REMOVED from the schema and enforced at the code layer (the runner rejects any empty evidenceSpans string \u2014 the owner's non-empty-span intent, preserved). A second live probe with the strict-subset review schema returned a schema-conforming object with evidenceSpans as a real JSON array.",
+    "semanticsPreserved": "typed structured output; evidenceSpans is a real array (stringified arrays structurally impossible); unknown fields / missing required / invalid enum rejected at the execution layer; empty spans rejected at the code layer. The v2 evidenceSpans-as-string failure mode cannot recur."
+  },
+  "brokerMechanism": {
+    "central": "src/orchestrator/codexAgent.ts outputSchemaPath \u2192 executionEnvelope hermeticExecArgv --output-schema; structured-output sidecar per spawn; ChatGPT-subscription route.",
+    "reviewPathExceptionProven": "reviewOneChapter is a proven role-specific compatibility exception (fenced + tolerant + byte-verified output)."
+  },
+  "schemas": {
+    "candidate-content-result.schema.json": {
+      "sha256": "0d8769d58a2c3c55e3c9c70aead2acfa7bf43cc913d8f8f08850d6afd17eccfe",
+      "bytes": 848
+    },
+    "review-finding-result.schema.json": {
+      "sha256": "5fff8e7410fcd6eeb5792cb9304ddb6a20ec1bb92b60d92ae86e70e37ec6ade3",
+      "bytes": 1062
+    },
+    "security-boundary-result.schema.json": {
+      "sha256": "b6e923dcd4281777d23961863ad8586cbb64ec3f7cb2316de7fd617e663ef369",
+      "bytes": 814
+    }
+  },
+  "targetMapping": {
+    "CANDIDATE_CONTENT": "candidate-content-result.schema.json",
+    "REVIEW_FINDING": "review-finding-result.schema.json",
+    "SECURITY_BOUNDARY": "security-boundary-result.schema.json"
+  }
+}

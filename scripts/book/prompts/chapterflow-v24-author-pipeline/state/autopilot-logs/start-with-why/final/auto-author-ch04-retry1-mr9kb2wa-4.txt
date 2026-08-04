@@ -1,0 +1,10 @@
+Updated [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation passed:
+- `author-check` clean
+- `gate-chapter` PASS, 0 blockers, 0 majors, 0 minors
+- `rubric-metrics --gate`: ch04 now clears the prior fail: `memClean=3`, `echo=0`
+- `quiz-verify`: 9/9 keys match the required pattern
+- Rendered length: `15953` chars, inside the `12800-19200` target range
+- Quiz length parity: 0 uniquely-longest keys, 2 uniquely-shortest keys
+- `evidence-audit`: no evidence-integrity candidates

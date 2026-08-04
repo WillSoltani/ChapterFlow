@@ -1,0 +1,738 @@
+{
+  "schemaVersion": "source-packet-v1",
+  "bookId": "radical-candor",
+  "chapterId": "radical-candor-ch01",
+  "chapterNumber": 1,
+  "chapterTitle": "Build Radically Candid Relationships",
+  "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/.chapterflow/runs/radical-candor/20260709T191414229Z-5258177d-971e-472b-b1ca-476d903c8a03/sidecars/source/ch01.source.json",
+  "sourceHash": "sha256:789cb0c74a5f016977316ca1d0e31582cea730c426bb930600a90e087b538fca",
+  "facts": [
+    {
+      "id": "ch01.fact.1",
+      "claim": "Care Personally is documented at Ch. 1 pp. 12-13 as the whole-person side of the trust model.",
+      "mechanism": "Because whole-person concern lowers defensiveness, direct guidance is more likely to be heard as help.",
+      "commonError": "Assuming professionalism requires leaving personal realities outside work.",
+      "whyWrong": "That misses the stated antidote to robotic professionalism.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "12",
+        "13"
+      ],
+      "groundedEntities": [
+        "Care Personally",
+        "Assuming"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.1"
+      ],
+      "teachingPriority": 1
+    },
+    {
+      "id": "ch01.fact.2",
+      "claim": "Challenge Directly is documented at Ch. 1 pp. 9 and 14 as naming both good work and work that is not good enough.",
+      "mechanism": "Since directness covers praise and criticism, the standard is clarity rather than negativity.",
+      "commonError": "Treating challenge as criticism only.",
+      "whyWrong": "That hides the role of specific praise in reinforcing high standards.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [
+        "1",
+        "9",
+        "14"
+      ],
+      "groundedEntities": [
+        "Challenge Directly",
+        "Since",
+        "Treating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.2"
+      ],
+      "teachingPriority": 2
+    },
+    {
+      "id": "ch01.fact.3",
+      "claim": "Radical Candor combines Care Personally and Challenge Directly at the same time.",
+      "mechanism": "Because either axis alone distorts the conversation, the useful behavior is the combination.",
+      "commonError": "Choosing either kindness or honesty as the manager's style.",
+      "whyWrong": "The framework requires both in the same interaction.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Radical Candor",
+        "Care Personally",
+        "Challenge Directly",
+        "Choosing"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.3"
+      ],
+      "teachingPriority": 3
+    },
+    {
+      "id": "ch01.fact.4",
+      "claim": "Kim Scott's public biography connects the framework to Google, Apple, and AdSense management settings.",
+      "mechanism": "Because those settings involve real teams and products, the idea is grounded in operating roles rather than etiquette theory.",
+      "commonError": "Reading the framework as generic manners advice.",
+      "whyWrong": "The source context is management under workplace pressure.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Kim Scott's",
+        "Google",
+        "Apple",
+        "AdSense",
+        "Reading"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.4"
+      ],
+      "teachingPriority": 4
+    },
+    {
+      "id": "ch01.fact.5",
+      "claim": "Sheryl Sandberg's Google and Facebook leadership is used as a public example of bringing humanity to work.",
+      "mechanism": "Because visible vulnerability can reduce awkward silence, teams can return to hard business questions with less pretending.",
+      "commonError": "Calling vulnerability soft or anti-performance.",
+      "whyWrong": "The public example pairs openness with demanding work.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Sheryl Sandberg's Google",
+        "Facebook",
+        "Calling"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.5"
+      ],
+      "teachingPriority": 5
+    },
+    {
+      "id": "ch01.fact.6",
+      "claim": "The official basics page separates Radical Candor from brutal honesty.",
+      "mechanism": "Because care changes how directness is received, the same factual statement can either help or harm.",
+      "commonError": "Using the phrase as cover for harsh delivery.",
+      "whyWrong": "Brutal delivery lacks the personal-care axis.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Radical Candor",
+        "Using",
+        "Brutal"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.6"
+      ],
+      "teachingPriority": 6
+    },
+    {
+      "id": "ch01.fact.7",
+      "claim": "The compass is used for conversations rather than personality typing.",
+      "mechanism": "Since a person can move among quadrants by behavior, the tool diagnoses moments instead of branding people.",
+      "commonError": "Labeling a colleague as permanently candid or aggressive.",
+      "whyWrong": "That turns a behavioral guide into a fixed identity claim.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Since",
+        "Labeling"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.7"
+      ],
+      "teachingPriority": 7
+    },
+    {
+      "id": "ch01.fact.8",
+      "claim": "Care Personally can be as small as acknowledging a bad day and making space for others to do the same.",
+      "mechanism": "Because small disclosures signal humanity, they create permission for honest work conversations.",
+      "commonError": "Waiting for dramatic personal disclosure before showing care.",
+      "whyWrong": "The mechanism works through ordinary signals.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Care Personally",
+        "Waiting"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.8"
+      ],
+      "teachingPriority": 8
+    },
+    {
+      "id": "ch01.fact.9",
+      "claim": "Challenge Directly means sharing humble opinions, not claiming ownership of the truth.",
+      "mechanism": "Because humility leaves room for correction, direct challenge can start dialogue instead of closing it.",
+      "commonError": "Treating directness as certainty.",
+      "whyWrong": "The model frames challenge as a candid view offered with openness.",
+      "allowedClaimTypes": [
+        "core_move",
+        "breakdown_claim",
+        "example",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "quiz_explanation",
+        "review_card",
+        "implementation_guidance",
+        "takeaway"
+      ],
+      "groundedNumbers": [],
+      "groundedEntities": [
+        "Challenge Directly",
+        "Treating"
+      ],
+      "groundedPlaces": [],
+      "verificationRefs": [
+        "ch01.fact.9"
+      ],
+      "teachingPriority": 9
+    }
+  ],
+  "namedCases": [
+    {
+      "id": "ch01.ex.kim-scott-google-apple",
+      "label": "Kim Scott at Google and Apple",
+      "summary": "Kim Scott is documented as a former Google executive and former Apple executive whose management experiences supply the Silicon Valley setting for the framework. Kim Scott, Google AdSense, Apple executive role, and former Google executive are concrete anchors for the origin story rather than generic leadership scenery.",
+      "realWorld": true,
+      "naturalSetting": "Kim Scott",
+      "hardSpecifics": [
+        "Kim Scott",
+        "Google AdSense",
+        "Apple executive role",
+        "former Google executive"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    },
+    {
+      "id": "ch01.ex.sheryl-sandberg-google",
+      "label": "Sheryl Sandberg at Google",
+      "summary": "Sheryl Sandberg is a real executive connected to Kim Scott's Google career, and public reporting describes Sandberg's management style as relying on human relationships at work. Sheryl Sandberg, Google, Facebook, and 2017 make the care-personally idea concrete.",
+      "realWorld": true,
+      "naturalSetting": "Sheryl Sandberg",
+      "hardSpecifics": [
+        "Sheryl Sandberg",
+        "Google",
+        "Facebook",
+        "2017"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": [
+        "2017"
+      ]
+    },
+    {
+      "id": "ch01.ex.care-challenge-compass",
+      "label": "Care Personally plus Challenge Directly compass",
+      "summary": "The official glossary places Care Personally at Ch. 1 pp. 12-13 and Challenge Directly at Ch. 1 pp. 9 and 14. Those page anchors make the two-axis relationship model a documented framework rather than a loose slogan.",
+      "realWorld": true,
+      "naturalSetting": "Care Personally",
+      "hardSpecifics": [
+        "Care Personally",
+        "Challenge Directly",
+        "Ch. 1 pp. 12-13",
+        "Ch. 1 pp. 9 and 14"
+      ],
+      "allowedUses": [
+        "example",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance"
+      ],
+      "forbiddenUses": [
+        "Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."
+      ],
+      "doNotRestamp": []
+    }
+  ],
+  "frameworks": [
+    {
+      "id": "framework.1",
+      "name": "Radical Candor compass",
+      "members": [
+        "Care Personally",
+        "Challenge Directly",
+        "Radical Candor",
+        "Obnoxious Aggression",
+        "Ruinous Empathy",
+        "Manipulative Insincerity"
+      ],
+      "completenessRequired": true
+    }
+  ],
+  "allowedAnchors": [
+    {
+      "id": "ch01.concept",
+      "kind": "concept",
+      "label": "two-axis trust",
+      "text": "Managerial trust forms when personal concern and direct challenge are present together. Either axis alone distorts feedback: warmth without challenge hides useful truth, and challenge without warmth feels like attack. A manager who internalizes the two-axis frame can diagnose a conversation by behavior, not by intention. The useful question becomes whether the other person received both care and clarity.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.kim-scott-google-apple",
+      "kind": "named_example",
+      "label": "Kim Scott at Google and Apple",
+      "text": "Kim Scott is documented as a former Google executive and former Apple executive whose management experiences supply the Silicon Valley setting for the framework. Kim Scott, Google AdSense, Apple executive role, and former Google executive are concrete anchors for the origin story rather than generic leadership scenery. A lived management setting keeps the relationship principle tied to observable workplace roles.",
+      "hardSpecifics": [
+        "Kim Scott",
+        "Google AdSense",
+        "Apple executive role",
+        "former Google executive"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.sheryl-sandberg-google",
+      "kind": "named_example",
+      "label": "Sheryl Sandberg at Google",
+      "text": "Sheryl Sandberg is a real executive connected to Kim Scott's Google career, and public reporting describes Sandberg's management style as relying on human relationships at work. Sheryl Sandberg, Google, Facebook, and 2017 make the care-personally idea concrete. A senior leader can model whole-person openness without abandoning performance standards.",
+      "hardSpecifics": [
+        "Sheryl Sandberg",
+        "Google",
+        "Facebook",
+        "2017"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.ex.care-challenge-compass",
+      "kind": "named_example",
+      "label": "Care Personally plus Challenge Directly compass",
+      "text": "The official glossary places Care Personally at Ch. 1 pp. 12-13 and Challenge Directly at Ch. 1 pp. 9 and 14. Those page anchors make the two-axis relationship model a documented framework rather than a loose slogan. The two axes explain why kindness and clarity must arrive together.",
+      "hardSpecifics": [
+        "Care Personally",
+        "Challenge Directly",
+        "Ch. 1 pp. 12-13",
+        "Ch. 1 pp. 9 and 14"
+      ],
+      "supportsClaimTypes": [
+        "example",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.1",
+      "kind": "testable_fact",
+      "label": "Care Personally is documented at Ch. 1 pp. 12-13 as the whole-person side of the trust model.",
+      "text": "Care Personally is documented at Ch. 1 pp. 12-13 as the whole-person side of the trust model. Because whole-person concern lowers defensiveness, direct guidance is more likely to be heard as help. Assuming professionalism requires leaving personal realities outside work. That misses the stated antidote to robotic professionalism.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.2",
+      "kind": "testable_fact",
+      "label": "Challenge Directly is documented at Ch. 1 pp. 9 and 14 as naming both good work and work that is not good enough.",
+      "text": "Challenge Directly is documented at Ch. 1 pp. 9 and 14 as naming both good work and work that is not good enough. Since directness covers praise and criticism, the standard is clarity rather than negativity. Treating challenge as criticism only. That hides the role of specific praise in reinforcing high standards.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.3",
+      "kind": "testable_fact",
+      "label": "Radical Candor combines Care Personally and Challenge Directly at the same time.",
+      "text": "Radical Candor combines Care Personally and Challenge Directly at the same time. Because either axis alone distorts the conversation, the useful behavior is the combination. Choosing either kindness or honesty as the manager's style. The framework requires both in the same interaction.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.4",
+      "kind": "testable_fact",
+      "label": "Kim Scott's public biography connects the framework to Google, Apple, and AdSense management settings.",
+      "text": "Kim Scott's public biography connects the framework to Google, Apple, and AdSense management settings. Because those settings involve real teams and products, the idea is grounded in operating roles rather than etiquette theory. Reading the framework as generic manners advice. The source context is management under workplace pressure.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.5",
+      "kind": "testable_fact",
+      "label": "Sheryl Sandberg's Google and Facebook leadership is used as a public example of bringing humanity to work.",
+      "text": "Sheryl Sandberg's Google and Facebook leadership is used as a public example of bringing humanity to work. Because visible vulnerability can reduce awkward silence, teams can return to hard business questions with less pretending. Calling vulnerability soft or anti-performance. The public example pairs openness with demanding work.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.6",
+      "kind": "testable_fact",
+      "label": "The official basics page separates Radical Candor from brutal honesty.",
+      "text": "The official basics page separates Radical Candor from brutal honesty. Because care changes how directness is received, the same factual statement can either help or harm. Using the phrase as cover for harsh delivery. Brutal delivery lacks the personal-care axis.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.7",
+      "kind": "testable_fact",
+      "label": "The compass is used for conversations rather than personality typing.",
+      "text": "The compass is used for conversations rather than personality typing. Since a person can move among quadrants by behavior, the tool diagnoses moments instead of branding people. Labeling a colleague as permanently candid or aggressive. That turns a behavioral guide into a fixed identity claim.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.8",
+      "kind": "testable_fact",
+      "label": "Care Personally can be as small as acknowledging a bad day and making space for others to do the same.",
+      "text": "Care Personally can be as small as acknowledging a bad day and making space for others to do the same. Because small disclosures signal humanity, they create permission for honest work conversations. Waiting for dramatic personal disclosure before showing care. The mechanism works through ordinary signals.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.fact.9",
+      "kind": "testable_fact",
+      "label": "Challenge Directly means sharing humble opinions, not claiming ownership of the truth.",
+      "text": "Challenge Directly means sharing humble opinions, not claiming ownership of the truth. Because humility leaves room for correction, direct challenge can start dialogue instead of closing it. Treating directness as certainty. The model frames challenge as a candid view offered with openness.",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "quiz_prompt",
+        "quiz_explanation",
+        "quiz_key_evidence",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    },
+    {
+      "id": "ch01.framework.radical.candor.compass",
+      "kind": "framework",
+      "label": "Radical Candor compass",
+      "text": "Care Personally, Challenge Directly, Radical Candor, Obnoxious Aggression, Ruinous Empathy, Manipulative Insincerity",
+      "supportsClaimTypes": [
+        "book_thesis",
+        "core_idea",
+        "core_move",
+        "hook",
+        "breakdown_claim",
+        "review_card",
+        "implementation_guidance",
+        "takeaway",
+        "memorable_line"
+      ]
+    }
+  ],
+  "allowedNumbers": [
+    "1",
+    "12",
+    "13",
+    "9",
+    "14",
+    "2017",
+    "2"
+  ],
+  "allowedEntities": [
+    "Build Radically Candid Relationships",
+    "Care Personally",
+    "Challenge Directly",
+    "Radical Candor",
+    "Managerial",
+    "Either",
+    "Robotic",
+    "Kim Scott",
+    "Google",
+    "Apple",
+    "Silicon Valley",
+    "Google AdSense",
+    "Sheryl Sandberg",
+    "Kim Scott's Google",
+    "Sandberg's",
+    "Facebook",
+    "Those",
+    "Relationships",
+    "GSD Wheel",
+    "The Kim Scott",
+    "Use",
+    "Trust",
+    "Keep",
+    "Assuming",
+    "Since",
+    "Treating",
+    "Choosing",
+    "Kim Scott's",
+    "AdSense",
+    "Reading",
+    "Sheryl Sandberg's Google",
+    "Calling",
+    "Using",
+    "Brutal",
+    "Labeling",
+    "Waiting",
+    "Obnoxious Aggression",
+    "Ruinous Empathy",
+    "Manipulative Insincerity",
+    "Kim Scott at Google and Apple",
+    "Sheryl Sandberg at Google",
+    "Care Personally plus Challenge Directly compass"
+  ],
+  "allowedPlaces": [],
+  "forbiddenClaims": [
+    "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
+    "Do not cast invented people as research subjects, participants, patients, or customers in a real case."
+  ],
+  "forbiddenLeakage": [
+    {
+      "into": "ch01.ex.kim-scott-google-apple",
+      "warning": "Keep examples about Kim Scott at Google and Apple source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.sheryl-sandberg-google",
+      "warning": "Keep examples about Sheryl Sandberg at Google source-local; do not import sibling chapter imagery or stakes."
+    },
+    {
+      "into": "ch01.ex.care-challenge-compass",
+      "warning": "Keep examples about Care Personally plus Challenge Directly compass source-local; do not import sibling chapter imagery or stakes."
+    }
+  ],
+  "sourceQuality": {
+    "status": "strong",
+    "risks": []
+  },
+  "coreMoveFactId": "ch01.fact.1"
+}

@@ -37,33 +37,25 @@ import {
 import {
   CHALLENGE_FRAMES,
   CHALLENGE_INSTRUCTION,
-  ENTRY_INSTRUCTION,
   EXAMPLE_ENTRY_POINTS,
   EXAMPLE_LENSES,
   EXAMPLE_OUTCOMES,
   FAILURE_MODE_INSTRUCTION,
   FIELD_STYLES,
-  FIELD_STYLE_INSTRUCTION,
   GROUNDING_FORMS,
-  GROUNDING_INSTRUCTION,
   IDIOM_FAMILIES,
-  IDIOM_INSTRUCTION,
-  LENS_INSTRUCTION,
   LIMITS_INSTRUCTION,
   ARCHITECTURE_FAMILIES,
   ARCHITECTURE_INSTRUCTION,
   type ArchitectureFamily,
   LIMITS_PLACEMENTS,
   MEMORABLE_SHAPES,
-  MEMORABLE_SHAPE_INSTRUCTION,
   OPENER_INSTRUCTION,
   OPENER_TYPES,
-  OUTCOME_INSTRUCTION,
   PRACTICE_INSTRUCTION,
   PRACTICE_SHAPES,
   PRACTICE_VERBS,
   QUIZ_FAILURE_MODES,
-  SHELL_INSTRUCTION,
   SHELL_REGISTERS,
   QUIZ_STEM_SHAPES,
   ROTATION_SCHEMA_VERSION,
@@ -72,11 +64,11 @@ import {
   oneThirdCap,
   twoThirdsCap,
   type BriefRotation,
-  type ExampleLens,
 } from "./briefRotation.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { stripPageCitationSpans } from "../critics/apparatusLeakage.js";
+import { leadAliasSet } from "../critics/leadAliases.js";
 import {
   answerPattern,
   compilerNameBank,
@@ -264,6 +256,11 @@ function fallbackRotation(n: number): BriefRotation {
  *  cast[0] otherwise. Pure. */
 /** Capitalized proper-noun words in a case label, minus sentence-frame stopwords. */
 const LEAD_CAP_STOP = new Set(["The", "This", "That", "When", "What", "From", "Into", "With", "And", "Or", "Of", "A", "An", "For", "To", "In", "On"]);
+// IMP-09 NOTE: this SELECTION heuristic is deliberately unchanged (ASCII-only)
+// — changing it would re-deal leads on existing books (dealt-state drift). Its
+// Unicode gap (a diacritic-leading label like "Ólafur…" is not selected as a
+// token-bearing case) is recorded in the IMP-09 validator inventory as
+// follow-on work; the D7 CHECKER is alias-based and Unicode-correct today.
 function leadLabelHasToken(label: string): boolean {
   return (label ?? "").split(/\s+/).some((w) => /^[A-Z][A-Za-z-]{3,}/.test(w) && !LEAD_CAP_STOP.has(w));
 }
@@ -277,12 +274,21 @@ function leadLabelIsNamedCase(label: string): boolean {
   return proper.length >= 2;
 }
 
+/** IMP-09: build the leadThread value with the STRUCTURED identity the D7
+ *  checker prefers — the packet case's stable id (it existed here all along
+ *  and was discarded pre-IMP-09) and the compiler-derived alias set. Metadata
+ *  only: WHICH lead is selected is untouched. */
+function mkLeadThread(kind: "invented" | "owned-case", name: string, caseId?: string): { kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] } {
+  const aliases = leadAliasSet(name);
+  return { kind, name, ...(caseId ? { caseId } : {}), ...(aliases.length > 0 ? { aliases } : {}) };
+}
+
 export function resolveLeadThread(
   preferCase: boolean,
   ownedCases: Array<{ id: string; label: string }>,
   cast: string[],
   opts?: { avoidInvented?: boolean },
-): { kind: "invented" | "owned-case"; name: string } | undefined {
+): { kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] } | undefined {
   if (preferCase || opts?.avoidInvented) {
     // Prefer a real NAMED case (person/study) over a bare framework-concept label:
     // the D7 lead-thread contract needs a case with real actors/dates to run the
@@ -294,9 +300,9 @@ export function resolveLeadThread(
     // single-name real case (a company, a one-name person) is unchanged — behavior
     // shifts ONLY when a concept label precedes a named case (the mis-deal class).
     const named = ownedCases.find((c) => leadLabelHasToken(c.label) && leadLabelIsNamedCase(c.label));
-    if (named) return { kind: "owned-case", name: named.label };
+    if (named) return mkLeadThread("owned-case", named.label, named.id);
     for (const c of ownedCases) {
-      if (leadLabelHasToken(c.label)) return { kind: "owned-case", name: c.label };
+      if (leadLabelHasToken(c.label)) return mkLeadThread("owned-case", c.label, c.id);
     }
     // Deal↔deal consistency (fresh-gold live finding, 2026-07-08): when the chapter's
     // dealt CONTENT DEVICES ban proxy-cast, an invented lead would put a mandate and a
@@ -305,10 +311,10 @@ export function resolveLeadThread(
     // chapter). With the ban dealt, take ANY owned case (even a concept label) before
     // the proxy; invented remains the true last resort (a packet with zero cases).
     if (opts?.avoidInvented && ownedCases.length > 0) {
-      return { kind: "owned-case", name: ownedCases[0].label };
+      return mkLeadThread("owned-case", ownedCases[0].label, ownedCases[0].id);
     }
   }
-  if (cast.length > 0) return { kind: "invented", name: cast[0] };
+  if (cast.length > 0) return mkLeadThread("invented", cast[0]);
   return undefined;
 }
 
@@ -331,18 +337,18 @@ export function degradedLeadCandidates(
   cast: string[],
   proxyBanned: boolean,
   failedLeadNames: string[],
-): Array<{ kind: "invented" | "owned-case"; name: string }> {
+): Array<{ kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] }> {
   const failed = new Set(failedLeadNames);
-  const out: Array<{ kind: "invented" | "owned-case"; name: string }> = [];
+  const out: Array<{ kind: "invented" | "owned-case"; name: string; caseId?: string; aliases?: string[] }> = [];
   for (const c of ownedCases) {
     if (failed.has(c.label)) continue;
     if (!leadLabelHasToken(c.label)) continue;
-    out.push({ kind: "owned-case", name: c.label });
+    out.push(mkLeadThread("owned-case", c.label, c.id));
   }
   if (!proxyBanned) {
     for (const name of cast) {
       if (failed.has(name)) continue;
-      out.push({ kind: "invented", name });
+      out.push(mkLeadThread("invented", name));
       break; // cast[0] semantics: exactly one invented fallback
     }
   }
@@ -698,28 +704,21 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
     // chapters, not stamped on all — a dutiful failure-example ×9 is the next ritual.
     // When v3 exampleArcs are present THEY carry the failure slot explicitly, so the
     // prose sentence renders only for v2 briefs (single source of truth).
-    const friction = brief.requireFrictionExample && !brief.exampleArcs?.length
-      ? " At least ONE of your examples must show the move failing or only partially working — real friction, not another frictionless win."
+    // IMP-06 (F-008/F-016): the named lens taxonomy and the per-slot ARC table were
+    // globally repeated NARRATIVE PROCEDURES — the writer-visible recipe that minted
+    // the first-write scene mold (R2: prop/ledger/check-in/rescue machinery). The
+    // DEAL is unchanged (arcs/lenses still allocated: lineage, BR6/BR7, regen budgets
+    // byte-stable); the card now states compact OUTCOMES only, with no internal
+    // taxonomy label. Friction is a dealt outcome and stays.
+    const friction = brief.requireFrictionExample
+      ? " At least ONE example must show the move failing or only partially working — real friction, not another frictionless win."
       : "";
-    lines.push(`- EXAMPLE SCENES: your ${exCount} examples must cover all three dealt lenses below; at most 2 examples may be a person-handling-a-document scene.${friction}`);
-    for (const lens of brief.exampleLenses) {
-      const instruction = LENS_INSTRUCTION[lens as ExampleLens] ?? `use the "${lens}" scene class.`;
-      lines.push(`    * ${lens}: ${instruction}`);
-    }
-  }
-  // STIER-2 P10 — the per-slot ARC table: entry point (internal-beat rotation),
-  // resolution, whatToDo/whyItMatters register, and the dealt physical-anchor slots.
-  // 54/54 halted examples entered at the demand and walked the whole loop.
-  if (brief.exampleArcs && brief.exampleArcs.length > 0) {
     lines.push(
-      `- EXAMPLE PLAN: write EXACTLY ${brief.exampleArcs.length} examples. Each slot's dealt arc below (entry → resolution → field register). Dramatize ONE beat of the framework per example — the other beats get at most one clause; at most 2 examples may walk the full loop explicitly. An example that scenes one of YOUR owned cases must enter it at a DIFFERENT point than the breakdown's telling. Slots marked +anchor get exactly ONE concrete physical/sensory detail; the others get none (props on every scene read as scaffold).`,
+      `- EXAMPLES: write EXACTLY ${brief.exampleArcs?.length || exCount} examples. Vary where each enters the material and how it resolves — no two examples share both their entry point and their outcome; at most 2 walk the framework loop end to end; at most 2 may be a person-handling-a-document scene. An example that scenes one of YOUR owned cases must enter it at a DIFFERENT point than the breakdown's telling.${friction}`,
     );
-    brief.exampleArcs.forEach((arc, i) => {
-      const entry = ENTRY_INSTRUCTION[arc.entry as keyof typeof ENTRY_INSTRUCTION] ?? arc.entry;
-      const outcome = OUTCOME_INSTRUCTION[arc.outcome as keyof typeof OUTCOME_INSTRUCTION] ?? arc.outcome;
-      const style = FIELD_STYLE_INSTRUCTION[arc.fieldStyle as keyof typeof FIELD_STYLE_INSTRUCTION] ?? arc.fieldStyle;
-      lines.push(`    * ex${String(i + 1).padStart(2, "0")}: ${entry} → ${outcome} → ${style}${arc.prop ? " → +anchor" : ""}`);
-    });
+    lines.push(
+      "- ANCHORS: give 2-3 examples exactly ONE concrete physical/sensory detail each; the rest get none (props on every scene read as scaffold).",
+    );
   }
   // STIER-2 P11 — the section-thread lead (the universal invented-proxy device was
   // the stamp the acceptance readers listed first).
@@ -734,7 +733,7 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
     lines.push(
       brief.leadThread.kind === "owned-case"
         ? ownedCaseLine
-        : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
+        : `- LEAD THREAD: ${brief.leadThread.name} carries this chapter — the fastRead and at least 2 examples follow ${brief.leadThread.name}'s situation; other cast support. This thread is a CONSTRUCTED application: make its non-factual status clear at first entry in natural wording (varied per scene; no single fixed phrase), and never let a later paragraph report the invented events as history. Introduce invented people role-BEFORE-name in varied wording (never one fixed "call her X" phrase).`,
     );
   }
   // STIER-2 P12 — the dealt quiz craft (the universal TRANSFORM recipe lives in the card).
@@ -755,42 +754,40 @@ export function briefVarietyInstructionLines(brief: ChapterBriefV1): string[] {
   }
   // STIER-2 P13 — distinct shapes across the four practice surfaces (the halted run's
   // one-shape-everywhere minted the "read aloud" ×4 chant).
+  // IMP-06: named per-slot structures demoted to the outcome (surfaces must differ);
+  // the slot deal itself is unchanged.
   if (brief.practiceSlotShapes && brief.practiceSlotShapes.length >= 4) {
     lines.push(
-      `- PRACTICE SLOT SHAPES: the four practice surfaces must NOT share one skeleton — tryThisNow: dealt above; weekly practice: "${brief.practiceSlotShapes[2]}" structure; if-then contexts: "${brief.practiceSlotShapes[3]}" structure. Never repeat one prompt style (read-aloud, touch-the-object) across surfaces, and keep any timers round (${ROUND_TIMER_MINUTES_LIST.join("/")}) and consistent wherever the same action is restated.`,
+      `- PRACTICE SURFACES: the four practice surfaces (tryThisNow, 24h challenge, weekly practice, if-then contexts) must NOT share one skeleton or repeat one prompt style. Keep any timers round (${ROUND_TIMER_MINUTES_LIST.join("/")}) and consistent wherever the same action is restated.`,
     );
   }
-  // STIER-2 P14 — dealt memorable-line shapes (27/27 halted lines shared one mold).
+  // STIER-2 P14 → IMP-06: the named shape formulas are gone from the card (the 27/27
+  // one-mold lesson is stated as the outcome; the shape deal is unchanged).
   if (brief.memorableShapes && brief.memorableShapes.length > 0) {
-    const shapes = brief.memorableShapes
-      .map((s) => `${s} (${MEMORABLE_SHAPE_INSTRUCTION[s as keyof typeof MEMORABLE_SHAPE_INSTRUCTION] ?? s})`)
-      .join("; ");
-    lines.push(`- MEMORABLE LINES: your 3 lines use these dealt shapes, one each — ${shapes}.`);
+    lines.push("- MEMORABLE LINES: write 3; no two share one grammatical mold — vary the sentence shape, not just the words.");
   }
   // STIER-2 P15 — dealt limits placement (9/9 halted fullReads closed on the same paragraph).
   if (brief.limitsPlacement) {
     lines.push(`- LIMITS PLACEMENT: ${LIMITS_INSTRUCTION[brief.limitsPlacement as keyof typeof LIMITS_INSTRUCTION] ?? brief.limitsPlacement}`);
   }
-  // STIER-2 P16 — dealt first-mention grounding form (one appositive rhythm ×9 is the next stamp).
+  // STIER-2 P16 → IMP-06: the form taxonomy (appositive/parenthetical/…) is gone from
+  // the card; the grounding SAFETY/quality rules stay verbatim, plus the vary-the-form
+  // outcome (one appositive rhythm ×9 was the stamp). The form deal is unchanged.
   if (brief.groundingForm) {
     lines.push(
-      `- FIRST-MENTION GROUNDING: ${GROUNDING_INSTRUCTION[brief.groundingForm as keyof typeof GROUNDING_INSTRUCTION] ?? brief.groundingForm}. Every real company/event/date gets one plain-words grounding at first mention, drawn from the packet — if the packet gives no context, soften or drop the anchor, never invent. Rephrase any term of art in plain words in the same paragraph. The hook may not hang on a date or name that is not anchored within the next two sentences.`,
+      `- FIRST-MENTION GROUNDING: every real company/event/date gets one plain-words grounding at first mention, drawn from the packet — if the packet gives no context, soften or drop the anchor, never invent. Rephrase any term of art in plain words in the same paragraph. The hook may not hang on a date or name that is not anchored within the next two sentences. Vary the grounding form — one repeated rhythm chapter-wide reads as a stamp.`,
     );
   }
-  if (brief.practiceVerb) {
-    lines.push(`- PRACTICE VERB: build the physical actions in tryThisNow and the 24-hour challenge around "${brief.practiceVerb}" — not "touch" or "open" (other chapters own other verbs; a shared verb becomes a book-wide tic).`);
-  }
-  if (brief.idiomFamilies && brief.idiomFamilies.length > 0) {
-    const idiomHints = brief.idiomFamilies
-      .map((f) => `${f} (${IDIOM_INSTRUCTION[f as keyof typeof IDIOM_INSTRUCTION] ?? f})`)
-      .join("; ");
+  // IMP-06 (F-008/F-016): the PRACTICE VERB register, FRAMEWORK IDIOM families, and
+  // EXAMPLE SHELL REGISTER lines were pure rhetorical TAXONOMY dressing — internal
+  // labels dealt as writer-visible hard requirements (R2's ledger/check-in machinery
+  // fingerprints). Removed from the card entirely; the deals still allocate (lineage
+  // stable), cross-chapter texture is owned by the CHB output budgets, the blinded
+  // acceptance readers, and the shadow diversity telemetry. Two compact outcomes
+  // survive them:
+  if (brief.practiceVerb || brief.shellRegister) {
     lines.push(
-      `- FRAMEWORK IDIOM: every chapter of this book teaches the same framework, and a book-level reader FAILED the last draft because all chapters verbalized it identically. When the framework recurs beyond your noun budget, speak it through YOUR dealt idiom families — ${idiomHints} — other chapters own other registers. Never invent a formal synonym; re-ground in your cases instead.`,
-    );
-  }
-  if (brief.shellRegister) {
-    lines.push(
-      `- EXAMPLE SHELL REGISTER: open your examples' whatToDo/whyItMatters fields in the "${brief.shellRegister}" register — ${SHELL_INSTRUCTION[brief.shellRegister as keyof typeof SHELL_INSTRUCTION] ?? brief.shellRegister}. No two of your examples may open BOTH fields the same way, and never reuse another chapter's fixed formula (book readers see all chapters side by side).`,
+      "- PRACTICE & FIELD VARIETY: no two of your examples may open BOTH the whatToDo and whyItMatters fields the same way, and the physical actions in your practice items must not lean on one verb (a shared verb becomes a book-wide tic).",
     );
   }
   if (brief.frameworkNouns && brief.frameworkNouns.length > 0) {
@@ -842,7 +839,12 @@ export function renderBriefMd(brief: ChapterBriefV1): string {
   lines.push("");
   lines.push("## CAST");
   lines.push(`Invented first names reserved for ch${nn}: ${brief.cast.join(", ") || "(none)"}.`);
-  lines.push("Use only these; never a real source-person name.");
+  // IMP-04 instruction 4: role labels are the DEFAULT register for invented people;
+  // a reserved proper name is licensed only inside a typed constructed application
+  // (the dealt lead thread is one) where the name materially aids comprehension.
+  lines.push(
+    "Invented people default to ROLE LABELS (\"a plant manager\") — a generic scenario never needs a name. Spend a name ONLY in a clearly-framed constructed application (your dealt lead thread counts) where it materially helps. When naming, use only these; never a real source-person name.",
+  );
   lines.push("");
   lines.push("## QUIZ KEY PATTERN");
   lines.push(`Correct-answer indexes (0-2) for Q1-Q${brief.answerIndexPattern.length}, in order: ${brief.answerIndexPattern.join(", ")}.`);

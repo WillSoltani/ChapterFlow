@@ -1,0 +1,67 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often echo exact chapter terms such as External rival, Internal benchmark, Dallas, anchors, proof, and mark, while wrong choices often use extreme phrasing like only, every, should be dropped, or replace.", "Several correct answers are the most nuanced and chapter-shaped option, so a test-wise reader could often choose them without fully reading."]
+  },
+  "scores": {
+    "retention": 83,
+    "quizzes": 78,
+    "transfer": 74,
+    "practical": 82,
+    "summaries": 84,
+    "tone": 72,
+    "limits": 88,
+    "insight": 80,
+    "density": 73,
+    "beginner": 76
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is a warning light, not a finish line. No proof, no progress.",
+      "why": "Strongest compact expression of the chapter's core move."
+    },
+    {
+      "quote": "Start outside, then come back inside. Name the External rival. Name the Internal benchmark that existed before the rival moved.",
+      "why": "Gives readers a usable sequence rather than just a theme."
+    },
+    {
+      "quote": "Self-referenced competition fails when it becomes an excuse not to look out the window.",
+      "why": "The limits section honestly protects the idea from becoming an excuse."
+    },
+    {
+      "quote": "When a win gives no later rule, skipping Microsoft costs you transfer.",
+      "why": "This instruction is opaque and feels like scaffold language rather than natural guidance."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "The keyed options are often identifiable by exact chapter vocabulary and balanced wording, while distractors lean on obvious extremes or reversals.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The bicycle shop example mostly becomes an editing/detail-placement exercise about iPod and Microsoft paragraphs, not a concrete business decision with a clear consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples overall",
+      "problem": "Several examples feel manufactured: named individuals appear, but the situations are thin and often serve the anchor scheme more than lived before-to-after action.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read/full read",
+      "problem": "The chapter repeats anchor credentials like 2001 iPod, 2003 Dell DJ, 1975 founding, Redmond, and Dallas so often that the prose starts to feel mechanical.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Phrases such as token, second anchor, venue, and costs you transfer create a template/scaffold smell that may slow beginners.",
+      "mustFix": false
+    }
+  ]
+}
+```

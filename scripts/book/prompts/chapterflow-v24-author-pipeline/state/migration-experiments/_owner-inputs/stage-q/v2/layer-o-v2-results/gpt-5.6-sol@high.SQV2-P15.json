@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P15",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": false,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative fabrication in a real-world case\",\"severity\":\"HIGH\",\"shouldBlock\":true,\"evidenceSpans\":\"“The Zappos trainer closes the Zappos training binder, then stops before the usual applause.”; “New hires are still in their seats, name tags curled at the corners.”; “She gives the room a quiet minute before anyone signs the final form.”\",\"rationale\":\"The source plan supports only Zappos, new hires, training, the $1,000 offer, and its role as a conscious choice point. The candidate presents invented scene details—including a trainer’s actions, a binder, customary applause, curled name tags, a quiet minute, and a final form—in the same factual register as the verified real-world case, so the unsupported narration is extensive and should block publication.\"}"
+}

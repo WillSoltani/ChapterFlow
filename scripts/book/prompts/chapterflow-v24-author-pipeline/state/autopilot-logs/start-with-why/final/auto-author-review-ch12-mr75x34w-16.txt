@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "a", "c", "c", "b", "b", "b", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several correct choices are the only answers that reuse the chapter's exact anchor language, while distractors introduce unsupported rank/fame shortcuts.", "Q1, Q2, Q3, Q7, and Q8 have correct choices that are noticeably fuller and more precise than the wrong choices.", "Repeated obviously bad distractors about seniority or rank replacing evidence make some answers guessable without reading closely."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 83,
+    "summaries": 90,
+    "tone": 84,
+    "limits": 91,
+    "insight": 87,
+    "density": 84,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A founder's return is not proof; it is only the place where proof can be asked for.",
+      "why": "Strong memorable compression of the chapter's core distinction."
+    },
+    {
+      "quote": "Every unowned promise costs trust before any proof returns.",
+      "why": "Gives the abstract sequence a memorable consequence."
+    },
+    {
+      "quote": "The useful order stays plain. WHY holder names the person or source that carries the reason. HOW operators name the people and habits that make the reason real.",
+      "why": "Clear mechanism: each term has a separate diagnostic job."
+    },
+    {
+      "quote": "c) The terms should be chosen by whoever has the highest rank, since succession is mainly authority.",
+      "why": "Representative quiz tell: an unsupported rank-based distractor is too obviously wrong."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz distractors",
+      "problem": "Several wrong answers are straw shortcuts about rank, fame, or generic purpose language, making the keyed answer easier to guess from tone rather than derivation.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1-Q3, Q7-Q8",
+      "problem": "The correct answer is often the most specific and complete choice, creating a length/precision tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "examples",
+      "problem": "The source-analyst examples are useful but slightly scaffolded; the repeated What to do/Why it matters question framing feels produced rather than natural.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "Saying the diagnostic line aloud may feel a little performative; the useful action is the cross-out and rewrite.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable. The chapter has a clear core move, strong layered reads, honest limits, and enough concrete anchors to keep the lesson from becoming generic founder-purpose advice. The best material explains why sequence matters: WHY must frame HOW before WHAT scale is treated as evidence. The main weakness is quiz construction: the keys are sound, but several distractors are so visibly unsupported that a test-wise reader could eliminate them without fully using the prose."
+}
+```

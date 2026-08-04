@@ -1,0 +1,19 @@
+2026-07-09T02:01:24.850Z [MAJOR] START run started · strict invariants enforced · lock acquired
+2026-07-09T02:01:24.854Z [MAJOR] PHASE research written 0/? · gated 0 · qc'd 0
+2026-07-09T02:01:25.851Z [MAJOR] RESEARCH spawning research session
+2026-07-09T02:20:46.413Z [MAJOR] PHASE write written 0/9 · gated 0 · qc'd 0
+2026-07-09T02:20:47.947Z [info]  author source-packets: compile-source-packets: PASS (9 packet(s))
+2026-07-09T02:20:49.283Z [info]  author source-packet-gate: source-packet-gate: PASS (9 chapter(s), 0 blocker(s), 0 advisory)
+2026-07-09T02:20:50.673Z [info]  author book-design: compile-book-design: PASS
+2026-07-09T02:20:52.196Z [info]  author book-design-gate: book-design-gate: PASS (0 blocker(s), 0 advisory)
+2026-07-09T02:20:53.504Z [info]  author chapter-briefs: compile-chapter-briefs: PASS (18 file(s))
+2026-07-09T02:20:55.007Z [info]  ── cost report — multipliers [halt:content] ──
+  grand total spawns: 1  (minted ids 1; verb ids 0)
+  by type: research:1
+  by phase: research:1
+  carry: acceptance 0 hit / 1 miss · reviews 0 hit / 0 miss
+  wall (spawn ms) by phase: research:1160548  total:1160548
+2026-07-09T02:20:55.013Z [FINAL] HALT AUTOPILOT HALT — multipliers [phase write · content]: author chapter-brief-gate failed (exit 1).
+chapter-brief-gate: BLOCK (1 blocker(s), 0 advisory)
+  [BLOCKER BR1.case_collision] case label "Google Project Aristotle" is owned by both chapter 2 and chapter 3 — ownedCases must partition the book's cases
+2026-07-09T02:20:55.013Z [FINAL] repair prompt: /Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/multipliers/book-run/chapter-generation.20260709022055.4d40e758.repair.md

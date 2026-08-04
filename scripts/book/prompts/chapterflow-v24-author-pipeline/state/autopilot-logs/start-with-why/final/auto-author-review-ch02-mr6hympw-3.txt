@@ -1,0 +1,68 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "b", "b", "a", "c", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed choices are the only options with concrete chapter terms or named examples, while distractors lean on obvious bad habits like rank, authority, fame, or senior approval.", "The key pattern is highly visible: most correct answers name the anchor/example directly and most wrong answers use generic institutional shortcuts."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 76,
+    "transfer": 84,
+    "practical": 80,
+    "summaries": 88,
+    "tone": 83,
+    "limits": 90,
+    "insight": 84,
+    "density": 78,
+    "beginner": 82
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The price of a rented preference is paying again when it leaves.",
+      "why": "Strongest memorable line: compact, concrete, and it carries the chapter's mechanism."
+    },
+    {
+      "quote": "Name the lever before you trust the lift.",
+      "why": "Strong takeaway: short enough to remember and directly usable."
+    },
+    {
+      "quote": "What to do: When Novelty is carrying the offer, name it.",
+      "why": "Worst practical defect: the action is too thin and stops before telling the reader what to inspect next."
+    },
+    {
+      "quote": "Why it matters: Before attention hardens into proof, stop.",
+      "why": "Too compressed to teach; it sounds aphoristic but gives little operational guidance."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz overall",
+      "problem": "Many distractors are too easy to reject because they rely on rank, fame, authority, or senior approval rather than plausible misreadings of the prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The what-to-do and why-it-matters lines are underdeveloped; they tell the reader to name Novelty and stop, but not how to test the buying reason or return signal.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The chapter repeats the same core move many times: name the lever, wait for return behavior, do not count lift as belief. The repetition helps retention but lowers density.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Phrases like second anchor, hard detail, return signal, and stopping line create a mild internal-framework smell even though the prose is mostly plain.",
+      "mustFix": false
+    },
+    {
+      "unit": "beginner",
+      "problem": "A cold reader may not immediately know who Dawson, William, Gabriel, and Noah are or why they matter; the named teaching cast adds friction without much payoff.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong but not quite ship-ready chapter. The core idea is clear and memorable: tactical spikes from price, promotion, fear, aspiration, peer pressure, or novelty should be treated as borrowed until behavior returns without the push. The limits are unusually honest, and the General Motors, MCI, and TiVo anchors give the lesson inspectable shape. The main blockers are quiz tells and a few thin practical moments, especially around the TiVo/Novelty example, where the advice becomes slogan-like instead of operational."
+}
+```

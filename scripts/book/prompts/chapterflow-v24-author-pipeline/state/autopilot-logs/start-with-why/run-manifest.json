@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "autopilot-run-manifest-v1",
+  "bookId": "start-with-why",
+  "arch": "author",
+  "flags": {
+    "autoPublish": false,
+    "regen": false,
+    "plan": false,
+    "maxRepairRounds": 4,
+    "maxParallel": 6
+  },
+  "bar": 80,
+  "readerCount": 3,
+  "beatShipped": {
+    "pin": null,
+    "composite": 72.1
+  },
+  "startedAt": "2026-07-08T06:44:11.566Z",
+  "finishedAt": "2026-07-08T07:11:02.801Z",
+  "terminal": "halt:content",
+  "packageSha": null,
+  "packageSize": null
+}

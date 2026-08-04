@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "a", "c", "a", "b", "c", "a", "c"],
+    "keyDisagreements": ["Q5: I chose a as the best available answer, but the keyed rationale is partly unsound because the prose explicitly adds a third anchor, while the choice says the changed cast and setting work 'without inventing a new anchor.'"],
+    "tells": ["Correct choices often carry the chapter's signature vocabulary: ledger, anchors, setting, proof, Toyota Production System, and andon.", "Several distractors are too obviously bad because they endorse slogans, borrowed authority, or copying unchanged.", "Q9's correct answer is much more specific than its distractors because it names Toyota Production System and andon."]
+  },
+  "scores": {
+    "retention": 82,
+    "quizzes": 72,
+    "transfer": 76,
+    "practical": 83,
+    "summaries": 86,
+    "tone": 66,
+    "limits": 82,
+    "insight": 78,
+    "density": 75,
+    "beginner": 72
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Known is not a feeling; it is a receipt you can point to.",
+      "why": "Strong, memorable wording that makes the core move stick."
+    },
+    {
+      "quote": "The second anchor does not make the first look stronger; it makes the first answer harder questions.",
+      "why": "This is the chapter's clearest insight about comparison versus decoration."
+    },
+    {
+      "quote": "In a city budget choice, which use of a second country-level token is closest to the auto comparison?",
+      "why": "The word 'token' exposes scaffold language and makes the quiz feel authored from a template."
+    },
+    {
+      "quote": "A changed cast and setting can expose a nearby error without inventing a new anchor.",
+      "why": "This keyed option conflicts with the chapter's own claim that the airline routine is a third anchor."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q5",
+      "problem": "The keyed option is the best available answer but includes a false phrase: the chapter does add a new anchor, so 'without inventing a new anchor' is not sound.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q6",
+      "problem": "The phrase 'second country-level token' is meta-scaffold language, not learner-facing prose, and it tests production logic more than the reader's understanding.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Correct answers are often easier to guess because they contain the chapter's distinctive vocabulary while distractors endorse transparently weak moves.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "Raymond and Colleen are introduced as thin hypothetical names without enough concrete before-to-after action, which gives that passage a slot-filler feel.",
+      "mustFix": false
+    },
+    {
+      "unit": "Example 6",
+      "problem": "The supplier example names a role but not a person, gives no completed result, and mostly restates the comparison lesson instead of showing a consequence.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone",
+      "problem": "Repeated terms such as anchor, venue, ledger, and token sometimes make the chapter feel like a scaffold rather than plain teaching prose.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a real teachable core: separate known data from assumptions, make a small decision, and require the result to return. Its best lines are memorable and the summaries mostly stand alone. I would not ship it yet because the quiz has one key-soundness problem, one visibly scaffolded stem, and several answer-choice tells. The examples mostly travel beyond factory settings, but Example 6 and the Raymond/Colleen aside need more concrete decision-and-consequence detail to meet a professional learning-product bar."
+}
+```

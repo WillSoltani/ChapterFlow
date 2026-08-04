@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P35",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"reused narrative machinery/template reuse\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Scenario: Ferne stops a red pen at Monday 11:06 p.m. in her yellow kitchen table in Trenton, tenant organizer, with the landlord's revised lease.\",\"Scenario: Imani touches a broken brass drawer pull at Wednesday 7:09 a.m. in the preschool kitchen on Laurel Avenue, center director, with sticky oatmeal bowls in the sink.\",\"Ferne she writes the three conversations in the margin for next time.\",\"Imani she must decide whether to blame the aide or map what let the break happen again.\"],\"rationale\":\"The two examples use the same narrative machinery with swapped nouns: a chapter/title framing, protagonist plus tactile object, exact timestamp and location, role label, contextual prop, a recently failed/repeated situation, then a reflective pivot from an obvious surface cause to a deeper relational or system diagnosis. The repeated malformed construction in the closing sentence also shows template reuse rather than independent scene construction. Because the shared structure is central to both examples, this is a material defect and should block.\"}"
+}

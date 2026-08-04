@@ -1,0 +1,89 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "make-time-ch05",
+  "chapterNumber": 5,
+  "contentHash": "416fed44fbf0c499",
+  "reviewerSessionId": "eval-proxy-make-time-ch05-1783022537958",
+  "scores": {
+    "retention": 91,
+    "quizzes": 78,
+    "transfer": 89,
+    "practical": 92,
+    "summaries": 86,
+    "tone": 88,
+    "limits": 90,
+    "insight": 86,
+    "density": 82,
+    "beginner": 93
+  },
+  "composite": 87.4,
+  "ship84": false,
+  "pass": false,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c",
+      "a",
+      "b",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "The day becomes evidence, not a trial.",
+      "why": "Strong, compact line that captures the chapter's core move memorably.",
+      "verified": true
+    },
+    {
+      "quote": "The best reflection is almost plain to the point of boredom. Worked. Failed. Next.",
+      "why": "Excellent beginner-friendly compression of the practice.",
+      "verified": true
+    },
+    {
+      "quote": "Explanation: The first set changes real conditions in a small way. It keeps learning practical and tied to the next study block.",
+      "why": "Defect: Q8's correct answer is b, so 'first set' is wrong and could confuse learners.",
+      "verified": true
+    },
+    {
+      "quote": "Title: undefined",
+      "why": "Visible production artifact that breaks polish.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Q8's correct answer is the only realistic adult option; the distractors are exaggerated self-sabotage.",
+    "Q6 and Q9 correct choices are noticeably fuller and more explanatory than the distractors.",
+    "Several distractors use giveaway absolutes such as 'every,' 'always,' 'perfect,' or obviously bad moves like adding guilt or dropping sleep."
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q8 explanation",
+      "problem": "The explanation says 'The first set changes real conditions,' but the keyed correct answer is b, the second listed set.",
+      "mustFix": true
+    },
+    {
+      "unit": "Implementation plan",
+      "problem": "It contains the artifact 'Title: undefined,' which looks unedited and unprofessional.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz distractors",
+      "problem": "Some distractors are too obviously wrong, especially 'add guilt, drop sleep' and 'More tracking always creates more learning,' reducing diagnostic value.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read and examples",
+      "problem": "Several examples repeat the same lesson structure so closely that density drops in the middle despite good concrete scenes.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter teaches a useful, memorable move: convert the day into a short evidence loop of worked, failed, next. It is practical, beginner-friendly, and honest about overbuilding reflection into another burden. The strongest lines are sticky enough to survive a week. I would not ship it yet because the Q8 explanation mislabels the correct option and the implementation plan contains a visible 'Title: undefined' artifact. Fix those and sharpen a few quiz distractors, and it would likely clear the bar."
+}

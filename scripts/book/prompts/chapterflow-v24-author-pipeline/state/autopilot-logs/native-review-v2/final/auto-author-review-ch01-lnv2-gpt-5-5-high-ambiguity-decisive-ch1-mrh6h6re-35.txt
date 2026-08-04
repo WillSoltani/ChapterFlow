@@ -1,0 +1,89 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "c", "b", "a", "c", "a", "a", "b"],
+    "mechanisms": [
+      "The prose defines WRAP as four sequenced repairs matched to four dangers, not a loose pause or final check.",
+      "Narrow framing is the first villain, and the chapter says a live option set keeps a yes-or-no frame from hiding better paths.",
+      "Reality-testing means seeking evidence that can surprise or hurt the favorite answer while the decision is still open.",
+      "The Intel/Grove lesson is to quiet attachment by asking what a fresh outsider would do.",
+      "Overconfidence is countered by naming better, worse, or different futures rather than trusting one neat forecast.",
+      "Cole's logic is that parallel first passes buy comparison and learning before commitment.",
+      "The outsider question works by removing old-product attachment from the imagined decision maker.",
+      "The chapter says each villain bends a different part of the choice and needs a different WRAP move.",
+      "The chapter explicitly says good process raises the odds without promising the outcome."
+    ],
+    "confidence": ["high", "high", "high", "medium", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "Choice c is partly defensible because the implementation plan says to ask what will still matter after the mood cools, but the Grove/old-service-line setup points more directly to b.",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q1: the correct option is the only one that names all four WRAP moves, making it guessable from acronym familiarity.",
+      "Several correct choices reuse chapter giveaway phrases: 'disconfirming evidence,' 'wider range of plausible outcomes,' 'fresh leader,' and 'improving odds while uncertainty remains.'",
+      "Q4 has two attractive distance answers, but b is longer and more specifically mirrors the Grove example."
+    ]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 83,
+    "transfer": 78,
+    "practical": 82,
+    "summaries": 91,
+    "tone": 88,
+    "limits": 90,
+    "insight": 87,
+    "density": 84,
+    "beginner": 90
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "A live option set keeps a bad frame from feeling like fate.",
+      "why": "Strong memorable line that compresses the chapter's core move."
+    },
+    {
+      "quote": "Evidence gets crooked when the favorite answer hires the researcher.",
+      "why": "Clear mechanism for confirmation bias, concrete enough to remember."
+    },
+    {
+      "quote": "If the building is on fire, nobody should pause to build a vendor horse race, invite dissenting evidence, and map three futures.",
+      "why": "Best limits section: it prevents overapplying the process."
+    },
+    {
+      "quote": "The next time a quick call pulls at you, touch your laptop lid and record the cue, shortcut, and likely villain.",
+      "why": "The physical cue is concrete but slightly theatrical and less natural than the chapter's stronger decision examples."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q4",
+      "problem": "Two answers can be defended from the prose: b matches the Grove outsider question, while c matches the implementation plan's advice to ask what will still matter after the mood cools.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz tells",
+      "problem": "Some correct answers use exact chapter phrases, which makes them easier to guess without deriving the mechanism.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 6",
+      "problem": "The example is useful but thin: it stages a generic team text exchange and mostly restates the lesson rather than showing a decision consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "try this now",
+      "problem": "The laptop-lid cue is concrete but may feel like ritual theater for some readers, and the action is less broadly transferable than the surrounding WRAP guidance.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter. It teaches one clean move, connects each villain to a matching repair, and keeps the promise honest by saying WRAP improves odds rather than guaranteeing outcomes. The best lines are sticky, the summaries stand alone, and the examples mostly transfer the lesson into practical choices. The main weaknesses are quiz tells, one mildly ambiguous quiz item, and a few practice/example moments that are usable but less strong than the core exposition."
+}
+```

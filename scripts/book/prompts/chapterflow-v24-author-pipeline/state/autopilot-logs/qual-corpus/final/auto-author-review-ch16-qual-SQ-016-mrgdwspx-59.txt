@@ -1,0 +1,98 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": [
+      "No quiz questions are present, so answer-pattern tells cannot be assessed."
+    ]
+  },
+  "scores": {
+    "retention": 48,
+    "quizzes": 0,
+    "transfer": 47,
+    "practical": 35,
+    "summaries": 12,
+    "tone": 38,
+    "limits": 10,
+    "insight": 58,
+    "density": 43,
+    "beginner": 46
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "The meeting takes longer. The follow-up takes less.",
+      "why": "A compact, memorable contrast captures the payoff of doing alignment work before commitment."
+    },
+    {
+      "quote": "People can see which tradeoffs were made before the work begins.",
+      "why": "This clearly states the mechanism connecting pre-vote bargaining to smoother implementation."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "Six consecutive empty sections expose the chapter's central structural failure."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "\"A reader-facing chapter under phase-1 review\" is production metadata rather than a hook into the lesson.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "\"A concise idea\" does not state any idea, so the fast read fails its stand-alone promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "\"One added angle\" supplies no angle or explanation, so the deep read fails its stand-alone promise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The bargaining column, implementation map, and Paul C. Nutt's process notes are introduced without explanation, making the otherwise useful scenario harder for a cold beginner to interpret.",
+      "mustFix": false
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is empty; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is empty, leaving no executable exercise; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The designated examples section is empty; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz contains no questions, so comprehension cannot be assessed; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is empty, removing the promised review aid; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is empty despite the full read containing a suitable memorable line; reserved category: STRUCTURALLY INVALID.",
+      "mustFix": true
+    },
+    {
+      "unit": "limits",
+      "problem": "The chapter gives no boundary conditions, such as when pre-vote bargaining could become excessive or when a quick vote is appropriate.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The full-read scenario contains a sound and potentially memorable core move: surface tradeoffs before voting and assign implementation owners before adjournment, because visible bargaining reduces later resistance. That useful paragraph is surrounded by placeholders and empty sections, however. The fast and deep reads teach nothing independently, the practical exercise and reinforcement material are absent, and there is no quiz to answer or evaluate. The chapter is therefore an incomplete scaffold rather than a shippable professional learning unit."
+}
+```

@@ -1,0 +1,49 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Correct choices often carry the chapter's exact technical phrases, while distractors are vaguer or overbroad; a test-wise reader could often pick the most text-specific option."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 90,
+    "insight": 88,
+    "density": 84,
+    "beginner": 82
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Competition, here, means using a rival as an alarm and your own benchmark as the judge.",
+      "why": "This is the clearest, most memorable statement of the chapter's core move."
+    },
+    {
+      "quote": "Pressure starts outside; proof has to come back home.",
+      "why": "Strong compression of the mechanism into a line a reader can reuse."
+    },
+    {
+      "quote": "When the standard is stated, name the anchors.",
+      "why": "This example action is thin compared with the chapter's otherwise practical two-line method."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 5",
+      "problem": "The example names several anchors but gives only the generic action 'name the anchors,' with little before-to-after behavior or consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct answers are signaled by highly chapter-specific phrasing while distractors are broader or obviously wrong, reducing quiz difficulty.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter clears the professional bar. The core distinction is memorable and useful: rivals signal pressure, but an internal benchmark judges the response. The summaries layer cleanly, the limits section prevents overreach, and the quiz keys are sound. The main weakness is not factual or structural; it is craft-level. A few quiz answers are easier to spot because they echo the prose's special vocabulary, and Example 5 is thinner than the others. Still, the chapter is coherent, practical, and shippable."
+}
+```

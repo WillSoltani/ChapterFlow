@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P27",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 2,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"DUPLICATED_GENERIC_ITEM_WITH_CHAPTER_MECHANISM_RELABELING\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Chapter skill: Don't Assume They Meant It\",\"Chapter skill: Ground Your Identity\",\"State the impact, own the concern, and ask for a specific repair date or alternative plan.\",\"The best choice keeps the conversation tied to intent and impact and creates room for new information.\",\"The best choice keeps the conversation tied to identity and creates room for new information.\"],\"rationale\":\"The two instances use the identical question, choices, correct index, and generic recommended action; only the chapter-skill label and a few words in the explanation change. The answer does not specifically test avoiding assumptions about intent in one instance or grounding identity in the other, so the duplication merely relabels the same generic difficult-conversation answer rather than assessing both stated mechanisms.\"}"
+}

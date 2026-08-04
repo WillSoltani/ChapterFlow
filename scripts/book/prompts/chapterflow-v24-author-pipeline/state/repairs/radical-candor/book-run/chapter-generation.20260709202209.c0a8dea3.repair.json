@@ -1,0 +1,23 @@
+{
+  "schemaVersion": "chapterflow-self-healing-repair-v1",
+  "createdAt": "2026-07-09T20:22:09.852Z",
+  "bookId": "radical-candor",
+  "runId": "book-run",
+  "stage": "chapter-generation",
+  "severity": "blocker",
+  "summary": "author write: 2 chapter(s) failed to author within the retry budget:\nch04: STIER-2 write contract FAIL — practice timers: tryThisNow (10 min) and twentyFourHourChallenge (15 min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats. | practice timers: twentyFourHourChallenge (15 min) and weeklyPractice (10 min) restate the same action with DIFFERENT minutes — make the numbers agree wherever the action repeats.\n\nch09: lead degradation did not converge — dealt lead \"The Measurement Problem\" failed 2 lead-only contract attempts and the degraded lead \"Bonus performance review unit\" also failed: ch09: rubric preflight FAIL — ch09: FAIL ease=67.779✗ fk=6.922~ tell=0 transfer=0.889 memClean=2 tic=0 nom=4.234 echo=0 lenTell=3 practice=2 — FAIL: fleschEase",
+  "findings": [],
+  "artifacts": [],
+  "recommendedFixes": [
+    "Edit only the failing chapter content unless the report names missing source/plans as the root cause.",
+    "Fix blocker-level findings first. Preserve chapterId, number, title, sourceAnchorIds, and quiz keys unless the finding explicitly targets them.",
+    "Run author-check and gate-chapter for the edited chapter, then rerun book-gate to catch cross-chapter regressions."
+  ],
+  "validationCommands": [
+    "npx tsx src/cli.ts qc-converge radical-candor",
+    "npx tsx src/cli.ts book-run radical-candor --no-publish"
+  ],
+  "nextCommand": "npx tsx src/cli.ts book-run radical-candor --no-publish",
+  "promptPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/book-run/chapter-generation.20260709202209.c0a8dea3.repair.md",
+  "reportPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/repairs/radical-candor/book-run/chapter-generation.20260709202209.c0a8dea3.repair.json"
+}

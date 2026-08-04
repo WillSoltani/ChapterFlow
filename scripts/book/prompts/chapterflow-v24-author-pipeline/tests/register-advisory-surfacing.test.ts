@@ -15,11 +15,16 @@
  */
 
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, readdirSync } from "fs";
-import { resolve } from "path";
+import { mkdtempSync, writeFileSync } from "fs";
+import { tmpdir } from "node:os";
+import { join } from "path";
 
-import { test, skip } from "./harness.js";
-import { STATE_CHAPTERS } from "./helpers.js";
+import { test } from "./harness.js";
+import { makeGateCleanChapter } from "./helpers.js";
+import { chapterFileName } from "../src/lib/chapterPaths.js";
+
+const ADV_TMP = mkdtempSync(join(tmpdir(), "register-advisory-"));
+let advAttemptSeq = 0;
 import { runShipGate } from "../src/critics/finalGate.js";
 import {
   collectRegisterAdvisories,
@@ -193,14 +198,12 @@ test("CF-I-2 (a): a C31-tripping attempt-1 draft (that also fails the gate) puts
   const files = new Map<number, string>();
   let sid = 0;
   const deps = {
-    // Gate blocks EVERY attempt — this forces the retry lane; the advisory block is
-    // appended to the gate-blocker card, never a trigger of its own.
-    runVerb: async (args: string[]) => args[0] === "gate-chapter"
-      ? { code: 1, stdout: "[BLOCKER A12] ch: lowercase sentence boundary", stderr: "" }
-      : { code: 0, stdout: "", stderr: "" },
-    spawn: (async (o: { sessionId: string; task: string }) => {
+    runVerb: async () => ({ code: 0, stdout: "", stderr: "" }),
+    // IMP-01: the writer lands its draft as the CANDIDATE in its attempt
+    // workspace (the spawn cwd) — canonical is out of reach by construction.
+    spawn: (async (o: { sessionId: string; task: string; cwd?: string }) => {
       tasks.push(o.task);
-      files.set(1, draftBytes); // the writer lands its draft before any self-check
+      if (o.cwd) writeFileSync(join(o.cwd, chapterFileName("zz-adv-retry-ch01")), draftBytes);
       return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++sid}`,
@@ -223,6 +226,11 @@ test("CF-I-2 (a): a C31-tripping attempt-1 draft (that also fails the gate) puts
     recordProvenance: () => {},
     readLeadOverride: () => null,
     writeLeadOverride: () => {},
+    attemptsRoot: () => join(ADV_TMP, `attempts-${advAttemptSeq++}`),
+    // Gate blocks EVERY attempt — this forces the retry lane; the advisory block is
+    // appended to the gate-blocker card, never a trigger of its own.
+    gateCandidate: async () => ({ code: 1, stdout: "[BLOCKER A12] ch: lowercase sentence boundary", stderr: "" }),
+    rubricWithCandidate: async () => ({ code: 0, stdout: "", stderr: "" }),
   };
 
   const r = await authorWriteOneChapter("zz-adv-retry", 1, deps, { io, totalChapters: 2 });
@@ -251,12 +259,13 @@ async function driveRegen(bookId: string, priorDraft: ChapterV21, writerDraft: C
   const files = new Map<number, string>([[1, JSON.stringify(priorDraft) + "\n"]]);
   let sid = 0;
   const deps = {
-    runVerb: async (args: string[]) => args[0] === "gate-chapter"
-      ? { code: 1, stdout: "[BLOCKER A12] ch: lowercase sentence boundary", stderr: "" }
-      : { code: 0, stdout: "", stderr: "" },
-    spawn: (async (o: { sessionId: string; task: string }) => {
+    runVerb: async () => ({ code: 0, stdout: "", stderr: "" }),
+    // IMP-01: the regen writer lands its draft as the workspace CANDIDATE; the
+    // PRIOR reviewed draft stays committed in `files` (which is what the Fix A
+    // attempt-1 advisory seed must read).
+    spawn: (async (o: { sessionId: string; task: string; cwd?: string }) => {
       tasks.push(o.task);
-      files.set(1, JSON.stringify(writerDraft) + "\n");
+      if (o.cwd) writeFileSync(join(o.cwd, chapterFileName(writerDraft.chapterId)), JSON.stringify(writerDraft) + "\n");
       return { ok: true, exitCode: 0, finalMessage: "done", stdout: "", stderr: "", durationMs: 1, sessionId: o.sessionId };
     }) as unknown as AutopilotDeps["spawn"],
     mkSessionId: (label: string) => `${label}#${++sid}`,
@@ -279,6 +288,9 @@ async function driveRegen(bookId: string, priorDraft: ChapterV21, writerDraft: C
     recordProvenance: () => {},
     readLeadOverride: () => null,
     writeLeadOverride: () => {},
+    attemptsRoot: () => join(ADV_TMP, `attempts-${advAttemptSeq++}`),
+    gateCandidate: async () => ({ code: 1, stdout: "[BLOCKER A12] ch: lowercase sentence boundary", stderr: "" }),
+    rubricWithCandidate: async () => ({ code: 0, stdout: "", stderr: "" }),
   };
   const result = await authorWriteOneChapter(bookId, 1, deps, {
     complaints: ["Reviewer must-fix: ex01 whatToDo opens on an evaluator question."],
@@ -322,30 +334,20 @@ test("CF-I Fix A (b): a regen of an advisory-CLEAN reviewed draft adds no block 
 // (c) the non-regen fresh write is pinned above ("attempt-1 (first) card has no
 // advisory block") — no complaints ⇒ no block before any failure.
 
-// ── The no-new-blocking-path proof, asserted DIRECTLY on the real gold corpus:
-// every start-with-why chapter that trips a C31–C36 advisory still PASSES the ship
-// gate (`passed === true`) — the surfacing changed text, never a predicate.
-// (collectRegisterAdvisories now includes CF-J's C36, so this assertion set covers
-// it by construction; the C36-specific planted-vs-clean passed-parity proof lives
-// in tests/apparatus-leakage.test.ts.) ──
-{
-  const bookId = "start-with-why";
-  const files = existsSync(STATE_CHAPTERS)
-    ? readdirSync(STATE_CHAPTERS).filter((f) => f.startsWith(`${bookId}-ch`) && f.endsWith(".v21-native.chapter.json"))
-    : [];
-  if (files.length === 0) {
-    skip("CF-I Fix A: advisory-only gold chapters pass the ship gate", `no ${bookId} chapters in state/chapters/ on this machine`);
-  } else {
-    test("CF-I Fix A: every advisory-carrying gold chapter still passes the ship gate (passed === true)", () => {
-      let advisoryChapters = 0;
-      for (const f of files) {
-        const ch = JSON.parse(readFileSync(resolve(STATE_CHAPTERS, f), "utf8")) as ChapterV21;
-        if (collectRegisterAdvisories(ch).length === 0) continue;
-        advisoryChapters++;
-        const report = runShipGate(ch);
-        assert.equal(report.passed, true, `${ch.chapterId} trips only advisories yet must PASS the ship gate; blockers: ${report.blockers.map((b) => b.catalogId).join(", ")}`);
-      }
-      assert.ok(advisoryChapters >= 1, "the gold corpus exercises the advisory-only-still-passes property (measured 7 chapters on 2026-07-09)");
-    });
-  }
-}
+// ── No-new-blocking-path proof on an immutable in-memory gate-clean chapter. ──
+test("CF-I Fix A: a planted C31 advisory remains minor and the chapter passes the ship gate", () => {
+  const chapter = makeGateCleanChapter("zz-adv-gate-clean", 1);
+  chapter.examples[0].whatToDo = "What changed? The lead owned the date.";
+  chapter.examples[1].whatToDo = "Why does it work? The owner closes the loop.";
+  chapter.examples[2].whatToDo = "What nearly failed? The handoff slipped.";
+
+  const dealtExampleCount = chapter.examples.length;
+  const chapterBrief = { rotationSchemaVersion: "chapter-brief-rotation-v3", exampleCount: dealtExampleCount };
+  const advisories = collectRegisterAdvisories(chapter).filter((finding) => String(finding.checkId) === "C31.example_evaluator_register");
+  assert.ok(advisories.length >= 1, "the in-memory fixture carries the planted C31 advisory");
+  assert.ok(advisories.every((finding) => finding.severity === "minor"), "C31 remains minor-only");
+
+  const report = runShipGate(chapter, { chapterBrief, exampleFloor: dealtExampleCount });
+  assert.equal(report.passed, true, `C31 advisory must not block; blockers: ${report.blockers.map((finding) => finding.catalogId).join(", ")}`);
+  assert.ok(report.minors.some((finding) => finding.catalogId === "C31.example_evaluator_register"), "ship gate surfaces C31 as minor");
+});

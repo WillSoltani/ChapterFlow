@@ -1,0 +1,103 @@
+{
+  "schema": "worker-implementation-report-v1",
+  "promptId": "IMP-12",
+  "baselineHash": "39a172d0001fb42145e1d4698959724b0cb7907d",
+  "resultHash": "5280bca758237b0761492783556ba3decae899fb1184fde421445c53265bf690",
+  "contractVersions": {
+    "execution-profile": 1,
+    "candidate-transaction": 1,
+    "source-use-plan": 1,
+    "repair": 1,
+    "review-output": 1,
+    "route-result": 1,
+    "attempt-evidence-manifest": 1,
+    "worker-implementation-report": 1
+  },
+  "filesChanged": [
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/testRoots.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/productionLeakGuard.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/hostileHome.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/migrationFixtures.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/production-leak-guard.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/hostile-context.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/migration-contracts.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/cross-book-fixtures.test.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/run.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/tests/TEST-ARCHITECTURE.md",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/src/cli.ts",
+    "scripts/book/prompts/chapterflow-v24-author-pipeline/package.json"
+  ],
+  "requirementsImplemented": [
+    { "requirementId": "IMP12-R01", "status": "implemented", "note": "mkTestRoots(): one disposable base with a typed slot per root (state/attempts/evidence/exec-logs/workspaces/home/bakeoff/reviews); pid+seq-unique; tests inject explicitly." },
+    { "requirementId": "IMP12-R02", "status": "implemented", "note": "productionLeakGuard.ts stat-walks + diffs production roots; wired into run.ts — forbidden repo-root shadow guarded always-on (clean), pipeline roots under CHAPTERFLOW_LEAK_GUARD=1." },
+    { "requirementId": "IMP12-R03", "status": "implemented", "note": "Phase-0 frozen contracts (IMP-00) enforced by contract-validate: contractFreezeDivergences() must be empty. No new schemas invented here." },
+    { "requirementId": "IMP12-R04", "status": "implemented", "note": "contract-validate CLI verb + generated contract-manifest.json parity check; a parallel-agent schema fork fails CI before any suite run." },
+    { "requirementId": "IMP12-R05", "status": "implemented", "note": "worker-report schema (frozen, IMP-00) validated for every landed IMP-00..03 report; adverse/empty fields asserted present (gateChanges/bookSpecificExceptions/unexpectedWrites/unresolvedRisks/dependencyAssumptions)." },
+    { "requirementId": "IMP12-R06", "status": "implemented", "note": "migrationFixtures.ts: schema-valid generic factories for packet, plan+unit, chapter, attempt identity, candidate record, commit manifest, repair finding, chapter patch, route result, evidence manifest." },
+    { "requirementId": "IMP12-R07", "status": "implemented", "note": "Synthetic P0/P1 classes without deleted text: FORBIDDEN_PLAN_UNITS (5 invalid combos), unexpected-write candidate outcome, forbidden-control-field repair finding, stale-base/CAS covered by chapter-transaction + source-use-plan suites." },
+    { "requirementId": "IMP12-R08", "status": "implemented", "note": "buildHostileHome(): fake ~/.codex (config re-routing model/effort/sandbox, hooks, MCP), global+project AGENTS.md, rules, hostile env — under an injected home, never $HOME." },
+    { "requirementId": "IMP12-R09", "status": "implemented", "note": "INJECTION_STRINGS catalog (7 shapes); hostile-context test proves each stays data through the IMP-03 typed envelope; injection strings usable inside any artifact type." },
+    { "requirementId": "IMP12-R10", "status": "implemented", "note": "Reviewer least-authority proven at the profile level: chapter/acceptance readers read-only; qc-reviewer isolated-workspace (the IMP-08 blind-review substrate). Full per-workspace key-absence fixtures land with IMP-08's isolation wiring.", "deferredTo": "IMP-08" },
+    { "requirementId": "IMP12-R11", "status": "implemented", "note": "Conductor-owned output / max-artifact / unexpected-write / stale-base / CAS / crash-recovery / typed-patch fixtures exist across chapter-transaction, source-use-plan, and migrationFixtures (candidate record + commit manifest + chapter patch factories)." },
+    { "requirementId": "IMP12-R12", "status": "implemented", "note": "Source origin/form/claim-strength, writer reclassification, direct explanation, and causal-boundary fixtures live in source-use-plan.test.ts + cross-book-fixtures.test.ts (two profiles)." },
+    { "requirementId": "IMP12-R13", "status": "partial", "note": "Exact/near-clone and shadow-diversity fixtures are IMP-06's substrate (the diversity intervention it shadow-calibrates). IMP-12 ships the cross-book profiles those build on; the clone/shadow corpus lands with IMP-06.", "deferredTo": "IMP-06" },
+    { "requirementId": "IMP12-R14", "status": "deferred", "note": "Human-labeled judge-qualification corpus is IMP-11's input (the evaluation harness does not exist yet). Freezing it now would fix an interface before its consumer — deferred per the plan's contract-change rule.", "deferredTo": "IMP-11" },
+    { "requirementId": "IMP12-R15", "status": "deferred", "note": "Statistical fixtures (paired/clustered, zero-event bounds, screening/sequential stopping, threshold immutability) are IMP-11's analysis substrate; deferred to land with their consumer.", "deferredTo": "IMP-11" },
+    { "requirementId": "IMP12-R16", "status": "implemented", "note": "Two materially different synthetic book profiles (research/explanation-heavy vs example-heavy) exercise the ontology along different axes; four-stratum chapter sets are representable via the fxPacket override hook." },
+    { "requirementId": "IMP12-R17", "status": "implemented", "note": "Semantic assertions/hashes/ids/schemas throughout; the one prompt snapshot (author card) is an intentional contract surface. Anti-hard-code scan: zero zz-* ids in production source." },
+    { "requirementId": "IMP12-R18", "status": "implemented", "note": "Tests are deterministic and parallel-safe (pid+seq-unique roots, no Date.now/random in fixtures); dispose() + OS tmpdir handle abrupt termination; stale cleanup covered by sweepStaleAttempts/sweepStaleExecDirs (IMP-00/01)." },
+    { "requirementId": "IMP12-R19", "status": "partial", "note": "Non-network package entry points: contract-validate, test:hermetic, ci (typecheck→contract-validate→test). Outer-monorepo root CI wiring is out of scope for a no-push package and needs explicit owner coordination.", "deferredTo": "owner CI coordination" },
+    { "requirementId": "IMP12-R20", "status": "implemented", "note": "TEST-ARCHITECTURE.md documents entry points, the hermeticity model + legacy-leak baseline + closing recipe, injected roots, fixtures, and how incidents become fixtures / how contract versions evolve." }
+  ],
+  "testsRequired": [
+    "production-root no-mutation meta-test",
+    "serial/parallel/reordered execution and cleanup",
+    "hostile personal/global/project context tests",
+    "contract compatibility and worker-report adverse-field tests",
+    "positive + multiple negative cases per migration failure class",
+    "reviewer key/workspace leak tests",
+    "prompt-injection and least-authority consequence tests",
+    "maximum structured-output, stale-base, patch, crash, recovery tests",
+    "cross-book fixture immutability and anti-hard-code scan",
+    "CI no-network / no-credential"
+  ],
+  "testsRun": [
+    "tests/production-leak-guard.test.ts (5, new)",
+    "tests/hostile-context.test.ts (5, new)",
+    "tests/migration-contracts.test.ts (7, new)",
+    "tests/cross-book-fixtures.test.ts (3, new)",
+    "npm run contract-validate (contract-freeze + IMP-00..03 worker reports)",
+    "full hermetic pipeline suite (236 files); + CHAPTERFLOW_LEAK_GUARD=1 leak-ratchet run"
+  ],
+  "testResults": {
+    "pass": 2155,
+    "fail": 0,
+    "xfail": 0,
+    "xpass": 0,
+    "skip": 18,
+    "xenv": 6,
+    "commands": [
+      "npx tsc -p . --noEmit",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx tests/run.ts",
+      "CHAPTERFLOW_NO_API_CODEX_QC=1 npx tsx src/cli.ts contract-validate"
+    ]
+  },
+  "gateChanges": [
+    "tests/run.ts: ADDED an always-on hermeticity gate over the forbidden repo-root shadow state dir (a write fails the run) + an opt-in full production-root leak guard (CHAPTERFLOW_LEAK_GUARD=1). No test-quality gate loosened."
+  ],
+  "bookSpecificExceptions": [],
+  "unexpectedWrites": [],
+  "unresolvedRisks": [
+    "The suite is not yet FULLY hermetic (F-018): pre-IMP-12 tests (autopilot, qc-converge, stier-levers, stier2-levers, research-freshness, and others) mutate pipeline state/logs/.attempts via default roots. The leak guard now makes this VISIBLE and CI-checkable (test:hermetic exits 1); the always-on gate is scoped to the already-clean forbidden shadow. Closing the legacy offenders onto mkTestRoots() is incremental follow-on. Every NEW test in this package is hermetic.",
+    "Judge-qualification and statistical fixtures (items 14-15) are deferred to IMP-11 (their consumer does not exist yet); clone/shadow-diversity fixtures (item 13) to IMP-06. Deferring avoids freezing an interface before its consumer per the plan's contract-change rule.",
+    "Outer-monorepo root CI wiring (item 19) is provided as package entry points only; editing the outer repo's CI is out of scope for a no-push package.",
+    "The full leak guard cannot become an always-on suite gate until the legacy offenders are closed; until then it is the opt-in ratchet (test:hermetic)."
+  ],
+  "dependencyAssumptions": [
+    "IMP-06 consumes the cross-book profiles + adds exact/near-clone and shadow-diversity fixtures.",
+    "IMP-08 consumes the reviewer least-authority profiles + adds per-workspace key-absence fixtures.",
+    "IMP-10 consumes the evidence-manifest factory + testRoots evidenceRoot for durable-evidence tests.",
+    "IMP-11 adds the judge-qualification corpus and statistical fixtures on top of the generic factories.",
+    "baselineHash is the IMP-03 commit (full sha); resultHash is sha256 of the staged unified diff."
+  ]
+}

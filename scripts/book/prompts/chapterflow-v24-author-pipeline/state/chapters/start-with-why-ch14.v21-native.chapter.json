@@ -1,0 +1,515 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "start-with-why-ch14",
+  "number": 14,
+  "title": "The New Competition",
+  "readingTimeMinutes": 7,
+  "hook": "Rivals can warn. Everyone agreed. No one knew who would bring back proof.",
+  "hookSourceAnchorIds": [
+    "ch14.fact.4",
+    "ch14.fact.5"
+  ],
+  "counterintuition": "The rival should not be the ruler. Use it as the first alarm, then make your own benchmark bring back proof that the choice still fits the reason you act.",
+  "counterintuitionSourceAnchorIds": [
+    "ch14.concept",
+    "ch14.fact.4",
+    "ch14.fact.5"
+  ],
+  "tryThisNow": "Write 2 lines in 10 minutes: the rival pressure you feel, then the benchmark proof that must return before you act.",
+  "tryThisNowSourceAnchorIds": [
+    "ch14.fact.4",
+    "ch14.fact.5"
+  ],
+  "keyTakeaway": "Let rivals signal pressure, not define success; then require your own benchmark, purpose fit, and later improvement before you call a move progress.",
+  "keyTakeawaySourceAnchorIds": [
+    "ch14.concept",
+    "ch14.fact.4",
+    "ch14.fact.5"
+  ],
+  "breakdown": {
+    "fastRead": "Rivals can warn. Everyone agreed. No one knew who would bring back proof. The useful pattern is not \"beat them.\" It is outside pressure first, your own benchmark second. Apple Inc. (company in the Apple-Dell product contrast) and Dell (the other company in that contrast) make this visible. So do the 2001 iPod (Apple product marker from 2001) and the 2003 Dell DJ (Dell product marker from 2003).\n\nSelf-referenced competition means you compete with yesterday's version of you or your group. The rival names pressure. Your benchmark judges the reply. If that order flips, the tactic has to do a job it cannot do alone.",
+    "deepRead": "The mechanism gets stronger after a second sighting. One product contrast can show the move, but it can also trap you into thinking the lesson lives only there. The 2001 iPod and 2003 Dell DJ give the before-and-after ledger. Before, the question is whether one product answered another. After, the better question is whether the answer still fit the old promise and improved the next version. That is the hinge.\n\nMicrosoft (the software company founded in 1975) gives the loop another place to run. Its Redmond headquarters (the headquarters marker in the Microsoft rivalry) belongs with that long-run software rivalry, not with Apple-Dell. The point is not that the two stories match in surface detail. They do not. The point is that a second venue makes the pattern harder to dismiss as one vivid anecdote.\n\nCompetition, here, means using a rival as an alarm and your own benchmark as the judge. External rival names the pressure. Internal benchmark names the standard you owe. Purpose fidelity asks whether the move still fits why you act. Continuous improvement asks what gets better after the choice. Each part has its own job.\n\nCopying first costs you the proof that your own promise was still in charge. You may look current and still lose the reason for moving. So the people question is plain: who owes whom the proof, and when does it return?",
+    "fullRead": "What changes when the venue changes? Southwest Airlines (the low-fare carrier tied here to 1971 and Dallas) answers that by shifting the proof from product contrast and software rivalry to an operating benchmark. Dallas (the place marker in the Southwest example) is not decoration. It tells you where the idea has an edge.\n\nThat edge matters because useful ideas spread too easily when the details are attractive. The 2001 iPod belongs with Apple-Dell. The 2003 Dell DJ belongs there too. Move either detail into Microsoft and the fact may remain true, but the grounding turns false. True facts can mislead when they are asked to support the wrong comparison.\n\nMicrosoft needs its own factual token: 1975 founding, software company identity, and Redmond headquarters. Those markers keep it from becoming a renamed product story. Once the second venue stands on its own facts, you can compare the loop instead of stamping the same business tale twice.\n\nSouthwest adds a third angle, not a third echo. The 1971 marker, Dallas, and low-fare carrier role ask a different question: what operating standard keeps the promise real while the organization improves? If you force the airline example to repeat Apple-Dell, you waste the one thing it gives you: a place where the idea stops spreading as a universal script. The same word can travel; the same tactic cannot, unless the local benchmark asks for it.\n\nYou can use this without title power. When a rival comes up, write the rival pressure on one line. On the second line, write the benchmark that has to judge the answer. If the second line is blank, the decision is not ready. If it only says \"match them,\" the rival has become the ruler.\n\nWho owes whom the proof, and when does it return? That question keeps the loop human. A colleague may owe you the benchmark by Friday. You may owe a customer a reason that is better than \"the other company did it.\" The move closes only when the answer comes back inside.\n\nThis move is not anti-rival. Rivals can carry useful news. They can show that a category has shifted or that a basic bar has risen. The mistake is letting the rival finish the sentence. Pressure starts outside; proof has to come back home.\n\nThere are limits. Do not use this move when a rival reveals a legal, safety, or basic quality flaw that must be fixed now. Meet that outside bar first. It also fails when your old purpose is thin or wrong. In those moments, do the opposite: fix the urgent gap, then rebuild the benchmark before you call the next choice faithful."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch14.ex.apple-and-dell-contrast",
+      "sourceAnchorIds": [
+        "ch14.ex.apple-and-dell-contrast"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.apple-and-dell-contrast"
+      ],
+      "title": "Return Before Copy",
+      "tags": [
+        "Apple-Dell",
+        "benchmark"
+      ],
+      "planSpec": {
+        "domain": "product contrast",
+        "audience": "a product lead",
+        "stakes": "rival copy mistaken for progress",
+        "format": "before_after",
+        "requiredBeat": "external rival before internal benchmark"
+      },
+      "scenario": "Imagine a product lead at late sign-off in the Apple-and-rival contrast. The 2001 iPod is on one side, the 2003 Dell DJ on the other, and one blinking cursor follows \"copy.\" The read is headed for a miss, caught late and barely. Before, the contrast says answer the rival. After, it says let the rival name pressure while the internal benchmark judges the reply.",
+      "whatToDo": "When the return line says only \"answer them,\" write the rival first and the internal benchmark second. Do not call the move progress until the second line can judge it.",
+      "whyItMatters": "When the order is restored, Apple-Dell becomes evidence you can inspect. A copied product no longer gets to decide whether the answer is better."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch14.ex.microsoft-long-run-rivalry",
+      "sourceAnchorIds": [
+        "ch14.ex.microsoft-long-run-rivalry"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.microsoft-long-run-rivalry"
+      ],
+      "title": "Second Sighting",
+      "tags": [
+        "Microsoft",
+        "transfer"
+      ],
+      "planSpec": {
+        "domain": "category rivalry",
+        "audience": "a strategy analyst",
+        "stakes": "winning becomes the only measure",
+        "format": "postmortem",
+        "requiredBeat": "second anchor exposes transfer"
+      },
+      "scenario": "Suppose a strategy analyst traces the argument after it is over. Apple-Dell had been asked to prove the whole model by itself. Microsoft, with its 1975 founding and software company identity, changes the audit. Before, one vivid product contrast carried the load. After, a second venue is required, but the return point has not yet been met.",
+      "whatToDo": "When skipping the second sighting leaves one story to prove too much, add Microsoft with its own software marker before you widen the claim.",
+      "whyItMatters": "When transfer is skipped, the lesson stays brittle. A second venue makes the reader compare the pattern instead of admiring one sharp contrast."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch14.ex.southwest-airlines-operating-benchmark",
+      "sourceAnchorIds": [
+        "ch14.ex.southwest-airlines-operating-benchmark"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.southwest-airlines-operating-benchmark"
+      ],
+      "title": "Dallas Sets the Edge",
+      "tags": [
+        "Southwest",
+        "operating standard"
+      ],
+      "planSpec": {
+        "domain": "operating standard",
+        "audience": "an operations lead",
+        "stakes": "copying rivals weakens the standard",
+        "format": "walkthrough",
+        "requiredBeat": "operating benchmark before copy"
+      },
+      "scenario": "Suppose an operations lead hears from a traveler before the team writes a rival script: the promise is low fare, not rival mimicry. The Southwest Airlines example starts with 1971, Dallas, and a low-fare carrier role. Step by step, the copy request narrows. The team names the operating standard, drops the broad rival script, and pays the cost of a smaller but clearer promise.",
+      "whatToDo": "Because Dallas changes the job, start with the operating standard, then ask which rival move, if any, helps that standard improve.",
+      "whyItMatters": "When the place sets the edge, the move works without spreading too far. Southwest gives improvement against a standard, not a pass to copy every rival."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch14.ex.apple-and-dell-contrast",
+      "sourceAnchorIds": [
+        "ch14.ex.apple-and-dell-contrast",
+        "ch14.ex.microsoft-long-run-rivalry"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.apple-and-dell-contrast",
+        "ch14.ex.microsoft-long-run-rivalry"
+      ],
+      "title": "True Detail, Wrong Place",
+      "tags": [
+        "Apple-Dell",
+        "grounding"
+      ],
+      "planSpec": {
+        "domain": "case grounding",
+        "audience": "a market analyst",
+        "stakes": "true detail attached to the wrong anchor",
+        "format": "mistake_recovery",
+        "requiredBeat": "hard detail stays with its anchor"
+      },
+      "scenario": "Why can a true detail still fail? Imagine an early draft with one red underline under the 2001 iPod in a Microsoft paragraph. The miss is almost approved. The answer is that the iPod belongs to Apple-Dell. Once it moves back, Microsoft carries its own 1975 software company marker and the comparison stops leaning on borrowed proof.",
+      "whatToDo": "When a true detail starts to travel, ask which contrast earned it. Keep the 2001 iPod with Apple-Dell and make Microsoft use its own marker.",
+      "whyItMatters": "When accuracy is doing the wrong job, the reader gets false ground. A true fact still has to return to the example that made it useful."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch14.ex.apple-and-dell-contrast",
+      "sourceAnchorIds": [
+        "ch14.ex.apple-and-dell-contrast",
+        "ch14.ex.microsoft-long-run-rivalry",
+        "ch14.ex.southwest-airlines-operating-benchmark"
+      ],
+      "namedCaseIds": [
+        "ch14.ex.apple-and-dell-contrast",
+        "ch14.ex.microsoft-long-run-rivalry",
+        "ch14.ex.southwest-airlines-operating-benchmark"
+      ],
+      "title": "Proof Before Advice",
+      "tags": [
+        "anchors",
+        "purpose"
+      ],
+      "planSpec": {
+        "domain": "competitive decision",
+        "audience": "a product group",
+        "stakes": "purpose words without checkable anchors",
+        "format": "decision_memo",
+        "requiredBeat": "named anchors before generic advice"
+      },
+      "scenario": "Suppose product lead Edmund hears the demand: beat the rival, but do not turn the answer into generic purpose advice. He sets the standard in order: product contrast with Apple Inc. The 2001 iPod supplies its marker; Microsoft gives the 1975 software company venue, and Southwest Airlines gives the 1971 Dallas low-fare carrier edge. Approval pauses. The proof still has to return.",
+      "whatToDo": "When the standard is stated, name the anchors.",
+      "whyItMatters": "When anchors vanish, advice floats."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch14.fact.1",
+        "prompt": "A product note keeps the purpose claim but treats Apple-Dell as color. What happens downstream?",
+        "choices": [
+          "The note still has enough support if the principle is clear, because familiar company names can sit in the background as context.",
+          "The note should hold the companies until after the rule is accepted, so the contrast becomes a later illustration.",
+          "The note removes the company behavior that lets readers inspect the claim instead of taking purpose words on trust."
+        ],
+        "correctIndex": 2,
+        "explanation": "Apple-Dell has to carry evidence, not decor. The later-illustration answer is tempting, but it makes the contrast support a rule the reader has not seen in action.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch14.fact.7",
+        "prompt": "When Microsoft drops its software-company marker, which principle is being broken?",
+        "choices": [
+          "Microsoft is being kept too far from Apple-Dell, so the two examples cannot be compared as rival stories.",
+          "The product contrast is being interrupted too soon, before it has proved the full model without help.",
+          "The second venue loses its own factual token, so comparison turns into a renamed product story."
+        ],
+        "correctIndex": 2,
+        "explanation": "Microsoft needs its own marker to teach contrast. Keeping the examples close is not the issue; the issue is making the second one borrow the first one's facts.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch14.fact.2",
+        "prompt": "Apple-Dell has made the move visible. What should come first if the idea is meant to travel?",
+        "choices": [
+          "Bring in Microsoft with the 1975 founding so the pattern appears in a second venue.",
+          "Stay inside Apple-Dell until the product contrast is vivid enough to prove the whole model.",
+          "Move straight to the general rule, because another named company may distract from purpose."
+        ],
+        "correctIndex": 0,
+        "explanation": "A second venue keeps one contrast from carrying all the proof. Staying inside Apple-Dell feels tidy, yet one vivid example can illustrate more than it can prove.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch14.fact.5",
+        "prompt": "Four linked jobs get shortened into one catchphrase. Which problem appears first?",
+        "choices": [
+          "Pressure, benchmark, purpose fit, and later improvement blur, so the decision cannot be diagnosed cleanly.",
+          "The idea becomes too easy to remember, so readers may skip the company examples before seeing the proof return.",
+          "The sequence becomes too rigid, so the rival cannot choose the benchmark after the tactic has already been picked."
+        ],
+        "correctIndex": 0,
+        "explanation": "The four jobs separate what must not blur. The memory answer sounds reader-friendly, but the real loss is diagnostic: one word cannot do all four tasks.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch14.fact.8",
+        "prompt": "An airline page uses Dallas to say every organization should apply the move the same way. What best explains the flaw?",
+        "choices": [
+          "Dallas is too narrow to keep, so removing the place detail would let the idea travel more cleanly.",
+          "Dallas is an edge marker; a change in venue changes how the move works, not just where it appears.",
+          "Dallas matters only after a carrier has copied a rival, so the detail fires later than the page assumes."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dallas limits the claim without killing it. Removing the detail overcorrects, because the place is what keeps the Southwest example from becoming universal.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch14.fact.9",
+        "prompt": "A strategy memo cuts Apple-Dell, Microsoft, and Southwest but keeps purpose advice. Why does the lesson weaken?",
+        "choices": [
+          "It should keep only Apple-Dell, because one product contrast is cleaner than three settings and easier to follow.",
+          "It loses the three checkable anchors that make purpose language inspectable instead of abstract.",
+          "It should save the named examples for the end, after the reader agrees with the purpose claim."
+        ],
+        "correctIndex": 1,
+        "explanation": "The anchors make the claim testable. Keeping only Apple-Dell asks one contrast to do the work that comparison across settings is meant to do.",
+        "bloomsLevel": "evaluate",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch14.fact.3",
+        "prompt": "Southwest enters after the product and software examples. Which priority fits its role?",
+        "choices": [
+          "Use Southwest to repeat the Apple-Dell lesson in airline form, so the claim sounds steady.",
+          "Use Southwest Airlines and 1971 to shift cast and setting, then test a nearby misconception.",
+          "Skip Southwest unless it proves the same category-rivalry point that Microsoft already carried."
+        ],
+        "correctIndex": 1,
+        "explanation": "Southwest should change the angle. Repeating Apple-Dell would sound orderly, but the third setting is useful because it tests a neighboring error.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch14.fact.4",
+        "prompt": "A group picks a benchmark, chooses a tactic, and names the rival last. What happens next?",
+        "choices": [
+          "Little changes, because sequence is style as long as the final message is clear.",
+          "The group should copy fast, then write its internal standard after the rival has set the mark for everyone.",
+          "The rival signal arrives too late, so the tactic must carry the framing job the first step missed."
+        ],
+        "correctIndex": 2,
+        "explanation": "The rival has to frame the benchmark. Copy-fast overshoots; this move lets a rival warn you, but it does not let the rival become the standard.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch14.fact.6",
+        "prompt": "A true 2001 iPod detail moves into a Microsoft comparison because it is accurate. What caused the failure?",
+        "choices": [
+          "The detail left Apple-Dell, so a true fact began grounding the wrong comparison.",
+          "The Microsoft section lacked any rival, so a product detail had to supply the rivalry.",
+          "The same detail should appear in every setting, so readers can compare one marker."
+        ],
+        "correctIndex": 0,
+        "explanation": "True does not mean portable. The every-setting answer feels neat, but one Apple-Dell detail cannot ground Microsoft or Southwest without bending the comparison.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "c01",
+      "sourceAnchorId": "ch14.fact.4",
+      "sourceAnchorIds": [
+        "ch14.fact.4"
+      ],
+      "front": "What is the rival's first job?",
+      "back": "The rival names pressure. It should not become the standard. Put the outside signal before the benchmark that judges the reply.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "c02",
+      "sourceAnchorId": "ch14.fact.5",
+      "sourceAnchorIds": [
+        "ch14.fact.5"
+      ],
+      "front": "Why keep the four jobs separate?",
+      "back": "Pressure, benchmark, purpose fit, and later improvement answer different questions. Blend them and you cannot tell which part of the choice failed.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c03",
+      "sourceAnchorId": "ch14.fact.6",
+      "sourceAnchorIds": [
+        "ch14.fact.6"
+      ],
+      "front": "When can a true detail mislead?",
+      "back": "When it leaves the comparison that earned it. A fact can be accurate and still support the wrong claim if it travels to the wrong place.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c04",
+      "sourceAnchorId": "ch14.fact.2",
+      "sourceAnchorIds": [
+        "ch14.fact.2"
+      ],
+      "front": "What stops one contrast from carrying the proof?",
+      "back": "It keeps one vivid example from doing all the proof work. If the pattern appears in another venue, the idea is less likely to be a one-off story.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "c05",
+      "sourceAnchorId": "ch14.fact.8",
+      "sourceAnchorIds": [
+        "ch14.fact.8"
+      ],
+      "front": "Why do edge details matter?",
+      "back": "They tell you where the move stops. Without an edge, a useful idea becomes a universal script and starts giving bad advice.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "c06",
+      "sourceAnchorId": "ch14.fact.9",
+      "sourceAnchorIds": [
+        "ch14.fact.9"
+      ],
+      "front": "How do you spot generic purpose advice?",
+      "back": "It asks you to believe the words without giving behavior you can inspect. Bring back named anchors or the claim floats.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Return Proof Before You Copy",
+    "titleSourceAnchorIds": [
+      "ch14.fact.4",
+      "ch14.fact.5"
+    ],
+    "coreSkill": "Practice using a rival as an alarm, not a ruler. Write the outside pressure, then write the benchmark that must answer it. The skill is knowing who owes the proof and when it comes back.",
+    "coreSkillSourceAnchorIds": [
+      "ch14.concept",
+      "ch14.fact.4",
+      "ch14.fact.5"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch14.fact.4",
+        "sourceAnchorIds": [
+          "ch14.fact.4"
+        ],
+        "context": "Say aloud before a competitor comparison: \"What did the rival signal, and who brings back proof?\"",
+        "plan": "If a rival is named before your benchmark is clear, then write the rival as pressure and the benchmark as judge."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.6",
+        "sourceAnchorIds": [
+          "ch14.fact.6"
+        ],
+        "context": "Say aloud before reusing a detail: \"Which comparison earned this fact?\"",
+        "plan": "If a hard detail drifts into the wrong venue, then move it back and make the new venue use its own marker."
+      },
+      {
+        "sourceAnchorId": "ch14.fact.5",
+        "sourceAnchorIds": [
+          "ch14.fact.5"
+        ],
+        "context": "Say aloud before approving a move: \"Which job is missing from the loop?\"",
+        "plan": "If pressure, benchmark, purpose fit, or later improvement is missing, then fill that gap before calling the choice progress."
+      }
+    ],
+    "twentyFourHourChallenge": "Before your next status update, write 2 lines in 10 minutes: the rival pressure, then the benchmark proof you need before acting.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch14.fact.4",
+      "ch14.fact.5"
+    ],
+    "weeklyPractice": "Each week, observe one rival reference in your own work, then note whether the next sentence names your benchmark or lets the rival decide.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch14.fact.4",
+      "ch14.fact.5"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "Competition, here, means using a rival as an alarm and your own benchmark as the judge.",
+      "location": "breakdown.deepRead",
+      "why": "It redefines competition in the chapter's terms.",
+      "sourceAnchorIds": [
+        "ch14.concept",
+        "ch14.fact.4"
+      ]
+    },
+    {
+      "text": "Copying first costs you the proof that your own promise was still in charge.",
+      "location": "breakdown.deepRead",
+      "why": "It names the concrete price of the default behavior.",
+      "sourceAnchorIds": [
+        "ch14.fact.4",
+        "ch14.fact.5"
+      ]
+    },
+    {
+      "text": "Who owes whom the proof, and when does it return?",
+      "location": "breakdown.fullRead",
+      "why": "It gives the reader the sharp question to reread.",
+      "sourceAnchorIds": [
+        "ch14.fact.4",
+        "ch14.fact.5"
+      ]
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:23baa8b4839e1b0a7dd20ed950052452c6ec89f77d818c13e785830d0ad27f76",
+      "sourceSidecarPath": ".chapterflow/runs/start-with-why/20260704T125509997Z-823c4c45-75d0-4e18-8d33-ba66548d6e21/sidecars/source/ch14.source.json",
+      "observedAnchorIds": [
+        "ch14.concept",
+        "ch14.ex.apple-and-dell-contrast",
+        "ch14.ex.microsoft-long-run-rivalry",
+        "ch14.ex.southwest-airlines-operating-benchmark",
+        "ch14.fact.1",
+        "ch14.fact.2",
+        "ch14.fact.3",
+        "ch14.fact.4",
+        "ch14.fact.5",
+        "ch14.fact.6",
+        "ch14.fact.7",
+        "ch14.fact.8",
+        "ch14.fact.9",
+        "ch14.framework.the.new.competition.framework"
+      ],
+      "effectiveAnchors": {
+        "hook": [
+          "ch14.fact.4",
+          "ch14.fact.5"
+        ],
+        "counterintuition": [
+          "ch14.concept",
+          "ch14.fact.4",
+          "ch14.fact.5"
+        ],
+        "tryThisNow": [
+          "ch14.fact.4",
+          "ch14.fact.5"
+        ],
+        "keyTakeaway": [
+          "ch14.concept",
+          "ch14.fact.4",
+          "ch14.fact.5"
+        ],
+        "breakdown.fastRead": [
+          "ch14.concept",
+          "ch14.fact.1",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.ex.apple-and-dell-contrast"
+        ],
+        "breakdown.deepRead": [
+          "ch14.concept",
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.7",
+          "ch14.ex.apple-and-dell-contrast",
+          "ch14.ex.microsoft-long-run-rivalry"
+        ],
+        "breakdown.fullRead": [
+          "ch14.concept",
+          "ch14.fact.1",
+          "ch14.fact.2",
+          "ch14.fact.3",
+          "ch14.fact.4",
+          "ch14.fact.5",
+          "ch14.fact.6",
+          "ch14.fact.7",
+          "ch14.fact.8",
+          "ch14.fact.9",
+          "ch14.ex.apple-and-dell-contrast",
+          "ch14.ex.microsoft-long-run-rivalry",
+          "ch14.ex.southwest-airlines-operating-benchmark"
+        ]
+      }
+    }
+  }
+}

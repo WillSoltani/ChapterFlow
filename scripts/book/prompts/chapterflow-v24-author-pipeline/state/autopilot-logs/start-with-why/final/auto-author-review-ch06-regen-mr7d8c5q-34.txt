@@ -1,0 +1,73 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Correct answers repeatedly use the chapter's more exact vocabulary and contrast logic, while many distractors are easy straw moves such as replacing the first story, skipping examples, or assuming loyalty/price already proves trust.", "Several correct choices are the most qualified and operational option, which can cue test-wise readers even without full comprehension."]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 82,
+    "transfer": 70,
+    "practical": 76,
+    "summaries": 84,
+    "tone": 76,
+    "limits": 88,
+    "insight": 81,
+    "density": 74,
+    "beginner": 77
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Trust is permission to rely before every detail is rechecked.",
+      "why": "Strong, memorable mechanism for the chapter's central idea."
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt for proof that came back.",
+      "why": "Best compressed line; it reverses a common business mistake clearly."
+    },
+    {
+      "quote": "Cold coffee sits near her elbow.",
+      "why": "Decorative specificity that does not teach the trust mechanism."
+    },
+    {
+      "quote": "In a bicycle shop staff huddle, service lead Daniel hears the early signal: 1994, and no one has flagged it yet.",
+      "why": "The transfer example feels manufactured and implausible."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "deep read / full read",
+      "problem": "The chapter names Southwest, Dallas, employees, low fares, Continental, Houston, 1934, and 1994, but rarely shows the actual conduct that returned under pressure. The reader gets the framework more than the witnessed proof.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "Hailey 'counts the conduct,' but the example does not name the conduct or show a concrete before-to-after consequence. The cold coffee detail is filler.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 4",
+      "problem": "The bicycle shop transfer is strained: Daniel somehow treats '1994' as an 'early signal,' and the consequence is only that the promise narrows. It reads like a lesson restated inside a prop scene.",
+      "mustFix": true
+    },
+    {
+      "unit": "quizzes overall",
+      "problem": "The answer keys are sound, but distractors are often visibly wrong because they overreach, reverse the sequence, or remove named grounding. That makes several questions easier to game.",
+      "mustFix": false
+    },
+    {
+      "unit": "practical section / try this now",
+      "problem": "The action is low-friction, but 'belief, act, return' remains abstract unless the chapter gives more examples of acceptable versus weak filled-in promises.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some phrases have scaffold smell or cryptic compression, such as 'adds a second bill' and 'the ground turns false,' which may slow beginners.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong conceptual chapter with memorable lines, fair keys, and useful limits around overclaiming. It does not quite clear a professional ship bar because its transfer examples often simulate concreteness instead of showing real conduct, decision, and consequence. The core lesson is worth keeping, but the chapter needs more observed action and less prop detail before it will reliably teach the move beyond its own airline frame."
+}
+```

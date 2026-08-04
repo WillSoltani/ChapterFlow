@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "b", "b", "c", "a", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The cold-water study says a milder ending can improve remembered experience even when the episode lasts longer.",
+      "The red phone/popsicle scene shows a modest place can create one vivid, tellable peak that changes the ordinary script.",
+      "The YES Prep section frames the public announcement as marking a threshold before the next stage becomes private logistics.",
+      "The full read names elevation, insight, pride, and connection as the four common ingredients.",
+      "The red-phone lesson says a concrete object can signal that the usual script has changed.",
+      "The Magic Castle example says the delivery matters: request plus silver tray turns a free snack into a small event.",
+      "The YES Prep logic says to mark the crossing before the next stage turns into private logistics.",
+      "The prose explicitly rejects equal-minute averaging and says peak and ending shape recall.",
+      "The quiet mint has free value but no tellable event, matching the contrast between a quiet free item and the Popsicle Hotline."
+    ],
+    "confidence": ["high", "high", "medium", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "a is also defensible because the same prose says public witnessing makes effort visible; the scenario's clapping and certificates support pride as much as threshold.",
+      "",
+      "",
+      "",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "Q2, Q5, Q6, Q7, and Q9 use giveaway chapter phrases such as 'tellable,' 'script has changed,' 'small event,' and 'private logistics.'",
+      "Several distractors are exaggerated absolutes or delays, such as 'leave the finish alone,' 'Plan no guest moments,' 'only later,' and 'higher cost.'",
+      "Q3 has two lesson-shaped positive answers, which makes the intended key under-determined rather than merely hard."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 68,
+    "transfer": 82,
+    "practical": 87,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 92,
+    "insight": 88,
+    "density": 82,
+    "beginner": 93
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Memory keeps score in odd ways. It does not average each minute. It holds what rose above the line and how the episode ended.",
+      "why": "This is the chapter's clearest, most memorable mechanism."
+    },
+    {
+      "quote": "A concrete object can tell people the script has changed.",
+      "why": "This compresses the red-phone lesson into a transferable rule."
+    },
+    {
+      "quote": "New nurses finish a hard training course. The director can file their certificates or ask them to name their next unit before the team claps.",
+      "why": "This quiz setup activates both pride/public witnessing and threshold-marking, creating two defensible answers."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "Options a and b are both directly supported by the prose, so the question has no single derivable key.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct options repeat exact lesson language while distractors use obvious overstatements, creating answer tells.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "Thin-but-usable example: the trainer scenario is generic and the consequence is asserted more than shown.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "Thin-but-usable example: it repeats the cold-water framing for Leah rather than adding a fresh before-to-after consequence.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is strong on memory, clarity, and beginner access: the red phone, cold-water contrast, and YES Prep threshold give readers concrete handles they can remember and use. The summaries and limits are unusually solid, and the practical actions are low-friction. I would not ship it yet against a professional bar because Q3 is a broken quiz item with two defensible answers, and the quiz overall has some answer-spotting tells. Fixing that would likely move the chapter into ship range."
+}
+```

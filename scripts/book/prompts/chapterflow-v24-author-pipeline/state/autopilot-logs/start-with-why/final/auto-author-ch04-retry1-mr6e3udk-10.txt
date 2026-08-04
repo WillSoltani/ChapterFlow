@@ -1,0 +1,12 @@
+Wrote [start-with-why-ch04.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch04.v21-native.chapter.json).
+
+Validation:
+- `npx tsx src/cli.ts author-check ...` clean
+- `npx tsx src/cli.ts gate-chapter ...` PASS, 0 blockers
+- `quiz-verify` 9/9 match
+- `evidence-audit` no candidates
+- Rendered chars: 17,156, within target
+- Quiz key sequence: `1,2,0,2,0,1,1,0,2`
+- Distractor parity: key uniquely longest 0/9, uniquely shortest 0/9
+
+Gate still reports 7 majors and 8 minors as non-blocking advisories.

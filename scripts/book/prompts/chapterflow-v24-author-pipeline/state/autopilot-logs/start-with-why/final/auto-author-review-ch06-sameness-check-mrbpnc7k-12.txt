@@ -1,0 +1,49 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "keyDisagreements": [],
+    "tells": ["Several wrong choices are easy to eliminate because they overclaim with phrases like all airlines, whole trust argument, only after loyalty, or broad purpose advice."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 86,
+    "transfer": 82,
+    "practical": 84,
+    "summaries": 89,
+    "tone": 87,
+    "limits": 88,
+    "insight": 90,
+    "density": 86,
+    "beginner": 84
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The order is plain: Belief, Predictable behavior, Trust, Loyalty.",
+      "why": "This is the chapter's core move in a compact, memorable form."
+    },
+    {
+      "quote": "A true detail in the wrong paragraph is not extra proof; it is false ground.",
+      "why": "Strong practical guardrail for avoiding overextended examples."
+    },
+    {
+      "quote": "After lunch, the turnaround postmortem starts with cold coffee.",
+      "why": "This example detail feels decorative and does not add much teaching value."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "The cold-coffee workshop setup is thin scene-setting; it names the airline and issue but does not show a concrete decision with a consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some distractors are weakened by obvious overclaiming or reversed order, making a few answers guessable without close reading.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a clear mechanism: belief must frame visible behavior before trust and loyalty can honestly follow. The prose is concrete, layered well across fast/deep/full reads, and the quiz keys are sound. Its main weakness is that a few examples use light workshop scenery rather than fully specific before-to-after consequences, and some distractors are easier than they need to be, but these are craft issues rather than blocking defects."
+}
+```

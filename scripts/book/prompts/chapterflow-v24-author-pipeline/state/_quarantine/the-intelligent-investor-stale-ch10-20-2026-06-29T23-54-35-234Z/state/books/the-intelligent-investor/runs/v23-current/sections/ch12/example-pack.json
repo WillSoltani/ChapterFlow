@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch12",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Handoff That Treats EPS as Finished",
+      "scenario": "What fails when EPS is treated as a complete answer during a clinic handoff? Iris points to a dashboard note and tells Marcus the headline EPS is enough to move the decision along. Lena interrupts because the handoff has skipped footnotes and adjustments. The old default fails in a concrete moment: a clean-looking per-share figure is being treated as self-explanatory even though headline EPS may exclude or reclassify important costs, the same reason Alcoa's 1970 earnings presentation needs scrutiny around special charges and presentation choices.",
+      "whatToDo": "Repair the handoff before the decision moves. Add a plain line under the EPS note: which costs, charges, or accounting choices sit outside the headline figure? Then mark the decision as incomplete until the footnotes and adjustments have been checked.",
+      "whyItMatters": "The failure is not that EPS is useless. The failure is letting the headline number end the conversation. Accounting choices can change the meaning of per-share earnings, so the reader-facing move is to inspect what sits behind the figure before relying on it.",
+      "sourceAnchorIds": [
+        "ch12.fact.1",
+        "ch12.example.1"
+      ],
+      "sourceFactIds": [
+        "ch12.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch12.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Banking Dashboard Memo That Changes the Choice",
+      "scenario": "How does the choice change when the latest EPS stops dominating a banking dashboard? Marcus drafts a short tradeoff memo beside the dashboard: before, the most recent result was going to drive the valuation; after, Lena asks for an average across years because one unusually good or bad year may not represent earning power. Theo adds the warning from Enron's accounting failure: reported results can mask economic weakness, especially when adjusted earnings and off-balance-sheet structures deserve questioning.",
+      "whatToDo": "Use the memo to separate recent performance from earning power. Keep the recent EPS visible, but add an averaged-earnings line and a question about whether reported results are masking weakness. Let the averaged view change the decision if the latest year looks like a cyclical extreme.",
+      "whyItMatters": "The move changes the decision from accepting the freshest figure to testing whether the figure represents durable earning power. Averaging across years can reduce cyclical distortion because recent results can sit at an extreme.",
+      "sourceAnchorIds": [
+        "ch12.fact.2",
+        "ch12.example.2"
+      ],
+      "sourceFactIds": [
+        "ch12.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch12.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Kitchen Table Charge Check",
+      "scenario": "When does deadline triage make a special charge check harder? At the kitchen table, Lena is rushing and writes that every special charge should be excluded. Theo catches the shortcut, but the recovery is not clean. Amara has to reopen SEC EDGAR, compare the headline EPS with annual and quarterly reports, and read the financial statement footnotes. The first pass only labels the charge as unusual; the second pass asks whether repeated exceptions have stopped being exceptional.",
+      "whatToDo": "Triage the deadline with a charge log. For each special charge, write whether it is a one-off adjustment or a sign of a recurring problem. If the footnotes do not support ignoring it, leave the charge in the judgment instead of automatically removing it.",
+      "whyItMatters": "Special charges require judgment rather than automatic exclusion. Recurring unusual charges may reveal a real business problem, so recovery means slowing down enough to test the exception against filed statements and footnotes.",
+      "sourceAnchorIds": [
+        "ch12.fact.3",
+        "ch12.example.3"
+      ],
+      "sourceFactIds": [
+        "ch12.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch12.example.3"
+      ]
+    }
+  ]
+}

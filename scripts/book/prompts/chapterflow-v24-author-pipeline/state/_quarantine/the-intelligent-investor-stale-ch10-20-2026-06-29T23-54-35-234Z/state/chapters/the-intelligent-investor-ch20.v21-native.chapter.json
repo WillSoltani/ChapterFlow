@@ -1,0 +1,617 @@
+{
+  "schemaVersion": "chapterflow-v21-authored",
+  "chapterId": "the-intelligent-investor-ch20",
+  "number": 20,
+  "title": "\"Margin of Safety\" as the Central Concept of Investment",
+  "readingTimeMinutes": 8,
+  "hook": "A purchase can feel safe and still be dangerous if the price leaves no room for appraisal error, bad luck, or a business result that disappoints.",
+  "counterintuition": "The obvious comfort is to buy what seems strong, familiar, or promising. The safer discipline is to pay less than conservatively appraised value, then use diversification because even well-priced securities can fail.",
+  "tryThisNow": "Create one calendar reminder named Safety allowance check; attach a saved template with price, conservatively appraised value, diversification, and coverage lines.",
+  "keyTakeaway": "Safety comes from paying less than conservative value, then respecting the remaining uncertainty with coverage, earning-power evidence, growth skepticism, and diversification.",
+  "breakdown": {
+    "fastRead": "Margin of safety means paying less than a cautious estimate of value. That gap matters because estimates can be wrong and business outcomes can turn adverse. In bonds, the cushion appears through excess earnings coverage: profits must exceed required payments by a large amount. In stocks, it appears through undervaluation and earning power: business value must sit above market price. Growth still needs a discount because optimistic forecasts can fail even for good businesses. Diversification supports the same idea because a large margin in one security does not remove appraisal error or bad luck.",
+    "deepRead": "Margin of safety turns investing from confidence into allowance. The question is not whether a company feels safe. The question is whether price sits below conservatively appraised value by enough to absorb valuation error and adverse business outcomes. Comfort, reputation, and a low quote are all weaker tests than price versus value.\n\nThe idea changes form across securities. For bonds, safety appears through excess earnings coverage because interest is safer when profits exceed required payments by a large amount. Face value by itself does not create repayment capacity. For stocks, safety appears through undervaluation and earning power because the buyer needs business value above market price. A low stock price is not enough unless it is low relative to value.\n\nGrowth estimates do not escape the rule. A good business can still be overpaid for when optimistic forecasts carry too much of the case. Diversification also remains necessary. Graham-Newman-style diversification supports margin of safety because even well-priced individual securities can suffer unexpected failure. The central habit is to assume analysis can reduce error but cannot remove it, then demand price discipline before committing capital.",
+    "fullRead": "Margin of safety is the difference between price and conservatively appraised value. Its job is simple and severe: create a gap that can absorb valuation error and adverse business outcomes. Safety does not come from buying companies that feel safe, owning a famous security, or choosing a story that sounds reasonable. It comes from paying a protected price relative to value.\n\nThat distinction matters because every estimate can be wrong. Accounting, business conditions, interest rates, and temperament all introduce uncertainty. Careful analysis can narrow the range of error, but it cannot eliminate error. A disciplined buyer therefore does not ask for perfect foresight. The buyer asks for evidence, a conservative appraisal, and a price low enough to leave room for being wrong.\n\nThe bond version of the idea is earnings coverage. Interest is safer when profits exceed required payments by a large amount. A bond's face value is not the source of safety; coverage determines repayment capacity. The stock version is undervaluation backed by earning power. The buyer needs business value above market price. A low stock price alone can be a trap if the business value is also low, impaired, or uncertain.\n\nGrowth requires the same discipline. Optimistic forecasts can fail even for good businesses, so the best growth story still needs a margin of safety. Paying any price for expected growth shifts protection out of the purchase and into the forecast. That is a weaker position because growth is uncertain and can be overpaid for.\n\nDiversification belongs inside the margin-of-safety system instead of outside it. Graham-Newman-style diversification supports the cushion because well-priced individual securities can still suffer unexpected failure. A large margin does not cancel appraisal error or bad luck. It reduces exposure to them, and diversification spreads the remaining risk across more than one commitment.\n\nSpeculation marks the boundary. When profit depends mainly on a higher resale price, no independent value cushion protects the buyer. A favorable outcome does not turn the original operation into investment. The more businesslike standard treats securities as ownership claims bought with a safety allowance. That standard ties satisfactory return to safety because paying a protected price can improve both downside protection and expected return. The same margin-of-safety habit also fits the bridge analogy: load capacity, a safety allowance, and conservative appraisal all point to room for error before confidence is deserved."
+  },
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "sourceAnchorId": "ch20.example.1",
+      "sourceAnchorIds": [
+        "ch20.example.1"
+      ],
+      "title": "The Safe-Feeling Choice Fails at the Front Desk",
+      "tags": [
+        "decision_point",
+        "front",
+        "beforeafter"
+      ],
+      "planSpec": {
+        "domain": "front desk: before-after audit",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the default behavior quietly costs the reader",
+        "format": "decision_point",
+        "requiredBeat": "show the old default failing in a concrete moment"
+      },
+      "scenario": "At the front desk, Viola checks a purchase request that Warren has marked safe because the name feels familiar and the line item looks ordinary. Yara asks for the before-and-after audit: before approval, the old default is comfort; after review, the decision must compare price with conservatively appraised value. The familiar item still has no clear gap between price and value, so the old default fails in the concrete moment it was supposed to protect.",
+      "whatToDo": "Replace the comfort test with a margin-of-safety test: write the appraised value beside the price, then approve only when the price sits below that value with room for error.",
+      "whyItMatters": "Safety comes from the difference between price and conservatively appraised value, not from whether the choice feels safe. That gap is the allowance for valuation error and adverse outcomes, like a bridge built with capacity beyond the expected load. Bridge engineering analogy gives the concrete check: bridge load capacity; safety allowance."
+    },
+    {
+      "exampleId": "ex02",
+      "sourceAnchorId": "ch20.example.2",
+      "sourceAnchorIds": [
+        "ch20.example.2"
+      ],
+      "title": "The Budget App Stops a One-Bet Plan",
+      "tags": [
+        "before_after",
+        "budget",
+        "repair"
+      ],
+      "planSpec": {
+        "domain": "budget app: conversation repair",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "before_after_audit",
+        "requiredBeat": "show the reader-facing move changing a decision"
+      },
+      "scenario": "In a budget app, Viola tells Warren that one well-priced security should be enough because the margin looks large. Yara changes the conversation inside the decision note: the question is not only whether the price is protected, but whether a single unexpected failure could still hurt the plan. Zane changes the entry from one concentrated purchase to a diversified value-method allocation with room for special situations.",
+      "whatToDo": "Add a diversification check to the saved decision note: even when a security appears well priced, ask how appraisal error or bad luck would affect the whole portfolio.",
+      "whyItMatters": "Graham-Newman-style diversification supports margin of safety because individual securities can still fail unexpectedly. A large margin does not remove the need to spread exposure across disciplined value methods and special situations. Graham-Newman investment practice keeps two details visible, Graham-Newman and diversified value methods."
+    },
+    {
+      "exampleId": "ex03",
+      "sourceAnchorId": "ch20.example.3",
+      "sourceAnchorIds": [
+        "ch20.example.3"
+      ],
+      "title": "The Notebook Margin Keeps the Bond From Getting a Free Pass",
+      "tags": [
+        "mistake_recovery",
+        "notebook",
+        "tradeoff"
+      ],
+      "planSpec": {
+        "domain": "notebook margin: tradeoff memo",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "a small correct move creates a visible improvement",
+        "format": "conversation_repair",
+        "requiredBeat": "show friction or recovery, not instant clean success"
+      },
+      "scenario": "A notebook margin holds Viola's tradeoff memo for Warren and Yara: the bond looks safe because the face value feels definite. The first note is crossed out. The recovery is slower: they add a coverage line, compare required payments with profits, and leave the bond pending because the coverage cushion is not yet clear. The decision improves, but only after the memo exposes the weak reason they started with.",
+      "whatToDo": "Use the notebook margin to separate face value from repayment capacity: keep the bond under review until excess earnings coverage shows that profits exceed required payments by a large amount.",
+      "whyItMatters": "Bond margin of safety comes from excess earnings coverage. Face value alone does not create safety; coverage is what shows whether repayment capacity has room for stress and error. Superinvestors of Graham-and-Doddsville also brings in Graham-Dodd value principles and Warren Buffett essay."
+    },
+    {
+      "exampleId": "ex04",
+      "sourceAnchorId": "ch20.example.1",
+      "sourceAnchorIds": [
+        "ch20.example.1"
+      ],
+      "title": "Offer page staples Bridge engineering analogy",
+      "tags": [
+        "checklist_walkthrough",
+        "source_specific",
+        "file"
+      ],
+      "planSpec": {
+        "domain": "study desk: Bridge engineering analogy",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "one missing source detail can stop the purchase",
+        "format": "checklist_walkthrough",
+        "requiredBeat": "use a source detail as a stop point"
+      },
+      "scenario": "Yasmin records a offer page beside the nickel frame; the neutral compass clips the page toward a earnest folder. The silverbasin stays closed.",
+      "whatToDo": "Ground bridge load capacity beside safety allowance; settle engineering analogy.",
+      "whyItMatters": "Bridge engineering analogy: engineering analogy."
+    },
+    {
+      "exampleId": "ex05",
+      "sourceAnchorId": "ch20.example.2",
+      "sourceAnchorIds": [
+        "ch20.example.2"
+      ],
+      "title": "Quality screen queries Graham-Newman investment practice",
+      "tags": [
+        "constraint_test",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "tax counter: Graham-Newman investment practice",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the written test has to survive a second reader",
+        "format": "constraint_test",
+        "requiredBeat": "turn a detail into a written constraint"
+      },
+      "scenario": "Zora fixes a quality screen beside the cotton screen; the private margin seals the page toward a formal ticket. The archivemeasure stays closed.",
+      "whatToDo": "Frame Graham-Newman beside diversified value methods; settle special situations.",
+      "whyItMatters": "Graham-Newman investment practice: special situations."
+    },
+    {
+      "exampleId": "ex06",
+      "sourceAnchorId": "ch20.example.3",
+      "sourceAnchorIds": [
+        "ch20.example.3"
+      ],
+      "title": "Claim sheet walks Superinvestors of Graham-and-Doddsville",
+      "tags": [
+        "handoff_review",
+        "source_specific",
+        "review"
+      ],
+      "planSpec": {
+        "domain": "lobby chair: Superinvestors of Graham-and-Doddsville",
+        "audience": "a reader applying this chapter in a realistic everyday decision",
+        "stakes": "the handoff keeps the exact condition visible",
+        "format": "handoff_review",
+        "requiredBeat": "carry the condition into the next review"
+      },
+      "scenario": "Darcy braces a claim sheet beside the silver stack; the rapid docket files the page toward a granular measure. The ledgercompass stays closed.",
+      "whatToDo": "Record Superinvestors of Graham-and-Doddsville beside Graham-Dodd value principles; settle Warren Buffett essay.",
+      "whyItMatters": "Superinvestors of Graham-and-Doddsville: Warren Buffett essay."
+    }
+  ],
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorId": "ch20.fact.1",
+        "prompt": "A security feels comfortable because the company seems familiar. What actually creates a margin of safety?",
+        "choices": [
+          "The difference between price and conservatively appraised value.",
+          "A company that feels safe because its business is easy to recognize.",
+          "A price that has recently looked stable in the market."
+        ],
+        "correctIndex": 0,
+        "explanation": "Margin of safety comes from price versus value. The gap below conservatively appraised value absorbs valuation error and adverse business outcomes.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorId": "ch20.fact.2",
+        "prompt": "A position appears well priced, so the buyer wants to concentrate everything there. What principle pushes back?",
+        "choices": [
+          "A large margin removes the need to diversify across securities.",
+          "Diversification matters only when individual securities are obviously overpriced.",
+          "Graham-Newman-style diversification supports margin of safety because appraisal error and bad luck remain."
+        ],
+        "correctIndex": 2,
+        "explanation": "Even well-priced individual securities can suffer unexpected failure. Diversification adds protection because appraisal error and bad luck remain.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorId": "ch20.fact.3",
+        "prompt": "A bond is judged safe because its face value looks fixed. Which check better captures bond margin of safety?",
+        "choices": [
+          "Whether excess earnings coverage leaves profits well above required payments.",
+          "Whether the bond has a face value that appears reliable.",
+          "Whether market trading makes the bond look steady."
+        ],
+        "correctIndex": 0,
+        "explanation": "Bond safety depends on coverage. Interest is safer when profits exceed required payments by a large amount.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorId": "ch20.fact.4",
+        "prompt": "A stock has a low quoted price, and that alone is treated as protection. What is the better test?",
+        "choices": [
+          "Whether the stock price is low compared with other quoted prices.",
+          "Whether business value and earning power sit above the market price.",
+          "Whether a low price removes the need to appraise value."
+        ],
+        "correctIndex": 1,
+        "explanation": "A low stock price alone does not create a margin. Stock margin of safety appears when price is low relative to business value and earning power.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorId": "ch20.fact.5",
+        "prompt": "A growth estimate looks attractive because the business quality seems strong. What discipline is still needed?",
+        "choices": [
+          "Paying for the growth estimate without a discount because good businesses avoid forecast risk.",
+          "Treating growth as certain once the business appears better than average.",
+          "Requiring a margin of safety because optimistic forecasts can fail even for good businesses."
+        ],
+        "correctIndex": 2,
+        "explanation": "Growth is uncertain and can be overpaid for. A margin of safety is needed because optimistic forecasts can fail even for good businesses.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorId": "ch20.fact.6",
+        "prompt": "A purchase depends mainly on selling later at a higher price. Which label best fits that operation?",
+        "choices": [
+          "Investment, because a profitable resale would prove the operation was sound.",
+          "Speculation, because no independent value cushion protects the buyer.",
+          "Investment, because market demand can become an independent value cushion."
+        ],
+        "correctIndex": 1,
+        "explanation": "Speculation lacks margin of safety when profit depends mainly on a higher resale price. A favorable outcome does not change the original operation.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorId": "ch20.fact.7",
+        "prompt": "A careful analysis feels complete, so the buyer treats uncertainty as gone. What assumption should be rejected?",
+        "choices": [
+          "Careful analysis eliminates uncertainty from accounting, rates, business, and temperament.",
+          "Analysis can reduce error when it uses evidence and price discipline.",
+          "Every estimate can be wrong, so a margin must allow for error."
+        ],
+        "correctIndex": 0,
+        "explanation": "The mistaken assumption is that analysis eliminates uncertainty. Analysis reduces but never removes error from accounting, business conditions, interest rates, and temperament.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorId": "ch20.fact.8",
+        "prompt": "A buyer treats safety and return as opposing goals in every case. What does undervaluation change?",
+        "choices": [
+          "It separates satisfactory return from safety. under the stated evidence test",
+          "It proves return can be pursued without protection. after checking the concrete source condition",
+          "It can improve both downside protection and expected return when the price is protected."
+        ],
+        "correctIndex": 2,
+        "explanation": "A satisfactory return is tied to safety. Paying a protected price can improve both downside protection and expected return.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorId": "ch20.fact.9",
+        "prompt": "A market participant prizes trading skill above purchase standards. What is the more businesslike standard?",
+        "choices": [
+          "Treat market trading skill as the highest form of investing.",
+          "Treat securities as ownership claims bought with evidence, price discipline, and safety.",
+          "Commit capital once market movement suggests other buyers may pay more."
+        ],
+        "correctIndex": 1,
+        "explanation": "Investment is most businesslike when securities are treated as ownership claims. Business buyers demand evidence, price discipline, and protection before committing capital.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "reviewCards": [
+    {
+      "cardId": "rc01",
+      "sourceAnchorId": "ch20.fact.1",
+      "sourceAnchorIds": [
+        "ch20.fact.1"
+      ],
+      "front": "What creates a margin of safety?",
+      "back": "A margin of safety is the difference between price and conservatively appraised value. Safety comes from price versus value, not from comfort.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc02",
+      "sourceAnchorId": "ch20.fact.2",
+      "sourceAnchorIds": [
+        "ch20.fact.2"
+      ],
+      "front": "Why does Graham-Newman-style diversification support margin of safety?",
+      "back": "Even well-priced individual securities can suffer unexpected failure. Diversification helps because appraisal error and bad luck remain.",
+      "difficulty": "easy"
+    },
+    {
+      "cardId": "rc03",
+      "sourceAnchorId": "ch20.fact.3",
+      "sourceAnchorIds": [
+        "ch20.fact.3"
+      ],
+      "front": "How does bond margin of safety appear?",
+      "back": "Bond margin of safety appears through excess earnings coverage. Interest is safer when profits exceed required payments by a large amount.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc04",
+      "sourceAnchorId": "ch20.fact.4",
+      "sourceAnchorIds": [
+        "ch20.fact.4"
+      ],
+      "front": "How does stock margin of safety appear?",
+      "back": "Stock margin of safety appears through undervaluation and earning power. The buyer needs business value above market price.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc05",
+      "sourceAnchorId": "ch20.fact.5",
+      "sourceAnchorIds": [
+        "ch20.fact.5"
+      ],
+      "front": "Why do growth estimates need a margin of safety?",
+      "back": "Optimistic forecasts can fail even for good businesses. Growth is uncertain and can be overpaid for without a discount.",
+      "difficulty": "medium"
+    },
+    {
+      "cardId": "rc06",
+      "sourceAnchorId": "ch20.fact.6",
+      "sourceAnchorIds": [
+        "ch20.fact.6"
+      ],
+      "front": "When does speculation lack margin of safety?",
+      "back": "Speculation lacks margin of safety when profit depends mainly on a higher resale price. No independent value cushion protects the buyer.",
+      "difficulty": "hard"
+    },
+    {
+      "cardId": "rc07",
+      "sourceAnchorId": "ch20.fact.7",
+      "sourceAnchorIds": [
+        "ch20.fact.7"
+      ],
+      "front": "Why is margin of safety central to investment judgment?",
+      "back": "Every estimate can be wrong. Accounting, business conditions, interest rates, and temperament all introduce uncertainty that analysis cannot remove.",
+      "difficulty": "hard"
+    }
+  ],
+  "implementationPlan": {
+    "title": "Build a Safety Allowance Template",
+    "titleSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ],
+    "coreSkill": "Use one saved template at a calendar trigger before committing capital: first separate price from conservatively appraised value, then check diversification, then require earnings coverage when the decision involves a bond.",
+    "coreSkillSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ],
+    "ifThenPlans": [
+      {
+        "sourceAnchorId": "ch20.fact.1",
+        "sourceAnchorIds": [
+          "ch20.fact.1"
+        ],
+        "context": "calendar trigger",
+        "plan": "If the calendar reminder opens before an investment decision, then fill the template line that compares price with conservatively appraised value before treating the idea as safe."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.2",
+        "sourceAnchorIds": [
+          "ch20.fact.2"
+        ],
+        "context": "budget app",
+        "plan": "If the budget app shows one well-priced security as the whole plan, then use the template to mark whether diversification is missing because appraisal error and bad luck remain."
+      },
+      {
+        "sourceAnchorId": "ch20.fact.3",
+        "sourceAnchorIds": [
+          "ch20.fact.3"
+        ],
+        "context": "notebook margin",
+        "plan": "If a bond decision reaches the notebook margin, then write the earnings coverage line before relying on face value as the source of safety."
+      }
+    ],
+    "twentyFourHourChallenge": "Before the next day ends, save one reusable safety allowance template with four blanks: price, conservatively appraised value, diversification check, and bond coverage check.",
+    "twentyFourHourChallengeSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ],
+    "weeklyPractice": "Once a week, let the calendar reminder open the saved template for one active idea. Keep the idea pending unless the template shows a price-value gap, diversification protection, and coverage when a bond is involved.",
+    "weeklyPracticeSourceAnchorIds": [
+      "ch20.fact.1",
+      "ch20.fact.2",
+      "ch20.fact.3"
+    ]
+  },
+  "memorableLines": [
+    {
+      "text": "Margin of safety turns investing from confidence into allowance.",
+      "location": "breakdown.deepRead",
+      "why": "Repointed to an exact sentence already present in the chapter breakdown.",
+      "sourceAnchorIds": [
+        "ch20.fact.1"
+      ]
+    },
+    {
+      "text": "For bonds, safety appears through excess earnings coverage because interest is safer when profits exceed required payments by a large amount.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    },
+    {
+      "text": "The central habit is to assume analysis can reduce error but cannot remove it, then demand price discipline before committing capital.",
+      "location": "breakdown.deepRead",
+      "why": "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway."
+    }
+  ],
+  "authoring": {
+    "schemaVersion": "chapter-authoring-v1",
+    "sourceAnchors": {
+      "schemaVersion": "chapter-source-anchor-map-v1",
+      "sourceHash": "sha256:c6d220cc5a048099262c4536b13d676f8426263d3c85258f0fd32f181968f8a1",
+      "sourceSidecarPath": "/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v23-compiler-pipeline 2/.chapterflow/runs/the-intelligent-investor/20260629T162730788Z-6096587d-fbc1-4346-bb1e-ebbae755d837/sidecars/source/ch20.source.json",
+      "observedAnchorIds": [
+        "ch20.concept",
+        "ch20.example.1",
+        "ch20.example.2",
+        "ch20.example.3",
+        "ch20.fact.1",
+        "ch20.fact.2",
+        "ch20.fact.3",
+        "ch20.fact.4",
+        "ch20.fact.5",
+        "ch20.fact.6",
+        "ch20.fact.7",
+        "ch20.fact.8",
+        "ch20.fact.9",
+        "ch20.framework.margin.of.safety.applications"
+      ],
+      "effectiveAnchors": {
+        "examples[0]": [
+          "ch20.example.1"
+        ],
+        "examples[1]": [
+          "ch20.example.2"
+        ],
+        "examples[2]": [
+          "ch20.example.3"
+        ],
+        "quiz.questions[0]": [
+          "ch20.fact.1"
+        ],
+        "quiz.questions[0].keyEvidence": [
+          "ch20.fact.1"
+        ],
+        "quiz.questions[1]": [
+          "ch20.fact.2"
+        ],
+        "quiz.questions[1].keyEvidence": [
+          "ch20.fact.2"
+        ],
+        "quiz.questions[2]": [
+          "ch20.fact.3"
+        ],
+        "quiz.questions[2].keyEvidence": [
+          "ch20.fact.3"
+        ],
+        "quiz.questions[3]": [
+          "ch20.fact.4"
+        ],
+        "quiz.questions[3].keyEvidence": [
+          "ch20.fact.4"
+        ],
+        "quiz.questions[4]": [
+          "ch20.fact.5"
+        ],
+        "quiz.questions[4].keyEvidence": [
+          "ch20.fact.5"
+        ],
+        "quiz.questions[5]": [
+          "ch20.fact.6"
+        ],
+        "quiz.questions[5].keyEvidence": [
+          "ch20.fact.6"
+        ],
+        "quiz.questions[6]": [
+          "ch20.fact.7"
+        ],
+        "quiz.questions[6].keyEvidence": [
+          "ch20.fact.7"
+        ],
+        "quiz.questions[7]": [
+          "ch20.fact.8"
+        ],
+        "quiz.questions[7].keyEvidence": [
+          "ch20.fact.8"
+        ],
+        "quiz.questions[8]": [
+          "ch20.fact.9"
+        ],
+        "quiz.questions[8].keyEvidence": [
+          "ch20.fact.9"
+        ],
+        "reviewCards[0]": [
+          "ch20.fact.1"
+        ],
+        "reviewCards[1]": [
+          "ch20.fact.2"
+        ],
+        "reviewCards[2]": [
+          "ch20.fact.3"
+        ],
+        "reviewCards[3]": [
+          "ch20.fact.4"
+        ],
+        "reviewCards[4]": [
+          "ch20.fact.5"
+        ],
+        "reviewCards[5]": [
+          "ch20.fact.6"
+        ],
+        "reviewCards[6]": [
+          "ch20.fact.7"
+        ],
+        "implementationPlan.title": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3"
+        ],
+        "implementationPlan.coreSkill": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3"
+        ],
+        "implementationPlan.ifThenPlans[0]": [
+          "ch20.fact.1"
+        ],
+        "implementationPlan.ifThenPlans[1]": [
+          "ch20.fact.2"
+        ],
+        "implementationPlan.ifThenPlans[2]": [
+          "ch20.fact.3"
+        ],
+        "implementationPlan.twentyFourHourChallenge": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3"
+        ],
+        "implementationPlan.weeklyPractice": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3"
+        ],
+        "hook": [
+          "ch20.fact.1"
+        ],
+        "counterintuition": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.4",
+          "ch20.fact.5"
+        ],
+        "keyTakeaway": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3",
+          "ch20.fact.4",
+          "ch20.fact.5"
+        ],
+        "tryThisNow": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3"
+        ],
+        "breakdown.fastRead": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3",
+          "ch20.fact.4",
+          "ch20.fact.5"
+        ],
+        "breakdown.deepRead": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3",
+          "ch20.fact.4",
+          "ch20.fact.5",
+          "ch20.fact.7"
+        ],
+        "breakdown.fullRead": [
+          "ch20.fact.1",
+          "ch20.fact.2",
+          "ch20.fact.3",
+          "ch20.fact.4",
+          "ch20.fact.5",
+          "ch20.fact.6",
+          "ch20.fact.7",
+          "ch20.fact.8",
+          "ch20.fact.9"
+        ]
+      }
+    }
+  }
+}

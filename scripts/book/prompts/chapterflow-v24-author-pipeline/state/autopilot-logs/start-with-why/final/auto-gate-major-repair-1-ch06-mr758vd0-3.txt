@@ -1,0 +1,13 @@
+Fixed the blocking `C20.what_to_do_overlap` in [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json:116). The `whatToDo` now adds a distinct boundary-note/scope-filter instruction while preserving `1994`, `Gordon Bethune`, `Continental Airlines`, `From Worst to First`, and the source anchors.
+
+Verification passed:
+
+```text
+npx tsx src/cli.ts qc-converge start-with-why
+DETERMINISTIC-CLEAN
+
+npx tsx src/cli.ts major-status start-with-why
+PASS (21 current major(s), 0 unresolved)
+```
+
+Only advisory lines remain. Note: the edited chapter file is currently untracked in git: `?? state/chapters/start-with-why-ch06.v21-native.chapter.json`.

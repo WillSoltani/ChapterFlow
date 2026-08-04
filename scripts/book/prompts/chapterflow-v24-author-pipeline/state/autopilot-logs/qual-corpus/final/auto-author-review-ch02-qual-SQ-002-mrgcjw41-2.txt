@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": ["No quiz items are present; the quiz is structurally broken rather than guessable."]
+  },
+  "scores": {
+    "retention": 18,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 22,
+    "summaries": 5,
+    "tone": 35,
+    "limits": 55,
+    "insight": 42,
+    "density": 28,
+    "beginner": 50
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Letting go is not pretending; it is deciding where the grievance actually belongs.",
+      "why": "The clearest and most memorable conceptual distinction in the chapter."
+    },
+    {
+      "quote": "Suppression means leaving it underground.",
+      "why": "A compact image that helps retention."
+    },
+    {
+      "quote": "A reader-facing chapter under phase-1 review.",
+      "why": "This reads like scaffolding metadata, not a reader-facing hook."
+    },
+    {
+      "quote": "## Quiz",
+      "why": "The quiz section exists as a heading but contains no questions."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is placeholder/meta text rather than a reader-facing opening, so the section fails its stand-alone promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "The fast read says only \"A concise idea.\" and does not summarize the chapter's actual idea.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The deep read says only \"One added angle.\" and does not provide a usable layered read.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The section is present as a heading but has no content.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The section is present as a heading but gives no action a reader can try.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The section is present as a heading but contains no examples, so transfer is unsupported.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz section contains no questions, making the quiz impossible to answer or grade.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The section is present as a heading but has no review-card content.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The section is present as a heading but has no listed memorable lines.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "The core distinction is promising but remains abstract: it names friend, journal, time, and private reckoning without showing a concrete before-to-after example.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is not shippable as a chapter. The full read contains a useful core move: letting go means processing a grievance in the right place, while suppression means burying it. But nearly every surrounding product layer is empty or placeholder text: the hook, fast read, deep read, key takeaway, action step, examples, quiz, review cards, and memorable lines do not function. A reader could glimpse the intended idea, but the chapter does not yet provide the layered learning, practice, transfer, or assessment required for a professional book-learning product."
+}
+```

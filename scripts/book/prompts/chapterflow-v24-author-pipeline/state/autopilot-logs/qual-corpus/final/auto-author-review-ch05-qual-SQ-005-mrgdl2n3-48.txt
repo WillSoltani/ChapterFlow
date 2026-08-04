@@ -1,0 +1,91 @@
+```json
+{
+  "quizDerivation": {
+    "answers": [],
+    "mechanisms": [],
+    "confidence": [],
+    "ambiguities": [],
+    "tells": []
+  },
+  "scores": {
+    "retention": 5,
+    "quizzes": 0,
+    "transfer": 8,
+    "practical": 0,
+    "summaries": 2,
+    "tone": 18,
+    "limits": 65,
+    "insight": 25,
+    "density": 20,
+    "beginner": 45
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "That claim is debated, so do not read it as proof that body size jumps from mind to mind.",
+      "why": "This is the chapter's strongest moment because it clearly limits an easily overstated interpretation."
+    },
+    {
+      "quote": "A careful reading says your standards can shift when the people close to you act as if a behavior is ordinary.",
+      "why": "This gives the sole substantive mechanism: social normalization can shift perceived standards."
+    },
+    {
+      "quote": "## Key takeaway\n## Try this now\n## Examples\n## Quiz\n## Review cards\n## Memorable lines",
+      "why": "These consecutive empty sections expose the document as an incomplete scaffold rather than a functioning chapter."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The hook is production-status metadata rather than reader-facing content and does not introduce the chapter's subject.",
+      "mustFix": false
+    },
+    {
+      "unit": "fast read",
+      "problem": "The section contains only the placeholder-like phrase \"A concise idea.\" and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "deep read",
+      "problem": "The section contains only the placeholder-like phrase \"One added angle.\" and fails its stand-alone summary promise.",
+      "mustFix": true
+    },
+    {
+      "unit": "full read",
+      "problem": "It begins with \"That is why\" despite no preceding argument, and its single paragraph is too incomplete to function as the promised full explanation.",
+      "mustFix": true
+    },
+    {
+      "unit": "key takeaway",
+      "problem": "The required section is empty.",
+      "mustFix": true
+    },
+    {
+      "unit": "try this now",
+      "problem": "The required section is empty, leaving the reader with no action for applying the chapter's core move.",
+      "mustFix": true
+    },
+    {
+      "unit": "examples",
+      "problem": "The required section is empty, so the claimed mechanism is never demonstrated in a concrete case.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz",
+      "problem": "The quiz is empty; there are no questions to answer or assess.",
+      "mustFix": true
+    },
+    {
+      "unit": "review cards",
+      "problem": "The required section is empty and provides no retrieval practice.",
+      "mustFix": true
+    },
+    {
+      "unit": "memorable lines",
+      "problem": "The required section is empty and supplies no deliberate retention aid.",
+      "mustFix": true
+    }
+  ],
+  "oneParagraphVerdict": "This is an incomplete chapter scaffold, not a shippable learning unit. Its one substantive paragraph offers a useful and appropriately cautious distinction between network clustering, unsupported contagion claims, and the plausible mechanism of shifting social standards. However, the fast and deep reads are placeholders, the full read lacks necessary context, and every instructional section after it is empty. With no takeaway, exercise, examples, quiz, review cards, or memorable lines, readers cannot reliably learn, practise, test, or retain the core idea."
+}
+```

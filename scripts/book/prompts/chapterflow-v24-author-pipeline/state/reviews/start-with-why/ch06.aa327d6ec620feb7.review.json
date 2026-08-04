@@ -1,0 +1,93 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "start-with-why-ch06",
+  "chapterNumber": 6,
+  "contentHash": "aa327d6ec620feb7",
+  "reviewerSessionId": "auto-author-review-ch06-mr8b37x5-4",
+  "scores": {
+    "retention": 90,
+    "quizzes": 92,
+    "transfer": 84,
+    "practical": 89,
+    "summaries": 88,
+    "tone": 84,
+    "limits": 87,
+    "insight": 91,
+    "density": 85,
+    "beginner": 86
+  },
+  "composite": 87.8,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "b",
+      "c",
+      "c",
+      "a",
+      "b",
+      "b",
+      "a",
+      "a",
+      "c"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Trust is the risk you can take because the promise has come back true.",
+      "why": "Strong, compact mechanism: trust is tied to repeated proof rather than sentiment.",
+      "verified": true
+    },
+    {
+      "quote": "Loyalty is not the start of trust; it is the receipt.",
+      "why": "Memorable line that reverses the common mistake and is likely to stick.",
+      "verified": true
+    },
+    {
+      "quote": "Here is the reader's version. You do not need a title to mark a promise.",
+      "why": "Good transfer move from airline examples into a low-friction action for ordinary readers.",
+      "verified": true
+    },
+    {
+      "quote": "Denise stops at the counter while a low fare waits for employees to make it mean trust.",
+      "why": "The hook is vivid but cryptic before the chapter has supplied enough context.",
+      "verified": true
+    }
+  ],
+  "tells": [],
+  "complaints": [
+    {
+      "unit": "hook",
+      "problem": "The opening sentence is memorable but opaque; 'a low fare waits for employees to make it mean trust' may slow a cold beginner before the core model is explained.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "Thin-but-usable example: it names the decision to mark employees rather than price, but it does not show a concrete later moment where the behavior returns and changes a customer's risk.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "Thin-but-usable example: it invokes Continental's turnaround and cost paid, but the action that made belief visible stays abstract rather than showing a specific behavior and consequence.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "Some sections have a light template smell from repeated named-reader setups and repeated 'mark' phrasing, even though the prose remains clear.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable. Its core move is clear and memorable: belief comes before behavior, behavior must return visibly under pressure, trust lowers risk, and loyalty follows. The quiz is fair and the answer key is sound; the causes named in why-style questions match the prose rather than merely restating outcomes. The main weakness is transfer depth: several examples are usable but a bit schematic, naming the right decision without fully dramatizing a before-to-after consequence. That lowers polish, not publishability.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "e5c72784535c2c04c5e8aa6931852dc255ae1688d0f84cbb5b17d732b0a71ce4",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-05T21:32:13.017Z"
+}

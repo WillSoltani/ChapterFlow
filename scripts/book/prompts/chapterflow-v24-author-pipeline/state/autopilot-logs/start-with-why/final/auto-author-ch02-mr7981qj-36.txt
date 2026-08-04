@@ -1,0 +1,11 @@
+Done: [start-with-why-ch02.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch02.v21-native.chapter.json)
+
+Verification:
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors, 1 non-blocking minor
+- `quiz-verify`: 9/9 match with required key pattern `2,2,1,1,0,2,1,0,0`
+- Evidence audit: no invented-witness or attribution candidates
+- Reader text length: 15,974 chars
+- Scaffold scan: none found
+
+Note: the target chapter file is currently untracked from the repo root, so `git diff` does not show it.

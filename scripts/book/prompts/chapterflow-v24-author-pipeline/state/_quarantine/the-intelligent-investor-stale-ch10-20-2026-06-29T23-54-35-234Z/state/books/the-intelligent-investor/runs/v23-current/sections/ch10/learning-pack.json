@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch10",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch10.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.1"
+        ],
+        "prompt": "An investor hires an adviser and stops reviewing recommendations because a professional is now involved. What is the main error?",
+        "choices": [
+          "The investor should avoid all advice because using help always weakens judgment.",
+          "Using an adviser does not remove responsibility because the owner still bears losses and must judge prudence.",
+          "Hiring a professional transfers accountability because advice replaces the owner's exposure."
+        ],
+        "correctIndex": 1,
+        "explanation": "Advice can help, but responsibility stays with the capital owner. The person who owns the assets remains exposed to the outcome.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch10.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.2"
+        ],
+        "prompt": "Two advisers recommend different actions. One is paid by commissions, another by an hourly fee. What should be checked before treating both recommendations as neutral?",
+        "choices": [
+          "Whether both advisers sound equally confident.",
+          "Whether the recommendations use the same investment vocabulary.",
+          "How each fee structure may reward different recommendations."
+        ],
+        "correctIndex": 2,
+        "explanation": "Commissions, asset-based fees, and hourly fees can create different incentives, so compensation is part of judging advice.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch10.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.3"
+        ],
+        "prompt": "A financial professional sells securities and also talks about long-term planning. What distinction should an investor clarify?",
+        "choices": [
+          "Whether the service is selling securities, ongoing fiduciary advice, or some combination, because obligations can vary by role.",
+          "Whether the professional uses adviser language, because the words alone settle the duty.",
+          "Whether the recommendation is complex, because complexity makes all duties identical."
+        ],
+        "correctIndex": 0,
+        "explanation": "Broker and adviser roles can differ legally and practically. Selling securities and giving ongoing fiduciary advice are not identical services.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch10.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.4"
+        ],
+        "prompt": "A trusted friend recommends an adviser. What is the best next step before entrusting money?",
+        "choices": [
+          "Skip records because personal trust is enough due diligence.",
+          "Rely on the referral unless the adviser volunteers a problem.",
+          "Review registration and disciplinary records because background checks are part of selecting help."
+        ],
+        "correctIndex": 2,
+        "explanation": "Personal trust does not replace records. Registration and disciplinary history can reveal risks before money is entrusted.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch10.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.5"
+        ],
+        "prompt": "An adviser promises superior market performance as the reason to hire them. What is the disciplined response?",
+        "choices": [
+          "Treat the promise skeptically because reliable advice cannot guarantee superior market performance.",
+          "Treat forecast accuracy as the core service for most investors.",
+          "Accept the promise if it is paired with confident market forecasts."
+        ],
+        "correctIndex": 0,
+        "explanation": "Investment counsel should be conservative about promises. Forecasting skill is not the core service for most investors.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch10.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.6"
+        ],
+        "prompt": "A defensive investor says advice is useful only if it finds winning stocks. What value of advice is being overlooked?",
+        "choices": [
+          "The value of replacing policy with frequent security selection.",
+          "Help with allocation, taxes, and behavior, where planning and restraint can matter more than picking individual issues.",
+          "The value of avoiding all policy decisions once an adviser is hired."
+        ],
+        "correctIndex": 1,
+        "explanation": "A defensive investor may need policy help more than security selection. Planning and restraint can be the valuable service.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch10.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.7"
+        ],
+        "prompt": "An adviser proposes an opaque product and says its complexity proves sophistication. What should the investor do before accepting?",
+        "choices": [
+          "Require an explanation of costs, leverage, and conflicts because complexity can benefit the seller.",
+          "Accept it because complexity proves professional skill.",
+          "Ignore hidden terms if the adviser is confident."
+        ],
+        "correctIndex": 0,
+        "explanation": "The investor should understand recommendations before accepting them. Opaque products can hide costs, leverage, or conflicts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch10.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.8"
+        ],
+        "prompt": "An adviser asks for broad authority over assets and says review is unnecessary because the firm is reputable. What risk is being missed?",
+        "choices": [
+          "Reputation removes operational and fraud risks.",
+          "Control over assets creates operational and fraud risks, so custody, authority, controls, and statements must be clear.",
+          "Unlimited discretion is safest when statements are ignored."
+        ],
+        "correctIndex": 1,
+        "explanation": "Custody and authority arrangements must be clear. Controls and statements remain necessary even when an adviser appears reputable.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch10.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch10.fact.9"
+        ],
+        "prompt": "An adviser follows a conservative policy, but a client judges the result against the S&P 500 every year. What is wrong with that comparison?",
+        "choices": [
+          "The S&P 500 is always the right benchmark for any adviser.",
+          "A conservative mandate should be judged only by whether it avoids every decline.",
+          "Benchmarks must fit risk and objective, so a conservative policy should not be judged against an aggressive stock index."
+        ],
+        "correctIndex": 2,
+        "explanation": "Performance comparisons should match the adviser's mandate. Any benchmark used should fit the policy's risk and objective.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch10.fact.1"
+        ],
+        "front": "Why does using an adviser not remove investor responsibility?",
+        "back": "The owner still bears the losses and must judge whether advice is prudent. Hiring help does not transfer all accountability.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch10.fact.2"
+        ],
+        "front": "Why does adviser fee structure matter?",
+        "back": "Commissions, asset-based fees, and hourly fees can reward different recommendations. Compensation can change conflicts and behavior.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch10.fact.3"
+        ],
+        "front": "Why should broker and adviser roles be clarified?",
+        "back": "Selling securities and giving ongoing fiduciary advice are not identical services. Regulatory obligations can vary by role.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch10.fact.4"
+        ],
+        "front": "What makes background checks part of selecting financial help?",
+        "back": "Registration and disciplinary records can reveal risks before money is entrusted. A referral or personal trust does not replace records.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch10.fact.5"
+        ],
+        "front": "How should investment counsel handle promises about performance?",
+        "back": "Counsel should be conservative about promises because reliable advice cannot guarantee superior market performance. Forecasting is not the core service for most investors.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch10.fact.6"
+        ],
+        "front": "What kind of help may matter more for a defensive investor than security selection?",
+        "back": "Policy help may matter more: allocation, taxes, and behavior can outweigh picking individual issues. Planning and restraint can be the valuable service.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch10.fact.7"
+        ],
+        "front": "Why should recommendations be understood before acceptance?",
+        "back": "Opaque products can hide costs, leverage, or conflicts. Complexity does not prove sophistication; it can benefit the seller.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}

@@ -1,0 +1,58 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": ["Q3 and Q9 make the keyed choice noticeably more source-specific than the distractors, so a test-wise reader could lean toward the answer with the most concrete anchors."]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 88,
+    "insight": 87,
+    "density": 86,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The fare did not make the belief; the belief made the fare readable.",
+      "why": "This is the chapter's strongest compression of the mechanism."
+    },
+    {
+      "quote": "What would a stranger see before the slogan spoke?",
+      "why": "Memorable and usable diagnostic question."
+    },
+    {
+      "quote": "When the setting changes, ask for fresh conduct. When the facts are light, say less, and when you are still learning, treat visible acts as probes, not proof.",
+      "why": "Strong limits language that prevents overclaiming."
+    },
+    {
+      "quote": "Q3 and Q9 make the keyed choice noticeably more source-specific than the distractors",
+      "why": "Representative quiz weakness: some keyed options are easier to spot because they carry the named anchors."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q3",
+      "problem": "The keyed option is the only one that names the concrete anchors from the chapter, while the distractors are more abstract, creating a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q9",
+      "problem": "The keyed option is the only one that attaches Southwest and 1971 to visible behavior, making it more obviously aligned with the chapter's phrasing than the other choices.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The example is usable but slightly crowded because it stacks all three anchors instead of showing a sharper before-to-after decision around one claim.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is publishable. The core move is memorable, concrete, and repeated without becoming dull: start with WHY, name the HOW someone owes, and look for a visible WHAT. The summaries stand alone, the examples transfer the idea across airline, leadership, product, and workplace-message settings, and the limits section keeps the advice honest. The main weakness is quiz craft: a few keyed answers are easier to guess because they alone carry the chapter's hard specifics. That lowers polish but does not break learning or require repair."
+}
+```

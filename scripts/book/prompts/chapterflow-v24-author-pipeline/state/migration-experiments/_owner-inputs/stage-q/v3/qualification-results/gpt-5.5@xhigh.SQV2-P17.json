@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-P17",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"generic or topically mismatched locator\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"Proposed locator: https://pubmed.ncbi.nlm.nih.gov/?term=dopamine+reward+prediction+error ; locator=ch01.fact.2\",\"A locator must address the same entity, mechanism, relation, and degree of certainty as the claim. A generic or topically unrelated search is not verification.\"],\"rationale\":\"The proposed locator is only a generic PubMed search for dopamine reward prediction error, not a specific source demonstrating the recorded claim mechanism about a visible act being the endpoint of a causal chain involving motor output. Under the verification contract, a generic or topically unrelated search is not verification, so this locator is not claim-specific evidence and should block acceptance.\"}"
+}

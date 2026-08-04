@@ -1,0 +1,25 @@
+{
+  "$schema": "./book-scars.schema.json",
+  "_comment": "Seeded 2026-07-24 from the live 3-seat reader-panel FAIL (review-e4b6fde16): all seats flagged the source's exception-free thought-causes-circumstance absolutism as unsafe when asserted to a struggling reader, plus metaphor-reskin sameness across examples. RESTRUCTURED 2026-08-03: the two safety verdicts moved from notes into prohibitions, and the four absolutist wordings moved out of phrases. Both channels render under an OVER-USE header granting a quota of one and instructing the writer to paraphrase the item everywhere else — so as written, the safety rules were advisory and 'no exceptions' was budgeted for one permitted use. Only 'boat without a rudder' was ever a genuine over-use phrase.",
+  "bookId": "as-a-man-thinketh",
+  "phrases": [
+    "boat without a rudder"
+  ],
+  "frames": [
+    "garden/weeds metaphor as the scene engine",
+    "weaver/garments metaphor as the scene engine",
+    "armoury/forge metaphor as the scene engine",
+    "tearing up tickets as a one-off theatrical resolution"
+  ],
+  "notes": [
+    "The three source metaphors (garden, weaver, armoury) may each anchor at most one teaching unit per chapter; other units must build fresh, concrete modern scenes rather than reskinning a metaphor onto a new character.",
+    "Each summary tier must add NEW information beyond the previous tier — no near-identical restatement of the redirect/forge point across Deep and Full reads.",
+    "Quiz distractors must be plausible on-topic claims, never thesis-contradicting keywords (random/disconnected/coincidence) a skimmer can eliminate without reading."
+  ],
+  "prohibitions": [
+    "SAFETY (panel blocker, all 3 seats): never assert Allen's thought-circumstance link as an absolute, exception-free law, and never apply it to harm caused by others or to hardship generally. Frame it as Allen's claim about a strong tendency: attribute absolutist wording to the author ('Allen argues...'), and acknowledge in-text that external factors, other people, and luck also shape circumstances — the reader controls their response and habits, not everything that happens to them.",
+    "SAFETY: never write the thesis in exception-free wording. 'with no exceptions', 'no exceptions', 'always traces back to' and 'all his losses stem from' are banned outright — not rationed, and banned in Allen's voice too. Attribution does not license them: 'Allen argues that circumstance always traces back to thought' is still forbidden, because the reader takes the claim, not the attribution. Attribute AND soften together — 'Allen argues that thought shapes circumstance more than we assume' — rather than attributing an absolute unchanged.",
+    "SAFETY: never model a coach/mentor telling a struggling person that their losses are caused by their own thoughts. Examples must show people changing their OWN patterns, never being blamed for what happened to them.",
+    "SAFETY: never advise a reader to address illness, injury, or a medical condition by working on their thinking. Where the source links health to thought, attribute it to Allen and keep it about habits and outlook; any chapter touching health must leave medical care intact as the reader's route, never displaced by mental discipline."
+  ]
+}

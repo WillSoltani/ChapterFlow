@@ -1,0 +1,12 @@
+Wrote [start-with-why-ch06.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch06.v21-native.chapter.json).
+
+Validation passed:
+
+- `author-check`: clean
+- `gate-chapter`: PASS, `0` blockers, `0` majors, `0` minors
+- `quiz-verify`: `9/9` matched the required key pattern
+- Rendered length: `16,519` chars
+- Distractor parity: `0` uniquely-longest keys, `4` uniquely-shortest keys
+- Reader-facing scaffold scan: none
+
+The worktree already had many unrelated dirty/untracked files; I only intentionally edited the requested chapter JSON.

@@ -46,7 +46,7 @@ export function sectionSessionSidecarPath(task: SectionTask): string {
   return `${task.outputPath}.session.json`;
 }
 
-function readRecord(task: SectionTask): CompilerSectionSessionRecord | null {
+export function readSectionSessionRecord(task: SectionTask): CompilerSectionSessionRecord | null {
   const p = sectionSessionSidecarPath(task);
   if (!existsSync(p)) return null;
   try {
@@ -82,7 +82,7 @@ export function writeSectionSessionRecord(task: SectionTask, sessionId: string):
  *  primary author so provenance is never blank. No-op if the artifact is absent. */
 export function recordPolishSession(task: SectionTask, sessionId: string): void {
   if (!existsSync(task.outputPath)) return;
-  const prior = readRecord(task);
+  const prior = readSectionSessionRecord(task);
   const base: CompilerSectionSessionRecord = prior ?? {
     schemaVersion: "compiler-section-session-v1",
     bookId: task.bookId,
@@ -110,7 +110,7 @@ export function recordPolishSession(task: SectionTask, sessionId: string): void 
 export function contributorSessionIdsForChapter(bookId: string, chapterNumber: number): string[] {
   const ids: string[] = [];
   for (const task of sectionTasks(bookId).filter((t) => t.chapterNumber === chapterNumber)) {
-    const rec = readRecord(task);
+    const rec = readSectionSessionRecord(task);
     if (!rec) continue;
     if (rec.sectionSessionId) ids.push(rec.sectionSessionId);
     for (const c of rec.contributorSessionIds ?? []) if (c) ids.push(c);

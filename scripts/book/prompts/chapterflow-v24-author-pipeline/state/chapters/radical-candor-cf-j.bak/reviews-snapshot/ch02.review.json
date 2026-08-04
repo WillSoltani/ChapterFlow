@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "chapterflow-review-v1",
+  "chapterId": "radical-candor-ch02",
+  "chapterNumber": 2,
+  "contentHash": "fbc245ba782bcdf3",
+  "reviewerSessionId": "auto-author-review-ch02-mrdyz9k8-5",
+  "scores": {
+    "retention": 88,
+    "quizzes": 84,
+    "transfer": 78,
+    "practical": 90,
+    "summaries": 89,
+    "tone": 86,
+    "limits": 86,
+    "insight": 87,
+    "density": 84,
+    "beginner": 88
+  },
+  "composite": 86,
+  "ship84": true,
+  "pass": true,
+  "valid": true,
+  "keyCheck": {
+    "derived": [
+      "c",
+      "c",
+      "b",
+      "b",
+      "a",
+      "c",
+      "b",
+      "a",
+      "a"
+    ],
+    "matches": 9,
+    "of": 9,
+    "disagreements": []
+  },
+  "quotes": [
+    {
+      "quote": "Every unspoken fact has a bill, and the bill often lands on the person you meant to spare.",
+      "why": "Strong memorable compression of the chapter's core mechanism.",
+      "verified": true
+    },
+    {
+      "quote": "The move is not \"be more honest.\" It is ask first, speak with care, and give the fact early enough to use.",
+      "why": "Clear practical boundary that prevents the lesson from becoming generic bluntness.",
+      "verified": true
+    },
+    {
+      "quote": "At the promised follow-up, the earlier commitment comes due: solicit feedback before giving it.",
+      "why": "This example starts from an underspecified scene, which makes the transfer weaker than the main prose.",
+      "verified": true
+    }
+  ],
+  "tells": [
+    "Several keyed choices are the only ones that combine the chapter's exact mechanism with a clean causal 'so/because' explanation, especially Q2, Q3, Q5, Q8, and Q9."
+  ],
+  "complaints": [
+    {
+      "unit": "example 3",
+      "problem": "The example is thin: it names no concrete person, venue, or before-to-after consequence, so it mostly restates the sequence instead of testing transfer.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The example stays inside the Sandberg/Scott source scenario rather than showing the move in a distinct new situation, which limits transfer value.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Some correct choices are more polished and mechanism-rich than the distractors, creating a mild answer-shape tell even when the items are substantively fair.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a shippable chapter with a strong central move: ask first, then give timely specific guidance with care, then help peers speak directly. The Bob delay mechanism is memorable and practical, the quiz keys are sound, and the summaries stand alone. The main weakness is transfer: several examples stay close to the book's own cases or use thin invented situations rather than showing a richer before-and-after in fresh domains. That lowers the transfer score but does not create a must-fix defect.",
+  "structuralScreen": {
+    "claimsScanned": 0,
+    "decisions": []
+  },
+  "bar": 80,
+  "docHash": "14a0f9aa64cb9f114e6d1e0bd09dec1a9ab6648a7412a916f7009d5e32ae6af0",
+  "hashVersion": "v2",
+  "reviewedAt": "2026-07-09T20:39:40.185Z"
+}

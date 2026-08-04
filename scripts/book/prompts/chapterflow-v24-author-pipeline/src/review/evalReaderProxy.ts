@@ -3,37 +3,30 @@
  *
  *   eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]
  *
- * For each book: load its production package (pipeline-local book-packages/
- * first, else the outer checkout's book-packages/), deterministically sample N
- * chapters (default 3), render each as a blinded reader document under
- * scratch/eval-proxy/, spawn ONE independent read-only codex reader per
- * sampled chapter (parallel, concurrency 4), then parse + adjudicate + persist
- * a ChapterReviewV1 per chapter and print a per-book table + median composite.
+ * For each book: load its explicitly selected candidate package,
+ * deterministically sample N chapters (default 3), render each as a blinded
+ * reader document, run ONE independent model task per sampled chapter
+ * (parallel, concurrency 4), then parse + adjudicate + optionally persist a
+ * ChapterReviewV1 per chapter and print a per-book table + median composite.
  *
  * This verb is a MEASUREMENT instrument only: it never touches autopilot /
- * conductor code, never mutates chapters, and its readers run sandbox
- * "read-only" with skipGitRepoCheck (they only read the rendered doc).
+ * conductor code and never mutates chapters. Model execution is injected
+ * through ModelTaskRunner; this module owns no provider or process fallback.
  */
 
-import { existsSync, readFileSync } from "fs";
 import { createHash } from "crypto";
-import { resolve } from "path";
 
+import type { ModelTaskRunner } from "../app/modelTaskRunner.js";
+import type { BookContentReader } from "../books/candidateTypes.js";
+import type { ModelTaskContext } from "../contracts/v4Core.js";
 import type { BookPackageV21, ChapterV21 } from "../types.js";
 import type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 import { CHAPTER_REVIEW_SCHEMA_VERSION, REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import { chapterContentHash } from "../critics/qcAttestation.js";
-import { REPO_ROOT, FORBIDDEN_STATE } from "../lib/chapterPaths.js";
-import { writeFileAtomic } from "../lib/atomicWrite.js";
-import { spawnCodexAgent, codexAvailable } from "../orchestrator/codexAgent.js";
-import { renderChapterReaderDoc } from "./renderReaderDoc.js";
-import { adjudicateReview, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview, writeChapterReview } from "./readerReview.js";
-
-/** The outer checkout root (the repo this pipeline package is nested inside).
- *  Derived from chapterPaths' exported outer-shadow constant: FORBIDDEN_STATE
- *  is `<outer-root>/state`, so its parent IS the outer root. Fallback source
- *  for book-packages/ when the pipeline-local copy is missing. */
-const OUTER_CHECKOUT_ROOT = resolve(FORBIDDEN_STATE, "..");
+import { ensureTrailingNewline } from "../lib/atomicWrite.js";
+import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
+import { adjudicateReview, assertPhase1KeyIsolated, AUTHOR_CHAPTER_BAR, buildReaderReviewTask, parseReaderReview } from "./readerReview.js";
+import { openCriticCandidateEntries } from "../critics/schema.js";
 
 const READER_CONCURRENCY = 4;
 
@@ -50,23 +43,6 @@ async function mapWithConcurrency<T, R>(items: T[], limit: number, fn: (item: T,
   });
   await Promise.all(workers);
   return results;
-}
-
-/** Resolve + parse a book's production package, or null with a reason. */
-function loadBookPackage(bookId: string): { pkg: BookPackageV21; path: string } | { error: string } {
-  const candidates = [
-    resolve(REPO_ROOT, "book-packages", `${bookId}.v21.json`),
-    resolve(OUTER_CHECKOUT_ROOT, "book-packages", `${bookId}.v21.json`),
-  ];
-  const path = candidates.find((p) => existsSync(p));
-  if (!path) return { error: `package not found: tried ${candidates.join(" , ")}` };
-  try {
-    const pkg = JSON.parse(readFileSync(path, "utf8")) as BookPackageV21;
-    if (!Array.isArray(pkg.chapters) || pkg.chapters.length === 0) return { error: `package has no chapters: ${path}` };
-    return { pkg, path };
-  } catch (err) {
-    return { error: `package unreadable (${path}): ${(err as Error).message}` };
-  }
 }
 
 /** Deterministic sample: sort chapters by md5(bookId + ':' + chapter.number)
@@ -120,14 +96,42 @@ type BookResult = {
   validCount: number;
 };
 
+type CandidateSelection = Readonly<{ candidateId: string; manifestDigest: string; packageLogicalPath: string }>;
+
 /** Strip verbatim quote text for the --json payload (quotes stay byte-heavy
  *  and are already persisted in the review artifacts). */
 function reviewForJson(review: ChapterReviewV1): Record<string, unknown> {
   return { ...review, quotes: review.quotes.map((q) => ({ why: q.why, verified: q.verified })) };
 }
 
+async function runProxyModel(
+  runner: ModelTaskRunner,
+  context: ModelTaskContext,
+  task: string,
+  docText: string,
+): Promise<string> {
+  const encoder = new TextEncoder();
+  const result = await runner.run({
+    profileId: "pipeline-read-text-v1",
+    prompt: {
+      templateId: "chapterflow-text-v1",
+      inputs: [
+        { name: "review_task", mediaType: "text/markdown", bytes: encoder.encode(task) },
+        { name: "candidate_document", mediaType: "text/plain", bytes: encoder.encode(docText) },
+      ],
+    },
+    context,
+  });
+  if (result.outcome !== "SUCCEEDED" || typeof result.output !== "string") {
+    const detail = result.error ? `${result.error.code}:${result.error.message}` : "invalid text output";
+    throw new Error(`EVAL_READER_MODEL_${result.outcome}:${detail}`);
+  }
+  return result.output;
+}
+
 /** Run one blinded reader over one rendered chapter doc; retry ONCE on a
- *  parse/verification failure with a fresh session id. */
+ *  parse/verification failure. IMP-08: the reader scores the PHASE-1 doc using
+ *  the same parser and adjudicator as the frozen WP14 instrument. */
 async function reviewOneChapter(
   bookId: string,
   chapter: ChapterV21,
@@ -135,36 +139,48 @@ async function reviewOneChapter(
   docRelPath: string,
   bar: number,
   log: (line: string) => void,
+  runner: ModelTaskRunner,
+  baseContext: ModelTaskContext,
 ): Promise<ChapterReviewV1> {
+  void docRelPath; // forensic-copy path retained by the frozen report contract
   const nn = String(chapter.number).padStart(2, "0");
-  const task = buildReaderReviewTask(docRelPath, bar);
+  const docFileName = `ch${nn}.txt`;
+  const task = buildReaderReviewTask(docFileName, bar);
   let lastSessionId = "";
   for (let attempt = 1; attempt <= 2; attempt++) {
-    const sessionId = `eval-proxy-${bookId}-ch${nn}-${Date.now()}`;
+    const sessionId = `eval-proxy-${bookId}-ch${nn}-attempt${attempt}`;
     lastSessionId = sessionId;
     log(`[eval-proxy] ${bookId} ch${nn}: reader attempt ${attempt} (session ${sessionId})`);
-    const r = await spawnCodexAgent({
+    const response = await runProxyModel(
+      runner,
+      { ...baseContext, attemptId: sessionId, operationId: sessionId },
       task,
-      sessionId,
-      cwd: REPO_ROOT,
-      sandbox: "read-only",
-      skipGitRepoCheck: true,
-      reasoningEffort: "high",
-    });
-    const parsed = parseReaderReview(r.finalMessage) ?? parseReaderReview(r.stdout);
+      docText,
+    );
+    const parsed = parseReaderReview(response);
     if (!parsed) {
-      log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} unparseable (exit ${r.exitCode})`);
+      log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} unparseable`);
       continue;
     }
     const review = adjudicateReview(parsed, docText, chapter, { bar, reviewerSessionId: sessionId });
     if (review.valid) return review;
-    if (attempt === 2) return review; // second attempt: keep the adjudicated-but-invalid artifact
+    if (attempt === 2) return review;
     log(`[eval-proxy] ${bookId} ch${nn}: attempt ${attempt} failed quote verification — respawning once`);
   }
   return invalidStubReview(chapter, lastSessionId, "reader output could not be parsed after retry");
 }
 
-export async function runEvalReaderProxy(args: string[], flags: Record<string, string | boolean>): Promise<number> {
+export async function runEvalReaderProxy(
+  args: string[],
+  flags: Record<string, string | boolean>,
+  dependencies?: Readonly<{
+    contentReader: BookContentReader;
+    candidates: Readonly<Record<string, CandidateSelection>>;
+    runner: ModelTaskRunner;
+    taskContexts: Readonly<Record<string, ModelTaskContext>>;
+    persist?: (bookId: string, review: ChapterReviewV1) => void;
+  }>,
+): Promise<number> {
   const bookIds = args.filter(Boolean);
   if (bookIds.length === 0) {
     console.error("Usage: eval-reader-proxy <bookId> [<bookId2> ...] [--chapters N] [--bar 80] [--json]");
@@ -181,11 +197,10 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
     return 2;
   }
   const asJson = flags.json === true;
-  // With --json, stdout must stay clean for the final JSON payload.
   const log = (line: string): void => { if (asJson) console.error(line); else console.log(line); };
 
-  if (!codexAvailable()) {
-    console.error("eval-reader-proxy: codex binary not found. Install codex or set CHAPTERFLOW_CODEX_BIN.");
+  if (!dependencies?.contentReader || !dependencies.runner || !dependencies.candidates || !dependencies.taskContexts) {
+    console.error("eval-reader-proxy: explicit candidate reader and model task runner are required");
     return 2;
   }
 
@@ -194,32 +209,51 @@ export async function runEvalReaderProxy(args: string[], flags: Record<string, s
   let anyInvalid = false;
 
   for (const bookId of bookIds) {
-    const loaded = loadBookPackage(bookId);
-    if ("error" in loaded) {
-      console.error(`eval-reader-proxy: ${bookId}: ${loaded.error}`);
+    const selected = dependencies.candidates[bookId];
+    const taskContext = dependencies.taskContexts[bookId];
+    if (!selected) {
+      console.error(`eval-reader-proxy: ${bookId}: explicit candidate selection missing`);
       anyLoadError = true;
       continue;
     }
-    const sampled = sampleChapters(bookId, loaded.pkg.chapters, chaptersN);
-    log(`[eval-proxy] ${bookId}: ${loaded.pkg.chapters.length} chapters in package (${loaded.path}); sampling ${sampled.length}: ${sampled.map((c) => c.number).join(", ")}`);
+    if (!taskContext || taskContext.bookId !== bookId) {
+      console.error(`eval-reader-proxy: ${bookId}: matching task context missing`);
+      anyLoadError = true;
+      continue;
+    }
+    let pkg: BookPackageV21;
+    try {
+      const opened = await openCriticCandidateEntries(dependencies.contentReader, {
+        bookId,
+        candidateId: selected.candidateId,
+        manifestDigest: selected.manifestDigest,
+        logicalPaths: [selected.packageLogicalPath],
+      });
+      pkg = opened.values[0] as BookPackageV21;
+      if (pkg.book?.bookId !== bookId || !Array.isArray(pkg.chapters) || pkg.chapters.length === 0) throw new Error("selected package has no matching chapters");
+    } catch (cause) {
+      console.error(`eval-reader-proxy: ${bookId}: ${(cause as Error).message}`);
+      anyLoadError = true;
+      continue;
+    }
+    const sampled = sampleChapters(bookId, pkg.chapters, chaptersN);
+    log(`[eval-proxy] ${bookId}: ${pkg.chapters.length} chapters in selected candidate; sampling ${sampled.length}: ${sampled.map((c) => c.number).join(", ")}`);
 
-    // Render reader docs under the pipeline dir so read-only codex sandboxes
-    // (cwd = pipeline dir) can read them via a relative path.
     const jobs = sampled.map((chapter) => {
       const nn = String(chapter.number).padStart(2, "0");
-      const docRelPath = `scratch/eval-proxy/${bookId}/ch${nn}.txt`;
-      const docText = renderChapterReaderDoc(chapter);
-      writeFileAtomic(resolve(REPO_ROOT, docRelPath), docText);
+      const docRelPath = `scratch/eval-proxy/${bookId}/ch${nn}.phase1.txt`;
+      const docText = ensureTrailingNewline(renderChapterReaderDocPhase1(chapter));
+      assertPhase1KeyIsolated(docText, chapter);
       return { chapter, docText, docRelPath };
     });
 
     const reviews = await mapWithConcurrency(jobs, READER_CONCURRENCY, (job) =>
-      reviewOneChapter(bookId, job.chapter, job.docText, job.docRelPath, bar, log),
+      reviewOneChapter(bookId, job.chapter, job.docText, job.docRelPath, bar, log, dependencies.runner, taskContext),
     );
 
     const rows: string[] = [];
     for (const review of reviews) {
-      writeChapterReview(bookId, review);
+      dependencies.persist?.(bookId, review);
       if (!review.valid) anyInvalid = true;
       rows.push(
         `  ch${String(review.chapterNumber).padStart(2, "0")}  composite=${review.composite.toFixed(1).padStart(5)}  ship=${review.ship84 ? "yes" : "no "}  keys=${review.keyCheck.matches}/${review.keyCheck.of}  valid=${review.valid ? "yes" : "NO"}  pass=${review.pass ? "PASS" : "fail"}`,

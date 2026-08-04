@@ -1,0 +1,85 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "c", "c", "a", "b", "b", "a", "a", "c"],
+    "mechanisms": [
+      "The prose defines HRV as beat-to-beat adaptability and links higher variability with stronger self-regulation.",
+      "The Trier description says public speaking/arithmetic under silent evaluation can trigger stress without physical danger.",
+      "The chapter says stress narrows attention and makes fast comfort feel like shelter before the long goal returns.",
+      "Tang's training is presented as brief practice that steadies attention and softens reactivity before urges peak.",
+      "The prose says slow breathing is a body-state change that keeps the choosing part online, not a mere delay.",
+      "Pause-and-plan asks for lower arousal so attention can widen and future consequences can be weighed.",
+      "The sleep section says tired attention loses grip and loud cues can displace remembered goals.",
+      "The movement paragraph says activity can improve mood, stress regulation, and executive function.",
+      "The chapter repeatedly warns that waiting until the craving peaks is unfair because the body needs runway first."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "high", "high", "high", "high"],
+    "ambiguities": ["", "", "", "", "", "", "", "", ""],
+    "tells": [
+      "Correct option is the only one using the chapter's precise concept, beat-to-beat flexibility/adaptive control.",
+      "Correct option uniquely echoes the prose phrase social judgment and low control.",
+      "Correct option is the only one with the chapter's hedged causal wording, may be pushing attention.",
+      "Correct option uniquely combines brief practice, attention stability, and noticing an urge.",
+      "Correct option is the only mechanistic answer; distractors are visibly reductive.",
+      "Correct option is the only one using the chapter's room/weigh goals language.",
+      "Correct option uniquely repeats tired attention and competing cues from the prose.",
+      "Correct option is a near-copy of the movement paragraph.",
+      "Correct option telegraphs the lesson with runway and before the craving peaked."
+    ]
+  },
+  "scores": {
+    "retention": 91,
+    "quizzes": 86,
+    "transfer": 84,
+    "practical": 89,
+    "summaries": 90,
+    "tone": 82,
+    "limits": 91,
+    "insight": 88,
+    "density": 84,
+    "beginner": 92
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "Panic is a poor coach. Calm gives the future a vote.",
+      "why": "Strongest memorable compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "Use the opposite move when speed protects life, health, or trust.",
+      "why": "Clear limit that prevents the method from becoming overgeneralized delay."
+    },
+    {
+      "quote": "In the end, it really just comes down to applying this consistently and not overthinking it.",
+      "why": "Weakest tonal moment: generic filler after an otherwise concrete example."
+    },
+    {
+      "quote": "The object carries the attention Yi-Yuan Tang trained through return practice.",
+      "why": "The source connection feels stretched; the example works, but the attribution is fuzzier than the action."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "example 2",
+      "problem": "Ends with generic advice that could fit almost any chapter and weakens the otherwise specific stress-reframe example.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 4",
+      "problem": "The practical object-placement move is useful, but tying it to Yi-Yuan Tang's return practice overstates the example-source fit.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q1",
+      "problem": "The correct option is heavily signposted by using the chapter's exact conceptual language while the distractors are plainly wrong.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The correct option closely restates the movement paragraph, so the item checks recognition more than transfer.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This chapter is shippable against a professional bar. Its central move is memorable, concrete, and repeated through body cues rather than abstract self-help language. The quiz is fair and derivable, though several answers are easy to spot because the correct choices borrow the chapter's exact phrasing while distractors overstate or flatten the issue. Transfer is mostly strong: the examples show before-action costs, body-state changes, and consequences across food, replies, sleep, movement, and stress. The main craft weaknesses are a few thin or generic lines and one stretched research tie, not reader-harming defects."
+}
+```

@@ -1,0 +1,49 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "c", "a", "c", "b", "b", "c", "b", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q7: keyed choice c uses the chapter's distinctive term 'inspectable' while the distractors are visibly weaker.", "Q4: keyed choice c is the only option that names the chapter's actual function for the third pair rather than treating it as repetition or echo."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 90,
+    "tone": 87,
+    "limits": 91,
+    "insight": 88,
+    "density": 84,
+    "beginner": 86
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "HOW does not shrink WHY; it keeps WHY from floating.",
+      "why": "Strongest line: memorable, concise, and carries the chapter's mechanism."
+    },
+    {
+      "quote": "Before you rely on a promise, ask who carries the method and what visible result should follow.",
+      "why": "Strong practical transfer: a reader can use this outside the founder examples."
+    },
+    {
+      "quote": "The consequence is not fixed yet: the buyer still waits, because the reason sounds vivid while the method side of the pair has not been named.",
+      "why": "Slightly strained example phrasing: useful, but the buyer's waiting consequence feels staged."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q7",
+      "problem": "The keyed answer is somewhat telegraphed by the chapter-specific word 'inspectable,' while the distractors sound obviously permissive.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 2",
+      "problem": "The buyer-still-waits consequence is usable but feels thinly dramatized; it does not fully show the before-to-after decision resolving the stalled order.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is publishable against the bar. The chapter has a clear, memorable core move: WHY needs a HOW that can carry it and a WHAT output that makes the promise judgeable. The founder examples are kept bounded by dates and roles, and the practical audit transfers cleanly to ordinary promises. The main weaknesses are quiz tells in a couple of keyed choices and one example that feels more staged than lived, but neither blocks comprehension or application."
+}
+```

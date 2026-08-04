@@ -10,6 +10,7 @@ import type {
 } from "./types.js";
 import { V21_SCHEMA_VERSION } from "./types.js";
 import type { AssembleInput } from "./assembler.js";
+import { validateModelRoutingConfig } from "./runtime/codexRoute.js";
 import type { BreakdownOutput } from "./agents/writer-breakdown.js";
 import type { CardsOutput } from "./agents/writer-cards.js";
 import type { ExampleOutput } from "./agents/writer-example.js";
@@ -1031,6 +1032,15 @@ function validateConfigObject(file: string, raw: unknown): RuntimeSchemaFinding[
     case "venue-palette.json":
       stringArray(c, requiredArray(c, raw, "venues", p), child(p, "venues"), { min: 1 });
       break;
+    case "model-routing.json": {
+      const validated = validateModelRoutingConfig(raw);
+      if (!validated.ok) {
+        for (const err of validated.errors) {
+          c.issue(err.path === "/" ? p : `${p}${err.path}`, "valid model-routing route/tripwire", err.message);
+        }
+      }
+      break;
+    }
     case "name-bank.json":
       for (const [group, entries] of Object.entries(raw)) {
         if (group.startsWith("_")) continue;

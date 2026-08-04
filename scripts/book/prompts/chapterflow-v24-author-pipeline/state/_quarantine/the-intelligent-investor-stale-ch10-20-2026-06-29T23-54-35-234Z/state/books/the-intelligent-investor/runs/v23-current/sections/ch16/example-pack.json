@@ -1,0 +1,58 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "example-pack",
+  "chapterId": "the-intelligent-investor-ch16",
+  "examples": [
+    {
+      "exampleId": "ex01",
+      "title": "The Phone Call That Chases Conversion",
+      "scenario": "Elena is on a phone call with Graham while a convertible bond note moves across her desk. Her old default is to hear conversion right and treat the issue as attractive before asking whether the bond side protects her. Graham asks what supports the interest safety and what makes the conversion value worth having under the stated terms. The call stalls because Elena has only praised the conversion feature. The concrete failure is visible: a weak bond with a poor option would still be bad, but her first note never tested either source of return.",
+      "whatToDo": "Turn the phone call into a receipt check before any approval. Write one line for bond protection and one line for conversion value under the stated terms. If either line is blank or weak, mark the convertible bond as unresolved instead of letting the conversion feature carry the decision.",
+      "whyItMatters": "A convertible bond combines interest plus a conversion right, so the label is not enough. Interest safety and conversion value are separate sources of return, and a purchase needs both tests before the hybrid structure can be judged attractive.",
+      "sourceAnchorIds": [
+        "ch16.fact.1",
+        "ch16.example.1"
+      ],
+      "sourceFactIds": [
+        "ch16.fact.1"
+      ],
+      "namedCaseIds": [
+        "ch16.example.1"
+      ]
+    },
+    {
+      "exampleId": "ex02",
+      "title": "The Shared Spreadsheet Price Check",
+      "scenario": "Graham and Avery review stock warrants in a shared spreadsheet while Maya watches the decision cell. Before the checklist, the sheet treats any conversion privilege as useful. Graham adds fields for specified exercise price, limited exercise period, and the common stock level needed for value. The decision changes as soon as the missing terms appear: the warrant no longer passes just because it has option-like upside, because the payoff depends on future stock price relative to the exercise price.",
+      "whatToDo": "Use the shared spreadsheet as a checklist walkthrough. For each warrant, enter the specified exercise price, the limited exercise period, and whether the common stock would have to rise enough above that price to create value. If the terms do not support the payoff, do not treat the privilege as equally valuable.",
+      "whyItMatters": "Conversion price determines how much the option is worth because terms define the payoff. A stock warrant can look exciting in the abstract, but the exercise price and exercise period decide whether the right to buy shares has practical value.",
+      "sourceAnchorIds": [
+        "ch16.fact.2",
+        "ch16.example.2"
+      ],
+      "sourceFactIds": [
+        "ch16.fact.2"
+      ],
+      "namedCaseIds": [
+        "ch16.example.2"
+      ]
+    },
+    {
+      "exampleId": "ex03",
+      "title": "The Email Draft That Stops Cheapness",
+      "scenario": "Avery starts an email draft to Maya about NVF and the Sharon Steel acquisition, then almost writes that a warrant is conservative because it costs less than shares. Owen flags the sentence before it is sent. The repair is uncomfortable: Avery deletes the cheapness claim, adds that warrants usually pay no income, and notes that they can expire without value. The draft remains unfinished because complex financing and accounting still make risk and value harder to judge.",
+      "whatToDo": "Revise the email draft before forwarding it. Replace any low-price comfort with a receipt check: whether the warrant pays income, whether it can expire without value, and whether the financing or accounting makes the risk harder to see. Leave the recommendation pending until those points are clear.",
+      "whyItMatters": "Warrants are more speculative than senior securities because low dollar price can hide total loss risk. The NVF / Sharon Steel financing reminder keeps complex securities from being treated as conservative merely because the first visible cost looks small.",
+      "sourceAnchorIds": [
+        "ch16.fact.3",
+        "ch16.example.3"
+      ],
+      "sourceFactIds": [
+        "ch16.fact.3"
+      ],
+      "namedCaseIds": [
+        "ch16.example.3"
+      ]
+    }
+  ]
+}

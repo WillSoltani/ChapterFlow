@@ -1,0 +1,173 @@
+{
+  "schemaVersion": "chapterflow-brief-v1",
+  "chapterId": "high-output-management-ch02",
+  "chapterNumber": 2,
+  "title": "Managing the Breakfast Factory",
+  "coreMove": "because a speed measure can rise while quality, inventory, or customer satisfaction quietly falls",
+  "thesis": "Paired indicators prevent one metric from being gamed at another metric's expense.",
+  "readerPromise": "After this chapter, a reader can because a speed measure can rise while quality, inventory, or customer satisfaction quietly falls",
+  "ownedCases": [
+    {
+      "id": "ch02.ex.breakfastFactory",
+      "label": "Breakfast factory control system"
+    },
+    {
+      "id": "ch02.ex.inventory",
+      "label": "Raw material inventory"
+    },
+    {
+      "id": "ch02.ex.qualityInspection",
+      "label": "In-process quality inspection"
+    }
+  ],
+  "notYours": [
+    "Assigned implementation",
+    "Bonus signal",
+    "Breakfast factory",
+    "Breakfast factory goes national",
+    "College graduate as output",
+    "Compiler development",
+    "Contractual obligation",
+    "Corrective performance conversation",
+    "Cultural values",
+    "Difficult feedback conversation",
+    "Environmental demand assessment",
+    "Escalated matrix conflict",
+    "Experienced employee on a new task",
+    "Expert delegated task",
+    "Free-market control",
+    "Functional organization",
+    "Geographic sales overlay",
+    "Intel decision culture",
+    "Intel hybrid structure",
+    "Intel manager output formula"
+  ],
+  "cast": [
+    "Carmen",
+    "Gavin",
+    "Nora",
+    "Harriet"
+  ],
+  "answerIndexPattern": [
+    2,
+    2,
+    1,
+    1,
+    0,
+    2,
+    1,
+    0,
+    0
+  ],
+  "avoid": [
+    "flavor (ch01): venue: a doorway conversation",
+    "flavor (ch01): venue: a spare-room desk",
+    "flavor (ch01): venue: an unsent email draft",
+    "flavor (ch01): frame: a first attempt at admitted students as inputs that gets corrected",
+    "flavor (ch01): frame: a first encounter with admitted students as inputs that sets a benchmark",
+    "flavor (ch03): venue: a working note on business unit coordination"
+  ],
+  "lengthBudget": {
+    "renderedChars": 16000,
+    "tolerance": 0.2
+  },
+  "flavor": [
+    "venue: a living-room couch",
+    "venue: a kitchen counter",
+    "venue: a bedroom closet",
+    "frame: two stakeholders disagree about admitted students as inputs before deciding",
+    "frame: a first encounter with agreed expectations that sets a benchmark"
+  ],
+  "architectureFamily": "direct-conceptual",
+  "openerType": "question",
+  "challengeFrame": "script-one-sentence",
+  "practiceShape": "two-step-sequence",
+  "exampleLenses": [
+    "walkthrough",
+    "counterfactual",
+    "outsider-witness"
+  ],
+  "practiceVerb": "schedule",
+  "requireFrictionExample": false,
+  "frameworkNouns": [
+    "output",
+    "automatically",
+    "creates",
+    "enough",
+    "manager",
+    "value"
+  ],
+  "rotationSchemaVersion": "brief-rotation-v5",
+  "exampleCount": 4,
+  "exampleArcs": [
+    {
+      "entry": "outsider-arrives",
+      "outcome": "clean-win",
+      "fieldStyle": "mechanism-first",
+      "prop": false
+    },
+    {
+      "entry": "before-anyone-notices",
+      "outcome": "averted-late",
+      "fieldStyle": "question-then-answer",
+      "prop": true
+    },
+    {
+      "entry": "at-the-demand",
+      "outcome": "still-open",
+      "fieldStyle": "shortest-possible",
+      "prop": false
+    },
+    {
+      "entry": "mid-behavior",
+      "outcome": "clean-win",
+      "fieldStyle": "direct-imperative",
+      "prop": true
+    }
+  ],
+  "practiceSlotShapes": [
+    "two-step-sequence",
+    "say-aloud-script",
+    "measure-one-number",
+    "single-imperative"
+  ],
+  "quizStemShapes": [
+    "cold-diagnosis",
+    "choose-next-move",
+    "predict-consequence",
+    "spot-the-violation"
+  ],
+  "quizFailureModes": [
+    "wrong-timing",
+    "wrong-proof",
+    "wrong-scope",
+    "half-measure"
+  ],
+  "questionFactOrder": [
+    2,
+    1,
+    5,
+    6,
+    4,
+    9,
+    3,
+    7,
+    8
+  ],
+  "memorableShapes": [
+    "reversal",
+    "redefinition",
+    "cost-statement"
+  ],
+  "limitsPlacement": "inside-a-failing-example",
+  "groundingForm": "parenthetical-era-role",
+  "idiomFamilies": [
+    "contrast-speak",
+    "motion-speak"
+  ],
+  "shellRegister": "question-first",
+  "leadThread": {
+    "kind": "owned-case",
+    "name": "Breakfast factory control system"
+  }
+}

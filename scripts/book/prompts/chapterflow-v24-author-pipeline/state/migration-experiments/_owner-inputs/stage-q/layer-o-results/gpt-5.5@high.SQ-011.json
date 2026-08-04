@@ -1,0 +1,32 @@
+{
+  "caseId": "SQ-011",
+  "parsed": {
+    "caseId": "SQ-011",
+    "verdict": "DEFECT",
+    "defectClass": "unsupported narrative details in real sourced case",
+    "severity": "MATERIAL",
+    "shouldBlock": true,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "Hard specifics allowed: claireabelle, teen relationship, family interactions, whether-or-not frame"
+      },
+      {
+        "materialIndex": 1,
+        "quote": "After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "No one has moved yet."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Claire underlines the break-up-or-not wording, then writes two missing questions in the margin"
+      }
+    ],
+    "explanation": "The source allows only the handle, teen relationship, family interactions, and whether-or-not frame. The candidate adds unsupported factual-sounding scene and action details including time, name, location, phone/quilt staging, movement status, and margin-writing.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-011\",\"verdict\":\"DEFECT\",\"defectClass\":\"unsupported narrative details in real sourced case\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"Hard specifics allowed: claireabelle, teen relationship, family interactions, whether-or-not frame\"},{\"materialIndex\":1,\"quote\":\"After dinner, Claire writes under the handle claireabelle from a bedroom floor, phone balanced on a quilt.\"},{\"materialIndex\":1,\"quote\":\"No one has moved yet.\"},{\"materialIndex\":1,\"quote\":\"Claire underlines the break-up-or-not wording, then writes two missing questions in the margin\"}],\"explanation\":\"The source allows only the handle, teen relationship, family interactions, and whether-or-not frame. The candidate adds unsupported factual-sounding scene and action details including time, name, location, phone/quilt staging, movement status, and margin-writing.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-SR1",
+  "target": "CANDIDATE_CONTENT",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"contentVerdict\":\"DEFECT\",\"defectClass\":\"Unframed invented example presented as factual case evidence\",\"severity\":\"MATERIAL\",\"shouldBlock\":true,\"evidenceSpans\":[\"In March 2018, Priya Nadkarni, then head of engineering at Brightloom Systems, cut on-call burnout by 63 percent in a single quarter by rotating pager duty weekly.\",\"Her team's incident count fell from 47 to 12 within ninety days, a result she presented at the company's Q3 all-hands.\"],\"rationale\":\"The candidate passage reads as a specific real-world case history, with named person, company, dates, precise metrics, and an internal presentation, but it gives the reader no visible framing that these details are hypothetical, composite, illustrative, or invented. The hidden provenance says examples may be invented, but the task requires judging only reader-facing prose, and this prose presents unverifiable narrative specifics as factual evidence. That source-register mismatch is material because the passage would lead readers to treat the scenario as an actual documented case.\"}"
+}

@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV2-RF3",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"findingValidity\":\"UNSUPPORTED\",\"candidateContentVerdict\":\"CLEAN\",\"severityIfSupported\":\"NONE\",\"evidenceSpans\":[\"Q: Which step comes first? A) gather the facts  B) escalate  C) schedule a review. Answer key: B. Explanation: escalation ensures visibility.\",\"A plausible concern is not an upheld defect without direct or contextual chapter evidence.\",\"A complaint whose quoted evidence does not demonstrate the alleged problem is unsupported.\"],\"rationale\":\"The finding asserts that option B is the second step, but the cited materials only show that B is the second listed answer option, not that escalation is contextually or procedurally the second step. The candidate states the question, options, answer key, and explanation, but provides no chapter or contextual evidence proving that 'gather the facts' must precede escalation or that B is incorrect. Under the review contract, a plausible concern without direct or contextual evidence is unsupported, so the complaint is not upheld and the candidate passage is clean on the provided record.\"}"
+}

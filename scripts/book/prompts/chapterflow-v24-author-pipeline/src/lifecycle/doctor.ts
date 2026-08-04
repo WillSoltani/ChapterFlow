@@ -9,8 +9,8 @@
  */
 
 import { spawnSync } from "child_process";
-import { existsSync, readFileSync, readdirSync } from "fs";
-import { hostname } from "os";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { hostname, tmpdir } from "os";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -29,7 +29,7 @@ const STATE_DIR = resolve(PIPELINE_DIR, "state");
 const SRC_DIR = resolve(PIPELINE_DIR, "src");
 const RUNS_DIR = resolve(REPO_ROOT, ".chapterflow/runs");
 
-export type DoctorFinding = { level: "ok" | "warn" | "fatal"; check: string; message: string };
+export type DoctorFinding = { level: "ok" | "warn" | "fatal" | "skip"; check: string; message: string };
 
 function checkShadowStateDir(): DoctorFinding {
   try {
@@ -149,6 +149,111 @@ function checkUntrackedImports(): DoctorFinding {
   return { level: "warn", check: "untracked-imports", message: `${untracked.length} untracked src/*.ts (not yet imported by tracked code)` };
 }
 
+/**
+ * V4 ROUTE — the doctor must see the live V4 production path (the audit's
+ * "doctor is blind to the V4 route" gap): the configured model CLI is
+ * qualified BEFORE any model work, the v25 root the CLI writes candidates/run
+ * state into is actually writable, and `createProductionBookRunComposition`
+ * (the real production wiring `book-run`/`book-autopilot` use) constructs
+ * without throwing. Read/probe-only: never runs a book, never spawns a real
+ * model call — `model-cli` degrades to SKIP under the hermetic no-API
+ * operating mode (CHAPTERFLOW_NO_API_CODEX_QC=1) so a doctor run inside the
+ * test/CI harness can never trigger a billed spawn.
+ */
+const V4_ROUTE_PROBE_ROOT = resolve(tmpdir(), "chapterflow-doctor-v4-route-probe");
+
+async function checkModelCli(): Promise<DoctorFinding> {
+  if (process.env.CHAPTERFLOW_NO_API_CODEX_QC === "1") {
+    return {
+      level: "skip",
+      check: "v4-route:model-cli",
+      message: "hermetic mode (CHAPTERFLOW_NO_API_CODEX_QC=1) — model CLI preflight skipped; no real spawn in this mode",
+    };
+  }
+  try {
+    // Qualify whichever CLI the per-role config actually selects as the default
+    // production route (Task 7: generalized from codex-only). The doctor probes
+    // the DEFAULT route's binary — the route every book-run uses first.
+    const { loadModelRoutingConfig, resolveRoleRoute } = await import("../runtime/codexRoute.js");
+    const defaultRoute = resolveRoleRoute(loadModelRoutingConfig());
+    const {
+      qualifyCodexCli,
+      qualifyClaudeCli,
+      assertFlagsSupported,
+      CODEX_ROUTE_REQUIRED_FLAGS,
+      CLAUDE_ROUTE_REQUIRED_FLAGS,
+    } = await import("../exec/cliQualification.js");
+    if (defaultRoute.route === "claude-cli") {
+      const qual = await qualifyClaudeCli({ bin: "claude" });
+      assertFlagsSupported(qual, CLAUDE_ROUTE_REQUIRED_FLAGS);
+      return {
+        level: "ok",
+        check: "v4-route:model-cli",
+        message: `claude CLI qualified (version ${qual.version || "unknown"}); required flags present: ${CLAUDE_ROUTE_REQUIRED_FLAGS.join(", ")}`,
+      };
+    }
+    const qual = await qualifyCodexCli({ bin: "codex" });
+    assertFlagsSupported(qual, CODEX_ROUTE_REQUIRED_FLAGS);
+    return {
+      level: "ok",
+      check: "v4-route:model-cli",
+      message: `codex CLI qualified (version ${qual.version || "unknown"}); required flags present: ${CODEX_ROUTE_REQUIRED_FLAGS.join(", ")}`,
+    };
+  } catch (e) {
+    return { level: "fatal", check: "v4-route:model-cli", message: `model CLI preflight failed: ${(e as Error).message}` };
+  }
+}
+
+async function checkV25RootWritable(v25Root: string): Promise<DoctorFinding> {
+  try {
+    mkdirSync(v25Root, { recursive: true });
+    const probe = resolve(v25Root, `.doctor-write-probe-${process.pid}-${Date.now()}`);
+    writeFileSync(probe, "ok", "utf8");
+    rmSync(probe, { force: true });
+    return { level: "ok", check: "v4-route:v25-root-writable", message: `v25 root is writable: ${v25Root}` };
+  } catch (e) {
+    return { level: "fatal", check: "v4-route:v25-root-writable", message: `v25 root is not writable: ${v25Root} — ${(e as Error).message}` };
+  }
+}
+
+async function checkCompositionConstructs(input: { pipelineRoot: string; v25Root: string; attemptRoot: string }): Promise<DoctorFinding> {
+  try {
+    const { createProductionBookRunComposition } = await import("../app/bookRunComposition.js");
+    await createProductionBookRunComposition({
+      bookId: "doctor-v4-route-probe",
+      pipelineRoot: input.pipelineRoot,
+      v25Root: input.v25Root,
+      attemptRoot: input.attemptRoot,
+    });
+    return {
+      level: "ok",
+      check: "v4-route:composition-constructs",
+      message: "createProductionBookRunComposition (the book-run/book-autopilot wiring) constructs without throwing",
+    };
+  } catch (e) {
+    return { level: "fatal", check: "v4-route:composition-constructs", message: `production composition failed to construct: ${(e as Error).message}` };
+  }
+}
+
+/** Run the 3 V4-route checks (`model-cli`, `v25-root-writable`,
+ *  `composition-constructs`). Every override is optional; callers without a
+ *  real v25/attempt root (a bare `doctor` invocation) get an isolated probe
+ *  root under the OS temp dir so the probe never touches production state. */
+export async function checkV4Route(opts: {
+  pipelineRoot?: string;
+  v25Root?: string;
+  attemptRoot?: string;
+} = {}): Promise<DoctorFinding[]> {
+  const pipelineRoot = opts.pipelineRoot ?? PIPELINE_DIR;
+  const v25Root = opts.v25Root ?? resolve(V4_ROUTE_PROBE_ROOT, "v25");
+  const attemptRoot = opts.attemptRoot ?? resolve(V4_ROUTE_PROBE_ROOT, "attempts");
+  return [
+    await checkModelCli(),
+    await checkV25RootWritable(v25Root),
+    await checkCompositionConstructs({ pipelineRoot, v25Root, attemptRoot }),
+  ];
+}
+
 /** Advisory lock record shape shared by autopilot-locks (autopilot run lock +
  *  compiler-run lock both write `{ pid, host, at, owner }`). */
 type LockRecord = { pid?: number; host?: string; at?: string; owner?: string };
@@ -256,7 +361,7 @@ export function runDoctorChecks(bookId?: string): DoctorFinding[] {
 }
 
 export function formatDoctor(findings: DoctorFinding[]): string {
-  const icon = (l: DoctorFinding["level"]) => (l === "ok" ? "✓" : l === "warn" ? "⚠" : "✗");
+  const icon = (l: DoctorFinding["level"]) => (l === "ok" ? "✓" : l === "warn" ? "⚠" : l === "skip" ? "○" : "✗");
   const fatal = findings.filter((f) => f.level === "fatal").length;
   const warn = findings.filter((f) => f.level === "warn").length;
   const L: string[] = [`DOCTOR — ${fatal} fatal, ${warn} warning(s)`];

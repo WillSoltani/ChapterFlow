@@ -1,0 +1,95 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["b", "a", "c", "b", "b", "b", "c", "a", "c"],
+    "mechanisms": [
+      "The prose says to stop replaying the whole performance, isolate the recurring fault, get feedback, and change the next attempt.",
+      "A repeated error should become a narrow drill around only that pattern, with the first failing step corrected.",
+      "The chapter warns that whole-task repetition lets one weak point survive inside apparent effort.",
+      "The plateau/video combination calls for a changed method, a visible cue, quick feedback, and repetition before adding distance.",
+      "The Faloon point is that each miss told the next attempt where to work, making recall a feedback loop.",
+      "The chapter requires a visible/countable target that guides the next rep, not nightly repetition that may preserve the error.",
+      "Feedback matters only when it shapes the next attempt while the mistake is still traceable.",
+      "Plan B gives immediate comparison and adjustment before the next small batch; Plan A delays the signal.",
+      "A useful target must be visible, countable, and correctable; the chalk-line/pedal target meets that test."
+    ],
+    "confidence": ["high", "high", "high", "high", "high", "medium", "high", "high", "high"],
+    "ambiguities": [
+      "",
+      "",
+      "",
+      "",
+      "",
+      "Choice a is also defensible because the chapter says comfort and enjoyable repetition can leave the weak spot hidden; b is stronger because it adds the visible target and next-cut correction.",
+      "",
+      "",
+      ""
+    ],
+    "tells": [
+      "b is the most concrete and stacks the chapter's giveaway markers: isolate, record, change before next attempt.",
+      "a telegraphs itself with 'redox-only', step checking, and rewriting the failing step.",
+      "c reuses the chapter's weak-point-survives-inside-whole-performance logic almost directly.",
+      "b is the only option with cue, feedback, and repeat-before-volume structure.",
+      "",
+      "",
+      "c closely echoes the review-card language about changing the next attempt while details are traceable.",
+      "a is longer and contains the obvious feedback-soon-enough rationale.",
+      "c is the only specific, measurable target, making it guessable from option shape."
+    ]
+  },
+  "scores": {
+    "retention": 92,
+    "quizzes": 82,
+    "transfer": 90,
+    "practical": 91,
+    "summaries": 90,
+    "tone": 88,
+    "limits": 86,
+    "insight": 89,
+    "density": 84,
+    "beginner": 88
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The miss is the map because it tells the next rep where to aim.",
+      "why": "This is the strongest memory hook and captures the mechanism in one clean line."
+    },
+    {
+      "quote": "Purposeful practice begins when effort stops being a count of repetitions and becomes a correction loop: one target, one stretch, one feedback signal, one changed next attempt.",
+      "why": "The key takeaway is accurate, portable, and complete as a standalone summary."
+    },
+    {
+      "quote": "Q6. \"Nightly repetition will eventually fix uneven knife cuts.\" What is wrong with that claim?",
+      "why": "This is the weakest quiz item because two answer choices are supported by the chapter's own language."
+    },
+    {
+      "quote": "c) changes the next attempt while the mistake is still traceable",
+      "why": "This answer is fair, but it also gives itself away by closely mirroring the chapter's repeated phrasing."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q6",
+      "problem": "The item is mildly underdetermined: b is the best answer, but a is also supported by the chapter's comfort-and-repetition warnings.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz set",
+      "problem": "Several correct answers are guessable from option shape because they are the most concrete and reuse the chapter's signature terms: only, feedback, weak point, and next attempt.",
+      "mustFix": false
+    },
+    {
+      "unit": "deep read",
+      "problem": "Steve Faloon is named with minimal beginner context; the prose implies a memory-lab digit-span example but does not explain who he is.",
+      "mustFix": false
+    },
+    {
+      "unit": "full read",
+      "problem": "The isolate-feedback-adjust loop is repeated across many examples with limited new nuance after the midpoint, which slightly lowers density.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is a strong, shippable chapter. The core move is memorable, concrete, and repeatedly transferred across work, study, sport, and craft without overselling the method. The practical loop is clear enough for a beginner to use within a day. The main weakness is quiz craft: most items are fair, but several answers are too easy to spot from specificity and repeated phrasing, and Q6 should be tightened to remove the a/b ambiguity."
+}
+```

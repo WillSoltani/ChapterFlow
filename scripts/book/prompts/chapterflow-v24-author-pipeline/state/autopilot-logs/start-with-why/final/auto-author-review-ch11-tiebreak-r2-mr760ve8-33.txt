@@ -1,0 +1,76 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "c", "b", "b", "a", "b", "a", "a"],
+    "keyDisagreements": [],
+    "tells": [
+      "Correct choices often carry the named factual token plus a careful scope phrase, while distractors use obvious extremes such as only, every, remove, replace, or no bearing.",
+      "Q8 is awkwardly keyed: the stem asks what gets lost, but choice a describes the useful separation rather than plainly naming its loss."
+    ]
+  },
+  "scores": {
+    "retention": 84,
+    "quizzes": 80,
+    "transfer": 62,
+    "practical": 78,
+    "summaries": 87,
+    "tone": 75,
+    "limits": 88,
+    "insight": 82,
+    "density": 76,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A metric is a receipt, not a reason.",
+      "why": "Strong, memorable compression of the chapter's central diagnostic move."
+    },
+    {
+      "quote": "Fog burns trust.",
+      "why": "Strongest emotional consequence; it gives the idea a cost beyond neat analysis."
+    },
+    {
+      "quote": "The return point is set, not met.",
+      "why": "The chapter notices its own recurring problem: examples often set up proof instead of showing a full before-to-after transfer."
+    },
+    {
+      "quote": "He named Walmart and 1962, Starbucks and 1971, Microsoft and the 1975 founding, but he used them like labels.",
+      "why": "This is a good warning, but it also describes the chapter's weakest examples when they orbit labels and drafting moves."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Examples overall",
+      "problem": "The examples mostly show Heath, Hazel, Danielle, or Nadine editing a read, not a real team diagnosing success fog in an operating decision with a consequence. That makes transfer feel manufactured and meta.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 2",
+      "problem": "It says Starbucks should be added as a second setting, but admits the return point is set, not met. The reader still does not see an actual before-to-after behavior change caused by rapid expansion.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "The postmortem explains that the earlier pass used famous names like labels, but the example remains a writing-process diagnosis rather than a practical application of success fog.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q8",
+      "problem": "The keyed answer is derivable, but its wording is backwards for the stem: it asks what gets lost, while the correct choice states the distinction the team needs rather than explicitly saying the distinction is lost.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz overall",
+      "problem": "Several correct options are easier to guess because they contain the precise scoped chapter language, while wrong options are inflated with obvious absolutes or overcorrections.",
+      "mustFix": false
+    },
+    {
+      "unit": "tone",
+      "problem": "The named-role scaffold gives parts of the chapter a template smell; the prose is clear, but Heath/Hazel/Nadine/Danielle sometimes feel like handles for lesson mechanics rather than people.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter has a strong central move and several memorable lines, especially the metric-as-receipt distinction. The summaries layer well, the limits section is unusually responsible, and the quiz is mostly sound. I would not ship it yet because the transfer layer is underbuilt: too many examples are about composing or correcting the chapter's own proof rather than showing a real-world reader how to diagnose success fog in a live decision. Replace at least two meta examples with concrete before-to-after operating cases, and clean up Q8's wording."
+}
+```

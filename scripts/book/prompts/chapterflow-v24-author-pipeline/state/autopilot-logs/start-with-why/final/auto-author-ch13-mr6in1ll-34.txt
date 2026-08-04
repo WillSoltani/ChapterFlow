@@ -1,0 +1,12 @@
+Updated [start-with-why-ch13.v21-native.chapter.json](/Users/radinsoltani/ChapterFlow-books/scripts/book/prompts/chapterflow-v24-author-pipeline/state/chapters/start-with-why-ch13.v21-native.chapter.json).
+
+Fixed the Q1 cause/key mismatch by making the keyed answer name the actual cause: contribution was put before repeated past moments. I also lightly simplified example wording while preserving the required anchors.
+
+Verification run:
+- JSON parse: valid
+- `author-check`: clean
+- `gate-chapter`: PASS, 0 blockers, 0 majors
+- `quiz-verify`: 9/9 match
+- Evidence audit: no candidates
+- Rendered chars: 18,118, within target range
+- Distractor parity: keys uniquely longest 0 times, uniquely shortest 2 times

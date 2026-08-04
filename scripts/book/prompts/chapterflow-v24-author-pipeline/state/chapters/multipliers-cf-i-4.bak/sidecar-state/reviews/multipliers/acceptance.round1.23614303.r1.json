@@ -1,0 +1,247 @@
+{
+  "schemaVersion": "author-acceptance-v1",
+  "bookId": "multipliers",
+  "roundLabel": "",
+  "at": "2026-07-09T04:22:30.826Z",
+  "bar": 80,
+  "beatShipped": null,
+  "accepted": true,
+  "sampledChapters": [
+    2,
+    5,
+    7,
+    9
+  ],
+  "docSha256": "2361430391734a9f502ee741bd03bf014fd303c9d79d1e261dc19e455024a54d",
+  "verdict": {
+    "id": "multipliers",
+    "medianComposite": 79.4,
+    "factors": {
+      "retention": 83,
+      "quizzes": 76,
+      "transfer": 86,
+      "practical": 80,
+      "summaries": 78,
+      "tone": 74,
+      "limits": 84,
+      "insight": 79,
+      "density": 72,
+      "beginner": 80
+    },
+    "gate": "PASS",
+    "gateVotes": "3P/0F",
+    "churn": "MEDIUM",
+    "validCount": 3,
+    "readerCount": 3,
+    "chapters": [
+      2,
+      5,
+      7,
+      9
+    ],
+    "readers": [
+      {
+        "reviewerSessionId": "auto-author-book-reader-1-mrd023u3-20",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "HIGH",
+        "scores": {
+          "retention": 83,
+          "quizzes": 74,
+          "transfer": 86,
+          "practical": 80,
+          "summaries": 82,
+          "tone": 72,
+          "limits": 85,
+          "insight": 78,
+          "density": 70,
+          "beginner": 80
+        },
+        "composite": 79.2,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "This is a strong, usable sample with sound keys, clear practical tools, good limits, and several genuinely memorable lines. The main weakness is churn: the chapters share the same scaffolding, cadence, example shell, and proof rhythm so strongly that the book starts to feel manufactured even when individual lessons are useful. The prose is clear and mostly beginner-friendly, but density suffers from repeated summaries, repeated named-source anchoring, and occasional decorative micro-scenes that do not teach.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-2-mrd023u8-21",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "MEDIUM",
+        "scores": {
+          "retention": 84,
+          "quizzes": 76,
+          "transfer": 86,
+          "practical": 82,
+          "summaries": 78,
+          "tone": 74,
+          "limits": 84,
+          "insight": 79,
+          "density": 72,
+          "beginner": 80
+        },
+        "composite": 79.7,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 5,
+        "quotesTotal": 5,
+        "oneParagraphVerdict": "This is a strong instructional sample with clear mechanisms, good transfer scenarios, useful limits, and several sticky lines. The main weakness is not correctness but sameness: the chapters repeatedly use the same architecture, example rhythm, research-anchor move, cost/guardrail language, and practice shell, which makes the book feel more manufactured than individually voiced. The quizzes are mostly sound and scenario-based, but distractors are often obviously inferior, and there are no answer explanations. Overall it is publishable-quality draft material, strongest on transfer and limits, weaker on density, tone variety, and quiz sophistication.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      },
+      {
+        "reviewerSessionId": "auto-author-book-reader-3-mrd023u9-22",
+        "valid": true,
+        "gateVerdict": "PASS",
+        "churn": "MEDIUM",
+        "scores": {
+          "retention": 82,
+          "quizzes": 78,
+          "transfer": 84,
+          "practical": 80,
+          "summaries": 78,
+          "tone": 74,
+          "limits": 82,
+          "insight": 79,
+          "density": 72,
+          "beginner": 78
+        },
+        "composite": 79,
+        "keyCheck": {
+          "matches": 36,
+          "of": 36,
+          "disagreements": []
+        },
+        "quotesVerified": 6,
+        "quotesTotal": 6,
+        "oneParagraphVerdict": "This is publishable in substance: the keys are supported, the chapters teach reusable lenses, and the best lines are memorable enough to travel. The main weakness is not correctness but sameness. Across chapters, the structure, example rhythm, named-case anchoring, one-visible-behavior repair, cost paragraph, and What to do/Why it matters shells become noticeable. The material is strongest when it gives a crisp reversal like rescue as theft or debate as risk path; it is weakest when scene props and template labels substitute for fresh authorial texture.",
+        "structuralScreen": {
+          "claimsScanned": 0,
+          "decisions": []
+        }
+      }
+    ]
+  },
+  "readers": [
+    {
+      "reviewerSessionId": "auto-author-book-reader-1-mrd023u3-20",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "HIGH",
+      "scores": {
+        "retention": 83,
+        "quizzes": 74,
+        "transfer": 86,
+        "practical": 80,
+        "summaries": 82,
+        "tone": 72,
+        "limits": 85,
+        "insight": 78,
+        "density": 70,
+        "beginner": 80
+      },
+      "composite": 79.2,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "This is a strong, usable sample with sound keys, clear practical tools, good limits, and several genuinely memorable lines. The main weakness is churn: the chapters share the same scaffolding, cadence, example shell, and proof rhythm so strongly that the book starts to feel manufactured even when individual lessons are useful. The prose is clear and mostly beginner-friendly, but density suffers from repeated summaries, repeated named-source anchoring, and occasional decorative micro-scenes that do not teach.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-2-mrd023u8-21",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 84,
+        "quizzes": 76,
+        "transfer": 86,
+        "practical": 82,
+        "summaries": 78,
+        "tone": 74,
+        "limits": 84,
+        "insight": 79,
+        "density": 72,
+        "beginner": 80
+      },
+      "composite": 79.7,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 5,
+      "quotesTotal": 5,
+      "oneParagraphVerdict": "This is a strong instructional sample with clear mechanisms, good transfer scenarios, useful limits, and several sticky lines. The main weakness is not correctness but sameness: the chapters repeatedly use the same architecture, example rhythm, research-anchor move, cost/guardrail language, and practice shell, which makes the book feel more manufactured than individually voiced. The quizzes are mostly sound and scenario-based, but distractors are often obviously inferior, and there are no answer explanations. Overall it is publishable-quality draft material, strongest on transfer and limits, weaker on density, tone variety, and quiz sophistication.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    },
+    {
+      "reviewerSessionId": "auto-author-book-reader-3-mrd023u9-22",
+      "valid": true,
+      "gateVerdict": "PASS",
+      "churn": "MEDIUM",
+      "scores": {
+        "retention": 82,
+        "quizzes": 78,
+        "transfer": 84,
+        "practical": 80,
+        "summaries": 78,
+        "tone": 74,
+        "limits": 82,
+        "insight": 79,
+        "density": 72,
+        "beginner": 78
+      },
+      "composite": 79,
+      "keyCheck": {
+        "matches": 36,
+        "of": 36,
+        "disagreements": []
+      },
+      "quotesVerified": 6,
+      "quotesTotal": 6,
+      "oneParagraphVerdict": "This is publishable in substance: the keys are supported, the chapters teach reusable lenses, and the best lines are memorable enough to travel. The main weakness is not correctness but sameness. Across chapters, the structure, example rhythm, named-case anchoring, one-visible-behavior repair, cost paragraph, and What to do/Why it matters shells become noticeable. The material is strongest when it gives a crisp reversal like rescue as theft or debate as risk path; it is weakest when scene props and template labels substitute for fresh authorial texture.",
+      "structuralScreen": {
+        "claimsScanned": 0,
+        "decisions": []
+      }
+    }
+  ],
+  "pooled": {
+    "reads": 1,
+    "composite": 79.4,
+    "gate": "PASS",
+    "noiseBand": 3.7,
+    "capped": false
+  },
+  "structuralSameness": {
+    "mode": "advisory",
+    "archAxes": [],
+    "archSevere": false,
+    "contentOverCap": [],
+    "contentSevere": false
+  }
+}

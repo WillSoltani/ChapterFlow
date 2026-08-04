@@ -1,0 +1,78 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["c", "c", "a", "a", "b", "b", "b", "c", "a"],
+    "keyDisagreements": [],
+    "tells": ["Q4's correct answer is much more complete and chapter-shaped than the distractors, so a test-wise reader could pick it without much derivation.", "Several correct choices reuse the chapter's exact governing phrases while distractors overstate with words like only, unchanged, replace, or any, making elimination easier than reading."]
+  },
+  "scores": {
+    "retention": 78,
+    "quizzes": 82,
+    "transfer": 58,
+    "practical": 74,
+    "summaries": 76,
+    "tone": 55,
+    "limits": 82,
+    "insight": 78,
+    "density": 66,
+    "beginner": 68
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "A rival is not the judge; it is the alarm.",
+      "why": "Strongest memorable compression of the chapter's core move."
+    },
+    {
+      "quote": "The useful path is alert first, return second, fit with WHY third, and a better new move after that.",
+      "why": "Clear sequence that makes the mechanism transferable."
+    },
+    {
+      "quote": "The iPod is still on the page under one blue underline.",
+      "why": "This reads like production-note residue rather than a real example a beginner can learn from."
+    },
+    {
+      "quote": "No one has done it yet.",
+      "why": "A manufactured example stops before showing a decision and consequence."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "Example 2",
+      "problem": "Cyrus is a placeholder character in a meta drafting scene, not a real before-to-after case; it names no concrete decision consequence and mostly restates the lesson about Microsoft as a transfer anchor.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 5",
+      "problem": "Christophe states requirements for the chapter itself rather than demonstrating the skill in a real setting; the example says the return is not met, so it fails to show successful application.",
+      "mustFix": true
+    },
+    {
+      "unit": "Example 1",
+      "problem": "The 'one blue underline' detail feels like document markup leaking into the prose and makes the Apple-Dell example artificial.",
+      "mustFix": true
+    },
+    {
+      "unit": "fast read",
+      "problem": "Phrases like 'company in the Apple and Dell contrast' and 'the lone Dell product mark here' sound like scaffold labels instead of finished explanatory prose.",
+      "mustFix": true
+    },
+    {
+      "unit": "tone throughout",
+      "problem": "The chapter repeatedly uses internal-production language such as anchor, token, hard detail, and stamp, which creates template smell and raises the beginner burden.",
+      "mustFix": false
+    },
+    {
+      "unit": "transfer/examples",
+      "problem": "The chapter promises broad transfer but most examples are about correcting a draft or chapter evidence, not about workplace decisions where a rival pressure changes action and proof.",
+      "mustFix": true
+    },
+    {
+      "unit": "quiz Q4",
+      "problem": "The correct answer is visibly the most complete and most aligned with the chapter's exact terms, creating a mild answer tell.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The core idea is useful and memorable: rivals should wake pressure, not become the judge, and proof should return to an internal benchmark. The quiz is mostly fair and the limits section is stronger than average. I would not ship it at a professional bar because the examples feel manufactured and often meta-editorial rather than lived, with several failing to show a real decision and consequence. The prose also carries too much scaffold language for a beginner-facing chapter."
+}
+```

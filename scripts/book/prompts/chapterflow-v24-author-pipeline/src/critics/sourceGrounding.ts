@@ -17,10 +17,12 @@
  * generic decision scenes — they have to use real source material.
  */
 
-import { readFileSync } from "fs";
+import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { ChapterV21, CriticFinding, SourceAnchorForPrompt, SourceClaimType } from "../types.js";
+import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
+import { sourceUsePlanPath } from "../artifacts/artifactStore.js";
 import { finding } from "./shared.js";
 import { isPageCitationOnly } from "./apparatusLeakage.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
@@ -332,7 +334,36 @@ function checkUnit(
   }
 }
 
-export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[] {
+/** IMP-09 (instruction 4): count the source-use plan's units whose DECLARED
+ *  origin is generic/constructed — the compiler licensed exactly that many
+ *  reader units to carry NO source proper noun (their register is validated by
+ *  C37/the register advisories instead). Plan absent → 0 (legacy behavior,
+ *  byte-identical). Plan present but unreadable → 0: for a CRITIC the strict
+ *  no-plan behavior is the FAIL-CLOSED direction (the author lane separately
+ *  converts a corrupt plan into a refusal — authorRun.readSourcePlan). */
+function planLicensedUnanchoredUnits(chapter: ChapterV21, planOverride?: SourceUsePlanV1 | null): number {
+  let plan: SourceUsePlanV1 | null = null;
+  if (planOverride !== undefined) {
+    plan = planOverride;
+  } else {
+    try {
+      const parsed = parseChapterId(chapter.chapterId ?? "");
+      if (!parsed) return 0;
+      const p = sourceUsePlanPath(parsed.bookId, parsed.num);
+      plan = existsSync(p) ? (JSON.parse(readFileSync(p, "utf8")) as SourceUsePlanV1) : null;
+    } catch {
+      return 0;
+    }
+  }
+  if (!plan || !Array.isArray(plan.units)) return 0;
+  return plan.units.filter((u) => u.origin === "generic" || u.origin === "constructed").length;
+}
+
+export function checkExampleSourceGrounding(
+  chapter: ChapterV21,
+  planOverride?: SourceUsePlanV1 | null,
+  sidecarOverride?: unknown,
+): CriticFinding[] {
   const findings: CriticFinding[] = [];
   const id = chapter.chapterId;
   if (typeof id !== "string" || !id) return findings;
@@ -344,7 +375,7 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
   const bookId = parsed.bookId;
   const chNum = String(parsed.num).padStart(2, "0");
 
-  const latestRun = findLatestRunDir(RUNS_DIR, bookId);
+  const latestRun = sidecarOverride !== undefined ? "explicit-sidecar" : findLatestRunDir(RUNS_DIR, bookId);
   if (!latestRun) {
     // SC11.0 (Phase 0, SHADOW = major) — no source run on disk. Missing source
     // reliably predicts word-salad; surface it loudly instead of the old silent
@@ -360,7 +391,9 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
   }
   // Artifact-aware: take the sidecar from the NEWEST run that actually has it
   // (a rework run dir without ch01-08 sidecars must not hide the originals).
-  const sidecarPath = findRunArtifact(RUNS_DIR, bookId, `sidecars/source/ch${chNum}.source.json`);
+  const sidecarPath = sidecarOverride !== undefined
+    ? "explicit-sidecar"
+    : findRunArtifact(RUNS_DIR, bookId, `sidecars/source/ch${chNum}.source.json`);
   if (!sidecarPath) {
     return [
       finding(
@@ -372,10 +405,13 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
   }
 
   let sidecar: any;
-  try {
-    sidecar = JSON.parse(readFileSync(sidecarPath, "utf8"));
-  } catch {
-    return findings;
+  if (sidecarOverride !== undefined) sidecar = sidecarOverride;
+  else {
+    try {
+      sidecar = JSON.parse(readFileSync(sidecarPath, "utf8"));
+    } catch {
+      return findings;
+    }
   }
 
   const namedExamples = sidecar?.namedExamples ?? [];
@@ -447,9 +483,40 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
 
   // For each example, check if scenario contains any candidate as a
   // word-boundary match (case-insensitive).
-  const examples = chapter.examples ?? [];
-  for (let i = 0; i < examples.length; i++) {
-    const ex = examples[i];
+  //
+  // IMP-09 (instruction 4): the compiler's source-use plan may LICENSE units
+  // as generic/constructed — those are validated by their declared register
+  // (C37, register advisories) and must NOT be forced to restamp a source
+  // name. The plan does not bind units to example slots, so the allowance is
+  // positional and conservative: up to `licensedUnanchored` unmatched
+  // scenarios (ascending index) are licensed; every unmatched scenario BEYOND
+  // the plan's allowance fires the same MAJOR as before. No plan → allowance
+  // 0 → byte-identical legacy behavior.
+  findings.push(...scenarioGroundingFindings(
+    chapter.examples ?? [],
+    candidates,
+    planLicensedUnanchoredUnits(chapter, planOverride),
+  ));
+  return findings;
+}
+
+/** The SC9 scenario loop, extracted pure for direct testing (IMP-09): each
+ *  scenario must word-boundary-match ≥1 candidate anchor; up to
+ *  `licensedUnanchored` unmatched scenarios (ascending index — the plan does
+ *  not bind units to slots) are licensed by dealt generic/constructed plan
+ *  units; every unmatched scenario beyond the allowance fires the SAME MAJOR
+ *  as pre-IMP-09. licensedUnanchored=0 (no plan) is byte-identical legacy
+ *  behavior. */
+export function scenarioGroundingFindings(
+  examples: ChapterV21["examples"],
+  candidates: ReadonlySet<string>,
+  licensedUnanchored: number,
+): CriticFinding[] {
+  const findings: CriticFinding[] = [];
+  let licensedRemaining = licensedUnanchored;
+  const list = examples ?? [];
+  for (let i = 0; i < list.length; i++) {
+    const ex = list[i];
     if (!ex) continue;
     const scenario = typeof ex.scenario === "string" ? ex.scenario : "";
     if (!scenario) continue;
@@ -463,6 +530,10 @@ export function checkExampleSourceGrounding(chapter: ChapterV21): CriticFinding[
       }
     }
     if (matched) continue;
+    if (licensedRemaining > 0) {
+      licensedRemaining--;
+      continue; // licensed by a dealt generic/constructed plan unit
+    }
 
     const sampleAnchors = [...candidates].slice(0, 6).map((c) => `"${c}"`).join(", ");
     findings.push(

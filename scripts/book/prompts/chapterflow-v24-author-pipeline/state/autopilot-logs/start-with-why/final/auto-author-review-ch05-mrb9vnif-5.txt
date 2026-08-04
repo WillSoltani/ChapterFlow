@@ -1,0 +1,63 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "b", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": [],
+    "tells": ["Several keyed choices carry the chapter's exact diagnostic vocabulary while distractors are broader or obviously overreaching, especially Q1, Q3, Q5, Q7, and Q9.", "Q1's correct answer is the only option that names a source-backed new setting and a misconception, making it more keyed-looking than the alternatives."]
+  },
+  "scores": {
+    "retention": 88,
+    "quizzes": 82,
+    "transfer": 84,
+    "practical": 87,
+    "summaries": 90,
+    "tone": 86,
+    "limits": 88,
+    "insight": 87,
+    "density": 84,
+    "beginner": 83
+  },
+  "ship84": true,
+  "quotes": [
+    {
+      "quote": "The fare did not make the belief; the belief made the fare readable.",
+      "why": "Strong, memorable compression of the chapter's core mechanism."
+    },
+    {
+      "quote": "A true fact attached to the wrong example makes the claim feel steadier than it is.",
+      "why": "Excellent transferable warning about evidence misuse."
+    },
+    {
+      "quote": "what must this person do so another person can see the same belief?",
+      "why": "Turns the abstract lesson into a practical diagnostic question."
+    },
+    {
+      "quote": "The early signal is 1971.",
+      "why": "The phrasing is cryptic for a beginner and makes the example feel like it is serving the source pack more than the reader."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q1",
+      "problem": "The keyed option is much more source-specific and chapter-shaped than the distractors, which creates a mild answer tell.",
+      "mustFix": false
+    },
+    {
+      "unit": "quiz Q3",
+      "problem": "The correct answer lists the three anchors almost verbatim, while the distractors are plainly contrary to the chapter's repeated push toward hard specifics.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 1",
+      "problem": "The line 'The early signal is 1971' is hard to parse cold and briefly obscures the practical situation before the example recovers.",
+      "mustFix": false
+    },
+    {
+      "unit": "example 5",
+      "problem": "The birthday-card envelope detail adds scene dressing but does not affect the decision, consequence, or transfer lesson.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "This is shippable: the chapter has a clear, memorable core move, repeats it through Southwest, Kelleher, Apple, and Dallas without losing the thread, and gives readers a usable diagnostic question they can apply outside the examples. The main weaknesses are quiz tells from overly chapter-shaped correct options and a few example details that feel slightly artificial or source-pack-driven. None of those rise to reader-harming defects, and the limits section is unusually responsible about not overclaiming."
+}
+```

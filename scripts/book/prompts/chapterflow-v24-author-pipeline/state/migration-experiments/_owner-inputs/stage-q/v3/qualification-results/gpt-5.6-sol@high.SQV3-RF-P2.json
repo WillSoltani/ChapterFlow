@@ -1,0 +1,7 @@
+{
+  "caseId": "SQV3-RF-P2",
+  "target": "REVIEW_FINDING",
+  "schemaValid": true,
+  "attempts": 1,
+  "raw": "{\"targetType\":\"REVIEW_FINDING\",\"evidenceSufficiency\":\"SUFFICIENT_TO_DECIDE\",\"findingValidity\":\"PARTIALLY_SUPPORTED\",\"severityIfSupported\":\"MATERIAL\",\"evidenceSpans\":[\"Q1: What comes first? A) notice  B) act. Key: A. Explanation: you notice before acting.\",\"Q2: What does the cord signal? A) a problem  B) a break. Key: A. Explanation: it flags a problem to inspect.\",\"Q3: Which is the earliest step? A) gather facts  B) escalate. Key: B. Explanation: gather the facts first, then escalate.\"],\"rationale\":\"The supplied record includes every quiz question, key, and explanation, so it is sufficient to decide the finding. Q1 and Q2 have keys consistent with their explanations, disproving the claim that all three keys are wrong. Q3 is internally inconsistent because its key selects “escalate” while its explanation identifies gathering facts as the earlier step. Thus, one wrong key is proven, making the finding partially supported; this is a material quiz defect, but the record does not support the claimed P0 severity, an entirely broken quiz, or blocking the chapter.\"}"
+}

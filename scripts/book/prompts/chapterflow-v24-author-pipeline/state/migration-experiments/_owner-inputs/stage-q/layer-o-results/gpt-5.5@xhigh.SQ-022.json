@@ -1,0 +1,24 @@
+{
+  "caseId": "SQ-022",
+  "parsed": {
+    "caseId": "SQ-022",
+    "verdict": "CLEAN",
+    "defectClass": "NONE",
+    "severity": "NONE",
+    "shouldBlock": false,
+    "evidenceSpans": [
+      {
+        "materialIndex": 0,
+        "quote": "All examples and scenarios are invented fresh."
+      },
+      {
+        "materialIndex": 1,
+        "quote": "Title: Laura Opens the Review Notes Scenario: What if the red cell is not a formatting issue?"
+      }
+    ],
+    "explanation": "The provenance explicitly says scenarios are invented, and the candidate labels the item as a scenario with a hypothetical framing rather than presenting it as a documented event.",
+    "confidence": "HIGH"
+  },
+  "raw": "{\"caseId\":\"SQ-022\",\"verdict\":\"CLEAN\",\"defectClass\":\"NONE\",\"severity\":\"NONE\",\"shouldBlock\":false,\"evidenceSpans\":[{\"materialIndex\":0,\"quote\":\"All examples and scenarios are invented fresh.\"},{\"materialIndex\":1,\"quote\":\"Title: Laura Opens the Review Notes Scenario: What if the red cell is not a formatting issue?\"}],\"explanation\":\"The provenance explicitly says scenarios are invented, and the candidate labels the item as a scenario with a hypothetical framing rather than presenting it as a documented event.\",\"confidence\":\"HIGH\"}",
+  "attempts": 1
+}

@@ -1,0 +1,49 @@
+```json
+{
+  "quizDerivation": {
+    "answers": ["a", "a", "c", "c", "a", "a", "b", "c", "b"],
+    "keyDisagreements": ["Q2: I derive a, not b. The stem asks what caused the Kelleher paragraph to sound like the Southwest paragraph with another name; the supported cause is sharing the same dated airline stamp. Key b is a remedy/contrast, not the cause."],
+    "tells": ["Q2 key b is phrased as the corrective contrast rather than the cause, which makes the stem/key relationship unsound for a WHY question.", "Q5 choice a has the most exact chapter vocabulary: reason, conduct, visible output; this is a mild content tell."]
+  },
+  "scores": {
+    "retention": 90,
+    "quizzes": 78,
+    "transfer": 86,
+    "practical": 88,
+    "summaries": 91,
+    "tone": 89,
+    "limits": 90,
+    "insight": 88,
+    "density": 86,
+    "beginner": 84
+  },
+  "ship84": false,
+  "quotes": [
+    {
+      "quote": "Put the visible thing first, and it has to do too much. Put the reason first, and the visible thing can be judged.",
+      "why": "Strongest concise statement of the chapter's mechanism."
+    },
+    {
+      "quote": "A true fact can still do false work.",
+      "why": "Memorable, transferable line that clarifies why evidence placement matters."
+    },
+    {
+      "quote": "Q2. The Kelleher paragraph failed because it sounded like the Southwest paragraph with another name. Which earlier choice caused that?",
+      "why": "Worst defect: the quiz stem asks for a cause, but the keyed answer gives the corrective contrast."
+    }
+  ],
+  "complaints": [
+    {
+      "unit": "quiz Q2",
+      "problem": "The stem asks what caused a failure, but the answer key selects the corrective move rather than the cause. From the prose, the cause is treating Kelleher like the same Southwest/date pattern instead of using cofounder as a different contrast.",
+      "mustFix": true
+    },
+    {
+      "unit": "example 5",
+      "problem": "The birthday-card envelope is concrete but does not affect the decision, consequence, or lesson; it reads as decorative detail in an otherwise usable example.",
+      "mustFix": false
+    }
+  ],
+  "oneParagraphVerdict": "The chapter is strong on the core move: reason first, conduct second, visible proof third. It is memorable, practical, and unusually honest about limits, especially the warning that true facts can do false work. The examples mostly transfer the idea across price, hiring, product, and drafting decisions. I would not ship as-is only because Q2 is a reader-harming quiz defect under the stated WHY-question rule: the key names the remedy, not the cause the prose supports."
+}
+```

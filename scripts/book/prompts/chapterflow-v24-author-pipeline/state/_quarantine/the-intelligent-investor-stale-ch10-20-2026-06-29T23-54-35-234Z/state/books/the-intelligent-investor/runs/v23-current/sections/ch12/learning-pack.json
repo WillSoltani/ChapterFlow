@@ -1,0 +1,248 @@
+{
+  "schemaVersion": "section-artifact-v1",
+  "artifactType": "learning-pack",
+  "chapterId": "the-intelligent-investor-ch12",
+  "quiz": {
+    "passingScorePercent": 70,
+    "questions": [
+      {
+        "questionId": "q01",
+        "sourceAnchorIds": [
+          "ch12.fact.1"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.1"
+        ],
+        "prompt": "A company highlights EPS in a short summary, but the filing includes footnotes and adjustments. What should an investor do first?",
+        "choices": [
+          "Read the per-share figure with the footnotes and adjustments before treating it as evidence.",
+          "Treat EPS as self-explanatory because accounting choices cannot change its meaning.",
+          "Ignore adjustments because the headline number already includes every important cost."
+        ],
+        "correctIndex": 0,
+        "explanation": "Per-share earnings need footnotes and adjustments because headline EPS can exclude or reclassify important costs.",
+        "bloomsLevel": "apply",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q02",
+        "sourceAnchorIds": [
+          "ch12.fact.2"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.2"
+        ],
+        "prompt": "Recent earnings look unusually strong after a cyclical upswing. Which valuation habit reduces the risk of overreading that result?",
+        "choices": [
+          "Let the most recent year dominate because it is the freshest information.",
+          "Average earnings across years so one unusually good or bad year does not define earning power.",
+          "Use only the strongest year because valuation should reward peak conditions."
+        ],
+        "correctIndex": 1,
+        "explanation": "Averaging earnings across years can reduce cyclical distortion because a recent result may be an extreme.",
+        "bloomsLevel": "understand",
+        "depthLevel": "simple"
+      },
+      {
+        "questionId": "q03",
+        "sourceAnchorIds": [
+          "ch12.fact.3"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.3"
+        ],
+        "prompt": "A company repeatedly labels costs as special charges and asks investors to ignore them. What is the disciplined response?",
+        "choices": [
+          "Exclude every special charge automatically because unusual labels make costs irrelevant.",
+          "Accept the adjusted figure whenever management separates the charge from reported earnings.",
+          "Judge whether the charges keep recurring, because repeated exceptions may reveal a real business problem."
+        ],
+        "correctIndex": 2,
+        "explanation": "Special charges require judgment rather than automatic exclusion. Repeated exceptions stop being exceptional.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q04",
+        "sourceAnchorIds": [
+          "ch12.fact.4"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.4"
+        ],
+        "prompt": "Basic EPS looks attractive, but options, convertibles, or warrants could increase the share count. What risk should be checked?",
+        "choices": [
+          "Whether basic EPS is high enough to make future share claims irrelevant.",
+          "Whether dilution could spread earnings over more owners and reduce each share's interest.",
+          "Whether the company can avoid reporting diluted claims once basic EPS is available."
+        ],
+        "correctIndex": 1,
+        "explanation": "Dilution matters because future shares can spread earnings over more owners. Basic EPS may not capture that shareholder economics issue.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q05",
+        "sourceAnchorIds": [
+          "ch12.fact.5"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.5"
+        ],
+        "prompt": "Reported profit looks strong, but cash generation is weak. What question should come before trusting the profit figure?",
+        "choices": [
+          "Whether profit and cash can be treated as interchangeable whenever accounting profit is positive.",
+          "Whether weak cash flow can be dismissed because revenue recognition settles the issue.",
+          "Whether accrual earnings are diverging from cash flow through revenue recognition or working capital."
+        ],
+        "correctIndex": 2,
+        "explanation": "Accounting profit should be compared with cash generation because accrual earnings can look strong while cash flow is weak.",
+        "bloomsLevel": "apply",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q06",
+        "sourceAnchorIds": [
+          "ch12.fact.6"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.6"
+        ],
+        "prompt": "Management presents adjusted earnings as cleaner than GAAP because several costs are removed. What is the right default response?",
+        "choices": [
+          "Review the adjustments independently because incentives favor presenting results in the most flattering light.",
+          "Prefer adjusted earnings automatically because they are always more truthful than GAAP.",
+          "Accept any removed cost as irrelevant once management calls the figure adjusted."
+        ],
+        "correctIndex": 0,
+        "explanation": "Management's adjusted figures need independent review. Adjustments can remove real costs, especially when incentives favor flattering presentation.",
+        "bloomsLevel": "understand",
+        "depthLevel": "standard"
+      },
+      {
+        "questionId": "q07",
+        "sourceAnchorIds": [
+          "ch12.fact.7"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.7"
+        ],
+        "prompt": "A low P/E looks cheap, but current earnings may be temporarily inflated. Why can the low multiple mislead?",
+        "choices": [
+          "Low multiple stocks are automatically cheap because the price already reflects every risk.",
+          "A low P/E proves the earnings base will remain stable when conditions normalize.",
+          "The denominator may fall when conditions normalize, so the apparent cheapness can disappear."
+        ],
+        "correctIndex": 2,
+        "explanation": "A low P/E can mislead when earnings are temporarily inflated because the earnings base can be overstated.",
+        "bloomsLevel": "analyze",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q08",
+        "sourceAnchorIds": [
+          "ch12.fact.8"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.8"
+        ],
+        "prompt": "A high P/E looks expensive, but current earnings may be temporarily depressed. What should an investor test before rejecting it?",
+        "choices": [
+          "Whether normalized profits may be higher than the trough, making the current denominator understated.",
+          "Whether high multiple stocks are automatically expensive regardless of earnings conditions.",
+          "Whether the current trough should be treated as permanent because it is the reported figure."
+        ],
+        "correctIndex": 0,
+        "explanation": "A high P/E can mislead if current earnings are temporarily depressed because normalized profits may be higher than the trough.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      },
+      {
+        "questionId": "q09",
+        "sourceAnchorIds": [
+          "ch12.fact.9"
+        ],
+        "keyEvidenceAnchorIds": [
+          "ch12.fact.9"
+        ],
+        "prompt": "A promotional summary presents attractive EPS, while filed statements include definitions, charges, and share counts. What evidence should carry more weight?",
+        "choices": [
+          "The promotional summary, because valuation only needs the headline EPS.",
+          "The filed statements, because audited reports and footnotes expose the context behind the number.",
+          "The shorter document, because added context usually distracts from valuation."
+        ],
+        "correctIndex": 1,
+        "explanation": "Filed statements are better evidence than summaries or promotion because audited reports and footnotes expose definitions, charges, and share counts.",
+        "bloomsLevel": "apply",
+        "depthLevel": "deep"
+      }
+    ]
+  },
+  "cards": {
+    "cards": [
+      {
+        "cardId": "rc01",
+        "sourceAnchorIds": [
+          "ch12.fact.1"
+        ],
+        "front": "Why should per-share earnings be read with footnotes and adjustments?",
+        "back": "Headline EPS may exclude or reclassify important costs. Footnotes and adjustments help show how accounting choices affect the meaning of the number.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc02",
+        "sourceAnchorIds": [
+          "ch12.fact.2"
+        ],
+        "front": "How can averaging earnings across years improve valuation judgment?",
+        "back": "Averaging can reduce cyclical distortion because one unusually good or bad year may not represent earning power. Recent results can be a cyclical extreme.",
+        "difficulty": "easy"
+      },
+      {
+        "cardId": "rc03",
+        "sourceAnchorIds": [
+          "ch12.fact.3"
+        ],
+        "front": "Why should special charges be judged rather than automatically excluded?",
+        "back": "Recurring unusual charges may reveal a real business problem. When exceptions repeat, they stop being exceptional and should not be ignored mechanically.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc04",
+        "sourceAnchorIds": [
+          "ch12.fact.4"
+        ],
+        "front": "Why does dilution matter for EPS analysis?",
+        "back": "Options, convertibles, or warrants can increase share count. Future shares spread earnings over more owners and can reduce each share's interest.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc05",
+        "sourceAnchorIds": [
+          "ch12.fact.5"
+        ],
+        "front": "Why compare accounting profit with cash generation?",
+        "back": "Accrual earnings can look strong while cash flow is weak. Revenue recognition and working capital can make profit and cash diverge.",
+        "difficulty": "medium"
+      },
+      {
+        "cardId": "rc06",
+        "sourceAnchorIds": [
+          "ch12.fact.6"
+        ],
+        "front": "Why do management's adjusted figures need independent review?",
+        "back": "Incentives favor presenting results in the most flattering light. Adjustments can remove real costs, so adjusted earnings are not automatically more truthful than GAAP.",
+        "difficulty": "hard"
+      },
+      {
+        "cardId": "rc07",
+        "sourceAnchorIds": [
+          "ch12.fact.7"
+        ],
+        "front": "Why can a low P/E be misleading when earnings are temporarily inflated?",
+        "back": "The earnings base can be overstated. If the denominator falls when conditions normalize, the low multiple may no longer signal cheapness.",
+        "difficulty": "hard"
+      }
+    ]
+  }
+}
