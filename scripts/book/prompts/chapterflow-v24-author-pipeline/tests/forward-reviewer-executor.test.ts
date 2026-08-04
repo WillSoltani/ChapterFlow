@@ -311,7 +311,7 @@ test("workspace tamper is detected after spawn and cleanup still runs", async ()
         return okResult(options);
       },
     });
-    await assert.rejects(execute(request(fixture)), /post-spawn integrity failure.*unexpected entries/s);
+    await assert.rejects(execute(request(fixture)), /post-spawn integrity failure[\s\S]*unexpected entries/);
     assert.equal(existsSync(cwd), false);
     assert.deepEqual(readdirSync(fixture.workspaceBase), []);
   } finally {

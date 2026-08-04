@@ -156,7 +156,7 @@ test("effectiveLedgerResilient fails closed without mutating malformed ledger by
     let msg = "";
     assert.throws(
       () => effectiveLedgerResilient(BOOK, ROUND, (m) => { msg = m; }),
-      /repair-ledger\.jsonl:2.*malformed/is,
+      /repair-ledger\.jsonl:2[\s\S]*malformed/i,
       "pure projection must propagate ledger integrity failure",
     );
     assert.match(msg, /run named ledger repair with explicit confirmation/i);

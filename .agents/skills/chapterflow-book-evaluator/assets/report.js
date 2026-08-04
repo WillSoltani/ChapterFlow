@@ -7,7 +7,7 @@
   var report;
   try {
     report = JSON.parse(dataElement.textContent || "{}");
-  } catch (error) {
+  } catch (_error) {
     var main = document.getElementById("main-content");
     if (main) {
       var warning = document.createElement("p");
@@ -143,7 +143,7 @@
   function meta(book) { return book && book.book && typeof book.book === "object" ? book.book : (book || {}); }
   function bookId(book, index) { return String(meta(book).book_id || meta(book).slug || book.slug || "book-" + String(index + 1)); }
   function bookTitle(book) { return String(meta(book).title || book.title || meta(book).book_id || "Untitled book"); }
-  function bookRank(book, index) { return Number(book.rank || meta(book).rank || index + 1); }
+  function _bookRank(book, index) { return Number(book.rank || meta(book).rank || index + 1); }
   function domainMap(book) { return book && book.domains && typeof book.domains === "object" ? book.domains : {}; }
 
   function keyOf(entry, fallback) {
@@ -166,7 +166,7 @@
     return number(value, NaN);
   }
 
-  function getRubricDomain(key) {
+  function _getRubricDomain(key) {
     var domains = report.rubric && report.rubric.domains;
     var matches = objectEntries(domains).filter(function (pair) { return keyOf(pair[1], pair[0]) === key; });
     return matches.length ? matches[0][1] : {};
@@ -254,7 +254,7 @@
     return value.toFixed(2);
   }
 
-  function disagreementFor(book, domainKey, subcriterionKey) {
+  function _disagreementFor(book, domainKey, subcriterionKey) {
     var disagreements = book && book.rater_agreement && Array.isArray(book.rater_agreement.disagreements) ? book.rater_agreement.disagreements : [];
     var suffix = domainKey + ".subcriteria." + subcriterionKey;
     return disagreements.find(function (item) { return String(item.path || "").indexOf(suffix) >= 0; }) || null;

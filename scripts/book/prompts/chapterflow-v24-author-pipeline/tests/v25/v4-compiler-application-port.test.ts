@@ -1035,7 +1035,7 @@ requiredTest("9 anchor-specifics retry feedback enumerates required verbatim str
   // against SEC106 so the model connects the two rules instead of guessing.
   assert.match(
     md,
-    /capitalizing the first letter of a specific.{0,80}safe.{0,200}SEC106|SEC106.{0,200}capitalizing the first letter of a specific.{0,80}safe/is,
+    /capitalizing the first letter of a specific.{0,80}safe.{0,200}SEC106|SEC106.{0,200}capitalizing the first letter of a specific[\s\S]{0,80}safe/i,
   );
   // A case NOT cited by any anchor-specifics blocker is never enumerated (no packet-wide dump).
   assert.doesNotMatch(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.cfpb/);
