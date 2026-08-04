@@ -27,8 +27,19 @@ const PINNED_SELECTOR_CONTRACT_SHA256 =
   "895bc52dc1fc01097fd45bdd7c673fdd80153d40bc86c88ba60f9c6493ef9fd6";
 const PINNED_BASELINE_EXCEPTION_SHA256 =
   "b266be7bb7fc26249fd4620a81d0cd82e3b388899952f801fc1559414489118d";
+// Widened 2026-08-04 from 21 to 43 on explicit owner approval: the 22 scratch/*.ts
+// files committed by 96ba28179 (2026-07-12) reach main for the first time via
+// PR #450. POST-BASE is the correct list, not baseline — they did not exist at
+// PINNED_PLANNING_BASE_SHA, and the verifier rejects a baseline exception that is
+// absent from the planning baseline. They are operator one-offs, never project
+// sources, and 15 are cited evidence: scratch/major-calibration.ts is named as the
+// calibration source in src/critics/majorPolicy.ts in BOTH pipelines, and
+// scratch/tiebreak-ch07.ts in docs/v24/STIER-PLAN-2026-07-03.md as where the
+// owner-approved majority-of-3 tiebreak lives — so they are approved, not deleted.
+// This hash is the second key: the allowlist, tsconfig.book.json's exclusions, and
+// this constant must move together, deliberately.
 const PINNED_POST_BASE_EXCEPTION_SHA256 =
-  "0e5c73646ae63228e96291da656e8f9071385824a917bd491812c7fda0e8da58";
+  "83b5b158853c1527862275ae044eca020b13a9466fc461b74a2035f98eeb9d37";
 const WS7_ADVANCED_FLAGS = [
   "noUncheckedIndexedAccess",
   "noImplicitReturns",
