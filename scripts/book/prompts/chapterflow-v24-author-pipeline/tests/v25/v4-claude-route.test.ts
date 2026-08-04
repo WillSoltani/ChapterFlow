@@ -87,10 +87,28 @@ requiredTest("claude route effort tiers ride in argv via --effort <tier>, not an
     const idx = built.args.indexOf("--effort");
     assert.notEqual(idx, -1, `--effort must be present for ${effort}`);
     assert.equal(built.args[idx + 1], effort);
-    // the effort is NOT smuggled through an env channel
-    assert.equal(typeof (createClaudeRoute("claude-sonnet-5", effort) as { env?: unknown }).env, "undefined");
+    // the effort is NOT smuggled through the env channel (the route DOES supply
+    // env now — the output-token ceiling — but never its effort tier)
+    const routeEnv = createClaudeRoute("claude-sonnet-5", effort).env?.(READ_ONLY_PROFILE) ?? {};
+    for (const value of Object.values(routeEnv)) {
+      assert.notEqual(value, effort, "effort must ride argv, never env");
+    }
+    assert.equal("CLAUDE_EFFORT" in routeEnv || "EFFORT" in routeEnv, false);
   }
   assert.deepEqual(effortArgs("xhigh"), ["--effort", "xhigh"]);
+});
+
+requiredTest("claude route env raises the output-token ceiling to the model maximum", () => {
+  // Live evidence (Franklin canary): ch01 learning-pack at Sonnet@high generated
+  // ~21 minutes then died `response exceeded the 32000 output token maximum`
+  // (is_error=true, exit 1) on two of three attempts, while the third produced a
+  // complete pack — the CLI's default cap sat astride the workload's natural
+  // variance, and extended-thinking spend counts against it. The route supplies
+  // the ceiling through the gateway's guarded env channel so ambient shell
+  // exports can never change model behavior.
+  const routeEnv = createClaudeRoute("claude-sonnet-5", "high").env?.(READ_ONLY_PROFILE);
+  assert.ok(routeEnv, "the route must supply env");
+  assert.equal(routeEnv!.CLAUDE_CODE_MAX_OUTPUT_TOKENS, "64000");
 });
 
 requiredTest("claude route: an unknown effort string degrades to the high tier flag value, never an invalid flag", () => {
