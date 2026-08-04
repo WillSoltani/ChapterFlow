@@ -192,7 +192,7 @@ promotion leg.
 | # | Item | Why it needs you |
 |---|---|---|
 | **D4** | SEC16 gate semantics — the AND-impossibility fix changed what the gate *means*, not just how it reports | A gate-semantics change is a content-policy decision |
-| **F1** | Book-scar edits do not invalidate implicated cache entries | Scar edits currently need manual eviction; a scar digest in the cache key would close it. **Do not ship it alongside F5** — see §5.1 |
+| ~~**F1**~~ | **SAFETY HALF RESOLVED 2026-08-04** — a scar edit can no longer be served packs drafted without it. The efficiency half is open: invalidation is book-wide, not per-implicated-pack. See §5.1 | Only affects cost, not correctness |
 | **F6** | **CORRECTION (2026-08-03): no scar reached a writer prompt during this campaign.** Resolved — see §5.3 | The remediation narrative in §4 needs reading with that in mind |
 | **F2** | Review `FAIL` has no repair path in `book-run` (QC `FAIL` does) | Editorial failure is terminal by design — worth a documented operator runbook |
 | **F3** | Corpus policy for abstract public-domain sources | *As a Man Thinketh* is not a defect to fix; it may be a source class to decline |
@@ -234,10 +234,15 @@ blockers from §6 were added there.
 scar → evict → fresh-run loop cheap. With scars inert, that loop had nothing to
 apply, and F5 would have been optimising a no-op.
 
-Note the ordering consequence: because the section-pack cache key does not include
-a scar digest (F1), the newly-live scars do **not** invalidate existing cached
-packs. Step 4's manual eviction is what makes a scar take effect. That is the
-documented procedure, and it is now load-bearing rather than belt-and-braces.
+Making scars live forced F1's safety half in the same change. `buildSectionTaskMarkdown`
+— the only thing that renders a scar — sits inside the `!reusedFromCache` guard, and
+`cachedSectionPackIsReusable` re-runs the section gate, which by design never sees
+scars. So without a scar digest in the cache identity, adding a panel-blocker rule and
+running the repair loop would have hit cache on every pack, built no prompt, applied
+nothing, and reported green: a silent safety bypass on precisely the path the rule was
+written for. `SectionPackCacheKey.scarsDigest` closes it — compared in `identityMatches`
+rather than baked into `entryFileName`, so books with no scar file keep every cached
+entry and a pre-field entry reads as `null`, which is what it was drafted under.
 
 ### 5.2 D6 resolved — the chapter bar is 70, calibrated to the shipped catalogue
 
@@ -297,13 +302,21 @@ The supported procedure, executed and confirmed on the Franklin canary:
    exact bundle with **zero model calls**; every non-evicted pack reuses from
    cache; only the evicted surfaces re-draft, now under the scar.
 
-> **Known friction (F1):** step 4 is manual because the cache key does not include
-> a scar digest. Adding one would make step 3 evict implicated entries automatically.
-> **Do not ship F1 alongside F5:** adding a key field forces a
-> `SECTION_PACK_CACHE_SCHEMA_VERSION` bump, and `identityMatches` requires exact
-> schema-version equality — every pre-existing entry would become a permanent miss,
-> destroying exactly the reuse the pin buys back. Sequence F1 after F5 has been
-> exercised.
+> **F1 — safety half resolved 2026-08-04.** Step 4 is no longer required for
+> CORRECTNESS: the section-pack cache identity now carries a `scarsDigest`, so
+> editing a scar invalidates that book's cached packs and they re-draft under the
+> new rule. Step 4 remains worth doing for COST, because invalidation is book-wide
+> rather than per-implicated-pack — a one-line scar edit currently re-drafts every
+> pack for that book.
+>
+> The schema-version bump this note originally warned about was avoided: the digest
+> is compared in `identityMatches`, not folded into `entryFileName`, so no entry is
+> orphaned by its path changing. Books with no scar file are untouched — their
+> digest is `null`, which is exactly what a pre-field entry reads as.
+>
+> **Still open:** narrowing invalidation to the implicated `(chapterId, kind)` pairs,
+> which is the part that would make a scar edit as cheap as `--research-run-id` made
+> the research half.
 
 #### F5 — RESOLVED: `--research-run-id`
 
