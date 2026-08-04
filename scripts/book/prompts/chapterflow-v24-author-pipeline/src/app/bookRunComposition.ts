@@ -27,7 +27,7 @@ import { createChapterFlowApp, type ChapterFlowApp } from "./createChapterFlowAp
 import { ModelGatewayReviewEvaluator } from "./modelGatewayReviewEvaluator.js";
 import { createModelTaskRunner, type ModelTaskRunner } from "./modelTaskRunner.js";
 import { SemanticPanelReviewEvaluator } from "./semanticPanelReviewEvaluator.js";
-import type { BookRunEvent, BookRunEventSink } from "./bookRunApplicationService.js";
+import { countQuizQuestions, freshQcRunDefinition, type BookRunEvent, type BookRunEventSink } from "./bookRunApplicationService.js";
 import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 
 export interface ProductionBookRunComposition {
@@ -413,7 +413,13 @@ export async function createProductionBookRunComposition(input: Readonly<{
     qc: qcService,
     diagnoses: qcStore,
   });
-  const repairQc = new CandidateQcEvaluator(contentReader);
+  // WITH the runner: a successor round must re-run the LLM answer-key judge.
+  // A repair rewrites chapters INCLUDING their quizzes, and round 1 may have
+  // FAILED precisely on QC1.wrong_quiz_key — an evaluator without a runner
+  // silently skips the judge (candidateQcEvaluator runs it only when runner AND
+  // taskContext are both present), so the successor round could PASS with
+  // regenerated answer keys that were never verified and promote them.
+  const repairQc = new CandidateQcEvaluator(contentReader, { runner });
   const repairApplication = new CandidateRepairApplicationPort({
     pipelineRoot: input.pipelineRoot,
     candidates: candidateStore,
@@ -425,18 +431,80 @@ export async function createProductionBookRunComposition(input: Readonly<{
     reviews: dedicatedRepairReviewService({ inner: reviewService, runStore, stageCoordinator, clock }),
     successorQc: {
       async run(request) {
+        // The judge needs its own run-state run (one admission per question
+        // attempt; the repair run's capacity is sized to its chapter count and
+        // cannot host judge attempts). Mirrors #runFreshQcWithJudge, including
+        // its crash-safe ordering: the committed round is the durable
+        // authority; the round commits BEFORE the run finishes COMPLETED.
+        const judgeRunId = `${request.roundId}-judge`;
+        const observedAt = clock.now();
+        const committed = await qcService.getRound(request.bookId, request.roundId);
+        if (committed.ok) return committed;
+        let createdAt = observedAt;
+        const prior = await runStore.readRun(request.bookId, judgeRunId, observedAt);
+        if (prior.ok) {
+          createdAt = prior.value.definition.createdAt;
+          if (prior.value.status !== "RUNNING") {
+            return {
+              ok: false as const,
+              error: { code: "REPAIR_QC_JUDGE_UNAVAILABLE", message: `successor QC judge run is ${prior.value.status} with no committed round` },
+            };
+          }
+        } else if (prior.error.code !== "NOT_FOUND") {
+          return { ok: false as const, error: { code: "REPAIR_QC_JUDGE_UNAVAILABLE", message: `${prior.error.code}:${prior.error.message}` } };
+        }
+        const created = await runStore.createRun(freshQcRunDefinition({
+          bookId: request.bookId,
+          runId: judgeRunId,
+          sourceGitSha: request.sourceGitSha,
+          candidate: request.candidate,
+          createdAt,
+          questionCount: countQuizQuestions(request.candidate),
+        }));
+        if (!created.ok) {
+          return { ok: false as const, error: { code: "REPAIR_QC_JUDGE_UNAVAILABLE", message: `${created.error.code}:${created.error.message}` } };
+        }
+        if (created.value.status !== "RUNNING") {
+          return { ok: false as const, error: { code: "REPAIR_QC_JUDGE_UNAVAILABLE", message: "successor QC judge run is not RUNNING" } };
+        }
         const evaluation = await repairQc.run({
           candidate: request.candidate,
           canonicalReview: request.canonicalReview,
           roundId: request.roundId,
+          taskContext: {
+            bookId: request.bookId,
+            runId: judgeRunId,
+            attemptId: `qc-attempt-${judgeRunId}`,
+            stageId: "fresh-qc",
+            operationId: "fresh-qc",
+            workDir: input.pipelineRoot,
+            signal: request.signal,
+          },
         });
-        if (!evaluation.ok) return evaluation;
-        return qcService.runFresh({
+        if (!evaluation.ok) {
+          await runStore.finishRun({
+            bookId: request.bookId,
+            runId: judgeRunId,
+            status: "FAILED",
+            finishedAt: clock.now(),
+            reason: evaluation.error.code,
+          });
+          return evaluation;
+        }
+        const round = await qcService.runFresh({
           roundId: request.roundId,
           candidate: request.candidate,
           canonicalReview: request.canonicalReview,
           evaluation: evaluation.value,
         });
+        if (!round.ok) return round;
+        await runStore.finishRun({
+          bookId: request.bookId,
+          runId: judgeRunId,
+          status: "COMPLETED",
+          finishedAt: clock.now(),
+        });
+        return round;
       },
     },
     runStore,

@@ -26,6 +26,9 @@ export interface ContentRepairRequest {
   readonly files: readonly CandidateInputFile[];
   readonly createdAt: string;
   readonly taskContext: ModelTaskContext;
+  /** Threaded to the successor QC judge run definition — the answer-key judge
+   *  needs its own run-state run, and a run definition requires the source SHA. */
+  readonly sourceGitSha: string;
 }
 
 export interface ContentRepairDependencies {
@@ -42,6 +45,13 @@ export interface SuccessorQcOperation {
     roundId: QcRoundId;
     candidate: CandidateSnapshot;
     canonicalReview: CanonicalReviewResult;
+    /** For the judge run definition: a successor round must re-run the LLM
+     *  answer-key judge (a repair rewrites quizzes, and round 1 may have FAILED
+     *  precisely on a wrong key), and that judge needs its own run. Without
+     *  these the composition could only build a deterministic-gates evaluator —
+     *  which silently skipped the judge and could promote unverified keys. */
+    sourceGitSha: string;
+    signal: AbortSignal;
   }>): Promise<Result<QcRoundResult>>;
 }
 
@@ -170,6 +180,8 @@ export async function runContentRepairWorkflow(
     roundId: request.freshRoundId,
     candidate: successor.value,
     canonicalReview: review.value,
+    sourceGitSha: request.sourceGitSha,
+    signal: request.taskContext.signal,
   });
   if (!qcd.ok) return qcd;
   const qc = validateQcResult(qcd.value, request, successor.value);

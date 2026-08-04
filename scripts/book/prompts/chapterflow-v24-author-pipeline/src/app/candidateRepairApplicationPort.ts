@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { mkdir } from "node:fs/promises";
 import { isAbsolute, relative, resolve } from "node:path";
 
 import type { CandidateInputFile, CandidateSnapshot, CandidateStore } from "../books/candidateTypes.js";
@@ -627,6 +628,13 @@ export class CandidateRepairApplicationPort {
     if (within(this.#dependencies.pipelineRoot, request.attemptRoot) || within(request.attemptRoot, this.#dependencies.pipelineRoot)) {
       return failed("REPAIR_ATTEMPT_ROOT_INVALID", "attempt root must be isolated from pipeline root");
     }
+    // The execution policy realpath()s the work directory before admission, so a
+    // missing directory fails the task PRE-admission and the terminal readback
+    // reports REPAIR_ATTEMPT_UNCERTAIN — killing the book-run after the full
+    // compile+review+QC spend, and identically again on every resume. Research,
+    // compile, and review all create their roots; repair was the one port that
+    // did not, and its tests inject a stub runner so the policy check never ran.
+    await mkdir(request.attemptRoot, { recursive: true });
 
     const authorized = await this.preflight(request);
     if (!authorized.ok) return authorized;
@@ -821,6 +829,7 @@ export class CandidateRepairApplicationPort {
       files,
       createdAt,
       taskContext: workflowContext,
+      sourceGitSha: request.sourceGitSha,
     }, {
       candidates: this.#dependencies.candidates,
       repairs: this.#dependencies.repairs,

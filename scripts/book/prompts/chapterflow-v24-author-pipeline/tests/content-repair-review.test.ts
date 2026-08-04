@@ -139,6 +139,7 @@ async function harness() {
       expectedInventory: inventory,
       files: [{ ...inventory[0], bytes: encoder.encode(`{"text":"after-${successorCandidateId}"}`) }],
       createdAt: at,
+      sourceGitSha: "sha-repair-fixture",
       taskContext: {
         bookId: "book", runId: "run-1", attemptId: "attempt-1", stageId: "content-repair",
         operationId: "repair-1", workDir: booksRoot, signal: controller?.signal ?? input.taskContext!.signal,

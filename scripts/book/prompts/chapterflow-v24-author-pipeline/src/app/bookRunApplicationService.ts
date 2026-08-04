@@ -13,7 +13,7 @@ import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
-import type { CandidateQcEvaluator } from "./candidateQcEvaluator.js";
+import { QUIZ_JUDGE_MAX_ATTEMPTS, type CandidateQcEvaluator } from "./candidateQcEvaluator.js";
 import type { CompilerApplicationPort } from "./compilerApplicationPort.js";
 import { researchSourcesFromChapterIndex } from "./researchCandidateApplicationPort.js";
 import type {
@@ -275,7 +275,12 @@ export function freshQcRunDefinition(input: Readonly<{
   createdAt: UtcIso;
   questionCount: number;
 }>): RunDefinition {
-  const capacity = Math.max(1, input.questionCount);
+  // One admission per judge ATTEMPT, not per question: each question gets up to
+  // QUIZ_JUDGE_MAX_ATTEMPTS distinct attempt ids (a transient timeout or invalid
+  // JSON shape from one single-shot call was previously committed as a durable
+  // CANDIDATE_QC_QUIZ_JUDGE_ERROR blocker that repair rejects as compiler-owned
+  // and resume replays forever — a permanent dead end from one flaky call).
+  const capacity = Math.max(1, input.questionCount * QUIZ_JUDGE_MAX_ATTEMPTS);
   return {
     schemaVersion: "1",
     bookId: input.bookId,
@@ -672,8 +677,35 @@ export class BookRunApplicationService {
     const prior = await this.#dependencies.runStore.readRun(input.bookId, judgeRunId, observedAt.value);
     if (prior.ok) {
       createdAt = prior.value.definition.createdAt;
+      // The COMMITTED ROUND is the durable authority, not the judge run's
+      // status. The round is committed BEFORE the run is finished COMPLETED
+      // (see below), so on resume: a round present means the judge's work is
+      // durable regardless of run status — return it (and best-effort settle a
+      // run the crash left RUNNING). A COMPLETED run without a round was
+      // previously a permanent wedge (getRound -> QC_ROUND_NOT_FOUND on every
+      // resume, with the non-deterministic judge barred from re-running); the
+      // new ordering makes that state unreachable for runs created by this
+      // code, and for legacy runs the error below is at least honest.
+      const committed = await this.#dependencies.qc.getRound(input.bookId, roundId);
+      if (committed.ok) {
+        if (prior.value.status === "RUNNING") {
+          const settleAt = safeNow(this.#dependencies.clock);
+          if (settleAt.ok) {
+            await this.#dependencies.runStore.finishRun({
+              bookId: input.bookId,
+              runId: judgeRunId,
+              status: "COMPLETED",
+              finishedAt: settleAt.value,
+            });
+          }
+        }
+        return committed;
+      }
       if (prior.value.status === "COMPLETED") {
-        return this.#dependencies.qc.getRound(input.bookId, roundId);
+        return failed(
+          "BOOK_RUN_QC_UNAVAILABLE",
+          `fresh-qc judge run is COMPLETED but its round is missing (${committed.error.code}) — legacy ordering wedge; the judge cannot legally re-run`,
+        );
       }
     } else if (prior.error.code !== "NOT_FOUND") {
       return failed("BOOK_RUN_QC_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
@@ -702,18 +734,42 @@ export class BookRunApplicationService {
         signal: input.signal,
       },
     });
+    if (!evaluation.ok) {
+      const failedAt = safeNow(this.#dependencies.clock);
+      if (failedAt.ok) {
+        await this.#dependencies.runStore.finishRun({
+          bookId: input.bookId,
+          runId: judgeRunId,
+          status: "FAILED",
+          finishedAt: failedAt.value,
+          reason: evaluation.error.code,
+        });
+      }
+      return evaluation;
+    }
+    // Crash-safe ordering: commit the durable QC round FIRST, finish the judge
+    // run COMPLETED second — the same order every other store uses (the review
+    // service stores the review before exactReview finishes its run; the repair
+    // port commits its round before its run terminal). The previous order
+    // finished the run COMPLETED and THEN committed the round, so a crash or a
+    // transient commit failure in between left a COMPLETED run with no round —
+    // and because the judge is non-deterministic, resume could never legally
+    // re-run it: the run was wedged one step before promotion with all its
+    // model spend stranded. If the commit fails now, the run stays RUNNING and
+    // a resume re-enters cleanly; if the process dies after the commit, resume
+    // finds the round and settles the run.
+    const round = await this.#dependencies.qc.runFresh({ roundId, candidate, canonicalReview: review, evaluation: evaluation.value });
+    if (!round.ok) return round;
     const finishedAt = safeNow(this.#dependencies.clock);
     if (finishedAt.ok) {
       await this.#dependencies.runStore.finishRun({
         bookId: input.bookId,
         runId: judgeRunId,
-        status: evaluation.ok ? "COMPLETED" : "FAILED",
+        status: "COMPLETED",
         finishedAt: finishedAt.value,
-        ...(evaluation.ok ? {} : { reason: evaluation.error.code }),
       });
     }
-    if (!evaluation.ok) return evaluation;
-    return this.#dependencies.qc.runFresh({ roundId, candidate, canonicalReview: review, evaluation: evaluation.value });
+    return round;
   }
 
   async run(input: BookRunApplicationRequest): Promise<Result<BookRunApplicationResult>> {

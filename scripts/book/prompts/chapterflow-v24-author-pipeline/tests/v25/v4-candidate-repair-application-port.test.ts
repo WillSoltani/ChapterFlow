@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { assembleChapterV21OrThrow } from "../../src/assembler.js";
@@ -544,6 +545,22 @@ requiredTest("a repair stays quiet when the candidate's rules match config", asy
   } finally {
     console.error = original;
   }
+});
+
+requiredTest("repair creates its attempt root before any model call", async (context) => {
+  // The execution policy realpath()s the work directory pre-admission, so a
+  // missing attemptRoot fails every repair model call as WORKDIR_UNCERTAIN and
+  // the run dies REPAIR_ATTEMPT_UNCERTAIN — after the full compile+review+QC
+  // spend, identically on every resume. The pre-flight review found the repair
+  // port was the ONE port that never mkdir'd its root (research, compile, and
+  // review all do); these tests inject a stub runner, so the policy check that
+  // would have caught it never ran. Pin the mkdir instead.
+  const subject = rig(context);
+  const missingRoot = subject.request.attemptRoot;
+  assert.equal(existsSync(missingRoot), false, "fixture precondition: attempt root must not pre-exist");
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.equal(existsSync(missingRoot), true, "the port must create its attempt root");
 });
 
 finishV25Tests().catch((error: unknown) => {
