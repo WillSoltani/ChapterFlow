@@ -2236,6 +2236,42 @@ test("v23 example-pack validator rejects source-label prop scaffolding before QC
   );
 });
 
+test("SEC26 flags the text-as-text, never a book as a world object (Franklin memorandum-book class)", () => {
+  const fx = compileFixture();
+
+  // World object: a literal book inside the scene must pass. This is the exact
+  // shape from the live Franklin canary — the virtues chapter's example scenes
+  // center on the memorandum book Franklin ruled and marked, and the old bare
+  // \b(the book|the author)\b pattern blocked example 5 across three
+  // consecutive drafts, killing a full compile slot (COMPILER_SECTION_BLOCKED).
+  const worldObject = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  worldObject.examples[0].scenario += " Each evening she rules a fresh line in the book and marks the day's fault in the book before closing it.";
+  const worldFindings = validateExamplePack(worldObject, fx.blueprint, fx.packet);
+  assert.deepEqual(
+    worldFindings.filter((f) => f.checkId === "SEC26.example_meta").map((f) => f.message),
+    [],
+    "a book as a world object is not a meta-reference",
+  );
+
+  // Discourse construction IS the meta-reference: still a blocker.
+  const discourse = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  discourse.examples[0].whyItMatters += " The book argues that visible balances drive lender decisions.";
+  assert.ok(
+    validateExamplePack(discourse, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC26.example_meta" && f.severity === "blocker"),
+    "the text-as-text must still block",
+  );
+
+  // Chapter tokens stay strict — an invented modern scene has no chapter.
+  const chapterMeta = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  chapterMeta.examples[0].whyItMatters += " As this chapter shows, the signal matters.";
+  assert.ok(
+    validateExamplePack(chapterMeta, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC26.example_meta" && f.severity === "blocker"),
+    "chapter references remain blocked unconditionally",
+  );
+});
+
 test("v23 example-pack validator rejects stock scene opener phrases before book-gate repeats", () => {
   const fx = compileFixture();
   const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
