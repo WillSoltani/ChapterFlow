@@ -390,6 +390,39 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
     [],
     "a specific the prose actually shows must never fire",
   );
+
+  // Number-word folding (Franklin pincer): SEC56 and a book-scar FACT PIN can
+  // force "thirteen virtues" verbatim into the quiz while the independently
+  // drafted prose writes "13 virtues" — the same fact in different notation.
+  // Without folding, SEC120 and SEC56 are jointly unsatisfiable and the pack
+  // blocks on every draft. Both sides run through one normalizer, so word and
+  // digit forms must be interchangeable IN EITHER DIRECTION.
+  const wordQuiz = cloneLearning(fx.learning);
+  const wq = wordQuiz.quiz.questions[0];
+  wq.sourceAnchorIds = [anchor!.id];
+  wq.keyEvidenceAnchorIds = [anchor!.id];
+  wq.prompt = `The plan names thirteen virtues tracked beside the ${specific}. Which move changes what a lender can read?`;
+  wq.explanation = `Thirteen virtues, one per week, and the ${specific} stay visible either way.`;
+  const digitProse = cloneSummary(fx.summary);
+  digitProse.breakdown.deepRead = `${digitProse.breakdown.deepRead} The plan names 13 virtues, and the ${specific} written down in 1751 sits beside them.`;
+  assert.deepEqual(
+    validateLearningPack(wordQuiz, fx.blueprint, fx.packet, digitProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "'thirteen' in the quiz must match '13' in the prose",
+  );
+  const digitQuiz = cloneLearning(fx.learning);
+  const dq = digitQuiz.quiz.questions[0];
+  dq.sourceAnchorIds = [anchor!.id];
+  dq.keyEvidenceAnchorIds = [anchor!.id];
+  dq.prompt = `The plan names 13 virtues tracked beside the ${specific}. Which move changes what a lender can read?`;
+  dq.explanation = `13 virtues, one per week, and the ${specific} stay visible either way.`;
+  const wordProse = cloneSummary(fx.summary);
+  wordProse.breakdown.deepRead = `${wordProse.breakdown.deepRead} The plan names thirteen virtues, and the ${specific} written down in 1751 sits beside them.`;
+  assert.deepEqual(
+    validateLearningPack(digitQuiz, fx.blueprint, fx.packet, wordProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "'13' in the quiz must match 'thirteen' in the prose",
+  );
 });
 
 test("SEC120 blocks a review card that introduces a term the chapter's prose never uses (Task 11ai)", () => {
@@ -2236,6 +2269,73 @@ test("v23 example-pack validator rejects source-label prop scaffolding before QC
   );
 });
 
+test("SEC49 accepts a card front ending in a quoted question (Franklin self-examination class)", () => {
+  // '…: "What good shall I do this day?"' is a genuine retrieval question; the
+  // bare /\?\s*$/ rejected it because the final character is the closing quote.
+  const fx = compileFixture();
+  const quoted = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  quoted.cards.cards[0].front = 'What question did the plan pose each morning: "What good shall I do this day?"';
+  assert.deepEqual(
+    validateLearningPack(quoted, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC49.card_front_question").map((f) => f.message),
+    [],
+    "a quoted question still ends a question",
+  );
+  const statement = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  statement.cards.cards[0].front = "The plan posed a question each morning.";
+  assert.ok(
+    validateLearningPack(statement, fx.blueprint, fx.packet).some((f) => f.checkId === "SEC49.card_front_question"),
+    "a statement front must still block",
+  );
+});
+
+test("SEC26 flags the text-as-text, never a book as a world object (Franklin memorandum-book class)", () => {
+  const fx = compileFixture();
+
+  // World object: a literal book inside the scene must pass. This is the exact
+  // shape from the live Franklin canary — the virtues chapter's example scenes
+  // center on the memorandum book Franklin ruled and marked, and the old bare
+  // \b(the book|the author)\b pattern blocked example 5 across three
+  // consecutive drafts, killing a full compile slot (COMPILER_SECTION_BLOCKED).
+  const worldObject = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  worldObject.examples[0].scenario += " Each evening she rules a fresh line in the book and marks the day's fault in the book before closing it.";
+  const worldFindings = validateExamplePack(worldObject, fx.blueprint, fx.packet);
+  assert.deepEqual(
+    worldFindings.filter((f) => f.checkId === "SEC26.example_meta").map((f) => f.message),
+    [],
+    "a book as a world object is not a meta-reference",
+  );
+
+  // Physical record-keeping verbs are NOT discourse (audit-confirmed residue):
+  // the memorandum book showing marks / opening to a page / telling her where
+  // the day went is world-object narration — the virtues chapter's payoff prose.
+  const recordKeeping = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  recordKeeping.examples[0].scenario += " By Saturday the book shows only two black marks, and each night the book tells her where the day went as the book opens to the ruled page.";
+  assert.deepEqual(
+    validateExamplePack(recordKeeping, fx.blueprint, fx.packet)
+      .filter((f) => f.checkId === "SEC26.example_meta").map((f) => f.message),
+    [],
+    "shows/opens/tells on a physical book are record-keeping, not the text-as-text",
+  );
+
+  // Discourse construction IS the meta-reference: still a blocker.
+  const discourse = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  discourse.examples[0].whyItMatters += " The book argues that visible balances drive lender decisions.";
+  assert.ok(
+    validateExamplePack(discourse, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC26.example_meta" && f.severity === "blocker"),
+    "the text-as-text must still block",
+  );
+
+  // Chapter tokens stay strict — an invented modern scene has no chapter.
+  const chapterMeta = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  chapterMeta.examples[0].whyItMatters += " As this chapter shows, the signal matters.";
+  assert.ok(
+    validateExamplePack(chapterMeta, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC26.example_meta" && f.severity === "blocker"),
+    "chapter references remain blocked unconditionally",
+  );
+});
+
 test("v23 example-pack validator rejects stock scene opener phrases before book-gate repeats", () => {
   const fx = compileFixture();
   const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
@@ -2440,6 +2540,26 @@ test("v23 SEC35 ignores sentence-initial temporal adverbs (Later, Meanwhile) —
   const findings = validateExamplePack(good, fx.blueprint, fx.packet);
   const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
   assert.deepEqual(sec35.map((f) => f.message), [], sec35.map((f) => f.message).join("\n"));
+});
+
+test("v23 SEC35 ignores positional openers and scene prepositions (Partway, Beside) — not undealt names", () => {
+  // Live hit on the Franklin canary: "Partway through the week, …" flagged
+  // undealt protagonist "Partway" on three consecutive drafts and killed a
+  // compile slot — the same Task 11u family, positional/prepositional rather
+  // than temporal. Stopwords are exclusion-only, so covering the family cannot
+  // suppress a real protagonist.
+  const fx = compileFixture();
+  const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  good.examples[0].scenario = `Partway through the week, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Beside the statement sits an unread alert. With the total in view, ${dealt} weighs the tradeoff. From the doorway a housemate calls out. Late one night, ${dealt} checks again. Sundays, ${dealt} reviews the column of marks. Halfway to payday, ${dealt} makes the balance match the careful behavior already in place before money moves anywhere near the limit.`;
+
+  const findings = validateExamplePack(good, fx.blueprint, fx.packet);
+  const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
+  assert.deepEqual(
+    sec35.map((f) => f.message),
+    [],
+    `positional openers must not register as undealt names:\n${sec35.map((f) => f.message).join("\n")}`,
+  );
 });
 
 test("v23 SEC35 ignores capitalized hyphenated prefixes (Mid-career) — not undealt names (Task 11r)", () => {

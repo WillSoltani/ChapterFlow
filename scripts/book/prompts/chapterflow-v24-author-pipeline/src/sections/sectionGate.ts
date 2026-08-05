@@ -94,7 +94,15 @@ const SYNTHETIC_BESIDE_TOWARD_RE =
 const SYNTHETIC_COMPOUND_TOKEN_RE =
   /\b[a-z]{3,}(?:filter|signal|docket|clause|marker|compass|engine|seal)\b|\b[a-z]{3,}(?:riskcard|bondnote)\b/i;
 const SCENE_DECISION_RE =
-  /\b(decid(?:e|es|ed|ing)|choos(?:e|es|ing)|choice|whether|has to|must|risk|tradeoff|before|after|cost|mistake|default|friction|push(?:es|ed)? back|notices?|realizes?|deadline|tries|fails?|repair(?:s|ed|ing)?|changes?)\b/i;
+  // Widened on the Franklin canary: ch02 example 6 (a virtues-chapter slot that
+  // steers toward the daily tracking ritual) failed three consecutive drafts.
+  // The added terms are ordinary decision/friction verbs a natural scene uses —
+  // weighs, opts, settles on, hesitates, torn, instead, gives up, corrects,
+  // second-guesses, resists, delays, skips, abandons — all squarely inside the
+  // gate's stated intent ("a visible decision, tradeoff, mistake, friction, or
+  // recovery"); this raises recall of already-compliant scenes, it does not
+  // soften the requirement.
+  /\b(decid(?:e|es|ed|ing)|choos(?:e|es|ing)|choice|whether|has to|must|risk|tradeoff|trade-off|before|after|cost|mistake|default|friction|push(?:es|ed)? back|notices?|realizes?|deadline|tries|fails?|repair(?:s|ed|ing)?|changes?|weigh(?:s|ed|ing)?|opt(?:s|ed|ing)?|settl(?:e|es|ed|ing)|hesitat(?:e|es|ed|ing)|torn|instead|gives? up|gave up|correct(?:s|ed|ing)?|second-guess(?:es|ed|ing)?|resist(?:s|ed|ing)?|delay(?:s|ed|ing)?|skip(?:s|ped|ping)?|abandon(?:s|ed|ing)?)\b/i;
 const ACTION_CONTEXT_TRIGGER_RE = /^(before|when|after|while|as|during|once)\b/i;
 const STOCK_SCENE_OPENER_RE = /^\s*[A-Z][a-z]+\s+is\s+(?:on a phone call|at the front desk)\b/i;
 const GENERIC_ACTION_CONTAINER_RE =
@@ -2231,7 +2239,26 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     if (STOCK_SCENE_OPENER_RE.test(text(ex.scenario))) {
       push("SEC36.example_stock_scene_opener", "blocker", `example ${i + 1} opens with a stock scene phrase that repeats across books; rewrite the opening action around this chapter's decision`, `${root}/scenario`);
     }
-    if (/\b(this chapter|the chapter|the author|the book)\b/i.test(`${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters}`)) push("SEC26.example_meta", "blocker", `example ${i + 1} contains meta-reference`, root);
+    // A meta-reference is the TEXT-AS-TEXT: "the book argues…", "this chapter
+    // shows…". Chapter tokens stay strict — an invented modern scene has no
+    // chapter to legitimately mention — but bare "the book"/"the author" must
+    // not block WORLD OBJECTS: on the Franklin canary the virtues chapter's
+    // example scenes center on the memorandum book Franklin ruled and marked
+    // ("marked each fault in the book"), and the bare pattern blocked example 5
+    // across three consecutive drafts, killing a full compile slot
+    // (COMPILER_SECTION_BLOCKED). Same defect family as SEC35's
+    // sentence-initial-adverb false positives and the researcher retry card:
+    // a universal gate written against one corpus's failure shape, colliding
+    // with a book whose SUBJECT is books. Discourse verbs mark the meta use.
+    // "shows/opens/tells" dropped from the discourse list (audit-confirmed
+    // residue): "the book shows only two black marks", "the book opens to the
+    // ruled page", "the book tells her where the day went wrong" are physical
+    // record-keeping narration of the memorandum book — the payoff sentences of
+    // the virtues chapter — not the text-as-text. The remaining verbs cannot be
+    // performed by a physical object. Mirrored in config/meta-patterns.json
+    // (B1 the_book/the_author) so the chapter gate cannot block at assembly
+    // what this gate admits at compile.
+    if (/\b(this chapter|the chapter)\b|\b(?:the author|the book)\s+(?:argues|says|writes|notes|explains|teaches|suggests|recommends|reminds|claims|describes|observes|points out)\b/i.test(`${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters}`)) push("SEC26.example_meta", "blocker", `example ${i + 1} contains meta-reference`, root);
     if (syntheticSceneShell(text(ex.scenario))) {
       push("SEC37.example_synthetic_scene_shell", "blocker", `example ${i + 1} contains synthetic prop/venue scaffolding such as coined compound tokens, beside/toward page motion, or "stays closed" closures`, `${root}/scenario`);
     }
@@ -2553,7 +2580,11 @@ export function validateLearningPack(
   const cards = pack.cards?.cards ?? [];
   if (cards.length !== bp.sections.cards.length) push("SEC48.card_count", "blocker", `card count ${cards.length} != blueprint ${bp.sections.cards.length}`, "/cards/cards");
   for (const [i, card] of cards.entries()) {
-    if (!/\?\s*$/.test(text(card.front))) push("SEC49.card_front_question", "blocker", `card ${i + 1} front must be a retrieval question`, `/cards/cards/${i}/front`);
+    // A trailing closing quote after the question mark still ends a question:
+    // a card front quoting one of Franklin's signature self-examination
+    // questions ('…: "What good shall I do this day?"') is a genuine retrieval
+    // question and was blocked by the bare /\?\s*$/ (audit-confirmed).
+    if (!/\?["'”’]?\s*$/.test(text(card.front))) push("SEC49.card_front_question", "blocker", `card ${i + 1} front must be a retrieval question`, `/cards/cards/${i}/front`);
     if (text(card.back).length < 50) push("SEC50.card_back", "blocker", `card ${i + 1} back too short`, `/cards/cards/${i}/back`);
     const cardIds = card.sourceAnchorIds ?? (card.sourceAnchorId ? [card.sourceAnchorId] : []);
     for (const p of validateAnchorIds(cardIds, allowed, `cards[${i}].sourceAnchorIds`)) push("SEC51.card_anchor", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);

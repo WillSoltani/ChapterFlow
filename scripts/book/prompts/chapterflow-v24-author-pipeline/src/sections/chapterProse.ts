@@ -92,11 +92,33 @@ export function collapseDigitGroupSeparators(value: string): string {
   return value.replace(/(\d)[,\u2009\u202f\u00a0'\u2019](?=\d{3}(?!\d))/g, "$1");
 }
 
+/** Standalone number WORDS folded to digits — "thirteen virtues" and
+ *  "13 virtues" are the same fact. Applied AFTER lowercasing/punct-stripping so
+ *  the map only needs lowercase bare words; hyphenated compounds ("twenty-one")
+ *  arrive as separate tokens ("twenty one" → "20 1"), which is imperfect but
+ *  SYMMETRIC, and symmetry is all a comparison normalisation needs. Added on the
+ *  Franklin canary: SEC56 (and the book's own FACT PIN scar) force
+ *  "thirteen virtues" verbatim into quiz units while the independently-drafted
+ *  summary prose may render "13 virtues" — without this fold the two verbatim
+ *  requirements are UNSATISFIABLE TOGETHER and the learning pack blocks on
+ *  every draft (SEC120's message asks for the very wording SEC56 rejects). */
+const NUMBER_WORDS: ReadonlyMap<string, string> = new Map(Object.entries({
+  zero: "0", one: "1", two: "2", three: "3", four: "4", five: "5", six: "6",
+  seven: "7", eight: "8", nine: "9", ten: "10", eleven: "11", twelve: "12",
+  thirteen: "13", fourteen: "14", fifteen: "15", sixteen: "16", seventeen: "17",
+  eighteen: "18", nineteen: "19", twenty: "20", thirty: "30", forty: "40",
+  fifty: "50", sixty: "60", seventy: "70", eighty: "80", ninety: "90",
+}));
+
+function foldNumberWords(normalized: string): string {
+  return normalized.split(" ").map((w) => NUMBER_WORDS.get(w) ?? w).join(" ");
+}
+
 /** The ONE normalisation applied to BOTH sides of every SEC120 comparison — case,
- *  punctuation and digit-group separators — so a difference in formatting can never
- *  be read as a difference in fact. */
+ *  punctuation, digit-group separators, and number words — so a difference in
+ *  formatting can never be read as a difference in fact. */
 export function normalizeDerivabilityText(value: string): string {
-  return normalizeProseText(collapseDigitGroupSeparators(value));
+  return foldNumberWords(normalizeProseText(collapseDigitGroupSeparators(value)));
 }
 
 /**

@@ -196,6 +196,22 @@ const NAME_STOPWORDS = new Set([
   "Further","Furthermore","Moreover","Nevertheless","Nonetheless","Besides","Additionally",
   "Similarly","Likewise","Certainly","Surely","Clearly","Obviously","Naturally","Ultimately",
   "Altogether","Regardless","Indeed","Rather","Otherwise","Thus","Hence","Therefore","Accordingly",
+  // Positional/temporal sentence-openers (SEC35 false-positive family, live hit:
+  // "Partway through the week, …" flagged undealt protagonist "Partway" 3/3 and
+  // killed a compile slot) plus the scene-opening prepositions the list missed —
+  // "Behind the counter, …", "Beside the press, …" would fire identically.
+  // Exclusion-only: adding a stopword can suppress a detection, never invent one.
+  "Partway","Midway","Halfway","Overnight","Nearby","Upstairs","Downstairs",
+  "Inside","Outside","Elsewhere","Downtown","Uptown","Overhead","Underfoot",
+  "Behind","Beside","Above","Below","Across","Along","Around","Near","Past",
+  "Beneath","Toward","Towards","Onto","Into","Upon","Amid","Amidst","Atop",
+  // Batch 2 (audit-confirmed firings): the most common capitalized sentence
+  // openers — "With the type locked…", "From the doorway…", "Late one night…" —
+  // and the plural habitual temporals routine-scene prose uses ("Sundays, he
+  // studies") that the singular stopwords above do not cover.
+  "With","From","Late","Early","Come","Down","Out","Off","Twice","Thrice",
+  "Sundays","Mondays","Tuesdays","Wednesdays","Thursdays","Fridays","Saturdays",
+  "Mornings","Evenings","Nights","Afternoons","Weekdays","Weekends",
   "Bed","Room","Desk","Office","Floor","Table","Counter","Kitchen","Lab",
   "Rereading","Reading","Looking","Walking","Sitting","Standing",
   "Reject","Accept","Call","Ask","Start","Stop","Wait","Keep","Pull","Push",
