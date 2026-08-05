@@ -1933,8 +1933,24 @@ function crossFieldSimilarityFindings(fields: CrossFieldOccurrence[], checkId: s
   return findings;
 }
 
-function quizPromptNgramReuseFindings(pack: LearningPackV1, chapterNumber: number): SectionFinding[] {
+function quizPromptNgramReuseFindings(pack: LearningPackV1, chapterNumber: number, packet?: SourcePacketV1): SectionFinding[] {
   const findings: SectionFinding[] = [];
+  // Required source tokens are not templated reuse. SEC56 pre-lists an anchor's
+  // hardSpecifics as REQUIRED VERBATIM per quiz slot; when a specific is itself
+  // 8+ words ("seven columns for the days of the week"), two slots citing the
+  // same anchor unavoidably share the 8-gram — SEC56 forces the very phrase
+  // SEC107 then flags, and the pack blocked three consecutive live drafts. An
+  // 8-gram contained in a hardSpecific (or containing one of 6+ words) is a
+  // source fact, not prompt boilerplate; everything else still blocks.
+  const specificNorms: string[] = [];
+  for (const anchor of packet?.allowedAnchors ?? []) {
+    for (const hs of anchor.hardSpecifics ?? []) {
+      const norm = normalizedWords(String(hs)).join(" ");
+      if (norm.split(" ").length >= 6) specificNorms.push(norm);
+    }
+  }
+  const isSourceToken = (phrase: string): boolean =>
+    specificNorms.some((hs) => hs.includes(phrase) || phrase.includes(hs));
   const byPhrase = new Map<string, number[]>();
   for (const [i, q] of (pack.quiz?.questions ?? []).entries()) {
     const words = normalizedWords(text(q.prompt));
@@ -1943,6 +1959,7 @@ function quizPromptNgramReuseFindings(pack: LearningPackV1, chapterNumber: numbe
       const contentCount = phraseWords.filter((w) => w.length >= 4 && !NGRAM_STOPWORDS.has(w)).length;
       if (contentCount < 3) continue;
       const phrase = phraseWords.join(" ");
+      if (isSourceToken(phrase)) continue;
       byPhrase.set(phrase, [...(byPhrase.get(phrase) ?? []), i]);
     }
   }
@@ -2457,6 +2474,16 @@ export function validateLearningPack(
   chapterProse?: ChapterProseSource | null,
 ): SectionFinding[] {
   const findings: SectionFinding[] = [];
+  // Absolute trigger words the chapter's own drafted prose uses (SEC52 carve):
+  // lowercased word/phrase set, empty when prose is absent (legacy callers keep
+  // the strict behavior).
+  const proseAbsolutes = new Set<string>();
+  if (chapterProse && hasDraftedReadTiers(chapterProse)) {
+    const proseLower = chapterProseText(chapterProse).toLowerCase();
+    for (const trigger of ["always", "never", "automatically", "impossible", "guaranteed", "entirely", "ever", "forever", "completely", "wholly", "absolutely", "under no circumstances", "in all cases"]) {
+      if (new RegExp(`\\b${trigger}\\b`).test(proseLower)) proseAbsolutes.add(trigger);
+    }
+  }
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
   const anchors = sourceAnchorById(packet);
@@ -2517,7 +2544,19 @@ export function validateLearningPack(
         if (tailProblem) {
           push("SEC59.quiz_mechanical_tail", "blocker", `q${i + 1} distractor ${choiceIndex} ${tailProblem}; rewrite as a natural chapter-specific misconception`, `/quiz/questions/${i}/choices/${choiceIndex}`);
         }
-        if (STRAWMAN_DISTRACTOR_ABSOLUTE_RE.test(choiceText)) {
+        // Prose-grounded absolutes are PLAUSIBLE, not strawmen. The virtues
+        // chapter's own claims are absolutes — moral perfection unattainable,
+        // "never arrived at the perfection", the speckled-axe man giving up
+        // entirely — and a distractor phrasing the chapter's real tension as
+        // the misconception a reader would hold is exactly what a good
+        // distractor is. Five distractors across three consecutive live drafts
+        // blocked on this before the carve: when the chapter's drafted prose
+        // itself uses the matched absolute, the distractor echoes the source
+        // rather than fabricating a strawman. Gratuitous never/always claims
+        // still block (compliant prose rarely uses them), and legacy callers
+        // without prose keep the strict behavior.
+        const absoluteHit = STRAWMAN_DISTRACTOR_ABSOLUTE_RE.exec(choiceText);
+        if (absoluteHit && !proseAbsolutes.has(absoluteHit[1].toLowerCase())) {
           push("SEC52.quiz_strawman_distractor", "blocker", `q${i + 1} distractor ${choiceIndex} uses an absolute trigger; wrong choices must stay plausible`, `/quiz/questions/${i}/choices/${choiceIndex}`);
         }
         distractorLengths.push(wordCount(choiceText));
@@ -2595,7 +2634,7 @@ export function validateLearningPack(
     for (const p of validateAnchorHardSpecifics(cardIds, anchors, "review_card", `${text(card.front)} ${text(card.back)}`, `cards[${i}]`, 1)) push("SEC58.card_anchor_specifics", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
   }
   findings.push(...repeatedQuestionNgramFindings(pack, ch));
-  findings.push(...quizPromptNgramReuseFindings(pack, ch));
+  findings.push(...quizPromptNgramReuseFindings(pack, ch, packet));
   findings.push(...learningProseDerivabilityFindings(pack, bp, packet, chapterProse));
   return findings;
 }
