@@ -22,7 +22,7 @@ import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 import { blueprintPath, sectionPath, sourcePacketPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
-import type { ActionPackV1, ExamplePackV1, LearningPackV1, SummaryPackV1 } from "../src/artifacts/artifactTypes.js";
+import type { ActionPackV1, ExamplePackV1, LearningPackV1, SourcePacketV1, SummaryPackV1 } from "../src/artifacts/artifactTypes.js";
 
 function long(words: string, times: number): string {
   return Array.from({ length: times }, () => words).join(" ");
@@ -2266,6 +2266,72 @@ test("v23 example-pack validator rejects source-label prop scaffolding before QC
   assert.ok(
     findings.some((f) => f.checkId === "SEC30.example_source_label_prop" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+  );
+});
+
+test("SEC52 allows prose-grounded absolutes; gratuitous strawmen still block (Franklin virtues class)", () => {
+  // The virtues chapter's own claims are absolutes ("never arrived at the
+  // perfection", the speckled-axe man giving up entirely). Five distractors
+  // across three consecutive live drafts blocked on echoing them. A distractor
+  // using an absolute the drafted prose ITSELF uses is the chapter's real
+  // tension phrased as a plausible misreading — not a fabricated strawman.
+  const fx = compileFixture();
+  const pack = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  const q = pack.quiz.questions[0];
+  const distractor = q.choices.findIndex((_, idx) => idx !== q.correctIndex);
+  q.choices[distractor] = "Because a flawless record is impossible, tracking faults is pointless and the plan should be dropped.";
+
+  const prose = cloneSummary(fx.summary);
+  prose.breakdown.deepRead = `${prose.breakdown.deepRead} He found a flawless record impossible, yet the tally still thinned the marks week by week.`;
+  assert.deepEqual(
+    validateLearningPack(pack, fx.blueprint, fx.packet, prose)
+      .filter((f) => f.checkId === "SEC52.quiz_strawman_distractor").map((f) => f.message),
+    [],
+    "an absolute the prose itself uses is plausible, not a strawman",
+  );
+
+  // Same distractor with prose that never uses the absolute: still blocked.
+  assert.ok(
+    validateLearningPack(pack, fx.blueprint, fx.packet, fx.summary)
+      .some((f) => f.checkId === "SEC52.quiz_strawman_distractor"),
+    "a gratuitous absolute still blocks",
+  );
+
+  // Legacy callers (no prose): strict behavior preserved.
+  assert.ok(
+    validateLearningPack(pack, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC52.quiz_strawman_distractor"),
+    "absent prose keeps the strict gate",
+  );
+});
+
+test("SEC107 does not count a required hardSpecific as prompt-template reuse", () => {
+  // SEC56 pre-lists anchor hardSpecifics as REQUIRED VERBATIM per slot; an
+  // 8+-word specific ("seven columns for the days of the week") shared by two
+  // slots citing the same anchor is a source fact, not boilerplate. Live: two
+  // prompts carrying the required phrase blocked three consecutive drafts.
+  const fx = compileFixture();
+  const pack = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  const packet = JSON.parse(JSON.stringify(fx.packet)) as SourcePacketV1;
+  const anchor = packet.allowedAnchors[0];
+  anchor.hardSpecifics = [...(anchor.hardSpecifics ?? []), "seven ruled columns for the days of the week"];
+  pack.quiz.questions[0].prompt = "The plan drew seven ruled columns for the days of the week. Which habit does the layout make visible first?";
+  pack.quiz.questions[1].prompt = "A page with seven ruled columns for the days of the week greets each morning. What decision does it force?";
+  assert.deepEqual(
+    validateLearningPack(pack, fx.blueprint, packet)
+      .filter((f) => f.checkId === "SEC107.quiz_prompt_ngram_reuse").map((f) => f.message),
+    [],
+    "a shared required source token is not template reuse",
+  );
+
+  // Non-source 8-grams shared across prompts still block.
+  const templated = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  templated.quiz.questions[0].prompt = "Before the quarterly budget review meeting starts downtown tonight, which signal should a careful borrower inspect first?";
+  templated.quiz.questions[1].prompt = "Before the quarterly budget review meeting starts downtown tonight, which balance does the lender actually read?";
+  assert.ok(
+    validateLearningPack(templated, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC107.quiz_prompt_ngram_reuse"),
+    "boilerplate reuse must still block",
   );
 });
 
