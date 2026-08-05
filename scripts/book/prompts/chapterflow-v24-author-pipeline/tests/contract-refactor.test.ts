@@ -393,9 +393,13 @@ test("book-scars: every shipped scar file loads under the bookId the pipeline de
   assert.ok(franklin.prohibitions.some((p) => /Silence Dogood|age sixteen/i.test(p)), "Dogood fact pin survives");
   assert.ok(franklin.prohibitions.some((p) => /shared or public property without permission/i.test(p)), "street-work safety rule present");
   assert.ok(franklin.prohibitions.some((p) => /COUNT CONSISTENCY/.test(p)), "virtue count rule present");
-  // The banned variants must NOT sit in the over-use channel, where each would be
-  // granted one permitted use.
-  assert.equal(franklin.phrases.length, 0, "banned variants must not be filed as over-used phrases");
+  // BANNED VARIANTS must not sit in the over-use channel, where each would be
+  // granted one permitted use. (Genuine echo-prone strings — "copper, silver,
+  // and gold" — are the channel's proper cargo and are allowed.)
+  assert.ok(
+    !franklin.phrases.some((p) => /not yet sixteen|before age sixteen|nine years still owed|skip the permit/i.test(p)),
+    "banned variants must not be filed as over-used phrases",
+  );
   const allen = loadBookScars("as-a-man-thinketh")!;
   assert.ok(allen.prohibitions.some((p) => /no exceptions/i.test(p)), "absolutist wording is banned, not rationed");
   assert.ok(!allen.phrases.some((p) => /no exceptions/i.test(p)), "must not remain in the quota channel");
