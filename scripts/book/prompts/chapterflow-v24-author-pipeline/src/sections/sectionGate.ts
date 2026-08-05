@@ -94,7 +94,15 @@ const SYNTHETIC_BESIDE_TOWARD_RE =
 const SYNTHETIC_COMPOUND_TOKEN_RE =
   /\b[a-z]{3,}(?:filter|signal|docket|clause|marker|compass|engine|seal)\b|\b[a-z]{3,}(?:riskcard|bondnote)\b/i;
 const SCENE_DECISION_RE =
-  /\b(decid(?:e|es|ed|ing)|choos(?:e|es|ing)|choice|whether|has to|must|risk|tradeoff|before|after|cost|mistake|default|friction|push(?:es|ed)? back|notices?|realizes?|deadline|tries|fails?|repair(?:s|ed|ing)?|changes?)\b/i;
+  // Widened on the Franklin canary: ch02 example 6 (a virtues-chapter slot that
+  // steers toward the daily tracking ritual) failed three consecutive drafts.
+  // The added terms are ordinary decision/friction verbs a natural scene uses —
+  // weighs, opts, settles on, hesitates, torn, instead, gives up, corrects,
+  // second-guesses, resists, delays, skips, abandons — all squarely inside the
+  // gate's stated intent ("a visible decision, tradeoff, mistake, friction, or
+  // recovery"); this raises recall of already-compliant scenes, it does not
+  // soften the requirement.
+  /\b(decid(?:e|es|ed|ing)|choos(?:e|es|ing)|choice|whether|has to|must|risk|tradeoff|trade-off|before|after|cost|mistake|default|friction|push(?:es|ed)? back|notices?|realizes?|deadline|tries|fails?|repair(?:s|ed|ing)?|changes?|weigh(?:s|ed|ing)?|opt(?:s|ed|ing)?|settl(?:e|es|ed|ing)|hesitat(?:e|es|ed|ing)|torn|instead|gives? up|gave up|correct(?:s|ed|ing)?|second-guess(?:es|ed|ing)?|resist(?:s|ed|ing)?|delay(?:s|ed|ing)?|skip(?:s|ped|ping)?|abandon(?:s|ed|ing)?)\b/i;
 const ACTION_CONTEXT_TRIGGER_RE = /^(before|when|after|while|as|during|once)\b/i;
 const STOCK_SCENE_OPENER_RE = /^\s*[A-Z][a-z]+\s+is\s+(?:on a phone call|at the front desk)\b/i;
 const GENERIC_ACTION_CONTAINER_RE =
@@ -2242,7 +2250,15 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     // sentence-initial-adverb false positives and the researcher retry card:
     // a universal gate written against one corpus's failure shape, colliding
     // with a book whose SUBJECT is books. Discourse verbs mark the meta use.
-    if (/\b(this chapter|the chapter)\b|\b(?:the author|the book)\s+(?:argues|says|writes|notes|explains|shows|teaches|suggests|recommends|tells|reminds|claims|describes|opens|observes|points out)\b/i.test(`${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters}`)) push("SEC26.example_meta", "blocker", `example ${i + 1} contains meta-reference`, root);
+    // "shows/opens/tells" dropped from the discourse list (audit-confirmed
+    // residue): "the book shows only two black marks", "the book opens to the
+    // ruled page", "the book tells her where the day went wrong" are physical
+    // record-keeping narration of the memorandum book — the payoff sentences of
+    // the virtues chapter — not the text-as-text. The remaining verbs cannot be
+    // performed by a physical object. Mirrored in config/meta-patterns.json
+    // (B1 the_book/the_author) so the chapter gate cannot block at assembly
+    // what this gate admits at compile.
+    if (/\b(this chapter|the chapter)\b|\b(?:the author|the book)\s+(?:argues|says|writes|notes|explains|teaches|suggests|recommends|reminds|claims|describes|observes|points out)\b/i.test(`${ex.scenario} ${ex.whatToDo} ${ex.whyItMatters}`)) push("SEC26.example_meta", "blocker", `example ${i + 1} contains meta-reference`, root);
     if (syntheticSceneShell(text(ex.scenario))) {
       push("SEC37.example_synthetic_scene_shell", "blocker", `example ${i + 1} contains synthetic prop/venue scaffolding such as coined compound tokens, beside/toward page motion, or "stays closed" closures`, `${root}/scenario`);
     }

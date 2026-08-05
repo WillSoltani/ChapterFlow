@@ -17,15 +17,15 @@
     },
     {
       "id": "the_author",
-      "pattern": "(?i)\\bthe author\\b",
+      "pattern": "(?i)\\bthe author\\s+(?:argues|says|writes|notes|explains|teaches|suggests|recommends|reminds|claims|describes|observes|reframes|warns|concludes|emphasizes|points out)\\b",
       "severity": "blocker",
-      "example": "The author makes the case that..."
+      "example": "The author makes the case that... (bare 'the author' as a PERSON in the scene is allowed; the Dogood anecdote is about a hidden author)"
     },
     {
       "id": "the_book",
-      "pattern": "(?i)\\bthe book\\b",
+      "pattern": "(?i)\\bthe book\\s+(?:argues|says|writes|notes|explains|teaches|suggests|recommends|reminds|claims|describes|observes|reframes|warns|concludes|emphasizes|points out)\\b",
       "severity": "blocker",
-      "example": "The book reframes habit as..."
+      "example": "The book reframes habit as... (a literal book as a world object — 'marks the fault in the book' — is allowed)"
     },
     {
       "id": "in_this_x",

@@ -205,6 +205,13 @@ const NAME_STOPWORDS = new Set([
   "Inside","Outside","Elsewhere","Downtown","Uptown","Overhead","Underfoot",
   "Behind","Beside","Above","Below","Across","Along","Around","Near","Past",
   "Beneath","Toward","Towards","Onto","Into","Upon","Amid","Amidst","Atop",
+  // Batch 2 (audit-confirmed firings): the most common capitalized sentence
+  // openers — "With the type locked…", "From the doorway…", "Late one night…" —
+  // and the plural habitual temporals routine-scene prose uses ("Sundays, he
+  // studies") that the singular stopwords above do not cover.
+  "With","From","Late","Early","Come","Down","Out","Off","Twice","Thrice",
+  "Sundays","Mondays","Tuesdays","Wednesdays","Thursdays","Fridays","Saturdays",
+  "Mornings","Evenings","Nights","Afternoons","Weekdays","Weekends",
   "Bed","Room","Desk","Office","Floor","Table","Counter","Kitchen","Lab",
   "Rereading","Reading","Looking","Walking","Sitting","Standing",
   "Reject","Accept","Call","Ask","Start","Stop","Wait","Keep","Pull","Push",

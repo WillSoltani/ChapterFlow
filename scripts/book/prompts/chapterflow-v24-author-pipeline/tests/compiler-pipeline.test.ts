@@ -2253,6 +2253,18 @@ test("SEC26 flags the text-as-text, never a book as a world object (Franklin mem
     "a book as a world object is not a meta-reference",
   );
 
+  // Physical record-keeping verbs are NOT discourse (audit-confirmed residue):
+  // the memorandum book showing marks / opening to a page / telling her where
+  // the day went is world-object narration — the virtues chapter's payoff prose.
+  const recordKeeping = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  recordKeeping.examples[0].scenario += " By Saturday the book shows only two black marks, and each night the book tells her where the day went as the book opens to the ruled page.";
+  assert.deepEqual(
+    validateExamplePack(recordKeeping, fx.blueprint, fx.packet)
+      .filter((f) => f.checkId === "SEC26.example_meta").map((f) => f.message),
+    [],
+    "shows/opens/tells on a physical book are record-keeping, not the text-as-text",
+  );
+
   // Discourse construction IS the meta-reference: still a blocker.
   const discourse = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
   discourse.examples[0].whyItMatters += " The book argues that visible balances drive lender decisions.";
@@ -2487,7 +2499,7 @@ test("v23 SEC35 ignores positional openers and scene prepositions (Partway, Besi
   const fx = compileFixture();
   const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
   const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
-  good.examples[0].scenario = `Partway through the week, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Beside the statement sits an unread alert. Halfway to payday, ${dealt} makes the balance match the careful behavior already in place before money moves anywhere near the limit.`;
+  good.examples[0].scenario = `Partway through the week, ${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the balance becomes visible. Beside the statement sits an unread alert. With the total in view, ${dealt} weighs the tradeoff. From the doorway a housemate calls out. Late one night, ${dealt} checks again. Sundays, ${dealt} reviews the column of marks. Halfway to payday, ${dealt} makes the balance match the careful behavior already in place before money moves anywhere near the limit.`;
 
   const findings = validateExamplePack(good, fx.blueprint, fx.packet);
   const sec35 = findings.filter((f) => f.checkId === "SEC35.example_dealt_name");
