@@ -2580,7 +2580,11 @@ export function validateLearningPack(
   const cards = pack.cards?.cards ?? [];
   if (cards.length !== bp.sections.cards.length) push("SEC48.card_count", "blocker", `card count ${cards.length} != blueprint ${bp.sections.cards.length}`, "/cards/cards");
   for (const [i, card] of cards.entries()) {
-    if (!/\?\s*$/.test(text(card.front))) push("SEC49.card_front_question", "blocker", `card ${i + 1} front must be a retrieval question`, `/cards/cards/${i}/front`);
+    // A trailing closing quote after the question mark still ends a question:
+    // a card front quoting one of Franklin's signature self-examination
+    // questions ('…: "What good shall I do this day?"') is a genuine retrieval
+    // question and was blocked by the bare /\?\s*$/ (audit-confirmed).
+    if (!/\?["'”’]?\s*$/.test(text(card.front))) push("SEC49.card_front_question", "blocker", `card ${i + 1} front must be a retrieval question`, `/cards/cards/${i}/front`);
     if (text(card.back).length < 50) push("SEC50.card_back", "blocker", `card ${i + 1} back too short`, `/cards/cards/${i}/back`);
     const cardIds = card.sourceAnchorIds ?? (card.sourceAnchorId ? [card.sourceAnchorId] : []);
     for (const p of validateAnchorIds(cardIds, allowed, `cards[${i}].sourceAnchorIds`)) push("SEC51.card_anchor", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);

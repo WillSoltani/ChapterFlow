@@ -390,6 +390,39 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
     [],
     "a specific the prose actually shows must never fire",
   );
+
+  // Number-word folding (Franklin pincer): SEC56 and a book-scar FACT PIN can
+  // force "thirteen virtues" verbatim into the quiz while the independently
+  // drafted prose writes "13 virtues" — the same fact in different notation.
+  // Without folding, SEC120 and SEC56 are jointly unsatisfiable and the pack
+  // blocks on every draft. Both sides run through one normalizer, so word and
+  // digit forms must be interchangeable IN EITHER DIRECTION.
+  const wordQuiz = cloneLearning(fx.learning);
+  const wq = wordQuiz.quiz.questions[0];
+  wq.sourceAnchorIds = [anchor!.id];
+  wq.keyEvidenceAnchorIds = [anchor!.id];
+  wq.prompt = `The plan names thirteen virtues tracked beside the ${specific}. Which move changes what a lender can read?`;
+  wq.explanation = `Thirteen virtues, one per week, and the ${specific} stay visible either way.`;
+  const digitProse = cloneSummary(fx.summary);
+  digitProse.breakdown.deepRead = `${digitProse.breakdown.deepRead} The plan names 13 virtues, and the ${specific} written down in 1751 sits beside them.`;
+  assert.deepEqual(
+    validateLearningPack(wordQuiz, fx.blueprint, fx.packet, digitProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "'thirteen' in the quiz must match '13' in the prose",
+  );
+  const digitQuiz = cloneLearning(fx.learning);
+  const dq = digitQuiz.quiz.questions[0];
+  dq.sourceAnchorIds = [anchor!.id];
+  dq.keyEvidenceAnchorIds = [anchor!.id];
+  dq.prompt = `The plan names 13 virtues tracked beside the ${specific}. Which move changes what a lender can read?`;
+  dq.explanation = `13 virtues, one per week, and the ${specific} stay visible either way.`;
+  const wordProse = cloneSummary(fx.summary);
+  wordProse.breakdown.deepRead = `${wordProse.breakdown.deepRead} The plan names thirteen virtues, and the ${specific} written down in 1751 sits beside them.`;
+  assert.deepEqual(
+    validateLearningPack(digitQuiz, fx.blueprint, fx.packet, wordProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "'13' in the quiz must match 'thirteen' in the prose",
+  );
 });
 
 test("SEC120 blocks a review card that introduces a term the chapter's prose never uses (Task 11ai)", () => {
@@ -2233,6 +2266,25 @@ test("v23 example-pack validator rejects source-label prop scaffolding before QC
   assert.ok(
     findings.some((f) => f.checkId === "SEC30.example_source_label_prop" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+  );
+});
+
+test("SEC49 accepts a card front ending in a quoted question (Franklin self-examination class)", () => {
+  // '…: "What good shall I do this day?"' is a genuine retrieval question; the
+  // bare /\?\s*$/ rejected it because the final character is the closing quote.
+  const fx = compileFixture();
+  const quoted = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  quoted.cards.cards[0].front = 'What question did the plan pose each morning: "What good shall I do this day?"';
+  assert.deepEqual(
+    validateLearningPack(quoted, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC49.card_front_question").map((f) => f.message),
+    [],
+    "a quoted question still ends a question",
+  );
+  const statement = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  statement.cards.cards[0].front = "The plan posed a question each morning.";
+  assert.ok(
+    validateLearningPack(statement, fx.blueprint, fx.packet).some((f) => f.checkId === "SEC49.card_front_question"),
+    "a statement front must still block",
   );
 });
 
