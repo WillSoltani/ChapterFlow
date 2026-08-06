@@ -27,6 +27,7 @@ import {
   type ReaderPanelReviewV1,
 } from "../../src/review/laneOrchestrator.js";
 import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
+import { ReaderExperienceReviewError } from "../../src/review/readerExperienceReview.js";
 import type { ModelResult } from "../../src/runtime/modelResult.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
@@ -226,6 +227,53 @@ requiredTest("runReaderLanes fails closed when a reader exhausts its bounded ret
   // The bounded cap is honored: exactly MAX attempts for the first seat, then throw.
   assert.equal(scripted.calls, MAX_READER_SEAT_ATTEMPTS, JSON.stringify(scripted.attemptIds));
   // Backoff slept between attempts but not after the final failure.
+  assert.equal(backoffs.length, MAX_READER_SEAT_ATTEMPTS - 1);
+});
+
+/** The exact live round-4 shape: the runner SUCCEEDED but the seat's JSON fails
+ *  the local reader-review strict assembly (quizDerivation missing `tells`). The
+ *  gateway only checks that stdout is JSON — the reader schema is enforced in
+ *  runReaderLanes — so this is the same variance class as MODEL_OUTPUT_INVALID
+ *  and must consume the same bounded retry budget instead of erroring the panel. */
+function schemaInvalidReaderContent(score: number): Record<string, unknown> {
+  const content = readerContent(score);
+  const quizDerivation = { ...(content.quizDerivation as Record<string, unknown>) };
+  delete quizDerivation.tells;
+  return { ...content, quizDerivation };
+}
+
+requiredTest("runReaderLanes retries a schema-invalid seat output within the bounded budget and recovers (live round-4 class)", async () => {
+  const chapter = makeGateCleanChapter(BOOK, 1);
+  const scripted = retryScriptedRunner([
+    schemaInvalidReaderContent(80), readerContent(80),
+    readerContent(80),
+    readerContent(80),
+  ]);
+  const backoffs: number[] = [];
+  const panel = await runReaderLanes({
+    ...panelInput(chapter, scripted.runner),
+    sleep: async (ms: number) => { backoffs.push(ms); },
+  });
+  assert.equal(panel.medianComposite, 80, JSON.stringify(panel.composites));
+  // First seat: invalid + retry; other seats: one call each.
+  assert.equal(scripted.calls, 4, JSON.stringify(scripted.attemptIds));
+  assert.equal(scripted.attemptIds.filter((id) => id.endsWith("-a2")).length, 1, JSON.stringify(scripted.attemptIds));
+  assert.deepEqual(backoffs, [READER_SEAT_RETRY_BACKOFF_MS[0]]);
+});
+
+requiredTest("runReaderLanes fails closed when a seat's output is schema-invalid on every bounded attempt", async () => {
+  const chapter = makeGateCleanChapter(BOOK, 1);
+  const scripted = retryScriptedRunner([
+    schemaInvalidReaderContent(80),
+    schemaInvalidReaderContent(80),
+    schemaInvalidReaderContent(80),
+  ]);
+  const backoffs: number[] = [];
+  await assert.rejects(
+    () => runReaderLanes({ ...panelInput(chapter, scripted.runner), sleep: async (ms: number) => { backoffs.push(ms); } }),
+    (error: unknown) => error instanceof ReaderExperienceReviewError,
+  );
+  assert.equal(scripted.calls, MAX_READER_SEAT_ATTEMPTS, JSON.stringify(scripted.attemptIds));
   assert.equal(backoffs.length, MAX_READER_SEAT_ATTEMPTS - 1);
 });
 
