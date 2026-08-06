@@ -336,40 +336,53 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
     // Bounded reader retry (Task 11ac): a transient seat result (timeout /
     // process-failure / gateway output-schema rejection) is re-attempted with a
     // FRESH ordinal attempt id, so one provider blip no longer fail-closes the
-    // panel to ERROR. A fatal result (CANCELLED / UNKNOWN / any other code) and an
-    // exhausted transient budget both throw — fail-closed is preserved.
-    let result: ModelResult | undefined;
+    // panel to ERROR. A seat whose runner SUCCEEDED but whose output fails the
+    // local reader-review parse/strict-assembly (live round 4: a seat omitted
+    // quizDerivation.tells) is the SAME variance class as a gateway
+    // MODEL_OUTPUT_INVALID — the gateway only checks that stdout is JSON, while
+    // the reader schema is enforced here — so it consumes the same bounded
+    // budget. A fatal result (CANCELLED / UNKNOWN / any other code) and an
+    // exhausted budget both throw — fail-closed is preserved.
+    let review: ReaderExperienceReviewV1 | undefined;
     for (let attempt = 1; attempt <= MAX_READER_SEAT_ATTEMPTS; attempt += 1) {
       const context: ModelTaskContext = {
         ...input.taskContext,
         attemptId: attempt === 1 ? seatAttemptBase : `${seatAttemptBase}-a${attempt}`,
         operationId,
       };
-      result = await input.runner.run({
+      const result: ModelResult = await input.runner.run({
         profileId,
         prompt: jsonPromptRequest(task, readerDocumentBlock),
         context,
       });
-      if (result.outcome === "SUCCEEDED") break;
-      if (attempt < MAX_READER_SEAT_ATTEMPTS && isTransientReaderModelResult(result)) {
-        await sleep(readerBackoffMsForAttempt(attempt));
-        continue;
+      if (result.outcome !== "SUCCEEDED") {
+        if (attempt < MAX_READER_SEAT_ATTEMPTS && isTransientReaderModelResult(result)) {
+          await sleep(readerBackoffMsForAttempt(attempt));
+          continue;
+        }
+        const detail = result.error ? `${result.error.code}:${result.error.message}` : result.outcome;
+        throw new Error(`SEMANTIC_PANEL_READER_${result.outcome}:${detail}`);
       }
-      const detail = result.error ? `${result.error.code}:${result.error.message}` : result.outcome;
-      throw new Error(`SEMANTIC_PANEL_READER_${result.outcome}:${detail}`);
+      const stdout = typeof result.output === "string" ? result.output : JSON.stringify(result.output ?? null);
+      try {
+        const parsed = parseReaderExperienceReview(stdout);
+        if (parsed === null) {
+          throw new ReaderExperienceReviewError(
+            `reader-panel seat ${seat.id}: no parseable JSON object in the reviewer output`,
+          );
+        }
+        review = assembleReaderExperienceReview(parsed, bindings);
+        break;
+      } catch (error) {
+        if (!(error instanceof ReaderExperienceReviewError) || attempt >= MAX_READER_SEAT_ATTEMPTS) throw error;
+        await sleep(readerBackoffMsForAttempt(attempt));
+      }
     }
-    // Unreachable: the loop either breaks on SUCCEEDED or throws above.
-    if (!result || result.outcome !== "SUCCEEDED") {
-      throw new Error(`SEMANTIC_PANEL_READER_${result?.outcome ?? "UNKNOWN"}:reader retry loop terminated without a result`);
+    if (!review) {
+      // Unreachable: the loop either assigns on success or throws above.
+      throw new Error("SEMANTIC_PANEL_READER_UNKNOWN:reader retry loop terminated without a result");
     }
-    const stdout = typeof result.output === "string" ? result.output : JSON.stringify(result.output ?? null);
-    const parsed = parseReaderExperienceReview(stdout);
-    if (parsed === null) {
-      throw new ReaderExperienceReviewError(
-        `reader-panel seat ${seat.id}: no parseable JSON object in the reviewer output`,
-      );
-    }
-    seatReviews.push({ seatId: seat.id, review: assembleReaderExperienceReview(parsed, bindings) });
+    seatReviews.push({ seatId: seat.id, review });
   }
   return aggregateReaderPanel(bindings.chapterContentSha256, seatReviews);
 }
