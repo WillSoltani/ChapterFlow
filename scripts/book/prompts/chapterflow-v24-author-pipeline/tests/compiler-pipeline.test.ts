@@ -423,6 +423,32 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
     [],
     "'13' in the quiz must match 'thirteen' in the prose",
   );
+
+  // Qualified-name folding (Franklin pincer, live round 18): the sidecar's formal
+  // "Library Company of Philadelphia" is forced verbatim into the unit by SEC58
+  // while the readability-pressured prose writes "the Library Company" — a reader
+  // who saw the head name AND the qualifier on the page can derive the qualified
+  // form, so both halves present must clear, and a missing half must still block.
+  const qualifiedQuiz = cloneLearning(fx.learning);
+  const qq = qualifiedQuiz.quiz.questions[0];
+  qq.sourceAnchorIds = [anchor!.id];
+  qq.keyEvidenceAnchorIds = [anchor!.id];
+  qq.prompt = `The Library Company of Philadelphia tracked the ${specific}. Which move changes what a lender can read?`;
+  qq.explanation = `The Library Company of Philadelphia keeps the ${specific} visible either way.`;
+  const anchorWithQualified = { ...anchor!, hardSpecifics: [...(anchor!.hardSpecifics ?? []), "Library Company of Philadelphia"] };
+  const qualifiedPacket = { ...fx.packet, allowedAnchors: fx.packet.allowedAnchors.map((a) => (a.id === anchor!.id ? anchorWithQualified : a)) };
+  const splitProse = cloneSummary(fx.summary);
+  splitProse.breakdown.deepRead = `${splitProse.breakdown.deepRead} In Philadelphia fifty subscribers built the Library Company, and the ${specific} written down in 1751 sat in its ledger.`;
+  assert.deepEqual(
+    validateLearningPack(qualifiedQuiz, fx.blueprint, qualifiedPacket, splitProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "'Library Company of Philadelphia' must be derivable from prose showing 'Library Company' and 'Philadelphia' separately",
+  );
+  const headOnlyProse = cloneSummary(fx.summary);
+  headOnlyProse.breakdown.deepRead = `${headOnlyProse.breakdown.deepRead} Fifty subscribers built the Library Company, and the ${specific} written down in 1751 sat in its ledger.`;
+  const headOnlyHits = validateLearningPack(qualifiedQuiz, fx.blueprint, qualifiedPacket, headOnlyProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.equal(headOnlyHits.length, 1, "the qualifier half missing from prose must still block");
+  assert.match(headOnlyHits[0].message, /Library Company of Philadelphia/, "the blocker names the underivable qualified specific");
 });
 
 test("SEC120 blocks a review card that introduces a term the chapter's prose never uses (Task 11ai)", () => {

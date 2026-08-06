@@ -2408,6 +2408,27 @@ const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
  * supplied (legacy callers, a summary pack not drafted yet) or when the supplied pack
  * has no drafted read tiers (a stub the reporting CLI happened to find on disk).
  */
+/** Qualified-name folding (Franklin pincer, round 2 of the class the number-word
+ *  folding above fixed): source sidecars carry formal names ("Library Company of
+ *  Philadelphia") while the readability ceilings push prose toward the natural
+ *  short form ("the Library Company"), and SEC56/SEC58 force the formal specific
+ *  verbatim into the unit. A reader who has seen BOTH the head name and the
+ *  qualifier on this chapter's page can derive the qualified form, so a specific
+ *  "X of/in/at Y" is derivable when the prose shows X and Y independently. Both
+ *  halves must clear the same ≥3-char floor exact inclusion uses, and a missing
+ *  half still blocks — "First Bank of England" stays underivable when the prose
+ *  never says England. Applied ONLY on the prose side (SEC120), never to the
+ *  unit-side must-include checks (SEC56/SEC58). Operates on normalized text. */
+const QUALIFIED_NAME_PREPOSITION_RE = /\s(?:of|in|at)\s/g;
+function qualifiedNameDerivable(normalized: string, haystack: string): boolean {
+  for (const match of normalized.matchAll(QUALIFIED_NAME_PREPOSITION_RE)) {
+    const head = normalized.slice(0, match.index).trim();
+    const tail = normalized.slice(match.index + match[0].length).trim();
+    if (head.length >= 3 && tail.length >= 3 && haystack.includes(head) && haystack.includes(tail)) return true;
+  }
+  return false;
+}
+
 export function learningProseDerivabilityFindings(
   pack: LearningPackV1,
   bp: ChapterBlueprintV1,
@@ -2438,6 +2459,7 @@ export function learningProseDerivabilityFindings(
         if (normalized.length < 3) continue;
         if (!unit.includes(normalized)) continue;
         if (haystack.includes(normalized)) continue;
+        if (qualifiedNameDerivable(normalized, haystack)) continue;
         missing.add(text(specific));
       }
     }
