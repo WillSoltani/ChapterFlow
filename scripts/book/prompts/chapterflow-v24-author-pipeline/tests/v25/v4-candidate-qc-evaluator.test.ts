@@ -263,16 +263,54 @@ requiredTest("fresh QC surfaces a medium-confidence disagreement as a non-blocki
   );
 });
 
-requiredTest("fresh QC fails closed when the quiz-key judge errors", async (context) => {
+requiredTest("a judge that cannot run is an evaluation error, never a manufactured FAIL round", async (context) => {
+  // THROWS ARE INFRASTRUCTURE, REPORT VERDICTS ARE CONTENT (live pre-flight,
+  // canary night 5): retry-exhausted transients used to be laundered into
+  // CANDIDATE_QC_QUIZ_JUDGE_ERROR blockers inside an ok(FAIL) evaluation. The
+  // caller committed that round durably; the repair path rightly refuses
+  // CANDIDATE_QC_-prefixed blockers as compiler-owned, so a review-passed
+  // candidate wedged permanently on a transient. The evaluation errors instead:
+  // no round exists, and the caller's successor machinery re-judges on resume.
   const candidate = buildCandidate(context);
   const evaluator = new CandidateQcEvaluator(
     { async open() { return { ok: true, value: candidate }; } },
     { runner: judgeRunner("FAIL") },
   );
   const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-judge-error", taskContext: judgeContext() });
-  assert.ok(evaluated.ok);
-  assert.equal(evaluated.value.outcome, "FAIL");
-  assert.ok(evaluated.value.issues.some((entry) => entry.code === "CANDIDATE_QC_QUIZ_JUDGE_ERROR" && entry.severity === "BLOCKER"), JSON.stringify(evaluated.value.issues));
+  assert.equal(evaluated.ok, false, "an unrunnable judge must never produce a committable round");
+  if (!evaluated.ok) {
+    assert.equal(evaluated.error.code, "CANDIDATE_QC_JUDGE_UNAVAILABLE");
+    assert.match(evaluated.error.message, /JUDGE_MODEL_DOWN/, "the underlying cause is preserved for the operator");
+  }
+});
+
+requiredTest("an aborted signal cancels the judge without burning attempts or minting a verdict", async (context) => {
+  const candidate = buildCandidate(context);
+  const aborted = new AbortController();
+  aborted.abort();
+  let calls = 0;
+  const runner: ModelTaskRunner = {
+    async run(request): Promise<ModelResult> {
+      calls += 1;
+      return { attemptId: request.context.attemptId, outcome: "CANCELLED", error: { code: "MODEL_RUN_CANCELLED", message: "aborted" } };
+    },
+  };
+  const evaluator = new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner },
+  );
+  const evaluated = await evaluator.run({
+    candidate,
+    canonicalReview: review(),
+    roundId: "round-judge-cancelled",
+    taskContext: { ...judgeContext(), signal: aborted.signal },
+  });
+  assert.equal(evaluated.ok, false, "cancellation is an evaluation error, not a content verdict");
+  if (!evaluated.ok) assert.equal(evaluated.error.code, "CANDIDATE_QC_JUDGE_CANCELLED");
+  // The pre-attempt signal check fires before any model call — an aborted
+  // signal fails every future call identically, so spending the per-question
+  // retry budget against it is pure waste.
+  assert.equal(calls, 0, "no model call is spawned against an already-aborted signal");
 });
 
 finishV25Tests().catch((error: unknown) => {

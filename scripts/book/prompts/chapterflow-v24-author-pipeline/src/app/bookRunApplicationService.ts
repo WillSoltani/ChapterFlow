@@ -117,6 +117,13 @@ export interface BookRunApplicationDependencies {
 
 const REVIEW_STAGE = "canonical-review" as const;
 const FRESH_QC_STAGE = "fresh-qc" as const;
+
+/** Successor budget for the fresh-qc judge run (base + up to 4 successors). A
+ *  judge run that ends terminal WITHOUT a committed round (evaluation error /
+ *  crash) gets a fresh run id — and with it fresh attempt ids — on the next
+ *  resume; the bound keeps a systematically-failing judge from minting runs
+ *  forever. The committed round, once present, always short-circuits the walk. */
+const MAX_QC_JUDGE_RUNS = 5;
 const RETRYABLE_COMPILER_FAILURES = Object.freeze([
   "COMPILER_ASSEMBLY_BLOCKED:",
   "COMPILER_SECTION_BLOCKED:",
@@ -664,58 +671,82 @@ export class BookRunApplicationService {
     review: CanonicalReviewResult,
     roundId: string,
   ): Promise<Result<QcRoundResult>> {
-    const judgeRunId = derivedId("qc-judge-run", parentRunId);
+    const baseJudgeRunId = derivedId("qc-judge-run", parentRunId);
     const observedAt = safeNow(this.#dependencies.clock);
     if (!observedAt.ok) return observedAt;
-    // Resume-safety: the judge run's identity is deep-equality including createdAt,
-    // so a fresh createdAt on resume would CONFLICT with a judge run already written
-    // to disk before a crash. Mirror the reader-lane/repair-review runners: read the
-    // prior run and reuse its createdAt. A prior run that already reached COMPLETED
-    // committed the durable QC round; re-running the non-deterministic judge would
-    // break round idempotency, so resume from the committed round instead.
-    let createdAt = observedAt.value;
-    const prior = await this.#dependencies.runStore.readRun(input.bookId, judgeRunId, observedAt.value);
-    if (prior.ok) {
-      createdAt = prior.value.definition.createdAt;
-      // The COMMITTED ROUND is the durable authority, not the judge run's
-      // status. The round is committed BEFORE the run is finished COMPLETED
-      // (see below), so on resume: a round present means the judge's work is
-      // durable regardless of run status — return it (and best-effort settle a
-      // run the crash left RUNNING). A COMPLETED run without a round was
-      // previously a permanent wedge (getRound -> QC_ROUND_NOT_FOUND on every
-      // resume, with the non-deterministic judge barred from re-running); the
-      // new ordering makes that state unreachable for runs created by this
-      // code, and for legacy runs the error below is at least honest.
-      const committed = await this.#dependencies.qc.getRound(input.bookId, roundId);
-      if (committed.ok) {
-        if (prior.value.status === "RUNNING") {
-          const settleAt = safeNow(this.#dependencies.clock);
-          if (settleAt.ok) {
-            await this.#dependencies.runStore.finishRun({
-              bookId: input.bookId,
-              runId: judgeRunId,
-              status: "COMPLETED",
-              finishedAt: settleAt.value,
-            });
-          }
+    // The COMMITTED ROUND is the durable authority, not any judge run's status.
+    // The round is committed BEFORE its run is finished COMPLETED (see below), so
+    // on resume a present round means the judge's work is durable regardless of
+    // run state — return it (and best-effort settle a run a crash left RUNNING).
+    const committed = await this.#dependencies.qc.getRound(input.bookId, roundId);
+    if (committed.ok) {
+      const settled = await this.#dependencies.runStore.readRun(input.bookId, baseJudgeRunId, observedAt.value);
+      if (settled.ok && settled.value.status === "RUNNING") {
+        const settleAt = safeNow(this.#dependencies.clock);
+        if (settleAt.ok) {
+          await this.#dependencies.runStore.finishRun({
+            bookId: input.bookId,
+            runId: baseJudgeRunId,
+            status: "COMPLETED",
+            finishedAt: settleAt.value,
+          });
         }
-        return committed;
+      }
+      return committed;
+    }
+    // No committed round: pick the judge run to execute under. A prior judge run
+    // that ended terminal WITHOUT committing a round (evaluation error: cancelled
+    // signal, retry-exhausted transients, credential expiry — or a crash that
+    // left it RUNNING) was previously a permanent wedge: the run id is
+    // deterministic, the terminal state is immutable, and resume failed
+    // BOOK_RUN_QC_UNAVAILABLE forever one step before promotion. Fresh-qc now has
+    // the successor machinery compile (operator-retry slots) and review (the 11ac
+    // ERROR successor) already have: walk base, -r2, -r3 … to the first free
+    // ordinal, abandoning a RUNNING-with-no-round predecessor as FAILED (only a
+    // dead process can own one here — this process has not created its run yet).
+    // Each successor id feeds the attempt-id base below, so a re-judge never
+    // replays a predecessor's frozen attempt ids into the admission log (which
+    // burned the per-question retry budget on MODEL_ATTEMPT_EXISTS collisions).
+    // COMPLETED-without-round stays an honest legacy error: that judge already
+    // ran to completion and cannot legally re-run.
+    let judgeRunId: string | undefined;
+    for (let ordinal = 1; ordinal <= MAX_QC_JUDGE_RUNS; ordinal += 1) {
+      const candidateRunId = ordinal === 1 ? baseJudgeRunId : `${baseJudgeRunId}-r${ordinal}`;
+      const prior = await this.#dependencies.runStore.readRun(input.bookId, candidateRunId, observedAt.value);
+      if (!prior.ok) {
+        if (prior.error.code !== "NOT_FOUND") return failed("BOOK_RUN_QC_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
+        judgeRunId = candidateRunId;
+        break;
       }
       if (prior.value.status === "COMPLETED") {
         return failed(
           "BOOK_RUN_QC_UNAVAILABLE",
-          `fresh-qc judge run is COMPLETED but its round is missing (${committed.error.code}) — legacy ordering wedge; the judge cannot legally re-run`,
+          "fresh-qc judge run is COMPLETED but its round is missing (QC_ROUND_NOT_FOUND) — legacy ordering wedge; the judge cannot legally re-run",
         );
       }
-    } else if (prior.error.code !== "NOT_FOUND") {
-      return failed("BOOK_RUN_QC_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
+      if (prior.value.status === "RUNNING") {
+        const abandonAt = safeNow(this.#dependencies.clock);
+        if (abandonAt.ok) {
+          await this.#dependencies.runStore.finishRun({
+            bookId: input.bookId,
+            runId: candidateRunId,
+            status: "FAILED",
+            finishedAt: abandonAt.value,
+            reason: "abandoned: resumed with no committed round",
+          });
+        }
+      }
+      // FAILED / CANCELLED (including just-abandoned): try the next ordinal.
+    }
+    if (judgeRunId === undefined) {
+      return failed("BOOK_RUN_QC_UNAVAILABLE", `fresh-qc judge successor budget exhausted after ${MAX_QC_JUDGE_RUNS} runs`);
     }
     const created = await this.#dependencies.runStore.createRun(freshQcRunDefinition({
       bookId: input.bookId,
       runId: judgeRunId,
       sourceGitSha: input.sourceGitSha,
       candidate,
-      createdAt,
+      createdAt: observedAt.value,
       questionCount: countQuizQuestions(candidate),
     }));
     if (!created.ok) return failed("BOOK_RUN_QC_UNAVAILABLE", `${created.error.code}:${created.error.message}`);
@@ -740,7 +771,10 @@ export class BookRunApplicationService {
         await this.#dependencies.runStore.finishRun({
           bookId: input.bookId,
           runId: judgeRunId,
-          status: "FAILED",
+          // Operator intent stays distinguishable from infrastructure failure in
+          // the durable record; both are non-COMPLETED, so the successor walk
+          // above re-judges either on the next resume.
+          status: evaluation.error.code === "CANDIDATE_QC_JUDGE_CANCELLED" ? "CANCELLED" : "FAILED",
           finishedAt: failedAt.value,
           reason: evaluation.error.code,
         });

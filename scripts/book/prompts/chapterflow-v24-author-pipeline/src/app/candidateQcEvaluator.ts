@@ -387,6 +387,13 @@ export class CandidateQcEvaluator {
               // scope and no resume could re-run.
               let lastError: unknown;
               for (let attempt = 1; attempt <= QUIZ_JUDGE_MAX_ATTEMPTS; attempt += 1) {
+                // An aborted signal fails every future call identically (the
+                // runner returns CANCELLED pre-admission) — burning the retry
+                // budget against it is pure waste, and the caller must see the
+                // cancellation, not a manufactured content verdict.
+                if (base.signal.aborted) {
+                  throw new Error("QUIZ_KEY_MODEL_CANCELLED:judge task signal aborted");
+                }
                 const judgeCtx: ModelTaskContext = {
                   ...base,
                   attemptId: `${base.attemptId}-quizjudge-${suffix}-a${attempt}`,
@@ -396,6 +403,7 @@ export class CandidateQcEvaluator {
                   return await makeLiveAskModel({ execution: { runner, context: judgeCtx } })(args);
                 } catch (error) {
                   lastError = error;
+                  if (error instanceof Error && error.message.startsWith("QUIZ_KEY_MODEL_CANCELLED")) throw error;
                 }
               }
               throw lastError;
@@ -421,7 +429,20 @@ export class CandidateQcEvaluator {
             ));
           }
         } catch (error) {
-          qcIssues.push(issue("CANDIDATE_QC_QUIZ_JUDGE_ERROR", "BLOCKER", (error as Error).message, location(number, "/quiz")));
+          // THROWS ARE INFRASTRUCTURE, REPORT VERDICTS ARE CONTENT. A judge that
+          // could not run (cancelled signal, retry-exhausted transients, expired
+          // CLI credentials) has said nothing about the quiz keys — committing
+          // its failure as a FAIL round manufactured a content verdict the
+          // repair path rightly refuses (CANDIDATE_QC_-prefixed blockers are
+          // compiler-owned), permanently wedging a review-passed candidate. The
+          // evaluation errors instead: no round is committed, and the caller's
+          // successor machinery re-judges on resume with fresh attempt ids.
+          const message = (error as Error).message;
+          const cancelled = message.startsWith("QUIZ_KEY_MODEL_CANCELLED");
+          return failed(
+            cancelled ? "CANDIDATE_QC_JUDGE_CANCELLED" : "CANDIDATE_QC_JUDGE_UNAVAILABLE",
+            `quiz answer-key judge could not complete ch${String(number).padStart(2, "0")}: ${message}`,
+          );
         }
       }
     }

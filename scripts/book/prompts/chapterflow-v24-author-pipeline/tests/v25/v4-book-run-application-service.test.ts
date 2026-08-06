@@ -1438,17 +1438,33 @@ requiredTest("a transient QC round-commit failure leaves the judge run RUNNING s
   assert.equal(afterFailure.value.status, "RUNNING",
     "a failed round commit must leave the judge run RUNNING — finishing it COMPLETED with no round is the permanent wedge");
 
-  // Resume: re-enters the judge window, commits the round, settles the run.
+  // Resume: the base run is RUNNING with no committed round — only a dead
+  // process can own that state, and re-entering the SAME run id would replay
+  // its frozen attempt ids into the admission log (burning the per-question
+  // retry budget on MODEL_ATTEMPT_EXISTS). Resume abandons the base as FAILED
+  // and re-judges under successor -r2 with fresh attempt ids; the committed
+  // round then hangs off the successor.
   const resumed = await service.run({ ...request, resumeRunId: ORDERING_RUN_ID });
   if (!resumed.ok) throw new Error(`QC_ORDERING_RESUME:${JSON.stringify(resumed.error)}`);
   assert.equal(resumed.value.status, "PROMOTED");
-  const settled = await runStore.readRun(BOOK, JUDGE_RUN_ID, context.clock.now());
-  assert.ok(settled.ok);
-  assert.equal(settled.value.status, "COMPLETED", "once the round is committed the judge run settles COMPLETED");
+  const abandoned = await runStore.readRun(BOOK, JUDGE_RUN_ID, context.clock.now());
+  assert.ok(abandoned.ok);
+  assert.equal(abandoned.value.status, "FAILED", "resume abandons the RUNNING-with-no-round base judge run");
+  const successor = await runStore.readRun(BOOK, `${JUDGE_RUN_ID}-r2`, context.clock.now());
+  assert.ok(successor.ok, "resume mints the -r2 successor judge run");
+  assert.equal(successor.value.status, "COMPLETED", "once the round is committed the successor judge run settles COMPLETED");
   assert.equal(runFreshCalls, 2, "resume must retry the commit exactly once more");
+
+  // A further resume returns the committed round without minting -r3: the
+  // durable round is the authority and always short-circuits the walk.
+  const again = await service.run({ ...request, resumeRunId: ORDERING_RUN_ID });
+  if (!again.ok) throw new Error(`QC_ORDERING_REPLAY:${JSON.stringify(again.error)}`);
+  assert.equal(runFreshCalls, 2, "a committed round is never re-judged");
+  const noThird = await runStore.readRun(BOOK, `${JUDGE_RUN_ID}-r3`, context.clock.now());
+  assert.equal(noThird.ok, false, "no -r3 successor is minted once the round exists");
 });
 
-requiredTest("resume after a crash inside fresh-qc reuses the durable judge run identity and completes", async (context: TestContext) => {
+requiredTest("resume after a crash inside fresh-qc abandons the dead judge run and completes under a fresh successor", async (context: TestContext) => {
   const JUDGE_RUN_ID = `qc-judge-run-${createHash("sha256").update(BOOK_RUN_ID).digest("hex").slice(0, 32)}`;
   const now = () => {
     const value = context.clock.now();
@@ -1637,16 +1653,21 @@ requiredTest("resume after a crash inside fresh-qc reuses the durable judge run 
   assert.equal(events.some((event) => event.phase === "fresh-qc" && event.status === "STARTED"), true);
   assert.equal(events.some((event) => event.phase === "fresh-qc" && event.status === "COMPLETED"), false);
 
-  // Resume must reuse the durable judge run identity (same createdAt) rather than
-  // minting a fresh createdAt that conflicts, and drive fresh-qc to completion.
+  // Resume must NOT re-enter the dead run's identity — its half-settled attempt
+  // ids would collide in the admission log and burn the per-question retry
+  // budget. The base is abandoned (its durable record intact, createdAt
+  // untouched) and fresh-qc completes under successor -r2 with fresh ids.
   const resumed = await service.run({ ...request, resumeRunId: BOOK_RUN_ID });
   if (!resumed.ok) throw new Error(`BOOK_RUN_FRESH_QC_RESUME:${JSON.stringify(resumed.error)}`);
   assert.equal(resumed.value.status, "PROMOTED");
   assert.equal(resumed.value.readback, "VERIFIED");
-  const resumedJudge = await runStore.readRun(BOOK, JUDGE_RUN_ID, context.clock.now());
-  assert.ok(resumedJudge.ok);
-  assert.equal(resumedJudge.value.definition.createdAt, crashedCreatedAt, "resume must reuse the prior judge run createdAt");
-  assert.equal(resumedJudge.value.status, "COMPLETED", "resume finishes the judge run");
+  const abandonedJudge = await runStore.readRun(BOOK, JUDGE_RUN_ID, context.clock.now());
+  assert.ok(abandonedJudge.ok);
+  assert.equal(abandonedJudge.value.definition.createdAt, crashedCreatedAt, "abandoning never rewrites the dead run's durable identity");
+  assert.equal(abandonedJudge.value.status, "FAILED", "the dead RUNNING judge run is abandoned as FAILED");
+  const successorJudge = await runStore.readRun(BOOK, `${JUDGE_RUN_ID}-r2`, context.clock.now());
+  assert.ok(successorJudge.ok, "fresh-qc completes under the -r2 successor");
+  assert.equal(successorJudge.value.status, "COMPLETED", "the successor judge run settles COMPLETED");
   assert.equal(events.filter((event) => event.phase === "fresh-qc" && event.status === "COMPLETED").length, 1);
   const resumedPointer = await currentPointer.read(BOOK);
   assert.ok(resumedPointer.ok && resumedPointer.value);
