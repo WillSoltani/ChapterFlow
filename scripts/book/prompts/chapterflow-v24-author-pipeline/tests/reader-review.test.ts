@@ -181,9 +181,13 @@ test("renderChapterReaderDoc: every reader-facing section header is present, in 
     assert.ok(at > cursor, `header missing or out of order: ${h}`);
     cursor = at;
   }
-  // Field prefixes from the validated renderer.
-  assert.ok(doc.includes("What to do: Cap the habit at its first two minutes"));
-  assert.ok(doc.includes("Why it matters: Showing up is the vote"));
+  // Example action/rationale render as plain paragraphs — the fixed
+  // 'What to do:'/'Why it matters:' labels stamped an identical scaffold onto
+  // every example and the blind panel penalized it as templated craft.
+  assert.ok(doc.includes("Cap the habit at its first two minutes"));
+  assert.ok(doc.includes("Showing up is the vote"));
+  assert.equal(doc.includes("What to do: "), false, "renderer must not stamp the scaffold label");
+  assert.equal(doc.includes("Why it matters: "), false, "renderer must not stamp the scaffold label");
   assert.ok(doc.includes("Card 1 — Front: What is the two-minute rule?"));
   assert.ok(doc.includes("          Back: Scale any habit down"));
   assert.ok(doc.includes("If-then 1: [After I pour my morning coffee] If I sit down at the table"));
