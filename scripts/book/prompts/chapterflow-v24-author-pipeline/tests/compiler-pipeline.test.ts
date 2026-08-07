@@ -2562,6 +2562,33 @@ test("v23 example-pack validator rejects named-case examples that omit hard spec
   );
 });
 
+test("SEC33 counts a naturalized clipped specific — unit-side folding (Franklin pincer, run 26)", () => {
+  // Sidecar specifics are telegraphic notes; the naturalize-into-sentences
+  // pressure makes pasting them verbatim into narration non-viable. A specific
+  // whose tokens appear IN ORDER within the bounded gap carries the full fact
+  // and must count; the same tokens scattered beyond the gap must not.
+  const fx = compileFixture();
+  const pack = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const ex = pack.examples[0];
+  const caseId = (ex.sourceAnchorIds as string[])[0];
+  const anchor = fx.packet.allowedAnchors.find((a) => a.id === caseId);
+  assert.ok(anchor && (anchor.hardSpecifics ?? []).length >= 2, "fixture example must cite a specifics-rich case");
+  const [first, second] = anchor!.hardSpecifics!;
+  const naturalized = second.split(" ").join(" simply ");
+  ex.scenario = `Maya reviews the ${first} at the kitchen table while the ${naturalized} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
+  ex.whatToDo = "Open the account page and choose the smallest payment that changes the visible signal without breaking the weekly cash plan.";
+  ex.whyItMatters = "The action works because the visible number is what gets read, so a smaller balance changes what the reader of the report concludes.";
+  const clean = validateExamplePack(pack, fx.blueprint, fx.packet)
+    .filter((f) => f.checkId === "SEC33.example_anchor_specifics" && f.path === "/examples/0");
+  assert.deepEqual(clean, [], "in-order tokens within the gap bound carry the fact");
+
+  const scattered = second.split(" ").join(" one two three four five six seven eight nine ");
+  ex.scenario = `Maya reviews the ${first} at the kitchen table while the ${scattered} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
+  const blocked = validateExamplePack(pack, fx.blueprint, fx.packet)
+    .filter((f) => f.checkId === "SEC33.example_anchor_specifics" && f.path === "/examples/0");
+  assert.equal(blocked.length, 1, "tokens scattered beyond the gap bound must still block");
+});
+
 test("v23 example-pack validator rejects whyItMatters lines that explain a neighboring source fact", () => {
   const fx = compileFixture();
   const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
