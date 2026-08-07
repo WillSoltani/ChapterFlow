@@ -449,6 +449,33 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
   const headOnlyHits = validateLearningPack(qualifiedQuiz, fx.blueprint, qualifiedPacket, headOnlyProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
   assert.equal(headOnlyHits.length, 1, "the qualifier half missing from prose must still block");
   assert.match(headOnlyHits[0].message, /Library Company of Philadelphia/, "the blocker names the underivable qualified specific");
+
+  // Clipped-phrase folding (Franklin pincer, live round 22): sidecar
+  // hardSpecifics are telegraphic ("slipped under door") while the
+  // naturalize-into-sentences scar rule makes the prose write them out
+  // ("slipped his essays under the printing-house door"), and SEC58 forces the
+  // clipped form verbatim into the unit. In-order tokens within one local span
+  // are derivable; the same words scattered across distant sentences are not.
+  const clippedQuiz = cloneLearning(fx.learning);
+  const cq = clippedQuiz.quiz.questions[0];
+  cq.sourceAnchorIds = [anchor!.id];
+  cq.keyEvidenceAnchorIds = [anchor!.id];
+  cq.prompt = `The essays slipped under door overnight sat beside the ${specific}. Which move changes what a lender can read?`;
+  cq.explanation = `The slipped under door delivery and the ${specific} stay visible either way.`;
+  const anchorWithClipped = { ...anchor!, hardSpecifics: [...(anchor!.hardSpecifics ?? []), "slipped under door"] };
+  const clippedPacket = { ...fx.packet, allowedAnchors: fx.packet.allowedAnchors.map((a) => (a.id === anchor!.id ? anchorWithClipped : a)) };
+  const naturalizedProse = cloneSummary(fx.summary);
+  naturalizedProse.breakdown.deepRead = `${naturalizedProse.breakdown.deepRead} He slipped his unsigned essays under the printing-house door at night, and the ${specific} written down in 1751 sat in the same drawer.`;
+  assert.deepEqual(
+    validateLearningPack(clippedQuiz, fx.blueprint, clippedPacket, naturalizedProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable"),
+    [],
+    "'slipped under door' must be derivable from prose writing the phrase out naturally in one sentence",
+  );
+  const scatteredProse = cloneSummary(fx.summary);
+  scatteredProse.breakdown.deepRead = `${scatteredProse.breakdown.deepRead} He slipped once on the icy step outside. Years later a debt was worked off day by day, entry by entry, line by line, page by page, season by season, ledger by ledger, and the record finally passed under the shop door, and the ${specific} written down in 1751 sat in the drawer.`;
+  const scatteredHits = validateLearningPack(clippedQuiz, fx.blueprint, clippedPacket, scatteredProse).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.equal(scatteredHits.length, 1, "the same words scattered beyond the gap bound must still block");
+  assert.match(scatteredHits[0].message, /slipped under door/, "the blocker names the underivable clipped specific");
 });
 
 test("SEC120 blocks a review card that introduces a term the chapter's prose never uses (Task 11ai)", () => {

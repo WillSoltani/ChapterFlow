@@ -2429,6 +2429,43 @@ function qualifiedNameDerivable(normalized: string, haystack: string): boolean {
   return false;
 }
 
+/** Clipped-phrase folding (Franklin pincer, round 3 of this class): sidecar
+ *  hardSpecifics are telegraphic research notes ("slipped under door",
+ *  "compared to original") while the naturalize-into-sentences scar rule makes
+ *  the prose write them out ("slipped his essays under the printing-house
+ *  door"), and SEC58 forces the clipped form verbatim into the unit. A reader
+ *  who saw every word of the clipped phrase, in order, within one local span
+ *  can derive it — so a multi-word specific is derivable when its tokens appear
+ *  in the haystack IN ORDER with at most SUBSEQUENCE_GAP_TOKENS interleaved
+ *  words between consecutive tokens. The gap bound keeps the match inside
+ *  roughly one sentence: "slipped" and "door" pages apart stay underivable.
+ *  Prose-side (SEC120) only, like the two foldings above. */
+const SUBSEQUENCE_GAP_TOKENS = 8;
+function clippedPhraseDerivable(normalized: string, haystack: string): boolean {
+  const needle = normalized.split(/\s+/).filter((token) => token.length > 0);
+  if (needle.length < 2) return false;
+  const words = haystack.split(/\s+/);
+  // Try the in-order match anchored at every occurrence of the first token —
+  // an early island ("slipped" in an unrelated sentence) must not mask a real
+  // match later in the prose.
+  for (let start = 0; start < words.length; start += 1) {
+    if (words[start] !== needle[0]) continue;
+    let position = start + 1;
+    let matched = true;
+    for (let index = 1; index < needle.length; index += 1) {
+      const limit = Math.min(words.length, position + SUBSEQUENCE_GAP_TOKENS + 1);
+      let found = -1;
+      for (let cursor = position; cursor < limit; cursor += 1) {
+        if (words[cursor] === needle[index]) { found = cursor; break; }
+      }
+      if (found === -1) { matched = false; break; }
+      position = found + 1;
+    }
+    if (matched) return true;
+  }
+  return false;
+}
+
 export function learningProseDerivabilityFindings(
   pack: LearningPackV1,
   bp: ChapterBlueprintV1,
@@ -2460,6 +2497,7 @@ export function learningProseDerivabilityFindings(
         if (!unit.includes(normalized)) continue;
         if (haystack.includes(normalized)) continue;
         if (qualifiedNameDerivable(normalized, haystack)) continue;
+        if (clippedPhraseDerivable(normalized, haystack)) continue;
         missing.add(text(specific));
       }
     }
