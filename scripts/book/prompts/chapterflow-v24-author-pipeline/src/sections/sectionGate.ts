@@ -2655,6 +2655,22 @@ export function validateLearningPack(
       "/quiz/questions",
     );
   }
+  // SEC121 (panel rounds 5-6): the shadow budget above was calibrated to match
+  // published-catalog craft, but the 3-seat blind panel prices that craft below
+  // the chapter bar — seats flagged 5/9 and 8/9 keyed-longest as a
+  // guess-by-length shortcut on both floor-missing chapters, and an advisory
+  // never reaches the writer's retry feedback. A MAJORITY of questions keying
+  // the uniquely-longest choice now blocks: retry forces trimmed keys or
+  // bulked distractors, which SEC53's per-question ratio bounds alone never
+  // force. Occasional tells (at or below half) stay advisory-only via SEC116.
+  if (qs.length > 0 && tellOffenders.length > Math.floor(qs.length / 2)) {
+    push(
+      "SEC121.quiz_length_tell_majority",
+      "blocker",
+      `${tellOffenders.length}/${qs.length} questions key the uniquely-longest choice (${tellOffenders.join(", ")}); a reader can pass this quiz by always picking the longest answer — trim keyed answers or give distractors equal substance until fewer than half the questions carry the tell`,
+      "/quiz/questions",
+    );
+  }
   if (qs.length > 0) {
     const transferCount = qs.filter((q) => transferRatio([q as any]) === 100).length;
     const bareRecall = qs.map((q, i) => ({ q, i })).filter(({ q }) => transferRatio([q as any]) !== 100).map(({ q, i }) => qid(q, i));

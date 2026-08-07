@@ -54,7 +54,12 @@ function renderReaderBodyLines(ch: ChapterV21): string[] {
   L.push("## Examples");
   (ch.examples ?? []).forEach((e, i) => {
     L.push('### Example ' + (i + 1) + ': ' + e.title);
-    p(e.scenario); L.push('What to do: ' + e.whatToDo, ""); L.push('Why it matters: ' + e.whyItMatters, "");
+    // The action and rationale render as plain continuation paragraphs — the
+    // renderer used to prefix fixed 'What to do:'/'Why it matters:' labels,
+    // which stamped an identical scaffold onto every example of every chapter;
+    // the blind panel repeatedly flagged that as templated craft and no writer
+    // output could ever remove it. The fields' own prose must carry the move.
+    p(e.scenario); p(e.whatToDo); p(e.whyItMatters);
   });
   L.push("## Quiz");
   (ch.quiz?.questions ?? []).forEach((q, i) => {

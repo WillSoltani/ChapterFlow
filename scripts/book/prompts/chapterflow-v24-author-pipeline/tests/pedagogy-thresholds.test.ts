@@ -7,6 +7,10 @@
  *     choice by character count. Advisory because the published catalog already
  *     ships at 53-84% tell (see scratch/calibrate-pedagogy.ts) so it cannot be a
  *     zero-FP blocker.
+ *   - SEC121.quiz_length_tell_majority (learning-pack, BLOCKER): fires when a
+ *     strict MAJORITY of questions carry the tell — the blind panel prices
+ *     catalog-level tell below the chapter bar (rounds 5-6 flagged 5/9 and
+ *     8/9), and an advisory never reaches the writer's retry feedback.
  *   - SEC117.quiz_transfer_floor   (learning-pack): blocker below quizTransferFloor,
  *     advisory below quizTransferTarget. This is the check that actually trips POM.
  *   - SEC118.summary_memorable_lines (summary-pack, blocker): fewer than
@@ -113,6 +117,24 @@ test("tell budget boundary is exact: QUIZ_TELL_MAX passes, +1 fires", () => {
   assert.deepEqual(byCheck(learningFindings(atBudget), "SEC116.quiz_distractor_tell"), [], `${QUIZ_TELL_MAX_PER_CHAPTER} tells is within budget`);
   const overBudget = Array.from({ length: 9 }, (_, i) => ({ tell: i <= QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
   assert.equal(byCheck(learningFindings(overBudget), "SEC116.quiz_distractor_tell").length, 1, `${QUIZ_TELL_MAX_PER_CHAPTER + 1} tells exceeds budget`);
+});
+
+// ---- length-tell majority (SEC121, blocker) --------------------------------
+
+test("a majority of longest-key questions is a blocker, not an advisory (SEC121)", () => {
+  // 5 of 9 tells — the round-5 live shape the panel flagged on ch01.
+  const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i < 5, transfer: true }));
+  const majority = byCheck(learningFindings(qs), "SEC121.quiz_length_tell_majority");
+  assert.equal(majority.length, 1, "majority tell must block");
+  assert.equal(majority[0].severity, "blocker", "the panel prices catalog-level tell below the chapter bar; retry feedback must carry it");
+  assert.match(majority[0].message, /5\/9/, "message states the rate");
+  assert.match(majority[0].message, /q01/, "message names the offending questionIds");
+});
+
+test("at exactly half the questions the majority blocker stays silent (SEC116 advisory still covers it)", () => {
+  const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i < 4, transfer: true }));
+  assert.deepEqual(byCheck(learningFindings(qs), "SEC121.quiz_length_tell_majority"), [], "4/9 is not a majority");
+  assert.equal(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell").length, 1, "the shadow advisory still reports it");
 });
 
 // ---- transfer floor (SEC117, blocker/advisory) ----------------------------
