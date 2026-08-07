@@ -269,6 +269,17 @@ export function validateAnchorHardSpecifics(
   combine: "all" | "any" = "all",
 ): string[] {
   const haystack = text(value).toLowerCase();
+  // Unit-side clipped-phrase folding (Franklin pincer, fourth face — run 26):
+  // sidecar specifics are telegraphic notes ("slipped under door") while the
+  // naturalize-into-sentences pressure (scars + panel) makes pasting them
+  // verbatim into narration non-viable, so writers naturalize and the raw
+  // inclusion above undercounts. A multi-word specific whose tokens appear in
+  // the unit IN ORDER within the bounded gap (the same clippedPhraseDerivable
+  // SEC120 uses on the prose side) carries the full fact, naturally phrased —
+  // counting it keeps the unit-side and prose-side checks measuring "uses the
+  // fact" identically, which is what closes this pincer class for good.
+  // Single-token specifics still require raw inclusion.
+  const normalizedHaystack = normalizeDerivabilityText(text(value));
   const problems: string[] = [];
   let anySatisfied = false;
   for (const id of anchorArray(ids)) {
@@ -276,7 +287,12 @@ export function validateAnchorHardSpecifics(
     if (!anchor?.supportsClaimTypes?.includes(claimType)) continue;
     const specifics = anchor.hardSpecifics ?? [];
     if (specifics.length < min) continue;
-    const present = specifics.filter((specific) => specific && haystack.includes(specific.toLowerCase())).length;
+    const present = specifics.filter((specific) => {
+      if (!specific) return false;
+      if (haystack.includes(specific.toLowerCase())) return true;
+      const normalized = normalizeDerivabilityText(specific);
+      return normalized.length >= 3 && clippedPhraseDerivable(normalized, normalizedHaystack);
+    }).length;
     if (present < min) {
       problems.push(`${label} cites ${id} but uses ${present}/${min} required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
     } else {
@@ -2330,8 +2346,19 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
       }
       const specifics = anchor?.hardSpecifics ?? [];
       if (anchor?.supportsClaimTypes?.includes("example") && specifics.length >= 2) {
-        const combined = `${text(ex.scenario)} ${text(ex.whatToDo)} ${text(ex.whyItMatters)}`.toLowerCase();
-        const present = specifics.filter((specific) => specific && combined.includes(specific.toLowerCase())).length;
+        const combinedRaw = `${text(ex.scenario)} ${text(ex.whatToDo)} ${text(ex.whyItMatters)}`;
+        const combined = combinedRaw.toLowerCase();
+        // Unit-side clipped-phrase folding (same rationale as
+        // validateAnchorHardSpecifics): a telegraphic specific written out as a
+        // natural sentence — its tokens in order within the bounded gap —
+        // carries the full case detail and counts.
+        const normalizedCombined = normalizeDerivabilityText(combinedRaw);
+        const present = specifics.filter((specific) => {
+          if (!specific) return false;
+          if (combined.includes(specific.toLowerCase())) return true;
+          const normalized = normalizeDerivabilityText(specific);
+          return normalized.length >= 3 && clippedPhraseDerivable(normalized, normalizedCombined);
+        }).length;
         if (present < 2) {
           push("SEC33.example_anchor_specifics", "blocker", `example ${i + 1} cites ${id} but uses ${present}/2 required hardSpecifics verbatim; build the scene from at least two concrete case details`, root);
         }
