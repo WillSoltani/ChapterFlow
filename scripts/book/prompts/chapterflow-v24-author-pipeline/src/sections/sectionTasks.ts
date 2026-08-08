@@ -135,7 +135,8 @@ function gateAwareness(kind: SectionKind): string[] {
         "AS5/AS12 compare q01-to-q01 across the book: give every slot a different scenario, opening, decision pressure, and evidence source; obey its dealt promptShape, answerStyle, distractorTrap, and caseCueIds; the validator enforces this.",
         "AS6 compares correct answers and distractors across chapters: every correct answer names this chapter's requiredFactIds mechanism in fresh words, never a book-level slogan; the validator enforces this.",
         "SEC81 compares review cards across the book: each follows its dealt frontShape, retrievalTarget, and backShape with a chapter-specific noun/case/mechanism; the validator enforces this.",
-        "Distractor discipline: no strawman absolutes, the key is never the longest choice by chars (nor >1.4x avg distractor words / >1.5x avg chars), no mechanical proof tails (SEC52/SEC53/SEC59/SEC116); the validator enforces this.",
+        "Distractor discipline: no strawman absolutes, the key is never the longest choice by chars (nor >1.4x avg distractor words / >1.5x avg chars), no mechanical proof tails (SEC52/SEC53/SEC59/SEC116); a quiz where most keys are the longest choice blocks outright (SEC121); the validator enforces this.",
+        "CHOICE PARITY METHOD — the only reliable way to satisfy the line above: for each question write the two distractors FIRST, each 15-22 words of concrete, chapter-specific, plausible substance; then write the keyed answer to the SAME word count as the LONGER distractor (within ±3 words), moving any overflow qualifier or evidence into the explanation. Before emitting, count words per choice on every question and rebalance any where the key is longest.",
         "At least 7 of 9 questions pose a NEW scenario — transfer, not recall (SEC117); the validator enforces this.",
         LEAK_FAMILY_LINE,
       ];
