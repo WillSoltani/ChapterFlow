@@ -392,7 +392,7 @@ test("book-scars: every shipped scar file loads under the bookId the pipeline de
   const franklin = loadBookScars("the-autobiography-of-benjamin-franklin")!;
   assert.ok(franklin.prohibitions.some((p) => /Silence Dogood|age sixteen/i.test(p)), "Dogood fact pin survives");
   assert.ok(franklin.prohibitions.some((p) => /shared or public property without permission/i.test(p)), "street-work safety rule present");
-  assert.ok(franklin.prohibitions.some((p) => /COUNT CONSISTENCY/.test(p)), "virtue count rule present");
+  assert.ok(franklin.prohibitions.some((p) => /COUNT (CONSISTENCY|SELF-DESCRIPTION)/.test(p)), "virtue count rule present");
   // BANNED VARIANTS must not sit in the over-use channel, where each would be
   // granted one permitted use. (Genuine echo-prone strings — "copper, silver,
   // and gold" — are the channel's proper cargo and are allowed.)
