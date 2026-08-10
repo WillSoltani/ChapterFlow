@@ -2,6 +2,7 @@ import "server-only";
 
 import { requireActiveBookUser } from "@/app/app/api/book/_lib/account-guard";
 import {
+  bookErr,
   bookOk,
   requireBodyObject,
   requireString,
@@ -26,6 +27,8 @@ import {
   listHighlights,
   updateHighlight,
 } from "@/app/app/api/book/_lib/notebook-highlight-repo";
+import { IDEMPOTENCY_HEADER, runIdempotent } from "@/app/app/api/book/_lib/idempotency-core";
+import { createDynamoIdempotencyStore } from "@/app/app/api/book/_lib/idempotency-repo";
 import type { BookUserHighlightItem, NotebookEntry } from "@/app/app/api/book/_lib/types";
 
 export const runtime = "nodejs";
@@ -197,23 +200,51 @@ export async function POST(req: Request) {
     const body = await safeJson(req);
     const input = parseHighlightCreateInput(body);
 
-    const item: BookUserHighlightItem = {
-      userId: user.sub,
-      highlightId: crypto.randomUUID(),
-      bookId: input.bookId,
-      bookTitle: input.bookTitle || input.bookId,
-      chapterNumber: input.chapterNumber,
-      chapterTitle: input.chapterTitle || `Chapter ${input.chapterNumber}`,
-      color: input.color,
-      snippet: input.snippet,
-      anchor: input.anchor,
-      // Overwritten with server time by createHighlight.
-      createdAt: "",
-      updatedAt: "",
-    };
+    // Idempotent create (WP-IDEMPOTENCY-01 / CF2-022). The native client stamps
+    // every notebook/highlight create with a stable mutation id
+    // (`Idempotency-Key`), exactly as it does for POST /book/me/commitments. A
+    // retried POST carrying the same (account, key) — e.g. a dropped 200 leaving
+    // the outbox row un-removed so a later drain re-dispatches the SAME journal
+    // entry — replays the first entry instead of minting a SECOND highlight row
+    // (`crypto.randomUUID()` is fresh per attempt, so `attribute_not_exists(SK)`
+    // in createHighlight cannot dedupe a retry on its own). The uuid mint + the
+    // insert live INSIDE `execute` so a replay never runs either.
+    const idempotencyKey = req.headers.get(IDEMPOTENCY_HEADER);
+    const store = createDynamoIdempotencyStore(tableName, "notebook.post");
+    const outcome = await runIdempotent({
+      store,
+      accountId: user.sub,
+      key: idempotencyKey,
+      execute: async () => {
+        const item: BookUserHighlightItem = {
+          userId: user.sub,
+          highlightId: crypto.randomUUID(),
+          bookId: input.bookId,
+          bookTitle: input.bookTitle || input.bookId,
+          chapterNumber: input.chapterNumber,
+          chapterTitle: input.chapterTitle || `Chapter ${input.chapterNumber}`,
+          color: input.color,
+          snippet: input.snippet,
+          anchor: input.anchor,
+          // Overwritten with server time by createHighlight.
+          createdAt: "",
+          updatedAt: "",
+        };
 
-    const created = await createHighlight(tableName, item);
-    return bookOk({ entry: highlightItemToNotebookEntry(created) }, 201);
+        const created = await createHighlight(tableName, item);
+        return { status: 201, body: { entry: highlightItemToNotebookEntry(created) } };
+      },
+    });
+
+    if (outcome.kind === "in_progress") {
+      return bookErr(
+        req,
+        409,
+        "idempotency_in_progress",
+        "A prior identical request is still being processed. Please retry shortly.",
+      );
+    }
+    return bookOk(outcome.body, outcome.status);
   });
 }
 
