@@ -172,9 +172,17 @@ requiredTest("semantic panel passes when baseline passes and every reader review
 
 requiredTest("semantic panel is ERROR when a reader run is unparseable", async () => {
   const candidate = twoChapterCandidate();
-  // The first seat of ch1 is unparseable → ch1 errors after one read; ch2's
-  // three seats still run clean.
-  const scripted = scriptedRunner(["this is not reader-review JSON", readerContent(), readerContent(), readerContent()]);
+  // The first seat of ch1 is unparseable on EVERY attempt: since the seat schema
+  // retry (#463) an unparseable read is retried up to MAX_READER_SEAT_ATTEMPTS
+  // before it throws, so the fixture must stay unparseable across all three or
+  // the retry would consume a clean entry and the seat would recover. ch1 then
+  // errors; ch2's three seats still run clean.
+  const scripted = scriptedRunner([
+    "this is not reader-review JSON",
+    "this is not reader-review JSON",
+    "this is not reader-review JSON",
+    readerContent(), readerContent(), readerContent(),
+  ]);
   const evaluator = new SemanticPanelReviewEvaluator({
     baseline: baselineStub({ outcome: "PASS", issues: [] }),
     runner: scripted.runner,
