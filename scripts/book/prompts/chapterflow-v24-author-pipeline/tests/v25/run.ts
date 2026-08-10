@@ -66,7 +66,15 @@ function main(): number {
       cwd: resolve(V25_DIR, "..", ".."),
       env: childEnvironment(),
       encoding: "utf8",
-      timeout: 300_000,
+      // Per-file wall-clock ceiling. Sized against MEASURED worst-case runtime,
+      // not guessed: v4-candidate-repair-application-port runs 16 required cases
+      // that each stage a full candidate to disk (write, digest, atomic rename)
+      // under real write-lock polling, and clocks ~262s on an idle machine —
+      // 87% of the previous 300s budget, so ordinary variance tipped it into
+      // SIGTERM/ETIMEDOUT roughly half the time even when run alone. 600s keeps
+      // a genuine hang bounded while leaving that file ~2.3x headroom.
+      // If this file grows further it should be split rather than re-raised.
+      timeout: 600_000,
       maxBuffer: 32 * 1024 * 1024,
     });
     if (result.stdout) process.stdout.write(result.stdout);
