@@ -224,12 +224,46 @@ export function bannedContentReason(entry: string, caseLabelsLower: readonly str
 /** A short, generic-topic phrase from a hardSpecific: lowercased, punctuation-collapsed, 2–5 words,
  *  no digits, no proper nouns. Returns null for anything that would carry a distinctive source
  *  identifier (proper noun, number) into a book-wide pool entry. */
+/** Heads that cannot open a NOUN phrase. The derived templates slot the mined
+ *  topic into a noun position — "a working note on X", "a first attempt at X",
+ *  "two stakeholders disagree about X" — but hardSpecifics are arbitrary
+ *  fragments, and one led by a preposition, conjunction or bare participle
+ *  renders as garbage. Live on the Franklin canary: 8 of 24 examples carried
+ *  domains like "a working note on about wagons" and "two stakeholders disagree
+ *  about compared to original before deciding". Rejecting the fragment simply
+ *  falls through to the genre base, which carries the pool floors. */
+const NON_NOMINAL_TOPIC_HEADS = new Set([
+  // prepositions
+  "about", "above", "across", "after", "against", "along", "among", "around", "at",
+  "before", "behind", "below", "beneath", "beside", "between", "beyond", "by",
+  "despite", "down", "during", "except", "for", "from", "in", "inside", "into",
+  "near", "of", "off", "on", "onto", "outside", "over", "past", "per", "through",
+  "throughout", "to", "toward", "towards", "under", "underneath", "until", "up",
+  "upon", "via", "with", "within", "without",
+  // conjunctions / subordinators / determinative fragments
+  "and", "as", "because", "but", "if", "nor", "once", "or", "since", "so", "than",
+  "that", "then", "though", "unless", "when", "whenever", "where", "whereas",
+  "whether", "which", "while", "who", "whose", "why",
+  // bare participles that read as clause fragments in a noun slot
+  "compared", "given", "based", "beginning", "having", "being", "slipped",
+  "taken", "seen", "made", "held", "left", "put", "set", "written", "drawn",
+]);
+
+/** True when a mined topic can grammatically fill the templates' noun slot.
+ *  Exported for the test that pins the live failure shape. */
+export function topicFillsNounSlot(phrase: string): boolean {
+  const head = phrase.trim().toLowerCase().split(/\s+/)[0] ?? "";
+  return head.length > 0 && !NON_NOMINAL_TOPIC_HEADS.has(head);
+}
+
 function cleanTopicPhrase(raw: string): string | null {
   if (!raw) return null;
   if (properNounTokens(raw).length > 0) return null; // reject proper-noun-bearing specifics
   const t = raw.toLowerCase().replace(/[^a-z ]+/g, " ").replace(/\s+/g, " ").trim();
   const words = t.split(" ").filter(Boolean);
   if (words.length < 2 || words.length > 5) return null;
+  // The templates need a noun phrase; a fragment head renders ungrammatically.
+  if (!topicFillsNounSlot(t)) return null;
   return t;
 }
 
