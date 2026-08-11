@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { runResearcherBibliography, type BibliographyResult } from "../../src/agents/researcher-bibliography.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import { createScriptedResultRunner, mintingExecution } from "./fakes/uniquenessRunner.js";
+import { isCredentialFailureMessage, isUnretryableProviderMessage } from "../../src/runtime/modelErrors.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 /**
@@ -140,6 +141,34 @@ requiredTest("5 durable QUOTA EXHAUSTION fails fast on attempt 1 with the real p
   );
   assert.equal(subject.runs(), 1, "quota exhaustion must not burn further attempts");
   assert.deepEqual(clock.waited, []);
+});
+
+requiredTest("7 CREDENTIAL failure fails fast on attempt 1 with the provider's own words (Task 11aj)", async () => {
+  const subject = scriptedRig([
+    { outcome: "FAILED", error: { code: "MODEL_PROCESS_FAILED", message: "Not logged in \u00b7 Please run /login" } },
+  ]);
+  const clock = recordingSleep();
+  await assert.rejects(
+    runResearcherBibliography(input(), subject.execution, { sleep: clock.sleep }),
+    (error: unknown) => {
+      assert.match((error as Error).message, /not logged in/i, "the operator must see the real cause");
+      assert.doesNotMatch((error as Error).message, /transient/i, "a login failure is not a transient blip");
+      return true;
+    },
+  );
+  assert.equal(subject.runs(), 1, "a credential failure must not burn further attempts");
+  assert.deepEqual(clock.waited, [], "no backoff on a credential block");
+});
+
+requiredTest("8 isCredentialFailureMessage separates auth blocks from ordinary failures (Task 11aj)", () => {
+  assert.equal(isCredentialFailureMessage("Not logged in \u00b7 Please run /login"), true);
+  assert.equal(isCredentialFailureMessage("authentication failed"), true);
+  assert.equal(isCredentialFailureMessage("bounded model process did not succeed"), false);
+  assert.equal(isCredentialFailureMessage("API Error: 429 rate_limit_error"), false);
+  // the union used by the retry loops covers quota AND credentials
+  assert.equal(isUnretryableProviderMessage("You've hit your weekly limit \u00b7 resets Jul 28 at 8pm"), true);
+  assert.equal(isUnretryableProviderMessage("Not logged in"), true);
+  assert.equal(isUnretryableProviderMessage("bounded model process did not succeed"), false);
 });
 
 requiredTest("6 CANCELLED propagates immediately with NO retry (Task 11ag)", async () => {

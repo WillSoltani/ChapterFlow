@@ -15,7 +15,7 @@
  */
 
 import { readFileSync } from "fs";
-import { isQuotaExhaustedMessage } from "../runtime/modelErrors.js";
+import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -324,7 +324,7 @@ export async function runResearcherChapter(
       if (isTransientProcessFailure(message)) {
         // Task 11af: fail FAST on a durable quota cap — retrying inside the
         // same exhausted window cannot succeed and hides the reset horizon.
-        if (isQuotaExhaustedMessage(message)) {
+        if (isUnretryableProviderMessage(message)) {
           attemptFailures.push({ kind: "quota-exhausted", message });
           break;
         }
