@@ -24,6 +24,7 @@ import {
   investingVenues,
   venueFloor,
   POOL_FLOORS,
+  topicFillsNounSlot,
 } from "../src/compiler/bookDesign.js";
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { assertVenueInvariants } from "../src/librarian/venuePlan.js";
@@ -69,6 +70,17 @@ function packet(bookId: string, n: number): SourcePacketV1 {
   };
 }
 
+/** A packet whose hardSpecifics are FRAGMENTS rather than noun phrases — the
+ *  shape that produced "a working note on about wagons" on the live canary. */
+function fragmentPacket(bookId: string, n: number): SourcePacketV1 {
+  const base = packet(bookId, n);
+  const fragments = ["about wagons", "compared to original", "once humility was added", "slipped under door", "under the lantern"];
+  return {
+    ...base,
+    namedCases: base.namedCases.map((c) => ({ ...c, hardSpecifics: fragments })),
+  };
+}
+
 function chapterSpec(bookId: string, n: number): ChapterSpec {
   return { chapterId: `${bookId}-ch${String(n).padStart(2, "0")}`, chapterNumber: n, chapterTitle: `Chapter ${n}` };
 }
@@ -106,6 +118,35 @@ test("P14: derived pools meet floors and mine the book's own material", () => {
   assert.equal(d.provenance.source, "derived");
   // A mined hardSpecific slotted into a frame template — the pool is genuinely per-book.
   assert.ok(d.pools.sceneFramesDecision.some((f) => f.includes("credit utilization")), "derived frames must use the book's own mined material");
+});
+
+test("derived pools reject fragments that cannot fill a NOUN slot (live: 'a working note on about wagons')", () => {
+  // The derived templates put the mined topic in a noun position — "a working
+  // note on X", "a first attempt at X", "two stakeholders disagree about X".
+  // hardSpecifics are arbitrary fragments, so one led by a preposition or a
+  // participle produced live garbage on the Franklin canary: 8 of 24 examples
+  // carried domains like "a working note on about wagons" and "two stakeholders
+  // disagree about compared to original before deciding".
+  const bad = ["about wagons", "compared to original", "once humility was added", "under the lantern", "slipped under door"];
+  const good = ["credit utilization", "wagon contracts", "fire company pledges"];
+  for (const phrase of [...bad, ...good]) {
+    const kept = topicFillsNounSlot(phrase);
+    assert.equal(kept, !bad.includes(phrase), `${phrase} should be ${bad.includes(phrase) ? "rejected" : "kept"}`);
+  }
+});
+
+test("derived venues and frames are never ungrammatical for a packet full of fragment specifics", () => {
+  const packets = Array.from({ length: 12 }, (_, i) => fragmentPacket("zz", i + 1));
+  const d = deriveBookDesign("zz-frag", { genre: "business-decision", packets, chapters: 12 });
+  const rendered = [...d.pools.venues, ...d.pools.sceneFramesDecision, ...d.pools.sceneFramesExperiential];
+  for (const entry of rendered) {
+    assert.doesNotMatch(entry, / on (about|compared|once|under|slipped) /, `ungrammatical venue/frame: ${entry}`);
+    assert.doesNotMatch(entry, / at (about|compared|once|under|slipped) /, `ungrammatical frame: ${entry}`);
+    assert.doesNotMatch(entry, / about (about|compared|once|under|slipped) /, `ungrammatical frame: ${entry}`);
+  }
+  // Floors still hold: rejecting fragments must fall back to the genre base, not starve the pools.
+  assert.ok(d.pools.venues.length >= venueFloor(12), "venue floor must survive fragment rejection");
+  assert.ok(d.pools.sceneFramesDecision.length >= POOL_FLOORS.sceneFramesDecision, "frame floor must survive fragment rejection");
 });
 
 test("P14 genre routing — investing book gets investing venues; experiences book NEVER gets 'broker statement'", () => {
