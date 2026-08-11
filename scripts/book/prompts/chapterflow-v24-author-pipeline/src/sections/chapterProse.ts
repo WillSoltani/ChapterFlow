@@ -66,6 +66,28 @@ export function chapterProseText(source: ChapterProseSource | SummaryPackV1 | nu
     .join("\n");
 }
 
+/** Task 11ak: the STANDALONE haystack — everything a reader has seen by the end
+ *  of the Deep read, i.e. the full prose MINUS fullRead.
+ *
+ *  The tiers are a progressive-depth promise: a reader who stops after Deep has
+ *  finished a coherent chapter. The blind panel enforces that promise and has
+ *  now blocked two separate rounds on the same shape — "Fast read and Deep read
+ *  never mention Governor William Keith ... that material exists only in Full
+ *  read, yet Examples 5 and 6, Quiz Q4 and Q6, and Review Cards 2, 6 and 7 all
+ *  turn on it." Derivability for the TESTED units (quiz, cards) is therefore
+ *  measured against what the Deep-read reader was actually shown.
+ *
+ *  Note the ordering this relies on: summary drafts before learning, so the
+ *  constraint lands on the writer that can satisfy it. The reverse rule — asking
+ *  the summary writer to anticipate what the quiz will later test — is not
+ *  enforceable, which is why an earlier scar phrased that way did not hold. */
+export function standaloneProseText(source: ChapterProseSource | SummaryPackV1 | null | undefined): string {
+  const fields = chapterProseFields(source);
+  return [fields.hook, fields.counterintuition, fields.fastRead, fields.deepRead, fields.keyTakeaway]
+    .filter((passage) => passage.length > 0)
+    .join("\n");
+}
+
 /** True once the chapter's reader-visible BODY exists — all three read tiers drafted.
  *  A pack carrying only a hook (a stub, or a draft that would fail its own gate; the
  *  reporting CLI reads whatever is on disk) is not the chapter a reader sees, and
@@ -135,7 +157,12 @@ export const CHAPTER_PROSE_CARD_CAPS = Object.freeze({
   counterintuition: 500,
   fastRead: 900,
   deepRead: 2200,
-  fullRead: 4400,
+  // Task 11ak: fullRead is CONTEXT ONLY on the learning card — SEC120 measures
+  // derivability against the standalone tiers, so the writer needs it to stay
+  // consistent with the chapter, not to mine detail from it. Trimmed 4400 ->
+  // 3400, the top of fullRead's own aim band: a conformant chapter still renders
+  // whole (the clamp must never touch in-band prose), only genuine overruns cut.
+  fullRead: 3400,
   keyTakeaway: 300,
 } as const satisfies Record<keyof ChapterProseFields, number>);
 
