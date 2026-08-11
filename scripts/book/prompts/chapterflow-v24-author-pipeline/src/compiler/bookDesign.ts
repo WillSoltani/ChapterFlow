@@ -247,6 +247,14 @@ const NON_NOMINAL_TOPIC_HEADS = new Set([
   // bare participles that read as clause fragments in a noun slot
   "compared", "given", "based", "beginning", "having", "being", "slipped",
   "taken", "seen", "made", "held", "left", "put", "set", "written", "drawn",
+  // pronouns and finite verbs — a mined specific lifted from quoted source prose
+  // ("i conceive", from Franklin's own archaic phrasing) rendered live as
+  // "a working note on i conceive", which the writer then quoted verbatim.
+  "i", "we", "you", "he", "she", "it", "they", "me", "us", "him", "her", "them",
+  "my", "our", "your", "his", "its", "their", "this", "these", "those",
+  "am", "is", "are", "was", "were", "be", "been", "do", "does", "did", "can",
+  "could", "shall", "should", "will", "would", "may", "might", "must", "let",
+  "conceive", "think", "believe", "know", "say", "says", "said", "wrote",
 ]);
 
 /** True when a mined topic can grammatically fill the templates' noun slot.

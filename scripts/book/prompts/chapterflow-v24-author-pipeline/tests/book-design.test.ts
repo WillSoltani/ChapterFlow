@@ -127,7 +127,12 @@ test("derived pools reject fragments that cannot fill a NOUN slot (live: 'a work
   // participle produced live garbage on the Franklin canary: 8 of 24 examples
   // carried domains like "a working note on about wagons" and "two stakeholders
   // disagree about compared to original before deciding".
-  const bad = ["about wagons", "compared to original", "once humility was added", "under the lantern", "slipped under door"];
+  const bad = [
+    "about wagons", "compared to original", "once humility was added", "under the lantern", "slipped under door",
+    // Live round-12: a specific lifted from quoted archaic source prose rendered
+    // as "a working note on i conceive", which the writer then quoted verbatim.
+    "i conceive", "we resolved", "he wrote", "must be paid", "did agree",
+  ];
   const good = ["credit utilization", "wagon contracts", "fire company pledges"];
   for (const phrase of [...bad, ...good]) {
     const kept = topicFillsNounSlot(phrase);
