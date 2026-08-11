@@ -2601,6 +2601,21 @@ test("v23 example-pack validator rejects whyItMatters lines that explain a neigh
   );
 });
 
+test("example task states that dealt staging fields are inhabited, never quoted verbatim", () => {
+  const fx = compileFixture();
+  const md = buildSectionTaskMarkdown({
+    kind: "example-pack",
+    bookId: "money-book",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/examples.json",
+    context: { bookScars: null, voiceCard: null },
+    deliveryMode: "DIRECT_JSON",
+  });
+  assert.match(md, /STAGING DIRECTIONS/, "the staging rule must be stated");
+  assert.match(md, /NEVER reproduce the dealt string verbatim/i);
+});
+
 test("learning-pack task pre-lists each quiz slot's required verbatim specifics (Task 11z)", () => {
   const fx = compileFixture();
   const md = buildSectionTaskMarkdown({

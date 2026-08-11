@@ -170,6 +170,7 @@ function craftBrief(kind: SectionKind): string[] {
       return [
         "WHAT EXCELLENT LOOKS LIKE: six DIFFERENT scene engines — not six variations of \"a person weighs two options\". At least THREE are non-deliberation: a surprise that lands on someone; a ritual observed mid-action; a consequence unfolding from an earlier choice; a boundary case where the move backfires or must be withheld; a first-time or milestone; or a public recognition.",
         "Vary WHAT KIND of moment it is and WHO experiences it — a swapped name or prop is a repeat, not a variation. Let the dealt sceneFrame/requiredBeat set the kind of moment for each slot.",
+        "The dealt venue, sceneMode and sceneFrame are STAGING DIRECTIONS, not text: realize each as concrete scene detail in your own words and NEVER reproduce the dealt string verbatim in the prose. A scenario that opens by quoting its venue (\"kept a working note on ...\") reads as template smell, and a garbled dealt string quoted literally reads as corrupted prose.",
         "RUBRIC TARGETS: a distinct scene engine per slot; vary openings, venues, protagonists, outcomes, and title grammar across the six.",
         voiceCraftLine(kind),
       ];
