@@ -85,7 +85,7 @@
  */
 
 import { createHash } from "node:crypto";
-import { isQuotaExhaustedMessage } from "../runtime/modelErrors.js";
+import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { hashCanonical } from "../contracts/contractUtil.js";
@@ -225,7 +225,7 @@ export function isTransientReaderModelResult(result: ModelResult): boolean {
     const code = result.error?.code;
     // Task 11af: a durable quota cap is never transient — 21 reader seats x 3
     // attempts against an exhausted window is pure waste.
-    if (isQuotaExhaustedMessage(result.error?.message ?? "")) return false;
+    if (isUnretryableProviderMessage(result.error?.message ?? "")) return false;
     return code === "MODEL_PROCESS_FAILED" || code === "MODEL_OUTPUT_INVALID";
   }
   return false;

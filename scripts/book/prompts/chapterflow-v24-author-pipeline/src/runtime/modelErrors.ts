@@ -38,6 +38,32 @@ export function isQuotaExhaustedMessage(message: string): boolean {
     || /\blimit\b[^\n]{0,40}\bresets\b/i.test(message);
 }
 
+/**
+ * Task 11aj: provider CREDENTIAL failure. A session that is not logged in
+ * cannot be fixed by trying again inside the run — every attempt fails
+ * identically until a human re-authenticates — so it belongs with durable quota
+ * exhaustion, not with transient process blips.
+ *
+ * Live 2026-08-11: the CLI session expired mid-canary. The envelope carried
+ * "Not logged in \u00b7 Please run /login", which classified as
+ * MODEL_PROCESS_FAILED, was treated as transient, and burned 3 attempts x 7
+ * operator rounds — every one of them reporting "a transient model process
+ * failure occurred before any output was produced" while the actual cause was
+ * a one-command fix the operator never saw.
+ */
+export function isCredentialFailureMessage(message: string): boolean {
+  return /\bnot logged ?in\b/i.test(message)
+    || /\bplease run \/login\b/i.test(message)
+    || /\b(authentication|unauthorized|invalid[_ ]api[_ ]key|credentials?)\b[^\n]{0,40}\b(failed|expired|missing|invalid|required)\b/i.test(message)
+    || /\bapi_error_status["\s:]*401\b/i.test(message);
+}
+
+/** Provider-side conditions that cannot clear by retrying inside this run.
+ *  Retry loops should fail fast on these and surface the provider's own words. */
+export function isUnretryableProviderMessage(message: string): boolean {
+  return isQuotaExhaustedMessage(message) || isCredentialFailureMessage(message);
+}
+
 export function modelError(code: ModelErrorCode, message: string, retryable = false): ModelError {
   return { code, message, ...(retryable ? { retryable: true } : {}) };
 }

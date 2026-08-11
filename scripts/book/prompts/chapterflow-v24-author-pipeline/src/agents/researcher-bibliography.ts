@@ -12,7 +12,7 @@
  */
 
 import { readFileSync } from "fs";
-import { isQuotaExhaustedMessage } from "../runtime/modelErrors.js";
+import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
@@ -135,7 +135,7 @@ export async function runResearcherBibliography(
       const message = (error as Error).message;
       if (isTransientBibliographyFailure(message)) {
         // Task 11af: a durable quota cap cannot clear inside this window.
-        if (isQuotaExhaustedMessage(message)) throw error;
+        if (isUnretryableProviderMessage(message)) throw error;
         failures.push(`attempt ${attempt}: ${message}`);
         if (attempt < MAX_BIBLIOGRAPHY_ATTEMPTS) await sleep(backoffMsForAttempt(attempt));
         continue;
