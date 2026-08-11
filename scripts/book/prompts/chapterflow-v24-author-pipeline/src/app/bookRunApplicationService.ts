@@ -9,6 +9,7 @@ import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
 import type { QcRoundResult, QcService } from "../qc/qcTypes.js";
 import type { PromotionService } from "../release/promotionTypes.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
+import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
@@ -680,17 +681,28 @@ export class BookRunApplicationService {
     // run state — return it (and best-effort settle a run a crash left RUNNING).
     const committed = await this.#dependencies.qc.getRound(input.bookId, roundId);
     if (committed.ok) {
-      const settled = await this.#dependencies.runStore.readRun(input.bookId, baseJudgeRunId, observedAt.value);
-      if (settled.ok && settled.value.status === "RUNNING") {
+      // Settle across the WHOLE successor ladder, not just the base id. Once the
+      // walk below has minted a successor, the run that commits the round is
+      // `-r2`/`-r3`/… — so a crash between that commit and its finish strands a
+      // SUCCESSOR RUNNING, and a base-only settle left it RUNNING forever with
+      // the round already durable (the short-circuit above returns before the
+      // walk can ever abandon it). Only one ordinal can be RUNNING here: every
+      // lower one was driven terminal before the walk moved past it.
+      for (let ordinal = 1; ordinal <= MAX_QC_JUDGE_RUNS; ordinal += 1) {
+        const ordinalRunId = ordinal === 1 ? baseJudgeRunId : `${baseJudgeRunId}-r${ordinal}`;
+        const settled = await this.#dependencies.runStore.readRun(input.bookId, ordinalRunId, observedAt.value);
+        if (!settled.ok) break;
+        if (settled.value.status !== "RUNNING") continue;
         const settleAt = safeNow(this.#dependencies.clock);
         if (settleAt.ok) {
           await this.#dependencies.runStore.finishRun({
             bookId: input.bookId,
-            runId: baseJudgeRunId,
+            runId: ordinalRunId,
             status: "COMPLETED",
             finishedAt: settleAt.value,
           });
         }
+        break;
       }
       return committed;
     }
@@ -725,15 +737,51 @@ export class BookRunApplicationService {
         );
       }
       if (prior.value.status === "RUNNING") {
+        // A hard kill mid-judge leaves its per-question attempt ADMITTED with no
+        // terminal record, and run-state refuses to close a run that still owns
+        // admitted work (UNSETTLED_ATTEMPTS). Abandoning the run WITHOUT first
+        // reconciling those attempts is therefore a silent no-op in exactly the
+        // crash case this branch exists for: the predecessor stayed RUNNING with
+        // a permanently ACTIVE attempt, so every later reader of run-state saw
+        // live judge work that no process owns. Settle each unsettled attempt
+        // ABANDONED with the RECONCILED_UNSETTLED_ON_RESUME marker first —
+        // the same recovery the research port performs (task 11c) — and only
+        // then drive the crashed run terminal. reconcileAttempt is a no-op on an
+        // already-settled attempt, so a lost race never rewrites a real outcome.
         const abandonAt = safeNow(this.#dependencies.clock);
-        if (abandonAt.ok) {
-          await this.#dependencies.runStore.finishRun({
+        // A clock that cannot stamp the abandonment is not a licence to skip it:
+        // silently continuing would leave the same phantom RUNNING predecessor.
+        if (!abandonAt.ok) return abandonAt;
+        for (const attempt of prior.value.attempts) {
+          if (attempt.status !== "ACTIVE" && attempt.status !== "STALE") continue;
+          const settled = await reconcileAttempt(this.#dependencies.runStore, {
             bookId: input.bookId,
             runId: candidateRunId,
-            status: "FAILED",
+            attemptId: attempt.admission.attemptId,
+            outcome: "ABANDONED",
             finishedAt: abandonAt.value,
-            reason: "abandoned: resumed with no committed round",
+            detail: RECONCILED_UNSETTLED_ON_RESUME,
           });
+          if (!settled.ok && settled.error.code !== "CONFLICT") {
+            return failed("BOOK_RUN_QC_UNAVAILABLE", `crashed fresh-qc judge attempt cannot be reconciled: ${settled.error.code}:${settled.error.message}`);
+          }
+          console.error(
+            `[book-run] reconcile phase=${FRESH_QC_STAGE} run=${candidateRunId} attempt=${attempt.admission.attemptId} action=${RECONCILED_UNSETTLED_ON_RESUME}`,
+          );
+        }
+        const abandoned = await this.#dependencies.runStore.finishRun({
+          bookId: input.bookId,
+          runId: candidateRunId,
+          status: "FAILED",
+          finishedAt: abandonAt.value,
+          reason: "abandoned: resumed with no committed round",
+        });
+        // Never claim an abandonment that did not happen: a predecessor left
+        // RUNNING would be re-read as live work by cancel/doctor/capacity
+        // readers, and the successor walk below would keep minting runs past a
+        // predecessor nobody ever closes.
+        if (!abandoned.ok) {
+          return failed("BOOK_RUN_QC_UNAVAILABLE", `crashed fresh-qc judge run cannot be abandoned: ${abandoned.error.code}:${abandoned.error.message}`);
         }
       }
       // FAILED / CANCELLED (including just-abandoned): try the next ordinal.
