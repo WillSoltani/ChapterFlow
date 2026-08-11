@@ -523,7 +523,7 @@ requiredTest("3a the learning-pack card carries THIS chapter's already-drafted p
     "the accepted summary's fastRead must reach the learning writer",
   );
   assert.ok(learningCard.includes(drafted.keyTakeaway), "the accepted summary's keyTakeaway must reach the learning writer");
-  assert.match(learningCard, /must be answerable from the CHAPTER PROSE above ALONE/);
+  assert.match(learningCard, /must be answerable from the tiers above marked testable/);
   // The summary pack is drafted FIRST — it has no prose of its own to be shown, and the
   // example/action writers are unaffected by this input.
   for (const kind of ["summary-pack", "example-pack", "action-pack"]) {

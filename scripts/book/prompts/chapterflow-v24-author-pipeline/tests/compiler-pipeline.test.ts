@@ -338,7 +338,7 @@ test("learning-pack task card carries THIS chapter's drafted prose and the deriv
   assert.ok(withProse.includes(fx.summary.keyTakeaway!), "a passage inside its cap is carried verbatim");
   // The rule: derivable from the prose alone, and a packet fact absent from the prose
   // is simply unavailable.
-  assert.match(withProse, /every quiz stem[\s\S]{0,200}review card must be answerable from the CHAPTER PROSE above ALONE/);
+  assert.match(withProse, /every quiz stem[\s\S]{0,200}review card must be answerable from the tiers above marked testable/);
   assert.match(withProse, /not in the prose, it is NOT available/);
   assert.match(withProse, /SEC120/, "the rule names its enforcing validator");
 

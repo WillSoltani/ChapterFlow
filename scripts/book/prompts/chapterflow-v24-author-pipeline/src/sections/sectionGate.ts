@@ -26,7 +26,7 @@ import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import { memorableLineScore } from "../optimizers/memorableLines.js";
 import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
-import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, type ChapterProseSource } from "./chapterProse.js";
+import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, standaloneProseText, type ChapterProseSource } from "./chapterProse.js";
 import {
   QUIZ_TELL_MAX_PER_CHAPTER,
   quizTransferFloor,
@@ -2499,7 +2499,11 @@ export function learningProseDerivabilityFindings(
   packet: SourcePacketV1,
   prose: ChapterProseSource | null | undefined,
 ): SectionFinding[] {
-  const haystack = normalizeDerivabilityText(chapterProseText(prose));
+  // Task 11ak: measured against the STANDALONE tiers (hook + fast + deep +
+  // keyTakeaway), not the full prose. A unit testable only from fullRead breaks
+  // the progressive-depth promise for a reader who stops after Deep — the exact
+  // shape the blind panel blocked in rounds 11 and 13.
+  const haystack = normalizeDerivabilityText(standaloneProseText(prose));
   if (haystack.length === 0 || !hasDraftedReadTiers(prose)) return [];
   const anchors = sourceAnchorById(packet);
   const findings: SectionFinding[] = [];
