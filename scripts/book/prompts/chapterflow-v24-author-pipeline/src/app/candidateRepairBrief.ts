@@ -153,10 +153,15 @@ export function buildRepairBrief(input: RepairBriefInput): string {
       );
     } else {
       lines.push(
-        "## READER-PANEL DIAGNOSIS — THE PANEL NAMED NO DEFECT ON THIS CHAPTER",
-        "No reader-panel blocking finding is attached to this chapter, so these per-factor medians are the only",
-        "reader-quality signal this round carries for it. Context, not a mandate: clear the blockers above first,",
-        "then lift the lowest-scoring factors. Do not rewrite material that is already working.",
+        // The branch condition is "no BLOCKING finding", which is not the same as
+        // "no defect": the panel routinely raises advisories on a chapter it did
+        // not block, and those advisories are printed further down THIS brief.
+        // Saying otherwise put a false statement in a model-facing prompt.
+        "## READER-PANEL DIAGNOSIS — NO BLOCKING FINDING ON THIS CHAPTER",
+        "The panel raised no blocking finding here, so this chapter failed on the composite floor alone.",
+        "The per-factor medians below, together with any advisories listed later in this brief, are the whole",
+        "of the reader-quality signal for it. Context, not a mandate: lift the lowest-scoring factors and",
+        "address the advisories. Do not rewrite material that is already working.",
       );
     }
     lines.push(...factorLines.map(bullet), "");

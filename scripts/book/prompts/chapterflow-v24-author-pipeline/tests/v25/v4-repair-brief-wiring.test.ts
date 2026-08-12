@@ -99,7 +99,7 @@ requiredTest("the live round shape — gate blockers plus a PASSING panel's diag
   assert.match(brief, /repair chapter opening/, brief);
   // …and the diagnosis that explains the chapter's quality now rides with them,
   // labelled as what it is: no reader blocking finding was attached here.
-  assert.match(brief, /THE PANEL NAMED NO DEFECT ON THIS CHAPTER/, brief);
+  assert.match(brief, /NO BLOCKING FINDING ON THIS CHAPTER/, brief);
   assert.match(brief, /transfer 55, practical 61/, brief);
   assert.match(brief, /the worked example stops before the decision is made/, brief);
   assert.match(brief, /the transfer prompt repeats the chapter/, brief);

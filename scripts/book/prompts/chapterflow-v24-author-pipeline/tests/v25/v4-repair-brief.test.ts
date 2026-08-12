@@ -128,8 +128,8 @@ requiredTest("when the panel named no defect on this chapter, the factor line is
     advisories: [factorScores(), advisory(1)],
   });
   assert.match(brief, /MANDATORY FIXES — BLOCKERS \(1\)/, brief);
-  assert.match(brief, /THE PANEL NAMED NO DEFECT ON THIS CHAPTER/, brief);
-  assert.match(brief, /only\n?\s*reader-quality signal/, brief);
+  assert.match(brief, /NO BLOCKING FINDING ON THIS CHAPTER/, brief);
+  assert.match(brief, /the whole\n?\s*of the reader-quality signal/, brief);
   assert.match(brief, /transfer 52, practical 58/, brief);
   // It is diagnosis, not a second mandate — the brief must say so in words.
   assert.match(brief, /Context, not a mandate/, brief);
@@ -142,7 +142,7 @@ requiredTest("when the panel named no defect on this chapter, the factor line is
     blockers: [gateBlocker, { code: "REVIEW.READER.BLOCKING.internal_contradiction", severity: "BLOCKER", message: "claims A then not-A", location: "ch01/seat-0/deep read" }],
     advisories: [factorScores()],
   });
-  assert.doesNotMatch(named, /THE PANEL NAMED NO DEFECT/, named);
+  assert.doesNotMatch(named, /NO BLOCKING FINDING ON THIS CHAPTER/, named);
   assert.match(named, /FACTOR SCORES \(context, not a mandate\)/, named);
 });
 
