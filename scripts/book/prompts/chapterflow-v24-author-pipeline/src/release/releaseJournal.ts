@@ -297,6 +297,20 @@ class FileReleaseJournal implements ReleaseJournal {
   }
 }
 
+/** A journal that records nothing, for the candidate-only release path which has
+ *  no state root to write under. Chosen over defaulting to the production root:
+ *  that default made a hermetic release mutate real production state. list()
+ *  returning empty means "no prior attempt to resume", which is exactly true. */
+export function createNullReleaseJournal(): ReleaseJournal {
+  return {
+    list: () => [],
+    dirFor: (bookId: string) => `<unjournalled:${bookId}>`,
+    pathFor: (bookId: string, txId: string) => `<unjournalled:${bookId}:${txId}>`,
+    write: () => {},
+    clear: () => {},
+  };
+}
+
 export function createFileReleaseJournal(options: FileReleaseJournalOptions = {}): ReleaseJournal {
   return new FileReleaseJournal(options);
 }

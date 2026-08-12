@@ -16,6 +16,7 @@ import { quarantineRefusalMessage, readQuarantineTombstone } from "../lib/quaran
 import { verifyProductionPackage } from "../verifyProductionPackage.js";
 import {
   createFileReleaseJournal,
+  createNullReleaseJournal,
   formatUnfinishedRelease,
   journalMatchesRelease,
   type ReleaseJournal,
@@ -228,8 +229,20 @@ export class CanonicalPackageAdapter {
   constructor(options: CanonicalPackageAdapterOptions) {
     this.#options = options;
     this.#stateRoot = options.stateRoot ?? options.manifest?.stateRoot;
+    // The journal lives under a state root. A candidate-only release is
+    // deliberately ambient-state-free — "candidate-only CLI release does not
+    // require ambient canonical chapter index" is a pinned property — so when no
+    // state root is configured we must NOT fall back to the production default:
+    // doing so made a hermetic test write into the real production state root
+    // (caught by the V25_PRODUCTION_ROOT_MUTATION tripwire) and would journal a
+    // candidate-only release into ambient state it is defined not to touch.
+    // No root => no journal. The crash window is still covered by the
+    // sidecar+package transaction and the release-time self-verify; the journal
+    // is defence-in-depth for the state-rooted path, not its only protection.
     this.#journal = options.journal ??
-      createFileReleaseJournal(this.#stateRoot === undefined ? {} : { stateRoot: this.#stateRoot });
+      (this.#stateRoot === undefined
+        ? createNullReleaseJournal()
+        : createFileReleaseJournal({ stateRoot: this.#stateRoot }));
     this.#newTransactionId = options.newTransactionId ??
       (() => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
   }
