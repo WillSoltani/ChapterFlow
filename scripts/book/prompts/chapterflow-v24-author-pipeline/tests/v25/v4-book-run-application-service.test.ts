@@ -243,6 +243,29 @@ requiredTest("book-run service joins exact review QC and local promotion with du
     candidateId: compiled.manifest.candidateId,
     manifestDigest: compiled.manifest.manifestDigest,
   });
+  // --promote-local advances the local V25 pointer and produces NO reader
+  // package. Before this the result said only status=PROMOTED + readback=VERIFIED
+  // and the CLI added "package publish, registry update, commit, push, and
+  // deploy NOT PERFORMED" — which names the steps AFTER packaging and so reads
+  // as "packaged, just not shipped", while in fact no book-packages/<id>.v21.json
+  // and no production-manifest sidecar exist and the only route to them is a
+  // candidate release of the same candidate. The result now says that itself.
+  assert.equal(result.value.readerPackage, "NOT_PRODUCED");
+  const releaseCommand = result.value.readerPackageCommand;
+  assert.ok(typeof releaseCommand === "string" && releaseCommand.length > 0, String(releaseCommand));
+  assert.match(releaseCommand, new RegExp(`^promote-book ${BOOK} `));
+  assert.match(releaseCommand, new RegExp(`--candidate-id ${compiled.manifest.candidateId}(\\s|$)`));
+  assert.match(releaseCommand, new RegExp(`--manifest-digest ${compiled.manifest.manifestDigest}(\\s|$)`));
+  assert.match(releaseCommand, /--review-id \S+/);
+  assert.match(releaseCommand, /--qc-round-id \S+/);
+  // The release CASes expectedRevision -> expectedRevision + 1, so the command
+  // must name the revision the local promotion just COMMITTED (1), not the one
+  // it started from — otherwise it fails closed on REVISION_CONFLICT.
+  assert.match(releaseCommand, /--expected-book-revision 1(\s|$)/);
+  // The durable run log carries the same qualified claim, not only the return value.
+  const promotionCompleted = events.filter((event) => event.phase === "promotion" && event.status === "COMPLETED");
+  assert.equal(promotionCompleted.length, 1);
+  assert.match(String(promotionCompleted[0].detail), /readerPackage=NOT_PRODUCED/);
   const pointer = await currentPointer.read(BOOK);
   assert.ok(pointer.ok && pointer.value);
   assert.equal(pointer.value.candidateId, compiled.manifest.candidateId);
@@ -269,6 +292,10 @@ requiredTest("book-run service joins exact review QC and local promotion with du
   assert.equal(resumed.value.status, "PROMOTED");
   assert.equal(resumed.value.bookRevision, 1, "post-CAS resume must not create another pointer revision");
   assert.equal(resumed.value.readback, "VERIFIED");
+  // A resumed local promotion is the same local promotion: it produced no reader
+  // package either, and must not report an unqualified success.
+  assert.equal(resumed.value.readerPackage, "NOT_PRODUCED");
+  assert.match(String(resumed.value.readerPackageCommand), /--expected-book-revision 1(\s|$)/);
   assert.equal(runnerCalls, 1, "completed canonical review must resume without another model call");
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "COMPLETED").length, 1);
   assert.equal(events.filter((event) => event.phase === "seed" && event.status === "COMPLETED").length, 1);

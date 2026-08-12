@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { join } from "node:path";
+import { existsSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import { hostname } from "node:os";
+import { dirname, join } from "node:path";
 
 import { createBookContentReader } from "../../src/books/bookContentReader.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
@@ -239,6 +240,7 @@ async function releaseAdapter(
   manifest: CanonicalManifestOptions,
   reviewCandidate: CandidateIdentity = input.candidate,
   failFirstPackageWrite = false,
+  extras: Readonly<{ newTransactionId?: () => string; stateRoot?: string }> = {},
 ) {
   const authority = await authorities(input, stores, reviewCandidate);
   const pointer = countedPointer(stores.pointer);
@@ -256,6 +258,7 @@ async function releaseAdapter(
     contentReader: stores.reader,
     promotionService: promotion,
     manifest,
+    ...extras,
     // Sidecar first, package second — the ordering promoteBook's transactional
     // publish uses, so an interrupted pair is detectable rather than a package
     // with no manifest behind it.
@@ -268,6 +271,47 @@ async function releaseAdapter(
     },
   });
   return { canonicalRelease, pointer, authority, packageWrites: () => packageWrites, sidecars };
+}
+
+/** The record `quarantine-book <bookId>` writes, in its exact shape (cli.ts
+ *  runQuarantineBook: `{ bookId, reason, quarantinedAt, movedTo }` under
+ *  `<state>/books/_quarantined/<bookId>.json`). */
+function writeQuarantineTombstone(
+  manifest: CanonicalManifestOptions,
+  bookId: string,
+  reason: string,
+  body?: string,
+): string {
+  const path = join(manifest.stateRoot as string, "books", "_quarantined", `${bookId}.json`);
+  mkdirSync(dirname(path), { recursive: true });
+  writeFileSync(
+    path,
+    body ?? `${JSON.stringify({
+      bookId,
+      reason,
+      quarantinedAt: "2026-07-20T11-00-00-000Z",
+      movedTo: `/book-packages/_quarantined/${bookId}.2026-07-20T11-00-00-000Z.v21.json`,
+    }, null, 2)}\n`,
+  );
+  return path;
+}
+
+function releaseJournalDir(manifest: CanonicalManifestOptions, bookId: string): string {
+  return join(manifest.stateRoot as string, "books", "_release-journal", bookId);
+}
+
+function releaseJournalPath(manifest: CanonicalManifestOptions, bookId: string, txId: string): string {
+  return join(releaseJournalDir(manifest, bookId), `${txId}.json`);
+}
+
+/** Every record filed for a book — the whole diagnosis is `ls` on this directory. */
+function readReleaseJournals(manifest: CanonicalManifestOptions, bookId: string): Record<string, unknown>[] {
+  const directory = releaseJournalDir(manifest, bookId);
+  if (!existsSync(directory)) return [];
+  return readdirSync(directory)
+    .filter((name) => name.endsWith(".json"))
+    .sort()
+    .map((name) => JSON.parse(readFileSync(join(directory, name), "utf8")) as Record<string, unknown>);
 }
 
 function assertError(result: Result<unknown>, code: string): void {
@@ -593,6 +637,278 @@ requiredTest("a failed re-release leaves the previously shipped package and side
   const codes = killedBetweenRenames.findings.map((finding) => finding.checkId);
   assert.ok(codes.includes("PPKG.package_id_sidecar_mismatch"), codes.join(", "));
   assert.equal(codes.includes("PPKG.sidecar_bookid_mismatch"), false, codes.join(", "));
+});
+
+/**
+ * SAFETY. `quarantine-book <bookId>` moves the shipped package aside AND writes
+ * `state/books/_quarantined/<bookId>.json`, and prints — in its own output —
+ * "promote-book and register-web now REFUSE this book until
+ * `unquarantine-book <bookId>` releases it". The legacy promoter honours that
+ * record as its Step 0. The v25 candidate-release route did not read it at all.
+ *
+ * Observed BEFORE this fix, on this fixture (tombstone on disk, release called):
+ *   released.ok === true, bookRevision 1, readback VERIFIED
+ *   packageWrites() === 1 and <bookId>.package.json existed
+ * — a book an operator had explicitly pulled was re-released, with a fresh
+ * pointer revision and a freshly published reader package, while its tombstone
+ * sat on disk.
+ */
+requiredTest("a quarantined book cannot be released, and the tombstone is the only thing stopping it", async (context) => {
+  const bookId = "quarantined-release-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "quarantined-release");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+
+  const tombstonePath = writeQuarantineTombstone(
+    manifestOptions,
+    bookId,
+    "shipped corrupt: 108/108 word-salad quizzes",
+  );
+  const refused = await release.canonicalRelease.release(input);
+  assertError(refused, "BOOK_QUARANTINED");
+  assert.ok(!refused.ok && /^QUARANTINED: /.test(refused.error.message), refused.ok ? "" : refused.error.message);
+  // The operator's own reason and the exact release verb reach the refusal —
+  // the same two things the legacy promoter's refusal carries.
+  assert.ok(!refused.ok && refused.error.message.includes("shipped corrupt: 108/108 word-salad quizzes"));
+  assert.ok(!refused.ok && refused.error.message.includes(`unquarantine-book ${bookId}`));
+
+  // Nothing was read, committed or written: no CAS, no package, no sidecar, and
+  // no release journal — the refusal is BEFORE the pointer, not after it.
+  assert.equal(release.pointer.counts.compareAndSet, 0);
+  assert.equal(release.packageWrites(), 0);
+  const blocked = await stores.pointer.read(bookId);
+  assert.ok(blocked.ok);
+  assert.equal(blocked.value, null);
+  assert.equal(existsSync(join(context.roots.tempRoot, `${bookId}.package.json`)), false);
+  assert.equal(existsSync(join(context.roots.tempRoot, `${bookId}.production-manifest.json`)), false);
+  assert.deepEqual(readReleaseJournals(manifestOptions, bookId), []);
+
+  // A tombstone that cannot be parsed still blocks. An unreadable pull-this-book
+  // record is not permission to ship.
+  writeQuarantineTombstone(manifestOptions, bookId, "", "{ this is not json");
+  assertError(await release.canonicalRelease.release(input), "BOOK_QUARANTINED");
+  assert.equal(release.packageWrites(), 0);
+
+  // `unquarantine-book` archives the record. The SAME release then succeeds —
+  // so the tombstone, and nothing incidental about this fixture, is the block.
+  rmSync(tombstonePath, { force: true });
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 1);
+  assert.equal(release.packageWrites(), 1);
+});
+
+/**
+ * The tombstone covers the book, not one spelling of it. `quarantine-book`
+ * files the record under the RAW argv id; the legacy promoter has always looked
+ * up the NORMALISED slug. Either id must block, or an operator who quarantined
+ * "Quarantine_Alias Book" would find a release of `Quarantine_Alias Book`
+ * sailing straight past it.
+ */
+requiredTest("a tombstone filed under the normalised slug blocks a release requested under the raw id", async (context) => {
+  const bookId = "Quarantine_Alias Book";
+  const stores = storage(context);
+  const stateRoot = join(context.roots.tempRoot, "alias-state");
+  writeFileSync(
+    (() => {
+      const path = join(stateRoot, "books", "_quarantined", `${normSlug(bookId)}.json`);
+      mkdirSync(dirname(path), { recursive: true });
+      return path;
+    })(),
+    `${JSON.stringify({ bookId: normSlug(bookId), reason: "pulled under the slug" })}\n`,
+  );
+  const release = new CanonicalPackageAdapter({
+    contentReader: stores.reader,
+    stateRoot,
+    // Reaching either of these would mean the tombstone did not stop the route.
+    promotionService: { promote: () => { throw new Error("promotion must not be reached for a quarantined book"); } },
+    packageWriter: () => { throw new Error("package writer must not be reached for a quarantined book"); },
+  });
+  const refused = await release.release(request(bookId, { candidateId: "candidate-1", manifestDigest: "0".repeat(64) }));
+  assertError(refused, "BOOK_QUARANTINED");
+  assert.ok(!refused.ok && refused.error.message.includes("pulled under the slug"));
+  assert.ok(!refused.ok && refused.error.message.includes(`unquarantine-book ${normSlug(bookId)}`));
+});
+
+/**
+ * JOURNAL. The route commits the CURRENT pointer, then writes the package and
+ * its sidecar. A crash in between leaves a book at a new revision with no
+ * artifacts — and before this record existed NOTHING on disk named the
+ * candidate, the revision or the intent, so the state could not be diagnosed by
+ * inspection at all.
+ *
+ * Observed BEFORE this fix, after the injected package-writer fault:
+ *   state/books/_release-journal/ did not exist; the ONLY evidence was
+ *   current.json at revision 1 and an orphan sidecar, with nothing saying which
+ *   release put it there or how far it got.
+ */
+requiredTest("a crash between the pointer commit and the package write leaves a journal naming the window", async (context) => {
+  const bookId = "journal-window-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "journal-window");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+  const release = await releaseAdapter(
+    input, stores, context.roots.tempRoot, manifestOptions, input.candidate, true,
+    { newTransactionId: () => "tx-journal-window" },
+  );
+
+  const crashed = await release.canonicalRelease.release(input);
+  assertError(crashed, "RECONCILIATION_REQUIRED");
+  // The window itself: pointer advanced, package absent.
+  const pointer = await stores.pointer.read(bookId);
+  assert.ok(pointer.ok && pointer.value);
+  assert.equal(pointer.value.revision, 1);
+  assert.equal(existsSync(join(context.roots.tempRoot, `${bookId}.package.json`)), false);
+
+  // And now it is diagnosable by inspection alone: one record, under this book's
+  // journal directory, naming exactly where the release stopped.
+  const filed = readReleaseJournals(manifestOptions, bookId);
+  assert.equal(filed.length, 1);
+  const record = filed[0];
+  assert.equal(record.schemaVersion, "v25-release-journal-v1");
+  assert.equal(record.bookId, bookId);
+  assert.equal(record.txId, "tx-journal-window");
+  assert.equal(record.state, "package-pending");
+  assert.equal(record.candidateId, staged.identity.candidateId);
+  assert.equal(record.manifestDigest, staged.identity.manifestDigest);
+  assert.equal(record.expectedBookRevision, 0);
+  assert.equal(record.targetBookRevision, 1);
+  assert.equal(record.reviewId, input.reviewId);
+  assert.equal(record.qcRoundId, input.qcRoundId);
+  assert.equal(record.packageId, input.metadata.packageId);
+  assert.equal(record.hostname, hostname());
+  assert.equal(record.pid, process.pid);
+  assert.ok(typeof record.detail === "string" && record.detail.includes("package write failed after pointer commit"), String(record.detail));
+
+  // The record survives a LATER release of a different candidate. One record per
+  // transaction is the whole point: revision 2 goes out normally (the pointer CAS
+  // is what orders releases), and the only evidence that revision 1 was committed
+  // and never published is still on disk, byte-identical, under its own txId.
+  const crashBytes = readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-window"), "utf8");
+  const second = await stage(stores.candidates, bookId, "candidate-2");
+  const secondOptions = manifestRoots(context, bookId, [second.chapter], "-c2");
+  const secondInput: CanonicalReleaseRequest = {
+    ...request(bookId, second.identity),
+    reviewId: "review-2",
+    qcRoundId: "qc-2",
+    expectedBookRevision: 1,
+    metadata: { ...metadata(bookId), packageId: `${bookId}-v21-1784548804000`, createdAt: "2026-07-20T12:00:04.000Z" },
+  };
+  // Each release fixture re-authors its own disposable manifest evidence, so the
+  // second release gets its own manifest stateRoot. Production has ONE state
+  // root, so pin the journal to the first one — that is the directory the two
+  // releases of this book really share.
+  const secondRelease = await releaseAdapter(
+    secondInput, stores, context.roots.tempRoot, secondOptions, secondInput.candidate, false,
+    { stateRoot: manifestOptions.stateRoot as string, newTransactionId: () => "tx-second-release" },
+  );
+  const released = await secondRelease.canonicalRelease.release(secondInput);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 2);
+  assert.equal(secondRelease.packageWrites(), 1);
+  // Its own record is gone (it completed); the crashed one is untouched.
+  assert.equal(existsSync(releaseJournalPath(manifestOptions, bookId, "tx-second-release")), false);
+  assert.equal(readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-window"), "utf8"), crashBytes);
+});
+
+/**
+ * RECOVERY. With the pointer committed and nothing published, a retry hits
+ *   RECONCILIATION_REQUIRED: CURRENT names this candidate, but prior release
+ *   intent cannot be proven; package write suppressed
+ * — correct while nothing could prove the intent, and unrecoverable forever.
+ * The journal IS that proof.
+ *
+ * The default is NOT relaxed: proving the intent is not the same as being told
+ * to act on it, so an unflagged retry still refuses exactly as before. Recovery
+ * is an explicit operator act (`resumeUnfinished` / `--resume-unfinished-release`)
+ * taken after reading the record the refusal now names, and even then it clears
+ * the same bar a first attempt does — verified CURRENT readback, buildable
+ * manifest, production-verified pair — while minting no second revision.
+ */
+requiredTest("a journalled release resumes only when asked, and then publishes without advancing the pointer again", async (context) => {
+  const bookId = "journal-resume-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "journal-resume");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const release = await releaseAdapter(
+    input, stores, context.roots.tempRoot, manifestOptions, input.candidate, true,
+    { newTransactionId: () => "tx-journal-resume" },
+  );
+
+  assertError(await release.canonicalRelease.release(input), "RECONCILIATION_REQUIRED");
+  const journalBytes = readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume"), "utf8");
+  assert.equal(existsSync(packagePath), false);
+
+  // (a) DEFAULT, journal present: still refused. The record proves the intent,
+  // and the route acts on it only when told to — but the refusal now names the
+  // file to read and the flag that would finish it.
+  const notRequested = await release.canonicalRelease.release(input);
+  assertError(notRequested, "RECONCILIATION_REQUIRED");
+  assert.ok(
+    !notRequested.ok && notRequested.error.message.includes("prior release intent cannot be proven"),
+    notRequested.ok ? "" : notRequested.error.message,
+  );
+  assert.ok(
+    !notRequested.ok && notRequested.error.message.includes(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume")),
+    notRequested.ok ? "" : notRequested.error.message,
+  );
+  assert.ok(
+    !notRequested.ok && notRequested.error.message.includes("--resume-unfinished-release"),
+    notRequested.ok ? "" : notRequested.error.message,
+  );
+  assert.equal(release.packageWrites(), 1, "the suppressed retry must not have written anything");
+  assert.equal(existsSync(packagePath), false);
+  // A read-only refusal leaves the record byte-identical — a retry must not
+  // overwrite the crash cause the record exists to preserve.
+  assert.equal(readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume"), "utf8"), journalBytes);
+
+  // (b) FLAG SET but journal gone: still refused. The flag is permission to act
+  // on proof, never a substitute for it.
+  rmSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume"), { force: true });
+  const unproven = await release.canonicalRelease.release({ ...input, resumeUnfinished: true });
+  assertError(unproven, "RECONCILIATION_REQUIRED");
+  assert.ok(
+    !unproven.ok && unproven.error.message.includes("prior release intent cannot be proven"),
+    unproven.ok ? "" : unproven.error.message,
+  );
+  assert.equal(release.packageWrites(), 1);
+  assert.equal(existsSync(packagePath), false);
+  // The noise record that attempt wrote for itself is cleaned up, not left to
+  // masquerade as an unfinished release.
+  assert.equal(existsSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume")), false);
+
+  // (c) Journal restored AND recovery requested: the same retry completes the
+  // SAME release.
+  writeFileSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume"), journalBytes);
+  const resumed = await release.canonicalRelease.release({ ...input, resumeUnfinished: true });
+  assert.ok(resumed.ok, resumed.ok ? "" : `${resumed.error.code}:${resumed.error.message}`);
+  assert.equal(resumed.value.bookRevision, 1, "a resume finishes revision 1; it does not mint revision 2");
+  assert.equal(resumed.value.readback, "VERIFIED");
+  const pointer = await stores.pointer.read(bookId);
+  assert.ok(pointer.ok && pointer.value);
+  assert.equal(pointer.value.revision, 1);
+  assert.equal(pointer.value.candidateId, staged.identity.candidateId);
+
+  // The artifacts the crash owed are on disk and pass the production verifier —
+  // the resume met the same bar a first attempt would have.
+  const verified = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    compareLooseState: true,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(verified.ok, true, verified.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"));
+  // A completed release leaves no journal behind.
+  assert.equal(existsSync(releaseJournalPath(manifestOptions, bookId, "tx-journal-resume")), false);
 });
 
 /** The package BODY always carries the normalised slug; a packageId derived from

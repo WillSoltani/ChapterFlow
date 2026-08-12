@@ -55,6 +55,7 @@ import { checkSweep } from "./qc/sweep.js";
 import { evaluateMajorCleanliness } from "./qc/majorDisposition.js";
 import { ChapterSpec } from "./generateChapter.js";
 import { normSlug } from "./lib/chapterPaths.js";
+import { quarantineRefusalMessage, readQuarantineTombstone } from "./lib/quarantineTombstone.js";
 import { pruneBlockedReports } from "./publish/blockedReportRetention.js";
 import { stripInternalFields } from "./lib/readerContent.js";
 import { buildProductionManifest, type ProductionManifestFinding, type ProductionPackageManifest } from "./productionManifest.js";
@@ -502,18 +503,12 @@ export function promoteBook(input: PromotionInput, options: PromotionOptions = {
   // promotable survived, so the next promote/batch --run silently re-shipped
   // a book an operator had explicitly pulled (verified 2026-06-09). The
   // tombstone makes quarantine sticky until `unquarantine-book` releases it.
-  const tombstonePath = resolve(STATE, "books", "_quarantined", `${bookId}.json`);
-  if (existsSync(tombstonePath)) {
-    let why = "";
-    try {
-      why = (JSON.parse(readFileSync(tombstonePath, "utf8")) as { reason?: string }).reason ?? "";
-    } catch { /* unreadable tombstone still blocks */ }
-    return blockedResult({
-      bookId,
-      reason:
-        `QUARANTINED: ${bookId} was explicitly quarantined${why ? ` (${why})` : ""}. ` +
-        `Promote refuses until \`unquarantine-book ${bookId}\` releases it (after the defect is fixed and re-QC'd).`,
-    });
+  // The lookup itself lives in lib/quarantineTombstone so the v25 candidate
+  // release route reads the SAME record, under the same ids, with the same
+  // refusal — the two promoters cannot drift apart on what "quarantined" means.
+  const tombstone = readQuarantineTombstone(bookId, STATE);
+  if (tombstone) {
+    return blockedResult({ bookId, reason: quarantineRefusalMessage(bookId, tombstone) });
   }
 
   // Step 0.5: Canonical chapter-set proof. The production package must be

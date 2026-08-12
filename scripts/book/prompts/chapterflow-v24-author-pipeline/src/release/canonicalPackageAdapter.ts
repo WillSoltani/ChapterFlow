@@ -12,7 +12,18 @@ import {
 } from "../promoteBook.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import type { FingerprintRoots } from "../lib/pipelineFingerprint.js";
+import { quarantineRefusalMessage, readQuarantineTombstone } from "../lib/quarantineTombstone.js";
 import { verifyProductionPackage } from "../verifyProductionPackage.js";
+import {
+  createFileReleaseJournal,
+  createNullReleaseJournal,
+  formatUnfinishedRelease,
+  journalMatchesRelease,
+  type ReleaseJournal,
+  type ReleaseJournalRecord,
+  type ReleaseJournalState,
+  type ReleaseJournalWrite,
+} from "./releaseJournal.js";
 import type { PromotionService } from "./promotionTypes.js";
 import type { BookPackageV21, ChapterV21 } from "../types.js";
 
@@ -61,6 +72,20 @@ export type CanonicalPackageAdapterOptions = Readonly<{
   promotionService: PromotionService;
   packageWriter: CanonicalPackageWriter;
   manifest?: CanonicalManifestOptions;
+  /** The pipeline state root this release READS its quarantine tombstone from
+   *  (`<stateRoot>/books/_quarantined/<bookId>.json`) and WRITES its release
+   *  journal to (`<stateRoot>/books/_release-journal/<bookId>.json`).
+   *
+   *  Production omits it: the default is `manifest.stateRoot` when the manifest
+   *  build has already been pointed at a disposable tree (so a hermetic test is
+   *  hermetic in one move) and otherwise the canonical `<pipeline>/state` — the
+   *  exact root `quarantine-book` writes to and promoteBook reads. */
+  stateRoot?: string;
+  /** Test seam: inject the release journal. Default is the file journal under
+   *  the resolved state root. */
+  journal?: ReleaseJournal;
+  /** Test seam: deterministic transaction ids for journal records. */
+  newTransactionId?: () => string;
 }>;
 
 export type CanonicalReleaseRequest = Readonly<{
@@ -71,6 +96,20 @@ export type CanonicalReleaseRequest = Readonly<{
   expectedBookRevision: number;
   promotedAt: string;
   metadata: CanonicalPackageMetadata;
+  /**
+   * Opt-in recovery for the crash window between the pointer commit and the
+   * package write.
+   *
+   * DEFAULT (absent/false) is unchanged and fail-closed: a CURRENT pointer that
+   * already names this candidate at this revision NEVER licenses a package
+   * write, whatever the journal says. Only an operator who has read the journal
+   * record turns this on, and even then it publishes only when the journal
+   * proves THIS release committed THIS candidate to THIS revision, the CURRENT
+   * readback verifies content-addressed, and the pair passes the production
+   * verifier — the same bar a first attempt has to clear, minus a second
+   * revision.
+   */
+  resumeUnfinished?: boolean;
 }>;
 
 export type CanonicalReleaseResult = Readonly<{
@@ -183,9 +222,29 @@ export async function assembleCanonicalPackage(input: Readonly<{
 /** Real V4 release route. Assembly is read-only; package write follows verified CAS/readback. */
 export class CanonicalPackageAdapter {
   readonly #options: CanonicalPackageAdapterOptions;
+  readonly #stateRoot: string | undefined;
+  readonly #journal: ReleaseJournal;
+  readonly #newTransactionId: () => string;
 
   constructor(options: CanonicalPackageAdapterOptions) {
     this.#options = options;
+    this.#stateRoot = options.stateRoot ?? options.manifest?.stateRoot;
+    // The journal lives under a state root. A candidate-only release is
+    // deliberately ambient-state-free — "candidate-only CLI release does not
+    // require ambient canonical chapter index" is a pinned property — so when no
+    // state root is configured we must NOT fall back to the production default:
+    // doing so made a hermetic test write into the real production state root
+    // (caught by the V25_PRODUCTION_ROOT_MUTATION tripwire) and would journal a
+    // candidate-only release into ambient state it is defined not to touch.
+    // No root => no journal. The crash window is still covered by the
+    // sidecar+package transaction and the release-time self-verify; the journal
+    // is defence-in-depth for the state-rooted path, not its only protection.
+    this.#journal = options.journal ??
+      (this.#stateRoot === undefined
+        ? createNullReleaseJournal()
+        : createFileReleaseJournal({ stateRoot: this.#stateRoot }));
+    this.#newTransactionId = options.newTransactionId ??
+      (() => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
   }
 
   async readCurrent(bookId: string): Promise<Result<CanonicalCurrentRelease | null>> {
@@ -216,6 +275,26 @@ export class CanonicalPackageAdapter {
   }
 
   async release(request: CanonicalReleaseRequest): Promise<Result<CanonicalReleaseResult>> {
+    // ── Step 0: QUARANTINE TOMBSTONE ───────────────────────────────────────
+    // `quarantine-book <bookId>` moves the shipped package aside AND writes
+    // state/books/_quarantined/<bookId>.json, promising in its own output that
+    // "promote-book and register-web now REFUSE this book". The legacy promoter
+    // honours that record as its Step 0; this route did not, so a book an
+    // operator had explicitly pulled could be released again — with a fresh
+    // pointer revision and a freshly published reader package — while the
+    // tombstone sat on disk. Shared reader, shared refusal, so the two promoters
+    // cannot drift. Fail-closed BEFORE any read, any CAS and any write.
+    let tombstone;
+    try {
+      tombstone = readQuarantineTombstone(request.bookId, this.#stateRoot);
+    } catch (cause) {
+      // A tombstone lookup that cannot complete is not proof of absence.
+      return failed("BOOK_QUARANTINED", `quarantine tombstone lookup failed for ${request.bookId}: ${errorMessage(cause)}`);
+    }
+    if (tombstone) {
+      return failed("BOOK_QUARANTINED", quarantineRefusalMessage(request.bookId, tombstone));
+    }
+
     const assembled = await assembleCanonicalPackage({
       bookId: request.bookId,
       candidate: request.candidate,
@@ -223,6 +302,79 @@ export class CanonicalPackageAdapter {
       contentReader: this.#options.contentReader,
     });
     if (!assembled.ok) return assembled;
+
+    // ── Step 0.5: JOURNAL THE INTENT, BEFORE THE POINTER CAS ───────────────
+    // Everything from here to the package write is the window the promotion
+    // audit named: the pointer can commit and the artifacts can fail to land,
+    // and before this record existed nothing on disk said so.
+    const targetBookRevision = request.expectedBookRevision + 1;
+    const releaseIdentity = {
+      bookId: request.bookId,
+      candidateId: request.candidate.candidateId,
+      manifestDigest: request.candidate.manifestDigest,
+      targetBookRevision,
+    };
+    let priorRecord: ReleaseJournalRecord | null;
+    try {
+      // Records for OTHER candidates/revisions are left exactly where they are:
+      // they belong to other transactions (a concurrent racer, or a crash whose
+      // evidence must survive), and one release never speaks for another.
+      const filed = this.#journal.list(request.bookId)
+        .filter((record) => journalMatchesRelease(record, releaseIdentity));
+      priorRecord = filed.length === 0 ? null : filed[filed.length - 1];
+    } catch (cause) {
+      // A record under this book's journal directory that cannot be parsed may
+      // describe a committed pointer with no package. Not being able to rule
+      // that out is the strongest reason to stop, not the weakest.
+      return failed("RELEASE_UNFINISHED", errorMessage(cause));
+    }
+    const txId = priorRecord?.txId ?? this.#newTransactionId();
+    let journalPath: string;
+    try {
+      journalPath = this.#journal.pathFor(request.bookId, txId);
+    } catch (cause) {
+      return failed("RELEASE_JOURNAL_UNAVAILABLE", `release journal path is unusable: ${errorMessage(cause)}`);
+    }
+    const entry: Omit<ReleaseJournalWrite, "state" | "detail"> = {
+      bookId: request.bookId,
+      txId,
+      candidateId: request.candidate.candidateId,
+      manifestDigest: request.candidate.manifestDigest,
+      reviewId: request.reviewId,
+      qcRoundId: request.qcRoundId,
+      expectedBookRevision: request.expectedBookRevision,
+      targetBookRevision,
+      promotedAt: request.promotedAt,
+      packageId: assembled.value.package.packageId,
+    };
+    const journal = (state: ReleaseJournalState, detail?: string): void => {
+      this.#journal.write({ ...entry, state, ...(detail === undefined ? {} : { detail }) });
+    };
+    /** Best-effort annotation on a path that is already returning a failure —
+     *  it must never replace the failure the caller actually needs to see. */
+    const annotate = (state: ReleaseJournalState, detail: string): void => {
+      try { journal(state, detail); } catch { /* the returned error is the signal */ }
+    };
+    /** Remove a record this call created that turned out to describe nothing.
+     *  A record from a PRIOR attempt is evidence and is never removed here, and
+     *  no other transaction's record is ever touched. */
+    const discardOwnRecord = (): void => {
+      if (priorRecord !== null) return;
+      try { this.#journal.clear(request.bookId, txId); } catch { /* debris is inert */ }
+    };
+    if (priorRecord === null) {
+      try {
+        journal("pointer-pending");
+      } catch (cause) {
+        // Intent that cannot be recorded must not be acted on: committing a
+        // pointer we could not journal recreates exactly the undiagnosable
+        // window this record exists to close.
+        return failed(
+          "RELEASE_JOURNAL_UNAVAILABLE",
+          `release intent could not be journalled at ${journalPath}, so nothing was committed and nothing was published: ${errorMessage(cause)}`,
+        );
+      }
+    }
 
     const promoted = await this.#options.promotionService.promote({
       bookId: request.bookId,
@@ -232,20 +384,84 @@ export class CanonicalPackageAdapter {
       expectedBookRevision: request.expectedBookRevision,
       promotedAt: request.promotedAt,
     });
-    if (!promoted.ok) {
-      if (promoted.error.code !== "REVISION_CONFLICT") return promoted;
+    let bookRevision: number;
+    if (promoted.ok) {
+      bookRevision = promoted.value.bookRevision;
+      try {
+        journal("pointer-committed");
+      } catch (cause) {
+        return failed(
+          "RECONCILIATION_REQUIRED",
+          `pointer committed at revision ${bookRevision} but the release journal could not be updated; nothing published: ${errorMessage(cause)}`,
+        );
+      }
+    } else if (promoted.error.code === "REVISION_CONFLICT") {
       const current = await this.readCurrent(request.bookId);
-      if (
-        current.ok &&
+      const currentIsThisRelease = current.ok &&
         current.value !== null &&
-        current.value.bookRevision === request.expectedBookRevision + 1 &&
+        current.value.bookRevision === targetBookRevision &&
         current.value.candidate.candidateId === request.candidate.candidateId &&
-        current.value.candidate.manifestDigest === request.candidate.manifestDigest
-      ) {
+        current.value.candidate.manifestDigest === request.candidate.manifestDigest;
+      if (!currentIsThisRelease) {
+        // The CAS provably did not land for us — another revision owns CURRENT.
+        // A record from a PRIOR attempt is left byte-identical: a refused retry
+        // must not overwrite the crash cause the record was written to preserve.
+        discardOwnRecord();
+        return promoted;
+      }
+      if (priorRecord === null) {
+        // CURRENT already names this candidate at this revision, and NOTHING on
+        // disk says this process (or any journalled one) put it there. Unchanged
+        // fail-closed behaviour: a pointer of unknown provenance never licenses
+        // a package write.
+        discardOwnRecord();
         return failed(
           "RECONCILIATION_REQUIRED",
           "CURRENT names this candidate, but prior release intent cannot be proven; package write suppressed",
         );
+      }
+      if (request.resumeUnfinished !== true) {
+        // The journal PROVES the intent — but proving it is not the same as
+        // being told to act on it. The default stays exactly as fail-closed as
+        // it was; the only thing that changed is that the refusal can now say
+        // where the evidence is and what would finish it. The record itself is
+        // NOT rewritten: a read-only refusal must not overwrite the crash cause.
+        return failed(
+          "RECONCILIATION_REQUIRED",
+          "CURRENT names this candidate, but prior release intent cannot be proven; package write suppressed. " +
+            `${formatUnfinishedRelease(priorRecord, journalPath)}. ` +
+            "Re-run this release with resumeUnfinished (CLI: --resume-unfinished-release) to finish it from that record.",
+        );
+      }
+      // RECOVERY, explicitly requested. The journal proves this exact release
+      // committed this exact candidate to this exact revision, and the CURRENT
+      // read above is a full content-addressed verification (bookContentReader
+      // recomputes the manifest digest and compares it to BOTH the stored
+      // manifest and the pointer). The remaining work — build the sidecar,
+      // verify the pair, write both artifacts — is exactly what a first attempt
+      // would still have to do, at the same bar, so resuming it advances no
+      // revision and skips no gate.
+      bookRevision = targetBookRevision;
+      try {
+        journal("pointer-committed", `resumed from ${priorRecord.state} after a verified CURRENT readback`);
+      } catch (cause) {
+        return failed(
+          "RECONCILIATION_REQUIRED",
+          `release resume could not update the journal at ${journalPath}; nothing published: ${errorMessage(cause)}`,
+        );
+      }
+    } else {
+      // Every other promotion failure is pre-commit by construction (candidate,
+      // review, QC and request validation all run before the CAS), except
+      // RECONCILIATION_REQUIRED — whose whole meaning is "the commit outcome is
+      // uncertain", so its record must survive.
+      if (promoted.error.code === "RECONCILIATION_REQUIRED") {
+        // Keep whatever state a prior attempt had already proven — an uncertain
+        // commit must never regress a `package-pending` record to
+        // `pointer-pending` and make an inspector think less had happened.
+        annotate(priorRecord?.state ?? "pointer-pending", `promotion returned an uncertain commit: ${promoted.error.message}`);
+      } else {
+        discardOwnRecord();
       }
       return promoted;
     }
@@ -269,12 +485,11 @@ export class CanonicalPackageAdapter {
       ...this.#options.manifest,
     });
     if (!built.ok) {
-      return failed(
-        "RECONCILIATION_REQUIRED",
-        `production manifest unbuildable after pointer commit; nothing published: ${built.findings
-          .map((finding) => `${finding.checkId}${finding.chapterNumber ? ` (ch${finding.chapterNumber})` : ""}: ${finding.message}`)
-          .join("; ")}`,
-      );
+      const message = `production manifest unbuildable after pointer commit; nothing published: ${built.findings
+        .map((finding) => `${finding.checkId}${finding.chapterNumber ? ` (ch${finding.chapterNumber})` : ""}: ${finding.message}`)
+        .join("; ")}`;
+      annotate("pointer-committed", message);
+      return failed("RECONCILIATION_REQUIRED", message);
     }
     const sidecar: ProductionManifestSidecar = {
       schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
@@ -309,11 +524,21 @@ export class CanonicalPackageAdapter {
       now: this.#options.manifest?.now,
     });
     if (!verification.ok) {
+      const message = `released pair fails production verification after pointer commit; nothing published: ${verification.findings
+        .map((finding) => `${finding.checkId}${finding.chapterNumber ? ` (ch${finding.chapterNumber})` : ""}: ${finding.message}`)
+        .join("; ")}`;
+      annotate("pointer-committed", message);
+      return failed("RECONCILIATION_REQUIRED", message);
+    }
+    // The pair is proven shippable and the writer is about to run — the last
+    // journalled state before the artifacts exist, so an inspector can tell
+    // "never got as far as writing" from "was writing when it died".
+    try {
+      journal("package-pending");
+    } catch (cause) {
       return failed(
         "RECONCILIATION_REQUIRED",
-        `released pair fails production verification after pointer commit; nothing published: ${verification.findings
-          .map((finding) => `${finding.checkId}${finding.chapterNumber ? ` (ch${finding.chapterNumber})` : ""}: ${finding.message}`)
-          .join("; ")}`,
+        `release journal could not record the package write at ${journalPath}; nothing published: ${errorMessage(cause)}`,
       );
     }
     try {
@@ -324,15 +549,22 @@ export class CanonicalPackageAdapter {
         sidecar,
       });
     } catch (cause) {
-      return failed("RECONCILIATION_REQUIRED", `package write failed after pointer commit: ${errorMessage(cause)}`);
+      const message = `package write failed after pointer commit: ${errorMessage(cause)}`;
+      annotate("package-pending", message);
+      return failed("RECONCILIATION_REQUIRED", message);
     }
+    // Both artifacts are live. Record that, then clear — a clean tree carries no
+    // journals at all, and a surviving `published` record means only that the
+    // clear was lost, never that anything is missing.
+    annotate("published", "artifacts written");
+    try { this.#journal.clear(request.bookId, txId); } catch { /* published; debris is inert */ }
     return {
       ok: true,
       value: {
         package: assembled.value.package,
         sidecar,
-        bookRevision: promoted.value.bookRevision,
-        readback: promoted.value.readback,
+        bookRevision,
+        readback: "VERIFIED",
       },
     };
   }

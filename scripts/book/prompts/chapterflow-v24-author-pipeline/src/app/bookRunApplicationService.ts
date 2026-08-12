@@ -96,6 +96,33 @@ export interface BookRunApplicationResult {
   readonly qcRoundId: string;
   readonly bookRevision?: number;
   readonly readback?: "VERIFIED";
+  /**
+   * What a local promotion did NOT do, stated on the result rather than left to
+   * be inferred.
+   *
+   * `--promote-local` advances the local V25 CURRENT pointer and nothing else.
+   * It does not assemble a reader package, so after a "PROMOTED" run there is no
+   * `book-packages/<bookId>.v21.json` and no
+   * `state/books/<bookId>.production-manifest.json` — publish-final's preflight
+   * has nothing to verify and register-web has nothing to register. The book is
+   * promoted in the V25 store and absent from the shipped set.
+   *
+   * That boundary is deliberate and belongs at this layer: book-run is
+   * contractually local-only (it rejects --publish/--publish-final/--commit/
+   * --push/--deploy outright), while producing the package is a PUBLISH-layer
+   * act — it needs reader-facing metadata book-run never takes (categories,
+   * tags, a packageId identity), it writes into `book-packages/`, and it must
+   * pass the production verifier against loose state. The route that does all of
+   * that is `promote-book` with an explicit candidate selector. So the fix is
+   * not to smuggle the package write in here; it is to stop reporting an
+   * unqualified success for work that was only half the journey.
+   *
+   * Present only when `status === "PROMOTED"`.
+   */
+  readonly readerPackage?: "NOT_PRODUCED";
+  /** The exact command that turns this promoted candidate into a reader package
+   *  + production-manifest sidecar. Present only when `readerPackage` is. */
+  readonly readerPackageCommand?: string;
 }
 
 export interface BookRunApplicationDependencies {
@@ -148,6 +175,50 @@ function identity(candidate: CandidateSnapshot): CandidateIdentity {
 
 function sameIdentity(left: CandidateIdentity, right: CandidateIdentity): boolean {
   return left.candidateId === right.candidateId && left.manifestDigest === right.manifestDigest;
+}
+
+/**
+ * The `promote-book` candidate-release invocation that turns a locally promoted
+ * candidate into the reader package + production-manifest sidecar `--promote-local`
+ * does not produce.
+ *
+ * `--expected-book-revision` is the revision the local promotion just COMMITTED,
+ * not the one it started from: the release route CASes expectedRevision ->
+ * expectedRevision + 1, so releasing this candidate advances the pointer once
+ * more. That is the honest cost of the split and it is stated in the caller's
+ * output rather than discovered.
+ *
+ * `--categories` / `--tags` are left as placeholders on purpose — candidate
+ * release requires both to be explicit, and book-run never takes reader-facing
+ * metadata, so there is nothing truthful to fill in here.
+ */
+export function readerPackageCommandFor(input: Readonly<{
+  bookId: string;
+  title: string;
+  author: string;
+  v25Root: string;
+  attemptRoot: string;
+  sourceGitSha: string;
+  candidate: CandidateIdentity;
+  reviewId: string;
+  qcRoundId: string;
+  bookRevision: number;
+}>): string {
+  return [
+    `promote-book ${input.bookId}`,
+    `--title ${JSON.stringify(input.title)}`,
+    `--author ${JSON.stringify(input.author)}`,
+    "--categories <Category,...>",
+    "--tags <tag,...>",
+    `--v25-root ${input.v25Root}`,
+    `--attempt-root ${input.attemptRoot}`,
+    `--source-git-sha ${input.sourceGitSha}`,
+    `--candidate-id ${input.candidate.candidateId}`,
+    `--manifest-digest ${input.candidate.manifestDigest}`,
+    `--review-id ${input.reviewId}`,
+    `--qc-round-id ${input.qcRoundId}`,
+    `--expected-book-revision ${input.bookRevision}`,
+  ].join(" ");
 }
 
 function expectedRevisionFromEvents(events: readonly BookRunEvent[]): Result<number> {
@@ -1381,6 +1452,21 @@ export class BookRunApplicationService {
           qcRoundId: roundId,
           bookRevision: livePointer.value.revision,
           readback: "VERIFIED",
+          // The resumed pointer is the SAME local-only promotion: it moved the
+          // pointer and produced no reader package either.
+          readerPackage: "NOT_PRODUCED",
+          readerPackageCommand: readerPackageCommandFor({
+            bookId: input.bookId,
+            title: input.title,
+            author: input.author,
+            v25Root: input.v25Root,
+            attemptRoot: input.attemptRoot,
+            sourceGitSha: input.sourceGitSha,
+            candidate: identity(candidate),
+            reviewId: review.value.reviewId,
+            qcRoundId: roundId,
+            bookRevision: livePointer.value.revision,
+          }),
         },
       };
     }
@@ -1411,7 +1497,17 @@ export class BookRunApplicationService {
       await this.#event(runId, input.bookId, "promotion", "FAILED", message, identity(candidate));
       return failed("BOOK_RUN_PROMOTION_FAILED", message);
     }
-    const promotionCompleted = await this.#event(runId, input.bookId, "promotion", "COMPLETED", `bookRevision=${promoted.value.bookRevision}`, identity(candidate));
+    // The event detail says what the phase actually achieved. `readerPackage=NOT_PRODUCED`
+    // is part of the durable run log, not only of the returned value, so an
+    // operator reading events.jsonl after the fact sees the same qualified claim.
+    const promotionCompleted = await this.#event(
+      runId,
+      input.bookId,
+      "promotion",
+      "COMPLETED",
+      `bookRevision=${promoted.value.bookRevision};readerPackage=NOT_PRODUCED`,
+      identity(candidate),
+    );
     if (!promotionCompleted.ok) return promotionCompleted;
     return {
       ok: true,
@@ -1424,6 +1520,24 @@ export class BookRunApplicationService {
         qcRoundId: roundId,
         bookRevision: promoted.value.bookRevision,
         readback: "VERIFIED",
+        // --promote-local advanced the local V25 pointer and stopped there. No
+        // book-packages/<bookId>.v21.json and no production-manifest sidecar
+        // exist, so publish-final has nothing to verify and register-web has
+        // nothing to register. Say so on the result instead of letting
+        // status=PROMOTED imply a shippable book.
+        readerPackage: "NOT_PRODUCED",
+        readerPackageCommand: readerPackageCommandFor({
+          bookId: input.bookId,
+          title: input.title,
+          author: input.author,
+          v25Root: input.v25Root,
+          attemptRoot: input.attemptRoot,
+          sourceGitSha: input.sourceGitSha,
+          candidate: identity(candidate),
+          reviewId: review.value.reviewId,
+          qcRoundId: roundId,
+          bookRevision: promoted.value.bookRevision,
+        }),
       },
     };
   }
