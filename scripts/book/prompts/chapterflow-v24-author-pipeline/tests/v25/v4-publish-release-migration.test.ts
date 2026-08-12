@@ -12,11 +12,16 @@ import type { CandidateIdentity, Result } from "../../src/contracts/v4Core.js";
 import { createQcService } from "../../src/qc/qcService.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
 import { applyCleanup } from "../../src/publish/cleanupBookDebris.js";
-import { CanonicalPackageAdapter, type CanonicalReleaseRequest } from "../../src/release/canonicalPackageAdapter.js";
+import {
+  CanonicalPackageAdapter,
+  type CanonicalManifestOptions,
+  type CanonicalReleaseRequest,
+} from "../../src/release/canonicalPackageAdapter.js";
 import { LegacyPublishAdapter } from "../../src/release/legacyPublishAdapter.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { ReviewService } from "../../src/review/reviewTypes.js";
+import { seedManifestEvidenceRoots } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -157,10 +162,29 @@ function countedPointer(pointer: CurrentPointerStore) {
   return { counts, store };
 }
 
+/** The release route builds the production-manifest sidecar publish-final
+ *  consumes, so every release fixture needs recomputable manifest evidence under
+ *  a disposable root — a book without it cannot be released at all. */
+function manifestRoots(context: TestContext, bookId: string, marker: string): CanonicalManifestOptions {
+  const roots = seedManifestEvidenceRoots({
+    root: join(context.roots.tempRoot, `${bookId}-manifest`),
+    bookId,
+    chapters: [fixtureChapter(bookId, 1, marker)],
+    reviewer: "codex-qc:canonical-release",
+    reviewedAt: REVIEW_AT,
+  });
+  return {
+    ...roots,
+    env: { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "0", CHAPTERFLOW_ALLOW_MODEL_GEN: "0" },
+    now: new Date(PROMOTED_AT),
+  };
+}
+
 async function adapter(
   request: CanonicalReleaseRequest,
   stores: ReturnType<typeof storage>,
   writer: ConstructorParameters<typeof CanonicalPackageAdapter>[0]["packageWriter"],
+  manifest: CanonicalManifestOptions,
   reviewCandidate = request.candidate,
 ) {
   const auth = await authorities(request, stores, reviewCandidate);
@@ -176,7 +200,7 @@ async function adapter(
   return {
     auth,
     pointer,
-    adapter: new CanonicalPackageAdapter({ contentReader: stores.reader, promotionService, packageWriter: writer }),
+    adapter: new CanonicalPackageAdapter({ contentReader: stores.reader, promotionService, packageWriter: writer, manifest }),
   };
 }
 
@@ -191,7 +215,7 @@ requiredTest("mismatched candidate review QC tuple blocks package and pointer mu
   const mismatch = await stage(stores.candidates, "tuple-book", "candidate-2");
   const request = releaseRequest("tuple-book", identity);
   let packageWrites = 0;
-  const route = await adapter(request, stores, () => { packageWrites += 1; }, mismatch);
+  const route = await adapter(request, stores, () => { packageWrites += 1; }, manifestRoots(context, "tuple-book", "candidate-1"), mismatch);
   const result = await route.adapter.release(request);
   assertError(result, "REVIEW_MISMATCH");
   assert.equal(route.pointer.counts.compareAndSet, 0);
@@ -216,7 +240,8 @@ requiredTest("CURRENT diagnosis after package writer fault keeps original and ch
     packageWrites += 1;
     writeFileSync(packagePath, JSON.stringify(value));
   };
-  const route = await adapter(request, stores, writer);
+  const manifest = manifestRoots(context, "valid-release-book", "candidate-1");
+  const route = await adapter(request, stores, writer, manifest);
   const first = await route.adapter.release(request);
   assertError(first, "RECONCILIATION_REQUIRED");
   assertError(await route.adapter.release(request), "RECONCILIATION_REQUIRED");
@@ -229,11 +254,11 @@ requiredTest("CURRENT diagnosis after package writer fault keeps original and ch
     metadata: {
       ...request.metadata,
       title: "Changed retry title",
-      packageId: "valid-release-book-v21-changed",
+      packageId: "valid-release-book-v21-1784548803500",
       createdAt: "2026-07-20T12:00:03.500Z",
     },
   };
-  const changedRoute = await adapter(changedRequest, stores, writer);
+  const changedRoute = await adapter(changedRequest, stores, writer, manifest);
   assertError(await changedRoute.adapter.release(changedRequest), "RECONCILIATION_REQUIRED");
 
   assert.equal(route.pointer.counts.compareAndSet, 1);
@@ -249,13 +274,18 @@ requiredTest("CURRENT diagnosis after package writer fault keeps original and ch
 
 requiredTest("two releases racing same expected revision have exactly one winner", async (context) => {
   const stores = storage(context);
-  const left = await stage(stores.candidates, "race-release-book", "candidate-left", "left");
-  const right = await stage(stores.candidates, "race-release-book", "candidate-right", "right");
+  // Both racers carry the SAME reader content (only their candidate identity
+  // differs): the race is about the pointer CAS, and the release now self-
+  // verifies the pair against loose state, so whichever candidate wins must be
+  // the one the fixture's state root describes.
+  const left = await stage(stores.candidates, "race-release-book", "candidate-left", "race");
+  const right = await stage(stores.candidates, "race-release-book", "candidate-right", "race");
   let packageWrites = 0;
   const leftRequest = releaseRequest("race-release-book", left);
   const rightRequest = releaseRequest("race-release-book", right);
-  const leftRoute = await adapter(leftRequest, stores, () => { packageWrites += 1; });
-  const rightRoute = await adapter(rightRequest, stores, () => { packageWrites += 1; });
+  const raceManifest = manifestRoots(context, "race-release-book", "race");
+  const leftRoute = await adapter(leftRequest, stores, () => { packageWrites += 1; }, raceManifest);
+  const rightRoute = await adapter(rightRequest, stores, () => { packageWrites += 1; }, raceManifest);
   const results = await Promise.all([
     leftRoute.adapter.release(leftRequest),
     rightRoute.adapter.release(rightRequest),
@@ -278,12 +308,13 @@ requiredTest("fault before pointer replacement preserves old complete pointer an
   const oldIdentity = await stage(stores.candidates, "fault-release-book", "candidate-old", "old");
   const oldRequest = releaseRequest("fault-release-book", oldIdentity);
   let packageWrites = 0;
-  const oldRoute = await adapter(oldRequest, stores, () => { packageWrites += 1; });
+  const faultManifest = manifestRoots(context, "fault-release-book", "old");
+  const oldRoute = await adapter(oldRequest, stores, () => { packageWrites += 1; }, faultManifest);
   assert.ok((await oldRoute.adapter.release(oldRequest)).ok);
   const newIdentity = await stage(stores.candidates, "fault-release-book", "candidate-new", "new");
   const newRequest = releaseRequest("fault-release-book", newIdentity, 1);
   armed = true;
-  const newRoute = await adapter(newRequest, stores, () => { packageWrites += 1; });
+  const newRoute = await adapter(newRequest, stores, () => { packageWrites += 1; }, faultManifest);
   const result = await newRoute.adapter.release(newRequest);
   assertError(result, "RECONCILIATION_REQUIRED");
   assert.equal(packageWrites, 1);
@@ -346,10 +377,11 @@ requiredTest("no-live release and legacy shadow keep remote network credential a
   const identity = await stage(stores.candidates, "no-live-book", "candidate-1");
   const request = releaseRequest("no-live-book", identity);
   const calls = { git: 0, registry: 0, network: 0, credential: 0, packageWrite: 0 };
-  const route = await adapter(request, stores, ({ package: value }) => {
+  const route = await adapter(request, stores, ({ package: value, sidecar }) => {
     calls.packageWrite += 1;
+    writeFileSync(join(context.roots.tempRoot, "no-live-manifest.json"), JSON.stringify(sidecar));
     writeFileSync(join(context.roots.tempRoot, "no-live-package.json"), JSON.stringify(value));
-  });
+  }, manifestRoots(context, "no-live-book", "candidate-1"));
   const released = await route.adapter.release(request);
   assert.ok(released.ok);
   const legacy = new LegacyPublishAdapter({

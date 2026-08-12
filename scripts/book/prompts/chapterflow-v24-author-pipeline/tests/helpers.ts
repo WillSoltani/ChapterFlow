@@ -18,6 +18,7 @@ import {
   RESEARCH_RUN_CODE_VERSION,
   type ResearchRunOverallStatus,
 } from "../src/lib/researchRunManifest.js";
+import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import { sourceVerifyRecordPath } from "../src/critics/sourceVerify.js";
 import { collectSourceVerifyItems } from "../src/qc/sourceRealityPolicy.js";
 import { loadNameBank } from "../src/librarian/namePlan.js";
@@ -402,6 +403,70 @@ export function writeSourceEvidenceFixture(
     );
   }
   return runDir;
+}
+
+/**
+ * Seed a DISPOSABLE state+runs root pair with exactly the evidence the production
+ * manifest builder reads — and that verifyProductionPackage independently
+ * recomputes at publish time: the canonical chapter index, the loose state
+ * chapters, one PUBLISHABLE QC attestation per chapter, and a research run with a
+ * per-chapter source sidecar.
+ *
+ * The sidecars are source-v1 on purpose: that keeps the fixture on the
+ * "not-applicable" source-reality branch, where a source-v2 sidecar would also
+ * demand per-chapter authoring provenance and a verified source-verify record.
+ */
+export function seedManifestEvidenceRoots(args: {
+  root: string;
+  bookId: string;
+  chapters: ChapterV21[];
+  reviewer?: string;
+  reviewedAt?: string;
+  roundId?: string;
+}): { stateRoot: string; runsRoot: string } {
+  const stateRoot = resolve(args.root, "manifest-state");
+  const runsRoot = resolve(args.root, "manifest-runs");
+  const runDir = resolve(runsRoot, args.bookId, `run-${args.bookId}`);
+  const write = (path: string, value: unknown): void => {
+    mkdirSync(dirname(path), { recursive: true });
+    writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`, "utf8");
+  };
+
+  writeCanonicalIndexFixture(
+    args.bookId,
+    args.chapters.map((chapter) => ({ chapterId: chapter.chapterId, number: chapter.number, title: chapter.title })),
+    resolve(stateRoot, "indexes"),
+  );
+  writeResearchRunManifestFixture({
+    runDir,
+    bookId: args.bookId,
+    chapters: args.chapters.map((chapter) => ({ number: chapter.number, title: chapter.title })),
+  });
+  for (const chapter of args.chapters) {
+    const nn = String(chapter.number).padStart(2, "0");
+    write(resolve(stateRoot, "chapters", `${chapter.chapterId}.v21-native.chapter.json`), chapter);
+    write(resolve(stateRoot, "qc", `${args.bookId}-ch${nn}.qc.json`), {
+      schemaVersion: "qc-attest-v1",
+      bookId: args.bookId,
+      chapterNumber: chapter.number,
+      chapterId: chapter.chapterId,
+      verdict: "PUBLISHABLE",
+      contentHash: chapterContentHash(chapter),
+      hashVersion: "v2",
+      reviewer: args.reviewer ?? "codex-qc:manifest-evidence-fixture",
+      reviewedAt: args.reviewedAt ?? "2026-07-20T12:00:01.000Z",
+      roundId: args.roundId ?? `round-${args.bookId}`,
+      roundRole: "confirm",
+    });
+    write(resolve(runDir, "sidecars", "source", `ch${nn}.source.json`), {
+      schemaVersion: "source-v1",
+      bookId: args.bookId,
+      chapterId: chapter.chapterId,
+      chapterNumber: chapter.number,
+      summary: `Disposable source evidence for ${chapter.chapterId}.`,
+    });
+  }
+  return { stateRoot, runsRoot };
 }
 
 /**

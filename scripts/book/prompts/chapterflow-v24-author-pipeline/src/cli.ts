@@ -2271,11 +2271,35 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     }
     const promotedAt = new Date().toISOString();
     const { CanonicalPackageAdapter } = await import("./release/canonicalPackageAdapter.js");
+    const { publishReleaseArtifacts } = await import("./release/publishReleaseArtifacts.js");
+    const { productionManifestSidecarPath } = await import("./promoteBook.js");
+    const { normSlug: normalizeBookSlug } = await import("./lib/chapterPaths.js");
+    // The package path and the packageId derive from the NORMALISED slug — the
+    // same identity the package body (buildLegacyReaderPackage normSlugs
+    // book.bookId) and the production verifier (PPKG.package_id_shape) carry.
+    // Deriving them from the raw argv bookId shipped a file whose name and id
+    // disagreed with its own body.
+    const releaseBookId = normalizeBookSlug(bookId);
+    const releasePackagePath = resolve(BOOK_PACKAGES_DIR, `${releaseBookId}.v21.json`);
+    const releaseSidecarPath = productionManifestSidecarPath(releaseBookId);
     const release = new CanonicalPackageAdapter({
       contentReader: v25.value.contentReader,
       promotionService: v25.value.promotionService,
-      packageWriter: ({ package: value }) => {
-        writeFileAtomic(resolve(BOOK_PACKAGES_DIR, `${bookId}.v21.json`), `${JSON.stringify(value, null, 2)}\n`);
+      // ONE transaction, the way promoteBook's publishPackageTransactionally
+      // publishes: stage both artifacts beside their destinations, verify the
+      // STAGED PAIR with the production verifier, then publish with two adjacent
+      // renames (sidecar first — a package visible without its manifest is the
+      // silently-unshippable state). Two independent writeFileAtomic calls could
+      // overwrite a SHIPPED book's sidecar and then fail on the package, leaving
+      // that book unshippable; every failure this code can observe now restores
+      // the prior pair byte-for-byte.
+      packageWriter: ({ package: value, sidecar }) => {
+        publishReleaseArtifacts({
+          packagePath: releasePackagePath,
+          sidecarPath: releaseSidecarPath,
+          package: value,
+          sidecar,
+        });
       },
     });
     const result = await release.release({
@@ -2291,7 +2315,7 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       metadata: {
         title,
         author,
-        packageId: `${bookId}-v21-${Date.parse(promotedAt)}`,
+        packageId: `${releaseBookId}-v21-${Date.parse(promotedAt)}`,
         createdAt: promotedAt,
         contentOwner: "chapterflow",
         categories,
@@ -2302,7 +2326,9 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       console.error(`${result.error.code}:${result.error.message}`);
       return 1;
     }
-    console.log(`V25 RELEASED — ${bookId} revision ${result.value.bookRevision} (${result.value.readback})`);
+    console.log(`V25 RELEASED — ${releaseBookId} revision ${result.value.bookRevision} (${result.value.readback})`);
+    console.log(`  package:  ${releasePackagePath}`);
+    console.log(`  manifest: ${releaseSidecarPath}`);
     return 0;
   }
 
