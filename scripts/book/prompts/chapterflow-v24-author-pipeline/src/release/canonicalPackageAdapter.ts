@@ -5,7 +5,14 @@ import {
   type BuildProductionManifestResult,
   type ProductionManifestVersion,
 } from "../productionManifest.js";
-import { buildLegacyReaderPackage } from "../promoteBook.js";
+import {
+  buildLegacyReaderPackage,
+  PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
+  type ProductionManifestSidecar,
+} from "../promoteBook.js";
+import { normSlug } from "../lib/chapterPaths.js";
+import type { FingerprintRoots } from "../lib/pipelineFingerprint.js";
+import { verifyProductionPackage } from "../verifyProductionPackage.js";
 import type { PromotionService } from "./promotionTypes.js";
 import type { BookPackageV21, ChapterV21 } from "../types.js";
 
@@ -24,16 +31,36 @@ export type CanonicalPackage = Readonly<{
   package: BookPackageV21;
 }>;
 
+/** The release artifacts a candidate release publishes. `sidecar` is the
+ *  state-side production manifest publish-final's preflight
+ *  (verifyProductionPackage) loads next to the package — a package published
+ *  WITHOUT it is unshippable (PPKG.sidecar_missing), so the writer must publish
+ *  both or neither. */
 export type CanonicalPackageWriter = (input: Readonly<{
   bookId: string;
   candidate: CandidateIdentity;
   package: BookPackageV21;
+  sidecar: ProductionManifestSidecar;
 }>) => void | Promise<void>;
+
+/** Read-location seams for the production-manifest build. Production omits every
+ *  field (the canonical state/runs roots and the real clock are the defaults);
+ *  hermetic tests point the build at a disposable tree. */
+export type CanonicalManifestOptions = Readonly<{
+  stateRoot?: string;
+  runsRoot?: string;
+  recordPath?: string;
+  exemptionsFile?: string;
+  fingerprintRoots?: FingerprintRoots;
+  env?: NodeJS.ProcessEnv;
+  now?: Date;
+}>;
 
 export type CanonicalPackageAdapterOptions = Readonly<{
   contentReader: BookContentReader;
   promotionService: PromotionService;
   packageWriter: CanonicalPackageWriter;
+  manifest?: CanonicalManifestOptions;
 }>;
 
 export type CanonicalReleaseRequest = Readonly<{
@@ -48,6 +75,7 @@ export type CanonicalReleaseRequest = Readonly<{
 
 export type CanonicalReleaseResult = Readonly<{
   package: BookPackageV21;
+  sidecar: ProductionManifestSidecar;
   bookRevision: number;
   readback: "VERIFIED";
 }>;
@@ -95,12 +123,30 @@ function parseChapters(snapshot: CandidateSnapshot): Result<ChapterV21[]> {
   return { ok: true, value: chapters };
 }
 
+/** The package identity `verifyProductionPackage` (PPKG.package_id_shape) demands:
+ *  `<normalised bookId>-v21-<epochMs>`. The package BODY always carries the
+ *  normalised slug (buildLegacyReaderPackage normSlugs book.bookId), so a caller
+ *  that derives the packageId from a RAW argv bookId ships a package whose id can
+ *  never verify. Fail closed here, at release time, instead of at publish time. */
+function checkPackageIdentity(bookId: string, metadata: CanonicalPackageMetadata): Result<null> {
+  const slug = normSlug(bookId);
+  if (!new RegExp(`^${slug.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}-v21-\\d+$`).test(metadata.packageId)) {
+    return failed(
+      "PACKAGE_METADATA_INVALID",
+      `packageId ${JSON.stringify(metadata.packageId)} must be "${slug}-v21-<epochMs>" (derived from the NORMALISED book id, which is what the package body and the production verifier carry)`,
+    );
+  }
+  return { ok: true, value: null };
+}
+
 export async function assembleCanonicalPackage(input: Readonly<{
   bookId: string;
   candidate: CandidateIdentity;
   metadata: CanonicalPackageMetadata;
   contentReader: BookContentReader;
 }>): Promise<Result<CanonicalPackage>> {
+  const identity = checkPackageIdentity(input.bookId, input.metadata);
+  if (!identity.ok) return identity;
   let opened;
   try {
     opened = await input.contentReader.open({
@@ -203,11 +249,79 @@ export class CanonicalPackageAdapter {
       }
       return promoted;
     }
+    // The production-manifest SIDECAR is built here, from the very package that
+    // is about to be written, so the two can never disagree by construction:
+    // packageId/createdAt/bookId are copied off the assembled package, and the
+    // manifest payload is the same canonical build publish-final's verifier
+    // recomputes from state. Without it a v25-released book is unshippable —
+    // verifyProductionPackage fails PPKG.sidecar_missing and publish-final's
+    // preflight refuses to copy anything.
+    //
+    // It runs AFTER the pointer commit for two reasons: the candidate-bound
+    // assembly above must stay free of ambient-state reads (a candidate-only
+    // release never touches state/indexes to build its package), and a manifest
+    // that cannot be built must leave production untouched. An unbuildable
+    // manifest therefore lands in the SAME recoverable state a failed package
+    // write does — pointer committed, nothing published, RECONCILIATION_REQUIRED
+    // — never a package on disk with no manifest behind it.
+    const built = buildCanonicalPackageManifest({
+      package: assembled.value.package,
+      ...this.#options.manifest,
+    });
+    if (!built.ok) {
+      return failed(
+        "RECONCILIATION_REQUIRED",
+        `production manifest unbuildable after pointer commit; nothing published: ${built.findings
+          .map((finding) => `${finding.checkId}${finding.chapterNumber ? ` (ch${finding.chapterNumber})` : ""}: ${finding.message}`)
+          .join("; ")}`,
+      );
+    }
+    const sidecar: ProductionManifestSidecar = {
+      schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
+      bookId: assembled.value.package.book.bookId,
+      packageId: assembled.value.package.packageId,
+      createdAt: assembled.value.package.createdAt,
+      manifest: built.manifest,
+    };
+    // RELEASE-TIME SELF-VERIFY — the same call promoteBook makes on its candidate
+    // pair before it declares success (promoteBook.ts: verifyProductionPackage
+    // with packageData + manifestData + compareLooseState). Building the sidecar
+    // is not proof it is shippable: the manifest builder hashes the PACKAGE
+    // chapters, so it cannot see a package whose reader content has drifted from
+    // the loose state chapters — and register-web refuses to register exactly
+    // that pair (it verifies with compareLooseState: true). Verifying the
+    // in-memory pair here means a release can never report success on a pair a
+    // later publish step would reject.
+    //
+    // Fail-closed AFTER the pointer commit lands in the same recoverable state an
+    // unbuildable manifest or a failed package write does: pointer committed,
+    // NOTHING published, RECONCILIATION_REQUIRED.
+    const verification = verifyProductionPackage({
+      packageData: assembled.value.package,
+      manifestData: sidecar,
+      compareLooseState: true,
+      stateRoot: this.#options.manifest?.stateRoot,
+      runsRoot: this.#options.manifest?.runsRoot,
+      recordPath: this.#options.manifest?.recordPath,
+      exemptionsFile: this.#options.manifest?.exemptionsFile,
+      fingerprintRoots: this.#options.manifest?.fingerprintRoots,
+      env: this.#options.manifest?.env,
+      now: this.#options.manifest?.now,
+    });
+    if (!verification.ok) {
+      return failed(
+        "RECONCILIATION_REQUIRED",
+        `released pair fails production verification after pointer commit; nothing published: ${verification.findings
+          .map((finding) => `${finding.checkId}${finding.chapterNumber ? ` (ch${finding.chapterNumber})` : ""}: ${finding.message}`)
+          .join("; ")}`,
+      );
+    }
     try {
       await this.#options.packageWriter({
         bookId: request.bookId,
         candidate: { ...request.candidate },
         package: assembled.value.package,
+        sidecar,
       });
     } catch (cause) {
       return failed("RECONCILIATION_REQUIRED", `package write failed after pointer commit: ${errorMessage(cause)}`);
@@ -216,6 +330,7 @@ export class CanonicalPackageAdapter {
       ok: true,
       value: {
         package: assembled.value.package,
+        sidecar,
         bookRevision: promoted.value.bookRevision,
         readback: promoted.value.readback,
       },
@@ -224,18 +339,17 @@ export class CanonicalPackageAdapter {
 }
 
 /** Real production-manifest builder used by legacy/V4 parity proof. */
-export function buildCanonicalPackageManifest(args: Readonly<{
+export function buildCanonicalPackageManifest(args: Readonly<CanonicalManifestOptions & {
   package: BookPackageV21;
-  stateRoot?: string;
-  runsRoot?: string;
   manifestVersion?: ProductionManifestVersion;
-  env?: NodeJS.ProcessEnv;
-  now?: Date;
 }>): BuildProductionManifestResult {
   return buildExpectedProductionManifestForPackage({
     pkg: args.package,
     stateRoot: args.stateRoot,
     runsRoot: args.runsRoot,
+    recordPath: args.recordPath,
+    exemptionsFile: args.exemptionsFile,
+    fingerprintRoots: args.fingerprintRoots,
     manifestVersion: args.manifestVersion,
     env: args.env,
     now: args.now,

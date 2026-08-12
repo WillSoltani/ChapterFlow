@@ -2,13 +2,16 @@ import assert from "node:assert/strict";
 
 import { CandidateQcEvaluator } from "../../src/app/candidateQcEvaluator.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
+import { SemanticPanelReviewEvaluator } from "../../src/app/semanticPanelReviewEvaluator.js";
 import type { CandidateInputFile, CandidateSnapshot } from "../../src/books/candidateTypes.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import type { ModelResult } from "../../src/runtime/modelResult.js";
+import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar } from "../../src/compiler/sourcePacket.js";
 import { compileSourceUsePlan } from "../../src/compiler/sourceUsePlanCompiler.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
+import { READER_PANEL_FACTOR_SCORES_CODE } from "../../src/review/readerPanelIssueCodes.js";
 import type { CanonicalReviewResult } from "../../src/review/reviewTypes.js";
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import { makeGateCleanChapter } from "../helpers.js";
@@ -311,6 +314,76 @@ requiredTest("an aborted signal cancels the judge without burning attempts or mi
   // signal fails every future call identically, so spending the per-question
   // retry budget against it is pure waste.
   assert.equal(calls, 0, "no model call is spawned against an already-aborted signal");
+});
+
+/**
+ * The LIVE-PATH chain that decides whether repair ever sees a reader diagnosis.
+ *
+ * Repair reads a committed QC ROUND (`CandidateRepairApplicationPort.authorize`
+ * → `qc.getRound`). A QC round can only be minted from a PASSING canonical
+ * review — `qcService.runFresh` refuses any other outcome with QC_JOIN_MISMATCH
+ * and `CandidateQcEvaluator.run` refuses it with CANDIDATE_QC_CANONICAL_PASS_REQUIRED
+ * — and the book-run service returns BOOK_RUN_REVIEW_FAILED before repair when
+ * the review is not PASS (`bookRunApplicationService.ts`, review phase).
+ *
+ * So the ONLY review shape that can ever reach repair is a PASS. A panel
+ * diagnosis emitted only for chapters the panel BLOCKED is therefore unreachable
+ * from repair by construction: blocking the chapter is exactly what makes the
+ * review FAIL. This test pins the other end — the diagnosis a PASSING review
+ * carries must survive into the QC round repair reads.
+ */
+requiredTest("the reader panel's per-factor diagnosis survives a PASSING review into the QC round repair reads", async (context) => {
+  const candidate = buildCandidate(context);
+  // Three clean reader seats, every factor at 88 (well above the chapter bar) →
+  // the panel PASSES the chapter and names no defect. This is the live shape.
+  const seatScores: Record<string, number> = {};
+  for (const factor of REVIEW_FACTORS) seatScores[factor] = 88;
+  seatScores.transfer = 71;
+  const readerOutput = {
+    scores: seatScores,
+    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    recommendation: "SHIP",
+    blockingFindings: [],
+    escalationSignals: [],
+    advisoryFindings: [{ category: "thin_example", unit: "deep read", problem: "the worked example stops before the decision", evidenceSpans: [] }],
+    strongestEvidence: [],
+    weakestEvidence: [],
+    oneParagraphVerdict: "Usable, but the transfer work is thin.",
+  };
+  const panel = new SemanticPanelReviewEvaluator({
+    baseline: { async evaluate() { return { ok: true, value: { outcome: "PASS" as const, issues: [] } }; } },
+    runner: { async run(request) { return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: readerOutput }; } },
+  });
+  const reviewed = await panel.evaluate({
+    candidate,
+    taskContext: { ...judgeContext(), stageId: "canonical-review", operationId: "canonical-review" },
+  });
+  assert.ok(reviewed.ok, JSON.stringify(reviewed));
+  assert.equal(reviewed.value.outcome, "PASS", JSON.stringify(reviewed.value.issues));
+  // The PASSING review must carry the per-factor medians — this is the channel.
+  const reviewFactorLines = reviewed.value.issues.filter((entry) => entry.code === READER_PANEL_FACTOR_SCORES_CODE);
+  assert.equal(reviewFactorLines.length, 1, `a PASSING panel review must still carry its per-factor diagnosis: ${JSON.stringify(reviewed.value.issues)}`);
+  assert.equal(reviewFactorLines[0].severity, "WARN");
+  assert.equal(reviewFactorLines[0].location, "ch01");
+  assert.match(reviewFactorLines[0].message, /transfer 71/);
+
+  // …and it must survive the trip into the QC round, where repair reads it.
+  const evaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } });
+  const evaluated = await evaluator.run({
+    candidate,
+    canonicalReview: { ...review(), issues: reviewed.value.issues },
+    roundId: "round-panel-diagnosis",
+  });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  const roundFactorLines = evaluated.value.issues.filter((entry) => entry.code === `REVIEW.${READER_PANEL_FACTOR_SCORES_CODE}`);
+  assert.equal(roundFactorLines.length, 1, `the QC round repair reads must carry the panel diagnosis: ${JSON.stringify(evaluated.value.issues)}`);
+  assert.equal(roundFactorLines[0].severity, "WARN");
+  assert.equal(roundFactorLines[0].location, "ch01");
+  // The chapter's advisories ride the same channel.
+  assert.ok(
+    evaluated.value.issues.some((entry) => entry.code === "REVIEW.READER.ADVISORY.thin_example" && entry.severity === "WARN"),
+    JSON.stringify(evaluated.value.issues),
+  );
 });
 
 finishV25Tests().catch((error: unknown) => {
