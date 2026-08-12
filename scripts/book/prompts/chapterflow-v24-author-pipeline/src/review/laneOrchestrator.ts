@@ -87,6 +87,8 @@
 import { createHash } from "node:crypto";
 import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 
+import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
+
 import { chapterContentHash } from "../critics/qcAttestation.js";
 import { hashCanonical } from "../contracts/contractUtil.js";
 import { ensureTrailingNewline } from "../lib/atomicWrite.js";
@@ -172,6 +174,19 @@ export type ReaderPanelReviewV1 = {
   readonly seatIds: readonly string[];
   readonly composites: readonly number[];
   readonly medianComposite: number;
+  /**
+   * The MEDIAN of the seat scores for each of the 10 rubric factors, factor-keyed.
+   *
+   * The composite is a weighted mean, so a below-bar composite is compatible with
+   * every arrangement of the ten factors — one collapsed factor or ten mediocre
+   * ones look identical from outside. Every seat already scores each factor;
+   * before this field the panel threw those scores away and only the rolled-up
+   * number survived, so nothing downstream — repair, diagnosis, an operator
+   * reading the round — could tell WHICH factor was dragging a chapter.
+   * Medianed per factor, by the same rule as the composite, so no single seat's
+   * outlier decides which factor looks weak.
+   */
+  readonly factorMedians: Readonly<Record<ReviewFactor, number>>;
   /** hashCanonical(review) per seat, in seat order — provenance, not a re-vote. */
   readonly readerResultSha256s: readonly string[];
   readonly blockingFindings: readonly PanelFindingV1[];
@@ -270,6 +285,9 @@ export function aggregateReaderPanel(
     for (const f of review.advisoryFindings) advisoryFindings.push({ seatId, category: f.category, unit: f.unit, problem: f.problem });
     for (const f of review.escalationSignals) escalationSignals.push({ seatId, category: f.category, unit: f.unit, problem: f.problem });
   }
+  const factorMedians = Object.fromEntries(
+    REVIEW_FACTORS.map((factor) => [factor, medianOf(seats.map(({ review }) => review.scores[factor]))]),
+  ) as Record<ReviewFactor, number>;
   return {
     schema: "reader-panel-review-v1",
     chapterContentSha256,
@@ -277,6 +295,7 @@ export function aggregateReaderPanel(
     seatIds: seats.map(({ seatId }) => seatId),
     composites,
     medianComposite: medianOf(composites),
+    factorMedians,
     readerResultSha256s: seats.map(({ review }) => hashCanonical(review)),
     blockingFindings,
     advisoryFindings,

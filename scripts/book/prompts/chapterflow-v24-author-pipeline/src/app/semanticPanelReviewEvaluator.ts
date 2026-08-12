@@ -29,6 +29,11 @@
  *      return a low composite with no categorized blocking finding and the chapter
  *      would still PASS — the median would decide nothing. The floor makes the
  *      median decide the verdict.
+ *   4b. DIAGNOSIS (never a gate): every chapter the panel read also emits
+ *      `READER.PANEL.FACTOR_SCORES` — a WARN carrying the panel's per-factor
+ *      medians, weakest first. Emitted unconditionally, because the only review
+ *      shape that can reach the repair lane is a PASS (see the comment at the
+ *      emission site): a diagnosis conditioned on failure would never be read.
  *   5. Outcome: `ERROR` if any seat run failed; else `FAIL` if any panel (or
  *      baseline) BLOCKER issue exists — including a below-floor median; else
  *      `PASS`. So PASS ⟺ baseline PASS ∧ every chapter's panel median ≥ the
@@ -45,9 +50,14 @@
  * injected runner.
  */
 
+import { REVIEW_FACTORS } from "../artifacts/artifactTypes.js";
 import type { CandidateSnapshot } from "../books/candidateTypes.js";
 import type { ModelTaskContext, Result } from "../contracts/v4Core.js";
 import { ReaderExperienceReviewError } from "../review/readerExperienceReview.js";
+import {
+  READER_PANEL_BELOW_FLOOR_CODE,
+  READER_PANEL_FACTOR_SCORES_CODE,
+} from "../review/readerPanelIssueCodes.js";
 import { AUTHOR_CHAPTER_BAR } from "../review/readerReview.js";
 import {
   READER_PANEL_SEATS,
@@ -72,6 +82,22 @@ function failure(code: string, message: string): Result<never> {
 
 function issue(code: string, severity: ReviewIssue["severity"], message: string, location?: string): ReviewIssue {
   return { code, severity, message, ...(location === undefined ? {} : { location }) };
+}
+
+/**
+ * The panel's per-factor medians as one deterministic line, WEAKEST FIRST.
+ *
+ * A composite names no defect; the factor ordering is the closest thing to a
+ * diagnosis the panel can produce without inventing one. Sorted by score then
+ * factor name so the same panel always renders the same bytes. This is a WARN —
+ * it describes, it never gates.
+ */
+function factorScoresMessage(panel: ReaderPanelReviewV1): string {
+  const ordered = [...REVIEW_FACTORS]
+    .map((factor) => ({ factor, score: panel.factorMedians[factor] }))
+    .sort((left, right) => left.score - right.score || left.factor.localeCompare(right.factor));
+  return `reader-panel median composite ${panel.medianComposite} (chapter bar ${AUTHOR_CHAPTER_BAR}); factor medians weakest-first: `
+    + ordered.map(({ factor, score }) => `${factor} ${score}`).join(", ");
 }
 
 /** Parse + order the CHAPTER files into a contiguous 1-based chapter set,
@@ -168,14 +194,35 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
       // below the frozen chapter bar fails the chapter even when no seat raised a
       // categorized blocking finding (fail-closed — a uniformly-mediocre panel
       // must not ship on the absence of a named defect).
-      if (panel.medianComposite < AUTHOR_CHAPTER_BAR) {
+      const belowFloor = panel.medianComposite < AUTHOR_CHAPTER_BAR;
+      if (belowFloor) {
         issues.push(issue(
-          "READER.PANEL.BELOW_FLOOR",
+          READER_PANEL_BELOW_FLOOR_CODE,
           "BLOCKER",
           `reader-panel median composite ${panel.medianComposite} < chapter bar ${AUTHOR_CHAPTER_BAR} (seat composites ${panel.composites.join(", ")})`,
           `ch${pad(number)}`,
         ));
       }
+      // The per-factor medians ride out for EVERY chapter the panel read, pass or
+      // fail. This is deliberate and it is the whole point of the channel.
+      //
+      // Gating the emission on "the panel blocked this chapter" makes it dead on
+      // the live path: blocking the chapter is exactly what turns the review
+      // outcome into FAIL, and a FAIL review never reaches repair. The book-run
+      // service returns BOOK_RUN_REVIEW_FAILED before the QC phase on any
+      // non-PASS review; `qcService.runFresh` refuses a non-PASS review with
+      // QC_JOIN_MISMATCH; `CandidateQcEvaluator.run` refuses it with
+      // CANDIDATE_QC_CANONICAL_PASS_REQUIRED. Repair reads a committed QC ROUND,
+      // so every review it can ever see is a PASS — and a PASS review carries no
+      // BLOCKER at all (`reviewService` rejects PASS+BLOCKER). A diagnosis
+      // emitted only on a blocked chapter is therefore unreachable from repair by
+      // construction, which is precisely how a uniformly-mediocre chapter reached
+      // repair carrying nothing but gate mechanics.
+      //
+      // Cost of emitting always: one WARN per chapter on every review. It gates
+      // nothing (PASS is decided on BLOCKERs), and it is the only per-factor
+      // record the run keeps once the seat reviews are gone.
+      issues.push(issue(READER_PANEL_FACTOR_SCORES_CODE, "WARN", factorScoresMessage(panel), `ch${pad(number)}`));
       // ANY seat's on-page-decidable blocking finding blocks (union, fail-closed).
       for (const finding of panel.blockingFindings) {
         issues.push(issue(`READER.BLOCKING.${finding.category}`, "BLOCKER", finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));

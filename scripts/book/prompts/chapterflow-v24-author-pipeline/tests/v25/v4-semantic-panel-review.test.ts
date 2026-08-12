@@ -80,13 +80,17 @@ type ReaderOverrides = {
   /** Uniform per-factor score; every weight sums to 100 so the composite equals
    *  this value. Defaults to the chapter bar (80) so the panel median passes. */
   score?: number;
+  /** Per-factor overrides applied on top of `score` — the only way to build a
+   *  panel whose factors are UNEVEN, which is what the factor-median line exists
+   *  to expose. */
+  scoreOverrides?: Record<string, number>;
 };
 
 /** A schema-valid reader-experience content object (the runtime stamps the
  *  schema/reviewerRole/rubricVersion + hash bindings on top). */
 function readerContent(overrides: ReaderOverrides = {}): Record<string, unknown> {
   const scores: Record<string, number> = {};
-  for (const factor of REVIEW_FACTORS) scores[factor] = overrides.score ?? 80;
+  for (const factor of REVIEW_FACTORS) scores[factor] = overrides.scoreOverrides?.[factor] ?? overrides.score ?? 80;
   return {
     scores,
     quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
@@ -362,6 +366,72 @@ requiredTest("semantic panel short-circuits on a baseline non-PASS and runs zero
   assert.equal(baselineCalls, 1);
   // The reader lane never runs when the baseline did not PASS.
   assert.equal(scripted.calls, 0);
+});
+
+requiredTest("a below-floor chapter also carries its per-factor medians, weakest first", async () => {
+  const candidate = twoChapterCandidate();
+  // ch1: transfer and practical are collapsed while the rest sit at the bar, so
+  // the composite lands under the floor for a REASON the composite cannot state.
+  // Seat scores differ per seat so the per-factor MEDIAN (not a single seat's
+  // opinion) is what the line reports.
+  const uneven = (transfer: number, practical: number) =>
+    readerContent({ scoreOverrides: { transfer, practical, retention: 40 } });
+  const scripted = scriptedRunner([
+    uneven(10, 30),
+    uneven(20, 20),
+    uneven(30, 10),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "FAIL");
+
+  const chapterOne = evaluated.value.issues.filter(
+    (issue) => issue.code === "READER.PANEL.FACTOR_SCORES" && issue.location === "ch01",
+  );
+  assert.equal(chapterOne.length, 1, JSON.stringify(evaluated.value.issues));
+  // Diagnosis, never a gate: it must be a WARN, or a description of the scores
+  // would start failing chapters on its own.
+  assert.equal(chapterOne[0].severity, "WARN");
+  // The medians are the middle seat value per factor: transfer 20, practical 20.
+  assert.match(chapterOne[0].message, /factor medians weakest-first: (transfer 20, practical 20|practical 20, transfer 20), retention 40,/, chapterOne[0].message);
+});
+
+/**
+ * The emission is UNCONDITIONAL, and that is the fix, not an oversight.
+ *
+ * A QC round can only be minted from a PASSING canonical review (qcService
+ * QC_JOIN_MISMATCH / CandidateQcEvaluator CANDIDATE_QC_CANONICAL_PASS_REQUIRED),
+ * the book-run service stops at BOOK_RUN_REVIEW_FAILED on any non-PASS review,
+ * and repair reads a committed QC round. So the review shape repair reads is
+ * always a PASS — and a PASS review has no BLOCKER on it at all. A per-factor
+ * diagnosis emitted only for a chapter the panel BLOCKED can therefore never be
+ * read by the lane it was built for.
+ */
+requiredTest("EVERY chapter the panel reads carries its per-factor medians — including the ones it passed", async () => {
+  const candidate = twoChapterCandidate();
+  const scripted = scriptedRunner(Array.from({ length: 6 }, () => readerContent()));
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "PASS");
+  const factorIssues = evaluated.value.issues.filter((issue) => issue.code === "READER.PANEL.FACTOR_SCORES");
+  assert.deepEqual(factorIssues.map((issue) => issue.location), ["ch01", "ch02"], JSON.stringify(evaluated.value.issues));
+  assert.ok(factorIssues.every((issue) => issue.severity === "WARN"), JSON.stringify(factorIssues));
+  // The line states the bar it was measured against, so a reader of the round
+  // never has to guess which ruler produced the number.
+  assert.match(factorIssues[0].message, /reader-panel median composite 80 \(chapter bar 70\)/, factorIssues[0].message);
+  // Describing the scores must never gate: a PASS with ten factor WARNs is still a PASS.
+  assert.equal(evaluated.value.issues.some((issue) => issue.severity === "BLOCKER"), false, JSON.stringify(evaluated.value.issues));
 });
 
 finishV25Tests().catch((error: unknown) => {
