@@ -469,6 +469,23 @@ async function runV4BookProduction(
       return 1;
     }
     console.log(JSON.stringify(result.value, null, 2));
+    // A local promotion moves the pointer and produces NO reader package. The
+    // old single line ("package publish ... NOT PERFORMED") named the steps
+    // AFTER packaging and so read as "packaged, just not shipped" — while in
+    // fact no book-packages/<bookId>.v21.json and no production-manifest sidecar
+    // exist at all, and the only route to them is a candidate release of the
+    // same candidate. State that plainly, and name the command that closes it.
+    if (result.value.readerPackage === "NOT_PRODUCED") {
+      console.log(
+        `LOCAL POINTER ONLY — the V25 CURRENT pointer for ${bookId} is at revision ${result.value.bookRevision}, ` +
+        "and NO reader package was produced: no book-packages/<bookId>.v21.json and no production-manifest " +
+        "sidecar were written, so publish-final has nothing to verify and register-web has nothing to register.",
+      );
+      if (result.value.readerPackageCommand !== undefined) {
+        console.log(`  produce it with:  npx tsx src/cli.ts ${result.value.readerPackageCommand}`);
+        console.log("  (that is a candidate RELEASE: it advances the pointer one more revision and writes both artifacts.)");
+      }
+    }
     console.log("package publish, registry update, commit, push, and deploy NOT PERFORMED");
     return 0;
   } catch (cause) {
@@ -695,6 +712,15 @@ Commands:
                                      Unresolved serious generation-debt events block; exact-content
                                      waivers live at state/waivers/<bookId>.generation-degradation-waivers.json.
                                      Quarantines to state/books/_blocked/ on failure.
+                                     Both the legacy and the V25 candidate-release path REFUSE a book with a
+                                     quarantine tombstone at state/books/_quarantined/<id>.json until
+                                     unquarantine-book releases it.
+                                     V25 candidate release (--candidate-id/--manifest-digest/--v25-root/…) journals
+                                     its intent to state/books/_release-journal/<id>.json before it commits the
+                                     pointer, so a crash between the pointer commit and the package write is
+                                     visible by inspection. Add --resume-unfinished-release ONLY after reading
+                                     that record: it finishes the journalled release (no second revision) instead
+                                     of the default fail-closed refusal.
   verify-production-package <bookId|package.json> [--compare-loose-state] [--json] [--state-root p] [--runs-root p] [--record-path p] [--exemptions-file p]
                                      Read-only production verifier: recomputes the manifest payload from
                                      the canonical index, package chapters, source evidence, source-reality
@@ -832,6 +858,11 @@ Commands:
                                      Same V4 production lifecycle. --log must be absolute and adds an event-log
                                      mirror. Route is always local-only: no package/registry/Git/remote/deploy.
                                      --no-publish explicitly confirms that boundary; --promote-local remains valid.
+                                     --promote-local advances the local V25 CURRENT pointer ONLY. It produces NO reader
+                                     package: no book-packages/<bookId>.v21.json and no production-manifest sidecar, so
+                                     the book is promoted in the V25 store and absent from the shipped set. The run
+                                     reports readerPackage=NOT_PRODUCED and prints the promote-book candidate-release
+                                     command that writes both artifacts (that release advances the pointer once more).
                                      --research-run-id pins an existing research run so a content repair reuses its
                                      sidecars and section-pack cache instead of re-minting the bibliography; it fails
                                      closed if the pinned run is missing, foreign, incompatible, or not fully reusable,
@@ -2312,6 +2343,10 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       qcRoundId,
       expectedBookRevision,
       promotedAt,
+      // Opt-in recovery for a release that committed the pointer and died before
+      // publishing. Off by default: the fail-closed refusal stands unless an
+      // operator has read the journal record the refusal names.
+      ...(flags["resume-unfinished-release"] === true ? { resumeUnfinished: true } : {}),
       metadata: {
         title,
         author,
