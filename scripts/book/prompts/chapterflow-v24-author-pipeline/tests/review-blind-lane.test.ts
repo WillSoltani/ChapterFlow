@@ -37,6 +37,7 @@ import {
   adjudicateReview,
   chapterReaderDocHash,
   parseReaderReview,
+  READER_RUBRIC_VERSION,
   REVIEW_DOC_HASH_VERSION,
 } from "../src/review/readerReview.js";
 import { renderChapterReaderDocPhase1 } from "../src/review/renderReaderDoc.js";
@@ -177,7 +178,11 @@ test("lane: an honest adjudicator lands status=adjudicated with the hash chain; 
     // Instrument binding: document, rubric, output schema, profile, session.
     assert.equal(review.docHash, chapterReaderDocHash(ch));
     assert.equal(review.hashVersion, "v3");
-    assert.equal(review.rubricVersion, "reader-rubric-v3-phase1");
+    // Pinned to the constant, not a literal: the rubric version is a WEDGE that
+    // moves whenever the reader instrument's scoring semantics change (C2 added
+    // the band anchors), and a hand-copied literal here would silently assert
+    // the old instrument.
+    assert.equal(review.rubricVersion, READER_RUBRIC_VERSION);
     assert.equal(review.phase1DocVersion, "phase1-v1");
   } finally {
     lane.cleanup();

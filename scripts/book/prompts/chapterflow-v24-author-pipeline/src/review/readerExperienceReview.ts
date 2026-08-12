@@ -32,6 +32,7 @@ import { createHash } from "crypto";
 import type { ChapterV21 } from "../types.js";
 import { ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
+import { renderReviewScoreBandBlock } from "./reviewScoreBands.js";
 import {
   READER_ADVISORY_CATEGORIES,
   READER_BLOCKING_CATEGORIES,
@@ -89,6 +90,7 @@ PROCESS (strict order):
    - insight: explains WHY (mechanism), not just what
    - density: ideas per paragraph; no padding or repetition
    - beginner: approachable cold; jargon-free
+${renderReviewScoreBandBlock()}
 3. RECOMMENDATION (advisory, NOT a gate): SHIP | REVISE | BLOCK. This is your reader opinion only; a downstream conductor owns the final decision, so your recommendation never by itself ships or blocks the chapter.
 4. FINDINGS — record every concrete defect in exactly one of three buckets. There is NO must-fix severity flag and NO external-fabrication/factual-wrongness category anywhere; you cannot judge external truth (see the authority limit above).
    - BLOCKING findings — reader-visible, ON-PAGE-DECIDABLE defects ONLY. Allowed category ∈ ${BLOCKING_ENUM}:

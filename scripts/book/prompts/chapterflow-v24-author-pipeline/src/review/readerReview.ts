@@ -41,6 +41,7 @@ import { chapterContentHash } from "../critics/qcAttestation.js";
 import { CANONICAL_STATE } from "../lib/chapterPaths.js";
 import { writeFileAtomic, ensureTrailingNewline } from "../lib/atomicWrite.js";
 import { READER_DOC_PHASE1_VERSION, renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
+import { renderReviewScoreBandBlock } from "./reviewScoreBands.js";
 
 export type { ChapterReviewV1 } from "../artifacts/artifactTypes.js";
 
@@ -164,8 +165,17 @@ export const AUTHOR_CHAPTER_BAR = 70;
 /** The reader-rubric version (IMP-08, plan instruction 5). Identifies the task
  *  card + factor rubric a review was produced under; stamped on every
  *  adjudicated review so an instrument change is attributable in evidence.
- *  Bump when buildReaderReviewTask's rubric semantics change. */
-export const READER_RUBRIC_VERSION = "reader-rubric-v3-phase1" as const;
+ *  Bump when buildReaderReviewTask's rubric semantics change.
+ *
+ *  v3-phase1 → v4-banded (V25 C2): the 0-100 factor scale carries the published
+ *  band anchors (`renderReviewScoreBandBlock`). A "72" produced under v3 was a
+ *  number on a scale the seat invented for itself; a "72" under v4 is a claim
+ *  about a named band. Those are not the same measurement, so v3 evidence — and
+ *  any judge qualification obtained on the v3 instrument — is deliberately
+ *  staled by this wedge rather than silently reused. AUTHOR_CHAPTER_BAR and the
+ *  factor weights are UNCHANGED: this anchors the ruler, it does not move the
+ *  line. */
+export const READER_RUBRIC_VERSION = "reader-rubric-v4-banded" as const;
 
 // ── The blinded reader task ─────────────────────────────────────────────────
 
@@ -192,6 +202,7 @@ PROCESS (strict order):
    - insight: explains WHY (mechanism), not just what
    - density: ideas per paragraph; no padding or repetition
    - beginner: approachable cold; jargon-free
+${renderReviewScoreBandBlock()}
 3. GATE: would you ship this against a professional >=${bar}/100 bar? true/false.
 4. EVIDENCE: 2-4 VERBATIM quotes (exact copy-paste substrings of the file, each <=200 chars): strongest moment(s) and worst defect(s), each with a one-line why. Quotes are mechanically byte-verified — one altered character invalidates your review. Do not paraphrase inside quote fields. Additionally list every concrete defect in "complaints": unit = where it lives (e.g. "quiz Q2", "deep read"), problem = what is wrong, mustFix = a SEVERITY judgment, not a preference. Set mustFix:true ONLY when you can name a concrete reader-harming defect in one of these RESERVED categories: (1) UNSAFE — advice that could hurt a reader who follows it; (2) FACTUALLY WRONG — an incorrect fact, name, date, number, or quote; (3) STRUCTURALLY INVALID — a missing or duplicated section, a broken quiz, or a section that fails its stand-alone promise; (4) SOURCE-CONTRADICTORY — contradicts the chapter's own material or a claim it makes elsewhere; (5) SCHEMA / APP-BREAKING — content that would render or function incorrectly in the product; (6) UNUSABLE — a reader genuinely could not learn or apply the chapter's core move from what is on the page; (7) FABRICATED / MISLEADING EXAMPLE (see transfer). mustFix is FALSE for everything else — thin-but-usable examples, weak or uneven distractors, generic phrasing, mild repetition, uneven rhythm, pacing, tone, or any "could be richer / I would prefer" polish. Registering craft weakness is what the 0-100 scores are for; a low score is not a mustFix. You may NOT set mustFix on subjective taste: if you cannot name the concrete defect and its reserved category, mustFix is FALSE. Use an empty array if there are no complaints.
 
