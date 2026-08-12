@@ -30,8 +30,8 @@ and the pipeline's own recovery machinery.
 | Compile — sections | ✅ **VALIDATED** | 28/28 packs through every section gate |
 | Compile — assembly | ✅ **VALIDATED** | Cross-chapter gates caught real collisions; eviction+redraft cleared them |
 | Canonical review (3-seat blind panel) | ✅ **VALIDATED** | 21 reader seats ran; rendered a genuine editorial FAIL verdict |
-| Fresh QC + answer-key judge | ⏸ **NOT REACHED** | Gated behind a review PASS |
-| Promotion | ⏸ **NOT REACHED** | Gated behind QC |
+| Fresh QC + answer-key judge | 🧪 **PROVEN HERMETICALLY** | Never run live. A 12-case end-to-end test now drives the real evaluator, real judge, real round-commit and real promotion in one flow; it found 2 defects while being written |
+| Promotion | 🧪 **PROVEN HERMETICALLY** | Same test. **3 criticals still block a first LIVE promotion — see §8** |
 
 The audit's headline concern — *"semantic review machinery preserved-DEAD"* — is
 **resolved**. The panel is alive, and it is not a rubber stamp: it blocked a book
@@ -378,6 +378,40 @@ relaxes *whether* that run is valid.
 previously-promoted book), while the pin owns the research axis. The combination
 logs `action=REGEN_SUPERSEDES_POINTER_ONLY` so it is never silent, and the research
 `COMPLETED` event records `pinnedResearchRunId=…` for audit.
+
+---
+
+## 8. What still blocks a first live promotion
+
+A parallel adversarial audit of the never-executed QC→promotion path (three agents,
+isolated worktrees) found three criticals. None are Franklin content problems; all
+would fire on the first real promotion of any book.
+
+**C1 — v25 release writes no production-manifest sidecar.** Every v25-promoted book
+is unshippable: `publish-final` has nothing to consume. Blocker #1.
+
+**C2 — the reader panel's scale has no band anchors.** Seats are asked for 0–100
+factor scores with no descriptors, and disagree by up to 13 points on the same
+chapter. `AUTHOR_CHAPTER_BAR = 70` was calibrated against a *different* instrument
+(the 140-book catalogue screening, rubric v2.0), so "70" on the panel's invented
+scale and "70" on that rubric are not the same quantity. **This is a fair challenge
+to the D6 decision in §5.2.** The structural argument there still holds — a
+per-chapter floor demanding every chapter reach the top band is stricter than the
+catalogue's own standard — but the specific number is not transferable between
+rulers. The fix is to anchor the panel's scale to the published taxonomy, not to
+re-argue the threshold.
+
+**C3 — repair is starved of signal.** It receives *only* blocker findings; every
+advisory and every per-factor score is discarded. A chapter failing purely on the
+composite floor therefore reaches repair as one number naming no defect. This is
+precisely the "66.5 with zero named defects" shape that stalled the live canary for
+a dozen rounds — the diagnosis existed in the verdict all along and was thrown away
+before repair could see it.
+
+Also open, lower severity: the v25 release route ignores the quarantine tombstone
+that `quarantine-book` promises will block promotion; `--promote-local` advances the
+pointer without producing a reader package; and the release path keeps no journal, so
+a crash between pointer CAS and package write is unrecoverable.
 
 ---
 
