@@ -2797,7 +2797,7 @@ requiredTest("stored ERROR canonical review replays fail-closed without the flag
   assert.ok(successorEvent!.detail!.includes(`predecessorReviewId=${h.predecessorReviewId}`), successorEvent!.detail);
 });
 
-requiredTest("a stored FAIL canonical review is NOT successor-eligible even under --reconcile-unsettled (FAIL is a verdict, not uncertainty)", async (context: TestContext) => {
+requiredTest("with NO repair port composed, a stored FAIL canonical review is NOT successor-eligible even under --reconcile-unsettled (FAIL is a verdict, not uncertainty)", async (context: TestContext) => {
   const book = "review-successor-fail";
   const h = await buildReviewSuccessorHarness(context, book, "FAIL");
 
@@ -2808,7 +2808,15 @@ requiredTest("a stored FAIL canonical review is NOT successor-eligible even unde
   assert.equal(h.runnerCalls(), 1);
 
   // Even WITH the flag, a FAIL verdict replays fail-closed verbatim: no successor,
-  // no fresh panel call — repair machinery, not this path, owns FAIL.
+  // no fresh panel call — the ERROR-successor path (11ac) never owns FAIL.
+  //
+  // SCOPE (kept accurate after the review-repair lane landed): this harness
+  // composes NO repair port, which is the case this pin covers. In PRODUCTION a
+  // repair port IS composed, and a FAIL now routes into the bounded
+  // review-repair -> RE-REVIEW lane instead of dying — see
+  // tests/v25/v4-review-fail-repair-lane.test.ts. What stays true either way is
+  // the thing this test is really about: a FAIL verdict is never laundered into
+  // a pass by replaying it, and the ERROR-successor machinery never touches it.
   const flagged = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
   assert.equal(flagged.ok, false, JSON.stringify(flagged));
   if (flagged.ok) throw new Error("FAIL must never mint a review successor");
