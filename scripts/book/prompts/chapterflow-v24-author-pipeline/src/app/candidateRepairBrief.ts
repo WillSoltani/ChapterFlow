@@ -6,7 +6,9 @@
  * QC-orchestrator lane: it writes a markdown brief to disk from the effective
  * ledger for a CLI/human repair loop over `state/chapters/`. This one is a pure
  * function that renders prompt bytes for `CandidateRepairApplicationPort` from
- * one candidate-scoped QC round. Same word, different lane — do not merge them.
+ * one candidate-scoped finding set — a failed QC round on the QC lane, a FAIL
+ * canonical review on the review lane. Same word, different lane — do not merge
+ * them.
  *
  * WHY THIS EXISTS
  * The repair port used to hand the model exactly one thing: the BLOCKING findings
@@ -26,9 +28,9 @@
  *     explicitly — no named defect — and leads the diagnosis with the weakest
  *     factors and the advisories clustered on that chapter;
  *   - when the panel attached no blocking finding to the chapter at all (the
- *     live shape: a QC round can only bind to a PASSING canonical review, so no
- *     reader blocker can be present), the factor medians are labelled as the only
- *     reader-quality signal the round carries;
+ *     QC lane's shape: a QC round can only bind to a PASSING canonical review, so
+ *     no reader blocker can be present there), the factor medians are labelled as
+ *     the only reader-quality signal the round carries;
  *   - advisories and factor scores are labelled diagnosis, never mandates, so a
  *     model cannot mistake a WARN for a gate it must satisfy.
  *

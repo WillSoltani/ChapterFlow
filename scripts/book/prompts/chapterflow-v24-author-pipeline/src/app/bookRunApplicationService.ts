@@ -152,6 +152,20 @@ const FRESH_QC_STAGE = "fresh-qc" as const;
  *  resume; the bound keeps a systematically-failing judge from minting runs
  *  forever. The committed round, once present, always short-circuits the walk. */
 const MAX_QC_JUDGE_RUNS = 5;
+
+/**
+ * How many times one book run may repair-and-re-review a canonical review FAIL.
+ *
+ * SMALL ON PURPOSE. Each round is a full chapter-scoped repair plus a full
+ * blind-panel re-read of the whole book — the most expensive loop in the
+ * pipeline — and the failure mode it replaces (recompile-and-resample) was
+ * itself a treadmill. Two rounds buy the case this exists for, a panel naming
+ * fixable on-page contradictions, without letting a systematically-unfixable
+ * book burn panels forever. Reaching the cap is NOT a pass: the run fails closed
+ * with BOOK_RUN_REVIEW_FAILED and the cap named in the message, exactly as it
+ * did before the lane existed.
+ */
+export const MAX_REVIEW_REPAIR_ROUNDS = 2;
 const RETRYABLE_COMPILER_FAILURES = Object.freeze([
   "COMPILER_ASSEMBLY_BLOCKED:",
   "COMPILER_SECTION_BLOCKED:",
@@ -1311,8 +1325,125 @@ export class BookRunApplicationService {
         signal: input.signal,
       });
     }
+    // ── Canonical review FAIL -> repair -> RE-REVIEW, bounded ──────────────────
+    //
+    // A review FAIL used to be TERMINAL here, and that was the convergence
+    // blocker: the blind panel names 3-7 precise, reader-decidable
+    // contradictions, and the pipeline's only answer was to discard the whole
+    // book and recompile. Each recompile is a fresh sample producing DIFFERENT
+    // one-off contradictions, so consecutive verdicts shared no blockers and the
+    // book never converged.
+    //
+    // The named blockers now route into the repair machinery, chapter-scoped,
+    // and the SUCCESSOR GOES BACK THROUGH THE SAME PANEL. Nothing here rewrites
+    // the verdict, lowers a bar, or marks a chapter passed: the loop only ever
+    // produces a new candidate, and `exactReview` below is what judges it.
+    //
+    // BOUNDED, like the compile operator-retry slots: at most
+    // MAX_REVIEW_REPAIR_ROUNDS rounds, each one an event in the durable phase log
+    // and a line on stderr. An unbounded review->repair->review loop would be
+    // worse than the terminal failure it replaces, so hitting the cap falls
+    // straight through to the fail-closed path below with the cap named.
+    //
+    // IDEMPOTENT ON RESUME: every round's repair-run id, successor candidate id
+    // and review id derive deterministically from (runId, round). A resumed run
+    // re-drives the same identities — the repair port reconciles its COMPLETED
+    // run and re-reads its durable successor, and `exactReview` replays the
+    // stored verdict — so a crash mid-repair costs zero model calls and can
+    // never mint a second successor for the same round.
+    //
+    // Not eligible: a review ERROR (uncertainty, owned by the 11ac successor path
+    // above) and a run with no repair port composed (the FAIL stays terminal and
+    // says so).
+    const reviewRepair = this.#dependencies.repair;
+    let reviewRepairRounds = 0;
+    let reviewRepairNote = "";
+    while (reviewRepair !== undefined && review.ok && review.value.outcome === "FAIL") {
+      if (reviewRepairRounds >= MAX_REVIEW_REPAIR_ROUNDS) {
+        reviewRepairNote = `; unresolved after ${reviewRepairRounds} of ${MAX_REVIEW_REPAIR_ROUNDS} review-repair round(s) (cap reached)`;
+        const capped = await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "FAILED",
+          `action=REVIEW_REPAIR;round=${reviewRepairRounds};cap=${MAX_REVIEW_REPAIR_ROUNDS};reviewId=${review.value.reviewId}`,
+          identity(candidate),
+        );
+        if (!capped.ok) return capped;
+        break;
+      }
+      reviewRepairRounds += 1;
+      const label = `review-repair-${reviewRepairRounds}`;
+      const failedReviewId = review.value.reviewId;
+      const blockerCodes = review.value.issues
+        .filter((issue) => issue.severity === "BLOCKER")
+        .map((issue) => issue.code)
+        .join(",");
+      const repairStarted = await this.#event(
+        runId,
+        input.bookId,
+        "repair",
+        "STARTED",
+        `action=REVIEW_REPAIR;round=${reviewRepairRounds};failedReviewId=${failedReviewId};blockers=${blockerCodes}`,
+        identity(candidate),
+      );
+      if (!repairStarted.ok) return repairStarted;
+      console.error(
+        `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${MAX_REVIEW_REPAIR_ROUNDS}`
+        + ` failedReviewId=${failedReviewId} action=REVIEW_REPAIR`,
+      );
+      const repairedCandidate = await reviewRepair.runFromReviewFail({
+        bookId: input.bookId,
+        failedCandidate: identity(candidate),
+        failedReviewId,
+        successorCandidateId: derivedId(`${label}-candidate`, runId),
+        repairRunId: derivedId(`${label}-run`, runId),
+        sourceGitSha: input.sourceGitSha,
+        attemptRoot: resolve(input.attemptRoot, label),
+        signal: input.signal,
+      });
+      if (!repairedCandidate.ok) {
+        await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "FAILED",
+          `action=REVIEW_REPAIR;round=${reviewRepairRounds};${repairedCandidate.error.code}:${repairedCandidate.error.message}`,
+          identity(candidate),
+        );
+        return repairedCandidate;
+      }
+      candidate = repairedCandidate.value.successor;
+      const repairCompleted = await this.#event(
+        runId,
+        input.bookId,
+        "repair",
+        "COMPLETED",
+        `action=REVIEW_REPAIR;round=${reviewRepairRounds};failedReviewId=${failedReviewId}`
+        + `;chapters=${repairedCandidate.value.targetChapterNumbers.join("|")}`,
+        identity(candidate),
+      );
+      if (!repairCompleted.ok) return repairCompleted;
+      const reReviewStarted = await this.#event(
+        runId,
+        input.bookId,
+        "review",
+        "STARTED",
+        `action=REVIEW_REPAIR_REVIEW;round=${reviewRepairRounds};predecessorReviewId=${failedReviewId}`,
+        identity(candidate),
+      );
+      if (!reReviewStarted.ok) return reReviewStarted;
+      review = await exactReview(this.#dependencies, {
+        bookId: input.bookId,
+        sourceGitSha: input.sourceGitSha,
+        parentRunId: derivedId(label, runId),
+        candidate,
+        attemptRoot: resolve(input.attemptRoot, `${label}-review`),
+        signal: input.signal,
+      });
+    }
     if (!review.ok || review.value.outcome !== "PASS") {
-      const message = review.ok ? `canonical review outcome=${review.value.outcome}` : review.error.message;
+      const message = (review.ok ? `canonical review outcome=${review.value.outcome}` : review.error.message) + reviewRepairNote;
       await this.#event(runId, input.bookId, "review", "FAILED", message, identity(candidate));
       return failed("BOOK_RUN_REVIEW_FAILED", message);
     }
