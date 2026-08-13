@@ -9,12 +9,12 @@ import { sourcePacketHash } from "../compiler/sourcePacket.js";
 import { validateSourcePacket } from "../compiler/sourcePacketGate.js";
 import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { validateSourceUsePlan } from "../contracts/sourceUsePlan.js";
-import type { CandidateIdentity, ModelTaskContext, QcRoundId, RepairId, Result, ReviewId } from "../contracts/v4Core.js";
+import type { CandidateIdentity, ModelTaskContext, PlannedArtifact, QcRoundId, RepairId, Result, ReviewId } from "../contracts/v4Core.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../critics/bookPatternAudit.js";
 import type { DiagnosisLookup, RepairService } from "../qc/repairCoordinator.js";
 import type { RepairHistoryRecord, RepairHistoryStore } from "../qc/repairHistoryStore.js";
 import type { QcIssue, QcRoundResult, QcService } from "../qc/qcTypes.js";
-import type { ReviewService } from "../review/reviewTypes.js";
+import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../review/reviewTypes.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
@@ -33,6 +33,13 @@ import { buildRepairBrief } from "./candidateRepairBrief.js";
 
 export const CANDIDATE_REPAIR_PROFILE_ID = "attempt-read-json-v1" as const;
 export const CANDIDATE_REPAIR_STAGE_ID = "candidate-repair" as const;
+/** The review-FAIL repair lane's own stage. Deliberately NOT the QC lane's stage:
+ *  the two lanes are authorized by different verdicts, run under different runs,
+ *  and must never reconcile each other's durable stage records. */
+export const REVIEW_REPAIR_STAGE_ID = "review-repair" as const;
+/** Attempt-id namespace for the review lane. Distinct from the QC lane's "rep"
+ *  so the two can never collide even if an operator reuses a run id. */
+const REVIEW_REPAIR_ATTEMPT_PREFIX = "revrep" as const;
 
 export interface CandidateRepairPreflightRequest {
   readonly bookId: string;
@@ -61,6 +68,59 @@ export interface CandidateRepairAuthorization {
    *  Never authorizes a repair and never targets a chapter on its own. */
   readonly advisoriesByChapter: ReadonlyMap<number, readonly QcIssue[]>;
   readonly diagnosisRequired: boolean;
+}
+
+/**
+ * A repair authorized by a canonical review FAIL rather than by a failed QC round.
+ *
+ * WHY THIS EXISTS. A QC FAIL routes into `run()` and gets a targeted fix of its
+ * named findings. A canonical review FAIL used to be TERMINAL — the book-run
+ * service returned BOOK_RUN_REVIEW_FAILED and the run died — so the blind reader
+ * panel's 3-7 precise, reader-decidable contradictions were answered by
+ * discarding the whole book and recompiling. Each recompile is a fresh sample
+ * that produces DIFFERENT one-off contradictions, so the book never converges.
+ *
+ * WHY IT IS NOT `run()`. `run()` is anchored on a committed QC round end to end:
+ * `qc.getRound` must return an exact FAIL round, `RepairService.createSuccessor`
+ * re-checks that same round, and `RepairHistoryStore` records `failedRoundId` /
+ * `freshRoundId` / `qcOutcome`. A review FAIL happens BEFORE fresh QC and no such
+ * round exists — and it must not be manufactured: `qcService.runFresh` refuses
+ * any non-PASS canonical review (QC_JOIN_MISMATCH), which is a fail-closed
+ * invariant this lane does not touch. So the review lane authorizes off the
+ * stored FAIL review, repairs the named chapters, stages the successor, and
+ * STOPS. It never reviews or QCs its own output.
+ *
+ * WHO JUDGES THE RESULT. The caller (`BookRunApplicationService`) puts the
+ * successor back through the SAME canonical review machinery, and the
+ * successor's own verdict is what counts. A repair that is not re-judged by the
+ * panel is worthless, and this port is structurally incapable of self-certifying:
+ * it returns a candidate, never an outcome.
+ */
+export interface ReviewRepairApplicationRequest {
+  readonly bookId: string;
+  readonly failedCandidate: CandidateIdentity;
+  /** The stored canonical review whose FAIL verdict authorizes this repair. */
+  readonly failedReviewId: ReviewId;
+  readonly successorCandidateId: string;
+  readonly repairRunId: string;
+  readonly sourceGitSha: string;
+  readonly attemptRoot: string;
+  readonly signal: AbortSignal;
+}
+
+export interface ReviewRepairApplicationResult {
+  readonly successor: CandidateSnapshot;
+  /** Echoed provenance: the FAIL verdict this successor answers. */
+  readonly failedReviewId: ReviewId;
+  readonly targetChapterNumbers: readonly number[];
+}
+
+export interface ReviewRepairAuthorization {
+  readonly candidate: CandidateSnapshot;
+  readonly failedReview: CanonicalReviewResult;
+  readonly targetChapterNumbers: readonly number[];
+  readonly findingsByChapter: ReadonlyMap<number, readonly QcIssue[]>;
+  readonly advisoriesByChapter: ReadonlyMap<number, readonly QcIssue[]>;
 }
 
 export interface CandidateRepairApplicationPortDependencies {
@@ -232,6 +292,95 @@ function groupFindings(round: QcRoundResult, chapters: readonly ChapterEntry[]):
     ok: true,
     value: new Map([...grouped.entries()].sort(([left], [right]) => left - right)),
   };
+}
+
+/**
+ * One canonical-review issue as the repair prompt's finding record.
+ *
+ * The code is carried through VERBATIM (`READER.BLOCKING.contradiction`, not
+ * `REVIEW.READER.BLOCKING.contradiction`): this lane reads the review itself, so
+ * the bare spelling is the true one, and `candidateRepairBrief` already matches
+ * both spellings through `isReviewIssueCode` / `isReaderBlockingCode`.
+ */
+function reviewIssueAsFinding(issue: ReviewIssue, severity: QcIssue["severity"]): QcIssue {
+  return {
+    code: issue.code,
+    severity,
+    message: issue.message,
+    ...(issue.location === undefined ? {} : { location: issue.location }),
+  };
+}
+
+/**
+ * Group a FAIL review's BLOCKERS by chapter, STRICTLY.
+ *
+ * The panel locates a named defect at `chNN/<seatId>/<unit>` and its score-floor
+ * blocker at `chNN`, both of which `matchedChapter` resolves. Anything else — a
+ * blocker with no location, a book-level blocker, a baseline blocker owned by the
+ * compiler/research artifacts this repair is forbidden to rewrite, or one whose
+ * location matches two chapters — is REFUSED by name. Repair is chapter-scoped,
+ * so a blocker it cannot scope is a blocker it cannot fix; dropping it silently
+ * would let the successor go back to the panel carrying an unaddressed verdict
+ * and would turn "the panel named it" into "the pipeline forgot it".
+ */
+function groupReviewFindings(
+  review: CanonicalReviewResult,
+  chapters: readonly ChapterEntry[],
+): Result<ReadonlyMap<number, readonly QcIssue[]>> {
+  const blockers = review.issues.filter((issue) => issue.severity === "BLOCKER");
+  if (blockers.length === 0) {
+    return failed("REVIEW_REPAIR_FINDING_UNSCOPED", "FAIL canonical review carries no blocking finding to repair");
+  }
+  const grouped = new Map<number, QcIssue[]>();
+  for (const issue of blockers) {
+    const finding = reviewIssueAsFinding(issue, "BLOCKER");
+    if (!finding.location) {
+      return failed("REVIEW_REPAIR_FINDING_UNSCOPED", `review blocker ${finding.code} has no chapter location`);
+    }
+    if (compilerOwned(finding)) {
+      return failed(
+        "REVIEW_REPAIR_FINDING_UNSCOPED",
+        `review blocker ${finding.code} is compiler/context-owned and requires manual correction: ${finding.location}`,
+      );
+    }
+    const matched = matchedChapter(finding, chapters);
+    if (matched === null) {
+      return failed(
+        "REVIEW_REPAIR_FINDING_UNSCOPED",
+        `review blocker ${finding.code} does not name exactly one failed-candidate chapter: ${finding.location}`,
+      );
+    }
+    const findings = grouped.get(matched) ?? [];
+    findings.push(finding);
+    grouped.set(matched, findings);
+  }
+  return { ok: true, value: new Map([...grouped.entries()].sort(([left], [right]) => left - right)) };
+}
+
+/**
+ * Group a FAIL review's WARN advisories by chapter, LENIENTLY — the same trade
+ * `groupAdvisories` makes on the QC lane. An advisory is diagnosis, never a
+ * mandate, so one that names no single chapter is dropped rather than escalated
+ * into a repair refusal. INFO issues are not carried: the brief's advisory
+ * section is where a model looks for what to change, and an INFO record is by
+ * construction not that.
+ */
+function groupReviewAdvisories(
+  review: CanonicalReviewResult,
+  chapters: readonly ChapterEntry[],
+): ReadonlyMap<number, readonly QcIssue[]> {
+  const grouped = new Map<number, QcIssue[]>();
+  for (const issue of review.issues) {
+    if (issue.severity !== "WARN") continue;
+    const finding = reviewIssueAsFinding(issue, "WARN");
+    if (compilerOwned(finding)) continue;
+    const matched = matchedChapter(finding, chapters);
+    if (matched === null) continue;
+    const findings = grouped.get(matched) ?? [];
+    findings.push(finding);
+    grouped.set(matched, findings);
+  }
+  return new Map([...grouped.entries()].sort(([left], [right]) => left - right));
 }
 
 function priorUnsuccessful(records: readonly RepairHistoryRecord[], request: CandidateRepairPreflightRequest): boolean {
@@ -440,23 +589,24 @@ function attemptId(runId: string, operationId: string, prefix = "rep"): string {
 }
 
 function repairDefinition(
-  request: CandidateRepairApplicationRequest,
+  request: Readonly<{ bookId: string; repairRunId: string; sourceGitSha: string; failedCandidate: CandidateIdentity }>,
   candidate: CandidateSnapshot,
   targetCount: number,
   createdAt: string,
+  lane: Readonly<{ commandId: string; stageId: string }> = { commandId: "candidate-repair", stageId: CANDIDATE_REPAIR_STAGE_ID },
 ): RunDefinition {
   return {
     schemaVersion: "1",
     bookId: request.bookId,
     runId: request.repairRunId,
-    commandId: "candidate-repair",
+    commandId: lane.commandId,
     sourceGitSha: request.sourceGitSha,
-    requiredStages: [CANDIDATE_REPAIR_STAGE_ID],
+    requiredStages: [lane.stageId],
     requiredInventory: candidate.files.map(({ kind, logicalPath, mediaType }) => ({ kind, logicalPath, mediaType })),
     inputCandidate: request.failedCandidate,
     attemptLimits: {
       run: targetCount,
-      byStage: { [CANDIDATE_REPAIR_STAGE_ID]: targetCount },
+      byStage: { [lane.stageId]: targetCount },
     },
     createdAt,
   };
@@ -464,6 +614,62 @@ function repairDefinition(
 
 function uncertainAttempt(snapshot: RunSnapshot): boolean {
   return snapshot.attempts.some((attempt) => attempt.status === "ACTIVE" || attempt.status === "STALE" || attempt.status === "UNKNOWN");
+}
+
+/** The minimum both repair lanes need to drive their own run terminal. */
+type RepairRunRef = Readonly<{ bookId: string; repairRunId: string; stageId?: string }>;
+
+/** Everything one chapter-scoped repair pass needs, independent of which verdict
+ *  authorized it. Shared verbatim by the QC lane and the review lane so the two
+ *  can never drift on what a repair prompt carries. */
+type ChapterRepairPass = Readonly<{
+  bookId: string;
+  repairRunId: string;
+  stageId: string;
+  attemptIdPrefix: string;
+  attemptRoot: string;
+  signal: AbortSignal;
+  chapters: readonly ChapterEntry[];
+  targetChapterNumbers: readonly number[];
+  findingsByChapter: ReadonlyMap<number, readonly QcIssue[]>;
+  advisoriesByChapter: ReadonlyMap<number, readonly QcIssue[]>;
+  contextByChapter: ReadonlyMap<number, readonly CandidateSnapshot["files"][number][]>;
+  bookRules: string;
+}>;
+
+/** The successor's file set: the failed candidate's files with the repaired
+ *  chapters swapped in and the candidate-bound pattern audit recomputed over the
+ *  repaired chapter set. */
+function successorFiles(
+  bookId: string,
+  candidate: CandidateSnapshot,
+  chapters: readonly ChapterEntry[],
+  replacements: ReadonlyMap<number, ChapterV21>,
+): Result<CandidateInputFile[]> {
+  const files = inputFiles(candidate);
+  for (const entry of chapters) {
+    const replacement = replacements.get(entry.chapter.number);
+    if (!replacement) continue;
+    const index = files.findIndex((file) => file.logicalPath === entry.file.logicalPath);
+    files[index] = { ...files[index], bytes: jsonBytes(replacement) };
+  }
+  const repairedChapters = chapters.map((entry) => replacements.get(entry.chapter.number) ?? entry.chapter);
+  const auditIndexes = files
+    .map((file, index) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH ? index : -1)
+    .filter((index) => index >= 0);
+  if (auditIndexes.length !== 1) {
+    return failed("REPAIR_CONTEXT_INVALID", `expected one candidate-bound pattern audit; found ${auditIndexes.length}`);
+  }
+  files[auditIndexes[0]] = {
+    ...files[auditIndexes[0]],
+    bytes: jsonBytes(runBookPatternAudit({
+      bookId,
+      chapters: repairedChapters,
+      requirePlanArtifacts: false,
+      checkSourceAlignment: false,
+    })),
+  };
+  return { ok: true, value: files };
 }
 
 export class CandidateRepairApplicationPort {
@@ -563,7 +769,7 @@ export class CandidateRepairApplicationPort {
   }
 
   async #failRun<T>(
-    request: CandidateRepairApplicationRequest,
+    request: RepairRunRef,
     attemptIds: readonly string[],
     code: string,
     message: string,
@@ -572,7 +778,7 @@ export class CandidateRepairApplicationPort {
       schemaVersion: "1",
       bookId: request.bookId,
       runId: request.repairRunId,
-      stageId: CANDIDATE_REPAIR_STAGE_ID,
+      stageId: request.stageId ?? CANDIDATE_REPAIR_STAGE_ID,
       status: "FAILED",
       attemptIds,
       completedAt: this.#dependencies.clock.now(),
@@ -590,7 +796,7 @@ export class CandidateRepairApplicationPort {
   }
 
   async #cancelRun<T>(
-    request: CandidateRepairApplicationRequest,
+    request: RepairRunRef,
     reason: string,
   ): Promise<Result<T>> {
     const requested = await this.#dependencies.runStore.requestCancel({
@@ -743,16 +949,64 @@ export class CandidateRepairApplicationPort {
       return failed("REPAIR_ATTEMPT_NOT_REPLAYABLE", "settled repair work lacks durable completed stage; replay refused");
     }
 
+    const repaired = await this.#repairChapters({
+      bookId: request.bookId,
+      repairRunId: request.repairRunId,
+      stageId: CANDIDATE_REPAIR_STAGE_ID,
+      attemptIdPrefix: "rep",
+      attemptRoot: request.attemptRoot,
+      signal: request.signal,
+      chapters: chapters.value,
+      targetChapterNumbers: authorized.value.targetChapterNumbers,
+      findingsByChapter: authorized.value.findingsByChapter,
+      advisoriesByChapter: authorized.value.advisoriesByChapter,
+      contextByChapter,
+      bookRules,
+    });
+    if (!repaired.ok) return repaired;
+    const replacements = repaired.value;
+
+    if (request.signal.aborted) {
+      return this.#cancelRun({ bookId: request.bookId, repairRunId: request.repairRunId }, "repair cancelled before successor materialization");
+    }
+    const materialized = successorFiles(request.bookId, candidate, chapters.value, replacements);
+    if (!materialized.ok) return materialized;
+    const files = materialized.value;
+
+    const expectedInventory = files.map(({ bytes: _bytes, ...artifact }) => artifact);
+    const reviewAttemptId = attemptId(request.repairRunId, "canonical-review", "rep-review");
+    const workflowContext: ModelTaskContext = {
+      bookId: request.bookId,
+      runId: request.repairRunId,
+      attemptId: reviewAttemptId,
+      stageId: CANDIDATE_REPAIR_STAGE_ID,
+      operationId: "canonical-review",
+      workDir: request.attemptRoot,
+      signal: request.signal,
+    };
+    return this.#finishQcLaneRepair(request, files, expectedInventory, workflowContext, createdAt);
+  }
+
+  /**
+   * Repair every targeted chapter under one repair run, returning the
+   * replacements. Shared by BOTH lanes: the QC lane (`run`) and the review-FAIL
+   * lane (`runFromReviewFail`) must put the identical prompt in front of the
+   * model — same control text, same evidence, same brief/findings separation —
+   * or the two would silently diverge on what a repair is allowed to change.
+   */
+  async #repairChapters(pass: ChapterRepairPass): Promise<Result<ReadonlyMap<number, ChapterV21>>> {
+    const request = { bookId: pass.bookId, repairRunId: pass.repairRunId, stageId: pass.stageId };
+    const bookRules = pass.bookRules;
     const replacements = new Map<number, ChapterV21>();
     const repairAttemptIds: string[] = [];
 
-    for (const chapterNumber of authorized.value.targetChapterNumbers) {
-      if (request.signal.aborted) {
+    for (const chapterNumber of pass.targetChapterNumbers) {
+      if (pass.signal.aborted) {
         return this.#cancelRun(request, "repair cancelled before next chapter");
       }
-      const entry = chapters.value.find((item) => item.chapter.number === chapterNumber)!;
-      const contextFiles = contextByChapter.get(chapterNumber)!;
-      const findings = authorized.value.findingsByChapter.get(chapterNumber)!;
+      const entry = pass.chapters.find((item) => item.chapter.number === chapterNumber)!;
+      const contextFiles = pass.contextByChapter.get(chapterNumber)!;
+      const findings = pass.findingsByChapter.get(chapterNumber)!;
       // The brief is the INSTRUCTION; qc_findings stays the machine-readable
       // blocker record. A chapter whose only blocker is the composite floor gets
       // told so in words here — without it the model receives one number naming
@@ -760,19 +1014,19 @@ export class CandidateRepairApplicationPort {
       const brief = buildRepairBrief({
         chapterNumber,
         blockers: findings,
-        advisories: authorized.value.advisoriesByChapter.get(chapterNumber) ?? [],
+        advisories: pass.advisoriesByChapter.get(chapterNumber) ?? [],
       });
       const operationId = `repair-ch${String(chapterNumber).padStart(2, "0")}`;
-      const repairAttemptId = attemptId(request.repairRunId, operationId);
+      const repairAttemptId = attemptId(pass.repairRunId, operationId, pass.attemptIdPrefix);
       repairAttemptIds.push(repairAttemptId);
       const context: ModelTaskContext = {
-        bookId: request.bookId,
-        runId: request.repairRunId,
+        bookId: pass.bookId,
+        runId: pass.repairRunId,
         attemptId: repairAttemptId,
-        stageId: CANDIDATE_REPAIR_STAGE_ID,
+        stageId: pass.stageId,
         operationId,
-        workDir: request.attemptRoot,
-        signal: request.signal,
+        workDir: pass.attemptRoot,
+        signal: pass.signal,
       };
       const result = await this.#dependencies.runner.run({
         profileId: CANDIDATE_REPAIR_PROFILE_ID,
@@ -804,7 +1058,7 @@ export class CandidateRepairApplicationPort {
       if (result.attemptId !== repairAttemptId || result.outcome === "UNKNOWN") {
         return failed("REPAIR_ATTEMPT_UNCERTAIN", `repair attempt state uncertain for chapter ${chapterNumber}`);
       }
-      const settled = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, this.#dependencies.clock.now());
+      const settled = await this.#dependencies.runStore.readRun(pass.bookId, pass.repairRunId, this.#dependencies.clock.now());
       const attempt = settled.ok
         ? settled.value.attempts.find((item) => item.admission.attemptId === repairAttemptId)
         : undefined;
@@ -835,43 +1089,19 @@ export class CandidateRepairApplicationPort {
       }
       replacements.set(chapterNumber, replacement.value);
     }
+    return { ok: true, value: replacements };
+  }
 
-    if (request.signal.aborted) return this.#cancelRun(request, "repair cancelled before successor materialization");
-    const files = inputFiles(candidate);
-    for (const entry of chapters.value) {
-      const replacement = replacements.get(entry.chapter.number);
-      if (!replacement) continue;
-      const index = files.findIndex((file) => file.logicalPath === entry.file.logicalPath);
-      files[index] = { ...files[index], bytes: jsonBytes(replacement) };
-    }
-    const repairedChapters = chapters.value.map((entry) => replacements.get(entry.chapter.number) ?? entry.chapter);
-    const auditIndexes = files
-      .map((file, index) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH ? index : -1)
-      .filter((index) => index >= 0);
-    if (auditIndexes.length !== 1) {
-      return failed("REPAIR_CONTEXT_INVALID", `expected one candidate-bound pattern audit; found ${auditIndexes.length}`);
-    }
-    files[auditIndexes[0]] = {
-      ...files[auditIndexes[0]],
-      bytes: jsonBytes(runBookPatternAudit({
-        bookId: request.bookId,
-        chapters: repairedChapters,
-        requirePlanArtifacts: false,
-        checkSourceAlignment: false,
-      })),
-    };
-
-    const expectedInventory = files.map(({ bytes: _bytes, ...artifact }) => artifact);
-    const reviewAttemptId = attemptId(request.repairRunId, "canonical-review", "rep-review");
-    const workflowContext: ModelTaskContext = {
-      bookId: request.bookId,
-      runId: request.repairRunId,
-      attemptId: reviewAttemptId,
-      stageId: CANDIDATE_REPAIR_STAGE_ID,
-      operationId: "canonical-review",
-      workDir: request.attemptRoot,
-      signal: request.signal,
-    };
+  /** The QC lane's tail: successor + canonical review + fresh QC + history, then
+   *  the repair run's own terminal record. Unchanged behaviour, lifted out of
+   *  `run()` only so the chapter pass above could be shared with the review lane. */
+  async #finishQcLaneRepair(
+    request: CandidateRepairApplicationRequest,
+    files: readonly CandidateInputFile[],
+    expectedInventory: readonly PlannedArtifact[],
+    workflowContext: ModelTaskContext,
+    createdAt: string,
+  ): Promise<Result<ContentRepairResult>> {
     const workflow = await runContentRepairWorkflow({
       bookId: request.bookId,
       failedCandidate: request.failedCandidate,
@@ -947,5 +1177,289 @@ export class CandidateRepairApplicationPort {
       return failed("REPAIR_TERMINAL_UNCERTAIN", "completed repair run readback failed");
     }
     return workflow;
+  }
+
+  /**
+   * Authorize a repair off a stored canonical review FAIL.
+   *
+   * Strict on the verdict (the exact stored review, outcome FAIL, bound to the
+   * exact failed candidate) and strict on the blockers (every one must name
+   * exactly one repairable chapter). Nothing here rewrites, downgrades or
+   * re-scores the verdict — it only decides which chapters the named blockers
+   * belong to.
+   */
+  async reviewRepairPreflight(request: ReviewRepairApplicationRequest): Promise<Result<ReviewRepairAuthorization>> {
+    if (request.signal.aborted) return failed("REVIEW_REPAIR_CANCELLED", "review repair cancelled before preflight");
+    const opened = await this.#dependencies.candidates.open({
+      bookId: request.bookId,
+      selector: { kind: "CANDIDATE", candidateId: request.failedCandidate.candidateId },
+    });
+    if (!opened.ok) return opened;
+    if (opened.value.manifest.bookId !== request.bookId || !sameIdentity(identityOf(opened.value), request.failedCandidate)) {
+      return failed("REVIEW_REPAIR_CANDIDATE_STALE", "failed candidate does not match exact immutable selector");
+    }
+    const chapters = readChapters(opened.value);
+    if (!chapters.ok) return chapters;
+
+    const review = await this.#dependencies.reviews.get(request.bookId, request.failedReviewId);
+    if (!review.ok) return failed("REVIEW_REPAIR_VERDICT_REQUIRED", review.error.message);
+    if (
+      review.value.reviewId !== request.failedReviewId
+      || review.value.outcome !== "FAIL"
+      || !sameIdentity(review.value.candidate, request.failedCandidate)
+    ) {
+      return failed(
+        "REVIEW_REPAIR_VERDICT_STALE",
+        `review repair requires the exact stored FAIL review for this candidate; found outcome=${review.value.outcome}`,
+      );
+    }
+    const findings = groupReviewFindings(review.value, chapters.value);
+    if (!findings.ok) return findings;
+    return {
+      ok: true,
+      value: {
+        candidate: opened.value,
+        failedReview: review.value,
+        targetChapterNumbers: [...findings.value.keys()],
+        findingsByChapter: findings.value,
+        advisoriesByChapter: groupReviewAdvisories(review.value, chapters.value),
+      },
+    };
+  }
+
+  /** Reconcile an already-COMPLETED review-repair run: its successor is durable,
+   *  so a replay re-reads it instead of repairing again. Mirrors
+   *  `#readCompletedResult`, minus the QC-round and history joins the review lane
+   *  does not own. */
+  async #readCompletedReviewRepair(
+    request: ReviewRepairApplicationRequest,
+    run: RunSnapshot,
+    targetChapterNumbers: readonly number[],
+  ): Promise<Result<ReviewRepairApplicationResult>> {
+    const expectedAttempts = targetChapterNumbers.map((chapterNumber) => {
+      const operationId = `repair-ch${String(chapterNumber).padStart(2, "0")}`;
+      return { operationId, attemptId: attemptId(request.repairRunId, operationId, REVIEW_REPAIR_ATTEMPT_PREFIX) };
+    });
+    if (
+      run.attempts.length !== expectedAttempts.length
+      || expectedAttempts.some((expected) => !run.attempts.some((attempt) => (
+        attempt.admission.stageId === REVIEW_REPAIR_STAGE_ID
+        && attempt.admission.operationId === expected.operationId
+        && attempt.admission.attemptId === expected.attemptId
+        && attempt.status === "SUCCEEDED"
+      )))
+    ) {
+      return failed("REVIEW_REPAIR_COMPLETED_MISMATCH", "completed review-repair run attempts do not match exact targeted chapter set");
+    }
+    const successor = await this.#dependencies.candidates.open({
+      bookId: request.bookId,
+      selector: { kind: "CANDIDATE", candidateId: request.successorCandidateId },
+    });
+    if (!successor.ok) return failed("REVIEW_REPAIR_COMPLETED_MISMATCH", successor.error.message);
+    const successorIdentity = identityOf(successor.value);
+    if (
+      successor.value.manifest.bookId !== request.bookId
+      || successor.value.manifest.parentCandidateId !== request.failedCandidate.candidateId
+      || successor.value.manifest.createdByRunId !== request.repairRunId
+      || successorIdentity.candidateId !== request.successorCandidateId
+      || sameIdentity(successorIdentity, request.failedCandidate)
+    ) {
+      return failed("REVIEW_REPAIR_COMPLETED_MISMATCH", "stored successor does not match exact review-repair transition");
+    }
+    return {
+      ok: true,
+      value: {
+        successor: successor.value,
+        failedReviewId: request.failedReviewId,
+        targetChapterNumbers: [...targetChapterNumbers],
+      },
+    };
+  }
+
+  /**
+   * Repair the chapters a canonical review FAIL named, and stage the successor.
+   *
+   * Returns a CANDIDATE, never a verdict. The caller must put the successor back
+   * through canonical review; this lane deliberately cannot mark anything passed,
+   * cannot write a QC round, and cannot promote.
+   */
+  async runFromReviewFail(request: ReviewRepairApplicationRequest): Promise<Result<ReviewRepairApplicationResult>> {
+    if (
+      !request.repairRunId
+      || !request.sourceGitSha
+      || !request.successorCandidateId
+      || request.successorCandidateId === request.failedCandidate.candidateId
+    ) {
+      return failed("REVIEW_REPAIR_INPUT_INVALID", "repair run, source SHA, and new successor candidate IDs are required");
+    }
+    if (!isAbsolute(request.attemptRoot)) return failed("REVIEW_REPAIR_ATTEMPT_ROOT_INVALID", "attempt root must be absolute");
+    if (within(this.#dependencies.pipelineRoot, request.attemptRoot) || within(request.attemptRoot, this.#dependencies.pipelineRoot)) {
+      return failed("REVIEW_REPAIR_ATTEMPT_ROOT_INVALID", "attempt root must be isolated from pipeline root");
+    }
+    await mkdir(request.attemptRoot, { recursive: true });
+
+    const authorized = await this.reviewRepairPreflight(request);
+    if (!authorized.ok) return authorized;
+    const candidate = authorized.value.candidate;
+    const chapters = readChapters(candidate);
+    if (!chapters.ok) return chapters;
+    const contextByChapter = new Map<number, readonly CandidateSnapshot["files"][number][]>();
+    for (const chapterNumber of authorized.value.targetChapterNumbers) {
+      const chapter = chapters.value.find((entry) => entry.chapter.number === chapterNumber)!.chapter;
+      const context = sourceContextFiles(candidate, chapter);
+      if (!context.ok) return context;
+      contextByChapter.set(chapterNumber, context.value);
+    }
+    if (candidate.files.filter((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH).length !== 1) {
+      return failed("REPAIR_CONTEXT_INVALID", "failed candidate must contain exactly one candidate-bound pattern audit");
+    }
+    const bookRules = candidateBookRules(candidate, request.bookId);
+
+    const observedAt = this.#dependencies.clock.now();
+    const priorRun = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, observedAt);
+    if (!priorRun.ok && priorRun.error.code !== "NOT_FOUND") {
+      return failed("REVIEW_REPAIR_RUN_UNAVAILABLE", `${priorRun.error.code}:${priorRun.error.message}`);
+    }
+    const createdAt = priorRun.ok ? priorRun.value.definition.createdAt : observedAt;
+    const definition = repairDefinition(
+      request,
+      candidate,
+      authorized.value.targetChapterNumbers.length,
+      createdAt,
+      { commandId: "review-repair", stageId: REVIEW_REPAIR_STAGE_ID },
+    );
+    const created = await this.#dependencies.runStore.createRun(definition);
+    if (!created.ok) return failed("REVIEW_REPAIR_RUN_UNAVAILABLE", `${created.error.code}:${created.error.message}`);
+    if (created.value.status === "COMPLETED") {
+      return this.#readCompletedReviewRepair(request, created.value, authorized.value.targetChapterNumbers);
+    }
+    if (created.value.status === "CANCEL_REQUESTED" || created.value.status === "CANCELLED") {
+      return failed("REVIEW_REPAIR_CANCELLED", "review-repair run is cancelled");
+    }
+    if (created.value.status !== "RUNNING") {
+      return failed("REVIEW_REPAIR_RUN_TERMINAL", `review-repair run is ${created.value.status}`);
+    }
+    const resume = await this.#dependencies.stageCoordinator.planResume(definition);
+    if (!resume.ok) return failed("REVIEW_REPAIR_RESUME_UNAVAILABLE", `${resume.error.code}:${resume.error.message}`);
+    if (resume.value.completedStages.includes(REVIEW_REPAIR_STAGE_ID)) {
+      // Crash between the stage checkpoint and the run terminal: the successor is
+      // already durable, so reconcile it and settle the run rather than repairing
+      // a second time.
+      const reconciled = await this.#readCompletedReviewRepair(request, created.value, authorized.value.targetChapterNumbers);
+      if (!reconciled.ok) return reconciled;
+      const terminal = await this.#dependencies.runStore.finishRun({
+        bookId: request.bookId,
+        runId: request.repairRunId,
+        status: "COMPLETED",
+        finishedAt: this.#dependencies.clock.now(),
+      });
+      if (!terminal.ok) return failed("REVIEW_REPAIR_TERMINAL_UNCERTAIN", `${terminal.error.code}:${terminal.error.message}`);
+      const verified = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, this.#dependencies.clock.now());
+      return verified.ok && verified.value.status === "COMPLETED"
+        ? reconciled
+        : failed("REVIEW_REPAIR_TERMINAL_UNCERTAIN", "reconciled review-repair run completed readback failed");
+    }
+    if (uncertainAttempt(created.value)) {
+      return failed("REVIEW_REPAIR_ATTEMPT_UNCERTAIN", "admitted review-repair work is unsettled; replay refused");
+    }
+    if (created.value.attempts.length > 0) {
+      return failed("REVIEW_REPAIR_ATTEMPT_NOT_REPLAYABLE", "settled review-repair work lacks durable completed stage; replay refused");
+    }
+
+    const repaired = await this.#repairChapters({
+      bookId: request.bookId,
+      repairRunId: request.repairRunId,
+      stageId: REVIEW_REPAIR_STAGE_ID,
+      attemptIdPrefix: REVIEW_REPAIR_ATTEMPT_PREFIX,
+      attemptRoot: request.attemptRoot,
+      signal: request.signal,
+      chapters: chapters.value,
+      targetChapterNumbers: authorized.value.targetChapterNumbers,
+      findingsByChapter: authorized.value.findingsByChapter,
+      advisoriesByChapter: authorized.value.advisoriesByChapter,
+      contextByChapter,
+      bookRules,
+    });
+    if (!repaired.ok) return repaired;
+
+    const runRef: RepairRunRef = { bookId: request.bookId, repairRunId: request.repairRunId, stageId: REVIEW_REPAIR_STAGE_ID };
+    if (request.signal.aborted) return this.#cancelRun(runRef, "review repair cancelled before successor materialization");
+    const materialized = successorFiles(request.bookId, candidate, chapters.value, repaired.value);
+    if (!materialized.ok) return materialized;
+    const files = materialized.value;
+
+    // Stage the successor DIRECTLY rather than through RepairService.createSuccessor:
+    // that service is anchored on an exact FAIL QC round (REPAIR_FAILED_QC_REQUIRED)
+    // which does not and must not exist for a review FAIL — qcService.runFresh
+    // refuses any non-PASS canonical review, and that fail-closed join is not
+    // something this lane is allowed to work around.
+    const state = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, this.#dependencies.clock.now());
+    if (!state.ok || uncertainAttempt(state.value)) {
+      return failed("REVIEW_REPAIR_ATTEMPT_UNCERTAIN", "review-repair attempt terminal readback failed");
+    }
+    // Every settled repair attempt this run owns, so a FAILED checkpoint below
+    // names the same attempts a COMPLETED one would — an empty list would record
+    // a stage failure that claims no work was admitted.
+    const settledAttemptIds = state.value.attempts.map((attempt) => attempt.admission.attemptId);
+    const staged = await this.#dependencies.candidates.stage({
+      bookId: request.bookId,
+      candidateId: request.successorCandidateId,
+      parentCandidateId: request.failedCandidate.candidateId,
+      createdByRunId: request.repairRunId,
+      expectedInventory: files.map(({ bytes: _bytes, ...artifact }) => artifact),
+      files,
+      createdAt,
+    });
+    // CANDIDATE_EXISTS is the crash-replay case: the successor was materialized
+    // before the stage checkpoint landed. It is NOT trusted on its own — the
+    // readback below re-derives the identity and refuses anything that is not the
+    // exact expected transition.
+    if (!staged.ok && staged.error.code !== "CANDIDATE_EXISTS") {
+      return this.#failRun(runRef, settledAttemptIds, staged.error.code, staged.error.message);
+    }
+    const successor = await this.#dependencies.candidates.open({
+      bookId: request.bookId,
+      selector: { kind: "CANDIDATE", candidateId: request.successorCandidateId },
+    });
+    if (!successor.ok) return this.#failRun(runRef, settledAttemptIds, "REVIEW_REPAIR_SUCCESSOR_UNAVAILABLE", successor.error.message);
+    const successorIdentity = identityOf(successor.value);
+    if (
+      successor.value.manifest.bookId !== request.bookId
+      || successor.value.manifest.parentCandidateId !== request.failedCandidate.candidateId
+      || successor.value.manifest.createdByRunId !== request.repairRunId
+      || sameIdentity(successorIdentity, request.failedCandidate)
+    ) {
+      return this.#failRun(runRef, settledAttemptIds, "REVIEW_REPAIR_SUCCESSOR_CONFLICT", "staged successor does not match exact review-repair transition");
+    }
+    const checkpoint = await this.#dependencies.stageCoordinator.checkpoint({
+      schemaVersion: "1",
+      bookId: request.bookId,
+      runId: request.repairRunId,
+      stageId: REVIEW_REPAIR_STAGE_ID,
+      status: "COMPLETED",
+      attemptIds: settledAttemptIds,
+      candidate: successorIdentity,
+      completedAt: this.#dependencies.clock.now(),
+    });
+    if (!checkpoint.ok) return failed("REVIEW_REPAIR_TERMINAL_UNCERTAIN", `${checkpoint.error.code}:${checkpoint.error.message}`);
+    const terminal = await this.#dependencies.runStore.finishRun({
+      bookId: request.bookId,
+      runId: request.repairRunId,
+      status: "COMPLETED",
+      finishedAt: this.#dependencies.clock.now(),
+    });
+    if (!terminal.ok) return failed("REVIEW_REPAIR_TERMINAL_UNCERTAIN", `${terminal.error.code}:${terminal.error.message}`);
+    const verified = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, this.#dependencies.clock.now());
+    if (!verified.ok || verified.value.status !== "COMPLETED") {
+      return failed("REVIEW_REPAIR_TERMINAL_UNCERTAIN", "completed review-repair run readback failed");
+    }
+    return {
+      ok: true,
+      value: {
+        successor: successor.value,
+        failedReviewId: request.failedReviewId,
+        targetChapterNumbers: authorized.value.targetChapterNumbers,
+      },
+    };
   }
 }

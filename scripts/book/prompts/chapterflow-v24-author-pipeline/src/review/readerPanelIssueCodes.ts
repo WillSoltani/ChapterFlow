@@ -34,8 +34,9 @@ export const READER_BLOCKING_CODE_PREFIX = "READER.BLOCKING." as const;
  * (`candidateQcEvaluator`), so a consumer reading a QC round sees
  * `REVIEW.READER.PANEL.FACTOR_SCORES` while a consumer reading the review itself
  * sees the bare code. Matching only one spelling silently misclassifies the
- * other — and the repair lane reads the QC round, so the prefixed spelling is
- * the one it actually meets.
+ * other, and BOTH are live: the QC repair lane reads a committed QC round and
+ * meets the prefixed spelling, while the review-FAIL repair lane
+ * (`runFromReviewFail`) reads the canonical review itself and meets the bare one.
  */
 export function isReviewIssueCode(code: string, base: string): boolean {
   return code === base || code === `REVIEW.${base}`;

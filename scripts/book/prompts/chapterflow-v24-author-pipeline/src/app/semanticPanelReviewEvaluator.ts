@@ -206,18 +206,22 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
       // The per-factor medians ride out for EVERY chapter the panel read, pass or
       // fail. This is deliberate and it is the whole point of the channel.
       //
-      // Gating the emission on "the panel blocked this chapter" makes it dead on
-      // the live path: blocking the chapter is exactly what turns the review
-      // outcome into FAIL, and a FAIL review never reaches repair. The book-run
-      // service returns BOOK_RUN_REVIEW_FAILED before the QC phase on any
-      // non-PASS review; `qcService.runFresh` refuses a non-PASS review with
-      // QC_JOIN_MISMATCH; `CandidateQcEvaluator.run` refuses it with
-      // CANDIDATE_QC_CANONICAL_PASS_REQUIRED. Repair reads a committed QC ROUND,
-      // so every review it can ever see is a PASS — and a PASS review carries no
-      // BLOCKER at all (`reviewService` rejects PASS+BLOCKER). A diagnosis
-      // emitted only on a blocked chapter is therefore unreachable from repair by
-      // construction, which is precisely how a uniformly-mediocre chapter reached
-      // repair carrying nothing but gate mechanics.
+      // Gating the emission on "the panel blocked this chapter" would make it
+      // dead on the QC repair lane: `qcService.runFresh` refuses a non-PASS
+      // review with QC_JOIN_MISMATCH and `CandidateQcEvaluator.run` refuses it
+      // with CANDIDATE_QC_CANONICAL_PASS_REQUIRED, so every review a committed QC
+      // ROUND can carry is a PASS — and a PASS review carries no BLOCKER at all
+      // (`reviewService` rejects PASS+BLOCKER). A diagnosis emitted only on a
+      // blocked chapter is therefore unreachable from `CandidateRepairApplicationPort.run`
+      // by construction, which is precisely how a uniformly-mediocre chapter
+      // reached repair carrying nothing but gate mechanics.
+      //
+      // A FAIL review is no longer terminal — `runFromReviewFail` routes its
+      // named blockers into a chapter-scoped repair whose successor goes back
+      // through this same panel — but that lane reads the REVIEW, not a QC round,
+      // so it does not change the argument above: the QC lane still only ever
+      // sees PASS reviews, and these medians are still the only per-factor record
+      // either lane keeps once the seat reviews are gone.
       //
       // Cost of emitting always: one WARN per chapter on every review. It gates
       // nothing (PASS is decided on BLOCKERs), and it is the only per-factor
