@@ -2686,6 +2686,29 @@ test("SEC120 stands down when NO specific of a cited anchor reached the standalo
   }
 });
 
+test("every memorable line explains ITSELF — no boilerplate 'why' repeated across the book", () => {
+  // Live AUDIT_FALSE_ATTESTATION: one hardcoded string sat in why for all 12
+  // entries of a four-chapter book, and the book-pattern audit attested
+  // literalSubstringGroups:0 with that string in its own input set. A reason
+  // identical across every choice justifies nothing.
+  const chapter = {
+    breakdown: {
+      fastRead: "You notice the default before you act on it. The cost shows up later when nobody is watching.",
+      deepRead: "Do not wait for permission but decide what you will change before the week starts. A small practice beats a large intention every time.",
+      fullRead: "When the signal arrives you already know which choice you rehearsed. Name the move you will make and the moment you will make it.",
+    },
+  } as unknown as Parameters<typeof selectMemorableLinesDeterministic>[0];
+
+  const lines = selectMemorableLinesDeterministic(chapter);
+  assert.ok(lines.length >= 2, "fixture must yield at least two lines");
+  assert.equal(new Set(lines.map((l) => l.why)).size, lines.length, "each why must be distinct");
+  for (const line of lines) {
+    assert.doesNotMatch(line.why, /Selected deterministically/, "the boilerplate why must be gone");
+    assert.match(line.why, /^From the (fastRead|deepRead|fullRead):/, "the why names the tier it came from");
+    assert.match(line.why, /score \d+/, "the why reports the score that actually chose it");
+  }
+});
+
 test("learning-pack task pre-lists each quiz slot's required verbatim specifics (Task 11z)", () => {
   const fx = compileFixture();
   const md = buildSectionTaskMarkdown({

@@ -44,9 +44,39 @@ export function selectMemorableLinesDeterministic(chapter: ChapterV21): Memorabl
     .map((c) => ({
       text: c.text,
       location: c.location,
-      why: "Selected deterministically: concise, concrete, and reusable as a reader-facing takeaway.",
+      why: memorableLineReason(c.text, c.location, c.score),
       ...(c.sourceAnchorIds && c.sourceAnchorIds.length > 0 ? { sourceAnchorIds: c.sourceAnchorIds.slice(0, 3) } : {}),
     }));
+}
+
+/** Why THIS sentence was selected, in terms of the traits that actually scored it.
+ *
+ *  Every line previously carried one hardcoded string — "Selected
+ *  deterministically: concise, concrete, and reusable as a reader-facing
+ *  takeaway." — repeated verbatim for all 12 entries of a four-chapter book. A
+ *  justification identical across every choice justifies nothing, and the blind
+ *  reader panel caught it as a live AUDIT_FALSE_ATTESTATION: the book-pattern
+ *  audit attested literalSubstringGroups:0 while that string sat in the same
+ *  input set, so its pass could not be relied on.
+ *
+ *  The traits below are exactly the ones memorableLineScore rewards, so the
+ *  sentence's own reason is derived from why it actually won rather than
+ *  asserted. Nothing here is claimed that the score did not measure. */
+export function memorableLineReason(text: string, location: string, score: number): string {
+  const traits: string[] = [];
+  if (/\byou\b/i.test(text)) traits.push("addresses the reader directly");
+  if (/\bnot\b.+\bbut\b/i.test(text)) traits.push("names the wrong move against the right one");
+  if (/\bwhen\b|\bbefore\b|\bafter\b|\buntil\b/i.test(text)) traits.push("fixes the moment it applies");
+  if (/\bchoice\b|\bdecide\b|\bnotice\b|\bpractice\b|\bdefault\b|\bsignal\b|\bcost\b/i.test(text)) {
+    traits.push("turns on a decision the reader can act on");
+  }
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  if (words >= 8 && words <= 13) traits.push(`sits at ${words} words, quotable without trimming`);
+  const tier = location.replace(/^breakdown\./, "");
+  const lead = traits.length > 0
+    ? traits.join("; ")
+    : `stands alone at ${words} words without leaning on its neighbours`;
+  return `From the ${tier}: ${lead} (score ${score}).`;
 }
 
 export function memorableLineScore(text: string): number {
