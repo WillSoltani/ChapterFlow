@@ -2522,6 +2522,26 @@ export function learningProseDerivabilityFindings(
       const anchor = anchors.get(id);
       if (!anchor) continue;
       if (!claimTypes.some((claimType) => anchor.supportsClaimTypes?.includes(claimType))) continue;
+      // Task 11an — SEC120 must never forbid what SEC56/SEC58 COMPEL.
+      // Those gates require each citing unit to carry at least ONE of its cited
+      // anchor's hardSpecifics verbatim. If NONE of them reached the standalone
+      // tiers, the unit has no legal move: using one trips SEC120, using none
+      // trips SEC56/SEC58 — jointly unsatisfiable, and it wedged the live canary
+      // for 18 straight rounds on ch02 (all seven cards, every retry).
+      //
+      // When at least one specific IS on the page the writer had a satisfiable
+      // choice, so the check stands and flags the ones it reached past. When none
+      // is, the defect is upstream — the summary tiers never covered a case the
+      // blueprint dealt — and SEC120 stands down rather than blocking a chapter
+      // that cannot be written.
+      const anchorSpecifics = (anchor.hardSpecifics ?? [])
+        .map((value) => normalizeDerivabilityText(text(value)))
+        .filter((value) => value.length >= 3);
+      const anySpecificOnThePage = anchorSpecifics.some((value) =>
+        haystack.includes(value)
+        || qualifiedNameDerivable(value, haystack)
+        || clippedPhraseDerivable(value, haystack));
+      if (!anySpecificOnThePage) continue;
       for (const specific of anchor.hardSpecifics ?? []) {
         const normalized = normalizeDerivabilityText(text(specific));
         if (normalized.length < 3) continue;
