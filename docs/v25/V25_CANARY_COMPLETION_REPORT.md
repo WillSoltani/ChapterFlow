@@ -381,14 +381,18 @@ logs `action=REGEN_SUPERSEDES_POINTER_ONLY` so it is never silent, and the resea
 
 ---
 
-## 8. What still blocks a first live promotion
+## 8. The promotion blockers — found, and closed
 
 A parallel adversarial audit of the never-executed QC→promotion path (three agents,
-isolated worktrees) found three criticals. None are Franklin content problems; all
-would fire on the first real promotion of any book.
+isolated worktrees) found three criticals. None were Franklin content problems; each
+would have fired on the first real promotion of any book. **All three are now fixed
+and on main**, along with the release gaps found alongside them.
 
-**C1 — v25 release writes no production-manifest sidecar.** Every v25-promoted book
-is unshippable: `publish-final` has nothing to consume. Blocker #1.
+**C1 — v25 release wrote no production-manifest sidecar** (FIXED). Every v25-promoted
+book was unshippable: `publish-final` refused on `PPKG.sidecar_missing`. Release now
+writes it in the shape the existing consumers read, performs the same release-time
+self-verify `promoteBook` does, and publishes the pair as one transaction so a failed
+re-release cannot destroy a shipped book's manifest.
 
 **C2 — the reader panel's scale has no band anchors.** Seats are asked for 0–100
 factor scores with no descriptors, and disagree by up to 13 points on the same
@@ -401,17 +405,36 @@ catalogue's own standard — but the specific number is not transferable between
 rulers. The fix is to anchor the panel's scale to the published taxonomy, not to
 re-argue the threshold.
 
-**C3 — repair is starved of signal.** It receives *only* blocker findings; every
-advisory and every per-factor score is discarded. A chapter failing purely on the
-composite floor therefore reaches repair as one number naming no defect. This is
-precisely the "66.5 with zero named defects" shape that stalled the live canary for
-a dozen rounds — the diagnosis existed in the verdict all along and was thrown away
-before repair could see it.
+**C3 — repair was starved of signal** (FIXED). It received *only* blocker findings;
+every advisory and per-factor score was discarded, so a chapter failing purely on the
+composite floor reached repair as one number naming no defect. That is precisely the
+"66.5 with zero named defects" shape that stalled the canary for a dozen rounds — the
+diagnosis existed in the verdict all along and was thrown away before repair could see
+it. Advisories and factor scores now reach repair, verified reachable hop by hop on the
+live path.
 
-Also open, lower severity: the v25 release route ignores the quarantine tombstone
-that `quarantine-book` promises will block promotion; `--promote-local` advances the
-pointer without producing a reader package; and the release path keeps no journal, so
-a crash between pointer CAS and package write is unrecoverable.
+The lower-severity release gaps are closed too: the quarantine tombstone is now
+fail-closed **before** assembly and the CAS (a tombstone under the normalised slug also
+blocks a release requested under the raw id); `--promote-local` no longer reports
+unqualified success for a pointer move that produces no package; and the release window
+is journalled. One defect was caught in that journal by the harness itself — it
+defaulted to the **production** state root when none was configured, so a hermetic
+release mutated real production state. No root now means no journal.
+
+### 8.1 A gate that was attempted and rejected
+
+The remaining blocker class after the floor cleared was `internal_contradiction` — the
+chapter disagreeing with itself across surfaces. A deterministic gate for it was built
+and **rejected on evidence**: an adversarial reviewer reproduced false positives for
+both checks against real shipped prose, the supporting "zero findings" scan was vacuous
+(the check never armed on that corpus), and the blocker text asserted to the writer
+something the prose did not say.
+
+Contradiction detection needs referent resolution — *"who lacked price knowledge"*,
+*"did these two things follow the same habit"* — and has no reliable lexical signature.
+It stays a **panel-judged class**, handled per book by scars. That is a decision, not
+an omission: shipping an unsound gate would block good chapters permanently to catch
+some bad ones.
 
 ---
 
