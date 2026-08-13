@@ -362,6 +362,16 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
   assert.ok(anchor, "fixture needs a specifics-rich quiz-capable anchor");
   const specific = anchor!.hardSpecifics![0];
   assert.equal(fx.summary.breakdown.fullRead.includes(specific), false, "fixture prose must not already name the specific");
+  // Task 11an: the anchor must be SATISFIABLE — at least one of its specifics on
+  // the standalone page — or SEC58 would compel exactly what SEC120 forbids and
+  // the pair would be unsatisfiable (SEC120 now stands down in that case, by
+  // design). Put a DIFFERENT specific on the page so reaching past it is a real
+  // choice the writer made, which is what this test is about.
+  const onPage = (anchor!.hardSpecifics ?? []).find((x) => x !== specific) ?? specific;
+  const prose = {
+    ...fx.summary,
+    breakdown: { ...fx.summary.breakdown, deepRead: `${fx.summary.breakdown.deepRead} The deep read states ${onPage} outright.` },
+  };
 
   const bad = cloneLearning(fx.learning);
   const q = bad.quiz.questions[0];
@@ -374,7 +384,7 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
   const legacy = validateLearningPack(bad, fx.blueprint, fx.packet);
   assert.deepEqual(legacy.filter((f) => f.checkId.startsWith("SEC120")), [], "absent prose must no-op, never fire");
 
-  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, prose).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
   assert.equal(hits.length, 1, hits.map((f) => f.message).join("\n"));
   assert.equal(hits[0].severity, "blocker", "SEC120 is a blocker, like its SEC55–SEC58 learning-family siblings");
   assert.equal(hits[0].section, "learning-pack");
@@ -483,12 +493,20 @@ test("SEC120 blocks a review card that introduces a term the chapter's prose nev
   const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("review_card") && (a.hardSpecifics ?? []).length > 0);
   assert.ok(anchor, "fixture needs a specifics-rich card-capable anchor");
   const specific = anchor!.hardSpecifics![0];
+  // Task 11an: keep the anchor SATISFIABLE (see the quiz case) so this stays a
+  // test about a writer reaching past an on-page specific, not about the
+  // unsatisfiable SEC58/SEC120 pair.
+  const onPage = (anchor!.hardSpecifics ?? []).find((x) => x !== specific) ?? specific;
+  const prose = {
+    ...fx.summary,
+    breakdown: { ...fx.summary.breakdown, deepRead: `${fx.summary.breakdown.deepRead} The deep read states ${onPage} outright.` },
+  };
 
   const bad = cloneLearning(fx.learning);
   bad.cards.cards[0].sourceAnchorIds = [anchor!.id];
   bad.cards.cards[0].back = `Retrieve the ${specific} first, because that is the account information a lender can read before any payment lands.`;
 
-  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, fx.summary).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, prose).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
   assert.ok(hits.some((f) => f.path === "/cards/cards/0"), hits.map((f) => `${f.path}: ${f.message}`).join("\n"));
   // Unused anchor specifics are NOT the card's problem — only what the unit itself cites.
   const untouched = cloneLearning(fx.learning);
@@ -601,7 +619,16 @@ test("the section gate feeds a chapter's own summary prose into its learning-pac
     assert.equal(withoutProse.findings.some((f) => f.checkId === "SEC120.learning_prose_derivable"), false, "no drafted prose → no SEC120 finding");
 
     // With the sibling summary pack present, the gate sees the chapter's own prose.
-    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+    // Task 11an: the summary must put ONE of the anchor's specifics on the page,
+    // or SEC120 stands down (SEC58 would compel exactly what it forbids) and this
+    // plumbing assertion would test nothing. A DIFFERENT specific stays off-page,
+    // so the quiz above is still reaching past a legal choice.
+    const onPage = (anchor.hardSpecifics ?? []).find((x) => x !== specific) ?? specific;
+    const summaryWithAnchor = {
+      ...fx.summary,
+      breakdown: { ...fx.summary.breakdown, deepRead: `${fx.summary.breakdown.deepRead} The deep read states ${onPage} outright.` },
+    };
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), summaryWithAnchor);
     const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["learning-pack"] });
     assert.equal(report.passed, false);
     assert.ok(
@@ -2614,6 +2641,49 @@ test("example task states that dealt staging fields are inhabited, never quoted 
   });
   assert.match(md, /STAGING DIRECTIONS/, "the staging rule must be stated");
   assert.match(md, /NEVER reproduce the dealt string verbatim/i);
+});
+
+test("SEC120 stands down when NO specific of a cited anchor reached the standalone tiers (Task 11an pincer)", () => {
+  const fx = compileFixture();
+  const anchored = fx.packet.allowedAnchors.find((a) => (a.hardSpecifics ?? []).length > 0);
+  assert.ok(anchored, "fixture needs a specifics-bearing anchor");
+  const spec = (anchored.hardSpecifics ?? [])[0]!;
+
+  // Prose that mentions the case but carries NONE of its hardSpecifics in the
+  // standalone tiers. SEC58 still compels the card to use one verbatim, so a
+  // finding here would make the pair unsatisfiable and wedge the compile.
+  const proseWithout = {
+    hook: "A reader opens the page.",
+    breakdown: {
+      fastRead: "The chapter walks through the case without quoting its figures.",
+      deepRead: "It explains the mechanism in plain terms and stops short of the numbers.",
+      fullRead: `The long read finally states ${spec} in full.`,
+    },
+    keyTakeaway: "Act on the pattern, not the anecdote.",
+  };
+  const usingIt = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+  usingIt.cards.cards[0].back = `Remember ${spec} when you plan the week.`;
+  usingIt.cards.cards[0].sourceAnchorIds = [anchored.id];
+
+  const blocked = validateLearningPack(usingIt, fx.blueprint, fx.packet, proseWithout)
+    .filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.deepEqual(blocked.map((f) => f.message), [], "unsatisfiable pair must not block");
+
+  // Control: once ONE specific IS on the page the writer had a legal choice, so
+  // reaching past it to a DIFFERENT off-page specific is still a finding.
+  const others = (anchored.hardSpecifics ?? []).filter((x) => x !== spec);
+  if (others.length > 0) {
+    const proseWith = {
+      ...proseWithout,
+      breakdown: { ...proseWithout.breakdown, deepRead: `The deep read states ${spec} outright.` },
+    };
+    const reaching = JSON.parse(JSON.stringify(fx.learning)) as LearningPackV1;
+    reaching.cards.cards[0].back = `Remember ${others[0]} when you plan the week.`;
+    reaching.cards.cards[0].sourceAnchorIds = [anchored.id];
+    const found = validateLearningPack(reaching, fx.blueprint, fx.packet, proseWith)
+      .filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+    assert.ok(found.length > 0, "a satisfiable anchor still enforces derivability");
+  }
 });
 
 test("learning-pack task pre-lists each quiz slot's required verbatim specifics (Task 11z)", () => {
