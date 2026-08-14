@@ -154,6 +154,25 @@ const FRESH_QC_STAGE = "fresh-qc" as const;
 const MAX_QC_JUDGE_RUNS = 5;
 
 /**
+ * Successor budget for the QC-FAIL repair run (base + up to 2 successors).
+ *
+ * The repair run id used to be a single fixed `derivedId("repair-run", runId)`.
+ * `CandidateRepairApplicationPort.run` refuses a run that is already terminal
+ * and non-COMPLETED (REPAIR_RUN_TERMINAL), so the FIRST repair that ended FAILED
+ * — a model failure, a rejected replacement, a workflow error — froze the book
+ * permanently: every later operator round re-created the same id, read the same
+ * FAILED record, and died one step past `fresh-qc COMPLETED outcome=FAIL`. The
+ * successor walk below is the same machinery the fresh-qc judge (MAX_QC_JUDGE_RUNS)
+ * and the compiler (operator-retry slots) already have.
+ *
+ * SMALLER than the judge's budget on purpose: one ordinal here is a full
+ * chapter-scoped repair PLUS a canonical review PLUS a fresh QC round of the
+ * successor, not a handful of per-question judge calls. Reaching the cap is NOT
+ * a pass — the run fails closed with the cap named.
+ */
+const MAX_QC_REPAIR_RUNS = 3;
+
+/**
  * How many times one book run may repair-and-re-review a canonical review FAIL.
  *
  * SMALL ON PURPOSE. Each round is a full chapter-scoped repair plus a full
@@ -776,6 +795,55 @@ export class BookRunApplicationService {
     }
   }
 
+  /**
+   * Pick the identity label the QC-FAIL repair executes under.
+   *
+   * Every id one repair transition owns — the repair run, the successor
+   * candidate, its canonical review, its fresh QC round, the repair record and
+   * the attempt root — derives from this ONE label, so an ordinal is a
+   * self-contained transition and never collides with a predecessor's durable
+   * artifacts. (`CandidateRepairApplicationPort.#readCompletedResult` binds the
+   * stored successor to `manifest.createdByRunId === repairRunId`, so a
+   * successor written under ordinal 1 is not reconcilable under ordinal 2 —
+   * scoping only the run id would trade one wedge for another.) Ordinal 1 keeps
+   * the historical unsuffixed label EXACTLY, so a book already mid-repair
+   * resumes onto its own durable ids.
+   *
+   * Walk semantics — only a FAILED ordinal is walked past:
+   *   NOT_FOUND         free ordinal; execute here.
+   *   COMPLETED         durable successor exists; the port short-circuits and
+   *                     re-reads it with ZERO new model calls (idempotent resume).
+   *   RUNNING           the port owns resume/uncertainty (a settled-but-unfinished
+   *                     run reconciles, an unsettled one stays fail-closed).
+   *   CANCEL_REQUESTED
+   *   CANCELLED         OPERATOR INTENT. Never walked past — the port answers
+   *                     REPAIR_CANCELLED, exactly as before.
+   *   FAILED            dead ordinal; try the next one.
+   * Nothing here weakens the port's terminal guard; it only stops handing the
+   * port a run id that is already spent.
+   */
+  async #chooseQcRepairLabel(bookId: string, runId: string, observedAt: UtcIso): Promise<Result<string>> {
+    for (let ordinal = 1; ordinal <= MAX_QC_REPAIR_RUNS; ordinal += 1) {
+      const label = ordinal === 1 ? "repair" : `repair-r${ordinal}`;
+      const prior = await this.#dependencies.runStore.readRun(bookId, derivedId(`${label}-run`, runId), observedAt);
+      if (!prior.ok) {
+        if (prior.error.code !== "NOT_FOUND") {
+          return failed("BOOK_RUN_REPAIR_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
+        }
+        return { ok: true, value: label };
+      }
+      if (prior.value.status !== "FAILED") return { ok: true, value: label };
+      console.error(
+        `[book-run] qc-repair book=${bookId} run=${runId} ordinal=${ordinal}/${MAX_QC_REPAIR_RUNS}`
+        + ` action=SKIP_FAILED_REPAIR_RUN label=${label}`,
+      );
+    }
+    return failed(
+      "BOOK_RUN_REPAIR_UNAVAILABLE",
+      `qc-repair successor budget exhausted after ${MAX_QC_REPAIR_RUNS} runs; every repair run for this book run ended FAILED`,
+    );
+  }
+
   /** Run the deterministic gates + LLM answer-key judge under a dedicated
    *  fresh-qc run, then commit the round. The judge is per-question model work
    *  the gateway admits against run-state, so it needs a live run sized to the
@@ -1371,8 +1439,9 @@ export class BookRunApplicationService {
     // produces a new candidate, and `exactReview` below is what judges it.
     //
     // BOUNDED, like the compile operator-retry slots: at most
-    // MAX_REVIEW_REPAIR_ROUNDS rounds, each one an event in the durable phase log
-    // and a line on stderr. An unbounded review->repair->review loop would be
+    // `resolveReviewRepairRounds()` rounds (MAX_REVIEW_REPAIR_ROUNDS unless the
+    // operator overrides it), each one an event in the durable phase log and a
+    // line on stderr. An unbounded review->repair->review loop would be
     // worse than the terminal failure it replaces, so hitting the cap falls
     // straight through to the fail-closed path below with the cap named.
     //
@@ -1422,7 +1491,12 @@ export class BookRunApplicationService {
       );
       if (!repairStarted.ok) return repairStarted;
       console.error(
-        `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${MAX_REVIEW_REPAIR_ROUNDS}`
+        // The RESOLVED cap, not the constant. The loop honours
+        // resolveReviewRepairRounds(); interpolating MAX_REVIEW_REPAIR_ROUNDS
+        // here printed the frozen default instead — observed under
+        // CHAPTERFLOW_REVIEW_REPAIR_ROUNDS=3 as "round=1/2", the one line the
+        // operator watches under-reporting the limit it is reporting.
+        `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${reviewRepairCap}`
         + ` failedReviewId=${failedReviewId} action=REVIEW_REPAIR`,
       );
       const repairedCandidate = await reviewRepair.runFromReviewFail({
@@ -1520,19 +1594,34 @@ export class BookRunApplicationService {
         await this.#event(runId, input.bookId, "repair", "FAILED", message, identity(candidate));
         return failed("BOOK_RUN_REPAIR_UNAVAILABLE", message);
       }
-      const repairStarted = await this.#event(runId, input.bookId, "repair", "STARTED", `failedRoundId=${qc.value.roundId}`, identity(candidate));
+      const repairObservedAt = safeNow(this.#dependencies.clock);
+      if (!repairObservedAt.ok) return repairObservedAt;
+      const repairLabel = await this.#chooseQcRepairLabel(input.bookId, runId, repairObservedAt.value);
+      if (!repairLabel.ok) {
+        await this.#event(runId, input.bookId, "repair", "FAILED", repairLabel.error.message, identity(candidate));
+        return repairLabel;
+      }
+      const label = repairLabel.value;
+      const repairStarted = await this.#event(
+        runId,
+        input.bookId,
+        "repair",
+        "STARTED",
+        `failedRoundId=${qc.value.roundId};label=${label}`,
+        identity(candidate),
+      );
       if (!repairStarted.ok) return repairStarted;
       const repaired = await this.#dependencies.repair.run({
         bookId: input.bookId,
         failedCandidate: identity(candidate),
         failedRoundId: qc.value.roundId,
-        repairId: derivedId("repair", runId),
-        successorCandidateId: derivedId("repair-candidate", runId),
-        reviewId: derivedId("repair-review", runId),
-        freshRoundId: derivedId("repair-qc", runId),
-        repairRunId: derivedId("repair-run", runId),
+        repairId: derivedId(label, runId),
+        successorCandidateId: derivedId(`${label}-candidate`, runId),
+        reviewId: derivedId(`${label}-review`, runId),
+        freshRoundId: derivedId(`${label}-qc`, runId),
+        repairRunId: derivedId(`${label}-run`, runId),
         sourceGitSha: input.sourceGitSha,
-        attemptRoot: resolve(input.attemptRoot, "repair"),
+        attemptRoot: resolve(input.attemptRoot, label),
         signal: input.signal,
       });
       if (!repaired.ok) {

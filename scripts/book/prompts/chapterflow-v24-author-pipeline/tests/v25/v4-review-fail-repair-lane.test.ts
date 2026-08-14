@@ -13,30 +13,18 @@
 
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 import {
-  BookRunApplicationService,
   MAX_REVIEW_REPAIR_ROUNDS,
   resolveReviewRepairRounds,
-  type BookRunEvent,
 } from "../../src/app/bookRunApplicationService.js";
-import type { CandidateQcEvaluator } from "../../src/app/candidateQcEvaluator.js";
 import {
   CandidateRepairApplicationPort,
   type ReviewRepairApplicationRequest,
 } from "../../src/app/candidateRepairApplicationPort.js";
-import type { CompilerApplicationPort } from "../../src/app/compilerApplicationPort.js";
-import { ModelGatewayReviewEvaluator } from "../../src/app/modelGatewayReviewEvaluator.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
-import type { ResearchCandidateApplicationPort } from "../../src/app/researchCandidateApplicationPort.js";
-import { createBookWriteLock } from "../../src/books/bookLease.js";
-import { createBookContentReader } from "../../src/books/bookContentReader.js";
-import { createCandidateStore } from "../../src/books/candidateStore.js";
-import { createCurrentPointerStore } from "../../src/books/currentPointer.js";
 import type {
-  CandidateInputFile,
   CandidateManifest,
   CandidateSnapshot,
   CandidateStore,
@@ -46,18 +34,13 @@ import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/
 import type { DiagnosisLookup, RepairService } from "../../src/qc/repairCoordinator.js";
 import type { RepairHistoryStore } from "../../src/qc/repairHistoryStore.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
-import { createQcService } from "../../src/qc/qcService.js";
-import { createPromotionService } from "../../src/release/promotionService.js";
-import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../../src/review/reviewTypes.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import type { ChapterV21 } from "../../src/types.js";
-import { fixtureChapter } from "../model-bakeoff-helpers.js";
+import { buildBookRunHarness, derivedIdOf } from "./bookRunRepairRig.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 import { BOOK as PORT_BOOK, FAILED, candidate as portCandidate, identity } from "./repairPortRig.js";
-
-const SOURCE_SHA = "b41d1cdab0fc33c4c1f840f4cf99089816e022d4";
 
 function digestOf(files: readonly { logicalPath: string; bytes: Uint8Array }[]): string {
   const hash = createHash("sha256");
@@ -303,242 +286,6 @@ requiredTest("a PASS canonical review is never repair-authorizing", async (conte
   assert.equal(rig.counts.model, 0);
 });
 
-// ────────────────────────────────────────────────────────────────────────────
-// Book-run-level: the loop, its bound, and its resume behaviour.
-// ────────────────────────────────────────────────────────────────────────────
-
-function derivedIdOf(prefix: string, runId: string): string {
-  return `${prefix}-${createHash("sha256").update(runId).digest("hex").slice(0, 32)}`;
-}
-
-type BookRunHarness = Readonly<{
-  service: BookRunApplicationService;
-  request: Omit<Parameters<BookRunApplicationService["run"]>[0], "resumeRunId">;
-  bookRunId: string;
-  events: BookRunEvent[];
-  reviewCalls: () => number;
-  repairCalls: () => readonly ReviewRepairApplicationRequest[];
-}>;
-
-/**
- * A book run whose canonical review outcomes are scripted per call and whose
- * repair port is a fake that stages a real successor candidate. The review
- * evaluator is the only runner consumer, so `reviewCalls()` counts panel runs
- * exactly.
- */
-async function buildBookRunHarness(
-  context: TestContext,
-  book: string,
-  reviewOutcomes: readonly CanonicalReviewResult["outcome"][],
-  options: Readonly<{ repairFails?: string }> = {},
-): Promise<BookRunHarness> {
-  const now = () => {
-    const value = context.clock.now();
-    context.clock.advance(1);
-    return value;
-  };
-  const suffix = book.replace(/[^a-z0-9]/g, "");
-  const bookRunId = `book-run-${suffix}`;
-  const compilerRunId = derivedIdOf("compiler-run", bookRunId);
-  const compiledCandidateId = `${compilerRunId}-candidate`;
-  const booksRoot = resolve(context.roots.tempRoot, `${suffix}-books`);
-  const runRoot = resolve(context.roots.tempRoot, `${suffix}-runs`);
-  mkdirSync(booksRoot, { recursive: true });
-  const writeLock = createBookWriteLock({ booksRoot });
-  const currentPointer = createCurrentPointerStore({ booksRoot, writeLock });
-  const candidates = createCandidateStore({ booksRoot, writeLock, currentPointerStore: currentPointer });
-  const reader = createBookContentReader({ booksRoot, currentPointerStore: currentPointer });
-  const runStore = createFileRunStore(runRoot);
-  const stageCoordinator = createFileStageCoordinator(runRoot);
-  const chapter = fixtureChapter(book, 1, suffix);
-  const jsonFile = (logicalPath: string, value: unknown, kind: CandidateInputFile["kind"] = "SIDECAR"): CandidateInputFile =>
-    ({ kind, logicalPath, mediaType: "application/json", bytes: Buffer.from(`${JSON.stringify(value)}\n`) });
-  const stageLocal = async (input: { candidateId: string; runId: string; files: readonly CandidateInputFile[]; parentCandidateId?: string }): Promise<CandidateSnapshot> => {
-    const staged = await candidates.stage({
-      bookId: book,
-      candidateId: input.candidateId,
-      ...(input.parentCandidateId === undefined ? {} : { parentCandidateId: input.parentCandidateId }),
-      createdByRunId: input.runId,
-      expectedInventory: input.files.map(({ bytes: _bytes, ...file }) => file),
-      files: input.files,
-      createdAt: context.clock.now(),
-    });
-    assert.equal(staged.ok, true, JSON.stringify(staged));
-    const opened = await candidates.open({ bookId: book, selector: { kind: "CANDIDATE", candidateId: input.candidateId } });
-    assert.ok(opened.ok);
-    return opened.value;
-  };
-  const seed = await stageLocal({
-    candidateId: "seed-candidate",
-    runId: "seed-run",
-    files: [jsonFile("inputs/chapter-index.json", [{ chapterId: chapter.chapterId, chapterNumber: 1, chapterTitle: chapter.title }])],
-  });
-  const compiledFiles = [
-    jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, chapter, "CHAPTER"),
-    jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({ bookId: book, chapters: [chapter], requirePlanArtifacts: false, checkSourceAlignment: false })),
-  ];
-  const compiled = await stageLocal({
-    candidateId: compiledCandidateId,
-    parentCandidateId: seed.manifest.candidateId,
-    runId: compilerRunId,
-    files: compiledFiles,
-  });
-
-  let reviewCalls = 0;
-  const outcomes = [...reviewOutcomes];
-  const runner: ModelTaskRunner = {
-    async run(request) {
-      reviewCalls += 1;
-      const admittedAt = context.clock.now();
-      const admitted = await runStore.admitAttempt({
-        bookId: request.context.bookId,
-        runId: request.context.runId,
-        attemptId: request.context.attemptId,
-        stageId: request.context.stageId,
-        operationId: request.context.operationId,
-        admittedAt,
-        staleAt: new Date(Date.parse(admittedAt) + 60_000).toISOString(),
-      });
-      assert.equal(admitted.ok, true, JSON.stringify(admitted));
-      const finished = await runStore.finishAttempt({
-        bookId: request.context.bookId,
-        runId: request.context.runId,
-        attemptId: request.context.attemptId,
-        outcome: "SUCCEEDED",
-        finishedAt: context.clock.now(),
-      });
-      assert.equal(finished.ok, true, JSON.stringify(finished));
-      const outcome = outcomes.shift() ?? "PASS";
-      return {
-        attemptId: request.context.attemptId,
-        outcome: "SUCCEEDED",
-        output: outcome === "PASS"
-          ? { outcome, issues: [] }
-          : { outcome, issues: [{ code: "READER.BLOCKING.contradiction", severity: "BLOCKER", message: "card 5 contradicts the deep read", location: "ch01/reader-b/deep" }] },
-      };
-    },
-  };
-  const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
-    .create(new ModelGatewayReviewEvaluator(runner));
-  const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
-  const promotion = createPromotionService({ candidateStore: candidates, contentReader: reader, reviewService: reviews, qcService: qc, currentPointerStore: currentPointer, clock: now });
-  const research = {
-    async run(req: { resumeRunId?: string; newRunId?: string }) {
-      return {
-        schemaVersion: "1" as const,
-        bookId: book,
-        title: "Review Repair",
-        author: "Fixture Author",
-        intakeRunId: req.resumeRunId ?? req.newRunId ?? bookRunId,
-        researchRunId: "research-fixture",
-        candidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
-        indexLogicalPath: "inputs/chapter-index.json" as const,
-        sectionTaskContextLogicalPath: "inputs/compiler-section-task-context.json" as const,
-        sources: [],
-        resumed: req.resumeRunId !== undefined,
-      };
-    },
-  } as unknown as ResearchCandidateApplicationPort;
-  let compilerRunPersisted = false;
-  const compiler = {
-    async run() {
-      if (!compilerRunPersisted) {
-        const created = await runStore.createRun({
-          schemaVersion: "1", bookId: book, runId: compilerRunId, commandId: "compiler-candidate", sourceGitSha: SOURCE_SHA,
-          requiredStages: ["compiler-candidate"], requiredInventory: [],
-          inputCandidate: { candidateId: seed.manifest.candidateId, manifestDigest: seed.manifest.manifestDigest },
-          attemptLimits: { run: 4, byStage: { "compiler-candidate": 4 } }, createdAt: context.clock.now(),
-        });
-        assert.ok(created.ok);
-        const finished = await runStore.finishRun({ bookId: book, runId: compilerRunId, status: "COMPLETED", finishedAt: context.clock.now() });
-        assert.ok(finished.ok);
-        compilerRunPersisted = true;
-      }
-      return { runId: compilerRunId, runStatus: "COMPLETED" as const, candidateId: compiled.manifest.candidateId, manifestDigest: compiled.manifest.manifestDigest };
-    },
-  } as unknown as CompilerApplicationPort;
-  const candidateQc = {
-    async run(req: { roundId: string; candidate: CandidateSnapshot; canonicalReview: { reviewId: string } }) {
-      return {
-        ok: true as const,
-        value: {
-          roundId: req.roundId,
-          candidate: { candidateId: req.candidate.manifest.candidateId, manifestDigest: req.candidate.manifest.manifestDigest },
-          reviewId: req.canonicalReview.reviewId,
-          outcome: "PASS" as const,
-          issues: [],
-        },
-      };
-    },
-  } as unknown as CandidateQcEvaluator;
-
-  const repairCalls: ReviewRepairApplicationRequest[] = [];
-  const successors = new Map<string, CandidateSnapshot>();
-  const repair = {
-    async runFromReviewFail(request: ReviewRepairApplicationRequest) {
-      repairCalls.push(request);
-      if (options.repairFails !== undefined) {
-        return { ok: false as const, error: { code: options.repairFails, message: "scripted repair failure" } };
-      }
-      const existing = successors.get(request.successorCandidateId);
-      if (existing) return { ok: true as const, value: { successor: existing, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
-      const repairedChapter: ChapterV21 = {
-        ...chapter,
-        hook: `${chapter.hook} (repaired for ${request.successorCandidateId})`,
-      };
-      const files = [
-        jsonFile(`content/chapters/${chapter.chapterId}.v21-native.chapter.json`, repairedChapter, "CHAPTER"),
-        jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({ bookId: book, chapters: [repairedChapter], requirePlanArtifacts: false, checkSourceAlignment: false })),
-      ];
-      const staged = await stageLocal({
-        candidateId: request.successorCandidateId,
-        parentCandidateId: request.failedCandidate.candidateId,
-        runId: request.repairRunId,
-        files,
-      });
-      successors.set(request.successorCandidateId, staged);
-      return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
-    },
-  } as unknown as CandidateRepairApplicationPort;
-
-  const events: BookRunEvent[] = [];
-  const service = new BookRunApplicationService({
-    research, compiler, repair, contentReader: reader, candidateQc, reviews, qc, promotion, currentPointer, runStore, stageCoordinator,
-    clock: { now },
-    ids: {
-      nextRunId: () => bookRunId,
-      candidateId: (runId) => `${runId}-candidate`,
-      modelAttemptId: (runId) => `${runId}-model`,
-      reviewAttemptId: (runId) => `${runId}-review-attempt`,
-      reviewId: (runId) => `${runId}-review`,
-      qcRoundId: (runId) => `${runId}-qc`,
-    },
-    events: {
-      async append(event) { events.push(event); },
-      async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
-    },
-    pipelineRoot: resolve(context.roots.base, "pipeline"),
-  });
-  return {
-    service,
-    bookRunId,
-    events,
-    reviewCalls: () => reviewCalls,
-    repairCalls: () => repairCalls,
-    request: {
-      bookId: book,
-      title: "Review Repair",
-      author: "Fixture Author",
-      sourceGitSha: SOURCE_SHA,
-      v25Root: resolve(context.roots.tempRoot, `${suffix}-v25`),
-      attemptRoot: resolve(context.roots.attemptsRoot, `${suffix}-book-run`),
-      regen: true,
-      maxRepairRounds: 1 as const,
-      promoteLocal: true,
-      signal: new AbortController().signal,
-    },
-  };
-}
 
 requiredTest("a canonical review FAIL is repaired and RE-REVIEWED, and the repaired candidate is what gets promoted", async (context: TestContext) => {
   const book = "review-repair-converges";
