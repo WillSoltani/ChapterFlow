@@ -19,6 +19,7 @@ import { resolve } from "node:path";
 import {
   BookRunApplicationService,
   MAX_REVIEW_REPAIR_ROUNDS,
+  resolveReviewRepairRounds,
   type BookRunEvent,
 } from "../../src/app/bookRunApplicationService.js";
 import type { CandidateQcEvaluator } from "../../src/app/candidateQcEvaluator.js";
@@ -628,6 +629,25 @@ requiredTest("a failing review-repair surfaces its own error and never masks the
     h.events.some((event) => event.phase === "repair" && event.status === "FAILED"),
     JSON.stringify(h.events.map((e) => [e.phase, e.status, e.detail])),
   );
+});
+
+requiredTest("the review-repair cap honours CHAPTERFLOW_REVIEW_REPAIR_ROUNDS and fails closed on a bad value", () => {
+  const saved = process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
+  try {
+    delete process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
+    assert.equal(resolveReviewRepairRounds(), MAX_REVIEW_REPAIR_ROUNDS, "unset falls back to the default");
+    process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = "4";
+    assert.equal(resolveReviewRepairRounds(), 4, "an operator override is honoured");
+    process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = "not-a-number";
+    assert.throws(() => resolveReviewRepairRounds(), /not an integer/, "garbage fails closed, never silently defaults");
+    process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = "0";
+    assert.throws(() => resolveReviewRepairRounds(), /must be 1-10/, "zero would disable the lane silently");
+    process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = "99";
+    assert.throws(() => resolveReviewRepairRounds(), /must be 1-10/, "a typo must not burn panels indefinitely");
+  } finally {
+    if (saved === undefined) delete process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
+    else process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = saved;
+  }
 });
 
 finishV25Tests().catch((error: unknown) => {

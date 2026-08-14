@@ -166,6 +166,37 @@ const MAX_QC_JUDGE_RUNS = 5;
  * did before the lane existed.
  */
 export const MAX_REVIEW_REPAIR_ROUNDS = 2;
+
+/** Resolve the review-repair cap, honouring an optional
+ *  CHAPTERFLOW_REVIEW_REPAIR_ROUNDS override — the same shape as the chapter
+ *  bar's CHAPTERFLOW_CHAPTER_BAR.
+ *
+ *  Measured on the live canary, one run, three panel verdicts:
+ *      initial            5 blockers
+ *      after round 1      3 blockers
+ *      after round 2      2 blockers
+ *  Monotonic. The loop converges; the default of 2 is simply below what that
+ *  book needed. Raising the DEFAULT would spend a full repair plus a full
+ *  blind-panel re-read of the whole book on every run that does not need it —
+ *  the most expensive loop in the pipeline — so the default stays 2 and the
+ *  operator decides when a book is worth more.
+ *
+ *  Fails closed on a malformed or out-of-range value rather than silently
+ *  falling back: a cap that quietly ignores what the operator asked for is
+ *  worse than one that refuses. Bounded at 10 so a typo cannot burn panels
+ *  indefinitely. */
+export function resolveReviewRepairRounds(): number {
+  const raw = globalThis.process?.env?.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
+  if (raw === undefined || raw.trim() === "") return MAX_REVIEW_REPAIR_ROUNDS;
+  const parsed = Number(raw);
+  if (!Number.isInteger(parsed)) {
+    throw new Error(`CHAPTERFLOW_REVIEW_REPAIR_ROUNDS is set but not an integer: ${raw}`);
+  }
+  if (parsed < 1 || parsed > 10) {
+    throw new Error(`CHAPTERFLOW_REVIEW_REPAIR_ROUNDS must be 1-10 (got ${parsed})`);
+  }
+  return parsed;
+}
 const RETRYABLE_COMPILER_FAILURES = Object.freeze([
   "COMPILER_ASSEMBLY_BLOCKED:",
   "COMPILER_SECTION_BLOCKED:",
@@ -1357,16 +1388,18 @@ export class BookRunApplicationService {
     // says so).
     const reviewRepair = this.#dependencies.repair;
     let reviewRepairRounds = 0;
+    // Resolved ONCE per run so a mid-run env change cannot move the cap under it.
+    const reviewRepairCap = resolveReviewRepairRounds();
     let reviewRepairNote = "";
     while (reviewRepair !== undefined && review.ok && review.value.outcome === "FAIL") {
-      if (reviewRepairRounds >= MAX_REVIEW_REPAIR_ROUNDS) {
-        reviewRepairNote = `; unresolved after ${reviewRepairRounds} of ${MAX_REVIEW_REPAIR_ROUNDS} review-repair round(s) (cap reached)`;
+      if (reviewRepairRounds >= reviewRepairCap) {
+        reviewRepairNote = `; unresolved after ${reviewRepairRounds} of ${reviewRepairCap} review-repair round(s) (cap reached)`;
         const capped = await this.#event(
           runId,
           input.bookId,
           "repair",
           "FAILED",
-          `action=REVIEW_REPAIR;round=${reviewRepairRounds};cap=${MAX_REVIEW_REPAIR_ROUNDS};reviewId=${review.value.reviewId}`,
+          `action=REVIEW_REPAIR;round=${reviewRepairRounds};cap=${reviewRepairCap};reviewId=${review.value.reviewId}`,
           identity(candidate),
         );
         if (!capped.ok) return capped;
