@@ -169,6 +169,20 @@ requiredTest("no-op chapter output is rejected and settled run becomes FAILED", 
   assert.equal(subject.counts.repair, 0);
   const run = await subject.runStore.readRun(BOOK, subject.request.repairRunId, context.clock.now());
   assert.equal(run.ok && run.value.status, "FAILED");
+
+  // The guard that made this port SAFE also made it a wedge when the caller
+  // reused one fixed run id: a FAILED repair run is immutable, so re-entering it
+  // is refused forever. That refusal is CORRECT and stays — the caller is what
+  // had to change (the book-run service now walks to a successor ordinal; see
+  // tests/v25/v4-qc-fail-repair-successor.test.ts). Pin the refusal so the
+  // service-level rig's fake ladder cannot drift from the real port's.
+  const replay = await subject.port.run(subject.request);
+  assert.equal(replay.ok, false);
+  if (!replay.ok) {
+    assert.equal(replay.error.code, "REPAIR_RUN_TERMINAL");
+    assert.equal(replay.error.message, "repair run is FAILED");
+  }
+  assert.equal(subject.counts.model, 1, "a terminal repair run must never re-enter the model");
 });
 
 requiredTest("a repair writer receives the book's rules, sourced from the candidate, not from config", async (context) => {
