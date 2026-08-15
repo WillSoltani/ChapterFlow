@@ -305,6 +305,47 @@ export function validateAnchorHardSpecifics(
   return problems;
 }
 
+/**
+ * SEC122 — UNRESOLVED CITED ANCHOR (fail-closed backstop for the whole anchor family).
+ *
+ * Every anchor-CONTENT gate in this file resolves a cited id against
+ * `sourceAnchorById(packet)` and then SKIPS when the lookup misses:
+ * `validateAnchorClaimType` guards on `if (anchor && …)`, `validateAnchorHardSpecifics`
+ * on `if (!anchor?.supportsClaimTypes…) continue`, SEC33 on `if (anchor?.supports…)`,
+ * and SEC120's `undeliverable` on a literal `if (!anchor) continue`. A citation to an
+ * id that is not in this chapter's packet therefore dodges SEC13/SEC14/SEC15/SEC16,
+ * SEC32/SEC33, SEC55/SEC56/SEC57/SEC58, SEC73/SEC74 and SEC120 — every content gate at
+ * once. Today the id-level gates (SEC5/SEC8/SEC10/SEC27/SEC47/SEC51/SEC64/SEC68-SEC72,
+ * all via `validateAnchorIds`) do refuse those same ids, so a pack still fails to
+ * compile — but that refusal lives in a DIFFERENT check family, and the content family
+ * itself stays silent. SEC122 makes the content family refuse on its own so no future
+ * caller can reach a content gate through a path that forgot the id gate.
+ *
+ * LEGAL UNIVERSE (established by reading the construction path, not assumed):
+ * `packet.allowedAnchors` is `buildSourceAnchorCatalog(sidecar)` for exactly ONE
+ * chapter's source-v2 sidecar (compiler/sourcePacket.ts compileSourcePacketFromSidecar),
+ * and the section gate reads one packet per chapterNumber. All four section packs of a
+ * chapter (summary/example/learning/action) validate against that SAME packet, so
+ * cross-SECTION citation inside a chapter is legal and already resolves. Cross-CHAPTER
+ * citation is NOT legal: catalog ids are chapter-prefixed (`chNN.fact.*`, `chNN.case.*`,
+ * `chNN.framework.*`) and the ship-time critic treats a foreign `chNN.` prefix as its own
+ * blocker (sourceGrounding SC11.4.wrong_chapter_anchor). So the correct universe of legal
+ * ids for any unit is precisely this chapter's `packet.allowedAnchors`.
+ */
+export function validateAnchorResolution(
+  ids: unknown,
+  anchors: Map<string, SourcePacketV1["allowedAnchors"][number]>,
+  label: string,
+): string[] {
+  const problems: string[] = [];
+  for (const id of anchorArray(ids)) {
+    if (anchors.has(id)) continue;
+    problems.push(`${label} cites unresolved source anchor ${JSON.stringify(id)}; that id is not in this chapter's source packet, so every anchor-content check (claim type, hardSpecifics, derivability) would silently skip it — cite an id from packet.allowedAnchors`);
+  }
+  return problems;
+}
+
+
 function scoredMemorableSentences(value: unknown): Array<{ text: string; score: number }> {
   return text(value)
     .replace(/\s+/g, " ")
@@ -2121,11 +2162,13 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   for (const f of checkSentenceSanity(text(pack.hook?.hook), "hook")) push("SEC11.summary_sentence_sanity", "blocker", f.message, "/hook/hook");
   for (const f of checkSentenceSanity(text(pack.hook?.counterintuition), "counterintuition")) push("SEC11.summary_sentence_sanity", "blocker", f.message, "/hook/counterintuition");
   for (const p of validateAnchorIds(pack.hook?.sourceAnchorIds, allowed, "hook.sourceAnchorIds")) push("SEC5.hook_anchor", "blocker", p, "/hook/sourceAnchorIds");
+  for (const p of validateAnchorResolution(pack.hook?.sourceAnchorIds, anchors, "hook.sourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/hook/sourceAnchorIds");
   for (const p of validateAnchorClaimType(pack.hook?.sourceAnchorIds, anchors, "hook", "hook.sourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/hook/sourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(pack.hook?.sourceAnchorIds, anchors, "hook", pack.hook?.hook, "hook")) push("SEC14.summary_anchor_specifics", "blocker", p, "/hook/hook");
   if (text(pack.hook?.counterintuition)) {
     const counterIds = anchorArray(pack.hook?.counterintuitionSourceAnchorIds).length ? pack.hook?.counterintuitionSourceAnchorIds : pack.hook?.sourceAnchorIds;
     for (const p of validateAnchorIds(counterIds, allowed, "hook.counterintuitionSourceAnchorIds")) push("SEC5.hook_anchor", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
+    for (const p of validateAnchorResolution(counterIds, anchors, "hook.counterintuitionSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
     for (const p of validateAnchorClaimType(counterIds, anchors, "hook", "hook.counterintuitionSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
     for (const p of validateAnchorHardSpecifics(counterIds, anchors, "hook", pack.hook?.counterintuition, "counterintuition")) push("SEC14.summary_anchor_specifics", "blocker", p, "/hook/counterintuition");
   }
@@ -2138,6 +2181,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     if (/\b(this chapter|the chapter|the author|the book)\b/i.test(value)) push("SEC7.meta_reference", "blocker", `${tier} contains meta-reference`, `/breakdown/${tier}`);
     for (const f of checkReadingLevel(value, tier)) push("SEC12.summary_readability", "blocker", f.message, `/breakdown/${tier}`);
     for (const p of validateAnchorIds(pack.breakdown?.sourceAnchorIds?.[tier], allowed, `breakdown.sourceAnchorIds.${tier}`)) push("SEC8.breakdown_anchor", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
+    for (const p of validateAnchorResolution(pack.breakdown?.sourceAnchorIds?.[tier], anchors, `breakdown.sourceAnchorIds.${tier}`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorHardSpecifics(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", value, `breakdown.${tier}`)) push("SEC14.summary_anchor_specifics", "blocker", p, `/breakdown/${tier}`);
     memorableCandidates.push(...scoredMemorableSentences(value).map((candidate) => ({ ...candidate, tier, ids: pack.breakdown?.sourceAnchorIds?.[tier] })));
@@ -2213,10 +2257,12 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   if (wordCount(pack.keyTakeaway) > 30) push("SEC18.takeaway_word_cap", "blocker", `keyTakeaway is ${wordCount(pack.keyTakeaway)} words (cap 30)`, "/keyTakeaway");
   for (const f of checkSentenceSanity(text(pack.keyTakeaway), "keyTakeaway")) push("SEC11.summary_sentence_sanity", "blocker", f.message, "/keyTakeaway");
   for (const p of validateAnchorIds(pack.keyTakeawaySourceAnchorIds, allowed, "keyTakeawaySourceAnchorIds")) push("SEC10.takeaway_anchor", "blocker", p, "/keyTakeawaySourceAnchorIds");
+  for (const p of validateAnchorResolution(pack.keyTakeawaySourceAnchorIds, anchors, "keyTakeawaySourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/keyTakeawaySourceAnchorIds");
   for (const p of validateAnchorClaimType(pack.keyTakeawaySourceAnchorIds, anchors, "takeaway", "keyTakeawaySourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/keyTakeawaySourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(pack.keyTakeawaySourceAnchorIds, anchors, "takeaway", pack.keyTakeaway, "keyTakeaway")) push("SEC14.summary_anchor_specifics", "blocker", p, "/keyTakeaway");
   if (text(pack.tryThisNow)) {
     for (const p of validateAnchorIds(pack.tryThisNowSourceAnchorIds, allowed, "tryThisNowSourceAnchorIds")) push("SEC10.try_anchor", "blocker", p, "/tryThisNowSourceAnchorIds");
+    for (const p of validateAnchorResolution(pack.tryThisNowSourceAnchorIds, anchors, "tryThisNowSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorClaimType(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", "tryThisNowSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow")) push("SEC14.summary_anchor_specifics", "blocker", p, "/tryThisNow");
   }
@@ -2339,6 +2385,7 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     }
     const exampleAnchorIds = Array.isArray(ex.sourceAnchorIds) ? ex.sourceAnchorIds : ex.sourceAnchorId ? [ex.sourceAnchorId] : [];
     for (const p of validateAnchorIds(exampleAnchorIds, allowed, `examples[${i}].sourceAnchorIds`)) push("SEC27.example_anchor", "blocker", p, `${root}/sourceAnchorIds`);
+    for (const p of validateAnchorResolution(exampleAnchorIds, anchors, `examples[${i}].sourceAnchorIds`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `${root}/sourceAnchorIds`);
     for (const id of exampleAnchorIds) {
       const anchor = typeof id === "string" ? anchors.get(id) : null;
       if (anchor && !anchor.supportsClaimTypes?.includes("example")) {
@@ -2624,6 +2671,8 @@ export function validateLearningPack(
     const correctChoice = correctIndexOk && Array.isArray(q.choices) ? text(q.choices[q.correctIndex]) : "";
     for (const p of validateAnchorIds(qSourceIds, allowed, `quiz.questions[${i}].sourceAnchorIds`)) push("SEC47.quiz_anchor", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
     for (const p of validateAnchorIds(keyEvidenceIds, allowed, `quiz.questions[${i}].keyEvidenceAnchorIds`)) push("SEC47.quiz_anchor", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
+    for (const p of validateAnchorResolution(qSourceIds, anchors, `quiz.questions[${i}].sourceAnchorIds`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
+    for (const p of validateAnchorResolution(keyEvidenceIds, anchors, `quiz.questions[${i}].keyEvidenceAnchorIds`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
     for (const p of validateAnchorClaimType(qSourceIds, anchors, "quiz_prompt", `quiz.questions[${i}].sourceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(qSourceIds, anchors, "quiz_explanation", `quiz.questions[${i}].sourceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(keyEvidenceIds, anchors, "quiz_key_evidence", `quiz.questions[${i}].keyEvidenceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
@@ -2754,6 +2803,7 @@ export function validateLearningPack(
     if (text(card.back).length < 50) push("SEC50.card_back", "blocker", `card ${i + 1} back too short`, `/cards/cards/${i}/back`);
     const cardIds = card.sourceAnchorIds ?? (card.sourceAnchorId ? [card.sourceAnchorId] : []);
     for (const p of validateAnchorIds(cardIds, allowed, `cards[${i}].sourceAnchorIds`)) push("SEC51.card_anchor", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
+    for (const p of validateAnchorResolution(cardIds, anchors, `cards[${i}].sourceAnchorIds`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(cardIds, anchors, "review_card", `cards[${i}].sourceAnchorIds`)) push("SEC57.card_anchor_claim_type", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
     // P15 (F14): cards are non-narrative units like quiz stems — min=1, matching the
     // SEC55–SEC58 contract line in sectionTasks (a ≥2 card quota invites the same
@@ -2777,6 +2827,7 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   if (text(pack.tryThisNow).length < 60) push("SEC62.try_length", "blocker", "tryThisNow too short", "/tryThisNow");
   if (/^\s*(reflect|consider|think about|say aloud|notice your)\b/i.test(text(pack.tryThisNow))) push("SEC63.try_symbolic", "blocker", "tryThisNow must be a concrete action, not reflection/symbolic theater", "/tryThisNow");
   for (const p of validateAnchorIds(pack.tryThisNowSourceAnchorIds, allowed, "tryThisNowSourceAnchorIds")) push("SEC64.try_anchor", "blocker", p, "/tryThisNowSourceAnchorIds");
+  for (const p of validateAnchorResolution(pack.tryThisNowSourceAnchorIds, anchors, "tryThisNowSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/tryThisNowSourceAnchorIds");
   for (const p of validateAnchorClaimType(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", "tryThisNowSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/tryThisNowSourceAnchorIds");
   // P15 (F14): action units require ≥1 verbatim specific (non-narrative — see validateAnchorHardSpecifics).
   for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/tryThisNow");
@@ -2788,19 +2839,27 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
     if (!/^\s*if\b/i.test(text(it.plan))) push("SEC67.ifthen_shape", "blocker", `ifThenPlans[${i}].plan must start with If`, `/implementationPlan/ifThenPlans/${i}/plan`);
     const ids = it.sourceAnchorIds ?? (it.sourceAnchorId ? [it.sourceAnchorId] : []);
     for (const p of validateAnchorIds(ids, allowed, `ifThenPlans[${i}].sourceAnchorIds`)) push("SEC68.ifthen_anchor", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
+    for (const p of validateAnchorResolution(ids, anchors, `ifThenPlans[${i}].sourceAnchorIds`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(ids, anchors, "implementation_guidance", `ifThenPlans[${i}].sourceAnchorIds`)) push("SEC73.action_anchor_claim_type", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
     for (const p of validateAnchorHardSpecifics(ids, anchors, "implementation_guidance", `${text(it.context)} ${text(it.plan)}`, `ifThenPlans[${i}]`, 1)) push("SEC74.action_anchor_specifics", "blocker", p, `/implementationPlan/ifThenPlans/${i}/sourceAnchorIds`);
   }
+  // NOTE: no action unit gets anchor-topic checking. The action contract translates a source
+  // mechanism into plain reader behaviour, which drops source vocabulary by design —
+  // measured against the tracked gold fixture, not assumed.
   for (const p of validateAnchorIds(plan?.titleSourceAnchorIds, allowed, "implementationPlan.titleSourceAnchorIds")) push("SEC69.plan_anchor", "blocker", p, "/implementationPlan/titleSourceAnchorIds");
+  for (const p of validateAnchorResolution(plan?.titleSourceAnchorIds, anchors, "implementationPlan.titleSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/implementationPlan/titleSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.titleSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.titleSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/titleSourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(plan?.titleSourceAnchorIds, anchors, "implementation_guidance", plan?.title, "implementationPlan.title", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/title");
   for (const p of validateAnchorIds(plan?.coreSkillSourceAnchorIds, allowed, "implementationPlan.coreSkillSourceAnchorIds")) push("SEC70.plan_anchor", "blocker", p, "/implementationPlan/coreSkillSourceAnchorIds");
+  for (const p of validateAnchorResolution(plan?.coreSkillSourceAnchorIds, anchors, "implementationPlan.coreSkillSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/implementationPlan/coreSkillSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.coreSkillSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.coreSkillSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/coreSkillSourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(plan?.coreSkillSourceAnchorIds, anchors, "implementation_guidance", plan?.coreSkill, "implementationPlan.coreSkill", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/coreSkill");
   for (const p of validateAnchorIds(plan?.twentyFourHourChallengeSourceAnchorIds, allowed, "implementationPlan.twentyFourHourChallengeSourceAnchorIds")) push("SEC71.plan_anchor", "blocker", p, "/implementationPlan/twentyFourHourChallengeSourceAnchorIds");
+  for (const p of validateAnchorResolution(plan?.twentyFourHourChallengeSourceAnchorIds, anchors, "implementationPlan.twentyFourHourChallengeSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/implementationPlan/twentyFourHourChallengeSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.twentyFourHourChallengeSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.twentyFourHourChallengeSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/twentyFourHourChallengeSourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(plan?.twentyFourHourChallengeSourceAnchorIds, anchors, "implementation_guidance", plan?.twentyFourHourChallenge, "implementationPlan.twentyFourHourChallenge", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/twentyFourHourChallenge");
   for (const p of validateAnchorIds(plan?.weeklyPracticeSourceAnchorIds, allowed, "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC72.plan_anchor", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
+  for (const p of validateAnchorResolution(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", plan?.weeklyPractice, "implementationPlan.weeklyPractice", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/weeklyPractice");
   return findings;

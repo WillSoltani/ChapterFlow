@@ -16,8 +16,11 @@ import { existsSync, readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { ChapterV21 } from "../types.js";
+import { ChapterV21, SourceAnchorForPrompt } from "../types.js";
 import { loadChapterSource } from "../source-loader.js";
+import { detectSidecarShape } from "../source/sidecarSchema.js";
+import { buildSourceAnchorCatalog } from "../source/sourceIntegrity.js";
+import { loadChapterSidecar } from "./sourceGrounding.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const DEFAULT_STATE_DIR = resolve(__dirname, "../../state");
@@ -153,8 +156,14 @@ export type BookPatternAuditOptions = {
   stateDir?: string;
   /** If true, require a manual or generated brief and plan artifacts. Default true. */
   requirePlanArtifacts?: boolean;
-  /** If false, skip source sidecar alignment warnings. Default true. */
+  /** If false, skip source sidecar alignment warnings (BP6 and BP35). Default true. */
   checkSourceAlignment?: boolean;
+  /** Candidate-bound source-anchor catalogs, keyed by chapter number, for the BP35
+   *  per-unit declared-anchor alignment check. When supplied for a chapter, BP35 uses
+   *  it and reads nothing from disk for that chapter; when absent, BP35 falls back to
+   *  the chapter's validated source-v2 sidecar (and checks nothing if there is none).
+   *  See chapterAnchorCatalog. */
+  sourceAnchorsByChapter?: Readonly<Record<number, readonly SourceAnchorForPrompt[]>>;
   /** Optional per-author voice profile. When supplied, relaxes B13/B14 caps
    *  to allow each author's natural clustering on certain hook first-words
    *  or counter shapes. See config/author-voice-profiles.json. */
@@ -375,6 +384,159 @@ function distinctiveKeywords(text: string, limit = 18): string[] {
     .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
     .slice(0, limit)
     .map(([token]) => token);
+}
+
+// ── BP35: per-unit source alignment ─────────────────────────────────────────
+//
+// `tokenize` folds every digit run to "num" and every clock time to "time", so those
+// two tokens are shared vocabulary between any two texts that happen to contain a
+// figure. Excluding them keeps a BP35 "shares a word" verdict about real subject
+// matter rather than about both sides having numbers in them.
+const BP35_STRUCTURAL_TOKENS = new Set(["num", "time"]);
+
+/** BP35's ONE normalisation, applied identically to the unit and to the anchor:
+ *  the audit's own `tokenize` (case, punctuation, digit/clock folding, stopwords)
+ *  plus the >=4-char and generic-source-word filters `distinctiveKeywords` uses. */
+function alignmentTerms(value: string): Set<string> {
+  const terms = new Set<string>();
+  for (const token of tokenize(value)) {
+    if (token.length < 4) continue;
+    if (GENERIC_SOURCE_WORDS.has(token)) continue;
+    if (BP35_STRUCTURAL_TOKENS.has(token)) continue;
+    terms.add(token);
+  }
+  return terms;
+}
+
+/** The text a cited anchor actually carries. Read off the anchor record built by
+ *  `buildSourceAnchorCatalog` (source/sourceIntegrity.ts) — `label`, `text` and the
+ *  optional `hardSpecifics`. No other field is invented: `id`, `kind` and
+ *  `supportsClaimTypes` are identifiers/classifiers, not content. NOTE that
+ *  `hardSpecifics` is populated for `named_example` anchors only; `concept`,
+ *  `testable_fact` and `framework` anchors carry their content in `label` + `text`,
+ *  which is exactly why a specifics-only check cannot see them. */
+function anchorAlignmentTerms(anchor: SourceAnchorForPrompt): Set<string> {
+  return alignmentTerms([anchor.label, anchor.text, ...(anchor.hardSpecifics ?? [])].filter(Boolean).join(" "));
+}
+
+function declaredAnchorIds(...values: unknown[]): string[] {
+  const ids: string[] = [];
+  for (const value of values) {
+    if (Array.isArray(value)) {
+      for (const entry of value) if (typeof entry === "string" && entry.trim()) ids.push(entry);
+    } else if (typeof value === "string" && value.trim()) {
+      ids.push(value);
+    }
+  }
+  return ids.filter((id, index) => ids.indexOf(id) === index);
+}
+
+/**
+ * The anchor catalog BP35 checks a chapter's units against.
+ *
+ * Preference order, both explicit:
+ *   1. `options.sourceAnchorsByChapter` — a caller-supplied, candidate-bound catalog.
+ *      Callers that forbid ambient discovery (see bookGate's BOOK_PATTERN_AUDIT_UNBOUND)
+ *      supply this and get BP35 with zero filesystem reads.
+ *   2. the chapter's own validated source-v2 sidecar, read through the SAME loader the
+ *      ship-time provenance critic uses (`loadChapterSidecar` + `buildSourceAnchorCatalog`,
+ *      sourceGrounding.ts). This is ambient, so it is reached only from inside the
+ *      `checkSourceAlignment` block that BP6's `loadChapterSource` / `readPlanCoreMove`
+ *      discovery already lives in — a caller that passes `checkSourceAlignment: false`
+ *      gets no new filesystem access from BP35 either.
+ *
+ * Empty map => this chapter is NOT checked. BP35 never guesses anchor content: with no
+ * catalog there is no evidence, and reporting none is the honest outcome.
+ */
+function chapterAnchorCatalog(
+  ch: ChapterV21,
+  override: BookPatternAuditOptions["sourceAnchorsByChapter"],
+): Map<string, SourceAnchorForPrompt> {
+  const supplied = override?.[ch.number];
+  if (supplied) return new Map(supplied.map((anchor) => [anchor.id, anchor]));
+  const sidecar = loadChapterSidecar(ch.chapterId);
+  if (!sidecar || detectSidecarShape(sidecar) !== "v2") return new Map();
+  return new Map(buildSourceAnchorCatalog(sidecar).map((anchor) => [anchor.id, anchor]));
+}
+
+/**
+ * BP35 — DECLARED-ANCHOR ALIGNMENT, per unit.
+ *
+ * BP6 (above) measures CHAPTER-level lexical overlap against the source sidecar and
+ * against the stored coreMove. Neither compares a UNIT to the anchor that unit itself
+ * CITES, so a quiz question about one topic declaring an anchor about another was
+ * invisible — while `stats.sourceAlignmentWarnings`, the number downstream readers
+ * treat as alignment evidence, still read 0. The blind panel caught exactly this on a
+ * live chapter (a wagon-crisis stem and a hospital-fundraising card both declaring an
+ * almanack-sales anchor) against an audit reporting `passed: true, findings: []`.
+ *
+ * Deterministic and deliberately conservative: a unit is flagged ONLY when it shares
+ * ZERO content words with the anchor it declares, after the single normalisation above.
+ * Paraphrase, synonym drift and abstraction all survive one shared word, so this cannot
+ * fire on a unit that is merely loosely worded about its own anchor; it fires on total
+ * topic mismatch, which is the confirmed defect. Cited ids that do not resolve in the
+ * catalog are NOT reported here — an unresolved id is a different defect with its own
+ * owners (section gate SEC47/SEC51/SEC122, ship gate SC11.5) and reporting it as an
+ * alignment warning would inflate a stat that must stay honest.
+ *
+ * MAJOR, chapter-scoped: it degrades the score cap and increments
+ * `sourceAlignmentWarnings` without flipping `passed`, matching BP6's severity.
+ */
+function unitAnchorAlignmentFindings(
+  ch: ChapterV21,
+  anchors: Map<string, SourceAnchorForPrompt>,
+): BookPatternAuditFinding[] {
+  const findings: BookPatternAuditFinding[] = [];
+  const units: Array<{ unit: string; label: string; text: string; ids: string[] }> = [];
+  (ch.quiz?.questions ?? []).forEach((q, i) => {
+    units.push({
+      unit: "quiz.question",
+      label: compact(q.questionId) || `q${i + 1}`,
+      text: [q.prompt, ...(q.choices ?? []), q.explanation].map(compact).join(" "),
+      ids: declaredAnchorIds(q.sourceAnchorIds, q.sourceAnchorId, q.keyEvidenceAnchorIds),
+    });
+  });
+  (ch.reviewCards ?? []).forEach((card, i) => {
+    units.push({
+      unit: "reviewCards",
+      label: compact(card.cardId) || `card ${i + 1}`,
+      text: [card.front, card.back].map(compact).join(" "),
+      ids: declaredAnchorIds(card.sourceAnchorIds, card.sourceAnchorId),
+    });
+  });
+  for (const unit of units) {
+    if (unit.ids.length === 0) continue;
+    const unitTerms = alignmentTerms(unit.text);
+    if (unitTerms.size === 0) continue;
+    for (const id of unit.ids) {
+      const anchor = anchors.get(id);
+      if (!anchor) continue;
+      const anchorTerms = anchorAlignmentTerms(anchor);
+      if (anchorTerms.size === 0) continue;
+      let shared = false;
+      for (const term of unitTerms) {
+        if (anchorTerms.has(term)) { shared = true; break; }
+      }
+      if (shared) continue;
+      findings.push({
+        code: "BP35",
+        // Deliberately NO maxScoreCap, and major only so the finding surfaces in
+        // review queues: zero lexical overlap is a PROXY for topic mismatch, and a
+        // transfer-style unit (new scenario, same mechanism, source vocabulary
+        // deliberately dropped) legitimately scores zero. A compile-blocker version
+        // of this exact check (SEC123) was rejected in adversarial review for that
+        // false positive. BP35's job is honesty — sourceAlignmentWarnings must not
+        // read 0 while total-mismatch units exist — not punishment. The panel and
+        // the operator judge each finding; the score does not move on a proxy.
+        severity: "major",
+        chapters: [ch.number],
+        unit: unit.unit,
+        evidence: `${unit.label} -> ${id} | anchor terms: ${[...anchorTerms].slice(0, 10).join(", ")}`,
+        message: `Chapter ${ch.number} ${unit.unit} ${unit.label} declares source anchor ${id} ("${compact(anchor.label).slice(0, 90)}") but its own text shares no content word with that anchor. Either the unit is about a different topic than the source it claims (re-cite or rewrite), or it is a transfer-style unit that legitimately drops source vocabulary — judge it, this stat cannot.`,
+      });
+    }
+  }
+  return findings;
 }
 
 function planPaths(stateDir: string, chapterId: string): string[] {
@@ -1328,6 +1490,17 @@ export function runBookPatternAudit(options: BookPatternAuditOptions): BookPatte
             message: `Chapter ${ch.number} appears weakly aligned with its stored coreMove. Check whether the chapter teaches the planned move, not a nearby generic theme.`,
             maxScoreCap: 88,
           });
+        }
+      }
+      // BP35 — per-UNIT alignment against the anchor each unit DECLARES. BP6 above is
+      // chapter-level only, so `sourceAlignmentWarnings` promised a coverage it did not
+      // have; every BP35 finding increments the same counter, which is what makes the
+      // stat name true. See unitAnchorAlignmentFindings.
+      const unitAnchors = chapterAnchorCatalog(ch, options.sourceAnchorsByChapter);
+      if (unitAnchors.size > 0) {
+        for (const alignmentFinding of unitAnchorAlignmentFindings(ch, unitAnchors)) {
+          sourceAlignmentWarnings += 1;
+          findings.push(alignmentFinding);
         }
       }
     }
