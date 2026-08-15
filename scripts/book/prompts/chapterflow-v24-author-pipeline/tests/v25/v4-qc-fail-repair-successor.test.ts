@@ -21,9 +21,18 @@
  * (#485) and the compiler operator-retry slots already have: walk ordinals to a
  * small cap, execute under the first free one, and derive EVERY id the
  * transition owns from the chosen ordinal. What must NOT change is also pinned:
- * the cap fails closed with its own number in the message, a COMPLETED ordinal
- * short-circuits with zero new model calls, and operator intent (CANCELLED) is
- * never walked past.
+ * the cap fails closed with its own number in the message, a COMPLETED-and-
+ * SUCCESSFUL ordinal short-circuits with zero new model calls, and operator
+ * intent (CANCELLED) is never walked past.
+ *
+ * SECOND WEDGE (disclosed by the first fix, not fixed by it). Walking only
+ * FAILED left the COMMON case wedged: a repair that COMPLETES while its own
+ * fresh QC still returns FAIL is recorded REPAIR_UNSUCCESSFUL, and its RUN is
+ * COMPLETED. The walk stopped there, the port short-circuited to a successor
+ * already known unsuccessful, and every operator round got the identical
+ * REPAIR_DIAGNOSIS_REQUIRED. An ordinal is now spent when it is FAILED **or**
+ * when its own DURABLE fresh QC round did not PASS — the same record the port
+ * derives REPAIR_UNSUCCESSFUL from, read, never re-run.
  */
 
 import assert from "node:assert/strict";
@@ -105,6 +114,74 @@ requiredTest("a COMPLETED qc-repair run short-circuits on resume: no double repa
   const noSuccessor = await h.runStore.readRun(book, h.qcRepairRunId("repair-r2"), context.clock.now());
   assert.equal(noSuccessor.ok, false, "no -r2 run is minted once an ordinal has COMPLETED");
   assert.equal(resumed.value.candidate.candidateId, first.value.candidate.candidateId, "the same durable successor is re-read");
+});
+
+requiredTest("a COMPLETED-but-UNSUCCESSFUL qc-repair ordinal is NOT walked past: the designed REPAIR_DIAGNOSIS_REQUIRED escalation survives, naming the ordinal's own round", async (context: TestContext) => {
+  const book = "qc-repair-unsuccessful";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  // The COMMON outcome of a repair round: the repair ran, staged its successor,
+  // the successor was reviewed and re-QC'd — and that fresh QC still returned
+  // FAIL. This is the pipeline's DESIGNED diagnosis escalation, not a wedge:
+  // the forward path is qc-diagnose on the named round, then a CHAINED repair
+  // of that successor (the port's priorUnsuccessful gate demands the
+  // diagnosisId exactly there). An earlier draft of the walk skipped this
+  // ordinal and minted a fresh repair of the ORIGINAL candidate with NO
+  // diagnosis — bypassing the gate and orphaning the successor. Adversarial
+  // review rejected it; this test pins the escalation so a future walk cannot
+  // silently bulldoze it again.
+  await h.seedCompletedQcRepair("repair", "FAIL");
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, "an unsuccessful repair must escalate, not silently re-repair");
+  if (result.ok) throw new Error("unreachable");
+  assert.equal(result.error.code, "REPAIR_DIAGNOSIS_REQUIRED");
+  assert.match(result.error.message, /qc-diagnose /, "the escalation names the operator action");
+  assert.ok(
+    result.error.message.includes(derivedIdOf("repair-qc", h.bookRunId)),
+    `the escalation names the ordinal's OWN failed round: ${result.error.message}`,
+  );
+
+  // No new repair was minted: the walk stopped ON the completed ordinal and the
+  // port replayed it (one call, the ordinal's own ids, zero fresh model work).
+  assert.equal(h.qcRepairCalls().length, 1, JSON.stringify(h.qcRepairCalls()));
+  assert.equal(h.qcRepairCalls()[0].repairRunId, h.qcRepairRunId("repair"));
+
+  // Nothing about the ordinal is rewritten.
+  const kept = await h.runStore.readRun(book, h.qcRepairRunId("repair"), context.clock.now());
+  assert.ok(kept.ok);
+  assert.equal(kept.value.status, "COMPLETED");
+});
+
+requiredTest("a COMPLETED-and-SUCCESSFUL qc-repair ordinal is still the answer: it short-circuits with ZERO model calls and mints no successor", async (context: TestContext) => {
+  const book = "qc-repair-successful";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  // Same durable shape as the case above in every respect but the one that
+  // decides: this ordinal's fresh QC PASSED.
+  await h.seedCompletedQcRepair("repair", "PASS");
+
+  const result = await h.service.run({ ...h.request });
+  if (!result.ok) throw new Error(`a successful ordinal must be re-read, not re-run: ${JSON.stringify(result.error)}`);
+  assert.equal(result.value.status, "READY");
+  assert.equal(h.qcRepairCalls().length, 1);
+  assert.equal(
+    h.qcRepairCalls()[0].repairRunId,
+    h.qcRepairRunId("repair"),
+    "a PASSING ordinal is never walked past",
+  );
+  assert.equal(h.qcRepairModelCalls(), 0, "a COMPLETED-and-successful ordinal must cost ZERO model calls");
+  assert.equal(
+    result.value.candidate.candidateId,
+    derivedIdOf("repair-candidate", h.bookRunId),
+    "the durable successor of the completed ordinal is what the run carries forward",
+  );
+  const successor = await h.runStore.readRun(book, h.qcRepairRunId("repair-r2"), context.clock.now());
+  assert.equal(successor.ok, false, "a successful ordinal must not mint the next one");
 });
 
 requiredTest("the qc-repair successor walk is BOUNDED: it fails closed with the cap named, and never re-enters a spent ordinal", async (context: TestContext) => {

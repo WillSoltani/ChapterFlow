@@ -186,6 +186,25 @@ const MAX_QC_REPAIR_RUNS = 3;
  */
 export const MAX_REVIEW_REPAIR_ROUNDS = 2;
 
+/**
+ * How many review-repair IDENTITIES one book run may ever mint.
+ *
+ * Distinct from the round cap above, and doing a different job. The round cap
+ * bounds what a SINGLE run may SPEND: each round is a chapter repair plus a full
+ * blind-panel re-read, and it is the operator's cost dial
+ * (CHAPTERFLOW_REVIEW_REPAIR_ROUNDS, 1-10). This ceiling bounds the ORDINAL
+ * SPACE the lane may walk across ALL operator rounds of one book run, so a lane
+ * that keeps failing cannot mint ids forever.
+ *
+ * Twice the maximum resolvable round cap, on purpose: a run at the maximum cap
+ * of 10 can still absorb ten dead ordinals left by earlier operator rounds
+ * before the lane refuses. Skipping a spent ordinal costs one run-state read and
+ * zero model calls, so this ceiling bounds identities, never spend — the round
+ * cap is what bounds spend. Exhaustion is NOT a pass: it fails closed with the
+ * ceiling named.
+ */
+export const MAX_REVIEW_REPAIR_ORDINALS = 20;
+
 /** Resolve the review-repair cap, honouring an optional
  *  CHAPTERFLOW_REVIEW_REPAIR_ROUNDS override — the same shape as the chapter
  *  bar's CHAPTERFLOW_CHAPTER_BAR.
@@ -796,52 +815,103 @@ export class BookRunApplicationService {
   }
 
   /**
-   * Pick the identity label the QC-FAIL repair executes under.
+   * ONE ordinal walk, shared by BOTH repair lanes.
    *
-   * Every id one repair transition owns — the repair run, the successor
-   * candidate, its canonical review, its fresh QC round, the repair record and
-   * the attempt root — derives from this ONE label, so an ordinal is a
-   * self-contained transition and never collides with a predecessor's durable
-   * artifacts. (`CandidateRepairApplicationPort.#readCompletedResult` binds the
-   * stored successor to `manifest.createdByRunId === repairRunId`, so a
+   * Every id a repair transition owns — the repair run, the successor candidate,
+   * its canonical review, its fresh QC round, the repair record, the attempt
+   * root — derives from ONE label, so an ordinal is a self-contained transition
+   * that never collides with a predecessor's durable artifacts. (The port binds
+   * a stored successor to `manifest.createdByRunId === repairRunId`, so a
    * successor written under ordinal 1 is not reconcilable under ordinal 2 —
    * scoping only the run id would trade one wedge for another.) Ordinal 1 keeps
-   * the historical unsuffixed label EXACTLY, so a book already mid-repair
-   * resumes onto its own durable ids.
+   * each lane's historical label EXACTLY, so a book already mid-repair resumes
+   * onto its own durable ids.
    *
-   * Walk semantics — only a FAILED ordinal is walked past:
+   * SPENT is what the walk skips, and the lane says what spent means:
    *   NOT_FOUND         free ordinal; execute here.
-   *   COMPLETED         durable successor exists; the port short-circuits and
-   *                     re-reads it with ZERO new model calls (idempotent resume).
-   *   RUNNING           the port owns resume/uncertainty (a settled-but-unfinished
-   *                     run reconciles, an unsettled one stays fail-closed).
+   *   FAILED            SPENT in both lanes. The port refuses a run that is
+   *                     already terminal and non-COMPLETED (REPAIR_RUN_TERMINAL /
+   *                     REVIEW_REPAIR_RUN_TERMINAL), so re-deriving a dead id is
+   *                     the wedge itself: same id, same tombstone, forever.
+   *   COMPLETED         NEVER walked past. The ordinal is the answer: the port
+   *                     short-circuits to its durable successor with ZERO new
+   *                     model calls. A COMPLETED-but-UNSUCCESSFUL qc-repair is
+   *                     NOT spent — it is the DESIGNED diagnosis escalation:
+   *                     the book-run answers REPAIR_DIAGNOSIS_REQUIRED naming
+   *                     the ordinal's own failed round, and the forward path is
+   *                     qc-diagnose then a CHAINED repair of that successor
+   *                     (which is exactly when the port's priorUnsuccessful
+   *                     gate demands the diagnosisId). An earlier draft of this
+   *                     walk skipped such ordinals; that minted a fresh repair
+   *                     of the ORIGINAL candidate with NO diagnosis — bypassing
+   *                     the gate and orphaning the successor — and was rejected
+   *                     in adversarial review.
+   *   RUNNING           the port owns resume/uncertainty (settled-but-unfinished
+   *                     reconciles, unsettled stays fail-closed).
    *   CANCEL_REQUESTED
    *   CANCELLED         OPERATOR INTENT. Never walked past — the port answers
-   *                     REPAIR_CANCELLED, exactly as before.
-   *   FAILED            dead ordinal; try the next one.
-   * Nothing here weakens the port's terminal guard; it only stops handing the
-   * port a run id that is already spent.
+   *                     REPAIR_CANCELLED / REVIEW_REPAIR_CANCELLED.
+   * A run-state read that fails for any reason other than NOT_FOUND fails
+   * closed: an ordinal whose state cannot be established is never treated as
+   * spent OR as free.
+   *
+   * Exhaustion is NOT a pass — it fails closed with the ceiling named.
    */
-  async #chooseQcRepairLabel(bookId: string, runId: string, observedAt: UtcIso): Promise<Result<string>> {
-    for (let ordinal = 1; ordinal <= MAX_QC_REPAIR_RUNS; ordinal += 1) {
-      const label = ordinal === 1 ? "repair" : `repair-r${ordinal}`;
-      const prior = await this.#dependencies.runStore.readRun(bookId, derivedId(`${label}-run`, runId), observedAt);
+  async #chooseLaneOrdinal(walk: Readonly<{
+    lane: string;
+    errorCode: string;
+    bookId: string;
+    runId: string;
+    observedAt: UtcIso;
+    firstOrdinal: number;
+    maxOrdinal: number;
+    label: (ordinal: number) => string;
+  }>): Promise<Result<Readonly<{ label: string; ordinal: number }>>> {
+    for (let ordinal = walk.firstOrdinal; ordinal <= walk.maxOrdinal; ordinal += 1) {
+      const label = walk.label(ordinal);
+      const prior = await this.#dependencies.runStore.readRun(walk.bookId, derivedId(`${label}-run`, walk.runId), walk.observedAt);
       if (!prior.ok) {
         if (prior.error.code !== "NOT_FOUND") {
-          return failed("BOOK_RUN_REPAIR_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
+          return failed(walk.errorCode, `${prior.error.code}:${prior.error.message}`);
         }
-        return { ok: true, value: label };
+        return { ok: true, value: Object.freeze({ label, ordinal }) };
       }
-      if (prior.value.status !== "FAILED") return { ok: true, value: label };
+      if (prior.value.status !== "FAILED") {
+        return { ok: true, value: Object.freeze({ label, ordinal }) };
+      }
       console.error(
-        `[book-run] qc-repair book=${bookId} run=${runId} ordinal=${ordinal}/${MAX_QC_REPAIR_RUNS}`
+        `[book-run] ${walk.lane} book=${walk.bookId} run=${walk.runId} ordinal=${ordinal}/${walk.maxOrdinal}`
         + ` action=SKIP_FAILED_REPAIR_RUN label=${label}`,
       );
     }
     return failed(
-      "BOOK_RUN_REPAIR_UNAVAILABLE",
-      `qc-repair successor budget exhausted after ${MAX_QC_REPAIR_RUNS} runs; every repair run for this book run ended FAILED`,
+      walk.errorCode,
+      `${walk.lane} successor budget exhausted after ${walk.maxOrdinal} ordinals;`
+      + ` every ${walk.lane} run for this book run ended FAILED`,
     );
+  }
+
+  /**
+   * Pick the identity label the QC-FAIL repair executes under.
+   *
+   * Walks past FAILED ordinals only. A COMPLETED ordinal — successful or not —
+   * stops the walk: successful short-circuits to its durable successor, and
+   * COMPLETED-but-UNSUCCESSFUL replays into the book-run's
+   * REPAIR_DIAGNOSIS_REQUIRED escalation naming the ordinal's own failed round.
+   * That escalation is a designed gate, not a wedge (see #chooseLaneOrdinal).
+   */
+  async #chooseQcRepairLabel(bookId: string, runId: string, observedAt: UtcIso): Promise<Result<string>> {
+    const chosen = await this.#chooseLaneOrdinal({
+      lane: "qc-repair",
+      errorCode: "BOOK_RUN_REPAIR_UNAVAILABLE",
+      bookId,
+      runId,
+      observedAt,
+      firstOrdinal: 1,
+      maxOrdinal: MAX_QC_REPAIR_RUNS,
+      label: (ordinal) => (ordinal === 1 ? "repair" : `repair-r${ordinal}`),
+    });
+    return chosen.ok ? { ok: true, value: chosen.value.label } : chosen;
   }
 
   /** Run the deterministic gates + LLM answer-key judge under a dedicated
@@ -1446,17 +1516,37 @@ export class BookRunApplicationService {
     // straight through to the fail-closed path below with the cap named.
     //
     // IDEMPOTENT ON RESUME: every round's repair-run id, successor candidate id
-    // and review id derive deterministically from (runId, round). A resumed run
+    // and review id derive deterministically from (runId, ORDINAL). A resumed run
     // re-drives the same identities — the repair port reconciles its COMPLETED
     // run and re-reads its durable successor, and `exactReview` replays the
     // stored verdict — so a crash mid-repair costs zero model calls and can
     // never mint a second successor for the same round.
+    //
+    // THE ORDINAL IS DURABLE, THE COUNTER IS NOT. `reviewRepairRounds` is a local
+    // that resets to 0 on every `run()`, so deriving the label from it made round
+    // one ALWAYS "review-repair-1". Once that run had ended FAILED, every later
+    // operator round re-created the same dead id and the port answered
+    // REVIEW_REPAIR_RUN_TERMINAL — the identical wedge the QC lane had. The label
+    // now comes from `#chooseLaneOrdinal`, which reads run-state, so the counter
+    // only ever bounds SPEND (the cap) and never names an identity.
+    //
+    // A COMPLETED ordinal is NOT spent in this lane, and that asymmetry with the
+    // QC lane is deliberate. This loop is a CHAIN: round N repairs the successor
+    // round N-1 produced, and the panel re-judges it. A COMPLETED ordinal whose
+    // re-review FAILED is therefore a link, not a dead end — replaying it re-reads
+    // that successor with zero model calls and the loop advances to the NEXT
+    // ordinal, which is exactly the forward progress the QC lane had to walk for.
+    // Skipping it would discard the accumulated repair and re-repair the original
+    // candidate at full model cost on every operator round.
     //
     // Not eligible: a review ERROR (uncertainty, owned by the 11ac successor path
     // above) and a run with no repair port composed (the FAIL stays terminal and
     // says so).
     const reviewRepair = this.#dependencies.repair;
     let reviewRepairRounds = 0;
+    /** Where the next round's ordinal walk starts. Advances past every ordinal
+     *  this run has already used, so one run never re-enters its own link. */
+    let nextReviewRepairOrdinal = 1;
     // Resolved ONCE per run so a mid-run env change cannot move the cap under it.
     const reviewRepairCap = resolveReviewRepairRounds();
     let reviewRepairNote = "";
@@ -1474,8 +1564,33 @@ export class BookRunApplicationService {
         if (!capped.ok) return capped;
         break;
       }
+      const walkAt = safeNow(this.#dependencies.clock);
+      if (!walkAt.ok) return walkAt;
+      const chosen = await this.#chooseLaneOrdinal({
+        lane: "review-repair",
+        errorCode: "BOOK_RUN_REPAIR_UNAVAILABLE",
+        bookId: input.bookId,
+        runId,
+        observedAt: walkAt.value,
+        firstOrdinal: nextReviewRepairOrdinal,
+        maxOrdinal: MAX_REVIEW_REPAIR_ORDINALS,
+        label: (ordinal) => `review-repair-${ordinal}`,
+      });
+      if (!chosen.ok) {
+        await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "FAILED",
+          `action=REVIEW_REPAIR;round=${reviewRepairRounds + 1};${chosen.error.code}:${chosen.error.message}`,
+          identity(candidate),
+        );
+        return chosen;
+      }
       reviewRepairRounds += 1;
-      const label = `review-repair-${reviewRepairRounds}`;
+      const ordinal = chosen.value.ordinal;
+      nextReviewRepairOrdinal = ordinal + 1;
+      const label = chosen.value.label;
       const failedReviewId = review.value.reviewId;
       const blockerCodes = review.value.issues
         .filter((issue) => issue.severity === "BLOCKER")
@@ -1486,7 +1601,7 @@ export class BookRunApplicationService {
         input.bookId,
         "repair",
         "STARTED",
-        `action=REVIEW_REPAIR;round=${reviewRepairRounds};failedReviewId=${failedReviewId};blockers=${blockerCodes}`,
+        `action=REVIEW_REPAIR;round=${reviewRepairRounds};label=${label};failedReviewId=${failedReviewId};blockers=${blockerCodes}`,
         identity(candidate),
       );
       if (!repairStarted.ok) return repairStarted;
@@ -1496,7 +1611,12 @@ export class BookRunApplicationService {
         // here printed the frozen default instead — observed under
         // CHAPTERFLOW_REVIEW_REPAIR_ROUNDS=3 as "round=1/2", the one line the
         // operator watches under-reporting the limit it is reporting.
+        // The ordinal is printed NEXT TO the round because they legitimately
+        // diverge: round is this run's spend against the cap, ordinal is the
+        // durable identity, and a spent ordinal left by an earlier operator round
+        // pushes the second ahead of the first.
         `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${reviewRepairCap}`
+        + ` ordinal=${ordinal}/${MAX_REVIEW_REPAIR_ORDINALS} label=${label}`
         + ` failedReviewId=${failedReviewId} action=REVIEW_REPAIR`,
       );
       const repairedCandidate = await reviewRepair.runFromReviewFail({

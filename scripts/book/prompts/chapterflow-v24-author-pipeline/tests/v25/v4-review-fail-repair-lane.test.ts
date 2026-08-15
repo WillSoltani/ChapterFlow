@@ -16,6 +16,7 @@ import { createHash } from "node:crypto";
 import { resolve } from "node:path";
 
 import {
+  MAX_REVIEW_REPAIR_ORDINALS,
   MAX_REVIEW_REPAIR_ROUNDS,
   resolveReviewRepairRounds,
 } from "../../src/app/bookRunApplicationService.js";
@@ -376,6 +377,116 @@ requiredTest("a failing review-repair surfaces its own error and never masks the
     h.events.some((event) => event.phase === "repair" && event.status === "FAILED"),
     JSON.stringify(h.events.map((e) => [e.phase, e.status, e.detail])),
   );
+});
+
+// ────────────────────────────────────────────────────────────────────────────
+// The review-repair lane's own ORDINAL walk.
+//
+// The loop counter `reviewRepairRounds` is a local initialised to 0 on every
+// `service.run()`, and round one derived its ids from it — so round one was
+// ALWAYS "review-repair-1". Once that run had ended FAILED, every later operator
+// round re-created the same dead id, the port answered
+// REVIEW_REPAIR_RUN_TERMINAL, and the book wedged exactly as the QC lane did.
+// The label now comes from the shared ordinal walk, which reads run-state, so it
+// survives across operator rounds. A COMPLETED ordinal is NOT spent here: this
+// loop is a chain, and replaying that link re-reads its successor model-free
+// while the loop advances to the next ordinal.
+// ────────────────────────────────────────────────────────────────────────────
+
+requiredTest("a FAILED review-repair ordinal no longer wedges the book: the next operator round executes under the next ordinal", async (context: TestContext) => {
+  const book = "review-repair-wedge";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"]);
+  // The durable shape an earlier operator round left behind.
+  await h.seedReviewRepairRun("review-repair-1", "FAILED");
+
+  const result = await h.service.run({ ...h.request });
+  if (!result.ok) throw new Error(`a FAILED review-repair run must not wedge the book: ${JSON.stringify(result.error)}`);
+  assert.equal(result.value.status, "PROMOTED");
+
+  assert.equal(h.repairCalls().length, 1, JSON.stringify(h.repairCalls()));
+  assert.equal(
+    h.repairCalls()[0].repairRunId,
+    h.reviewRepairRunId("review-repair-2"),
+    "round one must walk past the ordinal an earlier operator round burned",
+  );
+  // Every id the round owns moves with the ordinal, not just the run id.
+  assert.equal(h.repairCalls()[0].successorCandidateId, derivedIdOf("review-repair-2-candidate", h.bookRunId));
+  assert.equal(result.value.reviewId, derivedIdOf("review", derivedIdOf("review-repair-2", h.bookRunId)));
+
+  const dead = await h.runStore.readRun(book, h.reviewRepairRunId("review-repair-1"), context.clock.now());
+  assert.ok(dead.ok);
+  assert.equal(dead.value.status, "FAILED", "the walk abandons nothing and rewrites nothing");
+  assert.ok(
+    h.events.some((event) => event.phase === "repair" && event.status === "STARTED" && event.detail?.includes("label=review-repair-2")),
+    JSON.stringify(h.events.filter((event) => event.phase === "repair").map((event) => [event.status, event.detail])),
+  );
+});
+
+requiredTest("a review-repair that FAILS its own ordinal leaves the next one for the NEXT operator round", async (context: TestContext) => {
+  const book = "review-repair-nextround";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "FAIL"], {
+    repairFails: "REVIEW_REPAIR_MODEL_FAILED",
+  });
+
+  // Round one: the repair does its own terminal write, exactly as the port does.
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, false, JSON.stringify(first));
+  if (first.ok) throw new Error("a failed review-repair must not promote");
+  assert.equal(first.error.code, "REVIEW_REPAIR_MODEL_FAILED");
+  assert.equal(h.repairCalls()[0].repairRunId, h.reviewRepairRunId("review-repair-1"), "an unseeded book uses the historical ordinal-1 id");
+  const burned = await h.runStore.readRun(book, h.reviewRepairRunId("review-repair-1"), context.clock.now());
+  assert.ok(burned.ok);
+  assert.equal(burned.value.status, "FAILED");
+
+  // Round two — the operator simply runs again, and the round counter resets to
+  // zero. THIS is the wedge: with the label derived from that counter, the
+  // second call re-created the dead id and died REVIEW_REPAIR_RUN_TERMINAL,
+  // forever.
+  const second = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(second.ok, false, JSON.stringify(second));
+  if (second.ok) throw new Error("the scripted repair still fails; only the ORDINAL should move");
+  assert.notEqual(second.error.code, "REVIEW_REPAIR_RUN_TERMINAL", "a spent repair run must never be the book's terminal answer");
+  assert.equal(second.error.code, "REVIEW_REPAIR_MODEL_FAILED", "round two reaches the repair itself, not its predecessor's tombstone");
+  assert.equal(h.repairCalls()[1].repairRunId, h.reviewRepairRunId("review-repair-2"));
+});
+
+requiredTest("an operator-CANCELLED review-repair ordinal is never walked past: cancellation is intent, not a dead ordinal", async (context: TestContext) => {
+  const book = "review-repair-cancelled";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"]);
+  await h.seedReviewRepairRun("review-repair-1", "CANCELLED");
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("a cancelled review-repair must not be silently retried under a successor");
+  assert.equal(result.error.code, "REVIEW_REPAIR_CANCELLED");
+  assert.equal(h.repairCalls().length, 1);
+  assert.equal(
+    h.repairCalls()[0].repairRunId,
+    h.reviewRepairRunId("review-repair-1"),
+    "the cancelled ordinal is handed straight back to the port, which answers REVIEW_REPAIR_CANCELLED",
+  );
+  const successor = await h.runStore.readRun(book, h.reviewRepairRunId("review-repair-2"), context.clock.now());
+  assert.equal(successor.ok, false, "operator intent must never mint a successor");
+});
+
+requiredTest("the review-repair ordinal space is BOUNDED: exhaustion fails closed with the ceiling named", async (context: TestContext) => {
+  const book = "review-repair-ordinals";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "PASS"]);
+  for (let ordinal = 1; ordinal <= MAX_REVIEW_REPAIR_ORDINALS; ordinal += 1) {
+    await h.seedReviewRepairRun(`review-repair-${ordinal}`, "FAILED");
+  }
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("an exhausted ordinal space must fail closed, never loop");
+  assert.equal(result.error.code, "BOOK_RUN_REPAIR_UNAVAILABLE");
+  assert.ok(
+    result.error.message.includes(String(MAX_REVIEW_REPAIR_ORDINALS)),
+    `the ceiling must be named in the failure: ${result.error.message}`,
+  );
+  assert.equal(h.repairCalls().length, 0, "an exhausted ceiling must not re-enter a spent repair run");
+  const past = await h.runStore.readRun(book, h.reviewRepairRunId(`review-repair-${MAX_REVIEW_REPAIR_ORDINALS + 1}`), context.clock.now());
+  assert.equal(past.ok, false, "the walk must not mint an ordinal past the ceiling");
 });
 
 requiredTest("the review-repair cap honours CHAPTERFLOW_REVIEW_REPAIR_ROUNDS and fails closed on a bad value", () => {

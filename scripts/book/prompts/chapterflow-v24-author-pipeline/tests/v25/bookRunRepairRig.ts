@@ -8,14 +8,24 @@
  * deliberately NOT named `*.test.ts`: the v25 runner discovers test files by
  * that suffix and would otherwise spawn this one with no cases.
  *
- * The repair port is faked, but the fake for the QC lane mirrors the REAL
- * port's run-lifecycle guard against the same run-state store
- * (`CandidateRepairApplicationPort.run`, the `created.value.status` ladder):
- * COMPLETED short-circuits to the durable successor, CANCELLED/CANCEL_REQUESTED
- * answers REPAIR_CANCELLED, any other non-RUNNING status answers
- * REPAIR_RUN_TERMINAL. That ladder is what the book-run service has to route
- * around, and `v4-candidate-repair-application-port.test.ts` pins that the real
- * port still behaves exactly this way.
+ * The repair port is faked, but BOTH lane fakes mirror the REAL port's
+ * run-lifecycle guard against the same run-state store (the
+ * `created.value.status` ladder in `CandidateRepairApplicationPort.run` and in
+ * `runFromReviewFail`): COMPLETED short-circuits to the durable successor,
+ * CANCELLED/CANCEL_REQUESTED answers REPAIR_CANCELLED / REVIEW_REPAIR_CANCELLED,
+ * any other non-RUNNING status answers REPAIR_RUN_TERMINAL /
+ * REVIEW_REPAIR_RUN_TERMINAL. That ladder is what the book-run service has to
+ * route around. HONEST COVERAGE NOTE: the real port's QC-lane ladder is pinned
+ * by `v4-candidate-repair-application-port.test.ts` (terminal-FAILED replay);
+ * the REVIEW-lane ladder codes (REVIEW_REPAIR_CANCELLED,
+ * REVIEW_REPAIR_RUN_TERMINAL) are asserted only through THIS fake — the real
+ * `runFromReviewFail` ladder at candidateRepairApplicationPort.ts:1337-1340 is
+ * read-verified, not test-pinned. If the real ladder changes, this fake drifts
+ * silently; extend the port-level tests before relying on those codes.
+ *
+ * The QC lane fake also COMMITS its fresh QC round to the real QC store and
+ * derives its own status from that stored round, mirroring how the real port
+ * records PASS / REPAIR_UNSUCCESSFUL from the round's own outcome.
  */
 
 import assert from "node:assert/strict";
@@ -46,6 +56,7 @@ import type { CandidateIdentity } from "../../src/contracts/v4Core.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
 import type { QcRoundResult } from "../../src/qc/qcTypes.js";
 import { createQcService } from "../../src/qc/qcService.js";
+import { createQcStore } from "../../src/qc/qcStore.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { CanonicalReviewResult } from "../../src/review/reviewTypes.js";
@@ -60,6 +71,9 @@ export const SOURCE_SHA = "b41d1cdab0fc33c4c1f840f4cf99089816e022d4";
 
 /** The stage id the real repair port admits its chapter work under. */
 const REPAIR_STAGE = "candidate-repair";
+/** The review-FAIL lane's OWN stage — deliberately not the QC lane's, exactly as
+ *  `REVIEW_REPAIR_STAGE_ID` in the real port. */
+const REVIEW_REPAIR_STAGE = "review-repair";
 
 export function derivedIdOf(prefix: string, runId: string): string {
   return `${prefix}-${createHash("sha256").update(runId).digest("hex").slice(0, 32)}`;
@@ -84,9 +98,18 @@ export type BookRunHarness = Readonly<{
   qcRepairModelCalls: () => number;
   /** The run id the QC lane would use for a given identity label. */
   qcRepairRunId: (label: string) => string;
+  /** The run id the review-FAIL lane would use for a given identity label. */
+  reviewRepairRunId: (label: string) => string;
   /** Drive a QC-lane repair run to a terminal state BEFORE the book run reaches
    *  it — the durable shape a crashed/failed earlier operator round leaves. */
   seedQcRepairRun: (label: string, status: "FAILED" | "CANCELLED") => Promise<void>;
+  /** The durable shape an earlier operator round leaves when its repair RAN to
+   *  completion: a COMPLETED run, its successor candidate on disk, and its own
+   *  fresh QC round committed with `outcome`. `FAIL` is the REPAIR_UNSUCCESSFUL
+   *  case — the repair worked, the QC verdict did not. */
+  seedCompletedQcRepair: (label: string, outcome: "PASS" | "FAIL") => Promise<void>;
+  /** Same, for the review-FAIL lane, which owns no QC round. */
+  seedReviewRepairRun: (label: string, status: "FAILED" | "CANCELLED") => Promise<void>;
 }>;
 
 export type BookRunHarnessOptions = Readonly<{
@@ -205,6 +228,18 @@ export async function buildBookRunHarness(
   const reviews = createReviewServiceFactory({ booksRoot, contentReader: reader, now })
     .create(new ModelGatewayReviewEvaluator(runner));
   const qc = createQcService({ booksRoot, contentReader: reader, reviewService: reviews, writeLock, now });
+  // The same durable QC store the service above reads through. The QC-lane fake
+  // commits its fresh round here and derives its own status from it, exactly as
+  // the real port does (`qc.value.outcome === "PASS" ? "PASS" : "REPAIR_UNSUCCESSFUL"`),
+  // so a COMPLETED-but-unsuccessful ordinal is a real durable record and not a
+  // property of the fake.
+  const qcStore = createQcStore({ booksRoot });
+  const commitRound = async (round: QcRoundResult): Promise<QcRoundResult> => {
+    const committed = await writeLock.run(book, () => qcStore.commitRound(book, round));
+    assert.equal(committed.ok, true, JSON.stringify(committed));
+    assert.ok(committed.ok);
+    return committed.value;
+  };
   const promotion = createPromotionService({ candidateStore: candidates, contentReader: reader, reviewService: reviews, qcService: qc, currentPointerStore: currentPointer, clock: now });
   const research = {
     async run(req: { resumeRunId?: string; newRunId?: string }) {
@@ -261,11 +296,50 @@ export async function buildBookRunHarness(
   } as unknown as CandidateQcEvaluator;
 
   // ── review-FAIL lane fake ────────────────────────────────────────────────
+  //
+  // Mirrors `CandidateRepairApplicationPort.runFromReviewFail`'s run-lifecycle
+  // ladder against the SAME run-state store the QC-lane fake uses: COMPLETED
+  // short-circuits to the durable successor, CANCELLED/CANCEL_REQUESTED answers
+  // REVIEW_REPAIR_CANCELLED, any other non-RUNNING status answers
+  // REVIEW_REPAIR_RUN_TERMINAL, and a scripted failure drives the run FAILED
+  // before it returns. Without that ladder this lane's fake was blind to run
+  // state, so the fixed-id wedge it actually has could not be reproduced here.
   const repairCalls: ReviewRepairApplicationRequest[] = [];
   const successors = new Map<string, CandidateSnapshot>();
   const runFromReviewFail = async (request: ReviewRepairApplicationRequest) => {
     repairCalls.push(request);
+    const observedAt = context.clock.now();
+    const prior = await runStore.readRun(book, request.repairRunId, observedAt);
+    const priorCreatedAt = prior.ok ? prior.value.definition.createdAt : observedAt;
+    const created = await runStore.createRun(
+      repairRunDefinition(request.repairRunId, request.failedCandidate, priorCreatedAt, {
+        commandId: "review-repair",
+        stageId: REVIEW_REPAIR_STAGE,
+      }),
+    );
+    if (!created.ok) {
+      return { ok: false as const, error: { code: "REVIEW_REPAIR_RUN_UNAVAILABLE", message: `${created.error.code}:${created.error.message}` } };
+    }
+    if (created.value.status === "COMPLETED") {
+      const durable = await candidates.open({ bookId: book, selector: { kind: "CANDIDATE", candidateId: request.successorCandidateId } });
+      if (!durable.ok) return { ok: false as const, error: { code: "REVIEW_REPAIR_COMPLETED_MISMATCH", message: "successor missing" } };
+      return { ok: true as const, value: { successor: durable.value, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
+    }
+    if (created.value.status === "CANCEL_REQUESTED" || created.value.status === "CANCELLED") {
+      return { ok: false as const, error: { code: "REVIEW_REPAIR_CANCELLED", message: "review-repair run is cancelled" } };
+    }
+    if (created.value.status !== "RUNNING") {
+      return { ok: false as const, error: { code: "REVIEW_REPAIR_RUN_TERMINAL", message: `review-repair run is ${created.value.status}` } };
+    }
     if (options.repairFails !== undefined) {
+      const failedRun = await runStore.finishRun({
+        bookId: book,
+        runId: request.repairRunId,
+        status: "FAILED",
+        finishedAt: context.clock.now(),
+        reason: options.repairFails,
+      });
+      assert.equal(failedRun.ok, true, JSON.stringify(failedRun));
       return { ok: false as const, error: { code: options.repairFails, message: "scripted repair failure" } };
     }
     const existing = successors.get(request.successorCandidateId);
@@ -285,6 +359,8 @@ export async function buildBookRunHarness(
       files,
     });
     successors.set(request.successorCandidateId, staged);
+    const finished = await runStore.finishRun({ bookId: book, runId: request.repairRunId, status: "COMPLETED", finishedAt: context.clock.now() });
+    assert.equal(finished.ok, true, JSON.stringify(finished));
     return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
   };
 
@@ -292,21 +368,44 @@ export async function buildBookRunHarness(
   const qcRepairCalls: CandidateRepairApplicationRequest[] = [];
   let qcRepairModelCalls = 0;
   const qcRepairRunId = (label: string): string => derivedIdOf(`${label}-run`, bookRunId);
-  const repairRunDefinition = (runId: string, inputCandidate: CandidateIdentity, createdAt: string) => ({
+  /** Both lanes derive their run id the same way — from the label the ordinal
+   *  walk chose — so the review lane's id function is the same shape. */
+  const reviewRepairRunId = (label: string): string => derivedIdOf(`${label}-run`, bookRunId);
+  const repairRunDefinition = (
+    runId: string,
+    inputCandidate: CandidateIdentity,
+    createdAt: string,
+    lane: Readonly<{ commandId: string; stageId: string }> = { commandId: "candidate-repair", stageId: REPAIR_STAGE },
+  ) => ({
     schemaVersion: "1" as const,
     bookId: book,
     runId,
-    commandId: "candidate-repair",
+    commandId: lane.commandId,
     sourceGitSha: SOURCE_SHA,
-    requiredStages: [REPAIR_STAGE],
+    requiredStages: [lane.stageId],
     requiredInventory: [],
     inputCandidate,
-    attemptLimits: { run: 4, byStage: { [REPAIR_STAGE]: 4 } },
+    attemptLimits: { run: 4, byStage: { [lane.stageId]: 4 } },
     createdAt,
   });
-  const repairOutcome = (request: CandidateRepairApplicationRequest, successor: CandidateSnapshot) => {
+  /** The QC lane's transition outcome, derived from the DURABLE fresh QC round
+   *  the way the real port derives it: PASS iff that stored round PASSED,
+   *  REPAIR_UNSUCCESSFUL otherwise. A round already on disk (an earlier operator
+   *  round's, or a seeded one) is authoritative; a first execution commits its
+   *  own PASS round. */
+  const repairOutcome = async (request: CandidateRepairApplicationRequest, successor: CandidateSnapshot) => {
     const successorIdentity = identityOf(successor);
     const completedAt = context.clock.now();
+    const stored = await qcStore.getRound(book, request.freshRoundId);
+    const round: QcRoundResult = stored.ok ? stored.value : await commitRound({
+      schemaVersion: "1",
+      roundId: request.freshRoundId,
+      candidate: successorIdentity,
+      reviewId: request.reviewId,
+      outcome: "PASS",
+      issues: [],
+      completedAt,
+    });
     const review: CanonicalReviewResult = {
       schemaVersion: "1",
       reviewId: request.reviewId,
@@ -315,16 +414,14 @@ export async function buildBookRunHarness(
       issues: [],
       completedAt,
     };
-    const round: QcRoundResult = {
-      schemaVersion: "1",
-      roundId: request.freshRoundId,
-      candidate: successorIdentity,
-      reviewId: request.reviewId,
-      outcome: "PASS",
-      issues: [],
-      completedAt,
+    return {
+      status: round.outcome === "PASS" ? ("PASS" as const) : ("REPAIR_UNSUCCESSFUL" as const),
+      ordinal: 1,
+      predecessor: compiled,
+      successor,
+      review,
+      qc: round,
     };
-    return { status: "PASS" as const, ordinal: 1, predecessor: compiled, successor, review, qc: round };
   };
   const runQcLaneRepair = async (request: CandidateRepairApplicationRequest) => {
     qcRepairCalls.push(request);
@@ -341,7 +438,7 @@ export async function buildBookRunHarness(
       // Durable successor: re-read it, spend NOTHING.
       const durable = await candidates.open({ bookId: book, selector: { kind: "CANDIDATE", candidateId: request.successorCandidateId } });
       if (!durable.ok) return { ok: false as const, error: { code: "REPAIR_COMPLETED_MISMATCH", message: "successor missing" } };
-      return { ok: true as const, value: repairOutcome(request, durable.value) };
+      return { ok: true as const, value: await repairOutcome(request, durable.value) };
     }
     if (created.value.status === "CANCEL_REQUESTED" || created.value.status === "CANCELLED") {
       return { ok: false as const, error: { code: "REPAIR_CANCELLED", message: "repair run is cancelled" } };
@@ -376,7 +473,7 @@ export async function buildBookRunHarness(
     });
     const finished = await runStore.finishRun({ bookId: book, runId: request.repairRunId, status: "COMPLETED", finishedAt: context.clock.now() });
     assert.equal(finished.ok, true, JSON.stringify(finished));
-    return { ok: true as const, value: repairOutcome(request, staged) };
+    return { ok: true as const, value: await repairOutcome(request, staged) };
   };
 
   const repair = { runFromReviewFail, run: runQcLaneRepair } as unknown as CandidateRepairApplicationPort;
@@ -424,6 +521,69 @@ export async function buildBookRunHarness(
         status,
         finishedAt: context.clock.now(),
         reason: status === "FAILED" ? "seeded: earlier repair round died" : "operator cancelled",
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+    },
+    reviewRepairRunId,
+    async seedReviewRepairRun(label, status) {
+      const runId = reviewRepairRunId(label);
+      const createdAt = context.clock.now();
+      const created = await runStore.createRun(
+        repairRunDefinition(runId, identityOf(compiled), createdAt, { commandId: "review-repair", stageId: REVIEW_REPAIR_STAGE }),
+      );
+      assert.equal(created.ok, true, JSON.stringify(created));
+      if (status === "CANCELLED") {
+        const requested = await runStore.requestCancel({ bookId: book, runId, reason: "operator cancelled", requestedAt: context.clock.now() });
+        assert.equal(requested.ok, true, JSON.stringify(requested));
+      }
+      const finished = await runStore.finishRun({
+        bookId: book,
+        runId,
+        status,
+        finishedAt: context.clock.now(),
+        reason: status === "FAILED" ? "seeded: earlier review-repair round died" : "operator cancelled",
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+    },
+    async seedCompletedQcRepair(label, outcome) {
+      // Everything one COMPLETED repair transition leaves behind, under the ids
+      // that label owns: the run, the successor candidate it staged, and its own
+      // fresh QC round. `outcome: "FAIL"` is the REPAIR_UNSUCCESSFUL shape — a
+      // repair that ran, produced a successor, and whose fresh QC still failed.
+      const runId = qcRepairRunId(label);
+      const successorCandidateId = derivedIdOf(`${label}-candidate`, bookRunId);
+      const createdAt = context.clock.now();
+      const created = await runStore.createRun(repairRunDefinition(runId, identityOf(compiled), createdAt));
+      assert.equal(created.ok, true, JSON.stringify(created));
+      const repairedChapter: ChapterV21 = {
+        ...chapter,
+        hook: `${chapter.hook} (qc-repaired for ${successorCandidateId})`,
+      };
+      const staged = await stageLocal({
+        candidateId: successorCandidateId,
+        parentCandidateId: compiled.manifest.candidateId,
+        runId,
+        files: [
+          jsonFile(chapterLogicalPath, repairedChapter, "CHAPTER"),
+          jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({ bookId: book, chapters: [repairedChapter], requirePlanArtifacts: false, checkSourceAlignment: false })),
+        ],
+      });
+      await commitRound({
+        schemaVersion: "1",
+        roundId: derivedIdOf(`${label}-qc`, bookRunId),
+        candidate: identityOf(staged),
+        reviewId: derivedIdOf(`${label}-review`, bookRunId),
+        outcome,
+        issues: outcome === "PASS"
+          ? []
+          : [{ code: "CHAPTER_FIX", severity: "BLOCKER", message: "the repaired chapter still buries the ruling", location: chapterLogicalPath }],
+        completedAt: context.clock.now(),
+      });
+      const finished = await runStore.finishRun({
+        bookId: book,
+        runId,
+        status: "COMPLETED",
+        finishedAt: context.clock.now(),
       });
       assert.equal(finished.ok, true, JSON.stringify(finished));
     },
