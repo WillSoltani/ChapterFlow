@@ -16,6 +16,7 @@ import { createCurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateInputFile, CandidateSnapshot } from "../../src/books/candidateTypes.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
 import { createQcService } from "../../src/qc/qcService.js";
+import { createQcStore } from "../../src/qc/qcStore.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
@@ -204,6 +205,7 @@ requiredTest("book-run service joins exact review QC and local promotion with du
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -470,6 +472,7 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -834,6 +837,7 @@ requiredTest("reconcile resume grants one operator-authorized compile attempt pa
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1155,6 +1159,7 @@ requiredTest("reconcile resume un-wedges a RUNNING operator-retry compile run th
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1424,6 +1429,7 @@ requiredTest("a transient QC round-commit failure leaves the judge run RUNNING s
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1639,6 +1645,7 @@ requiredTest("resume after a crash inside fresh-qc abandons the dead judge run a
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1881,6 +1888,7 @@ async function successorRecoveryHarness(
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -2304,6 +2312,7 @@ requiredTest("resume rehydrates a durable COMPLETED compile from an operator slo
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -2496,6 +2505,7 @@ requiredTest("resume with a durable COMPLETED compile event but a missing or mis
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -2725,6 +2735,7 @@ async function buildReviewSuccessorHarness(
   const events: BookRunEvent[] = [];
   const service = new BookRunApplicationService({
     research, compiler, contentReader: reader, candidateQc, reviews, qc, promotion, currentPointer, runStore, stageCoordinator,
+    diagnoses: createQcStore({ booksRoot }),
     clock: { now },
     ids: {
       nextRunId: () => bookRunId,
@@ -2921,6 +2932,7 @@ async function researchPinHarness(
     candidateQc,
     reviews,
     qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,

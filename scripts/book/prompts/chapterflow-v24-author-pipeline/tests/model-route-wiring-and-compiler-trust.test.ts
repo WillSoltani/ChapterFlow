@@ -153,6 +153,10 @@ test("real app to autopilot to compiler port uses candidate store lock and no le
       contentReader,
       reviewService: {} as never,
       qcService: {} as never,
+      // This case never composes a book run (no pipelineRoot/currentPointerStore),
+      // so the diagnosis index is never read; it is present to satisfy the
+      // composition contract, exactly like the three inert services above.
+      qcDiagnoses: {} as never,
       promotionService: {} as never,
       clock,
       ids: {

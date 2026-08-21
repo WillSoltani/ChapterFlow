@@ -6,7 +6,7 @@ import type { BookContentReader, CandidateSnapshot } from "../books/candidateTyp
 import type { CurrentPointerStore } from "../books/currentPointer.js";
 import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
 import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
-import type { QcRoundResult, QcService } from "../qc/qcTypes.js";
+import type { QcDiagnosis, QcDiagnosisIndex, QcRoundResult, QcService } from "../qc/qcTypes.js";
 import type { PromotionService } from "../release/promotionTypes.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
@@ -133,6 +133,12 @@ export interface BookRunApplicationDependencies {
   readonly candidateQc: CandidateQcEvaluator;
   readonly reviews: ReviewService;
   readonly qc: QcService;
+  /** Read-only index over durable qc-diagnose output. REQUIRED, not optional:
+   *  the chained qc-repair ladder needs it to tell "the operator has not
+   *  diagnosed this" from "this composition forgot to wire the lookup", and a
+   *  missing wire must be a type error rather than a book silently stuck on the
+   *  REPAIR_DIAGNOSIS_REQUIRED escalation this dependency exists to clear. */
+  readonly diagnoses: QcDiagnosisIndex;
   readonly promotion: PromotionService;
   readonly currentPointer: CurrentPointerStore;
   readonly runStore: RunStore;
@@ -887,7 +893,7 @@ export class BookRunApplicationService {
     return failed(
       walk.errorCode,
       `${walk.lane} successor budget exhausted after ${walk.maxOrdinal} ordinals;`
-      + ` every ${walk.lane} run for this book run ended FAILED`,
+      + ` every ${walk.lane} ordinal is spent`,
     );
   }
 
@@ -896,22 +902,79 @@ export class BookRunApplicationService {
    *
    * Walks past FAILED ordinals only. A COMPLETED ordinal — successful or not —
    * stops the walk: successful short-circuits to its durable successor, and
-   * COMPLETED-but-UNSUCCESSFUL replays into the book-run's
-   * REPAIR_DIAGNOSIS_REQUIRED escalation naming the ordinal's own failed round.
-   * That escalation is a designed gate, not a wedge (see #chooseLaneOrdinal).
+   * COMPLETED-but-UNSUCCESSFUL replays into the caller's decision — escalate
+   * REPAIR_DIAGNOSIS_REQUIRED naming the ordinal's own failed round when no
+   * durable diagnosis exists for it, or CHAIN into the next ordinal when one
+   * does (see the ladder at the QC-FAIL call site, and #chooseLaneOrdinal).
+   *
+   * `firstOrdinal` is how the ladder refuses to re-enter a link it has already
+   * driven within this one run: each link advances it past its own ordinal, so
+   * a chained repair can only ever move forward, and the cap bounds the chain.
    */
-  async #chooseQcRepairLabel(bookId: string, runId: string, observedAt: UtcIso): Promise<Result<string>> {
-    const chosen = await this.#chooseLaneOrdinal({
+  async #chooseQcRepairLabel(
+    bookId: string,
+    runId: string,
+    observedAt: UtcIso,
+    firstOrdinal: number,
+  ): Promise<Result<Readonly<{ label: string; ordinal: number }>>> {
+    return this.#chooseLaneOrdinal({
       lane: "qc-repair",
       errorCode: "BOOK_RUN_REPAIR_UNAVAILABLE",
       bookId,
       runId,
       observedAt,
-      firstOrdinal: 1,
+      firstOrdinal,
       maxOrdinal: MAX_QC_REPAIR_RUNS,
       label: (ordinal) => (ordinal === 1 ? "repair" : `repair-r${ordinal}`),
     });
-    return chosen.ok ? { ok: true, value: chosen.value.label } : chosen;
+  }
+
+  /**
+   * The durable diagnosis, if any, that authorizes chaining a repair of
+   * `candidate` after `roundId` failed it.
+   *
+   * EXACT MATCH ONLY, on both axes the port's own gate checks: a diagnosis for
+   * a different round, or for a different candidate, authorizes nothing and is
+   * not a near-miss to be tolerated. Returning `undefined` means "the operator
+   * has not diagnosed exactly this", which is the escalation the caller owns.
+   *
+   * AMBIGUITY IS NOT SILENT. An operator can legitimately run qc-diagnose twice
+   * on the same round; the LATEST by createdAt wins (ties broken by id, so the
+   * choice is deterministic across resumes — the port re-checks the recorded
+   * diagnosisId when it replays a COMPLETED link, and a coin-flip here would
+   * turn into REPAIR_COMPLETED_MISMATCH), and the count travels back to the
+   * caller so the phase log can say a choice was made.
+   *
+   * READ-ONLY and repeatable: it creates nothing and mutates nothing.
+   */
+  async #findChainDiagnosis(
+    bookId: string,
+    roundId: string,
+    candidate: CandidateIdentity,
+  ): Promise<Result<Readonly<{ diagnosis: QcDiagnosis; matches: number }> | undefined>> {
+    const all = await this.#dependencies.diagnoses.listDiagnoses(bookId);
+    // A lookup that cannot be established is NOT "no diagnosis": answering
+    // absence here would convert an unreadable diagnoses directory into a
+    // permanent REPAIR_DIAGNOSIS_REQUIRED the operator can never clear.
+    if (!all.ok) return failed("BOOK_RUN_REPAIR_UNAVAILABLE", `${all.error.code}:${all.error.message}`);
+    const matches = all.value.filter((entry) => entry.roundId === roundId && sameIdentity(entry.candidate, candidate));
+    if (matches.length === 0) return { ok: true, value: undefined };
+    const ordered = [...matches].sort((left, right) => (
+      left.createdAt === right.createdAt
+        ? (left.diagnosisId < right.diagnosisId ? -1 : left.diagnosisId > right.diagnosisId ? 1 : 0)
+        : (left.createdAt < right.createdAt ? -1 : 1)
+    ));
+    // EARLIEST, not latest — replay stability is the whole game. qc-diagnose
+    // mints a fresh diagnosis-<uuid> per invocation, so "latest" changes every
+    // time the operator re-runs it; a chained ordinal COMPLETED under diagnosis
+    // A would then replay with B selected, and the port's identity check
+    // (`record.diagnosisId !== request.diagnosisId` -> REPAIR_COMPLETED_MISMATCH)
+    // would wedge the run PERMANENTLY. The diagnoses store is append-only, so
+    // the earliest (createdAt, diagnosisId) match is the one selection no later
+    // qc-diagnose can ever disturb: resume re-derives the identical choice with
+    // no dependency on how many times the operator diagnosed. Adversarial review
+    // caught latest-selection as exactly this wedge before it merged.
+    return { ok: true, value: Object.freeze({ diagnosis: ordered[0], matches: matches.length }) };
   }
 
   /** Run the deterministic gates + LLM answer-key judge under a dedicated
@@ -1714,51 +1777,121 @@ export class BookRunApplicationService {
         await this.#event(runId, input.bookId, "repair", "FAILED", message, identity(candidate));
         return failed("BOOK_RUN_REPAIR_UNAVAILABLE", message);
       }
-      const repairObservedAt = safeNow(this.#dependencies.clock);
-      if (!repairObservedAt.ok) return repairObservedAt;
-      const repairLabel = await this.#chooseQcRepairLabel(input.bookId, runId, repairObservedAt.value);
-      if (!repairLabel.ok) {
-        await this.#event(runId, input.bookId, "repair", "FAILED", repairLabel.error.message, identity(candidate));
-        return repairLabel;
+      // THE CHAINED QC-REPAIR LADDER.
+      //
+      // One ordinal is one repair transition: repair the failed candidate, review
+      // and re-QC the successor it produces. When that successor's OWN fresh QC
+      // still FAILs, the transition is COMPLETED-but-UNSUCCESSFUL, and the walk
+      // (#chooseLaneOrdinal) deliberately stops ON it rather than skipping it —
+      // skipping would mint a fresh repair of the ORIGINAL candidate with no
+      // diagnosis, bypassing the port's `priorUnsuccessful` gate and orphaning
+      // the successor.
+      //
+      // What that gate is FOR is the chain: repair ordinal N's successor, citing
+      // the diagnosis the operator produced for ordinal N's own failed round.
+      // Until this loop existed nothing could build that request — the book-run
+      // escalated REPAIR_DIAGNOSIS_REQUIRED, the operator ran qc-diagnose, and
+      // the resulting durable diagnosis had no consumer, so every later operator
+      // round got the identical escalation forever (observed on the live canary).
+      //
+      // So: on COMPLETED-but-UNSUCCESSFUL, look for a durable diagnosis whose
+      // roundId is THIS ordinal's own fresh round and whose candidate is THIS
+      // ordinal's successor.
+      //   none  -> escalate exactly as before, naming that round. Byte-identical
+      //            message; the no-diagnosis side is unchanged and pinned.
+      //   found -> advance to ordinal N+1 as a CHAINED repair whose
+      //            failedCandidate is ordinal N's successor, whose failedRoundId
+      //            is ordinal N's fresh round, and which CARRIES the diagnosisId
+      //            — so the port's gate fires and is SATISFIED, never bypassed.
+      // A diagnosis for a different round or a different candidate matches
+      // nothing and therefore chains nothing.
+      //
+      // BOUNDED by MAX_QC_REPAIR_RUNS through the same walk: each link consumes
+      // an ordinal, and exhaustion fails closed with the cap named. IDEMPOTENT:
+      // the lookup is a read, and a resume that lands on a COMPLETED link is
+      // replayed by the port from its durable artifacts at zero model cost.
+      /** Where the next link's ordinal walk starts — never re-enters a link this
+       *  run already drove. */
+      let nextQcRepairOrdinal = 1;
+      /** The round + candidate the NEXT repair is aimed at. Starts as the failed
+       *  fresh-QC round, then becomes each link's own. */
+      let failedRoundId = qc.value.roundId;
+      /** Set once the loop is chaining: the diagnosis authorizing the next link. */
+      let chain: Readonly<{ diagnosisId: string; predecessorLabel: string; matches: number }> | undefined;
+      for (;;) {
+        const repairObservedAt = safeNow(this.#dependencies.clock);
+        if (!repairObservedAt.ok) return repairObservedAt;
+        const repairLabel = await this.#chooseQcRepairLabel(input.bookId, runId, repairObservedAt.value, nextQcRepairOrdinal);
+        if (!repairLabel.ok) {
+          await this.#event(runId, input.bookId, "repair", "FAILED", repairLabel.error.message, identity(candidate));
+          return repairLabel;
+        }
+        const label = repairLabel.value.label;
+        nextQcRepairOrdinal = repairLabel.value.ordinal + 1;
+        const repairStarted = await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "STARTED",
+          `failedRoundId=${failedRoundId};label=${label}`
+          + (chain === undefined
+            ? ""
+            : `;diagnosisId=${chain.diagnosisId};predecessorLabel=${chain.predecessorLabel}`
+              + (chain.matches > 1 ? `;diagnosisMatches=${chain.matches};diagnosisSelected=EARLIEST_BY_CREATED_AT` : "")),
+          identity(candidate),
+        );
+        if (!repairStarted.ok) return repairStarted;
+        const repaired = await this.#dependencies.repair.run({
+          bookId: input.bookId,
+          failedCandidate: identity(candidate),
+          failedRoundId,
+          repairId: derivedId(label, runId),
+          successorCandidateId: derivedId(`${label}-candidate`, runId),
+          reviewId: derivedId(`${label}-review`, runId),
+          freshRoundId: derivedId(`${label}-qc`, runId),
+          repairRunId: derivedId(`${label}-run`, runId),
+          sourceGitSha: input.sourceGitSha,
+          attemptRoot: resolve(input.attemptRoot, label),
+          signal: input.signal,
+          // Only a chained link carries one. The port's gate answers
+          // REPAIR_DIAGNOSIS_STALE if it does not match the request's exact
+          // round + candidate, and that error is RETURNED, never swallowed into
+          // the escalation below: a mismatched diagnosis must be visible.
+          ...(chain === undefined ? {} : { diagnosisId: chain.diagnosisId }),
+        });
+        if (!repaired.ok) {
+          await this.#event(runId, input.bookId, "repair", "FAILED", repaired.error.message, identity(candidate));
+          return repaired;
+        }
+        candidate = repaired.value.successor;
+        review = { ok: true, value: repaired.value.review };
+        qc = { ok: true, value: repaired.value.qc };
+        roundId = repaired.value.qc.roundId;
+        if (repaired.value.status === "PASS" && repaired.value.qc.outcome === "PASS") {
+          const repairCompleted = await this.#event(runId, input.bookId, "repair", "COMPLETED", `roundId=${roundId}`, identity(candidate));
+          if (!repairCompleted.ok) return repairCompleted;
+          break;
+        }
+        const diagnosis = await this.#findChainDiagnosis(input.bookId, roundId, identity(candidate));
+        if (!diagnosis.ok) {
+          await this.#event(runId, input.bookId, "repair", "FAILED", diagnosis.error.message, identity(candidate));
+          return diagnosis;
+        }
+        if (diagnosis.value === undefined) {
+          const message = `qc-diagnose ${input.bookId} --round ${repaired.value.qc.roundId} required before another repair`;
+          await this.#event(runId, input.bookId, "repair", "FAILED", message, identity(candidate));
+          return failed("REPAIR_DIAGNOSIS_REQUIRED", message);
+        }
+        // NO "repair COMPLETED" event here: this link did not succeed, and the
+        // phase log must not claim otherwise. The chain is legible from the NEXT
+        // link's STARTED event, which names the diagnosis and the predecessor.
+        chain = {
+          diagnosisId: diagnosis.value.diagnosis.diagnosisId,
+          predecessorLabel: label,
+          matches: diagnosis.value.matches,
+        };
+        failedRoundId = roundId;
       }
-      const label = repairLabel.value;
-      const repairStarted = await this.#event(
-        runId,
-        input.bookId,
-        "repair",
-        "STARTED",
-        `failedRoundId=${qc.value.roundId};label=${label}`,
-        identity(candidate),
-      );
-      if (!repairStarted.ok) return repairStarted;
-      const repaired = await this.#dependencies.repair.run({
-        bookId: input.bookId,
-        failedCandidate: identity(candidate),
-        failedRoundId: qc.value.roundId,
-        repairId: derivedId(label, runId),
-        successorCandidateId: derivedId(`${label}-candidate`, runId),
-        reviewId: derivedId(`${label}-review`, runId),
-        freshRoundId: derivedId(`${label}-qc`, runId),
-        repairRunId: derivedId(`${label}-run`, runId),
-        sourceGitSha: input.sourceGitSha,
-        attemptRoot: resolve(input.attemptRoot, label),
-        signal: input.signal,
-      });
-      if (!repaired.ok) {
-        await this.#event(runId, input.bookId, "repair", "FAILED", repaired.error.message, identity(candidate));
-        return repaired;
-      }
-      candidate = repaired.value.successor;
-      review = { ok: true, value: repaired.value.review };
-      qc = { ok: true, value: repaired.value.qc };
-      roundId = repaired.value.qc.roundId;
-      if (repaired.value.status !== "PASS" || repaired.value.qc.outcome !== "PASS") {
-        const message = `qc-diagnose ${input.bookId} --round ${repaired.value.qc.roundId} required before another repair`;
-        await this.#event(runId, input.bookId, "repair", "FAILED", message, identity(candidate));
-        return failed("REPAIR_DIAGNOSIS_REQUIRED", message);
-      }
-      const repairCompleted = await this.#event(runId, input.bookId, "repair", "COMPLETED", `roundId=${roundId}`, identity(candidate));
-      if (!repairCompleted.ok) return repairCompleted;
     } else {
       const repairSkipped = await this.#event(runId, input.bookId, "repair", "SKIPPED", "fresh QC passed", identity(candidate));
       if (!repairSkipped.ok) return repairSkipped;

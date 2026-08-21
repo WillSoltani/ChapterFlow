@@ -285,6 +285,320 @@ requiredTest("the review-repair operator line reports the RESOLVED cap, not the 
   }
 });
 
+/**
+ * ── THE CHAINED LADDER ───────────────────────────────────────────────────────
+ *
+ * THIRD WEDGE (the live canary's actual stopping point, and the reason the
+ * escalation above was not enough on its own). The escalation named a round and
+ * told the operator to run qc-diagnose. The operator ran it. A durable diagnosis
+ * landed in `books/<id>/qc/diagnoses/`. And NOTHING COULD CONSUME IT: the
+ * book-run built a repair request with no `diagnosisId` field at all, and the
+ * only other diagnosis-accepting entry point (`runBookAutopilot`'s
+ * `--content-repair-canary`) was unreachable dead code. Every later operator
+ * round replayed the same COMPLETED-but-unsuccessful ordinal and printed the
+ * same REPAIR_DIAGNOSIS_REQUIRED, forever.
+ *
+ * The forward path the port was always built for is a CHAIN: ordinal N+1
+ * repairs ordinal N's SUCCESSOR, against ordinal N's OWN fresh round, citing the
+ * diagnosis of exactly that round+candidate — which is precisely the request
+ * shape `priorUnsuccessful` (candidateRepairApplicationPort.ts:386-390) detects
+ * and demands a diagnosisId for. These cases pin that the book-run now builds
+ * it, and — just as importantly — that it does NOT build it from a diagnosis of
+ * the wrong round or the wrong candidate.
+ */
+
+requiredTest("a durable diagnosis for an unsuccessful ordinal's OWN round CHAINS the repair forward: ordinal 2 repairs ordinal 1's successor and cites the diagnosis", async (context: TestContext) => {
+  const book = "qc-repair-chained";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  const failedSuccessor = await h.successorIdentity("repair");
+  const diagnosis = await h.seedDiagnosis("repair");
+
+  const result = await h.service.run({ ...h.request });
+  if (!result.ok) throw new Error(`a diagnosed unsuccessful ordinal must chain, not escalate: ${JSON.stringify(result.error)}`);
+  assert.equal(result.value.status, "READY");
+
+  assert.equal(h.qcRepairCalls().length, 2, JSON.stringify(h.qcRepairCalls().map((call) => call.repairRunId)));
+  // Call one is the REPLAY of ordinal 1 — no diagnosis, because ordinal 1
+  // repaired the original candidate against the original failed round.
+  assert.equal(h.qcRepairCalls()[0].repairRunId, h.qcRepairRunId("repair"));
+  assert.equal(h.qcRepairCalls()[0].diagnosisId, undefined, "the replay of ordinal 1 must not acquire a diagnosis it never had");
+
+  // Call two is the CHAINED link, and every field says so.
+  const chained = h.qcRepairCalls()[1];
+  assert.deepEqual(
+    chained.failedCandidate,
+    failedSuccessor,
+    "the chain repairs ordinal 1's SUCCESSOR — repairing the ORIGINAL candidate again is the rejected draft",
+  );
+  assert.notEqual(
+    chained.failedCandidate.candidateId,
+    `${derivedIdOf("compiler-run", h.bookRunId)}-candidate`,
+    "the chained repair must not re-target the compiled candidate",
+  );
+  assert.equal(chained.failedRoundId, derivedIdOf("repair-qc", h.bookRunId), "the chain is anchored on ordinal 1's OWN fresh round");
+  assert.equal(chained.diagnosisId, diagnosis.diagnosisId, "the port's priorUnsuccessful gate is SATISFIED, not bypassed");
+
+  // EVERY id derives from the ordinal-2 label, exactly as the walk requires.
+  assert.equal(chained.repairRunId, h.qcRepairRunId("repair-r2"));
+  assert.equal(chained.repairId, derivedIdOf("repair-r2", h.bookRunId));
+  assert.equal(chained.successorCandidateId, derivedIdOf("repair-r2-candidate", h.bookRunId));
+  assert.equal(chained.reviewId, derivedIdOf("repair-r2-review", h.bookRunId));
+  assert.equal(chained.freshRoundId, derivedIdOf("repair-r2-qc", h.bookRunId));
+  assert.ok(chained.attemptRoot.endsWith("repair-r2"), chained.attemptRoot);
+
+  // The run carries ordinal 2's successor forward, not ordinal 1's.
+  assert.equal(result.value.candidate.candidateId, derivedIdOf("repair-r2-candidate", h.bookRunId));
+
+  // Operator-visible: the STARTED event for the chained link names the
+  // diagnosis that authorized it and the ordinal it is chained from.
+  const started = h.events
+    .filter((event) => event.phase === "repair" && event.status === "STARTED")
+    .map((event) => event.detail ?? "");
+  assert.ok(
+    started.some((detail) => (
+      detail.includes("label=repair-r2")
+      && detail.includes(`diagnosisId=${diagnosis.diagnosisId}`)
+      && detail.includes("predecessorLabel=repair")
+      && detail.includes(`failedRoundId=${derivedIdOf("repair-qc", h.bookRunId)}`)
+    )),
+    JSON.stringify(started),
+  );
+  // Ordinal 1's own STARTED event is unchanged — no diagnosis, no predecessor.
+  assert.ok(started.some((detail) => detail.endsWith("label=repair")), JSON.stringify(started));
+});
+
+requiredTest("the chain is BOUNDED: an unsuccessful ordinal 2 with no diagnosis of its own escalates naming ORDINAL 2's round, not ordinal 1's", async (context: TestContext) => {
+  const book = "qc-repair-chain-stop";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  await h.seedDiagnosis("repair");
+  // The chain already advanced once and the second link ALSO came back
+  // unsuccessful. There is no diagnosis for it, so the ladder stops exactly the
+  // way it stops at link one.
+  await h.seedCompletedQcRepair("repair-r2", "FAIL", { parentLabel: "repair", completedUnderDiagnosisId: "diagnosis-repair" });
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("an undiagnosed link must escalate, never chain on");
+  assert.equal(result.error.code, "REPAIR_DIAGNOSIS_REQUIRED");
+  assert.ok(
+    result.error.message.includes(derivedIdOf("repair-r2-qc", h.bookRunId)),
+    `the escalation names the round that actually failed last: ${result.error.message}`,
+  );
+  assert.ok(
+    !result.error.message.includes(derivedIdOf("repair-qc", h.bookRunId)),
+    `a stale predecessor round must not be what the operator is told to diagnose: ${result.error.message}`,
+  );
+  assert.equal(h.qcRepairCalls().length, 2, JSON.stringify(h.qcRepairCalls().map((call) => call.repairRunId)));
+  assert.equal(h.qcRepairModelCalls(), 0, "both links were replays; a stopped chain costs no model work");
+  const third = await h.runStore.readRun(book, h.qcRepairRunId("repair-r3"), context.clock.now());
+  assert.equal(third.ok, false, "an undiagnosed link must not mint the next ordinal");
+});
+
+requiredTest("a fully diagnosed chain still fails closed at the cap: every ordinal spent, the ceiling named, no ordinal past it", async (context: TestContext) => {
+  const book = "qc-repair-chain-capped";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  // Three completed-but-unsuccessful links, each one diagnosed: the chain has
+  // every authorization it could ask for and STILL must not run forever.
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  await h.seedDiagnosis("repair");
+  // Each chained link EXECUTED under its predecessor's diagnosis — the rig's
+  // replay identity check (mirroring the port's record.diagnosisId equality)
+  // must see the same choice the ladder re-derives, or the replay is a
+  // mismatch, which is a DIFFERENT defect than the cap this test pins.
+  await h.seedCompletedQcRepair("repair-r2", "FAIL", { parentLabel: "repair", completedUnderDiagnosisId: "diagnosis-repair" });
+  await h.seedDiagnosis("repair-r2");
+  await h.seedCompletedQcRepair("repair-r3", "FAIL", { parentLabel: "repair-r2", completedUnderDiagnosisId: "diagnosis-repair-r2" });
+  await h.seedDiagnosis("repair-r3");
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("an exhausted chain must fail closed, never loop");
+  assert.equal(result.error.code, "BOOK_RUN_REPAIR_UNAVAILABLE");
+  assert.ok(
+    result.error.message.includes(String(EXPECTED_CAP)),
+    `the cap must be named in the failure: ${result.error.message}`,
+  );
+  assert.equal(h.qcRepairCalls().length, EXPECTED_CAP, JSON.stringify(h.qcRepairCalls().map((call) => call.repairRunId)));
+  assert.deepEqual(
+    h.qcRepairCalls().map((call) => call.repairRunId),
+    ["repair", "repair-r2", "repair-r3"].map((label) => h.qcRepairRunId(label)),
+    "the chain walks each ordinal exactly once, in order",
+  );
+  assert.equal(h.qcRepairModelCalls(), 0, "every link was a durable replay");
+  const fourth = await h.runStore.readRun(book, h.qcRepairRunId("repair-r4"), context.clock.now());
+  assert.equal(fourth.ok, false, "the chain must not mint an ordinal past the cap");
+});
+
+requiredTest("a diagnosis of the WRONG ROUND chains nothing: the escalation stands", async (context: TestContext) => {
+  const book = "qc-repair-diag-wronground";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  // A real diagnosis of the ORIGINAL fresh-QC round — the operator diagnosed the
+  // wrong thing (or an older round). It names the right candidate, so only the
+  // round check can reject it.
+  await h.seedDiagnosis("repair", {
+    diagnosisId: "diagnosis-original-round",
+    roundId: derivedIdOf("qc", h.bookRunId),
+  });
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, "a diagnosis of a different round authorizes nothing");
+  if (result.ok) throw new Error("unreachable");
+  assert.equal(result.error.code, "REPAIR_DIAGNOSIS_REQUIRED");
+  assert.ok(
+    result.error.message.includes(derivedIdOf("repair-qc", h.bookRunId)),
+    `the escalation still names the round that must be diagnosed: ${result.error.message}`,
+  );
+  assert.equal(h.qcRepairCalls().length, 1, "no second ordinal is minted on a mismatched diagnosis");
+  const successor = await h.runStore.readRun(book, h.qcRepairRunId("repair-r2"), context.clock.now());
+  assert.equal(successor.ok, false, "a mismatched diagnosis must never mint a successor ordinal");
+});
+
+requiredTest("a diagnosis of the WRONG CANDIDATE chains nothing: the escalation stands", async (context: TestContext) => {
+  const book = "qc-repair-diag-wrongcand";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  const successorIdentity = await h.successorIdentity("repair");
+  // Right round, right candidate ID, STALE DIGEST — the successor was rebuilt
+  // after the diagnosis was taken. Identity is the pair, and the pair is what
+  // the port's gate compares, so this must not chain either.
+  await h.seedDiagnosis("repair", {
+    diagnosisId: "diagnosis-stale-digest",
+    candidate: { candidateId: successorIdentity.candidateId, manifestDigest: "0".repeat(64) },
+  });
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, "a diagnosis of a different candidate authorizes nothing");
+  if (result.ok) throw new Error("unreachable");
+  assert.equal(result.error.code, "REPAIR_DIAGNOSIS_REQUIRED");
+  assert.ok(
+    result.error.message.includes(derivedIdOf("repair-qc", h.bookRunId)),
+    `the escalation still names the round that must be diagnosed: ${result.error.message}`,
+  );
+  assert.equal(h.qcRepairCalls().length, 1, "no second ordinal is minted on a mismatched diagnosis");
+});
+
+requiredTest("a resume onto a COMPLETED chained ordinal replays it: zero new model calls, no duplicate successor, same candidate", async (context: TestContext) => {
+  const book = "qc-repair-chain-resume";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  await h.seedDiagnosis("repair");
+
+  const first = await h.service.run({ ...h.request });
+  if (!first.ok) throw new Error(`the chained link must converge: ${JSON.stringify(first.error)}`);
+  assert.equal(h.qcRepairModelCalls(), 1, "the chained link does the repair work exactly once");
+  assert.equal(h.qcRepairCalls()[1].repairRunId, h.qcRepairRunId("repair-r2"));
+
+  const resumed = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  if (!resumed.ok) throw new Error(`the resume must replay the chain, not re-run it: ${JSON.stringify(resumed.error)}`);
+  assert.equal(resumed.value.status, "READY");
+  assert.equal(h.qcRepairModelCalls(), 1, "a resume onto a COMPLETED chained ordinal must cost ZERO new model calls");
+  assert.equal(
+    resumed.value.candidate.candidateId,
+    first.value.candidate.candidateId,
+    "the same durable chained successor is re-read",
+  );
+  // The diagnosis lookup is a READ: the resume re-derives the identical
+  // chained request, which is what keeps the port's COMPLETED replay from
+  // answering REPAIR_COMPLETED_MISMATCH on the recorded diagnosisId.
+  assert.equal(h.qcRepairCalls().length, 4, JSON.stringify(h.qcRepairCalls().map((call) => call.repairRunId)));
+  assert.deepEqual(
+    h.qcRepairCalls().slice(2).map((call) => call.repairRunId),
+    [h.qcRepairRunId("repair"), h.qcRepairRunId("repair-r2")],
+    "the resume walks the same two ordinals and mints no third",
+  );
+  assert.equal(h.qcRepairCalls()[3].diagnosisId, h.qcRepairCalls()[1].diagnosisId, "the replayed link cites the identical diagnosis");
+  const third = await h.runStore.readRun(book, h.qcRepairRunId("repair-r3"), context.clock.now());
+  assert.equal(third.ok, false, "a resume must not mint a third ordinal");
+});
+
+requiredTest("two diagnoses for the SAME round and candidate are not a coin flip: the EARLIEST by createdAt chains — the only selection no later qc-diagnose can disturb", async (context: TestContext) => {
+  const book = "qc-repair-diag-ambiguous";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  // The operator ran qc-diagnose twice on the same round. Both are durable, both
+  // match. LATEST-selection was REJECTED in adversarial review as a permanent
+  // wedge: qc-diagnose mints a fresh uuid per invocation, so "latest" moves
+  // every time the operator re-diagnoses — a chained ordinal COMPLETED under
+  // diagnosis A would replay with B selected and the port's identity check
+  // (record.diagnosisId !== request.diagnosisId) answers
+  // REPAIR_COMPLETED_MISMATCH forever. The store is append-only, so the
+  // EARLIEST (createdAt, diagnosisId) match is the one choice that is stable
+  // under any number of later diagnoses.
+  const earlier = await h.seedDiagnosis("repair", { diagnosisId: "diagnosis-earlier", createdAt: "2026-01-01T00:00:00.000Z" });
+  await h.seedDiagnosis("repair", { diagnosisId: "diagnosis-later", createdAt: "2026-01-02T00:00:00.000Z" });
+
+  const result = await h.service.run({ ...h.request });
+  if (!result.ok) throw new Error(`an ambiguous but valid diagnosis set must still chain: ${JSON.stringify(result.error)}`);
+  assert.equal(h.qcRepairCalls().length, 2);
+  assert.equal(h.qcRepairCalls()[1].diagnosisId, earlier.diagnosisId, "the earliest diagnosis wins — append-stable");
+
+  const started = h.events
+    .filter((event) => event.phase === "repair" && event.status === "STARTED")
+    .map((event) => event.detail ?? "");
+  assert.ok(
+    started.some((detail) => (
+      detail.includes("label=repair-r2")
+      && detail.includes("diagnosisMatches=2")
+      && detail.includes("diagnosisSelected=EARLIEST_BY_CREATED_AT")
+      && detail.includes(`diagnosisId=${earlier.diagnosisId}`)
+    )),
+    `the operator must be able to see that two diagnoses matched: ${JSON.stringify(started)}`,
+  );
+});
+
+requiredTest("a LATER qc-diagnose cannot wedge a COMPLETED chained ordinal: replay under an appended diagnosis still re-derives the recorded choice", async (context: TestContext) => {
+  const book = "qc-repair-diag-append";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h.seedCompletedQcRepair("repair", "FAIL");
+  const original = await h.seedDiagnosis("repair", { diagnosisId: "diagnosis-original", createdAt: "2026-01-01T00:00:00.000Z" });
+
+  // First run chains ordinal 2 under the only diagnosis and completes it.
+  const first = await h.service.run({ ...h.request });
+  if (!first.ok) throw new Error(`the diagnosed chain must run: ${JSON.stringify(first.error)}`);
+  assert.equal(h.qcRepairCalls()[1].diagnosisId, original.diagnosisId);
+  const callsAfterFirst = h.qcRepairCalls().length;
+
+  // The operator re-diagnoses AFTER the chain completed. Under latest-selection
+  // this exact resume wedged with REPAIR_COMPLETED_MISMATCH (the replay request
+  // named the new diagnosis while the durable record held the original) — the
+  // defect adversarial review caught. Earliest-selection re-derives the
+  // original choice: the appended diagnosis is durable but never selected.
+  await h.seedDiagnosis("repair", { diagnosisId: "diagnosis-appended", createdAt: "2026-01-05T00:00:00.000Z" });
+  const resumed = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+  if (!resumed.ok) throw new Error(`an appended diagnosis must not wedge the replay: ${JSON.stringify(resumed.error)}`);
+  const replayCalls = h.qcRepairCalls().slice(callsAfterFirst);
+  for (const call of replayCalls.filter((c) => c.repairRunId === h.qcRepairRunId("repair-r2"))) {
+    assert.equal(call.diagnosisId, original.diagnosisId, "replay re-derives the RECORDED choice, never the newest");
+  }
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
