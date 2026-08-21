@@ -301,6 +301,7 @@ async function createCliV25Composition(
   const { createChapterFlowApp } = await import("./app/createChapterFlowApp.js");
   const app = createChapterFlowApp({
     runStore, stageCoordinator, modelGateway, candidateStore, contentReader, reviewService, qcService,
+    qcDiagnoses: qcStore,
     promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
   });
   return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, writeLock, runStore, runner, ids, sourceGitSha } };
@@ -4851,6 +4852,34 @@ async function runBookAutopilot(
     ? "author"
     : requestedArchitecture;
   let contentRepairCanary: import("./orchestrator/autopilot.js").ContentRepairCanaryBinding | undefined;
+  // ─────────────────────────────────────────────────────────────────────────
+  // QUARANTINED — UNREACHABLE. DO NOT EXTEND, DO NOT TREAT AS A LIVE PATH.
+  //
+  // Everything from here to where `resolvedApp` is declared builds a repair
+  // request that can carry a `diagnosisId`. (That phrasing is deliberate: the
+  // source-slicing assertions in `tests/cli-model-migration.test.ts` anchor on
+  // the literal declaration text, so repeating it in a comment silently empties
+  // their slice — observed as an empty-string match failure.)
+  // NOTHING CAN INVOKE IT, on two independent counts, both verified by grep
+  // over this file:
+  //   1. `runBookAutopilot` itself is never invoked from the CLI dispatch switch — this
+  //      declaration. The `book-autopilot` dispatch case routes to
+  //      `runV4BookProduction`, so no caller reaches this function at all.
+  //   2. Even if something did, `runV4BookProduction`'s flag allowlist does not
+  //      contain "content-repair-canary", so the flag is rejected
+  //      UNSUPPORTED_OPTION before any of this could run.
+  // Its only remaining reader is `tests/cli-model-migration.test.ts`, which
+  // asserts over this block as SOURCE TEXT, never executes it.
+  //
+  // ITS REPLACEMENT IS LIVE AND ELSEWHERE: the book-run consumes a durable
+  // diagnosis in `BookRunApplicationService.run`'s CHAINED QC-REPAIR LADDER
+  // (src/app/bookRunApplicationService.ts, the `qc.value.outcome === "FAIL"`
+  // branch), which finds the diagnosis for an unsuccessful ordinal's own fresh
+  // round via `QcDiagnosisIndex.listDiagnoses` and passes `diagnosisId` into
+  // `CandidateRepairApplicationPort.run`. That is the ONLY path a reviewer
+  // should reason about; this one is kept solely because the test above pins its
+  // text, and it is deliberately left inert rather than repaired or rewired.
+  // ─────────────────────────────────────────────────────────────────────────
   if ("content-repair-canary" in flags) {
     if (flags["content-repair-canary"] !== true) {
       console.error("--content-repair-canary does not accept a value");

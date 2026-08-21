@@ -39,6 +39,7 @@ import { compileSourceUsePlan } from "../../src/compiler/sourceUsePlanCompiler.j
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
 import type { QcEvaluation, QcService } from "../../src/qc/qcTypes.js";
 import { createQcService } from "../../src/qc/qcService.js";
+import { createQcStore } from "../../src/qc/qcStore.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import type { PromotionService } from "../../src/release/promotionTypes.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
@@ -395,6 +396,7 @@ async function buildWorld(
     candidateQc,
     reviews,
     qc: overrides.qc ?? qc,
+    diagnoses: createQcStore({ booksRoot }),
     promotion: overrides.promotion ?? promotion,
     currentPointer: overrides.currentPointer ?? currentPointer,
     runStore,

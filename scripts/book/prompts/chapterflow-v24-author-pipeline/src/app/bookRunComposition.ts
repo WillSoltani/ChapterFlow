@@ -519,6 +519,7 @@ export async function createProductionBookRunComposition(input: Readonly<{
     contentReader,
     reviewService,
     qcService,
+    qcDiagnoses: qcStore,
     promotionService,
     clock,
     ids,

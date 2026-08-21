@@ -25,6 +25,7 @@ import {
 import type { BookWriteLock } from "../../src/books/leaseTypes.js";
 import type { PlannedArtifact, Result, UtcIso } from "../../src/contracts/v4Core.js";
 import { createQcService } from "../../src/qc/qcService.js";
+import { createQcStore } from "../../src/qc/qcStore.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import type { PromotionService } from "../../src/release/promotionTypes.js";
@@ -281,6 +282,7 @@ function buildRig(context: TestContext, label: string, options: RigOptions = {})
     contentReader,
     reviewService,
     qcService,
+    qcDiagnoses: createQcStore({ booksRoot: context.roots.booksRoot }),
     promotionService,
     clock,
     ids,

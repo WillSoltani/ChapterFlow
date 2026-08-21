@@ -43,6 +43,27 @@ export interface QcDiagnosis {
   readonly createdAt: UtcIso;
 }
 
+/**
+ * Read-only, repeatable lookup over a book's DURABLE qc-diagnose output.
+ *
+ * `QcStore.getDiagnosis` is keyed by diagnosis id, which the book-run does not
+ * have: it knows the ROUND that failed and the CANDIDATE that failed it, and
+ * has to answer "did the operator already diagnose exactly this?". That is the
+ * one question the chained qc-repair ladder turns on, so it gets its own narrow
+ * port rather than widening `QcService` (whose implementations are legion).
+ *
+ * Deliberately a LISTING and not a `getDiagnosisForRound`: matching is the
+ * caller's decision because ambiguity is the caller's decision. Two diagnoses
+ * can legitimately name the same round+candidate (an operator re-ran
+ * qc-diagnose), and silently picking one inside the store would hide that.
+ */
+export interface QcDiagnosisIndex {
+  /** EVERY durable diagnosis for the book, in unspecified order. A book with no
+   *  diagnoses is `ok` with an empty list; a diagnosis that cannot be read or
+   *  parsed FAILS the call — an unreadable diagnosis is never reported absent. */
+  listDiagnoses(bookId: BookId): Promise<Result<readonly QcDiagnosis[]>>;
+}
+
 export interface QcStatus {
   readonly bookId: BookId;
   readonly ledgerRevision: number;

@@ -11,6 +11,7 @@ import {
   type BookRunEventSink,
 } from "./bookRunApplicationService.js";
 import type { CurrentPointerStore } from "../books/currentPointer.js";
+import type { QcDiagnosisIndex } from "../qc/qcTypes.js";
 import type { SectionPackCache } from "../books/sectionPackCache.js";
 import type { SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
@@ -27,6 +28,10 @@ export interface ChapterFlowApp {
 export function createChapterFlowApp(
   dependencies: ChapterFlowPipelineDependencies & Readonly<{
     pipelineRoot?: string;
+    /** Read-only index over durable qc-diagnose output, consumed by the book
+     *  run's chained qc-repair ladder. Satisfied by the QcStore this composition
+     *  already builds; required whenever a book run is composed at all. */
+    qcDiagnoses: QcDiagnosisIndex;
     modelTaskRunner?: ModelTaskRunner;
     currentPointerStore?: CurrentPointerStore;
     bookRunEvents?: BookRunEventSink;
@@ -87,6 +92,7 @@ export function createChapterFlowApp(
         candidateQc,
         reviews: dependencies.reviewService,
         qc: dependencies.qcService,
+        diagnoses: dependencies.qcDiagnoses,
         promotion: dependencies.promotionService,
         currentPointer: dependencies.currentPointerStore,
         runStore: dependencies.runStore,

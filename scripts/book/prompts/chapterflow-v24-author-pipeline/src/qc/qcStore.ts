@@ -1,5 +1,5 @@
 import { randomBytes } from "node:crypto";
-import { link, unlink, writeFile } from "node:fs/promises";
+import { link, readdir, unlink, writeFile } from "node:fs/promises";
 import { resolve } from "node:path";
 
 import { replaceFileAtomic, type AtomicBookFileSeams } from "../books/atomicBookFiles.js";
@@ -11,7 +11,7 @@ import {
   requirePathId,
 } from "../books/bookPaths.js";
 import type { Result, UtcIso } from "../contracts/v4Core.js";
-import type { QcDiagnosis, QcIssue, QcRoundResult } from "./qcTypes.js";
+import type { QcDiagnosis, QcDiagnosisIndex, QcIssue, QcRoundResult } from "./qcTypes.js";
 
 export interface QcLedgerRoundEvent {
   readonly schemaVersion: "1";
@@ -46,7 +46,7 @@ export interface QcStoragePaths {
   readonly preserved: (repairId: string) => string;
 }
 
-export interface QcStore {
+export interface QcStore extends QcDiagnosisIndex {
   getRound(bookId: string, roundId: string): Promise<Result<QcRoundResult>>;
   commitRound(bookId: string, round: QcRoundResult): Promise<Result<QcRoundResult>>;
   getDiagnosis(bookId: string, diagnosisId: string): Promise<Result<QcDiagnosis>>;
@@ -456,6 +456,43 @@ class FileQcStore implements QcStore {
       `QC diagnosis ${bookId}/${diagnosisId}`,
       (value) => parseDiagnosis(value, diagnosisId),
     );
+  }
+
+  /**
+   * Every durable diagnosis for the book. READ-ONLY and repeatable: it creates
+   * nothing, so a resume can ask the same question as often as it likes.
+   *
+   * FAIL-CLOSED on anything it cannot establish. A missing `qc/diagnoses`
+   * directory is a real, unambiguous "none yet" and answers `[]`; a directory it
+   * cannot read, or a file in it that does not parse as a schema-1 diagnosis,
+   * FAILS. Reporting an unreadable diagnosis as absent is the dangerous answer:
+   * the chained-repair caller reads absence as "the operator has not diagnosed
+   * this yet" and escalates, which would turn a corrupt byte into a permanent
+   * REPAIR_DIAGNOSIS_REQUIRED that no amount of qc-diagnose can clear.
+   *
+   * `createFileAtomic` stages under `<file>.tmp-<pid>-<hex>`, so the `.json`
+   * filter is what keeps a concurrent write from being read as a corrupt
+   * diagnosis. The id is the file's basename, and `getDiagnosis` re-derives the
+   * path from it — a name that is not a safe QC id fails INVALID_QC_ID rather
+   * than reaching the filesystem.
+   */
+  async listDiagnoses(bookId: string): Promise<Result<readonly QcDiagnosis[]>> {
+    const paths = this.paths(bookId);
+    if (!paths.ok) return paths;
+    let entries: readonly string[];
+    try {
+      entries = await readdir(paths.value.diagnosesRoot);
+    } catch (cause) {
+      if ((cause as NodeJS.ErrnoException).code === "ENOENT") return { ok: true, value: Object.freeze([]) };
+      return failed("QC_DIAGNOSIS_LIST_FAILED", `QC diagnoses list failed: ${(cause as Error).message}`);
+    }
+    const diagnoses: QcDiagnosis[] = [];
+    for (const entry of [...entries].filter((name) => name.endsWith(".json")).sort()) {
+      const read = await this.getDiagnosis(bookId, entry.slice(0, -".json".length));
+      if (!read.ok) return read;
+      diagnoses.push(read.value);
+    }
+    return { ok: true, value: Object.freeze(diagnoses) };
   }
 
   async createDiagnosis(bookId: string, diagnosis: QcDiagnosis): Promise<Result<QcDiagnosis>> {
