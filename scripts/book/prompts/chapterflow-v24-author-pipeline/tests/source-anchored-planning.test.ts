@@ -339,6 +339,56 @@ test("SC11.2 quota rebalance (P15 ship-layer): non-narrative units need 1 verbat
   assert.match(exHits[0].message, /<2 of its hardSpecifics/, "narration message keeps the min-2 quota");
 });
 
+test("SC11.2 memorable_line OR-semantics (11p ship mirror): one fully-grounding cited case clears a multi-case line; zero blocks ONCE", () => {
+  // LIVE WEDGE this pins: a memorable line inherits every case its source tier
+  // cites, and the per-anchor loop demanded 2 specifics from EACH — a <=14-word
+  // line citing three cases is structurally unsatisfiable. The write-time gate
+  // (SEC16) was corrected to OR-semantics under owner delegation (11p); the
+  // first live QC round to reach the ship gate re-blocked a freshly-passed book
+  // with 9 identical SC11.2 blockers. Ship must agree with write-time.
+
+  // Case 1 — the line fully grounds ONE cited case (lantern+ledger verbatim);
+  // the other two cited cases contribute nothing. Must pass.
+  const grounded = fullyAnchoredChapter();
+  grounded.memorableLines![0].text = "The lantern ledger closed the gap the beacon left open.";
+  grounded.authoring!.sourceAnchors!.effectiveAnchors["memorableLines[0]"] = ["ch01.ex.lantern", "ch01.ex.compass", "ch01.ex.quay"];
+  const groundedFindings = checkChapterProvenance(grounded, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.message.includes("memorableLines[0]"));
+  assert.deepEqual(groundedFindings.map((f) => f.message), [], "one fully-grounding case must clear the line");
+
+  // Case 2 — NO cited case reaches 2 specifics. Blocks exactly ONCE (not once
+  // per anchor), and the message names every shortfall so the writer can pick one.
+  const ungrounded = fullyAnchoredChapter();
+  ungrounded.memorableLines![0].text = "A tidy record beats a good memory every single time.";
+  ungrounded.authoring!.sourceAnchors!.effectiveAnchors["memorableLines[0]"] = ["ch01.ex.lantern", "ch01.ex.compass", "ch01.ex.quay"];
+  const ungroundedFindings = checkChapterProvenance(ungrounded, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.message.includes("memorableLines[0]"));
+  assert.equal(ungroundedFindings.length, 1, `zero grounding blocks once, not per anchor: ${JSON.stringify(ungroundedFindings.map((f) => f.message))}`);
+  assert.match(ungroundedFindings[0].message, /none of them fully grounds/, "the message states the OR rule");
+  for (const id of ["ch01.ex.lantern", "ch01.ex.compass", "ch01.ex.quay"]) {
+    assert.ok(ungroundedFindings[0].message.includes(id), `every shortfall named: ${id}`);
+  }
+
+  // Control — NON-memorable narration units keep per-anchor AND semantics: a quiz
+  // unit's per-anchor blocker shape is pinned by the boundary test above, and an
+  // example unit citing a case it never names still blocks per anchor.
+  // (fixture examples append lantern specifics to every scenario, so cite compass —
+  // a case the example text never names — to prove the per-anchor demand still fires)
+  // (the base fixture's example text names EVERY synthetic specific, so blank it —
+  // the control needs an example whose text carries at most one of compass/tide/mast)
+  const example = fullyAnchoredChapter();
+  example.examples[0].title = "A quiet morning";
+  example.examples[0].scenario = "A reviewer walks the dock and files one note before lunch.";
+  example.examples[0].whatToDo = "File the note before the morning meeting.";
+  example.examples[0].whyItMatters = "Early notes keep the record honest.";
+  example.examples[0].sourceAnchorId = "ch01.ex.compass";
+  example.examples[0].sourceAnchorIds = ["ch01.ex.compass"];
+  example.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
+  const exampleFindings = checkChapterProvenance(example, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.compass");
+  assert.ok(exampleFindings.length > 0, "non-memorable narration keeps AND semantics");
+});
+
 test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satisfied by construction; real specifics still bind", () => {
   // CF-J Task 4 investigation result: SC11 matches anchors BY ID against the sidecar
   // catalog; its ONE text-based clause is SC11.2, which requires the unit text to

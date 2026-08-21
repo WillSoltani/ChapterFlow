@@ -288,6 +288,10 @@ function checkUnit(
       `${unit.unit} has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from.`));
     return;
   }
+  // memorable_line OR-semantics state (see the 11p mirror note below): one fully
+  // grounding cited case clears the line; shortfalls only block if NONE grounds it.
+  let memorableFullyGrounded = false;
+  const memorableShortfalls: Array<{ anchorId: string; specifics: string[] }> = [];
   for (const anchorId of unit.ids) {
     if (placeholderAnchorId(anchorId)) {
       findings.push(finding("SC11.3.placeholder_anchor" as any, "blocker",
@@ -327,10 +331,33 @@ function checkUnit(
       // gate identically, and no unit can newly block.
       const present = specifics.filter((s) => s && (isPageCitationOnly(s) || lc.includes(s.toLowerCase()))).length;
       if (present < minRequired) {
-        findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
-          `${unit.unit} names anchor "${anchorId}" but uses <${minRequired} of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
+        if (unit.claimType === "memorable_line") {
+          // 11p SHIP-LAYER MIRROR (flagged as a watch-item when the write-time fix
+          // landed, hit live on the first QC round to reach this code): a memorable
+          // line inherits EVERY case its source tier cites, and this loop fires PER
+          // ANCHOR — so a <=14-word line citing three cases needs 2 specifics from
+          // EACH, which is structurally unsatisfiable. The section gate (SEC16) was
+          // corrected under owner delegation to OR-semantics: the line passes when
+          // >=1 cited case fully grounds it. The ship gate must agree with the
+          // write-time gate or every freshly-passed book re-blocks at QC — the
+          // exact write/ship disagreement the P15 note above records for quiz
+          // units. AND stays for every other narration unit (hook/breakdown/
+          // takeaway/example), which cite one case and narrate it.
+          memorableShortfalls.push({ anchorId, specifics });
+        } else {
+          findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
+            `${unit.unit} names anchor "${anchorId}" but uses <${minRequired} of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
+        }
+      } else if (unit.claimType === "memorable_line") {
+        memorableFullyGrounded = true;
       }
     }
+  }
+  if (unit.claimType === "memorable_line" && !memorableFullyGrounded && memorableShortfalls.length > 0) {
+    const named = memorableShortfalls.map((m) => `"${m.anchorId}" (${m.specifics.slice(0, 3).join(", ")})`).join("; ");
+    findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
+      `${unit.unit} cites ${memorableShortfalls.length} case(s) — ${named} — and none of them fully grounds it (2 hardSpecifics verbatim from ONE cited case). Build the line from one case's concrete details; the other citations may stay.`,
+      memorableShortfalls[0].anchorId));
   }
 }
 
