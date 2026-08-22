@@ -215,17 +215,28 @@ function escaped(value: string): string {
  * fail-closed refusal, the advisory path silently drops it. Both must agree on
  * what "names this chapter" means, so they share this one matcher.
  */
-function matchedChapter(issue: QcIssue, chapters: readonly ChapterEntry[]): number | null {
-  if (!issue.location) return null;
+function matchedChapters(issue: QcIssue, chapters: readonly ChapterEntry[]): readonly number[] {
+  if (!issue.location) return [];
   const location = issue.location.replaceAll("\\", "/");
   const matches = chapters.filter(({ chapter, file }) => {
     if (location === file.logicalPath || location.startsWith(`${file.logicalPath}#`) || location.startsWith(`${file.logicalPath}:`)) return true;
     if (location === `chapter:${chapter.number}` || location === `chapter:${chapter.chapterId}` || location === chapter.chapterId) return true;
-    const chapterId = new RegExp(`(^|[/#:])${escaped(chapter.chapterId)}([./#:]|$)`);
-    const chapterNumber = new RegExp(`(^|[/#:])ch0*${chapter.number}([./#:]|$)`, "i");
+    // Comma is a legal boundary: a BOOK-WIDE finding locates itself as
+    // "ch01,ch02,ch03,ch04" (live: CM0.content_machinery_monoculture), and a
+    // boundary class without the comma matched ZERO of those chapters — so a
+    // finding that precisely named every chapter it applied to was refused as
+    // "does not name exactly one chapter". Naming N chapters scopes the finding
+    // to N chapters; it is the ZERO-match case that is genuinely unscoped.
+    const chapterId = new RegExp(`(^|[,/#:])${escaped(chapter.chapterId)}([.,/#:]|$)`);
+    const chapterNumber = new RegExp(`(^|[,/#:])ch0*${chapter.number}([.,/#:]|$)`, "i");
     return chapterId.test(location) || chapterNumber.test(location);
   });
-  return matches.length === 1 ? matches[0].chapter.number : null;
+  return matches.map((entry) => entry.chapter.number);
+}
+
+function matchedChapter(issue: QcIssue, chapters: readonly ChapterEntry[]): number | null {
+  const matches = matchedChapters(issue, chapters);
+  return matches.length === 1 ? matches[0] : null;
 }
 
 function compilerOwned(issue: QcIssue): boolean {
@@ -234,20 +245,22 @@ function compilerOwned(issue: QcIssue): boolean {
     || /^(?:compiler|research|critics)\//.test(location);
 }
 
-function issueChapter(issue: QcIssue, chapters: readonly ChapterEntry[]): Result<number> {
+function issueChapters(issue: QcIssue, chapters: readonly ChapterEntry[]): Result<readonly number[]> {
   if (!issue.location) {
     return failed("REPAIR_FINDING_UNSCOPED", `blocking finding ${issue.code} has no chapter location`);
   }
   if (compilerOwned(issue)) {
     return failed("REPAIR_FINDING_UNSCOPED", `blocking finding ${issue.code} is compiler/context-owned and requires manual correction`);
   }
-  const matched = matchedChapter(issue, chapters);
-  if (matched === null) {
+  const matched = matchedChapters(issue, chapters);
+  if (matched.length === 0) {
     return failed(
       "REPAIR_FINDING_UNSCOPED",
-      `blocking finding ${issue.code} does not name exactly one failed-candidate chapter: ${issue.location}`,
+      `blocking finding ${issue.code} names no failed-candidate chapter: ${issue.location}`,
     );
   }
+  // A finding naming SEVERAL chapters is scoped to each of them — the repair
+  // brief for every named chapter carries it. Only zero matches is unscoped.
   return { ok: true, value: matched };
 }
 
@@ -282,11 +295,13 @@ function groupFindings(round: QcRoundResult, chapters: readonly ChapterEntry[]):
   }
   const grouped = new Map<number, QcIssue[]>();
   for (const issue of blockers) {
-    const scoped = issueChapter(issue, chapters);
+    const scoped = issueChapters(issue, chapters);
     if (!scoped.ok) return scoped;
-    const findings = grouped.get(scoped.value) ?? [];
-    findings.push(issue);
-    grouped.set(scoped.value, findings);
+    for (const chapterNumber of scoped.value) {
+      const findings = grouped.get(chapterNumber) ?? [];
+      findings.push(issue);
+      grouped.set(chapterNumber, findings);
+    }
   }
   return {
     ok: true,
@@ -343,16 +358,20 @@ function groupReviewFindings(
         `review blocker ${finding.code} is compiler/context-owned and requires manual correction: ${finding.location}`,
       );
     }
-    const matched = matchedChapter(finding, chapters);
-    if (matched === null) {
+    const matched = matchedChapters(finding, chapters);
+    if (matched.length === 0) {
       return failed(
         "REVIEW_REPAIR_FINDING_UNSCOPED",
-        `review blocker ${finding.code} does not name exactly one failed-candidate chapter: ${finding.location}`,
+        `review blocker ${finding.code} names no failed-candidate chapter: ${finding.location}`,
       );
     }
-    const findings = grouped.get(matched) ?? [];
-    findings.push(finding);
-    grouped.set(matched, findings);
+    // Same fan-out as the QC lane: a blocker naming several chapters is scoped
+    // to each of them, and only a ZERO-match location is unscoped.
+    for (const chapterNumber of matched) {
+      const findings = grouped.get(chapterNumber) ?? [];
+      findings.push(finding);
+      grouped.set(chapterNumber, findings);
+    }
   }
   return { ok: true, value: new Map([...grouped.entries()].sort(([left], [right]) => left - right)) };
 }
