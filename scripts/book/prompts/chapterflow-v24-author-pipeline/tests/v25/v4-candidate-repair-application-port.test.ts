@@ -88,6 +88,19 @@ requiredTest("unscoped book finding blocks before run or model", async (context)
   assert.equal(run.ok, false);
 });
 
+requiredTest("a blocker naming SEVERAL chapters is scoped to each named chapter, not refused (comma boundary)", async (context) => {
+  // Live wedge this pins: CM0.content_machinery_monoculture located itself as
+  // "ch01,ch02,ch03,ch04" and the comma-less boundary class matched ZERO
+  // chapters, so a finding that precisely named every chapter it applied to
+  // was refused as unscoped. This fixture has one chapter; the location names
+  // it plus a chapter the candidate does not carry — the finding scopes to the
+  // one real chapter and the repair proceeds.
+  const subject = rig(context, { location: "ch01,ch99" });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.ok(subject.counts.repair > 0, "the repair must actually run for the named chapter");
+});
+
 requiredTest("compiler artifact blocker requires manual correction before run or model", async (context) => {
   const subject = rig(context, {
     issueCode: "SOURCE_USE_PLAN_INVALID",
