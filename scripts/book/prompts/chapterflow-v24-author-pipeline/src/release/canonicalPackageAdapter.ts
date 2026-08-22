@@ -3,6 +3,7 @@ import type { CandidateIdentity, Result } from "../contracts/v4Core.js";
 import {
   buildExpectedProductionManifestForPackage,
   type BuildProductionManifestResult,
+  type ProductionChapterSetSource,
   type ProductionManifestVersion,
 } from "../productionManifest.js";
 import {
@@ -230,15 +231,18 @@ export class CanonicalPackageAdapter {
     this.#options = options;
     this.#stateRoot = options.stateRoot ?? options.manifest?.stateRoot;
     // The journal lives under a state root. A candidate-only release is
-    // deliberately ambient-state-free — "candidate-only CLI release does not
-    // require ambient canonical chapter index" is a pinned property — so when no
-    // state root is configured we must NOT fall back to the production default:
-    // doing so made a hermetic test write into the real production state root
-    // (caught by the V25_PRODUCTION_ROOT_MUTATION tripwire) and would journal a
-    // candidate-only release into ambient state it is defined not to touch.
-    // No root => no journal. The crash window is still covered by the
-    // sidecar+package transaction and the release-time self-verify; the journal
-    // is defence-in-depth for the state-rooted path, not its only protection.
+    // deliberately ambient-state-free, so when no state root is configured we
+    // must NOT fall back to the production default: doing so made a hermetic
+    // test write into the real production state root (caught by the
+    // V25_PRODUCTION_ROOT_MUTATION tripwire) and would journal a candidate-only
+    // release into ambient state it is defined not to touch.
+    //
+    // No root => no journal — but that fallback is now a LAST resort, not the
+    // candidate route's normal state: an unjournalled release that commits its
+    // pointer and then fails can never be reconciled, because nothing on disk can
+    // ever prove the intent the recovery path requires. The CLI candidate route
+    // therefore injects a journal rooted at its own --v25-root (cli.ts
+    // runPromoteBook), which is candidate-scoped rather than ambient.
     this.#journal = options.journal ??
       (this.#stateRoot === undefined
         ? createNullReleaseJournal()
@@ -315,18 +319,57 @@ export class CanonicalPackageAdapter {
       targetBookRevision,
     };
     let priorRecord: ReleaseJournalRecord | null;
+    let allRecords: ReleaseJournalRecord[];
     try {
+      allRecords = this.#journal.list(request.bookId);
       // Records for OTHER candidates/revisions are left exactly where they are:
       // they belong to other transactions (a concurrent racer, or a crash whose
       // evidence must survive), and one release never speaks for another.
-      const filed = this.#journal.list(request.bookId)
-        .filter((record) => journalMatchesRelease(record, releaseIdentity));
+      const filed = allRecords.filter((record) => journalMatchesRelease(record, releaseIdentity));
       priorRecord = filed.length === 0 ? null : filed[filed.length - 1];
     } catch (cause) {
       // A record under this book's journal directory that cannot be parsed may
       // describe a committed pointer with no package. Not being able to rule
       // that out is the strongest reason to stop, not the weakest.
       return failed("RELEASE_UNFINISHED", errorMessage(cause));
+    }
+    // ── One candidate never advances the pointer twice ─────────────────────
+    // A release that committed its pointer and then failed (unbuildable
+    // manifest, failed package write, crash) leaves CURRENT at revision N+1 with
+    // NOTHING published. The obvious operator reflex is to re-run the SAME
+    // command with --expected-book-revision bumped to that ADVANCED revision —
+    // which the CAS happily accepts, minting revision N+2 for the very same
+    // candidate whose revision N+1 still owes artifacts. That is a double
+    // advance: two revisions of identical content, the first permanently
+    // unfinished. Refuse it, and name the record and the one invocation that
+    // actually finishes the release (which mints no revision at all).
+    //
+    // Scope is deliberately THIS candidate. A DIFFERENT candidate releasing at
+    // N+1 is a normal forward release that supersedes the unfinished one with a
+    // complete pair — pinned by "a crash between the pointer commit and the
+    // package write leaves a journal naming the window", where revision 2 goes
+    // out normally and the crash record survives as evidence. It also cannot
+    // strand the crashed record into a licence to publish: a later resume of it
+    // finds CURRENT naming a different candidate and refuses.
+    const unfinishedAtBase = allRecords.find((record) =>
+      (record.state === "pointer-committed" || record.state === "package-pending") &&
+      record.targetBookRevision === request.expectedBookRevision &&
+      record.candidateId === request.candidate.candidateId &&
+      record.manifestDigest === request.candidate.manifestDigest);
+    if (unfinishedAtBase) {
+      let unfinishedPath: string;
+      try {
+        unfinishedPath = this.#journal.pathFor(request.bookId, unfinishedAtBase.txId);
+      } catch {
+        unfinishedPath = this.#journal.dirFor(request.bookId);
+      }
+      return failed(
+        "RELEASE_UNFINISHED",
+        `revision ${request.expectedBookRevision} of ${request.bookId} was committed by an unfinished release of ` +
+          `THIS candidate: ${formatUnfinishedRelease(unfinishedAtBase, unfinishedPath)}. Finish that release instead ` +
+          `(--expected-book-revision ${unfinishedAtBase.expectedBookRevision} --resume-unfinished-release); ` +
+          "re-releasing the same candidate here would advance the pointer a second time for identical content.",
+      );
     }
     const txId = priorRecord?.txId ?? this.#newTransactionId();
     let journalPath: string;
@@ -483,6 +526,19 @@ export class CanonicalPackageAdapter {
     const built = buildCanonicalPackageManifest({
       package: assembled.value.package,
       ...this.#options.manifest,
+      // The chapter set is the CANDIDATE's — the very CHAPTER artifacts
+      // assembleCanonicalPackage parsed out of the digest-verified candidate and
+      // put in this package. There is no ambient canonical index on a
+      // candidate-only book root and this route must not look for one: reading
+      // state/indexes here is what turned the first live candidate release into
+      // "pointer committed, CHSET.index_missing, nothing published". The
+      // candidate identity is hashed into the manifest, and the release-time
+      // self-verify below recomputes the whole payload from the same package.
+      chapterSetSource: {
+        kind: "candidate",
+        candidateId: request.candidate.candidateId,
+        manifestDigest: request.candidate.manifestDigest,
+      },
     });
     if (!built.ok) {
       const message = `production manifest unbuildable after pointer commit; nothing published: ${built.findings
@@ -574,9 +630,13 @@ export class CanonicalPackageAdapter {
 export function buildCanonicalPackageManifest(args: Readonly<CanonicalManifestOptions & {
   package: BookPackageV21;
   manifestVersion?: ProductionManifestVersion;
+  /** Set by the candidate release route; omitted by the legacy parity proof,
+   *  which keeps its canonical-index behaviour byte-identical. */
+  chapterSetSource?: ProductionChapterSetSource;
 }>): BuildProductionManifestResult {
   return buildExpectedProductionManifestForPackage({
     pkg: args.package,
+    ...(args.chapterSetSource === undefined ? {} : { chapterSetSource: args.chapterSetSource }),
     stateRoot: args.stateRoot,
     runsRoot: args.runsRoot,
     recordPath: args.recordPath,

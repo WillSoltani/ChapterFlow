@@ -32,6 +32,10 @@ export type CanonicalChapterIndexResult =
   | { ok: true; bookId: string; path: string; chapters: ChapterSpec[]; refs: NormalizedChapterRef[]; blockers: [] }
   | { ok: false; bookId: string; path: string; chapters: []; refs: []; blockers: ChapterSetBlocker[] };
 
+export type CandidateChapterSetResult =
+  | { ok: true; bookId: string; chapters: ChapterSpec[]; refs: NormalizedChapterRef[]; blockers: [] }
+  | { ok: false; bookId: string; chapters: []; refs: []; blockers: ChapterSetBlocker[] };
+
 export type ChapterSetComparison = {
   ok: boolean;
   bookId: string;
@@ -106,6 +110,48 @@ export function readCanonicalChapterIndex(bookId: string, stateRoot = CANONICAL_
   }));
 
   return { ok: true, bookId: normalizedBookId, path, chapters, refs: parsed.refs, blockers: [] };
+}
+
+/**
+ * The chapter set a v25 CANDIDATE release publishes.
+ *
+ * On the candidate route there is no ambient canonical index to read and none is
+ * wanted: the release is defined over ONE candidate, whose CHAPTER artifacts are
+ * bound by the candidate manifest digest (bookContentReader recomputes that
+ * digest on open and refuses a drifted inventory) and are the very chapters the
+ * release assembles into the reader package. Those chapters therefore ARE the
+ * chapter set, and the same chapters are re-checked by the release-time
+ * production verify before anything is published.
+ *
+ * `refs` are normalized by the SAME pass the canonical index gets — id shape,
+ * book ownership, id/number agreement, duplicate ids, duplicate numbers — under
+ * a `candidate chapter set` label, so a candidate cannot ship a chapter set the
+ * index route would have refused. Only the SOURCE of the set differs.
+ */
+export function readCandidateChapterSet(bookId: string, chapters: readonly ChapterRef[]): CandidateChapterSetResult {
+  const normalizedBookId = normSlug(bookId);
+  if (!Array.isArray(chapters) || chapters.length === 0) {
+    return {
+      ok: false,
+      bookId: normalizedBookId,
+      chapters: [],
+      refs: [],
+      blockers: [blocker(
+        "CHSET.candidate_empty",
+        `Candidate chapter set for ${normalizedBookId} is empty. A candidate release requires at least one candidate chapter artifact.`,
+      )],
+    };
+  }
+  const parsed = normalizeRefs(normalizedBookId, chapters as ChapterRef[], "candidate chapter set", "candidate");
+  if (parsed.blockers.length > 0) {
+    return { ok: false, bookId: normalizedBookId, chapters: [], refs: [], blockers: parsed.blockers };
+  }
+  const specs = chapters.map((entry, i) => ({
+    chapterId: parsed.refs[i].chapterId,
+    chapterNumber: parsed.refs[i].chapterNumber,
+    chapterTitle: typeof entry.chapterTitle === "string" ? entry.chapterTitle : typeof entry.title === "string" ? entry.title : "",
+  }));
+  return { ok: true, bookId: normalizedBookId, chapters: specs, refs: parsed.refs, blockers: [] };
 }
 
 export function loadCanonicalChapterIndex(bookId: string, stateRoot = CANONICAL_STATE): ChapterSpec[] {
@@ -204,7 +250,7 @@ function normalizeRefs(
   bookId: string,
   refs: ChapterRef[],
   label: string,
-  role: "index" | "actual",
+  role: "index" | "actual" | "candidate",
 ): { refs: NormalizedChapterRef[]; blockers: ChapterSetBlocker[] } {
   const out: NormalizedChapterRef[] = [];
   const blockers: ChapterSetBlocker[] = [];

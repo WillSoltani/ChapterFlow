@@ -365,9 +365,29 @@ requiredTest("pure package and manifest parity survives real canonical adapter r
   const current = await stores.pointer.read(bookId);
   assert.ok(current.ok && current.value);
   assert.equal(current.value.candidateId, staged.identity.candidateId);
-  // The release also publishes the manifest sidecar, and it is the SAME manifest
-  // the legacy promoter would have written for the same content.
-  assert.deepEqual(normalize(released.value.sidecar.manifest), normalize(legacyManifest.manifest));
+  // The release also publishes the manifest sidecar. It is the legacy manifest in
+  // every respect EXCEPT its chapter-set authority, and that one difference is
+  // the whole point of the candidate route: a legacy manifest names
+  // state/indexes/<bookId>.json (canonicalIndex), a candidate release names the
+  // digest-bound candidate its chapters actually came from (candidateChapterSet),
+  // because a candidate-only book root HAS no canonical index. The chapter SET
+  // itself is identical either way, and so is every other field; only that block
+  // and the contentId derived from it differ.
+  const releasedManifest = normalize(released.value.sidecar.manifest);
+  const legacy = normalize(legacyManifest.manifest);
+  assert.deepEqual(releasedManifest.payload.candidateChapterSet.chapters, legacy.payload.canonicalIndex.chapters);
+  assert.equal(releasedManifest.payload.candidateChapterSet.source, "candidate");
+  assert.equal(releasedManifest.payload.candidateChapterSet.candidateId, staged.identity.candidateId);
+  assert.equal(releasedManifest.payload.candidateChapterSet.manifestDigest, staged.identity.manifestDigest);
+  assert.equal(releasedManifest.payload.canonicalIndex, undefined);
+  assert.equal(legacy.payload.candidateChapterSet, undefined);
+  delete releasedManifest.payload.candidateChapterSet;
+  delete legacy.payload.canonicalIndex;
+  delete releasedManifest.contentId;
+  delete legacy.contentId;
+  delete releasedManifest.payloadHash;
+  delete legacy.payloadHash;
+  assert.deepEqual(releasedManifest, legacy);
 });
 
 /**
@@ -930,7 +950,21 @@ requiredTest("release refuses a packageId derived from the raw book id instead o
   assertError(assembled, "PACKAGE_METADATA_INVALID");
 });
 
-requiredTest("candidate-only CLI release does not require ambient canonical chapter index", async (context) => {
+/**
+ * A SHALLOW pin, deliberately labelled as one. It proves only that the CLI's
+ * candidate-release wiring gets as far as the promotion authority check without
+ * touching state/indexes — it stops at REVIEW_NOT_FOUND and never reaches the
+ * production-manifest build, which is where the ambient index dependency
+ * actually lived. That blind spot is why the first live candidate release
+ * committed its pointer and then died on
+ *   RECONCILIATION_REQUIRED: production manifest unbuildable after pointer
+ *   commit; nothing published: CHSET.index_missing: Canonical chapter index is
+ *   missing at .../state/indexes/the-autobiography-of-benjamin-franklin.json.
+ * The manifest build itself is pinned by "a candidate release builds and
+ * verifies its production manifest with NO canonical chapter index on disk"
+ * below, which runs the whole route with valid review + QC.
+ */
+requiredTest("candidate-only CLI release wiring reaches the promotion authority check without an ambient chapter index", async (context) => {
   const bookId = "candidate-only-cli-release";
   const stores = storage(context);
   const chapter = fixtureChapter(bookId, 1, "candidate-only");
@@ -968,6 +1002,242 @@ requiredTest("candidate-only CLI release does not require ambient canonical chap
   assert.equal(result.status, 1, result.out);
   assert.match(result.out, /REVIEW_NOT_FOUND/);
   assert.doesNotMatch(result.out, /chapter index|state\/indexes|ENOENT/i);
+});
+
+/** The chapter-set block a candidate-sourced payload must carry. */
+function candidateChapterSetBlock(sidecar: ProductionManifestSidecar): Record<string, unknown> {
+  const payload = sidecar.manifest.payload as unknown as Record<string, unknown>;
+  assert.equal(payload.canonicalIndex, undefined, "a candidate-sourced payload must not carry a canonicalIndex block");
+  const block = payload.candidateChapterSet;
+  assert.ok(block && typeof block === "object", "a candidate-sourced payload must carry a candidateChapterSet block");
+  return block as Record<string, unknown>;
+}
+
+/**
+ * THE LIVE FAILURE, pinned.
+ *
+ * The first real candidate release (promote-book --candidate-id, the V4 route)
+ * committed its pointer (revision 1 -> 2) and then returned
+ *   RECONCILIATION_REQUIRED: production manifest unbuildable after pointer
+ *   commit; nothing published: CHSET.index_missing: Canonical chapter index is
+ *   missing at .../state/indexes/the-autobiography-of-benjamin-franklin.json.
+ *   Existing chapter files are not an inferred production index.
+ * because the sidecar build read AMBIENT canonical state (chapterSet.ts,
+ * state/indexes/<book>.json) that a candidate-only v25 root does not have.
+ *
+ * A candidate release is defined over ONE digest-bound candidate: its CHAPTER
+ * artifacts are the chapter set, and they are the very chapters the release
+ * assembled into this package. So the manifest must build, self-verify, and
+ * later re-verify (publish-final's preflight) with NO state/indexes on disk at
+ * all — which is exactly the state this test puts the root in.
+ */
+requiredTest("a candidate release builds and verifies its production manifest with NO canonical chapter index on disk", async (context) => {
+  const bookId = "candidate-sourced-manifest-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "candidate-sourced");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  // Make the root what a candidate-only v25 root actually is: every other piece
+  // of manifest evidence present, and no canonical chapter index anywhere.
+  const indexesDir = join(manifestOptions.stateRoot as string, "indexes");
+  rmSync(indexesDir, { recursive: true, force: true });
+  assert.equal(existsSync(indexesDir), false);
+
+  const input = request(bookId, staged.identity);
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 1);
+  assert.equal(released.value.readback, "VERIFIED");
+  assert.equal(release.packageWrites(), 1);
+
+  // The payload names the candidate it was built from, and nothing else.
+  const block = candidateChapterSetBlock(released.value.sidecar);
+  assert.equal(block.source, "candidate");
+  assert.equal(block.candidateId, staged.identity.candidateId);
+  assert.equal(block.manifestDigest, staged.identity.manifestDigest);
+  assert.deepEqual(block.chapters, [{
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.number,
+    chapterTitle: chapter.title,
+  }]);
+
+  // publish-final's preflight, replayed independently on the same index-free
+  // root. A released pair that only its own releaser can verify is not shippable.
+  const verified = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    compareLooseState: true,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(verified.ok, true, verified.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"));
+  assert.equal(verified.contentId, released.value.sidecar.manifest.contentId);
+  // Not read, and not written either: the route must not "fix" the missing index
+  // by inferring one onto disk.
+  assert.equal(existsSync(indexesDir), false);
+});
+
+/**
+ * RECONCILING AN INTERRUPTED RELEASE — the state the live run was left in.
+ *
+ * The pointer commits first and the artifacts land second. A release that dies
+ * in between (unbuildable manifest, failed writer, crash) leaves CURRENT at the
+ * new revision with nothing published. That must be COMPLETABLE, exactly once:
+ *  - re-running the same candidate at the ORIGINAL --expected-book-revision with
+ *    --resume-unfinished-release finishes manifest + sidecar and does NOT
+ *    advance the pointer again;
+ *  - re-running THIS candidate at the ADVANCED revision (the obvious operator
+ *    reflex) is refused instead of minting a second revision of identical
+ *    content over an unfinished one;
+ *  - a DIFFERENT candidate can never finish the committed revision.
+ *
+ * A different candidate releasing FORWARD (a fresh revision that supersedes the
+ * unfinished one with a complete pair) stays allowed and is pinned by "a crash
+ * between the pointer commit and the package write leaves a journal naming the
+ * window"; that is a new release, not a reconcile of this one.
+ */
+requiredTest("a candidate release interrupted after the pointer commit is completable exactly once, and never double-advances", async (context) => {
+  const bookId = "interrupted-release-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "interrupted-release");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const other = await stage(stores.candidates, bookId, "candidate-2");
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  rmSync(join(manifestOptions.stateRoot as string, "indexes"), { recursive: true, force: true });
+
+  const input = request(bookId, staged.identity);
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  let transactions = 0;
+  const release = await releaseAdapter(
+    input, stores, context.roots.tempRoot, manifestOptions, input.candidate, false,
+    { newTransactionId: () => `tx-interrupted-${++transactions}` },
+  );
+
+  // ── The interruption, in the live shape: the pointer commits, then the
+  // manifest cannot be built (here the chapter's QC attestation is gone, the
+  // same class of post-commit build failure CHSET.index_missing was).
+  const qcPath = join(manifestOptions.stateRoot as string, "qc", `${bookId}-ch01.qc.json`);
+  const qcBytes = readFileSync(qcPath, "utf8");
+  rmSync(qcPath);
+  const interrupted = await release.canonicalRelease.release(input);
+  assertError(interrupted, "RECONCILIATION_REQUIRED");
+  assert.ok(
+    !interrupted.ok && interrupted.error.message.includes("production manifest unbuildable after pointer commit"),
+    interrupted.ok ? "" : interrupted.error.message,
+  );
+  const afterCrash = await stores.pointer.read(bookId);
+  assert.ok(afterCrash.ok && afterCrash.value);
+  assert.equal(afterCrash.value.revision, 1, "the pointer advanced before the build failed");
+  assert.equal(afterCrash.value.candidateId, staged.identity.candidateId);
+  assert.equal(existsSync(packagePath), false);
+  assert.equal(existsSync(sidecarPath), false);
+  assert.equal(release.packageWrites(), 0);
+  // The window is on disk, naming the candidate and the revision it owes.
+  const journalled = readReleaseJournals(manifestOptions, bookId);
+  assert.equal(journalled.length, 1);
+  assert.equal(journalled[0].state, "pointer-committed");
+  assert.equal(journalled[0].candidateId, staged.identity.candidateId);
+  assert.equal(journalled[0].targetBookRevision, 1);
+
+  writeFileSync(qcPath, qcBytes);
+
+  // ── The reflex retry: same candidate, --expected-book-revision now the
+  // ADVANCED revision. The CAS would accept it and mint revision 2 over a
+  // revision 1 that owes artifacts. Refused, with the record and the finishing
+  // invocation named.
+  const doubleAdvance = await release.canonicalRelease.release({ ...input, expectedBookRevision: 1 });
+  assertError(doubleAdvance, "RELEASE_UNFINISHED");
+  assert.ok(
+    !doubleAdvance.ok && doubleAdvance.error.message.includes("--resume-unfinished-release"),
+    doubleAdvance.ok ? "" : doubleAdvance.error.message,
+  );
+  assert.ok(
+    !doubleAdvance.ok && doubleAdvance.error.message.includes(releaseJournalPath(manifestOptions, bookId, "tx-interrupted-1")),
+    doubleAdvance.ok ? "" : doubleAdvance.error.message,
+  );
+
+  // ── A DIFFERENT candidate can never FINISH this revision. Reconcile is bound
+  // to the candidate the journal names, so pointing it at other content is
+  // refused before any publish — the committed revision belongs to candidate-1
+  // and nothing else may claim it.
+  const otherAtBase = await release.canonicalRelease.release({
+    ...input, candidate: other.identity, resumeUnfinished: true,
+  });
+  assertError(otherAtBase, "REVIEW_MISMATCH");
+
+  const afterRefusals = await stores.pointer.read(bookId);
+  assert.ok(afterRefusals.ok && afterRefusals.value);
+  assert.equal(afterRefusals.value.revision, 1, "no refusal may advance the pointer");
+  assert.equal(afterRefusals.value.candidateId, staged.identity.candidateId);
+  assert.equal(release.packageWrites(), 0);
+  // The crash record is untouched, and no refusal left a record of its own.
+  const stillJournalled = readReleaseJournals(manifestOptions, bookId);
+  assert.equal(stillJournalled.length, 1);
+  assert.equal(stillJournalled[0].txId, "tx-interrupted-1");
+  assert.equal(stillJournalled[0].state, "pointer-committed");
+
+  // ── The invocation that COMPLETES it: same candidate, ORIGINAL expected
+  // revision, --resume-unfinished-release.
+  const resumed = await release.canonicalRelease.release({ ...input, resumeUnfinished: true });
+  assert.ok(resumed.ok, resumed.ok ? "" : `${resumed.error.code}:${resumed.error.message}`);
+  assert.equal(resumed.value.bookRevision, 1, "a resume finishes revision 1; it does not mint revision 2");
+  assert.equal(resumed.value.readback, "VERIFIED");
+  assert.equal(release.packageWrites(), 1);
+  const settled = await stores.pointer.read(bookId);
+  assert.ok(settled.ok && settled.value);
+  assert.equal(settled.value.revision, 1);
+  assert.equal(settled.value.candidateId, staged.identity.candidateId);
+  assert.equal(candidateChapterSetBlock(resumed.value.sidecar).candidateId, staged.identity.candidateId);
+  const verified = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    compareLooseState: true,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(verified.ok, true, verified.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"));
+  assert.deepEqual(readReleaseJournals(manifestOptions, bookId), [], "a completed release leaves no journal behind");
+});
+
+/**
+ * CONTROL. The legacy (no-candidate) manifest route is untouched: the canonical
+ * index is still its chapter-set authority, its absence is still CHSET.index_missing,
+ * and its payload still carries the canonicalIndex block. Only a build that is
+ * TOLD it is releasing a candidate uses the candidate's chapters.
+ */
+requiredTest("the legacy no-candidate manifest route still requires the ambient canonical chapter index", async (context) => {
+  const bookId = "legacy-index-control-book";
+  const chapter = fixtureChapter(bookId, 1, "legacy-index-control");
+  const pkg = buildLegacyReaderPackage({ bookId, ...metadata(bookId), chapters: [chapter] });
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const roots = verifyOptionsFrom(manifestOptions);
+
+  const withIndex = buildExpectedProductionManifestForPackage({ pkg, ...roots });
+  assert.equal(withIndex.ok, true, withIndex.ok ? "" : withIndex.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+  if (!withIndex.ok) throw new Error("legacy control needs a successful index-sourced build");
+  const legacyPayload = withIndex.payload as unknown as Record<string, unknown>;
+  assert.equal(legacyPayload.candidateChapterSet, undefined);
+  assert.deepEqual(legacyPayload.canonicalIndex, {
+    path: `state/indexes/${bookId}.json`,
+    semanticHash: (legacyPayload.canonicalIndex as Record<string, unknown>).semanticHash,
+    chapters: [{ chapterId: chapter.chapterId, chapterNumber: chapter.number, chapterTitle: chapter.title }],
+  });
+
+  rmSync(join(manifestOptions.stateRoot as string, "indexes"), { recursive: true, force: true });
+  const withoutIndex = buildExpectedProductionManifestForPackage({ pkg, ...roots });
+  assert.equal(withoutIndex.ok, false, "the legacy route must still refuse a book with no canonical index");
+  assert.deepEqual(withoutIndex.findings.map((finding) => finding.checkId), ["CHSET.index_missing"]);
+
+  // Same package, same index-free root — succeeds ONLY when the build is told the
+  // chapter set came from a candidate.
+  const asCandidate = buildExpectedProductionManifestForPackage({
+    pkg,
+    chapterSetSource: { kind: "candidate", candidateId: "candidate-1", manifestDigest: "a".repeat(64) },
+    ...roots,
+  });
+  assert.equal(asCandidate.ok, true, asCandidate.ok ? "" : asCandidate.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
 });
 
 function sharedLegacyAuthority(initialActiveUses: number, remainEnabledAfterBegin = false) {

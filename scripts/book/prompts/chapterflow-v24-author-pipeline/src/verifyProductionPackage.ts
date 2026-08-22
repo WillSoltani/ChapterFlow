@@ -13,6 +13,7 @@ import {
 } from "./lib/readerContent.js";
 import {
   buildExpectedProductionManifestForPackage,
+  declaredChapterSetSource,
   productionManifestPayloadHash,
   validateProductionManifest,
   type ProductionManifestFinding,
@@ -243,7 +244,7 @@ function compareCanonicalPayloads(actual: unknown, expected: unknown): Productio
   if (canonicalJson(actual) === canonicalJson(expected)) return [];
   return [blocker({
     checkId: "PPKG.manifest_payload_mismatch",
-    message: "Embedded production manifest payload does not match the canonical index, package chapters, source evidence, source-reality evidence, build-input fingerprints, and QC evidence recomputed by the verifier.",
+    message: "Embedded production manifest payload does not match the chapter set (canonical index, or the candidate the payload names), package chapters, source evidence, source-reality evidence, build-input fingerprints, and QC evidence recomputed by the verifier.",
     expected: canonicalJsonSha256(expected),
     actual: canonicalJsonSha256(actual),
   })];
@@ -557,6 +558,15 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
 
   const expected = buildExpectedProductionManifestForPackage({
     pkg,
+    // Reconstruct against the chapter-set authority the manifest DECLARES. A
+    // candidate-sourced manifest (v25 promote-book --candidate-id) is rebuilt
+    // from the package's own chapters — the candidate artifacts the release
+    // assembled — so it verifies on a machine with no state/indexes at all, which
+    // is exactly where a v25 candidate release runs. A legacy manifest declares
+    // canonicalIndex and is rebuilt against the ambient index, unchanged.
+    // validateProductionManifest has already refused a payload that declares both
+    // or neither, so this is never a free choice between two authorities.
+    chapterSetSource: declaredChapterSetSource(manifest.payload),
     stateRoot,
     runsRoot,
     createdAt: manifest.metadata.createdAt,
