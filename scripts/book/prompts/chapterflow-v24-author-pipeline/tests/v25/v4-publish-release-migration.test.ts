@@ -21,7 +21,7 @@ import { LegacyPublishAdapter } from "../../src/release/legacyPublishAdapter.js"
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { ReviewService } from "../../src/review/reviewTypes.js";
-import { seedManifestEvidenceRoots } from "../helpers.js";
+import { candidateEvidenceFiles, seedManifestEvidenceRoots } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -43,15 +43,19 @@ function storage(context: TestContext, atomicSeams?: AtomicBookFileSeams) {
   return { pointer, candidates, reader, writeLock, booksRoot: context.roots.booksRoot };
 }
 
+/** Stage a candidate that carries its OWN release evidence — the source sidecar
+ *  and the chapter artifact at the canonical candidate paths. A candidate release
+ *  builds its production manifest from these, not from ambient state/runs, so a
+ *  fixture that stages only a chapter cannot get through the release route. */
 async function stage(store: CandidateStore, bookId: string, candidateId: string, marker = candidateId): Promise<CandidateIdentity> {
   const chapter = fixtureChapter(bookId, 1, marker);
-  const bytes = Buffer.from(`${JSON.stringify(chapter, null, 2)}\n`);
+  const files = candidateEvidenceFiles(bookId, [chapter]);
   const staged = await store.stage({
     bookId,
     candidateId,
     createdByRunId: `run-${candidateId}`,
-    expectedInventory: [{ kind: "CHAPTER", logicalPath: "chapters/ch01.json", mediaType: "application/json" }],
-    files: [{ kind: "CHAPTER", logicalPath: "chapters/ch01.json", mediaType: "application/json", bytes }],
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
     createdAt: CREATED_AT,
   });
   assert.ok(staged.ok);

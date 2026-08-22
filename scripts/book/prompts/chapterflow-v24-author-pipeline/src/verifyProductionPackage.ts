@@ -13,11 +13,15 @@ import {
 } from "./lib/readerContent.js";
 import {
   buildExpectedProductionManifestForPackage,
+  candidateChapterEvidenceResolver,
   chapterSetSpecsSemanticHash,
+  declaredCandidateQcEvidence,
   declaredChapterSetSource,
   productionManifestPayloadHash,
+  recordedCandidateChapterEvidenceResolver,
   recordedCandidateChapterSet,
   validateProductionManifest,
+  type CandidateChapterEvidenceResolver,
   type ExpectedChapterSetSource,
   type ProductionChapterSetSource,
   type ProductionManifestCandidateChapterSetBlock,
@@ -26,6 +30,11 @@ import {
   type ProductionManifestVersion,
   type ProductionSourceRealityEvidence,
 } from "./productionManifest.js";
+import {
+  candidateChapterArtifactPath,
+  readCandidateJson,
+  type CandidateEvidence,
+} from "./lib/candidateEvidence.js";
 import {
   buildPipelineFingerprints,
   firstFingerprintFileDelta,
@@ -156,6 +165,26 @@ export type VerifyProductionPackageOptions = {
    * already-shipped pair from the two files alone, and must keep verifying it.
    */
   expectedChapterSetSource?: ExpectedChapterSetSource;
+  /**
+   * The CANDIDATE this pair was released from, as a digest-bound file set.
+   *
+   * Supplied by callers that can open the candidate — the release adapter, which
+   * assembled the package out of this very snapshot moments earlier. When present
+   * the candidate-regime source/authoring evidence and the loose-state comparison
+   * are RECOMPUTED from the candidate's bytes, which is the strongest form of the
+   * check and the one that runs before anything is published.
+   *
+   * Omitted by callers that hold only the two shipped files (publish-final's
+   * preflight, register-web, the recovery flows). They fall back to replaying the
+   * evidence the manifest recorded — see recordedCandidateChapterEvidenceResolver
+   * for exactly what that does and does not prove.
+   */
+  candidateEvidence?: CandidateEvidence;
+  /** The v25 QC round the CALLER independently knows this release verified.
+   *  Layer 1 for QC, mirroring expectedChapterSetSource: a manifest that declares
+   *  a different round than the release actually ran is refused. Omitted by
+   *  callers with no release context. */
+  expectedCandidateQcEvidence?: { reviewId: string; qcRoundId: string };
   /** v2 build-input fingerprint root overrides (tests). Production omits these. */
   fingerprintRoots?: FingerprintRoots;
   /** v2 source-reality record/exemption read-location overrides (tests). */
@@ -253,6 +282,66 @@ function compareLooseStateChapters(pkg: BookPackageV21, stateRoot: string): Prod
     }
   }
   return findings;
+}
+
+/**
+ * The candidate regime's loose-state comparison.
+ *
+ * `compareLooseStateChapters` asks "does the packaged chapter still equal the
+ * authoring source of truth after stripping?", and on the canonical-index regime
+ * that source of truth is `state/chapters/<id>.v21-native.chapter.json`. On the
+ * candidate regime it is the candidate's OWN chapter artifact — the unstripped
+ * bytes the package was built from — and a candidate-only book root has no
+ * `state/chapters` to consult. Same question, same finding ids, re-pointed.
+ */
+function compareCandidateChapters(pkg: BookPackageV21, evidence: CandidateEvidence): ProductionPackageVerificationFinding[] {
+  const findings: ProductionPackageVerificationFinding[] = [];
+  for (const chapter of pkg.chapters ?? []) {
+    const logicalPath = candidateChapterArtifactPath(chapter.chapterId);
+    const read = readCandidateJson(evidence, logicalPath);
+    if (!read.ok) {
+      findings.push(blocker({
+        checkId: read.reason === "absent" ? "PPKG.loose_chapter_missing" : "PPKG.loose_chapter_unreadable",
+        chapterNumber: chapter.number,
+        path: logicalPath,
+        message: `Candidate chapter artifact for packaged ${chapter.chapterId}: ${read.message}`,
+      }));
+      continue;
+    }
+    const packagedHash = canonicalJsonSha256(chapter);
+    const looseHash = canonicalJsonSha256(stripInternalFields(read.value as ChapterV21));
+    if (packagedHash !== looseHash) {
+      findings.push(blocker({
+        checkId: "PPKG.loose_chapter_mismatch",
+        chapterNumber: chapter.number,
+        path: logicalPath,
+        message: `Packaged ${chapter.chapterId} differs from the candidate chapter artifact after reader-content stripping.`,
+        expected: looseHash,
+        actual: packagedHash,
+      }));
+    }
+  }
+  return findings;
+}
+
+/** LAYER 1, for QC. Same rule as checkExpectedChapterSetSource: a caller that
+ *  knows which round it verified has the last word over what the manifest says. */
+function checkExpectedCandidateQcEvidence(
+  expected: { reviewId: string; qcRoundId: string } | undefined,
+  declared: { reviewId: string; qcRoundId: string } | undefined,
+): ProductionPackageVerificationFinding[] {
+  if (expected === undefined) return [];
+  if (declared !== undefined && declared.reviewId === expected.reviewId && declared.qcRoundId === expected.qcRoundId) return [];
+  const describe = (value: { reviewId: string; qcRoundId: string } | undefined): string =>
+    value === undefined ? "no v25 QC round" : `review ${value.reviewId} / qc round ${value.qcRoundId}`;
+  return [blocker({
+    checkId: "PPKG.candidate_qc_evidence_mismatch",
+    message:
+      `Manifest declares ${describe(declared)}, but the caller released ${describe(expected)}. ` +
+      "A manifest does not get to choose the QC round it is credited with.",
+    expected: describe(expected),
+    actual: describe(declared),
+  })];
 }
 
 /** One-line name for a chapter-set authority, for refusal messages. */
@@ -747,8 +836,35 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
   // set — not the package's chapters — is what the package is checked against.
   const declaredSource = declaredChapterSetSource(manifest.payload);
   findings.push(...checkExpectedChapterSetSource(options.expectedChapterSetSource, declaredSource));
+  const declaredQc = declaredCandidateQcEvidence(manifest.payload);
+  findings.push(...checkExpectedCandidateQcEvidence(options.expectedCandidateQcEvidence, declaredQc));
   const recordedSet = recordedCandidateChapterSet(manifest.payload);
   if (recordedSet) findings.push(...compareRecordedCandidateChapterSet(recordedSet, pkg));
+
+  // ── The candidate regime's evidence source ─────────────────────────────────
+  // Supplied candidate bytes are only usable as evidence for THIS release: a
+  // snapshot of some other candidate would recompute a payload that has nothing
+  // to do with the manifest under test, so an identity disagreement is refused
+  // before it is read rather than surfacing later as an opaque payload mismatch.
+  const candidateEvidence = options.candidateEvidence;
+  if (candidateEvidence !== undefined && declaredSource !== undefined && (
+    candidateEvidence.candidateId !== declaredSource.candidateId ||
+    candidateEvidence.manifestDigest !== declaredSource.manifestDigest
+  )) {
+    findings.push(blocker({
+      checkId: "PPKG.candidate_evidence_identity_mismatch",
+      message:
+        `Caller supplied candidate ${candidateEvidence.candidateId}@${candidateEvidence.manifestDigest} as evidence, but the ` +
+        `manifest declares ${declaredSource.candidateId}@${declaredSource.manifestDigest}.`,
+      expected: `${declaredSource.candidateId}@${declaredSource.manifestDigest}`,
+      actual: `${candidateEvidence.candidateId}@${candidateEvidence.manifestDigest}`,
+    }));
+  }
+  const candidateChapterEvidence: CandidateChapterEvidenceResolver | undefined = declaredSource === undefined
+    ? undefined
+    : candidateEvidence !== undefined
+      ? candidateChapterEvidenceResolver(candidateEvidence)
+      : recordedCandidateChapterEvidenceResolver(manifest.payload);
 
   // Reader content, per chapter, against the hashes the MANIFEST RECORDED. This
   // iterates the recorded payload chapters rather than the reconstructed ones for
@@ -785,6 +901,11 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     // against the caller's expectation and the package against the manifest's own
     // recorded set — so by here the regime is settled, not self-selected.
     chapterSetSource: declaredSource,
+    // Candidate-regime evidence: recomputed from the candidate when the caller
+    // has it, replayed from the manifest's own record when it does not. Both are
+    // no-ops on the canonical-index regime, which keeps reading state/runs.
+    candidateChapterEvidence,
+    candidateQcEvidence: declaredQc,
     stateRoot,
     runsRoot,
     createdAt: manifest.metadata.createdAt,
@@ -825,7 +946,18 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
   }
 
   if (options.compareLooseState) {
-    findings.push(...compareLooseStateChapters(pkg, stateRoot));
+    if (declaredSource === undefined) {
+      findings.push(...compareLooseStateChapters(pkg, stateRoot));
+    } else if (candidateEvidence !== undefined) {
+      findings.push(...compareCandidateChapters(pkg, candidateEvidence));
+    }
+    // Candidate regime, no candidate to hand: there is nothing this check could
+    // read. `state/chapters` is not this regime's authority — a candidate-only
+    // book root has no entry there at all, and a book root that DOES (a book that
+    // also has legacy state) would be comparing the package against a different
+    // pipeline's history. Silence here is not a relaxed gate: the packaged reader
+    // content is still pinned chapter by chapter against the manifest's recorded
+    // readerContentHash above, which is the drift this check exists to catch.
   }
 
   return {

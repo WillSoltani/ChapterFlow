@@ -9,7 +9,12 @@ import { createCandidateStore, type CandidateStore } from "../../src/books/candi
 import { createCurrentPointerStore, type CurrentPointerStore } from "../../src/books/currentPointer.js";
 import type { CandidateIdentity, Result } from "../../src/contracts/v4Core.js";
 import { normSlug } from "../../src/lib/chapterPaths.js";
-import { buildExpectedProductionManifestForPackage } from "../../src/productionManifest.js";
+import {
+  buildExpectedProductionManifestForPackage,
+  candidateChapterEvidenceResolver,
+} from "../../src/productionManifest.js";
+import type { CandidateEvidence } from "../../src/lib/candidateEvidence.js";
+import type { FingerprintRoots } from "../../src/lib/pipelineFingerprint.js";
 import { createQcService } from "../../src/qc/qcService.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
 import {
@@ -34,8 +39,9 @@ import {
   type ProductionManifestSidecar,
 } from "../../src/promoteBook.js";
 import { verifyProductionPackage } from "../../src/verifyProductionPackage.js";
+import { candidateEvidenceFromSnapshot } from "../../src/lib/candidateEvidence.js";
 import type { ChapterV21 } from "../../src/types.js";
-import { makeSourceV2SidecarFixture, runCli, seedManifestEvidenceRoots } from "../helpers.js";
+import { candidateEvidenceFiles, makeSourceV2SidecarFixture, runCli, seedManifestEvidenceRoots } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -53,19 +59,51 @@ function storage(context: TestContext) {
   return { pointer, candidates, reader, writeLock: lock, booksRoot: context.roots.booksRoot };
 }
 
-async function stage(store: CandidateStore, bookId: string, candidateId: string, inputChapter?: ChapterV21) {
-  const chapter = inputChapter ?? fixtureChapter(bookId, 1, candidateId);
-  const bytes = Buffer.from(`${JSON.stringify(chapter, null, 2)}\n`);
+function json(value: unknown): Uint8Array {
+  return Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
+}
+
+/**
+ * THE FIXTURE OVERSTATEMENT THIS FILE USED TO CARRY.
+ *
+ * Every release fixture here staged ONE file — a chapter at `chapters/ch01.json`
+ * — and left all per-chapter manifest evidence to `seedManifestEvidenceRoots`,
+ * which writes ambient `state/chapters`, `state/qc` and
+ * `.chapterflow/runs/.../sidecars/source`. Deleting `state/indexes` made the
+ * chapter-set hurdle real, but the per-chapter EVIDENCE gates kept passing on
+ * seeds a candidate-only book root does not have. So the promoted Franklin
+ * candidate cleared the chapter-set hurdle live and then failed, per chapter, on
+ *   PPKG.source_missing (chN): Missing source sidecar for <book>-chNN
+ *   PPKG.qc_missing (chN): Missing QC attestation at .../state/qc/<book>-chNN.qc.json
+ * with the whole suite green.
+ *
+ * `candidateEvidenceFiles` (tests/helpers.ts) stages what a real candidate
+ * stages, verified against the promoted Franklin candidate's own manifest.
+ */
+async function stageCandidate(
+  store: CandidateStore,
+  bookId: string,
+  candidateId: string,
+  chapters: readonly ChapterV21[],
+  sourceSchemaVersion: "source-v1" | "source-v2" = "source-v1",
+) {
+  const files = candidateEvidenceFiles(bookId, chapters, sourceSchemaVersion);
   const staged = await store.stage({
     bookId,
     candidateId,
     createdByRunId: `run-${candidateId}`,
-    expectedInventory: [{ kind: "CHAPTER", logicalPath: "chapters/ch01.json", mediaType: "application/json" }],
-    files: [{ kind: "CHAPTER", logicalPath: "chapters/ch01.json", mediaType: "application/json", bytes }],
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
     createdAt: CREATED_AT,
   });
-  assert.ok(staged.ok);
-  return { identity: { candidateId, manifestDigest: staged.value.manifestDigest }, chapter };
+  assert.ok(staged.ok, staged.ok ? "" : `stage failed: ${JSON.stringify(staged)}`);
+  return { identity: { candidateId, manifestDigest: staged.value.manifestDigest }, files };
+}
+
+async function stage(store: CandidateStore, bookId: string, candidateId: string, inputChapter?: ChapterV21) {
+  const chapter = inputChapter ?? fixtureChapter(bookId, 1, candidateId);
+  const staged = await stageCandidate(store, bookId, candidateId, [chapter]);
+  return { identity: staged.identity, chapter };
 }
 
 function metadata(bookId: string) {
@@ -382,8 +420,41 @@ requiredTest("pure package and manifest parity survives real canonical adapter r
   assert.equal(releasedManifest.payload.candidateChapterSet.manifestDigest, staged.identity.manifestDigest);
   assert.equal(releasedManifest.payload.canonicalIndex, undefined);
   assert.equal(legacy.payload.candidateChapterSet, undefined);
+  // The second regime difference: QC. The legacy manifest binds a per-chapter
+  // state/qc attestation per chapter; the candidate manifest has no such file to
+  // bind and records the v25 round it stood on instead. Both are QC evidence —
+  // they are simply not the same artifact — so they are compared explicitly and
+  // then removed before the everything-else deep-equal below.
+  assert.equal(legacy.payload.candidateQcEvidence, undefined);
+  assert.deepEqual(releasedManifest.payload.candidateQcEvidence, {
+    source: "v25-qc-round",
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    perChapterAttestation: "subsumed-by-round",
+  });
+  assert.equal(releasedManifest.payload.chapters[0].qcAttestation, null);
+  assert.ok(legacy.payload.chapters[0].qcAttestation);
+  assert.equal(releasedManifest.payload.chapters[0].sourceEvidence.path, "candidate:inputs/source/ch01.source.json");
+  assert.match(legacy.payload.chapters[0].sourceEvidence.path, /^\.chapterflow\/runs\//);
+  // The evidence POLICY differs by regime too (the candidate payload says which
+  // QC authority it stands on instead of asserting a per-chapter policy it does
+  // not meet — the review-caught self-contradiction). Compare explicitly, then
+  // remove like the other regime-specific fields.
+  assert.equal(releasedManifest.payload.evidencePolicy.qcAttestation, "subsumed-by-v25-qc-round");
+  assert.equal(legacy.payload.evidencePolicy.qcAttestation, "required");
+  delete releasedManifest.payload.evidencePolicy.qcAttestation;
+  delete legacy.payload.evidencePolicy.qcAttestation;
   delete releasedManifest.payload.candidateChapterSet;
+  delete releasedManifest.payload.candidateQcEvidence;
   delete legacy.payload.canonicalIndex;
+  for (const chapter of releasedManifest.payload.chapters) {
+    delete chapter.qcAttestation;
+    delete chapter.sourceEvidence;
+  }
+  for (const chapter of legacy.payload.chapters) {
+    delete chapter.qcAttestation;
+    delete chapter.sourceEvidence;
+  }
   delete releasedManifest.contentId;
   delete legacy.contentId;
   delete releasedManifest.payloadHash;
@@ -518,25 +589,55 @@ requiredTest("a crash between the pointer and the sidecar leaves a refused state
  * loose-state comparison is the promoter's and register-web's bar, and it is the
  * bar this route now meets.)
  *
- * Observed BEFORE the self-verify, on this fixture: the release returned
- * ok=true, while verifyProductionPackage over the pair it wrote returned
- * ok=false with the single finding
+ * Observed BEFORE the self-verify, on the ambient-state version of this fixture:
+ * the release returned ok=true, while verifyProductionPackage over the pair it
+ * wrote returned ok=false with the single finding
  *   PPKG.loose_chapter_mismatch: Packaged drifted-state-book-ch01 differs from
  *   loose state after reader-content stripping.
+ *
+ * RE-POINTED FOR THE CANDIDATE REGIME. That fixture drifted the AMBIENT
+ * `state/chapters` artifact, which a candidate manifest no longer consults: the
+ * loose-state authority for a candidate release is the CANDIDATE's own chapter
+ * artifact, because a candidate-only book root has no state/chapters at all. So
+ * the drift is expressed where it can actually occur — a candidate that ships a
+ * CHAPTER artifact somewhere other than the canonical
+ * `content/chapters/<chapterId>.v21-native.chapter.json` the compiler writes
+ * (assembleSections.ts). The package assembles from it (parseChapters takes
+ * every CHAPTER-kind file), the manifest builds, and the self-verify still
+ * refuses the pair instead of reporting success — the invariant this test is for.
  */
 requiredTest("release refuses a pair the production verifier would refuse, instead of reporting success", async (context) => {
   const bookId = "drifted-state-book";
   const stores = storage(context);
   const candidateChapter = fixtureChapter(bookId, 1, "candidate-content");
-  const staged = await stage(stores.candidates, bookId, "candidate-1", candidateChapter);
-  // Same chapter identity and title (so the canonical index and the manifest
-  // payload still agree), different reader bytes — state re-authored after the
-  // candidate was staged. The manifest builds; the pair is unshippable.
-  const driftedChapter = {
-    ...candidateChapter,
-    hook: `${candidateChapter.hook} State was re-authored after this candidate was staged.`,
-  } as ChapterV21;
-  const manifestOptions = manifestRoots(context, bookId, [driftedChapter]);
+  const sourceSidecarPath = "inputs/source/ch01.source.json";
+  const misplaced = [
+    // The CHAPTER artifact, at a NON-canonical logical path.
+    { kind: "CHAPTER" as const, logicalPath: "chapters/ch01.json", mediaType: "application/json" as const, bytes: json(candidateChapter) },
+    {
+      kind: "SIDECAR" as const,
+      logicalPath: "compiler/ch01/source-packet.json",
+      mediaType: "application/json" as const,
+      bytes: json({ schemaVersion: "source-packet-v1", bookId, chapterId: candidateChapter.chapterId, chapterNumber: 1, sourceSidecarPath }),
+    },
+    {
+      kind: "SIDECAR" as const,
+      logicalPath: sourceSidecarPath,
+      mediaType: "application/json" as const,
+      bytes: json({ schemaVersion: "source-v1", bookId, chapterId: candidateChapter.chapterId, chapterNumber: 1, summary: "misplaced-chapter fixture" }),
+    },
+  ];
+  const stagedResult = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-1",
+    createdByRunId: "run-candidate-1",
+    expectedInventory: misplaced.map(({ bytes: _bytes, ...file }) => file),
+    files: misplaced,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(stagedResult.ok, stagedResult.ok ? "" : `${stagedResult.error.code}:${stagedResult.error.message}`);
+  const staged = { identity: { candidateId: "candidate-1", manifestDigest: stagedResult.value.manifestDigest } };
+  const manifestOptions = manifestRoots(context, bookId, [candidateChapter]);
   const input = request(bookId, staged.identity);
   const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
 
@@ -549,11 +650,48 @@ requiredTest("release refuses a pair the production verifier would refuse, inste
 
   const released = await release.canonicalRelease.release(input);
   assertError(released, "RECONCILIATION_REQUIRED");
-  assert.ok(!released.ok && released.error.message.includes("PPKG.loose_chapter_mismatch"), released.ok ? "" : released.error.message);
+  assert.ok(!released.ok && released.error.message.includes("PPKG.loose_chapter_missing"), released.ok ? "" : released.error.message);
   // Nothing published: the writer never ran, so no package and no sidecar exist.
   assert.equal(release.packageWrites(), 0);
   assert.equal(existsSync(join(context.roots.tempRoot, `${bookId}.package.json`)), false);
   assert.equal(existsSync(join(context.roots.tempRoot, `${bookId}.production-manifest.json`)), false);
+});
+
+requiredTest("a package that drifts from its candidate is refused with the MISMATCH finding, not just the missing one", async (context) => {
+  // Adversarial review: re-pointing the drifted-state pin to loose_chapter_missing
+  // left compareCandidateChapters' MISMATCH branch untested — unreachable from the
+  // release adapter (same bytes both sides) but reachable for any caller whose
+  // package disagrees with the candidate it supplies as evidence.
+  const bookId = "reader-drift-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "reader-drift");
+  const staged = await stageCandidate(stores.candidates, bookId, "candidate-1", [chapter]);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions, input.candidate, false);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const shipped = JSON.parse(readFileSync(packagePath, "utf8"));
+  shipped.chapters[0].hook = `${shipped.chapters[0].hook} (reader drift)`;
+  writeFileSync(packagePath, JSON.stringify(shipped));
+
+  const opened = await stores.reader.open({ bookId, selector: { kind: "CANDIDATE", candidateId: staged.identity.candidateId } });
+  assert.ok(opened.ok, JSON.stringify(opened));
+  const drifted = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    compareLooseState: true,
+    candidateEvidence: candidateEvidenceFromSnapshot(opened.value),
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(drifted.ok, false, "a drifted package must refuse");
+  assert.ok(
+    drifted.findings.some((finding) => finding.checkId === "PPKG.loose_chapter_mismatch"),
+    drifted.findings.map((finding) => finding.checkId).join(","),
+  );
 });
 
 /**
@@ -1105,7 +1243,13 @@ requiredTest("a candidate release interrupted after the pointer commit is comple
   const chapter = fixtureChapter(bookId, 1, "interrupted-release");
   const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
   const other = await stage(stores.candidates, bookId, "candidate-2");
-  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  // MUTABLE on purpose: the adapter reads `manifest` on every build, so flipping
+  // one field between calls reproduces "the build failed once, then stopped
+  // failing" without constructing a second adapter (which would mint a second
+  // transaction id and destroy the journal continuity this test is about).
+  const manifestOptions: CanonicalManifestOptions & { fingerprintRoots?: FingerprintRoots } = {
+    ...manifestRoots(context, bookId, [chapter]),
+  };
   rmSync(join(manifestOptions.stateRoot as string, "indexes"), { recursive: true, force: true });
 
   const input = request(bookId, staged.identity);
@@ -1118,11 +1262,15 @@ requiredTest("a candidate release interrupted after the pointer commit is comple
   );
 
   // ── The interruption, in the live shape: the pointer commits, then the
-  // manifest cannot be built (here the chapter's QC attestation is gone, the
-  // same class of post-commit build failure CHSET.index_missing was).
-  const qcPath = join(manifestOptions.stateRoot as string, "qc", `${bookId}-ch01.qc.json`);
-  const qcBytes = readFileSync(qcPath, "utf8");
-  rmSync(qcPath);
+  // manifest cannot be built. The build input broken here is a build-input
+  // FINGERPRINT root — the same class of post-commit build failure
+  // CHSET.index_missing was, and one that still exists on the candidate regime.
+  // (The pre-candidate-evidence version of this test deleted the ambient
+  // `state/qc/<book>-ch01.qc.json`. That no longer interrupts anything, because
+  // a candidate manifest does not read ambient QC at all — which was precisely
+  // the fixture overstatement that let the live release ship into
+  // PPKG.qc_missing with this suite green.)
+  manifestOptions.fingerprintRoots = { configDir: join(context.roots.tempRoot, "no-such-config-dir") };
   const interrupted = await release.canonicalRelease.release(input);
   assertError(interrupted, "RECONCILIATION_REQUIRED");
   assert.ok(
@@ -1143,7 +1291,7 @@ requiredTest("a candidate release interrupted after the pointer commit is comple
   assert.equal(journalled[0].candidateId, staged.identity.candidateId);
   assert.equal(journalled[0].targetBookRevision, 1);
 
-  writeFileSync(qcPath, qcBytes);
+  delete manifestOptions.fingerprintRoots;
 
   // ── The reflex retry: same candidate, --expected-book-revision now the
   // ADVANCED revision. The CAS would accept it and mint revision 2 over a
@@ -1232,35 +1380,73 @@ requiredTest("the legacy no-candidate manifest route still requires the ambient 
   assert.deepEqual(withoutIndex.findings.map((finding) => finding.checkId), ["CHSET.index_missing"]);
 
   // Same package, same index-free root — succeeds ONLY when the build is told the
-  // chapter set came from a candidate.
+  // chapter set came from a candidate AND is handed that candidate's evidence.
+  // Being TOLD is not enough: the candidate regime reads the candidate, so a
+  // build with no candidate to read fails closed rather than falling back to the
+  // ambient state/runs evidence it is defined not to use.
+  const digest = "a".repeat(64);
+  const chapterSetSource = { kind: "candidate" as const, candidateId: "candidate-1", manifestDigest: digest };
+  const candidateQcEvidence = { reviewId: "review-1", qcRoundId: "qc-1" };
+  const withoutEvidence = buildExpectedProductionManifestForPackage({ pkg, chapterSetSource, candidateQcEvidence, ...roots });
+  assert.equal(withoutEvidence.ok, false, "a candidate build with no candidate evidence must fail closed");
+  assert.deepEqual(
+    withoutEvidence.ok ? [] : withoutEvidence.findings.map((finding) => finding.checkId),
+    ["PPKG.candidate_evidence_unavailable"],
+  );
+  const withoutQc = buildExpectedProductionManifestForPackage({
+    pkg,
+    chapterSetSource,
+    candidateChapterEvidence: candidateChapterEvidenceResolver(inMemoryCandidateEvidence(bookId, [chapter], digest)),
+    ...roots,
+  });
+  assert.equal(withoutQc.ok, false, "a candidate build that names no v25 QC round must fail closed");
+  assert.deepEqual(
+    withoutQc.ok ? [] : withoutQc.findings.map((finding) => finding.checkId),
+    ["PPKG.candidate_qc_evidence_missing"],
+  );
   const asCandidate = buildExpectedProductionManifestForPackage({
     pkg,
-    chapterSetSource: { kind: "candidate", candidateId: "candidate-1", manifestDigest: "a".repeat(64) },
+    chapterSetSource,
+    candidateChapterEvidence: candidateChapterEvidenceResolver(inMemoryCandidateEvidence(bookId, [chapter], digest)),
+    candidateQcEvidence,
     ...roots,
   });
   assert.equal(asCandidate.ok, true, asCandidate.ok ? "" : asCandidate.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+  if (!asCandidate.ok) throw new Error("the candidate control needs a successful candidate-sourced build");
+  // And the evidence it recorded is the CANDIDATE's, not the ambient seeds this
+  // root still happens to carry.
+  const candidatePayload = asCandidate.payload as unknown as Record<string, any>;
+  assert.equal(candidatePayload.chapters[0].sourceEvidence.path, "candidate:inputs/source/ch01.source.json");
+  assert.equal(candidatePayload.chapters[0].qcAttestation, null);
+  assert.deepEqual(candidatePayload.candidateQcEvidence, {
+    source: "v25-qc-round",
+    reviewId: "review-1",
+    qcRoundId: "qc-1",
+    perChapterAttestation: "subsumed-by-round",
+  });
 });
 
-/** Stage a candidate carrying SEVERAL chapter artifacts. A one-chapter fixture
- *  cannot express "a chapter went missing" at all, which is why the chapter-set
- *  authority probes below need this. */
+/** The candidate file set as `bookContentReader` would hand it over, built from
+ *  the same staging helper the store fixtures use — so a direct builder call is
+ *  evidenced by the same bytes a real release would read. */
+function inMemoryCandidateEvidence(
+  bookId: string,
+  chapters: readonly ChapterV21[],
+  manifestDigest: string,
+  candidateId = "candidate-1",
+  sourceSchemaVersion: "source-v1" | "source-v2" = "source-v1",
+): CandidateEvidence {
+  const files = new Map<string, Uint8Array>();
+  for (const file of candidateEvidenceFiles(bookId, chapters, sourceSchemaVersion)) files.set(file.logicalPath, file.bytes);
+  return { candidateId, manifestDigest, files };
+}
+
+/** Stage a candidate carrying SEVERAL chapter artifacts (with their evidence). A
+ *  one-chapter fixture cannot express "a chapter went missing" at all, which is
+ *  why the chapter-set authority probes below need this. */
 async function stageChapters(store: CandidateStore, bookId: string, candidateId: string, chapters: ChapterV21[]) {
-  const files = chapters.map((chapter) => ({
-    kind: "CHAPTER" as const,
-    logicalPath: `chapters/ch${String(chapter.number).padStart(2, "0")}.json`,
-    mediaType: "application/json" as const,
-    bytes: Buffer.from(`${JSON.stringify(chapter, null, 2)}\n`),
-  }));
-  const staged = await store.stage({
-    bookId,
-    candidateId,
-    createdByRunId: `run-${candidateId}`,
-    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
-    files,
-    createdAt: CREATED_AT,
-  });
-  assert.ok(staged.ok, staged.ok ? "" : `${staged.error.code}:${staged.error.message}`);
-  return { identity: { candidateId, manifestDigest: staged.value.manifestDigest }, chapters };
+  const staged = await stageCandidate(store, bookId, candidateId, chapters);
+  return { identity: staged.identity, chapters };
 }
 
 /**
@@ -1821,6 +2007,263 @@ requiredTest("a STALE pointer-pending record — its CAS provably lost — never
   const released = await forward.canonicalRelease.release({ ...input, expectedBookRevision: 1 });
   assert.ok(released.ok, released.ok ? "" : `a stale pointer-pending record must not wedge: ${released.error.code}:${released.error.message}`);
   assert.equal(released.value.bookRevision, 2);
+});
+
+/** A chapter in the LIVE candidate shape: source-v2 authoring, so it carries the
+ *  `authoring.sourceAnchors` provenance map the manifest's authoring gate
+ *  requires. Verified against the live Franklin candidate's chapter artifacts,
+ *  whose `authoring.sourceAnchors` is
+ *  `{ schemaVersion, sourceHash, sourceSidecarPath, observedAnchorIds, effectiveAnchors }`.
+ *  `stripInternalFields` removes the whole `authoring` block, so the shipped
+ *  package is byte-identical to one built from a chapter without it. */
+function sourceV2CandidateChapter(bookId: string, number: number, seed: string): ChapterV21 {
+  const nn = String(number).padStart(2, "0");
+  const base = fixtureChapter(bookId, number, seed) as unknown as Record<string, unknown>;
+  return {
+    ...base,
+    authoring: {
+      schemaVersion: "chapter-authoring-v1",
+      sourceAnchors: {
+        schemaVersion: "chapter-source-anchor-map-v1",
+        sourceHash: `sha256:${nn}${"0".repeat(60)}`,
+        sourceSidecarPath: `inputs/source/ch${nn}.source.json`,
+        observedAnchorIds: [`ch${nn}.ex.northstar-lab`],
+        effectiveAnchors: [{ id: `ch${nn}.ex.northstar-lab`, kind: "namedExample" }],
+      },
+    },
+  } as unknown as ChapterV21;
+}
+
+/**
+ * THE FIXTURE THE ROUND-1 REVIEW SAID THIS FILE DID NOT HAVE.
+ *
+ * Every other release fixture here gets its per-chapter evidence handed to it by
+ * `seedManifestEvidenceRoots`, which writes ambient `state/chapters`,
+ * `state/qc` and `.chapterflow/runs/**\/sidecars/source`. That is not what a v25
+ * candidate release runs against. This test builds the root the LIVE release
+ * actually had — a candidate, and nothing else — and requires the whole route to
+ * succeed on it end to end.
+ *
+ * Before the candidate-carried evidence layer, this exact fixture produced the
+ * exact live refusal (observed by running this test against the pre-change
+ * sources):
+ *   RECONCILIATION_REQUIRED:production manifest unbuildable after pointer commit;
+ *   nothing published:
+ *     PPKG.source_missing (ch1): Missing source sidecar for candidate-only-evidence-book-ch01 (chapter 1).;
+ *     PPKG.qc_missing (ch1): Missing QC attestation at <state>/qc/candidate-only-evidence-book-ch01.qc.json.;
+ *     PPKG.source_missing (ch2): Missing source sidecar for candidate-only-evidence-book-ch02 (chapter 2).;
+ *     PPKG.qc_missing (ch2): Missing QC attestation at <state>/qc/candidate-only-evidence-book-ch02.qc.json.
+ */
+requiredTest("a candidate-only root — no state/chapters, no state/qc, no ambient sidecars — releases end to end on candidate-carried evidence", async (context) => {
+  const bookId = "candidate-only-evidence-book";
+  const stores = storage(context);
+  const chapters = [
+    sourceV2CandidateChapter(bookId, 1, "candidate-only-evidence"),
+    sourceV2CandidateChapter(bookId, 2, "candidate-only-evidence"),
+  ];
+  const staged = await stageCandidate(stores.candidates, bookId, "candidate-1", chapters, "source-v2");
+
+  // THE ROOT, as a candidate-only v25 release actually finds it: the manifest
+  // build is pointed at state/runs roots that do not exist at all. Not "exist but
+  // missing the index" — absent, which is what a book that has only ever been a
+  // candidate looks like.
+  const barrenRoot = join(context.roots.tempRoot, `${bookId}-barren`);
+  const manifestOptions: CanonicalManifestOptions = {
+    stateRoot: join(barrenRoot, "state"),
+    runsRoot: join(barrenRoot, "runs"),
+    env: manifestEnv(),
+    now: new Date(PROMOTED_AT),
+  };
+  for (const absent of [
+    manifestOptions.stateRoot as string,
+    manifestOptions.runsRoot as string,
+    join(manifestOptions.stateRoot as string, "chapters"),
+    join(manifestOptions.stateRoot as string, "qc"),
+    join(manifestOptions.stateRoot as string, "indexes"),
+  ]) {
+    assert.equal(existsSync(absent), false, `${absent} must not exist: this fixture is candidate-only`);
+  }
+
+  const input: CanonicalReleaseRequest = {
+    ...request(bookId, staged.identity),
+    reviewId: "review-candidate-only",
+    qcRoundId: "qc-candidate-only",
+  };
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 1);
+  assert.equal(released.value.readback, "VERIFIED");
+  assert.equal(release.packageWrites(), 1);
+
+  // ── The evidence the manifest recorded is the CANDIDATE's, named as such.
+  const payload = released.value.sidecar.manifest.payload as unknown as Record<string, any>;
+  assert.equal(payload.canonicalIndex, undefined);
+  assert.equal(payload.candidateChapterSet.candidateId, staged.identity.candidateId);
+  assert.deepEqual(payload.candidateQcEvidence, {
+    source: "v25-qc-round",
+    reviewId: "review-candidate-only",
+    qcRoundId: "qc-candidate-only",
+    perChapterAttestation: "subsumed-by-round",
+  });
+  assert.equal(payload.chapters.length, 2);
+  for (const [index, chapter] of (payload.chapters as Array<Record<string, any>>).entries()) {
+    const nn = String(index + 1).padStart(2, "0");
+    assert.equal(chapter.sourceEvidence.path, `candidate:inputs/source/ch${nn}.source.json`);
+    assert.equal(chapter.sourceEvidence.schemaVersion, "source-v2");
+    assert.ok(chapter.sourceEvidence.semanticHash.length > 0);
+    assert.equal(chapter.authoringEvidence.path, `candidate:content/chapters/${bookId}-ch${nn}.v21-native.chapter.json`);
+    assert.equal(chapter.authoringEvidence.schemaVersion, "chapter-source-anchor-map-v1");
+    assert.equal(chapter.qcAttestation, null, "there is no v21 per-chapter attestation on this regime");
+  }
+  // No path in the payload points into ambient state/runs.
+  const payloadBytes = JSON.stringify(payload);
+  assert.doesNotMatch(payloadBytes, /\.chapterflow\/runs/);
+  assert.doesNotMatch(payloadBytes, /"state\//);
+  // And nothing was written into the barren root to make any of this true.
+  assert.equal(existsSync(join(manifestOptions.stateRoot as string, "chapters")), false);
+  assert.equal(existsSync(join(manifestOptions.stateRoot as string, "qc")), false);
+
+  // ── publish-final's preflight shape: the two shipped files, no candidate, no
+  // release context. It must verify, or the released pair is unshippable.
+  const preflight = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(preflight.ok, true, preflight.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+  assert.equal(preflight.contentId, released.value.sidecar.manifest.contentId);
+
+  // register-web's shape: the same two files WITH compareLooseState.
+  const registerWeb = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    compareLooseState: true,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(registerWeb.ok, true, registerWeb.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+
+  // ── A caller that HAS the candidate gets the stronger check: the source and
+  // authoring evidence and the loose-state comparison are recomputed from the
+  // candidate's own bytes rather than replayed from the manifest.
+  const evidence = inMemoryCandidateEvidence(bookId, chapters, staged.identity.manifestDigest, "candidate-1", "source-v2");
+  const withCandidate = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    compareLooseState: true,
+    candidateEvidence: evidence,
+    expectedChapterSetSource: { kind: "candidate", ...staged.identity },
+    expectedCandidateQcEvidence: { reviewId: input.reviewId, qcRoundId: input.qcRoundId },
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(withCandidate.ok, true, withCandidate.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+
+  // …and that caller's evidence must be THIS candidate's.
+  const wrongCandidate = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    candidateEvidence: { ...evidence, manifestDigest: "d".repeat(64) },
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(wrongCandidate.ok, false);
+  assert.ok(
+    wrongCandidate.findings.some((f) => f.checkId === "PPKG.candidate_evidence_identity_mismatch"),
+    wrongCandidate.findings.map((f) => f.checkId).join(", "),
+  );
+
+  // …and a manifest crediting a different QC round than the caller released is
+  // refused, the same way a mis-declared chapter-set authority is.
+  const wrongRound = verifyProductionPackage({
+    packagePath,
+    manifestPath: sidecarPath,
+    expectedCandidateQcEvidence: { reviewId: input.reviewId, qcRoundId: "qc-some-other-round" },
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(wrongRound.ok, false);
+  assert.deepEqual(
+    wrongRound.findings.map((f) => f.checkId),
+    ["PPKG.candidate_qc_evidence_mismatch"],
+    wrongRound.findings.map((f) => f.checkId).join(", "),
+  );
+});
+
+/**
+ * THE GATE IS RE-POINTED, NOT REMOVED.
+ *
+ * The candidate-carried evidence layer would be worthless if "look in the
+ * candidate" quietly meant "accept anything". A candidate that is genuinely
+ * missing a chapter's source sidecar still fails PPKG.source_missing, and a
+ * source-v2 chapter with no `authoring.sourceAnchors` still fails
+ * PPKG.authoring_provenance_missing — with the pointer committed and NOTHING
+ * published, exactly as an unbuildable manifest has always behaved.
+ */
+requiredTest("a candidate missing its own source sidecar or authoring provenance still fails the evidence gates", async (context) => {
+  const bookId = "candidate-evidence-gap-book";
+  const stores = storage(context);
+  const chapter = sourceV2CandidateChapter(bookId, 1, "evidence-gap");
+  const barrenRoot = join(context.roots.tempRoot, `${bookId}-barren`);
+  const manifestOptions: CanonicalManifestOptions = {
+    stateRoot: join(barrenRoot, "state"),
+    runsRoot: join(barrenRoot, "runs"),
+    env: manifestEnv(),
+    now: new Date(PROMOTED_AT),
+  };
+
+  // (a) The source sidecar is absent from the candidate: the packet names it and
+  // the staged fallback location is empty too.
+  const withoutSidecar = candidateEvidenceFiles(bookId, [chapter], "source-v2")
+    .filter((file) => file.logicalPath !== "inputs/source/ch01.source.json");
+  const stagedA = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-no-sidecar",
+    createdByRunId: "run-candidate-no-sidecar",
+    expectedInventory: withoutSidecar.map(({ bytes: _bytes, ...file }) => file),
+    files: withoutSidecar,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(stagedA.ok, stagedA.ok ? "" : `${stagedA.error.code}:${stagedA.error.message}`);
+  const inputA: CanonicalReleaseRequest = {
+    ...request(bookId, { candidateId: "candidate-no-sidecar", manifestDigest: stagedA.value.manifestDigest }),
+    reviewId: "review-gap-a",
+    qcRoundId: "qc-gap-a",
+  };
+  const releaseA = await releaseAdapter(inputA, stores, context.roots.tempRoot, manifestOptions);
+  const resultA = await releaseA.canonicalRelease.release(inputA);
+  assertError(resultA, "RECONCILIATION_REQUIRED");
+  assert.ok(!resultA.ok && resultA.error.message.includes("PPKG.source_missing"), resultA.ok ? "" : resultA.error.message);
+  assert.equal(releaseA.packageWrites(), 0);
+
+  // (b) The sidecar is present and source-v2, but the candidate's chapter
+  // artifact carries no authoring.sourceAnchors — the provenance gate, applied to
+  // the candidate's own artifact instead of state/chapters.
+  const bookIdB = "candidate-evidence-gap-authoring-book";
+  const storesB = storage(context);
+  const plainChapter = fixtureChapter(bookIdB, 1, "evidence-gap-authoring");
+  const withoutAuthoring = candidateEvidenceFiles(bookIdB, [plainChapter], "source-v2");
+  const stagedB = await storesB.candidates.stage({
+    bookId: bookIdB,
+    candidateId: "candidate-no-authoring",
+    createdByRunId: "run-candidate-no-authoring",
+    expectedInventory: withoutAuthoring.map(({ bytes: _bytes, ...file }) => file),
+    files: withoutAuthoring,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(stagedB.ok, stagedB.ok ? "" : `${stagedB.error.code}:${stagedB.error.message}`);
+  const inputB: CanonicalReleaseRequest = {
+    ...request(bookIdB, { candidateId: "candidate-no-authoring", manifestDigest: stagedB.value.manifestDigest }),
+    reviewId: "review-gap-b",
+    qcRoundId: "qc-gap-b",
+  };
+  const releaseB = await releaseAdapter(inputB, storesB, context.roots.tempRoot, manifestOptions);
+  const resultB = await releaseB.canonicalRelease.release(inputB);
+  assertError(resultB, "RECONCILIATION_REQUIRED");
+  assert.ok(
+    !resultB.ok && resultB.error.message.includes("PPKG.authoring_provenance_missing"),
+    resultB.ok ? "" : resultB.error.message,
+  );
+  assert.equal(releaseB.packageWrites(), 0);
 });
 
 finishV25Tests().catch((error: unknown) => {

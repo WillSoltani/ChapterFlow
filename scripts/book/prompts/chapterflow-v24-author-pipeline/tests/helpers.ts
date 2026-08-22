@@ -405,6 +405,81 @@ export function writeSourceEvidenceFixture(
   return runDir;
 }
 
+export type CandidateEvidenceFile = Readonly<{
+  kind: "CHAPTER" | "SIDECAR";
+  logicalPath: string;
+  mediaType: "application/json";
+  bytes: Uint8Array;
+}>;
+
+/**
+ * The files a v25 CANDIDATE stages for its own chapters — the inventory a
+ * candidate release evidences its production manifest from.
+ *
+ * WHY THIS EXISTS. The release fixtures used to stage one CHAPTER file at
+ * `chapters/ch01.json` and leave every piece of per-chapter manifest evidence to
+ * `seedManifestEvidenceRoots` below, which writes AMBIENT `state/chapters`,
+ * `state/qc` and `.chapterflow/runs/**\/sidecars/source`. A candidate-only v25
+ * book root has none of those, so the suite was green while the live candidate
+ * release failed per chapter on PPKG.source_missing / PPKG.qc_missing.
+ *
+ * These are the paths a real candidate carries, verified against the promoted
+ * Franklin candidate `repair-candidate-467de279d30bf8f08756a7f41886c3c5`
+ * (digest 6b6de2d9…, the candidate `current.json` names at revision 3):
+ *   content/chapters/<chapterId>.v21-native.chapter.json   kind CHAPTER
+ *   compiler/chNN/source-packet.json  → sourceSidecarPath  kind SIDECAR
+ *   inputs/source/chNN.source.json                         kind SIDECAR
+ *
+ * `sourceSchemaVersion` defaults to source-v1 for the same reason
+ * `seedManifestEvidenceRoots` does: source-v2 additionally demands per-chapter
+ * authoring provenance on the chapter artifact.
+ */
+export function candidateEvidenceFiles(
+  bookId: string,
+  chapters: readonly ChapterV21[],
+  sourceSchemaVersion: "source-v1" | "source-v2" = "source-v1",
+): CandidateEvidenceFile[] {
+  const encode = (value: unknown): Uint8Array => Buffer.from(`${JSON.stringify(value, null, 2)}\n`);
+  const files: CandidateEvidenceFile[] = [];
+  for (const chapter of chapters) {
+    const nn = String(chapter.number).padStart(2, "0");
+    const sourceSidecarPath = `inputs/source/ch${nn}.source.json`;
+    files.push({
+      kind: "CHAPTER",
+      logicalPath: `content/chapters/${chapter.chapterId}.v21-native.chapter.json`,
+      mediaType: "application/json",
+      bytes: encode(chapter),
+    });
+    files.push({
+      kind: "SIDECAR",
+      logicalPath: `compiler/ch${nn}/source-packet.json`,
+      mediaType: "application/json",
+      bytes: encode({
+        schemaVersion: "source-packet-v1",
+        bookId,
+        chapterId: chapter.chapterId,
+        chapterNumber: chapter.number,
+        sourceSidecarPath,
+      }),
+    });
+    files.push({
+      kind: "SIDECAR",
+      logicalPath: sourceSidecarPath,
+      mediaType: "application/json",
+      bytes: encode(sourceSchemaVersion === "source-v2"
+        ? makeSourceV2SidecarFixture({ chapterNumber: chapter.number, chapterTitle: chapter.title })
+        : {
+          schemaVersion: "source-v1",
+          bookId,
+          chapterId: chapter.chapterId,
+          chapterNumber: chapter.number,
+          summary: `Candidate-carried source evidence for ${chapter.chapterId}.`,
+        }),
+    });
+  }
+  return files;
+}
+
 /**
  * Seed a DISPOSABLE state+runs root pair with exactly the evidence the production
  * manifest builder reads — and that verifyProductionPackage independently
