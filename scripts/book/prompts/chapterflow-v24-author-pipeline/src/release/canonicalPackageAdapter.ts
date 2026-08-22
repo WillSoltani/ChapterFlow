@@ -2,10 +2,13 @@ import type { BookContentReader, CandidateSnapshot } from "../books/candidateTyp
 import type { CandidateIdentity, Result } from "../contracts/v4Core.js";
 import {
   buildExpectedProductionManifestForPackage,
+  candidateChapterEvidenceResolver,
   type BuildProductionManifestResult,
+  type CandidateChapterEvidenceResolver,
   type ProductionChapterSetSource,
   type ProductionManifestVersion,
 } from "../productionManifest.js";
+import { candidateEvidenceFromSnapshot, type CandidateEvidence } from "../lib/candidateEvidence.js";
 import {
   buildLegacyReaderPackage,
   PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
@@ -41,6 +44,11 @@ export type CanonicalPackageMetadata = Readonly<{
 export type CanonicalPackage = Readonly<{
   candidate: CandidateIdentity;
   package: BookPackageV21;
+  /** The candidate's own file set, carried forward from the snapshot the package
+   *  was assembled from. This is where the release's production-manifest evidence
+   *  comes from: source sidecars and unstripped chapter artifacts, digest-bound,
+   *  with no ambient `state/` or `.chapterflow/runs` read anywhere in the chain. */
+  evidence: CandidateEvidence;
 }>;
 
 /** The release artifacts a candidate release publishes. `sidecar` is the
@@ -222,6 +230,7 @@ export async function assembleCanonicalPackage(input: Readonly<{
         ...input.metadata,
         chapters: chapters.value,
       }),
+      evidence: candidateEvidenceFromSnapshot(opened.value),
     },
   };
 }
@@ -601,6 +610,18 @@ export class CanonicalPackageAdapter {
         candidateId: request.candidate.candidateId,
         manifestDigest: request.candidate.manifestDigest,
       },
+      // …and so is the EVIDENCE. The per-chapter source sidecars and the
+      // unstripped chapter artifacts come out of the same digest-verified
+      // snapshot, because a candidate-only book root has no
+      // `.chapterflow/runs/<bookId>/…/sidecars/source` and no `state/chapters` —
+      // reading those is what turned the promoted Franklin release into
+      // "pointer committed, PPKG.source_missing per chapter, nothing published".
+      candidateChapterEvidence: candidateChapterEvidenceResolver(assembled.value.evidence),
+      // The QC authority this release stands on. The round is digest-bound to
+      // this candidate and the promotion service verified its outcome is PASS
+      // before the CAS above; recording it here puts that fact inside the
+      // contentId instead of leaving the manifest silent about its QC.
+      candidateQcEvidence: { reviewId: request.reviewId, qcRoundId: request.qcRoundId },
     });
     if (!built.ok) {
       const message = `production manifest unbuildable after pointer commit; nothing published: ${built.findings
@@ -644,6 +665,12 @@ export class CanonicalPackageAdapter {
         candidateId: request.candidate.candidateId,
         manifestDigest: request.candidate.manifestDigest,
       },
+      // Same principle for the QC round, and for the evidence itself: this caller
+      // HAS the candidate, so the verifier recomputes the source/authoring
+      // evidence and the loose-state comparison from the candidate's own bytes
+      // rather than replaying what the sidecar it just built recorded.
+      expectedCandidateQcEvidence: { reviewId: request.reviewId, qcRoundId: request.qcRoundId },
+      candidateEvidence: assembled.value.evidence,
       stateRoot: this.#options.manifest?.stateRoot,
       runsRoot: this.#options.manifest?.runsRoot,
       recordPath: this.#options.manifest?.recordPath,
@@ -706,10 +733,16 @@ export function buildCanonicalPackageManifest(args: Readonly<CanonicalManifestOp
   /** Set by the candidate release route; omitted by the legacy parity proof,
    *  which keeps its canonical-index behaviour byte-identical. */
   chapterSetSource?: ProductionChapterSetSource;
+  /** Candidate regime only — the candidate-carried per-chapter evidence. */
+  candidateChapterEvidence?: CandidateChapterEvidenceResolver;
+  /** Candidate regime only — the v25 QC round this release relied on. */
+  candidateQcEvidence?: { reviewId: string; qcRoundId: string };
 }>): BuildProductionManifestResult {
   return buildExpectedProductionManifestForPackage({
     pkg: args.package,
     ...(args.chapterSetSource === undefined ? {} : { chapterSetSource: args.chapterSetSource }),
+    ...(args.candidateChapterEvidence === undefined ? {} : { candidateChapterEvidence: args.candidateChapterEvidence }),
+    ...(args.candidateQcEvidence === undefined ? {} : { candidateQcEvidence: args.candidateQcEvidence }),
     stateRoot: args.stateRoot,
     runsRoot: args.runsRoot,
     recordPath: args.recordPath,

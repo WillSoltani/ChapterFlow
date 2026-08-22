@@ -12,6 +12,14 @@ import {
   readCanonicalChapterIndex,
 } from "./lib/chapterSet.js";
 import { canonicalJson, canonicalJsonSha256 } from "./lib/canonicalJson.js";
+import {
+  candidateChapterArtifactPath,
+  candidateManifestPath,
+  readCandidateJson,
+  resolveCandidateSourceSidecar,
+  candidateChapterHasSourceV2,
+  type CandidateEvidence,
+} from "./lib/candidateEvidence.js";
 import { findRunArtifact } from "./lib/runDirs.js";
 import {
   READER_CONTENT_HASH_VERSION,
@@ -100,6 +108,18 @@ export type ProductionManifestChapter = {
     seriousDegradationCount: number;
     advisoryDegradationCount: number;
   } | null;
+  /**
+   * The legacy per-chapter `state/qc/<bookId>-chNN.qc.json` attestation (the v21
+   * pipeline shape). ALWAYS an object on the canonical-index regime — unchanged,
+   * still required, still gated on schema/verdict/roundId/freshness/reviewer.
+   *
+   * NULL on the v25 candidate regime, where no such file exists and none is
+   * wanted: the candidate's QC authority is the round-level v25 QC round the
+   * release named and the release preflight verified PASS against this exact
+   * candidate digest. What was relied on is recorded at payload level in
+   * `candidateQcEvidence` (and hashed into the contentId) rather than left
+   * unstated.
+   */
   qcAttestation: {
     path: string;
     semanticHash: string;
@@ -108,7 +128,27 @@ export type ProductionManifestChapter = {
     hashVersion: string;
     reviewer: string;
     reviewedAt: string;
-  };
+  } | null;
+};
+
+/**
+ * WHAT THE CANDIDATE REGIME RELIED ON FOR QC, recorded in the payload.
+ *
+ * The v21 per-chapter attestation is a file a chapter-at-a-time reviewer wrote
+ * into ambient `state/qc`. The v25 candidate route has no such file and cannot
+ * grow one: its QC is a ROUND, bound by digest to one whole candidate, and the
+ * release preflight verifies that round's outcome is PASS for THIS candidate
+ * before the pointer CAS. Recording the round identity here means the manifest
+ * states which QC authority it stands on instead of silently having none, and
+ * because it is payload data it is hashed into the contentId — a released pair
+ * cannot be re-pointed at a different round without changing its identity.
+ */
+export type ProductionManifestCandidateQcEvidence = {
+  source: "v25-qc-round";
+  reviewId: string;
+  qcRoundId: string;
+  /** Why there is no per-chapter attestation, stated rather than implied. */
+  perChapterAttestation: "subsumed-by-round";
 };
 
 /**
@@ -230,9 +270,184 @@ export function chapterSetSpecsSemanticHash(specs: readonly ProductionManifestCh
   return canonicalJsonSha256(specs);
 }
 
+/** The per-chapter evidence fields a candidate carries for itself. Exactly the
+ *  three the canonical-index regime reads out of `.chapterflow/runs` and
+ *  `state/chapters`; only WHERE they come from differs. */
+export type CandidateChapterEvidence = {
+  sourceEvidence: ProductionManifestChapter["sourceEvidence"];
+  authoringEvidence: ProductionManifestChapter["authoringEvidence"];
+  generationEvidence: ProductionManifestChapter["generationEvidence"];
+};
+
+export type CandidateChapterEvidenceResult =
+  | { ok: true; evidence: CandidateChapterEvidence }
+  | { ok: false; findings: ProductionManifestFinding[] };
+
+export type CandidateChapterEvidenceResolver = (spec: ProductionManifestChapterSpec) => CandidateChapterEvidenceResult;
+
+/**
+ * RECOMPUTE the candidate regime's per-chapter evidence from the candidate's own
+ * bytes — the same digest-verified file set the chapter artifacts came from.
+ *
+ * This is the re-pointing the live release needed. `PPKG.source_missing` and
+ * `PPKG.authoring_provenance_missing` are the SAME gates with the same check ids
+ * and the same fail-closed behaviour; they now look in the candidate instead of
+ * in a `.chapterflow/runs` tree that a candidate-only book root does not have. A
+ * chapter whose sidecar is genuinely absent from the candidate still fails.
+ */
+export function candidateChapterEvidenceResolver(evidence: CandidateEvidence): CandidateChapterEvidenceResolver {
+  return (spec) => {
+    const findings: ProductionManifestFinding[] = [];
+
+    const sidecar = resolveCandidateSourceSidecar(evidence, spec.chapterNumber, spec.chapterId);
+    let sourceEvidence: ProductionManifestChapter["sourceEvidence"] | null = null;
+    let sourceSchema: string | null = null;
+    if (!sidecar.ok) {
+      findings.push(blocker({
+        checkId: "PPKG.source_missing",
+        chapterNumber: spec.chapterNumber,
+        message:
+          `Missing source sidecar for ${spec.chapterId} (chapter ${spec.chapterNumber}) in candidate ` +
+          `${evidence.candidateId}: ${sidecar.message}`,
+      }));
+    } else {
+      sourceSchema = typeof (sidecar.value as { schemaVersion?: unknown })?.schemaVersion === "string"
+        ? (sidecar.value as { schemaVersion: string }).schemaVersion
+        : null;
+      // ANTI-DOWNGRADE (adversarial review): the packet's sourceSidecarPath is
+      // writer-declared, so a pointer aimed at a decoy could resolve to a
+      // non-source-v2 file and silently disarm the source-v2-only authoring
+      // gate below while an honest source-v2 sidecar sat at the staged
+      // location. If ANY candidate source location holds source-v2, the
+      // chapter IS source-v2 for gating purposes — pointer games cannot
+      // lower the bar, only genuinely-v1 chapters keep the v1 shape.
+      if (sourceSchema !== "source-v2" && candidateChapterHasSourceV2(evidence, spec.chapterNumber)) {
+        sourceSchema = "source-v2";
+      }
+      sourceEvidence = {
+        path: candidateManifestPath(sidecar.logicalPath),
+        semanticHash: sidecar.hash,
+        schemaVersion: sourceSchema,
+      };
+    }
+
+    // The candidate's UNSTRIPPED chapter artifact is this regime's
+    // `state/chapters/<id>.v21-native.chapter.json`: it is where
+    // `authoring.sourceAnchors` and `authoring.generation` live before
+    // `stripInternalFields` removes them from the shipped package.
+    const chapterPath = candidateChapterArtifactPath(spec.chapterId);
+    const authored = readCandidateJson(evidence, chapterPath);
+    let authoringEvidence: ProductionManifestChapter["authoringEvidence"] = null;
+    let generationEvidence: ProductionManifestChapter["generationEvidence"] = null;
+    if (authored.ok) {
+      const value = authored.value as { authoring?: { sourceAnchors?: any; generation?: any } };
+      const sourceAnchors = value?.authoring?.sourceAnchors;
+      const generation = value?.authoring?.generation;
+      const authoringSchema = typeof sourceAnchors?.schemaVersion === "string" ? sourceAnchors.schemaVersion : null;
+      if (sourceAnchors) {
+        authoringEvidence = {
+          path: candidateManifestPath(chapterPath),
+          semanticHash: canonicalJsonSha256(sourceAnchors),
+          schemaVersion: authoringSchema,
+          sourceHash: typeof sourceAnchors?.sourceHash === "string" ? sourceAnchors.sourceHash : null,
+        };
+      }
+      if (generation && typeof generation === "object") {
+        const degradations = Array.isArray(generation.degradations) ? generation.degradations : [];
+        generationEvidence = {
+          path: candidateManifestPath(chapterPath),
+          semanticHash: canonicalJsonSha256(generation),
+          schemaVersion: typeof generation.schemaVersion === "string" ? generation.schemaVersion : null,
+          runId: typeof generation.runId === "string" ? generation.runId : null,
+          degradationCount: degradations.length,
+          seriousDegradationCount: degradations.filter((event: any) => event?.severity === "serious").length,
+          advisoryDegradationCount: degradations.filter((event: any) => event?.severity === "advisory").length,
+        };
+      }
+      if (sourceSchema === "source-v2" && (!sourceAnchors || authoringSchema !== "chapter-source-anchor-map-v1")) {
+        findings.push(blocker({
+          checkId: "PPKG.authoring_provenance_missing",
+          chapterNumber: spec.chapterNumber,
+          path: candidateManifestPath(chapterPath),
+          message: `Source-v2 chapter ${spec.chapterId} is missing authoring.sourceAnchors provenance in the candidate chapter artifact.`,
+        }));
+      }
+    } else if (sourceSchema === "source-v2") {
+      findings.push(blocker({
+        checkId: "PPKG.authoring_unreadable",
+        chapterNumber: spec.chapterNumber,
+        path: candidateManifestPath(chapterPath),
+        message: `Missing candidate chapter authoring evidence: ${authored.message}`,
+      }));
+    }
+
+    if (findings.length > 0 || sourceEvidence === null) {
+      return { ok: false, findings: findings.length > 0 ? findings : [blocker({ checkId: "PPKG.source_missing", chapterNumber: spec.chapterNumber, message: `Missing source sidecar for ${spec.chapterId}.` })] };
+    }
+    return { ok: true, evidence: { sourceEvidence, authoringEvidence, generationEvidence } };
+  };
+}
+
+/**
+ * REPLAY the candidate evidence a manifest under test RECORDED, for a verifier
+ * that holds the released pair but not the candidate.
+ *
+ * BE EXACT ABOUT WHAT THIS PROVES. Replaying recorded bytes proves the payload is
+ * internally consistent — the recorded evidence is what the recorded contentId
+ * and payloadHash are actually derived over — and it leaves every check that does
+ * NOT depend on the candidate fully live: the recorded chapter set vs the package
+ * (compareRecordedCandidateChapterSet), per-chapter reader-content hashes,
+ * package identity, source-reality evidence recomputed from disk, and the three
+ * build-input fingerprints recomputed from disk. It does NOT re-read the
+ * candidate, so it cannot detect a manifest whose recorded source evidence never
+ * matched the candidate it names.
+ *
+ * That residual is closed by the caller that CAN open the candidate: the release
+ * adapter passes `candidateEvidence` and gets the recompute above, before the
+ * pair is ever written. This replay exists so a consumer holding only the two
+ * shipped files (publish-final's preflight, register-web, the recovery flows)
+ * keeps verifying a candidate pair instead of failing on evidence it has no
+ * access to — the same "callers with no release context" carve-out the
+ * expectedChapterSetSource layer already documents.
+ */
+export function recordedCandidateChapterEvidenceResolver(
+  payload: ProductionManifestPayload,
+): CandidateChapterEvidenceResolver {
+  const byChapterId = new Map<string, ProductionManifestChapter>();
+  for (const chapter of payload.chapters ?? []) {
+    if (chapter && typeof chapter.chapterId === "string") byChapterId.set(chapter.chapterId, chapter);
+  }
+  return (spec) => {
+    const recorded = byChapterId.get(spec.chapterId);
+    if (!recorded || !isObject(recorded.sourceEvidence as unknown)) {
+      return {
+        ok: false,
+        findings: [blocker({
+          checkId: "PPKG.candidate_evidence_unrecorded",
+          chapterNumber: spec.chapterNumber,
+          message:
+            `The manifest records no candidate source evidence for ${spec.chapterId}, so a verifier without the ` +
+            "candidate has nothing to replay for that chapter.",
+        })],
+      };
+    }
+    return {
+      ok: true,
+      evidence: {
+        sourceEvidence: recorded.sourceEvidence,
+        authoringEvidence: recorded.authoringEvidence ?? null,
+        generationEvidence: recorded.generationEvidence ?? null,
+      },
+    };
+  };
+}
+
 type ChapterSetPayloadBlock =
   | { canonicalIndex: ProductionManifestCanonicalIndexBlock }
-  | { candidateChapterSet: ProductionManifestCandidateChapterSetBlock };
+  | {
+    candidateChapterSet: ProductionManifestCandidateChapterSetBlock;
+    candidateQcEvidence: ProductionManifestCandidateQcEvidence;
+  };
 
 type CommonPayloadFields = {
   bookId: string;
@@ -252,7 +467,12 @@ export type ProductionManifestPayloadV1 = CommonPayloadFields & {
   evidencePolicy: {
     sourceEvidence: "required";
     authoringEvidence: "required-for-source-v2";
-    qcAttestation: "required";
+    /** "required" on the canonical-index regime; on the candidate regime the
+     *  per-chapter attestation never existed and the payload says which QC
+     *  authority it stands on instead — a policy the payload itself does not
+     *  meet must never be hashed into contentId (adversarial review caught the
+     *  self-contradiction). */
+    qcAttestation: "required" | "subsumed-by-v25-qc-round";
   };
   versions: ProductionManifestVersionsV1;
 };
@@ -264,7 +484,7 @@ export type ProductionManifestPayloadV2 = CommonPayloadFields & {
     sourceEvidence: "required";
     authoringEvidence: "required-for-source-v2";
     sourceReality: "required-for-source-v2";
-    qcAttestation: "required";
+    qcAttestation: "required" | "subsumed-by-v25-qc-round";
   };
   versions: ProductionManifestVersionsV2;
 };
@@ -304,6 +524,15 @@ export type BuildProductionManifestInput = ProductionManifestRoots & {
    *  the chapter set and the ambient canonical index is not read at all. Absent
    *  on the legacy route, whose canonical-index behaviour is unchanged. */
   chapterSetSource?: ProductionChapterSetSource;
+  /** Candidate regime ONLY, and REQUIRED there. Where the per-chapter source and
+   *  authoring evidence comes from when the book root is candidate-only. See
+   *  `candidateChapterEvidenceResolver` (recompute from the candidate bytes) and
+   *  `recordedCandidateChapterEvidenceResolver` (replay what a manifest under
+   *  test recorded). Ignored on the canonical-index regime. */
+  candidateChapterEvidence?: CandidateChapterEvidenceResolver;
+  /** Candidate regime ONLY, and REQUIRED there. The v25 round-level QC identity
+   *  the release verified against this candidate. */
+  candidateQcEvidence?: { reviewId: string; qcRoundId: string };
   createdAt: string;
   generator?: string;
   runId?: string;
@@ -396,7 +625,13 @@ function optionalString(value: unknown): string | null {
 const CANDIDATE_MANIFEST_DIGEST_PATTERN = /^[a-f0-9]{64}$/;
 
 type ResolvedChapterSet =
-  | { ok: true; specs: ProductionManifestChapterSpec[]; block: ChapterSetPayloadBlock; deferredFindings: ProductionManifestFinding[] }
+  | {
+    ok: true;
+    regime: "canonical-index" | "candidate";
+    specs: ProductionManifestChapterSpec[];
+    block: ChapterSetPayloadBlock;
+    deferredFindings: ProductionManifestFinding[];
+  }
   | { ok: false; findings: ProductionManifestFinding[] };
 
 /**
@@ -450,6 +685,26 @@ function resolveChapterSet(
         })),
       };
     }
+    const qc = input.candidateQcEvidence;
+    if (
+      qc === undefined || qc === null || typeof qc !== "object" ||
+      typeof qc.reviewId !== "string" || qc.reviewId.length === 0 ||
+      typeof qc.qcRoundId !== "string" || qc.qcRoundId.length === 0
+    ) {
+      // The candidate regime has no per-chapter state/qc attestation to fall back
+      // on, so a build with no round identity would produce a manifest that
+      // evidences no QC authority at all. Refuse to build one.
+      return {
+        ok: false,
+        findings: [blocker({
+          checkId: "PPKG.candidate_qc_evidence_missing",
+          message:
+            "A candidate-regime manifest must record the v25 QC round it relied on " +
+            "({ reviewId, qcRoundId }); the per-chapter state/qc attestation is the v21 shape and does not exist here.",
+          actual: qc,
+        })],
+      };
+    }
     const specs = candidate.chapters.map((spec) => ({
       chapterId: spec.chapterId,
       chapterNumber: spec.chapterNumber,
@@ -457,6 +712,7 @@ function resolveChapterSet(
     }));
     return {
       ok: true,
+      regime: "candidate",
       specs,
       block: {
         candidateChapterSet: {
@@ -465,6 +721,12 @@ function resolveChapterSet(
           manifestDigest: source.manifestDigest,
           semanticHash: chapterSetSpecsSemanticHash(specs),
           chapters: specs,
+        },
+        candidateQcEvidence: {
+          source: "v25-qc-round",
+          reviewId: qc.reviewId,
+          qcRoundId: qc.qcRoundId,
+          perChapterAttestation: "subsumed-by-round",
         },
       },
       deferredFindings: [],
@@ -515,6 +777,7 @@ function resolveChapterSet(
   }));
   return {
     ok: true,
+    regime: "canonical-index",
     specs,
     block: {
       canonicalIndex: {
@@ -545,11 +808,53 @@ function gatherCommonPayload(
   const { specs, block } = chapterSet;
   findings.push(...chapterSet.deferredFindings);
 
+  // ── WHERE THE PER-CHAPTER EVIDENCE COMES FROM ───────────────────────────────
+  // The canonical-index regime reads ambient `.chapterflow/runs` sidecars,
+  // `state/chapters` authoring artifacts and `state/qc` attestations — unchanged,
+  // byte for byte. The candidate regime reads the candidate, because a
+  // candidate-only book root HAS none of those three and never will: that is what
+  // "candidate-only" means. Same gates, re-pointed at the artifacts the candidate
+  // actually carries.
+  const candidateRegime = chapterSet.regime === "candidate";
+  const resolveCandidateEvidence = input.candidateChapterEvidence;
+  if (candidateRegime && resolveCandidateEvidence === undefined) {
+    return {
+      ok: false,
+      findings: [blocker({
+        checkId: "PPKG.candidate_evidence_unavailable",
+        message:
+          "A candidate-regime manifest build needs a candidate evidence resolver (candidateChapterEvidence); " +
+          "ambient state/runs evidence is not this regime's authority and a candidate-only book root has none.",
+      })],
+    };
+  }
+
   const chapterPayloads: ProductionManifestChapter[] = [];
   for (let i = 0; i < specs.length; i++) {
     const spec = specs[i];
     const chapter = input.chapters[i];
     if (!chapter) continue;
+
+    if (candidateRegime) {
+      const resolved = resolveCandidateEvidence!(spec);
+      if (!resolved.ok) {
+        findings.push(...resolved.findings);
+        continue;
+      }
+      chapterPayloads.push({
+        chapterId: spec.chapterId,
+        chapterNumber: spec.chapterNumber,
+        title: spec.chapterTitle || chapter.title || "",
+        readerContentHash: readerContentHash(chapter),
+        sourceEvidence: resolved.evidence.sourceEvidence,
+        authoringEvidence: resolved.evidence.authoringEvidence,
+        generationEvidence: resolved.evidence.generationEvidence,
+        // No per-chapter v21 attestation exists on this regime; the round-level
+        // authority is recorded in payload.candidateQcEvidence.
+        qcAttestation: null,
+      });
+      continue;
+    }
 
     const sourcePath = sourceSidecarPathFor(runsRoot, bookId, spec.chapterNumber);
     let sourceHash = "";
@@ -836,7 +1141,7 @@ function buildPayload(
       evidencePolicy: {
         sourceEvidence: "required",
         authoringEvidence: "required-for-source-v2",
-        qcAttestation: "required",
+        qcAttestation: input.candidateQcEvidence === undefined ? "required" : "subsumed-by-v25-qc-round",
       },
       versions: {
         canonicalJson: PRODUCTION_CANONICAL_JSON_VERSION,
@@ -870,7 +1175,7 @@ function buildPayload(
       sourceEvidence: "required",
       authoringEvidence: "required-for-source-v2",
       sourceReality: "required-for-source-v2",
-      qcAttestation: "required",
+      qcAttestation: input.candidateQcEvidence === undefined ? "required" : "subsumed-by-v25-qc-round",
     },
     versions: {
       canonicalJson: PRODUCTION_CANONICAL_JSON_VERSION,
@@ -927,9 +1232,18 @@ function validateChapterSetBlock(payload: Record<string, unknown>): ProductionMa
     })];
   }
   if (hasCanonicalIndex) {
-    return isObject(payload.canonicalIndex)
+    if (!isObject(payload.canonicalIndex)) {
+      return [blocker({ checkId: "PPKG.manifest_canonical_index_invalid", message: "productionManifest.payload.canonicalIndex must be an object." })];
+    }
+    // The canonical-index regime keeps its per-chapter state/qc attestations. A
+    // round-level candidate QC block here would be a legacy manifest claiming an
+    // authority its own regime never checked.
+    return payload.candidateQcEvidence === undefined
       ? []
-      : [blocker({ checkId: "PPKG.manifest_canonical_index_invalid", message: "productionManifest.payload.canonicalIndex must be an object." })];
+      : [blocker({
+        checkId: "PPKG.manifest_candidate_qc_evidence_invalid",
+        message: "A canonical-index manifest must not carry candidateQcEvidence; its QC authority is the per-chapter state/qc attestation.",
+      })];
   }
   const block = payload.candidateChapterSet;
   if (!isObject(block)) {
@@ -945,6 +1259,24 @@ function validateChapterSetBlock(payload: Record<string, unknown>): ProductionMa
     return [blocker({
       checkId: "PPKG.manifest_candidate_chapter_set_invalid",
       message: "productionManifest.payload.candidateChapterSet must declare source \"candidate\", a candidateId, a 64-hex manifestDigest, a semanticHash, and a non-empty chapters array.",
+    })];
+  }
+  // A candidate manifest MUST name the QC authority it stood on. Without this the
+  // regime would be a way to ship with no recorded QC evidence at all, which is
+  // the one thing dropping the per-chapter attestation must not become.
+  const qc = payload.candidateQcEvidence;
+  if (
+    !isObject(qc) ||
+    qc.source !== "v25-qc-round" ||
+    !isString(qc.reviewId) ||
+    !isString(qc.qcRoundId) ||
+    qc.perChapterAttestation !== "subsumed-by-round"
+  ) {
+    return [blocker({
+      checkId: "PPKG.manifest_candidate_qc_evidence_invalid",
+      message:
+        "productionManifest.payload.candidateQcEvidence must declare source \"v25-qc-round\", a reviewId, a qcRoundId, " +
+        "and perChapterAttestation \"subsumed-by-round\" — a candidate manifest has no per-chapter state/qc attestation and must name the round it relied on instead.",
     })];
   }
   return [];
@@ -964,6 +1296,20 @@ export function declaredChapterSetSource(payload: ProductionManifestPayload): Pr
   if (!isObject(block) || block.source !== "candidate") return undefined;
   if (!isString(block.candidateId) || !isString(block.manifestDigest)) return undefined;
   return { kind: "candidate", candidateId: block.candidateId, manifestDigest: block.manifestDigest };
+}
+
+/** The v25 QC round a candidate payload DECLARES it relied on. Undefined on the
+ *  legacy regime. Like `declaredChapterSetSource`, this is a DECLARATION, not
+ *  evidence: it is what the verifier's rebuild is parameterised by, and a caller
+ *  that independently knows which round the release verified passes
+ *  `expectedCandidateQcEvidence` so the declaration cannot disagree with it. */
+export function declaredCandidateQcEvidence(
+  payload: ProductionManifestPayload,
+): { reviewId: string; qcRoundId: string } | undefined {
+  const block = (payload as unknown as Record<string, unknown>).candidateQcEvidence;
+  if (!isObject(block) || block.source !== "v25-qc-round") return undefined;
+  if (!isString(block.reviewId) || !isString(block.qcRoundId)) return undefined;
+  return { reviewId: block.reviewId, qcRoundId: block.qcRoundId };
 }
 
 /**
@@ -1084,6 +1430,10 @@ export function buildExpectedProductionManifestForPackage(args: {
    *  The verifier passes what the manifest under test DECLARES, so a
    *  candidate-sourced package recomputes without the ambient index. */
   chapterSetSource?: ProductionChapterSetSource;
+  /** Candidate regime only — see BuildProductionManifestInput. */
+  candidateChapterEvidence?: CandidateChapterEvidenceResolver;
+  /** Candidate regime only — see BuildProductionManifestInput. */
+  candidateQcEvidence?: { reviewId: string; qcRoundId: string };
   stateRoot?: string;
   runsRoot?: string;
   createdAt?: string;
@@ -1107,6 +1457,8 @@ export function buildExpectedProductionManifestForPackage(args: {
     tags: args.pkg.book?.tags,
     chapters: args.pkg.chapters ?? [],
     ...(args.chapterSetSource === undefined ? {} : { chapterSetSource: args.chapterSetSource }),
+    ...(args.candidateChapterEvidence === undefined ? {} : { candidateChapterEvidence: args.candidateChapterEvidence }),
+    ...(args.candidateQcEvidence === undefined ? {} : { candidateQcEvidence: args.candidateQcEvidence }),
     stateRoot: args.stateRoot,
     runsRoot: args.runsRoot,
     createdAt: args.createdAt ?? args.pkg.createdAt,
