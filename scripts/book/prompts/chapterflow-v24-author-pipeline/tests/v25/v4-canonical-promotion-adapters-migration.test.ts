@@ -25,6 +25,7 @@ import {
 } from "../../src/release/legacyPromotionAdapter.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
 import { publishReleaseArtifacts } from "../../src/release/publishReleaseArtifacts.js";
+import { createFileReleaseJournal, type ReleaseJournal } from "../../src/release/releaseJournal.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { ReviewService } from "../../src/review/reviewTypes.js";
 import {
@@ -240,7 +241,7 @@ async function releaseAdapter(
   manifest: CanonicalManifestOptions,
   reviewCandidate: CandidateIdentity = input.candidate,
   failFirstPackageWrite = false,
-  extras: Readonly<{ newTransactionId?: () => string; stateRoot?: string }> = {},
+  extras: Readonly<{ newTransactionId?: () => string; stateRoot?: string; journal?: ReleaseJournal }> = {},
 ) {
   const authority = await authorities(input, stores, reviewCandidate);
   const pointer = countedPointer(stores.pointer);
@@ -1238,6 +1239,335 @@ requiredTest("the legacy no-candidate manifest route still requires the ambient 
     ...roots,
   });
   assert.equal(asCandidate.ok, true, asCandidate.ok ? "" : asCandidate.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+});
+
+/** Stage a candidate carrying SEVERAL chapter artifacts. A one-chapter fixture
+ *  cannot express "a chapter went missing" at all, which is why the chapter-set
+ *  authority probes below need this. */
+async function stageChapters(store: CandidateStore, bookId: string, candidateId: string, chapters: ChapterV21[]) {
+  const files = chapters.map((chapter) => ({
+    kind: "CHAPTER" as const,
+    logicalPath: `chapters/ch${String(chapter.number).padStart(2, "0")}.json`,
+    mediaType: "application/json" as const,
+    bytes: Buffer.from(`${JSON.stringify(chapter, null, 2)}\n`),
+  }));
+  const staged = await store.stage({
+    bookId,
+    candidateId,
+    createdByRunId: `run-${candidateId}`,
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(staged.ok, staged.ok ? "" : `${staged.error.code}:${staged.error.message}`);
+  return { identity: { candidateId, manifestDigest: staged.value.manifestDigest }, chapters };
+}
+
+/**
+ * THE ADVERSARIAL-REVIEW BLOCKER, pinned.
+ *
+ * verifyProductionPackage reconstructs the expected manifest under the regime the
+ * MANIFEST declares (declaredChapterSetSource). On the candidate regime that
+ * reconstruction derives the chapter set from the package's own chapters, so the
+ * artifact under test was supplying both the claim and the evidence. The
+ * canonical-index regime catches a package that lost a chapter precisely because
+ * state/indexes/<bookId>.json is an authority that exists independently of the
+ * package; the candidate regime had no such authority at all.
+ *
+ * The independent authority it does have is the chapter set the RELEASE RECORDED
+ * in the manifest — payload.candidateChapterSet.chapters, hashed into the
+ * contentId. The package is compared to THAT, before any reconstruction.
+ *
+ * WHAT THE RECORDED BLOCK PINS: chapterId, chapterNumber and chapterTitle per
+ * chapter — there is no per-chapter content hash in it (ProductionManifestChapterSpec).
+ * So it speaks about the chapter SET (dropped / added / renumbered / reordered),
+ * not chapter BODIES; bodies are pinned per chapter by
+ * payload.chapters[].readerContentHash, which is now also checked against the
+ * RECORDED chapters rather than reconstructed ones.
+ *
+ * WHAT IT CANNOT PIN, stated plainly: a wholesale re-authoring of BOTH files —
+ * a truncated package republished with a freshly built candidate-declaring
+ * manifest whose block, payload and contentId are all recomputed over the
+ * truncated set. That pair is internally consistent and nothing inside the two
+ * files can refute it; the anchor is outside the pair (the CURRENT pointer /
+ * registry names the candidateId + manifestDigest actually released, and the
+ * candidate is content-addressed by that digest). The test below this one is how
+ * a caller holding that identity brings the anchor to bear.
+ *
+ * Observed on this fixture BEFORE the fix (2-chapter candidate released, then
+ * chapter 2 dropped from the shipped package):
+ *   truncated.findings = PPKG.manifest_payload_mismatch, PPKG.content_id_recomputed_mismatch
+ * — the coarse whole-payload hash, with nothing naming the missing chapter, and
+ * nothing at all once the manifest is rebuilt from the truncated package.
+ */
+requiredTest("a candidate manifest checks the package against the chapter set it RECORDED, not the package's own chapters", async (context) => {
+  const bookId = "recorded-chapter-set-book";
+  const stores = storage(context);
+  const chapters = [fixtureChapter(bookId, 1, "recorded-set"), fixtureChapter(bookId, 2, "recorded-set")];
+  const staged = await stageChapters(stores.candidates, bookId, "candidate-1", chapters);
+  const manifestOptions = manifestRoots(context, bookId, chapters);
+  // A candidate-only root: there is no ambient index to fall back on, which is
+  // the state in which the recorded block is the ONLY chapter-set authority.
+  rmSync(join(manifestOptions.stateRoot as string, "indexes"), { recursive: true, force: true });
+
+  const input = request(bookId, staged.identity);
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+
+  // The recorded set names both chapters, and the shipped pair verifies.
+  const block = candidateChapterSetBlock(released.value.sidecar);
+  assert.deepEqual(block.chapters, chapters.map((chapter) => ({
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.number,
+    chapterTitle: chapter.title,
+  })));
+  const shipped = verifyProductionPackage({ packagePath, manifestPath: sidecarPath, ...verifyOptionsFrom(manifestOptions) });
+  assert.equal(shipped.ok, true, shipped.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"));
+  const shippedPackageBytes = readFileSync(packagePath, "utf8");
+  const shippedSidecarBytes = readFileSync(sidecarPath, "utf8");
+
+  // ── (a) TRUNCATION. Chapter 2 is dropped from the shipped package; the
+  // manifest is untouched, so its recorded set still names both.
+  const pkg = JSON.parse(shippedPackageBytes) as Record<string, unknown>;
+  writeFileSync(packagePath, JSON.stringify({ ...pkg, chapters: (pkg.chapters as unknown[]).slice(0, 1) }));
+  const truncated = verifyProductionPackage({ packagePath, manifestPath: sidecarPath, ...verifyOptionsFrom(manifestOptions) });
+  assert.equal(truncated.ok, false, "a truncated package must never verify");
+  const truncatedCodes = truncated.findings.map((finding) => finding.checkId);
+  assert.ok(truncatedCodes.includes("PPKG.candidate_chapter_set_mismatch"), truncatedCodes.join(", "));
+  // Precise, not just "some byte of the payload differs": the refusal names the
+  // chapter that went missing.
+  assert.ok(
+    truncated.findings.some((finding) =>
+      finding.checkId === "PPKG.candidate_chapter_set_mismatch" && finding.message.includes(chapters[1].chapterId)),
+    truncated.findings.map((finding) => finding.message).join("\n"),
+  );
+
+  // ── (b) SUBSTITUTION. The package keeps its chapter COUNT but ships a chapter
+  // the recorded set does not name — the shape a count-only check would miss.
+  // Built by re-identifying a SHIPPED chapter so it stays reader-clean and the
+  // refusal is the chapter-set one, not the forbidden-field one.
+  const foreignId = `${bookId}-ch03`;
+  const foreign = { ...JSON.parse(JSON.stringify((pkg.chapters as unknown[])[1])) as Record<string, unknown>, chapterId: foreignId, number: 3 };
+  writeFileSync(packagePath, JSON.stringify({ ...pkg, chapters: [(pkg.chapters as unknown[])[0], foreign] }));
+  const substituted = verifyProductionPackage({ packagePath, manifestPath: sidecarPath, ...verifyOptionsFrom(manifestOptions) });
+  assert.equal(substituted.ok, false);
+  assert.ok(
+    substituted.findings.some((finding) =>
+      finding.checkId === "PPKG.candidate_chapter_set_mismatch" && finding.message.includes(foreignId)),
+    substituted.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"),
+  );
+
+  // ── (c) The recorded block is not taken on trust either. Edit it to agree with
+  // a truncated package and leave its semanticHash — the hash the contentId is
+  // derived over — as it was, and the block is refused for disagreeing with
+  // itself, independently of the package comparison.
+  writeFileSync(packagePath, JSON.stringify({ ...pkg, chapters: (pkg.chapters as unknown[]).slice(0, 1) }));
+  const tampered = JSON.parse(shippedSidecarBytes) as { manifest: { payload: Record<string, unknown> } };
+  const tamperedBlock = tampered.manifest.payload.candidateChapterSet as Record<string, unknown>;
+  tamperedBlock.chapters = (tamperedBlock.chapters as unknown[]).slice(0, 1);
+  const tamperedPath = join(context.roots.tempRoot, `${bookId}.tampered-manifest.json`);
+  writeFileSync(tamperedPath, JSON.stringify(tampered));
+  const halfForged = verifyProductionPackage({ packagePath, manifestPath: tamperedPath, ...verifyOptionsFrom(manifestOptions) });
+  assert.equal(halfForged.ok, false);
+  const halfForgedCodes = halfForged.findings.map((finding) => finding.checkId);
+  assert.ok(halfForgedCodes.includes("PPKG.candidate_chapter_set_hash_mismatch"), halfForgedCodes.join(", "));
+
+  // The shipped sidecar was never modified by any of this.
+  assert.equal(readFileSync(sidecarPath, "utf8"), shippedSidecarBytes);
+});
+
+/**
+ * LAYER 1. A caller that independently knows which release it is looking at gets
+ * the last word on the chapter-set regime, so the artifact cannot select its own.
+ * The release adapter's self-verify now passes the candidate identity it just
+ * committed the pointer to.
+ *
+ * The expectation is OPTIONAL on purpose, and that is load-bearing: the recovery
+ * flows verify an already-shipped pair with nothing but the two files (no
+ * candidate identity in hand), and "a failed re-release leaves the previously
+ * shipped package and sidecar byte-identical" would break under a blanket
+ * caller-must-know-the-expectation design. Omitting it is pinned here as a
+ * supported mode, not an accident.
+ */
+requiredTest("a caller that knows which candidate it released refuses a manifest declaring a different chapter-set authority", async (context) => {
+  const bookId = "expected-chapter-set-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "expected-source");
+  const staged = await stageChapters(stores.candidates, bookId, "candidate-1", [chapter]);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  const roots = { packagePath, manifestPath: sidecarPath, ...verifyOptionsFrom(manifestOptions) };
+
+  // The identity the release actually published verifies.
+  const matched = verifyProductionPackage({
+    ...roots,
+    expectedChapterSetSource: { kind: "candidate", candidateId: staged.identity.candidateId, manifestDigest: staged.identity.manifestDigest },
+  });
+  assert.equal(matched.ok, true, matched.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"));
+
+  // No expectation at all — the recovery/publish-final mode — is unchanged.
+  assert.equal(verifyProductionPackage(roots).ok, true);
+
+  // A candidate-declaring manifest under a canonical-index expectation, a
+  // different candidateId, and a different manifestDigest are all refused, each
+  // by the same blocker, BEFORE the reconstruction regime is used for anything.
+  for (const expectedChapterSetSource of [
+    "canonical-index" as const,
+    { kind: "candidate" as const, candidateId: "candidate-2", manifestDigest: staged.identity.manifestDigest },
+    { kind: "candidate" as const, candidateId: staged.identity.candidateId, manifestDigest: "b".repeat(64) },
+  ]) {
+    const refused = verifyProductionPackage({ ...roots, expectedChapterSetSource });
+    assert.equal(refused.ok, false, JSON.stringify(expectedChapterSetSource));
+    const codes = refused.findings.map((finding) => finding.checkId);
+    assert.deepEqual(codes, ["PPKG.chapter_set_source_mismatch"], codes.join(", "));
+  }
+
+  // And the symmetric direction: a LEGACY canonical-index manifest is accepted
+  // under a canonical-index expectation and refused under a candidate one, so
+  // neither regime can be smuggled past a caller expecting the other.
+  const legacyBookId = "expected-legacy-index-book";
+  const legacyChapter = fixtureChapter(legacyBookId, 1, "expected-legacy");
+  const legacyPackage = buildLegacyReaderPackage({ bookId: legacyBookId, ...metadata(legacyBookId), chapters: [legacyChapter] });
+  const legacyOptions = manifestRoots(context, legacyBookId, [legacyChapter]);
+  const legacyBuilt = buildCanonicalPackageManifest({ package: legacyPackage, ...legacyOptions });
+  assert.equal(legacyBuilt.ok, true, legacyBuilt.ok ? "" : legacyBuilt.findings.map((f) => f.message).join("\n"));
+  if (!legacyBuilt.ok) throw new Error("the legacy control needs a successful index-sourced build");
+  const legacySidecar: ProductionManifestSidecar = {
+    schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
+    bookId: legacyPackage.book.bookId,
+    packageId: legacyPackage.packageId,
+    createdAt: legacyPackage.createdAt,
+    manifest: legacyBuilt.manifest,
+  };
+  const legacyRoots = { packageData: legacyPackage, manifestData: legacySidecar, ...verifyOptionsFrom(legacyOptions) };
+  const legacyMatched = verifyProductionPackage({ ...legacyRoots, expectedChapterSetSource: "canonical-index" });
+  assert.equal(legacyMatched.ok, true, legacyMatched.findings.map((finding) => `${finding.checkId}: ${finding.message}`).join("\n"));
+  const legacyRefused = verifyProductionPackage({
+    ...legacyRoots,
+    expectedChapterSetSource: { kind: "candidate", candidateId: "candidate-1", manifestDigest: "c".repeat(64) },
+  });
+  assert.equal(legacyRefused.ok, false);
+  assert.deepEqual(legacyRefused.findings.map((finding) => finding.checkId), ["PPKG.chapter_set_source_mismatch"]);
+});
+
+/**
+ * The double-advance guard's remaining hole.
+ *
+ * The guard matched only `pointer-committed` / `package-pending` records. But
+ * releaseJournal.ts documents `pointer-pending` as "the pointer CAS has been
+ * attempted; its outcome is not yet known to the journal (a crash here may or may
+ * not have committed)" — so a pointer-pending record whose TARGET revision is the
+ * revision an operator is now passing as --expected-book-revision describes
+ * exactly the state the guard exists for, with the commit unprovable rather than
+ * absent. Treating "unknown" as "did not commit" is the one reading the record
+ * forbids.
+ *
+ * Observed on this fixture BEFORE the fix: the retry at the advanced revision
+ * returned ok=true with bookRevision 2 and packageWrites 1 — a second revision of
+ * the same candidate minted over a revision 1 that still owes artifacts.
+ *
+ * The forward-release pin is unaffected and re-asserted here: a DIFFERENT
+ * candidate releasing at the advanced revision is a normal supersede, not a
+ * reconcile, and still goes out.
+ */
+requiredTest("a pointer-pending record blocks the same candidate from double-advancing, and never blocks a different one", async (context) => {
+  const bookId = "pointer-pending-guard-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "pointer-pending");
+  const staged = await stageChapters(stores.candidates, bookId, "candidate-1", [chapter]);
+  const other = await stage(stores.candidates, bookId, "candidate-2");
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+
+  // The crash the state is named for: the CAS lands and the journal update that
+  // would record it does not, so the surviving record is still `pointer-pending`.
+  // Produced through the real route (the journal write throws), not by hand.
+  const backing = createFileReleaseJournal({ stateRoot: manifestOptions.stateRoot as string });
+  const stuck: ReleaseJournal = {
+    ...backing,
+    list: (id) => backing.list(id),
+    pathFor: (id, txId) => backing.pathFor(id, txId),
+    dirFor: (id) => backing.dirFor(id),
+    clear: (id, txId) => backing.clear(id, txId),
+    write: (record) => {
+      if (record.state !== "pointer-pending") throw new Error("injected journal fault after the pointer CAS");
+      backing.write(record);
+    },
+  };
+  const crashing = await releaseAdapter(
+    input, stores, context.roots.tempRoot, manifestOptions, input.candidate, false,
+    { journal: stuck, newTransactionId: () => "tx-pointer-pending" },
+  );
+  const crashed = await crashing.canonicalRelease.release(input);
+  assertError(crashed, "RECONCILIATION_REQUIRED");
+  assert.equal(crashing.packageWrites(), 0);
+  const pointerAfterCrash = await stores.pointer.read(bookId);
+  assert.ok(pointerAfterCrash.ok && pointerAfterCrash.value);
+  assert.equal(pointerAfterCrash.value.revision, 1, "the CAS landed");
+  const filed = readReleaseJournals(manifestOptions, bookId);
+  assert.equal(filed.length, 1);
+  assert.equal(filed[0].state, "pointer-pending", "the crash window this test is about");
+  assert.equal(filed[0].targetBookRevision, 1);
+  const crashBytes = readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-pointer-pending"), "utf8");
+
+  // The reflex retry at the ADVANCED revision, with a working journal. The CAS
+  // would accept it and mint revision 2 for the very same candidate.
+  const retry = await releaseAdapter(
+    input, stores, context.roots.tempRoot, manifestOptions, input.candidate, false,
+    { newTransactionId: () => "tx-pointer-pending-retry" },
+  );
+  const doubleAdvance = await retry.canonicalRelease.release({ ...input, expectedBookRevision: 1 });
+  assertError(doubleAdvance, "RELEASE_UNFINISHED");
+  assert.ok(
+    !doubleAdvance.ok && doubleAdvance.error.message.includes("--resume-unfinished-release"),
+    doubleAdvance.ok ? "" : doubleAdvance.error.message,
+  );
+  assert.ok(
+    !doubleAdvance.ok && doubleAdvance.error.message.includes(releaseJournalPath(manifestOptions, bookId, "tx-pointer-pending")),
+    doubleAdvance.ok ? "" : doubleAdvance.error.message,
+  );
+  // The refusal does not claim proof it does not have: a pointer-pending record
+  // says the CAS outcome was never recorded, not that it committed.
+  assert.ok(
+    !doubleAdvance.ok && doubleAdvance.error.message.includes("may have been committed"),
+    doubleAdvance.ok ? "" : doubleAdvance.error.message,
+  );
+  assert.equal(retry.packageWrites(), 0);
+  const afterRefusal = await stores.pointer.read(bookId);
+  assert.ok(afterRefusal.ok && afterRefusal.value);
+  assert.equal(afterRefusal.value.revision, 1, "no refusal may advance the pointer");
+  // The evidence is untouched and the refusal left no record of its own.
+  assert.equal(readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-pointer-pending"), "utf8"), crashBytes);
+  assert.equal(existsSync(releaseJournalPath(manifestOptions, bookId, "tx-pointer-pending-retry")), false);
+
+  // A DIFFERENT candidate releasing forward at the same advanced revision is a
+  // normal supersede and still proceeds — the guard is scoped to THIS candidate.
+  const otherOptions = manifestRoots(context, bookId, [other.chapter], "-forward");
+  const otherInput: CanonicalReleaseRequest = {
+    ...request(bookId, other.identity),
+    reviewId: "review-2",
+    qcRoundId: "qc-2",
+    expectedBookRevision: 1,
+    metadata: { ...metadata(bookId), packageId: `${bookId}-v21-1784548804000`, createdAt: "2026-07-20T12:00:04.000Z" },
+  };
+  const forward = await releaseAdapter(
+    otherInput, stores, context.roots.tempRoot, otherOptions, otherInput.candidate, false,
+    { stateRoot: manifestOptions.stateRoot as string, newTransactionId: () => "tx-forward" },
+  );
+  const forwarded = await forward.canonicalRelease.release(otherInput);
+  assert.ok(forwarded.ok, forwarded.ok ? "" : `${forwarded.error.code}:${forwarded.error.message}`);
+  assert.equal(forwarded.value.bookRevision, 2);
+  assert.equal(forward.packageWrites(), 1);
+  // And the crashed record survives as evidence, byte-identical.
+  assert.equal(readFileSync(releaseJournalPath(manifestOptions, bookId, "tx-pointer-pending"), "utf8"), crashBytes);
 });
 
 function sharedLegacyAuthority(initialActiveUses: number, remainEnabledAfterBegin = false) {

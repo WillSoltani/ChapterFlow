@@ -13,9 +13,14 @@ import {
 } from "./lib/readerContent.js";
 import {
   buildExpectedProductionManifestForPackage,
+  chapterSetSpecsSemanticHash,
   declaredChapterSetSource,
   productionManifestPayloadHash,
+  recordedCandidateChapterSet,
   validateProductionManifest,
+  type ExpectedChapterSetSource,
+  type ProductionChapterSetSource,
+  type ProductionManifestCandidateChapterSetBlock,
   type ProductionManifestFinding,
   type ProductionManifestPayloadV2,
   type ProductionManifestVersion,
@@ -141,6 +146,16 @@ export type VerifyProductionPackageOptions = {
   stateRoot?: string;
   runsRoot?: string;
   compareLooseState?: boolean;
+  /**
+   * The chapter-set authority the CALLER independently expects this manifest to
+   * declare (LAYER 1 of the two-layer chapter-set authority; see
+   * `checkExpectedChapterSetSource`). Supplied by callers that know which
+   * release they are looking at — the candidate-release adapter self-verifying
+   * the candidate it just released. OMITTED by callers that legitimately hold no
+   * release context: publish-final's preflight and the recovery flows verify an
+   * already-shipped pair from the two files alone, and must keep verifying it.
+   */
+  expectedChapterSetSource?: ExpectedChapterSetSource;
   /** v2 build-input fingerprint root overrides (tests). Production omits these. */
   fingerprintRoots?: FingerprintRoots;
   /** v2 source-reality record/exemption read-location overrides (tests). */
@@ -234,6 +249,162 @@ function compareLooseStateChapters(pkg: BookPackageV21, stateRoot: string): Prod
         message: `Packaged ${chapter.chapterId} differs from loose state after reader-content stripping.`,
         expected: looseHash,
         actual: packagedHash,
+      }));
+    }
+  }
+  return findings;
+}
+
+/** One-line name for a chapter-set authority, for refusal messages. */
+function describeChapterSetSource(source: ExpectedChapterSetSource | undefined): string {
+  if (source === undefined || source === "canonical-index") return "canonical-index";
+  return `candidate ${source.candidateId}@${source.manifestDigest}`;
+}
+
+/**
+ * LAYER 1 — the caller's expectation outranks the manifest's declaration.
+ *
+ * `verifyProductionPackage` reconstructs the expected manifest under the regime
+ * the manifest DECLARES. On its own that lets the artifact under test choose how
+ * it is verified: a package released off the ambient canonical index could ship
+ * with a manifest declaring itself candidate-sourced and never be checked against
+ * that index again. When a caller independently knows which release this is, it
+ * says so, and a declaration that disagrees is a blocker BEFORE the regime is
+ * used for anything.
+ *
+ * Omitting the expectation is a supported, deliberate mode — an already-shipped
+ * pair is verified by consumers that hold nothing but the two files (publish-final
+ * preflight, register-web, the interrupted-release recovery flows), and those
+ * must keep passing on a pair they have no release context for. For them the
+ * declaration still picks the regime, and LAYER 2 below supplies the evidence.
+ */
+function checkExpectedChapterSetSource(
+  expected: ExpectedChapterSetSource | undefined,
+  declared: ProductionChapterSetSource | undefined,
+): ProductionPackageVerificationFinding[] {
+  if (expected === undefined) return [];
+  const mismatch = (): ProductionPackageVerificationFinding[] => [blocker({
+    checkId: "PPKG.chapter_set_source_mismatch",
+    message:
+      `Manifest declares chapter-set authority ${describeChapterSetSource(declared)}, but the caller ` +
+      `released ${describeChapterSetSource(expected)}. A manifest does not get to choose the regime it is verified under.`,
+    expected: describeChapterSetSource(expected),
+    actual: describeChapterSetSource(declared),
+  })];
+  if (expected === "canonical-index") return declared === undefined ? [] : mismatch();
+  if (declared === undefined) return mismatch();
+  return declared.candidateId === expected.candidateId && declared.manifestDigest === expected.manifestDigest
+    ? []
+    : mismatch();
+}
+
+/**
+ * LAYER 2 — the declaration sets the regime; the manifest's OWN RECORDED block
+ * is the evidence.
+ *
+ * The canonical-index regime catches a package that lost, gained or reordered a
+ * chapter because `state/indexes/<bookId>.json` is an authority that exists
+ * independently of the package. The candidate regime has no such file — a
+ * candidate-only book root has no index at all, which is the whole reason the
+ * candidate route exists — so the independent authority is the chapter set the
+ * RELEASE RECORDED in the manifest and bound into the contentId. The package is
+ * compared to THAT, before any expected manifest is rebuilt, so the comparison
+ * can never be satisfied by rebuilding the expectation out of the package under
+ * test.
+ *
+ * WHAT THE RECORDED BLOCK PINS, exactly: per chapter, `chapterId`,
+ * `chapterNumber` and `chapterTitle` — there is no per-chapter content hash in
+ * the block (see ProductionManifestChapterSpec). So this check catches a package
+ * whose chapter SET drifted from the manifest's: chapters dropped, added,
+ * renumbered or reordered. It does NOT speak about chapter BODIES; reader
+ * content is pinned separately and per chapter by
+ * `payload.chapters[].readerContentHash`, which is checked below against the
+ * RECORDED manifest chapters for the same non-circular reason.
+ *
+ * WHAT IT DOES NOT CATCH: a wholesale re-authoring of BOTH files — a truncated
+ * package published with a freshly built candidate-declaring manifest whose
+ * block, payload and contentId are all recomputed over the truncated set. Such a
+ * pair is internally consistent, and nothing inside the two files can refute it.
+ * The anchor for that is outside the pair: the CURRENT pointer / registry names
+ * the candidateId and manifestDigest the release actually published, and the
+ * candidate is content-addressed by that digest. LAYER 1 is how a caller holding
+ * that identity brings the anchor to bear.
+ */
+function compareRecordedCandidateChapterSet(
+  recorded: ProductionManifestCandidateChapterSetBlock,
+  pkg: BookPackageV21,
+): ProductionPackageVerificationFinding[] {
+  const findings: ProductionPackageVerificationFinding[] = [];
+
+  // (i) The block must be internally consistent with the hash the contentId is
+  // derived over — otherwise "the recorded set" is not a fixed thing to compare
+  // against. Recomputed with the builder's own function, not trusted as stored.
+  const recomputed = chapterSetSpecsSemanticHash(recorded.chapters);
+  if (recomputed !== recorded.semanticHash) {
+    findings.push(blocker({
+      checkId: "PPKG.candidate_chapter_set_hash_mismatch",
+      message:
+        "productionManifest.payload.candidateChapterSet.semanticHash does not match its own recorded chapters " +
+        "(the recorded chapter set was edited without re-deriving the hash the contentId is bound over).",
+      expected: recorded.semanticHash,
+      actual: recomputed,
+    }));
+  }
+
+  // (ii) The package chapters must BE that set — count, ids, numbers and order.
+  const expectedSpecs = recorded.chapters.map((spec) => ({
+    chapterId: typeof spec?.chapterId === "string" ? spec.chapterId : "",
+    chapterNumber: typeof spec?.chapterNumber === "number" ? spec.chapterNumber : NaN,
+  }));
+  const packaged = (Array.isArray(pkg.chapters) ? pkg.chapters : []).map((chapter) => ({
+    chapterId: typeof chapter?.chapterId === "string" ? chapter.chapterId : "",
+    chapterNumber: typeof chapter?.number === "number" ? chapter.number : NaN,
+  }));
+
+  if (packaged.length !== expectedSpecs.length) {
+    findings.push(blocker({
+      checkId: "PPKG.candidate_chapter_set_mismatch",
+      message:
+        `Package ships ${packaged.length} chapter(s), but the manifest's recorded candidate chapter set has ` +
+        `${expectedSpecs.length}. The package is not the chapter set this manifest is about.`,
+      expected: expectedSpecs.length,
+      actual: packaged.length,
+    }));
+  }
+  const packagedIds = new Set(packaged.map((ref) => ref.chapterId));
+  const expectedIds = new Set(expectedSpecs.map((ref) => ref.chapterId));
+  for (const spec of expectedSpecs) {
+    if (!packagedIds.has(spec.chapterId)) {
+      findings.push(blocker({
+        checkId: "PPKG.candidate_chapter_set_mismatch",
+        chapterNumber: Number.isFinite(spec.chapterNumber) ? spec.chapterNumber : undefined,
+        message: `Package is missing chapter ${spec.chapterId}, which the manifest's recorded candidate chapter set names.`,
+        expected: spec.chapterId,
+      }));
+    }
+  }
+  for (const ref of packaged) {
+    if (!expectedIds.has(ref.chapterId)) {
+      findings.push(blocker({
+        checkId: "PPKG.candidate_chapter_set_mismatch",
+        chapterNumber: Number.isFinite(ref.chapterNumber) ? ref.chapterNumber : undefined,
+        message: `Package ships chapter ${ref.chapterId}, which the manifest's recorded candidate chapter set does not name.`,
+        actual: ref.chapterId,
+      }));
+    }
+  }
+  for (let i = 0; i < Math.min(packaged.length, expectedSpecs.length); i++) {
+    const spec = expectedSpecs[i];
+    const ref = packaged[i];
+    if (spec.chapterId !== ref.chapterId || spec.chapterNumber !== ref.chapterNumber) {
+      findings.push(blocker({
+        checkId: "PPKG.candidate_chapter_set_mismatch",
+        chapterNumber: Number.isFinite(ref.chapterNumber) ? ref.chapterNumber : undefined,
+        message:
+          `Package chapter[${i}] is ${ref.chapterId}#${ref.chapterNumber}, but the manifest's recorded candidate ` +
+          `chapter set[${i}] is ${spec.chapterId}#${spec.chapterNumber}. Chapter order must match the recorded set.`,
+        expected: spec,
+        actual: ref,
       }));
     }
   }
@@ -556,6 +727,40 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     }));
   }
 
+  // ── Chapter-set authority, in two layers, BEFORE any reconstruction ────────
+  // The reconstruction below is parameterised by what the manifest declares, so
+  // on its own it would let the artifact under test pick its own regime AND
+  // supply its own evidence. Both layers run first and neither reads the rebuilt
+  // manifest: (1) a caller that knows which release this is has the last word on
+  // the regime; (2) on the candidate regime the manifest's OWN recorded chapter
+  // set — not the package's chapters — is what the package is checked against.
+  const declaredSource = declaredChapterSetSource(manifest.payload);
+  findings.push(...checkExpectedChapterSetSource(options.expectedChapterSetSource, declaredSource));
+  const recordedSet = recordedCandidateChapterSet(manifest.payload);
+  if (recordedSet) findings.push(...compareRecordedCandidateChapterSet(recordedSet, pkg));
+
+  // Reader content, per chapter, against the hashes the MANIFEST RECORDED. This
+  // iterates the recorded payload chapters rather than the reconstructed ones for
+  // the same reason as above: the reconstruction is built out of the package, so
+  // reconstructed hashes always agree with it. It also runs when the
+  // reconstruction fails, which is when a precise per-chapter finding is worth
+  // most. A recorded chapter with no packaged counterpart is not silently skipped
+  // here — that is exactly the drift the recorded-set comparison reports.
+  for (const chapter of manifest.payload.chapters ?? []) {
+    const packaged = (Array.isArray(pkg.chapters) ? pkg.chapters : []).find((ch) => ch?.chapterId === chapter?.chapterId);
+    if (!packaged) continue;
+    const actualHash = readerContentHash(packaged);
+    if (actualHash !== chapter.readerContentHash) {
+      findings.push(blocker({
+        checkId: "PPKG.chapter_hash_mismatch",
+        chapterNumber: chapter.chapterNumber,
+        message: `Packaged reader content hash for ${chapter.chapterId} does not match manifest.`,
+        expected: chapter.readerContentHash,
+        actual: actualHash,
+      }));
+    }
+  }
+
   const expected = buildExpectedProductionManifestForPackage({
     pkg,
     // Reconstruct against the chapter-set authority the manifest DECLARES. A
@@ -565,8 +770,10 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
     // is exactly where a v25 candidate release runs. A legacy manifest declares
     // canonicalIndex and is rebuilt against the ambient index, unchanged.
     // validateProductionManifest has already refused a payload that declares both
-    // or neither, so this is never a free choice between two authorities.
-    chapterSetSource: declaredChapterSetSource(manifest.payload),
+    // or neither, and the two layers above have already checked the declaration
+    // against the caller's expectation and the package against the manifest's own
+    // recorded set — so by here the regime is settled, not self-selected.
+    chapterSetSource: declaredSource,
     stateRoot,
     runsRoot,
     createdAt: manifest.metadata.createdAt,
@@ -597,20 +804,6 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
         expected: expected.manifest.contentId,
         actual: manifest.contentId,
       }));
-    }
-    for (const chapter of expected.manifest.payload.chapters) {
-      const packaged = pkg.chapters.find((ch) => ch.chapterId === chapter.chapterId);
-      if (!packaged) continue;
-      const actualHash = readerContentHash(packaged);
-      if (actualHash !== chapter.readerContentHash) {
-        findings.push(blocker({
-          checkId: "PPKG.chapter_hash_mismatch",
-          chapterNumber: chapter.chapterNumber,
-          message: `Packaged reader content hash for ${chapter.chapterId} does not match manifest.`,
-          expected: chapter.readerContentHash,
-          actual: actualHash,
-        }));
-      }
     }
   }
 

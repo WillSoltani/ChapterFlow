@@ -351,8 +351,22 @@ export class CanonicalPackageAdapter {
     // out normally and the crash record survives as evidence. It also cannot
     // strand the crashed record into a licence to publish: a later resume of it
     // finds CURRENT naming a different candidate and refuses.
+    //
+    // `pointer-pending` counts. releaseJournal.ts documents it as "the pointer CAS
+    // has been attempted; its outcome is not yet known to the journal (a crash
+    // here may or may not have committed)" — so a pointer-pending record whose
+    // TARGET is the revision now being claimed as this release's BASE describes a
+    // CAS that may well have landed, leaving exactly the committed-and-unpublished
+    // revision this guard exists to stop being double-advanced over. Treating
+    // "unknown" as "did not commit" is the one reading the record forbids.
+    //
+    // Scope is unchanged in the two directions that matter: the record must name
+    // THIS candidate (a different candidate releasing forward is untouched), and
+    // its target must equal this request's BASE (a retry at the ORIGINAL base —
+    // which is what --resume-unfinished-release uses — never matches, so the
+    // recovery flows are untouched too).
     const unfinishedAtBase = allRecords.find((record) =>
-      (record.state === "pointer-committed" || record.state === "package-pending") &&
+      record.state !== "published" &&
       record.targetBookRevision === request.expectedBookRevision &&
       record.candidateId === request.candidate.candidateId &&
       record.manifestDigest === request.candidate.manifestDigest);
@@ -363,10 +377,17 @@ export class CanonicalPackageAdapter {
       } catch {
         unfinishedPath = this.#journal.dirFor(request.bookId);
       }
+      // A pointer-committed/package-pending record PROVES the commit; a
+      // pointer-pending one only means the outcome is unknowable from the
+      // journal. Both refuse, and the refusal says which it is rather than
+      // claiming proof it does not have.
+      const commitClaim = unfinishedAtBase.state === "pointer-pending"
+        ? "may have been committed by an unfinished release of THIS candidate whose CAS outcome was never recorded"
+        : "was committed by an unfinished release of THIS candidate";
       return failed(
         "RELEASE_UNFINISHED",
-        `revision ${request.expectedBookRevision} of ${request.bookId} was committed by an unfinished release of ` +
-          `THIS candidate: ${formatUnfinishedRelease(unfinishedAtBase, unfinishedPath)}. Finish that release instead ` +
+        `revision ${request.expectedBookRevision} of ${request.bookId} ${commitClaim}: ` +
+          `${formatUnfinishedRelease(unfinishedAtBase, unfinishedPath)}. Finish that release instead ` +
           `(--expected-book-revision ${unfinishedAtBase.expectedBookRevision} --resume-unfinished-release); ` +
           "re-releasing the same candidate here would advance the pointer a second time for identical content.",
       );
@@ -571,6 +592,17 @@ export class CanonicalPackageAdapter {
       packageData: assembled.value.package,
       manifestData: sidecar,
       compareLooseState: true,
+      // This caller KNOWS which release it is verifying, so it does not let the
+      // sidecar declare its own verification regime: the manifest must name the
+      // candidate this release just committed the pointer to, or the pair is
+      // refused. Consumers that legitimately hold no release context (publish-
+      // final's preflight, register-web, the recovery flows verifying an
+      // already-shipped pair) omit this and are unaffected.
+      expectedChapterSetSource: {
+        kind: "candidate",
+        candidateId: request.candidate.candidateId,
+        manifestDigest: request.candidate.manifestDigest,
+      },
       stateRoot: this.#options.manifest?.stateRoot,
       runsRoot: this.#options.manifest?.runsRoot,
       recordPath: this.#options.manifest?.recordPath,

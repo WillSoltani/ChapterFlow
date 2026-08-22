@@ -209,6 +209,27 @@ export type ProductionChapterSetSource = Readonly<{
   manifestDigest: string;
 }>;
 
+/**
+ * What a CALLER expects a manifest's chapter-set authority to be.
+ *
+ * A manifest DECLARES its own regime, and a verifier that only reads that
+ * declaration lets the artifact under test choose how it is checked. A caller
+ * that independently knows which release it is looking at — the release adapter
+ * self-verifying the candidate it JUST released, or any consumer holding the
+ * candidate identity the CURRENT pointer names — passes what it expects, and the
+ * declaration must match it exactly. Callers with no release context (the
+ * recovery flows, which verify an already-shipped pair with nothing but the two
+ * files) omit it, and the declaration selects the regime as before.
+ */
+export type ExpectedChapterSetSource = "canonical-index" | ProductionChapterSetSource;
+
+/** The semanticHash a candidate chapter-set block binds over its own specs —
+ *  the SAME function the builder used, so the verifier can prove the recorded
+ *  block is internally consistent rather than trusting its stored hash. */
+export function chapterSetSpecsSemanticHash(specs: readonly ProductionManifestChapterSpec[]): string {
+  return canonicalJsonSha256(specs);
+}
+
 type ChapterSetPayloadBlock =
   | { canonicalIndex: ProductionManifestCanonicalIndexBlock }
   | { candidateChapterSet: ProductionManifestCandidateChapterSetBlock };
@@ -442,7 +463,7 @@ function resolveChapterSet(
           source: "candidate",
           candidateId: source.candidateId,
           manifestDigest: source.manifestDigest,
-          semanticHash: canonicalJsonSha256(specs),
+          semanticHash: chapterSetSpecsSemanticHash(specs),
           chapters: specs,
         },
       },
@@ -932,12 +953,37 @@ function validateChapterSetBlock(payload: Record<string, unknown>): ProductionMa
 /** The chapter-set source a manifest DECLARES, for the verifier's recompute.
  *  Returns undefined for the legacy (canonical-index) route, whose recompute is
  *  unchanged. Only reached after validateProductionManifest has accepted the
- *  block's shape. */
+ *  block's shape.
+ *
+ *  A DECLARATION IS NOT EVIDENCE. It selects which regime the verifier
+ *  reconstructs under; what the package is checked AGAINST on the candidate
+ *  regime is `recordedCandidateChapterSet` below — the set the manifest itself
+ *  recorded and bound into its contentId — never the package's own chapters. */
 export function declaredChapterSetSource(payload: ProductionManifestPayload): ProductionChapterSetSource | undefined {
   const block = (payload as unknown as Record<string, unknown>).candidateChapterSet;
   if (!isObject(block) || block.source !== "candidate") return undefined;
   if (!isString(block.candidateId) || !isString(block.manifestDigest)) return undefined;
   return { kind: "candidate", candidateId: block.candidateId, manifestDigest: block.manifestDigest };
+}
+
+/**
+ * The candidate chapter set a payload RECORDED — the id/number/title spec list
+ * the release wrote down and hashed into the contentId. Undefined on the legacy
+ * canonical-index route (whose authority is the index file on disk).
+ *
+ * This is the candidate route's stand-in for the canonical index: an authority
+ * that exists in the manifest INDEPENDENTLY of the package, so "is this package
+ * the chapter set this manifest is about?" is answerable without rebuilding the
+ * expected manifest out of the package under test.
+ */
+export function recordedCandidateChapterSet(
+  payload: ProductionManifestPayload,
+): ProductionManifestCandidateChapterSetBlock | undefined {
+  const block = (payload as unknown as Record<string, unknown>).candidateChapterSet;
+  if (!isObject(block) || block.source !== "candidate") return undefined;
+  if (!isString(block.candidateId) || !isString(block.manifestDigest) || !isString(block.semanticHash)) return undefined;
+  if (!Array.isArray(block.chapters)) return undefined;
+  return block as unknown as ProductionManifestCandidateChapterSetBlock;
 }
 
 export type ValidateProductionManifestResult =
