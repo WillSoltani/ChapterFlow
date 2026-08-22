@@ -1,5 +1,19 @@
 # V25 Pipeline — Canary Completion Report
 
+
+> **2026-08-22 — CAMPAIGN COMPLETE. Promotion executed live.**
+> `current.json` advanced revision 0→1 to `repair-candidate-467de279…`, a candidate
+> holding a canonical-review PASS (0 blockers) **and** a fresh-QC PASS (0 blockers)
+> on the exact promoted bytes. Every v25 stage has now run against a live book:
+> research, compile, assembly, canonical review with its bounded repair lane,
+> fresh QC with the diagnosis-gated chained repair and multi-chapter fan-out,
+> and promotion. The winning run: review FAIL → three repair rounds → PASS →
+> QC FAIL (CM0 monoculture naming all four chapters) → fan-out repair → re-review
+> PASS → re-QC PASS → promote. Remaining un-run: the full `promote-book` RELEASE
+> (reader package + production-manifest sidecar; exact command captured in the run
+> log) and publish/deploy.
+
+
 **Branch:** `codex/v25-pipeline-completion-recovered` · **Base:** `a20d1cdab`
 **Commits:** 78 · **Suite:** 2804 pass / 0 fail (48 v25 files, 0 failed)
 **Period:** 2026-07-22 → 2026-07-28 · **Model under test:** Claude Sonnet 5 (author roles)
