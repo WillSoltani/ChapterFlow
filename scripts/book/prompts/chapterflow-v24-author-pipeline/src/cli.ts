@@ -2296,6 +2296,11 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       console.error("V25_RELEASE_REQUIRED: --review-id, --qc-round-id (or --round), and non-negative --expected-book-revision are required");
       return 2;
     }
+    const v25Root = flags["v25-root"];
+    if (typeof v25Root !== "string" || !isAbsolute(v25Root)) {
+      console.error("V25_RELEASE_REQUIRED: --v25-root must be an absolute path");
+      return 2;
+    }
     const v25 = await createCliV25Composition(bookId, flags);
     if (!v25.ok) {
       console.error(v25.error);
@@ -2303,6 +2308,7 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     }
     const promotedAt = new Date().toISOString();
     const { CanonicalPackageAdapter } = await import("./release/canonicalPackageAdapter.js");
+    const { createFileReleaseJournal } = await import("./release/releaseJournal.js");
     const { publishReleaseArtifacts } = await import("./release/publishReleaseArtifacts.js");
     const { productionManifestSidecarPath } = await import("./promoteBook.js");
     const { normSlug: normalizeBookSlug } = await import("./lib/chapterPaths.js");
@@ -2317,6 +2323,22 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     const release = new CanonicalPackageAdapter({
       contentReader: v25.value.contentReader,
       promotionService: v25.value.promotionService,
+      // JOURNAL THE CRASH WINDOW, in the release's OWN root.
+      //
+      // Without this the candidate route ran on the null journal, so a release
+      // that committed its pointer and then failed left no record naming the
+      // candidate or the revision — and the fail-closed retry
+      // ("CURRENT names this candidate, but prior release intent cannot be
+      // proven") could never be satisfied, because nothing could ever prove it.
+      // That is exactly what the first live candidate release hit.
+      //
+      // The root is the --v25-root the candidate itself lives under, NOT the
+      // pipeline state root: this route is defined over one v25 book root, and
+      // journalling into ambient pipeline state would make a candidate-only
+      // release write where it has no business writing. `stateRoot` is
+      // deliberately still unset so the QUARANTINE tombstone lookup keeps
+      // reading the canonical pipeline state that `quarantine-book` writes to.
+      journal: createFileReleaseJournal({ stateRoot: v25Root }),
       // ONE transaction, the way promoteBook's publishPackageTransactionally
       // publishes: stage both artifacts beside their destinations, verify the
       // STAGED PAIR with the production verifier, then publish with two adjacent

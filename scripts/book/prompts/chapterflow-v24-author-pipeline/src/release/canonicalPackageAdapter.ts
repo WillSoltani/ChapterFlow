@@ -3,6 +3,7 @@ import type { CandidateIdentity, Result } from "../contracts/v4Core.js";
 import {
   buildExpectedProductionManifestForPackage,
   type BuildProductionManifestResult,
+  type ProductionChapterSetSource,
   type ProductionManifestVersion,
 } from "../productionManifest.js";
 import {
@@ -86,6 +87,12 @@ export type CanonicalPackageAdapterOptions = Readonly<{
   journal?: ReleaseJournal;
   /** Test seam: deterministic transaction ids for journal records. */
   newTransactionId?: () => string;
+  /** Test seam: intercept the release-time self-verify. Default is the real
+   *  verifyProductionPackage. Exists so a test can PIN that release() supplies
+   *  expectedChapterSetSource = the candidate it just committed the pointer to —
+   *  adversarial review found that wiring covered by nothing (reverting it
+   *  wholesale failed only an unrelated guard test). */
+  verifyPackage?: typeof verifyProductionPackage;
 }>;
 
 export type CanonicalReleaseRequest = Readonly<{
@@ -225,26 +232,31 @@ export class CanonicalPackageAdapter {
   readonly #stateRoot: string | undefined;
   readonly #journal: ReleaseJournal;
   readonly #newTransactionId: () => string;
+ #verifyPackage: typeof verifyProductionPackage;
 
   constructor(options: CanonicalPackageAdapterOptions) {
     this.#options = options;
     this.#stateRoot = options.stateRoot ?? options.manifest?.stateRoot;
     // The journal lives under a state root. A candidate-only release is
-    // deliberately ambient-state-free — "candidate-only CLI release does not
-    // require ambient canonical chapter index" is a pinned property — so when no
-    // state root is configured we must NOT fall back to the production default:
-    // doing so made a hermetic test write into the real production state root
-    // (caught by the V25_PRODUCTION_ROOT_MUTATION tripwire) and would journal a
-    // candidate-only release into ambient state it is defined not to touch.
-    // No root => no journal. The crash window is still covered by the
-    // sidecar+package transaction and the release-time self-verify; the journal
-    // is defence-in-depth for the state-rooted path, not its only protection.
+    // deliberately ambient-state-free, so when no state root is configured we
+    // must NOT fall back to the production default: doing so made a hermetic
+    // test write into the real production state root (caught by the
+    // V25_PRODUCTION_ROOT_MUTATION tripwire) and would journal a candidate-only
+    // release into ambient state it is defined not to touch.
+    //
+    // No root => no journal — but that fallback is now a LAST resort, not the
+    // candidate route's normal state: an unjournalled release that commits its
+    // pointer and then fails can never be reconciled, because nothing on disk can
+    // ever prove the intent the recovery path requires. The CLI candidate route
+    // therefore injects a journal rooted at its own --v25-root (cli.ts
+    // runPromoteBook), which is candidate-scoped rather than ambient.
     this.#journal = options.journal ??
       (this.#stateRoot === undefined
         ? createNullReleaseJournal()
         : createFileReleaseJournal({ stateRoot: this.#stateRoot }));
     this.#newTransactionId = options.newTransactionId ??
       (() => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
+    this.#verifyPackage = options.verifyPackage ?? verifyProductionPackage;
   }
 
   async readCurrent(bookId: string): Promise<Result<CanonicalCurrentRelease | null>> {
@@ -315,18 +327,111 @@ export class CanonicalPackageAdapter {
       targetBookRevision,
     };
     let priorRecord: ReleaseJournalRecord | null;
+    let allRecords: ReleaseJournalRecord[];
     try {
+      allRecords = this.#journal.list(request.bookId);
       // Records for OTHER candidates/revisions are left exactly where they are:
       // they belong to other transactions (a concurrent racer, or a crash whose
       // evidence must survive), and one release never speaks for another.
-      const filed = this.#journal.list(request.bookId)
-        .filter((record) => journalMatchesRelease(record, releaseIdentity));
+      const filed = allRecords.filter((record) => journalMatchesRelease(record, releaseIdentity));
       priorRecord = filed.length === 0 ? null : filed[filed.length - 1];
     } catch (cause) {
       // A record under this book's journal directory that cannot be parsed may
       // describe a committed pointer with no package. Not being able to rule
       // that out is the strongest reason to stop, not the weakest.
       return failed("RELEASE_UNFINISHED", errorMessage(cause));
+    }
+    // ── One candidate never advances the pointer twice ─────────────────────
+    // A release that committed its pointer and then failed (unbuildable
+    // manifest, failed package write, crash) leaves CURRENT at revision N+1 with
+    // NOTHING published. The obvious operator reflex is to re-run the SAME
+    // command with --expected-book-revision bumped to that ADVANCED revision —
+    // which the CAS happily accepts, minting revision N+2 for the very same
+    // candidate whose revision N+1 still owes artifacts. That is a double
+    // advance: two revisions of identical content, the first permanently
+    // unfinished. Refuse it, and name the record and the one invocation that
+    // actually finishes the release (which mints no revision at all).
+    //
+    // Scope is deliberately THIS candidate. A DIFFERENT candidate releasing at
+    // N+1 is a normal forward release that supersedes the unfinished one with a
+    // complete pair — pinned by "a crash between the pointer commit and the
+    // package write leaves a journal naming the window", where revision 2 goes
+    // out normally and the crash record survives as evidence. It also cannot
+    // strand the crashed record into a licence to publish: a later resume of it
+    // finds CURRENT naming a different candidate and refuses.
+    //
+    // `pointer-pending` counts. releaseJournal.ts documents it as "the pointer CAS
+    // has been attempted; its outcome is not yet known to the journal (a crash
+    // here may or may not have committed)" — so a pointer-pending record whose
+    // TARGET is the revision now being claimed as this release's BASE describes a
+    // CAS that may well have landed, leaving exactly the committed-and-unpublished
+    // revision this guard exists to stop being double-advanced over. Treating
+    // "unknown" as "did not commit" is the one reading the record forbids.
+    //
+    // Scope is unchanged in the two directions that matter: the record must name
+    // THIS candidate (a different candidate releasing forward is untouched), and
+    // its target must equal this request's BASE (a retry at the ORIGINAL base —
+    // which is what --resume-unfinished-release uses — never matches, so the
+    // recovery flows are untouched too).
+    const unfinishedAtBase = allRecords.find((record) =>
+      record.state !== "published" &&
+      record.targetBookRevision === request.expectedBookRevision &&
+      record.candidateId === request.candidate.candidateId &&
+      record.manifestDigest === request.candidate.manifestDigest);
+    if (unfinishedAtBase && unfinishedAtBase.state === "pointer-pending") {
+      // The journal alone cannot say whether a pointer-pending CAS landed — but
+      // the POINTER can, and this adapter already reads it. Resolve the unknown
+      // by readback instead of refusing on it: adversarial review demonstrated
+      // that refusing unconditionally turns a STALE pointer-pending record (its
+      // CAS provably lost — CURRENT names a different candidate at that
+      // revision) into a permanent wedge whose named remedy dead-ends in
+      // REVISION_CONFLICT, exactly the fail-closed dead end the journal was
+      // written to abolish.
+      const current = await this.readCurrent(request.bookId);
+      if (!current.ok) {
+        return failed(
+          "RELEASE_UNFINISHED",
+          `revision ${request.expectedBookRevision} of ${request.bookId} has a pointer-pending release record ` +
+            `and the current pointer cannot be read to resolve it (${current.error.code}); refusing rather than guessing`,
+        );
+      }
+      const casLanded = current.value !== null
+        && current.value.bookRevision === unfinishedAtBase.targetBookRevision
+        && current.value.candidate.candidateId === unfinishedAtBase.candidateId
+        && current.value.candidate.manifestDigest === unfinishedAtBase.manifestDigest;
+      if (!casLanded) {
+        // The CAS demonstrably did not commit: fall through to a fresh release,
+        // whose own CAS supersedes the stale record.
+      } else {
+        let unfinishedPath: string;
+        try {
+          unfinishedPath = this.#journal.pathFor(request.bookId, unfinishedAtBase.txId);
+        } catch {
+          unfinishedPath = this.#journal.dirFor(request.bookId);
+        }
+        return failed(
+          "RELEASE_UNFINISHED",
+          `revision ${request.expectedBookRevision} of ${request.bookId} was committed by an unfinished release of THIS candidate ` +
+            `(pointer readback confirms the CAS landed): ${formatUnfinishedRelease(unfinishedAtBase, unfinishedPath)}. Finish that release instead ` +
+            `(--expected-book-revision ${unfinishedAtBase.expectedBookRevision} --resume-unfinished-release); ` +
+            "re-releasing the same candidate here would advance the pointer a second time for identical content.",
+        );
+      }
+    } else if (unfinishedAtBase) {
+      let unfinishedPath: string;
+      try {
+        unfinishedPath = this.#journal.pathFor(request.bookId, unfinishedAtBase.txId);
+      } catch {
+        unfinishedPath = this.#journal.dirFor(request.bookId);
+      }
+      const commitClaim = "was committed by an unfinished release of THIS candidate";
+      return failed(
+        "RELEASE_UNFINISHED",
+        `revision ${request.expectedBookRevision} of ${request.bookId} ${commitClaim}: ` +
+          `${formatUnfinishedRelease(unfinishedAtBase, unfinishedPath)}. Finish that release instead ` +
+          `(--expected-book-revision ${unfinishedAtBase.expectedBookRevision} --resume-unfinished-release); ` +
+          "re-releasing the same candidate here would advance the pointer a second time for identical content.",
+      );
     }
     const txId = priorRecord?.txId ?? this.#newTransactionId();
     let journalPath: string;
@@ -483,6 +588,19 @@ export class CanonicalPackageAdapter {
     const built = buildCanonicalPackageManifest({
       package: assembled.value.package,
       ...this.#options.manifest,
+      // The chapter set is the CANDIDATE's — the very CHAPTER artifacts
+      // assembleCanonicalPackage parsed out of the digest-verified candidate and
+      // put in this package. There is no ambient canonical index on a
+      // candidate-only book root and this route must not look for one: reading
+      // state/indexes here is what turned the first live candidate release into
+      // "pointer committed, CHSET.index_missing, nothing published". The
+      // candidate identity is hashed into the manifest, and the release-time
+      // self-verify below recomputes the whole payload from the same package.
+      chapterSetSource: {
+        kind: "candidate",
+        candidateId: request.candidate.candidateId,
+        manifestDigest: request.candidate.manifestDigest,
+      },
     });
     if (!built.ok) {
       const message = `production manifest unbuildable after pointer commit; nothing published: ${built.findings
@@ -511,10 +629,21 @@ export class CanonicalPackageAdapter {
     // Fail-closed AFTER the pointer commit lands in the same recoverable state an
     // unbuildable manifest or a failed package write does: pointer committed,
     // NOTHING published, RECONCILIATION_REQUIRED.
-    const verification = verifyProductionPackage({
+    const verification = this.#verifyPackage({
       packageData: assembled.value.package,
       manifestData: sidecar,
       compareLooseState: true,
+      // This caller KNOWS which release it is verifying, so it does not let the
+      // sidecar declare its own verification regime: the manifest must name the
+      // candidate this release just committed the pointer to, or the pair is
+      // refused. Consumers that legitimately hold no release context (publish-
+      // final's preflight, register-web, the recovery flows verifying an
+      // already-shipped pair) omit this and are unaffected.
+      expectedChapterSetSource: {
+        kind: "candidate",
+        candidateId: request.candidate.candidateId,
+        manifestDigest: request.candidate.manifestDigest,
+      },
       stateRoot: this.#options.manifest?.stateRoot,
       runsRoot: this.#options.manifest?.runsRoot,
       recordPath: this.#options.manifest?.recordPath,
@@ -574,9 +703,13 @@ export class CanonicalPackageAdapter {
 export function buildCanonicalPackageManifest(args: Readonly<CanonicalManifestOptions & {
   package: BookPackageV21;
   manifestVersion?: ProductionManifestVersion;
+  /** Set by the candidate release route; omitted by the legacy parity proof,
+   *  which keeps its canonical-index behaviour byte-identical. */
+  chapterSetSource?: ProductionChapterSetSource;
 }>): BuildProductionManifestResult {
   return buildExpectedProductionManifestForPackage({
     pkg: args.package,
+    ...(args.chapterSetSource === undefined ? {} : { chapterSetSource: args.chapterSetSource }),
     stateRoot: args.stateRoot,
     runsRoot: args.runsRoot,
     recordPath: args.recordPath,

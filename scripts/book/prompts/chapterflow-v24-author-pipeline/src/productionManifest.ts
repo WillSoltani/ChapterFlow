@@ -8,7 +8,7 @@ import { CANONICAL_STATE, REPO_ROOT, normSlug } from "./lib/chapterPaths.js";
 import {
   canonicalChapterIndexPath,
   compareChapterSetToCanonical,
-  formatChapterSetBlockers,
+  readCandidateChapterSet,
   readCanonicalChapterIndex,
 } from "./lib/chapterSet.js";
 import { canonicalJson, canonicalJsonSha256 } from "./lib/canonicalJson.js";
@@ -172,6 +172,68 @@ export type ProductionManifestVersionsV2 = {
   labels: { promptSet: string; config: string; code: string };
 };
 
+export type ProductionManifestChapterSpec = { chapterId: string; chapterNumber: number; chapterTitle: string };
+
+/**
+ * WHERE the manifest's chapter set came from. Exactly one of these blocks is
+ * present in a payload, and it is what tells the verifier how to reconstruct the
+ * set from disk:
+ *
+ *  - `canonicalIndex` — the legacy/ambient route. The set is `state/indexes/<bookId>.json`
+ *    and the package chapters are cross-checked against it. Byte-identical to
+ *    what this builder has always produced.
+ *  - `candidateChapterSet` — the v25 CANDIDATE release route (promote-book with
+ *    --candidate-id). The set is the candidate's own CHAPTER artifacts, which are
+ *    exactly the chapters in this package; `candidateId`/`manifestDigest` name the
+ *    digest-bound candidate they were read from and are hashed into the contentId.
+ *    A candidate-only book root HAS no state/indexes, and this route never reads it.
+ */
+export type ProductionManifestCanonicalIndexBlock = {
+  path: string;
+  semanticHash: string;
+  chapters: ProductionManifestChapterSpec[];
+};
+
+export type ProductionManifestCandidateChapterSetBlock = {
+  source: "candidate";
+  candidateId: string;
+  manifestDigest: string;
+  semanticHash: string;
+  chapters: ProductionManifestChapterSpec[];
+};
+
+/** The candidate whose CHAPTER artifacts are the chapter set for this build. */
+export type ProductionChapterSetSource = Readonly<{
+  kind: "candidate";
+  candidateId: string;
+  manifestDigest: string;
+}>;
+
+/**
+ * What a CALLER expects a manifest's chapter-set authority to be.
+ *
+ * A manifest DECLARES its own regime, and a verifier that only reads that
+ * declaration lets the artifact under test choose how it is checked. A caller
+ * that independently knows which release it is looking at — the release adapter
+ * self-verifying the candidate it JUST released, or any consumer holding the
+ * candidate identity the CURRENT pointer names — passes what it expects, and the
+ * declaration must match it exactly. Callers with no release context (the
+ * recovery flows, which verify an already-shipped pair with nothing but the two
+ * files) omit it, and the declaration selects the regime as before.
+ */
+export type ExpectedChapterSetSource = "canonical-index" | ProductionChapterSetSource;
+
+/** The semanticHash a candidate chapter-set block binds over its own specs —
+ *  the SAME function the builder used, so the verifier can prove the recorded
+ *  block is internally consistent rather than trusting its stored hash. */
+export function chapterSetSpecsSemanticHash(specs: readonly ProductionManifestChapterSpec[]): string {
+  return canonicalJsonSha256(specs);
+}
+
+type ChapterSetPayloadBlock =
+  | { canonicalIndex: ProductionManifestCanonicalIndexBlock }
+  | { candidateChapterSet: ProductionManifestCandidateChapterSetBlock };
+
 type CommonPayloadFields = {
   bookId: string;
   packageSchemaVersion: typeof V21_SCHEMA_VERSION;
@@ -182,13 +244,8 @@ type CommonPayloadFields = {
     tags?: string[];
     contentOwner: string;
   };
-  canonicalIndex: {
-    path: string;
-    semanticHash: string;
-    chapters: Array<{ chapterId: string; chapterNumber: number; chapterTitle: string }>;
-  };
   chapters: ProductionManifestChapter[];
-};
+} & ChapterSetPayloadBlock;
 
 export type ProductionManifestPayloadV1 = CommonPayloadFields & {
   schemaVersion: typeof PRODUCTION_MANIFEST_PAYLOAD_SCHEMA_VERSION_V1;
@@ -242,6 +299,11 @@ export type BuildProductionManifestInput = ProductionManifestRoots & {
   categories?: string[];
   tags?: string[];
   chapters: ChapterV21[];
+  /** Present ONLY on the v25 candidate-release route. When set, `chapters` (the
+   *  candidate's own CHAPTER artifacts, already assembled into this package) ARE
+   *  the chapter set and the ambient canonical index is not read at all. Absent
+   *  on the legacy route, whose canonical-index behaviour is unchanged. */
+  chapterSetSource?: ProductionChapterSetSource;
   createdAt: string;
   generator?: string;
   runId?: string;
@@ -331,26 +393,98 @@ function optionalString(value: unknown): string | null {
   return typeof value === "string" && value.trim() ? value : null;
 }
 
-// ── Shared chapter/index evidence gathering (identical for v1 and v2) ──────────
-function gatherCommonPayload(
+const CANDIDATE_MANIFEST_DIGEST_PATTERN = /^[a-f0-9]{64}$/;
+
+type ResolvedChapterSet =
+  | { ok: true; specs: ProductionManifestChapterSpec[]; block: ChapterSetPayloadBlock; deferredFindings: ProductionManifestFinding[] }
+  | { ok: false; findings: ProductionManifestFinding[] };
+
+/**
+ * The chapter set for one manifest build, plus the payload block that records
+ * where it came from.
+ *
+ * LEGACY (no `chapterSetSource`): unchanged. The canonical index is the set, the
+ * package chapters are compared to it, and the index FILE's semantic hash is
+ * bound into the payload. An unreadable/missing index still returns immediately
+ * (nothing downstream is meaningful without a set); a set mismatch or an
+ * unreadable index file are still DEFERRED so they report alongside per-chapter
+ * findings, in the same order as before.
+ *
+ * CANDIDATE (`chapterSetSource` set): the candidate's CHAPTER artifacts are the
+ * set. `readCandidateChapterSet` applies the same normalization the index gets,
+ * so id shape / book ownership / duplicate ids / duplicate numbers still fail
+ * closed. Nothing under state/indexes is opened, and the candidate identity is
+ * hashed into the payload so the contentId is bound to the digest the release
+ * verified.
+ */
+function resolveChapterSet(
   input: BuildProductionManifestInput,
   stateRoot: string,
-  runsRoot: string,
   bookId: string,
-): { ok: true; common: CommonPayloadFields } | { ok: false; findings: ProductionManifestFinding[] } {
-  const findings: ProductionManifestFinding[] = [];
+): ResolvedChapterSet {
+  const source = input.chapterSetSource;
+  if (source !== undefined) {
+    if (
+      source === null || typeof source !== "object" || source.kind !== "candidate" ||
+      typeof source.candidateId !== "string" || source.candidateId.length === 0 ||
+      typeof source.manifestDigest !== "string" || !CANDIDATE_MANIFEST_DIGEST_PATTERN.test(source.manifestDigest)
+    ) {
+      return {
+        ok: false,
+        findings: [blocker({
+          checkId: "PPKG.chapter_set_source_invalid",
+          message: "Candidate chapter-set source must be { kind: \"candidate\", candidateId, manifestDigest } with a 64-hex digest.",
+          actual: source,
+        })],
+      };
+    }
+    const candidate = readCandidateChapterSet(bookId, input.chapters);
+    if (!candidate.ok) {
+      return {
+        ok: false,
+        findings: candidate.blockers.map((f) => blocker({
+          checkId: f.checkId,
+          message: f.message,
+          expected: f.expected,
+          actual: f.actual,
+        })),
+      };
+    }
+    const specs = candidate.chapters.map((spec) => ({
+      chapterId: spec.chapterId,
+      chapterNumber: spec.chapterNumber,
+      chapterTitle: spec.chapterTitle,
+    }));
+    return {
+      ok: true,
+      specs,
+      block: {
+        candidateChapterSet: {
+          source: "candidate",
+          candidateId: source.candidateId,
+          manifestDigest: source.manifestDigest,
+          semanticHash: chapterSetSpecsSemanticHash(specs),
+          chapters: specs,
+        },
+      },
+      deferredFindings: [],
+    };
+  }
 
   const canonical = readCanonicalChapterIndex(bookId, stateRoot);
   if (!canonical.ok) {
-    findings.push(...canonical.blockers.map((f) => blocker({
-      checkId: f.checkId,
-      message: f.message,
-      expected: f.expected,
-      actual: f.actual,
-    })));
-    return { ok: false, findings };
+    return {
+      ok: false,
+      findings: canonical.blockers.map((f) => blocker({
+        checkId: f.checkId,
+        message: f.message,
+        expected: f.expected,
+        actual: f.actual,
+      })),
+    };
   }
 
+  const deferredFindings: ProductionManifestFinding[] = [];
   const set = compareChapterSetToCanonical({
     bookId,
     canonical: canonical.chapters,
@@ -358,7 +492,7 @@ function gatherCommonPayload(
     actualLabel: "production package chapters",
   });
   if (!set.ok) {
-    findings.push(...set.blockers.map((f) => blocker({
+    deferredFindings.push(...set.blockers.map((f) => blocker({
       checkId: f.checkId,
       message: f.message,
       expected: f.expected,
@@ -368,11 +502,52 @@ function gatherCommonPayload(
 
   const indexPath = canonicalChapterIndexPath(bookId, stateRoot);
   const index = readJsonWithSemanticHash(indexPath, "PPKG.index_unreadable", "canonical chapter index");
-  if (!index.ok) findings.push(index.finding);
+  if (!index.ok) {
+    deferredFindings.push(index.finding);
+    // The set itself is usable (it came from readCanonicalChapterIndex above);
+    // only the file hash is not. The build fails on the deferred finding, so the
+    // placeholder hash below can never reach a returned payload.
+  }
+  const specs = canonical.chapters.map((spec) => ({
+    chapterId: spec.chapterId,
+    chapterNumber: spec.chapterNumber,
+    chapterTitle: spec.chapterTitle,
+  }));
+  return {
+    ok: true,
+    specs,
+    block: {
+      canonicalIndex: {
+        path: logicalStatePath(stateRoot, indexPath),
+        semanticHash: index.ok ? index.hash : "",
+        chapters: specs,
+      },
+    },
+    deferredFindings,
+  };
+}
+
+// ── Shared chapter/index evidence gathering (identical for v1 and v2) ──────────
+function gatherCommonPayload(
+  input: BuildProductionManifestInput,
+  stateRoot: string,
+  runsRoot: string,
+  bookId: string,
+): { ok: true; common: CommonPayloadFields } | { ok: false; findings: ProductionManifestFinding[] } {
+  const findings: ProductionManifestFinding[] = [];
+
+  // ── The chapter set, and where it came from ─────────────────────────────────
+  // Two routes, one shape downstream. The candidate route derives the set from
+  // the candidate's own CHAPTER artifacts (== this package's chapters) and never
+  // touches state/indexes; the legacy route is byte-for-byte what it always was.
+  const chapterSet = resolveChapterSet(input, stateRoot, bookId);
+  if (!chapterSet.ok) return { ok: false, findings: chapterSet.findings };
+  const { specs, block } = chapterSet;
+  findings.push(...chapterSet.deferredFindings);
 
   const chapterPayloads: ProductionManifestChapter[] = [];
-  for (let i = 0; i < canonical.chapters.length; i++) {
-    const spec = canonical.chapters[i];
+  for (let i = 0; i < specs.length; i++) {
+    const spec = specs[i];
     const chapter = input.chapters[i];
     if (!chapter) continue;
 
@@ -537,14 +712,7 @@ function gatherCommonPayload(
     });
   }
 
-  if (findings.length > 0 || !index.ok) {
-    return {
-      ok: false,
-      findings: findings.length > 0
-        ? findings
-        : [blocker({ checkId: "PPKG.manifest_payload_unavailable", message: `Cannot build production manifest payload: ${formatChapterSetBlockers(canonical.blockers)}` })],
-    };
-  }
+  if (findings.length > 0) return { ok: false, findings };
 
   const common: CommonPayloadFields = {
     bookId,
@@ -556,15 +724,7 @@ function gatherCommonPayload(
       tags: input.tags,
       contentOwner: input.contentOwner,
     },
-    canonicalIndex: {
-      path: logicalStatePath(stateRoot, indexPath),
-      semanticHash: index.hash,
-      chapters: canonical.chapters.map((spec) => ({
-        chapterId: spec.chapterId,
-        chapterNumber: spec.chapterNumber,
-        chapterTitle: spec.chapterTitle,
-      })),
-    },
+    ...block,
     chapters: chapterPayloads,
   };
   return { ok: true, common };
@@ -755,6 +915,77 @@ function isString(value: unknown): value is string {
   return typeof value === "string" && value.length > 0;
 }
 
+function validateChapterSetBlock(payload: Record<string, unknown>): ProductionManifestFinding[] {
+  const hasCanonicalIndex = payload.canonicalIndex !== undefined;
+  const hasCandidateSet = payload.candidateChapterSet !== undefined;
+  if (hasCanonicalIndex === hasCandidateSet) {
+    return [blocker({
+      checkId: "PPKG.manifest_chapter_set_ambiguous",
+      message: hasCanonicalIndex
+        ? "productionManifest.payload declares BOTH canonicalIndex and candidateChapterSet; exactly one chapter-set authority is allowed."
+        : "productionManifest.payload declares neither canonicalIndex nor candidateChapterSet; a manifest must name where its chapter set came from.",
+    })];
+  }
+  if (hasCanonicalIndex) {
+    return isObject(payload.canonicalIndex)
+      ? []
+      : [blocker({ checkId: "PPKG.manifest_canonical_index_invalid", message: "productionManifest.payload.canonicalIndex must be an object." })];
+  }
+  const block = payload.candidateChapterSet;
+  if (!isObject(block)) {
+    return [blocker({ checkId: "PPKG.manifest_candidate_chapter_set_invalid", message: "productionManifest.payload.candidateChapterSet must be an object." })];
+  }
+  if (
+    block.source !== "candidate" ||
+    !isString(block.candidateId) ||
+    !isString(block.manifestDigest) || !CANDIDATE_MANIFEST_DIGEST_PATTERN.test(block.manifestDigest) ||
+    !isString(block.semanticHash) ||
+    !Array.isArray(block.chapters) || block.chapters.length === 0
+  ) {
+    return [blocker({
+      checkId: "PPKG.manifest_candidate_chapter_set_invalid",
+      message: "productionManifest.payload.candidateChapterSet must declare source \"candidate\", a candidateId, a 64-hex manifestDigest, a semanticHash, and a non-empty chapters array.",
+    })];
+  }
+  return [];
+}
+
+/** The chapter-set source a manifest DECLARES, for the verifier's recompute.
+ *  Returns undefined for the legacy (canonical-index) route, whose recompute is
+ *  unchanged. Only reached after validateProductionManifest has accepted the
+ *  block's shape.
+ *
+ *  A DECLARATION IS NOT EVIDENCE. It selects which regime the verifier
+ *  reconstructs under; what the package is checked AGAINST on the candidate
+ *  regime is `recordedCandidateChapterSet` below — the set the manifest itself
+ *  recorded and bound into its contentId — never the package's own chapters. */
+export function declaredChapterSetSource(payload: ProductionManifestPayload): ProductionChapterSetSource | undefined {
+  const block = (payload as unknown as Record<string, unknown>).candidateChapterSet;
+  if (!isObject(block) || block.source !== "candidate") return undefined;
+  if (!isString(block.candidateId) || !isString(block.manifestDigest)) return undefined;
+  return { kind: "candidate", candidateId: block.candidateId, manifestDigest: block.manifestDigest };
+}
+
+/**
+ * The candidate chapter set a payload RECORDED — the id/number/title spec list
+ * the release wrote down and hashed into the contentId. Undefined on the legacy
+ * canonical-index route (whose authority is the index file on disk).
+ *
+ * This is the candidate route's stand-in for the canonical index: an authority
+ * that exists in the manifest INDEPENDENTLY of the package, so "is this package
+ * the chapter set this manifest is about?" is answerable without rebuilding the
+ * expected manifest out of the package under test.
+ */
+export function recordedCandidateChapterSet(
+  payload: ProductionManifestPayload,
+): ProductionManifestCandidateChapterSetBlock | undefined {
+  const block = (payload as unknown as Record<string, unknown>).candidateChapterSet;
+  if (!isObject(block) || block.source !== "candidate") return undefined;
+  if (!isString(block.candidateId) || !isString(block.manifestDigest) || !isString(block.semanticHash)) return undefined;
+  if (!Array.isArray(block.chapters)) return undefined;
+  return block as unknown as ProductionManifestCandidateChapterSetBlock;
+}
+
 export type ValidateProductionManifestResult =
   | { ok: true; manifest: ProductionPackageManifest; version: ProductionManifestVersion }
   | { ok: false; findings: ProductionManifestFinding[] };
@@ -791,6 +1022,12 @@ export function validateProductionManifest(value: unknown): ValidateProductionMa
         actual: value.payload.schemaVersion,
       }));
     }
+    // Exactly ONE chapter-set block, and it must be well formed. This is the
+    // single read-gate that decides how the verifier reconstructs the set from
+    // disk, so a payload that declares neither (nothing to reconstruct against)
+    // or both (two conflicting authorities) fails closed here rather than
+    // silently picking one.
+    findings.push(...validateChapterSetBlock(value.payload as Record<string, unknown>));
     if (version === "v2") {
       // A v2 payload must carry both forms of evidence that distinguish it from v1:
       // the source-reality evidence and the three build-input fingerprints. Validate
@@ -843,6 +1080,10 @@ export function productionManifestPayloadBytes(payload: ProductionManifestPayloa
 
 export function buildExpectedProductionManifestForPackage(args: {
   pkg: BookPackageV21;
+  /** Candidate-release chapter-set source (see BuildProductionManifestInput).
+   *  The verifier passes what the manifest under test DECLARES, so a
+   *  candidate-sourced package recomputes without the ambient index. */
+  chapterSetSource?: ProductionChapterSetSource;
   stateRoot?: string;
   runsRoot?: string;
   createdAt?: string;
@@ -865,6 +1106,7 @@ export function buildExpectedProductionManifestForPackage(args: {
     categories: args.pkg.book?.categories,
     tags: args.pkg.book?.tags,
     chapters: args.pkg.chapters ?? [],
+    ...(args.chapterSetSource === undefined ? {} : { chapterSetSource: args.chapterSetSource }),
     stateRoot: args.stateRoot,
     runsRoot: args.runsRoot,
     createdAt: args.createdAt ?? args.pkg.createdAt,
