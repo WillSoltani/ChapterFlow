@@ -87,6 +87,12 @@ export type CanonicalPackageAdapterOptions = Readonly<{
   journal?: ReleaseJournal;
   /** Test seam: deterministic transaction ids for journal records. */
   newTransactionId?: () => string;
+  /** Test seam: intercept the release-time self-verify. Default is the real
+   *  verifyProductionPackage. Exists so a test can PIN that release() supplies
+   *  expectedChapterSetSource = the candidate it just committed the pointer to —
+   *  adversarial review found that wiring covered by nothing (reverting it
+   *  wholesale failed only an unrelated guard test). */
+  verifyPackage?: typeof verifyProductionPackage;
 }>;
 
 export type CanonicalReleaseRequest = Readonly<{
@@ -226,6 +232,7 @@ export class CanonicalPackageAdapter {
   readonly #stateRoot: string | undefined;
   readonly #journal: ReleaseJournal;
   readonly #newTransactionId: () => string;
+ #verifyPackage: typeof verifyProductionPackage;
 
   constructor(options: CanonicalPackageAdapterOptions) {
     this.#options = options;
@@ -249,6 +256,7 @@ export class CanonicalPackageAdapter {
         : createFileReleaseJournal({ stateRoot: this.#stateRoot }));
     this.#newTransactionId = options.newTransactionId ??
       (() => `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 10)}`);
+    this.#verifyPackage = options.verifyPackage ?? verifyProductionPackage;
   }
 
   async readCurrent(bookId: string): Promise<Result<CanonicalCurrentRelease | null>> {
@@ -370,20 +378,53 @@ export class CanonicalPackageAdapter {
       record.targetBookRevision === request.expectedBookRevision &&
       record.candidateId === request.candidate.candidateId &&
       record.manifestDigest === request.candidate.manifestDigest);
-    if (unfinishedAtBase) {
+    if (unfinishedAtBase && unfinishedAtBase.state === "pointer-pending") {
+      // The journal alone cannot say whether a pointer-pending CAS landed — but
+      // the POINTER can, and this adapter already reads it. Resolve the unknown
+      // by readback instead of refusing on it: adversarial review demonstrated
+      // that refusing unconditionally turns a STALE pointer-pending record (its
+      // CAS provably lost — CURRENT names a different candidate at that
+      // revision) into a permanent wedge whose named remedy dead-ends in
+      // REVISION_CONFLICT, exactly the fail-closed dead end the journal was
+      // written to abolish.
+      const current = await this.readCurrent(request.bookId);
+      if (!current.ok) {
+        return failed(
+          "RELEASE_UNFINISHED",
+          `revision ${request.expectedBookRevision} of ${request.bookId} has a pointer-pending release record ` +
+            `and the current pointer cannot be read to resolve it (${current.error.code}); refusing rather than guessing`,
+        );
+      }
+      const casLanded = current.value !== null
+        && current.value.bookRevision === unfinishedAtBase.targetBookRevision
+        && current.value.candidate.candidateId === unfinishedAtBase.candidateId
+        && current.value.candidate.manifestDigest === unfinishedAtBase.manifestDigest;
+      if (!casLanded) {
+        // The CAS demonstrably did not commit: fall through to a fresh release,
+        // whose own CAS supersedes the stale record.
+      } else {
+        let unfinishedPath: string;
+        try {
+          unfinishedPath = this.#journal.pathFor(request.bookId, unfinishedAtBase.txId);
+        } catch {
+          unfinishedPath = this.#journal.dirFor(request.bookId);
+        }
+        return failed(
+          "RELEASE_UNFINISHED",
+          `revision ${request.expectedBookRevision} of ${request.bookId} was committed by an unfinished release of THIS candidate ` +
+            `(pointer readback confirms the CAS landed): ${formatUnfinishedRelease(unfinishedAtBase, unfinishedPath)}. Finish that release instead ` +
+            `(--expected-book-revision ${unfinishedAtBase.expectedBookRevision} --resume-unfinished-release); ` +
+            "re-releasing the same candidate here would advance the pointer a second time for identical content.",
+        );
+      }
+    } else if (unfinishedAtBase) {
       let unfinishedPath: string;
       try {
         unfinishedPath = this.#journal.pathFor(request.bookId, unfinishedAtBase.txId);
       } catch {
         unfinishedPath = this.#journal.dirFor(request.bookId);
       }
-      // A pointer-committed/package-pending record PROVES the commit; a
-      // pointer-pending one only means the outcome is unknowable from the
-      // journal. Both refuse, and the refusal says which it is rather than
-      // claiming proof it does not have.
-      const commitClaim = unfinishedAtBase.state === "pointer-pending"
-        ? "may have been committed by an unfinished release of THIS candidate whose CAS outcome was never recorded"
-        : "was committed by an unfinished release of THIS candidate";
+      const commitClaim = "was committed by an unfinished release of THIS candidate";
       return failed(
         "RELEASE_UNFINISHED",
         `revision ${request.expectedBookRevision} of ${request.bookId} ${commitClaim}: ` +
@@ -588,7 +629,7 @@ export class CanonicalPackageAdapter {
     // Fail-closed AFTER the pointer commit lands in the same recoverable state an
     // unbuildable manifest or a failed package write does: pointer committed,
     // NOTHING published, RECONCILIATION_REQUIRED.
-    const verification = verifyProductionPackage({
+    const verification = this.#verifyPackage({
       packageData: assembled.value.package,
       manifestData: sidecar,
       compareLooseState: true,

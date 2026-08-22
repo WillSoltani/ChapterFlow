@@ -327,8 +327,19 @@ function checkExpectedChapterSetSource(
  * pair is internally consistent, and nothing inside the two files can refute it.
  * The anchor for that is outside the pair: the CURRENT pointer / registry names
  * the candidateId and manifestDigest the release actually published, and the
- * candidate is content-addressed by that digest. LAYER 1 is how a caller holding
- * that identity brings the anchor to bear.
+ * candidate is content-addressed by that digest.
+ *
+ * BE PRECISE ABOUT WHAT LAYER 1 DOES AND DOES NOT DO (adversarial review
+ * demonstrated the overclaim): supplying expectedChapterSetSource only
+ * string-compares the manifest's DECLARATION against the expectation. A forger
+ * who re-authors both files but KEEPS the true candidateId+manifestDigest in
+ * the block passes Layer 1 untouched — this function never opens the candidate
+ * at that digest. Actually closing the residual requires a caller to OPEN the
+ * candidate from the content-addressed store and compare its files against the
+ * package (the release adapter effectively has this property because it
+ * assembles the package FROM the store immediately before verifying). That
+ * candidate-store re-verification for publish-time callers is future work and
+ * is deliberately not claimed here.
  */
 function compareRecordedCandidateChapterSet(
   recorded: ProductionManifestCandidateChapterSetBlock,

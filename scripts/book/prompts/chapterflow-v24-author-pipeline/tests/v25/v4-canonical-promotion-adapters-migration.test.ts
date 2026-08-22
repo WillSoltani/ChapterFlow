@@ -124,7 +124,7 @@ async function authorities(
     bookId: input.bookId,
     selector: { kind: "CANDIDATE", candidateId: authorityCandidate.candidateId },
   });
-  assert.ok(opened.ok);
+  assert.ok(opened.ok, opened.ok ? "" : `authorities open failed: ${JSON.stringify(opened)}`);
   assert.equal(opened.value.manifest.manifestDigest, authorityCandidate.manifestDigest);
   const reviewInner = createReviewServiceFactory({
     booksRoot: stores.booksRoot,
@@ -241,7 +241,7 @@ async function releaseAdapter(
   manifest: CanonicalManifestOptions,
   reviewCandidate: CandidateIdentity = input.candidate,
   failFirstPackageWrite = false,
-  extras: Readonly<{ newTransactionId?: () => string; stateRoot?: string; journal?: ReleaseJournal }> = {},
+  extras: Readonly<{ newTransactionId?: () => string; stateRoot?: string; journal?: ReleaseJournal; verifyPackage?: typeof verifyProductionPackage }> = {},
 ) {
   const authority = await authorities(input, stores, reviewCandidate);
   const pointer = countedPointer(stores.pointer);
@@ -1534,10 +1534,11 @@ requiredTest("a pointer-pending record blocks the same candidate from double-adv
     !doubleAdvance.ok && doubleAdvance.error.message.includes(releaseJournalPath(manifestOptions, bookId, "tx-pointer-pending")),
     doubleAdvance.ok ? "" : doubleAdvance.error.message,
   );
-  // The refusal does not claim proof it does not have: a pointer-pending record
-  // says the CAS outcome was never recorded, not that it committed.
+  // The refusal claims exactly the proof it HAS: the journal alone could not
+  // say whether the CAS landed, so the guard read the CURRENT pointer, found
+  // this candidate at the record's target revision, and says so.
   assert.ok(
-    !doubleAdvance.ok && doubleAdvance.error.message.includes("may have been committed"),
+    !doubleAdvance.ok && doubleAdvance.error.message.includes("pointer readback confirms the CAS landed"),
     doubleAdvance.ok ? "" : doubleAdvance.error.message,
   );
   assert.equal(retry.packageWrites(), 0);
@@ -1722,6 +1723,104 @@ requiredTest("shared atomic first cutover has one revision-one winner and never 
       release.authority.baseline,
     );
   }
+});
+
+requiredTest("release() self-verify PINS the candidate it just committed — the Layer-1 wiring cannot silently regress", async (context) => {
+  // Adversarial review reverted the adapter wholesale and watched every test but
+  // an unrelated guard pin stay green: the expectedChapterSetSource wiring was
+  // covered by nothing. This spy pins it at the call boundary.
+  const bookId = "layer1-wiring-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "layer1-wiring");
+  const staged = await stage(stores.candidates, bookId, "candidate-1", chapter);
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+  const input = request(bookId, staged.identity);
+  const seen: Array<unknown> = [];
+  const release = await releaseAdapter(
+    input, stores, context.roots.tempRoot, manifestOptions, input.candidate, false,
+    {
+      verifyPackage: (options) => {
+        seen.push(options.expectedChapterSetSource);
+        return verifyProductionPackage(options);
+      },
+    },
+  );
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(seen.length, 1, "release() verifies exactly once");
+  assert.deepEqual(seen[0], {
+    kind: "candidate",
+    candidateId: staged.identity.candidateId,
+    manifestDigest: staged.identity.manifestDigest,
+  }, "the self-verify names the candidate the pointer was just committed to");
+});
+
+requiredTest("a STALE pointer-pending record — its CAS provably lost — never wedges the candidate's legitimate forward release", async (context) => {
+  // Adversarial review's counter-probe: candidate-2 owns the revision the stale
+  // record targets, so candidate-1's CAS demonstrably never landed. Refusing
+  // here (as the first guard draft did) permanently wedged candidate-1 behind a
+  // remedy that dead-ends in REVISION_CONFLICT. The guard now resolves the
+  // unknown by pointer READBACK: CAS landed -> refuse with proof; CAS lost ->
+  // the fresh release proceeds and its own CAS supersedes the stale record.
+  const bookId = "stale-pointer-pending-book";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "stale-pending");
+  const staged = await stageChapters(stores.candidates, bookId, "candidate-1", [chapter]);
+  const other = await stage(stores.candidates, bookId, "candidate-2");
+  const manifestOptions = manifestRoots(context, bookId, [chapter]);
+
+  // candidate-2 wins revision 1 first.
+  const otherOptions = manifestRoots(context, bookId, [other.chapter], "-winner");
+  // Distinct review/QC ids: authorities() mints records under the REQUEST's ids,
+  // and the loser below needs its own review-1/qc-1 for candidate-1.
+  const winnerInput: CanonicalReleaseRequest = {
+    ...request(bookId, other.identity),
+    reviewId: "review-winner",
+    qcRoundId: "qc-winner",
+    metadata: { ...metadata(bookId), packageId: `${bookId}-v21-1784548803000`, createdAt: "2026-07-20T12:00:03.000Z" },
+  };
+  const winner = await releaseAdapter(
+    winnerInput, stores, context.roots.tempRoot, otherOptions, other.identity, false,
+  );
+  const won = await winner.canonicalRelease.release(winnerInput);
+  assert.ok(won.ok, won.ok ? "" : `${won.error.code}:${won.error.message}`);
+
+  // The stale record, in the journal's own documented JSON contract
+  // (releaseJournal.ts:71-88). It CANNOT be produced single-threaded through
+  // the public route — preflight refuses a base the pointer has left before the
+  // pointer-pending write happens — which is exactly why it arises only from a
+  // REAL race (two operators, or a crash straddling a concurrent supersede) and
+  // why the guard must handle finding one. state=pointer-pending, target=1,
+  // candidate-1: the CAS it describes provably lost, because candidate-2 owns
+  // revision 1 above.
+  const backing = createFileReleaseJournal({ stateRoot: manifestOptions.stateRoot as string });
+  const input = request(bookId, staged.identity);
+  backing.write({
+    bookId,
+    txId: "tx-stale-pending",
+    state: "pointer-pending",
+    candidateId: staged.identity.candidateId,
+    manifestDigest: staged.identity.manifestDigest,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    expectedBookRevision: 0,
+    targetBookRevision: 1,
+    promotedAt: "2026-07-20T12:00:03.500Z",
+    packageId: `${bookId}-v21-stale`,
+  });
+  const records = readReleaseJournals(manifestOptions, bookId).filter((r) => r.txId === "tx-stale-pending");
+  assert.equal(records.length, 1);
+  assert.equal(records[0].state, "pointer-pending", "the stale record this test is about");
+
+  // candidate-1 releases FORWARD at revision 1 — the stale record targets this
+  // exact revision, but readback shows candidate-2 owns it: proceed.
+  const forwardOptions = manifestRoots(context, bookId, [chapter], "-forward");
+  const forward = await releaseAdapter(
+    { ...input, expectedBookRevision: 1 }, stores, context.roots.tempRoot, forwardOptions, input.candidate, false,
+  );
+  const released = await forward.canonicalRelease.release({ ...input, expectedBookRevision: 1 });
+  assert.ok(released.ok, released.ok ? "" : `a stale pointer-pending record must not wedge: ${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 2);
 });
 
 finishV25Tests().catch((error: unknown) => {
