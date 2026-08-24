@@ -31,6 +31,9 @@ import { copyFileSync, existsSync, mkdirSync, readFileSync, realpathSync } from 
 import { dirname, resolve } from "node:path";
 
 import { MONOREPO_ANCESTOR, REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
+// `import type` is erased at compile time, so the real module is still loaded
+// lazily (inside makeDefaultVerify) exactly as before.
+import type { PreflightOutcome } from "./candidatePreflight.js";
 
 export type PublishToLiveOptions = {
   /** Live checkout root. Default: the pipeline's outer-checkout ancestor
@@ -38,12 +41,22 @@ export type PublishToLiveOptions = {
   outerRoot?: string;
   /** Stage + commit the copied package in the outer repo. Default false (report-only). */
   commit?: boolean;
-  /** Verifier override (tests). Default runs verifyProductionPackage on the local package. */
-  verify?: (pkgPath: string) => Promise<boolean> | boolean;
+  /** Verifier override (tests). Default runs `publishPreflightVerify` on the local
+   *  package, which supplies the sidecar path explicitly and reports its strength.
+   *  A seam may return a bare boolean (the pre-existing contract) or `{ ok, detail }`. */
+  verify?: (pkgPath: string) => Promise<boolean | PreflightOutcome> | boolean | PreflightOutcome;
   /** Local package path override (tests — REPO_ROOT is fixed).
    *  Default: <REPO_ROOT>/book-packages/<normSlug(bookId)>.v21.json. */
   localPackagePath?: string;
+  /** OPT-IN candidate-store re-verification — see publishFinal's `v25Root`. */
+  v25Root?: string;
+  /** Sidecar path override. Default: the path the verifier itself derives. */
+  manifestPath?: string;
 };
+
+/** Re-exported so publishFinal and the CLI share ONE definition of the seam's
+ *  richer return shape. `import type` is erased, so this adds no load-time edge. */
+export type { PreflightOutcome } from "./candidatePreflight.js";
 
 export type PublishToLiveResult = { ok: boolean; steps: string[]; error?: string };
 
@@ -97,11 +110,21 @@ export function probeRegistration(outerRoot: string, bookId: string): Registrati
   return { state: src.includes(marker) ? "found" : "not-found", registryPath };
 }
 
-async function defaultVerify(pkgPath: string): Promise<boolean> {
-  // Programmatic reuse of the exact function the CLI's verify-production-package
-  // verb calls (same single-option invocation: { packagePath }).
-  const { verifyProductionPackage } = await import("../verifyProductionPackage.js");
-  return verifyProductionPackage({ packagePath: pkgPath }).ok;
+function makeDefaultVerify(
+  bookId: string,
+  opts: PublishToLiveOptions | undefined,
+): (pkgPath: string) => Promise<PreflightOutcome> {
+  return async (pkgPath: string) => {
+    const { publishPreflightVerify, formatPublishPreflightResult } = await import("./candidatePreflight.js");
+    const result = await publishPreflightVerify({
+      bookId,
+      packagePath: pkgPath,
+      ...(opts?.manifestPath === undefined ? {} : { manifestPath: opts.manifestPath }),
+      ...(opts?.v25Root === undefined ? {} : { v25Root: opts.v25Root }),
+    });
+    if (!result.ok) console.error(formatPublishPreflightResult(result));
+    return { ok: result.ok, detail: result.detail };
+  };
 }
 
 export async function publishToLive(bookId: string, opts?: PublishToLiveOptions): Promise<PublishToLiveResult> {
@@ -120,17 +143,20 @@ export async function publishToLive(bookId: string, opts?: PublishToLiveOptions)
   steps.push(`local package: ${localPath}`);
 
   // (b) production verification — fail-closed before anything is copied.
-  const verify = opts?.verify ?? defaultVerify;
-  let verified = false;
+  const verify = opts?.verify ?? makeDefaultVerify(id, opts);
+  let outcome: boolean | PreflightOutcome;
   try {
-    verified = await verify(localPath);
+    outcome = await verify(localPath);
   } catch (err) {
     return fail(`verify threw: ${(err as Error).message}`);
   }
+  const verified = typeof outcome === "boolean" ? outcome : outcome.ok;
   if (!verified) {
     return fail(`verify: FAIL — production verifier rejected ${localPath}; nothing was copied`);
   }
-  steps.push("verify: PASS");
+  // A boolean seam keeps the original "verify: PASS" wording verbatim; the default
+  // preflight names the strength it ran at so a replay is never read as a re-verify.
+  steps.push(typeof outcome === "boolean" ? "verify: PASS" : `verify: PASS — ${outcome.detail}`);
 
   const outerRoot = opts?.outerRoot ?? MONOREPO_ANCESTOR;
   const destPath = resolve(outerRoot, "book-packages", `${id}.v21.json`);

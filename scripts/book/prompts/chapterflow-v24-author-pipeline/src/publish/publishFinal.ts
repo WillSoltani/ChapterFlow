@@ -7,9 +7,14 @@
  * all the files that were generated during the generation process."
  *
  * So publish-final is a single fail-closed chain:
- *   1. PREFLIGHT   — sandbox package exists + verifyProductionPackage (sidecar-aware)
- *                    passes; no FRESH (<2h heartbeat) autopilot lock for the book;
- *                    the outer root is a git worktree TOPLEVEL; `git fetch origin` OK.
+ *   1. PREFLIGHT   — sandbox package exists + `publishPreflightVerify` passes; no
+ *                    FRESH (<2h heartbeat) autopilot lock for the book; the outer
+ *                    root is a git worktree TOPLEVEL; `git fetch origin` OK.
+ *                    The preflight names the STRENGTH it verified at in its step
+ *                    line — "recorded-evidence replay" for a candidate-regime pair
+ *                    published without `--v25-root`, "candidate-store re-verify"
+ *                    when the operator supplies one. See publish/candidatePreflight.ts
+ *                    for what each strength does and does not prove.
  *   2. BRIDGE      — copy sandbox→outer + independent sha256 byte-compare (shared with
  *                    publishToLive; NOT duplicated).
  *   3. REGISTER    — probe the REAL registry (app/book/data/bookPackages.ts, the F1
@@ -49,6 +54,8 @@ import {
   probeRegistration,
   sha256File,
 } from "./publishToLive.js";
+// Erased at compile time; candidatePreflight is still loaded lazily below.
+import type { PreflightOutcome } from "./candidatePreflight.js";
 import {
   applyCleanup,
   buildCleanupManifest,
@@ -247,8 +254,22 @@ export type PublishFinalOptions = {
   localPackagePath?: string;
   /** autopilot-locks dir override (tests). */
   lockDir?: string;
-  /** verifier override (tests). Default: verifyProductionPackage (sidecar-aware). */
-  verify?: (pkgPath: string) => Promise<boolean> | boolean;
+  /** Verifier override (tests). Default: `publishPreflightVerify`, which supplies
+   *  the sidecar path EXPLICITLY (see below) and reports the strength it ran at.
+   *  A seam may return a bare boolean (the pre-existing contract, unchanged) or a
+   *  `{ ok, detail }` outcome whose detail becomes the step line. */
+  verify?: (pkgPath: string) => Promise<boolean | PreflightOutcome> | boolean | PreflightOutcome;
+  /** OPT-IN candidate-store re-verification. Absolute path to the v25 root (the
+   *  dir holding `books/`). When supplied the preflight reads the CURRENT pointer,
+   *  requires the sidecar's declared candidate identity to equal it, opens the
+   *  candidate from the content-addressed store and recomputes the evidence from
+   *  its bytes — closing the re-authored-pair residual that a two-file verify
+   *  cannot see. When omitted, verification is exactly what it is today and the
+   *  step line SAYS which strength ran. */
+  v25Root?: string;
+  /** Sidecar path override (tests / non-canonical layouts). Default: the same
+   *  `<CANONICAL_STATE>/books/<id>.production-manifest.json` the verifier derives. */
+  manifestPath?: string;
   /** shell-out runner override (tests) for register-web / catalog regen. */
   runner?: (cmd: string, args: string[], cwd: string) => void;
   /** injectable registration writer (tests): append-register into the outer registry. */
@@ -289,9 +310,23 @@ export function hasFreshLock(lockDir: string, bookId: string, now = Date.now()):
   return Number.isFinite(ageMs) && ageMs < FRESH_LOCK_MS;
 }
 
-async function defaultVerify(pkgPath: string): Promise<boolean> {
-  const { verifyProductionPackage } = await import("../verifyProductionPackage.js");
-  return verifyProductionPackage({ packagePath: pkgPath }).ok;
+function makeDefaultVerify(
+  bookId: string,
+  opts: PublishFinalOptions,
+): (pkgPath: string) => Promise<PreflightOutcome> {
+  return async (pkgPath: string) => {
+    const { publishPreflightVerify, formatPublishPreflightResult } = await import("./candidatePreflight.js");
+    const result = await publishPreflightVerify({
+      bookId,
+      packagePath: pkgPath,
+      ...(opts.manifestPath === undefined ? {} : { manifestPath: opts.manifestPath }),
+      ...(opts.v25Root === undefined ? {} : { v25Root: opts.v25Root }),
+    });
+    // On a refusal the operator needs the findings, not just the verdict — print
+    // the full preflight report before the chain unwinds.
+    if (!result.ok) console.error(formatPublishPreflightResult(result));
+    return { ok: result.ok, detail: result.detail };
+  };
 }
 
 function defaultRunner(cmd: string, args: string[], cwd: string): void {
@@ -403,13 +438,20 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     return finish(false, `sandbox package missing: ${localPath}`);
   }
 
-  const verify = opts.verify ?? defaultVerify;
-  let verified = false;
-  try { verified = await verify(localPath); } catch (err) {
+  const verify = opts.verify ?? makeDefaultVerify(id, opts);
+  let outcome: boolean | PreflightOutcome;
+  try { outcome = await verify(localPath); } catch (err) {
     push("preflight:verify", false, `verify threw: ${(err as Error).message}`);
     return finish(false, `verify threw: ${(err as Error).message}`);
   }
-  if (!push("preflight:verify", verified, verified ? "verifyProductionPackage PASS (sidecar-aware)" : "verifyProductionPackage FAIL — nothing copied")) {
+  // A seam returning a bare boolean keeps its original step wording verbatim; the
+  // default preflight supplies a detail line naming the strength it ran at, so a
+  // weaker-but-passing verification is never reported as if it were the strong one.
+  const verified = typeof outcome === "boolean" ? outcome : outcome.ok;
+  const verifyDetail = typeof outcome === "boolean"
+    ? (verified ? "verifyProductionPackage PASS (sidecar-aware)" : "verifyProductionPackage FAIL — nothing copied")
+    : `${outcome.detail}${verified ? "" : " — nothing copied"}`;
+  if (!push("preflight:verify", verified, verifyDetail)) {
     return finish(false, "production verifier rejected the sandbox package");
   }
 
