@@ -307,6 +307,31 @@ async function createCliV25Composition(
   return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, writeLock, runStore, runner, ids, sourceGitSha } };
 }
 
+/** Sentinel returned by requireAbsoluteV25Root for a MALFORMED --v25-root. It is
+ *  distinct from `undefined` (flag absent, weak mode) on purpose: a publish verb
+ *  must refuse a bad root rather than silently drop to the weaker verification the
+ *  operator did not ask for. */
+const INVALID_V25_ROOT = Symbol("invalid-v25-root");
+
+/** Parse the OPT-IN `--v25-root` for the publish verbs.
+ *   - absent            → undefined (today's verification strength)
+ *   - absolute path     → the root
+ *   - anything else     → INVALID_V25_ROOT, and the reason is printed. */
+function requireAbsoluteV25Root(
+  flags: Record<string, string | boolean>,
+): string | undefined | typeof INVALID_V25_ROOT {
+  const raw = flags["v25-root"];
+  if (raw === undefined) return undefined;
+  if (typeof raw !== "string" || !isAbsolute(raw)) {
+    console.error(
+      "V25_ROOT_INVALID: --v25-root must be an ABSOLUTE path to the v25 root (the directory holding books/). " +
+        "Refusing to fall back to the weaker recorded-evidence replay you did not ask for.",
+    );
+    return INVALID_V25_ROOT;
+  }
+  return resolve(raw);
+}
+
 function hasCliV25Selection(flags: Record<string, string | boolean>): boolean {
   return ["v25-root", "attempt-root", "candidate-id", "manifest-digest", "source-git-sha"]
     .some((name) => flags[name] !== undefined);
@@ -739,7 +764,15 @@ Commands:
                                      Report-only by default; --commit stages+commits ONLY that file in
                                      the outer repo (never pushes; refuses if it is already staged/dirty
                                      there from other work).
-  publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]
+  publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>] [--v25-root <absolute>]
+                                     --v25-root is OPT-IN candidate-store re-verification: the preflight
+                                     reads books/<id>/current.json, requires the sidecar's declared
+                                     candidateId@manifestDigest to EQUAL the pointer's, opens the
+                                     candidate from the content-addressed store and recomputes the
+                                     evidence from its bytes — including that the package ships the
+                                     candidate's WHOLE chapter set. Without it, a candidate pair is
+                                     verified by replaying the evidence the manifest recorded; the
+                                     preflight always PRINTS which of the two it ran.
                                      ONE-VERB ship (v24 author arch). Preflight (verify + no fresh
                                      conductor lock + outer git toplevel + fetch) → bridge (copy +
                                      byte-compare) → register (probe/append the real registry + regen
@@ -985,7 +1018,9 @@ Commands:
   categorize <bookId>                Preview the no-API auto-categorizer's pick (categories + tags from
                                      the book's own content). promote-book applies it automatically when
                                      --categories/--tags aren't given; pass those to override.
-  register-web <bookId> [--created-by <name>] [--skip-ingest]
+  register-web <bookId> [--created-by <name>] [--skip-ingest] [--v25-root <absolute>]
+                                     --v25-root: same OPT-IN candidate-store re-verification as
+                                     publish-final. The preflight strength is printed either way.
                                      Make a promoted book show up in the reader. (1) Static /books browse:
                                      append-only registration into app/book/data/bookPackages.ts (no
                                      existing line touched) + catalog refresh. (2) In-app reader/library:
@@ -2494,13 +2529,16 @@ async function runPublish(args: string[], flags: Record<string, string | boolean
 async function runPublishToLive(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: publish-to-live <bookId> [--commit] [--outer-root <path>]");
+    console.error("Usage: publish-to-live <bookId> [--commit] [--outer-root <path>] [--v25-root <absolute>]");
     return 2;
   }
+  const v25Root = requireAbsoluteV25Root(flags);
+  if (v25Root === INVALID_V25_ROOT) return 2;
   const { publishToLive } = await import("./publish/publishToLive.js");
   const result = await publishToLive(bookId, {
     commit: flags["commit"] === true,
     outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
+    ...(v25Root === undefined ? {} : { v25Root }),
   });
   for (const step of result.steps) console.log(`  ${step}`);
   if (!result.ok) {
@@ -2517,14 +2555,17 @@ async function runPublishToLive(args: string[], flags: Record<string, string | b
 async function runPublishFinal(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]");
+    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>] [--v25-root <absolute>]");
     return 2;
   }
+  const v25Root = requireAbsoluteV25Root(flags);
+  if (v25Root === INVALID_V25_ROOT) return 2;
   const { publishFinal, formatPublishFinalResult } = await import("./publish/publishFinal.js");
   const result = await publishFinal(bookId, {
     dryRun: flags["dry-run"] === true,
     keepDebris: flags["keep-debris"] === true,
     outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
+    ...(v25Root === undefined ? {} : { v25Root }),
   });
   console.log(formatPublishFinalResult(result));
   return result.ok ? 0 : 1;
@@ -3255,13 +3296,19 @@ async function runBatch(args: string[], flags: Record<string, string | boolean>)
  *  no existing line is touched; presentation auto-infers), then regenerates the
  *  catalog metadata (which imports BOOK_PACKAGES, so it also verifies the edit
  *  compiles). Idempotent. Production publish (DynamoDB/S3) is a separate step that
- *  needs AWS env — printed at the end. */
+ *  needs AWS env — printed at the end.
+ *
+ *  The preflight runs through `publishPreflightVerify`, so a candidate-regime pair
+ *  is verified WITH its sidecar and the STRENGTH is printed. `--v25-root` upgrades
+ *  it to candidate-store re-verification, exactly as for publish-final. */
 async function runRegisterWeb(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: register-web <bookId> [--created-by <name>] [--skip-ingest]");
+    console.error("Usage: register-web <bookId> [--created-by <name>] [--skip-ingest] [--v25-root <absolute>]");
     return 2;
   }
+  const v25Root = requireAbsoluteV25Root(flags);
+  if (v25Root === INVALID_V25_ROOT) return 2;
   const REPO = resolve(__dirname, "..");
   const tombstone = resolve(__dirname, "../state/books/_quarantined", `${bookId}.json`);
   if (existsSyncFs(tombstone)) {
@@ -3276,15 +3323,25 @@ async function runRegisterWeb(args: string[], flags: Record<string, string | boo
     console.error(`No package at ${pkgPath}. Run \`promote-book ${bookId} ...\` first.`);
     return 2;
   }
-  const { verifyProductionPackage } = await import("./verifyProductionPackage.js");
-  const verification = verifyProductionPackage({ packagePath: pkgPath, compareLooseState: true });
+  // Candidate-aware: the sidecar path is supplied explicitly and the strength the
+  // verification ran at is PRINTED, so registering a candidate-released pair never
+  // looks stronger than it was. `--v25-root` upgrades this to candidate-store
+  // re-verification exactly as it does for the publish verbs.
+  const { publishPreflightVerify, formatPublishPreflightResult } = await import("./publish/candidatePreflight.js");
+  const verification = await publishPreflightVerify({
+    bookId,
+    packagePath: pkgPath,
+    compareLooseState: true,
+    ...(v25Root === undefined ? {} : { v25Root }),
+  });
   if (!verification.ok) {
     console.error(
-      `Package at ${pkgPath} is not verified; refusing to update web registries: ` +
-        verification.findings.slice(0, 5).map((f) => f.message).join("; "),
+      `Package at ${pkgPath} is not verified; refusing to update web registries:\n` +
+        formatPublishPreflightResult(verification),
     );
     return 1;
   }
+  console.log(`register-web preflight: ${verification.detail}`);
   const bpPath = resolve(REPO, "app/book/data/bookPackages.ts");
   if (!existsSyncFs(bpPath)) {
     console.error(`Web registry not found at ${bpPath}. (Are you on the web-app branch / is app/ present?)`);
