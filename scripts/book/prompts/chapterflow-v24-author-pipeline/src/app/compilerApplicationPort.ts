@@ -463,14 +463,80 @@ export function mergeSectionAvoidEntries(
   added: readonly SectionAvoidEntry[],
 ): SectionAvoidEntry[] {
   const merged: SectionAvoidEntry[] = [];
-  const seen = new Set<string>();
-  for (const entry of [...existing, ...added]) {
-    const dedupeKey = `${entry.checkId} ${entry.phrase}`;
-    if (seen.has(dedupeKey)) continue;
-    seen.add(dedupeKey);
-    merged.push(entry);
+  const indexByKey = new Map<string, number>();
+  const dedupeKey = (entry: SectionAvoidEntry): string => `${entry.checkId} ${entry.phrase}`;
+  const seeded = (entry: SectionAvoidEntry): SectionAvoidEntry => (entry.rounds === undefined ? { ...entry, rounds: 1 } : entry);
+  for (const entry of existing) {
+    const key = dedupeKey(entry);
+    if (indexByKey.has(key)) continue;
+    indexByKey.set(key, merged.length);
+    merged.push(seeded(entry));
+  }
+  // Task 11ag — a phrase in THIS round's additions that is ALREADY banned is not a
+  // duplicate to discard: it is the regeneration livelock happening. The section was
+  // evicted, re-drafted with the ban rendered into its task card, and re-minted the
+  // very phrase it was told to avoid. The ban itself is kept exactly as it was
+  // (existing-first, so its kept-chapters and wording stay stable); only its round
+  // counter grows. That counter is the convergence measure the monotone ban set never
+  // had — it escalates the re-draft prompt and, past ASSEMBLY_AVOID_MAX_ROUNDS, turns
+  // an endless evict/re-draft loop into a named fail-closed. Distinct phrases still
+  // simply accumulate, exactly as before.
+  for (const entry of added) {
+    const key = dedupeKey(entry);
+    const index = indexByKey.get(key);
+    if (index === undefined) {
+      indexByKey.set(key, merged.length);
+      merged.push(seeded(entry));
+      continue;
+    }
+    const prior = merged[index];
+    merged[index] = { ...prior, rounds: (prior.rounds ?? 1) + 1 };
   }
   return merged;
+}
+
+/**
+ * Task 11ag — how many evict+re-draft rounds ONE (checkId, phrase) ban may survive
+ * before the compile fails closed and NAMES it.
+ *
+ * 11aa bounded the CACHE livelock: an evicted pack cannot be reused verbatim, so
+ * the collision must at least be re-drafted. It did not bound the REGENERATION
+ * livelock one level up — a re-draft that reads the ban and re-mints the same
+ * wording anyway. The canary run showed exactly that: evictions in rounds 11-12,
+ * re-drafts in 13-17, and the same phrase back in the same chapters every time.
+ *
+ * Past this many rounds another attempt is not convergence in progress, it is
+ * spend: one section re-draft per round for a phrase the writer has already
+ * refused to give up. Three is also the full length of the escalation ladder the
+ * task card can offer (plain ban, escalated ban, escalated ban with the ban set
+ * grown around it); a fourth round would repeat the third verbatim.
+ */
+export const ASSEMBLY_AVOID_MAX_ROUNDS = 3;
+
+/** One (chapter, kind, checkId, phrase) ban that outlived ASSEMBLY_AVOID_MAX_ROUNDS
+ *  evict+re-draft rounds: re-drafting is demonstrably not converging on it. */
+export interface UnconvergedAssemblyAvoid {
+  readonly chapterNumber: number;
+  readonly kind: SectionKind;
+  readonly checkId: string;
+  readonly phrase: string;
+  /** The chapters the gate ALLOWS to keep the phrase (this one is the surplus). */
+  readonly keptByChapters: readonly number[];
+  /** The round this ban WOULD have entered — one past the last round applied. */
+  readonly rounds: number;
+}
+
+/**
+ * What one assembly-eviction pass actually did. `evictedSections` counts the
+ * (chapter, kind) packs removed, so `blocked && evictedSections === 0` is the
+ * PERMANENT-WEDGE signature: the compile failed, nothing changed on disk, and the
+ * next run will reuse the identical cached packs and fail identically. The canary
+ * run sat in exactly that state for 13 rounds while every log line stayed the
+ * same; naming it is what makes it visible instead of silent.
+ */
+export interface AssemblyEvictionOutcome {
+  readonly evictedSections: number;
+  readonly unconverged: readonly UnconvergedAssemblyAvoid[];
 }
 
 /**
@@ -504,6 +570,12 @@ export interface CrossChapterEvictionPolicy {
 /** SEC93 venue stamping keeps at most this many chapters (the gate blocks only
  *  ABOVE it). Retained as a named export — tests and the registry both pin to it. */
 export const SEC93_MAX_VENUE_CHAPTERS = 2;
+
+/** SEC83/SEC89 report a field only when its 5-token window also appears in at least
+ *  AS10_MIN_OTHER_CHAPTERS (2) OTHER chapters, so two chapters sharing a phrase is
+ *  BELOW the firing threshold and exactly two may keep it. Mirrors the gate constant
+ *  in sectionGate.ts; the gate itself is not changed here. */
+export const AS10_MAX_KEPT_NGRAM_CHAPTERS = 2;
 
 const sceneFramePolicy = (maxKeptChapters: number, frameLabel: string): CrossChapterEvictionPolicy => ({
   maxKeptChapters,
@@ -544,6 +616,25 @@ export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, CrossChapterEv
     kind: "example-pack",
     avoidMessage: (phrase, keptChapterLabels) =>
       `venue "${phrase}" is already used by ${keptChapterLabels} — choose a different concrete venue.`,
+  }],
+  // Task 11ag — the two AS10-mirroring cross-chapter literal-5-gram gates. Both fire
+  // only when a window also appears in >= AS10_MIN_OTHER_CHAPTERS (2) OTHER chapters,
+  // so at most two chapters may keep any one phrase: keep-earliest-2 mirrors the gate
+  // exactly. Before they were stamped they were the third state the exemption comment
+  // below says must not exist — neither evicted nor documented-exempt — and SEC83 wedged
+  // a live 13-chapter run permanently: blocked every round, evicting nothing, every pack
+  // served from cache.
+  ["SEC83.summary_cross_chapter_ngram", {
+    maxKeptChapters: AS10_MAX_KEPT_NGRAM_CHAPTERS,
+    kind: "summary-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `summary tier repeats the verbatim phrase "${phrase}" already used by ${keptChapterLabels} — rewrite this chapter's connective prose so the sequence does not appear here.`,
+  }],
+  ["SEC89.example_cross_chapter_literal_ngram", {
+    maxKeptChapters: AS10_MAX_KEPT_NGRAM_CHAPTERS,
+    kind: "example-pack",
+    avoidMessage: (phrase, keptChapterLabels) =>
+      `example field repeats the verbatim phrase "${phrase}" already used by ${keptChapterLabels} — rewrite this field from this chapter's own source material.`,
   }],
   ["SEC96.example_shortcut_default_failure_saturation", sceneFramePolicy(2, "shortcut/default-failure frame")],
   ["SEC97.example_decides_after_not_before_saturation", sceneFramePolicy(2, "decides-after-not-before frame")],
@@ -687,6 +778,242 @@ export function planAssemblyEvictions(
     }
   }
   return evictions;
+}
+
+/** The narrow dependency surface one assembly-eviction pass touches. */
+export interface AssemblyEvictionPlanInput {
+  readonly bookId: string;
+  readonly cache: SectionPackCache | undefined;
+  readonly avoidStore: SectionAvoidStore | undefined;
+  readonly chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>;
+  readonly blockers: readonly AssemblyBlocker[];
+}
+
+/**
+ * Task 11aa/11ag — apply the livelock-break plan: evict exactly the implicated
+ * cached packs and record (or escalate) their re-draft avoid-context.
+ *
+ * Best-effort by construction — every store error is logged and swallowed so the
+ * terminal assembly error, which tells the operator far more than a cache write
+ * failure does, always reaches them. The RETURN value is what changed: the caller
+ * needs to know whether this pass moved anything at all (`evictedSections`) and
+ * whether any ban has now outlived its round budget (`unconverged`), because
+ * "blocked and evicted nothing" and "blocked for the fourth time on the same
+ * phrase" are two different operator situations and neither is the ordinary
+ * first-round block.
+ */
+export async function applyAssemblyEvictionPlan(input: AssemblyEvictionPlanInput): Promise<AssemblyEvictionOutcome> {
+  const { bookId, cache, avoidStore, chapterCacheContext, blockers } = input;
+  const empty: AssemblyEvictionOutcome = { evictedSections: 0, unconverged: [] };
+  if (!cache || blockers.length === 0) return empty;
+  const chapterIdByNumber = new Map<number, string>();
+  for (const [chapterNumber, ctx] of chapterCacheContext) chapterIdByNumber.set(chapterNumber, ctx.chapterId);
+  // planAssemblyEvictions throws loudly if a gate stamped an eviction signature
+  // without a CROSS_CHAPTER_EVICTION_POLICIES entry (a programming error). Eviction
+  // is best-effort: log and bail so the terminal COMPILER_ASSEMBLY_BLOCKED error —
+  // more informative to the operator than a cache-plan failure — still surfaces.
+  let evictions: AssemblyEviction[];
+  try {
+    evictions = planAssemblyEvictions(blockers, chapterIdByNumber);
+  } catch (planError) {
+    console.error(
+      `[book-run] compiler action=ASSEMBLY_EVICTION_PLAN_FAILED detail=${boundedCompilerDetail(planError)}`,
+    );
+    return empty;
+  }
+  // BOUND ENGAGEMENT ON A ZERO-EVICTION PLAN (adversarial review): with stamped
+  // blockers but an empty plan (every phrase group at or under its keep count —
+  // reachable pre-fix via single-stamped multi-phrase overlap, and kept as a
+  // belt-and-braces path for any future planner shape), the round bound lived
+  // only inside the eviction loop and NEVER advanced: the block repeated
+  // byte-identically forever with the cap unengaged. Advance the per-(chapter,
+  // kind, checkId, phrase) round counters from the BLOCKERS themselves, without
+  // evicting; a counter that outlives the cap surfaces as unconverged, so the
+  // caller fails closed with ASSEMBLY_REDRAFT_UNCONVERGED instead of looping.
+  if (evictions.length === 0 && avoidStore) {
+    const unconverged: UnconvergedAssemblyAvoid[] = [];
+    const byChapterKind = new Map<string, { chapterNumber: number; kind: SectionKind; avoids: SectionAvoidEntry[] }>();
+    for (const blocker of blockers) {
+      const chapterId = chapterIdByNumber.get(blocker.chapterNumber);
+      if (!chapterId) continue;
+      const key = `${blocker.chapterNumber} ${blocker.kind}`;
+      const group = byChapterKind.get(key) ?? { chapterNumber: blocker.chapterNumber, kind: blocker.kind, avoids: [] };
+      group.avoids.push({ checkId: blocker.checkId, phrase: blocker.phrase, keptByChapters: [], message: blocker.message });
+      byChapterKind.set(key, group);
+    }
+    for (const group of byChapterKind.values()) {
+      const chapterId = chapterIdByNumber.get(group.chapterNumber);
+      if (!chapterId) continue;
+      const avoidKey = { bookId, chapterId, kind: group.kind };
+      let existing: readonly SectionAvoidEntry[] = [];
+      try {
+        const prior = await avoidStore.read(avoidKey);
+        if (prior) existing = prior.entries;
+      } catch {
+        existing = [];
+      }
+      const merged = mergeSectionAvoidEntries(existing, group.avoids);
+      await avoidStore.write(avoidKey, { entries: merged });
+      for (const entry of merged.filter((candidate) => (candidate.rounds ?? 1) > ASSEMBLY_AVOID_MAX_ROUNDS)) {
+        unconverged.push({
+          chapterNumber: group.chapterNumber,
+          kind: group.kind,
+          checkId: entry.checkId,
+          phrase: entry.phrase,
+          keptByChapters: [...entry.keptByChapters],
+          rounds: entry.rounds ?? 1,
+        });
+      }
+    }
+    if (unconverged.length > 0) {
+      console.error(
+        `[book-run] compiler action=ASSEMBLY_REDRAFT_UNCONVERGED rounds=${ASSEMBLY_AVOID_MAX_ROUNDS} phrase=${JSON.stringify(unconverged.map((entry) => entry.phrase))} (zero-eviction plan)`,
+      );
+    }
+    return { evictedSections: 0, unconverged };
+  }
+  // planAssemblyEvictions emits one eviction PER colliding phrase, so a section
+  // that collides on multiple venues yields multiple evictions for the SAME
+  // (chapter, kind). Collapse them here so the pack is evicted once and its
+  // avoid-context is written EXACTLY once, as the union of every phrase — a naive
+  // per-eviction write would have the second write clobber the first, leaving the
+  // re-draft told to avoid only the last venue and guaranteed to re-collide.
+  const groups = new Map<string, { readonly chapterNumber: number; readonly chapterId: string; readonly kind: SectionKind; readonly avoids: SectionAvoidEntry[] }>();
+  for (const eviction of evictions) {
+    const groupKey = `${eviction.chapterNumber} ${eviction.kind}`;
+    const group = groups.get(groupKey);
+    if (group) group.avoids.push(eviction.avoid);
+    else groups.set(groupKey, { chapterNumber: eviction.chapterNumber, chapterId: eviction.chapterId, kind: eviction.kind, avoids: [eviction.avoid] });
+  }
+  let evictedSections = 0;
+  const unconverged: UnconvergedAssemblyAvoid[] = [];
+  for (const group of groups.values()) {
+    const identity = chapterCacheContext.get(group.chapterNumber);
+    if (!identity) continue;
+    const cacheKey: SectionPackCacheKey = {
+      bookId,
+      chapterId: group.chapterId,
+      kind: group.kind,
+      blueprintDigest: identity.blueprintDigest,
+      packetDigest: identity.packetDigest,
+      scarsDigest: identity.scarsDigest,
+    };
+    const avoidKey = { bookId, chapterId: group.chapterId, kind: group.kind };
+    // Read-merge BEFORE evicting. Bans ACCUMULATE monotonically across rounds: a
+    // prior failed round may have already banned another venue for this section (it
+    // re-drafted, then collided on a NEW one this round); overwriting with only this
+    // round's phrase would forget the earlier ban and let the re-draft re-pick it —
+    // unbounded oscillation with no convergence measure. Reading first fails open
+    // (null on any miss/corruption), so the worst case degrades to this round's bans
+    // alone, never to a lost write. #clearAssemblyAvoids drops the whole file once
+    // assembly passes, so the union never grows unbounded.
+    //
+    // The merge also carries the round counter, and it is consulted BEFORE the
+    // eviction precisely so an unconverged ban can decline to evict at all.
+    let merged: SectionAvoidEntry[] | null = null;
+    if (avoidStore) {
+      let existing: readonly SectionAvoidEntry[] = [];
+      try {
+        const prior = await avoidStore.read(avoidKey);
+        if (prior) existing = prior.entries;
+      } catch {
+        existing = [];
+      }
+      merged = mergeSectionAvoidEntries(existing, group.avoids);
+      const stuck = merged.filter((entry) => (entry.rounds ?? 1) > ASSEMBLY_AVOID_MAX_ROUNDS);
+      if (stuck.length > 0) {
+        // Past the budget, evicting again would buy another identical re-draft. Leave
+        // the cached pack and the ban file exactly as they are, so a re-run fails fast
+        // and deterministically on the same named phrase instead of spending a fresh
+        // model call to rediscover it. This is a fail-CLOSED path: the caller still
+        // throws, just with a message that says re-drafting did not converge.
+        for (const entry of stuck) {
+          unconverged.push({
+            chapterNumber: group.chapterNumber,
+            kind: group.kind,
+            checkId: entry.checkId,
+            phrase: entry.phrase,
+            keptByChapters: [...entry.keptByChapters],
+            rounds: entry.rounds ?? 1,
+          });
+        }
+        console.error(
+          `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=ASSEMBLY_REDRAFT_UNCONVERGED rounds=${ASSEMBLY_AVOID_MAX_ROUNDS} phrase=${JSON.stringify(stuck.map((entry) => entry.phrase))}`,
+        );
+        continue;
+      }
+    }
+    try {
+      await cache.evict(cacheKey);
+      evictedSections += 1;
+      if (avoidStore && merged) await avoidStore.write(avoidKey, { entries: merged });
+      console.error(
+        `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=EVICT_ON_ASSEMBLY_BLOCK phrase=${JSON.stringify(group.avoids.map((avoid) => avoid.phrase))}`,
+      );
+    } catch (evictError) {
+      console.error(
+        `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=EVICT_ON_ASSEMBLY_BLOCK_FAILED detail=${boundedCompilerDetail(evictError)}`,
+      );
+    }
+  }
+  return { evictedSections, unconverged };
+}
+
+/** Name each blocking gate's registry status, so an operator reading a
+ *  zero-eviction block can tell "this gate is deliberately never evicted" from
+ *  "this gate was never registered and nobody noticed". */
+function describeBlockedCheckIds(checkIds: readonly string[]): string {
+  if (checkIds.length === 0) return "no gate checkId was reported with the block";
+  return checkIds
+    .map((checkId) => {
+      if (CROSS_CHAPTER_EVICTION_POLICIES.has(checkId)) {
+        return `${checkId} (stamped-evictable, but planned no eviction this round — likely a per-chapter or unstamped arm of the same checkId)`;
+      }
+      const exemption = CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.get(checkId);
+      if (exemption !== undefined) return `${checkId} (documented-exempt: ${exemption})`;
+      return `${checkId} (NOT registered for eviction and NOT documented-exempt — it must be placed in one registry or the other)`;
+    })
+    .join("; ");
+}
+
+/**
+ * Task 11ag — the operator-facing detail of a blocked assembly.
+ *
+ * An assembly block is always fail-closed, but three situations wear the same
+ * words today and an operator cannot tell them apart from the log:
+ *   1. the ordinary first block — packs were evicted, the next round re-drafts;
+ *   2. re-drafting is NOT converging — the same phrase came back for more than
+ *      ASSEMBLY_AVOID_MAX_ROUNDS full evict+re-draft rounds;
+ *   3. nothing was evicted at all — no cached pack changed, so the next run
+ *      reuses identical packs and fails identically, forever.
+ * The canary run was case 3 for 13 consecutive rounds and every message was
+ * byte-identical. Case 1 keeps the same COMPILER_ASSEMBLY_BLOCKED prefix and the
+ * findings joined the same way (adversarial review probed the earlier "byte-exact"
+ * wording and found it false — the finding TEXT itself changed when the per-phrase
+ * emit landed, so exactness is claimed for the shape, not the bytes); 2 and 3 say
+ * what they are and name the phrase, the chapters, and the gate.
+ */
+export function assemblyBlockDetail(
+  findings: readonly string[],
+  blockedCheckIds: readonly string[],
+  outcome: AssemblyEvictionOutcome,
+): string {
+  const base = findings.join("; ") || "incomplete assembly";
+  if (outcome.unconverged.length > 0) {
+    const detail = outcome.unconverged
+      .map((entry) => {
+        const kept = entry.keptByChapters.length > 0
+          ? entry.keptByChapters.map((chapterNumber) => `ch${String(chapterNumber).padStart(2, "0")}`).join(", ")
+          : "no other chapter";
+        return `ch${String(entry.chapterNumber).padStart(2, "0")} ${entry.kind} still carries ${JSON.stringify(entry.phrase)} (gate ${entry.checkId}; ${kept} may keep it, this chapter may not)`;
+      })
+      .join("; ");
+    return `ASSEMBLY_REDRAFT_UNCONVERGED:${ASSEMBLY_AVOID_MAX_ROUNDS} evict+re-draft rounds returned the same wording every time, so re-drafting is not converging and nothing further was evicted — an operator must rewrite the wording or change the source material by hand: ${detail}. Underlying assembly block: ${base}`;
+  }
+  if (outcome.evictedSections === 0) {
+    return `ASSEMBLY_BLOCK_NOT_EVICTABLE:no cached section pack was evicted, so the next compile run will reuse identical cached packs and fail identically — this block cannot clear on its own: ${describeBlockedCheckIds(blockedCheckIds)}. Underlying assembly block: ${base}`;
+  }
+  return base;
 }
 
 function assertSuccessor(
@@ -855,85 +1182,21 @@ export class CompilerApplicationPort {
   /** Task 11aa — evict the cached packs an assembly cross-chapter blocker
    *  implicates and record the collision as re-draft avoid-context. Best-effort:
    *  a store error is logged, never re-thrown, so the terminal assembly error
-   *  (more informative than a cache write failure) always reaches the operator. */
+   *  (more informative than a cache write failure) always reaches the operator.
+   *  The policy itself lives in applyAssemblyEvictionPlan so the livelock bound can
+   *  be driven round-by-round without standing up a whole compile run. */
   async #applyAssemblyEvictions(
     request: CompilerApplicationRequest,
     chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>,
     blockers: readonly AssemblyBlocker[],
-  ): Promise<void> {
-    const cache = this.#dependencies.sectionPackCache;
-    if (!cache || blockers.length === 0) return;
-    const chapterIdByNumber = new Map<number, string>();
-    for (const [chapterNumber, ctx] of chapterCacheContext) chapterIdByNumber.set(chapterNumber, ctx.chapterId);
-    // planAssemblyEvictions throws loudly if a gate stamped an eviction signature
-    // without a CROSS_CHAPTER_EVICTION_POLICIES entry (a programming error). Eviction
-    // is best-effort: log and bail so the terminal COMPILER_ASSEMBLY_BLOCKED error —
-    // more informative to the operator than a cache-plan failure — still surfaces.
-    let evictions: AssemblyEviction[];
-    try {
-      evictions = planAssemblyEvictions(blockers, chapterIdByNumber);
-    } catch (planError) {
-      console.error(
-        `[book-run] compiler action=ASSEMBLY_EVICTION_PLAN_FAILED detail=${boundedCompilerDetail(planError)}`,
-      );
-      return;
-    }
-    // planAssemblyEvictions emits one eviction PER colliding phrase, so a section
-    // that collides on multiple venues yields multiple evictions for the SAME
-    // (chapter, kind). Collapse them here so the pack is evicted once and its
-    // avoid-context is written EXACTLY once, as the union of every phrase — a naive
-    // per-eviction write would have the second write clobber the first, leaving the
-    // re-draft told to avoid only the last venue and guaranteed to re-collide.
-    const groups = new Map<string, { readonly chapterNumber: number; readonly chapterId: string; readonly kind: SectionKind; readonly avoids: SectionAvoidEntry[] }>();
-    for (const eviction of evictions) {
-      const groupKey = `${eviction.chapterNumber} ${eviction.kind}`;
-      const group = groups.get(groupKey);
-      if (group) group.avoids.push(eviction.avoid);
-      else groups.set(groupKey, { chapterNumber: eviction.chapterNumber, chapterId: eviction.chapterId, kind: eviction.kind, avoids: [eviction.avoid] });
-    }
-    for (const group of groups.values()) {
-      const identity = chapterCacheContext.get(group.chapterNumber);
-      if (!identity) continue;
-      const cacheKey: SectionPackCacheKey = {
-        bookId: request.bookId,
-        chapterId: group.chapterId,
-        kind: group.kind,
-        blueprintDigest: identity.blueprintDigest,
-        packetDigest: identity.packetDigest,
-        scarsDigest: identity.scarsDigest,
-      };
-      try {
-        await cache.evict(cacheKey);
-        const avoidStore = this.#dependencies.sectionAvoidStore;
-        if (avoidStore) {
-          const avoidKey = { bookId: request.bookId, chapterId: group.chapterId, kind: group.kind };
-          // Read-merge-write so bans ACCUMULATE monotonically across rounds. A prior
-          // failed round may have already banned another venue for this section (it
-          // re-drafted, then collided on a NEW one this round); overwriting with only
-          // this round's phrase would forget the earlier ban and let the re-draft
-          // re-pick it — unbounded oscillation with no convergence measure. Reading
-          // first fails open (null on any miss/corruption), so the worst case degrades
-          // to this round's bans alone, never to a lost write. #clearAssemblyAvoids
-          // drops the whole file once assembly passes, so the union never grows
-          // unbounded.
-          let existing: readonly SectionAvoidEntry[] = [];
-          try {
-            const prior = await avoidStore.read(avoidKey);
-            if (prior) existing = prior.entries;
-          } catch {
-            existing = [];
-          }
-          await avoidStore.write(avoidKey, { entries: mergeSectionAvoidEntries(existing, group.avoids) });
-        }
-        console.error(
-          `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=EVICT_ON_ASSEMBLY_BLOCK phrase=${JSON.stringify(group.avoids.map((avoid) => avoid.phrase))}`,
-        );
-      } catch (evictError) {
-        console.error(
-          `[book-run] compiler chapter=${group.chapterNumber} kind=${group.kind} action=EVICT_ON_ASSEMBLY_BLOCK_FAILED detail=${boundedCompilerDetail(evictError)}`,
-        );
-      }
-    }
+  ): Promise<AssemblyEvictionOutcome> {
+    return applyAssemblyEvictionPlan({
+      bookId: request.bookId,
+      cache: this.#dependencies.sectionPackCache,
+      avoidStore: this.#dependencies.sectionAvoidStore,
+      chapterCacheContext,
+      blockers,
+    });
   }
 
   /** Task 11aa — clear avoid-context for every section once assembly passes.
@@ -1392,8 +1655,12 @@ export class CompilerApplicationPort {
         // An assembly failure with NO structured cross-chapter blocker evicts
         // nothing (planAssemblyEvictions returns []) — we never guess. Best-effort:
         // an eviction/avoid store error is logged, never masking the assembly error.
-        await this.#applyAssemblyEvictions(request, chapterCacheContext, assembly.blockers ?? []);
-        throw new Error(`COMPILER_ASSEMBLY_BLOCKED:${assembly.findings.join("; ") || "incomplete assembly"}`);
+        const evictionOutcome = await this.#applyAssemblyEvictions(request, chapterCacheContext, assembly.blockers ?? []);
+        // Same fail-closed error class as before (bookRunApplicationService keys its
+        // deterministic-failure classification on the COMPILER_ASSEMBLY_BLOCKED prefix),
+        // but the detail now distinguishes a first block from a non-converging re-draft
+        // and from a block that evicted nothing and therefore cannot clear on its own.
+        throw new Error(`COMPILER_ASSEMBLY_BLOCKED:${assemblyBlockDetail(assembly.findings, assembly.blockedCheckIds ?? [], evictionOutcome)}`);
       }
       // Task 11aa — assembly passed: clear any avoid-context recorded by an earlier
       // failed round for every section in the book, so avoid guidance never outlives
