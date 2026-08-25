@@ -44,6 +44,23 @@ export interface SectionAvoidEntry {
   readonly keptByChapters: readonly number[];
   /** The rendered human line for the re-draft task card. */
   readonly message: string;
+  /**
+   * How many evict+re-draft rounds this exact (checkId, phrase) ban has survived
+   * for this section — 1 the first time it is recorded, incremented every later
+   * round in which the SAME phrase blocks assembly again.
+   *
+   * This is the regeneration-livelock measure. The 11aa ban set alone bounds only
+   * the CACHE livelock (an evicted pack cannot be reused verbatim); it does not
+   * bound a writer that re-drafts and re-mints the very phrase it was told to
+   * avoid, which is the failure the canary run showed. The count drives two
+   * things: the task card ESCALATES its wording as it grows (sectionTasks), and
+   * the compiler port FAILS CLOSED with a named operator message once it exceeds
+   * ASSEMBLY_AVOID_MAX_ROUNDS instead of evicting forever.
+   *
+   * Optional so entries written before the field existed still parse (they read
+   * as round 1, which is exactly the behaviour they were written under).
+   */
+  readonly rounds?: number;
 }
 
 export interface SectionAvoidContext {
@@ -110,11 +127,18 @@ function parseEntry(raw: unknown): SectionAvoidEntry | null {
   ) {
     return null;
   }
+  // `rounds` is omitted rather than defaulted when absent or invalid, so a
+  // pre-field entry round-trips byte-identically and every reader applies the
+  // same `?? 1` default in one place.
+  const rounds = typeof value.rounds === "number" && Number.isInteger(value.rounds) && value.rounds >= 1
+    ? value.rounds
+    : undefined;
   return {
     checkId: value.checkId,
     phrase: value.phrase,
     keptByChapters: [...value.keptByChapters],
     message: value.message,
+    ...(rounds === undefined ? {} : { rounds }),
   };
 }
 

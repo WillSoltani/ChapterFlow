@@ -27,7 +27,19 @@ import type { PlanningSourceEvidence } from "../source/sourceEvidence.js";
 import type { CandidateInputFile } from "../books/candidateTypes.js";
 import type { SectionKind, SectionPackV1 } from "../artifacts/artifactTypes.js";
 
-export type AssembleSectionsResult = { bookId: string; written: string[]; findings: string[]; candidateFiles?: readonly CandidateInputFile[]; blockers?: readonly AssemblyBlocker[] };
+export type AssembleSectionsResult = {
+  bookId: string;
+  written: string[];
+  findings: string[];
+  candidateFiles?: readonly CandidateInputFile[];
+  blockers?: readonly AssemblyBlocker[];
+  /** Every blocking gate's checkId, including the ones that produced no structured
+   *  blocker. `blockers` is the machine-readable EVICTABLE subset; this is the full
+   *  set, so the port can tell an operator WHICH gate blocked a compile that evicted
+   *  nothing (the permanent-wedge signature) instead of repeating an identical
+   *  message every round. Deduped, first-seen order. */
+  blockedCheckIds?: readonly string[];
+};
 
 /**
  * Task 11aa — a structured cross-chapter assembly blocker. The cross-chapter
@@ -199,6 +211,7 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
         // so the compiler port can evict the exact implicated cached packs and feed
         // avoid-context to the re-draft (empty when no blocker is cross-chapter).
         blockers: structureAssemblyBlockers(blockers),
+        blockedCheckIds: [...new Set(blockers.map((finding) => finding.checkId))],
       };
     }
     const candidateFiles: CandidateInputFile[] = [];

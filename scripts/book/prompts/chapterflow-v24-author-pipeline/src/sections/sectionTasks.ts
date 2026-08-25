@@ -457,8 +457,31 @@ function anchorInventoryAppendix(
  */
 function assemblyAvoidSection(avoids: readonly SectionAvoidEntry[] = []): string {
   if (avoids.length === 0) return "";
-  const lines = avoids.map((avoid) => `- ${avoid.message}`).join("\n");
+  const lines = avoids.map((avoid) => `- ${avoid.message}${assemblyAvoidEscalation(avoid)}`).join("\n");
   return `\n\nCROSS-CHAPTER ASSEMBLY CONFLICT — a prior draft of this section collided with other chapters when the book was assembled. The section gate cannot see these in isolation; resolve every line and change nothing else:\n${lines}\n`;
+}
+
+/**
+ * The REGENERATION-livelock escalation. A first-round ban renders "" here, so
+ * every task card that existed before this change stays byte-identical.
+ *
+ * The canary run showed the failure this exists for: the polite one-line ban
+ * ("… — rewrite this tier's connective prose") was issued, the section WAS
+ * re-drafted, and the writer re-minted the identical phrase. A ban that has
+ * already failed N times is not made truer by repeating it, so from round 2 the
+ * card stops describing the collision and starts naming the mechanical
+ * constraint: the exact token sequence, the gate that rejects it, how many
+ * re-drafts already re-used it, and the chapters that are ALLOWED to keep it (the
+ * gate permits the phrase to exist — just not in this chapter too).
+ */
+function assemblyAvoidEscalation(avoid: SectionAvoidEntry): string {
+  const rounds = avoid.rounds ?? 1;
+  if (rounds <= 1) return "";
+  const kept = avoid.keptByChapters.length > 0
+    ? avoid.keptByChapters.map((chapterNumber) => `ch${String(chapterNumber).padStart(2, "0")}`).join(", ")
+    : "other chapters";
+  const priorDrafts = rounds - 1;
+  return `\n  ESCALATED — ${priorDrafts} earlier re-draft${priorDrafts === 1 ? "" : "s"} of this section re-used this wording, so the book still cannot assemble. Gate ${avoid.checkId} rejects it. The banned token sequence is exactly: "${avoid.phrase}". Those words must not appear in this section in that order — delete the sentence that carries them and make its point another way; do not paraphrase around the edges and leave the sequence intact. ${kept} keep this wording and are allowed to; this chapter is the one that must give it up.`;
 }
 
 /**

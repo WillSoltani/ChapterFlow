@@ -1826,15 +1826,20 @@ function crossChapterExampleLiteralNgramFindings(fields: ExampleLiteralFieldOccu
     }
     if (!hits.length) continue;
     hits.sort((a, b) => b.chapters.length - a.chapters.length);
-    const sample = hits.slice(0, 5).map((hit) => `"${hit.phrase}" (Ch${hit.chapters.join(",")})`).join("; ");
+    // One finding PER phrase (cap 5) — sibling of the SEC83 emit below; see that
+    // comment for why single-stamp left a zero-eviction residual.
+    for (const hit of hits.slice(0, 5)) {
     findings.push({
       checkId: "SEC89.example_cross_chapter_literal_ngram",
       severity: "blocker",
       chapterNumber: field.chapterNumber,
       section: "example-pack",
       path: field.path,
-      message: `${field.path} contains ${hits.length} verbatim 5-token phrase(s) that also appear in at least ${AS10_MIN_OTHER_CHAPTERS} other chapter(s). Top: ${sample}. Rewrite this example field from this chapter's source material.`,
+      message: `${field.path} contains a verbatim 5-token phrase that also appears in ${hit.chapters.length} other chapter(s): "${hit.phrase}" (Ch${hit.chapters.join(",")}). Rewrite this example field from this chapter's source material.`,
+      // Task 11ae — STAMPED so the assembly evictor can converge this gate.
+      signature: `exampleNgram:${hit.phrase}`,
     });
+    }
   }
   return findings;
 }
@@ -1864,15 +1869,40 @@ function crossChapterSummaryLiteralNgramFindings(fields: SummaryLiteralFieldOccu
     }
     if (!hits.length) continue;
     hits.sort((a, b) => b.chapters.length - a.chapters.length);
-    const sample = hits.slice(0, 5).map((hit) => `"${hit.phrase}" (Ch${hit.chapters.join(",")})`).join("; ");
+    // ONE FINDING PER PHRASE, not one per field stamped with the widest hit.
+    // Adversarial review demonstrated the single-stamp residual: different
+    // chapters can each stamp a DIFFERENT phrase as their own widest, so no
+    // phrase's eviction group ever contains the full set of chapters that carry
+    // it — keep-earliest sees every group at or under the keep count, plans
+    // ZERO evictions, and the wedge survives with the round bound never
+    // engaging. Emitting each colliding phrase as its own finding gives the
+    // planner the complete per-phrase chapter set. Capped at 5 phrases per
+    // field: the re-draft rewrites the whole tier, so the top collisions are
+    // what convergence needs, and the cap bounds log noise on a saturated tier.
+    for (const hit of hits.slice(0, 5)) {
     findings.push({
       checkId: "SEC83.summary_cross_chapter_ngram",
       severity: "blocker",
       chapterNumber: field.chapterNumber,
       section: "summary-pack",
       path: field.path,
-      message: `${field.path} contains ${hits.length} verbatim 5-token phrase(s) that also appear in at least ${AS10_MIN_OTHER_CHAPTERS} other chapter(s). Top: ${sample}. Rewrite this summary tier from this chapter's source material before deterministic QC AS10.`,
+      message: `${field.path} contains a verbatim 5-token phrase that also appears in ${hit.chapters.length} other chapter(s): "${hit.phrase}" (Ch${hit.chapters.join(",")}). Rewrite this summary tier from this chapter's source material before deterministic QC AS10.`,
+      // Task 11ae — STAMPED. Unstamped, this gate was the third state the 11ae
+      // registry comment says must not exist: neither evicted nor documented-exempt.
+      // structureAssemblyBlockers dropped every finding, planAssemblyEvictions saw
+      // [], the implicated summary packs were never evicted, and the next compile
+      // run reused them from the 11y cache and re-failed byte-identically — the
+      // permanent wedge the canary run hit for 13 consecutive rounds.
+      //
+      // The firing rule DOES reduce to a static keep-earliest-N: a field is reported
+      // only when the window also appears in >= AS10_MIN_OTHER_CHAPTERS OTHER
+      // chapters, so at most AS10_MIN_OTHER_CHAPTERS chapters may keep the phrase.
+      // The registry pins maxKeptChapters to exactly that (see
+      // CROSS_CHAPTER_EVICTION_POLICIES), which is why this gate can be stamped
+      // where the batch-relative SEC95 cannot.
+      signature: `summaryNgram:${hit.phrase}`,
     });
+    }
   }
   return findings;
 }
