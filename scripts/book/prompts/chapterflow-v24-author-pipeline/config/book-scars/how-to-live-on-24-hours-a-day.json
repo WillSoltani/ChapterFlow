@@ -1,5 +1,10 @@
 {
+  "$schema": "./book-scars.schema.json",
+  "_comment": "Seeded 2026-08-26 from the live review-repair residue after six rounds (12->4->6->4->6->3 blockers): ch07 units contradicting the chapter's own grow-the-span rule, and a ch13 card substituting an invented cause for the stated one.",
   "bookId": "how-to-live-on-24-hours-a-day",
+  "phrases": [],
+  "frames": [],
+  "notes": [],
   "prohibitions": [
     "GRADUALISM CONSISTENCY (panel blockers, ch07): Bennett's rule is that the daily attention span must be GROWN gradually — demanding the full duration on day one is the failure mode the chapter teaches against. Every example, quiz key, and card must agree: no character succeeds by holding the full span immediately, and no endorsed answer instructs sustaining attention for an entire session when the prose prescribes starting small. State the rule once and never contradict it in any unit.",
     "STATED CAUSES ONLY (panel blocker, ch13): a unit may attribute an outcome only to the cause the prose actually states. If the prose ties household withdrawal of support to the prig's ongoing manner, no card may re-attribute it to 'a single missed evening' or any other invented trigger. When compressing for a card, compress the stated cause — never substitute a sharper-sounding one."
