@@ -88,6 +88,17 @@ requiredTest("unscoped book finding blocks before run or model", async (context)
   assert.equal(run.ok, false);
 });
 
+requiredTest("a blocker with SPACE-separated chapter references scopes to each named chapter (live PLANSPEC location shape)", async (context) => {
+  // Live refusal this pins: location "examples[].planSpec.domain — ch02.ex03/ex05,
+  // ch04.ex01/ex03" matched ZERO chapters — ", ch04" puts a space before the id,
+  // and the comma-only boundary fix (#501) did not admit it. The single-chapter
+  // fixture must match via the "ch01" mention despite space/dash separators.
+  const subject = rig(context, { location: "examples[].planSpec.domain — ch01.ex03/ex05, ch99.ex01" });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.ok(subject.counts.repair > 0, "the repair must run for the space-referenced chapter");
+});
+
 requiredTest("a blocker naming SEVERAL chapters is scoped to each named chapter, not refused (comma boundary)", async (context) => {
   // Live wedge this pins: CM0.content_machinery_monoculture located itself as
   // "ch01,ch02,ch03,ch04" and the comma-less boundary class matched ZERO
