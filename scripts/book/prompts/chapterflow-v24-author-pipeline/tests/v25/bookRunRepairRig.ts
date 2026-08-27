@@ -373,7 +373,7 @@ export async function buildBookRunHarness(
     if (created.value.status === "COMPLETED") {
       const durable = await candidates.open({ bookId: book, selector: { kind: "CANDIDATE", candidateId: request.successorCandidateId } });
       if (!durable.ok) return { ok: false as const, error: { code: "REVIEW_REPAIR_COMPLETED_MISMATCH", message: "successor missing" } };
-      return { ok: true as const, value: { successor: durable.value, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
+      return { ok: true as const, value: { successor: durable.value, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: true } };
     }
     if (created.value.status === "CANCEL_REQUESTED" || created.value.status === "CANCELLED") {
       return { ok: false as const, error: { code: "REVIEW_REPAIR_CANCELLED", message: "review-repair run is cancelled" } };
@@ -393,7 +393,7 @@ export async function buildBookRunHarness(
       return { ok: false as const, error: { code: options.repairFails, message: "scripted repair failure" } };
     }
     const existing = successors.get(request.successorCandidateId);
-    if (existing) return { ok: true as const, value: { successor: existing, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
+    if (existing) return { ok: true as const, value: { successor: existing, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: true } };
     const repairedChapter: ChapterV21 = {
       ...chapter,
       hook: `${chapter.hook} (repaired for ${request.successorCandidateId})`,
@@ -411,7 +411,7 @@ export async function buildBookRunHarness(
     successors.set(request.successorCandidateId, staged);
     const finished = await runStore.finishRun({ bookId: book, runId: request.repairRunId, status: "COMPLETED", finishedAt: context.clock.now() });
     assert.equal(finished.ok, true, JSON.stringify(finished));
-    return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [1] } };
+    return { ok: true as const, value: { successor: staged, failedReviewId: request.failedReviewId, targetChapterNumbers: [1], replayed: false } };
   };
 
   // ── fresh-QC FAIL lane fake ──────────────────────────────────────────────

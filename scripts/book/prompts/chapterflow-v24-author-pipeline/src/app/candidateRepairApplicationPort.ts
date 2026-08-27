@@ -113,6 +113,14 @@ export interface ReviewRepairApplicationResult {
   /** Echoed provenance: the FAIL verdict this successor answers. */
   readonly failedReviewId: ReviewId;
   readonly targetChapterNumbers: readonly number[];
+  /** True when this result was re-read from a COMPLETED durable run with ZERO
+   *  new model calls. The caller's spend cap exists to bound model spend, so a
+   *  replay must not consume it: a resumed book-run replays every completed
+   *  ordinal before reaching fresh work, and counting those replays let the cap
+   *  exhaust on free work and refuse the run a 7th ordinal forever (live: the
+   *  Franklin S-tier resume replayed ordinals 1-6, hit 6/6, and died without
+   *  ever executing anything new). */
+  readonly replayed: boolean;
 }
 
 export interface ReviewRepairAuthorization {
@@ -1291,6 +1299,8 @@ export class CandidateRepairApplicationPort {
         successor: successor.value,
         failedReviewId: request.failedReviewId,
         targetChapterNumbers: [...targetChapterNumbers],
+        // Re-read from the durable run: ZERO new model calls (see interface note).
+        replayed: true,
       },
     };
   }
@@ -1478,6 +1488,7 @@ export class CandidateRepairApplicationPort {
         successor: successor.value,
         failedReviewId: request.failedReviewId,
         targetChapterNumbers: authorized.value.targetChapterNumbers,
+        replayed: false,
       },
     };
   }

@@ -1703,6 +1703,16 @@ export class BookRunApplicationService {
         );
         return repairedCandidate;
       }
+      if (repairedCandidate.value.replayed) {
+        // A replay re-read a COMPLETED ordinal with zero model calls. The spend
+        // cap bounds MODEL SPEND, so replays are free: counting them let a
+        // resumed run exhaust its cap replaying ordinals 1..cap and die without
+        // ever executing fresh work (live: the Franklin S-tier resume replayed
+        // 6/6 and never reached ordinal 7). The ordinal walk still advances, so
+        // the loop cannot spin on one replayed ordinal, and fresh executions
+        // still consume the cap exactly as before.
+        reviewRepairRounds -= 1;
+      }
       candidate = repairedCandidate.value.successor;
       const repairCompleted = await this.#event(
         runId,
