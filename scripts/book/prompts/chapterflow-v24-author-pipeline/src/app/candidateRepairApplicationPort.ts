@@ -235,8 +235,11 @@ function matchedChapters(issue: QcIssue, chapters: readonly ChapterEntry[]): rea
     // finding that precisely named every chapter it applied to was refused as
     // "does not name exactly one chapter". Naming N chapters scopes the finding
     // to N chapters; it is the ZERO-match case that is genuinely unscoped.
-    const chapterId = new RegExp(`(^|[,/#:])${escaped(chapter.chapterId)}([.,/#:]|$)`);
-    const chapterNumber = new RegExp(`(^|[,/#:])ch0*${chapter.number}([.,/#:]|$)`, "i");
+    // Whitespace is a legal boundary too (live: "… — ch02.ex03/ex05, ch04.ex01/ex03"
+    // matched ZERO chapters because ", ch04" puts a SPACE before the id and the
+    // #501 comma fix only admitted the comma itself).
+    const chapterId = new RegExp(`(^|[\\s,/#:])${escaped(chapter.chapterId)}([.,/#:\\s]|$)`);
+    const chapterNumber = new RegExp(`(^|[\\s,/#:])ch0*${chapter.number}([.,/#:\\s]|$)`, "i");
     return chapterId.test(location) || chapterNumber.test(location);
   });
   return matches.map((entry) => entry.chapter.number);
