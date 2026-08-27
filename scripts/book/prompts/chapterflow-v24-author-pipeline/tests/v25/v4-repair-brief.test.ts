@@ -24,6 +24,7 @@
 import assert from "node:assert/strict";
 
 import {
+  REPAIR_BRIEF_BLOCKER_MAX_CHARS,
   REPAIR_BRIEF_ITEM_MAX_CHARS,
   REPAIR_BRIEF_MAX_CHARS,
   buildRepairBrief,
@@ -165,6 +166,106 @@ requiredTest("the brief stays inside its recorded budget and says what it droppe
   assert.ok(long.length <= REPAIR_BRIEF_MAX_CHARS, `clamped brief length ${long.length}`);
   assert.match(long, /…\[truncated\]/, long);
   assert.equal(long.includes("x".repeat(REPAIR_BRIEF_ITEM_MAX_CHARS + 1)), false, "per-item clamp must bite");
+});
+
+/**
+ * CLASS 1 — a big-but-legitimate finding set must not be handed to the model as an
+ * unbounded mandate.
+ *
+ * LIVE EVIDENCE (run book-run-910febe1). QC round
+ * qc-29d119c59544a5d991c71c7c9fec04bb returned 96 blockers over four chapters —
+ * ch01 13, ch02 29, ch03 35, ch04 19 — in five classes: 68 B5, 21 SC11.2, 4 BP15,
+ * 2 A14, 1 BP24. The blocker section of the brief had no bound at all (only the
+ * advisory tail did), so ch03's mandate ran to roughly 5.5k characters. ch03 is
+ * the chapter whose repair attempt failed in BOTH `repair-r2` and `repair-r3`
+ * (`gateway=FAILED;process=EXITED;exit=0;stdoutBytes=1979` and `…=8559`, against
+ * ~49k on the chapters that succeeded), and each failure killed the whole repair
+ * run with `model output failed source-controlled schema validation`. The model's
+ * raw output is not persisted, so what happened INSIDE the model is not asserted
+ * here; what is asserted is the property the brief must have either way.
+ */
+const LIVE_ROUND_CLASSES: ReadonlyArray<readonly [string, number]> = [
+  ["B5", 68],
+  ["SC11.2.anchor_specific_not_present", 21],
+  ["BP15.quiz_strawman_distractor", 4],
+  ["A14", 2],
+  ["BP24.cross_tier_breakdown_verbatim", 1],
+];
+
+function liveRoundBlockers(): QcIssue[] {
+  const out: QcIssue[] = [];
+  for (const [code, count] of LIVE_ROUND_CLASSES) {
+    for (let index = 0; index < count; index += 1) {
+      out.push({
+        code,
+        severity: "BLOCKER",
+        message: `${code} at unit ${index}: em dash present (use commas, periods, parens, or colons instead)`,
+        location: `ch03/unit-${index}`,
+      });
+    }
+  }
+  return out;
+}
+
+requiredTest("CLASS 1: a 96-blocker round produces a BOUNDED mandate that still names every defect class", () => {
+  const blockers = liveRoundBlockers();
+  assert.equal(blockers.length, 96, "fixture must reproduce the live round's blocker count");
+
+  const brief = buildRepairBrief({ chapterNumber: 3, blockers, advisories: [factorScores()] });
+
+  // The mandate is bounded. The budget governs the blocker LINES (the part that
+  // scales with the finding count); the section header and the omission notice are
+  // fixed overhead and are excluded, exactly as REPAIR_BRIEF_MAX_CHARS reserves
+  // room for its own notice.
+  const mandate = brief.slice(brief.indexOf("## MANDATORY FIXES"), brief.indexOf("## READER-PANEL"));
+  const blockerLines = mandate.split("\n").filter((line) => line.startsWith("- ["));
+  const spent = blockerLines.reduce((total, line) => total + line.length + 1, 0);
+  assert.ok(
+    spent <= REPAIR_BRIEF_BLOCKER_MAX_CHARS,
+    `blocker lines must respect the ${REPAIR_BRIEF_BLOCKER_MAX_CHARS}-char budget; got ${spent}`,
+  );
+  assert.ok(blockerLines.length < blockers.length, `the bound must actually bite; listed ${blockerLines.length}/${blockers.length}`);
+
+  // ...and never at the cost of a whole defect class. A plain top-N would have
+  // spent the budget on B5 repeats and never shown BP24 at all.
+  for (const [code] of LIVE_ROUND_CLASSES) {
+    assert.ok(mandate.includes(`[${code}]`), `every distinct blocker CODE must survive the bound; missing ${code}\n${mandate}`);
+  }
+
+  // Truncation is never silent about scale: the full count leads, and the omitted
+  // remainder is counted AND named by class so the writer knows more exist.
+  assert.match(brief, /MANDATORY FIXES — BLOCKERS \(96\)/, brief);
+  assert.match(brief, /further blocker\(s\) of the classes above are not listed individually/, brief);
+  assert.match(brief, /\d+ B5/, brief);
+  assert.match(brief, /treat each one as an EXAMPLE OF ITS CLASS/, brief);
+
+  // Nothing is claimed to be fixed that is not: the omitted blockers are stated to
+  // still block, so the writer cannot read the bound as permission.
+  assert.match(brief, /They are real and still block\./, brief);
+});
+
+requiredTest("CLASS 1: a small blocker set is listed in full and says nothing about omissions", () => {
+  // The bound must be invisible on the ordinary case — ch01 of the same live round
+  // (13 blockers) is well inside budget and must read exactly as it did before.
+  const blockers = liveRoundBlockers().slice(0, 13);
+  const brief = buildRepairBrief({ chapterNumber: 1, blockers, advisories: [] });
+  assert.match(brief, /MANDATORY FIXES — BLOCKERS \(13\)/, brief);
+  assert.match(brief, /Every blocker below MUST be fixed\./, brief);
+  assert.doesNotMatch(brief, /not listed individually/, brief);
+  for (const blocker of blockers) assert.ok(brief.includes(blocker.message.slice(0, 40)), brief);
+});
+
+requiredTest("CLASS 1: the bounded blocker list keeps the caller's provenance order", () => {
+  // The coverage pass reorders internally; the rendered list must not. The caller
+  // owns provenance order, this module owns framing.
+  const blockers = liveRoundBlockers();
+  const brief = buildRepairBrief({ chapterNumber: 3, blockers, advisories: [] });
+  const mandate = brief.slice(brief.indexOf("## MANDATORY FIXES"));
+  const positions = blockers
+    .map((blocker) => mandate.indexOf(`(${blocker.location}) ${blocker.message}`))
+    .filter((index) => index >= 0);
+  assert.ok(positions.length >= LIVE_ROUND_CLASSES.length, `expected at least one line per class, got ${positions.length}`);
+  assert.deepEqual([...positions].sort((a, b) => a - b), positions, "rendered blockers must stay in provenance order");
 });
 
 requiredTest("a floor-only failure with no advisory at all admits the silence instead of inventing a task", () => {

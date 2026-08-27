@@ -19,6 +19,7 @@ import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
 import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
+import { checkNoEmDash } from "../src/critics/register.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 import { blueprintPath, sectionPath, sourcePacketPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
@@ -861,6 +862,77 @@ test("v23 section gate blocks source-grounding boilerplate in reader learning fi
     findings.some((f) => f.checkId === "SEC92.hard_banned_phrase" && /source-grounding|Concrete settings|failure mode appears|correctness spine/i.test(f.message)),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
+});
+
+// ── SEC123 — the compile-side mirror of ship-gate B5 (em dash) ────────────────
+// The live Franklin QC round qc-29d119c59544a5d991c71c7c9fec04bb carried 68 B5
+// blockers out of 96: the ship gate hard-bans the em dash on every reader-facing
+// field and, before SEC123, no compile-side check looked for one. Every blocker in
+// that class was therefore discovered a whole QC round after the compiler had
+// already passed the content.
+
+test("SEC123 blocks an em dash in reader-facing summary, example, learning and action fields", () => {
+  const fx = compileFixture();
+
+  const badSummary = cloneSummary(fx.summary);
+  badSummary.keyTakeaway = `Pay the balance before the snapshot — the report cannot show what is already gone.`;
+  const summaryFindings = validateSectionPack(badSummary, fx.blueprint, fx.packet)
+    .filter((f) => f.checkId === "SEC123.reader_em_dash");
+  assert.equal(summaryFindings.length, 1, JSON.stringify(summaryFindings));
+  assert.equal(summaryFindings[0].severity, "blocker");
+  assert.equal(summaryFindings[0].path, "/keyTakeaway");
+
+  const badExamples = cloneExamples(fx.examples);
+  badExamples.examples[0].scenario = `${badExamples.examples[0].scenario} She paused — then paid.`;
+  assert.ok(
+    validateSectionPack(badExamples, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC123.reader_em_dash" && f.path === "/examples/0/scenario"),
+  );
+
+  const badLearning = cloneLearning(fx.learning);
+  badLearning.cards.cards[0].back = `${badLearning.cards.cards[0].back} The signal — not the intent — is what the lender reads.`;
+  assert.ok(
+    validateSectionPack(badLearning, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC123.reader_em_dash" && f.path === "/cards/cards/0/back"),
+  );
+
+  const badAction = cloneAction(fx.action);
+  badAction.implementationPlan.weeklyPractice = `${badAction.implementationPlan.weeklyPractice} Check it weekly — same day each week.`;
+  assert.ok(
+    validateSectionPack(badAction, fx.blueprint, fx.packet)
+      .some((f) => f.checkId === "SEC123.reader_em_dash" && f.path === "/implementationPlan/weeklyPractice"),
+  );
+});
+
+test("SEC123 fires on exactly the character ship-gate B5 fires on, and on no other dash", () => {
+  const fx = compileFixture();
+  const withEmDash = cloneSummary(fx.summary);
+  withEmDash.keyTakeaway = "Pay the reported balance before the snapshot — nothing later can undo it.";
+  const withHyphenAndEnDash = cloneSummary(fx.summary);
+  withHyphenAndEnDash.keyTakeaway = "Pay the reported balance before the snapshot - and in the 2019–2024 window it still holds.";
+
+  // Both sides read the same primitive, so this is the drift guard: if B5's notion of
+  // an em dash ever changes, SEC123's must change with it or this pair breaks.
+  assert.equal(checkNoEmDash(withEmDash.keyTakeaway).length, 1);
+  assert.equal(checkNoEmDash(withHyphenAndEnDash.keyTakeaway).length, 0);
+  assert.equal(
+    validateSectionPack(withEmDash, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC123.reader_em_dash").length,
+    1,
+  );
+  assert.equal(
+    validateSectionPack(withHyphenAndEnDash, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC123.reader_em_dash").length,
+    0,
+    "a hyphen and an en dash are legal; SEC123 must not exceed the ship gate it mirrors",
+  );
+});
+
+test("the clean compile fixture carries no em dash, so SEC123 adds no blocker to conformant packs", () => {
+  const fx = compileFixture();
+  for (const pack of [fx.summary, fx.examples, fx.learning, fx.action]) {
+    const findings = validateSectionPack(pack as never, fx.blueprint, fx.packet)
+      .filter((f) => f.checkId === "SEC123.reader_em_dash");
+    assert.deepEqual(findings, [], JSON.stringify(findings));
+  }
 });
 
 test("v23 section gate blocks source-note numbering in reader-facing fields", () => {

@@ -19,12 +19,18 @@ import { checkSentenceSanity } from "../critics/integrity.js";
 import { checkReadingLevel, checkBreakdownReadingEase } from "../critics/readingLevel.js";
 import { fleschReadingEase } from "../metrics/rubricMetrics.js";
 import { loadBannedPhrases } from "../critics/shared.js";
-import { checkBannedPhrases } from "../critics/register.js";
+import { checkBannedPhrases, checkNoEmDash } from "../critics/register.js";
 import { longestCommonRunWords, sidecarSourceText } from "../critics/authoringContract.js";
 import { GLOBAL_RESERVED_SOURCE_FIGURE_NAMES, protectedSourceNames, sourceNameActorPattern } from "../compiler/sourceNames.js";
 import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
-import { memorableLineScore } from "../optimizers/memorableLines.js";
+import {
+  harvestMemorableCandidates,
+  memorableLineScore,
+  selectMemorableCandidates,
+  type MemorableCandidate,
+  type MemorableTier,
+} from "../optimizers/memorableLines.js";
 import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
 import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, standaloneProseText, type ChapterProseSource } from "./chapterProse.js";
 import {
@@ -345,15 +351,6 @@ export function validateAnchorResolution(
   return problems;
 }
 
-
-function scoredMemorableSentences(value: unknown): Array<{ text: string; score: number }> {
-  return text(value)
-    .replace(/\s+/g, " ")
-    .split(/(?<=[.!?])\s+/)
-    .map((s) => s.trim())
-    .map((sentence) => ({ text: sentence, score: memorableLineScore(sentence) }))
-    .filter((candidate) => candidate.score > 0);
-}
 
 function sourceFactIdsFromAnchors(blueprint: ChapterBlueprintV1): Set<string> {
   return new Set([...blueprint.constraints.allowedFactIds, ...blueprint.constraints.allowedCaseIds]);
@@ -1187,6 +1184,51 @@ function hardBannedPhraseFindings(pack: SectionPackV1, bp: ChapterBlueprintV1): 
         section: field.section,
         path: field.path,
         message: finding.message,
+      });
+    }
+  }
+  return findings;
+}
+
+/**
+ * SEC123 — WRITE-TIME MIRROR OF THE SHIP GATE'S EM-DASH BAN (B5).
+ *
+ * B5 (critics/finalGate.ts → critics/register.ts checkNoEmDash) hard-bans the em
+ * dash on every reader-facing ChapterV21 field, and nothing at compile time said
+ * so: the section-writer task card carried no em-dash rule and no section gate
+ * looked for one. The live Franklin run is the whole argument — the fresh
+ * compiler candidate (run 467de279) carried U+2014 in every chapter
+ * (9/35/35/24 across ch01-ch04) and the QC round grading THAT compiler output
+ * (qc-467de279d30bf8f08756a7f41886c3c5) returned 66 B5 blockers — all
+ * discovered at SHIP time on content the compiler had already passed. (The
+ * later 96-blocker round, qc-29d119c5…, graded a much-repaired successor; its
+ * 68 B5 hits show repair rounds re-minting the dash too, but the compiler
+ * evidence is the 467de279 round.)
+ *
+ * This is a MIRROR, not a new bar: it calls the SAME `checkNoEmDash` B5 calls, so
+ * the two cannot drift, and it reads the SAME reader-field enumeration
+ * (`collectSoftBannedTextFields`) the other reader-punctuation checks use — whose
+ * surfaces are exactly B5's section-pack-visible ones (hook/counterintuition, the
+ * three tiers, keyTakeaway, tryThisNow, example title/scenario/whatToDo/
+ * whyItMatters, quiz prompt/choices/explanation, card front/back, coreSkill,
+ * twentyFourHourChallenge, weeklyPractice, ifThenPlans[].plan). It deliberately
+ * adds no field B5 does not check: a compile blocker on a field ship permits would
+ * be the same write/ship disagreement pointing the other way.
+ *
+ * Blocker, because B5 is a blocker. Catching it here costs a bounded section retry
+ * with the exact blocker pasted back; catching it at B5 costs a whole QC round.
+ */
+function emDashMirrorFindings(fields: SoftBannedTextOccurrence[]): SectionFinding[] {
+  const findings: SectionFinding[] = [];
+  for (const field of fields) {
+    for (const f of checkNoEmDash(field.text)) {
+      findings.push({
+        checkId: "SEC123.reader_em_dash",
+        severity: "blocker",
+        chapterNumber: field.chapterNumber,
+        section: field.section,
+        path: field.path,
+        message: `${field.path} ${f.message}; the ship gate B5 hard-bans the em dash on every reader-facing field, so it must not be written here. Evidence: ${JSON.stringify(f.evidence ?? "")}`,
       });
     }
   }
@@ -2204,7 +2246,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   }
   const tiers = ["fastRead", "deepRead", "fullRead"] as const;
   const mins = { fastRead: 350, deepRead: 1000, fullRead: 2400 } as const;
-  const memorableCandidates: Array<{ text: string; score: number; tier: typeof tiers[number]; ids: unknown }> = [];
+  const memorableCandidates: MemorableCandidate[] = [];
   for (const tier of tiers) {
     const value = text(pack.breakdown?.[tier]);
     if (value.length < mins[tier]) push("SEC6.breakdown_length", "blocker", `${tier} too short (${value.length})`, `/breakdown/${tier}`);
@@ -2214,8 +2256,14 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorResolution(pack.breakdown?.sourceAnchorIds?.[tier], anchors, `breakdown.sourceAnchorIds.${tier}`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorHardSpecifics(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", value, `breakdown.${tier}`)) push("SEC14.summary_anchor_specifics", "blocker", p, `/breakdown/${tier}`);
-    memorableCandidates.push(...scoredMemorableSentences(value).map((candidate) => ({ ...candidate, tier, ids: pack.breakdown?.sourceAnchorIds?.[tier] })));
   }
+  // ONE harvest shared with the assembler (optimizers/memorableLines.ts). The gate
+  // used to build its own candidate list here; two copies of "which sentences are
+  // candidates" was half of the write/ship memorable-line split.
+  memorableCandidates.push(...harvestMemorableCandidates(
+    pack.breakdown as Partial<Record<MemorableTier, unknown>> | undefined,
+    (tier) => pack.breakdown?.sourceAnchorIds?.[tier],
+  ));
   // Whole-breakdown Flesch reading-ease floor: the ASSEMBLED breakdown (all
   // three tiers concatenated) must clear the rubric band, not just each tier
   // alone. Blocker, same as the per-tier SEC12 reading-level check.
@@ -2228,7 +2276,6 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     const perTier = tierEases.map(({ tier, ease }) => `${tier} ${ease.toFixed(1)}`).join(", ");
     push("SEC12.summary_readability", "blocker", `${f.message} Per-tier ease: ${perTier}; lift ${lowest.tier} first.`, "/breakdown");
   }
-  const usedMemorableKeys = new Set<string>();
   // Grounding-aware selection (Finding 21): SEC16 validates the top-3 harvested
   // candidates, but harvest order was pure aphorism score — blind to grounding.
   // A prettier UNgroundable sentence could outscore a lower-scoring one carrying
@@ -2241,18 +2288,18 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   // on the selected set, so when NO candidate is groundable the sort collapses to
   // pure score and SEC16 blocks exactly as before. A vacuously-passing (specifics-
   // poor) tier makes every candidate groundable, so the preference is a no-op there.
+  //
+  // THE SELECTION ITSELF now lives in optimizers/memorableLines.ts and the ASSEMBLER
+  // calls it with this same predicate (assembleSections.ts). Before that, the gate
+  // ranked grounding-first here while the assembler ranked by pure score in its own
+  // copy, so SEC16 validated a top-3 the book never shipped: on the live Franklin
+  // ch03 compiler candidate SEC16 saw 3/3 groundable and passed with zero blockers
+  // while the shipped memorableLines carried an ungroundable line that ship-time
+  // SC11.2 blocked. One selection function is what makes "passes SEC16" and "passes
+  // SC11.2" statements about the same sentences.
   const memorableGroundable = (candidate: { text: string; ids: unknown }): boolean =>
     validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any").length === 0;
-  const selectedMemorable = memorableCandidates
-    .map((candidate) => ({ ...candidate, groundable: memorableGroundable(candidate) }))
-    .sort((a, b) => (a.groundable === b.groundable ? b.score - a.score : a.groundable ? -1 : 1))
-    .filter((candidate) => {
-      const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-      if (usedMemorableKeys.has(key)) return false;
-      usedMemorableKeys.add(key);
-      return true;
-    })
-    .slice(0, 3);
+  const selectedMemorable = selectMemorableCandidates(memorableCandidates, memorableGroundable);
   if (selectedMemorable.length < 3) {
     push("SEC17.summary_memorable_candidate_count", "blocker", `breakdown yields only ${selectedMemorable.length}/3 acceptable deterministic memorable-line candidates; seed standalone aphoristic sentences`, "/breakdown");
   }
@@ -2920,6 +2967,7 @@ export function validateSectionPack(
     ...sourcePasteFindings(pack, bp, packet, selectedSidecar),
     ...hardBannedPhraseFindings(pack, bp),
     ...readerPunctuationFindings(readerFields),
+    ...emDashMirrorFindings(readerFields),
     ...readerSentenceSeamFindings(readerFields),
     ...sourceNumberingLeakFindings(readerFields),
     ...sourceLabelLeakFindings(readerFields, packet),
