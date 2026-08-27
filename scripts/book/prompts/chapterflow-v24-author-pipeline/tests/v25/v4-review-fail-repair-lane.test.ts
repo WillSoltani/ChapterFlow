@@ -342,27 +342,37 @@ requiredTest("the review-repair loop is BOUNDED: the cap is enforced and the run
   );
 });
 
-requiredTest("a resume mid review-repair is idempotent: no double repair, no second successor", async (context: TestContext) => {
+requiredTest("a resume mid review-repair is idempotent: replayed ordinals mint no second successor and cost nothing; fresh work continues past them", async (context: TestContext) => {
   const book = "review-repair-resume";
-  // The first run repairs once and then the panel FAILs the successor too, so the
-  // run dies with a durable round-1 successor on disk. The resume must reuse it.
+  // First run exhausts the spend cap on FRESH rounds whose re-reviews all FAIL,
+  // leaving durable COMPLETED ordinals on disk. The resume must (a) replay each
+  // of those with the SAME successor identity and zero new panel reads for the
+  // replayed rounds, and (b) — since replays are free of the spend cap, the fix
+  // the live Franklin resume needed — continue into FRESH ordinals beyond them.
+  // The old form of this pin asserted the resume makes ZERO new panel calls in
+  // total; that encoded the replay-consumes-cap bug in which a capped-out run
+  // could never advance again.
   const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "FAIL", "FAIL"]);
 
   const first = await h.service.run({ ...h.request });
   assert.equal(first.ok, false);
   const roundsFirst = h.repairCalls().length;
-  const reviewsFirst = h.reviewCalls();
   assert.equal(roundsFirst, MAX_REVIEW_REPAIR_ROUNDS);
+  const idsFirst = new Set(h.repairCalls().map((request) => request.successorCandidateId));
+  assert.equal(idsFirst.size, MAX_REVIEW_REPAIR_ROUNDS);
 
   const resumed = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
   assert.equal(resumed.ok, false, JSON.stringify(resumed));
   if (resumed.ok) throw new Error("the resume must not invent a pass");
   assert.equal(resumed.error.code, "BOOK_RUN_REVIEW_FAILED");
-  assert.equal(h.reviewCalls(), reviewsFirst, "a resume must replay stored reviews with ZERO new panel calls");
-  // The resume re-drives the SAME repair-round identities (idempotent reconcile),
-  // never a fresh successor id per round.
-  const ids = new Set(h.repairCalls().map((request) => request.successorCandidateId));
-  assert.equal(ids.size, MAX_REVIEW_REPAIR_ROUNDS, "a resumed round must reuse its successor candidate id");
+  // No REPLAYED round minted a new successor id: every id from the first run
+  // appears exactly once more (the replay), reusing the identity.
+  const allIds = h.repairCalls().map((request) => request.successorCandidateId);
+  for (const id of idsFirst) {
+    assert.equal(allIds.filter((candidate) => candidate === id).length, 2, `replayed ordinal reuses its successor id exactly (${id})`);
+  }
+  // Fresh work CONTINUED past the replays — the point of the replay-free cap.
+  assert.ok(h.repairCalls().length > roundsFirst * 2 - 1, "the resume reaches fresh ordinals beyond the replays");
 });
 
 requiredTest("a failing review-repair surfaces its own error and never masks the panel verdict", async (context: TestContext) => {
@@ -502,6 +512,42 @@ requiredTest("the review-repair cap honours CHAPTERFLOW_REVIEW_REPAIR_ROUNDS and
     assert.throws(() => resolveReviewRepairRounds(), /must be 1-10/, "zero would disable the lane silently");
     process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = "99";
     assert.throws(() => resolveReviewRepairRounds(), /must be 1-10/, "a typo must not burn panels indefinitely");
+  } finally {
+    if (saved === undefined) delete process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
+    else process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = saved;
+  }
+});
+
+requiredTest("replayed COMPLETED ordinals do not consume the spend cap: a resume reaches fresh work past the cap-count", async (context: TestContext) => {
+  // LIVE WEDGE this pins: the Franklin S-tier resume replayed COMPLETED
+  // ordinals 1..6 (zero model calls), the per-invocation spend counter hit the
+  // cap of 6 on FREE work, and the run died without ever executing a 7th
+  // ordinal. The cap bounds MODEL SPEND; replays are free.
+  const book = "review-repair-replay-free";
+  const h = await buildBookRunHarness(context, book, ["FAIL", "FAIL", "FAIL", "PASS"], {});
+  const saved = process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
+  try {
+    process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = "2";
+    // First run: two FRESH repair rounds execute and their re-reviews FAIL, so
+    // the run dies at the cap with ordinals 1-2 COMPLETED and durable.
+    const first = await h.service.run({ ...h.request });
+    assert.equal(first.ok, false);
+    if (first.ok) throw new Error("unreachable");
+    assert.match(first.error.message, /review-repair round/);
+    const freshCallsAfterFirst = h.repairCalls().length;
+    assert.ok(freshCallsAfterFirst >= 2, `two fresh rounds executed: ${freshCallsAfterFirst}`);
+
+    // Resume: ordinals 1-2 REPLAY (free), then a THIRD fresh round must execute
+    // within the same cap of 2 — pre-fix the replays consumed the cap and the
+    // run died here without any fresh work.
+    const resumed = await h.service.run({ ...h.request, resumeRunId: h.bookRunId, reconcileUnsettled: true });
+    const callsAfterResume = h.repairCalls().length;
+    assert.ok(
+      callsAfterResume > freshCallsAfterFirst,
+      `the resume must reach FRESH work past the replayed ordinals (calls ${freshCallsAfterFirst} -> ${callsAfterResume})`,
+    );
+    // With the third round's re-review scripted PASS, the resumed run completes.
+    assert.equal(resumed.ok, true, resumed.ok ? "" : `${resumed.error.code}:${resumed.error.message}`);
   } finally {
     if (saved === undefined) delete process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS;
     else process.env.CHAPTERFLOW_REVIEW_REPAIR_ROUNDS = saved;

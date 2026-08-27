@@ -1,0 +1,2211 @@
+{
+  "schemaVersion": "chapterflow-production-manifest-sidecar-v1",
+  "bookId": "the-autobiography-of-benjamin-franklin",
+  "packageId": "the-autobiography-of-benjamin-franklin-v21-1787599497007",
+  "createdAt": "2026-08-24T19:24:57.007Z",
+  "manifest": {
+    "schemaVersion": "chapterflow-production-manifest-v2",
+    "contentId": "sha256:c47b53afdca181fc80fa8440c5ade8eee29a97dff50d8a3ea086ae38852c3eeb",
+    "payloadHash": "sha256:c47b53afdca181fc80fa8440c5ade8eee29a97dff50d8a3ea086ae38852c3eeb",
+    "payload": {
+      "schemaVersion": "chapterflow-production-manifest-payload-v2",
+      "bookId": "the-autobiography-of-benjamin-franklin",
+      "packageSchemaVersion": "chapterflow-v21-authored",
+      "book": {
+        "title": "The Autobiography of Benjamin Franklin",
+        "author": "Benjamin Franklin",
+        "categories": [
+          "Memoir",
+          "Classics",
+          "Self-Help"
+        ],
+        "tags": [
+          "habit formation",
+          "virtue",
+          "self-improvement",
+          "civic projects",
+          "American history",
+          "writing"
+        ],
+        "contentOwner": "chapterflow"
+      },
+      "candidateChapterSet": {
+        "source": "candidate",
+        "candidateId": "repair-candidate-467de279d30bf8f08756a7f41886c3c5",
+        "manifestDigest": "6b6de2d96b64fa84fea65bbd3614a2d11eb4e274beee29a3eb6164b89d48a5d0",
+        "semanticHash": "sha256:b1287dc60a47d86d56068a2261b2811b70bd7b0827aa1a502d705946166c5ab7",
+        "chapters": [
+          {
+            "chapterId": "the-autobiography-of-benjamin-franklin-ch01",
+            "chapterNumber": 1,
+            "chapterTitle": "Part One"
+          },
+          {
+            "chapterId": "the-autobiography-of-benjamin-franklin-ch02",
+            "chapterNumber": 2,
+            "chapterTitle": "Part Two"
+          },
+          {
+            "chapterId": "the-autobiography-of-benjamin-franklin-ch03",
+            "chapterNumber": 3,
+            "chapterTitle": "Part Three"
+          },
+          {
+            "chapterId": "the-autobiography-of-benjamin-franklin-ch04",
+            "chapterNumber": 4,
+            "chapterTitle": "Part Four"
+          }
+        ]
+      },
+      "candidateQcEvidence": {
+        "source": "v25-qc-round",
+        "reviewId": "repair-review-467de279d30bf8f08756a7f41886c3c5",
+        "qcRoundId": "repair-qc-467de279d30bf8f08756a7f41886c3c5",
+        "perChapterAttestation": "subsumed-by-round"
+      },
+      "chapters": [
+        {
+          "chapterId": "the-autobiography-of-benjamin-franklin-ch01",
+          "chapterNumber": 1,
+          "title": "Part One",
+          "readerContentHash": "sha256:71a947ac95bec7878ba5b09cb4b803cb4087458a32fb4f96bdc8efe7c714ad69",
+          "sourceEvidence": {
+            "path": "candidate:inputs/source/ch01.source.json",
+            "semanticHash": "sha256:cba6706812d9c0d9e09e4b5a193a509d804ed1238fd1ec3c9e873c8c8e8f4091",
+            "schemaVersion": "source-v2"
+          },
+          "authoringEvidence": {
+            "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch01.v21-native.chapter.json",
+            "semanticHash": "sha256:ceaefdbe7fc412baf67046b4789b6f51e0bfe7526084b037cebb93cb46398a4b",
+            "schemaVersion": "chapter-source-anchor-map-v1",
+            "sourceHash": "1928345a1418d38be4f9e8d7b2f385f62b5b09e12ab8f9a0daa99b29646a4fff"
+          },
+          "generationEvidence": null,
+          "qcAttestation": null
+        },
+        {
+          "chapterId": "the-autobiography-of-benjamin-franklin-ch02",
+          "chapterNumber": 2,
+          "title": "Part Two",
+          "readerContentHash": "sha256:0c54cb0161b55bb7f211243ab52eb661ff6e5601a453efb2d2fccf2e51e665eb",
+          "sourceEvidence": {
+            "path": "candidate:inputs/source/ch02.source.json",
+            "semanticHash": "sha256:d77b36ed623864d78cea9e441c3a24739215c12ea04562c7b2b3fec8c5e41430",
+            "schemaVersion": "source-v2"
+          },
+          "authoringEvidence": {
+            "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch02.v21-native.chapter.json",
+            "semanticHash": "sha256:0373730496bcdceb04e7c031dd62df3af8fa8f8c0ef14e6ede5af509523b97bf",
+            "schemaVersion": "chapter-source-anchor-map-v1",
+            "sourceHash": "c773c60d82b60f3d650babd583788d63e0dbb3c7b123a7b6fb42e00b6303f470"
+          },
+          "generationEvidence": null,
+          "qcAttestation": null
+        },
+        {
+          "chapterId": "the-autobiography-of-benjamin-franklin-ch03",
+          "chapterNumber": 3,
+          "title": "Part Three",
+          "readerContentHash": "sha256:959e4e9bef5e09faa7ca620fe7bdacf710e6f39a2d0c493ff42a1d8cb6d9bd1d",
+          "sourceEvidence": {
+            "path": "candidate:inputs/source/ch03.source.json",
+            "semanticHash": "sha256:9232b5e9ac178eeae524d9c2dc7888199fbd989542477384355816adb5cfcc14",
+            "schemaVersion": "source-v2"
+          },
+          "authoringEvidence": {
+            "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch03.v21-native.chapter.json",
+            "semanticHash": "sha256:a53200c40cac387771eec0491a6a83033b4fde898e842bc0c8dee796654febcc",
+            "schemaVersion": "chapter-source-anchor-map-v1",
+            "sourceHash": "2cb445d0c89903e4d04e0269e3d0bf560a42340cacc23fd45f1211d858850744"
+          },
+          "generationEvidence": null,
+          "qcAttestation": null
+        },
+        {
+          "chapterId": "the-autobiography-of-benjamin-franklin-ch04",
+          "chapterNumber": 4,
+          "title": "Part Four",
+          "readerContentHash": "sha256:4239d3092523443aaa5e50941923c23cbc19cc28d490e1d39661f408d065d12a",
+          "sourceEvidence": {
+            "path": "candidate:inputs/source/ch04.source.json",
+            "semanticHash": "sha256:eea1b1ca17686f4fa2d2f8304fbec55fe008743687e81f3cc9bc7ca460a65a17",
+            "schemaVersion": "source-v2"
+          },
+          "authoringEvidence": {
+            "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch04.v21-native.chapter.json",
+            "semanticHash": "sha256:3046f99025a16dea04ae8863505543f04c0351d9578b5f4fc538bd8b38576349",
+            "schemaVersion": "chapter-source-anchor-map-v1",
+            "sourceHash": "5187afe9371051f9676c46f8efadcd94a332a7fde5b16e5881c6011b1ff4195b"
+          },
+          "generationEvidence": null,
+          "qcAttestation": null
+        }
+      ],
+      "sourceRealityEvidence": {
+        "bookId": "the-autobiography-of-benjamin-franklin",
+        "policyResult": "not-applicable",
+        "classification": "legacy",
+        "record": null,
+        "exemption": null
+      },
+      "evidencePolicy": {
+        "sourceEvidence": "required",
+        "authoringEvidence": "required-for-source-v2",
+        "sourceReality": "required-for-source-v2",
+        "qcAttestation": "subsumed-by-v25-qc-round"
+      },
+      "versions": {
+        "canonicalJson": "canonical-json-sha256-v1",
+        "readerContentHash": "reader-content-canonical-sha256-v1",
+        "readerContentStripRules": "reader-content-strip-v3",
+        "promptBundle": {
+          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
+          "bundleHash": "sha256:7557e6788de5f7694077cb89a7c87a8efd4242a19d5a256c098052a0ef028b3f",
+          "fileCount": 49,
+          "files": [
+            {
+              "path": "agent-prompts/BOOK-AUTOPILOT-CODEX-SESSION.md",
+              "sha256": "sha256:0eecbc8465dd645f87759253609b1ba1520051870c52ba7ed27cf2e325d2fe0e"
+            },
+            {
+              "path": "agent-prompts/CRAFT-READ-RUBRIC.md",
+              "sha256": "sha256:291fa7eac4be229981c9c8e0a79e13cdb7a26014779a1ac4a826acb6fafa5b49"
+            },
+            {
+              "path": "agent-prompts/FIELD-PURPOSE-CONTRACTS.md",
+              "sha256": "sha256:855bc491550ea9da1ab8ff27f02250b6c1db816ff7e7fe6d2adeac5a56a5b022"
+            },
+            {
+              "path": "agent-prompts/GENERATE-A-BOOK-CODEX-SESSION.md",
+              "sha256": "sha256:402bd7a9e06b57eb159795c29b2361f90730d20594896de8f8f3a5242e2ef3cd"
+            },
+            {
+              "path": "agent-prompts/PLAYBOOK-GENERATE-A-BOOK.md",
+              "sha256": "sha256:bb9c1ae165f28398e3e9839847f47b3e56ec6328b1ff3782cc646eee919fa231"
+            },
+            {
+              "path": "agent-prompts/PUBLISH-AFTER-QC-CODEX-SESSION.md",
+              "sha256": "sha256:9935baa797e094d4e2007b3dfe4d330e317b82460d21c07c99dc9d3f2f0c7d1f"
+            },
+            {
+              "path": "agent-prompts/QC-AUTO-CODEX-SESSION.md",
+              "sha256": "sha256:76316778015be0fb4113c5784aa16061ad82f79d7487e1ff4046e67541391b2e"
+            },
+            {
+              "path": "agent-prompts/QC-CODEX-SESSION.md",
+              "sha256": "sha256:e1f42f0097cb1795dfd8420b9a9c63ef6c38a783426222ac5d5c4d692fa47c23"
+            },
+            {
+              "path": "agent-prompts/QC-ORCHESTRATE-CODEX-SESSION.md",
+              "sha256": "sha256:16044985f4535f91c1ad983f322f53be784afb3e25676e1692e1afdbfe443d84"
+            },
+            {
+              "path": "agent-prompts/QC-PLAYBOOK.md",
+              "sha256": "sha256:2dfeb6d744015a9eec906f848c6ab53fa015c82f8f1733979c8ef4148168b90d"
+            },
+            {
+              "path": "agent-prompts/QC-SESSION-PROMPT.md",
+              "sha256": "sha256:f7736d3916ed66f0eb558c8cd076d39a7b1be06ba5c1992015d1b8ea5cf4371f"
+            },
+            {
+              "path": "agent-prompts/REPAIR-CODEX-SESSION.md",
+              "sha256": "sha256:b0e93e248432dae3412c2486b2f094cdd57a90cd0931410541dbd4b3ffb46b47"
+            },
+            {
+              "path": "agent-prompts/RESEARCH-CODEX-SESSION.md",
+              "sha256": "sha256:23248f8e6cd416eee6f93128dd47562b045869360ae2f6d94a75c5c841fb8445"
+            },
+            {
+              "path": "agent-prompts/RUN-A-BOOK.md",
+              "sha256": "sha256:e3e18b68e4f230bda8f64b42db6c78a703f9b3033516a7f5fd4fa5882cd42d42"
+            },
+            {
+              "path": "agent-prompts/STEP-1-RESEARCH.md",
+              "sha256": "sha256:56e6b5f74f197f7dd6208cdfe8455d32d57a01097bc635d84b99e02c9789a59f"
+            },
+            {
+              "path": "agent-prompts/STEP-2-WRITE-CHAPTERS.md",
+              "sha256": "sha256:b312703dd38b64bb725d5f81de613abc3eb15df7428800186741c8cfed8b9d53"
+            },
+            {
+              "path": "agent-prompts/STEP-3-FINALIZE.md",
+              "sha256": "sha256:e0fff66309b550eaf3974fbbda9308278bd1f6bdd38fc0ff805a3568c5a01ac9"
+            },
+            {
+              "path": "agent-prompts/V22-QC-REVIEWER-CARD.md",
+              "sha256": "sha256:dbd12ebd269030f9925e508073d4aff7e14bb53edd51248545985519fbe4bf6f"
+            },
+            {
+              "path": "agent-prompts/V22-REPAIR-CARD.md",
+              "sha256": "sha256:10ebc06ada71356a8cafee27dfa025de4d4d021b031c7071b8f2d95632a27853"
+            },
+            {
+              "path": "agent-prompts/V22-SUBAGENT-CONTRACT.md",
+              "sha256": "sha256:ae92473e8560851ff736b71388b22309b0c9cf980101d55e7aa534fe17223c83"
+            },
+            {
+              "path": "agent-prompts/V22-WRITER-CARD.md",
+              "sha256": "sha256:9c5a8e74f2d4429606155dce438f0455b1caefd192097a762d6919f3358bc387"
+            },
+            {
+              "path": "agent-prompts/WRITE-ORCHESTRATE-CODEX-SESSION.md",
+              "sha256": "sha256:f98cf09062f4467bf00dadbecfe8ff35eddc8761a4e72126a98a48fcde3b959e"
+            },
+            {
+              "path": "agent-prompts/v23/ACTION-WRITER.md",
+              "sha256": "sha256:e523807953c3680cdc40a100cfaf9079ca13d1623097667167fcdd929c02efd7"
+            },
+            {
+              "path": "agent-prompts/v23/EXAMPLE-WRITER.md",
+              "sha256": "sha256:cb803f89978173772bc7c939c72981cf6108c980b0c194c5aec988772eb39c7e"
+            },
+            {
+              "path": "agent-prompts/v23/LEARNING-WRITER.md",
+              "sha256": "sha256:37b22b948d67fc69948562458564dbe8ad8ef332f8d7f7277dfc3f7ef2ef0665"
+            },
+            {
+              "path": "agent-prompts/v23/PATCH-REPAIR.md",
+              "sha256": "sha256:5dd523ca7c1bdd73f73491cccd68ba50bad75b49e1e728d9463fdd9c968af5f0"
+            },
+            {
+              "path": "agent-prompts/v23/QC-SHADOW-RISK.md",
+              "sha256": "sha256:9cc546453eca1beaf18abd3f7a90b4284def9cddca68ca25ed722755451756d2"
+            },
+            {
+              "path": "agent-prompts/v23/SOURCE-PACKET-REPAIR.md",
+              "sha256": "sha256:86ee945e046f2438d7f552e434b478e0bebdb40e62e5f3381e1e648e9873c808"
+            },
+            {
+              "path": "agent-prompts/v23/SUMMARY-WRITER.md",
+              "sha256": "sha256:3f5d0bc3fb6e589ec9200e4d448a09f419e4d4273b0057717940eff8cec9cfe9"
+            },
+            {
+              "path": "agent-prompts/v23/VOICE-PATCHER.md",
+              "sha256": "sha256:022b0dbdfa209d1478284683447b5967923b0f52c2c16e607cd2222cddc5f126"
+            },
+            {
+              "path": "prompts/PLAYBOOK-OPERATOR-CHAPTER.md",
+              "sha256": "sha256:a18da21713fc6200b57e93edf352173e2eba3c0895bb97157517b3cb111175eb"
+            },
+            {
+              "path": "prompts/PLAYBOOK-OPERATOR-FINALIZE.md",
+              "sha256": "sha256:57a5df9387c9050ee7c7d71e3a51d5ec1aaafabcba2befcd36133ed0aa2e1043"
+            },
+            {
+              "path": "prompts/PLAYBOOK-OPERATOR-RESEARCH.md",
+              "sha256": "sha256:3d6f425fe52a0c50cef493a7f1443d51485e870605117b49c6d8dd0f52f58f76"
+            },
+            {
+              "path": "prompts/categorizer.system.md",
+              "sha256": "sha256:41933513807e03e65d74c280b5df092e36c1367b51385daeb3eba5e19a3af6e6"
+            },
+            {
+              "path": "prompts/curriculum-planner.system.md",
+              "sha256": "sha256:05261ccf482ec37ace0baae12e888c9b5b11f8e8972e42d765bc591f815f4024"
+            },
+            {
+              "path": "prompts/editor-in-chief.system.md",
+              "sha256": "sha256:67ba63b421be474de54a89c495852cd9cff42d999e5504e18f217848012ecbae"
+            },
+            {
+              "path": "prompts/example-curator.system.md",
+              "sha256": "sha256:2d16a31786f06053f1741df895e77ed1d50d1c708f9c52180582e2d3e67a757c"
+            },
+            {
+              "path": "prompts/line-editor.system.md",
+              "sha256": "sha256:d1439dc2bc580eac8b0241ea690d98282f36427403cc96e2676a30b85e1d8201"
+            },
+            {
+              "path": "prompts/memorable-lines.system.md",
+              "sha256": "sha256:48595056576c72ce88119c8bb9a265e44a10b03d631d30aa10c53cdf7c4ea21f"
+            },
+            {
+              "path": "prompts/researcher-bibliography.system.md",
+              "sha256": "sha256:328eefbdacc9fd850c5b719bdf988bac9b4a83fee495278e0cc5f78a7158234a"
+            },
+            {
+              "path": "prompts/researcher-chapter.system.md",
+              "sha256": "sha256:8aad55272dad8fb307e5c9e7b7b40eaefbc761f4dabc08655ec2e09b13925baa"
+            },
+            {
+              "path": "prompts/try-this-now.system.md",
+              "sha256": "sha256:4b7d13d9fab2d0654f9322be84a3f4ace991175ad1bd78fa7882413626451297"
+            },
+            {
+              "path": "prompts/voice-pass.system.md",
+              "sha256": "sha256:56c13f66af94f8e19ce8e015faf1bdb584f636530b7d4f70caced5aa4f5c598e"
+            },
+            {
+              "path": "prompts/writer-breakdown.system.md",
+              "sha256": "sha256:e86ccaf11a18f00bd6fa575438aaedb6ecddb2ca41bf4b686605a455c3758ea4"
+            },
+            {
+              "path": "prompts/writer-cards.system.md",
+              "sha256": "sha256:c48ae94c864d33c778ef56d2fa5adb26d1297f7c160c7ac4b68fd7abc1c38bc3"
+            },
+            {
+              "path": "prompts/writer-example.system.md",
+              "sha256": "sha256:5aacc8cfa8c8ef4ca498b41fc1ff12b57b19c25a49657fe40e3060db90f007bb"
+            },
+            {
+              "path": "prompts/writer-hook.system.md",
+              "sha256": "sha256:619df582466e54f06e911bc747cd82eb6eb2fc13d73d3236352b74997b717026"
+            },
+            {
+              "path": "prompts/writer-implementation-plan.system.md",
+              "sha256": "sha256:c13ae2eb8364fff7b26feb6c78a2a48881d1cdb769044f366fb7c313d271b74f"
+            },
+            {
+              "path": "prompts/writer-quiz.system.md",
+              "sha256": "sha256:8c79405b27d78bc212c06961f3e7da36e37558a3d445442d400b87c1284f9515"
+            }
+          ]
+        },
+        "configBundle": {
+          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
+          "bundleHash": "sha256:1dd88c43c32b185e4c6b8d7cb84aadbb1338ce15662bbb743cc818b3512a6140",
+          "fileCount": 24,
+          "files": [
+            {
+              "path": "config/author-voice-profiles.json",
+              "sha256": "sha256:ad50ef88d74c6045746a587477307704d8611fa7b80ebe48c0371237764a1c1b"
+            },
+            {
+              "path": "config/banned-connectives.json",
+              "sha256": "sha256:1e83ec50dd880d8915fa14792b057f1e2eea6e847672d496b2e6737b3f4b5949"
+            },
+            {
+              "path": "config/banned-phrases.json",
+              "sha256": "sha256:da0f78a478360c9d3c7d0a2a6f8b90508c7191896471c8b3fd560f4aa30d2849"
+            },
+            {
+              "path": "config/book-scars/as-a-man-thinketh.json",
+              "sha256": "sha256:385c25fea65c91fb6462151b0c3989d4c96ff8a7a383d19590ab031b1c9356a3"
+            },
+            {
+              "path": "config/book-scars/the-autobiography-of-benjamin-franklin.json",
+              "sha256": "sha256:e66eaeaa7a6155dfed4c82b45e2983d00304a2749be4f78be2deff097c830b31"
+            },
+            {
+              "path": "config/book-scars/the-intelligent-investor.json",
+              "sha256": "sha256:549a10bf359543bb22118e9b83163815517c5b538d99536f49b581c570ca2a2e"
+            },
+            {
+              "path": "config/book-scars/the-power-of-moments.json",
+              "sha256": "sha256:5fe00a5a4ca4ad5e0296935bbb50ba32cadddacf2ee42d8e6db6d95d7b424a9c"
+            },
+            {
+              "path": "config/categories.json",
+              "sha256": "sha256:1df0501dea9183377984bcc9e204f7388f3fa684f7466626fc0e3126b1756c3f"
+            },
+            {
+              "path": "config/common-given-names.json",
+              "sha256": "sha256:61728f8bc4b137cd996096149ae18900911ca556df7c1a3f94a51e2fd31e378d"
+            },
+            {
+              "path": "config/critic-rubric.json",
+              "sha256": "sha256:e08085eb19f450338aa678a6db89e73a23f3a553b75542d9f5bd38a9c956627a"
+            },
+            {
+              "path": "config/finding-routing.json",
+              "sha256": "sha256:c3e9485d9e594a369ddd9c99ff934fa31b02cf1f27d649672ca92762e3b98223"
+            },
+            {
+              "path": "config/genre-pools.json",
+              "sha256": "sha256:57778fba26f8147e37be6a0d5c6b56ef8e41bef601fdcadaaba951d7902dda61"
+            },
+            {
+              "path": "config/meta-patterns.json",
+              "sha256": "sha256:471ea739c0f47b673a14fd7ac26d0d9a7e135472ee0e9c3ec0e3e9a8cf1ec6ea"
+            },
+            {
+              "path": "config/model-routing.json",
+              "sha256": "sha256:dc7dddd97333c8c8ba4929c1e59d35ee4f8ff9a6f39270266100bb09bcdcf55f"
+            },
+            {
+              "path": "config/name-bank.json",
+              "sha256": "sha256:23d8ea9ff61c3e44ec3fb6543aab24110eea5cf50b2e1de93ff06a42b0d7ff5a"
+            },
+            {
+              "path": "config/name-policy.json",
+              "sha256": "sha256:7107daf8d1084b04255351f136e0b7d750d72f4d7a4ab76257e3488b06f5ef86"
+            },
+            {
+              "path": "config/named-frameworks.json",
+              "sha256": "sha256:cc0da18fb0f04774f0be93067c67d69baefcc60a49dac4817d0d3e33c3758aae"
+            },
+            {
+              "path": "config/pedagogy-palettes.json",
+              "sha256": "sha256:f7ceccf85d7f1dd49fe35c13c7c0a4ee721c17a0b09e4c641319797100f65d58"
+            },
+            {
+              "path": "config/rubric-thresholds.json",
+              "sha256": "sha256:313b20033ec8b6d39d1344ac4ae25f2f86f1fe8e589d7564ec9d70a4442875cf"
+            },
+            {
+              "path": "config/scenario-openers.json",
+              "sha256": "sha256:ed7fe8f62aa0c32242baa8bf82416a9f26d5b33d4a67c17be45e48144da9eb82"
+            },
+            {
+              "path": "config/scene-mechanisms.json",
+              "sha256": "sha256:6ffbcf6098d1ab96b67317fd617903f08f609e00b0ceea6c494a588a2205f878"
+            },
+            {
+              "path": "config/scene-shapes.json",
+              "sha256": "sha256:07efd36415fd4b64761fcee5c06ef637d1041d2a5eda7b7d80ed28c982d8ada6"
+            },
+            {
+              "path": "config/stakes-palette.json",
+              "sha256": "sha256:92d60229937b530c73773c90daea8ec2ad12fdbd9bfd25631a6df220e22f088b"
+            },
+            {
+              "path": "config/venue-palette.json",
+              "sha256": "sha256:8ba041c9d34f93f821519a0cbdab73aedc308866d49241f16c02556f527415f8"
+            }
+          ]
+        },
+        "codeFingerprint": {
+          "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
+          "bundleHash": "sha256:5054b7df9bb1ec24074868dd99e0abde0c93c2c6c47c5535b82da6a596c2d41b",
+          "fileCount": 431,
+          "files": [
+            {
+              "path": "package-lock.json",
+              "sha256": "sha256:7e3efbcfc43a8b792903a88d1ed58b18487444145d99224f7f66c89fdadb2a1c"
+            },
+            {
+              "path": "package.json",
+              "sha256": "sha256:81a1d20ef78d5dff6997bcf365d3cf5c703e1d01c32141defad71617adb7ae4e"
+            },
+            {
+              "path": "src/agents/autoCategorize.ts",
+              "sha256": "sha256:e26617adef8064d4ef9e652e2cd0983447f9be498f7cb8613c65a8fd56121d06"
+            },
+            {
+              "path": "src/agents/categorizer.ts",
+              "sha256": "sha256:41719efd608ec795dd908ba81004f5b31a5391ec894e3f44d7a0c57642af8a9e"
+            },
+            {
+              "path": "src/agents/curriculum-planner.ts",
+              "sha256": "sha256:080c57597c1e4aaa0a3f0356087a8601104a3b1611afee41e0d5e3c59bbfa4d5"
+            },
+            {
+              "path": "src/agents/editor-in-chief.ts",
+              "sha256": "sha256:ec70cdad0f16728db7ca31d852331ccd5ab445b43bcb4136ad15cd17f9318104"
+            },
+            {
+              "path": "src/agents/line-editor.ts",
+              "sha256": "sha256:aded01a07cfea88c255aec86f96d3610e38d8eb1980fb0d2ade78d4363532849"
+            },
+            {
+              "path": "src/agents/memorable-lines.ts",
+              "sha256": "sha256:404c55402efed7c917629ee3551d7c10070ff219e50e553e4878c07e15eaf797"
+            },
+            {
+              "path": "src/agents/researcher-bibliography.ts",
+              "sha256": "sha256:998ae4e9d65b4b1961b374ddca8e1388e6da31d2414ba1684dee8ab103f36f64"
+            },
+            {
+              "path": "src/agents/researcher-chapter.ts",
+              "sha256": "sha256:573ee4f736c5fc41a6f3a58fec43bae26a535c694fd4d598ddaeff5c681d2f66"
+            },
+            {
+              "path": "src/agents/try-this-now.ts",
+              "sha256": "sha256:b933b8a14f8501eda1598731fc68a666556111e1b866ffa3e68cede8e6e6495a"
+            },
+            {
+              "path": "src/agents/voice-pass.ts",
+              "sha256": "sha256:a9d65fb5e00543e980c39a198ceffe60bd658a33db173219f1b47282eaa947c1"
+            },
+            {
+              "path": "src/agents/writer-breakdown.ts",
+              "sha256": "sha256:cfa85f4b49cdb58ef26e0f7bed523135385c0fe6d9e6e18aa194f60a2606a528"
+            },
+            {
+              "path": "src/agents/writer-cards.ts",
+              "sha256": "sha256:72d13231ebbf49865660370f0b3b48e13261d1dca61c2f7fcc13c633832dc12c"
+            },
+            {
+              "path": "src/agents/writer-example.ts",
+              "sha256": "sha256:a600ddf10ddb9a8ec445a7009e369e928a4c0051a8ed1aca410949f4322c85a1"
+            },
+            {
+              "path": "src/agents/writer-hook.ts",
+              "sha256": "sha256:382cc3778a04a2095f50f1a33469f4c93020ae2f7dd91f4c154e44ba7c08189d"
+            },
+            {
+              "path": "src/agents/writer-implementation-plan.ts",
+              "sha256": "sha256:0ad75904bdd62ad16c9b87c878411d33d5b3fb7e272d7e38b5956059dd2a56d3"
+            },
+            {
+              "path": "src/agents/writer-quiz.ts",
+              "sha256": "sha256:bed1ba4e88dfd7830aa4a1b3fde8be655856ca009d372409595c57032706d3df"
+            },
+            {
+              "path": "src/app/bookRunApplicationService.ts",
+              "sha256": "sha256:d137047963510605765ad7a8e87032eb44355bf471bf256818fe1928d481b1e6"
+            },
+            {
+              "path": "src/app/bookRunComposition.ts",
+              "sha256": "sha256:9dd2bdd1662f99363692e4f45dec12264f3c98072a6bf470bebce1a566cc1a66"
+            },
+            {
+              "path": "src/app/candidateQcEvaluator.ts",
+              "sha256": "sha256:12ee750149edcf8a64e811014cca7fcfadd8b6c17502a98c9bc901c660c53617"
+            },
+            {
+              "path": "src/app/candidateRepairApplicationPort.ts",
+              "sha256": "sha256:d3ae90a36fbede56434ea904c5a8d75003780ca1077270be4f9d8b38663f7d9f"
+            },
+            {
+              "path": "src/app/candidateRepairBrief.ts",
+              "sha256": "sha256:d7cb2f37257d23cb2b93cf322e17ab422d4a9a53427a15561158f8728efa434b"
+            },
+            {
+              "path": "src/app/compilerApplicationPort.ts",
+              "sha256": "sha256:996774c330e6a6ba467056f874ed17cabd9b9a6758af666dd30c102ac4a13397"
+            },
+            {
+              "path": "src/app/contentRepairWorkflow.ts",
+              "sha256": "sha256:4daaaa0c627b077a020e3d13bbef30d07e898e95483c0f75fda0ffd022ea491f"
+            },
+            {
+              "path": "src/app/createChapterFlowApp.ts",
+              "sha256": "sha256:4a5d0c7a22bbc1c5a4fcf612102773cf12099165a82ac1827a9c3a3e12da35a1"
+            },
+            {
+              "path": "src/app/finalQualification.ts",
+              "sha256": "sha256:bd0a14e6bd81c3da1a80c9e6841b4f1c84d39ecf0cb7f8d80e4e8b54a1973f6c"
+            },
+            {
+              "path": "src/app/modelGatewayReviewEvaluator.ts",
+              "sha256": "sha256:5a9ac5990a611d7f2e38c3088512f2ecd6f7c6cc42471fddab992fde0d24b7d7"
+            },
+            {
+              "path": "src/app/modelTaskRunner.ts",
+              "sha256": "sha256:14e53afbe2cdbd31fc6e5ca0ace4ef764904a0fda66bb79ab3f166372fa4a429"
+            },
+            {
+              "path": "src/app/operationsBaseline.ts",
+              "sha256": "sha256:e0ba04ba13af62d15c5fc1b62f61d215e23e365738aea60f2a0560f850ac5398"
+            },
+            {
+              "path": "src/app/pipeline.ts",
+              "sha256": "sha256:5254cca40cec0728fb5128d19b57ec66070270a5e423f0e0830316d0c4fba161"
+            },
+            {
+              "path": "src/app/researchCandidateApplicationPort.ts",
+              "sha256": "sha256:60630e6bb13b2d8b6d4f64b106c754dd0e07ad000370d4d90d83734d5c48d7bb"
+            },
+            {
+              "path": "src/app/semanticPanelReviewEvaluator.ts",
+              "sha256": "sha256:080fcc7cb668d1668d6d83e375750ad9df04f88a5044139645d82fb668848ac2"
+            },
+            {
+              "path": "src/artifacts/artifactStore.ts",
+              "sha256": "sha256:e4d0f48b47f0d175ee9b9fdcc1318013afe9a09a050dab29b4e6cb92b6342965"
+            },
+            {
+              "path": "src/artifacts/artifactTypes.ts",
+              "sha256": "sha256:55c5e50eaaabe353f15442528e9c9cfe4a0cbbf88b2b0b2c28287579f83cab74"
+            },
+            {
+              "path": "src/assembler.ts",
+              "sha256": "sha256:1a0a2820067b584ea42d11cd21854db978ed7383b24b3eca2f9cc3a3f7871f06"
+            },
+            {
+              "path": "src/bakeoff/candidates.ts",
+              "sha256": "sha256:d0c280ab733d124f6708ac3a7b2ad5d295730ccca78a7b88e38ac25d85483e1b"
+            },
+            {
+              "path": "src/bakeoff/cli.ts",
+              "sha256": "sha256:b92526191fed5f410923e923a8a600543c1cf75d9a7d2a5452825ec75633acf7"
+            },
+            {
+              "path": "src/bakeoff/freeze.ts",
+              "sha256": "sha256:00ed8530d7ccd0b612363a43984807ff6098126ff7c962ebd9ff2bd6ead2573c"
+            },
+            {
+              "path": "src/bakeoff/intake.ts",
+              "sha256": "sha256:f7b85dbe95cb72b3123ba9049ebfa53b9a2a030daa175447486d7bfdf45400e4"
+            },
+            {
+              "path": "src/bakeoff/migration/cli.ts",
+              "sha256": "sha256:e51bf977d80c5529efee75a1281f12f9920952327f5b0929ea5101a9aafc06ea"
+            },
+            {
+              "path": "src/bakeoff/migration/corpusBuilderCore.ts",
+              "sha256": "sha256:1d87f45e380414394857b2c6c1c4a7975c8e6a48e91f73eb335062ca30dcea51"
+            },
+            {
+              "path": "src/bakeoff/migration/experimentTypes.ts",
+              "sha256": "sha256:344e3435ad2d88d29d337475720ecd5563648c2cf72ebbbe84b6020a89d7dc97"
+            },
+            {
+              "path": "src/bakeoff/migration/guards.ts",
+              "sha256": "sha256:1c6f8733a9ef9a3af3e6d5a2a1e9e500b64f52b040d6673299a506eab674bb83"
+            },
+            {
+              "path": "src/bakeoff/migration/layerNRetrospective.ts",
+              "sha256": "sha256:5df6b0d78623112e4fb4bbfcd0535205a7530bad5295624e3c4c09b471ea4684"
+            },
+            {
+              "path": "src/bakeoff/migration/metrics.ts",
+              "sha256": "sha256:b4a95d1e607e1e2421873eb3ba0256a84fe7d704f23f25562ef4a3d8730c2752"
+            },
+            {
+              "path": "src/bakeoff/migration/nativeReviewQualification.ts",
+              "sha256": "sha256:0fc6318dcb3da92aeac658ecfa8687c2965bfa07cde790cf97b5e4414f4a7530"
+            },
+            {
+              "path": "src/bakeoff/migration/nativeReviewRunner.ts",
+              "sha256": "sha256:c3fdb0e77c6dfcd7e8a4d73f41f6df5d0039beaa72d27b6a1169821fecda1319"
+            },
+            {
+              "path": "src/bakeoff/migration/nativeReviewSeal.ts",
+              "sha256": "sha256:d6144670f7047009c74c7061f0fb26e3abf96f88bf6e3f5dd29f5151e0b1876c"
+            },
+            {
+              "path": "src/bakeoff/migration/nativeReviewTypes.ts",
+              "sha256": "sha256:da65b3ce6379d7f1ee17af6d81f1026b9cbbb10d765229dd09034b0034f462b4"
+            },
+            {
+              "path": "src/bakeoff/migration/prng.ts",
+              "sha256": "sha256:6e3d8878481bf47b0dc4eb7ef4291303e6708e523fa735abc532c6a967fa40db"
+            },
+            {
+              "path": "src/bakeoff/migration/qualification.ts",
+              "sha256": "sha256:606cd1fa05b902a9ef2d57e97f7115997e8ddf948e1e931db6c617a917b4e6d0"
+            },
+            {
+              "path": "src/bakeoff/migration/quizCorpusBuilder.ts",
+              "sha256": "sha256:6e6edf1e228f0e4cd3d82dd39c97e013a811a3b6ec26e0c7b6ee8f28c3232bef"
+            },
+            {
+              "path": "src/bakeoff/migration/readerCorpusBuilder.ts",
+              "sha256": "sha256:1a1e81444e5d4b030a0a2e7b0b35e3cc8beda5d0304003a709fc2b9a51ccb05a"
+            },
+            {
+              "path": "src/bakeoff/migration/recoveryExperiment.ts",
+              "sha256": "sha256:d6543b65194732e4bf825ff33a4d3d607aae35d5330cb835fbbf55d0afdb17e4"
+            },
+            {
+              "path": "src/bakeoff/migration/reviewLaneTypes.ts",
+              "sha256": "sha256:dc38fc95644183f47d6115eec05966c7e2d8ca90cb7d2a500d2edbd855784bf3"
+            },
+            {
+              "path": "src/bakeoff/migration/reviewRunner.ts",
+              "sha256": "sha256:c463f9ffa54f870c18eac9b7ef8aed321741607fec7588ad9f962246cf9e04fb"
+            },
+            {
+              "path": "src/bakeoff/migration/reviewerRoleAssignment.ts",
+              "sha256": "sha256:7c9ea54bdad592021cb3ea62efdd9c716b874e92210a91e86d4530253b65f250"
+            },
+            {
+              "path": "src/bakeoff/migration/roleQualification.ts",
+              "sha256": "sha256:74e94f2997a1266324b97413e53af0a8427279e64a86e9d75e290220db3caae6"
+            },
+            {
+              "path": "src/bakeoff/migration/roleQualificationRunner.ts",
+              "sha256": "sha256:f127afa1ba2d6d539d8430b8ddc889ac7b51913641668aaf8269d1e875b91d22"
+            },
+            {
+              "path": "src/bakeoff/migration/runExperiment.ts",
+              "sha256": "sha256:5f56a8b0f978980c2f1b52471d1b9cbe8f81c20cf72a0ad4adfdc2560fee9556"
+            },
+            {
+              "path": "src/bakeoff/migration/sampleRunner.ts",
+              "sha256": "sha256:3e217ef638e58d22bea7b7697c7ff94057e1c64c679d72b005acb24739d3c3b2"
+            },
+            {
+              "path": "src/bakeoff/migration/schedule.ts",
+              "sha256": "sha256:2d557fae9dbb33c0e80678dfceeda306d600cda11d7b812651557e407a167a2d"
+            },
+            {
+              "path": "src/bakeoff/migration/sourceCorpusBuilder.ts",
+              "sha256": "sha256:65d1c8f649f7d9d9dcba5159b19ce303184f5c76a3352873755617f9131a205a"
+            },
+            {
+              "path": "src/bakeoff/migration/spec.ts",
+              "sha256": "sha256:1ca8d50e72e97406234123f332675530af757e645471241bba704240c1ad755f"
+            },
+            {
+              "path": "src/bakeoff/migration/stageQv2.ts",
+              "sha256": "sha256:06432e9d1a5e5e3e16bccb472dafe2bf19a6b5294e0fb173b5868067258887e8"
+            },
+            {
+              "path": "src/bakeoff/migration/stageQv3.ts",
+              "sha256": "sha256:49a65f65e140a6fbc04d4b74d7f254b51144c80aaacd6cf2d6417374f4dd1a88"
+            },
+            {
+              "path": "src/bakeoff/migration/stats.ts",
+              "sha256": "sha256:dda908bae7afbc80acb4edf3bfcfb18b4b44803fd8540dddce8ca367e075ac68"
+            },
+            {
+              "path": "src/bakeoff/migration/thresholds.ts",
+              "sha256": "sha256:e4c10c7bac7bcccc60c822368491deb920e66a865f53f9d98d35af54aaacef63"
+            },
+            {
+              "path": "src/bakeoff/paths.ts",
+              "sha256": "sha256:39a67318366b20ead0724dda66e9f790313ad3e054304042a9a94ff44abb8cea"
+            },
+            {
+              "path": "src/bakeoff/promotion.ts",
+              "sha256": "sha256:7fd5250fb890bf59f94b427764c3c35cba10b316f835f3674c48bb9bb1935b91"
+            },
+            {
+              "path": "src/bakeoff/report.ts",
+              "sha256": "sha256:4112cfb3c67173d4e309300350ca5debb6edd9eac156b709ed45adbf9a9a41c2"
+            },
+            {
+              "path": "src/bakeoff/review.ts",
+              "sha256": "sha256:02f9e1213881bbe773952bd4f478ec256d78a3b2e736e2f5b39e2b47b857bb1f"
+            },
+            {
+              "path": "src/bakeoff/runBakeoff.ts",
+              "sha256": "sha256:45ab818236560e2b483431dec847e2c6e3cf8a42fb366f64f694f47b66a32f01"
+            },
+            {
+              "path": "src/bakeoff/selection.ts",
+              "sha256": "sha256:cd5d67305947bd13f17ff205ebca0b603cca47c39b62b029e0a753acf82083ef"
+            },
+            {
+              "path": "src/bakeoff/types.ts",
+              "sha256": "sha256:3daff20838bb3157afdaff5daac91bc101947098b7d444fbeebce792085a64df"
+            },
+            {
+              "path": "src/books/atomicBookFiles.ts",
+              "sha256": "sha256:8850ef364b6b000598898a4ff56d09a208b377b335ef74e1b90c7ee5ee125c15"
+            },
+            {
+              "path": "src/books/bookContentReader.ts",
+              "sha256": "sha256:3f1cf5a5c19d5f6e5bb1021c424a70a409fb958a5037054bde333298c38ddbd6"
+            },
+            {
+              "path": "src/books/bookLease.ts",
+              "sha256": "sha256:a0da30e7315ac8ebcbba13ca94769d162eebe3c8f83a580e8d4ea8783c13d9e4"
+            },
+            {
+              "path": "src/books/bookPaths.ts",
+              "sha256": "sha256:1d4eaca6c2756497fe1bbbcb6ba43c93a5bfb791f81e4f6278d74404ea933182"
+            },
+            {
+              "path": "src/books/candidateDigest.ts",
+              "sha256": "sha256:1de5e98b2e5779f5de66b27d4c104fcde9dc609eea447c0b02ddfc2feeb37e6b"
+            },
+            {
+              "path": "src/books/candidateStore.ts",
+              "sha256": "sha256:d072549f18ccb1e77b34107e164b0e129a9df86bdb2899337ba6659243083db9"
+            },
+            {
+              "path": "src/books/candidateTypes.ts",
+              "sha256": "sha256:a7000757293166b32c09eb87bd1453baff78157e74afc3b83963f04114642198"
+            },
+            {
+              "path": "src/books/currentPointer.ts",
+              "sha256": "sha256:36477f0dac2ffc839ed4041e58e7bb5252a9d0dfe918ee0126f0a5d0ad1888c8"
+            },
+            {
+              "path": "src/books/leaseTypes.ts",
+              "sha256": "sha256:915dc2697b1ccd9446a10ca0680fd6ade0fb0769c9956b62d2ce294ef0d368fe"
+            },
+            {
+              "path": "src/books/legacyCompilerAdapter.ts",
+              "sha256": "sha256:78a9690dfbdf881124ba4d1601a21d97d72027d5559c79400923a5271b0595d5"
+            },
+            {
+              "path": "src/books/legacyLibrarianStateAdapter.ts",
+              "sha256": "sha256:7553dcd2175ef69f94364e92390aa8c3c22eea8f85e2f80bac7c43c0e7b9aa0f"
+            },
+            {
+              "path": "src/books/sectionAvoidStore.ts",
+              "sha256": "sha256:be31ada34a0a4bea08b11f16724e44482164e8c2d67acf50506894f21ff6d551"
+            },
+            {
+              "path": "src/books/sectionPackCache.ts",
+              "sha256": "sha256:9fad9ac9435ced13346a3f3d66345a24c878818f4b7bb32e735be0dbe46b5fb1"
+            },
+            {
+              "path": "src/cache/stageCache.ts",
+              "sha256": "sha256:fc655ae2df40e5aec46b867f068f677195547f7f254cace247bcfb4d4b6bfe65"
+            },
+            {
+              "path": "src/claudeClient.ts",
+              "sha256": "sha256:8af10f7da2eeb37c37fdb142510a508ad0aad749aa909c9cef2107373f6d6982"
+            },
+            {
+              "path": "src/cli.ts",
+              "sha256": "sha256:3155dc7184c7e52f37841fcbf89a198758e192a2ec7a99b6a67746c45307a2f8"
+            },
+            {
+              "path": "src/commands/commandRegistry.ts",
+              "sha256": "sha256:c55a66322cb11feabe592770f737b96107170e042119a3486ee31ef92be5b10f"
+            },
+            {
+              "path": "src/commands/commandSpec.ts",
+              "sha256": "sha256:ee41e5d8e82f8d7da563ab034351bfdc3fc38bece3f3dcd5a4b6d843df4ec0ad"
+            },
+            {
+              "path": "src/compiler/blueprintGate.ts",
+              "sha256": "sha256:fd43748c5adc31ab69b7fff1e97bc409ee6ac9dd5781fc8c9c10abfa435c357c"
+            },
+            {
+              "path": "src/compiler/bookDesign.ts",
+              "sha256": "sha256:6257b1564325391c66f239223b4fd41b622588a04187500a406e3d7d856cf2d4"
+            },
+            {
+              "path": "src/compiler/briefRotation.ts",
+              "sha256": "sha256:ca115e99e7c784d2d94289fb823409c8d1e23fafd2240ab29e497399c50c8d46"
+            },
+            {
+              "path": "src/compiler/chapterBlueprint.ts",
+              "sha256": "sha256:30b5f2fa6a62041e29916d00c0bae29135f44528061ca02a7e1095c1f683332b"
+            },
+            {
+              "path": "src/compiler/chapterBrief.ts",
+              "sha256": "sha256:96afeca232264da4b9326480fccffb65117d1129e5386e31ac45d8b5a4a47906"
+            },
+            {
+              "path": "src/compiler/contentDeviceDeal.ts",
+              "sha256": "sha256:e06ef622a39e09fbe52a600da7282db9d1648ac8d43fccb8dbef904f4aab41f4"
+            },
+            {
+              "path": "src/compiler/sourceNames.ts",
+              "sha256": "sha256:e3879560fe27d595fe4b6638348d043e3ee6203f6d013c5fbbd833dde4d487dd"
+            },
+            {
+              "path": "src/compiler/sourcePacket.ts",
+              "sha256": "sha256:2a02c5e91b957808f1ba8024b1c35493dad9c86f28cfd3cd10ae175caa66d57f"
+            },
+            {
+              "path": "src/compiler/sourcePacketFacts.ts",
+              "sha256": "sha256:58de3b4c7b954b41a9cb030b22550bc366fc868d9808769ddabb8ce7e1ef142b"
+            },
+            {
+              "path": "src/compiler/sourcePacketGate.ts",
+              "sha256": "sha256:246c54c2fce8113ccc429526ad278bf271712770856ff730d18e70eeb0b2c284"
+            },
+            {
+              "path": "src/compiler/sourcePacketProjection.ts",
+              "sha256": "sha256:064cef9a9216e1f5d0f138afcf31d85ad714220213c8d26aa9dc0134f1813334"
+            },
+            {
+              "path": "src/compiler/sourceUsePlanCompiler.ts",
+              "sha256": "sha256:b9488cdaa164f6d899f0841eb6f49e2454c127fd3aa5b79fac75c1f8d727b9c1"
+            },
+            {
+              "path": "src/contracts/aggregateChapterReview.ts",
+              "sha256": "sha256:f3472b243422802625059f7f01f29c3e0b546ba4454da4dc29e5fb11c3024afb"
+            },
+            {
+              "path": "src/contracts/attemptEvidence.ts",
+              "sha256": "sha256:d847c11ecd2b29d7a0c7e2d59c542bff85850844e21e5fdf8826155c3bc0eb3a"
+            },
+            {
+              "path": "src/contracts/candidateTransaction.ts",
+              "sha256": "sha256:1eaec0c5cf1360555b852ba9ae11bc74053fa933337d952104d6bfee22b7eadf"
+            },
+            {
+              "path": "src/contracts/contractUtil.ts",
+              "sha256": "sha256:3a54a40dfb1c03c626a2fa53c2b4cd63dcc712294deac3d960fd312022fb5a9b"
+            },
+            {
+              "path": "src/contracts/effectiveContext.ts",
+              "sha256": "sha256:6838eace2ee1c998b86d24af98ceea969c22dee7f4ec0a5c4615f8a03ccf13bd"
+            },
+            {
+              "path": "src/contracts/executionProfile.ts",
+              "sha256": "sha256:942e15444c907359afca3167ecc8337932c35a41190b7ba587446c8d6d851d29"
+            },
+            {
+              "path": "src/contracts/generateManifest.ts",
+              "sha256": "sha256:a9e24c6a9d48381499353556fcad83604090e7b65164ad36fbde6902af12103e"
+            },
+            {
+              "path": "src/contracts/index.ts",
+              "sha256": "sha256:8eb5200d3ad6326874df421a03f035373891a807f262dd18766a87639a9f792f"
+            },
+            {
+              "path": "src/contracts/judgeCapabilityQualification.ts",
+              "sha256": "sha256:dd978c41e8c67d1b0e1bf21af4380670a970e59227f8728a31374dbbfaad4e57"
+            },
+            {
+              "path": "src/contracts/legacyAuthorStateAdapter.ts",
+              "sha256": "sha256:9371574062246fc80317178227f897c8c8ed6580c5d3ce2f0e76b354c7d213d6"
+            },
+            {
+              "path": "src/contracts/quizIntegrityReview.ts",
+              "sha256": "sha256:38d844e15a914bf13c79da9dd3ec7fdc43bf55dbdf268e804ab924d511453aa1"
+            },
+            {
+              "path": "src/contracts/readerExperienceReview.ts",
+              "sha256": "sha256:889151fc28df5b917ee0df2f32118a1b4a8ee30251c422b305dc99de6f3ed820"
+            },
+            {
+              "path": "src/contracts/repairContracts.ts",
+              "sha256": "sha256:098abdbe544b80584703a6d6d1e621b85f06c1d3b4bce5457bde150b9faa3b00"
+            },
+            {
+              "path": "src/contracts/reviewContracts.ts",
+              "sha256": "sha256:fb90ae4308c330109bc8c3d7bb7171a431fd909a106e6388cc8f4a03bd515967"
+            },
+            {
+              "path": "src/contracts/routeContracts.ts",
+              "sha256": "sha256:e8ae0455ca2f153c7e74ce6ef88d7aee209aff9fa8594a8c1e7a34fd13ddc3d3"
+            },
+            {
+              "path": "src/contracts/sourceIntegrityReview.ts",
+              "sha256": "sha256:4414cb4c0ad446388780b670d49d5660b7e4cd3ed1cc9526bec94807ca7191a8"
+            },
+            {
+              "path": "src/contracts/sourceUsePlan.ts",
+              "sha256": "sha256:9e455cd3b54e169fbfa01860995bd3f1b2fadbcf3693fade53927f01d9f11ab9"
+            },
+            {
+              "path": "src/contracts/v4Core.ts",
+              "sha256": "sha256:cf9e9de258b1c49ca31d608b026f6104f4e307fc84594b93b11e7d2284a90ca2"
+            },
+            {
+              "path": "src/contracts/workerReport.ts",
+              "sha256": "sha256:3c4a7dfe9a3c6d89927f23bd4cb91b0225fafff39943b905d36e325f5798acda"
+            },
+            {
+              "path": "src/cost-tracker.ts",
+              "sha256": "sha256:edeea28bf2d752993f1458c8f80e68207ed81cfbda8ee4aac9b290586703f6a6"
+            },
+            {
+              "path": "src/critics/antiSalting.ts",
+              "sha256": "sha256:a2dbc42a69a4064ac93e0d8cc0682caf319817db22592b1818a0441cf7bb9b83"
+            },
+            {
+              "path": "src/critics/apparatusLeakage.ts",
+              "sha256": "sha256:acfd79c5a0f0713edae5ae197f2173e1350df675d78f0d33f27b6e1688790458"
+            },
+            {
+              "path": "src/critics/architectureMonoculture.ts",
+              "sha256": "sha256:677e92ece9081d5d63be571dbddf6df69d5013780350e18da22e7d3b1815139f"
+            },
+            {
+              "path": "src/critics/authoringContract.ts",
+              "sha256": "sha256:5d32a94f53adca1058f8c596593e93e6573e7ec78e9c58684cacb5b021ca5fe5"
+            },
+            {
+              "path": "src/critics/beatVocabularyEcho.ts",
+              "sha256": "sha256:f02185d3a2c9efba6a2f75544f707313c79a507ea2ea70db701f9baabdb166b9"
+            },
+            {
+              "path": "src/critics/bookGate.ts",
+              "sha256": "sha256:53d23f205c52956f21c19dbfb6ba5821650142901cb6f4711abdf0ebd3762372"
+            },
+            {
+              "path": "src/critics/bookPatternAudit.ts",
+              "sha256": "sha256:4f47567b24f20a90b10b246867a2ecb7b3c22618b53d35cf55fb5548951db68c"
+            },
+            {
+              "path": "src/critics/bookRepetition.ts",
+              "sha256": "sha256:43903b258d6c4875949c5de12efd5a7414a77776258a61d7963846de354dae9a"
+            },
+            {
+              "path": "src/critics/bookSamenessRepair.ts",
+              "sha256": "sha256:445b493efed4d1747694f11b1d44356ed23523ed08e9763d4350bc0904ee0be0"
+            },
+            {
+              "path": "src/critics/catalogAudit.ts",
+              "sha256": "sha256:553bd8e397cab5faf9e0381bb807d3f95212a85a56fdd7774539b14f4c572a42"
+            },
+            {
+              "path": "src/critics/chapterGateComposite.ts",
+              "sha256": "sha256:ed8f43c979c0bdb0319bb82d9b41bcd7f7c198bfc821e5673ed9530c503371d6"
+            },
+            {
+              "path": "src/critics/citationDateDoorway.ts",
+              "sha256": "sha256:f479b6c2f199f5b758af4c917d8ccbb5d96a3af09e85e1105419a8195d326c55"
+            },
+            {
+              "path": "src/critics/cloneDetection.ts",
+              "sha256": "sha256:0e291140f73680d1a7d9e2578195de3afaf09653c0563080e0d32b4273e49225"
+            },
+            {
+              "path": "src/critics/contentDeviceRepair.ts",
+              "sha256": "sha256:e6f0881e7ae241fbab51e6969cb18814b0ad051690819173e912509c0edc4b33"
+            },
+            {
+              "path": "src/critics/contentMachinery.ts",
+              "sha256": "sha256:48058d7d1680723bc2158d58ea447fe17d9db70fb3f93771bc8b662dc262016a"
+            },
+            {
+              "path": "src/critics/crossBookSignatureAudit.ts",
+              "sha256": "sha256:72a1e4fcf6948bed2fbfb0ff197dc0a27184a4bb266b0a22a89d7a3304ef1422"
+            },
+            {
+              "path": "src/critics/evidenceIntegrity.ts",
+              "sha256": "sha256:768dbd54c11466714e2de56d873c37d269df1d65eeff1ab5ac92b97b0070ab6a"
+            },
+            {
+              "path": "src/critics/evidenceWitness.ts",
+              "sha256": "sha256:7528811aae991587ed2e9fe7ecf3f1682bafb832bdc0d9a8e1dc2e55be4e5264"
+            },
+            {
+              "path": "src/critics/exampleCraft.ts",
+              "sha256": "sha256:f0fde1f97e636abf56db74577722f7b30d1dd412a5d8b8cbca2818a864319590"
+            },
+            {
+              "path": "src/critics/exampleRegister.ts",
+              "sha256": "sha256:c7af30027ce245d35ae738a3d1ffab057230ca5c9ab8afc32f8b658d13c85f35"
+            },
+            {
+              "path": "src/critics/experiencePlan.ts",
+              "sha256": "sha256:7fea5a2fceb2721b9b619fcec4d98992ab09b78cfe9529e2c73b66a87c17e4e5"
+            },
+            {
+              "path": "src/critics/finalGate.ts",
+              "sha256": "sha256:409a12114eb52b4f2d6b1503c9ef5a6c368de7c17f52b19954326d6f2b5dc45a"
+            },
+            {
+              "path": "src/critics/groundedNumbers.ts",
+              "sha256": "sha256:27a6e3f190061fc41c3f2a684cd33b803dd3f5de5acabb5cac88f0bad34a22d3"
+            },
+            {
+              "path": "src/critics/integrity.ts",
+              "sha256": "sha256:b2aff233555a5ec5afdeec00cb31bd537facfcd3a1189ac0ac33c17201e989a1"
+            },
+            {
+              "path": "src/critics/intraBook.ts",
+              "sha256": "sha256:d01ee51b61bdcb3a91ab837ec2074a43d5c957c6f6f1b71aa86625dec3ba3d8d"
+            },
+            {
+              "path": "src/critics/intraBookFieldSimilarity.ts",
+              "sha256": "sha256:bc45858ccc90bf6e3168d8e97cafd3bf81f802b79a2ca093dca176f70d2fc12a"
+            },
+            {
+              "path": "src/critics/intraBookQuizSimilarity.ts",
+              "sha256": "sha256:69d5ecbd0539a723291ff79d41ab47cf43520a4981deb85148c70866262e40b8"
+            },
+            {
+              "path": "src/critics/intraChapterExampleLesson.ts",
+              "sha256": "sha256:6f6c93353f92d144be404212212ea74ae25748c34ef8f16612baf4697f945fc8"
+            },
+            {
+              "path": "src/critics/leadAliases.ts",
+              "sha256": "sha256:0eb4ac3cb175246686c3338f7df9278e7e61a13041651328d7c91b6245ad229f"
+            },
+            {
+              "path": "src/critics/lineageKeyQuiz.ts",
+              "sha256": "sha256:69356bfd52c74ad577fc0b61f91440c971184aa49cddfa828b5131ed72d7fb22"
+            },
+            {
+              "path": "src/critics/machineryPhrases.ts",
+              "sha256": "sha256:f14f9a61ce344481bfb9ec3f54090f4a23d27431359babf4a2bf7227e56e816d"
+            },
+            {
+              "path": "src/critics/majorPolicy.ts",
+              "sha256": "sha256:dc5ece7b08ab595e442384ee4c3398f6582ba5561469cf3bf7a7d51e400d7017"
+            },
+            {
+              "path": "src/critics/mechanicalSeam.ts",
+              "sha256": "sha256:4250e762e74b53cefa554e965d3a4757cd305d54657c8718ee77bad00a57fbc3"
+            },
+            {
+              "path": "src/critics/metaCaseProtagonist.ts",
+              "sha256": "sha256:2fee2d18d5b3bf992d3bbdfdc9fc078eafe7a8aea621a4bea4a748381fd0ccb5"
+            },
+            {
+              "path": "src/critics/misattribution.ts",
+              "sha256": "sha256:c57e9e161cff57b90ca98b4db6c895a544ecdbca17f2492854133c6e0ff55538"
+            },
+            {
+              "path": "src/critics/namedEnumeration.ts",
+              "sha256": "sha256:0a79617f048ee485589ca0e8c86940e861a551b9692b4ff24aa6de8f1eb1b116"
+            },
+            {
+              "path": "src/critics/narrative.ts",
+              "sha256": "sha256:dd37c62f7e9966f0e158515a622367c4a43d798f297f310d74212a1dbec2ffea"
+            },
+            {
+              "path": "src/critics/outcomeVariety.ts",
+              "sha256": "sha256:41599d101bd1bf8b3bddca2ed633f7df549be2cd61a47560f4a93c79a2f24288"
+            },
+            {
+              "path": "src/critics/pedagogy.ts",
+              "sha256": "sha256:060e0f223385126089e6bc2c6469596f572527acb675446dd5e544fff2f971bf"
+            },
+            {
+              "path": "src/critics/plainLanguage.ts",
+              "sha256": "sha256:6164ed5dd743a0e46cf1576087829daac2bd33a3498e1b52dacd8249110855cf"
+            },
+            {
+              "path": "src/critics/prose.ts",
+              "sha256": "sha256:07ebd59680f91ab156191fc053f9357d304cb56ec50b9a158b2c20af4152759f"
+            },
+            {
+              "path": "src/critics/qcAttestation.ts",
+              "sha256": "sha256:68f45a1cc795c0a0394f6ce53b68aee122cca140e23f1e152c906fefc7734917"
+            },
+            {
+              "path": "src/critics/quizCorrectness.ts",
+              "sha256": "sha256:8f789f09ad25ca27edef9e27c9df2891f95ec92c78a2a53c23217fdd3b2874f9"
+            },
+            {
+              "path": "src/critics/quizKeyEvidence.ts",
+              "sha256": "sha256:4a1f0fc16bb812f761e39377474fe28b2f4dddcaa905360c387b6d3df560ffc6"
+            },
+            {
+              "path": "src/critics/quizKeyGate.ts",
+              "sha256": "sha256:7c3545d5600f649574fecb1c8d390e72984ca98adbc2ef99e859951c802cc99f"
+            },
+            {
+              "path": "src/critics/quizQuality.ts",
+              "sha256": "sha256:a59beb8b9b40fcd3c9d3af0bb5c506ea0ab53e185ae78849780ee7baa9ae4a30"
+            },
+            {
+              "path": "src/critics/readerBudgets.ts",
+              "sha256": "sha256:1aadcab797776351dfc6807a796f51bdef47c044087e903ddc4a4bdbcf0955a5"
+            },
+            {
+              "path": "src/critics/readingLevel.ts",
+              "sha256": "sha256:68d68ae575cc5d8ffae51dcc29cbd08f73c3c49b9e7be4dcadc9643a64cc35dc"
+            },
+            {
+              "path": "src/critics/register.ts",
+              "sha256": "sha256:95079ac31bb92ebe2477eb36595ca68ec7293f76a9fae5bfd31567e83ff6e0d6"
+            },
+            {
+              "path": "src/critics/registerAdvisories.ts",
+              "sha256": "sha256:bc2330fa502b5d9e94e1ad45a57ac7579acb118f43a727344f0959fb9949a458"
+            },
+            {
+              "path": "src/critics/runAllCritics.ts",
+              "sha256": "sha256:8124e0ceecaa5dbb4b3915ecaefe063116cdb96610511bd5005240d4e3883311"
+            },
+            {
+              "path": "src/critics/scaffoldLeak.ts",
+              "sha256": "sha256:27a8c9a6bcc8f848b5554ad74ac4121b9ec255c59b2d81d5fe5c77a0b69a1dea"
+            },
+            {
+              "path": "src/critics/sceneConcreteness.ts",
+              "sha256": "sha256:1554a233d6d128b424b3cf8f96d763ca85e60c321c96a7c186e9aba5c1d58a20"
+            },
+            {
+              "path": "src/critics/schema.ts",
+              "sha256": "sha256:5a242c22100f76a94e0b05e217ac0a3fce4aa4d5f1d4932e47b00204c059940b"
+            },
+            {
+              "path": "src/critics/semantic/craftBar.ts",
+              "sha256": "sha256:92385b753c013f7ff5610c40ad041d83e792eb5711b58df50c20f0295330c8b5"
+            },
+            {
+              "path": "src/critics/semantic/publishableBar.ts",
+              "sha256": "sha256:dffa25d816df2c912e4f1621b953d4b426a689b36785b87b0a9f030ff3e7e851"
+            },
+            {
+              "path": "src/critics/semantic/quizKeyJudge.ts",
+              "sha256": "sha256:4117153bfdcca47540f4906999f362927b4c67b85bebdd0e1f2aa9441167d9c5"
+            },
+            {
+              "path": "src/critics/shared.ts",
+              "sha256": "sha256:dffbede8ba6fbcada941343e1f4c6d1a4caaaf9efa448d0508df61dfec36fbb9"
+            },
+            {
+              "path": "src/critics/sourceCoherence.ts",
+              "sha256": "sha256:bd7bb198769be3be204c9694b8c4df7259480c27c0230db7982592176ec5a95f"
+            },
+            {
+              "path": "src/critics/sourceGrounding.ts",
+              "sha256": "sha256:4d10da5ffd8acc09a1b53f4531b63031ef4b3b1d5130f2deabf59e47e4de1d3f"
+            },
+            {
+              "path": "src/critics/sourceRealness.ts",
+              "sha256": "sha256:e945e5d2b30e5649cf6469e1b6c8ee70c1affe12a50a263030f17e78c660d380"
+            },
+            {
+              "path": "src/critics/sourceRegister.ts",
+              "sha256": "sha256:290ca4ebae0f747e46851845ae669b52791ed08d56442786b6ec0c0b965026b0"
+            },
+            {
+              "path": "src/critics/sourceVerify.ts",
+              "sha256": "sha256:0f00e8ce881f514c7ab114eba6dbfd6138a944eef9f3cecfec759188de501cb8"
+            },
+            {
+              "path": "src/critics/structuralSamenessMode.ts",
+              "sha256": "sha256:5680694a1bdfea3ebe3561ba7a48c8fa327e0b820f3beb75f7c214ce9079961a"
+            },
+            {
+              "path": "src/critics/structuralSamenessSnapshot.ts",
+              "sha256": "sha256:9448889f54c2b82c8892b7c183659a5a6337db9a160bcc8100c4e3be66fb42f9"
+            },
+            {
+              "path": "src/critics/supportSectionAudit.ts",
+              "sha256": "sha256:b55b1f501f632d5c4f60a611e99369f77d60eabec079cab8909cc572e05b4730"
+            },
+            {
+              "path": "src/critics/textUtils.ts",
+              "sha256": "sha256:b39890a8535051f286301b9fa72e2940cb6a0f6bdd225002882351cd0e99d180"
+            },
+            {
+              "path": "src/critics/validatorShadow.ts",
+              "sha256": "sha256:d689f062a896c8ee6e9bcc74599987f5b4ebac8023a74c0aaec8e08b5a3831ef"
+            },
+            {
+              "path": "src/curator/exampleSelector.ts",
+              "sha256": "sha256:3421949261a870e1ff7b22a72d1282046c272145b30a62cbc8425b1a746f1014"
+            },
+            {
+              "path": "src/diagnose.ts",
+              "sha256": "sha256:20506a4da04b28d05317924af66e86971b0fca0522af30aa51e54baa67e30f80"
+            },
+            {
+              "path": "src/evidence/attemptRecorder.ts",
+              "sha256": "sha256:b8a795ed8b97f123e91f970bb3d7a0c6701c3350a9602b69518e3c75542a64c5"
+            },
+            {
+              "path": "src/evidence/evidenceGate.ts",
+              "sha256": "sha256:00fa620a509a9ce05edeeec2a69aea5f21e809ac30b143fe14672a519c7ac4f7"
+            },
+            {
+              "path": "src/evidence/evidenceMap.ts",
+              "sha256": "sha256:5e64ec24fd8721969048f580628d5fdcef6fc23a5bd59f1e4faf077f24c48b0c"
+            },
+            {
+              "path": "src/evidence/evidenceStore.ts",
+              "sha256": "sha256:4fef7c9ec33c934a82c4eb9f776affe52a4369be74b6a977a13244b3d0ddb61b"
+            },
+            {
+              "path": "src/exec/cliQualification.ts",
+              "sha256": "sha256:b86023ed5e2ec839052903d91ee3e2e98d59a2a40acddbc6b056be4369cfd9b1"
+            },
+            {
+              "path": "src/exec/executionEnvelope.ts",
+              "sha256": "sha256:215d79f2b6443b84a2e20c8f21884eab3e3dcddbe8a27bc84d2cfaa39053af60"
+            },
+            {
+              "path": "src/exec/roleWorkspace.ts",
+              "sha256": "sha256:f572635ff000aa674aa5da4f4e2480086f1b8241c669e332cebd2359c33c0c46"
+            },
+            {
+              "path": "src/exec/untrustedArtifact.ts",
+              "sha256": "sha256:43c96b0b8cbd7edc4dbc106ff061f648d3f6598c64e1fc7332ee2785585a4050"
+            },
+            {
+              "path": "src/generateBook.ts",
+              "sha256": "sha256:2ca23a0cdb42699f2aa6adf77bf645d98264e40473c3ccce1129cc80c96a3489"
+            },
+            {
+              "path": "src/generateChapter.ts",
+              "sha256": "sha256:f3d8d8366bae4e33c84e350d2210fc478b05ff1b71419f9facd91471192e95d9"
+            },
+            {
+              "path": "src/generationDegradation.ts",
+              "sha256": "sha256:737f8dc7d7f415709b1111beccf30552bb2530372e930d28a873d17a8b5af7a6"
+            },
+            {
+              "path": "src/lib/atomicWrite.ts",
+              "sha256": "sha256:bbe5db8e36a5be5002dc016f812fdce5389c4d00088768becbc0cf2bec888a7d"
+            },
+            {
+              "path": "src/lib/bookScars.ts",
+              "sha256": "sha256:ab4d3d03ad749ef7234cba78970d05799e17e1f9f04476acc5b5beef59471b3d"
+            },
+            {
+              "path": "src/lib/brief-sanitizer.ts",
+              "sha256": "sha256:9a57da614a3129c0d787f7528380b85a304d86943a2f757383fb4411eae343dc"
+            },
+            {
+              "path": "src/lib/candidateEvidence.ts",
+              "sha256": "sha256:ab463bbd8a95f424dd62ddbc5639ab8f7e5e78fc779250841945d7f5f730df08"
+            },
+            {
+              "path": "src/lib/canonicalJson.ts",
+              "sha256": "sha256:9ad6c9a4fc8ff24318f757ef157b91413071cc0bd84ef557b896464c1138512b"
+            },
+            {
+              "path": "src/lib/chapterPaths.ts",
+              "sha256": "sha256:d54849693f874fcd8c40eb305c2dbd8a13944d8d07c8cecdb38769ec5e474e74"
+            },
+            {
+              "path": "src/lib/chapterSet.ts",
+              "sha256": "sha256:88dc032b76c775e6657320d27f7184dc68ed521a2a6da1138e6541a4c57a9334"
+            },
+            {
+              "path": "src/lib/coprime.ts",
+              "sha256": "sha256:1a9654e7c3284b4ecfeef9988b785263bd2270d8af7c2dc4ec5c7353d470600d"
+            },
+            {
+              "path": "src/lib/fnv1a.ts",
+              "sha256": "sha256:61016dec458c076d322e720e22e92dc4aa37028f789dda46e6d7515f044d2ab7"
+            },
+            {
+              "path": "src/lib/manualBriefReconcile.ts",
+              "sha256": "sha256:1bf675006ccdbba56fc3b2c7bd68a0ab7eef2161162faee3a3dbd653e3088126"
+            },
+            {
+              "path": "src/lib/pipelineFingerprint.ts",
+              "sha256": "sha256:0554bcba0938fc754c25c18ad0c05a3f73800bafe1642481cfaa7c80b2cec54f"
+            },
+            {
+              "path": "src/lib/quarantineTombstone.ts",
+              "sha256": "sha256:b59fe4ec86f0f86d70d87d5ab87a0fdb102a94731648828da555d9d5bd642874"
+            },
+            {
+              "path": "src/lib/readerContent.ts",
+              "sha256": "sha256:eb55a56982dcc28ac52cb1cd741217028674cbf222eab2cdde214967e93158ce"
+            },
+            {
+              "path": "src/lib/researchRunManifest.ts",
+              "sha256": "sha256:b7bd582961dcbe2333687cef7e4fb5f4f4a3b6767a56565daa5c4197f6208923"
+            },
+            {
+              "path": "src/lib/runDirs.ts",
+              "sha256": "sha256:75314e23045e1d701d7b185a60b948f3205159b62e80c97793b02ba3f69ac413"
+            },
+            {
+              "path": "src/lib/strictEnv.ts",
+              "sha256": "sha256:514d00911774ac075c92cba4580431186b4b34abdda3f43229210ae8436e76f5"
+            },
+            {
+              "path": "src/lib/tocContract.ts",
+              "sha256": "sha256:53c68b2c5e376f52e2c0f4507113c628037b41ceffae25d59fe3203d17948be8"
+            },
+            {
+              "path": "src/lib/voiceBible.ts",
+              "sha256": "sha256:3f0552377d57b393f06eaa74b4a7077f71ff8d8f80f9eb1e3dacb48ee96c7312"
+            },
+            {
+              "path": "src/lib/voiceCard.ts",
+              "sha256": "sha256:ff5cde20222fd24ef8883a9cca4195c04c4448d1ad1e4c09025124a893eaa815"
+            },
+            {
+              "path": "src/librarian/actionMechanismPlan.ts",
+              "sha256": "sha256:55164ea41e93542c8cfdcdf966f3497b6b0fa924385ab39d6dd6ef1b3d2fb999"
+            },
+            {
+              "path": "src/librarian/answerKeyPlan.ts",
+              "sha256": "sha256:45c5f7f29ef9fdc71122b174e3f3af63e1d2c053d3985433dd1f0dc4e2b73154"
+            },
+            {
+              "path": "src/librarian/authoringGuardrails.ts",
+              "sha256": "sha256:10d34ce6f3723d9d92f77c14b02d634fdb68d346d6191dd236a76f675577dfde"
+            },
+            {
+              "path": "src/librarian/callbackPlan.ts",
+              "sha256": "sha256:22cb126bc0bd5a06cf1783b72a48960a9bc3a251b5f50c753a143c892c82fbd7"
+            },
+            {
+              "path": "src/librarian/chapterArchetypePlan.ts",
+              "sha256": "sha256:3ecaba1518935d188c952659a3359196442f248f6fd816630b3f9ba4a754d9b9"
+            },
+            {
+              "path": "src/librarian/exemplarPlan.ts",
+              "sha256": "sha256:20ea6b4879fa550994ed9b4c7b59b65ad8c49569e57d8c3bfb56edf6b90f0716"
+            },
+            {
+              "path": "src/librarian/fullReadSkeletonPlan.ts",
+              "sha256": "sha256:c2a31c447d48803243a5adbf263068eb30dace0bf79835dddd808cf81fabbed0"
+            },
+            {
+              "path": "src/librarian/identityMigration.ts",
+              "sha256": "sha256:e924ca5092d7ff1ac41f747cc7b3e6bb05f225221d2602bcc9977fdb0d526611"
+            },
+            {
+              "path": "src/librarian/libraryState.ts",
+              "sha256": "sha256:c7d89af3a801f9df780b0e4dbc54ba4100c9364dbece3c2ae88075a1e662fa81"
+            },
+            {
+              "path": "src/librarian/namePlan.ts",
+              "sha256": "sha256:8aa0174df3035f68aaf31327357585bb3d9c6bdc94ad69f5ab16cc9a0ac0b340"
+            },
+            {
+              "path": "src/librarian/namePolicy.ts",
+              "sha256": "sha256:093bfc0933d10eadaeb1ef7d0bdfc4657ca004ee19a4114c441f41d46afdf1b6"
+            },
+            {
+              "path": "src/librarian/openerPlan.ts",
+              "sha256": "sha256:95345b5ddd4574f58d5d8ec215382529543694e0b250bad83f160d82ef5fa56a"
+            },
+            {
+              "path": "src/librarian/pedagogyPlan.ts",
+              "sha256": "sha256:a60546df5a154be2dbff208700d3ea5c4b3f123158f25e6b3ef3a5c2428e448e"
+            },
+            {
+              "path": "src/librarian/rhetoricPlan.ts",
+              "sha256": "sha256:273e681a2609ae59b1192106a6b10578259ec83d271f4da6a3e2d8caa984a6c6"
+            },
+            {
+              "path": "src/librarian/saturationGuard.ts",
+              "sha256": "sha256:1c566953d135c227e329a73bd5a6dcfd9a8b311704182bb57a80287ea2090107"
+            },
+            {
+              "path": "src/librarian/sceneMechanismPlan.ts",
+              "sha256": "sha256:df46c19b38436819132936a8dbdd0b33f929f8d975f211b4046077cd0158c6f5"
+            },
+            {
+              "path": "src/librarian/sceneModePlan.ts",
+              "sha256": "sha256:f9dc936f9a60f059b0d4045624fa6aaab6a4cb087c98d18f84617ea3e5eeed2a"
+            },
+            {
+              "path": "src/librarian/shapePlan.ts",
+              "sha256": "sha256:94889740ad29d0b5b000392413cf45e94f0746cb42388237da92ea3bf2fcc621"
+            },
+            {
+              "path": "src/librarian/sourceSidecars.ts",
+              "sha256": "sha256:1dae1957a4001d709aa73a95c132645b5bcc0ef945c618aa96cd17121545116d"
+            },
+            {
+              "path": "src/librarian/stakesPlan.ts",
+              "sha256": "sha256:9e7c3325dd0dbe2e09e95867b56ca6d11a6a7a1010d183d415a5823fadb39f46"
+            },
+            {
+              "path": "src/librarian/timingPlan.ts",
+              "sha256": "sha256:5bb6e8e59c088b7e3f80d271037bf10e25dd02c4ce94b63fb574dd8a1f047870"
+            },
+            {
+              "path": "src/librarian/venuePlan.ts",
+              "sha256": "sha256:e2110517296d742aa27c04a60d9a6b73573cf9b8fb5c58c9f0bf25e146d46525"
+            },
+            {
+              "path": "src/librarian/weeklyPracticePlan.ts",
+              "sha256": "sha256:42026e345ac8eb12e4e2daeb8a49df33fe464297bf4cb0968bfff286437e65a8"
+            },
+            {
+              "path": "src/lifecycle/bookStatus.ts",
+              "sha256": "sha256:34ab78cc66dbd216ed28350eac156be8a4605f14351cbc922d27bbc5e162d518"
+            },
+            {
+              "path": "src/lifecycle/doctor.ts",
+              "sha256": "sha256:792dcc60c5f7db6f2993b260dd3cb1792ee78a929f1ee81af8ad130c6aa95edb"
+            },
+            {
+              "path": "src/metrics/bookRubricMetrics.ts",
+              "sha256": "sha256:3a38976c174353715b09497fe8c57bc6550b8ca547015fe9f4a1b05a6d3176c2"
+            },
+            {
+              "path": "src/metrics/cardQualityGates.ts",
+              "sha256": "sha256:6f1fe73fe0c8c8058f59ce93eff76c9896cbd936569c7d2792fed6664241f9e7"
+            },
+            {
+              "path": "src/metrics/chapterText.ts",
+              "sha256": "sha256:951cc383c346e3205caf2cf8d776061798fb8ea666a24f4a9db75797c9a238a4"
+            },
+            {
+              "path": "src/metrics/rubricMetrics.ts",
+              "sha256": "sha256:f9044742c5d1c8d43d928ddf88bd3a993bd14319307798ce8f7f13a6bfcdb669"
+            },
+            {
+              "path": "src/metrics/rubricThresholds.ts",
+              "sha256": "sha256:bab8b378c33e9b28b9fd9af08540aff569cd857969acf846329261fef852d9cd"
+            },
+            {
+              "path": "src/next-task.ts",
+              "sha256": "sha256:2a75ed46296323963d5ffb075c5bdc21788a56045ce91cf916222795f6f81ed6"
+            },
+            {
+              "path": "src/optimizers/exampleScorer.ts",
+              "sha256": "sha256:d313e3d658c639c9d99374289e3880a192b99fd8504f5f260c7804a7bcbd3127"
+            },
+            {
+              "path": "src/optimizers/memorableLines.ts",
+              "sha256": "sha256:212229d3ae6fcf473084ce303671516a938c4d43b9163499dd1b5286833dff0f"
+            },
+            {
+              "path": "src/optimizers/proseRisk.ts",
+              "sha256": "sha256:29b749e42afa54803304eb46ceb61e4c1b117ed422b975ca3803f49a3e9b0bca"
+            },
+            {
+              "path": "src/orchestrator/authorAcceptanceState.ts",
+              "sha256": "sha256:0f06996dbcf710dde9ca9b5903f3e31cea6e4e0ef9c92df41b8de0ad61483ee8"
+            },
+            {
+              "path": "src/orchestrator/authorEvidence.ts",
+              "sha256": "sha256:8188348271bed96cfbdd84d84accc0a409384d4cd44ae2d12f353d776a25cda4"
+            },
+            {
+              "path": "src/orchestrator/authorRegenLedger.ts",
+              "sha256": "sha256:5dfd176cfddb273b3b83d9025da9ca583c1eec4b5ab56b20b8a15a001ea210d3"
+            },
+            {
+              "path": "src/orchestrator/authorRepair.ts",
+              "sha256": "sha256:b028277552e4a3c95611771230119ab31910ff9236a6934209e5c0c9bfd16fef"
+            },
+            {
+              "path": "src/orchestrator/authorReview.ts",
+              "sha256": "sha256:318293279ad5975e025b5b69c11cf8710d46690b5d48d669f67cfb2ab922bf48"
+            },
+            {
+              "path": "src/orchestrator/authorReviewLedger.ts",
+              "sha256": "sha256:3c667525714f936242d7531e74e6d178559a396b8e016b6dd42ab192dc4bc0b3"
+            },
+            {
+              "path": "src/orchestrator/authorRun.ts",
+              "sha256": "sha256:24d82460c6b945a84fb41cabb3b3d08a583658c3c77fcca5313da6cc4598d6d1"
+            },
+            {
+              "path": "src/orchestrator/autopilot.ts",
+              "sha256": "sha256:ffbd1b79aa63de312e497f89cf6045f9287d0e987c15b6205b5c37f5aeb19872"
+            },
+            {
+              "path": "src/orchestrator/bookSamenessRun.ts",
+              "sha256": "sha256:8ead7ae44a13c42b1b0ea73f3ded5e5038c36e4fd67377936c3e15fc5e239f17"
+            },
+            {
+              "path": "src/orchestrator/chapterTransaction.ts",
+              "sha256": "sha256:2e71dbe8c09fdedb023d351b9bb1721ebb06506f159c387bdf796b50eea3b01d"
+            },
+            {
+              "path": "src/orchestrator/codexAgent.ts",
+              "sha256": "sha256:5713f38a6df9f4f698a530cd8d0cf74f2d8216288df1ba10b794b225ce4678ea"
+            },
+            {
+              "path": "src/orchestrator/compilerRun.ts",
+              "sha256": "sha256:44ad007a2b5f06e63b945c30f87b097c734740a8aa75838ecb3663719813dc43"
+            },
+            {
+              "path": "src/orchestrator/compilerTasks.ts",
+              "sha256": "sha256:5f82a2db3ac134654774af846ffeed80cf742855852fb7437858389ecd163b1d"
+            },
+            {
+              "path": "src/orchestrator/forwardActivation.ts",
+              "sha256": "sha256:10ce7d298bb56cbf7ef01e2da840c838268f7ed05df7b027c9dad84c57a9ca8d"
+            },
+            {
+              "path": "src/orchestrator/forwardAuthorRuntime.ts",
+              "sha256": "sha256:6e66259d52e0ffe05cddc867edc9e6b1b778bc7e8dabdc6ce72cb8f4a9062417"
+            },
+            {
+              "path": "src/orchestrator/forwardChapterConductor.ts",
+              "sha256": "sha256:8ed02e1ce9d983370c971460487f23c85d2b25deda1b1db2d3e0dc7061edca46"
+            },
+            {
+              "path": "src/orchestrator/forwardGoldEvaluatorInstrument.ts",
+              "sha256": "sha256:c2b5948bc5ecf7789d4d3666c5bed79e21fe2151a7750ca6df88ad3939d7a3b3"
+            },
+            {
+              "path": "src/orchestrator/forwardInputFreeze.ts",
+              "sha256": "sha256:4ff0c6fae6d351850aad162094fd3ef25521a8f3939155abd48ff2781dcd5a54"
+            },
+            {
+              "path": "src/orchestrator/forwardInputMaterialization.ts",
+              "sha256": "sha256:2c28d2baec3bd70a28edd7131415924c7763d27436d1a1ca9cd0455cd45dd230"
+            },
+            {
+              "path": "src/orchestrator/forwardLiveCallLedger.ts",
+              "sha256": "sha256:d46b7f6379d9030ccd31bdfb0f490594eca54016ee8f78e19bd37eeb71cfe26c"
+            },
+            {
+              "path": "src/orchestrator/forwardLiveValidationDriver.ts",
+              "sha256": "sha256:b3cc0610e7b2a94ee1a8656e63abb3e8c24ca4f14c93f23454bd47930143619e"
+            },
+            {
+              "path": "src/orchestrator/forwardLocalAutopilot.ts",
+              "sha256": "sha256:1d548cfc4aed2f9a3ef3b903e3b58b0c9641fdd49c222f722b6bdb790ec492b4"
+            },
+            {
+              "path": "src/orchestrator/forwardProductionInstrumentSeal.ts",
+              "sha256": "sha256:dc2ac3826235ee11d2a50319fca75f5d7dc45399d9a6e36cfec1c6524cd3a144"
+            },
+            {
+              "path": "src/orchestrator/forwardReviewPolicy.ts",
+              "sha256": "sha256:4a8cd3493d75d85c0bbccbecd3bfc7cd71389db5c2ebaf65959de250764874a3"
+            },
+            {
+              "path": "src/orchestrator/forwardReviewerExecutor.ts",
+              "sha256": "sha256:81460852f380dd7fb97017108cba2826b58adf096629fedf60652106869a95c1"
+            },
+            {
+              "path": "src/orchestrator/forwardRoleAssignmentFreeze.ts",
+              "sha256": "sha256:799230b4e349848b5255f2c87fd67ecdb63de7a0d1bdbccfbdc74e676f90da9b"
+            },
+            {
+              "path": "src/orchestrator/forwardRoleQualificationLive.ts",
+              "sha256": "sha256:7cd138dbddb9d296873e04ebf4221df9af2282d1f358e9f82a4768fd82ac2bd6"
+            },
+            {
+              "path": "src/orchestrator/forwardValidationCampaign.ts",
+              "sha256": "sha256:52aa2246ee47dd17a59fb0f4a2738212501d75f25620a333d7842f1f65499621"
+            },
+            {
+              "path": "src/orchestrator/keyEvidenceLedger.ts",
+              "sha256": "sha256:9ad827615425b43363d77f56c3d16a95e0e248928a9e4bf97ac33d316758d151"
+            },
+            {
+              "path": "src/orchestrator/liveRun.ts",
+              "sha256": "sha256:d694238adf4285658c0f5a70c3119b2189e74909ca5eb0caef1a2a29afbc32b6"
+            },
+            {
+              "path": "src/orchestrator/modelPolicy.ts",
+              "sha256": "sha256:5907614308f499829abbe2d8fb16bd7d6631f5df03339f9daa1dad6a6ec9bcd7"
+            },
+            {
+              "path": "src/orchestrator/optimizedPipeline.ts",
+              "sha256": "sha256:dbb636fe4700738b1a00e00231b4a3fc69e86b6cc263e96291d0457d4a6aff1f"
+            },
+            {
+              "path": "src/orchestrator/polishPass.ts",
+              "sha256": "sha256:689ea226fb658e0dca1815dc3539c89ed36a818f4d9ac0d5f4439b2743a83c2d"
+            },
+            {
+              "path": "src/orchestrator/repairPatch.ts",
+              "sha256": "sha256:238305942468fbdd494f3599641074f0a038bb6e0c44a417fb2ace1846ccd7ee"
+            },
+            {
+              "path": "src/orchestrator/repairRouting.ts",
+              "sha256": "sha256:894c0a16a1fd2ab213265f624dbbd45e6be056c36383b51029d76a675dd5b38b"
+            },
+            {
+              "path": "src/orchestrator/researchFreshness.ts",
+              "sha256": "sha256:bf39aa99e55379236986ac9d7084afde14380c595418b3e86bc35b68001e563d"
+            },
+            {
+              "path": "src/orchestrator/sectionSessionRecord.ts",
+              "sha256": "sha256:72ffeb83428b4953f9e4af0bbccec21ce75a416bb80536d1e62fa4b383567e78"
+            },
+            {
+              "path": "src/orchestrator/sessionLedger.ts",
+              "sha256": "sha256:61af4ce459a0af3b1cfdf5b67564fabb97bf8eb91a1a1501235e38fb8ca3b4b8"
+            },
+            {
+              "path": "src/orchestrator/shippedControl.ts",
+              "sha256": "sha256:52c542d70fe7f2e03c51c874d39db415bede5c4169c33e382591ca9f6ef9c133"
+            },
+            {
+              "path": "src/orchestrator/sweepRejectedRecord.ts",
+              "sha256": "sha256:ad285a26a16a2515939b073233c1dea280fe1b0a56fc10381652fbd4f1c838aa"
+            },
+            {
+              "path": "src/policy/runPolicy.ts",
+              "sha256": "sha256:602373600332820b732fddbc9184674df50d75b11a1244d2f6be18fc485449bb"
+            },
+            {
+              "path": "src/productionManifest.ts",
+              "sha256": "sha256:8d2c4fbf96e576d21cec7d7c274316228c851e2618d0379d7f00855109b66520"
+            },
+            {
+              "path": "src/promoteBook.ts",
+              "sha256": "sha256:491d5cc42310c38f69250e3f1cd02b9a8b30a9a5a8a5300885023196698ea95c"
+            },
+            {
+              "path": "src/providers/anthropic-api.ts",
+              "sha256": "sha256:cab39fd2b646bd0ceb4ad1e3153ebd955f45a35fed1514f1cb3081d23d02ceb2"
+            },
+            {
+              "path": "src/providers/cli.ts",
+              "sha256": "sha256:b8875eae3cb8314702f13c082c8e954673a37e129c0dbcca26b71b517d3a58ee"
+            },
+            {
+              "path": "src/providers/openai-api.ts",
+              "sha256": "sha256:fc939f117d64ea939f02ec9664c9166f438d080ecff900e6525495e3334ce25b"
+            },
+            {
+              "path": "src/providers/router.ts",
+              "sha256": "sha256:d0fced8d3de3a99b801ac1309d84949e163906e5f45b4372331aa70198b04b8b"
+            },
+            {
+              "path": "src/providers/types.ts",
+              "sha256": "sha256:020a22ec2d5a88aed395ee4d16b589cde55bcf239dbaa11a4977cfc1a48af1d4"
+            },
+            {
+              "path": "src/publish/blockedReportRetention.ts",
+              "sha256": "sha256:97fb26dc4c947b3f2d2f305084db7f6012ce6999b57a56a5150df5e2efbdaebf"
+            },
+            {
+              "path": "src/publish/candidatePreflight.ts",
+              "sha256": "sha256:fef30ffc4fc059a614bd8703d359f901e124e34ef91bb9fcf826fa0d9894bedc"
+            },
+            {
+              "path": "src/publish/cleanupBookDebris.ts",
+              "sha256": "sha256:b00d2a6026aafabf152d48363634ccce059731196f2916feb166b27a78bfb5ae"
+            },
+            {
+              "path": "src/publish/publishFinal.ts",
+              "sha256": "sha256:c2cf06d8f74c7752fca34eb73e956b1a9ddc732664673c2fc5911272fb94ffc0"
+            },
+            {
+              "path": "src/publish/publishToLive.ts",
+              "sha256": "sha256:14c330d1b1e382b77335949b2672be948d3d2c108ff0dc9836adb211f02d9a88"
+            },
+            {
+              "path": "src/qc/auto/driver.ts",
+              "sha256": "sha256:480ddd234b9dc4a6448b8ddc84cf53fba3c3bfeda1eeff6a3436ee95d237ce84"
+            },
+            {
+              "path": "src/qc/auto/generateWorkflow.ts",
+              "sha256": "sha256:03129563c77f56e1d3948d97af118dbbcfba345a04fd31e9997382888da3f9df"
+            },
+            {
+              "path": "src/qc/auto/resolveBook.ts",
+              "sha256": "sha256:dbd2edeb4dc80fccec35acadc31a0d483a6a1e9fa11cfbc4ff3a494786479c8b"
+            },
+            {
+              "path": "src/qc/barReview.ts",
+              "sha256": "sha256:61e8a32287554ba021538cc25cddf2169b3f5d3019b6fdef881d4a8109d6db52"
+            },
+            {
+              "path": "src/qc/findingRouting.ts",
+              "sha256": "sha256:f244587cae83143995ed3d90fc2d851e91f306473be62c0823e0295157b2f03a"
+            },
+            {
+              "path": "src/qc/legacyQcStateAdapter.ts",
+              "sha256": "sha256:61fe40923faed5e0f064236c8f14ce430e6f8a818637068072a808f0594ff449"
+            },
+            {
+              "path": "src/qc/majorDisposition.ts",
+              "sha256": "sha256:7c4436a097a9c486473d7d4e54cefbc6bfd27e86a952b54bcf677ad31a0187d7"
+            },
+            {
+              "path": "src/qc/manualKeyJudge.ts",
+              "sha256": "sha256:332ad29d4a797e405516342e5bb3f5210181286bf3c2a4d5876afaebbe53140e"
+            },
+            {
+              "path": "src/qc/metrics.ts",
+              "sha256": "sha256:ae21065ac440a64ae65b8002cb35b20ef16e18e5f530a246cf9f7f7c51d6de67"
+            },
+            {
+              "path": "src/qc/noApiMode.ts",
+              "sha256": "sha256:7642cd25ee383eecf6dad45b235eb0d742e4b0aaf50d22f931fede9f55d3b6fd"
+            },
+            {
+              "path": "src/qc/normalizeProvenance.ts",
+              "sha256": "sha256:80ef80dc911181d9a7598967b57c46ef6c62ad8029c72fac680957de02ec2ea7"
+            },
+            {
+              "path": "src/qc/orchestrator/artifacts.ts",
+              "sha256": "sha256:85a0b71b00211c4d6e6c5b7992db466331e5485a720d82b290aeed9afa989b4d"
+            },
+            {
+              "path": "src/qc/orchestrator/deterministicGate.ts",
+              "sha256": "sha256:41246edf5da3161f19056534e9236513f715abce6e8a8cc75d68b3dfaa5c06ef"
+            },
+            {
+              "path": "src/qc/orchestrator/diagnose.ts",
+              "sha256": "sha256:bf44afcf7b0cc9dd801b79073ad1eb00cbf47fbdcca9f6f33ef24dc59f709f90"
+            },
+            {
+              "path": "src/qc/orchestrator/evidenceSource.ts",
+              "sha256": "sha256:25d18eb067698ca2ca105ef00aeff709fe25e2bff397e67b5041ee163c950cbd"
+            },
+            {
+              "path": "src/qc/orchestrator/finalize.ts",
+              "sha256": "sha256:9f3a8e559e210077c8174187d939b634ac40deba01e73b9e607756c9feb5b961"
+            },
+            {
+              "path": "src/qc/orchestrator/finalizerFindings.ts",
+              "sha256": "sha256:ce7f396c01bd225421e7d3cfc4e4b40666e8aec8496fbc73ebb6f075cb9e9224"
+            },
+            {
+              "path": "src/qc/orchestrator/findingGrouping.ts",
+              "sha256": "sha256:0c620ea901027fbe85c4804545f1d7ba4f2f814ed161999531f65b9ee6f6daca"
+            },
+            {
+              "path": "src/qc/orchestrator/findingValidity.ts",
+              "sha256": "sha256:fc940f4f36a298eb1d5124f131cb480f6c3897bbf7814ad423cb8aaf8d728dce"
+            },
+            {
+              "path": "src/qc/orchestrator/index.ts",
+              "sha256": "sha256:9a4ccfd733fec9eb3554f596b1c9b432fb3030697dffc1ba0ecf875ad2d78d4f"
+            },
+            {
+              "path": "src/qc/orchestrator/ledger.ts",
+              "sha256": "sha256:0d4851309297eaf505e7a0fe962617f3280f6ff0c453e44a1680b168e6e64527"
+            },
+            {
+              "path": "src/qc/orchestrator/repairBrief.ts",
+              "sha256": "sha256:50f3935e985541909afb3124688dc0cfce9c4322aa60197a5ddee8442e859881"
+            },
+            {
+              "path": "src/qc/orchestrator/reviewPacket.ts",
+              "sha256": "sha256:57a64d0563afc97c2bf8f0bcb748bf262b7650aea804cfd8bb5e204acd5756ff"
+            },
+            {
+              "path": "src/qc/orchestrator/schemas.ts",
+              "sha256": "sha256:11b00159f4c99b7d590f76eb0956465466c71aa18cf8188fa4097f186e03afbf"
+            },
+            {
+              "path": "src/qc/orchestrator/submissionSchemas.ts",
+              "sha256": "sha256:fecd989570f517bcfafb37dd2884d15e7d391168e7c8905f06f197364e3cfd78"
+            },
+            {
+              "path": "src/qc/orchestrator/transaction.ts",
+              "sha256": "sha256:7c85843ec65993ef8424aa1622e6c4424c830a903751c104187a704d5e490e7c"
+            },
+            {
+              "path": "src/qc/planEnforcement.ts",
+              "sha256": "sha256:15e7753244854d3ce1dcb226459f9ecc00107bca90295bb5b6f5556f00c345db"
+            },
+            {
+              "path": "src/qc/pruneBookState.ts",
+              "sha256": "sha256:16114724e66c4299a3c7c393e5326ba454e2cbec83121d0544f6e574ed0740a7"
+            },
+            {
+              "path": "src/qc/publishAfterQc.ts",
+              "sha256": "sha256:36e678b955068f664f8366bdc3e6080afdfbb375615c49703886778b2019330b"
+            },
+            {
+              "path": "src/qc/qcLedgerRepair.ts",
+              "sha256": "sha256:55e16b3fa79b92fa26c7089e322edabccf92662580d2396bee97cd248d070c4c"
+            },
+            {
+              "path": "src/qc/qcRound.ts",
+              "sha256": "sha256:5ef4a287dbc025aa0a7425da8cce70bcf637e0c5a75d2b74b9151aff5c0ab012"
+            },
+            {
+              "path": "src/qc/qcService.ts",
+              "sha256": "sha256:bb1b5ffe22a0734bf9f4770268457db6bf8a4d1fe0e226e62f8d5775559f525d"
+            },
+            {
+              "path": "src/qc/qcStore.ts",
+              "sha256": "sha256:27f583a047464014e2f704ef5dc567c88fb4cbe2dc70773f597d012dd31d1a83"
+            },
+            {
+              "path": "src/qc/qcTypes.ts",
+              "sha256": "sha256:a0182f426d8245271adc80bc28d9d7aa7212308d1e292eccdaf3e40d6afd78d7"
+            },
+            {
+              "path": "src/qc/repairCoordinator.ts",
+              "sha256": "sha256:cb6f42aab3663a30c44d22a38736b01a9a48e1d02d652a6c0da0ef39f54a639a"
+            },
+            {
+              "path": "src/qc/repairHistoryStore.ts",
+              "sha256": "sha256:ae5fc0bfda347fd6134fe8623b0519dd937fdcb45fab337478d4e8360f919b3f"
+            },
+            {
+              "path": "src/qc/reviewerId.ts",
+              "sha256": "sha256:66a2a171274c60c1026f7ca0a833cfb90abd8337ae524310f376554158274be6"
+            },
+            {
+              "path": "src/qc/sessionProvenance.ts",
+              "sha256": "sha256:7a52f23133581ce007bb0e8bfc5adfd0967f2c1d981d51dca963ff537ebe03c4"
+            },
+            {
+              "path": "src/qc/sourceRealityPolicy.ts",
+              "sha256": "sha256:af0a3c65893b83a8e0e9fb0ca05b4579e01a8f263e8ce1c80389726fdeee8fef"
+            },
+            {
+              "path": "src/qc/sourceV2Gate.ts",
+              "sha256": "sha256:a9ed815cce8188a9d42fa995e4f21b6937021597dddbe38d66fe09b6771f6642"
+            },
+            {
+              "path": "src/qc/sweep.ts",
+              "sha256": "sha256:dccd85807631b7673589fa9808cd52335e0737474e87efed52afecd1388e0cf3"
+            },
+            {
+              "path": "src/qc/sweepSpec.ts",
+              "sha256": "sha256:170e2788b38fb831233c358a9f77b983e64c684c21600e1753bb1d7335df8320"
+            },
+            {
+              "path": "src/release/canonicalPackageAdapter.ts",
+              "sha256": "sha256:82dc0318040a8ca2c5a46f7d042f0b46e99c9576ce8d31c0298d757fd6f2ac15"
+            },
+            {
+              "path": "src/release/legacyBakeoffStateAdapter.ts",
+              "sha256": "sha256:c91e27a04e0c7b0921cd24b8efef9783d707ace4719089a3c2de0f6c714fba01"
+            },
+            {
+              "path": "src/release/legacyPromotionAdapter.ts",
+              "sha256": "sha256:ffed09f91c495a0cf4a9fbb923b65e0898b927e35a175163aedcdb506bf83a17"
+            },
+            {
+              "path": "src/release/legacyPublishAdapter.ts",
+              "sha256": "sha256:614388169affde76bde45cb350db609264c0edaf1d0b3ec4d81ba54580041238"
+            },
+            {
+              "path": "src/release/promotionService.ts",
+              "sha256": "sha256:89113a94fe6728a7ae7ec5d291db5d3fd3398673c0892c1a0f7870b4b2166332"
+            },
+            {
+              "path": "src/release/promotionTypes.ts",
+              "sha256": "sha256:6b258c21f7108fb8dbb775cb0daafcad6e78564a54633396032bf3bf4b5a789f"
+            },
+            {
+              "path": "src/release/publishReleaseArtifacts.ts",
+              "sha256": "sha256:cafb9c95a647237b18f447f2cde45f7c5716af2079dfaa8ef060da0cfc131d94"
+            },
+            {
+              "path": "src/release/releaseJournal.ts",
+              "sha256": "sha256:152a73b40c950172e18b78aa18bacb2c1e5ee304fb4d8cae90143c6101bf782e"
+            },
+            {
+              "path": "src/repair/selfHealingRepair.ts",
+              "sha256": "sha256:ea8f70c354c9892f2549593addfe8f0de3c5ccaeb2b03c63818f583e9549ebd3"
+            },
+            {
+              "path": "src/researcher.ts",
+              "sha256": "sha256:0eb7977b49b8d05c207d5209b3620433fa51ed050b9cbb739d88734a5353bd0d"
+            },
+            {
+              "path": "src/review/aggregateChapterReview.ts",
+              "sha256": "sha256:08b6826214531ab282606a487ac741707bbdff8e73fb8b435cbd8ff132cceec7"
+            },
+            {
+              "path": "src/review/causalClaims.ts",
+              "sha256": "sha256:36303f260b9635b9a0147c17cae46566243da48d96f859df59df37d6f6a2e326"
+            },
+            {
+              "path": "src/review/evalBookProxy.ts",
+              "sha256": "sha256:b6cddf98c90b4d2d43be015453dddf01fcb2f885196944196ebba6a2a3fe70f1"
+            },
+            {
+              "path": "src/review/evalReaderProxy.ts",
+              "sha256": "sha256:837b069ac0ee004be6b09f58744f84518c149af4edfafacc5a5f7651156d9833"
+            },
+            {
+              "path": "src/review/laneOrchestrator.ts",
+              "sha256": "sha256:98bf8203872b8ee52afc2a2bbe3f3696c48ecc61dc7d3175ac8bcb05cd565849"
+            },
+            {
+              "path": "src/review/legacyReaderReviewAdapter.ts",
+              "sha256": "sha256:fa61d4022e24b25860c70e9fb269bc7f9e6619d050f83af5fa94737414faffc2"
+            },
+            {
+              "path": "src/review/quizDerivation.ts",
+              "sha256": "sha256:126486680672aeaaf31392bdf3baac6c3d22d0ab0f1d14585648c057b31509db"
+            },
+            {
+              "path": "src/review/quizIntegrityReview.ts",
+              "sha256": "sha256:4e036f96c514f6767b81752beff06e06d55e886403909b984742b1ce653327a3"
+            },
+            {
+              "path": "src/review/readerExperienceReview.ts",
+              "sha256": "sha256:3ece959388b4123b787d95812db99abbc82a1f0f32a7d0a63bfba1510a7a557c"
+            },
+            {
+              "path": "src/review/readerPanelIssueCodes.ts",
+              "sha256": "sha256:c445abe2c8f18a37276c1aa1e8e160fa68eeae17f4953c484ed52199b9a9ea19"
+            },
+            {
+              "path": "src/review/readerReview.ts",
+              "sha256": "sha256:ccb0fa3c6e3fb543f1aefad33897335f9857223a7026009abd4777365d3a2f89"
+            },
+            {
+              "path": "src/review/renderReaderDoc.ts",
+              "sha256": "sha256:e1a27bfe84c91879be86e36050ec7ec79b1f40907ad80e81788b0b407b0539d9"
+            },
+            {
+              "path": "src/review/reviewFindings.ts",
+              "sha256": "sha256:747ad10dd63c8252f0ccc5e7dded92597c771cf0b8b51dac2e9d0fc1eb21a857"
+            },
+            {
+              "path": "src/review/reviewScoreBands.ts",
+              "sha256": "sha256:0145dcfb12483e0aa6f22800ec5bdb48ab9788f83de55caad998efd6ed2cf8e9"
+            },
+            {
+              "path": "src/review/reviewService.ts",
+              "sha256": "sha256:bfcb2bcbd19b4c133556596ffe0026e060b5179ba3aded8d5219ce9730b707cc"
+            },
+            {
+              "path": "src/review/reviewStore.ts",
+              "sha256": "sha256:3d3baff6eb62ca7ea6619d11934a578c403c66a4172fefc281bea2a0af242e57"
+            },
+            {
+              "path": "src/review/reviewTypes.ts",
+              "sha256": "sha256:4b83afcc67aecff25063f50b86f2c45b9832580713f62f05a4a5178561cb747d"
+            },
+            {
+              "path": "src/review/reviewerWorkspace.ts",
+              "sha256": "sha256:e5b3f2c65d7403e4f577044199433ebdcb1fb7d89137078ffaefa7119f776cfd"
+            },
+            {
+              "path": "src/review/sourceIntegrityReview.ts",
+              "sha256": "sha256:7059f32e22538957acfe8463c09f82ece798ca327f2f804118070b1b08d543ff"
+            },
+            {
+              "path": "src/risk/chapterRisk.ts",
+              "sha256": "sha256:f19e7f10845e952511a5be67a7d1213d2c7523863df7ea3dd10fd6e1c386c376"
+            },
+            {
+              "path": "src/roles.ts",
+              "sha256": "sha256:84f43032fdedd04a164b4ffd52d780d508f6616a51023e0b7f7478ff3f7be703"
+            },
+            {
+              "path": "src/run-state/fileRunStore.ts",
+              "sha256": "sha256:b2d8e2cd4b18a36713850c9e07084600cf7090312a2cf6068c16f64b498f2edb"
+            },
+            {
+              "path": "src/run-state/index.ts",
+              "sha256": "sha256:ec8e10128940e3299d040ed77779ed21faa25568519d1805364f9f085bf0088b"
+            },
+            {
+              "path": "src/run-state/reconcileAttempt.ts",
+              "sha256": "sha256:545eb2499103b609652f6b525923b6ccf3f1bfe2cf6ecf55959896300e1e72a6"
+            },
+            {
+              "path": "src/run-state/runProjection.ts",
+              "sha256": "sha256:67b9059dae7742319186bf680c39989d1afe66d95e8bf03a763275a28d9cc384"
+            },
+            {
+              "path": "src/run-state/runStore.ts",
+              "sha256": "sha256:ba4b58a94508f2301d1e4326ee2846a443057a4077147e024d4283ec1e14872b"
+            },
+            {
+              "path": "src/run-state/runTypes.ts",
+              "sha256": "sha256:6cbcb831be725fb1f7f3c7c9a20b829e76b33327174ab3f6f8a95f31de095068"
+            },
+            {
+              "path": "src/run-state/stageCoordinator.ts",
+              "sha256": "sha256:f0580524ce33b568f9eff2d1052ad63fb939982fdd689f6a33eec246706d1a06"
+            },
+            {
+              "path": "src/run-state/stageProjection.ts",
+              "sha256": "sha256:ecf33fc99102360dcf2e5f4fdb27016b632b00579df568290ef1aee2906ab642"
+            },
+            {
+              "path": "src/run-state/stageTypes.ts",
+              "sha256": "sha256:229245a4860940557a56e1e5fef98e0345e93c63802fac63abb85869e5442789"
+            },
+            {
+              "path": "src/runbook.ts",
+              "sha256": "sha256:3ba5beec18516a87de8fd95b518ace9a03d3ad2ed4f89a2e34e68bbb9fdb78fd"
+            },
+            {
+              "path": "src/runtime/claudeRoute.ts",
+              "sha256": "sha256:7ca608b67285cb3c1b46c806cb1c12408010153aef3a7727dcc1e3bfae5c8acb"
+            },
+            {
+              "path": "src/runtime/codexRoute.ts",
+              "sha256": "sha256:a72d0dc1ef04e70d8940b489936f79fa2ba5333dcd8368fed538c639712dad34"
+            },
+            {
+              "path": "src/runtime/executionPolicy.ts",
+              "sha256": "sha256:7fb77689493d7d2b50b8c3d55abc4fe23b4681b7184f40babb5f4eb3c341f617"
+            },
+            {
+              "path": "src/runtime/executionPolicyTypes.ts",
+              "sha256": "sha256:37174f578da9b726ef350715dab9280dc3ac8524c23c24fad24efd60bf5f93f7"
+            },
+            {
+              "path": "src/runtime/legacyRouteInventory.ts",
+              "sha256": "sha256:c755f7a5225d966a681e8c6c5bfff19ad934745be092dc4928c37cd40b35a27a"
+            },
+            {
+              "path": "src/runtime/modelErrors.ts",
+              "sha256": "sha256:a4921cf8bee1d6b84faf7a4fc0b9f693c53b5f3c5fd78a88da64210ed39d1163"
+            },
+            {
+              "path": "src/runtime/modelGateway.ts",
+              "sha256": "sha256:4d0ec55f23694431ae57bef7d42b05926528a1b1bdb0e4d417fb03fe96a535f3"
+            },
+            {
+              "path": "src/runtime/modelRequest.ts",
+              "sha256": "sha256:98251dad8e70860227eed9241bb3feba8c8ba3d9c4ccd012fef9826d839bdea6"
+            },
+            {
+              "path": "src/runtime/modelResult.ts",
+              "sha256": "sha256:2dd52673d32d2f995a9cf35b7bb6143bdf7c3af1b96564814cece08390fdd314"
+            },
+            {
+              "path": "src/runtime/privateInput.ts",
+              "sha256": "sha256:2c48cc7025b2d1060df2247da2c45213457ccc86466899f2c5872197144f92a4"
+            },
+            {
+              "path": "src/runtime/processErrors.ts",
+              "sha256": "sha256:902889e021591d7c968bd7a01b70e024220bd210b20c43a01af4011bfdd023f1"
+            },
+            {
+              "path": "src/runtime/processSupervisor.ts",
+              "sha256": "sha256:ca132f314c3bbd29ad2901d70fc67f672feb4cfb7cc250f2efa12b89352b85fa"
+            },
+            {
+              "path": "src/runtime/processTree.ts",
+              "sha256": "sha256:5375b70df1f1c8249cf17a340a7dcb37a2c102e8eb16622d4399f271530c73d6"
+            },
+            {
+              "path": "src/runtime/processTypes.ts",
+              "sha256": "sha256:068b13b795e8b05a5e4cd9796d0cd106495d0c4a7ecd26cb2d2d0347e391f742"
+            },
+            {
+              "path": "src/runtime/promptRenderer.ts",
+              "sha256": "sha256:a2bf4f4fa87dcf1c2fc80aee95fae7cc05fe196cf7f8a85c5d544061be032538"
+            },
+            {
+              "path": "src/runtime/promptRequest.ts",
+              "sha256": "sha256:d55e13fc8095ce9bc7cf209be7704d03d05b00f7d191ed42380b71bae40a63ae"
+            },
+            {
+              "path": "src/runtime/untrustedData.ts",
+              "sha256": "sha256:8e130f701b97e6b8bbd9862543bf6764c359d776a5df3a024d7a5cad2af9f355"
+            },
+            {
+              "path": "src/runtimeSchemas.ts",
+              "sha256": "sha256:ab3eb443431c6790abf9de0c807e9c2dc8f722efc54eff1052e2e8195ec283f1"
+            },
+            {
+              "path": "src/sections/assembleSections.ts",
+              "sha256": "sha256:b5ef28b6dc9de6b8ccd0c81ad9bbd13e869885522637752020870ddd58b84258"
+            },
+            {
+              "path": "src/sections/chapterProse.ts",
+              "sha256": "sha256:e379631a2736a57453c7abef018cc503118aede8f446a54240284f45d45b9d51"
+            },
+            {
+              "path": "src/sections/pedagogyThresholds.ts",
+              "sha256": "sha256:afb8121bb11084299e86e14c2667f8bbc98d996a749da4d0525bccb6ea7d1809"
+            },
+            {
+              "path": "src/sections/sectionGate.ts",
+              "sha256": "sha256:d1875bd43522bac999dc9251cdda93c1059860ab928bda65d3a383f19c610e57"
+            },
+            {
+              "path": "src/sections/sectionTasks.ts",
+              "sha256": "sha256:8358b7014d9a255bcbb1c36fe9fa74bbb74ab50aad8049fd972957e5c6e79ba2"
+            },
+            {
+              "path": "src/source-loader.ts",
+              "sha256": "sha256:60d34d00859989dac03440243585cbe583e289d1855324b68f07292f9ad04de3"
+            },
+            {
+              "path": "src/source/sidecarSchema.ts",
+              "sha256": "sha256:a9dc986303168705d894e879c09a64a3e04def99b3294a552cb3ec1f948b95df"
+            },
+            {
+              "path": "src/source/sourceEvidence.ts",
+              "sha256": "sha256:93a27fc9ded4e367da5b40cd806c157d5b5c93a3731bf667aca9c13ba01ac979"
+            },
+            {
+              "path": "src/source/sourceIntegrity.ts",
+              "sha256": "sha256:c15b9bceef5f962ef13181442f2f2296d5737fefc218193e62213e3e7eb85412"
+            },
+            {
+              "path": "src/sourceFit.ts",
+              "sha256": "sha256:78b4bd09ec28927180d124a71076c65daaca983d6d46ef07e80323ea842f32d9"
+            },
+            {
+              "path": "src/sourceVerifyWorkbench.ts",
+              "sha256": "sha256:e360b13af33943ef8b33583b3ae2a4651c750d16d16f49886610af075407c078"
+            },
+            {
+              "path": "src/telemetry/diversityConfig.ts",
+              "sha256": "sha256:95e4126a468721a9d34ede49d09f481537b53937018ffb7da887f42799af1b1e"
+            },
+            {
+              "path": "src/telemetry/diversityFeatures.ts",
+              "sha256": "sha256:4a7e7db67073638441f1a7d2a1e31a632c1d923d864b9d3ed5ae4537fc4f6400"
+            },
+            {
+              "path": "src/telemetry/diversityLedger.ts",
+              "sha256": "sha256:80d944abc7b237b8016dc41ead86d512ced84744edb20014da80d1f9077db542"
+            },
+            {
+              "path": "src/telemetry/internalTaxonomy.ts",
+              "sha256": "sha256:178927cf42607be0b275e521da576c16d0e5cc2d7a752f2bd67db961e809ae6d"
+            },
+            {
+              "path": "src/types.ts",
+              "sha256": "sha256:b939ed6e8f333336d6be10158e116f6bffa1ec5d0e43280ef33f6fc598bd92c8"
+            },
+            {
+              "path": "src/verifyProductionPackage.ts",
+              "sha256": "sha256:9216b35d6da916aa966d6b65e319470ed66ea0787dfe6a8980c3dfce0b25e586"
+            }
+          ]
+        },
+        "labels": {
+          "promptSet": "chapterflow-v21-authored-prompts-v1",
+          "config": "chapterflow-v21-authored-config-v1",
+          "code": "chapterflow-v21-authored-production-package-v1"
+        }
+      }
+    },
+    "metadata": {
+      "createdAt": "2026-08-24T19:24:57.007Z",
+      "generator": "promoteBook",
+      "runId": "manual-promote"
+    }
+  }
+}
