@@ -8,9 +8,9 @@ import {
   type AssembleInput,
   type AuthorV4ContentSelection,
 } from "../assembler.js";
-import { selectMemorableLinesDeterministic } from "../optimizers/memorableLines.js";
+import { selectMemorableLinesDeterministic, type MemorableCandidate, type MemorableTier } from "../optimizers/memorableLines.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
-import { checkSectionGate, type SectionFinding } from "./sectionGate.js";
+import { checkSectionGate, validateAnchorHardSpecifics, type SectionFinding } from "./sectionGate.js";
 import { CHAPTERS_DIR, chapterFileName, normSlug } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
@@ -26,6 +26,42 @@ import type { ActionPackV1, ChapterBlueprintV1, ExamplePackV1, LearningPackV1, S
 import type { PlanningSourceEvidence } from "../source/sourceEvidence.js";
 import type { CandidateInputFile } from "../books/candidateTypes.js";
 import type { SectionKind, SectionPackV1 } from "../artifacts/artifactTypes.js";
+
+/**
+ * The memorable-line grounding wiring — the ship-side half of the SEC16/SC11.2
+ * alignment.
+ *
+ * `chapter.memorableLines` is chosen HERE, after the section gate has already run.
+ * The gate ranks its candidates grounding-first (sectionGate.ts, SEC16) and the
+ * assembler used to rank by pure aphorism score, so the two picked different top-3
+ * sets out of one candidate pool and the gate validated sentences the book never
+ * shipped. Handing the selector the SAME cited-anchor list the gate read
+ * (`summaryPack.breakdown.sourceAnchorIds[tier]`) and the SAME predicate it runs
+ * (`validateAnchorHardSpecifics`, memorable_line, min 2, OR-semantics) makes the
+ * shipped lines exactly the SEC16-validated lines.
+ *
+ * This changes WHICH already-gate-legal sentences ship; it relaxes nothing. SEC16
+ * still blocks the pack when no candidate is groundable, and ship-time SC11.2 is
+ * untouched.
+ */
+function memorableGrounding(summary: SummaryPackV1, packet: SourcePacketV1): {
+  anchorIdsForTier: (tier: MemorableTier) => unknown;
+  isGrounded: (candidate: MemorableCandidate) => boolean;
+} {
+  const anchors = new Map((packet.allowedAnchors ?? []).map((anchor) => [anchor.id, anchor]));
+  return {
+    anchorIdsForTier: (tier) => summary.breakdown?.sourceAnchorIds?.[tier],
+    isGrounded: (candidate) => validateAnchorHardSpecifics(
+      candidate.ids,
+      anchors,
+      "memorable_line",
+      candidate.text,
+      `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`,
+      2,
+      "any",
+    ).length === 0,
+  };
+}
 
 export type AssembleSectionsResult = {
   bookId: string;
@@ -235,7 +271,7 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
         sourceEvidence: sourceEvidenceFromPacket(chapter.packet),
       };
       const assembled = assembleChapterV21OrThrow(assembleInput);
-      const deterministicLines = selectMemorableLinesDeterministic(assembled);
+      const deterministicLines = selectMemorableLinesDeterministic(assembled, memorableGrounding(summary, chapter.packet));
       assembled.memorableLines = deterministicLines.length >= 3 ? deterministicLines : assembled.memorableLines;
       candidateFiles.push({
         kind: "CHAPTER",
@@ -309,7 +345,7 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
       };
       writeJsonFile(assemblyInputPath(normalized, chapterNumber, roots), assembleInput);
       const chapter = assembleChapterV21OrThrow(assembleInput);
-      const deterministicLines = selectMemorableLinesDeterministic(chapter);
+      const deterministicLines = selectMemorableLinesDeterministic(chapter, memorableGrounding(summary, packet));
       chapter.memorableLines = deterministicLines.length >= 3 ? deterministicLines : chapter.memorableLines;
       mkdirSync(CHAPTERS_DIR, { recursive: true });
       const out = resolve(CHAPTERS_DIR, chapterFileName(chapter.chapterId));

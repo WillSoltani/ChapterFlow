@@ -49,6 +49,24 @@ requiredTest("scoped repair changes one chapter, preserves untouched bytes, reco
   assert.equal(run.ok && run.value.attempts.length, 1);
 });
 
+/**
+ * CLASS 2 (repair half). A repair rewrites whole reader-facing fields, so it needs
+ * the same style prohibitions the section writer got or it re-mints exactly what
+ * ship-gate B5 blocks. The live Franklin round qc-29d119c59544a5d991c71c7c9fec04bb
+ * carried 68 B5 blockers and then spent every repair ordinal without clearing them.
+ */
+requiredTest("CLASS 2: the repair card's control text carries the em-dash prohibition B5 enforces", async (context) => {
+  const subject = rig(context);
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  const control = Buffer.from(
+    subject.prompts[0].prompt.inputs.find((input) => input.name === "control")!.bytes,
+  ).toString("utf8");
+  assert.match(control, /never use an em dash/i, control);
+  assert.ok(control.includes("—"), `the control text must show the character it bans: ${control}`);
+  assert.match(control, /B5/, control);
+});
+
 requiredTest("completed repair run resumes from exact stored transition with zero model calls", async (context) => {
   const subject = rig(context);
   const first = await subject.port.run(subject.request);

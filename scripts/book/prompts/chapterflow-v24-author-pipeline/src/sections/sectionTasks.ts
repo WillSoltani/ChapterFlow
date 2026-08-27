@@ -292,6 +292,20 @@ export function sectionDoNotLines(outputPath: string): string[] {
     "- Do not introduce new real-world entities, numbers, dates, places, participants, studies, institutions, or outcomes unless they appear in the source packet below.",
     "- Name a real, public case from the source plainly, or describe it in the chapter's own words; never anonymize a nameable case into a periphrastic tell.",
     `- Do not mention "this chapter", "the book", or "the author" in reader-facing content.`,
+    // The em dash is hard-banned on every reader-facing field by the SHIP gate (B5,
+    // critics/register.ts checkNoEmDash) and nothing said so at drafting time: the
+    // live Franklin QC round qc-29d119c59544a5d991c71c7c9fec04bb carried 68 B5
+    // blockers out of 96 — a write/ship disagreement, not a writer failing a rule it
+    // had been given. SEC123 now mirrors B5 at compile time; this line is the half
+    // that stops the em dash being minted in the first place.
+    //
+    // KEPT SHORT ON PURPOSE. The rendered learning-pack card sits at 61.5% of its
+    // pinned pre-refactor length against a 62% ceiling (tests/contract-refactor.test.ts),
+    // so ~237 characters is the entire budget this line has. It spends them on the
+    // three things a writer cannot infer: the exact character (U+2014, shown
+    // literally so no one has to guess which dash), what to use instead, and that
+    // one occurrence is fatal. The pin is not moved to make room for it.
+    `- Never use an em dash (—, U+2014) in reader-facing text; use a comma, period, parenthesis, or colon. No exceptions, no permitted first use: one fails the chapter (B5) and the draft (SEC123).`,
     `- Never use hard-banned register phrases or opener shells such as "The trap is to", "The trap is not", "The mistake is to", "The paradox is that", "Most readers assume", or "Most people think".`,
     `- Avoid soft-banned house tics: "rather than", "That matters because", "turns out to be", and "treats it as". Use plain alternatives unless the phrase is truly necessary.`,
     "- Do not change the final ChapterV21 schema; this is an intermediate artifact only.",

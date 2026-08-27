@@ -61,16 +61,49 @@ import {
  * blueprint, the source packet, the source-use plan and every matching source
  * text — tens of thousands of characters of evidence. The brief is the
  * INSTRUCTION beside that evidence, and an instruction that grows to evidence
- * scale stops being read as one. The cap binds the ADVISORY tail only: a
- * mandatory blocker and the factor line are never dropped to fit, because
- * silently losing a required fix would be a worse defect than an over-long
- * prompt, and the brief states the exact number of advisories it omitted.
+ * scale stops being read as one. This cap binds the advisory tail (the exact
+ * number of omitted advisories is stated); blockers now carry their OWN
+ * coverage-first budget below (REPAIR_BRIEF_BLOCKER_MAX_CHARS) — the earlier
+ * "blockers are never dropped to fit" rule read as safety and was really an
+ * unbounded mandate that killed two live repair runs.
  */
 export const REPAIR_BRIEF_MAX_CHARS = 8000;
 
 /** Per-finding message clamp. One pathological message must not consume the
  *  whole budget and starve every other finding of a line. */
 export const REPAIR_BRIEF_ITEM_MAX_CHARS = 400;
+
+/**
+ * Character budget for the MANDATORY FIXES section.
+ *
+ * WHY IT EXISTS — the blocker list was the one part of this brief with no bound at
+ * all. The advisory tail has been capped since this module was written; blockers
+ * were "never dropped to fit", which reads as safety and is really an unbounded
+ * mandate. The live Franklin run is the counter-example: QC round
+ * qc-29d119c59544a5d991c71c7c9fec04bb returned 96 blockers, grouped per chapter as
+ * ch01 13 / ch02 29 / ch03 35 / ch04 19, and ch03 — the largest set, ~5.5k
+ * characters of blocker section on its own — is the chapter whose repair attempt
+ * failed in BOTH `repair-r2` and `repair-r3`
+ * (`gateway=FAILED … stdoutBytes=1979` and `8559`, against ~49k on the chapters
+ * that succeeded), each failure killing the whole repair run with
+ * `model output failed source-controlled schema validation`. ch01 and ch02 were
+ * repaired successfully in the same runs. That correlation is what this bound is
+ * drawn from; the model's raw output is not persisted, so the exact mechanism
+ * inside the model is NOT established here and is not claimed.
+ *
+ * 4000 = half the brief budget, leaving the advisory tail its own room. The number
+ * is a split of an existing budget rather than a fitted threshold: 29 blockers
+ * (ch02, ~4.2k) succeeded live and 35 (ch03, ~5.6k) did not, which does not
+ * identify a cliff, so no cap is claimed to sit on one.
+ *
+ * WHAT IT DOES NOT DO — it drops nothing silently and it changes no gate. Every
+ * distinct blocker CODE always gets a line (see `boundedBlockers`), the omitted
+ * remainder is counted and named by code, and the findings themselves are
+ * unchanged: QC re-runs on the successor and re-raises anything still unfixed. A
+ * repair that fixes fewer defects per round converges over rounds; a repair run
+ * that dies converges never.
+ */
+export const REPAIR_BRIEF_BLOCKER_MAX_CHARS = 4000;
 
 /** Room reserved for the omission notice so the notice itself cannot push the
  *  brief past its budget. */
@@ -94,6 +127,64 @@ function clamp(value: string): string {
 
 function bullet(issue: QcIssue): string {
   return `- [${issue.code}]${issue.location === undefined ? "" : ` (${issue.location})`} ${clamp(issue.message)}`;
+}
+
+/**
+ * Bound one chapter's blocker list without hiding what it left out.
+ *
+ * ORDER OF PRIORITY, and why:
+ *   1. COVERAGE FIRST — one blocker per distinct code, in first-appearance order.
+ *      A 96-finding round is not 96 different defects: the live Franklin round was
+ *      68 B5 (em dash) + 21 SC11.2 + 4 BP15 + 2 A14 + 1 BP24, five classes. A plain
+ *      top-N would have spent the whole budget on B5 repeats and never shown the
+ *      writer that BP24 existed at all. Coverage wins even if the coverage pass
+ *      alone exceeds the budget — losing a defect CLASS outright is worse than an
+ *      over-long section, and the code catalog is small and finite.
+ *   2. Then the remaining blockers in the caller's provenance order until the
+ *      budget is spent.
+ *   3. Then a notice that COUNTS the omitted remainder and NAMES it by code with
+ *      per-code counts, so the writer knows more of each class exists and can fix
+ *      the class rather than the listed instance.
+ *
+ * `severity` deliberately does not order anything: every issue reaching here is
+ * already a BLOCKER, so severity carries no signal inside this set.
+ */
+function boundedBlockers(blockers: readonly QcIssue[]): { lines: string[]; omitted: QcIssue[] } {
+  const shown: QcIssue[] = [];
+  const taken = new Set<QcIssue>();
+  const seenCodes = new Set<string>();
+  for (const issue of blockers) {
+    if (seenCodes.has(issue.code)) continue;
+    seenCodes.add(issue.code);
+    shown.push(issue);
+    taken.add(issue);
+  }
+  let used = shown.reduce((total, issue) => total + bullet(issue).length + 1, 0);
+  for (const issue of blockers) {
+    if (taken.has(issue)) continue;
+    const line = bullet(issue);
+    if (used + line.length + 1 > REPAIR_BRIEF_BLOCKER_MAX_CHARS) continue;
+    shown.push(issue);
+    taken.add(issue);
+    used += line.length + 1;
+  }
+  // Re-emit in the caller's provenance order: the coverage pass reorders, and the
+  // caller owns provenance order (this module owns framing, not sequence).
+  const ordered = blockers.filter((issue) => taken.has(issue));
+  const omitted = blockers.filter((issue) => !taken.has(issue));
+  return { lines: ordered.map(bullet), omitted };
+}
+
+/** "12 B5, 3 SC11.2.anchor_specific_not_present" — the omitted remainder named by
+ *  class, most-numerous first, ties broken by first appearance so the line is
+ *  deterministic. */
+function omissionByCode(omitted: readonly QcIssue[]): string {
+  const counts = new Map<string, number>();
+  for (const issue of omitted) counts.set(issue.code, (counts.get(issue.code) ?? 0) + 1);
+  return [...counts.entries()]
+    .sort((a, b) => (b[1] === a[1] ? 0 : b[1] - a[1]))
+    .map(([code, count]) => `${count} ${code}`)
+    .join(", ");
 }
 
 /**
@@ -137,10 +228,16 @@ export function buildRepairBrief(input: RepairBriefInput): string {
       "",
     );
   } else {
+    const bounded = boundedBlockers(input.blockers);
     lines.push(
       `## MANDATORY FIXES — BLOCKERS (${input.blockers.length})`,
-      "Every blocker below MUST be fixed. These are the only mandatory changes; everything after them is context.",
-      ...input.blockers.map(bullet),
+      bounded.omitted.length === 0
+        ? "Every blocker below MUST be fixed. These are the only mandatory changes; everything after them is context."
+        : `${input.blockers.length} blockers are attached to this chapter — more than one brief can carry. The ${bounded.lines.length} below MUST be fixed, and every distinct blocker CODE in the round is represented among them, so treat each one as an EXAMPLE OF ITS CLASS and clear the class across the whole chapter, not just the listed location. These are the only mandatory changes; everything after them is context.`,
+      ...bounded.lines,
+      ...(bounded.omitted.length === 0
+        ? []
+        : [`- …${bounded.omitted.length} further blocker(s) of the classes above are not listed individually: ${omissionByCode(bounded.omitted)}. They are real and still block. Fixing the class is how you clear them.`]),
       "",
     );
   }

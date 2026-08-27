@@ -18,35 +18,114 @@ const BAD_SHAPES = [
   /\battention,\s*meaning,\s*or\s*memory\b/i,
 ];
 
-export function selectMemorableLinesDeterministic(chapter: ChapterV21): MemorableLine[] {
-  const candidates: Array<{ text: string; location: string; score: number; sourceAnchorIds?: string[] }> = [];
-  const add = (text: string | undefined, location: string, sourceAnchorIds?: string[]) => {
-    for (const sentence of splitSentences(text ?? "")) {
+/** The three breakdown tiers memorable lines are harvested from, in harvest order.
+ *  Order is load-bearing: V8's sort is stable, so equal-scoring candidates keep
+ *  their harvest order and the compile-time and ship-time selections coincide only
+ *  while both harvest in this sequence. */
+export const MEMORABLE_TIERS = ["fastRead", "deepRead", "fullRead"] as const;
+export type MemorableTier = (typeof MEMORABLE_TIERS)[number];
+
+/** One harvested memorable-line candidate. `ids` carries the tier's cited source
+ *  anchors — the candidate inherits its WHOLE tier's citations, which is what the
+ *  grounding check (SEC16 at compile, SC11.2 at ship) reads. */
+export type MemorableCandidate = {
+  readonly text: string;
+  readonly score: number;
+  readonly tier: MemorableTier;
+  readonly ids: unknown;
+};
+
+/**
+ * Harvest the scored candidates out of a chapter's three breakdown tiers.
+ *
+ * ONE harvest for both lanes. The section gate used to inline its own copy of this
+ * split/score loop while the assembler kept another in `selectMemorableLinesDeterministic`;
+ * two copies of "which sentences are candidates" is the first half of the write/ship
+ * split this module now closes.
+ */
+export function harvestMemorableCandidates(
+  breakdown: Partial<Record<MemorableTier, unknown>> | undefined | null,
+  idsForTier: (tier: MemorableTier) => unknown = () => undefined,
+): MemorableCandidate[] {
+  const candidates: MemorableCandidate[] = [];
+  for (const tier of MEMORABLE_TIERS) {
+    const value = breakdown?.[tier];
+    const ids = idsForTier(tier);
+    for (const sentence of splitSentences(typeof value === "string" ? value : "")) {
       const score = memorableLineScore(sentence);
-      if (score > 0) candidates.push({ text: sentence, location, score, sourceAnchorIds });
+      if (score > 0) candidates.push({ text: sentence, score, tier, ids });
     }
-  };
+  }
+  return candidates;
+}
 
-  add(chapter.breakdown?.fastRead, "breakdown.fastRead");
-  add(chapter.breakdown?.deepRead, "breakdown.deepRead");
-  add(chapter.breakdown?.fullRead, "breakdown.fullRead");
-
+/**
+ * THE selection. Both the compile-time gate (SEC15/SEC16, sectionGate.ts) and the
+ * assembler that writes `chapter.memorableLines` read this one function, so the
+ * sentences the gate validates are exactly the sentences that ship.
+ *
+ * WHY THIS IS ONE FUNCTION (live evidence, run book-run-910febe1 / QC round
+ * qc-29d119c59544a5d991c71c7c9fec04bb): the gate sorted its candidates
+ * grounding-first — a deliberate policy (Finding 21) so a retry card could beat a
+ * pretty-but-ungroundable sentence — while the assembler sorted by pure aphorism
+ * score. Two orderings over one candidate pool select two different top-3 sets. On
+ * the Franklin ch03 compiler candidate the gate's set was 3/3 groundable and SEC16
+ * passed with zero blockers, while the assembler shipped a set containing an
+ * ungroundable line, which ship-time SC11.2 then blocked. Compile validated
+ * sentences that never shipped. The ordering is not the defect; having two of them
+ * was. `isGrounded` is injected rather than imported so this module keeps no
+ * dependency on the gate (sectionGate already imports memorableLineScore from here).
+ *
+ * OMITTING `isGrounded` reproduces the pure-score ordering byte-for-byte, so a
+ * caller with no source packet in hand behaves exactly as before.
+ */
+export function selectMemorableCandidates(
+  candidates: readonly MemorableCandidate[],
+  isGrounded?: (candidate: MemorableCandidate) => boolean,
+): MemorableCandidate[] {
   const used = new Set<string>();
-  return candidates
-    .sort((a, b) => b.score - a.score)
-    .filter((c) => {
-      const key = c.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const ranked = isGrounded
+    ? candidates.map((candidate) => ({ candidate, grounded: isGrounded(candidate) }))
+    : candidates.map((candidate) => ({ candidate, grounded: true }));
+  return ranked
+    .sort((a, b) => (a.grounded === b.grounded ? b.candidate.score - a.candidate.score : a.grounded ? -1 : 1))
+    .map((entry) => entry.candidate)
+    .filter((candidate) => {
+      const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
       if (used.has(key)) return false;
       used.add(key);
       return true;
     })
-    .slice(0, 3)
-    .map((c) => ({
-      text: c.text,
-      location: c.location,
-      why: memorableLineReason(c.text, c.location, c.score),
-      ...(c.sourceAnchorIds && c.sourceAnchorIds.length > 0 ? { sourceAnchorIds: c.sourceAnchorIds.slice(0, 3) } : {}),
-    }));
+    .slice(0, 3);
+}
+
+/**
+ * The assembler's entry point. `grounding` is OPTIONAL and absent by default: a
+ * caller that supplies neither anchors nor a predicate gets exactly the previous
+ * pure-score selection, so every existing call site is byte-identical.
+ *
+ * Supplying `grounding` is what makes the shipped lines equal the SEC16-validated
+ * lines. `anchorIdsForTier` must return the SAME cited-anchor list the gate read
+ * (`summaryPack.breakdown.sourceAnchorIds[tier]`), and `isGrounded` must be the
+ * SAME check the gate runs; assembleSections wires both from the chapter's own
+ * source packet.
+ */
+export function selectMemorableLinesDeterministic(
+  chapter: ChapterV21,
+  grounding?: {
+    anchorIdsForTier: (tier: MemorableTier) => unknown;
+    isGrounded: (candidate: MemorableCandidate) => boolean;
+  },
+): MemorableLine[] {
+  const candidates = harvestMemorableCandidates(chapter.breakdown, grounding?.anchorIdsForTier);
+  return selectMemorableCandidates(candidates, grounding?.isGrounded).map((candidate) => {
+    const location = `breakdown.${candidate.tier}`;
+    return {
+      text: candidate.text,
+      location,
+      why: memorableLineReason(candidate.text, location, candidate.score),
+    };
+  });
 }
 
 /** Why THIS sentence was selected, in terms of the traits that actually scored it.
