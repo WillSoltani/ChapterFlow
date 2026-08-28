@@ -4,7 +4,15 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "./harness.js";
 
-import { runContentRepairWorkflow, type ContentRepairRequest, type SuccessorQcOperation } from "../src/app/contentRepairWorkflow.js";
+import {
+  MAX_REPAIR_REVIEW_ATTEMPTS,
+  REPAIR_REVIEW_ERROR_CODE,
+  isRepairReviewErrorTerminalReason,
+  repairReviewIdSeries,
+  runContentRepairWorkflow,
+  type ContentRepairRequest,
+  type SuccessorQcOperation,
+} from "../src/app/contentRepairWorkflow.js";
 import { createBookWriteLock } from "../src/books/bookLease.js";
 import { createCandidateStore } from "../src/books/candidateStore.js";
 import type { CandidateSnapshot } from "../src/books/candidateTypes.js";
@@ -216,6 +224,110 @@ test("old QC record and reused round cannot authorize successor", () => caseWith
   const infra = await h.run(h.request({ successorCandidateId: "candidate-error" }));
   assert.equal(infra.ok, false);
   if (!infra.ok) assert.equal(infra.error.code, "REPAIR_FAILED_QC_STALE");
+}));
+
+/**
+ * A REVIEW ERROR IS NOT A VERDICT ON THE SUCCESSOR.
+ *
+ * OBSERVED LIVE (cf-canary, Franklin `book-run-d7e690f9`): repair run
+ * `repair-r3-run-88b631ed3` REPAIRED its chapter successfully, then its
+ * re-review came back `outcome: ERROR` (a reader seat's schema-invalid output
+ * fail-closed the panel). `validateReview` treated every non-PASS the same way,
+ * so the workflow answered REPAIR_REVIEW_FAILED, the port finished the repair
+ * run FAILED, and the qc-repair ordinal walk skipped that ordinal as SPENT —
+ * burning the third and last of MAX_QC_REPAIR_RUNS on infrastructure noise while
+ * the already-staged successor sat on disk, repaired and unjudged.
+ *
+ * ERROR is UNCERTAINTY. The successor is durable, the panel simply failed to
+ * produce a reading of it, so the honest move is to re-review THE SAME STAGED
+ * SUCCESSOR under a fresh review id (the review store keys its records by review
+ * id, so reusing the id would replay the stored ERROR with zero model calls),
+ * bounded, and only then give up — under a DISTINCT code the ordinal walk can
+ * recognize. A FAIL verdict is untouched: that is a real judgment the repair
+ * machinery owns.
+ */
+test("a review ERROR retries the SAME staged successor under a fresh review id and recovers within the run", () => caseWithCleanup(async (make) => {
+  const h = await make();
+  const seen: string[] = [];
+  h.setReviewOverride((candidate, reviewId) => {
+    seen.push(reviewId);
+    // Attempt 1 flakes; the bounded successor review of the SAME candidate lands.
+    return seen.length === 1
+      ? { schemaVersion: "1", reviewId, candidate: identity(candidate), outcome: "ERROR", issues: [{ code: "SEMANTIC_PANEL_READER_FAILED", severity: "BLOCKER", message: "MODEL_OUTPUT_INVALID" }], completedAt: at }
+      : undefined;
+  });
+  const result = await h.run(h.request());
+  assert.equal(result.ok && result.value.status, "PASS", JSON.stringify(result));
+  if (!result.ok) return;
+  // Two reviews, distinct ids, both bound to the SAME successor candidate.
+  assert.equal(h.calls.review, 2, JSON.stringify(seen));
+  assert.deepEqual(seen, repairReviewIdSeries("review-1").slice(0, 2));
+  assert.equal(result.value.review.reviewId, seen[1], "the successor review is what authorizes the candidate");
+  assert.deepEqual(result.value.review.candidate, identity(result.value.successor));
+  // The repair produced exactly ONE successor — the retry re-reviewed it, it did
+  // not repair the chapter again.
+  assert.equal(h.calls.createSuccessor, 1);
+  // Fresh QC and the durable history both bind to the review that actually
+  // authorized the successor, not to the flaked base id.
+  assert.equal(result.value.qc.reviewId, seen[1]);
+  const history = await h.history.list("book");
+  assert.equal(history.ok && history.value.length, 1);
+  if (history.ok) assert.equal(history.value[0].reviewId, seen[1]);
+}));
+
+test("a review that ERRORs on every bounded attempt fails with REPAIR_REVIEW_ERROR — a distinct, ordinal-recognizable reason", () => caseWithCleanup(async (make) => {
+  const h = await make();
+  const seen: string[] = [];
+  h.setReviewOverride((candidate, reviewId) => {
+    seen.push(reviewId);
+    return { schemaVersion: "1", reviewId, candidate: identity(candidate), outcome: "ERROR", issues: [], completedAt: at };
+  });
+  const result = await h.run(h.request());
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) return;
+  assert.equal(result.error.code, REPAIR_REVIEW_ERROR_CODE);
+  // The run-state terminal reason is the port's `workflow.error.message`, so the
+  // MESSAGE — not just the code — has to be recognizable to the ordinal walk.
+  assert.ok(
+    isRepairReviewErrorTerminalReason(result.error.message),
+    `the terminal reason must be recognizable as a review-ERROR flake: ${result.error.message}`,
+  );
+  assert.equal(h.calls.review, MAX_REPAIR_REVIEW_ATTEMPTS, JSON.stringify(seen));
+  assert.deepEqual(seen, repairReviewIdSeries("review-1"));
+  // Fail-closed: no QC, no history advance, no invented verdict.
+  assert.equal(h.calls.qc, 0);
+  const history = await h.history.list("book");
+  assert.equal(history.ok && history.value.length, 0);
+}));
+
+test("CONTROL: a genuine review FAIL keeps exactly today's behaviour — one review, REPAIR_REVIEW_FAILED, no retry", () => caseWithCleanup(async (make) => {
+  const h = await make();
+  const seen: string[] = [];
+  h.setReviewOverride((candidate, reviewId) => {
+    seen.push(reviewId);
+    return { schemaVersion: "1", reviewId, candidate: identity(candidate), outcome: "FAIL", issues: [{ code: "READER.BLOCKING.internal_contradiction", severity: "BLOCKER", message: "claims A then not-A" }], completedAt: at };
+  });
+  const result = await h.run(h.request());
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) return;
+  assert.equal(result.error.code, "REPAIR_REVIEW_FAILED");
+  assert.equal(result.error.message, "canonical review outcome: FAIL");
+  assert.equal(h.calls.review, 1, "a FAIL verdict must never spend a bounded ERROR retry");
+  assert.deepEqual(seen, ["review-1"]);
+  assert.equal(h.calls.qc, 0);
+}));
+
+test("CONTROL: a review bound to the WRONG candidate is still STALE, never retried as an ERROR flake", () => caseWithCleanup(async (make) => {
+  const h = await make();
+  let calls = 0;
+  h.setReviewOverride((_candidate, reviewId) => {
+    calls += 1;
+    return { schemaVersion: "1", reviewId, candidate: identity(h.predecessor), outcome: "ERROR", issues: [], completedAt: at };
+  });
+  const result = await h.run(h.request());
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (!result.ok) assert.equal(result.error.code, "REPAIR_REVIEW_STALE");
+  assert.equal(calls, 1, "a review that does not authorize this successor is not an infra flake to retry");
 }));
 
 test("second repair without diagnosis blocks before candidate creation", () => caseWithCleanup(async (make) => {

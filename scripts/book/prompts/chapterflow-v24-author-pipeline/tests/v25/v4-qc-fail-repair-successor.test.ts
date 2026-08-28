@@ -211,6 +211,104 @@ requiredTest("the qc-repair successor walk is BOUNDED: it fails closed with the 
   );
 });
 
+/**
+ * THIRD WEDGE — a REVIEW ERROR is not a verdict, so it must not spend an ordinal.
+ *
+ * OBSERVED LIVE (cf-canary, Franklin `book-run-d7e690f9`): `repair-r3` REPAIRED
+ * its chapter, then its re-review came back `outcome: ERROR` (a reader seat's
+ * schema-invalid output fail-closed the panel). The workflow returned
+ * REPAIR_REVIEW_FAILED, the port wrote the repair run FAILED, and this walk —
+ * which cannot tell "the book was judged and lost" from "the judge never
+ * showed up" — skipped it as SPENT. That was the THIRD and last of
+ * MAX_QC_REPAIR_RUNS, so the book wedged at the diagnosis gate with a repaired,
+ * unjudged successor sitting on disk.
+ *
+ * `contentRepairWorkflow` now re-reviews the SAME staged successor inside the
+ * run (bounded, fresh review ids) and, only if every attempt flakes, fails with
+ * the DISTINCT reason `REPAIR_REVIEW_ERROR:` — a run-state terminal reason this
+ * walk recognizes. Such an ordinal is still WALKED PAST (run state is terminal;
+ * a dead run id can never be re-entered) but it no longer COSTS the book one of
+ * its repair rounds: it extends the walk by one instead, bounded by
+ * MAX_FORGIVEN_INFRA_ORDINALS so infrastructure noise cannot mint ids forever.
+ * Every other FAILED reason is spent exactly as before.
+ */
+requiredTest("a qc-repair ordinal lost to a REVIEW ERROR does not spend the budget: the walk extends past it and the repair still runs", async (context: TestContext) => {
+  const book = "qc-repair-review-error";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  // Exactly the live shape: the whole cap already burned, and the LAST of them
+  // died of a review that never produced a verdict.
+  await h.seedQcRepairRun("repair", "FAILED");
+  await h.seedQcRepairRun("repair-r2", "FAILED");
+  await h.seedQcRepairRun(
+    "repair-r3",
+    "FAILED",
+    "REPAIR_REVIEW_ERROR:canonical review errored on all 3 bounded attempts of the same staged successor candidate-x; no verdict was produced",
+  );
+
+  const result = await h.service.run({ ...h.request });
+  if (!result.ok) throw new Error(`an infra-lost ordinal must not exhaust the repair budget: ${JSON.stringify(result.error)}`);
+  assert.equal(result.value.status, "READY");
+  // The forgiven ordinal bought exactly one more: the repair executed under r4.
+  assert.equal(h.qcRepairCalls().length, 1, JSON.stringify(h.qcRepairCalls()));
+  assert.equal(h.qcRepairCalls()[0].repairRunId, h.qcRepairRunId("repair-r4"));
+  // Nothing about the dead ordinals was rewritten.
+  const flaked = await h.runStore.readRun(book, h.qcRepairRunId("repair-r3"), context.clock.now());
+  assert.ok(flaked.ok);
+  assert.equal(flaked.value.status, "FAILED", "the walk abandons nothing and rewrites nothing");
+});
+
+requiredTest("forgiveness is BOUNDED: once MAX_FORGIVEN_INFRA_ORDINALS review-ERROR ordinals are absorbed, the lane still fails closed with the cap named", async (context: TestContext) => {
+  const book = "qc-repair-review-error-capped";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  const infraReason = "REPAIR_REVIEW_ERROR:canonical review errored on all 3 bounded attempts of the same staged successor candidate-x; no verdict was produced";
+  // ORDER MATTERS (adversarial review caught the first version testing nothing):
+  // the infra-lost ordinals come FIRST so forgiveness actually ENGAGES — both
+  // forgivable slots absorb r1/r2 and raise the identity ceiling from 3 to 5 —
+  // and THEN cap-many genuine failures (r3..r5) spend the whole budget. A third
+  // infra flake at r6 must NOT be forgiven (bound is 2), so exhaustion is
+  // reached with forgiveness maximally exercised.
+  for (const label of ["repair", "repair-r2"]) await h.seedQcRepairRun(label, "FAILED", infraReason);
+  for (const label of ["repair-r3", "repair-r4", "repair-r5"]) await h.seedQcRepairRun(label, "FAILED");
+  await h.seedQcRepairRun("repair-r6", "FAILED", infraReason);
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("forgiveness must be bounded, never an unbounded ordinal mint");
+  assert.equal(result.error.code, "BOOK_RUN_REPAIR_UNAVAILABLE");
+  assert.ok(
+    result.error.message.includes(String(EXPECTED_CAP)),
+    `the cap must still be named in the failure: ${result.error.message}`,
+  );
+  assert.equal(h.qcRepairCalls().length, 0, "an exhausted budget must not re-enter a spent repair run");
+});
+
+requiredTest("CONTROL: an ordinal that died of a real repair failure is still SPENT — only a review ERROR is forgiven", async (context: TestContext) => {
+  const book = "qc-repair-real-failure-spent";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  // The same shape as the forgiven case, except the last ordinal died of a REAL
+  // repair failure. Byte-for-byte today's behaviour: budget exhausted.
+  await h.seedQcRepairRun("repair", "FAILED");
+  await h.seedQcRepairRun("repair-r2", "FAILED");
+  await h.seedQcRepairRun("repair-r3", "FAILED", "REPAIR_MODEL_FAILED:repair model failed for chapter 1");
+
+  const result = await h.service.run({ ...h.request });
+  assert.equal(result.ok, false, JSON.stringify(result));
+  if (result.ok) throw new Error("a real repair failure must still spend its ordinal");
+  assert.equal(result.error.code, "BOOK_RUN_REPAIR_UNAVAILABLE");
+  assert.equal(h.qcRepairCalls().length, 0);
+  const fourth = await h.runStore.readRun(book, h.qcRepairRunId("repair-r4"), context.clock.now());
+  assert.equal(fourth.ok, false, "no ordinal past the cap is minted for a real failure");
+});
+
 requiredTest("an operator-CANCELLED qc-repair run is never walked past: cancellation is intent, not a dead ordinal", async (context: TestContext) => {
   const book = "qc-repair-cancelled";
   const h = await buildBookRunHarness(context, book, ["PASS"], {

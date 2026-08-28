@@ -214,11 +214,12 @@ requiredTest("runReaderLanes never retries a CANCELLED or UNKNOWN reader result 
 
 requiredTest("runReaderLanes fails closed when a reader exhausts its bounded retry (all attempts transient)", async () => {
   const chapter = makeGateCleanChapter(BOOK, 1);
-  const scripted = retryScriptedRunner([
-    readerFailure("FAILED", "MODEL_PROCESS_FAILED"),
-    readerFailure("FAILED", "MODEL_PROCESS_FAILED"),
-    readerFailure("FAILED", "MODEL_PROCESS_FAILED"),
-  ]);
+  // Exactly the BUDGET's worth of failures, derived from the constant: a literal
+  // count silently stops testing exhaustion the moment the budget moves (it
+  // starts testing the script running dry instead).
+  const scripted = retryScriptedRunner(
+    Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => readerFailure("FAILED", "MODEL_PROCESS_FAILED")),
+  );
   const backoffs: number[] = [];
   await assert.rejects(
     () => runReaderLanes({ ...panelInput(chapter, scripted.runner), sleep: async (ms: number) => { backoffs.push(ms); } }),
@@ -263,11 +264,9 @@ requiredTest("runReaderLanes retries a schema-invalid seat output within the bou
 
 requiredTest("runReaderLanes fails closed when a seat's output is schema-invalid on every bounded attempt", async () => {
   const chapter = makeGateCleanChapter(BOOK, 1);
-  const scripted = retryScriptedRunner([
-    schemaInvalidReaderContent(80),
-    schemaInvalidReaderContent(80),
-    schemaInvalidReaderContent(80),
-  ]);
+  const scripted = retryScriptedRunner(
+    Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => schemaInvalidReaderContent(80)),
+  );
   const backoffs: number[] = [];
   await assert.rejects(
     () => runReaderLanes({ ...panelInput(chapter, scripted.runner), sleep: async (ms: number) => { backoffs.push(ms); } }),

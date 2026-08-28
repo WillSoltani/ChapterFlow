@@ -15,6 +15,7 @@ import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import { QUIZ_JUDGE_MAX_ATTEMPTS, type CandidateQcEvaluator } from "./candidateQcEvaluator.js";
+import { isRepairReviewErrorTerminalReason } from "./contentRepairWorkflow.js";
 import type { CompilerApplicationPort } from "./compilerApplicationPort.js";
 import { researchSourcesFromChapterIndex } from "./researchCandidateApplicationPort.js";
 import type {
@@ -177,6 +178,25 @@ const MAX_QC_JUDGE_RUNS = 5;
  * a pass — the run fails closed with the cap named.
  */
 const MAX_QC_REPAIR_RUNS = 3;
+
+/**
+ * How many ordinals a lane may absorb as INFRASTRUCTURE LOSS without spending
+ * its repair budget (see `#chooseLaneOrdinal.forgivableTerminalReason`).
+ *
+ * TWO, and the number is a judgement about what each side costs. A forgiven
+ * ordinal is not free: the walk moves to a fresh ordinal, which re-repairs at
+ * full model cost — so this is a bound on how much a flaky reviewer may cost a
+ * book, not a licence to retry forever. It has to be at least ONE or the live
+ * Franklin shape (the last ordinal lost to a review that never returned a
+ * verdict) still wedges the book; TWO covers that plus one recurrence inside the
+ * same book run. Beyond that, repeated panel-level ERRORs are not noise — they
+ * are a route/instrument problem an operator has to see, and the lane fails
+ * closed with the CAP named exactly as before.
+ *
+ * The budget the operator reasons about (MAX_QC_REPAIR_RUNS) is unchanged: this
+ * only stops infrastructure from eating it.
+ */
+const MAX_FORGIVEN_INFRA_ORDINALS = 2;
 
 /**
  * How many times one book run may repair-and-re-review a canonical review FAIL.
@@ -835,7 +855,12 @@ export class BookRunApplicationService {
    *
    * SPENT is what the walk skips, and the lane says what spent means:
    *   NOT_FOUND         free ordinal; execute here.
-   *   FAILED            SPENT in both lanes. The port refuses a run that is
+   *   FAILED            SPENT — unless the lane supplies forgivableTerminalReason
+   *                     and the run's durable terminal reason matches (infra
+   *                     loss, e.g. REPAIR_REVIEW_ERROR): such an ordinal is
+   *                     walked past WITHOUT consuming the spend budget, bounded
+   *                     by MAX_FORGIVEN_INFRA_ORDINALS. Genuinely-failed runs:
+   *                     SPENT in both lanes. The port refuses a run that is
    *                     already terminal and non-COMPLETED (REPAIR_RUN_TERMINAL /
    *                     REVIEW_REPAIR_RUN_TERMINAL), so re-deriving a dead id is
    *                     the wedge itself: same id, same tombstone, forever.
@@ -872,8 +897,40 @@ export class BookRunApplicationService {
     firstOrdinal: number;
     maxOrdinal: number;
     label: (ordinal: number) => string;
+    /**
+     * A FAILED ordinal whose TERMINAL REASON satisfies this predicate was lost to
+     * INFRASTRUCTURE, not to a verdict about the book (see
+     * `isRepairReviewErrorTerminalReason`). Such an ordinal is still walked past —
+     * run state is terminal and a dead run id can never be re-entered — but it
+     * EXTENDS the walk by one ordinal instead of consuming one of the lane's
+     * `maxOrdinal` repair rounds, up to `MAX_FORGIVEN_INFRA_ORDINALS`.
+     *
+     * Absent = today's behaviour exactly: every FAILED ordinal is spent.
+     */
+    forgivableTerminalReason?: (reason: string | undefined) => boolean;
   }>): Promise<Result<Readonly<{ label: string; ordinal: number }>>> {
-    for (let ordinal = walk.firstOrdinal; ordinal <= walk.maxOrdinal; ordinal += 1) {
+    /** Ordinals absorbed as infrastructure loss; each one raises the identity
+     *  ceiling by one WITHOUT raising the lane's spend budget.
+     *
+     *  SEEDED FROM DISK, not zero (adversarial review): a chained call passes a
+     *  firstOrdinal PAST an infra-lost ordinal, so a walk starting there never
+     *  walks the forgiven one — a call-local zero silently lowered the ceiling
+     *  back and the earlier forgiveness cost a genuine repair round after all.
+     *  Ordinals below firstOrdinal are re-counted from their durable terminal
+     *  reasons so forgiveness is a property of the RUN STATE, not of which call
+     *  happens to walk it. */
+    let forgiven = 0;
+    if (walk.forgivableTerminalReason !== undefined) {
+      for (let below = 1; below < walk.firstOrdinal && forgiven < MAX_FORGIVEN_INFRA_ORDINALS; below += 1) {
+        const priorBelow = await this.#dependencies.runStore.readRun(
+          walk.bookId, derivedId(`${walk.label(below)}-run`, walk.runId), walk.observedAt);
+        if (priorBelow.ok && priorBelow.value.status === "FAILED"
+          && walk.forgivableTerminalReason(priorBelow.value.terminalReason) === true) {
+          forgiven += 1;
+        }
+      }
+    }
+    for (let ordinal = walk.firstOrdinal; ordinal <= walk.maxOrdinal + forgiven; ordinal += 1) {
       const label = walk.label(ordinal);
       const prior = await this.#dependencies.runStore.readRun(walk.bookId, derivedId(`${label}-run`, walk.runId), walk.observedAt);
       if (!prior.ok) {
@@ -885,10 +942,14 @@ export class BookRunApplicationService {
       if (prior.value.status !== "FAILED") {
         return { ok: true, value: Object.freeze({ label, ordinal }) };
       }
+      const forgivable = forgiven < MAX_FORGIVEN_INFRA_ORDINALS
+        && walk.forgivableTerminalReason?.(prior.value.terminalReason) === true;
       console.error(
-        `[book-run] ${walk.lane} book=${walk.bookId} run=${walk.runId} ordinal=${ordinal}/${walk.maxOrdinal}`
-        + ` action=SKIP_FAILED_REPAIR_RUN label=${label}`,
+        `[book-run] ${walk.lane} book=${walk.bookId} run=${walk.runId} ordinal=${ordinal}/${walk.maxOrdinal + forgiven}`
+        + ` action=${forgivable ? "SKIP_INFRA_LOST_REPAIR_RUN" : "SKIP_FAILED_REPAIR_RUN"} label=${label}`
+        + (forgivable ? `;forgiven=${forgiven + 1}/${MAX_FORGIVEN_INFRA_ORDINALS};reason=${prior.value.terminalReason ?? ""}` : ""),
       );
+      if (forgivable) forgiven += 1;
     }
     return failed(
       walk.errorCode,
@@ -926,6 +987,10 @@ export class BookRunApplicationService {
       firstOrdinal,
       maxOrdinal: MAX_QC_REPAIR_RUNS,
       label: (ordinal) => (ordinal === 1 ? "repair" : `repair-r${ordinal}`),
+      // A repair whose chapter work SUCCEEDED and whose re-review then errored
+      // spent no judgment on this book — only infrastructure. It must not cost
+      // the book one of its three repair rounds (the live Franklin wedge).
+      forgivableTerminalReason: isRepairReviewErrorTerminalReason,
     });
   }
 
