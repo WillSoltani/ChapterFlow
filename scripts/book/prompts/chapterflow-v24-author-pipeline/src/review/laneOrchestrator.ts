@@ -205,8 +205,33 @@ function pad(n: number): string {
  * lanes already recover. A reader read is now retried up to
  * `MAX_READER_SEAT_ATTEMPTS` times on a transient outcome, each attempt admitting
  * a FRESH ordinal run-state attempt (the reader-lane run has generous capacity).
+ *
+ * BUDGET RAISED 3 -> 4, deliberately, and here is the whole argument.
+ *
+ * The 11ac budget was THREE, and `MODEL_OUTPUT_INVALID` was already inside the
+ * transient class — so the live canary failure
+ *   `SEMANTIC_PANEL_READER_FAILED:MODEL_OUTPUT_INVALID:model output failed
+ *    source-controlled schema validation` (Bennett review-af245c99, ch09)
+ * is an EXHAUSTED budget, not a missing retry. What made those three attempts
+ * cheap is that they were BLIND RE-ROLLS: every attempt sent byte-identical
+ * prompt bytes, so three draws came from one unchanged distribution and a seat
+ * that fell in the schema-rejecting tail tended to stay there.
+ *
+ * Attempts 2..N now carry the schema rejection back (see
+ * `buildReaderSeatRetryFeedback`), which is what the COMPILER lane (11j) and the
+ * RESEARCH lane already do. That changes the meaning of the count: attempt 1 is
+ * the blind draw and everything after it is an INFORMED repair, so the extra
+ * attempt buys a genuinely different draw rather than a fourth roll of the same
+ * die. Four = one blind draw + three informed repairs.
+ *
+ * The cost is bounded and paid only on the failing path: a healthy seat still
+ * costs exactly ONE call, and the worst case grows by one call per seat that is
+ * already failing every attempt. It is NOT raised further because a seat that
+ * has rejected three informed repairs is evidence of a real instrument/route
+ * problem, and burning more panel calls on it delays the honest ERROR without
+ * changing it.
  */
-export const MAX_READER_SEAT_ATTEMPTS = 3;
+export const MAX_READER_SEAT_ATTEMPTS = 4;
 
 /** In-loop backoff schedule (ms) between transient reader retries, indexed by
  *  (attempt − 1) and clamped to the last entry — mirrors the research lane's
@@ -220,6 +245,109 @@ function readerBackoffMsForAttempt(attempt: number): number {
 }
 
 const defaultReaderSleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
+
+/**
+ * The three headers a reader-seat RETRY card can open with. Exported so tests
+ * assert on the same bytes the prompt carries rather than on a paraphrase, and
+ * so the three causes stay distinguishable from outside.
+ */
+export const READER_SEAT_RETRY_FEEDBACK_HEADERS = Object.freeze({
+  /** The GATEWAY's source-controlled output schema rejected the previous output
+   *  (MODEL_OUTPUT_INVALID). The raw invalid output stays inside the gateway. */
+  gatewaySchema: "PREVIOUS OUTPUT REJECTED BEFORE IT REACHED THIS PROCESS",
+  /** The runner SUCCEEDED but the strict reader-review assembly refused the
+   *  object. Here the validator's own message names the defect. */
+  readerSchema: "PREVIOUS OUTPUT REJECTED BY THE READER-REVIEW SCHEMA",
+  /** A non-completion (process failure / timeout): no content problem, no
+   *  output to echo. */
+  transient: "PREVIOUS ATTEMPT DID NOT COMPLETE",
+} as const);
+
+/** Why a reader seat is being re-attempted. `detail` is the rejecting layer's
+ *  OWN message — never a paraphrase — so the card names the real defect. */
+export type ReaderSeatRetryCause =
+  | { readonly kind: "GATEWAY_SCHEMA"; readonly detail: string }
+  | { readonly kind: "READER_SCHEMA"; readonly detail: string }
+  | { readonly kind: "TRANSIENT"; readonly detail: string };
+
+/** Longest rejection detail echoed into a retry card. The detail is machine
+ *  text from our own layers, but a validator message can quote model bytes, so
+ *  it is clamped and stripped of control characters before it re-enters a
+ *  prompt. Long enough for a full field-path list; short enough that a
+ *  pathological message cannot dominate the card. */
+const READER_SEAT_FEEDBACK_DETAIL_LIMIT = 600;
+
+function sanitizedFeedbackDetail(detail: string): string {
+  // eslint-disable-next-line no-control-regex
+  const flattened = detail.replace(/[\u0000-\u001f\u007f]+/g, " ").replace(/\s+/g, " ").trim();
+  // BLINDNESS: a raw error string can carry provider/model/route identity
+  // ("claude … overloaded", API hostnames, gateway profile ids). The blind seat
+  // must never learn what model it is or what route ran it — adversarial review
+  // demonstrated the leak through the TRANSIENT card. Redact identity tokens
+  // BEFORE clamping so a long message cannot smuggle one past the cut.
+  const redacted = flattened
+    .replace(/\b(anthropic|claude|openai|gpt|codex|sonnet|opus|haiku|gemini)[\w.-]*/gi, "[provider]")
+    .replace(/https?:\/\/\S+/gi, "[url]")
+    .replace(/\b[A-Z][A-Z_]{3,}:\s*/g, "");
+  return redacted.length <= READER_SEAT_FEEDBACK_DETAIL_LIMIT
+    ? redacted
+    : `${redacted.slice(0, READER_SEAT_FEEDBACK_DETAIL_LIMIT)}… [truncated]`;
+}
+
+/**
+ * The LOCAL reader-schema rejection message a retry card quotes.
+ *
+ * The strict assembly's own message names the failing fields
+ * (`reader-experience review is not schema-valid: <path> …`) — that list IS the
+ * repair instruction. The seat's internal id is stripped: it is lane bookkeeping,
+ * not a schema fact, and the blind seat must not be handed its own identity.
+ */
+function readerSchemaRejectionDetail(seatId: string, error: ReaderExperienceReviewError): string {
+  return error.message.split(`reader-panel seat ${seatId}: `).join("");
+}
+
+/**
+ * The correction block appended to a reader seat's task on a RETRY.
+ *
+ * Ported from the compiler's `retryFeedbackSection` (Task 11j) and the research
+ * lane's `buildRetryFeedback`, with the same three rules those lanes settled on:
+ *
+ *   1. NEVER FABRICATE AN ECHO. A gateway rejection keeps the raw invalid output
+ *      inside the gateway; the card says so instead of inventing a draft to
+ *      "repair". A LOCAL reader-schema rejection is different — the strict
+ *      assembly's own message names the defect, so it is quoted verbatim.
+ *   2. A NON-COMPLETION IS NOT A CONTENT DEFECT. A process failure or timeout
+ *      produced no output at all; the card says nothing was wrong with the
+ *      content and asks only for a correct result.
+ *   3. THE CARD STAYS BLIND. It names the rejecting SCHEMA, never the model, the
+ *      route, the run/attempt/operation id, or the seat's own identity — the
+ *      blindness invariant is a property of these bytes and is tested.
+ */
+export function buildReaderSeatRetryFeedback(cause: ReaderSeatRetryCause): string {
+  const detail = sanitizedFeedbackDetail(cause.detail);
+  const closing = "Return exactly ONE JSON object that satisfies the reader-experience review schema above — every required field present — and nothing else.";
+  if (cause.kind === "TRANSIENT") {
+    // No raw detail: a transient infra message teaches the seat nothing about
+    // its content and is the channel provider identity leaked through. The card
+    // says only what the seat needs to know — the attempt did not complete.
+    return [
+      `${READER_SEAT_RETRY_FEEDBACK_HEADERS.transient} — the previous attempt did not complete; nothing was wrong with your content:`,
+      `Simply produce a correct result this time. ${closing}`,
+    ].join("\n");
+  }
+  if (cause.kind === "GATEWAY_SCHEMA") {
+    return [
+      `${READER_SEAT_RETRY_FEEDBACK_HEADERS.gatewaySchema} — the output-schema gate rejected it:`,
+      `- ${detail}`,
+      `The raw rejected output stays inside that gate and cannot be shown to you here, so re-read the schema above rather than editing a previous draft. ${closing}`,
+    ].join("\n");
+  }
+  return [
+    `${READER_SEAT_RETRY_FEEDBACK_HEADERS.readerSchema} — fix exactly this:`,
+    `- ${detail}`,
+    `Keep everything that was already correct and change only what the line above names. ${closing}`,
+  ].join("\n");
+}
 
 /**
  * Classify a reader-model result as a TRANSIENT class the bounded retry should
@@ -349,7 +477,7 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
 
   const seatReviews: { seatId: string; review: ReaderExperienceReviewV1 }[] = [];
   for (const seat of READER_PANEL_SEATS) {
-    const task = buildBlindReaderTask(seat, docRelPath);
+    const baseTask = buildBlindReaderTask(seat, docRelPath);
     const seatAttemptBase = `${input.taskContext.attemptId}-reader-ch${pad(input.chapterNumber)}-${seat.id}`;
     const operationId = `reader-review-ch${pad(input.chapterNumber)}-${seat.id}`;
     // Bounded reader retry (Task 11ac): a transient seat result (timeout /
@@ -362,24 +490,43 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
     // the reader schema is enforced here — so it consumes the same bounded
     // budget. A fatal result (CANCELLED / UNKNOWN / any other code) and an
     // exhausted budget both throw — fail-closed is preserved.
+    //
+    // THE RETRY NOW TEACHES. Until this loop carried `cause`, every attempt of a
+    // seat sent byte-identical prompt bytes: a blind re-roll from one unchanged
+    // distribution, which is why the live ch09 seat could reject its whole
+    // budget on the same schema defect. Attempts 2..N append the rejecting
+    // layer's own message (`buildReaderSeatRetryFeedback`), the way the compiler
+    // (11j) and research lanes already do — attempt 1 is the blind draw, every
+    // attempt after it is an informed repair. Nothing about the GATE moves: the
+    // feedback changes only what the seat is told, never what is accepted.
     let review: ReaderExperienceReviewV1 | undefined;
+    /** Why the previous attempt of THIS seat was rejected; undefined on the
+     *  first attempt, which must stay a clean read of the frozen instrument. */
+    let cause: ReaderSeatRetryCause | undefined;
     for (let attempt = 1; attempt <= MAX_READER_SEAT_ATTEMPTS; attempt += 1) {
       const context: ModelTaskContext = {
         ...input.taskContext,
         attemptId: attempt === 1 ? seatAttemptBase : `${seatAttemptBase}-a${attempt}`,
         operationId,
       };
+      const task = cause === undefined ? baseTask : `${baseTask}\n\n${buildReaderSeatRetryFeedback(cause)}`;
       const result: ModelResult = await input.runner.run({
         profileId,
         prompt: jsonPromptRequest(task, readerDocumentBlock),
         context,
       });
       if (result.outcome !== "SUCCEEDED") {
+        const detail = result.error ? `${result.error.code}:${result.error.message}` : result.outcome;
         if (attempt < MAX_READER_SEAT_ATTEMPTS && isTransientReaderModelResult(result)) {
+          // A gateway output-schema rejection is a CONTENT rejection the next
+          // attempt can act on; a timeout / process failure produced no output
+          // at all and carries no content lesson. The two get different cards.
+          cause = result.outcome === "FAILED" && result.error?.code === "MODEL_OUTPUT_INVALID"
+            ? { kind: "GATEWAY_SCHEMA", detail: result.error.message }
+            : { kind: "TRANSIENT", detail };
           await sleep(readerBackoffMsForAttempt(attempt));
           continue;
         }
-        const detail = result.error ? `${result.error.code}:${result.error.message}` : result.outcome;
         throw new Error(`SEMANTIC_PANEL_READER_${result.outcome}:${detail}`);
       }
       const stdout = typeof result.output === "string" ? result.output : JSON.stringify(result.output ?? null);
@@ -394,6 +541,9 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
         break;
       } catch (error) {
         if (!(error instanceof ReaderExperienceReviewError) || attempt >= MAX_READER_SEAT_ATTEMPTS) throw error;
+        // Unlike the gateway, this layer HAS the defect: the strict assembly's
+        // message names the missing/invalid field, so it is quoted verbatim.
+        cause = { kind: "READER_SCHEMA", detail: readerSchemaRejectionDetail(seat.id, error) };
         await sleep(readerBackoffMsForAttempt(attempt));
       }
     }

@@ -3,6 +3,7 @@ import { existsSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { CANDIDATE_REPAIR_PROFILE_ID } from "../../src/app/candidateRepairApplicationPort.js";
+import { repairReviewIdSeries } from "../../src/app/contentRepairWorkflow.js";
 import type { CandidateSnapshot } from "../../src/books/candidateTypes.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
 import type { RepairHistoryRecord } from "../../src/qc/repairHistoryStore.js";
@@ -83,6 +84,38 @@ requiredTest("completed repair run resumes from exact stored transition with zer
     assert.deepEqual(resumed.value.qc, first.value.qc);
     assert.equal(resumed.value.ordinal, first.value.ordinal);
   }
+});
+
+/**
+ * The live Franklin shape at the PORT level: the chapter repair succeeds, the
+ * re-review comes back `outcome: ERROR`, and the transition must complete under
+ * the bounded SUCCESSOR review — then REPLAY from that review, not from the
+ * request's base review id. Pinning the replay join to `request.reviewId` would
+ * answer REPAIR_COMPLETED_MISMATCH for a perfectly good COMPLETED ordinal, which
+ * is a new wedge in exchange for the old one; the join is anchored on the
+ * history record's own reviewId instead, restricted to this transition's derived
+ * series.
+ */
+requiredTest("a repair whose base review ERRORS completes under its bounded successor review, and replays from THAT review with zero new work", async (context) => {
+  const subject = rig(context, { errorReviewAttempts: 1 });
+  const first = await subject.port.run(subject.request);
+  assert.equal(first.ok, true, JSON.stringify(first));
+  if (!first.ok) return;
+  // Two reviews of the SAME staged successor; the chapter was repaired ONCE.
+  assert.equal(subject.counts.review, 2);
+  assert.equal(subject.counts.repair, 1, "an ERROR re-reviews the successor; it never re-repairs the chapter");
+  assert.equal(subject.counts.model, 1);
+  const series = repairReviewIdSeries(subject.request.reviewId);
+  assert.equal(first.value.review.reviewId, series[1]);
+  assert.notEqual(first.value.review.reviewId, subject.request.reviewId);
+  assert.equal(first.value.review.outcome, "PASS");
+  assert.equal(first.value.qc.reviewId, series[1], "fresh QC binds to the review that authorized the successor");
+
+  const calls = { ...subject.counts };
+  const resumed = await subject.port.run(subject.request);
+  assert.equal(resumed.ok, true, JSON.stringify(resumed));
+  assert.deepEqual(subject.counts, calls, "a COMPLETED replay costs zero new model/repair/review/QC work");
+  if (resumed.ok) assert.deepEqual(resumed.value.review, first.value.review);
 });
 
 requiredTest("completed repair run rejects mismatched stored transition without model replay", async (context) => {

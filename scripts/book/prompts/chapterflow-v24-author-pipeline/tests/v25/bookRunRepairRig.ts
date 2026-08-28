@@ -120,8 +120,11 @@ export type BookRunHarness = Readonly<{
   /** The run id the review-FAIL lane would use for a given identity label. */
   reviewRepairRunId: (label: string) => string;
   /** Drive a QC-lane repair run to a terminal state BEFORE the book run reaches
-   *  it — the durable shape a crashed/failed earlier operator round leaves. */
-  seedQcRepairRun: (label: string, status: "FAILED" | "CANCELLED") => Promise<void>;
+   *  it — the durable shape a crashed/failed earlier operator round leaves.
+   *  `reason` overrides the seeded terminal reason: what a FAILED ordinal DIED
+   *  OF is now load-bearing (a review-ERROR flake never spends the budget), so a
+   *  test must be able to seed the exact reason the port would have written. */
+  seedQcRepairRun: (label: string, status: "FAILED" | "CANCELLED", reason?: string) => Promise<void>;
   /** The durable shape an earlier operator round leaves when its repair RAN to
    *  completion: a COMPLETED run, its successor candidate on disk, and its own
    *  fresh QC round committed with `outcome`. `FAIL` is the REPAIR_UNSUCCESSFUL
@@ -598,7 +601,7 @@ export async function buildBookRunHarness(
     qcRepairCalls: () => qcRepairCalls,
     qcRepairModelCalls: () => qcRepairModelCalls,
     qcRepairRunId,
-    async seedQcRepairRun(label, status) {
+    async seedQcRepairRun(label, status, reason) {
       const runId = qcRepairRunId(label);
       const createdAt = context.clock.now();
       const created = await runStore.createRun(repairRunDefinition(runId, identityOf(compiled), createdAt));
@@ -612,7 +615,7 @@ export async function buildBookRunHarness(
         runId,
         status,
         finishedAt: context.clock.now(),
-        reason: status === "FAILED" ? "seeded: earlier repair round died" : "operator cancelled",
+        reason: reason ?? (status === "FAILED" ? "seeded: earlier repair round died" : "operator cancelled"),
       });
       assert.equal(finished.ok, true, JSON.stringify(finished));
     },

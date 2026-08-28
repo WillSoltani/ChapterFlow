@@ -10,6 +10,7 @@ import type {
   CanonicalReviewEvaluator,
 } from "../../src/review/reviewTypes.js";
 import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
+import { MAX_READER_SEAT_ATTEMPTS } from "../../src/review/laneOrchestrator.js";
 import type { ChapterV21 } from "../../src/types.js";
 import { makeGateCleanChapter } from "../helpers.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
@@ -178,13 +179,12 @@ requiredTest("semantic panel is ERROR when a reader run is unparseable", async (
   const candidate = twoChapterCandidate();
   // The first seat of ch1 is unparseable on EVERY attempt: since the seat schema
   // retry (#463) an unparseable read is retried up to MAX_READER_SEAT_ATTEMPTS
-  // before it throws, so the fixture must stay unparseable across all three or
-  // the retry would consume a clean entry and the seat would recover. ch1 then
-  // errors; ch2's three seats still run clean.
+  // before it throws, so the fixture must stay unparseable across the WHOLE
+  // budget — derived from the constant, never a literal — or the retry would
+  // consume a clean entry and the seat would recover. ch1 then errors; ch2's
+  // three seats still run clean.
   const scripted = scriptedRunner([
-    "this is not reader-review JSON",
-    "this is not reader-review JSON",
-    "this is not reader-review JSON",
+    ...Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => "this is not reader-review JSON"),
     readerContent(), readerContent(), readerContent(),
   ]);
   const evaluator = new SemanticPanelReviewEvaluator({
@@ -331,9 +331,7 @@ requiredTest("semantic panel stays ERROR (fail-closed) when a reader exhausts it
   // seat still errors and the panel fail-closes to ERROR (retry does not weaken
   // the gate; it only recovers a blip that clears).
   const scripted = scriptedRunner([
-    { __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } },
-    { __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } },
-    { __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } },
+    ...Array.from({ length: MAX_READER_SEAT_ATTEMPTS }, () => ({ __fail: { outcome: "TIMED_OUT", code: "MODEL_PROCESS_FAILED" } })),
     readerContent(),
     readerContent(),
     readerContent(),

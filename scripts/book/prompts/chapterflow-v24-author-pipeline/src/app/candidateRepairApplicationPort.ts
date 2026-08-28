@@ -23,6 +23,7 @@ import { bookScarsDigest, loadBookScars, validateBookScars, type BookScars } fro
 import { validateChapterV21 } from "../runtimeSchemas.js";
 import { V21_SCHEMA_VERSION, type ChapterV21 } from "../types.js";
 import {
+  repairReviewIdSeries,
   runContentRepairWorkflow,
   type ContentRepairResult,
   type SuccessorQcOperation,
@@ -745,10 +746,30 @@ export class CandidateRepairApplicationPort {
     ) {
       return failed("REPAIR_COMPLETED_MISMATCH", "stored successor does not match exact repair transition");
     }
-    const review = await this.#dependencies.reviews.get(request.bookId, request.reviewId);
+    // WHICH review authorized this successor is a fact the transition RECORDED,
+    // not one the request can assume. A transition whose base review flaked
+    // `outcome: ERROR` completes under a bounded successor review id
+    // (`repairReviewIdSeries`, see contentRepairWorkflow), so pinning the replay
+    // to `request.reviewId` would answer REPAIR_COMPLETED_MISMATCH for a
+    // perfectly good COMPLETED ordinal — trading the wedge this fixes for a new
+    // one. The history record is read FIRST and is the anchor; the join is still
+    // EXACT, just anchored on the recorded id, and that id must belong to this
+    // transition's own derived series so no foreign review can authorize it.
+    const history = await this.#dependencies.history.list(request.bookId);
+    if (!history.ok) return history;
+    const records = history.value.filter((record) => record.repairId === request.repairId);
+    if (records.length !== 1) {
+      return failed("REPAIR_COMPLETED_MISMATCH", `expected one repair history record; found ${records.length}`);
+    }
+    const record = records[0];
+    if (!repairReviewIdSeries(request.reviewId).includes(record.reviewId)) {
+      return failed("REPAIR_COMPLETED_MISMATCH", "repair history names a review outside this transition's review series");
+    }
+    const authorizingReviewId = record.reviewId;
+    const review = await this.#dependencies.reviews.get(request.bookId, authorizingReviewId);
     if (
       !review.ok
-      || review.value.reviewId !== request.reviewId
+      || review.value.reviewId !== authorizingReviewId
       || review.value.outcome !== "PASS"
       || !sameIdentity(review.value.candidate, successorIdentity)
     ) {
@@ -758,26 +779,18 @@ export class CandidateRepairApplicationPort {
     if (
       !qc.ok
       || qc.value.roundId !== request.freshRoundId
-      || qc.value.reviewId !== request.reviewId
+      || qc.value.reviewId !== authorizingReviewId
       || (qc.value.outcome !== "PASS" && qc.value.outcome !== "FAIL")
       || !sameIdentity(qc.value.candidate, successorIdentity)
     ) {
       return failed("REPAIR_COMPLETED_MISMATCH", "stored fresh QC does not match exact successor and canonical review");
     }
-    const history = await this.#dependencies.history.list(request.bookId);
-    if (!history.ok) return history;
-    const records = history.value.filter((record) => record.repairId === request.repairId);
-    if (records.length !== 1) {
-      return failed("REPAIR_COMPLETED_MISMATCH", `expected one repair history record; found ${records.length}`);
-    }
-    const record = records[0];
     if (
       record.bookId !== request.bookId
       || record.ordinal < 1
       || !sameIdentity(record.predecessor, request.failedCandidate)
       || record.failedRoundId !== request.failedRoundId
       || !sameIdentity(record.successor, successorIdentity)
-      || record.reviewId !== request.reviewId
       || record.freshRoundId !== request.freshRoundId
       || record.qcOutcome !== qc.value.outcome
       || record.completedAt !== qc.value.completedAt

@@ -126,6 +126,10 @@ export type RigOptions = Readonly<{
   extraIssues?: readonly QcIssue[];
   diagnosisReturnedId?: string;
   completedHistoryMismatch?: boolean;
+  /** How many leading `reviewCanonical` calls come back `outcome: ERROR` — the
+   *  reader-lane flake that used to kill the whole transition. The workflow
+   *  re-reviews the SAME staged successor under its next derived review id. */
+  errorReviewAttempts?: number;
   /** undefined = no section-task-context sidecar at all (the pre-wiring shape). */
   scars?: Record<string, unknown> | null;
 }>;
@@ -149,7 +153,11 @@ export function rig(context: TestContext, options: RigOptions = {}) {
   let successor: CandidateSnapshot | null = null;
   let repairRequest: RepairRequest | null = null;
   let appended: RepairHistoryRecord | null = null;
-  let storedReview: CanonicalReviewResult | null = null;
+  /** EVERY canonical review this transition produced, keyed by review id. A
+   *  transition whose base review flakes ERROR completes under a bounded
+   *  SUCCESSOR review id, and the port's completed-replay has to read THAT one
+   *  back — a single-slot fake cannot represent it. */
+  const storedReviews = new Map<string, CanonicalReviewResult>();
   let freshRound: QcRoundResult | null = null;
   const counts = { model: 0, repair: 0, review: 0, qc: 0 };
   const prompts: Parameters<ModelTaskRunner["run"]>[0][] = [];
@@ -214,12 +222,28 @@ export function rig(context: TestContext, options: RigOptions = {}) {
     async screen(value) { return { ok: true, value: { candidate: identity(value), outcome: "SHORTLIST", issues: [] } }; },
     async reviewCanonical(input) {
       counts.review += 1;
-      storedReview = { schemaVersion: "1", reviewId: input.reviewId, candidate: identity(input.candidate), outcome: "PASS", issues: [], completedAt: context.clock.now() };
-      return { ok: true, value: storedReview };
+      // Mirrors the real service: a review id already bound to a record REPLAYS
+      // it, which is exactly why an ERROR retry has to move to a fresh id.
+      const replayed = storedReviews.get(input.reviewId);
+      if (replayed) return { ok: true, value: replayed };
+      const errored = counts.review <= (options.errorReviewAttempts ?? 0);
+      const record: CanonicalReviewResult = {
+        schemaVersion: "1",
+        reviewId: input.reviewId,
+        candidate: identity(input.candidate),
+        outcome: errored ? "ERROR" : "PASS",
+        issues: errored
+          ? [{ code: "SEMANTIC_PANEL_READER_FAILED", severity: "BLOCKER", message: "MODEL_OUTPUT_INVALID: reader seat produced schema-invalid output" }]
+          : [],
+        completedAt: context.clock.now(),
+      };
+      storedReviews.set(record.reviewId, record);
+      return { ok: true, value: record };
     },
     async get(_bookId, reviewId) {
-      return storedReview && storedReview.reviewId === reviewId
-        ? { ok: true, value: storedReview }
+      const record = storedReviews.get(reviewId);
+      return record
+        ? { ok: true, value: record }
         : { ok: false, error: { code: "REVIEW_NOT_FOUND", message: "missing" } };
     },
   };
