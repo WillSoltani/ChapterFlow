@@ -123,7 +123,16 @@ export const REPAIR_REVIEW_ERROR_REASON_PREFIX = "REPAIR_REVIEW_ERROR:";
  *  returned a verdict — an INFRA outcome, so the ordinal it burned was never a
  *  judgment about the book. */
 export function isRepairReviewErrorTerminalReason(reason: string | undefined): boolean {
-  return reason !== undefined && reason.startsWith(REPAIR_REVIEW_ERROR_REASON_PREFIX);
+  if (reason === undefined) return false;
+  if (reason.startsWith(REPAIR_REVIEW_ERROR_REASON_PREFIX)) return true;
+  // LEGACY SHAPE: runs that failed BEFORE the ERROR/FAIL split recorded the
+  // collapsed message "canonical review outcome: ERROR" (the live Franklin
+  // repair-r3 is one). Same infra class — the review errored, no verdict was
+  // produced — so the walk must forgive it identically, or every pre-fix
+  // flaked ordinal stays a permanently spent budget slot. The check demands
+  // the exact ERROR wording; a genuine FAIL verdict ("canonical review
+  // outcome: FAIL") never matches.
+  return reason === "canonical review outcome: ERROR";
 }
 
 /**
