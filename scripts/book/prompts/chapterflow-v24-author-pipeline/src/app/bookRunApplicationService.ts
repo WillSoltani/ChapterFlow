@@ -179,6 +179,32 @@ const MAX_QC_JUDGE_RUNS = 5;
  */
 const MAX_QC_REPAIR_RUNS = 3;
 
+/** Resolve the qc-repair ordinal budget, honouring an optional
+ *  CHAPTERFLOW_QC_REPAIR_RUNS override — the exact shape of the review lane's
+ *  CHAPTERFLOW_REVIEW_REPAIR_ROUNDS (#494).
+ *
+ *  Live evidence for wanting more than 3 on a specific book: the Franklin
+ *  S-tier run spent r1 (genuine FAIL), r2 (QC still failing), r4 (genuine
+ *  FAIL with ONE seat-variance blocker) with r3 forgiven as infra loss — the
+ *  book keeps landing one panel draw from clean, and the fixed budget keeps
+ *  ending the game first. The DEFAULT stays 3: each ordinal is a full chapter
+ *  repair + canonical re-review + fresh QC round, and the operator decides
+ *  when a book is worth more. Malformed or out-of-range values fail closed
+ *  (never silently revert); bounded 1-10; resolved ONCE per run so a mid-run
+ *  env change cannot move the budget under an in-flight walk. */
+export function resolveQcRepairRuns(): number {
+  const raw = globalThis.process?.env?.CHAPTERFLOW_QC_REPAIR_RUNS;
+  if (raw === undefined || raw.trim() === "") return MAX_QC_REPAIR_RUNS;
+  const parsed = Number(raw);
+  if (!Number.isInteger(parsed)) {
+    throw new Error(`CHAPTERFLOW_QC_REPAIR_RUNS is set but not an integer: ${raw}`);
+  }
+  if (parsed < 1 || parsed > 10) {
+    throw new Error(`CHAPTERFLOW_QC_REPAIR_RUNS must be 1-10 (got ${parsed})`);
+  }
+  return parsed;
+}
+
 /**
  * How many ordinals a lane may absorb as INFRASTRUCTURE LOSS without spending
  * its repair budget (see `#chooseLaneOrdinal.forgivableTerminalReason`).
@@ -977,6 +1003,7 @@ export class BookRunApplicationService {
     runId: string,
     observedAt: UtcIso,
     firstOrdinal: number,
+    maxOrdinal: number,
   ): Promise<Result<Readonly<{ label: string; ordinal: number }>>> {
     return this.#chooseLaneOrdinal({
       lane: "qc-repair",
@@ -985,7 +1012,7 @@ export class BookRunApplicationService {
       runId,
       observedAt,
       firstOrdinal,
-      maxOrdinal: MAX_QC_REPAIR_RUNS,
+      maxOrdinal,
       label: (ordinal) => (ordinal === 1 ? "repair" : `repair-r${ordinal}`),
       // A repair whose chapter work SUCCEEDED and whose re-review then errored
       // spent no judgment on this book — only infrastructure. It must not cost
@@ -1888,6 +1915,8 @@ export class BookRunApplicationService {
       /** Where the next link's ordinal walk starts — never re-enters a link this
        *  run already drove. */
       let nextQcRepairOrdinal = 1;
+      // Resolved ONCE per run so a mid-run env change cannot move the budget.
+      const qcRepairBudget = resolveQcRepairRuns();
       /** The round + candidate the NEXT repair is aimed at. Starts as the failed
        *  fresh-QC round, then becomes each link's own. */
       let failedRoundId = qc.value.roundId;
@@ -1896,7 +1925,7 @@ export class BookRunApplicationService {
       for (;;) {
         const repairObservedAt = safeNow(this.#dependencies.clock);
         if (!repairObservedAt.ok) return repairObservedAt;
-        const repairLabel = await this.#chooseQcRepairLabel(input.bookId, runId, repairObservedAt.value, nextQcRepairOrdinal);
+        const repairLabel = await this.#chooseQcRepairLabel(input.bookId, runId, repairObservedAt.value, nextQcRepairOrdinal, qcRepairBudget);
         if (!repairLabel.ok) {
           await this.#event(runId, input.bookId, "repair", "FAILED", repairLabel.error.message, identity(candidate));
           return repairLabel;

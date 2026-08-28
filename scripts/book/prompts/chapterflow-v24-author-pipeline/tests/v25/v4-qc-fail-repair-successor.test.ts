@@ -37,6 +37,7 @@
 
 import assert from "node:assert/strict";
 
+import { resolveQcRepairRuns } from "../../src/app/bookRunApplicationService.js";
 import { buildBookRunHarness, derivedIdOf } from "./bookRunRepairRig.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
@@ -726,6 +727,25 @@ requiredTest("a LATER qc-diagnose cannot wedge a COMPLETED chained ordinal: repl
   const replayCalls = h.qcRepairCalls().slice(callsAfterFirst);
   for (const call of replayCalls.filter((c) => c.repairRunId === h.qcRepairRunId("repair-r2"))) {
     assert.equal(call.diagnosisId, original.diagnosisId, "replay re-derives the RECORDED choice, never the newest");
+  }
+});
+
+requiredTest("the qc-repair budget honours CHAPTERFLOW_QC_REPAIR_RUNS and fails closed on a bad value", () => {
+  const saved = process.env.CHAPTERFLOW_QC_REPAIR_RUNS;
+  try {
+    delete process.env.CHAPTERFLOW_QC_REPAIR_RUNS;
+    assert.equal(resolveQcRepairRuns(), 3, "unset falls back to the default");
+    process.env.CHAPTERFLOW_QC_REPAIR_RUNS = "6";
+    assert.equal(resolveQcRepairRuns(), 6, "an operator override is honoured");
+    process.env.CHAPTERFLOW_QC_REPAIR_RUNS = "abc";
+    assert.throws(() => resolveQcRepairRuns(), /not an integer/);
+    process.env.CHAPTERFLOW_QC_REPAIR_RUNS = "0";
+    assert.throws(() => resolveQcRepairRuns(), /must be 1-10/);
+    process.env.CHAPTERFLOW_QC_REPAIR_RUNS = "99";
+    assert.throws(() => resolveQcRepairRuns(), /must be 1-10/);
+  } finally {
+    if (saved === undefined) delete process.env.CHAPTERFLOW_QC_REPAIR_RUNS;
+    else process.env.CHAPTERFLOW_QC_REPAIR_RUNS = saved;
   }
 });
 
