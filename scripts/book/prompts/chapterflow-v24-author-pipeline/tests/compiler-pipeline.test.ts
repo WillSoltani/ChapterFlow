@@ -216,6 +216,20 @@ function cloneAction(pack: ActionPackV1): ActionPackV1 {
   return JSON.parse(JSON.stringify(pack)) as ActionPackV1;
 }
 
+import { extractNamesFromText } from "../src/librarian/libraryState.js";
+
+test("SEC35 name extraction: interjection sentence-openers are never protagonist names (live Bennett wedge)", () => {
+  // "Well, the ledger says otherwise." wedged the Bennett example-pack three
+  // attempts running: "Well" flagged as an undealt protagonist. Same family as
+  // the temporal-adverb and conjunct-adverb batches before it.
+  const scenario = "Well, the ledger says otherwise. Now the clerk counts again. Suddenly the total matches. Meanwhile Priya checks the drawer.";
+  const names = extractNamesFromText(scenario);
+  for (const notAName of ["Well", "Now", "Suddenly", "Meanwhile"]) {
+    assert.ok(!names.includes(notAName), `interjection "${notAName}" must not extract as a name`);
+  }
+  assert.ok(names.includes("Priya"), "real dealt names still extract");
+});
+
 test("v23 section task prompts warn learning and summary writers about cross-chapter similarity gates", () => {
   const fx = compileFixture();
   const learningTask = buildSectionTaskMarkdown({

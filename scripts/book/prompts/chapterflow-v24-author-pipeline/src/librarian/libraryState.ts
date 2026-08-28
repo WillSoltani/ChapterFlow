@@ -196,6 +196,11 @@ const NAME_STOPWORDS = new Set([
   "Further","Furthermore","Moreover","Nevertheless","Nonetheless","Besides","Additionally",
   "Similarly","Likewise","Certainly","Surely","Clearly","Obviously","Naturally","Ultimately",
   "Altogether","Regardless","Indeed","Rather","Otherwise","Thus","Hence","Therefore","Accordingly",
+  // Interjections / discourse-opener family (SEC35 FP, live: "Well, …" at a
+  // scenario sentence start flagged undealt protagonist "Well" three attempts
+  // running and wedged the Bennett compile — the batch the temporal-adverb fix
+  // predicted would need adding on the next touch).
+  "Well","Yes","Now","True","Granted","Fine","Look","Listen","Remember","Notice","Imagine","Suppose","Consider","Picture","Meanwhile","Sometimes","Occasionally","Eventually","Gradually","Slowly","Quickly","Suddenly","Finally","Honestly","Frankly","Admittedly","Understandably","Predictably","Curiously","Oddly","Strangely",
   // Positional/temporal sentence-openers (SEC35 false-positive family, live hit:
   // "Partway through the week, …" flagged undealt protagonist "Partway" 3/3 and
   // killed a compile slot) plus the scene-opening prepositions the list missed —
