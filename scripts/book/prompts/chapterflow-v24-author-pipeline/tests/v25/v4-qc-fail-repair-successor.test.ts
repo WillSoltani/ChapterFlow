@@ -288,6 +288,38 @@ requiredTest("forgiveness is BOUNDED: once MAX_FORGIVEN_INFRA_ORDINALS review-ER
   assert.equal(h.qcRepairCalls().length, 0, "an exhausted budget must not re-enter a spent repair run");
 });
 
+requiredTest("a LEGACY pre-split ordinal ('canonical review outcome: ERROR') is forgiven exactly like the new reason — and legacy FAIL is not", async (context: TestContext) => {
+  const book = "qc-repair-legacy-error";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  // The live Franklin repair-r3 shape: failed before the ERROR/FAIL split, so
+  // its durable reason is the collapsed legacy message.
+  await h.seedQcRepairRun("repair", "FAILED", "canonical review outcome: ERROR");
+  const result = await h.service.run({ ...h.request });
+  // The walk forgave the legacy ordinal, executed a fresh repair at r2, its QC
+  // passed, and the run completed — the exact recovery the live book needs.
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.ok(h.qcRepairCalls().length >= 1, "the forgiven ordinal must yield a fresh repair");
+  assert.equal(h.qcRepairCalls()[0].repairRunId, h.qcRepairRunId("repair-r2"));
+
+  // Control inside the control: a legacy FAIL verdict is NEVER forgiven.
+  const book2 = "qc-repair-legacy-fail";
+  const h2 = await buildBookRunHarness(context, book2, ["PASS"], {
+    qcOutcomes: ["FAIL"],
+    promoteLocal: false,
+  });
+  await h2.seedQcRepairRun("repair", "FAILED", "canonical review outcome: FAIL");
+  await h2.seedQcRepairRun("repair-r2", "FAILED", "canonical review outcome: FAIL");
+  await h2.seedQcRepairRun("repair-r3", "FAILED", "canonical review outcome: FAIL");
+  const spent = await h2.service.run({ ...h2.request });
+  assert.equal(spent.ok, false);
+  if (spent.ok) throw new Error("unreachable");
+  assert.equal(spent.error.code, "BOOK_RUN_REPAIR_UNAVAILABLE", JSON.stringify(spent.error));
+  assert.equal(h2.qcRepairCalls().length, 0, "legacy FAIL verdicts stay spent");
+});
+
 requiredTest("CONTROL: an ordinal that died of a real repair failure is still SPENT — only a review ERROR is forgiven", async (context: TestContext) => {
   const book = "qc-repair-real-failure-spent";
   const h = await buildBookRunHarness(context, book, ["PASS"], {
