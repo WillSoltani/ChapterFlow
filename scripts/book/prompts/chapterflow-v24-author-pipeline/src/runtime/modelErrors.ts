@@ -76,6 +76,30 @@ export function isUnretryableProviderMessage(message: string): boolean {
   return providerBlockKind(message) !== null;
 }
 
-export function modelError(code: ModelErrorCode, message: string, retryable = false): ModelError {
-  return { code, message, ...(retryable ? { retryable: true } : {}) };
+/**
+ * R-201: which provider block a MODEL RESULT's error describes, or null.
+ *
+ * The one place consumers should ask. `PortError.message` stays the source of
+ * truth because it is the only place the provider's own words live, and the
+ * gateway records the answer alongside it as `retryable: false` (see
+ * `modelError`) so the durable attempt record carries the verdict too. Keeping
+ * one function means the reader lane, the compiler section loop and the two
+ * research lanes cannot drift into three slightly different regexes.
+ */
+export function providerBlockOfError(error: PortError | undefined): ProviderBlockKind | null {
+  return error === undefined ? null : providerBlockKind(error.message);
+}
+
+/**
+ * `retryable` is TRI-STATE and the absent state is load-bearing.
+ *
+ * Present-and-false = a classified durable provider block: trying again inside
+ * this run cannot help. Present-and-true = a condition a fresh attempt clears.
+ * ABSENT = the minting layer does not know, which is what nearly every failure
+ * honestly is; the old signature could not express that, defaulted to `false`
+ * and then dropped it, so the field was never written at all (R-201: no call
+ * site ever passed the third argument). Passing nothing still writes nothing.
+ */
+export function modelError(code: ModelErrorCode, message: string, retryable?: boolean): ModelError {
+  return { code, message, ...(retryable === undefined ? {} : { retryable }) };
 }

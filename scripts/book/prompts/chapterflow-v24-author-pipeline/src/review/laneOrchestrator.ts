@@ -85,7 +85,7 @@
  */
 
 import { createHash } from "node:crypto";
-import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
+import { providerBlockOfError } from "../runtime/modelErrors.js";
 
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 
@@ -367,8 +367,9 @@ export function isTransientReaderModelResult(result: ModelResult): boolean {
   if (result.outcome === "FAILED") {
     const code = result.error?.code;
     // Task 11af: a durable quota cap is never transient — 21 reader seats x 3
-    // attempts against an exhausted window is pure waste.
-    if (isUnretryableProviderMessage(result.error?.message ?? "")) return false;
+    // attempts against an exhausted window is pure waste. R-201: asked through
+    // the one shared classifier over the typed error, not a local regex.
+    if (providerBlockOfError(result.error) !== null) return false;
     return code === "MODEL_PROCESS_FAILED" || code === "MODEL_OUTPUT_INVALID";
   }
   return false;

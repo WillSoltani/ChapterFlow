@@ -591,6 +591,53 @@ requiredTest("R-001: a non-zero exit on a route with no envelope classifier carr
   assertNoLiveInvocation();
 });
 
+requiredTest("R-201: a provider-blocked failure carries an explicit retryable=false; an ordinary process failure carries no flag at all", async ({ roots }) => {
+  // R-201: `modelError`'s third parameter was dead — no call site ever passed
+  // it — so PortError.retryable, the channel that exists precisely to say
+  // "trying again cannot help", was never populated on the one path where the
+  // answer is known for certain. It is populated now, and ONLY there: an
+  // explicitly-present `retryable: false` on a gateway ModelResult means the
+  // gateway classified the provider's own words as a durable block. Absent means
+  // unknown, which is what every other failure honestly is.
+  const runOnce = async (name: string, stdout: string) => {
+    const run = definition(`${name}-book`, `${name}-run`);
+    const inner = new FileRunStore(roots.stateRoot);
+    expectOk(await inner.createRun(run));
+    const observed = counts();
+    const supervisor = new FakeSupervisor(observed, () => processResult({
+      outcome: "EXITED",
+      exitCode: 1,
+      stdout: new TextEncoder().encode(stdout),
+      stderr: new Uint8Array(),
+    }));
+    const gateway = createModelGateway({
+      runStore: tracedStore(inner, observed),
+      processSupervisor: supervisor,
+      executionPolicy: policy(roots),
+      route: route(observed),
+      now: clock(),
+    });
+    return gateway.execute(task(run, `attempt-${name}`, attemptDirectory(roots, `attempt-${name}`)));
+  };
+
+  const blocked = await runOnce("r201-blocked", "You've hit your weekly limit \u00b7 resets Sep 1 at 8pm (America/Halifax)");
+  assert.equal(blocked.outcome, "FAILED");
+  assert.equal(blocked.error?.code, "MODEL_PROCESS_FAILED");
+  assert.equal(blocked.error?.retryable, false, "a classified provider block must say so on the typed field");
+  assert.match(blocked.error?.message ?? "", /weekly limit/);
+
+  const credential = await runOnce("r201-credential", "Not logged in \u00b7 Please run /login");
+  assert.equal(credential.error?.retryable, false);
+
+  // A transient blip is NOT claimed to be non-retryable: the field stays absent
+  // rather than asserting a verdict the gateway does not have.
+  const transient = await runOnce("r201-transient", "API Error: 429 rate_limit_error: too many requests");
+  assert.equal(transient.outcome, "FAILED");
+  assert.equal(transient.error?.code, "MODEL_PROCESS_FAILED");
+  assert.equal("retryable" in (transient.error ?? {}), false, JSON.stringify(transient.error));
+  assertNoLiveInvocation();
+});
+
 requiredTest("cleanup failure and supervisor rejection stay consumed unknown without replay", async ({ roots }) => {
   const run = definition("uncertain-book", "uncertain-run");
   const inner = new FileRunStore(roots.stateRoot);

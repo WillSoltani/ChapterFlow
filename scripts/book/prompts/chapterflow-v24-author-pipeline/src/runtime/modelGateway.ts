@@ -5,7 +5,7 @@ import { CLAUDE_ROUTE_ID } from "./claudeRoute.js";
 import { CODEX_ROUTE_ID, createDefaultModelRoute, type ModelProcessRoute } from "./codexRoute.js";
 import { FORBIDDEN_ENV } from "./executionPolicy.js";
 import type { ExecutionPolicy, ExecutionProfile, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
-import { modelError, type ModelErrorCode } from "./modelErrors.js";
+import { modelError, providerBlockKind, type ModelErrorCode } from "./modelErrors.js";
 import type { ModelTask } from "./modelRequest.js";
 import type { ModelResult } from "./modelResult.js";
 import type { ProcessOutcome, ProcessResult, ProcessSpec, ProcessSupervisor } from "./processTypes.js";
@@ -152,12 +152,23 @@ type ModelTaskSnapshotResult =
   | { readonly ok: true; readonly value: ModelTaskSnapshot }
   | { readonly ok: false; readonly attemptId: string; readonly message: string };
 
+/**
+ * R-201: mint the ModelResult, recording the provider-block verdict on the
+ * error's `retryable` field when — and only when — the message classifies as
+ * one.
+ *
+ * The message stays the source of truth (it is the only place the provider's
+ * own words live, and R-001 is what got them here); this is the same answer
+ * written on the typed field, so a consumer that has the result does not have to
+ * re-derive it and the durable attempt record carries it. Any other failure
+ * leaves `retryable` ABSENT rather than claiming a verdict the gateway does not
+ * have — a rate-limit blip and a weekly cap both arrive as
+ * FAILED/MODEL_PROCESS_FAILED, and only the provider's wording separates them.
+ */
 function result(attemptId: string, outcome: ModelResult["outcome"], code?: ModelErrorCode, message?: string): ModelResult {
-  return {
-    attemptId,
-    outcome,
-    ...(code !== undefined && message !== undefined ? { error: modelError(code, message) } : {}),
-  };
+  if (code === undefined || message === undefined) return { attemptId, outcome };
+  const blocked = providerBlockKind(message) !== null;
+  return { attemptId, outcome, error: modelError(code, message, blocked ? false : undefined) };
 }
 
 function validId(value: unknown): value is string {

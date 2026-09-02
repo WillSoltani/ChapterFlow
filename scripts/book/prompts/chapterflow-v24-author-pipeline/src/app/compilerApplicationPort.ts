@@ -26,7 +26,7 @@ import type { ChapterProseSource } from "../sections/chapterProse.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterV21 } from "../types.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
-import { providerBlockKind } from "../runtime/modelErrors.js";
+import { providerBlockOfError } from "../runtime/modelErrors.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { AttemptSnapshot, RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
@@ -1557,7 +1557,7 @@ export class CompilerApplicationPort {
               // with a terminal code that names the block class and quotes the
               // provider, so the operator sees the reset horizon instead of a blip.
               const blockKind = result.outcome === "FAILED" && code === TRANSIENT_PROCESS_FAILURE_CODE
-                ? providerBlockKind(result.error?.message ?? "")
+                ? providerBlockOfError(result.error)
                 : null;
               if (blockKind !== null) {
                 throw new Error(

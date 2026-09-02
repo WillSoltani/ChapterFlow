@@ -508,6 +508,12 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   assert.equal(first.ok, false);
   if (first.ok) throw new Error("expected deterministic compiler failure");
   assert.equal(first.error.code, "BOOK_RUN_COMPILER_FAILED");
+  // R-001 layer 3: the compiler's thrown message is forwarded VERBATIM, and the
+  // CLI prints `${code}:${message}` to stderr. That is the only path by which a
+  // provider block's own words ("weekly limit", "Not logged in") can reach the
+  // operator's run log — which is where the canary driver's PROVIDER-BLOCK grep
+  // reads them. Truncating or replacing this message re-blinds that stop.
+  assert.equal(first.error.message, "COMPILER_ASSEMBLY_BLOCKED:fixture deterministic gate failure");
   assert.deepEqual(compilerRunIds, [COMPILER_RUN_ID], "initial call must not retry compiler automatically");
   assert.equal(researchModelCalls, 13);
 

@@ -350,6 +350,9 @@ requiredTest("R-001: a NON-ZERO exit still preserves the provider envelope messa
   assert.match(message, /api_error_status=429/);
   // the whole point: the preserved text is what the retry lanes classify on
   assert.equal(isUnretryableProviderMessage(message), true);
+  // R-201: and the same verdict is recorded on the typed field, so a consumer
+  // holding the result does not have to re-derive it from prose.
+  assert.equal(result.error?.retryable, false);
 
   // Reader lane (src/review/laneOrchestrator.ts): decides on the ModelResult
   // directly — a quota block must not be seen as a transient, 21-seat-retryable
