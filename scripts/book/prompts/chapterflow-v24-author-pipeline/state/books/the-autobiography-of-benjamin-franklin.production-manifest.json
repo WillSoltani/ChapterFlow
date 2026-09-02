@@ -1,12 +1,12 @@
 {
   "schemaVersion": "chapterflow-production-manifest-sidecar-v1",
   "bookId": "the-autobiography-of-benjamin-franklin",
-  "packageId": "the-autobiography-of-benjamin-franklin-v21-1787599497007",
-  "createdAt": "2026-08-24T19:24:57.007Z",
+  "packageId": "the-autobiography-of-benjamin-franklin-v21-1787898655699",
+  "createdAt": "2026-08-28T06:30:55.699Z",
   "manifest": {
     "schemaVersion": "chapterflow-production-manifest-v2",
-    "contentId": "sha256:c47b53afdca181fc80fa8440c5ade8eee29a97dff50d8a3ea086ae38852c3eeb",
-    "payloadHash": "sha256:c47b53afdca181fc80fa8440c5ade8eee29a97dff50d8a3ea086ae38852c3eeb",
+    "contentId": "sha256:fe4936e0eae785627c0ba92c4846fd4f4eaf3ade22c8961c6e9e2ad97c5f14a3",
+    "payloadHash": "sha256:fe4936e0eae785627c0ba92c4846fd4f4eaf3ade22c8961c6e9e2ad97c5f14a3",
     "payload": {
       "schemaVersion": "chapterflow-production-manifest-payload-v2",
       "bookId": "the-autobiography-of-benjamin-franklin",
@@ -31,8 +31,8 @@
       },
       "candidateChapterSet": {
         "source": "candidate",
-        "candidateId": "repair-candidate-467de279d30bf8f08756a7f41886c3c5",
-        "manifestDigest": "6b6de2d96b64fa84fea65bbd3614a2d11eb4e274beee29a3eb6164b89d48a5d0",
+        "candidateId": "repair-r7-candidate-88b631ed39a56eb62937d07df3bd0f72",
+        "manifestDigest": "436dcdaaa3b8ee53d7acad4eda0a132481120005084fa3358fbde492be8536d6",
         "semanticHash": "sha256:b1287dc60a47d86d56068a2261b2811b70bd7b0827aa1a502d705946166c5ab7",
         "chapters": [
           {
@@ -59,8 +59,8 @@
       },
       "candidateQcEvidence": {
         "source": "v25-qc-round",
-        "reviewId": "repair-review-467de279d30bf8f08756a7f41886c3c5",
-        "qcRoundId": "repair-qc-467de279d30bf8f08756a7f41886c3c5",
+        "reviewId": "repair-r7-review-88b631ed39a56eb62937d07df3bd0f72",
+        "qcRoundId": "repair-r7-qc-88b631ed39a56eb62937d07df3bd0f72",
         "perChapterAttestation": "subsumed-by-round"
       },
       "chapters": [
@@ -68,17 +68,17 @@
           "chapterId": "the-autobiography-of-benjamin-franklin-ch01",
           "chapterNumber": 1,
           "title": "Part One",
-          "readerContentHash": "sha256:71a947ac95bec7878ba5b09cb4b803cb4087458a32fb4f96bdc8efe7c714ad69",
+          "readerContentHash": "sha256:6be05fc02bea825f3b07e72bdc5d644876267dd8c16184b8c4f61ac865b1c597",
           "sourceEvidence": {
             "path": "candidate:inputs/source/ch01.source.json",
-            "semanticHash": "sha256:cba6706812d9c0d9e09e4b5a193a509d804ed1238fd1ec3c9e873c8c8e8f4091",
+            "semanticHash": "sha256:3ea2995a3f8f0fdb3e119d55f54a6d16c273f21f99087b84964dc82211792a83",
             "schemaVersion": "source-v2"
           },
           "authoringEvidence": {
             "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch01.v21-native.chapter.json",
-            "semanticHash": "sha256:ceaefdbe7fc412baf67046b4789b6f51e0bfe7526084b037cebb93cb46398a4b",
+            "semanticHash": "sha256:227a54f71b3fba4a3f16db76a4a6c41205e90c50786ad7e76f277f8357a8365e",
             "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "1928345a1418d38be4f9e8d7b2f385f62b5b09e12ab8f9a0daa99b29646a4fff"
+            "sourceHash": "5590fa4849c8baba473f06e06a71a7d4fc9b254ffab825f80e853483d979f084"
           },
           "generationEvidence": null,
           "qcAttestation": null
@@ -87,17 +87,17 @@
           "chapterId": "the-autobiography-of-benjamin-franklin-ch02",
           "chapterNumber": 2,
           "title": "Part Two",
-          "readerContentHash": "sha256:0c54cb0161b55bb7f211243ab52eb661ff6e5601a453efb2d2fccf2e51e665eb",
+          "readerContentHash": "sha256:8db84fb5ec4a6848944b4795256cb6b787086f643714044291ac8a20b2e6e36c",
           "sourceEvidence": {
             "path": "candidate:inputs/source/ch02.source.json",
-            "semanticHash": "sha256:d77b36ed623864d78cea9e441c3a24739215c12ea04562c7b2b3fec8c5e41430",
+            "semanticHash": "sha256:502a7694e4e1b0f047ef2181d1698477eee42f408307ea8579d0053eda84258f",
             "schemaVersion": "source-v2"
           },
           "authoringEvidence": {
             "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch02.v21-native.chapter.json",
-            "semanticHash": "sha256:0373730496bcdceb04e7c031dd62df3af8fa8f8c0ef14e6ede5af509523b97bf",
+            "semanticHash": "sha256:c9b19b54201d24d908b329e92c7e47c6f87a11f5b561139458afa47b857560dd",
             "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "c773c60d82b60f3d650babd583788d63e0dbb3c7b123a7b6fb42e00b6303f470"
+            "sourceHash": "8c8f3a016087f5ebba40cf24c0aabe1d786f6b925a28beaeaf4015bab6aade9d"
           },
           "generationEvidence": null,
           "qcAttestation": null
@@ -106,17 +106,17 @@
           "chapterId": "the-autobiography-of-benjamin-franklin-ch03",
           "chapterNumber": 3,
           "title": "Part Three",
-          "readerContentHash": "sha256:959e4e9bef5e09faa7ca620fe7bdacf710e6f39a2d0c493ff42a1d8cb6d9bd1d",
+          "readerContentHash": "sha256:002dd5a86d8a47fdae82f4163482449cee889cd696bcd427892d1c9bd6629456",
           "sourceEvidence": {
             "path": "candidate:inputs/source/ch03.source.json",
-            "semanticHash": "sha256:9232b5e9ac178eeae524d9c2dc7888199fbd989542477384355816adb5cfcc14",
+            "semanticHash": "sha256:2accac1cd6df73b7150301a91419372f1ebb8cee36e4a7288c71ee9858f39170",
             "schemaVersion": "source-v2"
           },
           "authoringEvidence": {
             "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch03.v21-native.chapter.json",
-            "semanticHash": "sha256:a53200c40cac387771eec0491a6a83033b4fde898e842bc0c8dee796654febcc",
+            "semanticHash": "sha256:ef9d21256b5738903b42745ba9afefc1b8792284b809bba69f2513174b265513",
             "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "2cb445d0c89903e4d04e0269e3d0bf560a42340cacc23fd45f1211d858850744"
+            "sourceHash": "d4b9fd5b22dad4310bad2dec86c392d9dd58a0b8d2a0ac25f4c1eb22d7330081"
           },
           "generationEvidence": null,
           "qcAttestation": null
@@ -125,17 +125,17 @@
           "chapterId": "the-autobiography-of-benjamin-franklin-ch04",
           "chapterNumber": 4,
           "title": "Part Four",
-          "readerContentHash": "sha256:4239d3092523443aaa5e50941923c23cbc19cc28d490e1d39661f408d065d12a",
+          "readerContentHash": "sha256:8ff758fbe765a81ad5e452149c4b9cbabe38d330dacbea2137f763547e4f670b",
           "sourceEvidence": {
             "path": "candidate:inputs/source/ch04.source.json",
-            "semanticHash": "sha256:eea1b1ca17686f4fa2d2f8304fbec55fe008743687e81f3cc9bc7ca460a65a17",
+            "semanticHash": "sha256:5eb8232c23dfc571686f929e04e4d50cb44f6a53ba046c2b5bd1cca333aa989d",
             "schemaVersion": "source-v2"
           },
           "authoringEvidence": {
             "path": "candidate:content/chapters/the-autobiography-of-benjamin-franklin-ch04.v21-native.chapter.json",
-            "semanticHash": "sha256:3046f99025a16dea04ae8863505543f04c0351d9578b5f4fc538bd8b38576349",
+            "semanticHash": "sha256:489663839a1c5643c68e4acea4d8584525a1230d79f0b0dfa8fd38cb621e1558",
             "schemaVersion": "chapter-source-anchor-map-v1",
-            "sourceHash": "5187afe9371051f9676c46f8efadcd94a332a7fde5b16e5881c6011b1ff4195b"
+            "sourceHash": "388f03ec1ca9a7cb0e83860494a238884008a93f33deb2b714ab34de2804d248"
           },
           "generationEvidence": null,
           "qcAttestation": null
@@ -363,8 +363,8 @@
         },
         "configBundle": {
           "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:1dd88c43c32b185e4c6b8d7cb84aadbb1338ce15662bbb743cc818b3512a6140",
-          "fileCount": 24,
+          "bundleHash": "sha256:337ef64a5359c2a639261c6684138bbb5f05f806ed581aa935fd475f054d36a7",
+          "fileCount": 25,
           "files": [
             {
               "path": "config/author-voice-profiles.json",
@@ -383,8 +383,12 @@
               "sha256": "sha256:385c25fea65c91fb6462151b0c3989d4c96ff8a7a383d19590ab031b1c9356a3"
             },
             {
+              "path": "config/book-scars/how-to-live-on-24-hours-a-day.json",
+              "sha256": "sha256:edfd612460bf6f9c0d53678aaa439827b69a072b442aee7a19bcfce3c255f0b9"
+            },
+            {
               "path": "config/book-scars/the-autobiography-of-benjamin-franklin.json",
-              "sha256": "sha256:e66eaeaa7a6155dfed4c82b45e2983d00304a2749be4f78be2deff097c830b31"
+              "sha256": "sha256:bd5bdd08ecb22721f6b963494680be5256054cd85b42fe0ffedfcf9fe658ca0b"
             },
             {
               "path": "config/book-scars/the-intelligent-investor.json",
@@ -466,7 +470,7 @@
         },
         "codeFingerprint": {
           "algorithm": "pipeline-fingerprint-bundle-sha256-v1",
-          "bundleHash": "sha256:5054b7df9bb1ec24074868dd99e0abde0c93c2c6c47c5535b82da6a596c2d41b",
+          "bundleHash": "sha256:3c7e67c622548311f51f43fb1cb3cba3f9ec7175693054618825dd6ba8043961",
           "fileCount": 431,
           "files": [
             {
@@ -543,7 +547,7 @@
             },
             {
               "path": "src/app/bookRunApplicationService.ts",
-              "sha256": "sha256:d137047963510605765ad7a8e87032eb44355bf471bf256818fe1928d481b1e6"
+              "sha256": "sha256:c07342bfa0a0047743f28640af782afe56df4eabb7af946e05187b41ccb84ef5"
             },
             {
               "path": "src/app/bookRunComposition.ts",
@@ -555,19 +559,19 @@
             },
             {
               "path": "src/app/candidateRepairApplicationPort.ts",
-              "sha256": "sha256:d3ae90a36fbede56434ea904c5a8d75003780ca1077270be4f9d8b38663f7d9f"
+              "sha256": "sha256:1586b386d4f3729668987469019de9620dbe1782df082a9df1ebd8663e072ad8"
             },
             {
               "path": "src/app/candidateRepairBrief.ts",
-              "sha256": "sha256:d7cb2f37257d23cb2b93cf322e17ab422d4a9a53427a15561158f8728efa434b"
+              "sha256": "sha256:77222780bac6385efeb21b111a6df2acf7cc764ed8016a4f13a9c088d3d0c2d9"
             },
             {
               "path": "src/app/compilerApplicationPort.ts",
-              "sha256": "sha256:996774c330e6a6ba467056f874ed17cabd9b9a6758af666dd30c102ac4a13397"
+              "sha256": "sha256:57d3625b2dca62bcd4a8596ae1d21165318945c8b4c5d732aa205fb39b07aae8"
             },
             {
               "path": "src/app/contentRepairWorkflow.ts",
-              "sha256": "sha256:4daaaa0c627b077a020e3d13bbef30d07e898e95483c0f75fda0ffd022ea491f"
+              "sha256": "sha256:2e23588e67e2629a995c9c4bea9b0b4b7a3b8a548f5ce3fd2c1e563d71dd0f17"
             },
             {
               "path": "src/app/createChapterFlowApp.ts",
@@ -819,7 +823,7 @@
             },
             {
               "path": "src/books/sectionAvoidStore.ts",
-              "sha256": "sha256:be31ada34a0a4bea08b11f16724e44482164e8c2d67acf50506894f21ff6d551"
+              "sha256": "sha256:5484a37df6dc9a4f209515f02e7dd623da825e3385c10d5b1af9751af09c6335"
             },
             {
               "path": "src/books/sectionPackCache.ts",
@@ -1407,7 +1411,7 @@
             },
             {
               "path": "src/librarian/libraryState.ts",
-              "sha256": "sha256:c7d89af3a801f9df780b0e4dbc54ba4100c9364dbece3c2ae88075a1e662fa81"
+              "sha256": "sha256:3c977a21736482410d26873a7bce53d51d30ed3a153dd83a368af695dd123c88"
             },
             {
               "path": "src/librarian/namePlan.ts",
@@ -1503,7 +1507,7 @@
             },
             {
               "path": "src/optimizers/memorableLines.ts",
-              "sha256": "sha256:212229d3ae6fcf473084ce303671516a938c4d43b9163499dd1b5286833dff0f"
+              "sha256": "sha256:9666b8cd1bb825e10462b50a23e0d818ce86a967f41f6f9e613b2d1309351cc0"
             },
             {
               "path": "src/optimizers/proseRisk.ts",
@@ -1947,7 +1951,7 @@
             },
             {
               "path": "src/review/laneOrchestrator.ts",
-              "sha256": "sha256:98bf8203872b8ee52afc2a2bbe3f3696c48ecc61dc7d3175ac8bcb05cd565849"
+              "sha256": "sha256:73271b4e28f7920f53d32356be303439a5ee8b19e722aaf45ea4ddb806bcd048"
             },
             {
               "path": "src/review/legacyReaderReviewAdapter.ts",
@@ -2127,7 +2131,7 @@
             },
             {
               "path": "src/sections/assembleSections.ts",
-              "sha256": "sha256:b5ef28b6dc9de6b8ccd0c81ad9bbd13e869885522637752020870ddd58b84258"
+              "sha256": "sha256:09b3cc0c40276ef41e95db4134a1fe1953d525d5fc47cb659c84f94989b7cafb"
             },
             {
               "path": "src/sections/chapterProse.ts",
@@ -2139,11 +2143,11 @@
             },
             {
               "path": "src/sections/sectionGate.ts",
-              "sha256": "sha256:d1875bd43522bac999dc9251cdda93c1059860ab928bda65d3a383f19c610e57"
+              "sha256": "sha256:29414bc22988c3cfb4f86c83576182bea200f50345868ae50f96532f400576e8"
             },
             {
               "path": "src/sections/sectionTasks.ts",
-              "sha256": "sha256:8358b7014d9a255bcbb1c36fe9fa74bbb74ab50aad8049fd972957e5c6e79ba2"
+              "sha256": "sha256:15866722ec70e1d204d4091db8c1331eb94ca6ea9c15eafd5fb6e0b18106bcb5"
             },
             {
               "path": "src/source-loader.ts",
@@ -2203,7 +2207,7 @@
       }
     },
     "metadata": {
-      "createdAt": "2026-08-24T19:24:57.007Z",
+      "createdAt": "2026-08-28T06:30:55.699Z",
       "generator": "promoteBook",
       "runId": "manual-promote"
     }
