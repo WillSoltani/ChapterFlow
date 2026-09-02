@@ -64,7 +64,7 @@ function isReservedLine(line: string): boolean {
  *  lines in, same card out. The first content line is always kept so a card is
  *  never guard-only. An over-budget line is SKIPPED, not treated as a truncation
  *  point, so one long charter line cannot discard every line after it. */
-function withGuard(contentLines: string[]): string {
+function withGuard(contentLines: readonly string[]): string {
   const reserved = contentLines.filter(isReservedLine);
   const optional = contentLines.filter((line) => !isReservedLine(line));
   const kept: string[] = [];
