@@ -193,7 +193,18 @@ function craftBrief(kind: SectionKind): string[] {
   }
 }
 
-function sectionContract(kind: SectionKind): string {
+/**
+ * The three layers, composed — the exact craft contract a section writer of this
+ * kind wrote under.
+ *
+ * Exported for the SAME reason `renderBookScarsBlock` is: the candidate-repair
+ * writer rewrites the very fields a section writer produced, and until it was
+ * given this text it rewrote them under no craft contract at all — no tier
+ * floors, no CHOICE PARITY method, no distractor discipline, no craft brief. One
+ * function, two callers, so the writer prompt and the repair prompt cannot drift
+ * on what an excellent artifact of this kind is.
+ */
+export function sectionContract(kind: SectionKind): string {
   return [
     universalCore(kind).join("\n"),
     gateAwareness(kind).join("\n"),

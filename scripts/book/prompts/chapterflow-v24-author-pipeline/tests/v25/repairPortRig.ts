@@ -62,7 +62,14 @@ function chapterFixture(context: TestContext): { chapter: ChapterV21; blueprint:
   return { chapter, blueprint: fixture.blueprint, packet: fixture.packet, sourcePlan: compileSourceUsePlan(fixture.packet).plan };
 }
 
-export function candidate(context: TestContext, scars?: Record<string, unknown> | null): CandidateSnapshot {
+/** The frozen section-task sidecar's two writer inputs. `undefined` scars means
+ *  NO sidecar at all (the pre-wiring candidate shape); a voice card requires the
+ *  sidecar, so passing one implies it. */
+export type SidecarOptions = Readonly<{ scars?: Record<string, unknown> | null; voiceCard?: string | null }>;
+
+export function candidate(context: TestContext, sidecar: SidecarOptions = {}): CandidateSnapshot {
+  const scars = sidecar.scars;
+  const hasSidecar = scars !== undefined || sidecar.voiceCard !== undefined;
   const fixture = chapterFixture(context);
   const second: ChapterV21 = {
     ...fixture.chapter,
@@ -94,11 +101,16 @@ export function candidate(context: TestContext, scars?: Record<string, unknown> 
     { kind: "PROVENANCE" as const, logicalPath: "research/ch01.source.txt", mediaType: "text/plain" as const, bytes: Buffer.from("chapter one source") },
     { kind: "PROVENANCE" as const, logicalPath: "research/ch02.source.txt", mediaType: "text/plain" as const, bytes: Buffer.from("chapter two source") },
     { kind: "SIDECAR" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, mediaType: "application/json" as const, bytes: bytes(runBookPatternAudit({ bookId: BOOK, chapters: [fixture.chapter, second], requirePlanArtifacts: false, checkSourceAlignment: false })) },
-    ...(scars === undefined ? [] : [{
+    ...(!hasSidecar ? [] : [{
       kind: "SIDECAR" as const,
       logicalPath: "inputs/compiler-section-task-context.json",
       mediaType: "application/json" as const,
-      bytes: bytes({ schemaVersion: "compiler-section-task-context-v1", bookId: BOOK, voiceCard: null, bookScars: scars }),
+      bytes: bytes({
+        schemaVersion: "compiler-section-task-context-v1",
+        bookId: BOOK,
+        voiceCard: sidecar.voiceCard ?? null,
+        bookScars: scars ?? null,
+      }),
     }]),
   ].map((file) => ({ ...file, byteLength: file.bytes.byteLength }));
   return {
@@ -132,10 +144,16 @@ export type RigOptions = Readonly<{
   errorReviewAttempts?: number;
   /** undefined = no section-task-context sidecar at all (the pre-wiring shape). */
   scars?: Record<string, unknown> | null;
+  /** The frozen sidecar's voice card. Supplying one stages the sidecar even when
+   *  the book has no scars — the two fields ride in the same file. */
+  voiceCard?: string | null;
 }>;
 
 export function rig(context: TestContext, options: RigOptions = {}) {
-  const predecessor = candidate(context, options.scars);
+  const predecessor = candidate(context, {
+    ...(options.scars === undefined ? {} : { scars: options.scars }),
+    ...(options.voiceCard === undefined ? {} : { voiceCard: options.voiceCard }),
+  });
   const chapterOne = JSON.parse(Buffer.from(predecessor.files[0].bytes).toString("utf8")) as ChapterV21;
   const replacement: ChapterV21 = { ...chapterOne, hook: "A repaired opening names the visible credit signal before the reader can miss it." };
   const failedRound: QcRoundResult = {
@@ -309,7 +327,17 @@ export function rig(context: TestContext, options: RigOptions = {}) {
     attemptRoot: resolve(context.roots.attemptsRoot, "repair"),
     signal: new AbortController().signal,
   };
-  return { port, request, predecessor, runStore, counts, prompts, successor: () => successor, repairRequest: () => repairRequest, appended: () => appended };
+  return {
+    port,
+    request,
+    predecessor,
+    runStore,
+    counts,
+    prompts,
+    successor: () => successor,
+    repairRequest: () => repairRequest,
+    appended: () => appended,
+  };
 }
 
 export function identity(candidate: CandidateSnapshot): CandidateIdentity {
