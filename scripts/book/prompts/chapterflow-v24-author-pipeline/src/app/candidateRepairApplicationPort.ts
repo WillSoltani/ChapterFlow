@@ -30,7 +30,7 @@ import {
 } from "./contentRepairWorkflow.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
 import type { ChapterFlowClock } from "./pipeline.js";
-import { boundedRepairBlockers, buildRepairBrief } from "./candidateRepairBrief.js";
+import { boundedRepairBlockers, buildRepairBrief, isFloorOnlyBlockerSet } from "./candidateRepairBrief.js";
 import { buildRepairWritingContract } from "./candidateRepairWritingContract.js";
 
 export const CANDIDATE_REPAIR_PROFILE_ID = "attempt-read-json-v1" as const;
@@ -42,6 +42,38 @@ export const REVIEW_REPAIR_STAGE_ID = "review-repair" as const;
 /** Attempt-id namespace for the review lane. Distinct from the QC lane's "rep"
  *  so the two can never collide even if an operator reuses a run id. */
 const REVIEW_REPAIR_ATTEMPT_PREFIX = "revrep" as const;
+
+/**
+ * The terminal code + reason marker for "the writer was asked to repair a
+ * chapter with no named defect and judged that nothing should change".
+ *
+ * WHY IT IS NOT REPAIR_OUTPUT_NO_CHANGE. A floor-only failure carries no
+ * blocker that names anything to fix, and the brief says so in as many words
+ * ("A score names nothing to fix. Do not chase the number, and do not rewrite
+ * material that is already working"). Answering an unchanged chapter with
+ * `replacement did not change chapter N` made the honest outcome unrepresentable
+ * and left changing something as the only way to satisfy the machine — churn
+ * the run then paid a full review and QC round for.
+ *
+ * The run still ends terminal and NOTHING is promoted: no gate moves, no
+ * successor is staged, the chapter still fails its round. What changes is that
+ * the outcome is now legible — "the writer declined, with reason" rather than
+ * "the writer broke" — so an orchestrator can adjudicate it. The reason lives in
+ * the MESSAGE because that is what `#failRun` records in run state; the code
+ * never reaches the durable record. Same convention as
+ * `REPAIR_REVIEW_ERROR_REASON_PREFIX` in contentRepairWorkflow.ts.
+ *
+ * A chapter carrying ANY named blocker is unaffected: an unchanged chapter there
+ * left a named defect unfixed and stays REPAIR_OUTPUT_NO_CHANGE.
+ */
+export const REPAIR_NO_CHANGE_JUSTIFIED_CODE = "REPAIR_NO_CHANGE_JUSTIFIED" as const;
+export const REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX = "REPAIR_NO_CHANGE_JUSTIFIED:" as const;
+
+/** True when a repair run's terminal reason says its writer declined a
+ *  floor-only repair rather than failing one. */
+export function isJustifiedNoChangeTerminalReason(reason: string | undefined): boolean {
+  return reason !== undefined && reason.startsWith(REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX);
+}
 
 export interface CandidateRepairPreflightRequest {
   readonly bookId: string;
@@ -1103,6 +1135,10 @@ export class CandidateRepairApplicationPort {
           + " full-set=failed-round/canonical-review record",
         );
       }
+      // A floor-only chapter carries no blocker naming anything to fix, and the
+      // brief tells the writer so and permits an unchanged return. The machine
+      // check below honours the SAME predicate.
+      const floorOnly = isFloorOnlyBlockerSet(findings);
       const operationId = `repair-ch${String(chapterNumber).padStart(2, "0")}`;
       const repairAttemptId = attemptId(pass.repairRunId, operationId, pass.attemptIdPrefix);
       repairAttemptIds.push(repairAttemptId);
@@ -1190,7 +1226,19 @@ export class CandidateRepairApplicationPort {
         Buffer.from(entry.file.bytes).equals(Buffer.from(jsonBytes(replacement.value)))
         || JSON.stringify(entry.chapter) === JSON.stringify(replacement.value)
       ) {
-        return this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", `replacement did not change chapter ${chapterNumber}`);
+        // Floor-only: no blocker named anything to fix and the brief permitted an
+        // unchanged return, so this is the writer declining, not the writer
+        // failing. Terminal either way — nothing is staged, nothing is promoted,
+        // no gate moves — but the durable reason now says which one happened.
+        return floorOnly
+          ? this.#failRun(
+            request,
+            repairAttemptIds,
+            REPAIR_NO_CHANGE_JUSTIFIED_CODE,
+            `${REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX} chapter ${chapterNumber} carried only the composite score floor,`
+            + " and the writer returned it unchanged; the brief permits that outcome and no named defect is left unfixed",
+          )
+          : this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", `replacement did not change chapter ${chapterNumber}`);
       }
       replacements.set(chapterNumber, replacement.value);
     }

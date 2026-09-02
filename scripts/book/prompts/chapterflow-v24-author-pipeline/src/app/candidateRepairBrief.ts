@@ -109,6 +109,21 @@ export const REPAIR_BRIEF_BLOCKER_MAX_CHARS = 4000;
  *  brief past its budget. */
 const OMISSION_NOTICE_RESERVE = 160;
 
+/**
+ * True when every blocker on the chapter is the composite score floor, so no
+ * blocker names a defect to fix. One named blocker alongside the floor is NOT
+ * floor-only — the named defect leads.
+ *
+ * EXPORTED so the brief's promise and the port's machine check are the same
+ * decision. The brief tells a floor-only writer that returning the chapter
+ * unchanged is a permitted outcome; the port has to honour that on the identical
+ * predicate, or the prompt and the machine disagree about the same chapter.
+ */
+export function isFloorOnlyBlockerSet(blockers: readonly QcIssue[]): boolean {
+  return blockers.length > 0
+    && blockers.every((issue) => isReviewIssueCode(issue.code, READER_PANEL_BELOW_FLOOR_CODE));
+}
+
 export interface RepairBriefInput {
   readonly chapterNumber: number;
   /** Blocking findings scoped to this chapter — mandatory fixes, never dropped. */
@@ -211,11 +226,7 @@ export function buildRepairBrief(input: RepairBriefInput): string {
   const chapterLabel = String(input.chapterNumber).padStart(2, "0");
   const factorLines = input.advisories.filter((issue) => isReviewIssueCode(issue.code, READER_PANEL_FACTOR_SCORES_CODE));
   const advisories = input.advisories.filter((issue) => !isReviewIssueCode(issue.code, READER_PANEL_FACTOR_SCORES_CODE));
-  // "Floor-only" is decided on the BLOCKER set alone: every blocker is the score
-  // floor, so no blocker names a defect. One named blocker alongside the floor is
-  // NOT floor-only — the named defect leads.
-  const floorOnly = input.blockers.length > 0
-    && input.blockers.every((issue) => isReviewIssueCode(issue.code, READER_PANEL_BELOW_FLOOR_CODE));
+  const floorOnly = isFloorOnlyBlockerSet(input.blockers);
   // Did the reader panel name an on-page defect on this chapter? Decided on the
   // codes actually handed in, never assumed.
   const panelNamedDefect = input.blockers.some((issue) => isReaderBlockingCode(issue.code))
@@ -232,6 +243,14 @@ export function buildRepairBrief(input: RepairBriefInput): string {
       "A score names nothing to fix. Do not chase the number, and do not rewrite material that is already working —",
       "the factors and advisories below are the ENTIRE diagnosis available for this chapter. Lift the lowest-scoring",
       "factors first, then clear the advisories. Anything you change beyond that is an unforced risk.",
+      // The machine used to contradict this paragraph: an unchanged chapter was
+      // hard-failed REPAIR_OUTPUT_NO_CHANGE, so the only way to satisfy the run
+      // was to change something the brief had just told the writer not to touch.
+      // The port now records a floor-only no-op as its own adjudicated outcome
+      // (REPAIR_NO_CHANGE_JUSTIFIED), which is what makes this sentence true.
+      "If, after reading the chapter against the blueprint and the source-use plan, you judge that nothing here",
+      "should change, return it unchanged. That is a permitted outcome and it is recorded as one. Do not invent a",
+      "change to satisfy the machine.",
       "",
     );
   } else if (input.blockers.length === 0) {

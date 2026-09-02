@@ -1,5 +1,5 @@
 /**
- * The repair writer's WRITING CONTRACT.
+ * The repair writer's WRITING CONTRACT, and the two machine rules around it.
  *
  * A candidate repair rewrites whole reader-facing fields — hook, the three
  * summary tiers, six examples, nine quiz questions, the review cards, the
@@ -21,10 +21,12 @@
  *   3. it drops the two lines that are FALSE on this lane (each pack's "Output
  *      <Kind>PackV1 JSON only." and "this is an intermediate artifact only"),
  *      because a repair returns one complete ChapterV21;
- *   4. its own frame never spends the em dash the block it wraps bans;
- *   5. it stays inside a stated character budget;
- *   6. qc_findings ships the same bounded blocker set the brief lists — not the
- *      unbounded set beside it.
+ *   4. it stays inside a stated character budget;
+ *   5. qc_findings ships the same bounded blocker set the brief lists — not the
+ *      unbounded set beside it;
+ *   6. a floor-only repair that returns the chapter unchanged is a JUSTIFIED
+ *      no-op with its own terminal code and a durable terminal reason, instead
+ *      of the generic REPAIR_OUTPUT_NO_CHANGE that machine-forced churn.
  */
 
 import assert from "node:assert/strict";
@@ -34,10 +36,16 @@ import {
   REPAIR_WRITING_CONTRACT_VOICE_CARD_MAX_CHARS,
   buildRepairWritingContract,
 } from "../../src/app/candidateRepairWritingContract.js";
-import { boundedRepairBlockers } from "../../src/app/candidateRepairBrief.js";
+import {
+  REPAIR_NO_CHANGE_JUSTIFIED_CODE,
+  REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX,
+  isJustifiedNoChangeTerminalReason,
+} from "../../src/app/candidateRepairApplicationPort.js";
+import { boundedRepairBlockers, isFloorOnlyBlockerSet } from "../../src/app/candidateRepairBrief.js";
 import { SECTION_KINDS } from "../../src/artifacts/artifactTypes.js";
-import type { QcIssue } from "../../src/qc/qcTypes.js";
 import { sectionContract, sectionDoNotLines } from "../../src/sections/sectionTasks.js";
+import type { QcIssue } from "../../src/qc/qcTypes.js";
+import { READER_PANEL_BELOW_FLOOR_CODE } from "../../src/review/readerPanelIssueCodes.js";
 import { BOOK, rig } from "./repairPortRig.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
@@ -67,7 +75,6 @@ requiredTest("the writing contract carries the section writer's craft rules for 
   assert.match(contract, /Avoid soft-banned house tics/, contract);
 });
 
-
 requiredTest("the writing contract drops the two instructions that are false on the repair lane", () => {
   const contract = buildRepairWritingContract({ voiceCard: null });
   // Each pack's own "Output SummaryPackV1 JSON only." would contradict the
@@ -81,7 +88,6 @@ requiredTest("the writing contract drops the two instructions that are false on 
   // …and everything the repair still owes survives.
   assert.match(contract, /Do not weaken schemas, gates, source sidecars/, contract);
 });
-
 
 requiredTest("the writing contract renders the voice card, clamped, and omits the block when the book has none", () => {
   const withCard = buildRepairWritingContract({ voiceCard: VOICE_CARD });
@@ -102,7 +108,6 @@ requiredTest("the writing contract renders the voice card, clamped, and omits th
   assert.match(clamped, /\[truncated\]/, "a clamped card says it was clamped");
 });
 
-
 requiredTest("the contract's own frame never mints the character the DO NOT block bans", () => {
   // Every line this module writes itself — headings, preamble, the voice trailer.
   // The section-contract text it COMPOSES is source-controlled and stays verbatim,
@@ -119,7 +124,6 @@ requiredTest("the contract's own frame never mints the character the DO NOT bloc
   assert.deepEqual(authored, [], `this module must not spend the em dash it bans: ${authored.join(" | ")}`);
 });
 
-
 requiredTest("the writing contract stays inside its stated character budget", () => {
   const contract = buildRepairWritingContract({ voiceCard: VOICE_CARD });
   assert.ok(
@@ -132,6 +136,13 @@ requiredTest("the writing contract stays inside its stated character budget", ()
   assert.ok(contract.length >= REPAIR_WRITING_CONTRACT_MAX_CHARS * 0.85, `contract is ${contract.length} chars`);
 });
 
+requiredTest("floor-only is decided on the blocker set alone, by one shared predicate", () => {
+  const floor: QcIssue = { code: `REVIEW.${READER_PANEL_BELOW_FLOOR_CODE}`, severity: "BLOCKER", message: "composite 67 < 70", location: "ch01" };
+  const named: QcIssue = { code: "SEC55", severity: "BLOCKER", message: "quiz prompt cites no specific", location: "ch01" };
+  assert.equal(isFloorOnlyBlockerSet([floor]), true);
+  assert.equal(isFloorOnlyBlockerSet([floor, named]), false);
+  assert.equal(isFloorOnlyBlockerSet([]), false);
+});
 
 requiredTest("boundedRepairBlockers keeps one blocker per code, then fills, and reports the rest", () => {
   const blockers: QcIssue[] = [
@@ -150,8 +161,6 @@ requiredTest("boundedRepairBlockers keeps one blocker per code, then fills, and 
   // Provenance order is the caller's, unchanged.
   assert.deepEqual(bounded.listed, blockers.filter((issue) => bounded.listed.includes(issue)));
 });
-
-// ---------------------------------------------------------------- wired ----
 
 // ---------------------------------------------------------------- wired ----
 
@@ -181,7 +190,6 @@ requiredTest("the repair prompt carries writing_contract as instruction, before 
   assert.match(control, /instruction, not evidence/, control);
 });
 
-
 requiredTest("qc_findings ships the bounded blocker set the brief lists, not the unbounded round", async (context) => {
   const extraIssues: QcIssue[] = Array.from({ length: 80 }, (_, index): QcIssue => ({
     code: "B5",
@@ -204,6 +212,35 @@ requiredTest("qc_findings ships the bounded blocker set the brief lists, not the
   assert.deepEqual(findings, boundedRepairBlockers([...subject.roundBlockers()]).listed);
   // Nothing is hidden: the brief counts and names by code what qc_findings drops.
   assert.match(brief, /further blocker\(s\) of the classes above are not listed individually/, brief);
+});
+
+requiredTest("a floor-only repair may return the chapter unchanged: JUSTIFIED no-op, not forced churn", async (context) => {
+  const subject = rig(context, {
+    issueCode: `REVIEW.${READER_PANEL_BELOW_FLOOR_CODE}`,
+    location: "ch01",
+    modelNoChange: true,
+    voiceCard: null,
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, false);
+  if (!result.ok) {
+    assert.equal(result.error.code, REPAIR_NO_CHANGE_JUSTIFIED_CODE);
+    assert.ok(result.error.message.startsWith(REPAIR_NO_CHANGE_JUSTIFIED_REASON_PREFIX), result.error.message);
+  }
+  // Durable: the adjudication survives in run state, self-identifying, so an
+  // orchestrator can tell "the writer declined" from "the writer broke".
+  const run = await subject.runStore.readRun(BOOK, subject.request.repairRunId, context.clock.now());
+  assert.equal(run.ok && run.value.status, "FAILED");
+  assert.equal(run.ok && isJustifiedNoChangeTerminalReason(run.value.terminalReason), true);
+  assert.equal(isJustifiedNoChangeTerminalReason("replacement did not change chapter 1"), false);
+  assert.equal(isJustifiedNoChangeTerminalReason(undefined), false);
+
+  // The brief that authorized it must SAY the no-op is allowed, or the model is
+  // still being told to change something it was told not to change.
+  const brief = Buffer.from(
+    subject.prompts[0].prompt.inputs.find((input) => input.name === "repair_brief")!.bytes,
+  ).toString("utf8");
+  assert.match(brief, /return it unchanged/, brief);
 });
 
 finishV25Tests().catch((error: unknown) => {
