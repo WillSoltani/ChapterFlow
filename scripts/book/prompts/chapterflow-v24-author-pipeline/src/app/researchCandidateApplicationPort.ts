@@ -27,6 +27,7 @@ import {
   withManifestUpdateLock,
 } from "../lib/researchRunManifest.js";
 import { loadBookScars } from "../lib/bookScars.js";
+import { sharedVoiceCues, voiceCard } from "../lib/voiceCard.js";
 import { researchBook } from "../researcher.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -397,7 +398,22 @@ async function materializeSeedFiles(result: Awaited<ReturnType<typeof researchBo
       bytes: encoder.encode(`${JSON.stringify({
         schemaVersion: "compiler-section-task-context-v1",
         bookId: result.bookId,
-        voiceCard: null,
+        // Seed the book's own voice card. This was hardcoded null — the same
+        // defect the sibling bookScars field carried, with the same consequence:
+        // the compiler already validated and rendered this field, so no writer
+        // prompt for any v25 book ever carried a register instruction and every
+        // book converged on one house voice. The card prefers the editor-in-chief
+        // charter, then a curated config/author-voice-profiles.json entry, and
+        // otherwise uses THIS run's own frozen record of how the book sounds: the
+        // bibliography's authorVoice block plus the voice cues two or more chapters
+        // agreed on. Voice flows one way (research/config -> writer task); it never
+        // reaches a gate, and a device mandate cannot ride it (sanitizeVoiceMoves).
+        voiceCard: voiceCard(result.bookId, {
+          register: result.bibliography.authorVoice.register,
+          signatureMoves: result.bibliography.authorVoice.signatureMoves,
+          avoidMoves: result.bibliography.authorVoice.avoidMoves,
+          sharedCues: sharedVoiceCues(result.chapters.map((chapter) => chapter.voiceCues)),
+        }),
         // Seed the book's own scars. This was hardcoded null, which made the
         // ENTIRE scar mechanism inert in production: the loader had no caller, so
         // no phrase, frame, note or panel-blocker rule ever reached a writer

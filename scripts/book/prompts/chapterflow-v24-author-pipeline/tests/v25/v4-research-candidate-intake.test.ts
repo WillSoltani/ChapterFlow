@@ -14,6 +14,7 @@ import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../..
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import { evaluateSourceV2Integrity } from "../../src/source/sourceIntegrity.js";
+import { VOICE_CARD_GUARD_LINE } from "../../src/lib/voiceCard.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 const BOOK = "the-power-of-moments";
@@ -753,6 +754,53 @@ requiredTest("15 a research-run pin selects an input and never changes run ident
   // pin unresumable WITH it (fileRunStore.createRun CONFLICTs on definition
   // drift). The pin selects an input, not an intent.
   assert.equal(pinnedRun.value.definition.commandId, unpinnedRun.value.definition.commandId);
+});
+
+// ── R-003 — the seed's section-task context must carry a REAL voice card ──────
+//
+// `voiceCard` was hardcoded `null` here (researchCandidateApplicationPort.ts), the
+// same defect its sibling `bookScars` had been repaired for: the compiler already
+// validated and rendered the field, only the data was missing, so no writer prompt
+// for any v25 book ever carried a register instruction and every book converged on
+// one house voice. This book has NO editor-in-chief brief and NO curated entry in
+// config/author-voice-profiles.json, so the card it gets here can only have come
+// from the run's own frozen bibliography authorVoice + the chapters' shared
+// voiceCues — i.e. this test fails closed if the seed stops threading them.
+requiredTest("16 the staged section-task context carries the run's own voice card, never a hardcoded null", async (context) => {
+  const subject = rig(context);
+  await subject.port.run(subject.request);
+  const snapshot = subject.candidates.snapshot();
+  assert.ok(snapshot);
+  const file = snapshot.files.find((entry) => entry.logicalPath === "inputs/compiler-section-task-context.json");
+  assert.ok(file, "the seed stages a section-task context");
+  const parsed = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as { voiceCard: unknown };
+
+  // The compiler's own contract for this field
+  // (compilerApplicationPort.ts: "voiceCard must be null or nonempty text").
+  assert.equal(typeof parsed.voiceCard, "string", "voiceCard is text, not null");
+  const card = String(parsed.voiceCard);
+  assert.ok(card.trim().length > 0, "voiceCard is nonempty");
+
+  // The bibliography fixture's authorVoice: register "plainspoken", signatureMoves
+  // ["concrete scenes", "causal contrasts", "short labels"], avoidMoves
+  // ["ornamental abstractions"]. Both chapters carry voiceCues ["opens with a
+  // concrete scene", "moves from contrast to mechanism"], so both are SHARED.
+  assert.match(card, /^voice: plainspoken register; third-person retelling; varied cadence$/m, "the frozen register leads the card");
+  assert.match(card, /^do: concrete scenes; causal contrasts; short labels; opens with a concrete scene; moves from contrast to mechanism$/m, "signature moves lead the do: line and the shared chapter cues close it");
+  assert.match(card, /^never: ornamental abstractions$/m, "avoidMoves ride along verbatim");
+  assert.doesNotMatch(card, /first[- ]person/, "a card never instructs a person SEC7 blocks");
+  assert.ok(card.endsWith(VOICE_CARD_GUARD_LINE), "the contamination guard closes the card");
+  // A voice card teaches HOW to sound and must never carry a paste-able specimen:
+  // nothing from the book's own content may appear in it.
+  assert.doesNotMatch(card, /Magic Castle|John Deere|KIPP|Sara Blakely/, "no named case from the source reaches the card");
+
+  // The card is a function of the run, not of the clock: a second identical run
+  // stages byte-identical context (the seed is compared byte-for-byte on resume).
+  const second = rig(context);
+  await second.port.run({ ...second.request, bookId: BOOK });
+  const secondFile = second.candidates.snapshot()?.files.find((entry) => entry.logicalPath === "inputs/compiler-section-task-context.json");
+  assert.ok(secondFile);
+  assert.equal(Buffer.from(secondFile.bytes).toString("utf8"), Buffer.from(file.bytes).toString("utf8"), "the staged context is deterministic");
 });
 
 finishV25Tests().catch((error: unknown) => {
