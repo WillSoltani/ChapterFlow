@@ -69,8 +69,16 @@ function withGuard(contentLines: string[]): string {
 /** Compact register templates keyed off the author-voice profile's `register`.
  *  Style only — no content nouns, named cases, or paste-able sample sentences.
  *  Every template's first line starts with "voice:" so callers can lift a
- *  one-line register descriptor for the learning/action register note. */
-const REGISTER_TEMPLATES: Record<string, string[]> = {
+ *  one-line register descriptor for the learning/action register note.
+ *
+ *  The person and cadence fields are RENDERING instructions, not descriptions of
+ *  the source author. The artifact is a third-person retelling of someone else's
+ *  book — SEC7.meta_reference (src/sections/sectionGate.ts:2253) blocks "the
+ *  author"/"the book"/"this chapter" in every breakdown tier — and every tier must
+ *  clear the SEC12 reading-ease floor, so a template may not ask for the source
+ *  author's first person or for a cadence that cannot clear that floor
+ *  (tests/voice-card.test.ts pins both). */
+export const REGISTER_TEMPLATES: Readonly<Record<string, readonly string[]>> = {
   "researcher-practitioner": [
     "voice: analytical, evidence-first register; second-person; medium cadence",
     "rhythm: short-to-medium sentences, one idea each; vary length so it never drones",
@@ -86,8 +94,8 @@ const REGISTER_TEMPLATES: Record<string, string[]> = {
     "warmth: encouraging and candid; humor stays light and human",
   ],
   "philosopher-historian": [
-    "voice: reflective, literate register; third-person; longer cadence",
-    "rhythm: measured sentences that can breathe; set a long line against a short one",
+    "voice: reflective, literate register; third-person; unhurried cadence that still reads plainly",
+    "rhythm: measured sentences that can breathe, one idea each; set a long line against a short one",
     "do: let an idea unfold, then anchor it in a concrete moment",
     "never: slang, hype, or bullet-point briskness",
     "warmth: calm, curious, humane; humor is dry and sparing",
@@ -120,9 +128,9 @@ const REGISTER_TEMPLATES: Record<string, string[]> = {
     "warmth: wry and candid about the subject's own mistakes; never sentimental, never scolding",
   ],
   memoirist: [
-    "voice: intimate, reflective register; first-person; medium cadence",
+    "voice: intimate, reflective register; third-person but close in, the way a memoir's confidences read when retold; medium cadence",
     "rhythm: conversational sentences, the occasional fragment for effect",
-    "do: speak from lived experience, then open it toward the reader",
+    "do: stay close to what the person actually lived through, then open it toward the reader",
     "never: lecturing, jargon, or detached distance",
     "warmth: candid, warm, self-aware; humor is honest and personal",
   ],

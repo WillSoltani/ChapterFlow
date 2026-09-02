@@ -13,7 +13,7 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
-import { voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
+import { REGISTER_TEMPLATES, voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
 import { loadBookScars } from "../src/lib/bookScars.js";
 import { formatVoiceBible } from "../src/lib/voiceBible.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
@@ -175,6 +175,27 @@ test("the curated Franklin profile resolves a third-person card that the section
   const learning = task(FRANKLIN, "learning-pack");
   assert.match(learning, /VOICE CARD — register note/, "learning writers get the register note");
   assert.match(learning, /voice: plain, concrete register with dry self-aware irony/, "the register descriptor is surfaced");
+});
+
+// ── R-007 — a register template may only instruct things the artifact can be
+//    written in. The artifact is a third-person retelling of someone else's book:
+//    src/sections/sectionGate.ts:2253 (SEC7.meta_reference) blocks "the author",
+//    "the book" and "this chapter" in every breakdown tier, and
+//    src/sections/sectionTasks.ts repeats the ban in every task card's DO NOT block.
+//    A template that tells the writer to use the source author's first person asks
+//    for prose the writer then has to walk back. ──────────────────────────────────
+
+test("R-007: no register template instructs a person or a move the artifact cannot use", () => {
+  const registers = Object.keys(REGISTER_TEMPLATES);
+  assert.ok(registers.length >= 7, `expected the shipped register templates, found ${registers.length}`);
+  for (const [register, lines] of Object.entries(REGISTER_TEMPLATES)) {
+    const text = lines.join("\n");
+    assert.doesNotMatch(text, /first[- ]person/i, `${register}: a template must not instruct the source author's first person`);
+    assert.doesNotMatch(text, /speak from lived experience/i, `${register}: "speak from lived experience" is the same first-person instruction in prose`);
+    // Every template still leads with the register descriptor the learning/action
+    // register note lifts (voiceRegisterLine).
+    assert.match(lines[0]!, /^voice: /, `${register}: first line must be the register descriptor`);
+  }
 });
 
 // ── P1 / Finding F-01: device-mandate signature moves never reach the card ──────
