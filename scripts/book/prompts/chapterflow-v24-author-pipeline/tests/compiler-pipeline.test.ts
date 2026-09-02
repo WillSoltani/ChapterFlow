@@ -3219,3 +3219,15 @@ test("R-044 the summary pack's tryThisNow is grounded at the same bar as the act
   assert.deepEqual(actionHits, [], "SEC74 accepts one verbatim specific in the copy that actually ships");
   assert.deepEqual(summaryHits, [], "the discarded copy must not be held to a stricter bar than the shipped one");
 });
+test("R-043 memorable-line scoring rewards only the separators it can actually see", () => {
+  // memorableLineScore rejects any sentence containing ":" before scoring, so the
+  // ":" alternative in the "+3 for a separator" rule was unreachable. Deleting it
+  // changes no score — this test pins that equivalence so the cleanup is provably
+  // cosmetic.
+  assert.equal(memorableLineScore("You cannot fix the signal: you can only change what it reports today."), 0, "a colon still disqualifies a candidate outright");
+  const comma = memorableLineScore("When the balance is read, you have already decided what it says.");
+  const semi = memorableLineScore("When the balance is read; you have already decided what it says.");
+  assert.ok(comma > 0 && semi > 0);
+  assert.equal(comma, semi, "comma and semicolon are the separators the reward can still reach");
+});
+
