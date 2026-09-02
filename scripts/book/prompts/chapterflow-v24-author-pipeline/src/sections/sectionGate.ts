@@ -16,7 +16,7 @@ import { blueprintPath, readJsonFile, sectionPath, sourcePacketPath, type Compil
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { checkSentenceSanity } from "../critics/integrity.js";
-import { checkReadingLevel, checkBreakdownReadingEase } from "../critics/readingLevel.js";
+import { checkReadingLevel, checkBreakdownReadingEase, TIER_TARGETS } from "../critics/readingLevel.js";
 import { fleschReadingEase } from "../metrics/rubricMetrics.js";
 import { loadBannedPhrases } from "../critics/shared.js";
 import { checkBannedPhrases, checkNoEmDash } from "../critics/register.js";
@@ -2221,6 +2221,19 @@ function factWhyOverlap(whyItMatters: string, fact: SourcePacketV1["facts"][numb
   return [...factTerms].filter((term) => whyTerms.has(term));
 }
 
+/** The chapter's OWN subject vocabulary — every word token the source packet lists in
+ *  allowedEntities / allowedPlaces, lower-cased. SEC12's abstract-word density counts
+ *  4+ syllable words as conceptual load the writer should trade for plainer ones; a
+ *  long proper noun the packet itself hands the writer is not tradeable, so it is
+ *  exempt (see countAbstractWords). Nothing outside the packet is exempted. */
+function packetSubjectTokens(packet: SourcePacketV1): ReadonlySet<string> {
+  const tokens = new Set<string>();
+  for (const value of [...(packet.allowedEntities ?? []), ...(packet.allowedPlaces ?? [])]) {
+    for (const token of text(value).match(/[A-Za-z'-]+/g) ?? []) tokens.add(token.toLowerCase());
+  }
+  return tokens;
+}
+
 export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
@@ -2244,6 +2257,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorClaimType(counterIds, anchors, "hook", "hook.counterintuitionSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
     for (const p of validateAnchorHardSpecifics(counterIds, anchors, "hook", pack.hook?.counterintuition, "counterintuition")) push("SEC14.summary_anchor_specifics", "blocker", p, "/hook/counterintuition");
   }
+  const subjectTokens = packetSubjectTokens(packet);
   const tiers = ["fastRead", "deepRead", "fullRead"] as const;
   const mins = { fastRead: 350, deepRead: 1000, fullRead: 2400 } as const;
   const memorableCandidates: MemorableCandidate[] = [];
@@ -2251,7 +2265,13 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     const value = text(pack.breakdown?.[tier]);
     if (value.length < mins[tier]) push("SEC6.breakdown_length", "blocker", `${tier} too short (${value.length})`, `/breakdown/${tier}`);
     if (/\b(this chapter|the chapter|the author|the book)\b/i.test(value)) push("SEC7.meta_reference", "blocker", `${tier} contains meta-reference`, `/breakdown/${tier}`);
-    for (const f of checkReadingLevel(value, tier)) push("SEC12.summary_readability", "blocker", f.message, `/breakdown/${tier}`);
+    // The critic's OWN severity is carried through: prose.reading_level is `major`
+    // (the rubric band the chapter is graded on) and blocks; prose.abstract_density
+    // is `minor` — a supplementary conceptual-load signal on fastRead — and advises.
+    // Pushing both as blockers laundered a minor finding into a shipping blocker.
+    for (const f of checkReadingLevel(value, tier, TIER_TARGETS, subjectTokens)) {
+      push("SEC12.summary_readability", f.severity === "minor" ? "advisory" : "blocker", f.message, `/breakdown/${tier}`);
+    }
     for (const p of validateAnchorIds(pack.breakdown?.sourceAnchorIds?.[tier], allowed, `breakdown.sourceAnchorIds.${tier}`)) push("SEC8.breakdown_anchor", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorResolution(pack.breakdown?.sourceAnchorIds?.[tier], anchors, `breakdown.sourceAnchorIds.${tier}`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);

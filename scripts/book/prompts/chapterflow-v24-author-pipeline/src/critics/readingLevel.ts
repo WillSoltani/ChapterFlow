@@ -107,16 +107,26 @@ export function countSyllables(word: string): number {
 
 /** Per-paragraph "abstract word density" — counts 4+ syllable words. Used as
  *  a supplementary check on fastRead, where conceptual load matters more
- *  than FK can capture. */
-export function countAbstractWords(text: string): number {
+ *  than FK can capture.
+ *
+ *  `exemptTokens` (lower-cased) holds the words the chapter is ABOUT — the source
+ *  packet's own entity/place vocabulary. A long proper noun is not academic
+ *  vocabulary the writer can swap for a plainer word: it is the subject, and
+ *  counting it made a per-paragraph budget of 2 unspendable for any chapter whose
+ *  material is named in long words. Everything else is still counted. */
+export function countAbstractWords(text: string, exemptTokens: ReadonlySet<string> = new Set()): number {
   const words = (text.match(/\b[A-Za-z'-]+\b/g) ?? []) as string[];
-  return words.filter((w) => countSyllables(w) >= 4).length;
+  return words.filter((w) => countSyllables(w) >= 4 && !exemptTokens.has(w.toLowerCase())).length;
 }
 
 export function checkReadingLevel(
   text: string,
   tier: TierName,
   targets: TierTargetSet = TIER_TARGETS,
+  /** Subject vocabulary exempt from the abstract-density count (see
+   *  countAbstractWords). Empty for the legacy per-chapter callers, whose
+   *  behaviour is therefore byte-identical. */
+  abstractDensityExemptTokens: ReadonlySet<string> = new Set(),
 ): CriticFinding[] {
   const target = targets[tier];
   const findings: CriticFinding[] = [];
@@ -136,7 +146,7 @@ export function checkReadingLevel(
   if (tier === "fastRead") {
     const paragraphs = text.split(/\n\s*\n/).map((p) => p.trim()).filter(Boolean);
     paragraphs.forEach((p, i) => {
-      const abstract = countAbstractWords(p);
+      const abstract = countAbstractWords(p, abstractDensityExemptTokens);
       if (abstract > 2) {
         findings.push(
           finding(

@@ -3231,3 +3231,46 @@ test("R-043 memorable-line scoring rewards only the separators it can actually s
   assert.equal(comma, semi, "comma and semicolon are the separators the reward can still reach");
 });
 
+test("R-040 SEC12 carries the critic's own severity: reading level blocks, abstract density advises", () => {
+  // readingLevel.ts emits prose.reading_level at "major" and prose.abstract_density
+  // at "minor"; the gate pushed BOTH as blockers, so a supplementary conceptual-load
+  // signal the critic itself calls minor could fail a chapter on its own.
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  // One dense fastRead paragraph: 4+ syllable words push abstract density over its
+  // budget of 2 while the sentences stay short enough to clear the FK ceiling.
+  bad.breakdown.fastRead = long("Utilization visibility rewards preparation. Anticipation supports reliability. Documentation clarifies obligation.", 12);
+  const sec12 = validateSummaryPack(bad, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC12.summary_readability" && f.path === "/breakdown/fastRead");
+  const density = sec12.filter((f) => /four-plus-syllable/.test(f.message));
+  const level = sec12.filter((f) => /Flesch-Kincaid grade/.test(f.message));
+  assert.ok(density.length > 0, sec12.map((f) => `${f.severity}: ${f.message}`).join("\n"));
+  assert.ok(density.every((f) => f.severity === "advisory"), "a `minor` critic finding must not be laundered into a blocker");
+  assert.ok(level.every((f) => f.severity === "blocker"), "the `major` reading-level finding still blocks");
+});
+
+test("R-040 abstract density does not count the chapter's own subject vocabulary", () => {
+  // The density rule counts EVERY 4+ syllable word, so a chapter whose subject is a
+  // long proper noun spends its whole budget of 2 naming its own material — the
+  // shipped virtues chapter could not name three of the thirteen virtues in
+  // fastRead. The packet already enumerates that vocabulary in allowedEntities /
+  // allowedPlaces, so those tokens are the chapter's subject, not academic filler.
+  const fx = compileFixture();
+  const packet = JSON.parse(JSON.stringify(fx.packet)) as SourcePacketV1;
+  packet.allowedEntities = [...packet.allowedEntities, "Pennsylvania"];
+  packet.allowedPlaces = [...packet.allowedPlaces, "Philadelphia"];
+  assert.ok(countSyllables("Pennsylvania") >= 4 && countSyllables("Philadelphia") >= 4, "both entity tokens are 4+ syllables, i.e. countable before the exemption");
+
+  const named = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  named.breakdown.fastRead = long("Pennsylvania paid first. Philadelphia paid next. Pennsylvania paid again.", 20);
+  const namedDensity = validateSummaryPack(named, fx.blueprint, packet)
+    .filter((f) => f.checkId === "SEC12.summary_readability" && f.path === "/breakdown/fastRead" && /four-plus-syllable/.test(f.message));
+  assert.deepEqual(namedDensity, [], "naming the packet's own entities must not spend the abstract-word budget");
+
+  // The exemption is narrow: 4+ syllable words the packet does NOT name are still counted.
+  const academic = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  academic.breakdown.fastRead = long("Utilization rewards preparation. Visibility supports reliability. Documentation clarifies obligation.", 12);
+  const academicDensity = validateSummaryPack(academic, fx.blueprint, packet)
+    .filter((f) => f.checkId === "SEC12.summary_readability" && f.path === "/breakdown/fastRead" && /four-plus-syllable/.test(f.message));
+  assert.ok(academicDensity.length > 0, "academic vocabulary the packet never names is still flagged");
+});
+
