@@ -18,6 +18,7 @@ import { assembleChapterV21OrThrow } from "../src/assembler.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
 import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
+import { countSyllables } from "../src/critics/readingLevel.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import { checkNoEmDash } from "../src/critics/register.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
@@ -3131,3 +3132,40 @@ test("v23 SP16 is absent when every hardSpecific is short and atomic (<= 6 words
   assert.equal(findings.some((f) => f.checkId === "SP16.atomic_specifics"), false);
   assert.equal(findings.filter((f) => f.severity === "blocker").length, 0);
 });
+
+// ===========================================================================
+// Wave-0 gate-small fixes (issue register R-010, R-016, R-040, R-042, R-043,
+// R-044). Each test names the behaviour the gate gains or the false positive it
+// stops raising; none of them relaxes a check that was catching a real defect.
+// ===========================================================================
+
+test("R-010 SEC120's blocker message names exactly the tiers its haystack reads", () => {
+  // The haystack is standaloneProseText() = hook + counterintuition + fastRead +
+  // deepRead + keyTakeaway (chapterProse.ts:84-89) — fullRead is deliberately
+  // excluded, because the check exists to protect the reader who stops after Deep.
+  // The message used to promise "(hook, fastRead, deepRead, fullRead, keyTakeaway)",
+  // so the cheapest repair it invited — move the missing sentence into fullRead —
+  // cannot clear the check and leaves the restatement defect behind.
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 1);
+  assert.ok(anchor, "fixture needs a specifics-rich quiz-capable anchor");
+  const specific = anchor!.hardSpecifics![0];
+  const onPage = anchor!.hardSpecifics!.find((x) => x !== specific)!;
+  const prose = {
+    ...fx.summary,
+    breakdown: { ...fx.summary.breakdown, deepRead: `${fx.summary.breakdown.deepRead} The deep read states ${onPage} outright.` },
+  };
+  const bad = cloneLearning(fx.learning);
+  const q = bad.quiz.questions[0];
+  q.sourceAnchorIds = [anchor!.id];
+  q.keyEvidenceAnchorIds = [anchor!.id];
+  q.prompt = `A reader checks the ${specific} before the next snapshot. Which move changes what a lender can read?`;
+
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, prose).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.ok(hits.length > 0, "setup must trip SEC120");
+  for (const hit of hits) {
+    assert.match(hit.message, /\(hook, counterintuition, fastRead, deepRead, keyTakeaway\)/, "the message must name the five fields the haystack actually holds");
+    assert.equal(/fullRead/.test(hit.message), false, "naming fullRead as testable prose is the false instruction this fixes");
+  }
+});
+

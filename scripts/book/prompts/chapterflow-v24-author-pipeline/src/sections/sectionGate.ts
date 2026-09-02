@@ -2685,7 +2685,7 @@ export function learningProseDerivabilityFindings(
     return [...missing];
   };
   const blocker = (label: string, missing: readonly string[]): string =>
-    `${label} names ${missing.map((value) => `"${value}"`).join(", ")}, which ${missing.length === 1 ? "appears" : "appear"} nowhere in this chapter's drafted prose (hook, fastRead, deepRead, fullRead, keyTakeaway); a reader of this chapter cannot derive it from the page — use only the names, dates, numbers, and terms the prose actually shows`;
+    `${label} names ${missing.map((value) => `"${value}"`).join(", ")}, which ${missing.length === 1 ? "appears" : "appear"} nowhere in this chapter's drafted prose (hook, counterintuition, fastRead, deepRead, keyTakeaway); a reader of this chapter cannot derive it from the page — use only the names, dates, numbers, and terms the prose actually shows`;
   for (const [i, q] of (pack.quiz?.questions ?? []).entries()) {
     const choices = Array.isArray(q.choices) ? q.choices.map((choice) => text(choice)).join(" ") : "";
     const unitText = `${text(q.prompt)} ${choices} ${text(q.explanation)}`;
