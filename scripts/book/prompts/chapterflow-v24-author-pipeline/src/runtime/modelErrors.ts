@@ -58,10 +58,22 @@ export function isCredentialFailureMessage(message: string): boolean {
     || /\bapi_error_status["\s:]*401\b/i.test(message);
 }
 
+/** Which provider-side block a message describes, or null when it describes
+ *  none. Named so a fail-fast terminal code can say WHICH wall the run hit —
+ *  an exhausted quota window and an expired login need different operator
+ *  actions (wait for the reset vs. run one command). */
+export type ProviderBlockKind = "quota-exhausted" | "credential-failure";
+
+export function providerBlockKind(message: string): ProviderBlockKind | null {
+  if (isQuotaExhaustedMessage(message)) return "quota-exhausted";
+  if (isCredentialFailureMessage(message)) return "credential-failure";
+  return null;
+}
+
 /** Provider-side conditions that cannot clear by retrying inside this run.
  *  Retry loops should fail fast on these and surface the provider's own words. */
 export function isUnretryableProviderMessage(message: string): boolean {
-  return isQuotaExhaustedMessage(message) || isCredentialFailureMessage(message);
+  return providerBlockKind(message) !== null;
 }
 
 export function modelError(code: ModelErrorCode, message: string, retryable = false): ModelError {

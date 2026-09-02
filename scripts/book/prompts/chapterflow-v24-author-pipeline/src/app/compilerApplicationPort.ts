@@ -26,6 +26,7 @@ import type { ChapterProseSource } from "../sections/chapterProse.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterV21 } from "../types.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
+import { providerBlockKind } from "../runtime/modelErrors.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { AttemptSnapshot, RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
@@ -1545,6 +1546,23 @@ export class CompilerApplicationPort {
                 }
                 retryFeedback = { blockerLines: [GATEWAY_SCHEMA_REJECTION_FEEDBACK], gatewaySchemaRejection: true };
                 continue;
+              }
+              // R-001: a PROVIDER BLOCK — an exhausted quota window or a dead
+              // credential — wears the same FAILED/MODEL_PROCESS_FAILED code as a
+              // transient blip, so the code alone cannot separate them. Only the
+              // provider's own words can, and the gateway now preserves them. Retrying
+              // inside an exhausted window cannot succeed: on 2026-08-28 a weekly 429
+              // burned 3 attempts x every section x nineteen operator rounds while
+              // reporting "a transient model process failure". Fail fast on attempt 1
+              // with a terminal code that names the block class and quotes the
+              // provider, so the operator sees the reset horizon instead of a blip.
+              const blockKind = result.outcome === "FAILED" && code === TRANSIENT_PROCESS_FAILURE_CODE
+                ? providerBlockKind(result.error?.message ?? "")
+                : null;
+              if (blockKind !== null) {
+                throw new Error(
+                  `COMPILER_SECTION_PROVIDER_BLOCKED:${kind}:${blockKind}:${boundedCompilerDetail(result.error?.message ?? "")}`,
+                );
               }
               // Transient subprocess failure (rate-limit / overload): retry against
               // the same budget after a bounded backoff. Nothing was wrong with the

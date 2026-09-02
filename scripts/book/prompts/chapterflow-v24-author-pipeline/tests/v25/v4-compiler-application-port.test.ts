@@ -127,6 +127,10 @@ type RigOptions = {
    *  MODEL_PROCESS_FAILED (a transient subprocess failure) then return a valid
    *  draft — exercises the backoff-gated transient retry class. */
   readonly transientFailSummaryAttempts?: number;
+  /** Override the error MESSAGE the injected transient failure carries. R-001:
+   *  the gateway now preserves the provider's own words on a non-zero exit, and
+   *  the section loop classifies on that text, so a test needs to supply it. */
+  readonly transientFailMessage?: string;
   /** Fail the first N summary attempts with outcome TIMED_OUT / error code
    *  MODEL_PROCESS_FAILED (a section drafting call killed at the profile timeout
    *  horizon) then return a valid draft — exercises the Task 11k backoff-gated
@@ -223,7 +227,11 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
             finishedAt: context.clock.now(),
           });
           assert.equal(failed.ok, true);
-          return { attemptId: request.context.attemptId, outcome: retryableFail.outcome, error: { code: retryableFail.code, message: retryableFail.code } };
+          return {
+            attemptId: request.context.attemptId,
+            outcome: retryableFail.outcome,
+            error: { code: retryableFail.code, message: options.transientFailMessage ?? retryableFail.code },
+          };
         }
       }
       const outcome = options.gatewayOutcome === "error" ? "FAILED" as const : "SUCCEEDED" as const;
@@ -783,6 +791,66 @@ requiredTest("3i section TIMED_OUT on every attempt exhausts the bounded retry t
   const run = await subject.runStore.readRun(BOOK, "run-timeout-retry-exhaust", context.clock.now());
   assert.equal(run.ok, true);
   if (run.ok) assert.equal(run.value.status, "FAILED");
+});
+
+requiredTest("3j a provider-blocked section fails fast on attempt 1 with the provider's own words (R-001)", async (context) => {
+  // The live 2026-08-28 message, as the gateway now hands it over after a
+  // non-zero exit. Retrying inside an exhausted weekly window cannot succeed:
+  // the loop must stop at attempt 1, not burn MAX_SECTION_ATTEMPTS x every
+  // section x every operator round.
+  const quotaMessage = "You've hit your weekly limit \u00b7 resets Sep 1 at 8pm (America/Halifax) (api_error_status=429)";
+  const subject = rig(context, "provider-blocked-quota", {
+    transientFailSummaryAttempts: 99,
+    transientFailMessage: quotaMessage,
+  });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_PROVIDER_BLOCKED:summary-pack:quota-exhausted:/);
+    // the operator reads the provider's own words, not "a transient model process failure"
+    assert.match(error.message, /weekly limit/);
+    assert.match(error.message, /resets Sep 1 at 8pm/);
+    assert.ok(error.message.length <= 1700, `provider-blocked detail exceeded bounded length: ${error.message.length}`);
+    return true;
+  });
+  // ONE attempt, no backoff, no candidate staged.
+  assert.equal(subject.counts.runner, 1);
+  assert.equal(subject.counts.stage, 0);
+  assert.equal(subject.staged(), null);
+  assert.deepEqual(subject.sleeps, []);
+  const run = await subject.runStore.readRun(BOOK, "run-provider-blocked-quota", context.clock.now());
+  assert.equal(run.ok, true);
+  if (run.ok) assert.equal(run.value.status, "FAILED");
+});
+
+requiredTest("3k a credential-blocked section fails fast and names the credential class (R-001)", async (context) => {
+  const subject = rig(context, "provider-blocked-credential", {
+    transientFailSummaryAttempts: 99,
+    transientFailMessage: "Not logged in \u00b7 Please run /login (api_error_status=401)",
+  });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_PROVIDER_BLOCKED:summary-pack:credential-failure:/);
+    assert.match(error.message, /Please run \/login/);
+    return true;
+  });
+  assert.equal(subject.counts.runner, 1);
+  assert.deepEqual(subject.sleeps, []);
+});
+
+requiredTest("3l an ordinary transient message still retries: the fast path is message-classified, not code-classified (R-001)", async (context) => {
+  // Guard against over-reach: a plain 429 rate_limit_error is NOT a durable cap,
+  // so the bounded transient retry must still run its full course.
+  const subject = rig(context, "provider-blocked-negative", {
+    transientFailSummaryAttempts: 99,
+    transientFailMessage: "API Error: 429 rate_limit_error: too many requests",
+  });
+  await assert.rejects(subject.port.run(subject.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /^COMPILER_SECTION_PROCESS_FAILED:summary-pack:after 3 attempts:/);
+    return true;
+  });
+  assert.equal(subject.counts.runner, 3);
+  assert.deepEqual(subject.sleeps, [2000, 8000]);
 });
 
 requiredTest("4 complete successor inventory preserves input order then compiler order", async (context) => {
