@@ -3169,3 +3169,29 @@ test("R-010 SEC120's blocker message names exactly the tiers its haystack reads"
   }
 });
 
+test("R-016 SEC53 word balance blocks ABOVE 1.4x, the bound the learning contract states as safe", () => {
+  // sectionTasks.ts:138 tells the writer the key must not exceed ">1.4x avg
+  // distractor words", and the CHOICE PARITY METHOD at :139 aims the key at the
+  // longer distractor's count. The gate compared `>=`, so a writer who landed
+  // exactly on the stated bound was blocked by the rule they had obeyed. The
+  // sibling character check on the next line always used a strict `>`.
+  const fx = compileFixture();
+  const sec53 = (pack: LearningPackV1) =>
+    validateLearningPack(pack, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC53.quiz_answer_length_balance" && f.path === "/quiz/questions/0/choices/" + pack.quiz.questions[0].correctIndex);
+
+  const atBound = cloneLearning(fx.learning);
+  const q0 = atBound.quiz.questions[0];
+  const distractorIndexes = [0, 1, 2].filter((i) => i !== q0.correctIndex);
+  // Two 10-word distractors → avg 10; a 14-word key is exactly 1.4x.
+  for (const i of distractorIndexes) q0.choices[i] = "pay the card down a bit before the bill lands";
+  q0.choices[q0.correctIndex] = "pay the card down a bit right now and log what the app shows";
+  assert.equal(q0.choices[q0.correctIndex].split(/\s+/).length, 14);
+  assert.deepEqual(sec53(atBound), [], "a key at exactly 1.4x average distractor words is inside the contract's stated safe zone");
+
+  const overBound = cloneLearning(atBound);
+  const q1 = overBound.quiz.questions[0];
+  q1.choices[q1.correctIndex] = "pay the card down a bit right now and log what the app shows today";
+  assert.equal(q1.choices[q1.correctIndex].split(/\s+/).length, 15, "15 words is 1.5x — above the stated bound");
+  assert.equal(sec53(overBound).length, 1, "anything ABOVE 1.4x still blocks");
+});
+

@@ -2800,8 +2800,12 @@ export function validateLearningPack(
       }
       const avgDistractorWords = distractorLengths.reduce((sum, n) => sum + n, 0) / Math.max(1, distractorLengths.length);
       const correctWords = wordCount(q.choices[q.correctIndex]);
-      if (avgDistractorWords > 0 && correctWords >= avgDistractorWords * 1.4) {
-        push("SEC53.quiz_answer_length_balance", "blocker", `q${i + 1} correct answer has ${correctWords} words vs ${avgDistractorWords.toFixed(1)} average distractor words; keep it below 1.4x`, `/quiz/questions/${i}/choices/${q.correctIndex}`);
+      // Strict `>`, matching the character check below and the bound the learning
+      // contract states (sectionTasks.ts: "nor >1.4x avg distractor words"). With
+      // `>=` a writer who followed the CHOICE PARITY METHOD to the stated bound
+      // landed exactly on the blocking comparator.
+      if (avgDistractorWords > 0 && correctWords > avgDistractorWords * 1.4) {
+        push("SEC53.quiz_answer_length_balance", "blocker", `q${i + 1} correct answer has ${correctWords} words vs ${avgDistractorWords.toFixed(1)} average distractor words; keep it at or below 1.4x`, `/quiz/questions/${i}/choices/${q.correctIndex}`);
       }
       const correctChars = text(q.choices[q.correctIndex]).length;
       const distractorChars = q.choices
