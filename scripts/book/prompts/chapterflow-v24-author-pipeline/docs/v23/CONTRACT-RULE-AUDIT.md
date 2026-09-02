@@ -129,7 +129,7 @@ brief (`universalCore` + `gateAwareness` + `craftBrief`) plus a per-book scars f
 | 1 | VOICE CARD register prefix | D | conditional voiceCraftLine | — |
 | 2 | Write ONLY quiz + review cards | A | universalCore | — |
 | 3 | Each question: questionId/prompt/3 choices/correctIndex/explanation/bloomsLevel/depthLevel | A(schema) | universalCore | SEC42–45/SEC125 |
-| 4 | bloomsLevel enum; depthLevel from blueprint slot | A(schema) | universalCore | SEC93 |
+| 4 | bloomsLevel enum; depthLevel from blueprint slot | A(schema) | universalCore | SEC125 |
 | 5 | correctIndex MUST match blueprint slot | B(invariant) | universalCore | SEC46 |
 | 6 | Quiz anchors support quiz_prompt/explanation/key_evidence; namedExample ok | B | universalCore (provenance) | SEC55 |
 | 7 | Obey dealt promptShape/answerStyle/distractorTrap/caseCueIds | D + B | gateAwareness (AS5 line) + craftBrief | AS5 |
@@ -142,7 +142,7 @@ brief (`universalCore` + `gateAwareness` + `craftBrief`) plus a per-book scars f
 | 14 | Keep prompts LEAN and scenario-driven | D | craftBrief | — |
 | 15 | Don't front-load named-case labels (LA hotel/Houston charter/free popsicles) | D + **C** | craftBrief (rule); phrases→**scars(POM)** | SEC107 |
 | 16 | Name AT MOST ONE case, only when the question hinges on it | D | craftBrief | — |
-| 17 | Don't repeat a case phrase ("free popsicles…"/"students announce…"/"red phone…") across stems | B + **C** | gateAwareness (ngram); phrases→**scars(POM)** | SEC94 |
+| 17 | Don't repeat a case phrase ("free popsicles…"/"students announce…"/"red phone…") across stems | B + **C** | gateAwareness (ngram); phrases→**scars(POM)** | SEC126 |
 | 18 | Distractors discriminate on the mechanism | D | craftBrief | — |
 | 19 | AS6 compares answers/distractors; correct answer names requiredFactIds mechanism in fresh words | B | gateAwareness | AS6 |
 | 20 | Never reusable correct answers ("change attention, meaning, or memory"/"elevation, insight…") | **C** | **scars(POM)** | AS6 |
