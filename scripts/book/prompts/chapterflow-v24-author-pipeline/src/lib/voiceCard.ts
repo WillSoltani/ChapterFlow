@@ -34,7 +34,7 @@ import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { formatVoiceBible } from "./voiceBible.js";
+import { formatVoiceBible, VOICE_PLAINNESS_FLOOR_LINE } from "./voiceBible.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/lib
 const PROFILES_PATH = resolve(__dirname, "../../config/author-voice-profiles.json");
@@ -51,19 +51,31 @@ function wordCount(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
 }
 
-/** Assemble content lines under the word budget (reserving room for the guard
- *  line), then append the guard line. Deterministic: same lines in, same card
- *  out. The first content line is always kept so a card is never guard-only. */
+/** A line whose words are reserved against the budget instead of competing for it.
+ *  The catalog-wide plainness floor is emitted LAST by formatVoiceBible, so under
+ *  the old first-overflow-wins loop it was the first thing a long charter dropped —
+ *  the one line voiceBible.ts says "every fanout prompt carries". */
+function isReservedLine(line: string): boolean {
+  return line.trim() === VOICE_PLAINNESS_FLOOR_LINE.trim();
+}
+
+/** Assemble content lines under the word budget (reserving room for the guard line
+ *  and for any reserved line), then append the guard line. Deterministic: same
+ *  lines in, same card out. The first content line is always kept so a card is
+ *  never guard-only. An over-budget line is SKIPPED, not treated as a truncation
+ *  point, so one long charter line cannot discard every line after it. */
 function withGuard(contentLines: string[]): string {
+  const reserved = contentLines.filter(isReservedLine);
+  const optional = contentLines.filter((line) => !isReservedLine(line));
   const kept: string[] = [];
-  let total = wordCount(VOICE_CARD_GUARD_LINE);
-  for (const line of contentLines) {
+  let total = wordCount(VOICE_CARD_GUARD_LINE) + reserved.reduce((sum, line) => sum + wordCount(line), 0);
+  for (const line of optional) {
     const w = wordCount(line);
-    if (kept.length > 0 && total + w > WORD_BUDGET) break;
+    if (kept.length > 0 && total + w > WORD_BUDGET) continue;
     kept.push(line);
     total += w;
   }
-  return [...kept, VOICE_CARD_GUARD_LINE].join("\n");
+  return [...kept, ...reserved, VOICE_CARD_GUARD_LINE].join("\n");
 }
 
 /** Compact register templates keyed off the author-voice profile's `register`.

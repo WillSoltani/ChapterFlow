@@ -261,6 +261,33 @@ test("P1/F-01: formatVoiceBible emits a do: line when a style move survives, non
   }
 });
 
+// ── R-006 — the word budget must not silently discard the plainness floor ───────
+//
+// src/lib/voiceBible.ts appends the catalog-wide plainness floor LAST, under a
+// comment saying "every fanout prompt carries it". The card's word budget used to
+// `break` on the first over-budget line, so a charter with a long do: or never:
+// line dropped that line AND everything after it — the floor included.
+
+/** ~60 words of pure style guidance: long enough to overflow the budget, and shaped
+ *  so sanitizeVoiceMoves keeps it (no device-mandate shape). */
+const LONG_STYLE_MOVE =
+  "uses plain verbs and short common words, keeps the diction concrete, prefers the everyday word over the technical one, lets the tone stay measured and lightly wry, defines any term of art on first use, and makes each abstract claim visible within two sentences so the reader always has something they can picture";
+
+test("R-006: an over-long line is skipped, not a truncation point — the plainness floor always survives", () => {
+  const BOOK = "zz-fixture-voicecard-budget";
+  try {
+    writeBriefWithMoves(BOOK, [LONG_STYLE_MOVE], ["no jargon"]);
+    const card = voiceCard(BOOK);
+    assert.ok(card, "the charter still yields a card");
+    assert.match(card!, /plain language beats abstraction/, "the plainness floor must survive the budget");
+    assert.match(card!, /^never: no jargon$/m, "a short line AFTER the over-long one is still reached (continue, not break)");
+    assert.doesNotMatch(card!, /prefers the everyday word over the technical one/, "the over-long line itself is the one dropped");
+    assert.ok(wordCount(card!) <= 120, "the budget still holds");
+  } finally {
+    rmSync(briefPath(BOOK), { force: true });
+  }
+});
+
 test("card insertion leaves every kind's task card structurally intact", () => {
   // No dealSectionTasks fixtures ship in the harness, so we assert the builder
   // dealSectionTasks delegates to still emits every required task section with a
