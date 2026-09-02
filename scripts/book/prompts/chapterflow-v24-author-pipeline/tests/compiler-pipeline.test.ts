@@ -3195,3 +3195,27 @@ test("R-016 SEC53 word balance blocks ABOVE 1.4x, the bound the learning contrac
   assert.equal(sec53(overBound).length, 1, "anything ABOVE 1.4x still blocks");
 });
 
+test("R-044 the summary pack's tryThisNow is grounded at the same bar as the action pack's", () => {
+  // Both packs carry the SAME field with the SAME claim type, and the assembler
+  // ships `action.tryThisNow || summary.tryThisNow` (assembleSections.ts:269,342),
+  // so the action pack's copy is the one a reader sees. The summary copy was
+  // validated at min 2 hardSpecifics while SEC74 validates the shipped copy at 1 —
+  // retries spent on bytes that are discarded.
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("implementation_guidance") && (a.hardSpecifics ?? []).length >= 2);
+  assert.ok(anchor, "fixture needs an implementation-capable anchor with 2+ hardSpecifics");
+  const oneSpecific = `Open one account and check ${anchor!.hardSpecifics![0]} before the next snapshot happens today.`;
+
+  const summary = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  summary.tryThisNow = oneSpecific;
+  summary.tryThisNowSourceAnchorIds = [anchor!.id];
+  const summaryHits = validateSummaryPack(summary, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId === "SEC14.summary_anchor_specifics");
+
+  const action = JSON.parse(JSON.stringify(fx.action)) as ActionPackV1;
+  action.tryThisNow = oneSpecific;
+  action.tryThisNowSourceAnchorIds = [anchor!.id];
+  const actionHits = validateActionPack(action, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId === "SEC74.action_anchor_specifics");
+
+  assert.deepEqual(actionHits, [], "SEC74 accepts one verbatim specific in the copy that actually ships");
+  assert.deepEqual(summaryHits, [], "the discarded copy must not be held to a stricter bar than the shipped one");
+});

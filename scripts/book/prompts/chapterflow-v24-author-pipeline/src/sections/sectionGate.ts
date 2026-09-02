@@ -2341,7 +2341,11 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorIds(pack.tryThisNowSourceAnchorIds, allowed, "tryThisNowSourceAnchorIds")) push("SEC10.try_anchor", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorResolution(pack.tryThisNowSourceAnchorIds, anchors, "tryThisNowSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorClaimType(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", "tryThisNowSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/tryThisNowSourceAnchorIds");
-    for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow")) push("SEC14.summary_anchor_specifics", "blocker", p, "/tryThisNow");
+    // min 1, the SAME bar SEC74 applies to the action pack's tryThisNow (:2910).
+    // It is the same field with the same claim type, and the assembler ships
+    // `action.tryThisNow || summary.tryThisNow`, so the action pack's copy is what a
+    // reader sees; holding the discarded copy to min 2 only spent retries.
+    for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow", 1)) push("SEC14.summary_anchor_specifics", "blocker", p, "/tryThisNow");
   }
   return findings;
 }
