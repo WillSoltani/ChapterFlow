@@ -65,6 +65,13 @@ export type SectionFinding = {
   environmental?: boolean;
 };
 
+/** R-041 — the blockers that are about pack CONTENT: the exact set both assembleSections
+ *  paths gate on, and the complement of `SectionGateReport.contentPassed`. It lives here,
+ *  in one place, so the report field and the assembly filters cannot drift apart. */
+export function contentBlockers(findings: readonly SectionFinding[]): SectionFinding[] {
+  return findings.filter((f) => f.severity === "blocker" && !f.environmental);
+}
+
 export type SectionGateReport = {
   bookId: string;
   passed: boolean;
@@ -3286,7 +3293,7 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
   return {
     bookId: normalized,
     passed: !findings.some((f) => f.severity === "blocker"),
-    contentPassed: !findings.some((f) => f.severity === "blocker" && !f.environmental),
+    contentPassed: contentBlockers(findings).length === 0,
     chaptersChecked: chapters.length,
     findings,
   };

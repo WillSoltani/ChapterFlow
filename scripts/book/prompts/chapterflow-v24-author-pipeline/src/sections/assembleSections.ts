@@ -10,7 +10,7 @@ import {
 } from "../assembler.js";
 import { selectMemorableLinesDeterministic, type MemorableCandidate, type MemorableTier } from "../optimizers/memorableLines.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
-import { checkSectionGate, validateAnchorHardSpecifics, type SectionFinding } from "./sectionGate.js";
+import { checkSectionGate, contentBlockers, validateAnchorHardSpecifics, type SectionFinding } from "./sectionGate.js";
 import { CHAPTERS_DIR, chapterFileName, normSlug } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
@@ -238,7 +238,7 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
         packs: chapter.packs,
       })),
     });
-    const blockers = gate.findings.filter((finding) => finding.severity === "blocker" && !finding.environmental);
+    const blockers = contentBlockers(gate.findings);
     if (blockers.length > 0) {
       return {
         bookId: normalized,
@@ -298,15 +298,14 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
   const blockedChapters = new Map<number, SectionFinding[]>();
   if (resolved.chapters.length > 0) {
     const gate = checkSectionGate(normalized, roots);
-    for (const f of gate.findings) {
-      // An `environmental` blocker (today only SEC91.sidecar_unavailable) means the check
-      // could not RUN — the source sidecar isn't co-located — which is an input/environment
-      // condition, not invalid pack CONTENT, so it must not gate assembly. The gate still
-      // reports it as a blocker, so the orchestrated conductor's pre-assembly
-      // validate-sections fails closed on it (report.passed stays false and the CLI exits
-      // non-zero); a genuinely-missing sidecar is caught there rather than by silently
-      // assembling unverified content here.
-      if (f.severity !== "blocker" || f.environmental) continue;
+    // `contentBlockers` drops the `environmental` blockers (today only
+    // SEC91.sidecar_unavailable): those say the check could not RUN — the source sidecar
+    // isn't co-located — which is an input/environment condition, not invalid pack
+    // CONTENT, so they must not gate assembly. The gate still reports them as blockers,
+    // so the orchestrated conductor's pre-assembly validate-sections fails closed on them
+    // (report.passed stays false and the CLI exits non-zero); a genuinely-missing sidecar
+    // is caught there rather than by silently assembling unverified content here.
+    for (const f of contentBlockers(gate.findings)) {
       const targets = typeof f.chapterNumber === "number" ? [f.chapterNumber] : resolved.chapters;
       for (const n of targets) {
         const list = blockedChapters.get(n) ?? [];

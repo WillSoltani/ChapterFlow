@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
@@ -10,7 +10,7 @@ import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
 import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
 import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
-import { checkSectionGate, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
+import { checkSectionGate, contentBlockers, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
 import { buildEvidenceMap } from "../src/evidence/evidenceMap.js";
 import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
@@ -1383,6 +1383,40 @@ test("v23 section gate reports a content blocker as non-environmental and drops 
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }
+});
+
+// R-041 follow-up — `contentPassed` was a report field no production caller read: both
+// assembleSections paths recomputed the same predicate inline
+// (`severity === "blocker" && !environmental`), so the field and the two filters could
+// drift. The predicate now lives once, in `contentBlockers`, which the report and both
+// assembly paths call.
+test("v23 section gate exposes one content-blocker filter, shared by the report and assembly", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-content-blockers-shared-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const staleSidecarPath = resolve(stateRoot, "sidecars", "source", "ch01.source.json");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), { ...fx.packet, sourceSidecarPath: staleSidecarPath });
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    assert.deepEqual(contentBlockers(report.findings), [], "an environmental blocker is not a content blocker");
+    assert.equal(report.contentPassed, contentBlockers(report.findings).length === 0);
+    assert.equal(report.passed, false, "the report still fails closed on the unrunnable check");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// The drift guard itself: neither assembly path may re-derive the predicate from the
+// `environmental` flag; both must route through the shared filter above.
+test("assembleSections gates on the shared content-blocker filter, not an inline predicate", () => {
+  const source = readFileSync(new URL("../src/sections/assembleSections.ts", import.meta.url), "utf8");
+  assert.equal(/\b(?:f|finding)\.environmental\b/.test(source), false, "assembleSections must not re-derive the content-blocker predicate inline");
+  assert.equal((source.match(/contentBlockers\(/g) ?? []).length, 2, "both assembly paths call the shared filter");
 });
 
 test("v23 section gate rejects hard-banned register phrases before ChapterV21 assembly", () => {
