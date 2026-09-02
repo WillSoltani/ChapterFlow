@@ -7,7 +7,7 @@ import { readJsonFile, sourcePacketPath, sourceUsePlanPath, type CompilerStoreRo
 import { normSlug } from "../lib/chapterPaths.js";
 import type { SourceUsePlanV1 } from "../contracts/sourceUsePlan.js";
 import { validateSourceUsePlan } from "../contracts/sourceUsePlan.js";
-import { rankTeachingFacts, WEAK_RANKING_MIN_SCORE } from "./sourcePacketFacts.js";
+import { factPedagogyPlaceholders, rankTeachingFacts, WEAK_RANKING_MIN_SCORE } from "./sourcePacketFacts.js";
 import { sourceUsePlanStale } from "./sourceUsePlanCompiler.js";
 
 export type PacketGateFinding = {
@@ -56,7 +56,20 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
     if (!f.id || !f.claim) push("SP5.fact_shape", "blocker", `facts[${i}] missing id or claim`, `/facts/${i}`);
     if (factIds.has(f.id)) push("SP6.fact_id_duplicate", "blocker", `duplicate fact id ${f.id}`, `/facts/${i}/id`);
     factIds.add(f.id);
-    if (!f.mechanism || !f.commonError || !f.whyWrong) push("SP7.fact_pedagogy", "blocker", `fact ${f.id} must include mechanism, commonError, and whyWrong`, `/facts/${i}`);
+    // SP7 (R-028): the emptiness test this used to run could never be true —
+    // normalizedFact() substitutes contract boilerplate for an omitted sidecar
+    // field before the packet is ever written. Blocking on the boilerplate is
+    // what makes the check reachable; a fact whose "because" is a sentence
+    // about the pipeline's own contract teaches nothing and keys nothing.
+    const placeholders = factPedagogyPlaceholders(f);
+    if (placeholders.length > 0) {
+      push(
+        "SP7.fact_pedagogy",
+        "blocker",
+        `fact ${f.id} has no source-grounded ${placeholders.join(", ")} — the compiler substituted contract boilerplate, which reaches writers as the fact's causal explanation. Re-research this fact with a real becauseMechanism/commonError/errorIsWhy.`,
+        `/facts/${i}`,
+      );
+    }
   }
   const caseIds = new Set<string>();
   for (const [i, c] of (packet.namedCases ?? []).entries()) {
@@ -64,7 +77,11 @@ export function validateSourcePacket(packet: SourcePacketV1): PacketGateFinding[
     if (caseIds.has(c.id)) push("SP9.case_id_duplicate", "blocker", `duplicate namedCase id ${c.id}`, `/namedCases/${i}/id`);
     caseIds.add(c.id);
     if (c.realWorld && c.hardSpecifics.length < 2) push("SP10.case_specifics", "blocker", `real-world namedCase ${c.id} lacks 2+ hardSpecifics`, `/namedCases/${i}/hardSpecifics`);
-    const supportText = `${c.summary} ${c.hardSpecifics.join(" ")}`.toLowerCase();
+    // SP11 (R-027): the support text used to include the hardSpecifics it was
+    // checking, so every specific was trivially "visible" and the advisory could
+    // never fire. The case SUMMARY is the only text that can independently
+    // support a specific, so it is the only text this reads.
+    const supportText = (c.summary ?? "").toLowerCase();
     if (c.realWorld && c.hardSpecifics.some((s) => !supportText.includes(s.toLowerCase().split(/\s+/)[0] ?? ""))) {
       push("SP11.case_specifics_visible", "advisory", `namedCase ${c.id} hardSpecifics should be visible in summary/source notes`, `/namedCases/${i}`);
     }
