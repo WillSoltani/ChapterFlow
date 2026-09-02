@@ -13,6 +13,17 @@
 > (reader package + production-manifest sidecar; exact command captured in the run
 > log) and publish/deploy.
 
+> **2026-09-02 — Revision 6 recorded for provenance, not publishable.** The reader
+> package and production-manifest sidecar for `the-autobiography-of-benjamin-franklin`
+> (packageId `the-autobiography-of-benjamin-franklin-v21-1787898655699`, released
+> 2026-08-28T06:30:55.699Z from candidate `repair-r7-candidate-88b631ed39a56eb62937d07df3bd0f72`)
+> are now committed for provenance. Phase A of the S-tier audit re-scored the
+> released bytes on 2026-09-02 and found them **FAIL** on the correctness gate,
+> blind catalog score **64.6** — see
+> `docs/v25/S_TIER_PHASE_A_REPORT_2026-09-02.md`. This revision must not be
+> published or promoted further until the correctness-gate failures it documents
+> are fixed and it is re-scored.
+
 
 **Branch:** `codex/v25-pipeline-completion-recovered` · **Base:** `a20d1cdab`
 **Commits:** 78 · **Suite:** 2804 pass / 0 fail (48 v25 files, 0 failed)
