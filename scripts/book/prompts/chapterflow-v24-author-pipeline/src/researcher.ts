@@ -628,6 +628,23 @@ function createResearchRun(args: {
     expectedChapters: chapterList,
     compatibility: args.compatibility,
   });
+  // R-035: the bibliography agent's own `confidence` was written into an empty
+  // `if` block and, here, printed to stdout — so nothing durable recorded that a
+  // book had been researched off an uncertain table of contents (the released
+  // Franklin run's list was four entries titled "Part One".."Part Four"). It is
+  // recorded as a manifest event, beside the run it describes, where a later
+  // reviewer or the QC surface can find it. It does NOT fail the run: low
+  // confidence is the model's honest signal about its own knowledge, and
+  // rejecting it would only reward a model that overstates confidence.
+  if (args.bibliography.confidence === "low") {
+    const notes = args.bibliography.notes ?? "(none)";
+    appendResearchEvent(manifest, {
+      type: "bibliography.low_confidence",
+      message: `Bibliography returned confidence=low; this run's chapter list may not match the real edition. Notes: ${notes}`,
+      data: { confidence: "low", notes },
+    }, nowIso);
+    args.log(`  WARNING: low confidence. Notes: ${notes}`);
+  }
   writeResearchRunManifest(bundlePath, manifest);
   args.log(`  created research run: ${runId}`);
   return { bundlePath, manifest };

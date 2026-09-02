@@ -3,11 +3,13 @@ import { mkdir, readFile } from "node:fs/promises";
 import { isAbsolute, relative, resolve } from "node:path";
 
 import {
+  MAX_BIBLIOGRAPHY_ATTEMPTS,
   runResearcherBibliography,
   type BibliographyInput,
   type BibliographyResult,
 } from "../agents/researcher-bibliography.js";
 import {
+  MAX_CHAPTER_RESEARCH_ATTEMPTS,
   collectHardSpecificLengthProblems,
   runResearcherChapter,
   type ChapterResearchInput,
@@ -37,15 +39,31 @@ import type { ChapterFlowClock, ChapterFlowIdFactory } from "./pipeline.js";
 import type { ModelCallerExecution, ModelTaskRunner } from "./modelTaskRunner.js";
 
 const RESEARCH_STAGES = Object.freeze(["research", "seed-candidate"] as const);
-// Generous per-run attempt cap. Each chapter-research operation now admits a
-// NEW run-state attempt on every bounded retry (up to
-// MAX_CHAPTER_RESEARCH_ATTEMPTS from researcher-chapter.ts), plus one
-// bibliography attempt, so the run must budget MAX_CHAPTER_RESEARCH_ATTEMPTS ×
-// chapters + 1. The chapter count is unknown when the run definition is created
-// (research has not run yet), so — mirroring bookRunComposition's reader-lane
-// generous flat cap — we budget a flat value large enough for any real book
-// (4096 ÷ 3 ≈ 1365 chapters at full retry) rather than threading the count.
-const MAX_RESEARCH_ATTEMPTS = 4096;
+/**
+ * Per-run research attempt cap, DERIVED from the retry budgets the stage
+ * actually spends: every bounded chapter-research retry admits a new run-state
+ * attempt (up to MAX_CHAPTER_RESEARCH_ATTEMPTS), as does every bibliography
+ * retry (up to MAX_BIBLIOGRAPHY_ATTEMPTS).
+ *
+ * The exact chapter count is still unknowable here — the run definition is
+ * created before the bibliography runs, and a definition cannot change
+ * afterwards without making fileRunStore.createRun throw CONFLICT on resume.
+ * So the cap is taken at an explicit chapter CEILING instead of a flat magic
+ * number: it now moves whenever either retry budget moves, which the previous
+ * flat 4096 (≈1365 chapters at full retry, ~300x any real book) did not.
+ */
+export function researchAttemptCapForChapters(chapters: number): number {
+  return MAX_CHAPTER_RESEARCH_ATTEMPTS * Math.max(0, Math.trunc(chapters)) + MAX_BIBLIOGRAPHY_ATTEMPTS;
+}
+
+/**
+ * Chapter ceiling the cap is taken at. Deliberately well above any real book's
+ * chapter list (the longest in the catalogue is far under this) so the cap is a
+ * runaway-loop bound, never a limit a legitimate book or a resumed run can hit.
+ */
+export const MAX_RESEARCHABLE_CHAPTERS = 120;
+
+export const MAX_RESEARCH_ATTEMPTS = researchAttemptCapForChapters(MAX_RESEARCHABLE_CHAPTERS);
 const V4_RESEARCH_PROFILE_ID = "attempt-read-json-v1";
 
 export interface ResearchCandidateSourceMapping {
