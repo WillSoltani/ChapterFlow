@@ -74,9 +74,82 @@ const META_REGEXES: RegExp[] = [
   /\bin this (chapter|section|book)\b/i,
 ];
 
-const META_VERBS: RegExp[] = [
-  /\b(clear|kahneman|taleb|housel|tetlock|cialdini|greene|machiavelli|duhigg|eyal|covey|ries|brown|kolb|gladwell|fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i,
-];
+/** Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
+ *  rather than a standalone fact about the world. */
+const AUTHOR_VERB_ALTERNATION = "argues|says|opens|notes|introduces|explains|writes|claims|points out|observes";
+
+/** Name particles and honorifics that are never the surname to guard on. */
+const AUTHOR_NAME_NOISE = /^(jr|sr|ii|iii|iv|phd|md|dr|prof|professor|sir|dame)$/i;
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+/**
+ * Surname(s) of the book's author, lowercased and deduped, derived from the
+ * bibliography's own `author` string.
+ *
+ * R-023: this replaces a hardcoded sixteen-surname list. That list could only
+ * fire for the sixteen books whose authors happened to be in it — on every
+ * other book (Franklin included) the author-verb guard was a silent no-op, and
+ * the file's own comment at the retry card already recorded the same failure
+ * class for `"allen"`. Deriving the surname from the input makes the guard work
+ * for EVERY book and stops it firing on third-party attributions ("Kahneman
+ * argues…" in a book Kahneman did not write is a citation, not a meta-reference
+ * to this text).
+ *
+ * Co-authors are split on comma / semicolon / "and" / "&"; the surname is the
+ * last name-shaped token of each part, after dropping suffixes and honorifics.
+ */
+export function authorSurnames(author: string): string[] {
+  const surnames: string[] = [];
+  for (const part of String(author ?? "").split(/\s*(?:,|;|&|\band\b)\s*/i)) {
+    const tokens = part
+      .trim()
+      .split(/\s+/)
+      .map((token) => token.replace(/[.]/g, ""))
+      .filter((token) => token.length > 0 && !AUTHOR_NAME_NOISE.test(token));
+    const last = tokens[tokens.length - 1];
+    if (!last || last.length < 3) continue;
+    if (!/^[\p{L}][\p{L}'\u2019-]*$/u.test(last)) continue;
+    surnames.push(last.toLowerCase());
+  }
+  return [...new Set(surnames)];
+}
+
+/** Author-verb guards for one book, built from {@link authorSurnames}. Empty
+ *  when the author string yields no usable surname — the guard is then simply
+ *  absent rather than firing on someone else's name. */
+export function authorVerbRegexes(author: string): RegExp[] {
+  return authorSurnames(author).map(
+    (surname) => new RegExp(`\\b${escapeRegExp(surname)}\\s+(?:${AUTHOR_VERB_ALTERNATION})\\b`, "gi"),
+  );
+}
+
+/** Distinct meta-reference / author-verb hits reported per attempt. Reporting
+ *  ONE hit per attempt (R-025) meant a sidecar with three of them consumed all
+ *  three MAX_CHAPTER_RESEARCH_ATTEMPTS attempts and aborted the book — the live
+ *  Franklin failure. The cap keeps the retry feedback readable. */
+export const MAX_REPORTED_META_HITS = 5;
+
+/** Every distinct match of `patterns` in `text`, in first-seen order, deduped
+ *  case-insensitively and capped at {@link MAX_REPORTED_META_HITS}. */
+function distinctMatches(text: string, patterns: readonly RegExp[]): string[] {
+  const seen = new Set<string>();
+  const hits: string[] = [];
+  for (const pattern of patterns) {
+    const global = pattern.global ? pattern : new RegExp(pattern.source, `${pattern.flags}g`);
+    global.lastIndex = 0;
+    for (const match of text.matchAll(global)) {
+      const key = match[0].toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      hits.push(match[0]);
+      if (hits.length >= MAX_REPORTED_META_HITS) return hits;
+    }
+  }
+  return hits;
+}
 
 /**
  * The retry card for a meta-reference hit.
@@ -91,8 +164,9 @@ const META_VERBS: RegExp[] = [
  *    that guidance is actively misdirecting, and it is exactly the leak bookScars
  *    exists to prevent ("one book's scar tissue became a house-voice force in
  *    every OTHER book"). The section writers were migrated to that mechanism; the
- *    researcher never was. Note the old text was stale on its own terms too:
- *    META_VERBS has no `allen` entry, so the example it cited could not fire.
+ *    researcher never was. Note the old text was stale on its own terms too: the
+ *    author-verb guard was a hardcoded surname list with no `allen` entry, so the
+ *    example it cited could not fire. R-023 replaced that list with authorSurnames().
  *
  * 2. It must say what to DO, not just what is banned. Finding 11ad already
  *    established that enumerating banned forms raises the degenerate-response
@@ -480,7 +554,7 @@ function buildUserPrompt(input: ChapterResearchInput): string {
  *  rejected chapter-research output. Returns [] when the output is admissible.
  *  Kept separate from the throwing wrapper so the retry loop can feed the exact
  *  error lines back to the model. */
-function collectChapterResearchProblems(r: ChapterResearchResult, input: ChapterResearchInput): string[] {
+export function collectChapterResearchProblems(r: ChapterResearchResult, input: ChapterResearchInput): string[] {
   const problems: string[] = [];
   if (!r || typeof r !== "object") return ["chapter researcher returned a non-object output"];
 
@@ -549,31 +623,41 @@ function collectChapterResearchProblems(r: ChapterResearchResult, input: Chapter
     if (isResearchRouteBlockingFinding(finding)) problems.push(`${finding.checkId}: ${finding.message}`);
   }
 
-  // Meta-reference checks across every text field.
+  // Meta-reference checks across every NARRATIVE field the sidecar carries
+  // downstream. R-024: testableFacts, example labels/hardSpecifics and the
+  // concept name were all absent from this list, and testableFacts is the field
+  // the source packet compiles the writers' facts from — the released Franklin
+  // book shipped `"Franklin dies in 1790 with the Penn estate tax negotiation
+  // still unresolved in his writing"`, a statement about the manuscript rather
+  // than the world, straight through this guard. voiceCues stay OUT on purpose:
+  // a voice cue legitimately describes authorial technique ("opens each chapter
+  // with an anecdote"), so scanning it would reject correct output.
   const allText = [
     r.focus,
     r.coreClaim,
+    r.centralConcept?.name ?? "",
     r.centralConcept?.plainDefinition ?? "",
     r.centralConcept?.whyItMatters ?? "",
     ...(r.keyClaims ?? []),
-    ...(r.namedExamples ?? []).flatMap((ex) => [ex.summary, ex.teachesWhat]),
+    ...(r.namedExamples ?? []).flatMap((ex) => [
+      ex?.label,
+      ex?.summary,
+      ex?.teachesWhat,
+      ...(Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics : []),
+    ]),
+    ...(r.testableFacts ?? []).flatMap((f) => [f?.claim, f?.becauseMechanism, f?.commonError, f?.errorIsWhy]),
     r.hardEdge,
     r.paraphraseNotes,
-  ].join(" \n ");
+  ].filter((value): value is string => typeof value === "string").join(" \n ");
 
-  for (const re of META_REGEXES) {
-    const m = allText.match(re);
-    if (m) {
-      problems.push(metaReferenceProblem(m[0], input.bibliography.author));
-      break;
-    }
+  // R-025: report EVERY distinct hit for this attempt. Reporting only the first
+  // meant a sidecar carrying three meta-references needed three attempts — the
+  // whole MAX_CHAPTER_RESEARCH_ATTEMPTS budget — and aborted the book instead.
+  for (const hit of distinctMatches(allText, META_REGEXES)) {
+    problems.push(metaReferenceProblem(hit, input.bibliography.author));
   }
-  for (const re of META_VERBS) {
-    const m = allText.match(re);
-    if (m) {
-      problems.push(`author-surname-verb construction "${m[0]}" found — state the claim directly`);
-      break;
-    }
+  for (const hit of distinctMatches(allText, authorVerbRegexes(input.bibliography.author))) {
+    problems.push(`author-surname-verb construction "${hit}" found — state the claim directly`);
   }
 
   // Title match (loose — capitalization-insensitive)
@@ -606,6 +690,12 @@ export function renderChapterSidecar(r: ChapterResearchResult): string {
   lines.push(`Named examples:`);
   for (const ex of r.namedExamples) {
     lines.push(`- ${ex.label}: ${ex.summary} (teaches: ${ex.teachesWhat})`);
+    // R-034: hardSpecifics are the checkable tokens (a name, number, place) the
+    // section gates require verbatim. They were dropped here, so the .txt the
+    // loader returns — and the BP6 pattern audit compares chapters against —
+    // could not detect drift on any of them.
+    const specifics = (ex.hardSpecifics ?? []).map((sp) => String(sp ?? "").trim()).filter(Boolean);
+    if (specifics.length > 0) lines.push(`  Hard specifics: ${specifics.join("; ")}`);
   }
   lines.push("");
   lines.push(`Hard edge / typical misreading:`);
@@ -617,6 +707,24 @@ export function renderChapterSidecar(r: ChapterResearchResult): string {
     lines.push("");
     lines.push(`Forbidden leakage (concepts that belong to later chapters):`);
     for (const c of r.forbiddenLeakage) lines.push(`- ${c}`);
+  }
+  if (r.frameworks && r.frameworks.length > 0) {
+    lines.push("");
+    lines.push(`Named frameworks:`);
+    for (const fw of r.frameworks) lines.push(`- ${fw.name}: ${(fw.members ?? []).join(", ")}`);
+  }
+  // R-034: testableFacts are what the source packet compiles the writers' facts
+  // (and the whole quiz) from. Omitting them from the .txt meant a chapter could
+  // contradict every keyed fact and still "align" with its source notes.
+  if (r.testableFacts && r.testableFacts.length > 0) {
+    lines.push("");
+    lines.push(`Testable facts:`);
+    for (const fact of r.testableFacts) {
+      lines.push(`- ${fact.claim}`);
+      if (fact.becauseMechanism) lines.push(`  Because: ${fact.becauseMechanism}`);
+      if (fact.commonError) lines.push(`  Common error: ${fact.commonError}`);
+      if (fact.errorIsWhy) lines.push(`  Why that is wrong: ${fact.errorIsWhy}`);
+    }
   }
   lines.push("");
   lines.push(`Paraphrase notes:`);
