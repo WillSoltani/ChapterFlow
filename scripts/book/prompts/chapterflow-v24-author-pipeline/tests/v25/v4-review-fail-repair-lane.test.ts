@@ -267,12 +267,12 @@ requiredTest("R-224: a reader-lane INFRASTRUCTURE blocker never authorizes a cha
   // would happily rewrite that chapter because the PROVIDER was unavailable, and
   // the repair evidence would keep a fabricated content finding forever.
   //
-  // Two live gates already keep this shape away from the port: the evaluator
-  // sets the review outcome to ERROR whenever a seat throws, the book-run loop
-  // enters review-repair only on FAIL, and reviewRepairPreflight refuses any
+  // Today it cannot get here: the evaluator sets the review outcome to ERROR
+  // whenever a seat throws, and TWO gates refuse an ERROR — the book-run loop
+  // enters review-repair only on FAIL, and reviewRepairPreflight rejects any
   // stored outcome that is not FAIL (pinned directly below). This is the third,
-  // named guard, and it is the one that survives a future edit to either of the
-  // other two.
+  // named guard, and it is the one that survives a future edit to the outcome
+  // derivation or to either of those two gates.
   const rig = reviewRig(context, {
     slug: "review-repair-reader-infra",
     issues: [
