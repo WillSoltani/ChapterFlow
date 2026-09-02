@@ -176,7 +176,11 @@ const AS10_MIN_OTHER_CHAPTERS = 2;
 const TRY_THIS_NOW_OPENER_WORDS = 5;
 const TRY_THIS_NOW_OPENER_MIN_WORDS = 4;
 const ACTION_CHALLENGE_OPENER_WORDS = 3;
-const ACTION_CHALLENGE_OPENER_MIN_CHAPTERS = 4;
+// R-020 — the 24-hour challenge opener is the same kind of shell as the tryThisNow
+// opener checked by SEC94, which fires at two chapters (:1742). SEC114 asked for four,
+// so a four-chapter book had to be 100% uniform before anything fired and a
+// three-of-four shell shipped. Same pack, same failure mode, same bar.
+const ACTION_CHALLENGE_OPENER_MIN_CHAPTERS = 2;
 const SUMMARY_HOOK_FIRST_WORD_MIN_CHAPTERS = 5;
 const SUMMARY_HOOK_FIRST_WORD_CAP = 0.5;
 const NGRAM_STOPWORDS = new Set<string>([
@@ -939,8 +943,26 @@ function collectTryThisNowOpeners(pack: ActionPackV1, bp: ChapterBlueprintV1, re
   }];
 }
 
+// R-020 — the opener signature is built from words only (`[a-z']+` drops digits), so
+// "Inside the next 24 hours," and "Within twenty-four hours," produced different first
+// three words and the same challenge never grouped. Drop a leading time-box adverbial —
+// a short comma-terminated head that names a deadline — so the signature compares the
+// MOVE the challenge asks for rather than how its clock was spelled.
+const TIME_BOX_HEAD = /^([^,]{1,60}),\s+/;
+const TIME_BOX_TOKEN = /\b(minutes?|hours?|days?|nights?|weeks?|tonight|today|tomorrow|morning|afternoon|evening|noon|midnight)\b/;
+const TIME_BOX_MAX_WORDS = 7;
+
+function stripTimeBoxPrefix(lower: string): string {
+  const head = TIME_BOX_HEAD.exec(lower);
+  if (!head) return lower;
+  const phrase = head[1];
+  if (phrase.split(/\s+/).filter(Boolean).length > TIME_BOX_MAX_WORDS) return lower;
+  if (!TIME_BOX_TOKEN.test(phrase)) return lower;
+  return lower.slice(head[0].length);
+}
+
 function actionChallengeOpener(value: unknown): string {
-  const words = text(value).toLowerCase().match(/[a-z']+/g) ?? [];
+  const words = stripTimeBoxPrefix(text(value).toLowerCase()).match(/[a-z']+/g) ?? [];
   return words.slice(0, ACTION_CHALLENGE_OPENER_WORDS).join(" ");
 }
 

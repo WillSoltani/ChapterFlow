@@ -2358,6 +2358,91 @@ test("v23 section gate rejects saturated 24-hour challenge opener shells", () =>
   }
 });
 
+// R-020 — SEC114 used to need FOUR chapters sharing a signature, and it built that
+// signature from the first three words INCLUDING the time box, so two phrasings of the
+// same deadline ("Inside the next 24 hours" / "Within twenty-four hours") never grouped.
+// A four-chapter book therefore had to be 100% uniform before anything fired, and even
+// then only if every chapter spelled the time box the same way. Both halves are covered
+// here: the openers below share their first three CONTENT words but not their time box,
+// and only three of the four chapters carry the shell.
+test("v23 section gate rejects a 24-hour challenge shell shared by three of four chapters across time-box phrasings", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-action-challenge-timebox-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const chapters: ChapterSpec[] = Array.from({ length: 4 }, (_, i) => ({
+    chapterId: `money-book-ch${String(i + 1).padStart(2, "0")}`,
+    chapterNumber: i + 1,
+    chapterTitle: `Chapter ${i + 1}`,
+  }));
+  const challenges = [
+    "Inside the next 24 hours, log one payment and name the account it protects.",
+    "Within twenty-four hours, log one payment and name the balance it protects.",
+    "Before tomorrow ends, log one payment and name the lender it protects.",
+    "Take the statement you flagged this morning and read its fee line out loud to one other person.",
+  ];
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), chapters);
+    for (const ch of chapters) {
+      const bp = compileChapterBlueprint({ bookId: "money-book", chapter: ch, packet: fx.packet, packetPath: `/tmp/ch${String(ch.chapterNumber).padStart(2, "0")}.source-packet.json` });
+      const pack = cloneAction(fx.action);
+      pack.chapterId = bp.chapterId;
+      pack.implementationPlan.twentyFourHourChallenge = challenges[ch.chapterNumber - 1];
+      writeJsonFile(sourcePacketPath("money-book", ch.chapterNumber, roots), fx.packet);
+      writeJsonFile(blueprintPath("money-book", ch.chapterNumber, roots), bp);
+      writeJsonFile(sectionPath("money-book", ch.chapterNumber, "action-pack", roots), pack);
+    }
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1, 2, 3, 4], sections: ["action-pack"] });
+    const sec114 = report.findings.filter((f) => f.checkId === "SEC114.action_challenge_opener_saturation");
+    assert.deepEqual(
+      sec114.map((f) => f.chapterNumber).sort((a, b) => Number(a) - Number(b)),
+      [1, 2, 3],
+      report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+    );
+    assert.equal(report.passed, false);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// R-020 control — a chapter whose challenge simply happens to start with a time box must
+// keep its own signature once the box is stripped, so unrelated moves never collide.
+test("v23 section gate keeps distinct 24-hour challenges apart after the time box is stripped", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-action-challenge-timebox-ok-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const chapters: ChapterSpec[] = Array.from({ length: 4 }, (_, i) => ({
+    chapterId: `money-book-ch${String(i + 1).padStart(2, "0")}`,
+    chapterNumber: i + 1,
+    chapterTitle: `Chapter ${i + 1}`,
+  }));
+  const challenges = [
+    "Inside the next 24 hours, send one owner handoff note for a commitment you already made.",
+    "Before you go to bed tonight, write your one exact sentence at the top of a blank page.",
+    "Take the pitch from your two-minute audit and say it twice today to two different people.",
+    "Before the day ends, run one stakeholder interview about your most-stalled ask.",
+  ];
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), chapters);
+    for (const ch of chapters) {
+      const bp = compileChapterBlueprint({ bookId: "money-book", chapter: ch, packet: fx.packet, packetPath: `/tmp/ch${String(ch.chapterNumber).padStart(2, "0")}.source-packet.json` });
+      const pack = cloneAction(fx.action);
+      pack.chapterId = bp.chapterId;
+      pack.implementationPlan.twentyFourHourChallenge = challenges[ch.chapterNumber - 1];
+      writeJsonFile(sourcePacketPath("money-book", ch.chapterNumber, roots), fx.packet);
+      writeJsonFile(blueprintPath("money-book", ch.chapterNumber, roots), bp);
+      writeJsonFile(sectionPath("money-book", ch.chapterNumber, "action-pack", roots), pack);
+    }
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1, 2, 3, 4], sections: ["action-pack"] });
+    assert.deepEqual(report.findings.filter((f) => f.checkId === "SEC114.action_challenge_opener_saturation"), []);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
 test("v23 section gate rejects saturated classify-opportunity choose-lever coreSkill units", () => {
   const fx = compileFixture();
   const stateRoot = resolve(tmpdir(), `cf-v23-action-classify-lever-core-${process.pid}-${Date.now()}`);
