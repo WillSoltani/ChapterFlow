@@ -3,7 +3,7 @@ import { createHash } from "node:crypto";
 import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
-import { BookRunApplicationService, type BookRunEvent } from "../../src/app/bookRunApplicationService.js";
+import { BookRunApplicationService, retryableCompilerFailure, type BookRunEvent } from "../../src/app/bookRunApplicationService.js";
 import type { CandidateQcEvaluator } from "../../src/app/candidateQcEvaluator.js";
 import type { CompilerApplicationPort } from "../../src/app/compilerApplicationPort.js";
 import { ModelGatewayReviewEvaluator } from "../../src/app/modelGatewayReviewEvaluator.js";
@@ -3048,6 +3048,32 @@ requiredTest("a research-run pin cannot fabricate the control-run bind or reach 
   assert.equal(crossBook.ok, false);
   if (crossBook.ok) throw new Error("a cross-book intake must be rejected under a pin");
   assert.equal(crossBook.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+});
+
+requiredTest("R-001 a provider-blocked compile failure is NOT operator-retryable", () => {
+  // A provider block cannot clear by trying again inside this run, so it must not
+  // open the operator-retry grant. The resume path answers
+  // BOOK_RUN_COMPILER_RETRY_BLOCKED for anything this predicate rejects.
+  assert.equal(
+    retryableCompilerFailure("COMPILER_SECTION_PROVIDER_BLOCKED:summary-pack:quota-exhausted:You've hit your weekly limit \u00b7 resets Sep 1 at 8pm"),
+    false,
+  );
+  assert.equal(
+    retryableCompilerFailure("COMPILER_SECTION_PROVIDER_BLOCKED:learning-pack:credential-failure:Not logged in \u00b7 Please run /login"),
+    false,
+  );
+  // and the model-output-variance codes stay retryable — this pin must not be
+  // read as narrowing the existing operator path
+  for (const detail of [
+    "COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure",
+    "COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts:hook too short",
+    "COMPILER_SECTION_OUTPUT_INVALID:summary-pack:wrong artifact",
+    "COMPILER_SECTION_MODEL_INVALID:summary-pack:after 3 attempts:schema",
+    "COMPILER_SECTION_PROCESS_FAILED:summary-pack:after 3 attempts:timed out",
+  ]) {
+    assert.equal(retryableCompilerFailure(detail), true, detail);
+  }
+  assert.equal(retryableCompilerFailure(undefined), false);
 });
 
 finishV25Tests().catch((error: unknown) => {
