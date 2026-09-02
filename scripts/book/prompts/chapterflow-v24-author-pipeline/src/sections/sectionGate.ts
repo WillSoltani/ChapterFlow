@@ -1291,7 +1291,7 @@ function readerPunctuationFindings(fields: SoftBannedTextOccurrence[]): SectionF
     const doubled = field.text.match(/\.{2,}/);
     if (doubled) {
       findings.push({
-        checkId: "SEC105.reader_doubled_period",
+        checkId: "SEC127.reader_doubled_period",
         severity: "blocker",
         chapterNumber: field.chapterNumber,
         section: field.section,
@@ -2025,7 +2025,7 @@ function crossChapterQuizNgramTemplateFindings(fields: QuizLiteralFieldOccurrenc
         if (reported.has(key)) continue;
         reported.add(key);
         findings.push({
-          checkId: "SEC94.quiz_cross_chapter_ngram",
+          checkId: "SEC126.quiz_cross_chapter_ngram",
           severity: "blocker",
           chapterNumber: field.chapterNumber,
           section: "learning-pack",
@@ -2428,7 +2428,7 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     const actualExId = text(ex.exampleId);
     if (!EXAMPLE_ID_RE.test(actualExId) || (actualExId !== expectedExId && !actualExId.startsWith(expectedChapterPrefix))) {
       push(
-        "SEC112.example_id_shape",
+        "SEC124.example_id_shape",
         "blocker",
         `example ${i + 1} exampleId must be ${expectedExId} or start with ${expectedChapterPrefix}; do not include bookId or another chapter number`,
         `${root}/exampleId`,
@@ -2794,12 +2794,12 @@ export function validateLearningPack(
     const wanted = bp.sections.quiz[i]?.correctIndex;
     if (Number.isInteger(wanted) && q.correctIndex !== wanted) push("SEC46.quiz_key_pattern", "blocker", `q${i + 1} correctIndex ${q.correctIndex} != blueprint ${wanted}`, `/quiz/questions/${i}/correctIndex`);
     if (!BLOOMS_LEVELS.has(text((q as any).bloomsLevel))) {
-      push("SEC93.quiz_metadata", "blocker", `q${i + 1} bloomsLevel missing or invalid; use remember|understand|apply|analyze|evaluate|create`, `/quiz/questions/${i}/bloomsLevel`);
+      push("SEC125.quiz_metadata", "blocker", `q${i + 1} bloomsLevel missing or invalid; use remember|understand|apply|analyze|evaluate|create`, `/quiz/questions/${i}/bloomsLevel`);
     }
     if (!DEPTH_LEVELS.has(text((q as any).depthLevel))) {
-      push("SEC93.quiz_metadata", "blocker", `q${i + 1} depthLevel missing or invalid; use the blueprint depthLevel`, `/quiz/questions/${i}/depthLevel`);
+      push("SEC125.quiz_metadata", "blocker", `q${i + 1} depthLevel missing or invalid; use the blueprint depthLevel`, `/quiz/questions/${i}/depthLevel`);
     } else if (bp.sections.quiz[i]?.depthLevel && q.depthLevel !== bp.sections.quiz[i]?.depthLevel) {
-      push("SEC93.quiz_metadata", "blocker", `q${i + 1} depthLevel ${q.depthLevel} != blueprint ${bp.sections.quiz[i].depthLevel}`, `/quiz/questions/${i}/depthLevel`);
+      push("SEC125.quiz_metadata", "blocker", `q${i + 1} depthLevel ${q.depthLevel} != blueprint ${bp.sections.quiz[i].depthLevel}`, `/quiz/questions/${i}/depthLevel`);
     }
     const qSourceIds = anchorArray(q.sourceAnchorIds ?? (q as any).sourceAnchorId);
     const keyEvidenceIds = anchorArray(q.keyEvidenceAnchorIds).length ? q.keyEvidenceAnchorIds : qSourceIds;

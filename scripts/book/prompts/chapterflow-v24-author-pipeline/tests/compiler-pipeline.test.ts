@@ -1030,7 +1030,7 @@ test("v23 section gate blocks doubled periods and lowercase sentence starts befo
 
   const findings = validateSectionPack(bad, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC105.reader_doubled_period" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC127.reader_doubled_period" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
   assert.ok(
@@ -1788,7 +1788,7 @@ test("v23 learning-pack validator rejects missing quiz metadata before assembly"
 
   const findings = validateLearningPack(bad, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC93.quiz_metadata" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC125.quiz_metadata" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
 });
@@ -1857,7 +1857,7 @@ test("v23 section gate rejects book-wide quiz n-gram template repeats before boo
 
     const report = checkSectionGate("money-book", roots, { chapters: [1, 2, 3, 4, 5], sections: ["learning-pack"] });
     assert.equal(report.passed, false, "five generated chapters with the same long quiz phrase should block");
-    assert.ok(report.findings.some((f) => f.checkId === "SEC94.quiz_cross_chapter_ngram"), report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.ok(report.findings.some((f) => f.checkId === "SEC126.quiz_cross_chapter_ngram"), report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }
@@ -2787,7 +2787,7 @@ test("v23 example-pack validator rejects book-id-prefixed example ids before ass
 
   const findings = validateExamplePack(bad, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC112.example_id_shape" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC124.example_id_shape" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
 });
