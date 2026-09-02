@@ -56,11 +56,21 @@ export type SectionFinding = {
    *  cross-chapter avoid-context into the re-draft. Absent on per-chapter
    *  findings. */
   signature?: string;
+  /** R-041 — set when the finding reports that a check could not RUN (a missing or
+   *  unreadable INPUT), not that pack CONTENT is invalid. Such a finding stays a
+   *  blocker — `passed` goes false and `validate-sections` exits non-zero — but it is
+   *  excluded from `contentPassed`, which is what the assembly paths gate on. Before
+   *  this flag existed, both assembleSections paths carried a hardcoded
+   *  `checkId !== "SEC91.sidecar_unavailable"` exemption instead. */
+  environmental?: boolean;
 };
 
 export type SectionGateReport = {
   bookId: string;
   passed: boolean;
+  /** R-041 — no blocker about pack CONTENT was found. `passed` additionally requires
+   *  that every check was able to run (see `SectionFinding.environmental`). */
+  contentPassed: boolean;
   chaptersChecked: number;
   findings: SectionFinding[];
 };
@@ -1171,6 +1181,8 @@ function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet
     return [{
       checkId: "SEC91.sidecar_unavailable",
       severity: "blocker",
+      // R-041 — the check could not RUN; this says nothing about the pack's content.
+      environmental: true,
       chapterNumber: bp.chapterNumber,
       section: pack.artifactType,
       message: `source sidecar unavailable at ${pathDesc}; SEC91 source-paste detection cannot run for this section`,
@@ -3270,7 +3282,13 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
   if (validSections.includes("summary-pack")) findings.push(...summaryTierNgramFindings(summaryTierFields));
   if (validSections.includes("summary-pack")) findings.push(...summaryHookFirstWordCapFindings(summaryHookFirstWords));
   findings.push(...softBannedBudgetFindings(softBannedFields));
-  return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: chapters.length, findings };
+  return {
+    bookId: normalized,
+    passed: !findings.some((f) => f.severity === "blocker"),
+    contentPassed: !findings.some((f) => f.severity === "blocker" && !f.environmental),
+    chaptersChecked: chapters.length,
+    findings,
+  };
 }
 
 export function formatSectionGateReport(report: SectionGateReport): string {

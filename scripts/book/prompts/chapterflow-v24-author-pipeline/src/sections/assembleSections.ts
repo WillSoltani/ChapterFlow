@@ -225,8 +225,10 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
     if (findings.length > 0 || parsed.length !== selected.chapters.length) {
       return { bookId: normalized, written: [], findings, candidateFiles: [] };
     }
-    // Preserve legacy standalone assembly parity: same whole-book gate and
-    // same SEC91 exception, but every input byte comes from selected snapshot.
+    // Preserve legacy standalone assembly parity: same whole-book gate and the same
+    // exemption for checks that could not RUN (SectionFinding.environmental — see the
+    // longer note on the standalone path below), but every input byte comes from the
+    // selected snapshot.
     const gate = checkSectionGate(normalized, {}, {
       selectedChapters: parsed.map((chapter) => ({
         chapterNumber: chapter.paths.chapterNumber,
@@ -236,7 +238,7 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
         packs: chapter.packs,
       })),
     });
-    const blockers = gate.findings.filter((finding) => finding.severity === "blocker" && finding.checkId !== "SEC91.sidecar_unavailable");
+    const blockers = gate.findings.filter((finding) => finding.severity === "blocker" && !finding.environmental);
     if (blockers.length > 0) {
       return {
         bookId: normalized,
@@ -297,12 +299,14 @@ export function assembleSections(bookId: string, roots: CompilerStoreRoots = {},
   if (resolved.chapters.length > 0) {
     const gate = checkSectionGate(normalized, roots);
     for (const f of gate.findings) {
-      // SEC91.sidecar_unavailable means the source-paste check could not RUN (the source
-      // sidecar isn't co-located) — it is an input/environment condition, not invalid pack
-      // CONTENT, so it must not gate assembly. The orchestrated conductor's pre-assembly
-      // validate-sections still fails closed on it, so a genuinely-missing sidecar is caught
-      // there rather than by silently assembling unverified content here.
-      if (f.severity !== "blocker" || f.checkId === "SEC91.sidecar_unavailable") continue;
+      // An `environmental` blocker (today only SEC91.sidecar_unavailable) means the check
+      // could not RUN — the source sidecar isn't co-located — which is an input/environment
+      // condition, not invalid pack CONTENT, so it must not gate assembly. The gate still
+      // reports it as a blocker, so the orchestrated conductor's pre-assembly
+      // validate-sections fails closed on it (report.passed stays false and the CLI exits
+      // non-zero); a genuinely-missing sidecar is caught there rather than by silently
+      // assembling unverified content here.
+      if (f.severity !== "blocker" || f.environmental) continue;
       const targets = typeof f.chapterNumber === "number" ? [f.chapterNumber] : resolved.chapters;
       for (const n of targets) {
         const list = blockedChapters.get(n) ?? [];

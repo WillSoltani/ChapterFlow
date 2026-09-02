@@ -1328,6 +1328,63 @@ test("v23 section gate fails closed with SEC91.sidecar_unavailable when a report
   }
 });
 
+// R-041 — SEC91.sidecar_unavailable says the source-paste check could not RUN; it says
+// nothing about pack CONTENT. Assembly must not gate on it, and before this both
+// assembleSections paths exempted it by hardcoding its checkId string
+// (assembleSections.ts:239, :305) while the report itself still called the run a BLOCK
+// with no way to tell the two conditions apart. The report now carries the distinction:
+// `environmental` on the finding and `contentPassed` on the report. `passed` is
+// deliberately unchanged — validate-sections' exit code still fails closed on it.
+test("v23 section gate reports an unrunnable-check blocker as environmental, separate from content", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-sidecar-environmental-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const staleSidecarPath = resolve(stateRoot, "sidecars", "source", "ch01.source.json");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), { ...fx.packet, sourceSidecarPath: staleSidecarPath });
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    const sidecar = report.findings.filter((f) => f.checkId === "SEC91.sidecar_unavailable");
+    assert.equal(sidecar.length, 1, report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.equal(sidecar[0].severity, "blocker", "validate-sections must keep failing closed on a missing sidecar");
+    assert.equal(sidecar[0].environmental, true, "an unrunnable check is an environment condition, not invalid content");
+    assert.equal(report.passed, false, "the run is still a BLOCK: the check did not run");
+    assert.equal(report.contentPassed, true, "no CONTENT blocker was found, and the report must say so");
+    assert.deepEqual(report.findings.filter((f) => f.severity === "blocker" && !f.environmental), []);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// R-041 — the other half: a real content blocker is NOT environmental, so contentPassed
+// falls with it and assembly stays blocked.
+test("v23 section gate reports a content blocker as non-environmental and drops contentPassed", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-content-blocker-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), fx.packet);
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    const summary = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+    summary.chapterId = "money-book-ch99";
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    const contentBlockers = report.findings.filter((f) => f.severity === "blocker" && !f.environmental);
+    assert.ok(contentBlockers.length > 0, report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.equal(report.contentPassed, false);
+    assert.equal(report.passed, false);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
 test("v23 section gate rejects hard-banned register phrases before ChapterV21 assembly", () => {
   const fx = compileFixture();
   const stateRoot = resolve(tmpdir(), `cf-v23-hard-ban-${process.pid}-${Date.now()}`);
