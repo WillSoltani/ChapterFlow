@@ -53,11 +53,16 @@ const SUMMARY_VOICE_PARAGRAPH =
 
 /** The voice line closing every craftBrief. Coherent whether or not a VOICE CARD
  *  follows (books with no voice signal get no card — P05), so it is never a dangling
- *  reference. Summary/example carry the register; learning/action match it. */
+ *  reference. Summary/example carry the register; learning/action match it.
+ *
+ *  The no-card fallback names a plain, concrete REGISTER and stops there: it used to
+ *  add "short sentences, plain verbs", which outranked whatever cadence a card asked
+ *  for (R-005). Cadence is stated once, as a measurable, in the summary tier-floor
+ *  rule — where it names the checks that actually enforce it. */
 function voiceCraftLine(kind: SectionKind): string {
   return kind === "summary-pack" || kind === "example-pack"
-    ? `VOICE: when a VOICE CARD is shown below, write in its register (match it, never quote it); with no card, use a plain, concrete register — short sentences, plain verbs.`
-    : `VOICE: when a VOICE CARD register note is shown below, keep explanations and actions in that register; with no card, use a plain, concrete register — short sentences, plain verbs, not a neutral textbook voice.`;
+    ? `VOICE: when a VOICE CARD is shown below, write in its register (match it, never quote it); with no card, use a plain, concrete register.`
+    : `VOICE: when a VOICE CARD register note is shown below, keep explanations and actions in that register; with no card, use a plain, concrete register, not a neutral textbook voice.`;
 }
 
 /** Layer 1 — artifact spec, count/length invariants, and the universal craft rules
@@ -69,7 +74,7 @@ function universalCore(kind: SectionKind): string[] {
         "UNIVERSAL — Write ONLY the hook, tiered summaries, keyTakeaway, and optional tryThisNow; no examples, quiz, review cards, or implementationPlan.",
         "Cite an allowed sourceAnchorId for the hook, each breakdown tier, keyTakeaway, and tryThisNow.",
         "keyTakeaway: 30 words or fewer.",
-        "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Short sentences, plain verbs — but meet the length floors with concrete detail, not padding.",
+        "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Vary sentence length: plain verbs, no sentence over 30 words, and never a run of same-length short declaratives (E7/E8 block both). Meet the length floors with concrete detail, not padding.",
         "Teach the chapter, not the provenance discipline: no reader-facing source-grounding rules (\"at least 3 named cases\", \"concrete settings give memory a handle\", \"claims checkable\").",
         "Output SummaryPackV1 JSON only.",
       ];
@@ -322,7 +327,7 @@ function voiceCardSection(kind: SectionKind, card: string | null): string {
   if (kind === "summary-pack" || kind === "example-pack") {
     return `\n\nVOICE CARD — how THIS book sounds (register only; match it, do not quote it)\n${card}`;
   }
-  return `\n\nVOICE CARD — register note\n- ${voiceRegisterLine(card)}\n- Keep explanations and actions in this register — plain verbs, short sentences; do not slip into a neutral textbook voice.`;
+  return `\n\nVOICE CARD — register note\n- ${voiceRegisterLine(card)}\n- Keep explanations and actions in this register; do not slip into a neutral textbook voice.`;
 }
 
 /** The action slice's projection of reservedVariety: everything EXCEPT the example-only

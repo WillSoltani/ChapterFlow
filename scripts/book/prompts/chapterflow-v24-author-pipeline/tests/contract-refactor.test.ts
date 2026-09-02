@@ -351,6 +351,38 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
   );
 });
 
+// ── R-005 — the contract must not countermand the card it just handed the writer.
+//
+// "short sentences, plain verbs" was stated UNCONDITIONALLY in the summary
+// universalCore, twice more as the no-card fallback, and a fourth time inside
+// voiceCardSection — the ONE site that fires only when a card exists, so it
+// contradicted the card it had just introduced. Six of the 59 shipped author-voice
+// profiles ask for a longer, measured cadence, and the released Franklin book's own
+// scar note says "a run of sub-seven-word declaratives is a spice, not a default
+// register" (config/book-scars/the-autobiography-of-benjamin-franklin.json).
+//
+// The ship gate agrees with the scar note, not with the contract:
+// E8.monotone_cadence (src/critics/prose.ts:270, MAJOR in critics/finalGate.ts:378)
+// fires on a run of >=7 same-length short sentences, and E7.long_sentence
+// (src/critics/plainLanguage.ts, cap 34 words) fires on the run-on at the other end.
+// The rewritten rule states that pair instead of a single hardcoded rhythm.
+test("R-005: the contract asks for varied cadence and never hardcodes 'short sentences'", () => {
+  for (const kind of SECTION_KINDS) {
+    // money-book resolves no voice card, so any "short sentences" in these renders is
+    // the CONTRACT's own instruction, never a card's chosen rhythm.
+    assert.doesNotMatch(renderTask("money-book", kind), /short sentences/i, `${kind}: the contract must not hardcode a sentence length`);
+  }
+  const summary = renderTask("money-book", "summary-pack");
+  assert.match(summary, /Vary sentence length/, "the tier-floor rule asks for varied length instead");
+  assert.match(summary, /never a run of same-length short declaratives/, "and names the defect the ship gate actually blocks");
+
+  // The register note that INTRODUCES a card must not restate a rhythm the card may
+  // have just contradicted.
+  const learning = renderTask(LARGEST_SCAR_BOOK, "learning-pack");
+  assert.match(learning, /VOICE CARD — register note/, "this render carries a card");
+  assert.doesNotMatch(learning, /register — plain verbs, short sentences/, "the register note no longer overrides the card it just introduced");
+});
+
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {
   const pom = loadBookScars("the-power-of-moments");
   assert.ok(pom, "POM has a scar file");
