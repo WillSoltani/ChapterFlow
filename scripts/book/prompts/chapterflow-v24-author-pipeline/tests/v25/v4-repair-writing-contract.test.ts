@@ -22,7 +22,9 @@
  *      <Kind>PackV1 JSON only." and "this is an intermediate artifact only"),
  *      because a repair returns one complete ChapterV21;
  *   4. its own frame never spends the em dash the block it wraps bans;
- *   5. it stays inside a stated character budget.
+ *   5. it stays inside a stated character budget;
+ *   6. qc_findings ships the same bounded blocker set the brief lists — not the
+ *      unbounded set beside it.
  */
 
 import assert from "node:assert/strict";
@@ -32,9 +34,11 @@ import {
   REPAIR_WRITING_CONTRACT_VOICE_CARD_MAX_CHARS,
   buildRepairWritingContract,
 } from "../../src/app/candidateRepairWritingContract.js";
+import { boundedRepairBlockers } from "../../src/app/candidateRepairBrief.js";
 import { SECTION_KINDS } from "../../src/artifacts/artifactTypes.js";
+import type { QcIssue } from "../../src/qc/qcTypes.js";
 import { sectionContract, sectionDoNotLines } from "../../src/sections/sectionTasks.js";
-import { rig } from "./repairPortRig.js";
+import { BOOK, rig } from "./repairPortRig.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 const VOICE_CARD = [
@@ -128,6 +132,27 @@ requiredTest("the writing contract stays inside its stated character budget", ()
   assert.ok(contract.length >= REPAIR_WRITING_CONTRACT_MAX_CHARS * 0.85, `contract is ${contract.length} chars`);
 });
 
+
+requiredTest("boundedRepairBlockers keeps one blocker per code, then fills, and reports the rest", () => {
+  const blockers: QcIssue[] = [
+    ...Array.from({ length: 60 }, (_, index): QcIssue => ({
+      code: "B5",
+      severity: "BLOCKER",
+      message: `em dash at reader-facing offset ${index} ${"padding ".repeat(30)}`,
+      location: `ch01/field-${index}`,
+    })),
+    { code: "BP24", severity: "BLOCKER", message: "the last class in the round", location: "ch01/plan" },
+  ];
+  const bounded = boundedRepairBlockers(blockers);
+  assert.ok(bounded.listed.length < blockers.length, "a 61-blocker round must be bounded");
+  assert.ok(bounded.listed.some((issue) => issue.code === "BP24"), "coverage first: every distinct code survives");
+  assert.equal(bounded.listed.length + bounded.omitted.length, blockers.length);
+  // Provenance order is the caller's, unchanged.
+  assert.deepEqual(bounded.listed, blockers.filter((issue) => bounded.listed.includes(issue)));
+});
+
+// ---------------------------------------------------------------- wired ----
+
 // ---------------------------------------------------------------- wired ----
 
 requiredTest("the repair prompt carries writing_contract as instruction, before the evidence", async (context) => {
@@ -154,6 +179,31 @@ requiredTest("the repair prompt carries writing_contract as instruction, before 
   const control = Buffer.from(subject.prompts[0].prompt.inputs[0].bytes).toString("utf8");
   assert.match(control, /writing_contract/, control);
   assert.match(control, /instruction, not evidence/, control);
+});
+
+
+requiredTest("qc_findings ships the bounded blocker set the brief lists, not the unbounded round", async (context) => {
+  const extraIssues: QcIssue[] = Array.from({ length: 80 }, (_, index): QcIssue => ({
+    code: "B5",
+    severity: "BLOCKER",
+    message: `reader-facing em dash number ${index}; ${"the surrounding sentence is quoted back at length ".repeat(4)}`,
+    location: `content/chapters/${BOOK}-ch01.v21-native.chapter.json`,
+  }));
+  const subject = rig(context, { extraIssues });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+
+  const findings = JSON.parse(
+    Buffer.from(subject.prompts[0].prompt.inputs.find((input) => input.name === "qc_findings")!.bytes).toString("utf8"),
+  ) as QcIssue[];
+  const brief = Buffer.from(
+    subject.prompts[0].prompt.inputs.find((input) => input.name === "repair_brief")!.bytes,
+  ).toString("utf8");
+
+  assert.ok(findings.length < 81, `qc_findings must be bounded, got ${findings.length}`);
+  assert.deepEqual(findings, boundedRepairBlockers([...subject.roundBlockers()]).listed);
+  // Nothing is hidden: the brief counts and names by code what qc_findings drops.
+  assert.match(brief, /further blocker\(s\) of the classes above are not listed individually/, brief);
 });
 
 finishV25Tests().catch((error: unknown) => {

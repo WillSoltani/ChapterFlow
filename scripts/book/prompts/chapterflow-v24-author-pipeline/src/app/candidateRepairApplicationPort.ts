@@ -30,7 +30,7 @@ import {
 } from "./contentRepairWorkflow.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
 import type { ChapterFlowClock } from "./pipeline.js";
-import { buildRepairBrief } from "./candidateRepairBrief.js";
+import { boundedRepairBlockers, buildRepairBrief } from "./candidateRepairBrief.js";
 import { buildRepairWritingContract } from "./candidateRepairWritingContract.js";
 
 export const CANDIDATE_REPAIR_PROFILE_ID = "attempt-read-json-v1" as const;
@@ -1087,6 +1087,22 @@ export class CandidateRepairApplicationPort {
         blockers: findings,
         advisories: pass.advisoriesByChapter.get(chapterNumber) ?? [],
       });
+      // ONE bounded blocker set, in both places it is shown. The brief has been
+      // capped since REPAIR_BRIEF_BLOCKER_MAX_CHARS, but qc_findings shipped the
+      // whole unbounded round beside it, so the cap bounded nothing: the largest
+      // set in the live Franklin run (ch03, 35 blockers, ~5.6k chars) was still
+      // delivered in full. The brief's own notice counts and names by code what
+      // this record leaves out, and the complete set stays durable where the port
+      // read it — the failed QC round / canonical review record — so nothing is
+      // written into the model's own attempt directory to be read straight back.
+      const bounded = boundedRepairBlockers(findings);
+      if (bounded.omitted.length > 0) {
+        console.error(
+          `[repair] blockers-bounded book=${pass.bookId} run=${pass.repairRunId} chapter=${chapterNumber}`
+          + ` listed=${bounded.listed.length} omitted=${bounded.omitted.length} of=${findings.length}`
+          + " full-set=failed-round/canonical-review record",
+        );
+      }
       const operationId = `repair-ch${String(chapterNumber).padStart(2, "0")}`;
       const repairAttemptId = attemptId(pass.repairRunId, operationId, pass.attemptIdPrefix);
       repairAttemptIds.push(repairAttemptId);
@@ -1139,7 +1155,7 @@ export class CandidateRepairApplicationPort {
               mediaType: file.mediaType,
               bytes: Buffer.from(file.bytes),
             })),
-            { name: "qc_findings", mediaType: "application/json", bytes: jsonBytes(findings) },
+            { name: "qc_findings", mediaType: "application/json", bytes: jsonBytes(bounded.listed) },
             { name: "repair_brief", mediaType: "text/markdown", bytes: new TextEncoder().encode(brief) },
           ],
         },

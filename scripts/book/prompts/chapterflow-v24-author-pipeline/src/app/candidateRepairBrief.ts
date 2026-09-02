@@ -129,8 +129,21 @@ function bullet(issue: QcIssue): string {
   return `- [${issue.code}]${issue.location === undefined ? "" : ` (${issue.location})`} ${clamp(issue.message)}`;
 }
 
+/** The blockers the brief lists, and the ones it names only by class. Both keep
+ *  the caller's provenance order. */
+export interface BoundedBlockers {
+  readonly listed: readonly QcIssue[];
+  readonly omitted: readonly QcIssue[];
+}
+
 /**
  * Bound one chapter's blocker list without hiding what it left out.
+ *
+ * EXPORTED because the same bound must apply to the prompt's machine-readable
+ * `qc_findings` record. Bounding the brief while shipping the unbounded set
+ * beside it bounds nothing: the repair port renders the SAME `listed` set, and
+ * the brief's counted per-code notice below is what tells the writer the rest
+ * exists.
  *
  * ORDER OF PRIORITY, and why:
  *   1. COVERAGE FIRST — one blocker per distinct code, in first-appearance order.
@@ -149,7 +162,7 @@ function bullet(issue: QcIssue): string {
  * `severity` deliberately does not order anything: every issue reaching here is
  * already a BLOCKER, so severity carries no signal inside this set.
  */
-function boundedBlockers(blockers: readonly QcIssue[]): { lines: string[]; omitted: QcIssue[] } {
+export function boundedRepairBlockers(blockers: readonly QcIssue[]): BoundedBlockers {
   const shown: QcIssue[] = [];
   const taken = new Set<QcIssue>();
   const seenCodes = new Set<string>();
@@ -170,9 +183,9 @@ function boundedBlockers(blockers: readonly QcIssue[]): { lines: string[]; omitt
   }
   // Re-emit in the caller's provenance order: the coverage pass reorders, and the
   // caller owns provenance order (this module owns framing, not sequence).
-  const ordered = blockers.filter((issue) => taken.has(issue));
+  const listed = blockers.filter((issue) => taken.has(issue));
   const omitted = blockers.filter((issue) => !taken.has(issue));
-  return { lines: ordered.map(bullet), omitted };
+  return { listed, omitted };
 }
 
 /** "12 B5, 3 SC11.2.anchor_specific_not_present" — the omitted remainder named by
@@ -228,13 +241,14 @@ export function buildRepairBrief(input: RepairBriefInput): string {
       "",
     );
   } else {
-    const bounded = boundedBlockers(input.blockers);
+    const bounded = boundedRepairBlockers(input.blockers);
+    const boundedLines = bounded.listed.map(bullet);
     lines.push(
       `## MANDATORY FIXES — BLOCKERS (${input.blockers.length})`,
       bounded.omitted.length === 0
         ? "Every blocker below MUST be fixed. These are the only mandatory changes; everything after them is context."
-        : `${input.blockers.length} blockers are attached to this chapter — more than one brief can carry. The ${bounded.lines.length} below MUST be fixed, and every distinct blocker CODE in the round is represented among them, so treat each one as an EXAMPLE OF ITS CLASS and clear the class across the whole chapter, not just the listed location. These are the only mandatory changes; everything after them is context.`,
-      ...bounded.lines,
+        : `${input.blockers.length} blockers are attached to this chapter — more than one brief can carry. The ${boundedLines.length} below MUST be fixed, and every distinct blocker CODE in the round is represented among them, so treat each one as an EXAMPLE OF ITS CLASS and clear the class across the whole chapter, not just the listed location. These are the only mandatory changes; everything after them is context.`,
+      ...boundedLines,
       ...(bounded.omitted.length === 0
         ? []
         : [`- …${bounded.omitted.length} further blocker(s) of the classes above are not listed individually: ${omissionByCode(bounded.omitted)}. They are real and still block. Fixing the class is how you clear them.`]),

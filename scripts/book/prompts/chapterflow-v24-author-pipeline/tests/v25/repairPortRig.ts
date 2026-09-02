@@ -337,6 +337,9 @@ export function rig(context: TestContext, options: RigOptions = {}) {
     successor: () => successor,
     repairRequest: () => repairRequest,
     appended: () => appended,
+    /** The failed round's BLOCKERS, in the order the port groups them — the set a
+     *  bounded `qc_findings` must be a prefix-preserving subset of. */
+    roundBlockers: (): readonly QcIssue[] => failedRound.issues.filter((issue) => issue.severity === "BLOCKER"),
   };
 }
 
