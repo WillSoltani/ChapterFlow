@@ -58,8 +58,9 @@ export function researchAttemptCapForChapters(chapters: number): number {
 
 /**
  * Chapter ceiling the cap is taken at. Deliberately well above any real book's
- * chapter list (the longest in the catalogue is far under this) so the cap is a
- * runaway-loop bound, never a limit a legitimate book or a resumed run can hit.
+ * chapter list — the longest package in book-packages/ is the-48-laws-of-power
+ * at 48 chapters — so the cap is a runaway-loop bound, never a limit a
+ * legitimate book or a resumed run can hit.
  */
 export const MAX_RESEARCHABLE_CHAPTERS = 120;
 
