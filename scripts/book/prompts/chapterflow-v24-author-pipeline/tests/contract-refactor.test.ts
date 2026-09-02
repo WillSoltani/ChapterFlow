@@ -295,12 +295,16 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
 // two largest per-book blocks render as the empty string. The 62%/76% ratios
 // therefore bound a prompt no book is ever compiled with.
 //
-// Measured on this branch with the SAME realistic fixture and only the bookId
-// changed (tests/contract-refactor.test.ts render path, four kinds):
+// Measured on this branch's HEAD with the SAME realistic fixture and only the
+// bookId changed (this file's render path, all four kinds, plus the with-prose
+// learning card):
 //
-//   money-book                             learning-pack 33,004 chars = 61.9% of 53,312
-//   the-autobiography-of-benjamin-franklin learning-pack 52,201 chars = 97.9% of 53,312
-//                                          + worst-case prose 59,491 chars = 111.6%
+//   money-book                             learning-pack 32,973 chars =  61.8% of 53,312
+//                                          + worst-case prose 40,263 chars =  75.5%
+//   the-autobiography-of-benjamin-franklin summary  48,977 / example  52,062
+//                                          learning 52,391 / action   46,809
+//                                          learning-pack           =  98.3% of 53,312
+//                                          + worst-case prose 59,681 chars = 111.9%
 //
 // The real worst case already exceeds BOTH ratio pins. Those pins are left exactly
 // as they are — they still bound the packet-only card and would catch contract prose
@@ -308,10 +312,11 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
 // production sends: the largest shipped scar file plus a real voice card.
 const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 
-// Budgets. Measured on this branch (see the run recorded in the PR body), then
-// rounded UP to the next 500 characters as the stated headroom for the rest of the
-// wave-0/1 prompt work. Anything that needs more than this must re-pin here with a
-// written rationale, exactly as the 60->62% and 62->76% re-pins above did.
+// Budgets = the measured worst case above, rounded UP to the next 500 characters,
+// plus one further 500 as the stated headroom for the rest of the wave-0/1 prompt
+// work (52,391 -> 52,500 -> 53,000; 59,681 -> 60,000 -> 60,500). Anything that needs
+// more than this must re-pin here with a written rationale, exactly as the 60->62%
+// and 62->76% re-pins above did.
 const HONEST_TASK_CHAR_BUDGET = 53_000;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
 
