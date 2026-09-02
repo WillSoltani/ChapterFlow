@@ -106,6 +106,19 @@ const REGISTER_TEMPLATES: Record<string, string[]> = {
     "never: abstraction-first paragraphs, jargon, or editorializing",
     "warmth: engaged and observant; wit stays understated",
   ],
+  // A first-person memoir RETOLD in the third person. Franklin's Autobiography is
+  // the seed case: the scar file's own style note asks for varied sentence length
+  // ("a run of sub-seven-word declaratives is a spice, not a default register",
+  // config/book-scars/the-autobiography-of-benjamin-franklin.json) and for the
+  // retelling to signal its status ("Franklin records", "as the memoir tells it")
+  // rather than speak as the author.
+  "plainspoken-ironist": [
+    "voice: plain, concrete register with dry self-aware irony; third-person retelling; varied cadence",
+    "rhythm: vary sentence length on purpose — a long, clause-linked line, then a short flat one; never a run of same-length declaratives",
+    "do: name the concrete thing (the object, the sum, the errand) before naming what it proves",
+    "never: grandeur, moralizing, abstraction with nothing to picture, or a modern coaching voice",
+    "warmth: wry and candid about the subject's own mistakes; never sentimental, never scolding",
+  ],
   memoirist: [
     "voice: intimate, reflective register; first-person; medium cadence",
     "rhythm: conversational sentences, the occasional fragment for effect",

@@ -147,6 +147,36 @@ test("section task markdown wires the card in the right shape per kind", () => {
   }
 });
 
+// ── R-004 — the curated Franklin profile (the released book the Phase A report
+//    scored). Its scar file is the largest shipped one, so this is also the book
+//    tests/contract-refactor.test.ts measures the honest length budget on. ────────
+
+const FRANKLIN = "the-autobiography-of-benjamin-franklin";
+
+test("the curated Franklin profile resolves a third-person card that the section task renders", () => {
+  const card = voiceCard(FRANKLIN);
+  assert.ok(card, "the released Franklin book must resolve a voice card, not null");
+  assert.ok(wordCount(card!) <= 120, "the curated card stays inside the word budget");
+  assert.ok(card!.endsWith(VOICE_CARD_GUARD_LINE), "the curated card carries the contamination guard");
+
+  // The artifact is a retelling of someone else's book, and SEC7
+  // (src/sections/sectionGate.ts) blocks "the author"/"the book"/"this chapter" in
+  // every tier, so a card must never ask a writer for the source author's first person.
+  assert.match(card!, /third-person retelling/, "the card names the person it can actually be written in");
+  assert.doesNotMatch(card!, /first-person/, "no card may instruct first person");
+
+  // The scar file's own style note: "vary sentence length; a run of sub-seven-word
+  // declaratives is a spice, not a default register".
+  assert.match(card!, /never a run of same-length declaratives/, "the card asks for varied cadence");
+
+  const summary = task(FRANKLIN, "summary-pack");
+  assert.match(summary, /VOICE CARD — how THIS book sounds/, "summary writers get the full card");
+  assert.match(summary, /dry self-aware irony/, "the register reaches the writer prompt");
+  const learning = task(FRANKLIN, "learning-pack");
+  assert.match(learning, /VOICE CARD — register note/, "learning writers get the register note");
+  assert.match(learning, /voice: plain, concrete register with dry self-aware irony/, "the register descriptor is surfaced");
+});
+
 // ── P1 / Finding F-01: device-mandate signature moves never reach the card ──────
 
 /** Write a brief with arbitrary signatureMoves (and optional avoidMoves) so we can

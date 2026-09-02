@@ -95,11 +95,15 @@ function sidecar(): SourceSidecarV2 {
   };
 }
 
-function realisticFixture(): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
-  const chapter: ChapterSpec = { chapterId: "money-book-ch01", chapterNumber: 1, chapterTitle: "Optimize Your Credit Cards" };
-  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter, sidecar: sidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
-  const blueprint = compileChapterBlueprint({ bookId: "money-book", chapter, packet, packetPath: "/tmp/ch01.source-packet.json" });
+function realisticFixtureFor(bookId: string): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
+  const chapter: ChapterSpec = { chapterId: `${bookId}-ch01`, chapterNumber: 1, chapterTitle: "Optimize Your Credit Cards" };
+  const packet = compileSourcePacketFromSidecar({ bookId, chapter, sidecar: sidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  const blueprint = compileChapterBlueprint({ bookId, chapter, packet, packetPath: "/tmp/ch01.source-packet.json" });
   return { blueprint, packet };
+}
+
+function realisticFixture(): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
+  return realisticFixtureFor("money-book");
 }
 
 // ---------------------------------- tests ----------------------------------
@@ -282,6 +286,69 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   // The header cannot claim completeness it no longer has.
   assert.match(conformant, /This is EVERYTHING the reader has seen/);
   assert.doesNotMatch(withProse, /This is EVERYTHING the reader has seen/, "a clamped block must not claim to be everything");
+});
+
+// ── R-002 — AN HONEST BUDGET, measured on what production actually sends ──────
+//
+// Every pin above is measured on "money-book", a fixture with NO scar file and NO
+// author-voice profile, so `loadBookScars` and `voiceCard` both return null and the
+// two largest per-book blocks render as the empty string. The 62%/76% ratios
+// therefore bound a prompt no book is ever compiled with.
+//
+// Measured on this branch with the SAME realistic fixture and only the bookId
+// changed (tests/contract-refactor.test.ts render path, four kinds):
+//
+//   money-book                             learning-pack 33,004 chars = 61.9% of 53,312
+//   the-autobiography-of-benjamin-franklin learning-pack 52,201 chars = 97.9% of 53,312
+//                                          + worst-case prose 59,491 chars = 111.6%
+//
+// The real worst case already exceeds BOTH ratio pins. Those pins are left exactly
+// as they are — they still bound the packet-only card and would catch contract prose
+// creep — and the real ceiling is pinned HERE, in absolute characters, on the render
+// production sends: the largest shipped scar file plus a real voice card.
+const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
+
+// Budgets. Measured on this branch (see the run recorded in the PR body), then
+// rounded UP to the next 500 characters as the stated headroom for the rest of the
+// wave-0/1 prompt work. Anything that needs more than this must re-pin here with a
+// written rationale, exactly as the 60->62% and 62->76% re-pins above did.
+const HONEST_TASK_CHAR_BUDGET = 53_000;
+const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
+
+test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
+  const scars = loadBookScars(LARGEST_SCAR_BOOK);
+  const card = voiceCard(LARGEST_SCAR_BOOK);
+  // The two assertions that make the budget below mean something. A fixture that
+  // silently loses either block measures a prompt production never sends — the exact
+  // way the ratio pins above stopped bounding anything.
+  assert.ok(scars, `${LARGEST_SCAR_BOOK} must have a scar file; this budget is measured on it`);
+  assert.ok(card, `${LARGEST_SCAR_BOOK} must resolve a voice card; a null card measures a prompt with no register instruction`);
+
+  const bp = realisticFixtureFor(LARGEST_SCAR_BOOK);
+  const args = (kind: SectionKind) => ({
+    bookId: LARGEST_SCAR_BOOK,
+    kind,
+    blueprint: bp.blueprint,
+    sourcePacket: bp.packet,
+    outputPath: `/tmp/${kind}.json`,
+    context: { voiceCard: card, bookScars: scars },
+  });
+  for (const kind of SECTION_KINDS) {
+    const md = buildSectionTaskMarkdown(args(kind));
+    assert.match(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, `${kind}: the scars block must actually render into the measured task`);
+    assert.match(md, /VOICE CARD/, `${kind}: the voice card must actually render into the measured task`);
+    assert.ok(
+      md.length <= HONEST_TASK_CHAR_BUDGET,
+      `${kind}: rendered ${md.length} chars against a ${HONEST_TASK_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+    );
+  }
+
+  // The production learning card also carries the chapter's drafted prose (Task 11ai).
+  const withProse = buildSectionTaskMarkdown({ ...args("learning-pack"), chapterProse: worstCaseChapterProse() });
+  assert.ok(
+    withProse.length <= HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET,
+    `learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+  );
 });
 
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {
