@@ -260,6 +260,85 @@ requiredTest("a review blocker that names no single chapter fails LOUD instead o
   assert.equal(rig.counts.model, 0, "an unscoped blocker must burn zero model calls");
 });
 
+requiredTest("R-224: a reader-lane INFRASTRUCTURE blocker never authorizes a chapter repair", async (context: TestContext) => {
+  // A seat whose model run did not succeed (provider block, timeout, admission
+  // collision) is recorded as SEMANTIC_PANEL_READER_FAILED at the chapter the
+  // panel was standing on. That location resolves — so without a guard the port
+  // would happily rewrite that chapter because the PROVIDER was unavailable, and
+  // the repair evidence would keep a fabricated content finding forever.
+  //
+  // Two live gates already keep this shape away from the port: the evaluator
+  // sets the review outcome to ERROR whenever a seat throws, the book-run loop
+  // enters review-repair only on FAIL, and reviewRepairPreflight refuses any
+  // stored outcome that is not FAIL (pinned directly below). This is the third,
+  // named guard, and it is the one that survives a future edit to either of the
+  // other two.
+  const rig = reviewRig(context, {
+    slug: "review-repair-reader-infra",
+    issues: [
+      {
+        code: "SEMANTIC_PANEL_READER_FAILED",
+        severity: "BLOCKER",
+        message: "SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:You've hit your weekly limit \u00b7 resets Sep 1 at 8pm",
+        location: "ch01",
+      },
+    ],
+  });
+
+  const repaired = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("an infrastructure failure must never authorize a content repair");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_FINDING_UNSCOPED");
+  assert.ok(repaired.error.message.includes("SEMANTIC_PANEL_READER_FAILED"), repaired.error.message);
+  assert.equal(rig.counts.model, 0, "an infrastructure blocker must burn zero model calls");
+});
+
+requiredTest("R-224: an unparseable-seat blocker is refused the same way", async (context: TestContext) => {
+  const rig = reviewRig(context, {
+    slug: "review-repair-reader-unparseable",
+    issues: [
+      PANEL_BLOCKER,
+      {
+        code: "SEMANTIC_PANEL_READER_UNPARSEABLE",
+        severity: "BLOCKER",
+        message: "reader-panel seat reader-b: no parseable JSON object in the reviewer output",
+        location: "ch01",
+      },
+    ],
+  });
+
+  const repaired = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("a seat-schema failure must never authorize a content repair");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_FINDING_UNSCOPED");
+  assert.ok(repaired.error.message.includes("SEMANTIC_PANEL_READER_UNPARSEABLE"), repaired.error.message);
+  assert.equal(rig.counts.model, 0);
+});
+
+requiredTest("R-224 PIN: an ERROR canonical review — the outcome a reader-lane infra failure produces — is never repair-authorizing", async (context: TestContext) => {
+  // Already true before R-224 (reviewRepairPreflight requires a stored FAIL);
+  // pinned here because the whole no-repair-on-infra argument rests on it.
+  const rig = reviewRig(context, {
+    slug: "review-repair-error-outcome",
+    outcome: "ERROR",
+    issues: [
+      {
+        code: "SEMANTIC_PANEL_READER_FAILED",
+        severity: "BLOCKER",
+        message: "SEMANTIC_PANEL_READER_FAILED:MODEL_PROCESS_FAILED:You've hit your weekly limit \u00b7 resets Sep 1 at 8pm",
+        location: "ch01",
+      },
+    ],
+  });
+
+  const repaired = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(repaired.ok, false, JSON.stringify(repaired));
+  if (repaired.ok) throw new Error("an ERROR review must never authorize a repair");
+  assert.equal(repaired.error.code, "REVIEW_REPAIR_VERDICT_STALE");
+  assert.ok(repaired.error.message.includes("outcome=ERROR"), repaired.error.message);
+  assert.equal(rig.counts.model, 0);
+});
+
 requiredTest("a review-repair replays idempotently: a second call re-reads its successor with zero new model calls", async (context: TestContext) => {
   const rig = reviewRig(context, { slug: "review-repair-idempotent", issues: [PANEL_BLOCKER] });
 
