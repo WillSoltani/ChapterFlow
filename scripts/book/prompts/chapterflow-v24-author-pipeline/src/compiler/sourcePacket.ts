@@ -51,18 +51,6 @@ function normalizedCase(raw: any, fallbackId: string): SourcePacketCase | null {
   };
 }
 
-/** The researcher's own `forbiddenLeakage` (a list of concepts belonging to
- *  other chapters), shaped into the packet's leakage-warning records. The field
- *  is optional and additive over SourceSidecarV2, so it is read defensively. */
-function researcherForbiddenLeakage(sidecar: unknown, chapterId: string): Array<{ into: string; warning: string }> {
-  const raw = (sidecar as { forbiddenLeakage?: unknown })?.forbiddenLeakage;
-  if (!Array.isArray(raw)) return [];
-  return uniq(raw.map(asText).filter(Boolean)).map((concept) => ({
-    into: chapterId,
-    warning: `"${concept}" belongs to another chapter of this book — do not introduce, define, or teach it here.`,
-  }));
-}
-
 function normalizedFramework(raw: any, i: number): SourcePacketFramework | null {
   const name = asText(raw?.name);
   const members = Array.isArray(raw?.members) ? raw.members.map(asText).filter(Boolean) : [];
@@ -128,16 +116,7 @@ export function compileSourcePacketFromSidecar(args: {
       "Do not claim guaranteed outcomes, exact score changes, or quantified effects unless a fact or hardSpecific explicitly states the number.",
       "Do not cast invented people as research subjects, participants, patients, or customers in a real case.",
     ],
-    // R-030: the case-derived warnings PLUS the researcher's own forbiddenLeakage.
-    // The researcher is prompted for 0-3 concepts that belong to LATER chapters
-    // (researcher-chapter.system.md rule 8) and the model pays to produce them,
-    // but the compiler used to mint only the case list and drop that output on
-    // the floor, so the documented cross-chapter contamination guard never
-    // reached a writer. Blueprint constraints render these warnings verbatim.
-    forbiddenLeakage: [
-      ...namedCases.map((c) => ({ into: c.id, warning: `Keep examples about ${c.label} source-local; do not import sibling chapter imagery or stakes.` })),
-      ...researcherForbiddenLeakage(sidecar, chapter.chapterId),
-    ],
+    forbiddenLeakage: namedCases.map((c) => ({ into: c.id, warning: `Keep examples about ${c.label} source-local; do not import sibling chapter imagery or stakes.` })),
     sourceQuality: { status, risks },
   };
   // P13: stamp the pedagogical fact ranking (teachingPriority + coreMoveFactId). At single-packet

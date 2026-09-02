@@ -1,5 +1,5 @@
 /**
- * Source-packet gate reachability (R-027, R-028) and packet leakage (R-030).
+ * Source-packet gate reachability (R-027, R-028).
  *
  * Two packet-gate checks were provably dead: their predicates could not be true
  * for any input the compiler produces. A gate that cannot fire is worse than no
@@ -12,18 +12,23 @@
  *        emptiness, but normalizedFact substitutes contract boilerplate for an
  *        empty field first — so the emptiness could never be observed and the
  *        boilerplate shipped to writers as a causal explanation.
- *  R-030 the compiler minted its own forbiddenLeakage from the case list and
- *        discarded the researcher's, which the model was prompted to produce.
+ *
+ * R-030 (the compiler discarding the researcher's own forbiddenLeakage) is NOT
+ * fixed here: see the PR body. compileSourcePacketFromSidecar's output is hashed
+ * into the FROZEN IMP-22 forward-input corpus (forwardInputFreeze.ts:541-553
+ * hashes stableJson(packet)), whose freezeSha256 is pinned in
+ * forwardInputMaterialization.ts:35 and in four committed
+ * state/migration-experiments/** artifacts. Changing the packet drifts that
+ * frozen hash, and re-freezing a migration experiment's corpus is not something
+ * this package may do.
  */
 
 import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
 import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
-import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { MECHANISM_FALLBACK, factPedagogyPlaceholders, normalizedFact } from "../src/compiler/sourcePacketFacts.js";
 import type { SourcePacketFact, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
-import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 
 function mkFact(id: string, over: Partial<SourcePacketFact> = {}): SourcePacketFact {
   return {
@@ -128,54 +133,4 @@ test("R-028: SP7 blocks a fact whose pedagogy fields are compiler boilerplate", 
 
 test("R-028: SP7 stays silent when every fact carries real source-grounded pedagogy", () => {
   assert.deepEqual(withCheck(mkPacket(), "SP7.fact_pedagogy"), []);
-});
-
-// ── R-030: the researcher's forbiddenLeakage reaches the packet ──────────────
-
-test("R-030: the researcher's forbiddenLeakage is carried into the packet", () => {
-  const sidecar = {
-    schemaVersion: "source-v2",
-    chapterNumber: 1,
-    chapterTitle: "Rotating Duty",
-    centralConcept: { name: "rotating duty", plainDefinition: "One named person owns a recurring obligation for a fixed term." },
-    keyClaims: ["A rotating duty is inherited by name."],
-    namedExamples: [{ id: "ch01.ex.club", label: "Leather Apron Club", summary: "A dozen tradesmen met each Friday.", hardSpecifics: ["Philadelphia", "each Friday"], realWorld: true }],
-    hardEdge: "Rotation is accountability machinery, not fairness machinery.",
-    testableFacts: [{ id: "ch01.fact.1", claim: "Each member produced a written query in turn.", becauseMechanism: "Turn-taking assigns one named owner per meeting.", commonError: "Rotation shares the load.", errorIsWhy: "Load-sharing is a side effect." }],
-    forbiddenLeakage: ["the thirteen virtues chart"],
-  } as unknown as SourceSidecarV2;
-  const packet = compileSourcePacketFromSidecar({
-    bookId: "zz-gate",
-    chapter: { chapterNumber: 1, chapterId: "zz-gate-ch01", chapterTitle: "Rotating Duty" } as any,
-    sidecar,
-  });
-  const warnings = packet.forbiddenLeakage.map((f) => f.warning);
-  assert.ok(
-    warnings.some((w) => w.includes("the thirteen virtues chart")),
-    `expected the researcher's forbiddenLeakage in the packet, got ${JSON.stringify(warnings)}`,
-  );
-  assert.ok(
-    warnings.some((w) => w.includes("Leather Apron Club")),
-    "the case-derived leakage warnings must still be present",
-  );
-});
-
-test("R-030: a sidecar without forbiddenLeakage keeps exactly the case-derived warnings", () => {
-  const sidecar = {
-    schemaVersion: "source-v2",
-    chapterNumber: 1,
-    chapterTitle: "Rotating Duty",
-    centralConcept: { name: "rotating duty", plainDefinition: "One named person owns a recurring obligation." },
-    keyClaims: ["A rotating duty is inherited by name."],
-    namedExamples: [{ id: "ch01.ex.club", label: "Leather Apron Club", summary: "A dozen tradesmen met each Friday.", hardSpecifics: ["Philadelphia", "each Friday"], realWorld: true }],
-    hardEdge: "Rotation is accountability machinery.",
-    testableFacts: [],
-  } as unknown as SourceSidecarV2;
-  const packet = compileSourcePacketFromSidecar({
-    bookId: "zz-gate",
-    chapter: { chapterNumber: 1, chapterId: "zz-gate-ch01", chapterTitle: "Rotating Duty" } as any,
-    sidecar,
-  });
-  assert.equal(packet.forbiddenLeakage.length, 1);
-  assert.deepEqual(packet.forbiddenLeakage.map((f) => f.into), ["ch01.ex.club"]);
 });
