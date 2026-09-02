@@ -13,7 +13,7 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
-import { REGISTER_TEMPLATES, voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
+import { REGISTER_TEMPLATES, sharedVoiceCues, voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
 import { loadBookScars } from "../src/lib/bookScars.js";
 import { formatVoiceBible } from "../src/lib/voiceBible.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
@@ -175,6 +175,68 @@ test("the curated Franklin profile resolves a third-person card that the section
   const learning = task(FRANKLIN, "learning-pack");
   assert.match(learning, /VOICE CARD — register note/, "learning writers get the register note");
   assert.match(learning, /voice: plain, concrete register with dry self-aware irony/, "the register descriptor is surfaced");
+});
+
+// ── R-004 / R-032 — the run's OWN frozen author voice as the last fallback ──────
+//
+// src/agents/researcher-bibliography.ts produces authorVoice {register,
+// signatureMoves, avoidMoves} for every research run and src/researcher.ts freezes it
+// into toc.json and source-freeze/book-source.md. A freshly-researched book has no
+// editor-in-chief brief and no curated profile, so before this it fell all the way to
+// null even though the run had just written down how the book sounds.
+
+const FROZEN_VOICE = {
+  register: "plainspoken",
+  signatureMoves: [
+    "catalogs its own mistakes plainly",
+    // A content-DEVICE mandate: the bibliography agent harvests these from the
+    // source, and sanitizeVoiceMoves must strip it before it can reach a `do:` line.
+    "opens with recognizable business cases",
+  ],
+  avoidMoves: ["no grand moralizing"],
+} as const;
+
+test("R-004: a book with no brief and no profile falls back to the run's frozen author voice", () => {
+  assert.equal(voiceCard(NOVOICE_BOOK), null, "no fallback offered → still null, never a shared generic card");
+
+  const card = voiceCard(NOVOICE_BOOK, FROZEN_VOICE);
+  assert.ok(card, "the frozen author voice yields a card");
+  assert.match(card!, /^voice: plainspoken register; third-person retelling; varied cadence$/m, "the frozen register leads the card");
+  assert.doesNotMatch(card!, /first[- ]person/, "the fallback states a person the artifact can be written in");
+  assert.match(card!, /do: catalogs its own mistakes plainly/, "a genuine style move survives");
+  assert.doesNotMatch(card!, /opens with recognizable/, "a device mandate never reaches the card (sanitizeVoiceMoves)");
+  assert.match(card!, /never: no grand moralizing/, "avoidMoves are kept verbatim");
+  assert.match(card!, /plain language beats abstraction/, "the catalog-wide plainness floor rides along");
+  assert.ok(card!.endsWith(VOICE_CARD_GUARD_LINE), "the contamination guard closes the card");
+  assert.ok(wordCount(card!) <= 120, "the fallback card respects the word budget");
+
+  // Source order: a curated profile OUTRANKS the run's frozen voice.
+  assert.equal(voiceCard(FRANKLIN, FROZEN_VOICE), voiceCard(FRANKLIN), "a curated profile wins over the frozen voice");
+});
+
+test("R-032: only voice cues that two or more chapters share reach the fallback card", () => {
+  // src/agents/researcher-chapter.ts:532 makes 2-4 voiceCues a retry-BLOCKING floor,
+  // and nothing outside the chapter .txt render ever read them.
+  assert.deepEqual(
+    sharedVoiceCues([
+      ["opens with a concrete scene", "counts the cost out loud"],
+      ["  Opens With A Concrete Scene ", "sets a plain claim against a wry aside"],
+      ["counts the cost out loud"],
+    ]),
+    ["opens with a concrete scene", "counts the cost out loud"],
+    "shared cues only, case/whitespace-insensitive, first-appearance order",
+  );
+  assert.deepEqual(sharedVoiceCues([["only here"], ["and only there"]]), [], "a cue one chapter shows is not the book's voice");
+
+  // A shared cue is a signature move like any other: it goes through the sanitizer.
+  const card = voiceCard(NOVOICE_BOOK, {
+    register: "warm",
+    signatureMoves: ["names the sum out loud", "lets the aside carry the point"],
+    sharedCues: ["returns to Apple as a recurring reference point", "keeps the tone measured"],
+  });
+  assert.ok(card, "cues plus a register still yield a card");
+  assert.doesNotMatch(card!, /returns to Apple/, "a device mandate in a shared cue is stripped like any other move");
+  assert.match(card!, /do: names the sum out loud; lets the aside carry the point; keeps the tone measured/, "the book's moves lead, one shared cue closes the do: line");
 });
 
 // ── R-007 — a register template may only instruct things the artifact can be
