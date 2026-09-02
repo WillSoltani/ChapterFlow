@@ -187,7 +187,8 @@ const TRY_THIS_NOW_OPENER_WORDS = 5;
 const TRY_THIS_NOW_OPENER_MIN_WORDS = 4;
 const ACTION_CHALLENGE_OPENER_WORDS = 3;
 // R-020 — the 24-hour challenge opener is the same kind of shell as the tryThisNow
-// opener checked by SEC94, which fires at two chapters (:1742). SEC114 asked for four,
+// opener checked by SEC94, which fires at two chapters (see
+// crossChapterTryThisNowOpenerFindings below). SEC114 asked for four,
 // so a four-chapter book had to be 100% uniform before anything fired and a
 // three-of-four shell shipped. Same pack, same failure mode, same bar.
 const ACTION_CHALLENGE_OPENER_MIN_CHAPTERS = 2;
