@@ -553,6 +553,44 @@ requiredTest("bounded process failure records a sanitized capped diagnostic head
   assertNoLiveInvocation();
 });
 
+requiredTest("R-001: a non-zero exit on a route with no envelope classifier carries a sanitized capped stdout head on the error", async ({ roots }) => {
+  const run = definition("nonzero-head-book", "nonzero-head-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  // A route with no classifyStdout (the codex shape): the only provider words
+  // available are the raw streams, so the error message must carry a bounded,
+  // single-line head of them instead of the opaque generic sentence alone.
+  const stdoutText = `PROVIDER_SAYS_c7\nsecond line ${"y".repeat(600)}TAIL_MARKER_q4`;
+  const supervisor = new FakeSupervisor(observed, () => processResult({
+    outcome: "EXITED",
+    exitCode: 1,
+    stdout: new TextEncoder().encode(stdoutText),
+    stderr: new Uint8Array(),
+  }));
+  const gateway = createModelGateway({
+    runStore: tracedStore(inner, observed),
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: route(observed),
+    now: clock(),
+  });
+  const result = await gateway.execute(task(run, "attempt-nonzero-head", attemptDirectory(roots, "attempt-nonzero-head")));
+
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+  const message = result.error?.message ?? "";
+  // the generic sentence is kept (nothing downstream that matched it breaks) …
+  assert.match(message, /bounded model process did not succeed/);
+  // … and the provider's own first words now ride along, newlines collapsed
+  assert.match(message, /PROVIDER_SAYS_c7 second line/);
+  // capped the same way the durable detail is: a marker past the cap never survives
+  assert.equal(message.includes("TAIL_MARKER_q4"), false);
+  assert.equal(message.includes("\n"), false);
+  assert.ok(message.length < 600, `provider head must stay bounded: ${message.length}`);
+  assertNoLiveInvocation();
+});
+
 requiredTest("cleanup failure and supervisor rejection stay consumed unknown without replay", async ({ roots }) => {
   const run = definition("uncertain-book", "uncertain-run");
   const inner = new FileRunStore(roots.stateRoot);
@@ -589,6 +627,35 @@ requiredTest("cleanup failure and supervisor rejection stay consumed unknown wit
   assert.deepEqual(snapshot.attempts.map((attempt) => attempt.status).sort(), ["UNKNOWN", "UNKNOWN"]);
   const journal = readFileSync(journalPath(roots, run), "utf8");
   assert.equal(journal.includes("SECRET_"), false);
+  assertNoLiveInvocation();
+});
+
+requiredTest("R-001: a non-zero exit with empty stdout falls back to the stderr head", async ({ roots }) => {
+  const run = definition("nonzero-stderr-book", "nonzero-stderr-run");
+  const inner = new FileRunStore(roots.stateRoot);
+  expectOk(await inner.createRun(run));
+  const observed = counts();
+  // CLIs that print their fatal error to stderr and nothing to stdout: the head
+  // must still reach the caller, because that is where the quota/credential
+  // wording lives for those routes.
+  const supervisor = new FakeSupervisor(observed, () => processResult({
+    outcome: "EXITED",
+    exitCode: 1,
+    stdout: new Uint8Array(),
+    stderr: new TextEncoder().encode("Not logged in \u00b7 Please run /login"),
+  }));
+  const gateway = createModelGateway({
+    runStore: tracedStore(inner, observed),
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: route(observed),
+    now: clock(),
+  });
+  const result = await gateway.execute(task(run, "attempt-nonzero-stderr", attemptDirectory(roots, "attempt-nonzero-stderr")));
+
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+  assert.match(result.error?.message ?? "", /Please run \/login/);
   assertNoLiveInvocation();
 });
 

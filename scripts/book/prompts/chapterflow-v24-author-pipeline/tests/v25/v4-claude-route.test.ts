@@ -17,6 +17,9 @@ import {
 import type { ModelProcessRoute } from "../../src/runtime/codexRoute.js";
 import { createExecutionPolicy } from "../../src/runtime/executionPolicy.js";
 import type { ExecutionPolicy, ExecutionProfile } from "../../src/runtime/executionPolicyTypes.js";
+import { createModelTaskRunner, runJsonModelTask } from "../../src/app/modelTaskRunner.js";
+import { isTransientReaderModelResult } from "../../src/review/laneOrchestrator.js";
+import { isUnretryableProviderMessage } from "../../src/runtime/modelErrors.js";
 import { createModelGateway } from "../../src/runtime/modelGateway.js";
 import type { ModelTask } from "../../src/runtime/modelRequest.js";
 import type { ProcessResult, ProcessSpec, ProcessSupervisor } from "../../src/runtime/processTypes.js";
@@ -204,12 +207,12 @@ function attemptDirectory(roots: TestRoots, name: string): string {
 
 class CapturingSupervisor implements ProcessSupervisor {
   readonly specs: ProcessSpec[] = [];
-  constructor(private readonly stdout: Uint8Array) {}
+  constructor(private readonly stdout: Uint8Array, private readonly exitCode = 0) {}
   async run(spec: ProcessSpec): Promise<ProcessResult> {
     this.specs.push(spec);
     return {
       outcome: "EXITED",
-      exitCode: 0,
+      exitCode: this.exitCode,
       stdout: this.stdout,
       stderr: new Uint8Array(),
       stdoutTruncated: false,
@@ -313,6 +316,63 @@ requiredTest("is_error envelope classifies as MODEL_PROCESS_FAILED with the API 
   assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
   assert.match(result.error?.message ?? "", /content filtering policy/);
   assert.match(result.error?.message ?? "", /api_error_status=400/);
+});
+
+requiredTest("R-001: a NON-ZERO exit still preserves the provider envelope message so quota classification can read it", async ({ roots }) => {
+  const run = definition("claude-book", "claude-nonzero-exit-run");
+  const store = new FileRunStore(roots.stateRoot);
+  await expectRun(store, run);
+  // Live evidence, 2026-08-28: the claude CLI printed this envelope on stdout AND
+  // exited 1. Before R-001 the gateway took the non-zero-exit branch, which threw
+  // the envelope away and reported "bounded model process did not succeed", so
+  // every downstream isUnretryableProviderMessage() check saw nothing to match.
+  const quotaEnvelope = JSON.stringify({
+    type: "result",
+    is_error: true,
+    api_error_status: 429,
+    result: "You've hit your weekly limit \u00b7 resets Sep 1 at 8pm (America/Halifax)",
+  });
+  const supervisor = new CapturingSupervisor(new TextEncoder().encode(quotaEnvelope), 1);
+  const gateway = createModelGateway({
+    runStore: store,
+    processSupervisor: supervisor,
+    executionPolicy: policy(roots),
+    route: createClaudeRoute("claude-sonnet-5", "high"),
+    now: clock(),
+    modelCliPreflight: async () => {},
+  });
+  const result = await gateway.execute(task(run, "attempt-nonzero", attemptDirectory(roots, "attempt-nonzero")));
+  assert.equal(result.outcome, "FAILED");
+  assert.equal(result.error?.code, "MODEL_PROCESS_FAILED");
+  const message = result.error?.message ?? "";
+  assert.match(message, /weekly limit/);
+  assert.match(message, /resets Sep 1 at 8pm/);
+  assert.match(message, /api_error_status=429/);
+  // the whole point: the preserved text is what the retry lanes classify on
+  assert.equal(isUnretryableProviderMessage(message), true);
+
+  // Reader lane (src/review/laneOrchestrator.ts): decides on the ModelResult
+  // directly — a quota block must not be seen as a transient, 21-seat-retryable
+  // failure. Before R-001 this returned true.
+  assert.equal(isTransientReaderModelResult(result), false);
+
+  // Research lanes (researcher-chapter.ts / researcher-bibliography.ts): decide on
+  // the message runJsonModelTask THROWS. Run the real runner over the real gateway
+  // so the wiring, not a hand-built string, is what is asserted.
+  const researchTask = task(run, "attempt-nonzero-research", attemptDirectory(roots, "attempt-nonzero-research"));
+  const thrown = await runJsonModelTask(
+    {
+      runner: createModelTaskRunner(gateway),
+      context: researchTask,
+      profileId: "attempt-read-json-v1",
+    },
+    "researcher-chapter",
+    "system",
+    "user",
+  ).then(() => null, (error: unknown) => error as Error);
+  assert.ok(thrown instanceof Error);
+  assert.match(thrown.message, /^MODEL_TASK_FAILED:MODEL_PROCESS_FAILED:/);
+  assert.equal(isUnretryableProviderMessage(thrown.message), true);
 });
 
 finishV25Tests().catch((error: unknown) => {
