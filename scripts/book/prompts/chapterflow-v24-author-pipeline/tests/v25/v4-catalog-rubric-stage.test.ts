@@ -22,7 +22,11 @@ import type { CandidateInputFile, CandidateSnapshot } from "../../src/books/cand
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import type { ModelResult } from "../../src/runtime/modelResult.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../../src/artifacts/artifactTypes.js";
-import { selectSeededChapterIndexes } from "../../src/review/catalogRubric.js";
+import {
+  CATALOG_RUBRIC_INSTRUMENT_VERSION,
+  CATALOG_RUBRIC_TEXTURE_AXES,
+  selectSeededChapterIndexes,
+} from "../../src/review/catalogRubric.js";
 import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js";
 import type { ChapterV21 } from "../../src/types.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
@@ -82,6 +86,7 @@ function taskContext(): ModelTaskContext {
 /** A reader's returned JSON in the SKILL's own shape. */
 function readerJson(number: number, overrides: Partial<Record<ReviewFactor, number>> & {
   gate?: "PASS" | "FAIL"; gateFailures?: string; churn?: string; base?: number;
+  texture?: "LOW" | "MED" | "HIGH"; apparatusQuotes?: string;
 } = {}): Record<string, unknown> {
   const base = overrides.base ?? 84;
   return {
@@ -90,6 +95,9 @@ function readerJson(number: number, overrides: Partial<Record<ReviewFactor, numb
     gate_failures: overrides.gateFailures ?? "none",
     ...Object.fromEntries(REVIEW_FACTORS.map((factor) => [factor, overrides[factor] ?? base])),
     book3_churn: overrides.churn ?? "LOW",
+    ...Object.fromEntries(CATALOG_RUBRIC_TEXTURE_AXES.map((axis) => [axis, overrides.texture ?? "LOW"])),
+    apparatus_quotes: overrides.apparatusQuotes ?? "none",
+    texture_note: `reader ${number}: no dominant repeated shape`,
     note: `reader ${number}: strongest retention; weakest limits`,
   };
 }
@@ -241,6 +249,40 @@ requiredTest("a transient blip is retried with a fresh attempt id and then succe
   assert.deepEqual(slept, [2000], "the first retry waits the first backoff step");
   assert.equal(calls()[0].context.attemptId, "rubric-attempt-1-rubric-r1");
   assert.equal(calls()[1].context.attemptId, "rubric-attempt-1-rubric-r1-a2", "a retry admits a NEW attempt id");
+});
+
+requiredTest("a re-draw after a REFUSED block is told what was wrong; a re-draw after a blip is not", async () => {
+  const candidate = buildCandidate(PANEL_BOOK, chaptersFor(PANEL_BOOK, 2));
+  const { runner, calls } = scriptedRunner([
+    // Reader 1, draw 1: assembles into nothing (no churn field) → REFUSED.
+    (request) => succeeded(request.context.attemptId, { ...readerJson(1), book3_churn: undefined }),
+    (request) => succeeded(request.context.attemptId, readerJson(1)),
+    // Reader 2, draw 1: an infrastructure blip, which the reader did nothing to cause.
+    { attemptId: "a", outcome: "FAILED", error: { code: "MODEL_OUTPUT_INVALID", message: "schema rejected" } } as ModelResult,
+    (request) => succeeded(request.context.attemptId, readerJson(2)),
+    (request) => succeeded(request.context.attemptId, readerJson(3)),
+  ]);
+  const panel = new CatalogRubricPanelEvaluator({ runner, sleep: instantSleep });
+  const scored = await panel.score({
+    bookId: PANEL_BOOK, title: "Panel Book", author: "Fixture Author", candidate,
+    completedAt: "2026-09-02T01:00:00.000Z", taskContext: taskContext(),
+  });
+  assert.equal(scored.ok, true, JSON.stringify(scored));
+  const prompts = calls().map((call) => {
+    const systemPrompt = call.prompt.inputs.find((input) => input.name === "system_prompt");
+    assert.notEqual(systemPrompt, undefined, "every rubric call carries the reader task as its system prompt");
+    return Buffer.from(systemPrompt!.bytes).toString("utf8");
+  });
+  assert.equal(prompts[0].includes("YOUR PREVIOUS ANSWER WAS REJECTED"), false, "the first draw is blind");
+  assert.equal(prompts[1].includes("YOUR PREVIOUS ANSWER WAS REJECTED"), true, "a refused draw is repaired, not re-rolled");
+  assert.equal(prompts[1].includes("book3_churn"), true, "the repair note NAMES the refused field");
+  assert.equal(
+    prompts[3].includes("YOUR PREVIOUS ANSWER WAS REJECTED"),
+    false,
+    "an infrastructure blip is not the reader's fault and carries no repair note",
+  );
+  // The note re-states the format contract and never supplies a judgement.
+  assert.equal(prompts[1].includes("Do not change your judgement to satisfy this note"), true);
 });
 
 requiredTest("output the strict assembly refuses exhausts the bounded budget and fails closed", async () => {
@@ -520,12 +562,49 @@ requiredTest("a stored record bound to different bytes is refused, never adapted
   assert.match(resumed.error.message, /binds manifestDigest/);
 });
 
+requiredTest("a TRUNCATED record does not replay as a full panel — the seat count is part of the schema", async (context: TestContext) => {
+  const book = "rubric-record-truncated";
+  const h = await buildBookRunHarness(context, book, ["PASS", "PASS"], {
+    rubricPanel: scriptedRubricPanel([{ readers: unanimousReaders(84) }]),
+    promoteLocal: false,
+  });
+  const first = await h.service.run({ ...h.request });
+  assert.equal(first.ok, true, first.ok ? "" : `${first.error.code}:${first.error.message}`);
+  if (!first.ok) return;
+
+  const paths = h.rubricStore.paths(book);
+  assert.equal(paths.ok, true, JSON.stringify(paths));
+  if (!paths.ok) return;
+  const recordPath = paths.value.record(first.value.candidate.candidateId);
+  const onDisk = JSON.parse(readFileSync(recordPath, "utf8")) as Record<string, unknown>;
+  const readers = onDisk.readers as unknown[];
+  assert.equal(readers.length, 3);
+  // One reader kept: a hand-edited or half-written record that would otherwise
+  // replay as a three-reader panel and carry this candidate for zero spend.
+  writeFileSync(recordPath, `${JSON.stringify({ ...onDisk, readers: [readers[0]] }, null, 2)}\n`, "utf8");
+  const resumed = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(resumed.ok, false, JSON.stringify(resumed));
+  if (resumed.ok) throw new Error("a one-reader record must never replay as a panel");
+  assert.equal(resumed.error.code, "BOOK_RUN_RUBRIC_UNAVAILABLE");
+
+  // The same refusal for a record whose three blocks are the SAME seat.
+  writeFileSync(
+    recordPath,
+    `${JSON.stringify({ ...onDisk, readers: [readers[0], readers[0], readers[0]] }, null, 2)}\n`,
+    "utf8",
+  );
+  const duplicated = await h.service.run({ ...h.request, resumeRunId: h.bookRunId });
+  assert.equal(duplicated.ok, false, JSON.stringify(duplicated));
+  if (duplicated.ok) throw new Error("three copies of one seat are not three readers");
+  assert.equal(duplicated.error.code, "BOOK_RUN_RUBRIC_UNAVAILABLE");
+});
+
 requiredTest("the rubric store refuses a conflicting second record for one immutable candidate", async (context: TestContext) => {
   const booksRoot = context.roots.tempRoot;
   const store = createCatalogRubricStore({ booksRoot });
   const record = {
     schemaVersion: "1" as const,
-    instrumentVersion: "catalog-rubric-v1" as const,
+    instrumentVersion: CATALOG_RUBRIC_INSTRUMENT_VERSION,
     bookId: "store-book",
     candidate: { candidateId: "store-candidate", manifestDigest: "c".repeat(64) },
     title: "Store Book",

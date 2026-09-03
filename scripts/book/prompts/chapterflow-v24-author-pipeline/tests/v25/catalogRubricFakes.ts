@@ -21,7 +21,10 @@ import type {
 import { REVIEW_FACTORS, type ReviewFactor } from "../../src/artifacts/artifactTypes.js";
 import {
   CATALOG_RUBRIC_INSTRUMENT_VERSION,
+  CATALOG_RUBRIC_TEXTURE_AXES,
   type CatalogRubricReaderResultV1,
+  type CatalogRubricSeverity,
+  type CatalogRubricTextureAxis,
 } from "../../src/review/catalogRubric.js";
 import type { CatalogRubricRecordV1 } from "../../src/review/catalogRubricStore.js";
 import type { Result } from "../../src/contracts/v4Core.js";
@@ -31,7 +34,11 @@ export type FakeReaderSpec = Readonly<{
   base?: number;
   gate?: "PASS" | "FAIL";
   gateFailures?: string;
-  churn?: "LOW" | "MED" | "HIGH";
+  churn?: CatalogRubricSeverity;
+  /** Every texture axis takes this severity unless overridden. */
+  texture?: CatalogRubricSeverity;
+  textureAxes?: Partial<Record<CatalogRubricTextureAxis, CatalogRubricSeverity>>;
+  apparatusQuotes?: string;
   factors?: Partial<Record<ReviewFactor, number>>;
 }>;
 
@@ -40,12 +47,18 @@ export function fakeReader(number: number, spec: FakeReaderSpec = {}): CatalogRu
   const scores = Object.fromEntries(
     REVIEW_FACTORS.map((factor) => [factor, spec.factors?.[factor] ?? base]),
   ) as Record<ReviewFactor, number>;
+  const texture = Object.fromEntries(
+    CATALOG_RUBRIC_TEXTURE_AXES.map((axis) => [axis, spec.textureAxes?.[axis] ?? spec.texture ?? "LOW"]),
+  ) as Record<CatalogRubricTextureAxis, CatalogRubricSeverity>;
   return {
     reader: number,
     gateVerdict: spec.gate ?? "PASS",
     gateFailures: spec.gateFailures ?? "none",
     scores,
     churn: spec.churn ?? "LOW",
+    texture,
+    apparatusQuotes: spec.apparatusQuotes ?? "none",
+    textureNote: `fake reader ${number}: no dominant repeated shape`,
     note: `fake reader ${number}`,
   };
 }

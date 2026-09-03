@@ -38,7 +38,11 @@ import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import {
   CATALOG_RUBRIC_INSTRUMENT_VERSION,
+  CATALOG_RUBRIC_READERS,
+  CATALOG_RUBRIC_TEXTURE_AXES,
   type CatalogRubricReaderResultV1,
+  type CatalogRubricSeverity,
+  type CatalogRubricTextureAxis,
 } from "./catalogRubric.js";
 
 /** The durable panel record. */
@@ -108,12 +112,15 @@ export function catalogRubricStoragePaths(booksRoot: string, bookId: string): Ca
 }
 
 const READER_KEYS: readonly string[] = [
-  "reader", "gate_verdict", "gate_failures", "book3_churn", "note", ...REVIEW_FACTORS,
+  "reader", "gate_verdict", "gate_failures", "book3_churn",
+  ...CATALOG_RUBRIC_TEXTURE_AXES, "apparatus_quotes", "texture_note", "note",
+  ...REVIEW_FACTORS,
 ];
 
 /** Reader blocks are serialized in the SKILL's own JSON shape — the same keys a
- *  reader returns — so a stored record is readable beside a book-score run's
- *  `readers.json` without translation. */
+ *  reader returns, including the texture axes, the apparatus quotes and the
+ *  texture note the v2 template declares — so a stored record is readable beside
+ *  a book-score run's `readers.json` without translation. */
 function serializeReader(reader: CatalogRubricReaderResultV1): Record<string, unknown> {
   return {
     reader: reader.reader,
@@ -121,8 +128,15 @@ function serializeReader(reader: CatalogRubricReaderResultV1): Record<string, un
     gate_failures: reader.gateFailures,
     ...Object.fromEntries(REVIEW_FACTORS.map((factor) => [factor, reader.scores[factor]])),
     book3_churn: reader.churn,
+    ...Object.fromEntries(CATALOG_RUBRIC_TEXTURE_AXES.map((axis) => [axis, reader.texture[axis]])),
+    apparatus_quotes: reader.apparatusQuotes,
+    texture_note: reader.textureNote,
     note: reader.note,
   };
+}
+
+function isSeverity(value: unknown): value is CatalogRubricSeverity {
+  return value === "LOW" || value === "MED" || value === "HIGH";
 }
 
 function parseReader(value: unknown): CatalogRubricReaderResultV1 | null {
@@ -130,8 +144,16 @@ function parseReader(value: unknown): CatalogRubricReaderResultV1 | null {
   if (typeof value.reader !== "number" || !Number.isInteger(value.reader) || value.reader < 1) return null;
   if (value.gate_verdict !== "PASS" && value.gate_verdict !== "FAIL") return null;
   if (typeof value.gate_failures !== "string" || value.gate_failures.length === 0) return null;
-  if (value.book3_churn !== "LOW" && value.book3_churn !== "MED" && value.book3_churn !== "HIGH") return null;
+  if (!isSeverity(value.book3_churn)) return null;
+  if (typeof value.apparatus_quotes !== "string" || value.apparatus_quotes.length === 0) return null;
+  if (typeof value.texture_note !== "string" || value.texture_note.length === 0) return null;
   if (typeof value.note !== "string" || value.note.length === 0) return null;
+  const texture: Record<string, CatalogRubricSeverity> = {};
+  for (const axis of CATALOG_RUBRIC_TEXTURE_AXES) {
+    const severity = value[axis];
+    if (!isSeverity(severity)) return null;
+    texture[axis] = severity;
+  }
   const scores: Record<string, number> = {};
   for (const factor of REVIEW_FACTORS) {
     const score = value[factor];
@@ -144,6 +166,9 @@ function parseReader(value: unknown): CatalogRubricReaderResultV1 | null {
     gateFailures: value.gate_failures,
     scores: scores as Record<ReviewFactor, number>,
     churn: value.book3_churn,
+    texture: texture as Record<CatalogRubricTextureAxis, CatalogRubricSeverity>,
+    apparatusQuotes: value.apparatus_quotes,
+    textureNote: value.texture_note,
     note: value.note,
   };
 }
@@ -211,10 +236,19 @@ export function parseCatalogRubricRecord(value: unknown, candidateId?: string): 
   ) {
     return null;
   }
+  // The panel is a FIXED-SIZE instrument and the record is the authority a
+  // resume promotes on. A truncated or hand-edited record — one reader, or the
+  // same seat twice — would replay as a full panel and could carry a candidate
+  // past the gate for zero spend, so the record must carry exactly
+  // CATALOG_RUBRIC_READERS blocks whose seat numbers are 1..N in order, which is
+  // the only shape the evaluator ever writes.
   const rawReaders = value.readers;
-  if (!Array.isArray(rawReaders) || rawReaders.length === 0) return null;
+  if (!Array.isArray(rawReaders) || rawReaders.length !== CATALOG_RUBRIC_READERS) return null;
   const readers = rawReaders.map(parseReader);
   if (readers.some((reader) => reader === null)) return null;
+  const seats = (readers as CatalogRubricReaderResultV1[]).map((reader) => reader.reader);
+  if (new Set(seats).size !== seats.length) return null;
+  if (seats.some((seat, index) => seat !== index + 1)) return null;
   return {
     schemaVersion: "1",
     instrumentVersion: CATALOG_RUBRIC_INSTRUMENT_VERSION,

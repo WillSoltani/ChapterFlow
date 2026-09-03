@@ -451,6 +451,15 @@ function catalogRubricReader(number: number): Record<string, unknown> {
     gate_failures: "none",
     ...scores,
     book3_churn: "LOW",
+    // The v2 template's texture axes, apparatus quotes and texture note. The
+    // strict assembly requires every declared field, so a fixture that answers
+    // only the older shape is refused — which is the point of requiring them.
+    scene_skeleton: "LOW",
+    repeated_unit: "LOW",
+    prop_stamp: "LOW",
+    proxy_cast: "LOW",
+    apparatus_quotes: "none",
+    texture_note: "fixture rubric reader: no dominant repeated shape",
     note: "fixture rubric reader: strongest retention; weakest limits",
   };
 }

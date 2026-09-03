@@ -1502,7 +1502,7 @@ requiredTest("the legacy no-candidate manifest route still requires the ambient 
     reviewIssueCounts: { BLOCKER: 0, WARN: 92, INFO: 2 },
     panelChapterComposites: [{ chapterNumber: 1, composite: 75.4 }],
     rubric: {
-      instrumentVersion: "catalog-rubric-v1",
+      instrumentVersion: "catalog-rubric-v2",
       composite: 84,
       tier: "strong/ships (80-90)",
       gate: "PASS" as const,
