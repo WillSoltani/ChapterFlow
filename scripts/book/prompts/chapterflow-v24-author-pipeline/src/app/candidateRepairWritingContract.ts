@@ -72,8 +72,19 @@ import { sectionContract, sectionDoNotLines } from "../sections/sectionTasks.js"
  * the same reader-facing fields under the same bans, so the repair writer needs
  * them for the same reason the section writer does: 76 of the 82 phrases that fail
  * a draft had never been disclosed on either lane.
+ *
+ * RE-PINNED 21700 -> 22500 by package 1B (grounding redesign), measured on this
+ * commit: 20,903 chars with no voice card and 22,309 with a pathological one that
+ * clamps. The increase is the same section-contract text the section writer now
+ * gets — teach each case once and rotate the details (SEC14/SEC129), one pooled
+ * example specific and no recall beat (SEC33/SEC133), citation by natural reference
+ * (SEC55/SEC120), transfer measured on the stem (SEC117), qualifier-shape parity
+ * (SEC134), opener variety (SEC132), and the memorable-line cap (SEC16/SEC118/
+ * SEC135). A repair rewrites the same reader-facing fields under the same gates, so
+ * it needs the same rules for the same reason; the module composes them rather than
+ * authoring them.
  */
-export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 21700;
+export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 22500;
 
 /** Voice-card clamp. The card is a ~120-word register cue by construction
  *  (`src/lib/voiceCard.ts`), but it arrives from a candidate sidecar this module

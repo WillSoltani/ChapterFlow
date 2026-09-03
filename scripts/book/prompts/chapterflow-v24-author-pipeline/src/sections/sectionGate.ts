@@ -26,15 +26,30 @@ import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import {
   harvestMemorableCandidates,
+  memorableLineProblems,
   memorableLineScore,
+  MEMORABLE_LINE_MAX_SPECIFICS,
   selectMemorableCandidates,
+  specificsPresentIn,
   type MemorableCandidate,
   type MemorableTier,
 } from "../optimizers/memorableLines.js";
-import { distractorTell, transferRatio, memorableLineClean } from "../metrics/rubricMetrics.js";
-import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, standaloneProseText, type ChapterProseSource } from "./chapterProse.js";
+import { distractorTell, distractorTellRate, isTransferQuestion, memorableLineClean } from "../metrics/rubricMetrics.js";
 import {
-  QUIZ_TELL_MAX_PER_CHAPTER,
+  chapterProseFields,
+  chapterProseText,
+  clippedPhraseDerivable,
+  countSpecificsInProse,
+  hasDraftedReadTiers,
+  normalizeDerivabilityText,
+  qualifiedNameDerivable,
+  standaloneProseText,
+  type ChapterProseSource,
+} from "./chapterProse.js";
+import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
+import { splitSentences } from "../critics/textUtils.js";
+import {
+  QUIZ_TELL_MAX_RATE_PCT,
   quizTransferFloor,
   quizTransferTarget,
   SUMMARY_MIN_CLEAN_MEMORABLE_LINES,
@@ -263,16 +278,23 @@ function validateAnchorClaimType(
   return problems;
 }
 
-// P15 (F14): `min` is the number of a cited anchor's hardSpecifics that must appear
-// verbatim in the unit. NARRATION units (examples SEC33, summary SEC13/SEC14) keep
-// min=2 — a real case narrated as a lived moment carries two concrete details
-// naturally. NON-NARRATIVE units (quiz SEC56, action SEC74) drop to min=1: the
-// checkpoint 3-reader panel byte-verified that the ≥2 quota is the MECHANICAL cause
-// of identifier-sentence stuffing — writers satisfy it by stapling standalone
-// "The Magic Castle Hotel is a Los Angeles hotel with free popsicles…" clauses into
-// stems and by ritualizing source labels in rituals. Source-grounding is preserved by
-// the anchor citation + claim-type match + ≥1 verbatim specific + the evidence gate;
-// dropping the second forced specific removes the stuffing pressure, not the grounding.
+// `min` is the number of a cited anchor's hardSpecifics that must appear verbatim in
+// the unit.
+//
+// PACKAGE 1B left this primitive with ONE caller family: SEC74, the action pack, at
+// min 1. SEC14 became a chapter-level presence rule, SEC16 became a CAP rather than a
+// floor, SEC56/SEC58 were retired outright, and SEC33 (min 1, pooled across the
+// example's three fields) has its own inline loop because it pools. The cross-anchor
+// `combine: "any"` mode went with SEC16 and is not reinstated here — a gate primitive
+// with a branch no gate takes is a trap for the next reader.
+//
+// The reasoning that took the non-narrative units to 1 still holds and is now the rule
+// everywhere: the checkpoint 3-reader panel byte-verified that a ≥2 quota is the
+// MECHANICAL cause of identifier-sentence stuffing — writers satisfy it by stapling
+// standalone "The Magic Castle Hotel is a Los Angeles hotel with free popsicles…"
+// clauses into stems. Grounding is the anchor citation + the claim-type match + the
+// chapter-level presence rule (SEC14/SEC128) + derivability (SEC120), not a token count
+// per unit.
 export function validateAnchorHardSpecifics(
   ids: unknown,
   anchors: Map<string, SourcePacketV1["allowedAnchors"][number]>,
@@ -280,21 +302,6 @@ export function validateAnchorHardSpecifics(
   value: unknown,
   label: string,
   min = 2,
-  // Cross-anchor combination over the cited specifics-rich anchors:
-  //   "all" (default) — EVERY specifics-rich cited anchor must be grounded (AND).
-  //     Correct for tier/example/quiz units, whose prose carries a 60+ word (or
-  //     350-2400 char) budget that can host every cited case's details.
-  //   "any" — grounding ONE specifics-rich cited anchor is enough (OR). Used ONLY
-  //     by the memorable-line check (SEC16): a memorable candidate inherits its
-  //     whole tier's sourceAnchorIds, so a tier citing several specifics-rich cases
-  //     would otherwise demand 2 verbatim specifics from EVERY case inside one
-  //     8-14-word aphorism — structurally unsatisfiable (Finding 20). The gate's
-  //     own intent ("build the unit from THE ANCHOR'S concrete details", singular)
-  //     is per-ONE-anchor grounding. When NO cited case is grounded we still emit
-  //     one blocker per unsatisfied anchor (message shape unchanged) so the retry
-  //     card can enumerate every option. Vacuous skip (no specifics-rich cited
-  //     anchor) still passes under both modes.
-  combine: "all" | "any" = "all",
 ): string[] {
   const haystack = text(value).toLowerCase();
   // Unit-side clipped-phrase folding (Franklin pincer, fourth face — run 26):
@@ -309,7 +316,6 @@ export function validateAnchorHardSpecifics(
   // Single-token specifics still require raw inclusion.
   const normalizedHaystack = normalizeDerivabilityText(text(value));
   const problems: string[] = [];
-  let anySatisfied = false;
   for (const id of anchorArray(ids)) {
     const anchor = anchors.get(id);
     if (!anchor?.supportsClaimTypes?.includes(claimType)) continue;
@@ -323,13 +329,8 @@ export function validateAnchorHardSpecifics(
     }).length;
     if (present < min) {
       problems.push(`${label} cites ${id} but uses ${present}/${min} required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
-    } else {
-      anySatisfied = true;
     }
   }
-  // OR: a single fully-grounded cited case clears the whole check; only when none
-  // is grounded do the per-anchor blockers surface (as alternatives to satisfy).
-  if (combine === "any" && anySatisfied) return [];
   return problems;
 }
 
@@ -2246,16 +2247,166 @@ function caseSpecificPhrases(namedCase: SourcePacketV1["namedCases"][number], pa
   return [...new Set(phrases)];
 }
 
+/**
+ * SEC39's term pool (R-063, redesigned).
+ *
+ * It used to be built from claim + mechanism + commonError + whyWrong + every
+ * groundedEntity + every groundedNumber, so a whyItMatters could satisfy the
+ * overlap by REPEATING THE CASE'S PROPER NOUNS AND FIGURES — which is what the
+ * tie-back closer is, and Phase A measured ch02 tying back 6 of 6 whyItMatters
+ * with "the identical premise/gap/terms/principle". Entities and numbers are the
+ * case's identity, not its decision logic; `claim` restates the headline the
+ * scenario already dramatizes. MECHANISM and WHY-WRONG are the two fields that
+ * carry the reasoning the example is supposed to explain, so they are the pool.
+ *
+ * The minimum is FROZEN at 2. It used to rise to 3 once the pool passed 12 terms,
+ * which made a verbose sidecar demand more of the writer than a terse one for the
+ * same fact — a bar set by the researcher's word count rather than by the reader.
+ */
 function factAlignmentTerms(fact: SourcePacketV1["facts"][number]): Set<string> {
-  return sourceAlignmentKeywords([
-    fact.claim,
-    fact.mechanism,
-    fact.commonError,
-    fact.whyWrong,
-    ...fact.groundedEntities,
-    ...fact.groundedNumbers,
-  ].join(" "));
+  return sourceAlignmentKeywords([fact.mechanism, fact.whyWrong].join(" "));
 }
+
+/** Overlapping terms SEC39 requires, regardless of how much the researcher wrote. */
+const FACT_ALIGNMENT_MIN_OVERLAP = 2;
+
+/** SEC39 stays silent on a fact whose mechanism+whyWrong yield fewer terms than this —
+ *  a thin sidecar entry gives the writer nothing to overlap WITH. Unchanged from the
+ *  pre-redesign guard: measured across all 41 facts of the live rev-6 candidate the
+ *  narrowed pool's SMALLEST value is 9 terms (median 23), so every fact the old pool
+ *  covered is still covered. */
+const FACT_ALIGNMENT_MIN_POOL = 8;
+
+/** SEC33: hardSpecifics of a cited case an example must carry, POOLED across
+ *  scenario + whatToDo + whyItMatters (the gate has always pooled the three fields;
+ *  the contract now says so). */
+const EXAMPLE_MIN_CASE_SPECIFICS = 1;
+
+// ---- chapter-level case grounding (R-059) ----------------------------------
+/** Hard specifics of a cited case that must reach the chapter's reader-visible prose.
+ *  ONCE per chapter (SEC14 for the cases the prose itself cites, SEC128 for the cases
+ *  only the quiz/cards/examples/action cite) — never once per unit. */
+const CHAPTER_CASE_MIN_SPECIFICS = 2;
+
+/**
+ * SEC129 — the per-chapter rotation cap that PAYS FOR the SEC56/SEC58 demotion.
+ *
+ * Measured on the live rev-6 candidate: with a verbatim token demanded of every
+ * citing unit, every top case specific reached 100% of its case's citing units —
+ * "three puffy rolls" 9/9 (ch01), "Silence Dogood" 8/8, "Art of Virtue" 8/8 (ch02),
+ * "forty shillings" 8/8 (ch03), "Lord Loudoun" 10/10 and "Heads of Complaint" 9/9
+ * (ch04). Nine to twelve specifics per chapter sat above half their case's units.
+ *
+ * The numbers: the BLOCKER is Phase A's own rotation rule ("no single specific
+ * carries more than half of a case's citing units"), so >50% blocks. The stated
+ * TARGET in the writer contract is 40% — inside the blocker, so a writer aiming at
+ * the contract has room to miss. The ADVISORY at >30% is the early warning that a
+ * chapter is drifting toward one token per case, which is the shape readers named.
+ * A case cited by fewer than MIN units is exempt: at three units one unavoidable use
+ * is already 33%, so the cap would fire on nothing wrong.
+ */
+const CASE_SPECIFIC_SHARE_BLOCK = 0.5;
+const CASE_SPECIFIC_SHARE_ADVISE = 0.3;
+const CASE_SPECIFIC_SHARE_MIN_UNITS = 4;
+/** At most this many rotation findings per chapter; the rest are counted in the
+ *  message so a saturated chapter does not bury every other blocker. */
+const CASE_SPECIFIC_SHARE_MAX_FINDINGS = 6;
+
+/**
+ * SEC133 — the RECALL BEAT (R-061). A recall verb followed, inside this window, by a
+ * cited case's own hard specific: "Then she read how the old Library Company got its
+ * start, forty shillings from each member to join…" (live rev-6 ch03 ex01). The
+ * two-specific example quota manufactured this move — the scene had to carry two of
+ * the case's proper nouns while the book's scars forbade the source figure appearing
+ * in it, so the invented actor was made to READ the source instead of living a
+ * moment of their own. With SEC33 at one pooled specific the writer no longer needs
+ * it, and the shape is refused.
+ */
+/**
+ * SEC130 / SEC131 — TIER RESTATEMENT AND NOVELTY (R-066, R-072).
+ *
+ * A longer tier is supposed to ADD. Nothing measured whether it did: the gate
+ * collected the three tiers into the cross-chapter comparison and then skipped every
+ * same-chapter pair, and the char floors set a MASS target that restatement is the
+ * cheapest way to hit.
+ *
+ * SEC130 measures SENTENCE-LEVEL near-duplication between the adjacent tiers. A
+ * sentence of the deeper tier is a TWIN of one in the shallower tier when their
+ * content-lemma Jaccard reaches 0.6 or they share an 8-word run. Both halves matter:
+ * "The governors who work for that family must block any bill…" against "The
+ * governors who work for the Penn family must block any bill…" (live rev-6 ch04) is
+ * a reworded twin no verbatim n-gram check would catch, while a long sentence with a
+ * quoted clause in common can share an 8-gram at a Jaccard the lemma set dilutes.
+ *
+ * THRESHOLDS — measured on the live rev-6 candidate, twinned share of the deeper
+ * tier: deepRead-vs-fastRead 3.3 / 0.0 / 8.3 / 12.1%, fullRead-vs-deepRead 12.5 /
+ * 9.8 / 14.3 / 31.4% for ch01-ch04. ch04's fullRead is the pair Phase A and the blind
+ * panel both named. 25% blocks it with an 11-point gap to the next-highest pair;
+ * 15% advises in the band between.
+ *
+ * SEC131 pairs each char floor with a NOVELTY floor: the share of the deeper tier's
+ * content lemmas that the shallower tier does not already contain. Measured on the
+ * same four chapters: deepRead 60.8-81.4%, fullRead 39.9-68.7%. The floors (50% and
+ * 35%) sit BELOW the observed minimum on purpose — SEC131 is not there to re-decide
+ * what SEC130 decides, it is the floor that stops a tier from reaching its character
+ * count on recycled vocabulary while dodging sentence-level twinning.
+ */
+/** Bloom's levels the catalog rubric counts as transfer on the label alone
+ *  (rubricMetrics APPLY). Mirrored here for the SEC125 label/stem advisory. */
+const APPLY_BLOOMS_LEVELS = new Set(["apply", "analyze", "analyse", "evaluate", "create"]);
+
+/**
+ * SEC134 — QUALIFIER PARITY (R-283, advisory).
+ *
+ * Measured over all 36 questions of the live rev-6 candidate: 14 keys (39%) carry an
+ * "only"/"not" boundary qualifier against 7 of 72 distractors (10%); per chapter the
+ * key:distractor rate ratio is 4.0x, 5.0x, (one key only) and 2.7x. The book's own
+ * scar file forbids exactly this ("never systematically the longest or most-qualified
+ * option; distractors match the key in register") and the shipped book violated it.
+ * Length parity is already enforced (SEC53); SHAPE parity was measured by nothing.
+ *
+ * Advisory, not a blocker: a boundary question legitimately keys on "only if", and no
+ * writer contract has steered this yet — the contract line lands in the same change,
+ * so the counter reports while the steering takes effect. The MIN_KEYS floor keeps a
+ * single qualified key out of the ratio, where one key against zero distractors is
+ * an infinite ratio and no signature at all.
+ */
+const QUALIFIER_PARITY_RE = /\b(?:only|not|unless|except)\b/i;
+const QUALIFIER_PARITY_RATIO = 2;
+const QUALIFIER_PARITY_MIN_KEYS = 3;
+
+/**
+ * SEC132 — OPENER SIGNATURES INSIDE ONE CHAPTER (R-073).
+ *
+ * The only card comparison was SEC81, which is cross-CHAPTER and word-set based at
+ * 0.75; the highest intra-chapter card-back similarity in the rev-6 book is 0.42, so
+ * it could not fire on any of it. Meanwhile 15 of that book's 28 backs open on an
+ * announcement scaffold and its first-three-word signatures repeat across chapters.
+ * Three identical openers inside one chapter now block, per family.
+ *
+ * Card BACKS are signed by their announcement SHAPE rather than their literal words,
+ * because that is how the defect presents: "The contrast is", "The boundary is",
+ * "The trigger was" are three different literals and one move. Measured per rev-6
+ * chapter, backs opening that way: 3, 3, 2, 4 of seven. The regex requires lowercase
+ * words after "The", so a back opening on a concrete noun ("The Union Fire Company
+ * only exists because…", "The 1736 company was funded by fines") is not a scaffold
+ * and is not signed as one.
+ */
+const CARD_BACK_SCAFFOLD_RE = /^\s*The\s+([a-z]+(?:\s+[a-z]+){0,2})\s+(?:is|was|are|were)\b/;
+const OPENER_SIGNATURE_WORDS = 3;
+const OPENER_SIGNATURE_MIN_REPEATS = 3;
+
+const TIER_TWIN_JACCARD = 0.6;
+const TIER_TWIN_SHARED_RUN_WORDS = 8;
+const TIER_TWIN_BLOCK_SHARE = 0.25;
+const TIER_TWIN_ADVISE_SHARE = 0.15;
+const TIER_NOVELTY_FLOOR: Readonly<Record<"deepRead" | "fullRead", number>> = { deepRead: 0.5, fullRead: 0.35 };
+/** Below this many sentences the share is too coarse to judge (one twin in two
+ *  sentences is 50% and says nothing), so SEC130 stands down. */
+const TIER_TWIN_MIN_SENTENCES = 4;
+
+const SOURCE_RECALL_VERB_RE = /\b(?:read|reads|reading|remember|remembers|remembered|recall|recalls|recalled|knew|learned|heard)\b/gi;
+const SOURCE_RECALL_WINDOW_WORDS = 14;
 
 function factWhyOverlap(whyItMatters: string, fact: SourcePacketV1["facts"][number]): string[] {
   const whyTerms = sourceAlignmentKeywords(whyItMatters);
@@ -2276,6 +2427,237 @@ function packetSubjectTokens(packet: SourcePacketV1): ReadonlySet<string> {
   return tokens;
 }
 
+/** The recall beat, or null. Returns the offending "<verb> … <specific>" span so the
+ *  retry card can quote the sentence it has to rewrite. Scans the SCENE fields only
+ *  (scenario + whatToDo): whyItMatters is the analytical field and is allowed to name
+ *  the case outright. */
+function exampleRecallBeat(sceneText: string, specifics: readonly string[]): string | null {
+  const words = normalizeDerivabilityText(sceneText).split(" ").filter(Boolean);
+  const normalizedSpecifics = specifics
+    .map((specific) => normalizeDerivabilityText(text(specific)))
+    .filter((specific) => specific.length >= 3);
+  if (normalizedSpecifics.length === 0) return null;
+  SOURCE_RECALL_VERB_RE.lastIndex = 0;
+  for (const match of normalizeDerivabilityText(sceneText).matchAll(SOURCE_RECALL_VERB_RE)) {
+    const before = normalizeDerivabilityText(sceneText).slice(0, match.index).split(" ").filter(Boolean).length;
+    const window = words.slice(before, before + SOURCE_RECALL_WINDOW_WORDS + 1).join(" ");
+    for (const specific of normalizedSpecifics) {
+      if (window.includes(specific) || clippedPhraseDerivable(specific, window)) return window;
+    }
+  }
+  return null;
+}
+
+/** Word runs of length n, lower-cased and punctuation-stripped. */
+function wordRuns(value: string, n: number): Set<string> {
+  const words = value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim().split(" ").filter(Boolean);
+  const runs = new Set<string>();
+  for (let i = 0; i + n <= words.length; i += 1) runs.add(words.slice(i, i + n).join(" "));
+  return runs;
+}
+
+function lemmaJaccard(a: Set<string>, b: Set<string>): number {
+  if (a.size === 0 || b.size === 0) return 0;
+  let shared = 0;
+  for (const lemma of a) if (b.has(lemma)) shared += 1;
+  return shared / (a.size + b.size - shared);
+}
+
+/** SEC130 + SEC131 over one chapter's three tiers. Exported so the assembler-side
+ *  and the reporting CLI can measure the same thing the gate blocks on. */
+export function tierRestatementFindings(pack: SummaryPackV1, chapterNumber: number): SectionFinding[] {
+  const findings: SectionFinding[] = [];
+  const pairs = [["fastRead", "deepRead"], ["deepRead", "fullRead"]] as const;
+  for (const [shallow, deeper] of pairs) {
+    const shallowText = text(pack.breakdown?.[shallow]);
+    const deeperText = text(pack.breakdown?.[deeper]);
+    if (shallowText.length === 0 || deeperText.length === 0) continue;
+    const shallowSentences = splitSentences(shallowText);
+    const deeperSentences = splitSentences(deeperText);
+    if (deeperSentences.length >= TIER_TWIN_MIN_SENTENCES && shallowSentences.length > 0) {
+      const shallowLemmas = shallowSentences.map((sentence) => contentLemmaSet(sentence));
+      const shallowRuns = shallowSentences.map((sentence) => wordRuns(sentence, TIER_TWIN_SHARED_RUN_WORDS));
+      const twins: string[] = [];
+      for (const sentence of deeperSentences) {
+        const lemmas = contentLemmaSet(sentence);
+        const runs = wordRuns(sentence, TIER_TWIN_SHARED_RUN_WORDS);
+        const twinned = shallowLemmas.some((other, index) => lemmaJaccard(lemmas, other) >= TIER_TWIN_JACCARD
+          || [...runs].some((run) => shallowRuns[index].has(run)));
+        if (twinned) twins.push(sentence);
+      }
+      const share = twins.length / deeperSentences.length;
+      if (share > TIER_TWIN_ADVISE_SHARE) {
+        findings.push({
+          checkId: "SEC130.tier_restatement",
+          severity: share > TIER_TWIN_BLOCK_SHARE ? "blocker" : "advisory",
+          chapterNumber,
+          section: "summary-pack",
+          path: `/breakdown/${deeper}`,
+          message: `${twins.length}/${deeperSentences.length} ${deeper} sentences (${Math.round(share * 100)}%, cap ${Math.round(TIER_TWIN_BLOCK_SHARE * 100)}%) restate a ${shallow} sentence, e.g. "${twins[0]}";`
+            + ` a longer tier ADDS — give ${deeper} the antecedents, the second-order consequence and the limits ${shallow} left out, in its own sentences`,
+        });
+      }
+    }
+    const shallowLemmaSet = contentLemmaSet(shallowText);
+    const deeperLemmaSet = contentLemmaSet(deeperText);
+    if (deeperLemmaSet.size >= 20) {
+      let fresh = 0;
+      for (const lemma of deeperLemmaSet) if (!shallowLemmaSet.has(lemma)) fresh += 1;
+      const ratio = fresh / deeperLemmaSet.size;
+      const floor = TIER_NOVELTY_FLOOR[deeper];
+      if (ratio < floor) {
+        findings.push({
+          checkId: "SEC131.tier_novelty",
+          severity: "blocker",
+          chapterNumber,
+          section: "summary-pack",
+          path: `/breakdown/${deeper}`,
+          message: `${deeper} introduces only ${fresh}/${deeperLemmaSet.size} content words (${Math.round(ratio * 100)}%) that ${shallow} does not already carry; the floor is ${Math.round(floor * 100)}%`
+            + ` — meet the length with new material (antecedents, consequence, limits, nuance), not by restating ${shallow} in other words`,
+        });
+      }
+    }
+  }
+  return findings;
+}
+
+/** The first OPENER_SIGNATURE_WORDS words, lower-cased and punctuation-stripped. */
+function openerSignature(value: string): string {
+  const words = text(value).toLowerCase().match(/[a-z0-9']+/g) ?? [];
+  return words.slice(0, OPENER_SIGNATURE_WORDS).join(" ");
+}
+
+/** A card back's signature: its announcement SHAPE when it opens on one, else its
+ *  literal opener. See CARD_BACK_SCAFFOLD_RE. */
+function cardBackSignature(value: string): string {
+  const scaffold = CARD_BACK_SCAFFOLD_RE.exec(text(value));
+  return scaffold ? "the <shape> is/was" : openerSignature(value);
+}
+
+/** SEC132: three units of one family opening the same way, inside one chapter. */
+function chapterOpenerSignatureFindings(pack: LearningPackV1, chapterNumber: number): SectionFinding[] {
+  const families: { label: string; path: string; entries: { signature: string; index: number }[] }[] = [
+    {
+      label: "quiz stem",
+      path: "/quiz/questions",
+      entries: (pack.quiz?.questions ?? []).map((q, index) => ({ signature: openerSignature(text(q.prompt)), index })),
+    },
+    {
+      label: "card front",
+      path: "/cards/cards",
+      entries: (pack.cards?.cards ?? []).map((card, index) => ({ signature: openerSignature(text(card.front)), index })),
+    },
+    {
+      label: "card back",
+      path: "/cards/cards",
+      entries: (pack.cards?.cards ?? []).map((card, index) => ({ signature: cardBackSignature(text(card.back)), index })),
+    },
+  ];
+  const findings: SectionFinding[] = [];
+  for (const family of families) {
+    const groups = new Map<string, number[]>();
+    for (const entry of family.entries) {
+      if (entry.signature.split(" ").filter(Boolean).length < OPENER_SIGNATURE_WORDS && entry.signature !== "the <shape> is/was") continue;
+      groups.set(entry.signature, [...(groups.get(entry.signature) ?? []), entry.index]);
+    }
+    for (const [signature, indexes] of groups) {
+      if (indexes.length < OPENER_SIGNATURE_MIN_REPEATS) continue;
+      findings.push({
+        checkId: "SEC132.chapter_opener_signature",
+        severity: "blocker",
+        chapterNumber,
+        section: "learning-pack",
+        path: `${family.path}/${indexes[0]}`,
+        message: `${indexes.length} ${family.label}s in this chapter open the same way ("${signature}"): ${indexes.map((index) => index + 1).join(", ")};`
+          + (signature === "the <shape> is/was"
+            ? " open a back on the concrete thing itself and let the angle show, rather than announcing it"
+            : " give each one its own first move"),
+      });
+    }
+  }
+  return findings;
+}
+
+/** SEC134: the boundary qualifier concentrated in the keys. */
+function quizQualifierParityFindings(pack: LearningPackV1, chapterNumber: number): SectionFinding[] {
+  const questions = (pack.quiz?.questions ?? []).filter((q) => Array.isArray(q.choices) && q.choices.length === 3
+    && Number.isInteger(q.correctIndex) && q.correctIndex >= 0 && q.correctIndex <= 2);
+  if (questions.length === 0) return [];
+  let keysWith = 0;
+  let distractors = 0;
+  let distractorsWith = 0;
+  for (const q of questions) {
+    if (QUALIFIER_PARITY_RE.test(text(q.choices[q.correctIndex]))) keysWith += 1;
+    for (const [index, choice] of q.choices.entries()) {
+      if (index === q.correctIndex) continue;
+      distractors += 1;
+      if (QUALIFIER_PARITY_RE.test(text(choice))) distractorsWith += 1;
+    }
+  }
+  if (keysWith < QUALIFIER_PARITY_MIN_KEYS) return [];
+  const keyRate = keysWith / questions.length;
+  const distractorRate = distractors === 0 ? 0 : distractorsWith / distractors;
+  if (keyRate <= distractorRate * QUALIFIER_PARITY_RATIO) return [];
+  return [{
+    checkId: "SEC134.quiz_qualifier_parity",
+    severity: "advisory",
+    chapterNumber,
+    section: "learning-pack",
+    path: "/quiz/questions",
+    message: `${keysWith}/${questions.length} keyed answers (${Math.round(keyRate * 100)}%) carry a boundary qualifier ("only", "not", "unless", "except") against ${distractorsWith}/${distractors} distractors (${Math.round(distractorRate * 100)}%);`
+      + " a reader can key on the hedged option without reading the mechanism — give at least one distractor per item a qualifier of the same shape",
+  }];
+}
+
+/** Every hardSpecific in the chapter's packet, deduped, longest first so a nested
+ *  specific ("shillings" inside "forty shillings") never masks the longer one. The
+ *  memorable-line checks measure a line against the WHOLE packet, not only the cases
+ *  its tier happens to cite: an identifier lifted from a neighbouring case is exactly
+ *  as much of an identifier. */
+export function allPacketHardSpecifics(packet: SourcePacketV1): string[] {
+  const out = new Set<string>();
+  for (const anchor of packet.allowedAnchors ?? []) {
+    for (const specific of anchor.hardSpecifics ?? []) {
+      const value = text(specific);
+      if (value.length >= 3) out.add(value);
+    }
+  }
+  return [...out].sort((a, b) => b.length - a.length);
+}
+
+/** The reader-facing passages a memorable line may not simply reproduce (R-281). */
+export function memorableForbiddenDuplicates(pack: SummaryPackV1 | ChapterProseSource): string[] {
+  const fields = chapterProseFields(pack);
+  return [fields.hook, fields.counterintuition, fields.keyTakeaway].filter((value) => value.length > 0);
+}
+
+/** How many of an anchor's hardSpecifics the supplied prose actually SHOWS. Uses the
+ *  same three foldings SEC120 applies on the prose side (exact inclusion, qualified
+ *  name, clipped phrase), so "this chapter taught the case" means the same thing at
+ *  every check that asks. `normalizedProse` must already be normalizeDerivabilityText'd. */
+function caseSpecificsOnPage(anchor: SourcePacketV1["allowedAnchors"][number], normalizedProse: string): number {
+  return countSpecificsInProse(anchor.hardSpecifics ?? [], normalizedProse);
+}
+
+/** The specifics-rich anchors a set of (ids, claimType) citations resolves to, deduped
+ *  by id and keeping only citations the anchor actually supports — the same
+ *  claim-type filter the per-unit check applied before it became chapter-level. */
+function citedRichAnchors(
+  citations: readonly { ids: unknown; claimType: SourceClaimType }[],
+  anchors: Map<string, SourcePacketV1["allowedAnchors"][number]>,
+): Map<string, SourcePacketV1["allowedAnchors"][number]> {
+  const out = new Map<string, SourcePacketV1["allowedAnchors"][number]>();
+  for (const citation of citations) {
+    for (const id of anchorArray(citation.ids)) {
+      const anchor = anchors.get(id);
+      if (!anchor?.supportsClaimTypes?.includes(citation.claimType)) continue;
+      if ((anchor.hardSpecifics ?? []).length < CHAPTER_CASE_MIN_SPECIFICS) continue;
+      out.set(id, anchor);
+    }
+  }
+  return out;
+}
+
 export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
@@ -2291,13 +2673,11 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   for (const p of validateAnchorIds(pack.hook?.sourceAnchorIds, allowed, "hook.sourceAnchorIds")) push("SEC5.hook_anchor", "blocker", p, "/hook/sourceAnchorIds");
   for (const p of validateAnchorResolution(pack.hook?.sourceAnchorIds, anchors, "hook.sourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/hook/sourceAnchorIds");
   for (const p of validateAnchorClaimType(pack.hook?.sourceAnchorIds, anchors, "hook", "hook.sourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/hook/sourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(pack.hook?.sourceAnchorIds, anchors, "hook", pack.hook?.hook, "hook")) push("SEC14.summary_anchor_specifics", "blocker", p, "/hook/hook");
   if (text(pack.hook?.counterintuition)) {
     const counterIds = anchorArray(pack.hook?.counterintuitionSourceAnchorIds).length ? pack.hook?.counterintuitionSourceAnchorIds : pack.hook?.sourceAnchorIds;
     for (const p of validateAnchorIds(counterIds, allowed, "hook.counterintuitionSourceAnchorIds")) push("SEC5.hook_anchor", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
     for (const p of validateAnchorResolution(counterIds, anchors, "hook.counterintuitionSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
     for (const p of validateAnchorClaimType(counterIds, anchors, "hook", "hook.counterintuitionSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
-    for (const p of validateAnchorHardSpecifics(counterIds, anchors, "hook", pack.hook?.counterintuition, "counterintuition")) push("SEC14.summary_anchor_specifics", "blocker", p, "/hook/counterintuition");
   }
   const subjectTokens = packetSubjectTokens(packet);
   const tiers = ["fastRead", "deepRead", "fullRead"] as const;
@@ -2317,8 +2697,9 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorIds(pack.breakdown?.sourceAnchorIds?.[tier], allowed, `breakdown.sourceAnchorIds.${tier}`)) push("SEC8.breakdown_anchor", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorResolution(pack.breakdown?.sourceAnchorIds?.[tier], anchors, `breakdown.sourceAnchorIds.${tier}`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
-    for (const p of validateAnchorHardSpecifics(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", value, `breakdown.${tier}`)) push("SEC14.summary_anchor_specifics", "blocker", p, `/breakdown/${tier}`);
   }
+  findings.push(...tierRestatementFindings(pack, ch));
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "summary-pack", packet, pack, prose: pack }));
   // ONE harvest shared with the assembler (optimizers/memorableLines.ts). The gate
   // used to build its own candidate list here; two copies of "which sentences are
   // candidates" was half of the write/ship memorable-line split.
@@ -2338,59 +2719,73 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     const perTier = tierEases.map(({ tier, ease }) => `${tier} ${ease.toFixed(1)}`).join(", ");
     push("SEC12.summary_readability", "blocker", `${f.message} Per-tier ease: ${perTier}; lift ${lowest.tier} first.`, "/breakdown");
   }
-  // Grounding-aware selection (Finding 21): SEC16 validates the top-3 harvested
-  // candidates, but harvest order was pure aphorism score — blind to grounding.
-  // A prettier UNgroundable sentence could outscore a lower-scoring one carrying
-  // a cited case's verbatim specifics, so SEC16 failed even though a groundable
-  // candidate existed, and the retry card could not beat the selector (the model
-  // does not control which sentences are picked). Prefer candidates that would
-  // SATISFY SEC16 — computed with THE SAME validateAnchorHardSpecifics call the
-  // gate runs below (memorable_line, min 2, OR-semantics) — then by score. This
-  // is selection policy, not gate weakening: SEC16/SEC17/clean-floor still enforce
-  // on the selected set, so when NO candidate is groundable the sort collapses to
-  // pure score and SEC16 blocks exactly as before. A vacuously-passing (specifics-
-  // poor) tier makes every candidate groundable, so the preference is a no-op there.
+  // ---- memorable lines, redesigned (package 1B; R-060/R-071/R-281) ---------
   //
-  // THE SELECTION ITSELF now lives in optimizers/memorableLines.ts and the ASSEMBLER
-  // calls it with this same predicate (assembleSections.ts). Before that, the gate
-  // ranked grounding-first here while the assembler ranked by pure score in its own
-  // copy, so SEC16 validated a top-3 the book never shipped: on the live Franklin
-  // ch03 compiler candidate SEC16 saw 3/3 groundable and passed with zero blockers
-  // while the shipped memorableLines carried an ungroundable line that ship-time
-  // SC11.2 blocked. One selection function is what makes "passes SEC16" and "passes
-  // SC11.2" statements about the same sentences.
-  const memorableGroundable = (candidate: { text: string; ids: unknown }): boolean =>
-    validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any").length === 0;
-  const selectedMemorable = selectMemorableCandidates(memorableCandidates, memorableGroundable);
+  // WAS: a selected line had to carry TWO of one cited case's hardSpecifics
+  // verbatim (SEC16, OR-semantics across the tier's cited cases), inside a <=14-word
+  // aphorism, and the selector ranked candidates by whether they could satisfy that.
+  // Two demands that pull against each other produce exactly one shape, and the live
+  // Franklin rev-6 book shipped it: 11 of its 12 memorable lines carry two or more
+  // source specifics ("Three puffy rolls and one Dutch dollar bought him a fresh
+  // start.", "Forty shillings joined you, ten shillings kept you in."). The twelfth,
+  // "A charter needs subscribers before it needs permission.", is the only one that
+  // states an idea — and it carries ZERO specifics, so the old rule is the rule that
+  // would have rejected it.
+  //
+  // NOW: a line is grounded when it is DERIVABLE from the tiers — true by
+  // construction, since the selector only harvests sentences out of them, and ship-
+  // time A11 re-checks it — AND carries AT MOST ONE specific. Selection ranks by
+  // principle density (share of words outside any specific) ahead of the aphorism
+  // score, and refuses to reproduce the hook/counterintuition/keyTakeaway or to spend
+  // two of the three lines on one specific (R-281).
+  //
+  // WHAT SEC16 STOPS BLOCKING: a principle-shaped line that names no case.
+  // WHAT SEC16 NOW CATCHES: the identifier pair.
+  // Unchanged: SEC15 (claim type), SEC17 (three harvestable candidates), SEC118 (the
+  // clean floor, now counted over the SELECTED set — R-071), ship-time A11.
+  //
+  // THE SELECTION ITSELF lives in optimizers/memorableLines.ts and the ASSEMBLER
+  // calls it with this same policy (assembleSections.ts), so the sentences SEC16
+  // validates are exactly the sentences that ship.
+  const packetSpecifics = allPacketHardSpecifics(packet);
+  const memorablePolicy = {
+    specificsIn: (candidate: MemorableCandidate) => specificsPresentIn(candidate.text, packetSpecifics),
+    forbiddenDuplicates: memorableForbiddenDuplicates(pack),
+  };
+  const selectedMemorable = selectMemorableCandidates(memorableCandidates, memorablePolicy);
   if (selectedMemorable.length < 3) {
     push("SEC17.summary_memorable_candidate_count", "blocker", `breakdown yields only ${selectedMemorable.length}/3 acceptable deterministic memorable-line candidates; seed standalone aphoristic sentences`, "/breakdown");
   }
-  // ---- rubric-parity clean-memorable floor (P03, F12) ----------------------
-  // score.py's ONLY deterministic cleanliness rule is <=14 words. The harvested
-  // candidates (memorableLineScore, 6 to 16 words) may include 15/16-word lines the
-  // rubric will not count; require at least SUMMARY_MIN_CLEAN_MEMORABLE_LINES that
-  // clear the <=14-word bar. Blocker; calibrated zero-FP (every >=85 breakdown
-  // yields 19+ clean candidates).
-  const cleanMemorableCount = (() => {
-    const seen = new Set<string>();
-    let clean = 0;
-    for (const candidate of memorableCandidates) {
-      const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      if (memorableLineClean(candidate.text)) clean += 1;
-    }
-    return clean;
-  })();
+  // ---- rubric-parity clean-memorable floor (P03, F12; scope fixed by R-071) --
+  // score.py's ONLY deterministic cleanliness rule is <=14 words, and it applies to
+  // the lines the PACKAGE CARRIES. The count used to run over the whole harvest pool,
+  // so a breakdown could satisfy it with candidates the selector never picked: the
+  // rev-6 book cleared this gate on every chapter while shipping 5 of 12 lines above
+  // 14 words. It now counts the SELECTED set — what the reader gets and what the
+  // rubric will score.
+  const cleanMemorableCount = selectedMemorable.filter((candidate) => memorableLineClean(candidate.text)).length;
   if (cleanMemorableCount < SUMMARY_MIN_CLEAN_MEMORABLE_LINES) {
-    push("SEC118.summary_memorable_lines", "blocker", `breakdown yields only ${cleanMemorableCount} clean (<=14-word) memorable-line candidate(s); at least ${SUMMARY_MIN_CLEAN_MEMORABLE_LINES} are required (rubric memorable-line cleanliness); seed shorter standalone aphorisms of 8-14 words`, "/breakdown");
+    push("SEC118.summary_memorable_lines", "blocker", `only ${cleanMemorableCount} of the ${selectedMemorable.length} memorable line(s) this breakdown ships are clean (<=14 words); at least ${SUMMARY_MIN_CLEAN_MEMORABLE_LINES} are required (rubric memorable-line cleanliness); seed shorter standalone aphorisms of 8-14 words`, "/breakdown");
+  }
+  // SEC135 — the two variety constraints, reported when the selector could not
+  // satisfy them from the candidates on offer (it prefers to, then fills the three
+  // slots rather than shipping two: a variety defect must not surface as a count
+  // failure, which would send the writer the wrong retry).
+  for (const problem of memorableLineProblems(selectedMemorable, { allSpecifics: packetSpecifics, forbiddenDuplicates: memorablePolicy.forbiddenDuplicates, proseHaystack: null })) {
+    if (!/share their primary specific|reproduces the hook/.test(problem)) continue;
+    push("SEC135.summary_memorable_variety", "blocker", problem, "/breakdown");
   }
   for (const candidate of selectedMemorable) {
     for (const p of validateAnchorClaimType(candidate.ids, anchors, "memorable_line", `selected memorable line in breakdown.${candidate.tier}`)) push("SEC15.summary_memorable_anchor_claim_type", "blocker", p, `/breakdown/${candidate.tier}`);
-    // OR across the tier's cited specifics-rich cases (Finding 20): the candidate
-    // inherits the WHOLE tier's sourceAnchorIds, so grounding ONE cited case in the
-    // aphorism suffices; AND-per-anchor here was structurally unsatisfiable.
-    for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any")) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
+    const carried = specificsPresentIn(candidate.text, packetSpecifics);
+    if (carried.length > MEMORABLE_LINE_MAX_SPECIFICS) {
+      push(
+        "SEC16.summary_memorable_anchor_specifics",
+        "blocker",
+        `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}" carries ${carried.length} source specifics (${carried.join(", ")}); a memorable line states the principle and carries at most ${MEMORABLE_LINE_MAX_SPECIFICS} concrete detail — the case itself is taught by the tiers (SEC14)`,
+        `/breakdown/${candidate.tier}`,
+      );
+    }
   }
   if (text(pack.keyTakeaway).length < 50) push("SEC9.takeaway_length", "blocker", "keyTakeaway too short", "/keyTakeaway");
   if (wordCount(pack.keyTakeaway) > 30) push("SEC18.takeaway_word_cap", "blocker", `keyTakeaway is ${wordCount(pack.keyTakeaway)} words (cap 30)`, "/keyTakeaway");
@@ -2398,21 +2793,58 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   for (const p of validateAnchorIds(pack.keyTakeawaySourceAnchorIds, allowed, "keyTakeawaySourceAnchorIds")) push("SEC10.takeaway_anchor", "blocker", p, "/keyTakeawaySourceAnchorIds");
   for (const p of validateAnchorResolution(pack.keyTakeawaySourceAnchorIds, anchors, "keyTakeawaySourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/keyTakeawaySourceAnchorIds");
   for (const p of validateAnchorClaimType(pack.keyTakeawaySourceAnchorIds, anchors, "takeaway", "keyTakeawaySourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/keyTakeawaySourceAnchorIds");
-  for (const p of validateAnchorHardSpecifics(pack.keyTakeawaySourceAnchorIds, anchors, "takeaway", pack.keyTakeaway, "keyTakeaway")) push("SEC14.summary_anchor_specifics", "blocker", p, "/keyTakeaway");
   if (text(pack.tryThisNow)) {
     for (const p of validateAnchorIds(pack.tryThisNowSourceAnchorIds, allowed, "tryThisNowSourceAnchorIds")) push("SEC10.try_anchor", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorResolution(pack.tryThisNowSourceAnchorIds, anchors, "tryThisNowSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorClaimType(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", "tryThisNowSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/tryThisNowSourceAnchorIds");
-    // min 1, the SAME bar SEC74 applies to the action pack's tryThisNow (:2910).
-    // It is the same field with the same claim type, and the assembler ships
-    // `action.tryThisNow || summary.tryThisNow`, so the action pack's copy is what a
-    // reader sees; holding the discarded copy to min 2 only spent retries.
-    for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow", 1)) push("SEC14.summary_anchor_specifics", "blocker", p, "/tryThisNow");
+  }
+  // ---- SEC14, redesigned (R-059): CHAPTER-LEVEL case grounding --------------
+  //
+  // WAS: every specifics-rich anchor a summary unit cited had to contribute two of
+  // its hardSpecifics VERBATIM TO THAT UNIT — the hook, each of the three tiers, the
+  // keyTakeaway and tryThisNow each paying separately for the same case. On the live
+  // rev-6 candidate ch01's deepRead cited four rich anchors (eight required tokens)
+  // and its fullRead five (ten), which is the mechanical source of "three puffy
+  // rolls" appearing on 11 ch01 surfaces. It never caught a wrong fact: every one of
+  // the eight factual distortions Phase A verified against the Gutenberg text sailed
+  // through a gate that only counts tokens.
+  //
+  // NOW: each cited case must be TAUGHT ONCE, anywhere across the reader-visible
+  // prose (hook + counterintuition + fastRead + deepRead + fullRead + keyTakeaway).
+  //
+  // WHAT IT STOPS BLOCKING: a chapter that narrates a case properly in one tier and
+  // then refers to it naturally everywhere else.
+  // WHAT IT STILL CATCHES: a chapter that cites a case its own prose never teaches —
+  // the condition that makes every downstream unit underivable. Measured on the
+  // rev-6 candidate this fires ZERO times on all four chapters, so the redesign
+  // costs that book nothing while retiring the quota that produced its repetition.
+  {
+    const normalizedProse = normalizeDerivabilityText(chapterProseText(pack));
+    const citations: { ids: unknown; claimType: SourceClaimType }[] = [
+      { ids: pack.hook?.sourceAnchorIds, claimType: "hook" },
+      { ids: anchorArray(pack.hook?.counterintuitionSourceAnchorIds).length ? pack.hook?.counterintuitionSourceAnchorIds : pack.hook?.sourceAnchorIds, claimType: "hook" },
+      { ids: pack.breakdown?.sourceAnchorIds?.fastRead, claimType: "breakdown_claim" },
+      { ids: pack.breakdown?.sourceAnchorIds?.deepRead, claimType: "breakdown_claim" },
+      { ids: pack.breakdown?.sourceAnchorIds?.fullRead, claimType: "breakdown_claim" },
+      { ids: pack.keyTakeawaySourceAnchorIds, claimType: "takeaway" },
+      { ids: pack.tryThisNowSourceAnchorIds, claimType: "implementation_guidance" },
+    ];
+    for (const [id, anchor] of citedRichAnchors(citations, anchors)) {
+      const present = caseSpecificsOnPage(anchor, normalizedProse);
+      if (present >= CHAPTER_CASE_MIN_SPECIFICS) continue;
+      push(
+        "SEC14.chapter_case_grounding",
+        "blocker",
+        `this chapter cites ${id} but its reader-visible prose carries only ${present}/${CHAPTER_CASE_MIN_SPECIFICS} of that case's hardSpecifics (${(anchor.hardSpecifics ?? []).slice(0, 4).join(", ")});`
+        + " teach the case once, anywhere across the hook, the three tiers or the keyTakeaway, or cite an anchor this chapter's prose actually covers",
+        "/breakdown",
+      );
+    }
   }
   return findings;
 }
 
-export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, chapterProse?: ChapterProseSource | null): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
@@ -2549,9 +2981,31 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
           const normalized = normalizeDerivabilityText(specific);
           return normalized.length >= 3 && clippedPhraseDerivable(normalized, normalizedCombined);
         }).length;
-        if (present < 2) {
-          push("SEC33.example_anchor_specifics", "blocker", `example ${i + 1} cites ${id} but uses ${present}/2 required hardSpecifics verbatim; build the scene from at least two concrete case details`, root);
+        // R-061/P15: ONE specific, pooled across scenario + whatToDo + whyItMatters.
+        // The >=2 quota read as a scenario obligation and collided with the
+        // invented-cast rule on a historical source: the writer's only legal move was
+        // to have the fictional actor READ or REMEMBER the case (Phase A: ch03 opens
+        // five of six scenarios that way), which SEC133 now refuses outright. One
+        // pooled detail keeps the scene answerable to the case without dictating that
+        // the scene BE the case.
+        if (present < EXAMPLE_MIN_CASE_SPECIFICS) {
+          push("SEC33.example_anchor_specifics", "blocker", `example ${i + 1} cites ${id} but uses ${present}/${EXAMPLE_MIN_CASE_SPECIFICS} required hardSpecifics verbatim across scenario/whatToDo/whyItMatters; build the scene from at least one concrete case detail`, root);
         }
+      }
+    }
+    // SEC133 (R-061): the recall beat. See the constant's note — this is the move the
+    // retired two-specific example quota manufactured on a historical source.
+    {
+      const citedSpecifics = exampleAnchorIds
+        .flatMap((id) => (typeof id === "string" ? anchors.get(id)?.hardSpecifics ?? [] : []));
+      const beat = exampleRecallBeat(`${text(ex.scenario)} ${text(ex.whatToDo)}`, citedSpecifics);
+      if (beat) {
+        push(
+          "SEC133.example_source_recall_beat",
+          "blocker",
+          `example ${i + 1} has its invented character READ or REMEMBER the source case ("${beat}"); the scene must live its own moment and use the case's detail directly, not recall the book`,
+          `${root}/scenario`,
+        );
       }
     }
     for (const id of [...(ex.sourceFactIds ?? []), ...(ex.namedCaseIds ?? [])]) if (!allowedFactOrCase.has(id)) push("SEC28.example_fact", "blocker", `example ${i + 1} cites unknown fact/case ${id}`, root);
@@ -2559,10 +3013,9 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
       const fact = facts.get(id);
       if (!fact) continue;
       const terms = factAlignmentTerms(fact);
-      if (terms.size < 8) continue;
+      if (terms.size < FACT_ALIGNMENT_MIN_POOL) continue;
       const overlap = factWhyOverlap(text(ex.whyItMatters), fact);
-      const minimum = terms.size >= 12 ? 3 : 2;
-      if (overlap.length < minimum) {
+      if (overlap.length < FACT_ALIGNMENT_MIN_OVERLAP) {
         push(
           "SEC39.example_why_fact_alignment",
           "blocker",
@@ -2578,6 +3031,7 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     }
   }
   findings.push(...exampleIntraPackNgramFindings(pack, ch));
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "example-pack", packet, pack, prose: chapterProse }));
   for (const [word, indexes] of titleSecondWords.entries()) {
     if (indexes.length >= Math.max(4, Math.ceil((pack.examples?.length ?? 0) * 0.66))) {
       push("SEC38.example_title_shape_reuse", "blocker", `${indexes.length} example titles share "${word}" as the second word; vary title grammar across the six examples`, "/examples");
@@ -2625,64 +3079,6 @@ const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
  * supplied (legacy callers, a summary pack not drafted yet) or when the supplied pack
  * has no drafted read tiers (a stub the reporting CLI happened to find on disk).
  */
-/** Qualified-name folding (Franklin pincer, round 2 of the class the number-word
- *  folding above fixed): source sidecars carry formal names ("Library Company of
- *  Philadelphia") while the readability ceilings push prose toward the natural
- *  short form ("the Library Company"), and SEC56/SEC58 force the formal specific
- *  verbatim into the unit. A reader who has seen BOTH the head name and the
- *  qualifier on this chapter's page can derive the qualified form, so a specific
- *  "X of/in/at Y" is derivable when the prose shows X and Y independently. Both
- *  halves must clear the same ≥3-char floor exact inclusion uses, and a missing
- *  half still blocks — "First Bank of England" stays underivable when the prose
- *  never says England. Applied ONLY on the prose side (SEC120), never to the
- *  unit-side must-include checks (SEC56/SEC58). Operates on normalized text. */
-const QUALIFIED_NAME_PREPOSITION_RE = /\s(?:of|in|at)\s/g;
-function qualifiedNameDerivable(normalized: string, haystack: string): boolean {
-  for (const match of normalized.matchAll(QUALIFIED_NAME_PREPOSITION_RE)) {
-    const head = normalized.slice(0, match.index).trim();
-    const tail = normalized.slice(match.index + match[0].length).trim();
-    if (head.length >= 3 && tail.length >= 3 && haystack.includes(head) && haystack.includes(tail)) return true;
-  }
-  return false;
-}
-
-/** Clipped-phrase folding (Franklin pincer, round 3 of this class): sidecar
- *  hardSpecifics are telegraphic research notes ("slipped under door",
- *  "compared to original") while the naturalize-into-sentences scar rule makes
- *  the prose write them out ("slipped his essays under the printing-house
- *  door"), and SEC58 forces the clipped form verbatim into the unit. A reader
- *  who saw every word of the clipped phrase, in order, within one local span
- *  can derive it — so a multi-word specific is derivable when its tokens appear
- *  in the haystack IN ORDER with at most SUBSEQUENCE_GAP_TOKENS interleaved
- *  words between consecutive tokens. The gap bound keeps the match inside
- *  roughly one sentence: "slipped" and "door" pages apart stay underivable.
- *  Prose-side (SEC120) only, like the two foldings above. */
-const SUBSEQUENCE_GAP_TOKENS = 8;
-function clippedPhraseDerivable(normalized: string, haystack: string): boolean {
-  const needle = normalized.split(/\s+/).filter((token) => token.length > 0);
-  if (needle.length < 2) return false;
-  const words = haystack.split(/\s+/);
-  // Try the in-order match anchored at every occurrence of the first token —
-  // an early island ("slipped" in an unrelated sentence) must not mask a real
-  // match later in the prose.
-  for (let start = 0; start < words.length; start += 1) {
-    if (words[start] !== needle[0]) continue;
-    let position = start + 1;
-    let matched = true;
-    for (let index = 1; index < needle.length; index += 1) {
-      const limit = Math.min(words.length, position + SUBSEQUENCE_GAP_TOKENS + 1);
-      let found = -1;
-      for (let cursor = position; cursor < limit; cursor += 1) {
-        if (words[cursor] === needle[index]) { found = cursor; break; }
-      }
-      if (found === -1) { matched = false; break; }
-      position = found + 1;
-    }
-    if (matched) return true;
-  }
-  return false;
-}
-
 export function learningProseDerivabilityFindings(
   pack: LearningPackV1,
   bp: ChapterBlueprintV1,
@@ -2820,9 +3216,16 @@ export function validateLearningPack(
     for (const p of validateAnchorClaimType(qSourceIds, anchors, "quiz_explanation", `quiz.questions[${i}].sourceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(keyEvidenceIds, anchors, "quiz_key_evidence", `quiz.questions[${i}].keyEvidenceAnchorIds`)) push("SEC55.quiz_anchor_claim_type", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
     // P15 (F14): quiz units require ≥1 verbatim specific (non-narrative — see validateAnchorHardSpecifics).
-    for (const p of validateAnchorHardSpecifics(qSourceIds, anchors, "quiz_prompt", q.prompt, `quiz.questions[${i}].prompt`, 1)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/prompt`);
-    for (const p of validateAnchorHardSpecifics(qSourceIds, anchors, "quiz_explanation", q.explanation, `quiz.questions[${i}].explanation`, 1)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/explanation`);
-    for (const p of validateAnchorHardSpecifics(keyEvidenceIds, anchors, "quiz_key_evidence", `${text(q.prompt)} ${correctChoice} ${text(q.explanation)}`, `quiz.questions[${i}].keyEvidence`, 1)) push("SEC56.quiz_anchor_specifics", "blocker", p, `/quiz/questions/${i}/keyEvidenceAnchorIds`);
+    // SEC56 RETIRED (R-059, package 1B). The prompt, the explanation and the
+    // key-evidence span each used to owe one of the cited case's hardSpecifics
+    // VERBATIM. That is what stapled the standalone case-identifier clause into a
+    // stem and then had the explanation disclaim it ("Surviving a near shipwreck off
+    // Falmouth … says nothing about credibility", live rev-6 ch04 q09), and it is
+    // half of why a single specific reached 100% of its case's citing units.
+    // A quiz unit now cites its case by NATURAL REFERENCE. Two checks keep it honest
+    // and neither moved: SEC120 (below) still blocks a unit that names anything the
+    // standalone tiers do not show, and SEC14/SEC128 require the case to be taught in
+    // that prose in the first place. SEC55 still pins the claim type.
     const citedNamedCases = new Set([...qSourceIds, ...anchorArray(keyEvidenceIds)].filter((id) => namedCases.has(id)));
     if (citedNamedCases.size > 0) {
       const haystack = normalizedWords(`${text(q.prompt)} ${correctChoice} ${text(q.explanation)}`).map(rootWord).join(" ");
@@ -2840,6 +3243,20 @@ export function validateLearningPack(
     }
     if (Array.isArray(q.choices) && q.choices.length === 3 && correctIndexOk) {
       const distractorLengths: number[] = [];
+      // R-068: the ABSOLUTE-trigger rule runs over ALL THREE choices. It used to skip
+      // the keyed one, and measured over the 36 questions of the live rev-6 candidate
+      // the absolutes landed in 3 keys and 0 of 72 distractors — the gate was aimed at
+      // the half of the item that did not have the defect. An absolute in the key is
+      // the stronger tell of the two: it tells a reader which option the writer was
+      // trying hardest to make true. The prose carve-out below is unchanged and now
+      // covers all three choices, so a chapter whose own prose argues in absolutes
+      // ("never arrived at the perfection") keeps its legal move everywhere.
+      for (const [choiceIndex, choice] of q.choices.entries()) {
+        const absoluteHitAll = STRAWMAN_DISTRACTOR_ABSOLUTE_RE.exec(text(choice));
+        if (absoluteHitAll && !proseAbsolutes.has(absoluteHitAll[1].toLowerCase())) {
+          push("SEC52.quiz_strawman_distractor", "blocker", `q${i + 1} choice ${choiceIndex} uses an absolute trigger ("${absoluteHitAll[1]}"); ${choiceIndex === q.correctIndex ? "a keyed answer that overstates is its own tell" : "wrong choices must stay plausible"}`, `/quiz/questions/${i}/choices/${choiceIndex}`);
+        }
+      }
       for (const [choiceIndex, choice] of q.choices.entries()) {
         if (choiceIndex === q.correctIndex) continue;
         const choiceText = text(choice);
@@ -2858,10 +3275,6 @@ export function validateLearningPack(
         // rather than fabricating a strawman. Gratuitous never/always claims
         // still block (compliant prose rarely uses them), and legacy callers
         // without prose keep the strict behavior.
-        const absoluteHit = STRAWMAN_DISTRACTOR_ABSOLUTE_RE.exec(choiceText);
-        if (absoluteHit && !proseAbsolutes.has(absoluteHit[1].toLowerCase())) {
-          push("SEC52.quiz_strawman_distractor", "blocker", `q${i + 1} distractor ${choiceIndex} uses an absolute trigger; wrong choices must stay plausible`, `/quiz/questions/${i}/choices/${choiceIndex}`);
-        }
         distractorLengths.push(wordCount(choiceText));
       }
       const avgDistractorWords = distractorLengths.reduce((sum, n) => sum + n, 0) / Math.max(1, distractorLengths.length);
@@ -2894,11 +3307,12 @@ export function validateLearningPack(
   // brings catalog tell down. See scratch/calibrate-pedagogy.ts.
   const qid = (q: unknown, i: number) => text((q as { questionId?: unknown })?.questionId) || `q${i + 1}`;
   const tellOffenders = qs.map((q, i) => ({ q, i })).filter(({ q }) => distractorTell(q as any).tell).map(({ q, i }) => qid(q, i));
-  if (tellOffenders.length > QUIZ_TELL_MAX_PER_CHAPTER) {
+  const tellRate = distractorTellRate(qs as any);
+  if (Number.isFinite(tellRate) && tellRate > QUIZ_TELL_MAX_RATE_PCT) {
     push(
       "SEC116.quiz_distractor_tell",
-      "advisory",
-      `${tellOffenders.length} questions key the uniquely-longest choice by character count (rubric distractor-tell, longest): ${tellOffenders.join(", ")}; give distractors equal scenario-specific substance so the keyed answer is not the longest`,
+      "blocker",
+      `${tellOffenders.length}/${qs.length} questions (${tellRate.toFixed(1)}%) key the uniquely-longest choice by character count; the rubric's budget is ${QUIZ_TELL_MAX_RATE_PCT}% (${tellOffenders.join(", ")}) — give the distractors equal scenario-specific substance so the keyed answer is not the longest`,
       "/quiz/questions",
     );
   }
@@ -2919,8 +3333,26 @@ export function validateLearningPack(
     );
   }
   if (qs.length > 0) {
-    const transferCount = qs.filter((q) => transferRatio([q as any]) === 100).length;
-    const bareRecall = qs.map((q, i) => ({ q, i })).filter(({ q }) => transferRatio([q as any]) !== 100).map(({ q, i }) => qid(q, i));
+    // R-069: measured on the STEM'S OWN CUE WORDS. `transferRatio` (score.py parity)
+    // also accepts an apply-level bloomsLevel, which is a metadata string the writer
+    // types; a floor a label can satisfy measures nothing about the question. The
+    // rubric metric itself is untouched — it is the catalog's ruler — and the
+    // SEC125 advisory below reports where the two now disagree.
+    const cued = (q: unknown): boolean => isTransferQuestion(text((q as { prompt?: unknown })?.prompt));
+    const transferCount = qs.filter((q) => cued(q)).length;
+    const bareRecall = qs.map((q, i) => ({ q, i })).filter(({ q }) => !cued(q)).map(({ q, i }) => qid(q, i));
+    const labelOnly = qs.map((q, i) => ({ q, i }))
+      .filter(({ q }) => !cued(q) && APPLY_BLOOMS_LEVELS.has(text((q as { bloomsLevel?: unknown }).bloomsLevel).toLowerCase()))
+      .map(({ q, i }) => qid(q, i));
+    if (labelOnly.length > 0) {
+      push(
+        "SEC125.quiz_metadata",
+        "advisory",
+        `${labelOnly.length} question(s) carry an apply-level bloomsLevel their stem does not earn — no scenario cue anywhere in the prompt: ${labelOnly.join(", ")};`
+        + " the catalog rubric counts that label as transfer, so the score reads higher than the reader's experience — write the scenario into the stem or lower the label",
+        "/quiz/questions",
+      );
+    }
     const floor = quizTransferFloor(qs.length);
     const target = quizTransferTarget(qs.length);
     if (transferCount < floor) {
@@ -2952,18 +3384,22 @@ export function validateLearningPack(
     for (const p of validateAnchorIds(cardIds, allowed, `cards[${i}].sourceAnchorIds`)) push("SEC51.card_anchor", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
     for (const p of validateAnchorResolution(cardIds, anchors, `cards[${i}].sourceAnchorIds`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
     for (const p of validateAnchorClaimType(cardIds, anchors, "review_card", `cards[${i}].sourceAnchorIds`)) push("SEC57.card_anchor_claim_type", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
-    // P15 (F14): cards are non-narrative units like quiz stems — min=1, matching the
-    // SEC55–SEC58 contract line in sectionTasks (a ≥2 card quota invites the same
-    // identifier-sentence stuffing on the back of every anchored card).
-    for (const p of validateAnchorHardSpecifics(cardIds, anchors, "review_card", `${text(card.front)} ${text(card.back)}`, `cards[${i}]`, 1)) push("SEC58.card_anchor_specifics", "blocker", p, `/cards/cards/${i}/sourceAnchorIds`);
+    // SEC58 RETIRED (R-059, package 1B) — same reasoning as SEC56 above. A card back
+    // that had to carry a proper noun to satisfy a quota is how 15 of the rev-6
+    // book's 28 backs came to open on an announcement scaffold. Grounding is now
+    // SEC120 (the back may not name what the page never showed) plus SEC14/SEC128
+    // (the page must teach the case), with SEC57 still pinning the claim type.
   }
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "learning-pack", packet, pack, prose: chapterProse }));
   findings.push(...repeatedQuestionNgramFindings(pack, ch));
+  findings.push(...chapterOpenerSignatureFindings(pack, ch));
+  findings.push(...quizQualifierParityFindings(pack, ch));
   findings.push(...quizPromptNgramReuseFindings(pack, ch, packet));
   findings.push(...learningProseDerivabilityFindings(pack, bp, packet, chapterProse));
   return findings;
 }
 
-export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, chapterProse?: ChapterProseSource | null): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
@@ -3009,6 +3445,7 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   for (const p of validateAnchorResolution(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", plan?.weeklyPractice, "implementationPlan.weeklyPractice", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/weeklyPractice");
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "action-pack", packet, pack, prose: chapterProse }));
   return findings;
 }
 
@@ -3024,10 +3461,14 @@ export function validateSectionPack(
 ): SectionFinding[] {
   const findings = (() => {
     switch (pack.artifactType) {
+      // Package 1B: every pack (not just the learning pack) is measured against THIS
+      // chapter's drafted prose — SEC128 needs it for the examples and the action
+      // plan too, and the compile order (summary -> example -> learning -> action)
+      // means it exists by the time each of them is gated.
       case "summary-pack": return validateSummaryPack(pack, bp, packet);
-      case "example-pack": return validateExamplePack(pack, bp, packet);
+      case "example-pack": return validateExamplePack(pack, bp, packet, chapterProse);
       case "learning-pack": return validateLearningPack(pack, bp, packet, chapterProse);
-      case "action-pack": return validateActionPack(pack, bp, packet);
+      case "action-pack": return validateActionPack(pack, bp, packet, chapterProse);
       default: return [{ checkId: "SEC99.unknown", severity: "blocker" as const, chapterNumber: bp.chapterNumber, message: `unknown section artifact ${(pack as any)?.artifactType}` }];
     }
   })();
@@ -3043,6 +3484,220 @@ export function validateSectionPack(
     ...sourceLabelLeakFindings(readerFields, packet),
     ...readerJammedProperNounFindings(readerFields),
   ];
+}
+
+// ---- chapter-scope grounding: SEC128 + SEC129 (package 1B, R-059) ----------
+
+/** One claim-bearing unit of a chapter, with the citations it declares. The set is
+ *  the same one the ship-side grounding critic walks (critics/sourceGrounding.ts),
+ *  so "the units citing this case" counts the same things at write time and at ship
+ *  time. */
+type ChapterCitingUnit = {
+  readonly section: SectionKind;
+  readonly path: string;
+  readonly label: string;
+  readonly text: string;
+  readonly citations: readonly { ids: unknown; claimType: SourceClaimType }[];
+};
+
+function chapterCitingUnits(packs: Partial<Record<SectionKind, SectionPackV1>>): ChapterCitingUnit[] {
+  const units: ChapterCitingUnit[] = [];
+  const summary = packs["summary-pack"];
+  if (summary?.artifactType === "summary-pack") {
+    const counterIds = anchorArray(summary.hook?.counterintuitionSourceAnchorIds).length
+      ? summary.hook?.counterintuitionSourceAnchorIds
+      : summary.hook?.sourceAnchorIds;
+    units.push({ section: "summary-pack", path: "/hook/hook", label: "hook", text: text(summary.hook?.hook), citations: [{ ids: summary.hook?.sourceAnchorIds, claimType: "hook" }] });
+    if (text(summary.hook?.counterintuition)) {
+      units.push({ section: "summary-pack", path: "/hook/counterintuition", label: "counterintuition", text: text(summary.hook?.counterintuition), citations: [{ ids: counterIds, claimType: "hook" }] });
+    }
+    for (const tier of ["fastRead", "deepRead", "fullRead"] as const) {
+      units.push({ section: "summary-pack", path: `/breakdown/${tier}`, label: tier, text: text(summary.breakdown?.[tier]), citations: [{ ids: summary.breakdown?.sourceAnchorIds?.[tier], claimType: "breakdown_claim" }] });
+    }
+    units.push({ section: "summary-pack", path: "/keyTakeaway", label: "keyTakeaway", text: text(summary.keyTakeaway), citations: [{ ids: summary.keyTakeawaySourceAnchorIds, claimType: "takeaway" }] });
+    if (text(summary.tryThisNow)) {
+      units.push({ section: "summary-pack", path: "/tryThisNow", label: "summary tryThisNow", text: text(summary.tryThisNow), citations: [{ ids: summary.tryThisNowSourceAnchorIds, claimType: "implementation_guidance" }] });
+    }
+  }
+  const examples = packs["example-pack"];
+  if (examples?.artifactType === "example-pack") {
+    for (const [i, ex] of (examples.examples ?? []).entries()) {
+      units.push({
+        section: "example-pack",
+        path: `/examples/${i}`,
+        label: `example ${i + 1}`,
+        text: `${text(ex.scenario)} ${text(ex.whatToDo)} ${text(ex.whyItMatters)}`,
+        citations: [{ ids: ex.sourceAnchorIds ?? ex.sourceAnchorId, claimType: "example" }],
+      });
+    }
+  }
+  const learning = packs["learning-pack"];
+  if (learning?.artifactType === "learning-pack") {
+    for (const [i, q] of (learning.quiz?.questions ?? []).entries()) {
+      const choices = Array.isArray(q.choices) ? q.choices.map((choice) => text(choice)).join(" ") : "";
+      units.push({
+        section: "learning-pack",
+        path: `/quiz/questions/${i}`,
+        label: `q${i + 1}`,
+        text: `${text(q.prompt)} ${choices} ${text(q.explanation)}`,
+        citations: [
+          { ids: q.sourceAnchorIds ?? (q as { sourceAnchorId?: unknown }).sourceAnchorId, claimType: "quiz_prompt" },
+          { ids: q.sourceAnchorIds ?? (q as { sourceAnchorId?: unknown }).sourceAnchorId, claimType: "quiz_explanation" },
+          { ids: q.keyEvidenceAnchorIds, claimType: "quiz_key_evidence" },
+        ],
+      });
+    }
+    for (const [i, card] of (learning.cards?.cards ?? []).entries()) {
+      units.push({
+        section: "learning-pack",
+        path: `/cards/cards/${i}`,
+        label: `card ${i + 1}`,
+        text: `${text(card.front)} ${text(card.back)}`,
+        citations: [{ ids: card.sourceAnchorIds ?? card.sourceAnchorId, claimType: "review_card" }],
+      });
+    }
+  }
+  const action = packs["action-pack"];
+  if (action?.artifactType === "action-pack") {
+    const plan = action.implementationPlan;
+    units.push({ section: "action-pack", path: "/tryThisNow", label: "tryThisNow", text: text(action.tryThisNow), citations: [{ ids: action.tryThisNowSourceAnchorIds, claimType: "implementation_guidance" }] });
+    if (plan) {
+      units.push({ section: "action-pack", path: "/implementationPlan/coreSkill", label: "coreSkill", text: text(plan.coreSkill), citations: [{ ids: (plan as { coreSkillSourceAnchorIds?: unknown }).coreSkillSourceAnchorIds, claimType: "implementation_guidance" }] });
+      for (const [i, step] of (plan.ifThenPlans ?? []).entries()) {
+        units.push({
+          section: "action-pack",
+          path: `/implementationPlan/ifThenPlans/${i}`,
+          label: `ifThen ${i + 1}`,
+          text: `${text(step.context)} ${text(step.plan)}`,
+          citations: [{ ids: step.sourceAnchorIds ?? step.sourceAnchorId, claimType: "implementation_guidance" }],
+        });
+      }
+      units.push({ section: "action-pack", path: "/implementationPlan/twentyFourHourChallenge", label: "24-hour challenge", text: text(plan.twentyFourHourChallenge), citations: [{ ids: (plan as { twentyFourHourChallengeSourceAnchorIds?: unknown }).twentyFourHourChallengeSourceAnchorIds, claimType: "implementation_guidance" }] });
+      units.push({ section: "action-pack", path: "/implementationPlan/weeklyPractice", label: "weekly practice", text: text(plan.weeklyPractice), citations: [{ ids: (plan as { weeklyPracticeSourceAnchorIds?: unknown }).weeklyPracticeSourceAnchorIds, claimType: "implementation_guidance" }] });
+    }
+  }
+  return units.filter((unit) => unit.text.trim().length > 0);
+}
+
+/** Does this unit's own text carry the specific? Same folding the unit-side checks
+ *  use: raw inclusion, or the clipped phrase written out naturally in order. */
+function unitCarriesSpecific(unitText: string, specific: string): boolean {
+  const raw = text(specific).toLowerCase();
+  if (raw.length === 0) return false;
+  if (unitText.toLowerCase().includes(raw)) return true;
+  const normalized = normalizeDerivabilityText(specific);
+  return normalized.length >= 3 && clippedPhraseDerivable(normalized, normalizeDerivabilityText(unitText));
+}
+
+/**
+ * The pack-scope half of the grounding redesign — SEC128 and SEC129 over the units
+ * of ONE pack, measured against the chapter's own reader-visible prose.
+ *
+ *  - SEC128 — a case this pack's units cite must be TAUGHT by that prose to the same
+ *    bar SEC14 applies to the cases the prose itself cites. Together they cover
+ *    "every case anchor cited anywhere in the chapter": SEC14 owns the summary
+ *    pack's own citations, SEC128 owns the quiz/cards/examples/action.
+ *  - SEC129 — the rotation cap (see CASE_SPECIFIC_SHARE_BLOCK).
+ *
+ * WHY PACK SCOPE AND NOT CHAPTER SCOPE. Both checks were built chapter-wide first
+ * — one pass over all four packs of a chapter — and that shape is unshippable here:
+ * the compiler gates each pack as it is drafted (compilerApplicationPort
+ * `sectionGateBlockers` -> validateSectionPack) and only re-runs the WHOLE-book gate
+ * at assembly, where a per-chapter blocker has no eviction policy and the port
+ * throws ASSEMBLY_BLOCK_NOT_EVICTABLE — "no cached section pack was evicted, so the
+ * next compile run will reuse identical cached packs and fail identically". A
+ * chapter-scope blocker would therefore have been a permanent wedge rather than a
+ * gate (reproduced on the v25 production-composition fixture before this was moved).
+ * Pack scope puts both checks in front of the writer that can still fix them, on the
+ * retry the port already runs. The cost is stated plainly: SEC129 measures a
+ * specific's share of the units of ONE pack, so a token spread thinly across all
+ * four packs is not counted. Every unit of the summary pack is one pack, so the
+ * tiers/hook/takeaway are still measured against each other.
+ *
+ * No-ops without the chapter's prose (a legacy caller, or a pack gated before the
+ * summary exists), exactly as SEC120 does.
+ */
+export function packGroundingFindings(input: {
+  chapterNumber: number;
+  section: SectionKind;
+  packet: SourcePacketV1;
+  pack: SectionPackV1;
+  /** The chapter's drafted summary pack. For the summary pack itself, pass it. */
+  prose: ChapterProseSource | null | undefined;
+}): SectionFinding[] {
+  if (!input.prose || !hasDraftedReadTiers(input.prose)) return [];
+  const anchors = sourceAnchorById(input.packet);
+  const units = chapterCitingUnits({ [input.section]: input.pack } as Partial<Record<SectionKind, SectionPackV1>>);
+  const findings: SectionFinding[] = [];
+  const normalizedProse = normalizeDerivabilityText(chapterProseText(input.prose));
+
+  // Which units cite which rich anchor (claim-type-valid citations only).
+  const citingUnits = new Map<string, ChapterCitingUnit[]>();
+  for (const unit of units) {
+    for (const id of citedRichAnchors(unit.citations, anchors).keys()) {
+      const list = citingUnits.get(id) ?? [];
+      if (!list.includes(unit)) list.push(unit);
+      citingUnits.set(id, list);
+    }
+  }
+
+  // ---- SEC128 (never on the summary pack: SEC14 owns its citations) --------
+  if (input.section !== "summary-pack") {
+    for (const [id, cited] of citingUnits) {
+      const anchor = anchors.get(id);
+      if (!anchor) continue;
+      const present = caseSpecificsOnPage(anchor, normalizedProse);
+      if (present >= CHAPTER_CASE_MIN_SPECIFICS) continue;
+      findings.push({
+        checkId: "SEC128.chapter_case_untaught",
+        severity: "blocker",
+        chapterNumber: input.chapterNumber,
+        section: input.section,
+        path: cited[0].path,
+        message: `${cited.map((unit) => unit.label).join(", ")} cite ${id} but this chapter's reader-visible prose carries only ${present}/${CHAPTER_CASE_MIN_SPECIFICS} of that case's hardSpecifics (${(anchor.hardSpecifics ?? []).slice(0, 4).join(", ")});`
+          + " a chapter may not test a case it never taught — teach it in the summary tiers or cite a case the prose covers",
+      });
+    }
+  }
+
+  // ---- SEC129 -------------------------------------------------------------
+  type ShareHit = { anchorId: string; specific: string; share: number; hits: ChapterCitingUnit[]; total: number };
+  const shares: ShareHit[] = [];
+  for (const [id, cited] of citingUnits) {
+    if (cited.length < CASE_SPECIFIC_SHARE_MIN_UNITS) continue;
+    const anchor = anchors.get(id);
+    for (const specific of anchor?.hardSpecifics ?? []) {
+      const hits = cited.filter((unit) => unitCarriesSpecific(unit.text, specific));
+      const share = hits.length / cited.length;
+      if (share > CASE_SPECIFIC_SHARE_ADVISE) shares.push({ anchorId: id, specific, share, hits, total: cited.length });
+    }
+  }
+  shares.sort((a, b) => b.share - a.share || a.anchorId.localeCompare(b.anchorId) || a.specific.localeCompare(b.specific));
+  let emitted = 0;
+  for (const hit of shares) {
+    if (emitted >= CASE_SPECIFIC_SHARE_MAX_FINDINGS) {
+      findings.push({
+        checkId: "SEC129.case_specific_rotation",
+        severity: "advisory",
+        chapterNumber: input.chapterNumber,
+        section: input.section,
+        message: `${shares.length - emitted} further case specific(s) exceed the ${Math.round(CASE_SPECIFIC_SHARE_ADVISE * 100)}% rotation advisory in this pack; rotate which detail each unit uses`,
+      });
+      break;
+    }
+    emitted += 1;
+    const blocking = hit.share > CASE_SPECIFIC_SHARE_BLOCK;
+    findings.push({
+      checkId: "SEC129.case_specific_rotation",
+      severity: blocking ? "blocker" : "advisory",
+      chapterNumber: input.chapterNumber,
+      section: input.section,
+      path: hit.hits[0].path,
+      message: `"${hit.specific}" (${hit.anchorId}) appears in ${hit.hits.length}/${hit.total} of the units citing that case (${Math.round(hit.share * 100)}%, cap ${Math.round(CASE_SPECIFIC_SHARE_BLOCK * 100)}%, target ${Math.round(CASE_SPECIFIC_SHARE_ADVISE * 100 + 10)}%): ${hit.hits.map((unit) => unit.label).slice(0, 8).join(", ")};`
+        + " rotate which of the case's details each unit uses, or refer to the case naturally without repeating the token",
+    });
+  }
+  return findings;
 }
 
 export type SectionGateOptions = {

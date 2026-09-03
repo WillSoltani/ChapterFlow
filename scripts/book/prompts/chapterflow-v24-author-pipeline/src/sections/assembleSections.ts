@@ -8,9 +8,14 @@ import {
   type AssembleInput,
   type AuthorV4ContentSelection,
 } from "../assembler.js";
-import { selectMemorableLinesDeterministic, type MemorableCandidate, type MemorableTier } from "../optimizers/memorableLines.js";
+import {
+  selectMemorableLinesDeterministic,
+  specificsPresentIn,
+  type MemorableSelectionPolicy,
+  type MemorableTier,
+} from "../optimizers/memorableLines.js";
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
-import { checkSectionGate, contentBlockers, validateAnchorHardSpecifics, type SectionFinding } from "./sectionGate.js";
+import { allPacketHardSpecifics, checkSectionGate, contentBlockers, memorableForbiddenDuplicates, type SectionFinding } from "./sectionGate.js";
 import { CHAPTERS_DIR, chapterFileName, normSlug } from "../lib/chapterPaths.js";
 import { writeFileAtomic } from "../lib/atomicWrite.js";
 import {
@@ -32,34 +37,28 @@ import type { SectionKind, SectionPackV1 } from "../artifacts/artifactTypes.js";
  * alignment.
  *
  * `chapter.memorableLines` is chosen HERE, after the section gate has already run.
- * The gate ranks its candidates grounding-first (sectionGate.ts, SEC16) and the
- * assembler used to rank by pure aphorism score, so the two picked different top-3
- * sets out of one candidate pool and the gate validated sentences the book never
- * shipped. Handing the selector the SAME cited-anchor list the gate read
- * (`summaryPack.breakdown.sourceAnchorIds[tier]`) and the SAME predicate it runs
- * (`validateAnchorHardSpecifics`, memorable_line, min 2, OR-semantics) makes the
- * shipped lines exactly the SEC16-validated lines.
+ * The gate and the assembler must therefore rank one candidate pool the same way, or
+ * a compile PASS says nothing about the shipped lines (it did not, once: the gate
+ * ranked grounding-first while the assembler ranked by pure score, and the live
+ * Franklin ch03 candidate passed SEC16 while shipping a line ship-time SC11.2
+ * blocked).
  *
- * This changes WHICH already-gate-legal sentences ship; it relaxes nothing. SEC16
- * still blocks the pack when no candidate is groundable, and ship-time SC11.2 is
- * untouched.
+ * Package 1B changes WHAT the shared policy is, on both sides at once: a line is
+ * grounded when it carries AT MOST ONE source specific, ranked by principle density
+ * ahead of the aphorism score, and it may neither reproduce the hook /
+ * counterintuition / keyTakeaway nor share its primary specific with another line.
  */
 function memorableGrounding(summary: SummaryPackV1, packet: SourcePacketV1): {
   anchorIdsForTier: (tier: MemorableTier) => unknown;
-  isGrounded: (candidate: MemorableCandidate) => boolean;
+  policy: MemorableSelectionPolicy;
 } {
-  const anchors = new Map((packet.allowedAnchors ?? []).map((anchor) => [anchor.id, anchor]));
+  const specifics = allPacketHardSpecifics(packet);
   return {
     anchorIdsForTier: (tier) => summary.breakdown?.sourceAnchorIds?.[tier],
-    isGrounded: (candidate) => validateAnchorHardSpecifics(
-      candidate.ids,
-      anchors,
-      "memorable_line",
-      candidate.text,
-      `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`,
-      2,
-      "any",
-    ).length === 0,
+    policy: {
+      specificsIn: (candidate) => specificsPresentIn(candidate.text, specifics),
+      forbiddenDuplicates: memorableForbiddenDuplicates(summary),
+    },
   };
 }
 

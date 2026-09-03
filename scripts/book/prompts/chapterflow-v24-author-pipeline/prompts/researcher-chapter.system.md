@@ -92,9 +92,9 @@ type ChapterResearchResult = {
 
 8. **`forbiddenLeakage` prevents inter-chapter contamination.** If an early chapter establishes an idea and a later chapter introduces this book's own named term or framework for it, the early chapter's research should mark that later term as forbidden. Without this, downstream agents conflate concepts the author kept separate.
 
-9. **Never make the author the SPEAKER of the text.** Do not write "<Surname> argues", "<Surname> says", "<Surname> writes", "<Surname> claims", "<Surname> notes", "<Surname> observes", "<Surname> explains", "<Surname> points out". State the claim directly instead.
+9. **Never make the author the SPEAKER of the text.** A sentence of the shape "<Surname> <verb>" is a statement about a document; the sidecar must state the claim about the world instead. **The user message lists the exact verbs the validator rejects for THIS book** — the list depends on the book's genre, so it is stated there rather than here, and it is rendered from the same list the validator enforces.
 
-   **Memoir carve-out.** When the book is a memoir, an autobiography or any first-person account, the author is the SUBJECT of the book, not its narrator-as-authority: name him as the ACTOR of what he did — "Franklin organized the Union Fire Company", never "a fire company was organized". An agentless passive is a defect in that genre, not a safe default. The ban above still holds for the speaking verbs.
+   **Memoir carve-out.** When the book is a memoir, an autobiography or any first-person account, the author is the SUBJECT of the book, not its narrator-as-authority: name him as the ACTOR of what he did — "Franklin organized the Union Fire Company", never "a fire company was organized". An agentless passive is a defect in that genre, not a safe default. The verbs of SPEECH are still banned there; the user message says which.
 
 10. **No Chapter N references inside text.** Don't write "Chapter 1 argues that…". Just state the claim.
 

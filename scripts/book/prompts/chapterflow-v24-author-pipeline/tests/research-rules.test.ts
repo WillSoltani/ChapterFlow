@@ -11,7 +11,15 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
-import { authorVerbRegexes, buildUserPrompt, type ChapterResearchInput } from "../src/agents/researcher-chapter.js";
+import {
+  AUTHOR_VERBS,
+  MEMOIR_AUTHOR_VERBS,
+  MEMOIR_EXEMPT_AUTHOR_VERBS,
+  authorVerbRegexes,
+  authorVerbsFor,
+  buildUserPrompt,
+  type ChapterResearchInput,
+} from "../src/agents/researcher-chapter.js";
 import { BIBLIOGRAPHY_GENRES, type BibliographyResult } from "../src/agents/researcher-bibliography.js";
 import { chapterMapContractLines } from "../src/source/chapterMap.js";
 import { MAX_BIBLIOGRAPHY_TEXT_CHARS } from "../src/source/sourceOutline.js";
@@ -92,7 +100,7 @@ test("R-050 (register claim REFUTED): SC6 never scanned hardSpecifics, so no exe
 
 test("R-053 REDESIGN: on a memoir the author-verb guard keeps the speaking verbs and drops the two worldly ones", () => {
   const hits = (text: string, genre?: BibliographyResult["genre"]) =>
-    authorVerbRegexes("Benjamin Franklin", genre).some((pattern) => {
+    authorVerbRegexes({ author: "Benjamin Franklin", genre }).some((pattern) => {
       pattern.lastIndex = 0;
       return pattern.test(text);
     });
@@ -111,6 +119,53 @@ test("R-053 REDESIGN: on a memoir the author-verb guard keeps the speaking verbs
   // Every other genre is byte-for-byte unchanged: both are still blocked.
   assert.equal(hits("Franklin opens a printing house on Market Street"), true);
   assert.equal(hits("Franklin introduces the lightning rod", "practical"), true);
+});
+
+// ── ROUND 3, minor: rule 9's prompt and its validator are ONE list ───────────
+//
+// The rewritten rule 9 named EIGHT speaking verbs, for every genre, while
+// AUTHOR_VERBS rejected ten on every non-memoir book: a sidecar writing "Clear
+// opens with a story" was rejected by a rule the prompt did not state, costing a
+// retry the model had no way to anticipate. The list now lives in one place and
+// the user message renders the genre's own slice of it.
+
+test("ROUND 3: the verbs rule 9 states are EXACTLY the verbs the validator rejects, per genre", () => {
+  // The memoir list is the full list minus the two carved-out verbs — derived,
+  // not typed twice.
+  assert.deepEqual([...MEMOIR_AUTHOR_VERBS], AUTHOR_VERBS.filter((v) => !(MEMOIR_EXEMPT_AUTHOR_VERBS as readonly string[]).includes(v)));
+  assert.deepEqual([...MEMOIR_EXEMPT_AUTHOR_VERBS], ["opens", "introduces"]);
+
+  for (const genre of [undefined, "memoir", "practical", "narrative-nonfiction"] as const) {
+    const bibliography = { ...baseInput().bibliography, author: "Benjamin Franklin", ...(genre ? { genre } : {}) };
+    const prompt = buildUserPrompt({ ...baseInput(), bibliography });
+    const enforced = authorVerbsFor(genre);
+
+    // Every enforced verb is STATED, and every stated verb is ENFORCED — the two
+    // directions together are what makes drift impossible.
+    for (const verb of enforced) {
+      assert.ok(prompt.includes(`"<Surname> ${verb}"`), `genre=${genre}: rule 9 must state the banned verb "${verb}"`);
+      assert.ok(
+        authorVerbRegexes(bibliography).some((re) => { re.lastIndex = 0; return re.test(`Franklin ${verb} something`); }),
+        `genre=${genre}: the validator must reject "Franklin ${verb}"`,
+      );
+    }
+    for (const verb of AUTHOR_VERBS) {
+      if (enforced.includes(verb)) continue;
+      assert.ok(!prompt.includes(`"<Surname> ${verb}"`), `genre=${genre}: rule 9 must NOT ban "${verb}" — the validator allows it here`);
+      assert.ok(
+        !authorVerbRegexes(bibliography).some((re) => { re.lastIndex = 0; return re.test(`Franklin ${verb} something`); }),
+        `genre=${genre}: the validator must allow "Franklin ${verb}" on a memoir`,
+      );
+    }
+  }
+
+  // On a memoir the prompt says so, and says what is allowed instead of a passive.
+  const memoirPrompt = buildUserPrompt({ ...baseInput(), bibliography: { ...baseInput().bibliography, genre: "memoir" } });
+  assert.match(memoirPrompt, /This book is a MEMOIR/);
+  assert.match(memoirPrompt, /an agentless passive .* is a defect/);
+  // The system prompt no longer keeps a second copy of the verb list.
+  assert.doesNotMatch(CHAPTER_PROMPT, /"<Surname> argues"/);
+  assert.match(CHAPTER_PROMPT, /The user message lists the exact verbs the validator rejects for THIS book/);
 });
 
 test("R-053: the prompt states the carve-out and names the defect it replaces", () => {

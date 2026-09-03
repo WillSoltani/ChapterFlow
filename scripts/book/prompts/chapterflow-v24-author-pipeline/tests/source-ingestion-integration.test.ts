@@ -20,7 +20,7 @@
 import assert from "node:assert/strict";
 import { createHash } from "crypto";
 import { spawnSync } from "node:child_process";
-import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "fs";
+import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { resolve } from "path";
 
@@ -32,9 +32,9 @@ import type { ChapterResearchInput, ChapterResearchResult } from "../src/agents/
 import { collectChapterResearchProblems } from "../src/agents/researcher-chapter.js";
 import { normalizeIngestedText } from "../src/source/sourceText.js";
 import { compatibilityRejectionReasons, researchConfigHash, researchInputHash, readResearchRunManifest, RESEARCH_RUN_CODE_VERSION, RESEARCH_RUN_CONFIG_VERSION } from "../src/lib/researchRunManifest.js";
-import { buildSourceTextVerifyRecord } from "../src/source/sourceTextVerify.js";
+import { buildSourceTextVerifyRecord, loadFrozenSource } from "../src/source/sourceTextVerify.js";
 import { checkSourceVerifyRecord, verifiableItems } from "../src/critics/sourceVerify.js";
-import { decideSourceRealityPolicy } from "../src/qc/sourceRealityPolicy.js";
+import { decideSourceRealityPolicy, deriveSourceVerifyRecordText, evaluateSourceRealityPolicy, hasSourceTextSidecars } from "../src/qc/sourceRealityPolicy.js";
 import { resolveChapterMap, chapterSpanText, type ChapterMapV1 } from "../src/source/chapterMap.js";
 import { OUTLINE_OFFSET_LIST_HEADER } from "../src/source/sourceOutline.js";
 import { intentCommandId } from "../src/app/researchCandidateApplicationPort.js";
@@ -758,5 +758,190 @@ test("R-277: every research entry point passes the book's fact pins, so a pin ed
   assert.equal(sites.length, 3, `expected the three known researchBook call sites, found ${sites.length}`);
   for (const site of sites) {
     assert.match(site.call, /factPins/, `${site.rel}: a researchBook call that passes no factPins cannot re-research when a pin is edited`);
+  }
+});
+
+// ── ROUND 3, major finding 2 — the DISK-READING half of the gate ─────────────
+//
+// R-047/R-048's switch is only as real as the three functions that read ARTIFACTS:
+// `hasSourceTextSidecars` (does this book's run declare source-text provenance?),
+// `loadFrozenSource` (are the bytes and the map still bound to each other?) and
+// `deriveSourceVerifyRecordText` (the record no operator will ever fill by hand).
+// Review round 2 found all three untested: every R-047 test called
+// `decideSourceRealityPolicy` with hand-supplied booleans, so a wrong artifact
+// path, a wrong runs root or a broken sourceProvenance round-trip would have left
+// the switch inert on every real book with the suite still green.
+//
+// These run over a REAL research run on disk — the same `runOnce` the E2E above
+// uses — in the three states the gate has to tell apart: present, absent, and a
+// frozen text that no longer matches the digest its map was resolved against.
+
+/** The canonical chapter index `expectedSourceChapters` reads, for this fixture book. */
+function writeSliceCanonicalIndex(stateRoot: string): void {
+  mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+  writeFileSync(
+    resolve(stateRoot, "indexes", "zz-franklin-slice.json"),
+    `${JSON.stringify([
+      { chapterId: "zz-franklin-slice-ch01", chapterNumber: 1, chapterTitle: "Ancestry" },
+      { chapterId: "zz-franklin-slice-ch02", chapterNumber: 2, chapterTitle: "Early Youth" },
+    ], null, 2)}\n`,
+    "utf8",
+  );
+}
+
+test("R-047/R-048 (round 3): the gate READS THE ARTIFACTS — provenance, frozen bytes and a derived record, from a real run dir", async () => {
+  if (TEXT.length === 0) throw new Error(`${FRANKLIN_SLICE_PATH} is missing`);
+  const root = tempRoot();
+  const runsRoot = resolve(root, "runs");
+  const stateRoot = resolve(root, "state");
+  try {
+    const { result } = await runOnce({ runsRoot, stateRoot, sourceTextPath: FRANKLIN_SLICE_PATH });
+    writeSliceCanonicalIndex(stateRoot);
+    const roots = { stateRoot, runsRoot };
+
+    // (a) PROVENANCE, read off the sidecars this run actually wrote. This is the
+    //     `applies` half of R-047: it is TRUE only because the sidecar files on
+    //     disk carry sourceProvenance:"source-text".
+    assert.equal(hasSourceTextSidecars("zz-franklin-slice", roots), true);
+
+    // (b) THE FROZEN BYTES, found through the run manifest and bound to their map.
+    const frozen = loadFrozenSource(runsRoot, "zz-franklin-slice");
+    assert.ok(frozen, "loadFrozenSource must find the run's frozen text and chapter map");
+    assert.equal(frozen!.text, TEXT);
+    assert.equal(frozen!.sha256, result.sourceText!.sha256);
+    assert.equal(frozen!.chapterMap.spans.length, 2);
+    assert.equal(frozen!.chapterMap.sourceTextSha256, frozen!.sha256);
+
+    // (c) THE DERIVED RECORD — every item VERIFIED, each with a resolvable ref.
+    const derivedText = deriveSourceVerifyRecordText("zz-franklin-slice", roots);
+    assert.ok(derivedText, "a source-text run must derive a record with no operator");
+    const derived = JSON.parse(derivedText!);
+    assert.equal(derived.schemaVersion, "source-verify-record-v1");
+    assert.equal(derived.bookId, "zz-franklin-slice");
+    assert.deepEqual(derived.chapters.map((c: any) => c.chapterNumber), [1, 2]);
+    const items = derived.chapters.flatMap((c: any) => c.items);
+    assert.ok(items.length > 0, "the derived record must carry items");
+    for (const item of items) {
+      assert.equal(item.verdict, "VERIFIED", `item ${item.id} is ${item.verdict}: ${item.note}`);
+      assert.match(item.sourceRef, new RegExp(`^source-text:${frozen!.sha256.slice(0, 12)}#\\d+-\\d+$`));
+    }
+    // The record covers exactly the items the sidecars declare, so SV1 coverage
+    // is satisfied by construction rather than by an operator's diligence.
+    const expected = result.chapters.flatMap((chapter) => verifiableItems(chapter));
+    assert.deepEqual(checkSourceVerifyRecord(expected, derived), []);
+
+    // (d) THE WHOLE GATE, over the same directories: no operator record anywhere,
+    //     and the book is verified rather than waved through OR blocked.
+    const recordPath = resolve(root, "no-such-record.json");
+    const decision = evaluateSourceRealityPolicy({ bookId: "zz-franklin-slice", roots: { ...roots, recordPath }, env: {} });
+    assert.equal(decision.decision, "required-and-verified");
+    assert.equal(decision.blocking, false);
+    assert.equal(decision.classification, "new-source-v2");
+
+    // (e) WHAT R-048 STOPS BLOCKING — the demotion this package owes a test
+    //     (round 3, minor). Under the operator opt-in, this book previously
+    //     returned `missing` + blocking:true, because no human had filled sixty
+    //     checkboxes. It now returns `required-and-verified` + blocking:false,
+    //     from a byte-level check of the book's own words. The "before" is
+    //     machine-checked here rather than described: the same inputs with no
+    //     record text are still the old answer.
+    const required = evaluateSourceRealityPolicy({
+      bookId: "zz-franklin-slice",
+      roots: { ...roots, recordPath },
+      env: { CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1" },
+    });
+    assert.equal(required.decision, "required-and-verified", "the derived record must satisfy the operator opt-in");
+    assert.equal(required.blocking, false);
+
+    const beforeR048 = decideSourceRealityPolicy({
+      bookId: "zz-franklin-slice",
+      expectedItems: result.chapters.flatMap((chapter) => verifiableItems(chapter)),
+      hasSourceV2Sidecars: true,
+      hasSourceTextSidecars: true,
+      recordText: null,
+      exemptionText: null,
+      exemptionError: null,
+      contentIdentity: { canonicalIndexHash: undefined },
+      requireEnv: true,
+      now: new Date(),
+    });
+    assert.equal(beforeR048.decision, "missing", "pre-R-048 (no record) must still be the blocking answer");
+    assert.equal(beforeR048.blocking, true);
+    assert.ok(beforeR048.findings.some((f) => f.checkId === "SR.record_missing"));
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("R-047/R-048 (round 3): a CORRUPT frozen bundle derives nothing and fails closed — it never verifies itself", async () => {
+  if (TEXT.length === 0) throw new Error(`${FRANKLIN_SLICE_PATH} is missing`);
+  const root = tempRoot();
+  const runsRoot = resolve(root, "runs");
+  const stateRoot = resolve(root, "state");
+  try {
+    const { result } = await runOnce({ runsRoot, stateRoot, sourceTextPath: FRANKLIN_SLICE_PATH });
+    writeSliceCanonicalIndex(stateRoot);
+    const roots = { stateRoot, runsRoot };
+    const recordPath = resolve(root, "no-such-record.json");
+
+    // The map is bound to the bytes it was resolved against. Editing the frozen
+    // text after the fact is exactly the case where a derived record would be a
+    // lie: the offsets in it would point into different bytes.
+    const frozenPath = resolve(result.bundlePath, SOURCE_TEXT_REL_PATH);
+    writeFileSync(frozenPath, `${readFileSync(frozenPath, "utf8")}\nA sentence no chapter map ever saw.\n`, "utf8");
+
+    assert.equal(loadFrozenSource(runsRoot, "zz-franklin-slice"), null, "a text that no longer hashes to its map must not load");
+    assert.equal(deriveSourceVerifyRecordText("zz-franklin-slice", roots), null, "no record may be derived from a corrupt bundle");
+
+    // Provenance is unchanged — the sidecars still say source-text — so the gate
+    // still APPLIES, and with no record to stand in it fails closed under the
+    // operator opt-in instead of silently passing.
+    assert.equal(hasSourceTextSidecars("zz-franklin-slice", roots), true);
+    const required = evaluateSourceRealityPolicy({
+      bookId: "zz-franklin-slice",
+      roots: { ...roots, recordPath },
+      env: { CHAPTERFLOW_REQUIRE_SOURCE_VERIFY: "1" },
+    });
+    assert.equal(required.decision, "missing");
+    assert.equal(required.blocking, true);
+    assert.ok(required.findings.some((f) => f.checkId === "SR.record_missing"));
+
+    // A truncated chapter-map.json is the other corrupt shape: unparseable JSON
+    // must also return null rather than throw out of the gate.
+    const mapPath = resolve(result.bundlePath, CHAPTER_MAP_REL_PATH);
+    writeFileSync(mapPath, "{ not json", "utf8");
+    assert.equal(loadFrozenSource(runsRoot, "zz-franklin-slice"), null);
+    assert.equal(deriveSourceVerifyRecordText("zz-franklin-slice", roots), null);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
+  }
+});
+
+test("R-047/R-048 (round 3): a MODEL-MEMORY run reads as not-source-text — no provenance, no frozen bytes, no derived record", async () => {
+  if (TEXT.length === 0) throw new Error(`${FRANKLIN_SLICE_PATH} is missing`);
+  const root = tempRoot();
+  const runsRoot = resolve(root, "runs");
+  const stateRoot = resolve(root, "state");
+  try {
+    await runOnce({ runsRoot, stateRoot });
+    writeSliceCanonicalIndex(stateRoot);
+    const roots = { stateRoot, runsRoot };
+
+    assert.equal(hasSourceTextSidecars("zz-franklin-slice", roots), false, "a model-memory run must not read as source-text");
+    assert.equal(loadFrozenSource(runsRoot, "zz-franklin-slice"), null, "a model-memory run freezes no text");
+    assert.equal(deriveSourceVerifyRecordText("zz-franklin-slice", roots), null);
+
+    // R-047's other half: the book still has source-v2 sidecars, so it is still
+    // classified new-source-v2 — verification simply does not APPLY, which is the
+    // byte-for-byte pre-R-047 behaviour for a book researched without the text.
+    const decision = evaluateSourceRealityPolicy({
+      bookId: "zz-franklin-slice",
+      roots: { ...roots, recordPath: resolve(root, "no-such-record.json") },
+      env: {},
+    });
+    assert.equal(decision.decision, "not-applicable");
+    assert.equal(decision.blocking, false);
+  } finally {
+    rmSync(root, { recursive: true, force: true });
   }
 });

@@ -2,11 +2,11 @@
  * Pedagogy thresholds (P03, F12) — the rubric-parity section-gate budgets.
  *
  * Pins the three checks added to sectionGate.ts against score.py-parity metrics:
- *   - SEC116.quiz_distractor_tell  (learning-pack, ADVISORY/shadow): fires when
- *     more than QUIZ_TELL_MAX_PER_CHAPTER questions key the uniquely-longest
- *     choice by character count. Advisory because the published catalog already
- *     ships at 53-84% tell (see scratch/calibrate-pedagogy.ts) so it cannot be a
- *     zero-FP blocker.
+ *   - SEC116.quiz_distractor_tell  (learning-pack, BLOCKER since package 1B):
+ *     fires when MORE THAN QUIZ_TELL_MAX_RATE_PCT (20%) of a chapter's questions
+ *     key the uniquely-longest choice by character count — the rubric's own §3
+ *     goal, which the previous per-chapter count of 2 sat above by its own
+ *     admission while shipping advisory-only.
  *   - SEC121.quiz_length_tell_majority (learning-pack, BLOCKER): fires when a
  *     strict MAJORITY of questions carry the tell — the blind panel prices
  *     catalog-level tell below the chapter bar (rounds 5-6 flagged 5/9 and
@@ -27,7 +27,7 @@ import { test } from "./harness.js";
 import { validateLearningPack, validateSummaryPack, type SectionFinding } from "../src/sections/sectionGate.js";
 import type { ChapterBlueprintV1, LearningPackV1, SourcePacketV1, SummaryPackV1 } from "../src/artifacts/artifactTypes.js";
 import {
-  QUIZ_TELL_MAX_PER_CHAPTER,
+  QUIZ_TELL_MAX_RATE_PCT,
   quizTransferFloor,
   quizTransferTarget,
   SUMMARY_MIN_CLEAN_MEMORABLE_LINES,
@@ -95,28 +95,36 @@ function byCheck(findings: SectionFinding[], id: string): SectionFinding[] {
   return findings.filter((f) => f.checkId === id);
 }
 
-// ---- distractor tell (SEC116, advisory) -----------------------------------
+// ---- distractor tell (SEC116, blocker at the rubric's rate) ---------------
+//
+// R-070 (package 1B): the budget was "at most 2 questions per chapter", ADVISORY,
+// with this file's own comment conceding that 2/9 = 22% sits ABOVE the rubric goal
+// it cites. It is now the rubric's number — above 20% of a chapter's questions —
+// and it blocks. See pedagogyThresholds.QUIZ_TELL_MAX_RATE_PCT for the rev-6
+// measurements behind the change. SEC121 (majority) is unchanged.
 
-test("a longest-key quiz trips the distractor-tell advisory when tells exceed the budget", () => {
-  // all transfer (isolate tell); QUIZ_TELL_MAX_PER_CHAPTER + 1 tells
-  const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i <= QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
+test("a longest-key quiz blocks when the tell rate passes the rubric budget", () => {
+  // all transfer (isolate tell); 2/9 = 22.2%, the live rev-6 rate.
+  const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i < 2, transfer: true }));
   const tell = byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell");
-  assert.equal(tell.length, 1, "tell advisory should fire");
-  assert.equal(tell[0].severity, "advisory", "tell is shadow — never a blocker (catalog ships 53-84% tell)");
+  assert.equal(tell.length, 1, "tell budget should fire");
+  assert.equal(tell[0].severity, "blocker", "the rubric budget the file cites is enforced, not shadowed");
   assert.match(tell[0].message, /q01/, "message names the offending questionIds");
   assert.match(tell[0].message, /longest/, "message states the reason");
+  assert.match(tell[0].message, /22\.2%/, "message states the realized rate");
 });
 
-test("an evenly-built quiz (a distractor is longest) does not trip the tell advisory", () => {
+test("an evenly-built quiz (a distractor is longest) does not trip the tell budget", () => {
   const qs = Array.from({ length: 9 }, () => ({ tell: false, transfer: true }));
   assert.deepEqual(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell"), []);
 });
 
-test("tell budget boundary is exact: QUIZ_TELL_MAX passes, +1 fires", () => {
-  const atBudget = Array.from({ length: 9 }, (_, i) => ({ tell: i < QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
-  assert.deepEqual(byCheck(learningFindings(atBudget), "SEC116.quiz_distractor_tell"), [], `${QUIZ_TELL_MAX_PER_CHAPTER} tells is within budget`);
-  const overBudget = Array.from({ length: 9 }, (_, i) => ({ tell: i <= QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
-  assert.equal(byCheck(learningFindings(overBudget), "SEC116.quiz_distractor_tell").length, 1, `${QUIZ_TELL_MAX_PER_CHAPTER + 1} tells exceeds budget`);
+test("tell budget boundary is exact: at the rate passes, above it fires", () => {
+  assert.equal(QUIZ_TELL_MAX_RATE_PCT, 20);
+  const atBudget = Array.from({ length: 10 }, (_, i) => ({ tell: i < 2, transfer: true }));
+  assert.deepEqual(byCheck(learningFindings(atBudget), "SEC116.quiz_distractor_tell"), [], "2/10 = 20.0% is exactly at the budget");
+  const overBudget = Array.from({ length: 10 }, (_, i) => ({ tell: i < 3, transfer: true }));
+  assert.equal(byCheck(learningFindings(overBudget), "SEC116.quiz_distractor_tell").length, 1, "3/10 = 30% exceeds it");
 });
 
 // ---- length-tell majority (SEC121, blocker) --------------------------------
@@ -131,10 +139,10 @@ test("a majority of longest-key questions is a blocker, not an advisory (SEC121)
   assert.match(majority[0].message, /q01/, "message names the offending questionIds");
 });
 
-test("at exactly half the questions the majority blocker stays silent (SEC116 advisory still covers it)", () => {
+test("at exactly half the questions the majority blocker stays silent (SEC116's rate budget still covers it)", () => {
   const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i < 4, transfer: true }));
   assert.deepEqual(byCheck(learningFindings(qs), "SEC121.quiz_length_tell_majority"), [], "4/9 is not a majority");
-  assert.equal(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell").length, 1, "the shadow advisory still reports it");
+  assert.equal(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell").length, 1, "the rate budget still reports it");
 });
 
 // ---- transfer floor (SEC117, blocker/advisory) ----------------------------
@@ -204,7 +212,7 @@ test("a breakdown of only 16-word aphorisms trips the memorable-lines blocker (0
   const findings = memorableFindings(DIRTY_LINES.join(" "));
   assert.equal(findings.length, 1);
   assert.equal(findings[0].severity, "blocker");
-  assert.match(findings[0].message, /0 clean/);
+  assert.match(findings[0].message, /only 0 of the 3/);
 });
 
 test("a breakdown with >= the required clean lines passes the memorable-lines check", () => {
@@ -222,16 +230,18 @@ test("memorable-lines boundary is exact: floor passes, floor-1 fires", () => {
   assert.equal(belowFloor[0].severity, "blocker");
 });
 
-// ---- grounding-aware memorable-line selection (SEC16, Task 11q) ------------
+// ---- memorable-line selection and SEC16 (Task 11q, redesigned by package 1B) ----
 //
-// The selector harvests every memorable candidate across the three tiers, then
-// picks the top-3 to hand to SEC16 (the memorable-line grounding gate). Blind
-// score-only selection can pick a prettier UNgroundable aphorism over a lower-
-// scoring one that carries a cited case's verbatim specifics, so SEC16 fails
-// even though a groundable candidate existed. Task 11q makes selection prefer
-// SEC16-groundable candidates (using the SAME validateAnchorHardSpecifics call
-// the gate runs), then by score. The gate itself is unchanged: when NO candidate
-// is groundable, SEC16 still blocks exactly as before.
+// The selector harvests every memorable candidate across the three tiers, then picks
+// the top-3 SEC16 validates. Task 11q made both lanes share ONE selection function so
+// the validated set is the shipped set; package 1B changed the POLICY that function
+// applies. SEC16 used to demand TWO of one cited case's hardSpecifics inside the
+// aphorism — which is why every line on the live Franklin book is a token pair — and
+// now caps a line at ONE specific, ranking candidates by principle density. The pins
+// below are the same three properties, restated against the new rule:
+//   (a) with compliant candidates available the selector ships them and SEC16 passes;
+//   (b) when EVERY candidate stacks specifics, SEC16 still blocks — one per line;
+//   (c) a packet with nothing to measure leaves the ordering alone.
 
 const GROUNDING_CHECK = "SEC16.summary_memorable_anchor_specifics";
 
@@ -242,16 +252,6 @@ const CASTLE_ANCHOR = {
   label: "Magic Castle Hotel",
   text: "The Magic Castle Hotel gives guests free popsicles by the pool.",
   hardSpecifics: ["magic castle", "popsicles"],
-  supportsClaimTypes: ["memorable_line", "breakdown_claim"],
-};
-// A specifics-POOR anchor: only 1 hardSpecific (< the min of 2) → SEC16 is
-// vacuous on it, so grounding preference is a no-op (pure score ordering).
-const POOR_ANCHOR = {
-  id: "a-poor",
-  kind: "case",
-  label: "Popsicle Stand",
-  text: "The stand hands out popsicles.",
-  hardSpecifics: ["popsicles"],
   supportsClaimTypes: ["memorable_line", "breakdown_claim"],
 };
 
@@ -276,53 +276,42 @@ function groundingSummaryPack(fullRead: string, fullReadIds: string[]): SummaryP
   } as unknown as SummaryPackV1;
 }
 
-// High-scoring UNgroundable aphorisms (no "magic castle"/"popsicles" verbatim).
-const UNGROUNDABLE_TOP = "You notice the signal not before you act but only after."; // ~52
-const UNGROUNDABLE_2 = "You weigh the choice not in comfort but under real cost."; // ~48
-const UNGROUNDABLE_3 = "You decide the default before the moment not after you stall."; // ~44
-// Lower-scoring GROUNDABLE aphorisms: each carries both of a-castle's specifics.
-const GROUNDABLE_1 = "You call the magic castle desk for free popsicles before doubt."; // ~38
-const GROUNDABLE_2 = "You visit the magic castle and share popsicles when guests arrive."; // ~38
-const GROUNDABLE_3 = "You keep the magic castle warm with popsicles before anyone asks."; // ~38
+// Lines carrying BOTH of the case's specifics — the shape SEC16 now refuses.
+const STACKED_1 = "You call the magic castle desk for free popsicles before doubt.";
+const STACKED_2 = "You visit the magic castle and share popsicles when guests arrive.";
+const STACKED_3 = "You keep the magic castle warm with popsicles before anyone asks.";
+// Lines carrying at most one specific — the shape it now prefers.
+const COMPLIANT_1 = "You notice the signal not before you act but only after.";
+const COMPLIANT_2 = "You weigh the choice not in comfort but under real cost.";
+const COMPLIANT_3 = "You order popsicles before the guests think to ask for them.";
 
-test("selection prefers SEC16-groundable candidates over prettier ungroundable ones (Task 11q)", () => {
-  // One high-scoring ungroundable line + three lower-scoring groundable lines,
-  // all in a tier citing the specifics-rich a-castle. Blind score-only selection
-  // picks the ungroundable line into the top-3 and SEC16 fails; grounding-aware
-  // selection fills the top-3 with the three groundable lines and SEC16 passes.
-  const fullRead = [UNGROUNDABLE_TOP, GROUNDABLE_1, GROUNDABLE_2, GROUNDABLE_3].join(" ");
+test("selection prefers the low-specific lines over higher-scoring identifier pairs (Task 11q, package 1B)", () => {
+  const fullRead = [STACKED_1, COMPLIANT_1, COMPLIANT_2, COMPLIANT_3].join(" ");
   const findings = validateSummaryPack(groundingSummaryPack(fullRead, ["a-castle"]), blueprint(0), groundingPacket([CASTLE_ANCHOR]));
-  assert.deepEqual(byCheck(findings, GROUNDING_CHECK), [], "the three groundable lines fill the top-3; SEC16 passes");
-  // 4 candidates → 3 selected → the candidate-count gate stays silent.
+  assert.deepEqual(byCheck(findings, GROUNDING_CHECK), [], "the three compliant lines fill the top-3; SEC16 passes");
   assert.deepEqual(byCheck(findings, "SEC17.summary_memorable_candidate_count"), [], "3 candidates are still selected");
 });
 
-test("when NO candidate is groundable, SEC16 still blocks exactly as before (Task 11q pin a)", () => {
-  // Three ungroundable lines citing the specifics-rich a-castle: no groundable
-  // candidate exists, so grounding-aware sort collapses to pure score and SEC16
-  // fires on every selected line — the gate is not weakened.
-  const fullRead = [UNGROUNDABLE_TOP, UNGROUNDABLE_2, UNGROUNDABLE_3].join(" ");
+test("when EVERY candidate stacks two specifics, SEC16 blocks each shipped line (Task 11q pin a)", () => {
+  const fullRead = [STACKED_1, STACKED_2, STACKED_3].join(" ");
   const findings = byCheck(validateSummaryPack(groundingSummaryPack(fullRead, ["a-castle"]), blueprint(0), groundingPacket([CASTLE_ANCHOR])), GROUNDING_CHECK);
-  assert.equal(findings.length, 3, "all three selected lines are ungroundable → one SEC16 blocker each");
+  assert.equal(findings.length, 3, "all three selected lines are identifier pairs → one SEC16 blocker each");
   assert.ok(findings.every((f) => f.severity === "blocker"), "SEC16 stays a blocker");
+  assert.ok(findings.every((f) => /carries 2 source specifics/.test(f.message)), "and says what it measured");
 });
 
-test("SEC17 count and clean-floor are computed over all candidates, unaffected by grounding (Task 11q pin b)", () => {
-  // Only two candidates total → SEC17 reports 2/3 regardless of grounding order;
-  // both are clean (<=14 words) so the clean-memorable floor stays silent.
-  const fullRead = [GROUNDABLE_1, GROUNDABLE_2].join(" ");
+test("SEC17 counts the harvest pool while SEC118 counts what ships (Task 11q pin b)", () => {
+  const fullRead = [COMPLIANT_1, COMPLIANT_2].join(" ");
   const findings = validateSummaryPack(groundingSummaryPack(fullRead, ["a-castle"]), blueprint(0), groundingPacket([CASTLE_ANCHOR]));
   const count = byCheck(findings, "SEC17.summary_memorable_candidate_count");
   assert.equal(count.length, 1, "2 candidates trips the count gate");
   assert.match(count[0].message, /2\/3/, "count gate still reports the realized candidate count");
-  assert.deepEqual(byCheck(findings, "SEC118.summary_memorable_lines"), [], "2 clean candidates meets the clean floor");
+  assert.deepEqual(byCheck(findings, "SEC118.summary_memorable_lines"), [], "both shipped lines are clean, which meets the floor");
 });
 
-test("tiers citing only specifics-poor anchors keep pure score ordering (Task 11q pin c)", () => {
-  // Same ungroundable-only lines as pin (a), but cited against a specifics-poor
-  // anchor where SEC16 is vacuous. Grounding is uniformly true, so selection is
-  // pure score and SEC16 does NOT fire — the grounding preference is a no-op.
-  const fullRead = [UNGROUNDABLE_TOP, UNGROUNDABLE_2, UNGROUNDABLE_3].join(" ");
-  const findings = validateSummaryPack(groundingSummaryPack(fullRead, ["a-poor"]), blueprint(0), groundingPacket([POOR_ANCHOR]));
-  assert.deepEqual(byCheck(findings, GROUNDING_CHECK), [], "specifics-poor anchor → SEC16 vacuous → grounding sort is a no-op");
+test("a packet with no hard specifics leaves SEC16 silent (Task 11q pin c)", () => {
+  const bare = { ...CASTLE_ANCHOR, hardSpecifics: [] };
+  const fullRead = [STACKED_1, STACKED_2, STACKED_3].join(" ");
+  const findings = validateSummaryPack(groundingSummaryPack(fullRead, ["a-castle"]), blueprint(0), groundingPacket([bare]));
+  assert.deepEqual(byCheck(findings, GROUNDING_CHECK), [], "nothing to measure → nothing to say");
 });

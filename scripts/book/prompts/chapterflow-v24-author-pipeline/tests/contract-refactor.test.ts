@@ -9,10 +9,11 @@
  *     (TI) absent from a power-of-moments render.
  *  2. universal invariants present for all four kinds.
  *  3. the VOICE / LIVED-MOMENTS paragraph retained verbatim (exact snapshot).
- *  4. a token-count regression bound: every rendered task is <= 71% of the pinned
+ *  4. a token-count regression bound: every rendered task is <= 72% of the pinned
  *     pre-refactor length (the full-blueprint duplication was dropped; re-pinned
- *     60->62% for Task 11z's functional quiz-specifics preflight and 62->69% for
- *     the wave-0 contract-truth batch — deliberate, tested additions, not prose
+ *     60->62% for Task 11z's functional quiz-specifics preflight, 62->69% for
+ *     the wave-0 contract-truth batch and 69->72% for the grounding redesign plus
+ *     R-055's read-only chapter-context block — deliberate, tested additions, not prose
  *     creep; see the re-pin rationale at the test itself).
  *  5. class-B gate-restatement prose was actually deleted (only the ~8 design-around
  *     rules survive, each naming its validator).
@@ -231,24 +232,28 @@ test("universal invariants are present for all four kinds", () => {
   assert.match(render("action-pack"), /Output ActionPackV1 JSON only\./);
 });
 
-test("summary craft brief pre-states the SEC16 memorable-line hardSpecifics rule", () => {
+test("summary craft brief pre-states the SEC16 memorable-line rule the gate actually applies", () => {
   // Finding 16: the summary contract told the model memorable lines must be 8-14 words
-  // and portable, but never that SEC16 validates the top-3 selected lines against their
-  // tier's cited anchors — so a line citing a case with 0/2 of its hardSpecifics only
-  // surfaced via retry cards. The sibling anchor-specifics rules (SEC13/SEC14 :116,
-  // SEC33 :125, SEC73/SEC74 :146) all pre-state their "two hardSpecifics verbatim; the
-  // validator enforces this" contract; the memorable-line bullet must too.
+  // and portable, but never what SEC16 validates on the three lines that ship — so the
+  // rule reached the writer only through retry cards.
+  //
+  // Package 1B INVERTED that rule. It used to demand two of a cited case's
+  // hardSpecifics verbatim INSIDE the line, which is why every line on the live
+  // Franklin book is an identifier pair; a line now carries AT MOST ONE specific,
+  // must not reproduce the hook/counterintuition/keyTakeaway, and may not share its
+  // detail with another line. The contract must state THAT, or the writer is being
+  // told to produce exactly what the gate now refuses.
   const md = renderTask("money-book", "summary-pack");
-  // Names the enforcing check and its actual rule (two hardSpecifics verbatim IN THE LINE).
-  assert.match(md, /\(SEC16\)/, "summary craft brief must name the SEC16 memorable-line check");
-  assert.match(md, /at least two of them verbatim \(SEC16\)/, "SEC16 rule states the two-verbatim-hardSpecifics requirement");
+  assert.match(md, /\(SEC16\/SEC118\/SEC135\)/, "summary craft brief must name the memorable-line checks");
+  assert.match(md, /AT MOST ONE source specific/, "and state the cap the gate applies");
+  assert.doesNotMatch(md, /at least two of them verbatim/, "the retired two-verbatim demand must not survive in the prompt");
   // Sibling style: every design/craft rule that names a gate ends by naming the validator.
-  assert.match(md, /verbatim \(SEC16\)[\s\S]*?the validator enforces this/, "SEC16 memorable-line rule names the validator");
+  assert.match(md, /\(SEC16\/SEC118\/SEC135\)[\s\S]*?the validator enforces this/, "the memorable-line rule names the validator");
 
   // The rule is summary-pack-specific — SEC16 governs the summary breakdown's memorable
   // lines only, so it must not leak into the other three section contracts.
   for (const kind of ["example-pack", "learning-pack", "action-pack"] as const) {
-    assert.doesNotMatch(renderTask("money-book", kind), /\(SEC16\)/, `${kind}: SEC16 memorable-line rule is summary-only`);
+    assert.doesNotMatch(renderTask("money-book", kind), /SEC16\b/, `${kind}: SEC16 memorable-line rule is summary-only`);
   }
 });
 
@@ -289,13 +294,25 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
 // (70.0%, the binding card), action 30,451 -> 31,445. Nothing else in this
 // package touches the card. The pin is moved to 71%, one point above the
 // measurement, exactly as the 60->62 and 62->69 re-pins above did.
-test("every rendered task is <= 71% of its pinned pre-refactor length", () => {
+test("every rendered task is <= 72% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
     const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
-    assert.ok(md.length <= 0.71 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 71%`);
+  // MERGE RE-PIN (this package merged origin/main's package 1B, grounding redesign).
+  // 1B re-pinned 69% -> 70% for four rule changes the gates enforce and the writer was
+  // not being told: quiz provenance by natural reference (SEC55/SEC120 replacing the
+  // retired SEC56 token demand), the transfer floor measured on the stem rather than the
+  // bloomsLevel label (SEC117), qualifier-shape parity in the choices (SEC134), and the
+  // three-identical-openers refusal (SEC132). This package independently re-pinned
+  // 69% -> 71% for R-055's READ-ONLY CONTEXT block (+994 chars on EVERY card). Both
+  // additions are in the merged render, so the pin is re-measured on the merge rather
+  // than taken as the larger of the two. MEASURED on the merge, all four kinds:
+  // summary 33,813 = 69.9%, example 36,558 = 66.9%, learning 38,169 = 71.6% (binding),
+  // action 31,781 = 67.7%. Pin 72%, one point above the binding measurement, exactly as
+  // the 60->62, 62->69 and 69->70 re-pins above did.
+    assert.ok(md.length <= 0.72 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 72%`);
   }
 });
 
@@ -343,11 +360,12 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   // RE-PINNED 76% -> 82% by the same wave-0 contract-truth batch as the 62->69%
   // above, and for the same four additions: measured 43,564 chars = 81.7%. The
   // prose delta this test bounds (7,290) is unchanged by that batch.
-  // RE-PINNED AGAIN 82% -> 85% for R-055's READ-ONLY CONTEXT block: measured
-  // 44,582 = 83.6%, i.e. the same +994 the packet-only cards took. The DELTA
-  // assertion below — the thing this test is really for — is unchanged at 7,290,
-  // which is the proof that the growth is the context block and not prose creep.
-  assert.ok(withProse.length <= 0.85 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 85% (re-pin only with a stated rationale)`);
+  // MERGE RE-PIN. 1B took 82% -> 84% for its four additions; this package took
+  // 82% -> 85% for R-055's READ-ONLY CONTEXT block (+994). Re-measured on the merge:
+  // 45,459 = 85.3%, so the pin is 86%. The DELTA assertion below — the thing this test
+  // is really for — is unchanged at 7,290, which is the proof that the growth is the
+  // context block and 1B's contract lines, not prose creep.
+  assert.ok(withProse.length <= 0.86 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 86% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -380,7 +398,10 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   // clamp delta this test guards (8,977 against a CHAPTER_PROSE_CARD_BUDGET +
   // 1,200 allowance) is unchanged, which is the point — the card grew by the
   // context block, not by unbounded prose.
-  assert.ok(withProse.length <= 0.88 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 88%`);
+  // MERGE RE-PIN 88% -> 89%: origin/main's package 1B added its contract lines to the
+  // same card and the merged render measures 47,146 = 88.4%. The clamp delta is STILL
+  // 8,977 — unchanged by both packages, which is exactly what this test asserts below.
+  assert.ok(withProse.length <= 0.89 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 89%`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -455,6 +476,41 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // with prose, so the next prompt package almost certainly re-pins here — with the
 // same kind of measured rationale, not by rounding the number up.
 //
+// RE-PINNED by package 1B (grounding redesign), which is the "next prompt package"
+// the paragraph above predicted. Measured on this commit with the same loop below
+// (largest scar file + a real voice card, every chapter, all four kinds):
+//   worst packet-only card  53,390 chars  (ch03 learning-pack, the binding render)
+//   worst with-prose card   61,188 chars  (ch03 learning-pack + worst-case prose)
+// Rounded UP to the next 500 (53,500 / 61,500) with no extra headroom added this
+// time — the previous 500-char headroom is exactly what this package spent.
+//
+// WHAT THE PACKAGE ADDED, and why each line is prompt text rather than a gate note:
+// every one of them is a rule the gates now enforce and the writer was not told.
+//   summary  — teach each case ONCE in the prose, then rotate which detail each unit
+//              uses (SEC14/SEC129, replacing the retired per-unit token quota); the
+//              memorable-line rule inverted to a ONE-specific cap (SEC16/SEC118/
+//              SEC135); the tier-roles line gained its measurables (SEC130/SEC131).
+//   example  — one pooled specific instead of two, and the explicit ban on getting it
+//              in by having the character recall the source (SEC33/SEC133); whyItMatters
+//              explains the fact's mechanism (SEC39).
+//   learning — citation by natural reference (SEC55/SEC120), transfer measured on the
+//              stem (SEC117), absolutes symmetric and the tell budget as a rate
+//              (SEC52/SEC116), qualifier-shape parity (SEC134), opener variety (SEC132).
+// The summary and example cards stay far below the binding learning card; the
+// summary contract's memorable-line paragraph is SHORTER than the one it replaced.
+
+// MERGE RE-PIN — this package merged origin/main (package 1B, grounding redesign)
+// after both had independently re-pinned the same two budgets. 1B measured
+// 53,390 / 61,188 for its contract lines; this package measured 54,179 / 61,445 for
+// R-055's READ-ONLY CONTEXT block. Neither number bounds the merged render, so the
+// budgets below are RE-MEASURED on the merge with the same loop and the same
+// arithmetic (worst case rounded UP to the next 500, plus one further 500 of stated
+// headroom), not taken as the larger of the two. Worst kind per chapter ON THE MERGE:
+//   ch01 learning-pack 53,031   ch02 53,123   ch03 54,720 (binding)   ch04 52,968
+//   ch05-ch08 (no scoped rules) 52,025
+//   with worst-case prose: 60,321 / 60,413 / 62,010 (binding) / 60,258 / 59,315
+// 54,720 -> 55,000 -> 55,500 and 62,010 -> 62,500 -> 63,000.
+// The source-text budgets below are re-measured the same way in the same run.
 // RE-PINNED for wave-1 source-ingestion (R-055). The package adds one block to
 // the writer card — the chapter's focus, coreClaim, hardEdge and up to six
 // keyClaims. Worst kind per chapter, MEASURED on this commit:
@@ -470,8 +526,8 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // its own labelled READ-ONLY block, whose header prose costs +336 characters on
 // every card (53,843 -> 54,179). The budgets do not move: 54,179 still rounds to
 // 54,500 and 61,445 still rounds to 62,000.
-const HONEST_TASK_CHAR_BUDGET = 54_500;
-const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 62_000;
+const HONEST_TASK_CHAR_BUDGET = 55_500;
+const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
 
 /**
  * The SOURCE-TEXT budgets (review round 2, finding 2).
@@ -491,35 +547,35 @@ const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 62_000;
  * characters more on the binding card than the synthetic string it replaced
  * (85,690 -> 86,629) — the whole reason to measure this route on a real text.
  *
- * MEASURED on this commit, worst kind per chapter:
- *   ch01 learning-pack 84,940   ch02 85,032   ch03 86,629 (binding)   ch04 84,877
- *   ch05-ch08 83,934
- *   with worst-case prose: 92,230 / 92,322 / 93,919 (binding) / 92,167 / 91,224
- * Budgets = 86,629 -> 87,000 -> 87,500 and 93,919 -> 94,000 -> 94,500, the same
- * arithmetic as above.
+ * RE-MEASURED ON THE MERGE with origin/main (package 1B), worst kind per chapter:
+ *   ch01 learning-pack 85,481   ch02 85,573   ch03 87,170 (binding)   ch04 85,418
+ *   ch05-ch08 84,475
+ *   with worst-case prose: 92,771 / 92,863 / 94,460 (binding) / 92,708 / 91,765
+ * Budgets = 87,170 -> 87,500 -> 88,000 and 94,460 -> 94,500 -> 95,000, the same
+ * arithmetic as above. (Every card grew by exactly the 541 chars 1B's contract
+ * lines cost, so the source-text OVERHEAD below is unchanged to the character.)
  *
  * WHERE THAT 32,450 OVER THE MODEL-MEMORY CARD COMES FROM (measured by stripping
- * one field at a time from the same packet, binding ch03 card: 86,629 full,
- * 80,803 with no sourceQuote, 76,498 with no sourceQuote and no
- * hardSpecificEvidence, against the model-memory card's 54,179):
- *   +22,319  the packet is simply BIGGER — 18 facts and 6 cases instead of 9 and
+ * one field at a time from the same packet, binding ch03 card: 87,170 full,
+ * 81,743 with no sourceQuote, 77,975 with neither sourceQuote nor
+ * specificPropositions, against the model-memory card's 54,720):
+ *   +23,255  the packet is simply BIGGER — 18 facts and 6 cases instead of 9 and
  *            2. Nothing in this package renders those; a model-memory packet with
  *            18 facts costs the same, and always did. What R-058 changed is that
  *            an oversized unit now REQUIRES that many, so the big card went from
  *            possible to likely.
- *    +5,826  the sourceQuote on each of the 24 items, already bounded to
+ *    +5,427  the sourceQuote on each of the 24 items, already bounded to
  *            PROJECTED_SOURCE_QUOTE_CHARS (200) by boundSourceQuoteForCard — the
  *            same bound the whole-chapter projection applies.
- *    +4,305  R-056's specificPropositions, one per hardSpecific, each with the
- *            quote behind it.
+ *    +3,768  R-056's specificPropositions, one per hardSpecific.
  *
  * THE LIVE ROUTE IS CHEAPER, and is pinned separately below.
  * buildSectionTaskMarkdown is PURE_RETAINED in the legacy-route inventory: it
  * renders the RAW packet and no v25 route calls it. The card the v25 writer
  * actually receives is buildAuthorCard's, which renders the slim projection.
  */
-const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 87_500;
-const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 94_500;
+const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 88_000;
+const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
 
 /**
  * The LIVE v25 writer card had no length pin at all before this package; it gets

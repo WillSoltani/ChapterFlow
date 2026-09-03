@@ -90,7 +90,7 @@ function universalCore(kind: SectionKind): string[] {
         "Cite an allowed sourceAnchorId for the hook, each breakdown tier, keyTakeaway, and tryThisNow.",
         "keyTakeaway: 30 words or fewer.",
         "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Vary sentence length: plain verbs, no sentence over 30 words, and never a run of same-length short declaratives — E7.long_sentence and E8.monotone_cadence each raise a major at chapter assembly. Meet the length floors with concrete detail, not padding.",
-        "TIER ROLES — a longer tier ADDS, it never restates: fastRead gives the immediate move and why it matters now; deepRead explains the mechanism through this chapter's named cases, complete enough that a reader who stops there can answer the quiz; fullRead adds what deepRead left out, each in its own sentences: the antecedents, the second-order consequence, the hard edge or limit, and the nuance. The first sentence of each tier differs in wording and structure, and no fullRead sentence reuses a deepRead sentence.",
+        "TIER ROLES — a longer tier ADDS, it never restates: fastRead gives the immediate move and why it matters now; deepRead explains the mechanism through this chapter's named cases, complete enough that a reader who stops there can answer the quiz; fullRead adds what deepRead left out, each in its own sentences: the antecedents, the second-order consequence, the hard edge or limit, and the nuance. The first sentence of each tier differs in wording and structure, and no fullRead sentence reuses a deepRead sentence: restating more than a quarter of a tier's sentences, or adding almost no new content words, is refused (SEC130/SEC131).",
         "Teach the chapter, not the provenance discipline: no reader-facing source-grounding rules (\"at least 3 named cases\", \"concrete settings give memory a handle\", \"claims checkable\").",
         "Output SummaryPackV1 JSON only.",
       ];
@@ -101,14 +101,14 @@ function universalCore(kind: SectionKind): string[] {
         "Every example is a concrete human scene with a NAMED person living a defining moment. Use a different dealt name per slot; never use a source-figure name as an invented actor.",
         "Each example cites a namedExample/example anchor; source facts DRIVE the decision and never appear as props, labels, wall cards, desk objects, or title subjects.",
         "EVERY scenario shows a visible decision, tradeoff, mistake, friction, or recovery IN THE SCENE — a person choosing between two concrete options, catching an error, or paying a cost — not a smooth description of someone doing the right thing (SEC31); the validator enforces this per example.",
-        "whatToDo adds a new instruction/test/refusal rule not already narrated in the scenario. whyItMatters explains the same cited sourceFactIds and the decision shown.",
+        "whatToDo adds a new instruction/test/refusal rule not already narrated in the scenario. whyItMatters explains the cited fact's own MECHANISM and the decision shown — repeating the case's names and numbers is not an explanation, and the case is named at most once, never in the first clause (SEC39).",
         "Output ExamplePackV1 JSON only.",
       ];
     case "learning-pack":
       return [
         "UNIVERSAL — Write ONLY the quiz and review cards.",
         "Each question: questionId, prompt, exactly 3 choices, correctIndex (MUST match the blueprint slot), explanation, bloomsLevel (remember|understand|apply|analyze|evaluate|create), depthLevel (from the slot).",
-        "Provenance uses claim-type-matching anchors (quiz_prompt/quiz_explanation/quiz_key_evidence, review_card), including >=1 of a cited anchor's hardSpecifics verbatim when it has them (SEC55–SEC58); namedExample anchors qualify when listed.",
+        "Provenance uses claim-type-matching anchors (quiz_prompt/quiz_explanation/quiz_key_evidence, review_card); namedExample anchors qualify when listed. Cite the case BY NATURAL REFERENCE: no verbatim token is required of a stem, an explanation or a card, and nothing you name may be missing from the chapter's own fast/deep prose (SEC55/SEC120).",
         "Hedge words (usually, often, sometimes, generally, typically, tends to, may, might) appear in distractors no less than in the key — never signal the answer by hedging it.",
         "A review card must not retrieve a source-grounding requirement (\"at least 3 named cases\", \"claims checkable\") — those are provenance supports, not learning goals.",
         "Output LearningPackV1 JSON only.",
@@ -137,7 +137,7 @@ function gateAwareness(kind: SectionKind): string[] {
         "DESIGN AROUND THE GATES:",
         "AS10/AS11 compare fastRead, deepRead, and fullRead across the whole book: give every tier a chapter-specific skeleton — open from this chapter's core move, rotate its named cases and framework members, use unique transition verbs; never repeat the book's framework list as a stock sentence (SEC82/SEC83); the validator enforces this.",
         "No reusable five-word connective run repeated across tiers or chapters, and in fullRead every body paragraph after the opener carries a unique named case or hardSpecific (SEC82/SEC83); the validator enforces this.",
-        "Only cite a namedExample anchor in a tier that includes at least two of its hardSpecifics verbatim; prefer testable_fact/framework anchors otherwise (SEC13/SEC14); the validator enforces this.",
+        "TEACH EACH CASE ONCE: every case this chapter cites must show at least two of its hardSpecifics somewhere across the hook, the three tiers and the keyTakeaway — once per chapter, not once per unit. After that, name the case naturally; no single specific may appear in more than half the units that cite it, and 40% is the target (SEC14/SEC129); the validator enforces this.",
         "In a parallel batch, vary hook first words — no three in five share a first word, and do not default to \"At\"/\"In\"/\"On\" location stamps (SEC95); the validator enforces this.",
         LEAK_FAMILY_LINE,
       ];
@@ -146,7 +146,7 @@ function gateAwareness(kind: SectionKind): string[] {
         "DESIGN AROUND THE GATES:",
         "AS9/SEC80/SEC89 compare examples across chapters: each of the six slots needs a distinct role, timing, scene engine, turning point, and advice shape; the validator enforces this. Obey the dealt sceneFrame/requiredBeat as well: no gate reads them, so nothing but you keeps same-position slots from sharing one dramatic transaction.",
         "No exact five-word phrase across three or more scenarios, whatToDo, or whyItMatters lines — even source/legal labels (SEC87); the validator enforces this.",
-        "Each example cites a namedExample/example anchor and includes at least two of its hardSpecifics verbatim (SEC33); the validator enforces this.",
+        "Each example cites a namedExample/example anchor and uses at least ONE of its hardSpecifics — in the scenario, in whatToDo or in whyItMatters, wherever it belongs. NEVER get it in by having your character read, remember or recall the source case: the scene lives its own moment (SEC33/SEC133); the validator enforces this.",
         "Do not let the book default to one scene engine, action container, venue, ending, or evidence-gate across chapters (SEC85/SEC93/SEC96/SEC98/SEC100/SEC101/SEC108/SEC112); the validator enforces this.",
         LEAK_FAMILY_LINE,
       ];
@@ -156,9 +156,9 @@ function gateAwareness(kind: SectionKind): string[] {
         "AS5/AS12 compare q01-to-q01 across the book: give every slot a different scenario, opening, decision pressure, and evidence source; the validator enforces this. Obey each slot's dealt promptShape, answerStyle, distractorTrap, and caseCueIds too: no gate reads them, and they are the book's variety budget.",
         "AS6 compares correct answers and distractors across chapters: every correct answer names this chapter's requiredFactIds mechanism in fresh words, never a book-level slogan; the validator enforces this.",
         "SEC81 compares review cards across the book: each card needs its own chapter-specific noun, case, or mechanism; the validator enforces this. The dealt frontShape, retrievalTarget, and backShape steer that variety and no gate reads them.",
-        "Distractor discipline: no strawman absolutes, the key is never the longest choice by chars (nor >1.4x avg distractor words / >1.5x avg chars), no proof tails; most-keys-longest blocks outright (SEC52/SEC53/SEC59/SEC116/SEC121).",
+        "Distractor discipline: no strawman absolutes in ANY choice INCLUDING THE KEY, the key is never the longest choice by chars (nor >1.4x avg distractor words / >1.5x avg chars), no proof tails; more than 20% of the chapter's questions keying the longest choice blocks (SEC52/SEC53/SEC59/SEC116/SEC121).",
         "CHOICE PARITY METHOD: write the two distractors FIRST (15-22 words of concrete chapter-specific substance each), then write the key to the longer distractor's word count (±3) AND to at most 1.5x the average distractor's characters. SEC53 measures both, so a word-matched key built from longer words still fails. CUT the overflow, never park it in the explanation: the explanation says why the key is right, it does not carry the rest of the key.",
-        "At least 7 of 9 questions pose a NEW scenario — transfer, not recall (SEC117); the validator enforces this.",
+        "At least 7 of 9 questions pose a NEW scenario IN THE STEM (\"you are…\", \"imagine…\", \"suppose…\", \"your team…\", \"a colleague…\", \"consider a…\") — an apply-level bloomsLevel no longer counts for anything the stem does not say (SEC117); the validator enforces this.",
         LEAK_FAMILY_LINE,
       ];
     case "action-pack":
@@ -183,7 +183,7 @@ function craftBrief(kind: SectionKind): string[] {
         "WHAT EXCELLENT LOOKS LIKE: teach the chapter's spine through its real cases as lived moments.",
         SUMMARY_VOICE_PARAGRAPH,
         "Use reservedVariety.hookShape as the hook's assigned opening move. Seed at least three standalone memorable-line candidates in the breakdown: 8–14 words, portable, not a list, question, or \"if not/if so\" fragment; at least two at 14 words or fewer so they count as clean.",
-        "The three highest-scoring candidates are each validated against their own tier's cited anchors: if a candidate's tier cites one or more case anchors carrying two or more hardSpecifics, that line itself — not just the surrounding tier — must ground ANY ONE of those cited cases by including at least two of them verbatim (SEC16); grounding a single cited case is enough (you do NOT need two specifics from every cited case), so weave two of one case's concrete specifics into the aphorism from the start; the validator enforces this.",
+        "A memorable line STATES THE IDEA and carries AT MOST ONE source specific — the case itself is taught by the tiers, so a line does not have to name it. The three the book ships are picked from your breakdown by principle density, they may not reproduce the hook, the counterintuition or the keyTakeaway, and no two may turn on the same detail (SEC16/SEC118/SEC135); the validator enforces this.",
         "RUBRIC TARGETS: Flesch ease >=70 (grades: fastRead <=7, deepRead <=8.5, fullRead <=9.5); at least two clean (<=14-word) memorable lines.",
         voiceCraftLine(kind),
       ];
@@ -198,9 +198,9 @@ function craftBrief(kind: SectionKind): string[] {
     case "learning-pack":
       return [
         "WHAT EXCELLENT LOOKS LIKE: transfer-first questions the reader reasons through (\"you are…\", \"imagine…\", \"suppose…\", \"your team…\", \"a colleague…\"), set to apply/analyze/evaluate.",
-        "Distractors are plausible MISCONCEPTIONS on the mechanism, not recognizable by length or hedging. Keep prompts lean; name at most one case. Cards ask a chapter-specific mechanism/contrast/failure-mode in varied stems, never a generic \"What should you inspect / What check does\" shell.",
+        "Distractors are plausible MISCONCEPTIONS on the mechanism, not recognizable by length, hedging or SHAPE: when the key turns on a boundary qualifier (\"only…\", \"not…\", \"unless…\"), give at least one distractor the same shape (SEC134). Keep prompts lean; name at most one case. Cards ask a chapter-specific mechanism/contrast/failure-mode in varied stems, never a generic \"What should you inspect / What check does\" shell.",
         "If a stem names a case, the question must hinge on it, not staple in a standalone case-identifier sentence to hit a quota.",
-        "The dealt frontShape, retrievalTarget and backShape are STAGING DIRECTIONS, not text: they name the ANGLE a card takes, never words to write. Never open a back by announcing the angle (\"The contrast is\", \"The boundary is\", \"The trigger is\", \"The failure mode is\", \"The source case is\"); open on the concrete thing itself and let the angle show.",
+        "The dealt frontShape, retrievalTarget and backShape are STAGING DIRECTIONS, not text: they name the ANGLE a card takes, never words to write. Never open a back by announcing the angle (\"The contrast is\", \"The boundary is\", \"The trigger is\", \"The failure mode is\", \"The source case is\"); open on the concrete thing itself and let the angle show. Three cards or stems in one chapter opening the same way is refused (SEC132).",
         "RUBRIC TARGETS: low distractor-tell rate (key never longest or most-hedged); high transfer ratio (>=7 of 9 new-scenario).",
         voiceCraftLine(kind),
       ];
@@ -458,8 +458,8 @@ export type SectionRetryFeedback = Readonly<{
 }>;
 
 // Task 11h: matches an anchor-specifics gate blocker — the shared message shape emitted by
-// validateAnchorHardSpecifics (SEC14 summary_anchor_specifics, SEC16 summary_memorable_anchor_specifics)
-// and the SEC33 example_anchor_specifics gate: "…cites <anchorId> but uses <present>/<min> required
+// validateAnchorHardSpecifics (SEC74 action_anchor_specifics) and the SEC33
+// example_anchor_specifics gate: "…cites <anchorId> but uses <present>/<min> required
 // hardSpecifics verbatim…". Capture group 1 = the cited anchor id, group 2 = the required count.
 const ANCHOR_SPECIFICS_BLOCKER_RE = /cites (\S+) but uses \d+\/(\d+) required hardSpecifics verbatim/;
 

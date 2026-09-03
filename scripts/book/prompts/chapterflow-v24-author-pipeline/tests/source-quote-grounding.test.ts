@@ -240,3 +240,55 @@ test("R-051: ordinary noun-phrase specifics are admissible (no false positives o
     [],
   );
 });
+
+// ── ROUND 3, minor: what the hardSpecific token check ACTUALLY covers ────────
+//
+// The PR body's R-046 table said "a `realWorld` hardSpecific must occur verbatim
+// in the chapter's own source text". The check is WIDER than that: it runs over
+// every named example's hardSpecifics regardless of `realWorld`, unlike
+// buildSourceTextVerifyRecord and verifiableItems, which both skip
+// realWorld:false. That is deliberate and stricter, and it is the right way
+// round — a named conceptual device whose token is not on the page is exactly as
+// ungroundable as an invented person, and "Leather Apron Club" (zero occurrences
+// in the Autobiography) would have been declarable realWorld:false to escape.
+// Pinned here so the behaviour is stated where it is enforced, and so a later
+// edit that narrows it to realWorld:true has to face this test.
+
+test("R-049 (round 3): the hardSpecific token check covers realWorld:FALSE examples too, which the record-builder skips", () => {
+  const offPage = (realWorld: boolean): ChapterResearchResult => {
+    const r = baseResult();
+    r.namedExamples = [{
+      ...r.namedExamples[0],
+      id: "ch01.case.device",
+      label: "The mutual-improvement device",
+      realWorld,
+      hardSpecifics: ["Leather Apron Club"],
+      hardSpecificEvidence: [
+        { specific: "Leather Apron Club", proposition: "The club of mutual improvement is named.", sourceQuote: "In 1736 I form'd most of my ingenious acquaintance into a club of mutual improvement, which we called the Junto." },
+      ],
+    }] as ChapterResearchResult["namedExamples"];
+    return r;
+  };
+
+  for (const realWorld of [true, false]) {
+    const problems = collectSourceQuoteProblems(offPage(realWorld), SPAN)
+      .filter((p) => p.message.includes("SV2.specific_not_in_source"));
+    assert.equal(problems.length, 1, `realWorld=${realWorld}: an off-page token must be caught either way`);
+    assert.match(problems[0].message, /Leather Apron Club/);
+  }
+
+  // And a token that IS on the page passes on both settings, so the check is
+  // about the page and not about the flag.
+  for (const realWorld of [true, false]) {
+    const onPage = offPage(realWorld);
+    onPage.namedExamples[0].hardSpecifics = ["club of mutual improvement"];
+    onPage.namedExamples[0].hardSpecificEvidence = [
+      { specific: "club of mutual improvement", proposition: "The club of mutual improvement is named.", sourceQuote: "In 1736 I form'd most of my ingenious acquaintance into a club of mutual improvement, which we called the Junto." },
+    ];
+    assert.deepEqual(
+      collectSourceQuoteProblems(onPage, SPAN).filter((p) => p.message.includes("SV2.specific_not_in_source")),
+      [],
+      `realWorld=${realWorld}: an on-page token must pass`,
+    );
+  }
+});

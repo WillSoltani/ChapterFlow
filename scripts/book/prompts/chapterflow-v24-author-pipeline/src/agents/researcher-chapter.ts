@@ -160,9 +160,23 @@ export const META_REGEXES: RegExp[] = [
   ...MANUSCRIPT_META_REGEXES,
 ];
 
-/** Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
- *  rather than a standalone fact about the world. */
-const AUTHOR_VERB_ALTERNATION = "argues|says|opens|notes|introduces|explains|writes|claims|points out|observes";
+/**
+ * Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
+ * rather than a standalone fact about the world.
+ *
+ * REVIEW ROUND 3 (minor: prompt/validator drift). This was a regex alternation
+ * string, and the prompt restated it — as EIGHT verbs, for every genre, while the
+ * validator rejected ten on every non-memoir book. A non-memoir sidecar writing
+ * "Clear opens with a story" was rejected by a rule the prompt did not state,
+ * costing a retry the model had no way to anticipate. There is now ONE list, and
+ * `authorVerbContractLines` renders the genre's own slice of it into the user
+ * message — the same discipline `chapterMapContractLines` applies: the contract is
+ * stated in the place that enforces it.
+ */
+export const AUTHOR_VERBS = ["argues", "says", "opens", "notes", "introduces", "explains", "writes", "claims", "points out", "observes"] as const;
+
+/** The two verbs the memoir carve-out drops. See {@link MEMOIR_AUTHOR_VERBS}. */
+export const MEMOIR_EXEMPT_AUTHOR_VERBS = ["opens", "introduces"] as const;
 
 /**
  * R-053 — the memoir alternation.
@@ -186,7 +200,31 @@ const AUTHOR_VERB_ALTERNATION = "argues|says|opens|notes|introduces|explains|wri
  * two worldly readings above, on memoir-classified books only. Every other genre
  * keeps the full list byte-for-byte.
  */
-const MEMOIR_AUTHOR_VERB_ALTERNATION = "argues|says|notes|explains|writes|claims|points out|observes";
+export const MEMOIR_AUTHOR_VERBS = AUTHOR_VERBS.filter(
+  (verb) => !(MEMOIR_EXEMPT_AUTHOR_VERBS as readonly string[]).includes(verb),
+);
+
+/** The verbs the author-verb guard rejects for one book. The ONE source of truth
+ *  for both the regexes below and the contract lines the prompt renders. */
+export function authorVerbsFor(genre?: BibliographyResult["genre"]): readonly string[] {
+  return genre === "memoir" ? MEMOIR_AUTHOR_VERBS : AUTHOR_VERBS;
+}
+
+/** The user-message lines that state rule 9 for THIS book, rendered from the same
+ *  list the validator enforces so the two cannot drift. */
+export function authorVerbContractLines(bibliography: SourceAuthorGuardInput): string[] {
+  const banned = authorVerbsFor(bibliography?.genre).map((verb) => `"<Surname> ${verb}"`).join(", ");
+  const lines = [
+    `# Never make the author the SPEAKER of the text`,
+    `Do not write ${banned}. State the claim directly instead. These are the exact constructions the validator rejects for this book.`,
+  ];
+  if (bibliography?.genre === "memoir") {
+    lines.push(
+      `This book is a MEMOIR, so the author is the SUBJECT of it: name him as the ACTOR of what he did — ${MEMOIR_EXEMPT_AUTHOR_VERBS.map((verb) => `"<Surname> ${verb} …"`).join(" and ")} are ALLOWED here, and an agentless passive ("a fire company was organized") is a defect, not a safe default.`,
+    );
+  }
+  return lines;
+}
 
 /** Name particles and honorifics that are never the surname to guard on. */
 const AUTHOR_NAME_NOISE = /^(jr|sr|ii|iii|iv|phd|md|dr|prof|professor|sir|dame)$/i;
@@ -227,12 +265,28 @@ export function authorSurnames(author: string): string[] {
   return [...new Set(surnames)];
 }
 
-/** Author-verb guards for one book, built from {@link authorSurnames}. Empty
- *  when the author string yields no usable surname — the guard is then simply
- *  absent rather than firing on someone else's name. */
-export function authorVerbRegexes(author: string, genre?: BibliographyResult["genre"]): RegExp[] {
-  const alternation = genre === "memoir" ? MEMOIR_AUTHOR_VERB_ALTERNATION : AUTHOR_VERB_ALTERNATION;
-  return authorSurnames(author).map(
+/**
+ * Author-verb guards for one book, built from {@link authorSurnames}. Empty
+ * when the author string yields no usable surname — the guard is then simply
+ * absent rather than firing on someone else's name.
+ *
+ * REVIEW ROUND 3 (blocking finding). This used to take `(author, genre?)`, and
+ * the optional second argument is exactly what went wrong: the researcher's own
+ * validator passed the genre, `critics/sourceCoherence.ts` did not, and the
+ * memoir carve-out below therefore applied on one of the two routes a sidecar
+ * travels. A memoir sidecar that names its subject as an actor passed research
+ * validation and then aborted the whole research stage in the coherence critic,
+ * AFTER every chapter had been paid for.
+ *
+ * The parameter is now the bibliography record itself, so the genre cannot be
+ * dropped by forgetting an argument: a call site that has a book has its genre.
+ * `SourceAuthorGuardInput` is the narrowest shape both call sites already hold.
+ */
+export type SourceAuthorGuardInput = Pick<BibliographyResult, "author"> & Partial<Pick<BibliographyResult, "genre">>;
+
+export function authorVerbRegexes(bibliography: SourceAuthorGuardInput): RegExp[] {
+  const alternation = authorVerbsFor(bibliography?.genre).join("|");
+  return authorSurnames(bibliography?.author ?? "").map(
     (surname) => new RegExp(`\\b${escapeRegExp(surname)}\\s+(?:${alternation})\\b`, "gi"),
   );
 }
@@ -824,6 +878,12 @@ export function buildUserPrompt(input: ChapterResearchInput): string {
     for (const pin of input.factPins) parts.push(`- ${pin}`);
     parts.push("");
   }
+  // Rule 9, stated for THIS book from the list the validator actually enforces
+  // (review round 3). The system prompt states the rule's REASON and defers here
+  // for the verbs, because the set depends on the genre and only this message
+  // knows it.
+  for (const line of authorVerbContractLines(input.bibliography)) parts.push(line);
+  parts.push("");
   if (input.sourceSpan) {
     const excerpt = spanExcerptForPrompt(input.sourceSpan.text);
     const floors = researchFloorsForSpan(input.sourceSpan.text.length);
@@ -967,7 +1027,7 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
   for (const hit of distinctMatches(allText, META_REGEXES)) {
     problems.push(metaReferenceProblem(hit, input.bibliography.author));
   }
-  for (const hit of distinctMatches(allText, authorVerbRegexes(input.bibliography.author, input.bibliography.genre))) {
+  for (const hit of distinctMatches(allText, authorVerbRegexes(input.bibliography))) {
     problems.push(`author-surname-verb construction "${hit}" found — state the claim directly`);
   }
 
