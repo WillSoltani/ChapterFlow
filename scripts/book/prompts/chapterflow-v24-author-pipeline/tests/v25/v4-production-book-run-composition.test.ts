@@ -396,12 +396,20 @@ function compilerOutputs(fixtureRoot: string) {
 /** A schema-valid reader-experience content object (the runtime stamps the
  *  schema/reviewerRole/rubricVersion + hash bindings on top). Empty findings +
  *  SHIP keep the panel PASS so the fixture book still promotes. */
-function readerReview(): Record<string, unknown> {
+function readerReview(questionCount: number): Record<string, unknown> {
   const scores: Record<string, number> = {};
   for (const factor of REVIEW_FACTORS) scores[factor] = 82;
   return {
     scores,
-    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    // One derivation per question (R-133): the strict reader assembly rejects a
+    // seat whose positional derivation does not cover the chapter's quiz.
+    quizDerivation: {
+      answers: Array.from({ length: questionCount }, () => "a"),
+      mechanisms: Array.from({ length: questionCount }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      confidence: Array.from({ length: questionCount }, () => "high"),
+      ambiguities: Array.from({ length: questionCount }, () => ""),
+      tells: [],
+    },
     recommendation: "SHIP",
     blockingFindings: [],
     escalationSignals: [],
@@ -459,9 +467,9 @@ requiredTest("production composition reaches isolated local promotion and exact 
     // Canonical review = semantic panel: baseline model review first, then the
     // IMP-20 blind reader panel — three reader-experience seats per chapter.
     { outcome: "PASS", issues: [] },
-    readerReview(),
-    readerReview(),
-    readerReview(),
+    readerReview(compilerFixture.learning.quiz.questions.length),
+    readerReview(compilerFixture.learning.quiz.questions.length),
+    readerReview(compilerFixture.learning.quiz.questions.length),
   ]);
   const v25Root = resolve(roots.tempRoot, "composition-v25");
   const attemptRoot = resolve(roots.attemptsRoot, "composition-run");
