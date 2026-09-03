@@ -19,6 +19,12 @@ import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../revie
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
+import {
+  harvestMemorableCandidates,
+  memorableLineProblems,
+  selectMemorableLinesDeterministic,
+  specificsPresentIn,
+} from "../optimizers/memorableLines.js";
 import { renderBookScarsBlock } from "../sections/sectionTasks.js";
 import { bookScarsDigest, loadBookScars, validateBookScars, type BookScars } from "../lib/bookScars.js";
 import { validateChapterV21 } from "../runtimeSchemas.js";
@@ -603,6 +609,61 @@ function sourceContextFiles(candidate: CandidateSnapshot, chapter: ChapterV21): 
   const marker = new RegExp(`(^|[/._-])ch0*${chapterNumber}([/._-]|$)`, "i");
   const sourceTexts = candidate.files.filter((file) => file.mediaType === "text/plain" && marker.test(file.logicalPath));
   return { ok: true, value: [...required, sourceV2File.value, ...sourceTexts] };
+}
+
+/**
+ * R-076 — THE SHIPPED MEMORABLE LINES ARE NOT THE VALIDATED ONES.
+ *
+ * `assembleSections` is the only writer of `chapter.memorableLines`, and this lane
+ * replaces whole chapters without going near it: every per-unit protection the
+ * section gate applies is a compile-time-only guarantee that a repair round voids.
+ * Live proof from the canary: the compiler candidate for Franklin ch04 shipped
+ * 12/13/13-word lines while the SAME lineage's repair-r7 candidate shipped 16/10/30-
+ * word lines, the third a 176-character plot sentence that `memorableLineScore`
+ * returns 0 for — a sentence the deterministic selector could never have produced.
+ *
+ * So the repaired chapter gets the assembler's own treatment: re-derive the lines
+ * from the REPAIRED breakdown with the same selector and the same policy
+ * (assembleSections.memorableGrounding), then re-check the resulting set. A set that
+ * still breaks the rules fails the round rather than shipping — the repair prompt
+ * carries the writing contract, so "seed portable sentences in the prose" is a
+ * defect the repair can actually fix.
+ */
+function revalidateMemorableLines(chapter: ChapterV21, packet: SourcePacketV1): Result<ChapterV21> {
+  const specifics = [...new Set((packet.allowedAnchors ?? [])
+    .flatMap((anchor) => anchor.hardSpecifics ?? [])
+    .filter((value): value is string => typeof value === "string" && value.length >= 3))]
+    .sort((a, b) => b.length - a.length);
+  const forbiddenDuplicates = [chapter.hook, chapter.counterintuition, chapter.keyTakeaway]
+    .filter((value): value is string => typeof value === "string" && value.trim().length > 0);
+  const policy = {
+    specificsIn: (candidate: { text: string }) => specificsPresentIn(candidate.text, specifics),
+    forbiddenDuplicates,
+  };
+  const derived = selectMemorableLinesDeterministic(chapter, { policy });
+  // Same rule the assembler applies: a breakdown that cannot yield three candidates
+  // keeps whatever the writer supplied, and the check below then judges THAT set.
+  const repaired: ChapterV21 = derived.length >= 3 ? { ...chapter, memorableLines: derived } : chapter;
+  const prose = [
+    repaired.breakdown?.fastRead ?? "",
+    repaired.breakdown?.deepRead ?? "",
+    repaired.breakdown?.fullRead ?? "",
+  ].join("\n");
+  const problems = memorableLineProblems(repaired.memorableLines ?? [], {
+    allSpecifics: specifics,
+    forbiddenDuplicates,
+    proseHaystack: prose,
+  });
+  if (problems.length > 0) {
+    return failed(
+      "REPAIR_OUTPUT_INVALID",
+      `repaired chapter ${repaired.number} ships memorable lines the section gate would refuse: ${problems.slice(0, 3).join("; ")}`,
+    );
+  }
+  if ((repaired.memorableLines ?? []).length > 0 && harvestMemorableCandidates(repaired.breakdown).length === 0) {
+    return failed("REPAIR_OUTPUT_INVALID", `repaired chapter ${repaired.number} pins memorable lines its breakdown cannot yield`);
+  }
+  return { ok: true, value: repaired };
 }
 
 function normalizedChapterOutput(output: unknown): Result<ChapterV21> {
@@ -1302,7 +1363,20 @@ export class CandidateRepairApplicationPort {
           )
           : this.#failRun(request, repairAttemptIds, "REPAIR_OUTPUT_NO_CHANGE", `replacement did not change chapter ${chapterNumber}`);
       }
-      replacements.set(chapterNumber, replacement.value);
+      // R-076 — re-derive and re-check the memorable lines against the REPAIRED
+      // prose (see revalidateMemorableLines). Placed after the no-change comparison
+      // so a chapter the writer returned untouched is still reported as unchanged.
+      let packet: SourcePacketV1;
+      try {
+        packet = parseJson(contextFiles[1].bytes) as SourcePacketV1;
+      } catch (cause) {
+        return this.#failRun(request, repairAttemptIds, "REPAIR_CONTEXT_INVALID", `chapter ${chapterNumber} source packet is unreadable: ${(cause as Error).message}`);
+      }
+      const revalidated = revalidateMemorableLines(replacement.value, packet);
+      if (!revalidated.ok) {
+        return this.#failRun(request, repairAttemptIds, revalidated.error.code, revalidated.error.message);
+      }
+      replacements.set(chapterNumber, revalidated.value);
     }
     return { ok: true, value: replacements };
   }

@@ -27,6 +27,7 @@ import { finding } from "./shared.js";
 import { isPageCitationOnly } from "./apparatusLeakage.js";
 import { parseChapterId } from "../lib/chapterPaths.js";
 import { findLatestRunDir, findRunArtifact } from "../lib/runDirs.js";
+import { countSpecificsInProse, normalizeDerivabilityText } from "../sections/chapterProse.js";
 import { detectSidecarShape } from "../source/sidecarSchema.js";
 import { buildSourceAnchorCatalog } from "../source/sourceEvidence.js";
 
@@ -242,6 +243,41 @@ export function checkChapterProvenance(chapter: ChapterV21, sidecarOverride?: an
     checkUnit(unit, anchors, expectedPrefix, findings);
   }
 
+  // ---- SC11.7 — the chapter TEACHES every case it cites ---------------------
+  //
+  // The ship-side mirror of SEC14/SEC128. It is what replaces the per-unit verbatim
+  // demands the table above zeroed out: grounding is no longer "every unit repeats a
+  // token" but "the chapter's reader-visible prose carries at least two of each cited
+  // case's hard specifics, once". Same rule, same folding (chapterProse), so a chapter
+  // that passes the write-time gate passes this one by construction — measured on the
+  // live Franklin rev-6 candidate, where it fires zero on all four chapters.
+  {
+    const prose = normalizeDerivabilityText([
+      chapter.hook ?? "",
+      chapter.counterintuition ?? "",
+      chapter.breakdown?.fastRead ?? "",
+      chapter.breakdown?.deepRead ?? "",
+      chapter.breakdown?.fullRead ?? "",
+      chapter.keyTakeaway ?? "",
+    ].join("\n"));
+    const citedRich = new Map<string, SourceAnchorForPrompt>();
+    for (const unit of units) {
+      for (const anchorId of unit.ids) {
+        const anchor = anchors.get(anchorId);
+        if (!anchor?.supportsClaimTypes.includes(unit.claimType)) continue;
+        if ((anchor.hardSpecifics ?? []).length < CHAPTER_CASE_MIN_SPECIFICS) continue;
+        citedRich.set(anchorId, anchor);
+      }
+    }
+    for (const [anchorId, anchor] of citedRich) {
+      const present = countSpecificsInProse(anchor.hardSpecifics ?? [], prose);
+      if (present >= CHAPTER_CASE_MIN_SPECIFICS) continue;
+      findings.push(finding("SC11.7.chapter_case_not_taught" as any, "blocker",
+        `this chapter cites "${anchorId}" but its reader-visible prose (hook, counterintuition, the three tiers, keyTakeaway) carries only ${present}/${CHAPTER_CASE_MIN_SPECIFICS} of that case's hardSpecifics (${(anchor.hardSpecifics ?? []).slice(0, 4).join(", ")}). A chapter may not test a case it never taught.`,
+        anchorId));
+    }
+  }
+
   return findings;
 }
 
@@ -260,22 +296,45 @@ function placeholderAnchorId(id: string): boolean {
     /\b(todo|tbd|fixme|placeholder)\b/i.test(id);
 }
 
-// P15 (F14) ship-layer mirror of the section-gate quota rebalance: NON-NARRATIVE units
-// (quiz, review cards, implementation guidance) need >=1 of a cited anchor's hardSpecifics
-// verbatim — the >=2 quota on those units was the byte-verified mechanical cause of
-// identifier-sentence stuffing (Wave-2 checkpoint panel, unanimous), and the write-time
-// section gate (SEC56/SEC58/SEC74) now enforces exactly >=1 there. A ship gate still
-// demanding 2 re-blocks what write-time correctly passes (live: regenerated POM ch01
-// passed validate-sections 0-blockers, then gate-chapter threw 42 SC11.2 blockers — all
-// on quiz/cards/plan units). NARRATION units (hook/breakdown/takeaway/example/memorable)
-// keep >=2 — a real case narrated as a lived moment carries two details naturally.
-const SINGLE_SPECIFIC_CLAIM_TYPES: ReadonlySet<SourceClaimType> = new Set([
-  "quiz_prompt",
-  "quiz_explanation",
-  "quiz_key_evidence",
-  "review_card",
-  "implementation_guidance",
+/**
+ * SHIP-LAYER MIRROR OF THE WRITE-TIME GROUNDING RULES (package 1B).
+ *
+ * The ship gate must never block what the write-time gate passes, or every freshly
+ * compiled book re-blocks at QC — the exact write/ship disagreement this file has
+ * already been burned by twice (live: regenerated POM ch01 passed validate-sections
+ * with 0 blockers, then gate-chapter threw 42 SC11.2 blockers, all on quiz/cards/plan
+ * units). So this table is derived FROM the section gate, one entry per claim type:
+ *
+ *   example                 -> 1   (SEC33: one specific POOLED across scenario /
+ *                                   whatToDo / whyItMatters)
+ *   implementation_guidance -> 1   (SEC74, unchanged)
+ *   everything else         -> 0   (no per-unit verbatim demand)
+ *
+ * The zeros are the package-1B demotion, and they are paid for on BOTH sides. At
+ * write time SEC56/SEC58 stopped demanding a token per quiz unit and per card, and
+ * SEC14's per-unit quota on the hook, the three tiers and the keyTakeaway became a
+ * once-per-chapter presence rule; the grounding those quotas were standing in for is
+ * now SEC14/SEC128 (the chapter's prose must TEACH every case it cites) plus SEC120
+ * (a unit may not name what the prose never showed). At ship time SC11.7 below is the
+ * mirror of that chapter-level rule, so the ship gate still refuses an ungrounded
+ * chapter — it just no longer counts tokens per unit.
+ */
+const CLAIM_TYPE_MIN_SPECIFICS: ReadonlyMap<SourceClaimType, number> = new Map<SourceClaimType, number>([
+  ["example", 1],
+  ["implementation_guidance", 1],
 ]);
+
+/** At most this many source specifics may appear in a memorable line — the ship-side
+ *  reading of SEC16's redesigned rule (a line states the principle; the case itself is
+ *  taught by the tiers). MAJOR, not a blocker: every package promoted before this
+ *  change carries token-pair lines (11 of the 12 in the live Franklin rev-6 package),
+ *  and a blocker here would retro-block them at re-promote for a defect the write-time
+ *  gate now prevents at the source. */
+const SHIP_MEMORABLE_LINE_MAX_SPECIFICS = 1;
+
+/** SC11.7 — hard specifics of a cited case that must reach the chapter's own
+ *  reader-visible prose. Mirrors sectionGate's CHAPTER_CASE_MIN_SPECIFICS. */
+const CHAPTER_CASE_MIN_SPECIFICS = 2;
 
 function checkUnit(
   unit: { unit: string; claimType: SourceClaimType; ids: string[]; text: string },
@@ -288,10 +347,23 @@ function checkUnit(
       `${unit.unit} has no source anchors — a source-v2 chapter must declare which source anchor each claim-bearing unit is built from.`));
     return;
   }
-  // memorable_line OR-semantics state (see the 11p mirror note below): one fully
-  // grounding cited case clears the line; shortfalls only block if NONE grounds it.
-  let memorableFullyGrounded = false;
-  const memorableShortfalls: Array<{ anchorId: string; specifics: string[] }> = [];
+  // MEMORABLE LINES (package 1B): the demand is inverted. It used to be ">=2 of one
+  // cited case's hardSpecifics verbatim", which is why every shipped line is a token
+  // pair; the write-time rule is now a CAP of one, enforced by SEC16. Here it is
+  // reported, not blocked — see SHIP_MEMORABLE_LINE_MAX_SPECIFICS.
+  if (unit.claimType === "memorable_line") {
+    const lc = unit.text.toLowerCase();
+    const carried = new Set<string>();
+    for (const anchor of anchors.values()) {
+      for (const specific of anchor.hardSpecifics ?? []) {
+        if (specific && specific.length >= 3 && lc.includes(specific.toLowerCase())) carried.add(specific);
+      }
+    }
+    if (carried.size > SHIP_MEMORABLE_LINE_MAX_SPECIFICS) {
+      findings.push(finding("SC11.8.memorable_line_specific_stack" as any, "major",
+        `${unit.unit} carries ${carried.size} source specifics — ${[...carried].slice(0, 4).join(", ")}. A memorable line states the principle and carries at most ${SHIP_MEMORABLE_LINE_MAX_SPECIFICS}; the case itself is taught by the tiers.`));
+    }
+  }
   for (const anchorId of unit.ids) {
     if (placeholderAnchorId(anchorId)) {
       findings.push(finding("SC11.3.placeholder_anchor" as any, "blocker",
@@ -317,8 +389,8 @@ function checkUnit(
     // The outer `>= 2` stays even for min-1 units: anchors carrying a single hardSpecific
     // remain ship-unchecked (the write-time section gate enforces them for NEW books), so
     // previously-shipped v2 chapters cannot retro-block at re-promote.
-    if (specifics.length >= 2) {
-      const minRequired = SINGLE_SPECIFIC_CLAIM_TYPES.has(unit.claimType) ? 1 : 2;
+    const minRequired = CLAIM_TYPE_MIN_SPECIFICS.get(unit.claimType) ?? 0;
+    if (specifics.length >= 2 && minRequired > 0) {
       const lc = unit.text.toLowerCase();
       // CF-J Task 4 (2026-07-09): a hardSpecific that IS a page citation ("Ch. 6
       // p. 138") is the source guide's internal locator coordinate, and the writer
@@ -331,33 +403,10 @@ function checkUnit(
       // gate identically, and no unit can newly block.
       const present = specifics.filter((s) => s && (isPageCitationOnly(s) || lc.includes(s.toLowerCase()))).length;
       if (present < minRequired) {
-        if (unit.claimType === "memorable_line") {
-          // 11p SHIP-LAYER MIRROR (flagged as a watch-item when the write-time fix
-          // landed, hit live on the first QC round to reach this code): a memorable
-          // line inherits EVERY case its source tier cites, and this loop fires PER
-          // ANCHOR — so a <=14-word line citing three cases needs 2 specifics from
-          // EACH, which is structurally unsatisfiable. The section gate (SEC16) was
-          // corrected under owner delegation to OR-semantics: the line passes when
-          // >=1 cited case fully grounds it. The ship gate must agree with the
-          // write-time gate or every freshly-passed book re-blocks at QC — the
-          // exact write/ship disagreement the P15 note above records for quiz
-          // units. AND stays for every other narration unit (hook/breakdown/
-          // takeaway/example), which cite one case and narrate it.
-          memorableShortfalls.push({ anchorId, specifics });
-        } else {
-          findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
-            `${unit.unit} names anchor "${anchorId}" but uses <${minRequired} of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
-        }
-      } else if (unit.claimType === "memorable_line") {
-        memorableFullyGrounded = true;
+        findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
+          `${unit.unit} names anchor "${anchorId}" but uses <${minRequired} of its hardSpecifics (${specifics.slice(0, 4).join(", ")}). Build the unit FROM the anchor's concrete details.`, anchorId));
       }
     }
-  }
-  if (unit.claimType === "memorable_line" && !memorableFullyGrounded && memorableShortfalls.length > 0) {
-    const named = memorableShortfalls.map((m) => `"${m.anchorId}" (${m.specifics.slice(0, 3).join(", ")})`).join("; ");
-    findings.push(finding("SC11.2.anchor_specific_not_present" as any, "blocker",
-      `${unit.unit} cites ${memorableShortfalls.length} case(s) — ${named} — and none of them fully grounds it (2 hardSpecifics verbatim from ONE cited case). Build the line from one case's concrete details; the other citations may stay.`,
-      memorableShortfalls[0].anchorId));
   }
 }
 

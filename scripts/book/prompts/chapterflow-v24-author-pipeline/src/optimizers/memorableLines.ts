@@ -59,6 +59,64 @@ export function harvestMemorableCandidates(
   return candidates;
 }
 
+/** Case/punctuation-insensitive key for comparing two sentences. */
+function normalizeLine(value: string): string {
+  return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+}
+
+/**
+ * The distinct source specifics a line carries, in the order the caller supplied
+ * them (so "the primary specific" is a deterministic choice, not an accident of
+ * sentence order). Matching is case- and punctuation-insensitive on both sides,
+ * the same folding every other grounding check applies.
+ */
+export function specificsPresentIn(text: string, specifics: readonly string[]): string[] {
+  const haystack = normalizeLine(text);
+  const present: string[] = [];
+  for (const specific of specifics) {
+    const needle = normalizeLine(specific);
+    if (needle.length < 3) continue;
+    if (present.includes(specific)) continue;
+    if (haystack.includes(needle)) present.push(specific);
+  }
+  return present;
+}
+
+/**
+ * PRINCIPLE DENSITY — the share of a line's words that are NOT part of any source
+ * specific it carries. 1.0 is a line made entirely of the writer's own statement of
+ * the idea; a "Three puffy rolls and one Dutch dollar bought him a fresh start."
+ * spends 7 of its 12 words on two identifiers and scores 0.42.
+ *
+ * This is the ranking key the selector applies BEFORE the aphorism score, which is
+ * the whole behavioural change: memorableLineScore rewards length, commas, "you" and
+ * decision vocabulary, and is blind to whether the sentence says anything. Ranking on
+ * score alone is why every shipped line on the live Franklin book is a token pair.
+ */
+export function principleDensity(text: string, specifics: readonly string[]): number {
+  const words = text.trim().split(/\s+/).filter(Boolean).length;
+  if (words === 0) return 0;
+  let specificWords = 0;
+  for (const specific of specificsPresentIn(text, specifics)) {
+    specificWords += specific.trim().split(/\s+/).filter(Boolean).length;
+  }
+  return Math.max(0, (words - specificWords) / words);
+}
+
+/** How a selection is scored and constrained. Every field is optional: a caller with
+ *  no source packet in hand gets the previous pure-score ordering byte-for-byte. */
+export type MemorableSelectionPolicy = Readonly<{
+  /** The distinct source specifics this candidate carries, most-primary first. */
+  specificsIn?: (candidate: MemorableCandidate) => readonly string[];
+  /** Reader-facing passages a memorable line may not simply reproduce — the hook,
+   *  the counterintuition and the keyTakeaway (R-281). */
+  forbiddenDuplicates?: readonly string[];
+}>;
+
+/** At most this many source specifics may appear in a memorable line. See
+ *  memorableLineProblems for the reasoning and the live evidence. */
+export const MEMORABLE_LINE_MAX_SPECIFICS = 1;
+
 /**
  * THE selection. Both the compile-time gate (SEC15/SEC16, sectionGate.ts) and the
  * assembler that writes `chapter.memorableLines` read this one function, so the
@@ -81,22 +139,107 @@ export function harvestMemorableCandidates(
  */
 export function selectMemorableCandidates(
   candidates: readonly MemorableCandidate[],
-  isGrounded?: (candidate: MemorableCandidate) => boolean,
+  policy: MemorableSelectionPolicy = {},
 ): MemorableCandidate[] {
-  const used = new Set<string>();
-  const ranked = isGrounded
-    ? candidates.map((candidate) => ({ candidate, grounded: isGrounded(candidate) }))
-    : candidates.map((candidate) => ({ candidate, grounded: true }));
-  return ranked
-    .sort((a, b) => (a.grounded === b.grounded ? b.candidate.score - a.candidate.score : a.grounded ? -1 : 1))
-    .map((entry) => entry.candidate)
-    .filter((candidate) => {
-      const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-      if (used.has(key)) return false;
-      used.add(key);
-      return true;
+  const specificsIn = policy.specificsIn ?? (() => []);
+  const forbidden = (policy.forbiddenDuplicates ?? []).map(normalizeLine).filter((value) => value.length > 0);
+  const ranked = candidates
+    .map((candidate) => {
+      const specifics = specificsIn(candidate);
+      return {
+        candidate,
+        specifics,
+        grounded: specifics.length <= MEMORABLE_LINE_MAX_SPECIFICS,
+        density: principleDensity(candidate.text, specifics),
+      };
     })
-    .slice(0, 3);
+    .sort((a, b) => {
+      if (a.grounded !== b.grounded) return a.grounded ? -1 : 1;
+      if (b.density !== a.density) return b.density - a.density;
+      return b.candidate.score - a.candidate.score;
+    });
+  const chosen: MemorableCandidate[] = [];
+  const seen = new Set<string>();
+  const usedPrimary = new Set<string>();
+  // PASS 1 — the constraints the shipped book violated (R-281): never reproduce the
+  // hook/counterintuition/keyTakeaway, never spend two lines on one specific.
+  for (const entry of ranked) {
+    if (chosen.length >= 3) break;
+    const key = normalizeLine(entry.candidate.text);
+    if (seen.has(key)) continue;
+    if (forbidden.some((passage) => passage.includes(key))) continue;
+    const primary = entry.specifics[0];
+    if (primary !== undefined && usedPrimary.has(primary)) continue;
+    seen.add(key);
+    if (primary !== undefined) usedPrimary.add(primary);
+    chosen.push(entry.candidate);
+  }
+  // PASS 2 — fill the remaining slots from what is left rather than shipping fewer
+  // than three lines. A set that still breaks a constraint is REPORTED (SEC135), not
+  // silently shipped: turning a variety constraint into a count failure would send
+  // the writer the wrong retry ("seed more candidates") for the wrong defect.
+  for (const entry of ranked) {
+    if (chosen.length >= 3) break;
+    const key = normalizeLine(entry.candidate.text);
+    if (seen.has(key)) continue;
+    seen.add(key);
+    chosen.push(entry.candidate);
+  }
+  return chosen;
+}
+
+/**
+ * The SHIPPED-set checks, shared by the write-time gate (SEC16/SEC135) and by the
+ * repair lane, which rewrites the prose these lines were harvested from.
+ *
+ * R-076, live evidence: `assembleSections` is the only writer of
+ * `chapter.memorableLines`, and the candidate-repair lane replaces whole chapters
+ * without going near it. The compiler candidate for Franklin ch04 shipped 12/13/13-
+ * word lines; the SAME lineage's repair-r7 candidate shipped 16/10/30-word lines, the
+ * third being a 176-character plot sentence that memorableLineScore returns 0 for —
+ * it could never have been selected. Every per-unit protection in the section gate is
+ * a compile-time-only guarantee that any repair round voids unless the repaired
+ * chapter is re-derived and re-checked.
+ *
+ * Returns human-readable problems, empty when the set is compliant.
+ */
+export function memorableLineProblems(
+  lines: readonly { readonly text?: string }[],
+  options: Readonly<{
+    allSpecifics: readonly string[];
+    forbiddenDuplicates: readonly string[];
+    /** The chapter's breakdown prose. When supplied, every line must appear in it
+     *  verbatim — the same invariant ship-time A11 enforces. */
+    proseHaystack: string | null;
+  }>,
+): string[] {
+  const problems: string[] = [];
+  const forbidden = options.forbiddenDuplicates.map(normalizeLine).filter((value) => value.length > 0);
+  const primaryBy = new Map<string, number>();
+  lines.forEach((line, index) => {
+    const text = typeof line?.text === "string" ? line.text : "";
+    if (text.trim().length === 0) {
+      problems.push(`memorableLines[${index}] is empty`);
+      return;
+    }
+    if (options.proseHaystack !== null && !options.proseHaystack.includes(text)) {
+      problems.push(`memorableLines[${index}] "${text.slice(0, 70)}" appears nowhere verbatim in the chapter's breakdown prose`);
+    }
+    const specifics = specificsPresentIn(text, options.allSpecifics);
+    if (specifics.length > MEMORABLE_LINE_MAX_SPECIFICS) {
+      problems.push(`memorableLines[${index}] "${text.slice(0, 70)}" carries ${specifics.length} source specifics (${specifics.join(", ")}); a memorable line states the principle and carries at most ${MEMORABLE_LINE_MAX_SPECIFICS}`);
+    }
+    const key = normalizeLine(text);
+    if (forbidden.some((passage) => passage.includes(key))) {
+      problems.push(`memorableLines[${index}] "${text.slice(0, 70)}" reproduces the hook, counterintuition or keyTakeaway; a pinned line must earn its own place`);
+    }
+    const primary = specifics[0];
+    if (primary === undefined) return;
+    const first = primaryBy.get(primary);
+    if (first === undefined) primaryBy.set(primary, index);
+    else problems.push(`memorableLines[${index}] and memorableLines[${first}] share their primary specific "${primary}"; spend the three lines on three different things`);
+  });
+  return problems;
 }
 
 /**
@@ -113,12 +256,12 @@ export function selectMemorableCandidates(
 export function selectMemorableLinesDeterministic(
   chapter: ChapterV21,
   grounding?: {
-    anchorIdsForTier: (tier: MemorableTier) => unknown;
-    isGrounded: (candidate: MemorableCandidate) => boolean;
+    anchorIdsForTier?: (tier: MemorableTier) => unknown;
+    policy?: MemorableSelectionPolicy;
   },
 ): MemorableLine[] {
   const candidates = harvestMemorableCandidates(chapter.breakdown, grounding?.anchorIdsForTier);
-  return selectMemorableCandidates(candidates, grounding?.isGrounded).map((candidate) => {
+  return selectMemorableCandidates(candidates, grounding?.policy ?? {}).map((candidate) => {
     const location = `breakdown.${candidate.tier}`;
     return {
       text: candidate.text,

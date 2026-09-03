@@ -26,13 +26,26 @@ import { extractNamesFromText } from "../librarian/libraryState.js";
 import { loadVenuePalette } from "../librarian/venuePlan.js";
 import {
   harvestMemorableCandidates,
+  memorableLineProblems,
   memorableLineScore,
+  MEMORABLE_LINE_MAX_SPECIFICS,
   selectMemorableCandidates,
+  specificsPresentIn,
   type MemorableCandidate,
   type MemorableTier,
 } from "../optimizers/memorableLines.js";
 import { distractorTell, distractorTellRate, isTransferQuestion, memorableLineClean } from "../metrics/rubricMetrics.js";
-import { chapterProseText, hasDraftedReadTiers, normalizeDerivabilityText, standaloneProseText, type ChapterProseSource } from "./chapterProse.js";
+import {
+  chapterProseFields,
+  chapterProseText,
+  clippedPhraseDerivable,
+  countSpecificsInProse,
+  hasDraftedReadTiers,
+  normalizeDerivabilityText,
+  qualifiedNameDerivable,
+  standaloneProseText,
+  type ChapterProseSource,
+} from "./chapterProse.js";
 import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
 import { splitSentences } from "../critics/textUtils.js";
 import {
@@ -2610,20 +2623,34 @@ function quizQualifierParityFindings(pack: LearningPackV1, chapterNumber: number
   }];
 }
 
+/** Every hardSpecific in the chapter's packet, deduped, longest first so a nested
+ *  specific ("shillings" inside "forty shillings") never masks the longer one. The
+ *  memorable-line checks measure a line against the WHOLE packet, not only the cases
+ *  its tier happens to cite: an identifier lifted from a neighbouring case is exactly
+ *  as much of an identifier. */
+export function allPacketHardSpecifics(packet: SourcePacketV1): string[] {
+  const out = new Set<string>();
+  for (const anchor of packet.allowedAnchors ?? []) {
+    for (const specific of anchor.hardSpecifics ?? []) {
+      const value = text(specific);
+      if (value.length >= 3) out.add(value);
+    }
+  }
+  return [...out].sort((a, b) => b.length - a.length);
+}
+
+/** The reader-facing passages a memorable line may not simply reproduce (R-281). */
+export function memorableForbiddenDuplicates(pack: SummaryPackV1 | ChapterProseSource): string[] {
+  const fields = chapterProseFields(pack);
+  return [fields.hook, fields.counterintuition, fields.keyTakeaway].filter((value) => value.length > 0);
+}
+
 /** How many of an anchor's hardSpecifics the supplied prose actually SHOWS. Uses the
  *  same three foldings SEC120 applies on the prose side (exact inclusion, qualified
  *  name, clipped phrase), so "this chapter taught the case" means the same thing at
  *  every check that asks. `normalizedProse` must already be normalizeDerivabilityText'd. */
 function caseSpecificsOnPage(anchor: SourcePacketV1["allowedAnchors"][number], normalizedProse: string): number {
-  let present = 0;
-  for (const specific of anchor.hardSpecifics ?? []) {
-    const normalized = normalizeDerivabilityText(text(specific));
-    if (normalized.length < 3) continue;
-    if (normalizedProse.includes(normalized)
-      || qualifiedNameDerivable(normalized, normalizedProse)
-      || clippedPhraseDerivable(normalized, normalizedProse)) present += 1;
-  }
-  return present;
+  return countSpecificsInProse(anchor.hardSpecifics ?? [], normalizedProse);
 }
 
 /** The specifics-rich anchors a set of (ids, claimType) citations resolves to, deduped
@@ -2706,59 +2733,73 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     const perTier = tierEases.map(({ tier, ease }) => `${tier} ${ease.toFixed(1)}`).join(", ");
     push("SEC12.summary_readability", "blocker", `${f.message} Per-tier ease: ${perTier}; lift ${lowest.tier} first.`, "/breakdown");
   }
-  // Grounding-aware selection (Finding 21): SEC16 validates the top-3 harvested
-  // candidates, but harvest order was pure aphorism score — blind to grounding.
-  // A prettier UNgroundable sentence could outscore a lower-scoring one carrying
-  // a cited case's verbatim specifics, so SEC16 failed even though a groundable
-  // candidate existed, and the retry card could not beat the selector (the model
-  // does not control which sentences are picked). Prefer candidates that would
-  // SATISFY SEC16 — computed with THE SAME validateAnchorHardSpecifics call the
-  // gate runs below (memorable_line, min 2, OR-semantics) — then by score. This
-  // is selection policy, not gate weakening: SEC16/SEC17/clean-floor still enforce
-  // on the selected set, so when NO candidate is groundable the sort collapses to
-  // pure score and SEC16 blocks exactly as before. A vacuously-passing (specifics-
-  // poor) tier makes every candidate groundable, so the preference is a no-op there.
+  // ---- memorable lines, redesigned (package 1B; R-060/R-071/R-281) ---------
   //
-  // THE SELECTION ITSELF now lives in optimizers/memorableLines.ts and the ASSEMBLER
-  // calls it with this same predicate (assembleSections.ts). Before that, the gate
-  // ranked grounding-first here while the assembler ranked by pure score in its own
-  // copy, so SEC16 validated a top-3 the book never shipped: on the live Franklin
-  // ch03 compiler candidate SEC16 saw 3/3 groundable and passed with zero blockers
-  // while the shipped memorableLines carried an ungroundable line that ship-time
-  // SC11.2 blocked. One selection function is what makes "passes SEC16" and "passes
-  // SC11.2" statements about the same sentences.
-  const memorableGroundable = (candidate: { text: string; ids: unknown }): boolean =>
-    validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any").length === 0;
-  const selectedMemorable = selectMemorableCandidates(memorableCandidates, memorableGroundable);
+  // WAS: a selected line had to carry TWO of one cited case's hardSpecifics
+  // verbatim (SEC16, OR-semantics across the tier's cited cases), inside a <=14-word
+  // aphorism, and the selector ranked candidates by whether they could satisfy that.
+  // Two demands that pull against each other produce exactly one shape, and the live
+  // Franklin rev-6 book shipped it: 11 of its 12 memorable lines carry two or more
+  // source specifics ("Three puffy rolls and one Dutch dollar bought him a fresh
+  // start.", "Forty shillings joined you, ten shillings kept you in."). The twelfth,
+  // "A charter needs subscribers before it needs permission.", is the only one that
+  // states an idea — and it carries ZERO specifics, so the old rule is the rule that
+  // would have rejected it.
+  //
+  // NOW: a line is grounded when it is DERIVABLE from the tiers — true by
+  // construction, since the selector only harvests sentences out of them, and ship-
+  // time A11 re-checks it — AND carries AT MOST ONE specific. Selection ranks by
+  // principle density (share of words outside any specific) ahead of the aphorism
+  // score, and refuses to reproduce the hook/counterintuition/keyTakeaway or to spend
+  // two of the three lines on one specific (R-281).
+  //
+  // WHAT SEC16 STOPS BLOCKING: a principle-shaped line that names no case.
+  // WHAT SEC16 NOW CATCHES: the identifier pair.
+  // Unchanged: SEC15 (claim type), SEC17 (three harvestable candidates), SEC118 (the
+  // clean floor, now counted over the SELECTED set — R-071), ship-time A11.
+  //
+  // THE SELECTION ITSELF lives in optimizers/memorableLines.ts and the ASSEMBLER
+  // calls it with this same policy (assembleSections.ts), so the sentences SEC16
+  // validates are exactly the sentences that ship.
+  const packetSpecifics = allPacketHardSpecifics(packet);
+  const memorablePolicy = {
+    specificsIn: (candidate: MemorableCandidate) => specificsPresentIn(candidate.text, packetSpecifics),
+    forbiddenDuplicates: memorableForbiddenDuplicates(pack),
+  };
+  const selectedMemorable = selectMemorableCandidates(memorableCandidates, memorablePolicy);
   if (selectedMemorable.length < 3) {
     push("SEC17.summary_memorable_candidate_count", "blocker", `breakdown yields only ${selectedMemorable.length}/3 acceptable deterministic memorable-line candidates; seed standalone aphoristic sentences`, "/breakdown");
   }
-  // ---- rubric-parity clean-memorable floor (P03, F12) ----------------------
-  // score.py's ONLY deterministic cleanliness rule is <=14 words. The harvested
-  // candidates (memorableLineScore, 6 to 16 words) may include 15/16-word lines the
-  // rubric will not count; require at least SUMMARY_MIN_CLEAN_MEMORABLE_LINES that
-  // clear the <=14-word bar. Blocker; calibrated zero-FP (every >=85 breakdown
-  // yields 19+ clean candidates).
-  const cleanMemorableCount = (() => {
-    const seen = new Set<string>();
-    let clean = 0;
-    for (const candidate of memorableCandidates) {
-      const key = candidate.text.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      if (memorableLineClean(candidate.text)) clean += 1;
-    }
-    return clean;
-  })();
+  // ---- rubric-parity clean-memorable floor (P03, F12; scope fixed by R-071) --
+  // score.py's ONLY deterministic cleanliness rule is <=14 words, and it applies to
+  // the lines the PACKAGE CARRIES. The count used to run over the whole harvest pool,
+  // so a breakdown could satisfy it with candidates the selector never picked: the
+  // rev-6 book cleared this gate on every chapter while shipping 5 of 12 lines above
+  // 14 words. It now counts the SELECTED set — what the reader gets and what the
+  // rubric will score.
+  const cleanMemorableCount = selectedMemorable.filter((candidate) => memorableLineClean(candidate.text)).length;
   if (cleanMemorableCount < SUMMARY_MIN_CLEAN_MEMORABLE_LINES) {
-    push("SEC118.summary_memorable_lines", "blocker", `breakdown yields only ${cleanMemorableCount} clean (<=14-word) memorable-line candidate(s); at least ${SUMMARY_MIN_CLEAN_MEMORABLE_LINES} are required (rubric memorable-line cleanliness); seed shorter standalone aphorisms of 8-14 words`, "/breakdown");
+    push("SEC118.summary_memorable_lines", "blocker", `only ${cleanMemorableCount} of the ${selectedMemorable.length} memorable line(s) this breakdown ships are clean (<=14 words); at least ${SUMMARY_MIN_CLEAN_MEMORABLE_LINES} are required (rubric memorable-line cleanliness); seed shorter standalone aphorisms of 8-14 words`, "/breakdown");
+  }
+  // SEC135 — the two variety constraints, reported when the selector could not
+  // satisfy them from the candidates on offer (it prefers to, then fills the three
+  // slots rather than shipping two: a variety defect must not surface as a count
+  // failure, which would send the writer the wrong retry).
+  for (const problem of memorableLineProblems(selectedMemorable, { allSpecifics: packetSpecifics, forbiddenDuplicates: memorablePolicy.forbiddenDuplicates, proseHaystack: null })) {
+    if (!/share their primary specific|reproduces the hook/.test(problem)) continue;
+    push("SEC135.summary_memorable_variety", "blocker", problem, "/breakdown");
   }
   for (const candidate of selectedMemorable) {
     for (const p of validateAnchorClaimType(candidate.ids, anchors, "memorable_line", `selected memorable line in breakdown.${candidate.tier}`)) push("SEC15.summary_memorable_anchor_claim_type", "blocker", p, `/breakdown/${candidate.tier}`);
-    // OR across the tier's cited specifics-rich cases (Finding 20): the candidate
-    // inherits the WHOLE tier's sourceAnchorIds, so grounding ONE cited case in the
-    // aphorism suffices; AND-per-anchor here was structurally unsatisfiable.
-    for (const p of validateAnchorHardSpecifics(candidate.ids, anchors, "memorable_line", candidate.text, `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}"`, 2, "any")) push("SEC16.summary_memorable_anchor_specifics", "blocker", p, `/breakdown/${candidate.tier}`);
+    const carried = specificsPresentIn(candidate.text, packetSpecifics);
+    if (carried.length > MEMORABLE_LINE_MAX_SPECIFICS) {
+      push(
+        "SEC16.summary_memorable_anchor_specifics",
+        "blocker",
+        `selected memorable line "${candidate.text.replace(/[.!?]+$/, "")}" carries ${carried.length} source specifics (${carried.join(", ")}); a memorable line states the principle and carries at most ${MEMORABLE_LINE_MAX_SPECIFICS} concrete detail — the case itself is taught by the tiers (SEC14)`,
+        `/breakdown/${candidate.tier}`,
+      );
+    }
   }
   if (text(pack.keyTakeaway).length < 50) push("SEC9.takeaway_length", "blocker", "keyTakeaway too short", "/keyTakeaway");
   if (wordCount(pack.keyTakeaway) > 30) push("SEC18.takeaway_word_cap", "blocker", `keyTakeaway is ${wordCount(pack.keyTakeaway)} words (cap 30)`, "/keyTakeaway");
@@ -3052,64 +3093,6 @@ const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
  * supplied (legacy callers, a summary pack not drafted yet) or when the supplied pack
  * has no drafted read tiers (a stub the reporting CLI happened to find on disk).
  */
-/** Qualified-name folding (Franklin pincer, round 2 of the class the number-word
- *  folding above fixed): source sidecars carry formal names ("Library Company of
- *  Philadelphia") while the readability ceilings push prose toward the natural
- *  short form ("the Library Company"), and SEC56/SEC58 force the formal specific
- *  verbatim into the unit. A reader who has seen BOTH the head name and the
- *  qualifier on this chapter's page can derive the qualified form, so a specific
- *  "X of/in/at Y" is derivable when the prose shows X and Y independently. Both
- *  halves must clear the same ≥3-char floor exact inclusion uses, and a missing
- *  half still blocks — "First Bank of England" stays underivable when the prose
- *  never says England. Applied ONLY on the prose side (SEC120), never to the
- *  unit-side must-include checks (SEC56/SEC58). Operates on normalized text. */
-const QUALIFIED_NAME_PREPOSITION_RE = /\s(?:of|in|at)\s/g;
-function qualifiedNameDerivable(normalized: string, haystack: string): boolean {
-  for (const match of normalized.matchAll(QUALIFIED_NAME_PREPOSITION_RE)) {
-    const head = normalized.slice(0, match.index).trim();
-    const tail = normalized.slice(match.index + match[0].length).trim();
-    if (head.length >= 3 && tail.length >= 3 && haystack.includes(head) && haystack.includes(tail)) return true;
-  }
-  return false;
-}
-
-/** Clipped-phrase folding (Franklin pincer, round 3 of this class): sidecar
- *  hardSpecifics are telegraphic research notes ("slipped under door",
- *  "compared to original") while the naturalize-into-sentences scar rule makes
- *  the prose write them out ("slipped his essays under the printing-house
- *  door"), and SEC58 forces the clipped form verbatim into the unit. A reader
- *  who saw every word of the clipped phrase, in order, within one local span
- *  can derive it — so a multi-word specific is derivable when its tokens appear
- *  in the haystack IN ORDER with at most SUBSEQUENCE_GAP_TOKENS interleaved
- *  words between consecutive tokens. The gap bound keeps the match inside
- *  roughly one sentence: "slipped" and "door" pages apart stay underivable.
- *  Prose-side (SEC120) only, like the two foldings above. */
-const SUBSEQUENCE_GAP_TOKENS = 8;
-function clippedPhraseDerivable(normalized: string, haystack: string): boolean {
-  const needle = normalized.split(/\s+/).filter((token) => token.length > 0);
-  if (needle.length < 2) return false;
-  const words = haystack.split(/\s+/);
-  // Try the in-order match anchored at every occurrence of the first token —
-  // an early island ("slipped" in an unrelated sentence) must not mask a real
-  // match later in the prose.
-  for (let start = 0; start < words.length; start += 1) {
-    if (words[start] !== needle[0]) continue;
-    let position = start + 1;
-    let matched = true;
-    for (let index = 1; index < needle.length; index += 1) {
-      const limit = Math.min(words.length, position + SUBSEQUENCE_GAP_TOKENS + 1);
-      let found = -1;
-      for (let cursor = position; cursor < limit; cursor += 1) {
-        if (words[cursor] === needle[index]) { found = cursor; break; }
-      }
-      if (found === -1) { matched = false; break; }
-      position = found + 1;
-    }
-    if (matched) return true;
-  }
-  return false;
-}
-
 export function learningProseDerivabilityFindings(
   pack: LearningPackV1,
   bp: ChapterBlueprintV1,

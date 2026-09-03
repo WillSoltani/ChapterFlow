@@ -147,6 +147,8 @@ export type RigOptions = Readonly<{
   /** The frozen sidecar's voice card. Supplying one stages the sidecar even when
    *  the book has no scars — the two fields ride in the same file. */
   voiceCard?: string | null;
+  /** Rewrite the chapter the repair model returns (R-076 memorable-line lane). */
+  replacementChapter?: (chapter: ChapterV21) => ChapterV21;
 }>;
 
 export function rig(context: TestContext, options: RigOptions = {}) {
@@ -155,7 +157,11 @@ export function rig(context: TestContext, options: RigOptions = {}) {
     ...(options.voiceCard === undefined ? {} : { voiceCard: options.voiceCard }),
   });
   const chapterOne = JSON.parse(Buffer.from(predecessor.files[0].bytes).toString("utf8")) as ChapterV21;
-  const replacement: ChapterV21 = { ...chapterOne, hook: "A repaired opening names the visible credit signal before the reader can miss it." };
+  const baseReplacement: ChapterV21 = { ...chapterOne, hook: "A repaired opening names the visible credit signal before the reader can miss it." };
+  // R-076: the repair lane replaces whole chapters, so a test needs to be able to hand
+  // the port a chapter whose prose was rewritten and whose memorableLines were left
+  // behind — the exact shape the live repair-r7 candidate shipped.
+  const replacement: ChapterV21 = options.replacementChapter ? options.replacementChapter(baseReplacement) : baseReplacement;
   const failedRound: QcRoundResult = {
     schemaVersion: "1",
     roundId: "qc-failed",
