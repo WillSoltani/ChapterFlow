@@ -637,24 +637,49 @@ test("R-065/R-106: a POOL-dealt frame colliding at the same slot is still a BPV1
   });
 });
 
+// A fixture whose chapters have DISTINCT derived staging, so a foreign token can be told apart
+// from a chapter's own.
+const SPARE_SIDECAR = (n: number): SourceSidecarV2 => {
+  const base = sidecar(n, `Chapter ${n}`);
+  return {
+    ...base,
+    namedExamples: base.namedExamples.map((c, i) => (i === 0 ? { ...c, hardSpecifics: ["the junto club minutes", `the ledger page from the ${["spring", "autumn", "harvest", "winter"][n % 4]} quarter`] } : c)),
+  };
+};
+
+test("R-065: ANOTHER chapter's derived staging at a fixed slot is still a BPV11 blocker", () => {
+  // The exemption is keyed to the chapter's OWN derived value, which is what makes it safe: the
+  // R-065 defect itself — mined material sitting at the head of a BOOK-WIDE pool, so several
+  // chapters are dealt one chapter's token — comes back as an ordinary positional collision and
+  // still blocks. Without that, "the derived slots are exempt" would have unlearned the defect.
+  withBookOnDisk("zz-deal-derived-foreign", 4, ({ blueprints, roots }) => {
+    const pools = resolvedPoolsForBook("zz-deal-derived-foreign", roots);
+    const ownFrames = new Set(blueprints.map((bp) => bp.sections.examples[0].sceneFrame));
+    assert.equal(ownFrames.size, blueprints.length, "the fixture must give every chapter its own derived frame");
+    // (four chapters: the fixture carries one spare specific per chapter, so the deriver can make
+    // all four distinct — see the test above.)
+    const contaminated = blueprints.map((bp, i) => {
+      if (i === 0) return bp;
+      const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+      // ch01's derived string dealt to ch02 and ch03 — one chapter's token in another's slot.
+      if (i <= 2) clone.sections.examples[0].sceneFrame = blueprints[0].sections.examples[0].sceneFrame;
+      return clone;
+    });
+    const blockers = checkPositionalDeals(contaminated, poolSizeOverrides(pools), pools.chapterDerived)
+      .filter((f) => f.checkId === "BPV11.positional_collision" && f.path === "/positional/exampleSceneFrame/0");
+    assert.equal(blockers.length, 1, "one chapter's derived token dealt to two others must still block");
+  }, SPARE_SIDECAR);
+});
+
 test("R-065: two chapters with a spare mined specific do not get the identical staging", () => {
   // Where the material offers an alternative, the deriver takes it: chapter B's frame falls to its
   // OWN second-ranked specific rather than repeating chapter A's phrase. (Still chapter-local —
   // only the CHOICE among this chapter's own topics is coordinated, never another chapter's token.)
-  const shared = "the junto club minutes";
-  const spare = (n: number) => `the ledger page from year ${n}`;
-  const sidecarFor = (n: number): SourceSidecarV2 => {
-    const base = sidecar(n, `Chapter ${n}`);
-    return {
-      ...base,
-      namedExamples: base.namedExamples.map((c, i) => (i === 0 ? { ...c, hardSpecifics: [shared, spare(n)] } : c)),
-    };
-  };
   withBookOnDisk("zz-deal-derived-spare", 4, ({ design }) => {
     const frames = Object.values(design.perChapter ?? {}).map((d) => d.frameDecision).filter(Boolean);
     assert.ok(frames.length >= 2, "the fixture must derive a frame for at least two chapters");
     assert.equal(new Set(frames).size, frames.length, `chapters repeat a derived frame while a spare specific was available: ${frames.join(" | ")}`);
-  }, sidecarFor);
+  }, SPARE_SIDECAR);
 });
 
 // ── R-114 — forbiddenNames is real information, measured on a book that HAS neighbours ──────
