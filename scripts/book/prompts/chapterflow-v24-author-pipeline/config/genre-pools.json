@@ -1,5 +1,5 @@
 {
-  "description": "P14 genre-tagged static variety pools. The pre-P14 global blueprint pool constants (chapterBlueprint.ts) reorganized under genre keys, with each entry assigned to the genre it actually fits. `generic` is the neutral superset (the pre-P14 constants) used as the byte-compat legacy pool and the top-up source every other genre draws from to reach its floors. The investing document venues live under `investing` ONLY; the moments-flavored scene frames live under `experience-design`. Books map to a genre via config/genre-map (books.json category); a book without a design artifact and mapped to `generic` compiles byte-identically to the pre-P14 world. Blueprints remain deterministic: these are static config, not model output.",
+  "description": "P14 genre-tagged static variety pools. The pre-P14 global blueprint pool constants (chapterBlueprint.ts) reorganized under genre keys, with each entry assigned to the genre it actually fits. `generic` is the neutral superset (the pre-P14 constants) used as the byte-compat legacy pool and the top-up source every other genre draws from to reach its floors. The investing document venues live under `investing` ONLY; the moments-flavored scene frames live under `experience-design`. Books map to a genre via config/genre-map (books.json category); a book without a design artifact and mapped to `generic` compiles byte-identically to the pre-P14 world. Blueprints remain deterministic: these are static config, not model output. Each genre also carries `reservedFigureNames`: invented protagonists must never be named after a SOURCE figure of that genre's canon (R-115 moved the investing block here out of src/compiler/sourceNames.ts, where it was applied to every book \u2014 including a memoir by Benjamin Franklin).",
   "version": "1.0.0",
   "genres": {
     "generic": {
@@ -165,7 +165,8 @@
         "Friday evidence log",
         "one recurring conversation",
         "three-minute scoreboard"
-      ]
+      ],
+      "reservedFigureNames": []
     },
     "business-decision": {
       "sceneFramesDecision": [
@@ -247,7 +248,8 @@
         "one recurring conversation",
         "three-minute scoreboard",
         "Friday evidence log"
-      ]
+      ],
+      "reservedFigureNames": []
     },
     "experience-design": {
       "sceneFramesDecision": [
@@ -337,7 +339,8 @@
         "one saved template",
         "Sunday reset",
         "three-minute scoreboard"
-      ]
+      ],
+      "reservedFigureNames": []
     },
     "investing": {
       "sceneFramesDecision": [
@@ -406,6 +409,13 @@
         "Friday evidence log",
         "weekly calendar review",
         "three-minute scoreboard"
+      ],
+      "reservedFigureNames": [
+        "Benjamin",
+        "Graham",
+        "Dodd",
+        "Buffett",
+        "Warren"
       ]
     },
     "process-standard": {
@@ -479,7 +489,8 @@
         "weekly calendar review",
         "two-trigger checklist",
         "one saved template"
-      ]
+      ],
+      "reservedFigureNames": []
     },
     "habits-psychology": {
       "sceneFramesDecision": [
@@ -553,7 +564,88 @@
         "Sunday reset",
         "three-minute scoreboard",
         "one repeated audit"
-      ]
+      ],
+      "reservedFigureNames": []
+    },
+    "memoir-history": {
+      "sceneFramesDecision": [
+        "a promise made in public that the next week tests",
+        "a partnership formed on a handshake and the first strain on it",
+        "an apprenticeship rule broken and the reckoning that follows",
+        "a letter answered too quickly and the correction it forces",
+        "a debt called in at the worst possible hour",
+        "a reputation risked on one unpopular position",
+        "a plan submitted to people who can veto it",
+        "a rival's better argument accepted in front of witnesses",
+        "a habit tracked honestly for the first time and what the record shows",
+        "a bargain struck where both sides give up something named",
+        "a rule of conduct written down and then met by an exception",
+        "a scheme funded by subscription and the first subscriber who hesitates"
+      ],
+      "sceneFramesExperiential": [
+        "a first arrival in an unfamiliar town with everything owned in hand",
+        "a craft learned at a bench beside someone who will not explain twice",
+        "a public reading of one's own words in front of the people described",
+        "an act of plain generosity from a stranger, retold for years after",
+        "a long crossing with nothing to do but keep a record",
+        "an evening of argument among friends who meet to improve one another",
+        "a ceremony that marks the end of an indenture or apprenticeship",
+        "a return to a place changed more than the person returning to it"
+      ],
+      "beatsDecision": [
+        "show a commitment tested by the first inconvenient consequence",
+        "show a bargain where the cost is named out loud before the yes",
+        "show a correction made in public rather than quietly",
+        "show a plan resized after someone with standing objects"
+      ],
+      "beatsExperiential": [
+        "show a first encounter that sets the standard for everything after",
+        "show a plain kindness whose effect outlasts the day",
+        "show an ordinary hour made memorable by one specific detail"
+      ],
+      "venues": [
+        "a print shop floor",
+        "a workshop bench",
+        "a subscription list",
+        "a letter unopened on a table",
+        "a meeting room above a tavern",
+        "a ledger kept by hand",
+        "a market stall at closing",
+        "a ferry landing",
+        "a schoolroom after hours",
+        "a shared lodging house",
+        "a public square on a market day",
+        "a doorway on a wet evening",
+        "a churchyard path",
+        "a road between two towns",
+        "a warehouse doorway",
+        "a councillor's anteroom"
+      ],
+      "practiceConstraints": [
+        "write the rule down before the week that will test it",
+        "name the person whose answer would change your mind",
+        "make the first commitment small enough to keep in public",
+        "record the failure the same day it happens, in plain words",
+        "ask one person who benefits and one who pays"
+      ],
+      "practiceForms": [
+        "a written rule of conduct",
+        "a kept daily record",
+        "a letter drafted and set aside overnight",
+        "a subscription list with real names"
+      ],
+      "actionMechanisms": [
+        "a written rule",
+        "a kept record",
+        "a public commitment",
+        "a named second opinion"
+      ],
+      "weeklyForms": [
+        "one honest weekly review of the record",
+        "one letter written and answered",
+        "one evening of argument with people who disagree"
+      ],
+      "reservedFigureNames": []
     }
   }
 }

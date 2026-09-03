@@ -3,7 +3,7 @@ import { blueprintPath, readJsonFile, type CompilerStoreRoots } from "../artifac
 import { CHAPTER_BLUEPRINT_SCHEMA_VERSION, type ChapterBlueprintV1 } from "../artifacts/artifactTypes.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
-import { POSITIONAL_DEALS, resolvedPoolsForBook } from "./chapterBlueprint.js";
+import { MAX_CASE_CUES_PER_CHAPTER, POSITIONAL_DEALS, resolvedPoolsForBook } from "./chapterBlueprint.js";
 import type { ResolvedPools } from "./bookDesign.js";
 
 /** Per-book pool-size overrides for the positional-collision math (P14). A book compiled from
@@ -70,6 +70,38 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
       if (c7Banned.has(name)) push("BPV7.c7_slot_name", "blocker", `example slot ${i} allowedNames includes final-gate C7 banned name "${name}"`, `/sections/examples/${i}/allowedNames/${j}`);
     }
   }
+  // R-108 — the allow-list check used to iterate `bp.sections.examples` ONLY. quiz[].requiredFactIds,
+  // quiz[].caseCueIds, cards[].requiredFactIds and cards[].caseCueIds were validated NOWHERE, in
+  // this file or any other: a compiler bug that dealt a quiz slot a fact id from a different
+  // chapter's packet would reach the writer, who would cite an anchor the section gate then
+  // rejects as unknown — a compile failure whose cause is three layers upstream. Same two check
+  // ids, extended to the surfaces that always should have been in them.
+  for (const [i, q] of bp.sections.quiz.entries()) {
+    for (const id of q.requiredFactIds) if (!allowedFacts.has(id)) push("BPV9.unknown_fact", "blocker", `quiz slot ${i} references unknown fact ${id}`, `/sections/quiz/${i}/requiredFactIds`);
+    for (const id of q.caseCueIds) if (!allowedCases.has(id)) push("BPV10.unknown_case", "blocker", `quiz slot ${i} cues unknown case ${id}`, `/sections/quiz/${i}/caseCueIds`);
+  }
+  for (const [i, c] of bp.sections.cards.entries()) {
+    for (const id of c.requiredFactIds) if (!allowedFacts.has(id)) push("BPV9.unknown_fact", "blocker", `card slot ${i} references unknown fact ${id}`, `/sections/cards/${i}/requiredFactIds`);
+    for (const id of c.caseCueIds) if (!allowedCases.has(id)) push("BPV10.unknown_case", "blocker", `card slot ${i} cues unknown case ${id}`, `/sections/cards/${i}/caseCueIds`);
+  }
+  for (const id of bp.sections.hook.requiredFactIds) if (!allowedFacts.has(id)) push("BPV9.unknown_fact", "blocker", `hook references unknown fact ${id}`, "/sections/hook/requiredFactIds");
+  for (const id of bp.sections.summaries.requiredFactIds) if (!allowedFacts.has(id)) push("BPV9.unknown_fact", "blocker", `summaries reference unknown fact ${id}`, "/sections/summaries/requiredFactIds");
+  for (const id of bp.sections.action.requiredFactIds) if (!allowedFacts.has(id)) push("BPV9.unknown_fact", "blocker", `action step references unknown fact ${id}`, "/sections/action/requiredFactIds");
+
+  // R-119 — case-cue multiplicity. A single case cued by more than MAX_CASE_CUES_PER_CHAPTER of
+  // the chapter's learning units (quiz + cards) is what forced four verbatim insertions of one
+  // case's specifics through SEC56. Advisory, not a blocker: a chapter whose packet carries only
+  // one usable case legitimately exceeds it, and failing that run would be refusing to ship an
+  // honest thin chapter rather than fixing a deal.
+  const cueCounts = new Map<string, number>();
+  for (const slot of [...bp.sections.quiz, ...bp.sections.cards]) {
+    for (const id of slot.caseCueIds) cueCounts.set(id, (cueCounts.get(id) ?? 0) + 1);
+  }
+  for (const [id, count] of cueCounts) {
+    if (count > MAX_CASE_CUES_PER_CHAPTER && bp.constraints.allowedCaseIds.length > 1) {
+      push("BPV14.case_cue_multiplicity", "advisory", `case ${id} is cued by ${count} learning units (quiz + cards); the design cap is ${MAX_CASE_CUES_PER_CHAPTER}, and each cue is a mandatory verbatim specific in the reader-facing text`, "/sections");
+    }
+  }
   return findings;
 }
 
@@ -105,10 +137,31 @@ export function checkPositionalDeals(blueprints: ChapterBlueprintV1[], overrides
     for (let slot = 0; slot < d.slots; slot++) {
       const values = columns.map((col) => col[slot]).filter((v): v is string => typeof v === "string" && v.length > 0);
       if (values.length === 0) continue;
-      const P = poolSizeAt ? poolSizeAt(slot) : poolSize;
-      const cap = Math.max(1, Math.ceil(values.length / Math.max(1, P)));
       const counts = new Map<string, number>();
       for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+      if (d.contentDriven) {
+        // BPV13 — see PositionalDealDescriptor.contentDriven. The pool is sized to the values
+        // the column itself was dealt, so the question asked is "given that this deal PROVED it
+        // can reach N different values at this slot, is one of them taking more than its share?"
+        // The old card-cue stride reached exactly 2 values over a whole book (R-125) and the old
+        // card fact dealer reached exactly 1 (R-127); both trip this. Advisory, never a blocker.
+        const distinct = counts.size;
+        if (distinct <= 1) continue;
+        const cap = Math.max(1, Math.ceil(values.length / distinct));
+        for (const [value, count] of counts) {
+          if (count > cap) {
+            findings.push({
+              checkId: "BPV13.content_column_concentration",
+              severity: "advisory",
+              message: `content-driven deal "${d.poolKey}" slot ${slot}: value "${value}" holds ${count} of ${values.length} chapters while the column reached ${distinct} distinct values — above the ${cap} an even spread over its own observed variety would give`,
+              path: `/positional/${d.poolKey}/${slot}`,
+            });
+          }
+        }
+        continue;
+      }
+      const P = poolSizeAt ? poolSizeAt(slot) : poolSize;
+      const cap = Math.max(1, Math.ceil(values.length / Math.max(1, P)));
       for (const [value, count] of counts) {
         if (count > cap) {
           findings.push({
@@ -120,7 +173,7 @@ export function checkPositionalDeals(blueprints: ChapterBlueprintV1[], overrides
         }
       }
     }
-    if (d.perChapter) {
+    if (d.perChapter && !d.contentDriven) {
       const floor = Math.ceil(C / 2);
       if (poolSize < floor) {
         findings.push({

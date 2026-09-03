@@ -48,7 +48,7 @@ const EXAMPLE_SLOT_COUNT = 6;
 
 // ── Genres ───────────────────────────────────────────────────────────────────
 
-export const GENRES = ["generic", "business-decision", "experience-design", "investing", "process-standard", "habits-psychology"] as const;
+export const GENRES = ["generic", "business-decision", "experience-design", "investing", "process-standard", "habits-psychology", "memoir-history"] as const;
 export type Genre = (typeof GENRES)[number];
 
 /** books.json category (Title Case, config/categories.json taxonomy) → genre. Every category maps
@@ -73,40 +73,67 @@ const CATEGORY_TO_GENRE: Record<string, Genre> = {
   "Productivity": "generic",
   "Learning": "generic",
   "Philosophy": "generic",
+  // R-105 — a memoir/history book was routed to `generic`, whose venue pool is contemporary
+  // domestic ("a kitchen table", "a shared calendar invite", "a reminder on a phone"). The
+  // memoir-history pools are period-neutral: a print shop floor, a subscription list, a
+  // meeting room above a tavern.
+  "Memoir": "memoir-history",
+  "Biography": "memoir-history",
+  "Autobiography": "memoir-history",
+  "History": "memoir-history",
 };
 
 function normalizeGenre(value: unknown): Genre {
   return (GENRES as readonly string[]).includes(value as string) ? (value as Genre) : "generic";
 }
 
-let cachedBooks: Array<{ bookId?: string; category?: string; categories?: string[] }> | null = null;
-function loadBooks(): Array<{ bookId?: string; category?: string; categories?: string[] }> {
+type BooksEntry = { bookId?: string; genre?: string; category?: string; categories?: string[] };
+let cachedBooks: BooksEntry[] | null = null;
+function loadBooks(): BooksEntry[] {
   if (cachedBooks) return cachedBooks;
   try {
-    cachedBooks = readJsonFile<Array<{ bookId?: string; category?: string; categories?: string[] }>>(BOOKS_JSON_PATH);
+    cachedBooks = readJsonFile<BooksEntry[]>(BOOKS_JSON_PATH);
   } catch {
     cachedBooks = [];
   }
   return cachedBooks ?? [];
 }
 
-/** Resolve a book's genre. Explicit `opts.genre` wins (test injection / caller override); else the
- *  book's category (explicit `opts.category`, then a `category`/`categories[0]` field on its
- *  books.json entry) is mapped via CATEGORY_TO_GENRE; else `generic`. */
+/**
+ * Resolve a book's genre. Explicit `opts.genre` wins (test injection / caller override); then a
+ * `genre` field on the book's own books.json entry; then its category (explicit `opts.category`,
+ * else a `category`/`categories[0]` field) mapped via CATEGORY_TO_GENRE; else `generic`.
+ *
+ * R-105 — the books.json `genre` field is new. Before it, the ONLY route to a non-generic genre
+ * was a `category` field, and all 182 books.json entries carried exactly `bookId`/`title`/`author`
+ * — so `genreForBook` returned "generic" for the entire catalogue and every pool in
+ * genre-pools.json outside `generic` was unreachable code. A book may now name its genre directly
+ * instead of routing through the categories taxonomy.
+ */
 export function genreForBook(bookId: string, opts: { genre?: string; category?: string } = {}): Genre {
   if (opts.genre) return normalizeGenre(opts.genre);
-  const category = opts.category
-    ?? (() => {
-      const entry = loadBooks().find((b) => b.bookId && normSlug(b.bookId) === normSlug(bookId));
-      return entry?.category ?? entry?.categories?.[0];
-    })();
+  const entry = loadBooks().find((b) => b.bookId && normSlug(b.bookId) === normSlug(bookId));
+  if (entry?.genre && (GENRES as readonly string[]).includes(entry.genre)) return entry.genre as Genre;
+  const category = opts.category ?? entry?.category ?? entry?.categories?.[0];
   if (category && CATEGORY_TO_GENRE[category]) return CATEGORY_TO_GENRE[category];
   return "generic";
 }
 
+/** R-115 — the source-figure names a book of this genre reserves, from config. Unknown genre or
+ *  an unreadable config yields [] (no reservation), never a silent investing carve-out. */
+export function reservedFigureNamesForGenre(genre: string): string[] {
+  try {
+    const cfg = genrePoolsConfig().genres;
+    return (cfg[genre]?.reservedFigureNames ?? []).map((n) => n.trim()).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
 // ── Genre static pools ─────────────────────────────────────────────────────────
 
-type GenrePoolConfig = { genres: Record<string, BookDesignPools> };
+type GenrePoolEntry = BookDesignPools & { reservedFigureNames?: string[] };
+type GenrePoolConfig = { genres: Record<string, GenrePoolEntry> };
 let cachedGenrePools: GenrePoolConfig | null = null;
 function genrePoolsConfig(): GenrePoolConfig {
   if (cachedGenrePools) return cachedGenrePools;

@@ -47,15 +47,43 @@ export function extractGroundedNumbers(text: string): string[] {
   return [...numbers].sort((a, b) => Number(a) - Number(b));
 }
 
+/**
+ * R-116 — SENTENCE-INITIAL FILTER.
+ *
+ * The scan below matches any capitalized run, so the first word of every sentence
+ * ("Readers", "Repetition", "Environments") was harvested as a proper noun and shipped
+ * into the writer's allowedEntities list and into each fact's groundedEntities. On the
+ * live Franklin ch03 packet that made the entity allow-list mostly ordinary vocabulary,
+ * which is worse than useless: it tells the writer that common words are source-protected
+ * names and it dilutes the list the accuracy gates read.
+ *
+ * A capitalized run that occurs ONLY at a sentence start (start-of-string, or after
+ * `.`/`!`/`?` + whitespace) is dropped. A genuine proper noun almost always also occurs
+ * mid-sentence somewhere in the same packet text ("Franklin ruled the page… Then Franklin
+ * marked it"), and that mid-sentence occurrence keeps it. A ten-word stop list stays as
+ * the cheap pre-filter for the most common openers.
+ *
+ * The filter is per-CALL over the text it was given, so a token whose only occurrence in
+ * this text is sentence-initial is dropped even if it appears mid-sentence elsewhere in
+ * the packet — that is the honest bound of a pure string function, and callers pass the
+ * whole field text they care about.
+ */
 export function properNounTokens(text: string): string[] {
   const stop = new Set(["The", "A", "An", "If", "When", "Because", "This", "That", "Chapter", "Book"]);
-  const out: string[] = [];
+  type Hit = { token: string; sentenceInitial: boolean };
+  const hits: Hit[] = [];
   for (const m of text.matchAll(/\b[A-Z][A-Za-z0-9&.'-]*(?:\s+[A-Z][A-Za-z0-9&.'-]*){0,4}\b/g)) {
     const token = m[0].trim();
     if (token.length < 3 || stop.has(token)) continue;
-    out.push(token);
+    const before = text.slice(0, m.index ?? 0);
+    // Sentence-initial = nothing but whitespace before it, or terminal punctuation +
+    // whitespace. A quote/bracket between the punctuation and the word still counts.
+    const sentenceInitial = /(?:^|[.!?])\s*["'\u201C\u2018(\[]?\s*$/.test(before);
+    hits.push({ token, sentenceInitial });
   }
-  return uniq(out).slice(0, 80);
+  const midSentence = new Set(hits.filter((h) => !h.sentenceInitial).map((h) => h.token));
+  const kept = hits.filter((h) => !h.sentenceInitial || midSentence.has(h.token)).map((h) => h.token);
+  return uniq(kept).slice(0, 80);
 }
 
 export function asText(value: unknown): string {
@@ -196,19 +224,36 @@ export function bestCaseLinkage(packet: SourcePacketV1, factId: string | undefin
   return best.score < 0 ? { score: 0, hardSpecifics: 0 } : best;
 }
 
-/** Cases ranked by keyword linkage to a fact; falls back to a positional rotation when no
- *  case clears CASE_LINKAGE_MIN_SCORE. (Moved verbatim from chapterBlueprint.ts.) */
-export function rankedCaseIdsForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): string[] {
+/**
+ * Cases ranked by keyword linkage to a fact, WITH each case's overlap score; falls back to a
+ * positional rotation (all scores 0) when no case clears CASE_LINKAGE_MIN_SCORE.
+ *
+ * The scores are what makes fact-relevant cue dealing possible: a dealer that only sees the
+ * ORDER cannot tell "the top case beats the rest by nine points" from "every case ties at
+ * zero", so it load-balances the two identically and hands a slot the worst-linked case
+ * (R-101, live ch03 ex05). Ties break by case id so the ranking is deterministic — the
+ * pre-existing `.sort((a,b) => b.score - a.score)` was not stable across engines for ties.
+ */
+export function scoredCaseIdsForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): Array<{ id: string; score: number }> {
   const cases = packet.namedCases;
   if (!cases.length) return [];
+  const fallback = (): Array<{ id: string; score: number }> =>
+    rotate(cases.map((c) => c.id).filter(Boolean), fallbackIndex).map((id) => ({ id, score: 0 }));
   const fact = packet.facts.find((f) => f.id === factId);
-  if (!fact) return rotate(cases.map((c) => c.id).filter(Boolean), fallbackIndex);
+  if (!fact) return fallback();
   const factTerms = factKeywordTerms(fact);
   const scored = cases
     .map((c) => ({ id: c.id, score: caseTermOverlap(factTerms, c) }))
-    .sort((a, b) => b.score - a.score);
-  const ids = scored[0]?.score >= CASE_LINKAGE_MIN_SCORE ? scored.map((item) => item.id) : rotate(cases.map((c) => c.id).filter(Boolean), fallbackIndex);
-  return uniq(ids.filter(Boolean));
+    .filter((item) => !!item.id)
+    .sort((a, b) => b.score - a.score || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0));
+  if (!scored.length || scored[0].score < CASE_LINKAGE_MIN_SCORE) return fallback();
+  return scored;
+}
+
+/** Cases ranked by keyword linkage to a fact; falls back to a positional rotation when no
+ *  case clears CASE_LINKAGE_MIN_SCORE. Thin id-only projection of scoredCaseIdsForFact. */
+export function rankedCaseIdsForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): string[] {
+  return uniq(scoredCaseIdsForFact(packet, factId, fallbackIndex).map((item) => item.id));
 }
 
 // Source-grounding META facts: facts *about* the research contract (use named cases, keep
