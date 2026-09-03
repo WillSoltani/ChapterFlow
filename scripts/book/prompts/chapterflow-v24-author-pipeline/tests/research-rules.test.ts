@@ -13,6 +13,8 @@ import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
 import { authorVerbRegexes, buildUserPrompt, type ChapterResearchInput } from "../src/agents/researcher-chapter.js";
 import { BIBLIOGRAPHY_GENRES, type BibliographyResult } from "../src/agents/researcher-bibliography.js";
+import { chapterMapContractLines } from "../src/source/chapterMap.js";
+import { MAX_BIBLIOGRAPHY_TEXT_CHARS } from "../src/source/sourceOutline.js";
 import { evaluateSourceV2Integrity } from "../src/source/sourceIntegrity.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { writerPacketProjection, PROJECTED_SOURCE_QUOTE_CHARS } from "../src/compiler/sourcePacketProjection.js";
@@ -30,6 +32,14 @@ test("R-054: the research system prompt contains no other book's cast, numbers o
   // its chapter 1, and rules 3, 5 and 12 each quoted it again. The measured
   // consequence is in the register: every Franklin paraphraseNotes followed that
   // mold — one template per project, closing with a practical rule.
+  //
+  // REVIEW ROUND 2 widened the list. Round 1 audited rules 3/4/5/12 and the
+  // exemplar and pinned nine tokens, while two more references to the SAME book
+  // survived just outside them — rule 2's "Habits compound when…" / "Chapter 3
+  // argues that habits compound when…" and rule 8's "If Ch1 establishes
+  // compounding and Ch5 introduces the Four Laws". Both are now schematic, and
+  // the tokens are pinned here so the test's own framing is true of what it
+  // checks: the WHOLE prompt, not a subset of its rules.
   const leaked = [
     "Brailsford",
     "British Cycling",
@@ -40,8 +50,16 @@ test("R-054: the research system prompt contains no other book's cast, numbers o
     "Clear argues",
     "Kahneman",
     "Taleb",
+    "Habits compound",
+    "habits compound",
+    "Four Laws",
+    "compounding",
   ].filter((token) => CHAPTER_PROMPT.includes(token));
   assert.deepEqual(leaked, [], `one book's content is still installed as the universal default: ${leaked.join(", ")}`);
+  // The two rules that carried the survivors are schematic now, not re-worded
+  // around the same book: both state a SHAPE with placeholders.
+  assert.match(CHAPTER_PROMPT, /Write claims directly: "<the mechanism> holds when <condition>"/);
+  assert.match(CHAPTER_PROMPT, /a later chapter introduces this book's own named term or framework for it/);
   // And the replacement is schematic, not a second book's worth of content.
   assert.match(CHAPTER_PROMPT, /These are SHAPES, not content\./);
   assert.match(CHAPTER_PROMPT, /<Concrete claim with its mechanism/);
@@ -305,4 +323,21 @@ test("R-055: chapterContext changes no forward-experiment feature, so the gold s
     deriveForwardChapterFeatures(withContext, sidecar),
     deriveForwardChapterFeatures(without, sidecar),
   );
+});
+
+test("R-046: the bibliography system prompt states BOTH chapter-map shapes and defers to the user message", () => {
+  // The system prompt is one constant for every book, so it cannot demand the
+  // shape only a SHORT book can produce. Round 1's did: "startAnchor: 30-240
+  // characters ... unique in the whole text", which no book shown an outline can
+  // satisfy, and which contradicted the user message once the outline route
+  // started asking for offsets.
+  const prompt = readFileSync(resolve(PIPELINE_DIR, "prompts", "researcher-bibliography.system.md"), "utf8");
+  for (const field of ["startAnchor", "endAnchor", "startOffset", "endOffset"]) {
+    assert.match(prompt, new RegExp(field), `the schema must name ${field}; a book takes one pair or the other`);
+  }
+  assert.match(prompt, /The user message states WHICH of the/, "the system prompt must defer to the per-book contract, not pick a shape itself");
+  assert.match(prompt, /Never compute or adjust an offset; only copy a listed one\./);
+  // And the two per-book contracts really are the two the validator enforces.
+  assert.match(chapterMapContractLines("short text").join("\n"), /startAnchor/);
+  assert.match(chapterMapContractLines("x".repeat(MAX_BIBLIOGRAPHY_TEXT_CHARS + 1)).join("\n"), /startOffset/);
 });

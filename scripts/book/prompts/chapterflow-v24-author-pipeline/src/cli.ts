@@ -2247,11 +2247,19 @@ async function runResearch(args: string[], flags: Record<string, string | boolea
   const concurrency = typeof flags["concurrency"] === "string" ? parseInt(flags["concurrency"] as string, 10) : 3;
   const forceRefresh = flags["force-refresh"] === true;
 
+  // R-277 (review round 2): the book's fact pins are an INPUT to research — they
+  // reach the chapter researcher's prompt and they key the run's configHash, so
+  // editing a pin re-researches instead of resuming the wrong sidecar. They can
+  // only be loaded once a bookId is known; on this verb that means --book-id was
+  // given. Without it the slug is minted by the bibliography model AFTER research
+  // has run, so there is nothing to load pins by and none are passed.
+  const { loadBookScars } = await import("./lib/bookScars.js");
   const result = await researchBook(title, author, {
     bookId: bookIdFlag,
     chapterConcurrency: concurrency,
     forceRefresh,
     failOnCoherenceBlockers: true,
+    ...(bookIdFlag === undefined ? {} : { factPins: loadBookScars(bookIdFlag)?.prohibitions ?? [] }),
   });
   console.log(`\nResearch complete:`);
   console.log(`  bookId:   ${result.bookId}`);
@@ -2292,10 +2300,13 @@ async function runGenerate(args: string[], flags: Record<string, string | boolea
       return 2;
     }
     console.log(`No chapter index for "${resolvedBookId}" — running researcher first…`);
+    // R-277: as above — here the bookId is already resolved, so the pins always load.
+    const { loadBookScars } = await import("./lib/bookScars.js");
     researchedResult = await researchBook(title, author, {
       bookId: bookIdFlag,
       chapterConcurrency: 3,
       failOnCoherenceBlockers: true,
+      factPins: loadBookScars(resolvedBookId)?.prohibitions ?? [],
     });
     resolvedBookId = researchedResult.bookId;
   }

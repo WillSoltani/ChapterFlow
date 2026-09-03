@@ -25,9 +25,9 @@ import { tmpdir } from "os";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { FRANKLIN_SLICE_PATH } from "./helpers.js";
+import { FRANKLIN_SLICE_PATH, PIPELINE_DIR, pickChapterStarts, readPublishedOffsets, syntheticLongSourceBook } from "./helpers.js";
 import { researchBook, SOURCE_TEXT_REL_PATH, CHAPTER_MAP_REL_PATH } from "../src/researcher.js";
-import type { BibliographyResult } from "../src/agents/researcher-bibliography.js";
+import { MAX_BIBLIOGRAPHY_ATTEMPTS, runResearcherBibliography, type BibliographyResult } from "../src/agents/researcher-bibliography.js";
 import type { ChapterResearchInput, ChapterResearchResult } from "../src/agents/researcher-chapter.js";
 import { collectChapterResearchProblems } from "../src/agents/researcher-chapter.js";
 import { normalizeIngestedText } from "../src/source/sourceText.js";
@@ -36,9 +36,12 @@ import { buildSourceTextVerifyRecord } from "../src/source/sourceTextVerify.js";
 import { checkSourceVerifyRecord, verifiableItems } from "../src/critics/sourceVerify.js";
 import { decideSourceRealityPolicy } from "../src/qc/sourceRealityPolicy.js";
 import { resolveChapterMap, chapterSpanText, type ChapterMapV1 } from "../src/source/chapterMap.js";
+import { OUTLINE_OFFSET_LIST_HEADER } from "../src/source/sourceOutline.js";
 import { intentCommandId } from "../src/app/researchCandidateApplicationPort.js";
 import { runResearcherChapter } from "../src/agents/researcher-chapter.js";
 import { createUniquenessEnforcingRunner, mintingExecution } from "./v25/fakes/uniquenessRunner.js";
+import type { ModelTaskRunner } from "../src/app/modelTaskRunner.js";
+import type { ModelTaskContext } from "../src/contracts/v4Core.js";
 
 const TEXT = existsSync(FRANKLIN_SLICE_PATH) ? normalizeIngestedText(readFileSync(FRANKLIN_SLICE_PATH, "utf8")) : "";
 const HALF = Math.floor(TEXT.length / 2);
@@ -592,4 +595,168 @@ test("R-046: --source-text is an advertised book-run flag and must be absolute",
   assert.equal(relative.status, 2);
   assert.match(`${relative.stdout}${relative.stderr}`, /Usage: book-run <bookId>/);
   assert.match(`${relative.stdout}${relative.stderr}`, /--source-text <absolute>/);
+});
+
+// ── OUTLINE MODE, end to end (review round 2, finding 4) ─────────────────────
+//
+// The claim this package is judged on is that the pipeline can read a REAL book,
+// and the book it was measured on is 458 KB — four times the bound above which
+// the bibliography is shown an outline instead of the text. Round 1 asked the
+// outline-mode model for the same unique 20-240-character start AND end anchors
+// it asks a short book for, and validated them against the whole text: a chapter
+// end is inside none of the excerpts, and every title on the printed contents
+// page occurs twice, so no long book could produce a map at all. It failed closed
+// — nothing shipped wrong — but nothing shipped at all.
+//
+// These two run the WHOLE bibliography stage (prompt build, retry loop,
+// validation) on a 300 KB book with a model that answers only from the prompt it
+// was handed, and pin both directions: the contract is satisfiable, and a model
+// that ignores it is corrected rather than admitted.
+
+const LONG_BOOK = (() => {
+  const book = syntheticLongSourceBook();
+  return { ...book, text: normalizeIngestedText(book.text) };
+})();
+
+function longBookRecord(chapterMap: unknown): unknown {
+  return {
+    bookId: "a-long-book",
+    title: "A Long Book",
+    author: "An Author",
+    edition: { publisher: "Gutenberg", publishedYear: 1916, chapterCount: LONG_BOOK.chapters.length, language: "en" },
+    flatChapters: LONG_BOOK.chapters,
+    thesis: "A life can be engineered by deliberate, tracked practice rather than left to temperament or luck.",
+    teachingArc: "The book moves from apprenticeship, through a written system for habit change, to civic institutions built on the same method, each stage reusing the last one's discipline at a larger scale.",
+    authorVoice: { register: "plainspoken", signatureMoves: ["self-deprecating anecdote", "ledger accounting of behavior", "practical civic proposal"], avoidMoves: ["moralizing without a worked example"] },
+    confidence: "high",
+    genre: "memoir",
+    chapterMap,
+  };
+}
+
+/**
+ * A model that reads the prompt and answers from it — the only fake that can
+ * prove a contract is satisfiable. `pick: "offsets"` copies the offsets the
+ * prompt published; `pick: "anchors"` does what a round-1 model would do with an
+ * outline: copy chapter titles off the contents page it can see.
+ */
+function promptReadingBibliographyRig(pick: "offsets" | "anchors") {
+  const prompts: string[] = [];
+  const runner: ModelTaskRunner = {
+    async run(request) {
+      const input = request.prompt.inputs.find((entry) => entry.name === "user_prompt");
+      const prompt = input ? new TextDecoder().decode(input.bytes) : "";
+      prompts.push(prompt);
+      const choices = readPublishedOffsets(prompt, OUTLINE_OFFSET_LIST_HEADER);
+      let chapterMap: unknown;
+      if (pick === "anchors") {
+        chapterMap = LONG_BOOK.chapters.map((chapter) => ({
+          chapterNumber: chapter.number,
+          startAnchor: chapter.title,
+          endAnchor: chapter.title,
+        }));
+      } else {
+        const starts = pickChapterStarts(choices, LONG_BOOK.numerals);
+        const appendix = choices.find((choice) => choice.label === "APPENDIX");
+        chapterMap = starts.map((startOffset, i) => ({
+          chapterNumber: i + 1,
+          startOffset,
+          endOffset: i + 1 < starts.length ? starts[i + 1] : appendix?.offset,
+        }));
+      }
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED" as const, output: longBookRecord(chapterMap) };
+    },
+  };
+  const base: ModelTaskContext = {
+    bookId: "a-long-book",
+    runId: "run-outline",
+    attemptId: "attempt-outline",
+    stageId: "research",
+    operationId: "research-bibliography",
+    workDir: resolve(tmpdir(), "cf-v25-outline-biblio"),
+    signal: new AbortController().signal,
+  };
+  return { execution: mintingExecution(runner, base), prompts };
+}
+
+test("R-046 E2E: a 300 KB book's chapter map is SATISFIABLE — a model answering only from the outline prompt is accepted", async () => {
+  assert.ok(LONG_BOOK.text.length > 300_000, `precondition: this fixture must be a ~300 KB book, measured ${LONG_BOOK.text.length}`);
+  const { execution, prompts } = promptReadingBibliographyRig("offsets");
+  const result = await runResearcherBibliography({ title: "A Long Book", author: "An Author", sourceText: LONG_BOOK.text }, execution, { sleep: async () => {} });
+
+  // ONE attempt: the contract was satisfiable on the first read of the prompt.
+  assert.equal(prompts.length, 1, "a model copying the published offsets must be accepted without a retry");
+  // The prompt really was an OUTLINE — not the book, and not a whole-mode ask.
+  assert.ok(!prompts[0].includes(LONG_BOOK.text), "a 300 KB book must not be pasted whole into the prompt");
+  assert.ok(prompts[0].includes(OUTLINE_OFFSET_LIST_HEADER), "the outline prompt must publish the offsets the map may use");
+  assert.ok(!/startAnchor/.test(prompts[0]), "an outline-mode prompt must not ask for anchors the validator rejects");
+
+  // And the map it returned resolves to the real chapters of the real text.
+  const resolved = resolveChapterMap({
+    bookId: result.bookId,
+    sourceText: LONG_BOOK.text,
+    sourceTextSha256: "3".repeat(64),
+    chapters: LONG_BOOK.chapters,
+    spans: result.chapterMap,
+  });
+  assert.deepEqual(resolved.problems, [], resolved.problems.join(" | "));
+  assert.equal(resolved.map!.spans.length, LONG_BOOK.chapters.length);
+  assert.ok(resolved.map!.coverageFraction > 0.9, `coverage ${resolved.map!.coverageFraction}`);
+  assert.match(chapterSpanText(LONG_BOOK.text, resolved.map!.spans[6]), /Chapter 7 opens with its own sentence, number 7\./);
+});
+
+test("R-046 E2E: the round-1 answer — chapter titles copied off the contents page — is REFUSED, and the retry says what to copy instead", async () => {
+  const { execution, prompts } = promptReadingBibliographyRig("anchors");
+  await assert.rejects(
+    () => runResearcherBibliography({ title: "A Long Book", author: "An Author", sourceText: LONG_BOOK.text }, execution, { sleep: async () => {} }),
+    (error: Error) => {
+      assert.match(error.message, /bibliography invalid after 3 attempts/);
+      // The ONLY thing wrong with this record is its chapter map, so every
+      // attempt must fail on the map and on nothing else — otherwise the test
+      // would pass on a fixture the validator rejected for an unrelated reason.
+      const problems = error.message.split(" | ").flatMap((attempt) => attempt.replace(/^attempt \d+: bibliography invalid: /, "").split("; "));
+      assert.ok(problems.length >= MAX_BIBLIOGRAPHY_ATTEMPTS, error.message);
+      for (const problem of problems) {
+        assert.match(problem, /startOffset|endOffset/, `every rejection must be about the chapter map, saw: ${problem}`);
+      }
+      return true;
+    },
+  );
+  // The retry directive must hand the model the OFFSETS contract, not repeat the
+  // anchor demand that cannot be met from an outline.
+  assert.equal(prompts.length, MAX_BIBLIOGRAPHY_ATTEMPTS);
+  assert.match(prompts[1], /is missing or is not an integer|is not one of the listed offsets/);
+  assert.ok(prompts[1].includes(OUTLINE_OFFSET_LIST_HEADER));
+});
+
+test("R-277: every research entry point passes the book's fact pins, so a pin edit re-researches on every route", () => {
+  // Round 1 wired the pins on the v25 candidate route only, so on the two legacy
+  // CLI verbs a pin reached neither the researcher's prompt nor the run's
+  // configHash: the run resumed and the corrected sidecar was never minted. This
+  // reads the call sites themselves, because that is where the omission lived.
+  const sites = ["src/app/researchCandidateApplicationPort.ts", "src/cli.ts"].flatMap((rel) => {
+    const source = readFileSync(resolve(PIPELINE_DIR, rel), "utf8");
+    const out: Array<{ rel: string; call: string }> = [];
+    let from = 0;
+    for (;;) {
+      const at = source.indexOf("await researchBook(", from);
+      if (at < 0) break;
+      // Brace-match the options object so the window is the CALL, never the
+      // code after it — a fixed line count would pass on a neighbour's factPins.
+      const open = source.indexOf("{", at);
+      let depth = 0;
+      let end = open;
+      for (; end < source.length; end += 1) {
+        if (source[end] === "{") depth += 1;
+        else if (source[end] === "}") { depth -= 1; if (depth === 0) break; }
+      }
+      out.push({ rel, call: source.slice(at, end + 1) });
+      from = at + 1;
+    }
+    return out;
+  });
+  assert.equal(sites.length, 3, `expected the three known researchBook call sites, found ${sites.length}`);
+  for (const site of sites) {
+    assert.match(site.call, /factPins/, `${site.rel}: a researchBook call that passes no factPins cannot re-research when a pin is edited`);
+  }
 });

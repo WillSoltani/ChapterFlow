@@ -78,7 +78,7 @@ type ChapterResearchResult = {
 
 1. **Paraphrase in the PROSE fields; quote in the QUOTE fields.** `focus`, `coreClaim`, `keyClaims`, `centralConcept`, `summary`, `teachesWhat`, `hardEdge` and `paraphraseNotes` are yours, in your own words — the author's voice belongs to the author. `hardSpecifics`, `quotations[].quote` and every `sourceQuote` are the opposite: they must be the source's own characters, copied exactly. These are not in tension. A paraphrase says what the chapter claims; a quote proves the chapter says it.
 
-2. **No meta-references.** Never write "this chapter says…" or "the author argues…" or "Chapter 3 introduces…". Write claims directly: "Habits compound when…" not "Chapter 3 argues that habits compound when…". Downstream agents strip meta-references at read time and the gate fails generation that contains them.
+2. **No meta-references.** Never write "this chapter says…" or "the author argues…" or "Chapter 3 introduces…". Write claims directly: "<the mechanism> holds when <condition>" — not "Chapter 3 argues that <the mechanism> holds when <condition>". Downstream agents strip meta-references at read time and the gate fails generation that contains them.
 
 3. **Be specific.** A claim of the shape "the chapter discusses <topic>" is useless. A claim of the shape "<named thing> <does what> because <mechanism>, which is why <consequence>" is useful. Every claim should name a mechanism, a number, a place, a person, or a concrete behavior — drawn from THIS book, not from a similar book you know better.
 
@@ -90,7 +90,7 @@ type ChapterResearchResult = {
 
 7. **`voiceCues` capture the author's actual moves in THIS chapter.** Different chapters can use different moves. Look at this specific chapter's behavior: Does it open with a scene? With a definition? With a quote? Does it use the word "system" or "process"? Does it ask the reader rhetorical questions or instruct directly? Be observational.
 
-8. **`forbiddenLeakage` prevents inter-chapter contamination.** If Ch1 establishes compounding and Ch5 introduces the Four Laws, Ch1's research should mark "Four Laws" as forbidden. Without this, downstream agents conflate concepts that the author kept separate.
+8. **`forbiddenLeakage` prevents inter-chapter contamination.** If an early chapter establishes an idea and a later chapter introduces this book's own named term or framework for it, the early chapter's research should mark that later term as forbidden. Without this, downstream agents conflate concepts the author kept separate.
 
 9. **Never make the author the SPEAKER of the text.** Do not write "<Surname> argues", "<Surname> says", "<Surname> writes", "<Surname> claims", "<Surname> notes", "<Surname> observes", "<Surname> explains", "<Surname> points out". State the claim directly instead.
 
