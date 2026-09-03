@@ -66,6 +66,7 @@ import {
   runReaderLanes,
   type ReaderPanelReviewV1,
 } from "../review/laneOrchestrator.js";
+import { adjudicatePanelQuizDerivations } from "../review/panelQuizAdjudication.js";
 import type {
   CanonicalReviewEvaluation,
   CanonicalReviewEvaluator,
@@ -254,7 +255,23 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
         issues.push(issue(`READER.ADVISORY.${finding.category}`, "WARN", finding.problem, `ch${pad(number)}/${finding.seatId}/${finding.unit}`));
       }
       for (const signal of panel.escalationSignals) {
+        // R-148: these stay WARNs on the review record - it is the review's own
+        // account of what its readers said, and deleting a finding to prove it
+        // was consumed would make the record a worse one. What changes is that
+        // they are no longer ORPHANS: `CandidateQcEvaluator` collects every
+        // escalation for a chapter and hands it to the source-fidelity judge as
+        // a required claim hint, so the question a reader could not answer
+        // ("this reads as factual and I cannot check it") is now answered by the
+        // one stage that holds the book.
         issues.push(issue(`READER.ESCALATION.${signal.category}`, "WARN", signal.problem, `ch${pad(number)}/${signal.seatId}/${signal.unit}`));
+      }
+      // R-131/R-135: the blind derivations are adjudicated instead of discarded.
+      // A confident blind majority on a non-key answer is a BLOCKER inside the
+      // reader lane's own authority (a claim about the QUESTION, decided on the
+      // page); every weaker split is a WARN the fresh-QC lane routes to the
+      // answer-key judge as a flagged question.
+      for (const verdict of adjudicatePanelQuizDerivations(chapter, panel.quizDerivations)) {
+        issues.push(issue(verdict.code, verdict.severity, verdict.message, `ch${pad(number)}/quiz/${verdict.questionId}`));
       }
     }
 

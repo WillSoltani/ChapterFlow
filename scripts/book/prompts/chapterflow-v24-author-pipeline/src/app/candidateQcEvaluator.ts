@@ -11,8 +11,23 @@ import { runChapterGateCompositeFromCandidate } from "../critics/chapterGateComp
 import type { GateFinding } from "../critics/finalGate.js";
 import { isAdvisoryMajor, isQcBlockingMajor } from "../critics/majorPolicy.js";
 import { judgeQuizKeys, makeLiveAskModel } from "../critics/semantic/quizKeyJudge.js";
+import {
+  SOURCE_FIDELITY_EXPLANATION_CODE,
+  classifySourceFidelityFindings,
+  judgeChapterSourceFidelity,
+  makeLiveSourceFidelityAsk,
+  sourceFidelityCallCount,
+} from "../critics/semantic/sourceFidelityJudge.js";
 import type { QcEvaluation, QcIssue } from "../qc/qcTypes.js";
-import type { CanonicalReviewResult } from "../review/reviewTypes.js";
+import { isReviewIssueCode } from "../review/readerPanelIssueCodes.js";
+import { PANEL_QUIZ_DERIVATION_SPLIT_CODE } from "../review/panelQuizAdjudication.js";
+import type { CanonicalReviewResult, ReviewIssue } from "../review/reviewTypes.js";
+import {
+  resolveCandidateChapterSource,
+  type ResolvedCandidateSource,
+} from "../source/candidateSourceContext.js";
+import { spanExcerptForPrompt } from "../source/chapterMap.js";
+import { normalizedQuote } from "../source/sourceText.js";
 import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
 import type { ChapterV21 } from "../types.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
@@ -21,6 +36,27 @@ import type { ModelTaskRunner } from "./modelTaskRunner.js";
  *  freshQcRunDefinition's attempt capacity so a retry can never exhaust the
  *  judge run's admission budget. */
 export const QUIZ_JUDGE_MAX_ATTEMPTS = 2;
+
+/** Max model attempts per source-fidelity CHUNK (1 retry), for the same reason
+ *  and sized into the same run capacity: a single transient blip must not become
+ *  a durable blocker no repair can scope. */
+export const SOURCE_FIDELITY_MAX_ATTEMPTS = 2;
+
+/**
+ * Most reader escalations handed to one chapter's fidelity judge, and the
+ * longest each may be.
+ *
+ * The live shipping round carried 36 escalations across four chapters (19
+ * origin_ambiguous_to_reader + 10 possible_attribution_issue + 7
+ * possible_real_world_claim), so twelve per chapter is above what a real panel
+ * produces; the bound exists so a degenerate panel cannot grow the judge prompt
+ * without limit. Every escalation still reaches the QC round as its own WARN -
+ * this bounds the HINT LIST, not the record.
+ */
+export const MAX_FIDELITY_CLAIM_HINTS = 12;
+export const MAX_FIDELITY_CLAIM_HINT_CHARS = 400;
+
+const READER_ESCALATION_PREFIX = "READER.ESCALATION.";
 
 export interface CandidateQcRequest {
   readonly candidate: CandidateSnapshot;
@@ -194,6 +230,103 @@ function strictSourceUsePlan(value: unknown): Result<SourceUsePlanV1> {
   return { ok: true, value: value as unknown as SourceUsePlanV1 };
 }
 
+/**
+ * The reader escalations for one chapter, as claim hints for the fidelity judge
+ * (R-148).
+ *
+ * An escalation is a seat saying "this reads as factual and I cannot check it" -
+ * exactly the question this judge exists to settle, and until now the one
+ * finding class with no consumer at all: `semanticPanelReviewEvaluator` emitted
+ * every one as a WARN and the repair brief filed it beside a pacing nit. The
+ * WARNs stay on the record; this makes them an INPUT.
+ */
+export function fidelityClaimHints(issues: readonly ReviewIssue[], chapterNumber: number): readonly string[] {
+  const prefix = `ch${String(chapterNumber).padStart(2, "0")}/`;
+  const hints: string[] = [];
+  for (const issue of issues) {
+    const bare = issue.code.startsWith("REVIEW.") ? issue.code.slice("REVIEW.".length) : issue.code;
+    if (!bare.startsWith(READER_ESCALATION_PREFIX)) continue;
+    if (!(issue.location ?? "").startsWith(prefix)) continue;
+    const category = bare.slice(READER_ESCALATION_PREFIX.length);
+    const line = `${category} (${issue.location}): ${issue.message}`;
+    hints.push(line.length <= MAX_FIDELITY_CLAIM_HINT_CHARS ? line : `${line.slice(0, MAX_FIDELITY_CLAIM_HINT_CHARS - 1)}...`);
+    if (hints.length === MAX_FIDELITY_CLAIM_HINTS) break;
+  }
+  return hints;
+}
+
+/**
+ * Question ids the blind reader panel derived differently from the stored key at
+ * a strength below its own blocker (R-131/R-135).
+ *
+ * Location shape is `chNN/quiz/<questionId>`, minted by
+ * `semanticPanelReviewEvaluator` from `adjudicatePanelQuizDerivations`.
+ */
+export function panelFlaggedQuestionIds(issues: readonly ReviewIssue[], chapterNumber: number): ReadonlySet<string> {
+  const prefix = `ch${String(chapterNumber).padStart(2, "0")}/quiz/`;
+  const ids = new Set<string>();
+  for (const issue of issues) {
+    if (!isReviewIssueCode(issue.code, PANEL_QUIZ_DERIVATION_SPLIT_CODE)) continue;
+    const location = issue.location ?? "";
+    if (!location.startsWith(prefix)) continue;
+    const id = location.slice(prefix.length);
+    if (id.length > 0) ids.add(id);
+  }
+  return ids;
+}
+
+/**
+ * The source context the ANSWER-KEY judge receives (R-078/R-134).
+ *
+ * `source-text`: the chapter's own span, bounded by the SAME deterministic
+ * excerpt the research prompt uses, so a resumed run re-issues identical bytes.
+ * `model-memory`: the sidecar's recalled claims, and the judge's prompt header
+ * says so - the pre-existing header called whatever it was given "ground
+ * truth", which on a model-memory book is a false statement in a judge prompt.
+ */
+export function quizJudgeSourceContext(source: ResolvedCandidateSource): string | undefined {
+  if (source.context.provenance === "source-text") {
+    const text = spanExcerptForPrompt(source.context.spanText).text;
+    return text.trim().length === 0 ? undefined : text;
+  }
+  const claims = source.context.recalledClaims;
+  return claims.length === 0 ? undefined : claims.map((claim, index) => `[R${index + 1}] ${claim}`).join("\n");
+}
+
+/**
+ * How many source-fidelity model calls this candidate costs, before retries.
+ *
+ * Derived from the candidate's own bytes exactly as the evaluator will derive
+ * them, so the fresh-qc run's attempt capacity is sized to the work that will
+ * actually be admitted. A chapter whose inputs cannot be read counts ONE: the
+ * evaluator will not judge it (it already carries an input blocker), and
+ * over-counting a slot is free while under-counting one wedges the run.
+ */
+export function countSourceFidelityCalls(candidate: CandidateSnapshot): number {
+  let total = 0;
+  for (const file of candidate.files) {
+    if (file.kind !== "CHAPTER") continue;
+    let number: number | null = null;
+    try {
+      const chapter = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as { number?: unknown };
+      if (Number.isInteger(chapter.number) && (chapter.number as number) >= 1) number = chapter.number as number;
+    } catch {
+      number = null;
+    }
+    if (number === null) { total += 1; continue; }
+    const packet = parseJson(candidate, compilerPath(number, "source-packet.json"));
+    const sidecarPath = packet.ok ? (packet.value as SourcePacketV1).sourceSidecarPath : undefined;
+    const sidecar = typeof sidecarPath === "string" && sidecarPath.length > 0 ? parseJson(candidate, sidecarPath) : undefined;
+    const resolved = resolveCandidateChapterSource({
+      files: candidate.files,
+      chapterNumber: number,
+      sidecar: sidecar !== undefined && sidecar.ok ? sidecar.value : undefined,
+    });
+    total += resolved.ok ? sourceFidelityCallCount(resolved.value.context) : 1;
+  }
+  return Math.max(total, 1);
+}
+
 export class CandidateQcEvaluator {
   readonly #reader: BookContentReader;
   readonly #runner: ModelTaskRunner | undefined;
@@ -249,6 +382,11 @@ export class CandidateQcEvaluator {
         reviewIssue.location,
       ));
     const validInputs = new Set<number>();
+    // Per-chapter source binding, resolved ONCE from the candidate's own bytes
+    // (the frozen text + chapter map wave 1 copied in, or the honest
+    // model-memory state). Populated only for chapters whose sidecar parsed, so
+    // a chapter with a broken input never reaches a model call.
+    const sources = new Map<number, ResolvedCandidateSource>();
 
     for (const entry of chapters.value) {
       const number = entry.chapter.number;
@@ -322,6 +460,19 @@ export class CandidateQcEvaluator {
         qcIssues.push(inputBlocker(sidecarRaw.error, packet.sourceSidecarPath));
         continue;
       }
+      // WHAT THIS CHAPTER IS CHECKED AGAINST, decided here and once. A candidate
+      // whose sidecar claims it was quoted from a text the candidate does not
+      // carry, or whose chapter map is bound to different bytes, is a BLOCKER:
+      // downgrading it to model-memory would turn every fidelity blocker into a
+      // warning because a file went missing, which is the fail-open shape this
+      // whole package exists to remove.
+      const resolvedSource = resolveCandidateChapterSource({
+        files: candidate.files,
+        chapterNumber: number,
+        sidecar: sidecarRaw.value,
+      });
+      if (!resolvedSource.ok) qcIssues.push(inputBlocker(resolvedSource.error, packet.sourceSidecarPath));
+      else sources.set(number, resolvedSource.value);
       let sourceIntegrity: ReturnType<typeof evaluateSourceV2Integrity>;
       try {
         sourceIntegrity = evaluateSourceV2Integrity(sidecarRaw.value, {
@@ -448,10 +599,98 @@ export class CandidateQcEvaluator {
       // chapter so the caller can size the fresh-qc run's attempt capacity to
       // the candidate's total quiz-question count.
       let judgeOrdinal = 0;
+      // Every fidelity attempt id names the exact bytes it judged. The verdict
+      // is already bound to the candidate by the round (`QcEvaluation.candidate`
+      // carries candidateId + manifestDigest, and the reopened snapshot was
+      // identity-checked above); stamping the digest into run-state makes the
+      // binding visible in the admission log too, so an operator reading it can
+      // see WHICH candidate a judge call belonged to without joining tables.
+      const digestTag = candidate.manifest.manifestDigest.replace(/[^A-Za-z0-9]/g, "").slice(0, 12);
       for (const entry of chapters.value) {
         const number = entry.chapter.number;
+        const chapterLabel = `ch${String(number).padStart(2, "0")}`;
+        const source = sources.get(number);
+
+        // ── SOURCE-FIDELITY JUDGE (R-077, R-136, R-148, R-150) ──────────────
+        // Runs FIRST: it is the check that decides whether the chapter is true
+        // of the book, and it is the one whose findings the repair brief needs
+        // the source quote from. A chapter with no resolved source binding is
+        // skipped here and already carries its own input BLOCKER.
+        if (source !== undefined) {
+          let fidelity;
+          try {
+            fidelity = await judgeChapterSourceFidelity({
+              chapter: entry.chapter,
+              source: source.context,
+              claimHints: fidelityClaimHints(request.canonicalReview.issues, number),
+              ask: async (fidelityRequest) => {
+                const suffix = `${chapterLabel}-c${String(fidelityRequest.chunkIndex + 1).padStart(2, "0")}`;
+                let lastError: unknown;
+                for (let attempt = 1; attempt <= SOURCE_FIDELITY_MAX_ATTEMPTS; attempt += 1) {
+                  if (base.signal.aborted) {
+                    throw new Error("SOURCE_FIDELITY_MODEL_CANCELLED:judge task signal aborted");
+                  }
+                  const fidelityCtx: ModelTaskContext = {
+                    ...base,
+                    attemptId: `${base.attemptId}-fidelity-${digestTag}-${suffix}-a${attempt}`,
+                    operationId: `source-fidelity-judge-${suffix}-a${attempt}`,
+                  };
+                  try {
+                    return await makeLiveSourceFidelityAsk({ execution: { runner, context: fidelityCtx } })(fidelityRequest);
+                  } catch (error) {
+                    lastError = error;
+                    if (error instanceof Error && error.message.startsWith("SOURCE_FIDELITY_MODEL_CANCELLED")) throw error;
+                  }
+                }
+                throw lastError;
+              },
+            });
+          } catch (error) {
+            // Identical rule to the answer-key judge below: a judge that could
+            // not RUN has said nothing about the chapter. Committing its failure
+            // as a FAIL round would manufacture a content verdict, and repair
+            // refuses compiler-owned blockers, so the candidate would wedge.
+            const message = (error as Error).message;
+            const cancelled = message.startsWith("SOURCE_FIDELITY_MODEL_CANCELLED");
+            return failed(
+              cancelled ? "CANDIDATE_QC_JUDGE_CANCELLED" : "CANDIDATE_QC_JUDGE_UNAVAILABLE",
+              `source-fidelity judge could not complete ${chapterLabel}: ${message}`,
+            );
+          }
+          const classified = classifySourceFidelityFindings(fidelity);
+          for (const finding of classified.issues) {
+            qcIssues.push(issue(finding.code, finding.severity, finding.message, finding.location));
+          }
+          // R-150 — the SAME reduction the ship-side publishable bar performs.
+          // The two are cross-checked in BOTH directions and any disagreement
+          // blocks: a RED verdict with no blocker would be a veto the round
+          // silently dropped, and a blocker with a non-RED verdict would be a
+          // round the bar would later wave through.
+          const blocked = classified.issues.some((finding) => finding.severity === "BLOCKER");
+          if (classified.verdict.gate === "RED" && !blocked) {
+            qcIssues.push(issue(
+              "CANDIDATE_QC_FIDELITY_VETO",
+              "BLOCKER",
+              `publishable-bar factual_accuracy verdict is RED for ${chapterLabel} (${classified.verdict.tier}) but no source-fidelity blocker was emitted`,
+              chapterLabel,
+            ));
+          } else if (classified.verdict.gate !== "RED" && blocked) {
+            qcIssues.push(issue(
+              "CANDIDATE_QC_FIDELITY_VETO",
+              "BLOCKER",
+              `source-fidelity blockers were raised for ${chapterLabel} but the publishable-bar factual_accuracy verdict is ${classified.verdict.gate}; the QC veto and the ship bar disagree`,
+              chapterLabel,
+            ));
+          }
+        }
+
         try {
           const report = await judgeQuizKeys(entry.chapter, {
+            ...(source === undefined ? {} : {
+              sourceContext: quizJudgeSourceContext(source),
+              sourceProvenance: source.context.provenance,
+            }),
+            panelFlaggedQuestionIds: panelFlaggedQuestionIds(request.canonicalReview.issues, number),
             ask: async (args) => {
               judgeOrdinal += 1;
               const suffix = `ch${String(number).padStart(2, "0")}-q${String(judgeOrdinal).padStart(3, "0")}`;
@@ -503,6 +742,51 @@ export class CandidateQcEvaluator {
               `quiz answer-key judge flagged ${verdict.questionId} for human review: stored correctIndex=${verdict.storedIndex}, model derived index ${verdict.modelIndex} at medium confidence (${verdict.reason})`,
               location(number, `/quiz/${verdict.questionId}`),
             ));
+          }
+          // R-135 — a LOW-confidence verdict is the judge saying the question is
+          // under-determined, and that was the one verdict class nothing read.
+          // It never blocks (the judge is not confident, so neither are we), and
+          // it now reaches the repair brief as named diagnosis instead of dying
+          // inside `report.all`.
+          for (const verdict of report.underDetermined) {
+            qcIssues.push(issue(
+              "QC1.quiz_under_determined",
+              "WARN",
+              `quiz answer-key judge could not determine ${verdict.questionId} (low confidence; it derived index ${verdict.modelIndex}, stored correctIndex=${verdict.storedIndex}, ${verdict.agree ? "agreeing with" : "disagreeing with"} the key): ${verdict.reason}`,
+              location(number, `/quiz/${verdict.questionId}`),
+            ));
+          }
+          // R-078 — SF4 from the answer-key judge. The judge is the only reader
+          // that sees the explanation and the source together, so an explanation
+          // clause the source does not support is ITS finding to make. The same
+          // cite-or-it-didn't-happen rule as the fidelity judge applies: a clause
+          // the judge cannot quote verbatim out of the explanation is reported,
+          // never enforced. Under model-memory nothing here can block.
+          const explanations = new Map((entry.chapter.quiz?.questions ?? []).map((question) => [
+            question.questionId,
+            typeof question.explanation === "string" ? question.explanation : "",
+          ]));
+          const sourceText = source !== undefined && source.context.provenance === "source-text";
+          for (const verdict of report.all) {
+            for (const claim of verdict.unsupportedExplanationClaims) {
+              const explanation = explanations.get(verdict.questionId) ?? "";
+              const quoted = normalizedQuote(claim).length > 0
+                && normalizedQuote(explanation).includes(normalizedQuote(claim));
+              const parts = [
+                `the explanation for ${verdict.questionId} claims "${claim.replace(/\s+/g, " ").trim().slice(0, 300)}"`,
+                sourceText ? "which this chapter's source span does not support" : "which the judge could not place in the book",
+              ];
+              if (!sourceText) {
+                parts.push("provenance model-memory (this run carried no source text; the judge checked against its own recall, so this cannot gate)");
+              }
+              if (!quoted) parts.push("NOT ENFORCED - the clause is not present verbatim in the explanation");
+              qcIssues.push(issue(
+                SOURCE_FIDELITY_EXPLANATION_CODE,
+                sourceText && quoted ? "BLOCKER" : "WARN",
+                parts.join("; "),
+                location(number, `/quiz/${verdict.questionId}`),
+              ));
+            }
           }
         } catch (error) {
           // THROWS ARE INFRASTRUCTURE, REPORT VERDICTS ARE CONTENT. A judge that

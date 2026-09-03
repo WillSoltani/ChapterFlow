@@ -42,6 +42,7 @@
  * unchanged and still fail closed upstream.
  */
 
+import { isSourceFidelityCode } from "../critics/semantic/sourceFidelityJudge.js";
 import type { QcIssue } from "../qc/qcTypes.js";
 import {
   READER_PANEL_BELOW_FLOOR_CODE,
@@ -105,6 +106,28 @@ export const REPAIR_BRIEF_ITEM_MAX_CHARS = 400;
  */
 export const REPAIR_BRIEF_BLOCKER_MAX_CHARS = 4000;
 
+/**
+ * Character budget for the SOURCE CONTRADICTIONS section, and the per-item clamp
+ * inside it.
+ *
+ * WHY IT NEEDS ITS OWN. A source-fidelity blocker is the one finding class whose
+ * message IS the fix: it carries the chapter's own words and, beside them, the
+ * verbatim line of the book that settles the matter. The general
+ * `REPAIR_BRIEF_ITEM_MAX_CHARS` clamp is 400 characters, which truncates a
+ * chapter quote plus a source quote plus the claim - and a truncated source
+ * quote is worse than none, because the writer cannot tell what the book
+ * actually says and will guess. 1,000 characters holds both quotes at their
+ * classifier clip (300 each) plus the claim and the judge's note.
+ *
+ * 2,000 for the section is one quarter of the whole brief. It is drawn from the
+ * SAME 8,000-character budget as everything else (the advisory tail measures
+ * what is already on the page), so this adds no room to the prompt - it moves
+ * room from advisories, which are diagnosis, to the findings that name a false
+ * fact and how to correct it.
+ */
+export const REPAIR_BRIEF_SOURCE_MAX_CHARS = 2000;
+export const REPAIR_BRIEF_SOURCE_ITEM_MAX_CHARS = 1000;
+
 /** Room reserved for the omission notice so the notice itself cannot push the
  *  brief past its budget. */
 const OMISSION_NOTICE_RESERVE = 160;
@@ -142,6 +165,14 @@ function clamp(value: string): string {
 
 function bullet(issue: QcIssue): string {
   return `- [${issue.code}]${issue.location === undefined ? "" : ` (${issue.location})`} ${clamp(issue.message)}`;
+}
+
+/** The wider clamp the source-fidelity section uses, so a source quote survives. */
+function sourceClamp(value: string): string {
+  const collapsed = value.replace(/\s+/g, " ").trim();
+  return collapsed.length <= REPAIR_BRIEF_SOURCE_ITEM_MAX_CHARS
+    ? collapsed
+    : `${collapsed.slice(0, REPAIR_BRIEF_SOURCE_ITEM_MAX_CHARS)}…[truncated]`;
 }
 
 /** The blockers the brief lists, and the ones it names only by class. Both keep
@@ -252,6 +283,37 @@ export function buildRepairBrief(input: RepairBriefInput): string {
     || advisories.some((issue) => isReaderBlockingCode(issue.code));
 
   const lines: string[] = [`# REPAIR BRIEF — chapter ${chapterLabel}`, ""];
+
+  // SOURCE CONTRADICTIONS LEAD. A blocker that says the chapter contradicts the
+  // book is not the same kind of task as a style or structure blocker: the
+  // writer has to change what the chapter ASSERTS, and the line of the book that
+  // settles it is right there in the finding. It is printed first, in full, and
+  // then again (clamped) among the mandatory fixes, because the mandate list's
+  // promise — that every distinct blocker CODE is represented in it — has to
+  // stay true.
+  const sourceBlockers = input.blockers.filter((issue) => isSourceFidelityCode(issue.code));
+  if (sourceBlockers.length > 0) {
+    const rendered: string[] = [];
+    let used = 0;
+    for (const issue of sourceBlockers) {
+      const line = `- [${issue.code}]${issue.location === undefined ? "" : ` (${issue.location})`} ${sourceClamp(issue.message)}`;
+      if (used + line.length + 1 > REPAIR_BRIEF_SOURCE_MAX_CHARS && rendered.length > 0) break;
+      rendered.push(line);
+      used += line.length + 1;
+    }
+    lines.push(
+      `## SOURCE CONTRADICTIONS — ${sourceBlockers.length} finding(s): FIX THE FACT`,
+      "Each line below quotes this chapter's own words and, beside them, the line of the book that settles the",
+      "matter. Change what the chapter ASSERTS so it agrees with the source quote. Do not paraphrase the defect",
+      "away and do not delete the passage to make the finding disappear if the source supports a corrected version",
+      "of it — say what the book says.",
+      ...rendered,
+      ...(rendered.length === sourceBlockers.length
+        ? []
+        : [`- …${sourceBlockers.length - rendered.length} further source finding(s) are listed in the mandatory fixes below.`]),
+      "",
+    );
+  }
 
   if (floorOnly) {
     lines.push(

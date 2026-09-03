@@ -15,7 +15,12 @@ import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
-import { QUIZ_JUDGE_MAX_ATTEMPTS, type CandidateQcEvaluator } from "./candidateQcEvaluator.js";
+import {
+  QUIZ_JUDGE_MAX_ATTEMPTS,
+  SOURCE_FIDELITY_MAX_ATTEMPTS,
+  countSourceFidelityCalls,
+  type CandidateQcEvaluator,
+} from "./candidateQcEvaluator.js";
 import { isRepairReviewErrorTerminalReason } from "./contentRepairWorkflow.js";
 import type { CompilerApplicationPort } from "./compilerApplicationPort.js";
 import { researchSourcesFromChapterIndex } from "./researchCandidateApplicationPort.js";
@@ -637,7 +642,19 @@ export function freshQcRunDefinition(input: Readonly<{
   // JSON shape from one single-shot call was previously committed as a durable
   // CANDIDATE_QC_QUIZ_JUDGE_ERROR blocker that repair rejects as compiler-owned
   // and resume replays forever — a permanent dead end from one flaky call).
-  const capacity = Math.max(1, input.questionCount * QUIZ_JUDGE_MAX_ATTEMPTS);
+  //
+  // The fresh-qc stage now hosts a SECOND judge — the source-fidelity judge, one
+  // call per chapter source chunk — so the run's capacity covers both families.
+  // `countSourceFidelityCalls` derives the chunk count from the candidate's own
+  // frozen text and chapter map, which is the same derivation the evaluator
+  // performs, so the two cannot drift; an unreadable chapter counts one slot,
+  // because an unused admission slot costs nothing and a missing one wedges the
+  // run at the last step before promotion.
+  const capacity = Math.max(
+    1,
+    (input.questionCount * QUIZ_JUDGE_MAX_ATTEMPTS)
+    + (countSourceFidelityCalls(input.candidate) * SOURCE_FIDELITY_MAX_ATTEMPTS),
+  );
   return {
     schemaVersion: "1",
     bookId: input.bookId,

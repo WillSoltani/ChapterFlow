@@ -25,7 +25,9 @@ const input = { prompt: "Question?", choices: ["A", "B", "C"] };
 test("semantic quiz judge routes only through injected ModelTaskRunner", async () => {
   const calls = { count: 0 };
   const result = await makeLiveAskModel({ execution: execution({ index: 1, confidence: "high", correctText: "B", reason: "fit" }, calls) })(input);
-  assert.deepEqual(result, { index: 1, confidence: "high", correctText: "B", reason: "fit" });
+  // R-078 added the explanation-audit channel; a model that omits it means
+  // "no unsupported clause", which the live ask normalizes to an empty list.
+  assert.deepEqual(result, { index: 1, confidence: "high", correctText: "B", reason: "fit", unsupportedExplanationClaims: [] });
   assert.equal(calls.count, 1);
 });
 

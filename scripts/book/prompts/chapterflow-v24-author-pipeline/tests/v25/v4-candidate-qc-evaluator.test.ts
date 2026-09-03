@@ -216,6 +216,13 @@ function judgeRunner(verdict: { index: number; confidence: "high" | "medium" | "
       if (verdict === "FAIL") {
         return { attemptId: request.context.attemptId, outcome: "FAILED", error: { code: "JUDGE_MODEL_DOWN", message: "injected judge failure" } };
       }
+      // Fresh QC now hosts TWO judges on the same run. The source-fidelity judge
+      // is answered with an empty finding set so these answer-key cases keep
+      // asserting exactly what they asserted before; its own behaviour is proved
+      // in v4-source-fidelity-judge.test.ts.
+      if (request.context.operationId.startsWith("source-fidelity-judge-")) {
+        return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { findings: [] } };
+      }
       return {
         attemptId: request.context.attemptId,
         outcome: "SUCCEEDED",

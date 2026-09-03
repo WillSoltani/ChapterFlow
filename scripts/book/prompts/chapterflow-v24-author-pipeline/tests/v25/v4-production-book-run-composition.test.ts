@@ -452,10 +452,17 @@ class FixtureProcessSupervisor implements ProcessSupervisor {
     // judge call with a low-confidence verdict — never a confident wrong-key flag —
     // so the fixture book still promotes, without consuming the ordered pipeline
     // outputs. The judge system prompt is the reliable, count-independent marker.
-    const isQuizKeyJudge = new TextDecoder().decode(spec.stdin).includes("answer-key auditor");
+    const stdin = new TextDecoder().decode(spec.stdin);
+    const isQuizKeyJudge = stdin.includes("answer-key auditor");
+    // Fresh-qc also runs the source-fidelity judge, once per chapter source
+    // chunk. Answer it with an empty finding set - never a source blocker - so
+    // the fixture book still promotes without consuming ordered outputs.
+    const isSourceFidelityJudge = stdin.includes("source-fidelity auditor");
     const output = isQuizKeyJudge
       ? { index: 0, confidence: "low", correctText: "scripted judge choice", reason: "fixture judge verdict" }
-      : this.#outputs.shift();
+      : isSourceFidelityJudge
+        ? { findings: [] }
+        : this.#outputs.shift();
     if (output === undefined) throw new Error("fixture process received an unexpected model call");
     this.specs.push(spec);
     return {

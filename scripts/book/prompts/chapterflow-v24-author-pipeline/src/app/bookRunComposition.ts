@@ -259,7 +259,7 @@ const READER_LANE_STAGE = "reader-experience-review";
  *
  * It was a flat 4096 for both `attemptLimits.run` and `attemptLimits.byStage`,
  * which is not a bound: the canonical-review run itself is `{run: 1}` and the
- * fresh-qc run is sized exactly to `questionCount * QUIZ_JUDGE_MAX_ATTEMPTS`, so
+ * fresh-qc run is sized exactly to its two judges' admissible attempts, so
  * run-state provided a real spend ceiling on every model lane EXCEPT the panel —
  * the most expensive one. `runReaderLanes` admits at most one attempt per
  * (chapter, seat, retry), so that product IS the ceiling; anything past it is a

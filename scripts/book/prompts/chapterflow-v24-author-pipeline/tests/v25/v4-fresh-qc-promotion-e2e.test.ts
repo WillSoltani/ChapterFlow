@@ -260,6 +260,35 @@ async function buildWorld(
   const judgeRunner: ModelTaskRunner = {
     async run(request): Promise<ModelResult> {
       const userPrompt = Buffer.from(request.prompt.inputs[1].bytes).toString("utf8");
+      // Fresh-qc hosts a SECOND judge on this run: the source-fidelity judge,
+      // one call per chapter source chunk. It admits and settles its own
+      // run-state attempt exactly as the answer-key judge does (so the capacity
+      // and attempt-uniqueness assertions below still cover it) and answers with
+      // an empty finding set, keeping these promotion cases about the key judge.
+      if (request.context.operationId.startsWith("source-fidelity-judge-")) {
+        const fidelityAdmittedAt = now();
+        const fidelityAdmitted = await runStore.admitAttempt({
+          bookId: request.context.bookId,
+          runId: request.context.runId,
+          attemptId: request.context.attemptId,
+          stageId: request.context.stageId,
+          operationId: request.context.operationId,
+          admittedAt: fidelityAdmittedAt,
+          staleAt: new Date(Date.parse(fidelityAdmittedAt) + 60_000).toISOString(),
+        });
+        if (!fidelityAdmitted.ok) {
+          return { attemptId: request.context.attemptId, outcome: "UNKNOWN", error: { code: fidelityAdmitted.error.code, message: fidelityAdmitted.error.message } };
+        }
+        const fidelitySettled = await runStore.finishAttempt({
+          bookId: request.context.bookId,
+          runId: request.context.runId,
+          attemptId: request.context.attemptId,
+          outcome: "SUCCEEDED",
+          finishedAt: now(),
+        });
+        assert.equal(fidelitySettled.ok, true, JSON.stringify(fidelitySettled));
+        return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { findings: [] } };
+      }
       const match = /^QUESTION:\n([\s\S]*?)\n\nCHOICES:/.exec(userPrompt);
       assert.ok(match, "quiz-key judge prompt must carry its question");
       const question = questionsByPrompt.get(match[1]);

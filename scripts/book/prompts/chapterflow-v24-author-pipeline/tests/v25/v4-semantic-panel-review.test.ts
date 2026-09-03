@@ -76,6 +76,27 @@ function baselineStub(evaluation: CanonicalReviewEvaluation, onCall?: () => void
   };
 }
 
+/**
+ * The sentinel the scripted runner replaces with the ANSWER KEY of the chapter
+ * the seat was actually reading.
+ *
+ * Before R-131 these fixtures had every seat "derive" answer `a` for every
+ * question and nothing downstream read the derivation, so the value was inert.
+ * It is not inert any more: `adjudicatePanelQuizDerivations` compares it with
+ * the stored key, and the gate-clean fixture's keys cycle 0,1,2 (and start at a
+ * different offset per chapter). A fixture that answered `a` everywhere would
+ * therefore be asserting that two thirds of the quiz is mis-keyed — which is
+ * exactly the finding the adjudicator now raises, and which none of these cases
+ * is about. A CLEAN read derives the key; a case that wants a disagreement says
+ * so with `answers`.
+ */
+const DERIVE_THE_KEY = "__DERIVE_THE_KEY__";
+
+/** The gate-clean fixture chapter's own key, as derivation letters. */
+function keyLetters(chapterNumber: number): string[] {
+  return makeGateCleanChapter(BOOK, chapterNumber).quiz.questions.map((question) => "abc"[question.correctIndex]);
+}
+
 type ReaderOverrides = {
   blockingFindings?: unknown[];
   advisoryFindings?: unknown[];
@@ -88,6 +109,11 @@ type ReaderOverrides = {
    *  panel whose factors are UNEVEN, which is what the factor-median line exists
    *  to expose. */
   scoreOverrides?: Record<string, number>;
+  /** Seat derivation letters (R-131). Defaults to the sentinel the runner swaps
+   *  for the read chapter's own key, i.e. a seat that agrees with the key. */
+  answers?: string[];
+  /** Per-question derivation confidence. Defaults to "high". */
+  confidence?: string[];
 };
 
 /** A schema-valid reader-experience content object (the runtime stamps the
@@ -100,9 +126,9 @@ function readerContent(overrides: ReaderOverrides = {}): Record<string, unknown>
     // One derivation per question (R-133): the strict reader assembly rejects a
     // seat whose positional derivation does not cover the chapter's quiz.
     quizDerivation: {
-      answers: Array.from({ length: QUESTION_COUNT }, () => "a"),
-      mechanisms: Array.from({ length: QUESTION_COUNT }, (_value, index) => `the prose forces choice a in q${index + 1}`),
-      confidence: Array.from({ length: QUESTION_COUNT }, () => "high"),
+      answers: overrides.answers ?? Array.from({ length: QUESTION_COUNT }, () => DERIVE_THE_KEY),
+      mechanisms: Array.from({ length: QUESTION_COUNT }, (_value, index) => `the prose settles q${index + 1}`),
+      confidence: overrides.confidence ?? Array.from({ length: QUESTION_COUNT }, () => "high"),
       ambiguities: Array.from({ length: QUESTION_COUNT }, () => ""),
       tells: [],
     },
@@ -113,6 +139,29 @@ function readerContent(overrides: ReaderOverrides = {}): Record<string, unknown>
     strongestEvidence: [],
     weakestEvidence: [],
     oneParagraphVerdict: "A clean, usable chapter.",
+  };
+}
+
+/** Replace the DERIVE_THE_KEY sentinel with the key of the chapter this seat was
+ *  reading, taken from the reader lane's own operation id. Doing it HERE rather
+ *  than at each call site keeps every existing queue positional and unchanged:
+ *  the queue says "a clean read", and which chapter that read belongs to is a
+ *  property of the call, not of the fixture entry. */
+function withReadChapterKey(output: unknown, operationId: string): unknown {
+  const match = /^reader-review-ch(\d+)-/.exec(operationId);
+  if (match === null || typeof output !== "object" || output === null) return output;
+  const record = output as Record<string, unknown>;
+  const derivation = record.quizDerivation;
+  if (typeof derivation !== "object" || derivation === null) return output;
+  const answers = (derivation as Record<string, unknown>).answers;
+  if (!Array.isArray(answers) || !answers.includes(DERIVE_THE_KEY)) return output;
+  const key = keyLetters(Number(match[1]));
+  return {
+    ...record,
+    quizDerivation: {
+      ...(derivation as Record<string, unknown>),
+      answers: answers.map((answer, index) => (answer === DERIVE_THE_KEY ? key[index] : answer)),
+    },
   };
 }
 
@@ -156,7 +205,7 @@ function scriptedRunner(outputs: readonly unknown[]): {
           error: { code: fail.code, message: fail.message ?? "injected transient reader failure" },
         };
       }
-      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: withReadChapterKey(output, request.context.operationId) };
     },
   };
   return state as { runner: ModelTaskRunner; calls: number; prompts: string[] };
@@ -517,6 +566,74 @@ requiredTest("EVERY chapter the panel reads carries its per-factor medians — i
   assert.match(factorIssues[0].message, /reader-panel median composite 80 \(chapter bar 70\)/, factorIssues[0].message);
   // Describing the scores must never gate: a PASS with ten factor WARNs is still a PASS.
   assert.equal(evaluated.value.issues.some((issue) => issue.severity === "BLOCKER"), false, JSON.stringify(evaluated.value.issues));
+});
+
+/**
+ * R-131 — THE DERIVATION IS NOW READ.
+ *
+ * Every seat computed one and the panel copied none of them out
+ * (laneOrchestrator.ts:412 pushed exactly {seatId, category, unit, problem} from
+ * three buckets). These two cases pin the two halves of the adjudication: the
+ * blind confident majority blocks, and everything weaker is routed rather than
+ * dropped.
+ */
+requiredTest("a confident blind MAJORITY on a non-key answer blocks the question", async () => {
+  const candidate = twoChapterCandidate();
+  // ch01's keys cycle 0,1,2… so answering "a" everywhere puts every seat on a
+  // non-key answer for two thirds of the quiz, at high confidence.
+  const wrong = Array.from({ length: QUESTION_COUNT }, () => "a");
+  const scripted = scriptedRunner([
+    readerContent({ answers: wrong }),
+    readerContent({ answers: wrong }),
+    readerContent({ answers: wrong }),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "FAIL");
+  const blockers = evaluated.value.issues.filter(
+    (issue) => issue.code === "READER.BLOCKING.structurally_invalid" && issue.severity === "BLOCKER",
+  );
+  // Six of nine questions on ch01 are keyed to a non-"a" choice.
+  const chapterOne = makeGateCleanChapter(BOOK, 1);
+  const expected = chapterOne.quiz.questions.filter((question) => question.correctIndex !== 0).length;
+  assert.equal(blockers.length, expected, JSON.stringify(blockers, null, 2));
+  assert.ok(blockers.every((issue) => (issue.location ?? "").startsWith("ch01/quiz/")), JSON.stringify(blockers));
+  assert.match(blockers[0].message, /3 of 3 blind reader seats independently derived choice/);
+  // ch02's seats derived their own key, so ch02 carries nothing.
+  assert.equal(evaluated.value.issues.some((issue) => (issue.location ?? "").startsWith("ch02/quiz/")), false);
+});
+
+requiredTest("a single dissenting seat is ROUTED to the answer-key judge, never blocked", async () => {
+  const candidate = twoChapterCandidate();
+  const chapterOne = makeGateCleanChapter(BOOK, 1);
+  const dissent = keyLetters(1).map((letter, index) => (index === 0 ? (letter === "a" ? "b" : "a") : letter));
+  const scripted = scriptedRunner([
+    readerContent({ answers: dissent }),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+    readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "PASS", JSON.stringify(evaluated.value.issues.filter((issue) => issue.severity === "BLOCKER"), null, 2));
+  const split = evaluated.value.issues.filter((issue) => issue.code === "READER.PANEL.QUIZ_DERIVATION_SPLIT");
+  assert.equal(split.length, 1, JSON.stringify(evaluated.value.issues, null, 2));
+  assert.equal(split[0].severity, "WARN");
+  assert.equal(split[0].location, `ch01/quiz/${chapterOne.quiz.questions[0].questionId}`);
+  assert.match(split[0].message, /Routed to the answer-key judge as a flagged question/);
 });
 
 finishV25Tests().catch((error: unknown) => {
