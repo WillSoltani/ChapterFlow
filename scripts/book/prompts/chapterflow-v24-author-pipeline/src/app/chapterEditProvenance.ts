@@ -65,7 +65,10 @@ export type ReleaseEditingProvenance = Readonly<{
   reverted: number;
   error: number;
   disabled: number;
-  /** True when at least one chapter's edit was steered by reader advisories. */
+  /** True when at least one chapter ran the R-166 advisory invocation, i.e. it
+   *  carried stored reader advisories and the operator flag was on. It says the
+   *  advisories REACHED an editor, not that the advisory edit was accepted; the
+   *  per-chapter status says that. */
   advisoryApplied: boolean;
 }>;
 

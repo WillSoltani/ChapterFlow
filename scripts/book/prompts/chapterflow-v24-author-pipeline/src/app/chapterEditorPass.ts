@@ -146,6 +146,9 @@ export interface ChapterEditResult {
   /** Why the edit was refused, or what failed, verbatim. Empty on a clean edit. */
   readonly blockers: readonly string[];
   readonly attemptIds: readonly string[];
+  /** R-166: whether the advisory invocation RAN for this chapter (the flag was on
+   *  and the store had entries), which review they came from, and how many were
+   *  rendered. Whether the resulting edit was accepted is `status`, not this. */
   readonly advisory: Readonly<{ applied: boolean; reviewId: string | null; count: number }>;
 }
 
