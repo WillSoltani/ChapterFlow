@@ -584,12 +584,21 @@ export class CandidateQcEvaluator {
       qcIssues.push(issue("CANDIDATE_QC_BOOK_GATE_ERROR", "BLOCKER", (error as Error).message, BOOK_PATTERN_AUDIT_LOGICAL_PATH));
     }
 
-    // LLM answer-key judge (fresh-qc). The deterministic gates cannot tell
-    // whether a quiz's correctIndex points at the RIGHT choice; this restores
-    // the model-backed judge on the V4 seam. Fail-closed: a confident wrong-key
-    // verdict is a BLOCKER, and a judge execution failure is a BLOCKER too (an
-    // uncertain judge never silently passes). Runs only when both a runner and a
-    // task context are injected; otherwise the deterministic gates stand alone.
+    // THE TWO MODEL-BACKED JUDGES OF FRESH QC.
+    //
+    //   SOURCE FIDELITY (R-077, R-136) asks whether what the chapter SAYS is
+    //   true of the book it teaches. Nothing in the pipeline asked that: the
+    //   strongest source-linked deterministic test is literal token presence
+    //   against the sidecar, and the sidecar is the research model's own recall,
+    //   so the gates enforced REPRODUCTION of that recall, true or false.
+    //
+    //   ANSWER KEY asks whether a quiz's correctIndex points at the RIGHT
+    //   choice, which no deterministic gate can decide either.
+    //
+    // Both run only when a runner AND a task context are injected; otherwise the
+    // deterministic gates stand alone. Both are fail-closed the same way: an
+    // adverse VERDICT is a finding, and an execution FAILURE is an evaluation
+    // ERROR — never a manufactured PASS and never a manufactured FAIL round.
     if (this.#runner !== undefined && request.taskContext !== undefined) {
       const runner = this.#runner;
       const base = request.taskContext;
