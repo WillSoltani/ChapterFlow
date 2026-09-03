@@ -320,22 +320,15 @@ export function checkEditPreservesFacts(before: ChapterEditPacks, after: Chapter
   if (findings.length > 0) return findings;
 
   // 2. Addressable units keep their ids, their order and their count.
-  const units: Array<{ kind: SectionKind; arrayKey: string; idKey: string; label: string }> = [
-    { kind: "example-pack", arrayKey: "examples", idKey: "exampleId", label: "examples" },
-  ];
-  for (const unit of units) {
-    const source = unitIds(before[unit.kind], unit.arrayKey, unit.idKey);
-    const edited = unitIds(after[unit.kind], unit.arrayKey, unit.idKey);
-    if (source === null || edited === null) {
-      findings.push(finding("EDIT.pack_shape", `${unit.kind}.${unit.arrayKey} is not an array`));
-      continue;
-    }
-    if (source.join("|") !== edited.join("|")) {
-      findings.push(finding(
-        "EDIT.unit_ids",
-        `${unit.label} changed from [${source.join(", ")}] to [${edited.join(", ")}]`,
-      ));
-    }
+  const sourceExamples = unitIds(before["example-pack"], "examples", "exampleId");
+  const editedExamples = unitIds(after["example-pack"], "examples", "exampleId");
+  if (sourceExamples === null || editedExamples === null) {
+    findings.push(finding("EDIT.pack_shape", "example-pack.examples is not an array"));
+  } else if (sourceExamples.join("|") !== editedExamples.join("|")) {
+    findings.push(finding(
+      "EDIT.unit_ids",
+      `examples changed from [${sourceExamples.join(", ")}] to [${editedExamples.join(", ")}]`,
+    ));
   }
 
   const sourceQuestions = quizQuestions(before["learning-pack"]);
