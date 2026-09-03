@@ -2,11 +2,11 @@
  * Pedagogy thresholds (P03, F12) — the rubric-parity section-gate budgets.
  *
  * Pins the three checks added to sectionGate.ts against score.py-parity metrics:
- *   - SEC116.quiz_distractor_tell  (learning-pack, ADVISORY/shadow): fires when
- *     more than QUIZ_TELL_MAX_PER_CHAPTER questions key the uniquely-longest
- *     choice by character count. Advisory because the published catalog already
- *     ships at 53-84% tell (see scratch/calibrate-pedagogy.ts) so it cannot be a
- *     zero-FP blocker.
+ *   - SEC116.quiz_distractor_tell  (learning-pack, BLOCKER since package 1B):
+ *     fires when MORE THAN QUIZ_TELL_MAX_RATE_PCT (20%) of a chapter's questions
+ *     key the uniquely-longest choice by character count — the rubric's own §3
+ *     goal, which the previous per-chapter count of 2 sat above by its own
+ *     admission while shipping advisory-only.
  *   - SEC121.quiz_length_tell_majority (learning-pack, BLOCKER): fires when a
  *     strict MAJORITY of questions carry the tell — the blind panel prices
  *     catalog-level tell below the chapter bar (rounds 5-6 flagged 5/9 and
@@ -27,7 +27,7 @@ import { test } from "./harness.js";
 import { validateLearningPack, validateSummaryPack, type SectionFinding } from "../src/sections/sectionGate.js";
 import type { ChapterBlueprintV1, LearningPackV1, SourcePacketV1, SummaryPackV1 } from "../src/artifacts/artifactTypes.js";
 import {
-  QUIZ_TELL_MAX_PER_CHAPTER,
+  QUIZ_TELL_MAX_RATE_PCT,
   quizTransferFloor,
   quizTransferTarget,
   SUMMARY_MIN_CLEAN_MEMORABLE_LINES,
@@ -95,28 +95,36 @@ function byCheck(findings: SectionFinding[], id: string): SectionFinding[] {
   return findings.filter((f) => f.checkId === id);
 }
 
-// ---- distractor tell (SEC116, advisory) -----------------------------------
+// ---- distractor tell (SEC116, blocker at the rubric's rate) ---------------
+//
+// R-070 (package 1B): the budget was "at most 2 questions per chapter", ADVISORY,
+// with this file's own comment conceding that 2/9 = 22% sits ABOVE the rubric goal
+// it cites. It is now the rubric's number — above 20% of a chapter's questions —
+// and it blocks. See pedagogyThresholds.QUIZ_TELL_MAX_RATE_PCT for the rev-6
+// measurements behind the change. SEC121 (majority) is unchanged.
 
-test("a longest-key quiz trips the distractor-tell advisory when tells exceed the budget", () => {
-  // all transfer (isolate tell); QUIZ_TELL_MAX_PER_CHAPTER + 1 tells
-  const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i <= QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
+test("a longest-key quiz blocks when the tell rate passes the rubric budget", () => {
+  // all transfer (isolate tell); 2/9 = 22.2%, the live rev-6 rate.
+  const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i < 2, transfer: true }));
   const tell = byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell");
-  assert.equal(tell.length, 1, "tell advisory should fire");
-  assert.equal(tell[0].severity, "advisory", "tell is shadow — never a blocker (catalog ships 53-84% tell)");
+  assert.equal(tell.length, 1, "tell budget should fire");
+  assert.equal(tell[0].severity, "blocker", "the rubric budget the file cites is enforced, not shadowed");
   assert.match(tell[0].message, /q01/, "message names the offending questionIds");
   assert.match(tell[0].message, /longest/, "message states the reason");
+  assert.match(tell[0].message, /22\.2%/, "message states the realized rate");
 });
 
-test("an evenly-built quiz (a distractor is longest) does not trip the tell advisory", () => {
+test("an evenly-built quiz (a distractor is longest) does not trip the tell budget", () => {
   const qs = Array.from({ length: 9 }, () => ({ tell: false, transfer: true }));
   assert.deepEqual(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell"), []);
 });
 
-test("tell budget boundary is exact: QUIZ_TELL_MAX passes, +1 fires", () => {
-  const atBudget = Array.from({ length: 9 }, (_, i) => ({ tell: i < QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
-  assert.deepEqual(byCheck(learningFindings(atBudget), "SEC116.quiz_distractor_tell"), [], `${QUIZ_TELL_MAX_PER_CHAPTER} tells is within budget`);
-  const overBudget = Array.from({ length: 9 }, (_, i) => ({ tell: i <= QUIZ_TELL_MAX_PER_CHAPTER, transfer: true }));
-  assert.equal(byCheck(learningFindings(overBudget), "SEC116.quiz_distractor_tell").length, 1, `${QUIZ_TELL_MAX_PER_CHAPTER + 1} tells exceeds budget`);
+test("tell budget boundary is exact: at the rate passes, above it fires", () => {
+  assert.equal(QUIZ_TELL_MAX_RATE_PCT, 20);
+  const atBudget = Array.from({ length: 10 }, (_, i) => ({ tell: i < 2, transfer: true }));
+  assert.deepEqual(byCheck(learningFindings(atBudget), "SEC116.quiz_distractor_tell"), [], "2/10 = 20.0% is exactly at the budget");
+  const overBudget = Array.from({ length: 10 }, (_, i) => ({ tell: i < 3, transfer: true }));
+  assert.equal(byCheck(learningFindings(overBudget), "SEC116.quiz_distractor_tell").length, 1, "3/10 = 30% exceeds it");
 });
 
 // ---- length-tell majority (SEC121, blocker) --------------------------------
@@ -131,10 +139,10 @@ test("a majority of longest-key questions is a blocker, not an advisory (SEC121)
   assert.match(majority[0].message, /q01/, "message names the offending questionIds");
 });
 
-test("at exactly half the questions the majority blocker stays silent (SEC116 advisory still covers it)", () => {
+test("at exactly half the questions the majority blocker stays silent (SEC116's rate budget still covers it)", () => {
   const qs = Array.from({ length: 9 }, (_, i) => ({ tell: i < 4, transfer: true }));
   assert.deepEqual(byCheck(learningFindings(qs), "SEC121.quiz_length_tell_majority"), [], "4/9 is not a majority");
-  assert.equal(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell").length, 1, "the shadow advisory still reports it");
+  assert.equal(byCheck(learningFindings(qs), "SEC116.quiz_distractor_tell").length, 1, "the rate budget still reports it");
 });
 
 // ---- transfer floor (SEC117, blocker/advisory) ----------------------------

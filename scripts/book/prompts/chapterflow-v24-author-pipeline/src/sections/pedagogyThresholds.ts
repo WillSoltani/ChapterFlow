@@ -16,21 +16,42 @@
  */
 
 /**
- * Distractor-tell budget: the max number of questions per chapter whose keyed
- * answer is the uniquely-longest choice by character count (rubricMetrics.distractorTell).
- * A chapter with MORE than this is a blocker. At 9 questions, 2/9 tells = 22% —
- * just above the rubric's <20% book-wide goal, and the tightest bound that leaves
- * every published >=85 book clean. (score.py ships no hedge lexicon, so the tell
- * rule is uniquely-longest-by-chars only; the contract still steers hedges into
- * distractors as writer guidance.)
+ * Distractor-tell budget (R-070, package 1B): the maximum SHARE of a chapter's
+ * questions whose keyed answer is the uniquely-longest choice by character count
+ * (rubricMetrics.distractorTell). Above it, SEC116 blocks.
+ *
+ * WHY IT IS A RATE AND WHY IT IS 20. This file already states the rubric goal as
+ * "distractor tell < 20% book-wide (RUBRIC §3)" and the previous budget — at most 2
+ * per chapter — conceded in its own comment that "2/9 tells = 22% — just above" that
+ * goal, then shipped ADVISORY so nothing enforced either number. Measured on the live
+ * Franklin rev-6 candidate the four chapters run 2/9, 1/9, 2/9 and 3/9 = 22.2%
+ * book-wide, and only ch04 tripped the advisory; the blind six-reader panel scored
+ * that book's quizzes 63. The budget is now the rubric's own number, applied per
+ * chapter (the gate never sees the whole book at once, and a per-chapter bound at the
+ * book-wide goal implies the book-wide goal).
+ *
+ * WHAT THIS STOPS BLOCKING: nothing. The old check was advisory-only; the SEC121
+ * majority blocker is untouched and still fires on its own condition.
+ * WHAT IT NOW CATCHES: the 22%-and-drifting chapter the shadow advisory reported and
+ * nobody acted on.
+ *
+ * (score.py ships no hedge lexicon, so the tell rule is uniquely-longest-by-chars
+ * only; SEC134 carries the hedge/qualifier shape as its own advisory.)
  */
-export const QUIZ_TELL_MAX_PER_CHAPTER = 2;
+export const QUIZ_TELL_MAX_RATE_PCT = 20;
 
 /**
- * Transfer floor: a chapter with FEWER than this many transfer questions
- * (rubricMetrics: bloomsLevel∈{apply,analyze,analyse,evaluate,create} OR a
- * scenario cue in the prompt) is a blocker. Scaled from the "6 of 9" floor so
- * chapters with 10 questions are held to the same proportion.
+ * Transfer floor: a chapter with FEWER than this many transfer questions is a
+ * blocker. Scaled from the "6 of 9" floor so chapters with 10 questions are held to
+ * the same proportion.
+ *
+ * R-069: the gate counts a question as transfer ONLY when its own stem carries a
+ * scenario cue (rubricMetrics.isTransferQuestion). It used to accept
+ * `bloomsLevel ∈ {apply,…}` as an alternative, which made a metadata STRING satisfy a
+ * pedagogy floor: all 36 questions of the live rev-6 book qualified, 23 of them on
+ * the label alone with no cue in the stem at all. score.py's own transfer_ratio is
+ * unchanged (it is the catalog's ruler and must stay comparable across books); this
+ * gate is deliberately the stricter of the two, and SEC125 reports the gap.
  */
 export function quizTransferFloor(questionCount: number): number {
   return Math.floor((6 / 9) * questionCount);
