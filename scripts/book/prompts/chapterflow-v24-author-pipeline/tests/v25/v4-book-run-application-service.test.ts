@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
+import { mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { BookRunApplicationService, retryableCompilerFailure, type BookRunEvent } from "../../src/app/bookRunApplicationService.js";
@@ -260,10 +260,26 @@ requiredTest("book-run service joins exact review QC and local promotion with du
   assert.match(releaseCommand, new RegExp(`--manifest-digest ${compiled.manifest.manifestDigest}(\\s|$)`));
   assert.match(releaseCommand, /--review-id \S+/);
   assert.match(releaseCommand, /--qc-round-id \S+/);
-  // The release CASes expectedRevision -> expectedRevision + 1, so the command
-  // must name the revision the local promotion just COMMITTED (1), not the one
-  // it started from — otherwise it fails closed on REVISION_CONFLICT.
-  assert.match(releaseCommand, /--expected-book-revision 1(\s|$)/);
+  // RE-PINNED (R-233). This used to assert `--expected-book-revision 1` with the
+  // rationale "the revision the local promotion just COMMITTED … otherwise it fails
+  // closed on REVISION_CONFLICT". That was the defect: the release CASes
+  // expectedRevision -> expectedRevision + 1, so naming 1 mints revision 2 for
+  // byte-identical content while revision 1 still names this candidate with nothing
+  // published. The correct finish is to RESUME the revision that is already
+  // committed, which advances the pointer no further.
+  assert.match(releaseCommand, /--expected-book-revision 0(\s|$)/);
+  assert.match(releaseCommand, /--resume-unfinished-release(\s|$)/);
+  // …and the record that resume needs exists, filed by the local promotion itself.
+  const journalDir = resolve(context.roots.tempRoot, "v25", "books", "_release-journal", BOOK);
+  const journalFiles = readdirSync(journalDir);
+  assert.equal(journalFiles.length, 1, `exactly one release-journal record: ${journalFiles.join(", ")}`);
+  const record = JSON.parse(readFileSync(resolve(journalDir, journalFiles[0]), "utf8"));
+  assert.equal(record.state, "pointer-committed", "the pointer IS committed and nothing is published");
+  assert.equal(record.candidateId, compiled.manifest.candidateId);
+  assert.equal(record.manifestDigest, compiled.manifest.manifestDigest);
+  assert.equal(record.expectedBookRevision, 0);
+  assert.equal(record.targetBookRevision, 1);
+  assert.equal(record.packageId, "NOT_PRODUCED", "there is no package; the field says so rather than inventing one");
   // The durable run log carries the same qualified claim, not only the return value.
   const promotionCompleted = events.filter((event) => event.phase === "promotion" && event.status === "COMPLETED");
   assert.equal(promotionCompleted.length, 1);
@@ -297,7 +313,8 @@ requiredTest("book-run service joins exact review QC and local promotion with du
   // A resumed local promotion is the same local promotion: it produced no reader
   // package either, and must not report an unqualified success.
   assert.equal(resumed.value.readerPackage, "NOT_PRODUCED");
-  assert.match(String(resumed.value.readerPackageCommand), /--expected-book-revision 1(\s|$)/);
+  assert.match(String(resumed.value.readerPackageCommand), /--expected-book-revision 0(\s|$)/);
+  assert.match(String(resumed.value.readerPackageCommand), /--resume-unfinished-release(\s|$)/);
   assert.equal(runnerCalls, 1, "completed canonical review must resume without another model call");
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "COMPLETED").length, 1);
   assert.equal(events.filter((event) => event.phase === "seed" && event.status === "COMPLETED").length, 1);

@@ -114,11 +114,17 @@ requiredTest("claude route env raises the output-token ceiling to the model maxi
   assert.equal(routeEnv!.CLAUDE_CODE_MAX_OUTPUT_TOKENS, "64000");
 });
 
-requiredTest("claude route: an unknown effort string degrades to the high tier flag value, never an invalid flag", () => {
+requiredTest("claude route: an unknown effort tier is rejected at construction, and the argv normalizer still never emits an invalid flag", () => {
+  // RE-PINNED (R-206). This case previously asserted that an unknown tier
+  // DEGRADED to "high" at route construction. That fail-open behavior is the
+  // defect: a typo'd or CLI-renamed tier bought a whole book at the wrong
+  // effort, with nothing in run-state to show which tier actually ran. The
+  // stricter contract is now: construction throws (a preflight failure at the
+  // moment the configured value is known), while effortArgs keeps the "high"
+  // fallback purely so a direct caller can never place an invalid flag VALUE
+  // on a real command line. Strictly narrower than what it replaced.
+  assert.throws(() => createClaudeRoute("claude-sonnet-5", "bogus-effort"), /CLAUDE_ROUTE_EFFORT_INVALID/);
   assert.deepEqual(effortArgs("bogus-effort"), ["--effort", "high"]);
-  const built = createClaudeRoute("claude-sonnet-5", "bogus-effort").build(READ_ONLY_PROFILE);
-  const idx = built.args.indexOf("--effort");
-  assert.equal(built.args[idx + 1], "high");
 });
 
 // ── output-envelope adapter (Task 7 Step 4) ─────────────────────────────────

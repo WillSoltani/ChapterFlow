@@ -42,7 +42,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { hostname } from "node:os";
-import { resolve } from "node:path";
+import { isAbsolute, resolve } from "node:path";
 
 import { MONOREPO_ANCESTOR, REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
 import {
@@ -96,26 +96,48 @@ export type PendingDeployEntry = {
   steps: string[];
 };
 
+/** Thrown when the existing sentinel cannot be read as a pending-deploy list.
+ *  Distinct from a write failure so the caller can name the real cause. */
+export class PendingDeploySentinelError extends Error {}
+
 /** Pure: merge one entry into the sentinel JSON text. Same-bookId entry is
  *  REPLACED; all other valid entries are PRESERVED; result is sorted by bookId
- *  and newline-terminated. A null/torn/foreign existing blob starts fresh but a
- *  well-formed one NEVER loses its other entries.
+ *  and newline-terminated.
+ *
+ *  FAIL-CLOSED on an UNREADABLE existing blob (R-255). This function used to
+ *  start from an empty list whenever the file failed `JSON.parse` or lacked a
+ *  `pending` array, and publishFinal then WROTE that result — silently dropping
+ *  every other book's owed deploy steps. The sentinel is the sole mechanism
+ *  keeping a pushed-but-undeployed book visible (doctor / book-status read it),
+ *  so a blob we cannot read may be hiding real debt: refuse, leave the operator's
+ *  bytes exactly where they are, and let the caller report a FAIL step. An
+ *  absent/empty file is NOT corruption — that is the fresh-sentinel case.
+ *
  *  IDEMPOTENT: when the existing same-book entry already carries the SAME
  *  packageSha256, it is kept VERBATIM (its publishedAt is not refreshed) — so a
  *  publish-final re-run over unchanged content produces byte-identical output and
  *  the commit-skip idempotency holds. */
 export function mergePendingDeploy(existingRaw: string | null, entry: PendingDeployEntry): string {
   let pending: PendingDeployEntry[] = [];
-  if (existingRaw) {
+  if (existingRaw !== null && existingRaw.trim() !== "") {
+    let parsed: unknown;
     try {
-      const parsed = JSON.parse(existingRaw) as { pending?: unknown };
-      if (parsed && Array.isArray(parsed.pending)) {
-        pending = parsed.pending.filter(
-          (e): e is PendingDeployEntry =>
-            !!e && typeof (e as PendingDeployEntry).bookId === "string" && typeof (e as PendingDeployEntry).packageSha256 === "string",
-        );
-      }
-    } catch { /* torn/foreign → start fresh (never throws away a parseable list) */ }
+      parsed = JSON.parse(existingRaw) as unknown;
+    } catch (err) {
+      throw new PendingDeploySentinelError(
+        `${PENDING_DEPLOY_REL} is unreadable (not valid JSON: ${(err as Error).message}); refusing to overwrite it, because it may record other books' owed deploys`,
+      );
+    }
+    const list = (parsed as { pending?: unknown } | null)?.pending;
+    if (!Array.isArray(list)) {
+      throw new PendingDeploySentinelError(
+        `${PENDING_DEPLOY_REL} is unreadable (no \`pending\` array); refusing to overwrite it, because it may record other books' owed deploys`,
+      );
+    }
+    pending = list.filter(
+      (e): e is PendingDeployEntry =>
+        !!e && typeof (e as PendingDeployEntry).bookId === "string" && typeof (e as PendingDeployEntry).packageSha256 === "string",
+    );
   }
   const prior = pending.find((e) => e.bookId === entry.bookId);
   const kept = prior && prior.packageSha256 === entry.packageSha256 ? prior : entry;
@@ -243,11 +265,26 @@ export type PublishFinalResult = {
   /** The deploy still owed after a successful push (sentinel written). Present on
    *  any successful non-dry publish so callers can print the DEPLOY REQUIRED hint. */
   deployRequired?: string[];
+  /** SET when the book SHIPPED (committed + pushed + synced) but the debris
+   *  cleanup refused. `ok` stays true — the book is live — and the CLI maps this
+   *  to its own exit code so a shipped-but-uncleaned publish is never mistaken for
+   *  a failed publish (which is what drove re-publish loops). `--strict-cleanup`
+   *  turns it back into `ok:false`. */
+  cleanupBlocked?: string;
 };
 
 export type PublishFinalOptions = {
   dryRun?: boolean;
   keepDebris?: boolean;
+  /** OPT-IN: treat a shipped-but-uncleaned publish as a FAILURE (ok:false).
+   *  Default false — the book is live, and reporting that as a failed publish is
+   *  what made retry loops re-publish forever. */
+  strictCleanup?: boolean;
+  /** TEST SEAM: cleanup pipeline/state roots. Production passes neither (the
+   *  engine's canonical REPO_ROOT / CANONICAL_STATE defaults apply); a hermetic
+   *  test points the debris scan at a disposable tree. `outerRoot` is always the
+   *  publish's own outer root and is NOT overridable here. */
+  cleanupRoots?: { pipelineRoot?: string; stateRoot?: string };
   /** outer live checkout root; default MONOREPO_ANCESTOR. */
   outerRoot?: string;
   /** sandbox package path override (tests). */
@@ -259,14 +296,26 @@ export type PublishFinalOptions = {
    *  A seam may return a bare boolean (the pre-existing contract, unchanged) or a
    *  `{ ok, detail }` outcome whose detail becomes the step line. */
   verify?: (pkgPath: string) => Promise<boolean | PreflightOutcome> | boolean | PreflightOutcome;
-  /** OPT-IN candidate-store re-verification. Absolute path to the v25 root (the
-   *  dir holding `books/`). When supplied the preflight reads the CURRENT pointer,
-   *  requires the sidecar's declared candidate identity to equal it, opens the
-   *  candidate from the content-addressed store and recomputes the evidence from
-   *  its bytes — closing the re-authored-pair residual that a two-file verify
-   *  cannot see. When omitted, verification is exactly what it is today and the
-   *  step line SAYS which strength ran. */
+  /** Candidate-store re-verification. Absolute path to the v25 root (the dir
+   *  holding `books/`). The preflight reads the CURRENT pointer, requires the
+   *  sidecar's declared candidate identity to equal it, opens the candidate from
+   *  the content-addressed store and recomputes the evidence from its bytes —
+   *  closing the re-authored-pair residual that a two-file verify cannot see.
+   *
+   *  R-231: this is no longer merely opt-in. When it is absent and the pair is
+   *  CANDIDATE-declared, publish-final first tries to DISCOVER a root
+   *  (CHAPTERFLOW_V25_ROOT naming a directory that actually holds this book's
+   *  CURRENT pointer) and, failing that, REFUSES rather than shipping on the
+   *  weaker recorded-evidence replay. A legacy canonical-index pair is unaffected —
+   *  it has no candidate to re-read. */
   v25Root?: string;
+  /** Ship a CANDIDATE-declared pair on the weaker recorded-evidence replay, with a
+   *  printed warning, when no v25 root is available. The residual it leaves is
+   *  documented in candidatePreflight's header: a wholesale re-authoring of BOTH
+   *  files passes a two-file verify. */
+  allowWeakPreflight?: boolean;
+  /** TEST SEAM: environment used for v25-root discovery. Default process.env. */
+  env?: NodeJS.ProcessEnv;
   /** Sidecar path override (tests / non-canonical layouts). Default: the same
    *  `<CANONICAL_STATE>/books/<id>.production-manifest.json` the verifier derives. */
   manifestPath?: string;
@@ -282,6 +331,22 @@ export type PublishFinalOptions = {
    *  genuinely-out-of-sync tree. Not used in production. */
   __afterPushHook?: () => void;
 };
+
+/** The environment variable that names this checkout's v25 root, so the STRONG
+ *  preflight is the default in a configured environment rather than something an
+ *  operator has to remember to type. */
+export const V25_ROOT_ENV = "CHAPTERFLOW_V25_ROOT";
+
+/** Discover a v25 root for `bookId`: the env var, but only when it is absolute
+ *  AND actually holds this book's CURRENT pointer. Anything less is not a root
+ *  that can answer the strong preflight's questions, and guessing one would turn
+ *  a stronger verification into a confusing failure. */
+export function discoverV25Root(bookId: string, env: NodeJS.ProcessEnv = process.env): string | undefined {
+  const raw = env[V25_ROOT_ENV];
+  if (typeof raw !== "string" || raw.length === 0 || !isAbsolute(raw)) return undefined;
+  const root = resolve(raw);
+  return existsSync(resolve(root, "books", bookId, "current.json")) ? root : undefined;
+}
 
 /** Fresh-lock window: a lock whose heartbeat `at` is younger than this is "held".
  *  Matches the conductor's LOCK_FALLBACK_STALE_MS (2h). */
@@ -419,6 +484,7 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
   const dryRun = opts.dryRun === true;
   const keepDebris = opts.keepDebris === true;
   const outerRoot = opts.outerRoot ?? MONOREPO_ANCESTOR;
+  const cleanupRoots = { outerRoot, ...(opts.cleanupRoots ?? {}) };
   const runner = opts.runner ?? defaultRunner;
   const registerFn = opts.registerInOuter ?? registerInOuterRegistry;
 
@@ -438,7 +504,41 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     return finish(false, `sandbox package missing: ${localPath}`);
   }
 
-  const verify = opts.verify ?? makeDefaultVerify(id, opts);
+  // ── 1b. VERIFICATION STRENGTH (R-231) ─────────────────────────────────────
+  // The strongest available verification — candidate-store re-verify — used to run
+  // only when an operator typed --v25-root, so the DEFAULT for a candidate pair was
+  // the recorded-evidence replay, whose residual candidatePreflight's header spells
+  // out: a wholesale re-authoring of BOTH files passes it. Make the strong path the
+  // default wherever a root can be found, and make the weak path an explicit,
+  // warned-about choice.
+  const { readDeclaredCandidate, defaultManifestPathForBook } = await import("./candidatePreflight.js");
+  const sidecarPath = opts.manifestPath ? resolve(opts.manifestPath) : defaultManifestPathForBook(id);
+  const declaredCandidate = readDeclaredCandidate(sidecarPath);
+  let effectiveV25Root = opts.v25Root;
+  if (effectiveV25Root === undefined && declaredCandidate !== null) {
+    const discovered = discoverV25Root(id, opts.env ?? process.env);
+    if (discovered !== undefined) {
+      effectiveV25Root = discovered;
+      push("preflight:verification-strength", true, `candidate-store re-verify — v25 root discovered via ${V25_ROOT_ENV}=${discovered}`);
+    } else if (opts.allowWeakPreflight !== true) {
+      const detail =
+        `the pair at ${sidecarPath} declares candidate ${declaredCandidate.candidateId}@${declaredCandidate.manifestDigest.slice(0, 12)}…, ` +
+        `but no v25 root was given (--v25-root) and none was discoverable (${V25_ROOT_ENV} unset, or not holding books/${id}/current.json). ` +
+        "Refusing to ship on the recorded-evidence replay, which a wholesale re-authoring of BOTH files passes. " +
+        "Pass --v25-root <absolute>, or --allow-weak-preflight to accept that residual on purpose.";
+      push("preflight:verification-strength", false, detail);
+      return finish(false, `candidate pair refused: no v25 root for the strong preflight — ${detail}`);
+    } else {
+      const warning =
+        `⚠ WEAK PREFLIGHT (--allow-weak-preflight): ${id} is a CANDIDATE-declared pair being verified WITHOUT re-reading ` +
+        "the candidate. A wholesale re-authoring of both shipped files passes this check; the candidate's own chapter " +
+        "inventory is the only authority that refuses it, and it is not being consulted.";
+      console.warn(warning);
+      push("preflight:verification-strength", true, warning);
+    }
+  }
+
+  const verify = opts.verify ?? makeDefaultVerify(id, { ...opts, ...(effectiveV25Root === undefined ? {} : { v25Root: effectiveV25Root }) });
   let outcome: boolean | PreflightOutcome;
   try { outcome = await verify(localPath); } catch (err) {
     push("preflight:verify", false, `verify threw: ${(err as Error).message}`);
@@ -494,10 +594,20 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     push("plan:commit", true, `would pathspec-commit {${bridgeRel}, ${PENDING_DEPLOY_REL}${probe.state === "not-found" ? `, ${OUTER_REGISTRY_REL}` : ""}, ${OUTER_CATALOG_METADATA_REL} (if dirty)} on ${branch}`);
     push("plan:push", true, `would push ${branch} with a MERGE loop (never rebase/force)`);
     push("plan:sync", true, `would fetch + ff-only pull + assert origin/${branch}...${branch} == "0 0"`);
-    const manifest = buildCleanupManifest(id, { outerRoot });
-    push("plan:cleanup", true, keepDebris ? "cleanup SKIPPED (--keep-debris)" : formatCleanupManifest(manifest));
+    const manifest = buildCleanupManifest(id, cleanupRoots);
+    // R-240: the plan step's verdict must be the verdict the REAL run will reach.
+    // `formatCleanupManifest` prints "ABORT: N matched path(s) are git-tracked"
+    // for exactly the state applyCleanup refuses on — printing that inside a
+    // hard-coded PASS line told the operator the plan was fine.
+    const cleanupPlanOk = keepDebris || (!manifest.trackedUnknown && manifest.trackedMatches.length === 0);
+    push("plan:cleanup", cleanupPlanOk, keepDebris ? "cleanup SKIPPED (--keep-debris)" : formatCleanupManifest(manifest));
+    const planError = cleanupPlanOk
+      ? undefined
+      : manifest.trackedUnknown
+        ? `planned cleanup would ABORT: git could not determine which matched paths are tracked (${manifest.trackedUnknownReason ?? "no reason recorded"})`
+        : `planned cleanup would ABORT: ${manifest.trackedMatches.length} matched path(s) are git-tracked (first: ${manifest.trackedMatches[0]}). Re-run with --keep-debris to ship without sweeping.`;
     return {
-      ...finish(true),
+      ...finish(cleanupPlanOk, planError),
       packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
       cleanupManifest: manifest,
     };
@@ -620,20 +730,34 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
   // ── 7. CLEANUP (owner requirement) — gated on the step-6 proof ─────────────
   let cleanup: CleanupResult | undefined;
   let cleanupManifest: CleanupManifest | undefined;
+  let cleanupBlocked: string | undefined;
   if (keepDebris) {
-    cleanupManifest = buildCleanupManifest(id, { outerRoot });
+    cleanupManifest = buildCleanupManifest(id, cleanupRoots);
     push("cleanup", true, "SKIPPED (--keep-debris) — debris left on disk");
   } else {
     const proof: PublishProof = { pushedCommit: commitSha!, syncState };
-    cleanup = applyCleanup(id, proof, { outerRoot });
+    cleanup = applyCleanup(id, proof, cleanupRoots);
     cleanupManifest = cleanup.manifest;
     if (!cleanup.ok) {
-      // A cleanup abort (tracked file) is a HARD failure — but the publish already
-      // succeeded (committed + pushed + synced), so surface it without unshipping.
-      push("cleanup", false, cleanup.error ?? "cleanup failed");
+      // R-241: the book IS live — committed, pushed, origin asserted 0/0. Reporting
+      // that as `ok:false` made every "retry on non-zero" loop re-publish an
+      // already-shipped book forever. The cleanup STEP still fails loudly and the
+      // reason is carried on `cleanupBlocked`, from which the CLI derives an exit
+      // code distinct from a failed publish. `--strict-cleanup` restores the old
+      // hard failure for callers that want it.
+      cleanupBlocked = cleanup.error ?? "cleanup failed";
+      push("cleanup", false, cleanupBlocked);
+      if (opts.strictCleanup === true) {
+        return {
+          ...finish(false, `publish succeeded but cleanup ABORTED (--strict-cleanup): ${cleanupBlocked}`),
+          commitSha, syncState, cleanup, cleanupManifest, cleanupBlocked,
+          packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
+          deployRequired: deployHint,
+        };
+      }
       return {
-        ...finish(false, `publish succeeded but cleanup ABORTED: ${cleanup.error}`),
-        commitSha, syncState, cleanup, cleanupManifest,
+        ...finish(true),
+        commitSha, syncState, cleanup, cleanupManifest, cleanupBlocked,
         packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
         deployRequired: deployHint,
       };
@@ -693,7 +817,13 @@ export function pushWithMerge(outerRoot: string, branch: string, attempts = 3): 
 /** Render the publish-final result as a human-readable report. */
 export function formatPublishFinalResult(r: PublishFinalResult): string {
   const L: string[] = [];
-  L.push(r.ok ? `PUBLISH-FINAL ${r.dryRun ? "PLAN" : "OK"} — ${r.bookId}` : `PUBLISH-FINAL BLOCKED — ${r.bookId}`);
+  L.push(
+    !r.ok
+      ? `PUBLISH-FINAL BLOCKED — ${r.bookId}`
+      : r.cleanupBlocked
+        ? `PUBLISH-FINAL SHIPPED, CLEANUP BLOCKED — ${r.bookId}`
+        : `PUBLISH-FINAL ${r.dryRun ? "PLAN" : "OK"} — ${r.bookId}`,
+  );
   for (const s of r.steps) L.push(`  ${s.ok ? "✓" : "✗"} ${s.step}: ${s.detail}`);
   if (r.packageSha) L.push(`  package: sha256 ${r.packageSha.slice(0, 12)}…  ${(r.packageBytes ?? 0)} B  overhead ${r.overheadPct ?? 0}%`);
   if (r.commitSha) L.push(`  commit: ${r.commitSha.slice(0, 12)}`);
@@ -704,6 +834,13 @@ export function formatPublishFinalResult(r: PublishFinalResult): string {
   }
   if (r.durationMs != null) L.push(`  duration: ${(r.durationMs / 1000).toFixed(1)}s`);
   if (!r.ok && r.error) L.push(`  reason: ${r.error}`);
+  if (r.ok && r.cleanupBlocked) {
+    L.push("");
+    L.push(`  ⚠ SHIPPED, NOT CLEANED — the package is committed, pushed and in sync with origin, but the debris`);
+    L.push(`    cleanup refused and NOTHING was deleted: ${r.cleanupBlocked}`);
+    L.push(`    Re-running publish-final will NOT unship the book and will NOT clean either — resolve the tracked`);
+    L.push(`    path (or re-run with --keep-debris to acknowledge it) and sweep separately.`);
+  }
   // Loud DEPLOY REQUIRED block whenever a publish landed (the sentinel is owed).
   if (r.deployRequired && r.deployRequired.length > 0 && !r.dryRun) {
     L.push("");

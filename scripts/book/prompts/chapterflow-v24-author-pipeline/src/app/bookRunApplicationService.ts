@@ -8,6 +8,7 @@ import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
 import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
 import type { QcDiagnosis, QcDiagnosisIndex, QcRoundResult, QcService } from "../qc/qcTypes.js";
 import type { PromotionService } from "../release/promotionTypes.js";
+import { createFileReleaseJournal } from "../release/releaseJournal.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -386,11 +387,23 @@ function sameIdentity(left: CandidateIdentity, right: CandidateIdentity): boolea
  * candidate into the reader package + production-manifest sidecar `--promote-local`
  * does not produce.
  *
- * `--expected-book-revision` is the revision the local promotion just COMMITTED,
- * not the one it started from: the release route CASes expectedRevision ->
- * expectedRevision + 1, so releasing this candidate advances the pointer once
- * more. That is the honest cost of the split and it is stated in the caller's
- * output rather than discovered.
+ * `--expected-book-revision` is the revision the local promotion started FROM
+ * (bookRevision - 1), paired with `--resume-unfinished-release` (R-233).
+ *
+ * It used to print the revision the promotion just COMMITTED. The release route
+ * CASes expectedRevision -> expectedRevision + 1, so that command minted a SECOND
+ * pointer revision for byte-identical content: revision N+1 already named this
+ * candidate with nothing published, and the follow-up made N+2 name it again. The
+ * adapter's own double-advance guard could not stop it, because that guard keys on
+ * a release-journal record and this path — calling the promotion service directly —
+ * wrote none.
+ *
+ * So `--promote-local` now FILES the record (state `pointer-committed`, which is
+ * exactly what it achieved: the CAS landed, nothing is published) and the printed
+ * command resumes THAT record. The resume publishes at the same revision and
+ * advances the pointer no further; the recovery path's own bar is unchanged — it
+ * still re-verifies the CURRENT readback content-addressed and re-runs the full
+ * production verifier before it writes anything.
  *
  * `--categories` / `--tags` are left as placeholders on purpose — candidate
  * release requires both to be explicit, and book-run never takes reader-facing
@@ -421,8 +434,59 @@ export function readerPackageCommandFor(input: Readonly<{
     `--manifest-digest ${input.candidate.manifestDigest}`,
     `--review-id ${input.reviewId}`,
     `--qc-round-id ${input.qcRoundId}`,
-    `--expected-book-revision ${input.bookRevision}`,
+    `--expected-book-revision ${input.bookRevision - 1}`,
+    "--resume-unfinished-release",
   ].join(" ");
+}
+
+/** The packageId a `--promote-local` journal record carries. There is no package —
+ *  that is the whole point of the record — and the field is documented as evidence
+ *  rather than a constraint (a resumed release re-assembles and mints a fresh id),
+ *  so it says so instead of inventing a plausible-looking id. */
+export const PROMOTE_LOCAL_PACKAGE_ID = "NOT_PRODUCED";
+
+/**
+ * File the release-journal record a `--promote-local` promotion owes.
+ *
+ * The pointer HAS been committed and nothing is published — the journal's
+ * `pointer-committed` state, verbatim. Without it the printed follow-up command
+ * dead-ends in "CURRENT names this candidate, but prior release intent cannot be
+ * proven; package write suppressed", because nothing on disk could ever prove it.
+ *
+ * Rooted at the run's own `--v25-root`, the same root the CLI candidate release
+ * journals into, so the record the resume reads is the record this wrote.
+ * Best-effort by design: a journal that cannot be written must not fail a
+ * promotion that already succeeded, and the caller reports it as a detail.
+ */
+export function fileLocalPromotionJournal(input: Readonly<{
+  v25Root: string;
+  bookId: string;
+  candidate: CandidateIdentity;
+  reviewId: string;
+  qcRoundId: string;
+  bookRevision: number;
+  promotedAt: string;
+}>): { ok: true } | { ok: false; error: string } {
+  try {
+    const journal = createFileReleaseJournal({ stateRoot: input.v25Root });
+    journal.write({
+      bookId: input.bookId,
+      txId: `promote-local-${input.candidate.candidateId}-r${input.bookRevision}`,
+      state: "pointer-committed",
+      candidateId: input.candidate.candidateId,
+      manifestDigest: input.candidate.manifestDigest,
+      reviewId: input.reviewId,
+      qcRoundId: input.qcRoundId,
+      expectedBookRevision: input.bookRevision - 1,
+      targetBookRevision: input.bookRevision,
+      promotedAt: input.promotedAt,
+      packageId: PROMOTE_LOCAL_PACKAGE_ID,
+      detail: "--promote-local advanced the CURRENT pointer and produced no reader package; finish with --resume-unfinished-release",
+    });
+    return { ok: true };
+  } catch (cause) {
+    return { ok: false, error: cause instanceof Error ? cause.message : String(cause) };
+  }
 }
 
 function expectedRevisionFromEvents(events: readonly BookRunEvent[]): Result<number> {
@@ -2448,6 +2512,20 @@ export class BookRunApplicationService {
       await this.#event(runId, input.bookId, "promotion", "FAILED", message, identity(candidate));
       return failed("BOOK_RUN_PROMOTION_FAILED", message);
     }
+    // R-233: FILE THE RELEASE-JOURNAL RECORD this promotion owes. The pointer is
+    // committed and nothing is published — the journal's `pointer-committed` state
+    // exactly — and the follow-up command printed below resumes THIS record instead
+    // of minting a second revision for identical content. Without the record the
+    // resume dead-ends in "prior release intent cannot be proven".
+    const journalled = fileLocalPromotionJournal({
+      v25Root: input.v25Root,
+      bookId: input.bookId,
+      candidate: identity(candidate),
+      reviewId: review.value.reviewId,
+      qcRoundId: roundId,
+      bookRevision: promoted.value.bookRevision,
+      promotedAt: promotedAt.value,
+    });
     // The event detail says what the phase actually achieved. `readerPackage=NOT_PRODUCED`
     // is part of the durable run log, not only of the returned value, so an
     // operator reading events.jsonl after the fact sees the same qualified claim.
@@ -2456,7 +2534,8 @@ export class BookRunApplicationService {
       input.bookId,
       "promotion",
       "COMPLETED",
-      `bookRevision=${promoted.value.bookRevision};readerPackage=NOT_PRODUCED`,
+      `bookRevision=${promoted.value.bookRevision};readerPackage=NOT_PRODUCED` +
+        (journalled.ok ? ";releaseJournal=FILED" : `;releaseJournal=UNWRITTEN:${journalled.error}`),
       identity(candidate),
     );
     if (!promotionCompleted.ok) return promotionCompleted;

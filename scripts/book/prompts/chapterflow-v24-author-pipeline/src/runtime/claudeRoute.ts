@@ -39,15 +39,26 @@ import type { ExecutionProfile } from "./executionPolicyTypes.js";
 export const CLAUDE_ROUTE_ID = "claude-subscription-v1";
 
 /** Effort tiers the installed `claude --effort <level>` flag accepts (live
- *  probe 2026-07-22). RoleRoute (Task 6) constrains config to a subset of
- *  these (low/medium/high/xhigh); "max" is accepted by the CLI and passes
- *  through verbatim if ever supplied. */
-export type ClaudeEffort = "low" | "medium" | "high" | "xhigh" | "max";
+ *  probe 2026-07-22 — the CLI help enumerates exactly these five).
+ *
+ *  R-227: this list is the SINGLE source of truth for the tier vocabulary.
+ *  codexRoute's config validator (VALID_EFFORT_VALUES) and the RoleRoute
+ *  `effort` type both derive from it, so config, route construction and the
+ *  CLI can no longer disagree — previously the config could not name "max"
+ *  at all, and a CLI tier rename would have passed the config validator and
+ *  then been silently rewritten to "high". */
+export const CLAUDE_EFFORT_TIERS = Object.freeze(["low", "medium", "high", "xhigh", "max"] as const);
+
+export type ClaudeEffort = (typeof CLAUDE_EFFORT_TIERS)[number];
+
+export function isClaudeEffort(effort: unknown): effort is ClaudeEffort {
+  return typeof effort === "string" && (CLAUDE_EFFORT_TIERS as readonly string[]).includes(effort);
+}
+
+export const CLAUDE_ROUTE_EFFORT_INVALID = "CLAUDE_ROUTE_EFFORT_INVALID" as const;
 
 function normalizeEffort(effort: string): ClaudeEffort {
-  return effort === "low" || effort === "medium" || effort === "high" || effort === "xhigh" || effort === "max"
-    ? effort
-    : "high";
+  return isClaudeEffort(effort) ? effort : "high";
 }
 
 /** READ_ONLY analog of codex's `--sandbox read-only`: no tools at all, so the
@@ -60,8 +71,13 @@ const READ_ONLY_LOCKDOWN_ARGS: readonly string[] = ["--disallowedTools", "*"];
 const WORKSPACE_WRITE_ARGS: readonly string[] = ["--permission-mode", "acceptEdits"];
 
 /** Effort → CLI args. The installed CLI exposes `--effort <level>` (live probe),
- *  so the effort tier rides in argv verbatim (unknown strings degrade to the
- *  "high" tier, never NaN and never an invalid flag value). */
+ *  so the effort tier rides in argv verbatim.
+ *
+ *  R-206: this normalizer is now a DEFENSIVE no-op, not the policy. Route
+ *  construction (`createClaudeRoute`) rejects an unrecognised tier outright, so
+ *  nothing built through the gateway can reach here with one; the "high"
+ *  fallback survives only so a direct caller can never emit an invalid flag
+ *  VALUE onto a real command line. */
 export function effortArgs(effort: string): readonly string[] {
   return ["--effort", normalizeEffort(effort)];
 }
@@ -141,6 +157,16 @@ export function normalizeClaudeStdout(stdout: Uint8Array): Uint8Array {
  * hardcoded (model flows in from config).
  */
 export function createClaudeRoute(model: string, effort: string): ModelProcessRoute {
+  // R-206 fail-closed: an unrecognised tier is a CONFIG defect, and the only
+  // moment it can be reported as a preflight failure rather than a silent
+  // mid-run downgrade is here, where the configured value is still known.
+  // Previously it degraded to "high", so a typo'd or renamed tier bought a
+  // whole book at the wrong effort with nothing in run-state to show for it.
+  if (!isClaudeEffort(effort)) {
+    throw new Error(
+      `${CLAUDE_ROUTE_EFFORT_INVALID}: claude route effort "${effort}" is not one of ${CLAUDE_EFFORT_TIERS.join(", ")}`,
+    );
+  }
   return Object.freeze({
     id: CLAUDE_ROUTE_ID,
     build(profile: ExecutionProfile) {

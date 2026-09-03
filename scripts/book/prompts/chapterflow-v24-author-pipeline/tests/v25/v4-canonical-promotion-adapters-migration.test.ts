@@ -21,6 +21,7 @@ import {
   assembleCanonicalPackage,
   buildCanonicalPackageManifest,
   CanonicalPackageAdapter,
+  RESEARCH_RUN_MANIFEST_LOGICAL_PATH,
   type CanonicalManifestOptions,
   type CanonicalReleaseRequest,
 } from "../../src/release/canonicalPackageAdapter.js";
@@ -43,6 +44,7 @@ import { candidateEvidenceFromSnapshot } from "../../src/lib/candidateEvidence.j
 import type { ChapterV21 } from "../../src/types.js";
 import { candidateEvidenceFiles, makeSourceV2SidecarFixture, runCli, seedManifestEvidenceRoots } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
+import { fileLocalPromotionJournal, readerPackageCommandFor } from "../../src/app/bookRunApplicationService.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 const CREATED_AT = "2026-07-20T12:00:00.000Z";
@@ -1143,6 +1145,71 @@ requiredTest("candidate-only CLI release wiring reaches the promotion authority 
   assert.doesNotMatch(result.out, /chapter index|state\/indexes|ENOENT/i);
 });
 
+/**
+ * R-228 — the composition runs the FULL book gate against the candidate
+ * (`runBookGateFromCandidate`) and, before this pin existed, read only the
+ * pattern-audit report out of it. `candidateGate.passed`, its blockers and its
+ * majors had no reader anywhere in `runPromoteBook`, so `promote-book
+ * --candidate-id …` released a book its own gate rejected.
+ *
+ * The fixture makes the gate fail the only way a candidate-bound gate can be made
+ * to fail deterministically from staged bytes: the candidate's own
+ * `critics/book-pattern-audit.json` declares a BLOCKER finding, which
+ * `runBookGate` folds into its findings and which drives `passed: false`.
+ *
+ * The refusal must land BEFORE the promotion authority check (the sibling test
+ * above reaches REVIEW_NOT_FOUND with the same otherwise-identical fixture), which
+ * is how we know nothing was committed and nothing was written.
+ */
+requiredTest("candidate release REFUSES a candidate whose own book gate reports a blocker", async (context) => {
+  const bookId = "gate-blocked-cli-release";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "gate-blocked");
+  const sourceSidecarPath = "sidecars/source/ch01.source.json";
+  const blockedAudit = {
+    ...patternAudit(bookId),
+    passed: false,
+    findings: [{ code: "BP07", severity: "blocker", message: "templated breakdown shell repeated across chapters" }],
+  };
+  const files = [
+    { kind: "CHAPTER" as const, logicalPath: "chapters/ch01.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(chapter)}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: "compiler/ch01/source-packet.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify({ sourceSidecarPath })}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: sourceSidecarPath, mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(makeSourceV2SidecarFixture({ chapterNumber: chapter.number, chapterTitle: chapter.title }))}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: "critics/book-pattern-audit.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(blockedAudit)}\n`) },
+  ];
+  const staged = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-1",
+    createdByRunId: "gate-blocked-cli",
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(staged.ok);
+  const result = runCli([
+    "promote-book", bookId,
+    "--title", "Gate blocked",
+    "--author", "Fixture",
+    "--categories", "Self-Help",
+    "--tags", "fixture",
+    "--v25-root", context.roots.base,
+    "--attempt-root", context.roots.attemptsRoot,
+    "--candidate-id", "candidate-1",
+    "--manifest-digest", staged.value.manifestDigest,
+    "--source-git-sha", "gate-blocked-sha",
+    "--review-id", "missing-review",
+    "--qc-round-id", "missing-qc",
+    "--expected-book-revision", "0",
+  ]);
+  assert.equal(result.status, 1, result.out);
+  assert.match(result.out, /V25_RELEASE_BLOCKED/, "the gate verdict must refuse the release");
+  assert.match(result.out, /BP07/, "the refusal names the blocking finding");
+  assert.doesNotMatch(result.out, /REVIEW_NOT_FOUND/, "the refusal must land BEFORE the promotion authority check — nothing committed, nothing written");
+  const pointer = await stores.pointer.read(bookId);
+  assert.ok(pointer.ok);
+  assert.equal(pointer.value, null, "no pointer may be committed for a gate-blocked candidate");
+});
+
 /** The chapter-set block a candidate-sourced payload must carry. */
 function candidateChapterSetBlock(sidecar: ProductionManifestSidecar): Record<string, unknown> {
   const payload = sidecar.manifest.payload as unknown as Record<string, unknown>;
@@ -2033,6 +2100,209 @@ function sourceV2CandidateChapter(bookId: string, number: number, seed: string):
     },
   } as unknown as ChapterV21;
 }
+
+/**
+ * R-233 — the follow-up command `--promote-local` prints must FINISH the release it
+ * started, not start a second one.
+ *
+ * `--promote-local` advances the CURRENT pointer to revision N+1 and produces no
+ * reader package. The command it printed named `--expected-book-revision N+1`,
+ * and the release route CASes expectedRevision -> expectedRevision + 1, so running
+ * it minted revision N+2 for byte-identical content while N+1 still named the same
+ * candidate with nothing published. The adapter's double-advance guard could not
+ * see it: that guard keys on a release-journal record, and the promote-local path
+ * (which calls the promotion service directly) wrote none.
+ *
+ * This runs the sequence for real: local promotion, the record it now files, then
+ * the printed command's arguments — base revision N, --resume-unfinished-release.
+ */
+requiredTest("a --promote-local pointer advance is finishable at the SAME revision from the record it files", async (context) => {
+  const bookId = "promote-local-resume-book";
+  const stores = storage(context);
+  const chapters = [fixtureChapter(bookId, 1, "promote-local-resume")];
+  const staged = await stageCandidate(stores.candidates, bookId, "candidate-1", chapters);
+  const manifestOptions = manifestRoots(context, bookId, chapters);
+  const input: CanonicalReleaseRequest = {
+    ...request(bookId, staged.identity),
+    reviewId: "review-promote-local",
+    qcRoundId: "qc-promote-local",
+  };
+  const authority = await authorities(input, stores);
+  const promotion = createPromotionService({
+    candidateStore: stores.candidates,
+    contentReader: stores.reader,
+    currentPointerStore: stores.pointer,
+    reviewService: authority.reviewService,
+    qcService: authority.qcService,
+    clock: () => CLOCK_AT,
+  });
+
+  // 1. What --promote-local does: advance the pointer, produce nothing.
+  const promoted = await promotion.promote({
+    bookId,
+    candidate: staged.identity,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    expectedBookRevision: 0,
+    promotedAt: PROMOTED_AT,
+  });
+  assert.ok(promoted.ok, promoted.ok ? "" : JSON.stringify(promoted));
+  assert.equal(promoted.value.bookRevision, 1);
+
+  // 2. The record it now files, so the finish is provable.
+  const filed = fileLocalPromotionJournal({
+    v25Root: context.roots.base,
+    bookId,
+    candidate: staged.identity,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    bookRevision: promoted.value.bookRevision,
+    promotedAt: PROMOTED_AT,
+  });
+  assert.ok(filed.ok, filed.ok ? "" : filed.error);
+
+  // 3. The printed command's own arguments.
+  const printed = readerPackageCommandFor({
+    bookId,
+    title: input.metadata.title,
+    author: input.metadata.author,
+    v25Root: context.roots.base,
+    attemptRoot: context.roots.attemptsRoot,
+    sourceGitSha: "promote-local-sha",
+    candidate: staged.identity,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    bookRevision: promoted.value.bookRevision,
+  });
+  assert.match(printed, /--expected-book-revision 0(\s|$)/, "the command names the revision the promotion started FROM");
+  assert.match(printed, /--resume-unfinished-release(\s|$)/);
+
+  let writes = 0;
+  const adapter = new CanonicalPackageAdapter({
+    contentReader: stores.reader,
+    promotionService: promotion,
+    manifest: manifestOptions,
+    journal: createFileReleaseJournal({ stateRoot: context.roots.base }),
+    packageWriter: () => { writes += 1; },
+  });
+  const released = await adapter.release({ ...input, expectedBookRevision: 0, resumeUnfinished: true });
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 1, "the resume publishes at the revision already committed");
+  assert.equal(writes, 1, "the reader package the local promotion owed is written");
+  const pointer = await stores.pointer.read(bookId);
+  assert.ok(pointer.ok && pointer.value);
+  assert.equal(pointer.value.revision, 1, "no second revision was minted for identical content");
+  assert.equal(pointer.value.candidateId, staged.identity.candidateId);
+});
+
+/**
+ * R-234 / R-252 — the shipped pair records WHAT it was made from.
+ *
+ * The released Franklin pair carried none of it: the reader package's top-level
+ * keys are exactly {schemaVersion, packageId, createdAt, contentOwner, book,
+ * chapters}, and `--source-git-sha` — which createCliV25Composition REFUSES to run
+ * without — never reached the release request, so the sidecar named no source
+ * revision, no candidate run and no model route.
+ *
+ * The block lives on the SIDECAR, never in the reader package: the package bytes
+ * are hashed into the manifest, so adding fields there would move every released
+ * contentId for no reader benefit. This test pins both halves — the block is
+ * written, and the package is untouched.
+ */
+requiredTest("a candidate release records its provenance on the sidecar, and leaves the reader package's shape untouched", async (context) => {
+  const bookId = "release-provenance-book";
+  const stores = storage(context);
+  const chapters = [sourceV2CandidateChapter(bookId, 1, "release-provenance")];
+  const researchManifest = {
+    schemaVersion: "chapterflow.researchRunManifest.v1",
+    runId: "research-run-42",
+    bookId,
+    compatibility: { provider: "model-gateway-v1", model: "fixture-writer-v1" },
+  };
+  const files = [
+    ...candidateEvidenceFiles(bookId, chapters, "source-v2"),
+    {
+      kind: "PROVENANCE" as const,
+      logicalPath: RESEARCH_RUN_MANIFEST_LOGICAL_PATH,
+      mediaType: "application/json" as const,
+      bytes: Buffer.from(`${JSON.stringify(researchManifest, null, 2)}\n`),
+    },
+  ];
+  const stagedManifest = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-1",
+    createdByRunId: "run-release-provenance",
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(stagedManifest.ok, stagedManifest.ok ? "" : JSON.stringify(stagedManifest));
+  const identity = { candidateId: "candidate-1", manifestDigest: stagedManifest.value.manifestDigest };
+
+  const manifestOptions = manifestRoots(context, bookId, chapters);
+  const input: CanonicalReleaseRequest = {
+    ...request(bookId, identity),
+    reviewId: "review-provenance",
+    qcRoundId: "qc-provenance",
+    sourceGitSha: "0123456789abcdef0123456789abcdef01234567",
+  };
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+
+  const provenance = released.value.sidecar.provenance;
+  assert.ok(provenance, "the sidecar must carry a provenance block");
+  assert.equal(provenance.schemaVersion, "chapterflow-release-provenance-v1");
+  assert.equal(provenance.sourceGitSha, input.sourceGitSha, "the source revision the release was invoked with");
+  assert.equal(provenance.candidateId, identity.candidateId);
+  assert.equal(provenance.manifestDigest, identity.manifestDigest);
+  assert.equal(provenance.candidateRunId, "run-release-provenance", "the run that staged the candidate, from its own manifest");
+  assert.equal(provenance.candidateCreatedAt, CREATED_AT);
+  assert.equal(provenance.reviewId, "review-provenance");
+  assert.equal(provenance.qcRoundId, "qc-provenance");
+  assert.equal(provenance.bookRevision, released.value.bookRevision);
+  assert.equal(provenance.releasedAt, PROMOTED_AT);
+  assert.deepEqual(provenance.research, { runId: "research-run-42", provider: "model-gateway-v1", model: "fixture-writer-v1" });
+
+  // The reader package's shape is EXACTLY what it was — no provenance leaked in.
+  assert.deepEqual(
+    Object.keys(released.value.package).sort(),
+    ["book", "chapters", "contentOwner", "createdAt", "packageId", "schemaVersion"],
+  );
+
+  // The verifier accepts the honest block …
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const preflight = verifyProductionPackage({ packagePath, manifestPath: sidecarPath, ...verifyOptionsFrom(manifestOptions) });
+  assert.equal(preflight.ok, true, preflight.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+
+  // … and REFUSES one that contradicts the manifest it sits beside.
+  const forged = { ...released.value.sidecar, provenance: { ...provenance, candidateId: "some-other-candidate" } };
+  const contradicted = verifyProductionPackage({
+    packageData: released.value.package,
+    manifestData: forged,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(contradicted.ok, false, "a provenance block naming a different candidate must be refused");
+  assert.ok(contradicted.findings.some((f) => f.checkId === "PPKG.provenance_candidate_mismatch"), JSON.stringify(contradicted.findings));
+
+  const wrongQc = verifyProductionPackage({
+    packageData: released.value.package,
+    manifestData: { ...released.value.sidecar, provenance: { ...provenance, qcRoundId: "qc-somewhere-else" } },
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.ok(wrongQc.findings.some((f) => f.checkId === "PPKG.provenance_qc_mismatch"), JSON.stringify(wrongQc.findings));
+
+  // A pair with NO provenance still verifies: legacy and already-shipped pairs
+  // carry none, and requiring it would un-ship them.
+  const { provenance: _dropped, ...withoutProvenance } = released.value.sidecar;
+  const legacyShape = verifyProductionPackage({
+    packageData: released.value.package,
+    manifestData: withoutProvenance,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(legacyShape.ok, true, legacyShape.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+});
 
 /**
  * THE FIXTURE THE ROUND-1 REVIEW SAID THIS FILE DID NOT HAVE.

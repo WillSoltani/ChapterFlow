@@ -121,6 +121,7 @@ export function makeLiveAskModel(opts?: {
     if (!execution) throw new Error("MODEL_TASK_RUNNER_REQUIRED");
     const result = await execution.runner.run({
       profileId: "pipeline-read-json-v1",
+      role: "qc",
       prompt: jsonPromptRequest(JUDGE_SYSTEM, buildJudgeUserPrompt(args)),
       context: execution.context,
     });

@@ -1545,6 +1545,7 @@ export class CompilerApplicationPort {
             const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse });
             const result = await this.#dependencies.runner.run({
               profileId: COMPILER_SECTION_PROFILE_ID,
+              role: "author",
               context: {
                 bookId: request.bookId,
                 runId,
