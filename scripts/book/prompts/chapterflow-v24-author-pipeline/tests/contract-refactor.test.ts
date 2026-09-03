@@ -483,7 +483,7 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 //
 // RE-MEASURED in review round 2, after the scope reader was narrowed to a
 // pure-chapter-marker parenthesis and reader-safety labels were exempted from
-// scoping altogether: Franklin's two SAFETY rules are book-wide again, which adds
+// scoping altogether: Franklin's SAFETY rules are book-wide again, which adds
 // 871 chars back to every chapter EXCEPT ch03 — and ch03 is the binding chapter,
 // so the budgets are unmoved. Worst kind per chapter on this commit:
 //   ch01 learning-pack 51,160   ch02 51,252   ch03 52,849 (binding)   ch04 51,097
@@ -515,6 +515,24 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 //              (SEC52/SEC116), qualifier-shape parity (SEC134), opener variety (SEC132).
 // The summary and example cards stay far below the binding learning card; the
 // summary contract's memorable-line paragraph is SHORTER than the one it replaced.
+//
+// RE-MEASURED AGAIN on the Franklin scar rewrite (PR #538), on top of package 1B,
+// because the round-2 paragraph above describes a scar file that no longer exists:
+// origin/main's 37 accreted prohibitions were replaced by 42 source-quoted rules,
+// of which 32 are labelled for one chapter (30 FACT PINs + 2 NAMED ACTOR rules),
+// leaving 10 book-wide. What shrank is not the FILE, it is the RENDER — the rules
+// a chapter's writer actually receives. renderBookScarsBlock over each shipped
+// file, in characters, measured on THIS merge's renderer:
+//   origin/main's file  ch01 14,449  ch02 14,541  ch03 16,138  ch04 14,386  ch05 13,443
+//   this branch's file  ch01  6,989  ch02  7,619  ch03  9,283  ch04  7,344  ch05  5,352
+// ch03 is still the binding chapter: 12 of the 32 chapter-scoped rules, against
+// 6 for ch01, 8 for ch02 and 6 for ch04, plus the 10 book-wide rules (3 SAFETY +
+// 7 craft) every chapter gets. (Re-measured in review round 4, which restored
+// three chapter-scoped pins the round-3 ledger had wrongly dispositioned away:
+// the kite pin and the personal-vs-civic-funds pin on ch03, the notebook pin on
+// ch02. ch03 grew 656 chars, ch02 280; nothing book-wide changed, so ch01, ch04
+// and ch05+ are unmoved.) The per-card consequence of that 6,855-char drop on
+// ch03 is measured at each budget below, on the merge.
 
 // MERGE RE-PIN — this package merged origin/main (package 1B, grounding redesign)
 // after both had independently re-pinned the same two budgets. 1B measured
@@ -553,6 +571,22 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // binding card than the 54,720 measured pre-merge). The budgets therefore do not move;
 // they keep their headroom and this measurement is the baseline the next creep is read
 // against.
+//
+// MERGE RE-MEASURE (PR #538's Franklin scar rewrite x origin/main 9df63c5c5). The
+// scar block renders INTO this card, so the rewrite had to be re-measured here, not
+// argued from the pre-merge numbers. Same loop, same arithmetic. Worst kind per
+// chapter ON THIS MERGE (learning-pack every time; reproduce by printing md.length
+// in the loop below):
+//   ch01 44,849   ch02 45,479   ch03 47,143 (binding)   ch04 45,204
+//   ch05-ch08 (no scoped rules) 43,212
+//   with worst-case prose: 52,139 / 52,769 / 54,433 (binding) / 52,494 / 50,502
+// 47,143 -> 47,500 -> 48,000 and 54,433 -> 54,500 -> 55,000 by the stated arithmetic,
+// both BELOW the pins standing above; every card is exactly 6,855 chars smaller than
+// the 1C+wave-1 merge measured (53,998 / 61,288), which is ch03's scar-block drop
+// (16,138 -> 9,283) to the character. The budgets therefore DO NOT MOVE: they are a
+// ceiling on what production may send, not a target, and lowering them to one book's
+// current scar file would re-pin the contract to one config file. That leaves 8,357
+// characters of headroom on the binding packet-only card and 8,567 with prose.
 const HONEST_TASK_CHAR_BUDGET = 55_500;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
 
@@ -609,6 +643,16 @@ const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
  * 86,225 -> 86,500 -> 87,000 and 93,515 -> 93,500 -> 94,000, both below the pins
  * already standing (the merged binding card is 945 chars smaller than the 87,170
  * measured pre-merge). The budgets do not move.
+ *
+ * MERGE RE-MEASURE (#538's scar rewrite x origin/main 9df63c5c5). Worst kind per
+ * chapter ON THIS MERGE:
+ *   ch01 learning-pack 77,076   ch02 77,706   ch03 79,370 (binding)   ch04 77,431
+ *   ch05-ch08 75,439
+ *   with worst-case prose: 84,366 / 84,996 / 86,660 (binding) / 84,721 / 82,729
+ * 79,370 -> 79,500 -> 80,000 and 86,660 -> 87,000 -> 87,500 by the same arithmetic,
+ * both below the pins standing here — again exactly 6,855 chars under the 1C+wave-1
+ * numbers (86,225 / 93,515), the same ch03 scar-block drop. The budgets do not move;
+ * headroom is 8,630 on the binding card and 8,340 with prose.
  */
 const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 88_000;
 const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
@@ -625,6 +669,10 @@ const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
 // MERGE RE-MEASURE (1C + wave-1): model-memory 15,845, source-text worst case 29,865
 // (was 15,854 / 30,045 pre-merge). 29,865 -> 30,000 -> 30,500 by the same arithmetic,
 // below the standing pin; 31,000 holds.
+// MERGE RE-MEASURE (#538's scar rewrite x origin/main 9df63c5c5): model-memory 15,845,
+// source-text worst case 29,865 — UNCHANGED to the character, because buildAuthorCard
+// renders the projection and the voice card and never the scars block, so a scar-file
+// rewrite cannot move this pin. 31,000 holds, with 1,135 chars of headroom.
 const HONEST_AUTHOR_CARD_CHAR_BUDGET = 31_000;
 
 test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
@@ -651,7 +699,7 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
 
   // EVERY chapter, not just ch01. Since R-274 the rendered rule set differs per
   // chapter, so measuring one chapter would leave the heaviest one unbounded —
-  // Franklin's ch03 carries 9 of the 18 scoped rules and is the binding render.
+  // Franklin's ch03 carries 12 of the 32 scoped rules and is the binding render.
   //
   // The range is a LITERAL, deliberately: an earlier cut derived it from
   // bookRuleChapters, so the budget loop re-used the very scope reader it was
@@ -1043,7 +1091,14 @@ test("R-274: a chapter named inside a PROVENANCE label does not scope the rule",
 
   // …and end to end, on the shipped file that carries the shape.
   const scars = loadBookScars("how-to-live-on-24-hours-a-day")!;
-  assert.equal(scars.prohibitions.length, 2, "this book's two rules are what the regression is about");
+  // The regression is about the two PROVENANCE-labelled rules staying book-wide, so
+  // it is pinned on those two rules rather than on a count of the file's contents —
+  // a count a legitimate config edit changes (R-278 added an absolute phrase ban here).
+  const provenanceScoped = scars.prohibitions.filter((rule) => /^(GRADUALISM CONSISTENCY|STATED CAUSES ONLY)\b/.test(rule));
+  assert.equal(provenanceScoped.length, 2, "this book's two provenance-labelled rules are what the regression is about");
+  for (const rule of provenanceScoped) {
+    assert.deepEqual(bookRuleChapters(rule), [], `a provenance parenthesis must not scope: ${rule.split(":", 1)[0]}`);
+  }
   for (const chapterNumber of [1, 2, 5, 7, 13]) {
     const md = buildSectionTaskMarkdown({
       bookId: "how-to-live-on-24-hours-a-day",
