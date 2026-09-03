@@ -5,6 +5,7 @@ import { normSlug } from "../lib/chapterPaths.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { MAX_CASE_CUES_PER_CHAPTER, POSITIONAL_DEALS, resolvedPoolsForBook } from "./chapterBlueprint.js";
 import type { ResolvedPools } from "./bookDesign.js";
+import type { ChapterDerivedDesign } from "../artifacts/artifactTypes.js";
 
 /** Per-book pool-size overrides for the positional-collision math (P14). A book compiled from
  *  per-book design/genre pools deals from pools whose sizes differ from the global constants
@@ -126,10 +127,54 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
  *     is widened before it becomes a book-wide monoculture (the hookShape=3 /
  *     counterShape=2 problem this change fixed).
  */
-export function checkPositionalDeals(blueprints: ChapterBlueprintV1[], overrides: Record<string, PoolSizeOverride> = {}): BlueprintFinding[] {
+/** The chapter's own derived staging (R-065), so the audit can tell a value the DESIGN put in a
+ *  slot from a value the positional dealer drew from the pool. Supplied by the caller that
+ *  resolved the book's pools; absent ⇒ every value is treated as pool-dealt (the pre-R-065 world). */
+export type ChapterDerivedLookup = (chapterNumber: number) => ChapterDerivedDesign | null;
+
+export function checkPositionalDeals(
+  blueprints: ChapterBlueprintV1[],
+  overrides: Record<string, PoolSizeOverride> = {},
+  derivedFor?: ChapterDerivedLookup,
+): BlueprintFinding[] {
   const findings: BlueprintFinding[] = [];
   const C = blueprints.length;
   if (C === 0) return findings;
+
+  // BPV13's concentration report, shared by the two columns it audits: a deal whose candidate
+  // space IS the content (contentDriven), and the derived-staging half of a hybrid column. In both
+  // the pool is sized to the values the column itself reached — "given this deal PROVED it can
+  // reach N values here, is one of them taking more than its share?"
+  const reportContentConcentration = (poolKey: string, slot: number, values: string[], origin: string) => {
+    const counts = new Map<string, number>();
+    for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
+    const distinct = counts.size;
+    // A column PINNED to one value is the maximal concentration, not an exempt case — it is
+    // R-127's exact shape (card slot i taught rank-i fact in every chapter of the book). Sizing
+    // the cap to the observed variety would divide by 1 and silently pass it, so it is reported
+    // directly. Three chapters is the floor at which "always the same" means anything.
+    if (distinct === 1 && values.length >= 3) {
+      findings.push({
+        checkId: "BPV13.content_column_concentration",
+        severity: "advisory",
+        message: `${origin} "${poolKey}" slot ${slot}: the column is pinned to the single value "${[...counts.keys()][0]}" across all ${values.length} chapters — this slot teaches or cues the same thing in every chapter of the book`,
+        path: `/positional/${poolKey}/${slot}`,
+      });
+      return;
+    }
+    if (distinct <= 1) return;
+    const cap = Math.max(1, Math.ceil(values.length / distinct));
+    for (const [value, count] of counts) {
+      if (count > cap) {
+        findings.push({
+          checkId: "BPV13.content_column_concentration",
+          severity: "advisory",
+          message: `${origin} "${poolKey}" slot ${slot}: value "${value}" holds ${count} of ${values.length} chapters while the column reached ${distinct} distinct values — above the ${cap} an even spread over its own observed variety would give`,
+          path: `/positional/${poolKey}/${slot}`,
+        });
+      }
+    }
+  };
 
   for (const d of POSITIONAL_DEALS) {
     const override = overrides[d.poolKey];
@@ -137,42 +182,35 @@ export function checkPositionalDeals(blueprints: ChapterBlueprintV1[], overrides
     const poolSizeAt = override?.poolSizeAt ?? d.poolSizeAt;
     const columns = blueprints.map((bp) => d.extract(bp));
     for (let slot = 0; slot < d.slots; slot++) {
-      const values = columns.map((col) => col[slot]).filter((v): v is string => typeof v === "string" && v.length > 0);
+      // R-065/R-106 — a HYBRID column. Slots this deal declares as derived-overridable carry, for
+      // a book with a design artifact, the string the chapter's OWN packet produced rather than a
+      // draw from the genre pool. Counting those against BPV11's pool-P round-robin cap asks a
+      // question with no answer: their candidate space is one chapter's mined material, not a
+      // book-wide pool, so two chapters whose best-taught specific is the same recurring
+      // institution ("the junto club") would exceed a cap of ceil(C/P)=1 and hard-fail a
+      // legitimate book — non-retryably, since the compiler is deterministic. The derived values
+      // are split out and audited by BPV13 as content instead: still reported, never fatal.
+      const dealtFromPool: string[] = [];
+      const derivedValues: string[] = [];
+      blueprints.forEach((bp, i) => {
+        const value = columns[i][slot];
+        if (typeof value !== "string" || value.length === 0) return;
+        const derived = d.derivedValueAt && derivedFor ? d.derivedValueAt(derivedFor(bp.chapterNumber), slot) : undefined;
+        if (derived && derived === value) derivedValues.push(value);
+        else dealtFromPool.push(value);
+      });
+      if (derivedValues.length > 0 && !d.contentDriven) {
+        reportContentConcentration(d.poolKey, slot, derivedValues, "chapter-derived staging");
+      }
+      const values = d.contentDriven ? [...dealtFromPool, ...derivedValues] : dealtFromPool;
       if (values.length === 0) continue;
       const counts = new Map<string, number>();
       for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
       if (d.contentDriven) {
-        // BPV13 — see PositionalDealDescriptor.contentDriven. The pool is sized to the values
-        // the column itself was dealt, so the question asked is "given that this deal PROVED it
-        // can reach N different values at this slot, is one of them taking more than its share?"
-        // The old card-cue stride reached exactly 2 values over a whole book (R-125) and the old
-        // card fact dealer reached exactly 1 (R-127); both trip this. Advisory, never a blocker.
-        const distinct = counts.size;
-        // A column PINNED to one value is the maximal concentration, not an exempt case — it is
-        // R-127's exact shape (card slot i taught rank-i fact in every chapter of the book). Sizing
-        // the cap to the observed variety would divide by 1 and silently pass it, so it is reported
-        // directly. Three chapters is the floor at which "always the same" means anything.
-        if (distinct === 1 && values.length >= 3) {
-          findings.push({
-            checkId: "BPV13.content_column_concentration",
-            severity: "advisory",
-            message: `content-driven deal "${d.poolKey}" slot ${slot}: the column is pinned to the single value "${[...counts.keys()][0]}" across all ${values.length} chapters — this slot teaches or cues the same thing in every chapter of the book`,
-            path: `/positional/${d.poolKey}/${slot}`,
-          });
-          continue;
-        }
-        if (distinct <= 1) continue;
-        const cap = Math.max(1, Math.ceil(values.length / distinct));
-        for (const [value, count] of counts) {
-          if (count > cap) {
-            findings.push({
-              checkId: "BPV13.content_column_concentration",
-              severity: "advisory",
-              message: `content-driven deal "${d.poolKey}" slot ${slot}: value "${value}" holds ${count} of ${values.length} chapters while the column reached ${distinct} distinct values — above the ${cap} an even spread over its own observed variety would give`,
-              path: `/positional/${d.poolKey}/${slot}`,
-            });
-          }
-        }
+        // BPV13 — see PositionalDealDescriptor.contentDriven. The old card-cue stride reached
+        // exactly 2 values over a whole book (R-125) and the old card fact dealer reached exactly
+        // 1 (R-127); both trip this. Advisory, never a blocker.
+        reportContentConcentration(d.poolKey, slot, values, "content-driven deal");
         continue;
       }
       const P = poolSizeAt ? poolSizeAt(slot) : poolSize;
@@ -230,12 +268,19 @@ export function checkBlueprintGate(bookId: string, roots: CompilerStoreRoots = {
     // so a design/genre book isn't flagged against the global constant sizes. Best-effort: a
     // resolution failure falls back to the descriptor's own (constant) sizes.
     let overrides: Record<string, PoolSizeOverride> = {};
+    // R-065/R-106: the same resolution also supplies the chapter-derived staging, so a value the
+    // DESIGN put in a slot is audited as content (BPV13) instead of against a pool cap it never
+    // drew from. A resolution failure falls back to "everything is pool-dealt", which is the
+    // stricter reading — it can only over-report, never miss a real positional collision.
+    let derivedFor: ChapterDerivedLookup | undefined;
     try {
-      overrides = poolSizeOverrides(resolvedPoolsForBook(normalized, roots));
+      const pools = resolvedPoolsForBook(normalized, roots);
+      overrides = poolSizeOverrides(pools);
+      derivedFor = pools.chapterDerived;
     } catch {
       /* fall back to constant sizes */
     }
-    findings.push(...checkPositionalDeals(loaded, overrides));
+    findings.push(...checkPositionalDeals(loaded, overrides, derivedFor));
   }
   return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: chapters.length, findings };
 }

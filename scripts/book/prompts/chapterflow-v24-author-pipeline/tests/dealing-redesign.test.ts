@@ -15,14 +15,18 @@
  *   - venues/frames are the chapter's own, never another chapter's tokens (R-065/R-103/R-113).
  */
 import assert from "node:assert/strict";
+import { mkdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
-import { compileChapterBlueprint, POSITIONAL_DEALS } from "../src/compiler/chapterBlueprint.js";
-import { checkPositionalDeals, validateBlueprint } from "../src/compiler/blueprintGate.js";
+import { compileChapterBlueprint, POSITIONAL_DEALS, resolvedPoolsForBook } from "../src/compiler/chapterBlueprint.js";
+import { checkPositionalDeals, poolSizeOverrides, validateBlueprint } from "../src/compiler/blueprintGate.js";
 import { buildGenrePools, deriveBookDesign, genreForBook, rankedTopicsForPacket, validateBookDesign } from "../src/compiler/bookDesign.js";
 import { properNounTokens, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE } from "../src/compiler/sourcePacketFacts.js";
-import type { ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
+import { bookDesignPath, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../src/artifacts/artifactStore.js";
+import type { BookDesignV1, ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 
@@ -548,4 +552,107 @@ test("BPV13: a content-driven column stuck on one value raises an advisory (the 
   const lopsidedFindings = checkPositionalDeals(lopsided).filter((f) => f.checkId === "BPV13.content_column_concentration" && f.path === "/positional/cardFact/0");
   assert.equal(lopsidedFindings.length, 1, "an 8-of-9 column over 2 observed values must raise BPV13");
   assert.equal(lopsidedFindings[0].severity, "advisory");
+});
+
+// ── the disk-backed compile: derived staging and neighbour casts only exist with roots ─────
+//
+// Every helper above compiles with NO roots, so `pools.chapterDerived(n)` is always null and
+// `siblingUsedNames` always empty — the two code paths R-065 and R-114 are ABOUT. This one
+// materializes the book the way the pipeline does (chapter index + source packets + the design
+// artifact) so those paths are actually exercised.
+function withBookOnDisk<T>(
+  bookId: string,
+  totalChapters: number,
+  fn: (ctx: { blueprints: ChapterBlueprintV1[]; packets: SourcePacketV1[]; roots: CompilerStoreRoots; design: BookDesignV1 }) => T,
+  sidecarFor: (n: number) => SourceSidecarV2 = (n) => sidecar(n, `Chapter ${n}`),
+): T {
+  const stateRoot = resolve(tmpdir(), `cf-dealing-ondisk-${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+  const roots: CompilerStoreRoots = { stateRoot };
+  try {
+    const specs = Array.from({ length: totalChapters }, (_, i) => chapterSpec(bookId, i + 1));
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${bookId}.json`), specs);
+    const packets = specs.map((spec) =>
+      compileSourcePacketFromSidecar({
+        bookId,
+        chapter: spec,
+        sidecar: sidecarFor(spec.chapterNumber),
+        sidecarPath: `/tmp/${bookId}-ch${spec.chapterNumber}.source.json`,
+        sourceHash: `hash${spec.chapterNumber}`,
+      }),
+    );
+    for (const packet of packets) writeJsonFile(sourcePacketPath(bookId, packet.chapterNumber, roots), packet);
+    const design = deriveBookDesign(bookId, { roots });
+    writeJsonFile(bookDesignPath(bookId, roots), design);
+    const blueprints = specs.map((spec, i) =>
+      compileChapterBlueprint({ bookId, chapter: spec, packet: packets[i], packetPath: sourcePacketPath(bookId, spec.chapterNumber, roots), roots, totalChapters }),
+    );
+    return fn({ blueprints, packets, roots, design });
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+}
+
+// ── R-065 / R-106 — derived staging is CONTENT, and content may legitimately repeat ─────────
+
+test("R-065/R-106: a mined specific two chapters share is not a BPV11 blocker — it is reported as content", () => {
+  // The fixture's hardSpecifics carry no chapter term, so every chapter's best-taught specific is
+  // the SAME phrase — the "recurring institution" case (a memoir whose junto club runs through
+  // half the book). The derived staging then puts one byte-identical string in example slot 0,
+  // slot 1 and the practice constraint of every chapter.
+  withBookOnDisk("zz-deal-derived-collision", 12, ({ blueprints, roots, design }) => {
+    const derived = design.perChapter?.["1"];
+    assert.ok(derived?.frameDecision, "the fixture must produce derived staging or this proves nothing");
+    assert.equal(blueprints[0].sections.examples[0].sceneFrame, derived!.frameDecision, "slot 0 must carry the chapter's own derived frame");
+    assert.equal(
+      blueprints.filter((bp) => bp.sections.examples[0].sceneFrame === blueprints[0].sections.examples[0].sceneFrame).length >= 2,
+      true,
+      "the fixture must give at least two chapters the identical derived frame",
+    );
+    const pools = resolvedPoolsForBook("zz-deal-derived-collision", roots);
+    const findings = checkPositionalDeals(blueprints, poolSizeOverrides(pools), pools.chapterDerived);
+    const blockers = findings.filter((f) => f.severity === "blocker");
+    assert.deepEqual(blockers, [], `a book whose chapters share a mined specific must still compile: ${JSON.stringify(blockers.map((b) => b.message))}`);
+    // …but the repetition is still SEEN: the derived column is audited as content (advisory).
+    const advisory = findings.find((f) => f.checkId === "BPV13.content_column_concentration" && f.path === "/positional/exampleSceneFrame/0");
+    assert.ok(advisory, `the shared derived staging must still be reported: ${JSON.stringify(findings.map((f) => f.checkId + " " + f.path))}`);
+    assert.equal(advisory!.severity, "advisory");
+  });
+});
+
+test("R-065/R-106: a POOL-dealt frame colliding at the same slot is still a BPV11 blocker", () => {
+  // The exemption is scoped to the value the chapter's own design derived. A hand-edited (or
+  // regressed) blueprint that repeats a GENRE-POOL frame at a fixed slot must still block —
+  // otherwise the fix would have turned BPV11 off for the column instead of narrowing it.
+  withBookOnDisk("zz-deal-derived-collision", 12, ({ blueprints, roots }) => {
+    const pools = resolvedPoolsForBook("zz-deal-derived-collision", roots);
+    const tampered = blueprints.map((bp) => {
+      const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+      clone.sections.examples[2].sceneFrame = pools.sceneFramesDecision[0];
+      return clone;
+    });
+    const blockers = checkPositionalDeals(tampered, poolSizeOverrides(pools), pools.chapterDerived)
+      .filter((f) => f.checkId === "BPV11.positional_collision" && f.path === "/positional/exampleSceneFrame/2");
+    assert.equal(blockers.length, 1, "a pool value repeated at a fixed non-derived slot must still block");
+  });
+});
+
+test("R-065: two chapters with a spare mined specific do not get the identical staging", () => {
+  // Where the material offers an alternative, the deriver takes it: chapter B's frame falls to its
+  // OWN second-ranked specific rather than repeating chapter A's phrase. (Still chapter-local —
+  // only the CHOICE among this chapter's own topics is coordinated, never another chapter's token.)
+  const shared = "the junto club minutes";
+  const spare = (n: number) => `the ledger page from year ${n}`;
+  const sidecarFor = (n: number): SourceSidecarV2 => {
+    const base = sidecar(n, `Chapter ${n}`);
+    return {
+      ...base,
+      namedExamples: base.namedExamples.map((c, i) => (i === 0 ? { ...c, hardSpecifics: [shared, spare(n)] } : c)),
+    };
+  };
+  withBookOnDisk("zz-deal-derived-spare", 4, ({ design }) => {
+    const frames = Object.values(design.perChapter ?? {}).map((d) => d.frameDecision).filter(Boolean);
+    assert.ok(frames.length >= 2, "the fixture must derive a frame for at least two chapters");
+    assert.equal(new Set(frames).size, frames.length, `chapters repeat a derived frame while a spare specific was available: ${frames.join(" | ")}`);
+  }, sidecarFor);
 });

@@ -9,7 +9,7 @@ import type { SectionPackCache, SectionPackCacheKey } from "../books/sectionPack
 import type { SectionAvoidEntry, SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
 import { deriveBookDesign } from "../compiler/bookDesign.js";
-import { checkPositionalDeals, poolSizeOverrides } from "../compiler/blueprintGate.js";
+import { checkPositionalDeals, poolSizeOverrides, type ChapterDerivedLookup } from "../compiler/blueprintGate.js";
 import { resolvedPoolsForBook } from "../compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../compiler/sourcePacket.js";
 import { compileSourceUsePlan } from "../compiler/sourceUsePlanCompiler.js";
@@ -1727,12 +1727,19 @@ export class CompilerApplicationPort {
       const candidateBlueprints = compiledBlueprints.slice().sort((a, b) => a.chapterNumber - b.chapterNumber);
       if (candidateBlueprints.length === chapters.length && candidateBlueprints.length > 0) {
         let poolOverrides: Record<string, { poolSize: number; poolSizeAt?: (slotIndex: number) => number }> = {};
+        // R-065/R-106: the resolved pools also carry the per-chapter derived staging, so the audit
+        // can tell a value the DESIGN put in a slot (content — audited by BPV13) from a value the
+        // positional dealer drew from the pool (audited by BPV11). Without it a book whose
+        // chapters share one recurring mined specific would hard-fail here, non-retryably.
+        let derivedFor: ChapterDerivedLookup | undefined;
         try {
-          poolOverrides = poolSizeOverrides(resolvedPoolsForBook(request.bookId, { stateRoot: legacyRoot }));
+          const pools = resolvedPoolsForBook(request.bookId, { stateRoot: legacyRoot });
+          poolOverrides = poolSizeOverrides(pools);
+          derivedFor = pools.chapterDerived;
         } catch {
           /* fall back to the descriptors' own constant sizes */
         }
-        const dealFindings = checkPositionalDeals(candidateBlueprints, poolOverrides);
+        const dealFindings = checkPositionalDeals(candidateBlueprints, poolOverrides, derivedFor);
         const dealBlockers = dealFindings.filter((f) => f.severity === "blocker");
         for (const advisory of dealFindings.filter((f) => f.severity !== "blocker")) {
           console.error(`[book-run] compiler deal-audit advisory ${advisory.checkId}: ${advisory.message}`);

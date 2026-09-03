@@ -415,10 +415,26 @@ export function deriveBookDesign(
   // Genre venues are real places; that is what R-105's memoir-history pool exists to supply.
   const clean = (entries: string[]): string[] => entries.filter((e) => bannedContentReason(e, caseLabelsLower) === null);
   const perChapter: Record<string, ChapterDerivedDesign> = {};
-  for (const packet of packets) {
-    const topics = rankedTopicsForPacket(packet);
+  // R-065/R-106 — prefer a specific NO EARLIER CHAPTER has already staged. Two chapters whose
+  // best-taught specific is the same recurring institution would otherwise receive the identical
+  // staging direction in example slot 0 and the identical practice constraint, which is the
+  // same-position sameness this package exists to remove. Only the CHOICE among a chapter's own
+  // ranked topics is coordinated — no chapter is ever handed another chapter's token, so R-065's
+  // "a chapter only receives its own mined staging" still holds by construction. Where the
+  // material offers no alternative (one usable specific, or every alternative already taken) the
+  // top topic is kept: repeating a real recurring institution beats inventing a worse one, and
+  // BPV13 reports the repetition as content rather than blocking the book.
+  const claimedTopics = new Set<string>();
+  const chapterOrder = [...packets].sort((a, b) => a.chapterNumber - b.chapterNumber);
+  for (const packet of chapterOrder) {
+    const ranked = scoredTopicsForPacket(packet).map((t) => t.topic);
+    const takeUnclaimed = (used: string[]): string | undefined =>
+      ranked.find((t) => !claimedTopics.has(t) && !used.includes(t)) ?? ranked.find((t) => !used.includes(t));
+    const first = takeUnclaimed([]);
+    const second = takeUnclaimed(first ? [first] : []);
+    const topics = [first, second].filter((t): t is string => typeof t === "string");
     if (topics.length === 0) continue;
-    const [first, second] = topics;
+    for (const t of topics) claimedTopics.add(t);
     const frameDecision = first ? clean([`a first attempt at ${first} that gets corrected`])[0] : undefined;
     const frameExperiential = second ? clean([`a first encounter with ${second} that sets a benchmark`])[0] : undefined;
     const practiceConstraint = first ? clean([`tie the move to ${first} before acting`])[0] : undefined;

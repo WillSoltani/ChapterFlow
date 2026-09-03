@@ -9,6 +9,7 @@ import { blueprintPath, readJsonFile, slotSaltsPath, sourcePacketPath, writeJson
 import {
   CHAPTER_BLUEPRINT_SCHEMA_VERSION,
   type ChapterBlueprintV1,
+  type ChapterDerivedDesign,
   type ExampleSlotV1,
   type QuizSlotV1,
   type CardSlotV1,
@@ -735,6 +736,17 @@ export type PositionalDealDescriptor = {
    * would be weakening the pipeline's ability to ship a thin-but-honest chapter, not tightening it.
    */
   contentDriven?: boolean;
+  /**
+   * R-065/R-106 — HYBRID columns. A slot the per-chapter derived staging may OWN: for a book with
+   * a design artifact, `slotIndex` carries the string this chapter's own packet produced, not a
+   * draw from the genre pool. Returns that string (so the audit can recognise it) or undefined
+   * when the design has none for this slot. checkPositionalDeals splits those values out of
+   * BPV11's pool-cap census and reports them under BPV13 instead: their candidate space is one
+   * chapter's mined material, so the round-robin arithmetic does not apply to them, and two
+   * chapters whose best-taught specific is the same recurring institution must not hard-fail the
+   * book. Every OTHER slot of the same column is still audited by BPV11 exactly as before.
+   */
+  derivedValueAt?: (derived: ChapterDerivedDesign | null, slotIndex: number) => string | undefined;
   extract: (bp: ChapterBlueprintV1) => string[];
 };
 
@@ -749,7 +761,8 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "cardBackShape", poolSize: CARD_BACK_SHAPES.length, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.backShape) },
   // sceneFrame / requiredBeat: even slots deal from the decision pool, odd from
   // the smaller experiential pool. poolSizeAt returns the correct per-slot pool.
-  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
+  // Slots 0 and 1 are derived-overridable (R-065): the chapter's own frameDecision / frameExperiential.
+  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), derivedValueAt: (derived, slotIndex) => (slotIndex === 0 ? derived?.frameDecision : slotIndex === 1 ? derived?.frameExperiential : undefined), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
   { poolKey: "exampleRequiredBeat", poolSize: EXAMPLE_BEATS.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_BEATS.length, EXAMPLE_BEATS_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.requiredBeat) },
   { poolKey: "ifThenPlanShape", poolSize: IF_THEN_PLAN_SHAPES.length, slots: 3, perChapter: false, extract: (bp) => bp.sections.action.ifThenPlanShapes },
   { poolKey: "hookShape", poolSize: HOOK_SHAPES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.hookShape] },
@@ -757,7 +770,7 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "actionMechanism", poolSize: ACTION_MECHANISMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.actionMechanism] },
   { poolKey: "weeklyPracticeForm", poolSize: WEEKLY_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.weeklyPracticeForm] },
   { poolKey: "practiceForm", poolSize: PRACTICE_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceForm] },
-  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceConstraint] },
+  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, derivedValueAt: (derived) => derived?.practiceConstraint, extract: (bp) => [bp.sections.action.practiceConstraint] },
   // ── R-128: the ten deals that were computed OUTSIDE this registry ─────────────────────
   //
   // BPV11/BPV12 are the only cross-chapter collision audit in the pipeline, and they can only
@@ -1310,8 +1323,10 @@ export function compileChapterBlueprint(args: {
       // A `redeal:example-slot` bump (exampleFrames salt) re-deals via the sibling-safe scan.
       // R-065 — slot 0 and slot 1 stage THIS chapter's own best-taught mined specific when the
       // design artifact carries one; every other slot draws from the book's genre pool. The
-      // chapter-derived string is by construction unique to this chapter, so a fixed slot's
-      // column across the book holds each value once — BPV11 stays clean without special-casing.
+      // deriver prefers a specific no earlier chapter already staged, but a book whose material
+      // keeps returning to one institution can still hand two chapters the same string — that is
+      // content, not a broken deal, so POSITIONAL_DEALS marks these two slots derived-overridable
+      // and BPV11 hands them to BPV13 (advisory) instead of blocking the book.
       sceneFrame: (i === 0 ? chapterDerived?.frameDecision : i === 1 ? chapterDerived?.frameExperiential : undefined)
         ?? (i % 2 === 1
           ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
