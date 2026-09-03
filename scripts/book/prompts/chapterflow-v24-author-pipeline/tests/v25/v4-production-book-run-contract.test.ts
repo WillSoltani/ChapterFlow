@@ -29,6 +29,10 @@ requiredTest("production book run has exact local-only phase contract", () => {
     "review",
     "fresh-qc",
     "repair",
+    // R-080 — the whole-book catalog-rubric gate, added between repair and
+    // promotion. Nothing was removed or reordered: the pin above is the
+    // pre-existing eight phases with one inserted where the gate runs.
+    "rubric",
     "promotion",
   ]);
   assert.equal(Object.isFrozen(BOOK_RUN_PHASES), true);

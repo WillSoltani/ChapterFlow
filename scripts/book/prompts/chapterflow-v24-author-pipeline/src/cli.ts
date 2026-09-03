@@ -83,7 +83,7 @@ const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attemp
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
 
 function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
-  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--rubric-bar <60-95>] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
 }
 
 function firstUnsupportedFlag(
@@ -163,6 +163,9 @@ type CliV25Composition = Readonly<{
   runner: import("./app/modelTaskRunner.js").ModelTaskRunner;
   ids: import("./app/pipeline.js").ChapterFlowIdFactory;
   sourceGitSha: string;
+  /** `<v25Root>/books` — where every per-book durable artifact lives (candidate
+   *  store, QC rounds, and the catalog-rubric records the release reads). */
+  booksRoot: string;
 }>;
 
 type CliCandidateReaderProjection = Readonly<{
@@ -311,7 +314,7 @@ async function createCliV25Composition(
     qcDiagnoses: qcStore,
     promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
   });
-  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, candidateGate, writeLock, runStore, runner, ids, sourceGitSha } };
+  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, candidateGate, writeLock, runStore, runner, ids, sourceGitSha, booksRoot } };
 }
 
 /** Sentinel returned by requireAbsoluteV25Root for a MALFORMED --v25-root. It is
@@ -426,7 +429,7 @@ async function runV4BookProduction(
   }
   const unsupported = firstUnsupportedFlag(flags, [
     "title", "author", "v25-root", "attempt-root", "source-git-sha", "source-text", "resume-run-id", "research-run-id", "regen",
-    "max-repair", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
+    "max-repair", "rubric-bar", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
   ]);
   if (unsupported !== undefined) {
     console.error(`UNSUPPORTED_OPTION:${command}:--${unsupported}`);
@@ -456,6 +459,13 @@ async function runV4BookProduction(
     : (sourceTextFlag === undefined ? discoverSourceTextPath(REPO_ROOT, bookId) ?? undefined : undefined);
   const maxRepair = flags["max-repair"] === undefined ? 1
     : typeof flags["max-repair"] === "string" ? Number(flags["max-repair"]) : Number.NaN;
+  // R-080 — the whole-book catalog-rubric promotion bar. The flag MIRRORS
+  // CHAPTERFLOW_RUBRIC_BAR and wins over it; absent, the service resolves the
+  // env and then the compiled default. Range is enforced in the service with
+  // every other budget (a malformed value must cost nothing), so this only
+  // shapes the value.
+  const rubricBarFlag = flags["rubric-bar"];
+  const rubricBar = typeof rubricBarFlag === "string" ? Number(rubricBarFlag) : undefined;
   if (args.length !== 1 || !bookId || !title || !author
     || typeof v25Root !== "string" || !isAbsolute(v25Root)
     || typeof attemptRoot !== "string" || !isAbsolute(attemptRoot)
@@ -468,6 +478,7 @@ async function runV4BookProduction(
     || (flags["no-publish"] !== undefined && flags["no-publish"] !== true)
     || (flags["reconcile-unsettled"] !== undefined && flags["reconcile-unsettled"] !== true)
     || (flags["source-text"] !== undefined && (typeof flags["source-text"] !== "string" || !isAbsolute(flags["source-text"])))
+    || (flags["rubric-bar"] !== undefined && (typeof rubricBarFlag !== "string" || !Number.isInteger(rubricBar)))
     || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
     console.error(`Usage: ${v4BookProductionUsage(command)}`);
     return 2;
@@ -502,6 +513,7 @@ async function runV4BookProduction(
       // on a clean run; only meaningful with --resume-run-id.
       reconcileUnsettled: flags["reconcile-unsettled"] === true,
       ...(sourceTextPath === undefined ? {} : { sourceTextPath }),
+      ...(rubricBar === undefined ? {} : { rubricBar }),
       // Compatibility confirmation only: V4 never publishes externally, while
       // --promote-local may still atomically advance the local V25 pointer.
       signal,
@@ -2416,6 +2428,86 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       console.error(gateVerdict.refusal);
       return 1;
     }
+    // R-254 / R-229 — THE RELEASED PAIR STATES ITS OWN VERDICT.
+    //
+    // Read the three artifacts this release is standing on and fold them into
+    // the sidecar: the QC round it names (outcome + issue counts), the review it
+    // names (counts + the per-chapter panel composites that were free text
+    // nothing parsed), and the candidate's whole-book catalog-rubric record when
+    // it has one. Read-only, before the pointer CAS, and every read that fails
+    // simply contributes nothing — this block is EVIDENCE, so an absent input
+    // must produce an absent field and never an assumed one. The promotion
+    // service independently re-verifies the round and review it is handed, so
+    // nothing here can license a release that would not otherwise happen.
+    const { buildCandidateReleaseVerdict } = await import("./release/candidateReleaseVerdict.js");
+    const { createCatalogRubricStore } = await import("./review/catalogRubricStore.js");
+    const { aggregateCatalogRubric, judgeCatalogRubric, resolveRubricBar } = await import("./review/catalogRubric.js");
+    const releaseRound = await v25.value.qcStore.getRound(bookId, qcRoundId);
+    const releaseReview = await v25.value.reviewService.get(bookId, reviewId);
+    let releaseVerdict: import("./release/candidateReleaseVerdict.js").CandidateReleaseVerdict | undefined;
+    if (releaseRound.ok && releaseReview.ok) {
+      const rubricRecord = await createCatalogRubricStore({ booksRoot: v25.value.booksRoot })
+        .getRecord(bookId, v25.value.candidate.manifest.candidateId);
+      let rubricEvidence;
+      if (
+        rubricRecord.ok
+        && rubricRecord.value.candidate.manifestDigest === v25.value.candidate.manifest.manifestDigest
+      ) {
+        // The bar is read from the operator's environment, and a malformed
+        // CHAPTERFLOW_RUBRIC_BAR is a REFUSAL by design (see resolveRubricBar).
+        // This block is EVIDENCE, not the gate — the gate ran in the book run,
+        // against the bar in force there — so an env typo must cost the release
+        // its rubric evidence and say so loudly, never abort the route with an
+        // unhandled exception before the pointer CAS.
+        let bar: number | undefined;
+        try {
+          bar = resolveRubricBar();
+        } catch (cause) {
+          console.log(
+            "V25 RELEASE VERDICT rubric evidence omitted: CHAPTERFLOW_RUBRIC_BAR is unusable"
+            + ` (${(cause as Error).message}); fix the env and re-run to record it`,
+          );
+        }
+        if (bar !== undefined) {
+          const aggregate = aggregateCatalogRubric(rubricRecord.value.readers);
+          const judged = judgeCatalogRubric(aggregate, bar);
+          rubricEvidence = {
+            instrumentVersion: rubricRecord.value.instrumentVersion,
+            composite: aggregate.composite,
+            tier: aggregate.tier,
+            gate: aggregate.gate,
+            churn: aggregate.churn,
+            bar: judged.bar,
+            factorFloor: judged.factorFloor,
+            highQuality: aggregate.highQuality,
+            factorMedians: { ...aggregate.factorMedians },
+            sampledChapterNumbers: [...rubricRecord.value.sampledChapterNumbers],
+            totalChapters: rubricRecord.value.totalChapters,
+            readerCount: aggregate.readerCount,
+          };
+        }
+      }
+      releaseVerdict = buildCandidateReleaseVerdict({
+        review: releaseReview.value,
+        qcRound: releaseRound.value,
+        ...(rubricEvidence === undefined ? {} : { rubric: rubricEvidence }),
+      });
+      console.log(
+        `V25 RELEASE VERDICT qc=${releaseVerdict.qcOutcome}`
+        + ` (BLOCKER ${releaseVerdict.qcIssueCounts.BLOCKER}, WARN ${releaseVerdict.qcIssueCounts.WARN})`
+        + ` review=${releaseVerdict.reviewOutcome}`
+        + ` (BLOCKER ${releaseVerdict.reviewIssueCounts.BLOCKER}, WARN ${releaseVerdict.reviewIssueCounts.WARN})`
+        + ` panel=${releaseVerdict.panelChapterComposites.map((entry) => `ch${entry.chapterNumber}:${entry.composite}`).join(" ") || "none-recorded"}`
+        + ` rubric=${rubricEvidence === undefined ? "none-recorded" : `${rubricEvidence.composite.toFixed(1)} (bar ${rubricEvidence.bar}, gate ${rubricEvidence.gate}, churn ${rubricEvidence.churn})`}`,
+      );
+    } else {
+      console.log(
+        "V25 RELEASE VERDICT not recorded: "
+        + (releaseRound.ok ? "" : `round ${qcRoundId} unreadable (${releaseRound.error.code}); `)
+        + (releaseReview.ok ? "" : `review ${reviewId} unreadable (${releaseReview.error.code}); `)
+        + "the sidecar will record the round identity without its verdict",
+      );
+    }
     const promotedAt = new Date().toISOString();
     const { CanonicalPackageAdapter } = await import("./release/canonicalPackageAdapter.js");
     const { createFileReleaseJournal } = await import("./release/releaseJournal.js");
@@ -2480,6 +2572,7 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       // and then this route dropped it, so the released pair recorded no source
       // revision at all. Carry it into the sidecar's provenance block.
       sourceGitSha: v25.value.sourceGitSha,
+      ...(releaseVerdict === undefined ? {} : { verdict: releaseVerdict }),
       // Opt-in recovery for a release that committed the pointer and died before
       // publishing. Off by default: the fail-closed refusal stands unless an
       // operator has read the journal record the refusal names.

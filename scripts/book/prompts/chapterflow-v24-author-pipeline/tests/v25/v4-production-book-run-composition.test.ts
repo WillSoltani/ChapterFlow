@@ -446,6 +446,31 @@ function readerReview(questions: ReadonlyArray<{ correctIndex: number }>): Recor
   };
 }
 
+/** A schema-valid catalog-rubric reader block, in the book-score skill's own
+ *  JSON shape. 84 across the board clears the default promotion bar of 80 with
+ *  every factor above the 70 floor, so the fixture book still promotes. */
+function catalogRubricReader(number: number): Record<string, unknown> {
+  const scores: Record<string, number> = {};
+  for (const factor of REVIEW_FACTORS) scores[factor] = 84;
+  return {
+    reader: number,
+    gate_verdict: "PASS",
+    gate_failures: "none",
+    ...scores,
+    book3_churn: "LOW",
+    // The v2 template's texture axes, apparatus quotes and texture note. The
+    // strict assembly requires every declared field, so a fixture that answers
+    // only the older shape is refused — which is the point of requiring them.
+    scene_skeleton: "LOW",
+    repeated_unit: "LOW",
+    prop_stamp: "LOW",
+    proxy_cast: "LOW",
+    apparatus_quotes: "none",
+    texture_note: "fixture rubric reader: no dominant repeated shape",
+    note: "fixture rubric reader: strongest retention; weakest limits",
+  };
+}
+
 class FixtureProcessSupervisor implements ProcessSupervisor {
   readonly specs: ProcessSpec[] = [];
   readonly #outputs: unknown[];
@@ -503,6 +528,11 @@ requiredTest("production composition reaches isolated local promotion and exact 
     readerReview(compilerFixture.learning.quiz.questions),
     readerReview(compilerFixture.learning.quiz.questions),
     readerReview(compilerFixture.learning.quiz.questions),
+    // R-080 — the whole-book catalog-rubric panel, after the fresh-qc PASS and
+    // before promotion: three readers over the one-chapter fixture book.
+    catalogRubricReader(1),
+    catalogRubricReader(2),
+    catalogRubricReader(3),
   ]);
   const v25Root = resolve(roots.tempRoot, "composition-v25");
   const attemptRoot = resolve(roots.attemptsRoot, "composition-run");
@@ -551,6 +581,8 @@ requiredTest("production composition reaches isolated local promotion and exact 
 
   const specCount = (specs: readonly ProcessSpec[], marker: string): number =>
     specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes(marker)).length;
+  const rubricSpecCount = (specs: readonly ProcessSpec[]): number =>
+    specCount(specs, "on a content-quality panel scoring");
   const judgeInitial = specCount(supervisor.specs, "answer-key auditor");
   assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
   // Fresh-qc runs a SECOND judge: one source-fidelity call per chapter source
@@ -560,8 +592,9 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(fidelityInitial, 1, "the source-fidelity judge crosses the process boundary too");
   assert.equal(
     supervisor.specs.length,
-    10 + judgeInitial + fidelityInitial,
-    "research, compiler, baseline review, three-seat reader panel, one fresh-qc quiz-key judge call per quiz question, and one source-fidelity judge call per chapter source chunk",
+    13 + judgeInitial + fidelityInitial,
+    "research, compiler, baseline review, three-seat reader panel, one fresh-qc quiz-key judge call per quiz question,"
+    + " one source-fidelity judge call per chapter source chunk, plus the three whole-book catalog-rubric readers",
   );
   assert.equal(supervisor.remaining(), 0);
   assert.ok(
@@ -571,6 +604,11 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.ok(
     supervisor.specs.some((spec) => new TextDecoder().decode(spec.stdin).includes("answer-key auditor")),
     "a quiz-key-judge task must cross the process boundary during live fresh-qc",
+  );
+  assert.equal(
+    rubricSpecCount(supervisor.specs),
+    3,
+    "the whole-book catalog rubric must cross the process boundary once per reader",
   );
   for (const spec of supervisor.specs) {
     // Task 7 Step 6 flip: the D1 default route is now claude-cli (Sonnet 5).
@@ -584,7 +622,7 @@ requiredTest("production composition reaches isolated local promotion and exact 
     .split("\n")
     .map((line) => JSON.parse(line) as { phase: string; status: string });
   assert.deepEqual(events.filter((event) => event.status === "COMPLETED").map((event) => event.phase), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "promotion",
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "rubric", "promotion",
   ]);
   assert.ok(events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   assert.equal(existsSync(externalPackage), false, "local promotion must not write production package root");
@@ -647,10 +685,25 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(specCount(supervisor.specs, "source-fidelity auditor"), fidelityInitial, "the source-fidelity judge must not re-run on resume");
   assert.equal(
     supervisor.specs.length,
-    10 + judgeInitial + fidelityInitial,
-    "resume reuses all settled attempts including the durable fresh-qc round — neither the quiz-key judge nor the source-fidelity judge re-runs",
+    13 + judgeInitial + fidelityInitial,
+    "resume reuses all settled attempts including the durable fresh-qc round and the durable rubric record —"
+    + " neither the quiz-key judge, the source-fidelity judge nor the whole-book rubric panel re-runs",
   );
   assert.equal(specCount(supervisor.specs, "answer-key auditor"), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");
+  assert.equal(rubricSpecCount(supervisor.specs), 3, "R-080: a resume REPLAYS the durable rubric record and spends nothing");
+  assert.equal(resumed.value.rubric?.replayed, true);
+  assert.equal(resumed.value.rubric?.composite, 84);
+  assert.equal(resumed.value.rubric?.bar, 80);
+  // The panel is durable, under the candidate it judged, and binds those bytes.
+  const rubricRecordPath = resolve(v25Root, "books", BOOK, "rubric", `${result.value.candidate.candidateId}.json`);
+  const rubricRecord = JSON.parse(readFileSync(rubricRecordPath, "utf8")) as {
+    candidate: { manifestDigest: string };
+    readers: readonly unknown[];
+    sampledChapterNumbers: readonly number[];
+  };
+  assert.equal(rubricRecord.candidate.manifestDigest, result.value.candidate.manifestDigest);
+  assert.equal(rubricRecord.readers.length, 3);
+  assert.deepEqual([...rubricRecord.sampledChapterNumbers], [1], "a one-chapter book is read WHOLE");
   const resumedEvents = readFileSync(logPath, "utf8")
     .trim()
     .split("\n")

@@ -73,6 +73,9 @@ import type { QcDiagnosis, QcRoundResult } from "../../src/qc/qcTypes.js";
 import { createQcService } from "../../src/qc/qcService.js";
 import { createQcStore } from "../../src/qc/qcStore.js";
 import { createPromotionService } from "../../src/release/promotionService.js";
+import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js";
+import type { CatalogRubricPanel } from "../../src/app/catalogRubricPanelEvaluator.js";
+import { passingRubricPanel, type ScriptedRubricPanel } from "./catalogRubricFakes.js";
 import { createReviewServiceFactory } from "../../src/review/reviewService.js";
 import type { CanonicalReviewResult } from "../../src/review/reviewTypes.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
@@ -109,6 +112,11 @@ export type BookRunHarness = Readonly<{
   events: BookRunEvent[];
   runStore: RunStore;
   qcStore: ReturnType<typeof createQcStore>;
+  /** The durable catalog-rubric store the run wrote its panel record into. */
+  rubricStore: ReturnType<typeof createCatalogRubricStore>;
+  /** How many times the rubric panel was actually asked to score. A resume must
+   *  not move this. Undefined when the caller injected its own panel. */
+  rubricCalls: () => number | undefined;
   /** Every attempt at a durable phase-event append, including retried ones. */
   eventAppendAttempts: () => number;
   /** Drive the canonical-review run for `parentRunId` to terminal FAILED before
@@ -188,6 +196,12 @@ export type BookRunHarnessOptions = Readonly<{
    *  the fake repair port returns a synthesized review/QC pair that the real
    *  promotion service has no stored record for. */
   promoteLocal?: boolean;
+  /** R-080 — the whole-book catalog-rubric panel. Defaults to a fake that
+   *  scores every candidate 84 across the board, which clears the default bar
+   *  of 80: the repair-lane cases are about repair, and the gate must be
+   *  passed through rather than switched off. A case that is ABOUT the rubric
+   *  injects its own. */
+  rubricPanel?: CatalogRubricPanel;
 }>;
 
 /**
@@ -590,8 +604,12 @@ export async function buildBookRunHarness(
   const events: BookRunEvent[] = [];
   let eventAppendAttempts = 0;
   let eventAppendFailuresLeft = options.eventAppendFailures ?? 0;
+  const rubricPanel = options.rubricPanel ?? passingRubricPanel();
+  const rubricStore = createCatalogRubricStore({ booksRoot });
   const service = new BookRunApplicationService({
-    research, compiler, repair, contentReader: reader, candidateQc, reviews, qc, diagnoses: qcStore, promotion, currentPointer, runStore, stageCoordinator,
+    research, compiler, repair, contentReader: reader, candidateQc, reviews, qc, diagnoses: qcStore,
+    rubric: rubricPanel, rubricStore,
+    promotion, currentPointer, runStore, stageCoordinator,
     clock: { now },
     ids: {
       nextRunId: () => bookRunId,
@@ -620,6 +638,8 @@ export async function buildBookRunHarness(
     events,
     runStore,
     qcStore,
+    rubricStore,
+    rubricCalls: () => (options.rubricPanel === undefined ? (rubricPanel as ScriptedRubricPanel).calls() : undefined),
     eventAppendAttempts: () => eventAppendAttempts,
     async seedCanonicalReviewRunTerminal(parentRunId: string) {
       // The durable shape an infra loss leaves on the panel run: the exact run id

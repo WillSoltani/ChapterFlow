@@ -10,6 +10,7 @@ import { createFileSectionAvoidStore } from "../books/sectionAvoidStore.js";
 import { createCurrentPointerStore } from "../books/currentPointer.js";
 import { createQcService } from "../qc/qcService.js";
 import { createQcStore } from "../qc/qcStore.js";
+import { createCatalogRubricStore } from "../review/catalogRubricStore.js";
 import { CandidateRepairService } from "../qc/repairCoordinator.js";
 import { FileRepairHistoryStore } from "../qc/repairHistoryStore.js";
 import { createPromotionService } from "../release/promotionService.js";
@@ -640,6 +641,9 @@ export async function createProductionBookRunComposition(input: Readonly<{
     repairApplication,
     sectionPackCache,
     sectionAvoidStore,
+    // R-080 — the whole-book rubric panel's durable record, under the same
+    // booksRoot as every other per-book artifact.
+    catalogRubricStore: createCatalogRubricStore({ booksRoot }),
   });
   return { app, contentReader, currentPointerStore, reviewService, qcService };
 }

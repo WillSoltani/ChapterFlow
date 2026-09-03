@@ -105,8 +105,14 @@ function factorScoresMessage(panel: ReaderPanelReviewV1): string {
 }
 
 /** Parse + order the CHAPTER files into a contiguous 1-based chapter set,
- *  mirroring the canonical review's chapter contract. */
-function chapterSet(candidate: CandidateSnapshot): { chapter: ChapterV21; number: number }[] {
+ *  mirroring the canonical review's chapter contract.
+ *
+ *  EXPORTED for the whole-book catalog-rubric stage, which must read the same
+ *  chapter set under the same contract (a rubric panel that disagreed with the
+ *  review panel about what the book's chapters ARE would be judging different
+ *  bytes than the gate it augments). Throws on any malformation; both callers
+ *  map the throw to their own fail-closed code. */
+export function parseCandidateChapterSet(candidate: CandidateSnapshot): { chapter: ChapterV21; number: number }[] {
   const chapters = candidate.files.filter((file) => file.kind === "CHAPTER");
   if (chapters.length === 0) {
     throw new Error("semantic panel requires at least one CHAPTER file");
@@ -166,7 +172,7 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
 
     let chapters: { chapter: ChapterV21; number: number }[];
     try {
-      chapters = chapterSet(input.candidate);
+      chapters = parseCandidateChapterSet(input.candidate);
     } catch (error) {
       return failure("SEMANTIC_PANEL_CANDIDATE_INVALID", (error as Error).message);
     }
