@@ -113,6 +113,7 @@ async function runProxyModel(
   const encoder = new TextEncoder();
   const result = await runner.run({
     profileId: "pipeline-read-text-v1",
+    role: "review",
     prompt: {
       templateId: "chapterflow-text-v1",
       inputs: [

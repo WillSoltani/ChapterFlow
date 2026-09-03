@@ -513,6 +513,7 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
       const task = cause === undefined ? baseTask : `${baseTask}\n\n${buildReaderSeatRetryFeedback(cause)}`;
       const result: ModelResult = await input.runner.run({
         profileId,
+        role: "review",
         prompt: jsonPromptRequest(task, readerDocumentBlock),
         context,
       });

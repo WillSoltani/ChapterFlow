@@ -134,6 +134,7 @@ export class ModelGatewayReviewEvaluator implements CanonicalReviewEvaluator {
     if (!files.ok) return files;
     const result = await this.#runner.run({
       profileId: this.#profileId,
+      role: "review",
       prompt: jsonPromptRequest(REVIEW_SYSTEM, candidateText(files.value)),
       context: input.taskContext,
     });
