@@ -476,10 +476,12 @@ async function materializeSeedFiles(result: Awaited<ReturnType<typeof researchBo
         // evict → fresh run) depends on it, and so does --research-run-id, whose
         // whole purpose is making that loop cheap.
         bookScars: loadBookScars(result.bookId),
-        // R-046 — the writers' contract now depends on whether the book was read
-        // or recalled, so the flag travels with the writer context rather than
-        // being re-derived from a path.
-        sourceProvenance: result.sourceProvenance,
+        // NOTE (R-046): source provenance is deliberately NOT added here. The
+        // compiler validates this file with an EXACT key set
+        // (compilerApplicationPort.ts sectionTaskContext), and provenance already
+        // reaches the writer by the route that also carries the quotes it labels
+        // — packet.sourceProvenance, projected onto the writer card. Adding it
+        // twice would mean widening an exact-key contract for no new information.
       }, null, 2)}\n`),
     },
     await inputFile(resolve(result.bundlePath, RESEARCH_RUN_MANIFEST_FILE), "inputs/research/research-run.manifest.json", "PROVENANCE", "application/json"),
