@@ -141,7 +141,17 @@ const READER_TOP_KEYS = [
 
 const QUIZ_DERIVATION_KEYS = ["answers", "mechanisms", "confidence", "ambiguities", "tells"] as const;
 
-export function validateReaderExperienceReview(r: unknown): string[] {
+/**
+ * What the reviewed chapter itself fixes about the record, supplied by the
+ * runtime (never by the model). Today: the chapter's quiz question count, which
+ * the positional `quizDerivation` arrays must cover one-for-one.
+ */
+export type ReaderReviewExpectations = {
+  /** Number of questions in the reviewed chapter's quiz (>= 1). */
+  quizQuestionCount: number;
+};
+
+export function validateReaderExperienceReview(r: unknown, expected?: ReaderReviewExpectations): string[] {
   const errors: string[] = [];
   if (r === null || typeof r !== "object") return ["reader-review: not an object"];
   const v = r as Record<string, unknown>;
@@ -182,6 +192,23 @@ export function validateReaderExperienceReview(r: unknown): string[] {
     if (!isStringArray(q.mechanisms)) errors.push("reader-review.quizDerivation.mechanisms: must be string[]");
     if (!isStringArray(q.ambiguities)) errors.push("reader-review.quizDerivation.ambiguities: must be string[]");
     if (!isStringArray(q.tells)) errors.push("reader-review.quizDerivation.tells: must be string[]");
+    // ONE DERIVATION PER QUESTION. `[].every(...)` is true, so an empty
+    // derivation used to satisfy every per-element rule above: a seat could skip
+    // the lane's single strongest evidence channel and still pass strict
+    // validation. The four arrays are positional with the questions (the prompt
+    // says so), so they must be equal-length, non-empty, and — when the runtime
+    // supplies the reviewed chapter's question count — exactly that long.
+    const positional = ["answers", "mechanisms", "confidence", "ambiguities"] as const;
+    const lengths = positional.map((key) => (Array.isArray(q[key]) ? (q[key] as unknown[]).length : -1));
+    if (lengths.every((n) => n >= 0)) {
+      if (lengths.some((n) => n !== lengths[0])) {
+        errors.push(`reader-review.quizDerivation: answers/mechanisms/confidence/ambiguities are positional with the questions and must be the same length (got ${positional.map((key, i) => `${key} ${lengths[i]}`).join(", ")})`);
+      } else if (lengths[0] === 0) {
+        errors.push("reader-review.quizDerivation: the derivation is empty; every quiz question needs its own answer, mechanism, confidence and ambiguity entry");
+      } else if (expected !== undefined && lengths[0] !== expected.quizQuestionCount) {
+        errors.push(`reader-review.quizDerivation: the chapter has ${expected.quizQuestionCount} quiz question(s) but the derivation covers ${lengths[0]}`);
+      }
+    }
   }
 
   if (!isEnum(v.recommendation, ["SHIP", "REVISE", "BLOCK"])) errors.push("reader-review: recommendation must be SHIP|REVISE|BLOCK");

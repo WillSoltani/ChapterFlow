@@ -147,7 +147,7 @@ function mkReader(over: Partial<ReaderExperienceReviewV1> = {}): ReaderExperienc
     rubricVersion: READER_EXPERIENCE_RUBRIC_VERSION,
     schemaSha256: READER_SCHEMA,
     scores: mkScores(90),
-    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    quizDerivation: { answers: ["a"], mechanisms: ["the prose forces a"], confidence: ["high"], ambiguities: [""], tells: [] },
     recommendation: "SHIP",
     blockingFindings: [],
     escalationSignals: [],

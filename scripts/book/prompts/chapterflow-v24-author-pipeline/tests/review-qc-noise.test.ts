@@ -17,6 +17,7 @@ import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
 import { runShipGate } from "../src/critics/finalGate.js";
+import { assembleReaderExperienceReview } from "../src/review/readerExperienceReview.js";
 import { makeGateCleanChapter } from "./helpers.js";
 
 // ── R-137: B5 is one blocker per CHAPTER, not one per unit ───────────────────
@@ -50,4 +51,70 @@ test("R-137: a single em dash still blocks, and a clean chapter raises no B5", (
 
   const clean = makeGateCleanChapter("emdash-book", 3);
   assert.equal(runShipGate(clean).blockers.some((finding) => finding.catalogId === "B5"), false);
+});
+
+// ── R-133: the quiz derivation must cover every question ─────────────────────
+
+function readerOutput(over: Record<string, unknown> = {}): Record<string, unknown> {
+  return {
+    schema: "reader-experience-review-v1",
+    scores: {
+      retention: 82, quizzes: 80, transfer: 78, practical: 81, summaries: 79,
+      tone: 83, limits: 77, insight: 80, density: 76, beginner: 84,
+    },
+    quizDerivation: {
+      answers: ["a", "b", "c"],
+      mechanisms: ["m1", "m2", "m3"],
+      confidence: ["high", "medium", "high"],
+      ambiguities: ["", "", ""],
+      tells: [],
+    },
+    recommendation: "SHIP",
+    blockingFindings: [],
+    escalationSignals: [],
+    advisoryFindings: [],
+    strongestEvidence: ["a strong verbatim line"],
+    weakestEvidence: [],
+    oneParagraphVerdict: "Solid on-page chapter.",
+    ...over,
+  };
+}
+
+const READER_BINDINGS = {
+  chapterContentSha256: "c".repeat(64),
+  readerDocumentSha256: "d".repeat(64),
+  schemaSha256: "s".repeat(64),
+  quizQuestionCount: 3,
+};
+
+test("R-133: a seat that skips or short-changes the quiz derivation is rejected", () => {
+  // The derivation IS the reader lane's key evidence; an empty one passed strict
+  // validation because [].every(...) is true and no rule tied it to the quiz.
+  assert.throws(
+    () => assembleReaderExperienceReview(
+      readerOutput({ quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] } }),
+      READER_BINDINGS,
+    ),
+    /quizDerivation/,
+    "an empty derivation must not pass strict validation",
+  );
+  // One derivation short of the chapter's question count is the same defect.
+  assert.throws(
+    () => assembleReaderExperienceReview(
+      readerOutput({ quizDerivation: { answers: ["a", "b"], mechanisms: ["m1", "m2"], confidence: ["high", "high"], ambiguities: ["", ""], tells: [] } }),
+      READER_BINDINGS,
+    ),
+    /quizDerivation/,
+  );
+  // Ragged positional arrays are rejected even when `answers` is the right length.
+  assert.throws(
+    () => assembleReaderExperienceReview(
+      readerOutput({ quizDerivation: { answers: ["a", "b", "c"], mechanisms: ["m1"], confidence: ["high", "high", "low"], ambiguities: ["", "", ""], tells: [] } }),
+      READER_BINDINGS,
+    ),
+    /quizDerivation/,
+  );
+  // The complete derivation still assembles.
+  const record = assembleReaderExperienceReview(readerOutput(), READER_BINDINGS);
+  assert.equal(record.quizDerivation.answers.length, 3);
 });

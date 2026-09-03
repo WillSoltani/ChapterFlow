@@ -467,6 +467,9 @@ export async function runReaderLanes(input: RunReaderLanesInput): Promise<Reader
     chapterContentSha256: chapterContentHash(input.chapter),
     readerDocumentSha256: readerExperienceDocHash(input.chapter),
     schemaSha256: READER_PANEL_OUTPUT_SCHEMA_SHA,
+    // One derivation per question: the strict assembly rejects a seat whose
+    // positional quizDerivation does not cover the chapter's quiz (R-133).
+    quizQuestionCount: input.chapter.quiz.questions.length,
   } as const;
   const profileId = input.profileId ?? "attempt-read-json-v1";
   const docRelPath = `chapter-${pad(input.chapterNumber)} (provided inline below)`;

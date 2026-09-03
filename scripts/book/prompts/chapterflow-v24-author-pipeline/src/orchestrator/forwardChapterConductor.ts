@@ -766,6 +766,7 @@ export async function runForwardChapterConductor(
           chapterContentSha256: hashes.candidateContentSha256,
           readerDocumentSha256: readerDocSha256,
           schemaSha256: input.frozen.instrumentManifest.readerSchemaSha256,
+          quizQuestionCount: input.prepared.chapter.quiz.questions.length,
         },
         {
           reviewFn: async (task) => {

@@ -71,9 +71,9 @@ function mkReader(over: Partial<ReaderExperienceReviewV1> = {}): ReaderExperienc
     scores: scores(),
     quizDerivation: {
       answers: ["a", "b", "c"],
-      mechanisms: ["mechanism one"],
+      mechanisms: ["mechanism one", "mechanism two", "mechanism three"],
       confidence: ["high", "medium", "low"],
-      ambiguities: [],
+      ambiguities: ["", "", ""],
       tells: [],
     },
     recommendation: "SHIP",
