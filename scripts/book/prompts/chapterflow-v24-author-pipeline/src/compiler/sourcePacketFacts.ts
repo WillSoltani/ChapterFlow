@@ -238,8 +238,9 @@ export function bestCaseLinkage(packet: SourcePacketV1, factId: string | undefin
  * The scores are what makes fact-relevant cue dealing possible: a dealer that only sees the
  * ORDER cannot tell "the top case beats the rest by nine points" from "every case ties at
  * zero", so it load-balances the two identically and hands a slot the worst-linked case
- * (R-101, live ch03 ex05). Ties break by case id so the ranking is deterministic — the
- * pre-existing `.sort((a,b) => b.score - a.score)` was not stable across engines for ties.
+ * (R-101, live ch03 ex05). Ties break by case id, so two equally-linked cases order by identity
+ * rather than by their position in packet.namedCases — the previous sort was stable, so a tie
+ * silently inherited packet order, which is the positional dependence this package is removing.
  */
 export function scoredCaseIdsForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): Array<{ id: string; score: number }> {
   const cases = packet.namedCases;
