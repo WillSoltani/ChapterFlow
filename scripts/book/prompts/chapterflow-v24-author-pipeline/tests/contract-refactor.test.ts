@@ -34,6 +34,8 @@ import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js"
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
+import { MAX_SOURCE_QUOTE_CHARS } from "../src/source/sourceText.js";
+import { MAX_RESEARCH_UNITS } from "../src/source/sourceQuoteGrounding.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 
 // ---- Pinned PRE-REFACTOR rendered lengths (chars), measured on the realistic
@@ -104,6 +106,61 @@ function sidecar(): SourceSidecarV2 {
     testableFacts: facts,
     frameworks: [{ name: "Three-part credit signal", members: ["payment history", "utilization", "account age"] }],
   };
+}
+
+/**
+ * The SOURCE-TEXT worst case (R-046/R-056/R-058), for the second budget below.
+ *
+ * The model-memory fixture above cannot bound a source-text card: it carries no
+ * `sourceQuote` and no `hardSpecificEvidence`, so the card's largest new payload
+ * renders as nothing. This is the biggest packet the pipeline can now produce —
+ * researchFloorsForSpan() caps a research unit at MAX_RESEARCH_UNITS = 2, i.e.
+ * 9*2 = 18 testable facts and 3*2 = 6 named examples — with every quote at the
+ * MAX_SOURCE_QUOTE_CHARS ceiling and a proposition behind every hardSpecific.
+ */
+function sourceTextSidecar(): SourceSidecarV2 {
+  const quote = `"${"the book's own words on this point ".repeat(12)}`.slice(0, MAX_SOURCE_QUOTE_CHARS);
+  const facts = Array.from({ length: 9 * MAX_RESEARCH_UNITS }, (_, i) => ({
+    id: `ch01.fact.${i + 1}`,
+    claim: `Credit utilization signal ${i + 1} changes lender-visible risk before a bill is fully paid.`,
+    becauseMechanism: `Because balances can be reported before payment, a lower visible balance gives the scoring model cleaner information ${i + 1}.`,
+    commonError: `Assuming only the due date matters ${i + 1}.`,
+    errorIsWhy: `The reporting snapshot can matter before the due date ${i + 1}.`,
+    sourceQuote: quote,
+  }));
+  const namedExamples = Array.from({ length: 3 * MAX_RESEARCH_UNITS }, (_, i) => {
+    const hardSpecifics = [`300 to 850 scale ${i + 1}`, `credit utilization ${i + 1}`, `reporting date ${i + 1}`];
+    return {
+      id: `ch01.case.${i + 1}`,
+      label: `Named case ${i + 1}`,
+      summary: `The source describes case ${i + 1} at length, naming the parties, the date and the outcome it turned on.`,
+      teachesWhat: "Credit behavior becomes a lender-facing signal.",
+      hardSpecifics,
+      realWorld: true,
+      sourceQuote: quote,
+      hardSpecificEvidence: hardSpecifics.map((specific) => ({
+        specific,
+        proposition: `The source states that ${specific} is what the lender actually sees at the moment of the report.`,
+        sourceQuote: quote,
+      })),
+    };
+  });
+  return {
+    ...sidecar(),
+    sourceProvenance: "source-text",
+    focus: "How a reported balance, not a paid one, is what the lender scores.",
+    coreClaim: "The reporting snapshot, not the due date, is the lever the reader controls.",
+    keyClaims: facts.slice(0, 8).map((f) => f.claim),
+    testableFacts: facts,
+    namedExamples,
+  } as unknown as SourceSidecarV2;
+}
+
+function sourceTextFixtureFor(bookId: string): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
+  const chapter: ChapterSpec = { chapterId: `${bookId}-ch01`, chapterNumber: 1, chapterTitle: "Optimize Your Credit Cards" };
+  const packet = compileSourcePacketFromSidecar({ bookId, chapter, sidecar: sourceTextSidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  const blueprint = compileChapterBlueprint({ bookId, chapter, packet, packetPath: "/tmp/ch01.source-packet.json" });
+  return { blueprint, packet };
 }
 
 function realisticFixtureFor(bookId: string): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
@@ -389,23 +446,71 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // with prose, so the next prompt package almost certainly re-pins here — with the
 // same kind of measured rationale, not by rounding the number up.
 //
-// RE-PINNED for wave-1 source-ingestion (R-055). The package adds exactly one
-// block to the writer card — READ-ONLY CONTEXT, carrying the chapter's focus,
-// coreClaim, hardEdge and up to six keyClaims through the writer projection —
-// and it costs +994 characters on every card, measured on this same Franklin
-// render. Worst kind per chapter on this commit:
-//   ch01 learning-pack 52,154   ch02 52,246   ch03 53,843 (binding)   ch04 52,091
-//   ch05-ch08 (no scoped rules) 51,148
-//   with worst-case prose: 59,444 / 59,536 / 61,133 (binding) / 59,381 / 58,438
-// Budgets = that worst case rounded UP to the next 500 (53,843 -> 54,000;
-// 61,133 -> 61,500) plus one further 500 of stated headroom, which is the same
-// arithmetic the previous pin used. Nothing else in this package renders into a
-// writer card: the source quotes it adds to the packet are projected only when
-// the sidecar carries them, and this fixture is a model-memory sidecar with
-// none — a source-text book will cost more, and MUST be re-measured here before
-// it is run.
+// RE-PINNED for wave-1 source-ingestion (R-055). The package adds one block to
+// the writer card — the chapter's focus, coreClaim, hardEdge and up to six
+// keyClaims. Worst kind per chapter, MEASURED on this commit:
+//   ch01 learning-pack 52,490   ch02 52,582   ch03 54,179 (binding)   ch04 52,427
+//   ch05-ch08 (no scoped rules) 51,484
+//   with worst-case prose: 59,756 / 59,848 / 61,445 (binding) / 59,693 / 58,750
+// Budgets = that worst case rounded UP to the next 500 (54,179 -> 54,500;
+// 61,445 -> 61,500) plus one further 500 of stated headroom, which is the same
+// arithmetic the previous pin used.
+//
+// REVIEW ROUND 2 re-measured these. Round 1 pinned 53,843 / 61,133 for a render
+// that carried chapterContext INSIDE the packet JSON; the fix moves it out into
+// its own labelled READ-ONLY block, whose header prose costs +336 characters on
+// every card (53,843 -> 54,179). The budgets do not move: 54,179 still rounds to
+// 54,500 and 61,445 still rounds to 62,000.
 const HONEST_TASK_CHAR_BUDGET = 54_500;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 62_000;
+
+/**
+ * The SOURCE-TEXT budgets (review round 2, finding 2).
+ *
+ * Round 1 re-pinned the budget above on a MODEL-MEMORY sidecar, which carries no
+ * sourceQuote and no hardSpecificEvidence, so the one thing this package adds to
+ * a packet rendered as nothing and the pin had zero coverage of the route the
+ * package exists to build. These are the same renders on `sourceTextSidecar()` —
+ * the largest packet the pipeline can now produce (MAX_RESEARCH_UNITS = 2, so 18
+ * testable facts and 6 named examples), every quote at the MAX_SOURCE_QUOTE_CHARS
+ * ceiling, a proposition behind every hardSpecific.
+ *
+ * MEASURED on this commit, worst kind per chapter:
+ *   ch01 learning-pack 84,001   ch02 84,093   ch03 85,690 (binding)   ch04 83,938
+ *   ch05-ch08 82,995
+ *   with worst-case prose: 91,267 / 91,359 / 92,956 (binding) / 91,204 / 90,261
+ * Budgets = 85,690 -> 86,000 -> 86,500 and 92,956 -> 93,000 -> 93,500, the same
+ * arithmetic as above.
+ *
+ * WHERE THAT 31,511 OVER THE MODEL-MEMORY CARD COMES FROM (measured by stripping
+ * one field at a time from the same packet, binding card):
+ *   +22,319  the packet is simply BIGGER — 18 facts and 6 cases instead of 9 and
+ *            2. Nothing in this package renders those; a model-memory packet with
+ *            18 facts costs the same, and always did. What R-058 changed is that
+ *            an oversized unit now REQUIRES that many, so the big card went from
+ *            possible to likely.
+ *    +5,424  the sourceQuote on each of the 24 items, already bounded to
+ *            PROJECTED_SOURCE_QUOTE_CHARS (200) by boundSourceQuoteForCard — the
+ *            same bound the whole-chapter projection applies. Unbounded at the
+ *            240-char ceiling this would be ~6,500.
+ *    +3,768  R-056's specificPropositions, one per hardSpecific.
+ *
+ * THE LIVE ROUTE IS CHEAPER, and is pinned separately below.
+ * buildSectionTaskMarkdown is PURE_RETAINED in the legacy-route inventory: it
+ * renders the RAW packet and no v25 route calls it. The card the v25 writer
+ * actually receives is buildAuthorCard's, which renders the slim projection.
+ */
+const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 86_500;
+const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 93_500;
+
+/**
+ * The LIVE v25 writer card had no length pin at all before this package; it gets
+ * one here, because a source-text packet is the largest input it has ever taken.
+ * MEASURED on the same two fixtures, ch03, with the Franklin voice card:
+ *   model-memory 15,854   source-text worst case 30,042
+ * Budget = 30,042 -> 30,500 -> 31,000, the same arithmetic.
+ */
+const HONEST_AUTHOR_CARD_CHAR_BUDGET = 31_000;
 
 test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
   const scars = loadBookScars(LARGEST_SCAR_BOOK);
@@ -463,6 +568,46 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
     assert.ok(
       withProse.length <= HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET,
       `ch${chapterNumber} learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+    );
+  }
+});
+
+test("R-046: the SOURCE-TEXT prompt-length budget is pinned on a packet that actually carries quotes", async () => {
+  const scars = loadBookScars(LARGEST_SCAR_BOOK);
+  const card = voiceCard(LARGEST_SCAR_BOOK);
+  const bp = sourceTextFixtureFor(LARGEST_SCAR_BOOK);
+
+  // The assertions that make the budget mean something: this fixture must really
+  // be the source-text route, or it measures the model-memory card twice.
+  assert.equal(bp.packet.sourceProvenance, "source-text", "the fixture must compile to a source-text packet");
+  assert.equal(bp.packet.facts.length, 9 * MAX_RESEARCH_UNITS, "the fixture must carry the R-058 oversized-unit fact floor");
+  assert.equal(bp.packet.namedCases.length, 3 * MAX_RESEARCH_UNITS, "the fixture must carry the R-058 oversized-unit case floor");
+  assert.ok(bp.packet.facts.every((f) => typeof f.sourceQuote === "string" && f.sourceQuote.length > 0), "every fact must carry a quote");
+  assert.ok(bp.packet.namedCases.every((c) => (c.specificPropositions ?? []).length > 0), "every case must carry its R-056 propositions");
+
+  for (const chapterNumber of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    for (const kind of SECTION_KINDS) {
+      const md = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind, blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: card, bookScars: scars } });
+      assert.match(md, /"sourceQuote"/, `ch${chapterNumber} ${kind}: the book's own words must actually reach the measured card`);
+      assert.ok(
+        md.length <= HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET,
+        `ch${chapterNumber} ${kind}: rendered ${md.length} chars against a ${HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET}-char source-text budget; re-pin only with a written rationale`,
+      );
+    }
+    const withProse = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind: "learning-pack", blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: card, bookScars: scars }, chapterProse: worstCaseChapterProse() });
+    assert.ok(
+      withProse.length <= HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET,
+      `ch${chapterNumber} learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET}-char source-text budget; re-pin only with a written rationale`,
+    );
+  }
+
+  // The card the v25 writer actually receives — pinned for the first time here.
+  const { buildAuthorCard } = await import("../src/orchestrator/authorRun.js");
+  for (const fixture of [realisticFixtureFor(LARGEST_SCAR_BOOK), bp]) {
+    const authorCard = buildAuthorCard({ bookId: LARGEST_SCAR_BOOK, chapterNumber: 3, briefMd: "# brief\n", packet: fixture.packet, voice: card });
+    assert.ok(
+      authorCard.length <= HONEST_AUTHOR_CARD_CHAR_BUDGET,
+      `whole-chapter author card rendered ${authorCard.length} chars against a ${HONEST_AUTHOR_CARD_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
     );
   }
 });

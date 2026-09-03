@@ -72,19 +72,35 @@ export const PROJECTED_SOURCE_RISKS_CAP = 6;
  */
 export const PROJECTED_SOURCE_QUOTE_CHARS = 200;
 
-/** R-055 — how many keyClaims reach the READ-ONLY CONTEXT block. The sidecar
- *  contract asks for 4-8; six is the thesis without the tail. */
+/** R-055 — how many keyClaims reach the READ-ONLY CONTEXT block the author card
+ *  renders beside (never inside) the citable projection. The sidecar contract
+ *  asks for 4-8; six is the thesis without the tail. */
 export const PROJECTED_KEY_CLAIMS_CAP = 6;
+
+/**
+ * Truncate a quote to {@link PROJECTED_SOURCE_QUOTE_CHARS} on a word boundary,
+ * marking the cut.
+ *
+ * EXPORTED because the projection is not the only render of a packet. The v23
+ * section-task card (src/sections/sectionTasks.ts) embeds the RAW packet JSON, so
+ * on a source-text packet it would otherwise carry a full MAX_SOURCE_QUOTE_CHARS
+ * quote on every fact and every case inside a card whose length is budget-pinned
+ * (tests/contract-refactor.test.ts). Both renders bound the quote through this
+ * one function, so the two can never drift.
+ */
+export function boundSourceQuoteForCard(text: string): string {
+  if (text.length <= PROJECTED_SOURCE_QUOTE_CHARS) return text;
+  const cut = text.slice(0, PROJECTED_SOURCE_QUOTE_CHARS);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > PROJECTED_SOURCE_QUOTE_CHARS / 2 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+}
 
 /** Truncate a projected quote on a word boundary, marking the cut. */
 function boundedQuote(value: unknown): string | undefined {
   if (typeof value !== "string") return undefined;
   const text = stripPageCitationSpans(value).trim();
   if (text.length === 0) return undefined;
-  if (text.length <= PROJECTED_SOURCE_QUOTE_CHARS) return text;
-  const cut = text.slice(0, PROJECTED_SOURCE_QUOTE_CHARS);
-  const lastSpace = cut.lastIndexOf(" ");
-  return `${(lastSpace > PROJECTED_SOURCE_QUOTE_CHARS / 2 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+  return boundSourceQuoteForCard(text);
 }
 
 export type WriterPacketProjectionFact = {
@@ -141,8 +157,10 @@ export type WriterPacketProjection = {
   /** IMP-03 (v2): the packet's sourceQuality.risks, citation-stripped and capped —
    *  the writer sees the researcher's own risk notes on this chapter's evidence. */
   sourceRisks?: string[];
-  /** R-055: the chapter's own thesis, READ-ONLY. Not a source of citable
-   *  specifics — those stay in facts/cases, which the gates check. */
+  /** R-055: the chapter's own thesis. buildAuthorCard SPLITS this key out of the
+   *  rendered projection JSON and emits it under its own READ-ONLY, NOT-CITABLE
+   *  header — it must not appear inside the block the writer is told is the only
+   *  allowed factual material. */
   chapterContext?: {
     focus?: string;
     coreClaim?: string;

@@ -128,8 +128,15 @@ export type SourcePacketV1 = {
    * said "without a decisive outcome for either side" (false) — the packet kept
    * the false fact and discarded the truer claim.
    *
-   * READ-ONLY CONTEXT: it orients the writer, it is not a source of citable
-   * specifics (those stay in facts/cases, which the gates check).
+   * READ-ONLY CONTEXT, and rendered that way. Both writer cards SPLIT this field
+   * out of the packet/projection JSON and render it under its own
+   * "CHAPTER CONTEXT — READ-ONLY ORIENTATION, NOT CITABLE" header
+   * (src/sections/sectionTasks.ts chapterContextSection, src/orchestrator/
+   * authorRun.ts buildAuthorCard). It must never travel inside the block headed
+   * "ONLY allowed facts/cases/numbers/entities": these fields carry no
+   * sourceQuote and no gate checks them against the frozen text, and `hardEdge`
+   * is by contract the tempting WRONG reading. tests/writer-card-source-context
+   * .test.ts pins both renders.
    */
   chapterContext?: {
     focus: string;

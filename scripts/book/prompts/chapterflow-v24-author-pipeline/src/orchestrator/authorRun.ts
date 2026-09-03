@@ -708,6 +708,14 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
   // untrusted-artifact envelope — instruction-like text inside the packet
   // (or a reviewer complaint) is quoted evidence, never a new instruction
   // channel. The conductor's own instructions stay OUTSIDE the blocks.
+  // R-055 (review round 2): the chapter thesis is SPLIT OUT of the projection JSON
+  // before it is rendered. The block below tells the writer that everything inside
+  // it is the only allowed factual material; focus/coreClaim/hardEdge/keyClaims are
+  // the researcher's unquoted paraphrase, gated by nothing, and hardEdge is by
+  // contract the tempting WRONG reading — so they are rendered separately, under a
+  // header that says they are orientation and not citable.
+  const projection = writerPacketProjection(packet);
+  const { chapterContext, ...citableProjection } = projection;
   sections.push(
     "",
     "SOURCE PACKET (writer projection)",
@@ -718,10 +726,24 @@ export function buildAuthorCard(args: AuthorCardArgs): string {
       "source-packet-projection",
       `${bookId}/ch${nn}`,
       WRITER_PACKET_PROJECTION_SCHEMA_VERSION,
-      JSON.stringify(writerPacketProjection(packet), null, 1),
+      JSON.stringify(citableProjection, null, 1),
       "json",
     ),
   );
+  if (chapterContext && Object.keys(chapterContext).length > 0) {
+    sections.push(
+      "",
+      "CHAPTER CONTEXT — READ-ONLY ORIENTATION, NOT CITABLE",
+      "What this chapter argues, in the researcher's own paraphrase. It is NOT part of the allowed factual material above: it is not a source of citable specifics, so take no claim, number, name or case detail from it. \"hardEdge\" states the tempting WRONG reading a careless summary reaches for; never assert it as true.",
+      untrustedArtifact(
+        "chapter-context",
+        `${bookId}/ch${nn}`,
+        WRITER_PACKET_PROJECTION_SCHEMA_VERSION,
+        JSON.stringify(chapterContext, null, 1),
+        "json",
+      ),
+    );
+  }
 
   // IMP-03: the compiler-owned license table — conductor-rendered instruction
   // text (trusted), bound to this attempt by the plan hash it carries.
