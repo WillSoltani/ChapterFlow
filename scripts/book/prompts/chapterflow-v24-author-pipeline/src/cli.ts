@@ -2448,6 +2448,10 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       qcRoundId,
       expectedBookRevision,
       promotedAt,
+      // R-252: createCliV25Composition REFUSES to build without --source-git-sha
+      // and then this route dropped it, so the released pair recorded no source
+      // revision at all. Carry it into the sidecar's provenance block.
+      sourceGitSha: v25.value.sourceGitSha,
       // Opt-in recovery for a release that committed the pointer and died before
       // publishing. Off by default: the fail-closed refusal stands unless an
       // operator has read the journal record the refusal names.

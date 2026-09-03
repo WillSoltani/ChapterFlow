@@ -21,6 +21,7 @@ import {
   assembleCanonicalPackage,
   buildCanonicalPackageManifest,
   CanonicalPackageAdapter,
+  RESEARCH_RUN_MANIFEST_LOGICAL_PATH,
   type CanonicalManifestOptions,
   type CanonicalReleaseRequest,
 } from "../../src/release/canonicalPackageAdapter.js";
@@ -2098,6 +2099,115 @@ function sourceV2CandidateChapter(bookId: string, number: number, seed: string):
     },
   } as unknown as ChapterV21;
 }
+
+/**
+ * R-234 / R-252 — the shipped pair records WHAT it was made from.
+ *
+ * The released Franklin pair carried none of it: the reader package's top-level
+ * keys are exactly {schemaVersion, packageId, createdAt, contentOwner, book,
+ * chapters}, and `--source-git-sha` — which createCliV25Composition REFUSES to run
+ * without — never reached the release request, so the sidecar named no source
+ * revision, no candidate run and no model route.
+ *
+ * The block lives on the SIDECAR, never in the reader package: the package bytes
+ * are hashed into the manifest, so adding fields there would move every released
+ * contentId for no reader benefit. This test pins both halves — the block is
+ * written, and the package is untouched.
+ */
+requiredTest("a candidate release records its provenance on the sidecar, and leaves the reader package's shape untouched", async (context) => {
+  const bookId = "release-provenance-book";
+  const stores = storage(context);
+  const chapters = [sourceV2CandidateChapter(bookId, 1, "release-provenance")];
+  const researchManifest = {
+    schemaVersion: "chapterflow.researchRunManifest.v1",
+    runId: "research-run-42",
+    bookId,
+    compatibility: { provider: "model-gateway-v1", model: "fixture-writer-v1" },
+  };
+  const files = [
+    ...candidateEvidenceFiles(bookId, chapters, "source-v2"),
+    {
+      kind: "PROVENANCE" as const,
+      logicalPath: RESEARCH_RUN_MANIFEST_LOGICAL_PATH,
+      mediaType: "application/json" as const,
+      bytes: Buffer.from(`${JSON.stringify(researchManifest, null, 2)}\n`),
+    },
+  ];
+  const stagedManifest = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-1",
+    createdByRunId: "run-release-provenance",
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(stagedManifest.ok, stagedManifest.ok ? "" : JSON.stringify(stagedManifest));
+  const identity = { candidateId: "candidate-1", manifestDigest: stagedManifest.value.manifestDigest };
+
+  const manifestOptions = manifestRoots(context, bookId, chapters);
+  const input: CanonicalReleaseRequest = {
+    ...request(bookId, identity),
+    reviewId: "review-provenance",
+    qcRoundId: "qc-provenance",
+    sourceGitSha: "0123456789abcdef0123456789abcdef01234567",
+  };
+  const release = await releaseAdapter(input, stores, context.roots.tempRoot, manifestOptions);
+  const released = await release.canonicalRelease.release(input);
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+
+  const provenance = released.value.sidecar.provenance;
+  assert.ok(provenance, "the sidecar must carry a provenance block");
+  assert.equal(provenance.schemaVersion, "chapterflow-release-provenance-v1");
+  assert.equal(provenance.sourceGitSha, input.sourceGitSha, "the source revision the release was invoked with");
+  assert.equal(provenance.candidateId, identity.candidateId);
+  assert.equal(provenance.manifestDigest, identity.manifestDigest);
+  assert.equal(provenance.candidateRunId, "run-release-provenance", "the run that staged the candidate, from its own manifest");
+  assert.equal(provenance.candidateCreatedAt, CREATED_AT);
+  assert.equal(provenance.reviewId, "review-provenance");
+  assert.equal(provenance.qcRoundId, "qc-provenance");
+  assert.equal(provenance.bookRevision, released.value.bookRevision);
+  assert.equal(provenance.releasedAt, PROMOTED_AT);
+  assert.deepEqual(provenance.research, { runId: "research-run-42", provider: "model-gateway-v1", model: "fixture-writer-v1" });
+
+  // The reader package's shape is EXACTLY what it was — no provenance leaked in.
+  assert.deepEqual(
+    Object.keys(released.value.package).sort(),
+    ["book", "chapters", "contentOwner", "createdAt", "packageId", "schemaVersion"],
+  );
+
+  // The verifier accepts the honest block …
+  const packagePath = join(context.roots.tempRoot, `${bookId}.package.json`);
+  const sidecarPath = join(context.roots.tempRoot, `${bookId}.production-manifest.json`);
+  const preflight = verifyProductionPackage({ packagePath, manifestPath: sidecarPath, ...verifyOptionsFrom(manifestOptions) });
+  assert.equal(preflight.ok, true, preflight.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+
+  // … and REFUSES one that contradicts the manifest it sits beside.
+  const forged = { ...released.value.sidecar, provenance: { ...provenance, candidateId: "some-other-candidate" } };
+  const contradicted = verifyProductionPackage({
+    packageData: released.value.package,
+    manifestData: forged,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(contradicted.ok, false, "a provenance block naming a different candidate must be refused");
+  assert.ok(contradicted.findings.some((f) => f.checkId === "PPKG.provenance_candidate_mismatch"), JSON.stringify(contradicted.findings));
+
+  const wrongQc = verifyProductionPackage({
+    packageData: released.value.package,
+    manifestData: { ...released.value.sidecar, provenance: { ...provenance, qcRoundId: "qc-somewhere-else" } },
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.ok(wrongQc.findings.some((f) => f.checkId === "PPKG.provenance_qc_mismatch"), JSON.stringify(wrongQc.findings));
+
+  // A pair with NO provenance still verifies: legacy and already-shipped pairs
+  // carry none, and requiring it would un-ship them.
+  const { provenance: _dropped, ...withoutProvenance } = released.value.sidecar;
+  const legacyShape = verifyProductionPackage({
+    packageData: released.value.package,
+    manifestData: withoutProvenance,
+    ...verifyOptionsFrom(manifestOptions),
+  });
+  assert.equal(legacyShape.ok, true, legacyShape.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+});
 
 /**
  * THE FIXTURE THE ROUND-1 REVIEW SAID THIS FILE DID NOT HAVE.

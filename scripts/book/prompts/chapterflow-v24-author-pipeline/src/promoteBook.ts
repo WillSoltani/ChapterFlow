@@ -86,16 +86,62 @@ export function productionManifestSidecarPath(bookId: string): string {
   return resolve(STATE, "books", `${normSlug(bookId)}.production-manifest.json`);
 }
 
+export const RELEASE_PROVENANCE_SCHEMA = "chapterflow-release-provenance-v1" as const;
+
+/**
+ * Who made this release, out of what, on which authority (R-234 / R-252).
+ *
+ * The shipped pair carried NONE of this. The reader package's top-level keys are
+ * exactly {schemaVersion, packageId, createdAt, contentOwner, book, chapters},
+ * and the sidecar payload named the candidate and the QC round only inside the
+ * hashed manifest — while `--source-git-sha`, which the candidate release REFUSES
+ * to run without, was consumed by the book-run paths and never reached the
+ * release request at all. So a released book could not be traced back to the
+ * pipeline revision that built it.
+ *
+ * It lives on the SIDECAR, not in the reader package: the package is reader
+ * content and its bytes are hashed into the manifest, so adding fields there
+ * would change every released contentId for no reader benefit. The sidecar is
+ * where the release's evidence already lives.
+ *
+ * Every field is copied from something the release already holds and verified —
+ * the request, the digest-bound candidate manifest, and the candidate's own
+ * research run manifest. Nothing is inferred.
+ */
+export type ReleaseProvenance = {
+  schemaVersion: typeof RELEASE_PROVENANCE_SCHEMA;
+  /** The pipeline git revision the release was invoked with (--source-git-sha). */
+  sourceGitSha?: string;
+  /** The candidate the CURRENT pointer names, and its content address. */
+  candidateId: string;
+  manifestDigest: string;
+  /** The run that produced that candidate, from the candidate manifest itself. */
+  candidateRunId?: string;
+  candidateCreatedAt?: string;
+  /** The review and the QC round this release stood on. */
+  reviewId: string;
+  qcRoundId: string;
+  /** The pointer revision this release committed. */
+  bookRevision: number;
+  /** The release instant (the request's promotedAt). */
+  releasedAt: string;
+  /** Model/route provenance, when the candidate carries a research run manifest.
+   *  Absent when it does not — never guessed. */
+  research?: { runId?: string; provider?: string; model?: string };
+};
+
 /** State-side manifest sidecar. `packageId`/`createdAt` mirror the shipped
  *  package's identity fields so the verifier can bind the two without re-deriving
  *  them, and `manifest` is the full production manifest that used to be embedded
- *  in the package. */
+ *  in the package. `provenance` (v25 candidate release) records what the release
+ *  was made from; see ReleaseProvenance. */
 export type ProductionManifestSidecar = {
   schemaVersion: typeof PRODUCTION_MANIFEST_SIDECAR_SCHEMA;
   bookId: string;
   packageId: string;
   createdAt: string;
   manifest: ProductionPackageManifest;
+  provenance?: ReleaseProvenance;
 };
 
 /** Best-effort read of a prior manifest sidecar for identity carry-over. A
