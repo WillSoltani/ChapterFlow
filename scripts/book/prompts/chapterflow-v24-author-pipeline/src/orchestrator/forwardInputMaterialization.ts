@@ -31,14 +31,39 @@ export const IMP22_FORWARD_INPUT_MATERIALIZATION_SCHEMA =
   "imp22-forward-input-materialization-v1" as const;
 export const IMP22_FORWARD_INPUT_FROZEN_AT = "2026-07-12T12:00:00.000Z" as const;
 
+/**
+ * RE-STAMPED for wave-1 source-ingestion (R-055), which adds `chapterContext` to
+ * every compiled source packet.
+ *
+ * Only the GOLD book's numbers move, and only because they are hashes OF a
+ * compiled packet: `inventoryGoldBookInput` compiles the gold book's packets
+ * from its sidecars with `compileSourcePacketFromSidecar` (the pilot books read
+ * pre-compiled packet JSON off disk, so their hashes are untouched — they are
+ * left byte-identical below, which is itself the check that this re-stamp is
+ * scoped to the compiler change and nothing else).
+ *
+ * The re-stamp is a HASH change, not a corpus change. Every stratum score is
+ * derived from counts — facts, cases, hardSpecifics, numbers, entities,
+ * framework members, causal markers over `packet.facts` only, and conceptual
+ * tokens read off the SIDECAR — and `chapterContext` enters none of them, so the
+ * chapter-to-stratum assignment is identical. That invariance is not asserted by
+ * assertion-free reasoning: tests/research-rules.test.ts proves
+ * `deriveForwardChapterFeatures` returns identical features for the same packet
+ * with and without `chapterContext`.
+ *
+ * Previous values:
+ *   freezeSha256                 ceb196d757f3d9604f2957cbd3e4167a66f1cad083ed475c21be274bfe97160d
+ *   gold                         27c51117c58024aaecbbc3a7472cc45aba50c01c9f3b19bbc7320e5d5b68cf9a
+ *   goldStratumAssignmentSha256  2931f5eeeca232c081dfa31308d1288e1845cf2ae3eaa84aebef34050f688e73
+ */
 export const IMP22_FORWARD_INPUT_EXPECTED_HASHES = Object.freeze({
-  freezeSha256: "ceb196d757f3d9604f2957cbd3e4167a66f1cad083ed475c21be274bfe97160d",
+  freezeSha256: "634833361e8d9f38a3d00b0a5d1ca295ee15fcf7b7fb38a8e525e1ee8d67c619",
   pilot: Object.freeze({
     "radical-candor": "a34ebc918ba5cceb23a5635217c884fab989ad76c290e8eacf0f62da1fde549e",
     "start-with-why": "1bdb9d78ff78f3d402e2efb137d94dbe797ad36e50a988b84c608cc46450ec4e",
   }),
-  gold: "27c51117c58024aaecbbc3a7472cc45aba50c01c9f3b19bbc7320e5d5b68cf9a",
-  goldStratumAssignmentSha256: "2931f5eeeca232c081dfa31308d1288e1845cf2ae3eaa84aebef34050f688e73",
+  gold: "0a132dcf849d910bd55999157d4e269805bdebca43375f9b513ac66b68e9d3e0",
+  goldStratumAssignmentSha256: "6b14de023167759c0cae6b4e93b20732f58c6cb8190d545dbf5289e00304d128",
 } as const);
 
 const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");

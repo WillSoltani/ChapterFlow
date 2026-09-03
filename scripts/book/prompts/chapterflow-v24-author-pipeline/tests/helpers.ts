@@ -32,6 +32,126 @@ export const STATE_INDEXES = resolve(PIPELINE_DIR, "state", "indexes");
 export const GATE_ATTEMPTS_FILE = resolve(PIPELINE_DIR, "state", "gate-attempts.json");
 export const TMP_DIR = resolve(__dirname, ".tmp");
 
+/**
+ * A 20 KB slice of the PUBLIC-DOMAIN Gutenberg text of the Autobiography of
+ * Benjamin Franklin (eBook #20203, 1916 Henry Holt edition, editor Frank
+ * Woodworth Pine), taken from the opening of chapter I.
+ *
+ * The fixture policy above forbids COPYRIGHTED book text. Source-text ingestion
+ * (R-046) cannot be exercised on synthetic prose alone: the point of the package
+ * is that the pipeline now reads real bytes, so the anchors, spans, quotes and
+ * excerpt bounds have to hold on real typography — long dashes, printer's
+ * quotes, eighteenth-century spelling, bracketed footnote markers. A
+ * public-domain slice carries no licence risk and keeps the integration test
+ * hermetic: it calls no model and depends on nothing outside the repo.
+ */
+export const FRANKLIN_SLICE_PATH = resolve(__dirname, "fixtures", "franklin-autobiography-slice.txt");
+
+/**
+ * A book too long to hand a model whole: ~300 KB, built by repeating the public
+ * -domain Franklin slice under fifteen numbered chapter heads (R-046, review
+ * round 2).
+ *
+ * WHY THIS SHAPE. It reproduces, deliberately, the three properties that made the
+ * round-1 chapter-map contract unsatisfiable on the real 458 KB Autobiography:
+ *
+ *   1. it is over MAX_BIBLIOGRAPHY_TEXT_CHARS, so the bibliography sees an
+ *      OUTLINE of it and not the book;
+ *   2. it prints a contents page, so every chapter title the model can see occurs
+ *      at least twice and no title-shaped anchor is unique;
+ *   3. its chapter heads are two lines ("ANCESTRY AND EARLY YOUTH IN / BOSTON"),
+ *      which the heading detector does not capture as one heading — the same
+ *      typography the Gutenberg edition uses.
+ *
+ * Synthetic per the fixture policy above: the prose is a public-domain slice, and
+ * the structure around it is generated here rather than copied from an edition.
+ */
+export function syntheticLongSourceBook(): {
+  text: string;
+  chapters: Array<{ number: number; title: string }>;
+  numerals: string[];
+} {
+  const slice = readFileSync(FRANKLIN_SLICE_PATH, "utf8").replace(/\r\n?/g, "\n");
+  const titles = [
+    "ANCESTRY AND EARLY YOUTH IN\nBOSTON",
+    "BEGINNING LIFE AS A PRINTER",
+    "ARRIVAL IN PHILADELPHIA",
+    "FIRST VISIT TO BOSTON",
+    "EARLY FRIENDS IN PHILADELPHIA",
+    "FIRST VISIT TO LONDON",
+    "BEGINNING BUSINESS FOR HIMSELF",
+    "BUSINESS SUCCESS AND FIRST PUBLIC SERVICE",
+    "PLAN FOR ATTAINING MORAL PERFECTION",
+    "POOR RICHARD'S ALMANAC AND OTHER ACTIVITIES",
+    "INTEREST IN PUBLIC AFFAIRS",
+    "DEFENSE OF THE PROVINCE",
+    "PUBLIC SERVICES AND DUTIES",
+    "ALBANY PLAN OF UNION",
+    "QUARRELS WITH THE PROPRIETARY GOVERNORS",
+  ];
+  const numerals = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII", "XIII", "XIV", "XV"];
+  const parts: string[] = ["*** START OF THE PROJECT GUTENBERG EBOOK A LONG BOOK ***", "", "CONTENTS", ""];
+  // The printed contents page: the same titles the chapter heads carry, which is
+  // exactly what makes a title-shaped anchor ambiguous in the whole text.
+  titles.forEach((title, i) => parts.push(`${numerals[i]}. ${title.replace(/\n/g, " ")}`));
+  parts.push("", "INTRODUCTION", "", "An editor's introduction that belongs to no chapter of the book.", "");
+  for (let i = 0; i < titles.length; i += 1) {
+    parts.push(numerals[i], "", titles[i], "", `Chapter ${i + 1} opens with its own sentence, number ${i + 1}.`, "", slice, "");
+  }
+  parts.push("APPENDIX", "", "Matter after the body of the book, which no chapter owns.", "");
+  return {
+    text: parts.join("\n"),
+    chapters: titles.map((title, i) => ({ number: i + 1, title: title.replace(/\n/g, " ") })),
+    numerals,
+  };
+}
+
+/**
+ * The `@<offset>: <label>` list an outline-mode bibliography prompt prints, read
+ * back out of the prompt itself.
+ *
+ * Every outline-mode fixture builds its chapter map through this function, which
+ * is the property under test: the map is built from WHAT THE MODEL WAS SHOWN and
+ * from nothing else, so a contract the view cannot satisfy fails here rather
+ * than passing on a fixture that peeked at the full text.
+ */
+export function readPublishedOffsets(rendered: string, header: string): Array<{ offset: number; label: string }> {
+  const start = rendered.indexOf(header);
+  if (start < 0) return [];
+  const out: Array<{ offset: number; label: string }> = [];
+  for (const line of rendered.slice(start + header.length).split("\n")) {
+    const match = /^@(\d+): (.*)$/.exec(line);
+    if (!match) { if (out.length > 0) break; else continue; }
+    out.push({ offset: Number(match[1]), label: match[2] });
+  }
+  return out;
+}
+
+/**
+ * Which listed offset a reader takes for each chapter's start: the entry whose
+ * label is that chapter's numeral and which is followed, within the next two
+ * entries, by that chapter's own opening line. Labels only — including for
+ * chapter I of {@link syntheticLongSourceBook}, whose numeral also opens every
+ * repeated slice, so "the first entry labelled I" would pick the wrong one.
+ *
+ * Returns [] when any chapter cannot be identified, so a caller asserting a
+ * complete map fails loudly instead of mapping a short book.
+ */
+export function pickChapterStarts(
+  choices: ReadonlyArray<{ offset: number; label: string }>,
+  numerals: readonly string[],
+): number[] {
+  const starts: number[] = [];
+  for (let n = 1; n <= numerals.length; n += 1) {
+    const opener = `Chapter ${n} opens with its own sentence, number ${n}.`;
+    const hit = choices.findIndex((choice, i) =>
+      choice.label === numerals[n - 1] && choices.slice(i + 1, i + 3).some((next) => next.label === opener));
+    if (hit < 0) return [];
+    starts.push(choices[hit].offset);
+  }
+  return starts;
+}
+
 export type CorpusFixture = { bookId: string; files: string[]; stateDir: string };
 
 // ── Deterministic varied vocabulary ─────────────────────────────────────────

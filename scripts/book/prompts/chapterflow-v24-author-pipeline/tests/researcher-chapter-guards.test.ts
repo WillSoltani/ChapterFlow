@@ -29,6 +29,7 @@ import {
 } from "../src/agents/researcher-chapter.js";
 import type { BibliographyResult } from "../src/agents/researcher-bibliography.js";
 import type { ModelCallerExecution, ModelTaskRunner } from "../src/app/modelTaskRunner.js";
+import { runSourceCoherenceCheck } from "../src/critics/sourceCoherence.js";
 
 function bibliography(author: string): BibliographyResult {
   return {
@@ -166,8 +167,8 @@ function baseResult(): ChapterResearchResult {
   } as ChapterResearchResult;
 }
 
-function input(author: string): ChapterResearchInput {
-  return { bibliography: bibliography(author), chapter: { number: 1, title: "Unit One" } };
+function input(author: string, genre?: BibliographyResult["genre"]): ChapterResearchInput {
+  return { bibliography: { ...bibliography(author), ...(genre ? { genre } : {}) }, chapter: { number: 1, title: "Unit One" } };
 }
 
 const metaProblems = (problems: string[]): string[] => problems.filter((p) => p.startsWith("meta-reference"));
@@ -198,6 +199,89 @@ test("R-023: the author-verb guard does NOT fire for an unrelated author's surna
   r.keyClaims[0] = "Kahneman argues that attention is a scarce resource.";
   const problems = collectChapterResearchProblems(r, input("Benjamin Franklin"));
   assert.deepEqual(verbProblems(problems), []);
+});
+
+// ── R-053 — the memoir carve-out, END TO END on BOTH routes ─────────────────
+//
+// REVIEW ROUND 3, blocking finding. R-053 narrowed the author-verb alternation on
+// memoirs, and the carve-out landed at ONE of the two call sites: the researcher's
+// own validator passed the genre, `critics/sourceCoherence.ts` (SC5) did not. A
+// memoir sidecar naming its subject as an actor therefore PASSED research and then
+// tripped SC5, and researcher.ts aborts the whole research session on a coherence
+// blocker — after every chapter has been paid for. The guard's signature now takes
+// the bibliography record, so a call site cannot drop the genre by forgetting an
+// argument, and this test drives one sidecar through BOTH routes.
+//
+// It is RED against the old second call site: reverting SC5 to
+// `authorVerbRegexes({ author: bibliography.author })` makes the memoir assertions
+// below fail with SC5.author_surname_verb while the researcher half still passes,
+// which is exactly the split the finding describes.
+
+/** Both routes' verdicts for one sidecar, so neither can be pinned alone. */
+function bothRoutes(r: ChapterResearchResult, author: string, genre?: BibliographyResult["genre"]) {
+  const in_ = input(author, genre);
+  const report = runSourceCoherenceCheck({ bibliography: in_.bibliography, chapters: [r] });
+  return {
+    researchVerbProblems: verbProblems(collectChapterResearchProblems(r, in_)),
+    coherenceCodes: report.findings.map((f) => f.code),
+    coherencePassed: report.passed,
+  };
+}
+
+test("R-053 (round 3): the fixture is clean on BOTH routes, so any finding below is the mutation", () => {
+  const clean = bothRoutes(baseResult(), "Benjamin Franklin", "memoir");
+  assert.deepEqual(clean.researchVerbProblems, []);
+  assert.deepEqual(clean.coherenceCodes, [], "the base sidecar must pass the coherence critic clean");
+  assert.equal(clean.coherencePassed, true);
+});
+
+test("R-053 (round 3): a memoir sidecar naming its subject as an actor passes research AND the coherence critic", () => {
+  for (const worldly of [
+    "Franklin opens a printing house on Market Street with a borrowed press.",
+    "Franklin introduces the lightning rod to Philadelphia rooftops.",
+  ]) {
+    const r = baseResult();
+    r.keyClaims[0] = worldly;
+    const memoir = bothRoutes(r, "Benjamin Franklin", "memoir");
+    assert.deepEqual(memoir.researchVerbProblems, [], `research validator blocked: ${worldly}`);
+    assert.ok(
+      !memoir.coherenceCodes.includes("SC5.author_surname_verb"),
+      `SC5 blocked a memoir construction the researcher accepted (${worldly}): ${JSON.stringify(memoir.coherenceCodes)}`,
+    );
+    assert.equal(memoir.coherencePassed, true, `the research stage would abort on: ${worldly}`);
+
+    // The carve-out is GENRE-GATED, not a weakening: the same sentence on a
+    // non-memoir book is still blocked on both routes, exactly as before R-053.
+    const other = bothRoutes(r, "Benjamin Franklin", "practical");
+    assert.equal(other.researchVerbProblems.length, 1, `non-memoir research must still block: ${worldly}`);
+    assert.ok(other.coherenceCodes.includes("SC5.author_surname_verb"), `non-memoir SC5 must still block: ${worldly}`);
+    assert.equal(other.coherencePassed, false);
+
+    // An UNCLASSIFIED book behaves byte-for-byte as it did before the field existed.
+    const unclassified = bothRoutes(r, "Benjamin Franklin", undefined);
+    assert.equal(unclassified.researchVerbProblems.length, 1);
+    assert.ok(unclassified.coherenceCodes.includes("SC5.author_surname_verb"));
+  }
+});
+
+test("R-053 (round 3): on a memoir BOTH routes still block every text-attribution verb", () => {
+  for (const speaking of [
+    "Franklin argues that a rotating duty is inherited by name.",
+    "Franklin writes that a visible ledger makes neglect legible.",
+    "Franklin claims the ward rota was his own idea.",
+    "Franklin notes the price of the borrowed press.",
+    "Franklin observes the tide of subscriptions turning.",
+    "Franklin says the query must be written down.",
+    "Franklin explains the draught of the stove.",
+    "Franklin points out the cost of a skipped patrol.",
+  ]) {
+    const r = baseResult();
+    r.keyClaims[0] = speaking;
+    const memoir = bothRoutes(r, "Benjamin Franklin", "memoir");
+    assert.equal(memoir.researchVerbProblems.length, 1, `memoir research must still block: ${speaking}`);
+    assert.ok(memoir.coherenceCodes.includes("SC5.author_surname_verb"), `memoir SC5 must still block: ${speaking}`);
+    assert.equal(memoir.coherencePassed, false);
+  }
 });
 
 // ── R-024 ────────────────────────────────────────────────────────────────────

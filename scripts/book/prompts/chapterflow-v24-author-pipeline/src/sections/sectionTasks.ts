@@ -5,6 +5,7 @@ import { bookRuleGovernsChapter, type BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
 import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import type { ChapterBlueprintV1, SectionKind, SourcePacketV1 } from "../artifacts/artifactTypes.js";
+import { boundSourceQuoteForCard } from "../compiler/sourcePacketProjection.js";
 import type { AuthorV4ContentSelection } from "../assembler.js";
 import { legacyRouteDisabled } from "../runtime/legacyRouteInventory.js";
 
@@ -602,6 +603,36 @@ function assemblyAvoidEscalation(avoid: SectionAvoidEntry): string {
  * Renders "" for every other kind and whenever no prose is supplied, so every
  * existing task card stays byte-identical.
  */
+/**
+ * R-055 — the chapter's own thesis, rendered as ORIENTATION and labelled as such.
+ *
+ * WHAT THIS IS. focus / coreClaim / hardEdge / keyClaims are the researcher's
+ * paraphrase of what the chapter argues. Before this package no writer saw them at
+ * all, which is how the released Franklin ch04 shipped a false fact while the
+ * truer keyClaim sat unused in the sidecar.
+ *
+ * WHY IT IS NOT IN THE PACKET BLOCK. The packet block's header says "ONLY allowed
+ * facts/cases/numbers/entities". These four fields carry NO sourceQuote and are
+ * checked against the frozen text by no gate, so putting them there would widen
+ * the citable channel of an accuracy package with unverified prose — and hardEdge
+ * is by contract (researcher-chapter.system.md rule 5) the tempting WRONG reading,
+ * which must never be presented to a writer as an allowed fact.
+ *
+ * Renders "" when the packet carries no chapterContext, so every model-memory card
+ * and every legacy packet renders byte-identically.
+ */
+function chapterContextSection(context: SourcePacketV1["chapterContext"]): string {
+  if (!context) return "";
+  const body = {
+    focus: context.focus || undefined,
+    coreClaim: context.coreClaim || undefined,
+    hardEdge: context.hardEdge || undefined,
+    keyClaims: context.keyClaims && context.keyClaims.length > 0 ? context.keyClaims : undefined,
+  };
+  if (Object.values(body).every((v) => v === undefined)) return "";
+  return `\n\nCHAPTER CONTEXT — READ-ONLY ORIENTATION, NOT CITABLE\nWhat this chapter argues, in the researcher's own paraphrase. It is NOT part of the allowed factual material: it is not a source of citable specifics, so take no claim, number, name or case detail from it — those come only from the SOURCE PACKET below. "hardEdge" states the tempting WRONG reading a careless summary reaches for; never assert it as true.\n\`\`\`json\n${JSON.stringify(body, null, 2)}\n\`\`\``;
+}
+
 function chapterProseSection(kind: SectionKind, source?: ChapterProseSource | null): string {
   if (kind !== "learning-pack" || !source) return "";
   const fields = chapterProseFields(source);
@@ -682,7 +713,33 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   // internal pedagogical ranking. Strip the P13 ranking metadata (per-fact teachingPriority and
   // packet.coreMoveFactId) from the writer-facing copy — the blueprint already encodes which fact
   // is dealt where — so the ranking never leaks into the writer prompt or spends its tokens.
-  const writerPacket = { ...sourcePacket, coreMoveFactId: undefined, facts: sourcePacket.facts.map(({ teachingPriority: _tp, ...f }) => f) };
+  //
+  // R-055 (review round 2): chapterContext is stripped too. It is the RESEARCHER'S
+  // PARAPHRASE — unquoted, and checked against the frozen text by no gate — and
+  // this block's own header tells the writer everything in it is an allowed fact.
+  // hardEdge is the sharpest case: rule 5 of researcher-chapter.system.md makes its
+  // first move the tempting WRONG reading, so shipping it inside the citable block
+  // hands the writer a falsehood labelled as source material. It is rendered
+  // instead by chapterContextSection(), under a header that says what it is.
+  //
+  // R-046 (review round 2): a source-text packet carries a sourceQuote of up to
+  // MAX_SOURCE_QUOTE_CHARS on every fact and every case. This card's length is
+  // budget-pinned in absolute characters, so the quote is bounded here exactly as
+  // the whole-chapter projection bounds it — same function, same limit.
+  const writerPacket = {
+    ...sourcePacket,
+    coreMoveFactId: undefined,
+    chapterContext: undefined,
+    facts: sourcePacket.facts.map(({ teachingPriority: _tp, ...f }) => (
+      typeof f.sourceQuote === "string" ? { ...f, sourceQuote: boundSourceQuoteForCard(f.sourceQuote) } : f
+    )),
+    // Guarded rather than defaulted: a packet with no namedCases key must keep
+    // rendering without one (a `?? []` here would add "namedCases": [] to every
+    // such card and move a budget that is pinned in absolute characters).
+    ...(Array.isArray(sourcePacket.namedCases)
+      ? { namedCases: sourcePacket.namedCases.map((c) => (typeof c.sourceQuote === "string" ? { ...c, sourceQuote: boundSourceQuoteForCard(c.sourceQuote) } : c)) }
+      : {}),
+  };
   // Task 11z: the quiz gates (SEC55-58) demand >=1 of a cited case's
   // hardSpecifics verbatim in each prompt/explanation, and each slot's case
   // citations are DEALT (caseCueIds) — the writer cannot choose to cite less.
@@ -706,9 +763,9 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {

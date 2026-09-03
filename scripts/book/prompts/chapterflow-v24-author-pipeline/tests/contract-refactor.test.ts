@@ -9,10 +9,11 @@
  *     (TI) absent from a power-of-moments render.
  *  2. universal invariants present for all four kinds.
  *  3. the VOICE / LIVED-MOMENTS paragraph retained verbatim (exact snapshot).
- *  4. a token-count regression bound: every rendered task is <= 69% of the pinned
+ *  4. a token-count regression bound: every rendered task is <= 72% of the pinned
  *     pre-refactor length (the full-blueprint duplication was dropped; re-pinned
- *     60->62% for Task 11z's functional quiz-specifics preflight and 62->69% for
- *     the wave-0 contract-truth batch — deliberate, tested additions, not prose
+ *     60->62% for Task 11z's functional quiz-specifics preflight, 62->69% for
+ *     the wave-0 contract-truth batch and 69->72% for the grounding redesign plus
+ *     R-055's read-only chapter-context block — deliberate, tested additions, not prose
  *     creep; see the re-pin rationale at the test itself).
  *  5. class-B gate-restatement prose was actually deleted (only the ~8 design-around
  *     rules survive, each naming its validator).
@@ -20,11 +21,11 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR } from "./helpers.js";
+import { FRANKLIN_SLICE_PATH, PIPELINE_DIR } from "./helpers.js";
 import { buildSectionTaskMarkdown, sectionContract, sectionDoNotLines } from "../src/sections/sectionTasks.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
 import { CHAPTER_PROSE_CARD_BUDGET } from "../src/sections/chapterProse.js";
@@ -34,6 +35,8 @@ import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js"
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
+import { MAX_SOURCE_QUOTE_CHARS, normalizeIngestedText } from "../src/source/sourceText.js";
+import { MAX_RESEARCH_UNITS } from "../src/source/sourceQuoteGrounding.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 
 // ---- Pinned PRE-REFACTOR rendered lengths (chars), measured on the realistic
@@ -104,6 +107,70 @@ function sidecar(): SourceSidecarV2 {
     testableFacts: facts,
     frameworks: [{ name: "Three-part credit signal", members: ["payment history", "utilization", "account age"] }],
   };
+}
+
+/**
+ * The SOURCE-TEXT worst case (R-046/R-056/R-058), for the second budget below.
+ *
+ * The model-memory fixture above cannot bound a source-text card: it carries no
+ * `sourceQuote` and no `hardSpecificEvidence`, so the card's largest new payload
+ * renders as nothing. This is the biggest packet the pipeline can now produce —
+ * researchFloorsForSpan() caps a research unit at MAX_RESEARCH_UNITS = 2, i.e.
+ * 9*2 = 18 testable facts and 3*2 = 6 named examples — with every quote at the
+ * MAX_SOURCE_QUOTE_CHARS ceiling and a proposition behind every hardSpecific.
+ */
+function sourceTextSidecar(): SourceSidecarV2 {
+  // The quotes are REAL BOOK TEXT, taken from the frozen public-domain Franklin
+  // slice (review round 2). A made-up string of the right length would measure
+  // the wrong card: printed prose carries the straight quotes, backslashes and
+  // newlines that JSON.stringify escapes, and the card's budget is pinned in
+  // characters of rendered JSON. Distinct per item, as a real sidecar's are.
+  const frozen = normalizeIngestedText(readFileSync(FRANKLIN_SLICE_PATH, "utf8"));
+  const quoteAt = (i: number): string => {
+    const from = (i * 977) % Math.max(1, frozen.length - MAX_SOURCE_QUOTE_CHARS);
+    return frozen.slice(from, from + MAX_SOURCE_QUOTE_CHARS);
+  };
+  const facts = Array.from({ length: 9 * MAX_RESEARCH_UNITS }, (_, i) => ({
+    id: `ch01.fact.${i + 1}`,
+    claim: `Credit utilization signal ${i + 1} changes lender-visible risk before a bill is fully paid.`,
+    becauseMechanism: `Because balances can be reported before payment, a lower visible balance gives the scoring model cleaner information ${i + 1}.`,
+    commonError: `Assuming only the due date matters ${i + 1}.`,
+    errorIsWhy: `The reporting snapshot can matter before the due date ${i + 1}.`,
+    sourceQuote: quoteAt(i + 1),
+  }));
+  const namedExamples = Array.from({ length: 3 * MAX_RESEARCH_UNITS }, (_, i) => {
+    const hardSpecifics = [`300 to 850 scale ${i + 1}`, `credit utilization ${i + 1}`, `reporting date ${i + 1}`];
+    return {
+      id: `ch01.case.${i + 1}`,
+      label: `Named case ${i + 1}`,
+      summary: `The source describes case ${i + 1} at length, naming the parties, the date and the outcome it turned on.`,
+      teachesWhat: "Credit behavior becomes a lender-facing signal.",
+      hardSpecifics,
+      realWorld: true,
+      sourceQuote: quoteAt(i + 31),
+      hardSpecificEvidence: hardSpecifics.map((specific, j) => ({
+        specific,
+        proposition: `The source states that ${specific} is what the lender actually sees at the moment of the report.`,
+        sourceQuote: quoteAt(i * 3 + j + 61),
+      })),
+    };
+  });
+  return {
+    ...sidecar(),
+    sourceProvenance: "source-text",
+    focus: "How a reported balance, not a paid one, is what the lender scores.",
+    coreClaim: "The reporting snapshot, not the due date, is the lever the reader controls.",
+    keyClaims: facts.slice(0, 8).map((f) => f.claim),
+    testableFacts: facts,
+    namedExamples,
+  } as unknown as SourceSidecarV2;
+}
+
+function sourceTextFixtureFor(bookId: string): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
+  const chapter: ChapterSpec = { chapterId: `${bookId}-ch01`, chapterNumber: 1, chapterTitle: "Optimize Your Credit Cards" };
+  const packet = compileSourcePacketFromSidecar({ bookId, chapter, sidecar: sourceTextSidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  const blueprint = compileChapterBlueprint({ bookId, chapter, packet, packetPath: "/tmp/ch01.source-packet.json" });
+  return { blueprint, packet };
 }
 
 function realisticFixtureFor(bookId: string): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
@@ -219,20 +286,33 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
 // title plus the DIRECT_JSON validation frame (R-018/R-019). The binding ceiling is
 // the absolute HONEST budget below, measured on the render production actually
 // sends; this ratio still catches prose creep on the packet-only card.
-test("every rendered task is <= 69% of its pinned pre-refactor length", () => {
+// RE-PINNED 69% -> 71% for the wave-1 source-ingestion package's single prompt
+// addition, R-055's READ-ONLY CONTEXT block (the chapter's focus, coreClaim,
+// hardEdge and up to six keyClaims, projected onto the writer card). Measured on
+// this same money-book fixture, the block costs +994 characters on EVERY card —
+// summary 32,321 -> 33,315, example 34,912 -> 35,906, learning 36,298 -> 37,292
+// (70.0%, the binding card), action 30,451 -> 31,445. Nothing else in this
+// package touches the card. The pin is moved to 71%, one point above the
+// measurement, exactly as the 60->62 and 62->69 re-pins above did.
+test("every rendered task is <= 72% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
     const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
-      // Re-pinned 69% -> 70% by package 1B (grounding redesign). The learning card
-    // measured 69.1% after four rule changes the gates now enforce and the writer was
-    // not being told: quiz provenance by natural reference (SEC55/SEC120 replacing the
-    // retired SEC56 token demand), the transfer floor measured on the stem rather than
-    // the bloomsLevel label (SEC117), qualifier-shape parity in the choices (SEC134),
-    // and the three-identical-openers refusal (SEC132). Everything the additions
-    // replaced was either deleted with the check it described or shortened.
-    assert.ok(md.length <= 0.70 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 70%`);
+  // MERGE RE-PIN (this package merged origin/main's package 1B, grounding redesign).
+  // 1B re-pinned 69% -> 70% for four rule changes the gates enforce and the writer was
+  // not being told: quiz provenance by natural reference (SEC55/SEC120 replacing the
+  // retired SEC56 token demand), the transfer floor measured on the stem rather than the
+  // bloomsLevel label (SEC117), qualifier-shape parity in the choices (SEC134), and the
+  // three-identical-openers refusal (SEC132). This package independently re-pinned
+  // 69% -> 71% for R-055's READ-ONLY CONTEXT block (+994 chars on EVERY card). Both
+  // additions are in the merged render, so the pin is re-measured on the merge rather
+  // than taken as the larger of the two. MEASURED on the merge, all four kinds:
+  // summary 33,813 = 69.9%, example 36,558 = 66.9%, learning 38,169 = 71.6% (binding),
+  // action 31,781 = 67.7%. Pin 72%, one point above the binding measurement, exactly as
+  // the 60->62, 62->69 and 69->70 re-pins above did.
+    assert.ok(md.length <= 0.72 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 72%`);
   }
 });
 
@@ -280,9 +360,12 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   // RE-PINNED 76% -> 82% by the same wave-0 contract-truth batch as the 62->69%
   // above, and for the same four additions: measured 43,564 chars = 81.7%. The
   // prose delta this test bounds (7,290) is unchanged by that batch.
-  // Re-pinned 82% -> 84% by package 1B for the same four additions measured above
-  // (the prose block itself is unchanged and still clamped).
-  assert.ok(withProse.length <= 0.84 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 84% (re-pin only with a stated rationale)`);
+  // MERGE RE-PIN. 1B took 82% -> 84% for its four additions; this package took
+  // 82% -> 85% for R-055's READ-ONLY CONTEXT block (+994). Re-measured on the merge:
+  // 45,459 = 85.3%, so the pin is 86%. The DELTA assertion below — the thing this test
+  // is really for — is unchanged at 7,290, which is the proof that the growth is the
+  // context block and 1B's contract lines, not prose creep.
+  assert.ok(withProse.length <= 0.86 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 86% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -311,8 +394,14 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   const ratio = withProse.length / pre;
   // RE-PINNED 80% -> 86%, same batch, same additions: measured 45,273 = 84.9%
   // — arithmetic identical to the 82% pin above plus the clamped-prose allowance.
-  // What this test actually guards, the CLAMP, is asserted unchanged just below.
-  assert.ok(withProse.length <= 0.86 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 86%`);
+  // RE-PINNED AGAIN 86% -> 88% for R-055's +994: measured 46,269 = 86.8%. The
+  // clamp delta this test guards (8,977 against a CHAPTER_PROSE_CARD_BUDGET +
+  // 1,200 allowance) is unchanged, which is the point — the card grew by the
+  // context block, not by unbounded prose.
+  // MERGE RE-PIN 88% -> 89%: origin/main's package 1B added its contract lines to the
+  // same card and the merged render measures 47,146 = 88.4%. The clamp delta is STILL
+  // 8,977 — unchanged by both packages, which is exactly what this test asserts below.
+  assert.ok(withProse.length <= 0.89 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 89%`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -409,8 +498,95 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 //              (SEC52/SEC116), qualifier-shape parity (SEC134), opener variety (SEC132).
 // The summary and example cards stay far below the binding learning card; the
 // summary contract's memorable-line paragraph is SHORTER than the one it replaced.
-const HONEST_TASK_CHAR_BUDGET = 53_500;
-const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 61_500;
+
+// MERGE RE-PIN — this package merged origin/main (package 1B, grounding redesign)
+// after both had independently re-pinned the same two budgets. 1B measured
+// 53,390 / 61,188 for its contract lines; this package measured 54,179 / 61,445 for
+// R-055's READ-ONLY CONTEXT block. Neither number bounds the merged render, so the
+// budgets below are RE-MEASURED on the merge with the same loop and the same
+// arithmetic (worst case rounded UP to the next 500, plus one further 500 of stated
+// headroom), not taken as the larger of the two. Worst kind per chapter ON THE MERGE:
+//   ch01 learning-pack 53,031   ch02 53,123   ch03 54,720 (binding)   ch04 52,968
+//   ch05-ch08 (no scoped rules) 52,025
+//   with worst-case prose: 60,321 / 60,413 / 62,010 (binding) / 60,258 / 59,315
+// 54,720 -> 55,000 -> 55,500 and 62,010 -> 62,500 -> 63,000.
+// The source-text budgets below are re-measured the same way in the same run.
+// RE-PINNED for wave-1 source-ingestion (R-055). The package adds one block to
+// the writer card — the chapter's focus, coreClaim, hardEdge and up to six
+// keyClaims. Worst kind per chapter, MEASURED on this commit:
+//   ch01 learning-pack 52,490   ch02 52,582   ch03 54,179 (binding)   ch04 52,427
+//   ch05-ch08 (no scoped rules) 51,484
+//   with worst-case prose: 59,756 / 59,848 / 61,445 (binding) / 59,693 / 58,750
+// Budgets = that worst case rounded UP to the next 500 (54,179 -> 54,500;
+// 61,445 -> 61,500) plus one further 500 of stated headroom, which is the same
+// arithmetic the previous pin used.
+//
+// REVIEW ROUND 2 re-measured these. Round 1 pinned 53,843 / 61,133 for a render
+// that carried chapterContext INSIDE the packet JSON; the fix moves it out into
+// its own labelled READ-ONLY block, whose header prose costs +336 characters on
+// every card (53,843 -> 54,179). The budgets do not move: 54,179 still rounds to
+// 54,500 and 61,445 still rounds to 62,000.
+const HONEST_TASK_CHAR_BUDGET = 55_500;
+const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
+
+/**
+ * The SOURCE-TEXT budgets (review round 2, finding 2).
+ *
+ * Round 1 re-pinned the budget above on a MODEL-MEMORY sidecar, which carries no
+ * sourceQuote and no hardSpecificEvidence, so the one thing this package adds to
+ * a packet rendered as nothing and the pin had zero coverage of the route the
+ * package exists to build. These are the same renders on `sourceTextSidecar()` —
+ * the largest packet the pipeline can now produce (MAX_RESEARCH_UNITS = 2, so 18
+ * testable facts and 6 named examples), every quote at the MAX_SOURCE_QUOTE_CHARS
+ * ceiling, a proposition behind every hardSpecific.
+ *
+ * ITS QUOTES ARE REAL BOOK TEXT. An invented string of the right length measures
+ * the wrong card: printed prose carries the straight quotes and newlines that
+ * JSON.stringify escapes into two characters. The fixture takes distinct
+ * 240-character quotes out of the frozen Franklin slice, which costs 939
+ * characters more on the binding card than the synthetic string it replaced
+ * (85,690 -> 86,629) — the whole reason to measure this route on a real text.
+ *
+ * RE-MEASURED ON THE MERGE with origin/main (package 1B), worst kind per chapter:
+ *   ch01 learning-pack 85,481   ch02 85,573   ch03 87,170 (binding)   ch04 85,418
+ *   ch05-ch08 84,475
+ *   with worst-case prose: 92,771 / 92,863 / 94,460 (binding) / 92,708 / 91,765
+ * Budgets = 87,170 -> 87,500 -> 88,000 and 94,460 -> 94,500 -> 95,000, the same
+ * arithmetic as above. (Every card grew by exactly the 541 chars 1B's contract
+ * lines cost, so the source-text OVERHEAD below is unchanged to the character.)
+ *
+ * WHERE THAT 32,450 OVER THE MODEL-MEMORY CARD COMES FROM (measured by stripping
+ * one field at a time from the same packet, binding ch03 card: 87,170 full,
+ * 81,743 with no sourceQuote, 77,975 with neither sourceQuote nor
+ * specificPropositions, against the model-memory card's 54,720):
+ *   +23,255  the packet is simply BIGGER — 18 facts and 6 cases instead of 9 and
+ *            2. Nothing in this package renders those; a model-memory packet with
+ *            18 facts costs the same, and always did. What R-058 changed is that
+ *            an oversized unit now REQUIRES that many, so the big card went from
+ *            possible to likely.
+ *    +5,427  the sourceQuote on each of the 24 items, already bounded to
+ *            PROJECTED_SOURCE_QUOTE_CHARS (200) by boundSourceQuoteForCard — the
+ *            same bound the whole-chapter projection applies.
+ *    +3,768  R-056's specificPropositions, one per hardSpecific.
+ *
+ * THE LIVE ROUTE IS CHEAPER, and is pinned separately below.
+ * buildSectionTaskMarkdown is PURE_RETAINED in the legacy-route inventory: it
+ * renders the RAW packet and no v25 route calls it. The card the v25 writer
+ * actually receives is buildAuthorCard's, which renders the slim projection.
+ */
+const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 88_000;
+const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
+
+/**
+ * The LIVE v25 writer card had no length pin at all before this package; it gets
+ * one here, because a source-text packet is the largest input it has ever taken.
+ * MEASURED on the same two fixtures, ch03, with the Franklin voice card:
+ *   model-memory 15,854   source-text worst case 30,045
+ * Budget = 30,045 -> 30,500 -> 31,000, the same arithmetic. It is far below the
+ * section card above because buildAuthorCard renders the PROJECTION, whose quotes
+ * are bounded and whose per-fact prose is trimmed.
+ */
+const HONEST_AUTHOR_CARD_CHAR_BUDGET = 31_000;
 
 test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
   const scars = loadBookScars(LARGEST_SCAR_BOOK);
@@ -468,6 +644,46 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
     assert.ok(
       withProse.length <= HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET,
       `ch${chapterNumber} learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+    );
+  }
+});
+
+test("R-046: the SOURCE-TEXT prompt-length budget is pinned on a packet that actually carries quotes", async () => {
+  const scars = loadBookScars(LARGEST_SCAR_BOOK);
+  const card = voiceCard(LARGEST_SCAR_BOOK);
+  const bp = sourceTextFixtureFor(LARGEST_SCAR_BOOK);
+
+  // The assertions that make the budget mean something: this fixture must really
+  // be the source-text route, or it measures the model-memory card twice.
+  assert.equal(bp.packet.sourceProvenance, "source-text", "the fixture must compile to a source-text packet");
+  assert.equal(bp.packet.facts.length, 9 * MAX_RESEARCH_UNITS, "the fixture must carry the R-058 oversized-unit fact floor");
+  assert.equal(bp.packet.namedCases.length, 3 * MAX_RESEARCH_UNITS, "the fixture must carry the R-058 oversized-unit case floor");
+  assert.ok(bp.packet.facts.every((f) => typeof f.sourceQuote === "string" && f.sourceQuote.length > 0), "every fact must carry a quote");
+  assert.ok(bp.packet.namedCases.every((c) => (c.specificPropositions ?? []).length > 0), "every case must carry its R-056 propositions");
+
+  for (const chapterNumber of [1, 2, 3, 4, 5, 6, 7, 8]) {
+    for (const kind of SECTION_KINDS) {
+      const md = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind, blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: card, bookScars: scars } });
+      assert.match(md, /"sourceQuote"/, `ch${chapterNumber} ${kind}: the book's own words must actually reach the measured card`);
+      assert.ok(
+        md.length <= HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET,
+        `ch${chapterNumber} ${kind}: rendered ${md.length} chars against a ${HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET}-char source-text budget; re-pin only with a written rationale`,
+      );
+    }
+    const withProse = buildSectionTaskMarkdown({ bookId: LARGEST_SCAR_BOOK, kind: "learning-pack", blueprint: { ...bp.blueprint, chapterNumber }, sourcePacket: bp.packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: card, bookScars: scars }, chapterProse: worstCaseChapterProse() });
+    assert.ok(
+      withProse.length <= HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET,
+      `ch${chapterNumber} learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET}-char source-text budget; re-pin only with a written rationale`,
+    );
+  }
+
+  // The card the v25 writer actually receives — pinned for the first time here.
+  const { buildAuthorCard } = await import("../src/orchestrator/authorRun.js");
+  for (const fixture of [realisticFixtureFor(LARGEST_SCAR_BOOK), bp]) {
+    const authorCard = buildAuthorCard({ bookId: LARGEST_SCAR_BOOK, chapterNumber: 3, briefMd: "# brief\n", packet: fixture.packet, voice: card });
+    assert.ok(
+      authorCard.length <= HONEST_AUTHOR_CARD_CHAR_BUDGET,
+      `whole-chapter author card rendered ${authorCard.length} chars against a ${HONEST_AUTHOR_CARD_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
     );
   }
 });

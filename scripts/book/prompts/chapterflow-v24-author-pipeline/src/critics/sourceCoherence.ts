@@ -42,6 +42,13 @@ export type SourceCoherenceReport = {
  * did not write), which are citations, not meta-references to this text. SC4's
  * pattern list drifted the same way. Importing them keeps the critic and the
  * chapter validator from disagreeing about what a meta-reference is.
+ *
+ * R-053 / review round 3: SC5 passes the WHOLE bibliography to
+ * authorVerbRegexes, not just `bibliography.author`. When the guard took an
+ * optional genre this call site silently omitted it, so the memoir carve-out
+ * applied in the researcher's validator and not here — a memoir sidecar naming
+ * its subject as an actor passed research and then aborted the research stage
+ * in this critic. The guard now takes the record, so the genre travels with it.
  */
 
 /** First match of any pattern, as a non-global exec so `index`/`input` are
@@ -144,7 +151,7 @@ export function runSourceCoherenceCheck(input: SourceCoherenceInput): SourceCohe
         evidence: m.input?.slice(Math.max(0, m.index! - 30), m.index! + m[0].length + 30),
       });
     }
-    const av = firstMatch(allText, authorVerbRegexes(bibliography.author));
+    const av = firstMatch(allText, authorVerbRegexes(bibliography));
     if (av) {
       findings.push({
         code: "SC5.author_surname_verb",
