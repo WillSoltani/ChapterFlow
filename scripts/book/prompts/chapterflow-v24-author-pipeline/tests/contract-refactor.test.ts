@@ -370,17 +370,23 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // (151 chars of headroom) and 60,139 with prose (361 of headroom).
 //
 // RE-MEASURED AGAIN on the Franklin scar rewrite (PR #538), because the rationale
-// above described a file that no longer exists: that file's 37 accreted
-// prohibitions (24,514 chars) were replaced by 32 source-quoted rules (14,400
-// chars), which took 8,877 characters off the binding card measured just above
-// (ch03 learning-pack 52,849 -> 43,972). ch03 is still the binding chapter — it
-// now carries 10 of the 25 chapter-scoped rules, against 5 each for ch01/ch02/ch04,
-// plus the 7 book-wide rules (3 SAFETY + 4 craft) every chapter gets.
-// Worst kind per chapter on this commit (learning-pack every time):
-//   ch01 41,978   ch02 41,975   ch03 43,972 (binding)   ch04 42,105
-//   ch05-ch08 (no scoped rules) 40,605
-//   with worst-case prose: 49,268 / 49,265 / 51,262 (binding) / 49,395 / 47,895
-// That is 9,028 characters of headroom on the binding packet-only card and 9,238
+// above described a file that no longer exists: origin/main's 37 accreted
+// prohibitions were replaced by 38 source-quoted rules, of which 28 are labelled
+// for one chapter. What shrank is not the file, it is the RENDER — the rules a
+// chapter's writer actually receives. renderBookScarsBlock over the shipped file,
+// in characters, at origin/main and at this commit:
+//   origin/main  ch01 14,449  ch02 14,541  ch03 16,138  ch04 14,386  ch05 13,443
+//   this commit  ch01  6,725  ch02  7,339  ch03  8,627  ch04  7,344  ch05  5,352
+// ch03 is still the binding chapter: 10 of the 28 chapter-scoped rules, against
+// 5 for ch01, 7 for ch02 and 6 for ch04, plus the 10 book-wide rules (3 SAFETY +
+// 7 craft) every chapter gets.
+//
+// Worst kind per chapter on this commit (learning-pack every time; reproduce with
+// CF_MEASURE=1 against the loop below):
+//   ch01 43,436   ch02 44,050   ch03 45,338 (binding)   ch04 44,055
+//   ch05-ch08 (no scoped rules) 42,063
+//   with worst-case prose: 50,726 / 51,340 / 52,628 (binding) / 51,345 / 49,353
+// That is 7,662 characters of headroom on the binding packet-only card and 7,872
 // with prose. The budgets stay where they are: they are a ceiling on what
 // production may send, not a target, and lowering them now would re-pin the
 // contract to one book's current scar file. Anything that needs MORE than these
@@ -412,7 +418,7 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
 
   // EVERY chapter, not just ch01. Since R-274 the rendered rule set differs per
   // chapter, so measuring one chapter would leave the heaviest one unbounded —
-  // Franklin's ch03 carries 10 of the 25 scoped rules and is the binding render.
+  // Franklin's ch03 carries 10 of the 28 scoped rules and is the binding render.
   //
   // The range is a LITERAL, deliberately: an earlier cut derived it from
   // bookRuleChapters, so the budget loop re-used the very scope reader it was
