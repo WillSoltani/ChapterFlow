@@ -140,6 +140,13 @@ export function sanitizeVoiceMoves(moves: string[]): { kept: string[]; stripped:
   return { kept, stripped };
 }
 
+/** Catalog-wide plainness floor (2026-06-11 product direction): applies to EVERY
+ *  register — clinical stays precise, warm stays warm, but all of them explain in
+ *  plain words. Exported so the voice card can reserve its words against the card's
+ *  word budget instead of dropping it as overflow (R-006). */
+export const VOICE_PLAINNESS_FLOOR_LINE =
+  "always: plain language beats abstraction — follow every abstract claim with something the reader can SEE (a person, a scene, a number) within two sentences; say it like you'd say it to a smart friend; define terms-of-art in everyday words on first use (STEP-2 R2.7)";
+
 /** Compact, paste-able voice block for an authoring prompt, or null when the
  *  brief is absent/stub (no charter register → nothing worth pinning). */
 export function formatVoiceBible(bookId: string): string | null {
@@ -158,12 +165,9 @@ export function formatVoiceBible(bookId: string): string | null {
   if (avoid.length > 0) lines.push(`never: ${avoid.join("; ")}`);
   const specimen = (brief?.voiceSpecimens ?? [])[0];
   if (specimen) lines.push(`sounds like: "${String(specimen).slice(0, 140)}"`);
-  // Catalog-wide plainness floor (2026-06-11 product direction): applies to
-  // EVERY register — clinical stays precise, warm stays warm, but all of
-  // them explain in plain words. Appended here so every fanout prompt
-  // carries it regardless of which charter is in play.
-  lines.push(
-    "always: plain language beats abstraction — follow every abstract claim with something the reader can SEE (a person, a scene, a number) within two sentences; say it like you'd say it to a smart friend; define terms-of-art in everyday words on first use (STEP-2 R2.7)",
-  );
+  // Catalog-wide plainness floor: appended here so every fanout prompt carries it
+  // regardless of which charter is in play. The voice card RESERVES its words up
+  // front (voiceCard.ts withGuard) so the budget can never drop it.
+  lines.push(VOICE_PLAINNESS_FLOOR_LINE);
   return lines.join("\n    ");
 }

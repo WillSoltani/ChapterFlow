@@ -25,16 +25,18 @@
  * task); it never reaches a gate.
  *
  * Source order: the per-book editor-in-chief charter (via formatVoiceBible),
- * then a register template keyed off the book's author-voice profile, then null
- * (the task builder omits the card entirely rather than pasting empty
- * scaffolding, and never gives every voiceless book one identical card).
+ * then a register template keyed off the book's author-voice profile, then the
+ * research run's OWN frozen author voice (the bibliography agent's authorVoice
+ * block plus the voice cues two or more chapters agree on), then null (the task
+ * builder omits the card entirely rather than pasting empty scaffolding, and
+ * never gives every voiceless book one identical card).
  */
 
 import { readFileSync } from "fs";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { formatVoiceBible } from "./voiceBible.js";
+import { formatVoiceBible, sanitizeVoiceMoves, VOICE_PLAINNESS_FLOOR_LINE } from "./voiceBible.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/lib
 const PROFILES_PATH = resolve(__dirname, "../../config/author-voice-profiles.json");
@@ -51,26 +53,51 @@ function wordCount(s: string): number {
   return s.trim().split(/\s+/).filter(Boolean).length;
 }
 
-/** Assemble content lines under the word budget (reserving room for the guard
- *  line), then append the guard line. Deterministic: same lines in, same card
- *  out. The first content line is always kept so a card is never guard-only. */
-function withGuard(contentLines: string[]): string {
+/** A line whose words are reserved against the budget instead of competing for it.
+ *  The catalog-wide plainness floor is emitted LAST by formatVoiceBible, so under
+ *  the old first-overflow-wins loop it was the first thing a long charter dropped —
+ *  the one line voiceBible.ts says "every fanout prompt carries". */
+function isReservedLine(line: string): boolean {
+  return line.trim() === VOICE_PLAINNESS_FLOOR_LINE.trim();
+}
+
+/** Assemble content lines under the word budget (reserving room for the guard line
+ *  and for any reserved line), then append the guard line. Deterministic: same
+ *  lines in, same card out. The first content line is always kept so a card is
+ *  never guard-only. An over-budget line is SKIPPED, not treated as a truncation
+ *  point, so one long charter line cannot discard every line after it. */
+function withGuard(contentLines: readonly string[]): string {
+  const reserved = contentLines.filter(isReservedLine);
+  const optional = contentLines.filter((line) => !isReservedLine(line));
   const kept: string[] = [];
-  let total = wordCount(VOICE_CARD_GUARD_LINE);
-  for (const line of contentLines) {
+  let total = wordCount(VOICE_CARD_GUARD_LINE) + reserved.reduce((sum, line) => sum + wordCount(line), 0);
+  for (const line of optional) {
     const w = wordCount(line);
-    if (kept.length > 0 && total + w > WORD_BUDGET) break;
+    if (kept.length > 0 && total + w > WORD_BUDGET) continue;
     kept.push(line);
     total += w;
   }
-  return [...kept, VOICE_CARD_GUARD_LINE].join("\n");
+  return [...kept, ...reserved, VOICE_CARD_GUARD_LINE].join("\n");
 }
 
 /** Compact register templates keyed off the author-voice profile's `register`.
  *  Style only — no content nouns, named cases, or paste-able sample sentences.
  *  Every template's first line starts with "voice:" so callers can lift a
- *  one-line register descriptor for the learning/action register note. */
-const REGISTER_TEMPLATES: Record<string, string[]> = {
+ *  one-line register descriptor for the learning/action register note.
+ *
+ *  The person and cadence fields are RENDERING instructions, not descriptions of
+ *  the source author. The artifact is a third-person retelling of someone else's
+ *  book — SEC7.meta_reference (src/sections/sectionGate.ts) blocks "the
+ *  author"/"the book"/"this chapter" in every breakdown tier — and
+ *  SEC12.summary_readability checks how long the sentences run TWICE: a per-tier
+ *  reading-GRADE cap (checkReadingLevel) and a blocking Flesch reading-EASE floor on
+ *  the assembled breakdown (checkBreakdownReadingEase). So a template may not instruct
+ *  the source author's first person, and a `voice:` line that names a lengthening
+ *  cadence must pair it with a plainness qualifier in the same line instead of
+ *  asking for length and stopping. tests/voice-card.test.ts pins both: the
+ *  first-person ban, and the lengthening-cadence pairing (the second is what keeps
+ *  this profile set's bare "longer cadence" from coming back green). */
+export const REGISTER_TEMPLATES: Readonly<Record<string, readonly string[]>> = {
   "researcher-practitioner": [
     "voice: analytical, evidence-first register; second-person; medium cadence",
     "rhythm: short-to-medium sentences, one idea each; vary length so it never drones",
@@ -86,8 +113,8 @@ const REGISTER_TEMPLATES: Record<string, string[]> = {
     "warmth: encouraging and candid; humor stays light and human",
   ],
   "philosopher-historian": [
-    "voice: reflective, literate register; third-person; longer cadence",
-    "rhythm: measured sentences that can breathe; set a long line against a short one",
+    "voice: reflective, literate register; third-person; unhurried cadence that still reads plainly",
+    "rhythm: measured sentences that can breathe, one idea each; set a long line against a short one",
     "do: let an idea unfold, then anchor it in a concrete moment",
     "never: slang, hype, or bullet-point briskness",
     "warmth: calm, curious, humane; humor is dry and sparing",
@@ -106,10 +133,23 @@ const REGISTER_TEMPLATES: Record<string, string[]> = {
     "never: abstraction-first paragraphs, jargon, or editorializing",
     "warmth: engaged and observant; wit stays understated",
   ],
+  // A first-person memoir RETOLD in the third person. Franklin's Autobiography is
+  // the seed case: the scar file's own style note asks for varied sentence length
+  // ("a run of sub-seven-word declaratives is a spice, not a default register",
+  // config/book-scars/the-autobiography-of-benjamin-franklin.json) and for the
+  // retelling to signal its status ("Franklin records", "as the memoir tells it")
+  // rather than speak as the author.
+  "plainspoken-ironist": [
+    "voice: plain, concrete register with dry self-aware irony; third-person retelling; varied cadence",
+    "rhythm: vary sentence length on purpose — a long, clause-linked line, then a short flat one; never a run of same-length declaratives",
+    "do: name the concrete thing (the object, the sum, the errand) before naming what it proves",
+    "never: grandeur, moralizing, abstraction with nothing to picture, or a modern coaching voice",
+    "warmth: wry and candid about the subject's own mistakes; never sentimental, never scolding",
+  ],
   memoirist: [
-    "voice: intimate, reflective register; first-person; medium cadence",
+    "voice: intimate, reflective register; third-person but close in, the way a memoir's confidences read when retold; medium cadence",
     "rhythm: conversational sentences, the occasional fragment for effect",
-    "do: speak from lived experience, then open it toward the reader",
+    "do: stay close to what the person actually lived through, then open it toward the reader",
     "never: lecturing, jargon, or detached distance",
     "warmth: candid, warm, self-aware; humor is honest and personal",
   ],
@@ -161,9 +201,84 @@ function cardFromProfile(bookId: string): string | null {
   return withGuard(lines);
 }
 
-/** The paste-safe voice card for a book, or null when no voice signal exists. */
-export function voiceCard(bookId: string): string | null {
-  return cardFromBrief(bookId) ?? cardFromProfile(bookId);
+/** The research run's own record of how the book sounds. `register`,
+ *  `signatureMoves` and `avoidMoves` are the bibliography agent's authorVoice block
+ *  (src/agents/researcher-bibliography.ts:46-50), validated at :261-270 and frozen
+ *  into toc.json + source-freeze/book-source.md by src/researcher.ts. `sharedCues`
+ *  are the chapter researcher's voiceCues (researcher-chapter.ts:52) reduced to the
+ *  ones the book agrees on — see sharedVoiceCues. */
+export type FrozenAuthorVoice = {
+  readonly register: string;
+  readonly signatureMoves?: readonly string[];
+  readonly avoidMoves?: readonly string[];
+  readonly sharedCues?: readonly string[];
+};
+
+/** At most this many shared chapter cues ride the card's `do:` line. The book's own
+ *  signatureMoves lead it; the cues are corroboration, and an unbounded list would
+ *  push the book-specific `never:` line out of the word budget. */
+const MAX_SHARED_CUES = 2;
+
+/** The voice cues TWO OR MORE chapters independently reported, in first-appearance
+ *  order, compared case- and whitespace-insensitively and returned in the wording
+ *  they first appeared in. A cue only one chapter saw is that chapter's texture, not
+ *  the book's voice, so it never reaches a book-level card (R-032: voiceCues were a
+ *  retry-blocking research output that no consumer read). Pure and deterministic. */
+export function sharedVoiceCues(perChapterCues: readonly (readonly string[] | undefined)[]): string[] {
+  const firstWording = new Map<string, string>();
+  const chapterCount = new Map<string, number>();
+  for (const cues of perChapterCues) {
+    const seenInThisChapter = new Set<string>();
+    for (const cue of cues ?? []) {
+      if (typeof cue !== "string") continue;
+      const text = cue.trim();
+      if (!text) continue;
+      const key = text.toLowerCase().replace(/\s+/g, " ");
+      if (!firstWording.has(key)) firstWording.set(key, text);
+      if (seenInThisChapter.has(key)) continue;
+      seenInThisChapter.add(key);
+      chapterCount.set(key, (chapterCount.get(key) ?? 0) + 1);
+    }
+  }
+  return [...firstWording.entries()]
+    .filter(([key]) => (chapterCount.get(key) ?? 0) >= 2)
+    .map(([, wording]) => wording);
+}
+
+/** Synthesize a card from the run's own frozen author voice. This is the LAST
+ *  resort: a freshly-researched book has no editor-in-chief charter and no curated
+ *  profile, and before this it fell to null even though the run had just written
+ *  down how the book sounds (R-003/R-004).
+ *
+ *  Two rules hold here exactly as they do on the other two paths. The signature
+ *  moves and shared cues go through sanitizeVoiceMoves, so a content-DEVICE mandate
+ *  the bibliography agent harvested from the source ("opens with recognizable
+ *  business cases") can never reach a `do:` line; `avoidMoves` are kept verbatim,
+ *  which is what the sanitizer's contract requires. And the person is stated as a
+ *  RENDERING instruction — the artifact is a third-person retelling of someone
+ *  else's book, and SEC7.meta_reference blocks the alternative in every tier. */
+function cardFromFrozenVoice(voice: FrozenAuthorVoice | null | undefined): string | null {
+  const register = typeof voice?.register === "string" ? voice.register.trim() : "";
+  if (!register) return null;
+  const moves = sanitizeVoiceMoves([...(voice?.signatureMoves ?? [])]).kept;
+  const cues = sanitizeVoiceMoves([...(voice?.sharedCues ?? [])]).kept.slice(0, MAX_SHARED_CUES);
+  const avoid = (voice?.avoidMoves ?? []).map((m) => String(m).trim()).filter(Boolean);
+  const lines = [`voice: ${register} register; third-person retelling; varied cadence`];
+  const doMoves = [...moves, ...cues];
+  if (doMoves.length > 0) lines.push(`do: ${doMoves.join("; ")}`);
+  if (avoid.length > 0) lines.push(`never: ${avoid.join("; ")}`);
+  // Ordered AFTER the book-specific lines on purpose: under budget pressure the
+  // generic rhythm line is the one worth losing, not the book's own moves.
+  lines.push("rhythm: vary sentence length on purpose — a long, clause-linked line, then a short flat one; never a run of same-length declaratives");
+  lines.push(VOICE_PLAINNESS_FLOOR_LINE);
+  return withGuard(lines);
+}
+
+/** The paste-safe voice card for a book, or null when no voice signal exists.
+ *  `frozenVoice` is the calling run's own authorVoice record, used only when the
+ *  book has neither a charter nor a curated profile. */
+export function voiceCard(bookId: string, frozenVoice?: FrozenAuthorVoice | null): string | null {
+  return cardFromBrief(bookId) ?? cardFromProfile(bookId) ?? cardFromFrozenVoice(frozenVoice);
 }
 
 /** The one-line register descriptor ("voice: ...") lifted from a card, for the

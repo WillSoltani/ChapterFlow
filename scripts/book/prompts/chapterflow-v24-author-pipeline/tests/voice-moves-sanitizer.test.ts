@@ -103,7 +103,8 @@ const STYLE_MOVES_KEEP = [
   "let an idea unfold, then anchor it in a concrete moment",
   "report what the evidence shows, then translate it into a plain takeaway",
   "show a concrete moment, then draw the point out of it",
-  "speak from lived experience, then open it toward the reader",
+  "stay close to what the person actually lived through, then open it toward the reader",
+  "name the concrete thing (the object, the sum, the errand) before naming what it proves",
   "make every abstract claim concrete within two sentences",
   // Generic opening guidance — the anti-template ALTERNATIVES we must preserve.
   "open with a concrete scene before naming the principle",
@@ -124,7 +125,7 @@ const STYLE_MOVES_KEEP = [
   "lands a takeaway the reader can repeat in one sentence",
 ];
 
-test("RED-TEAM: no legitimate style/register move is over-stripped (22 fixtures)", () => {
+test("RED-TEAM: no legitimate style/register move is over-stripped (23 fixtures)", () => {
   const { kept, stripped } = sanitizeVoiceMoves(STYLE_MOVES_KEEP);
   assert.deepEqual(
     stripped,

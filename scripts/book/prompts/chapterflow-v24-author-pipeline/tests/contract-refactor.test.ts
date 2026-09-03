@@ -95,11 +95,15 @@ function sidecar(): SourceSidecarV2 {
   };
 }
 
-function realisticFixture(): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
-  const chapter: ChapterSpec = { chapterId: "money-book-ch01", chapterNumber: 1, chapterTitle: "Optimize Your Credit Cards" };
-  const packet = compileSourcePacketFromSidecar({ bookId: "money-book", chapter, sidecar: sidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
-  const blueprint = compileChapterBlueprint({ bookId: "money-book", chapter, packet, packetPath: "/tmp/ch01.source-packet.json" });
+function realisticFixtureFor(bookId: string): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
+  const chapter: ChapterSpec = { chapterId: `${bookId}-ch01`, chapterNumber: 1, chapterTitle: "Optimize Your Credit Cards" };
+  const packet = compileSourcePacketFromSidecar({ bookId, chapter, sidecar: sidecar(), sidecarPath: "/tmp/ch01.source.json", sourceHash: "hash" });
+  const blueprint = compileChapterBlueprint({ bookId, chapter, packet, packetPath: "/tmp/ch01.source-packet.json" });
   return { blueprint, packet };
+}
+
+function realisticFixture(): { blueprint: ChapterBlueprintV1; packet: SourcePacketV1 } {
+  return realisticFixtureFor("money-book");
 }
 
 // ---------------------------------- tests ----------------------------------
@@ -282,6 +286,165 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   // The header cannot claim completeness it no longer has.
   assert.match(conformant, /This is EVERYTHING the reader has seen/);
   assert.doesNotMatch(withProse, /This is EVERYTHING the reader has seen/, "a clamped block must not claim to be everything");
+});
+
+// ── R-002 — AN HONEST BUDGET, measured on what production actually sends ──────
+//
+// Every pin above is measured on "money-book", a fixture with NO scar file and NO
+// author-voice profile, so `loadBookScars` and `voiceCard` both return null and the
+// two largest per-book blocks render as the empty string. The 62%/76% ratios
+// therefore bound a prompt no book is ever compiled with.
+//
+// Measured on this branch's HEAD with the SAME realistic fixture and only the
+// bookId changed (this file's render path, all four kinds, plus the with-prose
+// learning card):
+//
+//   money-book                             learning-pack 32,973 chars =  61.8% of 53,312
+//                                          + worst-case prose 40,263 chars =  75.5%
+//   the-autobiography-of-benjamin-franklin summary  49,269 / example  52,291
+//                                          learning 52,471 / action   46,889
+//                                          learning-pack           =  98.4% of 53,312
+//                                          + worst-case prose 59,761 chars = 112.1%
+//
+// (Re-measured in review round 2, after voiceCardSection gained the line naming the
+// voice record the card was rendered from — R-004's second half — and the tier-floor
+// rule's E7/E8 clause was restated at the severity those critics actually carry. Both
+// grew the render; neither needed a re-pin, the budgets below still hold with 529
+// chars of headroom on the packet-only cards and 739 on the with-prose card.)
+//
+// The real worst case already exceeds BOTH ratio pins. Those pins are left exactly
+// as they are — they still bound the packet-only card and would catch contract prose
+// creep — and the real ceiling is pinned HERE, in absolute characters, on the render
+// production sends: the largest shipped scar file plus a real voice card.
+const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
+
+// Budgets = the measured worst case above, rounded UP to the next 500 characters,
+// plus one further 500 as the stated headroom for the rest of the wave-0/1 prompt
+// work, computed on the first-round worst case (52,391 -> 52,500 -> 53,000;
+// 59,681 -> 60,000 -> 60,500) and left unchanged when round 2's edits spent part of
+// that stated headroom: the two cards the budgets bind grew +80 each (learning-pack
+// 52,391 -> 52,471, with-prose 59,681 -> 59,761); summary (+292) and example (+229)
+// carry the longer full-card naming line and stay far below. Anything that needs
+// more than this must re-pin here with a written rationale, exactly as the 60->62%
+// and 62->76% re-pins above did.
+const HONEST_TASK_CHAR_BUDGET = 53_000;
+const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
+
+test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
+  const scars = loadBookScars(LARGEST_SCAR_BOOK);
+  const card = voiceCard(LARGEST_SCAR_BOOK);
+  // The two assertions that make the budget below mean something. A fixture that
+  // silently loses either block measures a prompt production never sends — the exact
+  // way the ratio pins above stopped bounding anything.
+  assert.ok(scars, `${LARGEST_SCAR_BOOK} must have a scar file; this budget is measured on it`);
+  assert.ok(card, `${LARGEST_SCAR_BOOK} must resolve a voice card; a null card measures a prompt with no register instruction`);
+
+  const bp = realisticFixtureFor(LARGEST_SCAR_BOOK);
+  const args = (kind: SectionKind) => ({
+    bookId: LARGEST_SCAR_BOOK,
+    kind,
+    blueprint: bp.blueprint,
+    sourcePacket: bp.packet,
+    outputPath: `/tmp/${kind}.json`,
+    context: { voiceCard: card, bookScars: scars },
+  });
+  for (const kind of SECTION_KINDS) {
+    const md = buildSectionTaskMarkdown(args(kind));
+    assert.match(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, `${kind}: the scars block must actually render into the measured task`);
+    assert.match(md, /VOICE CARD/, `${kind}: the voice card must actually render into the measured task`);
+    assert.ok(
+      md.length <= HONEST_TASK_CHAR_BUDGET,
+      `${kind}: rendered ${md.length} chars against a ${HONEST_TASK_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+    );
+  }
+
+  // The production learning card also carries the chapter's drafted prose (Task 11ai).
+  const withProse = buildSectionTaskMarkdown({ ...args("learning-pack"), chapterProse: worstCaseChapterProse() });
+  assert.ok(
+    withProse.length <= HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET,
+    `learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+  );
+});
+
+// ── R-005 — the contract must not countermand the card it just handed the writer.
+//
+// "short sentences, plain verbs" was stated UNCONDITIONALLY in the summary
+// universalCore, twice more as the no-card fallback, and a fourth time inside
+// voiceCardSection — the ONE site that fires only when a card exists, so it
+// contradicted the card it had just introduced. Six of the 60 shipped author-voice
+// profiles ask for a longer, measured cadence, and the released Franklin book's own
+// scar note says "a run of sub-seven-word declaratives is a spice, not a default
+// register" (config/book-scars/the-autobiography-of-benjamin-franklin.json).
+//
+// The ship gate agrees with the scar note, not with the contract:
+// E8.monotone_cadence (src/critics/prose.ts:270, MAJOR in critics/finalGate.ts:378)
+// fires on a run of >=7 same-length short sentences, and E7.long_sentence
+// (src/critics/plainLanguage.ts, cap 34 words) fires on the run-on at the other end.
+// The rewritten rule states that pair instead of a single hardcoded rhythm.
+test("R-005: the contract asks for varied cadence and never hardcodes 'short sentences'", () => {
+  for (const kind of SECTION_KINDS) {
+    // money-book resolves no voice card, so any "short sentences" in these renders is
+    // the CONTRACT's own instruction, never a card's chosen rhythm.
+    assert.doesNotMatch(renderTask("money-book", kind), /short sentences/i, `${kind}: the contract must not hardcode a sentence length`);
+  }
+  const summary = renderTask("money-book", "summary-pack");
+  assert.match(summary, /Vary sentence length/, "the tier-floor rule asks for varied length instead");
+  assert.match(summary, /never a run of same-length short declaratives/, "and names the defect the ship gate actually raises");
+
+  // The register note that INTRODUCES a card must not restate a rhythm the card may
+  // have just contradicted.
+  const learning = renderTask(LARGEST_SCAR_BOOK, "learning-pack");
+  assert.match(learning, /VOICE CARD — register note/, "this render carries a card");
+  assert.doesNotMatch(learning, /register — plain verbs, short sentences/, "the register note no longer overrides the card it just introduced");
+});
+
+// ── R-005 (review round 2) — the replacement rule must not overstate the gate
+//    either. The first cut shipped "(E7/E8 block both)" into every summary writer
+//    prompt. Neither critic blocks and neither runs at this gate:
+//      - E8.monotone_cadence is severity "major" (src/critics/finalGate.ts:378) and
+//        its own registry comment calls it a "SHADOW major: surfaces as QC debt but
+//        does not block (ENFORCED_MAJOR stays empty)" (finalGate.ts:372-378);
+//      - E7.long_sentence is likewise "major" (finalGate.ts:384), not a blocker;
+//      - ENFORCED_MAJOR (finalGate.ts:607-611) holds only EW1.invented_witness,
+//        SEAM1.adjacent_duplicate_word and SEAM2.verbatim_repetition;
+//      - both run in finalGate (checkSentenceLengthVariance at finalGate.ts:946,
+//        checkPlainLanguage at :970) — chapter assembly, not sectionGate.
+//    Telling a writer a shadow major "blocks" is the same defect this package
+//    refused to ship for the per-tier reading-ease floor: a contract sentence that
+//    says something false about what is checked. The rule states the severity that
+//    exists, and this pins it.
+test("R-005: the tier-floor rule states E7/E8's real severity, not a block", () => {
+  const summary = renderTask("money-book", "summary-pack");
+  assert.doesNotMatch(summary, /E7\/E8 block/, "E8 is a shadow major and E7 is a major; neither blocks");
+  assert.doesNotMatch(summary, /\bE[78][^.]{0,80}\bblocks?\b/, "no E7/E8 sentence may claim a block");
+  assert.match(
+    summary,
+    /E7\.long_sentence and E8\.monotone_cadence each raise a major at chapter assembly/,
+    "the rule names the severity the critics actually carry, and where they run",
+  );
+});
+
+// ── R-004 (review round 2) — the card must NAME the record it echoes.
+//
+//    R-004 asked for two halves: parse the run's frozen authorVoice into voiceCard()
+//    through sanitizeVoiceMoves, AND name that record in the contract. The parser
+//    shipped; the naming did not, so the block introduced itself only as "how THIS
+//    book sounds" and a writer holding both the card and the source packet could not
+//    tell they are one voice. The packet's freeze carries an "## Author voice" block
+//    (Register / Signature moves / Avoid moves — src/researcher.ts:958-964), and
+//    voiceCard()'s three sources are the editor charter, the curated author-voice
+//    profile, and that frozen block (src/lib/voiceCard.ts, voiceCard()). The header
+//    names all three rather than asserting one, because which source fired is not
+//    knowable from the card string.
+test("R-004: the VOICE CARD block names the voice record it was rendered from", () => {
+  const summary = renderTask(LARGEST_SCAR_BOOK, "summary-pack");
+  assert.match(summary, /VOICE CARD \u2014 how THIS book sounds/, "this render carries a full card");
+  assert.match(summary, /the book's own voice record/, "the full card names the record it renders");
+  assert.match(summary, /"Author voice" block/, "and points at the block frozen into the source packet");
+
+  const action = renderTask(LARGEST_SCAR_BOOK, "action-pack");
+  assert.match(action, /VOICE CARD \u2014 register note/, "this render carries a register note");
+  assert.match(action, /same book voice record/, "the note ties itself to the same record the summary writer matched");
 });
 
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {

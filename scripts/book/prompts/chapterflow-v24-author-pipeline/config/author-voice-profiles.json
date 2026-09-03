@@ -3,6 +3,12 @@
   "version": "1.0.0",
   "description": "Per-book author voice profiles. Used by B13/B14 audits to relax/tighten the hook first-word and counter shape caps for authors who naturally cluster on a particular frame. Each profile keys off bookId (matched in editor-in-chief.ts at brief assembly time). `unconfirmed: true` means the values are best-guess defaults applied because no high-confidence reading of the author's prose is available; revisit when the operator reads a chapter against the source.",
   "profiles": {
+    "the-autobiography-of-benjamin-franklin": {
+      "bookId": "the-autobiography-of-benjamin-franklin",
+      "author": "Benjamin Franklin",
+      "register": "plainspoken-ironist",
+      "unconfirmed": true
+    },
     "deep-work": {
       "bookId": "deep-work",
       "author": "Cal Newport",

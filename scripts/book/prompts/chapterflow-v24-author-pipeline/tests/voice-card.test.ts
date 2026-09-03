@@ -13,7 +13,7 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
-import { voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
+import { REGISTER_TEMPLATES, sharedVoiceCues, voiceCard, VOICE_CARD_GUARD_LINE } from "../src/lib/voiceCard.js";
 import { loadBookScars } from "../src/lib/bookScars.js";
 import { formatVoiceBible } from "../src/lib/voiceBible.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
@@ -147,6 +147,146 @@ test("section task markdown wires the card in the right shape per kind", () => {
   }
 });
 
+// ── R-004 — the curated Franklin profile (the released book the Phase A report
+//    scored). Its scar file is the largest shipped one, so this is also the book
+//    tests/contract-refactor.test.ts measures the honest length budget on. ────────
+
+const FRANKLIN = "the-autobiography-of-benjamin-franklin";
+
+test("the curated Franklin profile resolves a third-person card that the section task renders", () => {
+  const card = voiceCard(FRANKLIN);
+  assert.ok(card, "the released Franklin book must resolve a voice card, not null");
+  assert.ok(wordCount(card!) <= 120, "the curated card stays inside the word budget");
+  assert.ok(card!.endsWith(VOICE_CARD_GUARD_LINE), "the curated card carries the contamination guard");
+
+  // The artifact is a retelling of someone else's book, and SEC7
+  // (src/sections/sectionGate.ts) blocks "the author"/"the book"/"this chapter" in
+  // every tier, so a card must never ask a writer for the source author's first person.
+  assert.match(card!, /third-person retelling/, "the card names the person it can actually be written in");
+  assert.doesNotMatch(card!, /first-person/, "no card may instruct first person");
+
+  // The scar file's own style note: "vary sentence length; a run of sub-seven-word
+  // declaratives is a spice, not a default register".
+  assert.match(card!, /never a run of same-length declaratives/, "the card asks for varied cadence");
+
+  const summary = task(FRANKLIN, "summary-pack");
+  assert.match(summary, /VOICE CARD — how THIS book sounds/, "summary writers get the full card");
+  assert.match(summary, /dry self-aware irony/, "the register reaches the writer prompt");
+  const learning = task(FRANKLIN, "learning-pack");
+  assert.match(learning, /VOICE CARD — register note/, "learning writers get the register note");
+  assert.match(learning, /voice: plain, concrete register with dry self-aware irony/, "the register descriptor is surfaced");
+});
+
+// ── R-004 / R-032 — the run's OWN frozen author voice as the last fallback ──────
+//
+// src/agents/researcher-bibliography.ts produces authorVoice {register,
+// signatureMoves, avoidMoves} for every research run and src/researcher.ts freezes it
+// into toc.json and source-freeze/book-source.md. A freshly-researched book has no
+// editor-in-chief brief and no curated profile, so before this it fell all the way to
+// null even though the run had just written down how the book sounds.
+
+const FROZEN_VOICE = {
+  register: "plainspoken",
+  signatureMoves: [
+    "catalogs its own mistakes plainly",
+    // A content-DEVICE mandate: the bibliography agent harvests these from the
+    // source, and sanitizeVoiceMoves must strip it before it can reach a `do:` line.
+    "opens with recognizable business cases",
+  ],
+  avoidMoves: ["no grand moralizing"],
+} as const;
+
+test("R-004: a book with no brief and no profile falls back to the run's frozen author voice", () => {
+  assert.equal(voiceCard(NOVOICE_BOOK), null, "no fallback offered → still null, never a shared generic card");
+
+  const card = voiceCard(NOVOICE_BOOK, FROZEN_VOICE);
+  assert.ok(card, "the frozen author voice yields a card");
+  assert.match(card!, /^voice: plainspoken register; third-person retelling; varied cadence$/m, "the frozen register leads the card");
+  assert.doesNotMatch(card!, /first[- ]person/, "the fallback states a person the artifact can be written in");
+  assert.match(card!, /do: catalogs its own mistakes plainly/, "a genuine style move survives");
+  assert.doesNotMatch(card!, /opens with recognizable/, "a device mandate never reaches the card (sanitizeVoiceMoves)");
+  assert.match(card!, /never: no grand moralizing/, "avoidMoves are kept verbatim");
+  assert.match(card!, /plain language beats abstraction/, "the catalog-wide plainness floor rides along");
+  assert.ok(card!.endsWith(VOICE_CARD_GUARD_LINE), "the contamination guard closes the card");
+  assert.ok(wordCount(card!) <= 120, "the fallback card respects the word budget");
+
+  // Source order: a curated profile OUTRANKS the run's frozen voice.
+  assert.equal(voiceCard(FRANKLIN, FROZEN_VOICE), voiceCard(FRANKLIN), "a curated profile wins over the frozen voice");
+});
+
+test("R-032: only voice cues that two or more chapters share reach the fallback card", () => {
+  // src/agents/researcher-chapter.ts:532 makes 2-4 voiceCues a retry-BLOCKING floor,
+  // and nothing outside the chapter .txt render ever read them.
+  assert.deepEqual(
+    sharedVoiceCues([
+      ["opens with a concrete scene", "counts the cost out loud"],
+      ["  Opens With A Concrete Scene ", "sets a plain claim against a wry aside"],
+      ["counts the cost out loud"],
+    ]),
+    ["opens with a concrete scene", "counts the cost out loud"],
+    "shared cues only, case/whitespace-insensitive, first-appearance order",
+  );
+  assert.deepEqual(sharedVoiceCues([["only here"], ["and only there"]]), [], "a cue one chapter shows is not the book's voice");
+
+  // A shared cue is a signature move like any other: it goes through the sanitizer.
+  const card = voiceCard(NOVOICE_BOOK, {
+    register: "warm",
+    signatureMoves: ["names the sum out loud", "lets the aside carry the point"],
+    sharedCues: ["returns to Apple as a recurring reference point", "keeps the tone measured"],
+  });
+  assert.ok(card, "cues plus a register still yield a card");
+  assert.doesNotMatch(card!, /returns to Apple/, "a device mandate in a shared cue is stripped like any other move");
+  assert.match(card!, /do: names the sum out loud; lets the aside carry the point; keeps the tone measured/, "the book's moves lead, one shared cue closes the do: line");
+});
+
+// ── R-007 — a register template may only instruct things the artifact can be
+//    written in. The artifact is a third-person retelling of someone else's book:
+//    src/sections/sectionGate.ts (SEC7.meta_reference) blocks "the author",
+//    "the book" and "this chapter" in every breakdown tier, and
+//    src/sections/sectionTasks.ts repeats the ban in every task card's DO NOT block.
+//    A template that tells the writer to use the source author's first person asks
+//    for prose the writer then has to walk back. ──────────────────────────────────
+
+test("R-007: no register template instructs a person or a move the artifact cannot use", () => {
+  const registers = Object.keys(REGISTER_TEMPLATES);
+  assert.ok(registers.length >= 7, `expected the shipped register templates, found ${registers.length}`);
+  for (const [register, lines] of Object.entries(REGISTER_TEMPLATES)) {
+    const text = lines.join("\n");
+    assert.doesNotMatch(text, /first[- ]person/i, `${register}: a template must not instruct the source author's first person`);
+    assert.doesNotMatch(text, /speak from lived experience/i, `${register}: "speak from lived experience" is the same first-person instruction in prose`);
+    // Every template still leads with the register descriptor the learning/action
+    // register note lifts (voiceRegisterLine).
+    assert.match(lines[0]!, /^voice: /, `${register}: first line must be the register descriptor`);
+  }
+});
+
+// The cadence half of R-007. The shipped philosopher-historian template asked for a
+// bare "longer cadence" (git show origin/main:./src/lib/voiceCard.ts:89) — a length
+// instruction with nothing holding it to the two SEC12.summary_readability checks on
+// the far side: the per-tier reading-GRADE cap (checkReadingLevel) and the blocking
+// Flesch reading-EASE floor on the assembled breakdown (checkBreakdownReadingEase),
+// both in src/sections/sectionGate.ts's breakdown loop. (Identifiers, not line
+// numbers: origin/main has moved past this branch's base and #528 retuned the
+// per-tier check's severity.) A
+// template MAY ask for a long line; what it may not do is ask for one and stop. This
+// is the assertion that keeps "longer cadence" from coming back green: the `voice:`
+// line is where cadence is declared, so a length word there must be paired with a
+// plainness qualifier in the same line.
+const LENGTHENING_CADENCE = /\b(long|longer|lengthy|unhurried|leisurely|expansive|sprawling|ornate|periodic|winding|rolling)\b/i;
+const PLAINNESS_QUALIFIER = /\b(plain|plainly|plainspoken|clear|clearly|simple|readable|reads easily)\b/i;
+
+test("R-007: a template that asks for a longer cadence must hold it to the plainness floor", () => {
+  for (const [register, lines] of Object.entries(REGISTER_TEMPLATES)) {
+    const voiceLine = lines[0]!;
+    if (!LENGTHENING_CADENCE.test(voiceLine)) continue;
+    assert.match(
+      voiceLine,
+      PLAINNESS_QUALIFIER,
+      `${register}: "${voiceLine}" asks for a lengthening cadence with no plainness qualifier; the assembled breakdown still has to clear the SEC12 reading-ease floor and each tier its own grade cap`,
+    );
+  }
+});
+
 // ── P1 / Finding F-01: device-mandate signature moves never reach the card ──────
 
 /** Write a brief with arbitrary signatureMoves (and optional avoidMoves) so we can
@@ -207,6 +347,33 @@ test("P1/F-01: formatVoiceBible emits a do: line when a style move survives, non
   } finally {
     rmSync(briefPath(ALL_DEVICE), { force: true });
     rmSync(briefPath(MIXED), { force: true });
+  }
+});
+
+// ── R-006 — the word budget must not silently discard the plainness floor ───────
+//
+// src/lib/voiceBible.ts appends the catalog-wide plainness floor LAST, under a
+// comment saying "every fanout prompt carries it". The card's word budget used to
+// `break` on the first over-budget line, so a charter with a long do: or never:
+// line dropped that line AND everything after it — the floor included.
+
+/** ~60 words of pure style guidance: long enough to overflow the budget, and shaped
+ *  so sanitizeVoiceMoves keeps it (no device-mandate shape). */
+const LONG_STYLE_MOVE =
+  "uses plain verbs and short common words, keeps the diction concrete, prefers the everyday word over the technical one, lets the tone stay measured and lightly wry, defines any term of art on first use, and makes each abstract claim visible within two sentences so the reader always has something they can picture";
+
+test("R-006: an over-long line is skipped, not a truncation point — the plainness floor always survives", () => {
+  const BOOK = "zz-fixture-voicecard-budget";
+  try {
+    writeBriefWithMoves(BOOK, [LONG_STYLE_MOVE], ["no jargon"]);
+    const card = voiceCard(BOOK);
+    assert.ok(card, "the charter still yields a card");
+    assert.match(card!, /plain language beats abstraction/, "the plainness floor must survive the budget");
+    assert.match(card!, /^never: no jargon$/m, "a short line AFTER the over-long one is still reached (continue, not break)");
+    assert.doesNotMatch(card!, /prefers the everyday word over the technical one/, "the over-long line itself is the one dropped");
+    assert.ok(wordCount(card!) <= 120, "the budget still holds");
+  } finally {
+    rmSync(briefPath(BOOK), { force: true });
   }
 });
 
