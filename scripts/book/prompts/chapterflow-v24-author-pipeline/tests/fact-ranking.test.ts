@@ -8,7 +8,7 @@
  * selection, SP15's thin-research advisory, the pure assignFactsByRole helper's properties,
  * the blueprint's role structure (spine / quiz cap / card wrap), and — critically — that a
  * LEGACY packet (no teachingPriority/coreMoveFactId) compiles to a byte-identical blueprint
- * (fixture golden captured from the pre-P13 compiler).
+ * (fixture golden re-stamped by package 1C — see the rationale above that test).
  */
 import assert from "node:assert/strict";
 import { mkdirSync, readFileSync, rmSync } from "node:fs";
@@ -245,8 +245,36 @@ test("blueprint (ranked): summaries spine ⊆ top-3 ranked facts; action ⊆ mec
   }
 });
 
-// ── legacy equivalence golden ──────────────────────────────────────────────────────
-test("legacy packet (no ranking fields) compiles to a byte-identical blueprint (pre-P13 golden)", () => {
+// ── legacy-path golden ─────────────────────────────────────────────────────────────
+//
+// RE-STAMPED by package 1C (the dealing redesign), which deliberately ends this fixture's
+// byte-compat chain back to pre-P13 main. Every field that moved is a dealt slot the package
+// redesigned, and the diff was read line by line before the re-stamp:
+//
+//   plan.exampleSpecs[].domain   venue + sceneMode + sceneFrame concatenation → the venue alone
+//                                (R-111 — assembler.buildTags was scraping tags out of that string)
+//   plan.exampleSpecs[].format   EXAMPLE_FORMATS[i] → a registered positional deal over a widened
+//                                pool (R-104 — every chapter shipped the identical six)
+//   example venue / sceneFrame / requiredBeat / purpose / sceneMode
+//                                marching rotations → the Latin-square rank (R-102/R-128)
+//   example allowedNames         a wrapping 3-name window → one disjoint dealt name (R-120)
+//   requiredCaseIds / caseCueIds fact-relevance dealing with a per-surface cap; several card and
+//                                quiz slots now carry NO cue because their fact is not linked to
+//                                any case (R-062/R-101/R-119/R-125)
+//   cards[].requiredFactIds      rank-pinned to the slot index → chapter-rotated + coverage pass
+//                                (R-127)
+//   reservedVariety.forbiddenNames  24 entries (5 investing figures + 19 bank names, one of which
+//                                the book deals to another chapter) → the one name this packet
+//                                genuinely protects (R-114/R-115)
+//   reservedVariety.sceneMechanism  a SCENE_MODES label → a scene-mechanisms.json directive (R-117)
+//   sections.hook.shape          the n%2 binary → the dealt hookShape (R-118)
+//   hookShape / counterShape / actionMechanism / weeklyPracticeForm / practiceForm /
+//   practiceConstraint / ifThenPlanShapes / card+quiz shapes
+//                                same pools, different rank under the Latin square (R-102)
+//
+// What the fixture still pins: that a LEGACY packet (no teachingPriority, no coreMoveFactId)
+// compiles deterministically through the no-design/no-genre path to exactly these bytes.
+test("legacy packet (no ranking fields) compiles to the pinned legacy-path blueprint (re-stamped for the dealing redesign)", () => {
   const legacyPacket = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-packet.json"), "utf8")) as SourcePacketV1;
   const golden = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-blueprint.golden.json"), "utf8"));
 
@@ -268,7 +296,7 @@ test("legacy packet (no ranking fields) compiles to a byte-identical blueprint (
       roots,
       totalChapters: 1,
     });
-    assert.deepEqual(JSON.parse(JSON.stringify(bp)), golden, "legacy packet must compile byte-identically to the pre-P13 golden");
+    assert.deepEqual(JSON.parse(JSON.stringify(bp)), golden, "legacy packet must compile byte-identically to the pinned legacy-path golden");
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }

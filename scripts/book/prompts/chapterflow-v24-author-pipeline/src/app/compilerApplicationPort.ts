@@ -9,6 +9,8 @@ import type { SectionPackCache, SectionPackCacheKey } from "../books/sectionPack
 import type { SectionAvoidEntry, SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
 import { deriveBookDesign } from "../compiler/bookDesign.js";
+import { checkPositionalDeals, poolSizeOverrides, type BlueprintFinding, type ChapterDerivedLookup } from "../compiler/blueprintGate.js";
+import { resolvedPoolsForBook } from "../compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../compiler/sourcePacket.js";
 import { compileSourceUsePlan } from "../compiler/sourceUsePlanCompiler.js";
 import type { CandidateIdentity, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
@@ -178,12 +180,76 @@ export interface CompilerApplicationPortDependencies {
    *  collision here for the implicated packs it evicts. Cleared for every section
    *  once assembly passes. Absent = no avoid-context (pre-11aa behaviour). */
   readonly sectionAvoidStore?: SectionAvoidStore;
+  /** R-106 — the book-level positional-deal audit, defaulting to `auditBookDeals` (which is
+   *  `checkPositionalDeals` over the book's resolved pools). Injectable for ONE reason: the
+   *  property that matters about this audit is WHEN it runs — before a single section is drafted —
+   *  and dealPositional makes BPV11 pass by construction, so no book that compiles can produce the
+   *  blocker end to end. A test supplies an audit that blocks and asserts zero model calls were
+   *  made; another wraps the REAL audit to assert it is called before the first draft. Production
+   *  never sets it, and the default is the real check, so the gate cannot be softened from
+   *  outside the process. */
+  readonly bookDealAudit?: BookDealAudit;
 }
+
+/** R-106 — the book-level deal audit as the port consumes it: blueprints in, findings out. */
+export type BookDealAudit = (input: Readonly<{
+  bookId: string;
+  blueprints: readonly ChapterBlueprintV1[];
+  stateRoot: string;
+}>) => readonly BlueprintFinding[];
+
+/** R-106 — the production audit: BPV11 same-position collisions and BPV12 pool floors over the
+ *  whole book's compiled blueprints, sized to the SAME per-book pools the compile dealt from.
+ *
+ *  R-065/R-106: the resolved pools also carry the per-chapter derived staging, so the audit can
+ *  tell a value the DESIGN put in a slot (content — audited by BPV13) from a value the positional
+ *  dealer drew from the pool (audited by BPV11). Without it a book whose chapters share one
+ *  recurring mined specific would hard-fail, non-retryably. A resolution failure falls back to the
+ *  descriptors' own constant sizes and "everything is pool-dealt", which is the STRICTER reading:
+ *  it can only over-report, never miss a real positional collision. */
+export const auditBookDeals: BookDealAudit = ({ bookId, blueprints, stateRoot }) => {
+  let poolOverrides: Record<string, { poolSize: number; poolSizeAt?: (slotIndex: number) => number }> = {};
+  let derivedFor: ChapterDerivedLookup | undefined;
+  try {
+    const pools = resolvedPoolsForBook(bookId, { stateRoot });
+    poolOverrides = poolSizeOverrides(pools);
+    derivedFor = pools.chapterDerived;
+  } catch {
+    /* fall back to the descriptors' own constant sizes */
+  }
+  return checkPositionalDeals([...blueprints], poolOverrides, derivedFor);
+};
 
 type CompilerArtifactResult = Readonly<{
   design: unknown;
   blueprint: ChapterBlueprintV1;
+  gates: CompilerChapterGateVerdicts;
 }>;
+
+/** R-107 — the adapter's per-chapter gate verdicts, now ENFORCED here rather than only compared
+ *  legacy-vs-shadow. Typed loosely (both finding shapes carry checkId/severity/message) so this
+ *  port does not take a dependency on two gate modules for three fields. */
+export type CompilerChapterGateVerdicts = Readonly<{
+  design: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
+  blueprint: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
+  briefFindings?: readonly unknown[];
+}>;
+
+/** The failure code a compiler-gate blocker raises. Deliberately NOT in
+ *  bookRunApplicationService's RETRYABLE_COMPILER_FAILURES — see the throw site below. */
+export const COMPILER_GATE_BLOCKED_PREFIX = "COMPILER_GATE_BLOCKED:";
+
+/** R-107 — the per-chapter design/blueprint BLOCKERS, rendered for the failure detail. Advisories
+ *  are deliberately dropped: BPV8/BPV12/BPV13/BPV14 report shapes a thin-but-honest chapter can
+ *  legitimately have, and failing a run on them would be weakening the pipeline's ability to ship
+ *  such a chapter rather than tightening it. Extracted so the enforcement is testable without
+ *  driving a whole candidate compile. */
+export function compilerGateBlockerMessages(gates: CompilerChapterGateVerdicts): string[] {
+  return [
+    ...gates.design.filter((f) => f.severity === "blocker").map((f) => `design ${f.checkId}: ${f.message}`),
+    ...gates.blueprint.filter((f) => f.severity === "blocker").map((f) => `blueprint ${f.checkId}: ${f.message}`),
+  ];
+}
 
 type CompilerOperation = Readonly<{
   chapterNumber: number;
@@ -1426,6 +1492,32 @@ export class CompilerApplicationPort {
         bytes: jsonBytes(design),
       }];
       const assemblyPaths: AuthorV4SectionChapterPaths[] = [];
+      // R-106 — the compile runs in TWO phases over the chapters, not one.
+      //
+      //   PHASE 1 (below): compile every chapter's blueprint and enforce the per-chapter compiler
+      //     gates. Pure computation — no model call is made.
+      //   Then: the book-level deal audit, which is a pure function of the compiled blueprints.
+      //   PHASE 2: draft the sections. This is where the entire model spend lives.
+      //
+      // The split exists because the audit is cheap, deterministic and NON-RETRYABLE: a BPV11
+      // collision raises COMPILER_GATE_BLOCKED, which bookRunApplicationService deliberately
+      // excludes from RETRYABLE_COMPILER_FAILURES, and a re-run reproduces it identically. Run
+      // after the drafting loop it could only ever fire once a whole book's drafting had been
+      // paid for. Nothing it reads is produced by drafting, so it runs before drafting starts.
+      const prepared: Array<{
+        chapter: (typeof chapters)[number];
+        packet: (typeof packets)[number];
+        index: number;
+        blueprint: ChapterBlueprintV1;
+        blueprintDigest: string;
+        packetDigest: string;
+        taskCardDigests: Map<SectionKind, string>;
+        packetLogicalPath: string;
+        blueprintLogicalPath: string;
+        /** This chapter's generated artifacts, flushed into `generated` after phase 2 so the
+         *  emitted order still matches plannedInventory's per-chapter interleaving. */
+        files: CandidateInputFile[];
+      }> = [];
       // Task 11aa — retain each chapter's cache identity (chapterId + the two
       // drafting digests) so a cross-chapter assembly blocker can rebuild the exact
       // SectionPackCacheKey of an implicated pack and evict it.
@@ -1440,6 +1532,23 @@ export class CompilerApplicationPort {
         const compared = await adapter.compareCompilerArtifacts({ chapter, packet, totalChapters: chapters.length });
         if (!compared.matched || !compared.shadow) throw new Error(`COMPILER_OUTPUT_MISMATCH:${compared.mismatch ?? "compiler comparison failed"}`);
         const artifacts = compared.legacy as CompilerArtifactResult;
+        // R-107 — the adapter computes `gates.design` and `gates.blueprint` for every chapter, and
+        // until this change the ONLY thing done with them was compareCompilerArtifacts' equality
+        // check. Legacy and shadow run the same code over the same inputs, so identical blockers
+        // always compared equal and the run proceeded past them: a design artifact that fails its
+        // own BD gate, or a blueprint that references an unknown fact id, reached the writers.
+        // The findings are now enforced where they are produced.
+        //
+        // COMPILER_GATE_BLOCKED is deliberately NOT in bookRunApplicationService's
+        // RETRYABLE_COMPILER_FAILURES. Every code on that list describes model-output variance a
+        // fresh attempt can clear; the compiler is a pure function of (packets, salts, design), so
+        // a re-run produces the identical blueprint and the identical blocker. Granting an operator
+        // retry against it would spend a round on the same wall — the R-001 reasoning, applied to a
+        // deterministic failure instead of a provider one. It needs a fix, not a retry.
+        const compilerGateBlockers = compilerGateBlockerMessages(artifacts.gates);
+        if (compilerGateBlockers.length > 0) {
+          throw new Error(`${COMPILER_GATE_BLOCKED_PREFIX}ch${String(chapter.chapterNumber).padStart(2, "0")} ${compilerGateBlockers.join("; ")}`);
+        }
         const packetLogicalPath = compilerPath(chapter.chapterNumber, "source-packet.json");
         const planLogicalPath = compilerPath(chapter.chapterNumber, "source-use-plan.json");
         const blueprintLogicalPath = compilerPath(chapter.chapterNumber, "blueprint.json");
@@ -1455,14 +1564,55 @@ export class CompilerApplicationPort {
         // mints a fresh key and the stale entry is simply never found.
         const packetDigest = candidateBlueprint.sourcePacketHash;
         const blueprintDigest = createHash("sha256").update(jsonBytes(candidateBlueprint)).digest("hex");
-        // Filled in per kind by the section loop below (see ChapterCacheIdentity).
+        // Filled in per kind by the phase-2 section loop (see ChapterCacheIdentity). The Map is
+        // stored by reference in both structures, so phase 2's writes are visible here.
         const taskCardDigests = new Map<SectionKind, string>();
         chapterCacheContext.set(chapter.chapterNumber, Object.freeze({ chapterId: chapter.chapterId, blueprintDigest, packetDigest, scarsDigest, taskCardDigests }));
-        generated.push(
-          { kind: "SIDECAR", logicalPath: packetLogicalPath, mediaType: "application/json", bytes: jsonBytes(packet) },
-          { kind: "SIDECAR", logicalPath: planLogicalPath, mediaType: "application/json", bytes: jsonBytes(compileSourceUsePlan(packet).plan) },
-          { kind: "SIDECAR", logicalPath: blueprintLogicalPath, mediaType: "application/json", bytes: jsonBytes(candidateBlueprint) },
-        );
+        prepared.push({
+          chapter,
+          packet,
+          index,
+          blueprint: candidateBlueprint,
+          blueprintDigest,
+          packetDigest,
+          taskCardDigests,
+          packetLogicalPath,
+          blueprintLogicalPath,
+          files: [
+            { kind: "SIDECAR", logicalPath: packetLogicalPath, mediaType: "application/json", bytes: jsonBytes(packet) },
+            { kind: "SIDECAR", logicalPath: planLogicalPath, mediaType: "application/json", bytes: jsonBytes(compileSourceUsePlan(packet).plan) },
+            { kind: "SIDECAR", logicalPath: blueprintLogicalPath, mediaType: "application/json", bytes: jsonBytes(candidateBlueprint) },
+          ],
+        });
+      }
+
+      // R-106 — the book-level positional-deal audit (BPV11 collisions, BPV12 pool floors)
+      // previously ran ONLY inside checkBlueprintGate, whose sole caller is the `blueprint-gate`
+      // CLI verb. The candidate compile called per-chapter validateBlueprint and nothing else, so
+      // the one check that can see a cross-chapter same-position collision never ran on the path
+      // that produces books. Every chapter's blueprint is in hand at this point — and no section
+      // has been drafted yet — which is exactly what it needs.
+      const candidateBlueprints = prepared.map((entry) => entry.blueprint).sort((a, b) => a.chapterNumber - b.chapterNumber);
+      if (candidateBlueprints.length === chapters.length && candidateBlueprints.length > 0) {
+        const dealFindings = (this.#dependencies.bookDealAudit ?? auditBookDeals)({
+          bookId: request.bookId,
+          blueprints: candidateBlueprints,
+          stateRoot: legacyRoot,
+        });
+        const dealBlockers = dealFindings.filter((f) => f.severity === "blocker");
+        for (const advisory of dealFindings.filter((f) => f.severity !== "blocker")) {
+          console.error(`[book-run] compiler deal-audit advisory ${advisory.checkId}: ${advisory.message}`);
+        }
+        if (dealBlockers.length > 0) {
+          throw new Error(`${COMPILER_GATE_BLOCKED_PREFIX}${dealBlockers.map((f) => `${f.checkId}: ${f.message}`).join("; ")}`);
+        }
+      }
+
+      // PHASE 2 — drafting. Everything above is pure computation over the packets; every model
+      // call in the compile is made below.
+      for (const preparedChapter of prepared) {
+        const { chapter, packet, index, blueprint: candidateBlueprint, blueprintDigest, packetDigest, taskCardDigests, packetLogicalPath, blueprintLogicalPath } = preparedChapter;
+        const chapterFiles = preparedChapter.files;
         const sectionPaths = {} as Record<SectionKind, string>;
         // Task 11ai — the chapter's reader-visible prose, captured the moment the
         // summary pack is accepted (reused or freshly drafted). SECTION_KINDS order is
@@ -1670,7 +1820,7 @@ export class CompilerApplicationPort {
             }
           }
           sectionPaths[kind] = logicalPath;
-          generated.push({ kind: "SIDECAR", logicalPath, mediaType: "application/json", bytes: jsonBytes(acceptedOutput) });
+          chapterFiles.push({ kind: "SIDECAR", logicalPath, mediaType: "application/json", bytes: jsonBytes(acceptedOutput) });
         }
         assemblyPaths.push({
           chapterNumber: chapter.chapterNumber,
@@ -1684,6 +1834,12 @@ export class CompilerApplicationPort {
           output: `content/chapters/${chapterFileName(chapter.chapterId)}`,
         });
       }
+
+      // Emit in plannedInventory's order: each chapter's three compiler sidecars followed by its
+      // four section packs, in chapter order. Phase 1 built the sidecars and phase 2 appended the
+      // packs to the same per-chapter list, so flushing here keeps the two-phase split invisible
+      // to the staged candidate.
+      for (const preparedChapter of prepared) generated.push(...preparedChapter.files);
 
       if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
       const generatedPaths = new Set(generated.map((file) => file.logicalPath));

@@ -107,7 +107,7 @@ test("P14: derivation is deterministic — same packets/genre → byte-identical
   assert.equal(JSON.stringify(a), JSON.stringify(b), "identical inputs must produce byte-identical design artifacts");
 });
 
-test("P14: derived pools meet floors and mine the book's own material", () => {
+test("P14 + R-065: pools meet floors and the book's own material is mined PER CHAPTER", () => {
   const packets = Array.from({ length: 12 }, (_, i) => packet("zz", i + 1));
   const d = deriveBookDesign("zz-book", { genre: "business-decision", packets, chapters: 12 });
   assert.equal(validateBookDesign(d, 12).filter((f) => f.severity === "blocker").length, 0, "a derived artifact must pass its own gate");
@@ -116,8 +116,19 @@ test("P14: derived pools meet floors and mine the book's own material", () => {
   assert.ok(d.pools.practiceConstraints.length >= POOL_FLOORS.practiceConstraints);
   assert.ok(d.pools.venues.length >= venueFloor(12));
   assert.equal(d.provenance.source, "derived");
-  // A mined hardSpecific slotted into a frame template — the pool is genuinely per-book.
-  assert.ok(d.pools.sceneFramesDecision.some((f) => f.includes("credit utilization")), "derived frames must use the book's own mined material");
+
+  // R-065 — this used to assert `d.pools.sceneFramesDecision.some(f => f.includes("credit
+  // utilization"))`: mined material lived in the BOOK-WIDE pools, where the positional dealer
+  // handed it to whichever chapter's slot the arithmetic reached. A specific mined from ch07
+  // therefore staged a ch03 example. Mined material is now chapter-keyed, and the assertion moves
+  // with it: the material must be present, and it must be reachable ONLY from its own chapter.
+  const perChapter = d.perChapter ?? {};
+  assert.ok(Object.keys(perChapter).length > 0, "a derived artifact must carry per-chapter mined staging");
+  const minedSomewhere = Object.values(perChapter).flatMap((entry) => [entry.frameDecision, entry.frameExperiential, entry.practiceConstraint].filter((x): x is string => !!x));
+  assert.ok(minedSomewhere.some((f) => f.includes("credit utilization")), "per-chapter staging must use the book's own mined material");
+  for (const pool of Object.values(d.pools)) {
+    assert.equal((pool as string[]).some((entry) => entry.includes("credit utilization")), false, "no mined specific may sit in a book-wide pool, where it would be dealt to another chapter");
+  }
 });
 
 test("derived pools reject fragments that cannot fill a NOUN slot (live: 'a working note on about wagons')", () => {
@@ -143,7 +154,14 @@ test("derived pools reject fragments that cannot fill a NOUN slot (live: 'a work
 test("derived venues and frames are never ungrammatical for a packet full of fragment specifics", () => {
   const packets = Array.from({ length: 12 }, (_, i) => fragmentPacket("zz", i + 1));
   const d = deriveBookDesign("zz-frag", { genre: "business-decision", packets, chapters: 12 });
-  const rendered = [...d.pools.venues, ...d.pools.sceneFramesDecision, ...d.pools.sceneFramesExperiential];
+  // R-065 — the mined entries moved from the pools to perChapter, so the grammar check follows
+  // them there; the pools themselves are the genre base and were never templated.
+  const rendered = [
+    ...d.pools.venues,
+    ...d.pools.sceneFramesDecision,
+    ...d.pools.sceneFramesExperiential,
+    ...Object.values(d.perChapter ?? {}).flatMap((e) => [e.frameDecision, e.frameExperiential, e.practiceConstraint].filter((x): x is string => !!x)),
+  ];
   for (const entry of rendered) {
     assert.doesNotMatch(entry, / on (about|compared|once|under|slipped) /, `ungrammatical venue/frame: ${entry}`);
     assert.doesNotMatch(entry, / at (about|compared|once|under|slipped) /, `ungrammatical frame: ${entry}`);
@@ -242,13 +260,15 @@ test("P14: design-derived venue palette preserves venuePlan cap-2 / no-adjacent 
   });
 });
 
-// ── R1 (reviewer): CROSS-VERSION legacy golden — chains byte-compat across P13 → P14 ─────────────
+// ── R1 (reviewer): the shared legacy golden — two entry points, one pinned byte string ───────────
 // The P14 round-trip test above proves add/remove-artifact consistency WITHIN this code version;
-// this test proves the no-artifact path still produces the SAME BYTES as the pre-P13 world: the
-// golden was captured on pre-P13 main and independently re-verified there at both the P13 and P14
-// reviews. Any future change that silently moves the legacy path breaks THIS test, not just
-// self-consistency.
-test("P14 (cross-version): the no-design legacy path reproduces the pre-P13 golden byte-for-byte", () => {
+// this test proves the no-design/no-genre path reaches the SAME bytes the fact-ranking suite pins,
+// so a change that moves the legacy path has to move both files and cannot hide in one suite.
+//
+// The golden was captured on pre-P13 main and re-verified at the P13 and P14 reviews; package 1C
+// (the dealing redesign) re-stamped it deliberately — the field-by-field rationale lives above the
+// consuming test in tests/fact-ranking.test.ts.
+test("P14: the no-design legacy path reproduces the pinned legacy-path golden byte-for-byte", () => {
   const packet = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-packet.json"), "utf8")) as SourcePacketV1;
   const golden = JSON.parse(readFileSync(resolve(HERE, "fixtures", "fact-ranking-legacy-blueprint.golden.json"), "utf8"));
   const stateRoot = resolve(tmpdir(), `cf-p14-crossgolden-${process.pid}-${Date.now()}`);
@@ -257,7 +277,7 @@ test("P14 (cross-version): the no-design legacy path reproduces the pre-P13 gold
     mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
     writeJsonFile(resolve(stateRoot, "indexes", `${packet.bookId}.json`), [chapter]);
     const bp = compileChapterBlueprint({ bookId: packet.bookId, chapter, packet, packetPath: golden.sourcePacketPath, roots: { stateRoot }, totalChapters: 1 });
-    assert.deepEqual(JSON.parse(JSON.stringify(bp)), golden, "no-design/no-genre legacy compile must equal the pre-P13 golden (byte-compat chain)");
+    assert.deepEqual(JSON.parse(JSON.stringify(bp)), golden, "no-design/no-genre legacy compile must equal the pinned legacy-path golden");
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }

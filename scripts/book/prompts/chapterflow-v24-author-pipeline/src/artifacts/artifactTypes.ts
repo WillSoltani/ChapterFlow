@@ -170,11 +170,40 @@ export type BookDesignPools = {
  *  global monoculture. Stored at state/book-design/<bookId>.design.json. Additive/optional at the
  *  consumption layer: a book WITHOUT this artifact compiles byte-identically to the pre-P14 world
  *  (chapterBlueprint.resolvePools falls back to genre pools, then the legacy in-code constants). */
+/**
+ * Staging material mined from ONE chapter's own source packet (R-065/R-103). Optional per field:
+ * a chapter whose packet yields no usable topic simply contributes nothing and falls through to
+ * the book's genre pools.
+ */
+export type ChapterDerivedDesign = {
+  /** A decision-scene frame built from this chapter's best-taught mined specific. */
+  frameDecision?: string;
+  /** An experiential frame built from this chapter's second-best mined specific. */
+  frameExperiential?: string;
+  /** A practice constraint built from this chapter's best-taught mined specific. */
+  practiceConstraint?: string;
+  /** The mined topics, best-taught first, that the fields above were built from. */
+  topics: string[];
+};
+
 export type BookDesignV1 = {
   schemaVersion: typeof BOOK_DESIGN_SCHEMA_VERSION;
   bookId: string;
   genre: string;
   pools: BookDesignPools;
+  /**
+   * R-065 — per-CHAPTER mined staging, keyed by chapter number as a string.
+   *
+   * Derived material used to be flattened into the book-wide `pools`, where it was dealt
+   * POSITIONALLY: a specific mined from chapter 7 landed in chapter 3's example slot ("a first
+   * encounter with age twelve" on a chapter about a different decade), so the one lever meant to
+   * give a book its own flavour spent itself on another chapter's tokens. Chapter-keyed material
+   * can only ever be dealt to the chapter it came from.
+   *
+   * Optional: absent (or an absent chapter key) means that chapter draws entirely from `pools`,
+   * which is exactly the genre/legacy behaviour.
+   */
+  perChapter?: Record<string, ChapterDerivedDesign>;
   provenance: {
     source: "derived" | "genre-fallback";
     /** Source-case ids / sidecar material the derived pools were mined from. */

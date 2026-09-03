@@ -9,6 +9,7 @@ import { blueprintPath, readJsonFile, slotSaltsPath, sourcePacketPath, writeJson
 import {
   CHAPTER_BLUEPRINT_SCHEMA_VERSION,
   type ChapterBlueprintV1,
+  type ChapterDerivedDesign,
   type ExampleSlotV1,
   type QuizSlotV1,
   type CardSlotV1,
@@ -18,9 +19,10 @@ import type { BloomsLevel, ChapterDesignDoc, ExampleFormat } from "../types.js";
 import { C7_BANNED_NAMES } from "../critics/finalGate.js";
 import { loadNameBank } from "../librarian/namePlan.js";
 import { planVenues } from "../librarian/venuePlan.js";
+import { loadSceneMechanisms } from "../librarian/sceneMechanismPlan.js";
 import { protectedSourceNames } from "./sourceNames.js";
-import { rotate, rankedCaseIdsForFact, isSourceGroundingMetaFact, hasRealMechanism } from "./sourcePacketFacts.js";
-import { resolvePools, type ResolvedPools } from "./bookDesign.js";
+import { rotate, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE, isSourceGroundingMetaFact, hasRealMechanism } from "./sourcePacketFacts.js";
+import { genreForBook, reservedFigureNamesForGenre, resolvePools, type ResolvedPools } from "./bookDesign.js";
 
 // isSourceGroundingMetaFact moved to sourcePacketFacts.ts (P13) to break the fact-helper
 // layering smell and let rankTeachingFacts reuse it; re-exported here for back-compat.
@@ -199,6 +201,22 @@ function plannedVenuePalette(bookId: string, chapterNumber: number): string[] {
   }
 }
 
+// R-117 — the ten orthogonal dramatic transactions from config/scene-mechanisms.json, loaded
+// through the same validated loader sceneMechanismPlan uses. Cached: the blueprint compiler is
+// called once per chapter and the config never changes inside a process.
+let cachedSceneMechanismDirectives: string[] | null = null;
+export function sceneMechanismDirectives(): string[] {
+  if (cachedSceneMechanismDirectives) return cachedSceneMechanismDirectives;
+  try {
+    cachedSceneMechanismDirectives = loadSceneMechanisms().map((m) => m.directive);
+  } catch {
+    // A missing/short palette must never crash a compile: fall back to the stance list, which is
+    // exactly the pre-R-117 behaviour for the mechanism field.
+    cachedSceneMechanismDirectives = null;
+  }
+  return cachedSceneMechanismDirectives ?? [...SCENE_MODES];
+}
+
 const SCENE_MODES = [
   "decision-under-pressure", "mistake-recovery", "before-after audit", "conversation repair", "stakes audit", "deadline triage", "small experiment", "feedback loop", "checklist walkthrough",
 ];
@@ -211,6 +229,15 @@ const WEEKLY_FORMS = [
   "one repeated audit", "two-trigger checklist", "weekly calendar review", "one saved template", "Sunday reset", "Friday evidence log", "one recurring conversation", "three-minute scoreboard",
 ];
 
+// R-102 — POOL WIDTH IS THE VARIETY BUDGET.
+//
+// Every quiz/card shape pool used to hold EXACTLY as many entries as the chapter has slots
+// (9 prompt shapes for 9 questions, 7 back shapes for 7 cards). With slots == pool size the
+// dealt MULTISET is forced: every chapter must use every shape, and the only thing a deal can
+// move is which slot gets which — which is why ch01..ch04 shipped one list rotated by 1, 2, 3.
+// Widening each pool past its slot count is what makes a per-chapter SUBSET possible, so two
+// chapters can genuinely differ in which shapes they use at all. The added entries are new
+// writer-facing shape names in the same texture as the originals, which stay at the head.
 const QUIZ_PROMPT_SHAPES = [
   "case decision with a named source mechanism",
   "failure diagnosis from the chapter's commonError",
@@ -221,6 +248,10 @@ const QUIZ_PROMPT_SHAPES = [
   "implementation trigger",
   "evidence-priority question",
   "transfer scenario in a fresh domain",
+  "order-of-operations question (what must happen first)",
+  "cost-of-waiting scenario",
+  "who-owns-the-next-move question",
+  "stop-rule test (when to refuse or reverse)",
 ];
 
 const QUIZ_ANSWER_STYLES = [
@@ -233,6 +264,10 @@ const QUIZ_ANSWER_STYLES = [
   "sequence step with timing",
   "contrast between tempting shortcut and source logic",
   "reader-facing decision criterion",
+  "named owner plus the move they make next",
+  "threshold stated as a number or a visible sign",
+  "refusal with the condition that would change it",
+  "second-order consequence the move avoids",
 ];
 
 const QUIZ_DISTRACTOR_TRAPS = [
@@ -245,6 +280,10 @@ const QUIZ_DISTRACTOR_TRAPS = [
   "delay disguised as caution",
   "measurement without action",
   "ritual without mechanism",
+  "right move aimed at the wrong person",
+  "correct step taken one stage too early",
+  "the source case's surface detail copied instead of its mechanism",
+  "effort substituted for the visible proof",
 ];
 
 const CARD_FRONT_SHAPES = [
@@ -255,6 +294,10 @@ const CARD_FRONT_SHAPES = [
   "state the boundary condition",
   "spot the diagnostic sign",
   "trace the mechanism",
+  "predict what happens if the move is skipped",
+  "name who acts next and on what signal",
+  "give the stop rule for this move",
+  "say what evidence would settle it",
 ];
 
 const CARD_RETRIEVAL_TARGETS = [
@@ -265,16 +308,35 @@ const CARD_RETRIEVAL_TARGETS = [
   "implementation trigger",
   "boundary",
   "contrast",
+  "second-order consequence",
+  "owner of the next move",
+  "stop rule",
+  "evidence test",
 ];
 
+// R-112 — CARD BACKS ARE STAGING DIRECTIONS, NOT OPENING WORDS.
+//
+// The pool used to hold seven "start with the X" instructions dealt to seven card slots, so
+// EVERY chapter received all seven and the writer was told, card by card, which word to open
+// on. Phase A counted the result on the live candidate: 15 of 28 card backs opened on a
+// scaffold ("The contrast is…", "The boundary is…"). An instruction about the first word can
+// only be obeyed by writing that first word.
+//
+// These say what the answer must CONTAIN and how tight it must be — the retrieval property a
+// reader is actually being trained on — and never name an opening token. Widened to 11 so a
+// 7-card chapter draws a subset (see the pool-width note above).
 const CARD_BACK_SHAPES = [
-  "start with the concrete noun",
-  "start with the action verb",
-  "start with the contrast",
-  "start with the source case",
-  "start with the failure mode",
-  "start with the trigger",
-  "start with the boundary",
+  "answer in one sentence with no lead-in",
+  "name the mechanism before naming the case",
+  "give the concrete noun and the number that goes with it",
+  "state the action and who performs it",
+  "name the failure first, then the correction",
+  "give the trigger and the move it fires, in that order",
+  "state the limit and one case that sits outside it",
+  "answer with the contrast made explicit in both directions",
+  "give the evidence that would settle it, not the conclusion",
+  "close on the consequence the reader avoids",
+  "answer in the reader's own situation, not the source's",
 ];
 
 const IF_THEN_PLAN_SHAPES = [
@@ -420,14 +482,19 @@ const COUNTER_SHAPES = [
 const EXAMPLE_SLOT_COUNT = 6;
 const FORBIDDEN_NAME_GUIDANCE_LIMIT = 24;
 
+// R-128 — the five DISTINCT purposes. The sixth example slot has no sixth purpose to give it,
+// so it draws a second value from the same pool through its own registered deal
+// (`examplePurposeTail`) rather than hard-coding a repeat of "application" at slot 5. Splitting
+// the deal in two is what lets BPV11 audit both: a six-entry pool with "application" twice would
+// make that value's column frequency 2/6 and trip the round-robin cap by construction.
 const EXAMPLE_PURPOSES: ExampleSlotV1["purpose"][] = [
   "failure-mode",
   "application",
   "recovery",
   "contrast",
   "decision",
-  "application",
 ];
+const EXAMPLE_PURPOSE_SLOTS = EXAMPLE_PURPOSES.length;
 
 const EXAMPLE_BEATS = [
   "show a sound process being pressure-tested before commitment",
@@ -457,6 +524,15 @@ const EXAMPLE_BEATS_EXPERIENTIAL = [
   "show a small kindness rippling well past the moment it happened",
 ];
 
+// R-104 — the example FORMAT was `EXAMPLE_FORMATS[i]`: a bare slot index, no chapter term at
+// all, so all four live chapters shipped the identical six-format sequence and the package's
+// example tag column read decision_point / before_after / mistake_recovery / contrast /
+// planning_choice / decision_memo verbatim in every chapter. BPV3 only checked that the six were
+// distinct WITHIN a chapter, which a constant sequence satisfies perfectly.
+//
+// It is now a registered positional deal like every other pool (`exampleFormat`), widened past
+// the six slots so chapters draw different SUBSETS. Every added format is already a member of
+// the ExampleFormat union in src/types.ts.
 const EXAMPLE_FORMATS: ExampleFormat[] = [
   "decision_point",
   "before_after",
@@ -464,6 +540,10 @@ const EXAMPLE_FORMATS: ExampleFormat[] = [
   "contrast",
   "planning_choice",
   "decision_memo",
+  "dilemma",
+  "postmortem",
+  "predict_reveal",
+  "audit",
 ];
 
 function uniq<T>(xs: T[]): T[] {
@@ -508,9 +588,9 @@ function uniq<T>(xs: T[]): T[] {
 // chapters keep the pure closed form (identical bytes to the pre-salt world), and
 // a plain `salt` WITHOUT `saltOf` is a raw rank shift for pools that are not
 // cross-chapter comparable (the per-chapter venue palette ordering).
-function poolPermutation(size: number, bookId: string, poolKey: string): number[] {
+function seededPermutation(size: number, seedKey: string): number[] {
   const order = Array.from({ length: size }, (_, i) => i);
-  let seed = fnv1a(`positional:${normSlug(bookId)}:${poolKey}`);
+  let seed = fnv1a(seedKey);
   const next = () => {
     seed ^= seed << 13;
     seed ^= seed >>> 17;
@@ -522,6 +602,46 @@ function poolPermutation(size: number, bookId: string, poolKey: string): number[
     [order[i], order[j]] = [order[j], order[i]];
   }
   return order;
+}
+
+/** Symbol permutation — WHICH pool entry each rank names. Unchanged seed key, so a book that
+ *  keeps the same rank keeps the same string. */
+function poolPermutation(size: number, bookId: string, poolKey: string): number[] {
+  return seededPermutation(size, `positional:${normSlug(bookId)}:${poolKey}`);
+}
+
+// ── R-102: the rank function is a randomized LATIN SQUARE, not a marching shift ──────
+//
+// The old rank was `((n - 1) + slotIndex) % P`: chapter n's row is chapter (n-1)'s row rotated
+// by one. Live consequence on the candidate: ch01..ch04's seven card back shapes were ONE list
+// rotated by 1, 2 and 3, and ch03's nine prompt shapes were all nine shapes in marching order.
+//
+// What CANNOT change: BPV11's round-robin cap. At a fixed slot the column must still visit each
+// pool value once every P chapters, or the same-position sameness AS5/AS6/AS8/AS9 punish comes
+// straight back. A per-chapter *independent* permutation (the register's literal suggestion)
+// breaks exactly that — over 12 chapters and a 9-pool it lands a value 3x at some slot with high
+// probability, which BPV11 blocks. So independence is not available; what is available is a
+// different LATIN SQUARE.
+//
+//   rank(n, i) = ( rowPerm[(n - 1) mod P] + colPerm[i mod P] ) mod P
+//
+//   rows    — for a fixed n, distinct i give distinct colPerm[i], hence distinct ranks: within
+//             a chapter every slot still gets a different pool entry (guarantee (b)).
+//   columns — for a fixed i, as n runs over any P consecutive chapters, (n-1) mod P covers every
+//             residue and rowPerm is a bijection, so the column is a permutation of the pool:
+//             exactly one use of each value per P chapters, i.e. the ceil(C/P) cap BPV11 checks
+//             (guarantee (a)), with repeats maximally spaced.
+//   growth  — depends only on (bookId, poolKey, n, i) (guarantee (c)).
+//
+// What it buys: chapter n and chapter n+1 are no longer index-rotations of each other, because
+// colPerm scrambles the slot axis before the row offset is applied. And once a pool is WIDER
+// than the slot count (see the pool-width note above), the set each chapter draws differs too.
+function rowPermutation(size: number, bookId: string, poolKey: string): number[] {
+  return seededPermutation(size, `positional-row:${normSlug(bookId)}:${poolKey}`);
+}
+
+function colPermutation(size: number, bookId: string, poolKey: string): number[] {
+  return seededPermutation(size, `positional-col:${normSlug(bookId)}:${poolKey}`);
 }
 
 export function dealPositional<T>(args: {
@@ -543,7 +663,10 @@ export function dealPositional<T>(args: {
   if (pool.length === 0) throw new Error(`dealPositional: empty pool for poolKey ${poolKey}`);
   const P = pool.length;
   const perm = poolPermutation(P, bookId, poolKey);
-  const baseRank = (n: number) => (((n - 1) + slotIndex) % P + P) % P;
+  const rowPerm = rowPermutation(P, bookId, poolKey);
+  const colPerm = colPermutation(P, bookId, poolKey);
+  const colOffset = colPerm[((slotIndex % P) + P) % P];
+  const baseRank = (n: number) => ((rowPerm[(((n - 1) % P) + P) % P] + colOffset) % P + P) % P;
   if (!saltOf) {
     // Closed form (+ optional raw shift for non-comparable pools).
     return pool[perm[(baseRank(chapterNumber) + Math.max(0, salt)) % P]];
@@ -598,6 +721,32 @@ export type PositionalDealDescriptor = {
    *  from observed distinct values would mask a broken deal (a period-3 deal
    *  over a 9-pool looks perfectly balanced against its own 3 observed values). */
   poolSizeAt?: (slotIndex: number) => number;
+  /**
+   * CONTENT-DRIVEN deals (R-128). Fact ids, case cues and venues are not drawn from a fixed
+   * book-wide vocabulary: their candidate space is the chapter's own packet, and its size
+   * differs chapter to chapter. BPV11's round-robin cap needs ONE book-wide pool size, so it
+   * cannot be computed for them and applying the descriptor's size would be arithmetic theatre.
+   *
+   * These columns are audited by BPV13 instead, which sizes the pool to the values the column
+   * ITSELF was dealt and raises an ADVISORY when one value takes more of the column than that
+   * variety allows. What it catches: the R-125 collapse (a fixed card slot seeing two cases in a
+   * whole book) and the R-127 constant (a fixed card slot teaching one fact in every chapter).
+   * What it does NOT block: anything — it is advisory precisely because a legitimate small packet
+   * (two cases, four facts) concentrates a column for content reasons, and failing a run on that
+   * would be weakening the pipeline's ability to ship a thin-but-honest chapter, not tightening it.
+   */
+  contentDriven?: boolean;
+  /**
+   * R-065/R-106 — HYBRID columns. A slot the per-chapter derived staging may OWN: for a book with
+   * a design artifact, `slotIndex` carries the string this chapter's own packet produced, not a
+   * draw from the genre pool. Returns that string (so the audit can recognise it) or undefined
+   * when the design has none for this slot. checkPositionalDeals splits those values out of
+   * BPV11's pool-cap census and reports them under BPV13 instead: their candidate space is one
+   * chapter's mined material, so the round-robin arithmetic does not apply to them, and two
+   * chapters whose best-taught specific is the same recurring institution must not hard-fail the
+   * book. Every OTHER slot of the same column is still audited by BPV11 exactly as before.
+   */
+  derivedValueAt?: (derived: ChapterDerivedDesign | null, slotIndex: number) => string | undefined;
   extract: (bp: ChapterBlueprintV1) => string[];
 };
 
@@ -612,7 +761,8 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "cardBackShape", poolSize: CARD_BACK_SHAPES.length, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.backShape) },
   // sceneFrame / requiredBeat: even slots deal from the decision pool, odd from
   // the smaller experiential pool. poolSizeAt returns the correct per-slot pool.
-  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
+  // Slots 0 and 1 are derived-overridable (R-065): the chapter's own frameDecision / frameExperiential.
+  { poolKey: "exampleSceneFrame", poolSize: EXAMPLE_SCENE_FRAMES.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_SCENE_FRAMES.length, EXAMPLE_SCENE_FRAMES_EXPERIENTIAL.length), derivedValueAt: (derived, slotIndex) => (slotIndex === 0 ? derived?.frameDecision : slotIndex === 1 ? derived?.frameExperiential : undefined), extract: (bp) => bp.sections.examples.map((e) => e.sceneFrame) },
   { poolKey: "exampleRequiredBeat", poolSize: EXAMPLE_BEATS.length, slots: 6, perChapter: false, poolSizeAt: exampleParityPoolSize(EXAMPLE_BEATS.length, EXAMPLE_BEATS_EXPERIENTIAL.length), extract: (bp) => bp.sections.examples.map((e) => e.requiredBeat) },
   { poolKey: "ifThenPlanShape", poolSize: IF_THEN_PLAN_SHAPES.length, slots: 3, perChapter: false, extract: (bp) => bp.sections.action.ifThenPlanShapes },
   { poolKey: "hookShape", poolSize: HOOK_SHAPES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.hookShape] },
@@ -620,7 +770,38 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "actionMechanism", poolSize: ACTION_MECHANISMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.actionMechanism] },
   { poolKey: "weeklyPracticeForm", poolSize: WEEKLY_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.weeklyPracticeForm] },
   { poolKey: "practiceForm", poolSize: PRACTICE_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceForm] },
-  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceConstraint] },
+  { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, derivedValueAt: (derived) => derived?.practiceConstraint, extract: (bp) => [bp.sections.action.practiceConstraint] },
+  // ── R-128: the deals that were computed OUTSIDE this registry ─────────────────────────
+  //
+  // BPV11/BPV12 are the only cross-chapter collision audit in the pipeline, and they can only
+  // see what POSITIONAL_DEALS declares. Every entry below was, until this change, a bare modular
+  // expression inside compileChapterBlueprint — invisible to the audit, and (R-102/R-104/R-118/
+  // R-125/R-127) most of them were the broken ones. Registering them is what makes the gate able
+  // to catch the next regression of the same kind instead of a Phase-A reader finding it.
+  //
+  // The hook shape is NOT among them. R-118 made `sections.hook.shape` the dealt
+  // `reservedVariety.hookShape` itself — one deal, read twice — so registering the section view
+  // as its own poolKey would make BPV11 audit one column twice and BPV12 raise the hook pool-floor
+  // advisory twice for a single deal. The `hookShape` entry above covers it, and the R-118 test
+  // pins the two reads equal.
+  { poolKey: "examplePurpose", poolSize: EXAMPLE_PURPOSES.length, slots: EXAMPLE_PURPOSE_SLOTS, perChapter: false, extract: (bp) => bp.sections.examples.slice(0, EXAMPLE_PURPOSE_SLOTS).map((e) => e.purpose) },
+  // The sixth example slot's purpose: a second draw from the same five-value pool through its own
+  // per-chapter deal, so its column is audited without making "application" a duplicate pool entry.
+  { poolKey: "examplePurposeTail", poolSize: EXAMPLE_PURPOSES.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.examples[EXAMPLE_PURPOSE_SLOTS]?.purpose].filter((v): v is ExampleSlotV1["purpose"] => !!v) },
+  { poolKey: "exampleSceneMode", poolSize: SCENE_MODES.length, slots: 6, perChapter: false, extract: (bp) => bp.sections.examples.map((e) => e.sceneMode) },
+  { poolKey: "exampleFormat", poolSize: EXAMPLE_FORMATS.length, slots: 6, perChapter: false, extract: (bp) => (bp.plan?.exampleSpecs ?? []).map((spec) => String(spec.format)) },
+  { poolKey: "reservedSceneMode", poolSize: SCENE_MODES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.sceneMode] },
+  { poolKey: "sceneMechanism", poolSize: sceneMechanismDirectives().length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.sceneMechanism] },
+  // The venue deal orders THIS chapter's own six-venue palette, so its "pool" is the palette.
+  { poolKey: "venue", contentDriven: true, poolSize: EXAMPLE_SLOT_COUNT, slots: 6, perChapter: false, extract: (bp) => bp.sections.examples.map((e) => e.venue) },
+  // Fact and case cue deals are CONTENT-driven — see PositionalDealDescriptor.contentDriven.
+  // The eleventh deal R-128 names: example slot i's mandated fact. Content-driven like the card
+  // fact deal — its candidate space is this chapter's own ranked facts — and registered here so
+  // BPV13 can see an example column that teaches the same fact in every chapter.
+  { poolKey: "exampleFact", contentDriven: true, poolSize: 0, slots: 6, perChapter: false, extract: (bp) => bp.sections.examples.map((e) => e.requiredFactIds[0] ?? "") },
+  { poolKey: "cardFact", contentDriven: true, poolSize: 0, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.requiredFactIds[0] ?? "") },
+  { poolKey: "quizCaseCue", contentDriven: true, poolSize: 0, slots: 9, perChapter: false, extract: (bp) => bp.sections.quiz.map((q) => q.caseCueIds[0] ?? "") },
+  { poolKey: "cardCaseCue", contentDriven: true, poolSize: 0, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.caseCueIds[0] ?? "") },
 ];
 
 // P10 sidecar-field → poolKey mapping: which coarse repair salt drives which deals.
@@ -644,11 +825,94 @@ function pick<T>(xs: T[], offset: number, count: number): T[] {
   return out;
 }
 
-function forbiddenNameGuidance(allowedNames: string[], sourceProtectedNames: Set<string>, siblingNames: Set<string>): string[] {
-  const protectedFirst = [...sourceProtectedNames].sort();
-  const siblingNext = [...siblingNames].sort();
-  const remainingBank = compilerNameBank().filter((name) => !allowedNames.includes(name) && !sourceProtectedNames.has(name) && !siblingNames.has(name));
-  return uniq([...protectedFirst, ...siblingNext, ...remainingBank]).slice(0, FORBIDDEN_NAME_GUIDANCE_LIMIT);
+/**
+ * R-114 / R-115 — the forbidden-name list is INFORMATION, not padding.
+ *
+ * It used to be: source-protected names, then sibling names, then as much of the rest of the
+ * name bank as fitted a 24-entry cap. Only the first few entries carried information; the tail
+ * was "names this chapter did not happen to draw", which is not a prohibition at all. Phase A
+ * read live ch03 forbidding "Russell" while live ch04's allowedNames contained "Russell" as the
+ * defect. That entry is in fact the one kind worth stating — a name the book gives to another
+ * chapter is exactly what a writer must not reuse. The defect was the twenty entries around it
+ * that belonged to no chapter at all.
+ *
+ * R-115: the head of the list was the five hard-coded investing figures (Benjamin, Graham,
+ * Dodd, Buffett, Warren), which on a memoir BY Benjamin Franklin opened the writer's forbidden
+ * list with "Benjamin". Those five are now genre-keyed config (config/genre-pools.json,
+ * `reservedFigureNames`), and only the book's own genre contributes them.
+ *
+ * What the list is now, in order: the book's genre canon, the names THIS chapter's packet
+ * protects (real source figures in its own material), and then the casts of the nearest OTHER
+ * chapters, walked outward (n-1, n+1, n-2, n+2, …) until the 24-entry budget is spent. Every
+ * entry is a true prohibition, and the ordering puts the collisions a reader would actually
+ * notice — the chapter before and the chapter after — at the head.
+ *
+ * `dealtHere` is a defensive filter, not a source of entries: any name THIS chapter is actually
+ * dealt is removed, so the guidance can never contradict the deal in the same blueprint.
+ */
+function forbiddenNameGuidance(
+  sourceProtectedNames: Set<string>,
+  otherChapterNames: string[],
+  genreReservedNames: Set<string>,
+  dealtHere: Set<string>,
+): string[] {
+  const protectedFirst = [...genreReservedNames].sort();
+  const packetNext = [...sourceProtectedNames].filter((name) => !genreReservedNames.has(name)).sort();
+  return uniq([...protectedFirst, ...packetNext, ...otherChapterNames])
+    .filter((name) => !dealtHere.has(name))
+    .slice(0, FORBIDDEN_NAME_GUIDANCE_LIMIT);
+}
+
+/**
+ * R-114 — the casts of the chapters NEAREST this one, nearest first.
+ *
+ * `siblingUsedNames` above only ever replays EARLIER chapters that share this chapter's name
+ * bucket, and NAME_BUCKET_COUNT is 40: for any book of 40 chapters or fewer it returns the empty
+ * set, so the "sibling" half of the old guidance was dead in every real book. The names a writer
+ * must not reuse are the ones the book deals to its other chapters, and those are found by
+ * replaying each neighbour's deal from the same pure inputs the neighbour's own compile uses:
+ * the canonical index, that chapter's compiled source packet, and its own salt. Nothing here
+ * depends on how much of the book has been AUTHORED — no drafted section is read.
+ *
+ * It does depend on which neighbours' PACKETS are on disk. A neighbour whose packet is missing or
+ * unreadable is skipped (the guidance carries one fewer chapter's cast) rather than failing this
+ * chapter's compile, so a compile run with only some packets on disk produces a different
+ * forbiddenNames list — and therefore different blueprint bytes, a different blueprintDigest and a
+ * different section-pack cache key — than one with all of them. The candidate path writes every
+ * chapter's packet to the state root before compiling any blueprint (compilerApplicationPort), and
+ * `compileBlueprints` walks the canonical index in one pass over packets a preceding step wrote,
+ * so on the paths that produce books the input set is the whole book. A single-chapter compile
+ * against a partially populated state root is the case that differs.
+ *
+ * Bounded by `budget`: the walk stops as soon as it has enough names to fill the guidance cap,
+ * so a 34-chapter book reads a handful of packets per chapter, not all of them.
+ */
+function neighbourCastNames(bookId: string, chapterNumber: number, roots: CompilerStoreRoots, salts: SlotSalts, budget: number): string[] {
+  if (budget <= 0) return [];
+  const index = readCanonicalChapterIndex(bookId, roots.stateRoot);
+  if (!index.ok) return [];
+  const present = new Set(index.chapters.map((c) => c.chapterNumber));
+  const order: number[] = [];
+  const span = Math.max(...present, chapterNumber);
+  for (let step = 1; step <= span; step++) {
+    for (const m of [chapterNumber - step, chapterNumber + step]) {
+      if (m !== chapterNumber && present.has(m)) order.push(m);
+    }
+  }
+  const names: string[] = [];
+  for (const m of order) {
+    if (names.length >= budget) break;
+    const packetP = sourcePacketPath(bookId, m, roots);
+    if (!existsSync(packetP)) continue;
+    try {
+      const packet = readJsonFile<SourcePacketV1>(packetP);
+      for (const name of dealAllowedNames(bookId, m, packet, roots, salts).allowedNames) names.push(name);
+    } catch {
+      // A neighbour's packet being unreadable must not fail this chapter's compile; the guidance
+      // simply carries one fewer chapter's cast.
+    }
+  }
+  return uniq(names);
 }
 
 function shuffledAnswerPattern(chapterNumber: number, count: number, salt: number): number[] {
@@ -864,21 +1128,85 @@ function caseIds(packet: SourcePacketV1): string[] {
   return packet.namedCases.map((c) => c.id).filter(Boolean);
 }
 
-function bestCaseIdForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): string[] {
+/** The best-linked case for a fact, ignoring load. Kept as the single-slot helper for callers
+ *  that must cite something and have no budget to balance. */
+export function bestCaseIdForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number): string[] {
   const [best] = rankedCaseIdsForFact(packet, factId, fallbackIndex);
   return best ? [best] : [];
 }
 
-function exampleCaseIdForFact(packet: SourcePacketV1, factId: string | undefined, fallbackIndex: number, usedCaseCounts: Map<string, number>): string[] {
-  const ranked = rankedCaseIdsForFact(packet, factId, fallbackIndex);
-  const minCount = Math.min(...ranked.map((id) => usedCaseCounts.get(id) ?? 0));
-  const next = ranked.find((id) => (usedCaseCounts.get(id) ?? 0) === minCount) ?? ranked[0];
-  if (!next) return [];
-  usedCaseCounts.set(next, (usedCaseCounts.get(next) ?? 0) + 1);
+// ── R-101 / R-062 / R-119 / R-125 — fact-relevant case cue dealing ────────────────────
+//
+// THREE defects shared one root: a case cue was chosen by SLOT POSITION or by raw load, not by
+// whether the slot's fact has anything to do with the case.
+//
+//   R-101  exampleCaseIdForFact load-balanced across the WHOLE ranked list. On live ch03 the
+//          fact militia-workaround scored militia=11, hospital=3, junto=1 — and the dealer gave
+//          ex05 `junto`, the worst-linked case, purely because junto was the least used.
+//   R-062  quiz cues were `cases[(n + i - 1) % |cases|]` — pure position. SEC56 then makes the
+//          dealt cue MANDATORY in the reader-facing stem and explanation, so a Penn-negotiation
+//          question opened on a near-shipwreck and the explanation disclaimed it.
+//   R-119  nine quiz slots over five cases forced each case's specifics onto four quiz surfaces.
+//   R-125  card cues used the stride (n*2 + i), so an even |cases| left a fixed card slot seeing
+//          only two distinct cases in the whole book.
+//
+// The replacement is one dealer with three knobs:
+//   • HEAD TOLERANCE — load-balancing happens only among cases within CASE_CUE_HEAD_TOLERANCE
+//     points of the best score, so a balance decision can never reach past a genuinely better
+//     link. (R-101.)
+//   • LINKAGE REQUIREMENT — quiz and card slots take a cue ONLY when the fact clears
+//     CASE_LINKAGE_MIN_SCORE against some case. An unlinked slot gets NO cue, which is what stops
+//     SEC56 from welding an unrelated case into the stem. Example slots pass requireLink:false
+//     because BPV10 makes an example anchor mandatory. (R-062.)
+//   • MULTIPLICITY CAP — quiz and cards each hold a case to MAX_CASE_CUES_PER_SURFACE cues, so
+//     no case reaches more than MAX_CASE_CUES_PER_CHAPTER learning units. (R-119/R-125.)
+//
+// WHAT THIS STOPS BLOCKING: nothing. No gate reads caseCueIds; SEC55-58 validate the cues that
+// ARE present. Fewer, better-linked cues mean SEC56 fires on fewer slots — each of which now has
+// a case whose specifics genuinely belong in the answer.
+export const CASE_CUE_HEAD_TOLERANCE = 1;
+/** Quiz + card slots one case may cue in a chapter. Two is enough for a case to be retrievable
+ *  from more than one angle and far below the four-per-case the positional stride forced. */
+export const MAX_CASE_CUES_PER_CHAPTER = 2;
+/** …split ONE per learning surface. A single shared counter let the quiz (dealt first) spend the
+ *  whole budget and leave every card uncued, which trades one monoculture for another; a per-
+ *  surface cap of 1 keeps the chapter cap at 2 while guaranteeing cards can still anchor. */
+export const MAX_CASE_CUES_PER_SURFACE = 1;
+
+export function dealCaseCue(
+  packet: SourcePacketV1,
+  factId: string | undefined,
+  fallbackIndex: number,
+  used: Map<string, number>,
+  opts: { cap: number; requireLink: boolean },
+): string[] {
+  const scored = scoredCaseIdsForFact(packet, factId, fallbackIndex);
+  if (!scored.length) return [];
+  const top = scored[0].score;
+  if (opts.requireLink && top < CASE_LINKAGE_MIN_SCORE) return [];
+  const head = scored.filter((item) => item.score >= top - CASE_CUE_HEAD_TOLERANCE).map((item) => item.id);
+  const underCap = head.filter((id) => (used.get(id) ?? 0) < opts.cap);
+  // ORDER OF PREFERENCE, and why it is this order:
+  //   1. a best-linked case that is still under its fair share — relevance AND variety;
+  //   2. (required cues only) the least-used case ANYWHERE in the ranking — when every
+  //      well-linked case has already taken its share, a sixth example anchored on a fourth
+  //      repeat of one case would recite the same hardSpecifics six times, which is the
+  //      sameness the panel reads. Relevance wins first; variety breaks the tie afterwards;
+  //   3. (optional cues only) no cue at all — better than welding an unrelated case into a
+  //      quiz stem that SEC56 then makes mandatory (R-062).
+  const allRanked = scored.map((item) => item.id);
+  const spillover = allRanked.filter((id) => (used.get(id) ?? 0) < opts.cap);
+  const candidates = underCap.length
+    ? underCap
+    : (opts.requireLink ? [] : (spillover.length ? spillover : allRanked));
+  if (!candidates.length) return [];
+  const minCount = Math.min(...candidates.map((id) => used.get(id) ?? 0));
+  const next = candidates.find((id) => (used.get(id) ?? 0) === minCount)!;
+  used.set(next, (used.get(next) ?? 0) + 1);
   return [next];
 }
 
-function buildPlan(chapter: ChapterSpec, packet: SourcePacketV1, examples: ExampleSlotV1[], quizCount: number, cardCount: number): ChapterDesignDoc {
+function buildPlan(chapter: ChapterSpec, packet: SourcePacketV1, examples: ExampleSlotV1[], quizCount: number, cardCount: number, exampleFormats: ExampleFormat[]): ChapterDesignDoc {
   const ids = orderedTeachingIds(packet);
   // P13: the core move is the chapter's BEST idea (top-ranked mechanism fact), not facts[0].
   // Legacy packets carry no coreMoveFactId, so this falls back to the pre-P13 facts[0] behavior.
@@ -887,10 +1215,19 @@ function buildPlan(chapter: ChapterSpec, packet: SourcePacketV1, examples: Examp
     || packet.facts[0]?.mechanism || packet.facts[0]?.claim
     || `Use ${chapter.chapterTitle} as a concrete decision tool.`;
   const exampleSpecs = examples.map((slot, i) => ({
-    domain: `${slot.venue}: ${slot.sceneMode}; ${slot.sceneFrame}`,
+    // R-111 — the domain is the VENUE, full stop.
+    //
+    // It used to be `${venue}: ${sceneMode}; ${sceneFrame}` — three unrelated staging fields
+    // welded into one string. assembler.buildTags then took words [0] and [2] of that string as
+    // the example's reader-visible TAGS, which is how the shipped package ended up tagged
+    // ["decision_memo", "working", "bags"] off the domain "a working note on four courses a
+    // year: small experiment; a first encounter with buckets and bags that sets a benchmark".
+    // sceneMode and sceneFrame already reach the writer as their own fields on this slot, so
+    // nothing is lost by not restating them here.
+    domain: slot.venue,
     audience: "a reader applying this chapter in a realistic everyday decision",
     stakes: slot.purpose === "failure-mode" ? "the default behavior quietly costs the reader" : "a small correct move creates a visible improvement",
-    format: EXAMPLE_FORMATS[i],
+    format: exampleFormats[i],
     requiredBeat: slot.requiredBeat,
     sourceAnchorIds: [...slot.requiredCaseIds],
   }));
@@ -939,6 +1276,8 @@ function legacyResolvedPools(bookId: string): ResolvedPools {
     weeklyForms: [...WEEKLY_FORMS],
     venuePaletteFor: (chapterNumber: number) => plannedVenuePalette(bookId, chapterNumber),
     forbiddenVenuesFor: (venuePalette: string[]) => FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
+    // The legacy path has no design artifact and therefore no per-chapter mined staging.
+    chapterDerived: () => null,
   };
 }
 
@@ -1000,16 +1339,59 @@ export function compileChapterBlueprint(args: {
   const quizCount = 9;
   const cardCount = 7;
   const exampleCount = EXAMPLE_SLOT_COUNT;
-  const { allowedNames, sourceProtectedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots, salts);
+  const { allowedNames, siblingNames } = dealAllowedNames(bookId, n, packet, roots, salts);
+  // R-115 — guidance vs. deal. The DEAL still excludes the default reserved block (via
+  // dealAllowedNames → protectedSourceNames' default), because sectionGate's SEC34 reserves those
+  // same names book-wide and dealing one would deadlock a compile. The GUIDANCE shows only real
+  // prohibitions for THIS book: its genre's canon plus the names its own packet protects.
+  const genreReservedNames = new Set(reservedFigureNamesForGenre(genreForBook(bookId)));
+  const packetProtectedNames = protectedSourceNames(packet, compilerNameBank(), []);
+  // R-114 — the prohibitions worth stating: the far-bucket siblings this chapter's deal already
+  // subtracted, then the nearest other chapters' casts, up to the guidance cap.
+  const otherChapterNames = uniq([
+    ...[...siblingNames].sort(),
+    ...neighbourCastNames(bookId, n, roots, salts, FORBIDDEN_NAME_GUIDANCE_LIMIT),
+  ]);
+  const chapterDerived = pools.chapterDerived(n);
   const venuePalette = pools.venuePaletteFor(n);
+  // R-113 — forbiddenVenues is the ADJACENT chapters' palettes, not "four venues this chapter
+  // did not draw". The old list was `allVenues.filter(not in palette).slice(0, 4)`: with the
+  // derived venues sitting at the head of the pool, every chapter forbade the same four derived
+  // strings, and because the pool head was book-wide those four were another chapter's tokens
+  // re-injected as a prohibition. Neighbours are the collision the field was written to prevent.
+  const forbiddenVenues = uniq(
+    [n - 1, n + 1]
+      // Only chapters the book actually has: a 4-chapter book must not forbid the palette of a
+      // chapter 5 that will never exist.
+      .filter((m) => m >= 1 && m <= totalForDeal)
+      .flatMap((m) => {
+        try {
+          return pools.venuePaletteFor(m);
+        } catch {
+          return [] as string[];
+        }
+      })
+      .filter((v) => !venuePalette.includes(v)),
+  ).slice(0, 4);
   const pattern = answerPattern(n, quizCount, totalChapters);
+  // R-119/R-125 — three cue budgets. Quiz and cards each hold a case to one cue
+  // (MAX_CASE_CUES_PER_SURFACE), so no case reaches more than MAX_CASE_CUES_PER_CHAPTER learning
+  // units; examples keep a separate budget because BPV10 makes an example anchor mandatory and
+  // their fair share is set by the slot count, not by the learning-unit ceiling.
   const usedExampleCaseCounts = new Map<string, number>();
+  const usedQuizCaseCounts = new Map<string, number>();
+  const usedCardCaseCounts = new Map<string, number>();
+  const exampleCaseCap = Math.max(1, Math.ceil(exampleCount / Math.max(1, cases.length)));
   const examples: ExampleSlotV1[] = Array.from({ length: exampleCount }, (_, i) => {
     const factId = exampleFactId(ids, n, i);
     return {
       slotId: `ex${String(i + 1).padStart(2, "0")}`,
-      purpose: EXAMPLE_PURPOSES[(n + i - 1) % EXAMPLE_PURPOSES.length],
-      sceneMode: SCENE_MODES[(n + i) % SCENE_MODES.length],
+      // R-128 — purpose and sceneMode were `(n + i - 1) % 6` / `(n + i) % 9`: bare marching
+      // arithmetic invisible to BPV11. Both are registered positional deals now.
+      purpose: i < EXAMPLE_PURPOSE_SLOTS
+        ? deal(EXAMPLE_PURPOSES, "examplePurpose", i)
+        : deal(EXAMPLE_PURPOSES, "examplePurposeTail", 0),
+      sceneMode: deal(SCENE_MODES, "exampleSceneMode", i),
       // Guarantee a MIX: odd slots get a non-deliberation experiential engine, even slots a
       // decision engine — so every chapter's six examples span both kinds (3+3) instead of six
       // flavors of "decide." This is the deterministic lever against scene_skeleton sameness.
@@ -1017,17 +1399,32 @@ export function compileChapterBlueprint(args: {
       // even slots never collide with a prior chapter's same even slot (and likewise odd),
       // while the 3+3 decision/experiential parity is preserved by the parity switch itself.
       // A `redeal:example-slot` bump (exampleFrames salt) re-deals via the sibling-safe scan.
-      sceneFrame: i % 2 === 1
-        ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
-        : deal(pools.sceneFramesDecision, "exampleSceneFrame", i),
+      // R-065 — slot 0 and slot 1 stage THIS chapter's own best-taught mined specific when the
+      // design artifact carries one; every other slot draws from the book's genre pool. The
+      // deriver prefers a specific no earlier chapter already staged, but a book whose material
+      // keeps returning to one institution can still hand two chapters the same string — that is
+      // content, not a broken deal, so POSITIONAL_DEALS marks these two slots derived-overridable
+      // and BPV11 hands them to BPV13 (advisory) instead of blocking the book.
+      sceneFrame: (i === 0 ? chapterDerived?.frameDecision : i === 1 ? chapterDerived?.frameExperiential : undefined)
+        ?? (i % 2 === 1
+          ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
+          : deal(pools.sceneFramesDecision, "exampleSceneFrame", i)),
       // Deal which palette entry lands in each slot so slot 0's venue is not always
       // venuePalette[0]; a `redeal:venue` bump shifts the ordering (raw rank shift — the
       // palette is chapter-local, so there is no cross-chapter column to scan against).
       venue: dealPositional({ pool: venuePalette, bookId, poolKey: "venue", chapterNumber: n, slotIndex: i, totalChapters: totalForDeal, salt: venueSalt }),
-      allowedNames: pick(allowedNames, i, 3),
+      // R-120 — ONE dealt protagonist per slot, disjoint across the chapter's six slots.
+      //
+      // It used to be `pick(allowedNames, i, 3)` over a six-name list: a modular WINDOW, so slot
+      // 5 received [names[5], names[0], names[1]] — the same two people it had already offered
+      // to slots 0 and 1. Phase A recorded the consequence in the prose: one name playing an
+      // adult in ex01 and a child in ex04 of the same chapter. The chapter's whole cast is still
+      // visible to the writer (and to SEC35) via reservedVariety.allowedNames; what the slot
+      // carries now is who this scene belongs to.
+      allowedNames: allowedNames[i] ? [allowedNames[i]] : [],
       requiredFactIds: factId ? [factId] : [],
-      requiredCaseIds: exampleCaseIdForFact(packet, factId, i, usedExampleCaseCounts),
-      forbiddenVenues: pools.forbiddenVenuesFor(venuePalette),
+      requiredCaseIds: dealCaseCue(packet, factId, i, usedExampleCaseCounts, { cap: exampleCaseCap, requireLink: false }),
+      forbiddenVenues,
       requiredBeat: i % 2 === 1
         ? deal(pools.beatsExperiential, "exampleRequiredBeatExperiential", i)
         : deal(pools.beatsDecision, "exampleRequiredBeat", i),
@@ -1051,7 +1448,7 @@ export function compileChapterBlueprint(args: {
   const quiz: QuizSlotV1[] = Array.from({ length: quizCount }, (_, i) => ({
     questionId: `q${String(i + 1).padStart(2, "0")}`,
     requiredFactIds: quizFactBySlot[i] ? [quizFactBySlot[i] as string] : [],
-    caseCueIds: cases.length ? [cases[(n + i - 1) % cases.length]] : [],
+    caseCueIds: dealCaseCue(packet, quizFactBySlot[i], i, usedQuizCaseCounts, { cap: MAX_CASE_CUES_PER_SURFACE, requireLink: true }),
     // correctIndex stays UNSALTED — it is pinned by answerPattern's BP14-safe deal and a
     // repair must never silently move a quiz key. quizSalt shifts only the SHAPE picks (prompt/
     // answer/distractor here; card shapes below), the redeal:quiz-slot / redeal:card-slot lever.
@@ -1062,10 +1459,38 @@ export function compileChapterBlueprint(args: {
     distractorTrap: deal(QUIZ_DISTRACTOR_TRAPS, "quizDistractorTrap", i),
   }));
   assertFactIdsSubset(quiz.flatMap((q) => q.requiredFactIds), allFactIds, `chapter ${chapter.chapterNumber} quiz`);
+  // ── R-127 — card fact routing: chapter-varying AND coverage-completing ────────────────
+  //
+  // It used to be `ids[i % ids.length]`: no chapter term at all (unlike the example dealer),
+  // so card slot i taught rank-i fact in EVERY chapter of the book, and because difficulty is
+  // pinned to the same index the chapter's best-ranked fact was always an "easy" card and its
+  // hardest facts always "hard". With 7 cards over 10-11 ranked ids, the tail 3-4 facts of every
+  // chapter reached no card at all.
+  //
+  // The replacement deals cards from the rank list ROTATED BY CHAPTER (so a fixed card slot sees
+  // a different fact each chapter, and rank no longer implies difficulty), then runs a coverage
+  // pass that places any teaching fact still mandated nowhere onto a trailing card slot.
+  // Difficulty stays positional — it is a property of the SLOT, not of the fact.
+  const routedElsewhere = new Set<string>([
+    ...quizFactBySlot.filter((id): id is string => !!id),
+    ...examples.flatMap((ex) => ex.requiredFactIds),
+  ]);
+  const rotatedIds = rotate([...ids], ids.length ? (n - 1) % ids.length : 0);
+  const cardFacts = Array.from({ length: cardCount }, (_, i) => (rotatedIds.length ? rotatedIds[i % rotatedIds.length] : undefined));
+  // Coverage pass: a teaching fact that reaches neither the quiz, an example nor a card is a fact
+  // the chapter mandates nowhere. Place each such orphan on a trailing card slot, but only over a
+  // fact that is still taught somewhere else — so covering one fact can never orphan another.
+  const orphans = ids.filter((id) => !routedElsewhere.has(id) && !cardFacts.includes(id));
+  for (let slot = cardCount - 1; slot >= 0 && orphans.length > 0; slot--) {
+    const current = cardFacts[slot];
+    const coveredWithoutThisSlot = !current || routedElsewhere.has(current) || cardFacts.some((id, j) => j !== slot && id === current);
+    if (!coveredWithoutThisSlot) continue;
+    cardFacts[slot] = orphans.shift();
+  }
   const cards: CardSlotV1[] = Array.from({ length: cardCount }, (_, i) => ({
     cardId: `rc${String(i + 1).padStart(2, "0")}`,
-    requiredFactIds: ids.length ? [ids[i % ids.length]] : [],
-    caseCueIds: cases.length ? [cases[(n * 2 + i) % cases.length]] : [],
+    requiredFactIds: cardFacts[i] ? [cardFacts[i] as string] : [],
+    caseCueIds: dealCaseCue(packet, cardFacts[i], i, usedCardCaseCounts, { cap: MAX_CASE_CUES_PER_SURFACE, requireLink: true }),
     difficulty: i < 2 ? "easy" : i < 5 ? "medium" : "hard",
     frontShape: deal(CARD_FRONT_SHAPES, "cardFrontShape", i),
     retrievalTarget: deal(CARD_RETRIEVAL_TARGETS, "cardRetrievalTarget", i),
@@ -1074,7 +1499,38 @@ export function compileChapterBlueprint(args: {
   const actionMechanism = deal(pools.actionMechanisms, "actionMechanism", 0);
   const weeklyPracticeForm = deal(pools.weeklyForms, "weeklyPracticeForm", 0);
   const practiceForm = deal(pools.practiceForms, "practiceForm", 0);
-  const plan = buildPlan(chapter, packet, examples, quizCount, cardCount);
+  const exampleFormats = Array.from({ length: exampleCount }, (_, i) => deal(EXAMPLE_FORMATS, "exampleFormat", i));
+  const plan = buildPlan(chapter, packet, examples, quizCount, cardCount, exampleFormats);
+  const hookShape = deal(HOOK_SHAPES, "hookShape", 0);
+  // R-117 — sceneMechanism and sceneMode were `SCENE_MODES[n % 9]` and `SCENE_MODES[(n + 1) % 9]`:
+  // ADJACENT members of one nine-string list handed to the writer as two different instructions
+  // ("your marquee MOVE is conversation repair; your STANCE is stakes audit"). Meanwhile
+  // config/scene-mechanisms.json held ten genuinely orthogonal dramatic transactions with written
+  // directives, loaded by nothing on this path. The mechanism now comes from that palette and the
+  // mode keeps SCENE_MODES, so the two axes are actually two axes. Both are registered deals.
+  const sceneMechanism = deal(sceneMechanismDirectives(), "sceneMechanism", 0);
+  const sceneMode = deal(SCENE_MODES, "reservedSceneMode", 0);
+  // R-126 — the hook, the coreMove, the summaries spine and the action step all keyed the SAME
+  // head of the ranked teaching list, with no rotation by chapter or by section: in all four live
+  // blueprints summaries.requiredFactIds and action.requiredFactIds were byte-identical triples.
+  // The spine STAYS the top-3 (that is the pedagogical claim P13 makes and it is a good one);
+  // what moves is everything keyed off it — the hook rotates within the top-3 by chapter, and the
+  // action step prefers mechanism facts the spine did NOT already mandate.
+  const summarySpine = rankingActive ? ids.slice(0, 3) : ids.slice(0, 5);
+  const hookFactIds = ids.length ? [ids.slice(0, Math.min(3, ids.length))[(n - 1) % Math.min(3, ids.length)]] : [];
+  const spine = new Set(summarySpine);
+  // Preference order, strongest constraint first: P13's "the action step is built on MECHANISM
+  // facts" outranks R-126's "do not repeat the spine", so an off-spine mechanism fact comes
+  // first, then ANY mechanism fact, and only a chapter with fewer than three mechanism facts
+  // reaches the plain rank list.
+  const actionFactIds = rankingActive
+    ? uniq([
+        ...mechanismIds.filter((id) => !spine.has(id)),
+        ...mechanismIds,
+        ...ids.filter((id) => !spine.has(id)),
+        ...ids,
+      ]).slice(0, 3)
+    : ids.slice(0, 3);
   return {
     schemaVersion: CHAPTER_BLUEPRINT_SCHEMA_VERSION,
     bookId: normSlug(bookId),
@@ -1094,33 +1550,40 @@ export function compileChapterBlueprint(args: {
     },
     reservedVariety: {
       allowedNames,
-      forbiddenNames: forbiddenNameGuidance(allowedNames, sourceProtectedNames, siblingNames),
-      hookShape: deal(HOOK_SHAPES, "hookShape", 0),
+      forbiddenNames: forbiddenNameGuidance(packetProtectedNames, otherChapterNames, genreReservedNames, new Set(allowedNames)),
+      hookShape,
       counterShape: deal(COUNTER_SHAPES, "counterShape", 0),
-      sceneMechanism: SCENE_MODES[n % SCENE_MODES.length],
-      sceneMode: SCENE_MODES[(n + 1) % SCENE_MODES.length],
+      sceneMechanism,
+      sceneMode,
       venuePalette,
       answerIndexPattern: pattern,
       actionMechanism,
       weeklyPracticeForm,
     },
     sections: {
-      hook: { shape: n % 2 === 0 ? "reader-stakes" : "concrete-moment", requiredFactIds: ids.slice(0, 1) },
+      // R-118 — this used to be a SECOND hook deal, `n % 2 === 0 ? "reader-stakes" :
+      // "concrete-moment"`, competing with the nine-shape reservedVariety.hookShape the summary
+      // writer receives in the same prompt. Half the book got each of two shapes, the binary
+      // escaped BPV12's pool floor entirely, and the writer was handed two different opening
+      // instructions. One deal now — the same value the summary carries — audited by BPV11/BPV12
+      // once, under the `hookShape` entry in POSITIONAL_DEALS.
+      hook: { shape: hookShape, requiredFactIds: hookFactIds },
       // P13: summaries teach the top-3 SPINE facts (best ideas) when ranked; legacy packets keep
       // the historical top-5 packet-order slice so their blueprints are byte-identical.
-      summaries: { fastReadTargetChars: [350, 900], deepReadTargetChars: [1000, 2200], fullReadTargetChars: [2400, 4200], requiredFactIds: rankingActive ? ids.slice(0, 3) : ids.slice(0, 5) },
+      summaries: { fastReadTargetChars: [350, 900], deepReadTargetChars: [1000, 2200], fullReadTargetChars: [2400, 4200], requiredFactIds: summarySpine },
       examples,
       quiz,
       cards,
       action: {
         actionMechanism,
-        // P13: the action step is built on the top-3 MECHANISM facts (padded from rank order if
-        // fewer than 3 mechanism facts). Legacy packets keep the historical top-3 packet-order slice.
-        requiredFactIds: rankingActive ? uniq([...mechanismIds, ...ids]).slice(0, 3) : ids.slice(0, 3),
+        // P13 + R-126: the top-3 MECHANISM facts the summaries spine did not already mandate
+        // (padded from rank order, then from the spine itself if the chapter has too few facts
+        // to avoid it). Legacy packets keep the historical top-3 packet-order slice.
+        requiredFactIds: actionFactIds,
         weeklyPracticeForm,
         ifThenPlanShapes: Array.from({ length: 3 }, (_, i) => deal(IF_THEN_PLAN_SHAPES, "ifThenPlanShape", i)),
         practiceForm,
-        practiceConstraint: deal(pools.practiceConstraints, "practiceConstraint", 0),
+        practiceConstraint: chapterDerived?.practiceConstraint ?? deal(pools.practiceConstraints, "practiceConstraint", 0),
       },
     },
     constraints: {

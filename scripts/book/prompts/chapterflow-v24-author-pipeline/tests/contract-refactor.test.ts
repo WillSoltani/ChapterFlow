@@ -294,6 +294,19 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
 // (70.0%, the binding card), action 30,451 -> 31,445. Nothing else in this
 // package touches the card. The pin is moved to 71%, one point above the
 // measurement, exactly as the 60->62 and 62->69 re-pins above did.
+// MERGE RE-MEASURE (this branch, package 1C the dealing redesign, merged origin/main
+// d6bf5933d, wave-1 source-text ingestion). MEASURED on the merge, all four kinds:
+//   summary 33,199 = 68.7%   example 35,288 = 64.6%
+//   learning 37,435 = 70.2% (binding)   action 31,548 = 67.2%
+// Every kind is BELOW the pre-merge measurement recorded above (binding learning was
+// 38,169 = 71.6%), so the 72% pin holds unchanged and is re-stated here against the
+// merged render, so the next creep is measured from a true baseline. The reduction is
+// not contract prose: 1C's only section-contract edit is in the EXAMPLE-pack block and
+// ADDS characters (R-064's SCENE ENGINE BY SLOT rule, +307 measured at
+// candidateRepairWritingContract.ts), yet the example card fell the FURTHEST (-1,270).
+// What shrank is the packet JSON every card embeds: R-116's properNounTokens filter
+// drops sentence-opening ordinary words from facts[].groundedEntities, which
+// tests/compiler-pipeline.test.ts pins by name.
 test("every rendered task is <= 72% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
@@ -365,6 +378,8 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   // 45,459 = 85.3%, so the pin is 86%. The DELTA assertion below — the thing this test
   // is really for — is unchanged at 7,290, which is the proof that the growth is the
   // context block and 1B's contract lines, not prose creep.
+  // MERGE RE-MEASURE (1C + wave-1): 44,725 = 83.9%, prose delta 7,290 (unchanged).
+  // Below the 45,459 = 85.3% recorded above, for the same reason as the ratio pin; 86% holds.
   assert.ok(withProse.length <= 0.86 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 86% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
@@ -401,6 +416,8 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   // MERGE RE-PIN 88% -> 89%: origin/main's package 1B added its contract lines to the
   // same card and the merged render measures 47,146 = 88.4%. The clamp delta is STILL
   // 8,977 — unchanged by both packages, which is exactly what this test asserts below.
+  // MERGE RE-MEASURE (1C + wave-1): 46,412 = 87.1%, below the 88.x% the 89% pin was set
+  // on; the clamp still holds the card and the pin does not move.
   assert.ok(withProse.length <= 0.89 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 89%`);
   const delta = withProse.length - bare.length;
   assert.ok(
@@ -526,6 +543,16 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // its own labelled READ-ONLY block, whose header prose costs +336 characters on
 // every card (53,843 -> 54,179). The budgets do not move: 54,179 still rounds to
 // 54,500 and 61,445 still rounds to 62,000.
+// MERGE RE-MEASURE (1C + wave-1, origin/main d6bf5933d). Same loop, same arithmetic.
+// Worst kind per chapter ON THIS MERGE:
+//   ch01 learning-pack 52,309   ch02 52,401   ch03 53,998 (binding)   ch04 52,246
+//   ch05-ch08 (no scoped rules) 51,303
+//   with worst-case prose: 59,599 / 59,691 / 61,288 (binding) / 59,536 / 58,593
+// 53,998 -> 54,000 -> 54,500 and 61,288 -> 61,500 -> 62,000 by the stated arithmetic,
+// both BELOW the pins already standing (the merged render is 722 chars smaller on the
+// binding card than the 54,720 measured pre-merge). The budgets therefore do not move;
+// they keep their headroom and this measurement is the baseline the next creep is read
+// against.
 const HONEST_TASK_CHAR_BUDGET = 55_500;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
 
@@ -574,6 +601,15 @@ const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
  * renders the RAW packet and no v25 route calls it. The card the v25 writer
  * actually receives is buildAuthorCard's, which renders the slim projection.
  */
+/*
+ * MERGE RE-MEASURE (1C + wave-1). Worst kind per chapter ON THIS MERGE:
+ *   ch01 learning-pack 84,536   ch02 84,628   ch03 86,225 (binding)   ch04 84,473
+ *   ch05-ch08 83,530
+ *   with worst-case prose: 91,826 / 91,918 / 93,515 (binding) / 91,763 / 90,820
+ * 86,225 -> 86,500 -> 87,000 and 93,515 -> 93,500 -> 94,000, both below the pins
+ * already standing (the merged binding card is 945 chars smaller than the 87,170
+ * measured pre-merge). The budgets do not move.
+ */
 const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 88_000;
 const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
 
@@ -586,6 +622,9 @@ const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 95_000;
  * section card above because buildAuthorCard renders the PROJECTION, whose quotes
  * are bounded and whose per-fact prose is trimmed.
  */
+// MERGE RE-MEASURE (1C + wave-1): model-memory 15,845, source-text worst case 29,865
+// (was 15,854 / 30,045 pre-merge). 29,865 -> 30,000 -> 30,500 by the same arithmetic,
+// below the standing pin; 31,000 holds.
 const HONEST_AUTHOR_CARD_CHAR_BUDGET = 31_000;
 
 test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {

@@ -10,6 +10,7 @@ import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
 import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
 import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
+import { reservedFigureNamesForGenre } from "../src/compiler/bookDesign.js";
 import { checkSectionGate, contentBlockers, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
 import { buildEvidenceMap } from "../src/evidence/evidenceMap.js";
 import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
@@ -797,17 +798,30 @@ test("v23 source packet fact extraction is behavior-preserving: the shared compi
   // existed). If either changes AGAIN without an intended packet-shape change, the extraction
   // broke behavior or the fixture drifted — re-derive deliberately, do not silently update.
   //
-  // RE-DERIVED AGAIN for R-055 (wave-1 source-ingestion), which adds
-  // `packet.chapterContext` — the chapter's focus, coreClaim, hardEdge and
-  // keyClaims, which the packet used to discard so that no writer ever saw what
-  // the chapter was about. The FACTS hash is deliberately UNCHANGED
-  // (sha256:2ee22e0c…): fact extraction was not touched, and that is the
-  // assertion this test exists for. Only the whole-packet hash moves, and it
-  // moves by exactly one added key: previous value
-  // sha256:6fdb1b6ed6e3333977f3b10df78c45317cf20d18b78894d9098fad587e5f7715.
+  // RE-DERIVED AGAIN for the 1C + wave-1 MERGE, which lands two packet-compiler changes at once:
+  //
+  //   R-116 (package 1C) — properNounTokens() gained a sentence-initial filter: a capitalized run
+  //     that starts a sentence has its opening word stripped (that word is capitalized by grammar),
+  //     and a run that is ONLY its opener is dropped unless the same token also occurs
+  //     mid-sentence. That changes one field, facts[].groundedEntities, which on this fixture
+  //     loses sentence-opening ordinary words — so it moves BOTH hashes.
+  //   R-055 (wave-1 source-ingestion) — adds `packet.chapterContext` (the chapter's focus,
+  //     coreClaim, hardEdge and keyClaims, which the packet used to discard so that no writer ever
+  //     saw what the chapter was about). Fact extraction is untouched, so it moves only the
+  //     WHOLE-PACKET hash, by exactly one added key.
+  //
+  // Facts hash: sha256:2ee22e0c… (P13, both branches' ancestor) → sha256:536899… (R-116). This is
+  // the R-116 value unchanged by the merge, which is the check that R-055 did not touch extraction.
+  // Packet hash: sha256:6fdb1b6e… (P13) → sha256:356f1913… (1C, R-116 alone) /
+  // sha256:31ceaed1… (main, R-055 alone) → sha256:9d0b594b… below, which carries both.
+  //
+  // The two assertions after the hashes pin the CONTENT of each change by name, so neither new
+  // hash can be a cover for an unrelated packet-shape drift.
   const { packet } = compileFixture();
-  assert.equal(canonicalJsonSha256(packet.facts), "sha256:2ee22e0c1244fada6d279d775fb4fcf965b6fdf317b7e8a9e60e5b90fb7717b7", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority)");
-  assert.equal(canonicalJsonSha256(packet), "sha256:31ceaed1efe064e27b0e331b1ce065dba90881467748573181026454d096630a", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking and R-055 chapterContext)");
+  const openerEntities = packet.facts.flatMap((f) => f.groundedEntities).filter((e) => /^(?:Readers|Repetition|Environments|Paying|Keeping|Carrying|The reader)\b/.test(e));
+  assert.deepEqual(openerEntities, [], `R-116: sentence-opening ordinary words must not be harvested as entities: ${openerEntities.join(", ")}`);
+  assert.equal(canonicalJsonSha256(packet.facts), "sha256:536899249fa41d581d1d003651664801c53121d45597f084a74e794ae848a459", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority and the R-116 entity filter)");
+  assert.equal(canonicalJsonSha256(packet), "sha256:9d0b594bc3d02048f3977b23d2386525531b21ca6602ee130add3653d8b850f1", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking, the R-116 entity filter and R-055 chapterContext)");
   // The one added key, asserted by name so a future drift cannot be waved
   // through as "the R-055 change".
   assert.deepEqual(Object.keys(packet.chapterContext ?? {}).sort(), ["coreClaim", "focus", "hardEdge", "keyClaims"]);
@@ -856,9 +870,20 @@ test("v23 blueprint compiler creates deterministic variety budgets and balanced 
   const counts = [0, 1, 2].map((i) => blueprint.reservedVariety.answerIndexPattern.filter((v) => v === i).length);
   assert.ok(Math.max(...counts) - Math.min(...counts) <= 1, `balanced counts ${counts}`);
   assert.equal(blueprint.sections.quiz.every((q) => q.promptShape && q.answerStyle && q.distractorTrap), true, "quiz slots must carry anti-template shape guidance");
-  assert.equal(blueprint.sections.quiz.every((q) => q.caseCueIds.length > 0), true, "quiz slots must carry named-case cues");
+  // R-062 — this used to assert that EVERY quiz slot carries a case cue, which is exactly the
+  // contract the redesign retires: a cue is dealt only where the slot's fact is genuinely linked
+  // to a case, because SEC56 makes a dealt cue MANDATORY in the reader-facing prompt and
+  // explanation. On the live candidate that produced a Penn-negotiation question opening on a
+  // near-shipwreck. What is still required: some slot must cue (the chapter's cases have to reach
+  // the quiz at all), and every cue that IS dealt must name a real case of this packet.
+  const quizCued = blueprint.sections.quiz.filter((q) => q.caseCueIds.length > 0);
+  assert.ok(quizCued.length > 0, "at least one quiz slot must cue a named case");
+  const allowedCaseIds = new Set(blueprint.constraints.allowedCaseIds);
+  assert.equal(quizCued.every((q) => q.caseCueIds.every((id) => allowedCaseIds.has(id))), true, "every dealt quiz case cue must name a case of this packet");
   assert.equal(blueprint.sections.cards.every((c) => c.frontShape && c.retrievalTarget && c.backShape), true, "card slots must carry anti-template shape guidance");
-  assert.equal(blueprint.sections.cards.every((c) => c.caseCueIds.length > 0), true, "card slots must carry named-case cues");
+  const cardsCued = blueprint.sections.cards.filter((c) => c.caseCueIds.length > 0);
+  assert.ok(cardsCued.length > 0, "at least one card slot must cue a named case (R-062: cues follow fact linkage, not slot position)");
+  assert.equal(cardsCued.every((c) => c.caseCueIds.every((id) => allowedCaseIds.has(id))), true, "every dealt card case cue must name a case of this packet");
   assert.equal(blueprint.sections.action.ifThenPlanShapes.length, 3, "action slot must deal if-then plan shapes");
   assert.ok(blueprint.sections.action.practiceForm.length > 0, "action slot must deal a 24-hour practice form");
   assert.ok(blueprint.sections.action.practiceConstraint.length > 0, "action slot must deal a practice constraint");
@@ -1242,13 +1267,24 @@ test("v23 blueprint compiler excludes source-figure first names from fictional n
   assert.equal(blueprint.reservedVariety.forbiddenNames.includes("Benjamin"), true, "protected source names should be visible to writers as forbidden");
 });
 
-test("v23 blueprint compiler globally reserves canonical source-figure names from fictional casts", () => {
-  const { blueprint } = compileFixture();
+test("v23 blueprint compiler never DEALS a canonical source-figure name, and shows it as forbidden only where the genre reserves it", () => {
+  // R-115 — the five investing-canon names used to be added to EVERY book's protected set and
+  // shown at the head of EVERY book's writer-facing forbiddenNames, so a memoir by Benjamin
+  // Franklin opened its forbidden list with "Benjamin". They are now genre-keyed
+  // (config/genre-pools.json → genres.investing.reservedFigureNames).
+  //
+  // Split in two, because the two halves have different scopes:
+  //   the DEAL still excludes them for every book (sectionGate's SEC34 reserves them book-wide,
+  //   so dealing one would deadlock a compile — narrowing SEC34 is a section-gate change);
+  //   the GUIDANCE shows them only for a book whose genre actually reserves them.
+  const { blueprint } = compileFixture(); // money-book: no books.json genre → `generic`
   for (const name of ["Benjamin", "Graham", "Dodd", "Buffett", "Warren"]) {
     assert.equal(blueprint.reservedVariety.allowedNames.includes(name), false, `${name} must not be dealt as a fictional protagonist`);
     assert.equal(blueprint.sections.examples.some((slot) => slot.allowedNames.includes(name)), false, `${name} must not appear in example slot names`);
-    assert.equal(blueprint.reservedVariety.forbiddenNames.includes(name), true, `${name} should be visible in writer forbiddenNames`);
+    assert.equal(blueprint.reservedVariety.forbiddenNames.includes(name), false, `${name} is an investing-canon figure; a generic-genre book must not spend its forbidden-name guidance on it`);
   }
+  assert.deepEqual(reservedFigureNamesForGenre("investing"), ["Benjamin", "Graham", "Dodd", "Buffett", "Warren"], "the investing genre still reserves the canon");
+  assert.deepEqual(reservedFigureNamesForGenre("memoir-history"), [], "a memoir reserves no investing figures");
 });
 
 test("v23 blueprint compiler deals adjacent chapters disjoint protagonist name pools", () => {
