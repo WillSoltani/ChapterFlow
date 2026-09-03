@@ -57,6 +57,8 @@ import { ReaderExperienceReviewError } from "../review/readerExperienceReview.js
 import {
   READER_PANEL_BELOW_FLOOR_CODE,
   READER_PANEL_FACTOR_SCORES_CODE,
+  READER_PANEL_INFRA_FAILURE_CODE,
+  READER_PANEL_UNPARSEABLE_CODE,
 } from "../review/readerPanelIssueCodes.js";
 import { AUTHOR_CHAPTER_BAR } from "../review/readerReview.js";
 import {
@@ -69,6 +71,7 @@ import type {
   CanonicalReviewEvaluator,
   ReviewIssue,
 } from "../review/reviewTypes.js";
+import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 import type { ChapterV21 } from "../types.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
 
@@ -184,10 +187,26 @@ export class SemanticPanelReviewEvaluator implements CanonicalReviewEvaluator {
         });
       } catch (error) {
         errored = true;
+        const message = (error as Error).message;
         const code = error instanceof ReaderExperienceReviewError
-          ? "SEMANTIC_PANEL_READER_UNPARSEABLE"
-          : "SEMANTIC_PANEL_READER_FAILED";
-        issues.push(issue(code, "BLOCKER", (error as Error).message, `ch${pad(number)}`));
+          ? READER_PANEL_UNPARSEABLE_CODE
+          : READER_PANEL_INFRA_FAILURE_CODE;
+        issues.push(issue(code, "BLOCKER", message, `ch${pad(number)}`));
+        // R-001/R-224: a PROVIDER BLOCK — an exhausted quota window or a dead
+        // credential — is a wall this run cannot get past. `runReaderLanes`
+        // already refuses to spend the seat's retry budget on it
+        // (`isTransientReaderModelResult`), but this loop used to `continue`, so
+        // every remaining chapter still opened a fresh seat against the same
+        // wall: one wasted provider call per chapter, per operator round.
+        //
+        // Stopping here changes no verdict. `errored` is already set, so the
+        // outcome is ERROR either way, and ERROR is refused by BOTH repair gates
+        // (`bookRunApplicationService` enters the review-repair loop only on
+        // FAIL, and `CandidateRepairApplicationPort.reviewRepairPreflight`
+        // answers REVIEW_REPAIR_VERDICT_STALE for anything that is not a stored
+        // FAIL). The only thing that changes is how much of the provider's wall
+        // the run walks into before it reports it.
+        if (isUnretryableProviderMessage(message)) break;
         continue;
       }
       // The 3-reader MEDIAN is load-bearing: a panel whose median composite is

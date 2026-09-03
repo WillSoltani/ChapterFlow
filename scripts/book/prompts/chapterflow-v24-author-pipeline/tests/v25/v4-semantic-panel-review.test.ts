@@ -135,8 +135,15 @@ function scriptedRunner(outputs: readonly unknown[]): {
         };
       }
       if (typeof output === "object" && output !== null && "__fail" in output) {
-        const fail = (output as { __fail: { outcome: ModelResult["outcome"]; code: string } }).__fail;
-        return { attemptId: request.context.attemptId, outcome: fail.outcome, error: { code: fail.code, message: "injected transient reader failure" } };
+        const fail = (output as { __fail: { outcome: ModelResult["outcome"]; code: string; message?: string } }).__fail;
+        // R-001: the gateway now hands the PROVIDER'S OWN WORDS to the reader
+        // lane on a non-zero exit, and the lane classifies on that text, so a
+        // scripted failure has to be able to carry a specific message.
+        return {
+          attemptId: request.context.attemptId,
+          outcome: fail.outcome,
+          error: { code: fail.code, message: fail.message ?? "injected transient reader failure" },
+        };
       }
       return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output };
     },
@@ -345,6 +352,75 @@ requiredTest("semantic panel stays ERROR (fail-closed) when a reader exhausts it
   assert.ok(evaluated.ok, JSON.stringify(evaluated));
   assert.equal(evaluated.value.outcome, "ERROR");
   assert.ok(evaluated.value.issues.some((issue) => issue.code === "SEMANTIC_PANEL_READER_FAILED"), JSON.stringify(evaluated.value.issues));
+});
+
+requiredTest("R-224/R-001: a provider-blocked reader seat STOPS the panel instead of burning one seat on every remaining chapter", async () => {
+  const candidate = twoChapterCandidate();
+  // The live 2026-08-28 envelope text, as the gateway now preserves it through a
+  // NON-ZERO exit. Two facts are pinned together here:
+  //   1. the seat does NOT consume its bounded retry budget — `isTransientReaderModelResult`
+  //      sees the provider's words and refuses to re-attempt (the `sleep` below
+  //      throws, so any backoff would fail the test loudly);
+  //   2. the PANEL stops. Before this change the catch in the evaluator did
+  //      `continue`, so every remaining chapter still opened a seat against the
+  //      same exhausted window — one wasted provider call per chapter, per
+  //      operator round, on a wall that cannot clear inside the run.
+  const quotaMessage = "You've hit your weekly limit \u00b7 resets Sep 1 at 8pm (America/Halifax) (api_error_status=429)";
+  const scripted = scriptedRunner([
+    { __fail: { outcome: "FAILED", code: "MODEL_PROCESS_FAILED", message: quotaMessage } },
+    readerContent(), readerContent(), readerContent(),
+    readerContent(), readerContent(), readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+    sleep: async () => { throw new Error("a provider block must never be backed off and retried"); },
+  });
+
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  // Uncertainty, not a verdict: ERROR is what the two repair gates refuse.
+  assert.equal(evaluated.value.outcome, "ERROR");
+  assert.equal(scripted.calls, 1, "a provider block must cost exactly one seat call for the whole panel");
+  const infra = evaluated.value.issues.find((entry) => entry.code === "SEMANTIC_PANEL_READER_FAILED");
+  assert.ok(infra, JSON.stringify(evaluated.value.issues));
+  // The operator reads the provider's own words rather than an opaque sentence.
+  assert.match(infra!.message, /weekly limit/);
+  assert.match(infra!.message, /resets Sep 1 at 8pm/);
+  // Nothing was recorded against a chapter the panel never read.
+  assert.equal(
+    evaluated.value.issues.some((entry) => (entry.location ?? "").startsWith("ch02")),
+    false,
+    JSON.stringify(evaluated.value.issues),
+  );
+});
+
+requiredTest("R-224: an ordinary reader-lane failure still reads every remaining chapter — only a PROVIDER BLOCK stops the panel", async () => {
+  const candidate = twoChapterCandidate();
+  // Negative control for the stop above. A one-off seat failure carries no
+  // provider block, so the panel keeps reading: the early stop must be
+  // message-classified, not "any throw ends the panel".
+  const scripted = scriptedRunner([
+    "__MODEL_FAIL__",
+    readerContent(), readerContent(), readerContent(),
+    readerContent(), readerContent(), readerContent(),
+  ]);
+  const evaluator = new SemanticPanelReviewEvaluator({
+    baseline: baselineStub({ outcome: "PASS", issues: [] }),
+    runner: scripted.runner,
+  });
+
+  const evaluated = await evaluator.evaluate({ candidate, taskContext: taskContext() });
+
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.equal(evaluated.value.outcome, "ERROR");
+  // ch01 seat 1 failed; ch02's three seats still ran.
+  assert.equal(scripted.calls, 4);
+  assert.ok(
+    evaluated.value.issues.some((entry) => (entry.location ?? "").startsWith("ch02")),
+    JSON.stringify(evaluated.value.issues),
+  );
 });
 
 requiredTest("semantic panel short-circuits on a baseline non-PASS and runs zero reader tasks", async () => {

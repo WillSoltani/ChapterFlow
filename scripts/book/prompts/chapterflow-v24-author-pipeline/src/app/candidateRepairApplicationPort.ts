@@ -14,6 +14,7 @@ import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../critics
 import type { DiagnosisLookup, RepairService } from "../qc/repairCoordinator.js";
 import type { RepairHistoryRecord, RepairHistoryStore } from "../qc/repairHistoryStore.js";
 import type { QcIssue, QcRoundResult, QcService } from "../qc/qcTypes.js";
+import { isReaderPanelInfraCode } from "../review/readerPanelIssueCodes.js";
 import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../review/reviewTypes.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
@@ -361,6 +362,25 @@ function groupReviewFindings(
   const grouped = new Map<number, QcIssue[]>();
   for (const issue of blockers) {
     const finding = reviewIssueAsFinding(issue, "BLOCKER");
+    // R-224: a reader-lane INFRASTRUCTURE failure is not a content finding. The
+    // panel records SEMANTIC_PANEL_READER_FAILED / _UNPARSEABLE at the chapter it
+    // was standing on when the provider blocked or the seat's own output failed
+    // to assemble — a location that resolves perfectly well, so nothing else in
+    // this function would stop it. Repairing on it would ask a model to rewrite a
+    // chapter because the PROVIDER was unavailable and would write that
+    // fabricated content finding into the repair evidence permanently.
+    //
+    // Defense in depth, and today unreachable: the evaluator sets the review
+    // outcome to ERROR whenever a seat throws (semanticPanelReviewEvaluator),
+    // the book-run loop enters review-repair only on FAIL, and
+    // reviewRepairPreflight rejects any stored outcome that is not FAIL. This
+    // guard is what survives an edit to any of those three.
+    if (isReaderPanelInfraCode(finding.code)) {
+      return failed(
+        "REVIEW_REPAIR_FINDING_UNSCOPED",
+        `review blocker ${finding.code} is a reader-lane infrastructure failure, not a content finding: ${finding.message}`,
+      );
+    }
     if (!finding.location) {
       return failed("REVIEW_REPAIR_FINDING_UNSCOPED", `review blocker ${finding.code} has no chapter location`);
     }

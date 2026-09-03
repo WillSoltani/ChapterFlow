@@ -5,7 +5,7 @@ import { CLAUDE_ROUTE_ID } from "./claudeRoute.js";
 import { CODEX_ROUTE_ID, createDefaultModelRoute, type ModelProcessRoute } from "./codexRoute.js";
 import { FORBIDDEN_ENV } from "./executionPolicy.js";
 import type { ExecutionPolicy, ExecutionProfile, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
-import { modelError, type ModelErrorCode } from "./modelErrors.js";
+import { modelError, providerBlockKind, type ModelErrorCode } from "./modelErrors.js";
 import type { ModelTask } from "./modelRequest.js";
 import type { ModelResult } from "./modelResult.js";
 import type { ProcessOutcome, ProcessResult, ProcessSpec, ProcessSupervisor } from "./processTypes.js";
@@ -152,12 +152,27 @@ type ModelTaskSnapshotResult =
   | { readonly ok: true; readonly value: ModelTaskSnapshot }
   | { readonly ok: false; readonly attemptId: string; readonly message: string };
 
+/**
+ * R-201: mint the ModelResult, recording the provider-block verdict on the
+ * error's `retryable` field when — and only when — the message classifies as
+ * one.
+ *
+ * The message stays the source of truth (it is the only place the provider's
+ * own words live, and R-001 is what got them here); this is the same answer
+ * written on the typed field, so a consumer that has the result does not have
+ * to re-derive it. That typed field is in-memory only: `result()` runs after
+ * `executeOnce` has already called `runStore.finishAttempt` (which takes no
+ * error/retryable field), so the durable attempt record never carries the
+ * verdict — only the message text does, journaled separately by
+ * `terminalDetail`. Any other failure leaves `retryable` ABSENT rather than
+ * claiming a verdict the gateway does not have — a rate-limit blip and a
+ * weekly cap both arrive as FAILED/MODEL_PROCESS_FAILED, and only the
+ * provider's wording separates them.
+ */
 function result(attemptId: string, outcome: ModelResult["outcome"], code?: ModelErrorCode, message?: string): ModelResult {
-  return {
-    attemptId,
-    outcome,
-    ...(code !== undefined && message !== undefined ? { error: modelError(code, message) } : {}),
-  };
+  if (code === undefined || message === undefined) return { attemptId, outcome };
+  const blocked = providerBlockKind(message) !== null;
+  return { attemptId, outcome, error: modelError(code, message, blocked ? false : undefined) };
 }
 
 function validId(value: unknown): value is string {
@@ -346,6 +361,65 @@ function sanitizedStreamHead(bytes: Uint8Array): string {
     .trim();
 }
 
+/** The generic sentence for a bounded process that did not succeed. Kept as the
+ *  PREFIX of every non-zero-exit message so nothing that matched it before
+ *  stops matching. */
+const PROCESS_FAILURE_MESSAGE = "bounded model process did not succeed";
+
+/** A route's own envelope classification of stdout, guarded: null when the route
+ *  supplies no classifier (codex) or the classifier throws. */
+function classifyRouteStdout(
+  route: ModelProcessRoute,
+  stdout: Uint8Array,
+): { errorCode: "MODEL_PROCESS_FAILED"; message: string } | null {
+  if (typeof route.classifyStdout !== "function") return null;
+  try {
+    return route.classifyStdout(stdout) ?? null;
+  } catch {
+    return null;
+  }
+}
+
+/**
+ * R-001: the error message for a bounded process that exited NON-ZERO.
+ *
+ * Task 11x classified the provider's error envelope only on the exit-0 path, so
+ * a provider that printed its envelope AND exited non-zero — the live 2026-08-28
+ * shape, `{"is_error":true,"api_error_status":429,"result":"You've hit your
+ * weekly limit \u00b7 resets Sep 1 at 8pm"}` with exit 1 — reached the callers as
+ * the opaque `PROCESS_FAILURE_MESSAGE` alone. Every downstream classifier
+ * (`isUnretryableProviderMessage` in the compiler section loop, the two research
+ * lanes and the reader lane) reads the MESSAGE, so discarding it turned a
+ * durable quota block into three retries per section and nineteen operator
+ * rounds.
+ *
+ * Preference order mirrors what the durable attempt detail already journals for
+ * this exact class: the route's envelope classification, else a sanitized capped
+ * head of stdout, else of stderr (CLIs that print their fatal error there and
+ * nothing to stdout). That parity holds for FAILED/MODEL_PROCESS_FAILED — but
+ * this function's caller reaches here for EVERY non-exit-0 process outcome,
+ * TIMED_OUT and CANCELLED included (see `mappedOutcome`), while `terminalDetail`
+ * only adds stream heads when `outcome === "FAILED" && errorCode ===
+ * "MODEL_PROCESS_FAILED"`. So for TIMED_OUT/CANCELLED the in-memory
+ * `error.message` now carries a sanitized head of up to `DIAGNOSTIC_HEAD_CHARS`
+ * (400) chars that the durable journal omits. The exit-0 path is untouched.
+ *
+ * Also note: this message is exactly what `isQuotaExhaustedMessage` /
+ * `isCredentialFailureMessage` (modelErrors.ts) classify. On any non-zero exit
+ * that means up to `DIAGNOSTIC_HEAD_CHARS` chars of ARBITRARY sanitized
+ * stdout/stderr — not only a recognized provider envelope — can feed those
+ * regexes. A false positive there routes the attempt onto the durable,
+ * non-operator-retryable quota/credential path instead of an ordinary retry:
+ * fail-closed (a retryable failure wrongly treated as durable), never fail-open
+ * (a real block silently retried), and accepted deliberately.
+ */
+function providerFailureMessage(route: ModelProcessRoute, process: ProcessResult): string {
+  const classified = classifyRouteStdout(route, process.stdout);
+  if (classified !== null) return classified.message;
+  const head = sanitizedStreamHead(process.stdout) || sanitizedStreamHead(process.stderr);
+  return head === "" ? PROCESS_FAILURE_MESSAGE : `${PROCESS_FAILURE_MESSAGE}: ${head}`;
+}
+
 /** Durable one-line terminal detail for an attempt. For a bounded process that
  *  FAILED with MODEL_PROCESS_FAILED (a non-zero-exit provider subprocess — the
  *  rate-limit/overload shape) it additionally carries a sanitized, capped head
@@ -480,9 +554,7 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
         // content filter, 4xx/5xx) is a process-class failure, not model
         // output; classify BEFORE schema validation so the real message
         // surfaces and the transient-retry machinery owns it.
-        const apiError = typeof route.classifyStdout === "function"
-          ? (() => { try { return route.classifyStdout(process.stdout); } catch { return null; } })()
-          : null;
+        const apiError = classifyRouteStdout(route, process.stdout);
         const normalizedStdout = apiError ? process.stdout : normalizeRouteStdout(route, process.stdout);
         const validated = apiError
           ? { ok: false as const, error: { code: "MODEL_PROCESS_FAILED", message: apiError.message } }
@@ -502,7 +574,9 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
       } else {
         outcome = mappedOutcome(process);
         errorCode = outcome === "UNKNOWN" ? "MODEL_EXECUTION_UNCERTAIN" : "MODEL_PROCESS_FAILED";
-        errorMessage = outcome === "UNKNOWN" ? "process-tree cleanup failed after admission" : "bounded model process did not succeed";
+        errorMessage = outcome === "UNKNOWN"
+          ? "process-tree cleanup failed after admission"
+          : providerFailureMessage(route, process);
       }
     } catch {
       outcome = "UNKNOWN";

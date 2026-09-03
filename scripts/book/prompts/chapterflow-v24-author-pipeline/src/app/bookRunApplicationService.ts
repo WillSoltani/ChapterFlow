@@ -295,6 +295,14 @@ const RETRYABLE_COMPILER_FAILURES = Object.freeze([
   // transient process/timeout failures — same operator-retry class as BLOCKED.
   "COMPILER_SECTION_MODEL_INVALID:",
   "COMPILER_SECTION_PROCESS_FAILED:",
+  // R-001, deliberately ABSENT: COMPILER_SECTION_PROVIDER_BLOCKED. Every code
+  // above describes model-output variance a fresh attempt can clear. A provider
+  // block (exhausted quota window, dead credential) clears only when the window
+  // resets or a human re-authenticates, so granting an operator retry against it
+  // just spends another round on the same wall — the burn this list would
+  // otherwise re-open one layer up. Its absence is load-bearing and pinned by
+  // "R-001 a provider-blocked compile failure is NOT operator-retryable" in
+  // tests/v25/v4-book-run-application-service.test.ts.
 ] as const);
 
 function failed<T>(code: string, message: string): Result<T> {
@@ -406,7 +414,10 @@ function completedCompileCandidate(events: readonly BookRunEvent[]): Result<Cand
   return { ok: true, value: candidates[0] };
 }
 
-function retryableCompilerFailure(detail: string | undefined): boolean {
+/** Exported for the R-001 classification pin: the retryable set is a policy
+ *  decision worth asserting directly, not only through a multi-hundred-line
+ *  resume fixture. */
+export function retryableCompilerFailure(detail: string | undefined): boolean {
   return detail !== undefined && RETRYABLE_COMPILER_FAILURES.some((prefix) => detail.startsWith(prefix));
 }
 

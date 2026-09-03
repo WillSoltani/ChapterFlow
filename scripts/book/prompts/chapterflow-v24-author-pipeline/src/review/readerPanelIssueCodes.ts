@@ -27,6 +27,33 @@ export const READER_PANEL_FACTOR_SCORES_CODE = "READER.PANEL.FACTOR_SCORES" as c
 export const READER_BLOCKING_CODE_PREFIX = "READER.BLOCKING." as const;
 
 /**
+ * The two panel issue codes that are NOT content findings (R-224).
+ *
+ * `SEMANTIC_PANEL_READER_FAILED` is raised when a seat's model run did not
+ * succeed — a provider block, a timeout, an admission collision — and
+ * `SEMANTIC_PANEL_READER_UNPARSEABLE` when the seat's own output could not be
+ * assembled. Neither says anything about the chapter: the first is the
+ * PROVIDER's state and the second is the SEAT's, and the chapter number they
+ * carry is only where the panel happened to be standing.
+ *
+ * The evaluator records both as BLOCKERs and sets the review outcome to ERROR,
+ * and ERROR is refused by both repair gates. This list is the third, named
+ * guard: a repair brief built from one of these codes would ask a model to
+ * rewrite a chapter because the provider was unavailable, and the repair
+ * evidence would keep that fabricated content finding forever.
+ */
+export const READER_PANEL_INFRA_FAILURE_CODE = "SEMANTIC_PANEL_READER_FAILED" as const;
+export const READER_PANEL_UNPARSEABLE_CODE = "SEMANTIC_PANEL_READER_UNPARSEABLE" as const;
+
+/** True when `code` is a reader-lane INFRASTRUCTURE failure rather than a
+ *  content finding, in either spelling (bare on the review, `REVIEW.`-prefixed
+ *  on a QC round — see `isReviewIssueCode`). */
+export function isReaderPanelInfraCode(code: string): boolean {
+  return isReviewIssueCode(code, READER_PANEL_INFRA_FAILURE_CODE)
+    || isReviewIssueCode(code, READER_PANEL_UNPARSEABLE_CODE);
+}
+
+/**
  * True when `code` is `base`, in either of the two spellings it can legitimately
  * carry.
  *
