@@ -412,21 +412,21 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 //
 // RE-MEASURED AGAIN on the Franklin scar rewrite (PR #538), on top of package 1B,
 // because the round-2 paragraph above describes a scar file that no longer exists:
-// origin/main's 37 accreted prohibitions were replaced by 38 source-quoted rules,
-// of which 28 are labelled for one chapter. What shrank is not the FILE, it is the
+// origin/main's 37 accreted prohibitions were replaced by 39 source-quoted rules,
+// of which 29 are labelled for one chapter. What shrank is not the FILE, it is the
 // RENDER — the rules a chapter's writer actually receives. renderBookScarsBlock
 // over the shipped file, in characters, at origin/main and at this commit:
 //   origin/main  ch01 14,449  ch02 14,541  ch03 16,138  ch04 14,386  ch05 13,443
-//   this commit  ch01  6,725  ch02  7,339  ch03  8,627  ch04  7,344  ch05  5,352
-// ch03 is still the binding chapter: 10 of the 28 chapter-scoped rules, against
-// 5 for ch01, 7 for ch02 and 6 for ch04, plus the 10 book-wide rules (3 SAFETY +
+//   this commit  ch01  6,989  ch02  7,339  ch03  8,627  ch04  7,344  ch05  5,352
+// ch03 is still the binding chapter: 10 of the 29 chapter-scoped rules, against
+// 6 for ch01, 7 for ch02 and 6 for ch04, plus the 10 book-wide rules (3 SAFETY +
 // 7 craft) every chapter gets.
 //
 // Worst kind per chapter on this commit (learning-pack every time; reproduce by
 // printing md.length in the loop below):
-//   ch01 43,977   ch02 44,591   ch03 45,879 (binding)   ch04 44,596
+//   ch01 44,241   ch02 44,591   ch03 45,879 (binding)   ch04 44,596
 //   ch05-ch08 (no scoped rules) 42,604
-//   with worst-case prose: 51,267 / 51,881 / 53,169 (binding) / 51,886 / 49,894
+//   with worst-case prose: 51,531 / 51,881 / 53,169 (binding) / 51,886 / 49,894
 // That is 7,621 characters of headroom on the binding packet-only card and 8,331
 // with prose. The budgets package 1B pinned stay exactly where they are: they are a
 // ceiling on what production may send, not a target, and lowering them to this
@@ -460,7 +460,7 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
 
   // EVERY chapter, not just ch01. Since R-274 the rendered rule set differs per
   // chapter, so measuring one chapter would leave the heaviest one unbounded —
-  // Franklin's ch03 carries 10 of the 28 scoped rules and is the binding render.
+  // Franklin's ch03 carries 10 of the 29 scoped rules and is the binding render.
   //
   // The range is a LITERAL, deliberately: an earlier cut derived it from
   // bookRuleChapters, so the budget loop re-used the very scope reader it was
