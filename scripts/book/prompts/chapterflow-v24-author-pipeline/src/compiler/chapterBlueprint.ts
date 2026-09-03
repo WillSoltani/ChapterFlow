@@ -790,6 +790,10 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   // The venue deal orders THIS chapter's own six-venue palette, so its "pool" is the palette.
   { poolKey: "venue", contentDriven: true, poolSize: EXAMPLE_SLOT_COUNT, slots: 6, perChapter: false, extract: (bp) => bp.sections.examples.map((e) => e.venue) },
   // Fact and case cue deals are CONTENT-driven — see PositionalDealDescriptor.contentDriven.
+  // The eleventh deal R-128 names: example slot i's mandated fact. Content-driven like the card
+  // fact deal — its candidate space is this chapter's own ranked facts — and registered here so
+  // BPV13 can see an example column that teaches the same fact in every chapter.
+  { poolKey: "exampleFact", contentDriven: true, poolSize: 0, slots: 6, perChapter: false, extract: (bp) => bp.sections.examples.map((e) => e.requiredFactIds[0] ?? "") },
   { poolKey: "cardFact", contentDriven: true, poolSize: 0, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.requiredFactIds[0] ?? "") },
   { poolKey: "quizCaseCue", contentDriven: true, poolSize: 0, slots: 9, perChapter: false, extract: (bp) => bp.sections.quiz.map((q) => q.caseCueIds[0] ?? "") },
   { poolKey: "cardCaseCue", contentDriven: true, poolSize: 0, slots: 7, perChapter: false, extract: (bp) => bp.sections.cards.map((c) => c.caseCueIds[0] ?? "") },

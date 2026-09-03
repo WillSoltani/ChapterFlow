@@ -267,7 +267,7 @@ test("R-104: example formats are not the identical six-format sequence in every 
 
 test("R-104/R-128: exampleFormat is registered in POSITIONAL_DEALS so BPV11 audits it", () => {
   const keys = POSITIONAL_DEALS.map((d) => d.poolKey);
-  for (const key of ["exampleFormat", "examplePurpose", "exampleSceneMode", "cardFact", "quizCaseCue", "cardCaseCue", "hookShapeSection", "sceneMechanism", "reservedSceneMode"]) {
+  for (const key of ["exampleFormat", "examplePurpose", "exampleSceneMode", "exampleFact", "cardFact", "quizCaseCue", "cardCaseCue", "hookShapeSection", "sceneMechanism", "reservedSceneMode"]) {
     assert.ok(keys.includes(key), `POSITIONAL_DEALS is missing "${key}" — BPV11 cannot see it`);
   }
 });
