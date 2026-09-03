@@ -256,9 +256,9 @@ export async function researchBook(
       bookIdHint: options.bookId,
     });
     log(`  bibliography: bookId=${bibliography.bookId}, ${bibliography.edition.chapterCount} chapters, confidence=${bibliography.confidence}`);
-    if (bibliography.confidence === "low") {
-      log(`  WARNING: low confidence. Notes: ${bibliography.notes ?? "(none)"}`);
-    }
+    // The low-confidence WARNING line is emitted by createResearchRun below,
+    // beside the durable manifest event it belongs to (R-035). Emitting it here
+    // too made one low-confidence run print the same finding twice.
 
     const chapterList = flattenChapters(bibliography);
     const exactChapterHash = expectedChaptersHash(chapterList.map((ch) => ({ number: ch.number, title: ch.title })));

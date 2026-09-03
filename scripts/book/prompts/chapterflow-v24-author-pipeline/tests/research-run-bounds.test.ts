@@ -100,13 +100,15 @@ function chapterResult(input: ChapterResearchInput): ChapterResearchResult {
   };
 }
 
-async function runWith(confidence: BibliographyResult["confidence"], notes?: string): Promise<{ manifest: ResearchRunManifest; cleanup: () => void }> {
+async function runWith(confidence: BibliographyResult["confidence"], notes?: string): Promise<{ manifest: ResearchRunManifest; logLines: string[]; cleanup: () => void }> {
   const tmp = mkdtempSync(join(tmpdir(), "cf-low-confidence-"));
+  const logLines: string[] = [];
   const result = await researchBook("Synthetic Low Confidence", "Test Author", {
     bookId: BOOK,
     runsRoot: resolve(tmp, "runs"),
     stateRoot: resolve(tmp, "state"),
     chapterConcurrency: 2,
+    logger: (m: string) => { logLines.push(m); },
     deps: {
       runBibliography: async () => bibliography(confidence, notes),
       runChapter: async (input) => chapterResult(input),
@@ -115,7 +117,7 @@ async function runWith(confidence: BibliographyResult["confidence"], notes?: str
   const manifest = JSON.parse(
     readFileSync(resolve(result.bundlePath, RESEARCH_RUN_MANIFEST_FILE), "utf8"),
   ) as ResearchRunManifest;
-  return { manifest, cleanup: () => rmSync(tmp, { recursive: true, force: true }) };
+  return { manifest, logLines, cleanup: () => rmSync(tmp, { recursive: true, force: true }) };
 }
 
 test("R-035: a low-confidence bibliography is recorded in the research run manifest", async () => {
@@ -137,6 +139,19 @@ test("R-035: a high-confidence bibliography records no such event", async () => 
   const { manifest, cleanup } = await runWith("high");
   try {
     assert.deepEqual(manifest.events.filter((e) => e.type === "bibliography.low_confidence"), []);
+  } finally {
+    cleanup();
+  }
+});
+
+test("R-035: the low-confidence warning is printed once, not once per writer of it", async () => {
+  // The durable manifest event and the operator-facing line are one signal.
+  // Printing it from both the bibliography step and the run-creation step made
+  // a single low-confidence run look like two independent findings.
+  const { logLines, cleanup } = await runWith("low", "Chapter titles inferred from a part list.");
+  try {
+    const warnings = logLines.filter((line) => /WARNING: low confidence/i.test(line));
+    assert.equal(warnings.length, 1, `expected one low-confidence log line, got ${JSON.stringify(warnings)}`);
   } finally {
     cleanup();
   }
