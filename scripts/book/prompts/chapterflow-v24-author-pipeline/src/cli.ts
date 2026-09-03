@@ -775,15 +775,20 @@ Commands:
                                      Report-only by default; --commit stages+commits ONLY that file in
                                      the outer repo (never pushes; refuses if it is already staged/dirty
                                      there from other work).
-  publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--outer-root <path>] [--v25-root <absolute>]
-                                     --v25-root is OPT-IN candidate-store re-verification: the preflight
+  publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--allow-weak-preflight] [--outer-root <path>] [--v25-root <absolute>]
+                                     --v25-root selects candidate-store re-verification: the preflight
                                      reads books/<id>/current.json, requires the sidecar's declared
                                      candidateId@manifestDigest to EQUAL the pointer's, opens the
                                      candidate from the content-addressed store and recomputes the
                                      evidence from its bytes — including that the package ships the
-                                     candidate's WHOLE chapter set. Without it, a candidate pair is
-                                     verified by replaying the evidence the manifest recorded; the
-                                     preflight always PRINTS which of the two it ran.
+                                     candidate's WHOLE chapter set. It is the DEFAULT for a
+                                     candidate-declared pair: without the flag publish-final looks for
+                                     CHAPTERFLOW_V25_ROOT (it must actually hold books/<id>/current.json)
+                                     and, finding none, REFUSES rather than falling back to the weaker
+                                     recorded-evidence replay — which a wholesale re-authoring of both
+                                     shipped files passes. --allow-weak-preflight accepts that residual
+                                     on purpose, with a printed warning. A legacy canonical-index pair is
+                                     unaffected. The preflight always PRINTS which strength it ran.
                                      ONE-VERB ship (v24 author arch). Preflight (verify + no fresh
                                      conductor lock + outer git toplevel + fetch) → bridge (copy +
                                      byte-compare) → register (probe/append the real registry + regen
@@ -2610,7 +2615,7 @@ export const PUBLISH_FINAL_EXIT_SHIPPED_UNCLEANED = 3;
 async function runPublishFinal(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--outer-root <path>] [--v25-root <absolute>]");
+    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--allow-weak-preflight] [--outer-root <path>] [--v25-root <absolute>]");
     return 2;
   }
   const v25Root = requireAbsoluteV25Root(flags);
@@ -2620,6 +2625,7 @@ async function runPublishFinal(args: string[], flags: Record<string, string | bo
     dryRun: flags["dry-run"] === true,
     keepDebris: flags["keep-debris"] === true,
     strictCleanup: flags["strict-cleanup"] === true,
+    allowWeakPreflight: flags["allow-weak-preflight"] === true,
     outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
     ...(v25Root === undefined ? {} : { v25Root }),
   });

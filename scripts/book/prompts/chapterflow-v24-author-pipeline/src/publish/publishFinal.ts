@@ -42,7 +42,7 @@
 import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync, realpathSync, statSync, writeFileSync } from "node:fs";
 import { hostname } from "node:os";
-import { resolve } from "node:path";
+import { isAbsolute, resolve } from "node:path";
 
 import { MONOREPO_ANCESTOR, REPO_ROOT, normSlug } from "../lib/chapterPaths.js";
 import {
@@ -296,14 +296,26 @@ export type PublishFinalOptions = {
    *  A seam may return a bare boolean (the pre-existing contract, unchanged) or a
    *  `{ ok, detail }` outcome whose detail becomes the step line. */
   verify?: (pkgPath: string) => Promise<boolean | PreflightOutcome> | boolean | PreflightOutcome;
-  /** OPT-IN candidate-store re-verification. Absolute path to the v25 root (the
-   *  dir holding `books/`). When supplied the preflight reads the CURRENT pointer,
-   *  requires the sidecar's declared candidate identity to equal it, opens the
-   *  candidate from the content-addressed store and recomputes the evidence from
-   *  its bytes — closing the re-authored-pair residual that a two-file verify
-   *  cannot see. When omitted, verification is exactly what it is today and the
-   *  step line SAYS which strength ran. */
+  /** Candidate-store re-verification. Absolute path to the v25 root (the dir
+   *  holding `books/`). The preflight reads the CURRENT pointer, requires the
+   *  sidecar's declared candidate identity to equal it, opens the candidate from
+   *  the content-addressed store and recomputes the evidence from its bytes —
+   *  closing the re-authored-pair residual that a two-file verify cannot see.
+   *
+   *  R-231: this is no longer merely opt-in. When it is absent and the pair is
+   *  CANDIDATE-declared, publish-final first tries to DISCOVER a root
+   *  (CHAPTERFLOW_V25_ROOT naming a directory that actually holds this book's
+   *  CURRENT pointer) and, failing that, REFUSES rather than shipping on the
+   *  weaker recorded-evidence replay. A legacy canonical-index pair is unaffected —
+   *  it has no candidate to re-read. */
   v25Root?: string;
+  /** Ship a CANDIDATE-declared pair on the weaker recorded-evidence replay, with a
+   *  printed warning, when no v25 root is available. The residual it leaves is
+   *  documented in candidatePreflight's header: a wholesale re-authoring of BOTH
+   *  files passes a two-file verify. */
+  allowWeakPreflight?: boolean;
+  /** TEST SEAM: environment used for v25-root discovery. Default process.env. */
+  env?: NodeJS.ProcessEnv;
   /** Sidecar path override (tests / non-canonical layouts). Default: the same
    *  `<CANONICAL_STATE>/books/<id>.production-manifest.json` the verifier derives. */
   manifestPath?: string;
@@ -319,6 +331,22 @@ export type PublishFinalOptions = {
    *  genuinely-out-of-sync tree. Not used in production. */
   __afterPushHook?: () => void;
 };
+
+/** The environment variable that names this checkout's v25 root, so the STRONG
+ *  preflight is the default in a configured environment rather than something an
+ *  operator has to remember to type. */
+export const V25_ROOT_ENV = "CHAPTERFLOW_V25_ROOT";
+
+/** Discover a v25 root for `bookId`: the env var, but only when it is absolute
+ *  AND actually holds this book's CURRENT pointer. Anything less is not a root
+ *  that can answer the strong preflight's questions, and guessing one would turn
+ *  a stronger verification into a confusing failure. */
+export function discoverV25Root(bookId: string, env: NodeJS.ProcessEnv = process.env): string | undefined {
+  const raw = env[V25_ROOT_ENV];
+  if (typeof raw !== "string" || raw.length === 0 || !isAbsolute(raw)) return undefined;
+  const root = resolve(raw);
+  return existsSync(resolve(root, "books", bookId, "current.json")) ? root : undefined;
+}
 
 /** Fresh-lock window: a lock whose heartbeat `at` is younger than this is "held".
  *  Matches the conductor's LOCK_FALLBACK_STALE_MS (2h). */
@@ -476,7 +504,41 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     return finish(false, `sandbox package missing: ${localPath}`);
   }
 
-  const verify = opts.verify ?? makeDefaultVerify(id, opts);
+  // ── 1b. VERIFICATION STRENGTH (R-231) ─────────────────────────────────────
+  // The strongest available verification — candidate-store re-verify — used to run
+  // only when an operator typed --v25-root, so the DEFAULT for a candidate pair was
+  // the recorded-evidence replay, whose residual candidatePreflight's header spells
+  // out: a wholesale re-authoring of BOTH files passes it. Make the strong path the
+  // default wherever a root can be found, and make the weak path an explicit,
+  // warned-about choice.
+  const { readDeclaredCandidate, defaultManifestPathForBook } = await import("./candidatePreflight.js");
+  const sidecarPath = opts.manifestPath ? resolve(opts.manifestPath) : defaultManifestPathForBook(id);
+  const declaredCandidate = readDeclaredCandidate(sidecarPath);
+  let effectiveV25Root = opts.v25Root;
+  if (effectiveV25Root === undefined && declaredCandidate !== null) {
+    const discovered = discoverV25Root(id, opts.env ?? process.env);
+    if (discovered !== undefined) {
+      effectiveV25Root = discovered;
+      push("preflight:verification-strength", true, `candidate-store re-verify — v25 root discovered via ${V25_ROOT_ENV}=${discovered}`);
+    } else if (opts.allowWeakPreflight !== true) {
+      const detail =
+        `the pair at ${sidecarPath} declares candidate ${declaredCandidate.candidateId}@${declaredCandidate.manifestDigest.slice(0, 12)}…, ` +
+        `but no v25 root was given (--v25-root) and none was discoverable (${V25_ROOT_ENV} unset, or not holding books/${id}/current.json). ` +
+        "Refusing to ship on the recorded-evidence replay, which a wholesale re-authoring of BOTH files passes. " +
+        "Pass --v25-root <absolute>, or --allow-weak-preflight to accept that residual on purpose.";
+      push("preflight:verification-strength", false, detail);
+      return finish(false, `candidate pair refused: no v25 root for the strong preflight — ${detail}`);
+    } else {
+      const warning =
+        `⚠ WEAK PREFLIGHT (--allow-weak-preflight): ${id} is a CANDIDATE-declared pair being verified WITHOUT re-reading ` +
+        "the candidate. A wholesale re-authoring of both shipped files passes this check; the candidate's own chapter " +
+        "inventory is the only authority that refuses it, and it is not being consulted.";
+      console.warn(warning);
+      push("preflight:verification-strength", true, warning);
+    }
+  }
+
+  const verify = opts.verify ?? makeDefaultVerify(id, { ...opts, ...(effectiveV25Root === undefined ? {} : { v25Root: effectiveV25Root }) });
   let outcome: boolean | PreflightOutcome;
   try { outcome = await verify(localPath); } catch (err) {
     push("preflight:verify", false, `verify threw: ${(err as Error).message}`);

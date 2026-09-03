@@ -188,3 +188,86 @@ test("R-255: a corrupt sentinel stops publish-final BEFORE the commit — nothin
     assert.equal(readFileSync(resolve(fx.outer, PENDING_DEPLOY_REL), "utf8"), "{ torn", "the operator's bytes are left exactly where they are");
   } finally { fx.cleanup(); }
 });
+
+// ── R-231: the strong preflight is the DEFAULT for a candidate-declared pair ──
+
+/** A candidate-regime sidecar, in the exact shape `readDeclaredCandidate` reads:
+ *  manifest.payload.candidateChapterSet.{candidateId,manifestDigest}. */
+function writeCandidateSidecar(path: string, candidateId = "candidate-1", digest = "a".repeat(64)): string {
+  mkdirSync(resolve(path, ".."), { recursive: true });
+  writeFileSync(path, JSON.stringify({
+    schemaVersion: "chapterflow-production-manifest-sidecar-v1",
+    manifest: { payload: { candidateChapterSet: { source: "candidate", candidateId, manifestDigest: digest } } },
+  }));
+  return path;
+}
+
+test("R-231: a CANDIDATE-declared pair with no v25 root REFUSES instead of shipping on the replay", async () => {
+  const fx = makeFixture("weak-refuse");
+  try {
+    const sidecar = writeCandidateSidecar(resolve(fx.root, "sidecar.json"));
+    const res = await publishFinal(BOOK, { ...commonOpts(fx), manifestPath: sidecar, env: {} });
+    assert.equal(res.ok, false, "the weaker recorded-evidence replay is not an acceptable default for a candidate pair");
+    const step = res.steps.find((s) => s.step === "preflight:verification-strength");
+    assert.equal(step?.ok, false);
+    assert.match(step?.detail ?? "", /--v25-root/);
+    assert.match(step?.detail ?? "", /--allow-weak-preflight/, "the refusal names the deliberate escape hatch");
+    assert.equal(existsSync(resolve(fx.outer, "book-packages", `${BOOK}.v21.json`)), false, "the package was never bridged into the outer checkout");
+  } finally { fx.cleanup(); }
+});
+
+test("R-231: a discoverable v25 root (CHAPTERFLOW_V25_ROOT) makes the strong preflight the default", async () => {
+  const fx = makeFixture("discover");
+  try {
+    const sidecar = writeCandidateSidecar(resolve(fx.root, "sidecar.json"));
+    const v25Root = resolve(fx.root, "v25");
+    mkdirSync(resolve(v25Root, "books", BOOK), { recursive: true });
+    writeFileSync(resolve(v25Root, "books", BOOK, "current.json"), "{}");
+    const res = await publishFinal(BOOK, {
+      ...commonOpts(fx), keepDebris: true, manifestPath: sidecar, env: { CHAPTERFLOW_V25_ROOT: v25Root },
+    });
+    const step = res.steps.find((s) => s.step === "preflight:verification-strength");
+    assert.equal(step?.ok, true, `the discovered root must satisfy the strength gate: ${res.error}`);
+    assert.match(step?.detail ?? "", /candidate-store re-verify/);
+    assert.match(step?.detail ?? "", /CHAPTERFLOW_V25_ROOT/);
+    assert.equal(res.ok, true, res.error);
+  } finally { fx.cleanup(); }
+});
+
+test("R-231: an env root that does NOT hold this book's pointer is not discovered — the refusal stands", async () => {
+  const fx = makeFixture("discover-wrong");
+  try {
+    const sidecar = writeCandidateSidecar(resolve(fx.root, "sidecar.json"));
+    const v25Root = resolve(fx.root, "v25-empty");
+    mkdirSync(resolve(v25Root, "books"), { recursive: true });
+    const res = await publishFinal(BOOK, { ...commonOpts(fx), manifestPath: sidecar, env: { CHAPTERFLOW_V25_ROOT: v25Root } });
+    assert.equal(res.ok, false, "a root without books/<id>/current.json cannot answer the strong preflight");
+    assert.equal(res.steps.find((s) => s.step === "preflight:verification-strength")?.ok, false);
+  } finally { fx.cleanup(); }
+});
+
+test("R-231: --allow-weak-preflight ships the candidate pair on the replay, with the residual named", async () => {
+  const fx = makeFixture("weak-allowed");
+  try {
+    const sidecar = writeCandidateSidecar(resolve(fx.root, "sidecar.json"));
+    const res = await publishFinal(BOOK, {
+      ...commonOpts(fx), keepDebris: true, manifestPath: sidecar, env: {}, allowWeakPreflight: true,
+    });
+    assert.equal(res.ok, true, res.error);
+    const step = res.steps.find((s) => s.step === "preflight:verification-strength");
+    assert.equal(step?.ok, true);
+    assert.match(step?.detail ?? "", /WEAK PREFLIGHT/);
+    assert.match(step?.detail ?? "", /re-authoring of both shipped files passes/);
+  } finally { fx.cleanup(); }
+});
+
+test("R-231: a LEGACY (canonical-index) pair is untouched — no strength step, no refusal", async () => {
+  const fx = makeFixture("legacy");
+  try {
+    const sidecar = resolve(fx.root, "legacy-sidecar.json");
+    writeFileSync(sidecar, JSON.stringify({ manifest: { payload: { canonicalIndex: { chapters: [] } } } }));
+    const res = await publishFinal(BOOK, { ...commonOpts(fx), keepDebris: true, manifestPath: sidecar, env: {} });
+    assert.equal(res.ok, true, res.error);
+    assert.equal(res.steps.find((s) => s.step === "preflight:verification-strength"), undefined, "a legacy pair has no candidate to re-read, so the gate does not apply");
+  } finally { fx.cleanup(); }
+});
