@@ -2451,22 +2451,39 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
         rubricRecord.ok
         && rubricRecord.value.candidate.manifestDigest === v25.value.candidate.manifest.manifestDigest
       ) {
-        const aggregate = aggregateCatalogRubric(rubricRecord.value.readers);
-        const judged = judgeCatalogRubric(aggregate, resolveRubricBar());
-        rubricEvidence = {
-          instrumentVersion: rubricRecord.value.instrumentVersion,
-          composite: aggregate.composite,
-          tier: aggregate.tier,
-          gate: aggregate.gate,
-          churn: aggregate.churn,
-          bar: judged.bar,
-          factorFloor: judged.factorFloor,
-          highQuality: aggregate.highQuality,
-          factorMedians: { ...aggregate.factorMedians },
-          sampledChapterNumbers: [...rubricRecord.value.sampledChapterNumbers],
-          totalChapters: rubricRecord.value.totalChapters,
-          readerCount: aggregate.readerCount,
-        };
+        // The bar is read from the operator's environment, and a malformed
+        // CHAPTERFLOW_RUBRIC_BAR is a REFUSAL by design (see resolveRubricBar).
+        // This block is EVIDENCE, not the gate — the gate ran in the book run,
+        // against the bar in force there — so an env typo must cost the release
+        // its rubric evidence and say so loudly, never abort the route with an
+        // unhandled exception before the pointer CAS.
+        let bar: number | undefined;
+        try {
+          bar = resolveRubricBar();
+        } catch (cause) {
+          console.log(
+            "V25 RELEASE VERDICT rubric evidence omitted: CHAPTERFLOW_RUBRIC_BAR is unusable"
+            + ` (${(cause as Error).message}); fix the env and re-run to record it`,
+          );
+        }
+        if (bar !== undefined) {
+          const aggregate = aggregateCatalogRubric(rubricRecord.value.readers);
+          const judged = judgeCatalogRubric(aggregate, bar);
+          rubricEvidence = {
+            instrumentVersion: rubricRecord.value.instrumentVersion,
+            composite: aggregate.composite,
+            tier: aggregate.tier,
+            gate: aggregate.gate,
+            churn: aggregate.churn,
+            bar: judged.bar,
+            factorFloor: judged.factorFloor,
+            highQuality: aggregate.highQuality,
+            factorMedians: { ...aggregate.factorMedians },
+            sampledChapterNumbers: [...rubricRecord.value.sampledChapterNumbers],
+            totalChapters: rubricRecord.value.totalChapters,
+            readerCount: aggregate.readerCount,
+          };
+        }
       }
       releaseVerdict = buildCandidateReleaseVerdict({
         review: releaseReview.value,

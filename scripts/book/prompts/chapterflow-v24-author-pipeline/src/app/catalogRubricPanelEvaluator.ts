@@ -28,8 +28,8 @@
  * cannot be promoted AND cannot be blamed — the caller reports uncertainty.
  *
  * COST. Three reads of a whole book at the review role's xhigh tier is the most
- * expensive single call this pipeline makes, so the retry budget is THREE (one
- * blind draw plus two informed repairs), smaller than the per-chapter seat's
+ * expensive single call this pipeline makes, so the retry budget is THREE — one
+ * blind draw, then up to two re-draws — smaller than the per-chapter seat's
  * four, and a PROVIDER BLOCK is never retried and stops the panel immediately
  * rather than walking the remaining readers into the same wall. Nothing here
  * re-scores bytes that already have a durable record: that short-circuit is the
@@ -75,9 +75,24 @@ export const CATALOG_RUBRIC_READER_FAILED = "CATALOG_RUBRIC_READER_FAILED";
 export const CATALOG_RUBRIC_READER_UNPARSEABLE = "CATALOG_RUBRIC_READER_UNPARSEABLE";
 export const CATALOG_RUBRIC_CANCELLED = "CATALOG_RUBRIC_CANCELLED";
 
-/** One blind draw plus two informed repairs. Smaller than the per-chapter
- *  seat's four on purpose: one attempt here is a whole-book read. */
+/** One blind draw plus up to two re-draws. Smaller than the per-chapter seat's
+ *  four on purpose: one attempt here is a whole-book read.
+ *
+ *  A re-draw after a REFUSED BLOCK is informed — the strict assembly's own
+ *  message is appended to the task, so the reader is told which field it got
+ *  wrong instead of re-rolling blind against the same instruction. A re-draw
+ *  after an infrastructure failure carries nothing extra: there is nothing the
+ *  reader did wrong to tell it about. */
 export const MAX_RUBRIC_READER_ATTEMPTS = 3;
+
+/** The repair note appended to a re-draw whose predecessor would not assemble.
+ *  It NAMES the defect and re-states the contract; it never supplies a value,
+ *  so it cannot steer a score. */
+export function rubricReaderRepairNote(refusal: string): string {
+  return `\n\nYOUR PREVIOUS ANSWER WAS REJECTED and no score was recorded: ${refusal}\n`
+    + "Re-read the chapters and answer again. Return ONLY the JSON object described above, with EVERY field it"
+    + " names present and in range. Do not change your judgement to satisfy this note — fix the format.";
+}
 
 /** Backoff (ms) before each retry, indexed by (attempt - 1) and clamped to the
  *  last entry — the per-chapter seat's schedule, so a provider rate-limit blip
@@ -233,6 +248,9 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
     const attemptBase = `${input.taskContext.attemptId}-rubric-r${input.readerNumber}`;
     const operationId = `catalog-rubric-reader-${input.readerNumber}`;
     let lastDetail = "no attempt was made";
+    // Set only when a draw was REFUSED by the strict assembly, so the next draw
+    // is told what was wrong with the last one.
+    let repairNote = "";
     for (let attempt = 1; attempt <= MAX_RUBRIC_READER_ATTEMPTS; attempt += 1) {
       const context: ModelTaskContext = {
         ...input.taskContext,
@@ -242,7 +260,7 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
       const result: ModelResult = await this.#runner.run({
         profileId: this.#profileId,
         role: "review",
-        prompt: jsonPromptRequest(input.task, input.documentBlock),
+        prompt: jsonPromptRequest(`${input.task}${repairNote}`, input.documentBlock),
         context,
       });
       if (result.outcome !== "SUCCEEDED") {
@@ -282,6 +300,7 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
         if (!(error instanceof CatalogRubricReaderError)) throw error;
         lastDetail = error.message;
         if (attempt < MAX_RUBRIC_READER_ATTEMPTS) {
+          repairNote = rubricReaderRepairNote(error.message);
           await this.#sleep(backoffForAttempt(attempt));
           continue;
         }
