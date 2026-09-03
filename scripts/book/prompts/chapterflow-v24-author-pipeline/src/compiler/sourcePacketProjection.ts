@@ -60,6 +60,49 @@ export const WRITER_PACKET_PROJECTION_SCHEMA_VERSION = "chapterflow-writer-packe
 /** How many sourceQuality.risks lines reach the card (compactness cap). */
 export const PROJECTED_SOURCE_RISKS_CAP = 6;
 
+/**
+ * R-046 — how much of a fact's or case's `sourceQuote` reaches the card.
+ *
+ * The card is budget-bound in absolute characters (tests/contract-refactor.test.ts),
+ * and a packet can carry 18+ facts and 6 cases on an oversized unit, so an
+ * unbounded quote per item would be the largest single addition the card has ever
+ * taken. 200 characters is one or two sentences of source — enough for the writer
+ * to see what the book actually says and write prose that is accurate by
+ * construction, which is the whole point of carrying it.
+ */
+export const PROJECTED_SOURCE_QUOTE_CHARS = 200;
+
+/** R-055 — how many keyClaims reach the READ-ONLY CONTEXT block the author card
+ *  renders beside (never inside) the citable projection. The sidecar contract
+ *  asks for 4-8; six is the thesis without the tail. */
+export const PROJECTED_KEY_CLAIMS_CAP = 6;
+
+/**
+ * Truncate a quote to {@link PROJECTED_SOURCE_QUOTE_CHARS} on a word boundary,
+ * marking the cut.
+ *
+ * EXPORTED because the projection is not the only render of a packet. The v23
+ * section-task card (src/sections/sectionTasks.ts) embeds the RAW packet JSON, so
+ * on a source-text packet it would otherwise carry a full MAX_SOURCE_QUOTE_CHARS
+ * quote on every fact and every case inside a card whose length is budget-pinned
+ * (tests/contract-refactor.test.ts). Both renders bound the quote through this
+ * one function, so the two can never drift.
+ */
+export function boundSourceQuoteForCard(text: string): string {
+  if (text.length <= PROJECTED_SOURCE_QUOTE_CHARS) return text;
+  const cut = text.slice(0, PROJECTED_SOURCE_QUOTE_CHARS);
+  const lastSpace = cut.lastIndexOf(" ");
+  return `${(lastSpace > PROJECTED_SOURCE_QUOTE_CHARS / 2 ? cut.slice(0, lastSpace) : cut).trimEnd()}…`;
+}
+
+/** Truncate a projected quote on a word boundary, marking the cut. */
+function boundedQuote(value: unknown): string | undefined {
+  if (typeof value !== "string") return undefined;
+  const text = stripPageCitationSpans(value).trim();
+  if (text.length === 0) return undefined;
+  return boundSourceQuoteForCard(text);
+}
+
 export type WriterPacketProjectionFact = {
   id: string;
   claim: string;
@@ -75,6 +118,10 @@ export type WriterPacketProjectionFact = {
   /** IMP-03 (v2): the researcher's replication verdict, projected ONLY when below
    *  "robust" — the writer must hedge this claim instead of stating settled law. */
   replicationStatus?: "mixed" | "contested" | "failed";
+  /** R-046 (deliberate allowlist addition): the book's own words behind this
+   *  fact, so the writer can be accurate by construction rather than by
+   *  paraphrasing a paraphrase. Present only on a source-text packet. */
+  sourceQuote?: string;
 };
 
 export type WriterPacketProjectionCase = {
@@ -88,6 +135,13 @@ export type WriterPacketProjectionCase = {
   doNotRestamp?: string[];
   /** IMP-03 (v2): the case's own documented setting, when research recorded one. */
   naturalSetting?: string;
+  /** R-046: the book's own words behind this case's summary. */
+  sourceQuote?: string;
+  /** R-056: what each hardSpecific is a specific OF. Without it the only way to
+   *  join two bare tokens in one sentence is to invent a predicate — which is
+   *  exactly what the released "just one Dutch dollar. He spent it on three
+   *  puffy rolls" is. */
+  specificPropositions?: Array<{ specific: string; proposition: string }>;
 };
 
 export type WriterPacketProjection = {
@@ -103,6 +157,18 @@ export type WriterPacketProjection = {
   /** IMP-03 (v2): the packet's sourceQuality.risks, citation-stripped and capped —
    *  the writer sees the researcher's own risk notes on this chapter's evidence. */
   sourceRisks?: string[];
+  /** R-055: the chapter's own thesis. buildAuthorCard SPLITS this key out of the
+   *  rendered projection JSON and emits it under its own READ-ONLY, NOT-CITABLE
+   *  header — it must not appear inside the block the writer is told is the only
+   *  allowed factual material. */
+  chapterContext?: {
+    focus?: string;
+    coreClaim?: string;
+    hardEdge?: string;
+    keyClaims?: string[];
+  };
+  /** R-046: "source-text" when this chapter was quoted from the book. */
+  sourceProvenance?: "source-text" | "model-memory";
 };
 
 /** Copy a string field only when it carries content (defensive against partially
@@ -145,6 +211,8 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
       if (fact.replicationStatus === "mixed" || fact.replicationStatus === "contested" || fact.replicationStatus === "failed") {
         projected.replicationStatus = fact.replicationStatus;
       }
+      const quote = boundedQuote(fact.sourceQuote);
+      if (quote !== undefined) projected.sourceQuote = quote;
       return projected;
     }),
     namedCases: (packet.namedCases ?? []).map((namedCase) => {
@@ -177,6 +245,12 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
       }
       const naturalSetting = textOrUndefined(namedCase.naturalSetting);
       if (naturalSetting !== undefined) projected.naturalSetting = naturalSetting;
+      const caseQuote = boundedQuote(namedCase.sourceQuote);
+      if (caseQuote !== undefined) projected.sourceQuote = caseQuote;
+      const propositions = (namedCase.specificPropositions ?? [])
+        .map((entry) => ({ specific: stripPageCitationSpans(String(entry?.specific ?? "")).trim(), proposition: stripPageCitationSpans(String(entry?.proposition ?? "")).trim() }))
+        .filter((entry) => entry.specific.length > 0 && entry.proposition.length > 0);
+      if (propositions.length > 0) projected.specificPropositions = propositions;
       return projected;
     }),
     allowedAnchors: (packet.allowedAnchors ?? []).map((anchor) => anchor.id),
@@ -188,5 +262,22 @@ export function writerPacketProjection(packet: SourcePacketV1): WriterPacketProj
     .filter((r) => r.length > 0)
     .slice(0, PROJECTED_SOURCE_RISKS_CAP);
   if (risks.length > 0) projection.sourceRisks = risks;
+  // R-055: the chapter's thesis, deliberately added to the allowlist.
+  if (packet.chapterContext) {
+    const context: NonNullable<WriterPacketProjection["chapterContext"]> = {};
+    const focus = textOrUndefined(packet.chapterContext.focus);
+    if (focus !== undefined) context.focus = focus;
+    const coreClaim = textOrUndefined(packet.chapterContext.coreClaim);
+    if (coreClaim !== undefined) context.coreClaim = coreClaim;
+    const hardEdge = textOrUndefined(packet.chapterContext.hardEdge);
+    if (hardEdge !== undefined) context.hardEdge = hardEdge;
+    const keyClaims = (packet.chapterContext.keyClaims ?? [])
+      .map((claim) => stripPageCitationSpans(String(claim)).trim())
+      .filter((claim) => claim.length > 0)
+      .slice(0, PROJECTED_KEY_CLAIMS_CAP);
+    if (keyClaims.length > 0) context.keyClaims = keyClaims;
+    if (Object.keys(context).length > 0) projection.chapterContext = context;
+  }
+  if (packet.sourceProvenance !== undefined) projection.sourceProvenance = packet.sourceProvenance;
   return projection;
 }

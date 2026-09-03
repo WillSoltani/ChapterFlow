@@ -20,6 +20,22 @@ const SOURCE_FIGURE_ALIASES: Record<string, string[]> = {
   Marks: ["Howard"],
 };
 
+/**
+ * R-115 — the investing-canon carve-out, kept ONLY as the default for callers that have no book
+ * genre in hand.
+ *
+ * These five names (Graham, his co-author Dodd, Buffett and his given name Warren, and Graham's
+ * given name Benjamin) were added unconditionally to EVERY packet's protected set, so every book
+ * in the catalogue reserved them. On a memoir by Benjamin Franklin that opened the writer's
+ * forbidden-name list with "Benjamin" — the author's own name treated as an off-limits invented
+ * protagonist for reasons that belong to a different genre entirely.
+ *
+ * The list now lives in config/genre-pools.json under each genre's `reservedFigureNames`, and
+ * `protectedSourceNames` takes it as a parameter. This constant remains the DEFAULT so the two
+ * consumers that reserve names book-wide without a genre — sectionGate's SEC34 actor check and
+ * critics/readerBudgets' person-token exclusion — keep behaving exactly as before; narrowing
+ * those two is a section-gate change, not a compiler one.
+ */
 export const GLOBAL_RESERVED_SOURCE_FIGURE_NAMES = ["Benjamin", "Graham", "Dodd", "Buffett", "Warren"] as const;
 
 function escapeRegex(value: string): string {
@@ -35,12 +51,24 @@ function packetNameText(packet: SourcePacketV1): string {
   ].join(" ");
 }
 
-export function protectedSourceNames(packet: SourcePacketV1, candidateNames: string[] = DEFAULT_PROTAGONIST_NAMES): Set<string> {
+/**
+ * Names an invented protagonist must not take for this packet.
+ *
+ * `reservedNames` is the genre's source-figure canon (R-115). It defaults to the investing block
+ * for backward compatibility; pass `[]` to get the PACKET-DERIVED protection alone — the names
+ * that genuinely appear in this chapter's own material — which is what the blueprint's
+ * forbidden-name guidance should show a reader-facing writer.
+ */
+export function protectedSourceNames(
+  packet: SourcePacketV1,
+  candidateNames: string[] = DEFAULT_PROTAGONIST_NAMES,
+  reservedNames: readonly string[] = GLOBAL_RESERVED_SOURCE_FIGURE_NAMES,
+): Set<string> {
   const protectedNames = new Set<string>();
   const candidates = new Set(candidateNames);
   const haystack = packetNameText(packet);
 
-  for (const name of GLOBAL_RESERVED_SOURCE_FIGURE_NAMES) {
+  for (const name of reservedNames) {
     protectedNames.add(name);
   }
 

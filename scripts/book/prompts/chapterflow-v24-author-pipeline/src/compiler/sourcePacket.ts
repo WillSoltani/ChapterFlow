@@ -38,6 +38,13 @@ function normalizedCase(raw: any, fallbackId: string): SourcePacketCase | null {
   if (!label && !summary && hardSpecifics.length === 0) return null;
   const joined = [label, summary, hardSpecifics.join("; ")].join(" ");
   const restamp = hardSpecifics.filter((s: string) => /\b\d{4}\b|\b[A-Z][a-z]+,\s+[A-Z][a-z]+\b|\b(?:hospital|company|university|city|state|county|province)s?\b/i.test(s));
+  // R-056: the proposition each token belongs to, so a downstream unit that must
+  // put two tokens in one line has the relation instead of inventing one (the
+  // released "just one Dutch dollar. He spent it on three puffy rolls" is the
+  // invented relation this carries).
+  const specificPropositions = (Array.isArray(raw?.hardSpecificEvidence) ? raw.hardSpecificEvidence : [])
+    .map((entry: any) => ({ specific: asText(entry?.specific), proposition: asText(entry?.proposition) }))
+    .filter((entry: { specific: string; proposition: string }) => entry.specific.length > 0 && entry.proposition.length > 0);
   return {
     id,
     label,
@@ -48,6 +55,8 @@ function normalizedCase(raw: any, fallbackId: string): SourcePacketCase | null {
     allowedUses: ["example", "breakdown_claim", "quiz_prompt", "quiz_key_evidence", "review_card", "implementation_guidance"],
     forbiddenUses: ["Do not invent dialogue, participants, dates, outcomes, or quantified effects not present in hardSpecifics or testableFacts."],
     doNotRestamp: restamp,
+    ...(asText(raw?.sourceQuote) ? { sourceQuote: asText(raw.sourceQuote) } : {}),
+    ...(specificPropositions.length > 0 ? { specificPropositions } : {}),
   };
 }
 
@@ -118,12 +127,40 @@ export function compileSourcePacketFromSidecar(args: {
     ],
     forbiddenLeakage: namedCases.map((c) => ({ into: c.id, warning: `Keep examples about ${c.label} source-local; do not import sibling chapter imagery or stakes.` })),
     sourceQuality: { status, risks },
+    // R-055: the chapter's own thesis. Rendered to the writer as READ-ONLY
+    // CONTEXT — it orients the chapter, it is not a source of citable specifics.
+    ...(chapterContextFor(sidecar) === null ? {} : { chapterContext: chapterContextFor(sidecar)! }),
+    // R-046: provenance travels with the packet so a writer prompt (and, in
+    // wave 2, the fidelity judge) can tell a quoted book from a recalled one.
+    ...((sidecar as { sourceProvenance?: "source-text" | "model-memory" }).sourceProvenance === undefined
+      ? {}
+      : { sourceProvenance: (sidecar as { sourceProvenance: "source-text" | "model-memory" }).sourceProvenance }),
   };
   // P13: stamp the pedagogical fact ranking (teachingPriority + coreMoveFactId). At single-packet
   // compile time bookWideDuplicate is not yet known, so this is an initial ranking; compileSourcePackets
   // re-runs it after the book-wide dedup pass so the distinctness signal reflects cross-chapter duplicates.
   applyTeachingRanking(packet);
   return packet;
+}
+
+/**
+ * R-055 — the chapter thesis fields, or null when the sidecar carries none.
+ *
+ * `paraphraseNotes` is deliberately NOT included. It is 600-3000 characters, the
+ * writer card is already budget-bound (tests/contract-refactor.test.ts pins it in
+ * absolute characters), and the fields below carry the thesis in about a tenth of
+ * the space. The researcher keeps writing paraphraseNotes because the .txt
+ * sidecar and the coherence critics read it; what changes here is that the
+ * WRITER finally sees the chapter's claim.
+ */
+function chapterContextFor(sidecar: SourceSidecarV2): SourcePacketV1["chapterContext"] | null {
+  const raw = sidecar as unknown as { focus?: unknown; coreClaim?: unknown; hardEdge?: unknown; keyClaims?: unknown };
+  const focus = asText(raw.focus);
+  const coreClaim = asText(raw.coreClaim);
+  const hardEdge = asText(raw.hardEdge);
+  const keyClaims = (Array.isArray(raw.keyClaims) ? raw.keyClaims : []).map(asText).filter(Boolean);
+  if (!focus && !coreClaim && !hardEdge && keyClaims.length === 0) return null;
+  return { focus, coreClaim, hardEdge, keyClaims };
 }
 
 export function sourcePacketHash(packet: SourcePacketV1): string {

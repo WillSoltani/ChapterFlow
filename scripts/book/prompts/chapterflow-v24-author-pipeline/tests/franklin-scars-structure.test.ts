@@ -98,9 +98,10 @@ const BOOK_WIDE_CRAFT_TITLES = [
   "NO FALSE UNIVERSAL",
 ];
 
-/** Words per FACT PIN. Measured, not aspirational: the longest pin in the shipped
- *  file is 60 words (ch03's fire company and ch03's lottery). A pin that needs
- *  more than this is carrying two facts and should be two pins. */
+/** Words per FACT PIN. Measured, not aspirational: exactly one pin in the shipped
+ *  file reaches 60 words — ch03's fire company; the next longest are ch03's
+ *  sweeping subscription at 59 and, at 58, ch03's lottery and ch04's near-wreck.
+ *  A pin that needs more than this is carrying two facts and should be two pins. */
 const FACT_PIN_WORD_CAP = 60;
 
 /** Characters of rendered rules per chapter. The binding chapter (ch03, 12 scoped

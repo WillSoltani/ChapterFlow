@@ -54,6 +54,12 @@ export type SourcePacketFact = {
    *  around the identical thesis (which saturates the section-gate SEC90 phrase
    *  budget book-wide). See chapterBlueprint.factIds(). */
   bookWideDuplicate?: boolean;
+  /**
+   * R-046 — the verbatim run of the book's own text this fact was drawn from,
+   * copied straight from the sidecar. Present only on a source-text run; absent
+   * on every model-memory packet, where there is nothing to quote.
+   */
+  sourceQuote?: string;
   /** 1-based pedagogical teaching rank (1 = best teaching fact) assigned by the
    *  packet compiler's deterministic rankTeachingFacts() pass (P13). Additive and
    *  optional: legacy packets written before P13 have no teachingPriority, in which
@@ -72,6 +78,11 @@ export type SourcePacketCase = {
   allowedUses: SourceClaimType[];
   forbiddenUses: string[];
   doNotRestamp: string[];
+  /** R-046 — the verbatim source run this case's summary was drawn from. */
+  sourceQuote?: string;
+  /** R-056 — one sentence per hardSpecific stating the proposition it belongs
+   *  to, so no downstream unit has to invent the relation between two tokens. */
+  specificPropositions?: Array<{ specific: string; proposition: string }>;
 };
 
 export type SourcePacketFramework = {
@@ -107,6 +118,35 @@ export type SourcePacketV1 = {
    *  mechanism/claim instead of packet.facts[0]. Additive/optional: absent on legacy
    *  packets, in which case coreMove falls back to facts[0] (byte-identical). */
   coreMoveFactId?: string;
+  /**
+   * R-055 — the chapter's own thesis, carried to the writers.
+   *
+   * The packet used to carry facts, cases, frameworks and permission lists and
+   * nothing else, so no writer ever saw what the chapter was ABOUT. The measured
+   * cost on the released Franklin book: ch04 keyClaim 7 said the dispute "ends in
+   * a limited compromise on assessment method" (near the truth) while fact.08
+   * said "without a decisive outcome for either side" (false) — the packet kept
+   * the false fact and discarded the truer claim.
+   *
+   * READ-ONLY CONTEXT, and rendered that way. Both writer cards SPLIT this field
+   * out of the packet/projection JSON and render it under its own
+   * "CHAPTER CONTEXT — READ-ONLY ORIENTATION, NOT CITABLE" header
+   * (src/sections/sectionTasks.ts chapterContextSection, src/orchestrator/
+   * authorRun.ts buildAuthorCard). It must never travel inside the block headed
+   * "ONLY allowed facts/cases/numbers/entities": these fields carry no
+   * sourceQuote and no gate checks them against the frozen text, and `hardEdge`
+   * is by contract the tempting WRONG reading. tests/writer-card-source-context
+   * .test.ts pins both renders.
+   */
+  chapterContext?: {
+    focus: string;
+    coreClaim: string;
+    hardEdge: string;
+    keyClaims: string[];
+  };
+  /** R-046 — "source-text" when the sidecar this packet was compiled from was
+   *  quoted from the book, "model-memory" when it was recalled. */
+  sourceProvenance?: "source-text" | "model-memory";
 };
 
 /** The nine designable variety pools a book's blueprints draw from. These are the pools that
@@ -130,11 +170,40 @@ export type BookDesignPools = {
  *  global monoculture. Stored at state/book-design/<bookId>.design.json. Additive/optional at the
  *  consumption layer: a book WITHOUT this artifact compiles byte-identically to the pre-P14 world
  *  (chapterBlueprint.resolvePools falls back to genre pools, then the legacy in-code constants). */
+/**
+ * Staging material mined from ONE chapter's own source packet (R-065/R-103). Optional per field:
+ * a chapter whose packet yields no usable topic simply contributes nothing and falls through to
+ * the book's genre pools.
+ */
+export type ChapterDerivedDesign = {
+  /** A decision-scene frame built from this chapter's best-taught mined specific. */
+  frameDecision?: string;
+  /** An experiential frame built from this chapter's second-best mined specific. */
+  frameExperiential?: string;
+  /** A practice constraint built from this chapter's best-taught mined specific. */
+  practiceConstraint?: string;
+  /** The mined topics, best-taught first, that the fields above were built from. */
+  topics: string[];
+};
+
 export type BookDesignV1 = {
   schemaVersion: typeof BOOK_DESIGN_SCHEMA_VERSION;
   bookId: string;
   genre: string;
   pools: BookDesignPools;
+  /**
+   * R-065 — per-CHAPTER mined staging, keyed by chapter number as a string.
+   *
+   * Derived material used to be flattened into the book-wide `pools`, where it was dealt
+   * POSITIONALLY: a specific mined from chapter 7 landed in chapter 3's example slot ("a first
+   * encounter with age twelve" on a chapter about a different decade), so the one lever meant to
+   * give a book its own flavour spent itself on another chapter's tokens. Chapter-keyed material
+   * can only ever be dealt to the chapter it came from.
+   *
+   * Optional: absent (or an absent chapter key) means that chapter draws entirely from `pools`,
+   * which is exactly the genre/legacy behaviour.
+   */
+  perChapter?: Record<string, ChapterDerivedDesign>;
   provenance: {
     source: "derived" | "genre-fallback";
     /** Source-case ids / sidecar material the derived pools were mined from. */

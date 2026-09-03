@@ -27,6 +27,10 @@ import { createHash } from "node:crypto";
 /** The artifact families the plan (§8.11) names as untrusted prompt data. */
 export type UntrustedArtifactType =
   | "source-packet-projection"
+  // R-055 — the chapter's thesis, rendered BESIDE the projection under a
+  // READ-ONLY, NOT-CITABLE header. Its own type so the block is legible in a
+  // transcript as what it is: orientation, not the allowed factual material.
+  | "chapter-context"
   | "source-sidecar"
   | "source-use-plan"
   | "chapter-brief"

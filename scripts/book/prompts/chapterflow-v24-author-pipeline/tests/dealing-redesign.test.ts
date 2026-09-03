@@ -1,0 +1,803 @@
+/**
+ * Package 1C — "the blueprint deals what the chapter needs, not what position says."
+ *
+ * Property-style tests over MANY bookIds x chapter counts, compiled through the real
+ * production path (compileChapterBlueprint / deriveBookDesign), pinning the dealing
+ * redesign's behavioural claims:
+ *
+ *   - case cues follow FACT RELEVANCE, not slot position (R-062/R-101/R-119/R-125);
+ *   - every positional pool gets a per-chapter permutation, not a marching rotation
+ *     (R-102/R-104), while BPV11's round-robin cap still holds by construction;
+ *   - fact routing spreads facts across surfaces and covers every teaching fact
+ *     (R-126/R-127);
+ *   - the name window never reuses a name inside a chapter and never collides across
+ *     chapters (R-120), and forbiddenNames carries no bank filler (R-114/R-115);
+ *   - venues/frames are the chapter's own, never another chapter's tokens (R-065/R-103/R-113).
+ */
+import assert from "node:assert/strict";
+import { mkdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
+
+import { test } from "./harness.js";
+import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
+import { compileChapterBlueprint, compilerNameBank, POSITIONAL_DEALS, resolvedPoolsForBook } from "../src/compiler/chapterBlueprint.js";
+import { checkPositionalDeals, poolSizeOverrides, validateBlueprint } from "../src/compiler/blueprintGate.js";
+import { buildGenrePools, deriveBookDesign, genreForBook, rankedTopicsForPacket, validateBookDesign } from "../src/compiler/bookDesign.js";
+import { properNounTokens, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE } from "../src/compiler/sourcePacketFacts.js";
+import { protectedSourceNames } from "../src/compiler/sourceNames.js";
+import { bookDesignPath, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../src/artifacts/artifactStore.js";
+import { compilerGateBlockerMessages, COMPILER_GATE_BLOCKED_PREFIX } from "../src/app/compilerApplicationPort.js";
+import { measure, type MeasuredBlueprint } from "../src/tools/measureDealing.js";
+import { retryableCompilerFailure } from "../src/app/bookRunApplicationService.js";
+import type { BookDesignV1, ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
+import type { ChapterSpec } from "../src/generateChapter.js";
+import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
+
+// ── a realistic multi-case, multi-fact synthetic book ──────────────────────────────
+// Each chapter carries 5 named cases with DISTINCT vocabularies and 11 facts whose
+// wording deliberately overlaps ONE of those cases, so "the fact's best case" is a
+// checkable ground truth rather than an accident of ordering.
+const CASE_VOCAB = [
+  { key: "fire", words: "fire company bucket ladder hook brigade neighbourhood watch" },
+  { key: "militia", words: "militia lottery muskets cannon battery volunteer defence" },
+  { key: "hospital", words: "hospital subscription matching grant ward physician charity" },
+  { key: "junto", words: "junto club questions essays discussion mutual improvement" },
+  { key: "library", words: "library subscription books borrowing shelves catalogue readers" },
+];
+
+function sidecar(chapterNumber: number, title: string): SourceSidecarV2 {
+  const facts = Array.from({ length: 11 }, (_, i) => {
+    const v = CASE_VOCAB[i % CASE_VOCAB.length];
+    return {
+      id: `ch${chapterNumber}.fact.${i + 1}`,
+      claim: `The ${v.words.split(" ").slice(0, 3).join(" ")} shows how ${title} works in practice ${i + 1}.`,
+      becauseMechanism: `Because the ${v.words.split(" ").slice(0, 4).join(" ")} changes who acts first, ${title} transfers.`,
+      commonError: `Readers treat the ${v.key} story as decoration instead of the mechanism ${i + 1}.`,
+      errorIsWhy: `The ${v.words.split(" ").slice(2, 5).join(" ")} is what makes the lesson hold ${i + 1}.`,
+    };
+  });
+  return {
+    schemaVersion: "source-v2",
+    chapterNumber,
+    chapterTitle: title,
+    centralConcept: { id: `ch${chapterNumber}.concept`, name: title, plainDefinition: `${title} definition.`, whyItMatters: `${title} matters to the reader.` },
+    keyClaims: facts.map((f) => f.claim),
+    namedExamples: CASE_VOCAB.map((v) => ({
+      id: `ch${chapterNumber}.case.${v.key}`,
+      label: `The ${v.key} project`,
+      summary: `A grounded account of the ${v.words} and what it changed.`,
+      teachesWhat: `Teaches the ${v.key} move.`,
+      hardSpecifics: [`${v.key} specific one`, `${v.key} specific two`],
+      realWorld: true,
+    })),
+    hardEdge: "Do not overclaim the mechanism.",
+    paraphraseNotes: "Keep claims bounded to the tested facts.",
+    testableFacts: facts,
+    frameworks: [{ name: "Test framework", members: ["a", "b"] }],
+  };
+}
+
+function chapterSpec(bookId: string, n: number): ChapterSpec {
+  return { chapterId: `${bookId}-ch${String(n).padStart(2, "0")}`, chapterNumber: n, chapterTitle: `Chapter ${n}` };
+}
+
+function compileBook(bookId: string, totalChapters: number): { blueprints: ChapterBlueprintV1[]; packets: SourcePacketV1[] } {
+  const blueprints: ChapterBlueprintV1[] = [];
+  const packets: SourcePacketV1[] = [];
+  for (let n = 1; n <= totalChapters; n++) {
+    const spec = chapterSpec(bookId, n);
+    const packet = compileSourcePacketFromSidecar({ bookId, chapter: spec, sidecar: sidecar(n, spec.chapterTitle), sidecarPath: `/tmp/${bookId}-ch${n}.source.json`, sourceHash: `hash${n}` });
+    packets.push(packet);
+    blueprints.push(compileChapterBlueprint({ bookId, chapter: spec, packet, packetPath: `/tmp/${bookId}-ch${n}.source-packet.json`, totalChapters }));
+  }
+  return { blueprints, packets };
+}
+
+// Many bookIds x chapter counts — the deal is seeded per book, so one book proves nothing.
+const BOOK_IDS = ["zz-deal-alpha", "zz-deal-bravo", "zz-deal-charlie", "zz-deal-delta", "zz-deal-echo"];
+const CHAPTER_COUNTS = [4, 9, 12, 21];
+
+// ── R-062 / R-101 / R-119 / R-125 — case cues follow fact relevance ────────────────
+
+test("R-101: every dealt case cue is a top-scoring case for its slot's fact (within one point of the best)", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints, packets } = compileBook(bookId, 9);
+    blueprints.forEach((bp, idx) => {
+      const packet = packets[idx];
+      const check = (factIds: string[], cueIds: string[], where: string) => {
+        if (cueIds.length === 0) return;
+        const scored = scoredCaseIdsForFact(packet, factIds[0], 0);
+        assert.ok(scored.length > 0, `${where}: no scored cases`);
+        const top = scored[0].score;
+        for (const cue of cueIds) {
+          const entry = scored.find((s) => s.id === cue);
+          assert.ok(entry, `${bookId} ch${bp.chapterNumber} ${where}: cue ${cue} is not a case of this packet`);
+          assert.ok(entry!.score >= top - 1, `${bookId} ch${bp.chapterNumber} ${where}: cue ${cue} scores ${entry!.score} against a top of ${top} — load-balancing must stay inside one point of the best-linked case`);
+        }
+      };
+      // Quiz and card cues are STRICTLY inside the head: they are optional, so there is never a
+      // reason to reach past it. Example cues are mandatory (BPV10), so a slot may spill outside
+      // the head once every head case has taken its fair share — this packet's five cases over
+      // six slots leaves the head un-exhausted, so the strict rule still holds here.
+      bp.sections.examples.forEach((ex, i) => check(ex.requiredFactIds, ex.requiredCaseIds, `example ${i}`));
+      bp.sections.quiz.forEach((q, i) => check(q.requiredFactIds, q.caseCueIds, `quiz ${i}`));
+      bp.sections.cards.forEach((c, i) => check(c.requiredFactIds, c.caseCueIds, `card ${i}`));
+    });
+  }
+});
+
+test("R-062/R-119: a quiz or card case cue is only dealt when the slot's fact is genuinely LINKED to that case", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints, packets } = compileBook(bookId, 6);
+    blueprints.forEach((bp, idx) => {
+      const packet = packets[idx];
+      for (const [where, slots] of [["quiz", bp.sections.quiz], ["card", bp.sections.cards]] as const) {
+        slots.forEach((slot: { requiredFactIds: string[]; caseCueIds: string[] }, i: number) => {
+          if (slot.caseCueIds.length === 0) return;
+          const scored = scoredCaseIdsForFact(packet, slot.requiredFactIds[0], 0);
+          assert.ok(
+            scored[0].score >= CASE_LINKAGE_MIN_SCORE,
+            `${bookId} ch${bp.chapterNumber} ${where} ${i}: a case cue was dealt for a fact whose best case scores ${scored[0]?.score} — below the ${CASE_LINKAGE_MIN_SCORE} linkage floor, so SEC56 would force an unrelated case into the stem`,
+          );
+        });
+      }
+    });
+  }
+});
+
+test("R-119/R-125: no single case is cued by more than two learning units (quiz + cards) in a chapter", () => {
+  for (const bookId of BOOK_IDS) {
+    for (const C of CHAPTER_COUNTS) {
+      const { blueprints } = compileBook(bookId, C);
+      for (const bp of blueprints) {
+        const counts = new Map<string, number>();
+        for (const slot of [...bp.sections.quiz, ...bp.sections.cards]) {
+          for (const id of slot.caseCueIds) counts.set(id, (counts.get(id) ?? 0) + 1);
+        }
+        for (const [id, c] of counts) {
+          assert.ok(c <= 2, `${bookId} ch${bp.chapterNumber}: case ${id} is cued by ${c} learning units; the cap is 2`);
+        }
+      }
+    }
+  }
+});
+
+test("R-125: card case cues never collapse onto two book-wide offsets when the packet has an EVEN number of cases", () => {
+  // The old stride was (n*2 + i) % |cases|: with |cases| even it takes only even residues.
+  const bookId = "zz-deal-even-cases";
+  const built = compileBook(bookId, 12);
+  // Force an even case count by dropping one case from each packet and recompiling.
+  const blueprints = built.packets.map((packet, idx) => {
+    const trimmed: SourcePacketV1 = { ...packet, namedCases: packet.namedCases.slice(0, 4) };
+    return compileChapterBlueprint({ bookId, chapter: chapterSpec(bookId, idx + 1), packet: trimmed, packetPath: `/tmp/${bookId}.json`, totalChapters: 12 });
+  });
+  // Case ids are chapter-namespaced, so compare the case KIND (the suffix) across chapters.
+  // The old stride `(n*2 + i) % 4` pins a fixed card slot to two kinds for the whole book.
+  const kind = (id: string): string => id.replace(/^ch\d+\.case\./, "");
+  const columns = Array.from({ length: 7 }, (_, slot) => blueprints.map((bp) => bp.sections.cards[slot].caseCueIds.map(kind)[0]).filter((v): v is string => !!v));
+  const cued = columns.filter((col) => col.length >= 6);
+  assert.ok(cued.length >= 3, `expected at least three card slots to carry cues across the book, got ${cued.length}`);
+  for (const col of cued) {
+    assert.ok(new Set(col).size >= 3, `a card slot reaches only ${new Set(col).size} distinct case kind(s) over ${col.length} cued chapters: ${col.join(",")}`);
+  }
+  const allKinds = new Set(columns.flat());
+  assert.ok(allKinds.size >= 4, `card cues reach only ${allKinds.size} of the packet's 4 cases book-wide: ${[...allKinds].join(", ")}`);
+});
+
+// ── R-126 / R-127 — fact routing spreads, and covers ───────────────────────────────
+
+test("R-127: every teaching fact reaches at least one learning unit (example, quiz or card) in its chapter", () => {
+  for (const bookId of BOOK_IDS) {
+    for (const C of [4, 12]) {
+      const { blueprints, packets } = compileBook(bookId, C);
+      blueprints.forEach((bp, idx) => {
+        const packet = packets[idx];
+        const teaching = packet.facts.filter((f) => !f.bookWideDuplicate).map((f) => f.id);
+        const used = new Set<string>([
+          ...bp.sections.examples.flatMap((e) => e.requiredFactIds),
+          ...bp.sections.quiz.flatMap((q) => q.requiredFactIds),
+          ...bp.sections.cards.flatMap((c) => c.requiredFactIds),
+        ]);
+        const orphans = teaching.filter((id) => !used.has(id));
+        assert.deepEqual(orphans, [], `${bookId} ch${bp.chapterNumber}: teaching facts reach no learning unit: ${orphans.join(", ")}`);
+      });
+    }
+  }
+});
+
+test("R-127: card fact routing varies by chapter — card slot i does not teach the same rank in every chapter", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    // Compare the *rank position* dealt to a fixed card slot across chapters: the old dealer
+    // was `ids[i % ids.length]` with no chapter term, so the suffix was constant per slot.
+    for (let slot = 0; slot < 7; slot++) {
+      const suffixes = new Set(blueprints.map((bp) => (bp.sections.cards[slot].requiredFactIds[0] ?? "").replace(/^ch\d+\./, "")));
+      assert.ok(suffixes.size > 1, `${bookId}: card slot ${slot} teaches the identical fact position in all 9 chapters (${[...suffixes].join(", ")})`);
+    }
+  }
+});
+
+test("R-126: the action step and the summaries spine do not key the identical fact triple", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    for (const bp of blueprints) {
+      assert.notDeepEqual(
+        bp.sections.action.requiredFactIds,
+        bp.sections.summaries.requiredFactIds,
+        `${bookId} ch${bp.chapterNumber}: action and summaries mandate the same fact triple`,
+      );
+    }
+  }
+});
+
+// ── R-102 / R-104 — per-chapter permutation, not a marching rotation ───────────────
+
+test("R-102: consecutive chapters are not index-rotations of one another for any positional pool", () => {
+  const isRotation = (a: string[], b: string[]): boolean => {
+    if (a.length !== b.length || a.length < 3) return false;
+    for (let k = 1; k < a.length; k++) {
+      if (a.every((v, i) => v === b[(i + k) % b.length])) return true;
+    }
+    return false;
+  };
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    for (const d of POSITIONAL_DEALS) {
+      if (d.slots < 3) continue;
+      for (let n = 1; n < blueprints.length; n++) {
+        const a = d.extract(blueprints[n - 1]);
+        const b = d.extract(blueprints[n]);
+        assert.ok(!isRotation(a, b), `${bookId} ${d.poolKey}: ch${n + 1} is ch${n}'s list rotated — the deal is still a marching shift`);
+      }
+    }
+  }
+});
+
+test("R-104: example formats are not the identical six-format sequence in every chapter", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    const sequences = new Set(blueprints.map((bp) => bp.plan.exampleSpecs.map((s) => s.format).join("|")));
+    assert.ok(sequences.size > 1, `${bookId}: all 9 chapters ship the identical example-format sequence`);
+    for (const bp of blueprints) {
+      const formats = bp.plan.exampleSpecs.map((s) => s.format);
+      assert.equal(new Set(formats).size, formats.length, `${bookId} ch${bp.chapterNumber}: example formats repeat inside one chapter (BPV3 blocks this)`);
+    }
+  }
+});
+
+test("R-104/R-128: the deals that were computed outside POSITIONAL_DEALS are registered and audited", () => {
+  const keys = POSITIONAL_DEALS.map((d) => d.poolKey);
+  // Every deal R-128 named as computed outside the registry, plus "venue", the example-fact deal
+  // and the sixth example slot's purpose the fix round added: eleven keys, all audited. The hook
+  // shape is deliberately NOT among them — R-118 made sections.hook.shape the dealt
+  // reservedVariety.hookShape itself, so the existing "hookShape" entry already audits that
+  // column and a second entry would audit one deal twice (see the registry comment).
+  const added = ["exampleFormat", "examplePurpose", "examplePurposeTail", "exampleSceneMode", "exampleFact", "cardFact", "quizCaseCue", "cardCaseCue", "sceneMechanism", "reservedSceneMode", "venue"];
+  assert.equal(added.length, 11);
+  for (const key of added) {
+    assert.ok(keys.includes(key), `POSITIONAL_DEALS is missing "${key}" — BPV11 cannot see it`);
+  }
+  // One entry per deal: no poolKey is registered twice, and no two entries read the same column.
+  assert.equal(new Set(keys).size, keys.length, "POSITIONAL_DEALS has a duplicate poolKey");
+  assert.equal(keys.filter((k) => k.toLowerCase().includes("hookshape")).length, 1, "the hook shape is one deal and must be registered once");
+  // The registry's size is part of the claim the PR body makes; pin it so the number cannot drift
+  // unrecorded. Fifteen entries on origin/main, eleven added here.
+  assert.equal(keys.length, 26, `POSITIONAL_DEALS has ${keys.length} entries — update the count claimed in the change record`);
+});
+
+test("BPV12: the pool-floor guard's contentDriven arm is dormant — no content-driven deal is per-chapter", () => {
+  // The `!d.contentDriven` guard in checkPositionalDeals' BPV12 arm is defensive, not a fix. A
+  // content-driven deal has no book-wide vocabulary — its poolSize is either 0 (the fact and cue
+  // deals) or a per-chapter palette size (venue's 6 venues belong to one chapter) — so measuring
+  // it against the ceil(C/2) book floor would compare two different things. Today every such
+  // descriptor is perChapter:false, so the BPV12 arm is never reached for one and the guard is
+  // dormant. This test says that out loud, and fails if a future descriptor makes it load-bearing
+  // without anyone noticing.
+  const contentDriven = POSITIONAL_DEALS.filter((d) => d.contentDriven);
+  assert.equal(contentDriven.length, 5, "the content-driven set changed — re-check BPV12's guard");
+  for (const d of contentDriven) {
+    assert.equal(d.perChapter, false, `content-driven deal "${d.poolKey}" is perChapter — BPV12's dormant guard is now load-bearing`);
+  }
+});
+
+test("BPV11 stays clean under the redesigned deal for many books x chapter counts", () => {
+  for (const bookId of BOOK_IDS) {
+    for (const C of CHAPTER_COUNTS) {
+      const { blueprints } = compileBook(bookId, C);
+      const blockers = checkPositionalDeals(blueprints).filter((f) => f.checkId === "BPV11.positional_collision");
+      assert.deepEqual(blockers, [], `${bookId} (${C} chapters): ${JSON.stringify(blockers.map((b) => b.message))}`);
+      for (const bp of blueprints) {
+        const blueprintBlockers = validateBlueprint(bp).filter((f) => f.severity === "blocker");
+        assert.deepEqual(blueprintBlockers, [], `${bookId} ch${bp.chapterNumber}: ${JSON.stringify(blueprintBlockers)}`);
+      }
+    }
+  }
+});
+
+// ── R-120 / R-114 — the name window ────────────────────────────────────────────────
+
+test("R-120: no name is dealt to two example slots in one chapter, and chapters never share a name", () => {
+  for (const bookId of BOOK_IDS) {
+    for (const C of CHAPTER_COUNTS) {
+      const { blueprints } = compileBook(bookId, C);
+      const seenByChapter = new Map<string, number>();
+      for (const bp of blueprints) {
+        const dealt = bp.sections.examples.flatMap((e) => e.allowedNames);
+        assert.equal(new Set(dealt).size, dealt.length, `${bookId} ch${bp.chapterNumber}: a name plays two example slots (${dealt.join(", ")})`);
+        for (const name of new Set(dealt)) {
+          const prior = seenByChapter.get(name);
+          assert.equal(prior, undefined, `${bookId}: name "${name}" is dealt to both ch${prior} and ch${bp.chapterNumber}`);
+          seenByChapter.set(name, bp.chapterNumber);
+        }
+      }
+    }
+  }
+});
+
+// R-114's forbiddenNames contract is pinned by the disk-backed test near the bottom of this file
+// ("forbiddenNames names the neighbouring chapters' casts and never a name this chapter is dealt").
+// The test that stood here compiled WITHOUT roots, so siblingUsedNames() returned nothing and — for
+// a generic-genre synthetic packet — forbiddenNames was [] in every chapter of every fixture book:
+// its assertion loop never executed once. Its claim was also the wrong way round. It asserted that
+// forbiddenNames may never name a name the book deals to ANY chapter; the register's R-114 fix is
+// the opposite — the other chapters' casts are exactly the prohibition worth stating, because a
+// name another chapter owns is the one a writer must not reuse. What the replacement now catches:
+// bank filler (an entry no other chapter owns and this packet does not protect), a list that
+// contradicts THIS chapter's own deal, and an empty list. What it stops blocking: a forbiddenNames
+// entry that another chapter is dealt — which is now the point of the field, not a defect.
+
+// ── R-113 — forbiddenVenues ─────────────────────────────────────────────────────────
+
+test("R-113: forbiddenVenues never lists a venue this chapter's own palette carries, and is not the same list book-wide", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    const lists = new Set<string>();
+    for (const bp of blueprints) {
+      const palette = new Set(bp.reservedVariety.venuePalette);
+      for (const ex of bp.sections.examples) {
+        for (const v of ex.forbiddenVenues) {
+          assert.ok(!palette.has(v), `${bookId} ch${bp.chapterNumber}: forbids "${v}" while dealing it in the same chapter's palette`);
+        }
+        lists.add(ex.forbiddenVenues.join("|"));
+      }
+    }
+    assert.ok(lists.size > 1, `${bookId}: every chapter carries the identical forbiddenVenues list`);
+  }
+});
+
+// ── R-111 — the plan domain is a venue, not a concatenated staging string ───────────
+
+test("R-111: plan.exampleSpecs[].domain is exactly the slot's venue (no ': ' / '; ' concatenation)", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 5);
+    for (const bp of blueprints) {
+      bp.plan.exampleSpecs.forEach((spec, i) => {
+        assert.equal(spec.domain, bp.sections.examples[i].venue, `${bookId} ch${bp.chapterNumber} ex${i}: domain must be the venue alone`);
+        assert.ok(!spec.domain.includes("; "), `${bookId} ch${bp.chapterNumber} ex${i}: domain still concatenates the scene fields`);
+      });
+    }
+  }
+});
+
+// ── R-118 — one hook-shape deal ─────────────────────────────────────────────────────
+
+test("R-118: sections.hook.shape is the dealt reservedVariety.hookShape (no competing binary)", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    for (const bp of blueprints) {
+      assert.equal(bp.sections.hook.shape, bp.reservedVariety.hookShape, `${bookId} ch${bp.chapterNumber}: two hook shapes disagree`);
+    }
+    const shapes = new Set(blueprints.map((bp) => bp.sections.hook.shape));
+    assert.ok(shapes.size > 2, `${bookId}: hook shapes collapse to ${shapes.size} values book-wide`);
+  }
+});
+
+// ── R-117 — one scene taxonomy ──────────────────────────────────────────────────────
+
+test("R-117: sceneMechanism and sceneMode are drawn from DIFFERENT vocabularies", () => {
+  for (const bookId of BOOK_IDS) {
+    const { blueprints } = compileBook(bookId, 9);
+    const mechanisms = new Set(blueprints.map((bp) => bp.reservedVariety.sceneMechanism));
+    const modes = new Set(blueprints.map((bp) => bp.reservedVariety.sceneMode));
+    for (const m of mechanisms) {
+      assert.ok(!modes.has(m), `${bookId}: "${m}" is dealt as both a sceneMechanism and a sceneMode — one list, two labels`);
+    }
+  }
+});
+
+// ── determinism ─────────────────────────────────────────────────────────────────────
+
+test("the redesigned deal is still deterministic: a twice-compiled book is byte-identical", () => {
+  for (const bookId of BOOK_IDS.slice(0, 2)) {
+    assert.deepEqual(compileBook(bookId, 7).blueprints, compileBook(bookId, 7).blueprints);
+  }
+});
+
+test("rankedCaseIdsForFact and scoredCaseIdsForFact agree on order", () => {
+  const { packets } = compileBook("zz-deal-alpha", 1);
+  const packet = packets[0];
+  for (const fact of packet.facts) {
+    assert.deepEqual(scoredCaseIdsForFact(packet, fact.id, 0).map((s) => s.id), rankedCaseIdsForFact(packet, fact.id, 0));
+  }
+});
+
+// ── R-116 — the sentence-initial filter on properNounTokens ─────────────────────────
+
+test("R-116: a capitalized word that only ever opens a sentence is not a proper noun", () => {
+  assert.deepEqual(properNounTokens("Readers treat the story as decoration. Environments can be redesigned."), []);
+  assert.deepEqual(properNounTokens("Repetition builds myelin so retrieval becomes faster."), []);
+});
+
+test("R-116: a real proper noun survives even when it opens a sentence", () => {
+  // First word of the run is grammar, the rest is the name.
+  assert.ok(properNounTokens("Readers treat it as decoration. Then Franklin ruled the page.").includes("Franklin"));
+  // …and a name that recurs mid-sentence is kept outright.
+  assert.ok(properNounTokens("Franklin ruled the page. The clerk handed Franklin the ledger.").includes("Franklin"));
+});
+
+test("R-116: mid-sentence proper nouns are untouched", () => {
+  const out = properNounTokens("The club met at Philadelphia every Friday with Deborah Read.");
+  assert.ok(out.some((t) => t.includes("Philadelphia")), out.join(" | "));
+  assert.ok(out.some((t) => t.includes("Deborah")), out.join(" | "));
+});
+
+// ── R-065 / R-103 / R-105 — per-chapter derivation and the memoir genre ──────────────
+
+test("R-065: derived staging is chapter-keyed and the book-wide pools carry no mined material", () => {
+  const { packets } = compileBook("zz-deal-derived", 4);
+  const design = deriveBookDesign("zz-deal-derived", { packets, chapters: 4 });
+  const minedFragments = new Set(Object.values(design.perChapter ?? {}).flatMap((d) => d.topics));
+  assert.ok(minedFragments.size > 0, "the fixture packets must yield some mined topics or this proves nothing");
+  for (const [key, pool] of Object.entries(design.pools)) {
+    for (const entry of pool as string[]) {
+      for (const topic of minedFragments) {
+        assert.ok(!entry.includes(topic), `pools.${key} carries mined topic "${topic}" — a book-wide pool is dealt positionally, so that lands in another chapter`);
+      }
+    }
+  }
+});
+
+test("R-065: a chapter only ever receives its OWN mined staging", () => {
+  const { packets } = compileBook("zz-deal-derived", 4);
+  const design = deriveBookDesign("zz-deal-derived", { packets, chapters: 4 });
+  for (const [chapterKey, derived] of Object.entries(design.perChapter ?? {})) {
+    const own = new Set(packets[Number(chapterKey) - 1].namedCases.flatMap((c) => c.hardSpecifics.map((h) => h.toLowerCase())));
+    for (const topic of derived.topics) {
+      assert.ok([...own].some((h) => h.includes(topic)), `ch${chapterKey} derived topic "${topic}" is not in its own packet's hardSpecifics`);
+    }
+  }
+});
+
+test("R-103: mined topics are ranked by teaching value, not alphabetically", () => {
+  // A packet whose BEST-taught case is alphabetically LAST. The old `minedTopics` ended in
+  // `.sort()`, so it would return "age twelve" first; the rank must return the specific from the
+  // case the chapter's top-priority fact is linked to.
+  const packet = compileSourcePacketFromSidecar({
+    bookId: "zz-deal-rank",
+    chapter: chapterSpec("zz-deal-rank", 1),
+    sidecar: {
+      schemaVersion: "source-v2",
+      chapterNumber: 1,
+      chapterTitle: "Ranking",
+      centralConcept: { id: "c", name: "Ranking", plainDefinition: "d.", whyItMatters: "w." },
+      keyClaims: [],
+      namedExamples: [
+        { id: "ch1.case.aardvark", label: "Aardvark note", summary: "An aardvark note nobody teaches from.", teachesWhat: "nothing much", hardSpecifics: ["age twelve"], realWorld: true },
+        { id: "ch1.case.zephyr", label: "Zephyr subscription", summary: "The zephyr subscription library lending shelves catalogue readers borrowing.", teachesWhat: "the lever", hardSpecifics: ["subscription library"], realWorld: true },
+      ],
+      hardEdge: "h",
+      paraphraseNotes: "p",
+      testableFacts: Array.from({ length: 9 }, (_, i) => ({
+        id: `ch1.fact.${i + 1}`,
+        claim: `The zephyr subscription library lending shelves changed who could read ${i + 1}.`,
+        becauseMechanism: `Because the subscription library catalogue readers borrowing shelves pooled the cost ${i + 1}.`,
+        commonError: `Readers treat the library as charity ${i + 1}.`,
+        errorIsWhy: `The lending shelves catalogue readers borrowing is the mechanism ${i + 1}.`,
+      })),
+      frameworks: [{ name: "f", members: ["a", "b"] }],
+    } as SourceSidecarV2,
+    sidecarPath: "/tmp/x",
+    sourceHash: "h",
+  });
+  const ranked = rankedTopicsForPacket(packet, 4);
+  assert.ok(ranked.length > 0, "the fixture must yield mined topics");
+  assert.equal(ranked[0], "subscription library", `the best-taught specific must lead; got ${ranked.join(" | ")}`);
+  assert.ok(ranked.indexOf("age twelve") > 0 || !ranked.includes("age twelve"), "the alphabetically-first, untaught specific must not lead");
+});
+
+test("R-105: the memoir-history genre exists, is period-neutral, and Franklin resolves to it", () => {
+  assert.equal(genreForBook("the-autobiography-of-benjamin-franklin"), "memoir-history", "the books.json entry must route Franklin to the memoir genre");
+  const pools = buildGenrePools("memoir-history", 8);
+  const contemporary = /\b(kitchen table|shared calendar invite|sticky note on the fridge|reminder on a phone|text thread|budget app|spreadsheet|dashboard|slack|email)\b/i;
+  const leaked = pools.venues.filter((v) => contemporary.test(v));
+  assert.deepEqual(leaked, [], `memoir-history venues must be period-neutral; leaked: ${leaked.join(", ")}`);
+  const findings = validateBookDesign({ schemaVersion: "book-design-v1", bookId: "x", genre: "memoir-history", pools, provenance: { source: "genre-fallback" } }, 8);
+  assert.deepEqual(findings.filter((f) => f.severity === "blocker"), [], "the memoir-history pools must pass the BD gate");
+});
+
+test("R-105: a books.json `genre` field is honoured without a categories entry", () => {
+  assert.equal(genreForBook("zz-not-in-books-json"), "generic");
+  assert.equal(genreForBook("zz-anything", { genre: "memoir-history" }), "memoir-history");
+});
+
+// ── R-106 / R-107 / R-108 — the gates that now run and are enforced ──────────────────
+
+test("R-108: BPV9/BPV10 catch an unknown fact or case id in a QUIZ or CARD slot, not only in examples", () => {
+  const { blueprints } = compileBook("zz-deal-alpha", 1);
+  const bp = JSON.parse(JSON.stringify(blueprints[0])) as ChapterBlueprintV1;
+  assert.deepEqual(validateBlueprint(bp).filter((f) => f.severity === "blocker"), []);
+
+  const withBadQuizFact = JSON.parse(JSON.stringify(bp)) as ChapterBlueprintV1;
+  withBadQuizFact.sections.quiz[0].requiredFactIds = ["ch99.fact.999"];
+  assert.ok(validateBlueprint(withBadQuizFact).some((f) => f.checkId === "BPV9.unknown_fact" && f.severity === "blocker" && /quiz slot 0/.test(f.message)));
+
+  const withBadCardCue = JSON.parse(JSON.stringify(bp)) as ChapterBlueprintV1;
+  withBadCardCue.sections.cards[2].caseCueIds = ["ch99.case.nope"];
+  assert.ok(validateBlueprint(withBadCardCue).some((f) => f.checkId === "BPV10.unknown_case" && f.severity === "blocker" && /card slot 2/.test(f.message)));
+
+  const withBadActionFact = JSON.parse(JSON.stringify(bp)) as ChapterBlueprintV1;
+  withBadActionFact.sections.action.requiredFactIds = ["ch99.fact.1"];
+  assert.ok(validateBlueprint(withBadActionFact).some((f) => f.checkId === "BPV9.unknown_fact" && /action step/.test(f.message)));
+});
+
+test("BPV14: an over-cued case raises an advisory and never a blocker", () => {
+  const { blueprints } = compileBook("zz-deal-alpha", 1);
+  const bp = JSON.parse(JSON.stringify(blueprints[0])) as ChapterBlueprintV1;
+  const oneCase = bp.constraints.allowedCaseIds[0];
+  for (const q of bp.sections.quiz) q.caseCueIds = [oneCase];
+  const findings = validateBlueprint(bp);
+  const bpv14 = findings.find((f) => f.checkId === "BPV14.case_cue_multiplicity");
+  assert.ok(bpv14, "nine quiz slots cueing one case must raise BPV14");
+  assert.equal(bpv14!.severity, "advisory", "BPV14 must never block a run");
+  assert.deepEqual(findings.filter((f) => f.severity === "blocker"), [], "over-cueing is an advisory, not a compile failure");
+});
+
+test("BPV13: a content-driven column stuck on one value raises an advisory (the R-127 shape), and never blocks", () => {
+  const { blueprints } = compileBook("zz-deal-alpha", 9);
+  assert.deepEqual(
+    checkPositionalDeals(blueprints).filter((f) => f.checkId === "BPV13.content_column_concentration"),
+    [],
+    "the redesigned deal must not trip BPV13 on a healthy book",
+  );
+  // Re-create the old rank-pinned card dealer EXACTLY: card slot i teaches rank-i fact in every
+  // chapter of the book, so each column is pinned to a single value.
+  const pinned = blueprints.map((bp) => {
+    const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+    clone.sections.cards = clone.sections.cards.map((c, i) => ({ ...c, requiredFactIds: [`fact.rank.${i}`] }));
+    return clone;
+  });
+  const pinnedFindings = checkPositionalDeals(pinned).filter((f) => f.checkId === "BPV13.content_column_concentration");
+  assert.equal(pinnedFindings.length, 7, `all seven pinned card columns must raise BPV13; got ${pinnedFindings.length}`);
+  assert.ok(pinnedFindings.every((f) => f.severity === "advisory"), "BPV13 must never block a run");
+  assert.ok(pinnedFindings.every((f) => /pinned to the single value/.test(f.message)), pinnedFindings.map((f) => f.message).join("\n"));
+
+  // And the softer shape: two distinct values, one taking more than an even spread would give.
+  const lopsided = blueprints.map((bp, idx) => {
+    const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+    clone.sections.cards[0].requiredFactIds = [idx === 0 ? "fact.rare" : "fact.common"];
+    return clone;
+  });
+  const lopsidedFindings = checkPositionalDeals(lopsided).filter((f) => f.checkId === "BPV13.content_column_concentration" && f.path === "/positional/cardFact/0");
+  assert.equal(lopsidedFindings.length, 1, "an 8-of-9 column over 2 observed values must raise BPV13");
+  assert.equal(lopsidedFindings[0].severity, "advisory");
+});
+
+// ── the disk-backed compile: derived staging and neighbour casts only exist with roots ─────
+//
+// Every helper above compiles with NO roots, so `pools.chapterDerived(n)` is always null and
+// `siblingUsedNames` always empty — the two code paths R-065 and R-114 are ABOUT. This one
+// materializes the book the way the pipeline does (chapter index + source packets + the design
+// artifact) so those paths are actually exercised.
+function withBookOnDisk<T>(
+  bookId: string,
+  totalChapters: number,
+  fn: (ctx: { blueprints: ChapterBlueprintV1[]; packets: SourcePacketV1[]; roots: CompilerStoreRoots; design: BookDesignV1 }) => T,
+  sidecarFor: (n: number) => SourceSidecarV2 = (n) => sidecar(n, `Chapter ${n}`),
+): T {
+  const stateRoot = resolve(tmpdir(), `cf-dealing-ondisk-${process.pid}-${Date.now()}-${Math.random().toString(36).slice(2)}`);
+  const roots: CompilerStoreRoots = { stateRoot };
+  try {
+    const specs = Array.from({ length: totalChapters }, (_, i) => chapterSpec(bookId, i + 1));
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", `${bookId}.json`), specs);
+    const packets = specs.map((spec) =>
+      compileSourcePacketFromSidecar({
+        bookId,
+        chapter: spec,
+        sidecar: sidecarFor(spec.chapterNumber),
+        sidecarPath: `/tmp/${bookId}-ch${spec.chapterNumber}.source.json`,
+        sourceHash: `hash${spec.chapterNumber}`,
+      }),
+    );
+    for (const packet of packets) writeJsonFile(sourcePacketPath(bookId, packet.chapterNumber, roots), packet);
+    const design = deriveBookDesign(bookId, { roots });
+    writeJsonFile(bookDesignPath(bookId, roots), design);
+    const blueprints = specs.map((spec, i) =>
+      compileChapterBlueprint({ bookId, chapter: spec, packet: packets[i], packetPath: sourcePacketPath(bookId, spec.chapterNumber, roots), roots, totalChapters }),
+    );
+    return fn({ blueprints, packets, roots, design });
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+}
+
+// ── R-065 / R-106 — derived staging is CONTENT, and content may legitimately repeat ─────────
+
+test("R-065/R-106: a mined specific two chapters share is not a BPV11 blocker — it is reported as content", () => {
+  // The fixture's hardSpecifics carry no chapter term, so every chapter's best-taught specific is
+  // the SAME phrase — the "recurring institution" case (a memoir whose junto club runs through
+  // half the book). The derived staging then puts one byte-identical string in example slot 0,
+  // slot 1 and the practice constraint of every chapter.
+  withBookOnDisk("zz-deal-derived-collision", 12, ({ blueprints, roots, design }) => {
+    const derived = design.perChapter?.["1"];
+    assert.ok(derived?.frameDecision, "the fixture must produce derived staging or this proves nothing");
+    assert.equal(blueprints[0].sections.examples[0].sceneFrame, derived!.frameDecision, "slot 0 must carry the chapter's own derived frame");
+    assert.equal(
+      blueprints.filter((bp) => bp.sections.examples[0].sceneFrame === blueprints[0].sections.examples[0].sceneFrame).length >= 2,
+      true,
+      "the fixture must give at least two chapters the identical derived frame",
+    );
+    const pools = resolvedPoolsForBook("zz-deal-derived-collision", roots);
+    const findings = checkPositionalDeals(blueprints, poolSizeOverrides(pools), pools.chapterDerived);
+    const blockers = findings.filter((f) => f.severity === "blocker");
+    assert.deepEqual(blockers, [], `a book whose chapters share a mined specific must still compile: ${JSON.stringify(blockers.map((b) => b.message))}`);
+    // …but the repetition is still SEEN: the derived column is audited as content (advisory).
+    const advisory = findings.find((f) => f.checkId === "BPV13.content_column_concentration" && f.path === "/positional/exampleSceneFrame/0");
+    assert.ok(advisory, `the shared derived staging must still be reported: ${JSON.stringify(findings.map((f) => f.checkId + " " + f.path))}`);
+    assert.equal(advisory!.severity, "advisory");
+  });
+});
+
+test("R-065/R-106: a POOL-dealt frame colliding at the same slot is still a BPV11 blocker", () => {
+  // The exemption is scoped to the value the chapter's own design derived. A hand-edited (or
+  // regressed) blueprint that repeats a GENRE-POOL frame at a fixed slot must still block —
+  // otherwise the fix would have turned BPV11 off for the column instead of narrowing it.
+  withBookOnDisk("zz-deal-derived-collision", 12, ({ blueprints, roots }) => {
+    const pools = resolvedPoolsForBook("zz-deal-derived-collision", roots);
+    const tampered = blueprints.map((bp) => {
+      const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+      clone.sections.examples[2].sceneFrame = pools.sceneFramesDecision[0];
+      return clone;
+    });
+    const blockers = checkPositionalDeals(tampered, poolSizeOverrides(pools), pools.chapterDerived)
+      .filter((f) => f.checkId === "BPV11.positional_collision" && f.path === "/positional/exampleSceneFrame/2");
+    assert.equal(blockers.length, 1, "a pool value repeated at a fixed non-derived slot must still block");
+  });
+});
+
+// A fixture whose chapters have DISTINCT derived staging, so a foreign token can be told apart
+// from a chapter's own.
+const SPARE_SIDECAR = (n: number): SourceSidecarV2 => {
+  const base = sidecar(n, `Chapter ${n}`);
+  return {
+    ...base,
+    namedExamples: base.namedExamples.map((c, i) => (i === 0 ? { ...c, hardSpecifics: ["the junto club minutes", `the ledger page from the ${["spring", "autumn", "harvest", "winter"][n % 4]} quarter`] } : c)),
+  };
+};
+
+test("R-065: ANOTHER chapter's derived staging at a fixed slot is still a BPV11 blocker", () => {
+  // The exemption is keyed to the chapter's OWN derived value, which is what makes it safe: the
+  // R-065 defect itself — mined material sitting at the head of a BOOK-WIDE pool, so several
+  // chapters are dealt one chapter's token — comes back as an ordinary positional collision and
+  // still blocks. Without that, "the derived slots are exempt" would have unlearned the defect.
+  withBookOnDisk("zz-deal-derived-foreign", 4, ({ blueprints, roots }) => {
+    const pools = resolvedPoolsForBook("zz-deal-derived-foreign", roots);
+    const ownFrames = new Set(blueprints.map((bp) => bp.sections.examples[0].sceneFrame));
+    assert.equal(ownFrames.size, blueprints.length, "the fixture must give every chapter its own derived frame");
+    // (four chapters: the fixture carries one spare specific per chapter, so the deriver can make
+    // all four distinct — see the test above.)
+    const contaminated = blueprints.map((bp, i) => {
+      if (i === 0) return bp;
+      const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+      // ch01's derived string dealt to ch02 and ch03 — one chapter's token in another's slot.
+      if (i <= 2) clone.sections.examples[0].sceneFrame = blueprints[0].sections.examples[0].sceneFrame;
+      return clone;
+    });
+    const blockers = checkPositionalDeals(contaminated, poolSizeOverrides(pools), pools.chapterDerived)
+      .filter((f) => f.checkId === "BPV11.positional_collision" && f.path === "/positional/exampleSceneFrame/0");
+    assert.equal(blockers.length, 1, "one chapter's derived token dealt to two others must still block");
+  }, SPARE_SIDECAR);
+});
+
+test("R-065: two chapters with a spare mined specific do not get the identical staging", () => {
+  // Where the material offers an alternative, the deriver takes it: chapter B's frame falls to its
+  // OWN second-ranked specific rather than repeating chapter A's phrase. (Still chapter-local —
+  // only the CHOICE among this chapter's own topics is coordinated, never another chapter's token.)
+  withBookOnDisk("zz-deal-derived-spare", 4, ({ design }) => {
+    const frames = Object.values(design.perChapter ?? {}).map((d) => d.frameDecision).filter(Boolean);
+    assert.ok(frames.length >= 2, "the fixture must derive a frame for at least two chapters");
+    assert.equal(new Set(frames).size, frames.length, `chapters repeat a derived frame while a spare specific was available: ${frames.join(" | ")}`);
+  }, SPARE_SIDECAR);
+});
+
+// ── R-114 — forbiddenNames is real information, measured on a book that HAS neighbours ──────
+
+test("R-114: forbiddenNames names the neighbouring chapters' casts and never a name this chapter is dealt", () => {
+  withBookOnDisk("zz-deal-names", 6, ({ blueprints, packets }) => {
+    const dealtByChapter = new Map(blueprints.map((bp) => [bp.chapterNumber, new Set(bp.reservedVariety.allowedNames)]));
+    for (const bp of blueprints) {
+      const forbidden = bp.reservedVariety.forbiddenNames;
+      assert.ok(forbidden.length > 0, `ch${bp.chapterNumber}: forbiddenNames is empty — the guidance carries no information at all`);
+      for (const name of forbidden) {
+        assert.ok(!dealtByChapter.get(bp.chapterNumber)!.has(name), `ch${bp.chapterNumber} forbids "${name}" and is also dealt it`);
+      }
+      // Every entry is a real prohibition: a name another chapter owns, or a name this chapter's
+      // own packet protects. Nothing is bank filler.
+      const owners = new Set([...dealtByChapter].filter(([n]) => n !== bp.chapterNumber).flatMap(([, names]) => [...names]));
+      const packetProtected = protectedSourceNames(packets[bp.chapterNumber - 1], compilerNameBank());
+      for (const name of forbidden) {
+        assert.ok(owners.has(name) || packetProtected.has(name), `ch${bp.chapterNumber} forbids "${name}", which no other chapter owns and this packet does not protect — bank filler is back`);
+      }
+      // …and the nearest neighbour's cast is actually in it, so the list is not merely non-empty.
+      const neighbour = dealtByChapter.get(bp.chapterNumber === 1 ? 2 : bp.chapterNumber - 1)!;
+      assert.ok([...neighbour].some((name) => forbidden.includes(name)), `ch${bp.chapterNumber}: the adjacent chapter's cast is missing from forbiddenNames`);
+    }
+  });
+});
+
+// ── the measurement behind the change record ────────────────────────────────────────
+//
+// src/tools/measureDealing.ts is what produces the before → after table for WP-DEAL-1C, run over
+// the live candidate. A table nobody can re-derive is a claim, not evidence, so the metric
+// definitions are pinned here against a hand-built pair of chapters whose answers are countable
+// by eye — if a definition drifts, the number in the change record stops meaning what it says.
+
+test("measure-dealing: the metrics behind the change record count what they claim", () => {
+  const chapter = (n: number, over: Partial<MeasuredBlueprint>): MeasuredBlueprint => ({
+    chapterNumber: n,
+    reservedVariety: { allowedNames: [`Name${n}A`, `Name${n}B`], forbiddenNames: [], hookShape: "shape-a" },
+    sections: {
+      hook: { shape: "shape-a", requiredFactIds: ["f1"] },
+      summaries: { requiredFactIds: ["f1", "f2"] },
+      examples: [{ venue: "a forge", allowedNames: ["Ada"], requiredFactIds: ["f1"] }],
+      quiz: [{ caseCueIds: ["c1"], requiredFactIds: ["f2"] }, { caseCueIds: [], requiredFactIds: ["f2"] }],
+      cards: [{ caseCueIds: ["c1"], requiredFactIds: ["f2"], backShape: "start with the action verb" }],
+      action: { requiredFactIds: ["f1", "f2"] },
+    },
+    plan: { exampleSpecs: [{ domain: "a forge: mistake-recovery; a field test", format: "decision_point" }] },
+    constraints: { allowedFactIds: ["f1", "f2", "f3"] },
+    ...over,
+  });
+  const one = chapter(1, {});
+  const two = chapter(2, {});
+  // ch02 forbids a name ch01's cast owns, plus one name no chapter owns.
+  two.reservedVariety = { ...two.reservedVariety, forbiddenNames: ["Name1A", "Stranger"] };
+  const m = measure([one, two]);
+  assert.equal(m.chapters, 2);
+  assert.deepEqual(m.cuesPerChapter, [2, 2], "one quiz cue + one card cue per chapter");
+  assert.deepEqual(m.worstCaseCueMultiplicity, [2, 2], "case c1 is cued twice in each chapter");
+  assert.deepEqual(m.quizSlotsCued, ["1 of 2", "1 of 2"]);
+  assert.equal(m.openingWordBackShapes, "2 of 2", '"start with the action verb" instructs an opening word');
+  assert.deepEqual(m.forbiddenNamesPerChapter, [0, 2]);
+  assert.deepEqual(m.forbiddenNamesOwnedByAnotherChapter, [0, 1], "only Name1A is a name another chapter is dealt");
+  assert.deepEqual(m.orphanTeachingFacts, ["1 of 3", "1 of 3"], "f3 is mandated in no unit");
+  assert.equal(m.actionEqualsSummaries, "2 of 2");
+  assert.equal(m.concatenatedDomains, "2 of 2");
+  assert.deepEqual(m.namesDealtTwiceInOneChapter, [0, 0]);
+  assert.equal(m.hookShapeEqualsReserved, true);
+  assert.equal(m.distinctFormatSequences, 1, "both chapters ship the same one-format sequence");
+});
+
+// ── R-107 — the compiler gate blockers are collected and thrown, and are NOT retryable ───────
+
+test("R-107: a compiler-gate blocker becomes a COMPILER_GATE_BLOCKED failure, advisories do not", () => {
+  const blocker = { checkId: "BPV9.unknown_fact", severity: "blocker" as const, message: "quiz slot 0 references unknown fact ch99.fact.1" };
+  const advisory = { checkId: "BPV13.content_column_concentration", severity: "advisory" as const, message: "a column leans on one value" };
+  assert.deepEqual(compilerGateBlockerMessages({ design: [advisory], blueprint: [advisory] }), [], "advisories must never fail a compile");
+  assert.deepEqual(compilerGateBlockerMessages({ design: [], blueprint: [blocker, advisory] }), [
+    "blueprint BPV9.unknown_fact: quiz slot 0 references unknown fact ch99.fact.1",
+  ]);
+  assert.deepEqual(compilerGateBlockerMessages({ design: [{ ...blocker, checkId: "BD3.pool_floor" }], blueprint: [] }), [
+    "design BD3.pool_floor: quiz slot 0 references unknown fact ch99.fact.1",
+  ]);
+});
+
+test("R-107: COMPILER_GATE_BLOCKED is NOT operator-retryable (the compiler is deterministic)", () => {
+  // The compiler is a pure function of (packets, salts, design): a retry re-deals the identical
+  // blueprint and hits the identical blocker. Its absence from RETRYABLE_COMPILER_FAILURES is
+  // load-bearing, exactly as R-001's is, and is pinned here so a later edit cannot add it silently.
+  assert.equal(retryableCompilerFailure(`${COMPILER_GATE_BLOCKED_PREFIX}ch01 blueprint BPV9.unknown_fact: unknown fact`), false);
+  // and the model-variance codes stay retryable — this pin must not be read as narrowing them
+  assert.equal(retryableCompilerFailure("COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure"), true);
+});

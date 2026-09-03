@@ -86,6 +86,13 @@ export interface BookRunApplicationRequest {
    * resumeRunId; default (absent/false) preserves the fail-closed contract.
    */
   readonly reconcileUnsettled?: boolean;
+  /**
+   * R-046 — absolute path to the book's own UTF-8 text. Threaded to the research
+   * port, which hashes it into the run's intent identity, freezes it into the
+   * research run, and hands each chapter its span. Absent ⇒ the run is recorded
+   * as `model-memory`.
+   */
+  readonly sourceTextPath?: string;
   readonly signal: AbortSignal;
 }
 
@@ -1703,6 +1710,7 @@ export class BookRunApplicationService {
           // above). Unpinned behaviour is byte-unchanged.
           forceRefresh: input.researchRunId === undefined && input.regen,
           reconcileUnsettled: input.reconcileUnsettled === true,
+          ...(input.sourceTextPath === undefined ? {} : { sourceTextPath: input.sourceTextPath }),
           signal: input.signal,
         });
       } catch (cause) {

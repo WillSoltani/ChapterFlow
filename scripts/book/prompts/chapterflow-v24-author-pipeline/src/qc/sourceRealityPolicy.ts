@@ -45,6 +45,7 @@ import {
   type SourceVerifyItem,
 } from "../critics/sourceVerify.js";
 import { expectedSourceChapters, loadSourceV2Sidecar, sourceSidecarPathFor, type SourceV2Roots } from "./sourceV2Gate.js";
+import { buildSourceTextVerifyRecord, loadFrozenSource } from "../source/sourceTextVerify.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PIPELINE_DIR = resolve(__dirname, "../..");
@@ -128,6 +129,23 @@ export type SourceRealityInputs = {
   expectedItems: SourceVerifyItem[];
   /** The book has source-v2 sidecars on disk — the CONTENT-based "new" classification signal. */
   hasSourceV2Sidecars: boolean;
+  /**
+   * R-047 — at least one sidecar declares `sourceProvenance: "source-text"`, i.e.
+   * this book was researched against real bytes that are frozen inside its
+   * research run and every checkable item carries a quote from them.
+   *
+   * This is the content-based signal that makes verification APPLY, and it is
+   * deliberately narrower than `hasSourceV2Sidecars`. R-047 proposed
+   * `requireEnv || hasSourceV2Sidecars`; that would make every one of the ~125
+   * already-shipped source-v2 books unpromotable overnight and would need a
+   * hand-approved legacy exemption per book (the register concedes as much). It
+   * would also demand a record for books whose sidecars CANNOT be checked
+   * against anything — there is no text. Binding the switch to source-text
+   * provenance instead means verification applies exactly when it is possible
+   * AND meaningful, it can never be true for a legacy book, and the env var
+   * keeps its documented strengthening-only role.
+   */
+  hasSourceTextSidecars: boolean;
   /** Raw text of the canonical source-verify record, or null when absent. */
   recordText: string | null;
   /** Raw JSON text of this book's legacy exemption, or null when absent. */
@@ -176,13 +194,20 @@ function result(
 
 export function decideSourceRealityPolicy(input: SourceRealityInputs): SourceRealityPolicyResult {
   const classification: SourceRealityClassification = input.hasSourceV2Sidecars ? "new-source-v2" : "legacy";
-  // Fully-unattended mode: an ABSENT source-verify record is required ONLY when the operator
-  // opts in via CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1. By default a new source-v2 book with no
-  // record is `not-applicable` (non-blocking) so the autopilot converges without a human source
-  // check. A PRESENT-but-invalid/rubber-stamped record ALWAYS blocks (that path runs before this
-  // `applies` gate), and a content-bound legacy exemption still applies — only the missing-record
-  // default is relaxed.
-  const applies = input.requireEnv;
+  // R-047 — the header of this file has always promised a CONTENT-BASED
+  // classification that "cannot be downgraded by an env var"; line 185 read
+  // `const applies = input.requireEnv;`, which is the opposite. The result is
+  // measurable: the released Franklin revision 6 shipped with decision
+  // `not-applicable`, so zero of its 41 testable facts and 19 named cases was
+  // ever checked against a text.
+  //
+  // Verification now APPLIES whenever the book was researched from real bytes —
+  // the one case where an absent record means "nobody checked something that
+  // could have been checked". A book with no source text stays exactly as it
+  // was: `not-applicable` unless the operator opts in, because there is nothing
+  // to check it against, and pretending otherwise would only manufacture a
+  // blocker no one can clear. The env var still only STRENGTHENS.
+  const applies = input.requireEnv || input.hasSourceTextSidecars;
   const itemCount = input.expectedItems.length;
   const mk = (decision: SourceRealityDecision, blocking: boolean, findings: SourceRealityFinding[], exemption?: LegacyExemption) =>
     result(input.bookId, decision, blocking, classification, applies, itemCount, findings, exemption);
@@ -213,9 +238,11 @@ export function decideSourceRealityPolicy(input: SourceRealityInputs): SourceRea
 
   // 4) No record, no exemption.
   if (applies) {
-    const why = input.hasSourceV2Sidecars
-      ? `${input.bookId} is a new source-v2 book (${itemCount} verifiable item(s)) with no source-verify record. Run \`source-verify ${input.bookId} --write\`, verify every item against a real source, then \`source-verify-check ${input.bookId}\` — or add a content-bound legacy exemption.`
-      : `${input.bookId} has no source-verify record and CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 requires one. Produce a verified record, or add a content-bound legacy exemption.`;
+    const why = input.hasSourceTextSidecars
+      ? `${input.bookId} was researched against a real source text (${itemCount} verifiable item(s)) but no source-verify record could be produced. The record is normally derived automatically from the frozen text in the book's research run; its absence means that run's frozen text or chapter map is missing or no longer matches its digest. Restore the research run, or re-run research with --source-text.`
+      : input.hasSourceV2Sidecars
+        ? `${input.bookId} is a new source-v2 book (${itemCount} verifiable item(s)) with no source-verify record. Run \`source-verify ${input.bookId} --write\`, verify every item against a real source, then \`source-verify-check ${input.bookId}\` — or add a content-bound legacy exemption.`
+        : `${input.bookId} has no source-verify record and CHAPTERFLOW_REQUIRE_SOURCE_VERIFY=1 requires one. Produce a verified record, or add a content-bound legacy exemption.`;
     return mk("missing", true, [finding("SR.record_missing", why)]);
   }
   return mk("not-applicable", false, []);
@@ -325,6 +352,40 @@ export function hasSourceV2Sidecars(bookId: string, roots: SourceV2Roots = {}): 
   });
 }
 
+/** R-047 — true when at least one sidecar declares source-text provenance, i.e.
+ *  the book was researched from real, frozen bytes. */
+export function hasSourceTextSidecars(bookId: string, roots: SourceV2Roots = {}): boolean {
+  return expectedSourceChapters(bookId, roots).some((n) => loadSourceV2Sidecar(bookId, n, roots)?.sourceProvenance === "source-text");
+}
+
+/**
+ * R-048 — the source-verify record, derived rather than typed.
+ *
+ * When the book was researched from a frozen text, the record is a pure function
+ * of the sidecars, the text and the chapter map, so it is produced here instead
+ * of waiting for a human to fill sixty checkboxes (which, measurably, never
+ * happened for any book on the live route). Returns null when the book is not
+ * source-text grounded, when its research run is gone, or when the frozen text no
+ * longer matches the digest its chapter map was resolved against — all of which
+ * leave the caller's own `missing` branch to fail closed.
+ */
+export function deriveSourceVerifyRecordText(bookId: string, roots: SourceRealityRoots = {}): string | null {
+  const runsRoot = roots.runsRoot ?? resolve(PIPELINE_DIR, ".chapterflow", "runs");
+  const frozen = loadFrozenSource(runsRoot, bookId);
+  if (!frozen) return null;
+  const sidecars = expectedSourceChapters(bookId, roots)
+    .map((n) => loadSourceV2Sidecar(bookId, n, roots))
+    .filter((sidecar): sidecar is Record<string, unknown> => sidecar !== null && sidecar !== undefined);
+  const record = buildSourceTextVerifyRecord({
+    bookId,
+    sidecars,
+    sourceText: frozen.text,
+    sourceTextSha256: frozen.sha256,
+    chapterMap: frozen.chapterMap,
+  });
+  return record === null ? null : JSON.stringify(record, null, 2);
+}
+
 /** A stable hash of the book's canonical chapter index (id + number + title, ordered). This is
  *  the cross-path content identity an exemption binds to: it survives in-chapter content edits
  *  but breaks on any add / remove / reorder / rename, so a grandfathered structure can't silently
@@ -368,7 +429,12 @@ export function evaluateSourceRealityPolicy(opts: EvaluateSourceRealityOptions):
   const now = opts.now ?? new Date();
   const expectedItems = collectSourceVerifyItems(opts.bookId, roots);
   const recordPath = roots.recordPath ?? sourceVerifyRecordPath(opts.bookId);
-  const recordText = existsSync(recordPath) ? safeRead(recordPath) : null;
+  // A hand-filled record at the canonical path still wins — an operator who did
+  // the work is not overridden by a machine. Only when there is none does the
+  // derived record stand in (R-048).
+  const recordText = existsSync(recordPath)
+    ? safeRead(recordPath)
+    : deriveSourceVerifyRecordText(opts.bookId, roots);
   const { text: exemptionText, error: exemptionError } = loadLegacyExemption(opts.bookId, roots.exemptionsFile ?? LEGACY_EXEMPTIONS_FILE);
   // The computed canonicalIndexHash ALWAYS wins — a caller can supply only the additional
   // packageId/contentId bindings, never override the cross-path binding identity (selective merge,
@@ -382,6 +448,7 @@ export function evaluateSourceRealityPolicy(opts: EvaluateSourceRealityOptions):
     bookId: opts.bookId,
     expectedItems,
     hasSourceV2Sidecars: hasSourceV2Sidecars(opts.bookId, roots),
+    hasSourceTextSidecars: hasSourceTextSidecars(opts.bookId, roots),
     recordText,
     exemptionText,
     exemptionError,
