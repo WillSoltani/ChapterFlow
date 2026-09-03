@@ -820,27 +820,80 @@ function pick<T>(xs: T[], offset: number, count: number): T[] {
  * R-114 / R-115 — the forbidden-name list is INFORMATION, not padding.
  *
  * It used to be: source-protected names, then sibling names, then as much of the rest of the
- * name bank as fitted a 24-entry cap. Only the first few entries carried information. The
- * padding actively lied: live ch03 forbade "Russell" while live ch04's allowedNames contained
- * "Russell" — the book's own later deal contradicted the guidance, because the bank tail is not
- * a prohibition, it is simply "names this chapter did not happen to draw".
+ * name bank as fitted a 24-entry cap. Only the first few entries carried information; the tail
+ * was "names this chapter did not happen to draw", which is not a prohibition at all. Phase A
+ * read live ch03 forbidding "Russell" while live ch04's allowedNames contained "Russell" as the
+ * defect. That entry is in fact the one kind worth stating — a name the book gives to another
+ * chapter is exactly what a writer must not reuse. The defect was the twenty entries around it
+ * that belonged to no chapter at all.
  *
  * R-115: the head of the list was the five hard-coded investing figures (Benjamin, Graham,
  * Dodd, Buffett, Warren), which on a memoir BY Benjamin Franklin opened the writer's forbidden
  * list with "Benjamin". Those five are now genre-keyed config (config/genre-pools.json,
  * `reservedFigureNames`), and only the book's own genre contributes them.
  *
- * What stays: names the packet itself protects (real source figures in THIS chapter's material)
- * and names an earlier same-bucket sibling chapter was dealt. Both are true prohibitions.
+ * What the list is now, in order: the book's genre canon, the names THIS chapter's packet
+ * protects (real source figures in its own material), and then the casts of the nearest OTHER
+ * chapters, walked outward (n-1, n+1, n-2, n+2, …) until the 24-entry budget is spent. Every
+ * entry is a true prohibition, and the ordering puts the collisions a reader would actually
+ * notice — the chapter before and the chapter after — at the head.
  *
- * `dealtElsewhere` is a defensive filter, not a source of entries: any name this book actually
- * deals to some chapter is removed, so the list can never contradict a deal again.
+ * `dealtHere` is a defensive filter, not a source of entries: any name THIS chapter is actually
+ * dealt is removed, so the guidance can never contradict the deal in the same blueprint.
  */
-function forbiddenNameGuidance(sourceProtectedNames: Set<string>, siblingNames: Set<string>, genreReservedNames: Set<string>): string[] {
+function forbiddenNameGuidance(
+  sourceProtectedNames: Set<string>,
+  otherChapterNames: string[],
+  genreReservedNames: Set<string>,
+  dealtHere: Set<string>,
+): string[] {
   const protectedFirst = [...genreReservedNames].sort();
   const packetNext = [...sourceProtectedNames].filter((name) => !genreReservedNames.has(name)).sort();
-  const siblingNext = [...siblingNames].sort();
-  return uniq([...protectedFirst, ...packetNext, ...siblingNext]).slice(0, FORBIDDEN_NAME_GUIDANCE_LIMIT);
+  return uniq([...protectedFirst, ...packetNext, ...otherChapterNames])
+    .filter((name) => !dealtHere.has(name))
+    .slice(0, FORBIDDEN_NAME_GUIDANCE_LIMIT);
+}
+
+/**
+ * R-114 — the casts of the chapters NEAREST this one, nearest first.
+ *
+ * `siblingUsedNames` above only ever replays EARLIER chapters that share this chapter's name
+ * bucket, and NAME_BUCKET_COUNT is 40: for any book of 40 chapters or fewer it returns the empty
+ * set, so the "sibling" half of the old guidance was dead in every real book. The names a writer
+ * must not reuse are the ones the book deals to its other chapters, and those are found by
+ * replaying each neighbour's deal — the same pure inputs (canonical index + that chapter's source
+ * packet + its own salt) the neighbour's own compile uses, so the guidance is reproducible and
+ * never depends on how much of the book has been authored.
+ *
+ * Bounded by `budget`: the walk stops as soon as it has enough names to fill the guidance cap,
+ * so a 34-chapter book reads a handful of packets per chapter, not all of them.
+ */
+function neighbourCastNames(bookId: string, chapterNumber: number, roots: CompilerStoreRoots, salts: SlotSalts, budget: number): string[] {
+  if (budget <= 0) return [];
+  const index = readCanonicalChapterIndex(bookId, roots.stateRoot);
+  if (!index.ok) return [];
+  const present = new Set(index.chapters.map((c) => c.chapterNumber));
+  const order: number[] = [];
+  const span = Math.max(...present, chapterNumber);
+  for (let step = 1; step <= span; step++) {
+    for (const m of [chapterNumber - step, chapterNumber + step]) {
+      if (m !== chapterNumber && present.has(m)) order.push(m);
+    }
+  }
+  const names: string[] = [];
+  for (const m of order) {
+    if (names.length >= budget) break;
+    const packetP = sourcePacketPath(bookId, m, roots);
+    if (!existsSync(packetP)) continue;
+    try {
+      const packet = readJsonFile<SourcePacketV1>(packetP);
+      for (const name of dealAllowedNames(bookId, m, packet, roots, salts).allowedNames) names.push(name);
+    } catch {
+      // A neighbour's packet being unreadable must not fail this chapter's compile; the guidance
+      // simply carries one fewer chapter's cast.
+    }
+  }
+  return uniq(names);
 }
 
 function shuffledAnswerPattern(chapterNumber: number, count: number, salt: number): number[] {
@@ -1274,6 +1327,12 @@ export function compileChapterBlueprint(args: {
   // prohibitions for THIS book: its genre's canon plus the names its own packet protects.
   const genreReservedNames = new Set(reservedFigureNamesForGenre(genreForBook(bookId)));
   const packetProtectedNames = protectedSourceNames(packet, compilerNameBank(), []);
+  // R-114 — the prohibitions worth stating: the far-bucket siblings this chapter's deal already
+  // subtracted, then the nearest other chapters' casts, up to the guidance cap.
+  const otherChapterNames = uniq([
+    ...[...siblingNames].sort(),
+    ...neighbourCastNames(bookId, n, roots, salts, FORBIDDEN_NAME_GUIDANCE_LIMIT),
+  ]);
   const chapterDerived = pools.chapterDerived(n);
   const venuePalette = pools.venuePaletteFor(n);
   // R-113 — forbiddenVenues is the ADJACENT chapters' palettes, not "four venues this chapter
@@ -1472,7 +1531,7 @@ export function compileChapterBlueprint(args: {
     },
     reservedVariety: {
       allowedNames,
-      forbiddenNames: forbiddenNameGuidance(packetProtectedNames, siblingNames, genreReservedNames),
+      forbiddenNames: forbiddenNameGuidance(packetProtectedNames, otherChapterNames, genreReservedNames, new Set(allowedNames)),
       hookShape,
       counterShape: deal(COUNTER_SHAPES, "counterShape", 0),
       sceneMechanism,

@@ -21,10 +21,11 @@ import { resolve } from "node:path";
 
 import { test } from "./harness.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
-import { compileChapterBlueprint, POSITIONAL_DEALS, resolvedPoolsForBook } from "../src/compiler/chapterBlueprint.js";
+import { compileChapterBlueprint, compilerNameBank, POSITIONAL_DEALS, resolvedPoolsForBook } from "../src/compiler/chapterBlueprint.js";
 import { checkPositionalDeals, poolSizeOverrides, validateBlueprint } from "../src/compiler/blueprintGate.js";
 import { buildGenrePools, deriveBookDesign, genreForBook, rankedTopicsForPacket, validateBookDesign } from "../src/compiler/bookDesign.js";
 import { properNounTokens, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE } from "../src/compiler/sourcePacketFacts.js";
+import { protectedSourceNames } from "../src/compiler/sourceNames.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../src/artifacts/artifactStore.js";
 import type { BookDesignV1, ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
@@ -303,20 +304,17 @@ test("R-120: no name is dealt to two example slots in one chapter, and chapters 
   }
 });
 
-test("R-114: forbiddenNames never contradicts a name this chapter (or any sibling) was actually dealt", () => {
-  for (const bookId of BOOK_IDS) {
-    const { blueprints } = compileBook(bookId, 12);
-    const dealtByChapter = new Map<number, Set<string>>(blueprints.map((bp) => [bp.chapterNumber, new Set(bp.reservedVariety.allowedNames)]));
-    for (const bp of blueprints) {
-      for (const forbidden of bp.reservedVariety.forbiddenNames) {
-        assert.ok(!dealtByChapter.get(bp.chapterNumber)!.has(forbidden), `${bookId} ch${bp.chapterNumber} forbids "${forbidden}" and also deals it`);
-        for (const [n, names] of dealtByChapter) {
-          assert.ok(!names.has(forbidden), `${bookId} ch${bp.chapterNumber} forbids "${forbidden}" but ch${n} is dealt it — the guidance contradicts the book's own later deals`);
-        }
-      }
-    }
-  }
-});
+// R-114's forbiddenNames contract is pinned by the disk-backed test near the bottom of this file
+// ("forbiddenNames names the neighbouring chapters' casts and never a name this chapter is dealt").
+// The test that stood here compiled WITHOUT roots, so siblingUsedNames() returned nothing and — for
+// a generic-genre synthetic packet — forbiddenNames was [] in every chapter of every fixture book:
+// its assertion loop never executed once. Its claim was also the wrong way round. It asserted that
+// forbiddenNames may never name a name the book deals to ANY chapter; the register's R-114 fix is
+// the opposite — the other chapters' casts are exactly the prohibition worth stating, because a
+// name another chapter owns is the one a writer must not reuse. What the replacement now catches:
+// bank filler (an entry no other chapter owns and this packet does not protect), a list that
+// contradicts THIS chapter's own deal, and an empty list. What it stops blocking: a forbiddenNames
+// entry that another chapter is dealt — which is now the point of the field, not a defect.
 
 // ── R-113 — forbiddenVenues ─────────────────────────────────────────────────────────
 
@@ -655,4 +653,29 @@ test("R-065: two chapters with a spare mined specific do not get the identical s
     assert.ok(frames.length >= 2, "the fixture must derive a frame for at least two chapters");
     assert.equal(new Set(frames).size, frames.length, `chapters repeat a derived frame while a spare specific was available: ${frames.join(" | ")}`);
   }, sidecarFor);
+});
+
+// ── R-114 — forbiddenNames is real information, measured on a book that HAS neighbours ──────
+
+test("R-114: forbiddenNames names the neighbouring chapters' casts and never a name this chapter is dealt", () => {
+  withBookOnDisk("zz-deal-names", 6, ({ blueprints, packets }) => {
+    const dealtByChapter = new Map(blueprints.map((bp) => [bp.chapterNumber, new Set(bp.reservedVariety.allowedNames)]));
+    for (const bp of blueprints) {
+      const forbidden = bp.reservedVariety.forbiddenNames;
+      assert.ok(forbidden.length > 0, `ch${bp.chapterNumber}: forbiddenNames is empty — the guidance carries no information at all`);
+      for (const name of forbidden) {
+        assert.ok(!dealtByChapter.get(bp.chapterNumber)!.has(name), `ch${bp.chapterNumber} forbids "${name}" and is also dealt it`);
+      }
+      // Every entry is a real prohibition: a name another chapter owns, or a name this chapter's
+      // own packet protects. Nothing is bank filler.
+      const owners = new Set([...dealtByChapter].filter(([n]) => n !== bp.chapterNumber).flatMap(([, names]) => [...names]));
+      const packetProtected = protectedSourceNames(packets[bp.chapterNumber - 1], compilerNameBank());
+      for (const name of forbidden) {
+        assert.ok(owners.has(name) || packetProtected.has(name), `ch${bp.chapterNumber} forbids "${name}", which no other chapter owns and this packet does not protect — bank filler is back`);
+      }
+      // …and the nearest neighbour's cast is actually in it, so the list is not merely non-empty.
+      const neighbour = dealtByChapter.get(bp.chapterNumber === 1 ? 2 : bp.chapterNumber - 1)!;
+      assert.ok([...neighbour].some((name) => forbidden.includes(name)), `ch${bp.chapterNumber}: the adjacent chapter's cast is missing from forbiddenNames`);
+    }
+  });
 });
