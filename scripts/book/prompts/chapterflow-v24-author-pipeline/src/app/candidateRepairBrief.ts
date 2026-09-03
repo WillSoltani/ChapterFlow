@@ -109,6 +109,21 @@ export const REPAIR_BRIEF_BLOCKER_MAX_CHARS = 4000;
  *  brief past its budget. */
 const OMISSION_NOTICE_RESERVE = 160;
 
+/**
+ * True when every blocker on the chapter is the composite score floor, so no
+ * blocker names a defect to fix. One named blocker alongside the floor is NOT
+ * floor-only — the named defect leads.
+ *
+ * EXPORTED so the brief's promise and the port's machine check are the same
+ * decision. The brief tells a floor-only writer that returning the chapter
+ * unchanged is a permitted outcome; the port has to honour that on the identical
+ * predicate, or the prompt and the machine disagree about the same chapter.
+ */
+export function isFloorOnlyBlockerSet(blockers: readonly QcIssue[]): boolean {
+  return blockers.length > 0
+    && blockers.every((issue) => isReviewIssueCode(issue.code, READER_PANEL_BELOW_FLOOR_CODE));
+}
+
 export interface RepairBriefInput {
   readonly chapterNumber: number;
   /** Blocking findings scoped to this chapter — mandatory fixes, never dropped. */
@@ -129,8 +144,21 @@ function bullet(issue: QcIssue): string {
   return `- [${issue.code}]${issue.location === undefined ? "" : ` (${issue.location})`} ${clamp(issue.message)}`;
 }
 
+/** The blockers the brief lists, and the ones it names only by class. Both keep
+ *  the caller's provenance order. */
+export interface BoundedBlockers {
+  readonly listed: readonly QcIssue[];
+  readonly omitted: readonly QcIssue[];
+}
+
 /**
  * Bound one chapter's blocker list without hiding what it left out.
+ *
+ * EXPORTED because the same bound must apply to the prompt's machine-readable
+ * `qc_findings` record. Bounding the brief while shipping the unbounded set
+ * beside it bounds nothing: the repair port renders the SAME `listed` set, and
+ * the brief's counted per-code notice below is what tells the writer the rest
+ * exists.
  *
  * ORDER OF PRIORITY, and why:
  *   1. COVERAGE FIRST — one blocker per distinct code, in first-appearance order.
@@ -149,7 +177,7 @@ function bullet(issue: QcIssue): string {
  * `severity` deliberately does not order anything: every issue reaching here is
  * already a BLOCKER, so severity carries no signal inside this set.
  */
-function boundedBlockers(blockers: readonly QcIssue[]): { lines: string[]; omitted: QcIssue[] } {
+export function boundedRepairBlockers(blockers: readonly QcIssue[]): BoundedBlockers {
   const shown: QcIssue[] = [];
   const taken = new Set<QcIssue>();
   const seenCodes = new Set<string>();
@@ -170,9 +198,9 @@ function boundedBlockers(blockers: readonly QcIssue[]): { lines: string[]; omitt
   }
   // Re-emit in the caller's provenance order: the coverage pass reorders, and the
   // caller owns provenance order (this module owns framing, not sequence).
-  const ordered = blockers.filter((issue) => taken.has(issue));
+  const listed = blockers.filter((issue) => taken.has(issue));
   const omitted = blockers.filter((issue) => !taken.has(issue));
-  return { lines: ordered.map(bullet), omitted };
+  return { listed, omitted };
 }
 
 /** "12 B5, 3 SC11.2.anchor_specific_not_present" — the omitted remainder named by
@@ -198,11 +226,7 @@ export function buildRepairBrief(input: RepairBriefInput): string {
   const chapterLabel = String(input.chapterNumber).padStart(2, "0");
   const factorLines = input.advisories.filter((issue) => isReviewIssueCode(issue.code, READER_PANEL_FACTOR_SCORES_CODE));
   const advisories = input.advisories.filter((issue) => !isReviewIssueCode(issue.code, READER_PANEL_FACTOR_SCORES_CODE));
-  // "Floor-only" is decided on the BLOCKER set alone: every blocker is the score
-  // floor, so no blocker names a defect. One named blocker alongside the floor is
-  // NOT floor-only — the named defect leads.
-  const floorOnly = input.blockers.length > 0
-    && input.blockers.every((issue) => isReviewIssueCode(issue.code, READER_PANEL_BELOW_FLOOR_CODE));
+  const floorOnly = isFloorOnlyBlockerSet(input.blockers);
   // Did the reader panel name an on-page defect on this chapter? Decided on the
   // codes actually handed in, never assumed.
   const panelNamedDefect = input.blockers.some((issue) => isReaderBlockingCode(issue.code))
@@ -219,6 +243,14 @@ export function buildRepairBrief(input: RepairBriefInput): string {
       "A score names nothing to fix. Do not chase the number, and do not rewrite material that is already working —",
       "the factors and advisories below are the ENTIRE diagnosis available for this chapter. Lift the lowest-scoring",
       "factors first, then clear the advisories. Anything you change beyond that is an unforced risk.",
+      // The machine used to contradict this paragraph: an unchanged chapter was
+      // hard-failed REPAIR_OUTPUT_NO_CHANGE, so the only way to satisfy the run
+      // was to change something the brief had just told the writer not to touch.
+      // The port now records a floor-only no-op as its own adjudicated outcome
+      // (REPAIR_NO_CHANGE_JUSTIFIED), which is what makes this sentence true.
+      "If, after reading the chapter against the blueprint and the source-use plan, you judge that nothing here",
+      "should change, return it unchanged. That is a permitted outcome and it is recorded as one. Do not invent a",
+      "change to satisfy the machine.",
       "",
     );
   } else if (input.blockers.length === 0) {
@@ -228,13 +260,14 @@ export function buildRepairBrief(input: RepairBriefInput): string {
       "",
     );
   } else {
-    const bounded = boundedBlockers(input.blockers);
+    const bounded = boundedRepairBlockers(input.blockers);
+    const boundedLines = bounded.listed.map(bullet);
     lines.push(
       `## MANDATORY FIXES — BLOCKERS (${input.blockers.length})`,
       bounded.omitted.length === 0
         ? "Every blocker below MUST be fixed. These are the only mandatory changes; everything after them is context."
-        : `${input.blockers.length} blockers are attached to this chapter — more than one brief can carry. The ${bounded.lines.length} below MUST be fixed, and every distinct blocker CODE in the round is represented among them, so treat each one as an EXAMPLE OF ITS CLASS and clear the class across the whole chapter, not just the listed location. These are the only mandatory changes; everything after them is context.`,
-      ...bounded.lines,
+        : `${input.blockers.length} blockers are attached to this chapter — more than one brief can carry. The ${boundedLines.length} below MUST be fixed, and every distinct blocker CODE in the round is represented among them, so treat each one as an EXAMPLE OF ITS CLASS and clear the class across the whole chapter, not just the listed location. These are the only mandatory changes; everything after them is context.`,
+      ...boundedLines,
       ...(bounded.omitted.length === 0
         ? []
         : [`- …${bounded.omitted.length} further blocker(s) of the classes above are not listed individually: ${omissionByCode(bounded.omitted)}. They are real and still block. Fixing the class is how you clear them.`]),
