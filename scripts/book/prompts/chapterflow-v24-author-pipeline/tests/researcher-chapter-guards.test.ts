@@ -338,3 +338,37 @@ test("R-025 (e2e): the retry sent to the model carries EVERY meta hit from the f
   );
   assert.equal(result.coreClaim, baseResult().coreClaim, "the clean second attempt is what is returned");
 });
+
+// ── R-024 (manuscript-meta patterns) ─────────────────────────────────────────
+
+test("R-024: a claim about the source document rather than the world is rejected", () => {
+  // Both strings are live Franklin artifacts. The first is the released
+  // ch04.fact.09 claim; the second is the book-scar pinned from it. Neither
+  // names a chapter, a book or the author as an actor, so the chapter/book/
+  // author patterns alone let both through.
+  for (const claim of [
+    "Franklin dies in 1790 with the Penn estate tax negotiation still unresolved in his writing.",
+    "No resolution is reached on the estate tax and the manuscript breaks off.",
+    "The Penn estate dispute is left unrecorded after 1758.",
+  ]) {
+    const r = baseResult();
+    r.testableFacts![0].claim = claim;
+    const problems = collectChapterResearchProblems(r, input("Benjamin Franklin"));
+    assert.ok(
+      metaProblems(problems).length > 0,
+      `expected a meta-reference problem for ${JSON.stringify(claim)}, got ${JSON.stringify(problems)}`,
+    );
+  }
+});
+
+test("R-024: manuscript-meta patterns do not fire on ordinary world facts", () => {
+  for (const claim of [
+    "He set the writing in type each morning before the shop opened.",
+    "The ledger records a narrative of weekly queries kept by twelve tradesmen.",
+  ]) {
+    const r = baseResult();
+    r.testableFacts![0].claim = claim;
+    const problems = collectChapterResearchProblems(r, input("Benjamin Franklin"));
+    assert.deepEqual(metaProblems(problems), [], `unexpected meta-reference problem for ${JSON.stringify(claim)}`);
+  }
+});

@@ -65,13 +65,39 @@ export type ChapterResearchInput = {
   priorChapterTitles?: string[];
 };
 
-const META_REGEXES: RegExp[] = [
+/**
+ * References to the SOURCE DOCUMENT rather than to the world.
+ *
+ * R-024: the chapter/book/author patterns below only catch wording that names
+ * the artifact outright. The released Franklin sidecar's `ch04.fact.09` claim —
+ * "Franklin dies in 1790 with the Penn estate tax negotiation still unresolved
+ * in his writing" — and the book scar pinned from it — "No resolution is
+ * reached; the manuscript breaks off" — name none of those words, so both are
+ * statements about a document that passed the guard and reached the writers.
+ * The shipped chapter then ended on "the fight is still open", which the source
+ * refutes: the law was finally allowed to pass.
+ *
+ * The possessive/definite framing ("the manuscript", "in his writing") is what
+ * makes these meta rather than worldly, so the patterns require it: "a
+ * narrative of weekly queries" or "he set the writing in type" are ordinary
+ * facts and must stay admissible.
+ */
+const MANUSCRIPT_META_REGEXES: RegExp[] = [
+  /\b(?:the|his|her|their|its) (?:life story|manuscript|memoir|narrative)\b/i,
+  /\bin (?:his|her|their|the) (?:writing|writings|text|telling|manuscript)\b/i,
+  /\b(?:unrecorded|breaks off|never finished)\b/i,
+];
+
+/** Meta-reference patterns shared with SC4/SC5 in critics/sourceCoherence.ts,
+ *  which used to keep its own copy of this list and drifted from it (R-023/024). */
+export const META_REGEXES: RegExp[] = [
   /\bthis chapter\b/i,
   /\bthe chapter\b/i,
   /\bthe author\b/i,
   /\bthe book\b/i,
   /\bchapter\s+\d+\b/i,
   /\bin this (chapter|section|book)\b/i,
+  ...MANUSCRIPT_META_REGEXES,
 ];
 
 /** Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
