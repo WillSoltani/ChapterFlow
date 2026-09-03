@@ -80,10 +80,13 @@ export function isUnretryableProviderMessage(message: string): boolean {
  * R-201: which provider block a MODEL RESULT's error describes, or null.
  *
  * The one place consumers should ask. `PortError.message` stays the source of
- * truth because it is the only place the provider's own words live, and the
- * gateway records the answer alongside it as `retryable: false` (see
- * `modelError`) so the durable attempt record carries the verdict too. Keeping
- * one function means the reader lane, the compiler section loop and the two
+ * truth because it is the only place the provider's own words live. The
+ * gateway also records the answer as `retryable: false` on the in-memory
+ * `ModelResult` (see `modelError`) — but that stays in memory only:
+ * `RunStore.finishAttempt` takes no error/retryable field and `AttemptSnapshot`
+ * carries none, so the durable attempt record never sees the verdict, only the
+ * message text (via `terminalDetail`'s stdout/stderr heads). Keeping one
+ * function means the reader lane, the compiler section loop and the two
  * research lanes cannot drift into three slightly different regexes.
  */
 export function providerBlockOfError(error: PortError | undefined): ProviderBlockKind | null {

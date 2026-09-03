@@ -159,11 +159,15 @@ type ModelTaskSnapshotResult =
  *
  * The message stays the source of truth (it is the only place the provider's
  * own words live, and R-001 is what got them here); this is the same answer
- * written on the typed field, so a consumer that has the result does not have to
- * re-derive it and the durable attempt record carries it. Any other failure
- * leaves `retryable` ABSENT rather than claiming a verdict the gateway does not
- * have — a rate-limit blip and a weekly cap both arrive as
- * FAILED/MODEL_PROCESS_FAILED, and only the provider's wording separates them.
+ * written on the typed field, so a consumer that has the result does not have
+ * to re-derive it. That typed field is in-memory only: `result()` runs after
+ * `executeOnce` has already called `runStore.finishAttempt` (which takes no
+ * error/retryable field), so the durable attempt record never carries the
+ * verdict — only the message text does, journaled separately by
+ * `terminalDetail`. Any other failure leaves `retryable` ABSENT rather than
+ * claiming a verdict the gateway does not have — a rate-limit blip and a
+ * weekly cap both arrive as FAILED/MODEL_PROCESS_FAILED, and only the
+ * provider's wording separates them.
  */
 function result(attemptId: string, outcome: ModelResult["outcome"], code?: ModelErrorCode, message?: string): ModelResult {
   if (code === undefined || message === undefined) return { attemptId, outcome };
@@ -392,9 +396,22 @@ function classifyRouteStdout(
  * Preference order mirrors what the durable attempt detail already journals for
  * this exact class: the route's envelope classification, else a sanitized capped
  * head of stdout, else of stderr (CLIs that print their fatal error there and
- * nothing to stdout). No new exposure class: `terminalDetail` already writes
- * these same heads for a FAILED/MODEL_PROCESS_FAILED attempt. The exit-0 path is
- * untouched.
+ * nothing to stdout). That parity holds for FAILED/MODEL_PROCESS_FAILED — but
+ * this function's caller reaches here for EVERY non-exit-0 process outcome,
+ * TIMED_OUT and CANCELLED included (see `mappedOutcome`), while `terminalDetail`
+ * only adds stream heads when `outcome === "FAILED" && errorCode ===
+ * "MODEL_PROCESS_FAILED"`. So for TIMED_OUT/CANCELLED the in-memory
+ * `error.message` now carries a sanitized head of up to `DIAGNOSTIC_HEAD_CHARS`
+ * (400) chars that the durable journal omits. The exit-0 path is untouched.
+ *
+ * Also note: this message is exactly what `isQuotaExhaustedMessage` /
+ * `isCredentialFailureMessage` (modelErrors.ts) classify. On any non-zero exit
+ * that means up to `DIAGNOSTIC_HEAD_CHARS` chars of ARBITRARY sanitized
+ * stdout/stderr — not only a recognized provider envelope — can feed those
+ * regexes. A false positive there routes the attempt onto the durable,
+ * non-operator-retryable quota/credential path instead of an ordinary retry:
+ * fail-closed (a retryable failure wrongly treated as durable), never fail-open
+ * (a real block silently retried), and accepted deliberately.
  */
 function providerFailureMessage(route: ModelProcessRoute, process: ProcessResult): string {
   const classified = classifyRouteStdout(route, process.stdout);
