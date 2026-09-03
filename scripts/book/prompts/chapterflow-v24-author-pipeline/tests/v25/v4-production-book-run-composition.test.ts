@@ -15,6 +15,12 @@ import type { ProcessResult, ProcessSpec, ProcessSupervisor } from "../../src/ru
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
 import { compileCreditFixture, creditChapterSpec } from "../fixtures/creditBookFixture.js";
+import {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+  summarizeChapterEditProvenance,
+  type ChapterEditProvenanceFile,
+} from "../../src/app/chapterEditProvenance.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 const PIPELINE_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), "..", "..");
@@ -259,6 +265,20 @@ function creditBreakdown() {
   return { fastRead, deepRead, fullRead };
 }
 
+/** The editor's output document for the composition fixture's one chapter. */
+function chapterEditOf(fixture: ReturnType<typeof compilerOutputs>) {
+  return {
+    schemaVersion: "chapter-edit-v1",
+    chapterId: `${BOOK}-ch01`,
+    sections: {
+      "summary-pack": fixture.summary,
+      "example-pack": fixture.examples,
+      "learning-pack": fixture.learning,
+      "action-pack": fixture.action,
+    },
+  };
+}
+
 function compilerOutputs(fixtureRoot: string) {
   const base = compileCreditFixture(BOOK, { stateRoot: fixtureRoot });
   const cleanBreakdown = creditBreakdown();
@@ -483,6 +503,14 @@ requiredTest("production composition reaches isolated local promotion and exact 
     compilerFixture.examples,
     compilerFixture.learning,
     compilerFixture.action,
+    // Package 2B — the whole-chapter EDITOR call, which production composition now
+    // makes once per chapter between the last section pack and the canonical
+    // review. The fixture returns the four packs UNCHANGED: this test is about the
+    // pass being composed, reaching the process boundary and recording what it did
+    // end to end, and an identity edit passes the same gates and the same
+    // preservation guard a real one has to, without re-tuning prose that the ship
+    // gate downstream also judges.
+    chapterEditOf(compilerFixture),
     // Canonical review = semantic panel: baseline model review first, then the
     // IMP-20 blind reader panel — three reader-experience seats per chapter.
     { outcome: "PASS", issues: [] },
@@ -534,6 +562,24 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(current.value.currentRevision, 1);
   assert.equal(current.value.manifest.manifestDigest, result.value.candidate.manifestDigest);
   assert.equal(current.value.files.filter((file) => file.kind === "CHAPTER").length, 1);
+  // Package 2B — the promoted candidate carries what the editor did, end to end.
+  const editRecordFile = current.value.files.find((file) => file.logicalPath === CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH);
+  assert.ok(editRecordFile, "the promoted candidate must carry the chapter-edit provenance sidecar");
+  const editRecord = JSON.parse(Buffer.from(editRecordFile.bytes).toString("utf8")) as ChapterEditProvenanceFile;
+  assert.equal(editRecord.schemaVersion, CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION);
+  assert.deepEqual(editRecord.chapters.map((entry) => entry.status), ["EDITED"]);
+  assert.equal(editRecord.attempts, 1);
+  // …and the release sidecar summarizes it from that same candidate evidence.
+  assert.deepEqual(summarizeChapterEditProvenance(editRecordFile.bytes), {
+    runId: editRecord.runId,
+    attempts: 1,
+    edited: 1,
+    skipped: 0,
+    reverted: 0,
+    error: 0,
+    disabled: 0,
+    advisoryApplied: false,
+  });
 
   const judgeSpecCount = (specs: readonly ProcessSpec[]): number =>
     specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes("answer-key auditor")).length;
@@ -541,8 +587,14 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
   assert.equal(
     supervisor.specs.length,
-    10 + judgeInitial,
-    "research, compiler, baseline review, three-seat reader panel, plus one fresh-qc quiz-key judge call per quiz question",
+    11 + judgeInitial,
+    "research, compiler, the whole-chapter editor, baseline review, three-seat reader panel,"
+    + " plus one fresh-qc quiz-key judge call per quiz question",
+  );
+  assert.equal(
+    supervisor.specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes("You are the Chapter Editor")).length,
+    1,
+    "production composition must run the whole-chapter editor exactly once for this one-chapter book",
   );
   assert.equal(supervisor.remaining(), 0);
   assert.ok(
@@ -623,7 +675,7 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(resumed.value.readback, "VERIFIED");
   assert.equal(
     supervisor.specs.length,
-    10 + judgeInitial,
+    11 + judgeInitial,
     "resume reuses all settled attempts including the durable fresh-qc round — the non-deterministic quiz-key judge never re-runs",
   );
   assert.equal(judgeSpecCount(supervisor.specs), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");

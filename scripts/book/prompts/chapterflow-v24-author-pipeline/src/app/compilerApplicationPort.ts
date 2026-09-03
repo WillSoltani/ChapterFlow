@@ -32,6 +32,12 @@ import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import { chapterSpanText, spanExcerptForPrompt, type ChapterMapV1, type SpanExcerpt } from "../source/chapterMap.js";
 import { EDITOR_SOURCE_SPAN_MAX_CHARS } from "./chapterEditorContract.js";
 import {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+  type ChapterEditProvenanceEntry,
+  type ChapterEditProvenanceFile,
+} from "./chapterEditProvenance.js";
+import {
   MAX_EDITOR_ATTEMPTS,
   runChapterEditorPass,
   type ChapterEditResult,
@@ -75,41 +81,14 @@ export const MAX_SECTION_ATTEMPTS = 3;
  */
 export const MAX_EDITOR_ATTEMPTS_PER_CHAPTER = MAX_EDITOR_ATTEMPTS * 2;
 
-/** Where the compile records what the editor did to every chapter. Read by the
- *  release sidecar (`provenance.editing`), so a shipped book can say whether a
- *  human-scale editor pass ran over it, was skipped, errored, or was switched
- *  off. Emitted ONLY when the editor is composed. */
-export const CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH = "compiler/chapter-edit-provenance.json";
-
-export const CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION = "chapter-edit-provenance-v1" as const;
-
-/** One chapter's editor record, as the candidate carries it. */
-export type ChapterEditProvenanceEntry = Readonly<{
-  chapterNumber: number;
-  chapterId: string;
-  /** EDITED / SKIPPED / ERROR / DISABLED as the pass reported it, or REVERTED
-   *  when a gate-clean edit was withdrawn because the edited book would not
-   *  assemble. REVERTED is recorded here rather than folded into SKIPPED because
-   *  the two are different facts: one edit failed its own gates, the other passed
-   *  them and collided with another chapter. */
-  status: ChapterEditResult["status"] | "REVERTED";
-  replayed: boolean;
-  attemptIds: readonly string[];
-  blockers: readonly string[];
-  advisory: Readonly<{ applied: boolean; reviewId: string | null; count: number }>;
-}>;
-
-export type ChapterEditProvenanceFile = Readonly<{
-  schemaVersion: typeof CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION;
-  bookId: string;
-  runId: string;
-  /** Model attempts THIS run admitted for the editor. A chapter replayed from the
-   *  durable edit cache contributes zero, and its own `attemptIds` still name the
-   *  run that reached the verdict, so "what this run spent" and "what produced
-   *  this edit" stay separable. */
-  attempts: number;
-  chapters: readonly ChapterEditProvenanceEntry[];
-}>;
+// The edit-provenance shape and its logical path live in ./chapterEditProvenance
+// so the release sidecar can read them without importing this port. Re-exported
+// here because this port is what WRITES the file.
+export {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+} from "./chapterEditProvenance.js";
+export type { ChapterEditProvenanceEntry, ChapterEditProvenanceFile } from "./chapterEditProvenance.js";
 
 /**
  * Task 11j/11k — retryable model-output-variance classes inside the SAME bounded

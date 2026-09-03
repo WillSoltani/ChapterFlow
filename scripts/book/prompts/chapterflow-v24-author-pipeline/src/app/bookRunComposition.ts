@@ -7,6 +7,8 @@ import { createBookContentReader } from "../books/bookContentReader.js";
 import { createCandidateStore } from "../books/candidateStore.js";
 import { createFileSectionPackCache } from "../books/sectionPackCache.js";
 import { createFileSectionAvoidStore } from "../books/sectionAvoidStore.js";
+import { createFileChapterEditCache } from "../books/chapterEditCache.js";
+import { createFileReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import { createCurrentPointerStore } from "../books/currentPointer.js";
 import { createQcService } from "../qc/qcService.js";
 import { createQcStore } from "../qc/qcStore.js";
@@ -431,6 +433,12 @@ export async function createProductionBookRunComposition(input: Readonly<{
   // assembly livelock: an assembly cross-chapter blocker evicts the implicated
   // cached packs and records here the phrase(s) their re-drafts must avoid.
   const sectionAvoidStore = createFileSectionAvoidStore({ booksRoot, writeLock });
+  // Package 2B — the whole-chapter editor pass. Both stores live under the same
+  // booksRoot and book write lock as every other book store. Composing them is
+  // what turns the editor ON in production; CHAPTERFLOW_EDITOR_PASS=0 turns it off
+  // at run time and records that it was off.
+  const chapterEditCache = createFileChapterEditCache({ booksRoot, writeLock });
+  const reviewAdvisoryStore = createFileReviewAdvisoryStore({ booksRoot, writeLock });
   const contentReader = createBookContentReader({ booksRoot, currentPointerStore });
   const runStore = createFileRunStore(runRoot);
   const stageCoordinator = createFileStageCoordinator(runRoot);
@@ -640,6 +648,8 @@ export async function createProductionBookRunComposition(input: Readonly<{
     repairApplication,
     sectionPackCache,
     sectionAvoidStore,
+    chapterEditCache,
+    reviewAdvisoryStore,
   });
   return { app, contentReader, currentPointerStore, reviewService, qcService };
 }

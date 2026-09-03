@@ -14,6 +14,8 @@ import type { CurrentPointerStore } from "../books/currentPointer.js";
 import type { QcDiagnosisIndex } from "../qc/qcTypes.js";
 import type { SectionPackCache } from "../books/sectionPackCache.js";
 import type { SectionAvoidStore } from "../books/sectionAvoidStore.js";
+import type { ChapterEditCache } from "../books/chapterEditCache.js";
+import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import { createModelTaskRunner, type ModelTaskRunner } from "./modelTaskRunner.js";
 
@@ -38,6 +40,11 @@ export function createChapterFlowApp(
     repairApplication?: CandidateRepairApplicationPort;
     sectionPackCache?: SectionPackCache;
     sectionAvoidStore?: SectionAvoidStore;
+    /** Package 2B — durable stores for the whole-chapter editor pass. Supplying
+     *  EITHER composes the pass (the port keys on the presence of the bag, not on
+     *  a particular store), which is why production always supplies both. */
+    chapterEditCache?: ChapterEditCache;
+    reviewAdvisoryStore?: ReviewAdvisoryStore;
   }>,
 ): ChapterFlowApp {
   const pipeline = createChapterFlowPipeline({
@@ -65,6 +72,14 @@ export function createChapterFlowApp(
       clock: dependencies.clock,
       ...(dependencies.sectionPackCache ? { sectionPackCache: dependencies.sectionPackCache } : {}),
       ...(dependencies.sectionAvoidStore ? { sectionAvoidStore: dependencies.sectionAvoidStore } : {}),
+      ...(dependencies.chapterEditCache || dependencies.reviewAdvisoryStore
+        ? {
+          chapterEdit: {
+            ...(dependencies.chapterEditCache ? { cache: dependencies.chapterEditCache } : {}),
+            ...(dependencies.reviewAdvisoryStore ? { advisories: dependencies.reviewAdvisoryStore } : {}),
+          },
+        }
+        : {}),
       })
     : null;
   const research = dependencies.pipelineRoot
@@ -101,6 +116,7 @@ export function createChapterFlowApp(
         ids: dependencies.ids,
         events: dependencies.bookRunEvents,
         pipelineRoot: dependencies.pipelineRoot,
+        ...(dependencies.reviewAdvisoryStore ? { reviewAdvisories: dependencies.reviewAdvisoryStore } : {}),
       })
     : null;
   return Object.freeze({ pipeline, compiler, research, candidateQc, bookRun });

@@ -10,6 +10,10 @@ import {
 } from "../productionManifest.js";
 import { candidateEvidenceFromSnapshot, type CandidateEvidence } from "../lib/candidateEvidence.js";
 import {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  summarizeChapterEditProvenance,
+} from "../app/chapterEditProvenance.js";
+import {
   buildLegacyReaderPackage,
   PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
   RELEASE_PROVENANCE_SCHEMA,
@@ -677,6 +681,12 @@ export class CanonicalPackageAdapter {
     // candidate manifest, and the candidate's own research run manifest. The
     // revision is the one the CAS above actually committed.
     const research = researchProvenance(assembled.value.evidence);
+    // Package 2B — what the editor pass did, read from the SAME digest-verified
+    // candidate evidence as everything else on this block. Absent when the
+    // candidate carries no edit sidecar; never guessed.
+    const editing = summarizeChapterEditProvenance(
+      assembled.value.evidence.files.get(CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH),
+    );
     const provenance: ReleaseProvenance = {
       schemaVersion: RELEASE_PROVENANCE_SCHEMA,
       ...(request.sourceGitSha === undefined ? {} : { sourceGitSha: request.sourceGitSha }),
@@ -689,6 +699,7 @@ export class CanonicalPackageAdapter {
       bookRevision,
       releasedAt: request.promotedAt,
       ...(research === undefined ? {} : { research }),
+      ...(editing === undefined ? {} : { editing }),
     };
     const sidecar: ProductionManifestSidecar = {
       schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
