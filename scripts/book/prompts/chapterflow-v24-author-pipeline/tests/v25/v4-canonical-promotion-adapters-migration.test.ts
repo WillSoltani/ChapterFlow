@@ -1143,6 +1143,71 @@ requiredTest("candidate-only CLI release wiring reaches the promotion authority 
   assert.doesNotMatch(result.out, /chapter index|state\/indexes|ENOENT/i);
 });
 
+/**
+ * R-228 — the composition runs the FULL book gate against the candidate
+ * (`runBookGateFromCandidate`) and, before this pin existed, read only the
+ * pattern-audit report out of it. `candidateGate.passed`, its blockers and its
+ * majors had no reader anywhere in `runPromoteBook`, so `promote-book
+ * --candidate-id …` released a book its own gate rejected.
+ *
+ * The fixture makes the gate fail the only way a candidate-bound gate can be made
+ * to fail deterministically from staged bytes: the candidate's own
+ * `critics/book-pattern-audit.json` declares a BLOCKER finding, which
+ * `runBookGate` folds into its findings and which drives `passed: false`.
+ *
+ * The refusal must land BEFORE the promotion authority check (the sibling test
+ * above reaches REVIEW_NOT_FOUND with the same otherwise-identical fixture), which
+ * is how we know nothing was committed and nothing was written.
+ */
+requiredTest("candidate release REFUSES a candidate whose own book gate reports a blocker", async (context) => {
+  const bookId = "gate-blocked-cli-release";
+  const stores = storage(context);
+  const chapter = fixtureChapter(bookId, 1, "gate-blocked");
+  const sourceSidecarPath = "sidecars/source/ch01.source.json";
+  const blockedAudit = {
+    ...patternAudit(bookId),
+    passed: false,
+    findings: [{ code: "BP07", severity: "blocker", message: "templated breakdown shell repeated across chapters" }],
+  };
+  const files = [
+    { kind: "CHAPTER" as const, logicalPath: "chapters/ch01.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(chapter)}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: "compiler/ch01/source-packet.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify({ sourceSidecarPath })}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: sourceSidecarPath, mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(makeSourceV2SidecarFixture({ chapterNumber: chapter.number, chapterTitle: chapter.title }))}\n`) },
+    { kind: "SIDECAR" as const, logicalPath: "critics/book-pattern-audit.json", mediaType: "application/json" as const, bytes: Buffer.from(`${JSON.stringify(blockedAudit)}\n`) },
+  ];
+  const staged = await stores.candidates.stage({
+    bookId,
+    candidateId: "candidate-1",
+    createdByRunId: "gate-blocked-cli",
+    expectedInventory: files.map(({ bytes: _bytes, ...file }) => file),
+    files,
+    createdAt: CREATED_AT,
+  });
+  assert.ok(staged.ok);
+  const result = runCli([
+    "promote-book", bookId,
+    "--title", "Gate blocked",
+    "--author", "Fixture",
+    "--categories", "Self-Help",
+    "--tags", "fixture",
+    "--v25-root", context.roots.base,
+    "--attempt-root", context.roots.attemptsRoot,
+    "--candidate-id", "candidate-1",
+    "--manifest-digest", staged.value.manifestDigest,
+    "--source-git-sha", "gate-blocked-sha",
+    "--review-id", "missing-review",
+    "--qc-round-id", "missing-qc",
+    "--expected-book-revision", "0",
+  ]);
+  assert.equal(result.status, 1, result.out);
+  assert.match(result.out, /V25_RELEASE_BLOCKED/, "the gate verdict must refuse the release");
+  assert.match(result.out, /BP07/, "the refusal names the blocking finding");
+  assert.doesNotMatch(result.out, /REVIEW_NOT_FOUND/, "the refusal must land BEFORE the promotion authority check — nothing committed, nothing written");
+  const pointer = await stores.pointer.read(bookId);
+  assert.ok(pointer.ok);
+  assert.equal(pointer.value, null, "no pointer may be committed for a gate-blocked candidate");
+});
+
 /** The chapter-set block a candidate-sourced payload must carry. */
 function candidateChapterSetBlock(sidecar: ProductionManifestSidecar): Record<string, unknown> {
   const payload = sidecar.manifest.payload as unknown as Record<string, unknown>;

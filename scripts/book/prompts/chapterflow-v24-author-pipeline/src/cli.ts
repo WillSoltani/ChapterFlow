@@ -152,6 +152,11 @@ type CliV25Composition = Readonly<{
   qcStore: import("./qc/qcStore.js").QcStore;
   promotionService: import("./release/promotionTypes.js").PromotionService;
   patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
+  /** The candidate's OWN book-gate report. The composition has always run this
+   *  gate; before R-228 the only thing read out of it was the pattern audit, so
+   *  its verdict — blockers included — was discarded. The release verb consults
+   *  it (see runPromoteBook) instead of throwing it away. */
+  candidateGate: import("./critics/bookGate.js").BookGateReport;
   writeLock: import("./books/leaseTypes.js").BookWriteLock;
   runStore: import("./run-state/runStore.js").RunStore;
   runner: import("./app/modelTaskRunner.js").ModelTaskRunner;
@@ -260,6 +265,7 @@ async function createCliV25Composition(
     .map((file) => file.logicalPath);
   let sourceSidecarLogicalPaths: string[];
   let patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
+  let candidateGate: import("./critics/bookGate.js").BookGateReport;
   try {
     sourceSidecarLogicalPaths = chapterLogicalPaths.map((_chapterPath, index) => {
       const packetPath = `compiler/ch${String(index + 1).padStart(2, "0")}/source-packet.json`;
@@ -275,7 +281,7 @@ async function createCliV25Composition(
       import("./critics/bookGate.js"),
       import("./critics/bookPatternAudit.js"),
     ]);
-    const candidateGate = await runBookGateFromCandidate(contentReader, {
+    candidateGate = await runBookGateFromCandidate(contentReader, {
       bookId,
       candidateId: candidate.manifest.candidateId,
       manifestDigest: candidate.manifest.manifestDigest,
@@ -304,7 +310,7 @@ async function createCliV25Composition(
     qcDiagnoses: qcStore,
     promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
   });
-  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, writeLock, runStore, runner, ids, sourceGitSha } };
+  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, candidateGate, writeLock, runStore, runner, ids, sourceGitSha } };
 }
 
 /** Sentinel returned by requireAbsoluteV25Root for a MALFORMED --v25-root. It is
@@ -2343,6 +2349,18 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     if (!v25.ok) {
       console.error(v25.error);
       return 2;
+    }
+    // R-228: the composition ran the FULL book gate against this candidate and
+    // nothing read its verdict — the release proceeded whatever the gate found.
+    // Print the gate's findings (blockers + majors + the pattern-audit codes) and
+    // fail closed on a blocker, BEFORE the pointer CAS and before any artifact is
+    // written. A released book must be one the gate passes.
+    const { evaluateCandidateReleaseGate } = await import("./release/candidateReleaseGate.js");
+    const gateVerdict = evaluateCandidateReleaseGate(v25.value.candidateGate);
+    for (const line of gateVerdict.lines) console.log(line);
+    if (!gateVerdict.passed) {
+      console.error(gateVerdict.refusal);
+      return 1;
     }
     const promotedAt = new Date().toISOString();
     const { CanonicalPackageAdapter } = await import("./release/canonicalPackageAdapter.js");
