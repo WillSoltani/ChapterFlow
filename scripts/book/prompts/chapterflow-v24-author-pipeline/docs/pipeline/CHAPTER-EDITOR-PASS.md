@@ -128,3 +128,8 @@ digest, advisory digest)`. So:
 
 An infrastructure `ERROR` is never cached: a provider blip is not a verdict, and
 the next run retries it for free.
+
+A `REVERTED` chapter keeps its `EDITED` cache entry, because the edit did pass its
+own chapter's gates — what failed was the book. A re-run therefore replays that
+edit for free, re-assembles, and reverts again, deterministically and at zero model
+cost, until something upstream changes.
