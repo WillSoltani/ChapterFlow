@@ -48,6 +48,20 @@ export const TMP_DIR = resolve(__dirname, ".tmp");
 export const FRANKLIN_SLICE_PATH = resolve(__dirname, "fixtures", "franklin-autobiography-slice.txt");
 
 /**
+ * A SECOND public-domain slice, from the other end of the Autobiography: the
+ * 1758 negotiation with the proprietaries.
+ *
+ * WHY A SECOND ONE. `FRANKLIN_SLICE_PATH` is chapter I (ancestry and early
+ * youth), and the source-fidelity judge has to be proved on the passage the
+ * SHIPPED revision-6 chapter 4 actually contradicted - the conference at Mr. T.
+ * Penn's house and its outcome, "it was concluded that I should give them the
+ * heads of our complaints in writing" (Phase A; register R-077). That passage is
+ * not in chapter I, so the proof needs the bytes that carry it. Same policy as
+ * above: public domain, ~20 KB, no licence risk, no model call.
+ */
+export const FRANKLIN_PROPRIETARIES_SLICE_PATH = resolve(__dirname, "fixtures", "franklin-autobiography-proprietaries-slice.txt");
+
+/**
  * A book too long to hand a model whole: ~300 KB, built by repeating the public
  * -domain Franklin slice under fifteen numbered chapter heads (R-046, review
  * round 2).
