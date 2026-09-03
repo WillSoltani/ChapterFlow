@@ -20,11 +20,11 @@
  */
 
 import assert from "node:assert/strict";
-import { mkdirSync, readdirSync, rmSync, writeFileSync } from "fs";
+import { mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { test } from "./harness.js";
-import { PIPELINE_DIR } from "./helpers.js";
+import { FRANKLIN_SLICE_PATH, PIPELINE_DIR } from "./helpers.js";
 import { buildSectionTaskMarkdown, sectionContract, sectionDoNotLines } from "../src/sections/sectionTasks.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
 import { CHAPTER_PROSE_CARD_BUDGET } from "../src/sections/chapterProse.js";
@@ -34,7 +34,7 @@ import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js"
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { SECTION_KINDS, type ChapterBlueprintV1, type SectionKind, type SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
-import { MAX_SOURCE_QUOTE_CHARS } from "../src/source/sourceText.js";
+import { MAX_SOURCE_QUOTE_CHARS, normalizeIngestedText } from "../src/source/sourceText.js";
 import { MAX_RESEARCH_UNITS } from "../src/source/sourceQuoteGrounding.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 
@@ -119,14 +119,23 @@ function sidecar(): SourceSidecarV2 {
  * MAX_SOURCE_QUOTE_CHARS ceiling and a proposition behind every hardSpecific.
  */
 function sourceTextSidecar(): SourceSidecarV2 {
-  const quote = `"${"the book's own words on this point ".repeat(12)}`.slice(0, MAX_SOURCE_QUOTE_CHARS);
+  // The quotes are REAL BOOK TEXT, taken from the frozen public-domain Franklin
+  // slice (review round 2). A made-up string of the right length would measure
+  // the wrong card: printed prose carries the straight quotes, backslashes and
+  // newlines that JSON.stringify escapes, and the card's budget is pinned in
+  // characters of rendered JSON. Distinct per item, as a real sidecar's are.
+  const frozen = normalizeIngestedText(readFileSync(FRANKLIN_SLICE_PATH, "utf8"));
+  const quoteAt = (i: number): string => {
+    const from = (i * 977) % Math.max(1, frozen.length - MAX_SOURCE_QUOTE_CHARS);
+    return frozen.slice(from, from + MAX_SOURCE_QUOTE_CHARS);
+  };
   const facts = Array.from({ length: 9 * MAX_RESEARCH_UNITS }, (_, i) => ({
     id: `ch01.fact.${i + 1}`,
     claim: `Credit utilization signal ${i + 1} changes lender-visible risk before a bill is fully paid.`,
     becauseMechanism: `Because balances can be reported before payment, a lower visible balance gives the scoring model cleaner information ${i + 1}.`,
     commonError: `Assuming only the due date matters ${i + 1}.`,
     errorIsWhy: `The reporting snapshot can matter before the due date ${i + 1}.`,
-    sourceQuote: quote,
+    sourceQuote: quoteAt(i + 1),
   }));
   const namedExamples = Array.from({ length: 3 * MAX_RESEARCH_UNITS }, (_, i) => {
     const hardSpecifics = [`300 to 850 scale ${i + 1}`, `credit utilization ${i + 1}`, `reporting date ${i + 1}`];
@@ -137,11 +146,11 @@ function sourceTextSidecar(): SourceSidecarV2 {
       teachesWhat: "Credit behavior becomes a lender-facing signal.",
       hardSpecifics,
       realWorld: true,
-      sourceQuote: quote,
-      hardSpecificEvidence: hardSpecifics.map((specific) => ({
+      sourceQuote: quoteAt(i + 31),
+      hardSpecificEvidence: hardSpecifics.map((specific, j) => ({
         specific,
         proposition: `The source states that ${specific} is what the lender actually sees at the moment of the report.`,
-        sourceQuote: quote,
+        sourceQuote: quoteAt(i * 3 + j + 61),
       })),
     };
   });
@@ -475,40 +484,51 @@ const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 62_000;
  * testable facts and 6 named examples), every quote at the MAX_SOURCE_QUOTE_CHARS
  * ceiling, a proposition behind every hardSpecific.
  *
+ * ITS QUOTES ARE REAL BOOK TEXT. An invented string of the right length measures
+ * the wrong card: printed prose carries the straight quotes and newlines that
+ * JSON.stringify escapes into two characters. The fixture takes distinct
+ * 240-character quotes out of the frozen Franklin slice, which costs 939
+ * characters more on the binding card than the synthetic string it replaced
+ * (85,690 -> 86,629) — the whole reason to measure this route on a real text.
+ *
  * MEASURED on this commit, worst kind per chapter:
- *   ch01 learning-pack 84,001   ch02 84,093   ch03 85,690 (binding)   ch04 83,938
- *   ch05-ch08 82,995
- *   with worst-case prose: 91,267 / 91,359 / 92,956 (binding) / 91,204 / 90,261
- * Budgets = 85,690 -> 86,000 -> 86,500 and 92,956 -> 93,000 -> 93,500, the same
+ *   ch01 learning-pack 84,940   ch02 85,032   ch03 86,629 (binding)   ch04 84,877
+ *   ch05-ch08 83,934
+ *   with worst-case prose: 92,230 / 92,322 / 93,919 (binding) / 92,167 / 91,224
+ * Budgets = 86,629 -> 87,000 -> 87,500 and 93,919 -> 94,000 -> 94,500, the same
  * arithmetic as above.
  *
- * WHERE THAT 31,511 OVER THE MODEL-MEMORY CARD COMES FROM (measured by stripping
- * one field at a time from the same packet, binding card):
+ * WHERE THAT 32,450 OVER THE MODEL-MEMORY CARD COMES FROM (measured by stripping
+ * one field at a time from the same packet, binding ch03 card: 86,629 full,
+ * 80,803 with no sourceQuote, 76,498 with no sourceQuote and no
+ * hardSpecificEvidence, against the model-memory card's 54,179):
  *   +22,319  the packet is simply BIGGER — 18 facts and 6 cases instead of 9 and
  *            2. Nothing in this package renders those; a model-memory packet with
  *            18 facts costs the same, and always did. What R-058 changed is that
  *            an oversized unit now REQUIRES that many, so the big card went from
  *            possible to likely.
- *    +5,424  the sourceQuote on each of the 24 items, already bounded to
+ *    +5,826  the sourceQuote on each of the 24 items, already bounded to
  *            PROJECTED_SOURCE_QUOTE_CHARS (200) by boundSourceQuoteForCard — the
- *            same bound the whole-chapter projection applies. Unbounded at the
- *            240-char ceiling this would be ~6,500.
- *    +3,768  R-056's specificPropositions, one per hardSpecific.
+ *            same bound the whole-chapter projection applies.
+ *    +4,305  R-056's specificPropositions, one per hardSpecific, each with the
+ *            quote behind it.
  *
  * THE LIVE ROUTE IS CHEAPER, and is pinned separately below.
  * buildSectionTaskMarkdown is PURE_RETAINED in the legacy-route inventory: it
  * renders the RAW packet and no v25 route calls it. The card the v25 writer
  * actually receives is buildAuthorCard's, which renders the slim projection.
  */
-const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 86_500;
-const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 93_500;
+const HONEST_SOURCE_TEXT_TASK_CHAR_BUDGET = 87_500;
+const HONEST_SOURCE_TEXT_WITH_PROSE_CHAR_BUDGET = 94_500;
 
 /**
  * The LIVE v25 writer card had no length pin at all before this package; it gets
  * one here, because a source-text packet is the largest input it has ever taken.
  * MEASURED on the same two fixtures, ch03, with the Franklin voice card:
- *   model-memory 15,854   source-text worst case 30,042
- * Budget = 30,042 -> 30,500 -> 31,000, the same arithmetic.
+ *   model-memory 15,854   source-text worst case 30,045
+ * Budget = 30,045 -> 30,500 -> 31,000, the same arithmetic. It is far below the
+ * section card above because buildAuthorCard renders the PROJECTION, whose quotes
+ * are bounded and whose per-fact prose is trimmed.
  */
 const HONEST_AUTHOR_CARD_CHAR_BUDGET = 31_000;
 
