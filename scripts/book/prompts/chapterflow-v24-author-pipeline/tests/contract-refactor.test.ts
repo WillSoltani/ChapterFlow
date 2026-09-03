@@ -752,7 +752,14 @@ test("R-274: a chapter named inside a PROVENANCE label does not scope the rule",
 
   // …and end to end, on the shipped file that carries the shape.
   const scars = loadBookScars("how-to-live-on-24-hours-a-day")!;
-  assert.equal(scars.prohibitions.length, 2, "this book's two rules are what the regression is about");
+  // The regression is about the two PROVENANCE-labelled rules staying book-wide, so
+  // it is pinned on those two rules rather than on a count of the file's contents —
+  // a count a legitimate config edit changes (R-278 added an absolute phrase ban here).
+  const provenanceScoped = scars.prohibitions.filter((rule) => /^(GRADUALISM CONSISTENCY|STATED CAUSES ONLY)\b/.test(rule));
+  assert.equal(provenanceScoped.length, 2, "this book's two provenance-labelled rules are what the regression is about");
+  for (const rule of provenanceScoped) {
+    assert.deepEqual(bookRuleChapters(rule), [], `a provenance parenthesis must not scope: ${rule.split(":", 1)[0]}`);
+  }
   for (const chapterNumber of [1, 2, 5, 7, 13]) {
     const md = buildSectionTaskMarkdown({
       bookId: "how-to-live-on-24-hours-a-day",

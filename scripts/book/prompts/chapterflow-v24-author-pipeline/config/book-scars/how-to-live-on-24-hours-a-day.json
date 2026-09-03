@@ -1,15 +1,12 @@
 {
   "$schema": "./book-scars.schema.json",
-  "_comment": "Seeded 2026-08-26 from the live review-repair residue after six rounds (12->4->6->4->6->3 blockers): ch07 units contradicting the chapter's own grow-the-span rule, and a ch13 card substituting an invented cause for the stated one.",
+  "_comment": "Seeded 2026-08-26 from the live review-repair residue after six rounds (12->4->6->4->6->3 blockers): ch07 units contradicting the chapter's own grow-the-span rule, and a ch13 card substituting an invented cause for the stated one. TIDIED 2026-09-03 (PR __PR__, register R-278): the sole notes entry was operator process guidance (\"The writer re-mints catalog-banned connective tissue under pressure; when a phrase ban blocks a section three attempts running, the phrase belongs here so the ban reaches the DRAFTING prompt, not only the gate's retry card.\") rendered verbatim into the writer prompt, telling the drafting agent to edit a file it cannot write; it lives here now. Its intended ban, \"strips away\", moved from phrases (which grants each item one permitted use) into prohibitions as an absolute. The two existing prohibitions are unchanged and remain book-wide: their parentheses are provenance, not chapter scope.",
   "bookId": "how-to-live-on-24-hours-a-day",
-  "phrases": [
-    "strips away"
-  ],
+  "phrases": [],
   "frames": [],
-  "notes": [
-    "The writer re-mints catalog-banned connective tissue under pressure; when a phrase ban blocks a section three attempts running, the phrase belongs here so the ban reaches the DRAFTING prompt, not only the gate's retry card."
-  ],
+  "notes": [],
   "prohibitions": [
+    "BANNED CONNECTIVE PHRASE: never write \"strips away\" in any read, example, card, quiz stem or explanation. The writer re-mints it under pressure and the gate blocks it on retry; it has no permitted use in this book. State what is removed and what is left, in the sentence's own words.",
     "GRADUALISM CONSISTENCY (panel blockers, ch07): Bennett's rule is that the daily attention span must be GROWN gradually — demanding the full duration on day one is the failure mode the chapter teaches against. Every example, quiz key, and card must agree: no character succeeds by holding the full span immediately, and no endorsed answer instructs sustaining attention for an entire session when the prose prescribes starting small. State the rule once and never contradict it in any unit.",
     "STATED CAUSES ONLY (panel blocker, ch13): a unit may attribute an outcome only to the cause the prose actually states. If the prose ties household withdrawal of support to the prig's ongoing manner, no card may re-attribute it to 'a single missed evening' or any other invented trigger. When compressing for a card, compress the stated cause — never substitute a sharper-sounding one."
   ]
