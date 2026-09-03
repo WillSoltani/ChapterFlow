@@ -301,10 +301,16 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
 //
 //   money-book                             learning-pack 32,973 chars =  61.8% of 53,312
 //                                          + worst-case prose 40,263 chars =  75.5%
-//   the-autobiography-of-benjamin-franklin summary  48,977 / example  52,062
-//                                          learning 52,391 / action   46,809
-//                                          learning-pack           =  98.3% of 53,312
-//                                          + worst-case prose 59,681 chars = 111.9%
+//   the-autobiography-of-benjamin-franklin summary  49,269 / example  52,291
+//                                          learning 52,471 / action   46,889
+//                                          learning-pack           =  98.4% of 53,312
+//                                          + worst-case prose 59,761 chars = 112.1%
+//
+// (Re-measured in review round 2, after voiceCardSection gained the line naming the
+// voice record the card was rendered from — R-004's second half — and the tier-floor
+// rule's E7/E8 clause was restated at the severity those critics actually carry. Both
+// grew the render; neither needed a re-pin, the budgets below still hold with 529
+// chars of headroom on the packet-only cards and 739 on the with-prose card.)
 //
 // The real worst case already exceeds BOTH ratio pins. Those pins are left exactly
 // as they are — they still bound the packet-only card and would catch contract prose
@@ -314,7 +320,11 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 
 // Budgets = the measured worst case above, rounded UP to the next 500 characters,
 // plus one further 500 as the stated headroom for the rest of the wave-0/1 prompt
-// work (52,391 -> 52,500 -> 53,000; 59,681 -> 60,000 -> 60,500). Anything that needs
+// work, computed on the first-round worst case (52,391 -> 52,500 -> 53,000;
+// 59,681 -> 60,000 -> 60,500) and left unchanged when round 2's edits spent part of
+// that stated headroom: the two cards the budgets bind grew +80 each (learning-pack
+// 52,391 -> 52,471, with-prose 59,681 -> 59,761); summary (+292) and example (+229)
+// carry the longer full-card naming line and stay far below. Anything that needs
 // more than this must re-pin here with a written rationale, exactly as the 60->62%
 // and 62->76% re-pins above did.
 const HONEST_TASK_CHAR_BUDGET = 53_000;
@@ -412,6 +422,29 @@ test("R-005: the tier-floor rule states E7/E8's real severity, not a block", () 
     /E7\.long_sentence and E8\.monotone_cadence each raise a major at chapter assembly/,
     "the rule names the severity the critics actually carry, and where they run",
   );
+});
+
+// ── R-004 (review round 2) — the card must NAME the record it echoes.
+//
+//    R-004 asked for two halves: parse the run's frozen authorVoice into voiceCard()
+//    through sanitizeVoiceMoves, AND name that record in the contract. The parser
+//    shipped; the naming did not, so the block introduced itself only as "how THIS
+//    book sounds" and a writer holding both the card and the source packet could not
+//    tell they are one voice. The packet's freeze carries an "## Author voice" block
+//    (Register / Signature moves / Avoid moves — src/researcher.ts:958-964), and
+//    voiceCard()'s three sources are the editor charter, the curated author-voice
+//    profile, and that frozen block (src/lib/voiceCard.ts, voiceCard()). The header
+//    names all three rather than asserting one, because which source fired is not
+//    knowable from the card string.
+test("R-004: the VOICE CARD block names the voice record it was rendered from", () => {
+  const summary = renderTask(LARGEST_SCAR_BOOK, "summary-pack");
+  assert.match(summary, /VOICE CARD \u2014 how THIS book sounds/, "this render carries a full card");
+  assert.match(summary, /the book's own voice record/, "the full card names the record it renders");
+  assert.match(summary, /"Author voice" block/, "and points at the block frozen into the source packet");
+
+  const action = renderTask(LARGEST_SCAR_BOOK, "action-pack");
+  assert.match(action, /VOICE CARD \u2014 register note/, "this render carries a register note");
+  assert.match(action, /same book voice record/, "the note ties itself to the same record the summary writer matched");
 });
 
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {

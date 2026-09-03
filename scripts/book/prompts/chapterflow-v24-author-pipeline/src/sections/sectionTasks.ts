@@ -323,13 +323,21 @@ export function sectionDoNotLines(outputPath: string): string[] {
  *  has no voice signal (voiceCard returns null → omit the section entirely, no
  *  empty scaffolding). summary/example writers carry the register — they set the
  *  book's voice — so they get the full card; learning/action writers get a
- *  2-line register note so explanations and actions match, not another card. */
+ *  2-line register note so explanations and actions match, not another card.
+ *
+ *  Both headers NAME the record the card was rendered from (R-004's second half).
+ *  voiceCard() draws, in order, on the book's editor-in-chief charter, its curated
+ *  author-voice profile, or the bibliography's authorVoice block — which the run
+ *  freezes into the source packet under "## Author voice" (src/researcher.ts:958-964),
+ *  the same packet this writer is reading. Without the naming line a writer holding
+ *  both took them for two independent voice instructions. All three sources are named
+ *  because the card string does not record which one fired. */
 function voiceCardSection(kind: SectionKind, card: string | null): string {
   if (!card) return "";
   if (kind === "summary-pack" || kind === "example-pack") {
-    return `\n\nVOICE CARD — how THIS book sounds (register only; match it, do not quote it)\n${card}`;
+    return `\n\nVOICE CARD — how THIS book sounds (register only; match it, do not quote it)\nThis is the book's own voice record — its editor charter, its curated author-voice profile, or the "Author voice" block frozen into the source packet — rendered as an instruction; the card and that record are one voice, not two.\n${card}`;
   }
-  return `\n\nVOICE CARD — register note\n- ${voiceRegisterLine(card)}\n- Keep explanations and actions in this register; do not slip into a neutral textbook voice.`;
+  return `\n\nVOICE CARD — register note, lifted from the same book voice record the summary and example writers matched\n- ${voiceRegisterLine(card)}\n- Keep explanations and actions in this register; do not slip into a neutral textbook voice.`;
 }
 
 /** The action slice's projection of reservedVariety: everything EXCEPT the example-only
