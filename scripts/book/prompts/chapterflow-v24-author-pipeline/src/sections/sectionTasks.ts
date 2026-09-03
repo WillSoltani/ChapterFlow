@@ -1,6 +1,6 @@
 import { voiceRegisterLine } from "../lib/voiceCard.js";
 import { CHAPTER_PROSE_CARD_CAPS, chapterProseFields, clampProsePassage, type ChapterProseSource } from "./chapterProse.js";
-import type { BookScars } from "../lib/bookScars.js";
+import { bookRuleGovernsChapter, type BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
 import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
 import type { ChapterBlueprintV1, SectionKind, SourcePacketV1 } from "../artifacts/artifactTypes.js";
@@ -228,8 +228,8 @@ export function sectionContract(kind: SectionKind): string {
  *  paraphrase elsewhere — correct for scar tissue, and the exact inverse of what a
  *  safety rule needs, which is why a prohibition must never be filed as a phrase,
  *  frame, or note. */
-function bookScarsSection(scars: BookScars | null): string {
-  return renderBookScarsBlock(scars);
+function bookScarsSection(scars: BookScars | null, chapterNumber: number): string {
+  return renderBookScarsBlock(scars, chapterNumber);
 }
 
 /**
@@ -241,11 +241,17 @@ function bookScarsSection(scars: BookScars | null): string {
  * can reintroduce exactly the wording a panel blocked. Both callers must render
  * from one function so the two prompts cannot drift.
  */
-export function renderBookScarsBlock(scars: BookScars | null): string {
+export function renderBookScarsBlock(scars: BookScars | null, chapterNumber: number): string {
   if (!scars) return "";
   const blocks: string[] = [];
 
-  if (scars.prohibitions.length) {
+  // R-274: only the rules that govern THIS chapter. A rule labelled "(chNN)" is a
+  // statement about one chapter's episode; rendering it into the other chapters'
+  // prompts spends the prompt on facts the writer cannot use and asserts them as
+  // NON-NEGOTIABLE where they do not apply. Franklin's ch01 writer received 14 such
+  // pins. Unlabelled rules still govern every chapter.
+  const prohibitions = scars.prohibitions.filter((rule) => bookRuleGovernsChapter(rule, chapterNumber));
+  if (prohibitions.length) {
     const hard: string[] = [
       // Phrased to cover BOTH shapes a rule takes: a ban and a requirement. An
       // earlier wording ("there is no number of times any of these may appear")
@@ -254,14 +260,27 @@ export function renderBookScarsBlock(scars: BookScars | null): string {
       // must never appear.
       "\n\nNON-NEGOTIABLE RULES FOR THIS BOOK — each rule below is absolute, whether it forbids something or requires it. They are not style preferences and carry no quota: a rule that forbids something admits no permitted first use and no paraphrase, and a rule that requires something must be satisfied on every surface it names. Where two rules could appear to collide, the one that protects the reader from harm wins, and the other yields.",
     ];
-    for (const rule of scars.prohibitions) hard.push(`- ${rule}`);
+    for (const rule of prohibitions) hard.push(`- ${rule}`);
     blocks.push(hard.join("\n"));
+  }
+
+  // R-008: notes are NOT over-use material. They are this book's standing style and
+  // consistency rules (Franklin files two panel-blocker pins and three cadence rules
+  // here), and the over-use header below rations each item to one teaching unit and
+  // tells the writer to paraphrase it everywhere else. Under that header a cadence
+  // rule reads as "vary sentence length once, then stop" and a chronology pin as
+  // "state the order once, then reword it" — the same inversion the prohibition
+  // channel exists to prevent. They get their own header, with no quota.
+  if (scars.notes.length) {
+    blocks.push([
+      "\n\nSTYLE NOTES FOR THIS BOOK — apply throughout; these carry no quota and are not over-used material.",
+      ...scars.notes.map((note) => `- ${note}`),
+    ].join("\n"));
   }
 
   const overUse: string[] = [];
   if (scars.phrases.length) overUse.push(`- Over-used case phrases: ${scars.phrases.map((p) => `"${p}"`).join("; ")}.`);
   if (scars.frames.length) overUse.push(`- Over-used scene/prop/connective frames: ${scars.frames.join("; ")}.`);
-  for (const note of scars.notes) overUse.push(`- ${note}`);
   if (overUse.length) {
     blocks.push([
       "\n\nKNOWN OVER-USED MATERIAL FOR THIS BOOK — each item may appear in at most one teaching unit book-wide; paraphrase the mechanism everywhere else.",
@@ -641,9 +660,9 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {

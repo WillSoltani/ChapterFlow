@@ -308,6 +308,30 @@ requiredTest("a repair writer receives the book's rules, sourced from the candid
   assert.match(control, /instruction, not evidence/);
 });
 
+requiredTest("R-286: the repair writer gets the rules for the chapter under repair, not the whole book's", async (context) => {
+  // A rule labelled "(chNN)" is a statement about one chapter's episode. The repair
+  // writer is invoked exactly when a panel or QC blocker names a defect, so handing
+  // it another chapter's fact pins as NON-NEGOTIABLE re-asserts them on every round.
+  // This repair targets ch01 (operationId "repair-ch01", pinned above).
+  const subject = rig(context, {
+    scars: {
+      bookId: BOOK,
+      phrases: [],
+      frames: [],
+      notes: [],
+      prohibitions: [
+        "FACT PIN (ch02): the ledger was slipped under the door.",
+        "SAFETY: never tell the reader to skip the permit.",
+      ],
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  const rules = Buffer.from(subject.prompts[0].prompt.inputs.find((i) => i.name === "book_rules")!.bytes).toString("utf8");
+  assert.match(rules, /never tell the reader to skip the permit/, "an unlabelled rule still binds every chapter");
+  assert.doesNotMatch(rules, /slipped under the door/, "a ch02 fact pin must not bind the ch01 repair");
+});
+
 // Repair is a recovery path, so an absent or unusable scar block must degrade to
 // "no rules", never fail the run: failing closed over guidance the section writer
 // already applied would strand a chapter QC can otherwise fix. Three shapes, one

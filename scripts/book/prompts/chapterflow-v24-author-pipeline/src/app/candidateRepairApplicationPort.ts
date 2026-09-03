@@ -610,7 +610,7 @@ const SECTION_TASK_CONTEXT_LOGICAL_PATH = "inputs/compiler-section-task-context.
  * Repair is a recovery path, and failing it closed over guidance the section
  * writer already applied would strand a chapter that QC can otherwise fix.
  */
-function candidateBookRules(candidate: CandidateSnapshot, bookId: string): string {
+function candidateBookScars(candidate: CandidateSnapshot, bookId: string): BookScars | null {
   const file = candidate.files.find((entry) => entry.logicalPath === SECTION_TASK_CONTEXT_LOGICAL_PATH);
   let scars: BookScars | null = null;
   if (file) {
@@ -622,7 +622,7 @@ function candidateBookRules(candidate: CandidateSnapshot, bookId: string): strin
     }
   }
   warnIfBookRulesAreStale(bookId, scars);
-  return renderBookScarsBlock(scars).trim();
+  return scars;
 }
 
 /**
@@ -740,7 +740,12 @@ type ChapterRepairPass = Readonly<{
   findingsByChapter: ReadonlyMap<number, readonly QcIssue[]>;
   advisoriesByChapter: ReadonlyMap<number, readonly QcIssue[]>;
   contextByChapter: ReadonlyMap<number, readonly CandidateSnapshot["files"][number][]>;
-  bookRules: string;
+  /** The book's rules as staged with the candidate, rendered PER CHAPTER inside
+   *  the repair loop (R-286). Kept unrendered here because a rule labelled
+   *  "(chNN)" governs one chapter: the repair writer is invoked precisely when a
+   *  panel or QC blocker names a defect, and handing it another chapter's fact
+   *  pins as NON-NEGOTIABLE is how a wrong pin gets re-asserted on every round. */
+  bookScars: BookScars | null;
   /** The section-writer craft contract, rendered once per run. Same text for
    *  every chapter in the pass — it is a contract, not chapter context. */
   writingContract: string;
@@ -1026,7 +1031,7 @@ export class CandidateRepairApplicationPort {
     // Book-level and constant across chapters: the rules the section writer wrote
     // under. Without these, a repair prompted only with findings can "fix" a
     // finding by reintroducing the exact wording a reader panel blocked.
-    const bookRules = candidateBookRules(candidate, request.bookId);
+    const bookScars = candidateBookScars(candidate, request.bookId);
     const writingContract = buildRepairWritingContract({ voiceCard: candidateVoiceCard(candidate) });
 
     const observedAt = this.#dependencies.clock.now();
@@ -1083,7 +1088,7 @@ export class CandidateRepairApplicationPort {
       findingsByChapter: authorized.value.findingsByChapter,
       advisoriesByChapter: authorized.value.advisoriesByChapter,
       contextByChapter,
-      bookRules,
+      bookScars,
       writingContract,
     });
     if (!repaired.ok) return repaired;
@@ -1119,7 +1124,6 @@ export class CandidateRepairApplicationPort {
    */
   async #repairChapters(pass: ChapterRepairPass): Promise<Result<ReadonlyMap<number, ChapterV21>>> {
     const request = { bookId: pass.bookId, repairRunId: pass.repairRunId, stageId: pass.stageId };
-    const bookRules = pass.bookRules;
     const replacements = new Map<number, ChapterV21>();
     const repairAttemptIds: string[] = [];
 
@@ -1128,6 +1132,10 @@ export class CandidateRepairApplicationPort {
         return this.#cancelRun(request, "repair cancelled before next chapter");
       }
       const entry = pass.chapters.find((item) => item.chapter.number === chapterNumber)!;
+      // Rendered here, not once per run: the same renderer the section writer used,
+      // given the chapter under repair, so a rule labelled for another chapter never
+      // arrives as a NON-NEGOTIABLE rule about this one (R-286).
+      const bookRules = renderBookScarsBlock(pass.bookScars, chapterNumber).trim();
       const contextFiles = pass.contextByChapter.get(chapterNumber)!;
       const findings = pass.findingsByChapter.get(chapterNumber)!;
       // The brief is the INSTRUCTION; qc_findings stays the machine-readable
@@ -1488,7 +1496,7 @@ export class CandidateRepairApplicationPort {
     if (candidate.files.filter((file) => file.logicalPath === BOOK_PATTERN_AUDIT_LOGICAL_PATH).length !== 1) {
       return failed("REPAIR_CONTEXT_INVALID", "failed candidate must contain exactly one candidate-bound pattern audit");
     }
-    const bookRules = candidateBookRules(candidate, request.bookId);
+    const bookScars = candidateBookScars(candidate, request.bookId);
     const writingContract = buildRepairWritingContract({ voiceCard: candidateVoiceCard(candidate) });
 
     const observedAt = this.#dependencies.clock.now();
@@ -1554,7 +1562,7 @@ export class CandidateRepairApplicationPort {
       findingsByChapter: authorized.value.findingsByChapter,
       advisoriesByChapter: authorized.value.advisoriesByChapter,
       contextByChapter,
-      bookRules,
+      bookScars,
       writingContract,
     });
     if (!repaired.ok) return repaired;

@@ -53,6 +53,42 @@ export type BookScars = {
   prohibitions: string[];
 };
 
+/**
+ * The chapters a rule governs, read from the rule's own LABEL — the text before
+ * its first colon — as parenthesised `chNN` markers. "FACT PIN (ch03): …" governs
+ * chapter 3 only; "SAFETY: …" governs the whole book; "TIER CONTRACT: the tiers
+ * are standalone (ch01: the brother-break …)" governs the whole book too, because
+ * the marker sits in the BODY, where it is an illustration rather than a scope.
+ * An empty result means book-wide.
+ *
+ * The scope is derived from the rule text instead of a new schema field on
+ * purpose. The 18 chapter-scoped rules in the shipped Franklin file already SAY
+ * which chapter they govern; a parallel `chapters` array would have to be kept in
+ * agreement with that sentence by hand, and the two could disagree silently. It
+ * also keeps the on-the-wire shape of `prohibitions` a list of strings, which is
+ * what the section-task sidecar carries and what compilerApplicationPort
+ * re-validates, so no staged candidate becomes unreadable. Re-scoping a rule is
+ * therefore an edit to its own label: drop "(ch03)" and it governs every chapter.
+ */
+export function bookRuleChapters(rule: string): number[] {
+  const label = rule.split(":", 1)[0];
+  const chapters = new Set<number>();
+  for (const group of label.matchAll(/\(([^)]*)\)/g)) {
+    for (const marker of group[1].matchAll(/\bch0*(\d{1,3})\b/gi)) {
+      const chapterNumber = Number(marker[1]);
+      if (Number.isInteger(chapterNumber) && chapterNumber > 0) chapters.add(chapterNumber);
+    }
+  }
+  return [...chapters].sort((a, b) => a - b);
+}
+
+/** True when `rule` applies to the chapter being written: either it names no
+ *  chapter in its label (book-wide) or it names this one. */
+export function bookRuleGovernsChapter(rule: string, chapterNumber: number): boolean {
+  const chapters = bookRuleChapters(rule);
+  return chapters.length === 0 || chapters.includes(chapterNumber);
+}
+
 function fail(bookId: string, msg: string): never {
   throw new Error(`book-scars for ${bookId} invalid: ${msg}`);
 }

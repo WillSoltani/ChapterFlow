@@ -586,3 +586,109 @@ test("book-scars: an unknown key fails loud instead of silently dropping its rul
   }, "x");
   assert.equal(ok.prohibitions.length, 1);
 });
+
+// ── R-274 — a book's rules are rendered for the chapter being written ─────────
+//
+// Every one of Franklin's 37 prohibitions rendered into all 16 section-writer
+// prompts. 18 of them label themselves with the chapter they govern ("FACT PIN
+// (ch03): …"), so a ch01 writer was handed 14 pins that cannot apply to the
+// chapter in front of it — 5,607 characters of Franklin's 15,760-character
+// prohibition block, measured on the shipped file.
+//
+// The scope is read from the rule's own LABEL (the text before its first colon),
+// never from its body: "TIER CONTRACT: … (ch02: …)" illustrates its rule with a
+// chapter example and still governs the whole book.
+test("R-274: a chapter-labelled prohibition renders only into its own chapter's prompt", () => {
+  const scars = validateBookScars({
+    bookId: "zz-scope",
+    phrases: [],
+    frames: [],
+    notes: ["Ground the city once, early."],
+    prohibitions: [
+      "FACT PIN (ch02): the letter was slipped under the door.",
+      "TIER CONTRACT: the tiers are standalone summaries (ch02: the break leads to leaving).",
+      "SAFETY: never tell the reader to skip the permit.",
+    ],
+  }, "zz-scope");
+  const render = (chapterNumber: number): string => buildSectionTaskMarkdown({
+    bookId: "zz-scope",
+    kind: "summary-pack",
+    blueprint: { ...minimalBlueprint("zz-scope"), chapterNumber },
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+  const ch01 = render(1);
+  const ch02 = render(2);
+  assert.doesNotMatch(ch01, /slipped under the door/, "a ch02 fact pin must not reach the ch01 writer");
+  assert.match(ch02, /slipped under the door/, "and must reach the ch02 writer");
+  for (const [label, md] of [["ch01", ch01], ["ch02", ch02]] as const) {
+    assert.match(md, /never tell the reader to skip the permit/, `${label}: an unlabelled rule governs every chapter`);
+    assert.match(md, /the tiers are standalone summaries/, `${label}: a chapter marker in the BODY does not scope a rule`);
+  }
+});
+
+test("R-274: a chapter whose scoped rules all drop out renders no empty rules scaffold", () => {
+  const scars = validateBookScars({
+    bookId: "zz-scope-empty",
+    phrases: ["an over-used case phrase"],
+    frames: [],
+    notes: [],
+    prohibitions: ["FACT PIN (ch09): the ninth chapter's number is nine."],
+  }, "zz-scope-empty");
+  const md = buildSectionTaskMarkdown({
+    bookId: "zz-scope-empty",
+    kind: "summary-pack",
+    blueprint: minimalBlueprint("zz-scope-empty"),
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+  assert.doesNotMatch(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, "no header with nothing under it");
+  assert.match(md, /KNOWN OVER-USED MATERIAL FOR THIS BOOK/, "the over-use block is unaffected by chapter scope");
+});
+
+// ── R-008 — notes are not over-use material ──────────────────────────────────
+//
+// Every `notes` entry was pushed into the over-use list under a header granting
+// each item "at most one teaching unit book-wide; paraphrase the mechanism
+// everywhere else". Franklin's notes include two panel-blocker pins (CHRONOLOGY,
+// CONSISTENCY) and three cadence rules, so the header told the writer to use each
+// of them once and paraphrase them elsewhere — the same inversion the prohibition
+// channel exists to prevent, one channel further down.
+test("R-008: scar notes render under a no-quota header, never under the over-use quota", () => {
+  const scars = validateBookScars({
+    bookId: "zz-notes",
+    phrases: ["an over-used case phrase"],
+    frames: [],
+    notes: ["CHRONOLOGY PIN: the library predates the fire company."],
+    prohibitions: [],
+  }, "zz-notes");
+  const md = buildSectionTaskMarkdown({
+    bookId: "zz-notes",
+    kind: "summary-pack",
+    blueprint: minimalBlueprint("zz-notes"),
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+  const notesAt = md.indexOf("STYLE NOTES FOR THIS BOOK");
+  const overUseAt = md.indexOf("KNOWN OVER-USED MATERIAL FOR THIS BOOK");
+  assert.ok(notesAt >= 0, "notes must carry their own header");
+  assert.ok(overUseAt > notesAt, "the over-use quota block still renders, after the notes");
+  assert.doesNotMatch(md.slice(overUseAt), /the library predates the fire company/,
+    "a note under the over-use header would be rationed to one use and paraphrased everywhere else");
+  assert.match(md.slice(notesAt, overUseAt), /apply throughout/, "the notes header states they are always in force");
+
+  // A book with notes but no over-used material must not emit an empty quota block.
+  const onlyNotes = validateBookScars({
+    bookId: "zz-notes", phrases: [], frames: [], notes: ["Ground the city once, early."], prohibitions: [],
+  }, "zz-notes");
+  const md2 = buildSectionTaskMarkdown({
+    bookId: "zz-notes", kind: "summary-pack", blueprint: minimalBlueprint("zz-notes"),
+    sourcePacket: PACKET, outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: onlyNotes },
+  });
+  assert.match(md2, /STYLE NOTES FOR THIS BOOK/);
+  assert.doesNotMatch(md2, /KNOWN OVER-USED MATERIAL FOR THIS BOOK/, "no empty over-use scaffolding");
+});
