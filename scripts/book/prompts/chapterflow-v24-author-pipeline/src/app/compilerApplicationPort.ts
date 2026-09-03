@@ -1459,6 +1459,13 @@ export class CompilerApplicationPort {
         // always compared equal and the run proceeded past them: a design artifact that fails its
         // own BD gate, or a blueprint that references an unknown fact id, reached the writers.
         // The findings are now enforced where they are produced.
+        //
+        // COMPILER_GATE_BLOCKED is deliberately NOT in bookRunApplicationService's
+        // RETRYABLE_COMPILER_FAILURES. Every code on that list describes model-output variance a
+        // fresh attempt can clear; the compiler is a pure function of (packets, salts, design), so
+        // a re-run produces the identical blueprint and the identical blocker. Granting an operator
+        // retry against it would spend a round on the same wall — the R-001 reasoning, applied to a
+        // deterministic failure instead of a provider one. It needs a fix, not a retry.
         const compilerGateBlockers = [
           ...artifacts.gates.design.filter((f) => f.severity === "blocker").map((f) => `design ${f.checkId}: ${f.message}`),
           ...artifacts.gates.blueprint.filter((f) => f.severity === "blocker").map((f) => `blueprint ${f.checkId}: ${f.message}`),
