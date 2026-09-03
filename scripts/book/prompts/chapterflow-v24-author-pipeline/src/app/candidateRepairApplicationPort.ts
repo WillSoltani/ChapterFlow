@@ -286,11 +286,6 @@ function matchedChapters(issue: QcIssue, chapters: readonly ChapterEntry[]): rea
   return matches.map((entry) => entry.chapter.number);
 }
 
-function matchedChapter(issue: QcIssue, chapters: readonly ChapterEntry[]): number | null {
-  const matches = matchedChapters(issue, chapters);
-  return matches.length === 1 ? matches[0] : null;
-}
-
 function compilerOwned(issue: QcIssue): boolean {
   const location = (issue.location ?? "").replaceAll("\\", "/");
   return /^(?:CANDIDATE_QC_|SOURCE_USE_PLAN_|BPV|SV2\.|GATE_ATTEMPT_|BOOK_|PATTERN_)/.test(issue.code)
@@ -317,6 +312,26 @@ function issueChapters(issue: QcIssue, chapters: readonly ChapterEntry[]): Resul
 }
 
 /**
+ * Scope one advisory to every chapter it names, labelling a multi-chapter one.
+ *
+ * Shared by the QC lane and the review lane so the two cannot drift on what a
+ * location string means, and matched to the BLOCKER path, which has fanned a
+ * multi-chapter finding out to each named chapter since #501. A zero-match
+ * advisory is genuinely unscoped and yields nothing.
+ */
+function advisoryPlacements(issue: QcIssue, chapters: readonly ChapterEntry[]): ReadonlyArray<{ chapterNumber: number; issue: QcIssue }> {
+  const matches = matchedChapters(issue, chapters);
+  if (matches.length <= 1) return matches.map((chapterNumber) => ({ chapterNumber, issue }));
+  // A multi-chapter advisory is LABELLED where it lands, or the writer reads a
+  // book-wide defect as one local to the chapter in front of them.
+  const scoped: QcIssue = {
+    ...issue,
+    message: `BOOK-WIDE (this defect spans ${matches.map((number) => `ch${String(number).padStart(2, "0")}`).join(", ")}; fix this chapter's instance) ${issue.message}`,
+  };
+  return matches.map((chapterNumber) => ({ chapterNumber, issue: scoped }));
+}
+
+/**
  * Group the round's WARN findings by chapter, LENIENTLY.
  *
  * Advisories are diagnosis, never a mandate, so — unlike blockers — an advisory
@@ -326,16 +341,25 @@ function issueChapters(issue: QcIssue, chapters: readonly ChapterEntry[]): Resul
  * Compiler/context-owned WARNs are dropped for the same reason they block a
  * blocker: they describe artifacts this repair is forbidden to rewrite, so
  * putting them in a chapter brief would only invite an out-of-scope edit.
+ *
+ * An advisory naming SEVERAL chapters is scoped to EACH of them by
+ * `advisoryPlacements`, exactly as a blocker with the identical location already
+ * is (#501). Requiring exactly one match silently dropped every BOOK-WIDE
+ * advisory — the live CM0.content_machinery_monoculture locates itself as
+ * "ch01,ch02,ch03,ch04" — so the one class of finding that most needs saying
+ * reached nobody, while the two paths disagreed about what the same location
+ * string meant. Only the ZERO match case is genuinely unscoped, and that is
+ * still dropped.
  */
 function groupAdvisories(round: QcRoundResult, chapters: readonly ChapterEntry[]): ReadonlyMap<number, readonly QcIssue[]> {
   const grouped = new Map<number, QcIssue[]>();
   for (const issue of round.issues) {
     if (issue.severity !== "WARN" || compilerOwned(issue)) continue;
-    const chapterNumber = matchedChapter(issue, chapters);
-    if (chapterNumber === null) continue;
-    const findings = grouped.get(chapterNumber) ?? [];
-    findings.push(issue);
-    grouped.set(chapterNumber, findings);
+    for (const placement of advisoryPlacements(issue, chapters)) {
+      const findings = grouped.get(placement.chapterNumber) ?? [];
+      findings.push(placement.issue);
+      grouped.set(placement.chapterNumber, findings);
+    }
   }
   return new Map([...grouped.entries()].sort(([left], [right]) => left - right));
 }
@@ -464,11 +488,11 @@ function groupReviewAdvisories(
     if (issue.severity !== "WARN") continue;
     const finding = reviewIssueAsFinding(issue, "WARN");
     if (compilerOwned(finding)) continue;
-    const matched = matchedChapter(finding, chapters);
-    if (matched === null) continue;
-    const findings = grouped.get(matched) ?? [];
-    findings.push(finding);
-    grouped.set(matched, findings);
+    for (const placement of advisoryPlacements(finding, chapters)) {
+      const findings = grouped.get(placement.chapterNumber) ?? [];
+      findings.push(placement.issue);
+      grouped.set(placement.chapterNumber, findings);
+    }
   }
   return new Map([...grouped.entries()].sort(([left], [right]) => left - right));
 }

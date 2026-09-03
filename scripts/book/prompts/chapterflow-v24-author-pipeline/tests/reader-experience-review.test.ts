@@ -64,6 +64,9 @@ const BINDINGS = {
   chapterContentSha256: "c".repeat(64),
   readerDocumentSha256: "d".repeat(64),
   schemaSha256: "s".repeat(64),
+  // The canonical output above derives three questions; the strict assembly
+  // requires one derivation per question (R-133).
+  quizQuestionCount: 3,
 };
 
 // ── test 1 — reader prompt cannot declare external fabrication ─────────────────

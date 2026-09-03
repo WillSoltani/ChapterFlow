@@ -381,7 +381,7 @@ test("integration 1: the reader lane runs end-to-end over a rendered full chapte
   let sawTask = "";
   const canned = "```json\n" + JSON.stringify(readerModelOutput()) + "\n```";
   const record = await runReaderExperienceReview(
-    { docRelPath: "workspace/ch01.phase1.md", chapterContentSha256: chapterSha, readerDocumentSha256: docSha, schemaSha256: READER_SCHEMA_SHA },
+    { docRelPath: "workspace/ch01.phase1.md", chapterContentSha256: chapterSha, readerDocumentSha256: docSha, schemaSha256: READER_SCHEMA_SHA, quizQuestionCount: ch.quiz.questions.length },
     { reviewFn: async (task) => { sawTask = task; return canned; } },
   );
 
@@ -546,7 +546,7 @@ async function runAllLanes(ch: ChapterV21, opts: { sourceResult?: "PASS" | "BLOC
   const chapterSha = chapterContentHash(ch);
   const docSha = readerExperienceDocHash(ch);
   const reader = await runReaderExperienceReview(
-    { docRelPath: "workspace/ch01.phase1.md", chapterContentSha256: chapterSha, readerDocumentSha256: docSha, schemaSha256: READER_SCHEMA_SHA },
+    { docRelPath: "workspace/ch01.phase1.md", chapterContentSha256: chapterSha, readerDocumentSha256: docSha, schemaSha256: READER_SCHEMA_SHA, quizQuestionCount: ch.quiz.questions.length },
     { reviewFn: async () => "```json\n" + JSON.stringify(readerModelOutput(opts.readerOver ?? {})) + "\n```" },
   );
 

@@ -117,3 +117,52 @@ test("gateway review packet contains ordered chapters plus one pattern audit onl
   assert.equal(document.includes("compiler/private-task.json"), false);
   assert.equal(document.includes("secret"), false);
 });
+
+/**
+ * R-152 — the baseline reviewer's `code` had no enum and `parseIssue` accepted
+ * any non-empty string, so the live Franklin reviews minted 40+ one-off codes
+ * including POSITIVE ATTESTATIONS (CONTENT_VERIFIED_CONSISTENT,
+ * PATTERN_AUDIT_CONFIRMS_CLEAN, CONTENT_REVIEWED_NO_INJECTION). Those became
+ * REVIEW.* advisories in the QC round and were handed to repair as work.
+ */
+test("R-152: the baseline reviewer's issue codes are a closed list; an invented code lands on OTHER", async () => {
+  const evaluator = new ModelGatewayReviewEvaluator({
+    async run() {
+      return {
+        attemptId: "attempt-1",
+        outcome: "SUCCEEDED",
+        output: {
+          outcome: "FAIL",
+          issues: [
+            { code: "STRUCTURAL_DEFECT", severity: "BLOCKER", message: "chapter 2 has no quiz" },
+            { code: "CONTENT_VERIFIED_CONSISTENT", severity: "WARN", message: "content reads consistently" },
+          ],
+        },
+      };
+    },
+  });
+  const result = await evaluator.evaluate({ candidate, taskContext: context });
+  assert.equal(result.ok, true, JSON.stringify(result));
+  assert.ok(result.ok);
+  const [known, invented] = result.value.issues;
+  assert.equal(known.code, "STRUCTURAL_DEFECT", "an in-enum code passes through unchanged");
+  assert.equal(invented.code, "OTHER", `an invented code must not become its own class: ${JSON.stringify(invented)}`);
+  // The raw code is evidence, not vocabulary: it survives on the message.
+  assert.match(invented.message, /CONTENT_VERIFIED_CONSISTENT/, invented.message);
+});
+
+test("R-152: the reviewer prompt states the closed code list and forbids pass attestations", async () => {
+  const prompts: string[] = [];
+  const evaluator = new ModelGatewayReviewEvaluator({
+    async run(request) {
+      prompts.push(Buffer.from(request.prompt.inputs.find((input) => input.name === "system_prompt")!.bytes).toString("utf8"));
+      return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { outcome: "PASS", issues: [] } };
+    },
+  });
+  await evaluator.evaluate({ candidate, taskContext: context });
+  assert.equal(prompts.length, 1);
+  for (const code of ["STRUCTURAL_DEFECT", "OTHER"]) {
+    assert.ok(prompts[0].includes(code), `the prompt must name the closed code ${code}`);
+  }
+  assert.match(prompts[0], /only defects/i, prompts[0]);
+});

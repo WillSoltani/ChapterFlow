@@ -131,6 +131,35 @@ requiredTest("an advisory that names no single chapter is dropped, never escalat
   assert.doesNotMatch(brief, /unlocated advisory/, brief);
   assert.doesNotMatch(brief, /advisory naming the whole book/, brief);
 });
+/**
+ * R-154 — a BOOK-WIDE advisory names every chapter it applies to
+ * ("ch01,ch02"), and groupAdvisories required EXACTLY ONE match, so it was
+ * dropped from every brief. A BLOCKER with the identical location is fanned out
+ * to each named chapter (#501), so the two paths disagreed about what the same
+ * string meant, and the class of finding that most needs stating (the same
+ * defect in several chapters) was the one class nobody was told about.
+ */
+requiredTest("an advisory naming several chapters reaches each of them, labelled BOOK-WIDE", async (context) => {
+  const subject = rig(context, {
+    issueCode: `REVIEW.${READER_PANEL_BELOW_FLOOR_CODE}`,
+    location: "ch01",
+    extraIssues: [
+      { code: "CM0.content_machinery_monoculture", severity: "WARN", message: "every chapter opens on the same machinery", location: "ch01,ch02" },
+      { code: "REVIEW.READER.ADVISORY.tone", severity: "WARN", message: "only the second chapter is affected", location: "ch02/seat-1/tier-3" },
+    ],
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+
+  const brief = Buffer.from(subject.prompts[0].prompt.inputs.find((input) => input.name === "repair_brief")!.bytes).toString("utf8");
+  assert.match(brief, /every chapter opens on the same machinery/, brief);
+  // It must arrive LABELLED, or the writer reads a book-wide defect as a local one.
+  assert.match(brief, /BOOK-WIDE/, brief);
+  assert.match(brief, /ch01, ch02/, brief);
+  // Scoping is still real: a single-chapter advisory for ch02 stays out of ch01.
+  assert.doesNotMatch(brief, /only the second chapter is affected/, brief);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
