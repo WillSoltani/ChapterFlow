@@ -32,7 +32,7 @@ import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
 import {
-  chapterGroundingFindings,
+  packGroundingFindings,
   validateExamplePack,
   validateLearningPack,
   validateSummaryPack,
@@ -193,13 +193,12 @@ function learningPack(opts: { quizIds?: string[]; cardIds?: string[]; stem?: str
   } as unknown as LearningPackV1;
 }
 
-function groundingArgs(summary: SummaryPackV1, packs: Partial<Record<SectionKind, SectionPackV1>>, anchors: SourceAnchorForPrompt[]) {
-  return {
-    chapterNumber: CH,
-    packet: packet(anchors),
-    packs: { "summary-pack": summary as SectionPackV1, ...packs },
-    sections: ["summary-pack", "example-pack", "learning-pack", "action-pack"] as readonly SectionKind[],
-  };
+/** SEC128/SEC129 are measured PER PACK against the chapter's own drafted prose —
+ *  see packGroundingFindings for why the chapter-wide shape could not ship (a
+ *  per-chapter blocker reaching assembly has no eviction path and wedges the compile
+ *  loop permanently). */
+function groundingArgs(summary: SummaryPackV1, section: SectionKind, pack: SectionPackV1, anchors: SourceAnchorForPrompt[]) {
+  return { chapterNumber: CH, section, packet: packet(anchors), pack, prose: summary };
 }
 
 test("SEC128 blocks a case the quiz cites when the chapter's prose never taught it", () => {
@@ -209,25 +208,28 @@ test("SEC128 blocks a case the quiz cites when the chapter's prose never taught 
     full: "The first purchase is the whole story: the money buys work-fuel, not a cushion.",
   });
   const findings = byCheck(
-    chapterGroundingFindings(groundingArgs(summary, { "learning-pack": learningPack({ quizIds: [DOGOOD.id], cardIds: [DOGOOD.id] }) as SectionPackV1 }, [ARRIVAL, DOGOOD])),
+    packGroundingFindings(groundingArgs(summary, "learning-pack", learningPack({ quizIds: [DOGOOD.id], cardIds: [DOGOOD.id] }) as SectionPackV1, [ARRIVAL, DOGOOD])),
     "SEC128.chapter_case_untaught",
   );
-  assert.ok(findings.length >= 1, "a case only the quiz cites must still be taught by the prose");
+  assert.ok(findings.length >= 1, "a case the quiz cites must still be taught by the prose");
   assert.ok(findings.every((f) => f.severity === "blocker"));
+  assert.ok(findings.every((f) => f.section === "learning-pack"), "attributed to the pack that cites it, so the retry lands there");
   assert.match(findings[0].message, /ch01\.case\.silence-dogood/);
 });
 
-test("SEC128 says nothing about a case the summary pack itself cites (SEC14 owns those)", () => {
+test("SEC128 never fires on the summary pack itself — SEC14 owns those citations", () => {
   const summary = summaryPack({
     fast: "He arrives with nothing anyone would call capital.",
     deep: "The purchase decides the next week and the habit holds for years.",
     full: "Nothing here names the case the tiers claim to be built from.",
   });
   const findings = byCheck(
-    chapterGroundingFindings(groundingArgs(summary, { "learning-pack": learningPack({}) as SectionPackV1 }, [ARRIVAL])),
+    packGroundingFindings(groundingArgs(summary, "summary-pack", summary as unknown as SectionPackV1, [ARRIVAL])),
     "SEC128.chapter_case_untaught",
   );
-  assert.deepEqual(findings, [], "one ungrounded case must produce ONE finding, from SEC14, not two");
+  assert.deepEqual(findings, [], "the summary pack's own ungrounded citation is SEC14's finding, not a second one");
+  const sec14 = byCheck(validateSummaryPack(summary, blueprint(), packet([ARRIVAL])), "SEC14.chapter_case_grounding");
+  assert.equal(sec14.length, 1, "and SEC14 does report it");
 });
 
 // ── SEC129 — the rotation cap the demotion pays for ──────────────────────────
@@ -246,7 +248,10 @@ test("SEC129 blocks a specific that carries every unit citing its case (the rev-
     front: "What did three puffy rolls decide?",
     back: "Three puffy rolls decided the second week: money spent on work-fuel keeps the next decision open.",
   });
-  const findings = byCheck(chapterGroundingFindings(groundingArgs(summary, { "learning-pack": learning as SectionPackV1 }, [ARRIVAL])), "SEC129.case_specific_rotation");
+  const findings = [
+    ...byCheck(packGroundingFindings(groundingArgs(summary, "summary-pack", summary as unknown as SectionPackV1, [ARRIVAL])), "SEC129.case_specific_rotation"),
+    ...byCheck(packGroundingFindings(groundingArgs(summary, "learning-pack", learning as SectionPackV1, [ARRIVAL])), "SEC129.case_specific_rotation"),
+  ];
   const blockers = findings.filter((f) => f.severity === "blocker" && /three puffy rolls/.test(f.message));
   assert.equal(blockers.length, 1, `a specific in every citing unit must block; got:\n${findings.map((f) => f.message).join("\n")}`);
   assert.match(blockers[0].message, /\d+\/\d+ of the units citing that case \(\d+%/, `the message reports the realized share; got: ${blockers[0].message}`);
@@ -265,7 +270,10 @@ test("SEC129 leaves a rotated chapter alone: no specific above half its case's u
     front: "What does the first purchase in a new city decide?",
     back: "It decides the second week: money spent on work-fuel keeps the next decision open.",
   });
-  const findings = byCheck(chapterGroundingFindings(groundingArgs(summary, { "learning-pack": learning as SectionPackV1 }, [ARRIVAL])), "SEC129.case_specific_rotation");
+  const findings = [
+    ...byCheck(packGroundingFindings(groundingArgs(summary, "summary-pack", summary as unknown as SectionPackV1, [ARRIVAL])), "SEC129.case_specific_rotation"),
+    ...byCheck(packGroundingFindings(groundingArgs(summary, "learning-pack", learning as SectionPackV1, [ARRIVAL])), "SEC129.case_specific_rotation"),
+  ];
   assert.deepEqual(findings.filter((f) => f.severity === "blocker"), [], `rotated prose must pass; got:\n${findings.map((f) => f.message).join("\n")}`);
 });
 

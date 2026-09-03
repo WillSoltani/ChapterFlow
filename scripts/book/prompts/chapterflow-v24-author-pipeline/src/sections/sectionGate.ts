@@ -2686,6 +2686,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
   }
   findings.push(...tierRestatementFindings(pack, ch));
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "summary-pack", packet, pack, prose: pack }));
   // ONE harvest shared with the assembler (optimizers/memorableLines.ts). The gate
   // used to build its own candidate list here; two copies of "which sentences are
   // candidates" was half of the write/ship memorable-line split.
@@ -2816,7 +2817,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
   return findings;
 }
 
-export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, chapterProse?: ChapterProseSource | null): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
@@ -3003,6 +3004,7 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     }
   }
   findings.push(...exampleIntraPackNgramFindings(pack, ch));
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "example-pack", packet, pack, prose: chapterProse }));
   for (const [word, indexes] of titleSecondWords.entries()) {
     if (indexes.length >= Math.max(4, Math.ceil((pack.examples?.length ?? 0) * 0.66))) {
       push("SEC38.example_title_shape_reuse", "blocker", `${indexes.length} example titles share "${word}" as the second word; vary title grammar across the six examples`, "/examples");
@@ -3419,6 +3421,7 @@ export function validateLearningPack(
     // SEC120 (the back may not name what the page never showed) plus SEC14/SEC128
     // (the page must teach the case), with SEC57 still pinning the claim type.
   }
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "learning-pack", packet, pack, prose: chapterProse }));
   findings.push(...repeatedQuestionNgramFindings(pack, ch));
   findings.push(...chapterOpenerSignatureFindings(pack, ch));
   findings.push(...quizQualifierParityFindings(pack, ch));
@@ -3427,7 +3430,7 @@ export function validateLearningPack(
   return findings;
 }
 
-export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
+export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1, chapterProse?: ChapterProseSource | null): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
   const allowed = sourceAnchorIds(packet);
@@ -3473,6 +3476,7 @@ export function validateActionPack(pack: ActionPackV1, bp: ChapterBlueprintV1, p
   for (const p of validateAnchorResolution(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorClaimType(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", "implementationPlan.weeklyPracticeSourceAnchorIds")) push("SEC73.action_anchor_claim_type", "blocker", p, "/implementationPlan/weeklyPracticeSourceAnchorIds");
   for (const p of validateAnchorHardSpecifics(plan?.weeklyPracticeSourceAnchorIds, anchors, "implementation_guidance", plan?.weeklyPractice, "implementationPlan.weeklyPractice", 1)) push("SEC74.action_anchor_specifics", "blocker", p, "/implementationPlan/weeklyPractice");
+  findings.push(...packGroundingFindings({ chapterNumber: ch, section: "action-pack", packet, pack, prose: chapterProse }));
   return findings;
 }
 
@@ -3488,10 +3492,14 @@ export function validateSectionPack(
 ): SectionFinding[] {
   const findings = (() => {
     switch (pack.artifactType) {
+      // Package 1B: every pack (not just the learning pack) is measured against THIS
+      // chapter's drafted prose — SEC128 needs it for the examples and the action
+      // plan too, and the compile order (summary -> example -> learning -> action)
+      // means it exists by the time each of them is gated.
       case "summary-pack": return validateSummaryPack(pack, bp, packet);
-      case "example-pack": return validateExamplePack(pack, bp, packet);
+      case "example-pack": return validateExamplePack(pack, bp, packet, chapterProse);
       case "learning-pack": return validateLearningPack(pack, bp, packet, chapterProse);
-      case "action-pack": return validateActionPack(pack, bp, packet);
+      case "action-pack": return validateActionPack(pack, bp, packet, chapterProse);
       default: return [{ checkId: "SEC99.unknown", severity: "blocker" as const, chapterNumber: bp.chapterNumber, message: `unknown section artifact ${(pack as any)?.artifactType}` }];
     }
   })();
@@ -3613,39 +3621,46 @@ function unitCarriesSpecific(unitText: string, specific: string): boolean {
 }
 
 /**
- * The chapter-scope half of the grounding redesign. Runs over every pack of ONE
- * chapter at once, which is the scope the per-unit quotas never had.
+ * The pack-scope half of the grounding redesign — SEC128 and SEC129 over the units
+ * of ONE pack, measured against the chapter's own reader-visible prose.
  *
- *  - SEC128 — a case cited ONLY by the quiz/cards/examples/action must still be
- *    taught by the chapter's reader-visible prose to the same bar SEC14 applies to
- *    the cases the prose itself cites. Together the two cover "every case anchor
- *    cited anywhere in the chapter". A chapter may not test what it never says.
+ *  - SEC128 — a case this pack's units cite must be TAUGHT by that prose to the same
+ *    bar SEC14 applies to the cases the prose itself cites. Together they cover
+ *    "every case anchor cited anywhere in the chapter": SEC14 owns the summary
+ *    pack's own citations, SEC128 owns the quiz/cards/examples/action.
  *  - SEC129 — the rotation cap (see CASE_SPECIFIC_SHARE_BLOCK).
  *
- * No-ops without a summary pack: there is no reader-visible prose to measure
- * against, and the summary pack is drafted first, so a mid-compile chapter is never
- * blocked for a tier that does not exist yet.
+ * WHY PACK SCOPE AND NOT CHAPTER SCOPE. Both checks were built chapter-wide first
+ * — one pass over all four packs of a chapter — and that shape is unshippable here:
+ * the compiler gates each pack as it is drafted (compilerApplicationPort
+ * `sectionGateBlockers` -> validateSectionPack) and only re-runs the WHOLE-book gate
+ * at assembly, where a per-chapter blocker has no eviction policy and the port
+ * throws ASSEMBLY_BLOCK_NOT_EVICTABLE — "no cached section pack was evicted, so the
+ * next compile run will reuse identical cached packs and fail identically". A
+ * chapter-scope blocker would therefore have been a permanent wedge rather than a
+ * gate (reproduced on the v25 production-composition fixture before this was moved).
+ * Pack scope puts both checks in front of the writer that can still fix them, on the
+ * retry the port already runs. The cost is stated plainly: SEC129 measures a
+ * specific's share of the units of ONE pack, so a token spread thinly across all
+ * four packs is not counted. Every unit of the summary pack is one pack, so the
+ * tiers/hook/takeaway are still measured against each other.
+ *
+ * No-ops without the chapter's prose (a legacy caller, or a pack gated before the
+ * summary exists), exactly as SEC120 does.
  */
-export function chapterGroundingFindings(input: {
+export function packGroundingFindings(input: {
   chapterNumber: number;
+  section: SectionKind;
   packet: SourcePacketV1;
-  packs: Partial<Record<SectionKind, SectionPackV1>>;
-  /** Only findings owned by one of these sections are reported (a `--section
-   *  summary-pack` run must not block on the learning pack's citations). */
-  sections?: readonly SectionKind[];
+  pack: SectionPackV1;
+  /** The chapter's drafted summary pack. For the summary pack itself, pass it. */
+  prose: ChapterProseSource | null | undefined;
 }): SectionFinding[] {
-  const summary = input.packs["summary-pack"];
-  if (summary?.artifactType !== "summary-pack") return [];
+  if (!input.prose || !hasDraftedReadTiers(input.prose)) return [];
   const anchors = sourceAnchorById(input.packet);
-  const units = chapterCitingUnits(input.packs);
-  const reported = new Set<SectionKind>(input.sections ?? SECTION_KINDS);
+  const units = chapterCitingUnits({ [input.section]: input.pack } as Partial<Record<SectionKind, SectionPackV1>>);
   const findings: SectionFinding[] = [];
-  const normalizedProse = normalizeDerivabilityText(chapterProseText(summary));
-
-  const summaryCited = new Set(citedRichAnchors(
-    units.filter((unit) => unit.section === "summary-pack").flatMap((unit) => unit.citations),
-    anchors,
-  ).keys());
+  const normalizedProse = normalizeDerivabilityText(chapterProseText(input.prose));
 
   // Which units cite which rich anchor (claim-type-valid citations only).
   const citingUnits = new Map<string, ChapterCitingUnit[]>();
@@ -3657,24 +3672,23 @@ export function chapterGroundingFindings(input: {
     }
   }
 
-  // ---- SEC128 -------------------------------------------------------------
-  for (const [id, cited] of citingUnits) {
-    if (summaryCited.has(id)) continue;
-    const anchor = anchors.get(id);
-    if (!anchor) continue;
-    const present = caseSpecificsOnPage(anchor, normalizedProse);
-    if (present >= CHAPTER_CASE_MIN_SPECIFICS) continue;
-    const owner = cited[0].section;
-    if (!reported.has(owner)) continue;
-    findings.push({
-      checkId: "SEC128.chapter_case_untaught",
-      severity: "blocker",
-      chapterNumber: input.chapterNumber,
-      section: owner,
-      path: cited[0].path,
-      message: `${cited.map((unit) => unit.label).join(", ")} cite ${id} but this chapter's reader-visible prose carries only ${present}/${CHAPTER_CASE_MIN_SPECIFICS} of that case's hardSpecifics (${(anchor.hardSpecifics ?? []).slice(0, 4).join(", ")});`
-        + " a chapter may not test a case it never taught — teach it in the summary tiers or cite a case the prose covers",
-    });
+  // ---- SEC128 (never on the summary pack: SEC14 owns its citations) --------
+  if (input.section !== "summary-pack") {
+    for (const [id, cited] of citingUnits) {
+      const anchor = anchors.get(id);
+      if (!anchor) continue;
+      const present = caseSpecificsOnPage(anchor, normalizedProse);
+      if (present >= CHAPTER_CASE_MIN_SPECIFICS) continue;
+      findings.push({
+        checkId: "SEC128.chapter_case_untaught",
+        severity: "blocker",
+        chapterNumber: input.chapterNumber,
+        section: input.section,
+        path: cited[0].path,
+        message: `${cited.map((unit) => unit.label).join(", ")} cite ${id} but this chapter's reader-visible prose carries only ${present}/${CHAPTER_CASE_MIN_SPECIFICS} of that case's hardSpecifics (${(anchor.hardSpecifics ?? []).slice(0, 4).join(", ")});`
+          + " a chapter may not test a case it never taught — teach it in the summary tiers or cite a case the prose covers",
+      });
+    }
   }
 
   // ---- SEC129 -------------------------------------------------------------
@@ -3692,15 +3706,13 @@ export function chapterGroundingFindings(input: {
   shares.sort((a, b) => b.share - a.share || a.anchorId.localeCompare(b.anchorId) || a.specific.localeCompare(b.specific));
   let emitted = 0;
   for (const hit of shares) {
-    const owner = [...hit.hits].sort((a, b) => a.section.localeCompare(b.section))[0].section;
-    if (!reported.has(owner)) continue;
     if (emitted >= CASE_SPECIFIC_SHARE_MAX_FINDINGS) {
       findings.push({
         checkId: "SEC129.case_specific_rotation",
         severity: "advisory",
         chapterNumber: input.chapterNumber,
-        section: owner,
-        message: `${shares.length - emitted} further case specific(s) exceed the ${Math.round(CASE_SPECIFIC_SHARE_ADVISE * 100)}% rotation advisory in this chapter; rotate which detail each unit uses`,
+        section: input.section,
+        message: `${shares.length - emitted} further case specific(s) exceed the ${Math.round(CASE_SPECIFIC_SHARE_ADVISE * 100)}% rotation advisory in this pack; rotate which detail each unit uses`,
       });
       break;
     }
@@ -3710,7 +3722,7 @@ export function chapterGroundingFindings(input: {
       checkId: "SEC129.case_specific_rotation",
       severity: blocking ? "blocker" : "advisory",
       chapterNumber: input.chapterNumber,
-      section: owner,
+      section: input.section,
       path: hit.hits[0].path,
       message: `"${hit.specific}" (${hit.anchorId}) appears in ${hit.hits.length}/${hit.total} of the units citing that case (${Math.round(hit.share * 100)}%, cap ${Math.round(CASE_SPECIFIC_SHARE_BLOCK * 100)}%, target ${Math.round(CASE_SPECIFIC_SHARE_ADVISE * 100 + 10)}%): ${hit.hits.map((unit) => unit.label).slice(0, 8).join(", ")};`
         + " rotate which of the case's details each unit uses, or refer to the case naturally without repeating the token",
@@ -3884,23 +3896,6 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
       } catch (err) {
         findings.push({ checkId: "SEC0.malformed", severity: "blocker", chapterNumber, section: kind, path: p, message: `unreadable ${kind}: ${(err as Error).message}` });
       }
-    }
-    // Package 1B — the CHAPTER-scope grounding checks (SEC128 untaught case, SEC129
-    // specific rotation). They need every pack of this chapter at once, which no
-    // per-pack validator has; the packs are read tolerantly (an unreadable or
-    // not-yet-drafted sibling simply drops out and its units are not counted) and the
-    // findings are filtered to the sections this run was asked to validate.
-    {
-      const chapterPacks: Partial<Record<SectionKind, SectionPackV1>> = {};
-      for (const kind of SECTION_KINDS) {
-        try {
-          if (hasPack(chapterNumber, kind)) {
-            const pack = readPack(chapterNumber, kind);
-            if (pack.artifactType === kind) chapterPacks[kind] = pack;
-          }
-        } catch { /* the kind's own gate run reports an unreadable pack */ }
-      }
-      findings.push(...chapterGroundingFindings({ chapterNumber, packet, packs: chapterPacks, sections: validSections }));
     }
   }
   if (validSections.includes("example-pack")) {
