@@ -16,6 +16,7 @@ import { BIBLIOGRAPHY_GENRES, type BibliographyResult } from "../src/agents/rese
 import { evaluateSourceV2Integrity } from "../src/source/sourceIntegrity.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { writerPacketProjection, PROJECTED_SOURCE_QUOTE_CHARS } from "../src/compiler/sourcePacketProjection.js";
+import { deriveForwardChapterFeatures } from "../src/orchestrator/forwardInputFreeze.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 
@@ -283,4 +284,25 @@ test("R-277: the book's fact pins reach the CHAPTER RESEARCHER, with the source-
   assert.match(prompt, /If this chapter's source text CONTRADICTS one of them/);
   assert.match(prompt, /the source is the authority and the pin is then a defect to report/);
   assert.doesNotMatch(buildUserPrompt(baseInput()), /Corrections already established/);
+});
+
+// ── the IMP-22 freeze re-stamp is a HASH change, not a corpus change ──────────
+
+test("R-055: chapterContext changes no forward-experiment feature, so the gold stratum assignment is unchanged", () => {
+  const chapter: ChapterSpec = { chapterId: "b-ch01", chapterNumber: 1, chapterTitle: "Public Services" };
+  const sidecar = { ...quotedSidecar(), focus: "f", coreClaim: "c" } as unknown as SourceSidecarV2;
+  const withContext = compileSourcePacketFromSidecar({ bookId: "b", chapter, sidecar });
+  assert.ok(withContext.chapterContext, "precondition: the packet must actually carry the new block");
+  const without = JSON.parse(JSON.stringify(withContext));
+  delete without.chapterContext;
+
+  // Every stratum score is a function of these counts. If they are identical,
+  // scoreOrder is identical, and the chapter-to-stratum assignment cannot move —
+  // which is the whole content of the IMP22_FORWARD_INPUT_EXPECTED_HASHES
+  // re-stamp: the hashes moved because they are hashes OF the packet bytes, and
+  // nothing the experiment selects on moved with them.
+  assert.deepEqual(
+    deriveForwardChapterFeatures(withContext, sidecar),
+    deriveForwardChapterFeatures(without, sidecar),
+  );
 });
