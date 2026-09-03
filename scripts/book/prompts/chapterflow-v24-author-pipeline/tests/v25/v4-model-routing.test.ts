@@ -213,7 +213,9 @@ requiredTest("createRouteForRoleRoute: route:\"codex\" builds a working ModelPro
 });
 
 requiredTest("createRouteForRoleRoute: route:\"claude-cli\" builds the Task 7 claude route (no longer throws)", () => {
-  const route = createRouteForRoleRoute({ route: "claude-cli", model: "claude-sonnet-5", effort: "xhigh" }, "review");
+  // R-205: the second `role` argument is gone — it was accepted and discarded.
+  // The role now selects WHICH RoleRoute is passed in (ModelRouteSelector).
+  const route = createRouteForRoleRoute({ route: "claude-cli", model: "claude-sonnet-5", effort: "xhigh" });
   assert.equal(route.id, "claude-subscription-v1");
   const built = route.build({
     id: "read",
