@@ -333,6 +333,57 @@ requiredTest("a repair writer receives the book's rules, sourced from the candid
   assert.match(control, /instruction, not evidence/);
 });
 
+requiredTest("R-286: the repair writer gets the rules for the chapter under repair, not the whole book's", async (context) => {
+  // A rule labelled "(chNN)" is a statement about one chapter's episode. The repair
+  // writer is invoked exactly when a panel or QC blocker names a defect, so handing
+  // it another chapter's fact pins as NON-NEGOTIABLE re-asserts them on every round.
+  // This repair targets ch01 (operationId "repair-ch01", pinned above).
+  const subject = rig(context, {
+    scars: {
+      bookId: BOOK,
+      phrases: [],
+      frames: [],
+      notes: [],
+      prohibitions: [
+        "FACT PIN (ch02): the ledger was slipped under the door.",
+        "SAFETY: never tell the reader to skip the permit.",
+      ],
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  const rules = Buffer.from(subject.prompts[0].prompt.inputs.find((i) => i.name === "book_rules")!.bytes).toString("utf8");
+  assert.match(rules, /never tell the reader to skip the permit/, "an unlabelled rule still binds every chapter");
+  assert.doesNotMatch(rules, /slipped under the door/, "a ch02 fact pin must not bind the ch01 repair");
+});
+
+requiredTest("R-286: provenance and reader-safety rules bind the repair of every chapter", async (context) => {
+  // The repair lane is the surface where a lost rule does the most damage — it runs
+  // precisely because a panel or QC blocker already fired — so the two shapes review
+  // round 1 found the scope reader mis-reading are pinned here as well as on the
+  // section-writer lane. Both of these bodies govern the whole book; neither may be
+  // filtered out of a ch01 repair by the chapter named in its label.
+  const subject = rig(context, {
+    scars: {
+      bookId: BOOK,
+      phrases: [],
+      frames: [],
+      notes: [],
+      prohibitions: [
+        "GRADUALISM CONSISTENCY (panel blockers, ch07): the span is grown gradually in every unit.",
+        "SAFETY (ch03): never advise beginning work on shared property without permission.",
+        "FACT PIN (ch02): the ledger was slipped under the door.",
+      ],
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  const rules = Buffer.from(subject.prompts[0].prompt.inputs.find((i) => i.name === "book_rules")!.bytes).toString("utf8");
+  assert.match(rules, /the span is grown gradually in every unit/, "a chapter named in a PROVENANCE parenthesis does not scope the rule");
+  assert.match(rules, /shared property without permission/, "a reader-safety rule binds every chapter's repair");
+  assert.doesNotMatch(rules, /slipped under the door/, "…and a genuine chapter scope still filters");
+});
+
 // Repair is a recovery path, so an absent or unusable scar block must degrade to
 // "no rules", never fail the run: failing closed over guidance the section writer
 // already applied would strand a chapter QC can otherwise fix. Three shapes, one

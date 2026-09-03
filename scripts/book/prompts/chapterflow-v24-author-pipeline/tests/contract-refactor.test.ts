@@ -9,10 +9,11 @@
  *     (TI) absent from a power-of-moments render.
  *  2. universal invariants present for all four kinds.
  *  3. the VOICE / LIVED-MOMENTS paragraph retained verbatim (exact snapshot).
- *  4. a token-count regression bound: every rendered task is <= 62% of the pinned
+ *  4. a token-count regression bound: every rendered task is <= 69% of the pinned
  *     pre-refactor length (the full-blueprint duplication was dropped; re-pinned
- *     60->62% for Task 11z's functional quiz-specifics preflight — a deliberate,
- *     tested addition, not prose creep).
+ *     60->62% for Task 11z's functional quiz-specifics preflight and 62->69% for
+ *     the wave-0 contract-truth batch — deliberate, tested additions, not prose
+ *     creep; see the re-pin rationale at the test itself).
  *  5. class-B gate-restatement prose was actually deleted (only the ~8 design-around
  *     rules survive, each naming its validator).
  *  6. the book-scars loader validates + fails loud, and returns null for no file.
@@ -24,9 +25,10 @@ import { resolve } from "path";
 
 import { test } from "./harness.js";
 import { PIPELINE_DIR } from "./helpers.js";
-import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
+import { buildSectionTaskMarkdown, sectionContract, sectionDoNotLines } from "../src/sections/sectionTasks.js";
+import { loadBannedPhrases } from "../src/critics/shared.js";
 import { CHAPTER_PROSE_CARD_BUDGET } from "../src/sections/chapterProse.js";
-import { loadBookScars, validateBookScars } from "../src/lib/bookScars.js";
+import { bookRuleChapters, loadBookScars, validateBookScars } from "../src/lib/bookScars.js";
 import { voiceCard } from "../src/lib/voiceCard.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
@@ -46,8 +48,17 @@ const PRE_REFACTOR_CHARS: Record<SectionKind, number> = {
 
 // The VOICE / LIVED-MOMENTS paragraph. It validated a +3.0 composite (commit 3702dd2d5)
 // and MUST survive the refactor verbatim. This snapshot is the exact expected text.
+//
+// ONE WORD MOVED (R-015): the closing clause read "state it plainly rather than
+// embroidering it". "rather than" is soft-banned in the SAME prompt
+// (config/banned-phrases.json, perBookBudget 15, budgeted book-wide at
+// critics/bookGate.ts), so the paragraph the writer is told to imitate as a style
+// model spent one of the book's allowance and modelled a tic the DO NOT block asks
+// it to avoid. "instead of" is the plain substitute the ban's own reason names.
+// Nothing else in the paragraph changed: the scene, the contrast pair, and the
+// invent-nothing clause are byte-identical.
 const VOICE_PARAGRAPH_SNAPSHOT =
-  `VOICE — narrate the real cases as LIVED MOMENTS, not abstract summaries: this genre teaches through concrete stories, so build deepRead and fullRead AROUND this chapter's real named cases. Open a case with one specific sensory moment drawn ONLY from its hardSpecifics (a named person, place, object, or number that is actually in the source), let the reader briefly FEEL the moment, THEN name the principle it proves. As a STYLE model only: prefer "The nurse taped a bright cartoon over the ceiling light so the boy staring up during the scan had something to find, and he stopped crying" over "Environments can be redesigned to reduce patient distress." Invent nothing beyond this chapter's own source hardSpecifics — the sample scene is only a voice model, so never import its nurse/boy/scan or any other book's cast, and if you have only a bare fact, state it plainly rather than embroidering it.`;
+  `VOICE — narrate the real cases as LIVED MOMENTS, not abstract summaries: this genre teaches through concrete stories, so build deepRead and fullRead AROUND this chapter's real named cases. Open a case with one specific sensory moment drawn ONLY from its hardSpecifics (a named person, place, object, or number that is actually in the source), let the reader briefly FEEL the moment, THEN name the principle it proves. As a STYLE model only: prefer "The nurse taped a bright cartoon over the ceiling light so the boy staring up during the scan had something to find, and he stopped crying" over "Environments can be redesigned to reduce patient distress." Invent nothing beyond this chapter's own source hardSpecifics — the sample scene is only a voice model, so never import its nurse/boy/scan or any other book's cast, and if you have only a bare fact, state it plainly instead of embroidering it.`;
 
 // A minimal blueprint/packet is enough to render a task's contract + scars + voice
 // (the scars block is keyed off bookId, not the blueprint), so cross-contamination,
@@ -194,13 +205,23 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
   assert.doesNotMatch(learning, /Write in the VOICE CARD register;/);
 });
 
-test("every rendered task is <= 62% of its pinned pre-refactor length", () => {
+// RE-PINNED 62% -> 69% for the wave-0 contract-truth batch. Measured on this
+// commit with the same money-book fixture: summary 32,321 (66.8%), example 34,912
+// (63.9%), learning 36,298 (68.1%), action 30,451 (64.9%). The growth is four
+// functional additions, each covered by a test above: the full hard/soft banned
+// phrase list rendered from config (R-014, ~2.6k and the only large one — 76 of the
+// 82 strings that fail a draft were previously undisclosed), the TIER ROLES line
+// (R-012), the cards/actions staging-directions rules (R-013), and the chapter
+// title plus the DIRECT_JSON validation frame (R-018/R-019). The binding ceiling is
+// the absolute HONEST budget below, measured on the render production actually
+// sends; this ratio still catches prose creep on the packet-only card.
+test("every rendered task is <= 69% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
     const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
-    assert.ok(md.length <= 0.62 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 62%`);
+    assert.ok(md.length <= 0.69 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 69%`);
   }
 });
 
@@ -245,7 +266,10 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   assert.ok(withProse.length > bare.length, "the prose block must actually render");
   const pre = PRE_REFACTOR_CHARS["learning-pack"];
   const ratio = withProse.length / pre;
-  assert.ok(withProse.length <= 0.76 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 76% (re-pin only with a stated rationale)`);
+  // RE-PINNED 76% -> 82% by the same wave-0 contract-truth batch as the 62->69%
+  // above, and for the same four additions: measured 43,564 chars = 81.7%. The
+  // prose delta this test bounds (7,290) is unchanged by that batch.
+  assert.ok(withProse.length <= 0.82 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 82% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -272,7 +296,10 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   const bare = buildSectionTaskMarkdown(args);
   const pre = PRE_REFACTOR_CHARS["learning-pack"];
   const ratio = withProse.length / pre;
-  assert.ok(withProse.length <= 0.80 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 80%`);
+  // RE-PINNED 80% -> 86%, same batch, same additions: measured 45,273 = 84.9%
+  // — arithmetic identical to the 82% pin above plus the clamped-prose allowance.
+  // What this test actually guards, the CLAMP, is asserted unchanged just below.
+  assert.ok(withProse.length <= 0.86 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 86%`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -327,6 +354,25 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // carry the longer full-card naming line and stay far below. Anything that needs
 // more than this must re-pin here with a written rationale, exactly as the 60->62%
 // and 62->76% re-pins above did.
+//
+// The wave-0 contract-truth batch spent part of that stated headroom and stayed
+// inside the budgets, so neither number moves. Its four prompt additions (the
+// config-rendered banned-phrase list, TIER ROLES, the cards/actions staging
+// directions, the chapter title + DIRECT_JSON validation frame) cost ~+3.0k on the
+// binding card, and R-274's chapter scoping returned more than that by not
+// rendering other chapters' fact pins.
+//
+// RE-MEASURED in review round 2, after the scope reader was narrowed to a
+// pure-chapter-marker parenthesis and reader-safety labels were exempted from
+// scoping altogether: Franklin's two SAFETY rules are book-wide again, which adds
+// 871 chars back to every chapter EXCEPT ch03 — and ch03 is the binding chapter,
+// so the budgets are unmoved. Worst kind per chapter on this commit:
+//   ch01 learning-pack 51,160   ch02 51,252   ch03 52,849 (binding)   ch04 51,097
+//   ch05-ch08 (no scoped rules) 50,154
+//   with worst-case prose: 58,450 / 58,542 / 60,139 (binding) / 58,387 / 57,444
+// That leaves 151 characters of headroom on the binding packet-only card and 361
+// with prose, so the next prompt package almost certainly re-pins here — with the
+// same kind of measured rationale, not by rounding the number up.
 const HONEST_TASK_CHAR_BUDGET = 53_000;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
 
@@ -340,30 +386,54 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
   assert.ok(card, `${LARGEST_SCAR_BOOK} must resolve a voice card; a null card measures a prompt with no register instruction`);
 
   const bp = realisticFixtureFor(LARGEST_SCAR_BOOK);
-  const args = (kind: SectionKind) => ({
+  const args = (kind: SectionKind, chapterNumber: number) => ({
     bookId: LARGEST_SCAR_BOOK,
     kind,
-    blueprint: bp.blueprint,
+    // Only the chapter NUMBER varies across the loop below, which is exactly the
+    // input the scar filter reads (R-274): everything else about the render is held
+    // constant, so each iteration measures one chapter's rule set and nothing else.
+    blueprint: { ...bp.blueprint, chapterNumber },
     sourcePacket: bp.packet,
     outputPath: `/tmp/${kind}.json`,
     context: { voiceCard: card, bookScars: scars },
   });
-  for (const kind of SECTION_KINDS) {
-    const md = buildSectionTaskMarkdown(args(kind));
-    assert.match(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, `${kind}: the scars block must actually render into the measured task`);
-    assert.match(md, /VOICE CARD/, `${kind}: the voice card must actually render into the measured task`);
-    assert.ok(
-      md.length <= HONEST_TASK_CHAR_BUDGET,
-      `${kind}: rendered ${md.length} chars against a ${HONEST_TASK_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
-    );
+
+  // EVERY chapter, not just ch01. Since R-274 the rendered rule set differs per
+  // chapter, so measuring one chapter would leave the heaviest one unbounded —
+  // Franklin's ch03 carries 9 of the 18 scoped rules and is the binding render.
+  //
+  // The range is a LITERAL, deliberately: an earlier cut derived it from
+  // bookRuleChapters, so the budget loop re-used the very scope reader it was
+  // supposed to bound and could not have noticed a chapter the reader mis-scoped
+  // out of existence. MEASURED_CHAPTERS covers every chapter this file labels
+  // (1-4) with room either side; the assertion below pins that the labels have not
+  // drifted past it.
+  const MEASURED_CHAPTERS = [1, 2, 3, 4, 5, 6, 7, 8];
+  const labelled = new Set<number>();
+  for (const rule of scars!.prohibitions) for (const chapterNumber of bookRuleChapters(rule)) labelled.add(chapterNumber);
+  assert.ok(labelled.size > 1, "this book's rules must actually be chapter-scoped, or the loop measures one render eight times");
+  for (const chapterNumber of labelled) {
+    assert.ok(MEASURED_CHAPTERS.includes(chapterNumber), `ch${chapterNumber} is scoped by a rule but outside MEASURED_CHAPTERS; widen the literal range`);
   }
 
-  // The production learning card also carries the chapter's drafted prose (Task 11ai).
-  const withProse = buildSectionTaskMarkdown({ ...args("learning-pack"), chapterProse: worstCaseChapterProse() });
-  assert.ok(
-    withProse.length <= HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET,
-    `learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
-  );
+  for (const chapterNumber of MEASURED_CHAPTERS) {
+    for (const kind of SECTION_KINDS) {
+      const md = buildSectionTaskMarkdown(args(kind, chapterNumber));
+      assert.match(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, `ch${chapterNumber} ${kind}: the scars block must actually render into the measured task`);
+      assert.match(md, /VOICE CARD/, `ch${chapterNumber} ${kind}: the voice card must actually render into the measured task`);
+      assert.ok(
+        md.length <= HONEST_TASK_CHAR_BUDGET,
+        `ch${chapterNumber} ${kind}: rendered ${md.length} chars against a ${HONEST_TASK_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+      );
+    }
+
+    // The production learning card also carries the chapter's drafted prose (Task 11ai).
+    const withProse = buildSectionTaskMarkdown({ ...args("learning-pack", chapterNumber), chapterProse: worstCaseChapterProse() });
+    assert.ok(
+      withProse.length <= HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET,
+      `ch${chapterNumber} learning-pack with prose: rendered ${withProse.length} chars against a ${HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET}-char budget; re-pin only with a written rationale`,
+    );
+  }
 });
 
 // ── R-005 — the contract must not countermand the card it just handed the writer.
@@ -585,4 +655,358 @@ test("book-scars: an unknown key fails loud instead of silently dropping its rul
     phrases: ["p"], frames: [], notes: [], prohibitions: ["SAFETY: no."],
   }, "x");
   assert.equal(ok.prohibitions.length, 1);
+});
+
+// ── R-274 — a book's rules are rendered for the chapter being written ─────────
+//
+// Every one of Franklin's 37 prohibitions rendered into all 16 section-writer
+// prompts. 16 of them scope themselves to the chapter they govern ("FACT PIN
+// (ch03): …"), so a ch01 writer was handed 12 pins that cannot apply to the
+// chapter in front of it — 4,736 characters of Franklin's 15,760-character
+// prohibition block, measured on the shipped file. (18 labels carry a chapter
+// marker; the two SAFETY ones are exempt from scoping — see the reader-safety
+// test below.)
+//
+// The scope is read from the rule's own LABEL (the text before its first colon),
+// never from its body: "TIER CONTRACT: … (ch02: …)" illustrates its rule with a
+// chapter example and still governs the whole book.
+test("R-274: a chapter-labelled prohibition renders only into its own chapter's prompt", () => {
+  const scars = validateBookScars({
+    bookId: "zz-scope",
+    phrases: [],
+    frames: [],
+    notes: ["Ground the city once, early."],
+    prohibitions: [
+      "FACT PIN (ch02): the letter was slipped under the door.",
+      "TIER CONTRACT: the tiers are standalone summaries (ch02: the break leads to leaving).",
+      "SAFETY: never tell the reader to skip the permit.",
+    ],
+  }, "zz-scope");
+  const render = (chapterNumber: number): string => buildSectionTaskMarkdown({
+    bookId: "zz-scope",
+    kind: "summary-pack",
+    blueprint: { ...minimalBlueprint("zz-scope"), chapterNumber },
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+  const ch01 = render(1);
+  const ch02 = render(2);
+  assert.doesNotMatch(ch01, /slipped under the door/, "a ch02 fact pin must not reach the ch01 writer");
+  assert.match(ch02, /slipped under the door/, "and must reach the ch02 writer");
+  for (const [label, md] of [["ch01", ch01], ["ch02", ch02]] as const) {
+    assert.match(md, /never tell the reader to skip the permit/, `${label}: an unlabelled rule governs every chapter`);
+    assert.match(md, /the tiers are standalone summaries/, `${label}: a chapter marker in the BODY does not scope a rule`);
+  }
+});
+
+test("R-274: a chapter whose scoped rules all drop out renders no empty rules scaffold", () => {
+  const scars = validateBookScars({
+    bookId: "zz-scope-empty",
+    phrases: ["an over-used case phrase"],
+    frames: [],
+    notes: [],
+    prohibitions: ["FACT PIN (ch09): the ninth chapter's number is nine."],
+  }, "zz-scope-empty");
+  const md = buildSectionTaskMarkdown({
+    bookId: "zz-scope-empty",
+    kind: "summary-pack",
+    blueprint: minimalBlueprint("zz-scope-empty"),
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+  assert.doesNotMatch(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, "no header with nothing under it");
+  assert.match(md, /KNOWN OVER-USED MATERIAL FOR THIS BOOK/, "the over-use block is unaffected by chapter scope");
+});
+
+// R-274 review round 1 found the first cut of the scope reader too greedy: it took
+// ANY parenthesised group in a label as a scope. The shipped corpus uses the same
+// punctuation for PROVENANCE — where the scar came from — and two of those
+// provenance notes name a chapter:
+//   config/book-scars/how-to-live-on-24-hours-a-day.json
+//     "GRADUALISM CONSISTENCY (panel blockers, ch07): … Every example, quiz key,
+//      and card must agree … in any unit."
+//     "STATED CAUSES ONLY (panel blocker, ch13): a unit may attribute an outcome
+//      only to the cause the prose actually states … no card may re-attribute it."
+// Both bodies are explicitly book-wide, and under the greedy reader every chapter
+// of that book except 7 and 13 rendered NO rules block at all — a silent removal of
+// a shipped book's only hard rules, on the writer lane and the repair lane both.
+//
+// A scope marker is now a parenthesis that contains NOTHING BUT chapter markers and
+// separators: "(ch03)", "(ch01, ch03)". A parenthesis carrying any other word is
+// provenance and scopes nothing.
+test("R-274: a chapter named inside a PROVENANCE label does not scope the rule", () => {
+  assert.deepEqual(bookRuleChapters("FACT PIN (ch03): the sweeper was paid by nearby households."), [3]);
+  assert.deepEqual(bookRuleChapters("FACT PIN (ch01, ch03): two chapters, one pin."), [1, 3]);
+  assert.deepEqual(
+    bookRuleChapters("GRADUALISM CONSISTENCY (panel blockers, ch07): the span is grown gradually in every unit."),
+    [],
+    "a parenthesis carrying words beyond chapter markers is provenance, not scope",
+  );
+  assert.deepEqual(
+    bookRuleChapters("STATED CAUSES ONLY (panel blocker, ch13): attribute only the cause the prose states."),
+    [],
+  );
+  assert.deepEqual(bookRuleChapters("SAFETY (panel blocker, round 11): name the authority."), []);
+
+  // …and end to end, on the shipped file that carries the shape.
+  const scars = loadBookScars("how-to-live-on-24-hours-a-day")!;
+  assert.equal(scars.prohibitions.length, 2, "this book's two rules are what the regression is about");
+  for (const chapterNumber of [1, 2, 5, 7, 13]) {
+    const md = buildSectionTaskMarkdown({
+      bookId: "how-to-live-on-24-hours-a-day",
+      kind: "summary-pack",
+      blueprint: { ...minimalBlueprint("how-to-live-on-24-hours-a-day"), chapterNumber },
+      sourcePacket: PACKET,
+      outputPath: "/tmp/summary.json",
+      context: { voiceCard: null, bookScars: scars },
+    });
+    assert.match(md, /GRADUALISM CONSISTENCY/, `ch${chapterNumber}: a book-wide rule must reach every chapter`);
+    assert.match(md, /STATED CAUSES ONLY/, `ch${chapterNumber}: a book-wide rule must reach every chapter`);
+  }
+});
+
+// Reader safety is the one class where a narrowing mistake harms the reader, so it
+// is never chapter-scoped, whatever a label says. Franklin's two SAFETY rules are
+// labelled "(ch03)" because that is the episode the panel blocked on, but their
+// bodies govern every modern example and every action step the book produces
+// ("Any modern example shows permission-and-funding ON THE PAGE"; "never apply the
+// organize-and-fund-it-yourselves pattern to ARMED patrols … in a modern analog"),
+// and example/action packs are written for every chapter. A code rule rather than a
+// config edit, because the config edit can be undone by a later label trim without
+// anyone noticing which class of rule it just narrowed.
+test("R-274: a reader-safety rule is never narrowed to one chapter", () => {
+  assert.deepEqual(
+    bookRuleChapters("SAFETY (ch03): never advise beginning work on shared property without permission."),
+    [],
+    "a SAFETY label governs the whole book even with a pure chapter marker",
+  );
+  assert.deepEqual(bookRuleChapters("READER SAFETY (ch09): name the professional standard."), []);
+  assert.deepEqual(bookRuleChapters("FACT PIN (ch09): the ninth chapter's number is nine."), [9], "…and nothing else changes");
+
+  const franklin = loadBookScars("the-autobiography-of-benjamin-franklin")!;
+  const md = buildSectionTaskMarkdown({
+    bookId: "the-autobiography-of-benjamin-franklin",
+    kind: "action-pack",
+    blueprint: { ...minimalBlueprint("the-autobiography-of-benjamin-franklin"), chapterNumber: 1 },
+    sourcePacket: PACKET,
+    outputPath: "/tmp/action.json",
+    context: { voiceCard: null, bookScars: franklin },
+  });
+  assert.match(md, /shared or public property without permission/, "the ch01 action writer gets the public-property rule");
+  assert.match(md, /organize-and-fund-it-yourselves pattern to ARMED patrols/, "…and the armed-patrol rule");
+});
+
+test("R-274: every shipped scar file keeps at least one rule that governs every chapter", () => {
+  // The corpus-level guard on the scope reader. A book whose rules ALL read as
+  // chapter-scoped renders no rules block for most of its chapters, which is how
+  // the greedy first cut removed how-to-live-on-24-hours-a-day's only hard rules
+  // from eleven of its thirteen chapters without a single test noticing.
+  const dir = resolve(PIPELINE_DIR, "config", "book-scars");
+  const shipped = readdirSync(dir)
+    .filter((f) => f.endsWith(".json") && f !== "book-scars.schema.json" && !f.startsWith("zz-fixture-"))
+    .map((f) => f.replace(/\.json$/, ""));
+  for (const bookId of shipped) {
+    const scars = loadBookScars(bookId)!;
+    if (scars.prohibitions.length === 0) continue;
+    const bookWide = scars.prohibitions.filter((rule) => bookRuleChapters(rule).length === 0);
+    assert.ok(
+      bookWide.length > 0,
+      `${bookId}: every one of its ${scars.prohibitions.length} rules reads as chapter-scoped, so most chapters would render no rules block at all`,
+    );
+  }
+});
+
+// ── R-008 — notes are not over-use material ──────────────────────────────────
+//
+// Every `notes` entry was pushed into the over-use list under a header granting
+// each item "at most one teaching unit book-wide; paraphrase the mechanism
+// everywhere else". Franklin's notes include two panel-blocker pins (CHRONOLOGY,
+// CONSISTENCY) and three cadence rules, so the header told the writer to use each
+// of them once and paraphrase them elsewhere — the same inversion the prohibition
+// channel exists to prevent, one channel further down.
+test("R-008: scar notes render under a no-quota header, never under the over-use quota", () => {
+  const scars = validateBookScars({
+    bookId: "zz-notes",
+    phrases: ["an over-used case phrase"],
+    frames: [],
+    notes: ["CHRONOLOGY PIN: the library predates the fire company."],
+    prohibitions: [],
+  }, "zz-notes");
+  const md = buildSectionTaskMarkdown({
+    bookId: "zz-notes",
+    kind: "summary-pack",
+    blueprint: minimalBlueprint("zz-notes"),
+    sourcePacket: PACKET,
+    outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: scars },
+  });
+  const notesAt = md.indexOf("STYLE NOTES FOR THIS BOOK");
+  const overUseAt = md.indexOf("KNOWN OVER-USED MATERIAL FOR THIS BOOK");
+  assert.ok(notesAt >= 0, "notes must carry their own header");
+  assert.ok(overUseAt > notesAt, "the over-use quota block still renders, after the notes");
+  assert.doesNotMatch(md.slice(overUseAt), /the library predates the fire company/,
+    "a note under the over-use header would be rationed to one use and paraphrased everywhere else");
+  assert.match(md.slice(notesAt, overUseAt), /apply throughout/, "the notes header states they are always in force");
+
+  // A book with notes but no over-used material must not emit an empty quota block.
+  const onlyNotes = validateBookScars({
+    bookId: "zz-notes", phrases: [], frames: [], notes: ["Ground the city once, early."], prohibitions: [],
+  }, "zz-notes");
+  const md2 = buildSectionTaskMarkdown({
+    bookId: "zz-notes", kind: "summary-pack", blueprint: minimalBlueprint("zz-notes"),
+    sourcePacket: PACKET, outputPath: "/tmp/summary.json",
+    context: { voiceCard: null, bookScars: onlyNotes },
+  });
+  assert.match(md2, /STYLE NOTES FOR THIS BOOK/);
+  assert.doesNotMatch(md2, /KNOWN OVER-USED MATERIAL FOR THIS BOOK/, "no empty over-use scaffolding");
+});
+
+// ── R-009 — no line may claim a gate reads a field no gate reads ─────────────
+//
+// Four Layer-2 lines ended "the validator enforces this" for the DEALT fields
+// (sceneFrame/requiredBeat, promptShape/answerStyle/distractorTrap/caseCueIds,
+// frontShape/retrievalTarget/backShape, practiceForm/practiceConstraint/
+// ifThenPlanShapes). `grep -a` over src/sections/sectionGate.ts finds sceneFrame
+// only inside advisory message strings and the others nowhere, so the claim was
+// false and, worse, the four rules it decorated are the ones only the writer can
+// keep. The obedience stays; the false enforcement claim goes.
+const DEALT_FIELD_TOKENS = [
+  "sceneFrame/requiredBeat",
+  "promptShape",
+  "frontShape",
+  "practiceForm",
+];
+
+test("R-009: no dealt-field instruction claims the validator enforces it", () => {
+  for (const kind of SECTION_KINDS) {
+    for (const line of sectionContract(kind).split("\n")) {
+      const dealt = DEALT_FIELD_TOKENS.find((token) => line.includes(token));
+      if (!dealt) continue;
+      const claimAt = line.indexOf("the validator enforces this");
+      if (claimAt < 0) continue;
+      assert.ok(
+        line.indexOf(dealt) > claimAt,
+        `${kind}: "${dealt}" is covered by an enforcement claim no gate backs:\n${line}`,
+      );
+    }
+  }
+  // And the obedience survives, stated as the craft rule it is.
+  assert.match(sectionContract("learning-pack"), /no gate reads them/i);
+  assert.match(sectionContract("action-pack"), /no gate reads/i);
+});
+
+// ── R-012 — what a longer tier must ADD ─────────────────────────────────────
+test("R-012: the summary contract states what each tier ADDS, not only its length", () => {
+  const summary = sectionContract("summary-pack");
+  assert.match(summary, /TIER ROLES/);
+  assert.match(summary, /fastRead[^\n]*immediate move/);
+  assert.match(summary, /deepRead[^\n]*mechanism/);
+  assert.match(summary, /fullRead[^\n]*(hard edge|limit)/);
+  assert.match(summary, /never reuses a deepRead sentence|no fullRead sentence reuses/i);
+});
+
+// ── R-013 — the dealt card/action shapes are staging directions ─────────────
+//
+// The example pack has carried "STAGING DIRECTIONS, not text" since P07; cards and
+// actions never did, and the dealt CARD_BACK_SHAPES pool is phrased as literal
+// openers ("start with the contrast"). The shipped Franklin book opens a card back
+// "The contrast is" in 4 of 4 chapters.
+test("R-013: cards and actions get the staging-directions rule the example pack has", () => {
+  const learning = sectionContract("learning-pack");
+  assert.match(learning, /STAGING DIRECTIONS/);
+  assert.match(learning, /The contrast is/, "the observed literal opener is named as forbidden");
+  const action = sectionContract("action-pack");
+  assert.match(action, /STAGING DIRECTIONS/);
+  assert.match(action, /twentyFourHourChallenge[^\n]*trigger/);
+});
+
+// ── R-015 — the style exemplar must obey the same prompt's bans ─────────────
+test("R-015: the KEEP-VERBATIM voice exemplar uses no soft-banned phrase", () => {
+  const summary = sectionContract("summary-pack");
+  const exemplar = summary.split("\n").find((line) => line.startsWith("VOICE — narrate the real cases"))!;
+  assert.ok(exemplar, "the exemplar paragraph must still be there");
+  for (const entry of loadBannedPhrases().softBanned as Array<{ phrase: string }>) {
+    assert.ok(
+      !exemplar.toLowerCase().includes(entry.phrase.toLowerCase()),
+      `the exemplar the writer is told to imitate uses the soft-banned "${entry.phrase}"`,
+    );
+  }
+});
+
+// ── R-017 — choice parity is measured in characters too ────────────────────
+test("R-017: CHOICE PARITY names the character half of the gate and never parks overflow in the explanation", () => {
+  const learning = sectionContract("learning-pack");
+  const parity = learning.split("\n").find((line) => line.includes("CHOICE PARITY"))!;
+  assert.ok(parity, "the CHOICE PARITY method must still be there");
+  assert.match(parity, /character/i, "SEC53 measures characters as well as words");
+  assert.doesNotMatch(parity, /moving overflow into the explanation/,
+    "that instruction mints the disclaiming explanation the panel flagged");
+  assert.match(parity, /explanation/, "it must still say what the explanation is for");
+});
+
+// ── R-014 — the writer is told every phrase that fails its draft ────────────
+test("R-014: the DO NOT block discloses the whole hard-banned list, rendered from config", () => {
+  const lines = sectionDoNotLines("compiler/ch01/summary-pack.json").join("\n");
+  const config = loadBannedPhrases();
+  for (const entry of config.hardBanned as Array<{ phrase: string }>) {
+    assert.ok(lines.includes(entry.phrase), `hard-banned "${entry.phrase}" is never disclosed to the writer`);
+  }
+  for (const entry of config.softBanned as Array<{ phrase: string; perBookBudget: number }>) {
+    assert.ok(lines.includes(entry.phrase), `soft-banned "${entry.phrase}" is never disclosed to the writer`);
+  }
+  // Budgets, not just names: "chapter argues that" has a budget of 0 and "rather
+  // than" a budget of 15, and a writer told only "avoid these" cannot tell them apart.
+  assert.match(lines, /chapter argues that[^\n]*0/);
+  assert.match(lines, /rather than[^\n]*15/);
+});
+
+// ── R-018 / R-019 — the live DIRECT_JSON card ──────────────────────────────
+test("R-018: every task card names the chapter it is writing", () => {
+  const bp = realisticFixture();
+  for (const kind of SECTION_KINDS) {
+    for (const deliveryMode of ["DIRECT_JSON", "FILE_WRITE"] as const) {
+      const md = buildSectionTaskMarkdown({
+        bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet,
+        outputPath: `/tmp/${kind}.json`, context: { voiceCard: null, bookScars: null }, deliveryMode,
+      });
+      const inputs = md.slice(md.indexOf("INPUTS"), md.indexOf("\n\nTASK"));
+      assert.match(inputs, /chapterTitle: Optimize Your Credit Cards/, `${kind}/${deliveryMode}: the writer is never told the chapter's title`);
+    }
+  }
+});
+
+test("R-019: the live DIRECT_JSON card says a deterministic gate will validate the draft", () => {
+  const bp = realisticFixture();
+  const md = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "summary-pack", blueprint: bp.blueprint, sourcePacket: bp.packet,
+    outputPath: "/tmp/summary.json", context: { voiceCard: null, bookScars: null }, deliveryMode: "DIRECT_JSON",
+  });
+  assert.match(md, /validated externally by deterministic section gates/,
+    "without it, ~20 lines ending 'the validator enforces this' name a validator the card never introduces");
+});
+
+// ── R-011 — the retry card states the rule the gate actually applies ────────
+test("R-011: the anchor-specifics enumeration states the gate's real matching rule", () => {
+  const bp = realisticFixture();
+  const anchor = bp.packet.allowedAnchors.find((a) => (a.hardSpecifics ?? []).length >= 2)!;
+  const md = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "summary-pack", blueprint: bp.blueprint, sourcePacket: bp.packet,
+    outputPath: "/tmp/summary.json", context: { voiceCard: null, bookScars: null },
+    retryFeedback: {
+      blockerLines: [`breakdown.fastRead cites ${anchor.id} but uses 0/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details`],
+      priorDraft: { hook: "x" },
+    },
+  });
+  assert.match(md, /REQUIRED VERBATIM SPECIFICS/, "the enumeration must still fire");
+  // The gate has folded an in-order clipped match since the Franklin pincer fix
+  // (sectionGate.ts clippedPhraseDerivable, SUBSEQUENCE_GAP_TOKENS = 8), so the
+  // card must not tell the writer that only an exact substring counts.
+  assert.doesNotMatch(md, /Copy the listed strings into the cited unit verbatim/,
+    "the gate accepts a naturalized in-order rendering; telling the writer to paste is what mints the seam");
+  assert.doesNotMatch(md, /capitalizing the first letter of a specific that opens a sentence/,
+    "this steered the raw token to sentence-initial position");
+  assert.match(md, /in order/i, "state the fold the gate applies");
+  assert.match(md, /eight words/i, "and the bounded gap it allows");
 });

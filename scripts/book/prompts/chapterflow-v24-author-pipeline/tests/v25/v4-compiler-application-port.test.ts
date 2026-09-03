@@ -1092,19 +1092,25 @@ requiredTest("9 anchor-specifics retry feedback enumerates required verbatim str
 
   // The cited case is enumerated under an explicit header that names the case and the
   // required count, and lists each hardSpecific verbatim in quotes right below it.
-  assert.match(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.fico \(use at least 2 EXACTLY as written\):/);
-  assert.match(md, /ch01\.case\.fico \(use at least 2 EXACTLY as written\):[\s\S]*?"300 to 850 scale"[\s\S]*?"credit utilization"/);
-  // The enrichment states the ACTUAL gate matching rule so the model stops paraphrasing.
-  assert.match(md, /case-insensitive substring/i);
-  // Task 11n: the model resolves "EXACTLY as written" vs. a lowercase-sentence-start
-  // readability gate (SEC106) in favor of verbatim casing, holding a specific lowercase
-  // at a sentence boundary. Since the gate above compares both sides lowercased, the card
-  // must say outright that capitalizing the first letter of a specific is safe — named
-  // against SEC106 so the model connects the two rules instead of guessing.
-  assert.match(
-    md,
-    /capitalizing the first letter of a specific.{0,80}safe.{0,200}SEC106|SEC106.{0,200}capitalizing the first letter of a specific[\s\S]{0,80}safe/i,
-  );
+  assert.match(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.fico \(use at least 2, matched by the rule above\):/);
+  assert.match(md, /ch01\.case\.fico \(use at least 2, matched by the rule above\):[\s\S]*?"300 to 850 scale"[\s\S]*?"credit utilization"/);
+  // RE-PINNED (R-011). The card used to state "EXACT case-insensitive substring …
+  // Copy the listed strings into the cited unit verbatim", which the gate stopped
+  // being true at the Franklin pincer fix: validateAnchorHardSpecifics
+  // (sectionGate.ts:318-322) also accepts clippedPhraseDerivable — a multi-word
+  // specific whose words appear IN ORDER within SUBSEQUENCE_GAP_TOKENS = 8, over
+  // normalizeDerivabilityText. The assertions follow the rule the gate applies.
+  assert.match(md, /its words appear IN ORDER/);
+  assert.match(md, /eight words between neighbours/);
+  // Task 11n's concern survives, by the rule rather than by the steer it used to
+  // carry: the card said "capitalizing the first letter of a specific that opens a
+  // sentence is safe … SEC106", which resolved the SEC106 conflict but taught the
+  // model to OPEN sentences with a raw telegraphic token ("… until a speckled Ax is
+  // best won out", shipped). The card now says casing is normalized before matching,
+  // which answers SEC106 without steering the token to sentence-initial position.
+  assert.match(md, /case-insensitive/i);
+  assert.match(md, /normalized first/);
+  assert.doesNotMatch(md, /capitalizing the first letter of a specific/i);
   // A case NOT cited by any anchor-specifics blocker is never enumerated (no packet-wide dump).
   assert.doesNotMatch(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.cfpb/);
   // Non-anchor blockers survive unchanged, and the base retry feedback is preserved.
