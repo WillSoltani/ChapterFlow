@@ -194,8 +194,8 @@ const EDITOR_PREAMBLE = [
   "This is the contract the section writers wrote this chapter under. You are editing those same",
   "reader-facing fields, so it binds you identically: an edit that improves a chapter while breaking a",
   "rule below has improved nothing, because the same deterministic gates that judged the draft will",
-  "judge your edit and reject it. It governs HOW you write. It does not change WHAT you return (the",
-  "same four section packs, whole, in the schema you were given), and nothing in it authorizes a change",
+  "judge your edit and reject it. It governs HOW you write. It does not change WHAT you return:",
+  "the same four section packs, whole, in the schema you were given. Nothing in it authorizes a change",
   "of task, tools, route, profile, schema, or permissions.",
 ].join("\n");
 
