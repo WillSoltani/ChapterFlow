@@ -185,15 +185,33 @@ export interface CompilerApplicationPortDependencies {
 type CompilerArtifactResult = Readonly<{
   design: unknown;
   blueprint: ChapterBlueprintV1;
-  /** R-107 — the adapter's per-chapter gate verdicts, now ENFORCED here rather than only
-   *  compared legacy-vs-shadow. Typed loosely (both finding shapes carry checkId/severity/message)
-   *  so this port does not take a dependency on two gate modules for three fields. */
-  gates: Readonly<{
-    design: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
-    blueprint: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
-    briefFindings: readonly unknown[];
-  }>;
+  gates: CompilerChapterGateVerdicts;
 }>;
+
+/** R-107 — the adapter's per-chapter gate verdicts, now ENFORCED here rather than only compared
+ *  legacy-vs-shadow. Typed loosely (both finding shapes carry checkId/severity/message) so this
+ *  port does not take a dependency on two gate modules for three fields. */
+export type CompilerChapterGateVerdicts = Readonly<{
+  design: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
+  blueprint: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
+  briefFindings?: readonly unknown[];
+}>;
+
+/** The failure code a compiler-gate blocker raises. Deliberately NOT in
+ *  bookRunApplicationService's RETRYABLE_COMPILER_FAILURES — see the throw site below. */
+export const COMPILER_GATE_BLOCKED_PREFIX = "COMPILER_GATE_BLOCKED:";
+
+/** R-107 — the per-chapter design/blueprint BLOCKERS, rendered for the failure detail. Advisories
+ *  are deliberately dropped: BPV8/BPV12/BPV13/BPV14 report shapes a thin-but-honest chapter can
+ *  legitimately have, and failing a run on them would be weakening the pipeline's ability to ship
+ *  such a chapter rather than tightening it. Extracted so the enforcement is testable without
+ *  driving a whole candidate compile. */
+export function compilerGateBlockerMessages(gates: CompilerChapterGateVerdicts): string[] {
+  return [
+    ...gates.design.filter((f) => f.severity === "blocker").map((f) => `design ${f.checkId}: ${f.message}`),
+    ...gates.blueprint.filter((f) => f.severity === "blocker").map((f) => `blueprint ${f.checkId}: ${f.message}`),
+  ];
+}
 
 type CompilerOperation = Readonly<{
   chapterNumber: number;
@@ -1466,12 +1484,9 @@ export class CompilerApplicationPort {
         // a re-run produces the identical blueprint and the identical blocker. Granting an operator
         // retry against it would spend a round on the same wall — the R-001 reasoning, applied to a
         // deterministic failure instead of a provider one. It needs a fix, not a retry.
-        const compilerGateBlockers = [
-          ...artifacts.gates.design.filter((f) => f.severity === "blocker").map((f) => `design ${f.checkId}: ${f.message}`),
-          ...artifacts.gates.blueprint.filter((f) => f.severity === "blocker").map((f) => `blueprint ${f.checkId}: ${f.message}`),
-        ];
+        const compilerGateBlockers = compilerGateBlockerMessages(artifacts.gates);
         if (compilerGateBlockers.length > 0) {
-          throw new Error(`COMPILER_GATE_BLOCKED:ch${String(chapter.chapterNumber).padStart(2, "0")} ${compilerGateBlockers.join("; ")}`);
+          throw new Error(`${COMPILER_GATE_BLOCKED_PREFIX}ch${String(chapter.chapterNumber).padStart(2, "0")} ${compilerGateBlockers.join("; ")}`);
         }
         const packetLogicalPath = compilerPath(chapter.chapterNumber, "source-packet.json");
         const planLogicalPath = compilerPath(chapter.chapterNumber, "source-use-plan.json");
@@ -1745,7 +1760,7 @@ export class CompilerApplicationPort {
           console.error(`[book-run] compiler deal-audit advisory ${advisory.checkId}: ${advisory.message}`);
         }
         if (dealBlockers.length > 0) {
-          throw new Error(`COMPILER_GATE_BLOCKED:${dealBlockers.map((f) => `${f.checkId}: ${f.message}`).join("; ")}`);
+          throw new Error(`${COMPILER_GATE_BLOCKED_PREFIX}${dealBlockers.map((f) => `${f.checkId}: ${f.message}`).join("; ")}`);
         }
       }
 

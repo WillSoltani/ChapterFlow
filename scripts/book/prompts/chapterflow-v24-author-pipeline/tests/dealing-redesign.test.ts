@@ -27,6 +27,8 @@ import { buildGenrePools, deriveBookDesign, genreForBook, rankedTopicsForPacket,
 import { properNounTokens, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE } from "../src/compiler/sourcePacketFacts.js";
 import { protectedSourceNames } from "../src/compiler/sourceNames.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../src/artifacts/artifactStore.js";
+import { compilerGateBlockerMessages, COMPILER_GATE_BLOCKED_PREFIX } from "../src/app/compilerApplicationPort.js";
+import { retryableCompilerFailure } from "../src/app/bookRunApplicationService.js";
 import type { BookDesignV1, ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
@@ -678,4 +680,27 @@ test("R-114: forbiddenNames names the neighbouring chapters' casts and never a n
       assert.ok([...neighbour].some((name) => forbidden.includes(name)), `ch${bp.chapterNumber}: the adjacent chapter's cast is missing from forbiddenNames`);
     }
   });
+});
+
+// ── R-107 — the compiler gate blockers are collected and thrown, and are NOT retryable ───────
+
+test("R-107: a compiler-gate blocker becomes a COMPILER_GATE_BLOCKED failure, advisories do not", () => {
+  const blocker = { checkId: "BPV9.unknown_fact", severity: "blocker" as const, message: "quiz slot 0 references unknown fact ch99.fact.1" };
+  const advisory = { checkId: "BPV13.content_column_concentration", severity: "advisory" as const, message: "a column leans on one value" };
+  assert.deepEqual(compilerGateBlockerMessages({ design: [advisory], blueprint: [advisory] }), [], "advisories must never fail a compile");
+  assert.deepEqual(compilerGateBlockerMessages({ design: [], blueprint: [blocker, advisory] }), [
+    "blueprint BPV9.unknown_fact: quiz slot 0 references unknown fact ch99.fact.1",
+  ]);
+  assert.deepEqual(compilerGateBlockerMessages({ design: [{ ...blocker, checkId: "BD3.pool_floor" }], blueprint: [] }), [
+    "design BD3.pool_floor: quiz slot 0 references unknown fact ch99.fact.1",
+  ]);
+});
+
+test("R-107: COMPILER_GATE_BLOCKED is NOT operator-retryable (the compiler is deterministic)", () => {
+  // The compiler is a pure function of (packets, salts, design): a retry re-deals the identical
+  // blueprint and hits the identical blocker. Its absence from RETRYABLE_COMPILER_FAILURES is
+  // load-bearing, exactly as R-001's is, and is pinned here so a later edit cannot add it silently.
+  assert.equal(retryableCompilerFailure(`${COMPILER_GATE_BLOCKED_PREFIX}ch01 blueprint BPV9.unknown_fact: unknown fact`), false);
+  // and the model-variance codes stay retryable — this pin must not be read as narrowing them
+  assert.equal(retryableCompilerFailure("COMPILER_ASSEMBLY_BLOCKED:base deterministic gate failure"), true);
 });
