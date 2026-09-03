@@ -33,7 +33,8 @@ import {
   runChapterEditorPass,
   type ChapterEditorPassDependencies,
 } from "../../src/app/chapterEditorPass.js";
-import { CHAPTER_EDIT_SCHEMA_VERSION } from "../../src/app/chapterEditorContract.js";
+import { CHAPTER_EDIT_SCHEMA_VERSION, readerChapterView } from "../../src/app/chapterEditorContract.js";
+import { CHAPTER_PROSE_CARD_CAPS } from "../../src/sections/chapterProse.js";
 import { assembleSections } from "../../src/sections/assembleSections.js";
 import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createFileChapterEditCache } from "../../src/books/chapterEditCache.js";
@@ -242,6 +243,29 @@ requiredTest("E1 a good edit is accepted after one call and the card carries eve
   assert.ok(card.includes(SPAN), "the frozen source span reaches the editor");
   // No advisory block unless the operator asked for one.
   assert.doesNotMatch(card, /READER ADVISORIES/);
+});
+
+requiredTest("E1b the read-only reader view is clamped to the same tier caps the writer's prose block uses", () => {
+  // Nothing enforces a tier CEILING (SEC6 checks floors), so without this clamp a
+  // runaway chapter would decide how large the editor card is. Driven directly on
+  // the pure projection: an over-long tier cannot reach it through a real compile,
+  // because assembly's own gate refuses the chapter first.
+  const chapter = JSON.parse(Buffer.from(assembledBytes(basePacks())).toString("utf8")) as ChapterV21;
+  const runaway = {
+    ...chapter,
+    breakdown: { ...chapter.breakdown, fullRead: `${chapter.breakdown.fullRead} ${"overrun ".repeat(2000)}` },
+  };
+  const view = readerChapterView(runaway) as { fullRead: string; keyTakeaway: string };
+  assert.ok(view.fullRead.endsWith("[…prose truncated]"), "an over-long tier is cut and says so");
+  assert.ok(
+    view.fullRead.length <= CHAPTER_PROSE_CARD_CAPS.fullRead + 32,
+    `fullRead rendered at ${view.fullRead.length} against a ${CHAPTER_PROSE_CARD_CAPS.fullRead} cap`,
+  );
+  // Prose inside its band is never touched. (The fixture's own deepRead runs past
+  // its 2,200-char cap, which is exactly the runaway class this clamp exists for,
+  // so the in-band assertion uses a field that is genuinely in band.)
+  assert.equal(view.keyTakeaway, chapter.keyTakeaway);
+  assert.ok(chapter.keyTakeaway.length < CHAPTER_PROSE_CARD_CAPS.keyTakeaway);
 });
 
 requiredTest("E2 a gate-rejected edit is retried once with its blockers, then skipped with the chapter unedited", async (context) => {

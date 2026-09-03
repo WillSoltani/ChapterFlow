@@ -31,6 +31,7 @@ import { createHash } from "node:crypto";
 import { SECTION_KINDS, type SectionKind } from "../artifacts/artifactTypes.js";
 import { writerPacketProjection } from "../compiler/sourcePacketProjection.js";
 import { renderBookScarsBlock } from "../sections/sectionTasks.js";
+import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../sections/chapterProse.js";
 import type { BookScars } from "../lib/bookScars.js";
 import type { SourcePacketV1 } from "../artifacts/artifactTypes.js";
 import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
@@ -151,15 +152,24 @@ export function readerChapterView(chapter: ChapterV21): Record<string, unknown> 
   const breakdown = (anyChapter.breakdown ?? {}) as Record<string, unknown>;
   const plan = (anyChapter.implementationPlan ?? {}) as Record<string, unknown>;
   const quiz = (anyChapter.quiz ?? {}) as Record<string, unknown>;
+  // The tiers are the only unbounded field family in this view: nothing enforces a
+  // tier CEILING (SEC6 checks floors), so a runaway chapter would otherwise decide
+  // how large this card is. They are clamped with the SAME caps and the same
+  // marker the learning-pack writer's CHAPTER PROSE block uses, which sit at the
+  // top of each tier's own aim band, so conformant prose renders whole and only a
+  // genuine overrun is cut. The PACKS below are never clamped: they are the
+  // artifact the editor must return, not context.
+  const tier = (value: unknown, cap: number): unknown =>
+    (typeof value === "string" ? clampProsePassage(value, cap) : value);
   return {
     title: anyChapter.title,
     readingTimeMinutes: anyChapter.readingTimeMinutes,
-    hook: anyChapter.hook,
-    counterintuition: anyChapter.counterintuition,
-    fastRead: breakdown.fastRead,
-    deepRead: breakdown.deepRead,
-    fullRead: breakdown.fullRead,
-    keyTakeaway: anyChapter.keyTakeaway,
+    hook: tier(anyChapter.hook, CHAPTER_PROSE_CARD_CAPS.hook),
+    counterintuition: tier(anyChapter.counterintuition, CHAPTER_PROSE_CARD_CAPS.counterintuition),
+    fastRead: tier(breakdown.fastRead, CHAPTER_PROSE_CARD_CAPS.fastRead),
+    deepRead: tier(breakdown.deepRead, CHAPTER_PROSE_CARD_CAPS.deepRead),
+    fullRead: tier(breakdown.fullRead, CHAPTER_PROSE_CARD_CAPS.fullRead),
+    keyTakeaway: tier(anyChapter.keyTakeaway, CHAPTER_PROSE_CARD_CAPS.keyTakeaway),
     memorableLines: Array.isArray(anyChapter.memorableLines)
       ? anyChapter.memorableLines.map((line) => (line as Record<string, unknown>)?.text)
       : [],
