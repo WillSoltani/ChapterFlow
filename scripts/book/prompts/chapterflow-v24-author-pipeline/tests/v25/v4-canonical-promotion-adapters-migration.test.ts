@@ -44,6 +44,7 @@ import { candidateEvidenceFromSnapshot } from "../../src/lib/candidateEvidence.j
 import type { ChapterV21 } from "../../src/types.js";
 import { candidateEvidenceFiles, makeSourceV2SidecarFixture, runCli, seedManifestEvidenceRoots } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
+import { fileLocalPromotionJournal, readerPackageCommandFor } from "../../src/app/bookRunApplicationService.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 const CREATED_AT = "2026-07-20T12:00:00.000Z";
@@ -2099,6 +2100,100 @@ function sourceV2CandidateChapter(bookId: string, number: number, seed: string):
     },
   } as unknown as ChapterV21;
 }
+
+/**
+ * R-233 — the follow-up command `--promote-local` prints must FINISH the release it
+ * started, not start a second one.
+ *
+ * `--promote-local` advances the CURRENT pointer to revision N+1 and produces no
+ * reader package. The command it printed named `--expected-book-revision N+1`,
+ * and the release route CASes expectedRevision -> expectedRevision + 1, so running
+ * it minted revision N+2 for byte-identical content while N+1 still named the same
+ * candidate with nothing published. The adapter's double-advance guard could not
+ * see it: that guard keys on a release-journal record, and the promote-local path
+ * (which calls the promotion service directly) wrote none.
+ *
+ * This runs the sequence for real: local promotion, the record it now files, then
+ * the printed command's arguments — base revision N, --resume-unfinished-release.
+ */
+requiredTest("a --promote-local pointer advance is finishable at the SAME revision from the record it files", async (context) => {
+  const bookId = "promote-local-resume-book";
+  const stores = storage(context);
+  const chapters = [fixtureChapter(bookId, 1, "promote-local-resume")];
+  const staged = await stageCandidate(stores.candidates, bookId, "candidate-1", chapters);
+  const manifestOptions = manifestRoots(context, bookId, chapters);
+  const input: CanonicalReleaseRequest = {
+    ...request(bookId, staged.identity),
+    reviewId: "review-promote-local",
+    qcRoundId: "qc-promote-local",
+  };
+  const authority = await authorities(input, stores);
+  const promotion = createPromotionService({
+    candidateStore: stores.candidates,
+    contentReader: stores.reader,
+    currentPointerStore: stores.pointer,
+    reviewService: authority.reviewService,
+    qcService: authority.qcService,
+    clock: () => CLOCK_AT,
+  });
+
+  // 1. What --promote-local does: advance the pointer, produce nothing.
+  const promoted = await promotion.promote({
+    bookId,
+    candidate: staged.identity,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    expectedBookRevision: 0,
+    promotedAt: PROMOTED_AT,
+  });
+  assert.ok(promoted.ok, promoted.ok ? "" : JSON.stringify(promoted));
+  assert.equal(promoted.value.bookRevision, 1);
+
+  // 2. The record it now files, so the finish is provable.
+  const filed = fileLocalPromotionJournal({
+    v25Root: context.roots.base,
+    bookId,
+    candidate: staged.identity,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    bookRevision: promoted.value.bookRevision,
+    promotedAt: PROMOTED_AT,
+  });
+  assert.ok(filed.ok, filed.ok ? "" : filed.error);
+
+  // 3. The printed command's own arguments.
+  const printed = readerPackageCommandFor({
+    bookId,
+    title: input.metadata.title,
+    author: input.metadata.author,
+    v25Root: context.roots.base,
+    attemptRoot: context.roots.attemptsRoot,
+    sourceGitSha: "promote-local-sha",
+    candidate: staged.identity,
+    reviewId: input.reviewId,
+    qcRoundId: input.qcRoundId,
+    bookRevision: promoted.value.bookRevision,
+  });
+  assert.match(printed, /--expected-book-revision 0(\s|$)/, "the command names the revision the promotion started FROM");
+  assert.match(printed, /--resume-unfinished-release(\s|$)/);
+
+  let writes = 0;
+  const adapter = new CanonicalPackageAdapter({
+    contentReader: stores.reader,
+    promotionService: promotion,
+    manifest: manifestOptions,
+    journal: createFileReleaseJournal({ stateRoot: context.roots.base }),
+    packageWriter: () => { writes += 1; },
+  });
+  const released = await adapter.release({ ...input, expectedBookRevision: 0, resumeUnfinished: true });
+  assert.ok(released.ok, released.ok ? "" : `${released.error.code}:${released.error.message}`);
+  assert.equal(released.value.bookRevision, 1, "the resume publishes at the revision already committed");
+  assert.equal(writes, 1, "the reader package the local promotion owed is written");
+  const pointer = await stores.pointer.read(bookId);
+  assert.ok(pointer.ok && pointer.value);
+  assert.equal(pointer.value.revision, 1, "no second revision was minted for identical content");
+  assert.equal(pointer.value.candidateId, staged.identity.candidateId);
+});
 
 /**
  * R-234 / R-252 — the shipped pair records WHAT it was made from.
