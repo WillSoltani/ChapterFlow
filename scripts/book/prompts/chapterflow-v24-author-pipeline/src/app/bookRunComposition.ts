@@ -15,7 +15,7 @@ import { FileRepairHistoryStore } from "../qc/repairHistoryStore.js";
 import { createPromotionService } from "../release/promotionService.js";
 import { createReviewServiceFactory } from "../review/reviewService.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
-import { createRouteForRoleRoute, loadModelRoutingConfig, resolveRoleRoute } from "../runtime/codexRoute.js";
+import { createDefaultModelRouteSelector } from "../runtime/codexRoute.js";
 import { createExecutionPolicy } from "../runtime/executionPolicy.js";
 import { createModelGateway } from "../runtime/modelGateway.js";
 import { createProcessSupervisor } from "../runtime/processSupervisor.js";
@@ -364,20 +364,19 @@ export async function createProductionBookRunComposition(input: Readonly<{
   const stageCoordinator = createFileStageCoordinator(runRoot);
   const clock = monotonicClock();
   const ids = idFactory();
-  // Task 6: route selection is threaded through config/model-routing.json
-  // rather than modelGateway.ts's hardcoded default. No per-task role is
-  // threaded through yet (Task 7/8) — the whole gateway is wired to the
-  // config's defaultRoute, which the shipped config pins to the same
-  // codex/gpt-5.5/high mapping every role used before this change, so
-  // behavior is unchanged. Fails closed (throws) if the config is invalid
-  // or resolves to "claude-cli" before Task 7's route exists.
-  const modelRoutingConfig = loadModelRoutingConfig();
-  const modelRoute = createRouteForRoleRoute(resolveRoleRoute(modelRoutingConfig));
+  // R-021: route selection is PER ROLE, not one route for the whole run. This
+  // line previously resolved the DEFAULT route with no role, so research,
+  // author, repair, review and QC all ran at the default tier while
+  // config/model-routing.json said research=medium and review/qc=xhigh. The
+  // selector resolves each task's role at execute time and carries the routing
+  // config's digest into the durable attempt record (R-207). Fails closed
+  // (throws) if the config is unreadable or invalid.
+  const modelRouteSelector = createDefaultModelRouteSelector();
   const modelGateway = createModelGateway({
     runStore,
     processSupervisor: input.processSupervisor ?? createProcessSupervisor(),
     executionPolicy: createExecutionPolicy({ pipelineRoot: input.pipelineRoot, attemptRoot: input.attemptRoot }),
-    route: modelRoute,
+    routeSelector: modelRouteSelector,
     now: () => clock.now(),
   });
   const runner = createModelTaskRunner(modelGateway);

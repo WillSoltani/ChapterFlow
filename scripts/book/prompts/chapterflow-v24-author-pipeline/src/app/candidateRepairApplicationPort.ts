@@ -1173,6 +1173,7 @@ export class CandidateRepairApplicationPort {
       };
       const result = await this.#dependencies.runner.run({
         profileId: CANDIDATE_REPAIR_PROFILE_ID,
+        role: "repair",
         context,
         prompt: {
           templateId: "chapterflow-json-v1",

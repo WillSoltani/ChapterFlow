@@ -2,7 +2,14 @@ import type { Result, UtcIso } from "../contracts/v4Core.js";
 import type { AttemptOutcome, RunSnapshot, RunStore } from "../run-state/index.js";
 import { assertFlagsSupported, CLAUDE_ROUTE_REQUIRED_FLAGS, CODEX_ROUTE_REQUIRED_FLAGS, qualifyClaudeCli, qualifyCodexCli } from "../exec/cliQualification.js";
 import { CLAUDE_ROUTE_ID } from "./claudeRoute.js";
-import { CODEX_ROUTE_ID, createDefaultModelRoute, type ModelProcessRoute } from "./codexRoute.js";
+import {
+  CODEX_ROUTE_ID,
+  createDefaultModelRouteSelector,
+  isPipelineRole,
+  type ModelProcessRoute,
+  type ModelRouteSelector,
+  type RouteSelection,
+} from "./codexRoute.js";
 import { FORBIDDEN_ENV } from "./executionPolicy.js";
 import type { ExecutionPolicy, ExecutionProfile, ResolvedExecutionPolicy } from "./executionPolicyTypes.js";
 import { modelError, providerBlockKind, type ModelErrorCode } from "./modelErrors.js";
@@ -71,7 +78,13 @@ export interface ModelGatewayDependencies {
   readonly runStore: RunStore;
   readonly processSupervisor: ProcessSupervisor;
   readonly executionPolicy: ExecutionPolicy;
+  /** A single route for every task (tests, ad-hoc wiring). Mutually exclusive
+   *  with `routeSelector`, which is what production uses. */
   readonly route?: ModelProcessRoute;
+  /** R-021: per-role route selection. When present the gateway resolves the
+   *  route from each task's `role`, so a review seat runs at the review tier
+   *  and research at the research tier. */
+  readonly routeSelector?: ModelRouteSelector;
   readonly now?: () => UtcIso;
   /** Test-only override for the model-CLI preflight (`ensureModelCliPreflight`
    *  below). When supplied it replaces the default entirely — including its
@@ -193,6 +206,9 @@ function validateTaskShape(task: ModelTask): string | null {
   }
   if (typeof task.workDir !== "string" || task.workDir.length === 0 || task.workDir.includes("\0")) return "workDir is invalid";
   if (!(task.signal instanceof AbortSignal)) return "signal must be AbortSignal";
+  // Fail closed on a role the routing config cannot express: silently running
+  // it at the default tier is exactly the R-021 failure this change removes.
+  if (task.role !== undefined && !isPipelineRole(task.role)) return "role is not a known pipeline role";
   return null;
 }
 
@@ -215,6 +231,11 @@ function snapshotTask(task: ModelTask): ModelTaskSnapshotResult {
       workDir: source.workDir as string,
       prompt: source.prompt as PromptRequest,
       signal: source.signal as AbortSignal,
+      // R-223: this whitelist is the ONLY path a ModelTask field takes into the
+      // gateway; anything missing here is dropped with no error. Adding a field
+      // to ModelTask means adding it here too (guarded by the
+      // v4-role-routing-provenance whitelist test).
+      ...(source.role === undefined ? {} : { role: source.role as ModelTask["role"] }),
     };
     const shapeError = validateTaskShape(shallow);
     if (shapeError !== null) return { ok: false, attemptId: attemptIdForResult, message: shapeError };
@@ -420,6 +441,39 @@ function providerFailureMessage(route: ModelProcessRoute, process: ProcessResult
   return head === "" ? PROCESS_FAILURE_MESSAGE : `${PROCESS_FAILURE_MESSAGE}: ${head}`;
 }
 
+/** Characters a provenance value may contribute to the single-line attempt
+ *  detail. Model ids, route ids, tiers and role names are all drawn from this
+ *  alphabet; anything else is replaced so the detail can never gain a
+ *  separator, a newline or a NUL. */
+function provenanceValue(value: string): string {
+  return value.replace(/[^A-Za-z0-9._:-]/g, "_").slice(0, 64);
+}
+
+/**
+ * R-207: WHICH instrument produced this attempt. Before this, run.json and
+ * attempts.jsonl carried no model, route or effort at all, so a completed book
+ * could not be attributed or reproduced and no before/after comparison could
+ * claim both sides used the same instrument.
+ *
+ * Journaled additively as `;route=…;model=…;effort=…;role=…;routing=…` on the
+ * existing attempt-finish `detail` string (a durable, schema-stable field
+ * already carried by every finished attempt) so no run-state schema, fixture
+ * or projection changes. `model`/`effort` are absent for a directly-injected
+ * route that came from no config; `role` is absent when the task declared
+ * none; `routing` is the first 12 hex of the sha256 of the exact
+ * model-routing.json bytes the selector loaded.
+ */
+function routeProvenance(selection: RouteSelection): string {
+  const fields = [`route=${provenanceValue(selection.route.id)}`];
+  if (selection.roleRoute !== undefined) {
+    fields.push(`model=${provenanceValue(selection.roleRoute.model)}`);
+    fields.push(`effort=${provenanceValue(selection.roleRoute.effort)}`);
+  }
+  fields.push(`role=${selection.role === undefined ? "none" : provenanceValue(selection.role)}`);
+  if (selection.configDigest !== undefined) fields.push(`routing=${provenanceValue(selection.configDigest.slice(0, 12))}`);
+  return fields.join(";");
+}
+
 /** Durable one-line terminal detail for an attempt. For a bounded process that
  *  FAILED with MODEL_PROCESS_FAILED (a non-zero-exit provider subprocess — the
  *  rate-limit/overload shape) it additionally carries a sanitized, capped head
@@ -432,8 +486,9 @@ function terminalDetail(
   process: ProcessResult | null,
   outcome: ModelResult["outcome"],
   errorCode: ModelErrorCode,
+  provenance: string,
 ): string {
-  if (process === null) return `gateway=${outcome}; supervisor=rejected`;
+  if (process === null) return `gateway=${outcome}; supervisor=rejected;${provenance}`;
   const fields = [
     `gateway=${outcome}`,
     `process=${process.outcome}`,
@@ -451,18 +506,39 @@ function terminalDetail(
     const stderrHead = sanitizedStreamHead(process.stderr);
     if (stderrHead) fields.push(`stderrHead=${stderrHead}`);
   }
+  fields.push(provenance);
   return fields.join(";");
 }
 
 export function createModelGateway(dependencies: ModelGatewayDependencies): ModelGateway {
-  // Callers without an explicit `route` (e.g. src/cli.ts's ad-hoc wiring)
-  // fall back to the config-driven default from config/model-routing.json —
-  // no model literal may live here (model-policy static scan).
-  const route = dependencies.route ?? createDefaultModelRoute();
+  // Callers without an explicit `route`/`routeSelector` (e.g. src/cli.ts's
+  // ad-hoc wiring) fall back to the config-driven per-role selector from
+  // config/model-routing.json — no model literal may live here (model-policy
+  // static scan). An explicitly injected single `route` keeps its old
+  // behavior: one route for every task, and provenance that names only it.
+  const constantSelection: RouteSelection | null = dependencies.route === undefined
+    ? null
+    : Object.freeze({ route: dependencies.route });
+  const routeSelector: ModelRouteSelector = dependencies.routeSelector
+    ?? (constantSelection === null
+      ? createDefaultModelRouteSelector()
+      : { select: () => constantSelection });
   const now = dependencies.now ?? (() => new Date().toISOString());
 
   const executeOnce = async (task: ModelTaskSnapshot): Promise<ModelResult> => {
     if (task.signal.aborted) return result(task.attemptId, "CANCELLED", "MODEL_TASK_INVALID", "task cancelled before admission");
+
+    // R-021: the task's role picks the route (model + effort tier). Resolved
+    // once per attempt, before any side effect, so a selector that throws on a
+    // bad config fails the attempt rather than half-running it.
+    let selection: RouteSelection;
+    try {
+      selection = routeSelector.select(task.role);
+    } catch {
+      return result(task.attemptId, "FAILED", "MODEL_PROFILE_INVALID", "model route could not be resolved for task role");
+    }
+    const route = selection.route;
+    const provenance = routeProvenance(selection);
 
     const prepared = prepareTask(task, dependencies.executionPolicy, route);
     if (!prepared.ok) return { attemptId: task.attemptId, outcome: "FAILED", error: prepared.error };
@@ -600,7 +676,7 @@ export function createModelGateway(dependencies: ModelGatewayDependencies): Mode
         attemptId: task.attemptId,
         outcome: attemptOutcome(outcome),
         finishedAt,
-        detail: terminalDetail(process, outcome, errorCode),
+        detail: terminalDetail(process, outcome, errorCode, provenance),
       });
     } catch {
       return result(task.attemptId, "UNKNOWN", "MODEL_TERMINAL_RECORD_FAILED", "attempt terminal state could not be recorded");
