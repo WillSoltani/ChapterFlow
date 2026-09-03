@@ -58,6 +58,24 @@ export interface SectionPackCacheKey {
    * drafted under.
    */
   readonly scarsDigest: string | null;
+  /**
+   * sha256 of the exact writer task card this pack was drafted against, or null
+   * when the entry predates this field.
+   *
+   * blueprintDigest and packetDigest key the DATA a writer was handed; nothing
+   * keyed the PROMPT. `buildSectionTaskMarkdown` is the only place the prompt is
+   * built and it lives inside the `!reusedFromCache` guard, so on a hit the card
+   * is never rendered at all — which means a contract fix, a new DO NOT line, or
+   * a schema-hint change reached ZERO cached packs on a re-run and the run still
+   * reported green. Scars were the one prompt input already covered
+   * (`scarsDigest`); this covers the rest of the card.
+   *
+   * Deliberately NOT part of entryFileName, for the same reason scarsDigest is
+   * not: keying the path on it would ORPHAN every existing entry instead of
+   * superseding it. Compared in identityMatches, a legacy entry reads as null,
+   * mismatches the caller's digest, and is re-drafted and REPLACED in place.
+   */
+  readonly taskCardDigest: string | null;
 }
 
 type SectionPackCacheEnvelope = Readonly<{
@@ -69,6 +87,8 @@ type SectionPackCacheEnvelope = Readonly<{
   packetDigest: string;
   /** Absent on entries written before the field existed — read as null. */
   scarsDigest?: string | null;
+  /** Absent on entries written before the field existed — read as null. */
+  taskCardDigest?: string | null;
   pack: Record<string, unknown>;
 }>;
 
@@ -126,7 +146,8 @@ function identityMatches(envelope: SectionPackCacheEnvelope, key: SectionPackCac
     && envelope.kind === key.kind
     && envelope.blueprintDigest === key.blueprintDigest
     && envelope.packetDigest === key.packetDigest
-    && (envelope.scarsDigest ?? null) === key.scarsDigest;
+    && (envelope.scarsDigest ?? null) === key.scarsDigest
+    && (envelope.taskCardDigest ?? null) === key.taskCardDigest;
 }
 
 function parseEnvelope(raw: unknown): SectionPackCacheEnvelope | null {
@@ -141,6 +162,7 @@ function parseEnvelope(raw: unknown): SectionPackCacheEnvelope | null {
     // Absent on pre-field entries (read as null by identityMatches); present must
     // be string|null. Anything else is corruption, not a legacy shape.
     || !(value.scarsDigest === undefined || value.scarsDigest === null || typeof value.scarsDigest === "string")
+    || !(value.taskCardDigest === undefined || value.taskCardDigest === null || typeof value.taskCardDigest === "string")
     || typeof value.pack !== "object"
     || value.pack === null
     || Array.isArray(value.pack)
@@ -196,6 +218,7 @@ class FileSectionPackCache implements SectionPackCache {
       blueprintDigest: key.blueprintDigest,
       packetDigest: key.packetDigest,
       scarsDigest: key.scarsDigest,
+      taskCardDigest: key.taskCardDigest,
       pack,
     };
     const result = await this.#writeLock.run(key.bookId, async () => {

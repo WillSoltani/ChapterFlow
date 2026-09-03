@@ -8,7 +8,7 @@ import type {
   RunId,
   UtcIso,
 } from "../contracts/v4Core.js";
-import type { RepairHistoryRecord, RepairHistoryStore } from "./repairHistoryStore.js";
+import { isQcLaneRecord, type RepairHistoryRecord, type RepairHistoryStore } from "./repairHistoryStore.js";
 import type { QcDiagnosis, QcRoundResult, QcService } from "./qcTypes.js";
 
 export interface DiagnosisLookup {
@@ -76,7 +76,8 @@ function matchesExisting(snapshot: CandidateSnapshot, request: RepairRequest): b
 }
 
 function priorUnsuccessful(records: readonly RepairHistoryRecord[], request: RepairRequest): boolean {
-  return records.some((record) => record.qcOutcome !== "PASS"
+  // QC-lane records ONLY — see the twin in candidateRepairApplicationPort.
+  return records.filter(isQcLaneRecord).some((record) => record.qcOutcome !== "PASS"
     && record.freshRoundId === request.failedRoundId
     && sameIdentity(record.successor, request.failedCandidate));
 }

@@ -39,6 +39,7 @@ function packKey(chapterNumber: number, kind: SectionKind): SectionPackCacheKey 
     blueprintDigest: `bp-${chapterNumber}-${kind}`,
     packetDigest: `pk-${chapterNumber}-${kind}`,
     scarsDigest: null,
+    taskCardDigest: `card-${kind}`,
   };
 }
 
@@ -323,6 +324,58 @@ requiredTest("a legacy cache entry with no scarsDigest still serves a book that 
   assert.deepEqual(await nextCache.read(key), { artifactType: "action-pack" }, "legacy entry must still hit for a scar-less book");
   // ...but must NOT satisfy an identity that now carries scars.
   assert.equal(await nextCache.read({ ...key, scarsDigest: "sha256-new" }), null);
+});
+
+requiredTest("R-164: a changed taskCardDigest misses the cache, so a writer-prompt fix cannot be bypassed by a cache hit", async (context) => {
+  // The prompt half of the same hole scarsDigest closed. blueprintDigest and
+  // packetDigest key the DATA a writer was handed; nothing keyed the CARD, and
+  // buildSectionTaskMarkdown is inside the `!reusedFromCache` guard — so a
+  // contract fix, a new DO NOT line or a schema-hint change reached zero cached
+  // packs on a re-run and the run still reported green.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+
+  const before = { ...packKey(1, "summary-pack"), taskCardDigest: "card-before-the-fix" };
+  await cache.write(before, { artifactType: "summary-pack", body: "drafted under the old card" });
+  assert.deepEqual(await cache.read(before), { artifactType: "summary-pack", body: "drafted under the old card" });
+
+  // The writer contract is edited. Same chapter, same blueprint, same packet, same scars.
+  const after = { ...packKey(1, "summary-pack"), taskCardDigest: "card-after-the-fix" };
+  assert.equal(await cache.read(after), null, "a pack drafted under the old card must not be reused under the new one");
+
+  // Re-drafting under the new card SUPERSEDES the old entry at the same path
+  // (the digest is compared, not keyed into the filename), so the old identity is
+  // gone rather than orphaned — the second R-164 case pins that path is unchanged.
+  await cache.write(after, { artifactType: "summary-pack", body: "drafted under the new card" });
+  assert.deepEqual(await cache.read(after), { artifactType: "summary-pack", body: "drafted under the new card" });
+  assert.equal(await cache.read(before), null, "the superseded card identity no longer resolves");
+});
+
+requiredTest("R-164: a legacy entry with no taskCardDigest is STALE, not orphaned — same file, replaced in place", async (context) => {
+  // Why the field is compared in identityMatches rather than keyed into
+  // entryFileName: a pre-field entry must be superseded at its own path, so the
+  // re-draft REPLACES it instead of leaving an unreachable file behind forever.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const key = { ...packKey(3, "action-pack"), taskCardDigest: "current-card" };
+  await cache.write(key, { artifactType: "action-pack" });
+
+  const dir = sectionPackCacheDir(context.roots.booksRoot, key.bookId);
+  const files = readdirSync(dir);
+  assert.equal(files.length, 1, "one entry expected");
+  const entryFile = resolve(dir, files[0]!);
+  const envelope = JSON.parse(readFileSync(entryFile, "utf8")) as Record<string, unknown>;
+  assert.ok("taskCardDigest" in envelope, "new writes must record the field");
+  delete envelope.taskCardDigest;
+  writeFileSync(entryFile, `${JSON.stringify(envelope, null, 2)}\n`, "utf8");
+
+  const nextCache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  assert.equal(await nextCache.read(key), null, "a pre-field entry must read as stale under a real card digest");
+
+  // Re-drafting writes back to the SAME path: one entry, not two.
+  await nextCache.write(key, { artifactType: "action-pack", body: "redrafted" });
+  assert.deepEqual(readdirSync(dir), files, "the stale entry is replaced in place, never orphaned");
+  assert.deepEqual(await nextCache.read(key), { artifactType: "action-pack", body: "redrafted" });
 });
 
 requiredTest("11aa durability — avoid-context is written, read back through a fresh store, and cleared", async (context) => {

@@ -6,7 +6,7 @@ import { CANDIDATE_REPAIR_PROFILE_ID } from "../../src/app/candidateRepairApplic
 import { repairReviewIdSeries } from "../../src/app/contentRepairWorkflow.js";
 import type { CandidateSnapshot } from "../../src/books/candidateTypes.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
-import type { RepairHistoryRecord } from "../../src/qc/repairHistoryStore.js";
+import { isQcLaneRecord, type RepairHistoryRecord } from "../../src/qc/repairHistoryStore.js";
 import type { QcIssue } from "../../src/qc/qcTypes.js";
 import { SOURCE_CONTROLLED_EXECUTION_PROFILES } from "../../src/runtime/executionPolicy.js";
 import { renderPrompt } from "../../src/runtime/promptRenderer.js";
@@ -48,7 +48,9 @@ requiredTest("scoped repair changes one chapter, preserves untouched bytes, reco
     bytes(runBookPatternAudit({ bookId: BOOK, chapters: successorChapters, requirePlanArtifacts: false, checkSourceAlignment: false })),
   );
   assert.equal(subject.repairRequest()?.failedRoundId, "qc-failed");
-  assert.equal(subject.appended()?.freshRoundId, "qc-fresh");
+  const appended = subject.appended();
+  assert.ok(appended && isQcLaneRecord(appended), "a fresh-QC repair records a QC-lane transition");
+  assert.equal(appended.freshRoundId, "qc-fresh");
   const run = await subject.runStore.readRun(BOOK, subject.request.repairRunId, context.clock.now());
   assert.equal(run.ok && run.value.status, "COMPLETED");
   assert.equal(run.ok && run.value.attempts.length, 1);
@@ -178,6 +180,29 @@ requiredTest("compiler artifact blocker requires manual correction before run or
   assert.deepEqual(subject.counts, { model: 0, repair: 0, review: 0, qc: 0 });
   const run = await subject.runStore.readRun(BOOK, subject.request.repairRunId, context.clock.now());
   assert.equal(run.ok, false);
+});
+
+requiredTest("R-170: a REVIEW-lane history record never trips the QC lane's diagnosis gate", async (context) => {
+  // The review lane now writes to the same repair-history file. The QC lane's
+  // priorUnsuccessful gate is defined over a transition's own FRESH QC ROUND,
+  // which the review lane does not have — so a review record whose successor IS
+  // this request's failed candidate must demand no diagnosis. Compare the
+  // QC-lane record in the next case, which is identical in predecessor/successor
+  // and DOES demand one.
+  const reviewRecord: RepairHistoryRecord = {
+    schemaVersion: "1",
+    lane: "REVIEW",
+    repairId: "prior-review-repair",
+    bookId: BOOK,
+    ordinal: 1,
+    predecessor: { candidateId: "older", manifestDigest: "0".repeat(64) },
+    successor: FAILED,
+    failedReviewId: "prior-panel-fail",
+    completedAt: context.clock.now(),
+  };
+  const subject = rig(context, { history: [reviewRecord] });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, result.ok ? "" : JSON.stringify(result.error));
 });
 
 requiredTest("second failed successor requires exact diagnosis before model", async (context) => {

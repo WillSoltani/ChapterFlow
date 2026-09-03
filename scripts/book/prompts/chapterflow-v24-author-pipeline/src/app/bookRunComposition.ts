@@ -13,6 +13,7 @@ import { createQcStore } from "../qc/qcStore.js";
 import { CandidateRepairService } from "../qc/repairCoordinator.js";
 import { FileRepairHistoryStore } from "../qc/repairHistoryStore.js";
 import { createPromotionService } from "../release/promotionService.js";
+import { MAX_READER_SEAT_ATTEMPTS, READER_PANEL_SEATS } from "../review/laneOrchestrator.js";
 import { createReviewServiceFactory } from "../review/reviewService.js";
 import type { CanonicalReviewResult, ReviewService } from "../review/reviewTypes.js";
 import { createDefaultModelRouteSelector } from "../runtime/codexRoute.js";
@@ -251,9 +252,30 @@ function dedicatedRepairReviewService(input: Readonly<{
  *  single review attempt — sharing that run would exhaust its capacity and
  *  violate the exact-single-attempt review invariant. */
 const READER_LANE_STAGE = "reader-experience-review";
-/** Generous per-run cap; a book-run reviews once, so at most one reader attempt
- *  per chapter (and per reader, in Task 9) lands in this run. */
-const READER_LANE_ATTEMPT_CAP = 4096;
+
+/**
+ * R-172 — the reader-lane run's attempt capacity, sized to the panel it admits
+ * instead of to a round number.
+ *
+ * It was a flat 4096 for both `attemptLimits.run` and `attemptLimits.byStage`,
+ * which is not a bound: the canonical-review run itself is `{run: 1}` and the
+ * fresh-qc run is sized exactly to `questionCount * QUIZ_JUDGE_MAX_ATTEMPTS`, so
+ * run-state provided a real spend ceiling on every model lane EXCEPT the panel —
+ * the most expensive one. `runReaderLanes` admits at most one attempt per
+ * (chapter, seat, retry), so that product IS the ceiling; anything past it is a
+ * bug, and run-state now fails it closed with a capacity error rather than
+ * letting it run.
+ */
+function readerLaneAttemptCap(chapterCount: number): number {
+  return Math.max(1, READER_PANEL_SEATS.length * chapterCount * MAX_READER_SEAT_ATTEMPTS);
+}
+
+/** The reader-lane run id for a parent canonical-review run. Derived, not stored,
+ *  so the runner that provisions it and the settle pass that finishes it (R-188)
+ *  cannot drift. */
+function readerLaneRunId(parentRunId: string): string {
+  return `reader-lane-run-${createHash("sha256").update(parentRunId).digest("hex").slice(0, 32)}`;
+}
 
 /**
  * A ModelTaskRunner the semantic panel uses ONLY for reader-experience tasks.
@@ -262,11 +284,13 @@ const READER_LANE_ATTEMPT_CAP = 4096;
  * keeping the caller-supplied per-chapter attemptId. The canonical-review run is
  * untouched, so its single-attempt invariant holds.
  *
- * `settle` ENDS that run when the review it belongs to finishes (R-215). It used
- * to be left RUNNING for ever — "it carries only advisory evidence and is never
- * promoted from" explains why nothing READS it, not why it may leak: every
+ * `settle` ENDS that run when the review it belongs to finishes (R-215 / R-188).
+ * It used to be left RUNNING for ever — "it carries only advisory evidence and is
+ * never promoted from" explains why nothing READS it, not why it may leak: every
  * review left one more live run behind that no resume, cancel or reconcile path
- * could ever settle.
+ * could ever settle (live: 182 RUNNING reader-lane run directories for ONE book,
+ * each advertising a 4096-attempt budget, which cancel/doctor/capacity readers
+ * all treat as live work).
  */
 function createReaderLaneRunner(deps: Readonly<{
   base: ModelTaskRunner;
@@ -280,7 +304,7 @@ function createReaderLaneRunner(deps: Readonly<{
     async run(request) {
       const { bookId } = request.context;
       const parentRunId = request.context.runId;
-      const readerRunId = `reader-lane-run-${createHash("sha256").update(parentRunId).digest("hex").slice(0, 32)}`;
+      const readerRunId = readerLaneRunId(parentRunId);
       if (!provisioned.has(readerRunId)) {
         const observedAt = deps.clock.now();
         const parent = await deps.runStore.readRun(bookId, parentRunId, observedAt);
@@ -302,7 +326,13 @@ function createReaderLaneRunner(deps: Readonly<{
           requiredStages: [READER_LANE_STAGE],
           requiredInventory: parent.value.definition.requiredInventory,
           ...(parent.value.definition.inputCandidate === undefined ? {} : { inputCandidate: parent.value.definition.inputCandidate }),
-          attemptLimits: { run: READER_LANE_ATTEMPT_CAP, byStage: { [READER_LANE_STAGE]: READER_LANE_ATTEMPT_CAP } },
+          // The parent review run's inventory IS the candidate's inventory, so the
+          // chapter count the panel will read comes straight off it.
+          attemptLimits: (() => {
+            const chapters = parent.value.definition.requiredInventory.filter((entry) => entry.kind === "CHAPTER").length;
+            const cap = readerLaneAttemptCap(chapters);
+            return { run: cap, byStage: { [READER_LANE_STAGE]: cap } };
+          })(),
           createdAt,
         });
         if (!created.ok) {
@@ -316,22 +346,38 @@ function createReaderLaneRunner(deps: Readonly<{
       });
     },
     async settle(input) {
-      const readerRunId = `reader-lane-run-${createHash("sha256").update(input.parentRunId).digest("hex").slice(0, 32)}`;
+      // The run id is derived (readerLaneRunId), so provisioning here and
+      // settling cannot drift apart. Idempotent: a lane that was never
+      // provisioned — or was already settled — is a no-op.
+      const readerRunId = readerLaneRunId(input.parentRunId);
       if (!provisioned.has(readerRunId)) return;
       provisioned.delete(readerRunId);
-      const finished = await deps.runStore.finishRun({
-        bookId: input.bookId,
-        runId: readerRunId,
-        status: input.outcome,
-        finishedAt: deps.clock.now(),
-        ...(input.outcome === "FAILED" ? { reason: input.reason ?? "canonical review did not complete" } : {}),
-      });
       // The REVIEW's outcome is authoritative and already decided by the time
       // this runs; failing a completed review because its advisory-evidence run
-      // could not be closed would trade a real result for bookkeeping. The
-      // failure is reported rather than swallowed.
-      if (!finished.ok) {
-        console.warn(`[reader-lane] could not settle ${readerRunId}: ${finished.error.code}:${finished.error.message}`);
+      // could not be closed would trade a real result for bookkeeping. Every
+      // failure path here is reported rather than swallowed (R-188), including a
+      // store that throws.
+      try {
+        const live = await deps.runStore.readRun(input.bookId, readerRunId, deps.clock.now());
+        if (!live.ok || live.value.status !== "RUNNING") return;
+        const finished = await deps.runStore.finishRun({
+          bookId: input.bookId,
+          runId: readerRunId,
+          status: input.outcome,
+          finishedAt: deps.clock.now(),
+          ...(input.outcome === "FAILED" ? { reason: input.reason ?? "canonical review did not complete" } : {}),
+        });
+        if (!finished.ok) {
+          console.error(
+            `[book-run] reader-lane book=${input.bookId} run=${readerRunId} action=READER_LANE_SETTLE_FAILED`
+            + ` detail=${finished.error.code}:${finished.error.message}`,
+          );
+        }
+      } catch (cause) {
+        console.error(
+          `[book-run] reader-lane book=${input.bookId} run=${readerRunId}`
+          + ` action=READER_LANE_SETTLE_FAILED detail=${(cause as Error).message}`,
+        );
       }
     },
   };
@@ -411,14 +457,35 @@ export async function createProductionBookRunComposition(input: Readonly<{
   // dedicated reader-lane run (createReaderLaneRunner) so the single-attempt
   // canonical-review run stays intact.
   const readerLaneRunner = createReaderLaneRunner({ base: runner, runStore, clock });
+  const panel = new SemanticPanelReviewEvaluator({
+    baseline: new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1"),
+    runner: readerLaneRunner,
+  });
   const panelReviewService = createReviewServiceFactory({ booksRoot, contentReader, now: () => clock.now() })
-    .create(new SemanticPanelReviewEvaluator({
-      baseline: new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1"),
-      runner: readerLaneRunner,
-    }));
+    .create({
+      // R-188: a panel that THREW never reaches the reviewCanonical settle below
+      // — the throw escapes past it — so the evaluate() boundary closes the lane
+      // run the panel opened, recording the throw as the reason. The panel is the
+      // only thing that knows when its reader lane is finished; the runner sees
+      // individual seat calls and no ending.
+      async evaluate(evaluateInput) {
+        try {
+          return await panel.evaluate(evaluateInput);
+        } catch (cause) {
+          await readerLaneRunner.settle({
+            bookId: evaluateInput.taskContext.bookId,
+            parentRunId: evaluateInput.taskContext.runId,
+            outcome: "FAILED",
+            reason: `READER_PANEL_THREW:${(cause as Error).message}`,
+          });
+          throw cause;
+        }
+      },
+    });
   // The reader-lane run is opened lazily by the first reader task of a review and
   // closed here when that review returns (R-215) — this is the one place that
-  // knows a review is over.
+  // knows a review is over AND knows its verdict, so the lane run carries the
+  // review's own outcome instead of an unconditional COMPLETED.
   const reviewService: typeof panelReviewService = {
     screen: (candidate) => panelReviewService.screen(candidate),
     get: (bookId, reviewId) => panelReviewService.get(bookId, reviewId),

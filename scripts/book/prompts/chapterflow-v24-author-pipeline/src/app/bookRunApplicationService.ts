@@ -151,6 +151,16 @@ export interface BookRunApplicationDependencies {
   readonly pipelineRoot: string;
 }
 
+/** Backoff before each RETRY of a durable phase-event append (R-187). Length is
+ *  the retry count: two waits, three attempts. Deliberately short — the write is
+ *  a local append, so anything that is going to clear clears fast, and anything
+ *  that does not is a real store failure the operator has to see. */
+const EVENT_WRITE_BACKOFF_MS: readonly number[] = Object.freeze([25, 100]);
+
+function sleep(milliseconds: number): Promise<void> {
+  return new Promise<void>((done) => { setTimeout(done, milliseconds); });
+}
+
 const REVIEW_STAGE = "canonical-review" as const;
 const FRESH_QC_STAGE = "fresh-qc" as const;
 
@@ -160,6 +170,57 @@ const FRESH_QC_STAGE = "fresh-qc" as const;
  *  resume; the bound keeps a systematically-failing judge from minting runs
  *  forever. The committed round, once present, always short-circuits the walk. */
 const MAX_QC_JUDGE_RUNS = 5;
+
+/** Resolve the fresh-qc judge successor budget, honouring an optional
+ *  CHAPTERFLOW_QC_JUDGE_RUNS override — the exact shape of resolveQcRepairRuns
+ *  and resolveReviewRepairRounds.
+ *
+ *  R-185: this was the ONE budget in the file with no resolver, so
+ *  `fresh-qc judge successor budget exhausted after 5 runs` was the one
+ *  tombstone an operator could not raise at all and the message named no
+ *  remedy. Malformed or out-of-range values fail closed (never silently revert);
+ *  bounded 1-10; resolved ONCE per run so a mid-run env change cannot move the
+ *  budget under an in-flight walk. */
+export function resolveQcJudgeRuns(): number {
+  return resolveBudgetEnv("CHAPTERFLOW_QC_JUDGE_RUNS", MAX_QC_JUDGE_RUNS, 1, 10);
+}
+
+/**
+ * How many operator-authorized compile-retry IDENTITIES one book run may ever mint.
+ *
+ * R-178/R-203: `#grantOperatorCompileRetry` walked
+ * `compiler-operator-retry-{n}-run` with NO terminating condition, so a book
+ * that never compiled kept minting a fresh durable run directory per operator
+ * round forever (live: 176 run directories for one book). Every other lane in
+ * this file already carries an explicit ceiling — MAX_QC_JUDGE_RUNS,
+ * MAX_QC_REPAIR_RUNS, MAX_REVIEW_REPAIR_ORDINALS — and this is that ceiling.
+ *
+ * GENEROUS BY DESIGN, and an IDENTITY ceiling rather than a spend one: each
+ * flagged resume mints at most one grant, so 20 is twenty operator decisions to
+ * keep going, not twenty automatic recompiles. Exhaustion is NOT a pass: the
+ * grant fails closed with the ceiling and the override named.
+ */
+const MAX_OPERATOR_COMPILE_RETRIES = 20;
+
+/** Resolve the operator compile-retry ceiling, honouring an optional
+ *  CHAPTERFLOW_OPERATOR_COMPILE_RETRIES override. Same shape and same
+ *  fail-closed contract as the other three budgets; bounded 1-50. */
+export function resolveOperatorCompileRetries(): number {
+  return resolveBudgetEnv("CHAPTERFLOW_OPERATOR_COMPILE_RETRIES", MAX_OPERATOR_COMPILE_RETRIES, 1, 50);
+}
+
+/** Shared parse for every CHAPTERFLOW_* budget override: absent or empty keeps
+ *  the compiled default, anything else must be an integer inside the documented
+ *  range. Throws rather than silently reverting — a budget that quietly ignores
+ *  what the operator asked for is worse than one that refuses. */
+function resolveBudgetEnv(name: string, fallback: number, min: number, max: number): number {
+  const raw = globalThis.process?.env?.[name];
+  if (raw === undefined || raw.trim() === "") return fallback;
+  const parsed = Number(raw);
+  if (!Number.isInteger(parsed)) throw new Error(`${name} is set but not an integer: ${raw}`);
+  if (parsed < min || parsed > max) throw new Error(`${name} must be ${min}-${max} (got ${parsed})`);
+  return parsed;
+}
 
 /**
  * Successor budget for the QC-FAIL repair run (base + up to 2 successors).
@@ -635,7 +696,14 @@ async function exactReview(
   if (created.value.status === "CANCEL_REQUESTED" || created.value.status === "CANCELLED") {
     return failed("BOOK_RUN_CANCELLED", "canonical review run is cancelled");
   }
-  if (created.value.status === "FAILED") return failed("BOOK_RUN_REVIEW_UNAVAILABLE", "canonical review run is terminal FAILED");
+  // R-186: a DISTINCT code, because this is the one unavailability that is
+  // recoverable. A canonical-review run driven terminal FAILED by an infra loss
+  // wedges its runId forever — the id is deterministic, the status immutable,
+  // attemptLimits are {run:1}, and the 11ac ERROR successor cannot help (it needs
+  // a COMPLETED run carrying a stored ERROR review). The caller's successor walk
+  // routes around it under operator consent; every OTHER unavailability stays an
+  // opaque store failure that must not mint a fresh panel.
+  if (created.value.status === "FAILED") return failed("BOOK_RUN_REVIEW_RUN_TERMINAL", "canonical review run is terminal FAILED");
 
   const stored = await dependencies.reviews.get(input.bookId, reviewId);
   if (created.value.status === "COMPLETED") {
@@ -722,6 +790,39 @@ async function exactReview(
     : failed("BOOK_RUN_REVIEW_UNAVAILABLE", "canonical review terminal readback failed");
 }
 
+/**
+ * How many canonical-review SUCCESSOR identities one lane of one book run may mint.
+ *
+ * An identity ceiling, not a spend one: each flagged resume mints at most ONE
+ * fresh panel (a successor ordinal whose own stored review is already ERROR is
+ * walked past with a store read and zero model calls), so this bounds how many
+ * times an operator may say "that was infrastructure, try again" before the run
+ * refuses and the reader lane has to be investigated instead. Exhaustion is NOT
+ * a pass: it fails closed with the ceiling named.
+ */
+const MAX_REVIEW_SUCCESSOR_ORDINALS = 3;
+
+/** The same identity ceiling for the fresh-qc lane (R-184). One fresh round per
+ *  flagged invocation; a successor ordinal whose own round is already ERROR is
+ *  walked past with a store read and zero model calls. */
+const MAX_FRESH_QC_SUCCESSOR_ORDINALS = 3;
+
+/**
+ * True when a canonical review result is UNCERTAINTY rather than a verdict, and
+ * therefore eligible to be superseded under `--reconcile-unsettled`:
+ *   - a stored ERROR outcome (task 11ac): the panel fail-closed on a transient
+ *     reader-lane failure, and the exact-single-attempt review run persists that
+ *     as canonical so every later resume replays it with zero model calls; or
+ *   - a review RUN that is terminal FAILED (R-186): an infra loss on the panel
+ *     run made that runId permanently unusable.
+ *
+ * PASS and FAIL are verdicts and are never eligible — FAIL belongs to the
+ * review-repair lane, and neither may be laundered by re-running the panel.
+ */
+function reviewIsUncertain(review: Result<CanonicalReviewResult>): boolean {
+  return review.ok ? review.value.outcome === "ERROR" : review.error.code === "BOOK_RUN_REVIEW_RUN_TERMINAL";
+}
+
 export class BookRunApplicationService {
   readonly #dependencies: BookRunApplicationDependencies;
 
@@ -729,6 +830,20 @@ export class BookRunApplicationService {
     this.#dependencies = dependencies;
   }
 
+  /**
+   * Append one durable phase event, retrying a failed write before giving up.
+   *
+   * R-187: 54 call sites propagate BOOK_RUN_EVENT_WRITE_FAILED verbatim, so a
+   * SINGLE failed append to the append-only audit log aborted the run and threw
+   * away everything the run had already paid for — e.g. the compile COMPLETED
+   * event discarding a whole book's worth of section drafting. The write stays
+   * fail-closed (the log is what resume reads, so a silently-dropped event is a
+   * correctness problem, not a cosmetic one), but a transient filesystem error
+   * now costs a bounded retry instead of the run.
+   *
+   * The timestamp is stamped ONCE, before the first attempt: a retried event
+   * records when it happened, not when the write finally landed.
+   */
   async #event(
     runId: string,
     bookId: string,
@@ -739,21 +854,37 @@ export class BookRunApplicationService {
   ): Promise<Result<void>> {
     const at = safeNow(this.#dependencies.clock);
     if (!at.ok) return at;
-    try {
-      await this.#dependencies.events.append({
-        schemaVersion: "1",
-        runId,
-        bookId,
-        phase,
-        status,
-        at: at.value,
-        ...(detail === undefined ? {} : { detail }),
-        ...(candidate === undefined ? {} : { candidate }),
-      });
-      return { ok: true, value: undefined };
-    } catch (cause) {
-      return failed("BOOK_RUN_EVENT_WRITE_FAILED", (cause as Error).message);
+    const event: BookRunEvent = {
+      schemaVersion: "1",
+      runId,
+      bookId,
+      phase,
+      status,
+      at: at.value,
+      ...(detail === undefined ? {} : { detail }),
+      ...(candidate === undefined ? {} : { candidate }),
+    };
+    let lastCause = "";
+    for (let attempt = 1; attempt <= EVENT_WRITE_BACKOFF_MS.length + 1; attempt += 1) {
+      try {
+        await this.#dependencies.events.append(event);
+        return { ok: true, value: undefined };
+      } catch (cause) {
+        lastCause = (cause as Error).message;
+        const backoff = EVENT_WRITE_BACKOFF_MS[attempt - 1];
+        if (backoff === undefined) break;
+        console.error(
+          `[book-run] event-write-retry book=${bookId} run=${runId} phase=${phase} status=${status}`
+          + ` attempt=${attempt}/${EVENT_WRITE_BACKOFF_MS.length + 1} detail=${lastCause}`,
+        );
+        await sleep(backoff);
+      }
     }
+    return failed(
+      "BOOK_RUN_EVENT_WRITE_FAILED",
+      `${lastCause}; the durable phase log is what resume reads, so the run stops rather than continue unlogged`
+      + " — free space / fix permissions on the book-run-events store and resume",
+    );
   }
 
   /** True iff a research intake bound to a run OTHER than the resumed run is a
@@ -888,6 +1019,8 @@ export class BookRunApplicationService {
     runId: string,
     observedAt: UtcIso,
     reconcileUnsettled: boolean,
+    /** Identity ceiling for this walk, resolved once per run (R-178/R-203). */
+    maxOperatorAttempts: number,
   ): Promise<Result<Readonly<
     | {
         kind: "GRANT";
@@ -903,7 +1036,7 @@ export class BookRunApplicationService {
         operatorAttempt: number;
       }
   >>> {
-    for (let operatorAttempt = 1; ; operatorAttempt += 1) {
+    for (let operatorAttempt = 1; operatorAttempt <= maxOperatorAttempts; operatorAttempt += 1) {
       const operatorRunId = derivedId(`compiler-operator-retry-${operatorAttempt}-run`, runId);
       const existing = await this.#dependencies.runStore.readRun(bookId, operatorRunId, observedAt);
       if (existing.ok) {
@@ -939,6 +1072,90 @@ export class BookRunApplicationService {
         }),
       };
     }
+    // R-178/R-203: the walk used to have NO terminating condition, so a book that
+    // never compiled minted a fresh durable run directory per operator round
+    // forever (live: 176 for one book, and round N re-read every lower ordinal).
+    // Exhaustion is NOT a pass — the pipeline refuses, with the ceiling and its
+    // override named, rather than leaning on the driver's guards.
+    return failed(
+      "BOOK_RUN_COMPILER_RETRY_EXHAUSTED",
+      `operator compile-retry ceiling reached after ${maxOperatorAttempts} slots;`
+      + " every operator compile retry for this run is spent"
+      + "; raise CHAPTERFLOW_OPERATOR_COMPILE_RETRIES (1-50) or start a fresh run",
+    );
+  }
+
+  /**
+   * Supersede an UNCERTAIN canonical review with a fresh full-panel one, bounded.
+   *
+   * Task 11ac built this for the FIRST review only, and left two wedges one lane
+   * over. R-165: the review-repair loop's RE-review had no ERROR successor at
+   * all, so one transient panel failure mid-repair ended the book permanently.
+   * R-186: a canonical-review run driven terminal FAILED could not be recovered
+   * by any path. Both lanes now walk the same successor space.
+   *
+   * ONE FRESH PANEL PER INVOCATION, and the walk is what makes that safe on a
+   * resume: an ordinal whose own stored review is ALREADY an ERROR is spent —
+   * re-deriving it replays that ERROR with zero model calls and answers nothing —
+   * so it is skipped with a store read, and the first unspent ordinal gets the
+   * panel. Without the walk the successor id was fixed at `-successor-1` and a
+   * successor that itself ERRORed re-wedged the run one level deeper.
+   *
+   * Gated on per-invocation operator consent (`--reconcile-unsettled`) exactly as
+   * 11ac was: without the flag the stored uncertainty replays fail-closed and the
+   * caller's message names the flag as the remedy (R-179). Exhaustion of the
+   * ordinal space is NOT a pass — it fails closed with the ceiling named.
+   */
+  async #reviewSuccessor(args: Readonly<{
+    input: BookRunApplicationRequest;
+    runId: string;
+    candidate: CandidateSnapshot;
+    /** The lane's own label, so the base review and every review-repair round
+     *  walk DISJOINT successor spaces ("review-successor-1",
+     *  "review-repair-2-successor-1", …). Ordinal 1 of the base lane keeps the
+     *  historical 11ac id exactly, so a book already carrying one resumes onto it. */
+    labelPrefix: string;
+    review: Result<CanonicalReviewResult>;
+  }>): Promise<Result<CanonicalReviewResult>> {
+    const { input, runId, candidate, labelPrefix } = args;
+    const review = args.review;
+    if (input.reconcileUnsettled !== true || !reviewIsUncertain(review)) return review;
+    const predecessor = review.ok
+      ? `predecessorReviewId=${review.value.reviewId}`
+      : `predecessorError=${review.error.code}`;
+    for (let ordinal = 1; ordinal <= MAX_REVIEW_SUCCESSOR_ORDINALS; ordinal += 1) {
+      const label = `${labelPrefix}-successor-${ordinal}`;
+      const parentRunId = derivedId(label, runId);
+      const stored = await this.#dependencies.reviews.get(input.bookId, derivedId("review", parentRunId));
+      if (stored.ok && stored.value.outcome === "ERROR") continue;
+      const started = await this.#event(
+        runId,
+        input.bookId,
+        "review",
+        "STARTED",
+        `action=REVIEW_SUCCESSOR;ordinal=${ordinal};label=${label};${predecessor}`,
+        identity(candidate),
+      );
+      if (!started.ok) return started;
+      console.error(
+        `[book-run] review-successor book=${input.bookId} run=${runId} ordinal=${ordinal}/${MAX_REVIEW_SUCCESSOR_ORDINALS}`
+        + ` label=${label} ${predecessor} action=REVIEW_SUCCESSOR`,
+      );
+      return exactReview(this.#dependencies, {
+        bookId: input.bookId,
+        sourceGitSha: input.sourceGitSha,
+        parentRunId,
+        candidate,
+        attemptRoot: resolve(input.attemptRoot, label),
+        signal: input.signal,
+      });
+    }
+    return failed(
+      "BOOK_RUN_REVIEW_FAILED",
+      `canonical review successor budget exhausted after ${MAX_REVIEW_SUCCESSOR_ORDINALS} ordinals;`
+      + ` every ${labelPrefix} successor carries a stored ERROR review — the reader lane, not this book,`
+      + " is what needs fixing before another resume",
+    );
   }
 
   /**
@@ -1009,7 +1226,10 @@ export class BookRunApplicationService {
      * Absent = today's behaviour exactly: every FAILED ordinal is spent.
      */
     forgivableTerminalReason?: (reason: string | undefined) => boolean;
-  }>): Promise<Result<Readonly<{ label: string; ordinal: number }>>> {
+    /** The CHAPTERFLOW_* override an operator can raise when this lane exhausts,
+     *  named verbatim in the exhaustion message (R-168). */
+    budgetEnvVar?: string;
+  }>): Promise<Result<Readonly<{ label: string; ordinal: number; replaying: boolean }>>> {
     /** Ordinals absorbed as infrastructure loss; each one raises the identity
      *  ceiling by one WITHOUT raising the lane's spend budget.
      *
@@ -1038,10 +1258,14 @@ export class BookRunApplicationService {
         if (prior.error.code !== "NOT_FOUND") {
           return failed(walk.errorCode, `${prior.error.code}:${prior.error.message}`);
         }
-        return { ok: true, value: Object.freeze({ label, ordinal }) };
+        return { ok: true, value: Object.freeze({ label, ordinal, replaying: false }) };
       }
       if (prior.value.status !== "FAILED") {
-        return { ok: true, value: Object.freeze({ label, ordinal }) };
+        // R-169: a COMPLETED ordinal is a REPLAY — the port re-reads its durable
+        // successor with zero model calls — and the caller needs to know that
+        // BEFORE it calls the port, so the phase log can say so instead of
+        // recording another full STARTED/COMPLETED repair that never happened.
+        return { ok: true, value: Object.freeze({ label, ordinal, replaying: prior.value.status === "COMPLETED" }) };
       }
       const forgivable = forgiven < MAX_FORGIVEN_INFRA_ORDINALS
         && walk.forgivableTerminalReason?.(prior.value.terminalReason) === true;
@@ -1052,10 +1276,14 @@ export class BookRunApplicationService {
       );
       if (forgivable) forgiven += 1;
     }
+    // R-168: 64 live invocations died on this exact string with no remedy in it.
+    // The escape hatch exists (each lane's CHAPTERFLOW_* override); it just never
+    // reached the operator reading the failure.
     return failed(
       walk.errorCode,
       `${walk.lane} successor budget exhausted after ${walk.maxOrdinal} ordinals;`
-      + ` every ${walk.lane} ordinal is spent`,
+      + ` every ${walk.lane} ordinal is spent`
+      + (walk.budgetEnvVar === undefined ? "" : `; raise ${walk.budgetEnvVar} (1-10) or start a fresh run`),
     );
   }
 
@@ -1093,6 +1321,7 @@ export class BookRunApplicationService {
       // spent no judgment on this book — only infrastructure. It must not cost
       // the book one of its three repair rounds (the live Franklin wedge).
       forgivableTerminalReason: isRepairReviewErrorTerminalReason,
+      budgetEnvVar: "CHAPTERFLOW_QC_REPAIR_RUNS",
     });
   }
 
@@ -1155,6 +1384,9 @@ export class BookRunApplicationService {
     candidate: CandidateSnapshot,
     review: CanonicalReviewResult,
     roundId: string,
+    /** Resolved ONCE per run by run() (R-177), so a mid-run env change cannot
+     *  move the budget under an in-flight walk. */
+    judgeBudget: number,
   ): Promise<Result<QcRoundResult>> {
     const baseJudgeRunId = derivedId("qc-judge-run", parentRunId);
     const observedAt = safeNow(this.#dependencies.clock);
@@ -1172,7 +1404,7 @@ export class BookRunApplicationService {
       // the round already durable (the short-circuit above returns before the
       // walk can ever abandon it). Only one ordinal can be RUNNING here: every
       // lower one was driven terminal before the walk moved past it.
-      for (let ordinal = 1; ordinal <= MAX_QC_JUDGE_RUNS; ordinal += 1) {
+      for (let ordinal = 1; ordinal <= judgeBudget; ordinal += 1) {
         const ordinalRunId = ordinal === 1 ? baseJudgeRunId : `${baseJudgeRunId}-r${ordinal}`;
         const settled = await this.#dependencies.runStore.readRun(input.bookId, ordinalRunId, observedAt.value);
         if (!settled.ok) break;
@@ -1206,7 +1438,7 @@ export class BookRunApplicationService {
     // COMPLETED-without-round stays an honest legacy error: that judge already
     // ran to completion and cannot legally re-run.
     let judgeRunId: string | undefined;
-    for (let ordinal = 1; ordinal <= MAX_QC_JUDGE_RUNS; ordinal += 1) {
+    for (let ordinal = 1; ordinal <= judgeBudget; ordinal += 1) {
       const candidateRunId = ordinal === 1 ? baseJudgeRunId : `${baseJudgeRunId}-r${ordinal}`;
       const prior = await this.#dependencies.runStore.readRun(input.bookId, candidateRunId, observedAt.value);
       if (!prior.ok) {
@@ -1271,7 +1503,11 @@ export class BookRunApplicationService {
       // FAILED / CANCELLED (including just-abandoned): try the next ordinal.
     }
     if (judgeRunId === undefined) {
-      return failed("BOOK_RUN_QC_UNAVAILABLE", `fresh-qc judge successor budget exhausted after ${MAX_QC_JUDGE_RUNS} runs`);
+      return failed(
+        "BOOK_RUN_QC_UNAVAILABLE",
+        `fresh-qc judge successor budget exhausted after ${judgeBudget} runs`
+        + "; raise CHAPTERFLOW_QC_JUDGE_RUNS (1-10) or start a fresh run",
+      );
     }
     const created = await this.#dependencies.runStore.createRun(freshQcRunDefinition({
       bookId: input.bookId,
@@ -1351,6 +1587,26 @@ export class BookRunApplicationService {
     if (!(input.signal instanceof AbortSignal)) return failed("BOOK_RUN_INPUT_INVALID", "signal must be AbortSignal");
     if (input.researchRunId !== undefined && input.resumeRunId !== undefined) {
       return failed("BOOK_RUN_INPUT_INVALID", "researchRunId and resumeRunId are mutually exclusive");
+    }
+    // R-177 — EVERY budget override is parsed here, with the rest of the input
+    // validation, and every one is resolved ONCE for the whole run. They used to
+    // be resolved at their point of use: resolveQcRepairRuns() sat inside the
+    // `qc.value.outcome === "FAIL"` branch, reached only after research, compile,
+    // the full panel and the whole per-question judge had run — so a typo in
+    // CHAPTERFLOW_QC_REPAIR_RUNS threw a raw Error, escaped run(), and burned an
+    // entire book run before the operator learned about it. A malformed budget is
+    // an input error and is answered like one, before any work is spent.
+    let qcRepairBudget: number;
+    let reviewRepairCap: number;
+    let qcJudgeBudget: number;
+    let operatorCompileRetryCap: number;
+    try {
+      qcRepairBudget = resolveQcRepairRuns();
+      reviewRepairCap = resolveReviewRepairRounds();
+      qcJudgeBudget = resolveQcJudgeRuns();
+      operatorCompileRetryCap = resolveOperatorCompileRetries();
+    } catch (cause) {
+      return failed("BOOK_RUN_INPUT_INVALID", (cause as Error).message);
     }
     // Shape-validate at the INPUT boundary, not just in the research port. The
     // port's check (isSafeResearchRunId, applied at path-resolution time) is the
@@ -1589,7 +1845,8 @@ export class BookRunApplicationService {
                   : "single deterministic compiler retry was cancelled; resume with --reconcile-unsettled to grant the next compile slot",
               );
             }
-            const granted = await this.#grantOperatorCompileRetry(input.bookId, runId, retryAt.value, input.reconcileUnsettled === true);
+            const granted = await this.#grantOperatorCompileRetry(
+              input.bookId, runId, retryAt.value, input.reconcileUnsettled === true, operatorCompileRetryCap);
             if (!granted.ok) return granted;
             compilerRunId = granted.value.compilerRunId;
             compilerAttemptRoot = resolve(input.attemptRoot, granted.value.attemptSubdir);
@@ -1689,41 +1946,15 @@ export class BookRunApplicationService {
       attemptRoot: resolve(input.attemptRoot, "review"),
       signal: input.signal,
     });
-    // Task 11ac / finding 38 LAYER B — ERROR-review successor on flagged resume.
-    // A stored canonical review whose outcome is ERROR is UNCERTAINTY (a transient
-    // reader-lane failure fail-closed the panel), NOT a verdict — yet the exact-single-
-    // attempt review run persists it as canonical, so every resume replays the ERROR
-    // with ZERO model calls. Under per-invocation operator consent (--reconcile-unsettled)
-    // it is superseded EXACTLY ONCE by a fresh full-panel review keyed off a distinct
-    // seed (fresh reviewId / run / attempt), mirroring the research (11d) and compile
-    // (operator-slot) successor paths. A stored FAIL is deliberately NOT eligible: FAIL is
-    // a real verdict repair machinery owns, so `outcome === "ERROR"` gates this exactly.
+    // Task 11ac / finding 38 LAYER B — supersede an UNCERTAIN review on a flagged
+    // resume. A stored ERROR outcome (a transient reader-lane failure fail-closed
+    // the panel) and a review run left terminal FAILED (R-186) are both
+    // uncertainty, not verdicts, yet the exact-single-attempt review run persists
+    // them as canonical so every resume replays them with ZERO model calls.
     // Fresh-QC binds to the review id it is handed, so reassigning `review` to the
-    // successor keeps downstream identity coherent. Idempotent on repeated flagged
-    // resumes: the successor's own exact-review run replays its stored result model-free.
-    if (review.ok && review.value.outcome === "ERROR" && input.reconcileUnsettled === true) {
-      const predecessorReviewId = review.value.reviewId;
-      const successorStarted = await this.#event(
-        runId,
-        input.bookId,
-        "review",
-        "STARTED",
-        `action=REVIEW_SUCCESSOR;predecessorReviewId=${predecessorReviewId}`,
-        identity(candidate),
-      );
-      if (!successorStarted.ok) return successorStarted;
-      console.error(
-        `[book-run] review-successor book=${input.bookId} run=${runId} predecessorReviewId=${predecessorReviewId} action=REVIEW_SUCCESSOR`,
-      );
-      review = await exactReview(this.#dependencies, {
-        bookId: input.bookId,
-        sourceGitSha: input.sourceGitSha,
-        parentRunId: derivedId("review-successor-1", runId),
-        candidate,
-        attemptRoot: resolve(input.attemptRoot, "review-successor-1"),
-        signal: input.signal,
-      });
-    }
+    // successor keeps downstream identity coherent. See #reviewSuccessor for the
+    // ordinal walk, the consent gate, and why FAIL is never eligible.
+    review = await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: "review", review });
     // ── Canonical review FAIL -> repair -> RE-REVIEW, bounded ──────────────────
     //
     // A review FAIL used to be TERMINAL here, and that was the convergence
@@ -1777,12 +2008,11 @@ export class BookRunApplicationService {
     /** Where the next round's ordinal walk starts. Advances past every ordinal
      *  this run has already used, so one run never re-enters its own link. */
     let nextReviewRepairOrdinal = 1;
-    // Resolved ONCE per run so a mid-run env change cannot move the cap under it.
-    const reviewRepairCap = resolveReviewRepairRounds();
     let reviewRepairNote = "";
     while (reviewRepair !== undefined && review.ok && review.value.outcome === "FAIL") {
       if (reviewRepairRounds >= reviewRepairCap) {
-        reviewRepairNote = `; unresolved after ${reviewRepairRounds} of ${reviewRepairCap} review-repair round(s) (cap reached)`;
+        reviewRepairNote = `; unresolved after ${reviewRepairRounds} of ${reviewRepairCap} review-repair round(s) (cap reached)`
+          + "; raise CHAPTERFLOW_REVIEW_REPAIR_ROUNDS (1-10) or start a fresh run";
         const capped = await this.#event(
           runId,
           input.bookId,
@@ -1805,6 +2035,7 @@ export class BookRunApplicationService {
         firstOrdinal: nextReviewRepairOrdinal,
         maxOrdinal: MAX_REVIEW_REPAIR_ORDINALS,
         label: (ordinal) => `review-repair-${ordinal}`,
+        budgetEnvVar: "CHAPTERFLOW_REVIEW_REPAIR_ROUNDS",
       });
       if (!chosen.ok) {
         await this.#event(
@@ -1826,15 +2057,25 @@ export class BookRunApplicationService {
         .filter((issue) => issue.severity === "BLOCKER")
         .map((issue) => issue.code)
         .join(",");
-      const repairStarted = await this.#event(
-        runId,
-        input.bookId,
-        "repair",
-        "STARTED",
-        `action=REVIEW_REPAIR;round=${reviewRepairRounds};label=${label};failedReviewId=${failedReviewId};blockers=${blockerCodes}`,
-        identity(candidate),
-      );
-      if (!repairStarted.ok) return repairStarted;
+      // R-169: a REPLAY is not a repair. The walk already knows this ordinal's run
+      // is COMPLETED, which means the port will re-read its durable successor with
+      // zero model calls, so emitting the full STARTED/COMPLETED repair pair for it
+      // wrote fiction into the durable phase log — live Franklin: 637 REVIEW_REPAIR
+      // STARTED and 620 COMPLETED across 11 distinct ordinals, against 33 real
+      // model admissions. A replayed ordinal emits ONE SKIPPED event instead, after
+      // the port confirms the replay.
+      const replaying = chosen.value.replaying;
+      if (!replaying) {
+        const repairStarted = await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "STARTED",
+          `action=REVIEW_REPAIR;round=${reviewRepairRounds};label=${label};failedReviewId=${failedReviewId};blockers=${blockerCodes}`,
+          identity(candidate),
+        );
+        if (!repairStarted.ok) return repairStarted;
+      }
       console.error(
         // The RESOLVED cap, not the constant. The loop honours
         // resolveReviewRepairRounds(); interpolating MAX_REVIEW_REPAIR_ROUNDS
@@ -1847,12 +2088,17 @@ export class BookRunApplicationService {
         // pushes the second ahead of the first.
         `[book-run] review-repair book=${input.bookId} run=${runId} round=${reviewRepairRounds}/${reviewRepairCap}`
         + ` ordinal=${ordinal}/${MAX_REVIEW_REPAIR_ORDINALS} label=${label}`
-        + ` failedReviewId=${failedReviewId} action=REVIEW_REPAIR`,
+        + ` failedReviewId=${failedReviewId} action=${replaying ? "REVIEW_REPAIR_REPLAY" : "REVIEW_REPAIR"}`,
       );
       const repairedCandidate = await reviewRepair.runFromReviewFail({
         bookId: input.bookId,
         failedCandidate: identity(candidate),
         failedReviewId,
+        // R-170: the transition's own durable history identity, derived from the
+        // ordinal's label exactly as its run and successor ids are, so a replay
+        // re-derives the same record rather than appending a second one.
+        repairId: derivedId(`${label}-repair`, runId),
+        ordinal,
         successorCandidateId: derivedId(`${label}-candidate`, runId),
         repairRunId: derivedId(`${label}-run`, runId),
         sourceGitSha: input.sourceGitSha,
@@ -1881,16 +2127,32 @@ export class BookRunApplicationService {
         reviewRepairRounds -= 1;
       }
       candidate = repairedCandidate.value.successor;
-      const repairCompleted = await this.#event(
-        runId,
-        input.bookId,
-        "repair",
-        "COMPLETED",
-        `action=REVIEW_REPAIR;round=${reviewRepairRounds};failedReviewId=${failedReviewId}`
-        + `;chapters=${repairedCandidate.value.targetChapterNumbers.join("|")}`,
-        identity(candidate),
-      );
-      if (!repairCompleted.ok) return repairCompleted;
+      // COMPLETED means a repair actually ran; a replayed ordinal is recorded as
+      // SKIPPED with the label it re-read, so the phase log counts real rewrites.
+      // `replayed` comes from the PORT (it is the authority on whether it spent
+      // model calls); `replaying` is the walk's prediction and only gates the
+      // STARTED event, so a disagreement is reported rather than hidden.
+      const repairSettled = repairedCandidate.value.replayed
+        ? await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "SKIPPED",
+          `action=REVIEW_REPAIR_REPLAY;round=${reviewRepairRounds};label=${label};failedReviewId=${failedReviewId}`
+          + `;chapters=${repairedCandidate.value.targetChapterNumbers.join("|")}`
+          + (replaying ? "" : ";unexpectedReplay=true"),
+          identity(candidate),
+        )
+        : await this.#event(
+          runId,
+          input.bookId,
+          "repair",
+          "COMPLETED",
+          `action=REVIEW_REPAIR;round=${reviewRepairRounds};failedReviewId=${failedReviewId}`
+          + `;chapters=${repairedCandidate.value.targetChapterNumbers.join("|")};replayed=false`,
+          identity(candidate),
+        );
+      if (!repairSettled.ok) return repairSettled;
       const reReviewStarted = await this.#event(
         runId,
         input.bookId,
@@ -1908,9 +2170,23 @@ export class BookRunApplicationService {
         attemptRoot: resolve(input.attemptRoot, `${label}-review`),
         signal: input.signal,
       });
+      // R-165: the re-review is as capable of a transient panel ERROR as the
+      // first review, and until now it had no successor at all — so one flaky
+      // reader-lane call mid-repair ended the book permanently, with the repaired
+      // successor candidate stranded and the loop unable to advance (it only
+      // continues on FAIL). Same consent gate, same bounded walk, own label space.
+      review = await this.#reviewSuccessor({ input, runId, candidate, labelPrefix: label, review });
     }
     if (!review.ok || review.value.outcome !== "PASS") {
-      const message = (review.ok ? `canonical review outcome=${review.value.outcome}` : review.error.message) + reviewRepairNote;
+      // R-179: 36 live invocations died on the bare string `canonical review
+      // outcome=ERROR` while the one thing that could clear it — a flagged
+      // resume — went unnamed. Uncertainty says so; a FAIL verdict does not get
+      // this line, because --reconcile-unsettled is not a remedy for a verdict.
+      const remedy = input.reconcileUnsettled !== true && reviewIsUncertain(review)
+        ? "; a stored ERROR canonical review is uncertainty, not a verdict"
+          + " — resume with --reconcile-unsettled to supersede it with a fresh panel"
+        : "";
+      const message = (review.ok ? `canonical review outcome=${review.value.outcome}` : review.error.message) + reviewRepairNote + remedy;
       await this.#event(runId, input.bookId, "review", "FAILED", message, identity(candidate));
       return failed("BOOK_RUN_REVIEW_FAILED", message);
     }
@@ -1926,24 +2202,80 @@ export class BookRunApplicationService {
       // non-deterministic, so re-running it would break QC-round idempotency on
       // replay; the committed round is authoritative (mirrors canonical review).
       const stored = await this.#dependencies.qc.getRound(input.bookId, roundId);
-      if (!stored.ok) {
-        await this.#event(runId, input.bookId, "fresh-qc", "FAILED", stored.error.message, identity(candidate));
-        return failed("BOOK_RUN_QC_FAILED", stored.error.message);
+      // R-176: the fresh-QC round is the artifact that AUTHORIZES promotion, and
+      // it was the one such artifact read back by run-derived id alone. exactReview
+      // refuses a stored review unless its candidate AND its reviewId bind exactly
+      // (see exactReview), and contentRepairWorkflow.validateQcResult does the same
+      // for a repair round; this is the same check on the same class of artifact.
+      // A resume whose review lane landed on a different candidate (a fresh repair
+      // ordinal, say) would otherwise promote on a round bound to the old one.
+      if (!stored.ok
+        || !sameIdentity(stored.value.candidate, identity(candidate))
+        || stored.value.reviewId !== review.value.reviewId) {
+        const message = stored.ok
+          ? "stored fresh QC round does not bind this exact candidate and canonical review"
+          : stored.error.message;
+        await this.#event(runId, input.bookId, "fresh-qc", "FAILED", message, identity(candidate));
+        return failed("BOOK_RUN_QC_FAILED", message);
       }
       qc = stored;
     } else {
       // Initial: deterministic gates + the LLM answer-key judge, the latter run
       // as per-question model work under a dedicated fresh-qc run, then committed.
-      const judged = await this.#runFreshQcWithJudge(input, runId, candidate, review.value, roundId);
+      const judged = await this.#runFreshQcWithJudge(input, runId, candidate, review.value, roundId, qcJudgeBudget);
       if (!judged.ok) {
         await this.#event(runId, input.bookId, "fresh-qc", "FAILED", judged.error.message, identity(candidate));
         return judged;
       }
       qc = judged;
     }
+    // R-184 — fresh-qc ERROR was TERMINAL with no successor at all: the exact
+    // wedge the review lane's 11ac successor was built to fix, left unfixed one
+    // lane over. Worse, the round is durable, so the resume short-circuit above
+    // replayed the ERROR model-free forever. Same shape as #reviewSuccessor: one
+    // fresh round per invocation under per-invocation operator consent, walking
+    // past successor ordinals whose own round is already ERROR (a store read,
+    // zero model calls), bounded, failing closed with the ceiling named.
+    if (qc.value.outcome === "ERROR" && input.reconcileUnsettled === true) {
+      const predecessorRoundId = qc.value.roundId;
+      for (let ordinal = 1; ordinal <= MAX_FRESH_QC_SUCCESSOR_ORDINALS; ordinal += 1) {
+        const label = `qc-successor-${ordinal}`;
+        const successorRoundId = derivedId(label, runId);
+        const spent = await this.#dependencies.qc.getRound(input.bookId, successorRoundId);
+        if (spent.ok && spent.value.outcome === "ERROR") continue;
+        const successorStarted = await this.#event(
+          runId,
+          input.bookId,
+          "fresh-qc",
+          "STARTED",
+          `action=QC_SUCCESSOR;ordinal=${ordinal};roundId=${successorRoundId};predecessorRoundId=${predecessorRoundId}`,
+          identity(candidate),
+        );
+        if (!successorStarted.ok) return successorStarted;
+        console.error(
+          `[book-run] qc-successor book=${input.bookId} run=${runId} ordinal=${ordinal}/${MAX_FRESH_QC_SUCCESSOR_ORDINALS}`
+          + ` roundId=${successorRoundId} predecessorRoundId=${predecessorRoundId} action=QC_SUCCESSOR`,
+        );
+        const judged = await this.#runFreshQcWithJudge(
+          input, derivedId(label, runId), candidate, review.value, successorRoundId, qcJudgeBudget);
+        if (!judged.ok) {
+          await this.#event(runId, input.bookId, "fresh-qc", "FAILED", judged.error.message, identity(candidate));
+          return judged;
+        }
+        // The successor round is the one promotion binds to from here on.
+        qc = judged;
+        roundId = successorRoundId;
+        break;
+      }
+    }
     if (qc.value.outcome === "ERROR") {
-      await this.#event(runId, input.bookId, "fresh-qc", "FAILED", "fresh QC outcome=ERROR", identity(candidate));
-      return failed("BOOK_RUN_QC_FAILED", "fresh QC outcome=ERROR");
+      const remedy = input.reconcileUnsettled === true
+        ? `; every fresh-qc successor ordinal (max ${MAX_FRESH_QC_SUCCESSOR_ORDINALS}) already carries a stored ERROR round`
+          + " — the answer-key judge, not this book, is what needs fixing before another resume"
+        : "; a stored ERROR fresh-QC round is uncertainty, not a verdict"
+          + " — resume with --reconcile-unsettled to supersede it with a fresh round";
+      await this.#event(runId, input.bookId, "fresh-qc", "FAILED", `fresh QC outcome=ERROR${remedy}`, identity(candidate));
+      return failed("BOOK_RUN_QC_FAILED", `fresh QC outcome=ERROR${remedy}`);
     }
     const qcCompleted = await this.#event(runId, input.bookId, "fresh-qc", "COMPLETED", `outcome=${qc.value.outcome};roundId=${qc.value.roundId}`, identity(candidate));
     if (!qcCompleted.ok) return qcCompleted;
@@ -1990,8 +2322,6 @@ export class BookRunApplicationService {
       /** Where the next link's ordinal walk starts — never re-enters a link this
        *  run already drove. */
       let nextQcRepairOrdinal = 1;
-      // Resolved ONCE per run so a mid-run env change cannot move the budget.
-      const qcRepairBudget = resolveQcRepairRuns();
       /** The round + candidate the NEXT repair is aimed at. Starts as the failed
        *  fresh-QC round, then becomes each link's own. */
       let failedRoundId = qc.value.roundId;
