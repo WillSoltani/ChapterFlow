@@ -84,13 +84,19 @@ export function isSourceFidelityCode(code: string): boolean {
 /**
  * Most SOURCE characters handed to ONE fidelity call.
  *
- * Sized against `chapterMap.MAX_SPAN_PROMPT_CHARS` (60,000 - the bound the
- * researcher's own span prompt uses) MINUS the room this prompt needs that the
- * research prompt does not: the whole reader-facing chapter, the surface
- * enumeration, the instrument and the JSON schema echo. 45,000 characters of
- * source (about 11k tokens) leaves about 15,000 for all of that inside the same
- * profile budget, and it is still larger than an ordinary trade-nonfiction
- * chapter, so a normal chapter is passed WHOLE and nothing is chunked.
+ * MEASURED, not guessed. This prompt carries the whole reader-facing chapter
+ * beside the source, and on the four released Franklin chapters
+ * (`book-packages/the-autobiography-of-benjamin-franklin.v21.json`) the surface
+ * block alone is 30,588-35,754 characters. 45,000 characters of source is about
+ * 11k tokens, so the whole call lands near 20k input tokens - large, and the
+ * reason these judges run on `pipeline-read-json-long-v1` rather than the 300s
+ * probe profile.
+ *
+ * Why not higher: doubling it would double the dominant term of the QC round's
+ * cost for coverage the OVERLAPPING CHUNKS already provide. Why not lower: a
+ * trade-nonfiction chapter's source span is comfortably under 45,000
+ * characters, so an ordinary chapter is passed WHOLE and nothing is chunked -
+ * which is the case where chunk-merge noise cannot arise at all.
  */
 export const SOURCE_FIDELITY_MAX_CONTEXT_CHARS = 45_000;
 
@@ -648,13 +654,19 @@ function isFindingsEnvelope(value: unknown): value is { findings: SourceFidelity
  * runner-less call throws rather than selecting one.
  *
  * Role `qc` - which `config/model-routing.json` routes at effort `xhigh`.
+ *
+ * Profile `pipeline-read-json-long-v1`: the same exact-pipeline-root, read-only,
+ * JSON envelope as the short judge profile, with a horizon a card of this size
+ * can finish inside. This prompt carries the WHOLE reader-facing chapter
+ * (30,588-35,754 characters on the released Franklin chapters) whatever the
+ * provenance, so the route does not depend on whether a span is attached.
  */
 export function makeLiveSourceFidelityAsk(opts: Readonly<{ execution: ModelCallerExecution }>): AskSourceFidelity {
   return async (request) => {
     const execution = opts.execution;
     if (!execution) throw new Error("MODEL_TASK_RUNNER_REQUIRED");
     const result = await execution.runner.run({
-      profileId: execution.profileId ?? "pipeline-read-json-v1",
+      profileId: execution.profileId ?? "pipeline-read-json-long-v1",
       role: "qc",
       prompt: jsonPromptRequest(sourceFidelitySystemPrompt(request.provenance), buildSourceFidelityUserPrompt(request)),
       context: execution.context,

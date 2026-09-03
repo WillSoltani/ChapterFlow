@@ -66,6 +66,42 @@ export const SOURCE_CONTROLLED_EXECUTION_PROFILES: Readonly<Record<string, Execu
     maxStdoutBytes: 1_048_576,
     maxStderrBytes: 262_144,
   }),
+  /**
+   * The fresh-QC judges' profile: pipeline-root, read-only, JSON — and a real
+   * timeout for a prompt that carries the book.
+   *
+   * WHY IT EXISTS. `pipeline-read-json-v1` is a SHORT-CALL probe profile (300s)
+   * and it was right for the answer-key judge's original card: one question,
+   * three choices, an explanation — about 2 KB. Both fresh-QC judges now carry
+   * SOURCE. Measured on the four released Franklin chapters
+   * (`book-packages/the-autobiography-of-benjamin-franklin.v21.json`), one
+   * chapter's reader-facing surfaces are 30,588-35,754 characters, and the
+   * source-fidelity prompt adds up to `SOURCE_FIDELITY_MAX_CONTEXT_CHARS`
+   * (45,000) of the book's own bytes on top of that — roughly 20k input tokens
+   * against the 500 the old card carried. A 300s bound on a call that size, at
+   * the `qc` role's `xhigh` effort, is a foreseeable DETERMINISTIC timeout: the
+   * judge would fail, retry, fail, and the evaluation would ERROR — and because
+   * the prompt is a function of the candidate, every resume would reproduce it
+   * exactly. That is the permanent wedge shape this campaign keeps removing.
+   *
+   * 1_800_000 matches `attempt-read-json-v1`, which was raised to the same value
+   * for the same reason (a large prompt timing out with stdoutBytes=0, which says
+   * nothing about progress because `claude -p` buffers stdout until completion).
+   * Nothing else changes: same READ_ONLY mode, same exact-pipeline-root workdir
+   * policy, same output schema, same stdout/stderr caps. A longer horizon lets a
+   * slow call finish; it relaxes no check and admits no new capability. Every
+   * existing profile is byte-identical.
+   */
+  "pipeline-read-json-long-v1": freezeProfile({
+    id: "pipeline-read-json-long-v1",
+    workDirPolicy: "PIPELINE_ROOT",
+    mode: "READ_ONLY",
+    outputSchemaId: "json.object.v1",
+    timeoutMs: 1_800_000,
+    terminateGraceMs: 2_000,
+    maxStdoutBytes: 1_048_576,
+    maxStderrBytes: 262_144,
+  }),
   "attempt-read-json-v1": freezeProfile({
     id: "attempt-read-json-v1",
     workDirPolicy: "ATTEMPT_ROOT",

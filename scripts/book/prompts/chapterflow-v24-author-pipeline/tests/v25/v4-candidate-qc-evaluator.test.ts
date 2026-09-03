@@ -353,9 +353,16 @@ requiredTest("the reader panel's per-factor diagnosis survives a PASSING review 
     scores: seatScores,
     // One derivation per question (R-133): the reader lane rejects a seat whose
     // positional derivation does not cover the chapter's quiz.
+    //
+    // R-131: the derivation is no longer inert. It used to be `a` for every
+    // question because nothing read it; it is now adjudicated against the stored
+    // key, and this fixture is a CLEAN panel read — so the seats derive the
+    // chapter's own key. A fixture that answered `a` everywhere would be
+    // asserting the key is wrong on two thirds of the quiz, which is precisely
+    // the blocker the adjudicator now raises and which this case is not about.
     quizDerivation: {
-      answers: Array.from({ length: QUESTION_COUNT }, () => "a"),
-      mechanisms: Array.from({ length: QUESTION_COUNT }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      answers: makeGateCleanChapter(BOOK, 1).quiz.questions.map((question) => "abc"[question.correctIndex]),
+      mechanisms: Array.from({ length: QUESTION_COUNT }, (_value, index) => `the prose settles q${index + 1}`),
       confidence: Array.from({ length: QUESTION_COUNT }, () => "high"),
       ambiguities: Array.from({ length: QUESTION_COUNT }, () => ""),
       tells: [],

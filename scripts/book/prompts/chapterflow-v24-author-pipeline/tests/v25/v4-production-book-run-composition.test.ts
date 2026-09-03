@@ -415,16 +415,23 @@ function compilerOutputs(fixtureRoot: string) {
 /** A schema-valid reader-experience content object (the runtime stamps the
  *  schema/reviewerRole/rubricVersion + hash bindings on top). Empty findings +
  *  SHIP keep the panel PASS so the fixture book still promotes. */
-function readerReview(questionCount: number): Record<string, unknown> {
+function readerReview(questions: ReadonlyArray<{ correctIndex: number }>): Record<string, unknown> {
   const scores: Record<string, number> = {};
   for (const factor of REVIEW_FACTORS) scores[factor] = 82;
+  const questionCount = questions.length;
   return {
     scores,
     // One derivation per question (R-133): the strict reader assembly rejects a
     // seat whose positional derivation does not cover the chapter's quiz.
+    //
+    // R-131: the derivation is adjudicated against the stored key now. This
+    // fixture is a CLEAN panel read whose whole job is to let the book promote,
+    // so its seats derive the fixture's own key — answering "a" everywhere would
+    // assert that every non-"a"-keyed question is mis-keyed, block the review,
+    // and route the run into repair.
     quizDerivation: {
-      answers: Array.from({ length: questionCount }, () => "a"),
-      mechanisms: Array.from({ length: questionCount }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      answers: questions.map((question) => "abc"[question.correctIndex]),
+      mechanisms: Array.from({ length: questionCount }, (_value, index) => `the prose settles q${index + 1}`),
       confidence: Array.from({ length: questionCount }, () => "high"),
       ambiguities: Array.from({ length: questionCount }, () => ""),
       tells: [],
@@ -493,9 +500,9 @@ requiredTest("production composition reaches isolated local promotion and exact 
     // Canonical review = semantic panel: baseline model review first, then the
     // IMP-20 blind reader panel — three reader-experience seats per chapter.
     { outcome: "PASS", issues: [] },
-    readerReview(compilerFixture.learning.quiz.questions.length),
-    readerReview(compilerFixture.learning.quiz.questions.length),
-    readerReview(compilerFixture.learning.quiz.questions.length),
+    readerReview(compilerFixture.learning.quiz.questions),
+    readerReview(compilerFixture.learning.quiz.questions),
+    readerReview(compilerFixture.learning.quiz.questions),
   ]);
   const v25Root = resolve(roots.tempRoot, "composition-v25");
   const attemptRoot = resolve(roots.attemptsRoot, "composition-run");
@@ -542,14 +549,19 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.equal(current.value.manifest.manifestDigest, result.value.candidate.manifestDigest);
   assert.equal(current.value.files.filter((file) => file.kind === "CHAPTER").length, 1);
 
-  const judgeSpecCount = (specs: readonly ProcessSpec[]): number =>
-    specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes("answer-key auditor")).length;
-  const judgeInitial = judgeSpecCount(supervisor.specs);
+  const specCount = (specs: readonly ProcessSpec[], marker: string): number =>
+    specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes(marker)).length;
+  const judgeInitial = specCount(supervisor.specs, "answer-key auditor");
   assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
+  // Fresh-qc runs a SECOND judge: one source-fidelity call per chapter source
+  // chunk. This fixture book has one chapter and no source text, so its
+  // fidelity judgment is a single model-memory call.
+  const fidelityInitial = specCount(supervisor.specs, "source-fidelity auditor");
+  assert.equal(fidelityInitial, 1, "the source-fidelity judge crosses the process boundary too");
   assert.equal(
     supervisor.specs.length,
-    10 + judgeInitial,
-    "research, compiler, baseline review, three-seat reader panel, plus one fresh-qc quiz-key judge call per quiz question",
+    10 + judgeInitial + fidelityInitial,
+    "research, compiler, baseline review, three-seat reader panel, one fresh-qc quiz-key judge call per quiz question, and one source-fidelity judge call per chapter source chunk",
   );
   assert.equal(supervisor.remaining(), 0);
   assert.ok(
@@ -628,12 +640,17 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.deepEqual(resumed.value.candidate, result.value.candidate);
   assert.equal(resumed.value.bookRevision, result.value.bookRevision);
   assert.equal(resumed.value.readback, "VERIFIED");
+  // REPLAY WITHOUT SPEND. Both fresh-qc judges are behind the committed round,
+  // so a resume re-reads the round and issues no model call at all — the spec
+  // count is byte-for-byte what it was before the resume, for the fidelity judge
+  // exactly as for the answer-key judge.
+  assert.equal(specCount(supervisor.specs, "source-fidelity auditor"), fidelityInitial, "the source-fidelity judge must not re-run on resume");
   assert.equal(
     supervisor.specs.length,
-    10 + judgeInitial,
-    "resume reuses all settled attempts including the durable fresh-qc round — the non-deterministic quiz-key judge never re-runs",
+    10 + judgeInitial + fidelityInitial,
+    "resume reuses all settled attempts including the durable fresh-qc round — neither the quiz-key judge nor the source-fidelity judge re-runs",
   );
-  assert.equal(judgeSpecCount(supervisor.specs), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");
+  assert.equal(specCount(supervisor.specs, "answer-key auditor"), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");
   const resumedEvents = readFileSync(logPath, "utf8")
     .trim()
     .split("\n")

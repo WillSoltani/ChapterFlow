@@ -165,7 +165,11 @@ export function makeLiveAskModel(opts?: {
     const execution = opts?.execution;
     if (!execution) throw new Error("MODEL_TASK_RUNNER_REQUIRED");
     const result = await execution.runner.run({
-      profileId: "pipeline-read-json-v1",
+      // The caller may widen the route when it attaches SOURCE to this judge:
+      // a card carrying a chapter's span is not the short probe the default
+      // profile's 300s bound was sized for. Absent an override the profile is
+      // byte-identical to what it always was.
+      profileId: execution.profileId ?? "pipeline-read-json-v1",
       role: "qc",
       prompt: jsonPromptRequest(JUDGE_SYSTEM, buildJudgeUserPrompt(args)),
       context: execution.context,

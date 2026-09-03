@@ -120,6 +120,18 @@ requiredTest("execution policy canonicalizes exact roots and rejects escape path
     assert.equal(resolvedAttempt.environment[forbidden], undefined);
   }
 
+  // The fresh-QC judges' long-timeout route is the SAME safety envelope as the
+  // short one — exact pipeline root, read-only, JSON — and differs only in how
+  // long a call may take. A relaxed workdir policy would be a real weakening, so
+  // it is pinned here beside its sibling.
+  const longPipeline = expectOk(policy.resolve("pipeline-read-json-long-v1", roots.tempRoot));
+  assert.equal(longPipeline.workDir, realpathSync(roots.tempRoot));
+  assert.equal(longPipeline.profile.workDirPolicy, "PIPELINE_ROOT");
+  assert.equal(longPipeline.profile.mode, "READ_ONLY");
+  assert.equal(longPipeline.profile.outputSchemaId, "json.object.v1");
+  assert.ok(longPipeline.profile.timeoutMs > pipeline.profile.timeoutMs);
+  expectCode(policy.resolve("pipeline-read-json-long-v1", nested), "WORKDIR_POLICY_VIOLATION");
+
   expectCode(policy.resolve("missing-profile", nested), "PROFILE_NOT_FOUND");
   expectCode(policy.resolve("pipeline-read-json-v1", nested), "WORKDIR_POLICY_VIOLATION");
   expectCode(policy.resolve("attempt-read-json-v1", roots.workspacesRoot), "WORKDIR_POLICY_VIOLATION");

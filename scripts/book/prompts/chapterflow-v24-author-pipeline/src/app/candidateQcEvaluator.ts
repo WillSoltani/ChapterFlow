@@ -610,6 +610,10 @@ export class CandidateQcEvaluator {
         const number = entry.chapter.number;
         const chapterLabel = `ch${String(number).padStart(2, "0")}`;
         const source = sources.get(number);
+        // Only a card carrying the BOOK'S OWN BYTES needs the long route. A
+        // model-memory context is the sidecar's recalled claims — a few hundred
+        // characters — so that judge keeps exactly the profile it always had.
+        const carriesSpan = source !== undefined && source.context.provenance === "source-text";
 
         // ── SOURCE-FIDELITY JUDGE (R-077, R-136, R-148, R-150) ──────────────
         // Runs FIRST: it is the check that decides whether the chapter is true
@@ -715,7 +719,13 @@ export class CandidateQcEvaluator {
                   operationId: `quiz-key-judge-${suffix}-a${attempt}`,
                 };
                 try {
-                  return await makeLiveAskModel({ execution: { runner, context: judgeCtx } })(args);
+                  return await makeLiveAskModel({
+                    execution: {
+                      runner,
+                      context: judgeCtx,
+                      ...(carriesSpan ? { profileId: "pipeline-read-json-long-v1" } : {}),
+                    },
+                  })(args);
                 } catch (error) {
                   lastError = error;
                   if (error instanceof Error && error.message.startsWith("QUIZ_KEY_MODEL_CANCELLED")) throw error;
@@ -766,7 +776,7 @@ export class CandidateQcEvaluator {
             question.questionId,
             typeof question.explanation === "string" ? question.explanation : "",
           ]));
-          const sourceText = source !== undefined && source.context.provenance === "source-text";
+          const groundedInText = source !== undefined && source.context.provenance === "source-text";
           for (const verdict of report.all) {
             for (const claim of verdict.unsupportedExplanationClaims) {
               const explanation = explanations.get(verdict.questionId) ?? "";
@@ -774,15 +784,15 @@ export class CandidateQcEvaluator {
                 && normalizedQuote(explanation).includes(normalizedQuote(claim));
               const parts = [
                 `the explanation for ${verdict.questionId} claims "${claim.replace(/\s+/g, " ").trim().slice(0, 300)}"`,
-                sourceText ? "which this chapter's source span does not support" : "which the judge could not place in the book",
+                groundedInText ? "which this chapter's source span does not support" : "which the judge could not place in the book",
               ];
-              if (!sourceText) {
+              if (!groundedInText) {
                 parts.push("provenance model-memory (this run carried no source text; the judge checked against its own recall, so this cannot gate)");
               }
               if (!quoted) parts.push("NOT ENFORCED - the clause is not present verbatim in the explanation");
               qcIssues.push(issue(
                 SOURCE_FIDELITY_EXPLANATION_CODE,
-                sourceText && quoted ? "BLOCKER" : "WARN",
+                groundedInText && quoted ? "BLOCKER" : "WARN",
                 parts.join("; "),
                 location(number, `/quiz/${verdict.questionId}`),
               ));

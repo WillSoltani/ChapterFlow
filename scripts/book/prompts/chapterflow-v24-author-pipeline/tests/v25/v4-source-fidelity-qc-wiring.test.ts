@@ -191,7 +191,7 @@ function judgeContext(signal = new AbortController().signal): ModelTaskContext {
   };
 }
 
-type Recorded = { readonly attemptIds: string[]; readonly fidelityPrompts: string[] };
+type Recorded = { readonly attemptIds: string[]; readonly fidelityPrompts: string[]; readonly profileIds: string[] };
 
 /** A runner that answers the answer-key judge with an agreeing verdict and the
  *  source-fidelity judge with `fidelity`, and enforces run-state's
@@ -209,6 +209,7 @@ function runner(
       }
       seen.add(key);
       recorded.attemptIds.push(request.context.attemptId);
+      recorded.profileIds.push(request.profileId);
       const userPrompt = Buffer.from(request.prompt.inputs[1].bytes).toString("utf8");
       if (request.context.operationId.startsWith("source-fidelity-judge-")) {
         recorded.fidelityPrompts.push(userPrompt);
@@ -229,7 +230,7 @@ function runner(
 }
 
 function emptyRecorded(): Recorded {
-  return { attemptIds: [], fidelityPrompts: [] };
+  return { attemptIds: [], fidelityPrompts: [], profileIds: [] };
 }
 
 requiredTest("fresh QC blocks a chapter the frozen source contradicts, carrying the source line", async (context) => {
@@ -266,6 +267,33 @@ requiredTest("fresh QC blocks a chapter the frozen source contradicts, carrying 
   assert.ok(
     recorded.attemptIds.some((id) => id.startsWith("qc-base-fidelity-") && id.includes("-ch01-c01-a1")),
     JSON.stringify(recorded.attemptIds),
+  );
+  // A card carrying the book's own bytes runs on the long-timeout pipeline-root
+  // route, not on the 300s short-probe profile the original 2 KB judge card was
+  // sized for. Both judges carry the span here, so both move.
+  assert.ok(
+    recorded.profileIds.every((id) => id === "pipeline-read-json-long-v1"),
+    JSON.stringify(recorded.profileIds),
+  );
+});
+
+requiredTest("a model-memory answer-key judge keeps the short route it always had", async (context) => {
+  // The long route exists for a card carrying the book's own bytes. A
+  // model-memory context is the sidecar's recalled claims — a few hundred
+  // characters — so this judge's route must not move at all.
+  const candidate = buildCandidate(context);
+  const recorded = emptyRecorded();
+  const evaluator = new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner: runner(() => ({ findings: [] }), recorded) },
+  );
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-memory-profile", taskContext: judgeContext() });
+  assert.ok(evaluated.ok);
+  const keyJudgeProfiles = recorded.profileIds.filter((_id, index) => index > 0);
+  assert.ok(keyJudgeProfiles.length > 0);
+  assert.ok(
+    keyJudgeProfiles.every((id) => id === "pipeline-read-json-v1"),
+    JSON.stringify(recorded.profileIds),
   );
 });
 

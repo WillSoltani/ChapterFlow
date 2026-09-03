@@ -524,7 +524,16 @@ requiredTest("fresh QC judge PASS commits a durable round and promotes the revie
   const judgeRun = await world.runStore.readRun(BOOK, derived("qc-judge-run", BOOK_RUN_ID), world.now());
   assert.ok(judgeRun.ok, JSON.stringify(judgeRun));
   assert.equal(judgeRun.value.status, "COMPLETED", "the fresh-qc judge run must not be left RUNNING");
-  assert.equal(judgeRun.value.attempts.length, world.chapter.quiz.questions.length);
+  // One attempt per quiz question (the answer-key judge) plus one per chapter
+  // source chunk (the source-fidelity judge). This fixture book is one chapter
+  // researched WITHOUT a source text, so its fidelity judgment is a single
+  // model-memory call — hence exactly one extra admission.
+  assert.equal(judgeRun.value.attempts.length, world.chapter.quiz.questions.length + 1);
+  assert.equal(
+    judgeRun.value.attempts.filter((attempt) => attempt.admission.operationId.startsWith("source-fidelity-judge-")).length,
+    1,
+    "the source-fidelity judge admits its own attempt against the same fresh-qc run",
+  );
   assert.equal(judgeRun.value.attempts.every((attempt) => attempt.status === "SUCCEEDED"), true);
 
   // The durable phase-event sequence is the whole contract of the run.
