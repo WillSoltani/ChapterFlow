@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -10,6 +10,7 @@ import { bookDesignPath, writeJsonFile } from "../../src/artifacts/artifactStore
 import { deriveBookDesign } from "../../src/compiler/bookDesign.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar } from "../../src/compiler/sourcePacket.js";
+import { MAX_READER_SEAT_ATTEMPTS, READER_PANEL_SEATS } from "../../src/review/laneOrchestrator.js";
 import type { ProcessResult, ProcessSpec, ProcessSupervisor } from "../../src/runtime/processTypes.js";
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
@@ -542,6 +543,26 @@ requiredTest("production composition reaches isolated local promotion and exact 
   ]);
   assert.ok(events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   assert.equal(existsSync(externalPackage), false, "local promotion must not write production package root");
+
+  // R-172 / R-188 — the reader lane's own run, the only model lane run-state had
+  // no real bound on. It carried a flat 4096-attempt budget for both run and
+  // stage and was deliberately left RUNNING forever (live: 182 RUNNING reader-lane
+  // run directories for one book, each advertising 4096 attempts, which
+  // cancel/doctor/capacity readers all treat as live work).
+  const runsDir = resolve(v25Root, "run-state", "books", BOOK, "runs");
+  const readerLaneRuns = readdirSync(runsDir)
+    .map((runId) => JSON.parse(readFileSync(resolve(runsDir, runId, "run.json"), "utf8")) as {
+      definition: { commandId: string; attemptLimits: { run: number; byStage: Record<string, number> } };
+      status: string;
+    })
+    .filter((run) => run.definition.commandId === "reader-experience-review");
+  assert.equal(readerLaneRuns.length, 1, "one reader-lane run per parent canonical-review run");
+  // Sized to the panel it admits: seats x chapters x per-seat retry budget. This
+  // fixture is one chapter, so the ceiling is the whole panel's worst case.
+  const readerLaneCap = READER_PANEL_SEATS.length * 1 * MAX_READER_SEAT_ATTEMPTS;
+  assert.equal(readerLaneRuns[0].definition.attemptLimits.run, readerLaneCap);
+  assert.equal(readerLaneRuns[0].definition.attemptLimits.byStage["reader-experience-review"], readerLaneCap);
+  assert.equal(readerLaneRuns[0].status, "COMPLETED", "the reader-lane run is settled when the panel finishes");
 
   const resumed = await composition.app.bookRun.run({
     bookId: BOOK,

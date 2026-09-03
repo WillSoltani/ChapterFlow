@@ -108,6 +108,12 @@ export type BookRunHarness = Readonly<{
   bookRunId: string;
   events: BookRunEvent[];
   runStore: RunStore;
+  qcStore: ReturnType<typeof createQcStore>;
+  /** Every attempt at a durable phase-event append, including retried ones. */
+  eventAppendAttempts: () => number;
+  /** Drive the canonical-review run for `parentRunId` to terminal FAILED before
+   *  the book run reaches it — the infra-loss shape R-186 has to recover from. */
+  seedCanonicalReviewRunTerminal: (parentRunId: string) => Promise<void>;
   reviewCalls: () => number;
   repairCalls: () => readonly ReviewRepairApplicationRequest[];
   /** Every `repair.run` (fresh-QC lane) request, in call order. */
@@ -171,8 +177,13 @@ export type BookRunHarnessOptions = Readonly<{
   /** Fail every QC-lane repair with this code, driving its run FAILED first —
    *  exactly what the real port does on a model/workflow failure. */
   qcRepairFails?: string;
-  /** Fresh-QC outcomes, scripted per `candidateQc.run` call (default: PASS). */
-  qcOutcomes?: readonly ("PASS" | "FAIL")[];
+  /** Fresh-QC outcomes, scripted per `candidateQc.run` call (default: PASS).
+   *  ERROR is the answer-key judge's own uncertainty outcome — the fresh-qc
+   *  analogue of a panel ERROR (R-184). */
+  qcOutcomes?: readonly ("PASS" | "FAIL" | "ERROR")[];
+  /** Fail the FIRST n durable phase-event appends with a transient store error,
+   *  then succeed. Exercises the #event write retry (R-187). */
+  eventAppendFailures?: number;
   /** Promote at the end of the run (default true). QC-lane cases turn this off:
    *  the fake repair port returns a synthesized review/QC pair that the real
    *  promotion service has no stored record for. */
@@ -330,6 +341,11 @@ export async function buildBookRunHarness(
     },
   } as unknown as CompilerApplicationPort;
   const qcOutcomes = [...(options.qcOutcomes ?? [])];
+  // R-184: an ERROR round carries no blockers — it is "the judge could not
+  // decide", which is exactly why it must not be treated as a verdict.
+  const qcIssuesFor = (outcome: "PASS" | "FAIL" | "ERROR") => (outcome === "FAIL"
+    ? [{ code: "CHAPTER_FIX", severity: "BLOCKER" as const, message: "chapter opening buries the ruling", location: chapterLogicalPath }]
+    : []);
   const candidateQc = {
     async run(req: { roundId: string; candidate: CandidateSnapshot; canonicalReview: { reviewId: string } }) {
       const outcome = qcOutcomes.shift() ?? "PASS";
@@ -340,9 +356,7 @@ export async function buildBookRunHarness(
           candidate: { candidateId: req.candidate.manifest.candidateId, manifestDigest: req.candidate.manifest.manifestDigest },
           reviewId: req.canonicalReview.reviewId,
           outcome,
-          issues: outcome === "PASS"
-            ? []
-            : [{ code: "CHAPTER_FIX", severity: "BLOCKER" as const, message: "chapter opening buries the ruling", location: chapterLogicalPath }],
+          issues: qcIssuesFor(outcome),
         },
       };
     },
@@ -574,6 +588,8 @@ export async function buildBookRunHarness(
   const repair = { runFromReviewFail, run: runQcLaneRepair } as unknown as CandidateRepairApplicationPort;
 
   const events: BookRunEvent[] = [];
+  let eventAppendAttempts = 0;
+  let eventAppendFailuresLeft = options.eventAppendFailures ?? 0;
   const service = new BookRunApplicationService({
     research, compiler, repair, contentReader: reader, candidateQc, reviews, qc, diagnoses: qcStore, promotion, currentPointer, runStore, stageCoordinator,
     clock: { now },
@@ -586,7 +602,14 @@ export async function buildBookRunHarness(
       qcRoundId: (runId) => `${runId}-qc`,
     },
     events: {
-      async append(event) { events.push(event); },
+      async append(event) {
+        eventAppendAttempts += 1;
+        if (eventAppendFailuresLeft > 0) {
+          eventAppendFailuresLeft -= 1;
+          throw new Error("ENOSPC: no space left on device");
+        }
+        events.push(event);
+      },
       async read(bookId, runId) { return events.filter((event) => event.bookId === bookId && event.runId === runId); },
     },
     pipelineRoot: resolve(context.roots.base, "pipeline"),
@@ -596,6 +619,37 @@ export async function buildBookRunHarness(
     bookRunId,
     events,
     runStore,
+    qcStore,
+    eventAppendAttempts: () => eventAppendAttempts,
+    async seedCanonicalReviewRunTerminal(parentRunId: string) {
+      // The durable shape an infra loss leaves on the panel run: the exact run id
+      // exactReview derives, its exact definition, driven terminal FAILED. The
+      // definition must match byte-for-byte or createRun answers CONFLICT instead
+      // of returning the FAILED snapshot the service has to route around.
+      const runId = derivedIdOf("review-run", parentRunId);
+      const createdAt = context.clock.now();
+      const created = await runStore.createRun({
+        schemaVersion: "1",
+        bookId: book,
+        runId,
+        commandId: "canonical-review",
+        sourceGitSha: SOURCE_SHA,
+        requiredStages: ["canonical-review"],
+        requiredInventory: compiled.manifest.entries.map(({ kind, logicalPath, mediaType }) => ({ kind, logicalPath, mediaType })),
+        inputCandidate: identityOf(compiled),
+        attemptLimits: { run: 1, byStage: { "canonical-review": 1 } },
+        createdAt,
+      });
+      assert.equal(created.ok, true, JSON.stringify(created));
+      const finished = await runStore.finishRun({
+        bookId: book,
+        runId,
+        status: "FAILED",
+        finishedAt: context.clock.now(),
+        reason: "seeded: the panel run was lost to infrastructure",
+      });
+      assert.equal(finished.ok, true, JSON.stringify(finished));
+    },
     reviewCalls: () => reviewCalls,
     repairCalls: () => repairCalls,
     qcRepairCalls: () => qcRepairCalls,
