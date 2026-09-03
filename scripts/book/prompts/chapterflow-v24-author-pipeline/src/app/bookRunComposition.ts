@@ -260,14 +260,21 @@ const READER_LANE_ATTEMPT_CAP = 4096;
  * It provisions (once per parent review run) a dedicated reader-lane run with
  * its own attempt capacity, then redirects each reader task into that run,
  * keeping the caller-supplied per-chapter attemptId. The canonical-review run is
- * untouched, so its single-attempt invariant holds. The reader-lane run is left
- * RUNNING; it carries only advisory reader evidence and is never promoted from.
+ * untouched, so its single-attempt invariant holds.
+ *
+ * `settle` ENDS that run when the review it belongs to finishes (R-215). It used
+ * to be left RUNNING for ever — "it carries only advisory evidence and is never
+ * promoted from" explains why nothing READS it, not why it may leak: every
+ * review left one more live run behind that no resume, cancel or reconcile path
+ * could ever settle.
  */
 function createReaderLaneRunner(deps: Readonly<{
   base: ModelTaskRunner;
   runStore: ReturnType<typeof createFileRunStore>;
   clock: ChapterFlowClock;
-}>): ModelTaskRunner {
+}>): ModelTaskRunner & {
+  settle(input: Readonly<{ bookId: string; parentRunId: string; outcome: "COMPLETED" | "FAILED"; reason?: string }>): Promise<void>;
+} {
   const provisioned = new Set<string>();
   return {
     async run(request) {
@@ -307,6 +314,25 @@ function createReaderLaneRunner(deps: Readonly<{
         ...request,
         context: { ...request.context, runId: readerRunId, stageId: READER_LANE_STAGE },
       });
+    },
+    async settle(input) {
+      const readerRunId = `reader-lane-run-${createHash("sha256").update(input.parentRunId).digest("hex").slice(0, 32)}`;
+      if (!provisioned.has(readerRunId)) return;
+      provisioned.delete(readerRunId);
+      const finished = await deps.runStore.finishRun({
+        bookId: input.bookId,
+        runId: readerRunId,
+        status: input.outcome,
+        finishedAt: deps.clock.now(),
+        ...(input.outcome === "FAILED" ? { reason: input.reason ?? "canonical review did not complete" } : {}),
+      });
+      // The REVIEW's outcome is authoritative and already decided by the time
+      // this runs; failing a completed review because its advisory-evidence run
+      // could not be closed would trade a real result for bookkeeping. The
+      // failure is reported rather than swallowed.
+      if (!finished.ok) {
+        console.warn(`[reader-lane] could not settle ${readerRunId}: ${finished.error.code}:${finished.error.message}`);
+      }
     },
   };
 }
@@ -385,11 +411,29 @@ export async function createProductionBookRunComposition(input: Readonly<{
   // plus the restored reader-experience lane. Reader tasks run through a
   // dedicated reader-lane run (createReaderLaneRunner) so the single-attempt
   // canonical-review run stays intact.
-  const reviewService = createReviewServiceFactory({ booksRoot, contentReader, now: () => clock.now() })
+  const readerLaneRunner = createReaderLaneRunner({ base: runner, runStore, clock });
+  const panelReviewService = createReviewServiceFactory({ booksRoot, contentReader, now: () => clock.now() })
     .create(new SemanticPanelReviewEvaluator({
       baseline: new ModelGatewayReviewEvaluator(runner, "attempt-read-json-v1"),
-      runner: createReaderLaneRunner({ base: runner, runStore, clock }),
+      runner: readerLaneRunner,
     }));
+  // The reader-lane run is opened lazily by the first reader task of a review and
+  // closed here when that review returns (R-215) — this is the one place that
+  // knows a review is over.
+  const reviewService: typeof panelReviewService = {
+    screen: (candidate) => panelReviewService.screen(candidate),
+    get: (bookId, reviewId) => panelReviewService.get(bookId, reviewId),
+    async reviewCanonical(request) {
+      const reviewed = await panelReviewService.reviewCanonical(request);
+      await readerLaneRunner.settle({
+        bookId: request.candidate.manifest.bookId,
+        parentRunId: request.taskContext.runId,
+        outcome: reviewed.ok ? "COMPLETED" : "FAILED",
+        ...(reviewed.ok ? {} : { reason: `${reviewed.error.code}:${reviewed.error.message}` }),
+      });
+      return reviewed;
+    },
+  };
   const qcService = createQcService({
     booksRoot,
     contentReader,

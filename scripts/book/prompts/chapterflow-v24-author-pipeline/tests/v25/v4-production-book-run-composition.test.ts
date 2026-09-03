@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -550,6 +550,19 @@ requiredTest("production composition reaches isolated local promotion and exact 
   ]);
   assert.ok(events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   assert.equal(existsSync(externalPackage), false, "local promotion must not write production package root");
+
+  // R-215 — the reader lane provisions its own run so the canonical-review run
+  // keeps its single-attempt invariant. That run used to be left RUNNING for
+  // ever ("never promoted from" is not a reason to leak a live run): one live
+  // run per review, none of which any resume or cancel path can ever settle.
+  const runsDir = resolve(v25Root, "run-state", "books", BOOK, "runs");
+  const readerRuns = readdirSync(runsDir).filter((name) => name.startsWith("reader-lane-run-"));
+  assert.ok(readerRuns.length >= 1, `the reader lane must have provisioned its own run: ${readdirSync(runsDir).join(", ")}`);
+  for (const runId of readerRuns) {
+    const record = JSON.parse(readFileSync(resolve(runsDir, runId, "run.json"), "utf8")) as { status: string; terminal?: { status: string } };
+    assert.notEqual(record.status, "RUNNING", `reader-lane run ${runId} was left RUNNING`);
+    assert.ok(record.terminal, `reader-lane run ${runId} has no terminal outcome`);
+  }
 
   const resumed = await composition.app.bookRun.run({
     bookId: BOOK,
