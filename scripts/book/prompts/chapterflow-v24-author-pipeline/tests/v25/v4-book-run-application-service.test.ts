@@ -24,6 +24,8 @@ import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../../src/run-
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
+import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js";
+import { passingRubricPanel } from "./catalogRubricFakes.js";
 
 const BOOK = "book-run-service";
 const SOURCE_SHA = "a20d1cdab0fc33c4c1f840f4cf99089816e022d4";
@@ -206,6 +208,11 @@ requiredTest("book-run service joins exact review QC and local promotion with du
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -288,7 +295,9 @@ requiredTest("book-run service joins exact review QC and local promotion with du
   assert.ok(pointer.ok && pointer.value);
   assert.equal(pointer.value.candidateId, compiled.manifest.candidateId);
   assert.deepEqual(events.filter((event) => event.status === "COMPLETED").map((event) => event.phase), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "promotion",
+    // R-080: the whole-book rubric gate sits between the fresh QC PASS and the
+    // promotion it authorizes.
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "rubric", "promotion",
   ]);
   assert.ok(events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   assert.equal(readFileSync(sentinel, "utf8"), "unchanged\n");
@@ -490,6 +499,11 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -861,6 +875,11 @@ requiredTest("reconcile resume grants one operator-authorized compile attempt pa
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1183,6 +1202,11 @@ requiredTest("reconcile resume un-wedges a RUNNING operator-retry compile run th
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1453,6 +1477,11 @@ requiredTest("a transient QC round-commit failure leaves the judge run RUNNING s
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1669,6 +1698,11 @@ requiredTest("resume after a crash inside fresh-qc abandons the dead judge run a
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -1912,6 +1946,11 @@ async function successorRecoveryHarness(
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -2336,6 +2375,11 @@ requiredTest("resume rehydrates a durable COMPLETED compile from an operator slo
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -2529,6 +2573,11 @@ requiredTest("resume with a durable COMPLETED compile event but a missing or mis
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,
@@ -2759,6 +2808,11 @@ async function buildReviewSuccessorHarness(
   const service = new BookRunApplicationService({
     research, compiler, contentReader: reader, candidateQc, reviews, qc, promotion, currentPointer, runStore, stageCoordinator,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     clock: { now },
     ids: {
       nextRunId: () => bookRunId,
@@ -2956,6 +3010,11 @@ async function researchPinHarness(
     reviews,
     qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion,
     currentPointer,
     runStore,

@@ -12,6 +12,7 @@ import { normSlug } from "../../src/lib/chapterPaths.js";
 import {
   buildExpectedProductionManifestForPackage,
   candidateChapterEvidenceResolver,
+  declaredCandidateQcEvidence,
 } from "../../src/productionManifest.js";
 import type { CandidateEvidence } from "../../src/lib/candidateEvidence.js";
 import type { FingerprintRoots } from "../../src/lib/pipelineFingerprint.js";
@@ -1491,6 +1492,81 @@ requiredTest("the legacy no-candidate manifest route still requires the ambient 
     qcRoundId: "qc-1",
     perChapterAttestation: "subsumed-by-round",
   });
+  // R-254: with a verdict block, the SAME build records what that round decided
+  // — verbatim, hashed into a DIFFERENT contentId than the verdict-free build,
+  // and recoverable through the verifier's own declared-evidence replay.
+  const verdict = {
+    qcOutcome: "PASS" as const,
+    qcIssueCounts: { BLOCKER: 0, WARN: 235, INFO: 0 },
+    reviewOutcome: "PASS" as const,
+    reviewIssueCounts: { BLOCKER: 0, WARN: 92, INFO: 2 },
+    panelChapterComposites: [{ chapterNumber: 1, composite: 75.4 }],
+    rubric: {
+      instrumentVersion: "catalog-rubric-v2",
+      composite: 84,
+      tier: "strong/ships (80-90)",
+      gate: "PASS" as const,
+      churn: "LOW" as const,
+      bar: 80,
+      factorFloor: 70,
+      highQuality: false,
+      factorMedians: { retention: 84 },
+      sampledChapterNumbers: [1],
+      totalChapters: 1,
+      readerCount: 3,
+    },
+  };
+  const withVerdict = buildExpectedProductionManifestForPackage({
+    pkg,
+    chapterSetSource,
+    candidateChapterEvidence: candidateChapterEvidenceResolver(inMemoryCandidateEvidence(bookId, [chapter], digest)),
+    candidateQcEvidence: { ...candidateQcEvidence, verdict },
+    ...roots,
+  });
+  assert.equal(withVerdict.ok, true, withVerdict.ok ? "" : withVerdict.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+  if (!withVerdict.ok) throw new Error("a verdict-bearing candidate build must succeed");
+  const verdictPayload = withVerdict.payload as unknown as Record<string, any>;
+  assert.deepEqual(verdictPayload.candidateQcEvidence, {
+    source: "v25-qc-round",
+    reviewId: "review-1",
+    qcRoundId: "qc-1",
+    perChapterAttestation: "subsumed-by-round",
+    verdict,
+  });
+  assert.notEqual(
+    withVerdict.manifest.contentId,
+    asCandidate.manifest.contentId,
+    "the verdict is payload data, so it is hashed into the pair's identity",
+  );
+  assert.deepEqual(declaredCandidateQcEvidence(withVerdict.payload), {
+    reviewId: "review-1",
+    qcRoundId: "qc-1",
+    verdict,
+  });
+  // The declared-evidence replay is what the verifier feeds back into its
+  // recompute, so a REPLAY of the manifest's own block must rebuild the very
+  // same contentId — otherwise every verdict-bearing pair would fail
+  // verification.
+  const replayed = buildExpectedProductionManifestForPackage({
+    pkg,
+    chapterSetSource,
+    candidateChapterEvidence: candidateChapterEvidenceResolver(inMemoryCandidateEvidence(bookId, [chapter], digest)),
+    candidateQcEvidence: declaredCandidateQcEvidence(withVerdict.payload),
+    ...roots,
+  });
+  assert.equal(replayed.ok, true, replayed.ok ? "" : replayed.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+  if (!replayed.ok) throw new Error("the declared-evidence replay must rebuild");
+  assert.equal(replayed.manifest.contentId, withVerdict.manifest.contentId);
+  // A malformed verdict is refused rather than shipped as unreadable evidence.
+  const bad = buildExpectedProductionManifestForPackage({
+    pkg,
+    chapterSetSource,
+    candidateChapterEvidence: candidateChapterEvidenceResolver(inMemoryCandidateEvidence(bookId, [chapter], digest)),
+    candidateQcEvidence: { ...candidateQcEvidence, verdict: { ...verdict, qcOutcome: "MAYBE" } as never },
+    ...roots,
+  });
+  assert.equal(bad.ok, false, "a verdict whose shape does not validate must not reach a sidecar");
+  assert.deepEqual(bad.ok ? [] : bad.findings.map((finding) => finding.checkId), ["PPKG.candidate_qc_verdict_invalid"]);
 });
 
 /** The candidate file set as `bookContentReader` would hand it over, built from

@@ -50,6 +50,8 @@ import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import type { ChapterV21 } from "../../src/types.js";
 import { makeGateCleanChapter } from "../helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
+import { createCatalogRubricStore } from "../../src/review/catalogRubricStore.js";
+import { passingRubricPanel } from "./catalogRubricFakes.js";
 
 const BOOK = "fresh-qc-e2e";
 const SOURCE_SHA = "8f14e45fceea167a5a36dedd4bea2543cb1e5d7f";
@@ -397,6 +399,11 @@ async function buildWorld(
     reviews,
     qc: overrides.qc ?? qc,
     diagnoses: createQcStore({ booksRoot }),
+    // R-080 — the whole-book rubric gate every book run now passes through.
+    // These cases are about OTHER lanes, so the panel is a passing fake and the
+    // store is the real one: the gate is exercised, not bypassed.
+    rubric: passingRubricPanel(),
+    rubricStore: createCatalogRubricStore({ booksRoot }),
     promotion: overrides.promotion ?? promotion,
     currentPointer: overrides.currentPointer ?? currentPointer,
     runStore,
@@ -500,7 +507,8 @@ requiredTest("fresh QC judge PASS commits a durable round and promotes the revie
 
   // The durable phase-event sequence is the whole contract of the run.
   assert.deepEqual(completedPhases(world.events), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "promotion",
+    // R-080: the whole-book rubric gate between the fresh QC PASS and promotion.
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "rubric", "promotion",
   ]);
   assert.ok(world.events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   const qcCompleted = world.events.find((event) => event.phase === "fresh-qc" && event.status === "COMPLETED");
@@ -653,7 +661,9 @@ requiredTest("a fresh QC FAIL routes to repair and promotes the repaired success
   assert.ok(pointer.ok && pointer.value, JSON.stringify(pointer));
   assert.equal(pointer.value.candidateId, successorId);
   assert.deepEqual(completedPhases(world.events), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "repair", "promotion",
+    // R-080: the whole-book rubric gate runs on the REPAIRED successor, between
+    // the repair that produced it and the promotion it authorizes.
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "repair", "rubric", "promotion",
   ]);
 });
 
