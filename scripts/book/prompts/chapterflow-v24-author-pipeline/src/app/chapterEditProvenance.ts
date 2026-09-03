@@ -32,6 +32,14 @@ export const CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION = "chapter-edit-provenance-v
  */
 export type ChapterEditProvenanceStatus = "EDITED" | "SKIPPED" | "REVERTED" | "ERROR" | "DISABLED";
 
+export type ChapterEditAdvisoryRecord = Readonly<{
+  applied: boolean;
+  reviewId: string | null;
+  count: number;
+  outcome: "NOT_RUN" | "ACCEPTED" | "REFUSED" | "ERROR";
+  blockers: readonly string[];
+}>;
+
 export type ChapterEditProvenanceEntry = Readonly<{
   chapterNumber: number;
   chapterId: string;
@@ -39,7 +47,12 @@ export type ChapterEditProvenanceEntry = Readonly<{
   replayed: boolean;
   attemptIds: readonly string[];
   blockers: readonly string[];
-  advisory: Readonly<{ applied: boolean; reviewId: string | null; count: number }>;
+  /** R-166. `applied` says reader advisories were rendered into an editor card
+   *  for this chapter; `outcome` says what that second invocation decided, which
+   *  is NOT the chapter's status: a chapter whose STANDING edit shipped reads
+   *  `status: "EDITED"` with `advisory.outcome: "REFUSED"` when the advisory edit
+   *  was refused, and `advisory.blockers` says why. */
+  advisory: ChapterEditAdvisoryRecord;
 }>;
 
 export type ChapterEditProvenanceFile = Readonly<{

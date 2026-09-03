@@ -74,6 +74,12 @@ export type ChapterEditCacheEntry = Readonly<{
   blockers: readonly string[];
   /** The run-state attempt ids the verdict was reached under, for provenance. */
   attemptIds: readonly string[];
+  /** What the R-166 advisory INVOCATION decided, which the chapter's own outcome
+   *  does not say: an EDITED chapter may carry a REFUSED advisory edit. Required,
+   *  and an entry without it is treated as a MISS rather than replayed with the
+   *  advisory verdict guessed — a re-edit costs one call, a guessed provenance
+   *  line costs the operator's trust in the file. */
+  advisory: Readonly<{ outcome: "NOT_RUN" | "ACCEPTED" | "REFUSED" | "ERROR"; blockers: readonly string[] }>;
 }>;
 
 type ChapterEditCacheEnvelope = Readonly<{
@@ -137,6 +143,8 @@ function identityMatches(envelope: ChapterEditCacheEnvelope, key: ChapterEditCac
     && envelope.cardDigest === key.cardDigest;
 }
 
+const ADVISORY_OUTCOMES: readonly string[] = ["NOT_RUN", "ACCEPTED", "REFUSED", "ERROR"];
+
 function parseEnvelope(raw: unknown): ChapterEditCacheEnvelope | null {
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
   const value = raw as Record<string, unknown>;
@@ -150,6 +158,11 @@ function parseEnvelope(raw: unknown): ChapterEditCacheEnvelope | null {
   if (record.outcome !== "EDITED" && record.outcome !== "SKIPPED") return null;
   if (!Array.isArray(record.blockers) || !record.blockers.every((line) => typeof line === "string")) return null;
   if (!Array.isArray(record.attemptIds) || !record.attemptIds.every((id) => typeof id === "string")) return null;
+  const advisory = record.advisory;
+  if (typeof advisory !== "object" || advisory === null || Array.isArray(advisory)) return null;
+  const advisoryRecord = advisory as Record<string, unknown>;
+  if (!ADVISORY_OUTCOMES.includes(advisoryRecord.outcome as string)) return null;
+  if (!Array.isArray(advisoryRecord.blockers) || !advisoryRecord.blockers.every((line) => typeof line === "string")) return null;
   // An EDITED entry without packs would replay as "edited, with nothing to apply".
   if (record.outcome === "EDITED" && (typeof record.packs !== "object" || record.packs === null || Array.isArray(record.packs))) {
     return null;

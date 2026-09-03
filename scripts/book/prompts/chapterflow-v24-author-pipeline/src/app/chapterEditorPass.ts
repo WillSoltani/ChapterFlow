@@ -54,6 +54,7 @@ import {
   parseChapterEditOutput,
   readerChapterView,
 } from "./chapterEditorContract.js";
+import type { ChapterEditAdvisoryRecord } from "./chapterEditProvenance.js";
 import type { ChapterEditCache, ChapterEditCacheEntry, ChapterEditCacheKey } from "../books/chapterEditCache.js";
 import type { ReviewAdvisoryEntry, ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
@@ -64,8 +65,11 @@ import type { ModelTaskRunner } from "./modelTaskRunner.js";
  *  without an editor says so rather than looking like a book nothing improved. */
 export const CHAPTER_EDITOR_ENABLED_ENV = "CHAPTERFLOW_EDITOR_PASS";
 
-/** R-166 — set to "1" to spend ONE extra editor call per chapter that carries
- *  reader advisories from a PASS review. Default off; see reviewAdvisoryStore. */
+/** R-166 — set to "1" to spend one extra editor INVOCATION per chapter that
+ *  carries reader advisories from a PASS review: one call when its edit is
+ *  accepted, {@link MAX_EDITOR_ATTEMPTS} at worst, which is why a chapter's whole
+ *  editor budget is 2 x MAX_EDITOR_ATTEMPTS. Default off; see
+ *  reviewAdvisoryStore. */
 export const CHAPTER_EDITOR_ADVISORY_ENV = "CHAPTERFLOW_EDITOR_ADVISORY_PASS";
 
 /**
@@ -135,6 +139,32 @@ export interface ChapterEditorPassInput {
 
 export type ChapterEditStatus = "EDITED" | "SKIPPED" | "ERROR" | "DISABLED";
 
+/**
+ * What the R-166 advisory INVOCATION itself did, which is a different fact from
+ * what the chapter ended up as.
+ *
+ * NOT_RUN   no advisory invocation happened: the flag was off, no store was
+ *           composed, or this chapter carried no stored advisories.
+ * ACCEPTED  the advisory edit passed the guard and the gates, and is the edit
+ *           that shipped.
+ * REFUSED   the advisory edit was refused twice. The chapter may still be EDITED,
+ *           by the STANDING pass, which is exactly the case an operator would
+ *           otherwise misread as "the advisories were applied".
+ * ERROR     the advisory invocation never produced an edit because of an
+ *           infrastructure failure.
+ */
+export type ChapterEditAdvisoryOutcome = ChapterEditAdvisoryRecord["outcome"];
+
+/** The R-166 record for one chapter: whether advisories were rendered into a
+ *  card at all, which review they came from, how many, and what that invocation
+ *  decided. `applied` says the advisories REACHED an editor; `outcome` says what
+ *  became of the edit they asked for, and the two are independent. Its refusal
+ *  lines are deliberately NOT merged into the chapter's own `blockers`: a chapter
+ *  whose standing edit shipped is EDITED with no blockers of its own, and the
+ *  advisory's refusal belongs to the advisory. Defined beside the provenance file
+ *  it is written into, so the record and its reader cannot drift. */
+export type { ChapterEditAdvisoryRecord } from "./chapterEditProvenance.js";
+
 export interface ChapterEditResult {
   readonly chapterNumber: number;
   readonly chapterId: string;
@@ -147,9 +177,9 @@ export interface ChapterEditResult {
   readonly blockers: readonly string[];
   readonly attemptIds: readonly string[];
   /** R-166: whether the advisory invocation RAN for this chapter (the flag was on
-   *  and the store had entries), which review they came from, and how many were
-   *  rendered. Whether the resulting edit was accepted is `status`, not this. */
-  readonly advisory: Readonly<{ applied: boolean; reviewId: string | null; count: number }>;
+   *  and the store had entries), which review they came from, how many were
+   *  rendered, and what that invocation itself decided. */
+  readonly advisory: ChapterEditAdvisoryRecord;
 }
 
 function flagOff(env: Readonly<Record<string, string | undefined>>, name: string): boolean {
@@ -396,7 +426,13 @@ function result(
     packs: fields.packs ?? null,
     blockers: Object.freeze([...(fields.blockers ?? [])]),
     attemptIds: Object.freeze([...(fields.attemptIds ?? [])]),
-    advisory: fields.advisory ?? Object.freeze({ applied: false, reviewId: null, count: 0 }),
+    advisory: fields.advisory ?? Object.freeze({
+      applied: false,
+      reviewId: null,
+      count: 0,
+      outcome: "NOT_RUN" as const,
+      blockers: Object.freeze([]),
+    }),
   });
 }
 
@@ -452,10 +488,17 @@ export async function runChapterEditorPass(
       advisoryReviewId = null;
     }
   }
-  const advisorySummary = Object.freeze({
+  /** The R-166 record, minted at each return so the invocation's own verdict is
+   *  part of it rather than assumed from the chapter's status. */
+  const advisoryRecord = (
+    outcome: ChapterEditAdvisoryOutcome,
+    advisoryBlockers: readonly string[],
+  ): ChapterEditAdvisoryRecord => Object.freeze({
     applied: advisories.length > 0,
     reviewId: advisoryReviewId,
     count: advisories.length,
+    outcome,
+    blockers: Object.freeze([...advisoryBlockers]),
   });
 
   const cacheKey: ChapterEditCacheKey = {
@@ -493,7 +536,11 @@ export async function runChapterEditorPass(
         packs: cached.outcome === "EDITED" ? (cached.packs as unknown as ChapterEditPacks) : null,
         blockers: cached.blockers,
         attemptIds: cached.attemptIds,
-        advisory: advisorySummary,
+        // The advisory verdict comes from the ENTRY, not from the current read:
+        // the store says which advisories exist now, and only the entry knows
+        // what the invocation that consumed them decided. The cache key carries
+        // the advisory digest, so the two describe the same advisories.
+        advisory: advisoryRecord(cached.advisory.outcome, cached.advisory.blockers),
       });
     }
   }
@@ -502,6 +549,8 @@ export async function runChapterEditorPass(
   const blockers: string[] = [];
   let accepted: ChapterEditPacks | null = null;
   let sawError = false;
+  let advisoryOutcome: ChapterEditAdvisoryOutcome = "NOT_RUN";
+  let advisoryBlockers: readonly string[] = [];
 
   const standing = await invokeEditor(dependencies, input, chapter.packs, ["", "-r2"], []);
   attemptIds.push(...standing.attemptIds);
@@ -523,7 +572,16 @@ export async function runChapterEditorPass(
     attemptIds.push(...advisoryPass.attemptIds);
     if (advisoryPass.kind === "ACCEPTED") {
       accepted = advisoryPass.packs;
+      advisoryOutcome = "ACCEPTED";
     } else {
+      // Recorded as the ADVISORY's own verdict, whatever the chapter ends up as.
+      // Without this, a standing edit that was accepted while the advisory edit
+      // was refused reported `status: EDITED, advisory.applied: true,
+      // blockers: []`, which reads as "the advisories were applied" and is the
+      // opposite of what happened. `blockers` still collects them for the
+      // unedited paths, where they are part of why the chapter shipped as drafted.
+      advisoryOutcome = advisoryPass.kind === "ERROR" ? "ERROR" : "REFUSED";
+      advisoryBlockers = advisoryPass.blockers;
       blockers.push(...advisoryPass.blockers);
       sawError = sawError || advisoryPass.kind === "ERROR";
     }
@@ -535,10 +593,13 @@ export async function runChapterEditorPass(
       packs: accepted as unknown as Record<string, unknown>,
       blockers: [],
       attemptIds,
+      advisory: { outcome: advisoryOutcome, blockers: advisoryBlockers },
     };
     await storeVerdict(dependencies, cacheKey, entry, chapter.chapterNumber);
-    console.error(`[book-run] editor chapter=${chapter.chapterNumber} action=CHAPTER_EDITED attempts=${attemptIds.length}`);
-    return result(chapter, "EDITED", { packs: accepted, attemptIds, advisory: advisorySummary });
+    console.error(
+      `[book-run] editor chapter=${chapter.chapterNumber} action=CHAPTER_EDITED attempts=${attemptIds.length} advisory=${advisoryOutcome}`,
+    );
+    return result(chapter, "EDITED", { packs: accepted, attemptIds, advisory: advisoryRecord(advisoryOutcome, advisoryBlockers) });
   }
   if (sawError) {
     // NOT cached: an infrastructure failure is not a verdict, and freezing it
@@ -546,11 +607,16 @@ export async function runChapterEditorPass(
     console.error(
       `[book-run] editor chapter=${chapter.chapterNumber} action=CHAPTER_EDIT_ERROR detail=${JSON.stringify(blockers)}`,
     );
-    return result(chapter, "ERROR", { blockers, attemptIds, advisory: advisorySummary });
+    return result(chapter, "ERROR", { blockers, attemptIds, advisory: advisoryRecord(advisoryOutcome, advisoryBlockers) });
   }
-  await storeVerdict(dependencies, cacheKey, { outcome: "SKIPPED", blockers, attemptIds }, chapter.chapterNumber);
+  await storeVerdict(
+    dependencies,
+    cacheKey,
+    { outcome: "SKIPPED", blockers, attemptIds, advisory: { outcome: advisoryOutcome, blockers: advisoryBlockers } },
+    chapter.chapterNumber,
+  );
   console.error(
     `[book-run] editor chapter=${chapter.chapterNumber} action=CHAPTER_EDIT_SKIPPED detail=${JSON.stringify(blockers.slice(0, 4))}`,
   );
-  return result(chapter, "SKIPPED", { blockers, attemptIds, advisory: advisorySummary });
+  return result(chapter, "SKIPPED", { blockers, attemptIds, advisory: advisoryRecord(advisoryOutcome, advisoryBlockers) });
 }

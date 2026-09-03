@@ -4,20 +4,27 @@
  * Every case drives `runChapterEditorPass` with a FAKE model runner over the
  * compliant credit fixture, so the real section gates, the real assembly
  * projection and the real preservation guard all run while nothing reaches a
- * provider. What each case pins:
+ * provider. THIRTEEN cases; what each pins:
  *
  *   E1  a good edit is accepted, once, and the card carries the contract, the
  *       brief, the scars and the source span.
+ *   E1b the read-only reader view is clamped to the writer's own tier caps.
  *   E2  an edit the SECTION GATE rejects is retried once with the blockers and
  *       then skipped, keeping the unedited chapter.
  *   E3  an edit that moves a quiz key is refused by the deterministic guard even
  *       though every gate passes.
+ *   E3b an edit that PERMUTES a question's choices and leaves correctIndex alone
+ *       is refused by the same guard, and the blocker reaches the retry card.
  *   E4  a cached verdict replays with zero model calls, for EDITED and SKIPPED.
+ *   E4b a changed voice card, or anything else the CARD renders, re-edits.
  *   E5  the disable flag records DISABLED and spends nothing.
  *   E6  a provider block propagates; transient failures exhaust the budget into
  *       ERROR, and ERROR is never cached.
  *   E7  the advisory pass is off by default and, when the operator turns it on,
- *       spends exactly one extra call whose card carries the advisories.
+ *       spends one extra INVOCATION whose card carries the advisories.
+ *   E7b a refused advisory edit is recorded as the ADVISORY's verdict on a
+ *       chapter the standing pass edited, and the replay does not launder it —
+ *       and that invocation's own budget is MAX_EDITOR_ATTEMPTS, not one call.
  *   E8  a malformed edit is refused rather than trusted.
  *   E9  cancellation propagates instead of being recorded as a skip.
  */
@@ -136,6 +143,21 @@ function keyMoved(packs: ChapterEditPacks): ChapterEditPacks {
   const learning = edited["learning-pack"] as unknown as LearningPackV1;
   const question = learning.quiz.questions[0];
   question.correctIndex = (question.correctIndex + 1) % 3;
+  return edited;
+}
+
+/** The same corruption with the index left alone: the three choices are permuted,
+ *  so the answer at `correctIndex` is now a distractor. Every id, count, citation
+ *  and chapter-wide number/entity set is untouched, which is exactly why the
+ *  guard has to compare the keyed answer's TEXT. */
+function choicesPermuted(packs: ChapterEditPacks): ChapterEditPacks {
+  const edited = reworded(packs);
+  const learning = edited["learning-pack"] as unknown as LearningPackV1;
+  const question = learning.quiz.questions[0];
+  const other = (question.correctIndex + 1) % 3;
+  const keyed = question.choices[question.correctIndex];
+  question.choices[question.correctIndex] = question.choices[other];
+  question.choices[other] = keyed;
   return edited;
 }
 
@@ -292,6 +314,19 @@ requiredTest("E3 an edit that moves a quiz key is refused by the preservation gu
   assert.equal(subject.calls(), MAX_EDITOR_ATTEMPTS);
 });
 
+requiredTest("E3b a permuted choice list is refused inside the pass, with the blocker the retry card carries", async (context) => {
+  const permuted = choicesPermuted(basePacks());
+  const subject = rig(context, "choices-permuted", { outputs: [() => permuted] });
+  const result = await runChapterEditorPass(subject.dependencies, subject.input);
+  assert.equal(result.status, "SKIPPED");
+  assert.equal(result.packs, null);
+  assert.ok(
+    result.blockers.some((line) => line.includes("EDIT.quiz_key_text")),
+    result.blockers.join(" | "),
+  );
+  assert.equal(subject.calls(), MAX_EDITOR_ATTEMPTS);
+});
+
 requiredTest("E4 a cached verdict replays with zero model calls, for an edit and for a skip", async (context) => {
   const cacheRoot = resolve(context.roots.tempRoot, "books-cache");
   const first = rig(context, "cache-a", { cacheRoot });
@@ -392,7 +427,7 @@ requiredTest("E6 a provider block propagates; exhausted transient failures recor
   assert.equal(retry.calls(), 1);
 });
 
-requiredTest("E7 the advisory pass is off by default and costs exactly one extra call when the operator turns it on", async (context) => {
+requiredTest("E7 the advisory pass is off by default and costs one extra invocation when the operator turns it on", async (context) => {
   const booksRoot = resolve(context.roots.tempRoot, "books-advisory");
   const seed = rig(context, "advisory-seed", { advisoryRoot: booksRoot });
   const store = seed.dependencies.advisories;
@@ -428,6 +463,48 @@ requiredTest("E7 the advisory pass is off by default and costs exactly one extra
   assert.doesNotMatch(on.cards[0], /READER ADVISORIES/);
   assert.match(on.cards[1], /READER ADVISORIES FROM THE LAST PANEL ON THIS BOOK/);
   assert.ok(on.cards[1].includes("card backs announce their own angle"));
+});
+
+requiredTest("E7b a refused advisory edit is recorded as the advisory's own verdict, not read as an applied one", async (context) => {
+  const booksRoot = resolve(context.roots.tempRoot, "books-advisory-refused");
+  const seed = rig(context, "advisory-refused-seed", { advisoryRoot: booksRoot });
+  const store = seed.dependencies.advisories;
+  assert.ok(store);
+  await store.write(
+    { bookId: BOOK, chapterId: seed.input.chapter.chapterId },
+    { reviewId: "review-pass-2", entries: [{ code: "READER.CHURN", message: "ch01 repeats the utilization idea in every tier." }] },
+  );
+
+  // The standing edit is accepted; the advisory invocation then moves a quiz key
+  // and is refused on both of its attempts. The chapter ships EDITED — by the
+  // STANDING pass — and the record has to say that the advisories did NOT land.
+  const subject = rig(context, "advisory-refused", {
+    advisoryRoot: booksRoot,
+    env: { [CHAPTER_EDITOR_ADVISORY_ENV]: "1" },
+    outputs: [() => reworded(basePacks()), () => keyMoved(basePacks())],
+  });
+  const result = await runChapterEditorPass(subject.dependencies, subject.input);
+  assert.equal(result.status, "EDITED");
+  assert.deepEqual(result.blockers, [], "the chapter's own blockers belong to the chapter, not to the advisory");
+  assert.equal(result.advisory.applied, true);
+  assert.equal(result.advisory.outcome, "REFUSED");
+  assert.ok(
+    result.advisory.blockers.some((line) => line.includes("EDIT.quiz_key")),
+    result.advisory.blockers.join(" | "),
+  );
+  // One standing call plus the advisory invocation's OWN budget: the worst case
+  // is MAX_EDITOR_ATTEMPTS per invocation, not one extra call.
+  assert.equal(subject.calls(), 1 + MAX_EDITOR_ATTEMPTS);
+
+  const replay = rig(context, "advisory-refused-replay", {
+    advisoryRoot: booksRoot,
+    env: { [CHAPTER_EDITOR_ADVISORY_ENV]: "1" },
+  });
+  const replayed = await runChapterEditorPass(replay.dependencies, replay.input);
+  assert.equal(replay.calls(), 0, "the verdict replays for nothing");
+  assert.equal(replayed.status, "EDITED");
+  assert.equal(replayed.advisory.outcome, "REFUSED", "a replay must not launder a refused advisory into an applied one");
+  assert.deepEqual(replayed.advisory.blockers, result.advisory.blockers);
 });
 
 requiredTest("E8 a malformed edit is refused rather than trusted", async (context) => {

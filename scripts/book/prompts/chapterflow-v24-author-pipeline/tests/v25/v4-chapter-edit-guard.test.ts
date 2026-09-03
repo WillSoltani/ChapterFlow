@@ -161,6 +161,80 @@ requiredTest("G11 the entity set keeps names and drops openers, Title Case nouns
   assert.ok(!entities.has("Credit"));
 });
 
+requiredTest("G12 a permuted choice list is refused even though correctIndex never moved", () => {
+  const before = packs();
+  const after = packs();
+  const learning = after["learning-pack"] as unknown as LearningPackV1;
+  const question = learning.quiz.questions[0];
+  // The exact class the guard used to miss: the SAME three choices, the SAME
+  // correctIndex, the key now sitting behind a distractor's words. Nothing else
+  // in the chapter changes, so every other check is satisfied by construction.
+  const key = question.correctIndex;
+  const other = (key + 1) % 3;
+  const swapped = question.choices[key];
+  question.choices[key] = question.choices[other];
+  question.choices[other] = swapped;
+  const findings = checkEditPreservesFacts(before, after);
+  assert.deepEqual(codes(findings), ["EDIT.quiz_key_text"]);
+  assert.ok(findings.some((finding) => finding.message.includes(question.questionId)), findings.map((f) => f.message).join(" | "));
+});
+
+requiredTest("G13 a reworded keyed answer is refused, and a reworded distractor is accepted", () => {
+  const reworded = packs();
+  const rewordedLearning = reworded["learning-pack"] as unknown as LearningPackV1;
+  const keyed = rewordedLearning.quiz.questions[1];
+  keyed.choices[keyed.correctIndex] = "Pay before the reportable total is read";
+  assert.deepEqual(codes(checkEditPreservesFacts(packs(), reworded)), ["EDIT.quiz_key_text"]);
+
+  // The other half of the rule: the brief asks for better distractors, so a
+  // rewritten WRONG choice is still an edit the guard admits.
+  const distractor = packs();
+  const distractorLearning = distractor["learning-pack"] as unknown as LearningPackV1;
+  const question = distractorLearning.quiz.questions[1];
+  const wrong = (question.correctIndex + 1) % 3;
+  question.choices[wrong] = "Assume the lender will read repayment intent out of the account history";
+  assert.deepEqual(checkEditPreservesFacts(packs(), distractor), []);
+});
+
+requiredTest("G14 an edit that changes only an explanation sentence is accepted", () => {
+  const after = packs();
+  const learning = after["learning-pack"] as unknown as LearningPackV1;
+  learning.quiz.questions[0].explanation =
+    "The keyed move lowers what a lender can read before the signal travels; the other options lean on intention or on extra accounts.";
+  assert.deepEqual(checkEditPreservesFacts(packs(), after), []);
+});
+
+requiredTest("G15 a keyed answer copied onto a distractor, or two choices collapsed into one, is refused", () => {
+  const copied = packs();
+  const copiedLearning = copied["learning-pack"] as unknown as LearningPackV1;
+  const first = copiedLearning.quiz.questions[2];
+  // Case-and-punctuation clothes do not make it a different choice.
+  first.choices[(first.correctIndex + 1) % 3] = `${first.choices[first.correctIndex].toLowerCase()}.`;
+  const copiedFindings = codes(checkEditPreservesFacts(packs(), copied));
+  assert.ok(copiedFindings.includes("EDIT.quiz_key_text"), copiedFindings.join(", "));
+  assert.ok(copiedFindings.includes("EDIT.quiz_choice_text"), copiedFindings.join(", "));
+
+  const collapsed = packs();
+  const collapsedLearning = collapsed["learning-pack"] as unknown as LearningPackV1;
+  const second = collapsedLearning.quiz.questions[3];
+  const wrongA = (second.correctIndex + 1) % 3;
+  const wrongB = (second.correctIndex + 2) % 3;
+  second.choices[wrongB] = second.choices[wrongA];
+  assert.deepEqual(codes(checkEditPreservesFacts(packs(), collapsed)), ["EDIT.quiz_choice_text"]);
+});
+
+requiredTest("G16 a pack that gains or loses a top-level field is refused", () => {
+  const added = packs();
+  // The class the brief's MEMORABLE LINES clause used to invite: a field that
+  // exists in no pack schema, emitted into a pack and carried into the artifact.
+  (added["summary-pack"] as Record<string, unknown>).memorableLines = ["a principle that stands on its own"];
+  assert.deepEqual(codes(checkEditPreservesFacts(packs(), added)), ["EDIT.pack_shape"]);
+
+  const dropped = packs();
+  delete (dropped["action-pack"] as Record<string, unknown>).tryThisNow;
+  assert.ok(codes(checkEditPreservesFacts(packs(), dropped)).includes("EDIT.pack_shape"));
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

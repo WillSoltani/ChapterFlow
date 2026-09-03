@@ -11,7 +11,23 @@
  * WHAT THIS MODULE DOES. It is the SELECTION and the RECORDING, kept out of the
  * 2,900-line service so both are testable without standing up a book run. The
  * consumer is the compile stage's editor pass, which renders a chapter's stored
- * advisories into ONE extra bounded editor call for that chapter.
+ * advisories into ONE extra bounded editor INVOCATION for that chapter (one call
+ * when it is accepted, MAX_EDITOR_ATTEMPTS at worst, exactly like the standing
+ * invocation).
+ *
+ * WHAT R-166 STILL OWES, STATED HERE RATHER THAN ONLY IN A PULL REQUEST.
+ * This closes the register entry PARTIALLY, in two disclosed ways:
+ *   - With the default flag OFF, `recordReviewAdvisories` returns `disabled`
+ *     before writing anything, so in the DEFAULT configuration a PASS review's
+ *     WARN advisories are still discarded exactly as they were before this
+ *     module existed. Nothing about the default pipeline changed.
+ *   - Even with the flag ON, the advisories reach an editor on the NEXT compile
+ *     of the book, never in the run whose panel filed them, because compile runs
+ *     before review inside one run (see the cost note below).
+ * The register's own suggested fix — one bounded review-repair round through
+ * `runFromReviewFail` after a PASS, inside the same run — is NOT implemented and
+ * is a larger change than this module: it would re-enter the repair lane on a
+ * verdict that passed, which is a policy decision about what a PASS means.
  *
  * OFF BY DEFAULT. Nothing is recorded and nothing is spent unless the operator
  * sets CHAPTERFLOW_EDITOR_ADVISORY_PASS=1. A reader advisory is a judgement no

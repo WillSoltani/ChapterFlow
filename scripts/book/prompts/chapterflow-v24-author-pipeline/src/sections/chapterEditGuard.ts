@@ -16,16 +16,45 @@
  *
  * WHAT IS COMPARED
  *   EDIT.pack_shape    both bundles carry all four packs as objects with the same
- *                      schemaVersion / artifactType / chapterId.
+ *                      schemaVersion / artifactType / chapterId and the same set of
+ *                      top-level fields.
  *   EDIT.unit_ids      the ordered ids of every addressable unit (examples, quiz
  *                      questions, review cards) and the count of the unordered ones
  *                      (ifThenPlans).
  *   EDIT.quiz_key      each question's correctIndex, bloomsLevel and depthLevel.
  *   EDIT.quiz_choice_count  each question's number of choices.
+ *   EDIT.quiz_key_text the TEXT of the keyed choice, at its own index, and nowhere
+ *                      else in the question.
+ *   EDIT.quiz_choice_text  the edited choices are still three different answers.
  *   EDIT.citations     every anchor / fact / case id list, per JSON path, plus the
  *                      declared `introducedEntities` and `numbersUsed` arrays.
  *   EDIT.numbers       the SET of digit-numbers across all reader-facing text.
  *   EDIT.entities      the SET of named entities across all reader-facing text.
+ *
+ * WHY THE QUIZ KEY IS BOUND TO TEXT, NOT TO AN INDEX
+ * `correctIndex` alone does not say which answer is right; the SENTENCE at that
+ * index does. An editor that permutes a question's three choices and leaves
+ * correctIndex where it was moves the key onto a distractor while every
+ * index-shaped check still agrees: the ids are unchanged, the count is unchanged,
+ * the citations are unchanged, and the chapter-wide number and entity SETS cannot
+ * see a permutation because nothing entered or left the chapter. That ships a
+ * wrong answer key, which is the corruption class the gates have historically
+ * missed, and only the downstream fresh-QC answer-key judge would catch it, at the
+ * price of a QC-fail repair round. So the KEYED CHOICE'S TEXT is a fact:
+ * whitespace may be re-flowed and nothing else about it may change, it must stay
+ * at its own index, and it may not be copied onto a distractor.
+ *
+ * WHY THE DISTRACTORS MAY STILL BE REWRITTEN
+ * The strictest rule the pack contract actually supports, not the strictest rule
+ * imaginable. Freezing all three choices would be simpler, and it would make the
+ * brief's QUIZ clause ("distractors are real misconceptions ... a distractor that
+ * is obviously wrong teaches nothing") impossible to obey, which is how an
+ * instruction that cannot be followed gets ignored wholesale. A rewritten WRONG
+ * choice is therefore admitted, and bounded from three sides: the key it must not
+ * become (this check), the chapter-wide number and entity sets it must not add to
+ * (below), and the SAME SEC44 / SEC52 / SEC53 / SEC59 / SEC116 / SEC120 quiz gates
+ * the draft passed, which re-run on the edit and require every specific a choice
+ * uses to be derivable from the chapter's own prose.
  *
  * WHY NUMBERS ARE DIGITS ONLY
  * Number WORDS are ordinary English ("one small step", "two options", "a
@@ -113,6 +142,22 @@ const LOWERCASE_WORD = /\b[a-z]{3,}\b/g;
 
 function normalizeNumber(raw: string): string {
   return raw.replace(/,/g, "").replace(/\.0+$/, "");
+}
+
+/** A choice's text as its IDENTITY: NFC-normalized, with runs of whitespace
+ *  collapsed so a re-flowed line is not a changed answer. Case and punctuation are
+ *  deliberately significant — the keyed answer is a fact, and this is the check
+ *  that says so. */
+function normalizeChoiceText(value: unknown): string {
+  return String(value).normalize("NFC").replace(/\s+/g, " ").trim();
+}
+
+/** A choice's text as a COLLISION key: case, punctuation and spacing folded away,
+ *  so a distractor wearing the keyed answer's clothes ("Pay before the snapshot."
+ *  against "Pay before the snapshot") is still caught as the same answer. Used
+ *  only to refuse, never to accept. */
+function foldChoiceText(value: unknown): string {
+  return normalizeChoiceText(value).toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
 function isRecord(value: unknown): value is Record<string, unknown> {
@@ -316,6 +361,22 @@ export function checkEditPreservesFacts(before: ChapterEditPacks, after: Chapter
         ));
       }
     }
+    // The pack's own field set. An edit is a REWORDING of the fields the writer
+    // filled, so a field that appears or disappears is a schema change, and a
+    // field the pack schema does not have would be carried into the staged
+    // artifact unexamined (the section gates judge the fields they know about and
+    // ignore the rest). This is what makes "return the pack you were given, edited
+    // in place" a checked instruction rather than a hope.
+    const sourceFields = Object.keys(source).sort();
+    const editedFields = Object.keys(edited).sort();
+    if (sourceFields.join("|") !== editedFields.join("|")) {
+      const added = editedFields.filter((key) => !sourceFields.includes(key));
+      const removed = sourceFields.filter((key) => !editedFields.includes(key));
+      findings.push(finding(
+        "EDIT.pack_shape",
+        `${kind} top-level fields changed: added [${added.join(", ")}], dropped [${removed.join(", ")}]`,
+      ));
+    }
   }
   if (findings.length > 0) return findings;
 
@@ -370,8 +431,12 @@ export function checkEditPreservesFacts(before: ChapterEditPacks, after: Chapter
     ));
   }
 
-  // 3. Quiz keys and choice counts. The key is the single field a reworded quiz
-  //    can silently invert, and a dropped choice changes what the key means.
+  // 3. Quiz keys, choice counts, and THE ANSWERS THEMSELVES. The key is the single
+  //    field a reworded quiz can silently invert; a dropped choice changes what the
+  //    key means; and `correctIndex` alone is only a slot number, so the sentence
+  //    standing in that slot is compared too. Permuting the choices moves the key
+  //    without moving the index, which every other check in this file would agree
+  //    with (see the header).
   const sourcePassing = (before["learning-pack"].quiz as Record<string, unknown>).passingScorePercent;
   const editedPassing = (after["learning-pack"].quiz as Record<string, unknown>).passingScorePercent;
   if (sourcePassing !== editedPassing) {
@@ -392,14 +457,63 @@ export function checkEditPreservesFacts(before: ChapterEditPacks, after: Chapter
         ));
       }
     }
-    const sourceChoices = Array.isArray(source.choices) ? source.choices.length : -1;
-    const editedChoices = Array.isArray(edited.choices) ? edited.choices.length : -1;
-    if (sourceChoices !== editedChoices) {
+    const sourceChoices = Array.isArray(source.choices) ? (source.choices as unknown[]) : null;
+    const editedChoices = Array.isArray(edited.choices) ? (edited.choices as unknown[]) : null;
+    if (sourceChoices === null || editedChoices === null || sourceChoices.length !== editedChoices.length) {
       findings.push(finding(
         "EDIT.quiz_choice_count",
-        `${id} changed from ${sourceChoices} choices to ${editedChoices}`,
+        `${id} changed from ${sourceChoices === null ? -1 : sourceChoices.length} choices to ${editedChoices === null ? -1 : editedChoices.length}`,
+      ));
+      continue;
+    }
+    // THE ANSWER, not the slot. `correctIndex` names a position; the sentence in
+    // that position is what makes it right, so the sentence is the fact.
+    const keyIndex = source.correctIndex;
+    if (typeof keyIndex !== "number" || !Number.isInteger(keyIndex) || keyIndex < 0 || keyIndex >= sourceChoices.length) {
+      findings.push(finding(
+        "EDIT.quiz_key",
+        `${id}.correctIndex ${JSON.stringify(source.correctIndex)} does not name one of its ${sourceChoices.length} choices`,
+      ));
+      continue;
+    }
+    const sourceKeyText = normalizeChoiceText(sourceChoices[keyIndex]);
+    const editedKeyText = normalizeChoiceText(editedChoices[keyIndex]);
+    if (sourceKeyText !== editedKeyText) {
+      findings.push(finding(
+        "EDIT.quiz_key_text",
+        `${id} keyed answer at choice ${keyIndex} changed from ${JSON.stringify(sourceKeyText)} to ${JSON.stringify(editedKeyText)}; the keyed answer is a fact, so keep it word for word and rewrite the distractors instead`,
       ));
     }
+    const foldedKey = foldChoiceText(sourceKeyText);
+    editedChoices.forEach((choice, choiceIndex) => {
+      if (choiceIndex === keyIndex) return;
+      if (foldChoiceText(choice) === foldedKey) {
+        findings.push(finding(
+          "EDIT.quiz_key_text",
+          `${id} choice ${choiceIndex} now carries the keyed answer's own words; the key belongs at choice ${keyIndex} and nowhere else`,
+        ));
+      }
+    });
+    // Three answers, still three. A distractor folded onto another choice is
+    // either a second key or a dead slot, and the reader meets it as one question
+    // with two right answers.
+    const seenChoices = new Map<string, number>();
+    editedChoices.forEach((choice, choiceIndex) => {
+      const folded = foldChoiceText(choice);
+      if (folded.length === 0) {
+        findings.push(finding("EDIT.quiz_choice_text", `${id} choice ${choiceIndex} is empty after the edit`));
+        return;
+      }
+      const first = seenChoices.get(folded);
+      if (first === undefined) {
+        seenChoices.set(folded, choiceIndex);
+        return;
+      }
+      findings.push(finding(
+        "EDIT.quiz_choice_text",
+        `${id} choices ${first} and ${choiceIndex} say the same thing after the edit; a question needs three different answers`,
+      ));
+    });
   }
   for (let index = 0; index < Math.min(sourceCards.length, editedCards.length); index += 1) {
     if (sourceCards[index].difficulty !== editedCards[index].difficulty) {

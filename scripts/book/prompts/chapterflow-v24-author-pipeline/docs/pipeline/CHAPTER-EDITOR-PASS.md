@@ -16,8 +16,17 @@ cross-chapter collisions, and before the candidate is staged for review.
   The editor is shown the chapter in reader order as read-only context.
 - Every returned bundle is re-validated through the **same** `validateSectionPack`
   the draft passed, plus a deterministic **preservation guard** that refuses any
-  edit which moves a quiz key, changes a choice count, re-cites an anchor, or adds
-  or drops a digit-number or a proper name anywhere in the chapter.
+  edit which moves a quiz key, changes a choice count, re-cites an anchor, adds a
+  field to a pack or drops one, or adds or drops a digit-number or a proper name
+  anywhere in the chapter.
+- The quiz key is bound to the **answer's words**, not to its slot: the choice at
+  `correctIndex` must come back exactly as it went in, at the same index, and it
+  may not be copied onto a distractor. Permuting a question's three choices while
+  leaving `correctIndex` where it was would otherwise ship a wrong answer key past
+  every index-shaped check, so the guard compares the text. The two **wrong**
+  choices may be rewritten — the brief asks for better distractors — provided
+  neither becomes the keyed answer in other words and the three choices stay three
+  different answers.
 - A refused edit is retried **once** with the blockers. A second refusal keeps the
   **unedited** chapter and records `SKIPPED`.
 - If the edited **book** does not assemble, the chapters the blockers name are
@@ -114,6 +123,25 @@ consume them would pay for the whole compile twice.
 
 A chapter whose advisories a later panel no longer files has its stored entry
 cleared, so the editor is never handed a judgement the current panel has withdrawn.
+
+That extra call is one extra **invocation**, and an invocation is bounded at
+`MAX_EDITOR_ATTEMPTS` (2) like the standing one, so a chapter whose advisory edit
+is refused once costs two extra calls — the `2 (4 worst case)` row in the spend
+table above.
+
+Each chapter's provenance entry records what the advisory invocation itself
+decided, in `advisory.outcome`: `NOT_RUN`, `ACCEPTED`, `REFUSED` or `ERROR`.
+`advisory.applied` says the advisories REACHED an editor; `outcome` says what
+became of the edit they asked for. A chapter can read `status: "EDITED"` with
+`advisory.outcome: "REFUSED"` — the STANDING edit shipped and the advisory edit was
+refused — and `advisory.blockers` says why. A replayed verdict reports the same
+outcome it was stored with; it never launders a refused advisory into an applied
+one.
+
+```sh
+jq '.chapters[] | {chapterNumber, status, advisory}' \
+  "$CAND/compiler/chapter-edit-provenance.json"
+```
 
 ## Cache invalidation
 
