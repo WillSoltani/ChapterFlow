@@ -35,16 +35,20 @@
  *   git show origin/main:scripts/book/prompts/chapterflow-v24-author-pipeline/\
  *     config/book-scars/the-autobiography-of-benjamin-franklin.json > /tmp/f.json
  *   CF_FRANKLIN_SCARS_PATH=/tmp/f.json npx tsx tests/run.ts franklin-scars-structure
- * → pass 1 fail 4, one failure per property the rewrite is accountable for:
- *   - craft rules: `book-wide craft rule "CAST CONSISTENCY" is missing` (that file
- *     also lacks NO FALSE UNIVERSAL unscoped, and its NO RUBRIC VOCABULARY / NO
- *     COMPARATIVE PADDING are the two this branch had to restore);
+ * → pass 1 fail 4. THREE of those four are genuine defects of origin/main's file:
  *   - fact pins: `FACT PIN (ch01) states a fact with no quoted span of 12+ chars`,
  *     naming the Silence Dogood/SIXTEEN pin — the pin PR #538 deleted because the
  *     Autobiography contains neither the name nor the age;
  *   - repetition licence: `CROSS-SURFACE CONSISTENCY` carries "the same specific
  *     may appear in every unit citing its anchor";
- *   - budget: `ch1 renders 14449 chars ... against a 9000-char budget`.
+ *   - budget: `ch1 renders 14449 chars ... against the char budget below`.
+ * The FOURTH — `book-wide craft rule "CAST CONSISTENCY" is missing` — demonstrates
+ * nothing about origin/main: CAST CONSISTENCY does not exist at 3b82e31c3
+ * (`git grep -n 'CAST CONSISTENCY' 3b82e31c3` is empty); PR #538 added it, so the
+ * old file fails on a rule it never had. It is listed below as a forward guard on
+ * a NEW rule, not as evidence against the old file. That case's real RED value is
+ * the OTHER titles it holds — NO RUBRIC VOCABULARY, NO COMPARATIVE PADDING and an
+ * unscoped NO FALSE UNIVERSAL, all three of which review round 3 had to restore.
  * The SAFETY assertion PASSES on origin/main, by design: those three rules are
  * unchanged, and that test is the regression guard that keeps them so.
  *
@@ -79,9 +83,11 @@ const SAFETY_RULES = [
   "SAFETY (panel blocker, round 11): never instruct a reader to personally guarantee, underwrite, co-sign or become liable for another person's financial or practical obligation. Franklin's subscription and mutual-aid models work by POOLING many small commitments and by written terms, not by one person standing surety for another. Any action step touching money others depend on must stay inside what the reader can lose alone, and must name the written terms rather than a personal promise.",
 ];
 
-/** Book-wide craft rules, by the title each one must keep. Every entry was
- *  book-wide at origin/main; the PR's disposition ledger names, for each rule
- *  NOT in this list, the merged PR and contract line that carries it. */
+/** Book-wide craft rules, by the title each one must keep. All but one were
+ *  book-wide at origin/main (3b82e31c3); CAST CONSISTENCY is NEW in PR #538 and
+ *  exists nowhere at origin/main — it is listed here as a forward guard, and the
+ *  PR's ledger carries a NEW row for it. For each origin/main rule NOT in this
+ *  list, that ledger names the merged PR and contract line that carries it. */
 const BOOK_WIDE_CRAFT_TITLES = [
   "NO ANALOGY GRAFTS",
   "COUNTERFACTUALS STAY COUNTERFACTUAL",
@@ -97,10 +103,14 @@ const BOOK_WIDE_CRAFT_TITLES = [
  *  more than this is carrying two facts and should be two pins. */
 const FACT_PIN_WORD_CAP = 60;
 
-/** Characters of rendered rules per chapter. The binding chapter (ch03, 10 scoped
- *  rules + 10 book-wide) renders 8,627; origin/main's file rendered 16,138 there.
- *  Re-pin with a measured rationale, never by rounding up. */
-const RENDERED_BLOCK_CHAR_BUDGET = 9_000;
+/** Characters of rendered rules per chapter. The binding chapter (ch03, 12 scoped
+ *  rules + 10 book-wide) renders 9,283 after review round 4 restored the kite pin
+ *  and the personal-vs-civic-funds pin; origin/main's file rendered 16,138 there,
+ *  and 13,443 in its LIGHTEST chapter (book-wide rules only). The budget is that
+ *  measurement plus ~3% for a reword, which still leaves every origin/main chapter
+ *  failing it by more than 3,800 chars. Re-pin with a measured rationale, never by
+ *  rounding up. */
+const RENDERED_BLOCK_CHAR_BUDGET = 9_600;
 
 test("franklin scars: the three SAFETY rules survive byte-identical and book-wide", () => {
   const scars = franklinScars();
