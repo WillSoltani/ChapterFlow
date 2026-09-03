@@ -118,13 +118,18 @@ cleared, so the editor is never handed a judgement the current panel has withdra
 ## Cache invalidation
 
 The verdict is cached under `(assembled-chapter digest, brief digest, contract
-digest, advisory digest)`. So:
+digest, advisory digest, card digest)`. So:
 
 - any section re-draft, or any change to the assembled chapter, re-edits;
 - editing `CHAPTER_EDITOR_BRIEF` or the preservation rule re-edits **every**
   chapter of every book;
 - changing the book's voice card or its scars re-edits that book;
-- turning the advisory flag on, or a panel filing different advisories, re-edits.
+- turning the advisory flag on, or a panel filing different advisories, re-edits;
+- and anything else that changes the CARD re-edits too: the fifth field is the
+  sha256 of the exact attempt-1 task card, so a change to the delivery block, the
+  schema hint, the reader-view projection, the span bound or the packet projection
+  invalidates every entry instead of silently serving an edit made under the old
+  prompt (R-164's lesson, from the section-pack cache).
 
 An infrastructure `ERROR` is never cached: a provider blip is not a verdict, and
 the next run retries it for free.
