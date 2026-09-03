@@ -19,6 +19,7 @@
 
 import assert from "node:assert/strict";
 import { createHash } from "crypto";
+import { spawnSync } from "node:child_process";
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { tmpdir } from "os";
 import { resolve } from "path";
@@ -524,4 +525,32 @@ test("R-058: the same sidecar that passes at chapter size fails the floors at Pa
   assert.ok(big.some((p) => /testableFacts has 10; need at least 18/.test(p)), big.join(" | "));
   assert.ok(big.some((p) => /namedExamples has 3; need at least 6/.test(p)), big.join(" | "));
   assert.ok(big.some((p) => /keyClaims needs 8/.test(p)), big.join(" | "));
+});
+
+// ── the CLI flag ─────────────────────────────────────────────────────────────
+
+function cli(args: string[]) {
+  return spawnSync(process.execPath, ["--import", "tsx", "src/cli.ts", ...args], {
+    cwd: process.cwd(),
+    encoding: "utf8",
+    env: { ...process.env, CHAPTERFLOW_NO_API_CODEX_QC: "1", CHAPTERFLOW_ALLOW_MODEL_GEN: "0" },
+  });
+}
+
+test("R-046: --source-text is an advertised book-run flag and must be absolute", () => {
+  const help = cli(["help"]);
+  assert.equal(help.status, 0);
+  assert.match(`${help.stdout}${help.stderr}`, /book-run <bookId> .*\[--source-text <absolute>\]/);
+
+  const relative = cli([
+    "book-run", "cli-source-text-book",
+    "--title", "T", "--author", "A",
+    "--v25-root", "/tmp/cli-src-state",
+    "--attempt-root", "/tmp/cli-src-attempts",
+    "--source-git-sha", "deadbeef",
+    "--source-text", "relative/book.txt",
+  ]);
+  assert.equal(relative.status, 2);
+  assert.match(`${relative.stdout}${relative.stderr}`, /Usage: book-run <bookId>/);
+  assert.match(`${relative.stdout}${relative.stderr}`, /--source-text <absolute>/);
 });
