@@ -78,7 +78,10 @@ export type ChapterEditCacheEntry = Readonly<{
    *  does not say: an EDITED chapter may carry a REFUSED advisory edit. Required,
    *  and an entry without it is treated as a MISS rather than replayed with the
    *  advisory verdict guessed — a re-edit costs one call, a guessed provenance
-   *  line costs the operator's trust in the file. */
+   *  line costs the operator's trust in the file. The union is written out here
+   *  rather than imported from `app/chapterEditProvenance`, so this store keeps
+   *  its layer direction; the compiler still checks both ends, because the pass
+   *  writes its own record type into this field and reads it back out. */
   advisory: Readonly<{ outcome: "NOT_RUN" | "ACCEPTED" | "REFUSED" | "ERROR"; blockers: readonly string[] }>;
 }>;
 

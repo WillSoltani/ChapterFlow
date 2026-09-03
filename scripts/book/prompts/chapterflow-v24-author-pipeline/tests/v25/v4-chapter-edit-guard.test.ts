@@ -6,6 +6,13 @@
  * changes wording is accepted, and each way of changing a fact is refused by its
  * own named check. The guard is pure, so no model, clock or filesystem is
  * involved.
+ *
+ * The subtle half is the QUIZ KEY, and G12-G15 are what pin it: `correctIndex`
+ * names a slot, and the sentence standing in that slot is what makes the answer
+ * right, so a permuted choice list ships a wrong key past every index-shaped
+ * check. G14 and G13's second half are the controls that the rule is not a
+ * no-edit rule: an explanation-only edit and a rewritten DISTRACTOR are both
+ * accepted.
  */
 import assert from "node:assert/strict";
 
