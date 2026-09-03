@@ -244,9 +244,10 @@ async function driveRounds(
     blueprintDigest: "bp-fixed",
     packetDigest: "pk-fixed",
     scarsDigest: null,
+    taskCardDigest: null,
   });
   const chapterCacheContext = new Map(
-    chapterNumbers.map((n) => [n, Object.freeze({ chapterId: chapterId(n), blueprintDigest: "bp-fixed", packetDigest: "pk-fixed", scarsDigest: null })] as const),
+    chapterNumbers.map((n) => [n, Object.freeze({ chapterId: chapterId(n), blueprintDigest: "bp-fixed", packetDigest: "pk-fixed", scarsDigest: null, taskCardDigests: new Map<SectionKind, string>() })] as const),
   );
 
   const results: RoundResult[] = [];

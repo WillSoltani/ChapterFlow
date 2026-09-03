@@ -1334,6 +1334,47 @@ requiredTest("11y-b a cached pack whose stored digest no longer matches the curr
   assert.equal(run2.counts.stage, 1);
 });
 
+requiredTest("R-164 a cached pack whose stored taskCardDigest no longer matches the CURRENT writer card re-drafts; digest-valid entries are still reused", async (context) => {
+  // The live wedge: buildSectionTaskMarkdown is inside the `!reusedFromCache`
+  // guard, so on a cache hit the writer card is never built at all. Before the
+  // card was part of the identity, a contract fix / new DO NOT line / schema-hint
+  // change applied to ZERO sections on a --regen run and the run reported green.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+
+  const run1 = rig(context, "card-run1", { cache });
+  await run1.port.run(run1.request);
+  assert.equal(run1.counts.runner, 4);
+
+  // Every entry a real compile writes records the card it was drafted against,
+  // and the four kinds render four different cards.
+  const entries = readCacheEntries(context.roots.booksRoot, BOOK);
+  assert.equal(entries.length, 4);
+  for (const entry of entries) {
+    assert.equal(typeof entry.envelope.taskCardDigest, "string", JSON.stringify(entry.envelope.kind));
+  }
+  assert.equal(new Set(entries.map((entry) => entry.envelope.taskCardDigest)).size, 4, "one card per section kind");
+
+  // Simulate a writer-prompt change for the summary only: its stored card digest
+  // no longer matches what the next run renders.
+  const summaryEntry = entries.find((entry) => entry.envelope.kind === "summary-pack");
+  assert.ok(summaryEntry);
+  writeFileSync(
+    summaryEntry.path,
+    `${JSON.stringify({ ...summaryEntry.envelope, taskCardDigest: "0".repeat(64) }, null, 2)}\n`,
+  );
+
+  // RUN 2 — exactly the summary re-drafts; the three card-valid entries are reused.
+  const run2 = rig(context, "card-run2", { cache });
+  const result = await run2.port.run(run2.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.deepEqual(run2.prompts.map((prompt) => prompt.context.operationId), ["compiler-ch01-summary-pack"]);
+  assert.equal(run2.counts.runner, 1);
+  // Stale, not orphaned: the re-draft replaced the entry in place, so the book
+  // still holds exactly four cache entries.
+  assert.equal(readCacheEntries(context.roots.booksRoot, BOOK).length, 4);
+});
+
 requiredTest("11y-c a cached pack that no longer passes the current gate falls through to re-draft without crashing and the entry is replaced on the new pass", async (context) => {
   const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
   const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });

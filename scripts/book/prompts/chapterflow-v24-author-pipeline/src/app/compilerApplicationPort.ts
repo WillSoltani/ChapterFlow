@@ -783,12 +783,31 @@ export function planAssemblyEvictions(
   return evictions;
 }
 
+/**
+ * One chapter's section-pack cache identity, retained across the whole compile so
+ * an assembly blocker can rebuild the exact `SectionPackCacheKey` of an implicated
+ * pack and evict it.
+ *
+ * `taskCardDigests` is per SECTION KIND (each kind renders its own writer card) and
+ * is filled in as each section is reached, so it is a live map rather than a frozen
+ * field: the eviction pass runs after every section of every chapter has been
+ * drafted or reused, by which point each entry holds the exact digest that
+ * section's cache key was built from.
+ */
+export type ChapterCacheIdentity = Readonly<{
+  chapterId: string;
+  blueprintDigest: string;
+  packetDigest: string;
+  scarsDigest: string | null;
+  taskCardDigests: ReadonlyMap<SectionKind, string>;
+}>;
+
 /** The narrow dependency surface one assembly-eviction pass touches. */
 export interface AssemblyEvictionPlanInput {
   readonly bookId: string;
   readonly cache: SectionPackCache | undefined;
   readonly avoidStore: SectionAvoidStore | undefined;
-  readonly chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>;
+  readonly chapterCacheContext: ReadonlyMap<number, ChapterCacheIdentity>;
   readonly blockers: readonly AssemblyBlocker[];
 }
 
@@ -900,6 +919,7 @@ export async function applyAssemblyEvictionPlan(input: AssemblyEvictionPlanInput
       blueprintDigest: identity.blueprintDigest,
       packetDigest: identity.packetDigest,
       scarsDigest: identity.scarsDigest,
+      taskCardDigest: identity.taskCardDigests.get(group.kind) ?? null,
     };
     const avoidKey = { bookId, chapterId: group.chapterId, kind: group.kind };
     // Read-merge BEFORE evicting. Bans ACCUMULATE monotonically across rounds: a
@@ -1190,7 +1210,7 @@ export class CompilerApplicationPort {
    *  be driven round-by-round without standing up a whole compile run. */
   async #applyAssemblyEvictions(
     request: CompilerApplicationRequest,
-    chapterCacheContext: ReadonlyMap<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>,
+    chapterCacheContext: ReadonlyMap<number, ChapterCacheIdentity>,
     blockers: readonly AssemblyBlocker[],
   ): Promise<AssemblyEvictionOutcome> {
     return applyAssemblyEvictionPlan({
@@ -1413,7 +1433,7 @@ export class CompilerApplicationPort {
       // would carry. Part of every cache identity so a scar edit cannot be served
       // a pack drafted without it — see SectionPackCacheKey.scarsDigest.
       const scarsDigest = bookScarsDigest(renderContext.bookScars);
-      const chapterCacheContext = new Map<number, Readonly<{ chapterId: string; blueprintDigest: string; packetDigest: string; scarsDigest: string | null }>>();
+      const chapterCacheContext = new Map<number, ChapterCacheIdentity>();
       for (let index = 0; index < chapters.length; index += 1) {
         const chapter = chapters[index];
         const packet = packets[index];
@@ -1435,7 +1455,9 @@ export class CompilerApplicationPort {
         // mints a fresh key and the stale entry is simply never found.
         const packetDigest = candidateBlueprint.sourcePacketHash;
         const blueprintDigest = createHash("sha256").update(jsonBytes(candidateBlueprint)).digest("hex");
-        chapterCacheContext.set(chapter.chapterNumber, Object.freeze({ chapterId: chapter.chapterId, blueprintDigest, packetDigest, scarsDigest }));
+        // Filled in per kind by the section loop below (see ChapterCacheIdentity).
+        const taskCardDigests = new Map<SectionKind, string>();
+        chapterCacheContext.set(chapter.chapterNumber, Object.freeze({ chapterId: chapter.chapterId, blueprintDigest, packetDigest, scarsDigest, taskCardDigests }));
         generated.push(
           { kind: "SIDECAR", logicalPath: packetLogicalPath, mediaType: "application/json", bytes: jsonBytes(packet) },
           { kind: "SIDECAR", logicalPath: planLogicalPath, mediaType: "application/json", bytes: jsonBytes(compileSourceUsePlan(packet).plan) },
@@ -1453,6 +1475,16 @@ export class CompilerApplicationPort {
           if (!operation) throw new Error("COMPILER_ID_INVALID:missing compiler operation");
           const logicalPath = compilerPath(chapter.chapterNumber, `${kind}.json`);
           const cache = this.#dependencies.sectionPackCache;
+          // R-164 — the PROMPT is part of the cache identity, not just the data.
+          // This is the exact card attempt 1 would send (retry feedback and
+          // assembly avoid-context are per-attempt, so both are excluded), so any
+          // change to the contract, the DO NOT block, the schema hint, the voice
+          // card, the scars or the drafted chapter prose mints a new identity and
+          // the entry drafted under the old card reads as stale.
+          const taskCardDigest = createHash("sha256")
+            .update(buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", chapterProse: draftedChapterProse }))
+            .digest("hex");
+          taskCardDigests.set(kind, taskCardDigest);
           const cacheKey: SectionPackCacheKey = {
             bookId: request.bookId,
             chapterId: chapter.chapterId,
@@ -1460,6 +1492,7 @@ export class CompilerApplicationPort {
             blueprintDigest,
             packetDigest,
             scarsDigest,
+            taskCardDigest,
           };
           let acceptedOutput: Record<string, unknown> | null = null;
           let reusedFromCache = false;
