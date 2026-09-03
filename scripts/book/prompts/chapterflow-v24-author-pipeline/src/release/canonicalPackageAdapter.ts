@@ -12,7 +12,9 @@ import { candidateEvidenceFromSnapshot, type CandidateEvidence } from "../lib/ca
 import {
   buildLegacyReaderPackage,
   PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
+  RELEASE_PROVENANCE_SCHEMA,
   type ProductionManifestSidecar,
+  type ReleaseProvenance,
 } from "../promoteBook.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import type { FingerprintRoots } from "../lib/pipelineFingerprint.js";
@@ -49,6 +51,10 @@ export type CanonicalPackage = Readonly<{
    *  comes from: source sidecars and unstripped chapter artifacts, digest-bound,
    *  with no ambient `state/` or `.chapterflow/runs` read anywhere in the chain. */
   evidence: CandidateEvidence;
+  /** Provenance carried by the candidate MANIFEST itself (not its files): which
+   *  run staged it and when. Recorded on the sidecar so a shipped book names the
+   *  run it came out of. */
+  origin: Readonly<{ createdByRunId: string; createdAt: string }>;
 }>;
 
 /** The release artifacts a candidate release publishes. `sidecar` is the
@@ -110,6 +116,10 @@ export type CanonicalReleaseRequest = Readonly<{
   qcRoundId: string;
   expectedBookRevision: number;
   promotedAt: string;
+  /** The pipeline git revision the release was invoked with. The CLI already
+   *  REFUSES a candidate release without `--source-git-sha`; before R-252 it then
+   *  threw the value away, so the released pair named no source revision. */
+  sourceGitSha?: string;
   metadata: CanonicalPackageMetadata;
   /**
    * Opt-in recovery for the crash window between the pointer commit and the
@@ -231,7 +241,39 @@ export async function assembleCanonicalPackage(input: Readonly<{
         chapters: chapters.value,
       }),
       evidence: candidateEvidenceFromSnapshot(opened.value),
+      origin: {
+        createdByRunId: opened.value.manifest.createdByRunId,
+        createdAt: opened.value.manifest.createdAt,
+      },
     },
+  };
+}
+
+/** The research run manifest a candidate stages, when it has one. This is the only
+ *  place in the candidate that names the provider/model route the book was made
+ *  on, so it is read for provenance and for nothing else — a candidate without it
+ *  simply records no `research` block. */
+export const RESEARCH_RUN_MANIFEST_LOGICAL_PATH = "inputs/research/research-run.manifest.json";
+
+function researchProvenance(evidence: CandidateEvidence): ReleaseProvenance["research"] {
+  const bytes = evidence.files.get(RESEARCH_RUN_MANIFEST_LOGICAL_PATH);
+  if (bytes === undefined) return undefined;
+  let value: unknown;
+  try {
+    value = JSON.parse(Buffer.from(bytes).toString("utf8"));
+  } catch {
+    return undefined;
+  }
+  if (value === null || typeof value !== "object" || Array.isArray(value)) return undefined;
+  const record = value as { runId?: unknown; compatibility?: { provider?: unknown; model?: unknown } };
+  const runId = typeof record.runId === "string" ? record.runId : undefined;
+  const provider = typeof record.compatibility?.provider === "string" ? record.compatibility.provider : undefined;
+  const model = typeof record.compatibility?.model === "string" ? record.compatibility.model : undefined;
+  if (runId === undefined && provider === undefined && model === undefined) return undefined;
+  return {
+    ...(runId === undefined ? {} : { runId }),
+    ...(provider === undefined ? {} : { provider }),
+    ...(model === undefined ? {} : { model }),
   };
 }
 
@@ -630,12 +672,31 @@ export class CanonicalPackageAdapter {
       annotate("pointer-committed", message);
       return failed("RECONCILIATION_REQUIRED", message);
     }
+    // PROVENANCE (R-234 / R-252). Every field is copied from something this
+    // release already holds and has verified: the request, the digest-bound
+    // candidate manifest, and the candidate's own research run manifest. The
+    // revision is the one the CAS above actually committed.
+    const research = researchProvenance(assembled.value.evidence);
+    const provenance: ReleaseProvenance = {
+      schemaVersion: RELEASE_PROVENANCE_SCHEMA,
+      ...(request.sourceGitSha === undefined ? {} : { sourceGitSha: request.sourceGitSha }),
+      candidateId: request.candidate.candidateId,
+      manifestDigest: request.candidate.manifestDigest,
+      candidateRunId: assembled.value.origin.createdByRunId,
+      candidateCreatedAt: assembled.value.origin.createdAt,
+      reviewId: request.reviewId,
+      qcRoundId: request.qcRoundId,
+      bookRevision,
+      releasedAt: request.promotedAt,
+      ...(research === undefined ? {} : { research }),
+    };
     const sidecar: ProductionManifestSidecar = {
       schemaVersion: PRODUCTION_MANIFEST_SIDECAR_SCHEMA,
       bookId: assembled.value.package.book.bookId,
       packageId: assembled.value.package.packageId,
       createdAt: assembled.value.package.createdAt,
       manifest: built.manifest,
+      provenance,
     };
     // RELEASE-TIME SELF-VERIFY — the same call promoteBook makes on its candidate
     // pair before it declares success (promoteBook.ts: verifyProductionPackage

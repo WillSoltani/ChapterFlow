@@ -152,6 +152,11 @@ type CliV25Composition = Readonly<{
   qcStore: import("./qc/qcStore.js").QcStore;
   promotionService: import("./release/promotionTypes.js").PromotionService;
   patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
+  /** The candidate's OWN book-gate report. The composition has always run this
+   *  gate; before R-228 the only thing read out of it was the pattern audit, so
+   *  its verdict — blockers included — was discarded. The release verb consults
+   *  it (see runPromoteBook) instead of throwing it away. */
+  candidateGate: import("./critics/bookGate.js").BookGateReport;
   writeLock: import("./books/leaseTypes.js").BookWriteLock;
   runStore: import("./run-state/runStore.js").RunStore;
   runner: import("./app/modelTaskRunner.js").ModelTaskRunner;
@@ -260,6 +265,7 @@ async function createCliV25Composition(
     .map((file) => file.logicalPath);
   let sourceSidecarLogicalPaths: string[];
   let patternAudit: import("./critics/bookPatternAudit.js").BookPatternAuditReport;
+  let candidateGate: import("./critics/bookGate.js").BookGateReport;
   try {
     sourceSidecarLogicalPaths = chapterLogicalPaths.map((_chapterPath, index) => {
       const packetPath = `compiler/ch${String(index + 1).padStart(2, "0")}/source-packet.json`;
@@ -275,7 +281,7 @@ async function createCliV25Composition(
       import("./critics/bookGate.js"),
       import("./critics/bookPatternAudit.js"),
     ]);
-    const candidateGate = await runBookGateFromCandidate(contentReader, {
+    candidateGate = await runBookGateFromCandidate(contentReader, {
       bookId,
       candidateId: candidate.manifest.candidateId,
       manifestDigest: candidate.manifest.manifestDigest,
@@ -304,7 +310,7 @@ async function createCliV25Composition(
     qcDiagnoses: qcStore,
     promotionService, clock, ids, pipelineRoot: REPO_ROOT, modelTaskRunner: runner,
   });
-  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, writeLock, runStore, runner, ids, sourceGitSha } };
+  return { ok: true, value: { app, candidate, candidateStore, contentReader, reviewService, qcService, qcStore, promotionService, patternAudit, candidateGate, writeLock, runStore, runner, ids, sourceGitSha } };
 }
 
 /** Sentinel returned by requireAbsoluteV25Root for a MALFORMED --v25-root. It is
@@ -730,11 +736,16 @@ Commands:
   policy [economy|standard|premium|publish]
                                      Print the v22 run policy cost/quality contract.
   generate-book                      LEGACY_ROUTE_DISABLED. Use book-run or book-autopilot.
-  promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
+  promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y] [--new-category]
                                      Final gate. Requires the complete canonical index, then re-validates
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
+                                     V25 candidate release: --categories/--tags are REQUIRED and are validated
+                                     against config/categories.json (the taxonomy the reader's filter and the
+                                     library shelf are built from) and normalised through its alias table; a
+                                     category outside it is refused unless --new-category says to add a shelf.
+                                     The candidate's own book gate is run and a BLOCKER refuses the release.
                                      Unresolved serious generation-debt events block; exact-content
                                      waivers live at state/waivers/<bookId>.generation-degradation-waivers.json.
                                      Quarantines to state/books/_blocked/ on failure.
@@ -764,15 +775,20 @@ Commands:
                                      Report-only by default; --commit stages+commits ONLY that file in
                                      the outer repo (never pushes; refuses if it is already staged/dirty
                                      there from other work).
-  publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>] [--v25-root <absolute>]
-                                     --v25-root is OPT-IN candidate-store re-verification: the preflight
+  publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--allow-weak-preflight] [--outer-root <path>] [--v25-root <absolute>]
+                                     --v25-root selects candidate-store re-verification: the preflight
                                      reads books/<id>/current.json, requires the sidecar's declared
                                      candidateId@manifestDigest to EQUAL the pointer's, opens the
                                      candidate from the content-addressed store and recomputes the
                                      evidence from its bytes — including that the package ships the
-                                     candidate's WHOLE chapter set. Without it, a candidate pair is
-                                     verified by replaying the evidence the manifest recorded; the
-                                     preflight always PRINTS which of the two it ran.
+                                     candidate's WHOLE chapter set. It is the DEFAULT for a
+                                     candidate-declared pair: without the flag publish-final looks for
+                                     CHAPTERFLOW_V25_ROOT (it must actually hold books/<id>/current.json)
+                                     and, finding none, REFUSES rather than falling back to the weaker
+                                     recorded-evidence replay — which a wholesale re-authoring of both
+                                     shipped files passes. --allow-weak-preflight accepts that residual
+                                     on purpose, with a printed warning. A legacy canonical-index pair is
+                                     unaffected. The preflight always PRINTS which strength it ran.
                                      ONE-VERB ship (v24 author arch). Preflight (verify + no fresh
                                      conductor lock + outer git toplevel + fetch) → bridge (copy +
                                      byte-compare) → register (probe/append the real registry + regen
@@ -780,6 +796,9 @@ Commands:
                                      (ff-only pull + assert origin==0/0) → CLEANUP all per-book debris
                                      (gated on the push+sync proof). --dry-run prints the full plan +
                                      cleanup manifest with zero mutations; --keep-debris skips cleanup.
+                                     EXIT CODES: 0 shipped + swept; 3 SHIPPED but the cleanup refused (the
+                                     book IS live — do NOT re-publish); 1 the publish failed and the book is
+                                     NOT live. --strict-cleanup makes the exit-3 state a 1 instead.
                                      NO S3/AWS — content ships via the repo push + a separate deploy.
   qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]
                                      Record the authoring session (state/provenance/) so a later FRESH QC
@@ -2319,6 +2338,27 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     return 2;
   }
   if (candidateRelease) {
+    // R-239: the values were copied straight into the reader package unvalidated,
+    // and `generate-catalog-metadata` turns categories[0] into the library shelf —
+    // so a category the reader's filter has never heard of shelved the book
+    // nowhere, silently. Hold the release to config/categories.json (the same
+    // taxonomy both categorizers select from), normalising through its alias
+    // table; --new-category is the deliberate act of adding a shelf.
+    const { validateReleaseCategoriesAndTags } = await import("./release/categoryPolicy.js");
+    const metadata = validateReleaseCategoriesAndTags({
+      categories: categories!,
+      tags: tags!,
+      allowNewCategory: flags["new-category"] === true,
+    });
+    if (!metadata.ok) {
+      console.error(metadata.error);
+      return 2;
+    }
+    for (const change of metadata.normalised) console.log(`category normalised: ${change}`);
+    categories = metadata.categories;
+    tags = metadata.tags;
+  }
+  if (candidateRelease) {
     const reviewId = flags["review-id"];
     const qcRoundId = flags["qc-round-id"] ?? flags["round"];
     const revisionRaw = flags["expected-book-revision"];
@@ -2340,6 +2380,18 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     if (!v25.ok) {
       console.error(v25.error);
       return 2;
+    }
+    // R-228: the composition ran the FULL book gate against this candidate and
+    // nothing read its verdict — the release proceeded whatever the gate found.
+    // Print the gate's findings (blockers + majors + the pattern-audit codes) and
+    // fail closed on a blocker, BEFORE the pointer CAS and before any artifact is
+    // written. A released book must be one the gate passes.
+    const { evaluateCandidateReleaseGate } = await import("./release/candidateReleaseGate.js");
+    const gateVerdict = evaluateCandidateReleaseGate(v25.value.candidateGate);
+    for (const line of gateVerdict.lines) console.log(line);
+    if (!gateVerdict.passed) {
+      console.error(gateVerdict.refusal);
+      return 1;
     }
     const promotedAt = new Date().toISOString();
     const { CanonicalPackageAdapter } = await import("./release/canonicalPackageAdapter.js");
@@ -2401,6 +2453,10 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
       qcRoundId,
       expectedBookRevision,
       promotedAt,
+      // R-252: createCliV25Composition REFUSES to build without --source-git-sha
+      // and then this route dropped it, so the released pair recorded no source
+      // revision at all. Carry it into the sidecar's provenance block.
+      sourceGitSha: v25.value.sourceGitSha,
       // Opt-in recovery for a release that committed the pointer and died before
       // publishing. Off by default: the fail-closed refusal stands unless an
       // operator has read the journal record the refusal names.
@@ -2549,13 +2605,17 @@ async function runPublishToLive(args: string[], flags: Record<string, string | b
   return 0;
 }
 
-/** `publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]` — the
- *  v24 one-verb ship: bridge → commit → push (merge loop) → origin sync 0/0 →
+/** Exit code for "the book SHIPPED, the debris cleanup refused". Distinct from 1
+ *  (publish failed, book NOT live) and from 0 (shipped and swept). */
+export const PUBLISH_FINAL_EXIT_SHIPPED_UNCLEANED = 3;
+
+/** `publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--outer-root <path>]` —
+ *  the v24 one-verb ship: bridge → commit → push (merge loop) → origin sync 0/0 →
  *  debris cleanup. No S3/AWS. See src/publish/publishFinal.ts. */
 async function runPublishFinal(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>] [--v25-root <absolute>]");
+    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--allow-weak-preflight] [--outer-root <path>] [--v25-root <absolute>]");
     return 2;
   }
   const v25Root = requireAbsoluteV25Root(flags);
@@ -2564,11 +2624,19 @@ async function runPublishFinal(args: string[], flags: Record<string, string | bo
   const result = await publishFinal(bookId, {
     dryRun: flags["dry-run"] === true,
     keepDebris: flags["keep-debris"] === true,
+    strictCleanup: flags["strict-cleanup"] === true,
+    allowWeakPreflight: flags["allow-weak-preflight"] === true,
     outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
     ...(v25Root === undefined ? {} : { v25Root }),
   });
   console.log(formatPublishFinalResult(result));
-  return result.ok ? 0 : 1;
+  if (!result.ok) return 1;
+  // R-241: a SHIPPED book whose debris cleanup refused is not a failed publish —
+  // returning 1 for it made "retry until exit 0" loops re-publish an already-live
+  // book forever. Exit 3 is its own terminal state: the book IS live, the sweep is
+  // owed. Exit 1 stays reserved for a publish that left the book unshipped (and for
+  // this state too, when the operator asks for it with --strict-cleanup).
+  return result.cleanupBlocked ? PUBLISH_FINAL_EXIT_SHIPPED_UNCLEANED : 0;
 }
 
 /** `qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]` — record the

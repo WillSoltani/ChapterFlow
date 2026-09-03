@@ -91,8 +91,18 @@ export type CleanupManifest = {
   rows: DebrisRow[];
   /** shared ledgers to LINE-PRUNE (never delete). */
   ledgers: LedgerPrune[];
-  /** if non-empty, the cleanup MUST abort — these matched paths are git-tracked. */
+  /** if non-empty, the cleanup MUST abort — these matched paths are git-tracked
+   *  and are NOT the pipeline's own released pair. */
   trackedMatches: string[];
+  /** matched paths that are git-tracked BY DESIGN (the released pair) — skipped
+   *  from the delete set with a named reason instead of aborting the sweep. */
+  skippedTracked: Array<{ path: string; reason: string }>;
+  /** TRUE when git could not answer which matched paths are tracked (a real work
+   *  tree whose query failed). An unanswerable safety query is a hard abort — the
+   *  old code substituted an empty set here and deleted. */
+  trackedUnknown: boolean;
+  /** why the tracked query could not be answered (for the report). */
+  trackedUnknownReason?: string;
   totalBytes: number;
   totalFiles: number;
 };
@@ -440,8 +450,16 @@ function pruneLines(path: string, matches: (line: string) => boolean): LedgerPru
   return { path, removedLines: removed, keptLines: kept.length, nextContent };
 }
 
+/** Max path arguments per `git ls-files` invocation. The debris set includes whole
+ *  run-cache trees, so one argv entry per candidate FILE overflowed the OS argv
+ *  limit on real books — and the overflow surfaced as a THROW, which the old
+ *  caller swallowed into "nothing is tracked". Batching makes the ordinary large
+ *  case answer instead of failing. */
+const GIT_LS_FILES_BATCH = 500;
+
 /** git ls-files over the candidate FILES — the set of paths git tracks. Throws
- *  on git failure (the caller converts a throw into a fail-closed abort). */
+ *  on git failure (the caller converts a throw into `trackedUnknown`, which is a
+ *  hard refusal, never an empty answer). */
 function gitTrackedFiles(files: string[], gitRoot: string): Set<string> {
   const existing = files.filter((p) => existsSync(p));
   if (existing.length === 0) return new Set();
@@ -452,9 +470,89 @@ function gitTrackedFiles(files: string[], gitRoot: string): Set<string> {
     if (r && !r.startsWith("..")) rels.push(r);
   }
   if (rels.length === 0) return new Set();
-  const out = execFileSync("git", ["ls-files", "-z", "--", ...rels], { cwd: gitRoot, encoding: "utf8" });
-  return new Set(out.split("\0").filter(Boolean).map((p) => resolve(gitRoot, p)));
+  const tracked = new Set<string>();
+  for (let i = 0; i < rels.length; i += GIT_LS_FILES_BATCH) {
+    const batch = rels.slice(i, i + GIT_LS_FILES_BATCH);
+    const out = execFileSync("git", ["ls-files", "-z", "--", ...batch], { cwd: gitRoot, encoding: "utf8" });
+    for (const p of out.split("\0")) if (p) tracked.add(resolve(gitRoot, p));
+  }
+  return tracked;
 }
+
+/** Is `root` inside a git work tree at all? A root that is NOT one is a KNOWN
+ *  answer — no path under it can be tracked — and must not be confused with a
+ *  query that failed inside a real repo, which is unknowable and fail-closed. */
+function isGitWorkTree(root: string): boolean {
+  if (!existsSync(root)) return false;
+  try {
+    const out = execFileSync("git", ["rev-parse", "--is-inside-work-tree"], {
+      cwd: root,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return out.trim() === "true";
+  } catch {
+    return false;
+  }
+}
+
+/** The answer to "which of these paths does git track?", with UNKNOWN as a first
+ *  class outcome.
+ *
+ *  Both roots are asked and their answers UNIONED (the pipeline dir lives inside
+ *  the live checkout, so either root can be the one that knows). A root that is
+ *  not a work tree contributes nothing and is not a failure. A root that IS a
+ *  work tree and cannot answer makes the whole query UNKNOWN. */
+function queryTrackedFiles(
+  files: string[],
+  roots: Required<CleanupRoots>,
+): { tracked: Set<string>; unknown: boolean; reason?: string } {
+  const tracked = new Set<string>();
+  const failures: string[] = [];
+  const seen = new Set<string>();
+  for (const root of [roots.outerRoot, roots.pipelineRoot]) {
+    const abs = resolve(root);
+    if (seen.has(abs)) continue;
+    seen.add(abs);
+    if (!isGitWorkTree(abs)) continue;
+    try {
+      for (const p of gitTrackedFiles(files, abs)) tracked.add(p);
+    } catch (err) {
+      failures.push(`${abs}: ${(err as Error).message}`);
+    }
+  }
+  return failures.length === 0
+    ? { tracked, unknown: false }
+    : { tracked, unknown: true, reason: failures.join("; ") };
+}
+
+/**
+ * The pipeline's OWN tracked release outputs for a book: the promoted reader
+ * package and its production-manifest sidecar.
+ *
+ * Both are committed to THIS repo by design — they are the released pair — so
+ * `git ls-files` reports them as tracked on every real publish. Before this
+ * carve-out that turned RAIL (1) into a guaranteed abort: a real publish-final
+ * committed, pushed and synced and then reported "publish succeeded but cleanup
+ * ABORTED", and the dry run printed the same abort inside a PASS line.
+ *
+ * They are therefore EXPECTED tracked matches: never deleted (deleting a tracked
+ * file would leave the checkout dirty) and never a reason to abort the rest of
+ * the sweep. Anything else that is tracked still aborts — the carve-out is these
+ * two exact file paths for this exact book, nothing wider.
+ */
+export function expectedTrackedReleaseOutputs(bookId: string, roots?: CleanupRoots): string[] {
+  const r = resolveRoots(roots);
+  const slug = normSlug(bookId);
+  return [
+    resolve(r.pipelineRoot, "book-packages", `${slug}.v21.json`),
+    resolve(r.stateRoot, "books", `${slug}.production-manifest.json`),
+  ];
+}
+
+/** Why a tracked path was skipped rather than deleted or aborted on. */
+export const EXPECTED_RELEASE_OUTPUT_REASON =
+  "git-tracked on purpose: this is the pipeline's own released pair (reader package / production-manifest sidecar), kept as the durable record";
 
 /**
  * Build the exact-path cleanup manifest for a book. PURE READ — no mutation.
@@ -470,26 +568,40 @@ export function buildCleanupManifest(bookId: string, roots?: CleanupRoots): Clea
   // git (rooted at the outer checkout) which are tracked. Any tracked → abort.
   const allFiles: string[] = [];
   for (const c of cands) filesUnder(c.path, allFiles);
-  let tracked = new Set<string>();
-  try {
-    tracked = gitTrackedFiles(allFiles, r.outerRoot);
-  } catch {
-    // git unavailable / not a repo — fall back to the pipeline root, then to "no info".
-    try { tracked = gitTrackedFiles(allFiles, r.pipelineRoot); } catch { tracked = new Set(); }
+  const query = queryTrackedFiles(allFiles, r);
+  const expected = new Set(expectedTrackedReleaseOutputs(bookId, r));
+  const trackedMatches: string[] = [];
+  const skippedTracked: Array<{ path: string; reason: string }> = [];
+  for (const p of [...query.tracked].sort()) {
+    if (expected.has(p)) skippedTracked.push({ path: p, reason: EXPECTED_RELEASE_OUTPUT_REASON });
+    else trackedMatches.push(p);
   }
-  const trackedMatches = [...tracked].sort();
+  const skippedSet = new Set(skippedTracked.map((s) => s.path));
 
-  const rows: DebrisRow[] = cands.map((c) => {
-    const m = measure(c.path);
-    return { path: c.path, bytes: m.bytes, fileCount: m.fileCount, kind: c.kind };
-  }).sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
+  const rows: DebrisRow[] = cands
+    // A skipped tracked path is not debris: it is the durable released artifact.
+    .filter((c) => !skippedSet.has(c.path))
+    .map((c) => {
+      const m = measure(c.path);
+      return { path: c.path, bytes: m.bytes, fileCount: m.fileCount, kind: c.kind };
+    }).sort((a, b) => (a.path < b.path ? -1 : a.path > b.path ? 1 : 0));
 
   const ledgers = ledgerPrunes(bookId, r);
 
   const totalBytes = rows.reduce((s, x) => s + x.bytes, 0);
   const totalFiles = rows.reduce((s, x) => s + x.fileCount, 0);
 
-  return { bookId, rows, ledgers, trackedMatches, totalBytes, totalFiles };
+  return {
+    bookId,
+    rows,
+    ledgers,
+    trackedMatches,
+    skippedTracked,
+    trackedUnknown: query.unknown,
+    ...(query.reason === undefined ? {} : { trackedUnknownReason: query.reason }),
+    totalBytes,
+    totalFiles,
+  };
 }
 
 export type CleanupResult = {
@@ -551,6 +663,12 @@ export function applyCleanup(
   if (!proof || !proof.pushedCommit || proof.syncState !== "0 0") {
     return { ...empty, error: "cleanup refused: no valid publish proof (need a pushed commit sha + an asserted 0/0 origin sync)" };
   }
+  // RAIL (1a): an UNANSWERABLE tracked query is a hard abort. Not knowing whether
+  // a matched path is precious is the strongest reason to stop, not the weakest —
+  // this used to resolve to an empty tracked set, which disarmed RAIL (1) entirely.
+  if (manifest.trackedUnknown) {
+    return { ...empty, error: `cleanup ABORTED: git could not determine which matched paths are git-tracked (${manifest.trackedUnknownReason ?? "no reason recorded"}) — refusing to delete on an unanswerable safety query` };
+  }
   // RAIL (1): tracked-file abort.
   if (manifest.trackedMatches.length > 0) {
     return { ...empty, error: `cleanup ABORTED: ${manifest.trackedMatches.length} matched path(s) are git-tracked (first: ${relative(REPO_ROOT, manifest.trackedMatches[0])}) — refusing to delete tracked state` };
@@ -593,6 +711,11 @@ const MB = 1024 * 1024;
 /** Render the manifest as a human-readable table (used by dry-run + the report). */
 export function formatCleanupManifest(manifest: CleanupManifest, applied = false): string {
   const L: string[] = [`debris cleanup — ${manifest.bookId}`];
+  if (manifest.trackedUnknown) {
+    L.push(`  ABORT: git could not determine which matched paths are tracked — nothing will be deleted:`);
+    L.push(`    ! ${manifest.trackedUnknownReason ?? "no reason recorded"}`);
+    return L.join("\n");
+  }
   if (manifest.trackedMatches.length > 0) {
     L.push(`  ABORT: ${manifest.trackedMatches.length} matched path(s) are git-tracked — nothing will be deleted:`);
     for (const p of manifest.trackedMatches.slice(0, 8)) L.push(`    ! ${relative(REPO_ROOT, p)}`);
@@ -612,6 +735,10 @@ export function formatCleanupManifest(manifest: CleanupManifest, applied = false
   if (manifest.ledgers.length) {
     L.push(`  shared ledgers ${applied ? "line-pruned" : "to line-prune"} (NEVER deleted):`);
     for (const l of manifest.ledgers) L.push(`    ${relative(REPO_ROOT, l.path)}: remove ${l.removedLines} book line(s), keep ${l.keptLines}`);
+  }
+  if (manifest.skippedTracked.length) {
+    L.push(`  git-tracked release outputs ${applied ? "SKIPPED" : "to skip"} (kept, never deleted):`);
+    for (const s of manifest.skippedTracked) L.push(`    ~ ${relative(REPO_ROOT, s.path)} — ${s.reason}`);
   }
   if (!applied) L.push(`  (dry-run) nothing was removed.`);
   return L.join("\n");

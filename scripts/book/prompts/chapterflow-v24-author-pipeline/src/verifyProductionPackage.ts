@@ -28,6 +28,7 @@ import {
   type ProductionManifestFinding,
   type ProductionManifestPayloadV2,
   type ProductionManifestVersion,
+  type ProductionPackageManifest,
   type ProductionSourceRealityEvidence,
 } from "./productionManifest.js";
 import {
@@ -66,7 +67,11 @@ function defaultSidecarPath(stateRoot: string, bookId: string): string {
   return resolve(stateRoot, "books", `${normSlug(bookId)}.production-manifest.json`);
 }
 
-type SidecarShape = { schemaVersion?: unknown; bookId?: unknown; packageId?: unknown; createdAt?: unknown; manifest?: unknown };
+type SidecarShape = { schemaVersion?: unknown; bookId?: unknown; packageId?: unknown; createdAt?: unknown; manifest?: unknown; provenance?: unknown };
+
+/** Must stay in lockstep with promoteBook.RELEASE_PROVENANCE_SCHEMA. Defined here
+ *  (not imported) for the same reason as the sidecar schema constant above. */
+const RELEASE_PROVENANCE_SCHEMA = "chapterflow-release-provenance-v1" as const;
 
 /** Load + shape-validate the manifest sidecar (manifestData > manifestPath >
  *  derived path). Fail-closed with a structured finding — never throws — so a
@@ -207,6 +212,79 @@ export type VerifyProductionPackageResult = {
 
 function blocker(args: Omit<ProductionPackageVerificationFinding, "severity">): ProductionPackageVerificationFinding {
   return { severity: "blocker", ...args };
+}
+
+/**
+ * Validate the sidecar's release-provenance block AGAINST the manifest it sits
+ * beside. Absent ⇒ no findings (see the call site for why it is not required).
+ * Present ⇒ it must be well-shaped and it must name the same candidate, review and
+ * QC round the manifest payload does; a block that disagrees with the manifest is
+ * worse than no block at all.
+ */
+export function checkReleaseProvenance(
+  value: unknown,
+  manifest: ProductionPackageManifest,
+): ProductionPackageVerificationFinding[] {
+  if (value === undefined || value === null) return [];
+  if (!isObject(value)) {
+    return [blocker({ checkId: "PPKG.provenance_malformed", message: "Sidecar provenance must be a JSON object." })];
+  }
+  const p = value as Record<string, unknown>;
+  const findings: ProductionPackageVerificationFinding[] = [];
+  if (p.schemaVersion !== RELEASE_PROVENANCE_SCHEMA) {
+    findings.push(blocker({
+      checkId: "PPKG.provenance_schema_mismatch",
+      message: `Sidecar provenance schemaVersion is ${JSON.stringify(p.schemaVersion)}, expected ${RELEASE_PROVENANCE_SCHEMA}.`,
+      expected: RELEASE_PROVENANCE_SCHEMA,
+      actual: p.schemaVersion,
+    }));
+  }
+  for (const key of ["candidateId", "manifestDigest", "reviewId", "qcRoundId", "releasedAt"]) {
+    if (typeof p[key] !== "string" || (p[key] as string).length === 0) {
+      findings.push(blocker({
+        checkId: "PPKG.provenance_malformed",
+        message: `Sidecar provenance.${key} must be a non-empty string.`,
+        actual: p[key],
+      }));
+    }
+  }
+  if (!Number.isSafeInteger(p.bookRevision) || (p.bookRevision as number) < 1) {
+    findings.push(blocker({
+      checkId: "PPKG.provenance_malformed",
+      message: "Sidecar provenance.bookRevision must be a positive integer (the pointer revision the release committed).",
+      actual: p.bookRevision,
+    }));
+  }
+  const payload = manifest.payload as unknown as {
+    candidateChapterSet?: { candidateId?: unknown; manifestDigest?: unknown };
+    candidateQcEvidence?: { reviewId?: unknown; qcRoundId?: unknown };
+  };
+  const chapterSet = payload.candidateChapterSet;
+  if (!chapterSet) {
+    findings.push(blocker({
+      checkId: "PPKG.provenance_regime_mismatch",
+      message: "Sidecar carries release provenance, but its manifest declares no candidate chapter-set source. Provenance names a candidate release; a canonical-index manifest is not one.",
+    }));
+    return findings;
+  }
+  if (chapterSet.candidateId !== p.candidateId || chapterSet.manifestDigest !== p.manifestDigest) {
+    findings.push(blocker({
+      checkId: "PPKG.provenance_candidate_mismatch",
+      message: "Sidecar provenance names a different candidate than the manifest's chapter-set authority.",
+      expected: `${String(chapterSet.candidateId)}@${String(chapterSet.manifestDigest)}`,
+      actual: `${String(p.candidateId)}@${String(p.manifestDigest)}`,
+    }));
+  }
+  const qc = payload.candidateQcEvidence;
+  if (qc && (qc.reviewId !== p.reviewId || qc.qcRoundId !== p.qcRoundId)) {
+    findings.push(blocker({
+      checkId: "PPKG.provenance_qc_mismatch",
+      message: "Sidecar provenance names a different review/QC round than the manifest's candidateQcEvidence.",
+      expected: `${String(qc.reviewId)}/${String(qc.qcRoundId)}`,
+      actual: `${String(p.reviewId)}/${String(p.qcRoundId)}`,
+    }));
+  }
+  return findings;
 }
 
 function isObject(value: unknown): value is Record<string, unknown> {
@@ -809,6 +887,13 @@ export function verifyProductionPackage(options: VerifyProductionPackageOptions)
       actual: pkg.createdAt,
     }));
   }
+  // R-234/R-252: the release provenance block, when present, must AGREE with the
+  // manifest it sits beside. It is validated-when-present rather than required:
+  // legacy canonical-index pairs and every pair released before the block existed
+  // carry none, and refusing those would un-ship already-verified books. What is
+  // refused is a provenance block that CONTRADICTS the manifest — which is the only
+  // way a wrong one could mislead an owner reading it.
+  for (const finding of checkReleaseProvenance(sidecar.provenance, manifest)) findings.push(finding);
   const payloadHash = productionManifestPayloadHash(manifest.payload);
   if (manifest.payloadHash !== payloadHash) {
     findings.push(blocker({

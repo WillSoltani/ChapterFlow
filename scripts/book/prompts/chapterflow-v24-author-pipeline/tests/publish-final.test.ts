@@ -166,7 +166,7 @@ test("happy E2E: bridge → register → commit → push → 0/0 sync → cleanu
   } finally { fx.cleanup(); }
 });
 
-test("deploy sentinel: mergePendingDeploy replaces same-book, preserves others, tolerates torn JSON, is stable+newline-terminated", () => {
+test("deploy sentinel: mergePendingDeploy replaces same-book, preserves others, REFUSES torn JSON, is stable+newline-terminated", () => {
   // Fresh file.
   const first = mergePendingDeploy(null, { bookId: "b-two", packageSha256: "aaa", publishedAt: "t1", steps: ["x"] });
   assert.ok(first.endsWith("\n"), "newline-terminated");
@@ -187,9 +187,20 @@ test("deploy sentinel: mergePendingDeploy replaces same-book, preserves others, 
   // commit-skip idempotency holds.
   const reMerged = mergePendingDeploy(third, { bookId: "b-two", packageSha256: "ccc", publishedAt: "t3-DIFFERENT", steps: ["z"] });
   assert.equal(reMerged, third, "same book+sha re-merge is byte-identical (publishedAt preserved)");
-  // Torn/foreign existing blob → start fresh with just the new entry (never throws).
-  const fromTorn = mergePendingDeploy("{ this is not json", { bookId: "c", packageSha256: "d", publishedAt: "t", steps: [] });
-  assert.deepEqual(JSON.parse(fromTorn).pending.map((e: { bookId: string }) => e.bookId), ["c"]);
+  // RE-PINNED (R-255). This assertion used to read "torn/foreign existing blob →
+  // start fresh with just the new entry (never throws)". That behaviour was the
+  // defect: publishFinal WROTE the fresh list, so a sentinel that failed to parse
+  // silently erased every OTHER book's owed deploy steps — and the sentinel is the
+  // only thing keeping a pushed-but-undeployed book visible to doctor/book-status.
+  // Starting fresh is only safe when there is provably nothing to lose, which an
+  // unparseable blob can never establish. The contract is now fail-closed: refuse,
+  // leave the file's bytes alone, and let publishFinal report a FAIL step before it
+  // commits anything. See tests/publish-final-outcomes.test.ts for the full case.
+  assert.throws(
+    () => mergePendingDeploy("{ this is not json", { bookId: "c", packageSha256: "d", publishedAt: "t", steps: [] }),
+    /is unreadable/,
+    "an unparseable sentinel must refuse, not silently restart the list",
+  );
   // A well-formed blob with an unexpected shape keeps only valid entries.
   const mixed = mergePendingDeploy(JSON.stringify({ pending: [{ bookId: "keep", packageSha256: "k", publishedAt: "t", steps: [] }, { junk: 1 }] }), { bookId: "new", packageSha256: "n", publishedAt: "t", steps: [] });
   assert.deepEqual(JSON.parse(mixed).pending.map((e: { bookId: string }) => e.bookId).sort(), ["keep", "new"], "invalid entries dropped, valid ones preserved");
