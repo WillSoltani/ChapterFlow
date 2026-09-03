@@ -11,9 +11,11 @@ import type { ResolvedPools } from "./bookDesign.js";
  *  POSITIONAL_DEALS was built with, so BPV11's round-robin cap must be computed against the ACTUAL
  *  resolved sizes or it would false-positive/negative. The genre-neutral shape pools (quiz/card/
  *  hook/counter/if-then) are not designable and keep the descriptor's own poolSize. */
-type PoolSizeOverride = { poolSize: number; poolSizeAt?: (slotIndex: number) => number };
+export type PoolSizeOverride = { poolSize: number; poolSizeAt?: (slotIndex: number) => number };
 
-function poolSizeOverrides(pools: ResolvedPools): Record<string, PoolSizeOverride> {
+/** Exported (R-106) so the live candidate compile can size BPV11's math to the SAME per-book pools
+ *  it dealt from, exactly as the `blueprint-gate` verb does. */
+export function poolSizeOverrides(pools: ResolvedPools): Record<string, PoolSizeOverride> {
   const parity = (dec: number, exp: number) => (slotIndex: number) => (slotIndex % 2 === 1 ? exp : dec);
   return {
     exampleSceneFrame: { poolSize: pools.sceneFramesDecision.length, poolSizeAt: parity(pools.sceneFramesDecision.length, pools.sceneFramesExperiential.length) },

@@ -20,7 +20,8 @@ import { test } from "./harness.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
 import { compileChapterBlueprint, POSITIONAL_DEALS } from "../src/compiler/chapterBlueprint.js";
 import { checkPositionalDeals, validateBlueprint } from "../src/compiler/blueprintGate.js";
-import { rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE } from "../src/compiler/sourcePacketFacts.js";
+import { buildGenrePools, deriveBookDesign, genreForBook, rankedTopicsForPacket, validateBookDesign } from "../src/compiler/bookDesign.js";
+import { properNounTokens, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINKAGE_MIN_SCORE } from "../src/compiler/sourcePacketFacts.js";
 import type { ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
 import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
@@ -107,6 +108,10 @@ test("R-101: every dealt case cue is a top-scoring case for its slot's fact (wit
           assert.ok(entry!.score >= top - 1, `${bookId} ch${bp.chapterNumber} ${where}: cue ${cue} scores ${entry!.score} against a top of ${top} — load-balancing must stay inside one point of the best-linked case`);
         }
       };
+      // Quiz and card cues are STRICTLY inside the head: they are optional, so there is never a
+      // reason to reach past it. Example cues are mandatory (BPV10), so a slot may spill outside
+      // the head once every head case has taken its fair share — this packet's five cases over
+      // six slots leaves the head un-exhausted, so the strict rule still holds here.
       bp.sections.examples.forEach((ex, i) => check(ex.requiredFactIds, ex.requiredCaseIds, `example ${i}`));
       bp.sections.quiz.forEach((q, i) => check(q.requiredFactIds, q.caseCueIds, `quiz ${i}`));
       bp.sections.cards.forEach((c, i) => check(c.requiredFactIds, c.caseCueIds, `card ${i}`));
@@ -382,4 +387,155 @@ test("rankedCaseIdsForFact and scoredCaseIdsForFact agree on order", () => {
   for (const fact of packet.facts) {
     assert.deepEqual(scoredCaseIdsForFact(packet, fact.id, 0).map((s) => s.id), rankedCaseIdsForFact(packet, fact.id, 0));
   }
+});
+
+// ── R-116 — the sentence-initial filter on properNounTokens ─────────────────────────
+
+test("R-116: a capitalized word that only ever opens a sentence is not a proper noun", () => {
+  assert.deepEqual(properNounTokens("Readers treat the story as decoration. Environments can be redesigned."), []);
+  assert.deepEqual(properNounTokens("Repetition builds myelin so retrieval becomes faster."), []);
+});
+
+test("R-116: a real proper noun survives even when it opens a sentence", () => {
+  // First word of the run is grammar, the rest is the name.
+  assert.ok(properNounTokens("Readers treat it as decoration. Then Franklin ruled the page.").includes("Franklin"));
+  // …and a name that recurs mid-sentence is kept outright.
+  assert.ok(properNounTokens("Franklin ruled the page. The clerk handed Franklin the ledger.").includes("Franklin"));
+});
+
+test("R-116: mid-sentence proper nouns are untouched", () => {
+  const out = properNounTokens("The club met at Philadelphia every Friday with Deborah Read.");
+  assert.ok(out.some((t) => t.includes("Philadelphia")), out.join(" | "));
+  assert.ok(out.some((t) => t.includes("Deborah")), out.join(" | "));
+});
+
+// ── R-065 / R-103 / R-105 — per-chapter derivation and the memoir genre ──────────────
+
+test("R-065: derived staging is chapter-keyed and the book-wide pools carry no mined material", () => {
+  const { packets } = compileBook("zz-deal-derived", 4);
+  const design = deriveBookDesign("zz-deal-derived", { packets, chapters: 4 });
+  const minedFragments = new Set(Object.values(design.perChapter ?? {}).flatMap((d) => d.topics));
+  assert.ok(minedFragments.size > 0, "the fixture packets must yield some mined topics or this proves nothing");
+  for (const [key, pool] of Object.entries(design.pools)) {
+    for (const entry of pool as string[]) {
+      for (const topic of minedFragments) {
+        assert.ok(!entry.includes(topic), `pools.${key} carries mined topic "${topic}" — a book-wide pool is dealt positionally, so that lands in another chapter`);
+      }
+    }
+  }
+});
+
+test("R-065: a chapter only ever receives its OWN mined staging", () => {
+  const { packets } = compileBook("zz-deal-derived", 4);
+  const design = deriveBookDesign("zz-deal-derived", { packets, chapters: 4 });
+  for (const [chapterKey, derived] of Object.entries(design.perChapter ?? {})) {
+    const own = new Set(packets[Number(chapterKey) - 1].namedCases.flatMap((c) => c.hardSpecifics.map((h) => h.toLowerCase())));
+    for (const topic of derived.topics) {
+      assert.ok([...own].some((h) => h.includes(topic)), `ch${chapterKey} derived topic "${topic}" is not in its own packet's hardSpecifics`);
+    }
+  }
+});
+
+test("R-103: mined topics are ranked by teaching value, not alphabetically", () => {
+  // A packet whose BEST-taught case is alphabetically LAST. The old `minedTopics` ended in
+  // `.sort()`, so it would return "age twelve" first; the rank must return the specific from the
+  // case the chapter's top-priority fact is linked to.
+  const packet = compileSourcePacketFromSidecar({
+    bookId: "zz-deal-rank",
+    chapter: chapterSpec("zz-deal-rank", 1),
+    sidecar: {
+      schemaVersion: "source-v2",
+      chapterNumber: 1,
+      chapterTitle: "Ranking",
+      centralConcept: { id: "c", name: "Ranking", plainDefinition: "d.", whyItMatters: "w." },
+      keyClaims: [],
+      namedExamples: [
+        { id: "ch1.case.aardvark", label: "Aardvark note", summary: "An aardvark note nobody teaches from.", teachesWhat: "nothing much", hardSpecifics: ["age twelve"], realWorld: true },
+        { id: "ch1.case.zephyr", label: "Zephyr subscription", summary: "The zephyr subscription library lending shelves catalogue readers borrowing.", teachesWhat: "the lever", hardSpecifics: ["subscription library"], realWorld: true },
+      ],
+      hardEdge: "h",
+      paraphraseNotes: "p",
+      testableFacts: Array.from({ length: 9 }, (_, i) => ({
+        id: `ch1.fact.${i + 1}`,
+        claim: `The zephyr subscription library lending shelves changed who could read ${i + 1}.`,
+        becauseMechanism: `Because the subscription library catalogue readers borrowing shelves pooled the cost ${i + 1}.`,
+        commonError: `Readers treat the library as charity ${i + 1}.`,
+        errorIsWhy: `The lending shelves catalogue readers borrowing is the mechanism ${i + 1}.`,
+      })),
+      frameworks: [{ name: "f", members: ["a", "b"] }],
+    } as SourceSidecarV2,
+    sidecarPath: "/tmp/x",
+    sourceHash: "h",
+  });
+  const ranked = rankedTopicsForPacket(packet, 4);
+  assert.ok(ranked.length > 0, "the fixture must yield mined topics");
+  assert.equal(ranked[0], "subscription library", `the best-taught specific must lead; got ${ranked.join(" | ")}`);
+  assert.ok(ranked.indexOf("age twelve") > 0 || !ranked.includes("age twelve"), "the alphabetically-first, untaught specific must not lead");
+});
+
+test("R-105: the memoir-history genre exists, is period-neutral, and Franklin resolves to it", () => {
+  assert.equal(genreForBook("the-autobiography-of-benjamin-franklin"), "memoir-history", "the books.json entry must route Franklin to the memoir genre");
+  const pools = buildGenrePools("memoir-history", 8);
+  const contemporary = /\b(kitchen table|shared calendar invite|sticky note on the fridge|reminder on a phone|text thread|budget app|spreadsheet|dashboard|slack|email)\b/i;
+  const leaked = pools.venues.filter((v) => contemporary.test(v));
+  assert.deepEqual(leaked, [], `memoir-history venues must be period-neutral; leaked: ${leaked.join(", ")}`);
+  const findings = validateBookDesign({ schemaVersion: "book-design-v1", bookId: "x", genre: "memoir-history", pools, provenance: { source: "genre-fallback" } }, 8);
+  assert.deepEqual(findings.filter((f) => f.severity === "blocker"), [], "the memoir-history pools must pass the BD gate");
+});
+
+test("R-105: a books.json `genre` field is honoured without a categories entry", () => {
+  assert.equal(genreForBook("zz-not-in-books-json"), "generic");
+  assert.equal(genreForBook("zz-anything", { genre: "memoir-history" }), "memoir-history");
+});
+
+// ── R-106 / R-107 / R-108 — the gates that now run and are enforced ──────────────────
+
+test("R-108: BPV9/BPV10 catch an unknown fact or case id in a QUIZ or CARD slot, not only in examples", () => {
+  const { blueprints } = compileBook("zz-deal-alpha", 1);
+  const bp = JSON.parse(JSON.stringify(blueprints[0])) as ChapterBlueprintV1;
+  assert.deepEqual(validateBlueprint(bp).filter((f) => f.severity === "blocker"), []);
+
+  const withBadQuizFact = JSON.parse(JSON.stringify(bp)) as ChapterBlueprintV1;
+  withBadQuizFact.sections.quiz[0].requiredFactIds = ["ch99.fact.999"];
+  assert.ok(validateBlueprint(withBadQuizFact).some((f) => f.checkId === "BPV9.unknown_fact" && f.severity === "blocker" && /quiz slot 0/.test(f.message)));
+
+  const withBadCardCue = JSON.parse(JSON.stringify(bp)) as ChapterBlueprintV1;
+  withBadCardCue.sections.cards[2].caseCueIds = ["ch99.case.nope"];
+  assert.ok(validateBlueprint(withBadCardCue).some((f) => f.checkId === "BPV10.unknown_case" && f.severity === "blocker" && /card slot 2/.test(f.message)));
+
+  const withBadActionFact = JSON.parse(JSON.stringify(bp)) as ChapterBlueprintV1;
+  withBadActionFact.sections.action.requiredFactIds = ["ch99.fact.1"];
+  assert.ok(validateBlueprint(withBadActionFact).some((f) => f.checkId === "BPV9.unknown_fact" && /action step/.test(f.message)));
+});
+
+test("BPV14: an over-cued case raises an advisory and never a blocker", () => {
+  const { blueprints } = compileBook("zz-deal-alpha", 1);
+  const bp = JSON.parse(JSON.stringify(blueprints[0])) as ChapterBlueprintV1;
+  const oneCase = bp.constraints.allowedCaseIds[0];
+  for (const q of bp.sections.quiz) q.caseCueIds = [oneCase];
+  const findings = validateBlueprint(bp);
+  const bpv14 = findings.find((f) => f.checkId === "BPV14.case_cue_multiplicity");
+  assert.ok(bpv14, "nine quiz slots cueing one case must raise BPV14");
+  assert.equal(bpv14!.severity, "advisory", "BPV14 must never block a run");
+  assert.deepEqual(findings.filter((f) => f.severity === "blocker"), [], "over-cueing is an advisory, not a compile failure");
+});
+
+test("BPV13: a content-driven column stuck on one value raises an advisory (the R-127 shape), and never blocks", () => {
+  const { blueprints } = compileBook("zz-deal-alpha", 9);
+  assert.deepEqual(
+    checkPositionalDeals(blueprints).filter((f) => f.checkId === "BPV13.content_column_concentration"),
+    [],
+    "the redesigned deal must not trip BPV13 on a healthy book",
+  );
+  // Re-create the old rank-pinned card dealer: card slot i teaches rank-i fact in every chapter.
+  const broken = blueprints.map((bp) => {
+    const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+    clone.sections.cards = clone.sections.cards.map((c, i) => ({ ...c, requiredFactIds: [`fact.rank.${i}`] }));
+    // …with one chapter differing, so the column has 2 distinct values and a real cap to exceed.
+    if (clone.chapterNumber === 1) clone.sections.cards[0].requiredFactIds = ["fact.rank.other"];
+    return clone;
+  });
+  const findings = checkPositionalDeals(broken).filter((f) => f.checkId === "BPV13.content_column_concentration");
+  assert.ok(findings.length > 0, "a rank-pinned card column must raise BPV13");
+  assert.ok(findings.every((f) => f.severity === "advisory"), "BPV13 must never block a run");
 });

@@ -1,0 +1,16 @@
+import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
+import { resolve } from "node:path";
+const P = "/Users/radinsoltani/cf-wt/dealing-redesign/scripts/book/prompts/chapterflow-v24-author-pipeline";
+const { compileChapterBlueprint } = await import(`${P}/src/compiler/chapterBlueprint.js`);
+const { writeJsonFile } = await import(`${P}/src/artifacts/artifactStore.js`);
+const packet = JSON.parse(readFileSync(`${P}/tests/fixtures/fact-ranking-legacy-packet.json`, "utf8"));
+const golden = JSON.parse(readFileSync(`${P}/tests/fixtures/fact-ranking-legacy-blueprint.golden.json`, "utf8"));
+const stateRoot = resolve(tmpdir(), `cf-restamp-${process.pid}-${Date.now()}`);
+const chapter = { chapterId: packet.chapterId, chapterNumber: packet.chapterNumber, chapterTitle: packet.chapterTitle };
+mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+writeJsonFile(resolve(stateRoot, "indexes", `${packet.bookId}.json`), [chapter]);
+const bp = compileChapterBlueprint({ bookId: packet.bookId, chapter, packet, packetPath: golden.sourcePacketPath, roots: { stateRoot }, totalChapters: 1 });
+rmSync(stateRoot, { recursive: true, force: true });
+writeFileSync("/Users/radinsoltani/cf-wt/dealing-redesign/.scratch/new-golden.json", JSON.stringify(JSON.parse(JSON.stringify(bp)), null, 2) + "\n");
+console.log("written");

@@ -1101,9 +1101,19 @@ export function dealCaseCue(
   if (opts.requireLink && top < CASE_LINKAGE_MIN_SCORE) return [];
   const head = scored.filter((item) => item.score >= top - CASE_CUE_HEAD_TOLERANCE).map((item) => item.id);
   const underCap = head.filter((id) => (used.get(id) ?? 0) < opts.cap);
-  // A required cue (examples) still gets the least-used head case when every head case is at
-  // cap; an optional cue (quiz/cards) simply goes uncued rather than over-citing a case.
-  const candidates = underCap.length ? underCap : (opts.requireLink ? [] : head);
+  // ORDER OF PREFERENCE, and why it is this order:
+  //   1. a best-linked case that is still under its fair share — relevance AND variety;
+  //   2. (required cues only) the least-used case ANYWHERE in the ranking — when every
+  //      well-linked case has already taken its share, a sixth example anchored on a fourth
+  //      repeat of one case would recite the same hardSpecifics six times, which is the
+  //      sameness the panel reads. Relevance wins first; variety breaks the tie afterwards;
+  //   3. (optional cues only) no cue at all — better than welding an unrelated case into a
+  //      quiz stem that SEC56 then makes mandatory (R-062).
+  const allRanked = scored.map((item) => item.id);
+  const spillover = allRanked.filter((id) => (used.get(id) ?? 0) < opts.cap);
+  const candidates = underCap.length
+    ? underCap
+    : (opts.requireLink ? [] : (spillover.length ? spillover : allRanked));
   if (!candidates.length) return [];
   const minCount = Math.min(...candidates.map((id) => used.get(id) ?? 0));
   const next = candidates.find((id) => (used.get(id) ?? 0) === minCount)!;
@@ -1181,6 +1191,8 @@ function legacyResolvedPools(bookId: string): ResolvedPools {
     weeklyForms: [...WEEKLY_FORMS],
     venuePaletteFor: (chapterNumber: number) => plannedVenuePalette(bookId, chapterNumber),
     forbiddenVenuesFor: (venuePalette: string[]) => FALLBACK_VENUES.filter((v) => !venuePalette.includes(v)).slice(0, 4),
+    // The legacy path has no design artifact and therefore no per-chapter mined staging.
+    chapterDerived: () => null,
   };
 }
 
@@ -1249,6 +1261,7 @@ export function compileChapterBlueprint(args: {
   // prohibitions for THIS book: its genre's canon plus the names its own packet protects.
   const genreReservedNames = new Set(reservedFigureNamesForGenre(genreForBook(bookId)));
   const packetProtectedNames = protectedSourceNames(packet, compilerNameBank(), []);
+  const chapterDerived = pools.chapterDerived(n);
   const venuePalette = pools.venuePaletteFor(n);
   // R-113 — forbiddenVenues is the ADJACENT chapters' palettes, not "four venues this chapter
   // did not draw". The old list was `allVenues.filter(not in palette).slice(0, 4)`: with the
@@ -1292,9 +1305,14 @@ export function compileChapterBlueprint(args: {
       // even slots never collide with a prior chapter's same even slot (and likewise odd),
       // while the 3+3 decision/experiential parity is preserved by the parity switch itself.
       // A `redeal:example-slot` bump (exampleFrames salt) re-deals via the sibling-safe scan.
-      sceneFrame: i % 2 === 1
-        ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
-        : deal(pools.sceneFramesDecision, "exampleSceneFrame", i),
+      // R-065 — slot 0 and slot 1 stage THIS chapter's own best-taught mined specific when the
+      // design artifact carries one; every other slot draws from the book's genre pool. The
+      // chapter-derived string is by construction unique to this chapter, so a fixed slot's
+      // column across the book holds each value once — BPV11 stays clean without special-casing.
+      sceneFrame: (i === 0 ? chapterDerived?.frameDecision : i === 1 ? chapterDerived?.frameExperiential : undefined)
+        ?? (i % 2 === 1
+          ? deal(pools.sceneFramesExperiential, "exampleSceneFrameExperiential", i)
+          : deal(pools.sceneFramesDecision, "exampleSceneFrame", i)),
       // Deal which palette entry lands in each slot so slot 0's venue is not always
       // venuePalette[0]; a `redeal:venue` bump shifts the ordering (raw rank shift — the
       // palette is chapter-local, so there is no cross-chapter column to scan against).
@@ -1405,11 +1423,15 @@ export function compileChapterBlueprint(args: {
   const summarySpine = rankingActive ? ids.slice(0, 3) : ids.slice(0, 5);
   const hookFactIds = ids.length ? [ids.slice(0, Math.min(3, ids.length))[(n - 1) % Math.min(3, ids.length)]] : [];
   const spine = new Set(summarySpine);
+  // Preference order, strongest constraint first: P13's "the action step is built on MECHANISM
+  // facts" outranks R-126's "do not repeat the spine", so an off-spine mechanism fact comes
+  // first, then ANY mechanism fact, and only a chapter with fewer than three mechanism facts
+  // reaches the plain rank list.
   const actionFactIds = rankingActive
     ? uniq([
         ...mechanismIds.filter((id) => !spine.has(id)),
-        ...ids.filter((id) => !spine.has(id)),
         ...mechanismIds,
+        ...ids.filter((id) => !spine.has(id)),
         ...ids,
       ]).slice(0, 3)
     : ids.slice(0, 3);
@@ -1464,7 +1486,7 @@ export function compileChapterBlueprint(args: {
         weeklyPracticeForm,
         ifThenPlanShapes: Array.from({ length: 3 }, (_, i) => deal(IF_THEN_PLAN_SHAPES, "ifThenPlanShape", i)),
         practiceForm,
-        practiceConstraint: deal(pools.practiceConstraints, "practiceConstraint", 0),
+        practiceConstraint: chapterDerived?.practiceConstraint ?? deal(pools.practiceConstraints, "practiceConstraint", 0),
       },
     },
     constraints: {

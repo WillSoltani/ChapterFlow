@@ -99,7 +99,7 @@ function universalCore(kind: SectionKind): string[] {
         "Produce exactly the six blueprint slots (the final v21 gate requires six). exampleId = \"ex01\"..\"ex06\" in slot order, or \"chNN-exNN-slug\"; never include the bookId.",
         "Every example is a concrete human scene with a NAMED person living a defining moment. Use a different dealt name per slot; never use a source-figure name as an invented actor.",
         "Each example cites a namedExample/example anchor; source facts DRIVE the decision and never appear as props, labels, wall cards, desk objects, or title subjects.",
-        "EVERY scenario shows a visible decision, tradeoff, mistake, friction, or recovery IN THE SCENE — a person choosing between two concrete options, catching an error, or paying a cost — not a smooth description of someone doing the right thing (SEC31); the validator enforces this per example.",
+        "SCENE ENGINE BY SLOT: even slots (ex01/ex03/ex05) carry their dealt DECISION frame — a person choosing between two concrete options, catching an error, or paying a cost. Odd slots (ex02/ex04/ex06) carry their dealt EXPERIENTIAL frame as the WHOLE scene: a surprise, a ritual, a first time, a recognition — not a lived moment with a deliberation grafted on. Every scenario, either kind, still shows something at stake happening in the scene: a cost, a friction, a consequence, a correction (SEC31); the validator enforces this per example.",
         "whatToDo adds a new instruction/test/refusal rule not already narrated in the scenario. whyItMatters explains the same cited sourceFactIds and the decision shown.",
         "Output ExamplePackV1 JSON only.",
       ];
@@ -189,7 +189,7 @@ function craftBrief(kind: SectionKind): string[] {
     case "example-pack":
       return [
         "WHAT EXCELLENT LOOKS LIKE: six DIFFERENT scene engines — not six variations of \"a person weighs two options\". At least THREE are non-deliberation: a surprise that lands on someone; a ritual observed mid-action; a consequence unfolding from an earlier choice; a boundary case where the move backfires or must be withheld; a first-time or milestone; or a public recognition.",
-        "Vary WHAT KIND of moment it is and WHO experiences it — a swapped name or prop is a repeat, not a variation. Let the dealt sceneFrame/requiredBeat set the kind of moment for each slot.",
+        "Vary WHAT KIND of moment it is and WHO experiences it — a swapped name or prop is a repeat, not a variation. The dealt sceneFrame/requiredBeat IS the kind of moment for that slot; the three odd slots are where the non-deliberation scenes live.",
         "The dealt venue, sceneMode and sceneFrame are STAGING DIRECTIONS, not text: realize each as concrete scene detail in your own words and NEVER reproduce the dealt string verbatim in the prose. A scenario that opens by quoting its venue (\"kept a working note on ...\") reads as template smell, and a garbled dealt string quoted literally reads as corrupted prose.",
         "RUBRIC TARGETS: a distinct scene engine per slot; vary openings, venues, protagonists, outcomes, and title grammar across the six.",
         voiceCraftLine(kind),

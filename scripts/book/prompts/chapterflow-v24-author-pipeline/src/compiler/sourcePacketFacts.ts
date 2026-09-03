@@ -57,11 +57,13 @@ export function extractGroundedNumbers(text: string): string[] {
  * which is worse than useless: it tells the writer that common words are source-protected
  * names and it dilutes the list the accuracy gates read.
  *
- * A capitalized run that occurs ONLY at a sentence start (start-of-string, or after
- * `.`/`!`/`?` + whitespace) is dropped. A genuine proper noun almost always also occurs
- * mid-sentence somewhere in the same packet text ("Franklin ruled the page… Then Franklin
- * marked it"), and that mid-sentence occurrence keeps it. A ten-word stop list stays as
- * the cheap pre-filter for the most common openers.
+ * A capitalized run that starts a sentence (start-of-string, or after `.`/`!`/`?` +
+ * whitespace) has its FIRST word removed, because that word is capitalized by grammar, not
+ * by being a name. What remains is kept when it is still a capitalized run of >= 3 chars —
+ * so "Then Franklin" yields "Franklin" and "Readers treat" yields nothing. A run that is
+ * only its opener is dropped unless the same token ALSO occurs mid-sentence somewhere in
+ * the same text, which is how a genuine proper noun that happens to open a sentence
+ * ("Franklin ruled the page. Franklin marked it.") survives.
  *
  * The filter is per-CALL over the text it was given, so a token whose only occurrence in
  * this text is sentence-initial is dropped even if it appears mid-sentence elsewhere in
@@ -82,7 +84,12 @@ export function properNounTokens(text: string): string[] {
     hits.push({ token, sentenceInitial });
   }
   const midSentence = new Set(hits.filter((h) => !h.sentenceInitial).map((h) => h.token));
-  const kept = hits.filter((h) => !h.sentenceInitial || midSentence.has(h.token)).map((h) => h.token);
+  const kept: string[] = [];
+  for (const hit of hits) {
+    if (!hit.sentenceInitial || midSentence.has(hit.token)) { kept.push(hit.token); continue; }
+    const tail = hit.token.split(/\s+/).slice(1).join(" ").trim();
+    if (tail.length >= 3 && /^[A-Z]/.test(tail)) kept.push(tail);
+  }
   return uniq(kept).slice(0, 80);
 }
 

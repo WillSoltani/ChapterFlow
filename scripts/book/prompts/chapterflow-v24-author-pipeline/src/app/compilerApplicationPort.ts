@@ -9,6 +9,8 @@ import type { SectionPackCache, SectionPackCacheKey } from "../books/sectionPack
 import type { SectionAvoidEntry, SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import { COMPILER_SHADOW_PROFILE, LegacyCompilerAdapter } from "../books/legacyCompilerAdapter.js";
 import { deriveBookDesign } from "../compiler/bookDesign.js";
+import { checkPositionalDeals, poolSizeOverrides } from "../compiler/blueprintGate.js";
+import { resolvedPoolsForBook } from "../compiler/chapterBlueprint.js";
 import { compileSourcePacketFromSidecar, sourcePacketHash } from "../compiler/sourcePacket.js";
 import { compileSourceUsePlan } from "../compiler/sourceUsePlanCompiler.js";
 import type { CandidateIdentity, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
@@ -183,6 +185,14 @@ export interface CompilerApplicationPortDependencies {
 type CompilerArtifactResult = Readonly<{
   design: unknown;
   blueprint: ChapterBlueprintV1;
+  /** R-107 — the adapter's per-chapter gate verdicts, now ENFORCED here rather than only
+   *  compared legacy-vs-shadow. Typed loosely (both finding shapes carry checkId/severity/message)
+   *  so this port does not take a dependency on two gate modules for three fields. */
+  gates: Readonly<{
+    design: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
+    blueprint: ReadonlyArray<{ checkId: string; severity: string; message: string }>;
+    briefFindings: readonly unknown[];
+  }>;
 }>;
 
 type CompilerOperation = Readonly<{
@@ -1426,6 +1436,9 @@ export class CompilerApplicationPort {
         bytes: jsonBytes(design),
       }];
       const assemblyPaths: AuthorV4SectionChapterPaths[] = [];
+      // R-106 — every chapter's fully-resolved blueprint, collected for the book-level deal audit
+      // that runs after the loop.
+      const compiledBlueprints: ChapterBlueprintV1[] = [];
       // Task 11aa — retain each chapter's cache identity (chapterId + the two
       // drafting digests) so a cross-chapter assembly blocker can rebuild the exact
       // SectionPackCacheKey of an implicated pack and evict it.
@@ -1440,6 +1453,19 @@ export class CompilerApplicationPort {
         const compared = await adapter.compareCompilerArtifacts({ chapter, packet, totalChapters: chapters.length });
         if (!compared.matched || !compared.shadow) throw new Error(`COMPILER_OUTPUT_MISMATCH:${compared.mismatch ?? "compiler comparison failed"}`);
         const artifacts = compared.legacy as CompilerArtifactResult;
+        // R-107 — the adapter computes `gates.design` and `gates.blueprint` for every chapter, and
+        // until this change the ONLY thing done with them was compareCompilerArtifacts' equality
+        // check. Legacy and shadow run the same code over the same inputs, so identical blockers
+        // always compared equal and the run proceeded past them: a design artifact that fails its
+        // own BD gate, or a blueprint that references an unknown fact id, reached the writers.
+        // The findings are now enforced where they are produced.
+        const compilerGateBlockers = [
+          ...artifacts.gates.design.filter((f) => f.severity === "blocker").map((f) => `design ${f.checkId}: ${f.message}`),
+          ...artifacts.gates.blueprint.filter((f) => f.severity === "blocker").map((f) => `blueprint ${f.checkId}: ${f.message}`),
+        ];
+        if (compilerGateBlockers.length > 0) {
+          throw new Error(`COMPILER_GATE_BLOCKED:ch${String(chapter.chapterNumber).padStart(2, "0")} ${compilerGateBlockers.join("; ")}`);
+        }
         const packetLogicalPath = compilerPath(chapter.chapterNumber, "source-packet.json");
         const planLogicalPath = compilerPath(chapter.chapterNumber, "source-use-plan.json");
         const blueprintLogicalPath = compilerPath(chapter.chapterNumber, "blueprint.json");
@@ -1453,6 +1479,7 @@ export class CompilerApplicationPort {
         // packet), so a cached pack keyed here is only reused by a later compile run
         // whose blueprint AND packet still hash identically — any drift in either
         // mints a fresh key and the stale entry is simply never found.
+        compiledBlueprints.push(candidateBlueprint);
         const packetDigest = candidateBlueprint.sourcePacketHash;
         const blueprintDigest = createHash("sha256").update(jsonBytes(candidateBlueprint)).digest("hex");
         // Filled in per kind by the section loop below (see ChapterCacheIdentity).
@@ -1683,6 +1710,29 @@ export class CompilerApplicationPort {
           action: sectionPaths["action-pack"],
           output: `content/chapters/${chapterFileName(chapter.chapterId)}`,
         });
+      }
+
+      // R-106 — the book-level deal audit (BPV11 collisions, BPV12 pool floors) previously ran
+      // ONLY inside checkBlueprintGate, whose sole caller is the `blueprint-gate` CLI verb. The
+      // candidate compile called per-chapter validateBlueprint and nothing else, so the one check
+      // that can see a cross-chapter same-position collision never ran on the path that produces
+      // books. Every chapter's blueprint is in hand here, which is exactly what it needs.
+      const candidateBlueprints = compiledBlueprints.slice().sort((a, b) => a.chapterNumber - b.chapterNumber);
+      if (candidateBlueprints.length === chapters.length && candidateBlueprints.length > 0) {
+        let poolOverrides: Record<string, { poolSize: number; poolSizeAt?: (slotIndex: number) => number }> = {};
+        try {
+          poolOverrides = poolSizeOverrides(resolvedPoolsForBook(request.bookId, { stateRoot: legacyRoot }));
+        } catch {
+          /* fall back to the descriptors' own constant sizes */
+        }
+        const dealFindings = checkPositionalDeals(candidateBlueprints, poolOverrides);
+        const dealBlockers = dealFindings.filter((f) => f.severity === "blocker");
+        for (const advisory of dealFindings.filter((f) => f.severity !== "blocker")) {
+          console.error(`[book-run] compiler deal-audit advisory ${advisory.checkId}: ${advisory.message}`);
+        }
+        if (dealBlockers.length > 0) {
+          throw new Error(`COMPILER_GATE_BLOCKED:${dealBlockers.map((f) => `${f.checkId}: ${f.message}`).join("; ")}`);
+        }
       }
 
       if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");

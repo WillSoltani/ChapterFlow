@@ -10,6 +10,7 @@ import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
 import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
 import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
+import { reservedFigureNamesForGenre } from "../src/compiler/bookDesign.js";
 import { checkSectionGate, contentBlockers, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
 import { buildEvidenceMap } from "../src/evidence/evidenceMap.js";
 import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
@@ -745,9 +746,19 @@ test("v23 source packet fact extraction is behavior-preserving: the shared compi
   // were facts=sha256:5e4d1131… / packet=sha256:9da60abb… (captured before sourcePacketFacts.ts
   // existed). If either changes AGAIN without an intended packet-shape change, the extraction
   // broke behavior or the fixture drifted — re-derive deliberately, do not silently update.
+  //
+  // RE-DERIVED for R-116 (package 1C). properNounTokens() gained a sentence-initial filter: a
+  // capitalized run that starts a sentence has its opening word stripped (that word is
+  // capitalized by grammar), and a run that is ONLY its opener is dropped unless the same token
+  // also occurs mid-sentence. That changes one field — facts[].groundedEntities — which on this
+  // fixture loses sentence-opening ordinary words. The P13 pins immediately above were
+  // facts=sha256:2ee22e0c… / packet=sha256:6fdb1b6e…. The assertion below pins the CONTENT of the
+  // change, so the new hash cannot be a cover for an unrelated packet-shape drift.
   const { packet } = compileFixture();
-  assert.equal(canonicalJsonSha256(packet.facts), "sha256:2ee22e0c1244fada6d279d775fb4fcf965b6fdf317b7e8a9e60e5b90fb7717b7", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority)");
-  assert.equal(canonicalJsonSha256(packet), "sha256:6fdb1b6ed6e3333977f3b10df78c45317cf20d18b78894d9098fad587e5f7715", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking)");
+  const openerEntities = packet.facts.flatMap((f) => f.groundedEntities).filter((e) => /^(?:Readers|Repetition|Environments|Paying|Keeping|Carrying|The reader)\b/.test(e));
+  assert.deepEqual(openerEntities, [], `R-116: sentence-opening ordinary words must not be harvested as entities: ${openerEntities.join(", ")}`);
+  assert.equal(canonicalJsonSha256(packet.facts), "sha256:536899249fa41d581d1d003651664801c53121d45597f084a74e794ae848a459", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority and the R-116 entity filter)");
+  assert.equal(canonicalJsonSha256(packet), "sha256:356f19136c211320179d6f4ccbe4352e29feb7541cd6f35e6a4c13f0aad4c96b", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking and the R-116 entity filter)");
 
   // The packet compiler must be USING the shared helper, not a parallel reimplementation:
   // calling compiledFactsFromSidecar directly on the same sidecar must equal packet.facts
@@ -793,9 +804,20 @@ test("v23 blueprint compiler creates deterministic variety budgets and balanced 
   const counts = [0, 1, 2].map((i) => blueprint.reservedVariety.answerIndexPattern.filter((v) => v === i).length);
   assert.ok(Math.max(...counts) - Math.min(...counts) <= 1, `balanced counts ${counts}`);
   assert.equal(blueprint.sections.quiz.every((q) => q.promptShape && q.answerStyle && q.distractorTrap), true, "quiz slots must carry anti-template shape guidance");
-  assert.equal(blueprint.sections.quiz.every((q) => q.caseCueIds.length > 0), true, "quiz slots must carry named-case cues");
+  // R-062 — this used to assert that EVERY quiz slot carries a case cue, which is exactly the
+  // contract the redesign retires: a cue is dealt only where the slot's fact is genuinely linked
+  // to a case, because SEC56 makes a dealt cue MANDATORY in the reader-facing prompt and
+  // explanation. On the live candidate that produced a Penn-negotiation question opening on a
+  // near-shipwreck. What is still required: some slot must cue (the chapter's cases have to reach
+  // the quiz at all), and every cue that IS dealt must name a real case of this packet.
+  const quizCued = blueprint.sections.quiz.filter((q) => q.caseCueIds.length > 0);
+  assert.ok(quizCued.length > 0, "at least one quiz slot must cue a named case");
+  const allowedCaseIds = new Set(blueprint.constraints.allowedCaseIds);
+  assert.equal(quizCued.every((q) => q.caseCueIds.every((id) => allowedCaseIds.has(id))), true, "every dealt quiz case cue must name a case of this packet");
   assert.equal(blueprint.sections.cards.every((c) => c.frontShape && c.retrievalTarget && c.backShape), true, "card slots must carry anti-template shape guidance");
-  assert.equal(blueprint.sections.cards.every((c) => c.caseCueIds.length > 0), true, "card slots must carry named-case cues");
+  const cardsCued = blueprint.sections.cards.filter((c) => c.caseCueIds.length > 0);
+  assert.ok(cardsCued.length > 0, "at least one card slot must cue a named case (R-062: cues follow fact linkage, not slot position)");
+  assert.equal(cardsCued.every((c) => c.caseCueIds.every((id) => allowedCaseIds.has(id))), true, "every dealt card case cue must name a case of this packet");
   assert.equal(blueprint.sections.action.ifThenPlanShapes.length, 3, "action slot must deal if-then plan shapes");
   assert.ok(blueprint.sections.action.practiceForm.length > 0, "action slot must deal a 24-hour practice form");
   assert.ok(blueprint.sections.action.practiceConstraint.length > 0, "action slot must deal a practice constraint");
@@ -1179,13 +1201,24 @@ test("v23 blueprint compiler excludes source-figure first names from fictional n
   assert.equal(blueprint.reservedVariety.forbiddenNames.includes("Benjamin"), true, "protected source names should be visible to writers as forbidden");
 });
 
-test("v23 blueprint compiler globally reserves canonical source-figure names from fictional casts", () => {
-  const { blueprint } = compileFixture();
+test("v23 blueprint compiler never DEALS a canonical source-figure name, and shows it as forbidden only where the genre reserves it", () => {
+  // R-115 — the five investing-canon names used to be added to EVERY book's protected set and
+  // shown at the head of EVERY book's writer-facing forbiddenNames, so a memoir by Benjamin
+  // Franklin opened its forbidden list with "Benjamin". They are now genre-keyed
+  // (config/genre-pools.json → genres.investing.reservedFigureNames).
+  //
+  // Split in two, because the two halves have different scopes:
+  //   the DEAL still excludes them for every book (sectionGate's SEC34 reserves them book-wide,
+  //   so dealing one would deadlock a compile — narrowing SEC34 is a section-gate change);
+  //   the GUIDANCE shows them only for a book whose genre actually reserves them.
+  const { blueprint } = compileFixture(); // money-book: no books.json genre → `generic`
   for (const name of ["Benjamin", "Graham", "Dodd", "Buffett", "Warren"]) {
     assert.equal(blueprint.reservedVariety.allowedNames.includes(name), false, `${name} must not be dealt as a fictional protagonist`);
     assert.equal(blueprint.sections.examples.some((slot) => slot.allowedNames.includes(name)), false, `${name} must not appear in example slot names`);
-    assert.equal(blueprint.reservedVariety.forbiddenNames.includes(name), true, `${name} should be visible in writer forbiddenNames`);
+    assert.equal(blueprint.reservedVariety.forbiddenNames.includes(name), false, `${name} is an investing-canon figure; a generic-genre book must not spend its forbidden-name guidance on it`);
   }
+  assert.deepEqual(reservedFigureNamesForGenre("investing"), ["Benjamin", "Graham", "Dodd", "Buffett", "Warren"], "the investing genre still reserves the canon");
+  assert.deepEqual(reservedFigureNamesForGenre("memoir-history"), [], "a memoir reserves no investing figures");
 });
 
 test("v23 blueprint compiler deals adjacent chapters disjoint protagonist name pools", () => {

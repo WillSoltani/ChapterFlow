@@ -37,9 +37,11 @@ import {
   BOOK_DESIGN_SCHEMA_VERSION,
   type BookDesignPools,
   type BookDesignV1,
+  type ChapterDerivedDesign,
   type SourcePacketV1,
 } from "../artifacts/artifactTypes.js";
-import { properNounTokens, uniq } from "./sourcePacketFacts.js";
+import { bestCaseLinkage, CASE_LINKAGE_MIN_SCORE, properNounTokens, uniq } from "./sourcePacketFacts.js";
+import { fnv1a } from "../lib/fnv1a.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url)); // .../src/compiler
 const GENRE_POOLS_PATH = resolve(__dirname, "../../config/genre-pools.json");
@@ -302,32 +304,61 @@ function cleanTopicPhrase(raw: string): string | null {
   return t;
 }
 
-function minedTopics(packets: SourcePacketV1[]): string[] {
-  const raw: string[] = [];
-  for (const p of packets) {
-    for (const c of p.namedCases) for (const s of c.hardSpecifics) raw.push(s);
+/**
+ * R-103 — mined topics are RANKED by teaching value, not sorted alphabetically.
+ *
+ * `minedTopics` used to end in `.sort()`, and the callers took `slice(0, 8)` / `slice(0, 4)`. So
+ * the head of a book's whole derived flavour was whatever happened to come first in the alphabet:
+ * on the live candidate that was "age sixteen, age twelve, black spots, buckets and bags, colony
+ * charter, conditional pledge, forty shillings, four courses a year", while "three puffy rolls",
+ * "subscription library", "near shipwreck", "vegetable diet" and "speckled ax is best" — the
+ * specifics the book is actually remembered for — were discarded.
+ *
+ * The score is the teaching value of the material the specific came from:
+ *   • the best teachingPriority (1 = best) of any fact keyword-linked to the owning case, and
+ *   • how many hardSpecifics that case carries (a case with more concrete detail can support a
+ *     scene the writer does not have to invent around).
+ * Ties break by fnv1a of the phrase so the order is deterministic without being alphabetical.
+ */
+type ScoredTopic = { topic: string; score: number };
+
+function scoredTopicsForPacket(packet: SourcePacketV1): ScoredTopic[] {
+  const priority = new Map(packet.facts.filter((f) => typeof f.teachingPriority === "number").map((f) => [f.id, f.teachingPriority as number]));
+  const bestPriorityForCase = new Map<string, number>();
+  for (const fact of packet.facts) {
+    const link = bestCaseLinkage(packet, fact.id);
+    if (!link.caseId || link.score < CASE_LINKAGE_MIN_SCORE) continue;
+    const rank = priority.get(fact.id) ?? Number.POSITIVE_INFINITY;
+    const current = bestPriorityForCase.get(link.caseId) ?? Number.POSITIVE_INFINITY;
+    if (rank < current) bestPriorityForCase.set(link.caseId, rank);
   }
-  return uniq(raw.map(cleanTopicPhrase).filter((x): x is string => !!x)).sort();
+  const out: ScoredTopic[] = [];
+  const seen = new Set<string>();
+  for (const c of packet.namedCases) {
+    // A case nothing teaches from ranks last but is not discarded: a packet with no ranking at all
+    // (legacy) would otherwise contribute nothing and lose the feature entirely.
+    const rank = bestPriorityForCase.get(c.id) ?? 99;
+    for (const raw of c.hardSpecifics) {
+      const topic = cleanTopicPhrase(raw);
+      if (!topic || seen.has(topic)) continue;
+      seen.add(topic);
+      // Lower is better: rank dominates, specifics-richness is the secondary lift, and the hash
+      // is a deterministic sub-unit tie-break that is not alphabetical.
+      out.push({ topic, score: rank * 1000 - Math.min(c.hardSpecifics.length, 9) * 10 + (fnv1a(topic) % 10) });
+    }
+  }
+  return out.sort((a, b) => a.score - b.score || (a.topic < b.topic ? -1 : a.topic > b.topic ? 1 : 0));
 }
 
-type DerivedEntries = { framesDecision: string[]; framesExperiential: string[]; venues: string[]; constraints: string[] };
-
-/** Slot mined topics into genre-neutral frame/venue/constraint TEMPLATES. Deterministic (sorted
- *  input, fixed slice sizes). Bounded — the derived head gives the book its own flavor; the genre
- *  base behind it carries the bulk and guarantees the floors. */
-function buildDerivedEntries(topics: string[], caseLabelsLower: string[]): DerivedEntries {
-  const clean = (xs: string[]): string[] => xs.filter((e) => bannedContentReason(e, caseLabelsLower) === null);
-  const framesDecision = clean(
-    topics.slice(0, 8).flatMap((p) => [
-      `a first attempt at ${p} that gets corrected`,
-      `two stakeholders disagree about ${p} before deciding`,
-    ]),
-  ).slice(0, 8);
-  const framesExperiential = clean(topics.slice(0, 4).map((p) => `a first encounter with ${p} that sets a benchmark`)).slice(0, 4);
-  const venues = clean(topics.slice(0, 10).map((p) => `a working note on ${p}`)).slice(0, 8);
-  const constraints = clean(topics.slice(0, 4).map((p) => `tie the move to ${p} before acting`)).slice(0, 4);
-  return { framesDecision, framesExperiential, venues, constraints };
+/** Best-taught mined topics for ONE chapter, capped so a chapter contributes staging for at most
+ *  two slots. Exported for the test that pins the ranking against the alphabetical head. */
+export function rankedTopicsForPacket(packet: SourcePacketV1, limit = TOPICS_PER_CHAPTER): string[] {
+  return scoredTopicsForPacket(packet).map((t) => t.topic).slice(0, limit);
 }
+
+/** At most this many mined topics per chapter reach the design artifact (R-103's
+ *  "per-chapter-balanced slice"). Two: one decision frame, one experiential frame. */
+export const TOPICS_PER_CHAPTER = 2;
 
 function loadPacketsForBook(bookId: string, roots: CompilerStoreRoots): { packets: SourcePacketV1[]; chapters: number } {
   const normalized = normSlug(bookId);
@@ -363,28 +394,63 @@ export function deriveBookDesign(
   const base = buildGenrePools(genre, chapters);
 
   const caseLabelsLower = uniq(packets.flatMap((p) => p.namedCases.map((c) => c.label))).map((l) => l.toLowerCase());
-  const topics = minedTopics(packets);
-  const derived = buildDerivedEntries(topics, caseLabelsLower);
+
+  // ── R-065 — derivation is PER CHAPTER, and the book-wide pools are the genre base alone ──
+  //
+  // The mined material used to be flattened into `pools`, where the positional dealer handed it
+  // to whichever chapter's slot the arithmetic landed on. Because the pool head is book-wide, one
+  // chapter's tokens were dealt to another chapter as a staging direction the writer could not
+  // use ("a first encounter with age twelve" in a chapter about a different decade), and — via
+  // the derived venues sitting at the head of the venue pool — the same four strings became every
+  // chapter's forbiddenVenues list (R-113).
+  //
+  // Keeping `pools` genre-only is what makes cross-chapter contamination impossible BY
+  // CONSTRUCTION rather than by a gate: there is nothing chapter-specific in the pools to deal.
+  // Chapter-specific staging lives in `perChapter`, which the blueprint reads for its OWN n.
+  //
+  // Derived VENUES were dropped entirely rather than moved. Rationale: the venue is the one dealt
+  // field that reaches reader-visible output (assembler.buildTags scrapes the plan domain, and
+  // the writer is told to realize the venue as scene detail), and the only template available for
+  // a mined specific in a venue slot was "a working note on X" — a bookkeeping noun, not a place.
+  // Genre venues are real places; that is what R-105's memoir-history pool exists to supply.
+  const clean = (entries: string[]): string[] => entries.filter((e) => bannedContentReason(e, caseLabelsLower) === null);
+  const perChapter: Record<string, ChapterDerivedDesign> = {};
+  for (const packet of packets) {
+    const topics = rankedTopicsForPacket(packet);
+    if (topics.length === 0) continue;
+    const [first, second] = topics;
+    const frameDecision = first ? clean([`a first attempt at ${first} that gets corrected`])[0] : undefined;
+    const frameExperiential = second ? clean([`a first encounter with ${second} that sets a benchmark`])[0] : undefined;
+    const practiceConstraint = first ? clean([`tie the move to ${first} before acting`])[0] : undefined;
+    const entry: ChapterDerivedDesign = {
+      ...(frameDecision ? { frameDecision } : {}),
+      ...(frameExperiential ? { frameExperiential } : {}),
+      ...(practiceConstraint ? { practiceConstraint } : {}),
+      topics,
+    };
+    if (frameDecision || frameExperiential || practiceConstraint) perChapter[String(packet.chapterNumber)] = entry;
+  }
 
   const pools: BookDesignPools = {
-    sceneFramesDecision: buildPool([...derived.framesDecision, ...base.sceneFramesDecision], [], POOL_FLOORS.sceneFramesDecision),
-    sceneFramesExperiential: buildPool([...derived.framesExperiential, ...base.sceneFramesExperiential], [], POOL_FLOORS.sceneFramesExperiential),
+    sceneFramesDecision: buildPool(base.sceneFramesDecision, [], POOL_FLOORS.sceneFramesDecision),
+    sceneFramesExperiential: buildPool(base.sceneFramesExperiential, [], POOL_FLOORS.sceneFramesExperiential),
     beatsDecision: base.beatsDecision,
     beatsExperiential: base.beatsExperiential,
-    venues: buildPool([...derived.venues, ...base.venues], [], venueFloor(chapters)),
-    practiceConstraints: buildPool([...derived.constraints, ...base.practiceConstraints], [], POOL_FLOORS.practiceConstraints),
+    venues: buildPool(base.venues, [], venueFloor(chapters)),
+    practiceConstraints: buildPool(base.practiceConstraints, [], POOL_FLOORS.practiceConstraints),
     practiceForms: base.practiceForms,
     actionMechanisms: base.actionMechanisms,
     weeklyForms: base.weeklyForms,
   };
 
-  const derivedCount = derived.framesDecision.length + derived.framesExperiential.length + derived.venues.length + derived.constraints.length;
+  const derivedCount = Object.keys(perChapter).length;
   const derivedFrom = uniq(packets.flatMap((p) => p.namedCases.map((c) => c.id))).sort();
   return {
     schemaVersion: BOOK_DESIGN_SCHEMA_VERSION,
     bookId: normSlug(bookId),
     genre,
     pools,
+    ...(derivedCount > 0 ? { perChapter } : {}),
     provenance: {
       source: derivedCount > 0 ? "derived" : "genre-fallback",
       ...(derivedCount > 0 && derivedFrom.length ? { derivedFrom } : {}),
@@ -495,8 +561,13 @@ export type ResolvedPools = BookDesignPools & {
    *  legacy = the caller's plannedVenuePalette). */
   venuePaletteFor: (chapterNumber: number) => string[];
   /** Up to 4 forbidden venues given a chapter's palette (venues from the resolved pool set NOT in
-   *  this chapter's palette; legacy = the investing FALLBACK_VENUES minus the palette). */
+   *  this chapter's palette; legacy = the investing FALLBACK_VENUES minus the palette).
+   *  @deprecated R-113 — the blueprint builds forbiddenVenues from the ADJACENT chapters'
+   *  palettes instead. Kept on the type only so an out-of-package caller is not broken silently;
+   *  nothing in the compiler reads it. */
   forbiddenVenuesFor: (venuePalette: string[]) => string[];
+  /** R-065 — staging mined from ONE chapter's own packet, or null. Never another chapter's. */
+  chapterDerived: (chapterNumber: number) => ChapterDerivedDesign | null;
 };
 
 function buildVenueClosures(bookId: string, venues: string[]): Pick<ResolvedPools, "venuePaletteFor" | "forbiddenVenuesFor"> {
@@ -522,8 +593,15 @@ function buildVenueClosures(bookId: string, venues: string[]): Pick<ResolvedPool
   return { venuePaletteFor, forbiddenVenuesFor };
 }
 
-function resolvedFromPools(source: "derived" | "genre-fallback", genre: string, pools: BookDesignPools, bookId: string, designHash?: string): ResolvedPools {
-  return { ...pools, source, genre, ...(designHash ? { designHash } : {}), ...buildVenueClosures(bookId, pools.venues) };
+function resolvedFromPools(source: "derived" | "genre-fallback", genre: string, pools: BookDesignPools, bookId: string, designHash?: string, perChapter?: Record<string, ChapterDerivedDesign>): ResolvedPools {
+  return {
+    ...pools,
+    source,
+    genre,
+    ...(designHash ? { designHash } : {}),
+    ...buildVenueClosures(bookId, pools.venues),
+    chapterDerived: (chapterNumber: number) => perChapter?.[String(chapterNumber)] ?? null,
+  };
 }
 
 /** The on-disk design artifact for a book IF it exists AND passes the gate (no blockers). Returns
@@ -552,7 +630,7 @@ function readCleanBookDesign(bookId: string, roots: CompilerStoreRoots): BookDes
 export function resolvePools(bookId: string, roots: CompilerStoreRoots, legacy: ResolvedPools): ResolvedPools {
   const normalized = normSlug(bookId);
   const design = readCleanBookDesign(normalized, roots);
-  if (design) return resolvedFromPools("derived", design.genre, design.pools, normalized, canonicalJsonSha256(design));
+  if (design) return resolvedFromPools("derived", design.genre, design.pools, normalized, canonicalJsonSha256(design), design.perChapter);
   const genre = genreForBook(normalized);
   if (genre !== "generic") {
     const { chapters } = loadPacketsForBook(normalized, roots);
