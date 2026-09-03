@@ -83,7 +83,7 @@ const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attemp
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
 
 function v4BookProductionUsage(command: "book-run" | "book-autopilot"): string {
-  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
+  return `${command} <bookId> --title <title> --author <author> --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--source-text <absolute>] [--resume-run-id <id>] [--research-run-id <id>] [--reconcile-unsettled] [--regen] [--max-repair 1] [--promote-local] [--no-publish]${command === "book-run" ? " [--log <absolute>]" : ""}`;
 }
 
 function firstUnsupportedFlag(
@@ -136,6 +136,7 @@ import {
   type LibraryAuditFinding,
   type LibraryAuditReport,
 } from "./librarian/libraryState.js";
+import { discoverSourceTextPath } from "./source/sourceText.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const REPO_ROOT = resolve(__dirname, "..");
@@ -424,7 +425,7 @@ async function runV4BookProduction(
     }
   }
   const unsupported = firstUnsupportedFlag(flags, [
-    "title", "author", "v25-root", "attempt-root", "source-git-sha", "resume-run-id", "research-run-id", "regen",
+    "title", "author", "v25-root", "attempt-root", "source-git-sha", "source-text", "resume-run-id", "research-run-id", "regen",
     "max-repair", "promote-local", "no-publish", "reconcile-unsettled", ...(command === "book-run" ? ["log"] : []),
   ]);
   if (unsupported !== undefined) {
@@ -446,6 +447,13 @@ async function runV4BookProduction(
   const attemptRoot = flags["attempt-root"];
   const sourceGitSha = flags["source-git-sha"];
   const logPath = command === "book-run" && typeof flags["log"] === "string" ? flags["log"] : undefined;
+  // R-046 — the explicit flag wins; the discovery fallback only fires when it is
+  // absent. A book with neither is researched from model memory, and the run
+  // records that as its provenance rather than pretending it read anything.
+  const sourceTextFlag = flags["source-text"];
+  const sourceTextPath = typeof sourceTextFlag === "string" && sourceTextFlag.length > 0
+    ? sourceTextFlag
+    : (sourceTextFlag === undefined ? discoverSourceTextPath(REPO_ROOT, bookId) ?? undefined : undefined);
   const maxRepair = flags["max-repair"] === undefined ? 1
     : typeof flags["max-repair"] === "string" ? Number(flags["max-repair"]) : Number.NaN;
   if (args.length !== 1 || !bookId || !title || !author
@@ -459,6 +467,7 @@ async function runV4BookProduction(
     || (flags["promote-local"] !== undefined && flags["promote-local"] !== true)
     || (flags["no-publish"] !== undefined && flags["no-publish"] !== true)
     || (flags["reconcile-unsettled"] !== undefined && flags["reconcile-unsettled"] !== true)
+    || (flags["source-text"] !== undefined && (typeof flags["source-text"] !== "string" || !isAbsolute(flags["source-text"])))
     || (command === "book-run" && flags["log"] !== undefined && (logPath === undefined || !isAbsolute(logPath)))) {
     console.error(`Usage: ${v4BookProductionUsage(command)}`);
     return 2;
@@ -492,6 +501,7 @@ async function runV4BookProduction(
       // attempts so a resume can proceed instead of fail-closing forever. No-op
       // on a clean run; only meaningful with --resume-run-id.
       reconcileUnsettled: flags["reconcile-unsettled"] === true,
+      ...(sourceTextPath === undefined ? {} : { sourceTextPath }),
       // Compatibility confirmation only: V4 never publishes externally, while
       // --promote-local may still atomically advance the local V25 pointer.
       signal,

@@ -35,6 +35,30 @@ export type ResearchInputIdentity = {
   hash: string;
 };
 
+/**
+ * R-046 — how this run's claims were obtained, recorded durably beside the run
+ * it describes.
+ *
+ * `model-memory` is a FIRST-CLASS state, not a missing value: it is the honest
+ * label for every run researched without the book, and it flows to the seed
+ * candidate so the release sidecar can print it. A manifest written before this
+ * field existed has no `sourceProvenance`; readers treat that as `model-memory`
+ * and MUST NOT treat it as source-grounded.
+ */
+export type ResearchSourceProvenance = "source-text" | "model-memory";
+
+export type ResearchSourceText = {
+  /** sha256 of the FROZEN, normalized text. */
+  sha256: string;
+  /** UTF-8 byte length of the frozen text. */
+  byteLength: number;
+  /** Absolute path the operator supplied, for provenance only. */
+  originPath: string;
+  /** Path of the frozen copy, relative to the run directory. Every later stage
+   *  reads THIS, never `originPath`. */
+  frozenPath: string;
+};
+
 export type ResearchLease = {
   ownerId: string;
   pid: number;
@@ -85,6 +109,10 @@ export type ResearchRunManifest = {
   expectedChapters: ResearchExpectedChapter[];
   expectedChaptersHash: string;
   compatibility: ResearchCompatibility;
+  /** R-046 — see {@link ResearchSourceProvenance}. */
+  sourceProvenance: ResearchSourceProvenance;
+  /** Present only when sourceProvenance is "source-text". */
+  sourceText?: ResearchSourceText;
   chapters: Record<string, ResearchChapterManifestEntry>;
   coherence: {
     status: ResearchCoherenceStatus;
@@ -179,12 +207,34 @@ export function hashJson(value: unknown): string {
   return hashString(stableJson(value));
 }
 
-export function researchInputHash(input: { title: string; author: string; bookIdHint?: string }): string {
-  return hashJson({
+/**
+ * The run's INPUT identity.
+ *
+ * R-046: the source text is part of it. A different text is a different book —
+ * every sidecar quote, every span and every fact is checked against those bytes —
+ * so a resume with a different text must be refused, and it is: the hash changes,
+ * `compatibilityRejectionReasons` reports "input hash changed", and the run is
+ * not reused.
+ *
+ * The key is added ONLY when a text is present, so a model-memory run hashes to
+ * exactly the same value it did before ingestion existed and every already-durable
+ * research run stays resumable and pinnable.
+ */
+export function researchInputHash(input: {
+  title: string;
+  author: string;
+  bookIdHint?: string;
+  sourceTextSha256?: string | null;
+}): string {
+  const basis: Record<string, unknown> = {
     title: input.title,
     author: input.author,
     bookIdHint: input.bookIdHint ?? null,
-  });
+  };
+  if (typeof input.sourceTextSha256 === "string" && input.sourceTextSha256.length > 0) {
+    basis.sourceTextSha256 = input.sourceTextSha256;
+  }
+  return hashJson(basis);
 }
 
 export function expectedChaptersHash(chapters: ResearchExpectedChapter[]): string {
@@ -262,6 +312,35 @@ export function parseResearchRunManifest(raw: unknown): ManifestParseResult {
       }
     : { codeVersion: "", promptHash: "", configHash: "", provider: "", model: "" };
 
+  // R-046: absent on every manifest written before ingestion existed, and that
+  // absence MEANS model-memory — never "unknown, assume grounded".
+  let sourceProvenance: ResearchSourceProvenance = "model-memory";
+  if (raw.sourceProvenance !== undefined) {
+    if (raw.sourceProvenance === "source-text" || raw.sourceProvenance === "model-memory") {
+      sourceProvenance = raw.sourceProvenance;
+    } else {
+      errors.push("sourceProvenance must be \"source-text\" or \"model-memory\"");
+    }
+  }
+  let sourceText: ResearchSourceText | undefined;
+  if (raw.sourceText !== undefined) {
+    const record = recordField(raw, "sourceText", errors);
+    if (record) {
+      sourceText = {
+        sha256: stringField(record, "sha256", errors),
+        byteLength: nonnegativeIntField(record, "byteLength", errors),
+        originPath: stringField(record, "originPath", errors),
+        frozenPath: stringField(record, "frozenPath", errors),
+      };
+    }
+  }
+  if (sourceProvenance === "source-text" && sourceText === undefined) {
+    errors.push("sourceProvenance is \"source-text\" but sourceText is missing");
+  }
+  if (sourceProvenance === "model-memory" && sourceText !== undefined) {
+    errors.push("sourceText is present but sourceProvenance is \"model-memory\"");
+  }
+
   const chaptersRaw = recordField(raw, "chapters", errors);
   const chapters: Record<string, ResearchChapterManifestEntry> = {};
   if (chaptersRaw) {
@@ -336,6 +415,8 @@ export function parseResearchRunManifest(raw: unknown): ManifestParseResult {
       expectedChapters,
       expectedChaptersHash: manifestExpectedHash,
       compatibility,
+      sourceProvenance,
+      ...(sourceText === undefined ? {} : { sourceText }),
       chapters,
       coherence,
       events,
@@ -352,6 +433,7 @@ export function buildInitialResearchRunManifest(args: {
   bibliographyPath: string;
   expectedChapters: ResearchExpectedChapter[];
   compatibility: ResearchCompatibility;
+  sourceText?: ResearchSourceText;
 }): ResearchRunManifest {
   const chapters: Record<string, ResearchChapterManifestEntry> = {};
   for (const ch of args.expectedChapters) {
@@ -379,6 +461,10 @@ export function buildInitialResearchRunManifest(args: {
     expectedChapters: args.expectedChapters,
     expectedChaptersHash: expectedChaptersHash(args.expectedChapters),
     compatibility: args.compatibility,
+    // Always stamped, in both directions: a run researched without the book says
+    // so, durably, rather than leaving the reader to infer it from an absence.
+    sourceProvenance: args.sourceText === undefined ? "model-memory" : "source-text",
+    ...(args.sourceText === undefined ? {} : { sourceText: args.sourceText }),
     chapters,
     coherence: { status: "pending" },
     events: [{
