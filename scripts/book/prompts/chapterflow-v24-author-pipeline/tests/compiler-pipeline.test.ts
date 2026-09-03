@@ -2991,7 +2991,7 @@ test("learning-pack task pre-lists each quiz slot's required verbatim specifics 
       assert.ok(md.includes(`"${spec}"`), `missing specific ${spec}`);
     }
   }
-  assert.match(md, /at least 1 of its case's specifics verbatim/i);
+  assert.match(md, /at least 1 of its case's specifics into the prompt/i);
   assert.match(md, /into the prompt AND at least 1 into the explanation/i);
 });
 

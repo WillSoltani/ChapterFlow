@@ -72,7 +72,12 @@ requiredTest("the writing contract carries the section writer's craft rules for 
   // hand-inlined control sentence never carried.
   assert.match(contract, /Never use an em dash \(—, U\+2014\)/, contract);
   assert.match(contract, /The trap is to/, contract);
-  assert.match(contract, /Avoid soft-banned house tics/, contract);
+  // R-014 re-pin: the DO NOT block now renders the WHOLE list from
+  // config/banned-phrases.json instead of naming six of the 82 hard-banned phrases
+  // and four of the nine soft-banned ones, so the assertion follows the wording
+  // that carries the same guarantee, and checks a phrase that used to be omitted.
+  assert.match(contract, /SOFT-BANNED house tics/, contract);
+  assert.match(contract, /boundary condition/, contract);
 });
 
 requiredTest("the writing contract drops the two instructions that are false on the repair lane", () => {

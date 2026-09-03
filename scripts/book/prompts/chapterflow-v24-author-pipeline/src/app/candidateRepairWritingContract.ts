@@ -58,14 +58,22 @@ import { sectionContract, sectionDoNotLines } from "../sections/sectionTasks.js"
  * — `buildRepairWritingContract` is pinned under it — and a safety contract is
  * never silently trimmed to fit, which is what a runtime cap would do.
  *
- * 17500 is set just above what the four contracts, the DO NOT block, the
- * headings and a fully clamped card actually render: 17044 chars measured on
- * this commit (15638 of it contract text, the rest the clamped card). It is a
- * creep alarm, not head-room — the test also asserts the render is at least 85%
- * of the budget, so an edit that grows the section contracts trips a test
- * instead of the model's context window.
+ * 21700 is set just above what the four contracts, the DO NOT block, the
+ * headings and a fully clamped card actually render: 21290 chars measured on this
+ * commit. It is a creep alarm, not head-room — the test also asserts the render is
+ * at least 85% of the budget, so an edit that grows the section contracts trips a
+ * test instead of the model's context window.
+ *
+ * RE-PINNED 17500 -> 21700 by the wave-0 contract-truth batch. The whole increase
+ * is the DO NOT block now disclosing the FULL banned-phrase list from
+ * config/banned-phrases.json (R-014, ~2.7k) plus the TIER ROLES line (R-012) and
+ * the cards/actions staging directions (R-013). All three are section-writer
+ * contract text this module composes rather than authors, and a repair rewrites
+ * the same reader-facing fields under the same bans, so the repair writer needs
+ * them for the same reason the section writer does: 76 of the 82 phrases that fail
+ * a draft had never been disclosed on either lane.
  */
-export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 17500;
+export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 21700;
 
 /** Voice-card clamp. The card is a ~120-word register cue by construction
  *  (`src/lib/voiceCard.ts`), but it arrives from a candidate sidecar this module

@@ -1,3 +1,4 @@
+import { loadBannedPhrases } from "../critics/shared.js";
 import { voiceRegisterLine } from "../lib/voiceCard.js";
 import { CHAPTER_PROSE_CARD_CAPS, chapterProseFields, clampProsePassage, type ChapterProseSource } from "./chapterProse.js";
 import { bookRuleGovernsChapter, type BookScars } from "../lib/bookScars.js";
@@ -49,7 +50,7 @@ const ROLE_NAME: Record<SectionKind, string> = {
 /** KEEP VERBATIM. This VOICE/LIVED-MOMENTS paragraph validated a +3.0 composite lift
  *  (commit 3702dd2d5); tests/contract-refactor.test.ts snapshots it exactly. Do not edit. */
 const SUMMARY_VOICE_PARAGRAPH =
-  `VOICE — narrate the real cases as LIVED MOMENTS, not abstract summaries: this genre teaches through concrete stories, so build deepRead and fullRead AROUND this chapter's real named cases. Open a case with one specific sensory moment drawn ONLY from its hardSpecifics (a named person, place, object, or number that is actually in the source), let the reader briefly FEEL the moment, THEN name the principle it proves. As a STYLE model only: prefer "The nurse taped a bright cartoon over the ceiling light so the boy staring up during the scan had something to find, and he stopped crying" over "Environments can be redesigned to reduce patient distress." Invent nothing beyond this chapter's own source hardSpecifics — the sample scene is only a voice model, so never import its nurse/boy/scan or any other book's cast, and if you have only a bare fact, state it plainly rather than embroidering it.`;
+  `VOICE — narrate the real cases as LIVED MOMENTS, not abstract summaries: this genre teaches through concrete stories, so build deepRead and fullRead AROUND this chapter's real named cases. Open a case with one specific sensory moment drawn ONLY from its hardSpecifics (a named person, place, object, or number that is actually in the source), let the reader briefly FEEL the moment, THEN name the principle it proves. As a STYLE model only: prefer "The nurse taped a bright cartoon over the ceiling light so the boy staring up during the scan had something to find, and he stopped crying" over "Environments can be redesigned to reduce patient distress." Invent nothing beyond this chapter's own source hardSpecifics — the sample scene is only a voice model, so never import its nurse/boy/scan or any other book's cast, and if you have only a bare fact, state it plainly instead of embroidering it.`;
 
 /** The voice line closing every craftBrief. Coherent whether or not a VOICE CARD
  *  follows (books with no voice signal get no card — P05), so it is never a dangling
@@ -77,6 +78,7 @@ function universalCore(kind: SectionKind): string[] {
         "Cite an allowed sourceAnchorId for the hook, each breakdown tier, keyTakeaway, and tryThisNow.",
         "keyTakeaway: 30 words or fewer.",
         "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Vary sentence length: plain verbs, no sentence over 30 words, and never a run of same-length short declaratives — E7.long_sentence and E8.monotone_cadence each raise a major at chapter assembly. Meet the length floors with concrete detail, not padding.",
+        "TIER ROLES — a longer tier ADDS, it never restates: fastRead gives the immediate move and why it matters now; deepRead explains the mechanism through this chapter's named cases, complete enough that a reader who stops there can answer the quiz; fullRead adds what deepRead left out, each in its own sentences: the antecedents, the second-order consequence, the hard edge or limit, and the nuance. The first sentence of each tier differs in wording and structure, and no fullRead sentence reuses a deepRead sentence.",
         "Teach the chapter, not the provenance discipline: no reader-facing source-grounding rules (\"at least 3 named cases\", \"concrete settings give memory a handle\", \"claims checkable\").",
         "Output SummaryPackV1 JSON only.",
       ];
@@ -130,7 +132,7 @@ function gateAwareness(kind: SectionKind): string[] {
     case "example-pack":
       return [
         "DESIGN AROUND THE GATES:",
-        "AS9/SEC80/SEC89 compare examples across chapters: each of the six slots needs a distinct role, timing, scene engine, turning point, and advice shape — obey the dealt sceneFrame/requiredBeat so same-position slots never share one dramatic transaction; the validator enforces this.",
+        "AS9/SEC80/SEC89 compare examples across chapters: each of the six slots needs a distinct role, timing, scene engine, turning point, and advice shape; the validator enforces this. Obey the dealt sceneFrame/requiredBeat as well: no gate reads them, so nothing but you keeps same-position slots from sharing one dramatic transaction.",
         "No exact five-word phrase across three or more scenarios, whatToDo, or whyItMatters lines — even source/legal labels (SEC87); the validator enforces this.",
         "Each example cites a namedExample/example anchor and includes at least two of its hardSpecifics verbatim (SEC33); the validator enforces this.",
         "Do not let the book default to one scene engine, action container, venue, ending, or evidence-gate across chapters (SEC85/SEC93/SEC96/SEC98/SEC100/SEC101/SEC108/SEC112); the validator enforces this.",
@@ -139,18 +141,18 @@ function gateAwareness(kind: SectionKind): string[] {
     case "learning-pack":
       return [
         "DESIGN AROUND THE GATES:",
-        "AS5/AS12 compare q01-to-q01 across the book: give every slot a different scenario, opening, decision pressure, and evidence source; obey its dealt promptShape, answerStyle, distractorTrap, and caseCueIds; the validator enforces this.",
+        "AS5/AS12 compare q01-to-q01 across the book: give every slot a different scenario, opening, decision pressure, and evidence source; the validator enforces this. Obey each slot's dealt promptShape, answerStyle, distractorTrap, and caseCueIds too: no gate reads them, and they are the book's variety budget.",
         "AS6 compares correct answers and distractors across chapters: every correct answer names this chapter's requiredFactIds mechanism in fresh words, never a book-level slogan; the validator enforces this.",
-        "SEC81 compares review cards across the book: each follows its dealt frontShape, retrievalTarget, and backShape with a chapter-specific noun/case/mechanism; the validator enforces this.",
+        "SEC81 compares review cards across the book: each card needs its own chapter-specific noun, case, or mechanism; the validator enforces this. The dealt frontShape, retrievalTarget, and backShape steer that variety and no gate reads them.",
         "Distractor discipline: no strawman absolutes, the key is never the longest choice by chars (nor >1.4x avg distractor words / >1.5x avg chars), no proof tails; most-keys-longest blocks outright (SEC52/SEC53/SEC59/SEC116/SEC121).",
-        "CHOICE PARITY METHOD: write the two distractors FIRST (15-22 words of concrete chapter-specific substance each), then write the key to the longer distractor's word count (±3), moving overflow into the explanation; count words per choice and rebalance wherever the key is longest.",
+        "CHOICE PARITY METHOD: write the two distractors FIRST (15-22 words of concrete chapter-specific substance each), then write the key to the longer distractor's word count (±3) AND to at most 1.5x the average distractor's characters. SEC53 measures both, so a word-matched key built from longer words still fails. CUT the overflow, never park it in the explanation: the explanation says why the key is right, it does not carry the rest of the key.",
         "At least 7 of 9 questions pose a NEW scenario — transfer, not recall (SEC117); the validator enforces this.",
         LEAK_FAMILY_LINE,
       ];
     case "action-pack":
       return [
         "DESIGN AROUND THE GATES:",
-        "AS8 compares implementationPlan fields across chapters: each ifThen follows a different dealt action.ifThenPlanShapes[] entry and carries this chapter's requiredFactIds mechanism, action.practiceForm, and action.practiceConstraint; the validator enforces this.",
+        "AS8 compares implementationPlan fields across chapters: each ifThen carries this chapter's requiredFactIds mechanism in its own words; the validator enforces this. No gate reads the dealt action.ifThenPlanShapes[], practiceForm, or practiceConstraint, so give each ifThen a different dealt shape yourself.",
         "No reused opener/closer/challenge shell across chapters — tryThisNow opener, coreSkill closer, and twentyFourHourChallenge opener must each be chapter-specific (SEC84/SEC94/SEC114); the validator enforces this.",
         "Do not default across chapters to the classify/choose/predict worksheet, the blank/checkpoint-kept-pending template, or the social-pressure-then-pause if-then (SEC102/SEC109/SEC115); the validator enforces this.",
         "Each ifThenPlans[].context is a situational trigger phrase (\"Before buying a familiar security\"), not a bare venue, source label, or stage direction (SEC67); the validator enforces this.",
@@ -186,6 +188,7 @@ function craftBrief(kind: SectionKind): string[] {
         "WHAT EXCELLENT LOOKS LIKE: transfer-first questions the reader reasons through (\"you are…\", \"imagine…\", \"suppose…\", \"your team…\", \"a colleague…\"), set to apply/analyze/evaluate.",
         "Distractors are plausible MISCONCEPTIONS on the mechanism, not recognizable by length or hedging. Keep prompts lean; name at most one case. Cards ask a chapter-specific mechanism/contrast/failure-mode in varied stems, never a generic \"What should you inspect / What check does\" shell.",
         "If a stem names a case, the question must hinge on it, not staple in a standalone case-identifier sentence to hit a quota.",
+        "The dealt frontShape, retrievalTarget and backShape are STAGING DIRECTIONS, not text: they name the ANGLE a card takes, never words to write. Never open a back by announcing the angle (\"The contrast is\", \"The boundary is\", \"The trigger is\", \"The failure mode is\", \"The source case is\"); open on the concrete thing itself and let the angle show.",
         "RUBRIC TARGETS: low distractor-tell rate (key never longest or most-hedged); high transfer ratio (>=7 of 9 new-scenario).",
         voiceCraftLine(kind),
       ];
@@ -193,6 +196,7 @@ function craftBrief(kind: SectionKind): string[] {
       return [
         "WHAT EXCELLENT LOOKS LIKE: actions a reader can actually notice and run today — a concrete trigger, a low-friction move, a provable result.",
         "tryThisNow opens with a chapter-specific trigger. coreSkill ends on a chapter-specific practice. ifThenPlans[].context is a situational trigger, not a bare venue. Vary the behavior across chapters: a two-option comparison, a price cap, a rejection rule, a delegation boundary, a one-minute audit, a cadence change, an owner question.",
+        "The dealt practiceForm, practiceConstraint and ifThenPlanShapes are STAGING DIRECTIONS, not text: realize practiceForm and practiceConstraint ONCE, inside coreSkill, in your own words; give each ifThen a different dealt shape and a different observable move; open twentyFourHourChallenge on the reader's trigger, not on a time box (\"In the next 24 hours\").",
         "Never instruct the reader to write or recite a source label (\"write '60-second painful trial beside 90-second trial with milder ending'\"); translate the mechanism into a behavior.",
         "RUBRIC TARGETS: every action concrete, low-friction, and provable; no reused opener/closer/challenge shell across chapters.",
         voiceCraftLine(kind),
@@ -317,6 +321,27 @@ function directJsonShapeRules(kind: SectionKind): string {
   }
 }
 
+/** The hard-banned phrases, rendered compactly from config/banned-phrases.json —
+ *  the same file critics/register.ts checkBannedPhrases reads, which is what SEC92
+ *  and the ship gate both call. Reading the config instead of hand-copying it is
+ *  the point of R-014: a phrase added to the ban list reaches the writer the same
+ *  day it starts failing drafts. */
+function hardBannedPhraseList(): string {
+  const config = loadBannedPhrases() as { hardBanned?: Array<{ phrase: string }> };
+  return (config.hardBanned ?? []).map((entry) => `"${entry.phrase}"`).join("; ");
+}
+
+/** The soft-banned tics WITH their per-book budgets. The budget is the whole
+ *  difference between the nine: "chapter argues that" is allowed 0 times a book
+ *  and "rather than" 15, and a writer told only "avoid these" cannot tell them
+ *  apart. Budgets are enforced book-wide by critics/bookGate.ts. */
+function softBannedPhraseList(): string {
+  const config = loadBannedPhrases() as { softBanned?: Array<{ phrase: string; perBookBudget?: number }> };
+  return (config.softBanned ?? [])
+    .map((entry) => `"${entry.phrase}" (max ${entry.perBookBudget ?? 0})`)
+    .join("; ");
+}
+
 /** The DO NOT block shared by every section-writer task card. Extracted so the
  *  v23 polish pass (src/orchestrator/polishPass.ts) can reuse the EXACT same
  *  preservation contract verbatim — a polisher must honor the same bans as the
@@ -343,8 +368,16 @@ export function sectionDoNotLines(outputPath: string): string[] {
     // literally so no one has to guess which dash), what to use instead, and that
     // one occurrence is fatal. The pin is not moved to make room for it.
     `- Never use an em dash (—, U+2014) in reader-facing text; use a comma, period, parenthesis, or colon. No exceptions, no permitted first use: one fails the chapter (B5) and the draft (SEC123).`,
-    `- Never use hard-banned register phrases or opener shells such as "The trap is to", "The trap is not", "The mistake is to", "The paradox is that", "Most readers assume", or "Most people think".`,
-    `- Avoid soft-banned house tics: "rather than", "That matters because", "turns out to be", and "treats it as". Use plain alternatives unless the phrase is truly necessary.`,
+    // R-014. This used to name six of the 82 hard-banned phrases and four of the
+    // nine soft-banned ones, so 76 strings that fail the draft outright (SEC92
+    // pushes a BLOCKER on any of them, across every reader-facing field) were
+    // never disclosed to the writer, and the four soft tics it did name arrived
+    // with no budget. The em-dash precedent is the argument: 68 live B5 blockers
+    // on a rule the writer had never been given. Rendered FROM config/
+    // banned-phrases.json at build time, so the list cannot drift from the one
+    // the gate reads and the drift class is closed rather than re-copied.
+    `- HARD-BANNED PHRASES. One occurrence in reader-facing text, in any casing, fails the draft (SEC92) and the chapter (B-register); no permitted first use: ${hardBannedPhraseList()}.`,
+    `- SOFT-BANNED house tics; "max N" is the WHOLE BOOK's allowance, and 0 means never: ${softBannedPhraseList()}. Prefer a plain alternative every time.`,
     "- Do not change the final ChapterV21 schema; this is an intermediate artifact only.",
   ];
 }
@@ -426,7 +459,9 @@ const ANCHOR_SPECIFICS_BLOCKER_RE = /cites (\S+) but uses \d+\/(\d+) required ha
  * blocker, that anchor's own `hardSpecifics` — looked up from the SAME `packet.allowedAnchors`
  * the validator reads (validateAnchorHardSpecifics keys `sourceAnchorById(packet)` on id), never
  * re-derived, so the list cannot drift from what the gate checks — and states the gate's actual
- * matching rule (exact case-insensitive substring). Cases not cited by any blocker are omitted,
+ * matching rule (raw case-insensitive substring OR, for a multi-word specific, an in-order
+ * clipped match: validateAnchorHardSpecifics -> clippedPhraseDerivable, SUBSEQUENCE_GAP_TOKENS
+ * = 8, over normalizeDerivabilityText). Cases not cited by any blocker are omitted,
  * keeping the card targeted instead of dumping the whole packet.
  */
 function anchorSpecificsEnumeration(
@@ -448,10 +483,10 @@ function anchorSpecificsEnumeration(
     const specifics = byId.get(id)?.hardSpecifics ?? [];
     if (specifics.length === 0) continue;
     const quoted = specifics.map((specific) => `    • "${specific}"`).join("\n");
-    blocks.push(`REQUIRED VERBATIM SPECIFICS — ${id} (use at least ${min} EXACTLY as written):\n${quoted}`);
+    blocks.push(`REQUIRED VERBATIM SPECIFICS — ${id} (use at least ${min}, matched by the rule above):\n${quoted}`);
   }
   if (blocks.length === 0) return "";
-  return `\n\nThe anchor-specifics gate matches each required string by EXACT case-insensitive substring — a paraphrase, synonym, or reworded clause does NOT count. Copy the listed strings into the cited unit verbatim; because matching is case-insensitive, capitalizing the first letter of a specific that opens a sentence is safe and still counts as verbatim — do this, since the readability gate SEC106 rejects an uncapitalized sentence start:\n${blocks.join("\n")}\n`;
+  return `\n\nThe anchor-specifics gate counts a required string as used when EITHER its exact text appears (case-insensitive) OR — for a multi-word string — its words appear IN ORDER in the same unit with no more than eight words between neighbours. Case, punctuation, digit separators and number words are normalized first, so "thirteen" matches "13". A synonym, a dropped word, or a reordering does NOT count, and a single-word string must appear exactly. So build the specific INTO a grammatical sentence of your own, keeping its words in order and close together, instead of pasting the telegraphic note as written:\n${blocks.join("\n")}\n`;
 }
 
 // Task 11l: matches an anchor-FILING / claim-class gate blocker — the family emitted whenever a
@@ -656,13 +691,13 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
     });
     if (!slotLines.length) return "";
     const caseLines = [...citedCases.entries()].map(([id, specs]) => `- ${id}: ${specs.map((x) => `"${x}"`).join(" | ")}`);
-    return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics verbatim — exact case-insensitive substring — into the prompt AND at least 1 into the explanation):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}`;
+    return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics into the prompt AND at least 1 into the explanation; matching is case-insensitive and folds an in-order rendering, so naturalize each one):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}`;
   })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {
