@@ -328,8 +328,7 @@ export function createDefaultModelRouteSelector(): ModelRouteSelector {
   return createModelRouteSelector(loaded.config, loaded.digest);
 }
 
-/** Default production route (defaultRoute only, no role). Retained for callers
- *  that need a single route object rather than per-role selection. */
-export function createDefaultModelRoute(): ModelProcessRoute {
-  return createRouteForRoleRoute(resolveRoleRoute(loadModelRoutingConfig()));
-}
+// `createDefaultModelRoute()` (a single defaultRoute-only route) used to live
+// here as the gateway's fallback. Per-role selection replaced its last caller,
+// and an exported-but-unused route factory is the same false affordance R-205
+// removed from createRouteForRoleRoute, so it is gone rather than retained.
