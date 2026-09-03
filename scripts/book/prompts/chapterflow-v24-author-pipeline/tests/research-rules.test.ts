@@ -169,12 +169,13 @@ function quotedSidecar(): SourceSidecarV2 {
 
 test("R-055: the packet and the writer card carry the chapter's thesis, marked READ-ONLY", () => {
   const chapter: ChapterSpec = { chapterId: "b-ch01", chapterNumber: 1, chapterTitle: "Public Services" };
-  const sidecar = { ...quotedSidecar(), focus: "The chapter establishes that a shared risk can be funded by subscription before any authority orders it.", coreClaim: "Subscription funds a service that no one household can buy alone." } as unknown as SourceSidecarV2;
+  const focus = "The chapter establishes that a shared risk can be funded by subscription before any authority orders it.";
+  const sidecar = { ...quotedSidecar(), focus, coreClaim: "Subscription funds a service that no one household can buy alone." } as unknown as SourceSidecarV2;
   const packet = compileSourcePacketFromSidecar({ bookId: "b", chapter, sidecar });
   assert.equal(packet.chapterContext?.coreClaim, "Subscription funds a service that no one household can buy alone.");
   assert.equal(packet.chapterContext?.keyClaims.length, 7);
   const projection = writerPacketProjection(packet);
-  assert.equal(projection.chapterContext?.focus, sidecar.focus as unknown as string);
+  assert.equal(projection.chapterContext?.focus, focus);
   assert.equal(projection.chapterContext?.keyClaims?.length, 6, "the card takes the thesis, not the tail");
   assert.equal(projection.sourceProvenance, "source-text");
 });

@@ -31,11 +31,9 @@ import type {
 } from "../source/sidecarSchema.js";
 import { spanExcerptForPrompt } from "../source/chapterMap.js";
 import {
-  MAX_ITEM_QUOTE_ATTEMPTS,
   collectSourceQuoteProblems,
   dropUngroundedItems,
   researchFloorsForSpan,
-  type GroundingProblem,
 } from "../source/sourceQuoteGrounding.js";
 import { BibliographyResult } from "./researcher-bibliography.js";
 
@@ -642,10 +640,13 @@ export async function runResearcherChapter(
     if (problems.length === 0) return stampProvenance(candidate, provenance, input);
 
     // R-052 — abstention, stated honestly. Every item that could not be quoted is
-    // gone and the survivors still miss a floor: that is a SOURCE problem, and
+    // gone and the ONLY thing left wrong is a floor: that is a SOURCE problem, and
     // saying so beats the generic "invalid after 3 attempts" that used to send an
-    // operator hunting for a schema bug.
-    if (lastAttempt && dropped.length > 0) {
+    // operator hunting for a schema bug. Scoped to floor-only failures on purpose
+    // — a draft that also carries a meta-reference or a clause-shaped specific is
+    // not a source-insufficiency case, and mislabelling it would be a new lie.
+    const floorProblems = problems.filter((problem) => /_floor|keyClaims needs/.test(problem));
+    if (lastAttempt && dropped.length > 0 && floorProblems.length === problems.length) {
       const detail = dropped.map((item) => `${item.kind} ${item.id} (${item.attempts} attempt(s))`).join(", ");
       throw new Error(
         `RESEARCH_SOURCE_INSUFFICIENT:chapter ${input.chapter.number} dropped ${dropped.length} item(s) that could not be quoted from its source span [${detail}], and what survived does not meet the research floor: ${problems.join("; ")}. The span does not honestly support this unit — re-map or split the chapter; do not pad it.`,

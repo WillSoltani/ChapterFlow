@@ -11,6 +11,7 @@ import {
 import {
   MAX_CHAPTER_RESEARCH_ATTEMPTS,
   collectHardSpecificLengthProblems,
+  collectHardSpecificShapeProblems,
   runResearcherChapter,
   type ChapterResearchInput,
   type ChapterResearchResult,
@@ -382,6 +383,11 @@ export function chapterRouteValid(chapter: ChapterResearchResult): boolean {
     // migrator. Shares collectHardSpecificLengthProblems with the fresh-research
     // validator so the two can never diverge.
     if (collectHardSpecificLengthProblems(chapter.namedExamples).length > 0) return false;
+    // R-051/R-282: the same reasoning for SHAPE. A stale sidecar carrying a
+    // clause-shaped specific ("speckled Ax is best") cannot be composed into a
+    // word-budgeted line without inventing a predicate, so reuse must fall
+    // through to re-research exactly as it does for an over-long specific.
+    if (collectHardSpecificShapeProblems(chapter.namedExamples).length > 0) return false;
     return true;
   } catch {
     return false;
