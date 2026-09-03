@@ -481,6 +481,82 @@ requiredTest("repair creates its attempt root before any model call", async (con
 });
 
 
+// ── R-076 — the repair lane re-derives and re-checks the memorable lines ──────
+//
+// `assembleSections` is the only writer of `chapter.memorableLines`, and this lane
+// replaces whole chapters without going near it. Live evidence from the canary: the
+// compiler candidate for Franklin ch04 shipped 12/13/13-word lines while the SAME
+// lineage's repair-r7 candidate shipped 16/10/30-word lines, the third a 176-character
+// plot sentence ("Off Falmouth, poor visibility puts the ship close to the rocks, and
+// only a last-moment signal from a warning light turns the vessel away from a wreck
+// that night.") that `memorableLineScore` returns 0 for — the deterministic selector
+// could never have produced it. Every per-unit protection the section gate applies is
+// a compile-time-only guarantee that a repair round voids.
+
+const STALE_PIN = "Off the coast, poor visibility puts the whole plan close to the rocks, and only a last-moment signal from somewhere else turns the account away from a loss that month.";
+
+requiredTest("R-076: a repaired chapter's memorable lines are re-derived from the repaired prose", async (context) => {
+  const subject = rig(context, {
+    replacementChapter: (chapter) => ({
+      ...chapter,
+      breakdown: {
+        ...chapter.breakdown,
+        fastRead: `You act before the snapshot lands, not after it. ${chapter.breakdown.fastRead}`,
+      },
+      // The shape the live repair shipped: a pinned line that is not in the prose and
+      // that the selector would never have chosen.
+      memorableLines: [
+        { text: STALE_PIN, location: "breakdown.deepRead", why: "stale pin left behind by the repair" },
+        { text: STALE_PIN, location: "breakdown.deepRead", why: "stale pin left behind by the repair" },
+        { text: STALE_PIN, location: "breakdown.deepRead", why: "stale pin left behind by the repair" },
+      ],
+    }),
+  });
+
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, true, JSON.stringify(result));
+  const successor = subject.successor();
+  assert.ok(successor);
+  const repaired = JSON.parse(Buffer.from(successor.files[0].bytes).toString("utf8")) as ChapterV21;
+  const prose = [repaired.breakdown.fastRead, repaired.breakdown.deepRead, repaired.breakdown.fullRead].join("\n");
+
+  assert.ok((repaired.memorableLines ?? []).length >= 3, "the repaired chapter still ships three lines");
+  assert.ok(
+    (repaired.memorableLines ?? []).every((line) => line.text !== STALE_PIN),
+    "the stale pin the repair returned must not survive into the successor",
+  );
+  for (const line of repaired.memorableLines ?? []) {
+    assert.ok(prose.includes(line.text), `every shipped line must appear verbatim in the repaired prose: ${line.text}`);
+  }
+});
+
+requiredTest("R-076: a repaired chapter whose prose yields no memorable line fails the round", async (context) => {
+  // The breakdown is replaced with prose the harvester cannot score a single sentence
+  // out of (every sentence is a question, which memorableLineScore rejects), and the
+  // writer's own pins do not appear in it. Nothing to re-derive and nothing valid to
+  // keep: the round fails rather than shipping the unvalidated set.
+  const subject = rig(context, {
+    replacementChapter: (chapter) => ({
+      ...chapter,
+      breakdown: {
+        fastRead: "Which balance does a lender read first? Which date decides it? What would you check before that day arrives?",
+        deepRead: "Which balance does a lender read first? Which date decides it? What would you check before that day arrives?",
+        fullRead: "Which balance does a lender read first? Which date decides it? What would you check before that day arrives?",
+      },
+      memorableLines: [
+        { text: STALE_PIN, location: "breakdown.deepRead", why: "stale pin left behind by the repair" },
+      ],
+    }),
+  });
+
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.ok, false, "a repair that cannot produce valid memorable lines must not be staged");
+  if (!result.ok) {
+    assert.equal(result.error.code, "REPAIR_OUTPUT_INVALID");
+    assert.match(result.error.message, /memorable lines/i);
+  }
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;
