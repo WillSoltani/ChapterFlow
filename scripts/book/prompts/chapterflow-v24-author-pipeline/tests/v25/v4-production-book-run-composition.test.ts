@@ -242,6 +242,16 @@ function creditBreakdown() {
     "Small checks work best when they fit a real pay plan.",
     "Each saved note gives the next choice a firm base.",
     "Facts come first, then action, then one more clear check.",
+    // Package 1B (SEC128): the six examples of this fixture cite the FICO and CFPB
+    // cases, so the chapter's reader-visible prose has to TEACH them. Placed in the
+    // full read, which SEC120's standalone haystack excludes, and kept to the same
+    // short declarative shape as the rest of this breakdown so the ease band holds.
+    "Credit reports hold the account record.",
+    "Lenders use account information from those reports.",
+    "A score sits on a 300 to 850 scale.",
+    "Credit utilization is one input behind it.",
+    "The Federal Reserve explains the same split.",
+    "A file can hold account balances and payment history.",
   ].join(" ");
   assert.ok(fastRead.length >= 350);
   assert.ok(deepRead.length >= 1_000);
@@ -310,13 +320,21 @@ function compilerOutputs(fixtureRoot: string) {
       const caseAnchor = packet.allowedAnchors.find((anchor) => anchor.id === caseId);
       const hardSpecifics = caseAnchor?.hardSpecifics?.slice(0, 2).join(" and ")
         ?? "credit reports and account balances";
+      const factId = slot.requiredFactIds[0] ?? packet.facts[0].id;
+      // Package 1B: SEC39 now draws its overlap terms from the cited fact's MECHANISM
+      // and WHY-WRONG only (never its entities, numbers or headline claim), so a
+      // whyItMatters that restates the case's proper nouns no longer counts as
+      // explaining the fact. This fixture's line was the generic tie-back the check is
+      // aimed at; it now carries the fact's own reasoning, which is what a compliant
+      // example does.
+      const fact = packet.facts.find((entry) => entry.id === factId);
       return {
         ...template,
         slotId: slot.slotId,
         scenario: oldName ? template.scenario.replaceAll(oldName, protagonist) : template.scenario,
-        whyItMatters: `The action changes report-facing account information, so a smaller visible balance gives a lender different evidence to interpret. This example stays tied to ${hardSpecifics}.`,
+        whyItMatters: `${fact?.mechanism ?? ""} The action changes report-facing account information, so a smaller visible balance gives a lender different evidence to interpret. This example stays tied to ${hardSpecifics}.`.trim(),
         sourceAnchorIds: [caseId],
-        sourceFactIds: [slot.requiredFactIds[0] ?? packet.facts[0].id],
+        sourceFactIds: [factId],
         namedCaseIds: [caseId],
       };
     }),

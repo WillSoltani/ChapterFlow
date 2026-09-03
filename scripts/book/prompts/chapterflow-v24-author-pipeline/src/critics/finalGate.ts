@@ -514,6 +514,17 @@ const SEVERITY_FROM_CATALOG: Record<string, GateSeverity> = {
   "SC11.4.wrong_chapter_anchor": "blocker",
   "SC11.5.unknown_anchor": "blocker",
   "SC11.6.unsupported_anchor": "blocker",
+  // SC11.7/.8 — package 1B. .7 is the ship-side mirror of the write-time
+  // chapter-level grounding rule (SEC14/SEC128): the chapter's own reader-visible
+  // prose must teach every case it cites. It replaces the per-unit verbatim quotas
+  // SC11.2 used to apply to quiz/cards/tiers, so the ship gate is not weakened by
+  // their removal; it blocks nothing the write-time gate passes (same rule, same
+  // folding) and fires zero on the live Franklin rev-6 candidate.
+  // .8 is the memorable-line specifics CAP. MAJOR on purpose: every package promoted
+  // before this change carries token-pair lines (11 of 12 on rev-6) and a blocker
+  // would retro-block them at re-promote for a defect write-time SEC16 now prevents.
+  "SC11.7.chapter_case_not_taught": "blocker",
+  "SC11.8.memorable_line_specific_stack": "major",
   // EI — evidence integrity. A testimonial (a first-name/initial-only personal
   // account, e.g. "Brad's report names the hinge", "Candace P.'s report gives the
   // test") dressed in the grammar of research, or a quiz answer KEYED to one. The

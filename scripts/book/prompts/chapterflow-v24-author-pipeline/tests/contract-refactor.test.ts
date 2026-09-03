@@ -165,24 +165,28 @@ test("universal invariants are present for all four kinds", () => {
   assert.match(render("action-pack"), /Output ActionPackV1 JSON only\./);
 });
 
-test("summary craft brief pre-states the SEC16 memorable-line hardSpecifics rule", () => {
+test("summary craft brief pre-states the SEC16 memorable-line rule the gate actually applies", () => {
   // Finding 16: the summary contract told the model memorable lines must be 8-14 words
-  // and portable, but never that SEC16 validates the top-3 selected lines against their
-  // tier's cited anchors — so a line citing a case with 0/2 of its hardSpecifics only
-  // surfaced via retry cards. The sibling anchor-specifics rules (SEC13/SEC14 :116,
-  // SEC33 :125, SEC73/SEC74 :146) all pre-state their "two hardSpecifics verbatim; the
-  // validator enforces this" contract; the memorable-line bullet must too.
+  // and portable, but never what SEC16 validates on the three lines that ship — so the
+  // rule reached the writer only through retry cards.
+  //
+  // Package 1B INVERTED that rule. It used to demand two of a cited case's
+  // hardSpecifics verbatim INSIDE the line, which is why every line on the live
+  // Franklin book is an identifier pair; a line now carries AT MOST ONE specific,
+  // must not reproduce the hook/counterintuition/keyTakeaway, and may not share its
+  // detail with another line. The contract must state THAT, or the writer is being
+  // told to produce exactly what the gate now refuses.
   const md = renderTask("money-book", "summary-pack");
-  // Names the enforcing check and its actual rule (two hardSpecifics verbatim IN THE LINE).
-  assert.match(md, /\(SEC16\)/, "summary craft brief must name the SEC16 memorable-line check");
-  assert.match(md, /at least two of them verbatim \(SEC16\)/, "SEC16 rule states the two-verbatim-hardSpecifics requirement");
+  assert.match(md, /\(SEC16\/SEC118\/SEC135\)/, "summary craft brief must name the memorable-line checks");
+  assert.match(md, /AT MOST ONE source specific/, "and state the cap the gate applies");
+  assert.doesNotMatch(md, /at least two of them verbatim/, "the retired two-verbatim demand must not survive in the prompt");
   // Sibling style: every design/craft rule that names a gate ends by naming the validator.
-  assert.match(md, /verbatim \(SEC16\)[\s\S]*?the validator enforces this/, "SEC16 memorable-line rule names the validator");
+  assert.match(md, /\(SEC16\/SEC118\/SEC135\)[\s\S]*?the validator enforces this/, "the memorable-line rule names the validator");
 
   // The rule is summary-pack-specific — SEC16 governs the summary breakdown's memorable
   // lines only, so it must not leak into the other three section contracts.
   for (const kind of ["example-pack", "learning-pack", "action-pack"] as const) {
-    assert.doesNotMatch(renderTask("money-book", kind), /\(SEC16\)/, `${kind}: SEC16 memorable-line rule is summary-only`);
+    assert.doesNotMatch(renderTask("money-book", kind), /SEC16\b/, `${kind}: SEC16 memorable-line rule is summary-only`);
   }
 });
 
@@ -221,7 +225,14 @@ test("every rendered task is <= 69% of its pinned pre-refactor length", () => {
     const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
-    assert.ok(md.length <= 0.69 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 69%`);
+      // Re-pinned 69% -> 70% by package 1B (grounding redesign). The learning card
+    // measured 69.1% after four rule changes the gates now enforce and the writer was
+    // not being told: quiz provenance by natural reference (SEC55/SEC120 replacing the
+    // retired SEC56 token demand), the transfer floor measured on the stem rather than
+    // the bloomsLevel label (SEC117), qualifier-shape parity in the choices (SEC134),
+    // and the three-identical-openers refusal (SEC132). Everything the additions
+    // replaced was either deleted with the check it described or shortened.
+    assert.ok(md.length <= 0.70 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 70%`);
   }
 });
 
@@ -269,7 +280,9 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   // RE-PINNED 76% -> 82% by the same wave-0 contract-truth batch as the 62->69%
   // above, and for the same four additions: measured 43,564 chars = 81.7%. The
   // prose delta this test bounds (7,290) is unchanged by that batch.
-  assert.ok(withProse.length <= 0.82 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 82% (re-pin only with a stated rationale)`);
+  // Re-pinned 82% -> 84% by package 1B for the same four additions measured above
+  // (the prose block itself is unchanged and still clamped).
+  assert.ok(withProse.length <= 0.84 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 84% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -366,33 +379,62 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // pure-chapter-marker parenthesis and reader-safety labels were exempted from
 // scoping altogether: Franklin's SAFETY rules are book-wide again, which adds
 // 871 chars back to every chapter EXCEPT ch03 — and ch03 is the binding chapter,
-// so the budgets were unmoved. That round measured ch03 learning-pack at 52,849
-// (151 chars of headroom) and 60,139 with prose (361 of headroom).
+// so the budgets are unmoved. Worst kind per chapter on this commit:
+//   ch01 learning-pack 51,160   ch02 51,252   ch03 52,849 (binding)   ch04 51,097
+//   ch05-ch08 (no scoped rules) 50,154
+//   with worst-case prose: 58,450 / 58,542 / 60,139 (binding) / 58,387 / 57,444
+// That leaves 151 characters of headroom on the binding packet-only card and 361
+// with prose, so the next prompt package almost certainly re-pins here — with the
+// same kind of measured rationale, not by rounding the number up.
 //
-// RE-MEASURED AGAIN on the Franklin scar rewrite (PR #538), because the rationale
-// above described a file that no longer exists: origin/main's 37 accreted
-// prohibitions were replaced by 38 source-quoted rules, of which 28 are labelled
-// for one chapter. What shrank is not the file, it is the RENDER — the rules a
-// chapter's writer actually receives. renderBookScarsBlock over the shipped file,
-// in characters, at origin/main and at this commit:
+// RE-PINNED by package 1B (grounding redesign), which is the "next prompt package"
+// the paragraph above predicted. Measured on this commit with the same loop below
+// (largest scar file + a real voice card, every chapter, all four kinds):
+//   worst packet-only card  53,390 chars  (ch03 learning-pack, the binding render)
+//   worst with-prose card   61,188 chars  (ch03 learning-pack + worst-case prose)
+// Rounded UP to the next 500 (53,500 / 61,500) with no extra headroom added this
+// time — the previous 500-char headroom is exactly what this package spent.
+//
+// WHAT THE PACKAGE ADDED, and why each line is prompt text rather than a gate note:
+// every one of them is a rule the gates now enforce and the writer was not told.
+//   summary  — teach each case ONCE in the prose, then rotate which detail each unit
+//              uses (SEC14/SEC129, replacing the retired per-unit token quota); the
+//              memorable-line rule inverted to a ONE-specific cap (SEC16/SEC118/
+//              SEC135); the tier-roles line gained its measurables (SEC130/SEC131).
+//   example  — one pooled specific instead of two, and the explicit ban on getting it
+//              in by having the character recall the source (SEC33/SEC133); whyItMatters
+//              explains the fact's mechanism (SEC39).
+//   learning — citation by natural reference (SEC55/SEC120), transfer measured on the
+//              stem (SEC117), absolutes symmetric and the tell budget as a rate
+//              (SEC52/SEC116), qualifier-shape parity (SEC134), opener variety (SEC132).
+// The summary and example cards stay far below the binding learning card; the
+// summary contract's memorable-line paragraph is SHORTER than the one it replaced.
+//
+// RE-MEASURED AGAIN on the Franklin scar rewrite (PR #538), on top of package 1B,
+// because the round-2 paragraph above describes a scar file that no longer exists:
+// origin/main's 37 accreted prohibitions were replaced by 38 source-quoted rules,
+// of which 28 are labelled for one chapter. What shrank is not the FILE, it is the
+// RENDER — the rules a chapter's writer actually receives. renderBookScarsBlock
+// over the shipped file, in characters, at origin/main and at this commit:
 //   origin/main  ch01 14,449  ch02 14,541  ch03 16,138  ch04 14,386  ch05 13,443
 //   this commit  ch01  6,725  ch02  7,339  ch03  8,627  ch04  7,344  ch05  5,352
 // ch03 is still the binding chapter: 10 of the 28 chapter-scoped rules, against
 // 5 for ch01, 7 for ch02 and 6 for ch04, plus the 10 book-wide rules (3 SAFETY +
 // 7 craft) every chapter gets.
 //
-// Worst kind per chapter on this commit (learning-pack every time; reproduce with
-// CF_MEASURE=1 against the loop below):
-//   ch01 43,436   ch02 44,050   ch03 45,338 (binding)   ch04 44,055
-//   ch05-ch08 (no scoped rules) 42,063
-//   with worst-case prose: 50,726 / 51,340 / 52,628 (binding) / 51,345 / 49,353
-// That is 7,662 characters of headroom on the binding packet-only card and 7,872
-// with prose. The budgets stay where they are: they are a ceiling on what
-// production may send, not a target, and lowering them now would re-pin the
-// contract to one book's current scar file. Anything that needs MORE than these
-// numbers still re-pins here with a measured rationale, not by rounding up.
-const HONEST_TASK_CHAR_BUDGET = 53_000;
-const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
+// Worst kind per chapter on this commit (learning-pack every time; reproduce by
+// printing md.length in the loop below):
+//   ch01 43,977   ch02 44,591   ch03 45,879 (binding)   ch04 44,596
+//   ch05-ch08 (no scoped rules) 42,604
+//   with worst-case prose: 51,267 / 51,881 / 53,169 (binding) / 51,886 / 49,894
+// That is 7,621 characters of headroom on the binding packet-only card and 8,331
+// with prose. The budgets package 1B pinned stay exactly where they are: they are a
+// ceiling on what production may send, not a target, and lowering them to this
+// book's current scar file would re-pin the contract to one config file. Anything
+// that needs MORE than these numbers still re-pins here with a measured rationale,
+// not by rounding up.
+const HONEST_TASK_CHAR_BUDGET = 53_500;
+const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 61_500;
 
 test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
   const scars = loadBookScars(LARGEST_SCAR_BOOK);
