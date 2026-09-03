@@ -31,7 +31,7 @@ import type { BibliographyResult } from "../src/agents/researcher-bibliography.j
 import type { ChapterResearchInput, ChapterResearchResult } from "../src/agents/researcher-chapter.js";
 import { collectChapterResearchProblems } from "../src/agents/researcher-chapter.js";
 import { normalizeIngestedText } from "../src/source/sourceText.js";
-import { compatibilityRejectionReasons, researchInputHash, readResearchRunManifest, RESEARCH_RUN_CODE_VERSION } from "../src/lib/researchRunManifest.js";
+import { compatibilityRejectionReasons, researchConfigHash, researchInputHash, readResearchRunManifest, RESEARCH_RUN_CODE_VERSION, RESEARCH_RUN_CONFIG_VERSION } from "../src/lib/researchRunManifest.js";
 import { buildSourceTextVerifyRecord } from "../src/source/sourceTextVerify.js";
 import { checkSourceVerifyRecord, verifiableItems } from "../src/critics/sourceVerify.js";
 import { decideSourceRealityPolicy } from "../src/qc/sourceRealityPolicy.js";
@@ -357,6 +357,45 @@ test("R-046: run identity binds the TEXT — a different text is a different run
   const manifest = { input: { hash: a }, expectedChaptersHash: "x", compatibility } as never;
   assert.deepEqual(compatibilityRejectionReasons(manifest, { inputHash: b, compatibility }), ["input hash changed"]);
   assert.deepEqual(compatibilityRejectionReasons(manifest, { inputHash: a, compatibility }), []);
+});
+
+test("R-277: run identity binds the FACT PINS — editing a pin re-researches, and a pinless book hashes exactly as before", () => {
+  // Review round 2, finding 3. Round 1 passed the book's fact pins to the chapter
+  // researcher (so the sidecar is corrected at birth) but bound them to nothing, so
+  // every durable research run stayed compatible after a pin was edited: the run was
+  // resumed, its chapters reused, the researcher never called, and the corrected
+  // sidecar never minted. The pins are config, so they belong in configHash.
+  const none = researchConfigHash([]);
+  // Independently re-derived: a book with no scar file must hash to the
+  // pre-R-277 value — {version} and nothing else — or this change would re-key
+  // every existing research run in the world.
+  assert.equal(
+    none,
+    createHash("sha256").update(JSON.stringify({ version: RESEARCH_RUN_CONFIG_VERSION }), "utf8").digest("hex"),
+    "a pinless book's configHash must be byte-identical to the pre-R-277 value",
+  );
+  assert.equal(researchConfigHash(undefined), none, "no pins and empty pins are the same run");
+
+  const pinned = researchConfigHash(["Never call the Junto the Leather Apron Club."]);
+  assert.notEqual(pinned, none, "adding a fact pin must change the research run's identity");
+  const edited = researchConfigHash(["Never call the Junto the Leather Apron Club, which it was not."]);
+  assert.notEqual(edited, pinned, "editing a fact pin must change the research run's identity");
+  // Order is not meaning: reordering a scar file must not throw away good research.
+  assert.equal(
+    researchConfigHash(["b rule", "a rule"]),
+    researchConfigHash(["a rule", "b rule"]),
+    "reordering the same pins is the same run",
+  );
+
+  // The rejection an operator actually sees when a pin has been edited under a
+  // durable run: the run is NOT reused, so the researcher runs again.
+  const compatibility = { codeVersion: RESEARCH_RUN_CODE_VERSION, promptHash: "p", configHash: pinned, provider: "model-gateway-v1", model: "m" };
+  const manifest = { input: { hash: "h" }, expectedChaptersHash: "x", compatibility } as never;
+  assert.deepEqual(compatibilityRejectionReasons(manifest, { inputHash: "h", compatibility }), []);
+  assert.deepEqual(
+    compatibilityRejectionReasons(manifest, { inputHash: "h", compatibility: { ...compatibility, configHash: edited } }),
+    ["configHash changed"],
+  );
 });
 
 test("R-046: the book-run's own run definition binds the text, so a resume with another text conflicts", () => {

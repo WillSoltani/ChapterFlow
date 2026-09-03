@@ -237,6 +237,41 @@ export function researchInputHash(input: {
   return hashJson(basis);
 }
 
+/**
+ * The version of the research CONFIG that a run's `configHash` names.
+ *
+ * Lives here, beside the hash that consumes it, so the constant and the hash
+ * cannot drift into two files. Unchanged since 2026-06-23: R-277 adds an INPUT to
+ * the hash, not a new version of the config.
+ */
+export const RESEARCH_RUN_CONFIG_VERSION = "research-config-2026-06-23.1" as const;
+
+/**
+ * The run's CONFIG identity, including the book's FACT PINS (R-277).
+ *
+ * A fact pin is the operator's correction of a claim this book's research got
+ * wrong ("the Junto was never called the Leather Apron Club"). Since wave 1 the
+ * pins reach the chapter researcher, so the sidecar is corrected AT BIRTH — but
+ * that only happens if the researcher is called. Without this, editing a pin left
+ * every durable research run compatible: the run was resumed or pinned, its
+ * chapters reused unchanged, the researcher never invoked, and the corrected
+ * sidecar never minted. Binding the pins here makes a pin edit report
+ * "configHash changed" through compatibilityRejectionReasons, which is exactly
+ * "re-run research when a fact pin changes".
+ *
+ * TWO DELIBERATE PROPERTIES:
+ *   - a book with NO pins hashes to the pre-R-277 value ({version} alone), so no
+ *     already-durable run of a pinless book is re-keyed;
+ *   - the pins are SORTED, so reordering a scar file is not a new run. Reordering
+ *     changes no instruction the researcher receives, and throwing away a whole
+ *     book's research over a moved line would teach operators not to tidy the file.
+ */
+export function researchConfigHash(factPins?: readonly string[]): string {
+  const pins = [...(factPins ?? [])].map((pin) => String(pin)).filter((pin) => pin.length > 0).sort();
+  if (pins.length === 0) return hashJson({ version: RESEARCH_RUN_CONFIG_VERSION });
+  return hashJson({ version: RESEARCH_RUN_CONFIG_VERSION, factPins: pins });
+}
+
 export function expectedChaptersHash(chapters: ResearchExpectedChapter[]): string {
   return hashJson(chapters.map((ch) => ({ number: ch.number, title: ch.title })));
 }

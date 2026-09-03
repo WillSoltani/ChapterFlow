@@ -76,6 +76,7 @@ import {
   pathWithin,
   pinnedResearchRunDir,
   readResearchRunManifest,
+  researchConfigHash,
   researchInputHash,
   researchRunManifestPath,
   researchRunPinRejectionReasons,
@@ -93,7 +94,6 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHAPTERFLOW_RUNS = resolve(__dirname, "../.chapterflow/runs");
 const STATE = resolve(__dirname, "../state");
 const PROMPTS_DIR = resolve(__dirname, "../prompts");
-const RESEARCH_RUN_CONFIG_VERSION = "research-config-2026-06-23.1";
 const RAW_BIBLIOGRAPHY_REL_PATH = "source-freeze/bibliography.raw.json";
 /** R-046: the FROZEN copy of the operator's source text. Every stage after
  *  ingestion reads this, never the path the operator passed, so a text edited
@@ -747,7 +747,11 @@ function buildCompatibilityFingerprint(options: ResearchBookOptions): ResearchCo
       bibliography: readFileSync(resolve(PROMPTS_DIR, "researcher-bibliography.system.md"), "utf8"),
       chapter: readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8"),
     }),
-    configHash: options.compatibility?.configHash ?? hashJson({ version: RESEARCH_RUN_CONFIG_VERSION }),
+    // R-277 (review round 2): the book's fact pins are part of the run's config
+    // identity, so editing a pin makes every durable run incompatible and the
+    // researcher is called again with the corrected pin. A pinless book hashes
+    // exactly as it did before.
+    configHash: options.compatibility?.configHash ?? researchConfigHash(options.factPins),
     provider: "model-gateway-v1",
     model: `${MODEL_CALLER_PROFILES["researcher-bibliography"]}+${MODEL_CALLER_PROFILES["researcher-chapter"]}`,
   };
