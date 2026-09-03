@@ -771,20 +771,25 @@ export const POSITIONAL_DEALS: PositionalDealDescriptor[] = [
   { poolKey: "weeklyPracticeForm", poolSize: WEEKLY_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.weeklyPracticeForm] },
   { poolKey: "practiceForm", poolSize: PRACTICE_FORMS.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.action.practiceForm] },
   { poolKey: "practiceConstraint", poolSize: PRACTICE_CONSTRAINTS.length, slots: 1, perChapter: true, derivedValueAt: (derived) => derived?.practiceConstraint, extract: (bp) => [bp.sections.action.practiceConstraint] },
-  // ── R-128: the ten deals that were computed OUTSIDE this registry ─────────────────────
+  // ── R-128: the deals that were computed OUTSIDE this registry ─────────────────────────
   //
   // BPV11/BPV12 are the only cross-chapter collision audit in the pipeline, and they can only
   // see what POSITIONAL_DEALS declares. Every entry below was, until this change, a bare modular
   // expression inside compileChapterBlueprint — invisible to the audit, and (R-102/R-104/R-118/
   // R-125/R-127) most of them were the broken ones. Registering them is what makes the gate able
   // to catch the next regression of the same kind instead of a Phase-A reader finding it.
+  //
+  // The hook shape is NOT among them. R-118 made `sections.hook.shape` the dealt
+  // `reservedVariety.hookShape` itself — one deal, read twice — so registering the section view
+  // as its own poolKey would make BPV11 audit one column twice and BPV12 raise the hook pool-floor
+  // advisory twice for a single deal. The `hookShape` entry above covers it, and the R-118 test
+  // pins the two reads equal.
   { poolKey: "examplePurpose", poolSize: EXAMPLE_PURPOSES.length, slots: EXAMPLE_PURPOSE_SLOTS, perChapter: false, extract: (bp) => bp.sections.examples.slice(0, EXAMPLE_PURPOSE_SLOTS).map((e) => e.purpose) },
   // The sixth example slot's purpose: a second draw from the same five-value pool through its own
   // per-chapter deal, so its column is audited without making "application" a duplicate pool entry.
   { poolKey: "examplePurposeTail", poolSize: EXAMPLE_PURPOSES.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.examples[EXAMPLE_PURPOSE_SLOTS]?.purpose].filter((v): v is ExampleSlotV1["purpose"] => !!v) },
   { poolKey: "exampleSceneMode", poolSize: SCENE_MODES.length, slots: 6, perChapter: false, extract: (bp) => bp.sections.examples.map((e) => e.sceneMode) },
   { poolKey: "exampleFormat", poolSize: EXAMPLE_FORMATS.length, slots: 6, perChapter: false, extract: (bp) => (bp.plan?.exampleSpecs ?? []).map((spec) => String(spec.format)) },
-  { poolKey: "hookShapeSection", poolSize: HOOK_SHAPES.length, slots: 1, perChapter: true, extract: (bp) => [bp.sections.hook.shape] },
   { poolKey: "reservedSceneMode", poolSize: SCENE_MODES.length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.sceneMode] },
   { poolKey: "sceneMechanism", poolSize: sceneMechanismDirectives().length, slots: 1, perChapter: true, extract: (bp) => [bp.reservedVariety.sceneMechanism] },
   // The venue deal orders THIS chapter's own six-venue palette, so its "pool" is the palette.
@@ -865,9 +870,19 @@ function forbiddenNameGuidance(
  * bucket, and NAME_BUCKET_COUNT is 40: for any book of 40 chapters or fewer it returns the empty
  * set, so the "sibling" half of the old guidance was dead in every real book. The names a writer
  * must not reuse are the ones the book deals to its other chapters, and those are found by
- * replaying each neighbour's deal — the same pure inputs (canonical index + that chapter's source
- * packet + its own salt) the neighbour's own compile uses, so the guidance is reproducible and
- * never depends on how much of the book has been authored.
+ * replaying each neighbour's deal from the same pure inputs the neighbour's own compile uses:
+ * the canonical index, that chapter's compiled source packet, and its own salt. Nothing here
+ * depends on how much of the book has been AUTHORED — no drafted section is read.
+ *
+ * It does depend on which neighbours' PACKETS are on disk. A neighbour whose packet is missing or
+ * unreadable is skipped (the guidance carries one fewer chapter's cast) rather than failing this
+ * chapter's compile, so a compile run with only some packets on disk produces a different
+ * forbiddenNames list — and therefore different blueprint bytes, a different blueprintDigest and a
+ * different section-pack cache key — than one with all of them. The candidate path writes every
+ * chapter's packet to the state root before compiling any blueprint (compilerApplicationPort), and
+ * `compileBlueprints` walks the canonical index in one pass over packets a preceding step wrote,
+ * so on the paths that produce books the input set is the whole book. A single-chapter compile
+ * against a partially populated state root is the case that differs.
  *
  * Bounded by `budget`: the walk stops as soon as it has enough names to fill the guidance cap,
  * so a 34-chapter book reads a handful of packets per chapter, not all of them.
@@ -1550,7 +1565,8 @@ export function compileChapterBlueprint(args: {
       // "concrete-moment"`, competing with the nine-shape reservedVariety.hookShape the summary
       // writer receives in the same prompt. Half the book got each of two shapes, the binary
       // escaped BPV12's pool floor entirely, and the writer was handed two different opening
-      // instructions. One deal now, and BPV11/BPV12 audit it (registered as `hookShapeSection`).
+      // instructions. One deal now — the same value the summary carries — audited by BPV11/BPV12
+      // once, under the `hookShape` entry in POSITIONAL_DEALS.
       hook: { shape: hookShape, requiredFactIds: hookFactIds },
       // P13: summaries teach the top-3 SPINE facts (best ideas) when ranked; legacy packets keep
       // the historical top-5 packet-order slice so their blueprints are byte-identical.

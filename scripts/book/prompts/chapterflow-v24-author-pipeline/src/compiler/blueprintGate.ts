@@ -226,6 +226,13 @@ export function checkPositionalDeals(
         }
       }
     }
+    // The floor is a statement about a FIXED book-wide pool, so it is asked only of per-chapter
+    // deals. `!d.contentDriven` is a DORMANT guard, not a fix: a content-driven deal has no
+    // book-wide vocabulary (poolSize is 0 for the fact/cue deals, or a single chapter's palette
+    // size for venue), and every content-driven descriptor in POSITIONAL_DEALS today is
+    // perChapter:false — so this arm is never reached for one. It is here so that registering a
+    // future per-chapter content-driven deal cannot silently raise a floor advisory about a pool
+    // that does not exist book-wide. A registry test pins that the arm is dormant today.
     if (d.perChapter && !d.contentDriven) {
       const floor = Math.ceil(C / 2);
       if (poolSize < floor) {

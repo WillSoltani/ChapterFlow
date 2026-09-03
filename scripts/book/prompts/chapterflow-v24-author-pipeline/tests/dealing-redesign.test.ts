@@ -28,6 +28,7 @@ import { properNounTokens, rankedCaseIdsForFact, scoredCaseIdsForFact, CASE_LINK
 import { protectedSourceNames } from "../src/compiler/sourceNames.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile, type CompilerStoreRoots } from "../src/artifacts/artifactStore.js";
 import { compilerGateBlockerMessages, COMPILER_GATE_BLOCKED_PREFIX } from "../src/app/compilerApplicationPort.js";
+import { measure, type MeasuredBlueprint } from "../src/tools/measureDealing.js";
 import { retryableCompilerFailure } from "../src/app/bookRunApplicationService.js";
 import type { BookDesignV1, ChapterBlueprintV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
@@ -265,12 +266,38 @@ test("R-104: example formats are not the identical six-format sequence in every 
   }
 });
 
-test("R-104/R-128: exampleFormat is registered in POSITIONAL_DEALS so BPV11 audits it", () => {
+test("R-104/R-128: the deals that were computed outside POSITIONAL_DEALS are registered and audited", () => {
   const keys = POSITIONAL_DEALS.map((d) => d.poolKey);
-  // Every deal R-128 named as computed outside the registry, including "venue" and the example
-  // fact the fix round added — the register lists eleven and all eleven are audited.
-  for (const key of ["exampleFormat", "examplePurpose", "exampleSceneMode", "exampleFact", "cardFact", "quizCaseCue", "cardCaseCue", "hookShapeSection", "sceneMechanism", "reservedSceneMode", "venue"]) {
+  // Every deal R-128 named as computed outside the registry, plus "venue", the example-fact deal
+  // and the sixth example slot's purpose the fix round added: eleven keys, all audited. The hook
+  // shape is deliberately NOT among them — R-118 made sections.hook.shape the dealt
+  // reservedVariety.hookShape itself, so the existing "hookShape" entry already audits that
+  // column and a second entry would audit one deal twice (see the registry comment).
+  const added = ["exampleFormat", "examplePurpose", "examplePurposeTail", "exampleSceneMode", "exampleFact", "cardFact", "quizCaseCue", "cardCaseCue", "sceneMechanism", "reservedSceneMode", "venue"];
+  assert.equal(added.length, 11);
+  for (const key of added) {
     assert.ok(keys.includes(key), `POSITIONAL_DEALS is missing "${key}" — BPV11 cannot see it`);
+  }
+  // One entry per deal: no poolKey is registered twice, and no two entries read the same column.
+  assert.equal(new Set(keys).size, keys.length, "POSITIONAL_DEALS has a duplicate poolKey");
+  assert.equal(keys.filter((k) => k.toLowerCase().includes("hookshape")).length, 1, "the hook shape is one deal and must be registered once");
+  // The registry's size is part of the claim the PR body makes; pin it so the number cannot drift
+  // unrecorded. Fifteen entries on origin/main, eleven added here.
+  assert.equal(keys.length, 26, `POSITIONAL_DEALS has ${keys.length} entries — update the count claimed in the change record`);
+});
+
+test("BPV12: the pool-floor guard's contentDriven arm is dormant — no content-driven deal is per-chapter", () => {
+  // The `!d.contentDriven` guard in checkPositionalDeals' BPV12 arm is defensive, not a fix. A
+  // content-driven deal has no book-wide vocabulary — its poolSize is either 0 (the fact and cue
+  // deals) or a per-chapter palette size (venue's 6 venues belong to one chapter) — so measuring
+  // it against the ceil(C/2) book floor would compare two different things. Today every such
+  // descriptor is perChapter:false, so the BPV12 arm is never reached for one and the guard is
+  // dormant. This test says that out loud, and fails if a future descriptor makes it load-bearing
+  // without anyone noticing.
+  const contentDriven = POSITIONAL_DEALS.filter((d) => d.contentDriven);
+  assert.equal(contentDriven.length, 5, "the content-driven set changed — re-check BPV12's guard");
+  for (const d of contentDriven) {
+    assert.equal(d.perChapter, false, `content-driven deal "${d.poolKey}" is perChapter — BPV12's dormant guard is now load-bearing`);
   }
 });
 
@@ -707,6 +734,49 @@ test("R-114: forbiddenNames names the neighbouring chapters' casts and never a n
       assert.ok([...neighbour].some((name) => forbidden.includes(name)), `ch${bp.chapterNumber}: the adjacent chapter's cast is missing from forbiddenNames`);
     }
   });
+});
+
+// ── the measurement behind the change record ────────────────────────────────────────
+//
+// src/tools/measureDealing.ts is what produces the before → after table for WP-DEAL-1C, run over
+// the live candidate. A table nobody can re-derive is a claim, not evidence, so the metric
+// definitions are pinned here against a hand-built pair of chapters whose answers are countable
+// by eye — if a definition drifts, the number in the change record stops meaning what it says.
+
+test("measure-dealing: the metrics behind the change record count what they claim", () => {
+  const chapter = (n: number, over: Partial<MeasuredBlueprint>): MeasuredBlueprint => ({
+    chapterNumber: n,
+    reservedVariety: { allowedNames: [`Name${n}A`, `Name${n}B`], forbiddenNames: [], hookShape: "shape-a" },
+    sections: {
+      hook: { shape: "shape-a", requiredFactIds: ["f1"] },
+      summaries: { requiredFactIds: ["f1", "f2"] },
+      examples: [{ venue: "a forge", allowedNames: ["Ada"], requiredFactIds: ["f1"] }],
+      quiz: [{ caseCueIds: ["c1"], requiredFactIds: ["f2"] }, { caseCueIds: [], requiredFactIds: ["f2"] }],
+      cards: [{ caseCueIds: ["c1"], requiredFactIds: ["f2"], backShape: "start with the action verb" }],
+      action: { requiredFactIds: ["f1", "f2"] },
+    },
+    plan: { exampleSpecs: [{ domain: "a forge: mistake-recovery; a field test", format: "decision_point" }] },
+    constraints: { allowedFactIds: ["f1", "f2", "f3"] },
+    ...over,
+  });
+  const one = chapter(1, {});
+  const two = chapter(2, {});
+  // ch02 forbids a name ch01's cast owns, plus one name no chapter owns.
+  two.reservedVariety = { ...two.reservedVariety, forbiddenNames: ["Name1A", "Stranger"] };
+  const m = measure([one, two]);
+  assert.equal(m.chapters, 2);
+  assert.deepEqual(m.cuesPerChapter, [2, 2], "one quiz cue + one card cue per chapter");
+  assert.deepEqual(m.worstCaseCueMultiplicity, [2, 2], "case c1 is cued twice in each chapter");
+  assert.deepEqual(m.quizSlotsCued, ["1 of 2", "1 of 2"]);
+  assert.equal(m.openingWordBackShapes, "2 of 2", '"start with the action verb" instructs an opening word');
+  assert.deepEqual(m.forbiddenNamesPerChapter, [0, 2]);
+  assert.deepEqual(m.forbiddenNamesOwnedByAnotherChapter, [0, 1], "only Name1A is a name another chapter is dealt");
+  assert.deepEqual(m.orphanTeachingFacts, ["1 of 3", "1 of 3"], "f3 is mandated in no unit");
+  assert.equal(m.actionEqualsSummaries, "2 of 2");
+  assert.equal(m.concatenatedDomains, "2 of 2");
+  assert.deepEqual(m.namesDealtTwiceInOneChapter, [0, 0]);
+  assert.equal(m.hookShapeEqualsReserved, true);
+  assert.equal(m.distinctFormatSequences, 1, "both chapters ship the same one-format sequence");
 });
 
 // ── R-107 — the compiler gate blockers are collected and thrown, and are NOT retryable ───────
