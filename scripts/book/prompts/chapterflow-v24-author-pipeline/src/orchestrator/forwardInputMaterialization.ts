@@ -31,14 +31,40 @@ export const IMP22_FORWARD_INPUT_MATERIALIZATION_SCHEMA =
   "imp22-forward-input-materialization-v1" as const;
 export const IMP22_FORWARD_INPUT_FROZEN_AT = "2026-07-12T12:00:00.000Z" as const;
 
+/**
+ * The frozen IMP-22 forward-input identity.
+ *
+ * RE-DERIVED once, by package 1C (the dealing redesign), for R-116 and nothing else. The GOLD
+ * input is inventoried by COMPILING its sidecars (inventoryGoldBookInput → compileSourcePacketFromSidecar),
+ * so the packet compiler is part of this identity by design — which is the pin doing its job:
+ * properNounTokens gained a sentence-initial filter, every gold packet's facts[].groundedEntities
+ * changed, and the freeze refused to materialize until the change was acknowledged here.
+ *
+ * Three values moved, and only the three a packet-compiler change can move:
+ *   gold                          27c51117… → 8ce0d86f…  (packets compiled from sidecars at inventory)
+ *   goldStratumAssignmentSha256   2931f5ee… → f603c786…  (the assignment record embeds each chapter's
+ *                                                         sourcePacketSha256)
+ *   freezeSha256                  ceb196d7… → 3f6fc52b…  (the freeze hashes both of the above)
+ *
+ * The chapter → stratum ASSIGNMENT ITSELF is byte-identical before and after — verified by printing
+ * it on both commits: 1:example-heavy 2:abstract-conceptual 3:example-heavy 4:research-heavy
+ * 5:causal-quiz-sensitive 6:causal-quiz-sensitive 7:abstract-conceptual 8:example-heavy
+ * 9:research-heavy 10:abstract-conceptual 11:research-heavy 12:research-heavy
+ * 13:causal-quiz-sensitive. Only the packet digests recorded alongside it moved, so no experiment
+ * stratum changed hands.
+ *
+ * The two PILOT hashes are unchanged — those books are inventoried from source packets already on
+ * disk, not recompiled. A future drift in any of these again means either an intended compiler
+ * change (re-derive with the same kind of note) or a real regression.
+ */
 export const IMP22_FORWARD_INPUT_EXPECTED_HASHES = Object.freeze({
-  freezeSha256: "ceb196d757f3d9604f2957cbd3e4167a66f1cad083ed475c21be274bfe97160d",
+  freezeSha256: "3f6fc52b22eab56a407bac08be0ef3abf583f028561d9e7d968636c84f386618",
   pilot: Object.freeze({
     "radical-candor": "a34ebc918ba5cceb23a5635217c884fab989ad76c290e8eacf0f62da1fde549e",
     "start-with-why": "1bdb9d78ff78f3d402e2efb137d94dbe797ad36e50a988b84c608cc46450ec4e",
   }),
-  gold: "27c51117c58024aaecbbc3a7472cc45aba50c01c9f3b19bbc7320e5d5b68cf9a",
-  goldStratumAssignmentSha256: "2931f5eeeca232c081dfa31308d1288e1845cf2ae3eaa84aebef34050f688e73",
+  gold: "8ce0d86f3a31324bfdbca8e6f472ba60d04584b89bddd7ff446b0f7c240acc39",
+  goldStratumAssignmentSha256: "f603c7865cde10d313ea68fc7c485e3232da5be92210abb421acafb68f553eba",
 } as const);
 
 const REPO_ROOT = resolve(PIPELINE_DIR, "../../../..");

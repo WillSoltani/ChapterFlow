@@ -107,7 +107,7 @@ test("P14: derivation is deterministic — same packets/genre → byte-identical
   assert.equal(JSON.stringify(a), JSON.stringify(b), "identical inputs must produce byte-identical design artifacts");
 });
 
-test("P14: derived pools meet floors and mine the book's own material", () => {
+test("P14 + R-065: pools meet floors and the book's own material is mined PER CHAPTER", () => {
   const packets = Array.from({ length: 12 }, (_, i) => packet("zz", i + 1));
   const d = deriveBookDesign("zz-book", { genre: "business-decision", packets, chapters: 12 });
   assert.equal(validateBookDesign(d, 12).filter((f) => f.severity === "blocker").length, 0, "a derived artifact must pass its own gate");
@@ -116,8 +116,19 @@ test("P14: derived pools meet floors and mine the book's own material", () => {
   assert.ok(d.pools.practiceConstraints.length >= POOL_FLOORS.practiceConstraints);
   assert.ok(d.pools.venues.length >= venueFloor(12));
   assert.equal(d.provenance.source, "derived");
-  // A mined hardSpecific slotted into a frame template — the pool is genuinely per-book.
-  assert.ok(d.pools.sceneFramesDecision.some((f) => f.includes("credit utilization")), "derived frames must use the book's own mined material");
+
+  // R-065 — this used to assert `d.pools.sceneFramesDecision.some(f => f.includes("credit
+  // utilization"))`: mined material lived in the BOOK-WIDE pools, where the positional dealer
+  // handed it to whichever chapter's slot the arithmetic reached. A specific mined from ch07
+  // therefore staged a ch03 example. Mined material is now chapter-keyed, and the assertion moves
+  // with it: the material must be present, and it must be reachable ONLY from its own chapter.
+  const perChapter = d.perChapter ?? {};
+  assert.ok(Object.keys(perChapter).length > 0, "a derived artifact must carry per-chapter mined staging");
+  const minedSomewhere = Object.values(perChapter).flatMap((entry) => [entry.frameDecision, entry.frameExperiential, entry.practiceConstraint].filter((x): x is string => !!x));
+  assert.ok(minedSomewhere.some((f) => f.includes("credit utilization")), "per-chapter staging must use the book's own mined material");
+  for (const pool of Object.values(d.pools)) {
+    assert.equal((pool as string[]).some((entry) => entry.includes("credit utilization")), false, "no mined specific may sit in a book-wide pool, where it would be dealt to another chapter");
+  }
 });
 
 test("derived pools reject fragments that cannot fill a NOUN slot (live: 'a working note on about wagons')", () => {
@@ -143,7 +154,14 @@ test("derived pools reject fragments that cannot fill a NOUN slot (live: 'a work
 test("derived venues and frames are never ungrammatical for a packet full of fragment specifics", () => {
   const packets = Array.from({ length: 12 }, (_, i) => fragmentPacket("zz", i + 1));
   const d = deriveBookDesign("zz-frag", { genre: "business-decision", packets, chapters: 12 });
-  const rendered = [...d.pools.venues, ...d.pools.sceneFramesDecision, ...d.pools.sceneFramesExperiential];
+  // R-065 — the mined entries moved from the pools to perChapter, so the grammar check follows
+  // them there; the pools themselves are the genre base and were never templated.
+  const rendered = [
+    ...d.pools.venues,
+    ...d.pools.sceneFramesDecision,
+    ...d.pools.sceneFramesExperiential,
+    ...Object.values(d.perChapter ?? {}).flatMap((e) => [e.frameDecision, e.frameExperiential, e.practiceConstraint].filter((x): x is string => !!x)),
+  ];
   for (const entry of rendered) {
     assert.doesNotMatch(entry, / on (about|compared|once|under|slipped) /, `ungrammatical venue/frame: ${entry}`);
     assert.doesNotMatch(entry, / at (about|compared|once|under|slipped) /, `ungrammatical frame: ${entry}`);
