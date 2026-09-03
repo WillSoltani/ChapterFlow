@@ -278,16 +278,23 @@ function validateAnchorClaimType(
   return problems;
 }
 
-// P15 (F14): `min` is the number of a cited anchor's hardSpecifics that must appear
-// verbatim in the unit. NARRATION units (examples SEC33, summary SEC13/SEC14) keep
-// min=2 — a real case narrated as a lived moment carries two concrete details
-// naturally. NON-NARRATIVE units (quiz SEC56, action SEC74) drop to min=1: the
-// checkpoint 3-reader panel byte-verified that the ≥2 quota is the MECHANICAL cause
-// of identifier-sentence stuffing — writers satisfy it by stapling standalone
-// "The Magic Castle Hotel is a Los Angeles hotel with free popsicles…" clauses into
-// stems and by ritualizing source labels in rituals. Source-grounding is preserved by
-// the anchor citation + claim-type match + ≥1 verbatim specific + the evidence gate;
-// dropping the second forced specific removes the stuffing pressure, not the grounding.
+// `min` is the number of a cited anchor's hardSpecifics that must appear verbatim in
+// the unit.
+//
+// PACKAGE 1B left this primitive with ONE caller family: SEC74, the action pack, at
+// min 1. SEC14 became a chapter-level presence rule, SEC16 became a CAP rather than a
+// floor, SEC56/SEC58 were retired outright, and SEC33 (min 1, pooled across the
+// example's three fields) has its own inline loop because it pools. The cross-anchor
+// `combine: "any"` mode went with SEC16 and is not reinstated here — a gate primitive
+// with a branch no gate takes is a trap for the next reader.
+//
+// The reasoning that took the non-narrative units to 1 still holds and is now the rule
+// everywhere: the checkpoint 3-reader panel byte-verified that a ≥2 quota is the
+// MECHANICAL cause of identifier-sentence stuffing — writers satisfy it by stapling
+// standalone "The Magic Castle Hotel is a Los Angeles hotel with free popsicles…"
+// clauses into stems. Grounding is the anchor citation + the claim-type match + the
+// chapter-level presence rule (SEC14/SEC128) + derivability (SEC120), not a token count
+// per unit.
 export function validateAnchorHardSpecifics(
   ids: unknown,
   anchors: Map<string, SourcePacketV1["allowedAnchors"][number]>,
@@ -295,21 +302,6 @@ export function validateAnchorHardSpecifics(
   value: unknown,
   label: string,
   min = 2,
-  // Cross-anchor combination over the cited specifics-rich anchors:
-  //   "all" (default) — EVERY specifics-rich cited anchor must be grounded (AND).
-  //     Correct for tier/example/quiz units, whose prose carries a 60+ word (or
-  //     350-2400 char) budget that can host every cited case's details.
-  //   "any" — grounding ONE specifics-rich cited anchor is enough (OR). Used ONLY
-  //     by the memorable-line check (SEC16): a memorable candidate inherits its
-  //     whole tier's sourceAnchorIds, so a tier citing several specifics-rich cases
-  //     would otherwise demand 2 verbatim specifics from EVERY case inside one
-  //     8-14-word aphorism — structurally unsatisfiable (Finding 20). The gate's
-  //     own intent ("build the unit from THE ANCHOR'S concrete details", singular)
-  //     is per-ONE-anchor grounding. When NO cited case is grounded we still emit
-  //     one blocker per unsatisfied anchor (message shape unchanged) so the retry
-  //     card can enumerate every option. Vacuous skip (no specifics-rich cited
-  //     anchor) still passes under both modes.
-  combine: "all" | "any" = "all",
 ): string[] {
   const haystack = text(value).toLowerCase();
   // Unit-side clipped-phrase folding (Franklin pincer, fourth face — run 26):
@@ -324,7 +316,6 @@ export function validateAnchorHardSpecifics(
   // Single-token specifics still require raw inclusion.
   const normalizedHaystack = normalizeDerivabilityText(text(value));
   const problems: string[] = [];
-  let anySatisfied = false;
   for (const id of anchorArray(ids)) {
     const anchor = anchors.get(id);
     if (!anchor?.supportsClaimTypes?.includes(claimType)) continue;
@@ -338,13 +329,8 @@ export function validateAnchorHardSpecifics(
     }).length;
     if (present < min) {
       problems.push(`${label} cites ${id} but uses ${present}/${min} required hardSpecifics verbatim; build the unit from the anchor's concrete details`);
-    } else {
-      anySatisfied = true;
     }
   }
-  // OR: a single fully-grounded cited case clears the whole check; only when none
-  // is grounded do the per-anchor blockers surface (as alternatives to satisfy).
-  if (combine === "any" && anySatisfied) return [];
   return problems;
 }
 

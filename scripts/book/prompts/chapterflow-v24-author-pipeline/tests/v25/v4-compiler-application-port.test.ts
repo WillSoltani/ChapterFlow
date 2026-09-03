@@ -1068,13 +1068,18 @@ requiredTest("9 anchor-specifics retry feedback enumerates required verbatim str
   const fico = fx.packet.allowedAnchors.find((a) => a.id === "ch01.case.fico");
   assert.ok(fico?.hardSpecifics?.length, "fixture must supply a case anchor with hardSpecifics");
 
-  // A summary-pack retry whose gate blocked one anchor-specifics unit (SEC14 citing
-  // ch01.case.fico) alongside an unrelated readability blocker (SEC12). The enrichment
-  // must enumerate ONLY the cited case's verbatim specifics, leaving the sibling case
-  // (ch01.case.cfpb) un-enumerated and the non-anchor blocker untouched.
+  // A retry whose gate blocked one anchor-specifics unit (SEC74 citing ch01.case.fico)
+  // alongside an unrelated readability blocker (SEC12). The enrichment must enumerate
+  // ONLY the cited case's verbatim specifics, leaving the sibling case (ch01.case.cfpb)
+  // un-enumerated and the non-anchor blocker untouched.
+  //
+  // Package 1B: the blocker line is SEC74's, not SEC14's — SEC14 became a chapter-level
+  // presence rule with its own message shape, and SEC74 (the action pack) is now the
+  // family that still emits "cites <id> but uses <n>/<min> required hardSpecifics
+  // verbatim", which is the shape ANCHOR_SPECIFICS_BLOCKER_RE keys on.
   const retryFeedback: SectionRetryFeedback = {
     blockerLines: [
-      "SEC14.summary_anchor_specifics@/breakdown/deepRead:deepRead cites ch01.case.fico but uses 1/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details",
+      "SEC74.action_anchor_specifics@/implementationPlan/coreSkill:implementationPlan.coreSkill cites ch01.case.fico but uses 0/1 required hardSpecifics verbatim; build the unit from the anchor's concrete details",
       "SEC12.summary_readability@/hook/hook:hook reads above the grade ceiling for this section",
     ],
     priorDraft: { artifactType: "summary-pack" },
@@ -1092,8 +1097,10 @@ requiredTest("9 anchor-specifics retry feedback enumerates required verbatim str
 
   // The cited case is enumerated under an explicit header that names the case and the
   // required count, and lists each hardSpecific verbatim in quotes right below it.
-  assert.match(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.fico \(use at least 2, matched by the rule above\):/);
-  assert.match(md, /ch01\.case\.fico \(use at least 2, matched by the rule above\):[\s\S]*?"300 to 850 scale"[\s\S]*?"credit utilization"/);
+  // "at least 1": the enrichment reads the MIN out of the blocker line it was given, and
+  // the family that still emits this message shape is SEC74 at min 1 (package 1B).
+  assert.match(md, /REQUIRED VERBATIM SPECIFICS — ch01\.case\.fico \(use at least 1, matched by the rule above\):/);
+  assert.match(md, /ch01\.case\.fico \(use at least 1, matched by the rule above\):[\s\S]*?"300 to 850 scale"[\s\S]*?"credit utilization"/);
   // RE-PINNED (R-011). The card used to state "EXACT case-insensitive substring …
   // Copy the listed strings into the cited unit verbatim", which the gate stopped
   // being true at the Franklin pincer fix: validateAnchorHardSpecifics
@@ -1213,7 +1220,8 @@ requiredTest("10 anchor-filing retry feedback appends a class-grouped anchor inv
     deliveryMode: "DIRECT_JSON",
     retryFeedback: {
       blockerLines: [
-        "SEC14.summary_anchor_specifics@/breakdown/deepRead:deepRead cites ch01.case.fico but uses 1/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details",
+        // Package 1B: SEC74's message shape (see the note on the first fixture above).
+        "SEC74.action_anchor_specifics@/implementationPlan/coreSkill:implementationPlan.coreSkill cites ch01.case.fico but uses 0/1 required hardSpecifics verbatim; build the unit from the anchor's concrete details",
       ],
       priorDraft: { artifactType: "summary-pack" },
     },

@@ -481,11 +481,6 @@ requiredTest("repair creates its attempt root before any model call", async (con
 });
 
 
-finishV25Tests().catch((error: unknown) => {
-  console.error(error);
-  process.exitCode = 1;
-});
-
 // ── R-076 — the repair lane re-derives and re-checks the memorable lines ──────
 //
 // `assembleSections` is the only writer of `chapter.memorableLines`, and this lane
@@ -560,4 +555,9 @@ requiredTest("R-076: a repaired chapter whose prose yields no memorable line fai
     assert.equal(result.error.code, "REPAIR_OUTPUT_INVALID");
     assert.match(result.error.message, /memorable lines/i);
   }
+});
+
+finishV25Tests().catch((error: unknown) => {
+  console.error(error);
+  process.exitCode = 1;
 });

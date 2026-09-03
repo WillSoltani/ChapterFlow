@@ -208,57 +208,54 @@ test("F14: NARRATION units keep min=2 — one specific still fails (SEC33/SEC13/
   assert.deepEqual(twoExample, [], "two specifics satisfy the narration quota");
 });
 
-// ── 11p: SEC16 memorable-line grounding is per-ONE-cited-case (OR), not all-cases (AND) ──
+// ── 11p RETIRED by package 1B: the memorable-line rule is a CAP, not a floor ──
 //
-// FINDING 20: memorable-line candidates inherit ALL of their tier's sourceAnchorIds, and
-// SEC16 (validateAnchorHardSpecifics over candidate.ids) fired AND-per-anchor — so a tier
-// citing several specifics-rich cases demanded 2 verbatim hardSpecifics from EVERY case
-// inside one 8-14-word aphorism. Structurally unsatisfiable (latent in v24, exposed by 11o
-// making specifics universal + short). The memorable-line check ONLY now treats the cited
-// specifics-rich anchors as ALTERNATIVES: pass if ANY ONE contributes >=2 verbatim
-// specifics; only when NONE does surface one blocker per unsatisfied anchor (message shape
-// unchanged, so the 11h retry card still enumerates every option). SEC14/SEC33/quiz stay AND.
+// FINDING 20 gave the memorable-line check OR-semantics across a tier's cited cases,
+// because a candidate inherits ALL of its tier's sourceAnchorIds and demanding two
+// verbatim hardSpecifics from EVERY cited case inside one 8-14-word aphorism is
+// structurally unsatisfiable. Package 1B removed the demand itself: measured on the live
+// Franklin rev-6 package, 11 of the 12 shipped lines carry two or more source specifics
+// and the one line that states an idea carries none, so the floor was producing exactly
+// the defect it was supposed to prevent. SEC16 now caps a line at ONE specific, which
+// makes the cross-anchor OR mode meaningless — and the mode is deleted rather than left
+// as a branch no gate takes. The memorable-line rule is pinned in
+// tests/memorable-line-redesign.test.ts and tests/pedagogy-thresholds.test.ts.
+//
+// What survives here is the primitive's remaining contract, which SEC74 still uses.
 
 const memAnchorMap = (): Map<string, SourceAnchorForPrompt> =>
   new Map<string, SourceAnchorForPrompt>([
-    ["a1", { id: "a1", kind: "named_example", label: "Magic Castle", text: "…", hardSpecifics: ["Magic Castle Hotel", "free popsicles"], supportsClaimTypes: ["memorable_line", "breakdown_claim"] }],
-    ["a2", { id: "a2", kind: "named_example", label: "Panera", text: "…", hardSpecifics: ["Panera Bread", "pay what you can"], supportsClaimTypes: ["memorable_line", "breakdown_claim"] }],
-    ["a3", { id: "a3", kind: "named_example", label: "Sparse", text: "…", hardSpecifics: ["one detail"], supportsClaimTypes: ["memorable_line"] }],
+    ["a1", { id: "a1", kind: "named_example", label: "Magic Castle", text: "…", hardSpecifics: ["Magic Castle Hotel", "free popsicles"], supportsClaimTypes: ["memorable_line", "breakdown_claim", "implementation_guidance"] }],
+    ["a2", { id: "a2", kind: "named_example", label: "Panera", text: "…", hardSpecifics: ["Panera Bread", "pay what you can"], supportsClaimTypes: ["memorable_line", "breakdown_claim", "implementation_guidance"] }],
+    ["a3", { id: "a3", kind: "named_example", label: "Sparse", text: "…", hardSpecifics: ["one detail"], supportsClaimTypes: ["memorable_line", "implementation_guidance"] }],
   ]);
 
-test("11p (a): a memorable line grounding ONE cited case (2 verbatim specifics) passes SEC16 even when the tier cites OTHER specifics-rich cases (OR)", () => {
+test("validateAnchorHardSpecifics is per-anchor AND at the caller's min — every specifics-rich cited anchor must be satisfied", () => {
   const map = memAnchorMap();
-  // Satisfies a1 (both specifics) but NOT a2 (Panera). Under the old AND-per-anchor
-  // semantics this returned one blocker for a2; under OR it passes.
-  const line = "The Magic Castle Hotel wins on free popsicles, not room averages.";
-  const orPass = validateAnchorHardSpecifics(["a1", "a2"], map, "memorable_line", line, `selected memorable line "${line}"`, 2, "any");
-  assert.deepEqual(orPass, [], `one fully-grounded cited case satisfies SEC16 under OR; got ${JSON.stringify(orPass)}`);
+  const unit = "Hand out free popsicles at the Magic Castle Hotel before anyone asks for one.";
+  const bothCited = validateAnchorHardSpecifics(["a1", "a2"], map, "implementation_guidance", unit, "coreSkill", 1);
+  assert.equal(bothCited.length, 1, "the unsatisfied a2 still blocks: there is no cross-anchor OR mode");
+  assert.match(bothCited[0], /a2 but uses 0\/1 required hardSpecifics verbatim/, "the blocker names the unsatisfied anchor");
+  assert.deepEqual(
+    validateAnchorHardSpecifics(["a1"], map, "implementation_guidance", unit, "coreSkill", 1),
+    [],
+    "a satisfied anchor raises nothing",
+  );
 });
 
-test("11p (b): a memorable line grounding NO cited case still fails SEC16, one blocker per unsatisfied anchor, message shape unchanged", () => {
-  const map = memAnchorMap();
-  const line = "A resort wins on small gifts, not on averages.";
-  const findings = validateAnchorHardSpecifics(["a1", "a2"], map, "memorable_line", line, `selected memorable line "${line}"`, 2, "any");
-  assert.equal(findings.length, 2, "no cited case grounded → one blocker per specifics-rich anchor (retry-card enumeration)");
-  for (const f of findings) assert.match(f, /but uses \d+\/2 required hardSpecifics verbatim; build the unit from the anchor's concrete details/, "message shape is unchanged from the AND-era wording");
-  assert.ok(findings.some((f) => f.includes("a1")) && findings.some((f) => f.includes("a2")), "both cited anchors are enumerated as options");
-});
-
-test("11p (c): a memorable line whose tier cites only specifics-poor anchors (<2 each) still passes SEC16 (vacuous skip preserved)", () => {
+test("validateAnchorHardSpecifics skips an anchor carrying fewer than `min` specifics (vacuous skip preserved)", () => {
   const map = memAnchorMap();
   const line = "Small gifts beat smooth averages every time.";
-  const findings = validateAnchorHardSpecifics(["a3"], map, "memorable_line", line, `selected memorable line "${line}"`, 2, "any");
-  assert.deepEqual(findings, [], "an anchor carrying <2 hardSpecifics is skipped, so SEC16 passes vacuously");
-});
-
-test("11p (d): SEC14 tier-level multi-anchor grounding stays AND (default combine) — an unsatisfied specifics-rich anchor still blocks", () => {
-  const map = memAnchorMap();
-  // Same line that satisfies a1 but not a2. As a breakdown_claim (SEC14, default AND),
-  // the unsatisfied a2 MUST still surface — the tier prose has a 350-2400 char budget.
-  const line = "The Magic Castle Hotel wins on free popsicles, not room averages.";
-  const andFail = validateAnchorHardSpecifics(["a1", "a2"], map, "breakdown_claim", line, "breakdown.fullRead", 2);
-  assert.equal(andFail.length, 1, "AND semantics: the unsatisfied a2 still blocks under the default combine");
-  assert.match(andFail[0], /a2 but uses \d+\/2 required hardSpecifics verbatim/, "the blocker names the unsatisfied anchor a2");
+  assert.deepEqual(
+    validateAnchorHardSpecifics(["a3"], map, "implementation_guidance", line, "coreSkill", 2),
+    [],
+    "an anchor carrying 1 hardSpecific is skipped at min 2",
+  );
+  assert.equal(
+    validateAnchorHardSpecifics(["a3"], map, "implementation_guidance", line, "coreSkill", 1).length,
+    1,
+    "the same anchor binds at min 1",
+  );
 });
 
 // ── F14: quota flows through the real gates (integration) ─────────────────────

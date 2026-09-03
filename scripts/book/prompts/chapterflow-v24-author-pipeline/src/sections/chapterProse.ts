@@ -1,3 +1,4 @@
+import { isPageCitationOnly } from "../critics/apparatusLeakage.js";
 import type { SummaryPackV1 } from "../artifacts/artifactTypes.js";
 
 /**
@@ -253,6 +254,14 @@ export function countSpecificsInProse(specifics: readonly unknown[], normalizedP
   let present = 0;
   for (const specific of specifics) {
     const value = typeof specific === "string" ? specific : "";
+    // CF-J Task 4, applied to the chapter-level rule: a hardSpecific that IS a page
+    // citation ("Ch. 6 p. 138") is the source guide's internal locator coordinate, and
+    // the writer projection WITHHOLDS it (sourcePacketProjection strips citation spans).
+    // An internal coordinate can never be REQUIRED reader-visible text, so it counts as
+    // satisfied by construction — the same rule SC11.2 has applied since that
+    // investigation. Without it a sidecar whose specifics are all citations makes
+    // SEC14/SEC128/SC11.7 unsatisfiable by construction.
+    if (isPageCitationOnly(value)) { present += 1; continue; }
     const normalized = normalizeDerivabilityText(value);
     if (normalized.length < 3) continue;
     if (normalizedProse.includes(normalized)

@@ -73,11 +73,18 @@ function normalizeLine(value: string): string {
 export function specificsPresentIn(text: string, specifics: readonly string[]): string[] {
   const haystack = normalizeLine(text);
   const present: string[] = [];
-  for (const specific of specifics) {
+  const matched: string[] = [];
+  // Longest first, so a nested specific is recognised as part of the longer one it sits
+  // inside rather than counted as a second detail: a packet carrying both "Lord Loudoun"
+  // and "Loudoun" describes ONE thing, and a line naming him once must not read as two.
+  for (const specific of [...specifics].sort((a, b) => b.length - a.length)) {
     const needle = normalizeLine(specific);
     if (needle.length < 3) continue;
     if (present.includes(specific)) continue;
-    if (haystack.includes(needle)) present.push(specific);
+    if (!haystack.includes(needle)) continue;
+    if (matched.some((longer) => longer.includes(needle))) continue;
+    matched.push(needle);
+    present.push(specific);
   }
   return present;
 }

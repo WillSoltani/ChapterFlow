@@ -3439,10 +3439,16 @@ test("R-016 SEC53 word balance blocks ABOVE 1.4x, the bound the learning contrac
 
 test("R-044 the summary pack's tryThisNow is grounded at the same bar as the action pack's", () => {
   // Both packs carry the SAME field with the SAME claim type, and the assembler
-  // ships `action.tryThisNow || summary.tryThisNow` (assembleSections.ts:269,342),
-  // so the action pack's copy is the one a reader sees. The summary copy was
-  // validated at min 2 hardSpecifics while SEC74 validates the shipped copy at 1 —
-  // retries spent on bytes that are discarded.
+  // ships `action.tryThisNow || summary.tryThisNow` (assembleSections.ts), so the
+  // action pack's copy is the one a reader sees. The summary copy was validated at
+  // min 2 hardSpecifics while SEC74 validates the shipped copy at 1 — retries spent
+  // on bytes that are discarded.
+  //
+  // Package 1B: the parity now holds from the other direction. SEC14 emits no
+  // per-unit specifics finding AT ALL (it became a chapter-level presence rule), so
+  // the discarded copy carries no per-unit quota, and SEC74 still binds the copy that
+  // ships. The assertions below pin both halves, including the bound on SEC74 — a
+  // vacuous "both are empty" would pass even if SEC74 had been retired too.
   const fx = compileFixture();
   const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("implementation_guidance") && (a.hardSpecifics ?? []).length >= 2);
   assert.ok(anchor, "fixture needs an implementation-capable anchor with 2+ hardSpecifics");
@@ -3460,6 +3466,17 @@ test("R-044 the summary pack's tryThisNow is grounded at the same bar as the act
 
   assert.deepEqual(actionHits, [], "SEC74 accepts one verbatim specific in the copy that actually ships");
   assert.deepEqual(summaryHits, [], "the discarded copy must not be held to a stricter bar than the shipped one");
+  assert.deepEqual(
+    validateSummaryPack(summary, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId.startsWith("SEC14")),
+    [],
+    "SEC14 raises no per-unit specifics finding on the summary's tryThisNow at all",
+  );
+
+  // And SEC74 still BINDS: strip the specific from the shipped copy and it blocks.
+  const bare = JSON.parse(JSON.stringify(action)) as ActionPackV1;
+  bare.tryThisNow = "Open one account and check the number before the next snapshot happens today.";
+  const bareHits = validateActionPack(bare, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId === "SEC74.action_anchor_specifics");
+  assert.equal(bareHits.length, 1, "zero specifics in the shipped copy still blocks");
 });
 test("R-043 memorable-line scoring rewards only the separators it can actually see", () => {
   // memorableLineScore rejects any sentence containing ":" before scoring, so the
