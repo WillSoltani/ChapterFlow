@@ -58,7 +58,9 @@ const SUMMARY_VOICE_PARAGRAPH =
  *  The no-card fallback names a plain, concrete REGISTER and stops there: it used to
  *  add "short sentences, plain verbs", which outranked whatever cadence a card asked
  *  for (R-005). Cadence is stated once, as a measurable, in the summary tier-floor
- *  rule — where it names the checks that actually enforce it. */
+ *  rule — where it names the two critics that actually score it and the severity they
+ *  carry (E7.long_sentence / E8.monotone_cadence, majors raised at chapter assembly
+ *  in critics/finalGate.ts, not blockers and not checked by sectionGate). */
 function voiceCraftLine(kind: SectionKind): string {
   return kind === "summary-pack" || kind === "example-pack"
     ? `VOICE: when a VOICE CARD is shown below, write in its register (match it, never quote it); with no card, use a plain, concrete register.`
@@ -74,7 +76,7 @@ function universalCore(kind: SectionKind): string[] {
         "UNIVERSAL — Write ONLY the hook, tiered summaries, keyTakeaway, and optional tryThisNow; no examples, quiz, review cards, or implementationPlan.",
         "Cite an allowed sourceAnchorId for the hook, each breakdown tier, keyTakeaway, and tryThisNow.",
         "keyTakeaway: 30 words or fewer.",
-        "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Vary sentence length: plain verbs, no sentence over 30 words, and never a run of same-length short declaratives (E7/E8 block both). Meet the length floors with concrete detail, not padding.",
+        "Tier floors: fastRead >=350 chars at grade <=7 (aim 420-600 — never ride the floor); deepRead >=1000 chars at grade <=8.5 (aim 1150-1600); fullRead >=2400 chars at grade <=9.5 (aim 2700-3400); the assembled breakdown reads at Flesch ease >=70. Vary sentence length: plain verbs, no sentence over 30 words, and never a run of same-length short declaratives — E7.long_sentence and E8.monotone_cadence each raise a major at chapter assembly. Meet the length floors with concrete detail, not padding.",
         "Teach the chapter, not the provenance discipline: no reader-facing source-grounding rules (\"at least 3 named cases\", \"concrete settings give memory a handle\", \"claims checkable\").",
         "Output SummaryPackV1 JSON only.",
       ];

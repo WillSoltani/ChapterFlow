@@ -361,7 +361,7 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
 // "short sentences, plain verbs" was stated UNCONDITIONALLY in the summary
 // universalCore, twice more as the no-card fallback, and a fourth time inside
 // voiceCardSection — the ONE site that fires only when a card exists, so it
-// contradicted the card it had just introduced. Six of the 59 shipped author-voice
+// contradicted the card it had just introduced. Six of the 60 shipped author-voice
 // profiles ask for a longer, measured cadence, and the released Franklin book's own
 // scar note says "a run of sub-seven-word declaratives is a spice, not a default
 // register" (config/book-scars/the-autobiography-of-benjamin-franklin.json).
@@ -379,13 +379,39 @@ test("R-005: the contract asks for varied cadence and never hardcodes 'short sen
   }
   const summary = renderTask("money-book", "summary-pack");
   assert.match(summary, /Vary sentence length/, "the tier-floor rule asks for varied length instead");
-  assert.match(summary, /never a run of same-length short declaratives/, "and names the defect the ship gate actually blocks");
+  assert.match(summary, /never a run of same-length short declaratives/, "and names the defect the ship gate actually raises");
 
   // The register note that INTRODUCES a card must not restate a rhythm the card may
   // have just contradicted.
   const learning = renderTask(LARGEST_SCAR_BOOK, "learning-pack");
   assert.match(learning, /VOICE CARD — register note/, "this render carries a card");
   assert.doesNotMatch(learning, /register — plain verbs, short sentences/, "the register note no longer overrides the card it just introduced");
+});
+
+// ── R-005 (review round 2) — the replacement rule must not overstate the gate
+//    either. The first cut shipped "(E7/E8 block both)" into every summary writer
+//    prompt. Neither critic blocks and neither runs at this gate:
+//      - E8.monotone_cadence is severity "major" (src/critics/finalGate.ts:378) and
+//        its own registry comment calls it a "SHADOW major: surfaces as QC debt but
+//        does not block (ENFORCED_MAJOR stays empty)" (finalGate.ts:372-378);
+//      - E7.long_sentence is likewise "major" (finalGate.ts:384), not a blocker;
+//      - ENFORCED_MAJOR (finalGate.ts:607-611) holds only EW1.invented_witness,
+//        SEAM1.adjacent_duplicate_word and SEAM2.verbatim_repetition;
+//      - both run in finalGate (checkSentenceLengthVariance at finalGate.ts:946,
+//        checkPlainLanguage at :970) — chapter assembly, not sectionGate.
+//    Telling a writer a shadow major "blocks" is the same defect this package
+//    refused to ship for the per-tier reading-ease floor: a contract sentence that
+//    says something false about what is checked. The rule states the severity that
+//    exists, and this pins it.
+test("R-005: the tier-floor rule states E7/E8's real severity, not a block", () => {
+  const summary = renderTask("money-book", "summary-pack");
+  assert.doesNotMatch(summary, /E7\/E8 block/, "E8 is a shadow major and E7 is a major; neither blocks");
+  assert.doesNotMatch(summary, /\bE[78][^.]{0,80}\bblocks?\b/, "no E7/E8 sentence may claim a block");
+  assert.match(
+    summary,
+    /E7\.long_sentence and E8\.monotone_cadence each raise a major at chapter assembly/,
+    "the rule names the severity the critics actually carry, and where they run",
+  );
 });
 
 test("book-scars loader: real seed files load; unknown book is null; malformed fails loud", () => {
