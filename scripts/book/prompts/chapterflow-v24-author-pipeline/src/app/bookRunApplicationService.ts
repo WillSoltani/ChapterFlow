@@ -1886,6 +1886,14 @@ export class BookRunApplicationService {
     }
     const scoredAt = safeNow(this.#dependencies.clock);
     if (!scoredAt.ok) return scoredAt;
+    // The rubric readers run on the ATTEMPT-scoped read-json profile (the same
+    // one the canonical review panel uses), whose workDirPolicy is ATTEMPT_ROOT
+    // — so the workDir is the run's attempt root, NOT the pipeline root. The
+    // fresh-qc judge's pipelineRoot workDir belongs to its own PIPELINE_ROOT
+    // profile and is not interchangeable: passing it here is rejected by the
+    // execution policy as MODEL_PROFILE_INVALID before any read happens.
+    const rubricWorkDir = resolve(input.attemptRoot, "catalog-rubric");
+    await mkdir(rubricWorkDir, { recursive: true });
     const scored = await this.#dependencies.rubric.score({
       bookId: input.bookId,
       title: input.title,
@@ -1898,7 +1906,7 @@ export class BookRunApplicationService {
         attemptId: derivedId("rubric-attempt", rubricRunId),
         stageId: RUBRIC_STAGE,
         operationId: RUBRIC_STAGE,
-        workDir: this.#dependencies.pipelineRoot,
+        workDir: rubricWorkDir,
         signal: input.signal,
       },
     });

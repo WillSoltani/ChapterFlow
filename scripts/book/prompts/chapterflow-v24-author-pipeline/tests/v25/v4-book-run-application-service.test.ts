@@ -295,7 +295,9 @@ requiredTest("book-run service joins exact review QC and local promotion with du
   assert.ok(pointer.ok && pointer.value);
   assert.equal(pointer.value.candidateId, compiled.manifest.candidateId);
   assert.deepEqual(events.filter((event) => event.status === "COMPLETED").map((event) => event.phase), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "promotion",
+    // R-080: the whole-book rubric gate sits between the fresh QC PASS and the
+    // promotion it authorizes.
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "rubric", "promotion",
   ]);
   assert.ok(events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   assert.equal(readFileSync(sentinel, "utf8"), "unchanged\n");

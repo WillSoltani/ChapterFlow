@@ -577,6 +577,11 @@ export function formatScore(value: number): string {
  * be a fabricated measurement. One line is ADDED — the promotion bar and the
  * verdict this run reached — because unlike the skill, this scorecard is
  * attached to a gate and must say what the gate decided.
+ *
+ * The row-status and split-vote MARKERS are ASCII (`!! <75`, `** split vote`)
+ * where `compose.py` uses emoji. That is a rendering choice, not a semantic one:
+ * this string is printed to an operator terminal and into a durable run log, and
+ * the thresholds it marks (<75, 75-79) are byte-identical to the skill's.
  */
 export function renderCatalogRubricScorecard(input: Readonly<{
   title: string;

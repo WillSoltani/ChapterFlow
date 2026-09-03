@@ -507,7 +507,8 @@ requiredTest("fresh QC judge PASS commits a durable round and promotes the revie
 
   // The durable phase-event sequence is the whole contract of the run.
   assert.deepEqual(completedPhases(world.events), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "promotion",
+    // R-080: the whole-book rubric gate between the fresh QC PASS and promotion.
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "rubric", "promotion",
   ]);
   assert.ok(world.events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   const qcCompleted = world.events.find((event) => event.phase === "fresh-qc" && event.status === "COMPLETED");
@@ -660,7 +661,9 @@ requiredTest("a fresh QC FAIL routes to repair and promotes the repaired success
   assert.ok(pointer.ok && pointer.value, JSON.stringify(pointer));
   assert.equal(pointer.value.candidateId, successorId);
   assert.deepEqual(completedPhases(world.events), [
-    "intake", "research", "seed", "compile", "review", "fresh-qc", "repair", "promotion",
+    // R-080: the whole-book rubric gate runs on the REPAIRED successor, between
+    // the repair that produced it and the promotion it authorizes.
+    "intake", "research", "seed", "compile", "review", "fresh-qc", "repair", "rubric", "promotion",
   ]);
 });
 
