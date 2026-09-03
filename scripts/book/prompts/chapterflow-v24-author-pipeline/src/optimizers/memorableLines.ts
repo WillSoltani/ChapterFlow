@@ -175,7 +175,8 @@ export function memorableLineScore(text: string): number {
   if (/\byou\b/i.test(s)) score += 8;
   if (/\bnot\b.+\bbut\b/i.test(s)) score += 8;
   if (/\bwhen\b|\bbefore\b|\bafter\b|\buntil\b/i.test(s)) score += 4;
-  if (/[,:;]/.test(s)) score += 3;
+  // `:` is rejected outright above, so only a comma or semicolon can reach here.
+  if (/[,;]/.test(s)) score += 3;
   if (/\bchoice\b|\bdecide\b|\bnotice\b|\bpractice\b|\bdefault\b|\bsignal\b|\bcost\b/i.test(s)) score += 6;
   if (words >= 8 && words <= 13) score += 6;
   return score;

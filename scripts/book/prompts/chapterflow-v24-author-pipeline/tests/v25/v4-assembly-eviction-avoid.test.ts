@@ -434,17 +434,23 @@ requiredTest("11ae registry — SEC94 opener reuse evicts per its OWN threshold 
   assert.equal(plan[0].avoid.phrase, "open one card account find");
 });
 
-requiredTest("11ae registry — SEC114 across 4 chapters (threshold 3) evicts EXACTLY the surplus latest chapter", () => {
+// R-020 re-pin — the mirror follows the gate, it does not set it. SEC114's firing
+// threshold moved from >= 4 chapters to >= 2 (sectionGate.ts
+// ACTION_CHALLENGE_OPENER_MIN_CHAPTERS), so `maxKeptChapters` moves 3 -> 1 to keep the
+// registry's stated invariant (threshold MINUS one) exact. This TIGHTENS eviction: the
+// same four-chapter collision now evicts three packs instead of one.
+requiredTest("11ae registry — SEC114 across 4 chapters (threshold 1) evicts EXACTLY the surplus later chapters", () => {
   const chapterIds = new Map<number, string>([
     [1, `${BOOK}-ch01`], [3, `${BOOK}-ch03`], [6, `${BOOK}-ch06`], [7, `${BOOK}-ch07`],
   ]);
   const signature = "twentyFourHourChallengeOpener:within the next";
   const blockers = [1, 3, 6, 7].map((chapterNumber) => openerBlocker(SEC114, signature, chapterNumber));
   const plan = planAssemblyEvictions(blockers, chapterIds);
-  assert.equal(plan.length, 1, "keep the 3 earliest offenders; evict only the surplus latest");
-  assert.equal(plan[0].chapterNumber, 7);
-  assert.deepEqual(plan[0].avoid.keptByChapters, [1, 3, 6]);
-  assert.equal(plan[0].avoid.checkId, SEC114);
+  assert.deepEqual(plan.map((eviction) => eviction.chapterNumber), [3, 6, 7], "keep the single earliest offender; evict the rest");
+  for (const eviction of plan) {
+    assert.deepEqual(eviction.avoid.keptByChapters, [1]);
+    assert.equal(eviction.avoid.checkId, SEC114);
+  }
 });
 
 requiredTest("11ae registry — a MIXED-gate assembly failure evicts the UNION with per-gate minimality", () => {
@@ -455,12 +461,12 @@ requiredTest("11ae registry — a MIXED-gate assembly failure evicts the UNION w
     // SEC94 (keep 1) across ch02, ch03 → evict ch03.
     openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 2),
     openerBlocker(SEC94, "tryThisNowOpener:open one card account find", 3),
-    // SEC114 (keep 3) across ch01, ch03, ch06, ch07 → evict ch07.
+    // SEC114 (keep 1) across ch01, ch03, ch06, ch07 → evict ch03, ch06, ch07.
     ...[1, 3, 6, 7].map((chapterNumber) => openerBlocker(SEC114, "twentyFourHourChallengeOpener:within the next", chapterNumber)),
   ];
   const plan = planAssemblyEvictions(blockers, chapterIds);
   const evicted = plan.map((eviction) => `ch${eviction.chapterNumber}:${eviction.avoid.checkId}`).sort();
-  assert.deepEqual(evicted, [`ch3:${SEC94}`, `ch7:${SEC114}`]);
+  assert.deepEqual(evicted, [`ch3:${SEC114}`, `ch3:${SEC94}`, `ch6:${SEC114}`, `ch7:${SEC114}`]);
 });
 
 requiredTest("11ae registry — per-checkId avoid wording: venue speaks venue; openers speak openers and name the kept chapters", () => {
@@ -506,7 +512,8 @@ requiredTest("11ae registry — SEC93/SEC94/SEC114 are all registered with the g
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get("SEC93.example_venue_stamping")?.kind, "example-pack");
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC94)?.maxKeptChapters, 1);
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC94)?.kind, "action-pack");
-  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.maxKeptChapters, 3);
+  // R-020 — mirrors SEC114's own >= 2 threshold (see sectionGate.ts), so it keeps 1.
+  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.maxKeptChapters, 1);
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.kind, "action-pack");
   // Every registered policy has a sane threshold and a wording builder.
   for (const [checkId, policy] of CROSS_CHAPTER_EVICTION_POLICIES) {
@@ -517,7 +524,7 @@ requiredTest("11ae registry — SEC93/SEC94/SEC114 are all registered with the g
 
 requiredTest("11ae registry — the live SEC94 and SEC114 gates stamp signatures that survive into AssemblyBlockers and drive eviction", () => {
   // Four chapters whose action packs share the same tryThisNow opener AND the same
-  // 24-hour-challenge opener trip SEC94 (>=2 chapters) and SEC114 (>=4 chapters).
+  // 24-hour-challenge opener trip SEC94 (>=2 chapters) and SEC114 (>=2 chapters).
   const base = compileCreditFixture(BOOK);
   const selectedChapters = [1, 3, 6, 7].map((chapterNumber) => {
     const blueprint = { ...base.blueprint, chapterNumber, chapterId: `${BOOK}-ch${String(chapterNumber).padStart(2, "0")}` };
@@ -553,7 +560,7 @@ requiredTest("11ae registry — the live SEC94 and SEC114 gates stamp signatures
   assert.ok(blockers.some((blocker) => blocker.checkId === SEC94 && blocker.kind === "action-pack"));
   assert.ok(blockers.some((blocker) => blocker.checkId === SEC114 && blocker.kind === "action-pack"));
 
-  // The registry converges the collision: SEC94 keeps 1, SEC114 keeps 3, so both
+  // The registry converges the collision: SEC94 keeps 1, SEC114 keeps 1, so both
   // gates evict at least their surplus chapter — a non-empty, per-gate plan.
   const chapterIds = new Map<number, string>(selectedChapters.map((chapter) => [chapter.chapterNumber, chapter.blueprint.chapterId]));
   const plan = planAssemblyEvictions(blockers, chapterIds);

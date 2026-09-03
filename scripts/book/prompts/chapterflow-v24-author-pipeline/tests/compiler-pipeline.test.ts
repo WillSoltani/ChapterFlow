@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdirSync, rmSync } from "node:fs";
+import { mkdirSync, readFileSync, rmSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { resolve } from "node:path";
 
@@ -10,7 +10,7 @@ import { validateSourcePacket } from "../src/compiler/sourcePacketGate.js";
 import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
 import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
-import { checkSectionGate, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
+import { checkSectionGate, contentBlockers, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
 import { buildEvidenceMap } from "../src/evidence/evidenceMap.js";
 import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
@@ -18,6 +18,7 @@ import { assembleChapterV21OrThrow } from "../src/assembler.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
 import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
+import { countSyllables } from "../src/critics/readingLevel.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
 import { checkNoEmDash } from "../src/critics/register.js";
 import type { ChapterSpec } from "../src/generateChapter.js";
@@ -1029,7 +1030,7 @@ test("v23 section gate blocks doubled periods and lowercase sentence starts befo
 
   const findings = validateSectionPack(bad, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC105.reader_doubled_period" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC127.reader_doubled_period" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
   assert.ok(
@@ -1325,6 +1326,97 @@ test("v23 section gate fails closed with SEC91.sidecar_unavailable when a report
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }
+});
+
+// R-041 — SEC91.sidecar_unavailable says the source-paste check could not RUN; it says
+// nothing about pack CONTENT. Assembly must not gate on it, and before this both
+// assembleSections paths exempted it by hardcoding its checkId string
+// (assembleSections.ts:239, :305) while the report itself still called the run a BLOCK
+// with no way to tell the two conditions apart. The report now carries the distinction:
+// `environmental` on the finding and `contentPassed` on the report. `passed` is
+// deliberately unchanged — validate-sections' exit code still fails closed on it.
+test("v23 section gate reports an unrunnable-check blocker as environmental, separate from content", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-sidecar-environmental-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const staleSidecarPath = resolve(stateRoot, "sidecars", "source", "ch01.source.json");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), { ...fx.packet, sourceSidecarPath: staleSidecarPath });
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    const sidecar = report.findings.filter((f) => f.checkId === "SEC91.sidecar_unavailable");
+    assert.equal(sidecar.length, 1, report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.equal(sidecar[0].severity, "blocker", "validate-sections must keep failing closed on a missing sidecar");
+    assert.equal(sidecar[0].environmental, true, "an unrunnable check is an environment condition, not invalid content");
+    assert.equal(report.passed, false, "the run is still a BLOCK: the check did not run");
+    assert.equal(report.contentPassed, true, "no CONTENT blocker was found, and the report must say so");
+    assert.deepEqual(report.findings.filter((f) => f.severity === "blocker" && !f.environmental), []);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// R-041 — the other half: a real content blocker is NOT environmental, so contentPassed
+// falls with it and assembly stays blocked.
+test("v23 section gate reports a content blocker as non-environmental and drops contentPassed", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-content-blocker-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), fx.packet);
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    const summary = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+    summary.chapterId = "money-book-ch99";
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    const contentBlockers = report.findings.filter((f) => f.severity === "blocker" && !f.environmental);
+    assert.ok(contentBlockers.length > 0, report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.equal(report.contentPassed, false);
+    assert.equal(report.passed, false);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// R-041 follow-up — `contentPassed` was a report field no production caller read: both
+// assembleSections paths recomputed the same predicate inline
+// (`severity === "blocker" && !environmental`), so the field and the two filters could
+// drift. The predicate now lives once, in `contentBlockers`, which the report and both
+// assembly paths call.
+test("v23 section gate exposes one content-blocker filter, shared by the report and assembly", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-content-blockers-shared-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const staleSidecarPath = resolve(stateRoot, "sidecars", "source", "ch01.source.json");
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), [chapter()]);
+    writeJsonFile(sourcePacketPath("money-book", 1, roots), { ...fx.packet, sourceSidecarPath: staleSidecarPath });
+    writeJsonFile(blueprintPath("money-book", 1, roots), fx.blueprint);
+    writeJsonFile(sectionPath("money-book", 1, "summary-pack", roots), fx.summary);
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1], sections: ["summary-pack"] });
+    assert.deepEqual(contentBlockers(report.findings), [], "an environmental blocker is not a content blocker");
+    assert.equal(report.contentPassed, contentBlockers(report.findings).length === 0);
+    assert.equal(report.passed, false, "the report still fails closed on the unrunnable check");
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// The drift guard itself: neither assembly path may re-derive the predicate from the
+// `environmental` flag; both must route through the shared filter above.
+test("assembleSections gates on the shared content-blocker filter, not an inline predicate", () => {
+  const source = readFileSync(new URL("../src/sections/assembleSections.ts", import.meta.url), "utf8");
+  assert.equal(/\b(?:f|finding)\.environmental\b/.test(source), false, "assembleSections must not re-derive the content-blocker predicate inline");
+  assert.equal((source.match(/contentBlockers\(/g) ?? []).length, 2, "both assembly paths call the shared filter");
 });
 
 test("v23 section gate rejects hard-banned register phrases before ChapterV21 assembly", () => {
@@ -1730,7 +1822,7 @@ test("v23 learning-pack validator rejects missing quiz metadata before assembly"
 
   const findings = validateLearningPack(bad, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC93.quiz_metadata" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC125.quiz_metadata" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
 });
@@ -1799,7 +1891,7 @@ test("v23 section gate rejects book-wide quiz n-gram template repeats before boo
 
     const report = checkSectionGate("money-book", roots, { chapters: [1, 2, 3, 4, 5], sections: ["learning-pack"] });
     assert.equal(report.passed, false, "five generated chapters with the same long quiz phrase should block");
-    assert.ok(report.findings.some((f) => f.checkId === "SEC94.quiz_cross_chapter_ngram"), report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
+    assert.ok(report.findings.some((f) => f.checkId === "SEC126.quiz_cross_chapter_ngram"), report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"));
   } finally {
     rmSync(stateRoot, { recursive: true, force: true });
   }
@@ -2357,6 +2449,91 @@ test("v23 section gate rejects saturated 24-hour challenge opener shells", () =>
   }
 });
 
+// R-020 — SEC114 used to need FOUR chapters sharing a signature, and it built that
+// signature from the first three words INCLUDING the time box, so two phrasings of the
+// same deadline ("Inside the next 24 hours" / "Within twenty-four hours") never grouped.
+// A four-chapter book therefore had to be 100% uniform before anything fired, and even
+// then only if every chapter spelled the time box the same way. Both halves are covered
+// here: the openers below share their first three CONTENT words but not their time box,
+// and only three of the four chapters carry the shell.
+test("v23 section gate rejects a 24-hour challenge shell shared by three of four chapters across time-box phrasings", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-action-challenge-timebox-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const chapters: ChapterSpec[] = Array.from({ length: 4 }, (_, i) => ({
+    chapterId: `money-book-ch${String(i + 1).padStart(2, "0")}`,
+    chapterNumber: i + 1,
+    chapterTitle: `Chapter ${i + 1}`,
+  }));
+  const challenges = [
+    "Inside the next 24 hours, log one payment and name the account it protects.",
+    "Within twenty-four hours, log one payment and name the balance it protects.",
+    "Before tomorrow ends, log one payment and name the lender it protects.",
+    "Take the statement you flagged this morning and read its fee line out loud to one other person.",
+  ];
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), chapters);
+    for (const ch of chapters) {
+      const bp = compileChapterBlueprint({ bookId: "money-book", chapter: ch, packet: fx.packet, packetPath: `/tmp/ch${String(ch.chapterNumber).padStart(2, "0")}.source-packet.json` });
+      const pack = cloneAction(fx.action);
+      pack.chapterId = bp.chapterId;
+      pack.implementationPlan.twentyFourHourChallenge = challenges[ch.chapterNumber - 1];
+      writeJsonFile(sourcePacketPath("money-book", ch.chapterNumber, roots), fx.packet);
+      writeJsonFile(blueprintPath("money-book", ch.chapterNumber, roots), bp);
+      writeJsonFile(sectionPath("money-book", ch.chapterNumber, "action-pack", roots), pack);
+    }
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1, 2, 3, 4], sections: ["action-pack"] });
+    const sec114 = report.findings.filter((f) => f.checkId === "SEC114.action_challenge_opener_saturation");
+    assert.deepEqual(
+      sec114.map((f) => f.chapterNumber).sort((a, b) => Number(a) - Number(b)),
+      [1, 2, 3],
+      report.findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
+    );
+    assert.equal(report.passed, false);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
+// R-020 control — a chapter whose challenge simply happens to start with a time box must
+// keep its own signature once the box is stripped, so unrelated moves never collide.
+test("v23 section gate keeps distinct 24-hour challenges apart after the time box is stripped", () => {
+  const fx = compileFixture();
+  const stateRoot = resolve(tmpdir(), `cf-v23-action-challenge-timebox-ok-${process.pid}-${Date.now()}`);
+  const roots = { stateRoot };
+  const chapters: ChapterSpec[] = Array.from({ length: 4 }, (_, i) => ({
+    chapterId: `money-book-ch${String(i + 1).padStart(2, "0")}`,
+    chapterNumber: i + 1,
+    chapterTitle: `Chapter ${i + 1}`,
+  }));
+  const challenges = [
+    "Inside the next 24 hours, send one owner handoff note for a commitment you already made.",
+    "Before you go to bed tonight, write your one exact sentence at the top of a blank page.",
+    "Take the pitch from your two-minute audit and say it twice today to two different people.",
+    "Before the day ends, run one stakeholder interview about your most-stalled ask.",
+  ];
+  try {
+    mkdirSync(resolve(stateRoot, "indexes"), { recursive: true });
+    writeJsonFile(resolve(stateRoot, "indexes", "money-book.json"), chapters);
+    for (const ch of chapters) {
+      const bp = compileChapterBlueprint({ bookId: "money-book", chapter: ch, packet: fx.packet, packetPath: `/tmp/ch${String(ch.chapterNumber).padStart(2, "0")}.source-packet.json` });
+      const pack = cloneAction(fx.action);
+      pack.chapterId = bp.chapterId;
+      pack.implementationPlan.twentyFourHourChallenge = challenges[ch.chapterNumber - 1];
+      writeJsonFile(sourcePacketPath("money-book", ch.chapterNumber, roots), fx.packet);
+      writeJsonFile(blueprintPath("money-book", ch.chapterNumber, roots), bp);
+      writeJsonFile(sectionPath("money-book", ch.chapterNumber, "action-pack", roots), pack);
+    }
+
+    const report = checkSectionGate("money-book", roots, { chapters: [1, 2, 3, 4], sections: ["action-pack"] });
+    assert.deepEqual(report.findings.filter((f) => f.checkId === "SEC114.action_challenge_opener_saturation"), []);
+  } finally {
+    rmSync(stateRoot, { recursive: true, force: true });
+  }
+});
+
 test("v23 section gate rejects saturated classify-opportunity choose-lever coreSkill units", () => {
   const fx = compileFixture();
   const stateRoot = resolve(tmpdir(), `cf-v23-action-classify-lever-core-${process.pid}-${Date.now()}`);
@@ -2644,7 +2821,7 @@ test("v23 example-pack validator rejects book-id-prefixed example ids before ass
 
   const findings = validateExamplePack(bad, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC112.example_id_shape" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC124.example_id_shape" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
 });
@@ -3131,3 +3308,145 @@ test("v23 SP16 is absent when every hardSpecific is short and atomic (<= 6 words
   assert.equal(findings.some((f) => f.checkId === "SP16.atomic_specifics"), false);
   assert.equal(findings.filter((f) => f.severity === "blocker").length, 0);
 });
+
+// ===========================================================================
+// Wave-0 gate-small fixes (issue register R-010, R-016, R-040, R-042, R-043,
+// R-044). Each test names the behaviour the gate gains or the false positive it
+// stops raising; none of them relaxes a check that was catching a real defect.
+// ===========================================================================
+
+test("R-010 SEC120's blocker message names exactly the tiers its haystack reads", () => {
+  // The haystack is standaloneProseText() = hook + counterintuition + fastRead +
+  // deepRead + keyTakeaway (chapterProse.ts:84-89) — fullRead is deliberately
+  // excluded, because the check exists to protect the reader who stops after Deep.
+  // The message used to promise "(hook, fastRead, deepRead, fullRead, keyTakeaway)",
+  // so the cheapest repair it invited — move the missing sentence into fullRead —
+  // cannot clear the check and leaves the restatement defect behind.
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 1);
+  assert.ok(anchor, "fixture needs a specifics-rich quiz-capable anchor");
+  const specific = anchor!.hardSpecifics![0];
+  const onPage = anchor!.hardSpecifics!.find((x) => x !== specific)!;
+  const prose = {
+    ...fx.summary,
+    breakdown: { ...fx.summary.breakdown, deepRead: `${fx.summary.breakdown.deepRead} The deep read states ${onPage} outright.` },
+  };
+  const bad = cloneLearning(fx.learning);
+  const q = bad.quiz.questions[0];
+  q.sourceAnchorIds = [anchor!.id];
+  q.keyEvidenceAnchorIds = [anchor!.id];
+  q.prompt = `A reader checks the ${specific} before the next snapshot. Which move changes what a lender can read?`;
+
+  const hits = validateLearningPack(bad, fx.blueprint, fx.packet, prose).filter((f) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.ok(hits.length > 0, "setup must trip SEC120");
+  for (const hit of hits) {
+    assert.match(hit.message, /\(hook, counterintuition, fastRead, deepRead, keyTakeaway\)/, "the message must name the five fields the haystack actually holds");
+    assert.equal(/fullRead/.test(hit.message), false, "naming fullRead as testable prose is the false instruction this fixes");
+  }
+});
+
+test("R-016 SEC53 word balance blocks ABOVE 1.4x, the bound the learning contract states as safe", () => {
+  // sectionTasks.ts:138 tells the writer the key must not exceed ">1.4x avg
+  // distractor words", and the CHOICE PARITY METHOD at :139 aims the key at the
+  // longer distractor's count. The gate compared `>=`, so a writer who landed
+  // exactly on the stated bound was blocked by the rule they had obeyed. The
+  // sibling character check on the next line always used a strict `>`.
+  const fx = compileFixture();
+  const sec53 = (pack: LearningPackV1) =>
+    validateLearningPack(pack, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC53.quiz_answer_length_balance" && f.path === "/quiz/questions/0/choices/" + pack.quiz.questions[0].correctIndex);
+
+  const atBound = cloneLearning(fx.learning);
+  const q0 = atBound.quiz.questions[0];
+  const distractorIndexes = [0, 1, 2].filter((i) => i !== q0.correctIndex);
+  // Two 10-word distractors → avg 10; a 14-word key is exactly 1.4x.
+  for (const i of distractorIndexes) q0.choices[i] = "pay the card down a bit before the bill lands";
+  q0.choices[q0.correctIndex] = "pay the card down a bit right now and log what the app shows";
+  assert.equal(q0.choices[q0.correctIndex].split(/\s+/).length, 14);
+  assert.deepEqual(sec53(atBound), [], "a key at exactly 1.4x average distractor words is inside the contract's stated safe zone");
+
+  const overBound = cloneLearning(atBound);
+  const q1 = overBound.quiz.questions[0];
+  q1.choices[q1.correctIndex] = "pay the card down a bit right now and log what the app shows today";
+  assert.equal(q1.choices[q1.correctIndex].split(/\s+/).length, 15, "15 words is 1.5x — above the stated bound");
+  assert.equal(sec53(overBound).length, 1, "anything ABOVE 1.4x still blocks");
+});
+
+test("R-044 the summary pack's tryThisNow is grounded at the same bar as the action pack's", () => {
+  // Both packs carry the SAME field with the SAME claim type, and the assembler
+  // ships `action.tryThisNow || summary.tryThisNow` (assembleSections.ts:269,342),
+  // so the action pack's copy is the one a reader sees. The summary copy was
+  // validated at min 2 hardSpecifics while SEC74 validates the shipped copy at 1 —
+  // retries spent on bytes that are discarded.
+  const fx = compileFixture();
+  const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("implementation_guidance") && (a.hardSpecifics ?? []).length >= 2);
+  assert.ok(anchor, "fixture needs an implementation-capable anchor with 2+ hardSpecifics");
+  const oneSpecific = `Open one account and check ${anchor!.hardSpecifics![0]} before the next snapshot happens today.`;
+
+  const summary = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  summary.tryThisNow = oneSpecific;
+  summary.tryThisNowSourceAnchorIds = [anchor!.id];
+  const summaryHits = validateSummaryPack(summary, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId === "SEC14.summary_anchor_specifics");
+
+  const action = JSON.parse(JSON.stringify(fx.action)) as ActionPackV1;
+  action.tryThisNow = oneSpecific;
+  action.tryThisNowSourceAnchorIds = [anchor!.id];
+  const actionHits = validateActionPack(action, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId === "SEC74.action_anchor_specifics");
+
+  assert.deepEqual(actionHits, [], "SEC74 accepts one verbatim specific in the copy that actually ships");
+  assert.deepEqual(summaryHits, [], "the discarded copy must not be held to a stricter bar than the shipped one");
+});
+test("R-043 memorable-line scoring rewards only the separators it can actually see", () => {
+  // memorableLineScore rejects any sentence containing ":" before scoring, so the
+  // ":" alternative in the "+3 for a separator" rule was unreachable. Deleting it
+  // changes no score — this test pins that equivalence so the cleanup is provably
+  // cosmetic.
+  assert.equal(memorableLineScore("You cannot fix the signal: you can only change what it reports today."), 0, "a colon still disqualifies a candidate outright");
+  const comma = memorableLineScore("When the balance is read, you have already decided what it says.");
+  const semi = memorableLineScore("When the balance is read; you have already decided what it says.");
+  assert.ok(comma > 0 && semi > 0);
+  assert.equal(comma, semi, "comma and semicolon are the separators the reward can still reach");
+});
+
+test("R-040 SEC12 carries the critic's own severity: reading level blocks, abstract density advises", () => {
+  // readingLevel.ts emits prose.reading_level at "major" and prose.abstract_density
+  // at "minor"; the gate pushed BOTH as blockers, so a supplementary conceptual-load
+  // signal the critic itself calls minor could fail a chapter on its own.
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  // One dense fastRead paragraph: 4+ syllable words push abstract density over its
+  // budget of 2 while the sentences stay short enough to clear the FK ceiling.
+  bad.breakdown.fastRead = long("Utilization visibility rewards preparation. Anticipation supports reliability. Documentation clarifies obligation.", 12);
+  const sec12 = validateSummaryPack(bad, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC12.summary_readability" && f.path === "/breakdown/fastRead");
+  const density = sec12.filter((f) => /four-plus-syllable/.test(f.message));
+  const level = sec12.filter((f) => /Flesch-Kincaid grade/.test(f.message));
+  assert.ok(density.length > 0, sec12.map((f) => `${f.severity}: ${f.message}`).join("\n"));
+  assert.ok(density.every((f) => f.severity === "advisory"), "a `minor` critic finding must not be laundered into a blocker");
+  assert.ok(level.every((f) => f.severity === "blocker"), "the `major` reading-level finding still blocks");
+});
+
+test("R-040 abstract density does not count the chapter's own subject vocabulary", () => {
+  // The density rule counts EVERY 4+ syllable word, so a chapter whose subject is a
+  // long proper noun spends its whole budget of 2 naming its own material — the
+  // shipped virtues chapter could not name three of the thirteen virtues in
+  // fastRead. The packet already enumerates that vocabulary in allowedEntities /
+  // allowedPlaces, so those tokens are the chapter's subject, not academic filler.
+  const fx = compileFixture();
+  const packet = JSON.parse(JSON.stringify(fx.packet)) as SourcePacketV1;
+  packet.allowedEntities = [...packet.allowedEntities, "Pennsylvania"];
+  packet.allowedPlaces = [...packet.allowedPlaces, "Philadelphia"];
+  assert.ok(countSyllables("Pennsylvania") >= 4 && countSyllables("Philadelphia") >= 4, "both entity tokens are 4+ syllables, i.e. countable before the exemption");
+
+  const named = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  named.breakdown.fastRead = long("Pennsylvania paid first. Philadelphia paid next. Pennsylvania paid again.", 20);
+  const namedDensity = validateSummaryPack(named, fx.blueprint, packet)
+    .filter((f) => f.checkId === "SEC12.summary_readability" && f.path === "/breakdown/fastRead" && /four-plus-syllable/.test(f.message));
+  assert.deepEqual(namedDensity, [], "naming the packet's own entities must not spend the abstract-word budget");
+
+  // The exemption is narrow: 4+ syllable words the packet does NOT name are still counted.
+  const academic = JSON.parse(JSON.stringify(fx.summary)) as SummaryPackV1;
+  academic.breakdown.fastRead = long("Utilization rewards preparation. Visibility supports reliability. Documentation clarifies obligation.", 12);
+  const academicDensity = validateSummaryPack(academic, fx.blueprint, packet)
+    .filter((f) => f.checkId === "SEC12.summary_readability" && f.path === "/breakdown/fastRead" && /four-plus-syllable/.test(f.message));
+  assert.ok(academicDensity.length > 0, "academic vocabulary the packet never names is still flagged");
+});
+

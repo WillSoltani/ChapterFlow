@@ -16,7 +16,7 @@ import { blueprintPath, readJsonFile, sectionPath, sourcePacketPath, type Compil
 import { resolveExpectedSourceChapters } from "../qc/sourceV2Gate.js";
 import { normSlug } from "../lib/chapterPaths.js";
 import { checkSentenceSanity } from "../critics/integrity.js";
-import { checkReadingLevel, checkBreakdownReadingEase } from "../critics/readingLevel.js";
+import { checkReadingLevel, checkBreakdownReadingEase, TIER_TARGETS } from "../critics/readingLevel.js";
 import { fleschReadingEase } from "../metrics/rubricMetrics.js";
 import { loadBannedPhrases } from "../critics/shared.js";
 import { checkBannedPhrases, checkNoEmDash } from "../critics/register.js";
@@ -56,11 +56,28 @@ export type SectionFinding = {
    *  cross-chapter avoid-context into the re-draft. Absent on per-chapter
    *  findings. */
   signature?: string;
+  /** R-041 — set when the finding reports that a check could not RUN (a missing or
+   *  unreadable INPUT), not that pack CONTENT is invalid. Such a finding stays a
+   *  blocker — `passed` goes false and `validate-sections` exits non-zero — but it is
+   *  excluded from `contentPassed`, which is what the assembly paths gate on. Before
+   *  this flag existed, both assembleSections paths carried a hardcoded
+   *  `checkId !== "SEC91.sidecar_unavailable"` exemption instead. */
+  environmental?: boolean;
 };
+
+/** R-041 — the blockers that are about pack CONTENT: the exact set both assembleSections
+ *  paths gate on, and the complement of `SectionGateReport.contentPassed`. It lives here,
+ *  in one place, so the report field and the assembly filters cannot drift apart. */
+export function contentBlockers(findings: readonly SectionFinding[]): SectionFinding[] {
+  return findings.filter((f) => f.severity === "blocker" && !f.environmental);
+}
 
 export type SectionGateReport = {
   bookId: string;
   passed: boolean;
+  /** R-041 — no blocker about pack CONTENT was found. `passed` additionally requires
+   *  that every check was able to run (see `SectionFinding.environmental`). */
+  contentPassed: boolean;
   chaptersChecked: number;
   findings: SectionFinding[];
 };
@@ -176,7 +193,12 @@ const AS10_MIN_OTHER_CHAPTERS = 2;
 const TRY_THIS_NOW_OPENER_WORDS = 5;
 const TRY_THIS_NOW_OPENER_MIN_WORDS = 4;
 const ACTION_CHALLENGE_OPENER_WORDS = 3;
-const ACTION_CHALLENGE_OPENER_MIN_CHAPTERS = 4;
+// R-020 — the 24-hour challenge opener is the same kind of shell as the tryThisNow
+// opener checked by SEC94, which fires at two chapters (see
+// crossChapterTryThisNowOpenerFindings below). SEC114 asked for four,
+// so a four-chapter book had to be 100% uniform before anything fired and a
+// three-of-four shell shipped. Same pack, same failure mode, same bar.
+const ACTION_CHALLENGE_OPENER_MIN_CHAPTERS = 2;
 const SUMMARY_HOOK_FIRST_WORD_MIN_CHAPTERS = 5;
 const SUMMARY_HOOK_FIRST_WORD_CAP = 0.5;
 const NGRAM_STOPWORDS = new Set<string>([
@@ -939,8 +961,26 @@ function collectTryThisNowOpeners(pack: ActionPackV1, bp: ChapterBlueprintV1, re
   }];
 }
 
+// R-020 — the opener signature is built from words only (`[a-z']+` drops digits), so
+// "Inside the next 24 hours," and "Within twenty-four hours," produced different first
+// three words and the same challenge never grouped. Drop a leading time-box adverbial —
+// a short comma-terminated head that names a deadline — so the signature compares the
+// MOVE the challenge asks for rather than how its clock was spelled.
+const TIME_BOX_HEAD = /^([^,]{1,60}),\s+/;
+const TIME_BOX_TOKEN = /\b(minutes?|hours?|days?|nights?|weeks?|tonight|today|tomorrow|morning|afternoon|evening|noon|midnight)\b/;
+const TIME_BOX_MAX_WORDS = 7;
+
+function stripTimeBoxPrefix(lower: string): string {
+  const head = TIME_BOX_HEAD.exec(lower);
+  if (!head) return lower;
+  const phrase = head[1];
+  if (phrase.split(/\s+/).filter(Boolean).length > TIME_BOX_MAX_WORDS) return lower;
+  if (!TIME_BOX_TOKEN.test(phrase)) return lower;
+  return lower.slice(head[0].length);
+}
+
 function actionChallengeOpener(value: unknown): string {
-  const words = text(value).toLowerCase().match(/[a-z']+/g) ?? [];
+  const words = stripTimeBoxPrefix(text(value).toLowerCase()).match(/[a-z']+/g) ?? [];
   return words.slice(0, ACTION_CHALLENGE_OPENER_WORDS).join(" ");
 }
 
@@ -1149,6 +1189,8 @@ function sourcePasteFindings(pack: SectionPackV1, bp: ChapterBlueprintV1, packet
     return [{
       checkId: "SEC91.sidecar_unavailable",
       severity: "blocker",
+      // R-041 — the check could not RUN; this says nothing about the pack's content.
+      environmental: true,
       chapterNumber: bp.chapterNumber,
       section: pack.artifactType,
       message: `source sidecar unavailable at ${pathDesc}; SEC91 source-paste detection cannot run for this section`,
@@ -1257,7 +1299,7 @@ function readerPunctuationFindings(fields: SoftBannedTextOccurrence[]): SectionF
     const doubled = field.text.match(/\.{2,}/);
     if (doubled) {
       findings.push({
-        checkId: "SEC105.reader_doubled_period",
+        checkId: "SEC127.reader_doubled_period",
         severity: "blocker",
         chapterNumber: field.chapterNumber,
         section: field.section,
@@ -1991,7 +2033,7 @@ function crossChapterQuizNgramTemplateFindings(fields: QuizLiteralFieldOccurrenc
         if (reported.has(key)) continue;
         reported.add(key);
         findings.push({
-          checkId: "SEC94.quiz_cross_chapter_ngram",
+          checkId: "SEC126.quiz_cross_chapter_ngram",
           severity: "blocker",
           chapterNumber: field.chapterNumber,
           section: "learning-pack",
@@ -2221,6 +2263,19 @@ function factWhyOverlap(whyItMatters: string, fact: SourcePacketV1["facts"][numb
   return [...factTerms].filter((term) => whyTerms.has(term));
 }
 
+/** The chapter's OWN subject vocabulary — every word token the source packet lists in
+ *  allowedEntities / allowedPlaces, lower-cased. SEC12's abstract-word density counts
+ *  4+ syllable words as conceptual load the writer should trade for plainer ones; a
+ *  long proper noun the packet itself hands the writer is not tradeable, so it is
+ *  exempt (see countAbstractWords). Nothing outside the packet is exempted. */
+function packetSubjectTokens(packet: SourcePacketV1): ReadonlySet<string> {
+  const tokens = new Set<string>();
+  for (const value of [...(packet.allowedEntities ?? []), ...(packet.allowedPlaces ?? [])]) {
+    for (const token of text(value).match(/[A-Za-z'-]+/g) ?? []) tokens.add(token.toLowerCase());
+  }
+  return tokens;
+}
+
 export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1, packet: SourcePacketV1): SectionFinding[] {
   const findings: SectionFinding[] = [];
   const ch = bp.chapterNumber;
@@ -2244,6 +2299,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorClaimType(counterIds, anchors, "hook", "hook.counterintuitionSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/hook/counterintuitionSourceAnchorIds");
     for (const p of validateAnchorHardSpecifics(counterIds, anchors, "hook", pack.hook?.counterintuition, "counterintuition")) push("SEC14.summary_anchor_specifics", "blocker", p, "/hook/counterintuition");
   }
+  const subjectTokens = packetSubjectTokens(packet);
   const tiers = ["fastRead", "deepRead", "fullRead"] as const;
   const mins = { fastRead: 350, deepRead: 1000, fullRead: 2400 } as const;
   const memorableCandidates: MemorableCandidate[] = [];
@@ -2251,7 +2307,13 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     const value = text(pack.breakdown?.[tier]);
     if (value.length < mins[tier]) push("SEC6.breakdown_length", "blocker", `${tier} too short (${value.length})`, `/breakdown/${tier}`);
     if (/\b(this chapter|the chapter|the author|the book)\b/i.test(value)) push("SEC7.meta_reference", "blocker", `${tier} contains meta-reference`, `/breakdown/${tier}`);
-    for (const f of checkReadingLevel(value, tier)) push("SEC12.summary_readability", "blocker", f.message, `/breakdown/${tier}`);
+    // The critic's OWN severity is carried through: prose.reading_level is `major`
+    // (the rubric band the chapter is graded on) and blocks; prose.abstract_density
+    // is `minor` — a supplementary conceptual-load signal on fastRead — and advises.
+    // Pushing both as blockers laundered a minor finding into a shipping blocker.
+    for (const f of checkReadingLevel(value, tier, TIER_TARGETS, subjectTokens)) {
+      push("SEC12.summary_readability", f.severity === "minor" ? "advisory" : "blocker", f.message, `/breakdown/${tier}`);
+    }
     for (const p of validateAnchorIds(pack.breakdown?.sourceAnchorIds?.[tier], allowed, `breakdown.sourceAnchorIds.${tier}`)) push("SEC8.breakdown_anchor", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorResolution(pack.breakdown?.sourceAnchorIds?.[tier], anchors, `breakdown.sourceAnchorIds.${tier}`)) push("SEC122.unit_anchor_unresolved", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
     for (const p of validateAnchorClaimType(pack.breakdown?.sourceAnchorIds?.[tier], anchors, "breakdown_claim", `breakdown.sourceAnchorIds.${tier}`)) push("SEC13.summary_anchor_claim_type", "blocker", p, `/breakdown/sourceAnchorIds/${tier}`);
@@ -2341,7 +2403,11 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
     for (const p of validateAnchorIds(pack.tryThisNowSourceAnchorIds, allowed, "tryThisNowSourceAnchorIds")) push("SEC10.try_anchor", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorResolution(pack.tryThisNowSourceAnchorIds, anchors, "tryThisNowSourceAnchorIds")) push("SEC122.unit_anchor_unresolved", "blocker", p, "/tryThisNowSourceAnchorIds");
     for (const p of validateAnchorClaimType(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", "tryThisNowSourceAnchorIds")) push("SEC13.summary_anchor_claim_type", "blocker", p, "/tryThisNowSourceAnchorIds");
-    for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow")) push("SEC14.summary_anchor_specifics", "blocker", p, "/tryThisNow");
+    // min 1, the SAME bar SEC74 applies to the action pack's tryThisNow (:2910).
+    // It is the same field with the same claim type, and the assembler ships
+    // `action.tryThisNow || summary.tryThisNow`, so the action pack's copy is what a
+    // reader sees; holding the discarded copy to min 2 only spent retries.
+    for (const p of validateAnchorHardSpecifics(pack.tryThisNowSourceAnchorIds, anchors, "implementation_guidance", pack.tryThisNow, "tryThisNow", 1)) push("SEC14.summary_anchor_specifics", "blocker", p, "/tryThisNow");
   }
   return findings;
 }
@@ -2370,7 +2436,7 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     const actualExId = text(ex.exampleId);
     if (!EXAMPLE_ID_RE.test(actualExId) || (actualExId !== expectedExId && !actualExId.startsWith(expectedChapterPrefix))) {
       push(
-        "SEC112.example_id_shape",
+        "SEC124.example_id_shape",
         "blocker",
         `example ${i + 1} exampleId must be ${expectedExId} or start with ${expectedChapterPrefix}; do not include bookId or another chapter number`,
         `${root}/exampleId`,
@@ -2685,7 +2751,7 @@ export function learningProseDerivabilityFindings(
     return [...missing];
   };
   const blocker = (label: string, missing: readonly string[]): string =>
-    `${label} names ${missing.map((value) => `"${value}"`).join(", ")}, which ${missing.length === 1 ? "appears" : "appear"} nowhere in this chapter's drafted prose (hook, fastRead, deepRead, fullRead, keyTakeaway); a reader of this chapter cannot derive it from the page — use only the names, dates, numbers, and terms the prose actually shows`;
+    `${label} names ${missing.map((value) => `"${value}"`).join(", ")}, which ${missing.length === 1 ? "appears" : "appear"} nowhere in this chapter's drafted prose (hook, counterintuition, fastRead, deepRead, keyTakeaway); a reader of this chapter cannot derive it from the page — use only the names, dates, numbers, and terms the prose actually shows`;
   for (const [i, q] of (pack.quiz?.questions ?? []).entries()) {
     const choices = Array.isArray(q.choices) ? q.choices.map((choice) => text(choice)).join(" ") : "";
     const unitText = `${text(q.prompt)} ${choices} ${text(q.explanation)}`;
@@ -2736,12 +2802,12 @@ export function validateLearningPack(
     const wanted = bp.sections.quiz[i]?.correctIndex;
     if (Number.isInteger(wanted) && q.correctIndex !== wanted) push("SEC46.quiz_key_pattern", "blocker", `q${i + 1} correctIndex ${q.correctIndex} != blueprint ${wanted}`, `/quiz/questions/${i}/correctIndex`);
     if (!BLOOMS_LEVELS.has(text((q as any).bloomsLevel))) {
-      push("SEC93.quiz_metadata", "blocker", `q${i + 1} bloomsLevel missing or invalid; use remember|understand|apply|analyze|evaluate|create`, `/quiz/questions/${i}/bloomsLevel`);
+      push("SEC125.quiz_metadata", "blocker", `q${i + 1} bloomsLevel missing or invalid; use remember|understand|apply|analyze|evaluate|create`, `/quiz/questions/${i}/bloomsLevel`);
     }
     if (!DEPTH_LEVELS.has(text((q as any).depthLevel))) {
-      push("SEC93.quiz_metadata", "blocker", `q${i + 1} depthLevel missing or invalid; use the blueprint depthLevel`, `/quiz/questions/${i}/depthLevel`);
+      push("SEC125.quiz_metadata", "blocker", `q${i + 1} depthLevel missing or invalid; use the blueprint depthLevel`, `/quiz/questions/${i}/depthLevel`);
     } else if (bp.sections.quiz[i]?.depthLevel && q.depthLevel !== bp.sections.quiz[i]?.depthLevel) {
-      push("SEC93.quiz_metadata", "blocker", `q${i + 1} depthLevel ${q.depthLevel} != blueprint ${bp.sections.quiz[i].depthLevel}`, `/quiz/questions/${i}/depthLevel`);
+      push("SEC125.quiz_metadata", "blocker", `q${i + 1} depthLevel ${q.depthLevel} != blueprint ${bp.sections.quiz[i].depthLevel}`, `/quiz/questions/${i}/depthLevel`);
     }
     const qSourceIds = anchorArray(q.sourceAnchorIds ?? (q as any).sourceAnchorId);
     const keyEvidenceIds = anchorArray(q.keyEvidenceAnchorIds).length ? q.keyEvidenceAnchorIds : qSourceIds;
@@ -2800,8 +2866,12 @@ export function validateLearningPack(
       }
       const avgDistractorWords = distractorLengths.reduce((sum, n) => sum + n, 0) / Math.max(1, distractorLengths.length);
       const correctWords = wordCount(q.choices[q.correctIndex]);
-      if (avgDistractorWords > 0 && correctWords >= avgDistractorWords * 1.4) {
-        push("SEC53.quiz_answer_length_balance", "blocker", `q${i + 1} correct answer has ${correctWords} words vs ${avgDistractorWords.toFixed(1)} average distractor words; keep it below 1.4x`, `/quiz/questions/${i}/choices/${q.correctIndex}`);
+      // Strict `>`, matching the character check below and the bound the learning
+      // contract states (sectionTasks.ts: "nor >1.4x avg distractor words"). With
+      // `>=` a writer who followed the CHOICE PARITY METHOD to the stated bound
+      // landed exactly on the blocking comparator.
+      if (avgDistractorWords > 0 && correctWords > avgDistractorWords * 1.4) {
+        push("SEC53.quiz_answer_length_balance", "blocker", `q${i + 1} correct answer has ${correctWords} words vs ${avgDistractorWords.toFixed(1)} average distractor words; keep it at or below 1.4x`, `/quiz/questions/${i}/choices/${q.correctIndex}`);
       }
       const correctChars = text(q.choices[q.correctIndex]).length;
       const distractorChars = q.choices
@@ -3220,7 +3290,13 @@ export function checkSectionGate(bookId: string, roots: CompilerStoreRoots = {},
   if (validSections.includes("summary-pack")) findings.push(...summaryTierNgramFindings(summaryTierFields));
   if (validSections.includes("summary-pack")) findings.push(...summaryHookFirstWordCapFindings(summaryHookFirstWords));
   findings.push(...softBannedBudgetFindings(softBannedFields));
-  return { bookId: normalized, passed: !findings.some((f) => f.severity === "blocker"), chaptersChecked: chapters.length, findings };
+  return {
+    bookId: normalized,
+    passed: !findings.some((f) => f.severity === "blocker"),
+    contentPassed: contentBlockers(findings).length === 0,
+    chaptersChecked: chapters.length,
+    findings,
+  };
 }
 
 export function formatSectionGateReport(report: SectionGateReport): string {

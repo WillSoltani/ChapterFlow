@@ -116,3 +116,58 @@ test("severity map carries BP26/BP27/BP28/BP29/BP30 book repetition check ids", 
   const missing = required.filter((k) => !keys.has(k));
   assert.deepEqual(missing, [], `book repetition check ids missing from SEVERITY_FROM_CATALOG: ${missing.join(", ")}`);
 });
+
+/**
+ * R-042 — one SEC number, one check.
+ *
+ * Operators, book scars, retry cards and the audit docs all refer to a section
+ * gate by its NUMBER ("SEC105 fired again"), while only the eviction registry
+ * keys on the full id. Four numbers had been reused for a second, unrelated
+ * check — SEC112 was both example_id_shape and the peak/end saturation gate,
+ * SEC93 both quiz_metadata and example_venue_stamping, SEC94 both the tryThisNow
+ * opener gate and quiz_cross_chapter_ngram, SEC105 both reader_doubled_period
+ * and source_label_leak — so those references pointed at two different things.
+ *
+ * A number MAY carry several suffixes when they are facets of ONE check family;
+ * those are listed below with what they cover. Anything else is a collision.
+ */
+const SEC_MULTI_SUFFIX_FAMILIES: Record<string, string> = {
+  // Structural prerequisites: the gate could not even read a valid input.
+  SEC0: "missing/malformed/prereq input reporting",
+  // Source-anchor presence on the two grounded summary fields.
+  SEC10: "keyTakeaway and tryThisNow anchor presence",
+  // The if-then implementation-intention shape check and its trigger half.
+  SEC67: "if-then shape and its context trigger",
+  // Source-paste detection, plus the report that it could not run.
+  SEC91: "source-paste detection and its unavailable-sidecar condition",
+};
+
+test("R-042 — every SEC number in sectionGate.ts names exactly one check", () => {
+  const src = readFileSync(resolve(PIPELINE_DIR, "src/sections/sectionGate.ts"), "utf8");
+  const suffixesByNumber = new Map<string, Set<string>>();
+  // Only quoted check ids count: a bare "SEC114" in a comment is a reference, not
+  // a declaration, and must not be read as one.
+  for (const match of src.matchAll(/"(SEC\d+)\.([a-z0-9_]+)"/g)) {
+    const set = suffixesByNumber.get(match[1]) ?? new Set<string>();
+    set.add(match[2]);
+    suffixesByNumber.set(match[1], set);
+  }
+  assert.ok(suffixesByNumber.size > 50, `expected the full SEC namespace, saw ${suffixesByNumber.size}`);
+  const collisions = [...suffixesByNumber.entries()]
+    .filter(([number, suffixes]) => suffixes.size > 1 && !(number in SEC_MULTI_SUFFIX_FAMILIES))
+    .map(([number, suffixes]) => `${number} -> ${[...suffixes].sort().join(" + ")}`)
+    .sort();
+  assert.deepEqual(collisions, [], `SEC numbers naming two unrelated checks: ${collisions.join("; ")}`);
+});
+
+test("R-042 — every documented multi-suffix SEC family still has more than one suffix", () => {
+  const src = readFileSync(resolve(PIPELINE_DIR, "src/sections/sectionGate.ts"), "utf8");
+  const suffixesByNumber = new Map<string, Set<string>>();
+  for (const match of src.matchAll(/"(SEC\d+)\.([a-z0-9_]+)"/g)) {
+    const set = suffixesByNumber.get(match[1]) ?? new Set<string>();
+    set.add(match[2]);
+    suffixesByNumber.set(match[1], set);
+  }
+  const stale = Object.keys(SEC_MULTI_SUFFIX_FAMILIES).filter((number) => (suffixesByNumber.get(number)?.size ?? 0) < 2);
+  assert.deepEqual(stale, [], `documented multi-suffix families that no longer have one: ${stale.join(", ")}`);
+});

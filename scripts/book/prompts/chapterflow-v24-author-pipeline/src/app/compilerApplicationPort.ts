@@ -545,7 +545,7 @@ export interface AssemblyEvictionOutcome {
  *
  * Every cross-chapter anti-sameness gate has its OWN saturation threshold (SEC93
  * venue allows 2 chapters; SEC94 tryThisNow-opener reuse allows only 1; SEC114
- * 24-hour-challenge-opener saturation allows 3; the sceneFrame/action-form gates
+ * 24-hour-challenge-opener saturation allows 1; the sceneFrame/action-form gates
  * allow anywhere from 2 to 5) and implicates ONE section kind (venue/opening/frame
  * gates → example-pack; opener/action-unit/closer gates → action-pack). A single
  * shared constant (the old SEC93_MAX_VENUE_CHAPTERS) evicted every gate as if it
@@ -595,7 +595,7 @@ const actionFormPolicy = (maxKeptChapters: number, formLabel: string): CrossChap
 /**
  * Task 11ae — the authoritative per-checkId cross-chapter eviction registry. Each
  * `maxKeptChapters` is the corresponding sectionGate gate's firing threshold MINUS
- * one (e.g. SEC94 blocks at >=2 chapters → keeps 1; SEC114 blocks at >=4 → keeps 3;
+ * one (e.g. SEC94 blocks at >=2 chapters → keeps 1; SEC114 blocks at >=2 → keeps 1;
  * SEC93 blocks at >2 → keeps 2). The gate thresholds themselves live in
  * `src/sections/sectionGate.ts` and are NOT changed here — this only mirrors them
  * for eviction. A cross-chapter gate that stamps a signature (see the `signature:`
@@ -655,7 +655,9 @@ export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, CrossChapterEv
       `tryThisNow opener "${phrase}…" already opens ${keptChapterLabels} — open this chapter's action with a different first move.`,
   }],
   ["SEC114.action_challenge_opener_saturation", {
-    maxKeptChapters: 3,
+    // R-020 — SEC114 now blocks at >= 2 chapters (sectionGate.ts
+    // ACTION_CHALLENGE_OPENER_MIN_CHAPTERS), so the mirror keeps 1.
+    maxKeptChapters: 1,
     kind: "action-pack",
     avoidMessage: (phrase, keptChapterLabels) =>
       `24-hour challenge opener "${phrase}…" already opens ${keptChapterLabels} — vary the time box, cadence, trigger, and first verb so this chapter's challenge follows its own mechanism.`,
