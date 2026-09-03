@@ -7,12 +7,27 @@
  * against, so a wrong map is as bad as no text at all — and this module is where
  * a wrong map is caught.
  *
- * ANCHORS, NOT OFFSETS. The model returns a unique start string and a unique end
- * string; this module resolves them to raw character offsets. A language model
- * cannot count characters in a 458 KB file, so asking for offsets would produce
- * confident nonsense that no validator could distinguish from a real answer,
- * whereas an anchor is checkable by construction: it either occurs exactly once
- * in the text or it does not.
+ * TWO CONTRACTS, ONE PER VIEW OF THE BOOK. Which one applies is derived from the
+ * text itself — {@link chapterMapMode} asks the same question buildBibliographyTextView
+ * asks — so the contract the model was given and the contract this module enforces
+ * cannot drift apart.
+ *
+ * "anchors" (a book passed WHOLE). The model returns a unique start string and a
+ * unique end string and this module resolves them to raw offsets. A language model
+ * cannot count characters, so asking IT for an offset would produce confident
+ * nonsense no validator could distinguish from a real answer, whereas an anchor is
+ * checkable by construction: it either occurs exactly once in the text or it does
+ * not.
+ *
+ * "headingOffsets" (a book too long to pass whole). The same demand is
+ * unsatisfiable here — the model never sees a chapter's last sentence, and every
+ * title it does see is printed twice (contents page and chapter head), so a
+ * title-shaped anchor is ambiguous by construction. Instead the outline view PRINTS
+ * a list of offsets and the model PICKS from it; this module accepts nothing that
+ * is not on that list. That is not the model counting characters, it is the model
+ * copying a number this code computed — the same safety property anchors have, got
+ * a different way. Everything after the offsets are in hand (order, overlap, gap,
+ * coverage) is shared by both modes.
  *
  * WHAT FAILS CLOSED (each with a message the retry loop hands back verbatim):
  *   - an anchor that is absent, ambiguous, or badly shaped;
@@ -30,7 +45,8 @@
  * assign the licence to chapter 1.
  */
 
-import { findAllQuoteOffsets, quoteShapeProblem } from "./sourceText.js";
+import { bibliographyOffsetChoices, MAX_BIBLIOGRAPHY_TEXT_CHARS, OUTLINE_OFFSET_LIST_HEADER } from "./sourceOutline.js";
+import { findAllQuoteOffsets, quoteShapeProblem, MIN_SOURCE_QUOTE_CHARS, MAX_SOURCE_QUOTE_CHARS } from "./sourceText.js";
 
 export const CHAPTER_MAP_SCHEMA_VERSION = "chapterflow.chapterMap.v1" as const;
 
@@ -83,6 +99,69 @@ export type ChapterSpanAnchors = {
   readonly endAnchor: string;
 };
 
+/** The outline-mode entry: two offsets copied from the view's printed list. */
+export type ChapterSpanOffsets = {
+  readonly chapterNumber: number;
+  readonly startOffset: number;
+  readonly endOffset: number;
+};
+
+export type ChapterMapMode = "anchors" | "headingOffsets";
+
+/**
+ * Which chapter-map contract this text is under.
+ *
+ * Derived from the SAME bound buildBibliographyTextView uses to decide whether to
+ * pass the book whole, and from the same text, so the prompt's contract and this
+ * validator's contract are always the same one.
+ */
+export function chapterMapMode(text: string): ChapterMapMode {
+  return text.length <= MAX_BIBLIOGRAPHY_TEXT_CHARS ? "anchors" : "headingOffsets";
+}
+
+/**
+ * The chapter-map contract, STATED WHERE IT IS ENFORCED.
+ *
+ * The bibliography prompt renders exactly these lines
+ * (src/agents/researcher-bibliography.ts#buildUserPrompt) and this module then
+ * validates exactly what they ask for, both keyed off {@link chapterMapMode} and
+ * the same text. Round 1 kept the two apart, and they drifted: the prompt asked
+ * every book for unique 30-240-character anchors while the outline view showed a
+ * long book neither its chapter ends nor a unique title, so the demand was
+ * unsatisfiable and the map failed closed forever. One function now says it once.
+ */
+export function chapterMapContractLines(text: string): string[] {
+  if (chapterMapMode(text) === "headingOffsets") {
+    return [
+      "Add a `chapterMap` array with one entry per chapter of your chapter list:",
+      "```ts",
+      "chapterMap: Array<{ chapterNumber: number; startOffset: number; endOffset: number }>",
+      "```",
+      `- \`startOffset\` and \`endOffset\` are COPIED from the \`@<number>:\` list printed under ${OUTLINE_OFFSET_LIST_HEADER} above. Any other value is rejected — never compute, estimate or adjust an offset.`,
+      "- A chapter's `startOffset` is the listed offset where that chapter begins. Its `endOffset` is the listed offset where it stops, which is normally the next chapter's start, and `[END OF TEXT]` for the last chapter.",
+      "- The spans must run in chapter order, must not overlap, and must leave no large run of the body unassigned. Front matter, a contents page, an editor's introduction and appendices may be left outside every span.",
+      "- You were shown an OUTLINE of this book, not all of it. Pick the offsets from the list; do not quote anchors — this book's chapterMap takes offsets only.",
+    ];
+  }
+  return [
+    "Add a `chapterMap` array with one entry per chapter of your chapter list:",
+    "```ts",
+    "chapterMap: Array<{ chapterNumber: number; startAnchor: string; endAnchor: string }>",
+    "```",
+    `- \`startAnchor\` is ${MIN_SOURCE_QUOTE_CHARS}-${MAX_SOURCE_QUOTE_CHARS} characters copied EXACTLY from where that chapter begins; \`endAnchor\` is ${MIN_SOURCE_QUOTE_CHARS}-${MAX_SOURCE_QUOTE_CHARS} characters copied exactly from where it ends.`,
+    '- Each anchor must occur EXACTLY ONCE in the whole text. A chapter heading like "II" or "Chapter 3" is not unique — use the chapter\'s own first and last sentences instead.',
+    "- The spans must run in chapter order, must not overlap, and must leave no large run of the body unassigned. Front matter, a contents page, an introduction by an editor, and appendices may be left outside every span.",
+    "- Anchors are checked character by character against the text. A remembered or reconstructed anchor will be rejected.",
+  ];
+}
+
+/** What a MISSING chapterMap is told, in the words of the mode it is under. */
+export function chapterMapMissingProblem(text: string): string {
+  return chapterMapMode(text) === "headingOffsets"
+    ? `chapterMap is missing — this run has the book's text, so every chapter needs a startOffset and an endOffset copied from the ${OUTLINE_OFFSET_LIST_HEADER} list`
+    : "chapterMap is missing — this run has the book's text, so every chapter needs a startAnchor and an endAnchor copied verbatim from it";
+}
+
 export type ResolvedChapterSpan = {
   readonly chapterNumber: number;
   readonly chapterTitle: string;
@@ -128,6 +207,30 @@ function anchorProblem(
 }
 
 /**
+ * Resolve ONE outline-mode entry's offsets, which must be values the outline view
+ * actually printed. Returns the problem naming the nearest legal values, so the
+ * retry hands the model something it can act on rather than "invalid".
+ */
+function offsetProblem(
+  chapterNumber: number,
+  which: "startOffset" | "endOffset",
+  value: unknown,
+  allowed: ReadonlySet<number>,
+): { problem: string } | { offset: number } {
+  if (typeof value !== "number" || !Number.isInteger(value)) {
+    return { problem: `chapter ${chapterNumber} ${which} is missing or is not an integer — copy one of the @<number> values from the ${OUTLINE_OFFSET_LIST_HEADER} list exactly as it is printed` };
+  }
+  if (!allowed.has(value)) {
+    const sorted = [...allowed].sort((a, b) => a - b);
+    const below = [...sorted].reverse().find((candidate) => candidate < value);
+    const above = sorted.find((candidate) => candidate > value);
+    const near = [below, above].filter((candidate): candidate is number => candidate !== undefined).join(" or ");
+    return { problem: `chapter ${chapterNumber} ${which} ${value} is not one of the listed offsets — use a value printed under ${OUTLINE_OFFSET_LIST_HEADER}${near ? ` (the nearest listed are ${near})` : ""}; offsets are copied, never computed` };
+  }
+  return { offset: value };
+}
+
+/**
  * Resolve and validate a model-supplied chapter map against the frozen text and
  * the bibliography's own chapter list.
  *
@@ -145,15 +248,26 @@ export function resolveChapterMap(args: {
   const problems: string[] = [];
   const text = args.sourceText;
   if (!Array.isArray(args.spans)) {
-    return { map: null, problems: ["chapterMap must be an array of one span per chapter, each with chapterNumber, startAnchor and endAnchor"] };
+    return {
+      map: null,
+      problems: [
+        chapterMapMode(text) === "headingOffsets"
+          ? "chapterMap must be an array of one span per chapter, each with chapterNumber, startOffset and endOffset"
+          : "chapterMap must be an array of one span per chapter, each with chapterNumber, startAnchor and endAnchor",
+      ],
+    };
   }
 
+  const mode = chapterMapMode(text);
+  const allowedOffsets = mode === "headingOffsets"
+    ? new Set(bibliographyOffsetChoices(text).map((choice) => choice.offset))
+    : new Set<number>();
   const expected = new Map(args.chapters.map((chapter) => [chapter.number, chapter.title]));
   const seen = new Set<number>();
   const resolved: ResolvedChapterSpan[] = [];
 
   for (const raw of args.spans as unknown[]) {
-    const entry = raw as Partial<ChapterSpanAnchors>;
+    const entry = raw as Partial<ChapterSpanAnchors & ChapterSpanOffsets>;
     const chapterNumber = entry?.chapterNumber;
     if (typeof chapterNumber !== "number" || !Number.isInteger(chapterNumber)) {
       problems.push(`chapterMap entry has no integer chapterNumber: ${JSON.stringify(raw).slice(0, 120)}`);
@@ -169,25 +283,43 @@ export function resolveChapterMap(args: {
     }
     seen.add(chapterNumber);
 
-    const start = anchorProblem(chapterNumber, "startAnchor", entry.startAnchor, text);
-    const end = anchorProblem(chapterNumber, "endAnchor", entry.endAnchor, text);
-    if ("problem" in start) problems.push(start.problem);
-    if ("problem" in end) problems.push(end.problem);
-    if ("problem" in start || "problem" in end) continue;
-
-    const startOffset = start.offsets.start;
-    const endOffset = end.offsets.end;
-    if (endOffset <= startOffset) {
-      problems.push(`chapter ${chapterNumber} endAnchor resolves at ${endOffset}, at or before its startAnchor at ${startOffset} — the end anchor must come AFTER the start anchor in the text`);
-      continue;
+    let startOffset: number;
+    let endOffset: number;
+    if (mode === "headingOffsets") {
+      const start = offsetProblem(chapterNumber, "startOffset", entry.startOffset, allowedOffsets);
+      const end = offsetProblem(chapterNumber, "endOffset", entry.endOffset, allowedOffsets);
+      if ("problem" in start) problems.push(start.problem);
+      if ("problem" in end) problems.push(end.problem);
+      if ("problem" in start || "problem" in end) continue;
+      startOffset = start.offset;
+      endOffset = end.offset;
+      if (endOffset <= startOffset) {
+        problems.push(`chapter ${chapterNumber} endOffset ${endOffset} is at or before its startOffset ${startOffset} — a chapter's end must be later in the text than its start`);
+        continue;
+      }
+    } else {
+      const start = anchorProblem(chapterNumber, "startAnchor", entry.startAnchor, text);
+      const end = anchorProblem(chapterNumber, "endAnchor", entry.endAnchor, text);
+      if ("problem" in start) problems.push(start.problem);
+      if ("problem" in end) problems.push(end.problem);
+      if ("problem" in start || "problem" in end) continue;
+      startOffset = start.offsets.start;
+      endOffset = end.offsets.end;
+      if (endOffset <= startOffset) {
+        problems.push(`chapter ${chapterNumber} endAnchor resolves at ${endOffset}, at or before its startAnchor at ${startOffset} — the end anchor must come AFTER the start anchor in the text`);
+        continue;
+      }
     }
     resolved.push({
       chapterNumber,
       chapterTitle: expected.get(chapterNumber)!,
       startOffset,
       endOffset,
-      startAnchor: entry.startAnchor as string,
-      endAnchor: entry.endAnchor as string,
+      // An outline-mode span has no anchors: it names two offsets the outline view
+      // printed. The resolved map records the text AT those offsets so a later
+      // reader can see what was picked without re-deriving the list.
+      startAnchor: mode === "headingOffsets" ? offsetLabel(text, startOffset) : (entry.startAnchor as string),
+      endAnchor: mode === "headingOffsets" ? offsetLabel(text, endOffset) : (entry.endAnchor as string),
     });
   }
 
@@ -236,6 +368,13 @@ export function resolveChapterMap(args: {
     },
     problems: [],
   };
+}
+
+/** The first line of text at `offset`, trimmed and capped — what an outline-mode
+ *  span records in place of an anchor, so the stored map stays human-readable. */
+function offsetLabel(text: string, offset: number): string {
+  const line = text.slice(offset, offset + 120).split("\n")[0].trim();
+  return line.length > 0 ? line : `@${offset}`;
 }
 
 /** The exact characters of one chapter's span. This is the VALIDATION AUTHORITY

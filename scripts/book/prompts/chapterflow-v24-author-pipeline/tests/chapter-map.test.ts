@@ -16,13 +16,22 @@ import {
   CHAPTER_MAP_SCHEMA_VERSION,
   MAX_INTERIOR_GAP_CHARS,
   MIN_SPAN_COVERAGE_FRACTION,
+  chapterMapContractLines,
+  chapterMapMissingProblem,
   chapterSpanText,
   resolveChapterMap,
   spanExcerptForPrompt,
   MAX_SPAN_PROMPT_CHARS,
 } from "../src/source/chapterMap.js";
-import { normalizeIngestedText } from "../src/source/sourceText.js";
-import { FRANKLIN_SLICE_PATH } from "./helpers.js";
+import {
+  MAX_BIBLIOGRAPHY_TEXT_CHARS,
+  OUTLINE_MAX_HEADINGS,
+  OUTLINE_OFFSET_LIST_HEADER,
+  buildBibliographyTextView,
+  outlineHeadings,
+} from "../src/source/sourceOutline.js";
+import { findAllQuoteOffsets, normalizeIngestedText, MIN_SOURCE_QUOTE_CHARS, MAX_SOURCE_QUOTE_CHARS } from "../src/source/sourceText.js";
+import { FRANKLIN_SLICE_PATH, pickChapterStarts, readPublishedOffsets, syntheticLongSourceBook } from "./helpers.js";
 
 // A synthetic two-chapter book: every offset below is checkable by hand.
 const SYNTHETIC = [
@@ -233,4 +242,189 @@ test("R-046: four Part-sized spans over the Gutenberg Autobiography slice valida
   // character of the anchor, so a file that ends in a newline maps to
   // text.trimEnd().length rather than text.length.
   assert.equal(map!.spans[3].endOffset, text.trimEnd().length);
+});
+
+// ── OUTLINE MODE: a book too long to pass whole (review round 2, finding 4) ────
+//
+// Round 1 asked EVERY book for the same thing: a startAnchor and an endAnchor per
+// chapter, each 20-240 characters, each occurring exactly once in the WHOLE text
+// — and validated both against the whole text even when the model had been shown
+// only an OUTLINE of it. On a 300 KB book that is unsatisfiable by construction,
+// and the two tests below measure both halves of why: a chapter's END is inside
+// none of the twelve excerpts the model sees, and every title it CAN see is
+// printed twice (contents page, chapter head) so a title-shaped anchor resolves
+// as ambiguous. The map failed closed, which is safe — but it meant a long book
+// could never produce a source-text run at all, which is this package's headline
+// claim.
+//
+// The redesign: in outline mode the model does not INVENT a locator, it PICKS
+// one. The view prints an explicit list of offsets and resolveChapterMap accepts
+// nothing else. An offset is safe here for exactly the reason an anchor is safe
+// in whole mode — the model is COPYING a number this code computed, never
+// counting characters of its own. The prompt contract and the validator are one
+// function (chapterMapContractLines / resolveChapterMap, both keyed off
+// chapterMapMode), so they cannot drift apart again.
+
+const LONG = (() => {
+  const book = syntheticLongSourceBook();
+  return { ...book, text: normalizeIngestedText(book.text) };
+})();
+
+/** The offsets a model may pick, read STRAIGHT OUT OF THE RENDERED VIEW: every
+ *  map below is built only from what the model was actually shown. */
+function offsetsInView(view: string): Array<{ offset: number; label: string }> {
+  const choices = readPublishedOffsets(view, OUTLINE_OFFSET_LIST_HEADER);
+  assert.ok(choices.length > 0, "the outline view must print the offsets a chapterMap may use");
+  return choices;
+}
+
+/** What a model reading that list takes for each chapter's start. */
+function chapterStartOffsets(choices: ReadonlyArray<{ offset: number; label: string }>): number[] {
+  const starts = pickChapterStarts(choices, LONG.numerals);
+  assert.equal(starts.length, LONG.numerals.length, "every chapter must be identifiable from the printed list alone");
+  return starts;
+}
+
+test("R-046: the round-1 ANCHOR contract is unsatisfiable on a book shown as an outline", () => {
+  // Half one: no chapter END is usable as an anchor. Either the model never sees
+  // it (it falls between the excerpts, so it cannot be copied) or it is not
+  // unique in the whole text (this book reuses one slice, exactly as a book with
+  // a repeated section break or a standard chapter sign-off does), and
+  // anchorProblem rejects both. Each chapter is asserted to be in one case or the
+  // other, and the assertion names which.
+  const view = buildBibliographyTextView(LONG.text);
+  assert.equal(view.mode, "outline");
+  const starts = chapterStartOffsets(offsetsInView(view.text));
+  for (let i = 0; i + 1 < starts.length; i += 1) {
+    const tail = LONG.text.slice(starts[i + 1] - 240, starts[i + 1]).trim();
+    assert.ok(tail.length >= MIN_SOURCE_QUOTE_CHARS, "precondition: each chapter has a tail long enough to be a legal anchor");
+    const unseen = !view.text.includes(tail);
+    const hits = findAllQuoteOffsets(LONG.text, tail).length;
+    assert.ok(unseen || hits > 1, `chapter ${i + 1}'s end is both visible in the outline and unique in the text, so an endAnchor WOULD have been copyable here`);
+  }
+  // Half two: every title the model CAN see is printed twice — contents page and
+  // chapter head — so a title-shaped anchor is ambiguous and would be rejected.
+  const title = LONG.chapters[1].title;
+  assert.ok(title.length >= 20, "precondition: the title is long enough to be a legal anchor");
+  assert.ok(view.text.includes(title), "precondition: the model can see this title");
+  assert.ok(findAllQuoteOffsets(LONG.text, title).length > 1, "a title the model can see must occur more than once, which is what makes it unusable as an anchor");
+});
+
+test("R-046: a 300 KB book is shown an OUTLINE that publishes the offsets its chapterMap may use", () => {
+  assert.ok(LONG.text.length > MAX_BIBLIOGRAPHY_TEXT_CHARS, `precondition: ${LONG.text.length} chars must exceed the ${MAX_BIBLIOGRAPHY_TEXT_CHARS}-char whole-text bound`);
+  assert.ok(LONG.text.length > 300_000, `this fixture is meant to be a ~300 KB book, measured ${LONG.text.length}`);
+  const view = buildBibliographyTextView(LONG.text);
+  assert.equal(view.mode, "outline");
+  const choices = offsetsInView(view.text);
+  assert.ok(choices.length >= LONG.chapters.length + 1, `a ${LONG.chapters.length}-chapter book needs at least ${LONG.chapters.length + 1} offsets to pick from, saw ${choices.length}`);
+  assert.equal(choices[choices.length - 1].offset, LONG.text.length, "the END OF TEXT offset must be pickable, or the last chapter has no end to name");
+  assert.deepEqual([...choices].sort((a, b) => a.offset - b.offset).map((c) => c.offset), choices.map((c) => c.offset), "offsets are listed in text order");
+  // Every chapter head must be pickable, or the contract stays unsatisfiable.
+  assert.equal(chapterStartOffsets(choices).length, LONG.chapters.length);
+});
+
+test("R-046: an outline-mode chapter map built ONLY from the view's own offsets validates", () => {
+  const choices = offsetsInView(buildBibliographyTextView(LONG.text).text);
+  const starts = chapterStartOffsets(choices);
+  const appendix = choices.find((c) => c.label === "APPENDIX");
+  assert.ok(appendix, "the appendix heading must be pickable as the last chapter's end");
+  const spans = starts.map((startOffset, i) => ({
+    chapterNumber: i + 1,
+    startOffset,
+    endOffset: i + 1 < starts.length ? starts[i + 1] : appendix!.offset,
+  }));
+  const { map, problems } = resolveChapterMap({
+    bookId: "a-long-book",
+    sourceText: LONG.text,
+    sourceTextSha256: "2".repeat(64),
+    chapters: LONG.chapters,
+    spans,
+  });
+  assert.deepEqual(problems, [], problems.join(" | "));
+  assert.ok(map);
+  assert.equal(map!.spans.length, LONG.chapters.length);
+  assert.ok(map!.coverageFraction > MIN_SPAN_COVERAGE_FRACTION, `coverage ${map!.coverageFraction} must clear the floor`);
+  // The resolved span really is that chapter's text, not an offset that happens
+  // to validate: chapter 3 starts at its numeral and carries its own opening line.
+  assert.match(chapterSpanText(LONG.text, map!.spans[2]), /^III\n/);
+  assert.match(chapterSpanText(LONG.text, map!.spans[2]), /Chapter 3 opens with its own sentence, number 3\./);
+  assert.ok(!chapterSpanText(LONG.text, map!.spans[2]).includes("Chapter 4 opens with its own sentence"), "a span must stop before the next chapter");
+});
+
+test("R-046: outline mode refuses an offset the view never published, and says which values are allowed", () => {
+  const choices = offsetsInView(buildBibliographyTextView(LONG.text).text);
+  const starts = chapterStartOffsets(choices);
+  const appendix = choices.find((c) => c.label === "APPENDIX")!;
+  const spans = starts.map((startOffset, i) => ({
+    chapterNumber: i + 1,
+    // Chapter 1's start is nudged seven characters — the shape of a model that
+    // ADJUSTED a printed offset instead of copying it.
+    startOffset: i === 0 ? startOffset + 7 : startOffset,
+    endOffset: i + 1 < starts.length ? starts[i + 1] : appendix.offset,
+  }));
+  const { map, problems } = resolveChapterMap({
+    bookId: "a-long-book",
+    sourceText: LONG.text,
+    sourceTextSha256: "2".repeat(64),
+    chapters: LONG.chapters,
+    spans,
+  });
+  assert.equal(map, null, "an adjusted offset must fail closed");
+  assert.ok(problems.some((p) => /startOffset/.test(p) && /listed/.test(p) && /nearest listed are/.test(p)), problems.join(" | "));
+});
+
+test("R-046: each mode refuses the OTHER mode's contract, so a map cannot be built under one the model was never given", () => {
+  const outline = resolveChapterMap({
+    bookId: "a-long-book",
+    sourceText: LONG.text,
+    sourceTextSha256: "2".repeat(64),
+    chapters: LONG.chapters,
+    spans: LONG.chapters.map((c) => ({ chapterNumber: c.number, startAnchor: "x".repeat(40), endAnchor: "y".repeat(40) })),
+  });
+  assert.equal(outline.map, null);
+  assert.ok(outline.problems.some((p) => /startOffset/.test(p)), outline.problems.join(" | "));
+
+  const whole = resolveChapterMap({
+    bookId: "synthetic-book",
+    sourceText: SYNTHETIC,
+    sourceTextSha256: "0".repeat(64),
+    chapters: CHAPTERS,
+    spans: CHAPTERS.map((c) => ({ chapterNumber: c.number, startOffset: 0, endOffset: 10 })),
+  });
+  assert.equal(whole.map, null);
+  assert.ok(whole.problems.some((p) => /startAnchor/.test(p)), whole.problems.join(" | "));
+});
+
+test("R-046: the prompt contract and the validator are the SAME contract, in both modes", () => {
+  const outline = chapterMapContractLines(LONG.text).join("\n");
+  assert.match(outline, /startOffset/);
+  assert.match(outline, /endOffset/);
+  assert.ok(outline.includes(OUTLINE_OFFSET_LIST_HEADER), "the outline contract must name the list the validator accepts values from");
+  assert.ok(!/startAnchor/.test(outline), "an outline-mode prompt must not ask for anchors the validator will reject");
+  assert.match(chapterMapMissingProblem(LONG.text), /startOffset/);
+
+  const whole = chapterMapContractLines(SYNTHETIC).join("\n");
+  assert.match(whole, /startAnchor/);
+  assert.ok(!/startOffset/.test(whole), "a whole-text prompt must not ask for offsets the validator will reject");
+  assert.match(chapterMapMissingProblem(SYNTHETIC), /startAnchor/);
+  // The anchor bounds the prompt quotes are the ones quoteShapeProblem enforces:
+  // round 1's prompt said 30-240 while the validator took 20.
+  assert.ok(whole.includes(`${MIN_SOURCE_QUOTE_CHARS}-${MAX_SOURCE_QUOTE_CHARS} characters`), whole);
+});
+
+test("R-046: the heading list stays reachable to the END of a heading-dense book", () => {
+  // The cap used to `break` out of the scan at OUTLINE_MAX_HEADINGS, so a book
+  // with more heading-shaped lines than the cap published offsets for its FIRST
+  // pages only — and every chapter past that point was unmappable.
+  const lines: string[] = [];
+  for (let i = 0; i < OUTLINE_MAX_HEADINGS * 3; i += 1) {
+    lines.push(`CHAPTER ${i + 1}`, "", `Body line ${i + 1} of a book made almost entirely of headings.`, "");
+  }
+  const dense = lines.join("\n");
+  const headings = outlineHeadings(dense);
+  assert.ok(headings.length <= OUTLINE_MAX_HEADINGS, `the cap must hold, saw ${headings.length}`);
+  assert.ok(
+    headings[headings.length - 1].offset > dense.length * 0.9,
+    `the last published heading is at ${headings[headings.length - 1].offset} of ${dense.length}; the tail of the book must stay mappable`,
+  );
 });

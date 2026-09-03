@@ -17,7 +17,7 @@ import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
 import { renderUntrustedSourceBlock, runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
-import { resolveChapterMap } from "../source/chapterMap.js";
+import { chapterMapContractLines, chapterMapMissingProblem, resolveChapterMap } from "../source/chapterMap.js";
 import { buildBibliographyTextView } from "../source/sourceOutline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -77,10 +77,22 @@ export type BibliographyResult = {
   notes?: string;
   /** R-053 — see {@link BIBLIOGRAPHY_GENRES}. Optional and additive. */
   genre?: BibliographyGenre;
-  /** R-046 — one span of the frozen source text per chapter, present only when
-   *  the run was given the book's text. Validated by
-   *  src/source/chapterMap.ts#resolveChapterMap before it is used. */
-  chapterMap?: Array<{ chapterNumber: number; startAnchor: string; endAnchor: string }>;
+  /**
+   * R-046 — one span of the frozen source text per chapter, present only when
+   * the run was given the book's text. Validated by
+   * src/source/chapterMap.ts#resolveChapterMap before it is used.
+   *
+   * TWO SHAPES, one per mode (chapterMapMode): a book passed WHOLE returns
+   * anchors it copied out of the text; a book too long to pass whole returns
+   * OFFSETS it copied out of the outline view's printed list, because it never
+   * saw the chapter ends an anchor would need. The validator accepts exactly the
+   * one the mode asks for and rejects the other, so a map cannot be built under
+   * a contract the model was not given.
+   */
+  chapterMap?: Array<
+    | { chapterNumber: number; startAnchor: string; endAnchor: string }
+    | { chapterNumber: number; startOffset: number; endOffset: number }
+  >;
 };
 
 export type BibliographyInput = {
@@ -223,20 +235,17 @@ function buildUserPrompt(input: BibliographyInput): string {
     parts.push(
       view.mode === "whole"
         ? `Below is the complete text of this book (${view.sourceTextLength} characters). Read its own contents page and its own chapter divisions — do not recall a chapter list from memory.`
-        : `This book is ${view.sourceTextLength} characters long, too long to include whole. Below are its front matter verbatim (which contains the printed contents page), every heading-shaped line with its character offset, and excerpts spaced evenly through the body. Build the chapter list from THESE, not from memory.`,
+        : `This book is ${view.sourceTextLength} characters long, too long to include whole. Below are its front matter verbatim (which contains the printed contents page), the OFFSET LIST — every place in the book a chapter span may start or end, with its character offset — and excerpts spaced evenly through the body. Build the chapter list from THESE, not from memory.`,
     );
     parts.push("");
     parts.push(renderUntrustedSourceBlock(`Source text — ${input.title}`, view.text));
     parts.push("");
     parts.push(`# Also return: chapterMap`);
-    parts.push(`Add a \`chapterMap\` array with one entry per chapter of your chapter list:`);
-    parts.push("```ts");
-    parts.push(`chapterMap: Array<{ chapterNumber: number; startAnchor: string; endAnchor: string }>`);
-    parts.push("```");
-    parts.push(`- \`startAnchor\` is 30-240 characters copied EXACTLY from where that chapter begins; \`endAnchor\` is 30-240 characters copied exactly from where it ends.`);
-    parts.push(`- Each anchor must occur EXACTLY ONCE in the whole text. A chapter heading like "II" or "Chapter 3" is not unique — use the chapter's own first and last sentences instead.`);
-    parts.push(`- The spans must run in chapter order, must not overlap, and must leave no large run of the body unassigned. Front matter, a contents page, an introduction by an editor, and appendices may be left outside every span.`);
-    parts.push(`- Anchors are checked character by character against the text. A remembered or reconstructed anchor will be rejected.`);
+    // ONE statement of the contract, rendered from the module that enforces it
+    // (R-046, review round 2). A long book cannot satisfy the anchor contract —
+    // it is shown neither its chapters' last sentences nor a unique title — so
+    // the outline view publishes offsets and this asks the model to copy them.
+    for (const line of chapterMapContractLines(input.sourceText)) parts.push(line);
     parts.push("");
     parts.push(`Set \`genre\` too: "memoir" for an autobiography or memoir (the author is the SUBJECT of the book), otherwise "narrative-nonfiction", "practical", "argument" or "reference".`);
     parts.push("");
@@ -362,7 +371,7 @@ function validateBibliography(r: BibliographyResult, input: BibliographyInput): 
     if (chapters.length === 0) {
       problems.push("chapterMap cannot be checked because the chapter list is empty");
     } else if (r.chapterMap === undefined) {
-      problems.push("chapterMap is missing — this run has the book's text, so every chapter needs a startAnchor and an endAnchor copied verbatim from it");
+      problems.push(chapterMapMissingProblem(input.sourceText));
     } else {
       const resolved = resolveChapterMap({
         bookId: typeof r.bookId === "string" ? r.bookId : "",
