@@ -32,6 +32,21 @@ export const STATE_INDEXES = resolve(PIPELINE_DIR, "state", "indexes");
 export const GATE_ATTEMPTS_FILE = resolve(PIPELINE_DIR, "state", "gate-attempts.json");
 export const TMP_DIR = resolve(__dirname, ".tmp");
 
+/**
+ * A 20 KB slice of the PUBLIC-DOMAIN Gutenberg text of the Autobiography of
+ * Benjamin Franklin (eBook #20203, 1916 Henry Holt edition, editor Frank
+ * Woodworth Pine), taken from the opening of chapter I.
+ *
+ * The fixture policy above forbids COPYRIGHTED book text. Source-text ingestion
+ * (R-046) cannot be exercised on synthetic prose alone: the point of the package
+ * is that the pipeline now reads real bytes, so the anchors, spans, quotes and
+ * excerpt bounds have to hold on real typography — long dashes, printer's
+ * quotes, eighteenth-century spelling, bracketed footnote markers. A
+ * public-domain slice carries no licence risk and keeps the integration test
+ * hermetic: it calls no model and depends on nothing outside the repo.
+ */
+export const FRANKLIN_SLICE_PATH = resolve(__dirname, "fixtures", "franklin-autobiography-slice.txt");
+
 export type CorpusFixture = { bookId: string; files: string[]; stateDir: string };
 
 // ── Deterministic varied vocabulary ─────────────────────────────────────────
