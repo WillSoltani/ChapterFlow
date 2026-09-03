@@ -64,6 +64,61 @@ export type TestableFact = {
   errorIsWhy: string; // why the commonError is wrong
   derivedFrom?: AnchorId;
   replicationStatus?: ReplicationStatus; // OPTIONAL — flags a claim with known replication trouble (see ReplicationStatus)
+  /**
+   * R-046: a verbatim run of the chapter's own source span that supports `claim`.
+   * REQUIRED when the run was given the book's text (`sourceProvenance:
+   * "source-text"`); `null`/absent on a model-memory sidecar, where there is no
+   * text to quote. A fact whose quote cannot be found in the span is dropped, not
+   * repaired — see src/source/sourceQuoteGrounding.ts.
+   */
+  sourceQuote?: string | null;
+};
+
+/**
+ * R-056 — a hardSpecific plus the proposition it belongs to and the source run
+ * that carries it.
+ *
+ * A hardSpecific is capped at five words, which deletes the RELATION between
+ * tokens: the released Franklin ch01 arrival case stored
+ * `['three puffy rolls','one Dutch dollar','Market Street']`, and the downstream
+ * verbatim quota then had to invent a predicate to join two of them in one
+ * 14-word line ("just one Dutch dollar. He spent it on three puffy rolls" — a
+ * false predicate that shipped on six surfaces). Storing the proposition beside
+ * the token means the relation is never re-derived downstream.
+ */
+export type HardSpecificEvidence = {
+  /** Must equal one of the case's `hardSpecifics` entries. */
+  specific: string;
+  /** One sentence stating the fact this token belongs to. */
+  proposition: string;
+  /** Verbatim source run supporting the proposition (source-text runs only). */
+  sourceQuote?: string | null;
+};
+
+/**
+ * R-282 — a maxim, prayer or aphorism the chapter genuinely turns on.
+ *
+ * Such a line is a CLAUSE, so it can never be a hardSpecific (which must compose
+ * inside a word-budgeted unit as a noun phrase). Stored here with a ready-made
+ * attribution frame, the writer has a grammatical slot for it instead of
+ * stitching it into a sentence that is not English ("Turning the grindstone wore
+ * him down until a speckled Ax is best won out").
+ */
+export type SourceQuotation = {
+  id: AnchorId;
+  /** The quoted line itself, verbatim from the source span. */
+  quote: string;
+  /** A complete sentence CONTAINING the quote, e.g. `Franklin's line is "…"`. */
+  attributionFrame: string;
+  sourceQuote?: string | null;
+};
+
+/** R-052 — an item the researcher could not quote and therefore ABSTAINED on. */
+export type DroppedSourceItem = {
+  kind: "fact" | "case" | "specific" | "quotation";
+  id: string;
+  reason: string;
+  attempts: number;
 };
 
 export type NamedExampleV2 = {
@@ -73,6 +128,10 @@ export type NamedExampleV2 = {
   teachesWhat?: string;
   hardSpecifics: string[]; // 2-4 concrete checkable tokens (a number, place, person, date)
   realWorld: boolean; // true = a real case; false = an author's named device (exempt from realness)
+  /** R-046: verbatim source run supporting `summary` (source-text runs only). */
+  sourceQuote?: string | null;
+  /** R-056: one entry per hardSpecific (source-text runs only). */
+  hardSpecificEvidence?: HardSpecificEvidence[];
 };
 
 export type NamedFramework = { name: string; members: string[]; acronym?: boolean };
@@ -89,4 +148,21 @@ export type SourceSidecarV2 = {
   paraphraseNotes?: string;
   testableFacts: TestableFact[]; // >= the chapter's quiz floor (9)
   frameworks?: NamedFramework[];
+  /**
+   * R-046 — how these claims were obtained. Absent on every sidecar written
+   * before ingestion existed, which is read as "model-memory": the field is
+   * additive, and no reader may treat its absence as source-grounding.
+   */
+  sourceProvenance?: SourceTextProvenanceLabel;
+  /** sha256 of the frozen source text these quotes were checked against. */
+  sourceTextSha256?: string;
+  /** R-282 — clause-shaped source lines with a ready-made attribution frame. */
+  quotations?: SourceQuotation[];
+  /** R-052 — items the researcher abstained on rather than fabricate. */
+  droppedItems?: DroppedSourceItem[];
 };
+
+/** Duplicated from src/source/sourceText.ts as a plain union so the sidecar
+ *  schema (a pure type module) does not depend on the fs-touching ingestion
+ *  module. A contract test pins the two lists equal. */
+export type SourceTextProvenanceLabel = "source-text" | "model-memory";

@@ -65,6 +65,10 @@ function inputs(over: Partial<SourceRealityInputs> = {}): SourceRealityInputs {
     bookId: "zz",
     expectedItems: ITEMS,
     hasSourceV2Sidecars: true,
+    // R-047: source-text provenance is what makes verification APPLY. The
+    // existing cases below all describe a book with no source text, so this is
+    // false for them; the new cases set it explicitly.
+    hasSourceTextSidecars: false,
     recordText: null,
     exemptionText: null,
     exemptionError: null,

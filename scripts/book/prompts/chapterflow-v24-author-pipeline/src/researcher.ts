@@ -54,6 +54,9 @@ import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { formatSourceV2GateReport, type SourceV2GateReport } from "./qc/sourceV2Gate.js";
 import { evaluateSourceV2Integrity } from "./source/sourceIntegrity.js";
 import { buildCanonicalToc } from "./lib/tocContract.js";
+import { chapterSpanText, resolveChapterMap, type ChapterMapV1 } from "./source/chapterMap.js";
+import { ingestSourceText, type IngestedSourceText, type SourceTextProvenance } from "./source/sourceText.js";
+import { collectSourceQuoteProblems } from "./source/sourceQuoteGrounding.js";
 import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
   RESEARCH_RUN_CODE_VERSION,
@@ -73,6 +76,7 @@ import {
   pathWithin,
   pinnedResearchRunDir,
   readResearchRunManifest,
+  researchConfigHash,
   researchInputHash,
   researchRunManifestPath,
   researchRunPinRejectionReasons,
@@ -90,8 +94,13 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const CHAPTERFLOW_RUNS = resolve(__dirname, "../.chapterflow/runs");
 const STATE = resolve(__dirname, "../state");
 const PROMPTS_DIR = resolve(__dirname, "../prompts");
-const RESEARCH_RUN_CONFIG_VERSION = "research-config-2026-06-23.1";
 const RAW_BIBLIOGRAPHY_REL_PATH = "source-freeze/bibliography.raw.json";
+/** R-046: the FROZEN copy of the operator's source text. Every stage after
+ *  ingestion reads this, never the path the operator passed, so a text edited
+ *  mid-run cannot silently change what the book was written from. */
+export const SOURCE_TEXT_REL_PATH = "source-freeze/source-text.txt";
+/** The resolved, validated chapter map (offsets into the frozen text). */
+export const CHAPTER_MAP_REL_PATH = "source-freeze/chapter-map.json";
 
 export type ResearchBookOptions = {
   /** Override the inferred bookId. */
@@ -139,6 +148,20 @@ export type ResearchBookOptions = {
   leaseTtlMs?: number;
   /** Test/tooling hook: override compatibility fingerprint fields. */
   compatibility?: Partial<ResearchCompatibility>;
+  /**
+   * R-046 — absolute path to the book's own UTF-8 text. When present the text is
+   * normalized, hashed into the run's input identity, FROZEN into the run
+   * directory, mapped to chapter spans, and handed to every chapter researcher,
+   * which must then quote it for every checkable item. When absent the run is
+   * recorded as `model-memory` and behaves exactly as it did before.
+   */
+  sourceTextPath?: string;
+  /**
+   * R-277 — the book's fact pins. They already reach the section writers and the
+   * repair port; passing them here corrects the sidecar AT BIRTH instead of one
+   * layer downstream of where the fact is decided.
+   */
+  factPins?: readonly string[];
 };
 
 export type ResearcherDeps = {
@@ -154,6 +177,13 @@ export type ResearchBookResult = {
   coherence: SourceCoherenceReport;
   bundlePath: string;                  // .chapterflow/runs/<bookId>/<runId>/
   chapterIndexPath: string;            // state/indexes/<bookId>.json
+  /** R-046 — "source-text" when this run read the book, "model-memory" when it
+   *  did not. Carried to the seed candidate. */
+  sourceProvenance: SourceTextProvenance;
+  /** Present only on a source-text run. */
+  sourceText?: { sha256: string; byteLength: number; originPath: string; frozenPath: string };
+  /** Present only on a source-text run: the validated chapter map. */
+  chapterMap?: ChapterMapV1;
 };
 
 export type ChapterSpec = {
@@ -187,11 +217,27 @@ export async function researchBook(
   const leaseTtlMs = options.leaseTtlMs ?? DEFAULT_RESEARCH_LEASE_TTL_MS;
   const ownerId = options.ownerId ?? `research-${process.pid}-${randomUUID()}`;
   const compatibility = buildCompatibilityFingerprint(options);
+  // R-046 — ingest FIRST: the text's digest is part of the run's input identity,
+  // so a run started with one text can never be resumed against another.
+  const ingested: IngestedSourceText | null = options.sourceTextPath === undefined
+    ? null
+    : ingestSourceText(options.sourceTextPath);
+  const sourceProvenance: SourceTextProvenance = ingested === null ? "model-memory" : "source-text";
+  if (ingested === null) {
+    log("Source text: NONE — this run's sidecars are model-memory, not source-grounded.");
+  } else {
+    log(`Source text: ${ingested.path} (${ingested.byteLength} bytes, sha256 ${ingested.sha256.slice(0, 12)}…)`);
+  }
   const inputIdentity = {
     title,
     author,
     bookIdHint: options.bookId ?? null,
-    hash: researchInputHash({ title, author, bookIdHint: options.bookId }),
+    hash: researchInputHash({
+      title,
+      author,
+      bookIdHint: options.bookId,
+      sourceTextSha256: ingested?.sha256 ?? null,
+    }),
   };
 
   let bibliography: BibliographyResult | null = null;
@@ -254,6 +300,7 @@ export async function researchBook(
       title,
       author,
       bookIdHint: options.bookId,
+      ...(ingested === null ? {} : { sourceText: ingested.text }),
     });
     log(`  bibliography: bookId=${bibliography.bookId}, ${bibliography.edition.chapterCount} chapters, confidence=${bibliography.confidence}`);
     // The low-confidence WARNING line is emitted by createResearchRun below,
@@ -290,6 +337,7 @@ export async function researchBook(
         clock,
         runIdEntropy: options.runIdEntropy,
         log,
+        ...(ingested === null ? {} : { ingested }),
       });
       manifest = created.manifest;
       bundlePath = created.bundlePath;
@@ -316,14 +364,52 @@ export async function researchBook(
     leaseTtlMs,
   });
 
+  const chapterList = flattenChapters(bibliography);
+
+  // R-046 — the FROZEN text is the only source of truth from here on. It is
+  // re-read (and re-verified against the manifest digest) on a resume too, so a
+  // resumed run cannot be researched against a different text than the one the
+  // run was created with.
+  let frozenSourceText: string | null = null;
+  let chapterMap: ChapterMapV1 | null = null;
+  if (activeManifest.sourceProvenance === "source-text") {
+    const record = activeManifest.sourceText;
+    if (!record) {
+      throw new Error("RESEARCH_SOURCE_TEXT_MISSING:manifest declares source-text provenance but carries no sourceText record");
+    }
+    const frozenPath = resolve(activeBundlePath, record.frozenPath);
+    if (!existsSync(frozenPath)) {
+      throw new Error(`RESEARCH_SOURCE_TEXT_MISSING:frozen source text ${frozenPath} is gone; the run cannot be resumed against a text it no longer has`);
+    }
+    frozenSourceText = readFileSync(frozenPath, "utf8");
+    const actualHash = hashString(frozenSourceText);
+    if (actualHash !== record.sha256) {
+      throw new Error(`RESEARCH_SOURCE_TEXT_CHANGED:frozen source text ${frozenPath} hashes ${actualHash}, manifest records ${record.sha256}`);
+    }
+    const resolved = resolveChapterMap({
+      bookId: bibliography.bookId,
+      sourceText: frozenSourceText,
+      sourceTextSha256: record.sha256,
+      chapters: chapterList.map((chapter) => ({ number: chapter.number, title: chapter.title })),
+      spans: bibliography.chapterMap ?? [],
+    });
+    if (!resolved.map) {
+      throw new Error(`RESEARCH_CHAPTER_MAP_INVALID:${resolved.problems.join("; ")}`);
+    }
+    chapterMap = resolved.map;
+    writeFileAtomic(resolve(activeBundlePath, CHAPTER_MAP_REL_PATH), `${JSON.stringify(chapterMap, null, 2)}\n`);
+    log(`  chapter map: ${chapterMap.spans.length} span(s) covering ${(chapterMap.coverageFraction * 100).toFixed(1)}% of the source text`);
+  }
+
   // Step 2: Chapter research (parallel with concurrency limit)
   log(`Step 2/4: chapter research (${bibliography.edition.chapterCount} chapters, concurrency=${options.chapterConcurrency ?? 3})…`);
-  const chapterList = flattenChapters(bibliography);
   const chapters = await researchChaptersInParallel(
     bibliography,
     chapterList,
     {
       concurrency: options.chapterConcurrency ?? 3,
+      ...(frozenSourceText === null || chapterMap === null ? {} : { sourceText: frozenSourceText, chapterMap }),
+      ...(options.factPins === undefined ? {} : { factPins: options.factPins }),
       bundlePath: activeBundlePath,
       manifest: activeManifest,
       ownerId,
@@ -410,7 +496,11 @@ export async function researchBook(
   // Step 4: Write artifacts
   log("Step 4/4: writing artifacts…");
   writeFileAtomic(resolve(sourceFreezeDir, "book-source.md"), renderBookSource(bibliography, chapters));
-  writeFileAtomic(resolve(sourceFreezeDir, "source-freeze-report.md"), renderProvenanceReport(bibliography, chapters, coherence));
+  writeFileAtomic(resolve(sourceFreezeDir, "source-freeze-report.md"), renderProvenanceReport(bibliography, chapters, coherence, {
+    provenance: sourceProvenance,
+    ...(activeManifest.sourceText === undefined ? {} : { sourceText: activeManifest.sourceText }),
+    ...(chapterMap === null ? {} : { chapterMap }),
+  }));
 
   // Chapter index for loadChapterIndex
   const chapterIndexPath = resolve(stateRoot, "indexes", `${bookId}.json`);
@@ -439,6 +529,9 @@ export async function researchBook(
     coherence,
     bundlePath: activeBundlePath,
     chapterIndexPath,
+    sourceProvenance,
+    ...(activeManifest.sourceText === undefined ? {} : { sourceText: activeManifest.sourceText }),
+    ...(chapterMap === null ? {} : { chapterMap }),
   };
 }
 
@@ -456,6 +549,11 @@ async function researchChaptersInParallel(
     validateReusedChapter?: (chapter: ChapterResearchResult) => boolean;
     runChapter: ResearcherDeps["runChapter"];
     log: (m: string) => void;
+    /** R-046 — the frozen text; present iff chapterMap is. */
+    sourceText?: string;
+    chapterMap?: ChapterMapV1;
+    /** R-277 — the book's fact pins. */
+    factPins?: readonly string[];
   },
 ): Promise<ChapterResearchResult[]> {
   const results: ChapterResearchResult[] = new Array(chapterList.length);
@@ -517,12 +615,56 @@ async function researchChaptersInParallel(
         });
 
         const priorTitles = chapterList.filter((c) => c.number < chapter.number).map((c) => c.title);
+        const span = opts.chapterMap?.spans.find((entry) => entry.chapterNumber === chapter.number);
+        if (opts.chapterMap && !span) {
+          // Unreachable while resolveChapterMap enforces one span per expected
+          // chapter, but a silent model-memory fallback here would be the worst
+          // possible failure: a chapter written from memory inside a run the
+          // manifest calls source-grounded.
+          throw new Error(`RESEARCH_CHAPTER_MAP_INVALID:no span for chapter ${chapter.number} in a source-text run`);
+        }
+        // R-057 — the focus lines and case labels of the LOWER-NUMBERED chapters
+        // whose sidecars already exist when this chapter is dispatched (durably
+        // reused, or completed earlier in this stage). Research is a model call
+        // and is nondeterministic anyway, so the schedule-dependence this adds is
+        // not a new kind of variance; what it buys is the one thing that stops
+        // every chapter re-minting the same organizing template.
+        const priorDigests = results
+          .filter((prior): prior is ChapterResearchResult => Boolean(prior) && prior.chapterNumber < chapter.number)
+          .sort((a, b) => a.chapterNumber - b.chapterNumber)
+          .map((prior) => ({
+            chapterNumber: prior.chapterNumber,
+            title: prior.chapterTitle,
+            focus: prior.focus,
+            caseLabels: (prior.namedExamples ?? []).map((example) => example.label).filter(Boolean),
+          }));
         const ch = await opts.runChapter({
           bibliography,
           chapter,
           priorChapterTitles: priorTitles,
+          ...(priorDigests.length === 0 ? {} : { priorChapterDigests: priorDigests }),
+          ...(opts.factPins === undefined || opts.factPins.length === 0 ? {} : { factPins: opts.factPins }),
+          ...(span === undefined || opts.sourceText === undefined ? {} : {
+            sourceSpan: {
+              startOffset: span.startOffset,
+              endOffset: span.endOffset,
+              text: chapterSpanText(opts.sourceText, span),
+            },
+            sourceTextSha256: opts.chapterMap!.sourceTextSha256,
+          }),
         });
-        writeChapterSidecars(opts.bundlePath, ch);
+        // R-046 — the ORCHESTRATOR owns provenance, not the injected researcher.
+        // It is the only layer that knows whether this run has text, and it is
+        // the layer that writes the sidecar, so a caller that supplies its own
+        // runChapter cannot produce an unstamped sidecar inside a run the
+        // manifest calls source-grounded. It also re-checks the grounding it
+        // demanded: the retry loop inside runResearcherChapter is supposed to
+        // have fixed or dropped every ungrounded item, and if one survives, the
+        // run fails closed rather than writing it.
+        const stamped = stampChapterProvenance(ch, span === undefined || opts.sourceText === undefined
+          ? null
+          : { spanText: chapterSpanText(opts.sourceText, span), sha256: opts.chapterMap!.sourceTextSha256 });
+        writeChapterSidecars(opts.bundlePath, stamped);
         opts.manifest = updateManifest(opts.bundlePath, opts.manifest.runId, opts.ownerId, opts.clock, opts.leaseTtlMs, (m, nowIso) => {
           const entry = m.chapters[numStr];
           entry.status = "succeeded";
@@ -539,7 +681,7 @@ async function researchChaptersInParallel(
         });
         const durationMs = Date.now() - startedAt;
         opts.log(`  ch${numStr} done in ${(durationMs / 1000).toFixed(1)}s (${ch.paraphraseNotes.length}c paraphrase)`);
-        results[myIndex] = ch;
+        results[myIndex] = stamped;
       } catch (err) {
         opts.log(`  ch${numStr} FAILED: ${(err as Error).message}`);
         opts.manifest = updateManifest(opts.bundlePath, opts.manifest.runId, opts.ownerId, opts.clock, opts.leaseTtlMs, (m, nowIso) => {
@@ -574,6 +716,30 @@ async function researchChaptersInParallel(
   return results;
 }
 
+/**
+ * R-046 — stamp a chapter's provenance and, on a source-text run, prove its
+ * quotes before the sidecar is written.
+ *
+ * Fails CLOSED: an item whose quote is not in the frozen span reaches here only
+ * if the chapter researcher's own drop path did not run (an injected researcher,
+ * a future caller), and admitting it would put an unverifiable claim inside a run
+ * whose manifest says every claim was verified — the exact confusion this whole
+ * package exists to remove.
+ */
+function stampChapterProvenance(
+  chapter: ChapterResearchResult,
+  source: { spanText: string; sha256: string } | null,
+): ChapterResearchResult {
+  if (source === null) return { ...chapter, sourceProvenance: "model-memory" };
+  const problems = collectSourceQuoteProblems(chapter, source.spanText);
+  if (problems.length > 0) {
+    throw new Error(
+      `RESEARCH_SOURCE_UNGROUNDED:chapter ${chapter.chapterNumber} returned ${problems.length} item(s) that are not quotable from its source span: ${problems.map((problem) => problem.message).join("; ")}`,
+    );
+  }
+  return { ...chapter, sourceProvenance: "source-text", sourceTextSha256: source.sha256 };
+}
+
 function buildCompatibilityFingerprint(options: ResearchBookOptions): ResearchCompatibility {
   return {
     codeVersion: options.compatibility?.codeVersion ?? RESEARCH_RUN_CODE_VERSION,
@@ -581,7 +747,11 @@ function buildCompatibilityFingerprint(options: ResearchBookOptions): ResearchCo
       bibliography: readFileSync(resolve(PROMPTS_DIR, "researcher-bibliography.system.md"), "utf8"),
       chapter: readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8"),
     }),
-    configHash: options.compatibility?.configHash ?? hashJson({ version: RESEARCH_RUN_CONFIG_VERSION }),
+    // R-277 (review round 2): the book's fact pins are part of the run's config
+    // identity, so editing a pin makes every durable run incompatible and the
+    // researcher is called again with the corrected pin. A pinless book hashes
+    // exactly as it did before.
+    configHash: options.compatibility?.configHash ?? researchConfigHash(options.factPins),
     provider: "model-gateway-v1",
     model: `${MODEL_CALLER_PROFILES["researcher-bibliography"]}+${MODEL_CALLER_PROFILES["researcher-chapter"]}`,
   };
@@ -595,6 +765,7 @@ function createResearchRun(args: {
   clock: () => Date;
   runIdEntropy?: () => string;
   log: (m: string) => void;
+  ingested?: IngestedSourceText;
 }): { bundlePath: string; manifest: ResearchRunManifest } {
   const chapterList = flattenChapters(args.bibliography).map((ch) => ({ number: ch.number, title: ch.title }));
   let bundlePath = "";
@@ -615,6 +786,13 @@ function createResearchRun(args: {
   mkdirSync(sourceFreezeDir, { recursive: true });
 
   writeFileAtomic(resolve(bundlePath, RAW_BIBLIOGRAPHY_REL_PATH), `${JSON.stringify(args.bibliography, null, 2)}\n`);
+  // R-046 — FREEZE the text into the run. From here on nothing reads the
+  // operator's path: a text edited or replaced mid-run cannot change what this
+  // book was written from, and the frozen bytes are what every quote is checked
+  // against and what the manifest digest names.
+  if (args.ingested) {
+    writeFileAtomic(resolve(bundlePath, SOURCE_TEXT_REL_PATH), args.ingested.text);
+  }
   writeFileAtomic(resolve(sourceFreezeDir, "toc.json"), `${JSON.stringify(bibliographyToTocJson(args.bibliography), null, 2)}\n`);
 
   const nowIso = args.clock().toISOString();
@@ -627,6 +805,14 @@ function createResearchRun(args: {
     bibliographyPath: RAW_BIBLIOGRAPHY_REL_PATH,
     expectedChapters: chapterList,
     compatibility: args.compatibility,
+    ...(args.ingested === undefined ? {} : {
+      sourceText: {
+        sha256: args.ingested.sha256,
+        byteLength: args.ingested.byteLength,
+        originPath: args.ingested.path,
+        frozenPath: SOURCE_TEXT_REL_PATH,
+      },
+    }),
   });
   // R-035: the bibliography agent's own `confidence` was written into an empty
   // `if` block and, here, printed to stdout — so nothing durable recorded that a
@@ -995,11 +1181,32 @@ function renderProvenanceReport(
   b: BibliographyResult,
   chapters: ChapterResearchResult[],
   coherence: SourceCoherenceReport,
+  source: {
+    provenance: SourceTextProvenance;
+    sourceText?: { sha256: string; byteLength: number; originPath: string; frozenPath: string };
+    chapterMap?: ChapterMapV1;
+  },
 ): string {
   const lines: string[] = [];
   lines.push(`# Source-freeze provenance — ${b.bookId}`);
   lines.push("");
   lines.push(`Generated: ${new Date().toISOString()}`);
+  // R-046: state, in the artifact an operator actually opens, whether this book
+  // was researched from the book or from the model's memory of it.
+  lines.push(`Source provenance: ${source.provenance}`);
+  if (source.provenance === "model-memory") {
+    lines.push(`  No source text was supplied. Every claim below is the research model's recall, not a reading of the book, and nothing in this run has been checked against the text.`);
+  } else if (source.sourceText) {
+    lines.push(`  Source text: ${source.sourceText.originPath}`);
+    lines.push(`  Frozen at: ${source.sourceText.frozenPath} (${source.sourceText.byteLength} bytes)`);
+    lines.push(`  sha256: ${source.sourceText.sha256}`);
+    if (source.chapterMap) {
+      lines.push(`  Chapter map: ${source.chapterMap.spans.length} span(s), ${(source.chapterMap.coverageFraction * 100).toFixed(1)}% of the text assigned`);
+      for (const span of source.chapterMap.spans) {
+        lines.push(`    - Ch${span.chapterNumber}: characters ${span.startOffset}-${span.endOffset} (${span.endOffset - span.startOffset})`);
+      }
+    }
+  }
   lines.push(`Title: ${b.title}`);
   lines.push(`Author: ${b.author}`);
   lines.push(`Chapter count: ${b.edition.chapterCount}`);
@@ -1009,6 +1216,10 @@ function renderProvenanceReport(
   lines.push(`## Per-chapter paraphrase lengths`);
   for (const ch of [...chapters].sort((a, b) => a.chapterNumber - b.chapterNumber)) {
     lines.push(`- Ch${ch.chapterNumber}: ${ch.paraphraseNotes.length} chars, ${ch.namedExamples.length} named examples`);
+    // R-052: abstention is provenance, not an error to bury.
+    for (const dropped of ch.droppedItems ?? []) {
+      lines.push(`  - DROPPED ${dropped.kind} ${dropped.id} after ${dropped.attempts} attempt(s): ${dropped.reason}`);
+    }
   }
   lines.push("");
   lines.push(`## Source coherence`);

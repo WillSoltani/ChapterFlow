@@ -11,6 +11,7 @@ import {
 import {
   MAX_CHAPTER_RESEARCH_ATTEMPTS,
   collectHardSpecificLengthProblems,
+  collectHardSpecificShapeProblems,
   runResearcherChapter,
   type ChapterResearchInput,
   type ChapterResearchResult,
@@ -21,6 +22,7 @@ import type {
   CandidateStore,
 } from "../books/candidateTypes.js";
 import type { CandidateIdentity, ModelTaskContext, PlannedArtifact, UtcIso } from "../contracts/v4Core.js";
+import { CHAPTER_MAP_REL_PATH, SOURCE_TEXT_REL_PATH } from "../researcher.js";
 import {
   DEFAULT_RESEARCH_LEASE_TTL_MS,
   RESEARCH_RUN_MANIFEST_FILE,
@@ -31,6 +33,7 @@ import {
 import { loadBookScars } from "../lib/bookScars.js";
 import { sharedVoiceCues, voiceCard } from "../lib/voiceCard.js";
 import { researchBook } from "../researcher.js";
+import { ingestSourceText } from "../source/sourceText.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
 import type { AttemptSnapshot, RunDefinition } from "../run-state/runTypes.js";
@@ -123,6 +126,13 @@ export interface ResearchCandidateApplicationRequest {
    * admitted-with-no-terminal-record attempts; never rewrites settled ones.
    */
   readonly reconcileUnsettled?: boolean;
+  /**
+   * R-046 — absolute path to the book's own UTF-8 text. Part of the run's INTENT
+   * identity (see {@link intentCommandId}): a run started with one text cannot be
+   * resumed with another, and a run started without a text cannot be resumed with
+   * one. Absent ⇒ the run is recorded as `model-memory`.
+   */
+  readonly sourceTextPath?: string;
   readonly signal: AbortSignal;
 }
 
@@ -184,6 +194,9 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
     throw new Error("RESEARCH_INPUT_INVALID:bookId must be a lowercase-dash slug");
   }
   if (!input.sourceGitSha.trim()) throw new Error("RESEARCH_INPUT_INVALID:sourceGitSha is required");
+  if (input.sourceTextPath !== undefined && !isAbsolute(input.sourceTextPath)) {
+    throw new Error("RESEARCH_INPUT_INVALID:sourceTextPath must be absolute");
+  }
   if (input.newRunId !== undefined && input.resumeRunId !== undefined) {
     throw new Error("RESEARCH_INPUT_INVALID:newRunId and resumeRunId are mutually exclusive");
   }
@@ -224,8 +237,8 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
  * WITH it (surfacing as a misleading RESEARCH_RESUME_CONFLICT). The pin selects
  * an INPUT, not an intent.
  */
-function intentCommandId(input: ResearchCandidateApplicationRequest): string {
-  const digest = createHash("sha256")
+export function intentCommandId(input: ResearchCandidateApplicationRequest): string {
+  const hash = createHash("sha256")
     .update(input.title.trim())
     .update("\0")
     .update(input.author.trim())
@@ -234,10 +247,26 @@ function intentCommandId(input: ResearchCandidateApplicationRequest): string {
     .update("\0")
     .update(resolve(input.v25Root))
     .update("\0")
-    .update(input.forceRefresh === true ? "force" : "resume")
-    .digest("hex")
-    .slice(0, 24);
-  return `research-candidate-v1-${digest}`;
+    .update(input.forceRefresh === true ? "force" : "resume");
+  // R-046 — the source text is part of the run's INTENT: a different text is a
+  // different book, so a resume against a different (or newly absent, or newly
+  // present) text must be refused. It is refused HERE, at the run-definition
+  // digest, which surfaces as RESEARCH_RESUME_CONFLICT rather than as a book
+  // silently rewritten from other bytes. The DIGEST of the text is mixed in, not
+  // its path, so moving the same file does not invalidate a run.
+  //
+  // Mixed in ONLY when a text is present, so a run with no source text hashes to
+  // exactly what it hashed to before ingestion existed and every in-flight
+  // model-memory run stays resumable.
+  const sourceDigest = sourceTextDigest(input.sourceTextPath);
+  if (sourceDigest.length > 0) hash.update("\0").update(sourceDigest);
+  return `research-candidate-v1-${hash.digest("hex").slice(0, 24)}`;
+}
+
+/** sha256 of the normalized source text, or "" when the run has none. Reading it
+ *  here is deliberate: the run's identity must bind the BYTES, not the path. */
+function sourceTextDigest(sourceTextPath: string | undefined): string {
+  return sourceTextPath === undefined ? "" : ingestSourceText(sourceTextPath).sha256;
 }
 
 function inferredBookId(title: string): string {
@@ -354,6 +383,11 @@ export function chapterRouteValid(chapter: ChapterResearchResult): boolean {
     // migrator. Shares collectHardSpecificLengthProblems with the fresh-research
     // validator so the two can never diverge.
     if (collectHardSpecificLengthProblems(chapter.namedExamples).length > 0) return false;
+    // R-051/R-282: the same reasoning for SHAPE. A stale sidecar carrying a
+    // clause-shaped specific ("speckled Ax is best") cannot be composed into a
+    // word-budgeted line without inventing a predicate, so reuse must fall
+    // through to re-research exactly as it does for an over-long specific.
+    if (collectHardSpecificShapeProblems(chapter.namedExamples).length > 0) return false;
     return true;
   } catch {
     return false;
@@ -442,12 +476,28 @@ async function materializeSeedFiles(result: Awaited<ReturnType<typeof researchBo
         // evict → fresh run) depends on it, and so does --research-run-id, whose
         // whole purpose is making that loop cheap.
         bookScars: loadBookScars(result.bookId),
+        // NOTE (R-046): source provenance is deliberately NOT added here. The
+        // compiler validates this file with an EXACT key set
+        // (compilerApplicationPort.ts sectionTaskContext), and provenance already
+        // reaches the writer by the route that also carries the quotes it labels
+        // — packet.sourceProvenance, projected onto the writer card. Adding it
+        // twice would mean widening an exact-key contract for no new information.
       }, null, 2)}\n`),
     },
     await inputFile(resolve(result.bundlePath, RESEARCH_RUN_MANIFEST_FILE), "inputs/research/research-run.manifest.json", "PROVENANCE", "application/json"),
     await inputFile(resolve(result.bundlePath, "source-freeze", "bibliography.raw.json"), "inputs/research/bibliography.raw.json", "PROVENANCE", "application/json"),
     await inputFile(resolve(result.bundlePath, "source-freeze", "source-freeze-report.md"), "inputs/research/source-freeze-report.md", "PROVENANCE", "text/markdown"),
   ];
+  // R-046 — a source-text run carries its FROZEN text and its resolved chapter
+  // map into the candidate, so every later stage (and the wave-2 fidelity judge)
+  // reads the exact bytes the sidecars were quoted from, addressed by a logical
+  // path rather than by an operator's filesystem.
+  if (result.sourceProvenance === "source-text") {
+    files.push(
+      await inputFile(resolve(result.bundlePath, SOURCE_TEXT_REL_PATH), "inputs/research/source-text.txt", "PROVENANCE", "text/plain"),
+      await inputFile(resolve(result.bundlePath, CHAPTER_MAP_REL_PATH), "inputs/research/chapter-map.json", "PROVENANCE", "application/json"),
+    );
+  }
   const sources: ResearchCandidateSourceMapping[] = [];
   for (const chapter of result.chapters) {
     const logical = sourcePaths(chapter.chapterNumber);
@@ -465,7 +515,8 @@ async function materializeSeedFiles(result: Awaited<ReturnType<typeof researchBo
       ]),
     }));
   }
-  if (files.length !== 7 + (2 * result.chapters.length)) {
+  const sourceTextFiles = result.sourceProvenance === "source-text" ? 2 : 0;
+  if (files.length !== 7 + sourceTextFiles + (2 * result.chapters.length)) {
     throw new Error("RESEARCH_SEED_INVALID:seed candidate inventory length mismatch");
   }
   return Object.freeze({ files: Object.freeze(files), sources: Object.freeze(sources) });
@@ -745,6 +796,10 @@ export class ResearchCandidateApplicationPort {
         // compatibility fingerprint, an internally consistent bibliography, and
         // every chapter durably reusable.
         forceRefresh: input.researchRunId !== undefined ? false : (!resumedRun || input.forceRefresh === true),
+        ...(input.sourceTextPath === undefined ? {} : { sourceTextPath: input.sourceTextPath }),
+        // R-277 — the book's fact pins reach the researcher that mints the fact,
+        // not only the writers one layer downstream.
+        factPins: loadBookScars(definition.bookId)?.prohibitions ?? [],
         ...(input.researchRunId === undefined ? {} : { pinnedRunId: input.researchRunId }),
         runsRoot: resolve(input.v25Root, "research-runs"),
         stateRoot: resolve(input.v25Root, "research-state"),

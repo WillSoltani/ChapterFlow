@@ -94,6 +94,13 @@ import { sectionContract, sectionDoNotLines } from "../sections/sectionTasks.js"
  * section-writer contract text this module composes, and a repair rewrites the same six example
  * scenarios under the same SEC31/SEC39 gates, so it needs both for the same reason. The 85%
  * creep-alarm floor still holds (22,616 / 22,800 = 99.2%).
+ *
+ * RE-MEASURED, UNCHANGED, when this package merged origin/main d6bf5933d (wave-1
+ * source-text ingestion): 21,210 with no voice card and 22,616 with a pathological one,
+ * to the character. Wave-1 adds no section-contract text — its writer-card additions
+ * (the READ-ONLY CHAPTER CONTEXT block and the bounded sourceQuote on every fact) are
+ * rendered by buildSectionTaskMarkdown around the contract, not inside sectionContract(),
+ * which is the only thing this module composes. The pin stays 22,800.
  */
 export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 22800;
 

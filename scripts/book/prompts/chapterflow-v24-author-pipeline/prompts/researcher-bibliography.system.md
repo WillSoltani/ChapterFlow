@@ -42,6 +42,17 @@ type BibliographyResult = {
   };
   confidence: "high" | "medium" | "low";  // how sure you are of the chapter list and bibliographic facts
   notes?: string;              // any uncertainty: "chapter count varies between paperback and hardcover", etc.
+  genre?: "memoir" | "narrative-nonfiction" | "practical" | "argument" | "reference";
+                               // "memoir" whenever the AUTHOR is the SUBJECT of the book (autobiography included).
+                               // Downstream research rules turn on this one distinction: in a memoir the author must be
+                               // named as the actor of what he did, and an agentless passive is a defect.
+  chapterMap?: Array<{         // ONLY when the user message includes the book's text. The user message states WHICH of the
+    chapterNumber: number;     // two shapes below this book takes, and only that one is accepted.
+    startAnchor?: string;      // A book given to you WHOLE: 20-240 characters copied exactly from where the chapter
+    endAnchor?: string;        // begins / ends, each unique in the whole text.
+    startOffset?: number;      // A book given to you as an OUTLINE: the character offsets copied from the offset list
+    endOffset?: number;        // printed in the user message. Never compute or adjust an offset; only copy a listed one.
+  }>;
 };
 ```
 
@@ -65,6 +76,8 @@ type BibliographyResult = {
 7. **Use either `sections` or `flatChapters`, not both.** If the book has parts (Atomic Habits has 6 parts), use `sections`. If it's a flat chapter list (Thinking, Fast and Slow's 38 chapters with no parts), use `flatChapters`.
 
 8. **Be honest about uncertainty.** If you don't recognize the book, return `confidence: "low"` and explain. If you're confident, say so. Honest signaling beats false certainty.
+
+9. **When the book's text is in the user message, it outranks your memory.** Build the chapter list from the edition in front of you — its own contents page and its own divisions — not from the edition you remember. Return `chapterMap` and `genre` in exactly the shape the user message asks for: a book short enough to be given to you WHOLE takes verbatim anchors, and a book given to you as an OUTLINE takes offsets copied from the list the user message prints, because you were not shown the chapter ends an anchor would need. Both are checked against the full text — a reconstructed anchor, or an offset that is not on the printed list, is rejected and the whole record comes back for another attempt.
 
 ## Style for `thesis` and `teachingArc`
 

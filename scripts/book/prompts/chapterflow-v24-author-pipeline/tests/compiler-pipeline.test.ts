@@ -798,18 +798,33 @@ test("v23 source packet fact extraction is behavior-preserving: the shared compi
   // existed). If either changes AGAIN without an intended packet-shape change, the extraction
   // broke behavior or the fixture drifted — re-derive deliberately, do not silently update.
   //
-  // RE-DERIVED for R-116 (package 1C). properNounTokens() gained a sentence-initial filter: a
-  // capitalized run that starts a sentence has its opening word stripped (that word is
-  // capitalized by grammar), and a run that is ONLY its opener is dropped unless the same token
-  // also occurs mid-sentence. That changes one field — facts[].groundedEntities — which on this
-  // fixture loses sentence-opening ordinary words. The P13 pins immediately above were
-  // facts=sha256:2ee22e0c… / packet=sha256:6fdb1b6e…. The assertion below pins the CONTENT of the
-  // change, so the new hash cannot be a cover for an unrelated packet-shape drift.
+  // RE-DERIVED AGAIN for the 1C + wave-1 MERGE, which lands two packet-compiler changes at once:
+  //
+  //   R-116 (package 1C) — properNounTokens() gained a sentence-initial filter: a capitalized run
+  //     that starts a sentence has its opening word stripped (that word is capitalized by grammar),
+  //     and a run that is ONLY its opener is dropped unless the same token also occurs
+  //     mid-sentence. That changes one field, facts[].groundedEntities, which on this fixture
+  //     loses sentence-opening ordinary words — so it moves BOTH hashes.
+  //   R-055 (wave-1 source-ingestion) — adds `packet.chapterContext` (the chapter's focus,
+  //     coreClaim, hardEdge and keyClaims, which the packet used to discard so that no writer ever
+  //     saw what the chapter was about). Fact extraction is untouched, so it moves only the
+  //     WHOLE-PACKET hash, by exactly one added key.
+  //
+  // Facts hash: sha256:2ee22e0c… (P13, both branches' ancestor) → sha256:536899… (R-116). This is
+  // the R-116 value unchanged by the merge, which is the check that R-055 did not touch extraction.
+  // Packet hash: sha256:6fdb1b6e… (P13) → sha256:356f1913… (1C, R-116 alone) /
+  // sha256:31ceaed1… (main, R-055 alone) → sha256:9d0b594b… below, which carries both.
+  //
+  // The two assertions after the hashes pin the CONTENT of each change by name, so neither new
+  // hash can be a cover for an unrelated packet-shape drift.
   const { packet } = compileFixture();
   const openerEntities = packet.facts.flatMap((f) => f.groundedEntities).filter((e) => /^(?:Readers|Repetition|Environments|Paying|Keeping|Carrying|The reader)\b/.test(e));
   assert.deepEqual(openerEntities, [], `R-116: sentence-opening ordinary words must not be harvested as entities: ${openerEntities.join(", ")}`);
   assert.equal(canonicalJsonSha256(packet.facts), "sha256:536899249fa41d581d1d003651664801c53121d45597f084a74e794ae848a459", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority and the R-116 entity filter)");
-  assert.equal(canonicalJsonSha256(packet), "sha256:356f19136c211320179d6f4ccbe4352e29feb7541cd6f35e6a4c13f0aad4c96b", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking and the R-116 entity filter)");
+  assert.equal(canonicalJsonSha256(packet), "sha256:9d0b594bc3d02048f3977b23d2386525531b21ca6602ee130add3653d8b850f1", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking, the R-116 entity filter and R-055 chapterContext)");
+  // The one added key, asserted by name so a future drift cannot be waved
+  // through as "the R-055 change".
+  assert.deepEqual(Object.keys(packet.chapterContext ?? {}).sort(), ["coreClaim", "focus", "hardEdge", "keyClaims"]);
 
   // The packet compiler must be USING the shared helper, not a parallel reimplementation:
   // calling compiledFactsFromSidecar directly on the same sidecar must equal packet.facts

@@ -2,7 +2,9 @@ import assert from "node:assert/strict";
 
 import type { BibliographyResult } from "../../src/agents/researcher-bibliography.js";
 import {
+  collectChapterResearchProblems,
   collectHardSpecificLengthProblems,
+  collectHardSpecificShapeProblems,
   MAX_HARD_SPECIFIC_WORDS,
   runResearcherChapter,
   type ChapterResearchInput,
@@ -203,6 +205,55 @@ requiredTest("6 reuse migration: chapterRouteValid rejects a stale clause-specif
   // 11d hook: a durable sidecar with a clause-length specific must fail reuse so
   // the chapter falls through to re-research (the designed migration path).
   assert.equal(chapterRouteValid(clauseSpecificChapter()), false);
+  assert.equal(chapterRouteValid(validChapter()), true);
+});
+
+// ── R-051/R-282 — the SHAPE guard, pinned at BOTH of its call sites ─────────
+//
+// REVIEW ROUND 3, major finding 3. `collectHardSpecificShapeProblems` was tested
+// only as a pure function: commenting out `problems.push(...)` at its
+// fresh-research call site, or the `return false` at the reuse hook, left the
+// whole suite green — so the guard the package says is "shared by the
+// fresh-research validator AND the durable-sidecar reuse hook, exactly like the
+// word-cap rule" could be unwired from either route without a failing test.
+// These two tests are the shape equivalents of tests 1 and 6 above.
+
+/** The R-051/R-282 defect shape: one hardSpecific is a four-word CLAUSE with a
+ *  finite verb ("speckled Ax is best" — the released Franklin book's own). It is
+ *  UNDER the <=5-word cap on purpose, so the length rule cannot fire and the
+ *  shape guard is the only thing that can reject it. */
+function shapeSpecificChapter(): ChapterResearchResult {
+  const base = validChapter();
+  const examples = base.namedExamples.map((ex, i) => (
+    i === 0 ? { ...ex, hardSpecifics: ["speckled Ax is best", "Magic Castle Hotel"] } : ex
+  ));
+  return { ...base, namedExamples: examples };
+}
+
+requiredTest("7 the shape fixture is rejected by the SHAPE rule ALONE — the length cap cannot fire on it", () => {
+  const chapter = shapeSpecificChapter();
+  assert.deepEqual(collectHardSpecificLengthProblems(chapter.namedExamples), [], "4 words is under the cap; this must isolate the shape rule");
+  const problems = collectHardSpecificShapeProblems(chapter.namedExamples);
+  assert.equal(problems.length, 1);
+  assert.match(problems[0], /is a clause, not a token/);
+  assert.match(problems[0], /finite verb "is"/);
+});
+
+requiredTest("7a CALL SITE 1 — the fresh-research validator applies the shape guard, not just the pure function", () => {
+  // RED when `problems.push(...collectHardSpecificShapeProblems(r.namedExamples))`
+  // is removed from collectChapterResearchProblems.
+  const problems = collectChapterResearchProblems(shapeSpecificChapter(), input());
+  const shape = problems.filter((p) => p.startsWith("hardSpecific") && /is a clause, not a token/.test(p));
+  assert.equal(shape.length, 1, `the validator must carry the shape problem; got ${JSON.stringify(problems)}`);
+  assert.match(shape[0], /speckled Ax is best/);
+  // and the clean chapter is still admitted, so the guard is not just noisy
+  assert.deepEqual(collectChapterResearchProblems(validChapter(), input()), []);
+});
+
+requiredTest("7b CALL SITE 2 — the durable-sidecar reuse hook applies the shape guard, so a stale clause-shaped sidecar is re-researched", () => {
+  // RED when the `if (collectHardSpecificShapeProblems(...)) return false` line is
+  // removed from chapterRouteValid: the stale sidecar would be REUSED.
+  assert.equal(chapterRouteValid(shapeSpecificChapter()), false);
   assert.equal(chapterRouteValid(validChapter()), true);
 });
 
