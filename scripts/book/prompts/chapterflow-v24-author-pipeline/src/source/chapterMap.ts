@@ -25,8 +25,8 @@
  * WHAT IS DELIBERATELY ALLOWED: text before the first span and after the last.
  * A public-domain file opens with a licence header, a title page, an editor's
  * introduction and a table of contents, and closes with appendices and the
- * licence again; on the Gutenberg Autobiography that is ~5% at the front and
- * ~13% at the back. Requiring the map to cover byte 0 would force the model to
+ * licence again; on the Gutenberg Autobiography that is 5.2% at the front and
+ * 12.3% at the back. Requiring the map to cover byte 0 would force the model to
  * assign the licence to chapter 1.
  */
 
@@ -49,11 +49,12 @@ export const MAX_INTERIOR_GAP_CHARS = 4000;
  * Least fraction of the whole text the spans together must cover.
  *
  * Measured on the Gutenberg Autobiography (458,749 normalized characters):
- * chapter I begins at offset 23,913 (5.2% front matter) and the licence footer
- * begins at 440,283, so a map of the body covers ~91%; a map that stops at the
- * end of the last chapter and leaves the appendix out covers ~77%. Half the file
- * is therefore a generous floor that still catches the real failure — a map that
- * describes the front matter, or one chapter, instead of the book.
+ * chapter I begins at offset 23,913 (5.2% front matter), the appendix at 402,184
+ * and the licence footer at 440,283. So a map that runs from chapter I to the
+ * licence covers 90.8% (416,370 characters) and a map of the nineteen chapters
+ * alone covers 82.5% (378,271). Half the file is therefore a generous floor that
+ * still catches the real failure — a map that describes the front matter, or one
+ * chapter, instead of the book.
  */
 export const MIN_SPAN_COVERAGE_FRACTION = 0.5;
 
