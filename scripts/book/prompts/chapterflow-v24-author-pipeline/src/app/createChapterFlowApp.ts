@@ -16,6 +16,8 @@ import type { SectionPackCache } from "../books/sectionPackCache.js";
 import type { SectionAvoidStore } from "../books/sectionAvoidStore.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import { createModelTaskRunner, type ModelTaskRunner } from "./modelTaskRunner.js";
+import { CatalogRubricPanelEvaluator } from "./catalogRubricPanelEvaluator.js";
+import type { CatalogRubricStore } from "../review/catalogRubricStore.js";
 
 export interface ChapterFlowApp {
   readonly pipeline: ChapterFlowPipeline;
@@ -38,6 +40,10 @@ export function createChapterFlowApp(
     repairApplication?: CandidateRepairApplicationPort;
     sectionPackCache?: SectionPackCache;
     sectionAvoidStore?: SectionAvoidStore;
+    /** R-080 — durable home of the whole-book catalog-rubric panel result.
+     *  Required to compose a book run at all: without it the rubric gate would
+     *  re-score three whole-book reads on every resume. */
+    catalogRubricStore?: CatalogRubricStore;
   }>,
 ): ChapterFlowApp {
   const pipeline = createChapterFlowPipeline({
@@ -82,8 +88,13 @@ export function createChapterFlowApp(
   // LLM answer-key judge actually executes in production. Without a runner the
   // judge is inert; the fresh-qc call site supplies the matching taskContext.
   const candidateQc = new CandidateQcEvaluator(dependencies.contentReader, { runner });
+  // The whole-book catalog-rubric panel runs on the SAME model-task runner as
+  // every other lane, under role "review" (xhigh per config/model-routing.json),
+  // so it can never reach a provider except through the gateway choke.
+  const rubric = new CatalogRubricPanelEvaluator({ runner });
   const bookRun = dependencies.pipelineRoot && compiler && research
     && dependencies.currentPointerStore && dependencies.bookRunEvents
+    && dependencies.catalogRubricStore
     ? new BookRunApplicationService({
         research,
         compiler,
@@ -93,6 +104,8 @@ export function createChapterFlowApp(
         reviews: dependencies.reviewService,
         qc: dependencies.qcService,
         diagnoses: dependencies.qcDiagnoses,
+        rubric,
+        rubricStore: dependencies.catalogRubricStore,
         promotion: dependencies.promotionService,
         currentPointer: dependencies.currentPointerStore,
         runStore: dependencies.runStore,

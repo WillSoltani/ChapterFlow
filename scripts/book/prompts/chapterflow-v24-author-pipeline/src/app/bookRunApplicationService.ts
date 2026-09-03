@@ -14,6 +14,24 @@ import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/r
 import type { RunStore } from "../run-state/runStore.js";
 import type { RunDefinition, RunSnapshot } from "../run-state/runTypes.js";
 import type { StageCoordinator } from "../run-state/stageTypes.js";
+import {
+  CATALOG_RUBRIC_READERS,
+  aggregateCatalogRubric,
+  judgeCatalogRubric,
+  renderCatalogRubricScorecard,
+  resolveRubricBar,
+  type CatalogRubricAggregateV1,
+  type CatalogRubricVerdictV1,
+} from "../review/catalogRubric.js";
+import {
+  RUBRIC_RECORD_NOT_FOUND,
+  type CatalogRubricRecordV1,
+  type CatalogRubricStore,
+} from "../review/catalogRubricStore.js";
+import {
+  MAX_RUBRIC_READER_ATTEMPTS,
+  type CatalogRubricPanel,
+} from "./catalogRubricPanelEvaluator.js";
 import type { CandidateRepairApplicationPort } from "./candidateRepairApplicationPort.js";
 import { QUIZ_JUDGE_MAX_ATTEMPTS, type CandidateQcEvaluator } from "./candidateQcEvaluator.js";
 import { isRepairReviewErrorTerminalReason } from "./contentRepairWorkflow.js";
@@ -34,6 +52,12 @@ export const BOOK_RUN_PHASES = Object.freeze([
   "review",
   "fresh-qc",
   "repair",
+  // R-080 — the whole-book catalog-rubric gate. It sits AFTER a fresh QC PASS
+  // (so it never scores bytes the deterministic gates already rejected) and
+  // BEFORE promotion (so nothing it rejects can reach the pointer). It is
+  // ADDITIVE: the per-chapter panel floor (AUTHOR_CHAPTER_BAR = 70) is
+  // untouched and still decides chapters; this decides the BOOK.
+  "rubric",
   "promotion",
 ] as const);
 
@@ -93,6 +117,13 @@ export interface BookRunApplicationRequest {
    * as `model-memory`.
    */
   readonly sourceTextPath?: string;
+  /**
+   * R-080 — the whole-book catalog-rubric promotion bar (`--rubric-bar N`),
+   * mirroring CHAPTERFLOW_RUBRIC_BAR. An integer 60-95; absent falls back to
+   * the env, then to the compiled default of 80. Out of range fails closed at
+   * the input boundary with every other budget, never silently reverts.
+   */
+  readonly rubricBar?: number;
   readonly signal: AbortSignal;
 }
 
@@ -132,6 +163,40 @@ export interface BookRunApplicationResult {
   /** The exact command that turns this promoted candidate into a reader package
    *  + production-manifest sidecar. Present only when `readerPackage` is. */
   readonly readerPackageCommand?: string;
+  /**
+   * R-080 / R-254 — what the whole-book catalog-rubric panel said about the
+   * exact candidate this result names, and what bar it was judged against.
+   * Present on every result the stage reached, which is every non-error result:
+   * a run that got this far necessarily cleared the rubric gate.
+   */
+  readonly rubric?: BookRunRubricEvidence;
+  /** The rendered scorecard table for the same panel — the operator-facing view
+   *  of `rubric`, in the book-score skill's own layout. */
+  readonly rubricScorecard?: string;
+}
+
+/**
+ * The rubric evidence a book run carries out of the stage. Deliberately flat
+ * and self-describing: it is what the release sidecar records (R-254) and what
+ * an operator reads off the run result, so it must state the verdict, the bar
+ * it was reached against, and the medians behind it — not just a number.
+ */
+export interface BookRunRubricEvidence {
+  readonly schemaVersion: "1";
+  readonly instrumentVersion: string;
+  readonly candidate: CandidateIdentity;
+  readonly composite: number;
+  readonly tier: string;
+  readonly gate: CatalogRubricAggregateV1["gate"];
+  readonly churn: CatalogRubricAggregateV1["churn"];
+  readonly highQuality: boolean;
+  readonly bar: number;
+  readonly factorFloor: number;
+  readonly factorMedians: CatalogRubricAggregateV1["factorMedians"];
+  readonly sampledChapterNumbers: readonly number[];
+  readonly totalChapters: number;
+  readonly readerCount: number;
+  readonly replayed: boolean;
 }
 
 export interface BookRunApplicationDependencies {
@@ -148,6 +213,14 @@ export interface BookRunApplicationDependencies {
    *  missing wire must be a type error rather than a book silently stuck on the
    *  REPAIR_DIAGNOSIS_REQUIRED escalation this dependency exists to clear. */
   readonly diagnoses: QcDiagnosisIndex;
+  /** R-080 — the whole-book catalog-rubric panel. REQUIRED, not optional, for
+   *  the same reason `diagnoses` is: an optional gate dependency is a gate that
+   *  disappears when a composition forgets to wire it, and this one decides
+   *  whether a book may be promoted. A missing wire must be a type error. */
+  readonly rubric: CatalogRubricPanel;
+  /** The durable home of the rubric panel's result. Also REQUIRED: without it
+   *  the stage would re-score every resume at three whole-book reads. */
+  readonly rubricStore: CatalogRubricStore;
   readonly promotion: PromotionService;
   readonly currentPointer: CurrentPointerStore;
   readonly runStore: RunStore;
@@ -170,6 +243,35 @@ function sleep(milliseconds: number): Promise<void> {
 
 const REVIEW_STAGE = "canonical-review" as const;
 const FRESH_QC_STAGE = "fresh-qc" as const;
+/** The catalog-rubric panel's own run-state stage. Its OWN, deliberately: the
+ *  rubric run is admitted, capacity-bounded and settled independently of the
+ *  review and QC lanes, so a rubric failure can never consume a QC attempt and
+ *  a QC retry can never re-open a settled rubric. */
+const RUBRIC_STAGE = "catalog-rubric" as const;
+
+/**
+ * Successor budget for the catalog-rubric panel run (base + up to 2 successors).
+ *
+ * Same machinery as the fresh-qc judge's MAX_QC_JUDGE_RUNS and for the same
+ * reason: the run id is deterministic, a terminal run is immutable, and without
+ * a successor a single lost panel would wedge the book one step before
+ * promotion forever. SMALLER than the judge's five because one ordinal here is
+ * three whole-book reads at the review role's xhigh tier — the most expensive
+ * call in the pipeline — and a panel that has failed three times is an
+ * instrument problem an operator has to see, not variance to spend through.
+ *
+ * The DURABLE RECORD always short-circuits the walk, so a book whose panel
+ * succeeded is never re-scored no matter how many ordinals exist. Exhaustion is
+ * NOT a pass: the stage fails closed with the ceiling and the override named.
+ */
+const MAX_RUBRIC_RUNS = 3;
+
+/** Resolve the rubric-panel successor budget, honouring an optional
+ *  CHAPTERFLOW_RUBRIC_RUNS override — the exact shape and fail-closed contract
+ *  of resolveQcJudgeRuns. Bounded 1-10; resolved ONCE per run. */
+export function resolveRubricRuns(): number {
+  return resolveBudgetEnv("CHAPTERFLOW_RUBRIC_RUNS", MAX_RUBRIC_RUNS, 1, 10);
+}
 
 /** Successor budget for the fresh-qc judge run (base + up to 4 successors). A
  *  judge run that ends terminal WITHOUT a committed round (evaluation error /
@@ -387,6 +489,34 @@ function identity(candidate: CandidateSnapshot): CandidateIdentity {
 
 function sameIdentity(left: CandidateIdentity, right: CandidateIdentity): boolean {
   return left.candidateId === right.candidateId && left.manifestDigest === right.manifestDigest;
+}
+
+/** Fold the durable rubric record, its recomputed aggregate and the verdict the
+ *  run's bar produced into the flat evidence block the result and the release
+ *  sidecar carry (R-254). Pure. */
+function rubricEvidenceOf(
+  record: CatalogRubricRecordV1,
+  aggregate: CatalogRubricAggregateV1,
+  verdict: CatalogRubricVerdictV1,
+  replayed: boolean,
+): BookRunRubricEvidence {
+  return Object.freeze({
+    schemaVersion: "1",
+    instrumentVersion: record.instrumentVersion,
+    candidate: record.candidate,
+    composite: aggregate.composite,
+    tier: aggregate.tier,
+    gate: aggregate.gate,
+    churn: aggregate.churn,
+    highQuality: aggregate.highQuality,
+    bar: verdict.bar,
+    factorFloor: verdict.factorFloor,
+    factorMedians: aggregate.factorMedians,
+    sampledChapterNumbers: record.sampledChapterNumbers,
+    totalChapters: record.totalChapters,
+    readerCount: aggregate.readerCount,
+    replayed,
+  });
 }
 
 /**
@@ -652,6 +782,35 @@ export function freshQcRunDefinition(input: Readonly<{
     })),
     inputCandidate: identity(input.candidate),
     attemptLimits: { run: capacity, byStage: { [FRESH_QC_STAGE]: capacity } },
+    createdAt: input.createdAt,
+  };
+}
+
+/** Run definition for the whole-book catalog-rubric panel run. Capacity covers
+ *  every reader times its bounded retry, so a panel that has to re-attempt a
+ *  reader is never refused by run-state admission mid-flight. */
+export function rubricRunDefinition(input: Readonly<{
+  bookId: string;
+  runId: string;
+  sourceGitSha: string;
+  candidate: CandidateSnapshot;
+  createdAt: UtcIso;
+}>): RunDefinition {
+  const capacity = CATALOG_RUBRIC_READERS * MAX_RUBRIC_READER_ATTEMPTS;
+  return {
+    schemaVersion: "1",
+    bookId: input.bookId,
+    runId: input.runId,
+    commandId: "catalog-rubric",
+    sourceGitSha: input.sourceGitSha,
+    requiredStages: [RUBRIC_STAGE],
+    requiredInventory: input.candidate.manifest.entries.map(({ kind, logicalPath, mediaType }) => ({
+      kind,
+      logicalPath,
+      mediaType,
+    })),
+    inputCandidate: identity(input.candidate),
+    attemptLimits: { run: capacity, byStage: { [RUBRIC_STAGE]: capacity } },
     createdAt: input.createdAt,
   };
 }
@@ -1581,6 +1740,204 @@ export class BookRunApplicationService {
     return round;
   }
 
+  /**
+   * THE WHOLE-BOOK CATALOG-RUBRIC PANEL (R-080), run under its own run-state
+   * run and recorded durably against the exact candidate it judged.
+   *
+   * The DURABLE RECORD is the authority, not any run's status — the same
+   * contract the fresh-qc judge round has, for the same reason: the panel is
+   * non-deterministic, so a resume that re-ran it would produce a different
+   * verdict for identical bytes and could spend its way past a gate it had
+   * already failed. A record whose candidate does not bind EXACTLY (candidateId
+   * AND manifestDigest) is refused, never adapted.
+   *
+   * RUN IDENTITY IS DERIVED FROM THE CANDIDATE, not from the book run. That is
+   * deliberate and it is stronger than the parent-run derivation the other
+   * lanes use: the thing being judged is a candidate's bytes, so a second
+   * operator round — a fresh run id, a resume, a repair successor that landed
+   * on the same candidate — addresses the same rubric run and the same record,
+   * and cannot mint a second panel for bytes that already have one.
+   */
+  async #runCatalogRubric(
+    input: BookRunApplicationRequest,
+    candidate: CandidateSnapshot,
+    /** Resolved ONCE per run by run(), so a mid-run env change cannot move the
+     *  budget under an in-flight walk. */
+    rubricBudget: number,
+  ): Promise<Result<Readonly<{ record: CatalogRubricRecordV1; replayed: boolean }>>> {
+    const candidateId = candidate.manifest.candidateId;
+    const baseRunId = derivedId("rubric-run", `${candidateId}:${candidate.manifest.manifestDigest}`);
+    const observedAt = safeNow(this.#dependencies.clock);
+    if (!observedAt.ok) return observedAt;
+
+    const stored = await this.#dependencies.rubricStore.getRecord(input.bookId, candidateId);
+    if (stored.ok) {
+      if (!sameIdentity(stored.value.candidate, identity(candidate))) {
+        return failed(
+          "BOOK_RUN_RUBRIC_UNAVAILABLE",
+          `stored catalog-rubric record for ${candidateId} binds manifestDigest ${stored.value.candidate.manifestDigest},`
+          + ` not this candidate's ${candidate.manifest.manifestDigest}`,
+        );
+      }
+      // Settle a run a crash left RUNNING after the record was already written.
+      // Only one ordinal can be RUNNING here: every lower one was driven
+      // terminal before the walk moved past it.
+      for (let ordinal = 1; ordinal <= rubricBudget; ordinal += 1) {
+        const ordinalRunId = ordinal === 1 ? baseRunId : `${baseRunId}-r${ordinal}`;
+        const snapshot = await this.#dependencies.runStore.readRun(input.bookId, ordinalRunId, observedAt.value);
+        if (!snapshot.ok) break;
+        if (snapshot.value.status !== "RUNNING") continue;
+        const settleAt = safeNow(this.#dependencies.clock);
+        if (settleAt.ok) {
+          await this.#dependencies.runStore.finishRun({
+            bookId: input.bookId,
+            runId: ordinalRunId,
+            status: "COMPLETED",
+            finishedAt: settleAt.value,
+          });
+        }
+        break;
+      }
+      return { ok: true, value: Object.freeze({ record: stored.value, replayed: true }) };
+    }
+    if (stored.error.code !== RUBRIC_RECORD_NOT_FOUND) {
+      return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `${stored.error.code}:${stored.error.message}`);
+    }
+
+    // No record: pick the run to score under. Walk base, -r2, -r3 … to the first
+    // free ordinal, abandoning a RUNNING-with-no-record predecessor (only a dead
+    // process can own one here — this process has not created its run yet).
+    // COMPLETED-without-record stays an honest error: that panel already ran to
+    // completion, and a non-deterministic instrument may not silently re-run.
+    let rubricRunId: string | undefined;
+    for (let ordinal = 1; ordinal <= rubricBudget; ordinal += 1) {
+      const ordinalRunId = ordinal === 1 ? baseRunId : `${baseRunId}-r${ordinal}`;
+      const prior = await this.#dependencies.runStore.readRun(input.bookId, ordinalRunId, observedAt.value);
+      if (!prior.ok) {
+        if (prior.error.code !== "NOT_FOUND") {
+          return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `${prior.error.code}:${prior.error.message}`);
+        }
+        rubricRunId = ordinalRunId;
+        break;
+      }
+      if (prior.value.status === "COMPLETED") {
+        return failed(
+          "BOOK_RUN_RUBRIC_UNAVAILABLE",
+          `catalog-rubric run ${ordinalRunId} is COMPLETED but its record is missing`
+          + " — the panel cannot legally re-score the same candidate; restore or remove the record before resuming",
+        );
+      }
+      if (prior.value.status === "RUNNING") {
+        const abandonAt = safeNow(this.#dependencies.clock);
+        if (!abandonAt.ok) return abandonAt;
+        for (const attempt of prior.value.attempts) {
+          if (attempt.status !== "ACTIVE" && attempt.status !== "STALE") continue;
+          const settled = await reconcileAttempt(this.#dependencies.runStore, {
+            bookId: input.bookId,
+            runId: ordinalRunId,
+            attemptId: attempt.admission.attemptId,
+            outcome: "ABANDONED",
+            finishedAt: abandonAt.value,
+            detail: RECONCILED_UNSETTLED_ON_RESUME,
+          });
+          if (!settled.ok && settled.error.code !== "CONFLICT") {
+            return failed(
+              "BOOK_RUN_RUBRIC_UNAVAILABLE",
+              `crashed catalog-rubric attempt cannot be reconciled: ${settled.error.code}:${settled.error.message}`,
+            );
+          }
+          console.error(
+            `[book-run] reconcile phase=${RUBRIC_STAGE} run=${ordinalRunId} attempt=${attempt.admission.attemptId} action=${RECONCILED_UNSETTLED_ON_RESUME}`,
+          );
+        }
+        const abandoned = await this.#dependencies.runStore.finishRun({
+          bookId: input.bookId,
+          runId: ordinalRunId,
+          status: "FAILED",
+          finishedAt: abandonAt.value,
+          reason: "abandoned: resumed with no committed rubric record",
+        });
+        if (!abandoned.ok) {
+          return failed(
+            "BOOK_RUN_RUBRIC_UNAVAILABLE",
+            `crashed catalog-rubric run cannot be abandoned: ${abandoned.error.code}:${abandoned.error.message}`,
+          );
+        }
+      }
+      // FAILED / CANCELLED (including just-abandoned): try the next ordinal.
+    }
+    if (rubricRunId === undefined) {
+      return failed(
+        "BOOK_RUN_RUBRIC_UNAVAILABLE",
+        `catalog-rubric successor budget exhausted after ${rubricBudget} runs`
+        + "; raise CHAPTERFLOW_RUBRIC_RUNS (1-10) or start a fresh run",
+      );
+    }
+    const created = await this.#dependencies.runStore.createRun(rubricRunDefinition({
+      bookId: input.bookId,
+      runId: rubricRunId,
+      sourceGitSha: input.sourceGitSha,
+      candidate,
+      createdAt: observedAt.value,
+    }));
+    if (!created.ok) return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `${created.error.code}:${created.error.message}`);
+    if (created.value.status !== "RUNNING") {
+      return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `catalog-rubric run is ${created.value.status}, not RUNNING`);
+    }
+    const scoredAt = safeNow(this.#dependencies.clock);
+    if (!scoredAt.ok) return scoredAt;
+    const scored = await this.#dependencies.rubric.score({
+      bookId: input.bookId,
+      title: input.title,
+      author: input.author,
+      candidate,
+      completedAt: scoredAt.value,
+      taskContext: {
+        bookId: input.bookId,
+        runId: rubricRunId,
+        attemptId: derivedId("rubric-attempt", rubricRunId),
+        stageId: RUBRIC_STAGE,
+        operationId: RUBRIC_STAGE,
+        workDir: this.#dependencies.pipelineRoot,
+        signal: input.signal,
+      },
+    });
+    if (!scored.ok) {
+      const failedAt = safeNow(this.#dependencies.clock);
+      if (failedAt.ok) {
+        await this.#dependencies.runStore.finishRun({
+          bookId: input.bookId,
+          runId: rubricRunId,
+          // Operator intent stays distinguishable from infrastructure failure in
+          // the durable record; both are non-COMPLETED, so the successor walk
+          // above re-scores either on the next resume.
+          status: scored.error.code === "CATALOG_RUBRIC_CANCELLED" ? "CANCELLED" : "FAILED",
+          finishedAt: failedAt.value,
+          reason: scored.error.code,
+        });
+      }
+      // An ERROR is never a verdict: it is neither a rubric PASS nor a rubric
+      // FAIL, and it is reported under its own uncertainty code.
+      return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `${scored.error.code}:${scored.error.message}`);
+    }
+    // Crash-safe ordering, exactly as the fresh-qc judge does it: commit the
+    // durable record FIRST, finish the run COMPLETED second. If the write fails
+    // the run stays RUNNING and a resume re-enters cleanly; if the process dies
+    // after the write, the resume finds the record and settles the run.
+    const written = await this.#dependencies.rubricStore.putRecord(input.bookId, scored.value);
+    if (!written.ok) return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `${written.error.code}:${written.error.message}`);
+    const finishedAt = safeNow(this.#dependencies.clock);
+    if (finishedAt.ok) {
+      await this.#dependencies.runStore.finishRun({
+        bookId: input.bookId,
+        runId: rubricRunId,
+        status: "COMPLETED",
+        finishedAt: finishedAt.value,
+      });
+    }
+    return { ok: true, value: Object.freeze({ record: written.value, replayed: false }) };
+  }
+
   async run(input: BookRunApplicationRequest): Promise<Result<BookRunApplicationResult>> {
     if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(input.bookId) || !input.title.trim() || !input.author.trim() || !input.sourceGitSha.trim()) {
       return failed("BOOK_RUN_INPUT_INVALID", "bookId, title, author, and sourceGitSha are required");
@@ -1607,11 +1964,18 @@ export class BookRunApplicationService {
     let reviewRepairCap: number;
     let qcJudgeBudget: number;
     let operatorCompileRetryCap: number;
+    let rubricBudget: number;
+    let rubricBar: number;
     try {
       qcRepairBudget = resolveQcRepairRuns();
       reviewRepairCap = resolveReviewRepairRounds();
       qcJudgeBudget = resolveQcJudgeRuns();
       operatorCompileRetryCap = resolveOperatorCompileRetries();
+      rubricBudget = resolveRubricRuns();
+      // R-080 — the promotion bar is resolved HERE with every other dial, not at
+      // the gate: an out-of-range --rubric-bar must cost nothing, and a mid-run
+      // env change must not move the bar under a panel that already ran.
+      rubricBar = resolveRubricBar(input.rubricBar);
     } catch (cause) {
       return failed("BOOK_RUN_INPUT_INVALID", (cause as Error).message);
     }
@@ -2414,6 +2778,56 @@ export class BookRunApplicationService {
       if (!repairSkipped.ok) return repairSkipped;
     }
 
+    // ── THE WHOLE-BOOK CATALOG-RUBRIC GATE (R-080) ──────────────────────────
+    //
+    // Placed here, after a fresh QC PASS and before ANY promotion branch, and
+    // gating BOTH outcomes — the local promotion AND the `--no-promote` READY
+    // result. Gating only the promoting branch would let a book the owner's own
+    // ruler rejects be reported READY and then promoted by `promote-book`,
+    // which is a different route and never consults this panel: the same
+    // fail-open R-229 describes one layer up.
+    //
+    // ADDITIVE, never a replacement. Everything before this point still
+    // decides what it decided — AUTHOR_CHAPTER_BAR stays 70 and the per-chapter
+    // panel is still the floor (R-144, R-147). This is the ceiling.
+    const rubricStarted = await this.#event(runId, input.bookId, "rubric", "STARTED", `bar=${rubricBar}`, identity(candidate));
+    if (!rubricStarted.ok) return rubricStarted;
+    const scored = await this.#runCatalogRubric(input, candidate, rubricBudget);
+    if (!scored.ok) {
+      await this.#event(runId, input.bookId, "rubric", "FAILED", scored.error.message, identity(candidate));
+      return scored;
+    }
+    const rubricAggregate = aggregateCatalogRubric(scored.value.record.readers);
+    const rubricVerdict = judgeCatalogRubric(rubricAggregate, rubricBar);
+    const rubricEvidence = rubricEvidenceOf(scored.value.record, rubricAggregate, rubricVerdict, scored.value.replayed);
+    const rubricScorecard = renderCatalogRubricScorecard({
+      title: input.title,
+      chapterLabels: scored.value.record.sampledChapterNumbers.map((number) => String(number)),
+      readers: scored.value.record.readers,
+      aggregate: rubricAggregate,
+      verdict: rubricVerdict,
+    });
+    // The scorecard is printed on EVERY path, pass or fail, and on a replay too:
+    // reading it costs nothing and it is the operator's only view of why the
+    // book was or was not promotable. A failing run that printed nothing would
+    // leave the reason inside a JSON file nobody was told about.
+    console.log(rubricScorecard);
+    if (!rubricVerdict.promotable) {
+      const message = rubricVerdict.message ?? "catalog-rubric verdict is not promotable";
+      await this.#event(runId, input.bookId, "rubric", "FAILED", `${rubricVerdict.failureCode};${message}`, identity(candidate));
+      return failed(rubricVerdict.failureCode ?? "RUBRIC_BELOW_BAR", message);
+    }
+    const rubricCompleted = await this.#event(
+      runId,
+      input.bookId,
+      "rubric",
+      "COMPLETED",
+      `composite=${rubricAggregate.composite.toFixed(1)};bar=${rubricBar};gate=${rubricAggregate.gate}`
+      + `;churn=${rubricAggregate.churn};replayed=${scored.value.replayed}`,
+      identity(candidate),
+    );
+    if (!rubricCompleted.ok) return rubricCompleted;
+
     if (!input.promoteLocal) {
       const skipped = await this.#event(runId, input.bookId, "promotion", "SKIPPED", "promoteLocal=false", identity(candidate));
       if (!skipped.ok) return skipped;
@@ -2426,6 +2840,8 @@ export class BookRunApplicationService {
           candidate: identity(candidate),
           reviewId: review.value.reviewId,
           qcRoundId: roundId,
+          rubric: rubricEvidence,
+          rubricScorecard,
         },
       };
     }
@@ -2475,6 +2891,8 @@ export class BookRunApplicationService {
           qcRoundId: roundId,
           bookRevision: livePointer.value.revision,
           readback: "VERIFIED",
+          rubric: rubricEvidence,
+          rubricScorecard,
           // The resumed pointer is the SAME local-only promotion: it moved the
           // pointer and produced no reader package either.
           readerPackage: "NOT_PRODUCED",
@@ -2558,6 +2976,8 @@ export class BookRunApplicationService {
         qcRoundId: roundId,
         bookRevision: promoted.value.bookRevision,
         readback: "VERIFIED",
+        rubric: rubricEvidence,
+        rubricScorecard,
         // --promote-local advanced the local V25 pointer and stopped there. No
         // book-packages/<bookId>.v21.json and no production-manifest sidecar
         // exist, so publish-final has nothing to verify and register-web has
