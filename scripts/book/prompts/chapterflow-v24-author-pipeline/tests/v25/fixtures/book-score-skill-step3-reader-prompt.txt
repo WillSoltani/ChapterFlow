@@ -1,0 +1,85 @@
+You are reader #«N» (independent, skeptical, calibrated) on a content-quality panel scoring 4 chapters
+of the AI-generated learning book "«TITLE»" by «AUTHOR». «ONE-LINE REGISTER HINT — the source author's
+voice, so Tone is judged on fidelity to it, not on being chatty; for a dense/technical book say so and
+tell the reader not to over-penalize density as tone.»
+
+BOOK PACKAGE: «PKG»
+EVALUATE the chapters at 0-based indices [«SEEDED_IDXS»]. Extract ONLY those (file is large):
+  python3 -c "import json; d=json.load(open('«PKG»')); [print('=== idx',i,'===',json.dumps(d['chapters'][i])) for i in [«SEEDED_IDXS»]]"
+For each read: hook, counterintuition, breakdown.{fastRead,deepRead,fullRead},
+examples[].{scenario,whatToDo,whyItMatters}, quiz.questions[].{prompt,choices,correctIndex,explanation},
+reviewCards, implementationPlan, memorableLines.
+
+CORRECTNESS GATE (any hit => gate_verdict=FAIL, quote it verbatim):
+ - Quiz-key soundness: derive each answer BLIND from the prose, compare to correctIndex; flag any
+   mismatch, explanation-contradicts-key, or a key that contradicts the chapter's OWN stated rule/
+   guardrail. (For technical books, the keyed answer must be factually correct.)
+ - Prose & example coherence: no templated loops, mid-sentence cutoffs, word-salad seams, scaffold-token
+   leaks (internal "Fact N"/source-numbering or undefined companion-resource labels bleeding into reader-
+   facing text), concept-label-as-subject.
+ - Factual accuracy: named frameworks/studies/cases/companies complete & correctly named, not fabricated
+   or distorted. Two error classes that HAVE shipped past gates — check them explicitly:
+   (1) DATE-AS-EVENT: the source's publication year used as the date of an event inside an anecdote
+   (e.g. a story placed "in 2017" when the person left that role in 2008 and 2017 is just when the
+   book came out); (2) NAME DRIFT: institutions/people slightly wrong ("University of South Wales"
+   vs "New South Wales"). If you suspect a named resource/study/figure/date is wrong or fabricated,
+   SAY SO with the verbatim quote — do not assert it is real unless you actually know; the
+   orchestrator will verify.
+ - Implied-real fabrication: an example narrated as if it really happened, with specifics no source
+   could ground — must be explicitly hypothetical, or it's a FAIL.
+ - Grounded numbers: every statistic traces to a source or is plainly illustrative — flag invented precision.
+ - Evidence integrity: no first-name/initial-only testimonial worn as proof.
+ - Invented witness ("Piper move"): a fictional character cast as a SUBJECT inside a real named study/case.
+ - Contested-science hedging: contested/failed claims hedged, not stated as settled law.
+If clean: gate_verdict=PASS, gate_failures="none". Only FAIL on a concrete, quotable violation.
+
+APPARATUS LEAKAGE (defect-class, NOT a gate fail — report in apparatus_quotes, verbatim):
+source-machinery narrated to the reader: page/chapter citations in prose ("on Ch. 6 p. 138");
+the book's own structure narrated ("the official guide puts Results in Part 2"); quiz questions or
+cards that reward knowing the SOURCE's layout/apparatus instead of the idea; spec-narration
+sentences (prose that narrates its own writing constraints: "The outcome is not claimed here",
+"...is the only hard detail"). If none: apparatus_quotes="none".
+
+Score these TEN factors, each 0-100, as the MEAN across the 4 chapters. Use the FULL range
+(90+ standout, 80-89 strong, 70-79 solid, 60-69 mediocre, <60 weak; most AI content lands 70-85):
+ - retention: remembered a week later? portable compact memorable lines, review-card backs reworded
+   (not pasted), one-idea-per-card, sticky framing.
+ - quizzes: keys sound; distractors plausible real misconceptions (not gameable by length/junk absolutes,
+   not one repeated distractor MOLD across questions); test application vs bare recall; explanations
+   say WHY wrong answers are wrong.
+ - transfer (lens>tactic): a reusable way of SEEING a class of situations (names the mechanism,
+   generalizes across domains) vs a one-off trick.
+ - practical: if-then plans imperative/specific/varied (not the same numeric micro-action stamped
+   everywhere); 24h challenge + weekly practice concrete & realistic & doable; not performative theater.
+ - summaries: fast/deep/full progressively deepen (each tier ADDS, no paste-duplication), distilled,
+   fast-read alone leaves the core idea.
+ - tone: register fit to «AUTHOR»'s voice; NON-GENERIC (not interchangeable AI-narrator); warm without
+   condescension; no aphorism-stacking.
+ - limits: teaches when the idea does NOT apply / its failure mode / counter-cases?
+ - insight: non-obvious (reverses a default); counterintuition strength; concreteness/narrative voltage
+   (real specific cases vs hollow proxy characters); outcome variety.
+ - density: each paragraph earns its place with new info; penalize restatement/padding.
+ - beginner: a newcomer with ZERO background can follow; terms defined on first use; core examples/math
+   TAUGHT not assumed; gentle on-ramp; not a dense unintroduced named cast.
+
+TEXTURE-SAMENESS AXES — judge each LOW/MED/HIGH across your 4 chapters (HIGH = 3+ chapters share it):
+ - scene_skeleton: one dramatic shape reused (e.g. "a miss has already happened, a character traces it
+   to a skipped framework step, applies the tool, small win") — HIGH if the same skeleton carries
+   most chapters even when surface details differ.
+ - repeated_unit: a recurring structural shell (numerical self-audit, the same checklist walk,
+   identical example arc) stamped across chapters.
+ - prop_stamp: the same concrete prop/location detail recycled as texture (a cold mug of coffee,
+   a calendar block, the same kind of meeting room).
+ - proxy_cast: generic role-named stand-ins ("a manager", "an analyst") crowding out real named
+   humans from the source — HIGH if whole chapters have ZERO named real people.
+Also judge book3_churn (would a reader of 3 books in this library feel they're re-reading the same
+book — one house voice + one skeleton): LOW/MED/HIGH.
+
+RETURN exactly this JSON (and nothing else):
+{"reader":«N»,"gate_verdict":"PASS|FAIL","gate_failures":"<verbatim or none>",
+"retention":0,"quizzes":0,"transfer":0,"practical":0,"summaries":0,"tone":0,"limits":0,
+"insight":0,"density":0,"beginner":0,"book3_churn":"LOW|MED|HIGH",
+"scene_skeleton":"LOW|MED|HIGH","repeated_unit":"LOW|MED|HIGH","prop_stamp":"LOW|MED|HIGH",
+"proxy_cast":"LOW|MED|HIGH","apparatus_quotes":"<verbatim leaks or none>",
+"texture_note":"<1 line: the dominant repeated shape, if any>",
+"note":"<1-2 lines: strongest + weakest>"}

@@ -7,6 +7,10 @@
  */
 
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
+import { readFileSync } from "node:fs";
+import { dirname, resolve } from "node:path";
+import { fileURLToPath } from "node:url";
 
 import { REVIEW_FACTORS, type ReviewFactor } from "../../src/artifacts/artifactTypes.js";
 import { REVIEW_WEIGHTS } from "../../src/review/readerReview.js";
@@ -21,14 +25,18 @@ import {
   buildRegisterHint,
   catalogRubricTier,
   judgeCatalogRubric,
+  CATALOG_RUBRIC_TEXTURE_AXES,
   medianOf,
-  modeOf,
+  medianSeverity,
+  roundHalfToEven,
   parseCatalogRubricReaderJson,
   renderCatalogRubricScorecard,
   resolveRubricBar,
   selectRubricChapterIndexes,
   selectSeededChapterIndexes,
   type CatalogRubricReaderResultV1,
+  type CatalogRubricSeverity,
+  type CatalogRubricTextureAxis,
 } from "../../src/review/catalogRubric.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
@@ -45,7 +53,10 @@ function reader(
   overrides: Partial<Record<ReviewFactor, number>> & {
     gate?: "PASS" | "FAIL";
     gateFailures?: string;
-    churn?: "LOW" | "MED" | "HIGH";
+    churn?: CatalogRubricSeverity;
+    texture?: CatalogRubricSeverity;
+    textureAxes?: Partial<Record<CatalogRubricTextureAxis, CatalogRubricSeverity>>;
+    apparatusQuotes?: string;
     base?: number;
   } = {},
 ): CatalogRubricReaderResultV1 {
@@ -53,12 +64,18 @@ function reader(
   const scores = Object.fromEntries(
     REVIEW_FACTORS.map((factor) => [factor, overrides[factor] ?? base]),
   ) as Record<ReviewFactor, number>;
+  const texture = Object.fromEntries(
+    CATALOG_RUBRIC_TEXTURE_AXES.map((axis) => [axis, overrides.textureAxes?.[axis] ?? overrides.texture ?? "LOW"]),
+  ) as Record<CatalogRubricTextureAxis, CatalogRubricSeverity>;
   return {
     reader: number,
     gateVerdict: overrides.gate ?? "PASS",
     gateFailures: overrides.gateFailures ?? "none",
     scores,
     churn: overrides.churn ?? "LOW",
+    texture,
+    apparatusQuotes: overrides.apparatusQuotes ?? "none",
+    textureNote: `reader ${number} texture note`,
     note: `reader ${number} note`,
   };
 }
@@ -105,12 +122,27 @@ requiredTest("the reader block is strictly assembled — nothing is defaulted or
     reader: 2, gate_verdict: "PASS", gate_failures: "none",
     retention: 80, quizzes: 78, transfer: 81, practical: 77, summaries: 84,
     tone: 71, limits: 66, insight: 79, density: 74, beginner: 83,
-    book3_churn: "MED", note: "strongest summaries; weakest limits",
+    book3_churn: "MED",
+    scene_skeleton: "LOW", repeated_unit: "MED", prop_stamp: "LOW", proxy_cast: "HIGH",
+    apparatus_quotes: "none", texture_note: "no dominant repeated shape",
+    note: "strongest summaries; weakest limits",
   };
   const assembled = assembleCatalogRubricReader(clean, 2);
   assert.equal(assembled.gateVerdict, "PASS");
   assert.equal(assembled.scores.limits, 66);
   assert.equal(assembled.churn, "MED");
+  assert.equal(assembled.texture.proxy_cast, "HIGH");
+  assert.equal(assembled.apparatusQuotes, "none");
+
+  // Every field the v2 template declares is REQUIRED — a reader that answers
+  // only the old shape is refused, never back-filled with a benign default.
+  const { proxy_cast: _proxy, ...noTexture } = clean;
+  assert.throws(() => assembleCatalogRubricReader(noTexture, 2), /"proxy_cast" must be LOW, MED or HIGH/);
+  const { apparatus_quotes: _apparatus, ...noApparatus } = clean;
+  assert.throws(() => assembleCatalogRubricReader(noApparatus, 2), /"apparatus_quotes" must be a non-empty string/);
+  const { texture_note: _textureNote, ...noTextureNote } = clean;
+  assert.throws(() => assembleCatalogRubricReader(noTextureNote, 2), /"texture_note" must be a non-empty string/);
+  assert.throws(() => assembleCatalogRubricReader({ ...clean, scene_skeleton: "low" }, 2), /"scene_skeleton" must be/);
 
   // Wrong reader number: the seat identity is part of the contract.
   assert.throws(() => assembleCatalogRubricReader(clean, 3), CatalogRubricReaderError);
@@ -143,9 +175,6 @@ requiredTest("reader JSON is recovered from a prose-prefixed response", () => {
 requiredTest("medians, composite, tier and the high-quality badge match compose.py's arithmetic", () => {
   assert.equal(medianOf([70, 90, 80]), 80);
   assert.equal(medianOf([70, 80]), 75);
-  assert.equal(modeOf(["LOW", "MED", "LOW"]), "LOW");
-  // statistics.mode ties break by FIRST occurrence.
-  assert.equal(modeOf(["MED", "LOW", "HIGH"]), "MED");
   assert.equal(catalogRubricTier(90), "premium (90+)");
   assert.equal(catalogRubricTier(80), "strong/ships (80-90)");
   assert.equal(catalogRubricTier(79.9), "solid draft (70-80)");
@@ -168,6 +197,61 @@ requiredTest("medians, composite, tier and the high-quality badge match compose.
   ]);
   assert.equal(churned.churn, "HIGH");
   assert.equal(churned.highQuality, false);
+});
+
+requiredTest("churn and the texture axes use compose.py's SEVERITY MEDIAN, not a mode", () => {
+  // compose.py: SEV_LBL[round(statistics.median([SEV.get(c, 1) for c in churns]))]
+  assert.equal(medianSeverity(["LOW", "MED", "LOW"]), "LOW");
+  assert.equal(medianSeverity(["HIGH", "HIGH", "MED"]), "HIGH");
+  // THE ORDER-DEPENDENCE A MODE WOULD INTRODUCE. A 1/1/1 split is MED whichever
+  // seat held which opinion; a mode would answer HIGH, LOW and MED for these
+  // three orderings and decide promotion on seat order.
+  assert.equal(medianSeverity(["HIGH", "LOW", "MED"]), "MED");
+  assert.equal(medianSeverity(["LOW", "MED", "HIGH"]), "MED");
+  assert.equal(medianSeverity(["MED", "HIGH", "LOW"]), "MED");
+  // Python's round() is half-to-EVEN, which matters only for an even panel.
+  assert.equal(roundHalfToEven(0.5), 0);
+  assert.equal(roundHalfToEven(1.5), 2);
+  assert.equal(roundHalfToEven(2.5), 2);
+  assert.equal(medianSeverity(["LOW", "MED"]), "LOW", "median 0.5 rounds to even → LOW");
+  assert.equal(medianSeverity(["MED", "HIGH"]), "HIGH", "median 1.5 rounds to even → HIGH");
+
+  // The same rule aggregates every texture axis, and the aggregate carries them.
+  const aggregate = aggregateCatalogRubric([
+    reader(1, { churn: "HIGH", textureAxes: { proxy_cast: "HIGH", scene_skeleton: "MED" } }),
+    reader(2, { churn: "LOW", textureAxes: { proxy_cast: "HIGH", scene_skeleton: "LOW" } }),
+    reader(3, { churn: "MED", textureAxes: { proxy_cast: "MED", scene_skeleton: "LOW" } }),
+  ]);
+  assert.equal(aggregate.churn, "MED");
+  assert.equal(aggregate.texture.proxy_cast, "HIGH");
+  assert.equal(aggregate.texture.scene_skeleton, "LOW");
+  assert.equal(aggregate.texture.prop_stamp, "LOW");
+  assert.deepEqual([...aggregate.textureHigh], ["proxy_cast"]);
+  // A 1/1/1 churn split is promotable at MED — with a mode it would have been
+  // refused as HIGH purely because reader 1 spoke first.
+  assert.equal(judgeCatalogRubric(aggregate, 80).promotable, true);
+});
+
+requiredTest("apparatus leaks are collected as a defect class and never gate the book", () => {
+  const aggregate = aggregateCatalogRubric([
+    reader(1, { base: 88, apparatusQuotes: "\"the official guide puts Results in Part 2\"" }),
+    reader(2, { base: 88, apparatusQuotes: "none" }),
+    reader(3, { base: 88, apparatusQuotes: "NONE" }),
+  ]);
+  assert.deepEqual(
+    aggregate.apparatusQuotes.map((entry) => entry.reader),
+    [1],
+    "\"none\" answers are dropped exactly as compose.py drops them, case-insensitively",
+  );
+  assert.equal(aggregate.gate, "PASS", "an apparatus leak is a defect class, not a correctness-gate hit");
+  const verdict = judgeCatalogRubric(aggregate, 80);
+  assert.equal(verdict.promotable, true, "the package's promotion rule is gate/composite/floor/churn only");
+  const card = renderCatalogRubricScorecard({
+    title: "T", chapterLabels: ["1"], readers: [reader(1, { base: 88, apparatusQuotes: "x" })], aggregate, verdict,
+  });
+  assert.match(card, /\*\*Apparatus leakage quoted by the panel\*\*/);
+  assert.match(card, /the official guide puts Results in Part 2/);
+  assert.match(card, /\*\*Texture-sameness axes \(panel median\):\*\*/);
 });
 
 requiredTest("a weighted composite uses the weights, not the mean of the factors", () => {
@@ -274,30 +358,77 @@ requiredTest("the bar resolves from the flag, then the env, and fails closed on 
   }
 });
 
-requiredTest("the reader task carries the ported gate list, factor definitions and JSON shape verbatim", () => {
+/**
+ * THE PORT GUARD (blocking finding 1).
+ *
+ * The previous version of this case asserted substrings of the module's OWN
+ * output, which is a tautology: it froze whatever the prompt happened to say and
+ * could not see a criterion that had been dropped. This one holds the built task
+ * against a CHECKED-IN COPY of the skill's step-3 template
+ * (`fixtures/book-score-skill-step3-reader-prompt.txt`, lines 73-157 of
+ * `.claude/skills/book-score/SKILL.md` in the canonical books worktree,
+ * sha256 8c74b696…). Every non-blank template line must appear in the task
+ * VERBATIM unless it is named in ADAPTED_LINES below with a reason — so deleting
+ * a gate criterion, softening a factor definition or dropping a JSON field fails
+ * this test instead of shipping as a "verbatim port".
+ */
+const SKILL_TEMPLATE_PATH = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  "fixtures/book-score-skill-step3-reader-prompt.txt",
+);
+/** Pins the fixture itself: re-copying the block from a DIFFERENT skill revision
+ *  (there are two copies of this skill on disk and they disagree) is then a
+ *  deliberate, reviewable edit rather than a silent instrument swap. */
+const SKILL_TEMPLATE_SHA256 = "dfe721c0d66663b3b699bb47051146562d9de0ad6467b0bedd3849a58d6be9e6";
+
+/** 1-based line numbers in the fixture whose text this port does NOT carry
+ *  verbatim, each with the reason. Nothing else may differ. */
+const ADAPTED_LINES: Readonly<Record<number, string>> = Object.freeze({
+  2: "the «TITLE»/«AUTHOR»/register-hint slot line — filled, and asserted separately below",
+  3: "continuation of the «ONE-LINE REGISTER HINT» slot description",
+  4: "continuation of the «ONE-LINE REGISTER HINT» slot description",
+  6: "BOOK PACKAGE: «PKG» — a candidate is not a released package; the chapters ride inline",
+  7: "the python3 extraction instruction — there is no package file to extract from",
+  8: "the python3 extraction one-liner — same reason",
+  9: "the PACKAGE-FIELD list (hook/counterintuition/breakdown.…) — the readers get the rendered",
+  10: "reader page, whose sections are named differently and which has no counterintuition field",
+  11: "so the port names the document's own sections instead",
+});
+
+requiredTest("the reader task is the skill's step-3 template, line for line, except the declared adaptations", () => {
+  const template = readFileSync(SKILL_TEMPLATE_PATH, "utf8");
+  assert.equal(
+    createHash("sha256").update(template, "utf8").digest("hex"),
+    SKILL_TEMPLATE_SHA256,
+    "the checked-in skill template changed; re-derive the port before re-pinning this hash",
+  );
   const task = buildCatalogRubricReaderTask({
     readerNumber: 2,
     title: "The Autobiography",
     author: "Benjamin Franklin",
-    registerHint: "The source author's register is plainspoken. Judge Tone on fidelity to that voice, not on being chatty; if the register is dense or technical, do not over-penalize density as tone.",
+    registerHint: "The source author's register is plainspoken. Judge Tone on fidelity to that voice.",
+    // FOUR chapters, so the template's own "4 chapters" needs no substitution.
     chapterNumbers: [2, 7, 11, 12],
     totalChapters: 14,
   });
-  assert.match(task, /You are reader #2 \(independent, skeptical, calibrated\) on a content-quality panel scoring 4 chapters/);
+  const missing: string[] = [];
+  template.split("\n").forEach((line, index) => {
+    const lineNumber = index + 1;
+    if (line.trim().length === 0) return;
+    if (ADAPTED_LINES[lineNumber] !== undefined) return;
+    const filled = line.replaceAll("«N»", "2").replaceAll("«AUTHOR»", "Benjamin Franklin");
+    if (!task.includes(filled)) missing.push(`line ${lineNumber}: ${filled}`);
+  });
+  assert.deepEqual(missing, [], `the port dropped or reworded skill lines:\n${missing.join("\n")}`);
+
+  // The adapted header still says what the skill's header says, with the slots filled.
   assert.match(task, /of the AI-generated learning book "The Autobiography" by Benjamin Franklin\./);
-  assert.match(task, /They are chapters 2, 7, 11, 12 of 14/);
-  assert.match(task, /CORRECTNESS GATE \(any hit => gate_verdict=FAIL, quote it verbatim\):/);
-  assert.match(task, /Invented witness \("Piper move"\): a fictional character cast as a SUBJECT inside a real named study\/case\./);
-  assert.match(task, /Score these TEN factors, each 0-100, as the MEAN across the 4 chapters\./);
-  assert.match(task, /register fit to Benjamin Franklin's voice; NON-GENERIC \(not interchangeable AI-narrator\)/);
-  assert.match(task, /Also judge book3_churn \(one-house-voice sameness across chapters\): LOW\/MED\/HIGH\./);
-  assert.match(task, /RETURN exactly this JSON \(and nothing else\):/);
-  assert.match(task, /"book3_churn":"LOW\|MED\|HIGH"/);
-  // Every scored factor is named in the definitions block.
-  for (const factor of REVIEW_FACTORS) assert.match(task, new RegExp(`\\n - ${factor}( \\(lens>tactic\\))?: `));
+  assert.match(task, /The source author's register is plainspoken\./);
   // The mechanism the pipeline does NOT have must not be instructed.
   assert.equal(task.includes("python3 -c"), false);
   assert.equal(task.includes("book-packages/"), false);
+  // Every scored factor is named in the definitions block.
+  for (const factor of REVIEW_FACTORS) assert.match(task, new RegExp(`\\n - ${factor}( \\(lens>tactic\\))?: `));
 });
 
 requiredTest("the register hint prefers the run's own voice card and never forwards content lines", () => {

@@ -21,32 +21,66 @@
  * is uniformly mediocre — every chapter clears the floor and the book is still
  * not one the owner would ship (R-147).
  *
- * INSTRUMENT PROVENANCE. The reader prompt below is ported from the book-score
- * skill (`.claude/skills/book-score/SKILL.md` step 3) and the aggregation from
- * `compose.py`. The parts the port keeps VERBATIM are the ones that decide a
- * score: the correctness-gate list, the ten factor definitions, the churn
- * question and the JSON return shape, plus the title/author/register-hint
- * header. Two things are deliberately NOT verbatim, because they describe a
- * mechanism this pipeline does not have, and both are recorded rather than
- * silently reworded:
+ * INSTRUMENT PROVENANCE, and WHICH copy of the skill.
  *
- *   1. The skill tells the reader to extract chapters from a
- *      `book-packages/<id>.v21.json` file with a `python3 -c` one-liner. There
- *      is no such file here — a candidate is not a released package — so the
- *      chapters ride INLINE as untrusted source data beside the task, exactly
- *      as the per-chapter seats already receive their chapter.
- *   2. The skill's "For each read: hook, counterintuition, breakdown.{…}" line
- *      names PACKAGE FIELDS. The document these readers get is the rendered
+ * There are TWO copies of the book-score skill on this machine and they are not
+ * the same instrument: `~/ChapterFlow/.claude/skills/book-score/` (137-line
+ * SKILL.md, sha256 73988eed…) and `~/ChapterFlow-books/.claude/skills/book-score/`
+ * (208-line SKILL.md, sha256 8c74b696…, "v2 — CF-I/CF-J-calibrated"). The v2
+ * copy in the CANONICAL books worktree is the one ported here, and it is the
+ * one the catalog was actually scored with: it adds three gate criteria the
+ * older copy lacks (a quiz key that contradicts the chapter's OWN stated rule;
+ * the DATE-AS-EVENT and NAME-DRIFT classes the skill annotates as having
+ * "shipped past gates"; implied-real fabrication), the anti-sameness clauses in
+ * the `quizzes` and `practical` definitions, an apparatus-leakage defect class,
+ * four texture-sameness axes, and a CROSS-LIBRARY churn question. Phase A found
+ * eight source distortions in Franklin of exactly the date/name class, so a port
+ * of the older copy would have been blind to the defect this wave exists to
+ * catch.
+ *
+ * The reader prompt is a LINE-FOR-LINE port of that v2 template's step 3, and
+ * `tests/v25/v4-catalog-rubric.test.ts` proves it against a checked-in copy of
+ * the template rather than against this module's own output. FOUR lines of the
+ * template are adapted, each because it describes a mechanism this pipeline does
+ * not have, and the test names all four:
+ *
+ *   1. `BOOK PACKAGE: «PKG»` and the `python3 -c` extraction one-liner. There is
+ *      no `book-packages/<id>.v21.json` here — a candidate is not a released
+ *      package — so the chapters ride INLINE as untrusted source data beside the
+ *      task, exactly as the per-chapter seats already receive their chapter.
+ *   2. The "For each read: hook, counterintuition, breakdown.{…}" line names
+ *      PACKAGE FIELDS. The document these readers get is the rendered
  *      reader-facing page (`renderChapterReaderDoc`), whose sections are named
  *      differently and which carries no `counterintuition` field at all, so the
  *      line names the document's own sections instead. Telling a reader to read
  *      a field the page does not contain would be an instruction to hallucinate.
+ *   3. The `«TITLE»/«AUTHOR»/«ONE-LINE REGISTER HINT»` slots are filled (that is
+ *      what a slot is for).
+ *   4. The template hard-codes "4 chapters"; this port substitutes the number of
+ *      chapters actually sent, which is four for a sampled book and the whole
+ *      book for one with six chapters or fewer.
  *
  * The WEIGHTS are not ported at all — they are IMPORTED from
  * `readerReview.REVIEW_WEIGHTS`, which is the pipeline's single source of truth
  * for the rubric and already equals `compose.py`'s WEIGHTS. A test asserts that
  * equality against the literal table so a drift on either side is caught rather
  * than discovered in a scorecard.
+ *
+ * AGGREGATION follows `compose.py` (v2): factor MEDIANS, the weighted composite,
+ * the five tier bands, the high-quality badge, and the SEVERITY MEDIAN
+ * (`SEV`/`SEV_LBL`, `round(median(...))`) for churn and for each texture axis.
+ * Not a mode: a mode breaks a 1/1/1 three-way split by reader order, so the same
+ * three opinions would decide promotion differently depending on which seat held
+ * which — and that order-dependent value would land in the released sidecar.
+ *
+ * WHAT IS RECORDED BUT NOT GATED. The four texture axes and the apparatus-leakage
+ * quotes are parsed, medianed, stored and printed, but they do NOT decide
+ * promotion. In `compose.py` they feed only the A-D release classification,
+ * which also needs `score.py`'s whole-book leakage scan (page-cites, opener
+ * saturation, tail/8-gram clones) — a deterministic layer this stage does not
+ * run. Computing a classification from half its inputs would be a fabricated
+ * measurement, so the stage reports the panel's texture evidence and gates on
+ * what the package specifies: gate, composite vs bar, factor floor, churn.
  *
  * ONE DELIBERATE DEVIATION FROM compose.py, and it is a gate deviation.
  * `compose.py` adjudicates the correctness gate as `"PASS" if npass >= nfail`,
@@ -72,8 +106,11 @@ import type { ChapterV21 } from "../types.js";
 
 /** The instrument id stamped on every stored rubric record. Bump when the
  *  prompt, the sampling rule or the aggregation semantics change, so an
- *  instrument change is attributable in evidence instead of silent. */
-export const CATALOG_RUBRIC_INSTRUMENT_VERSION = "catalog-rubric-v1" as const;
+ *  instrument change is attributable in evidence instead of silent. `-v2`
+ *  names the book-score SKILL revision this ports (the CF-I/CF-J-calibrated
+ *  template with the full gate list, the texture axes and the severity-median
+ *  aggregation), not a second version of this file. */
+export const CATALOG_RUBRIC_INSTRUMENT_VERSION = "catalog-rubric-v2" as const;
 
 /** How many independent readers score the book. THREE, matching the book-score
  *  skill and the per-chapter panel: odd, so every factor median is a real
@@ -186,8 +223,10 @@ export function resolveRubricBar(override?: number): number {
  *     return sorted(idxs)
  *
  * Reproduced exactly — same book id, same chapter count, same four 0-based
- * indices — so a rubric score produced here is comparable with every catalog
- * score the skill has ever produced for that book. BigInt because the md5 seed
+ * indices — so this panel reads the SAME pages a catalog run would have read.
+ * That makes the sample comparable; the SCORE is comparable only with catalog
+ * scores produced under the same instrument (the v2 template ported above),
+ * which is what `instrumentVersion` on every stored record is for. BigInt because the md5 seed
  * is a 128-bit integer and Number would lose the low bits that decide the
  * modulus. A test pins the output against `score.py` for a 10-chapter book.
  */
@@ -227,13 +266,40 @@ export function selectRubricChapterIndexes(bookId: string, chapterCount: number)
   return selectSeededChapterIndexes(bookId, chapterCount);
 }
 
-/** One reader's returned block, after strict parsing. */
+/** The skill's three-valued severity scale (`compose.py`'s SEV/SEV_LBL). */
+export type CatalogRubricSeverity = "LOW" | "MED" | "HIGH";
+
+/** The four texture-sameness axes the skill's v2 template asks every reader to
+ *  judge across the chapters it read. Ordered as `compose.py`'s TEXTURE dict. */
+export const CATALOG_RUBRIC_TEXTURE_AXES = Object.freeze([
+  "scene_skeleton", "repeated_unit", "prop_stamp", "proxy_cast",
+] as const);
+
+export type CatalogRubricTextureAxis = (typeof CATALOG_RUBRIC_TEXTURE_AXES)[number];
+
+/** `compose.py`'s TEXTURE labels, byte-identical, for the scorecard line. */
+export const CATALOG_RUBRIC_TEXTURE_LABELS: Readonly<Record<CatalogRubricTextureAxis, string>> = Object.freeze({
+  scene_skeleton: "Scene skeleton (one dramatic shape)",
+  repeated_unit: "Repeated structural unit",
+  prop_stamp: "Prop/location stamping",
+  proxy_cast: "Proxy cast vs named humans",
+});
+
+/** One reader's returned block, after strict parsing. Every field the v2
+ *  template declares is carried: asking a reader for a judgement and then
+ *  discarding it would be spend with no evidence behind it. */
 export type CatalogRubricReaderResultV1 = {
   readonly reader: number;
   readonly gateVerdict: "PASS" | "FAIL";
   readonly gateFailures: string;
   readonly scores: Readonly<Record<ReviewFactor, number>>;
-  readonly churn: "LOW" | "MED" | "HIGH";
+  readonly churn: CatalogRubricSeverity;
+  /** The four texture-sameness axes, LOW/MED/HIGH each. */
+  readonly texture: Readonly<Record<CatalogRubricTextureAxis, CatalogRubricSeverity>>;
+  /** Verbatim apparatus/machinery leaks, or the literal "none". A defect class,
+   *  NOT a gate fail — the template says so explicitly. */
+  readonly apparatusQuotes: string;
+  readonly textureNote: string;
   readonly note: string;
 };
 
@@ -334,6 +400,28 @@ export function assembleCatalogRubricReader(value: unknown, expectedReader: numb
       `catalog-rubric reader ${expectedReader}: "book3_churn" must be LOW, MED or HIGH (got ${JSON.stringify(churn)})`,
     );
   }
+  const texture: Record<string, CatalogRubricSeverity> = {};
+  for (const axis of CATALOG_RUBRIC_TEXTURE_AXES) {
+    const value_ = value[axis];
+    if (value_ !== "LOW" && value_ !== "MED" && value_ !== "HIGH") {
+      throw new CatalogRubricReaderError(
+        `catalog-rubric reader ${expectedReader}: "${axis}" must be LOW, MED or HIGH (got ${JSON.stringify(value_)})`,
+      );
+    }
+    texture[axis] = value_;
+  }
+  const apparatusQuotes = value.apparatus_quotes;
+  if (typeof apparatusQuotes !== "string" || apparatusQuotes.trim().length === 0) {
+    throw new CatalogRubricReaderError(
+      `catalog-rubric reader ${expectedReader}: "apparatus_quotes" must be a non-empty string ("none" when clean)`,
+    );
+  }
+  const textureNote = value.texture_note;
+  if (typeof textureNote !== "string" || textureNote.trim().length === 0) {
+    throw new CatalogRubricReaderError(
+      `catalog-rubric reader ${expectedReader}: "texture_note" must be a non-empty string`,
+    );
+  }
   const note = value.note;
   if (typeof note !== "string" || note.trim().length === 0) {
     throw new CatalogRubricReaderError(`catalog-rubric reader ${expectedReader}: "note" must be a non-empty string`);
@@ -344,6 +432,9 @@ export function assembleCatalogRubricReader(value: unknown, expectedReader: numb
     gateFailures,
     scores: Object.freeze(scores) as Readonly<Record<ReviewFactor, number>>,
     churn,
+    texture: Object.freeze(texture) as Readonly<Record<CatalogRubricTextureAxis, CatalogRubricSeverity>>,
+    apparatusQuotes,
+    textureNote,
     note,
   });
 }
@@ -359,20 +450,37 @@ export function medianOf(values: readonly number[]): number {
   return sorted.length % 2 === 1 ? sorted[middle] : (sorted[middle - 1] + sorted[middle]) / 2;
 }
 
-/** `statistics.mode` semantics: the most common value, ties broken by FIRST
- *  occurrence in reader order — which is what CPython's `Counter.most_common`
- *  does and therefore what `compose.py` produces. */
-export function modeOf<T extends string>(values: readonly T[]): T {
-  if (values.length === 0) throw new Error("modeOf requires a non-empty list");
-  const counts = new Map<T, number>();
-  for (const value of values) counts.set(value, (counts.get(value) ?? 0) + 1);
-  let best = values[0];
-  let bestCount = counts.get(best) ?? 0;
-  for (const value of values) {
-    const count = counts.get(value) ?? 0;
-    if (count > bestCount) { best = value; bestCount = count; }
-  }
-  return best;
+/** `compose.py`'s SEV table: the severity scale churn and every texture axis are
+ *  medianed on. */
+const SEVERITY_RANK: Readonly<Record<CatalogRubricSeverity, number>> = Object.freeze({ LOW: 0, MED: 1, HIGH: 2 });
+const SEVERITY_LABEL: readonly CatalogRubricSeverity[] = Object.freeze(["LOW", "MED", "HIGH"] as const);
+
+/** Python's `round()`: half-to-EVEN, not half-away-from-zero. Only reachable
+ *  with an even reader count (three readers always median to an element), but
+ *  the skill's own note says the panel may be bumped to five — or four — and a
+ *  banker's-rounding mismatch would then silently move a churn call. */
+export function roundHalfToEven(value: number): number {
+  const floor = Math.floor(value);
+  const fraction = value - floor;
+  if (fraction > 0.5) return floor + 1;
+  if (fraction < 0.5) return floor;
+  return floor % 2 === 0 ? floor : floor + 1;
+}
+
+/**
+ * `compose.py`'s severity median:
+ *
+ *     SEV_LBL[round(statistics.median([SEV.get(c, 1) for c in churns]))]
+ *
+ * NOT a mode. A mode breaks a three-way 1/1/1 split by first occurrence, so
+ * LOW/MED/HIGH and HIGH/LOW/MED — the same three opinions, different seats —
+ * would produce different churn calls, a different promotion decision, and a
+ * different value in the durable release sidecar. The median returns MED for
+ * both, which is also what the catalog scorer recorded.
+ */
+export function medianSeverity(values: readonly CatalogRubricSeverity[]): CatalogRubricSeverity {
+  if (values.length === 0) throw new Error("medianSeverity requires a non-empty list");
+  return SEVERITY_LABEL[roundHalfToEven(medianOf(values.map((value) => SEVERITY_RANK[value])))];
 }
 
 /** `compose.py:tier` — the same five bands, byte-identical labels. */
@@ -411,8 +519,17 @@ export type CatalogRubricAggregateV1 = {
   readonly factorMedians: Readonly<Record<ReviewFactor, number>>;
   readonly composite: number;
   readonly tier: string;
-  readonly churn: "LOW" | "MED" | "HIGH";
-  readonly churnVotes: readonly ("LOW" | "MED" | "HIGH")[];
+  readonly churn: CatalogRubricSeverity;
+  readonly churnVotes: readonly CatalogRubricSeverity[];
+  /** Panel median per texture axis (`compose.py:med_sev`). RECORDED, not gated
+   *  — see this module's header for why the A-D classification that consumes
+   *  them is not computed here. */
+  readonly texture: Readonly<Record<CatalogRubricTextureAxis, CatalogRubricSeverity>>;
+  /** Axes whose panel median is HIGH, in the skill's axis order. */
+  readonly textureHigh: readonly CatalogRubricTextureAxis[];
+  /** Apparatus/machinery leaks the readers quoted, "none" answers dropped
+   *  exactly as `compose.py` drops them. A defect class, never a gate fail. */
+  readonly apparatusQuotes: readonly CatalogRubricGateFailure[];
   /** The skill's HIGH-QUALITY BADGE, never the gate: gate PASS, composite ≥85,
    *  no factor <70, retention & quizzes ≥80, churn ≠ HIGH. Reported so a
    *  standout book is visible; promotion never requires it (R-080's own fix
@@ -438,7 +555,14 @@ export function aggregateCatalogRubric(
     (sum, factor) => sum + factorMedians[factor] * CATALOG_RUBRIC_WEIGHTS[factor], 0,
   ) / 100;
   const churnVotes = readers.map((reader) => reader.churn);
-  const churn = modeOf(churnVotes);
+  const churn = medianSeverity(churnVotes);
+  const texture = Object.fromEntries(
+    CATALOG_RUBRIC_TEXTURE_AXES.map((axis) => [axis, medianSeverity(readers.map((reader) => reader.texture[axis]))]),
+  ) as Record<CatalogRubricTextureAxis, CatalogRubricSeverity>;
+  const textureHigh = CATALOG_RUBRIC_TEXTURE_AXES.filter((axis) => texture[axis] === "HIGH");
+  const apparatusQuotes = readers
+    .filter((reader) => reader.apparatusQuotes.trim().toLowerCase() !== "none")
+    .map((reader) => Object.freeze({ reader: reader.reader, quoted: reader.apparatusQuotes }));
   const highQuality = gate === "PASS"
     && composite >= 85
     && REVIEW_FACTORS.every((factor) => factorMedians[factor] >= 70)
@@ -457,6 +581,9 @@ export function aggregateCatalogRubric(
     tier: catalogRubricTier(composite),
     churn,
     churnVotes: Object.freeze(churnVotes),
+    texture: Object.freeze(texture),
+    textureHigh: Object.freeze(textureHigh),
+    apparatusQuotes: Object.freeze(apparatusQuotes),
     highQuality,
   });
 }
@@ -569,14 +696,21 @@ export function formatScore(value: number): string {
 /**
  * The scorecard table, laid out exactly as `compose.py` prints it.
  *
- * Two of `compose.py`'s lines are absent and their absence is deliberate, not a
- * truncation: the **Deterministic** line (Flesch / distractor-tell / transfer /
- * memorable) comes from `score.py`, which reads a RELEASED package this stage
- * does not have, and **Placement** compares against `baseline.json`, a catalog
- * snapshot that is not part of the pipeline. Printing either from nothing would
- * be a fabricated measurement. One line is ADDED — the promotion bar and the
- * verdict this run reached — because unlike the skill, this scorecard is
- * attached to a gate and must say what the gate decided.
+ * THREE of `compose.py`'s lines are absent and their absence is deliberate, not
+ * a truncation: the **Deterministic** line (Flesch / distractor-tell / transfer
+ * / memorable) and the **Apparatus/leakage scan** block both come from
+ * `score.py`, which reads a RELEASED package this stage does not have;
+ * **Placement** compares against `baseline.json`, a catalog snapshot that is not
+ * part of the pipeline; and the **Release classification** (A-D) is not printed
+ * because it is computed from those same missing scan inputs, so a
+ * classification derived from half of them would be a fabricated measurement.
+ * Printing any of the four from nothing would be exactly that.
+ *
+ * TWO lines are ADDED. The promotion bar and the verdict this run reached,
+ * because unlike the skill this scorecard is attached to a gate and must say
+ * what the gate decided; and the panel's quoted apparatus leaks, which
+ * `compose.py` folds silently into the classification — with the classification
+ * gone, quoting them is the only way the operator sees that defect class.
  *
  * The row-status and split-vote MARKERS are ASCII (`!! <75`, `** split vote`)
  * where `compose.py` uses emoji. That is a rendering choice, not a semantic one:
@@ -613,6 +747,16 @@ export function renderCatalogRubricScorecard(input: Readonly<{
     `| **COMPOSITE** | | ${" | ".repeat(readers.length)}**${aggregate.composite.toFixed(1)}** | ${aggregate.tier} |`,
     "",
   );
+  lines.push(
+    "**Texture-sameness axes (panel median):** "
+    + CATALOG_RUBRIC_TEXTURE_AXES.map((axis) => `${CATALOG_RUBRIC_TEXTURE_LABELS[axis]}: **${aggregate.texture[axis]}**`).join(" · "),
+    "",
+  );
+  if (aggregate.apparatusQuotes.length > 0) {
+    lines.push(`**Apparatus leakage quoted by the panel** (defect class, not a gate fail) — ${aggregate.apparatusQuotes.length} reader(s):`);
+    for (const quote of aggregate.apparatusQuotes) lines.push(`  - reader ${quote.reader}: ${quote.quoted}`);
+    lines.push("");
+  }
   if (aggregate.gate !== "PASS") {
     lines.push(`> **CAPPED** — gate ${aggregate.gate}; the composite is advisory until the corruption is fixed.`, "");
   }
@@ -718,15 +862,25 @@ export function renderBookRubricDocument(input: Readonly<{
 // ── The reader task ──────────────────────────────────────────────────────────
 
 /**
- * The catalog-rubric reader prompt.
+ * The catalog-rubric reader prompt — a LINE-FOR-LINE port of
+ * `.claude/skills/book-score/SKILL.md` step 3 (the canonical books-worktree
+ * copy; see this module's header for why there are two).
  *
- * The correctness-gate list, the ten factor definitions, the churn question and
- * the JSON return shape below are a VERBATIM port of
- * `.claude/skills/book-score/SKILL.md` step 3. Do not reword them: a factor
- * definition is the ruler, and a "72" produced under a reworded definition is
- * not the same measurement as a "72" from the catalog. The two adapted lines
- * (chapter delivery, and the field list that named package fields rather than
- * document sections) are documented at the top of this module.
+ * Everything from `CORRECTNESS GATE` to the closing brace of the JSON shape is
+ * the skill's own text: the eight gate criteria (including the two error
+ * classes the skill flags as having SHIPPED PAST GATES — date-as-event and name
+ * drift — and the implied-real fabrication bullet), the apparatus-leakage
+ * defect class, the ten factor definitions with their anti-sameness clauses,
+ * the four texture-sameness axes, the cross-library churn question and every
+ * declared JSON field. Do not reword any of it: a factor definition is the
+ * ruler, and a "72" produced under a reworded definition is not the same
+ * measurement as a "72" from the catalog — and a criterion quietly dropped from
+ * the gate is a defect class this stage becomes blind to.
+ *
+ * `tests/v25/v4-catalog-rubric.test.ts` holds this output against a CHECKED-IN
+ * copy of the template (`tests/v25/fixtures/book-score-skill-step3-reader-prompt.txt`)
+ * line by line and fails on any line that is not carried verbatim, unless that
+ * line is one of the four adaptations named in this module's header.
  */
 export function buildCatalogRubricReaderTask(input: Readonly<{
   readerNumber: number;
@@ -746,29 +900,45 @@ For each read: the Hook, Fast read, Deep read, Full read, Key takeaway, Try this
 
 CORRECTNESS GATE (any hit => gate_verdict=FAIL, quote it verbatim):
  - Quiz-key soundness: derive each answer BLIND from the prose, compare to correctIndex; flag any
-   mismatch or explanation-contradicts-key. (For technical books, the keyed answer must be factually correct.)
+   mismatch, explanation-contradicts-key, or a key that contradicts the chapter's OWN stated rule/
+   guardrail. (For technical books, the keyed answer must be factually correct.)
  - Prose & example coherence: no templated loops, mid-sentence cutoffs, word-salad seams, scaffold-token
    leaks (internal "Fact N"/source-numbering or undefined companion-resource labels bleeding into reader-
    facing text), concept-label-as-subject.
  - Factual accuracy: named frameworks/studies/cases/companies complete & correctly named, not fabricated
-   or distorted. (If you suspect a named resource/study/figure is fabricated, SAY SO with the verbatim
-   quote — do not assert it is real unless you actually know; the orchestrator will verify.)
+   or distorted. Two error classes that HAVE shipped past gates — check them explicitly:
+   (1) DATE-AS-EVENT: the source's publication year used as the date of an event inside an anecdote
+   (e.g. a story placed "in 2017" when the person left that role in 2008 and 2017 is just when the
+   book came out); (2) NAME DRIFT: institutions/people slightly wrong ("University of South Wales"
+   vs "New South Wales"). If you suspect a named resource/study/figure/date is wrong or fabricated,
+   SAY SO with the verbatim quote — do not assert it is real unless you actually know; the
+   orchestrator will verify.
+ - Implied-real fabrication: an example narrated as if it really happened, with specifics no source
+   could ground — must be explicitly hypothetical, or it's a FAIL.
  - Grounded numbers: every statistic traces to a source or is plainly illustrative — flag invented precision.
  - Evidence integrity: no first-name/initial-only testimonial worn as proof.
  - Invented witness ("Piper move"): a fictional character cast as a SUBJECT inside a real named study/case.
  - Contested-science hedging: contested/failed claims hedged, not stated as settled law.
 If clean: gate_verdict=PASS, gate_failures="none". Only FAIL on a concrete, quotable violation.
 
+APPARATUS LEAKAGE (defect-class, NOT a gate fail — report in apparatus_quotes, verbatim):
+source-machinery narrated to the reader: page/chapter citations in prose ("on Ch. 6 p. 138");
+the book's own structure narrated ("the official guide puts Results in Part 2"); quiz questions or
+cards that reward knowing the SOURCE's layout/apparatus instead of the idea; spec-narration
+sentences (prose that narrates its own writing constraints: "The outcome is not claimed here",
+"...is the only hard detail"). If none: apparatus_quotes="none".
+
 Score these TEN factors, each 0-100, as the MEAN across the ${count} chapters. Use the FULL range
 (90+ standout, 80-89 strong, 70-79 solid, 60-69 mediocre, <60 weak; most AI content lands 70-85):
  - retention: remembered a week later? portable compact memorable lines, review-card backs reworded
    (not pasted), one-idea-per-card, sticky framing.
- - quizzes: keys sound; distractors plausible real misconceptions (not gameable by length/junk absolutes);
-   test application vs bare recall; explanations say WHY wrong answers are wrong.
+ - quizzes: keys sound; distractors plausible real misconceptions (not gameable by length/junk absolutes,
+   not one repeated distractor MOLD across questions); test application vs bare recall; explanations
+   say WHY wrong answers are wrong.
  - transfer (lens>tactic): a reusable way of SEEING a class of situations (names the mechanism,
    generalizes across domains) vs a one-off trick.
- - practical: if-then plans imperative/specific/varied; 24h challenge + weekly practice concrete &
-   realistic & doable; not performative theater.
+ - practical: if-then plans imperative/specific/varied (not the same numeric micro-action stamped
+   everywhere); 24h challenge + weekly practice concrete & realistic & doable; not performative theater.
  - summaries: fast/deep/full progressively deepen (each tier ADDS, no paste-duplication), distilled,
    fast-read alone leaves the core idea.
  - tone: register fit to ${input.author}'s voice; NON-GENERIC (not interchangeable AI-narrator); warm without
@@ -779,10 +949,27 @@ Score these TEN factors, each 0-100, as the MEAN across the ${count} chapters. U
  - density: each paragraph earns its place with new info; penalize restatement/padding.
  - beginner: a newcomer with ZERO background can follow; terms defined on first use; core examples/math
    TAUGHT not assumed; gentle on-ramp; not a dense unintroduced named cast.
-Also judge book3_churn (one-house-voice sameness across chapters): LOW/MED/HIGH.
+
+TEXTURE-SAMENESS AXES — judge each LOW/MED/HIGH across your ${count} chapters (HIGH = 3+ chapters share it):
+ - scene_skeleton: one dramatic shape reused (e.g. "a miss has already happened, a character traces it
+   to a skipped framework step, applies the tool, small win") — HIGH if the same skeleton carries
+   most chapters even when surface details differ.
+ - repeated_unit: a recurring structural shell (numerical self-audit, the same checklist walk,
+   identical example arc) stamped across chapters.
+ - prop_stamp: the same concrete prop/location detail recycled as texture (a cold mug of coffee,
+   a calendar block, the same kind of meeting room).
+ - proxy_cast: generic role-named stand-ins ("a manager", "an analyst") crowding out real named
+   humans from the source — HIGH if whole chapters have ZERO named real people.
+Also judge book3_churn (would a reader of 3 books in this library feel they're re-reading the same
+book — one house voice + one skeleton): LOW/MED/HIGH.
 
 RETURN exactly this JSON (and nothing else):
 {"reader":${input.readerNumber},"gate_verdict":"PASS|FAIL","gate_failures":"<verbatim or none>",
 "retention":0,"quizzes":0,"transfer":0,"practical":0,"summaries":0,"tone":0,"limits":0,
-"insight":0,"density":0,"beginner":0,"book3_churn":"LOW|MED|HIGH","note":"<1-2 lines: strongest + weakest>"}`;
+"insight":0,"density":0,"beginner":0,"book3_churn":"LOW|MED|HIGH",
+"scene_skeleton":"LOW|MED|HIGH","repeated_unit":"LOW|MED|HIGH","prop_stamp":"LOW|MED|HIGH",
+"proxy_cast":"LOW|MED|HIGH","apparatus_quotes":"<verbatim leaks or none>",
+"texture_note":"<1 line: the dominant repeated shape, if any>",
+"note":"<1-2 lines: strongest + weakest>"}
+`;
 }
