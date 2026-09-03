@@ -527,15 +527,25 @@ test("BPV13: a content-driven column stuck on one value raises an advisory (the 
     [],
     "the redesigned deal must not trip BPV13 on a healthy book",
   );
-  // Re-create the old rank-pinned card dealer: card slot i teaches rank-i fact in every chapter.
-  const broken = blueprints.map((bp) => {
+  // Re-create the old rank-pinned card dealer EXACTLY: card slot i teaches rank-i fact in every
+  // chapter of the book, so each column is pinned to a single value.
+  const pinned = blueprints.map((bp) => {
     const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
     clone.sections.cards = clone.sections.cards.map((c, i) => ({ ...c, requiredFactIds: [`fact.rank.${i}`] }));
-    // …with one chapter differing, so the column has 2 distinct values and a real cap to exceed.
-    if (clone.chapterNumber === 1) clone.sections.cards[0].requiredFactIds = ["fact.rank.other"];
     return clone;
   });
-  const findings = checkPositionalDeals(broken).filter((f) => f.checkId === "BPV13.content_column_concentration");
-  assert.ok(findings.length > 0, "a rank-pinned card column must raise BPV13");
-  assert.ok(findings.every((f) => f.severity === "advisory"), "BPV13 must never block a run");
+  const pinnedFindings = checkPositionalDeals(pinned).filter((f) => f.checkId === "BPV13.content_column_concentration");
+  assert.equal(pinnedFindings.length, 7, `all seven pinned card columns must raise BPV13; got ${pinnedFindings.length}`);
+  assert.ok(pinnedFindings.every((f) => f.severity === "advisory"), "BPV13 must never block a run");
+  assert.ok(pinnedFindings.every((f) => /pinned to the single value/.test(f.message)), pinnedFindings.map((f) => f.message).join("\n"));
+
+  // And the softer shape: two distinct values, one taking more than an even spread would give.
+  const lopsided = blueprints.map((bp, idx) => {
+    const clone: ChapterBlueprintV1 = JSON.parse(JSON.stringify(bp));
+    clone.sections.cards[0].requiredFactIds = [idx === 0 ? "fact.rare" : "fact.common"];
+    return clone;
+  });
+  const lopsidedFindings = checkPositionalDeals(lopsided).filter((f) => f.checkId === "BPV13.content_column_concentration" && f.path === "/positional/cardFact/0");
+  assert.equal(lopsidedFindings.length, 1, "an 8-of-9 column over 2 observed values must raise BPV13");
+  assert.equal(lopsidedFindings[0].severity, "advisory");
 });

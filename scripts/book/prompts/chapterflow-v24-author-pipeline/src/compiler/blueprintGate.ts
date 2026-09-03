@@ -148,6 +148,19 @@ export function checkPositionalDeals(blueprints: ChapterBlueprintV1[], overrides
         // The old card-cue stride reached exactly 2 values over a whole book (R-125) and the old
         // card fact dealer reached exactly 1 (R-127); both trip this. Advisory, never a blocker.
         const distinct = counts.size;
+        // A column PINNED to one value is the maximal concentration, not an exempt case — it is
+        // R-127's exact shape (card slot i taught rank-i fact in every chapter of the book). Sizing
+        // the cap to the observed variety would divide by 1 and silently pass it, so it is reported
+        // directly. Three chapters is the floor at which "always the same" means anything.
+        if (distinct === 1 && values.length >= 3) {
+          findings.push({
+            checkId: "BPV13.content_column_concentration",
+            severity: "advisory",
+            message: `content-driven deal "${d.poolKey}" slot ${slot}: the column is pinned to the single value "${[...counts.keys()][0]}" across all ${values.length} chapters — this slot teaches or cues the same thing in every chapter of the book`,
+            path: `/positional/${d.poolKey}/${slot}`,
+          });
+          continue;
+        }
         if (distinct <= 1) continue;
         const cap = Math.max(1, Math.ceil(values.length / distinct));
         for (const [value, count] of counts) {
