@@ -1358,6 +1358,8 @@ export function runShipGate(chapter: ChapterV21, options: ShipGateOptions = {}):
     });
   }
 
+  collapseEmDashFindings(findings);
+
   const blockers = findings.filter((f) => f.severity === "blocker");
   const majors = findings.filter((f) => f.severity === "major");
   const minors = findings.filter((f) => f.severity === "minor");
@@ -1406,6 +1408,41 @@ export async function runShipGateFromCandidate(
     sourceSidecar: opened.values[3],
     sourceUsePlan: opened.values[4] as SourceUsePlanV1,
   });
+}
+
+/**
+ * B5 (em dash) fires from `runRegisterChecks`, which runs on EVERY text-bearing
+ * field, so one writer habit produced one blocker per unit: the live Franklin QC
+ * round qc-29d119c59544a5d991c71c7c9fec04bb carried 68 B5 blockers out of 96,
+ * five defect CLASSES rendered as a wall of one. The repair brief then spent its
+ * mandate budget re-stating the same instruction.
+ *
+ * This collapses the chapter's B5 findings into ONE finding that names every
+ * unit it touched, in first-appearance order (a one-unit chapter reports the same
+ * shape, so downstream never has to handle two forms). It is a REPORTING change only:
+ * severity stays `blocker`, and a chapter with one em dash still fails exactly as
+ * before (the count goes 68 -> 1, never 1 -> 0). Mutates `findings` in place at
+ * the first B5 position so the caller's ordering is otherwise untouched.
+ */
+function collapseEmDashFindings(findings: GateFinding[]): void {
+  const b5 = findings.filter((f) => f.catalogId === "B5");
+  if (b5.length === 0) return;
+  const units: string[] = [];
+  for (const f of b5) if (!units.includes(f.unit)) units.push(f.unit);
+  const collapsed: GateFinding = {
+    ...b5[0],
+    message: `em dash present in ${units.length} unit(s): ${units.join(", ")} (use commas, periods, parens, or colons instead); clear every one`,
+  };
+  const first = findings.indexOf(b5[0]);
+  const rest = new Set(b5.slice(1));
+  let write = 0;
+  for (let read = 0; read < findings.length; read += 1) {
+    const f = findings[read];
+    if (rest.has(f)) continue;
+    findings[write] = read === first ? collapsed : f;
+    write += 1;
+  }
+  findings.length = write;
 }
 
 /** Register-level checks that apply to every text-bearing field. */

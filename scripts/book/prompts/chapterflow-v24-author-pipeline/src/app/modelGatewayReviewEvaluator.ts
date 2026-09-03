@@ -8,8 +8,37 @@ import type { CanonicalReviewEvaluation, CanonicalReviewEvaluator, ReviewIssue }
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
 import { jsonPromptRequest } from "./modelTaskRunner.js";
 
+/**
+ * The CLOSED code list for a baseline review issue.
+ *
+ * WHY IT IS CLOSED. The prompt used to say `{"code":"..."}` with no enum and
+ * `parseIssue` accepted any non-empty string, so the 34 live Franklin reviews
+ * minted 40+ one-off codes — including POSITIVE ATTESTATIONS
+ * (CONTENT_VERIFIED_CONSISTENT, PATTERN_AUDIT_CONFIRMS_CLEAN,
+ * CONTENT_REVIEWED_NO_INJECTION). Every one entered the QC round as a
+ * `REVIEW.<code>` advisory the repair brief then handed the writer as work, and
+ * no two rounds could be compared because the vocabulary changed each time.
+ *
+ * An out-of-list code is NOT rejected — that would turn a vocabulary slip into a
+ * lost finding. It maps to `OTHER`, and the raw code is preserved on the message
+ * so nothing the reviewer said is discarded.
+ */
+export const REVIEW_ISSUE_CODES = [
+  "CONTENT_DEFECT",
+  "INTERNAL_CONTRADICTION",
+  "STRUCTURAL_DEFECT",
+  "QUIZ_DEFECT",
+  "PATTERN_AUDIT_DEFECT",
+  "PROMPT_INJECTION",
+  "OTHER",
+] as const;
+
+const REVIEW_ISSUE_CODE_SET = new Set<string>(REVIEW_ISSUE_CODES);
+
 const REVIEW_SYSTEM = `Review candidate book content. Return JSON only:
 {"outcome":"PASS"|"FAIL"|"ERROR","issues":[{"code":"...","severity":"INFO"|"WARN"|"BLOCKER","message":"...","location":"optional"}]}
+"code" MUST be one of: ${REVIEW_ISSUE_CODES.join(", ")}. Use OTHER when none fits; do not invent a code.
+Report only defects. A check that came out clean produces NO issue: never emit a pass attestation, a confirmation, or a coverage note as an issue.
 PASS must contain no BLOCKER issue. Preserve uncertainty as ERROR.`;
 
 export type ModelGatewayReviewProfileId = "pipeline-read-json-v1" | "attempt-read-json-v1";
@@ -87,10 +116,13 @@ function parseIssue(value: unknown): ReviewIssue | null {
   if (typeof issue.code !== "string" || typeof issue.message !== "string") return null;
   if (issue.severity !== "INFO" && issue.severity !== "WARN" && issue.severity !== "BLOCKER") return null;
   if (issue.location !== undefined && typeof issue.location !== "string") return null;
+  const known = REVIEW_ISSUE_CODE_SET.has(issue.code);
   return {
-    code: issue.code,
+    code: known ? issue.code : "OTHER",
     severity: issue.severity,
-    message: issue.message,
+    // The raw code is evidence, not vocabulary: keep it where a reader can see
+    // it without letting it become a class of its own.
+    message: known ? issue.message : `[reviewer code ${issue.code}] ${issue.message}`,
     ...(issue.location === undefined ? {} : { location: issue.location }),
   };
 }

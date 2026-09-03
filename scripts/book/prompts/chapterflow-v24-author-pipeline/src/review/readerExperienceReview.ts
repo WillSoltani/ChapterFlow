@@ -117,7 +117,7 @@ FINAL RESPONSE: emit only the JSON object required by the bound output schema. D
   "weakestEvidence": ["..."],
   "oneParagraphVerdict": "..."
 }
-(quizDerivation arrays are positional with the questions; use "" for a question with no ambiguity. Use empty arrays where there is nothing to report.)`;
+(quizDerivation answers/mechanisms/confidence/ambiguities are positional with the questions and must each carry EXACTLY ONE entry PER QUESTION, in question order; use "" for a question with no ambiguity. A short or empty derivation is rejected. The "tells" list is free-form and may be empty.)`;
 }
 
 // ── parsing (schema-bound raw JSON, with fenced compatibility fallback) ───────
@@ -173,6 +173,11 @@ export type ReaderReviewBindings = {
   readerDocumentSha256: string;
   /** sha256 of the bound JSON output-schema file (supplied by the wiring layer). */
   schemaSha256: string;
+  /** Number of questions in the reviewed chapter's quiz. REQUIRED: the
+   *  positional `quizDerivation` arrays are validated against it, so a seat can
+   *  no longer return an empty or short derivation and pass (R-133). Supplied by
+   *  the runtime from the chapter it rendered; the model never sees it. */
+  quizQuestionCount: number;
 };
 
 export class ReaderExperienceReviewError extends Error {
@@ -200,7 +205,7 @@ export function assembleReaderExperienceReview(
     readerDocumentSha256: bindings.readerDocumentSha256,
     schemaSha256: bindings.schemaSha256,
   } as Record<string, unknown>;
-  const errors = validateReaderExperienceReview(candidate);
+  const errors = validateReaderExperienceReview(candidate, { quizQuestionCount: bindings.quizQuestionCount });
   if (errors.length > 0) {
     throw new ReaderExperienceReviewError(
       `reader-experience review is not schema-valid:\n  ${errors.join("\n  ")}`,
@@ -241,5 +246,6 @@ export async function runReaderExperienceReview(
     chapterContentSha256: args.chapterContentSha256,
     readerDocumentSha256: args.readerDocumentSha256,
     schemaSha256: args.schemaSha256,
+    quizQuestionCount: args.quizQuestionCount,
   });
 }

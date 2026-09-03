@@ -275,6 +275,54 @@ requiredTest("a floor-only failure with no advisory at all admits the silence in
   assert.ok(brief.length <= REPAIR_BRIEF_MAX_CHARS, brief);
 });
 
+/**
+ * R-153 — the advisory tail was a plain top-N: it filled the budget in
+ * provenance order and then said only how many it dropped. Measured on round
+ * qc-9722fb9…, per-chapter advisory text ran 11.4k-14.5k characters against an
+ * 8000-character brief, so roughly half of each chapter's advisories were
+ * dropped — and unlike the blocker list, which guarantees one line per distinct
+ * code and names the remainder by class, the writer was never told which CLASSES
+ * of advisory existed beyond the ones printed.
+ */
+requiredTest("R-153: the advisory tail is coverage-first and names the classes it omitted", () => {
+  // One noisy class that would eat the whole budget in provenance order, plus
+  // four rarer classes that a plain top-N never reaches.
+  const advisories: QcIssue[] = [
+    ...Array.from({ length: 200 }, (_value, index) => advisory(index, "repetition")),
+    { code: "REVIEW.READER.ADVISORY.quiz_cue", severity: "WARN", message: "the longest choice is the key in q4", location: "ch01/seat-1/quiz" },
+    { code: "REVIEW.READER.ADVISORY.pacing", severity: "WARN", message: "the deep read stalls before the decision", location: "ch01/seat-2/deep read" },
+    { code: "REVIEW.READER.ADVISORY.density", severity: "WARN", message: "three paragraphs restate one idea", location: "ch01/seat-0/full read" },
+    { code: "E7.long_sentence", severity: "WARN", message: "12 occurrences in this chapter (advisory)", location: "ch01" },
+  ];
+  const brief = buildRepairBrief({ chapterNumber: 1, blockers: [floorBlocker()], advisories });
+
+  assert.ok(brief.length <= REPAIR_BRIEF_MAX_CHARS, `brief must respect its budget; got ${brief.length}`);
+  // Coverage first: every distinct advisory CODE reaches the writer.
+  for (const code of [
+    "REVIEW.READER.ADVISORY.repetition",
+    "REVIEW.READER.ADVISORY.quiz_cue",
+    "REVIEW.READER.ADVISORY.pacing",
+    "REVIEW.READER.ADVISORY.density",
+    "E7.long_sentence",
+  ]) {
+    assert.ok(brief.includes(`[${code}]`), `every distinct advisory class must survive the bound; missing ${code}\n${brief}`);
+  }
+  // …and the omitted remainder is named by class with counts, not just counted.
+  assert.match(brief, /further advisories/, brief);
+  assert.match(brief, /\d+ REVIEW\.READER\.ADVISORY\.repetition/, brief);
+});
+
+requiredTest("R-153: a small advisory set is still listed in full, with no omission notice", () => {
+  const brief = buildRepairBrief({
+    chapterNumber: 1,
+    blockers: [floorBlocker()],
+    advisories: [factorScores(), advisory(1), advisory(2, "quiz_cue")],
+  });
+  assert.match(brief, /advisory 1:/, brief);
+  assert.match(brief, /advisory 2:/, brief);
+  assert.doesNotMatch(brief, /further advisories/, brief);
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

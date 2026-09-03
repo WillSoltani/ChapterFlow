@@ -8,7 +8,8 @@ import type { ModelTaskContext, Result } from "../contracts/v4Core.js";
 import { runBookGateFromCandidate } from "../critics/bookGate.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH } from "../critics/bookPatternAudit.js";
 import { runChapterGateCompositeFromCandidate } from "../critics/chapterGateComposite.js";
-import { isQcBlockingMajor } from "../critics/majorPolicy.js";
+import type { GateFinding } from "../critics/finalGate.js";
+import { isAdvisoryMajor, isQcBlockingMajor } from "../critics/majorPolicy.js";
 import { judgeQuizKeys, makeLiveAskModel } from "../critics/semantic/quizKeyJudge.js";
 import type { QcEvaluation, QcIssue } from "../qc/qcTypes.js";
 import type { CanonicalReviewResult } from "../review/reviewTypes.js";
@@ -103,6 +104,49 @@ function mappedSeverity(catalogId: string, severity: "blocker" | "major" | "mino
   return severity === "blocker" || (severity === "major" && isQcBlockingMajor(catalogId)) ? "BLOCKER" : "WARN";
 }
 
+/**
+ * Collapse a chapter's repeated ADVISORY-major findings into one entry per
+ * catalog id, carrying the occurrence count and the units it fired on.
+ *
+ * WHY. An advisory major gates nothing by construction (majorPolicy:
+ * ADVISORY_MAJOR_PREFIXES — the FP-prone / reference-firing set), yet it is
+ * emitted once per unit. The live SHIPPING round repair-r7-qc-88b631ed carried
+ * 235 issues of which 101 were E7.long_sentence and 7 E7.dense_headline: 46% of
+ * the round was one non-gating style signal, and it crowded the repair brief's
+ * 8000-character advisory budget out of the findings that could be acted on.
+ *
+ * Blocking findings and minors are untouched, and no advisory is discarded: the
+ * class, its count and its units all survive on the one entry. The collapsed
+ * entry drops its `unit` so the QC issue locates to the chapter it describes.
+ */
+export function aggregateAdvisoryMajorFindings(findings: readonly GateFinding[]): GateFinding[] {
+  const advisory = (finding: GateFinding): boolean => finding.severity === "major" && isAdvisoryMajor(finding.catalogId);
+  const counts = new Map<string, GateFinding[]>();
+  for (const finding of findings) {
+    if (!advisory(finding)) continue;
+    const group = counts.get(finding.catalogId) ?? [];
+    group.push(finding);
+    counts.set(finding.catalogId, group);
+  }
+  const emitted = new Set<string>();
+  const out: GateFinding[] = [];
+  for (const finding of findings) {
+    if (!advisory(finding)) { out.push(finding); continue; }
+    const group = counts.get(finding.catalogId)!;
+    if (group.length === 1) { out.push(finding); continue; }
+    if (emitted.has(finding.catalogId)) continue;
+    emitted.add(finding.catalogId);
+    const units: string[] = [];
+    for (const member of group) if (member.unit && !units.includes(member.unit)) units.push(member.unit);
+    out.push({
+      ...finding,
+      unit: "",
+      message: `${group.length} occurrences in this chapter (advisory: this class does not gate). Units: ${units.join(", ")}. First: ${finding.message}`,
+    });
+  }
+  return out;
+}
+
 function record(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
@@ -189,12 +233,21 @@ export class CandidateQcEvaluator {
 
     const chapters = chapterSet(candidate);
     if (!chapters.ok) return chapters;
-    const qcIssues: QcIssue[] = request.canonicalReview.issues.map((reviewIssue) => issue(
-      `REVIEW.${reviewIssue.code}`,
-      reviewIssue.severity === "BLOCKER" ? "BLOCKER" : "WARN",
-      reviewIssue.message,
-      reviewIssue.location,
-    ));
+    // REVIEW SEVERITY IS PRESERVED, NOT FLATTENED (R-162). Every non-blocking
+    // review issue used to arrive as WARN, so the review lane had no way to emit
+    // a note it did not want acted on: the live INFO pass attestation
+    // CONTENT_REVIEWED_NO_INJECTION reached the repair brief at the same severity
+    // as a real pacing defect. A QC round can only represent WARN and BLOCKER, so
+    // an INFO review issue does not enter it; it stays on the persisted review
+    // record, which is the artifact that owns it.
+    const qcIssues: QcIssue[] = request.canonicalReview.issues
+      .filter((reviewIssue) => reviewIssue.severity !== "INFO")
+      .map((reviewIssue) => issue(
+        `REVIEW.${reviewIssue.code}`,
+        reviewIssue.severity === "BLOCKER" ? "BLOCKER" : "WARN",
+        reviewIssue.message,
+        reviewIssue.location,
+      ));
     const validInputs = new Set<number>();
 
     for (const entry of chapters.value) {
@@ -294,10 +347,33 @@ export class CandidateQcEvaluator {
 
     const attemptState: Record<string, never> = {};
     for (const entry of chapters.value) {
-      if (!validInputs.has(entry.chapter.number)) continue;
       const number = entry.chapter.number;
+      // AN UNGATED CHAPTER IS NAMED, NEVER SILENTLY SKIPPED (R-163). A chapter
+      // whose compiler inputs fail cannot be content-gated, and dropping it here
+      // made the round's finding set an honest description of only the chapters
+      // that happened to compile: the excluded chapter carried its input blocker
+      // and no content finding, which reads as "clean" to anyone counting.
+      // Every path that leaves a chapter out of `validInputs` has already pushed
+      // its own BLOCKER, so this states a consequence and never flips a round.
+      if (!validInputs.has(number)) {
+        qcIssues.push(issue(
+          "CANDIDATE_QC_CHAPTER_NOT_GATED",
+          "BLOCKER",
+          `ch${String(number).padStart(2, "0")} compiler inputs are invalid, so no content gate ran for it: this round carries NO content findings for this chapter`,
+          entry.logicalPath,
+        ));
+        continue;
+      }
       const packet = parseJson(candidate, compilerPath(number, "source-packet.json"));
-      if (!packet.ok) continue;
+      if (!packet.ok) {
+        qcIssues.push(issue(
+          "CANDIDATE_QC_CHAPTER_NOT_GATED",
+          "BLOCKER",
+          `ch${String(number).padStart(2, "0")} source packet became unreadable before the chapter gate ran: ${packet.error.message}`,
+          compilerPath(number, "source-packet.json"),
+        ));
+        continue;
+      }
       const sourceSidecarPath = (packet.value as SourcePacketV1).sourceSidecarPath as string;
       try {
         const report = await runChapterGateCompositeFromCandidate(this.#reader, {
@@ -314,7 +390,7 @@ export class CandidateQcEvaluator {
           gateAttemptState: attemptState,
           persistGateAttemptState: () => {},
         });
-        for (const finding of report.findings) {
+        for (const finding of aggregateAdvisoryMajorFindings(report.findings)) {
           qcIssues.push(issue(
             finding.catalogId,
             mappedSeverity(finding.catalogId, finding.severity),

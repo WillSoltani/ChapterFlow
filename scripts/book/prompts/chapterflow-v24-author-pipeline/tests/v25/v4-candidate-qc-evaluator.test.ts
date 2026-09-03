@@ -18,6 +18,9 @@ import { makeGateCleanChapter } from "../helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 const BOOK = "candidate-qc-book";
+/** The gate-clean fixture chapter's quiz size — the reader panel's derivation
+ *  must cover exactly this many questions (R-133). */
+const QUESTION_COUNT = makeGateCleanChapter("question-count-probe", 1).quiz.questions.length;
 const CANDIDATE = "candidate-qc-1";
 const DIGEST = "candidate-qc-digest";
 const CREATED = "2026-07-21T12:00:00.000Z";
@@ -341,7 +344,15 @@ requiredTest("the reader panel's per-factor diagnosis survives a PASSING review 
   seatScores.transfer = 71;
   const readerOutput = {
     scores: seatScores,
-    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    // One derivation per question (R-133): the reader lane rejects a seat whose
+    // positional derivation does not cover the chapter's quiz.
+    quizDerivation: {
+      answers: Array.from({ length: QUESTION_COUNT }, () => "a"),
+      mechanisms: Array.from({ length: QUESTION_COUNT }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      confidence: Array.from({ length: QUESTION_COUNT }, () => "high"),
+      ambiguities: Array.from({ length: QUESTION_COUNT }, () => ""),
+      tells: [],
+    },
     recommendation: "SHIP",
     blockingFindings: [],
     escalationSignals: [],
@@ -384,6 +395,65 @@ requiredTest("the reader panel's per-factor diagnosis survives a PASSING review 
     evaluated.value.issues.some((entry) => entry.code === "REVIEW.READER.ADVISORY.thin_example" && entry.severity === "WARN"),
     JSON.stringify(evaluated.value.issues),
   );
+});
+
+/**
+ * R-162 — a canonical review below BLOCKER was flattened to WARN entering the QC
+ * round, so the review lane had no way to emit a non-actionable note: an INFO
+ * pass attestation ("CONTENT_REVIEWED_NO_INJECTION") arrived at the same
+ * severity as a real pacing defect and was handed to repair as a task.
+ */
+requiredTest("R-162: review severity is preserved into the QC round; an INFO note is not promoted to WARN", async (context) => {
+  const candidate = buildCandidate(context);
+  const evaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } });
+  const evaluated = await evaluator.run({
+    candidate,
+    canonicalReview: {
+      ...review(),
+      issues: [
+        { code: "CONTENT_REVIEWED_NO_INJECTION", severity: "INFO", message: "no injection found", location: "ch01" },
+        { code: "PACING", severity: "WARN", message: "the deep read stalls before the decision", location: "ch01" },
+      ],
+    },
+    roundId: "round-review-severity",
+  });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  const codes = evaluated.value.issues.map((entry) => entry.code);
+  assert.equal(
+    codes.includes("REVIEW.CONTENT_REVIEWED_NO_INJECTION"),
+    false,
+    `an INFO review note must not enter the QC round as a WARN: ${JSON.stringify(evaluated.value.issues, null, 2)}`,
+  );
+  const warn = evaluated.value.issues.find((entry) => entry.code === "REVIEW.PACING");
+  assert.ok(warn, "a WARN review issue must still reach the round");
+  assert.equal(warn.severity, "WARN");
+});
+
+/**
+ * R-163 — a chapter whose compiler inputs fail was silently excluded from the
+ * chapter-gate composite: the round spent an ordinal and returned a finding set
+ * that described only the chapters that happened to compile, with nothing saying
+ * the others were never gated.
+ */
+requiredTest("R-163: a chapter whose compiler inputs fail is reported as ungated, not silently skipped", async (context) => {
+  const candidate = buildCandidate(context, (files) => files.map((file) => file.logicalPath === "compiler/ch01/blueprint.json"
+    ? jsonFile(file.logicalPath, { schemaVersion: "chapter-blueprint-v1" })
+    : file));
+  const evaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } });
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-ungated-chapter" });
+  assert.ok(evaluated.ok);
+  assert.equal(evaluated.value.outcome, "FAIL");
+  const ungated = evaluated.value.issues.filter((entry) => entry.code === "CANDIDATE_QC_CHAPTER_NOT_GATED");
+  assert.equal(ungated.length, 1, `the excluded chapter must be named: ${JSON.stringify(evaluated.value.issues, null, 2)}`);
+  assert.equal(ungated[0].severity, "BLOCKER");
+  assert.match(ungated[0].message, /ch01/);
+
+  // A candidate whose inputs are all valid says nothing of the kind.
+  const clean = buildCandidate(context);
+  const cleanEvaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: clean }; } });
+  const cleanRound = await cleanEvaluator.run({ candidate: clean, canonicalReview: review(), roundId: "round-all-gated" });
+  assert.ok(cleanRound.ok);
+  assert.equal(cleanRound.value.issues.some((entry) => entry.code === "CANDIDATE_QC_CHAPTER_NOT_GATED"), false);
 });
 
 finishV25Tests().catch((error: unknown) => {

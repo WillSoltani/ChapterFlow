@@ -178,28 +178,47 @@ export interface BoundedBlockers {
  * already a BLOCKER, so severity carries no signal inside this set.
  */
 export function boundedRepairBlockers(blockers: readonly QcIssue[]): BoundedBlockers {
-  const shown: QcIssue[] = [];
+  return coverageFirstSelection(blockers, REPAIR_BRIEF_BLOCKER_MAX_CHARS, { coverageMayOverflow: true });
+}
+
+/**
+ * The coverage-first bound, shared by the MANDATE and the ADVISORY sections.
+ *
+ * `coverageMayOverflow` is the one difference between the two callers, and it is
+ * a deliberate asymmetry: losing a BLOCKER class outright is worse than an
+ * over-long mandate, so the blocker coverage pass admits one line per code even
+ * past its budget. The advisory tail shares the brief's single hard character
+ * budget with everything above it, so its coverage pass stops at the budget —
+ * and the omission notice then names the classes it could not reach, which is
+ * the property that was missing entirely (R-153).
+ */
+function coverageFirstSelection(
+  issues: readonly QcIssue[],
+  budget: number,
+  options: Readonly<{ coverageMayOverflow: boolean }>,
+): BoundedBlockers {
   const taken = new Set<QcIssue>();
   const seenCodes = new Set<string>();
-  for (const issue of blockers) {
+  let used = 0;
+  for (const issue of issues) {
     if (seenCodes.has(issue.code)) continue;
     seenCodes.add(issue.code);
-    shown.push(issue);
+    const line = bullet(issue).length + 1;
+    if (!options.coverageMayOverflow && used + line > budget) continue;
     taken.add(issue);
+    used += line;
   }
-  let used = shown.reduce((total, issue) => total + bullet(issue).length + 1, 0);
-  for (const issue of blockers) {
+  for (const issue of issues) {
     if (taken.has(issue)) continue;
-    const line = bullet(issue);
-    if (used + line.length + 1 > REPAIR_BRIEF_BLOCKER_MAX_CHARS) continue;
-    shown.push(issue);
+    const line = bullet(issue).length + 1;
+    if (used + line > budget) continue;
     taken.add(issue);
-    used += line.length + 1;
+    used += line;
   }
   // Re-emit in the caller's provenance order: the coverage pass reorders, and the
   // caller owns provenance order (this module owns framing, not sequence).
-  const listed = blockers.filter((issue) => taken.has(issue));
-  const omitted = blockers.filter((issue) => !taken.has(issue));
+  const listed = issues.filter((issue) => taken.has(issue));
+  const omitted = issues.filter((issue) => !taken.has(issue));
   return { listed, omitted };
 }
 
@@ -313,19 +332,20 @@ export function buildRepairBrief(input: RepairBriefInput): string {
   }
 
   lines.push(`## ADVISORIES CLUSTERED ON THIS CHAPTER (${advisories.length}) — diagnosis, not mandates`);
-  let used = lines.join("\n").length;
-  let shown = 0;
-  for (const issue of advisories) {
-    const text = bullet(issue);
-    if (used + text.length + 1 + OMISSION_NOTICE_RESERVE > REPAIR_BRIEF_MAX_CHARS) break;
-    lines.push(text);
-    used += text.length + 1;
-    shown += 1;
-  }
-  if (shown < advisories.length) {
+  // COVERAGE FIRST, exactly as the mandate above (R-153). The old tail was a
+  // plain top-N in provenance order, so on the live rounds (11.4k-14.5k
+  // characters of advisory against an 8000-character brief) roughly half of each
+  // chapter's advisories were dropped, and the writer was told only HOW MANY —
+  // never which classes existed beyond the printed ones. One line per distinct
+  // code goes in first, the remainder fills the budget, and the notice names the
+  // omitted classes by code with counts.
+  const remaining = REPAIR_BRIEF_MAX_CHARS - lines.join("\n").length - OMISSION_NOTICE_RESERVE;
+  const bounded = coverageFirstSelection(advisories, remaining, { coverageMayOverflow: false });
+  lines.push(...bounded.listed.map(bullet));
+  if (bounded.omitted.length > 0) {
     lines.push(
-      `- …${advisories.length - shown} further advisories omitted to keep this brief inside its`
-      + ` ${REPAIR_BRIEF_MAX_CHARS}-character budget.`,
+      `- …${bounded.omitted.length} further advisories omitted to keep this brief inside its`
+      + ` ${REPAIR_BRIEF_MAX_CHARS}-character budget: ${omissionByCode(bounded.omitted)}.`,
     );
   }
   lines.push("");

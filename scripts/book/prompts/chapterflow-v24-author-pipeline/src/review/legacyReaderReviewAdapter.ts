@@ -45,6 +45,11 @@ export const LEGACY_NO_DOC_HASH = "legacy-no-doc-hash" as const;
  *  Re-exported from the frozen legacy module so the two never drift. */
 export { READER_RUBRIC_VERSION as LEGACY_READER_RUBRIC_VERSION } from "./readerReview.js";
 
+/** Mechanism sentinel for a replayed legacy derivation: the legacy instrument
+ *  had no mechanism field, and a blank string would read as "the reader looked
+ *  and found none". */
+export const LEGACY_NO_MECHANISM = "legacy instrument recorded no mechanism" as const;
+
 /** ship84 + mustFix + composite → advisory recommendation (see module header). */
 function deriveRecommendation(old: ChapterReviewV1): "SHIP" | "REVISE" | "BLOCK" {
   if (old.ship84 === true) return "SHIP";
@@ -70,9 +75,16 @@ export function adaptLegacyReaderReview(old: ChapterReviewV1): ReaderExperienceR
     scores: { ...old.scores },
     quizDerivation: {
       answers,
-      mechanisms: [],
-      confidence: [],
-      ambiguities: [],
+      // The legacy instrument recorded DERIVED ANSWERS ONLY: it had no
+      // mechanism, confidence or ambiguity field. The new contract requires the
+      // four arrays to be positional with each other (R-133), so the missing
+      // three are padded to the answer count with values that assert nothing the
+      // legacy record did not say: an explicit "not recorded" mechanism, the
+      // WEAKEST confidence (a replayed record can never claim certainty it did
+      // not capture), and an empty ambiguity.
+      mechanisms: answers.map(() => LEGACY_NO_MECHANISM),
+      confidence: answers.map(() => "low" as const),
+      ambiguities: answers.map(() => ""),
       tells: [...(old.tells ?? [])],
     },
     recommendation: deriveRecommendation(old),

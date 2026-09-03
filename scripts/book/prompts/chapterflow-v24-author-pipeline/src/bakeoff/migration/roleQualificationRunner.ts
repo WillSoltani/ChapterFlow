@@ -484,6 +484,7 @@ function prepareReaderCase(c: ReaderCorpusCaseV2, schemaSha256: string): Prepare
           chapterContentSha256: c.provenance.variantContentSha256,
           readerDocumentSha256: readerExperienceDocHash(c.chapter),
           schemaSha256,
+          quizQuestionCount: c.chapter.quiz.questions.length,
         });
       } catch (error) {
         return invalidEvaluation((error as Error).message);

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -396,12 +396,20 @@ function compilerOutputs(fixtureRoot: string) {
 /** A schema-valid reader-experience content object (the runtime stamps the
  *  schema/reviewerRole/rubricVersion + hash bindings on top). Empty findings +
  *  SHIP keep the panel PASS so the fixture book still promotes. */
-function readerReview(): Record<string, unknown> {
+function readerReview(questionCount: number): Record<string, unknown> {
   const scores: Record<string, number> = {};
   for (const factor of REVIEW_FACTORS) scores[factor] = 82;
   return {
     scores,
-    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    // One derivation per question (R-133): the strict reader assembly rejects a
+    // seat whose positional derivation does not cover the chapter's quiz.
+    quizDerivation: {
+      answers: Array.from({ length: questionCount }, () => "a"),
+      mechanisms: Array.from({ length: questionCount }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      confidence: Array.from({ length: questionCount }, () => "high"),
+      ambiguities: Array.from({ length: questionCount }, () => ""),
+      tells: [],
+    },
     recommendation: "SHIP",
     blockingFindings: [],
     escalationSignals: [],
@@ -459,9 +467,9 @@ requiredTest("production composition reaches isolated local promotion and exact 
     // Canonical review = semantic panel: baseline model review first, then the
     // IMP-20 blind reader panel — three reader-experience seats per chapter.
     { outcome: "PASS", issues: [] },
-    readerReview(),
-    readerReview(),
-    readerReview(),
+    readerReview(compilerFixture.learning.quiz.questions.length),
+    readerReview(compilerFixture.learning.quiz.questions.length),
+    readerReview(compilerFixture.learning.quiz.questions.length),
   ]);
   const v25Root = resolve(roots.tempRoot, "composition-v25");
   const attemptRoot = resolve(roots.attemptsRoot, "composition-run");
@@ -542,6 +550,19 @@ requiredTest("production composition reaches isolated local promotion and exact 
   ]);
   assert.ok(events.some((event) => event.phase === "repair" && event.status === "SKIPPED"));
   assert.equal(existsSync(externalPackage), false, "local promotion must not write production package root");
+
+  // R-215 — the reader lane provisions its own run so the canonical-review run
+  // keeps its single-attempt invariant. That run used to be left RUNNING for
+  // ever ("never promoted from" is not a reason to leak a live run): one live
+  // run per review, none of which any resume or cancel path can ever settle.
+  const runsDir = resolve(v25Root, "run-state", "books", BOOK, "runs");
+  const readerRuns = readdirSync(runsDir).filter((name) => name.startsWith("reader-lane-run-"));
+  assert.ok(readerRuns.length >= 1, `the reader lane must have provisioned its own run: ${readdirSync(runsDir).join(", ")}`);
+  for (const runId of readerRuns) {
+    const record = JSON.parse(readFileSync(resolve(runsDir, runId, "run.json"), "utf8")) as { status: string; terminal?: { status: string } };
+    assert.notEqual(record.status, "RUNNING", `reader-lane run ${runId} was left RUNNING`);
+    assert.ok(record.terminal, `reader-lane run ${runId} has no terminal outcome`);
+  }
 
   const resumed = await composition.app.bookRun.run({
     bookId: BOOK,

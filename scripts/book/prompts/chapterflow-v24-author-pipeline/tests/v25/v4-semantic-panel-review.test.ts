@@ -16,6 +16,9 @@ import { makeGateCleanChapter } from "../helpers.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
 
 const BOOK = "semantic-panel-book";
+/** The gate-clean fixture chapter's quiz size: the reader panel derivation
+ *  must cover exactly this many questions (R-133). */
+const QUESTION_COUNT = makeGateCleanChapter("question-count-probe", 1).quiz.questions.length;
 const CANDIDATE = "semantic-panel-candidate-1";
 const DIGEST = "semantic-panel-digest";
 const CREATED = "2026-07-21T12:00:00.000Z";
@@ -94,7 +97,15 @@ function readerContent(overrides: ReaderOverrides = {}): Record<string, unknown>
   for (const factor of REVIEW_FACTORS) scores[factor] = overrides.scoreOverrides?.[factor] ?? overrides.score ?? 80;
   return {
     scores,
-    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    // One derivation per question (R-133): the strict reader assembly rejects a
+    // seat whose positional derivation does not cover the chapter's quiz.
+    quizDerivation: {
+      answers: Array.from({ length: QUESTION_COUNT }, () => "a"),
+      mechanisms: Array.from({ length: QUESTION_COUNT }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      confidence: Array.from({ length: QUESTION_COUNT }, () => "high"),
+      ambiguities: Array.from({ length: QUESTION_COUNT }, () => ""),
+      tells: [],
+    },
     recommendation: overrides.recommendation ?? "SHIP",
     blockingFindings: overrides.blockingFindings ?? [],
     escalationSignals: overrides.escalationSignals ?? [],
