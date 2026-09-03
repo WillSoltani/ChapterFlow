@@ -1283,9 +1283,10 @@ export function compileChapterBlueprint(args: {
       .filter((v) => !venuePalette.includes(v)),
   ).slice(0, 4);
   const pattern = answerPattern(n, quizCount, totalChapters);
-  // R-119/R-125 — quiz and cards share ONE cue counter; examples keep their own budget because
-  // BPV10 makes an example anchor mandatory and their cap is set by the slot count, not by the
-  // learning-unit ceiling.
+  // R-119/R-125 — three cue budgets. Quiz and cards each hold a case to one cue
+  // (MAX_CASE_CUES_PER_SURFACE), so no case reaches more than MAX_CASE_CUES_PER_CHAPTER learning
+  // units; examples keep a separate budget because BPV10 makes an example anchor mandatory and
+  // their fair share is set by the slot count, not by the learning-unit ceiling.
   const usedExampleCaseCounts = new Map<string, number>();
   const usedQuizCaseCounts = new Map<string, number>();
   const usedCardCaseCounts = new Map<string, number>();
