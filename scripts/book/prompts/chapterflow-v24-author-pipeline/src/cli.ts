@@ -736,11 +736,16 @@ Commands:
   policy [economy|standard|premium|publish]
                                      Print the v22 run policy cost/quality contract.
   generate-book                      LEGACY_ROUTE_DISABLED. Use book-run or book-autopilot.
-  promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y]
+  promote-book <bookId> --title X --author Y [--categories A,B] [--tags x,y] [--new-category]
                                      Final gate. Requires the complete canonical index, then re-validates
                                      every chapter + book-level checks + the QC-attestation gate, and writes book-packages/<id>.v21.json on
                                      success. Categories/tags are auto-derived (no-API) from the book's
                                      content when not given; pass --categories/--tags to override.
+                                     V25 candidate release: --categories/--tags are REQUIRED and are validated
+                                     against config/categories.json (the taxonomy the reader's filter and the
+                                     library shelf are built from) and normalised through its alias table; a
+                                     category outside it is refused unless --new-category says to add a shelf.
+                                     The candidate's own book gate is run and a BLOCKER refuses the release.
                                      Unresolved serious generation-debt events block; exact-content
                                      waivers live at state/waivers/<bookId>.generation-degradation-waivers.json.
                                      Quarantines to state/books/_blocked/ on failure.
@@ -2326,6 +2331,27 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
   if (candidateRelease && (!categories || !tags)) {
     console.error("V25_RELEASE_REQUIRED: --categories and --tags must be explicit for candidate release");
     return 2;
+  }
+  if (candidateRelease) {
+    // R-239: the values were copied straight into the reader package unvalidated,
+    // and `generate-catalog-metadata` turns categories[0] into the library shelf —
+    // so a category the reader's filter has never heard of shelved the book
+    // nowhere, silently. Hold the release to config/categories.json (the same
+    // taxonomy both categorizers select from), normalising through its alias
+    // table; --new-category is the deliberate act of adding a shelf.
+    const { validateReleaseCategoriesAndTags } = await import("./release/categoryPolicy.js");
+    const metadata = validateReleaseCategoriesAndTags({
+      categories: categories!,
+      tags: tags!,
+      allowNewCategory: flags["new-category"] === true,
+    });
+    if (!metadata.ok) {
+      console.error(metadata.error);
+      return 2;
+    }
+    for (const change of metadata.normalised) console.log(`category normalised: ${change}`);
+    categories = metadata.categories;
+    tags = metadata.tags;
   }
   if (candidateRelease) {
     const reviewId = flags["review-id"];
