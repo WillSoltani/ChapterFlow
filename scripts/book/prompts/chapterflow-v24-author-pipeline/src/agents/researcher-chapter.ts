@@ -19,9 +19,24 @@ import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
+import { renderUntrustedSourceBlock, runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 import { evaluateSourceV2Integrity, isResearchRouteBlockingFinding } from "../source/sourceIntegrity.js";
-import type { NamedFramework, TestableFact } from "../source/sidecarSchema.js";
+import type {
+  DroppedSourceItem,
+  HardSpecificEvidence,
+  NamedFramework,
+  SourceQuotation,
+  SourceTextProvenanceLabel,
+  TestableFact,
+} from "../source/sidecarSchema.js";
+import { spanExcerptForPrompt } from "../source/chapterMap.js";
+import {
+  MAX_ITEM_QUOTE_ATTEMPTS,
+  collectSourceQuoteProblems,
+  dropUngroundedItems,
+  researchFloorsForSpan,
+  type GroundingProblem,
+} from "../source/sourceQuoteGrounding.js";
 import { BibliographyResult } from "./researcher-bibliography.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -47,6 +62,10 @@ export type ChapterResearchResult = {
     teachesWhat: string;
     hardSpecifics?: string[];
     realWorld?: boolean;
+    /** R-046: verbatim source run supporting `summary` (source-text runs only). */
+    sourceQuote?: string | null;
+    /** R-056: one entry per hardSpecific (source-text runs only). */
+    hardSpecificEvidence?: HardSpecificEvidence[];
   }>;
   hardEdge: string;
   voiceCues: string[];
@@ -54,6 +73,38 @@ export type ChapterResearchResult = {
   paraphraseNotes: string;
   testableFacts?: TestableFact[];
   frameworks?: NamedFramework[];
+  /** R-282: clause-shaped source lines (maxims, prayers, proverbs) with a
+   *  ready-made attribution frame. Only emitted on a source-text run. */
+  quotations?: SourceQuotation[];
+  /** R-046: stamped by the researcher, never by the model — "source-text" when
+   *  this chapter was researched against the book's own bytes, "model-memory"
+   *  when it was not. */
+  sourceProvenance?: SourceTextProvenanceLabel;
+  /** sha256 of the frozen source text the quotes were checked against. */
+  sourceTextSha256?: string;
+  /** R-052: items dropped rather than fabricated. */
+  droppedItems?: DroppedSourceItem[];
+};
+
+/**
+ * R-046 — one chapter's slice of the frozen source text.
+ *
+ * `text` is the WHOLE span and is the validation authority for every
+ * `sourceQuote`; `spanExcerptForPrompt` decides how much of it the model sees.
+ */
+export type ChapterSourceSpan = {
+  readonly startOffset: number;
+  readonly endOffset: number;
+  readonly text: string;
+};
+
+/** R-057 — what an earlier chapter of THIS book already claimed, so this one
+ *  does not re-mint the same organizing template. */
+export type PriorChapterDigest = {
+  readonly chapterNumber: number;
+  readonly title: string;
+  readonly focus: string;
+  readonly caseLabels: readonly string[];
 };
 
 export type ChapterResearchInput = {
@@ -63,6 +114,17 @@ export type ChapterResearchInput = {
    *  researcher can avoid leaking concepts from later chapters back into this
    *  one. */
   priorChapterTitles?: string[];
+  /** R-046: this chapter's slice of the frozen source text. Present ⇒ every
+   *  checkable item must carry a verbatim `sourceQuote` from it. Absent ⇒ the
+   *  model-memory path, byte-for-byte as before. */
+  sourceSpan?: ChapterSourceSpan;
+  /** sha256 of the frozen text `sourceSpan` was cut from (provenance only). */
+  sourceTextSha256?: string;
+  /** R-057: focus lines + case labels of already-researched chapters. */
+  priorChapterDigests?: readonly PriorChapterDigest[];
+  /** R-277: the book's fact pins, so a known-wrong fact is corrected AT BIRTH
+   *  rather than one layer downstream in the writer prompt. */
+  factPins?: readonly string[];
 };
 
 /**
@@ -103,6 +165,30 @@ export const META_REGEXES: RegExp[] = [
 /** Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
  *  rather than a standalone fact about the world. */
 const AUTHOR_VERB_ALTERNATION = "argues|says|opens|notes|introduces|explains|writes|claims|points out|observes";
+
+/**
+ * R-053 — the memoir alternation.
+ *
+ * In a memoir or autobiography the author is not the SPEAKER of the text, he is
+ * its SUBJECT: "Franklin organized the Union Fire Company" is the fact, and the
+ * only alternative the researcher has if the surname is banned outright is an
+ * agentless passive ("a fire company is organized"). The released Franklin
+ * sidecars show the cost — ch03's paraphraseNotes is fully agentless ("pooling
+ * money is proposed") and the shipped ch3 contains zero occurrences of
+ * "Franklin".
+ *
+ * So for that genre the guard narrows to verbs that can ONLY be text
+ * attribution. Two verbs leave the list: "opens" and "introduces", because both
+ * have an ordinary worldly reading with a person as actor ("Franklin opens a
+ * printing house", "Franklin introduces the lightning rod") and on a memoir that
+ * reading is the common one. WHAT IT STILL CATCHES: "Franklin argues",
+ * "Franklin writes", "Franklin claims", "Franklin notes", "Franklin observes",
+ * "Franklin says", "Franklin explains", "Franklin points out" — every form that
+ * makes the sidecar a statement about a document. WHAT IT STOPS BLOCKING: the
+ * two worldly readings above, on memoir-classified books only. Every other genre
+ * keeps the full list byte-for-byte.
+ */
+const MEMOIR_AUTHOR_VERB_ALTERNATION = "argues|says|notes|explains|writes|claims|points out|observes";
 
 /** Name particles and honorifics that are never the surname to guard on. */
 const AUTHOR_NAME_NOISE = /^(jr|sr|ii|iii|iv|phd|md|dr|prof|professor|sir|dame)$/i;
@@ -146,9 +232,10 @@ export function authorSurnames(author: string): string[] {
 /** Author-verb guards for one book, built from {@link authorSurnames}. Empty
  *  when the author string yields no usable surname — the guard is then simply
  *  absent rather than firing on someone else's name. */
-export function authorVerbRegexes(author: string): RegExp[] {
+export function authorVerbRegexes(author: string, genre?: BibliographyResult["genre"]): RegExp[] {
+  const alternation = genre === "memoir" ? MEMOIR_AUTHOR_VERB_ALTERNATION : AUTHOR_VERB_ALTERNATION;
   return authorSurnames(author).map(
-    (surname) => new RegExp(`\\b${escapeRegExp(surname)}\\s+(?:${AUTHOR_VERB_ALTERNATION})\\b`, "gi"),
+    (surname) => new RegExp(`\\b${escapeRegExp(surname)}\\s+(?:${alternation})\\b`, "gi"),
   );
 }
 
@@ -257,6 +344,84 @@ export function collectHardSpecificLengthProblems(
       if (words > MAX_HARD_SPECIFIC_WORDS) {
         problems.push(
           `hardSpecific too long (${words} words) in namedExamples "${example?.label ?? ""}": ${JSON.stringify(trimmed)} — give a short verbatim token (a name, number, phrase of <=${MAX_HARD_SPECIFIC_WORDS} words), not a sentence or clause`,
+        );
+      }
+    }
+  }
+  return problems;
+}
+
+/**
+ * R-051 / R-282 — SHAPE rejection for hardSpecifics.
+ *
+ * The five-word cap was the only filter, so a clause survived as long as it was
+ * short: `"speckled Ax is best"` (a clause with a finite verb, and not even the
+ * source's words — the Autobiography reads "I think I like a speckled ax best")
+ * was stitched raw into ten shipped surfaces, including "The speckled-axe story
+ * about a speckled Ax is best only explains". A hardSpecific has to compose as a
+ * NOUN PHRASE inside a word-budgeted line; a predicate cannot.
+ *
+ * The verb list is CLOSED and deliberately conservative. There is no parser here,
+ * and a false positive costs a retry and can cost the specific altogether, so
+ * every token that is commonly a noun in a book's own vocabulary — set, cost,
+ * run, will, can, may, means, left, put, does, lost — is deliberately absent even
+ * though each is also a finite verb. False negatives (a fragment that slips
+ * through) are acceptable; false positives on ordinary noun phrases are not.
+ */
+const FINITE_VERB_TOKENS: ReadonlySet<string> = new Set([
+  "is", "are", "was", "were", "am", "isn't", "aren't", "wasn't", "weren't",
+  "has", "have", "had", "hasn't", "haven't", "hadn't",
+  "did", "didn't", "don't", "doesn't",
+  "would", "should", "could", "must", "shall", "won't", "can't", "couldn't", "wouldn't", "shouldn't",
+  "said", "says", "took", "takes", "gave", "gives", "went", "goes", "came", "comes",
+  "saw", "sees", "got", "gets", "ran", "won", "found", "kept", "keeps", "told", "tells",
+  "thought", "thinks", "knew", "knows", "became", "becomes", "began", "begins",
+  "brought", "brings", "bought", "buys", "built", "held", "meant", "met", "meets",
+  "paid", "pays", "sold", "sells", "sent", "sat", "stood", "taught", "wrote", "writes",
+  "wore", "drove", "spent", "refused", "agreed", "proposed", "wanted", "needed",
+]);
+
+/** Straight-and-curly double-quote characters, folded for the balance check. */
+const DOUBLE_QUOTE_CHARS = /["\u201c\u201d\u201e\u201f]/g;
+
+/** The finite verb inside a candidate hardSpecific, or null. */
+function finiteVerbIn(text: string): string | null {
+  for (const raw of text.split(/[\s]+/)) {
+    const token = raw.replace(/^[^\p{L}\p{N}']+|[^\p{L}\p{N}']+$/gu, "").toLowerCase();
+    if (token.length > 0 && FINITE_VERB_TOKENS.has(token)) return token;
+  }
+  return null;
+}
+
+/**
+ * Reject any hardSpecific that is a predicate fragment or opens a quotation it
+ * does not close. Exported and shared by the fresh-research validator AND the
+ * durable-sidecar reuse hook, exactly like the word-cap rule, so a stale sidecar
+ * carrying `"speckled Ax is best"` is re-researched rather than reused.
+ */
+export function collectHardSpecificShapeProblems(
+  namedExamples: ChapterResearchResult["namedExamples"] | undefined,
+): string[] {
+  const problems: string[] = [];
+  if (!Array.isArray(namedExamples)) return problems;
+  for (const example of namedExamples) {
+    const specifics = Array.isArray(example?.hardSpecifics) ? example.hardSpecifics : [];
+    for (const specific of specifics) {
+      if (typeof specific !== "string") continue;
+      const trimmed = specific.trim();
+      if (trimmed.length === 0) continue;
+      const label = `in namedExamples ${JSON.stringify(example?.label ?? "")}`;
+      const verb = finiteVerbIn(trimmed);
+      if (verb !== null) {
+        problems.push(
+          `hardSpecific ${JSON.stringify(trimmed)} ${label} is a clause, not a token — it contains the finite verb "${verb}". Give a name, number, place or noun phrase instead. If the LINE itself is what the chapter turns on (a maxim, a proverb, a prayer), put it in \`quotations\` with an attributionFrame that contains it, so a writer has a grammatical slot for it.`,
+        );
+        continue;
+      }
+      const quoteCount = (trimmed.match(DOUBLE_QUOTE_CHARS) ?? []).length;
+      if (quoteCount % 2 === 1) {
+        problems.push(
+          `hardSpecific ${JSON.stringify(trimmed)} ${label} opens a quotation it never closes — a half-quote cannot be embedded verbatim in a sentence. Use the quoted words as a plain noun phrase, or move the whole line into \`quotations\` with an attributionFrame.`,
         );
       }
     }
@@ -389,6 +554,12 @@ export async function runResearcherChapter(
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
   const baseUserPrompt = buildUserPrompt(input);
   const sleep = options?.sleep ?? defaultSleep;
+  // The WHOLE span is the validation authority for every quote, even when only
+  // an excerpt of it reached the prompt (spanExcerptForPrompt).
+  const spanText = input.sourceSpan?.text ?? null;
+  const provenance: SourceTextProvenanceLabel = spanText === null ? "model-memory" : "source-text";
+  /** itemKey -> how many attempts that item has failed grounding on. */
+  const itemFailures = new Map<string, number>();
 
   const attemptFailures: AttemptFailure[] = [];
 
@@ -443,8 +614,43 @@ export async function runResearcherChapter(
       throw error;
     }
 
-    const problems = collectChapterResearchProblems(output, input);
-    if (problems.length === 0) return output;
+    // R-046/R-052 — source grounding. With no span this is [] and everything
+    // below collapses to the previous behaviour exactly.
+    const grounding = collectSourceQuoteProblems(output, spanText);
+    for (const problem of grounding) {
+      itemFailures.set(problem.itemKey, (itemFailures.get(problem.itemKey) ?? 0) + 1);
+    }
+
+    // While attempts remain, an ungrounded item is FEEDBACK: it is named, and the
+    // model gets to quote it properly. On the last attempt there is no further
+    // chance to buy, so the item is DROPPED rather than admitted unquoted or
+    // padded into existence (R-052). The drop record carries the real per-item
+    // failure count.
+    const lastAttempt = attempt === MAX_CHAPTER_RESEARCH_ATTEMPTS;
+    let candidate = output;
+    let dropped: DroppedSourceItem[] = [];
+    if (grounding.length > 0 && lastAttempt) {
+      const pruned = dropUngroundedItems(output, grounding, itemFailures);
+      candidate = pruned.result;
+      dropped = pruned.dropped;
+    }
+
+    const problems = [
+      ...collectChapterResearchProblems(candidate, input),
+      ...(lastAttempt ? [] : grounding.map((problem) => problem.message)),
+    ];
+    if (problems.length === 0) return stampProvenance(candidate, provenance, input);
+
+    // R-052 — abstention, stated honestly. Every item that could not be quoted is
+    // gone and the survivors still miss a floor: that is a SOURCE problem, and
+    // saying so beats the generic "invalid after 3 attempts" that used to send an
+    // operator hunting for a schema bug.
+    if (lastAttempt && dropped.length > 0) {
+      const detail = dropped.map((item) => `${item.kind} ${item.id} (${item.attempts} attempt(s))`).join(", ");
+      throw new Error(
+        `RESEARCH_SOURCE_INSUFFICIENT:chapter ${input.chapter.number} dropped ${dropped.length} item(s) that could not be quoted from its source span [${detail}], and what survived does not meet the research floor: ${problems.join("; ")}. The span does not honestly support this unit — re-map or split the chapter; do not pad it.`,
+      );
+    }
 
     attemptFailures.push({ kind: "validator", problems, output });
   }
@@ -453,6 +659,24 @@ export async function runResearcherChapter(
     .map((failure, index) => `attempt ${index + 1}: ${describeFailure(failure)}`)
     .join(" | ");
   throw new Error(`chapter research invalid after ${MAX_CHAPTER_RESEARCH_ATTEMPTS} attempts: ${accumulated}`);
+}
+
+/**
+ * R-046 — stamp the run's own provenance onto the sidecar. The MODEL never
+ * supplies these fields: "the model said it read the book" is not evidence. A
+ * run with no text is stamped `model-memory`, which is the honest label every
+ * sidecar written before ingestion existed silently carried.
+ */
+function stampProvenance(
+  result: ChapterResearchResult,
+  provenance: SourceTextProvenanceLabel,
+  input: ChapterResearchInput,
+): ChapterResearchResult {
+  const stamped: ChapterResearchResult = { ...result, sourceProvenance: provenance };
+  if (provenance === "source-text" && typeof input.sourceTextSha256 === "string") {
+    stamped.sourceTextSha256 = input.sourceTextSha256;
+  }
+  return stamped;
 }
 
 /**
@@ -556,7 +780,10 @@ function safeJson(value: unknown): string {
   }
 }
 
-function buildUserPrompt(input: ChapterResearchInput): string {
+/** The chapter researcher's user prompt. Exported so the contract it states —
+ *  the source block, the quoting rules, the taken-framings digest and the fact
+ *  pins — is pinned by test rather than only by a live run. */
+export function buildUserPrompt(input: ChapterResearchInput): string {
   const parts: string[] = [];
   parts.push(`# Book context`);
   parts.push(`Title: ${input.bibliography.title}`);
@@ -572,7 +799,55 @@ function buildUserPrompt(input: ChapterResearchInput): string {
     for (const t of input.priorChapterTitles) parts.push(`- ${t}`);
     parts.push("");
   }
-  parts.push(`Return the ChapterResearchResult JSON. Be specific: named examples, real numbers, concrete claims. Paraphrase only — no verbatim text from the book. No meta-references.`);
+  // R-057 — what earlier chapters of THIS book already claimed. Research was
+  // per-chapter and context-free, so every chapter re-minted the same organizing
+  // template and the only remedies (SP14, SC8) fired after every chapter had
+  // been paid for. A few hundred tokens buys the researcher the one thing it
+  // needs to differ: knowing what is already taken.
+  if (input.priorChapterDigests && input.priorChapterDigests.length > 0) {
+    parts.push(`# Already researched in this book — these framings and cases are TAKEN`);
+    parts.push(`Choose different organizing moves and different cases. If this chapter genuinely must revisit one of them, say why in \`focus\`.`);
+    for (const prior of input.priorChapterDigests) {
+      parts.push(`- Ch${prior.chapterNumber} "${prior.title}": ${prior.focus}`);
+      if (prior.caseLabels.length > 0) parts.push(`  cases already used: ${prior.caseLabels.join("; ")}`);
+    }
+    parts.push("");
+  }
+  // R-277 — fact pins reached the section writers and the repair port but never
+  // the researcher that mints the error, so a pinned correction was applied one
+  // layer downstream of where the fact was decided and the rev-6 sidecars still
+  // carried every pinned error. Correct the sidecar at birth.
+  if (input.factPins && input.factPins.length > 0) {
+    parts.push(`# Corrections already established for this book — treat as authoritative`);
+    parts.push(`These were written from verified defects in an earlier run of this book. Obey them. If this chapter's source text CONTRADICTS one of them, quote the contradicting passage in the relevant \`sourceQuote\` and follow the text — the source is the authority and the pin is then a defect to report, not a rule to obey.`);
+    for (const pin of input.factPins) parts.push(`- ${pin}`);
+    parts.push("");
+  }
+  if (input.sourceSpan) {
+    const excerpt = spanExcerptForPrompt(input.sourceSpan.text);
+    const floors = researchFloorsForSpan(input.sourceSpan.text.length);
+    parts.push(`# THIS CHAPTER'S SOURCE TEXT`);
+    parts.push(
+      excerpt.excerpted
+        ? `The passages below are this chapter's own text, sampled across the whole chapter (${excerpt.omittedChars} characters are elided and marked as such). They are the book itself, not notes about it.`
+        : `The passage below is this chapter's own text, complete. It is the book itself, not notes about it.`,
+    );
+    parts.push("");
+    parts.push(renderUntrustedSourceBlock(`Source text — chapter ${input.chapter.number}`, excerpt.text));
+    parts.push("");
+    parts.push(`## Quoting rules for this call`);
+    parts.push(`- Every \`testableFacts[]\` entry, every \`namedExamples[]\` entry, every \`hardSpecificEvidence[]\` entry and every \`quotations[]\` entry MUST carry a \`sourceQuote\`: 20-240 characters copied EXACTLY from the passage above, including its spelling, capitalization and punctuation.`);
+    parts.push(`- The quote is checked character by character against the text. A remembered paraphrase will be rejected. If you cannot find the words, the claim is not in this chapter — leave the item out.`);
+    parts.push(`- Every \`hardSpecifics\` token must itself appear in the passage, exactly as you write it.`);
+    parts.push(`- Prose fields (focus, coreClaim, keyClaims, summary, paraphraseNotes, hardEdge) stay in YOUR OWN WORDS. The verbatim source belongs only in \`sourceQuote\`, \`hardSpecifics\` and \`quotations[].quote\`.`);
+    parts.push(`- This chapter covers ${input.sourceSpan.text.length} characters of the book, so it needs at least ${floors.testableFacts} testable facts, ${floors.namedExamples} named examples and ${floors.keyClaims} key claims — drawn from across the WHOLE passage, not just its opening.`);
+    parts.push("");
+  }
+  parts.push(
+    input.sourceSpan
+      ? `Return the ChapterResearchResult JSON. Be specific: named examples, real numbers, concrete claims — all of them quoted from the source text above. Paraphrase in the prose fields; quote in \`sourceQuote\`. No meta-references.`
+      : `Return the ChapterResearchResult JSON. Be specific: named examples, real numbers, concrete claims. Paraphrase only — no verbatim text from the book. No meta-references.`,
+  );
   return parts.join("\n");
 }
 
@@ -608,8 +883,11 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
       problems.push("centralConcept.whyItMatters too short");
     }
   }
-  if (!Array.isArray(r.keyClaims) || r.keyClaims.length < 4) {
-    problems.push(`keyClaims needs 4-8 items (got ${r.keyClaims?.length ?? 0})`);
+  // R-058: with a source span, the floors are sized to the SPAN rather than to
+  // the word "chapter". Without one they are today's floors exactly.
+  const floors = researchFloorsForSpan(input.sourceSpan?.text.length ?? null);
+  if (!Array.isArray(r.keyClaims) || r.keyClaims.length < floors.keyClaims) {
+    problems.push(`keyClaims needs ${floors.keyClaims}-8 items (got ${r.keyClaims?.length ?? 0})`);
   }
   if (!Array.isArray(r.namedExamples) || r.namedExamples.length < 1) {
     problems.push(`namedExamples needs 1-5 items (got ${r.namedExamples?.length ?? 0})`);
@@ -626,6 +904,9 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
   // word-budgeted downstream units (SEC14/16/33). Runs regardless of the floor
   // branch above; the retry loop feeds any violation back to the model.
   problems.push(...collectHardSpecificLengthProblems(r.namedExamples));
+  // R-051/R-282: a five-word cap admits a five-word CLAUSE. Shape is checked in
+  // the same place and shared with the durable-sidecar reuse hook.
+  problems.push(...collectHardSpecificShapeProblems(r.namedExamples));
   if (typeof r.hardEdge !== "string" || r.hardEdge.length < 80) {
     problems.push(`hardEdge too short (${r.hardEdge?.length ?? 0}) — write 2-3 sentences about typical misreadings`);
   }
@@ -639,6 +920,9 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
   const sourceV2 = evaluateSourceV2Integrity(r, {
     chapterNumber: input.chapter.number,
     chapterTitle: input.chapter.title,
+    floors,
+    ...(input.bibliography?.genre === undefined ? {} : { genre: input.bibliography.genre }),
+    authorSurnames: authorSurnames(input.bibliography?.author ?? ""),
   });
   // Admission MUST mirror the port's route-blocking decision (requireSourceV2),
   // not a subset of it — otherwise a structurally-complete but fabricated
@@ -682,7 +966,7 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
   for (const hit of distinctMatches(allText, META_REGEXES)) {
     problems.push(metaReferenceProblem(hit, input.bibliography.author));
   }
-  for (const hit of distinctMatches(allText, authorVerbRegexes(input.bibliography.author))) {
+  for (const hit of distinctMatches(allText, authorVerbRegexes(input.bibliography.author, input.bibliography.genre))) {
     problems.push(`author-surname-verb construction "${hit}" found — state the claim directly`);
   }
 

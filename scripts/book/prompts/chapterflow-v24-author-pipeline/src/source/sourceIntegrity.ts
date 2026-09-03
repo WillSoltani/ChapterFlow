@@ -52,6 +52,13 @@ export type SourceIntegrityOptions = {
   chapterNumber?: number;
   chapterTitle?: string;
   rawText?: string;
+  /** R-058 — floors sized to this chapter's source span. Absent ⇒ 9 facts /
+   *  3 named examples, exactly as before. */
+  floors?: { testableFacts: number; namedExamples: number };
+  /** R-053 — the book's genre, for the memoir subject-presence advisory. */
+  genre?: string;
+  /** R-053 — the bibliography author's surname(s), lowercased. */
+  authorSurnames?: readonly string[];
 };
 
 const ABSTRACT_WORDS = new Set(
@@ -333,9 +340,11 @@ export function evaluateSourceV2Integrity(value: unknown, options: SourceIntegri
     findings.push(finding({ checkId: "SV2.key_claims_missing", chapterNumber, message: "keyClaims must include at least one non-empty claim." }));
   }
 
+  const namedExamplesFloor = options.floors?.namedExamples ?? 3;
+  const testableFactsFloor = options.floors?.testableFacts ?? 9;
   const namedExamples = Array.isArray(sc.namedExamples) ? sc.namedExamples : [];
-  if (namedExamples.length < 3) {
-    findings.push(finding({ checkId: "SV2.named_examples_floor", chapterNumber, message: `namedExamples has ${namedExamples.length}; need at least 3.` }));
+  if (namedExamples.length < namedExamplesFloor) {
+    findings.push(finding({ checkId: "SV2.named_examples_floor", chapterNumber, message: `namedExamples has ${namedExamples.length}; need at least ${namedExamplesFloor}.` }));
   }
   namedExamples.forEach((example, i) => {
     const path = `namedExamples[${i}]`;
@@ -350,8 +359,8 @@ export function evaluateSourceV2Integrity(value: unknown, options: SourceIntegri
   });
 
   const facts = Array.isArray(sc.testableFacts) ? sc.testableFacts : [];
-  if (facts.length < 9) {
-    findings.push(finding({ checkId: "SV2.testable_facts_floor", chapterNumber, message: `testableFacts has ${facts.length}; need at least 9.` }));
+  if (facts.length < testableFactsFloor) {
+    findings.push(finding({ checkId: "SV2.testable_facts_floor", chapterNumber, message: `testableFacts has ${facts.length}; need at least ${testableFactsFloor}.` }));
   }
   facts.forEach((fact, i) => {
     const path = `testableFacts[${i}]`;
@@ -384,6 +393,8 @@ export function evaluateSourceV2Integrity(value: unknown, options: SourceIntegri
   });
 
   findings.push(...realnessFindings(sc, chapterNumber, rejectedFields));
+  findings.push(...sourceProvenanceFindings(sc, chapterNumber));
+  findings.push(...memoirSubjectFindings(sc, chapterNumber, options));
 
   // `passed` reflects BLOCKER findings only (the structural checks). The realness
   // heuristics are advisory, so a sidecar that is structurally complete but trips a
@@ -400,6 +411,88 @@ export function evaluateSourceV2Integrity(value: unknown, options: SourceIntegri
     rawHash,
     rejectedFields,
   };
+}
+
+/**
+ * R-046 — a sidecar that DECLARES source-text provenance must carry its quotes.
+ *
+ * The span itself is not in scope here (this evaluator is handed one sidecar, not
+ * the book), so this is the STRUCTURAL half: every fact, every case and every
+ * hardSpecific of a `source-text` sidecar must have a `sourceQuote` and, for a
+ * specific, the proposition it belongs to. The SEMANTIC half — does the quote
+ * actually occur in the frozen bytes — lives where the bytes are: in
+ * src/source/sourceQuoteGrounding.ts at research time (which can drop the item)
+ * and in src/source/sourceTextVerify.ts at promotion time (which fails closed).
+ *
+ * Blocker severity is right because this cannot fire on any legacy sidecar: a
+ * sidecar with no `sourceProvenance` is model-memory and is skipped entirely.
+ */
+function sourceProvenanceFindings(
+  sc: Partial<SourceSidecarV2>,
+  chapterNumber: number | undefined,
+): SourceIntegrityFinding[] {
+  if (sc.sourceProvenance !== "source-text") return [];
+  const findings: SourceIntegrityFinding[] = [];
+  const quoted = (value: unknown): boolean => typeof value === "string" && value.trim().length > 0;
+  (Array.isArray(sc.testableFacts) ? sc.testableFacts : []).forEach((fact, i) => {
+    if (!quoted((fact as any)?.sourceQuote)) {
+      findings.push(finding({ checkId: "SV2.source_quote_missing", chapterNumber, message: `testableFacts[${i}] declares source-text provenance but carries no sourceQuote.` }));
+    }
+  });
+  (Array.isArray(sc.namedExamples) ? sc.namedExamples : []).forEach((example, i) => {
+    if (!quoted((example as any)?.sourceQuote)) {
+      findings.push(finding({ checkId: "SV2.source_quote_missing", chapterNumber, message: `namedExamples[${i}] declares source-text provenance but carries no sourceQuote.` }));
+    }
+    const specifics: unknown[] = Array.isArray((example as any)?.hardSpecifics) ? (example as any).hardSpecifics : [];
+    const evidence: any[] = Array.isArray((example as any)?.hardSpecificEvidence) ? (example as any).hardSpecificEvidence : [];
+    for (const specific of specifics) {
+      const token = String(specific ?? "").trim();
+      if (token.length === 0) continue;
+      const entry = evidence.find((candidate) => String(candidate?.specific ?? "").trim() === token);
+      if (!entry || !quoted(entry.proposition) || !quoted(entry.sourceQuote)) {
+        findings.push(finding({ checkId: "SV2.source_quote_missing", chapterNumber, message: `namedExamples[${i}] hardSpecific ${JSON.stringify(token)} has no complete hardSpecificEvidence entry (proposition + sourceQuote).` }));
+      }
+    }
+  });
+  return findings;
+}
+
+/**
+ * R-053 — ADVISORY: a memoir whose cases and facts never name its subject.
+ *
+ * Rule 9 banned author-surname constructions outright, which on a memoir removes
+ * the protagonist from the research: the released Franklin ch03 paraphraseNotes
+ * is fully agentless ("pooling money is proposed") and the shipped chapter
+ * contains zero occurrences of "Franklin". This surfaces that shape.
+ *
+ * ADVISORY, not blocking, and deliberately so: a chapter of a memoir CAN
+ * legitimately be about other people (Franklin's ch01 is largely about his
+ * father and brother), so a blocker here would reject correct research. It is
+ * recorded in the run's integrity report where a reviewer sees it. It cannot
+ * fire at all unless the bibliography classified the book as a memoir.
+ */
+function memoirSubjectFindings(
+  sc: Partial<SourceSidecarV2>,
+  chapterNumber: number | undefined,
+  options: SourceIntegrityOptions,
+): SourceIntegrityFinding[] {
+  if (options.genre !== "memoir") return [];
+  const surnames = (options.authorSurnames ?? []).filter((surname) => surname.length > 0);
+  if (surnames.length === 0) return [];
+  const text = [
+    ...(Array.isArray(sc.namedExamples) ? sc.namedExamples : []).flatMap((example) => [
+      String((example as any)?.label ?? ""),
+      String((example as any)?.summary ?? ""),
+    ]),
+    ...(Array.isArray(sc.testableFacts) ? sc.testableFacts : []).map((fact) => String((fact as any)?.claim ?? "")),
+  ].join(" \n ").toLowerCase();
+  if (surnames.some((surname) => text.includes(surname))) return [];
+  return [finding({
+    checkId: "SV2.memoir_subject_absent",
+    severity: "advisory",
+    chapterNumber,
+    message: `This book is classified as a memoir, but none of its named examples or testable facts names ${surnames.join("/")} — the subject of the book has been written out of his own chapter. Name him as the actor of what he did.`,
+  })];
 }
 
 function realnessFindings(

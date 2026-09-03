@@ -16,10 +16,35 @@ import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
+import { renderUntrustedSourceBlock, runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
+import { resolveChapterMap } from "../source/chapterMap.js";
+import { buildBibliographyTextView } from "../source/sourceOutline.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const PROMPTS_DIR = resolve(__dirname, "../../prompts");
+
+/**
+ * R-053 — the book's genre, as the bibliography researcher observes it.
+ *
+ * The one distinction the research rules turn on is whether the AUTHOR is the
+ * SUBJECT of the book. In a memoir or autobiography he is, so naming him as the
+ * actor of what he did is correct and an agentless passive is the defect; in
+ * every other genre naming him as an actor is a meta-reference to the text.
+ * Recorded as an explicit field rather than inferred from a hardcoded title list
+ * (which is the failure mode R-023 removed from the author-verb guard).
+ *
+ * "memoir" covers autobiography; the distinction does not change any rule.
+ * OPTIONAL: absent means "not classified", and every rule behaves exactly as it
+ * did before this field existed.
+ */
+export const BIBLIOGRAPHY_GENRES = [
+  "memoir",
+  "narrative-nonfiction",
+  "practical",
+  "argument",
+  "reference",
+] as const;
+export type BibliographyGenre = (typeof BIBLIOGRAPHY_GENRES)[number];
 
 export type BibliographyResult = {
   bookId: string;
@@ -50,6 +75,12 @@ export type BibliographyResult = {
   };
   confidence: "high" | "medium" | "low";
   notes?: string;
+  /** R-053 — see {@link BIBLIOGRAPHY_GENRES}. Optional and additive. */
+  genre?: BibliographyGenre;
+  /** R-046 — one span of the frozen source text per chapter, present only when
+   *  the run was given the book's text. Validated by
+   *  src/source/chapterMap.ts#resolveChapterMap before it is used. */
+  chapterMap?: Array<{ chapterNumber: number; startAnchor: string; endAnchor: string }>;
 };
 
 export type BibliographyInput = {
@@ -58,10 +89,19 @@ export type BibliographyInput = {
   /** If provided, the model is asked to use this slug instead of generating one.
    *  Useful for resuming a research run on an existing bookId. */
   bookIdHint?: string;
+  /**
+   * R-046 — the FROZEN, normalized source text of the book. When present the
+   * model reads the real edition instead of recalling one, and must additionally
+   * return `chapterMap`: one span per chapter, resolved and validated here so a
+   * bad map comes back as retry feedback rather than as a wrong span handed to a
+   * chapter researcher.
+   */
+  sourceText?: string;
 };
 
 const REGISTER_VALUES = new Set(["warm", "analytical", "plainspoken", "literary", "clinical"]);
 const CONFIDENCE_VALUES = new Set(["high", "medium", "low"]);
+const GENRE_VALUES = new Set<string>(BIBLIOGRAPHY_GENRES);
 
 /** Task 11ag: bibliography is step 1 of a book run and was the ONE research
  *  surface without bounded retry — a single degenerate or transient response
@@ -177,7 +217,35 @@ function buildUserPrompt(input: BibliographyInput): string {
     parts.push(`Use this bookId slug: ${input.bookIdHint}`);
   }
   parts.push("");
-  parts.push(`Return the canonical bibliographic record and full chapter list. If you do not recognize this title and author with high confidence, set confidence to "low" and explain in notes — do not invent a chapter list.`);
+  if (typeof input.sourceText === "string" && input.sourceText.length > 0) {
+    const view = buildBibliographyTextView(input.sourceText);
+    parts.push(`# THE BOOK ITSELF`);
+    parts.push(
+      view.mode === "whole"
+        ? `Below is the complete text of this book (${view.sourceTextLength} characters). Read its own contents page and its own chapter divisions — do not recall a chapter list from memory.`
+        : `This book is ${view.sourceTextLength} characters long, too long to include whole. Below are its front matter verbatim (which contains the printed contents page), every heading-shaped line with its character offset, and excerpts spaced evenly through the body. Build the chapter list from THESE, not from memory.`,
+    );
+    parts.push("");
+    parts.push(renderUntrustedSourceBlock(`Source text — ${input.title}`, view.text));
+    parts.push("");
+    parts.push(`# Also return: chapterMap`);
+    parts.push(`Add a \`chapterMap\` array with one entry per chapter of your chapter list:`);
+    parts.push("```ts");
+    parts.push(`chapterMap: Array<{ chapterNumber: number; startAnchor: string; endAnchor: string }>`);
+    parts.push("```");
+    parts.push(`- \`startAnchor\` is 30-240 characters copied EXACTLY from where that chapter begins; \`endAnchor\` is 30-240 characters copied exactly from where it ends.`);
+    parts.push(`- Each anchor must occur EXACTLY ONCE in the whole text. A chapter heading like "II" or "Chapter 3" is not unique — use the chapter's own first and last sentences instead.`);
+    parts.push(`- The spans must run in chapter order, must not overlap, and must leave no large run of the body unassigned. Front matter, a contents page, an introduction by an editor, and appendices may be left outside every span.`);
+    parts.push(`- Anchors are checked character by character against the text. A remembered or reconstructed anchor will be rejected.`);
+    parts.push("");
+    parts.push(`Set \`genre\` too: "memoir" for an autobiography or memoir (the author is the SUBJECT of the book), otherwise "narrative-nonfiction", "practical", "argument" or "reference".`);
+    parts.push("");
+  }
+  parts.push(
+    typeof input.sourceText === "string" && input.sourceText.length > 0
+      ? `Return the canonical bibliographic record and the full chapter list AS THIS EDITION PRINTS IT, plus the chapterMap.`
+      : `Return the canonical bibliographic record and full chapter list. If you do not recognize this title and author with high confidence, set confidence to "low" and explain in notes — do not invent a chapter list.`,
+  );
   return parts.join("\n");
 }
 
@@ -269,6 +337,12 @@ function validateBibliography(r: BibliographyResult, input: BibliographyInput): 
     }
   }
 
+  // R-053: an unknown genre string is rejected so a typo cannot silently
+  // neutralise the memoir carve-out. Absent is fine — it means "not classified".
+  if (r.genre !== undefined && !GENRE_VALUES.has(r.genre)) {
+    problems.push(`genre ${JSON.stringify(r.genre)} not one of ${[...GENRE_VALUES].join("/")} (or omit it)`);
+  }
+
   // Confidence
   if (!CONFIDENCE_VALUES.has(r.confidence)) {
     problems.push(`confidence "${r.confidence}" not one of high/medium/low`);
@@ -279,6 +353,29 @@ function validateBibliography(r: BibliographyResult, input: BibliographyInput): 
   // block and a stdout line, so nothing durable recorded it. createResearchRun
   // (src/researcher.ts) now writes a `bibliography.low_confidence` event into the
   // research run manifest, which is the artifact a later reviewer actually reads.
+
+  // R-046 — the chapter map. Validated HERE, inside the retry loop, so a bad map
+  // comes back to the model as feedback naming the exact anchor instead of
+  // reaching a chapter researcher as a wrong span. Only demanded when the run
+  // actually has text; without it the field must be absent.
+  if (typeof input.sourceText === "string" && input.sourceText.length > 0) {
+    if (chapters.length === 0) {
+      problems.push("chapterMap cannot be checked because the chapter list is empty");
+    } else if (r.chapterMap === undefined) {
+      problems.push("chapterMap is missing — this run has the book's text, so every chapter needs a startAnchor and an endAnchor copied verbatim from it");
+    } else {
+      const resolved = resolveChapterMap({
+        bookId: typeof r.bookId === "string" ? r.bookId : "",
+        sourceText: input.sourceText,
+        sourceTextSha256: "",
+        chapters: chapters.map((chapter) => ({ number: chapter.number, title: chapter.title })),
+        spans: r.chapterMap,
+      });
+      problems.push(...resolved.problems);
+    }
+  } else if (r.chapterMap !== undefined) {
+    problems.push("chapterMap was returned but this run has no source text to anchor it in — omit the field");
+  }
 
   if (problems.length > 0) {
     throw new Error(`bibliography invalid: ${problems.join("; ")}`);
