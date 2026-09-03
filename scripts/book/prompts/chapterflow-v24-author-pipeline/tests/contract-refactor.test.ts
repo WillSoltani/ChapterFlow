@@ -364,15 +364,27 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 //
 // RE-MEASURED in review round 2, after the scope reader was narrowed to a
 // pure-chapter-marker parenthesis and reader-safety labels were exempted from
-// scoping altogether: Franklin's two SAFETY rules are book-wide again, which adds
+// scoping altogether: Franklin's SAFETY rules are book-wide again, which adds
 // 871 chars back to every chapter EXCEPT ch03 — and ch03 is the binding chapter,
-// so the budgets are unmoved. Worst kind per chapter on this commit:
-//   ch01 learning-pack 51,160   ch02 51,252   ch03 52,849 (binding)   ch04 51,097
-//   ch05-ch08 (no scoped rules) 50,154
-//   with worst-case prose: 58,450 / 58,542 / 60,139 (binding) / 58,387 / 57,444
-// That leaves 151 characters of headroom on the binding packet-only card and 361
-// with prose, so the next prompt package almost certainly re-pins here — with the
-// same kind of measured rationale, not by rounding the number up.
+// so the budgets were unmoved. That round measured ch03 learning-pack at 52,849
+// (151 chars of headroom) and 60,139 with prose (361 of headroom).
+//
+// RE-MEASURED AGAIN on the Franklin scar rewrite (PR #538), because the rationale
+// above described a file that no longer exists: that file's 37 accreted
+// prohibitions (24,514 chars) were replaced by 32 source-quoted rules (14,400
+// chars), which took 8,877 characters off the binding card measured just above
+// (ch03 learning-pack 52,849 -> 43,972). ch03 is still the binding chapter — it
+// now carries 10 of the 25 chapter-scoped rules, against 5 each for ch01/ch02/ch04,
+// plus the 7 book-wide rules (3 SAFETY + 4 craft) every chapter gets.
+// Worst kind per chapter on this commit (learning-pack every time):
+//   ch01 41,978   ch02 41,975   ch03 43,972 (binding)   ch04 42,105
+//   ch05-ch08 (no scoped rules) 40,605
+//   with worst-case prose: 49,268 / 49,265 / 51,262 (binding) / 49,395 / 47,895
+// That is 9,028 characters of headroom on the binding packet-only card and 9,238
+// with prose. The budgets stay where they are: they are a ceiling on what
+// production may send, not a target, and lowering them now would re-pin the
+// contract to one book's current scar file. Anything that needs MORE than these
+// numbers still re-pins here with a measured rationale, not by rounding up.
 const HONEST_TASK_CHAR_BUDGET = 53_000;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
 
@@ -400,7 +412,7 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
 
   // EVERY chapter, not just ch01. Since R-274 the rendered rule set differs per
   // chapter, so measuring one chapter would leave the heaviest one unbounded —
-  // Franklin's ch03 carries 9 of the 18 scoped rules and is the binding render.
+  // Franklin's ch03 carries 10 of the 25 scoped rules and is the binding render.
   //
   // The range is a LITERAL, deliberately: an earlier cut derived it from
   // bookRuleChapters, so the budget loop re-used the very scope reader it was
