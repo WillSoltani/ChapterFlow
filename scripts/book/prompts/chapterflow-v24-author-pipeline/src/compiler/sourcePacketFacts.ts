@@ -86,6 +86,32 @@ export function normalizedFact(raw: any, fallbackId: string): SourcePacketFact |
 }
 
 /**
+ * Pedagogy fields of a compiled fact that are MISSING or are the compiler's own
+ * boilerplate, in packet-field order.
+ *
+ * R-028: the packet gate's SP7 asked `!f.mechanism || !f.commonError ||
+ * !f.whyWrong`, but normalizedFact() above substitutes MECHANISM_FALLBACK /
+ * COMMON_ERROR_FALLBACK / WHY_WRONG_FALLBACK for an empty sidecar field FIRST,
+ * so that predicate was permanently false and SP7 could never fire. The
+ * substituted text is a sentence about the pipeline's own contract ("This fact
+ * supplies the source-grounded reason the chapter can teach the move.") and it
+ * shipped to writers as the fact's causal explanation. Treating a fallback as
+ * absent is what makes SP7 check the property it was written for. The same
+ * placeholder-vs-real distinction already backs rankTeachingFacts' weights
+ * (hasRealMechanism below); this exports it for the gate.
+ */
+export function factPedagogyPlaceholders(fact: Pick<SourcePacketFact, "mechanism" | "commonError" | "whyWrong">): string[] {
+  const missing: string[] = [];
+  const mechanism = (fact.mechanism ?? "").trim();
+  const commonError = (fact.commonError ?? "").trim();
+  const whyWrong = (fact.whyWrong ?? "").trim();
+  if (mechanism.length === 0 || mechanism === MECHANISM_FALLBACK) missing.push("mechanism");
+  if (commonError.length === 0 || commonError === COMMON_ERROR_FALLBACK) missing.push("commonError");
+  if (whyWrong.length === 0 || whyWrong === WHY_WRONG_FALLBACK) missing.push("whyWrong");
+  return missing;
+}
+
+/**
  * Derives the same authoring-ready facts the source packet compiler produces,
  * so any caller that needs to know "how many usable facts will this sidecar
  * compile to" (e.g. the source prewrite gate) counts identically to

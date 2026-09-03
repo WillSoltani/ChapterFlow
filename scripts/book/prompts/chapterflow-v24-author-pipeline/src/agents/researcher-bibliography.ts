@@ -273,10 +273,12 @@ function validateBibliography(r: BibliographyResult, input: BibliographyInput): 
   if (!CONFIDENCE_VALUES.has(r.confidence)) {
     problems.push(`confidence "${r.confidence}" not one of high/medium/low`);
   }
-  if (r.confidence === "low") {
-    // Don't reject low-confidence outputs — that's the writer's honest signal.
-    // The orchestrator decides whether to proceed; we just surface it.
-  }
+  // A low-confidence bibliography is NOT rejected here: it is the model's honest
+  // signal about its own knowledge, and rejecting it would only reward a model
+  // that overstates confidence. R-035: it used to be surfaced into an empty `if`
+  // block and a stdout line, so nothing durable recorded it. createResearchRun
+  // (src/researcher.ts) now writes a `bibliography.low_confidence` event into the
+  // research run manifest, which is the artifact a later reviewer actually reads.
 
   if (problems.length > 0) {
     throw new Error(`bibliography invalid: ${problems.join("; ")}`);

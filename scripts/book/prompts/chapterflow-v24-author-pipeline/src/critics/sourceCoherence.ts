@@ -16,7 +16,7 @@
  */
 
 import { BibliographyResult } from "../agents/researcher-bibliography.js";
-import { ChapterResearchResult } from "../agents/researcher-chapter.js";
+import { ChapterResearchResult, META_REGEXES, authorVerbRegexes } from "../agents/researcher-chapter.js";
 
 export type SourceCoherenceFinding = {
   code: string;                       // e.g., "SC1.chapter_count_mismatch"
@@ -31,17 +31,30 @@ export type SourceCoherenceReport = {
   findings: SourceCoherenceFinding[];
 };
 
-const META_REGEXES: RegExp[] = [
-  /\bthis chapter\b/i,
-  /\bthe chapter\b/i,
-  /\bthe author\b/i,
-  /\bthe book\b/i,
-  /\bin this (chapter|section|book)\b/i,
-  /\bchapter\s+\d+\b/i,
-];
+/**
+ * SC4/SC5 share the researcher's own guards rather than keeping copies.
+ *
+ * R-023/R-024: the copies had drifted into no-ops. SC5 carried a hardcoded
+ * sixteen-surname alternation (clear|kahneman|taleb|…), so this blocker could
+ * only fire for the sixteen books whose author happened to be listed — on every
+ * other book, Franklin included, it was silently dead — and it fired on
+ * third-party attributions ("Kahneman argues…" quoted inside a book Kahneman
+ * did not write), which are citations, not meta-references to this text. SC4's
+ * pattern list drifted the same way. Importing them keeps the critic and the
+ * chapter validator from disagreeing about what a meta-reference is.
+ */
 
-const AUTHOR_VERB_REGEX: RegExp =
-  /\b(clear|kahneman|taleb|housel|tetlock|cialdini|greene|machiavelli|duhigg|eyal|covey|ries|brown|kolb|gladwell|fogg)\s+(argues|says|opens|notes|introduces|explains|writes|claims|points out|observes)\b/i;
+/** First match of any pattern, as a non-global exec so `index`/`input` are
+ *  available for the evidence excerpt. authorVerbRegexes() returns /gi/
+ *  patterns, whose `String.match` result carries neither. */
+function firstMatch(text: string, patterns: readonly RegExp[]): RegExpExecArray | null {
+  for (const pattern of patterns) {
+    const re = pattern.global ? new RegExp(pattern.source, pattern.flags.replace(/g/g, "")) : pattern;
+    const m = re.exec(text);
+    if (m) return m;
+  }
+  return null;
+}
 
 /** Heuristic: a 40+ char span enclosed in matching quotes is treated as a
  *  potential verbatim citation. The researcher prompt forbids this; we surface
@@ -97,31 +110,41 @@ export function runSourceCoherenceCheck(input: SourceCoherenceInput): SourceCohe
     }
 
     // SC4 — meta-reference leakage
+    // R-024: every NARRATIVE field the sidecar carries downstream. testableFacts
+    // is the field the source packet compiles the writers' facts from and it was
+    // absent here, as were example labels, hardSpecifics and the concept name —
+    // the released Franklin book shipped a testable fact about the manuscript
+    // straight past this critic. voiceCues stay out on purpose: a voice cue
+    // legitimately describes authorial technique.
     const allText = [
       ch.focus,
       ch.coreClaim,
+      ch.centralConcept?.name ?? "",
       ch.centralConcept?.plainDefinition ?? "",
       ch.centralConcept?.whyItMatters ?? "",
       ...(ch.keyClaims ?? []),
-      ...(ch.namedExamples ?? []).flatMap((ex) => [ex.summary, ex.teachesWhat]),
+      ...(ch.namedExamples ?? []).flatMap((ex) => [
+        ex?.label,
+        ex?.summary,
+        ex?.teachesWhat,
+        ...(Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics : []),
+      ]),
+      ...(ch.testableFacts ?? []).flatMap((f) => [f?.claim, f?.becauseMechanism, f?.commonError, f?.errorIsWhy]),
       ch.hardEdge,
       ch.paraphraseNotes,
-    ].join(" \n ");
+    ].filter((value): value is string => typeof value === "string").join(" \n ");
 
-    for (const re of META_REGEXES) {
-      const m = allText.match(re);
-      if (m) {
-        findings.push({
-          code: "SC4.meta_reference",
-          severity: "blocker",
-          scope,
-          message: `meta-reference "${m[0]}" found — paraphrase the claim directly without naming the chapter or author`,
-          evidence: m.input?.slice(Math.max(0, m.index! - 30), m.index! + m[0].length + 30),
-        });
-        break;
-      }
+    const m = firstMatch(allText, META_REGEXES);
+    if (m) {
+      findings.push({
+        code: "SC4.meta_reference",
+        severity: "blocker",
+        scope,
+        message: `meta-reference "${m[0]}" found — paraphrase the claim directly without naming the chapter or author`,
+        evidence: m.input?.slice(Math.max(0, m.index! - 30), m.index! + m[0].length + 30),
+      });
     }
-    const av = allText.match(AUTHOR_VERB_REGEX);
+    const av = firstMatch(allText, authorVerbRegexes(bibliography.author));
     if (av) {
       findings.push({
         code: "SC5.author_surname_verb",
