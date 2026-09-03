@@ -83,8 +83,19 @@ import { sectionContract, sectionDoNotLines } from "../sections/sectionTasks.js"
  * SEC135). A repair rewrites the same reader-facing fields under the same gates, so
  * it needs the same rules for the same reason; the module composes them rather than
  * authoring them.
+ *
+ * RE-PINNED 22500 -> 22800 when package 1C (dealing redesign) merged with 1B, measured on this
+ * commit: 21,210 chars with no voice card and 22,616 with a pathological one that clamps (
+ * `buildRepairWritingContract` with a card of VOICE_CARD_MAX + 500 v's). The +307 over 1B's
+ * measurement is one line of example-pack contract text: R-064's SCENE ENGINE BY SLOT rule, which
+ * replaces "EVERY scenario shows a visible decision" with the per-slot version (even slots carry
+ * their dealt decision frame, odd slots their experiential frame as the whole scene) and restates
+ * SEC31's floor for both kinds. 1B's SEC39 line in the same block is unchanged and kept. Both are
+ * section-writer contract text this module composes, and a repair rewrites the same six example
+ * scenarios under the same SEC31/SEC39 gates, so it needs both for the same reason. The 85%
+ * creep-alarm floor still holds (22,616 / 22,800 = 99.2%).
  */
-export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 22500;
+export const REPAIR_WRITING_CONTRACT_MAX_CHARS = 22800;
 
 /** Voice-card clamp. The card is a ~120-word register cue by construction
  *  (`src/lib/voiceCard.ts`), but it arrives from a candidate sidecar this module
