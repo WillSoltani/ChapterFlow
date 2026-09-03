@@ -42,6 +42,15 @@ type BibliographyResult = {
   };
   confidence: "high" | "medium" | "low";  // how sure you are of the chapter list and bibliographic facts
   notes?: string;              // any uncertainty: "chapter count varies between paperback and hardcover", etc.
+  genre?: "memoir" | "narrative-nonfiction" | "practical" | "argument" | "reference";
+                               // "memoir" whenever the AUTHOR is the SUBJECT of the book (autobiography included).
+                               // Downstream research rules turn on this one distinction: in a memoir the author must be
+                               // named as the actor of what he did, and an agentless passive is a defect.
+  chapterMap?: Array<{         // ONLY when the user message includes the book's text — see the instructions there.
+    chapterNumber: number;
+    startAnchor: string;       // 30-240 characters copied exactly from where the chapter begins; unique in the whole text
+    endAnchor: string;         // 30-240 characters copied exactly from where it ends; unique in the whole text
+  }>;
 };
 ```
 
@@ -65,6 +74,8 @@ type BibliographyResult = {
 7. **Use either `sections` or `flatChapters`, not both.** If the book has parts (Atomic Habits has 6 parts), use `sections`. If it's a flat chapter list (Thinking, Fast and Slow's 38 chapters with no parts), use `flatChapters`.
 
 8. **Be honest about uncertainty.** If you don't recognize the book, return `confidence: "low"` and explain. If you're confident, say so. Honest signaling beats false certainty.
+
+9. **When the book's text is in the user message, it outranks your memory.** Build the chapter list from the edition in front of you — its own contents page and its own divisions — not from the edition you remember. Return `chapterMap` and `genre` as the user message describes. Anchors are checked character by character against that text; a reconstructed anchor is rejected and the whole record comes back for another attempt.
 
 ## Style for `thesis` and `teachingArc`
 
