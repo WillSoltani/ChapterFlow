@@ -260,6 +260,30 @@ test("R-007: no register template instructs a person or a move the artifact cann
   }
 });
 
+// The cadence half of R-007. The shipped philosopher-historian template asked for a
+// bare "longer cadence" (git show origin/main:./src/lib/voiceCard.ts:89) — a length
+// instruction with nothing holding it to the two SEC12 blockers on the far side: the
+// per-tier reading-GRADE cap (src/sections/sectionGate.ts:2254) and the Flesch
+// reading-EASE floor on the assembled breakdown (sectionGate.ts:2267-2277). A
+// template MAY ask for a long line; what it may not do is ask for one and stop. This
+// is the assertion that keeps "longer cadence" from coming back green: the `voice:`
+// line is where cadence is declared, so a length word there must be paired with a
+// plainness qualifier in the same line.
+const LENGTHENING_CADENCE = /\b(long|longer|lengthy|unhurried|leisurely|expansive|sprawling|ornate|periodic|winding|rolling)\b/i;
+const PLAINNESS_QUALIFIER = /\b(plain|plainly|plainspoken|clear|clearly|simple|readable|reads easily)\b/i;
+
+test("R-007: a template that asks for a longer cadence must hold it to the plainness floor", () => {
+  for (const [register, lines] of Object.entries(REGISTER_TEMPLATES)) {
+    const voiceLine = lines[0]!;
+    if (!LENGTHENING_CADENCE.test(voiceLine)) continue;
+    assert.match(
+      voiceLine,
+      PLAINNESS_QUALIFIER,
+      `${register}: "${voiceLine}" asks for a lengthening cadence with no plainness qualifier; every tier still has to clear the SEC12 reading-ease floor`,
+    );
+  }
+});
+
 // ── P1 / Finding F-01: device-mandate signature moves never reach the card ──────
 
 /** Write a brief with arbitrary signatureMoves (and optional avoidMoves) so we can
