@@ -1270,7 +1270,9 @@ export function compileChapterBlueprint(args: {
   // re-injected as a prohibition. Neighbours are the collision the field was written to prevent.
   const forbiddenVenues = uniq(
     [n - 1, n + 1]
-      .filter((m) => m >= 1)
+      // Only chapters the book actually has: a 4-chapter book must not forbid the palette of a
+      // chapter 5 that will never exist.
+      .filter((m) => m >= 1 && m <= totalForDeal)
       .flatMap((m) => {
         try {
           return pools.venuePaletteFor(m);
