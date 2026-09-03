@@ -745,9 +745,21 @@ test("v23 source packet fact extraction is behavior-preserving: the shared compi
   // were facts=sha256:5e4d1131… / packet=sha256:9da60abb… (captured before sourcePacketFacts.ts
   // existed). If either changes AGAIN without an intended packet-shape change, the extraction
   // broke behavior or the fixture drifted — re-derive deliberately, do not silently update.
+  //
+  // RE-DERIVED AGAIN for R-055 (wave-1 source-ingestion), which adds
+  // `packet.chapterContext` — the chapter's focus, coreClaim, hardEdge and
+  // keyClaims, which the packet used to discard so that no writer ever saw what
+  // the chapter was about. The FACTS hash is deliberately UNCHANGED
+  // (sha256:2ee22e0c…): fact extraction was not touched, and that is the
+  // assertion this test exists for. Only the whole-packet hash moves, and it
+  // moves by exactly one added key: previous value
+  // sha256:6fdb1b6ed6e3333977f3b10df78c45317cf20d18b78894d9098fad587e5f7715.
   const { packet } = compileFixture();
   assert.equal(canonicalJsonSha256(packet.facts), "sha256:2ee22e0c1244fada6d279d775fb4fcf965b6fdf317b7e8a9e60e5b90fb7717b7", "compiled facts must be byte-identical to the pinned output (incl. P13 teachingPriority)");
-  assert.equal(canonicalJsonSha256(packet), "sha256:6fdb1b6ed6e3333977f3b10df78c45317cf20d18b78894d9098fad587e5f7715", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking)");
+  assert.equal(canonicalJsonSha256(packet), "sha256:31ceaed1efe064e27b0e331b1ce065dba90881467748573181026454d096630a", "the whole compiled packet must be byte-identical to the pinned output (incl. P13 ranking and R-055 chapterContext)");
+  // The one added key, asserted by name so a future drift cannot be waved
+  // through as "the R-055 change".
+  assert.deepEqual(Object.keys(packet.chapterContext ?? {}).sort(), ["coreClaim", "focus", "hardEdge", "keyClaims"]);
 
   // The packet compiler must be USING the shared helper, not a parallel reimplementation:
   // calling compiledFactsFromSidecar directly on the same sidecar must equal packet.facts

@@ -9,7 +9,7 @@
  *     (TI) absent from a power-of-moments render.
  *  2. universal invariants present for all four kinds.
  *  3. the VOICE / LIVED-MOMENTS paragraph retained verbatim (exact snapshot).
- *  4. a token-count regression bound: every rendered task is <= 69% of the pinned
+ *  4. a token-count regression bound: every rendered task is <= 71% of the pinned
  *     pre-refactor length (the full-blueprint duplication was dropped; re-pinned
  *     60->62% for Task 11z's functional quiz-specifics preflight and 62->69% for
  *     the wave-0 contract-truth batch — deliberate, tested additions, not prose
@@ -215,13 +215,21 @@ test("class-B gate-restatement prose was deleted (only design-around rules survi
 // title plus the DIRECT_JSON validation frame (R-018/R-019). The binding ceiling is
 // the absolute HONEST budget below, measured on the render production actually
 // sends; this ratio still catches prose creep on the packet-only card.
-test("every rendered task is <= 69% of its pinned pre-refactor length", () => {
+// RE-PINNED 69% -> 71% for the wave-1 source-ingestion package's single prompt
+// addition, R-055's READ-ONLY CONTEXT block (the chapter's focus, coreClaim,
+// hardEdge and up to six keyClaims, projected onto the writer card). Measured on
+// this same money-book fixture, the block costs +994 characters on EVERY card —
+// summary 32,321 -> 33,315, example 34,912 -> 35,906, learning 36,298 -> 37,292
+// (70.0%, the binding card), action 30,451 -> 31,445. Nothing else in this
+// package touches the card. The pin is moved to 71%, one point above the
+// measurement, exactly as the 60->62 and 62->69 re-pins above did.
+test("every rendered task is <= 71% of its pinned pre-refactor length", () => {
   const bp = realisticFixture();
   for (const kind of SECTION_KINDS) {
     const md = buildSectionTaskMarkdown({ bookId: "money-book", kind, blueprint: bp.blueprint, sourcePacket: bp.packet, outputPath: `/tmp/${kind}.json`, context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } });
     const pre = PRE_REFACTOR_CHARS[kind];
     const ratio = md.length / pre;
-    assert.ok(md.length <= 0.69 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 69%`);
+    assert.ok(md.length <= 0.71 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 71%`);
   }
 });
 
@@ -269,7 +277,11 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   // RE-PINNED 76% -> 82% by the same wave-0 contract-truth batch as the 62->69%
   // above, and for the same four additions: measured 43,564 chars = 81.7%. The
   // prose delta this test bounds (7,290) is unchanged by that batch.
-  assert.ok(withProse.length <= 0.82 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 82% (re-pin only with a stated rationale)`);
+  // RE-PINNED AGAIN 82% -> 85% for R-055's READ-ONLY CONTEXT block: measured
+  // 44,582 = 83.6%, i.e. the same +994 the packet-only cards took. The DELTA
+  // assertion below — the thing this test is really for — is unchanged at 7,290,
+  // which is the proof that the growth is the context block and not prose creep.
+  assert.ok(withProse.length <= 0.85 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 85% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -298,8 +310,11 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   const ratio = withProse.length / pre;
   // RE-PINNED 80% -> 86%, same batch, same additions: measured 45,273 = 84.9%
   // — arithmetic identical to the 82% pin above plus the clamped-prose allowance.
-  // What this test actually guards, the CLAMP, is asserted unchanged just below.
-  assert.ok(withProse.length <= 0.86 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 86%`);
+  // RE-PINNED AGAIN 86% -> 88% for R-055's +994: measured 46,269 = 86.8%. The
+  // clamp delta this test guards (8,977 against a CHAPTER_PROSE_CARD_BUDGET +
+  // 1,200 allowance) is unchanged, which is the point — the card grew by the
+  // context block, not by unbounded prose.
+  assert.ok(withProse.length <= 0.88 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 88%`);
   const delta = withProse.length - bare.length;
   assert.ok(
     delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
@@ -373,8 +388,24 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // That leaves 151 characters of headroom on the binding packet-only card and 361
 // with prose, so the next prompt package almost certainly re-pins here — with the
 // same kind of measured rationale, not by rounding the number up.
-const HONEST_TASK_CHAR_BUDGET = 53_000;
-const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
+//
+// RE-PINNED for wave-1 source-ingestion (R-055). The package adds exactly one
+// block to the writer card — READ-ONLY CONTEXT, carrying the chapter's focus,
+// coreClaim, hardEdge and up to six keyClaims through the writer projection —
+// and it costs +994 characters on every card, measured on this same Franklin
+// render. Worst kind per chapter on this commit:
+//   ch01 learning-pack 52,154   ch02 52,246   ch03 53,843 (binding)   ch04 52,091
+//   ch05-ch08 (no scoped rules) 51,148
+//   with worst-case prose: 59,444 / 59,536 / 61,133 (binding) / 59,381 / 58,438
+// Budgets = that worst case rounded UP to the next 500 (53,843 -> 54,000;
+// 61,133 -> 61,500) plus one further 500 of stated headroom, which is the same
+// arithmetic the previous pin used. Nothing else in this package renders into a
+// writer card: the source quotes it adds to the packet are projected only when
+// the sidecar carries them, and this fixture is a model-memory sidecar with
+// none — a source-text book will cost more, and MUST be re-measured here before
+// it is run.
+const HONEST_TASK_CHAR_BUDGET = 54_500;
+const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 62_000;
 
 test("R-002: the prompt-length budget is pinned on a render that carries BOTH large per-book blocks", () => {
   const scars = loadBookScars(LARGEST_SCAR_BOOK);

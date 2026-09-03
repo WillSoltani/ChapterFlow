@@ -82,6 +82,10 @@ export function normalizedFact(raw: any, fallbackId: string): SourcePacketFact |
     groundedPlaces: [],
     verificationRefs: [id],
     replicationStatus: raw?.replicationStatus,
+    // R-046: carried through verbatim so the writer can be accurate BY
+    // CONSTRUCTION instead of paraphrasing a paraphrase. Only present when the
+    // sidecar was quoted from a real text.
+    ...(asText(raw?.sourceQuote) ? { sourceQuote: asText(raw.sourceQuote) } : {}),
   };
 }
 

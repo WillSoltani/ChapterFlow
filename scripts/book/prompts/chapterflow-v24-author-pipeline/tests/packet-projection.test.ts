@@ -114,6 +114,12 @@ test("allowlist: projection carries ONLY the allowlisted keys (any new packet fi
     // IMP-03 (v2, F-005): the deliberate SAFETY additions — case doNotRestamp/
     // naturalSetting, fact replicationStatus (below-robust only), root sourceRisks.
     "doNotRestamp", "naturalSetting", "replicationStatus", "sourceRisks",
+    // Wave-1 source-ingestion: the deliberate ACCURACY additions — the book's own
+    // words behind a fact or a case (R-046), the proposition each hardSpecific
+    // belongs to (R-056), the chapter's thesis as READ-ONLY context (R-055), and
+    // whether this chapter was quoted from a book or recalled (R-046).
+    "sourceQuote", "specificPropositions", "specific", "proposition",
+    "chapterContext", "focus", "coreClaim", "hardEdge", "keyClaims", "sourceProvenance",
   ]);
   const leaked = [...keys].filter((k) => !allowed.has(k)).sort();
   assert.deepEqual(leaked, [], `non-allowlisted key(s) leaked into the writer projection: ${leaked.join(", ")}`);

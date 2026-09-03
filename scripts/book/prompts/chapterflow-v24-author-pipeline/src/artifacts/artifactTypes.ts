@@ -54,6 +54,12 @@ export type SourcePacketFact = {
    *  around the identical thesis (which saturates the section-gate SEC90 phrase
    *  budget book-wide). See chapterBlueprint.factIds(). */
   bookWideDuplicate?: boolean;
+  /**
+   * R-046 — the verbatim run of the book's own text this fact was drawn from,
+   * copied straight from the sidecar. Present only on a source-text run; absent
+   * on every model-memory packet, where there is nothing to quote.
+   */
+  sourceQuote?: string;
   /** 1-based pedagogical teaching rank (1 = best teaching fact) assigned by the
    *  packet compiler's deterministic rankTeachingFacts() pass (P13). Additive and
    *  optional: legacy packets written before P13 have no teachingPriority, in which
@@ -72,6 +78,11 @@ export type SourcePacketCase = {
   allowedUses: SourceClaimType[];
   forbiddenUses: string[];
   doNotRestamp: string[];
+  /** R-046 — the verbatim source run this case's summary was drawn from. */
+  sourceQuote?: string;
+  /** R-056 — one sentence per hardSpecific stating the proposition it belongs
+   *  to, so no downstream unit has to invent the relation between two tokens. */
+  specificPropositions?: Array<{ specific: string; proposition: string }>;
 };
 
 export type SourcePacketFramework = {
@@ -107,6 +118,28 @@ export type SourcePacketV1 = {
    *  mechanism/claim instead of packet.facts[0]. Additive/optional: absent on legacy
    *  packets, in which case coreMove falls back to facts[0] (byte-identical). */
   coreMoveFactId?: string;
+  /**
+   * R-055 — the chapter's own thesis, carried to the writers.
+   *
+   * The packet used to carry facts, cases, frameworks and permission lists and
+   * nothing else, so no writer ever saw what the chapter was ABOUT. The measured
+   * cost on the released Franklin book: ch04 keyClaim 7 said the dispute "ends in
+   * a limited compromise on assessment method" (near the truth) while fact.08
+   * said "without a decisive outcome for either side" (false) — the packet kept
+   * the false fact and discarded the truer claim.
+   *
+   * READ-ONLY CONTEXT: it orients the writer, it is not a source of citable
+   * specifics (those stay in facts/cases, which the gates check).
+   */
+  chapterContext?: {
+    focus: string;
+    coreClaim: string;
+    hardEdge: string;
+    keyClaims: string[];
+  };
+  /** R-046 — "source-text" when the sidecar this packet was compiled from was
+   *  quoted from the book, "model-memory" when it was recalled. */
+  sourceProvenance?: "source-text" | "model-memory";
 };
 
 /** The nine designable variety pools a book's blueprints draw from. These are the pools that
