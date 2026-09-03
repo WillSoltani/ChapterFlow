@@ -20,7 +20,7 @@ import { createCurrentPointerStore } from "../src/books/currentPointer.js";
 import type { BookWriteLock } from "../src/books/leaseTypes.js";
 import type { Result } from "../src/contracts/v4Core.js";
 import { CandidateRepairService, type RepairService } from "../src/qc/repairCoordinator.js";
-import { FileRepairHistoryStore } from "../src/qc/repairHistoryStore.js";
+import { FileRepairHistoryStore, isQcLaneRecord } from "../src/qc/repairHistoryStore.js";
 import type { QcDiagnosis, QcRoundResult, QcService } from "../src/qc/qcTypes.js";
 import { FileRunStore } from "../src/run-state/fileRunStore.js";
 import { createReviewServiceFactory } from "../src/review/reviewService.js";
@@ -272,7 +272,11 @@ test("a review ERROR retries the SAME staged successor under a fresh review id a
   assert.equal(result.value.qc.reviewId, seen[1]);
   const history = await h.history.list("book");
   assert.equal(history.ok && history.value.length, 1);
-  if (history.ok) assert.equal(history.value[0].reviewId, seen[1]);
+  if (history.ok) {
+    const record = history.value[0];
+    assert.ok(isQcLaneRecord(record), "a fresh-QC repair records a QC-lane transition");
+    assert.equal(record.reviewId, seen[1]);
+  }
 }));
 
 test("a review that ERRORs on every bounded attempt fails with REPAIR_REVIEW_ERROR — a distinct, ordinal-recognizable reason", () => caseWithCleanup(async (make) => {

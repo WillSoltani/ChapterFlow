@@ -12,7 +12,7 @@ import { validateSourceUsePlan } from "../contracts/sourceUsePlan.js";
 import type { CandidateIdentity, ModelTaskContext, PlannedArtifact, QcRoundId, RepairId, Result, ReviewId } from "../contracts/v4Core.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../critics/bookPatternAudit.js";
 import type { DiagnosisLookup, RepairService } from "../qc/repairCoordinator.js";
-import type { RepairHistoryRecord, RepairHistoryStore } from "../qc/repairHistoryStore.js";
+import { isQcLaneRecord, type RepairHistoryRecord, type RepairHistoryStore } from "../qc/repairHistoryStore.js";
 import type { QcIssue, QcRoundResult, QcService } from "../qc/qcTypes.js";
 import { isReaderPanelInfraCode } from "../review/readerPanelIssueCodes.js";
 import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../review/reviewTypes.js";
@@ -136,6 +136,12 @@ export interface ReviewRepairApplicationRequest {
   readonly failedCandidate: CandidateIdentity;
   /** The stored canonical review whose FAIL verdict authorizes this repair. */
   readonly failedReviewId: ReviewId;
+  /** This transition's durable identity in repair-history (R-170). Distinct from
+   *  the run id so the record survives independently of run state. */
+  readonly repairId: RepairId;
+  /** The lane ordinal the caller's walk chose. Lane-scoped, so it never collides
+   *  with a qc-repair ordinal of the same number. */
+  readonly ordinal: number;
   readonly successorCandidateId: string;
   readonly repairRunId: string;
   readonly sourceGitSha: string;
@@ -468,7 +474,10 @@ function groupReviewAdvisories(
 }
 
 function priorUnsuccessful(records: readonly RepairHistoryRecord[], request: CandidateRepairPreflightRequest): boolean {
-  return records.some((record) => record.qcOutcome !== "PASS"
+  // QC-lane records ONLY. The gate is defined over a transition's own fresh QC
+  // round, which is a thing the review lane does not have; reading through
+  // isQcLaneRecord keeps the gate byte-identical now that history holds both lanes.
+  return records.filter(isQcLaneRecord).some((record) => record.qcOutcome !== "PASS"
     && record.freshRoundId === request.failedRoundId
     && sameIdentity(record.successor, request.failedCandidate));
 }
@@ -835,7 +844,7 @@ export class CandidateRepairApplicationPort {
     // transition's own derived series so no foreign review can authorize it.
     const history = await this.#dependencies.history.list(request.bookId);
     if (!history.ok) return history;
-    const records = history.value.filter((record) => record.repairId === request.repairId);
+    const records = history.value.filter(isQcLaneRecord).filter((record) => record.repairId === request.repairId);
     if (records.length !== 1) {
       return failed("REPAIR_COMPLETED_MISMATCH", `expected one repair history record; found ${records.length}`);
     }
@@ -1629,6 +1638,34 @@ export class CandidateRepairApplicationPort {
     const verified = await this.#dependencies.runStore.readRun(request.bookId, request.repairRunId, this.#dependencies.clock.now());
     if (!verified.ok || verified.value.status !== "COMPLETED") {
       return failed("REVIEW_REPAIR_TERMINAL_UNCERTAIN", "completed review-repair run readback failed");
+    }
+    // R-170 — record the transition. This lane wrote NOTHING to repair-history,
+    // so most of a book's repair transitions had no durable record at all (live:
+    // a 4-line history against 11 review-repair ordinals).
+    //
+    // BEST-EFFORT ON PURPOSE, and only this lane. Nothing gates on a review-lane
+    // record — the QC lane's `priorUnsuccessful` reads QC-lane records only, and
+    // the successor's authority is the panel's re-review, not this line — so it
+    // is an audit record, and failing a COMPLETED chapter repair (whose model
+    // spend is already paid and whose successor is already durable and verified)
+    // over an append is exactly the mistake R-187 fixed on the phase log. A
+    // failure is loud on stderr instead of silent.
+    const recorded = await this.#dependencies.history.append({
+      schemaVersion: "1",
+      lane: "REVIEW",
+      repairId: request.repairId,
+      bookId: request.bookId,
+      ordinal: request.ordinal,
+      predecessor: request.failedCandidate,
+      successor: successorIdentity,
+      failedReviewId: request.failedReviewId,
+      completedAt: this.#dependencies.clock.now(),
+    });
+    if (!recorded.ok) {
+      console.error(
+        `[review-repair] book=${request.bookId} repairId=${request.repairId} ordinal=${request.ordinal}`
+        + ` action=REPAIR_HISTORY_APPEND_FAILED detail=${recorded.error.code}:${recorded.error.message}`,
+      );
     }
     return {
       ok: true,

@@ -5,19 +5,60 @@ import { bookPaths } from "../books/bookPaths.js";
 import type { BookWriteLock } from "../books/leaseTypes.js";
 import type { CandidateIdentity, QcRoundId, RepairId, Result, ReviewId, UtcIso } from "../contracts/v4Core.js";
 
-export interface RepairHistoryRecord {
+/** What every repair transition records, whichever lane produced it. */
+interface RepairHistoryCommon {
   readonly schemaVersion: "1";
   readonly repairId: RepairId;
   readonly bookId: string;
+  /** The lane ordinal this transition executed under; unique WITHIN its lane. */
   readonly ordinal: number;
   readonly predecessor: CandidateIdentity;
-  readonly failedRoundId: QcRoundId;
   readonly successor: CandidateIdentity;
+  readonly completedAt: UtcIso;
+}
+
+/** A fresh-QC-FAIL repair: anchored on the round that failed, and carrying the
+ *  successor's own review and fresh round. `lane` is absent on every record
+ *  written before the discriminator existed, which is exactly what those records
+ *  were — QC-lane transitions. */
+export interface QcLaneRepairHistoryRecord extends RepairHistoryCommon {
+  readonly lane?: "QC";
+  readonly failedRoundId: QcRoundId;
   readonly reviewId: ReviewId;
   readonly freshRoundId: QcRoundId;
   readonly qcOutcome: "PASS" | "FAIL" | "ERROR";
   readonly diagnosisId?: string;
-  readonly completedAt: UtcIso;
+}
+
+/**
+ * R-170 — a canonical-review-FAIL repair.
+ *
+ * The review lane owns no QC round and no successor review (the BOOK RUN
+ * re-reviews the successor, and that verdict lives in the review store), so it
+ * records what it actually knows: the FAIL verdict that authorized it and the
+ * predecessor/successor pair it produced. Before this the lane wrote NOTHING —
+ * live: a 4-line repair-history against 11 review-repair ordinals and 33
+ * review-repair model admissions, so most of a book's repair transitions had no
+ * durable record at all.
+ *
+ * It deliberately carries no `freshRoundId`/`qcOutcome`, which is what keeps the
+ * QC lane's `priorUnsuccessful` diagnosis gate exactly as it was: that gate reads
+ * QC-lane records only (see `isQcLaneRecord`), and a review-lane record can
+ * neither satisfy nor trip it.
+ */
+export interface ReviewLaneRepairHistoryRecord extends RepairHistoryCommon {
+  readonly lane: "REVIEW";
+  /** The stored canonical review whose FAIL verdict authorized this repair. */
+  readonly failedReviewId: ReviewId;
+}
+
+export type RepairHistoryRecord = QcLaneRepairHistoryRecord | ReviewLaneRepairHistoryRecord;
+
+/** True for a fresh-QC-FAIL transition, including every legacy record written
+ *  before the lane discriminator existed. The QC lane's gates read history
+ *  THROUGH this, so adding a lane can never widen or narrow them. */
+export function isQcLaneRecord(record: RepairHistoryRecord): record is QcLaneRepairHistoryRecord {
+  return (record.lane ?? "QC") === "QC";
 }
 
 export interface RepairHistoryStore {
@@ -35,21 +76,39 @@ function sameRecord(left: RepairHistoryRecord, right: RepairHistoryRecord): bool
 
 function validRecord(value: unknown, bookId: string): value is RepairHistoryRecord {
   if (value === null || typeof value !== "object") return false;
-  const record = value as Partial<RepairHistoryRecord>;
-  return record.schemaVersion === "1"
+  const record = value as Partial<Omit<QcLaneRepairHistoryRecord, "lane"> & Omit<ReviewLaneRepairHistoryRecord, "lane">>
+    & { lane?: unknown };
+  const common = record.schemaVersion === "1"
     && record.bookId === bookId
     && typeof record.repairId === "string"
     && Number.isSafeInteger(record.ordinal)
     && (record.ordinal ?? 0) > 0
     && typeof record.predecessor?.candidateId === "string"
     && typeof record.predecessor?.manifestDigest === "string"
-    && typeof record.failedRoundId === "string"
     && typeof record.successor?.candidateId === "string"
     && typeof record.successor?.manifestDigest === "string"
-    && typeof record.reviewId === "string"
-    && typeof record.freshRoundId === "string"
-    && ["PASS", "FAIL", "ERROR"].includes(record.qcOutcome ?? "")
     && typeof record.completedAt === "string";
+  if (!common) return false;
+  const lane = record.lane ?? "QC";
+  // Each lane must carry its OWN shape and nothing else: a QC record that grew a
+  // failedReviewId, or a review record carrying a fabricated fresh round, is
+  // corruption rather than a legacy shape, and is rejected as such.
+  if (lane === "QC") {
+    return typeof record.failedRoundId === "string"
+      && typeof record.reviewId === "string"
+      && typeof record.freshRoundId === "string"
+      && ["PASS", "FAIL", "ERROR"].includes(record.qcOutcome ?? "")
+      && record.failedReviewId === undefined;
+  }
+  if (lane === "REVIEW") {
+    return typeof record.failedReviewId === "string"
+      && record.failedRoundId === undefined
+      && record.reviewId === undefined
+      && record.freshRoundId === undefined
+      && record.qcOutcome === undefined
+      && record.diagnosisId === undefined;
+  }
+  return false;
 }
 
 export class FileRepairHistoryStore implements RepairHistoryStore {
@@ -104,8 +163,13 @@ export class FileRepairHistoryStore implements RepairHistoryStore {
           ? { ok: true, value: duplicate }
           : failed("REPAIR_HISTORY_CONFLICT", `repairId already records different transition: ${record.repairId}`);
       }
-      if (existing.value.some((item) => item.ordinal === record.ordinal)) {
-        return failed("REPAIR_HISTORY_CONFLICT", `repair ordinal already exists: ${record.ordinal}`);
+      // Ordinals are LANE-SCOPED: each lane walks its own ordinal space
+      // (qc-repair 1..n and review-repair 1..n are different transitions), so a
+      // global uniqueness check would have made the first review-lane record
+      // collide with the first QC-lane one.
+      const lane = record.lane ?? "QC";
+      if (existing.value.some((item) => (item.lane ?? "QC") === lane && item.ordinal === record.ordinal)) {
+        return failed("REPAIR_HISTORY_CONFLICT", `${lane} repair ordinal already exists: ${record.ordinal}`);
       }
       try {
         const path = this.#path(record.bookId);

@@ -2030,6 +2030,11 @@ export class BookRunApplicationService {
         bookId: input.bookId,
         failedCandidate: identity(candidate),
         failedReviewId,
+        // R-170: the transition's own durable history identity, derived from the
+        // ordinal's label exactly as its run and successor ids are, so a replay
+        // re-derives the same record rather than appending a second one.
+        repairId: derivedId(`${label}-repair`, runId),
+        ordinal,
         successorCandidateId: derivedId(`${label}-candidate`, runId),
         repairRunId: derivedId(`${label}-run`, runId),
         sourceGitSha: input.sourceGitSha,

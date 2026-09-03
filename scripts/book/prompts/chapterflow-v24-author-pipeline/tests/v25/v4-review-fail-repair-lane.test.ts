@@ -13,6 +13,7 @@
 
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
+import { mkdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 import {
@@ -33,9 +34,10 @@ import type {
 import type { CandidateIdentity } from "../../src/contracts/v4Core.js";
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
 import type { DiagnosisLookup, RepairService } from "../../src/qc/repairCoordinator.js";
-import type { RepairHistoryStore } from "../../src/qc/repairHistoryStore.js";
+import { FileRepairHistoryStore, isQcLaneRecord, type RepairHistoryRecord, type RepairHistoryStore } from "../../src/qc/repairHistoryStore.js";
 import type { QcService } from "../../src/qc/qcTypes.js";
 import type { CanonicalReviewResult, ReviewIssue, ReviewService } from "../../src/review/reviewTypes.js";
+import { createBookWriteLock } from "../../src/books/bookLease.js";
 import { createFileRunStore } from "../../src/run-state/fileRunStore.js";
 import { createFileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import type { ChapterV21 } from "../../src/types.js";
@@ -63,6 +65,8 @@ type ReviewRig = Readonly<{
   predecessor: CandidateSnapshot;
   counts: { model: number };
   prompts: Parameters<ModelTaskRunner["run"]>[0][];
+  /** Every repair-history record this lane appended, in order (R-170). */
+  appended: () => readonly RepairHistoryRecord[];
 }>;
 
 function reviewRig(
@@ -130,9 +134,13 @@ function reviewRig(
     async diagnose() { return { ok: false, error: inert }; },
     async repairLedger() { return { ok: false, error: inert }; },
   };
+  // R-170: the review lane DOES append now — its own lane-discriminated record.
+  // A real (in-memory) store, so the record has to satisfy the same append the
+  // production store performs.
+  const appended: RepairHistoryRecord[] = [];
   const history: RepairHistoryStore = {
-    async list() { return { ok: true, value: [] }; },
-    async append() { throw new Error("unused: the review lane appends no QC repair-history record"); },
+    async list() { return { ok: true, value: [...appended] }; },
+    async append(record) { appended.push(record); return { ok: true, value: record }; },
   };
   const diagnoses: DiagnosisLookup = { async getDiagnosis() { return { ok: false, error: inert }; } };
   const repairs: RepairService = { async createSuccessor() { throw new Error("unused: review lane stages its own successor"); } };
@@ -181,10 +189,13 @@ function reviewRig(
     predecessor,
     counts,
     prompts,
+    appended: (): readonly RepairHistoryRecord[] => appended,
     request: {
       bookId: PORT_BOOK,
       failedCandidate: FAILED,
       failedReviewId: failedReview.reviewId,
+      repairId: "review-repair-1",
+      ordinal: 1,
       successorCandidateId: "candidate-review-successor",
       repairRunId: `review-repair-run-${options.slug}`,
       sourceGitSha: "1".repeat(40),
@@ -337,6 +348,88 @@ requiredTest("R-224 PIN: an ERROR canonical review — the outcome a reader-lane
   assert.equal(repaired.error.code, "REVIEW_REPAIR_VERDICT_STALE");
   assert.ok(repaired.error.message.includes("outcome=ERROR"), repaired.error.message);
   assert.equal(rig.counts.model, 0);
+});
+
+requiredTest("R-170: repair-history ordinals are LANE-SCOPED, and each lane must carry its own shape", async (context: TestContext) => {
+  // Both lanes walk their own ordinal space, so review-repair ordinal 1 and
+  // qc-repair ordinal 1 are different transitions. A global uniqueness check
+  // would have made the FIRST review-lane record collide with the first QC one.
+  const booksRoot = resolve(context.roots.tempRoot, "history-lanes-books");
+  mkdirSync(booksRoot, { recursive: true });
+  const store = new FileRepairHistoryStore({ booksRoot, writeLock: createBookWriteLock({ booksRoot }) });
+  const book = "history-lanes";
+  const pair = { candidateId: "a", manifestDigest: "0".repeat(64) };
+  const qcRecord: RepairHistoryRecord = {
+    schemaVersion: "1",
+    repairId: "qc-repair-1",
+    bookId: book,
+    ordinal: 1,
+    predecessor: pair,
+    successor: { candidateId: "b", manifestDigest: "1".repeat(64) },
+    failedRoundId: "round-failed",
+    reviewId: "review-successor",
+    freshRoundId: "round-fresh",
+    qcOutcome: "PASS",
+    completedAt: context.clock.now(),
+  };
+  const reviewRecord: RepairHistoryRecord = {
+    schemaVersion: "1",
+    lane: "REVIEW",
+    repairId: "review-repair-1",
+    bookId: book,
+    ordinal: 1,
+    predecessor: pair,
+    successor: { candidateId: "c", manifestDigest: "2".repeat(64) },
+    failedReviewId: "panel-fail",
+    completedAt: context.clock.now(),
+  };
+  assert.equal((await store.append(qcRecord)).ok, true);
+  const both = await store.append(reviewRecord);
+  assert.equal(both.ok, true, JSON.stringify(both));
+  const listed = await store.list(book);
+  assert.ok(listed.ok, JSON.stringify(listed));
+  assert.equal(listed.value.length, 2, "both lanes' ordinal 1 persist and read back");
+  assert.deepEqual(listed.value.filter(isQcLaneRecord).map((r) => r.repairId), ["qc-repair-1"]);
+
+  // Within ONE lane the ordinal is still unique.
+  const clash = await store.append({ ...reviewRecord, repairId: "review-repair-1-again" });
+  assert.equal(clash.ok, false, JSON.stringify(clash));
+  if (!clash.ok) assert.equal(clash.error.code, "REPAIR_HISTORY_CONFLICT");
+
+  // A record wearing both lanes' fields is corruption, not a legacy shape.
+  const hybrid = await store.append({ ...reviewRecord, repairId: "hybrid", ordinal: 2, freshRoundId: "round-fresh" } as unknown as RepairHistoryRecord);
+  assert.equal(hybrid.ok, false, JSON.stringify(hybrid));
+  if (!hybrid.ok) assert.equal(hybrid.error.code, "REPAIR_HISTORY_INVALID");
+});
+
+requiredTest("R-170: a review-repair records its own lane-discriminated transition in repair-history", async (context: TestContext) => {
+  // Before this the lane wrote NOTHING: a live book carried a 4-line
+  // repair-history against 11 review-repair ordinals and 33 review-repair model
+  // admissions, so most of its repair transitions had no durable record at all.
+  const rig = reviewRig(context, { issues: [PANEL_BLOCKER], slug: "history" });
+  const result = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(result.ok, true, result.ok ? "" : JSON.stringify(result.error));
+  if (!result.ok) throw new Error("unreachable");
+
+  assert.equal(rig.appended().length, 1, JSON.stringify(rig.appended()));
+  const record = rig.appended()[0];
+  assert.equal(isQcLaneRecord(record), false, "a review-lane transition must never read as a QC-lane one");
+  assert.equal(record.lane, "REVIEW");
+  assert.equal(record.repairId, rig.request.repairId);
+  assert.equal(record.ordinal, rig.request.ordinal);
+  assert.deepEqual(record.predecessor, rig.request.failedCandidate);
+  assert.equal(record.successor.candidateId, rig.request.successorCandidateId);
+  assert.equal(record.successor.manifestDigest, result.value.successor.manifest.manifestDigest);
+  if (record.lane === "REVIEW") assert.equal(record.failedReviewId, rig.request.failedReviewId);
+  // It records NO fresh round and NO qc outcome: this lane owns neither, and
+  // inventing them is what would have let it reach the QC lane's diagnosis gate.
+  assert.equal("freshRoundId" in record, false, JSON.stringify(record));
+  assert.equal("qcOutcome" in record, false, JSON.stringify(record));
+
+  // A REPLAY re-reads the COMPLETED run and appends nothing further.
+  const replay = await rig.port.runFromReviewFail(rig.request);
+  assert.equal(replay.ok, true, replay.ok ? "" : JSON.stringify(replay.error));
+  assert.equal(rig.appended().length, 1, "a replay must not stack a second record");
 });
 
 requiredTest("a review-repair replays idempotently: a second call re-reads its successor with zero new model calls", async (context: TestContext) => {
