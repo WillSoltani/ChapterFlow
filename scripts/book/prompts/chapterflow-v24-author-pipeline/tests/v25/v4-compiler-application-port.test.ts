@@ -14,6 +14,18 @@ import {
   createFileSectionAvoidStore,
   type SectionAvoidStore,
 } from "../../src/books/sectionAvoidStore.js";
+import {
+  createFileChapterEditCache,
+  type ChapterEditCache,
+} from "../../src/books/chapterEditCache.js";
+import {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+  MAX_EDITOR_ATTEMPTS_PER_CHAPTER,
+  type ChapterEditProvenanceFile,
+} from "../../src/app/compilerApplicationPort.js";
+import { CHAPTER_EDIT_SCHEMA_VERSION } from "../../src/app/chapterEditorContract.js";
+import { chapterFileName } from "../../src/lib/chapterPaths.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../../src/artifacts/artifactStore.js";
 import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
@@ -149,7 +161,34 @@ type RigOptions = {
   readonly avoidStore?: SectionAvoidStore;
   /** R-106 — override the book-level deal audit. Absent = the production audit. */
   readonly bookDealAudit?: BookDealAudit;
+  /** Package 2B — compose the whole-chapter editor pass. Absent = no editor, which
+   *  is what every case above this line exercises. */
+  readonly chapterEdit?: Readonly<{ cache?: ChapterEditCache; env?: Readonly<Record<string, string | undefined>> }>;
+  /** What the fake editor returns for `editor-chNN`, built from the fixture packs
+   *  the port fed it. Absent = a wording-only edit that keeps every fact. */
+  readonly editorOutput?: (fixture: ReturnType<typeof compileCreditFixture>, attempt: number) => unknown;
 };
+
+/** The four fixture packs as the editor's `sections` document. */
+function editorSections(fixture: ReturnType<typeof compileCreditFixture>): Record<string, unknown> {
+  return {
+    "summary-pack": fixture.summary,
+    "example-pack": fixture.examples,
+    "learning-pack": fixture.learning,
+    "action-pack": fixture.action,
+  };
+}
+
+/** A wording-only edit: no id, key, citation, number or name moves. */
+function reworded(fixture: ReturnType<typeof compileCreditFixture>): Record<string, unknown> {
+  const sections = JSON.parse(JSON.stringify(editorSections(fixture))) as Record<string, { implementationPlan?: { weeklyPractice?: string } }>;
+  const action = sections["action-pack"];
+  if (action.implementationPlan) {
+    action.implementationPlan.weeklyPractice =
+      "Once a week, look at the visible balance and decide whether a small payment or a reminder would leave the signal cleaner.";
+  }
+  return sections as unknown as Record<string, unknown>;
+}
 
 function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   const selected = options.selected ?? snapshot();
@@ -269,6 +308,23 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
           };
         }
       }
+      // Package 2B — the editor operation, answered from the same fixture the
+      // sections were drafted from, wrapped in the editor's own output document.
+      if (request.context.operationId.startsWith("editor-")) {
+        const editorCount = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
+        sectionAttempts.set(request.context.operationId, editorCount);
+        const produced = options.editorOutput
+          ? options.editorOutput(fixture, editorCount)
+          : reworded(fixture);
+        const asRecord = produced as Record<string, unknown>;
+        return {
+          attemptId: request.context.attemptId,
+          outcome: "SUCCEEDED",
+          output: asRecord.schemaVersion === CHAPTER_EDIT_SCHEMA_VERSION
+            ? asRecord
+            : { schemaVersion: CHAPTER_EDIT_SCHEMA_VERSION, chapterId: fixture.blueprint.chapterId, sections: produced },
+        };
+      }
       const output = outputByKind[kindOf(request.context.operationId)] as Record<string, unknown>;
       if (options.malformedSummary && counts.runner === 1) {
         // Structurally malformed output (wrong artifactType) — a NON-retryable
@@ -313,6 +369,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     ...(options.cache ? { sectionPackCache: options.cache } : {}),
     ...(options.avoidStore ? { sectionAvoidStore: options.avoidStore } : {}),
     ...(options.bookDealAudit ? { bookDealAudit: options.bookDealAudit } : {}),
+    ...(options.chapterEdit ? { chapterEdit: options.chapterEdit } : {}),
     contentReader: {
       async open(input) {
         counts.open += 1;
@@ -1591,6 +1648,149 @@ requiredTest("R-106 the REAL audit runs over every blueprint before the first mo
   assert.deepEqual(events, ["audit blueprints=1 blockers=0 drafts=0"]);
   assert.equal(subject.counts.runner, 4, "the advisory must not stop the four sections from drafting");
   assert.equal(subject.counts.stage, 1);
+});
+
+// ── Package 2B — the whole-chapter editor pass, inside a real compile ────────
+
+/** Read one logical path out of the staged candidate. */
+function stagedFile(staged: NonNullable<ReturnType<ReturnType<typeof rig>["staged"]>>, logicalPath: string): string {
+  const file = staged.files.find((entry) => entry.logicalPath === logicalPath);
+  assert.ok(file, `staged candidate is missing ${logicalPath}`);
+  return Buffer.from(file.bytes).toString("utf8");
+}
+
+function editProvenance(staged: NonNullable<ReturnType<ReturnType<typeof rig>["staged"]>>): ChapterEditProvenanceFile {
+  return JSON.parse(stagedFile(staged, CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH)) as ChapterEditProvenanceFile;
+}
+
+requiredTest("2B an accepted edit reaches the staged candidate, its chapter artifact and its provenance", async (context) => {
+  const subject = rig(context, "editor-accepted", { chapterEdit: {} });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  // Four section drafts plus exactly ONE editor call for the one chapter.
+  assert.equal(subject.counts.runner, 5);
+  const editorPrompts = subject.prompts.filter((prompt) => prompt.context.operationId.startsWith("editor-"));
+  assert.equal(editorPrompts.length, 1);
+  assert.equal(editorPrompts[0].role, "author", "the editor runs on the author route");
+  assert.equal(editorPrompts[0].context.operationId, "editor-ch01");
+
+  const staged = subject.staged();
+  assert.ok(staged);
+  // The EDITED pack is what the candidate carries…
+  const actionPack = stagedFile(staged, "compiler/ch01/action-pack.json");
+  assert.match(actionPack, /look at the visible balance/);
+  // …and the chapter artifact was re-assembled from it.
+  const chapter = stagedFile(staged, `content/chapters/${chapterFileName(`${BOOK}-ch01`)}`);
+  assert.match(chapter, /look at the visible balance/);
+
+  const provenance = editProvenance(staged);
+  assert.equal(provenance.schemaVersion, CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION);
+  assert.equal(provenance.attempts, 1);
+  assert.deepEqual(provenance.chapters.map((entry) => entry.status), ["EDITED"]);
+  assert.equal(provenance.chapters[0].replayed, false);
+  assert.equal(provenance.chapters[0].advisory.applied, false);
+
+  const run = await subject.runStore.readRun(BOOK, result.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (!run.ok) return;
+  // Capacity carries the editor's own headroom; the happy path spends one attempt
+  // per section plus one per chapter.
+  assert.deepEqual(run.value.definition.attemptLimits, {
+    run: 12 + MAX_EDITOR_ATTEMPTS_PER_CHAPTER,
+    byStage: { "compiler-candidate": 12 + MAX_EDITOR_ATTEMPTS_PER_CHAPTER },
+  });
+  assert.equal(run.value.attempts.length, 5);
+  assert.ok(run.value.attempts.some((attempt) => attempt.admission.operationId === "editor-ch01"));
+  // The provenance sidecar is part of the declared inventory, not a stray file.
+  assert.ok(staged.expectedInventory.some((entry) => entry.logicalPath === CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH));
+});
+
+requiredTest("2B an edit the section gate rejects is retried once, then skipped with the drafted chapter intact", async (context) => {
+  const subject = rig(context, "editor-gate-fail", {
+    chapterEdit: {},
+    editorOutput: (fixture) => {
+      const sections = JSON.parse(JSON.stringify(editorSections(fixture))) as Record<string, { hook?: { hook: string } }>;
+      // SEC3: a hook far under the length floor.
+      if (sections["summary-pack"].hook) sections["summary-pack"].hook.hook = "Too short.";
+      return sections;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED", "a refused edit must never fail the compile");
+  assert.equal(subject.counts.runner, 6, "four drafts plus two bounded editor attempts");
+
+  const staged = subject.staged();
+  assert.ok(staged);
+  const summaryPack = stagedFile(staged, "compiler/ch01/summary-pack.json");
+  assert.doesNotMatch(summaryPack, /Too short\./, "the unedited draft ships");
+  const provenance = editProvenance(staged);
+  assert.deepEqual(provenance.chapters.map((entry) => entry.status), ["SKIPPED"]);
+  assert.equal(provenance.attempts, 2);
+  assert.ok(
+    provenance.chapters[0].blockers.some((line) => line.includes("SEC3")),
+    provenance.chapters[0].blockers.join(" | "),
+  );
+});
+
+requiredTest("2B an edit that moves a quiz key is refused by the preservation guard inside a real compile", async (context) => {
+  const subject = rig(context, "editor-key-moved", {
+    chapterEdit: {},
+    editorOutput: (fixture) => {
+      const sections = reworded(fixture) as unknown as Record<string, { quiz?: { questions: Array<{ correctIndex: number }> } }>;
+      const learning = sections["learning-pack"];
+      if (learning.quiz) learning.quiz.questions[0].correctIndex = (learning.quiz.questions[0].correctIndex + 1) % 3;
+      return sections;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  const staged = subject.staged();
+  assert.ok(staged);
+  const actionPack = stagedFile(staged, "compiler/ch01/action-pack.json");
+  assert.doesNotMatch(actionPack, /look at the visible balance/, "no part of a refused edit is kept");
+  const provenance = editProvenance(staged);
+  assert.deepEqual(provenance.chapters.map((entry) => entry.status), ["SKIPPED"]);
+  assert.ok(
+    provenance.chapters[0].blockers.some((line) => line.includes("EDIT.quiz_key")),
+    provenance.chapters[0].blockers.join(" | "),
+  );
+});
+
+requiredTest("2B a second compile replays both the packs and the edit with zero model calls", async (context) => {
+  const booksRoot = context.roots.booksRoot;
+  const writeLock = createBookWriteLock({ booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot, writeLock });
+  const editCache = createFileChapterEditCache({ booksRoot, writeLock });
+
+  const first = rig(context, "editor-replay-a", { cache, chapterEdit: { cache: editCache } });
+  const firstResult = await first.port.run(first.request);
+  assert.equal(firstResult.runStatus, "COMPLETED");
+  assert.equal(first.counts.runner, 5);
+
+  const second = rig(context, "editor-replay-b", { cache, chapterEdit: { cache: editCache } });
+  const secondResult = await second.port.run(second.request);
+  assert.equal(secondResult.runStatus, "COMPLETED");
+  assert.equal(second.counts.runner, 0, "a re-run must spend nothing on packs it has and an edit it made");
+
+  const staged = second.staged();
+  assert.ok(staged);
+  assert.match(stagedFile(staged, "compiler/ch01/action-pack.json"), /look at the visible balance/);
+  const provenance = editProvenance(staged);
+  assert.deepEqual(provenance.chapters.map((entry) => entry.status), ["EDITED"]);
+  assert.equal(provenance.chapters[0].replayed, true);
+  assert.equal(provenance.attempts, 0);
+});
+
+requiredTest("2B the disable flag ships the drafted chapter and records that the editor was off", async (context) => {
+  const subject = rig(context, "editor-disabled", { chapterEdit: { env: { CHAPTERFLOW_EDITOR_PASS: "0" } } });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4, "a disabled editor spends nothing");
+  const staged = subject.staged();
+  assert.ok(staged);
+  const provenance = editProvenance(staged);
+  assert.deepEqual(provenance.chapters.map((entry) => entry.status), ["DISABLED"]);
+  assert.deepEqual(provenance.chapters[0].blockers, ["editor disabled by CHAPTERFLOW_EDITOR_PASS=0"]);
 });
 
 finishV25Tests().catch((error: unknown) => {
