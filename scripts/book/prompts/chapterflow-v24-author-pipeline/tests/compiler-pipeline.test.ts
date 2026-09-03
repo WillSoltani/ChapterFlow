@@ -27,6 +27,28 @@ import type { SourceSidecarV2 } from "../src/source/sidecarSchema.js";
 import { blueprintPath, sectionPath, sourcePacketPath, writeJsonFile } from "../src/artifacts/artifactStore.js";
 import type { ActionPackV1, ExamplePackV1, LearningPackV1, SourcePacketV1, SummaryPackV1 } from "../src/artifacts/artifactTypes.js";
 
+/** Seven distinct card fronts/backs for the compliant credit fixture: distinct first
+ *  three words per family (SEC132), and no back opening on the "The <shape> is"
+ *  announcement scaffold. */
+const creditCardFronts = [
+  "Which visible number does a lender read before your payment posts?",
+  "What happens to utilization when a balance is reported early?",
+  "How does a reporting snapshot differ from a payment due date?",
+  "Why can an on-time payment still leave a noisy signal?",
+  "When should a small payment land to change the report?",
+  "Where does the account information a lender reads come from?",
+  "Who benefits when the visible balance matches the real behaviour?",
+];
+const creditCardBacks = [
+  "A lender reads the balance the card reported, not the payment you are planning to make tomorrow.",
+  "Utilization falls as soon as the reported balance falls, which is why the timing beats the intention here.",
+  "Snapshots happen on the reporting date, which can sit weeks away from the due date printed on the bill.",
+  "On-time payment builds a history, and the balance captured in that month still travels alongside it.",
+  "Small payments land best before the reporting date, because only what is recorded can be read later.",
+  "Account information comes from the issuer's own report, so the issuer's snapshot is the view that counts.",
+  "Borrowers benefit when the recorded number matches behaviour, since nothing else about intent is visible.",
+];
+
 function long(words: string, times: number): string {
   return Array.from({ length: times }, () => words).join(" ");
 }
@@ -78,27 +100,37 @@ function compileFixture() {
     "The chapter logic points to the reported balance, so the correct choice changes that signal directly.",
     "The keyed action is useful because it changes the system input; the distractors change comfort, not evidence.",
   ];
+  // Package 1B: the keyed answer (row[0]) is the SHORTEST of its three choices in
+  // every row, so this compliant fixture carries a 0% distractor-tell rate against
+  // SEC116's rubric budget of 20%. Before, three of the nine keys were the uniquely
+  // longest choice (33%), which the old advisory-only check never reported as a
+  // failure of the fixture.
   const quizChoiceRows = [
-    ["Lower the visible balance before the snapshot", "Leave the balance until the snapshot passes", "Open another card before checking utilization"],
-    ["Pay before the reportable balance is read", "Trust repayment intent after the report", "Move the reminder after the due date"],
-    ["Inspect utilization while it can change", "Track reward points while payment waits", "Ask the lender to infer careful habits"],
-    ["Make the account signal cleaner now", "Add another account for more variety", "Trust payment history before checking"],
-    ["Reduce the balance the system sees", "Keep extra cash idle for comfort", "Delay review until the bill arrives"],
-    ["Set an alert before balance reporting", "Wait for the statement before acting", "Focus on card color and rewards"],
-    ["Change the number lenders may read", "Assume intent will look obvious", "Describe a higher credit limit story"],
-    ["Check the report-facing account data", "Treat the due date as sufficient", "Compare unrelated card perks first"],
-    ["Act on utilization before it travels", "Hope later context repairs the signal", "Open a new budget spreadsheet tab"],
+    ["Lower the visible balance before the snapshot", "Leave the balance untouched until the snapshot has already passed", "Open another card first and check utilization afterwards"],
+    ["Pay before the reportable balance is read", "Trust that repayment intent will be understood after the report", "Move the payment reminder to a date after the bill is due"],
+    ["Inspect utilization while it can change", "Track reward points and let the payment question wait", "Ask the lender to infer careful habits from history"],
+    ["Make the account signal cleaner now", "Add another account so the mix shows more variety", "Trust the payment history before checking anything else"],
+    ["Reduce the balance the system sees", "Keep the extra cash idle so the month feels comfortable", "Delay the whole review until the paper bill arrives"],
+    ["Set an alert before balance reporting", "Wait for the printed statement before taking any action", "Focus on the card colour and the rewards programme"],
+    ["Change the number lenders may read", "Assume the careful intent will look obvious enough", "Describe a higher credit limit when the story comes up"],
+    ["Check the report-facing account data", "Treat the due date as sufficient on its own", "Compare the unrelated card perks before anything else"],
+    ["Act on utilization before it travels", "Hope that later context repairs the damaged signal", "Open a new budget spreadsheet tab and start over"],
   ];
+  // Package 1B: every stem now poses the scenario itself. SEC117 counts transfer on
+  // the STEM'S OWN CUE WORDS rather than on the bloomsLevel string, and this
+  // fixture's nine questions carried an "apply" label with no cue anywhere — 0/9
+  // real transfer behind a 9/9 label. The first three words of each stem are also
+  // distinct, which is what SEC132 measures.
   const quizPrompts = [
-    "Maya wants the next credit snapshot to look less risky. Which action changes the visible signal?",
-    "A borrower pays on time but carries a high reportable balance. What move fits the mechanism?",
-    "The account page shows utilization before payday. Which response acts while the signal can still change?",
-    "A reader wants the system to see cleaner account information. Which option does that directly?",
-    "The balance may be reported before the due date. What should the reader inspect first?",
-    "A careful cardholder keeps missing the reporting moment. Which small setup best supports the habit?",
-    "The lender will later read account data, not intent. Which choice changes the evidence?",
-    "A card user is comparing payment timing and perks. Which detail belongs at the center?",
-    "The reader has one minute before closing the app. Which action follows the credit-signal idea?",
+    "Suppose you want the next credit snapshot to look less risky. Which action changes the visible signal?",
+    "Imagine a borrower who pays on time but still carries a high reportable balance. What move fits the mechanism?",
+    "You are looking at the account page before payday and utilization is high. Which response acts while the signal can still change?",
+    "Your team wants the system to see cleaner account information. Which option does that directly?",
+    "A colleague warns that the balance may be reported before the due date. What should be inspected first?",
+    "Consider a careful cardholder who keeps missing the reporting moment. Which small setup best supports the habit?",
+    "Picture this scenario: the lender will later read account data, not intent. Which choice changes the evidence?",
+    "Suppose a card user is comparing payment timing against card perks. Which detail belongs at the center?",
+    "You are one minute from closing the app. Which action follows the credit-signal idea?",
   ];
   const summary: SummaryPackV1 = {
     schemaVersion: "section-artifact-v1",
@@ -112,7 +144,12 @@ function compileFixture() {
       // are seeded across tiers for the ≥3 memorable-line requirement.
       fastRead: long("Pay before the snapshot. A lower balance can make a careful borrower look careful. Make the signal match the care you already show.", 25),
       deepRead: long("A card keeps a record of what you owe. It does not read your plan. The system reads what you owe, not what you mean to do. So lower what the card shows before it goes to a lender.", 45),
-      fullRead: long("The move here is simple to start. Look at your own balance first. Bring down what you owe when you can. Small early payments change the story your card tells. Set a nudge before the day the balance is read. What a lender sees matters more than what you plan. This keeps the main idea true without a promise of an exact jump in your score.", 70),
+      // Package 1B: the two named cases the examples cite are TAUGHT here, once,
+      // outside the repeated block (SEC128 blocks a chapter that builds units on a
+      // case its reader-visible prose never states; the repeated block is left alone
+      // so the soft-banned-phrase budget and the SEC120 standalone haystack, which
+      // excludes fullRead, both stay exactly as they were).
+      fullRead: `${long("The move here is simple to start. Look at your own balance first. Bring down what you owe when you can. Small early payments change the story your card tells. Set a nudge before the day the balance is read. What a lender sees matters more than what you plan. This keeps the main idea true without a promise of an exact jump in your score.", 70)} Credit reports collect the account record, and lenders use account information from those reports. A score commonly sits on a 300 to 850 scale, and credit utilization is one of the inputs behind it.`,
       sourceAnchorIds: { fastRead: [aid], deepRead: [aid], fullRead: [aid] },
     },
     keyTakeaway: "Treat credit behavior as a visible signal: the useful move is to change what the system can see, not to hope your intention will be understood.",
@@ -178,7 +215,10 @@ function compileFixture() {
       })),
     },
     cards: {
-      cards: blueprint.sections.cards.map((c) => ({ cardId: c.cardId, sourceAnchorIds: [aid], front: `What credit-card signal should you inspect before a snapshot ${c.cardId}?`, back: "Inspect the balance or utilization that would be visible to the reporting system, because that is the account information lenders can later read.", difficulty: c.difficulty })),
+      // Package 1B: seven distinct fronts and seven distinct backs. Every card used to
+      // carry the SAME front stem and a byte-identical back, which SEC132 now blocks
+      // as three-or-more identical openers inside one chapter.
+      cards: blueprint.sections.cards.map((c, i) => ({ cardId: c.cardId, sourceAnchorIds: [aid], front: creditCardFronts[i % creditCardFronts.length], back: creditCardBacks[i % creditCardBacks.length], difficulty: c.difficulty })),
     },
   };
   const action: ActionPackV1 = {
@@ -378,7 +418,18 @@ test("SEC120 blocks a quiz stem whose cited specific never appears in the chapte
   const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 0);
   assert.ok(anchor, "fixture needs a specifics-rich quiz-capable anchor");
   const specific = anchor!.hardSpecifics![0];
-  assert.equal(fx.summary.breakdown.fullRead.includes(specific), false, "fixture prose must not already name the specific");
+  // SEC120 measures the STANDALONE tiers (Task 11ak: hook + counterintuition +
+  // fastRead + deepRead + keyTakeaway, fullRead excluded), and package 1B made the
+  // fixture teach its named cases in fullRead so SEC128 is satisfied. Assert on the
+  // haystack this check actually reads.
+  const standalone = [
+    fx.summary.hook.hook,
+    fx.summary.hook.counterintuition ?? "",
+    fx.summary.breakdown.fastRead,
+    fx.summary.breakdown.deepRead,
+    fx.summary.keyTakeaway,
+  ].join(" ");
+  assert.equal(standalone.includes(specific), false, "fixture prose must not already name the specific");
   // Task 11an: the anchor must be SATISFIABLE — at least one of its specifics on
   // the standalone page — or SEC58 would compel exactly what SEC120 forbids and
   // the pair would be unsatisfiable (SEC120 now stands down in that case, by
@@ -1741,9 +1792,20 @@ test("v23 summary-pack validator rejects named-case anchors without hard specifi
   bad.breakdown.sourceAnchorIds ??= {};
   bad.breakdown.sourceAnchorIds.fullRead = [namedCaseAnchor];
 
-  const findings = validateSummaryPack(bad, fx.blueprint, fx.packet);
+  // Package 1B: SEC14 is now a CHAPTER-level check with a new id
+  // (SEC14.chapter_case_grounding) — the case must be taught ONCE somewhere in the
+  // reader-visible prose rather than twice in every citing unit. The defect this
+  // test pins is unchanged: a cited named-case anchor whose hardSpecifics appear
+  // nowhere in the chapter's prose still blocks.
+  const stripped = JSON.parse(JSON.stringify(bad)) as SummaryPackV1;
+  const unteach = (value: string): string => value
+    .replaceAll("300 to 850 scale", "familiar range")
+    .replaceAll("credit utilization", "the share you carry");
+  stripped.breakdown.deepRead = unteach(stripped.breakdown.deepRead);
+  stripped.breakdown.fullRead = unteach(stripped.breakdown.fullRead);
+  const findings = validateSummaryPack(stripped, fx.blueprint, fx.packet);
   assert.ok(
-    findings.some((f) => f.checkId === "SEC14.summary_anchor_specifics" && f.severity === "blocker"),
+    findings.some((f) => f.checkId === "SEC14.chapter_case_grounding" && f.severity === "blocker"),
     findings.map((f) => `${f.checkId}: ${f.message}`).join("\n"),
   );
 });
@@ -2896,9 +2958,13 @@ test("SEC33 counts a naturalized clipped specific — unit-side folding (Frankli
   const caseId = (ex.sourceAnchorIds as string[])[0];
   const anchor = fx.packet.allowedAnchors.find((a) => a.id === caseId);
   assert.ok(anchor && (anchor.hardSpecifics ?? []).length >= 2, "fixture example must cite a specifics-rich case");
-  const [first, second] = anchor!.hardSpecifics!;
+  // Package 1B: SEC33's floor is ONE specific pooled across the three fields, so the
+  // scenario must carry NEITHER specific verbatim for the folding to be what decides.
+  // (With `first` also present the assertions below would pass on that alone and say
+  // nothing about the fold.)
+  const [, second] = anchor!.hardSpecifics!;
   const naturalized = second.split(" ").join(" simply ");
-  ex.scenario = `Maya reviews the ${first} at the kitchen table while the ${naturalized} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
+  ex.scenario = `Maya reviews the statement at the kitchen table while the ${naturalized} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
   ex.whatToDo = "Open the account page and choose the smallest payment that changes the visible signal without breaking the weekly cash plan.";
   ex.whyItMatters = "The action works because the visible number is what gets read, so a smaller balance changes what the reader of the report concludes.";
   const clean = validateExamplePack(pack, fx.blueprint, fx.packet)
@@ -2906,7 +2972,7 @@ test("SEC33 counts a naturalized clipped specific — unit-side folding (Frankli
   assert.deepEqual(clean, [], "in-order tokens within the gap bound carry the fact");
 
   const scattered = second.split(" ").join(" one two three four five six seven eight nine ");
-  ex.scenario = `Maya reviews the ${first} at the kitchen table while the ${scattered} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
+  ex.scenario = `Maya reviews the statement at the kitchen table while the ${scattered} note sits beside her, and she weighs one small payment against the visible number before the snapshot lands.`;
   const blocked = validateExamplePack(pack, fx.blueprint, fx.packet)
     .filter((f) => f.checkId === "SEC33.example_anchor_specifics" && f.path === "/examples/0");
   assert.equal(blocked.length, 1, "tokens scattered beyond the gap bound must still block");
@@ -3406,10 +3472,16 @@ test("R-016 SEC53 word balance blocks ABOVE 1.4x, the bound the learning contrac
 
 test("R-044 the summary pack's tryThisNow is grounded at the same bar as the action pack's", () => {
   // Both packs carry the SAME field with the SAME claim type, and the assembler
-  // ships `action.tryThisNow || summary.tryThisNow` (assembleSections.ts:269,342),
-  // so the action pack's copy is the one a reader sees. The summary copy was
-  // validated at min 2 hardSpecifics while SEC74 validates the shipped copy at 1 —
-  // retries spent on bytes that are discarded.
+  // ships `action.tryThisNow || summary.tryThisNow` (assembleSections.ts), so the
+  // action pack's copy is the one a reader sees. The summary copy was validated at
+  // min 2 hardSpecifics while SEC74 validates the shipped copy at 1 — retries spent
+  // on bytes that are discarded.
+  //
+  // Package 1B: the parity now holds from the other direction. SEC14 emits no
+  // per-unit specifics finding AT ALL (it became a chapter-level presence rule), so
+  // the discarded copy carries no per-unit quota, and SEC74 still binds the copy that
+  // ships. The assertions below pin both halves, including the bound on SEC74 — a
+  // vacuous "both are empty" would pass even if SEC74 had been retired too.
   const fx = compileFixture();
   const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("implementation_guidance") && (a.hardSpecifics ?? []).length >= 2);
   assert.ok(anchor, "fixture needs an implementation-capable anchor with 2+ hardSpecifics");
@@ -3427,6 +3499,17 @@ test("R-044 the summary pack's tryThisNow is grounded at the same bar as the act
 
   assert.deepEqual(actionHits, [], "SEC74 accepts one verbatim specific in the copy that actually ships");
   assert.deepEqual(summaryHits, [], "the discarded copy must not be held to a stricter bar than the shipped one");
+  assert.deepEqual(
+    validateSummaryPack(summary, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId.startsWith("SEC14")),
+    [],
+    "SEC14 raises no per-unit specifics finding on the summary's tryThisNow at all",
+  );
+
+  // And SEC74 still BINDS: strip the specific from the shipped copy and it blocks.
+  const bare = JSON.parse(JSON.stringify(action)) as ActionPackV1;
+  bare.tryThisNow = "Open one account and check the number before the next snapshot happens today.";
+  const bareHits = validateActionPack(bare, fx.blueprint, fx.packet).filter((f) => f.path === "/tryThisNow" && f.checkId === "SEC74.action_anchor_specifics");
+  assert.equal(bareHits.length, 1, "zero specifics in the shipped copy still blocks");
 });
 test("R-043 memorable-line scoring rewards only the separators it can actually see", () => {
   // memorableLineScore rejects any sentence containing ":" before scoring, so the
