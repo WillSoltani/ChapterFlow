@@ -54,12 +54,45 @@ export type BookScars = {
 };
 
 /**
+ * A parenthesis that scopes a rule to chapters: it contains NOTHING BUT chapter
+ * markers and separators — "(ch03)", "(ch01, ch03)", "(ch02 and ch04)".
+ *
+ * The narrowness is the point. The shipped corpus spells PROVENANCE with the same
+ * punctuation — "SAFETY (panel blocker, round 11)", "VIGNETTE ARC VARIETY (3/3
+ * readers: …)" — and two provenance notes name a chapter inside it:
+ * how-to-live-on-24-hours-a-day's "GRADUALISM CONSISTENCY (panel blockers, ch07)"
+ * and "STATED CAUSES ONLY (panel blocker, ch13)", whose bodies both govern every
+ * unit in the book. Treating any parenthesis as a scope dropped that book's only
+ * two hard rules out of eleven of its thirteen chapters.
+ */
+const CHAPTER_SCOPE_PARENTHESIS = /^\s*ch0*\d{1,3}(?:\s*(?:,|;|\/|\+|&|and)\s*ch0*\d{1,3})*\s*$/i;
+
+/**
+ * Labels whose rules are never chapter-scoped, whatever marker they carry.
+ *
+ * Reader safety is the one class where narrowing a rule harms the reader rather
+ * than merely wasting prompt. Franklin's two SAFETY rules are labelled "(ch03)"
+ * because ch03 is the episode a panel blocked on, but their bodies govern every
+ * modern example and every action step the BOOK produces ("Any modern example
+ * shows permission-and-funding ON THE PAGE"; "never apply the
+ * organize-and-fund-it-yourselves pattern to ARMED patrols … in a modern analog"),
+ * and example/action packs are written for every chapter. Enforced here rather
+ * than by editing those two labels, because a label edit can be undone by a later
+ * trim without anyone noticing which class of rule it just narrowed. Failing this
+ * way is fail-safe: a genuinely chapter-local safety rule renders into more
+ * prompts than it needs, which costs characters and no reader anything.
+ */
+const NEVER_SCOPED_LABEL = /\bSAFETY\b/i;
+
+/**
  * The chapters a rule governs, read from the rule's own LABEL — the text before
- * its first colon — as parenthesised `chNN` markers. "FACT PIN (ch03): …" governs
- * chapter 3 only; "SAFETY: …" governs the whole book; "TIER CONTRACT: the tiers
- * are standalone (ch01: the brother-break …)" governs the whole book too, because
- * the marker sits in the BODY, where it is an illustration rather than a scope.
- * An empty result means book-wide.
+ * its first colon — as a parenthesis holding only `chNN` markers. "FACT PIN
+ * (ch03): …" governs chapter 3 only; "SAFETY: …" governs the whole book;
+ * "TIER CONTRACT: the tiers are standalone (ch01: the brother-break …)" governs
+ * the whole book too, because the marker sits in the BODY, where it is an
+ * illustration rather than a scope; and "GRADUALISM CONSISTENCY (panel blockers,
+ * ch07): …" governs the whole book because its parenthesis is provenance, not a
+ * scope marker. An empty result means book-wide.
  *
  * The scope is derived from the rule text instead of a new schema field on
  * purpose. The 18 chapter-scoped rules in the shipped Franklin file already SAY
@@ -72,8 +105,10 @@ export type BookScars = {
  */
 export function bookRuleChapters(rule: string): number[] {
   const label = rule.split(":", 1)[0];
+  if (NEVER_SCOPED_LABEL.test(label)) return [];
   const chapters = new Set<number>();
   for (const group of label.matchAll(/\(([^)]*)\)/g)) {
+    if (!CHAPTER_SCOPE_PARENTHESIS.test(group[1])) continue;
     for (const marker of group[1].matchAll(/\bch0*(\d{1,3})\b/gi)) {
       const chapterNumber = Number(marker[1]);
       if (Number.isInteger(chapterNumber) && chapterNumber > 0) chapters.add(chapterNumber);

@@ -48,7 +48,18 @@ const ROLE_NAME: Record<SectionKind, string> = {
  */
 
 /** KEEP VERBATIM. This VOICE/LIVED-MOMENTS paragraph validated a +3.0 composite lift
- *  (commit 3702dd2d5); tests/contract-refactor.test.ts snapshots it exactly. Do not edit. */
+ *  (commit 3702dd2d5); tests/contract-refactor.test.ts snapshots it exactly.
+ *
+ *  ONE WORD HAS MOVED SINCE THAT VALIDATION (R-015): the closing clause read "state
+ *  it plainly rather than embroidering it", and "rather than" is soft-banned by the
+ *  SAME prompt (config/banned-phrases.json, perBookBudget 15), so the paragraph the
+ *  writer is told to imitate as a style model spent one of the book's allowance and
+ *  modelled a tic the DO NOT block asks it to avoid. It now reads "instead of" — the
+ *  plain substitute the ban's own reason names. The scene, the contrast pair, and
+ *  the invent-nothing clause are byte-identical to the validated text.
+ *
+ *  Do not edit further: any change beyond a ban conflict of that kind is an unvalidated
+ *  change to a paragraph whose lift was measured, and the snapshot test will fail. */
 const SUMMARY_VOICE_PARAGRAPH =
   `VOICE — narrate the real cases as LIVED MOMENTS, not abstract summaries: this genre teaches through concrete stories, so build deepRead and fullRead AROUND this chapter's real named cases. Open a case with one specific sensory moment drawn ONLY from its hardSpecifics (a named person, place, object, or number that is actually in the source), let the reader briefly FEEL the moment, THEN name the principle it proves. As a STYLE model only: prefer "The nurse taped a bright cartoon over the ceiling light so the boy staring up during the scan had something to find, and he stopped crying" over "Environments can be redesigned to reduce patient distress." Invent nothing beyond this chapter's own source hardSpecifics — the sample scene is only a voice model, so never import its nurse/boy/scan or any other book's cast, and if you have only a bare fact, state it plainly instead of embroidering it.`;
 

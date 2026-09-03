@@ -360,11 +360,19 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // config-rendered banned-phrase list, TIER ROLES, the cards/actions staging
 // directions, the chapter title + DIRECT_JSON validation frame) cost ~+3.0k on the
 // binding card, and R-274's chapter scoping returned more than that by not
-// rendering other chapters' fact pins: the worst chapter now measures 52,849
-// (was 52,471 for the only chapter this test used to measure) and 60,115 with
-// worst-case prose (was 59,761). That leaves 151 characters of headroom on the
-// binding card, so the next prompt package almost certainly re-pins here — with
-// the same kind of measured rationale, not by rounding the number up.
+// rendering other chapters' fact pins.
+//
+// RE-MEASURED in review round 2, after the scope reader was narrowed to a
+// pure-chapter-marker parenthesis and reader-safety labels were exempted from
+// scoping altogether: Franklin's two SAFETY rules are book-wide again, which adds
+// 871 chars back to every chapter EXCEPT ch03 — and ch03 is the binding chapter,
+// so the budgets are unmoved. Worst kind per chapter on this commit:
+//   ch01 learning-pack 51,160   ch02 51,252   ch03 52,849 (binding)   ch04 51,097
+//   ch05-ch08 (no scoped rules) 50,154
+//   with worst-case prose: 58,450 / 58,542 / 60,139 (binding) / 58,387 / 57,444
+// That leaves 151 characters of headroom on the binding packet-only card and 361
+// with prose, so the next prompt package almost certainly re-pins here — with the
+// same kind of measured rationale, not by rounding the number up.
 const HONEST_TASK_CHAR_BUDGET = 53_000;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 60_500;
 
@@ -390,17 +398,25 @@ test("R-002: the prompt-length budget is pinned on a render that carries BOTH la
     context: { voiceCard: card, bookScars: scars },
   });
 
-  // EVERY chapter the file's rules are scoped to, not just ch01. Since R-274 the
-  // rendered rule set differs per chapter, so measuring one chapter would leave the
-  // heaviest one unbounded — Franklin's ch03 carries 9 of the 18 scoped rules and is
-  // 2,560 chars heavier than ch01. Measured on this commit, worst kind per chapter:
-  //   ch01 learning-pack 50,289   ch02 50,381   ch03 52,849   ch04 50,226
-  //   with worst-case prose:      57,555 / 57,647 / 60,115 / 57,492
-  const scopedChapters = new Set<number>([1]);
-  for (const rule of scars!.prohibitions) for (const chapterNumber of bookRuleChapters(rule)) scopedChapters.add(chapterNumber);
-  assert.ok(scopedChapters.size > 1, "this book's rules must actually be chapter-scoped, or the loop measures one render four times");
+  // EVERY chapter, not just ch01. Since R-274 the rendered rule set differs per
+  // chapter, so measuring one chapter would leave the heaviest one unbounded —
+  // Franklin's ch03 carries 9 of the 18 scoped rules and is the binding render.
+  //
+  // The range is a LITERAL, deliberately: an earlier cut derived it from
+  // bookRuleChapters, so the budget loop re-used the very scope reader it was
+  // supposed to bound and could not have noticed a chapter the reader mis-scoped
+  // out of existence. MEASURED_CHAPTERS covers every chapter this file labels
+  // (1-4) with room either side; the assertion below pins that the labels have not
+  // drifted past it.
+  const MEASURED_CHAPTERS = [1, 2, 3, 4, 5, 6, 7, 8];
+  const labelled = new Set<number>();
+  for (const rule of scars!.prohibitions) for (const chapterNumber of bookRuleChapters(rule)) labelled.add(chapterNumber);
+  assert.ok(labelled.size > 1, "this book's rules must actually be chapter-scoped, or the loop measures one render eight times");
+  for (const chapterNumber of labelled) {
+    assert.ok(MEASURED_CHAPTERS.includes(chapterNumber), `ch${chapterNumber} is scoped by a rule but outside MEASURED_CHAPTERS; widen the literal range`);
+  }
 
-  for (const chapterNumber of [...scopedChapters].sort((a, b) => a - b)) {
+  for (const chapterNumber of MEASURED_CHAPTERS) {
     for (const kind of SECTION_KINDS) {
       const md = buildSectionTaskMarkdown(args(kind, chapterNumber));
       assert.match(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, `ch${chapterNumber} ${kind}: the scars block must actually render into the measured task`);
@@ -644,10 +660,12 @@ test("book-scars: an unknown key fails loud instead of silently dropping its rul
 // ── R-274 — a book's rules are rendered for the chapter being written ─────────
 //
 // Every one of Franklin's 37 prohibitions rendered into all 16 section-writer
-// prompts. 18 of them label themselves with the chapter they govern ("FACT PIN
-// (ch03): …"), so a ch01 writer was handed 14 pins that cannot apply to the
-// chapter in front of it — 5,607 characters of Franklin's 15,760-character
-// prohibition block, measured on the shipped file.
+// prompts. 16 of them scope themselves to the chapter they govern ("FACT PIN
+// (ch03): …"), so a ch01 writer was handed 12 pins that cannot apply to the
+// chapter in front of it — 4,736 characters of Franklin's 15,760-character
+// prohibition block, measured on the shipped file. (18 labels carry a chapter
+// marker; the two SAFETY ones are exempt from scoping — see the reader-safety
+// test below.)
 //
 // The scope is read from the rule's own LABEL (the text before its first colon),
 // never from its body: "TIER CONTRACT: … (ch02: …)" illustrates its rule with a
@@ -700,6 +718,104 @@ test("R-274: a chapter whose scoped rules all drop out renders no empty rules sc
   });
   assert.doesNotMatch(md, /NON-NEGOTIABLE RULES FOR THIS BOOK/, "no header with nothing under it");
   assert.match(md, /KNOWN OVER-USED MATERIAL FOR THIS BOOK/, "the over-use block is unaffected by chapter scope");
+});
+
+// R-274 review round 1 found the first cut of the scope reader too greedy: it took
+// ANY parenthesised group in a label as a scope. The shipped corpus uses the same
+// punctuation for PROVENANCE — where the scar came from — and two of those
+// provenance notes name a chapter:
+//   config/book-scars/how-to-live-on-24-hours-a-day.json
+//     "GRADUALISM CONSISTENCY (panel blockers, ch07): … Every example, quiz key,
+//      and card must agree … in any unit."
+//     "STATED CAUSES ONLY (panel blocker, ch13): a unit may attribute an outcome
+//      only to the cause the prose actually states … no card may re-attribute it."
+// Both bodies are explicitly book-wide, and under the greedy reader every chapter
+// of that book except 7 and 13 rendered NO rules block at all — a silent removal of
+// a shipped book's only hard rules, on the writer lane and the repair lane both.
+//
+// A scope marker is now a parenthesis that contains NOTHING BUT chapter markers and
+// separators: "(ch03)", "(ch01, ch03)". A parenthesis carrying any other word is
+// provenance and scopes nothing.
+test("R-274: a chapter named inside a PROVENANCE label does not scope the rule", () => {
+  assert.deepEqual(bookRuleChapters("FACT PIN (ch03): the sweeper was paid by nearby households."), [3]);
+  assert.deepEqual(bookRuleChapters("FACT PIN (ch01, ch03): two chapters, one pin."), [1, 3]);
+  assert.deepEqual(
+    bookRuleChapters("GRADUALISM CONSISTENCY (panel blockers, ch07): the span is grown gradually in every unit."),
+    [],
+    "a parenthesis carrying words beyond chapter markers is provenance, not scope",
+  );
+  assert.deepEqual(
+    bookRuleChapters("STATED CAUSES ONLY (panel blocker, ch13): attribute only the cause the prose states."),
+    [],
+  );
+  assert.deepEqual(bookRuleChapters("SAFETY (panel blocker, round 11): name the authority."), []);
+
+  // …and end to end, on the shipped file that carries the shape.
+  const scars = loadBookScars("how-to-live-on-24-hours-a-day")!;
+  assert.equal(scars.prohibitions.length, 2, "this book's two rules are what the regression is about");
+  for (const chapterNumber of [1, 2, 5, 7, 13]) {
+    const md = buildSectionTaskMarkdown({
+      bookId: "how-to-live-on-24-hours-a-day",
+      kind: "summary-pack",
+      blueprint: { ...minimalBlueprint("how-to-live-on-24-hours-a-day"), chapterNumber },
+      sourcePacket: PACKET,
+      outputPath: "/tmp/summary.json",
+      context: { voiceCard: null, bookScars: scars },
+    });
+    assert.match(md, /GRADUALISM CONSISTENCY/, `ch${chapterNumber}: a book-wide rule must reach every chapter`);
+    assert.match(md, /STATED CAUSES ONLY/, `ch${chapterNumber}: a book-wide rule must reach every chapter`);
+  }
+});
+
+// Reader safety is the one class where a narrowing mistake harms the reader, so it
+// is never chapter-scoped, whatever a label says. Franklin's two SAFETY rules are
+// labelled "(ch03)" because that is the episode the panel blocked on, but their
+// bodies govern every modern example and every action step the book produces
+// ("Any modern example shows permission-and-funding ON THE PAGE"; "never apply the
+// organize-and-fund-it-yourselves pattern to ARMED patrols … in a modern analog"),
+// and example/action packs are written for every chapter. A code rule rather than a
+// config edit, because the config edit can be undone by a later label trim without
+// anyone noticing which class of rule it just narrowed.
+test("R-274: a reader-safety rule is never narrowed to one chapter", () => {
+  assert.deepEqual(
+    bookRuleChapters("SAFETY (ch03): never advise beginning work on shared property without permission."),
+    [],
+    "a SAFETY label governs the whole book even with a pure chapter marker",
+  );
+  assert.deepEqual(bookRuleChapters("READER SAFETY (ch09): name the professional standard."), []);
+  assert.deepEqual(bookRuleChapters("FACT PIN (ch09): the ninth chapter's number is nine."), [9], "…and nothing else changes");
+
+  const franklin = loadBookScars("the-autobiography-of-benjamin-franklin")!;
+  const md = buildSectionTaskMarkdown({
+    bookId: "the-autobiography-of-benjamin-franklin",
+    kind: "action-pack",
+    blueprint: { ...minimalBlueprint("the-autobiography-of-benjamin-franklin"), chapterNumber: 1 },
+    sourcePacket: PACKET,
+    outputPath: "/tmp/action.json",
+    context: { voiceCard: null, bookScars: franklin },
+  });
+  assert.match(md, /shared or public property without permission/, "the ch01 action writer gets the public-property rule");
+  assert.match(md, /organize-and-fund-it-yourselves pattern to ARMED patrols/, "…and the armed-patrol rule");
+});
+
+test("R-274: every shipped scar file keeps at least one rule that governs every chapter", () => {
+  // The corpus-level guard on the scope reader. A book whose rules ALL read as
+  // chapter-scoped renders no rules block for most of its chapters, which is how
+  // the greedy first cut removed how-to-live-on-24-hours-a-day's only hard rules
+  // from eleven of its thirteen chapters without a single test noticing.
+  const dir = resolve(PIPELINE_DIR, "config", "book-scars");
+  const shipped = readdirSync(dir)
+    .filter((f) => f.endsWith(".json") && f !== "book-scars.schema.json" && !f.startsWith("zz-fixture-"))
+    .map((f) => f.replace(/\.json$/, ""));
+  for (const bookId of shipped) {
+    const scars = loadBookScars(bookId)!;
+    if (scars.prohibitions.length === 0) continue;
+    const bookWide = scars.prohibitions.filter((rule) => bookRuleChapters(rule).length === 0);
+    assert.ok(
+      bookWide.length > 0,
+      `${bookId}: every one of its ${scars.prohibitions.length} rules reads as chapter-scoped, so most chapters would render no rules block at all`,
+    );
+  }
 });
 
 // ── R-008 — notes are not over-use material ──────────────────────────────────
