@@ -45,8 +45,10 @@ test("pipeline has one explicit npm workspace package and lockfile contract", ()
     assert.ok(pipelinePkg.scripts?.[script], `pipeline package.json must expose ${script}`);
   }
   assert.match(pipelinePkg.scripts.test, /CHAPTERFLOW_NO_API_CODEX_QC=1/, "pipeline tests must default to no-API mode");
+  // Pin tracks package.json/package-lock.json, not a deliberate hold: Dependabot #505
+  // bumped both consistently 0.104.1 -> 0.120.0 (app-minor-and-patch group).
   assert.deepEqual(pipelinePkg.optionalDependencies, {
-    "@anthropic-ai/sdk": "0.104.1",
+    "@anthropic-ai/sdk": "0.120.0",
     "openai": "6.42.0",
   });
   assertExactVersions(pipelinePkg.devDependencies, "pipeline devDependencies");
