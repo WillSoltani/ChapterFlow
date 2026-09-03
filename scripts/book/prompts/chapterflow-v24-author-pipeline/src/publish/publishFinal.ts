@@ -96,26 +96,48 @@ export type PendingDeployEntry = {
   steps: string[];
 };
 
+/** Thrown when the existing sentinel cannot be read as a pending-deploy list.
+ *  Distinct from a write failure so the caller can name the real cause. */
+export class PendingDeploySentinelError extends Error {}
+
 /** Pure: merge one entry into the sentinel JSON text. Same-bookId entry is
  *  REPLACED; all other valid entries are PRESERVED; result is sorted by bookId
- *  and newline-terminated. A null/torn/foreign existing blob starts fresh but a
- *  well-formed one NEVER loses its other entries.
+ *  and newline-terminated.
+ *
+ *  FAIL-CLOSED on an UNREADABLE existing blob (R-255). This function used to
+ *  start from an empty list whenever the file failed `JSON.parse` or lacked a
+ *  `pending` array, and publishFinal then WROTE that result — silently dropping
+ *  every other book's owed deploy steps. The sentinel is the sole mechanism
+ *  keeping a pushed-but-undeployed book visible (doctor / book-status read it),
+ *  so a blob we cannot read may be hiding real debt: refuse, leave the operator's
+ *  bytes exactly where they are, and let the caller report a FAIL step. An
+ *  absent/empty file is NOT corruption — that is the fresh-sentinel case.
+ *
  *  IDEMPOTENT: when the existing same-book entry already carries the SAME
  *  packageSha256, it is kept VERBATIM (its publishedAt is not refreshed) — so a
  *  publish-final re-run over unchanged content produces byte-identical output and
  *  the commit-skip idempotency holds. */
 export function mergePendingDeploy(existingRaw: string | null, entry: PendingDeployEntry): string {
   let pending: PendingDeployEntry[] = [];
-  if (existingRaw) {
+  if (existingRaw !== null && existingRaw.trim() !== "") {
+    let parsed: unknown;
     try {
-      const parsed = JSON.parse(existingRaw) as { pending?: unknown };
-      if (parsed && Array.isArray(parsed.pending)) {
-        pending = parsed.pending.filter(
-          (e): e is PendingDeployEntry =>
-            !!e && typeof (e as PendingDeployEntry).bookId === "string" && typeof (e as PendingDeployEntry).packageSha256 === "string",
-        );
-      }
-    } catch { /* torn/foreign → start fresh (never throws away a parseable list) */ }
+      parsed = JSON.parse(existingRaw) as unknown;
+    } catch (err) {
+      throw new PendingDeploySentinelError(
+        `${PENDING_DEPLOY_REL} is unreadable (not valid JSON: ${(err as Error).message}); refusing to overwrite it, because it may record other books' owed deploys`,
+      );
+    }
+    const list = (parsed as { pending?: unknown } | null)?.pending;
+    if (!Array.isArray(list)) {
+      throw new PendingDeploySentinelError(
+        `${PENDING_DEPLOY_REL} is unreadable (no \`pending\` array); refusing to overwrite it, because it may record other books' owed deploys`,
+      );
+    }
+    pending = list.filter(
+      (e): e is PendingDeployEntry =>
+        !!e && typeof (e as PendingDeployEntry).bookId === "string" && typeof (e as PendingDeployEntry).packageSha256 === "string",
+    );
   }
   const prior = pending.find((e) => e.bookId === entry.bookId);
   const kept = prior && prior.packageSha256 === entry.packageSha256 ? prior : entry;
@@ -243,11 +265,26 @@ export type PublishFinalResult = {
   /** The deploy still owed after a successful push (sentinel written). Present on
    *  any successful non-dry publish so callers can print the DEPLOY REQUIRED hint. */
   deployRequired?: string[];
+  /** SET when the book SHIPPED (committed + pushed + synced) but the debris
+   *  cleanup refused. `ok` stays true — the book is live — and the CLI maps this
+   *  to its own exit code so a shipped-but-uncleaned publish is never mistaken for
+   *  a failed publish (which is what drove re-publish loops). `--strict-cleanup`
+   *  turns it back into `ok:false`. */
+  cleanupBlocked?: string;
 };
 
 export type PublishFinalOptions = {
   dryRun?: boolean;
   keepDebris?: boolean;
+  /** OPT-IN: treat a shipped-but-uncleaned publish as a FAILURE (ok:false).
+   *  Default false — the book is live, and reporting that as a failed publish is
+   *  what made retry loops re-publish forever. */
+  strictCleanup?: boolean;
+  /** TEST SEAM: cleanup pipeline/state roots. Production passes neither (the
+   *  engine's canonical REPO_ROOT / CANONICAL_STATE defaults apply); a hermetic
+   *  test points the debris scan at a disposable tree. `outerRoot` is always the
+   *  publish's own outer root and is NOT overridable here. */
+  cleanupRoots?: { pipelineRoot?: string; stateRoot?: string };
   /** outer live checkout root; default MONOREPO_ANCESTOR. */
   outerRoot?: string;
   /** sandbox package path override (tests). */
@@ -419,6 +456,7 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
   const dryRun = opts.dryRun === true;
   const keepDebris = opts.keepDebris === true;
   const outerRoot = opts.outerRoot ?? MONOREPO_ANCESTOR;
+  const cleanupRoots = { outerRoot, ...(opts.cleanupRoots ?? {}) };
   const runner = opts.runner ?? defaultRunner;
   const registerFn = opts.registerInOuter ?? registerInOuterRegistry;
 
@@ -494,10 +532,20 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
     push("plan:commit", true, `would pathspec-commit {${bridgeRel}, ${PENDING_DEPLOY_REL}${probe.state === "not-found" ? `, ${OUTER_REGISTRY_REL}` : ""}, ${OUTER_CATALOG_METADATA_REL} (if dirty)} on ${branch}`);
     push("plan:push", true, `would push ${branch} with a MERGE loop (never rebase/force)`);
     push("plan:sync", true, `would fetch + ff-only pull + assert origin/${branch}...${branch} == "0 0"`);
-    const manifest = buildCleanupManifest(id, { outerRoot });
-    push("plan:cleanup", true, keepDebris ? "cleanup SKIPPED (--keep-debris)" : formatCleanupManifest(manifest));
+    const manifest = buildCleanupManifest(id, cleanupRoots);
+    // R-240: the plan step's verdict must be the verdict the REAL run will reach.
+    // `formatCleanupManifest` prints "ABORT: N matched path(s) are git-tracked"
+    // for exactly the state applyCleanup refuses on — printing that inside a
+    // hard-coded PASS line told the operator the plan was fine.
+    const cleanupPlanOk = keepDebris || (!manifest.trackedUnknown && manifest.trackedMatches.length === 0);
+    push("plan:cleanup", cleanupPlanOk, keepDebris ? "cleanup SKIPPED (--keep-debris)" : formatCleanupManifest(manifest));
+    const planError = cleanupPlanOk
+      ? undefined
+      : manifest.trackedUnknown
+        ? `planned cleanup would ABORT: git could not determine which matched paths are tracked (${manifest.trackedUnknownReason ?? "no reason recorded"})`
+        : `planned cleanup would ABORT: ${manifest.trackedMatches.length} matched path(s) are git-tracked (first: ${manifest.trackedMatches[0]}). Re-run with --keep-debris to ship without sweeping.`;
     return {
-      ...finish(true),
+      ...finish(cleanupPlanOk, planError),
       packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
       cleanupManifest: manifest,
     };
@@ -620,20 +668,34 @@ export async function publishFinal(bookId: string, opts: PublishFinalOptions = {
   // ── 7. CLEANUP (owner requirement) — gated on the step-6 proof ─────────────
   let cleanup: CleanupResult | undefined;
   let cleanupManifest: CleanupManifest | undefined;
+  let cleanupBlocked: string | undefined;
   if (keepDebris) {
-    cleanupManifest = buildCleanupManifest(id, { outerRoot });
+    cleanupManifest = buildCleanupManifest(id, cleanupRoots);
     push("cleanup", true, "SKIPPED (--keep-debris) — debris left on disk");
   } else {
     const proof: PublishProof = { pushedCommit: commitSha!, syncState };
-    cleanup = applyCleanup(id, proof, { outerRoot });
+    cleanup = applyCleanup(id, proof, cleanupRoots);
     cleanupManifest = cleanup.manifest;
     if (!cleanup.ok) {
-      // A cleanup abort (tracked file) is a HARD failure — but the publish already
-      // succeeded (committed + pushed + synced), so surface it without unshipping.
-      push("cleanup", false, cleanup.error ?? "cleanup failed");
+      // R-241: the book IS live — committed, pushed, origin asserted 0/0. Reporting
+      // that as `ok:false` made every "retry on non-zero" loop re-publish an
+      // already-shipped book forever. The cleanup STEP still fails loudly and the
+      // reason is carried on `cleanupBlocked`, from which the CLI derives an exit
+      // code distinct from a failed publish. `--strict-cleanup` restores the old
+      // hard failure for callers that want it.
+      cleanupBlocked = cleanup.error ?? "cleanup failed";
+      push("cleanup", false, cleanupBlocked);
+      if (opts.strictCleanup === true) {
+        return {
+          ...finish(false, `publish succeeded but cleanup ABORTED (--strict-cleanup): ${cleanupBlocked}`),
+          commitSha, syncState, cleanup, cleanupManifest, cleanupBlocked,
+          packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
+          deployRequired: deployHint,
+        };
+      }
       return {
-        ...finish(false, `publish succeeded but cleanup ABORTED: ${cleanup.error}`),
-        commitSha, syncState, cleanup, cleanupManifest,
+        ...finish(true),
+        commitSha, syncState, cleanup, cleanupManifest, cleanupBlocked,
         packageSha: pkgSha, packageBytes: pkgBytes, overheadPct,
         deployRequired: deployHint,
       };
@@ -693,7 +755,13 @@ export function pushWithMerge(outerRoot: string, branch: string, attempts = 3): 
 /** Render the publish-final result as a human-readable report. */
 export function formatPublishFinalResult(r: PublishFinalResult): string {
   const L: string[] = [];
-  L.push(r.ok ? `PUBLISH-FINAL ${r.dryRun ? "PLAN" : "OK"} — ${r.bookId}` : `PUBLISH-FINAL BLOCKED — ${r.bookId}`);
+  L.push(
+    !r.ok
+      ? `PUBLISH-FINAL BLOCKED — ${r.bookId}`
+      : r.cleanupBlocked
+        ? `PUBLISH-FINAL SHIPPED, CLEANUP BLOCKED — ${r.bookId}`
+        : `PUBLISH-FINAL ${r.dryRun ? "PLAN" : "OK"} — ${r.bookId}`,
+  );
   for (const s of r.steps) L.push(`  ${s.ok ? "✓" : "✗"} ${s.step}: ${s.detail}`);
   if (r.packageSha) L.push(`  package: sha256 ${r.packageSha.slice(0, 12)}…  ${(r.packageBytes ?? 0)} B  overhead ${r.overheadPct ?? 0}%`);
   if (r.commitSha) L.push(`  commit: ${r.commitSha.slice(0, 12)}`);
@@ -704,6 +772,13 @@ export function formatPublishFinalResult(r: PublishFinalResult): string {
   }
   if (r.durationMs != null) L.push(`  duration: ${(r.durationMs / 1000).toFixed(1)}s`);
   if (!r.ok && r.error) L.push(`  reason: ${r.error}`);
+  if (r.ok && r.cleanupBlocked) {
+    L.push("");
+    L.push(`  ⚠ SHIPPED, NOT CLEANED — the package is committed, pushed and in sync with origin, but the debris`);
+    L.push(`    cleanup refused and NOTHING was deleted: ${r.cleanupBlocked}`);
+    L.push(`    Re-running publish-final will NOT unship the book and will NOT clean either — resolve the tracked`);
+    L.push(`    path (or re-run with --keep-debris to acknowledge it) and sweep separately.`);
+  }
   // Loud DEPLOY REQUIRED block whenever a publish landed (the sentinel is owed).
   if (r.deployRequired && r.deployRequired.length > 0 && !r.dryRun) {
     L.push("");

@@ -764,7 +764,7 @@ Commands:
                                      Report-only by default; --commit stages+commits ONLY that file in
                                      the outer repo (never pushes; refuses if it is already staged/dirty
                                      there from other work).
-  publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>] [--v25-root <absolute>]
+  publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--outer-root <path>] [--v25-root <absolute>]
                                      --v25-root is OPT-IN candidate-store re-verification: the preflight
                                      reads books/<id>/current.json, requires the sidecar's declared
                                      candidateId@manifestDigest to EQUAL the pointer's, opens the
@@ -780,6 +780,9 @@ Commands:
                                      (ff-only pull + assert origin==0/0) → CLEANUP all per-book debris
                                      (gated on the push+sync proof). --dry-run prints the full plan +
                                      cleanup manifest with zero mutations; --keep-debris skips cleanup.
+                                     EXIT CODES: 0 shipped + swept; 3 SHIPPED but the cleanup refused (the
+                                     book IS live — do NOT re-publish); 1 the publish failed and the book is
+                                     NOT live. --strict-cleanup makes the exit-3 state a 1 instead.
                                      NO S3/AWS — content ships via the repo push + a separate deploy.
   qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]
                                      Record the authoring session (state/provenance/) so a later FRESH QC
@@ -2549,13 +2552,17 @@ async function runPublishToLive(args: string[], flags: Record<string, string | b
   return 0;
 }
 
-/** `publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>]` — the
- *  v24 one-verb ship: bridge → commit → push (merge loop) → origin sync 0/0 →
+/** Exit code for "the book SHIPPED, the debris cleanup refused". Distinct from 1
+ *  (publish failed, book NOT live) and from 0 (shipped and swept). */
+export const PUBLISH_FINAL_EXIT_SHIPPED_UNCLEANED = 3;
+
+/** `publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--outer-root <path>]` —
+ *  the v24 one-verb ship: bridge → commit → push (merge loop) → origin sync 0/0 →
  *  debris cleanup. No S3/AWS. See src/publish/publishFinal.ts. */
 async function runPublishFinal(args: string[], flags: Record<string, string | boolean>): Promise<number> {
   const bookId = args[0];
   if (!bookId) {
-    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--outer-root <path>] [--v25-root <absolute>]");
+    console.error("Usage: publish-final <bookId> [--dry-run] [--keep-debris] [--strict-cleanup] [--outer-root <path>] [--v25-root <absolute>]");
     return 2;
   }
   const v25Root = requireAbsoluteV25Root(flags);
@@ -2564,11 +2571,18 @@ async function runPublishFinal(args: string[], flags: Record<string, string | bo
   const result = await publishFinal(bookId, {
     dryRun: flags["dry-run"] === true,
     keepDebris: flags["keep-debris"] === true,
+    strictCleanup: flags["strict-cleanup"] === true,
     outerRoot: typeof flags["outer-root"] === "string" ? resolve(process.cwd(), flags["outer-root"] as string) : undefined,
     ...(v25Root === undefined ? {} : { v25Root }),
   });
   console.log(formatPublishFinalResult(result));
-  return result.ok ? 0 : 1;
+  if (!result.ok) return 1;
+  // R-241: a SHIPPED book whose debris cleanup refused is not a failed publish —
+  // returning 1 for it made "retry until exit 0" loops re-publish an already-live
+  // book forever. Exit 3 is its own terminal state: the book IS live, the sweep is
+  // owed. Exit 1 stays reserved for a publish that left the book unshipped (and for
+  // this state too, when the operator asks for it with --strict-cleanup).
+  return result.cleanupBlocked ? PUBLISH_FINAL_EXIT_SHIPPED_UNCLEANED : 0;
 }
 
 /** `qc-stamp-author <bookId> [--chapters 1,2] [--session <id>]` — record the
