@@ -262,6 +262,16 @@ export function checkChapterProvenance(chapter: ChapterV21, sidecarOverride?: an
     ].join("\n"));
     const citedRich = new Map<string, SourceAnchorForPrompt>();
     for (const unit of units) {
+      // SCOPE: the units a reader is TESTED or INSTRUCTED on, never the examples.
+      // The write-time rule (SEC128) does cover the example pack — a chapter whose
+      // scenes borrow a case its prose never states is a real coverage gap, and a
+      // fresh draft can be retried into shape. At SHIP time the same arm would
+      // retro-block already-promoted packages for a defect no repair round is aimed
+      // at, so the ship mirror keeps the scope SEC120 chose for the same reason: a
+      // quiz must be answerable from what the READER READS as the chapter, and a
+      // fictional scene is not that. Ship ⊆ write in every case, which is the
+      // property that matters — this gate never blocks what compile passed.
+      if (unit.claimType === "example") continue;
       for (const anchorId of unit.ids) {
         const anchor = anchors.get(anchorId);
         if (!anchor?.supportsClaimTypes.includes(unit.claimType)) continue;

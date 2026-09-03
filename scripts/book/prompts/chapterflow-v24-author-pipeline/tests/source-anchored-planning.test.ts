@@ -3,6 +3,8 @@ import { mkdirSync, readFileSync, rmSync, writeFileSync } from "fs";
 import { resolve } from "path";
 
 import { checkChapterProvenance } from "../src/critics/sourceGrounding.js";
+import { validateExamplePack, type SectionFinding } from "../src/sections/sectionGate.js";
+import type { ChapterBlueprintV1, ExamplePackV1, SourcePacketV1 } from "../src/artifacts/artifactTypes.js";
 import { chapterContentHash } from "../src/critics/qcAttestation.js";
 import {
   currentProviderIdentity,
@@ -204,6 +206,16 @@ function fullyAnchoredChapter(): ChapterV21 {
     effectiveAnchors[`implementationPlan.ifThenPlans[${i}]`] = ["ch01.fact.4"];
   });
   chapter.memorableLines?.forEach((line, i) => {
+    // Package 1B: a memorable line carries AT MOST ONE source specific (SC11.8, the
+    // ship-side reading of SEC16). The shared fixture generates lines out of the
+    // chapter's own vocabulary, which stacks two of the harbor sidecar's specifics —
+    // exactly the defect the cap names — so the fully-anchored CONTROL states the idea.
+    const stated = [
+      "The early check is the only cheap one you will ever get.",
+      "A tidy record beats a good memory every single time.",
+      "You pay less for the small fix than for the argument about it.",
+    ];
+    line.text = stated[i] ?? line.text;
     line.sourceAnchorIds = ["ch01.fact.1"];
     effectiveAnchors[`memorableLines[${i}]`] = ["ch01.fact.1"];
   });
@@ -279,16 +291,23 @@ test("SC11 boundary: supported-but-missing-specific → SC11.2; present-but-unsu
   // silently invert.
 
   // Side A — anchor SUPPORTS the claim type but the unit omits its verbatim specifics → SC11.2.
-  // ch01.ex.lantern is a named_example (supportsClaimTypes includes quiz_prompt), so it is a
-  // legal anchor for a quiz unit; the quiz prose simply never names lantern/ledger/beacon.
+  // Package 1B: the unit is an EXAMPLE, not a quiz question. SC11.2's per-unit minimums are
+  // now derived from the section gate, which stopped demanding a verbatim token of quiz
+  // stems and cards (SEC56/SEC58 retired) and keeps one for examples (SEC33) and the
+  // implementation plan (SEC74) — a ship gate that demanded what write-time does not would
+  // re-block every freshly compiled book. The BOUNDARY this test pins is unchanged.
   const missingSpecific = fullyAnchoredChapter();
-  missingSpecific.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
+  missingSpecific.examples[0].title = "A quiet morning";
+  missingSpecific.examples[0].scenario = "A reviewer walks the dock and files one note before lunch.";
+  missingSpecific.examples[0].whatToDo = "File the note before the morning meeting.";
+  missingSpecific.examples[0].whyItMatters = "Early notes keep the record honest.";
+  missingSpecific.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
   const specificFindings = checkChapterProvenance(missingSpecific, sidecar());
-  const sc112 = specificFindings.filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.lantern");
+  const sc112 = specificFindings.filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.compass");
   assert.ok(sc112.length > 0, "supported anchor missing its hardSpecifics must raise SC11.2");
   assert.ok(sc112.every((f) => f.severity === "blocker"), "SC11.2 must stay a blocker");
   assert.ok(
-    !specificFindings.some((f) => String(f.checkId) === "SC11.6.unsupported_anchor" && f.evidence === "ch01.ex.lantern"),
+    !specificFindings.some((f) => String(f.checkId) === "SC11.6.unsupported_anchor" && f.evidence === "ch01.ex.compass"),
     "a genuinely supporting anchor must NOT be mislabeled unsupported (SC11.6)",
   );
 
@@ -306,123 +325,188 @@ test("SC11 boundary: supported-but-missing-specific → SC11.2; present-but-unsu
   );
 });
 
-test("SC11.2 quota rebalance (P15 ship-layer): non-narrative units need 1 verbatim specific, narration keeps 2", () => {
-  // Quiz units citing a hardSpecifics-bearing named-example anchor: ONE verbatim
-  // specific now clears the ship gate (matches SEC56/SEC58/SEC74 write-time quota).
-  const one = fullyAnchoredChapter();
-  one.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
-  one.quiz.questions[0].prompt = "The lantern shift changes hands mid-morning - what do you check first?";
-  one.quiz.questions[0].explanation = "Check the lantern record first, before the shift note is overwritten.";
-  const oneHits = checkChapterProvenance(one, sidecar())
+test("SC11.2 minimums are DERIVED from the section gate (package 1B): quiz and cards owe nothing, examples owe one", () => {
+  // The ship gate must never demand what the write-time gate does not, or every freshly
+  // compiled book re-blocks at QC — this file's own history records that happening twice.
+  // Package 1B retired SEC56/SEC58 (a quiz stem, its explanation and a card back no longer
+  // owe a verbatim token of the case they cite) and dropped SEC33 from two to one, so the
+  // table here follows: example 1, implementation_guidance 1, everything else 0.
+
+  // A quiz unit citing a specifics-rich case and naming none of its details: no SC11.2.
+  const quiz = fullyAnchoredChapter();
+  quiz.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
+  quiz.quiz.questions[0].prompt = "The shift changes hands mid-morning - what do you check first?";
+  quiz.quiz.questions[0].explanation = "Check the record first, before the shift note is overwritten.";
+  const quizHits = checkChapterProvenance(quiz, sidecar())
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("quiz.questions[0]"));
-  assert.deepEqual(oneHits.map((f) => f.message), [], "one verbatim specific clears SC11.2 on quiz units");
-  // ZERO specifics still blocks, and the message carries the rebalanced quota.
-  const zero = fullyAnchoredChapter();
-  zero.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.lantern"];
-  zero.quiz.questions[0].prompt = "The shift changes hands mid-morning - what do you check first?";
-  zero.quiz.questions[0].explanation = "Check the record first, before the shift note is overwritten.";
-  const zeroHits = checkChapterProvenance(zero, sidecar())
-    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("quiz.questions[0]"));
-  assert.ok(zeroHits.length >= 1, "zero specifics still blocks quiz units");
-  assert.match(zeroHits[0].message, /<1 of its hardSpecifics/, "message reports the min-1 quota");
-  // NARRATION keeps min 2: an example using only 1 of the anchor's specifics blocks.
-  // (Fully overwrite the unit text — the makeChapter harbor fixture naturally contains
-  // several specifics words, so a surgical suffix replace leaves >=2 present.)
-  const ex = fullyAnchoredChapter();
-  ex.examples[0].title = "A rushed handover";
-  ex.examples[0].scenario = "A rushed handover; the lantern record gets checked before the shift ends.";
-  ex.examples[0].whatToDo = "Check the record before the handover.";
-  ex.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
-  const exHits = checkChapterProvenance(ex, sidecar())
-    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example["));
-  assert.ok(exHits.length >= 1, "an example with 1 of 2+ specifics still blocks (narration keeps 2)");
-  assert.match(exHits[0].message, /<2 of its hardSpecifics/, "narration message keeps the min-2 quota");
-});
+  assert.deepEqual(quizHits.map((f) => f.message), [], "a quiz unit no longer owes a verbatim specific at ship, because write-time no longer demands one");
 
-test("SC11.2 memorable_line OR-semantics (11p ship mirror): one fully-grounding cited case clears a multi-case line; zero blocks ONCE", () => {
-  // LIVE WEDGE this pins: a memorable line inherits every case its source tier
-  // cites, and the per-anchor loop demanded 2 specifics from EACH — a <=14-word
-  // line citing three cases is structurally unsatisfiable. The write-time gate
-  // (SEC16) was corrected to OR-semantics under owner delegation (11p); the
-  // first live QC round to reach the ship gate re-blocked a freshly-passed book
-  // with 9 identical SC11.2 blockers. Ship must agree with write-time.
+  // A review card, same shape, same answer.
+  const card = fullyAnchoredChapter();
+  card.authoring!.sourceAnchors!.effectiveAnchors["reviewCards[0]"] = ["ch01.ex.lantern"];
+  card.reviewCards[0].front = "What do you check when a shift changes hands?";
+  card.reviewCards[0].back = "Check the record before the note is overwritten, because the earlier state is the one that decides.";
+  const cardHits = checkChapterProvenance(card, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("reviewCards[0]"));
+  assert.deepEqual(cardHits.map((f) => f.message), [], "a card no longer owes a verbatim specific at ship");
 
-  // Case 1 — the line fully grounds ONE cited case (lantern+ledger verbatim);
-  // the other two cited cases contribute nothing. Must pass.
-  const grounded = fullyAnchoredChapter();
-  grounded.memorableLines![0].text = "The lantern ledger closed the gap the beacon left open.";
-  grounded.authoring!.sourceAnchors!.effectiveAnchors["memorableLines[0]"] = ["ch01.ex.lantern", "ch01.ex.compass", "ch01.ex.quay"];
-  const groundedFindings = checkChapterProvenance(grounded, sidecar())
-    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.message.includes("memorableLines[0]"));
-  assert.deepEqual(groundedFindings.map((f) => f.message), [], "one fully-grounding case must clear the line");
-
-  // Case 2 — NO cited case reaches 2 specifics. Blocks exactly ONCE (not once
-  // per anchor), and the message names every shortfall so the writer can pick one.
-  const ungrounded = fullyAnchoredChapter();
-  ungrounded.memorableLines![0].text = "A tidy record beats a good memory every single time.";
-  ungrounded.authoring!.sourceAnchors!.effectiveAnchors["memorableLines[0]"] = ["ch01.ex.lantern", "ch01.ex.compass", "ch01.ex.quay"];
-  const ungroundedFindings = checkChapterProvenance(ungrounded, sidecar())
-    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.message.includes("memorableLines[0]"));
-  assert.equal(ungroundedFindings.length, 1, `zero grounding blocks once, not per anchor: ${JSON.stringify(ungroundedFindings.map((f) => f.message))}`);
-  assert.match(ungroundedFindings[0].message, /none of them fully grounds/, "the message states the OR rule");
-  for (const id of ["ch01.ex.lantern", "ch01.ex.compass", "ch01.ex.quay"]) {
-    assert.ok(ungroundedFindings[0].message.includes(id), `every shortfall named: ${id}`);
-  }
-
-  // Control — NON-memorable narration units keep per-anchor AND semantics: a quiz
-  // unit's per-anchor blocker shape is pinned by the boundary test above, and an
-  // example unit citing a case it never names still blocks per anchor.
-  // (fixture examples append lantern specifics to every scenario, so cite compass —
-  // a case the example text never names — to prove the per-anchor demand still fires)
-  // (the base fixture's example text names EVERY synthetic specific, so blank it —
-  // the control needs an example whose text carries at most one of compass/tide/mast)
+  // An EXAMPLE keeps a floor of one, and the message states it.
   const example = fullyAnchoredChapter();
   example.examples[0].title = "A quiet morning";
   example.examples[0].scenario = "A reviewer walks the dock and files one note before lunch.";
   example.examples[0].whatToDo = "File the note before the morning meeting.";
   example.examples[0].whyItMatters = "Early notes keep the record honest.";
-  example.examples[0].sourceAnchorId = "ch01.ex.compass";
-  example.examples[0].sourceAnchorIds = ["ch01.ex.compass"];
   example.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
-  const exampleFindings = checkChapterProvenance(example, sidecar())
+  const exampleHits = checkChapterProvenance(example, sidecar())
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.compass");
-  assert.ok(exampleFindings.length > 0, "non-memorable narration keeps AND semantics");
+  assert.ok(exampleHits.length >= 1, "an example that names none of its cited case's details still blocks");
+  assert.match(exampleHits[0].message, /<1 of its hardSpecifics/, "and the message states the one-specific floor");
+
+  // One of the two specifics present clears it (the retired demand was two).
+  const oneSpecific = fullyAnchoredChapter();
+  oneSpecific.examples[0].title = "A rushed handover";
+  oneSpecific.examples[0].scenario = "A rushed handover; the compass reading is taken before the shift ends.";
+  oneSpecific.examples[0].whatToDo = "Take the reading before the handover.";
+  oneSpecific.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
+  oneSpecific.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
+  const oneHits = checkChapterProvenance(oneSpecific, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && f.evidence === "ch01.ex.compass");
+  assert.deepEqual(oneHits.map((f) => f.message), [], "one pooled specific clears the example floor");
 });
 
-test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satisfied by construction; real specifics still bind", () => {
-  // CF-J Task 4 investigation result: SC11 matches anchors BY ID against the sidecar
-  // catalog; its ONE text-based clause is SC11.2, which requires the unit text to
-  // contain the cited anchor's hardSpecifics VERBATIM. The radical-candor research
-  // minted page citations INTO hardSpecifics ("Ch. 6 p. 138"), so writers satisfied
-  // SC11.2 by quoting the citation into reader prose. The projection now withholds
-  // citations from the writer — SC11.2 therefore treats a citation-shaped specific
-  // as an internal coordinate, satisfied by construction. Strictly TOLERANT:
-  // `present` can only rise, so no unit can newly block.
-  const citedSidecar = sidecar();
-  // lantern anchor: one REAL specific + one citation locator (the radical-candor shape).
-  citedSidecar.namedExamples[0].hardSpecifics = ["lantern", "Ch. 6 p. 138"];
+test("SC11.8 (package 1B): a memorable line stacking two source specifics is reported as MAJOR, never a blocker", () => {
+  // The write-time rule inverted: SEC16 used to demand TWO of one cited case's specifics
+  // inside the line — which is why 11 of the 12 lines on the live Franklin package are
+  // identifier pairs — and now caps a line at ONE. The ship gate reports the cap instead of
+  // blocking on it, ON PURPOSE: every package promoted before this change carries token-pair
+  // lines, and a blocker here would retro-block them at re-promote for a defect the
+  // write-time gate now prevents at the source.
+  const stacked = fullyAnchoredChapter();
+  stacked.memorableLines![0].text = "The lantern ledger closed the gap the beacon left open.";
+  const findings = checkChapterProvenance(stacked, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.8.memorable_line_specific_stack");
+  assert.equal(findings.length, 1, `a stacked line must be reported once; got ${JSON.stringify(findings.map((f) => f.message))}`);
+  assert.equal(findings[0].severity, "major", "reported, not blocked — see the retro-block note above");
+  assert.match(findings[0].message, /carries 3 source specifics/, "the message states what it counted");
 
-  // NARRATION unit (example, min 2): text carries the real specific but NOT the
-  // citation — previously SC11.2 blocked; the citation now counts by construction.
+  // A line that states the idea, or names one detail, is silent.
+  const stated = fullyAnchoredChapter();
+  stated.memorableLines![0].text = "A tidy record beats a good memory every single time.";
+  assert.deepEqual(
+    checkChapterProvenance(stated, sidecar()).filter((f) => String(f.checkId) === "SC11.8.memorable_line_specific_stack"),
+    [],
+    "a line that states the principle carries no quota at all",
+  );
+  const one = fullyAnchoredChapter();
+  one.memorableLines![0].text = "A lantern is cheaper than the argument about who left it dark.";
+  assert.deepEqual(
+    checkChapterProvenance(one, sidecar()).filter((f) => String(f.checkId) === "SC11.8.memorable_line_specific_stack"),
+    [],
+    "one specific is inside the cap",
+  );
+});
+
+test("SC11.7 (package 1B): the chapter must TEACH the case its quiz cites, and the example arm is write-time only", () => {
+  // The ship-side mirror of SEC14/SEC128, and what replaces the per-unit quotas removed
+  // above: grounding is no longer "every unit repeats a token" but "the chapter's own
+  // reader-visible prose carries at least two of each cited case's hard specifics, once".
+  const untaught = fullyAnchoredChapter();
+  untaught.authoring!.sourceAnchors!.effectiveAnchors["quiz.questions[0]"] = ["ch01.ex.quay"];
+  untaught.breakdown.fastRead = "A shift changes hands and the record decides what happened.";
+  untaught.breakdown.deepRead = "The earlier state is the one that settles the argument later on.";
+  untaught.breakdown.fullRead = "Nothing here names the case the quiz is built from.";
+  untaught.hook = "A shift changes hands and nobody writes the number down.";
+  untaught.counterintuition = "The later note is the one everyone trusts and the wrong one to trust.";
+  untaught.keyTakeaway = "Write the number down while it is still true.";
+  const taughtFindings = checkChapterProvenance(untaught, sidecar())
+    .filter((f) => String(f.checkId) === "SC11.7.chapter_case_not_taught" && f.evidence === "ch01.ex.quay");
+  assert.equal(taughtFindings.length, 1, `a case the quiz tests and the prose never teaches must block; got ${JSON.stringify(taughtFindings)}`);
+  assert.equal(taughtFindings[0].severity, "blocker");
+
+  // The SAME case cited by an EXAMPLE is not a ship-time finding. The write-time gate
+  // (SEC128) does cover the example pack — a fresh draft can be retried into shape — but
+  // applying that arm at ship would retro-block already-promoted packages for a defect no
+  // repair round is aimed at, and it is the scope SEC120 chose for the same reason.
+  const exampleOnly = fullyAnchoredChapter();
+  exampleOnly.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.quay"];
+  exampleOnly.examples[0].scenario = "A dock hand counts the quay cargo before the harbor office closes.";
+  exampleOnly.breakdown.fastRead = "A shift changes hands and the record decides what happened.";
+  exampleOnly.breakdown.deepRead = "The earlier state is the one that settles the argument later on.";
+  exampleOnly.breakdown.fullRead = "Nothing here names the case the example is built from.";
+  exampleOnly.hook = "A shift changes hands and nobody writes the number down.";
+  exampleOnly.counterintuition = "The later note is the one everyone trusts and the wrong one to trust.";
+  exampleOnly.keyTakeaway = "Write the number down while it is still true.";
+  assert.deepEqual(
+    checkChapterProvenance(exampleOnly, sidecar()).filter((f) => String(f.checkId) === "SC11.7.chapter_case_not_taught"),
+    [],
+    "the example arm of chapter coverage is write-time only",
+  );
+});
+
+test("SC11.2 CF-J tolerance: a page-citation-shaped hardSpecific counts as satisfied by construction", () => {
+  // CF-J Task 4: SC11.2's one text-based clause requires the cited anchor's hardSpecifics
+  // verbatim in the unit, and the radical-candor research minted page citations INTO
+  // hardSpecifics ("Ch. 6 p. 138"), so writers satisfied it by quoting the citation into
+  // reader prose. The projection now withholds citations from the writer, so a
+  // citation-shaped specific is an internal coordinate, satisfied by construction.
+  const citedSidecar = sidecar();
+  citedSidecar.namedExamples[1].hardSpecifics = ["compass", "Ch. 6 p. 138"];
+
   const tolerant = fullyAnchoredChapter();
   tolerant.examples[0].title = "A rushed handover";
-  tolerant.examples[0].scenario = "A rushed handover; the lantern record gets checked before the shift ends.";
-  tolerant.examples[0].whatToDo = "Check the record before the handover.";
+  tolerant.examples[0].scenario = "A rushed handover; the compass reading is taken before the shift ends.";
+  tolerant.examples[0].whatToDo = "Take the reading before the handover.";
   tolerant.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
+  tolerant.authoring!.sourceAnchors!.effectiveAnchors["examples[0]"] = ["ch01.ex.compass"];
   const tolerantHits = checkChapterProvenance(tolerant, citedSidecar)
     .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example[0]"));
-  assert.deepEqual(tolerantHits.map((f) => f.message), [], "real specific present + citation auto-satisfied → SC11.2 passes without page cites in reader prose");
+  assert.deepEqual(tolerantHits.map((f) => f.message), [], "no page citation is required in reader prose");
 
-  // The tolerance is BOUNDED: drop the real specific too and the unit still blocks
-  // (the citation contributes 1; the narration quota is 2).
-  const stillBound = fullyAnchoredChapter();
-  stillBound.examples[0].title = "A rushed handover";
-  stillBound.examples[0].scenario = "A rushed handover; the record gets checked before the shift ends.";
-  stillBound.examples[0].whatToDo = "Check the record before the handover.";
-  stillBound.examples[0].whyItMatters = "Early checks catch drift before it compounds.";
-  const boundHits = checkChapterProvenance(stillBound, citedSidecar)
-    .filter((f) => String(f.checkId) === "SC11.2.anchor_specific_not_present" && String(f.message).includes("example[0]"));
-  assert.ok(boundHits.length >= 1, "with the real specific absent, SC11.2 still blocks — the tolerance covers ONLY citation-shaped specifics");
+  // Package 1B moved the BOUND to write time. At ship, with the example floor at one, a
+  // citation-shaped specific alone satisfies SC11.2 — which is the tolerant direction, the
+  // only safe one for a ship gate. The write-time gate grants no such credit: SEC33 counts
+  // raw inclusion and the same example, with the real specific gone, blocks there.
+  const bare = {
+    schemaVersion: "section-artifact-v1",
+    artifactType: "example-pack",
+    chapterId: "zz-cfj-ch01",
+    examples: [{
+      exampleId: "ex01",
+      slotId: "s1",
+      title: "A rushed handover",
+      scenario: "A rushed handover; the record gets checked before the shift ends, and the note is filed the same hour.",
+      whatToDo: "Check the record before the handover.",
+      whyItMatters: "Early checks catch drift before it compounds.",
+      sourceAnchorIds: ["ch01.ex.compass"],
+      sourceFactIds: [],
+      namedCaseIds: [],
+    }],
+  } as unknown as ExamplePackV1;
+  const packet = {
+    allowedAnchors: [{
+      id: "ch01.ex.compass",
+      kind: "named_example",
+      label: "compass",
+      text: "compass",
+      hardSpecifics: ["compass", "Ch. 6 p. 138"],
+      supportsClaimTypes: ["example"],
+    }],
+    facts: [],
+    namedCases: [],
+    allowedEntities: [],
+    allowedPlaces: [],
+    allowedNumbers: [],
+  } as unknown as SourcePacketV1;
+  const bp = {
+    chapterNumber: 1,
+    chapterId: "zz-cfj-ch01",
+    reservedVariety: { allowedNames: [] },
+    sections: { quiz: [], cards: [], examples: [{ slotId: "s1", allowedNames: [], requiredFactIds: [], requiredCaseIds: [], forbiddenVenues: [] }] },
+    constraints: { allowedFactIds: [], allowedCaseIds: [], forbiddenClaims: [], forbiddenLeakage: [], bannedHouseTics: [] },
+  } as unknown as ChapterBlueprintV1;
+  const writeTime = validateExamplePack(bare, bp, packet).filter((f: SectionFinding) => f.checkId === "SEC33.example_anchor_specifics");
+  assert.equal(writeTime.length, 1, "write-time SEC33 grants no page-citation credit — the bound lives there");
+  assert.match(writeTime[0].message, /0\/1/);
 });
 
 test("source evidence loader validates before rendering explicit editor and planner inputs", () => {

@@ -300,7 +300,7 @@ test("F14 (integration): SEC56 passes a quiz citing an anchor with ONE verbatim 
   assert.deepEqual(sec56, [], `one verbatim specific should clear SEC56; got ${JSON.stringify(sec56.map((f) => f.message))}`);
 });
 
-test("F14 (integration): SEC33 still requires TWO specifics for an example unit", () => {
+test("F14/1B (integration): SEC33 takes ONE specific, pooled across the example's three fields", () => {
   const anchor: SourceAnchorForPrompt = {
     id: "a1", kind: "named_example", label: "Magic Castle", text: "…",
     hardSpecifics: ["Magic Castle Hotel", "free popsicles"],
@@ -322,12 +322,22 @@ test("F14 (integration): SEC33 still requires TWO specifics for an example unit"
     sections: { examples: [{ slotId: "s1", allowedNames: [], requiredFactIds: [], requiredCaseIds: [], forbiddenVenues: [] }] },
     constraints: { allowedFactIds: [], allowedCaseIds: [], forbiddenClaims: [], forbiddenLeakage: [], bannedHouseTics: [] },
   } as unknown as ChapterBlueprintV1;
+  // Package 1B: the quota dropped from two to one. Two was a scenario obligation on a
+  // historical source — the scene had to carry two of the case's proper nouns while the
+  // book's own rules forbade the source figure appearing in it — and the writer's only
+  // legal move was the recall beat SEC133 now refuses.
   const sec33 = validateExamplePack(example, bp, packetWithAnchor(anchor)).filter((f: SectionFinding) => f.checkId === "SEC33.example_anchor_specifics");
-  assert.equal(sec33.length, 1, "an example with only one verbatim specific still fails SEC33 (narration keeps ≥2)");
-  assert.match(sec33[0].message, /1\/2/, "SEC33 message reports the 2-specific quota");
+  assert.deepEqual(sec33, [], `one pooled specific clears SEC33; got ${JSON.stringify(sec33.map((f) => f.message))}`);
+
+  // Zero specifics anywhere across scenario/whatToDo/whyItMatters still blocks.
+  const bare = JSON.parse(JSON.stringify(example)) as ExamplePackV1;
+  bare.examples[0].scenario = "A manager decides to redesign the hotel checkout after weighing two options.";
+  const none = validateExamplePack(bare, bp, packetWithAnchor(anchor)).filter((f: SectionFinding) => f.checkId === "SEC33.example_anchor_specifics");
+  assert.equal(none.length, 1, "an example that cites a case and uses none of its details still fails SEC33");
+  assert.match(none[0].message, /0\/1/, "SEC33 message reports the one-specific floor");
 });
 
-test("F14 (integration): SEC58 passes a review card citing an anchor with ONE verbatim specific (cards are non-narrative)", () => {
+test("F14/1B (integration): SEC58 is retired — a card cites its case by natural reference", () => {
   const anchor: SourceAnchorForPrompt = {
     id: "a1", kind: "named_example", label: "Magic Castle", text: "…",
     hardSpecifics: ["Magic Castle Hotel", "free popsicles"],
@@ -340,15 +350,45 @@ test("F14 (integration): SEC58 passes a review card citing an anchor with ONE ve
   } as unknown as LearningPackV1);
   const sec58 = (lp: LearningPackV1) =>
     validateLearningPack(lp, quizBlueprint(), packetWithAnchor(anchor)).filter((f: SectionFinding) => f.checkId === "SEC58.card_anchor_specifics");
+  // Package 1B: the per-card verbatim demand is gone. A card back that had to carry a
+  // proper noun to satisfy a quota is how 15 of the 28 backs on the live Franklin book
+  // came to open on an announcement scaffold. What replaced it: SEC120 refuses a card
+  // that names anything the chapter's standalone prose never showed, and SEC14/SEC128
+  // require that prose to teach the case in the first place.
   const one = sec58(mkLearning(
     "What does the Magic Castle Hotel case say about where to spend an experience budget?",
     "Spend on one engineered peak; the hotel wins on a single staged moment, not the room average.",
   ));
-  assert.deepEqual(one, [], `one verbatim specific should clear SEC58; got ${JSON.stringify(one.map((f) => f.message))}`);
+  assert.deepEqual(one, [], `a card naming the case must pass; got ${JSON.stringify(one.map((f) => f.message))}`);
   const zero = sec58(mkLearning(
     "Where should an experience budget go, according to this chapter?",
     "Spend on one engineered peak, not the average.",
   ));
-  assert.equal(zero.length, 1, "zero specifics still fails SEC58");
-  assert.match(zero[0].message, /0\/1/, "SEC58 message reports the rebalanced 1-specific quota");
+  assert.deepEqual(zero, [], "a card that names no source token is no longer a SEC58 failure");
+
+  // The replacement still binds: the same card, measured against a chapter whose prose
+  // shows one of the case's details but never the hotel's name, is refused by SEC120.
+  // (The prose has to show SOMETHING of the case — SEC120 stands down entirely when a
+  // cited anchor has no specific on the page, because that is the upstream defect
+  // SEC14/SEC128 own, not a card the writer could have written differently.)
+  const prose = {
+    hook: "A hotel hands out free popsicles by the pool and wins on that one staged moment.",
+    breakdown: {
+      fastRead: "Spend the budget on one engineered peak rather than on raising the average.",
+      deepRead: "The free popsicles are what a guest remembers, so put the money where the memory forms.",
+      fullRead: "Averages are cheap to raise and cheap to forget.",
+    },
+    keyTakeaway: "Engineer the peak; the average takes care of itself.",
+  };
+  const derivable = validateLearningPack(
+    mkLearning(
+      "What does the Magic Castle Hotel case say about where to spend an experience budget?",
+      "Spend on one engineered peak; the hotel wins on a single staged moment, not the room average.",
+    ),
+    quizBlueprint(),
+    packetWithAnchor(anchor),
+    prose as never,
+  ).filter((f: SectionFinding) => f.checkId === "SEC120.learning_prose_derivable");
+  assert.equal(derivable.length, 1, "naming a case the chapter's prose never shows is still refused");
+  assert.match(derivable[0].message, /Magic Castle Hotel/);
 });
