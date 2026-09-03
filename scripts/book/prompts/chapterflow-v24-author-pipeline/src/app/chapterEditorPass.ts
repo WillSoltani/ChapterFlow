@@ -356,6 +356,24 @@ async function invokeEditor(
     : { kind: "REFUSED", blockers: retryBlockers, attemptIds };
 }
 
+/** The exact card attempt 1 of the standing invocation sends. Pure, and rendered
+ *  from the same builder the invocation uses, so the two cannot drift. */
+function attemptOneCard(input: ChapterEditorPassInput): string {
+  const { chapter } = input;
+  return buildChapterEditorCard({
+    bookId: input.bookId,
+    chapterId: chapter.chapterId,
+    chapterNumber: chapter.chapterNumber,
+    chapterTitle: chapter.chapterTitle,
+    voiceCard: input.voiceCard,
+    bookScars: input.bookScars,
+    packs: chapter.packs,
+    readerView: readerChapterView(decodeChapter(chapter.assembledChapterBytes)),
+    sourcePacket: chapter.packet,
+    ...(chapter.sourceSpan ? { sourceSpan: chapter.sourceSpan } : {}),
+  });
+}
+
 function sha256(value: string | Uint8Array): string {
   return createHash("sha256").update(value).digest("hex");
 }
@@ -451,6 +469,13 @@ export async function runChapterEditorPass(
       chapterNumber: chapter.chapterNumber,
     }),
     advisoryDigest: advisoryDigestOf(advisories),
+    // R-164 applied here on the day this stage is written rather than after it
+    // bites: the digests above key the DATA and the BRIEF, and nothing else would
+    // key the RENDERER. This is the EXACT attempt-1 card (no retry feedback, no
+    // advisories), so a change to the delivery block, the schema hint, the
+    // reader-view projection, the span bound or the packet projection mints a new
+    // identity instead of silently serving an edit made under the old prompt.
+    cardDigest: sha256(attemptOneCard(input)),
   };
   if (dependencies.cache) {
     let cached: ChapterEditCacheEntry | null = null;

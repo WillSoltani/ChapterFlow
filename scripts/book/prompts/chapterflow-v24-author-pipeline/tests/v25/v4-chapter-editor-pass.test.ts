@@ -319,7 +319,7 @@ requiredTest("E4 a cached verdict replays with zero model calls, for an edit and
   assert.deepEqual(skipAgain.blockers, skipResult.blockers);
 });
 
-requiredTest("E4b a changed brief or contract re-edits instead of replaying", async (context) => {
+requiredTest("E4b a changed contract, or anything else the CARD renders, re-edits instead of replaying", async (context) => {
   const cacheRoot = resolve(context.roots.tempRoot, "books-cache-key");
   const first = rig(context, "key-a", { cacheRoot });
   await runChapterEditorPass(first.dependencies, first.input);
@@ -332,6 +332,27 @@ requiredTest("E4b a changed brief or contract re-edits instead of replaying", as
   });
   assert.equal(result.replayed, false);
   assert.equal(otherVoice.calls(), 1, "a different voice card is a different question");
+
+  // R-164's class: the SOURCE SPAN is rendered into the card but is not the
+  // chapter, the brief or the contract. Only the card digest catches it, and
+  // without that a span change would serve an edit made under the old prompt.
+  const otherSpan = rig(context, "key-c", { cacheRoot });
+  const spanChanged = await runChapterEditorPass(otherSpan.dependencies, {
+    ...otherSpan.input,
+    chapter: {
+      ...otherSpan.input.chapter,
+      sourceSpan: { text: `${SPAN} It also records a second sentence.`, excerpted: false, omittedChars: 0 },
+    },
+  });
+  assert.equal(spanChanged.replayed, false);
+  assert.equal(otherSpan.calls(), 1, "a different source span is a different question");
+
+  // …and the same inputs a third time DO replay, so the key is not simply always
+  // missing.
+  const same = rig(context, "key-d", { cacheRoot });
+  const replayed = await runChapterEditorPass(same.dependencies, same.input);
+  assert.equal(replayed.replayed, true);
+  assert.equal(same.calls(), 0);
 });
 
 requiredTest("E5 the disable flag records 'editor disabled' in provenance and spends nothing", async (context) => {

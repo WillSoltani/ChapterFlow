@@ -27,6 +27,15 @@ import type { BookWriteLock } from "./leaseTypes.js";
  *   - `advisoryDigest` the R-166 reader advisories rendered into the card, or null
  *                      when the advisory pass is off. Turning the flag on, or a new
  *                      panel filing different advisories, re-edits.
+ *   - `cardDigest`     the EXACT bytes of the attempt-1 task card. R-164's lesson,
+ *                      applied here on the day the stage is written rather than
+ *                      after it bites: the three digests above key the DATA and the
+ *                      BRIEF, and nothing else would key the RENDERER. A change to
+ *                      the delivery block, the schema hint, the reader-view
+ *                      projection or the span bound would otherwise reach zero
+ *                      cached chapters and the run would still report green. It
+ *                      subsumes the three above; they are kept because they make a
+ *                      stored entry say WHY it is stale.
  *
  * BOTH VERDICTS ARE CACHED. An EDITED chapter replays its edited packs; a SKIPPED
  * chapter replays the skip and its blockers. Caching only success would mean a
@@ -51,6 +60,9 @@ export interface ChapterEditCacheKey {
   readonly contractDigest: string;
   /** sha256 of the rendered reader advisories, or null when none were rendered. */
   readonly advisoryDigest: string | null;
+  /** sha256 of the exact attempt-1 editor card (no retry feedback, no advisories).
+   *  The prompt itself, not just its inputs — see the header. */
+  readonly cardDigest: string;
 }
 
 /** What a completed editor pass decided about one chapter. */
@@ -72,6 +84,7 @@ type ChapterEditCacheEnvelope = Readonly<{
   briefDigest: string;
   contractDigest: string;
   advisoryDigest: string | null;
+  cardDigest: string;
   entry: ChapterEditCacheEntry;
 }>;
 
@@ -102,7 +115,7 @@ export function chapterEditCacheDir(booksRoot: string, bookId: string): string {
  *  never read rather than read and rejected. */
 function entryFileName(key: ChapterEditCacheKey): string {
   const hash = createHash("sha256");
-  for (const part of [key.chapterId, key.chapterDigest, key.briefDigest, key.contractDigest, key.advisoryDigest ?? ""]) {
+  for (const part of [key.chapterId, key.chapterDigest, key.briefDigest, key.contractDigest, key.advisoryDigest ?? "", key.cardDigest]) {
     hash.update(part);
     hash.update("\0");
   }
@@ -120,13 +133,14 @@ function identityMatches(envelope: ChapterEditCacheEnvelope, key: ChapterEditCac
     && envelope.chapterDigest === key.chapterDigest
     && envelope.briefDigest === key.briefDigest
     && envelope.contractDigest === key.contractDigest
-    && (envelope.advisoryDigest ?? null) === key.advisoryDigest;
+    && (envelope.advisoryDigest ?? null) === key.advisoryDigest
+    && envelope.cardDigest === key.cardDigest;
 }
 
 function parseEnvelope(raw: unknown): ChapterEditCacheEnvelope | null {
   if (typeof raw !== "object" || raw === null || Array.isArray(raw)) return null;
   const value = raw as Record<string, unknown>;
-  for (const field of ["bookId", "chapterId", "chapterDigest", "briefDigest", "contractDigest"]) {
+  for (const field of ["bookId", "chapterId", "chapterDigest", "briefDigest", "contractDigest", "cardDigest"]) {
     if (typeof value[field] !== "string") return null;
   }
   if (!(value.advisoryDigest === null || typeof value.advisoryDigest === "string")) return null;
@@ -189,6 +203,7 @@ class FileChapterEditCache implements ChapterEditCache {
       briefDigest: key.briefDigest,
       contractDigest: key.contractDigest,
       advisoryDigest: key.advisoryDigest,
+      cardDigest: key.cardDigest,
       entry,
     };
     const result = await this.#writeLock.run(key.bookId, async () => {
