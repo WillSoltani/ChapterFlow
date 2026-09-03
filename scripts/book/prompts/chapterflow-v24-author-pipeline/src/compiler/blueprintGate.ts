@@ -108,6 +108,11 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
   return findings;
 }
 
+/** The chapter's own derived staging (R-065), so the audit can tell a value the DESIGN put in a
+ *  slot from a value the positional dealer drew from the pool. Supplied by the caller that
+ *  resolved the book's pools; absent ⇒ every value is treated as pool-dealt (the pre-R-065 world). */
+export type ChapterDerivedLookup = (chapterNumber: number) => ChapterDerivedDesign | null;
+
 /**
  * Book-level positional-deal checks (P11), run across every chapter's blueprint:
  *
@@ -127,11 +132,6 @@ export function validateBlueprint(bp: ChapterBlueprintV1): BlueprintFinding[] {
  *     is widened before it becomes a book-wide monoculture (the hookShape=3 /
  *     counterShape=2 problem this change fixed).
  */
-/** The chapter's own derived staging (R-065), so the audit can tell a value the DESIGN put in a
- *  slot from a value the positional dealer drew from the pool. Supplied by the caller that
- *  resolved the book's pools; absent ⇒ every value is treated as pool-dealt (the pre-R-065 world). */
-export type ChapterDerivedLookup = (chapterNumber: number) => ChapterDerivedDesign | null;
-
 export function checkPositionalDeals(
   blueprints: ChapterBlueprintV1[],
   overrides: Record<string, PoolSizeOverride> = {},
