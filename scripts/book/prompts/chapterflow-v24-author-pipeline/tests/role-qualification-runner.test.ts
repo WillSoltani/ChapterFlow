@@ -223,7 +223,15 @@ function readerRaw(request: RoleQualificationExecutionRequestV1, c: ReaderCorpus
       retention: 90, quizzes: 90, transfer: 90, practical: 90, summaries: 90,
       tone: 90, limits: 90, insight: 90, density: 90, beginner: 90,
     },
-    quizDerivation: { answers: [], mechanisms: [], confidence: [], ambiguities: [], tells: [] },
+    // One derivation per question (R-133): the reader lane's strict assembly
+    // requires the positional arrays to cover the case chapter's quiz.
+    quizDerivation: {
+      answers: c.chapter.quiz.questions.map(() => "a" as const),
+      mechanisms: c.chapter.quiz.questions.map((_question, index) => `the prose forces choice a in q${index + 1}`),
+      confidence: c.chapter.quiz.questions.map(() => "high" as const),
+      ambiguities: c.chapter.quiz.questions.map(() => ""),
+      tells: [],
+    },
     recommendation: c.kind === "clean" ? "SHIP" : c.kind === "craft-nonblocker" ? "REVISE" : "BLOCK",
     blockingFindings: blocking,
     escalationSignals: [],
