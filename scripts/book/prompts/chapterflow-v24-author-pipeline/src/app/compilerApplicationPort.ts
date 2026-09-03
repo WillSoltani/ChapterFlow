@@ -317,6 +317,14 @@ type CompilerOperation = Readonly<{
   attemptId: string;
 }>;
 
+/** Package 2B — an editor operation is per CHAPTER, not per section, so it has no
+ *  `kind`. Its own type rather than a CompilerOperation with a filler kind. */
+type EditorOperation = Readonly<{
+  chapterNumber: number;
+  operationId: string;
+  attemptId: string;
+}>;
+
 function within(base: string, target: string): boolean {
   const path = relative(resolve(base), resolve(target));
   return path === "" || (!path.startsWith("..") && !isAbsolute(path));
@@ -459,11 +467,11 @@ function compilerOperations(runId: string, chapters: readonly Readonly<{ chapter
  * what makes the replay free. The `edt-` prefix keeps the id space disjoint from
  * the sections' `cmp-`.
  */
-function editorOperations(runId: string, chapters: readonly Readonly<{ chapterNumber: number }>[]): readonly CompilerOperation[] {
+function editorOperations(runId: string, chapters: readonly Readonly<{ chapterNumber: number }>[]): readonly EditorOperation[] {
   const operations = chapters.map((chapter) => {
     const operationId = `editor-ch${String(chapter.chapterNumber).padStart(2, "0")}`;
     const attemptId = `edt-${createHash("sha256").update(runId).update("\0").update(operationId).digest("hex").slice(0, 40)}`;
-    return Object.freeze({ chapterNumber: chapter.chapterNumber, kind: "summary-pack" as SectionKind, operationId, attemptId });
+    return Object.freeze({ chapterNumber: chapter.chapterNumber, operationId, attemptId });
   });
   if (new Set(operations.map((operation) => operation.operationId)).size !== operations.length
     || new Set(operations.map((operation) => operation.attemptId)).size !== operations.length) {

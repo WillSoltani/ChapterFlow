@@ -201,6 +201,11 @@ export function validateChapterEdit(
   chapter: ChapterEditorChapter,
   edited: ChapterEditPacks,
 ): string[] {
+  // ALWAYS against `chapter.packs`, the DRAFT the compile accepted, never against
+  // whatever the previous invocation produced. The advisory pass edits on top of
+  // the standing pass's output, so comparing against that output would let two
+  // small, individually-legal edits drift a fact between them; comparing the
+  // cumulative result against the draft cannot.
   const preservation = checkEditPreservesFacts(chapter.packs, edited)
     .map((finding) => `${finding.checkId}: ${finding.message}`);
   if (preservation.length > 0) return preservation;
@@ -244,6 +249,12 @@ async function invokeEditor(
   const attemptIds: string[] = [];
   let retryBlockers: readonly string[] = [];
   let lastError: readonly string[] = [];
+  /** The last CONTENT refusal seen, kept separately from the infrastructure
+   *  cause. An invocation whose first attempt was refused by a gate and whose
+   *  second was lost to a transient failure ends as ERROR (we never learned
+   *  whether the edit could have succeeded), and the record should still name
+   *  the gate blockers rather than only the socket. */
+  let lastContentBlockers: readonly string[] = [];
   for (let attempt = 1; attempt <= MAX_EDITOR_ATTEMPTS; attempt += 1) {
     if (input.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:chapter editor cancellation requested");
     const attemptId = `${chapter.attemptIdBase}${attemptIdSuffixes[attempt - 1]}`;
@@ -325,6 +336,7 @@ async function invokeEditor(
     const parsed = parseChapterEditOutput(result.output, chapter.chapterId);
     if (!parsed.ok) {
       retryBlockers = [parsed.problem];
+      lastContentBlockers = retryBlockers;
       lastError = [];
       if (attempt >= MAX_EDITOR_ATTEMPTS) return { kind: "REFUSED", blockers: retryBlockers, attemptIds };
       continue;
@@ -332,11 +344,12 @@ async function invokeEditor(
     const blockers = validateChapterEdit(chapter, parsed.packs);
     if (blockers.length === 0) return { kind: "ACCEPTED", packs: parsed.packs, attemptIds };
     retryBlockers = blockers;
+    lastContentBlockers = blockers;
     lastError = [];
     if (attempt >= MAX_EDITOR_ATTEMPTS) return { kind: "REFUSED", blockers, attemptIds };
   }
   return lastError.length > 0
-    ? { kind: "ERROR", blockers: lastError, attemptIds }
+    ? { kind: "ERROR", blockers: [...lastError, ...lastContentBlockers], attemptIds }
     : { kind: "REFUSED", blockers: retryBlockers, attemptIds };
 }
 
