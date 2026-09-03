@@ -87,11 +87,11 @@ function withGuard(contentLines: readonly string[]): string {
  *
  *  The person and cadence fields are RENDERING instructions, not descriptions of
  *  the source author. The artifact is a third-person retelling of someone else's
- *  book — SEC7.meta_reference (src/sections/sectionGate.ts:2253) blocks "the
- *  author"/"the book"/"this chapter" in every breakdown tier — and SEC12 blocks
- *  twice on how long the sentences run: a per-tier reading-GRADE cap
- *  (checkReadingLevel, sectionGate.ts:2254) and a Flesch reading-EASE floor on the
- *  assembled breakdown (sectionGate.ts:2267-2277). So a template may not instruct
+ *  book — SEC7.meta_reference (src/sections/sectionGate.ts) blocks "the
+ *  author"/"the book"/"this chapter" in every breakdown tier — and
+ *  SEC12.summary_readability checks how long the sentences run TWICE: a per-tier
+ *  reading-GRADE cap (checkReadingLevel) and a blocking Flesch reading-EASE floor on
+ *  the assembled breakdown (checkBreakdownReadingEase). So a template may not instruct
  *  the source author's first person, and a `voice:` line that names a lengthening
  *  cadence must pair it with a plainness qualifier in the same line instead of
  *  asking for length and stopping. tests/voice-card.test.ts pins both: the

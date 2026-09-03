@@ -241,7 +241,7 @@ test("R-032: only voice cues that two or more chapters share reach the fallback 
 
 // ── R-007 — a register template may only instruct things the artifact can be
 //    written in. The artifact is a third-person retelling of someone else's book:
-//    src/sections/sectionGate.ts:2253 (SEC7.meta_reference) blocks "the author",
+//    src/sections/sectionGate.ts (SEC7.meta_reference) blocks "the author",
 //    "the book" and "this chapter" in every breakdown tier, and
 //    src/sections/sectionTasks.ts repeats the ban in every task card's DO NOT block.
 //    A template that tells the writer to use the source author's first person asks
@@ -262,9 +262,12 @@ test("R-007: no register template instructs a person or a move the artifact cann
 
 // The cadence half of R-007. The shipped philosopher-historian template asked for a
 // bare "longer cadence" (git show origin/main:./src/lib/voiceCard.ts:89) — a length
-// instruction with nothing holding it to the two SEC12 blockers on the far side: the
-// per-tier reading-GRADE cap (src/sections/sectionGate.ts:2254) and the Flesch
-// reading-EASE floor on the assembled breakdown (sectionGate.ts:2267-2277). A
+// instruction with nothing holding it to the two SEC12.summary_readability checks on
+// the far side: the per-tier reading-GRADE cap (checkReadingLevel) and the blocking
+// Flesch reading-EASE floor on the assembled breakdown (checkBreakdownReadingEase),
+// both in src/sections/sectionGate.ts's breakdown loop. (Identifiers, not line
+// numbers: origin/main has moved past this branch's base and #528 retuned the
+// per-tier check's severity.) A
 // template MAY ask for a long line; what it may not do is ask for one and stop. This
 // is the assertion that keeps "longer cadence" from coming back green: the `voice:`
 // line is where cadence is declared, so a length word there must be paired with a
@@ -279,7 +282,7 @@ test("R-007: a template that asks for a longer cadence must hold it to the plain
     assert.match(
       voiceLine,
       PLAINNESS_QUALIFIER,
-      `${register}: "${voiceLine}" asks for a lengthening cadence with no plainness qualifier; every tier still has to clear the SEC12 reading-ease floor`,
+      `${register}: "${voiceLine}" asks for a lengthening cadence with no plainness qualifier; the assembled breakdown still has to clear the SEC12 reading-ease floor and each tier its own grade cap`,
     );
   }
 });
