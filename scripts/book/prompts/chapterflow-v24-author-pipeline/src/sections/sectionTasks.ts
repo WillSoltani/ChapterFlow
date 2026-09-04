@@ -12,6 +12,7 @@ import {
   type ProseDerivability,
   type ProseSpecificMark,
 } from "./chapterProse.js";
+import { CHAPTER_CASE_MIN_SPECIFICS, dealtCaseAnchors, dealtFactYearFigures, type DealtCaseCoverage } from "./dealtCases.js";
 import { bookRuleGovernsChapter, type BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
 import type { CompilerStoreRoots } from "../artifacts/artifactStore.js";
@@ -19,6 +20,13 @@ import type { ChapterBlueprintV1, SectionKind, SourcePacketV1 } from "../artifac
 import { boundSourceQuoteForCard } from "../compiler/sourcePacketProjection.js";
 import type { AuthorV4ContentSelection } from "../assembler.js";
 import { legacyRouteDisabled } from "../runtime/legacyRouteInventory.js";
+
+/** Hard bounds on the summary card's dated-fact ask, so a fact-dense chapter cannot
+ *  inflate the writer prompt without limit. The figures themselves are what the page
+ *  owes; the fact ids are provenance, and the SOURCE PACKET rendered further down the
+ *  card already carries every one of them in full. */
+const DEALT_FACT_YEARS_LISTED = 10;
+const DEALT_FACT_IDS_LISTED = 6;
 
 export type SectionTask = {
   bookId: string;
@@ -761,8 +769,15 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   /** Task 11ai — THIS chapter's already-drafted summary pack (its reader-visible
    *  prose). Consumed by the learning-pack card only; ABSENT everywhere else, so an
    *  omitted field renders exactly today's task card. */
-  chapterProse?: ChapterProseSource | null }): string {
-  const { bookId, kind, blueprint, sourcePacket, outputPath, context, deliveryMode = "FILE_WRITE", retryFeedback, assemblyAvoid, chapterProse } = args;
+  chapterProse?: ChapterProseSource | null;
+  /** The intra-chapter livelock breaker's re-draft brief: the dealt cases the
+   *  chapter's OWN standalone tiers were measured NOT to teach, with the exact
+   *  specifics missing from them. Summary pack only, and only on a re-draft the
+   *  compiler asked for — like retryFeedback and assemblyAvoid it is per-attempt
+   *  state, so it is deliberately NOT part of the cache identity the port digests
+   *  from attempt 1's card. */
+  dealtCaseRedraft?: readonly DealtCaseCoverage[] }): string {
+  const { bookId, kind, blueprint, sourcePacket, outputPath, context, deliveryMode = "FILE_WRITE", retryFeedback, assemblyAvoid, chapterProse, dealtCaseRedraft } = args;
   // Each writer consumes only its own section's slots plus a little shared chapter
   // context; the per-slot dealt fields (sceneFrame, promptShape, correctIndex,
   // requiredFactIds, action.practiceForm, …) all live inside these section slices.
@@ -861,11 +876,80 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
       : "";
     return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics into the prompt AND at least 1 into the explanation; matching is case-insensitive and folds an in-order rendering, so naturalize each one):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}${derivabilityNote}`;
   })();
+  // The SUMMARY writer's mirror of the quiz preflight above, and the prompt half of
+  // SEC136.
+  //
+  // The blueprint DEALS cases to the example slots and to the quiz/card cues before
+  // any pack is drafted, and the writers of those packs can neither swap the dealt
+  // case nor edit this pack: the summary is drafted first and cached on gate-pass,
+  // so on a resume round they meet a summary they cannot change. On the live
+  // Franklin run that closed the loop — SEC128 blocked example 1 for citing
+  // ch02.case.matthew_adams_ballads against a stored summary that taught 1/2 of it,
+  // three attempts a round, every round, until the driver's wedge stop.
+  //
+  // So the obligation is stated HERE, where it can still be discharged. The ask is
+  // the STANDALONE tiers rather than SEC136's own (looser) haystack on purpose:
+  // fullRead alone satisfies SEC128/SEC136 and still leaves the quiz built on that
+  // case underivable for a reader who stops after Deep (SEC120, measured on
+  // standaloneProseText).
+  const summaryMustTeach = (() => {
+    if (kind !== "summary-pack") return "";
+    const dealt = dealtCaseAnchors(blueprint, sourcePacket);
+    // SEC120's SECOND rule is independent of what a unit cites: a quiz stem or a
+    // card blocks on ANY year-band figure the standalone tiers never showed. The
+    // figures inside the FACTS the blueprint dealt to those slots are therefore
+    // owed by this pack too, and nothing used to say so — the live ch01 card 6 was
+    // dealt ch01.fact.parish_registers, whose only content is "1555", and the card
+    // was unwritable because the prose never stated it. Asked here, not gated: an
+    // untaught dealt FACT raises no blocker (see dealtCases.dealtFactYearFigures).
+    const dealtFacts = dealtFactYearFigures(blueprint, sourcePacket);
+    if (dealt.size === 0 && dealtFacts.length === 0) return "";
+    const caseBlock = dealt.size === 0 ? "" : (() => {
+      const lines = [...dealt.values()].map((anchor) =>
+        `- ${anchor.id} — ${anchor.label}: ${(anchor.hardSpecifics ?? []).map((value) => `"${value}"`).join(" | ")}`);
+      return `\n\nMUST TEACH — the cases THIS chapter's blueprint already dealt to its examples, quiz and cards:\n${lines.join("\n")}\n`
+        + `Each of these cases must SHOW at least ${CHAPTER_CASE_MIN_SPECIFICS} of its listed specifics somewhere the reader actually reads them, and the place to put them is the hook, the fast read, the deep read or the keyTakeaway: fullRead alone clears SEC136 but leaves a reader who stops after the Deep read unable to answer the quiz built on that case (SEC120). Narrate each case once, in your own sentences, then refer to it naturally — you are not reproducing a list. The example and quiz writers cannot swap the case they were dealt and cannot edit this pack, so a case you leave untaught blocks THEIR packs and comes back to you as a re-draft (SEC136/SEC128); the validator enforces this.`;
+    })();
+    const factBlock = dealtFacts.length === 0 ? "" : (() => {
+      // ONE compact paragraph, keyed by the FIGURE rather than by the fact: what the
+      // page owes is the year, several dealt facts commonly share one, and the fact's
+      // own label is a whole sentence the SOURCE PACKET below already carries in
+      // full. Bounded by construction — at most DEALT_FACT_YEARS_LISTED figures and
+      // DEALT_FACT_IDS_LISTED ids — so a fact-dense chapter cannot inflate the card
+      // without limit, and the overflow is counted rather than dropped in silence.
+      const years: string[] = [];
+      for (const fact of dealtFacts) {
+        for (const year of fact.years) if (!years.includes(year)) years.push(year);
+      }
+      const shownYears = years.slice(0, DEALT_FACT_YEARS_LISTED);
+      const moreYears = years.length - shownYears.length;
+      const ids = dealtFacts.map((fact) => fact.id);
+      const shownIds = ids.slice(0, DEALT_FACT_IDS_LISTED);
+      const moreIds = ids.length - shownIds.length;
+      return `\n\nMUST TEACH — the year figures of the FACTS this chapter's blueprint dealt to its quiz and cards: `
+        + `${shownYears.map((year) => `"${year}"`).join(", ")}${moreYears > 0 ? `, +${moreYears} more` : ""}`
+        + ` (from ${shownIds.join(", ")}${moreIds > 0 ? `, +${moreIds} more` : ""}).`
+        + ` A question or card built on one of those facts has to name its year, and SEC120 blocks any year the reader never saw — so state each figure in the hook, the fast read, the deep read or the keyTakeaway, in a sentence that says what happened then. fullRead does not count. A figure you leave off the page makes the unit dealt that fact unwritable.`;
+    })();
+    return `${caseBlock}${factBlock}`;
+  })();
+  // The breaker's re-draft brief. The standing MUST TEACH block above says WHICH
+  // cases the chapter owes; this one says which of them the previous summary
+  // measurably failed to pay, in the words of the gate that measured it, so the
+  // re-draft is a targeted repair rather than a fresh guess.
+  const dealtCaseRedraftSection = (() => {
+    if (kind !== "summary-pack" || !dealtCaseRedraft || dealtCaseRedraft.length === 0) return "";
+    const lines = dealtCaseRedraft.map((coverage) =>
+      `- ${coverage.id} — the reader who stops after the Deep read has seen ${coverage.taughtInStandalone}/${coverage.required} of its specifics.`
+      + ` Put at least ${coverage.required} of these ON THE PAGE, in the hook, the fast read, the deep read or the keyTakeaway: ${coverage.missingFromStandalone.map((value) => `"${value}"`).join(", ")}`);
+    return `\n\nRE-DRAFT — YOUR PREVIOUS SUMMARY LEFT A DEALT CASE UNTAUGHT, AND IT BLOCKED THE PACKS BUILT ON IT:\n${lines.join("\n")}\n`
+      + `Those packs cannot swap the case they were dealt and cannot edit this one, so this is the only pack that can clear the block. Narrate each case in your own sentences where the reader meets it — moving it into fullRead does not clear this. Keep everything else about the chapter: the tiers, the hook and the takeaway all still have to pass the same gates they passed before.`;
+  })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse, derivability)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors, derivability)}${assemblyAvoidSection(assemblyAvoid)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${summaryMustTeach}${dealtCaseRedraftSection}${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse, derivability)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors, derivability)}${assemblyAvoidSection(assemblyAvoid)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse, derivability)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors, derivability)}${assemblyAvoidSection(assemblyAvoid)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${summaryMustTeach}${dealtCaseRedraftSection}${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse, derivability)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors, derivability)}${assemblyAvoidSection(assemblyAvoid)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {
