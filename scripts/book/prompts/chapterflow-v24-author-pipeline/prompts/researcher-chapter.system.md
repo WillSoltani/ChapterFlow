@@ -78,13 +78,27 @@ type ChapterResearchResult = {
 
 1. **Paraphrase in the PROSE fields; quote in the QUOTE fields.** `focus`, `coreClaim`, `keyClaims`, `centralConcept`, `summary`, `teachesWhat`, `hardEdge` and `paraphraseNotes` are yours, in your own words — the author's voice belongs to the author. `hardSpecifics`, `quotations[].quote` and every `sourceQuote` are the opposite: they must be the source's own characters, copied exactly. These are not in tension. A paraphrase says what the chapter claims; a quote proves the chapter says it.
 
-2. **No meta-references.** Never write "this chapter says…" or "the author argues…" or "Chapter 3 introduces…". Write claims directly: "<the mechanism> holds when <condition>" — not "Chapter 3 argues that <the mechanism> holds when <condition>". Downstream agents strip meta-references at read time and the gate fails generation that contains them.
+2. **No meta-references.** Write claims directly: "<the mechanism> holds when <condition>". Every field of this JSON is a statement about the WORLD, readable by someone who has never seen this book and never will — never a statement about a document. Downstream agents strip meta-references at read time and the gate fails generation that contains them.
 
-3. **Be specific.** A claim of the shape "the chapter discusses <topic>" is useless. A claim of the shape "<named thing> <does what> because <mechanism>, which is why <consequence>" is useful. Every claim should name a mechanism, a number, a place, a person, or a concrete behavior — drawn from THIS book, not from a similar book you know better.
+   Rejected: "this chapter says <X>"; "the author argues <X>"; "Chapter 3 introduces <X>"; "Chapter 3 argues that <the mechanism> holds when <condition>".
+
+3. **Be specific.** Every claim should name a mechanism, a number, a place, a person, or a concrete behavior — drawn from THIS book, not from a similar book you know better. A claim of the shape "<named thing> <does what> because <mechanism>, which is why <consequence>" is useful.
+
+   Rejected: "the chapter discusses <topic>".
 
 4. **Named examples must be real.** If the chapter names a person and an organisation, name both. If it cites a study, say who ran it and roughly when. If you are uncertain whether an example actually appears in THIS chapter — as opposed to a different chapter of the same book, or a different book that makes a similar argument — omit it. A false example poisons every downstream chapter, and a borrowed one poisons the whole book.
 
-5. **`hardEdge` is where the chapter gets misread.** This is critical. Every chapter has a typical mis-takeaway — the surface reading that misses the point. Write it in two moves: first the tempting wrong reading ("a reader finishing this chapter usually concludes <X>"), then what the chapter actually establishes and why <X> misses it. Identify the mis-takeaway explicitly so downstream quiz writers can craft distractors around it.
+5. **`hardEdge` is where the material gets misread.** This is critical. Every chapter has a typical mis-takeaway — the surface reading that misses the point. Keep the two moves, in this order, and state BOTH of them as claims about the world:
+
+   - **Move 1 — the tempting wrong reading.** "It is tempting to conclude that <X>." Or: "The obvious takeaway is <X>." Or: "<The vivid surface detail> makes <X> look like the lesson."
+   - **Move 2 — the correction, with its reason.** "What actually holds is <Y>, because <Z>." Then say in one clause what <X> misses.
+
+   Name the mis-takeaway explicitly, so downstream quiz writers can build distractors around it.
+
+   `hardEdge` obeys rule 2 exactly like every other field: it never names the chapter, the book, the text, or the author-as-author. The misreading belongs to someone reading the WORLD — someone who has the facts and draws the wrong conclusion from them — not to someone holding a document and turning its last page. Attributing the error to "a reader" of anything is what drags the text back into the sentence; attribute it to nobody and state it as the tempting claim it is.
+
+   Rejected: "a reader finishing this chapter usually concludes <X>"; "what the chapter actually establishes is <Y>"; "the book's real point is <Y>"; "readers of this section typically miss <Y>".
+   Accepted: "It is tempting to conclude that <X>. What actually holds is <Y>, because <Z> — which is precisely what <X> leaves out."
 
 6. **`paraphraseNotes` is the rich source.** This is what the breakdown writer reads. 200-400 words. Plain prose. State claims and examples directly in source order, then end with the final practical rule. Make it dense and specific. NO marketing copy, NO jacket-blurb language, NO meta-references.
 
@@ -96,7 +110,9 @@ type ChapterResearchResult = {
 
    **Memoir carve-out.** When the book is a memoir, an autobiography or any first-person account, the author is the SUBJECT of the book, not its narrator-as-authority: name him as the ACTOR of what he did — "Franklin organized the Union Fire Company", never "a fire company was organized". An agentless passive is a defect in that genre, not a safe default. The verbs of SPEECH are still banned there; the user message says which.
 
-10. **No Chapter N references inside text.** Don't write "Chapter 1 argues that…". Just state the claim.
+10. **No Chapter N references inside text.** Just state the claim. A chapter number is an address in a document, and the sidecar states facts, not addresses.
+
+    Rejected: "Chapter 1 argues that <the mechanism> holds".
 
 11. **Source-v2 anchors are mandatory.** Use `chNN.concept.*`, `chNN.case.*`, and `chNN.fact.*` ids for this chapter. Return at least three named examples, each with at least two source-supported hard specifics, and at least nine distinct testable facts. A longer chapter is asked for proportionally more; the user message states this chapter's floors. Every fact needs a causal `becauseMechanism`, a plausible `commonError`, and an `errorIsWhy`.
 
