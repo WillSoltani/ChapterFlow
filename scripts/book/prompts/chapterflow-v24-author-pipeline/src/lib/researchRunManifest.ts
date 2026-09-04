@@ -546,6 +546,59 @@ export function findCompatibleResearchRun(args: {
   return { ok: false, rejected };
 }
 
+/** Either the bundle a control run owns, or the named reason it cannot be
+ *  continued. There is no third answer: "some other bundle" is not one. */
+export type OwnedResearchRunResult =
+  | { ok: true; runDir: string; manifest: ResearchRunManifest }
+  | { ok: false; code: "NOT_ON_DISK" | "UNREADABLE" | "INCOMPATIBLE"; reasons: string[] };
+
+/**
+ * The research run a CONTROL run already owns, located by MANIFEST run id.
+ *
+ * `findCompatibleResearchRun` answers "which bundle for this book is newest and
+ * still compatible" — a question whose answer changes whenever any other round
+ * mints a bundle. That is the wrong question for a resume: a resumed control run
+ * must continue the ONE bundle it already paid model calls into, however many
+ * newer compatible bundles have appeared beside it since. This resolves exactly
+ * that one, by the id the caller durably recorded when the bundle was created,
+ * and reports WHY it cannot be continued instead of quietly selecting another.
+ *
+ * Identity comes from the manifest, never from the directory name — the same
+ * rule the pin path applies, for the same reason (createResearchRun mkdirs under
+ * the raw `bibliography.bookId` while discovery matches on `normSlug`, so a
+ * directory name can disagree with the run it holds).
+ *
+ * Compatibility is checked here, not by the caller: a bundle that IS this run's
+ * own but no longer matches the fingerprint must be reported as INCOMPATIBLE —
+ * naming the field — rather than silently missed and replaced.
+ */
+export function findOwnedResearchRun(args: {
+  runsRoot: string;
+  bookIdHint?: string;
+  runId: string;
+  inputHash: string;
+  compatibility: ResearchCompatibility;
+}): OwnedResearchRunResult {
+  const candidates = listManifestRunDirs(args.runsRoot, args.bookIdHint);
+  const unreadable: string[] = [];
+  for (const candidate of candidates) {
+    if (!candidate.parsed.ok) {
+      // A manifest that will not parse cannot claim an id, but it also cannot be
+      // ruled out as the run we are looking for when its directory is named for
+      // it. Remember it so an unreadable own run reports UNREADABLE rather than
+      // the misleading NOT_ON_DISK.
+      if (candidate.runDir.endsWith(`/${args.runId}`)) unreadable.push(candidate.parsed.errors.join("; "));
+      continue;
+    }
+    if (candidate.parsed.manifest.runId !== args.runId) continue;
+    const reasons = compatibilityRejectionReasons(candidate.parsed.manifest, args);
+    if (reasons.length > 0) return { ok: false, code: "INCOMPATIBLE", reasons };
+    return { ok: true, runDir: candidate.runDir, manifest: candidate.parsed.manifest };
+  }
+  if (unreadable.length > 0) return { ok: false, code: "UNREADABLE", reasons: unreadable };
+  return { ok: false, code: "NOT_ON_DISK", reasons: [`no research run ${args.runId} under ${args.runsRoot}`] };
+}
+
 export function compatibilityRejectionReasons(
   manifest: ResearchRunManifest,
   args: { inputHash: string; compatibility: ResearchCompatibility; expectedChaptersHash?: string },

@@ -57,17 +57,25 @@ test("help exposes only canonical V4 production routes and flags", () => {
 // The 2026-09-04 live Franklin resume defect was, for the operator, a
 // documentation failure as much as a code one: nothing said whether the retry
 // command should repeat --regen, and the two spellings behaved differently (one
-// discarded 18 durable chapter sidecars, the other was refused outright with
+// discarded 16 durable chapter sidecars, the other was refused outright with
 // RESEARCH_RESUME_CONFLICT). The contract is now stated where the operator
-// looks.
-test("help states the resume contract: a resumed round continues its own research run either way", () => {
+// looks — INCLUDING its two exceptions. A help text that promises more than the
+// code does is worse than no help text, so the exceptions are pinned here beside
+// the promise.
+test("help states the resume contract: which research run a resume continues, and both ways that can fail", () => {
   const result = cli(["help"]);
   const output = `${result.stdout}${result.stderr}`;
   assert.equal(result.status, 0);
-  assert.match(output, /--resume-run-id continues an existing run\.\s+A resumed round ALWAYS continues that\s+run's own research run/);
+  assert.match(output, /--resume-run-id continues an existing run\.\s+The research run a round creates is\s+recorded durably against its control run before the first chapter is researched/);
+  assert.match(output, /a resume continues THAT research run — not whichever compatible bundle for the book\s+is newest/);
   assert.match(output, /loaded from disk with zero model\s+calls, and only the chapters without one are re-run/);
-  assert.match(output, /on a resumed round --regen\s+means ONLY "bypass the already-promoted pointer"/);
-  assert.match(output, /--regen --resume-run-id X do the same work and neither is a definition conflict/);
+  // Exception 1: a run that predates the binding falls back, and says so.
+  assert.match(output, /falls back to the newest compatible\s+bundle and prints action=NO_RECORDED_RESEARCH_RUN/);
+  // Exception 2: an unusable own bundle stops the run, naming the field.
+  assert.match(output, /no longer matches the current fingerprint \(codeVersion,\s+promptHash, configHash, provider, model/);
+  assert.match(output, /FAILS CLOSED with RESEARCH_RESUME_CONFLICT naming the field, rather than\s+silently re-researching or adopting another run's bundle/);
+  assert.match(output, /on a resumed round --regen means ONLY "bypass the already-promoted\s+pointer"/);
+  assert.match(output, /--regen --resume-run-id X do the same work and\s+neither is a definition conflict/);
   assert.match(output, /Research refresh is a FIRST-round axis/);
   assert.match(output, /A resume still fails closed\s+when the intent that matters changed/);
 });

@@ -397,11 +397,16 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
 
   let researchPortCalls = 0;
   let researchModelCalls = 0;
+  // Recorded, not asserted inline: this fixture's resume never re-enters the
+  // research port at all (the durable seed rehydrates in-service first), so an
+  // inline assertion on the resume branch would be unreachable and would pin
+  // nothing. What the port is ACTUALLY asked, and how often, is asserted below.
+  const researchRequests: Array<{ resumeRunId?: string; newRunId?: string; forceRefresh?: boolean }> = [];
   const research = {
     async run(request: { resumeRunId?: string; newRunId?: string; forceRefresh?: boolean }) {
       researchPortCalls += 1;
+      researchRequests.push(request);
       if (request.resumeRunId === undefined) researchModelCalls += 13;
-      else assert.equal(request.forceRefresh, false, "a resumed round resumes research; it never force-refreshes it");
       return {
         schemaVersion: "1" as const,
         bookId: BOOK,
@@ -560,6 +565,11 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   assert.equal(compilerAttemptRoots[1], resolve(context.roots.attemptsRoot, "book-run-retry", "compiler-retry-1"));
   assert.equal(researchPortCalls, 1, "resume rehydrates the durable seed in-service and must NOT re-invoke the research port (task 11g)");
   assert.equal(researchModelCalls, 13, "resume must not repeat research model work");
+  assert.deepEqual(
+    researchRequests.map((call) => ({ resumeRunId: call.resumeRunId, forceRefresh: call.forceRefresh })),
+    [{ resumeRunId: undefined, forceRefresh: true }],
+    "the only research the port was asked for is the FIRST round's --regen research",
+  );
   assert.equal(reviewCalls, 1);
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "STARTED").length, 1);
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "COMPLETED").length, 1);

@@ -72,6 +72,7 @@ import {
   expectedChaptersHash,
   fileHash,
   findCompatibleResearchRun,
+  findOwnedResearchRun,
   hashJson,
   hashString,
   listResearchRunIds,
@@ -134,6 +135,36 @@ export type ResearchBookOptions = {
    *  operator believes they pinned, and would turn the pin into a
    *  research-substitution primitive. */
   pinnedRunId?: string;
+  /**
+   * The research run this CONTROL run already owns, recorded durably by the
+   * caller the moment the bundle was created. Set ONLY on a resume.
+   *
+   * `findCompatibleResearchRun` picks the NEWEST compatible bundle for the book,
+   * which is not the same question a resume asks. On 2026-09-04 the live Franklin
+   * book had two compatible bundles — one with 16 succeeded chapter sidecars, a
+   * newer one with 13 — and a resume of the first run would have adopted the
+   * newer, emptier one and re-researched chapters it already had on disk. When
+   * this id is present the run's OWN bundle is resolved by manifest id and
+   * adopted; it is never traded for a newer one, and it FAILS CLOSED
+   * (RESEARCH_RESUME_CONFLICT) rather than silently re-researching when that
+   * bundle is gone, unreadable, or no longer matches the compatibility
+   * fingerprint (e.g. the prompts moved since the run started).
+   *
+   * Absent on a resume ⇒ the run predates the binding (or its record was lost),
+   * and the caller falls back to the newest compatible bundle — the old
+   * behaviour, which the caller announces rather than assumes.
+   */
+  ownResearchRunId?: string;
+  /**
+   * Called exactly once with the research run id, as soon as this run's bundle
+   * is resolved — created OR adopted — and BEFORE any chapter research runs.
+   * That ordering is the point: whatever the caller records here must survive a
+   * research FAILURE, not only a research COMPLETED, because the run that needs
+   * the record is the run whose research failed. A throwing sink fails the run,
+   * deliberately: a binding that cannot be written is a resume that cannot later
+   * be honoured.
+   */
+  onResearchRunResolved?: (researchRunId: string) => void;
   /** Test/tooling hook: override the run root. Defaults to repo .chapterflow/runs. */
   runsRoot?: string;
   /** Test/tooling hook: override the state root. Defaults to pipeline state/. */
@@ -262,6 +293,16 @@ export async function researchBook(
   if (options.pinnedRunId !== undefined && options.forceRefresh === true) {
     throw new Error("RESEARCH_RUN_PIN_INVALID:pinned run cannot be combined with forceRefresh");
   }
+  // Both of the following would silently discard the very bundle the caller
+  // named. Neither combination is reachable from the v4 port (a pin is mutually
+  // exclusive with a resume, and a resumed round never force-refreshes), so they
+  // are structural guards, not policy.
+  if (options.ownResearchRunId !== undefined && options.forceRefresh === true) {
+    throw new Error("RESEARCH_RESUME_CONFLICT:a run's own research run cannot be combined with forceRefresh");
+  }
+  if (options.ownResearchRunId !== undefined && options.pinnedRunId !== undefined) {
+    throw new Error("RESEARCH_RESUME_CONFLICT:a run's own research run cannot be combined with a research-run pin");
+  }
 
   if (options.pinnedRunId !== undefined) {
     if (options.bookId === undefined) {
@@ -286,6 +327,40 @@ export async function researchBook(
     manifest = pinned.manifest;
     bibliography = pinned.bibliography;
     log(`Step 1/4: bibliography research skipped — pinned research run ${manifest.runId} adopted (0 model calls)`);
+  } else if (options.ownResearchRunId !== undefined) {
+    // A resume continues THE bundle this control run owns, or it stops. Every
+    // failure below is a hard stop with the reason named, because the only two
+    // alternatives — adopting some other compatible bundle, or minting a fresh
+    // one — both spend model calls the operator did not ask for on work that may
+    // already be on disk.
+    const owned = findOwnedResearchRun({
+      runsRoot,
+      bookIdHint: options.bookId,
+      runId: options.ownResearchRunId,
+      inputHash: inputIdentity.hash,
+      compatibility,
+    });
+    if (!owned.ok) {
+      const detail = owned.reasons.join("; ");
+      if (owned.code === "INCOMPATIBLE") {
+        throw new Error(
+          `RESEARCH_RESUME_CONFLICT:this run's own research run ${options.ownResearchRunId} is no longer compatible (${detail}); start a fresh run to research it again`,
+        );
+      }
+      throw new Error(
+        `RESEARCH_RESUME_CONFLICT:this run's own research run ${options.ownResearchRunId} cannot be read (${owned.code}: ${detail}); start a fresh run to research it again`,
+      );
+    }
+    const loaded = loadRunBibliography(owned.runDir, owned.manifest);
+    if (!loaded) {
+      throw new Error(
+        `RESEARCH_RESUME_CONFLICT:this run's own research run ${options.ownResearchRunId} has no readable bibliography record; start a fresh run to research it again`,
+      );
+    }
+    bundlePath = owned.runDir;
+    manifest = owned.manifest;
+    bibliography = loaded;
+    log(`Step 1/4: bibliography research skipped — continuing this run's OWN research run ${manifest.runId} (0 model calls)`);
   } else if (!options.forceRefresh) {
     const resume = findCompatibleResearchRun({
       runsRoot,
@@ -362,6 +437,11 @@ export async function researchBook(
   if (!manifest || !bundlePath) {
     throw new Error("research run initialization failed before chapter research");
   }
+  // Announce the bundle BEFORE a single chapter is researched, so the caller's
+  // durable control-run → research-run binding survives a research failure. A
+  // binding written only on success would be missing in precisely the case a
+  // resume exists to serve.
+  options.onResearchRunResolved?.(manifest.runId);
   let activeManifest = manifest;
   const activeBundlePath = bundlePath;
 
