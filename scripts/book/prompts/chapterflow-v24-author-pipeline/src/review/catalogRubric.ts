@@ -246,7 +246,7 @@ export function selectSeededChapterIndexes(
   const want = Math.min(sampleSize, chapterCount);
   const chosen = new Set<number>();
   for (let i = 0; chosen.size < want; i += 1) {
-    chosen.add(Number((seed + BigInt(i) * 2654435761n) % modulus));
+    chosen.add(Number((seed + BigInt(i) * BigInt(2654435761)) % modulus));
   }
   return Object.freeze([...chosen].sort((left, right) => left - right));
 }
