@@ -25,7 +25,8 @@
  *   EDIT.quiz_choice_count  each question's number of choices.
  *   EDIT.quiz_key_text the TEXT of the keyed choice, at its own index, and nowhere
  *                      else in the question.
- *   EDIT.quiz_choice_text  the edited choices are still three different answers.
+ *   EDIT.quiz_choice_text  the edit collapses no MORE choices into one another
+ *                          than the draft handed it already did.
  *   EDIT.citations     every anchor / fact / case id list, per JSON path, plus the
  *                      declared `introducedEntities` and `numbersUsed` arrays.
  *   EDIT.numbers       the SET of digit-numbers across all reader-facing text.
@@ -76,6 +77,24 @@
  * as a name everywhere it appears, so "Maya" still counts in "Maya stands at the
  * kitchen table" because the same chapter also writes "…the careful behavior Maya
  * already has".
+ *
+ * WHAT THIS STILL CANNOT CATCH
+ * The guard compares text; it does not read. Three residues are semantic and stay
+ * downstream with the fresh-QC answer-key judge (`QC1.wrong_quiz_key`), which runs
+ * on the staged candidate: a rewritten DISTRACTOR that happens to become TRUE; a
+ * STEM rewritten so the question asks the opposite of what it asked; and — the one
+ * easiest to miss, because every mechanical check above passes it — an EXPLANATION
+ * rewritten until it contradicts the key it explains. The explanation is prose the
+ * editor is invited to reword (G14 is the control admitting exactly that), it
+ * carries no id, no citation and often no digit, and the keyed choice it argues
+ * against is still sitting untouched at its own index. So the reader meets a
+ * question whose answer key and whose stated reason disagree, and nothing in a
+ * before/after text comparison can tell that from an ordinary rewording.
+ *
+ * What the guard did remove is the whole MECHANICAL class — key moved, key
+ * reworded, key duplicated onto a distractor, choices collapsed — refused before
+ * the edit is staged, at zero model cost, instead of costing a QC-fail repair
+ * round.
  *
  * FAILURE DIRECTION
  * Every finding REFUSES the edit and keeps the unedited chapter. A false positive
@@ -497,6 +516,24 @@ export function checkEditPreservesFacts(before: ChapterEditPacks, after: Chapter
     // Three answers, still three. A distractor folded onto another choice is
     // either a second key or a dead slot, and the reader meets it as one question
     // with two right answers.
+    //
+    // But this is a PRESERVATION guard, and it may only blame the edit for what
+    // the edit did. Reading the edited choices alone made a draft that ALREADY
+    // shipped two colliding choices uneditable for ever: every edit, including
+    // one that never touched the choices, came back refused with a message that
+    // said "after the edit". A collision the drafter shipped is the drafter's,
+    // and it belongs to the downstream QC lane; a collision the editor CREATES is
+    // still refused here. So compare the collision set before and after, counted
+    // as duplicate slots (choices minus distinct folded texts) per question, and
+    // refuse only when the edit adds one. Counting slots rather than matching
+    // texts keeps the pre-existing pair tolerated even if the editor rewords both
+    // of its members, while collapsing one MORE choice always shows up as growth.
+    const duplicateSlots = (choices: readonly unknown[]): number => {
+      const folded = choices.map((choice) => foldChoiceText(choice)).filter((text) => text.length > 0);
+      return folded.length - new Set(folded).size;
+    };
+    const draftDuplicateSlots = duplicateSlots(sourceChoices);
+    const editedDuplicateSlots = duplicateSlots(editedChoices);
     const seenChoices = new Map<string, number>();
     editedChoices.forEach((choice, choiceIndex) => {
       const folded = foldChoiceText(choice);
@@ -509,9 +546,13 @@ export function checkEditPreservesFacts(before: ChapterEditPacks, after: Chapter
         seenChoices.set(folded, choiceIndex);
         return;
       }
+      if (editedDuplicateSlots <= draftDuplicateSlots) return;
       findings.push(finding(
         "EDIT.quiz_choice_text",
-        `${id} choices ${first} and ${choiceIndex} say the same thing after the edit; a question needs three different answers`,
+        `${id} choices ${first} and ${choiceIndex} say the same thing after the edit; a question needs three different answers`
+        + (draftDuplicateSlots > 0
+          ? ` (the draft already collapsed ${draftDuplicateSlots} choice slot(s) here; this edit brings it to ${editedDuplicateSlots})`
+          : ""),
       ));
     });
   }

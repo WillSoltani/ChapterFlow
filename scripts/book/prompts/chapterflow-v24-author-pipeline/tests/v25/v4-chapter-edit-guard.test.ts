@@ -230,6 +230,38 @@ requiredTest("G15 a keyed answer copied onto a distractor, or two choices collap
   assert.deepEqual(codes(checkEditPreservesFacts(packs(), collapsed)), ["EDIT.quiz_choice_text"]);
 });
 
+requiredTest("G17 a collision the DRAFT already carried is not the editor's fault; one the edit creates is", () => {
+  // A draft whose two distractors already fold onto each other. The guard used to
+  // read only the EDITED choices, so this chapter was refused for ever — with a
+  // message ("say the same thing after the edit") blaming an edit that had not
+  // touched the choices at all. The collision is real, but it is the drafter's,
+  // and the downstream QC lane is what owns it.
+  const withDraftCollision = (): ChapterEditPacks => {
+    const bundle = packs();
+    const learning = bundle["learning-pack"] as unknown as LearningPackV1;
+    const question = learning.quiz.questions[3];
+    question.choices[(question.correctIndex + 2) % 3] = question.choices[(question.correctIndex + 1) % 3];
+    return bundle;
+  };
+
+  const untouched = withDraftCollision();
+  assert.deepEqual(checkEditPreservesFacts(withDraftCollision(), untouched), []);
+
+  // Rewording elsewhere in the same bundle is likewise not blamed for it.
+  const rewordedElsewhere = withDraftCollision();
+  (rewordedElsewhere["learning-pack"] as unknown as LearningPackV1).quiz.questions[3].explanation =
+    "The keyed move is the one that changes what a lender can read before the snapshot is taken.";
+  assert.deepEqual(checkEditPreservesFacts(withDraftCollision(), rewordedElsewhere), []);
+
+  // The rule is NOT relaxed into a no-op: an edit that collapses a pair the draft
+  // did not have is still refused, even on a bundle that already carries one.
+  const oneMore = withDraftCollision();
+  const oneMoreLearning = oneMore["learning-pack"] as unknown as LearningPackV1;
+  const clean = oneMoreLearning.quiz.questions[1];
+  clean.choices[(clean.correctIndex + 2) % 3] = clean.choices[(clean.correctIndex + 1) % 3];
+  assert.deepEqual(codes(checkEditPreservesFacts(withDraftCollision(), oneMore)), ["EDIT.quiz_choice_text"]);
+});
+
 requiredTest("G16 a pack that gains or loses a top-level field is refused", () => {
   const added = packs();
   // The class the brief's MEMORABLE LINES clause used to invite: a field that
