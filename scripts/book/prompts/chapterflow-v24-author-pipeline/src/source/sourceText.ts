@@ -87,13 +87,62 @@ const CHARACTER_FOLDS: ReadonlyMap<string, string> = new Map<string, string>([
 ]);
 
 /**
- * Normalize an ingested text for FREEZING: strip a leading BOM and convert CRLF
- * and lone CR to LF. Nothing else — character offsets into this string are the
- * coordinates the chapter map and every recorded quote use, so trimming or
- * re-wrapping here would silently move every offset.
+ * Project Gutenberg's italic markup: a run of emphasised text wrapped in a pair
+ * of underscores, which may span a line break inside a paragraph.
+ *
+ * WHY THIS IS A SOURCE-TEXT DEFECT AND NOT TYPOGRAPHY TO PRESERVE. The markers
+ * sit ADJACENT to the words they wrap, so they fuse to the first and last token
+ * of the run. The Autobiography's lines 736-737 read:
+ *
+ *   House (a very odd one), that "_James Franklin should no longer print
+ *   the paper called the New England Courant_."
+ *
+ * A researcher that copies that sentence correctly writes "James Franklin
+ * should no longer print\nthe paper called the New England Courant." and is
+ * told its quotation is not verbatim (live Franklin run 2026-09-04T19:51:59Z,
+ * rejected/ch02.attempt2.json). The only quotation that WOULD match is one that
+ * reproduces a typesetting artifact as if it were the author's own punctuation.
+ * The same run lost a named example on _Spectator_.
+ *
+ * SHAPE OF THE RULE, and what it deliberately will not touch:
+ *   - the opening marker must not follow a letter, digit or underscore, and the
+ *     closing marker must not precede one — so snake_case, handle_click and
+ *     set_state keep their underscores;
+ *   - neither marker may sit against whitespace on the inside of the run, which
+ *     is how a lone underscore in ordinary prose fails to open one;
+ *   - the run may not contain another underscore and may not cross a blank line,
+ *     so an unpaired marker cannot swallow a paragraph.
+ */
+const GUTENBERG_EMPHASIS_RUN = /(?<![\p{L}\p{N}_])_(?![\s_])((?:[^_\n]|\n(?!\s*\n))*?)(?<=[^\s])_(?![\p{L}\p{N}_])/gu;
+
+/** Drop Gutenberg emphasis markers, keeping the words they wrap. */
+export function stripGutenbergEmphasis(text: string): string {
+  return text.replace(GUTENBERG_EMPHASIS_RUN, "$1");
+}
+
+/**
+ * Normalize an ingested text for FREEZING: strip a leading BOM, convert CRLF and
+ * lone CR to LF, and fold away Gutenberg's underscore emphasis markers
+ * ({@link stripGutenbergEmphasis}). Nothing else — character offsets into this
+ * string are the coordinates the chapter map and every recorded quote use, so
+ * trimming or re-wrapping here would silently move every offset.
+ *
+ * WHY THE MARKERS ARE DROPPED HERE and not in the quote matcher. Every offset in
+ * the system indexes the FROZEN text: chapter-map spans, the
+ * `source-text:<sha>#<start>-<end>` citations in the verify record, the span
+ * slice the source-fidelity judge and the key judge read, the excerpt windows
+ * handed to the writers. Folding the markers inside
+ * {@link normalizeForQuoteMatch} instead would leave every one of those readers
+ * looking at `_Spectator_`, and would let a quote resolve to offsets whose slice
+ * is not the quote. One text, one digest, one coordinate system.
+ *
+ * CONSEQUENCE, stated rather than hidden: for any text that carries emphasis
+ * markers the sha256 CHANGES. A book whose research run was frozen against the
+ * old digest cannot be resumed against the new one — by design, a different text
+ * is a different run — so such a book is researched again from scratch.
  */
 export function normalizeIngestedText(raw: string): string {
-  return raw.replace(/^﻿/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  return stripGutenbergEmphasis(raw.replace(/^﻿/, "").replace(/\r\n/g, "\n").replace(/\r/g, "\n"));
 }
 
 export type IndexedNormalization = {

@@ -16,7 +16,7 @@
  */
 
 import { BibliographyResult } from "../agents/researcher-bibliography.js";
-import { ChapterResearchResult, META_REGEXES, authorVerbRegexes } from "../agents/researcher-chapter.js";
+import { ChapterResearchResult, META_REGEXES, authorVerbRegexes, isWorldNounAuthorReference } from "../agents/researcher-chapter.js";
 
 export type SourceCoherenceFinding = {
   code: string;                       // e.g., "SC1.chapter_count_mismatch"
@@ -54,11 +54,26 @@ export type SourceCoherenceReport = {
 /** First match of any pattern, as a non-global exec so `index`/`input` are
  *  available for the evidence excerpt. authorVerbRegexes() returns /gi/
  *  patterns, whose `String.match` result carries neither. */
-function firstMatch(text: string, patterns: readonly RegExp[]): RegExpExecArray | null {
+function firstMatch(
+  text: string,
+  patterns: readonly RegExp[],
+  isExempt?: (match: RegExpExecArray) => boolean,
+): RegExpExecArray | null {
   for (const pattern of patterns) {
-    const re = pattern.global ? new RegExp(pattern.source, pattern.flags.replace(/g/g, "")) : pattern;
-    const m = re.exec(text);
-    if (m) return m;
+    if (!isExempt) {
+      const re = pattern.global ? new RegExp(pattern.source, pattern.flags.replace(/g/g, "")) : pattern;
+      const m = re.exec(text);
+      if (m) return m;
+      continue;
+    }
+    // R-286: an exempt occurrence must not hide a later non-exempt one, so the
+    // scan walks EVERY occurrence of this pattern rather than stopping at the first.
+    const re = pattern.global ? pattern : new RegExp(pattern.source, `${pattern.flags}g`);
+    re.lastIndex = 0;
+    for (let m = re.exec(text); m !== null; m = re.exec(text)) {
+      if (m[0].length === 0) { re.lastIndex += 1; continue; }
+      if (!isExempt(m)) return m;
+    }
   }
   return null;
 }
@@ -141,7 +156,10 @@ export function runSourceCoherenceCheck(input: SourceCoherenceInput): SourceCohe
       ch.paraphraseNotes,
     ].filter((value): value is string => typeof value === "string").join(" \n ");
 
-    const m = firstMatch(allText, META_REGEXES);
+    // R-286: the world-noun sense of "the author" (an unnamed writer of a piece)
+    // is a fact about the world, not a reference to this text. Same predicate the
+    // researcher's own validator uses, so the two routes cannot disagree.
+    const m = firstMatch(allText, META_REGEXES, (hit) => isWorldNounAuthorReference(allText, hit.index, hit[0].length));
     if (m) {
       findings.push({
         code: "SC4.meta_reference",

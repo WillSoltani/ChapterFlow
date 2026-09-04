@@ -182,6 +182,83 @@ export const META_REGEXES: RegExp[] = [
 ];
 
 /**
+ * R-286 — the ONE narrow sense in which `the author` is a WORLD noun.
+ *
+ * `/\bthe author\b/` above is right about the sense it was written for: the
+ * book's author as the SPEAKER of the text ("the author argues", "the author's
+ * memoir", "according to the author"). That sentence states a fact about a
+ * document, and naming the person is always an available repair.
+ *
+ * English has a second noun of the same shape, and the live Franklin run
+ * (2026-09-04T19:51:59Z, attempt 4) died on it 3/3. Chapter 2 of the
+ * Autobiography is ABOUT an anonymous writer — Franklin slid the Silence Dogood
+ * essays under the printing-house door unsigned, and the Assembly gaoled James
+ * Franklin for refusing to say who had written a Courant piece — so three of its
+ * sentences were rejected as meta-references:
+ *
+ *   namedExamples[2].summary          …praised it without knowing the author…
+ *   testableFacts[8].claim            …because he would not name the author.
+ *   testableFacts[9].becauseMechanism …enough to withhold the author's name…
+ *
+ * Each is a fact about the world, and NONE of them can be repaired the way the
+ * validator's own message says to repair it: naming the person makes the
+ * sentence FALSE, because the point of every one of them is that the author was
+ * not named. The chapter had no legal move and spent its whole attempt budget.
+ *
+ * So the carve-out is enumerated rather than inferred, and it is bounded to
+ * naming / identity / anonymity constructions: `the author` survives only as the
+ * OBJECT of one of these. Anything else — including every verb that would make
+ * the author the speaker of a text — is untouched. Applied by
+ * {@link isWorldNounAuthorReference}, which both routes a sidecar travels use,
+ * so the researcher's validator and SC4 cannot disagree about what a
+ * meta-reference is (the failure mode R-023/R-024 already paid for).
+ */
+export const WORLD_NOUN_AUTHOR_REGEXES: RegExp[] = [
+  // naming: "would not name the author", "without naming the author"
+  /\b(?:to\s+)?nam(?:e|es|ed|ing)\s+the author\b/i,
+  // identity as a possession of the unnamed writer: "the author's name/identity"
+  /\bthe author's\s+(?:name|identity)\b/i,
+  // knowing / not knowing who wrote it
+  /\b(?:know|knows|knowing|known|knew)\s+the author\b/i,
+  /\bwho the author (?:was|is|might be|could be)\b/i,
+  // anonymity as an attribute of the writer of a piece. ("the anonymous author"
+  // needs no entry: the adjective breaks the `the author` bigram, so the guard
+  // never fires on it in the first place.)
+  /\bthe author (?:was|is|remained|remains|stayed|stays)\s+(?:unknown|unnamed|anonymous|undisclosed|a secret)\b/i,
+  /\bthe author (?:was|is) never (?:named|identified|known|discovered)\b/i,
+  // the author OF a named piece of writing — a person in the world, not this book
+  /\bthe author of (?:the|this|that|a|an|his|her|their|its)\s+(?:piece|letter|letters|essay|essays|paper|papers|pamphlet|pamphlets|article|articles|column|columns|verses|poem|ballad|satire|advertisement|notice)\b/i,
+  // self-disclosure: "disclosed himself as the author"
+  /\b(?:disclos|reveal|identif|acknowledg|confess|suspect|own)\w*\s+(?:\w+\s+){0,3}as the author\b/i,
+];
+
+/**
+ * True when the meta-reference occurrence at `[index, index + length)` in `text`
+ * is the world noun of {@link WORLD_NOUN_AUTHOR_REGEXES} rather than a reference
+ * to this book's author.
+ *
+ * Judged PER OCCURRENCE, by span containment, not per sentence: a sentence that
+ * says "this chapter explains why the Assembly would not name the author" still
+ * reports its `this chapter` hit and reports nothing for `the author`. A
+ * sentence-level test would have exempted both.
+ */
+export function isWorldNounAuthorReference(text: string, index: number, length: number): boolean {
+  if (typeof text !== "string" || !Number.isInteger(index) || index < 0) return false;
+  const matched = text.slice(index, index + length);
+  if (!/^the authors?$/i.test(matched)) return false;
+  const end = index + length;
+  for (const pattern of WORLD_NOUN_AUTHOR_REGEXES) {
+    const global = pattern.global ? pattern : new RegExp(pattern.source, `${pattern.flags}g`);
+    global.lastIndex = 0;
+    for (const hit of text.matchAll(global)) {
+      const start = hit.index ?? 0;
+      if (start <= index && start + hit[0].length >= end) return true;
+    }
+  }
+  return false;
+}
+
+/**
  * Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
  * rather than a standalone fact about the world.
  *
@@ -480,6 +557,8 @@ function collectOffenses(
     for (const segment of segments) {
       global.lastIndex = 0;
       for (const match of segment.text.matchAll(global)) {
+        // R-286: the world-noun sense of "the author" is not a meta-reference.
+        if (rule === "meta-reference" && isWorldNounAuthorReference(segment.text, match.index ?? 0, match[0].length)) continue;
         const sentence = sentenceAround(segment.text, match.index ?? 0, match[0].length);
         const key = `${segment.path}\u0000${sentence.toLowerCase()}\u0000${match[0].toLowerCase()}`;
         if (seen.has(key)) continue;
@@ -537,7 +616,15 @@ function metaReferenceProblem(offense: LexicalOffense, author: string): string {
   const remedy = named.length > 0
     ? `Name the person or thing instead — for this book, write "${named}" rather than "the author".`
     : "Name the person or thing instead of referring to the text.";
-  return `meta-reference "${offense.match}" found in \`${offense.path}\`: ${JSON.stringify(offense.sentence)} — A sidecar states standalone facts about the world, never facts about a text: drop "this chapter", "the chapter", "this book", "the book", "the author", and chapter/section numbers. ${remedy} Rewrite THAT sentence so it would read correctly to someone who has never seen the book; if it states nothing about the world, delete the sentence.`;
+  // R-286: when the hit IS "the author", the message must also state the one
+  // sense that survives — otherwise a chapter whose subject is an ANONYMOUS
+  // writer is told to repair the sentence by naming a person the sentence says
+  // was never named, which is unsatisfiable. The live Franklin ch02 spent all
+  // three attempts there.
+  const carveOut = /^the authors?$/i.test(offense.match)
+    ? ` EXCEPTION: "the author" stays admissible when it is the ordinary noun for a writer nobody could name — as the object of naming, knowing or anonymity ('would not name the author', 'without knowing the author', 'the author's name', 'the anonymous author', 'the author of the letter'). If that is your meaning, phrase it in one of those forms; that reading is not what is being rejected here.`
+    : "";
+  return `meta-reference "${offense.match}" found in \`${offense.path}\`: ${JSON.stringify(offense.sentence)} — A sidecar states standalone facts about the world, never facts about a text: drop "this chapter", "the chapter", "this book", "the book", "the author", and chapter/section numbers. ${remedy}${carveOut} Rewrite THAT sentence so it would read correctly to someone who has never seen the book; if it states nothing about the world, delete the sentence.`;
 }
 
 /** The retry card for an author-surname-verb hit, located the same way. */
