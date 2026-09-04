@@ -27,8 +27,13 @@
  *
  *  - SEC120 can now BLOCK a unit that names a short figure the prose never states
  *    ("thirteen" in a stem against prose that never says it). That is the correct
- *    direction — it is the same judgement SEC14/SEC136 make about the same string —
- *    and it can never fire on an anchor those two just credited.
+ *    direction — it is the same judgement SEC14/SEC136 make about the same string.
+ *    What they share is the PREDICATE, not the HAYSTACK: SEC14/SEC136 measure
+ *    `chapterProseText` (fullRead included), SEC120 measures `standaloneProseText`
+ *    (fullRead excluded). One predicate, but SEC120's haystack excludes fullRead, so
+ *    a case taught only in fullRead still satisfies SEC14/SEC136 and still blocks
+ *    under SEC120 — unchanged from origin/main. The last test in this file pins that
+ *    pincer as documented behaviour.
  *  - The ALLOWED list surfaces the credited short figure, so the writer has a legal
  *    move for the anchor SEC56/SEC58 compel it to cite.
  *
@@ -42,12 +47,14 @@ import assert from "node:assert/strict";
 
 import { test } from "./harness.js";
 import {
+  chapterProseText,
   normalizeDerivabilityText,
   packetProseDerivability,
   renderProseSpecificList,
   specificDerivable,
+  standaloneProseText,
 } from "../src/sections/chapterProse.js";
-import { learningProseDerivabilityFindings } from "../src/sections/sectionGate.js";
+import { learningProseDerivabilityFindings, validateSummaryPack } from "../src/sections/sectionGate.js";
 import type { ChapterBlueprintV1, LearningPackV1, SourcePacketV1, SummaryPackV1 } from "../src/artifacts/artifactTypes.js";
 import type { SourceAnchorForPrompt } from "../src/types.js";
 
@@ -235,4 +242,67 @@ test("a number word from ten up is still a real specific", () => {
     assert.equal(specificDerivable(word, prose), true, `"${word}" must stay deliverable`);
     assert.equal(specificDerivable(digits, prose), true, `and so must "${digits}"`);
   }
+});
+
+// ── ROUND 3: one predicate is not one haystack — the fullRead pincer ─────────
+
+/** The reviewer's Round-3 measurement, pinned as DOCUMENTED behaviour.
+ *
+ *  SEC14/SEC136 and SEC120 run the same derivability predicate, but they run it over
+ *  DIFFERENT prose: SEC14/SEC136 over `chapterProseText` (hook + all three tiers +
+ *  keyTakeaway) and SEC120 over `standaloneProseText` (the same MINUS fullRead,
+ *  because a Deep-read reader must be able to answer). So a case whose specifics are
+ *  split across the Deep read and the Full read can be fully credited upstream and
+ *  still block a unit downstream. That is not a defect introduced by the shared
+ *  predicate — it is the Task 11ak progressive-depth rule, identical on origin/main
+ *  for every >=3-char specific, and SEC136's own message spells it out. */
+const PINCER_ANCHOR: SourceAnchorForPrompt = {
+  ...ANCHOR,
+  hardSpecifics: ["about 1682", "seventeen"],
+};
+
+function pincerSummary(): SummaryPackV1 {
+  return {
+    ...summary("Josiah carried his wife and three children into New England about 1682, and the house he kept feeding was the first fact of his son's life."),
+    breakdown: {
+      // "about 1682" is on the standalone page; "seventeen" appears ONLY in fullRead.
+      fastRead: "Josiah carried his wife and three children into New England about 1682.",
+      deepRead: "He made candles and soap in Boston, and the household he kept feeding decided how much schooling there was to go round.",
+      fullRead: "He fathered seventeen children across two marriages, and that household ended his son's schooling at ten.",
+      sourceAnchorIds: { fastRead: [ANCHOR_ID], deepRead: [ANCHOR_ID], fullRead: [ANCHOR_ID] },
+    },
+  } as unknown as SummaryPackV1;
+}
+
+test("a case taught only in fullRead satisfies SEC14/SEC136 and still blocks under SEC120", () => {
+  const prose = pincerSummary();
+  const upstream = validateSummaryPack(prose, blueprint(), packet([PINCER_ANCHOR]))
+    .filter((f) => f.checkId.startsWith("SEC14.") || f.checkId.startsWith("SEC136."));
+
+  // Upstream haystack INCLUDES fullRead → both specifics credited, nothing to report.
+  assert.equal(
+    normalizeDerivabilityText(chapterProseText(prose)).includes(normalizeDerivabilityText("seventeen")),
+    true,
+    "chapterProseText carries the fullRead-only specific",
+  );
+  assert.deepEqual(upstream.map((f) => f.checkId), [], "SEC14/SEC136 credit 2/2 — fullRead counts for them");
+
+  // SEC120's haystack EXCLUDES fullRead → the same string is not on the standalone
+  // page, so a quiz that turns on it is blocked. One predicate, two haystacks.
+  assert.equal(
+    normalizeDerivabilityText(standaloneProseText(prose)).includes(normalizeDerivabilityText("seventeen")),
+    false,
+    "standaloneProseText does not",
+  );
+  const blocked = learningProseDerivabilityFindings(packUsing("seventeen"), blueprint(), packet([PINCER_ANCHOR]), prose)
+    .map((f) => f.message);
+  assert.equal(blocked.length, 1, "SEC120 blocks the fullRead-only specific");
+  assert.match(blocked[0], /"seventeen"/);
+
+  // And the specific the standalone page DOES show is accepted by all three.
+  assert.deepEqual(
+    learningProseDerivabilityFindings(packUsing("about 1682"), blueprint(), packet([PINCER_ANCHOR]), prose),
+    [],
+    "the fastRead specific is derivable for SEC120 too",
+  );
 });

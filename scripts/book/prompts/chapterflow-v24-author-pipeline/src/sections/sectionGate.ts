@@ -42,7 +42,6 @@ import {
   countSpecificsInProse,
   hasDraftedReadTiers,
   normalizeDerivabilityText,
-  qualifiedNameDerivable,
   specificDerivable,
   specificIsJudgeable,
   specificNamedInUnit,
@@ -3183,8 +3182,15 @@ export function learningProseDerivabilityFindings(
       //
       // DISCLOSED CONSEQUENCE: SEC120 can now BLOCK a unit that names a short figure
       // the prose never states. That is the correct direction and the same judgement
-      // SEC14/SEC136 make about the same string — and because both sides run one
-      // predicate, SEC120 can still never block a figure those two have just credited.
+      // SEC14/SEC136 make about the same string. What the three checks share is the
+      // PREDICATE, not the HAYSTACK: SEC14 and SEC136 measure `chapterProseText`
+      // (fullRead included) while SEC120 measures `standaloneProseText` (fullRead
+      // excluded). One predicate, but SEC120's haystack excludes fullRead, so a case
+      // taught only in fullRead still satisfies SEC14/SEC136 and still blocks under
+      // SEC120 — unchanged from origin/main, where the same pincer holds for every
+      // >=3-char specific, and stated already in SEC136's own message ("fullRead alone
+      // satisfies SEC128 but leaves a Deep-read reader unable to answer, SEC120").
+      // Measured and pinned in tests/short-figure-card-gate-alignment.test.ts.
       // A bare one-digit specific ("one") stays inert here exactly as before: the
       // shared predicate's SHORT_FIGURE_MIN_VALUE bound refuses to judge it at all.
       const anySpecificOnThePage = (anchor.hardSpecifics ?? [])
