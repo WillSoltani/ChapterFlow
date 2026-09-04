@@ -311,6 +311,26 @@ function offerableAsDerivable(normalized: string, normalizedProse: string): bool
   return !/\d/.test(normalized) || normalizedProse.includes(normalized);
 }
 
+/** Review round 3 (MINOR 1) — the THREE answers a card may give about one specific,
+ *  computed once so every writer-facing block gives the same one. The preflight used
+ *  to mark with `specificDerivable` (rule 1) while the ALLOWED list additionally
+ *  applied `offerableAsDerivable`, so a digit-bearing specific matched only by the
+ *  qualified-name or clipped-phrase folding was marked "[on the page]" in one block of
+ *  a card and omitted from the "safe to use" list in another — a contradiction the
+ *  writer had no way to resolve.
+ *
+ *  - `on-page`  — literally there, or folded with no figure to vouch for: offered.
+ *  - `folded`   — SEC120 rule 1 accepts it (the prose shows its words, in order), but
+ *                 it carries a figure this module cannot check against rule 2, whose
+ *                 band lives in the frozen gate. Not forbidden, not offered.
+ *  - `off-page` — rule 1 rejects it. */
+export type ProseSpecificMark = "on-page" | "folded" | "off-page";
+
+export function classifyProseSpecific(specific: string, normalizedProse: string): ProseSpecificMark {
+  if (!specificDerivable(specific, normalizedProse)) return "off-page";
+  return offerableAsDerivable(normalizeDerivabilityText(specific), normalizedProse) ? "on-page" : "folded";
+}
+
 // ---------------------------------------------------------------------------
 // TASK 11ao — THE COMPUTED DERIVABILITY SPLIT (writer-facing).
 //
@@ -470,7 +490,7 @@ export function packetProseDerivability(
       if (!onPage.includes(value)) { add(notDerivable, value, id || "source packet"); continue; }
       // On the page — but offered back as safe only when nothing inside it is a figure
       // this module cannot vouch for (SEC120's year rule is the gate's, not ours).
-      if (offerableAsDerivable(normalizeDerivabilityText(value), normalizedProse)) add(derivable, value, id || "source packet");
+      if (classifyProseSpecific(value, normalizedProse) === "on-page") add(derivable, value, id || "source packet");
     }
   }
 

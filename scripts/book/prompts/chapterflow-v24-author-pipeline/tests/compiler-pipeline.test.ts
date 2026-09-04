@@ -672,6 +672,79 @@ test("the quiz-specifics preflight marks each required specific against the draf
   assert.match(preflight, /rejected by SEC120 even though this block requires a verbatim specific/, "the contradiction is named and resolved for the writer");
 });
 
+// ── Review round 3 — TWO WAYS THE PREFLIGHT'S OWN SENTENCES MISLED ────────────
+// The preflight is the block that COMPELS strings, so a sentence in it that overstates
+// what is safe costs a live attempt. Round 2 fixed the stand-down note under the
+// computed lists but left this block's copy of the carve unqualified, and marked its
+// specifics with a different predicate than the ALLOWED list uses.
+
+test("the preflight's stand-down sentence carries SEC120's year caveat (review round 3, MAJOR)", () => {
+  const fx = compileFixture();
+  const prose = bondProse(fx);
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+  });
+  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  assert.ok(preflight.length > 0, "the fixture must actually render the preflight block");
+  // "there you may use one of them" is true of the SPECIFIC AS A STRING and false of a
+  // four-digit year inside it: SEC120's second rule has no stand-down. The note under
+  // the computed lists says so; this block compels the string, so it must say so too.
+  assert.match(
+    preflight,
+    /year rule has NO stand-down/,
+    "the preflight's stand-down carve must not imply a stood-down case's off-page year is safe",
+  );
+});
+
+test("the preflight marks a folding-only digit-bearing specific distinctly from one it offers (review round 3, MINOR 1)", () => {
+  const fx = compileFixture();
+  const citedId = (fx.blueprint.sections.quiz ?? [])
+    .flatMap((slot) => ((slot as { caseCueIds?: string[] }).caseCueIds ?? []))[0];
+  assert.ok(citedId, "fixture must deal at least one quiz slot a case cue");
+  const packet = {
+    ...fx.packet,
+    allowedAnchors: fx.packet.allowedAnchors.map((a) => (
+      a.id === citedId ? { ...a, hardSpecifics: ["1751 subscription drive", "Sherburne town"] } : a
+    )),
+  } as SourcePacketV1;
+  const prose = cloneSummary(fx.summary);
+  // The prose shows every word of "1751 subscription drive", in order, inside one
+  // sentence — so SEC120 rule 1 accepts it (clipped-phrase folding) — but never
+  // literally, so this module cannot vouch for the figure 1751 against rule 2.
+  prose.breakdown.deepRead = `${prose.breakdown.deepRead} In 1751 the managers opened a public subscription for the drive.`;
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+  });
+  const split = packetProseDerivability(packet, prose);
+  assert.equal(
+    split.derivable.some((s) => s.value === "1751 subscription drive"),
+    false,
+    "the ALLOWED list must not offer a digit-bearing specific it matched only by folding",
+  );
+  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  assert.ok(preflight.includes(citedId), "the modified anchor must be the one the preflight cites");
+  // The bug: the mark said "[on the page]" while the ALLOWED list omitted the string,
+  // so the two blocks of one card contradicted each other.
+  assert.match(
+    preflight,
+    /"1751 subscription drive" \[on the page by folding — not offered\]/,
+    "a folding-only digit-bearing specific is marked distinctly from an offered one",
+  );
+  assert.match(preflight, /by folding — not offered/, "and the mark is explained in the note");
+});
+
 test("SEC120 blocks a quiz stem whose cited specific never appears in the chapter's drafted prose (Task 11ai)", () => {
   const fx = compileFixture();
   const anchor = fx.packet.allowedAnchors.find((a) => a.supportsClaimTypes.includes("quiz_prompt") && (a.hardSpecifics ?? []).length > 0);

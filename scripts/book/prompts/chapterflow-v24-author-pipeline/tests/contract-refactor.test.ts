@@ -505,9 +505,16 @@ test("a pathological packet cannot blow the learning card: the derivability list
 // three bullet lists, but every one of its bulk anchors has a specific ON THE PAGE, so
 // none of them stands down and the stand-down note stayed one line long: the note was
 // unbounded (every id joined, no entry cap, no per-id clip, no overflow line) and no
-// test could see it. Measured before the fix, with 200 anchors whose specifics are all
-// off the page: 201 stand-down ids, a 15,046-char note, a 23,458-char with-prose delta
-// against an 11,088-char list ceiling.
+// test could see it.
+//
+// THE RED FIGURE, re-measured at THIS head (review round 3, MINOR 2: the numbers this
+// comment and the PR body carried from round 2 — 201 ids, a 15,046-char note, a
+// 23,458-char delta — were taken from an earlier, differently-budgeted render and do
+// not reproduce). Reproduce these by reverting renderProseStandDownIds to joining every
+// id with no cap, no clip and no overflow line, then running this test: with the 200
+// anchors below, whose specifics are all off the page, it reports 202 stand-down ids,
+// a 22,034-char stand-down note, and a 29,789-char with-prose delta against the
+// 21,464-char ceiling (7,800 prose clamp + 1,200 scaffold + 12,464 list budget).
 test("a pathological packet whose anchors all STAND DOWN cannot blow the learning card: the stand-down note is capped and long ids are clipped", () => {
   const bp = realisticFixture();
   const LONG_ID_TAIL = "x".repeat(80);

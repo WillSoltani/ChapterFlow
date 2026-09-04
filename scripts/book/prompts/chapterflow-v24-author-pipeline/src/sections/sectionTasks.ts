@@ -7,9 +7,10 @@ import {
   packetProseDerivability,
   renderProseSpecificList,
   renderProseStandDownIds,
-  specificDerivable,
+  classifyProseSpecific,
   type ChapterProseSource,
   type ProseDerivability,
+  type ProseSpecificMark,
 } from "./chapterProse.js";
 import { bookRuleGovernsChapter, type BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
@@ -839,12 +840,24 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
     // this block is a standing instruction to use strings SEC120 rejects: the live
     // canary's ch01 card listed «"Peter Folger" | "1675" | "Sherburne town"» for q2
     // and the gate then blocked two of the three, three attempts running.
+    //
+    // Review round 3 (MINOR 1): marked with the SAME classifier the ALLOWED list uses
+    // (classifyProseSpecific), not with rule 1 alone. Marking with rule 1 while the
+    // list additionally applied offerableAsDerivable made one card contradict itself —
+    // a digit-bearing specific matched only by the qualified-name/clipped-phrase
+    // folding was marked "[on the page]" here and silently absent from
+    // "SPECIFICS THE PROSE SUPPORTS" below. The third mark names that case instead.
+    const MARKS: Record<ProseSpecificMark, string> = {
+      "on-page": " [on the page]",
+      folded: " [on the page by folding — not offered]",
+      "off-page": " [NOT ON THE PAGE]",
+    };
     const mark = (specific: string): string => (derivability?.available
-      ? (specificDerivable(specific, derivability.normalizedProse) ? " [on the page]" : " [NOT ON THE PAGE]")
+      ? MARKS[classifyProseSpecific(specific, derivability.normalizedProse)]
       : "");
     const caseLines = [...citedCases.entries()].map(([id, specs]) => `- ${id}: ${specs.map((x) => `"${x}"${mark(x)}`).join(" | ")}`);
     const derivabilityNote = derivability?.available
-      ? `\nEach specific above is marked against THIS chapter's drafted prose (the CHAPTER PROSE block below). One marked [NOT ON THE PAGE] is rejected by SEC120 even though this block requires a verbatim specific — pick one marked [on the page]. When ALL of a case's specifics are marked [NOT ON THE PAGE] SEC120 stands down for that case, so there you may use one of them.`
+      ? `\nMarked against the CHAPTER PROSE below. [NOT ON THE PAGE] is rejected by SEC120 even though this block requires a verbatim specific; [on the page by folding — not offered] passes rule 1 but carries a figure this card cannot check; prefer [on the page]. With ALL of a case's specifics [NOT ON THE PAGE] SEC120 stands down — use one AS A STRING only: its year rule has NO stand-down, so an off-page four-digit year still blocks.`
       : "";
     return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics into the prompt AND at least 1 into the explanation; matching is case-insensitive and folds an in-order rendering, so naturalize each one):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}${derivabilityNote}`;
   })();
