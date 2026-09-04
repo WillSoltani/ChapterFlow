@@ -42,6 +42,7 @@ import { baseResult, bibliography, input } from "./researchSidecarFixture.js";
 import {
   MAX_CHAPTER_RESEARCH_ATTEMPTS,
   MAX_QUOTED_SENTENCE_CHARS,
+  MAX_REPORTED_META_HITS,
   MAX_CHAPTER_RESEARCH_MODEL_CALLS,
   MAX_META_REPAIRS_PER_ATTEMPT,
   applyMetaRepair,
@@ -490,7 +491,7 @@ test("R-283 round 2: a repair CANNOT add a key claim — a keyClaims list of the
   assert.equal(applyMetaRepair(draft, repaired, keyClaimOffenses(1)), null, "an appended claim refuses the whole repair");
 });
 
-test("R-283 round 2: the keyClaims merge replaces index i in place, keeps the draft's entry for anything unusable, and never re-orders", () => {
+test("R-283 round 2: the keyClaims merge replaces a FLAGGED index in place and keeps the draft's own entry everywhere else", () => {
   const draft = baseResult();
   const repaired = baseResult();
   repaired.keyClaims = [
@@ -548,7 +549,7 @@ test("R-283 round 2: the repair prompt tells the truth about keyClaims — a cla
   );
 });
 
-// ── ROUND 3 (adversarial review) — the repair may not DROP or RE-ORDER either ─
+// ── ROUND 3 (adversarial review) — the repair may not DROP a claim either ────
 
 /**
  * BLOCKING finding, round 2. The positional merge was add-proof but NOT
@@ -592,21 +593,25 @@ test("R-283 round 3: a same-length response that DUPLICATES a claim is refused",
 test("R-283 round 3: a repair that overwrites a claim it was NOT asked to rewrite is refused", () => {
   const draft = baseResult();
   const repaired = baseResult();
-  // Right length, no duplicates — but index 2 was never flagged and its claim is
-  // gone. "Change NOTHING else" is the contract; losing an unflagged claim is a
-  // silent deletion wearing a rewrite's clothes.
+  // Right length, no duplicates, both claims genuinely rewritten — but only index
+  // 1 was flagged. "Change NOTHING else" is the contract; losing an unflagged
+  // claim is a silent deletion wearing a rewrite's clothes.
+  repaired.keyClaims[1] = "A visible ledger of the weekly owner makes a skipped week legible.";
   repaired.keyClaims[2] = "A quarterly audit reconciled the ledger against the club's own minutes.";
 
   assert.equal(applyMetaRepair(draft, repaired, keyClaimOffenses(1)), null, "an unflagged claim may not be replaced");
-  // The same rule refuses a pure RE-ORDERING: every unflagged index must still
-  // carry the draft's own claim, not merely a claim from somewhere in the list.
+  // A response that merely MOVES the draft's own claims is refused wherever the
+  // move lands: an unflagged index must carry its own draft claim, and a flagged
+  // index must carry text that is not a draft claim at all (round 4).
   const shuffled = baseResult();
   shuffled.keyClaims = [draft.keyClaims[0], draft.keyClaims[1], draft.keyClaims[3], draft.keyClaims[2]];
-  assert.equal(applyMetaRepair(draft, shuffled, keyClaimOffenses(1)), null, "a re-ordered list is refused");
-  // …and the SAME response is accepted once that claim is one the repair was
+  assert.equal(applyMetaRepair(draft, shuffled, keyClaimOffenses(1)), null, "a moved unflagged claim is refused");
+  assert.equal(applyMetaRepair(draft, shuffled, keyClaimOffenses(2, 3)), null, "and so is the same move between two flagged indices");
+  // …and the SAME response is accepted once both claims are ones the repair was
   // actually asked to fix, which is what keeps the guard from being a blanket ban.
   const allowed = applyMetaRepair(draft, repaired, keyClaimOffenses(1, 2));
   assert.ok(allowed);
+  assert.equal(allowed!.keyClaims[1], repaired.keyClaims[1]);
   assert.equal(allowed!.keyClaims[2], repaired.keyClaims[2]);
   assert.equal(allowed!.keyClaims.length, draft.keyClaims.length);
 });
@@ -692,4 +697,162 @@ test("R-283 round 2: eligibility compares COUNTS — every problem line is an of
     const matching = report.problems.filter((problem) => problem.includes(`\`${offense.path}\``) && problem.includes(offense.match));
     assert.equal(matching.length, 1, `offense ${offense.rule} ${offense.match} in ${offense.path} must own exactly one problem line`);
   }
+});
+
+// ── ROUND 4 (adversarial review) — what mergeKeyClaims actually guarantees ────
+
+/**
+ * BLOCKING finding, round 3. The round-3 merge refused a length change, a
+ * duplicate, and any change at an UNFLAGGED index — and six artifacts read that
+ * as "a claim can never move". It cannot: with TWO flagged claims, a response
+ * that exchanges them satisfies every one of those rules. The length matches, no
+ * claim is duplicated, both unflagged indices still carry their own draft claim,
+ * and the merge accepted a permutation. Order is load-bearing downstream —
+ * `sourcePacketProjection.ts` caps the author card at the FIRST 6 of up to 8 key
+ * claims — so which grounded claims reach the writers is decided by exactly the
+ * thing the merge did not check.
+ *
+ * What is enforceable at the merge is this: a genuine rewrite never reproduces a
+ * claim the draft already states, so a flagged index whose text normalizes to ANY
+ * draft claim (its own included — that one was not rewritten at all) is refused.
+ * Two independently rewritten claims can still be returned in either order and no
+ * rule can tell; the guarantee is therefore stated as what it is, and no artifact
+ * claims re-ordering is refused.
+ */
+test("R-283 round 4: a flagged index that reproduces a draft claim is refused — the merge never accepts a permutation of the draft's own claims", () => {
+  const draft = baseResult();
+
+  // A pure exchange of the two flagged claims: every round-3 rule satisfied.
+  const swapped = baseResult();
+  swapped.keyClaims = [draft.keyClaims[0], draft.keyClaims[2], draft.keyClaims[1], draft.keyClaims[3]];
+  assert.equal(applyMetaRepair(draft, swapped, keyClaimOffenses(1, 2)), null, "a swap between two flagged claims is not a repair");
+
+  // Half a swap: index 1 borrows index 2's claim, index 2 carries new text.
+  const halfSwap = baseResult();
+  halfSwap.keyClaims = [
+    draft.keyClaims[0],
+    draft.keyClaims[2],
+    "A skipped week leaves the ledger blank beside the named owner.",
+    draft.keyClaims[3],
+  ];
+  assert.equal(applyMetaRepair(draft, halfSwap, keyClaimOffenses(1, 2)), null, "a borrowed draft claim at a flagged index is not a repair");
+
+  // A flagged claim returned UNCHANGED is refused on the same rule: it still
+  // carries the sentence the repair was asked to rewrite, so it is not a rewrite.
+  const unchanged = baseResult();
+  unchanged.keyClaims[2] = "A skipped week leaves the ledger blank beside the named owner.";
+  assert.equal(applyMetaRepair(draft, unchanged, keyClaimOffenses(1, 2)), null, "a flagged claim returned unchanged is not a repair");
+
+  // …and two genuine rewrites, one per flagged index, still land in place.
+  const honest = baseResult();
+  honest.keyClaims[1] = "A visible ledger of the weekly owner makes a skipped week legible.";
+  honest.keyClaims[2] = "A seven-day term returns the duty on a date every member knows in advance.";
+  const merged = applyMetaRepair(draft, honest, keyClaimOffenses(1, 2));
+  assert.ok(merged, "two honest in-place rewrites are still a repair");
+  assert.deepEqual(merged!.keyClaims, [draft.keyClaims[0], honest.keyClaims[1], honest.keyClaims[2], draft.keyClaims[3]]);
+});
+
+/**
+ * MINOR 1, round 3. An unflagged index was compared on NORMALIZED identity and
+ * then kept the RESPONSE's bytes, so a repair could re-case or re-space a claim
+ * it was never asked to touch and the merge would call it unchanged. The claim
+ * ships verbatim to the writers; "unchanged" has to mean byte-for-byte.
+ */
+test("R-283 round 4: an UNFLAGGED claim comes back byte-identical to the draft, never re-cased by the repair", () => {
+  const draft = baseResult();
+  const recased = baseResult();
+  recased.keyClaims[0] = `  ${draft.keyClaims[0].toUpperCase()}  `; // the same claim, different bytes
+  recased.keyClaims[1] = "A visible ledger of the weekly owner makes a skipped week legible.";
+
+  const merged = applyMetaRepair(draft, recased, keyClaimOffenses(1));
+  assert.ok(merged, "a re-cased unflagged claim is not itself a refusal");
+  assert.equal(merged!.keyClaims[0], draft.keyClaims[0], "an unflagged index keeps the DRAFT's bytes, not the response's");
+  assert.equal(merged!.keyClaims[1], recased.keyClaims[1], "the flagged index is the one the response may rewrite");
+});
+
+/**
+ * MINOR 2, round 3 (efficacy). Offenses were deduped by matched PHRASE, so when
+ * the same phrase sat in two key claims only the FIRST was flagged. The honest
+ * repair — both claims cleaned — was then refused by the unflagged-index rule,
+ * and the obedient repair (only the flagged one cleaned) failed re-validation on
+ * the claim nobody was told about. For a repeated-phrase draft, exactly the live
+ * Franklin ch01/ch02 shape, the bounded repair could NEVER land and cost an extra
+ * model call before the re-draft. Offenses are now reported per OCCURRENCE.
+ */
+test("R-283 round 4: the same phrase in two key claims is reported twice — once per claim", () => {
+  const bad = baseResult();
+  bad.keyClaims[1] = "The book returns to the ledger whenever a week is skipped.";
+  bad.keyClaims[2] = "The book names the successor before the term ends.";
+
+  const report = collectChapterResearchReport(bad, franklinInput());
+  assert.deepEqual(
+    report.offenses.map((offense) => offense.path).sort(),
+    ["keyClaims[1]", "keyClaims[2]"],
+    "every offending claim is flagged, not only the first one carrying the phrase",
+  );
+  assert.equal(report.problems.length, report.offenses.length, "still exactly one problem line per offense");
+  assert.equal(report.offensesCapped, false, "nothing was dropped by the reporting cap");
+});
+
+test("R-283 round 4: a draft repeating one phrase across two key claims is repaired in ONE call — the honest repair lands", async () => {
+  const bad = baseResult();
+  bad.keyClaims[1] = "The book returns to the ledger whenever a week is skipped.";
+  bad.keyClaims[2] = "The book names the successor before the term ends.";
+  const honest = baseResult();
+  honest.keyClaims[1] = "A skipped week leaves the ledger blank beside the named owner.";
+  honest.keyClaims[2] = "The named successor is recorded before the seven-day term ends.";
+
+  const prompts: string[] = [];
+  const result = await runResearcherChapter(franklinInput(), execution([bad, honest], prompts), { sleep: async () => {} });
+
+  assert.equal(prompts.length, 2, "one draft + one repair — a repeated phrase must not cost a re-draft");
+  assert.ok(isRepairPrompt(prompts[1]));
+  assert.ok(prompts[1].includes("`keyClaims[1]`") && prompts[1].includes("`keyClaims[2]`"), "both offending claims are listed for the repair");
+  assert.deepEqual(result.keyClaims, [baseResult().keyClaims[0], honest.keyClaims[1], honest.keyClaims[2], baseResult().keyClaims[3]]);
+  assert.equal(result.metaRepair?.offenses.length, 2, "both occurrences are recorded in the provenance");
+});
+
+/**
+ * The reporting cap is unchanged (MAX_REPORTED_META_HITS), but per-occurrence
+ * reporting makes it reachable, and a repair prompt that lists only SOME of the
+ * offending sentences can only ever produce a merge that still trips the guard.
+ * Eligibility therefore requires that the cap dropped nothing: a capped rejection
+ * re-drafts exactly as it did before, without spending a repair call on it.
+ */
+test("R-283 round 4: a rejection whose hits were capped spends no repair call", async () => {
+  const clean = baseResult();
+  const bad = baseResult();
+  bad.focus = "This chapter establishes that a rotating duty is inherited by name in a small mutual-improvement club.";
+  bad.coreClaim = "The chapter records the duty in a ledger the next member inherits.";
+  bad.keyClaims = clean.keyClaims.map((claim) => `The book records that ${claim[0].toLowerCase()}${claim.slice(1)}`);
+
+  const report = collectChapterResearchReport(bad, franklinInput());
+  assert.equal(report.offenses.length, MAX_REPORTED_META_HITS, "the cap holds the reported list at five");
+  assert.equal(report.offensesCapped, true, "and it records that a sixth hit was dropped");
+
+  const prompts: string[] = [];
+  const result = await runResearcherChapter(franklinInput(), execution([bad, baseResult()], prompts), { sleep: async () => {} });
+  assert.equal(prompts.length, 2, "draft + a fresh draft");
+  assert.ok(!isRepairPrompt(prompts[1]), "no repair call is spent on a rejection the one bounded call cannot fully fix");
+  assert.equal(result.metaRepair, undefined, "and nothing is stamped as a repair that happened");
+});
+
+test("R-283 round 4: the repair prompt states the four rules the merge actually applies, and promises nothing about order", () => {
+  const bad = baseResult();
+  bad.keyClaims[0] = "The book kept a ledger of the weekly query.";
+  const prompt = buildMetaRepairPrompt(franklinInput(), collectChapterResearchReport(bad, franklinInput()).offenses, bad);
+  const rulesBullet = prompt.split("\n").find((line) => line.includes("REFUSED WHOLE"));
+  assert.ok(rulesBullet, "the prompt states what the merge refuses");
+  assert.match(rulesBullet!, /exactly 4 claims/, "rule 1: the length");
+  assert.match(rulesBullet!, /were NOT asked to rewrite comes back as the same claim/, "rule 2: unflagged claims are unchanged");
+  assert.match(rulesBullet!, /WERE asked to rewrite comes back as NEW text/, "rule 3: a flagged claim is rewritten");
+  assert.match(rulesBullet!, /no claim appears twice/, "rule 4: no duplicates");
+  // The merge cannot check the ORDER of two claims it has never seen before, so
+  // the prompt asks for the order to be kept and says why — it does not claim a
+  // re-ordering would be caught. Six artifacts said that in round 3; none may now.
+  assert.ok(
+    !/re-order[^.]*\bREFUSED\b/i.test(prompt) && !/re-order[^.]*is refused/i.test(prompt),
+    "the prompt must not promise that a re-ordering is refused",
+  );
+  assert.match(prompt, /cannot tell a rewritten claim that moved from one that stayed/);
 });

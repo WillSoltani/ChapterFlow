@@ -186,11 +186,29 @@ test("R-025: one attempt reports every DISTINCT meta-reference, not only the fir
   }
 });
 
-test("R-025: a repeated meta-reference is reported once and the report is capped", () => {
+// R-283 round 4 (minor 2): this test used to pin the OPPOSITE — one problem line
+// for a phrase however many fields carried it. Deduping by phrase meant only the
+// FIRST offending field was ever named, and the bounded repair, which is told to
+// change nothing it was not shown, could not clean the others without being
+// refused by the merge. An offense is now one OCCURRENCE: field plus sentence.
+test("R-025/R-283: a repeated meta-reference is reported once per offending field, and twice in one sentence is still one", () => {
   const r = baseResult();
-  r.keyClaims = r.keyClaims.map(() => "The author repeats the same phrase in every claim.");
+  r.keyClaims = r.keyClaims.map((_, index) => `The author kept ledger ${index + 1} of the weekly query.`);
   const found = metaProblems(collectChapterResearchProblems(r, input("Benjamin Franklin")));
-  assert.equal(found.length, 1, `expected one deduped problem, got ${JSON.stringify(found)}`);
+  assert.equal(found.length, r.keyClaims.length, `expected one problem per offending claim, got ${JSON.stringify(found)}`);
+  for (const [index] of r.keyClaims.entries()) {
+    assert.ok(found.some((problem) => problem.includes(`\`keyClaims[${index}]\``)), `keyClaims[${index}] was not named`);
+  }
+
+  // The same phrase twice inside ONE sentence is ONE offense: a single rewrite of
+  // that sentence removes both, so a second line would be noise in the repair prompt.
+  const twice = baseResult();
+  twice.coreClaim = "The author read the ledger and the author signed it before the handover each week.";
+  assert.equal(
+    metaProblems(collectChapterResearchProblems(twice, input("Benjamin Franklin"))).length,
+    1,
+    "one sentence, one offense",
+  );
 });
 
 test("R-025: every distinct author-verb construction is reported, not only the first", () => {
