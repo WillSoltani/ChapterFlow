@@ -262,11 +262,295 @@ export function countSpecificsInProse(specifics: readonly unknown[], normalizedP
     // investigation. Without it a sidecar whose specifics are all citations makes
     // SEC14/SEC128/SC11.7 unsatisfiable by construction.
     if (isPageCitationOnly(value)) { present += 1; continue; }
-    const normalized = normalizeDerivabilityText(value);
-    if (normalized.length < 3) continue;
-    if (normalizedProse.includes(normalized)
-      || qualifiedNameDerivable(normalized, normalizedProse)
-      || clippedPhraseDerivable(normalized, normalizedProse)) present += 1;
+    // ONE predicate (specificDerivable), so this count and SEC120's own reject can
+    // never answer "is it on the page?" differently.
+    if (specificDerivable(value, normalizedProse)) present += 1;
   }
   return present;
+}
+
+/** The ONE predicate every SEC120 comparison and every writer-facing list runs a
+ *  packet specific through: is this string on the chapter's page? `normalizedProse`
+ *  must already be normalizeDerivabilityText'd. A specific shorter than the 3-char
+ *  floor is never "on the page" — the gate skips it, so nothing may claim it is.
+ *  Extracted so the GATE (sectionGate.learningProseDerivabilityFindings) and the
+ *  WRITER CARD (sectionTasks) can never answer this question differently. */
+export function specificDerivable(specific: string, normalizedProse: string): boolean {
+  const normalized = normalizeDerivabilityText(specific);
+  if (normalized.length < 3) return false;
+  return normalizedProse.includes(normalized)
+    || qualifiedNameDerivable(normalized, normalizedProse)
+    || clippedPhraseDerivable(normalized, normalizedProse);
+}
+
+/* THE YEAR BAND IS DELIBERATELY NOT DUPLICATED HERE (review round 2).
+ * SEC120's second rule — every 4-digit figure in 1500-2099 in a unit's own text must
+ * appear on the page — is implemented exactly once, in sectionGate.ts (PROSE_YEAR_RE),
+ * and that gate file is frozen. Copying the band into this module so the card could
+ * ENUMERATE the packet's off-page years would create the second definition this file
+ * exists to prevent, so the card STATES rule 2 rather than listing it, and both
+ * computed lists below are rule 1 (anchor hardSpecifics) only. A specific that happens
+ * to carry a year is still classified — as a STRING, by the same predicate the gate
+ * applies to it — so "the 1555 register" is listed exactly as any other off-page
+ * specific is.
+ *
+ * The ALLOWED list stays honest about rule 2 without knowing the band: see
+ * `offerableAsDerivable` below.
+ */
+
+/** Whether an on-the-page specific may be OFFERED back to the writer as safe to use
+ *  verbatim. Stricter than `specificDerivable` for DIGIT-BEARING strings only: those
+ *  are offered only when the normalized specific appears LITERALLY in the normalized
+ *  prose, so every figure inside it is itself on the page and nothing this module
+ *  suggests can trip SEC120's year rule (which this module cannot evaluate — see the
+ *  note above). A digit-bearing specific matched only by the qualified-name or
+ *  clipped-phrase folding therefore appears in NEITHER list: the gate accepts it under
+ *  rule 1, so it is not forbidden, but a list the writer reads as "safe, use verbatim"
+ *  must not carry a figure this module cannot check. Operates on normalized text. */
+function offerableAsDerivable(normalized: string, normalizedProse: string): boolean {
+  return !/\d/.test(normalized) || normalizedProse.includes(normalized);
+}
+
+/** Review round 3 (MINOR 1) — the THREE answers a card may give about one specific,
+ *  computed once so every writer-facing block gives the same one. The preflight used
+ *  to mark with `specificDerivable` (rule 1) while the ALLOWED list additionally
+ *  applied `offerableAsDerivable`, so a digit-bearing specific matched only by the
+ *  qualified-name or clipped-phrase folding was marked "[on the page]" in one block of
+ *  a card and omitted from the "safe to use" list in another — a contradiction the
+ *  writer had no way to resolve.
+ *
+ *  - `on-page`  — literally there, or folded with no figure to vouch for: offered.
+ *  - `folded`   — SEC120 rule 1 accepts it (the prose shows its words, in order), but
+ *                 it carries a figure this module cannot check against rule 2, whose
+ *                 band lives in the frozen gate. Not forbidden, not offered.
+ *  - `off-page` — rule 1 rejects it. */
+export type ProseSpecificMark = "on-page" | "folded" | "off-page";
+
+export function classifyProseSpecific(specific: string, normalizedProse: string): ProseSpecificMark {
+  if (!specificDerivable(specific, normalizedProse)) return "off-page";
+  return offerableAsDerivable(normalizeDerivabilityText(specific), normalizedProse) ? "on-page" : "folded";
+}
+
+// ---------------------------------------------------------------------------
+// TASK 11ao — THE COMPUTED DERIVABILITY SPLIT (writer-facing).
+//
+// The live Franklin canary failed ch01's learning pack three attempts running on
+// the same three strings ("Peter Folger", "Sherburne town", "1555"). The card
+// already showed the drafted prose and already stated the derivable-from-the-prose
+// rule; what it never did was SAY WHICH of the packet's own specifics the prose
+// fails to support. Worse, a separate block (sectionTasks' quiz-specifics preflight)
+// listed "Peter Folger" | "1675" | "Sherburne town" to the writer as the strings q2
+// must carry VERBATIM — so the card compelled two of the three strings SEC120 then
+// rejected, and the retry card repeated the compulsion beside the rejection.
+//
+// This computes the split deterministically, at task-build time, from the SAME
+// predicate the gate uses, so the "do not use" list and the blocker can never
+// disagree. It mirrors SEC120's ANCHOR-SPECIFICS rule (rule 1) exactly, INCLUDING the
+// Task 11an stand-down carve: when NONE of an anchor's specifics reached the page the
+// gate stands down (SEC58 compels one and the pair would otherwise be unsatisfiable),
+// so those specifics are listed as forbidden by nothing here either. SEC120's year
+// rule (rule 2) is NOT re-implemented here — the band lives in the gate and only there
+// (see the note above the split); the card states that rule instead of enumerating it,
+// and says the one thing a writer cannot infer from a list: a year figure never stands
+// down.
+// ---------------------------------------------------------------------------
+
+/** One classified string plus the packet member it came from (the writer needs to
+ *  know WHICH case it may not name, not just that some string is off-limits). */
+export type ProseSpecific = Readonly<{ value: string; source: string }>;
+
+export type ProseDerivability = Readonly<{
+  /** False when the gate itself would no-op (no prose, or no drafted read tiers).
+   *  Every renderer treats it as "say nothing", so the card stays byte-identical. */
+  available: boolean;
+  /** The normalized haystack, so a caller can re-use `specificDerivable` without
+   *  rebuilding it (and can never build a DIFFERENT one). */
+  normalizedProse: string;
+  /** GATE-BACKED. Anchor hardSpecifics the prose DOES support AND that this module can
+   *  offer safely (`offerableAsDerivable`) — a unit citing the anchor may use them
+   *  verbatim. */
+  derivable: readonly ProseSpecific[];
+  /** GATE-BACKED. Anchor hardSpecifics the prose does NOT support: SEC120 rejects any
+   *  unit that cites that anchor under a matching claim class and uses the string. */
+  notDerivable: readonly ProseSpecific[];
+  /** ADVISORY, never gate-backed. Names a cited case carries that the chapter's prose
+   *  never prints. SEC120 does not sweep proper nouns (deliberately — see its header),
+   *  so these are listed under their own, weaker claim: a reader cannot derive a name
+   *  the page never shows, even though no validator will say so. */
+  unprintedNames: readonly ProseSpecific[];
+  /** Anchor/case ids where the prose shows NONE of the specifics: SEC120 stands
+   *  down (Task 11an), so those strings are neither allowed nor forbidden here. */
+  standDownIds: ReadonlySet<string>;
+}>;
+
+/** How many entries EACH rendered list may carry, and the longest single entry.
+ *  The card's length is pinned in absolute characters (tests/contract-refactor.test.ts),
+ *  so an unbounded list would make that pin a hope. Over-long "specifics" are
+ *  telegraphic research notes; they are DROPPED rather than truncated, because a
+ *  truncated string is one a writer might paste. */
+export const DERIVABILITY_LIST_MAX_ENTRIES = 24;
+export const DERIVABILITY_ENTRY_MAX_CHARS = 90;
+/** Per-entry scaffold: the bullet, the quotes, the " (source)" tail and the newline.
+ *  The source label is an anchor/case id, which comes from a model-authored sidecar and
+ *  is therefore unbounded at the type level — it is clipped to DERIVABILITY_SOURCE_MAX_CHARS
+ *  so this scaffold is a real bound and not an assumption about researcher output. */
+const DERIVABILITY_SOURCE_MAX_CHARS = 48;
+const DERIVABILITY_ENTRY_SCAFFOLD = DERIVABILITY_SOURCE_MAX_CHARS + 16;
+/** The stand-down NOTE is a fourth list — one clipped id per stood-down anchor — and it
+ *  is bounded exactly like the other three (review round 2: it was unbounded, and a
+ *  packet whose bulk anchors all stand down rendered a 15,046-char note the pinned
+ *  ceiling never covered). Per entry: the two backticks, the ", " separator and slack. */
+const DERIVABILITY_STANDDOWN_ENTRY_SCAFFOLD = 8;
+/** The longest the rendered stand-down id list can be: every id clipped and counted,
+ *  plus the ", …and N more" tail. */
+export const DERIVABILITY_STANDDOWN_BUDGET: number =
+  DERIVABILITY_LIST_MAX_ENTRIES * (DERIVABILITY_SOURCE_MAX_CHARS + DERIVABILITY_STANDDOWN_ENTRY_SCAFFOLD) + 32;
+/** The most the four computed blocks can ever add to the learning card — the constant
+ *  the prompt-length pins are measured against, exactly like CHAPTER_PROSE_CARD_BUDGET. */
+export const DERIVABILITY_LIST_BUDGET: number =
+  3 * DERIVABILITY_LIST_MAX_ENTRIES * (DERIVABILITY_ENTRY_MAX_CHARS + DERIVABILITY_ENTRY_SCAFFOLD)
+  + DERIVABILITY_STANDDOWN_BUDGET;
+
+/** The packet shape this reads. Structural, so a test fixture need not build a whole
+ *  SourcePacketV1 to exercise the split. */
+export type DerivabilityPacket = Readonly<{
+  allowedAnchors?: readonly Readonly<{ id?: unknown; hardSpecifics?: readonly unknown[] }>[];
+  namedCases?: readonly Readonly<{ id?: unknown; label?: unknown; summary?: unknown; hardSpecifics?: readonly unknown[] }>[];
+  allowedEntities?: readonly unknown[];
+}>;
+
+const EMPTY_DERIVABILITY: ProseDerivability = Object.freeze({
+  available: false,
+  normalizedProse: "",
+  derivable: Object.freeze([]),
+  notDerivable: Object.freeze([]),
+  unprintedNames: Object.freeze([]),
+  standDownIds: new Set<string>(),
+});
+
+/** Whole-token containment over already-normalized text: "there" must not match
+ *  inside "gathered". Both sides are space-normalized, so padding is enough. */
+function containsToken(haystack: string, needle: string): boolean {
+  return ` ${haystack} `.includes(` ${needle} `);
+}
+
+function specificStrings(values: readonly unknown[] | undefined): string[] {
+  return (values ?? []).map((value) => (typeof value === "string" ? value.trim() : "")).filter((value) => value.length > 0);
+}
+
+/**
+ * Split the packet's own specifics into what THIS chapter's standalone prose can and
+ * cannot support. Rules, one-for-one with SEC120:
+ *
+ *  1. ANCHOR SPECIFICS — every `allowedAnchors[].hardSpecifics[]`, measured with
+ *     `specificDerivable`. An anchor with NO specific on the page is recorded in
+ *     `standDownIds` and contributes to neither list (SEC120 stands down for it). An
+ *     on-page specific is offered back only when `offerableAsDerivable` can vouch for
+ *     every figure in it; SEC120's year rule is not evaluated here (the band lives in
+ *     the gate), so the ALLOWED list under-offers rather than promising what it cannot
+ *     check.
+ *  2. NAMED-CASE ENTITIES (`unprintedNames`, ADVISORY) — the packet's own
+ *     `allowedEntities` a cited case actually uses, kept ONLY when the prose never
+ *     prints them. SEC120 does not sweep proper nouns, so these are rendered under a
+ *     weaker claim and never as a gate prediction; mixing them into `notDerivable`
+ *     would put a false "the validator rejects this" over a string it never checks.
+ *     Cases in `standDownIds` are skipped, so the advice never contradicts SEC58.
+ *
+ * Returns `available: false` — every list empty — wherever SEC120 itself no-ops, so a
+ * card built without drafted prose renders exactly what it rendered before.
+ */
+export function packetProseDerivability(
+  packet: DerivabilityPacket | null | undefined,
+  prose: ChapterProseSource | SummaryPackV1 | null | undefined,
+): ProseDerivability {
+  if (!packet) return EMPTY_DERIVABILITY;
+  const normalizedProse = normalizeDerivabilityText(standaloneProseText(prose));
+  if (normalizedProse.length === 0 || !hasDraftedReadTiers(prose)) return EMPTY_DERIVABILITY;
+
+  const derivable: ProseSpecific[] = [];
+  const notDerivable: ProseSpecific[] = [];
+  const unprintedNames: ProseSpecific[] = [];
+  const standDownIds = new Set<string>();
+  const seen = new Set<string>();
+  const add = (list: ProseSpecific[], value: string, source: string): void => {
+    const key = normalizeDerivabilityText(value);
+    if (key.length < 3 || seen.has(key)) return;
+    seen.add(key);
+    list.push(Object.freeze({ value, source }));
+  };
+
+  // 1. anchor hardSpecifics — SEC120 rule 1, stand-down carve and all.
+  for (const anchor of packet.allowedAnchors ?? []) {
+    const id = typeof anchor.id === "string" ? anchor.id : "";
+    const specifics = specificStrings(anchor.hardSpecifics);
+    if (specifics.length === 0) continue;
+    const onPage = specifics.filter((value) => specificDerivable(value, normalizedProse));
+    if (onPage.length === 0) { if (id) standDownIds.add(id); continue; }
+    for (const value of specifics) {
+      if (!onPage.includes(value)) { add(notDerivable, value, id || "source packet"); continue; }
+      // On the page — but offered back as safe only when nothing inside it is a figure
+      // this module cannot vouch for (SEC120's year rule is the gate's, not ours).
+      if (classifyProseSpecific(value, normalizedProse) === "on-page") add(derivable, value, id || "source packet");
+    }
+  }
+
+  // 2. ADVISORY — names a cited case carries that the page never prints. Whole-token
+  //    matching (never substring), and a case's own catalogue LABEL is excluded: it is
+  //    the researcher's index entry, not a name the chapter could print.
+  const caseLabels = new Set((packet.namedCases ?? [])
+    .map((namedCase) => normalizeDerivabilityText(typeof namedCase.label === "string" ? namedCase.label : ""))
+    .filter((label) => label.length > 0));
+  const entities = specificStrings(packet.allowedEntities);
+  for (const namedCase of packet.namedCases ?? []) {
+    const id = typeof namedCase.id === "string" ? namedCase.id : "";
+    if (id && standDownIds.has(id)) continue;
+    const caseSpecifics = specificStrings(namedCase.hardSpecifics);
+    if (caseSpecifics.length > 0 && !caseSpecifics.some((value) => specificDerivable(value, normalizedProse))) {
+      if (id) standDownIds.add(id);
+      continue;
+    }
+    const caseText = normalizeDerivabilityText([namedCase.label, namedCase.summary].map((v) => (typeof v === "string" ? v : "")).join(" "));
+    for (const entity of entities) {
+      const normalized = normalizeDerivabilityText(entity);
+      if (normalized.length < 3 || caseLabels.has(normalized) || !containsToken(caseText, normalized)) continue;
+      // Only the ABSENT names are worth the card's space: a name the prose prints is
+      // already visible in the prose block above, and SEC120 never checks names anyway.
+      if (specificDerivable(entity, normalizedProse)) continue;
+      add(unprintedNames, entity, id || "named case");
+    }
+  }
+
+  return Object.freeze({
+    available: true,
+    normalizedProse,
+    derivable: Object.freeze(derivable),
+    notDerivable: Object.freeze(notDerivable),
+    unprintedNames: Object.freeze(unprintedNames),
+    standDownIds,
+  });
+}
+
+/** Render one classified list as bullets, bounded by the two constants above. Entries
+ *  past the cap are counted, never silently dropped: the rule applies to them too. */
+export function renderProseSpecificList(entries: readonly ProseSpecific[]): string {
+  const usable = entries.filter((entry) => entry.value.length <= DERIVABILITY_ENTRY_MAX_CHARS);
+  const shown = usable.slice(0, DERIVABILITY_LIST_MAX_ENTRIES);
+  const omitted = entries.length - shown.length;
+  const lines = shown.map((entry) => `  • "${entry.value}" (${entry.source.slice(0, DERIVABILITY_SOURCE_MAX_CHARS)})`);
+  if (omitted > 0) lines.push(`  • …and ${omitted} more; the same rule applies to every one of them.`);
+  return lines.join("\n");
+}
+
+/** Render the stand-down ids as an inline list, BOUNDED exactly like the three bullet
+ *  lists above (review round 2: this one was unbounded — every stood-down id joined,
+ *  no entry cap, no per-id clip, no overflow line — and a packet whose bulk anchors all
+ *  stand down rendered a 15,046-char note that no pinned ceiling covered). Nothing
+ *  bounds how many anchors a researcher's sidecar declares or how long an id runs, so
+ *  both are bounded here and counted in DERIVABILITY_LIST_BUDGET. */
+export function renderProseStandDownIds(ids: Iterable<string>): string {
+  const all = [...ids];
+  const shown = all.slice(0, DERIVABILITY_LIST_MAX_ENTRIES);
+  const rendered = shown.map((id) => `\`${id.slice(0, DERIVABILITY_SOURCE_MAX_CHARS)}\``).join(", ");
+  const omitted = all.length - shown.length;
+  return omitted > 0 ? `${rendered}, …and ${omitted} more` : rendered;
 }

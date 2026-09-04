@@ -1,6 +1,17 @@
 import { loadBannedPhrases } from "../critics/shared.js";
 import { voiceRegisterLine } from "../lib/voiceCard.js";
-import { CHAPTER_PROSE_CARD_CAPS, chapterProseFields, clampProsePassage, type ChapterProseSource } from "./chapterProse.js";
+import {
+  CHAPTER_PROSE_CARD_CAPS,
+  chapterProseFields,
+  clampProsePassage,
+  packetProseDerivability,
+  renderProseSpecificList,
+  renderProseStandDownIds,
+  classifyProseSpecific,
+  type ChapterProseSource,
+  type ProseDerivability,
+  type ProseSpecificMark,
+} from "./chapterProse.js";
 import { CHAPTER_CASE_MIN_SPECIFICS, dealtCaseAnchors, dealtFactYearFigures, type DealtCaseCoverage } from "./dealtCases.js";
 import { bookRuleGovernsChapter, type BookScars } from "../lib/bookScars.js";
 import type { SectionAvoidEntry } from "../books/sectionAvoidStore.js";
@@ -641,7 +652,7 @@ function chapterContextSection(context: SourcePacketV1["chapterContext"]): strin
   return `\n\nCHAPTER CONTEXT — READ-ONLY ORIENTATION, NOT CITABLE\nWhat this chapter argues, in the researcher's own paraphrase. It is NOT part of the allowed factual material: it is not a source of citable specifics, so take no claim, number, name or case detail from it — those come only from the SOURCE PACKET below. "hardEdge" states the tempting WRONG reading a careless summary reaches for; never assert it as true.\n\`\`\`json\n${JSON.stringify(body, null, 2)}\n\`\`\``;
 }
 
-function chapterProseSection(kind: SectionKind, source?: ChapterProseSource | null): string {
+function chapterProseSection(kind: SectionKind, source?: ChapterProseSource | null, derivability?: ProseDerivability | null): string {
   if (kind !== "learning-pack" || !source) return "";
   const fields = chapterProseFields(source);
   const passages: string[] = [];
@@ -672,10 +683,70 @@ function chapterProseSection(kind: SectionKind, source?: ChapterProseSource | nu
   const completeness = clamped
     ? "A passage marked […prose truncated] ran past the card budget and was cut there; write only from what is shown."
     : "This is EVERYTHING the reader has seen when they reach your quiz and cards.";
-  return `\n\nCHAPTER PROSE — the reader-visible text of THIS chapter, already drafted. ${completeness}\n${passages.join("\n\n")}\n\nDERIVABLE FROM THE PROSE — every quiz stem, every choice, every explanation, and every review card must be answerable from the tiers above marked testable (HOOK, COUNTERINTUITION, FAST READ, DEEP READ, KEY TAKEAWAY) ALONE. FULL READ is context only: a name, date or figure appearing nowhere else is off-limits — a reader who stops after Deep must still answer. Cite only names, dates, numbers, and terms that appear in that prose; a term the prose never uses cannot be introduced on a card back, and a date or figure the prose never states cannot be reasoned about in a stem. If a fact is in the SOURCE PACKET below but not in the prose, it is NOT available to you here — teach what the reader was actually shown, or the question cannot be derived from the page (SEC120); the validator enforces this.`;
+  return `\n\nCHAPTER PROSE — the reader-visible text of THIS chapter, already drafted. ${completeness}\n${passages.join("\n\n")}\n\nDERIVABLE FROM THE PROSE — every quiz stem, every choice, every explanation, and every review card must be answerable from the tiers above marked testable (HOOK, COUNTERINTUITION, FAST READ, DEEP READ, KEY TAKEAWAY) ALONE. FULL READ is context only: a name, date or figure appearing nowhere else is off-limits — a reader who stops after Deep must still answer. Cite only names, dates, numbers, and terms that appear in that prose; a term the prose never uses cannot be introduced on a card back, and a date or figure the prose never states cannot be reasoned about in a stem. If a fact is in the SOURCE PACKET below but not in the prose, it is NOT available to you here — teach what the reader was actually shown, or the question cannot be derived from the page (SEC120); the validator enforces this.${derivabilitySection(derivability)}`;
 }
 
-function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = []): string {
+/**
+ * Task 11ao — the COMPUTED lists. The rule above is a rule; this is the answer.
+ *
+ * The live Franklin canary burned three attempts on ch01 because the card showed the
+ * prose, stated the rule, and left the writer to diff a 16-anchor packet against 2,632
+ * characters of prose in its head — while a different block on the SAME card listed
+ * "Peter Folger" | "1675" | "Sherburne town" as the strings q2 had to carry verbatim.
+ * Two of those three were exactly what SEC120 then rejected. The diff is deterministic,
+ * so the card does it (packetProseDerivability, through the gate's own predicate).
+ *
+ * Renders "" whenever the split is unavailable — which is exactly when SEC120 no-ops —
+ * so a card without drafted prose stays byte-identical.
+ */
+function derivabilitySection(derivability?: ProseDerivability | null): string {
+  if (!derivability?.available) return "";
+  const blocks: string[] = [];
+  if (derivability.derivable.length > 0) {
+    blocks.push(`SPECIFICS THE PROSE SUPPORTS — computed from the prose above with the validator's own matcher (case, punctuation, digit separators and number words all folded), so this is not a judgement call. A specific whose figures the prose does not itself show is left off it — SEC120 also checks year figures, unconditionally. Build the quiz and the cards out of these:\n${renderProseSpecificList(derivability.derivable)}`);
+  }
+  if (derivability.notDerivable.length > 0) {
+    blocks.push(`NOT DERIVABLE FROM THE PROSE — DO NOT USE. The SOURCE PACKET below carries every string here, but no testable tier above shows it, so a reader of THIS chapter cannot answer a stem, a choice, an explanation or a card that names one — naming it in a distractor counts too. SEC120 rejects any unit that cites the listed anchor and uses the string; the reader cannot answer it either way, so teach the same material through the supported list instead:\n${renderProseSpecificList(derivability.notDerivable)}`);
+  }
+  if (derivability.unprintedNames.length > 0) {
+    blocks.push(`NAMES THE PROSE NEVER PRINTS — no validator checks these, and that is the point: a reader still cannot recognise a person, group or place this chapter never named. Refer to the case the way the prose does:\n${renderProseSpecificList(derivability.unprintedNames)}`);
+  }
+  if (derivability.standDownIds.size > 0) {
+    blocks.push(`SEC120 STANDS DOWN for these cases, because the prose shows NONE of their specifics: ${renderProseStandDownIds(derivability.standDownIds)}. A slot dealt one of them may still use its SPECIFICS verbatim — the anchor-specifics gate compels one and nothing else would satisfy it — but only those strings are exempt: SEC120's year rule has NO stand-down, so a four-digit year the prose never states still blocks, even inside a stood-down case's own specific. The chapter's prose does not back this material, so keep such a unit's claim to what the prose does support.`);
+  }
+  if (blocks.length === 0) return "";
+  return `\n\n${blocks.join("\n\n")}`;
+}
+
+// Task 11ao: a SEC120 rejection line. The compiler renders blockers as
+// `checkId@path:message`, so the id is the reliable half; the message tail is matched
+// too for any caller that passes bare messages.
+const PROSE_DERIVABILITY_BLOCKER_RE = /SEC120\.learning_prose_derivable|appears? nowhere in this chapter's drafted prose/;
+
+/**
+ * Task 11ao — the SEC120 retry appendix. The blocker names the OFFENDING strings and
+ * nothing else, so a writer that reads it as "delete these three words" produces a
+ * fourth draft with a different underivable string. The canary did exactly that three
+ * times. This restates the RULE the blocker enforces and hands back the ALLOWED
+ * strings, computed from the same split the card's prose block renders.
+ *
+ * Fires only when a SEC120 line is actually present and the split is available, so
+ * every other retry card stays byte-identical.
+ */
+function proseDerivabilityAppendix(blockerLines: readonly string[], derivability?: ProseDerivability | null): string {
+  if (!derivability?.available) return "";
+  if (!blockerLines.some((line) => PROSE_DERIVABILITY_BLOCKER_RE.test(line))) return "";
+  const parts: string[] = [`DERIVABILITY RULE (SEC120) — what the blocker above enforces, stated once: every quiz stem, every choice, every explanation and every review card must be answerable from THIS chapter's drafted prose ALONE (HOOK, COUNTERINTUITION, FAST READ, DEEP READ, KEY TAKEAWAY; FULL READ does not count). Deleting the offending string is only half the fix — replace it with one the prose actually shows, or the next draft blocks on a different string.`];
+  if (derivability.derivable.length > 0) {
+    parts.push(`ALLOWED SPECIFICS — every string here IS on the page and may be used verbatim:\n${renderProseSpecificList(derivability.derivable)}`);
+  }
+  if (derivability.notDerivable.length > 0) {
+    parts.push(`NOT DERIVABLE — DO NOT USE, in a key or in a distractor:\n${renderProseSpecificList(derivability.notDerivable)}`);
+  }
+  return `\n\n${parts.join("\n\n")}\n`;
+}
+
+function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly SourcePacketV1["allowedAnchors"][number][] = [], derivability?: ProseDerivability | null): string {
   if (!feedback || feedback.blockerLines.length === 0) return "";
   const blockers = feedback.blockerLines.map((line) => `- ${line}`).join("\n");
   // A transient model process failure (Task 11j): no content problem and no
@@ -690,7 +761,8 @@ function retryFeedbackSection(feedback?: SectionRetryFeedback, anchors: readonly
   }
   const enumeration = anchorSpecificsEnumeration(feedback.blockerLines, anchors);
   const inventory = anchorInventoryAppendix(feedback.blockerLines, anchors);
-  return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}${inventory}`;
+  const derivabilityHelp = proseDerivabilityAppendix(feedback.blockerLines, derivability);
+  return `\n\nPREVIOUS DRAFT REJECTED BY SECTION GATES — fix exactly these:\n${blockers}\n\nThese blockers come from the same deterministic gates that will re-validate your next draft. Resolve every listed blocker and change nothing else. Your rejected draft was:\n\`\`\`json\n${JSON.stringify(feedback.priorDraft, null, 2)}\n\`\`\`\n${enumeration}${inventory}${derivabilityHelp}`;
 }
 
 export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKind; blueprint: ChapterBlueprintV1; sourcePacket: SourcePacketV1; outputPath: string; context: SectionTaskRenderContext; deliveryMode?: SectionTaskDeliveryMode; retryFeedback?: SectionRetryFeedback; assemblyAvoid?: readonly SectionAvoidEntry[];
@@ -755,6 +827,12 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
       ? { namedCases: sourcePacket.namedCases.map((c) => (typeof c.sourceQuote === "string" ? { ...c, sourceQuote: boundSourceQuoteForCard(c.sourceQuote) } : c)) }
       : {}),
   };
+  // Task 11ao: ONE computed split per card, shared by the prose block, the quiz
+  // preflight and the SEC120 retry appendix, so the three can never disagree with each
+  // other or with the gate. Unavailable (and every block below renders "") wherever
+  // SEC120 itself no-ops.
+  const derivability = kind === "learning-pack" ? packetProseDerivability(sourcePacket, chapterProse) : null;
+
   // Task 11z: the quiz gates (SEC55-58) demand >=1 of a cited case's
   // hardSpecifics verbatim in each prompt/explanation, and each slot's case
   // citations are DEALT (caseCueIds) — the writer cannot choose to cite less.
@@ -773,8 +851,30 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
       slotLines.push(`q${i + 1}:${cues.join(",")}`);
     });
     if (!slotLines.length) return "";
-    const caseLines = [...citedCases.entries()].map(([id, specs]) => `- ${id}: ${specs.map((x) => `"${x}"`).join(" | ")}`);
-    return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics into the prompt AND at least 1 into the explanation; matching is case-insensitive and folds an in-order rendering, so naturalize each one):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}`;
+    // Task 11ao — MARK each required specific against the drafted prose. Unmarked,
+    // this block is a standing instruction to use strings SEC120 rejects: the live
+    // canary's ch01 card listed «"Peter Folger" | "1675" | "Sherburne town"» for q2
+    // and the gate then blocked two of the three, three attempts running.
+    //
+    // Review round 3 (MINOR 1): marked with the SAME classifier the ALLOWED list uses
+    // (classifyProseSpecific), not with rule 1 alone. Marking with rule 1 while the
+    // list additionally applied offerableAsDerivable made one card contradict itself —
+    // a digit-bearing specific matched only by the qualified-name/clipped-phrase
+    // folding was marked "[on the page]" here and silently absent from
+    // "SPECIFICS THE PROSE SUPPORTS" below. The third mark names that case instead.
+    const MARKS: Record<ProseSpecificMark, string> = {
+      "on-page": " [on the page]",
+      folded: " [on the page by folding — not offered]",
+      "off-page": " [NOT ON THE PAGE]",
+    };
+    const mark = (specific: string): string => (derivability?.available
+      ? MARKS[classifyProseSpecific(specific, derivability.normalizedProse)]
+      : "");
+    const caseLines = [...citedCases.entries()].map(([id, specs]) => `- ${id}: ${specs.map((x) => `"${x}"${mark(x)}`).join(" | ")}`);
+    const derivabilityNote = derivability?.available
+      ? `\nMarked against the CHAPTER PROSE below. [NOT ON THE PAGE] is rejected by SEC120 even though this block requires a verbatim specific; [on the page by folding — not offered] passes rule 1 but carries a figure this card cannot check; prefer [on the page]. With ALL of a case's specifics [NOT ON THE PAGE] SEC120 stands down — use one AS A STRING only: its year rule has NO stand-down, so an off-page four-digit year still blocks.`
+      : "";
+    return `\n\nREQUIRED VERBATIM SPECIFICS BY QUIZ SLOT (SEC56 checks the PROMPT and the EXPLANATION separately: each citing question weaves at least 1 of its case's specifics into the prompt AND at least 1 into the explanation; matching is case-insensitive and folds an in-order rendering, so naturalize each one):\n${caseLines.join("\n")}\nSlots: ${slotLines.join("  ")}${derivabilityNote}`;
   })();
   // The SUMMARY writer's mirror of the quiz preflight above, and the prompt half of
   // SEC136.
@@ -847,9 +947,9 @@ export function buildSectionTaskMarkdown(args: { bookId: string; kind: SectionKi
   })();
   if (deliveryMode === "DIRECT_JSON") {
     const shapeRules = directJsonShapeRules(kind);
-    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${summaryMustTeach}${dealtCaseRedraftSection}${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+    return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDELIVERY\n- Do not use tools, shell commands, filesystem access, or network access.\n- Do not read or write files.\n- Final response must be exactly one JSON object matching the schema hint.\n- Return no prose and no Markdown fence.\n- Your draft is validated externally by deterministic section gates; you cannot run them here. A rejection comes back to you as its precise blockers, which you resolve while changing nothing else.${shapeRules ? `\n${shapeRules}` : ""}\n\nDO NOT\n${sectionDoNotLines(outputPath).slice(1).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind, deliveryMode)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${summaryMustTeach}${dealtCaseRedraftSection}${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse, derivability)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors, derivability)}${assemblyAvoidSection(assemblyAvoid)}`;
   }
-  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${summaryMustTeach}${dealtCaseRedraftSection}${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors)}${assemblyAvoidSection(assemblyAvoid)}`;
+  return `ROLE\nYou are the ${ROLE_NAME[kind]} for ChapterFlow v23. You have one bounded artifact to produce.\n\nINPUTS\n- bookId: ${bookId}\n- chapterId: ${blueprint.chapterId}\n- chapterNumber: ${blueprint.chapterNumber}\n- chapterTitle: ${blueprint.title}\n- outputPath: ${outputPath}\n\nTASK\n${sectionContract(kind)}${bookScarsSection(context.bookScars, blueprint.chapterNumber)}${voiceCardSection(kind, context.voiceCard)}\n\nDO NOT\n${sectionDoNotLines(outputPath).join("\n")}\n\nOUTPUT SCHEMA HINT\n\`\`\`json\n${sectionSchemaHint(kind)}\n\`\`\`\n\nSECTION BLUEPRINT — the slots and dealt variety for THIS section\n\`\`\`json\n${JSON.stringify(sectionInput, null, 2)}\n\`\`\`${summaryMustTeach}${dealtCaseRedraftSection}${quizSpecificsPreflight}${chapterProseSection(kind, chapterProse, derivability)}${chapterContextSection(sourcePacket.chapterContext)}\n\nSOURCE PACKET — ONLY allowed facts/cases/numbers/entities\n\`\`\`json\n${JSON.stringify(writerPacket, null, 2)}\n\`\`\`\n\nVALIDATION\nYour draft is validated externally by deterministic section gates — you cannot run the validator yourself here. If a gate rejects the draft, its precise blockers come back to you as exact fixes; resolve every listed blocker and change nothing else.\n${retryFeedbackSection(retryFeedback, sourcePacket.allowedAnchors, derivability)}${assemblyAvoidSection(assemblyAvoid)}`;
 }
 
 export function dealSectionTasks(_bookId: string, _roots: CompilerStoreRoots = {}): SectionTask[] {

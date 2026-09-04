@@ -17,7 +17,7 @@ import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
 import { assembleChapterV21OrThrow } from "../src/assembler.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
-import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage } from "../src/sections/chapterProse.js";
+import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage, normalizeDerivabilityText, packetProseDerivability } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
 import { countSyllables } from "../src/critics/readingLevel.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
@@ -411,6 +411,338 @@ test("learning-pack task card carries THIS chapter's drafted prose and the deriv
   }
   // The live compiler drafts through DIRECT_JSON — the block must reach that card too.
   assert.match(renderLearningTask(fx, fx.summary, "DIRECT_JSON"), /CHAPTER PROSE/);
+});
+
+// ── Task 11ao — the card must NAME the specifics the prose cannot support ──────
+// The live Franklin canary (2026-09-04, compiler-run-c9b06f9baf63aea…) failed ch01's
+// learning pack three attempts running on the same three strings — "Peter Folger",
+// "Sherburne town", "1555". The card already carried the prose and the rule; what it
+// never said was WHICH packet specifics the prose fails to support. The quiz-specifics
+// preflight block meanwhile listed «"Peter Folger" | "1675" | "Sherburne town"» as the
+// strings q2 must weave in VERBATIM, so the same card compelled two of the three
+// strings SEC120 then rejected. These tests pin the computed split, its agreement with
+// the gate, and the retry card that now states the rule and the ALLOWED strings.
+
+/** An anchor whose specific is spelled differently from the prose that supports it —
+ *  the normalisation case (SEC120 folds "Dr. Thomas Bond" onto "Dr Thomas Bond"). */
+const BOND_ANCHOR = {
+  id: "ch01.case.bond",
+  kind: "named_example" as const,
+  label: "Dr. Thomas Bond and the subscription hospital",
+  supportsClaimTypes: ["quiz_prompt", "quiz_explanation", "quiz_key_evidence", "review_card"] as const,
+  hardSpecifics: ["Dr. Thomas Bond", "Sherburne town"],
+};
+
+function packetWithBondAnchor(packet: SourcePacketV1): SourcePacketV1 {
+  return { ...packet, allowedAnchors: [...packet.allowedAnchors, BOND_ANCHOR as unknown as SourcePacketV1["allowedAnchors"][number]] };
+}
+
+/** Prose that names one of the Bond anchor's specifics (differently spelled) and a
+ *  year, and never names the other specific or the packet's other year. */
+function bondProse(fx: ReturnType<typeof compileFixture>): SummaryPackV1 {
+  const prose = cloneSummary(fx.summary);
+  prose.breakdown.deepRead = `${prose.breakdown.deepRead} Dr Thomas Bond asked the assembly for the match in 1751, and the subscribers paid the rest.`;
+  return prose;
+}
+
+test("the learning card lists the packet specifics the prose cannot support, and the ones it can (Task 11ao)", () => {
+  const fx = compileFixture();
+  const packet = packetWithBondAnchor(fx.packet);
+  const prose = bondProse(fx);
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+  });
+
+  assert.match(card, /NOT DERIVABLE FROM THE PROSE — DO NOT USE/, "the card must enumerate what the prose cannot support");
+  assert.match(card, /SPECIFICS THE PROSE SUPPORTS/, "and the strings it may build from");
+  // The absent half of the Bond anchor is named as forbidden, with its source.
+  assert.match(card, /"Sherburne town" \(ch01\.case\.bond\)/, "an off-page specific is listed with the case it belongs to");
+  // The normalisation is SEC120's: "Dr Thomas Bond" on the page answers the packet's
+  // "Dr. Thomas Bond", so it is ALLOWED, never forbidden.
+  // Each computed block ends at the next blank line (the lists themselves are
+  // single-newline bullets), so slice to that — not to the end of the card, which
+  // still carries the SOURCE PACKET the strings came from.
+  const block = (header: string): string => {
+    const start = card.indexOf(header);
+    assert.ok(start >= 0, `${header} must be rendered`);
+    const end = card.indexOf("\n\n", start);
+    return card.slice(start, end < 0 ? undefined : end);
+  };
+  const forbidden = block("NOT DERIVABLE FROM THE PROSE");
+  assert.doesNotMatch(forbidden, /Dr\. Thomas Bond/, "a punctuation variant on the page must not be called underivable");
+  const supported = block("SPECIFICS THE PROSE SUPPORTS");
+  assert.match(supported, /"Dr\. Thomas Bond"/, "the packet spelling is offered back as usable because the prose shows it");
+
+  // No prose supplied → no computed lists at all (every pre-existing card is
+  // byte-identical, which the 11ai test above already pins for the prose block).
+  const bare = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "learning-pack", blueprint: fx.blueprint, sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json", context: { voiceCard: null, bookScars: null },
+  });
+  assert.doesNotMatch(bare, /NOT DERIVABLE FROM THE PROSE/);
+});
+
+test("the computed NOT DERIVABLE list agrees with SEC120 itself, string for string (Task 11ao)", () => {
+  const fx = compileFixture();
+  const packet = packetWithBondAnchor(fx.packet);
+  const prose = bondProse(fx);
+  const split = packetProseDerivability(packet, prose);
+  assert.equal(split.available, true, "drafted read tiers → the split is computed");
+  assert.ok(split.notDerivable.length > 0, "this fixture must actually carry an underivable specific");
+
+  // Every string the split calls underivable really is rejected by the gate when a
+  // unit that cites the anchor uses it; every string it calls derivable really is not.
+  const runGate = (value: string): number => {
+    const bad = cloneLearning(fx.learning);
+    const q = bad.quiz.questions[0];
+    q.sourceAnchorIds = [BOND_ANCHOR.id];
+    q.keyEvidenceAnchorIds = [BOND_ANCHOR.id];
+    q.prompt = `A reader recalls ${value} while deciding which move changes the visible signal. Which action does it?`;
+    q.explanation = `The keyed move changes the visible balance; ${value} is the detail the chapter used to make the point.`;
+    return validateLearningPack(bad, fx.blueprint, packet, prose)
+      .filter((f) => f.checkId === "SEC120.learning_prose_derivable" && f.path === "/quiz/questions/0").length;
+  };
+  for (const entry of split.notDerivable.filter((e) => e.source === BOND_ANCHOR.id)) {
+    assert.ok(runGate(entry.value) > 0, `the list calls "${entry.value}" underivable, so SEC120 must reject a unit that uses it`);
+  }
+  for (const entry of split.derivable.filter((e) => e.source === BOND_ANCHOR.id)) {
+    assert.equal(runGate(entry.value), 0, `the list calls "${entry.value}" derivable, so SEC120 must accept a unit that uses it`);
+  }
+
+  // The Task 11an stand-down carve is mirrored: an anchor with NOTHING on the page is
+  // exempt from SEC120, so none of its specifics may be listed as forbidden.
+  const orphan = { ...BOND_ANCHOR, id: "ch01.case.orphan", hardSpecifics: ["Sherburne town", "a joint-stool lid"] };
+  const withOrphan = { ...packet, allowedAnchors: [...packet.allowedAnchors, orphan as unknown as SourcePacketV1["allowedAnchors"][number]] };
+  const orphanSplit = packetProseDerivability(withOrphan, prose);
+  assert.ok(orphanSplit.standDownIds.has("ch01.case.orphan"), "an anchor with no specific on the page stands down");
+  assert.equal(
+    orphanSplit.notDerivable.some((e) => e.source === "ch01.case.orphan"),
+    false,
+    "a stood-down anchor's specifics must never be forbidden — SEC58 compels one of them",
+  );
+});
+
+test("an unprinted case NAME is advisory and is never filed under SEC120's authority (Task 11ao)", () => {
+  const fx = compileFixture();
+  const bondCase = {
+    id: BOND_ANCHOR.id,
+    label: "Pennsylvania Hospital subscription",
+    summary: "Dr. Thomas Bond raised the subscription with the Assembly of Pennsylvania.",
+    realWorld: true,
+    hardSpecifics: BOND_ANCHOR.hardSpecifics,
+    allowedUses: [],
+    forbiddenUses: [],
+    doNotRestamp: [],
+  } as unknown as SourcePacketV1["namedCases"][number];
+  const packet: SourcePacketV1 = {
+    ...packetWithBondAnchor(fx.packet),
+    namedCases: [...fx.packet.namedCases, bondCase],
+    // "There" is the substring trap: it must not be swept in off "gathered"/"the".
+    allowedEntities: [...fx.packet.allowedEntities, "Assembly of Pennsylvania", "There"],
+  };
+  const prose = bondProse(fx);
+  const split = packetProseDerivability(packet, prose);
+
+  assert.ok(split.unprintedNames.some((e) => e.value === "Assembly of Pennsylvania"), "a name the case carries and the prose never prints is recorded");
+  assert.equal(
+    split.notDerivable.some((e) => e.value === "Assembly of Pennsylvania"),
+    false,
+    "…and never as a SEC120 rejection: the gate does not sweep proper nouns, so the card must not claim it does",
+  );
+  assert.equal(split.unprintedNames.some((e) => e.value === "There"), false, "entity matching is whole-token, never substring");
+  assert.equal(
+    split.unprintedNames.some((e) => e.value === "Pennsylvania Hospital subscription"),
+    false,
+    "a case's own catalogue LABEL is not a name the chapter could print",
+  );
+
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "learning-pack", blueprint: fx.blueprint, sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json", context: { voiceCard: null, bookScars: null }, chapterProse: prose,
+  });
+  const start = card.indexOf("NAMES THE PROSE NEVER PRINTS");
+  assert.ok(start > 0, "the advisory block must render");
+  const names = card.slice(start, card.indexOf("\n\n", start));
+  assert.match(names, /no validator checks these/, "the advisory block states its own weaker authority");
+  assert.match(names, /"Assembly of Pennsylvania"/);
+  // The SEC120 claim stays on the block that can back it.
+  const gated = card.slice(card.indexOf("NOT DERIVABLE FROM THE PROSE"), card.indexOf("\n\n", card.indexOf("NOT DERIVABLE FROM THE PROSE")));
+  // Round 2: the gate-backed block claims only what SEC120 actually checks — a unit
+  // that CITES the anchor, under a matching claim class — never "the draft".
+  assert.match(gated, /SEC120 rejects any unit that cites the listed anchor and uses the string/);
+  assert.doesNotMatch(gated, /rejects the draft that uses any of them/, "the old, wider claim must not come back");
+  assert.doesNotMatch(gated, /Assembly of Pennsylvania/);
+});
+
+test("a year the prose never states is listed through the specific that carries it, and the ALLOWED list never promises a figure it cannot check (Task 11ao)", () => {
+  const fx = compileFixture();
+  // Round 2: SEC120's year rule (rule 2) is implemented ONCE, in sectionGate
+  // (PROSE_YEAR_RE), and that gate file is frozen — the split deliberately does not
+  // carry a second copy of the band, so it classifies a year the way it classifies any
+  // other string: through the specific that carries it.
+  // "the match in 1751" is on the page LITERALLY; "asked match 1751" is on it only
+  // through the clipped-phrase folding (the words in order, the figure last).
+  const yearAnchor = { ...BOND_ANCHOR, id: "ch01.case.years", hardSpecifics: ["Dr. Thomas Bond", "the 1555 register", "the match in 1751", "asked match 1751"] };
+  const packet = {
+    ...fx.packet,
+    allowedAnchors: [...fx.packet.allowedAnchors, yearAnchor as unknown as SourcePacketV1["allowedAnchors"][number]],
+  };
+  const prose = bondProse(fx);
+  const split = packetProseDerivability(packet, prose);
+  const values = (list: readonly { value: string }[]) => list.map((e) => e.value);
+  assert.ok(values(split.notDerivable).includes("the 1555 register"), "1555 is in the packet and never in the prose");
+  assert.equal(values(split.derivable).includes("the 1555 register"), false, "and it is never offered back as usable");
+
+  // THE OFFER INVARIANT. This module cannot evaluate the year rule, so it never puts a
+  // figure it has not seen literally on the page into the list a writer reads as "safe,
+  // use verbatim": every digit-bearing ALLOWED entry appears literally in the prose.
+  assert.ok(values(split.derivable).includes("the match in 1751"), "a figure the prose literally shows IS offered — or this invariant is vacuous");
+  assert.equal(values(split.derivable).includes("asked match 1751"), false, "a figure reached only through the clipped-phrase folding is not offered as safe");
+  assert.equal(values(split.notDerivable).includes("asked match 1751"), false, "…and it is not forbidden either: SEC120 accepts it under rule 1");
+  for (const entry of split.derivable) {
+    if (!/\d/.test(entry.value)) continue;
+    assert.ok(
+      split.normalizedProse.includes(normalizeDerivabilityText(entry.value)),
+      `the ALLOWED list offers "${entry.value}", which carries a figure the prose does not literally show`,
+    );
+  }
+
+  // The card says so, rather than leaving the writer to infer it from an absence.
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "learning-pack", blueprint: fx.blueprint, sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json", context: { voiceCard: null, bookScars: null }, chapterProse: prose,
+  });
+  assert.match(card, /SEC120 also checks year figures, unconditionally/, "the card states the rule it does not enumerate");
+});
+
+test("the SEC120 retry card states the rule and the ALLOWED specifics, not only the offending ones (Task 11ao)", () => {
+  const fx = compileFixture();
+  const packet = packetWithBondAnchor(fx.packet);
+  const prose = bondProse(fx);
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+    retryFeedback: {
+      blockerLines: ['SEC120.learning_prose_derivable@/quiz/questions/1:q2 names "Sherburne town", which appears nowhere in this chapter\'s drafted prose (hook, counterintuition, fastRead, deepRead, keyTakeaway); a reader of this chapter cannot derive it from the page'],
+      priorDraft: { quiz: { questions: [] } },
+    },
+  });
+  const retry = card.slice(card.indexOf("PREVIOUS DRAFT REJECTED BY SECTION GATES"));
+  assert.match(retry, /DERIVABILITY RULE \(SEC120\)/, "the retry states the RULE, not just the offending strings");
+  assert.match(retry, /ALLOWED SPECIFICS/, "and the strings the writer may use instead");
+  assert.match(retry, /"Dr\. Thomas Bond"/, "the allowed list carries a specific the prose actually shows");
+
+  // A retry with no SEC120 blocker keeps today's card: the appendix is targeted.
+  const other = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "learning-pack", blueprint: fx.blueprint, sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json", context: { voiceCard: null, bookScars: null }, chapterProse: prose,
+    retryFeedback: { blockerLines: ["SEC42.quiz_count@/quiz/questions:quiz count 8 != blueprint 9"], priorDraft: { quiz: { questions: [] } } },
+  });
+  assert.doesNotMatch(other.slice(other.indexOf("PREVIOUS DRAFT REJECTED BY SECTION GATES")), /DERIVABILITY RULE \(SEC120\)/);
+});
+
+test("the quiz-specifics preflight marks each required specific against the drafted prose (Task 11ao)", () => {
+  const fx = compileFixture();
+  const prose = bondProse(fx);
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+  });
+  // The note itself points the writer at the CHAPTER PROSE block, so slice on the
+  // block's own header, not on the first mention of its name.
+  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  assert.ok(preflight.length > 0, "the fixture must actually render the preflight block");
+  assert.match(preflight, /\[NOT ON THE PAGE\]/, "a required specific the prose never shows is marked, not silently required");
+  assert.match(preflight, /rejected by SEC120 even though this block requires a verbatim specific/, "the contradiction is named and resolved for the writer");
+});
+
+// ── Review round 3 — TWO WAYS THE PREFLIGHT'S OWN SENTENCES MISLED ────────────
+// The preflight is the block that COMPELS strings, so a sentence in it that overstates
+// what is safe costs a live attempt. Round 2 fixed the stand-down note under the
+// computed lists but left this block's copy of the carve unqualified, and marked its
+// specifics with a different predicate than the ALLOWED list uses.
+
+test("the preflight's stand-down sentence carries SEC120's year caveat (review round 3, MAJOR)", () => {
+  const fx = compileFixture();
+  const prose = bondProse(fx);
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: fx.packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+  });
+  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  assert.ok(preflight.length > 0, "the fixture must actually render the preflight block");
+  // "there you may use one of them" is true of the SPECIFIC AS A STRING and false of a
+  // four-digit year inside it: SEC120's second rule has no stand-down. The note under
+  // the computed lists says so; this block compels the string, so it must say so too.
+  assert.match(
+    preflight,
+    /year rule has NO stand-down/,
+    "the preflight's stand-down carve must not imply a stood-down case's off-page year is safe",
+  );
+});
+
+test("the preflight marks a folding-only digit-bearing specific distinctly from one it offers (review round 3, MINOR 1)", () => {
+  const fx = compileFixture();
+  const citedId = (fx.blueprint.sections.quiz ?? [])
+    .flatMap((slot) => ((slot as { caseCueIds?: string[] }).caseCueIds ?? []))[0];
+  assert.ok(citedId, "fixture must deal at least one quiz slot a case cue");
+  const packet = {
+    ...fx.packet,
+    allowedAnchors: fx.packet.allowedAnchors.map((a) => (
+      a.id === citedId ? { ...a, hardSpecifics: ["1751 subscription drive", "Sherburne town"] } : a
+    )),
+  } as SourcePacketV1;
+  const prose = cloneSummary(fx.summary);
+  // The prose shows every word of "1751 subscription drive", in order, inside one
+  // sentence — so SEC120 rule 1 accepts it (clipped-phrase folding) — but never
+  // literally, so this module cannot vouch for the figure 1751 against rule 2.
+  prose.breakdown.deepRead = `${prose.breakdown.deepRead} In 1751 the managers opened a public subscription for the drive.`;
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book",
+    kind: "learning-pack",
+    blueprint: fx.blueprint,
+    sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json",
+    context: { voiceCard: null, bookScars: null },
+    chapterProse: prose,
+  });
+  const split = packetProseDerivability(packet, prose);
+  assert.equal(
+    split.derivable.some((s) => s.value === "1751 subscription drive"),
+    false,
+    "the ALLOWED list must not offer a digit-bearing specific it matched only by folding",
+  );
+  const preflight = card.slice(card.indexOf("REQUIRED VERBATIM SPECIFICS BY QUIZ SLOT"), card.indexOf("\n\nCHAPTER PROSE —"));
+  assert.ok(preflight.includes(citedId), "the modified anchor must be the one the preflight cites");
+  // The bug: the mark said "[on the page]" while the ALLOWED list omitted the string,
+  // so the two blocks of one card contradicted each other.
+  assert.match(
+    preflight,
+    /"1751 subscription drive" \[on the page by folding — not offered\]/,
+    "a folding-only digit-bearing specific is marked distinctly from an offered one",
+  );
+  assert.match(preflight, /by folding — not offered/, "and the mark is explained in the note");
 });
 
 test("SEC120 blocks a quiz stem whose cited specific never appears in the chapter's drafted prose (Task 11ai)", () => {
