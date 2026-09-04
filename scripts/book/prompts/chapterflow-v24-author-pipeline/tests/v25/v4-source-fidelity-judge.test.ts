@@ -512,6 +512,90 @@ requiredTest("chunk-varied wording NO chunk supports still blocks", async () => 
   assert.equal(sourceFidelityVetoDisagreement(classified), null);
 });
 
+// ── ROUND 4 ─────────────────────────────────────────────────────────────────
+// Contesting evidence is EVIDENCE, so it has to be evidence. Round 3 let any
+// non-`unsupported` finding contest, on the reasoning that a `contradicted`
+// finding "blocks on its own account" — which is false exactly when its own
+// source citation does not verify: that finding is downgraded to a WARN by the
+// citation rule AND it downgrades the same-proposition absence, so nothing
+// gates and a judge can retire its own SF2 blocker by minting a contradiction
+// it cannot cite. A contradiction now contests only when its citation verifies.
+
+/** A source quote no span in this suite contains, long enough to pass the
+ *  shape check so the ONLY thing wrong with it is that it is not in the book. */
+const FABRICATED_SOURCE_QUOTE = "a line that is nowhere in this span at all";
+
+requiredTest("an uncited contradiction cannot contest the absence it shares a proposition with", async () => {
+  const chapter = franklinChapter();
+  const long = `${SLICE}\n\n`.repeat(Math.ceil((SOURCE_FIDELITY_MAX_CONTEXT_CHARS * 2.2) / SLICE.length));
+  const report = await judgeChapterSourceFidelity({
+    chapter,
+    source: { provenance: "source-text", spanText: long },
+    ask: async (request) => ({
+      findings: [{
+        surface: "chapter/keyTakeaway",
+        quote: REV6_ERROR,
+        // The same proposition, one preposition apart, as in the round-3 case —
+        // but the chunk that speaks first CONTRADICTS it and cites a line the
+        // span does not contain.
+        claim: request.chunkIndex === 0 ? SAILED_SUPPORTED : SAILED_UNSUPPORTED,
+        verdict: request.chunkIndex === 0 ? "contradicted" : "unsupported",
+        sourceQuote: request.chunkIndex === 0 ? FABRICATED_SOURCE_QUOTE : null,
+        checkableKind: "date",
+        note: request.chunkIndex === 0 ? "this part contradicts it" : "not in this part",
+      }],
+    }),
+  });
+  assert.ok(report.chunkCount >= 3, `expected >=3 chunks, got ${report.chunkCount}`);
+  assert.equal(report.findings.length, 2, JSON.stringify(report.findings, null, 2));
+
+  const classified = classifySourceFidelityFindings(report);
+  // The contradiction is a WARN — its citation failed, so it never blocked on
+  // its own account — and precisely because of that it may not retire the
+  // absence: the SF2 blocker stands and the chapter is RED.
+  const blocking = classified.issues.filter((issue) => issue.severity === "BLOCKER");
+  assert.equal(blocking.length, 1, JSON.stringify(classified.issues, null, 2));
+  assert.equal(blocking[0].code, SOURCE_FIDELITY_UNSUPPORTED_CODE, blocking[0].message);
+  assert.equal(blocking[0].message.includes("contested"), false, blocking[0].message);
+  const warned = classified.issues.filter((issue) => issue.severity === "WARN");
+  assert.equal(warned.length, 1, JSON.stringify(classified.issues, null, 2));
+  assert.match(warned[0].message, /does not occur in this chapter's source span/, warned[0].message);
+  assert.equal(classified.verdict.gate, "RED");
+  assert.equal(sourceFidelityVetoDisagreement(classified), null);
+});
+
+requiredTest("a contradiction whose citation VERIFIES still contests, and blocks on its own account", async () => {
+  // The other half of the same rule: the reason a contradiction may contest is
+  // that it settles the question with evidence. When it really does carry that
+  // evidence, nothing changes — it blocks (SF1) and the absence it contests is
+  // a WARN naming the disagreement.
+  const chapter = franklinChapter();
+  const long = `${SLICE}\n\n`.repeat(Math.ceil((SOURCE_FIDELITY_MAX_CONTEXT_CHARS * 2.2) / SLICE.length));
+  const report = await judgeChapterSourceFidelity({
+    chapter,
+    source: { provenance: "source-text", spanText: long },
+    ask: async (request) => ({
+      findings: [{
+        surface: "chapter/keyTakeaway",
+        quote: REV6_ERROR,
+        claim: request.chunkIndex === 0 ? SAILED_SUPPORTED : SAILED_UNSUPPORTED,
+        verdict: request.chunkIndex === 0 ? "contradicted" : "unsupported",
+        sourceQuote: request.chunkIndex === 0 ? SOURCE_LINE : null,
+        checkableKind: "date",
+        note: request.chunkIndex === 0 ? "this part settles it the other way" : "not in this part",
+      }],
+    }),
+  });
+  const classified = classifySourceFidelityFindings(report);
+  const blocking = classified.issues.filter((issue) => issue.severity === "BLOCKER");
+  assert.equal(blocking.length, 1, JSON.stringify(classified.issues, null, 2));
+  assert.equal(blocking[0].code, SOURCE_FIDELITY_CONTRADICTED_CODE, blocking[0].message);
+  const warned = classified.issues.filter((issue) => issue.severity === "WARN");
+  assert.equal(warned.length, 1, JSON.stringify(classified.issues, null, 2));
+  assert.ok(warned[0].message.includes("contested"), warned[0].message);
+  assert.equal(classified.verdict.gate, "RED");
+});
+
 requiredTest("sameProposition folds paraphrase and separates propositions", () => {
   // The whole contest rule rests on this predicate, so its boundary is pinned
   // rather than described. Same proposition: function words, word order and one
@@ -525,6 +609,15 @@ requiredTest("sameProposition folds paraphrase and separates propositions", () =
   assert.equal(sameProposition("Franklin sailed to London in 1757.", "Franklin never sailed to London in 1757."), false, "a negation");
   // Different proposition — too little in common.
   assert.equal(sameProposition("The brothers are the proprietaries of Pennsylvania.", "The brothers refused every meeting."), false);
+  // The KNOWN LIMIT, pinned rather than described: in a claim thick with names
+  // and numbers, ONE substituted content word can invert the verb and still
+  // clear the 0.6 floor (shared 4 / union 6). The cost is a downgrade — the
+  // finding is reported in full — which is the direction the design chooses.
+  assert.equal(
+    sameProposition("Franklin bought the Pennsylvania Gazette in 1729.", "Franklin sold the Pennsylvania Gazette in 1729."),
+    true,
+    "documented limit: a single substituted content word can invert a verb",
+  );
 });
 
 finishV25Tests().catch((error: unknown) => {

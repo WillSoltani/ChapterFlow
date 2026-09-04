@@ -348,11 +348,24 @@ export function detectCheckableKinds(text: string): readonly CheckableKind[] {
  *     overlap by {@link CLAIM_AGREEMENT_MIN_OVERLAP} (Jaccard). Word order and
  *     function words are free; about one content word in four may differ.
  *
- * KNOWN LIMIT, stated rather than hidden: this is a bag of words, so two claims
- * built from the SAME words in a different order ("met him first, then wrote"
- * vs "wrote first, then met him") read as one proposition. The cost of that is
- * a WARN where a BLOCKER was due - the safe direction, and the finding is still
- * reported in full.
+ * KNOWN LIMIT, stated rather than hidden, and it is wider than word order.
+ * This is a bag of words over everything that is not a number, a name or a
+ * negation, so:
+ *
+ *   - two claims built from the SAME words in a different order ("met him
+ *     first, then wrote" vs "wrote first, then met him") read as one
+ *     proposition; and
+ *   - in a claim thick with names and numbers, ONE substituted content word can
+ *     INVERT the verb and still clear the floor - "Franklin bought the
+ *     Pennsylvania Gazette in 1729." and "Franklin sold the Pennsylvania
+ *     Gazette in 1729." share 4 content words of 6 (0.67) and neither
+ *     bought/sold is a number, a capitalized name or a listed negation, so the
+ *     predicate calls them one proposition. Antonymy is not modelled; "about
+ *     one content word in four may differ" admits this by construction.
+ *
+ * The cost of both is a WARN where a BLOCKER was due - the safe direction, and
+ * the finding is still reported in full, claim included, so the repair writer
+ * reads the two wordings and sees the inversion the predicate could not.
  */
 export const CLAIM_AGREEMENT_MIN_OVERLAP = 0.6;
 
@@ -690,6 +703,39 @@ export function ruleCitedClaim(args: Readonly<{
 }
 
 /**
+ * Why a finding's SOURCE citation cannot be trusted, or [] when it verifies.
+ *
+ * Only a `contradicted` finding carries one: "the source says X" is a positive
+ * assertion about the book and must be shown in the book. A `supported` or
+ * `unsupported` finding makes no such assertion, so it has no source citation to
+ * check and this returns [] for it by design.
+ *
+ * ONE definition, TWO readers. {@link classifySourceFidelityFindings} asks it to
+ * decide whether a contradiction may gate; {@link contestingEvidence} asks it to
+ * decide whether that same contradiction may retire someone else's blocker. A
+ * copy in either place would let the two answers drift apart, which is exactly
+ * the hole this closes: a contradiction that could not gate because its citation
+ * failed was still allowed to contest.
+ */
+function sourceCitationProblems(
+  finding: SourceFidelityFinding,
+  spanText: string | null,
+): readonly string[] {
+  if (finding.verdict !== "contradicted") return [];
+  const sourceQuote = finding.sourceQuote;
+  if (typeof sourceQuote !== "string" || sourceQuote.trim().length === 0) {
+    return ["a contradiction was asserted with no source quote"];
+  }
+  if (spanText === null) return ["there is no source text to verify the quote against"];
+  const shape = quoteShapeProblem(sourceQuote);
+  if (shape !== null) return [`the source quote is unusable: ${shape}`];
+  if (!contains(spanText, sourceQuote)) {
+    return [`the source quote does not occur in this chapter's source span (quote: "${clip(sourceQuote, 160)}")`];
+  }
+  return [];
+}
+
+/**
  * The evidence in this round that CONTESTS an `unsupported` finding, or null.
  *
  * "The source does not bear this out" is an argument from absence, and the chunk
@@ -702,18 +748,35 @@ export function ruleCitedClaim(args: Readonly<{
  *
  * The rule, stated once: a BLOCKER rests on UNCONTESTED evidence. If anything in
  * this round says the source bears the SAME PROPOSITION out (`supported`), or
- * settles it the other way with its own citation (`contradicted`, which carries
- * the evidence and blocks on its own account), then this absence is contested
- * and may not gate. It is still reported in full, as a WARN naming the chunk
- * that disagreed and what it said - the repair writer sees both halves and can
- * judge, which is exactly what deleting the sentence would have prevented.
+ * settles it the other way with a citation that VERIFIES (`contradicted`), then
+ * this absence is contested and may not gate. It is still reported in full, as a
+ * WARN naming the chunk that disagreed and what it said - the repair writer sees
+ * both halves and can judge, which is exactly what deleting the sentence would
+ * have prevented.
+ *
+ * CONTESTING EVIDENCE MUST BE EVIDENCE. Round 3 accepted any non-`unsupported`
+ * finding, on the reasoning that a contradiction "blocks on its own account" -
+ * which is false in precisely the case that matters. A contradiction whose
+ * source quote is not in the span is itself downgraded to a WARN by the citation
+ * rule, so if it may also contest, NOTHING gates: a judge could retire its own
+ * SF2 blocker by minting a contradiction it cannot cite. So a `contradicted`
+ * finding contests only when {@link sourceCitationProblems} - the same check
+ * `classifySourceFidelityFindings` gates it by - comes back empty. A `supported`
+ * finding contests as before and needs no such check: it asserts nothing about
+ * the source beyond having found the claim there, and carries no citation by
+ * design (only contradictions do).
  *
  * Scope: `unsupported` only. A contradiction is not an absence; it stands or
  * falls on whether its source quote verifies.
+ *
+ * The contesting finding shares this finding's surface and chapter quote, so the
+ * OTHER half of the citation rule - does the chapter quote occur in the chapter -
+ * decides both findings the same way and needs no separate check here.
  */
 function contestingEvidence(
   findings: readonly SourceFidelityFinding[],
   finding: SourceFidelityFinding,
+  spanText: string | null,
 ): SourceFidelityFinding | null {
   if (finding.verdict !== "unsupported") return null;
   const quote = normalizedQuote(finding.quote);
@@ -722,6 +785,7 @@ function contestingEvidence(
     if (other.surface !== finding.surface) continue;
     if (normalizedQuote(other.quote) !== quote) continue;
     if (!sameProposition(other.claim, finding.claim)) continue;
+    if (sourceCitationProblems(other, spanText).length > 0) continue;
     return other;
   }
   return null;
@@ -753,7 +817,8 @@ function codeFor(kind: SourceFidelitySurfaceKind | null, verdict: SourceFidelity
  *     unsupported  + a checkable claim          -> BLOCKER  (SF2, or SF4 on an explanation)
  *     unsupported  + a bare generality          -> WARN     (SF2/SF4)
  *     unsupported  + another chunk bore the
- *       SAME PROPOSITION out                    -> WARN, naming the disagreement
+ *       SAME PROPOSITION out, or contradicted
+ *       it WITH a citation that verifies        -> WARN, naming the disagreement
  *     any adverse verdict whose citation FAILED -> WARN, naming which citation failed
  *   provenance `model-memory` (no book text):
  *     every adverse verdict                     -> WARN, stating the provenance
@@ -793,27 +858,17 @@ export function classifySourceFidelityFindings(report: SourceFidelityReport): So
     const checkable = ruling.checkable;
 
     // Citation checks. Both run for every adverse verdict; the reasons they can
-    // fail are different and the message must say which one did.
+    // fail are different and the message must say which one did. The source
+    // half is `sourceCitationProblems` — the SAME function `contestingEvidence`
+    // asks before it lets a contradiction contest anything, so the two can
+    // never disagree about whether one citation verified.
     const citationProblems: string[] = ruling.quoteProblem === null ? [] : [ruling.quoteProblem];
-    if (finding.verdict === "contradicted") {
-      const sourceQuote = finding.sourceQuote;
-      if (typeof sourceQuote !== "string" || sourceQuote.trim().length === 0) {
-        citationProblems.push("a contradiction was asserted with no source quote");
-      } else if (report.spanText === null) {
-        citationProblems.push("there is no source text to verify the quote against");
-      } else {
-        const shape = quoteShapeProblem(sourceQuote);
-        if (shape !== null) citationProblems.push(`the source quote is unusable: ${shape}`);
-        else if (!contains(report.spanText, sourceQuote)) {
-          citationProblems.push(`the source quote does not occur in this chapter's source span (quote: "${clip(sourceQuote, 160)}")`);
-        }
-      }
-    }
+    citationProblems.push(...sourceCitationProblems(finding, report.spanText));
 
     // CONTESTED ABSENCE NEVER GATES (see `contestingEvidence`). Computed for
     // every adverse finding so the message can say so, and consulted by the
     // severity below.
-    const contested = contestingEvidence(report.findings, finding);
+    const contested = contestingEvidence(report.findings, finding, report.spanText);
     const modelMemory = report.provenance === "model-memory";
     const enforceable = !modelMemory
       && citationProblems.length === 0
