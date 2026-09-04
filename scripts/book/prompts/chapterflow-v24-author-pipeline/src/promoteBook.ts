@@ -36,6 +36,7 @@ import { writeFileAtomic } from "./lib/atomicWrite.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
+import type { ReleaseEditingProvenance } from "./app/chapterEditProvenance.js";
 import { BookPackageV21, ChapterV21, V21_SCHEMA_VERSION } from "./types.js";
 import { runShipGate, GateReport, formatGateReport } from "./critics/finalGate.js";
 import { runBookGate, BookGateReport, formatBookGateReport } from "./critics/bookGate.js";
@@ -128,6 +129,13 @@ export type ReleaseProvenance = {
   /** Model/route provenance, when the candidate carries a research run manifest.
    *  Absent when it does not — never guessed. */
   research?: { runId?: string; provider?: string; model?: string };
+  /** Package 2B — what the whole-chapter editor pass did to this book, when the
+   *  candidate carries an edit-provenance sidecar. Absent when it does not, which
+   *  is exactly the case of a book compiled by a pipeline with no editor: the
+   *  sidecar is emitted only when the pass is composed, so a missing block is
+   *  "no editor ran" and a block with `disabled` counts is "an editor was there
+   *  and the operator switched it off". Neither is inferred. */
+  editing?: ReleaseEditingProvenance;
 };
 
 /** State-side manifest sidecar. `packageId`/`createdAt` mirror the shipped

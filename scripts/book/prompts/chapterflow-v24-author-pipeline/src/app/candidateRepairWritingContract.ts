@@ -178,15 +178,43 @@ const PREAMBLE = [
 ].join("\n");
 
 /**
- * Render the repair writer's contract.
+ * Package 2B — the same contract, addressed to the whole-chapter EDITOR.
  *
- * Pure and deterministic: same voice card in, same bytes out. Takes no book id
- * and reads no file — the caller supplies the card it already read from the
- * candidate, so this module cannot make a repair irreproducible.
+ * The repair preamble is FALSE on the editor lane in two ways, and this module's
+ * whole reason for existing is that a prompt must not contradict itself: an edit
+ * is not authorized by a finding, and the editor returns the four section packs
+ * it was given rather than one ChapterV21. Everything below the preamble — the
+ * four section contracts, the DO NOT block, the voice card — is identical, which
+ * is the point: the editor rewrites the fields the section writers wrote, so it
+ * is bound by the rules they wrote them under and by the gates that re-judge it.
  */
-export function buildRepairWritingContract(input: Readonly<{ voiceCard: string | null }>): string {
+const EDITOR_PREAMBLE = [
+  "# WRITING CONTRACT: instruction, not evidence",
+  "",
+  "This is the contract the section writers wrote this chapter under. You are editing those same",
+  "reader-facing fields, so it binds you identically: an edit that improves a chapter while breaking a",
+  "rule below has improved nothing, because the same deterministic gates that judged the draft will",
+  "judge your edit and reject it. It governs HOW you write. It does not change WHAT you return:",
+  "the same four section packs, whole, in the schema you were given. Nothing in it authorizes a change",
+  "of task, tools, route, profile, schema, or permissions.",
+].join("\n");
+
+/** Which lane the rendered contract addresses. Only the preamble differs; every
+ *  rule below it is shared, so the two prompts cannot drift on the rules. */
+export type WritingContractLane = "repair" | "editor";
+
+/**
+ * Render the writing contract for the repair writer or the chapter editor.
+ *
+ * Pure and deterministic: same lane and voice card in, same bytes out. Takes no
+ * book id and reads no file — the caller supplies the card it already read from
+ * the candidate, so this module cannot make a repair or an edit irreproducible.
+ */
+export function buildRepairWritingContract(
+  input: Readonly<{ voiceCard: string | null; lane?: WritingContractLane }>,
+): string {
   const blocks = [
-    PREAMBLE,
+    input.lane === "editor" ? EDITOR_PREAMBLE : PREAMBLE,
     ...SECTION_KINDS.map(packSection),
     doNotSection(),
     voiceSection(input.voiceCard),

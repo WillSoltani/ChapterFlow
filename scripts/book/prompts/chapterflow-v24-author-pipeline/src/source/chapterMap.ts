@@ -393,22 +393,27 @@ export type SpanExcerpt = {
 };
 
 /**
- * Bound a span for a prompt. A span at or under {@link MAX_SPAN_PROMPT_CHARS} is
- * passed WHOLE and byte-identically. A longer span is cut into
- * {@link SPAN_EXCERPT_WINDOWS} evenly spaced windows, each snapped forward to a
- * paragraph break so a window starts mid-thought as rarely as possible, joined by
- * an explicit elision marker.
+ * Bound a span for a prompt. A span at or under `maxChars` is passed WHOLE and
+ * byte-identically. A longer span is cut into {@link SPAN_EXCERPT_WINDOWS} evenly
+ * spaced windows, each snapped forward to a paragraph break so a window starts
+ * mid-thought as rarely as possible, joined by an explicit elision marker.
  *
  * Deterministic: the same span always produces the same prompt, so a resumed run
  * re-issues the identical call. The excerpt bounds only what the model SEES; the
  * full span remains the authority a quote is validated against, so a quote from
  * an elided passage still verifies (and is still true).
+ *
+ * `maxChars` defaults to {@link MAX_SPAN_PROMPT_CHARS}, the chapter researcher's
+ * budget, so every existing caller renders byte-identically. It is a parameter
+ * because the wave-2 editor pass shows the same span alongside a whole assembled
+ * chapter and the writing contract, and needs a smaller slice of it — one
+ * sampling function for both, rather than a second copy with its own windows.
  */
-export function spanExcerptForPrompt(span: string): SpanExcerpt {
-  if (span.length <= MAX_SPAN_PROMPT_CHARS) {
+export function spanExcerptForPrompt(span: string, maxChars: number = MAX_SPAN_PROMPT_CHARS): SpanExcerpt {
+  if (span.length <= maxChars) {
     return { text: span, excerpted: false, omittedChars: 0 };
   }
-  const windowChars = Math.floor(MAX_SPAN_PROMPT_CHARS / SPAN_EXCERPT_WINDOWS);
+  const windowChars = Math.floor(maxChars / SPAN_EXCERPT_WINDOWS);
   const stride = Math.floor(span.length / SPAN_EXCERPT_WINDOWS);
   const parts: string[] = [];
   let taken = 0;

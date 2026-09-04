@@ -31,6 +31,7 @@ import {
   withManifestUpdateLock,
 } from "../lib/researchRunManifest.js";
 import { loadBookScars } from "../lib/bookScars.js";
+import { CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, CANDIDATE_SOURCE_TEXT_LOGICAL_PATH } from "../lib/candidateEvidence.js";
 import { sharedVoiceCues, voiceCard } from "../lib/voiceCard.js";
 import { researchBook } from "../researcher.js";
 import { ingestSourceText } from "../source/sourceText.js";
@@ -494,8 +495,8 @@ async function materializeSeedFiles(result: Awaited<ReturnType<typeof researchBo
   // path rather than by an operator's filesystem.
   if (result.sourceProvenance === "source-text") {
     files.push(
-      await inputFile(resolve(result.bundlePath, SOURCE_TEXT_REL_PATH), "inputs/research/source-text.txt", "PROVENANCE", "text/plain"),
-      await inputFile(resolve(result.bundlePath, CHAPTER_MAP_REL_PATH), "inputs/research/chapter-map.json", "PROVENANCE", "application/json"),
+      await inputFile(resolve(result.bundlePath, SOURCE_TEXT_REL_PATH), CANDIDATE_SOURCE_TEXT_LOGICAL_PATH, "PROVENANCE", "text/plain"),
+      await inputFile(resolve(result.bundlePath, CHAPTER_MAP_REL_PATH), CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, "PROVENANCE", "application/json"),
     );
   }
   const sources: ResearchCandidateSourceMapping[] = [];
