@@ -19,7 +19,7 @@ import { isUnretryableProviderMessage } from "../runtime/modelErrors.js";
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 
-import { renderUntrustedSourceBlock, runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
+import { MODEL_TASK_OUTPUT_INVALID, renderUntrustedSourceBlock, runJsonModelTask, type ModelCallerExecution } from "../app/modelTaskRunner.js";
 import { evaluateSourceV2Integrity, isResearchRouteBlockingFinding } from "../source/sourceIntegrity.js";
 import type {
   DroppedSourceItem,
@@ -82,6 +82,27 @@ export type ChapterResearchResult = {
   sourceTextSha256?: string;
   /** R-052: items dropped rather than fabricated. */
   droppedItems?: DroppedSourceItem[];
+  /** R-283: present ONLY when a bounded lexical repair rewrote sentences in this
+   *  sidecar and the repaired sidecar then passed the same validator. Stamped by
+   *  the researcher, never by the model. */
+  metaRepair?: ChapterResearchMetaRepair;
+};
+
+/**
+ * Provenance for the bounded lexical repair (R-283): which attempt paid for it
+ * and exactly which sentences it was asked to rewrite. Written into the sidecar
+ * JSON so a reviewer of a shipped book can see that a sentence was repaired
+ * rather than drafted, and deliberately NOT rendered into the .txt sidecar the
+ * downstream writers read — it is provenance, not source material.
+ */
+export type ChapterResearchMetaRepair = {
+  readonly attempt: number;
+  readonly offenses: readonly {
+    readonly rule: LexicalOffenseRule;
+    readonly match: string;
+    readonly path: string;
+    readonly sentence: string;
+  }[];
 };
 
 /**
@@ -297,30 +318,169 @@ export function authorVerbRegexes(bibliography: SourceAuthorGuardInput): RegExp[
  *  Franklin failure. The cap keeps the retry feedback readable. */
 export const MAX_REPORTED_META_HITS = 5;
 
-/** Every distinct match of `patterns` in `text`, in first-seen order, deduped
- *  case-insensitively and capped at {@link MAX_REPORTED_META_HITS}. */
-function distinctMatches(text: string, patterns: readonly RegExp[]): string[] {
+/** Which lexical rule a {@link LexicalOffense} broke. */
+export type LexicalOffenseRule = "meta-reference" | "author-verb";
+
+/**
+ * One meta-reference / author-verb hit, LOCATED.
+ *
+ * R-283. The guard used to report the matched PHRASE and nothing else —
+ * `meta-reference "the book" found` — against a 20 KB sidecar. The live Franklin
+ * run (2026-09-04) died 3/3 on exactly that message: the model was told which
+ * words were illegal and left to find them, and the only remedy on offer was a
+ * whole fresh draft. Reporting the FIELD and the offending SENTENCE is what makes
+ * a targeted rewrite possible, for the model and for the operator reading the log.
+ */
+export type LexicalOffense = {
+  readonly rule: LexicalOffenseRule;
+  /** The matched phrase, in the case the draft actually used. */
+  readonly match: string;
+  /** Field path inside the sidecar, e.g. `keyClaims[1]`. */
+  readonly path: string;
+  /** The offending sentence, verbatim. */
+  readonly sentence: string;
+  /**
+   * True when `path` is a PROSE field the bounded repair is allowed to rewrite.
+   * A `hardSpecifics` token is a verbatim source token whose whole value is that
+   * it is the source's own characters — "rewriting" one would manufacture a
+   * quotation, so a hit there is not repairable and the chapter re-drafts.
+   */
+  readonly repairable: boolean;
+};
+
+/** One narrative field of a sidecar, with its path and whether the bounded
+ *  repair may rewrite it. */
+type NarrativeSegment = {
+  readonly path: string;
+  readonly text: string;
+  readonly repairable: boolean;
+};
+
+/**
+ * Every NARRATIVE field the sidecar carries downstream, in a stable order.
+ *
+ * R-024: testableFacts, example labels/hardSpecifics and the concept name were
+ * all absent from the scanned set, and testableFacts is the field the source
+ * packet compiles the writers' facts from — the released Franklin book shipped
+ * `"Franklin dies in 1790 with the Penn estate tax negotiation still unresolved
+ * in his writing"`, a statement about the manuscript rather than the world,
+ * straight through this guard. voiceCues stay OUT on purpose: a voice cue
+ * legitimately describes authorial technique ("opens each chapter with an
+ * anecdote"), so scanning it would reject correct output.
+ *
+ * The set and its order are byte-identical to the single joined string this
+ * replaced; splitting it per field is what lets a hit name its own location.
+ */
+function narrativeSegments(r: ChapterResearchResult): NarrativeSegment[] {
+  const segments: NarrativeSegment[] = [];
+  const push = (path: string, value: unknown, repairable: boolean): void => {
+    if (typeof value === "string" && value.length > 0) segments.push({ path, text: value, repairable });
+  };
+  push("focus", r.focus, true);
+  push("coreClaim", r.coreClaim, true);
+  push("centralConcept.name", r.centralConcept?.name, true);
+  push("centralConcept.plainDefinition", r.centralConcept?.plainDefinition, true);
+  push("centralConcept.whyItMatters", r.centralConcept?.whyItMatters, true);
+  (r.keyClaims ?? []).forEach((claim, index) => push(`keyClaims[${index}]`, claim, true));
+  (r.namedExamples ?? []).forEach((example, index) => {
+    push(`namedExamples[${index}].label`, example?.label, true);
+    push(`namedExamples[${index}].summary`, example?.summary, true);
+    push(`namedExamples[${index}].teachesWhat`, example?.teachesWhat, true);
+    (Array.isArray(example?.hardSpecifics) ? example.hardSpecifics : []).forEach((specific, specificIndex) => {
+      push(`namedExamples[${index}].hardSpecifics[${specificIndex}]`, specific, false);
+    });
+  });
+  (r.testableFacts ?? []).forEach((fact, index) => {
+    push(`testableFacts[${index}].claim`, fact?.claim, true);
+    push(`testableFacts[${index}].becauseMechanism`, fact?.becauseMechanism, true);
+    push(`testableFacts[${index}].commonError`, fact?.commonError, true);
+    push(`testableFacts[${index}].errorIsWhy`, fact?.errorIsWhy, true);
+  });
+  push("hardEdge", r.hardEdge, true);
+  push("paraphraseNotes", r.paraphraseNotes, true);
+  return segments;
+}
+
+/**
+ * Longest offending sentence quoted back in a problem line.
+ *
+ * The line is copied into the run manifest's error list, the operator log and
+ * the repair prompt, and up to ten of them can be reported for one attempt, so
+ * an unbounded quote would let one 2 KB paraphraseNotes sentence dominate all
+ * three. A truncated quote still locates the sentence — the repair prompt also
+ * carries the whole draft — and 300 characters clears any ordinary sentence.
+ */
+export const MAX_QUOTED_SENTENCE_CHARS = 300;
+
+/** Sentence boundary: a terminator, any closing quotes/brackets, then space. */
+const SENTENCE_BOUNDARY = /[.!?]["'\u2019\u201d)\]]*\s+/g;
+
+/**
+ * The sentence of `text` containing [index, index+length).
+ *
+ * Deliberately a boundary scan and not a parser: a mis-split on "Dr." costs a
+ * slightly short quotation in a feedback line, which is still incomparably more
+ * useful than the phrase alone, whereas a parser here would be a new dependency
+ * on the one path that must never be the reason a chapter fails.
+ */
+function sentenceAround(text: string, index: number, length: number): string {
+  let start = 0;
+  const before = new RegExp(SENTENCE_BOUNDARY.source, "g");
+  let match: RegExpExecArray | null;
+  while ((match = before.exec(text)) !== null) {
+    if (match.index >= index) break;
+    start = match.index + match[0].length;
+  }
+  const after = new RegExp(SENTENCE_BOUNDARY.source, "g");
+  after.lastIndex = index + length;
+  const next = after.exec(text);
+  const end = next === null ? text.length : next.index + next[0].trimEnd().length;
+  const sentence = text.slice(start, end).trim();
+  return sentence.length <= MAX_QUOTED_SENTENCE_CHARS
+    ? sentence
+    : `${sentence.slice(0, MAX_QUOTED_SENTENCE_CHARS)}…`;
+}
+
+/**
+ * Every distinct match of `patterns` across `segments`, in first-seen order,
+ * deduped case-insensitively and capped at {@link MAX_REPORTED_META_HITS} —
+ * the same dedupe and cap the phrase-only scanner applied, now carrying the
+ * location and the sentence with each hit.
+ */
+function collectOffenses(
+  segments: readonly NarrativeSegment[],
+  patterns: readonly RegExp[],
+  rule: LexicalOffenseRule,
+): LexicalOffense[] {
   const seen = new Set<string>();
-  const hits: string[] = [];
+  const offenses: LexicalOffense[] = [];
   for (const pattern of patterns) {
     const global = pattern.global ? pattern : new RegExp(pattern.source, `${pattern.flags}g`);
-    global.lastIndex = 0;
-    for (const match of text.matchAll(global)) {
-      const key = match[0].toLowerCase();
-      if (seen.has(key)) continue;
-      seen.add(key);
-      hits.push(match[0]);
-      if (hits.length >= MAX_REPORTED_META_HITS) return hits;
+    for (const segment of segments) {
+      global.lastIndex = 0;
+      for (const match of segment.text.matchAll(global)) {
+        const key = match[0].toLowerCase();
+        if (seen.has(key)) continue;
+        seen.add(key);
+        offenses.push({
+          rule,
+          match: match[0],
+          path: segment.path,
+          sentence: sentenceAround(segment.text, match.index ?? 0, match[0].length),
+          repairable: segment.repairable,
+        });
+        if (offenses.length >= MAX_REPORTED_META_HITS) return offenses;
+      }
     }
   }
-  return hits;
+  return offenses;
 }
 
 /**
  * The retry card for a meta-reference hit.
  *
- * Two things this must not do, both learned from a live Franklin run that died
- * here 3/3 on `"the author"`:
+ * Three things this must not do, all learned from live Franklin runs that died
+ * here 3/3 on `"the author"` and `"the book"`:
  *
  * 1. It must not carry ANOTHER book's vocabulary. The old text enumerated
  *    `"Allen writes"` and told the model to state facts "about
@@ -340,13 +500,30 @@ function distinctMatches(text: string, patterns: readonly RegExp[]): string[] {
  *    for a sentence that is genuinely about that person. Naming them resolves it —
  *    "Franklin left Boston", never "the author left Boston" — and the fix
  *    generalises, because every book has an author to name.
+ *
+ * 3. R-283: it must say WHERE. The phrase alone ("the book") is a needle the
+ *    model has to find in its own 20 KB draft, and the 2026-09-04 run shows what
+ *    that costs — ch01 went 4 hits → 1 hit → 1 hit + a new author-verb across
+ *    three full re-drafts and never reached zero. The field path and the verbatim
+ *    sentence turn the same message into a rewrite instruction.
  */
-function metaReferenceProblem(match: string, author: string): string {
+function metaReferenceProblem(offense: LexicalOffense, author: string): string {
   const named = author.trim();
   const remedy = named.length > 0
     ? `Name the person or thing instead — for this book, write "${named}" rather than "the author".`
     : "Name the person or thing instead of referring to the text.";
-  return `meta-reference "${match}" found. A sidecar states standalone facts about the world, never facts about a text: drop "this chapter", "the chapter", "this book", "the book", "the author", and chapter/section numbers. ${remedy} Rewrite the sentence so it would read correctly to someone who has never seen the book.`;
+  return `meta-reference "${offense.match}" found in \`${offense.path}\`: ${JSON.stringify(offense.sentence)} — A sidecar states standalone facts about the world, never facts about a text: drop "this chapter", "the chapter", "this book", "the book", "the author", and chapter/section numbers. ${remedy} Rewrite THAT sentence so it would read correctly to someone who has never seen the book; if it states nothing about the world, delete the sentence.`;
+}
+
+/** The retry card for an author-surname-verb hit, located the same way. */
+function authorVerbProblem(offense: LexicalOffense): string {
+  return `author-surname-verb construction "${offense.match}" found in \`${offense.path}\`: ${JSON.stringify(offense.sentence)} — state the claim directly.`;
+}
+
+/** The problem line one offense produces. One offense is exactly one line, which
+ *  is what lets the repair gate below decide eligibility by counting. */
+function offenseProblem(offense: LexicalOffense, author: string): string {
+  return offense.rule === "meta-reference" ? metaReferenceProblem(offense, author) : authorVerbProblem(offense);
 }
 
 /**
@@ -598,6 +775,175 @@ function isTimedOut(message: string): boolean {
   return /^MODEL_TASK_TIMED_OUT(:|$)/.test(message);
 }
 
+/**
+ * R-283 — bounded lexical repairs per chapter-research attempt.
+ *
+ * ONE. The whole argument for the repair is that it is cheaper and likelier to
+ * converge than a full regeneration; a repair loop would be neither. When a
+ * repair does not land, the attempt falls through to the ordinary retry, and
+ * MAX_CHAPTER_RESEARCH_ATTEMPTS remains the outer bound on the chapter.
+ */
+export const MAX_META_REPAIRS_PER_ATTEMPT = 1;
+
+/** The most model calls one chapter can cost: every attempt may spend a draft
+ *  and at most one repair. The run-state attempt cap is derived from THIS, not
+ *  from the attempt count, or a long book exhausts its admission capacity
+ *  mid-stage. */
+export const MAX_CHAPTER_RESEARCH_MODEL_CALLS =
+  MAX_CHAPTER_RESEARCH_ATTEMPTS * (1 + MAX_META_REPAIRS_PER_ATTEMPT);
+
+/**
+ * Is this rejection one the bounded repair can honestly fix?
+ *
+ * TWO conditions, both necessary:
+ *  - EVERY problem line is a lexical offense (each offense produces exactly one
+ *    line, so equal counts prove there is nothing else wrong — no floor, no
+ *    ungrounded quote, no clause-shaped hardSpecific, no SV2 finding);
+ *  - EVERY offense sits in a PROSE field. A hit inside `hardSpecifics` is a hit
+ *    on a verbatim source token, and a rewritten "verbatim" token is a
+ *    manufactured quotation — that chapter re-drafts instead.
+ */
+function isMetaRepairEligible(problems: readonly string[], offenses: readonly LexicalOffense[]): boolean {
+  if (offenses.length === 0) return false;
+  if (problems.length !== offenses.length) return false;
+  return offenses.every((offense) => offense.repairable);
+}
+
+/**
+ * The bounded repair user message.
+ *
+ * It carries the offending sentences VERBATIM (the thing the phrase-only feedback
+ * never did), the draft to repair, and a closed list of what may change. It does
+ * NOT carry the source span: the repair may not add a claim, so it has no use for
+ * the text, and leaving it out is most of why this call is cheap.
+ *
+ * Exported so the contract is pinned by test rather than only by a live run.
+ */
+export function buildMetaRepairPrompt(
+  input: ChapterResearchInput,
+  offenses: readonly LexicalOffense[],
+  draft: ChapterResearchResult,
+): string {
+  const author = input.bibliography.author.trim();
+  const named = author.length > 0 ? author : "the person the book is about";
+  const floors = researchFloorsForSpan(input.sourceSpan?.text.length ?? null);
+  const parts: string[] = [];
+  parts.push(`# Repair task — rewrite ONLY the sentences listed below`);
+  parts.push("");
+  parts.push(`You produced the ChapterResearchResult JSON at the end of this message for chapter ${input.chapter.number} of "${input.bibliography.title}". It is correct except for ${offenses.length} sentence(s) that talk ABOUT the text instead of stating a fact about the world.`);
+  parts.push("");
+  parts.push(`A sidecar is read by people who will never see this book. Every sentence in it must be a fact about ${named} and the world: who did what, where, when, and with what result. A sentence about "this chapter", "the book", "the memoir", "the author" or "in his writing" states nothing a reader could check, so it is rejected.`);
+  parts.push("");
+  parts.push(`Rejected: "The book opens with a letter to <person>, and the author explains why he is setting down <what>."`);
+  parts.push(`Accepted: "${named} set down <what> for <person> in <year>, at <place>."`);
+  parts.push("");
+  // Only the REPORTED offenses are listed (MAX_REPORTED_META_HITS caps them). A
+  // draft carrying more than the cap therefore cannot be fully repaired in one
+  // call — the merged result still trips the guard, the repair is discarded and
+  // the chapter re-drafts. That is the fail-closed direction on purpose.
+  parts.push(`## The sentences to fix`);
+  offenses.forEach((offense, index) => {
+    parts.push(`${index + 1}. ${offenseProblem(offense, input.bibliography.author)}`);
+  });
+  parts.push("");
+  parts.push(`## What you may change`);
+  parts.push(`- Rewrite each listed sentence IN PLACE, as a fact about ${named} and the world.`);
+  parts.push(`- If a listed sentence carries no fact about the world at all — it only describes the passage — DELETE that sentence and keep the rest of its field. Never leave a required field empty: if the whole field is narration, rewrite it instead of emptying it.`);
+  parts.push(`- If a listed sentence IS a whole entry of \`keyClaims\`, \`namedExamples\` or \`testableFacts\` and it carries no fact about the world, drop that entry rather than inventing a replacement — but this chapter still needs at least ${floors.keyClaims} key claims, ${floors.namedExamples} named examples and ${floors.testableFacts} testable facts, and a drop that breaks one of those floors throws the whole repair away.`);
+  parts.push(`- Change NOTHING else. Every other sentence, every id, every \`sourceQuote\`, every \`hardSpecifics\` token and every number stays exactly as it is.`);
+  parts.push(`- Invent nothing. If the draft does not already contain a fact, do not add one; you cannot see the source text on this call and an unquotable claim is worse than a missing one.`);
+  parts.push("");
+  parts.push(`## Your draft`);
+  parts.push(safeJson(draft));
+  parts.push("");
+  parts.push(`Return the complete corrected ChapterResearchResult JSON object — the whole object, not a patch. Output MUST be a single JSON object whose schemaVersion is exactly "source-v2". Emit no prose before or after it.`);
+  return parts.join("\n");
+}
+
+function repairedString(value: unknown, fallback: string): string {
+  return typeof value === "string" && value.trim().length > 0 ? value : fallback;
+}
+
+/**
+ * Merge a repair response onto the draft it repaired — the reason the repair
+ * cannot corrupt a sidecar even when the model ignores every instruction above.
+ *
+ * ONLY the prose fields listed here are taken from the response. Ids,
+ * `sourceQuote`s, `hardSpecifics`, `hardSpecificEvidence`, `quotations`,
+ * `frameworks`, `realWorld`, `forbiddenLeakage`, `chapterNumber` and
+ * `schemaVersion` come from the DRAFT, byte for byte, so a repair can never mint
+ * a quotation, re-anchor a fact, or add an item. It CAN drop an item (an entry
+ * the response omits by id is dropped) — that is the honest move for pure
+ * narration — and the merged object is then re-validated against the same
+ * floors, so a drop that breaks a floor rejects the repair.
+ *
+ * Returns null when the response is not a usable object; the caller then keeps
+ * the draft's own rejection.
+ */
+export function applyMetaRepair(draft: ChapterResearchResult, repaired: unknown): ChapterResearchResult | null {
+  if (!repaired || typeof repaired !== "object" || Array.isArray(repaired)) return null;
+  const patch = repaired as Partial<ChapterResearchResult>;
+  const merged: ChapterResearchResult = {
+    ...draft,
+    focus: repairedString(patch.focus, draft.focus),
+    coreClaim: repairedString(patch.coreClaim, draft.coreClaim),
+    hardEdge: repairedString(patch.hardEdge, draft.hardEdge),
+    paraphraseNotes: repairedString(patch.paraphraseNotes, draft.paraphraseNotes),
+    centralConcept: {
+      ...draft.centralConcept,
+      name: repairedString(patch.centralConcept?.name, draft.centralConcept?.name),
+      plainDefinition: repairedString(patch.centralConcept?.plainDefinition, draft.centralConcept?.plainDefinition),
+      whyItMatters: repairedString(patch.centralConcept?.whyItMatters, draft.centralConcept?.whyItMatters),
+    },
+    keyClaims: Array.isArray(patch.keyClaims)
+      ? patch.keyClaims.filter((claim): claim is string => typeof claim === "string" && claim.trim().length > 0)
+      : draft.keyClaims,
+    namedExamples: mergeById(draft.namedExamples, patch.namedExamples, ["label", "summary", "teachesWhat"]),
+    testableFacts: draft.testableFacts === undefined
+      ? draft.testableFacts
+      : mergeById(draft.testableFacts, patch.testableFacts, ["claim", "becauseMechanism", "commonError", "errorIsWhy"]),
+  };
+  return merged;
+}
+
+/**
+ * Take `fields` from the repair response onto each draft entry.
+ *
+ * Matching is by `id` first — the anchor the whole source-v2 graph is keyed on —
+ * and falls back to POSITION only when the two lists are the same length, so a
+ * response that scrambled or dropped its ids still repairs the right entry
+ * instead of silently emptying the list. An entry the response omits under both
+ * rules is DROPPED; a response entry that matches no draft entry is IGNORED (the
+ * repair may never add an item).
+ */
+function mergeById<T extends { id?: string }>(
+  draft: readonly T[] | undefined,
+  patch: unknown,
+  fields: readonly (keyof T & string)[],
+): T[] {
+  const entries = Array.isArray(draft) ? draft : [];
+  if (!Array.isArray(patch)) return [...entries];
+  const byId = new Map<string, Record<string, unknown>>();
+  for (const candidate of patch) {
+    if (!candidate || typeof candidate !== "object" || Array.isArray(candidate)) continue;
+    const id = (candidate as { id?: unknown }).id;
+    if (typeof id === "string" && id.length > 0) byId.set(id, candidate as Record<string, unknown>);
+  }
+  const sameLength = patch.length === entries.length;
+  const merged: T[] = [];
+  entries.forEach((entry, index) => {
+    const positional = sameLength && patch[index] && typeof patch[index] === "object" && !Array.isArray(patch[index])
+      ? (patch[index] as Record<string, unknown>)
+      : undefined;
+    const source = (typeof entry.id === "string" ? byId.get(entry.id) : undefined) ?? positional;
+    if (source === undefined) return; // omitted by the repair: dropped on purpose
+    const next = { ...entry } as Record<string, unknown>;
+    for (const field of fields) next[field] = repairedString(source[field], String(entry[field] ?? ""));
+    merged.push(next as T);
+  });
+  return merged;
+}
+
 export async function runResearcherChapter(
   input: ChapterResearchInput,
   execution?: ModelCallerExecution,
@@ -687,11 +1033,73 @@ export async function runResearcherChapter(
       dropped = pruned.dropped;
     }
 
+    const report = collectChapterResearchReport(candidate, input);
     const problems = [
-      ...collectChapterResearchProblems(candidate, input),
+      ...report.problems,
       ...(lastAttempt ? [] : grounding.map((problem) => problem.message)),
     ];
     if (problems.length === 0) return stampProvenance(candidate, provenance, input);
+
+    // R-283 — TARGETED REPAIR. When the ONLY thing wrong is wording in a prose
+    // field, one bounded call that receives the offending sentences verbatim is
+    // both cheaper and likelier to converge than re-drafting a 20 KB sidecar:
+    // the live 2026-09-04 Franklin run spent three full drafts per chapter and
+    // still ended with one clause carrying "the book". The repair is merged onto
+    // this draft (applyMetaRepair — ids, quotes and tokens cannot move) and then
+    // re-validated by the SAME validator and the SAME grounding check, so it
+    // cannot admit anything a fresh draft could not. If it does not come back
+    // clean, the draft's ORIGINAL rejection stands and the attempt retries as
+    // before: the repair can only ever save a chapter, never pass one.
+    if (isMetaRepairEligible(problems, report.offenses)) {
+      let repaired: ChapterResearchResult | null = null;
+      try {
+        repaired = await runJsonModelTask<ChapterResearchResult>(
+          execution,
+          "researcher-chapter",
+          systemPrompt,
+          buildMetaRepairPrompt(input, report.offenses, candidate),
+        );
+      } catch (error) {
+        const message = (error as Error).message;
+        // A durable quota cap cannot clear inside this window — report the
+        // provider's own words and stop, exactly as the draft call does.
+        if (isTransientProcessFailure(message) && isUnretryableProviderMessage(message)) {
+          attemptFailures.push({ kind: "quota-exhausted", message });
+          break;
+        }
+        // Gateway-schema / transient / timeout / a non-object response: the
+        // repair simply did not complete. It is NOT retried — one repair per
+        // attempt is the whole budget — and it NEVER manufactures a pass: the
+        // attempt falls through to the draft's own rejection below. A repair
+        // that cannot be had must leave the chapter exactly where the draft
+        // left it, never worse.
+        const incomplete = isGatewaySchemaRejection(message)
+          || isTransientProcessFailure(message)
+          || isTimedOut(message)
+          || message === MODEL_TASK_OUTPUT_INVALID;
+        if (!incomplete) {
+          // Real model infrastructure (cancellation, capacity, admission
+          // collision, uncertain teardown). Propagate it as the ERROR it is
+          // rather than reporting a content defect that was never proven.
+          throw error;
+        }
+        repaired = null;
+      }
+      const merged = repaired === null ? null : applyMetaRepair(candidate, repaired);
+      if (merged !== null) {
+        const mergedProblems = [
+          ...collectChapterResearchProblems(merged, input),
+          ...collectSourceQuoteProblems(merged, spanText).map((problem) => problem.message),
+        ];
+        if (mergedProblems.length === 0) {
+          const provenanceStamp: ChapterResearchMetaRepair = {
+            attempt,
+            offenses: report.offenses.map(({ rule, match, path, sentence }) => ({ rule, match, path, sentence })),
+          };
+          return stampProvenance({ ...merged, metaRepair: provenanceStamp }, provenance, input);
+        }
+      }
+    }
 
     // R-052 — abstention, stated honestly. Every item that could not be quoted is
     // gone and the ONLY thing left wrong is a floor: that is a SOURCE problem, and
@@ -835,6 +1243,29 @@ function safeJson(value: unknown): string {
   }
 }
 
+/**
+ * The source-text route's standalone-facts contract, rendered for one book.
+ *
+ * Exported so the wording is pinned by test rather than only by a live run, and
+ * kept beside {@link authorVerbContractLines} because it is the same discipline:
+ * a per-book contract belongs in the message that knows the book, not in the one
+ * system prompt every book shares.
+ */
+export function standaloneFactContractLines(author: string): string[] {
+  const named = author.trim().length > 0 ? author.trim() : "the person the book is about";
+  return [
+    `# Every fact is about ${named} and the world, never about the text`,
+    `The passage above is EVIDENCE, not the subject. A \`sourceQuote\` proves a fact about the world; it is not a licence to describe the passage. Whoever reads your notes has never seen this book and never will.`,
+    ``,
+    `Rejected: "The book opens with a letter to <person>, and the author explains why he is setting down <what>."`,
+    `Accepted: "${named} set down <what> for <person> in <year>, at <place>."`,
+    ``,
+    `Strip the narration from the rejected line and nothing is left: it reports the passage's table of contents, and no reader can check it against anything. The accepted line names an actor, a time and a place, so it can be checked by someone holding no book — and the quote you copied into \`sourceQuote\` is what proves it.`,
+    ``,
+    `When the passage's OWN subject is the act of writing — a preface, a dedication, a letter, a note on sources — that is still a world fact: say who wrote what, to whom, where and when. It is never a reason to fall back on "this chapter", "the chapter", "this book", "the book", "the memoir", "the author", "in his writing", or a chapter number. Each of those is rejected and costs this chapter an attempt.`,
+  ];
+}
+
 /** The chapter researcher's user prompt. Exported so the contract it states —
  *  the source block, the quoting rules, the taken-framings digest and the fact
  *  pins — is pinned by test rather than only by a live run. */
@@ -903,6 +1334,19 @@ export function buildUserPrompt(input: ChapterResearchInput): string {
     parts.push(`- Prose fields (focus, coreClaim, keyClaims, summary, paraphraseNotes, hardEdge) stay in YOUR OWN WORDS. The verbatim source belongs only in \`sourceQuote\`, \`hardSpecifics\` and \`quotations[].quote\`.`);
     parts.push(`- This chapter covers ${input.sourceSpan.text.length} characters of the book, so it needs at least ${floors.testableFacts} testable facts, ${floors.namedExamples} named examples and ${floors.keyClaims} key claims — drawn from across the WHOLE passage, not just its opening.`);
     parts.push("");
+    // R-283 — the standalone-facts contract, stated ONLY on the source-text
+    // route because that is the route that breaks it. Shown the chapter's own
+    // bytes and asked for verbatim quotes, the model narrates the bytes: the
+    // first live run of the finished pipeline (Franklin, 2026-09-04) lost all
+    // four dispatched chapters to the meta guard on attempt 1, and two of them
+    // outright. The system prompt states the RULE for every book; this block
+    // states, for THIS book, what to write instead — which is the half the
+    // model was missing. It names the author (the only legal replacement for
+    // "the author" in an autobiography) and leaves every other slot in angle
+    // brackets, so one book's cast cannot install itself as the house default
+    // in the next book's prompt.
+    for (const line of standaloneFactContractLines(input.bibliography.author)) parts.push(line);
+    parts.push("");
   }
   parts.push(
     input.sourceSpan
@@ -912,13 +1356,31 @@ export function buildUserPrompt(input: ChapterResearchInput): string {
   return parts.join("\n");
 }
 
+/**
+ * Everything wrong with a rejected chapter-research output: the problem lines
+ * the retry loop feeds back to the model, PLUS the located lexical offenses
+ * (R-283) the bounded repair needs.
+ *
+ * Each offense contributes EXACTLY ONE problem line, and the lexical lines are
+ * appended last, so `problems.length === offenses.length` is a sound test for
+ * "the only thing wrong here is wording" — which is the gate the repair opens on.
+ */
+export type ChapterResearchReport = {
+  readonly problems: string[];
+  readonly offenses: readonly LexicalOffense[];
+};
+
 /** Gather every validator + content-guard + source-v2-integrity problem with a
  *  rejected chapter-research output. Returns [] when the output is admissible.
  *  Kept separate from the throwing wrapper so the retry loop can feed the exact
  *  error lines back to the model. */
 export function collectChapterResearchProblems(r: ChapterResearchResult, input: ChapterResearchInput): string[] {
+  return collectChapterResearchReport(r, input).problems;
+}
+
+export function collectChapterResearchReport(r: ChapterResearchResult, input: ChapterResearchInput): ChapterResearchReport {
   const problems: string[] = [];
-  if (!r || typeof r !== "object") return ["chapter researcher returned a non-object output"];
+  if (!r || typeof r !== "object") return { problems: ["chapter researcher returned a non-object output"], offenses: [] };
 
   if (r.chapterNumber !== input.chapter.number) {
     problems.push(`chapterNumber mismatch: got ${r.chapterNumber}, expected ${input.chapter.number}`);
@@ -994,42 +1456,20 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
     if (isResearchRouteBlockingFinding(finding)) problems.push(`${finding.checkId}: ${finding.message}`);
   }
 
-  // Meta-reference checks across every NARRATIVE field the sidecar carries
-  // downstream. R-024: testableFacts, example labels/hardSpecifics and the
-  // concept name were all absent from this list, and testableFacts is the field
-  // the source packet compiles the writers' facts from — the released Franklin
-  // book shipped `"Franklin dies in 1790 with the Penn estate tax negotiation
-  // still unresolved in his writing"`, a statement about the manuscript rather
-  // than the world, straight through this guard. voiceCues stay OUT on purpose:
-  // a voice cue legitimately describes authorial technique ("opens each chapter
-  // with an anecdote"), so scanning it would reject correct output.
-  const allText = [
-    r.focus,
-    r.coreClaim,
-    r.centralConcept?.name ?? "",
-    r.centralConcept?.plainDefinition ?? "",
-    r.centralConcept?.whyItMatters ?? "",
-    ...(r.keyClaims ?? []),
-    ...(r.namedExamples ?? []).flatMap((ex) => [
-      ex?.label,
-      ex?.summary,
-      ex?.teachesWhat,
-      ...(Array.isArray(ex?.hardSpecifics) ? ex.hardSpecifics : []),
-    ]),
-    ...(r.testableFacts ?? []).flatMap((f) => [f?.claim, f?.becauseMechanism, f?.commonError, f?.errorIsWhy]),
-    r.hardEdge,
-    r.paraphraseNotes,
-  ].filter((value): value is string => typeof value === "string").join(" \n ");
-
+  // Meta-reference / author-verb checks across every NARRATIVE field the sidecar
+  // carries downstream. See narrativeSegments() for which fields are scanned and
+  // why voiceCues are deliberately not.
+  //
   // R-025: report EVERY distinct hit for this attempt. Reporting only the first
   // meant a sidecar carrying three meta-references needed three attempts — the
   // whole MAX_CHAPTER_RESEARCH_ATTEMPTS budget — and aborted the book instead.
-  for (const hit of distinctMatches(allText, META_REGEXES)) {
-    problems.push(metaReferenceProblem(hit, input.bibliography.author));
-  }
-  for (const hit of distinctMatches(allText, authorVerbRegexes(input.bibliography))) {
-    problems.push(`author-surname-verb construction "${hit}" found — state the claim directly`);
-  }
+  // R-283: each hit now carries its field path and its own sentence.
+  const segments = narrativeSegments(r);
+  const offenses = [
+    ...collectOffenses(segments, META_REGEXES, "meta-reference"),
+    ...collectOffenses(segments, authorVerbRegexes(input.bibliography), "author-verb"),
+  ];
+  for (const offense of offenses) problems.push(offenseProblem(offense, input.bibliography.author));
 
   // Title match (loose — capitalization-insensitive)
   if (typeof r.chapterTitle === "string" && input.chapter.title) {
@@ -1038,7 +1478,7 @@ export function collectChapterResearchProblems(r: ChapterResearchResult, input: 
     }
   }
 
-  return problems;
+  return { problems, offenses };
 }
 
 /** Render a ChapterResearchResult to the plain-text sidecar shape that
