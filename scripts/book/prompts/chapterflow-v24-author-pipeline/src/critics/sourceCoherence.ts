@@ -16,7 +16,7 @@
  */
 
 import { BibliographyResult } from "../agents/researcher-bibliography.js";
-import { ChapterResearchResult, META_REGEXES, authorVerbRegexes } from "../agents/researcher-chapter.js";
+import { ChapterResearchResult, META_REGEXES, authorVerbRegexes, isWorldNounAuthorReference } from "../agents/researcher-chapter.js";
 
 export type SourceCoherenceFinding = {
   code: string;                       // e.g., "SC1.chapter_count_mismatch"
@@ -54,11 +54,26 @@ export type SourceCoherenceReport = {
 /** First match of any pattern, as a non-global exec so `index`/`input` are
  *  available for the evidence excerpt. authorVerbRegexes() returns /gi/
  *  patterns, whose `String.match` result carries neither. */
-function firstMatch(text: string, patterns: readonly RegExp[]): RegExpExecArray | null {
+function firstMatch(
+  text: string,
+  patterns: readonly RegExp[],
+  isExempt?: (match: RegExpExecArray) => boolean,
+): RegExpExecArray | null {
   for (const pattern of patterns) {
-    const re = pattern.global ? new RegExp(pattern.source, pattern.flags.replace(/g/g, "")) : pattern;
-    const m = re.exec(text);
-    if (m) return m;
+    if (!isExempt) {
+      const re = pattern.global ? new RegExp(pattern.source, pattern.flags.replace(/g/g, "")) : pattern;
+      const m = re.exec(text);
+      if (m) return m;
+      continue;
+    }
+    // R-286: an exempt occurrence must not hide a later non-exempt one, so the
+    // scan walks EVERY occurrence of this pattern rather than stopping at the first.
+    const re = pattern.global ? pattern : new RegExp(pattern.source, `${pattern.flags}g`);
+    re.lastIndex = 0;
+    for (let m = re.exec(text); m !== null; m = re.exec(text)) {
+      if (m[0].length === 0) { re.lastIndex += 1; continue; }
+      if (!isExempt(m)) return m;
+    }
   }
   return null;
 }
@@ -123,7 +138,7 @@ export function runSourceCoherenceCheck(input: SourceCoherenceInput): SourceCohe
     // the released Franklin book shipped a testable fact about the manuscript
     // straight past this critic. voiceCues stay out on purpose: a voice cue
     // legitimately describes authorial technique.
-    const allText = [
+    const fields = [
       ch.focus,
       ch.coreClaim,
       ch.centralConcept?.name ?? "",
@@ -139,9 +154,26 @@ export function runSourceCoherenceCheck(input: SourceCoherenceInput): SourceCohe
       ...(ch.testableFacts ?? []).flatMap((f) => [f?.claim, f?.becauseMechanism, f?.commonError, f?.errorIsWhy]),
       ch.hardEdge,
       ch.paraphraseNotes,
-    ].filter((value): value is string => typeof value === "string").join(" \n ");
+    ].filter((value): value is string => typeof value === "string");
 
-    const m = firstMatch(allText, META_REGEXES);
+    // R-286: the world-noun sense of "the author" (an unnamed writer of a piece)
+    // is a fact about the world, not a reference to this text. Same predicate the
+    // researcher's own validator uses, so the two routes cannot disagree.
+    //
+    // REVIEW ROUND 2 (minor). SC4 used to scan the fields JOINED with " \n ",
+    // and a carve-out whose pattern contains `\s+` matches across that joiner —
+    // so keyClaims ["Officials would not name", "The author argues…"] read as one
+    // naming construction and the real meta-reference in the second claim was
+    // exempted by text from the first. collectOffenses never had this bug: it
+    // scans per segment. SC4 now does the same, one field at a time, which also
+    // makes the evidence excerpt point at the field the hit is actually in.
+    // (SC5 keeps the joined scan: its behaviour is unchanged by this fix and
+    // narrowing it is not what the review asked for.)
+    let m: RegExpExecArray | null = null;
+    for (const field of fields) {
+      m = firstMatch(field, META_REGEXES, (hit) => isWorldNounAuthorReference(field, hit.index, hit[0].length));
+      if (m) break;
+    }
     if (m) {
       findings.push({
         code: "SC4.meta_reference",
@@ -151,6 +183,7 @@ export function runSourceCoherenceCheck(input: SourceCoherenceInput): SourceCohe
         evidence: m.input?.slice(Math.max(0, m.index! - 30), m.index! + m[0].length + 30),
       });
     }
+    const allText = fields.join(" \n ");
     const av = firstMatch(allText, authorVerbRegexes(bibliography));
     if (av) {
       findings.push({
