@@ -22,6 +22,7 @@ import {
   CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
   CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
   MAX_EDITOR_ATTEMPTS_PER_CHAPTER,
+  MAX_SUMMARY_REDRAFTS_PER_CHAPTER,
   type ChapterEditProvenanceFile,
 } from "../../src/app/compilerApplicationPort.js";
 import { CHAPTER_EDIT_SCHEMA_VERSION } from "../../src/app/chapterEditorContract.js";
@@ -167,6 +168,12 @@ type RigOptions = {
   /** What the fake editor returns for `editor-chNN`, built from the fixture packs
    *  the port fed it. Absent = a wording-only edit that keeps every fact. */
   readonly editorOutput?: (fixture: ReturnType<typeof compileCreditFixture>, attempt: number) => unknown;
+  /** Per-(kind, draft-ordinal) section output, for the livelock-breaker tests: the
+   *  same section is drafted more than once in one run (pass 1, then pass 2 after
+   *  the breaker re-drafts the summary), and each draft needs different content.
+   *  `attempt` counts drafts of THAT operation across the whole run. Returning
+   *  undefined falls through to the standard fixture pack. */
+  readonly sectionOutput?: (fixture: ReturnType<typeof compileCreditFixture>, kind: string, attempt: number) => unknown;
 };
 
 /** The four fixture packs as the editor's `sections` document. */
@@ -325,6 +332,14 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
             : { schemaVersion: CHAPTER_EDIT_SCHEMA_VERSION, chapterId: fixture.blueprint.chapterId, sections: produced },
         };
       }
+      if (options.sectionOutput) {
+        const drafted = (sectionAttempts.get(request.context.operationId) ?? 0) + 1;
+        sectionAttempts.set(request.context.operationId, drafted);
+        const custom = options.sectionOutput(fixture, kindOf(request.context.operationId), drafted);
+        if (custom !== undefined) {
+          return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: custom as Record<string, unknown> };
+        }
+      }
       const output = outputByKind[kindOf(request.context.operationId)] as Record<string, unknown>;
       if (options.malformedSummary && counts.runner === 1) {
         // Structurally malformed output (wrong artifactType) — a NON-retryable
@@ -423,9 +438,14 @@ requiredTest("1 selected candidate opens exactly once and returns successor iden
   if (!run.ok) return;
   assert.equal(run.value.status, "COMPLETED");
   assert.deepEqual(run.value.definition.requiredStages, ["compiler-candidate"]);
-  // Capacity = operations.length (4 sections) * MAX_SECTION_ATTEMPTS (3) so bounded
-  // section retry has headroom; the happy path still consumes one attempt per section.
-  assert.deepEqual(run.value.definition.attemptLimits, { run: 12, byStage: { "compiler-candidate": 12 } });
+  // Capacity = operations.length (4 sections) * MAX_SECTION_ATTEMPTS (3)
+  //          * (1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER) = 24.
+  // RE-PIN 12 -> 24: the intra-chapter livelock breaker may re-draft a chapter's
+  // sections once more against a re-drafted summary, and run-state has to ADMIT
+  // those attempts or the breaker is refused at the door. Headroom only — the
+  // spend bound is the per-section draft budget enforced in the loop, and the
+  // happy path below still consumes exactly one attempt per section.
+  assert.deepEqual(run.value.definition.attemptLimits, { run: 24, byStage: { "compiler-candidate": 24 } });
   assert.equal(run.value.attempts.length, 4);
   assert.equal(new Set(run.value.attempts.map((attempt) => attempt.admission.attemptId)).size, 4);
   assert.deepEqual(run.value.attempts.map((attempt) => attempt.admission.operationId), [
@@ -1023,8 +1043,9 @@ requiredTest("4 complete successor inventory preserves input order then compiler
   const parityRun = await parity.runStore.readRun(BOOK, "run-parity", context.clock.now());
   assert.equal(parityRun.ok, true);
   if (parityRun.ok) {
-    // 2 chapters * 4 sections = 8 operations, * MAX_SECTION_ATTEMPTS (3) = 24.
-    assert.deepEqual(parityRun.value.definition.attemptLimits, { run: 24, byStage: { "compiler-candidate": 24 } });
+    // 2 chapters * 4 sections = 8 operations, * MAX_SECTION_ATTEMPTS (3)
+    // * (1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER) = 48 (re-pinned from 24; see test 1).
+    assert.deepEqual(parityRun.value.definition.attemptLimits, { run: 48, byStage: { "compiler-candidate": 48 } });
   }
 
   const legacyRoot = resolve(parity.attemptRoot, "legacy");
@@ -1696,8 +1717,8 @@ requiredTest("2B an accepted edit reaches the staged candidate, its chapter arti
   // Capacity carries the editor's own headroom; the happy path spends one attempt
   // per section plus one per chapter.
   assert.deepEqual(run.value.definition.attemptLimits, {
-    run: 12 + MAX_EDITOR_ATTEMPTS_PER_CHAPTER,
-    byStage: { "compiler-candidate": 12 + MAX_EDITOR_ATTEMPTS_PER_CHAPTER },
+    run: 24 + MAX_EDITOR_ATTEMPTS_PER_CHAPTER,
+    byStage: { "compiler-candidate": 24 + MAX_EDITOR_ATTEMPTS_PER_CHAPTER },
   });
   assert.equal(run.value.attempts.length, 5);
   assert.ok(run.value.attempts.some((attempt) => attempt.admission.operationId === "editor-ch01"));
@@ -1791,6 +1812,165 @@ requiredTest("2B the disable flag ships the drafted chapter and records that the
   const provenance = editProvenance(staged);
   assert.deepEqual(provenance.chapters.map((entry) => entry.status), ["DISABLED"]);
   assert.deepEqual(provenance.chapters[0].blockers, ["editor disabled by CHAPTERFLOW_EDITOR_PASS=0"]);
+});
+
+// ── THE INTRA-CHAPTER LIVELOCK BREAKER (SEC136 / MAX_SUMMARY_REDRAFTS_PER_CHAPTER)
+
+/**
+ * The live Franklin shape, hermetically: a chapter whose SUMMARY is gate-clean and
+ * cached, and whose dependent pack is blocked by a chapter-scope grounding gate over
+ * a case the BLUEPRINT dealt — a case that pack can neither swap (the deal is wave-1)
+ * nor teach (the summary is another pack, already stored). Pre-fix the port re-asked
+ * that writer twice more and then failed the round; every resume round replayed it.
+ *
+ * `partialSummary` teaches ch01.case.cfpb's "credit reports" in the DEEP read and
+ * leaves "lenders use account information" in fullRead only. That passes SEC128 and
+ * SEC136 (both measure the whole prose) and still makes a card citing that case
+ * unwritable: SEC120 measures the STANDALONE tiers, and it does not stand down here
+ * because one of the case's specifics IS on the page.
+ */
+const CFPB_CASE = "ch01.case.cfpb";
+const DEEP_PARTIAL = " Credit reports gather what a card account did last month, which is why the timing of a payment matters.";
+const DEEP_TAUGHT = DEEP_PARTIAL
+  + " Lenders use account information from that record, credit utilization is one of the numbers they weigh, and the result lands on the 300 to 850 scale.";
+
+function summaryWithDeepTail(fixture: ReturnType<typeof compileCreditFixture>, tail: string): Record<string, unknown> {
+  const pack = JSON.parse(JSON.stringify(fixture.summary)) as { breakdown: { deepRead: string } };
+  pack.breakdown.deepRead = `${pack.breakdown.deepRead}${tail}`;
+  return pack as unknown as Record<string, unknown>;
+}
+
+/** A learning pack whose first card cites the dealt case and uses the specific that
+ *  never reached the standalone tiers — the SEC120 blocker the summary alone can fix. */
+function learningBlockedOnDealtCase(fixture: ReturnType<typeof compileCreditFixture>): Record<string, unknown> {
+  const pack = JSON.parse(JSON.stringify(fixture.learning)) as { cards: { cards: { sourceAnchorIds: string[]; back: string }[] } };
+  pack.cards.cards[0].sourceAnchorIds = [CFPB_CASE];
+  pack.cards.cards[0].back = "Lenders use account information, so a smaller reported balance changes what the report can say about you.";
+  return pack as unknown as Record<string, unknown>;
+}
+
+function draftedOperationIds(prompts: Parameters<ModelTaskRunner["run"]>[0][]): string[] {
+  return prompts.map((prompt) => prompt.context.operationId);
+}
+
+function cardFor(prompts: Parameters<ModelTaskRunner["run"]>[0][], index: number): string {
+  const input = prompts[index].prompt.inputs.find((entry) => entry.name === "task_card");
+  assert.ok(input);
+  return Buffer.from(input.bytes).toString("utf8");
+}
+
+requiredTest("SEC136-a a dependent pack blocked over an untaught DEALT case evicts and re-drafts the summary EXACTLY once, then stores every pack", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const subject = rig(context, "breaker-converges", {
+    cache,
+    sectionOutput: (fixture, kind, attempt) => {
+      if (kind === "summary-pack") return summaryWithDeepTail(fixture, attempt === 1 ? DEEP_PARTIAL : DEEP_TAUGHT);
+      if (kind === "learning-pack" && attempt === 1) return learningBlockedOnDealtCase(fixture);
+      return undefined;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // PASS 1 drafts summary, example, learning (blocked). The breaker fires on that
+  // FIRST blocked draft — never on attempt 3 — so learning is not re-asked against a
+  // summary it cannot change. PASS 2 re-drafts the summary and the learning pack;
+  // the example pack is still valid against the new prose and is REUSED for free.
+  assert.deepEqual(draftedOperationIds(subject.prompts), [
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-example-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-action-pack",
+  ]);
+  assert.equal(subject.counts.runner, 6);
+
+  // EXACTLY ONE re-draft: the summary is drafted twice and no more, which is the
+  // whole budget (MAX_SUMMARY_REDRAFTS_PER_CHAPTER).
+  assert.equal(draftedOperationIds(subject.prompts).filter((id) => id.endsWith("summary-pack")).length, 2);
+  assert.equal(MAX_SUMMARY_REDRAFTS_PER_CHAPTER, 1);
+
+  // The re-draft card names the case and the exact specific that never reached the
+  // standalone tiers — the half the live SEC128 blocker could not supply.
+  const redraftCard = cardFor(subject.prompts, 3);
+  assert.match(redraftCard, /RE-DRAFT — YOUR PREVIOUS SUMMARY LEFT A DEALT CASE UNTAUGHT/);
+  assert.ok(redraftCard.includes(CFPB_CASE));
+  assert.ok(redraftCard.includes("lenders use account information"));
+  // Pass 1's card carried the standing MUST TEACH list but no re-draft brief.
+  assert.match(cardFor(subject.prompts, 0), /MUST TEACH/);
+  assert.ok(!cardFor(subject.prompts, 0).includes("RE-DRAFT"));
+
+  // Every pack of the chapter is stored, and the SUMMARY entry is the re-drafted
+  // one: the evicted pack must not survive anywhere.
+  const entries = readCacheEntries(context.roots.booksRoot, BOOK);
+  assert.deepEqual(entries.map((entry) => entry.envelope.kind).sort(), ["action-pack", "example-pack", "learning-pack", "summary-pack"]);
+  const storedSummary = entries.find((entry) => entry.envelope.kind === "summary-pack");
+  assert.ok(storedSummary);
+  const storedDeep = ((storedSummary.envelope.pack as { breakdown: { deepRead: string } }).breakdown).deepRead;
+  assert.match(storedDeep, /lenders use account information/i, "the stored summary must be the re-drafted one");
+
+  // The staged candidate carries exactly one summary pack, and it is the taught one.
+  const staged = subject.staged();
+  assert.ok(staged);
+  assert.equal(staged.files.filter((file) => file.logicalPath === "compiler/ch01/summary-pack.json").length, 1);
+  assert.match(stagedFile(staged, "compiler/ch01/summary-pack.json"), /lenders use account information/i);
+});
+
+requiredTest("SEC136-b the breaker's completed run replays on resume with zero model calls", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const subject = rig(context, "breaker-resume", {
+    cache,
+    sectionOutput: (fixture, kind, attempt) => {
+      if (kind === "summary-pack") return summaryWithDeepTail(fixture, attempt === 1 ? DEEP_PARTIAL : DEEP_TAUGHT);
+      if (kind === "learning-pack" && attempt === 1) return learningBlockedOnDealtCase(fixture);
+      return undefined;
+    },
+  });
+  const first = await subject.port.run(subject.request);
+  const spent = subject.counts.runner;
+  assert.equal(spent, 6);
+  const resumed = await subject.port.run({ ...subject.request, resumeRunId: first.runId });
+  assert.deepEqual(resumed, first);
+  assert.equal(subject.counts.runner, spent, "a completed breaker run replays without spending a call");
+  assert.equal(subject.counts.stage, 1);
+});
+
+requiredTest("SEC136-c a second failure fails CLOSED, naming the chapter and the untaught dealt case", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const subject = rig(context, "breaker-fails-closed", {
+    cache,
+    // The re-drafted summary NEVER teaches the case, and the learning pack keeps
+    // citing it: one re-draft is spent, the second trigger fails the round.
+    sectionOutput: (fixture, kind) => {
+      if (kind === "summary-pack") return summaryWithDeepTail(fixture, DEEP_PARTIAL);
+      if (kind === "learning-pack") return learningBlockedOnDealtCase(fixture);
+      return undefined;
+    },
+  });
+  await assert.rejects(
+    subject.port.run(subject.request),
+    (error: Error) => {
+      assert.match(error.message, /^COMPILER_SECTION_BLOCKED:learning-pack:after 1 summary re-draft\(s\):/);
+      assert.match(error.message, /ch01 still does not teach the case\(s\) its blueprint dealt/);
+      assert.ok(error.message.includes(CFPB_CASE));
+      assert.ok(error.message.includes("lenders use account information"));
+      assert.match(error.message, /Underlying block: SEC120\.learning_prose_derivable/);
+      return true;
+    },
+  );
+  // Bounded: summary twice, example once, learning twice. Never a third pass.
+  assert.deepEqual(draftedOperationIds(subject.prompts), [
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-example-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-learning-pack",
+  ]);
+  assert.equal(subject.counts.stage, 0, "a failed round stages nothing");
 });
 
 finishV25Tests().catch((error: unknown) => {

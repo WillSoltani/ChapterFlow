@@ -325,6 +325,17 @@ test("every rendered task is <= 72% of its pinned pre-refactor length", () => {
   // summary 33,813 = 69.9%, example 36,558 = 66.9%, learning 38,169 = 71.6% (binding),
   // action 31,781 = 67.7%. Pin 72%, one point above the binding measurement, exactly as
   // the 60->62, 62->69 and 69->70 re-pins above did.
+  // SEC136 RE-MEASURE (the summary card's MUST TEACH list of the chapter's dealt
+  // cases). Only the summary-pack card moves; the other three render byte-identically.
+  // MEASURED on this fixture, before -> after:
+  //   summary 33,199 = 68.7%  ->  34,159 = 70.6%   (+960 chars, the dealt-case block)
+  //   example 35,288 = 64.6%  ->  35,288 = 64.6%   (unchanged)
+  //   learning 37,435 = 70.2% ->  37,435 = 70.2%   (unchanged)
+  //   action  31,548 = 67.2%  ->  31,548 = 67.2%   (unchanged)
+  // The summary card is now the binding render at 70.6%, still under the standing
+  // 72% pin, so the pin is NOT re-pinned — it is only re-measured here so the next
+  // creep starts from a true baseline. (The 69.9% figure the merge note above
+  // records for summary had itself drifted to 68.7% before this change.)
     assert.ok(md.length <= 0.72 * pre, `${kind}: rendered ${md.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 72%`);
   }
 });
@@ -587,6 +598,10 @@ const LARGEST_SCAR_BOOK = "the-autobiography-of-benjamin-franklin";
 // ceiling on what production may send, not a target, and lowering them to one book's
 // current scar file would re-pin the contract to one config file. That leaves 8,357
 // characters of headroom on the binding packet-only card and 8,567 with prose.
+// SEC136 RE-MEASURE: the summary card's MUST TEACH list adds ~960 chars. Measured
+// across every scoped chapter of the largest-scar book, the heaviest summary render
+// is ch3 at 44,476 (+960) and the BINDING kind is still learning-pack at
+// 47,143 — both well under this budget, which is therefore left unchanged.
 const HONEST_TASK_CHAR_BUDGET = 55_500;
 const HONEST_LEARNING_WITH_PROSE_CHAR_BUDGET = 63_000;
 

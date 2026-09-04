@@ -46,6 +46,12 @@ import {
   standaloneProseText,
   type ChapterProseSource,
 } from "./chapterProse.js";
+import {
+  anchorSupportsRichClaim,
+  CHAPTER_CASE_MIN_SPECIFICS,
+  describeUntaughtDealtCase,
+  untaughtDealtCases,
+} from "./dealtCases.js";
 import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
 import { splitSentences } from "../critics/textUtils.js";
 import {
@@ -2283,10 +2289,12 @@ const FACT_ALIGNMENT_MIN_POOL = 8;
 const EXAMPLE_MIN_CASE_SPECIFICS = 1;
 
 // ---- chapter-level case grounding (R-059) ----------------------------------
-/** Hard specifics of a cited case that must reach the chapter's reader-visible prose.
- *  ONCE per chapter (SEC14 for the cases the prose itself cites, SEC128 for the cases
- *  only the quiz/cards/examples/action cite) — never once per unit. */
-const CHAPTER_CASE_MIN_SPECIFICS = 2;
+// CHAPTER_CASE_MIN_SPECIFICS — hard specifics of a cited case that must reach the
+// chapter's reader-visible prose, ONCE per chapter (SEC14 for the cases the prose
+// itself cites, SEC128 for the cases only the quiz/cards/examples/action cite,
+// SEC136 for the cases the BLUEPRINT dealt) — never once per unit. It lives in
+// ./dealtCases so the gate, the writer card and the compiler's re-draft feedback
+// all read the SAME number.
 
 /**
  * SEC129 — the per-chapter rotation cap that PAYS FOR the SEC56/SEC58 demotion.
@@ -2650,9 +2658,13 @@ function citedRichAnchors(
   for (const citation of citations) {
     for (const id of anchorArray(citation.ids)) {
       const anchor = anchors.get(id);
-      if (!anchor?.supportsClaimTypes?.includes(citation.claimType)) continue;
-      if ((anchor.hardSpecifics ?? []).length < CHAPTER_CASE_MIN_SPECIFICS) continue;
-      out.set(id, anchor);
+      // One predicate, both sides (dealtCases.anchorSupportsRichClaim): the anchor
+      // must support the claim the unit makes on it AND carry enough hardSpecifics
+      // for the two-specific bar to be satisfiable. SEC136 selects dealt cases with
+      // exactly this filter, so it can never demand of the summary a case SEC128
+      // would not have fired on.
+      if (!anchorSupportsRichClaim(anchor, citation.claimType)) continue;
+      out.set(id, anchor as SourcePacketV1["allowedAnchors"][number]);
     }
   }
   return out;
@@ -2840,6 +2852,33 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
         "/breakdown",
       );
     }
+  }
+  // ---- SEC136: the DEALT cases, checked on the pack that can teach them ------
+  //
+  // SEC14 (above) covers the cases the summary CHOSE to cite; SEC128 covers the
+  // cases the example/learning/action packs cite. Between them sat the class that
+  // wedged the live Franklin run: a case the BLUEPRINT DEALS to an example slot or
+  // a quiz cue. The example writer cannot swap it (the deal is wave-1, BPV10/BPV11)
+  // and cannot teach it (the summary is drafted first, cached on gate-pass, and
+  // reused verbatim on every resume round), so SEC128's two remedies — "teach it in
+  // the summary tiers or cite a case the prose covers" — were both addressed to a
+  // writer that had neither move. Rounds 3, 4, … repeated the same three failures.
+  //
+  // SEC136 asks the SUMMARY for what SEC128 will later demand of the units built on
+  // it, on the first draft, with the missing specifics named. It measures the same
+  // haystack and the same bar SEC128 uses (see dealtCases.ts for why it is not the
+  // stricter standalone haystack the PROMPT asks for), so it can only ever fire
+  // where SEC128 would have.
+  for (const coverage of untaughtDealtCases(bp, packet, pack)) {
+    push(
+      "SEC136.dealt_case_untaught",
+      "blocker",
+      `this chapter's blueprint deals ${coverage.id} to its examples/quiz/cards, but the reader-visible prose carries only ${coverage.taughtInProse}/${coverage.required} of that case's hardSpecifics`
+      + ` (${coverage.hardSpecifics.join(", ")}); the writers of those units cannot swap a dealt case and cannot edit this pack, so teach it HERE —`
+      + ` put at least ${coverage.required} of its specifics in the hook, the fast/deep read or the keyTakeaway (fullRead alone satisfies SEC128 but leaves a Deep-read reader unable to answer, SEC120).`
+      + ` ${describeUntaughtDealtCase(coverage)}`,
+      "/breakdown",
+    );
   }
   return findings;
 }

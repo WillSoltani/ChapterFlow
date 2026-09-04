@@ -26,6 +26,11 @@ import { buildSectionTaskMarkdown, type SectionRetryFeedback, type SectionTaskRe
 import { assembleSections, type AssemblyBlocker, type AssembleSectionsResult, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import { validateSectionPack } from "../sections/sectionGate.js";
 import type { ChapterProseSource } from "../sections/chapterProse.js";
+import {
+  describeUntaughtDealtCase,
+  untaughtStandaloneDealtCases,
+  type DealtCaseCoverage,
+} from "../sections/dealtCases.js";
 import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
 import type { ChapterEditCache } from "../books/chapterEditCache.js";
 import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
@@ -69,6 +74,41 @@ const COMPILER_STAGE_ID = "compiler-candidate" as const;
  * worst case (every section exhausting its budget) still fits under the limit.
  */
 export const MAX_SECTION_ATTEMPTS = 3;
+
+/**
+ * THE INTRA-CHAPTER LIVELOCK BREAKER — how many times one chapter may throw away
+ * its own summary pack and re-draft it inside a single compile round.
+ *
+ * The assembly path has had an eviction policy for CROSS-chapter blockers since
+ * Task 11aa: a blocker over a durably-cached pack would otherwise be reused
+ * verbatim by the next run and re-fail identically forever, so the port evicts the
+ * implicated entry and seeds phrases-to-avoid into the re-draft. INTRA-chapter
+ * dependencies had no such path, and the live Franklin run found the hole: the
+ * example pack blocked on SEC128 against a summary that was already stored,
+ * already gate-clean, and reused on every resume round, so the port spent three
+ * attempts a round re-asking a writer that had no legal move. SEC136 now prevents
+ * that state at the summary gate; this is the backstop for the arm SEC136
+ * deliberately does not cover — a dealt case taught only in fullRead clears SEC128
+ * and can still make the learning pack unwritable, because SEC120 measures
+ * derivability against the STANDALONE tiers while SEC56 compels a specific and
+ * SEC129 caps how often one specific may repeat.
+ *
+ * ONE re-draft per chapter per round. Past it the round fails CLOSED, naming the
+ * chapter and the untaught case: a second eviction would buy another identical
+ * re-draft, which is the same reasoning ASSEMBLY_AVOID_MAX_ROUNDS applies on the
+ * cross-chapter side. Nothing here manufactures a pass — every pack still has to
+ * clear the same gate.
+ *
+ * SPEND. A chapter's worst case rises from
+ *   SECTION_KINDS.length * MAX_SECTION_ATTEMPTS            = 4 * 3 = 12 model calls
+ * to
+ *   SECTION_KINDS.length * MAX_SECTION_ATTEMPTS * (1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER)
+ *                                                          = 4 * 3 * 2 = 24,
+ * and ONLY for a chapter that actually hits the blocker. The trigger fires on the
+ * FIRST blocked draft rather than at attempt 3, so the common shape costs one
+ * wasted dependent draft rather than three.
+ */
+export const MAX_SUMMARY_REDRAFTS_PER_CHAPTER = 1;
 
 /**
  * Package 2B — the editor pass's whole per-chapter attempt budget, used only to
@@ -1472,7 +1512,13 @@ export class CompilerApplicationPort {
     // operations.length attempts and checkpoint/resume identity is unchanged.
     // Package 2B adds the editor's own headroom, and ONLY when the editor is
     // composed: a compile without it keeps the exact attempt limits it had.
-    const attemptCapacity = operations.length * MAX_SECTION_ATTEMPTS
+    // The livelock breaker can re-draft a chapter's four sections once more against
+    // a re-drafted summary, so run-state must ADMIT that many attempts or the
+    // breaker would be refused at the door. This is headroom, not spend: the actual
+    // bound is MAX_SECTION_ATTEMPTS * (1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER) drafts
+    // per section, enforced in the loop below, and the success path still consumes
+    // exactly operations.length attempts.
+    const attemptCapacity = operations.length * MAX_SECTION_ATTEMPTS * (1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER)
       + editorOps.length * MAX_EDITOR_ATTEMPTS_PER_CHAPTER;
     const definition = runDefinition({ request, runId, createdAt, inventory: Object.freeze([]), attempts: attemptCapacity });
     const created = await this.#dependencies.runStore.createRun(definition);
@@ -1759,13 +1805,36 @@ export class CompilerApplicationPort {
       for (const preparedChapter of prepared) {
         const { chapter, packet, index, blueprint: candidateBlueprint, blueprintDigest, packetDigest, taskCardDigests, packetLogicalPath, blueprintLogicalPath } = preparedChapter;
         const chapterFiles = preparedChapter.files;
-        const sectionPaths = {} as Record<SectionKind, string>;
+        // Every section file this chapter appends is pushed after the three compiler
+        // sidecars phase 1 already built. A livelock-breaker restart truncates back
+        // to this mark, so an abandoned pass leaves nothing behind in the candidate.
+        const chapterFilesBeforeSections = chapterFiles.length;
+        let sectionPaths = {} as Record<SectionKind, string>;
         // Task 11ai — the chapter's reader-visible prose, captured the moment the
         // summary pack is accepted (reused or freshly drafted). SECTION_KINDS order is
         // summary → example → learning → action, so this is populated before the
         // learning pack is drafted or gated: the writer sees the prose it must be
         // derivable from, and SEC120 checks the draft against it.
         let draftedChapterProse: ChapterProseSource | undefined;
+        // ---- the intra-chapter livelock breaker (see MAX_SUMMARY_REDRAFTS_PER_CHAPTER)
+        // `sectionPass` salts retry attempt ids so run-state admits pass 2 as new
+        // work; `summaryRedraftsUsed` is the hard budget; `summaryRedraftMustTeach`
+        // carries the EXACT missing specifics into the summary re-draft's card.
+        let sectionPass = 1;
+        let summaryRedraftsUsed = 0;
+        let summaryRedraftMustTeach: readonly DealtCaseCoverage[] | undefined;
+        // Set by the breaker to abandon the current pass and restart the chapter
+        // against a re-drafted summary.
+        let restartChapterSections = false;
+        // The identity of THIS chapter's summary entry, captured as it is keyed so
+        // the breaker can evict exactly it (never a guess at the key).
+        let summaryCacheKey: SectionPackCacheKey | undefined;
+        // The bounded PASS loop. Its body is the section loop below, left at its
+        // original indentation so this change reads as an addition rather than a
+        // 300-line reflow of code it does not otherwise touch. It runs ONCE unless
+        // the breaker sets `restartChapterSections`, and at most
+        // 1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER times in total.
+        for (;;) {
         for (const kind of SECTION_KINDS) {
           const operation = operations.find((value) => value.chapterNumber === chapter.chapterNumber && value.kind === kind);
           if (!operation) throw new Error("COMPILER_ID_INVALID:missing compiler operation");
@@ -1790,6 +1859,7 @@ export class CompilerApplicationPort {
             scarsDigest,
             taskCardDigest,
           };
+          if (kind === "summary-pack") summaryCacheKey = cacheKey;
           let acceptedOutput: Record<string, unknown> | null = null;
           let reusedFromCache = false;
           // Task 11aa — consult durable cross-chapter avoid-context so a re-draft of
@@ -1836,9 +1906,16 @@ export class CompilerApplicationPort {
           let retryFeedback: SectionRetryFeedback | undefined;
           for (let attemptNumber = 1; !reusedFromCache && attemptNumber <= MAX_SECTION_ATTEMPTS; attemptNumber += 1) {
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
-            const attemptId = attemptNumber === 1 ? operation.attemptId : `${operation.attemptId}-r${attemptNumber}`;
+            // Pass 1 keeps the deterministic ids (checkpoint/resume identity on the
+            // success path is untouched); a breaker restart salts `-s{pass}` so
+            // run-state admits pass 2's drafts as new attempts rather than
+            // colliding with pass 1's.
+            const passSalt = sectionPass === 1 ? "" : `-s${sectionPass}`;
+            const attemptId = attemptNumber === 1
+              ? `${operation.attemptId}${passSalt}`
+              : `${operation.attemptId}${passSalt}-r${attemptNumber}`;
             invokedAttemptIds.push(attemptId);
-            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse });
+            const task = buildSectionTaskMarkdown({ bookId: request.bookId, kind, blueprint: candidateBlueprint, sourcePacket: packet, outputPath: logicalPath, context: renderContext, deliveryMode: "DIRECT_JSON", retryFeedback, assemblyAvoid, chapterProse: draftedChapterProse, dealtCaseRedraft: kind === "summary-pack" ? summaryRedraftMustTeach : undefined });
             const result = await this.#dependencies.runner.run({
               profileId: COMPILER_SECTION_PROFILE_ID,
               role: "author",
@@ -1939,11 +2016,69 @@ export class CompilerApplicationPort {
               acceptedOutput = draft;
               break;
             }
+            // ---- THE INTRA-CHAPTER LIVELOCK BREAKER --------------------------
+            //
+            // A dependent pack blocked by a chapter-scope grounding gate over a
+            // case its own writer cannot move. Two structural conditions, no
+            // message parsing: the blockers name SEC128 or SEC120, AND the
+            // chapter's stored prose demonstrably leaves a case the BLUEPRINT
+            // dealt untaught to a reader who stops after the Deep read. In that
+            // state no retry of THIS pack can pass — the case is dealt, so it
+            // cannot be swapped, and the prose is another pack's, so it cannot be
+            // fixed here. Re-asking this writer twice more is the livelock the
+            // live Franklin run spent every round on.
+            //
+            // Fires on the FIRST blocked draft, before the remaining two attempts
+            // are spent, and is bounded to MAX_SUMMARY_REDRAFTS_PER_CHAPTER per
+            // chapter per round.
+            const untaughtDealt = kind === "summary-pack"
+              ? []
+              : untaughtStandaloneDealtCases(candidateBlueprint, packet, draftedChapterProse);
+            const groundingBlocked = blocked.blockerLines.some((line) =>
+              line.startsWith("SEC128.") || line.startsWith("SEC120."));
+            if (groundingBlocked && untaughtDealt.length > 0) {
+              const named = untaughtDealt.map(describeUntaughtDealtCase).join("; ");
+              if (summaryRedraftsUsed >= MAX_SUMMARY_REDRAFTS_PER_CHAPTER) {
+                // Fail CLOSED. A second eviction buys another identical re-draft;
+                // the operator gets the chapter and the case instead of a wedge.
+                throw new Error(
+                  `COMPILER_SECTION_BLOCKED:${kind}:after ${MAX_SUMMARY_REDRAFTS_PER_CHAPTER} summary re-draft(s):`
+                  + `${chapterLabel(chapter.chapterNumber)} still does not teach the case(s) its blueprint dealt: ${named}.`
+                  + ` Underlying block: ${blocked.detail}`,
+                );
+              }
+              summaryRedraftsUsed += 1;
+              summaryRedraftMustTeach = untaughtDealt;
+              // Evict so the next pass DRAFTS the summary instead of reading the
+              // same stored pack back (the cross-chapter assembly path does exactly
+              // this; without it the re-draft is a no-op and the round re-fails
+              // identically). Best-effort, mirroring the assembly eviction: a store
+              // failure must not fail a compile that can still converge, and the
+              // re-drafted pack replaces the entry in place either way.
+              if (cache && summaryCacheKey) {
+                try {
+                  await cache.evict(summaryCacheKey);
+                  console.error(
+                    `[book-run] compiler chapter=${chapter.chapterNumber} kind=summary-pack action=EVICT_ON_DEALT_CASE_UNTAUGHT blockedKind=${kind} cases=${JSON.stringify(untaughtDealt.map((c) => c.id))}`,
+                  );
+                } catch (evictError) {
+                  console.error(
+                    `[book-run] compiler chapter=${chapter.chapterNumber} kind=summary-pack action=EVICT_ON_DEALT_CASE_UNTAUGHT_FAILED detail=${boundedCompilerDetail(evictError)}`,
+                  );
+                }
+              }
+              console.error(
+                `[book-run] compiler chapter=${chapter.chapterNumber} kind=summary-pack action=REDRAFT_SUMMARY_FOR_DEALT_CASE pass=${sectionPass + 1} blockedKind=${kind} cases=${JSON.stringify(untaughtDealt.map((c) => c.id))}`,
+              );
+              restartChapterSections = true;
+              break;
+            }
             if (attemptNumber >= MAX_SECTION_ATTEMPTS) {
               throw new Error(`COMPILER_SECTION_BLOCKED:${kind}:after ${MAX_SECTION_ATTEMPTS} attempts:${blocked.detail}`);
             }
             retryFeedback = { blockerLines: blocked.blockerLines, priorDraft: draft };
           }
+          if (restartChapterSections) break;
           if (acceptedOutput === null) throw new Error(`COMPILER_SECTION_BLOCKED:${kind}:bounded retry exhausted without a verdict`);
           // Task 11ai — hand the accepted summary pack to the sections drafted after it.
           if (kind === "summary-pack") draftedChapterProse = acceptedOutput as ChapterProseSource;
@@ -1969,6 +2104,20 @@ export class CompilerApplicationPort {
           preparedChapter.packs[kind] = acceptedOutput;
           chapterFiles.push({ kind: "SIDECAR", logicalPath, mediaType: "application/json", bytes: jsonBytes(acceptedOutput) });
         }
+        if (!restartChapterSections) break;
+        // Restart this chapter's sections against a re-drafted summary. Every pack
+        // of the abandoned pass is dropped — including ones that had PASSED, because
+        // they were gated against prose that is about to change — so nothing stale
+        // reaches the candidate. A pack that is still valid is re-read from the cache
+        // and costs no model call; only genuinely-invalidated packs are re-drafted.
+        restartChapterSections = false;
+        sectionPass += 1;
+        draftedChapterProse = undefined;
+        sectionPaths = {} as Record<SectionKind, string>;
+        summaryCacheKey = undefined;
+        chapterFiles.length = chapterFilesBeforeSections;
+        for (const kind of SECTION_KINDS) delete preparedChapter.packs[kind];
+        } // end of the bounded PASS loop
         assemblyPaths.push({
           chapterNumber: chapter.chapterNumber,
           blueprint: blueprintLogicalPath,
