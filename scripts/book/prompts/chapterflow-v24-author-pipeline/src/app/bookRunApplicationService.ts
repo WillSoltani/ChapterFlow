@@ -4,6 +4,7 @@ import { isAbsolute, resolve } from "node:path";
 
 import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
 import type { CurrentPointerStore } from "../books/currentPointer.js";
+import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
 import { isSafeResearchRunId } from "../lib/researchRunManifest.js";
 import type { QcDiagnosis, QcDiagnosisIndex, QcRoundResult, QcService } from "../qc/qcTypes.js";
@@ -41,6 +42,7 @@ import {
 } from "./candidateQcEvaluator.js";
 import { isRepairReviewErrorTerminalReason } from "./contentRepairWorkflow.js";
 import type { CompilerApplicationPort } from "./compilerApplicationPort.js";
+import { recordReviewAdvisories } from "./reviewAdvisoryRecorder.js";
 import { researchSourcesFromChapterIndex } from "./researchCandidateApplicationPort.js";
 import type {
   ResearchCandidateApplicationPort,
@@ -234,6 +236,11 @@ export interface BookRunApplicationDependencies {
   readonly ids: ChapterFlowIdFactory;
   readonly events: BookRunEventSink;
   readonly pipelineRoot: string;
+  /** R-166 — where a PASSING review's WARN advisories are kept for the next
+   *  compile's editor pass. Optional: absent means the advisories are dropped
+   *  exactly as they were before this package, and the operator flag that would
+   *  consume them has nothing to read. */
+  readonly reviewAdvisories?: ReviewAdvisoryStore;
 }
 
 /** Backoff before each RETRY of a durable phase-event append (R-187). Length is
@@ -2589,6 +2596,30 @@ export class BookRunApplicationService {
     }
     const reviewCompleted = await this.#event(runId, input.bookId, "review", "COMPLETED", `reviewId=${review.value.reviewId}`, identity(candidate));
     if (!reviewCompleted.ok) return reviewCompleted;
+
+    // R-166 — a PASSING review's WARN advisories used to end here, unread: the
+    // repair lane is reachable only from a FAIL and reviewService refuses a PASS
+    // only on a BLOCKER, so 92 chapter-scoped reader judgements on the shipped
+    // Franklin revision were produced at panel cost and consumed by nothing. They
+    // are now recorded for the next compile's editor pass, per chapter and
+    // bounded. Best-effort and OFF unless the operator sets
+    // CHAPTERFLOW_EDITOR_ADVISORY_PASS=1: a passing book must never fail because a
+    // store write did, and an advisory no gate enforces is an operator's call to
+    // spend on. See src/app/reviewAdvisoryRecorder.ts.
+    try {
+      await recordReviewAdvisories({
+        ...(this.#dependencies.reviewAdvisories ? { store: this.#dependencies.reviewAdvisories } : {}),
+        bookId: input.bookId,
+        reviewId: review.value.reviewId,
+        issues: review.value.issues,
+        candidate,
+      });
+    } catch (cause) {
+      console.error(
+        `[book-run] review-advisory book=${input.bookId} action=RECORD_PASS_ADVISORIES_FAILED`
+        + ` detail=${(cause as Error).message.slice(0, 200)}`,
+      );
+    }
 
     const qcStarted = await this.#event(runId, input.bookId, "fresh-qc", "STARTED", undefined, identity(candidate));
     if (!qcStarted.ok) return qcStarted;

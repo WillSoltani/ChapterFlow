@@ -20,11 +20,28 @@ import {
 } from "../critics/bookPatternAudit.js";
 import type { ChapterSpec } from "../generateChapter.js";
 import { chapterFileName } from "../lib/chapterPaths.js";
+import { CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, CANDIDATE_SOURCE_TEXT_LOGICAL_PATH } from "../lib/candidateEvidence.js";
 import { bookScarsDigest, type BookScars } from "../lib/bookScars.js";
 import { buildSectionTaskMarkdown, type SectionRetryFeedback, type SectionTaskRenderContext } from "../sections/sectionTasks.js";
-import { assembleSections, type AssemblyBlocker, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
+import { assembleSections, type AssemblyBlocker, type AssembleSectionsResult, type AuthorV4SectionChapterPaths } from "../sections/assembleSections.js";
 import { validateSectionPack } from "../sections/sectionGate.js";
 import type { ChapterProseSource } from "../sections/chapterProse.js";
+import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
+import type { ChapterEditCache } from "../books/chapterEditCache.js";
+import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
+import { chapterSpanText, spanExcerptForPrompt, type ChapterMapV1, type SpanExcerpt } from "../source/chapterMap.js";
+import { EDITOR_SOURCE_SPAN_MAX_CHARS } from "./chapterEditorContract.js";
+import {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+  type ChapterEditProvenanceEntry,
+  type ChapterEditProvenanceFile,
+} from "./chapterEditProvenance.js";
+import {
+  MAX_EDITOR_ATTEMPTS,
+  runChapterEditorPass,
+  type ChapterEditResult,
+} from "./chapterEditorPass.js";
 import type { SourceSidecarV2 } from "../source/sidecarSchema.js";
 import type { ChapterV21 } from "../types.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
@@ -52,6 +69,26 @@ const COMPILER_STAGE_ID = "compiler-candidate" as const;
  * worst case (every section exhausting its budget) still fits under the limit.
  */
 export const MAX_SECTION_ATTEMPTS = 3;
+
+/**
+ * Package 2B — the editor pass's whole per-chapter attempt budget, used only to
+ * size the run's attempt capacity.
+ *
+ * Two invocations at most (the standing brief, and the R-166 advisory pass when
+ * the operator enables it), each of at most MAX_EDITOR_ATTEMPTS calls. The
+ * default run therefore admits ONE editor attempt per chapter and the capacity is
+ * pure headroom, exactly as MAX_SECTION_ATTEMPTS is on the drafting side.
+ */
+export const MAX_EDITOR_ATTEMPTS_PER_CHAPTER = MAX_EDITOR_ATTEMPTS * 2;
+
+// The edit-provenance shape and its logical path live in ./chapterEditProvenance
+// so the release sidecar can read them without importing this port. Re-exported
+// here because this port is what WRITES the file.
+export {
+  CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
+  CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+} from "./chapterEditProvenance.js";
+export type { ChapterEditProvenanceEntry, ChapterEditProvenanceFile } from "./chapterEditProvenance.js";
 
 /**
  * Task 11j/11k — retryable model-output-variance classes inside the SAME bounded
@@ -189,6 +226,28 @@ export interface CompilerApplicationPortDependencies {
    *  never sets it, and the default is the real check, so the gate cannot be softened from
    *  outside the process. */
   readonly bookDealAudit?: BookDealAudit;
+  /**
+   * Package 2B — the whole-chapter EDITOR PASS. PRESENCE ENABLES IT.
+   *
+   * The same shape as `sectionPackCache` / `sectionAvoidStore`: production
+   * composition always supplies it (see bookRunComposition), and a port
+   * constructed without it behaves exactly as it did before this package. That is
+   * deliberate rather than incidental. Making the pass unconditional would have
+   * rewritten roughly fifty attempt-count and prompt-count assertions across the
+   * existing compiler-port suite, and a reviewer reading that diff could not tell
+   * an intended count change from a weakened one. Nothing about a GATE is
+   * conditional: the editor only ever ADDS an edit that must re-pass the same
+   * section gates and the same assembly checks, so its absence is the pre-package
+   * pipeline, never a relaxed one.
+   *
+   * `env` is injectable for the same reason the deal audit is: the disable flag
+   * and the R-166 advisory flag are testable without mutating process state.
+   */
+  readonly chapterEdit?: Readonly<{
+    cache?: ChapterEditCache;
+    advisories?: ReviewAdvisoryStore;
+    env?: Readonly<Record<string, string | undefined>>;
+  }>;
 }
 
 /** R-106 — the book-level deal audit as the port consumes it: blueprints in, findings out. */
@@ -254,6 +313,14 @@ export function compilerGateBlockerMessages(gates: CompilerChapterGateVerdicts):
 type CompilerOperation = Readonly<{
   chapterNumber: number;
   kind: SectionKind;
+  operationId: string;
+  attemptId: string;
+}>;
+
+/** Package 2B — an editor operation is per CHAPTER, not per section, so it has no
+ *  `kind`. Its own type rather than a CompilerOperation with a filler kind. */
+type EditorOperation = Readonly<{
+  chapterNumber: number;
   operationId: string;
   attemptId: string;
 }>;
@@ -338,6 +405,44 @@ function sidecarHash(snapshot: CandidateSnapshot, mapping: CompilerSourceMapping
   return hash.digest("hex");
 }
 
+/**
+ * Package 2B — resolve a per-chapter reader over the run's FROZEN source text.
+ *
+ * A source-text run stages the normalized book text and its validated chapter map
+ * inside the candidate (R-046). When both are present and well-formed, the editor
+ * for chapter N is shown chapter N's own span, bounded by the same deterministic
+ * windowing the chapter researcher uses. Everything here is best-effort and
+ * returns null on ANY doubt: a model-memory run has no frozen text at all, and a
+ * span the editor cannot be given is a card without a SOURCE TEXT block, never a
+ * card with the wrong chapter's words in it.
+ */
+function frozenSourceSpans(snapshot: CandidateSnapshot): ((chapterNumber: number) => SpanExcerpt | undefined) | null {
+  const textFile = snapshot.files.find((file) => file.logicalPath === CANDIDATE_SOURCE_TEXT_LOGICAL_PATH);
+  const mapFile = snapshot.files.find((file) => file.logicalPath === CANDIDATE_CHAPTER_MAP_LOGICAL_PATH);
+  if (!textFile || !mapFile) return null;
+  let map: ChapterMapV1;
+  try {
+    map = JSON.parse(Buffer.from(mapFile.bytes).toString("utf8")) as ChapterMapV1;
+  } catch {
+    return null;
+  }
+  if (!Array.isArray(map?.spans)) return null;
+  const text = Buffer.from(textFile.bytes).toString("utf8");
+  const byChapter = new Map<number, { startOffset: number; endOffset: number }>();
+  for (const span of map.spans) {
+    if (typeof span?.chapterNumber !== "number") continue;
+    if (typeof span.startOffset !== "number" || typeof span.endOffset !== "number") continue;
+    if (span.startOffset < 0 || span.endOffset <= span.startOffset || span.endOffset > text.length) continue;
+    byChapter.set(span.chapterNumber, { startOffset: span.startOffset, endOffset: span.endOffset });
+  }
+  if (byChapter.size === 0) return null;
+  return (chapterNumber: number): SpanExcerpt | undefined => {
+    const span = byChapter.get(chapterNumber);
+    if (!span) return undefined;
+    return spanExcerptForPrompt(chapterSpanText(text, span), EDITOR_SOURCE_SPAN_MAX_CHARS);
+  };
+}
+
 function compilerPath(chapterNumber: number, leaf: string): string {
   return `compiler/ch${String(chapterNumber).padStart(2, "0")}/${leaf}`;
 }
@@ -355,7 +460,34 @@ function compilerOperations(runId: string, chapters: readonly Readonly<{ chapter
   return Object.freeze(operations);
 }
 
-function plannedInventory(snapshot: CandidateSnapshot, chapters: readonly ChapterSpec[]): readonly PlannedArtifact[] {
+/**
+ * Package 2B — the editor's run-state identity, one operation per chapter, minted
+ * exactly like the section operations: deterministic in (runId, operationId), so
+ * a resumed run re-derives the same ids and the durable cache (not a re-spawn) is
+ * what makes the replay free. The `edt-` prefix keeps the id space disjoint from
+ * the sections' `cmp-`.
+ */
+function editorOperations(runId: string, chapters: readonly Readonly<{ chapterNumber: number }>[]): readonly EditorOperation[] {
+  const operations = chapters.map((chapter) => {
+    const operationId = `editor-ch${String(chapter.chapterNumber).padStart(2, "0")}`;
+    const attemptId = `edt-${createHash("sha256").update(runId).update("\0").update(operationId).digest("hex").slice(0, 40)}`;
+    return Object.freeze({ chapterNumber: chapter.chapterNumber, operationId, attemptId });
+  });
+  if (new Set(operations.map((operation) => operation.operationId)).size !== operations.length
+    || new Set(operations.map((operation) => operation.attemptId)).size !== operations.length) {
+    throw new Error("COMPILER_ID_INVALID:editor operation or attempt IDs are not unique");
+  }
+  return Object.freeze(operations);
+}
+
+function plannedInventory(
+  snapshot: CandidateSnapshot,
+  chapters: readonly ChapterSpec[],
+  /** Package 2B — true when the editor pass is composed, which is the ONLY
+   *  condition under which the compile emits its edit-provenance sidecar. A
+   *  compile with no editor stages the inventory it always did. */
+  editorComposed = false,
+): readonly PlannedArtifact[] {
   const generated: PlannedArtifact[] = [{
     kind: "SIDECAR",
     logicalPath: "compiler/book-design.json",
@@ -373,6 +505,9 @@ function plannedInventory(snapshot: CandidateSnapshot, chapters: readonly Chapte
     generated.push({ kind: "CHAPTER", logicalPath: `content/chapters/${chapterFileName(chapter.chapterId)}`, mediaType: "application/json" });
   }
   generated.push({ kind: "SIDECAR", logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, mediaType: "application/json" });
+  if (editorComposed) {
+    generated.push({ kind: "SIDECAR", logicalPath: CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH, mediaType: "application/json" });
+  }
   const replacements = new Set(generated.map((file) => file.logicalPath));
   return Object.freeze([
     ...snapshot.files
@@ -1326,14 +1461,19 @@ export class CompilerApplicationPort {
       else if (prior.error.code !== "NOT_FOUND") throw new Error(`COMPILER_RUN_UNAVAILABLE:${prior.error.code}:${prior.error.message}`);
     }
     const successorId = this.#dependencies.ids.candidateId(runId);
+    const editorComposed = this.#dependencies.chapterEdit !== undefined;
     const operations = compilerOperations(runId, request.sources);
+    const editorOps = editorComposed ? editorOperations(runId, request.sources) : [];
     // Capacity = one attempt per operation × the per-section retry budget. Bounded
     // section retry (see MAX_SECTION_ATTEMPTS) can admit up to MAX_SECTION_ATTEMPTS
     // run-state attempts per section, so the run's attempt limit must headroom for
     // the worst case (every section exhausting its budget). ATTEMPT 1 of each
     // section still uses its deterministic id, so the success path consumes exactly
     // operations.length attempts and checkpoint/resume identity is unchanged.
-    const attemptCapacity = operations.length * MAX_SECTION_ATTEMPTS;
+    // Package 2B adds the editor's own headroom, and ONLY when the editor is
+    // composed: a compile without it keeps the exact attempt limits it had.
+    const attemptCapacity = operations.length * MAX_SECTION_ATTEMPTS
+      + editorOps.length * MAX_EDITOR_ATTEMPTS_PER_CHAPTER;
     const definition = runDefinition({ request, runId, createdAt, inventory: Object.freeze([]), attempts: attemptCapacity });
     const created = await this.#dependencies.runStore.createRun(definition);
     if (!created.ok) throw new Error(`COMPILER_RUN_UNAVAILABLE:${created.error.code}:${created.error.message}`);
@@ -1382,7 +1522,7 @@ export class CompilerApplicationPort {
           throw new Error("COMPILER_INPUT_INVALID:index and sidecar mapping order differ");
         }
       }
-      inventory = plannedInventory(snapshot, chapters);
+      inventory = plannedInventory(snapshot, chapters, editorComposed);
       sidecars = chapters.map((chapter, index) => {
         const mapping = request.sources[index];
         try {
@@ -1512,6 +1652,11 @@ export class CompilerApplicationPort {
         blueprintDigest: string;
         packetDigest: string;
         taskCardDigests: Map<SectionKind, string>;
+        /** Package 2B — the four ACCEPTED pack objects, filled in by phase 2. The
+         *  editor edits objects, not bytes, and the assembly it feeds re-serializes
+         *  them, so keeping the accepted output here avoids re-parsing the very
+         *  bytes this loop just wrote. */
+        packs: Record<SectionKind, Record<string, unknown>>;
         packetLogicalPath: string;
         blueprintLogicalPath: string;
         /** This chapter's generated artifacts, flushed into `generated` after phase 2 so the
@@ -1576,6 +1721,7 @@ export class CompilerApplicationPort {
           blueprintDigest,
           packetDigest,
           taskCardDigests,
+          packs: {} as Record<SectionKind, Record<string, unknown>>,
           packetLogicalPath,
           blueprintLogicalPath,
           files: [
@@ -1820,6 +1966,7 @@ export class CompilerApplicationPort {
             }
           }
           sectionPaths[kind] = logicalPath;
+          preparedChapter.packs[kind] = acceptedOutput;
           chapterFiles.push({ kind: "SIDECAR", logicalPath, mediaType: "application/json", bytes: jsonBytes(acceptedOutput) });
         }
         assemblyPaths.push({
@@ -1876,7 +2023,192 @@ export class CompilerApplicationPort {
       // failed round for every section in the book, so avoid guidance never outlives
       // the collision it described.
       await this.#clearAssemblyAvoids(request, chapters);
-      const assembledChapters = assembly.candidateFiles.map((file) => {
+
+      // ── Package 2B: the whole-chapter EDITOR PASS (R-079) ─────────────────────
+      //
+      // HERE, and nowhere else. Before this point no artifact IS a chapter: four
+      // packs are drafted from four slices of one packet, each blind to the other
+      // three, and the cross-chapter collisions are still unresolved. After this
+      // point the candidate is staged and every later stage judges it rather than
+      // writes it. So this is the only moment at which a chapter exists, is
+      // gate-clean, and can still be improved.
+      //
+      // The pass edits the four PACKS, because the packs are the shape the gates
+      // read: `assembleChapterV21OrThrow` is a pure projection of them, so
+      // "editing the chapter" and "editing its packs" are the same act, and only
+      // the second one can be re-gated. Each chapter's editor is handed the
+      // chapter in reader order as read-only context, so it reads the chapter as
+      // the reader meets it and edits the artifact the gates judge.
+      //
+      // NOTHING HERE CAN FAIL THE COMPILE. A per-chapter edit that fails its own
+      // gates or the preservation guard is retried once and then dropped; a book
+      // whose edited packs will not assemble has the implicated chapters reverted
+      // and, if that is still not enough, every edit reverted, which returns
+      // exactly the assembly that already passed above. What the editor cannot do
+      // is ship an ungated edit: `acceptedAssembly` is only ever the output of a
+      // full `assembleSections` run over the packs actually being staged.
+      let acceptedAssembly = assembly;
+      let editProvenanceFile: ChapterEditProvenanceFile | null = null;
+      const editedPackOverrides = new Map<string, Uint8Array>();
+      if (this.#dependencies.chapterEdit) {
+        const editorConfig = this.#dependencies.chapterEdit;
+        const frozenSource = frozenSourceSpans(snapshot);
+        const entries: ChapterEditProvenanceEntry[] = [];
+        const accepted = new Map<number, ChapterEditPacks>();
+        let editorAttempts = 0;
+        for (const preparedChapter of prepared) {
+          if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
+          const { chapter } = preparedChapter;
+          const operation = editorOps.find((value) => value.chapterNumber === chapter.chapterNumber);
+          if (!operation) throw new Error("COMPILER_ID_INVALID:missing editor operation");
+          const chapterFile = assembly.candidateFiles.find(
+            (file) => file.logicalPath === `content/chapters/${chapterFileName(chapter.chapterId)}`,
+          );
+          if (!chapterFile) throw new Error("COMPILER_ASSEMBLY_BLOCKED:assembled chapter is missing for the editor pass");
+          const span = frozenSource?.(chapter.chapterNumber);
+          const edit = await runChapterEditorPass(
+            {
+              runner: this.#dependencies.runner,
+              ...(editorConfig.cache ? { cache: editorConfig.cache } : {}),
+              ...(editorConfig.advisories ? { advisories: editorConfig.advisories } : {}),
+              ...(editorConfig.env ? { env: editorConfig.env } : {}),
+              sleep,
+            },
+            {
+              bookId: request.bookId,
+              runId,
+              stageId: COMPILER_STAGE_ID,
+              profileId: COMPILER_SECTION_PROFILE_ID,
+              workDir: request.attemptRoot,
+              signal: request.signal,
+              voiceCard: renderContext.voiceCard,
+              bookScars: renderContext.bookScars,
+              chapter: {
+                chapterNumber: chapter.chapterNumber,
+                chapterId: chapter.chapterId,
+                chapterTitle: preparedChapter.blueprint.title,
+                operationId: operation.operationId,
+                attemptIdBase: operation.attemptId,
+                packs: preparedChapter.packs as unknown as ChapterEditPacks,
+                assembledChapterBytes: chapterFile.bytes,
+                blueprint: preparedChapter.blueprint,
+                packet: preparedChapter.packet,
+                sidecar: sidecars[preparedChapter.index],
+                ...(span ? { sourceSpan: span } : {}),
+              },
+            },
+          );
+          // Count and record only what THIS run actually admitted. A replayed
+          // verdict carries the attempt ids of the run that reached it, and
+          // pushing those into `invokedAttemptIds` would name attempts this run
+          // never made in its own failure checkpoint.
+          if (!edit.replayed) {
+            editorAttempts += edit.attemptIds.length;
+            invokedAttemptIds.push(...edit.attemptIds);
+          }
+          entries.push({
+            chapterNumber: edit.chapterNumber,
+            chapterId: edit.chapterId,
+            status: edit.status,
+            replayed: edit.replayed,
+            attemptIds: edit.attemptIds,
+            blockers: edit.blockers,
+            advisory: edit.advisory,
+          });
+          if (edit.status === "EDITED" && edit.packs) accepted.set(chapter.chapterNumber, edit.packs);
+        }
+
+        // Re-run the WHOLE-BOOK assembly over the edited packs. The cross-chapter
+        // anti-sameness gates only exist at this level, and an edit that clears
+        // its own chapter's gates can still collide with another chapter, so an
+        // edited book is not accepted until it has passed the same assembly the
+        // drafted book passed.
+        if (accepted.size > 0) {
+          const assembleWith = (edits: ReadonlyMap<number, ChapterEditPacks>): AssembleSectionsResult => {
+            const overrides = new Map<string, Uint8Array>();
+            for (const [chapterNumber, packs] of edits) {
+              for (const kind of SECTION_KINDS) {
+                overrides.set(compilerPath(chapterNumber, `${kind}.json`), jsonBytes(packs[kind]));
+              }
+            }
+            const editedFiles = generated.map((file) => {
+              const replacement = overrides.get(file.logicalPath);
+              return replacement === undefined
+                ? { ...file, byteLength: file.bytes.byteLength }
+                : { ...file, bytes: replacement, byteLength: replacement.byteLength };
+            });
+            return assembleSections(request.bookId, {}, {
+              content: {
+                bookId: request.bookId,
+                selector: { kind: "CANDIDATE", candidateId: request.candidateId },
+                snapshot: {
+                  manifest: snapshot.manifest,
+                  files: [...snapshot.files.filter((file) => !generatedPaths.has(file.logicalPath)), ...editedFiles],
+                },
+              },
+              chapters: assemblyPaths,
+            });
+          };
+          const assembledOk = (result: AssembleSectionsResult): boolean =>
+            result.findings.length === 0
+            && result.candidateFiles !== undefined
+            && result.candidateFiles.length === chapters.length;
+
+          const firstEdited = assembleWith(accepted);
+          let editedAssembly = firstEdited;
+          let surviving: ReadonlyMap<number, ChapterEditPacks> = accepted;
+          if (!assembledOk(firstEdited)) {
+            // Withdraw exactly the chapters the blockers name, and try once more.
+            // No model call is spent: the alternative packs are the drafts that
+            // already assembled, so this is a pure retreat, not another attempt.
+            const blockLines = firstEdited.findings.slice(0, 4);
+            const implicated = new Set((firstEdited.blockers ?? []).map((blocker: AssemblyBlocker) => blocker.chapterNumber));
+            const retained = new Map(
+              [...accepted].filter(([chapterNumber]) => implicated.size > 0 && !implicated.has(chapterNumber)),
+            );
+            const reverted = retained.size > 0 ? assembleWith(retained) : null;
+            if (reverted !== null && assembledOk(reverted)) {
+              editedAssembly = reverted;
+              surviving = retained;
+            } else {
+              // Nothing edited survives: fall back to the assembly that already
+              // passed, byte for byte.
+              editedAssembly = assembly;
+              surviving = new Map();
+            }
+            for (let index = 0; index < entries.length; index += 1) {
+              const entry = entries[index];
+              if (entry.status !== "EDITED" || surviving.has(entry.chapterNumber)) continue;
+              entries[index] = {
+                ...entry,
+                status: "REVERTED",
+                blockers: ["the edited book did not assemble; this chapter's edit was withdrawn", ...blockLines],
+              };
+            }
+            console.error(
+              `[book-run] compiler action=CHAPTER_EDIT_REVERTED kept=${surviving.size}/${accepted.size}`
+              + ` detail=${JSON.stringify(blockLines)}`,
+            );
+          }
+          acceptedAssembly = editedAssembly;
+          for (const [chapterNumber, packs] of surviving) {
+            for (const kind of SECTION_KINDS) {
+              editedPackOverrides.set(compilerPath(chapterNumber, `${kind}.json`), jsonBytes(packs[kind]));
+            }
+          }
+        }
+
+        editProvenanceFile = Object.freeze({
+          schemaVersion: CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+          bookId: request.bookId,
+          runId,
+          attempts: editorAttempts,
+          chapters: Object.freeze(entries),
+        });
+      }
+
+      const assembledChapterFiles = acceptedAssembly.candidateFiles ?? [];
+      const assembledChapters = assembledChapterFiles.map((file) => {
         try {
           return JSON.parse(Buffer.from(file.bytes).toString("utf8")) as ChapterV21;
         } catch {
@@ -1890,9 +2222,15 @@ export class CompilerApplicationPort {
         checkSourceAlignment: false,
       });
       const allGenerated = [
-        ...generated,
-        ...assembly.candidateFiles,
+        ...generated.map((file) => {
+          const replacement = editedPackOverrides.get(file.logicalPath);
+          return replacement === undefined ? file : { ...file, bytes: replacement };
+        }),
+        ...assembledChapterFiles,
         { kind: "SIDECAR" as const, logicalPath: BOOK_PATTERN_AUDIT_LOGICAL_PATH, mediaType: "application/json" as const, bytes: jsonBytes(patternAudit) },
+        ...(editProvenanceFile === null
+          ? []
+          : [{ kind: "SIDECAR" as const, logicalPath: CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH, mediaType: "application/json" as const, bytes: jsonBytes(editProvenanceFile) }]),
       ];
       const replacementPaths = new Set(allGenerated.map((file) => file.logicalPath));
       const files: CandidateInputFile[] = [

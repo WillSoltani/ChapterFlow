@@ -54,6 +54,15 @@ export function candidateSourcePacketPath(chapterNumber: number): string {
   return `compiler/${chapterKey(chapterNumber)}/source-packet.json`;
 }
 
+/** R-046 — where a source-text run stages the FROZEN book text and its resolved
+ *  chapter map inside the seed candidate. A CONTRACT between the research port
+ *  that writes them and every later stage that reads the book's own words: the
+ *  wave-2 editor pass resolves a chapter's span from exactly these two files, and
+ *  a literal copied into that stage would drift the day this one moved. Both are
+ *  absent on a model-memory run, where there is no frozen text. */
+export const CANDIDATE_SOURCE_TEXT_LOGICAL_PATH = "inputs/research/source-text.txt";
+export const CANDIDATE_CHAPTER_MAP_LOGICAL_PATH = "inputs/research/chapter-map.json";
+
 /** Where `researchCandidateApplicationPort` stages a chapter's source sidecar.
  *  Used only when the chapter has no source packet to name it. */
 export function candidateStagedSourceSidecarPath(chapterNumber: number): string {

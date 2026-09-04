@@ -43,6 +43,14 @@ function long(words: string, times: number): string {
   return Array.from({ length: times }, () => words).join(" ");
 }
 
+/** The fixture's own source sidecar — the one `compileCreditFixture` compiles its
+ *  packet from. Exported so a test that has to re-run the SECTION GATE (which
+ *  reads the sidecar as well as the packet) validates against the same bytes the
+ *  fixture was built from rather than a hand-copied near-duplicate. */
+export function creditSidecarFixture(): SourceSidecarV2 {
+  return sidecar();
+}
+
 function sidecar(): SourceSidecarV2 {
   const facts = Array.from({ length: 9 }, (_, i) => ({
     id: `ch01.fact.${i + 1}`,
