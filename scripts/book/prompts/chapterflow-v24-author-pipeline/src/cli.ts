@@ -2439,9 +2439,8 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
     // must produce an absent field and never an assumed one. The promotion
     // service independently re-verifies the round and review it is handed, so
     // nothing here can license a release that would not otherwise happen.
-    const { buildCandidateReleaseVerdict } = await import("./release/candidateReleaseVerdict.js");
+    const { buildCandidateReleaseVerdict, buildReleaseRubricEvidence } = await import("./release/candidateReleaseVerdict.js");
     const { createCatalogRubricStore } = await import("./review/catalogRubricStore.js");
-    const { aggregateCatalogRubric, judgeCatalogRubric, resolveRubricBar } = await import("./review/catalogRubric.js");
     const releaseRound = await v25.value.qcStore.getRound(bookId, qcRoundId);
     const releaseReview = await v25.value.reviewService.get(bookId, reviewId);
     let releaseVerdict: import("./release/candidateReleaseVerdict.js").CandidateReleaseVerdict | undefined;
@@ -2453,39 +2452,14 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
         rubricRecord.ok
         && rubricRecord.value.candidate.manifestDigest === v25.value.candidate.manifest.manifestDigest
       ) {
-        // The bar is read from the operator's environment, and a malformed
-        // CHAPTERFLOW_RUBRIC_BAR is a REFUSAL by design (see resolveRubricBar).
-        // This block is EVIDENCE, not the gate — the gate ran in the book run,
-        // against the bar in force there — so an env typo must cost the release
-        // its rubric evidence and say so loudly, never abort the route with an
-        // unhandled exception before the pointer CAS.
-        let bar: number | undefined;
-        try {
-          bar = resolveRubricBar();
-        } catch (cause) {
-          console.log(
-            "V25 RELEASE VERDICT rubric evidence omitted: CHAPTERFLOW_RUBRIC_BAR is unusable"
-            + ` (${(cause as Error).message}); fix the env and re-run to record it`,
-          );
-        }
-        if (bar !== undefined) {
-          const aggregate = aggregateCatalogRubric(rubricRecord.value.readers);
-          const judged = judgeCatalogRubric(aggregate, bar);
-          rubricEvidence = {
-            instrumentVersion: rubricRecord.value.instrumentVersion,
-            composite: aggregate.composite,
-            tier: aggregate.tier,
-            gate: aggregate.gate,
-            churn: aggregate.churn,
-            bar: judged.bar,
-            factorFloor: judged.factorFloor,
-            highQuality: aggregate.highQuality,
-            factorMedians: { ...aggregate.factorMedians },
-            sampledChapterNumbers: [...rubricRecord.value.sampledChapterNumbers],
-            totalChapters: rubricRecord.value.totalChapters,
-            readerCount: aggregate.readerCount,
-          };
-        }
+        // THE BAR IS READ FROM THE RECORD, never from this process's own
+        // environment. The gate ran in the book run, against the bar in force
+        // THERE; re-resolving CHAPTERFLOW_RUBRIC_BAR here (or falling back to
+        // the compiled default) recorded `bar: 80` in the durable sidecar for a
+        // book gated at `--rubric-bar 90`. A record that predates the field
+        // records no bar and the block says so (`bar: null`) — this is evidence,
+        // and an unknown number is stated, not invented.
+        rubricEvidence = buildReleaseRubricEvidence(rubricRecord.value);
       }
       releaseVerdict = buildCandidateReleaseVerdict({
         review: releaseReview.value,
@@ -2498,7 +2472,9 @@ async function runPromoteBook(args: string[], flags: Record<string, string | boo
         + ` review=${releaseVerdict.reviewOutcome}`
         + ` (BLOCKER ${releaseVerdict.reviewIssueCounts.BLOCKER}, WARN ${releaseVerdict.reviewIssueCounts.WARN})`
         + ` panel=${releaseVerdict.panelChapterComposites.map((entry) => `ch${entry.chapterNumber}:${entry.composite}`).join(" ") || "none-recorded"}`
-        + ` rubric=${rubricEvidence === undefined ? "none-recorded" : `${rubricEvidence.composite.toFixed(1)} (bar ${rubricEvidence.bar}, gate ${rubricEvidence.gate}, churn ${rubricEvidence.churn})`}`,
+        + ` rubric=${rubricEvidence === undefined
+          ? "none-recorded"
+          : `${rubricEvidence.composite.toFixed(1)} (bar ${rubricEvidence.bar ?? "unknown"}, gate ${rubricEvidence.gate}, churn ${rubricEvidence.churn})`}`,
       );
     } else {
       console.log(

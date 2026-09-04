@@ -43,6 +43,7 @@ import {
 import { verifyProductionPackage } from "../../src/verifyProductionPackage.js";
 import { candidateEvidenceFromSnapshot } from "../../src/lib/candidateEvidence.js";
 import type { ChapterV21 } from "../../src/types.js";
+import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
 import { candidateEvidenceFiles, makeSourceV2SidecarFixture, runCli, seedManifestEvidenceRoots } from "../helpers.js";
 import { fixtureChapter } from "../model-bakeoff-helpers.js";
 import { fileLocalPromotionJournal, readerPackageCommandFor } from "../../src/app/bookRunApplicationService.js";
@@ -1510,7 +1511,7 @@ requiredTest("the legacy no-candidate manifest route still requires the ambient 
       bar: 80,
       factorFloor: 70,
       highQuality: false,
-      factorMedians: { retention: 84 },
+      factorMedians: Object.fromEntries(REVIEW_FACTORS.map((factor) => [factor, 84])),
       sampledChapterNumbers: [1],
       totalChapters: 1,
       readerCount: 3,
