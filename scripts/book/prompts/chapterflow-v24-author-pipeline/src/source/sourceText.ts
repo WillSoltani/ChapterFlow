@@ -112,6 +112,18 @@ const CHARACTER_FOLDS: ReadonlyMap<string, string> = new Map<string, string>([
  *     is how a lone underscore in ordinary prose fails to open one;
  *   - the run may not contain another underscore and may not cross a blank line,
  *     so an unpaired marker cannot swallow a paragraph.
+ *
+ * WHAT IT DOES FOLD THAT IS NOT ITALICS, stated rather than discovered later.
+ * The rule is shape-based, so any PAIR of underscores in that shape is folded,
+ * including delimiter-style underscores in a technical source: `_DEBUG_` becomes
+ * `DEBUG`, and in `foo(_x) … bar(y_)` the two markers pair across the whole span
+ * and the underscores are dropped from both. Only the markers are removed —
+ * never the words between them — and the identifier case the guards were written
+ * for (`handle_click`, `set_state`, `__init__`) is untouched, because there a
+ * letter or a second underscore sits against the marker. This ingestion path
+ * takes prose books, where the pairs are Gutenberg's italics; the trade is
+ * deliberate, and the alternative (leaving them in) is the defect below, which
+ * makes a correctly copied quotation unmatchable.
  */
 const GUTENBERG_EMPHASIS_RUN = /(?<![\p{L}\p{N}_])_(?![\s_])((?:[^_\n]|\n(?!\s*\n))*?)(?<=[^\s])_(?![\p{L}\p{N}_])/gu;
 

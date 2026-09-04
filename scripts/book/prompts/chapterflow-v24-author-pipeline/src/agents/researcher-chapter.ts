@@ -218,19 +218,66 @@ export const WORLD_NOUN_AUTHOR_REGEXES: RegExp[] = [
   /\b(?:to\s+)?nam(?:e|es|ed|ing)\s+the author\b/i,
   // identity as a possession of the unnamed writer: "the author's name/identity"
   /\bthe author's\s+(?:name|identity)\b/i,
-  // knowing / not knowing who wrote it
-  /\b(?:know|knows|knowing|known|knew)\s+the author\b/i,
+  // NOT knowing who wrote it.
+  //
+  // REVIEW ROUND 2 (major). This was `know|knows|knowing|known|knew`, which is
+  // not ignorance of an identity but any verb of knowledge taking `the author`
+  // as its object — so "Readers know the author intended a plain style" and
+  // "Scholars have long known the author to be a young apprentice" were
+  // exempted, and both are reported claims ABOUT this book's author, the exact
+  // sense the guard exists to reject. Only the -ing form survives, and only
+  // where nothing follows that turns the author into the subject of a reported
+  // claim; the live sentence ("praised it without knowing the author,") is
+  // unaffected. Both leaking sentences are pinned as negatives in
+  // tests/meta-world-author-noun.test.ts.
+  /\b(?:without |never |not )?knowing the author\b(?!\s+(?:to|intended|meant|had|was|is|argues|writes)\b)/i,
   /\bwho the author (?:was|is|might be|could be)\b/i,
   // anonymity as an attribute of the writer of a piece. ("the anonymous author"
   // needs no entry: the adjective breaks the `the author` bigram, so the guard
   // never fires on it in the first place.)
   /\bthe author (?:was|is|remained|remains|stayed|stays)\s+(?:unknown|unnamed|anonymous|undisclosed|a secret)\b/i,
   /\bthe author (?:was|is) never (?:named|identified|known|discovered)\b/i,
-  // the author OF a named piece of writing — a person in the world, not this book
-  /\bthe author of (?:the|this|that|a|an|his|her|their|its)\s+(?:piece|letter|letters|essay|essays|paper|papers|pamphlet|pamphlets|article|articles|column|columns|verses|poem|ballad|satire|advertisement|notice)\b/i,
-  // self-disclosure: "disclosed himself as the author"
-  /\b(?:disclos|reveal|identif|acknowledg|confess|suspect|own)\w*\s+(?:\w+\s+){0,3}as the author\b/i,
+  // the author OF a named piece of writing — a person in the world, not this
+  // book.
+  //
+  // REVIEW ROUND 2 (major). The noun list had been widened past the five
+  // short-form nouns the live run needed (paper(s), column(s), verses, poem,
+  // ballad, satire, advertisement, notice). Every one of those extras names
+  // something a BOOK plausibly is or contains, so each was a fresh way to say
+  // "the author of the paper" and mean this text's author; none was carried by
+  // a live sentence, and none had a test. The list is back to the five
+  // enumerated nouns, singular or plural, and nothing is added to it without a
+  // world sentence AND a book-meta negative to justify it.
+  /\bthe author of (?:the|this|that|a|an|his|her|their|its)\s+(?:piece|letter|essay|pamphlet|article)s?\b/i,
+  // self-disclosure: "disclosed himself as the author".
+  //
+  // REVIEW ROUND 2 (blocking). This was seven verb STEMS, each followed by
+  // `\w*` and up to three wildcard words, with no reflexive required — so a
+  // plain third-party attribution walked straight through ("He is identified as
+  // the author of this narrative."), which is a statement about a text and the
+  // very thing META_REGEXES is for. The carve-out's whole warrant is the
+  // ANONYMOUS writer who later owns up, so it now demands both halves of that:
+  // a past-tense disclosure verb AND the reflexive that makes it self-
+  // disclosure, adjacent, with no wildcard gap.
+  /\b(?:disclosed|revealed|acknowledged|confessed)\s+(?:himself|herself|themselves|myself)\s+as the author\b/i,
 ];
+
+/**
+ * REVIEW ROUND 2 (blocking, second half) — the book-meta document nouns.
+ *
+ * A carve-out pattern can match a perfectly good self-disclosure shape and still
+ * be describing THIS text: "Franklin acknowledged himself as the author of these
+ * memoirs" is the Autobiography naming its own narrator. What settles it is not
+ * the verb in front of `the author` but the noun behind it. When the occurrence
+ * is followed by `of <determiner> <document noun of the book itself>`, no
+ * carve-out applies, whichever one matched — the guard is on the OCCURRENCE, not
+ * on any single pattern, so widening the list later cannot reopen this hole.
+ *
+ * It does not collide with the of-a-piece pattern above: `piece`, `letter`,
+ * `essay`, `pamphlet` and `article` are short-form writing, and none of them is
+ * on this list.
+ */
+const BOOK_META_DOCUMENT_NOUN = /^\s+of\s+(?:these|this|the)\s+(?:memoirs?|narrative|book|account)\b/i;
 
 /**
  * True when the meta-reference occurrence at `[index, index + length)` in `text`
@@ -247,6 +294,8 @@ export function isWorldNounAuthorReference(text: string, index: number, length: 
   const matched = text.slice(index, index + length);
   if (!/^the authors?$/i.test(matched)) return false;
   const end = index + length;
+  // Negative guard first: a document noun of this book cancels every carve-out.
+  if (BOOK_META_DOCUMENT_NOUN.test(text.slice(end))) return false;
   for (const pattern of WORLD_NOUN_AUTHOR_REGEXES) {
     const global = pattern.global ? pattern : new RegExp(pattern.source, `${pattern.flags}g`);
     global.lastIndex = 0;
@@ -257,6 +306,24 @@ export function isWorldNounAuthorReference(text: string, index: number, length: 
   }
   return false;
 }
+
+/**
+ * The exception sentence appended to a `"the author"` rejection, in EVERY place
+ * that rejects one.
+ *
+ * REVIEW ROUND 2 (minor). This text lived inside the researcher's own retry
+ * card, so `writer-breakdown.ts` — which keeps its own copy of META_REGEXES —
+ * rejected `the author` unconditionally and said nothing about the exception.
+ * A chapter about an anonymous writer could therefore get a sentence through
+ * research and then hit an unwinnable retry one stage downstream, which is the
+ * same unsatisfiable-remedy failure R-286 was opened for. One predicate, one
+ * exception text, every route.
+ *
+ * Its examples are exactly the shapes {@link WORLD_NOUN_AUTHOR_REGEXES} still
+ * admits after the round-2 narrowing, so the message never promises a phrasing
+ * the guard would reject.
+ */
+export const WORLD_NOUN_AUTHOR_EXCEPTION = ` EXCEPTION: "the author" stays admissible when it is the ordinary noun for a writer nobody could name — as the object of naming, knowing or anonymity ('would not name the author', 'without knowing the author', 'the author's name', 'the anonymous author', 'the author of the letter'). If that is your meaning, phrase it in one of those forms; that reading is not what is being rejected here.`;
 
 /**
  * Verbs that turn a surname into a statement ABOUT a text ("Franklin argues…")
@@ -621,9 +688,7 @@ function metaReferenceProblem(offense: LexicalOffense, author: string): string {
   // writer is told to repair the sentence by naming a person the sentence says
   // was never named, which is unsatisfiable. The live Franklin ch02 spent all
   // three attempts there.
-  const carveOut = /^the authors?$/i.test(offense.match)
-    ? ` EXCEPTION: "the author" stays admissible when it is the ordinary noun for a writer nobody could name — as the object of naming, knowing or anonymity ('would not name the author', 'without knowing the author', 'the author's name', 'the anonymous author', 'the author of the letter'). If that is your meaning, phrase it in one of those forms; that reading is not what is being rejected here.`
-    : "";
+  const carveOut = /^the authors?$/i.test(offense.match) ? WORLD_NOUN_AUTHOR_EXCEPTION : "";
   return `meta-reference "${offense.match}" found in \`${offense.path}\`: ${JSON.stringify(offense.sentence)} — A sidecar states standalone facts about the world, never facts about a text: drop "this chapter", "the chapter", "this book", "the book", "the author", and chapter/section numbers. ${remedy}${carveOut} Rewrite THAT sentence so it would read correctly to someone who has never seen the book; if it states nothing about the world, delete the sentence.`;
 }
 

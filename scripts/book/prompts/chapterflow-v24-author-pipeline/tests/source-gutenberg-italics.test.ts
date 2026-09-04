@@ -49,6 +49,7 @@ import {
   ingestSourceText,
   normalizeIngestedText,
   quoteIsGrounded,
+  stripGutenbergEmphasis,
 } from "../src/source/sourceText.js";
 import { resolveChapterMap } from "../src/source/chapterMap.js";
 
@@ -184,4 +185,22 @@ test("R-285: the public-domain slice loses its emphasis markers and keeps its pr
     true,
     "a quotation spanning an italic run and a line break must ground",
   );
+});
+
+/**
+ * REVIEW ROUND 2 (minor): the doc comment now states what the shape-based rule
+ * folds BESIDES italics, so a reader of `normalizeIngestedText` learns it from
+ * the file rather than from a surprising diff. This test pins that stated
+ * behaviour in both directions — the delimiter pairs fold, the identifier forms
+ * the guards were written for do not — so the doc and the regex cannot drift.
+ */
+test("R-285: delimiter-style underscore PAIRS fold too, exactly as the doc comment says", () => {
+  assert.equal(stripGutenbergEmphasis("set _DEBUG_ before the run"), "set DEBUG before the run");
+  assert.equal(stripGutenbergEmphasis("call foo(_x) then bar(y_) twice"), "call foo(x) then bar(y) twice");
+  // Only the markers go; the words between them are never touched.
+  assert.equal(stripGutenbergEmphasis("_DEBUG_"), "DEBUG");
+  // And the identifier cases the guards exist for stay whole.
+  for (const identifier of ["handle_click", "set_state", "__init__", "a_b_c"]) {
+    assert.equal(stripGutenbergEmphasis(identifier), identifier);
+  }
 });

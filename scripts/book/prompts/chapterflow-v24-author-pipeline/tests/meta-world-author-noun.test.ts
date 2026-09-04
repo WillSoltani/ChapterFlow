@@ -54,6 +54,7 @@ import {
 } from "../src/agents/researcher-chapter.js";
 import type { BibliographyResult } from "../src/agents/researcher-bibliography.js";
 import { runSourceCoherenceCheck } from "../src/critics/sourceCoherence.js";
+import { breakdownMetaProblem } from "../src/agents/writer-breakdown.js";
 import { baseResult, input } from "./researchSidecarFixture.js";
 
 const metaProblems = (problems: string[]): string[] => problems.filter((p) => p.startsWith("meta-reference"));
@@ -190,4 +191,149 @@ test("R-286: the carve-out list is bounded and every entry is anchored on \"the 
   // The list is a carve-out FROM META_REGEXES, so the phrase it carves must be
   // one META_REGEXES actually rejects.
   assert.ok(META_REGEXES.some((pattern) => pattern.test("the author")));
+});
+
+/* ---------------------------------------------------------------------------
+ * ROUND 2 — the adversarial review's negatives, pinned.
+ *
+ * The carve-out shipped in round 1 was right about the sense it exempted and
+ * too wide about the shapes it accepted. Three patterns admitted sentences that
+ * are statements ABOUT this book's author, which is the exact hole the guard
+ * exists to close. Every sentence below is quoted from the review or built to
+ * the shape it named, and each one is asserted in the direction the review
+ * argued for. A carve-out may only ever narrow.
+ * ------------------------------------------------------------------------- */
+
+/** Sentences the round-1 carve-out wrongly exempted. All must be REJECTED. */
+const ROUND2_LEAKED_SENTENCES = [
+  // Pattern 8 accepted seven verb stems, any \w* suffix, and up to three
+  // wildcard words before "as the author", with no reflexive pronoun required —
+  // so a plain passive attribution walked through.
+  "He is identified as the author of this narrative.",
+  // Even WITH a reflexive, "the author of these memoirs" is this book talking
+  // about itself: the document noun that follows is the negative guard's job.
+  "Franklin acknowledged himself as the author of these memoirs.",
+  // Pattern 3 took know|knows|knowing|known|knew, which exempts a reported
+  // claim about the author rather than an ignorance of who wrote a piece.
+  "Readers know the author intended a plain style throughout.",
+  "Scholars have long known the author to be a young apprentice.",
+  // Pattern 6's noun list was widened past the five short-form nouns; every
+  // extra covers writing this book itself plausibly IS.
+  "The Assembly never established the author of the paper.",
+  "The printers argued about the author of the column.",
+  "Nobody would say who was the author of the poem.",
+  "The magistrate asked for the author of the advertisement.",
+];
+
+/** World-noun sentences the narrowed patterns must still admit. */
+const ROUND2_KEPT_SENTENCES = [
+  "Franklin revealed himself as the author only after the essays had been praised.",
+  "He confessed himself as the author once the ruse had run its course.",
+  "Never knowing the author, the printers argued the essay on its merits alone.",
+  "The apprentices guessed at the author of the piece for weeks.",
+  "Officials demanded the author of a letter that had embarrassed the governor.",
+  "The subscribers wondered about the author of that essay all winter.",
+  "A reward was posted for the author of the pamphlet.",
+  "The governor's men hunted the author of his articles through the print shops.",
+];
+
+test("R-286 round 2: every sentence the review showed leaking is REJECTED on both routes", () => {
+  for (const sentence of ROUND2_LEAKED_SENTENCES) {
+    const v = bothRoutes(sentence);
+    assert.ok(v.meta.length >= 1, `research validator still admits: ${sentence}`);
+    assert.ok(v.codes.includes("SC4.meta_reference"), `SC4 still admits: ${sentence}`);
+    assert.equal(v.passed, false, `the coherence critic must fail-closed on: ${sentence}`);
+  }
+});
+
+test("R-286 round 2: the narrowed patterns still admit the world noun", () => {
+  for (const sentence of ROUND2_KEPT_SENTENCES) {
+    const v = bothRoutes(sentence);
+    assert.deepEqual(v.meta, [], `research validator blocked a world-noun sentence: ${sentence}`);
+    assert.ok(!v.codes.includes("SC4.meta_reference"), `SC4 blocked a world-noun sentence: ${sentence}`);
+  }
+});
+
+test("R-286 round 2: a document noun of THIS book cancels the carve-out outright", () => {
+  // The negative guard is on the occurrence, not on one pattern: whichever
+  // carve-out would have matched, "the author of this book/narrative/account/
+  // these memoirs" is the book describing itself.
+  for (const tail of ["this book", "the book", "this narrative", "these memoirs", "the account"]) {
+    const sentence = `Franklin revealed himself as the author of ${tail} in his old age.`;
+    const v = bothRoutes(sentence);
+    assert.ok(v.meta.length >= 1, `book-meta document noun was exempted: ${sentence}`);
+  }
+});
+
+test("R-286 round 2: pattern 6 is exactly the five short-form nouns", () => {
+  const piece = WORLD_NOUN_AUTHOR_REGEXES.find((p) => /author of/.test(p.source));
+  assert.ok(piece, "the of-a-piece pattern is gone");
+  for (const noun of ["piece", "letter", "essay", "pamphlet", "article"]) {
+    assert.equal(piece!.test(`the author of the ${noun}`), true, `${noun} must stay admissible`);
+    assert.equal(piece!.test(`the author of the ${noun}s`), true, `${noun}s must stay admissible`);
+  }
+  for (const noun of ["paper", "papers", "column", "columns", "verses", "poem", "ballad", "satire", "advertisement", "notice"]) {
+    assert.equal(piece!.test(`the author of the ${noun}`), false, `${noun} is not one of the five enumerated nouns`);
+  }
+});
+
+test("R-286 round 2: the self-disclosure pattern requires a reflexive AND a past-tense disclosure verb", () => {
+  const disclosure = WORLD_NOUN_AUTHOR_REGEXES.find((p) => /as the author/.test(p.source));
+  assert.ok(disclosure, "the self-disclosure pattern is gone");
+  assert.equal(disclosure!.test("revealed himself as the author"), true);
+  assert.equal(disclosure!.test("acknowledged themselves as the author"), true);
+  // No reflexive: a bare attribution is a statement about a text.
+  assert.equal(disclosure!.test("is identified as the author"), false);
+  assert.equal(disclosure!.test("was named by the printers as the author"), false);
+  // Wildcard words between the verb and the phrase are gone.
+  assert.equal(disclosure!.test("revealed to the whole shop as the author"), false);
+  // Stems that were never disclosures are gone.
+  assert.equal(disclosure!.test("suspected himself as the author"), false);
+  assert.equal(disclosure!.test("owned himself as the author"), false);
+});
+
+test("R-286 round 2: the knowing pattern is the -ing form and stops at a reported claim", () => {
+  const knowing = WORLD_NOUN_AUTHOR_REGEXES.find((p) => /knowing the author/.test(p.source));
+  assert.ok(knowing, "the knowing pattern is gone");
+  assert.equal(knowing!.test("without knowing the author"), true);
+  assert.equal(knowing!.test("never knowing the author"), true);
+  assert.equal(knowing!.test("praised it knowing the author was near"), false);
+  assert.equal(knowing!.test("know the author"), false);
+  assert.equal(knowing!.test("knows the author"), false);
+  assert.equal(knowing!.test("known the author"), false);
+  assert.equal(knowing!.test("knew the author"), false);
+});
+
+test("R-286 round 2: SC4 scans each field on its own, so a carve-out cannot straddle a field boundary", () => {
+  // Round 1 joined every narrative field with " \n " and scanned the join, so
+  // the naming pattern spanned two unrelated claims and swallowed the meta hit
+  // in the second one. collectOffenses never had this bug: it scans per segment.
+  const r: ChapterResearchResult = baseResult();
+  r.keyClaims[0] = "Officials would not name";
+  r.keyClaims[1] = "The author argues that a rotating duty is inherited by name.";
+  const in_ = input("Benjamin Franklin", "memoir");
+  const report = runSourceCoherenceCheck({ bibliography: in_.bibliography, chapters: [r] });
+  assert.ok(
+    report.findings.some((f) => f.code === "SC4.meta_reference"),
+    "a carve-out matched across a field boundary and hid a real meta-reference",
+  );
+});
+
+test("R-286 round 2: the breakdown writer shares the predicate and states the same exception", () => {
+  // Round 1 left a THIRD private copy of META_REGEXES here, rejecting "the
+  // author" unconditionally — so the one field the researcher could legally
+  // write was still unwritable one stage downstream, with no exception stated.
+  assert.equal(breakdownMetaProblem("fastRead", "The printers praised it without knowing the author."), null);
+  assert.equal(breakdownMetaProblem("deepRead", "A reward was posted for the author of the pamphlet."), null);
+  const meta = breakdownMetaProblem("fastRead", "The author argues that a rotating duty is inherited by name.");
+  assert.ok(meta, "the meta sense must still be rejected in the breakdown writer");
+  assert.match(meta!, /meta-reference "The author"/);
+  assert.match(meta!, /EXCEPTION/);
+  assert.match(meta!, /name the author/i);
+  assert.match(meta!, /anonymous/i);
+  // Every other meta pattern is untouched, and carries no exception text.
+  const chapter = breakdownMetaProblem("deepRead", "This chapter opens with a ward rota.");
+  assert.ok(chapter, "the other meta patterns must keep firing");
+  assert.match(chapter!, /this chapter/i);
+  assert.ok(!chapter!.includes("EXCEPTION"), "only the author hit carries the carve-out text");
 });
