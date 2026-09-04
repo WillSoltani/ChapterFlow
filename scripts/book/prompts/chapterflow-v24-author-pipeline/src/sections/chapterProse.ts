@@ -274,6 +274,33 @@ export function countSpecificsInProse(specifics: readonly unknown[], normalizedP
  *  inclusion alone can never answer "did the page show this". */
 export const SPECIFIC_INCLUSION_MIN_CHARS = 3;
 
+/** THE BOUND ON BARE NUMBER WORDS (review round 2, MINOR).
+ *
+ * Whole-token crediting with no context is too generous at the bottom of the range.
+ * "one" and "two" fold to "1" and "2", and ordinary English says both about anything:
+ * prose reading "One of the boys was sent to school, and two of the shops were his
+ * father's customers" scored a case whose hardSpecifics were ["one","two"] as 2/2
+ * TAUGHT — SEC14/SEC136 satisfied by incidental words that teach a reader nothing.
+ *
+ * So a BARE figure — a needle that is nothing but digits — is creditable only from
+ * TEN up. A specific carrying a unit or qualifier ("two marriages", "forty shillings")
+ * is three characters or more after folding and never reaches this path at all: it is
+ * answered by ordinary inclusion, where the surrounding word does the disambiguating.
+ * Below ten, the specific is INERT everywhere — `specificIsJudgeable` is false for it,
+ * so SEC120 neither credits nor blocks it and no writer-facing list names it. That is
+ * exactly the behaviour it had before the number-word fix, so nothing regresses.
+ */
+export const SHORT_FIGURE_MIN_VALUE = 10;
+
+/** Whether a sub-floor needle is a FIGURE this module is willing to answer for:
+ *  digit-bearing, and — when it is nothing but digits — worth at least
+ *  SHORT_FIGURE_MIN_VALUE. Operates on normalized text. */
+function isShortFigure(normalized: string): boolean {
+  if (normalized.length === 0 || !/\d/.test(normalized)) return false;
+  if (/^\d+$/.test(normalized) && Number(normalized) < SHORT_FIGURE_MIN_VALUE) return false;
+  return true;
+}
+
 /**
  * A SHORT FIGURE, matched as a whole TOKEN rather than as a substring.
  *
@@ -302,11 +329,40 @@ export const SPECIFIC_INCLUSION_MIN_CHARS = 3;
  * it can never match inside "1913", and it answers the question the gate asks. The
  * carve is limited to needles carrying a DIGIT — a short word with none ("a", "of")
  * is semantically empty, so it keeps the floor's skip and nothing changes for it.
+ *
+ * REVIEW ROUND 2 added the value bound (SHORT_FIGURE_MIN_VALUE, above) and made this
+ * the answer SEC120 uses too, through `specificDerivable`. SEC120 no longer keeps an
+ * inline floor of its own: one predicate answers "is it on the page?" for the gate, for
+ * SEC14/SEC136, and for every writer-facing list, and `specificNamedInUnit` below is its
+ * mirror on the unit side so a stem's "1776" can never be read as naming "17".
  */
 function shortFigureOnPage(normalized: string, normalizedProse: string): boolean {
-  if (normalized.length === 0 || !/\d/.test(normalized)) return false;
-  const escaped = normalized.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  return new RegExp(`(?:^| )${escaped}(?: |$)`).test(normalizedProse);
+  return isShortFigure(normalized) && containsToken(normalizedProse, normalized);
+}
+
+/** Whether the shared predicate can answer "is this on the page?" for this specific AT
+ *  ALL. Above the inclusion floor, always. Below it, only for a short figure the bound
+ *  above admits — a short needle with no digit ("a", "of") and a bare one-digit figure
+ *  ("one" → "1") are semantically empty, and every consumer must treat them the same
+ *  way: SEC120 skips them, so no writer-facing list may call one allowed OR forbidden.
+ *  This is the guard that keeps the card's three lists and the gate in agreement. */
+export function specificIsJudgeable(specific: string): boolean {
+  const normalized = normalizeDerivabilityText(specific);
+  if (normalized.length === 0) return false;
+  return normalized.length >= SPECIFIC_INCLUSION_MIN_CHARS || isShortFigure(normalized);
+}
+
+/** Whether a UNIT's own text (a quiz stem, a choice, an explanation, a card face)
+ *  NAMES this specific — the unit-side mirror of `specificDerivable`, and the reason
+ *  SEC120 can drop its inline floor safely. Inclusion above the floor, whole-token
+ *  equality for a short figure: a stem saying "1776" must never be read as naming
+ *  "seventeen". Both arguments' text must already be normalizeDerivabilityText'd on
+ *  the haystack side; the specific is normalized here. */
+export function specificNamedInUnit(specific: string, normalizedUnit: string): boolean {
+  const normalized = normalizeDerivabilityText(specific);
+  if (normalized.length === 0) return false;
+  if (normalized.length < SPECIFIC_INCLUSION_MIN_CHARS) return shortFigureOnPage(normalized, normalizedUnit);
+  return normalizedUnit.includes(normalized);
 }
 
 /** The ONE predicate every SEC120 comparison and every writer-facing list runs a
@@ -515,7 +571,13 @@ export function packetProseDerivability(
   const seen = new Set<string>();
   const add = (list: ProseSpecific[], value: string, source: string): void => {
     const key = normalizeDerivabilityText(value);
-    if (key.length < 3 || seen.has(key)) return;
+    // Review round 2: this filter used to be a bare `key.length < 3`, which dropped
+    // the very short FIGURE the shared predicate had just credited — the card printed
+    // a DO-NOT-USE list and NO allowed list for an anchor SEC56/SEC58 compel a unit to
+    // cite. The list membership question is now asked of the same predicate the gate
+    // uses: a specific the gate can judge belongs on one of these lists, and one it
+    // cannot judge belongs on neither.
+    if (!specificIsJudgeable(value) || seen.has(key)) return;
     seen.add(key);
     list.push(Object.freeze({ value, source }));
   };

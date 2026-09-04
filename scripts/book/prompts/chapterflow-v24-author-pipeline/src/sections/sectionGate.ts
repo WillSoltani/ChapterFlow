@@ -43,6 +43,9 @@ import {
   hasDraftedReadTiers,
   normalizeDerivabilityText,
   qualifiedNameDerivable,
+  specificDerivable,
+  specificIsJudgeable,
+  specificNamedInUnit,
   standaloneProseText,
   type ChapterProseSource,
 } from "./chapterProse.js";
@@ -3163,31 +3166,34 @@ export function learningProseDerivabilityFindings(
       // is, the defect is upstream — the summary tiers never covered a case the
       // blueprint dealt — and SEC120 stands down rather than blocking a chapter
       // that cannot be written.
-      // SEC120 KEEPS ITS OWN LENGTH FLOOR, DELIBERATELY (2026-09-04). The shared
-      // predicate `specificDerivable` now answers a SHORT FIGURE by whole-token
-      // equality, because the number-word fold ("seventeen" -> "17") had made every
-      // number-word specific permanently underivable and SEC14/SEC136 unsatisfiable.
-      // SEC120 is the other direction — it BLOCKS a unit for naming what the page
-      // never showed — so adopting the same carve here would add a new blocker
-      // class (a stem saying "seventeen" against prose that omits it) mid-run. This
-      // check therefore keeps SKIPPING short specifics on both arms below, which is
-      // strictly more permissive than the shared predicate: SEC120 can never block a
-      // figure SEC14/SEC136 have just credited, and the two can never contradict.
-      const anchorSpecifics = (anchor.hardSpecifics ?? [])
-        .map((value) => normalizeDerivabilityText(text(value)))
-        .filter((value) => value.length >= 3);
-      const anySpecificOnThePage = anchorSpecifics.some((value) =>
-        haystack.includes(value)
-        || qualifiedNameDerivable(value, haystack)
-        || clippedPhraseDerivable(value, haystack));
+      // ONE PREDICATE, FOR REAL (review round 2, 2026-09-04). This check used to keep
+      // its OWN inline >=3-char floor while the shared `specificDerivable` answered a
+      // SHORT FIGURE ("seventeen" -> "17") by whole-token equality. Two answers to one
+      // question is exactly the defect this module was refactored to prevent, and it
+      // was live: with prose showing only "seventeen", SEC120 stood down for the
+      // anchor (its floor skipped the only on-page specific) while the writer card —
+      // built from the shared predicate — printed the other two specifics as
+      // DO-NOT-USE and offered NOTHING, for an anchor SEC56/SEC58 compel a citing unit
+      // to quote verbatim. The card described a gate that never fired.
+      //
+      // Both prose-side comparisons below now call `specificDerivable`, and the
+      // unit-side test calls its mirror `specificNamedInUnit` so dropping the floor
+      // cannot buy a false blocker: "17" is matched as a whole TOKEN on both sides and
+      // can never be read out of the middle of a stem's "1776".
+      //
+      // DISCLOSED CONSEQUENCE: SEC120 can now BLOCK a unit that names a short figure
+      // the prose never states. That is the correct direction and the same judgement
+      // SEC14/SEC136 make about the same string — and because both sides run one
+      // predicate, SEC120 can still never block a figure those two have just credited.
+      // A bare one-digit specific ("one") stays inert here exactly as before: the
+      // shared predicate's SHORT_FIGURE_MIN_VALUE bound refuses to judge it at all.
+      const anySpecificOnThePage = (anchor.hardSpecifics ?? [])
+        .some((value) => specificDerivable(text(value), haystack));
       if (!anySpecificOnThePage) continue;
       for (const specific of anchor.hardSpecifics ?? []) {
-        const normalized = normalizeDerivabilityText(text(specific));
-        if (normalized.length < 3) continue;
-        if (!unit.includes(normalized)) continue;
-        if (haystack.includes(normalized)) continue;
-        if (qualifiedNameDerivable(normalized, haystack)) continue;
-        if (clippedPhraseDerivable(normalized, haystack)) continue;
+        if (!specificIsJudgeable(text(specific))) continue;
+        if (!specificNamedInUnit(text(specific), unit)) continue;
+        if (specificDerivable(text(specific), haystack)) continue;
         missing.add(text(specific));
       }
     }

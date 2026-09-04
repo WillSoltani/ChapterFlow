@@ -149,15 +149,27 @@ test("a short specific with no digit keeps the floor's skip", () => {
   assert.equal(specificDerivable("of", prose), false);
 });
 
-test("every number word the fold knows survives it as a deliverable specific", () => {
+test("every number word the fold knows from TEN up survives it as a deliverable specific", () => {
   // The class guard: a normalisation that makes a specific impossible to put on
   // the page turns every gate that measures it into an unsatisfiable one.
-  const words = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten",
-    "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen",
-    "nineteen", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
+  //
+  // Review round 2 bounded the bottom of the range. A BARE one-digit specific
+  // ("one", "two") is not deliverable and must not be enshrined here: whole-token
+  // crediting with no context let incidental English score a case fully taught, so
+  // SHORT_FIGURE_MIN_VALUE makes those inert everywhere instead — never credited,
+  // never blocked, never listed on a writer card. Every word from "ten" up keeps the
+  // guarantee this test exists for, and that covers the live ch01 wedge
+  // ("seventeen", "thirteen"). See tests/short-figure-card-gate-alignment.test.ts.
+  const words = ["ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+    "seventeen", "eighteen", "nineteen", "twenty", "thirty", "forty", "fifty", "sixty",
+    "seventy", "eighty", "ninety"];
   for (const word of words) {
     const prose = normalizeDerivabilityText(`The record counts ${word} of them in that household.`);
     assert.equal(specificDerivable(word, prose), true, `"${word}" must be deliverable as prose`);
+  }
+  for (const word of ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"]) {
+    const prose = normalizeDerivabilityText(`The record counts ${word} of them in that household.`);
+    assert.equal(specificDerivable(word, prose), false, `bare "${word}" is below the bound and stays inert`);
   }
 });
 
