@@ -883,8 +883,9 @@ export function buildMetaRepairPrompt(
   parts.push("");
   parts.push(`## What you may change`);
   parts.push(`- Rewrite each listed sentence IN PLACE, as a fact about ${named} and the world.`);
-  parts.push(`- If a listed sentence carries no fact about the world at all — it only describes the passage — DELETE that sentence and keep the rest of its field. Never leave a required field empty: if the whole field is narration, rewrite it instead of emptying it.`);
-  parts.push(`- \`keyClaims\` is an UNKEYED list, so rewrite a listed claim IN PLACE and return the same ${draft.keyClaims.length} claims in the same order. The merge reads your list position by position: an added claim is discarded (it could not be quoted from a source you cannot see on this call) and a removed one leaves the original claim standing, which fails the repair.`);
+  parts.push(`- If a listed sentence sits in a PROSE field (\`focus\`, \`coreClaim\`, \`centralConcept\`, \`hardEdge\`, \`paraphraseNotes\`) and carries no fact about the world at all — it only describes the passage — DELETE that sentence and keep the rest of its field. Never leave a required field empty: if the whole field is narration, rewrite it instead of emptying it.`);
+  parts.push(`- \`keyClaims\` is an UNKEYED list, so rewrite a listed claim IN PLACE and return exactly the same ${draft.keyClaims.length} claims in the same order. NEVER delete a key claim, never add one, never re-order them. If a listed claim states no fact about the world at all, rewrite it as a different world fact this draft already states elsewhere (a \`namedExamples\` summary, a \`testableFacts\` claim) — invent nothing, and do not leave it as narration.`);
+  parts.push(`- A \`keyClaims\` list of any other length, or one that repeats a claim, or one that loses a claim you were not asked to rewrite, is REFUSED WHOLE: the merge throws your entire repair away and the chapter keeps its original rejection. The merge reads your list position by position and cannot tell where a deleted claim used to sit, so it refuses rather than guess.`);
   parts.push(`- If a listed sentence IS a whole entry of \`namedExamples\` or \`testableFacts\` and it carries no fact about the world, drop that entry rather than inventing a replacement — but this chapter still needs at least ${floors.namedExamples} named examples and ${floors.testableFacts} testable facts, and a drop that breaks one of those floors throws the whole repair away.`);
   parts.push(`- Change NOTHING else. Every other sentence, every id, every \`sourceQuote\`, every \`hardSpecifics\` token and every number stays exactly as it is.`);
   parts.push(`- Invent nothing. If the draft does not already contain a fact, do not add one; you cannot see the source text on this call and an unquotable claim is worse than a missing one.`);
@@ -916,22 +917,48 @@ function repairedString(value: unknown, fallback: string): string {
  * (mergeById). `keyClaims` is a bare string list with no ids and no
  * `sourceQuote` — nothing downstream can tell an appended claim from a repaired
  * one, and the repair call is deliberately not shown the source span — so it is
- * merged POSITIONALLY and length-bounded: the merged list has exactly the
- * draft's length, index i is replaced only by a non-empty string at index i,
- * extra entries are dropped and a short response keeps the draft's remainder.
- * A key claim therefore cannot be added, removed or re-ordered by a repair.
+ * merged POSITIONALLY: index i is replaced only by a non-empty string at index i.
+ *
+ * A positional merge is add-proof but it is NOT drop-proof or re-order-proof
+ * (round-3 review finding, and the reason `mergeKeyClaims` exists): a response
+ * that DELETES the flagged claim and returns the rest slides every later claim
+ * one place up, so the flagged claim disappears, the survivors change position
+ * and the last one is duplicated to fill the length — and no validator catches
+ * that, because `keyClaims` is checked by a count floor with no duplicate check.
+ * The merge cannot know where a deleted claim was meant to sit, so instead of
+ * guessing it FAILS THE REPAIR CLOSED: the whole response is refused, this
+ * function returns null and the draft's own rejection stands, exactly as it would
+ * have with no repair at all. It refuses when the response's `keyClaims` is a
+ * different length than the draft's, when the merged list would repeat a claim
+ * (compared on normalized text), or when any index the repair was NOT asked to
+ * rewrite no longer carries the draft's own claim (`offenses` names the flagged
+ * indices; a re-ordering is refused by that same rule). What the merge GUARANTEES
+ * is therefore narrower than "a claim cannot move": a repair either returns the
+ * draft's own claims with the flagged ones rewritten in place, or it is thrown
+ * away whole.
  *
  * A repair CAN still drop an id-keyed item (an entry the response omits by id is
  * dropped) — that is the honest move for pure narration — and the merged object
  * is then re-validated against the same floors, so a drop that breaks a floor
  * rejects the repair.
  *
- * Returns null when the response is not a usable object; the caller then keeps
- * the draft's own rejection.
+ * Returns null when the response is not a usable object, or when its `keyClaims`
+ * is refused as above; the caller then keeps the draft's own rejection.
  */
-export function applyMetaRepair(draft: ChapterResearchResult, repaired: unknown): ChapterResearchResult | null {
+export function applyMetaRepair(
+  draft: ChapterResearchResult,
+  repaired: unknown,
+  /** The offenses this repair was asked to fix. Only the `keyClaims[i]` paths in
+   *  it are read: a claim at any other index may not be replaced. Defaults to
+   *  "nothing was flagged", which is the strictest reading, never a looser one. */
+  offenses: readonly LexicalOffense[] = [],
+): ChapterResearchResult | null {
   if (!repaired || typeof repaired !== "object" || Array.isArray(repaired)) return null;
   const patch = repaired as Partial<ChapterResearchResult>;
+  const keyClaims = mergeKeyClaims(draft.keyClaims, patch.keyClaims, flaggedKeyClaimIndices(offenses));
+  // A keyClaims list that added, dropped, duplicated or re-ordered a claim fails
+  // the WHOLE repair closed — never a partial merge onto a shifted list.
+  if (keyClaims === null) return null;
   const merged: ChapterResearchResult = {
     ...draft,
     focus: repairedString(patch.focus, draft.focus),
@@ -944,7 +971,7 @@ export function applyMetaRepair(draft: ChapterResearchResult, repaired: unknown)
       plainDefinition: repairedString(patch.centralConcept?.plainDefinition, draft.centralConcept?.plainDefinition),
       whyItMatters: repairedString(patch.centralConcept?.whyItMatters, draft.centralConcept?.whyItMatters),
     },
-    keyClaims: mergePositional(draft.keyClaims, patch.keyClaims),
+    keyClaims,
     namedExamples: mergeById(draft.namedExamples, patch.namedExamples, ["label", "summary", "teachesWhat"]),
     testableFacts: draft.testableFacts === undefined
       ? draft.testableFacts
@@ -953,21 +980,67 @@ export function applyMetaRepair(draft: ChapterResearchResult, repaired: unknown)
   return merged;
 }
 
+/** Identity of a key claim for comparison ONLY: whitespace and case carry no
+ *  meaning in a claim, so a re-cased copy of a claim is still that claim and must
+ *  not read as a second, different one. */
+function claimIdentity(claim: string): string {
+  return claim.trim().replace(/\s+/g, " ").toLowerCase();
+}
+
+/** Which `keyClaims` indices the repair was actually asked to rewrite, read off
+ *  the offense paths (`keyClaims[2]`). Everything else must survive untouched. */
+function flaggedKeyClaimIndices(offenses: readonly LexicalOffense[]): Set<number> {
+  const flagged = new Set<number>();
+  for (const offense of offenses) {
+    const match = /^keyClaims\[(\d+)\]$/.exec(offense.path);
+    if (match !== null) flagged.add(Number(match[1]));
+  }
+  return flagged;
+}
+
 /**
- * Merge an UNKEYED string list positionally and length-bounded.
+ * Merge the UNKEYED `keyClaims` list positionally, or REFUSE the repair.
  *
- * The merged list is exactly as long as the draft's: index i is replaced only by
- * a non-empty string at index i, entries past the draft's length are dropped, and
- * a response shorter than the draft keeps the draft's remaining entries. This is
- * the only add-proof merge available to a list with no ids — see applyMetaRepair.
+ * Index i is replaced only by a non-empty string at index i, so an in-place
+ * rewrite is the only edit that can land. Everything else returns null, which
+ * fails the whole repair closed (applyMetaRepair):
+ *
+ *  - a different length: the response added or dropped a claim, and a positional
+ *    merge cannot tell which claim went where (round-3 finding: a dropped claim
+ *    used to shift the survivors up and duplicate the last one);
+ *  - a repeated claim in the merged list, compared on normalized text;
+ *  - an index the repair was not asked to rewrite whose claim is no longer the
+ *    draft's own (compared the same way) — "change NOTHING else" is the repair
+ *    contract, a silent overwrite of an unflagged claim is a deletion wearing a
+ *    rewrite's clothes, and holding every unflagged index to its own draft entry
+ *    is also what rules out a pure re-ordering of the list.
+ *
+ * A response that carries no `keyClaims` at all changed nothing there, so the
+ * draft's own list stands.
  */
-function mergePositional(draft: readonly string[] | undefined, patch: unknown): string[] {
+function mergeKeyClaims(
+  draft: readonly string[] | undefined,
+  patch: unknown,
+  flagged: ReadonlySet<number>,
+): string[] | null {
   const entries = Array.isArray(draft) ? [...draft] : [];
   if (!Array.isArray(patch)) return entries;
-  return entries.map((entry, index) => {
+  if (patch.length !== entries.length) return null;
+  const merged = entries.map((entry, index) => {
     const replacement = patch[index];
     return typeof replacement === "string" && replacement.trim().length > 0 ? replacement : entry;
   });
+  const identities = new Set<string>();
+  for (const claim of merged) {
+    const identity = claimIdentity(claim);
+    if (identities.has(identity)) return null;
+    identities.add(identity);
+  }
+  for (const [index, entry] of entries.entries()) {
+    if (flagged.has(index)) continue;
+    if (claimIdentity(merged[index]) !== claimIdentity(entry)) return null;
+  }
+  return merged;
 }
 
 /**
@@ -1181,8 +1254,18 @@ export async function runResearcherChapter(
         }
         repaired = null;
       }
-      const merged = repaired === null ? null : applyMetaRepair(candidate, repaired);
-      repairRecord = { response: repaired, merged: merged !== null, problems: [] };
+      const merged = repaired === null ? null : applyMetaRepair(candidate, repaired, report.offenses);
+      repairRecord = {
+        response: repaired,
+        merged: merged !== null,
+        // A response that arrived and was still refused says WHY in the record —
+        // "no repair was made" and "the repair was thrown away" are different
+        // post-mortems, and round 2 is the finding that the run directory has to
+        // be able to tell them apart.
+        problems: repaired !== null && merged === null
+          ? ["the repair response was refused by the merge: it was not a usable object, or its keyClaims added, dropped, duplicated or re-ordered a claim"]
+          : [],
+      };
       if (merged !== null) {
         const mergedProblems = [
           ...collectChapterResearchProblems(merged, input),

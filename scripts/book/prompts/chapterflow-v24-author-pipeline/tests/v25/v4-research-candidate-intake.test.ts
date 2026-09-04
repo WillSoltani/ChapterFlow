@@ -190,6 +190,19 @@ function advisoryCanaryChapter(number: number, title: string): ChapterResearchRe
   };
 }
 
+/**
+ * A chapter whose ONLY defect is the live Franklin failure's defect: a sentence
+ * about the text instead of about the world. It is rejected by every attempt, so
+ * the chapter exhausts its retries and the run fails — which is exactly the shape
+ * whose rejected drafts have to be readable afterwards.
+ */
+function metaReferenceChapter(number: number, title: string): ChapterResearchResult {
+  return {
+    ...chapter(number, title),
+    coreClaim: "The book shows that meaningful moments become memorable when a concrete break in routine changes attention.",
+  };
+}
+
 function fakeCandidateStore() {
   let snapshot: CandidateSnapshot | null = null;
   let stageCalls = 0;
@@ -224,7 +237,7 @@ function fakeCandidateStore() {
   return { store, snapshot: () => snapshot, stageCalls: () => stageCalls };
 }
 
-function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated" | "advisory-canary" = "clean") {
+function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated" | "advisory-canary" | "meta-reference-ch01" = "clean") {
   const runStore = createFileRunStore(resolve(context.roots.stateRoot, "v25-runs"));
   const stageCoordinator = createFileStageCoordinator(resolve(context.roots.stateRoot, "v25-runs"));
   const candidates = fakeCandidateStore();
@@ -270,13 +283,15 @@ function rig(context: TestContext, quality: "clean" | "malformed" | "fabricated"
         ? bibliography()
         : control.failChapters.has(chapterNumber)
           ? { ...chapter(chapterNumber, chapterTitle), testableFacts: [] }
-          : quality === "malformed"
-            ? { ...chapter(chapterNumber, chapterTitle), testableFacts: [] }
-            : quality === "fabricated"
-              ? fabricatedChapter(chapterNumber, chapterTitle)
-              : quality === "advisory-canary"
-                ? advisoryCanaryChapter(chapterNumber, chapterTitle)
-                : chapter(chapterNumber, chapterTitle);
+          : quality === "meta-reference-ch01" && chapterNumber === 1
+            ? metaReferenceChapter(chapterNumber, chapterTitle)
+            : quality === "malformed"
+              ? { ...chapter(chapterNumber, chapterTitle), testableFacts: [] }
+              : quality === "fabricated"
+                ? fabricatedChapter(chapterNumber, chapterTitle)
+                : quality === "advisory-canary"
+                  ? advisoryCanaryChapter(chapterNumber, chapterTitle)
+                  : chapter(chapterNumber, chapterTitle);
       const finished = await runStore.finishAttempt({
         bookId: request.context.bookId,
         runId: request.context.runId,
@@ -801,6 +816,44 @@ requiredTest("16 the staged section-task context carries the run's own voice car
   const secondFile = second.candidates.snapshot()?.files.find((entry) => entry.logicalPath === "inputs/compiler-section-task-context.json");
   assert.ok(secondFile);
   assert.equal(Buffer.from(secondFile.bytes).toString("utf8"), Buffer.from(file.bytes).toString("utf8"), "the staged context is deterministic");
+});
+
+/**
+ * R-283 round 3 (round-2 review, minor 2). The rejected-draft persistence test in
+ * tests/research-rejected-drafts.test.ts injects its OWN `runChapter` and calls
+ * `context.onRejectedDraft` by hand, so the one line that carries the run
+ * context from the orchestrator into `runResearcherChapter`'s retry options —
+ * this port's `runChapter` dep — was covered by the typechecker alone. This test
+ * drives the REAL port with a runner whose chapter-1 output is rejected on every
+ * attempt and asserts the files land: delete the third argument to
+ * `runResearcherChapter` here and nothing is written.
+ */
+requiredTest("17 the real research port forwards the run context, so a rejected draft is persisted by the run", async (context) => {
+  const subject = rig(context, "meta-reference-ch01");
+  const request = { ...subject.request, chapterConcurrency: 1 };
+  await assert.rejects(subject.port.run(request), /chapter 1|chapter research invalid|meta-reference/i);
+
+  const bookRuns = resolve(request.v25Root, "research-runs", BOOK);
+  const runDirs = readdirSync(bookRuns);
+  assert.equal(runDirs.length, 1, "one research run");
+  const rejectedDir = resolve(bookRuns, runDirs[0], "rejected");
+  assert.deepEqual(
+    readdirSync(rejectedDir).sort(),
+    ["ch01.attempt1.json", "ch01.attempt2.json", "ch01.attempt3.json"],
+    "every rejected attempt of the failing chapter is on disk, and the passing chapter writes nothing",
+  );
+  const record = JSON.parse(readFileSync(resolve(rejectedDir, "ch01.attempt1.json"), "utf8")) as Record<string, unknown>;
+  assert.equal(record.chapterNumber, 1);
+  assert.equal(record.attempt, 1);
+  assert.match(
+    (record.draft as ChapterResearchResult).coreClaim,
+    /^The book shows that/,
+    "what is persisted is the model's own rejected output",
+  );
+  assert.ok(
+    (record.problems as string[]).some((problem) => /meta-reference "The book"/.test(problem)),
+    "with the reason it was refused",
+  );
 });
 
 finishV25Tests().catch((error: unknown) => {

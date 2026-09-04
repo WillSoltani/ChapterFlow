@@ -52,6 +52,7 @@ import {
   runResearcherChapter,
   type ChapterResearchInput,
   type ChapterResearchResult,
+  type LexicalOffense,
 } from "../src/agents/researcher-chapter.js";
 import { MAX_BIBLIOGRAPHY_ATTEMPTS } from "../src/agents/researcher-bibliography.js";
 import { researchAttemptCapForChapters } from "../src/app/researchCandidateApplicationPort.js";
@@ -107,6 +108,19 @@ function execution(script: Array<ChapterResearchResult | Error>, prompts: string
 }
 
 const isRepairPrompt = (prompt: string): boolean => prompt.includes("# Repair task");
+
+/** The offense list the retry loop hands `applyMetaRepair`, reduced to what the
+ *  keyClaims merge reads from it: which claim indices the repair was asked to
+ *  rewrite. Anything the repair changes outside this set is a silent deletion. */
+function keyClaimOffenses(...indices: number[]): LexicalOffense[] {
+  return indices.map((index) => ({
+    rule: "meta-reference" as const,
+    match: "The book",
+    path: `keyClaims[${index}]`,
+    sentence: "The book records the duty in a ledger.",
+    repairable: true,
+  }));
+}
 
 // ── (a) the prompt states the standalone-facts contract in SOURCE-TEXT mode ──
 
@@ -465,16 +479,15 @@ test("R-283: the research run's prompt digest covers the SYSTEM prompts — a ch
  * ignores an entry that matches no draft id); `keyClaims` has no ids, so the only
  * add-proof merge available to it is POSITIONAL and length-bounded.
  */
-test("R-283 round 2: a repair CANNOT add a key claim — the keyClaims merge is positional and length-bounded", () => {
+test("R-283 round 2: a repair CANNOT add a key claim — a keyClaims list of the wrong length is refused whole", () => {
   const draft = baseResult();
   const repaired = baseResult();
   repaired.keyClaims = [...draft.keyClaims, "INVENTED CLAIM 4", "INVENTED CLAIM 5"];
 
-  const merged = applyMetaRepair(draft, repaired);
-  assert.ok(merged);
-  assert.equal(merged!.keyClaims.length, draft.keyClaims.length, "the repaired list has exactly the draft's length");
-  assert.deepEqual(merged!.keyClaims, draft.keyClaims, "extra entries are dropped, not appended");
-  assert.ok(!merged!.keyClaims.some((claim) => claim.includes("INVENTED")), "an ungrounded claim must never survive the merge");
+  // Round 3: the merge no longer silently truncates an over-long list. A list of
+  // the wrong length proves the repair did something the positional merge cannot
+  // interpret, so the WHOLE repair is refused and the draft's own rejection stands.
+  assert.equal(applyMetaRepair(draft, repaired, keyClaimOffenses(1)), null, "an appended claim refuses the whole repair");
 });
 
 test("R-283 round 2: the keyClaims merge replaces index i in place, keeps the draft's entry for anything unusable, and never re-orders", () => {
@@ -484,10 +497,10 @@ test("R-283 round 2: the keyClaims merge replaces index i in place, keeps the dr
     "A rotating duty is inherited by name, and the ledger names the successor.", // a real in-place rewrite
     "   ",                                                                       // blank: the draft's entry stands
     42 as unknown as string,                                                     // not a string: the draft's entry stands
-    // index 3 omitted entirely: a SHORTER response keeps the draft's remainder
+    draft.keyClaims[3],                                                          // untouched
   ];
 
-  const merged = applyMetaRepair(draft, repaired);
+  const merged = applyMetaRepair(draft, repaired, keyClaimOffenses(0));
   assert.ok(merged);
   assert.deepEqual(merged!.keyClaims, [
     repaired.keyClaims[0],
@@ -505,11 +518,14 @@ test("R-283 round 2: an appended key claim cannot reach a returned sidecar throu
   hostile.keyClaims.push("The club also invented the lightning rod on a Friday in 1752.");
 
   const prompts: string[] = [];
-  const result = await runResearcherChapter(franklinInput(), execution([bad, hostile], prompts), { sleep: async () => {} });
+  // Round 3: the appended claim refuses the whole repair, so the chapter falls
+  // back to the draft's own rejection and re-drafts — attempt 2 is clean.
+  const result = await runResearcherChapter(franklinInput(), execution([bad, hostile, baseResult()], prompts), { sleep: async () => {} });
 
-  assert.equal(prompts.length, 2, "one draft + one repair");
+  assert.equal(prompts.length, 3, "draft + refused repair + a fresh draft");
   assert.equal(result.keyClaims.length, baseResult().keyClaims.length);
-  assert.equal(result.keyClaims[1], hostile.keyClaims[1], "the listed sentence IS repaired in place");
+  assert.deepEqual(result.keyClaims, baseResult().keyClaims, "what ships is the clean draft, not a half-merged repair");
+  assert.equal(result.metaRepair, undefined, "a refused repair stamps no provenance");
   assert.ok(
     !result.keyClaims.some((claim) => claim.includes("lightning rod")),
     "the claim the repair appended is not in the sidecar the writers read",
@@ -530,6 +546,102 @@ test("R-283 round 2: the repair prompt tells the truth about keyClaims — a cla
     !/drop that entry rather than inventing a replacement[\s\S]{0,200}`keyClaims`/.test(prompt),
     "the prompt must not offer a keyClaims drop the merge cannot honour",
   );
+});
+
+// ── ROUND 3 (adversarial review) — the repair may not DROP or RE-ORDER either ─
+
+/**
+ * BLOCKING finding, round 2. The positional merge was add-proof but NOT
+ * drop-proof. A draft whose meta-reference sits in `keyClaims[1]`, repaired by a
+ * response that DELETES that claim and returns the other three (exactly what the
+ * prompt's own "DELETE that sentence" bullet invited), merged position by
+ * position into `[c0, c2, c3, c3]`: the flagged claim silently gone, c2 and c3
+ * shifted one place up, and c3 duplicated to fill the length. Nothing downstream
+ * catches that — the validator has a count FLOOR and no duplicate check at all —
+ * so the corrupted sidecar shipped stamped with metaRepair provenance.
+ *
+ * The merge cannot repair a drop (it cannot know which claim was meant to land
+ * where), so it now fails the repair CLOSED: the draft's own rejection stands and
+ * the chapter re-drafts, which is what would have happened with no repair at all.
+ */
+test("R-283 round 3: a repair that DROPS the flagged key claim is refused — the merge never shifts and duplicates the rest", () => {
+  const draft = baseResult();
+  const repaired = baseResult();
+  // The exact response the old prompt invited: the flagged claim is deleted and
+  // the other three come back in order.
+  repaired.keyClaims = [draft.keyClaims[0], draft.keyClaims[2], draft.keyClaims[3]];
+
+  const merged = applyMetaRepair(draft, repaired, keyClaimOffenses(1));
+  assert.equal(merged, null, "a dropped key claim fails the repair closed rather than shifting the list");
+});
+
+test("R-283 round 3: a same-length response that DUPLICATES a claim is refused", () => {
+  const draft = baseResult();
+  const repaired = baseResult();
+  // The shifted list the old positional merge produced, offered directly.
+  repaired.keyClaims = [draft.keyClaims[0], draft.keyClaims[2], draft.keyClaims[3], draft.keyClaims[3]];
+
+  assert.equal(applyMetaRepair(draft, repaired, keyClaimOffenses(1)), null, "a duplicated key claim is not a repair");
+  // Duplication is judged on normalized text, so re-punctuating one copy does not
+  // slip the same claim through twice.
+  const sneaky = baseResult();
+  sneaky.keyClaims = [draft.keyClaims[0], draft.keyClaims[2], draft.keyClaims[3], `  ${draft.keyClaims[3].toUpperCase()}  `];
+  assert.equal(applyMetaRepair(draft, sneaky, keyClaimOffenses(1)), null, "a re-cased duplicate is still a duplicate");
+});
+
+test("R-283 round 3: a repair that overwrites a claim it was NOT asked to rewrite is refused", () => {
+  const draft = baseResult();
+  const repaired = baseResult();
+  // Right length, no duplicates — but index 2 was never flagged and its claim is
+  // gone. "Change NOTHING else" is the contract; losing an unflagged claim is a
+  // silent deletion wearing a rewrite's clothes.
+  repaired.keyClaims[2] = "A quarterly audit reconciled the ledger against the club's own minutes.";
+
+  assert.equal(applyMetaRepair(draft, repaired, keyClaimOffenses(1)), null, "an unflagged claim may not be replaced");
+  // The same rule refuses a pure RE-ORDERING: every unflagged index must still
+  // carry the draft's own claim, not merely a claim from somewhere in the list.
+  const shuffled = baseResult();
+  shuffled.keyClaims = [draft.keyClaims[0], draft.keyClaims[1], draft.keyClaims[3], draft.keyClaims[2]];
+  assert.equal(applyMetaRepair(draft, shuffled, keyClaimOffenses(1)), null, "a re-ordered list is refused");
+  // …and the SAME response is accepted once that claim is one the repair was
+  // actually asked to fix, which is what keeps the guard from being a blanket ban.
+  const allowed = applyMetaRepair(draft, repaired, keyClaimOffenses(1, 2));
+  assert.ok(allowed);
+  assert.equal(allowed!.keyClaims[2], repaired.keyClaims[2]);
+  assert.equal(allowed!.keyClaims.length, draft.keyClaims.length);
+});
+
+test("R-283 round 3: a dropped key claim cannot reach a returned sidecar through the live repair path", async () => {
+  const bad = baseResult();
+  bad.keyClaims[1] = "The book returns to the ledger whenever a week is skipped.";
+  const dropper = baseResult();
+  dropper.keyClaims = [bad.keyClaims[0], bad.keyClaims[2], bad.keyClaims[3]];
+
+  const prompts: string[] = [];
+  const result = await runResearcherChapter(franklinInput(), execution([bad, dropper, baseResult()], prompts), { sleep: async () => {} });
+
+  assert.equal(prompts.length, 3, "draft + refused repair + a fresh draft");
+  assert.deepEqual(result.keyClaims, baseResult().keyClaims, "no shifted, duplicated list reaches the writers");
+  assert.equal(new Set(result.keyClaims).size, result.keyClaims.length, "and no claim appears twice");
+  assert.equal(result.metaRepair, undefined, "a refused repair is never stamped as a repair that happened");
+});
+
+test("R-283 round 3: the repair prompt forbids a keyClaims deletion and says what to do instead", () => {
+  const bad = baseResult();
+  bad.keyClaims[0] = "The book kept a ledger of the weekly query.";
+  const prompt = buildMetaRepairPrompt(franklinInput(), collectChapterResearchReport(bad, franklinInput()).offenses, bad);
+  const keyClaimsBullet = prompt.split("\n").find((line) => line.startsWith("- `keyClaims`"));
+  assert.ok(keyClaimsBullet, "the prompt states a keyClaims rule");
+  assert.match(keyClaimsBullet!, /NEVER delete a key claim/);
+  assert.match(keyClaimsBullet!, /rewrite it as a different world fact this draft already states/);
+  assert.match(prompt, /REFUSED WHOLE/);
+  // The general "delete the sentence" escape hatch is scoped to the PROSE fields
+  // it is safe in; offering it over an unkeyed list is what produced the shifted,
+  // duplicated sidecar in round 2.
+  const deleteBullet = prompt.split("\n").find((line) => line.includes("DELETE that sentence"));
+  assert.ok(deleteBullet);
+  assert.match(deleteBullet!, /PROSE field/);
+  assert.ok(!deleteBullet!.includes("keyClaims"), "the DELETE option is not offered for keyClaims");
 });
 
 // ── ROUND 2 minor 1 — the merge does not fabricate an absent optional field ──
