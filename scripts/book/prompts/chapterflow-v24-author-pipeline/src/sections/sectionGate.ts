@@ -3163,6 +3163,16 @@ export function learningProseDerivabilityFindings(
       // is, the defect is upstream — the summary tiers never covered a case the
       // blueprint dealt — and SEC120 stands down rather than blocking a chapter
       // that cannot be written.
+      // SEC120 KEEPS ITS OWN LENGTH FLOOR, DELIBERATELY (2026-09-04). The shared
+      // predicate `specificDerivable` now answers a SHORT FIGURE by whole-token
+      // equality, because the number-word fold ("seventeen" -> "17") had made every
+      // number-word specific permanently underivable and SEC14/SEC136 unsatisfiable.
+      // SEC120 is the other direction — it BLOCKS a unit for naming what the page
+      // never showed — so adopting the same carve here would add a new blocker
+      // class (a stem saying "seventeen" against prose that omits it) mid-run. This
+      // check therefore keeps SKIPPING short specifics on both arms below, which is
+      // strictly more permissive than the shared predicate: SEC120 can never block a
+      // figure SEC14/SEC136 have just credited, and the two can never contradict.
       const anchorSpecifics = (anchor.hardSpecifics ?? [])
         .map((value) => normalizeDerivabilityText(text(value)))
         .filter((value) => value.length >= 3);
