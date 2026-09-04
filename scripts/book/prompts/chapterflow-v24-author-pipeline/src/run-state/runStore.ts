@@ -75,4 +75,16 @@ export interface RunStore {
     finishedAt: UtcIso;
     reason?: string;
   }>): Promise<Result<void>>;
+  /**
+   * OPTIONAL. The absolute directory this store keeps one run's state in, for a
+   * stage that wants to write DIAGNOSTICS beside the run it is executing (the
+   * compiler's rejected section packs). Present on the file-backed store; absent
+   * on in-memory fakes, and a caller that gets `undefined` simply writes nothing.
+   *
+   * It is a read of the store's own layout, never a licence to write run state:
+   * the store reads a run directory by exact filename (`run.json`,
+   * `attempts.jsonl`, `stages/`), so a file written alongside takes no part in run
+   * identity, attempt lifecycle or resume.
+   */
+  runDirectory?(bookId: BookId, runId: RunId): string;
 }
