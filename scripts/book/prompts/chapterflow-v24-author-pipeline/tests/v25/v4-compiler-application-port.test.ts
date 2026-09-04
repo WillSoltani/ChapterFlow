@@ -46,6 +46,13 @@ import {
 } from "../../src/critics/bookPatternAudit.js";
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import { compileCreditFixture, creditChapterSpec } from "../fixtures/creditBookFixture.js";
+import {
+  MAX_REJECTED_SECTION_PACK_BYTES,
+  REJECTED_SECTION_PACKS_DIR,
+  serializeRejectedSectionPack,
+  type RejectedSectionPackDraft,
+  type RejectedSectionPackSink,
+} from "../../src/app/rejectedSectionPacks.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
 
 const BOOK = "compiler-port-book";
@@ -174,6 +181,10 @@ type RigOptions = {
    *  `attempt` counts drafts of THAT operation across the whole run. Returning
    *  undefined falls through to the standard fixture pack. */
   readonly sectionOutput?: (fixture: ReturnType<typeof compileCreditFixture>, kind: string, attempt: number) => unknown;
+  /** Override the rejected-section-pack diagnostics sink. Absent = the PRODUCTION
+   *  default, which is the port asking its own run store where this run lives and
+   *  writing the record there. */
+  readonly rejectedSectionPacks?: RejectedSectionPackSink;
 };
 
 /** The four fixture packs as the editor's `sections` document. */
@@ -381,6 +392,7 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   const port = new CompilerApplicationPort({
     pipelineRoot: resolve(context.roots.base, "pipeline-root"),
     sleep: async (ms: number) => { sleeps.push(ms); },
+    ...(options.rejectedSectionPacks ? { rejectedSectionPacks: options.rejectedSectionPacks } : {}),
     ...(options.cache ? { sectionPackCache: options.cache } : {}),
     ...(options.avoidStore ? { sectionAvoidStore: options.avoidStore } : {}),
     ...(options.bookDealAudit ? { bookDealAudit: options.bookDealAudit } : {}),
@@ -421,7 +433,11 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     profileId: PROFILE,
     signal: controller.signal,
   } as const;
-  return { port, request, counts, prompts, attemptRoot, selected, runStore, controller, sleeps, staged: () => stagedInput };
+  return {
+    port, request, counts, prompts, attemptRoot, selected, runStore, controller, sleeps,
+    runStateRoot: resolve(context.roots.tempRoot, `run-state-${suffix}`),
+    staged: () => stagedInput,
+  };
 }
 
 requiredTest("1 selected candidate opens exactly once and returns successor identity", async (context) => {
@@ -2114,6 +2130,181 @@ requiredTest("SEC136-g the legacy acceptance is bounded to the ONE previous form
     subject.port.run({ ...subject.request, resumeRunId: first.runId }),
     /^Error: COMPILER_RUN_UNAVAILABLE:CONFLICT/,
   );
+});
+
+// ── R-284 — the COMPILE stage persists every rejected section-pack draft ──────
+//
+// The 2026-09-04 live Franklin canary (compiler-run, attempt 4) refused ch01's
+// summary pack 3 of 3 on SEC14.chapter_case_grounding + SEC136.dealt_case_untaught
+// ("carries only 1/2 of ch01.case.josiahEmigration's hardSpecifics") while the
+// card's MUST TEACH list NAMED those specifics — and the draft the gate was
+// talking about was discarded, so nobody could see what the writer wrote. These
+// tests pin the compile-side mirror of #547: the rejected draft, its full blocker
+// and advisory lines, the feedback that was sent and the card digest, written into
+// the compiler run's own directory and read back from disk.
+
+/** The rejected-pack records this run wrote, read back from the run directory. */
+function rejectedRecords(runStateRoot: string, runId: string): Array<Record<string, unknown>> {
+  const dir = resolve(runStateRoot, "books", BOOK, "runs", runId, REJECTED_SECTION_PACKS_DIR);
+  if (!existsSync(dir)) return [];
+  return readdirSync(dir).sort().map((name) => ({
+    file: name,
+    ...(JSON.parse(readFileSync(resolve(dir, name), "utf8")) as Record<string, unknown>),
+  }));
+}
+
+requiredTest("R-284a a gate-rejected section pack is persisted under the compiler run, and the accepted draft is not", async (context) => {
+  const subject = rig(context, "rejected-packs-persist", { blockSummaryAttempts: 1 });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // One rejected draft (summary attempt 1). The passing summary retry and the
+  // three sections that passed first time write nothing at all.
+  const records = rejectedRecords(subject.runStateRoot, result.runId);
+  assert.deepEqual(records.map((record) => record.file), ["ch01.summary-pack.attempt1.json"]);
+  const record = records[0];
+  assert.equal(record.chapterNumber, 1);
+  assert.equal(record.kind, "summary-pack");
+  assert.equal(record.attempt, 1);
+  assert.equal(record.pass, 1);
+  assert.equal(record.operationId, "compiler-ch01-summary-pack");
+  assert.equal(record.attemptId, `cmp-${createHash("sha256").update("run-rejected-packs-persist").update("\0").update("compiler-ch01-summary-pack").digest("hex").slice(0, 40)}`);
+  assert.ok(typeof record.recordedAt === "string" && (record.recordedAt as string).length > 0);
+
+  // The blocker lines the gate produced, verbatim.
+  const blockerLines = record.blockerLines as string[];
+  assert.ok(blockerLines.some((line) => /^SEC3\.hook_length@\/hook\/hook:hook too short/.test(line)), blockerLines.join(" | "));
+  assert.ok(Array.isArray(record.advisoryLines), "the same gate run's advisories are kept beside them");
+
+  // The RAW model output — the thing the whole record exists for.
+  const draft = record.draft as { artifactType: string; hook: { hook: string } };
+  assert.equal(draft.artifactType, "summary-pack");
+  assert.equal(draft.hook.hook, "Too short.", "what is persisted is the model's own rejected draft");
+
+  // Attempt 1 was sent no feedback, and the digest is of the card it WAS sent.
+  assert.equal(record.feedback, undefined);
+  const firstCard = Buffer.from(
+    subject.prompts.filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack")[0].prompt.inputs[4].bytes,
+  ).toString("utf8");
+  assert.equal(record.taskCardDigest, createHash("sha256").update(firstCard).digest("hex"));
+});
+
+requiredTest("R-284b every rejected attempt of an exhausted section is on disk, each carrying the feedback it was sent", async (context) => {
+  const subject = rig(context, "rejected-packs-exhaust", { blockSummaryAttempts: 99 });
+  await assert.rejects(subject.port.run(subject.request), /^Error: COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts:/);
+
+  const records = rejectedRecords(subject.runStateRoot, "run-rejected-packs-exhaust");
+  assert.deepEqual(records.map((record) => record.file), [
+    "ch01.summary-pack.attempt1.json",
+    "ch01.summary-pack.attempt2.json",
+    "ch01.summary-pack.attempt3.json",
+  ], "including the draft the section died on — the one an operator comes back for");
+  assert.deepEqual(records.map((record) => record.attempt), [1, 2, 3]);
+
+  // Attempt 1 was sent nothing; 2 and 3 carry the retry feedback the card was
+  // built from, so a post-mortem can see the model was told and drafted this anyway.
+  assert.equal(records[0].feedback, undefined);
+  for (const record of records.slice(1)) {
+    const feedback = record.feedback as { blockerLines: string[]; priorDraftEchoed: boolean };
+    assert.ok(feedback.blockerLines.some((line) => /SEC3\.hook_length/.test(line)), "the lines the card carried");
+    assert.equal(feedback.priorDraftEchoed, true, "the card echoed the prior draft, which is itself the previous record");
+  }
+  // Each record's digest is the digest of THAT attempt's own card — checked
+  // against the card the runner actually received. Attempt 1's differs (no
+  // feedback block); 2 and 3 match each other because the section was blocked on
+  // the same lines with the same draft echoed, which is itself the fact that makes
+  // these records worth having.
+  const cards = subject.prompts
+    .filter((prompt) => prompt.context.operationId === "compiler-ch01-summary-pack")
+    .map((prompt) => createHash("sha256").update(Buffer.from(prompt.prompt.inputs[4].bytes).toString("utf8")).digest("hex"));
+  assert.equal(cards.length, 3);
+  assert.deepEqual(records.map((record) => record.taskCardDigest), cards);
+  assert.notEqual(cards[0], cards[1], "the retry card is not the first card");
+});
+
+requiredTest("R-284c a throwing diagnostics sink cannot change what the compiler does", async (context) => {
+  const thrown: number[] = [];
+  const subject = rig(context, "rejected-packs-throwing", {
+    blockSummaryAttempts: 1,
+    rejectedSectionPacks: (record) => { thrown.push(record.attempt); throw new Error("disk full"); },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED", "a diagnostics failure never gates a compile that passes");
+  assert.deepEqual(thrown, [1]);
+  assert.equal(subject.counts.runner, 5);
+
+  // …and the throw is not laundered into the terminal error of a compile that fails.
+  const failing = rig(context, "rejected-packs-throwing-fail", {
+    blockSummaryAttempts: 99,
+    rejectedSectionPacks: () => { throw new Error("disk full"); },
+  });
+  await assert.rejects(failing.port.run(failing.request), (error: unknown) => {
+    assert.ok(error instanceof Error);
+    assert.match(error.message, /COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts:/);
+    assert.doesNotMatch(error.message, /disk full/);
+    return true;
+  });
+});
+
+requiredTest("R-284d a rejected-pack record takes no part in run or candidate identity", async (context) => {
+  const subject = rig(context, "rejected-packs-identity", { blockSummaryAttempts: 1 });
+  const first = await subject.port.run(subject.request);
+  assert.equal(rejectedRecords(subject.runStateRoot, first.runId).length, 1, "the record is on disk before the assertions below");
+
+  // Nothing was written under the attempt root — that is the gateway's space.
+  assert.ok(!existsSync(resolve(subject.attemptRoot, REJECTED_SECTION_PACKS_DIR)));
+
+  // The run directory's own state is untouched: run.json and attempts.jsonl are
+  // still exactly what the store wrote, and `rejected/` is simply beside them.
+  const runDir = resolve(subject.runStateRoot, "books", BOOK, "runs", first.runId);
+  assert.ok(readdirSync(runDir).includes(REJECTED_SECTION_PACKS_DIR));
+  const run = await subject.runStore.readRun(BOOK, first.runId, context.clock.now());
+  assert.equal(run.ok, true);
+  if (!run.ok) return;
+  assert.equal(run.value.status, "COMPLETED");
+  assert.deepEqual(run.value.definition.attemptLimits, { run: 24, byStage: { "compiler-candidate": 24 } });
+  assert.equal(run.value.attempts.length, 5);
+
+  // Resume replays with ZERO model calls, the same run id and the same successor
+  // candidate identity — the record changed neither.
+  const calls = subject.counts.runner;
+  const resumed = await subject.port.run({ ...subject.request, resumeRunId: first.runId });
+  assert.deepEqual(resumed, first);
+  assert.equal(subject.counts.runner, calls);
+  assert.equal(subject.counts.stage, 1);
+  assert.equal(rejectedRecords(subject.runStateRoot, first.runId).length, 1, "a resume that drafts nothing records nothing");
+});
+
+requiredTest("R-284e one record is bounded: an oversized draft is truncated, and never the verdict", () => {
+  const record: RejectedSectionPackDraft = {
+    chapterNumber: 7,
+    kind: "learning-pack",
+    attempt: 2,
+    pass: 1,
+    attemptId: "cmp-abc",
+    operationId: "compiler-ch07-learning-pack",
+    blockerLines: ["SEC120.prose_derivability@/quiz/1:uses \"1682\" which the prose never shows"],
+    advisoryLines: ["SEC99.advisory:readability is close to the floor"],
+    feedback: { blockerLines: ["SEC120.prose_derivability@/quiz/1:…"], priorDraftEchoed: true },
+    taskCardDigest: "d".repeat(64),
+    draft: { artifactType: "learning-pack", filler: "x".repeat(2 * MAX_REJECTED_SECTION_PACK_BYTES) },
+  };
+  const text = serializeRejectedSectionPack(record, MAX_REJECTED_SECTION_PACK_BYTES, "2026-09-04T00:00:00.000Z");
+  assert.ok(Buffer.byteLength(text, "utf8") <= MAX_REJECTED_SECTION_PACK_BYTES, `record is ${Buffer.byteLength(text, "utf8")} bytes`);
+  const parsed = JSON.parse(text) as Record<string, unknown>;
+  assert.equal(parsed.truncated, true, "truncation is stated, never silent");
+  assert.match(String(parsed.note ?? ""), /truncat/i);
+  assert.deepEqual(parsed.blockerLines, record.blockerLines, "the blocker lines survive truncation");
+  assert.deepEqual(parsed.advisoryLines, record.advisoryLines);
+  assert.deepEqual(parsed.feedback, record.feedback);
+  assert.equal(parsed.chapterNumber, 7);
+  assert.equal(parsed.kind, "learning-pack");
+
+  // A record that fits is written whole, with no truncation marker.
+  const small = serializeRejectedSectionPack({ ...record, draft: { artifactType: "learning-pack" } }, MAX_REJECTED_SECTION_PACK_BYTES, "2026-09-04T00:00:00.000Z");
+  const smallParsed = JSON.parse(small) as Record<string, unknown>;
+  assert.equal(smallParsed.truncated, undefined);
+  assert.deepEqual(smallParsed.draft, { artifactType: "learning-pack" });
 });
 
 finishV25Tests().catch((error: unknown) => {

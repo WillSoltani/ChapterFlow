@@ -337,6 +337,20 @@ export class FileRunStore implements RunStore {
     this.stateRoot = normalizeRoot(stateRoot);
   }
 
+  /** The absolute directory this store keeps one run's state in. Exposed so a
+   *  stage can write DIAGNOSTICS beside the run it is executing (the compiler's
+   *  rejected section packs) without being handed a second copy of the state root
+   *  that could drift from the store's own. The store reads this directory by
+   *  exact filename only (`run.json`, `attempts.jsonl`, `stages/`), so nothing
+   *  written alongside can be mistaken for run state. */
+  runDirectory(bookIdInput: BookId, runIdInput: RunId): string {
+    return runStatePaths(
+      this.stateRoot,
+      normalizeSafeId(bookIdInput, "runDirectory.bookId"),
+      normalizeSafeId(runIdInput, "runDirectory.runId"),
+    ).runDir;
+  }
+
   async createRun(definitionInput: RunDefinition): Promise<Result<RunSnapshot>> {
     try {
       const definition = normalizeRunDefinition(definitionInput);

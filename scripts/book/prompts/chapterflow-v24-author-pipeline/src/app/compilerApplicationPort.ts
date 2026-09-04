@@ -34,6 +34,11 @@ import {
 } from "../sections/dealtCases.js";
 import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
 import type { ChapterEditCache } from "../books/chapterEditCache.js";
+import {
+  createRejectedSectionPackWriter,
+  type RejectedSectionPackDraft,
+  type RejectedSectionPackSink,
+} from "./rejectedSectionPacks.js";
 import type { ReviewAdvisoryStore } from "../books/reviewAdvisoryStore.js";
 import { chapterSpanText, spanExcerptForPrompt, type ChapterMapV1, type SpanExcerpt } from "../source/chapterMap.js";
 import { EDITOR_SOURCE_SPAN_MAX_CHARS } from "./chapterEditorContract.js";
@@ -289,6 +294,17 @@ export interface CompilerApplicationPortDependencies {
     advisories?: ReviewAdvisoryStore;
     env?: Readonly<Record<string, string | undefined>>;
   }>;
+  /**
+   * Where a REJECTED section-pack draft is written down. Production never sets
+   * this: the default sink writes into the compiler run's OWN directory, asked
+   * for from the injected run store (`runDirectory`), so the wiring cannot be
+   * forgotten by a composition and cannot point somewhere the run does not live.
+   * A test injects a spy (to read the records without touching a disk) or a
+   * throwing sink (to prove diagnostics never gate a compile). A run store with
+   * no `runDirectory` — the in-memory fakes — persists nothing, which is exactly
+   * the pre-change behaviour.
+   */
+  readonly rejectedSectionPacks?: RejectedSectionPackSink;
 }
 
 /** R-106 — the book-level deal audit as the port consumes it: blueprints in, findings out. */
@@ -608,7 +624,18 @@ function boundedCompilerDetail(value: unknown): string {
   return detail.replace(/\s+/g, " ").trim().slice(0, 1600) || "section output validation failed";
 }
 
-type SectionGateBlockers = Readonly<{ blockerLines: readonly string[]; detail: string }>;
+type SectionGateBlockers = Readonly<{
+  /** BOUNDED (at most 8) — the lines fed back into the next attempt's card and
+   *  into the terminal error's detail. Unchanged by the diagnostics work below. */
+  blockerLines: readonly string[];
+  detail: string;
+  /** EVERY blocker line, unbounded. Diagnostics only: persisted with the rejected
+   *  draft so a post-mortem sees the whole verdict, not the first eight lines of it. */
+  allBlockerLines: readonly string[];
+  /** The advisory findings from the same gate run. Diagnostics only — they gate
+   *  nothing, here or anywhere else. */
+  advisoryLines: readonly string[];
+}>;
 
 /**
  * Score a section draft against its gate. STRUCTURAL failures — the model
@@ -642,10 +669,37 @@ function sectionGateBlockers(
   }
   const blockers = findings.filter((finding) => finding.severity === "blocker");
   if (blockers.length === 0) return null;
-  const blockerLines = blockers
-    .slice(0, 8)
-    .map((finding) => `${finding.checkId}${finding.path ? `@${finding.path}` : ""}:${finding.message}`);
-  return { blockerLines, detail: boundedCompilerDetail(blockerLines.join(" | ")) };
+  const render = (finding: (typeof findings)[number]): string =>
+    `${finding.checkId}${finding.path ? `@${finding.path}` : ""}:${finding.message}`;
+  const allBlockerLines = blockers.map(render);
+  const blockerLines = allBlockerLines.slice(0, 8);
+  return {
+    blockerLines,
+    detail: boundedCompilerDetail(blockerLines.join(" | ")),
+    allBlockerLines,
+    advisoryLines: findings.filter((finding) => finding.severity !== "blocker").map(render),
+  };
+}
+
+/**
+ * Hand one rejected section-pack draft to the diagnostics sink. Swallows
+ * everything: a sink that throws must not become the compile's error, because the
+ * operator is owed the gate's content verdict rather than whatever went wrong
+ * while writing a file about it.
+ */
+function recordRejectedSectionPack(
+  sink: RejectedSectionPackSink | null,
+  record: RejectedSectionPackDraft,
+): void {
+  if (sink === null) return;
+  try {
+    sink(record);
+  } catch (error) {
+    console.error(
+      `[book-run] compiler chapter=${record.chapterNumber} kind=${record.kind}`
+      + ` action=PERSIST_REJECTED_SECTION_PACK_FAILED detail=${boundedCompilerDetail(error)}`,
+    );
+  }
 }
 
 /**
@@ -1838,6 +1892,16 @@ export class CompilerApplicationPort {
 
       // PHASE 2 — drafting. Everything above is pure computation over the packets; every model
       // call in the compile is made below.
+      //
+      // Resolve the rejected-draft sink ONCE for the run. Production takes the
+      // second branch: the run store hands back its own directory for this run, so
+      // a rejected draft lands beside the run that rejected it with no state root
+      // passed through the composition to drift. A store that does not expose one
+      // (the in-memory fakes) yields null and nothing is persisted.
+      const rejectedRunDir = this.#dependencies.runStore.runDirectory?.(request.bookId, runId);
+      const rejectedSectionPackSink: RejectedSectionPackSink | null =
+        this.#dependencies.rejectedSectionPacks
+        ?? (rejectedRunDir === undefined ? null : createRejectedSectionPackWriter(rejectedRunDir));
       for (const preparedChapter of prepared) {
         const { chapter, packet, index, blueprint: candidateBlueprint, blueprintDigest, packetDigest, taskCardDigests, packetLogicalPath, blueprintLogicalPath } = preparedChapter;
         const chapterFiles = preparedChapter.files;
@@ -2052,6 +2116,30 @@ export class CompilerApplicationPort {
               acceptedOutput = draft;
               break;
             }
+            // The draft is refused. Write it down BEFORE any of the branches below
+            // decide what happens next — the livelock breaker abandons this pass and
+            // exhaustion throws, and both of those are exactly the drafts an operator
+            // comes back to read. Diagnostics only: this cannot fail the compile.
+            recordRejectedSectionPack(rejectedSectionPackSink, {
+              chapterNumber: chapter.chapterNumber,
+              kind,
+              attempt: attemptNumber,
+              pass: sectionPass,
+              attemptId,
+              operationId: operation.operationId,
+              blockerLines: blocked.allBlockerLines,
+              advisoryLines: blocked.advisoryLines,
+              ...(retryFeedback === undefined ? {} : {
+                feedback: {
+                  blockerLines: retryFeedback.blockerLines,
+                  priorDraftEchoed: retryFeedback.priorDraft !== undefined,
+                  ...(retryFeedback.gatewaySchemaRejection === undefined ? {} : { gatewaySchemaRejection: retryFeedback.gatewaySchemaRejection }),
+                  ...(retryFeedback.transientProcessFailure === undefined ? {} : { transientProcessFailure: retryFeedback.transientProcessFailure }),
+                },
+              }),
+              taskCardDigest: createHash("sha256").update(task).digest("hex"),
+              draft,
+            });
             // ---- THE INTRA-CHAPTER LIVELOCK BREAKER --------------------------
             //
             // A dependent pack blocked by a chapter-scope grounding gate over a
