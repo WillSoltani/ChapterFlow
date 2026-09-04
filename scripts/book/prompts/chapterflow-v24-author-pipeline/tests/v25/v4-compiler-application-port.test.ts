@@ -1973,6 +1973,149 @@ requiredTest("SEC136-c a second failure fails CLOSED, naming the chapter and the
   assert.equal(subject.counts.stage, 0, "a failed round stages nothing");
 });
 
+/**
+ * PROBE-1 / PROBE-2 — the breaker must be gated on the case the BLOCKER NAMES.
+ *
+ * `untaughtStandaloneDealtCases` is non-empty for almost every real chapter (on the
+ * live ch02 all four dealt cases score standalone 1/4, 0/2, 0/3, 0/3), so a trigger
+ * that only asks "are the blockers SEC128/SEC120?" AND "is any dealt case untaught in
+ * the standalone tiers?" is permanently armed: it fires on blocks that have nothing
+ * to do with a dealt case, re-drafts the summary against a brief about cases that
+ * never caused the block, and — because it fires on the FIRST blocked draft — spends
+ * the dependent pack's remaining retries on the way. The live run's own terminal
+ * shape was exactly this: SEC120 over "Peter Folger", "Sherburne town" and "1555",
+ * names the LEARNING writer chose, not a coverage gap.
+ *
+ * Both probes block the learning pack on SEC120's YEAR rule over "1555" — a figure no
+ * dealt case of this chapter carries and no citation of the card points at — so the
+ * only correct behaviour is the ordinary retry path with the full MAX_SECTION_ATTEMPTS
+ * budget.
+ */
+const UNRELATED_YEAR = "1555";
+
+/** The fixture learning pack with an unrelated year in card 1's back. Its citations
+ *  are untouched: the block is SEC120's year rule, which fires independently of any
+ *  anchor the card cites. */
+function learningBlockedOnUnrelatedYear(fixture: ReturnType<typeof compileCreditFixture>): Record<string, unknown> {
+  const pack = JSON.parse(JSON.stringify(fixture.learning)) as { cards: { cards: { back: string }[] } };
+  pack.cards.cards[0].back =
+    `A lender reads the balance the card reported, a habit older than the parish registers of ${UNRELATED_YEAR}.`;
+  return pack as unknown as Record<string, unknown>;
+}
+
+requiredTest("SEC136-d PROBE-1 a block naming no dealt case never fires the breaker: one ordinary retry, no summary re-draft", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const subject = rig(context, "breaker-unrelated-block", {
+    cache,
+    // The summary is the plain fixture pack: gate-clean, SEC136-clean (both dealt
+    // cases are 2/2 in the full prose) and — like every real chapter — carrying
+    // NEITHER of them in the standalone tiers, so the old trigger's second
+    // condition is true and the breaker was permanently armed.
+    sectionOutput: (fixture, kind, attempt) =>
+      (kind === "learning-pack" && attempt === 1 ? learningBlockedOnUnrelatedYear(fixture) : undefined),
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // The ordinary retry path: the learning pack is re-asked with its own blockers and
+  // passes. The summary is drafted ONCE — never evicted, never re-drafted.
+  assert.deepEqual(draftedOperationIds(subject.prompts), [
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-example-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-action-pack",
+  ]);
+  assert.equal(subject.counts.runner, 5);
+
+  // The retry card is the pack's OWN blocker feedback — not a brief about dealt
+  // cases that never caused the block.
+  const retryCard = cardFor(subject.prompts, 3);
+  assert.ok(retryCard.includes(UNRELATED_YEAR), "the retry must carry the blocker the gate actually raised");
+  assert.ok(!retryCard.includes("RE-DRAFT — YOUR PREVIOUS SUMMARY"), "no summary re-draft brief belongs on a learning retry");
+});
+
+requiredTest("SEC136-e PROBE-2 an unrelated block keeps the full MAX_SECTION_ATTEMPTS budget and still converges", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const subject = rig(context, "breaker-budget-kept", {
+    cache,
+    sectionOutput: (fixture, kind, attempt) =>
+      (kind === "learning-pack" && attempt <= 2 ? learningBlockedOnUnrelatedYear(fixture) : undefined),
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // Three drafts of the learning pack is exactly MAX_SECTION_ATTEMPTS doing its job.
+  // A breaker that fires on the first blocked draft would have eaten two of them.
+  assert.deepEqual(draftedOperationIds(subject.prompts), [
+    "compiler-ch01-summary-pack",
+    "compiler-ch01-example-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-learning-pack",
+    "compiler-ch01-action-pack",
+  ]);
+  assert.equal(subject.counts.runner, 6);
+  assert.equal(draftedOperationIds(subject.prompts).filter((id) => id.endsWith("summary-pack")).length, 1);
+});
+
+requiredTest("SEC136-f a run recorded with the PRE-breaker attempt capacity still resumes instead of dying on CONFLICT", async (context) => {
+  // MAX_SUMMARY_REDRAFTS_PER_CHAPTER multiplies attemptCapacity for EVERY run, not
+  // only ones that use the breaker, and fileRunStore.createRun deep-compares the
+  // whole persisted RunDefinition — attemptLimits included — throwing CONFLICT on
+  // any difference. So a compile created before this change and resumed after it
+  // would fail with COMPILER_RUN_UNAVAILABLE:CONFLICT rather than resuming, which
+  // is an unattended-resume stopper for anything in flight across the deploy.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+  const subject = rig(context, "legacy-capacity", { cache });
+  const first = await subject.port.run(subject.request);
+  assert.equal(first.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4);
+
+  // Rewrite the persisted definition to the capacity the PREVIOUS formula wrote:
+  // operations.length (4) * MAX_SECTION_ATTEMPTS (3) = 12, with no editor composed.
+  const runFile = resolve(context.roots.tempRoot, "run-state-legacy-capacity", "books", BOOK, "runs", "run-legacy-capacity", "run.json");
+  const record = JSON.parse(readFileSync(runFile, "utf8")) as {
+    definition: { attemptLimits: { run: number; byStage: Record<string, number> } };
+  };
+  assert.deepEqual(record.definition.attemptLimits, { run: 24, byStage: { "compiler-candidate": 24 } });
+  record.definition.attemptLimits = { run: 12, byStage: { "compiler-candidate": 12 } };
+  writeFileSync(runFile, `${JSON.stringify(record)}\n`);
+
+  // The resume is ACCEPTED under the number it was written with — and it is a real
+  // resume: the same result, and not one model call spent.
+  const resumed = await subject.port.run({ ...subject.request, resumeRunId: first.runId });
+  assert.deepEqual(resumed, first);
+  assert.equal(subject.counts.runner, 4, "a legacy-capacity resume replays without spending a call");
+  const durable = await subject.runStore.readRun(BOOK, first.runId, context.clock.now());
+  assert.equal(durable.ok, true);
+  if (durable.ok) {
+    assert.deepEqual(durable.value.definition.attemptLimits, { run: 12, byStage: { "compiler-candidate": 12 } });
+  }
+});
+
+requiredTest("SEC136-g the legacy acceptance is bounded to the ONE previous formula: any other capacity still CONFLICTs", async (context) => {
+  const subject = rig(context, "legacy-capacity-bounded");
+  const first = await subject.port.run(subject.request);
+  assert.equal(first.runStatus, "COMPLETED");
+
+  const runFile = resolve(context.roots.tempRoot, "run-state-legacy-capacity-bounded", "books", BOOK, "runs", "run-legacy-capacity-bounded", "run.json");
+  const record = JSON.parse(readFileSync(runFile, "utf8")) as {
+    definition: { attemptLimits: { run: number; byStage: Record<string, number> } };
+  };
+  // 13 is not the pre-breaker formula for this run, so the persisted definition is
+  // genuinely a different definition and the fail-closed conflict must stand.
+  record.definition.attemptLimits = { run: 13, byStage: { "compiler-candidate": 13 } };
+  writeFileSync(runFile, `${JSON.stringify(record)}\n`);
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: first.runId }),
+    /^Error: COMPILER_RUN_UNAVAILABLE:CONFLICT/,
+  );
+});
+
 finishV25Tests().catch((error: unknown) => {
   console.error(error);
   process.exitCode = 1;

@@ -27,6 +27,7 @@ import { assembleSections, type AssemblyBlocker, type AssembleSectionsResult, ty
 import { validateSectionPack } from "../sections/sectionGate.js";
 import type { ChapterProseSource } from "../sections/chapterProse.js";
 import {
+  dealtCasesNamedByBlockers,
   describeUntaughtDealtCase,
   untaughtStandaloneDealtCases,
   type DealtCaseCoverage,
@@ -1495,9 +1496,13 @@ export class CompilerApplicationPort {
     }
     const runId = request.resumeRunId ?? this.#dependencies.ids.nextRunId();
     let createdAt = this.#dependencies.clock.now();
+    let priorAttemptLimits: RunDefinition["attemptLimits"] | undefined;
     if (request.resumeRunId !== undefined) {
       const prior = await this.#dependencies.runStore.readRun(request.bookId, runId, createdAt);
-      if (prior.ok) createdAt = prior.value.definition.createdAt;
+      if (prior.ok) {
+        createdAt = prior.value.definition.createdAt;
+        priorAttemptLimits = prior.value.definition.attemptLimits;
+      }
       else if (prior.error.code !== "NOT_FOUND") throw new Error(`COMPILER_RUN_UNAVAILABLE:${prior.error.code}:${prior.error.message}`);
     }
     const successorId = this.#dependencies.ids.candidateId(runId);
@@ -1520,7 +1525,38 @@ export class CompilerApplicationPort {
     // exactly operations.length attempts.
     const attemptCapacity = operations.length * MAX_SECTION_ATTEMPTS * (1 + MAX_SUMMARY_REDRAFTS_PER_CHAPTER)
       + editorOps.length * MAX_EDITOR_ATTEMPTS_PER_CHAPTER;
-    const definition = runDefinition({ request, runId, createdAt, inventory: Object.freeze([]), attempts: attemptCapacity });
+    // DURABLE-IDENTITY MIGRATION, not a relaxation. fileRunStore.createRun deep-
+    // compares the WHOLE persisted RunDefinition, attemptLimits included, and
+    // throws CONFLICT on any difference — so a run created BEFORE the breaker
+    // raised this formula and resumed after it would die on
+    // COMPILER_RUN_UNAVAILABLE:CONFLICT instead of resuming. A resume whose
+    // persisted limits are exactly the pre-2026-09-04 capacity is continued under
+    // the number it was written with (the same discipline #549 applied to the
+    // research run's refresh axis). Bounded and logged: ONE legacy formula, only on
+    // a resume, only when the persisted value matches it exactly, and every other
+    // field of the definition is still compared byte for byte below. The
+    // consequence is only less headroom — a legacy run that then needs the breaker
+    // is refused at run-state, which is the fail-closed side. Delete once no
+    // pre-2026-09-04 compiler run-state remains.
+    const legacyAttemptCapacity = operations.length * MAX_SECTION_ATTEMPTS
+      + editorOps.length * MAX_EDITOR_ATTEMPTS_PER_CHAPTER;
+    const resumedLegacyCapacity = priorAttemptLimits !== undefined
+      && attemptCapacity !== legacyAttemptCapacity
+      && priorAttemptLimits.run === legacyAttemptCapacity
+      && priorAttemptLimits.byStage?.[COMPILER_STAGE_ID] === legacyAttemptCapacity
+      && Object.keys(priorAttemptLimits.byStage ?? {}).length === 1;
+    if (resumedLegacyCapacity) {
+      console.error(
+        `[book-run] compiler run=${runId} action=ACCEPT_PRE_2026_09_04_ATTEMPT_CAPACITY persisted=${legacyAttemptCapacity} current=${attemptCapacity}`,
+      );
+    }
+    const definition = runDefinition({
+      request,
+      runId,
+      createdAt,
+      inventory: Object.freeze([]),
+      attempts: resumedLegacyCapacity ? legacyAttemptCapacity : attemptCapacity,
+    });
     const created = await this.#dependencies.runStore.createRun(definition);
     if (!created.ok) throw new Error(`COMPILER_RUN_UNAVAILABLE:${created.error.code}:${created.error.message}`);
     let live: RunSnapshot = created.value;
@@ -2019,25 +2055,36 @@ export class CompilerApplicationPort {
             // ---- THE INTRA-CHAPTER LIVELOCK BREAKER --------------------------
             //
             // A dependent pack blocked by a chapter-scope grounding gate over a
-            // case its own writer cannot move. Two structural conditions, no
-            // message parsing: the blockers name SEC128 or SEC120, AND the
-            // chapter's stored prose demonstrably leaves a case the BLUEPRINT
-            // dealt untaught to a reader who stops after the Deep read. In that
-            // state no retry of THIS pack can pass — the case is dealt, so it
-            // cannot be swapped, and the prose is another pack's, so it cannot be
-            // fixed here. Re-asking this writer twice more is the livelock the
-            // live Franklin run spent every round on.
+            // case its own writer cannot move: the case is DEALT, so it cannot be
+            // swapped, and the prose that fails to teach it belongs to another
+            // pack, already stored, so it cannot be fixed here. Re-asking this
+            // writer twice more is the livelock the live Franklin run spent every
+            // round on.
             //
-            // Fires on the FIRST blocked draft, before the remaining two attempts
-            // are spent, and is bounded to MAX_SUMMARY_REDRAFTS_PER_CHAPTER per
-            // chapter per round.
+            // The trigger is the INTERSECTION of two facts, not their conjunction:
+            // the dealt cases this chapter's stored prose leaves untaught to a
+            // Deep-read reader, AND the case(s) the blocker lines themselves NAME
+            // (a SEC128 line carries the case id; a SEC120 line quotes the
+            // specifics the unit used and the page never showed). An earlier cut
+            // asked only "are these SEC128/SEC120 blockers?" — and since almost
+            // every real chapter leaves SOME dealt case untaught in the standalone
+            // tiers, that armed the breaker permanently: a card naming a year the
+            // prose never showed evicted the summary, re-drafted it against a brief
+            // about unrelated cases, and burned the blocked pack's remaining
+            // retries. A block this summary cannot fix now takes the ordinary retry
+            // path with its full MAX_SECTION_ATTEMPTS budget.
+            //
+            // On a genuine coverage block it still fires on the FIRST blocked
+            // draft, before the remaining two attempts are spent, bounded to
+            // MAX_SUMMARY_REDRAFTS_PER_CHAPTER per chapter per round.
             const untaughtDealt = kind === "summary-pack"
               ? []
-              : untaughtStandaloneDealtCases(candidateBlueprint, packet, draftedChapterProse);
-            const groundingBlocked = blocked.blockerLines.some((line) =>
-              line.startsWith("SEC128.") || line.startsWith("SEC120."));
-            if (groundingBlocked && untaughtDealt.length > 0) {
-              const named = untaughtDealt.map(describeUntaughtDealtCase).join("; ");
+              : dealtCasesNamedByBlockers(
+                blocked.blockerLines,
+                untaughtStandaloneDealtCases(candidateBlueprint, packet, draftedChapterProse),
+              );
+            if (untaughtDealt.length > 0) {
+              const named = untaughtDealt.map((coverage) => describeUntaughtDealtCase(coverage, "standalone")).join("; ");
               if (summaryRedraftsUsed >= MAX_SUMMARY_REDRAFTS_PER_CHAPTER) {
                 // Fail CLOSED. A second eviction buys another identical re-draft;
                 // the operator gets the chapter and the case instead of a wedge.

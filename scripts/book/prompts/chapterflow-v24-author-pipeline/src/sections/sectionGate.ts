@@ -51,6 +51,7 @@ import {
   CHAPTER_CASE_MIN_SPECIFICS,
   describeUntaughtDealtCase,
   untaughtDealtCases,
+  YEAR_BAND_PATTERN,
 } from "./dealtCases.js";
 import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
 import { splitSentences } from "../critics/textUtils.js";
@@ -2876,7 +2877,7 @@ export function validateSummaryPack(pack: SummaryPackV1, bp: ChapterBlueprintV1,
       `this chapter's blueprint deals ${coverage.id} to its examples/quiz/cards, but the reader-visible prose carries only ${coverage.taughtInProse}/${coverage.required} of that case's hardSpecifics`
       + ` (${coverage.hardSpecifics.join(", ")}); the writers of those units cannot swap a dealt case and cannot edit this pack, so teach it HERE —`
       + ` put at least ${coverage.required} of its specifics in the hook, the fast/deep read or the keyTakeaway (fullRead alone satisfies SEC128 but leaves a Deep-read reader unable to answer, SEC120).`
-      + ` ${describeUntaughtDealtCase(coverage)}`,
+      + ` ${describeUntaughtDealtCase(coverage, "prose")}`,
       "/breakdown",
     );
   }
@@ -3089,7 +3090,10 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
  *  employees" is out of band), so it under-fires rather than over-fires.
  *  Digit boundaries, not \b: "1751" inside "1751st" is the same number, while "1751"
  *  inside "11751" is not — and the same regex form is used on both sides. */
-const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
+// Built from the pattern dealtCases exports so the summary card's ask over dealt
+// facts and this rule are provably the same year band. Same source, same flags,
+// same semantics as the literal it replaces.
+const PROSE_YEAR_RE = new RegExp(YEAR_BAND_PATTERN, "g");
 
 /**
  * SEC120 (Task 11ai) — DERIVABILITY BACKSTOP. Every section pack is drafted

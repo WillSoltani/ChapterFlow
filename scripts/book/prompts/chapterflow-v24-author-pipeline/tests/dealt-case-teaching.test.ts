@@ -40,6 +40,9 @@ import { validateSummaryPack, type SectionFinding } from "../src/sections/sectio
 import {
   CHAPTER_CASE_MIN_SPECIFICS,
   dealtCaseCoverage,
+  dealtCasesNamedByBlockers,
+  dealtFactYearFigures,
+  describeUntaughtDealtCase,
   untaughtDealtCases,
   untaughtStandaloneDealtCases,
 } from "../src/sections/dealtCases.js";
@@ -263,4 +266,200 @@ test("the must-teach block renders only on the summary card, and only when cases
     context: { voiceCard: null, bookScars: null },
   });
   assert.ok(!card.includes("MUST TEACH"), "a chapter with no dealt cases renders byte-identically to before");
+});
+
+// ── The message must describe the haystack its own count was taken over ──────
+
+test("SEC136's 'still missing' list is measured on the SAME haystack as its count", () => {
+  // Adversarial review, 2026-09-04: the finding counted taughtInProse (the WHOLE
+  // reader-visible prose) and then appended the list of specifics missing from the
+  // STANDALONE tiers, so a summary carrying "Matthew Adams" in fullRead alone was
+  // told "1/2 ... still missing: "Matthew Adams", ..." — naming as absent the one
+  // specific the count had just credited. A writer cannot act on that.
+  const pack = summary({
+    fastRead: "A printing house is a business before it is a school, and the trade decides which pages sell.",
+    deepRead: "The boy learned that a page finds its buyer through timing rather than through the care he put in.",
+    fullRead: "Matthew Adams kept a collection worth borrowing, and the loan of it turned an apprentice toward verse.",
+  });
+  const findings = sec136(validateSummaryPack(pack, blueprint([BALLADS_ID]), packet([BALLADS])));
+  assert.equal(findings.length, 1);
+  assert.match(findings[0].message, /1\/2/, "the count is taken over the full prose, fullRead included");
+  const stillMissing = /still missing: (.+?)\)$/.exec(findings[0].message)?.[1] ?? "";
+  assert.ok(stillMissing.length > 0, "the finding must name what is missing");
+  assert.ok(
+    !stillMissing.includes("Matthew Adams"),
+    `the credited specific must not be listed as missing (got: ${stillMissing})`,
+  );
+  for (const specific of ["The Lighthouse Tragedy", "Captain Worthilake", "Blackbeard"]) {
+    assert.ok(stillMissing.includes(specific), `"${specific}" is genuinely absent and must be listed`);
+  }
+  // The other haystack is still available, and still names the harder list — the
+  // compiler's re-draft brief asks for it by name.
+  assert.deepEqual(
+    [...untaughtStandaloneDealtCases(blueprint([BALLADS_ID]), packet([BALLADS]), pack)[0].missingFromStandalone],
+    ["Matthew Adams", "The Lighthouse Tragedy", "Captain Worthilake", "Blackbeard"],
+  );
+  assert.equal(
+    describeUntaughtDealtCase(dealtCaseCoverage(blueprint([BALLADS_ID]), packet([BALLADS]), pack)[0], "prose"),
+    `${BALLADS_ID} (still missing: "The Lighthouse Tragedy", "Captain Worthilake", "Blackbeard")`,
+  );
+});
+
+// ── WHICH dealt case a blocker actually implicates ───────────────────────────
+
+test("dealtCasesNamedByBlockers returns only the cases the blocker lines NAME", () => {
+  const pack = summary({
+    fastRead: "A printing house is a business before it is a school, and the trade decides which pages sell.",
+    deepRead: "The boy learned that a page finds its buyer through timing rather than through care.",
+    fullRead: "Matthew Adams kept a collection worth borrowing. James was jailed for a month over the New England Courant.",
+  });
+  const bp = blueprint([BALLADS_ID], [COURANT_ID]);
+  const pk = packet([BALLADS, COURANT]);
+  const untaught = untaughtStandaloneDealtCases(bp, pk, pack);
+  assert.deepEqual(untaught.map((c) => c.id).sort(), [BALLADS_ID, COURANT_ID].sort(), "both are untaught: the arming set is wide");
+
+  // A SEC120 block over a figure that belongs to no dealt case implicates NOTHING —
+  // the live run's own terminal shape, and the blocked writer keeps its retries.
+  const unrelated = ['SEC120.learning_prose_derivable@/cards/cards/0:card 1 names "1555", which appears nowhere in this chapter\'s drafted prose'];
+  assert.deepEqual(dealtCasesNamedByBlockers(unrelated, untaught), []);
+
+  // A SEC128 block names its case id, and only that one is returned.
+  const sec128Line = `SEC128.chapter_case_untaught@/examples/0:example 1 cite ${BALLADS_ID} but this chapter's reader-visible prose carries only 1/2 of that case's hardSpecifics (Matthew Adams, The Lighthouse Tragedy)`;
+  assert.deepEqual(dealtCasesNamedByBlockers([sec128Line], untaught).map((c) => c.id), [BALLADS_ID]);
+
+  // A SEC120 block quoting a dealt case's own specific IS the coverage gap.
+  const sec120Line = 'SEC120.learning_prose_derivable@/quiz/questions/1:q2 names "New England Courant", which appears nowhere in this chapter\'s drafted prose';
+  assert.deepEqual(dealtCasesNamedByBlockers([sec120Line], untaught).map((c) => c.id), [COURANT_ID]);
+
+  // Neither the id nor a specific: any other check id is the blocked pack's own
+  // problem, whatever else is untaught.
+  assert.deepEqual(dealtCasesNamedByBlockers(["SEC3.hook_length@/hook:the hook is too short"], untaught), []);
+  assert.deepEqual(dealtCasesNamedByBlockers([], untaught), []);
+  assert.deepEqual(dealtCasesNamedByBlockers([sec128Line], []), []);
+});
+
+test("dealtCasesNamedByBlockers matches a case id on whole-id boundaries only", () => {
+  const pack = summary({
+    fastRead: "A printing house is a business before it is a school, and the trade decides which pages sell.",
+    deepRead: "The boy learned that a page finds its buyer through timing rather than through care.",
+    fullRead: "Matthew Adams kept a collection worth borrowing.",
+  });
+  const untaught = untaughtStandaloneDealtCases(blueprint([BALLADS_ID]), packet([BALLADS]), pack);
+  assert.equal(untaught.length, 1);
+  const longer = `SEC128.chapter_case_untaught@/examples/0:example 1 cite ${BALLADS_ID}.reprise but the prose carries only 1/2`;
+  assert.deepEqual(dealtCasesNamedByBlockers([longer], untaught), [], "a longer id must not match the shorter one");
+  const exact = `SEC128.chapter_case_untaught@/examples/0:example 1 cite ${BALLADS_ID} but the prose carries only 1/2`;
+  assert.deepEqual(dealtCasesNamedByBlockers([exact], untaught).map((c) => c.id), [BALLADS_ID]);
+});
+
+// ── The dealt FACTS whose figures SEC120 will demand (prompt only, no gate) ───
+
+test("the summary card names the year-band figures of the FACTS dealt to quiz and card slots", () => {
+  // The live ch01 card 6 was dealt ch01.fact.parish_registers, whose only content
+  // is "1555". SEC120's year rule fires on ANY year-band figure a unit names that
+  // the standalone tiers never showed, whatever the unit cites — so the card could
+  // neither be built without the year nor built with it. Nothing on the summary
+  // side had ever mentioned the figures of the facts it was dealt.
+  const registers: SourceAnchorForPrompt = {
+    id: "ch02.fact.parish_registers",
+    kind: "testable_fact",
+    label: "Parish registers begin in 1555",
+    text: "Parish registers begin in 1555, which is as far back as the family can be traced.",
+    supportsClaimTypes: ["quiz_prompt", "quiz_explanation", "quiz_key_evidence", "review_card", "breakdown_claim"],
+  };
+  const undated: SourceAnchorForPrompt = {
+    id: "ch02.fact.trade",
+    kind: "testable_fact",
+    label: "A printing house is a business",
+    text: "A printing house sells what the street will buy.",
+    supportsClaimTypes: ["quiz_prompt", "review_card"],
+  };
+  const bp = {
+    chapterNumber: 2,
+    chapterId: CHID,
+    sections: {
+      quiz: [{ caseCueIds: [], requiredFactIds: ["ch02.fact.parish_registers"] }],
+      cards: [{ caseCueIds: [], requiredFactIds: ["ch02.fact.trade"] }],
+      examples: [],
+    },
+    constraints: { allowedFactIds: [], allowedCaseIds: [], forbiddenClaims: [], forbiddenLeakage: [], bannedHouseTics: [] },
+  } as unknown as ChapterBlueprintV1;
+  const pk = packet([registers, undated]);
+
+  assert.deepEqual(
+    dealtFactYearFigures(bp, pk).map((fact) => [fact.id, [...fact.years]]),
+    [["ch02.fact.parish_registers", ["1555"]]],
+    "only a dealt fact that actually carries a year-band figure is listed",
+  );
+
+  const card = buildSectionTaskMarkdown({
+    bookId: "dealt-fact-book",
+    kind: "summary-pack",
+    blueprint: bp,
+    sourcePacket: pk,
+    outputPath: "/tmp/summary-pack.json",
+    context: { voiceCard: null, bookScars: null },
+  });
+  // Read the block itself, not the whole card: the blueprint JSON the card already
+  // embedded names every requiredFactId regardless.
+  const factBlock = /MUST TEACH — the year figures[\s\S]*?unwritable\./.exec(card)?.[0] ?? "";
+  assert.ok(factBlock.length > 0, "the dated-facts ask must render on the summary card");
+  assert.ok(factBlock.includes("ch02.fact.parish_registers"));
+  assert.ok(factBlock.includes('"1555"'));
+  assert.ok(!factBlock.includes("ch02.fact.trade"), "a dealt fact with no year adds nothing to the ask");
+  assert.match(factBlock, /SEC120/);
+  // Bounded by construction: even a chapter whose every dealt fact is dated cannot
+  // grow this ask past the summary card's remaining budget under the 72% pin.
+  assert.ok(factBlock.length <= 700, `the dated-facts ask must stay bounded (got ${factBlock.length})`);
+
+  // Prompt only: no gate reads it, so a summary that ignores the year still passes
+  // the summary gate exactly as it does today. Gating dealt FACTS is a separate
+  // design decision.
+  const pack = summary({
+    fastRead: "A printing house is a business before it is a school, and the trade decides which pages sell.",
+    deepRead: "The boy learned that a page finds its buyer through timing rather than through care.",
+    fullRead: "The trade decided which pages were worth setting and which were not.",
+  });
+  assert.deepEqual(sec136(validateSummaryPack(pack, bp, pk)), []);
+});
+
+test("the dated-FACTS ask is bounded by construction, however many dated facts a chapter deals", () => {
+  // The summary card is the binding render against the 72% task-length pin, with
+  // ~677 chars of headroom on the pinned money-book fixture. A per-fact list would
+  // have been unbounded: 20 dealt facts each carrying two figures is 40 lines. The
+  // ask is keyed by the FIGURE and truncated, so its worst case is a constant.
+  const anchors: SourceAnchorForPrompt[] = Array.from({ length: 20 }, (_, i) => ({
+    id: `ch02.fact.dated_${i + 1}`,
+    kind: "testable_fact",
+    label: `A dated fact ${i + 1} the chapter must be able to test`,
+    text: `The register for this entry is dated 1${600 + i}, and the follow-up is dated 1${700 + i}.`,
+    supportsClaimTypes: ["quiz_prompt", "quiz_explanation", "quiz_key_evidence", "review_card"],
+  }));
+  const bp = {
+    chapterNumber: 2,
+    chapterId: CHID,
+    sections: {
+      quiz: anchors.slice(0, 10).map((anchor) => ({ caseCueIds: [], requiredFactIds: [anchor.id] })),
+      cards: anchors.slice(10).map((anchor) => ({ caseCueIds: [], requiredFactIds: [anchor.id] })),
+      examples: [],
+    },
+    constraints: { allowedFactIds: [], allowedCaseIds: [], forbiddenClaims: [], forbiddenLeakage: [], bannedHouseTics: [] },
+  } as unknown as ChapterBlueprintV1;
+  assert.equal(dealtFactYearFigures(bp, packet(anchors)).length, 20, "every dealt fact here carries figures");
+
+  const card = buildSectionTaskMarkdown({
+    bookId: "dealt-fact-bound-book",
+    kind: "summary-pack",
+    blueprint: bp,
+    sourcePacket: packet(anchors),
+    outputPath: "/tmp/summary-pack.json",
+    context: { voiceCard: null, bookScars: null },
+  });
+  const factBlock = /MUST TEACH — the year figures[\s\S]*?unwritable\./.exec(card)?.[0] ?? "";
+  assert.ok(factBlock.length > 0);
+  assert.ok(factBlock.length <= 700, `40 figures across 20 facts must still fit a bounded ask (got ${factBlock.length})`);
+  // Truncated, not silently dropped: the writer is told how much it is not seeing,
+  // and the SOURCE PACKET rendered below the ask carries every one of them.
+  assert.match(factBlock, /\+30 more/, "the untruncated figure count must be reported");
+  assert.match(factBlock, /\+14 more/, "the untruncated fact-id count must be reported");
 });
