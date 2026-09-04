@@ -1,3 +1,4 @@
+import type { CandidateReleaseVerdict } from "./release/candidateReleaseVerdict.js";
 import { existsSync, readFileSync } from "fs";
 import { basename, relative, resolve, sep } from "path";
 
@@ -149,6 +150,26 @@ export type ProductionManifestCandidateQcEvidence = {
   qcRoundId: string;
   /** Why there is no per-chapter attestation, stated rather than implied. */
   perChapterAttestation: "subsumed-by-round";
+  /**
+   * R-254 — THE VERDICT THE NAMED ROUND ACTUALLY REACHED.
+   *
+   * Two ids alone made the released pair unable to state its own QC result:
+   * neither a verifier nor a human could tell that the named round PASSed, and
+   * the round/review JSON it names lives only under the v25 root, which is
+   * never committed and which publish never preserves. This block carries the
+   * outcome, the issue counts by severity, the per-chapter panel composites
+   * (R-229's census — the numbers that were free text nothing parsed) and, when
+   * the candidate has one, the whole-book catalog-rubric result (R-080).
+   *
+   * OPTIONAL, and its absence is honest rather than lenient: a manifest built
+   * before this field existed, or by a caller that holds no round to read,
+   * records no verdict instead of a fabricated one. It is payload data, so it
+   * is hashed into the contentId — a released pair cannot be re-pointed at a
+   * different verdict without changing its identity — and the verifier replays
+   * the manifest's OWN declared block rather than recomputing it, exactly as it
+   * already does for the reviewId/qcRoundId pair.
+   */
+  verdict?: CandidateReleaseVerdict;
 };
 
 /**
@@ -532,7 +553,7 @@ export type BuildProductionManifestInput = ProductionManifestRoots & {
   candidateChapterEvidence?: CandidateChapterEvidenceResolver;
   /** Candidate regime ONLY, and REQUIRED there. The v25 round-level QC identity
    *  the release verified against this candidate. */
-  candidateQcEvidence?: { reviewId: string; qcRoundId: string };
+  candidateQcEvidence?: { reviewId: string; qcRoundId: string; verdict?: CandidateReleaseVerdict };
   createdAt: string;
   generator?: string;
   runId?: string;
@@ -705,6 +726,22 @@ function resolveChapterSet(
         })],
       };
     }
+    // R-254: a verdict block that does not validate must never reach a sidecar.
+    // The read-side validator would refuse it later, which means a build that
+    // let it through would ship a pair the verifier immediately rejects; refuse
+    // it HERE, where the caller can still be told what it handed over.
+    if (qc.verdict !== undefined && !validCandidateReleaseVerdict(qc.verdict)) {
+      return {
+        ok: false,
+        findings: [blocker({
+          checkId: "PPKG.candidate_qc_verdict_invalid",
+          message:
+            "productionManifest.payload.candidateQcEvidence.verdict is present but not a valid verdict block " +
+            "(qcOutcome/reviewOutcome, issue counts by severity, per-chapter panel composites, and an optional rubric block).",
+          actual: qc.verdict,
+        })],
+      };
+    }
     const specs = candidate.chapters.map((spec) => ({
       chapterId: spec.chapterId,
       chapterNumber: spec.chapterNumber,
@@ -727,6 +764,11 @@ function resolveChapterSet(
           reviewId: qc.reviewId,
           qcRoundId: qc.qcRoundId,
           perChapterAttestation: "subsumed-by-round",
+          // Copied VERBATIM when the caller supplies it, and omitted entirely
+          // when it does not: the builder never synthesizes a verdict, so a
+          // manifest either carries the one its release actually held or says
+          // nothing (R-254).
+          ...(qc.verdict === undefined ? {} : { verdict: qc.verdict }),
         },
       },
       deferredFindings: [],
@@ -1270,7 +1312,12 @@ function validateChapterSetBlock(payload: Record<string, unknown>): ProductionMa
     qc.source !== "v25-qc-round" ||
     !isString(qc.reviewId) ||
     !isString(qc.qcRoundId) ||
-    qc.perChapterAttestation !== "subsumed-by-round"
+    qc.perChapterAttestation !== "subsumed-by-round" ||
+    // R-254: the verdict block is OPTIONAL but never free-form. A present block
+    // that does not validate is refused rather than shipped as unreadable
+    // evidence — the whole point of putting it in the payload is that a reader
+    // can trust its shape.
+    (qc.verdict !== undefined && !validCandidateReleaseVerdict(qc.verdict))
   ) {
     return [blocker({
       checkId: "PPKG.manifest_candidate_qc_evidence_invalid",
@@ -1305,11 +1352,75 @@ export function declaredChapterSetSource(payload: ProductionManifestPayload): Pr
  *  `expectedCandidateQcEvidence` so the declaration cannot disagree with it. */
 export function declaredCandidateQcEvidence(
   payload: ProductionManifestPayload,
-): { reviewId: string; qcRoundId: string } | undefined {
+): { reviewId: string; qcRoundId: string; verdict?: CandidateReleaseVerdict } | undefined {
   const block = (payload as unknown as Record<string, unknown>).candidateQcEvidence;
   if (!isObject(block) || block.source !== "v25-qc-round") return undefined;
   if (!isString(block.reviewId) || !isString(block.qcRoundId)) return undefined;
-  return { reviewId: block.reviewId, qcRoundId: block.qcRoundId };
+  // The verdict rides back into the expected-manifest recompute the same way
+  // the ids do: REPLAYED from the manifest's own declaration, never recomputed
+  // from artifacts the verifier does not have. Tampering with it therefore
+  // changes the contentId and fails the pair, which is exactly the protection
+  // hashing it into the payload buys.
+  const verdict = validCandidateReleaseVerdict(block.verdict) ? block.verdict as CandidateReleaseVerdict : undefined;
+  return {
+    reviewId: block.reviewId,
+    qcRoundId: block.qcRoundId,
+    ...(verdict === undefined ? {} : { verdict }),
+  };
+}
+
+function validIssueCounts(value: unknown): boolean {
+  if (!isObject(value)) return false;
+  const keys = Object.keys(value).sort();
+  if (keys.length !== 3 || keys[0] !== "BLOCKER" || keys[1] !== "INFO" || keys[2] !== "WARN") return false;
+  return keys.every((key) => Number.isSafeInteger(value[key]) && (value[key] as number) >= 0);
+}
+
+const RELEASE_OUTCOMES = new Set(["PASS", "FAIL", "ERROR"]);
+
+/** Shape gate for the optional R-254 verdict block. Strict on every field it
+ *  declares; the block is either absent or complete. */
+export function validCandidateReleaseVerdict(value: unknown): boolean {
+  if (value === undefined) return false;
+  if (!isObject(value)) return false;
+  const allowed = new Set([
+    "qcOutcome", "qcIssueCounts", "reviewOutcome", "reviewIssueCounts", "panelChapterComposites", "rubric",
+  ]);
+  if (Object.keys(value).some((key) => !allowed.has(key))) return false;
+  if (!isString(value.qcOutcome) || !RELEASE_OUTCOMES.has(value.qcOutcome)) return false;
+  if (!isString(value.reviewOutcome) || !RELEASE_OUTCOMES.has(value.reviewOutcome)) return false;
+  if (!validIssueCounts(value.qcIssueCounts) || !validIssueCounts(value.reviewIssueCounts)) return false;
+  const composites = value.panelChapterComposites;
+  if (!Array.isArray(composites)) return false;
+  for (const entry of composites) {
+    if (!isObject(entry)) return false;
+    const keys = Object.keys(entry).sort();
+    if (keys.length !== 2 || keys[0] !== "chapterNumber" || keys[1] !== "composite") return false;
+    if (!Number.isSafeInteger(entry.chapterNumber) || (entry.chapterNumber as number) < 1) return false;
+    if (typeof entry.composite !== "number" || !Number.isFinite(entry.composite)) return false;
+  }
+  if (value.rubric === undefined) return true;
+  const rubric = value.rubric;
+  if (!isObject(rubric)) return false;
+  const rubricKeys = new Set([
+    "instrumentVersion", "composite", "tier", "gate", "churn", "bar", "factorFloor",
+    "highQuality", "factorMedians", "sampledChapterNumbers", "totalChapters", "readerCount",
+  ]);
+  if (Object.keys(rubric).some((key) => !rubricKeys.has(key)) || Object.keys(rubric).length !== rubricKeys.size) return false;
+  if (!isString(rubric.instrumentVersion) || rubric.instrumentVersion.length === 0) return false;
+  if (typeof rubric.composite !== "number" || !Number.isFinite(rubric.composite)) return false;
+  if (!isString(rubric.tier) || rubric.tier.length === 0) return false;
+  if (rubric.gate !== "PASS" && rubric.gate !== "FAIL" && rubric.gate !== "SPLIT") return false;
+  if (rubric.churn !== "LOW" && rubric.churn !== "MED" && rubric.churn !== "HIGH") return false;
+  if (!Number.isSafeInteger(rubric.bar) || !Number.isSafeInteger(rubric.factorFloor)) return false;
+  if (typeof rubric.highQuality !== "boolean") return false;
+  if (!isObject(rubric.factorMedians)) return false;
+  if (Object.values(rubric.factorMedians).some((score) => typeof score !== "number" || !Number.isFinite(score))) return false;
+  if (!Array.isArray(rubric.sampledChapterNumbers) || rubric.sampledChapterNumbers.length === 0) return false;
+  if (rubric.sampledChapterNumbers.some((number) => !Number.isSafeInteger(number) || (number as number) < 1)) return false;
+  if (!Number.isSafeInteger(rubric.totalChapters) || (rubric.totalChapters as number) < 1) return false;
+  if (!Number.isSafeInteger(rubric.readerCount) || (rubric.readerCount as number) < 1) return false;
+  return true;
 }
 
 /**
@@ -1432,8 +1543,11 @@ export function buildExpectedProductionManifestForPackage(args: {
   chapterSetSource?: ProductionChapterSetSource;
   /** Candidate regime only — see BuildProductionManifestInput. */
   candidateChapterEvidence?: CandidateChapterEvidenceResolver;
-  /** Candidate regime only — see BuildProductionManifestInput. */
-  candidateQcEvidence?: { reviewId: string; qcRoundId: string };
+  /** Candidate regime only — see BuildProductionManifestInput. Carries the
+   *  optional R-254 verdict block so a verifier's declared-evidence REPLAY
+   *  rebuilds the same payload (and therefore the same contentId) as the
+   *  release that wrote it. */
+  candidateQcEvidence?: { reviewId: string; qcRoundId: string; verdict?: CandidateReleaseVerdict };
   stateRoot?: string;
   runsRoot?: string;
   createdAt?: string;

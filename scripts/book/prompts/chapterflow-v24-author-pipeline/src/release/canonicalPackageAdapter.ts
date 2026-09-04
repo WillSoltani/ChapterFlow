@@ -1,3 +1,4 @@
+import type { CandidateReleaseVerdict } from "./candidateReleaseVerdict.js";
 import type { BookContentReader, CandidateSnapshot } from "../books/candidateTypes.js";
 import type { CandidateIdentity, Result } from "../contracts/v4Core.js";
 import {
@@ -139,6 +140,15 @@ export type CanonicalReleaseRequest = Readonly<{
    * revision.
    */
   resumeUnfinished?: boolean;
+  /**
+   * R-254 — the verdict block the released sidecar records: the QC round's
+   * outcome and issue counts, the review's counts, the per-chapter panel
+   * composites, and the whole-book catalog rubric when the candidate has one.
+   * Built by the caller from artifacts it has already read
+   * (`buildCandidateReleaseVerdict`); absent means "no verdict recorded", never
+   * "verdict fine".
+   */
+  verdict?: CandidateReleaseVerdict;
 }>;
 
 export type CanonicalReleaseResult = Readonly<{
@@ -667,7 +677,15 @@ export class CanonicalPackageAdapter {
       // this candidate and the promotion service verified its outcome is PASS
       // before the CAS above; recording it here puts that fact inside the
       // contentId instead of leaving the manifest silent about its QC.
-      candidateQcEvidence: { reviewId: request.reviewId, qcRoundId: request.qcRoundId },
+      candidateQcEvidence: {
+        reviewId: request.reviewId,
+        qcRoundId: request.qcRoundId,
+        // R-254: what that round DECIDED, when the caller holds the artifacts to
+        // say so. Passed straight through — this route never derives a verdict
+        // it was not given, so a release with no verdict records none rather
+        // than an assumed PASS.
+        ...(request.verdict === undefined ? {} : { verdict: request.verdict }),
+      },
     });
     if (!built.ok) {
       const message = `production manifest unbuildable after pointer commit; nothing published: ${built.findings
@@ -807,8 +825,9 @@ export function buildCanonicalPackageManifest(args: Readonly<CanonicalManifestOp
   chapterSetSource?: ProductionChapterSetSource;
   /** Candidate regime only — the candidate-carried per-chapter evidence. */
   candidateChapterEvidence?: CandidateChapterEvidenceResolver;
-  /** Candidate regime only — the v25 QC round this release relied on. */
-  candidateQcEvidence?: { reviewId: string; qcRoundId: string };
+  /** Candidate regime only — the v25 QC round this release relied on, plus the
+   *  optional R-254 verdict block that says what that round decided. */
+  candidateQcEvidence?: { reviewId: string; qcRoundId: string; verdict?: CandidateReleaseVerdict };
 }>): BuildProductionManifestResult {
   return buildExpectedProductionManifestForPackage({
     pkg: args.package,
