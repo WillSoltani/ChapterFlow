@@ -33,7 +33,7 @@ import {
 import { loadBookScars } from "../lib/bookScars.js";
 import { CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, CANDIDATE_SOURCE_TEXT_LOGICAL_PATH } from "../lib/candidateEvidence.js";
 import { sharedVoiceCues, voiceCard } from "../lib/voiceCard.js";
-import { researchBook } from "../researcher.js";
+import { researchBook, type ChapterResearchRunContext } from "../researcher.js";
 import { ingestSourceText } from "../source/sourceText.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -817,7 +817,13 @@ export class ResearchCandidateApplicationPort {
             bibliographyInput,
             operationExecution(this.#dependencies, input, runId, baseAttemptId, "research-bibliography"),
           ),
-          runChapter: async (chapterInput: ChapterResearchInput): Promise<ChapterResearchResult> => requireSourceV2(
+          // The run context is forwarded verbatim: the orchestrator owns the run
+          // directory a rejected draft is written into, and this port owns
+          // neither the path nor the decision — it only carries the sink across.
+          runChapter: async (
+            chapterInput: ChapterResearchInput,
+            context?: ChapterResearchRunContext,
+          ): Promise<ChapterResearchResult> => requireSourceV2(
             await runResearcherChapter(
               chapterInput,
               operationExecution(
@@ -827,6 +833,7 @@ export class ResearchCandidateApplicationPort {
                 baseAttemptId,
                 `research-ch${String(chapterInput.chapter.number).padStart(2, "0")}`,
               ),
+              context === undefined ? undefined : { onRejectedDraft: context.onRejectedDraft },
             ),
           ),
         },

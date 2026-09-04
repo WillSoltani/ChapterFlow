@@ -692,11 +692,46 @@ const TIMED_OUT_FEEDBACK = "the previous attempt timed out before any output was
  */
 export const TRANSIENT_RETRY_BACKOFF_MS: readonly number[] = Object.freeze([2000, 8000]);
 
+/**
+ * One rejected chapter-research draft, handed to the caller so it can be
+ * PERSISTED (see researcher.ts / REJECTED_DRAFTS_DIR).
+ *
+ * Before this existed, a live rejection left nothing behind: only passing
+ * sidecars are written, `attempts.jsonl` carries gateway metadata with no model
+ * output in it, and the aggregate error string lists problem lines with the
+ * draft they came from gone. The Franklin run of 2026-09-04 could not be
+ * diagnosed after the fact for exactly that reason.
+ */
+export interface RejectedChapterDraft {
+  readonly chapterNumber: number;
+  /** 1-based attempt index within MAX_CHAPTER_RESEARCH_ATTEMPTS. */
+  readonly attempt: number;
+  /** The RAW model output for this attempt, exactly as the model returned it. */
+  readonly draft: unknown;
+  /** The validator + grounding lines that rejected it. */
+  readonly problems: readonly string[];
+  /** Present ONLY when the bounded meta repair ran on this attempt. */
+  readonly repair?: {
+    /** The raw repair response, or null when the repair call did not complete. */
+    readonly response: unknown;
+    /** Whether applyMetaRepair produced a merged object at all. */
+    readonly merged: boolean;
+    /** Why the merged result was still rejected ([] when the merge was refused). */
+    readonly problems: readonly string[];
+  };
+}
+
+/** Diagnostics sink for {@link RejectedChapterDraft}. It is called for effect
+ *  only; anything it throws is swallowed (see the call site) so an observability
+ *  failure can never change what research does. */
+export type RejectedChapterDraftSink = (record: RejectedChapterDraft) => void;
+
 /** Injectable dependencies for {@link runResearcherChapter}. The `sleep` hook
  *  is faked to resolve instantly in tests so the backoff schedule is asserted
  *  deterministically without a real wall-clock wait. Production uses setTimeout. */
 export interface ChapterResearchRetryOptions {
   readonly sleep?: (ms: number) => Promise<void>;
+  readonly onRejectedDraft?: RejectedChapterDraftSink;
 }
 
 const defaultSleep = (ms: number): Promise<void> => new Promise((done) => setTimeout(done, ms));
@@ -849,7 +884,8 @@ export function buildMetaRepairPrompt(
   parts.push(`## What you may change`);
   parts.push(`- Rewrite each listed sentence IN PLACE, as a fact about ${named} and the world.`);
   parts.push(`- If a listed sentence carries no fact about the world at all — it only describes the passage — DELETE that sentence and keep the rest of its field. Never leave a required field empty: if the whole field is narration, rewrite it instead of emptying it.`);
-  parts.push(`- If a listed sentence IS a whole entry of \`keyClaims\`, \`namedExamples\` or \`testableFacts\` and it carries no fact about the world, drop that entry rather than inventing a replacement — but this chapter still needs at least ${floors.keyClaims} key claims, ${floors.namedExamples} named examples and ${floors.testableFacts} testable facts, and a drop that breaks one of those floors throws the whole repair away.`);
+  parts.push(`- \`keyClaims\` is an UNKEYED list, so rewrite a listed claim IN PLACE and return the same ${draft.keyClaims.length} claims in the same order. The merge reads your list position by position: an added claim is discarded (it could not be quoted from a source you cannot see on this call) and a removed one leaves the original claim standing, which fails the repair.`);
+  parts.push(`- If a listed sentence IS a whole entry of \`namedExamples\` or \`testableFacts\` and it carries no fact about the world, drop that entry rather than inventing a replacement — but this chapter still needs at least ${floors.namedExamples} named examples and ${floors.testableFacts} testable facts, and a drop that breaks one of those floors throws the whole repair away.`);
   parts.push(`- Change NOTHING else. Every other sentence, every id, every \`sourceQuote\`, every \`hardSpecifics\` token and every number stays exactly as it is.`);
   parts.push(`- Invent nothing. If the draft does not already contain a fact, do not add one; you cannot see the source text on this call and an unquotable claim is worse than a missing one.`);
   parts.push("");
@@ -872,10 +908,23 @@ function repairedString(value: unknown, fallback: string): string {
  * `sourceQuote`s, `hardSpecifics`, `hardSpecificEvidence`, `quotations`,
  * `frameworks`, `realWorld`, `forbiddenLeakage`, `chapterNumber` and
  * `schemaVersion` come from the DRAFT, byte for byte, so a repair can never mint
- * a quotation, re-anchor a fact, or add an item. It CAN drop an item (an entry
- * the response omits by id is dropped) — that is the honest move for pure
- * narration — and the merged object is then re-validated against the same
- * floors, so a drop that breaks a floor rejects the repair.
+ * a quotation or re-anchor a fact.
+ *
+ * It can never ADD one either, and the two list shapes need different machinery
+ * to guarantee that (round-2 review finding). `namedExamples`/`testableFacts` are
+ * id-keyed, so a response entry matching no draft entry is simply ignored
+ * (mergeById). `keyClaims` is a bare string list with no ids and no
+ * `sourceQuote` — nothing downstream can tell an appended claim from a repaired
+ * one, and the repair call is deliberately not shown the source span — so it is
+ * merged POSITIONALLY and length-bounded: the merged list has exactly the
+ * draft's length, index i is replaced only by a non-empty string at index i,
+ * extra entries are dropped and a short response keeps the draft's remainder.
+ * A key claim therefore cannot be added, removed or re-ordered by a repair.
+ *
+ * A repair CAN still drop an id-keyed item (an entry the response omits by id is
+ * dropped) — that is the honest move for pure narration — and the merged object
+ * is then re-validated against the same floors, so a drop that breaks a floor
+ * rejects the repair.
  *
  * Returns null when the response is not a usable object; the caller then keeps
  * the draft's own rejection.
@@ -895,15 +944,30 @@ export function applyMetaRepair(draft: ChapterResearchResult, repaired: unknown)
       plainDefinition: repairedString(patch.centralConcept?.plainDefinition, draft.centralConcept?.plainDefinition),
       whyItMatters: repairedString(patch.centralConcept?.whyItMatters, draft.centralConcept?.whyItMatters),
     },
-    keyClaims: Array.isArray(patch.keyClaims)
-      ? patch.keyClaims.filter((claim): claim is string => typeof claim === "string" && claim.trim().length > 0)
-      : draft.keyClaims,
+    keyClaims: mergePositional(draft.keyClaims, patch.keyClaims),
     namedExamples: mergeById(draft.namedExamples, patch.namedExamples, ["label", "summary", "teachesWhat"]),
     testableFacts: draft.testableFacts === undefined
       ? draft.testableFacts
       : mergeById(draft.testableFacts, patch.testableFacts, ["claim", "becauseMechanism", "commonError", "errorIsWhy"]),
   };
   return merged;
+}
+
+/**
+ * Merge an UNKEYED string list positionally and length-bounded.
+ *
+ * The merged list is exactly as long as the draft's: index i is replaced only by
+ * a non-empty string at index i, entries past the draft's length are dropped, and
+ * a response shorter than the draft keeps the draft's remaining entries. This is
+ * the only add-proof merge available to a list with no ids — see applyMetaRepair.
+ */
+function mergePositional(draft: readonly string[] | undefined, patch: unknown): string[] {
+  const entries = Array.isArray(draft) ? [...draft] : [];
+  if (!Array.isArray(patch)) return entries;
+  return entries.map((entry, index) => {
+    const replacement = patch[index];
+    return typeof replacement === "string" && replacement.trim().length > 0 ? replacement : entry;
+  });
 }
 
 /**
@@ -938,7 +1002,17 @@ function mergeById<T extends { id?: string }>(
     const source = (typeof entry.id === "string" ? byId.get(entry.id) : undefined) ?? positional;
     if (source === undefined) return; // omitted by the repair: dropped on purpose
     const next = { ...entry } as Record<string, unknown>;
-    for (const field of fields) next[field] = repairedString(source[field], String(entry[field] ?? ""));
+    for (const field of fields) {
+      // A field the DRAFT does not carry as a string is not repairable: the
+      // offending sentence came out of the draft, so every listed field exists
+      // there. Writing one here would either mint prose the draft never had or —
+      // the round-2 review's minor — coerce an absent optional field (a
+      // testableFact with no `commonError`) into `""`, silently changing the
+      // shape of the persisted chNN.source.json. Absent stays absent.
+      if (typeof entry[field] !== "string") continue;
+      const replacement = source[field];
+      if (typeof replacement === "string" && replacement.trim().length > 0) next[field] = replacement;
+    }
     merged.push(next as T);
   });
   return merged;
@@ -952,6 +1026,18 @@ export async function runResearcherChapter(
   const systemPrompt = readFileSync(resolve(PROMPTS_DIR, "researcher-chapter.system.md"), "utf8");
   const baseUserPrompt = buildUserPrompt(input);
   const sleep = options?.sleep ?? defaultSleep;
+  /** Hand a rejected draft to the caller's diagnostics sink. A sink that throws
+   *  is a broken disk or a broken logger, never a reason to fail a chapter that
+   *  the validator has already judged on its own terms — so the throw is
+   *  swallowed here and the retry loop continues exactly as it would have. */
+  const recordRejection = (record: RejectedChapterDraft): void => {
+    if (!options?.onRejectedDraft) return;
+    try {
+      options.onRejectedDraft(record);
+    } catch {
+      // deliberately ignored: diagnostics never gate research
+    }
+  };
   // The WHOLE span is the validation authority for every quote, even when only
   // an excerpt of it reached the prompt (spanExcerptForPrompt).
   const spanText = input.sourceSpan?.text ?? null;
@@ -1050,6 +1136,7 @@ export async function runResearcherChapter(
     // cannot admit anything a fresh draft could not. If it does not come back
     // clean, the draft's ORIGINAL rejection stands and the attempt retries as
     // before: the repair can only ever save a chapter, never pass one.
+    let repairRecord: RejectedChapterDraft["repair"] | undefined;
     if (isMetaRepairEligible(problems, report.offenses)) {
       let repaired: ChapterResearchResult | null = null;
       try {
@@ -1064,6 +1151,15 @@ export async function runResearcherChapter(
         // A durable quota cap cannot clear inside this window — report the
         // provider's own words and stop, exactly as the draft call does.
         if (isTransientProcessFailure(message) && isUnretryableProviderMessage(message)) {
+          // The loop ends here, so this is the LAST place the draft that
+          // triggered the repair can be persisted. Do it before breaking out.
+          recordRejection({
+            chapterNumber: input.chapter.number,
+            attempt,
+            draft: output,
+            problems,
+            repair: { response: null, merged: false, problems: [message] },
+          });
           attemptFailures.push({ kind: "quota-exhausted", message });
           break;
         }
@@ -1086,11 +1182,13 @@ export async function runResearcherChapter(
         repaired = null;
       }
       const merged = repaired === null ? null : applyMetaRepair(candidate, repaired);
+      repairRecord = { response: repaired, merged: merged !== null, problems: [] };
       if (merged !== null) {
         const mergedProblems = [
           ...collectChapterResearchProblems(merged, input),
           ...collectSourceQuoteProblems(merged, spanText).map((problem) => problem.message),
         ];
+        repairRecord = { response: repaired, merged: true, problems: mergedProblems };
         if (mergedProblems.length === 0) {
           const provenanceStamp: ChapterResearchMetaRepair = {
             attempt,
@@ -1100,6 +1198,18 @@ export async function runResearcherChapter(
         }
       }
     }
+
+    // The attempt is lost. Persist WHAT the model wrote and WHY it was refused
+    // before the loop moves on — every path below this line either throws or
+    // discards the draft, and a rejection nobody can read afterwards is how the
+    // 2026-09-04 Franklin failure cost three live runs to understand.
+    recordRejection({
+      chapterNumber: input.chapter.number,
+      attempt,
+      draft: output,
+      problems,
+      ...(repairRecord === undefined ? {} : { repair: repairRecord }),
+    });
 
     // R-052 — abstention, stated honestly. Every item that could not be quoted is
     // gone and the ONLY thing left wrong is a floor: that is a SOURCE problem, and
@@ -1361,9 +1471,12 @@ export function buildUserPrompt(input: ChapterResearchInput): string {
  * the retry loop feeds back to the model, PLUS the located lexical offenses
  * (R-283) the bounded repair needs.
  *
- * Each offense contributes EXACTLY ONE problem line, and the lexical lines are
- * appended last, so `problems.length === offenses.length` is a sound test for
- * "the only thing wrong here is wording" — which is the gate the repair opens on.
+ * Each offense contributes EXACTLY ONE problem line, so
+ * `problems.length === offenses.length` is a sound test for "the only thing wrong
+ * here is wording" — the gate the repair opens on. The test is a COUNT and is
+ * therefore order-independent: it does not matter where in `problems` the lexical
+ * lines sit, and a later check appended after them (the chapterTitle block below
+ * already sits there) would be caught by the count alone.
  */
 export type ChapterResearchReport = {
   readonly problems: string[];

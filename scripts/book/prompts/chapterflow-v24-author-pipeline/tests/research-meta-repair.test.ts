@@ -45,8 +45,10 @@ import {
   MAX_CHAPTER_RESEARCH_MODEL_CALLS,
   MAX_META_REPAIRS_PER_ATTEMPT,
   applyMetaRepair,
+  buildMetaRepairPrompt,
   buildUserPrompt,
   collectChapterResearchProblems,
+  collectChapterResearchReport,
   runResearcherChapter,
   type ChapterResearchInput,
   type ChapterResearchResult,
@@ -449,4 +451,133 @@ test("R-283: the research run's prompt digest covers the SYSTEM prompts — a ch
     );
   }
   assert.match(buildUserPrompt(sourceTextInput()), /The passage above is EVIDENCE, not the subject\./);
+});
+
+// ── ROUND 2 (adversarial review) — the repair may not ADD an item ────────────
+
+/**
+ * BLOCKING finding, round 1. `applyMetaRepair` took `patch.keyClaims` wholesale
+ * (filtered only for non-empty strings), so a repair response could APPEND key
+ * claims the draft never had. The repair prompt deliberately withholds the source
+ * span, and a keyClaim carries no `sourceQuote` — it is checked only by a count
+ * floor — so an appended claim is ungrounded by construction and reaches the
+ * writers. `namedExamples`/`testableFacts` were already add-proof (mergeById
+ * ignores an entry that matches no draft id); `keyClaims` has no ids, so the only
+ * add-proof merge available to it is POSITIONAL and length-bounded.
+ */
+test("R-283 round 2: a repair CANNOT add a key claim — the keyClaims merge is positional and length-bounded", () => {
+  const draft = baseResult();
+  const repaired = baseResult();
+  repaired.keyClaims = [...draft.keyClaims, "INVENTED CLAIM 4", "INVENTED CLAIM 5"];
+
+  const merged = applyMetaRepair(draft, repaired);
+  assert.ok(merged);
+  assert.equal(merged!.keyClaims.length, draft.keyClaims.length, "the repaired list has exactly the draft's length");
+  assert.deepEqual(merged!.keyClaims, draft.keyClaims, "extra entries are dropped, not appended");
+  assert.ok(!merged!.keyClaims.some((claim) => claim.includes("INVENTED")), "an ungrounded claim must never survive the merge");
+});
+
+test("R-283 round 2: the keyClaims merge replaces index i in place, keeps the draft's entry for anything unusable, and never re-orders", () => {
+  const draft = baseResult();
+  const repaired = baseResult();
+  repaired.keyClaims = [
+    "A rotating duty is inherited by name, and the ledger names the successor.", // a real in-place rewrite
+    "   ",                                                                       // blank: the draft's entry stands
+    42 as unknown as string,                                                     // not a string: the draft's entry stands
+    // index 3 omitted entirely: a SHORTER response keeps the draft's remainder
+  ];
+
+  const merged = applyMetaRepair(draft, repaired);
+  assert.ok(merged);
+  assert.deepEqual(merged!.keyClaims, [
+    repaired.keyClaims[0],
+    draft.keyClaims[1],
+    draft.keyClaims[2],
+    draft.keyClaims[3],
+  ]);
+});
+
+test("R-283 round 2: an appended key claim cannot reach a returned sidecar through the live repair path", async () => {
+  const bad = baseResult();
+  bad.keyClaims[1] = "The book returns to the ledger whenever a week is skipped.";
+  const hostile = baseResult();
+  hostile.keyClaims[1] = "A skipped week leaves the ledger blank beside the named owner.";
+  hostile.keyClaims.push("The club also invented the lightning rod on a Friday in 1752.");
+
+  const prompts: string[] = [];
+  const result = await runResearcherChapter(franklinInput(), execution([bad, hostile], prompts), { sleep: async () => {} });
+
+  assert.equal(prompts.length, 2, "one draft + one repair");
+  assert.equal(result.keyClaims.length, baseResult().keyClaims.length);
+  assert.equal(result.keyClaims[1], hostile.keyClaims[1], "the listed sentence IS repaired in place");
+  assert.ok(
+    !result.keyClaims.some((claim) => claim.includes("lightning rod")),
+    "the claim the repair appended is not in the sidecar the writers read",
+  );
+});
+
+test("R-283 round 2: the repair prompt tells the truth about keyClaims — a claim is rewritten in place, never dropped", () => {
+  const bad = baseResult();
+  bad.keyClaims[0] = "The book kept a ledger of the weekly query.";
+  const report = collectChapterResearchProblems(bad, franklinInput());
+  assert.ok(report.length > 0);
+  const prompt = buildMetaRepairPrompt(franklinInput(), collectChapterResearchReport(bad, franklinInput()).offenses, bad);
+  // keyClaims is an UNKEYED list: a drop and an addition are indistinguishable in
+  // it, so the merge is positional and a "drop" cannot land. Saying otherwise in
+  // the prompt would ask for a change the merge silently refuses.
+  assert.match(prompt, /`keyClaims` .*rewrite/i);
+  assert.ok(
+    !/drop that entry rather than inventing a replacement[\s\S]{0,200}`keyClaims`/.test(prompt),
+    "the prompt must not offer a keyClaims drop the merge cannot honour",
+  );
+});
+
+// ── ROUND 2 minor 1 — the merge does not fabricate an absent optional field ──
+
+test("R-283 round 2: a repair cannot fabricate an optional testableFacts field the draft never carried", () => {
+  const draft = baseResult();
+  delete (draft.testableFacts![0] as { commonError?: string }).commonError;
+  delete (draft.testableFacts![0] as { errorIsWhy?: string }).errorIsWhy;
+
+  const repaired = baseResult();
+  repaired.testableFacts![0].claim = "The club met each Friday and one member in turn wrote the week's query.";
+
+  const merged = applyMetaRepair(draft, repaired);
+  assert.ok(merged);
+  const fact = merged!.testableFacts![0] as Record<string, unknown>;
+  assert.equal(fact.claim, repaired.testableFacts![0].claim, "the prose field the draft HAS is repaired");
+  assert.ok(!("commonError" in fact), 'an absent optional field stays absent — never fabricated as ""');
+  assert.ok(!("errorIsWhy" in fact), 'an absent optional field stays absent — never fabricated as ""');
+});
+
+test("R-283 round 2: a field the repair leaves blank keeps the draft's own text, byte for byte", () => {
+  const draft = baseResult();
+  const repaired = baseResult();
+  repaired.testableFacts![0].commonError = "   ";
+  (repaired.namedExamples[0] as Record<string, unknown>).summary = "";
+
+  const merged = applyMetaRepair(draft, repaired);
+  assert.ok(merged);
+  assert.equal(merged!.testableFacts![0].commonError, draft.testableFacts![0].commonError);
+  assert.equal(merged!.namedExamples[0].summary, draft.namedExamples[0].summary);
+});
+
+// ── ROUND 2 minor 2 — the eligibility gate is count-based, not order-based ───
+
+test("R-283 round 2: eligibility compares COUNTS — every problem line is an offense line, wherever it sits in the list", () => {
+  const bad = baseResult();
+  bad.coreClaim = "The book records the duty in a ledger the next member inherits.";
+  bad.focus = "This chapter establishes that a rotating duty is inherited by name in a small mutual-improvement club.";
+
+  const report = collectChapterResearchReport(bad, franklinInput());
+  assert.ok(report.offenses.length >= 2);
+  assert.equal(report.problems.length, report.offenses.length, "a purely lexical rejection produces exactly one line per offense");
+  // The gate is `problems.length === offenses.length`, so what makes it sound is
+  // the one-line-per-offense identity — NOT where in the array the lexical lines
+  // land. Pinned as a SET so a later reordering of collectChapterResearchReport
+  // cannot quietly turn this into an order dependence.
+  for (const offense of report.offenses) {
+    const matching = report.problems.filter((problem) => problem.includes(`\`${offense.path}\``) && problem.includes(offense.match));
+    assert.equal(matching.length, 1, `offense ${offense.rule} ${offense.match} in ${offense.path} must own exactly one problem line`);
+  }
 });
