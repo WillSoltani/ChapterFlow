@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 
 import type { BibliographyResult } from "../../src/agents/researcher-bibliography.js";
 import {
+  MAX_CHAPTER_RESEARCH_ATTEMPTS,
+  MAX_META_REPAIRS_PER_ATTEMPT,
   isDegenerateChapterResearchOutput,
   runResearcherChapter,
   type ChapterResearchInput,
@@ -232,28 +234,48 @@ requiredTest("1 degenerate (all-empty) output retries with a complete-object dir
   assert.doesNotMatch(subject.prompts[0], /PREVIOUS ATTEMPT WAS REJECTED/);
 });
 
-requiredTest("2 content-guard (meta-reference) rejection retries the same way and then succeeds", async () => {
+requiredTest("2 content-guard (meta-reference) rejection spends ONE bounded repair carrying the offending sentence, then succeeds", async () => {
   const subject = rig([metaReferenceOutput(), validChapter()]);
   const result = await runResearcherChapter(input(), subject.execution);
 
   assert.equal(result.schemaVersion, "source-v2");
   assert.equal(subject.calls(), 2);
-  const retryPrompt = subject.prompts[1];
-  assert.match(retryPrompt, /PREVIOUS ATTEMPT WAS REJECTED/);
-  assert.match(retryPrompt, /meta-reference/);
+  const repairPrompt = subject.prompts[1];
+
+  // R-283 — DELIBERATE CHANGE to this case's second call. A rejection whose ONLY
+  // defect is wording in a prose field is not worth a fresh 20 KB draft: the live
+  // 2026-09-04 Franklin run spent three of them per chapter and ch01 still ended
+  // on "the book" plus a new "Franklin writes". The second call is now a bounded
+  // repair that receives the offending sentences and rewrites only those. The
+  // ordinary retry path is unchanged and is pinned by cases 1, 3 and 11.
+  assert.match(repairPrompt, /# Repair task/);
+  assert.match(repairPrompt, /meta-reference/);
+  // It names the FIELD and quotes the offending SENTENCE — the thing the
+  // phrase-only feedback never did, and the reason the live run could not converge.
+  assert.match(repairPrompt, /found in `coreClaim`/);
+  assert.ok(
+    repairPrompt.includes(metaReferenceOutput().coreClaim),
+    "the repair must receive the offending sentence verbatim",
+  );
 
   // The card must NAME the book's own author as the remedy. A live Franklin run
   // died 3/3 on "the author": in an autobiography the author IS the subject, so a
   // model told only what is banned has no legal move. Naming them is the move.
-  assert.match(retryPrompt, /Chip Heath and Dan Heath/,
+  assert.match(repairPrompt, /Chip Heath and Dan Heath/,
     "the remedy must name THIS book's author, not describe the ban abstractly");
 
   // ...and must carry no OTHER book's vocabulary. The old card enumerated
   // "Allen writes" and told the model to state facts about
   // "people/thought/circumstances" — As a Man Thinketh's thesis, hardcoded into
   // the universal researcher contract. That is the leak bookScars exists to stop.
-  assert.doesNotMatch(retryPrompt, /Allen writes/, "no foreign book's scar tissue in a universal contract");
-  assert.doesNotMatch(retryPrompt, /thought\/circumstances/, "no foreign book's thesis vocabulary");
+  assert.doesNotMatch(repairPrompt, /Allen writes/, "no foreign book's scar tissue in a universal contract");
+  assert.doesNotMatch(repairPrompt, /thought\/circumstances/, "no foreign book's thesis vocabulary");
+
+  // The repaired sidecar passed the SAME validator, and says so on the sidecar
+  // that gets written to disk.
+  assert.ok(result.metaRepair, "a repaired sidecar records the repair in its provenance");
+  assert.equal(result.metaRepair?.attempt, 1);
+  assert.deepEqual(result.metaRepair?.offenses.map((offense) => offense.match), ["The author"]);
 });
 
 requiredTest("3 persistently invalid output fails closed after MAX_ATTEMPTS(3) with accumulated validator errors", async () => {
@@ -499,12 +521,16 @@ requiredTest("16 isQuotaExhaustedMessage separates durable caps from short rate 
 });
 
 requiredTest("11 substantive validator rejection leads with the task, frames the prior draft as REFERENCE, and echoes it for repair", async () => {
-  // A substantive-but-wrong draft (trips the meta guard) is repairable, so the
-  // retry MUST echo it — but reframed as reference material to fix, led by a
-  // task restatement, not an accusation. Finding-40: the accusatory "fix exactly
-  // these" + long banned list raised the model's degenerate-empty rate; leading
-  // with the task and keeping the prior draft as reference reduces that pressure.
-  const subject = rig([metaReferenceOutput(), validChapter()]);
+  // A substantive-but-wrong draft is repairable, so the retry MUST echo it — but
+  // reframed as reference material to fix, led by a task restatement, not an
+  // accusation. Finding-40: the accusatory "fix exactly these" + long banned list
+  // raised the model's degenerate-empty rate; leading with the task and keeping
+  // the prior draft as reference reduces that pressure.
+  //
+  // R-283: the draft here also misses a FLOOR, so the bounded lexical repair is
+  // not eligible (it can only fix wording) and this case still exercises the
+  // ordinary retry path it was written for.
+  const subject = rig([{ ...metaReferenceOutput(), voiceCues: ["one cue only"] }, validChapter()]);
   const result = await runResearcherChapter(input(), subject.execution);
 
   assert.equal(result.schemaVersion, "source-v2");
@@ -520,6 +546,7 @@ requiredTest("11 substantive validator rejection leads with the task, frames the
 
   // the banned-list problem line is preserved
   assert.match(retryPrompt, /meta-reference/);
+  assert.match(retryPrompt, /voiceCues needs 2-4 items/, "the floor is what makes this rejection non-repairable");
   // the prior draft is echoed as REFERENCE to repair (not "do not repeat these mistakes")
   assert.match(retryPrompt, /repair it, do not restart/i);
   assert.match(retryPrompt, /The author argues/); // the echoed prior coreClaim
@@ -559,6 +586,25 @@ requiredTest("13 isDegenerateChapterResearchOutput classifies empties vs substan
   // substantive-but-wrong drafts are NOT degenerate
   assert.equal(isDegenerateChapterResearchOutput(metaReferenceOutput()), false);
   assert.equal(isDegenerateChapterResearchOutput(validChapter()), false);
+});
+
+requiredTest("17 a bounded repair that still trips the meta guard fails closed with the ORIGINAL error and buys no extra attempt", async () => {
+  // R-283 fail-closed. Every call — draft and repair alike — returns the same
+  // offending draft, so the repair never lands. The chapter must die on the
+  // draft's OWN validator error (not on a repair-specific euphemism), and the
+  // repair must not buy a fourth attempt: MAX_CHAPTER_RESEARCH_ATTEMPTS is still
+  // the outer bound on the chapter.
+  const subject = rig([metaReferenceOutput()]);
+  await assert.rejects(
+    runResearcherChapter(input(), subject.execution),
+    (error: unknown) => {
+      const message = (error as Error).message;
+      assert.match(message, /3 attempt/i);
+      assert.match(message, /meta-reference "The author" found in `coreClaim`/);
+      return true;
+    },
+  );
+  assert.equal(subject.calls(), MAX_CHAPTER_RESEARCH_ATTEMPTS * (1 + MAX_META_REPAIRS_PER_ATTEMPT));
 });
 
 finishV25Tests().catch((error: unknown) => {

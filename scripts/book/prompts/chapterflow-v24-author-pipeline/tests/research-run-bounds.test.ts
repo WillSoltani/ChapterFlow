@@ -24,21 +24,26 @@ import {
   researchAttemptCapForChapters,
 } from "../src/app/researchCandidateApplicationPort.js";
 import { MAX_BIBLIOGRAPHY_ATTEMPTS, type BibliographyResult } from "../src/agents/researcher-bibliography.js";
-import { MAX_CHAPTER_RESEARCH_ATTEMPTS, type ChapterResearchInput, type ChapterResearchResult } from "../src/agents/researcher-chapter.js";
+import { MAX_CHAPTER_RESEARCH_MODEL_CALLS, type ChapterResearchInput, type ChapterResearchResult } from "../src/agents/researcher-chapter.js";
 import { researchBook } from "../src/researcher.js";
 import { RESEARCH_RUN_MANIFEST_FILE, type ResearchRunManifest } from "../src/lib/researchRunManifest.js";
 
 // ── R-022 ────────────────────────────────────────────────────────────────────
 
 test("R-022: the attempt cap for a book is its real retry budget, not a flat constant", () => {
-  // One chapter: its own bounded retries plus the bibliography's.
-  assert.equal(researchAttemptCapForChapters(1), MAX_CHAPTER_RESEARCH_ATTEMPTS + MAX_BIBLIOGRAPHY_ATTEMPTS);
-  // A 12-chapter book: 12 x chapter retries + the bibliography's.
-  assert.equal(researchAttemptCapForChapters(12), 12 * MAX_CHAPTER_RESEARCH_ATTEMPTS + MAX_BIBLIOGRAPHY_ATTEMPTS);
-  // The cap grows by exactly one chapter's retry budget per chapter.
+  // R-283 widened the per-chapter budget from ATTEMPTS to MODEL CALLS: every
+  // attempt may additionally spend one bounded lexical repair, and each of those
+  // admits its own run-state attempt. Sizing the cap off the attempt count would
+  // leave a long book short of admission capacity mid-stage.
+  //
+  // One chapter: its own bounded model calls plus the bibliography's retries.
+  assert.equal(researchAttemptCapForChapters(1), MAX_CHAPTER_RESEARCH_MODEL_CALLS + MAX_BIBLIOGRAPHY_ATTEMPTS);
+  // A 12-chapter book: 12 x chapter model calls + the bibliography's.
+  assert.equal(researchAttemptCapForChapters(12), 12 * MAX_CHAPTER_RESEARCH_MODEL_CALLS + MAX_BIBLIOGRAPHY_ATTEMPTS);
+  // The cap grows by exactly one chapter's budget per chapter.
   assert.equal(
     researchAttemptCapForChapters(13) - researchAttemptCapForChapters(12),
-    MAX_CHAPTER_RESEARCH_ATTEMPTS,
+    MAX_CHAPTER_RESEARCH_MODEL_CALLS,
   );
 });
 

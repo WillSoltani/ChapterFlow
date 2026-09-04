@@ -9,7 +9,7 @@ import {
   type BibliographyResult,
 } from "../agents/researcher-bibliography.js";
 import {
-  MAX_CHAPTER_RESEARCH_ATTEMPTS,
+  MAX_CHAPTER_RESEARCH_MODEL_CALLS,
   collectHardSpecificLengthProblems,
   collectHardSpecificShapeProblems,
   runResearcherChapter,
@@ -33,7 +33,7 @@ import {
 import { loadBookScars } from "../lib/bookScars.js";
 import { CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, CANDIDATE_SOURCE_TEXT_LOGICAL_PATH } from "../lib/candidateEvidence.js";
 import { sharedVoiceCues, voiceCard } from "../lib/voiceCard.js";
-import { researchBook } from "../researcher.js";
+import { researchBook, type ChapterResearchRunContext } from "../researcher.js";
 import { ingestSourceText } from "../source/sourceText.js";
 import { reconcileAttempt, RECONCILED_UNSETTLED_ON_RESUME } from "../run-state/reconcileAttempt.js";
 import type { RunStore } from "../run-state/runStore.js";
@@ -45,10 +45,13 @@ import type { ModelCallerExecution, ModelTaskRunner } from "./modelTaskRunner.js
 
 const RESEARCH_STAGES = Object.freeze(["research", "seed-candidate"] as const);
 /**
- * Per-run research attempt cap, DERIVED from the retry budgets the stage
- * actually spends: every bounded chapter-research retry admits a new run-state
- * attempt (up to MAX_CHAPTER_RESEARCH_ATTEMPTS), as does every bibliography
- * retry (up to MAX_BIBLIOGRAPHY_ATTEMPTS).
+ * Per-run research attempt cap, DERIVED from the model calls the stage actually
+ * spends: every bounded chapter-research attempt admits a new run-state attempt,
+ * and (R-283) each attempt may additionally spend one targeted lexical repair —
+ * MAX_CHAPTER_RESEARCH_MODEL_CALLS covers both — as does every bibliography retry
+ * (up to MAX_BIBLIOGRAPHY_ATTEMPTS). Sizing this off the ATTEMPT count instead of
+ * the CALL count would leave a long book short of admission capacity mid-stage,
+ * which surfaces as MODEL_ATTEMPT_EXISTS rather than as a content failure.
  *
  * The exact chapter count is still unknowable here — the run definition is
  * created before the bibliography runs, and a definition cannot change
@@ -58,7 +61,7 @@ const RESEARCH_STAGES = Object.freeze(["research", "seed-candidate"] as const);
  * flat 4096 (≈1365 chapters at full retry, ~300x any real book) did not.
  */
 export function researchAttemptCapForChapters(chapters: number): number {
-  return MAX_CHAPTER_RESEARCH_ATTEMPTS * Math.max(0, Math.trunc(chapters)) + MAX_BIBLIOGRAPHY_ATTEMPTS;
+  return MAX_CHAPTER_RESEARCH_MODEL_CALLS * Math.max(0, Math.trunc(chapters)) + MAX_BIBLIOGRAPHY_ATTEMPTS;
 }
 
 /**
@@ -814,7 +817,13 @@ export class ResearchCandidateApplicationPort {
             bibliographyInput,
             operationExecution(this.#dependencies, input, runId, baseAttemptId, "research-bibliography"),
           ),
-          runChapter: async (chapterInput: ChapterResearchInput): Promise<ChapterResearchResult> => requireSourceV2(
+          // The run context is forwarded verbatim: the orchestrator owns the run
+          // directory a rejected draft is written into, and this port owns
+          // neither the path nor the decision — it only carries the sink across.
+          runChapter: async (
+            chapterInput: ChapterResearchInput,
+            context?: ChapterResearchRunContext,
+          ): Promise<ChapterResearchResult> => requireSourceV2(
             await runResearcherChapter(
               chapterInput,
               operationExecution(
@@ -824,6 +833,7 @@ export class ResearchCandidateApplicationPort {
                 baseAttemptId,
                 `research-ch${String(chapterInput.chapter.number).padStart(2, "0")}`,
               ),
+              context === undefined ? undefined : { onRejectedDraft: context.onRejectedDraft },
             ),
           ),
         },

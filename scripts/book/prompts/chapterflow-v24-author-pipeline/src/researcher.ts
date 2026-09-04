@@ -41,6 +41,8 @@ import {
 import {
   type ChapterResearchInput,
   type ChapterResearchResult,
+  type RejectedChapterDraft,
+  type RejectedChapterDraftSink,
   renderChapterSidecar,
 } from "./agents/researcher-chapter.js";
 import { MODEL_CALLER_PROFILES, MODEL_TASK_RUNNER_REQUIRED } from "./app/modelTaskRunner.js";
@@ -164,9 +166,22 @@ export type ResearchBookOptions = {
   factPins?: readonly string[];
 };
 
+/**
+ * What the orchestrator lends a chapter researcher for the duration of one
+ * chapter. Today it is only the diagnostics sink for rejected drafts: the
+ * researcher knows WHAT was refused, and only the orchestrator knows WHERE this
+ * run's directory is, so the record has to be handed across that seam.
+ *
+ * Optional on the callee side on purpose — an injected `runChapter` (every test
+ * fixture, and any caller that is not the model researcher) may ignore it.
+ */
+export type ChapterResearchRunContext = {
+  readonly onRejectedDraft: RejectedChapterDraftSink;
+};
+
 export type ResearcherDeps = {
   runBibliography: (input: BibliographyInput) => Promise<BibliographyResult>;
-  runChapter: (input: ChapterResearchInput) => Promise<ChapterResearchResult>;
+  runChapter: (input: ChapterResearchInput, context?: ChapterResearchRunContext) => Promise<ChapterResearchResult>;
 };
 
 export type ResearchBookResult = {
@@ -652,6 +667,12 @@ async function researchChaptersInParallel(
             },
             sourceTextSha256: opts.chapterMap!.sourceTextSha256,
           }),
+        }, {
+          // Every REJECTED draft of this chapter is written into the run
+          // directory as it happens — not at the end, and not only when the
+          // chapter ultimately fails: a chapter that recovers on attempt 3 is
+          // exactly the case whose first two drafts explain the run's cost.
+          onRejectedDraft: (record) => writeRejectedDraft(opts.bundlePath, record, opts.clock, opts.log),
         });
         // R-046 — the ORCHESTRATOR owns provenance, not the injected researcher.
         // It is the only layer that knows whether this run has text, and it is
@@ -1100,6 +1121,111 @@ function readChapterSidecar(runDir: string, chapterNumber: number): { chapter: C
     };
   } catch {
     return null;
+  }
+}
+
+/**
+ * Where a rejected chapter-research draft is written, relative to the RUN
+ * directory (`research-runs/<bookId>/<runId>/rejected/chNN.attemptK.json`).
+ *
+ * Deliberately inside the run directory and NOT under the attempt root: the run
+ * directory is the artifact an operator already has in hand when a stage dies,
+ * it is the trust boundary every other durable research artifact lives inside,
+ * and the attempt root is the model gateway's own space.
+ *
+ * Nothing reads these files back. They take no part in the run's identity: the
+ * manifest hashes the two sidecar FILES per chapter (outputJsonHash /
+ * outputTextHash) and compatibility is a code/prompt/config fingerprint, so a
+ * rejected-draft record can never make a run incompatible with itself.
+ */
+export const REJECTED_DRAFTS_DIR = "rejected";
+
+/** Byte ceiling for one rejected-draft record. A source-v2 sidecar runs ~20 KB,
+ *  so 256 KB holds a draft, a repair response and their problem lines with room
+ *  to spare — while a pathological model output cannot fill the run directory. */
+export const MAX_REJECTED_DRAFT_BYTES = 256 * 1024;
+
+/** Serialize one rejected draft, bounded to `maxBytes`.
+ *
+ *  Under the cap the record is written whole. Over it, the two payloads (the
+ *  draft, and the repair response when there is one) are replaced by TRUNCATED
+ *  JSON TEXT and the record says so — `truncated: true` plus a note naming the
+ *  original byte size. The metadata an operator reads first (chapter, attempt,
+ *  timestamp and every problem line) is never what gets cut. */
+export function serializeRejectedDraft(
+  record: RejectedChapterDraft,
+  maxBytes: number = MAX_REJECTED_DRAFT_BYTES,
+  recordedAt: string = new Date().toISOString(),
+): string {
+  const head = {
+    schemaVersion: "1" as const,
+    chapterNumber: record.chapterNumber,
+    attempt: record.attempt,
+    recordedAt,
+    problems: [...record.problems],
+  };
+  const render = (body: Record<string, unknown>): string => `${JSON.stringify({ ...head, ...body }, null, 2)}\n`;
+  const whole = render({
+    draft: record.draft,
+    ...(record.repair === undefined ? {} : { repair: record.repair }),
+  });
+  if (Buffer.byteLength(whole, "utf8") <= maxBytes) return whole;
+
+  const draftJson = safeJsonText(record.draft);
+  const repairJson = record.repair === undefined ? null : safeJsonText(record.repair.response);
+  const originalBytes = Buffer.byteLength(draftJson, "utf8") + (repairJson === null ? 0 : Buffer.byteLength(repairJson, "utf8"));
+  const build = (chars: number): string => render({
+    truncated: true,
+    note: `draft (and repair response, when present) truncated to ${chars} characters each; ${originalBytes} bytes of JSON were produced`,
+    draftJsonTruncated: draftJson.slice(0, chars),
+    ...(record.repair === undefined || repairJson === null ? {} : {
+      repair: {
+        merged: record.repair.merged,
+        problems: [...record.repair.problems],
+        responseJsonTruncated: repairJson.slice(0, chars),
+      },
+    }),
+  });
+  // Halve until it fits. Bounded (a JSON string escapes to at most ~6 bytes per
+  // character, so this converges in a handful of steps) and deterministic.
+  let chars = Math.max(0, maxBytes);
+  for (let step = 0; step < 32 && chars > 0; step += 1) {
+    const text = build(chars);
+    if (Buffer.byteLength(text, "utf8") <= maxBytes) return text;
+    chars = Math.floor(chars / 2);
+  }
+  return build(0);
+}
+
+function safeJsonText(value: unknown): string {
+  try {
+    return JSON.stringify(value) ?? String(value);
+  } catch {
+    return String(value);
+  }
+}
+
+/** Write one rejected draft into the run directory, through the SAME atomic
+ *  writer the sidecars use. Best effort by construction: a diagnostics record
+ *  that cannot be written is logged and dropped, never thrown — research has
+ *  already judged this draft and the operator needs the validator's verdict, not
+ *  a filesystem error standing in front of it. */
+function writeRejectedDraft(
+  runDir: string,
+  record: RejectedChapterDraft,
+  clock: () => Date,
+  log: (message: string) => void,
+): void {
+  const name = `ch${chapterKey(record.chapterNumber)}.attempt${record.attempt}.json`;
+  try {
+    mkdirSync(resolve(runDir, REJECTED_DRAFTS_DIR), { recursive: true });
+    writeFileAtomic(
+      resolve(runDir, REJECTED_DRAFTS_DIR, name),
+      serializeRejectedDraft(record, MAX_REJECTED_DRAFT_BYTES, clock().toISOString()),
+    );
+    log(`  ${REJECTED_DRAFTS_DIR}/${name}: attempt ${record.attempt} rejected (${record.problems.length} problem(s)) — draft persisted`);
+  } catch (error) {
+    log(`  could not persist rejected draft ${REJECTED_DRAFTS_DIR}/${name}: ${(error as Error).message}`);
   }
 }
 
