@@ -42,7 +42,9 @@ import {
   countSpecificsInProse,
   hasDraftedReadTiers,
   normalizeDerivabilityText,
-  qualifiedNameDerivable,
+  specificDerivable,
+  specificIsJudgeable,
+  specificNamedInUnit,
   standaloneProseText,
   type ChapterProseSource,
 } from "./chapterProse.js";
@@ -3163,21 +3165,41 @@ export function learningProseDerivabilityFindings(
       // is, the defect is upstream — the summary tiers never covered a case the
       // blueprint dealt — and SEC120 stands down rather than blocking a chapter
       // that cannot be written.
-      const anchorSpecifics = (anchor.hardSpecifics ?? [])
-        .map((value) => normalizeDerivabilityText(text(value)))
-        .filter((value) => value.length >= 3);
-      const anySpecificOnThePage = anchorSpecifics.some((value) =>
-        haystack.includes(value)
-        || qualifiedNameDerivable(value, haystack)
-        || clippedPhraseDerivable(value, haystack));
+      // ONE PREDICATE, FOR REAL (review round 2, 2026-09-04). This check used to keep
+      // its OWN inline >=3-char floor while the shared `specificDerivable` answered a
+      // SHORT FIGURE ("seventeen" -> "17") by whole-token equality. Two answers to one
+      // question is exactly the defect this module was refactored to prevent, and it
+      // was live: with prose showing only "seventeen", SEC120 stood down for the
+      // anchor (its floor skipped the only on-page specific) while the writer card —
+      // built from the shared predicate — printed the other two specifics as
+      // DO-NOT-USE and offered NOTHING, for an anchor SEC56/SEC58 compel a citing unit
+      // to quote verbatim. The card described a gate that never fired.
+      //
+      // Both prose-side comparisons below now call `specificDerivable`, and the
+      // unit-side test calls its mirror `specificNamedInUnit` so dropping the floor
+      // cannot buy a false blocker: "17" is matched as a whole TOKEN on both sides and
+      // can never be read out of the middle of a stem's "1776".
+      //
+      // DISCLOSED CONSEQUENCE: SEC120 can now BLOCK a unit that names a short figure
+      // the prose never states. That is the correct direction and the same judgement
+      // SEC14/SEC136 make about the same string. What the three checks share is the
+      // PREDICATE, not the HAYSTACK: SEC14 and SEC136 measure `chapterProseText`
+      // (fullRead included) while SEC120 measures `standaloneProseText` (fullRead
+      // excluded). One predicate, but SEC120's haystack excludes fullRead, so a case
+      // taught only in fullRead still satisfies SEC14/SEC136 and still blocks under
+      // SEC120 — unchanged from origin/main, where the same pincer holds for every
+      // >=3-char specific, and stated already in SEC136's own message ("fullRead alone
+      // satisfies SEC128 but leaves a Deep-read reader unable to answer, SEC120").
+      // Measured and pinned in tests/short-figure-card-gate-alignment.test.ts.
+      // A bare one-digit specific ("one") stays inert here exactly as before: the
+      // shared predicate's SHORT_FIGURE_MIN_VALUE bound refuses to judge it at all.
+      const anySpecificOnThePage = (anchor.hardSpecifics ?? [])
+        .some((value) => specificDerivable(text(value), haystack));
       if (!anySpecificOnThePage) continue;
       for (const specific of anchor.hardSpecifics ?? []) {
-        const normalized = normalizeDerivabilityText(text(specific));
-        if (normalized.length < 3) continue;
-        if (!unit.includes(normalized)) continue;
-        if (haystack.includes(normalized)) continue;
-        if (qualifiedNameDerivable(normalized, haystack)) continue;
-        if (clippedPhraseDerivable(normalized, haystack)) continue;
+        if (!specificIsJudgeable(text(specific))) continue;
+        if (!specificNamedInUnit(text(specific), unit)) continue;
+        if (specificDerivable(text(specific), haystack)) continue;
         missing.add(text(specific));
       }
     }
