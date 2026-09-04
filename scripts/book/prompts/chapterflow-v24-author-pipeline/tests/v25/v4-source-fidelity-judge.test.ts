@@ -27,6 +27,7 @@ import {
   classifySourceFidelityFindings,
   detectCheckableKinds,
   judgeChapterSourceFidelity,
+  sourceFidelityVetoDisagreement,
   type SourceFidelityFinding,
 } from "../../src/critics/semantic/sourceFidelityJudge.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
@@ -269,6 +270,93 @@ requiredTest("a supported verdict anywhere beats an unsupported verdict elsewher
   assert.equal(report.findings.length, 1);
   assert.equal(report.findings[0].verdict, "supported");
   assert.equal(classifySourceFidelityFindings(report).issues.length, 0);
+});
+
+requiredTest("precedence resolves ONE claim across chunks, never two claims on one quote", async () => {
+  // ROUND 2, MINOR 2. Keyed on surface+quote alone, a `supported` finding about
+  // claim A erased an enforceable `unsupported` finding about claim B on the
+  // same sentence — within one chunk as readily as across two, so a judge could
+  // retire its own SF2 blocker by adding a second, agreeable finding. One quote
+  // can assert several things and the source can settle them differently.
+  const chapter = franklinChapter();
+  const long = `${SLICE}\n\n`.repeat(Math.ceil((SOURCE_FIDELITY_MAX_CONTEXT_CHARS * 1.4) / SLICE.length));
+  const supportedClaim = "The brothers are the proprietaries of Pennsylvania.";
+  const unsupportedClaim = "The brothers refused every meeting in 1758.";
+  const report = await judgeChapterSourceFidelity({
+    chapter,
+    source: { provenance: "source-text", spanText: long },
+    ask: async (request) => ({
+      findings: [
+        {
+          surface: "chapter/keyTakeaway",
+          quote: REV6_ERROR,
+          claim: supportedClaim,
+          verdict: "supported",
+          sourceQuote: SOURCE_LINE,
+          checkableKind: "name",
+          note: "the span bears this out",
+        },
+        {
+          surface: "chapter/keyTakeaway",
+          quote: REV6_ERROR,
+          claim: unsupportedClaim,
+          verdict: request.chunkIndex === 0 ? "unsupported" : "unsupported",
+          sourceQuote: null,
+          checkableKind: "date",
+          note: "no chunk places this",
+        },
+      ],
+    }),
+  });
+  // Both survive: they are findings about different propositions.
+  assert.equal(report.findings.length, 2, JSON.stringify(report.findings, null, 2));
+  assert.deepEqual(report.findings.map((finding) => finding.verdict), ["supported", "unsupported"]);
+  const classified = classifySourceFidelityFindings(report);
+  assert.equal(classified.issues.length, 1, JSON.stringify(classified.issues, null, 2));
+  assert.equal(classified.issues[0].severity, "BLOCKER", classified.issues[0].message);
+  assert.ok(classified.issues[0].message.includes(unsupportedClaim), classified.issues[0].message);
+});
+
+requiredTest("the one-ruler cross-check is a real invariant that fires on a corrupted classification", async () => {
+  // ROUND 2, MINOR 1. The QC veto and the ship-side bar reduce the same axis
+  // through the same frozen computeVerdict; this is the read-back that PROVES a
+  // classification has that property rather than asserting it.
+  const report = await judgeChapterSourceFidelity({
+    chapter: franklinChapter(),
+    source: { provenance: "source-text", spanText: SLICE },
+    ask: async () => ({
+      findings: [{
+        surface: "chapter/keyTakeaway",
+        quote: REV6_ERROR,
+        claim: "The Penn brothers refused to meet Franklin.",
+        verdict: "contradicted",
+        sourceQuote: SOURCE_LINE,
+        checkableKind: "sequence",
+        note: "the source records the meeting",
+      }],
+    }),
+  });
+  const classified = classifySourceFidelityFindings(report);
+  assert.equal(classified.issues.filter((issue) => issue.severity === "BLOCKER").length, 1);
+  assert.equal(classified.verdict.gate, "RED");
+  assert.equal(sourceFidelityVetoDisagreement(classified), null, "a real classification agrees with itself");
+
+  // 1. A blocker that cites no axis hit — the severity rule and the axis have
+  //    drifted apart, and the ship bar would wave the chapter through.
+  const uncited = { ...classified, axis: { ...classified.axis, hits: [] } };
+  const uncitedProblem = sourceFidelityVetoDisagreement(uncited);
+  assert.ok(uncitedProblem, "an uncited blocker must be reported");
+  assert.ok(uncitedProblem.includes("cites 0 hit(s) but 1 blocker(s)"), uncitedProblem);
+
+  // 2. A verdict that is no longer the frozen reduction of its own axis — a
+  //    cached, medianed or hand-written verdict.
+  const forged = {
+    ...classified,
+    verdict: { ...classified.verdict, gate: "GREEN" as const, tier: "PUBLISHABLE" as const },
+  };
+  const forgedProblem = sourceFidelityVetoDisagreement(forged);
+  assert.ok(forgedProblem, "a verdict that is not computeVerdict of its own axis must be reported");
+  assert.ok(forgedProblem.includes("frozen computeVerdict reduces this axis to RED"), forgedProblem);
 });
 
 requiredTest("the checkable-kind detector is a union with the judge's own label", () => {

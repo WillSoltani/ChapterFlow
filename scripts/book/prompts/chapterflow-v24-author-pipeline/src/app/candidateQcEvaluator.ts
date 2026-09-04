@@ -10,13 +10,19 @@ import { BOOK_PATTERN_AUDIT_LOGICAL_PATH } from "../critics/bookPatternAudit.js"
 import { runChapterGateCompositeFromCandidate } from "../critics/chapterGateComposite.js";
 import type { GateFinding } from "../critics/finalGate.js";
 import { isAdvisoryMajor, isQcBlockingMajor } from "../critics/majorPolicy.js";
-import { judgeQuizKeys, makeLiveAskModel } from "../critics/semantic/quizKeyJudge.js";
+import {
+  judgeQuizKeys,
+  makeLiveAskModel,
+  type SourceContextProvenance,
+} from "../critics/semantic/quizKeyJudge.js";
 import {
   SOURCE_FIDELITY_EXPLANATION_CODE,
   classifySourceFidelityFindings,
   judgeChapterSourceFidelity,
   makeLiveSourceFidelityAsk,
+  ruleCitedClaim,
   sourceFidelityCallCount,
+  sourceFidelityVetoDisagreement,
 } from "../critics/semantic/sourceFidelityJudge.js";
 import type { QcEvaluation, QcIssue } from "../qc/qcTypes.js";
 import { isReviewIssueCode } from "../review/readerPanelIssueCodes.js";
@@ -27,7 +33,6 @@ import {
   type ResolvedCandidateSource,
 } from "../source/candidateSourceContext.js";
 import { spanExcerptForPrompt } from "../source/chapterMap.js";
-import { normalizedQuote } from "../source/sourceText.js";
 import { evaluateSourceV2Integrity } from "../source/sourceIntegrity.js";
 import type { ChapterV21 } from "../types.js";
 import type { ModelTaskRunner } from "./modelTaskRunner.js";
@@ -55,6 +60,12 @@ export const SOURCE_FIDELITY_MAX_ATTEMPTS = 2;
  */
 export const MAX_FIDELITY_CLAIM_HINTS = 12;
 export const MAX_FIDELITY_CLAIM_HINT_CHARS = 400;
+
+/** The round's marker for "the model-backed judges did not run" — the QC round's
+ *  equivalent of publishableBar's `ran: false`. It is on the round precisely so
+ *  the claim that a chapter WAS checked against the book is provable from the
+ *  record rather than from how the evaluator happened to be composed. */
+export const SOURCE_FIDELITY_NOT_RUN_CODE = "CANDIDATE_QC_SOURCE_FIDELITY_NOT_RUN";
 
 const READER_ESCALATION_PREFIX = "READER.ESCALATION.";
 
@@ -275,6 +286,17 @@ export function panelFlaggedQuestionIds(issues: readonly ReviewIssue[], chapterN
   return ids;
 }
 
+/** What the answer-key judge is handed, and the TRUTH about it. */
+export type QuizJudgeSourceContext = {
+  readonly text: string;
+  readonly provenance: SourceContextProvenance;
+  /** True when the span exceeded MAX_SPAN_PROMPT_CHARS and the judge sees
+   *  sampled windows rather than the whole span. */
+  readonly excerpted: boolean;
+  /** Characters of the span the judge does NOT see (0 when it sees all of it). */
+  readonly omittedChars: number;
+};
+
 /**
  * The source context the ANSWER-KEY judge receives (R-078/R-134).
  *
@@ -283,14 +305,36 @@ export function panelFlaggedQuestionIds(issues: readonly ReviewIssue[], chapterN
  * `model-memory`: the sidecar's recalled claims, and the judge's prompt header
  * says so - the pre-existing header called whatever it was given "ground
  * truth", which on a model-memory book is a false statement in a judge prompt.
+ *
+ * ROUND 2: the excerpt's own report travels with the text. A span over
+ * `MAX_SPAN_PROMPT_CHARS` reaches the prompt as `SPAN_EXCERPT_WINDOWS` sampled
+ * windows separated by omission markers, so the header must not call it
+ * verbatim and a finding of ABSENCE inside it must not be enforced. MEASURED on
+ * the book this package was built for: the Gutenberg Franklin normalizes to
+ * 458,749 characters, its four v25 chapter spans are 114,687 characters each,
+ * and each reaches this judge as 60,424 prompt characters with 54,687 (47.7% of
+ * the span) omitted. The caller can hold both facts because it holds the whole
+ * span AND this excerpt of it.
  */
-export function quizJudgeSourceContext(source: ResolvedCandidateSource): string | undefined {
+export function quizJudgeSourceContext(source: ResolvedCandidateSource): QuizJudgeSourceContext | undefined {
   if (source.context.provenance === "source-text") {
-    const text = spanExcerptForPrompt(source.context.spanText).text;
-    return text.trim().length === 0 ? undefined : text;
+    const excerpt = spanExcerptForPrompt(source.context.spanText);
+    if (excerpt.text.trim().length === 0) return undefined;
+    return {
+      text: excerpt.text,
+      provenance: "source-text",
+      excerpted: excerpt.excerpted,
+      omittedChars: excerpt.omittedChars,
+    };
   }
   const claims = source.context.recalledClaims;
-  return claims.length === 0 ? undefined : claims.map((claim, index) => `[R${index + 1}] ${claim}`).join("\n");
+  if (claims.length === 0) return undefined;
+  return {
+    text: claims.map((claim, index) => `[R${index + 1}] ${claim}`).join("\n"),
+    provenance: "model-memory",
+    excerpted: false,
+    omittedChars: 0,
+  };
 }
 
 /**
@@ -623,6 +667,10 @@ export class CandidateQcEvaluator {
         // model-memory context is the sidecar's recalled claims — a few hundred
         // characters — so that judge keeps exactly the profile it always had.
         const carriesSpan = source !== undefined && source.context.provenance === "source-text";
+        // Resolved ONCE: the answer-key judge's prompt and the SF4 severity rule
+        // below must be talking about the same block of source, including how
+        // much of the span it leaves out.
+        const quizSource = source === undefined ? undefined : quizJudgeSourceContext(source);
 
         // ── SOURCE-FIDELITY JUDGE (R-077, R-136, R-148, R-150) ──────────────
         // Runs FIRST: it is the check that decides whether the chapter is true
@@ -674,34 +722,28 @@ export class CandidateQcEvaluator {
           for (const finding of classified.issues) {
             qcIssues.push(issue(finding.code, finding.severity, finding.message, finding.location));
           }
-          // R-150 — the SAME reduction the ship-side publishable bar performs.
-          // The two are cross-checked in BOTH directions and any disagreement
-          // blocks: a RED verdict with no blocker would be a veto the round
-          // silently dropped, and a blocker with a non-RED verdict would be a
-          // round the bar would later wave through.
-          const blocked = classified.issues.some((finding) => finding.severity === "BLOCKER");
-          if (classified.verdict.gate === "RED" && !blocked) {
-            qcIssues.push(issue(
-              "CANDIDATE_QC_FIDELITY_VETO",
-              "BLOCKER",
-              `publishable-bar factual_accuracy verdict is RED for ${chapterLabel} (${classified.verdict.tier}) but no source-fidelity blocker was emitted`,
-              chapterLabel,
-            ));
-          } else if (classified.verdict.gate !== "RED" && blocked) {
-            qcIssues.push(issue(
-              "CANDIDATE_QC_FIDELITY_VETO",
-              "BLOCKER",
-              `source-fidelity blockers were raised for ${chapterLabel} but the publishable-bar factual_accuracy verdict is ${classified.verdict.gate}; the QC veto and the ship bar disagree`,
-              chapterLabel,
-            ));
+          // R-150 — ONE RULER, READ BACK. The classification reduces through the
+          // frozen `computeVerdict` the ship-side bar reduces through, and this
+          // asks it to PROVE that rather than asserting it: cited hits vs
+          // enforced blockers, the recorded verdict vs the frozen reduction of
+          // the recorded axis, and then RED <-> blocked. The first two can fire
+          // (pinned by v4-source-fidelity-judge.test.ts); the pair of branches
+          // this replaces could not, because on one axis RED holds exactly when
+          // a hit was cited. A round carrying a verdict its own evidence does
+          // not support is the failure this package exists to stop, so a
+          // disagreement is itself a BLOCKER rather than a note.
+          const disagreement = sourceFidelityVetoDisagreement(classified);
+          if (disagreement !== null) {
+            qcIssues.push(issue("CANDIDATE_QC_FIDELITY_VETO", "BLOCKER", `${chapterLabel}: ${disagreement}`, chapterLabel));
           }
         }
 
         try {
           const report = await judgeQuizKeys(entry.chapter, {
-            ...(source === undefined ? {} : {
-              sourceContext: quizJudgeSourceContext(source),
-              sourceProvenance: source.context.provenance,
+            ...(quizSource === undefined ? {} : {
+              sourceContext: quizSource.text,
+              sourceProvenance: quizSource.provenance,
+              sourceOmittedChars: quizSource.omittedChars,
             }),
             panelFlaggedQuestionIds: panelFlaggedQuestionIds(request.canonicalReview.issues, number),
             ask: async (args) => {
@@ -777,20 +819,55 @@ export class CandidateQcEvaluator {
           }
           // R-078 — SF4 from the answer-key judge. The judge is the only reader
           // that sees the explanation and the source together, so an explanation
-          // clause the source does not support is ITS finding to make. The same
-          // cite-or-it-didn't-happen rule as the fidelity judge applies: a clause
-          // the judge cannot quote verbatim out of the explanation is reported,
-          // never enforced. Under model-memory nothing here can block.
+          // clause the source does not support is ITS finding to make.
+          //
+          // IT IS ENFORCED ON THE FIDELITY JUDGE'S OWN RULE, from the fidelity
+          // judge's own function (`ruleCitedClaim`): the clause must be quoted
+          // VERBATIM out of the explanation, at least MIN_CHAPTER_QUOTE_CHARS of
+          // it, and must name something the source can settle. This path used to
+          // enforce a weaker rule of its own — non-empty and contained — so a
+          // judge returning ["the"] minted a ship-blocking issue that repair
+          // would answer by deleting a true explanation clause.
+          //
+          // AND THE JUDGE MUST HAVE SEEN THE WHOLE SPAN. An SF4 finding is a
+          // finding of ABSENCE, and its only evidence is that the judge did not
+          // find the support. Over MAX_SPAN_PROMPT_CHARS the judge reads sampled
+          // windows (the Franklin v25 spans are ~114,700 characters each), so
+          // the support may sit in a window it never saw: absence from an
+          // excerpt is not a verified citation, and a BLOCKER here requires one.
+          // The finding is still REPORTED, naming exactly how much was omitted.
+          // Under model-memory nothing here can block, as before.
           const explanations = new Map((entry.chapter.quiz?.questions ?? []).map((question) => [
             question.questionId,
             typeof question.explanation === "string" ? question.explanation : "",
           ]));
           const groundedInText = source !== undefined && source.context.provenance === "source-text";
+          const excerptedSpan = groundedInText && quizSource?.excerpted === true;
           for (const verdict of report.all) {
             for (const claim of verdict.unsupportedExplanationClaims) {
               const explanation = explanations.get(verdict.questionId) ?? "";
-              const quoted = normalizedQuote(claim).length > 0
-                && normalizedQuote(explanation).includes(normalizedQuote(claim));
+              const ruling = ruleCitedClaim({
+                claim,
+                quote: claim,
+                quotedIn: explanation,
+                quotedInNoun: "explanation",
+              });
+              const notEnforced = [...ruling.notEnforced];
+              if (groundedInText && quizSource === undefined) {
+                // The span resolved but rendered to nothing, so the judge was
+                // handed no source block at all. Same rule, harder case: a
+                // finding of absence needs something to have been absent FROM.
+                notEnforced.push(
+                  "no source context reached the judge for this chapter (the chapter's span rendered empty),"
+                  + " so it had nothing to check the explanation against",
+                );
+              }
+              if (excerptedSpan) {
+                notEnforced.push(
+                  "the judge read a SAMPLED excerpt of this chapter's span, not the whole of it"
+                  + ` (${quizSource?.omittedChars ?? 0} characters of it were omitted), so absence from what it read is not a verified citation`,
+                );
+              }
               const parts = [
                 `the explanation for ${verdict.questionId} claims "${claim.replace(/\s+/g, " ").trim().slice(0, 300)}"`,
                 groundedInText ? "which this chapter's source span does not support" : "which the judge could not place in the book",
@@ -798,10 +875,10 @@ export class CandidateQcEvaluator {
               if (!groundedInText) {
                 parts.push("provenance model-memory (this run carried no source text; the judge checked against its own recall, so this cannot gate)");
               }
-              if (!quoted) parts.push("NOT ENFORCED - the clause is not present verbatim in the explanation");
+              if (notEnforced.length > 0) parts.push(`NOT ENFORCED - ${notEnforced.join("; ")}`);
               qcIssues.push(issue(
                 SOURCE_FIDELITY_EXPLANATION_CODE,
-                groundedInText && quoted ? "BLOCKER" : "WARN",
+                groundedInText && notEnforced.length === 0 ? "BLOCKER" : "WARN",
                 parts.join("; "),
                 location(number, `/quiz/${verdict.questionId}`),
               ));
@@ -824,6 +901,28 @@ export class CandidateQcEvaluator {
           );
         }
       }
+    } else {
+      // THE ROUND SAYS SO WHEN THE JUDGES DID NOT RUN.
+      //
+      // A deterministic-only composition (no runner, or no task context) can
+      // still commit a PASS round, and until now nothing on that round recorded
+      // that no chapter had been checked against the book — so "every chapter is
+      // checked against the book before it can ship" was true only of a
+      // correctly composed evaluator, and unprovable from the record. This is
+      // publishableBar's `ran: false` ("DID NOT RUN — not a pass") in the one
+      // place a QC round can carry it: an issue on the round.
+      //
+      // WARN, not BLOCKER: the deterministic lane is a legitimate composition
+      // and this changes no verdict — it makes the absence VISIBLE, which is
+      // what a record is for. A reader of the round can now tell a chapter that
+      // passed the judges from one no judge ever read.
+      qcIssues.push(issue(
+        SOURCE_FIDELITY_NOT_RUN_CODE,
+        "WARN",
+        "the source-fidelity judge and the answer-key judge did NOT RUN for this round"
+        + `${this.#runner === undefined ? " (no model runner was composed)" : " (no model task context was supplied)"}`
+        + " — this round is not evidence that any chapter was checked against the book",
+      ));
     }
 
     const hasBlocker = qcIssues.some((entry) => entry.severity === "BLOCKER");

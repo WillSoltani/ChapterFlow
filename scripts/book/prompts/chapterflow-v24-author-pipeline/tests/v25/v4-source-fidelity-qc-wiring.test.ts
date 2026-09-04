@@ -18,10 +18,17 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
-import { CandidateQcEvaluator, countSourceFidelityCalls, panelFlaggedQuestionIds, quizJudgeSourceContext } from "../../src/app/candidateQcEvaluator.js";
+import {
+  CandidateQcEvaluator,
+  SOURCE_FIDELITY_NOT_RUN_CODE,
+  countSourceFidelityCalls,
+  panelFlaggedQuestionIds,
+  quizJudgeSourceContext,
+} from "../../src/app/candidateQcEvaluator.js";
 import { freshQcRunDefinition, countQuizQuestions } from "../../src/app/bookRunApplicationService.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
 import type { CandidateInputFile, CandidateSnapshot } from "../../src/books/candidateTypes.js";
+import type { QcEvaluation } from "../../src/qc/qcTypes.js";
 import type { ModelTaskContext } from "../../src/contracts/v4Core.js";
 import type { ModelResult } from "../../src/runtime/modelResult.js";
 import { compileChapterBlueprint } from "../../src/compiler/chapterBlueprint.js";
@@ -30,6 +37,8 @@ import { compileSourceUsePlan } from "../../src/compiler/sourceUsePlanCompiler.j
 import { BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit } from "../../src/critics/bookPatternAudit.js";
 import {
   SOURCE_FIDELITY_CONTRADICTED_CODE,
+  SOURCE_FIDELITY_EXPLANATION_CODE,
+  detectCheckableKinds,
   isSourceFidelityCode,
 } from "../../src/critics/semantic/sourceFidelityJudge.js";
 import { PANEL_QUIZ_DERIVATION_SPLIT_CODE } from "../../src/review/panelQuizAdjudication.js";
@@ -38,7 +47,7 @@ import {
   CANDIDATE_CHAPTER_MAP_LOGICAL_PATH,
   CANDIDATE_SOURCE_TEXT_LOGICAL_PATH,
 } from "../../src/source/candidateSourceContext.js";
-import { CHAPTER_MAP_SCHEMA_VERSION } from "../../src/source/chapterMap.js";
+import { CHAPTER_MAP_SCHEMA_VERSION, MAX_SPAN_PROMPT_CHARS, spanExcerptForPrompt } from "../../src/source/chapterMap.js";
 import type { SourceSidecarV2 } from "../../src/source/sidecarSchema.js";
 import { FRANKLIN_PROPRIETARIES_SLICE_PATH, makeGateCleanChapter } from "../helpers.js";
 import { finishV25Tests, requiredTest, type TestContext } from "./harness.js";
@@ -117,6 +126,9 @@ function wholeSlicePan(text: string): readonly unknown[] {
 
 type BuildOptions = {
   readonly withSourceText?: boolean;
+  /** The frozen text the candidate carries. Defaults to the 20 KB Franklin
+   *  slice; a longer one exercises the EXCERPTED prompt path. */
+  readonly sourceText?: string;
   readonly spans?: readonly unknown[];
   readonly sidecarExtra?: Partial<SourceSidecarV2>;
 };
@@ -152,7 +164,8 @@ function buildCandidate(context: TestContext, options: BuildOptions = {}): Candi
     jsonFile(BOOK_PATTERN_AUDIT_LOGICAL_PATH, runBookPatternAudit({ bookId: BOOK, chapters: [chapter], requirePlanArtifacts: false, checkSourceAlignment: false })),
   ];
   if (options.withSourceText === true) {
-    files.push(...sourceTextFiles(SLICE, options.spans ?? wholeSlicePan(SLICE)));
+    const text = options.sourceText ?? SLICE;
+    files.push(...sourceTextFiles(text, options.spans ?? wholeSlicePan(text)));
   }
   return {
     manifest: {
@@ -583,11 +596,298 @@ requiredTest("the answer-key judge source context follows the candidate's proven
     quizJudgeSourceContext({ context: { provenance: "model-memory", recalledClaims: [] }, span: null, sourceTextSha256: null }),
     undefined,
   );
-  assert.equal(
+  assert.deepEqual(
     quizJudgeSourceContext({ context: { provenance: "model-memory", recalledClaims: ["one recalled claim"] }, span: null, sourceTextSha256: null }),
-    "[R1] one recalled claim",
+    { text: "[R1] one recalled claim", provenance: "model-memory", excerpted: false, omittedChars: 0 },
+  );
+  // A span inside the prompt bound is passed WHOLE, and says so.
+  assert.deepEqual(
+    quizJudgeSourceContext({ context: { provenance: "source-text", spanText: SLICE }, span: null, sourceTextSha256: null }),
+    { text: SLICE, provenance: "source-text", excerpted: false, omittedChars: 0 },
   );
 });
+
+// ── ROUND 2, MAJOR 1 ────────────────────────────────────────────────────────
+// SF4 minted from the ANSWER-KEY judge used to be enforced on a rule of its own
+// ("the clause is non-empty and occurs somewhere in the explanation"), while the
+// comment above it and `sourceFidelityJudge`'s own severity table both promise
+// the fidelity judge's rule. A judge returning `unsupportedExplanationClaims:
+// ["the"]` on a source-text candidate therefore minted a ship-blocking QC issue,
+// and repair would act on it by deleting a true explanation clause.
+
+/** The first quiz explanation of the candidate's only chapter, verbatim. */
+function firstExplanation(candidate: CandidateSnapshot): string {
+  const file = candidate.files.find((entry) => entry.kind === "CHAPTER");
+  assert.ok(file, "the candidate carries a chapter");
+  const chapter = JSON.parse(Buffer.from(file.bytes).toString("utf8")) as {
+    quiz?: { questions?: ReadonlyArray<{ explanation?: string }> };
+  };
+  const explanation = chapter.quiz?.questions?.[0]?.explanation;
+  assert.equal(typeof explanation, "string");
+  return explanation as string;
+}
+
+/** Run fresh QC with a scripted answer-key judge that AGREES with every key and
+ *  reports `claims` as unsupported clauses of the ONE question whose explanation
+ *  is `explanation` (R-078/SF4). */
+async function evaluateWithExplanationClaims(
+  candidate: CandidateSnapshot,
+  args: Readonly<{ explanation: string; claims: readonly string[]; roundId: string }>,
+): Promise<QcEvaluation> {
+  const recorded = emptyRecorded();
+  const base = runner(() => ({ findings: [] }), recorded);
+  const capture: ModelTaskRunner = {
+    async run(request) {
+      const result = await base.run(request);
+      if (request.context.operationId.startsWith("source-fidelity-judge-")) return result;
+      if (result.outcome !== "SUCCEEDED") return result;
+      const userPrompt = Buffer.from(request.prompt.inputs[1].bytes).toString("utf8");
+      if (!userPrompt.includes(args.explanation)) return result;
+      return { ...result, output: { ...(result.output as Record<string, unknown>), unsupportedExplanationClaims: [...args.claims] } };
+    },
+  };
+  const evaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } }, { runner: capture });
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: args.roundId, taskContext: judgeContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  return evaluated.value;
+}
+
+const sf4Issues = (round: QcEvaluation) =>
+  round.issues.filter((entry) => entry.code === SOURCE_FIDELITY_EXPLANATION_CODE);
+
+/** The fixture chapter carries its own deterministic SC11 blockers, so a round
+ *  outcome says nothing about the judges. What a source-fidelity BLOCKER costs
+ *  is what these tests measure. */
+const fidelityBlockers = (round: QcEvaluation) =>
+  round.issues.filter((entry) => isSourceFidelityCode(entry.code) && entry.severity === "BLOCKER");
+
+requiredTest("SF4 from the answer-key judge is enforced on the fidelity judge's own cite-or-it-didn't-happen rule", async (context) => {
+  const candidate = buildCandidate(context, { withSourceText: true });
+  const explanation = firstExplanation(candidate);
+  // Both clauses are VERBATIM in the explanation. They differ only in what the
+  // fidelity judge's rule asks about them, and the detector says which is which
+  // so this test does not depend on the fixture's nouns.
+  const checkable = explanation.slice(0, explanation.indexOf(" while "));
+  const generality = explanation.slice(explanation.indexOf("catches "));
+  assert.ok(checkable.length > 0 && generality.length > 0, explanation);
+  assert.ok(detectCheckableKinds(checkable).length > 0, `${checkable} should name something checkable`);
+  assert.equal(detectCheckableKinds(generality).length, 0, `${generality} should be a bare generality`);
+
+  // 1. A clause under MIN_CHAPTER_QUOTE_CHARS is not a citation. It is reported,
+  //    never enforced — the fidelity judge's `contains` floor, applied here too.
+  const tiny = await evaluateWithExplanationClaims(candidate, { explanation, claims: ["the"], roundId: "round-sf4-tiny" });
+  assert.equal(sf4Issues(tiny).length, 1, JSON.stringify(sf4Issues(tiny), null, 2));
+  assert.equal(sf4Issues(tiny)[0].severity, "WARN", sf4Issues(tiny)[0].message);
+  assert.ok(sf4Issues(tiny)[0].message.includes("NOT ENFORCED"), sf4Issues(tiny)[0].message);
+  assert.deepEqual(fidelityBlockers(tiny), [], "a one-word clause can block nothing");
+
+  // 2. A quoted clause that names no date, number, sequence, name, document or
+  //    quotation is a bare generality: the source cannot settle it, so it WARNs
+  //    exactly as SF2 does (sourceFidelityJudge's severity table).
+  const bare = await evaluateWithExplanationClaims(candidate, { explanation, claims: [generality], roundId: "round-sf4-generality" });
+  assert.equal(sf4Issues(bare).length, 1);
+  assert.equal(sf4Issues(bare)[0].severity, "WARN", sf4Issues(bare)[0].message);
+  assert.ok(
+    sf4Issues(bare)[0].message.includes("names no date, number, sequence, name, document or quotation"),
+    sf4Issues(bare)[0].message,
+  );
+  assert.deepEqual(fidelityBlockers(bare), [], "a bare generality can block nothing");
+
+  // 3. NOT A WEAKENING: a checkable clause, quoted verbatim, still BLOCKS.
+  const blocking = await evaluateWithExplanationClaims(candidate, { explanation, claims: [checkable], roundId: "round-sf4-checkable" });
+  assert.equal(blocking.outcome, "FAIL");
+  assert.equal(fidelityBlockers(blocking).length, 1, "the enforced SF4 is a source-fidelity blocker on the round");
+  const enforced = sf4Issues(blocking);
+  assert.equal(enforced.length, 1, JSON.stringify(enforced, null, 2));
+  assert.equal(enforced[0].severity, "BLOCKER", enforced[0].message);
+  assert.equal(enforced[0].message.includes("NOT ENFORCED"), false, enforced[0].message);
+  assert.ok(enforced[0].location?.startsWith("ch01/quiz/"), enforced[0].location);
+});
+
+
+// ── ROUND 2, MAJOR 2 ────────────────────────────────────────────────────────
+// The answer-key judge's source header said "this chapter's own span of the
+// book, verbatim" whatever it was handed. Over MAX_SPAN_PROMPT_CHARS the block
+// is SPAN_EXCERPT_WINDOWS (8) sampled windows joined by omission markers - and
+// the four Franklin v25 spans are 114,687 characters each, of which this judge
+// sees 60,424 and never sees 54,687, so the flagship case is exactly that one.
+// A judge told an excerpt is the whole span reads absence from the excerpt as
+// absence from the book, and an SF4 blocker minted that way cites nothing.
+
+/** A frozen text whose single span is over the prompt bound. */
+const OVERLONG_SOURCE = SLICE.repeat(4);
+
+requiredTest("an over-long span is never called verbatim: the judge is told what was omitted", async (context) => {
+  assert.ok(OVERLONG_SOURCE.length > MAX_SPAN_PROMPT_CHARS, `${OVERLONG_SOURCE.length} characters must exceed the prompt bound`);
+  const excerpt = spanExcerptForPrompt(OVERLONG_SOURCE);
+  assert.equal(excerpt.excerpted, true);
+  assert.ok(excerpt.omittedChars > 0);
+
+  const candidate = buildCandidate(context, { withSourceText: true, sourceText: OVERLONG_SOURCE });
+  const recorded = emptyRecorded();
+  const prompts: string[] = [];
+  const base = runner(() => ({ findings: [] }), recorded);
+  const capture: ModelTaskRunner = {
+    async run(request) {
+      if (!request.context.operationId.startsWith("source-fidelity-judge-")) {
+        prompts.push(Buffer.from(request.prompt.inputs[1].bytes).toString("utf8"));
+      }
+      return base.run(request);
+    },
+  };
+  const evaluator = new CandidateQcEvaluator({ async open() { return { ok: true, value: candidate }; } }, { runner: capture });
+  const evaluated = await evaluator.run({ candidate, canonicalReview: review(), roundId: "round-excerpt-header", taskContext: judgeContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  assert.ok(prompts.length > 0, "the answer-key judge still runs");
+  const prompt = prompts[0];
+  assert.equal(
+    prompt.includes("SOURCE TEXT (ground truth — this chapter's own span of the book, verbatim)"),
+    false,
+    "an excerpted span must not be described as the verbatim whole span",
+  );
+  assert.ok(prompt.includes(`${excerpt.omittedChars} characters`), prompt.slice(0, 400));
+  assert.ok(
+    prompt.includes("not evidence that the book does not contain it"),
+    "the judge must be told absence from the excerpt is not absence from the book",
+  );
+
+  // The pure helper reports the same excerpting the prompt states.
+  const resolved = quizJudgeSourceContext({
+    context: { provenance: "source-text", spanText: OVERLONG_SOURCE },
+    span: null,
+    sourceTextSha256: null,
+  });
+  assert.ok(resolved);
+  assert.equal(resolved.excerpted, true);
+  assert.equal(resolved.omittedChars, excerpt.omittedChars);
+});
+
+requiredTest("an SF4 blocker cannot be minted from absence inside an excerpted span", async (context) => {
+  const whole = buildCandidate(context, { withSourceText: true });
+  const excerpted = buildCandidate(context, { withSourceText: true, sourceText: OVERLONG_SOURCE });
+  const explanation = firstExplanation(whole);
+  // A clause that DOES block when the judge read the whole span (the control).
+  const claim = explanation.slice(0, explanation.indexOf(" while "));
+  assert.ok(detectCheckableKinds(claim).length > 0);
+
+  const control = await evaluateWithExplanationClaims(whole, { explanation, claims: [claim], roundId: "round-excerpt-control" });
+  assert.equal(sf4Issues(control)[0]?.severity, "BLOCKER", JSON.stringify(sf4Issues(control), null, 2));
+
+  const round = await evaluateWithExplanationClaims(excerpted, { explanation, claims: [claim], roundId: "round-excerpt-sf4" });
+  const issues = sf4Issues(round);
+  assert.equal(issues.length, 1, JSON.stringify(issues, null, 2));
+  assert.equal(issues[0].severity, "WARN", issues[0].message);
+  assert.ok(issues[0].message.includes("NOT ENFORCED"), issues[0].message);
+  assert.ok(issues[0].message.includes("characters of it"), issues[0].message);
+  assert.deepEqual(
+    fidelityBlockers(round),
+    [],
+    "absence inside an excerpt cites nothing, so it can mint no source-fidelity blocker",
+  );
+});
+
+
+requiredTest("SF4 cannot block when no source context reached the judge at all", async (context) => {
+  // The hardest case in the same family: a span that resolves but renders to
+  // nothing hands the answer-key judge NO source block, so "the source does not
+  // support it" is absence with nothing to have been absent from.
+  const blank = `${" ".repeat(200)}\n\n${" ".repeat(200)}`;
+  const candidate = buildCandidate(context, { withSourceText: true, sourceText: blank });
+  const explanation = firstExplanation(candidate);
+  const claim = explanation.slice(0, explanation.indexOf(" while "));
+  assert.ok(detectCheckableKinds(claim).length > 0);
+  const round = await evaluateWithExplanationClaims(candidate, { explanation, claims: [claim], roundId: "round-sf4-empty-span" });
+  const issues = sf4Issues(round);
+  assert.equal(issues.length, 1, JSON.stringify(issues, null, 2));
+  assert.equal(issues[0].severity, "WARN", issues[0].message);
+  assert.ok(issues[0].message.includes("rendered empty"), issues[0].message);
+  assert.deepEqual(fidelityBlockers(round), []);
+});
+
+requiredTest("an excerpted span does NOT weaken the pre-existing wrong-key gate", async (context) => {
+  // The deliberate other half of MAJOR 2. An SF4 finding is a finding of
+  // ABSENCE and its only evidence is that the judge did not find support, so an
+  // excerpt cannot carry it. A wrong-key verdict is not: the judge derives the
+  // answer from the question, the choices and the explanation, and before this
+  // package it had NO source context at all — an excerpt is strictly more than
+  // it ever had. Downgrading QC1.wrong_quiz_key for every large-span book would
+  // weaken the gate that caught 21 of 72 wrong keys in `hooked`. The excerpt's
+  // honesty lives in the PROMPT (the header above), not in a softer severity.
+  const candidate = buildCandidate(context, { withSourceText: true, sourceText: OVERLONG_SOURCE });
+  const confident: ModelTaskRunner = {
+    async run(request) {
+      if (request.context.operationId.startsWith("source-fidelity-judge-")) {
+        return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { findings: [] } };
+      }
+      return {
+        attemptId: request.context.attemptId,
+        outcome: "SUCCEEDED",
+        output: { index: 1, confidence: "high", correctText: "the judge's own choice", reason: "the question settles it" },
+      };
+    },
+  };
+  const evaluated = await new CandidateQcEvaluator(
+    { async open() { return { ok: true, value: candidate }; } },
+    { runner: confident },
+  ).run({ candidate, canonicalReview: review(), roundId: "round-excerpt-wrong-key", taskContext: judgeContext() });
+  assert.ok(evaluated.ok, JSON.stringify(evaluated));
+  const wrongKey = evaluated.value.issues.filter((entry) => entry.code === "QC1.wrong_quiz_key");
+  assert.ok(wrongKey.length > 0, "a confident key disagreement still blocks under an excerpted span");
+  assert.ok(wrongKey.every((entry) => entry.severity === "BLOCKER"), JSON.stringify(wrongKey, null, 2));
+});
+
+// ── ROUND 2, MINOR 3 ────────────────────────────────────────────────────────
+// A deterministic-only composition can still commit a PASS round, and nothing on
+// that round said no chapter had been checked against the book. publishableBar
+// already models this (`ran: false` => "DID NOT RUN - not a pass"); the QC round
+// now carries the same fact, so "every chapter is checked against the book
+// before it can ship" is provable from the RECORD and not from how the evaluator
+// happened to be composed.
+
+requiredTest("a round whose judges did not run says so on the record", async (context) => {
+  const candidate = buildCandidate(context, { withSourceText: true });
+  const reader = { async open() { return { ok: true as const, value: candidate }; } };
+
+  // No runner at all — the deterministic gates stand alone.
+  const noRunner = await new CandidateQcEvaluator(reader).run({
+    candidate,
+    canonicalReview: review(),
+    roundId: "round-no-runner",
+    taskContext: judgeContext(),
+  });
+  assert.ok(noRunner.ok, JSON.stringify(noRunner));
+  const marker = noRunner.value.issues.filter((entry) => entry.code === SOURCE_FIDELITY_NOT_RUN_CODE);
+  assert.equal(marker.length, 1, JSON.stringify(noRunner.value.issues.map((entry) => entry.code)));
+  assert.equal(marker[0].severity, "WARN", "the deterministic lane is a legitimate composition; the marker changes no verdict");
+  assert.ok(marker[0].message.includes("did NOT RUN"), marker[0].message);
+  assert.ok(marker[0].message.includes("no model runner was composed"), marker[0].message);
+  assert.ok(
+    marker[0].message.includes("not evidence that any chapter was checked against the book"),
+    marker[0].message,
+  );
+
+  // A runner with no task context is the same absence, named differently.
+  const noContext = await new CandidateQcEvaluator(reader, { runner: runner(() => ({ findings: [] }), emptyRecorded()) }).run({
+    candidate,
+    canonicalReview: review(),
+    roundId: "round-no-context",
+  });
+  assert.ok(noContext.ok);
+  const contextMarker = noContext.value.issues.filter((entry) => entry.code === SOURCE_FIDELITY_NOT_RUN_CODE);
+  assert.equal(contextMarker.length, 1);
+  assert.ok(contextMarker[0].message.includes("no model task context was supplied"), contextMarker[0].message);
+
+  // And a round whose judges DID run carries no marker at all.
+  const ran = await new CandidateQcEvaluator(reader, { runner: runner(() => ({ findings: [] }), emptyRecorded()) }).run({
+    candidate,
+    canonicalReview: review(),
+    roundId: "round-judges-ran",
+    taskContext: judgeContext(),
+  });
+  assert.ok(ran.ok);
+  assert.equal(ran.value.issues.some((entry) => entry.code === SOURCE_FIDELITY_NOT_RUN_CODE), false);
+});
+
 
 finishV25Tests().catch((error: unknown) => {
   console.error(error);

@@ -110,6 +110,14 @@ export type AskModel = (args: {
    *  frozen bytes and IS ground truth; `model-memory` is a previous model's
    *  recollection and must never be presented to the judge as one. */
   sourceProvenance?: SourceContextProvenance;
+  /**
+   * Characters of the chapter's span that are NOT in `sourceContext` (R-134,
+   * round 2). Zero or absent means the block is the whole span; above zero it is
+   * `spanExcerptForPrompt`'s sampled windows, and the header must say so - a
+   * judge told an excerpt is the whole span reads absence from the excerpt as
+   * absence from the book.
+   */
+  sourceOmittedChars?: number;
 }) => Promise<ModelJudgment>;
 
 export type SourceContextProvenance = "source-text" | "model-memory";
@@ -132,13 +140,25 @@ export function buildJudgeUserPrompt(args: {
   explanation?: string;
   sourceContext?: string;
   sourceProvenance?: SourceContextProvenance;
+  sourceOmittedChars?: number;
 }): string {
   // R-134: the header states WHAT the context is. Calling a previous model's
   // recollection "ground truth" is the failure this judge exists to catch,
-  // performed by its own prompt.
+  // performed by its own prompt — and so is calling a sampled half of a span
+  // "verbatim". A span over MAX_SPAN_PROMPT_CHARS reaches this prompt as
+  // SPAN_EXCERPT_WINDOWS windows joined by omission markers, and the header now
+  // says how much is missing and what the judge may not conclude from it.
+  //
+  // MEASURED (2026-09-03, this repo): the Gutenberg Franklin normalizes to
+  // 458,749 characters and its four v25 chapter spans are 114,687 characters
+  // each; `spanExcerptForPrompt` hands this judge 60,424 of them and omits
+  // 54,687 — 47.7% of the span the old header called "verbatim".
+  const omitted = args.sourceOmittedChars ?? 0;
   const sourceHeader = args.sourceProvenance === "model-memory"
     ? "RECALLED SOURCE NOTES (a previous model's recollection of the book — NOT the book, and not ground truth; weigh it as recall)"
-    : "SOURCE TEXT (ground truth — this chapter's own span of the book, verbatim)";
+    : omitted > 0
+      ? `SOURCE TEXT — SAMPLED EXCERPT (ground truth as far as it goes: every passage below is this chapter's own span of the book, verbatim, but ${omitted} characters of the span are NOT here; each cut is marked in place as "[... omitted N characters of this chapter ...]". A claim you cannot find in these passages may still be in the omitted ones: absence from this excerpt is not evidence that the book does not contain it)`
+      : "SOURCE TEXT (ground truth — this chapter's own span of the book, verbatim)";
   return [
     `QUESTION:\n${args.prompt}`,
     `CHOICES:\n${args.choices.map((c, i) => `[${i}] ${c}`).join("\n")}`,
@@ -206,6 +226,8 @@ export async function judgeQuizKeys(
     ask?: AskModel;
     sourceContext?: string;
     sourceProvenance?: SourceContextProvenance;
+    /** Characters of the span the `sourceContext` excerpt omits (R-134). */
+    sourceOmittedChars?: number;
     /**
      * R-131/R-135 — question ids the BLIND reader panel already derived
      * differently from the stored key, at a strength below the panel's own
@@ -234,6 +256,7 @@ export async function judgeQuizKeys(
       explanation,
       sourceContext: opts?.sourceContext,
       sourceProvenance: opts?.sourceProvenance,
+      sourceOmittedChars: opts?.sourceOmittedChars,
     });
     calls++;
     if (j.usage) {

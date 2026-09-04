@@ -363,12 +363,22 @@ const VERDICT_RANK: Readonly<Record<SourceFidelityVerdict, number>> = {
  * has produced evidence, and a chunk that merely failed to find a conflict has
  * not. MAJORITY VOTING was rejected - the chunks are not independent judges of
  * the same evidence; most of them never saw it.
+ *
+ * THE KEY IS surface + quote + CLAIM, and the claim is the part that matters.
+ * Keyed on surface+quote alone, precedence ran ACROSS DIFFERENT CLAIMS about the
+ * same sentence: a `supported` finding for claim A erased an enforceable
+ * `unsupported` finding for claim B on that same quote - within one chunk as
+ * readily as across two, so a judge could retire its own SF2 blocker by
+ * emitting a second, agreeable finding on the same words. One quote can assert
+ * several things and the source can settle them differently; only the SAME
+ * claim, judged by chunks that saw different parts of the span, is the
+ * disagreement this precedence exists to resolve.
  */
 function mergeFindings(all: readonly SourceFidelityFinding[]): readonly SourceFidelityFinding[] {
   const best = new Map<string, SourceFidelityFinding>();
   const order: string[] = [];
   for (const finding of all) {
-    const key = `${finding.surface} ${normalizedQuote(finding.quote)}`;
+    const key = `${finding.surface}\u0000${normalizedQuote(finding.quote)}\u0000${normalizedQuote(finding.claim)}`;
     const existing = best.get(key);
     if (existing === undefined) {
       best.set(key, finding);
@@ -456,6 +466,84 @@ function clip(value: string, limit = 300): string {
   return collapsed.length <= limit ? collapsed : `${collapsed.slice(0, limit - 1)}...`;
 }
 
+/** Why an unsupported claim the source cannot settle is not enforceable. Shared
+ *  so both readers of the rule say the same words. */
+const NOT_CHECKABLE_REASON =
+  "the claim names no date, number, sequence, name, document or quotation, so the source cannot settle it";
+
+export type CitedClaimRuling = {
+  /** Null when the quote verifies; otherwise why it did not, worded for the
+   *  issue message. */
+  readonly quoteProblem: string | null;
+  /** The judge's own label UNION the deterministic detector. */
+  readonly checkableKinds: readonly CheckableKind[];
+  /** True when the claim names something the source can settle. */
+  readonly checkable: boolean;
+  /** True when an `unsupported` verdict on this claim may be ENFORCED as a
+   *  BLOCKER: the quote verifies and the claim is checkable. */
+  readonly enforceable: boolean;
+  /** Every reason it may not be, worded for the message. Empty exactly when
+   *  `enforceable`. */
+  readonly notEnforced: readonly string[];
+};
+
+/**
+ * THE CITE-OR-IT-DIDN'T-HAPPEN RULE FOR AN UNSUPPORTED CLAIM, in ONE place.
+ *
+ * Two readers apply it: this module's classifier (SF1/SF2 over the fidelity
+ * judge's findings) and `candidateQcEvaluator`'s SF4 path, where the ANSWER-KEY
+ * judge names clauses of a quiz explanation the source does not support. They
+ * used to be two different rules wearing one name - the SF4 path enforced only
+ * "the clause is non-empty and occurs somewhere in the explanation", with no
+ * quote floor and no checkable test, so a judge returning `["the"]` on a
+ * source-text candidate minted a ship-blocking issue that repair would answer by
+ * deleting a true explanation clause. This function is that rule; nobody copies
+ * it.
+ *
+ * The rule in full:
+ *   - The QUOTE must occur VERBATIM (whitespace/typography-normalized by the
+ *     same matcher source ingestion uses) in the text it was cited out of, and
+ *     be at least {@link MIN_CHAPTER_QUOTE_CHARS} long. A shorter "quote"
+ *     matches too much of ordinary prose to locate the finding, and a finding
+ *     the repair writer cannot locate is not actionable.
+ *   - The CLAIM must name something the source can settle - a date, number,
+ *     sequence, name, document or quotation - per the judge's own label UNION
+ *     {@link detectCheckableKinds}, so mislabelling a finding `none` escalates
+ *     nothing away.
+ *
+ * A finding failing either is still REPORTED, as a WARN carrying the reason.
+ * Nothing is dropped and nothing unverified gates.
+ */
+export function ruleCitedClaim(args: Readonly<{
+  claim: string;
+  quote: string;
+  /** The text the quote must occur in - the chapter's surfaces, or the
+   *  explanation an SF4 clause was copied out of. */
+  quotedIn: string;
+  /** The noun the message names that text by ("chapter", "explanation"). */
+  quotedInNoun: string;
+  /** The judge's own checkableKind, when it emitted one. */
+  judgeKind?: CheckableKind;
+}>): CitedClaimRuling {
+  const quoteProblem = contains(args.quotedIn, args.quote)
+    ? null
+    : `the cited ${args.quotedInNoun} text is not present in the ${args.quotedInNoun} (quote: "${clip(args.quote, 160)}")`;
+  const kinds = new Set<CheckableKind>([
+    ...detectCheckableKinds(args.claim),
+    ...(args.judgeKind === undefined || args.judgeKind === "none" ? [] : [args.judgeKind]),
+  ]);
+  const notEnforced: string[] = [];
+  if (quoteProblem !== null) notEnforced.push(quoteProblem);
+  if (kinds.size === 0) notEnforced.push(NOT_CHECKABLE_REASON);
+  return {
+    quoteProblem,
+    checkableKinds: [...kinds],
+    checkable: kinds.size > 0,
+    enforceable: notEnforced.length === 0,
+    notEnforced,
+  };
+}
+
 function codeFor(kind: SourceFidelitySurfaceKind | null, verdict: SourceFidelityVerdict): SourceFidelityCode {
   if (verdict === "contradicted") {
     return kind === "quiz_key" ? SOURCE_FIDELITY_KEY_CODE : SOURCE_FIDELITY_CONTRADICTED_CODE;
@@ -495,23 +583,25 @@ export function classifySourceFidelityFindings(report: SourceFidelityReport): So
     const surface = byId.get(finding.surface) ?? null;
     const code = codeFor(surface?.kind ?? null, finding.verdict);
     const location = `${label}/${surface?.id ?? "chapter"}`;
-    // The detector reads the CLAIM, never the quote. The rule is about what the
-    // claim ASSERTS; the quote only says where in the chapter it lives, and an
-    // ordinary narrative sentence carries a name, a number and a sequence word
-    // whatever it happens to be claiming - running the detector over it would
-    // make every unsupported finding a blocker and delete the WARN branch.
-    const kinds = new Set<CheckableKind>([
-      ...detectCheckableKinds(finding.claim),
-      ...(finding.checkableKind === "none" ? [] : [finding.checkableKind]),
-    ]);
-    const checkable = kinds.size > 0;
+    // THE SHARED RULE (ruleCitedClaim): the chapter quote must verify against
+    // the chapter's own surfaces, and the claim must name something the source
+    // can settle. The detector inside it reads the CLAIM, never the quote - the
+    // rule is about what the claim ASSERTS, and an ordinary narrative sentence
+    // carries a name, a number and a sequence word whatever it happens to be
+    // claiming, so reading the quote would make every unsupported finding a
+    // blocker and delete the WARN branch entirely.
+    const ruling = ruleCitedClaim({
+      claim: finding.claim,
+      quote: finding.quote,
+      quotedIn: chapterText,
+      quotedInNoun: "chapter",
+      judgeKind: finding.checkableKind,
+    });
+    const checkable = ruling.checkable;
 
     // Citation checks. Both run for every adverse verdict; the reasons they can
     // fail are different and the message must say which one did.
-    const citationProblems: string[] = [];
-    if (!contains(chapterText, finding.quote)) {
-      citationProblems.push(`the cited chapter text is not present in the chapter (quote: "${clip(finding.quote, 160)}")`);
-    }
+    const citationProblems: string[] = ruling.quoteProblem === null ? [] : [ruling.quoteProblem];
     if (finding.verdict === "contradicted") {
       const sourceQuote = finding.sourceQuote;
       if (typeof sourceQuote !== "string" || sourceQuote.trim().length === 0) {
@@ -549,7 +639,7 @@ export function classifySourceFidelityFindings(report: SourceFidelityReport): So
       parts.push(`NOT ENFORCED - ${citationProblems.join("; ")}`);
     }
     if (!modelMemory && citationProblems.length === 0 && finding.verdict === "unsupported" && !checkable) {
-      parts.push("NOT ENFORCED - the claim names no date, number, sequence, name, document or quotation, so the source cannot settle it");
+      parts.push(`NOT ENFORCED - ${NOT_CHECKABLE_REASON}`);
     }
 
     issues.push({ code, severity, message: parts.join("; "), location });
@@ -574,6 +664,56 @@ export function classifySourceFidelityFindings(report: SourceFidelityReport): So
   const tier: FailureTier = hits.length > 0 ? "CORRUPTION" : (score < 0.6 ? "GENERATED_DRAFT" : "PUBLISHABLE");
   const axis: AxisScore = { axis: "factual_accuracy", score, tier, hits };
   return { issues, axis, verdict: computeVerdict(report.chapterId, [axis]) };
+}
+
+/**
+ * R-150 - ONE RULER, checked rather than asserted.
+ *
+ * The QC veto and the ship-side publishable bar reduce the SAME
+ * `factual_accuracy` axis through the SAME frozen `computeVerdict`. This is the
+ * read-back that proves a classification actually has that property, and it
+ * returns the disagreement in words so the caller can put it on the round as a
+ * BLOCKER: a round that ships a verdict its own evidence does not support is
+ * exactly the failure this package exists to stop, in the instrument itself.
+ *
+ * IT CAN FIRE, which the version it replaces could not: that one compared the
+ * verdict's gate with the blocker count, and on this single axis RED holds
+ * exactly when a hit was cited, so neither branch was reachable. These checks
+ * are about the classification's INTERNAL consistency instead:
+ *   1. the axis's cited hits vs the enforced blockers actually emitted - a
+ *      severity rule that stops citing, or a hit minted with no issue behind
+ *      it, breaks this before it can reach any bar;
+ *   2. the recorded verdict vs the frozen reduction of the recorded axis - a
+ *      cached, medianed or hand-written verdict that is no longer
+ *      `computeVerdict` of its own axis breaks this.
+ * `v4-source-fidelity-judge.test.ts` fires BOTH from a corrupted classification.
+ *
+ * The third check, RED <-> blocked, is the property the caller actually relies
+ * on. It is kept and returned last, and it is unreachable while 1 and 2 hold -
+ * that entailment is a property of CORRUPTION_AXES and of this axis being the
+ * only one, not of this function, so it is checked rather than assumed.
+ */
+export function sourceFidelityVetoDisagreement(classification: SourceFidelityClassification): string | null {
+  const blockers = classification.issues.filter((entry) => entry.severity === "BLOCKER").length;
+  const axis = classification.axis;
+  if (axis.hits.length !== blockers) {
+    return `the factual_accuracy axis cites ${axis.hits.length} hit(s) but ${blockers} blocker(s) were emitted;`
+      + " every enforced blocker must be a cited hit and every cited hit an enforced blocker";
+  }
+  const recomputed = computeVerdict(classification.verdict.chapterId, [axis]);
+  if (recomputed.gate !== classification.verdict.gate || recomputed.tier !== classification.verdict.tier) {
+    return `the recorded publishable-bar verdict is ${classification.verdict.gate}/${classification.verdict.tier}`
+      + ` but the frozen computeVerdict reduces this axis to ${recomputed.gate}/${recomputed.tier}`;
+  }
+  if (recomputed.gate === "RED" && blockers === 0) {
+    return `the publishable-bar factual_accuracy verdict is RED (${recomputed.tier}) but no source-fidelity blocker was emitted;`
+      + " that is a veto the round would silently drop";
+  }
+  if (recomputed.gate !== "RED" && blockers > 0) {
+    return `${blockers} source-fidelity blocker(s) were raised but the publishable-bar factual_accuracy verdict is ${recomputed.gate};`
+      + " the QC veto and the ship bar disagree";
+  }
+  return null;
 }
 
 // -- prompt + live execution -------------------------------------------------
