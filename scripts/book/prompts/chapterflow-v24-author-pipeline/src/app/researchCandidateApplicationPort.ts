@@ -1,4 +1,5 @@
 import { createHash } from "node:crypto";
+import { mkdirSync, readFileSync } from "node:fs";
 import { mkdir, readFile } from "node:fs/promises";
 import { isAbsolute, relative, resolve } from "node:path";
 
@@ -30,6 +31,7 @@ import {
   isSafeResearchRunId,
   withManifestUpdateLock,
 } from "../lib/researchRunManifest.js";
+import { writeFileAtomic } from "../lib/atomicWrite.js";
 import { loadBookScars } from "../lib/bookScars.js";
 import { CANDIDATE_CHAPTER_MAP_LOGICAL_PATH, CANDIDATE_SOURCE_TEXT_LOGICAL_PATH } from "../lib/candidateEvidence.js";
 import { sharedVoiceCues, voiceCard } from "../lib/voiceCard.js";
@@ -118,6 +120,15 @@ export interface ResearchCandidateApplicationRequest {
    */
   readonly researchRunId?: string;
   readonly chapterConcurrency?: number;
+  /**
+   * FIRST-ROUND axis only. A fresh control run never adopts an earlier compatible
+   * bundle (it refreshes whether or not this is set), and a RESUMED run always
+   * continues its own research run — so on a resume this flag changes nothing but
+   * an operator log line. It is NOT part of the run's intent
+   * (see {@link intentCommandId}), so the same resume works with or without it.
+   * Still mutually exclusive with `researchRunId`: "read exactly this bundle" and
+   * "discard every bundle" are genuinely contradictory.
+   */
   readonly forceRefresh?: boolean;
   /**
    * Opt-in crash recovery. A hard-killed run (SIGKILL / host teardown — NOT the
@@ -235,13 +246,51 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
 }
 
 /**
- * The run's INTENT identity. `researchRunId` is deliberately absent: a run
- * definition drift makes fileRunStore.createRun throw CONFLICT, so folding the
- * pin in here would mean a run started WITHOUT the pin could never be resumed
- * WITH it (surfacing as a misleading RESEARCH_RESUME_CONFLICT). The pin selects
- * an INPUT, not an intent.
+ * The run's INTENT identity: WHICH book, from WHICH bytes, under WHICH root.
+ *
+ * Two axes are deliberately absent, for the same reason. A run-definition drift
+ * makes fileRunStore.createRun throw CONFLICT, so anything folded in here that a
+ * later round may legitimately spell differently would make that round
+ * unresumable, surfacing as a misleading RESEARCH_RESUME_CONFLICT:
+ *
+ *  - `researchRunId` — the pin selects an INPUT, not an intent.
+ *  - `forceRefresh` — the refresh axis is an EXECUTION MODE, not an intent. It
+ *    says "do not adopt a cached bundle on the FIRST round"; on a resumed round
+ *    it means nothing at all (a resume continues its own research run). Folding
+ *    it in is what refused the 2026-09-04 live Franklin resume three times: run
+ *    book-run-d51c92fc-65b7-4886-8d9c-635dfe1be862 was created with --regen, its
+ *    resume round did not repeat the flag, and the two hashed differently. So a
+ *    resumed round may pass --regen or not with exactly the same result.
+ *
+ * Everything that genuinely makes this a different run still binds: title,
+ * author, bookId, v25Root, the source text DIGEST — and, outside this digest,
+ * sourceGitSha and the stage/attempt limits, which fileRunStore compares field
+ * by field against the persisted definition.
  */
 export function intentCommandId(input: ResearchCandidateApplicationRequest): string {
+  return intentCommandIdWithRefreshAxis(input, null);
+}
+
+/**
+ * The ids this same intent hashed to BEFORE 2026-09-04, when the refresh axis
+ * was still part of the run definition. Accepted — and only ever accepted — for
+ * a run that ALREADY EXISTS on disk under one of them, so a run recorded by the
+ * older code stays resumable instead of dying on the error this contract exists
+ * to remove. Every other field of the persisted definition is still compared
+ * byte for byte by fileRunStore.createRun, so this admits the regen axis and
+ * nothing else. Delete once no pre-2026-09-04 run-state remains.
+ */
+function legacyRefreshAxisCommandIds(input: ResearchCandidateApplicationRequest): readonly string[] {
+  return Object.freeze([
+    intentCommandIdWithRefreshAxis(input, "force"),
+    intentCommandIdWithRefreshAxis(input, "resume"),
+  ]);
+}
+
+function intentCommandIdWithRefreshAxis(
+  input: ResearchCandidateApplicationRequest,
+  legacyRefreshAxis: "force" | "resume" | null,
+): string {
   const hash = createHash("sha256")
     .update(input.title.trim())
     .update("\0")
@@ -249,9 +298,8 @@ export function intentCommandId(input: ResearchCandidateApplicationRequest): str
     .update("\0")
     .update(input.bookId ?? "")
     .update("\0")
-    .update(resolve(input.v25Root))
-    .update("\0")
-    .update(input.forceRefresh === true ? "force" : "resume");
+    .update(resolve(input.v25Root));
+  if (legacyRefreshAxis !== null) hash.update("\0").update(legacyRefreshAxis);
   // R-046 — the source text is part of the run's INTENT: a different text is a
   // different book, so a resume against a different (or newly absent, or newly
   // present) text must be refused. It is refused HERE, at the run-definition
@@ -326,6 +374,95 @@ function reResearchedChapterNumbers(attempts: readonly AttemptSnapshot[]): numbe
     if (match) found.add(Number(match[1]));
   }
   return [...found].sort((a, b) => a - b);
+}
+
+/**
+ * WHERE a control run records the one research run it owns.
+ *
+ * `<v25Root>/research-bindings/<bookId>/<controlRunId>.json`, written the moment
+ * the research bundle is resolved and never rewritten. It has to live outside
+ * the research run itself: the question a resume asks is "which bundle is
+ * MINE", and answering it from inside a bundle presumes you already picked one.
+ * It also has to be written before chapter research rather than at research
+ * COMPLETED (which the book-run event journal already records), because the run
+ * that needs the binding is exactly the run whose research FAILED.
+ *
+ * Both segments are re-checked against the run-state id allowlist
+ * (runProjection.ts's `ID`, the same one `isSafeResearchRunId` applies) before
+ * they reach the filesystem, so neither can traverse out of the bindings root.
+ * Unreachable in practice — run-state already refused anything else when the run
+ * was created or read — and kept as defense in depth, because this is the one
+ * place a run id is turned into a path.
+ */
+const RESEARCH_BINDING_SCHEMA_VERSION = "chapterflow.researchRunBinding.v1" as const;
+
+interface ResearchRunBinding {
+  readonly schemaVersion: typeof RESEARCH_BINDING_SCHEMA_VERSION;
+  readonly bookId: string;
+  readonly controlRunId: string;
+  readonly researchRunId: string;
+  readonly boundAt: string;
+}
+
+function researchBindingPath(v25Root: string, bookId: string, controlRunId: string): string {
+  if (!isSafeResearchRunId(bookId) || !isSafeResearchRunId(controlRunId)) {
+    throw new Error(`RESEARCH_RUN_BINDING_INVALID:${bookId}/${controlRunId} is not a safe binding key`);
+  }
+  return resolve(v25Root, "research-bindings", bookId, `${controlRunId}.json`);
+}
+
+/** The research run this control run owns, or undefined when none was ever
+ *  recorded (a run started before this binding existed). Never throws on a
+ *  missing, unreadable or malformed record: an unusable record is indistinguish-
+ *  able from an absent one, and both mean "fall back, and say so". */
+function readResearchBinding(v25Root: string, bookId: string, controlRunId: string): string | undefined {
+  let raw: string;
+  try {
+    raw = readFileSync(researchBindingPath(v25Root, bookId, controlRunId), "utf8");
+  } catch {
+    return undefined;
+  }
+  try {
+    const parsed: unknown = JSON.parse(raw);
+    if (typeof parsed !== "object" || parsed === null) return undefined;
+    const record = parsed as Partial<ResearchRunBinding>;
+    if (record.schemaVersion !== RESEARCH_BINDING_SCHEMA_VERSION) return undefined;
+    if (record.bookId !== bookId || record.controlRunId !== controlRunId) return undefined;
+    if (typeof record.researchRunId !== "string" || !isSafeResearchRunId(record.researchRunId)) return undefined;
+    return record.researchRunId;
+  } catch {
+    return undefined;
+  }
+}
+
+/** First write wins. A control run's research run is decided once — a second,
+ *  different id would mean the run had silently changed which bundle it owns,
+ *  which is the defect this binding exists to prevent, so it is refused loudly
+ *  rather than overwritten. */
+function recordResearchBinding(args: {
+  v25Root: string;
+  bookId: string;
+  controlRunId: string;
+  researchRunId: string;
+  boundAt: string;
+}): void {
+  const existing = readResearchBinding(args.v25Root, args.bookId, args.controlRunId);
+  if (existing === args.researchRunId) return;
+  if (existing !== undefined) {
+    throw new Error(
+      `RESEARCH_RESUME_CONFLICT:control run ${args.controlRunId} is already bound to research run ${existing}, refusing to rebind it to ${args.researchRunId}`,
+    );
+  }
+  const path = researchBindingPath(args.v25Root, args.bookId, args.controlRunId);
+  const record: ResearchRunBinding = {
+    schemaVersion: RESEARCH_BINDING_SCHEMA_VERSION,
+    bookId: args.bookId,
+    controlRunId: args.controlRunId,
+    researchRunId: args.researchRunId,
+    boundAt: args.boundAt,
+  };
+  mkdirSync(resolve(path, ".."), { recursive: true });
+  writeFileAtomic(path, `${JSON.stringify(record, null, 2)}\n`);
 }
 
 function candidateIdFor(runId: string): string {
@@ -690,6 +827,7 @@ export class ResearchCandidateApplicationPort {
     let runId = input.resumeRunId ?? input.newRunId ?? this.#dependencies.ids.nextRunId();
     let createdAt = safeClock(this.#dependencies.clock);
     let resumedRun = false;
+    let priorCommandId: string | undefined;
     if (input.resumeRunId !== undefined) {
       const prior = await this.#dependencies.runStore.readRun(
         requestBookId(input),
@@ -698,12 +836,28 @@ export class ResearchCandidateApplicationPort {
       );
       if (prior.ok) {
         createdAt = prior.value.definition.createdAt;
+        priorCommandId = prior.value.definition.commandId;
         resumedRun = true;
       }
       else if (prior.error.code === "NOT_FOUND") throw new Error("RESEARCH_RESUME_NOT_FOUND:resumeRunId does not exist");
       else throw new Error(`RESEARCH_RUN_UNAVAILABLE:${prior.error.code}`);
     }
     let definition = definitionFor(input, runId, createdAt);
+    if (
+      priorCommandId !== undefined
+      && priorCommandId !== definition.commandId
+      && legacyRefreshAxisCommandIds(input).includes(priorCommandId)
+    ) {
+      // Durable-identity migration, not a relaxation: this run was RECORDED by
+      // code that folded the refresh axis into the definition. Its intent is
+      // this request's intent — same book, same author, same root, same source
+      // digest — so it is resumed under the id it was written with. Every other
+      // definition field is still compared byte for byte below.
+      console.error(
+        `[research] resume book=${definition.bookId} run=${runId} action=ACCEPT_PRE_2026_09_04_REFRESH_AXIS_INTENT_ID`,
+      );
+      definition = Object.freeze({ ...definition, commandId: priorCommandId });
+    }
     let created = await this.#dependencies.runStore.createRun(definition);
     if (!created.ok && created.error.code === "CONFLICT" && input.resumeRunId !== undefined) {
       throw new Error("RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent");
@@ -766,6 +920,16 @@ export class ResearchCandidateApplicationPort {
     // has zero prior attempts, so the id namespace is unchanged.
     const priorAttemptCount = created.value.attempts.length;
 
+    if (resumedRun && input.forceRefresh === true) {
+      // --regen is overloaded (see bookRunApplicationService). On a RESUMED round
+      // it keeps only its promotion-pointer meaning: this run already owns a
+      // research run, and re-minting one would discard every durable sidecar it
+      // paid for. Ignored, never silently.
+      console.error(
+        `[research] resume book=${definition.bookId} run=${runId} regen=true action=RESUME_REUSES_OWN_RESEARCH_RUN`,
+      );
+    }
+
     const resumePlan = await this.#dependencies.stageCoordinator.planResume(definition);
     if (!resumePlan.ok) throw new Error(`RESEARCH_RESUME_UNAVAILABLE:${resumePlan.error.code}`);
     const completedStages = new Set(resumePlan.value.completedStages);
@@ -781,6 +945,28 @@ export class ResearchCandidateApplicationPort {
       if (!finished.ok) throw new Error(`RESEARCH_RUN_UNAVAILABLE:${finished.error.code}`);
       const resumed = resultFromSnapshot(snapshot, runId, true);
       return Object.freeze({ ...resumed, title: input.title, author: input.author });
+    }
+
+    // WHICH research run this resumed round continues. Recorded durably the
+    // moment the bundle was resolved (see onResearchRunResolved below) and read
+    // back here, so the round continues the bundle IT paid for rather than
+    // whichever compatible bundle happens to be newest. On 2026-09-04 the live
+    // Franklin book carried two compatible bundles — 20260904T085419449Z-5976350d
+    // with 16 succeeded chapter sidecars and the newer 20260904T092510140Z-a9f614ed
+    // with 13 — and the newest-compatible probe would have handed the resume the
+    // newer, emptier one and re-researched chapters already on disk.
+    let ownResearchRunId: string | undefined;
+    if (resumedRun && input.resumeRunId !== undefined) {
+      ownResearchRunId = readResearchBinding(input.v25Root, definition.bookId, input.resumeRunId);
+      if (ownResearchRunId === undefined) {
+        // The run predates the binding (or its record was lost). Falling back to
+        // the newest compatible bundle is exactly the old behaviour — announced,
+        // never assumed, because it is the behaviour that can re-research a
+        // chapter this run already has.
+        console.error(
+          `[research] resume book=${definition.bookId} run=${runId} action=NO_RECORDED_RESEARCH_RUN fallback=NEWEST_COMPATIBLE_BUNDLE`,
+        );
+      }
     }
 
     try {
@@ -799,7 +985,34 @@ export class ResearchCandidateApplicationPort {
         // status, identical input identity, an identical five-field
         // compatibility fingerprint, an internally consistent bibliography, and
         // every chapter durably reusable.
-        forceRefresh: input.researchRunId !== undefined ? false : (!resumedRun || input.forceRefresh === true),
+        //
+        // The refresh axis therefore belongs to the FIRST round only, and
+        // `input.forceRefresh` does not appear here. A fresh run always refreshes
+        // (as it always did); a RESUMED run — including the successor opened for
+        // a TERMINAL-FAILED predecessor — resumes, and `ownResearchRunId` below
+        // says WHICH bundle it resumes into, so "resume" cannot silently mean
+        // "adopt a stranger's newer bundle". Honouring --regen here is what made
+        // the 2026-09-04 Franklin round 2 mint a second research run and
+        // re-research the book from chapter 1 over the 16 durable sidecars round
+        // 1 had already paid for.
+        forceRefresh: input.researchRunId !== undefined ? false : !resumedRun,
+        // Present only on a resume that has a durable binding. Absent ⇒ legacy
+        // newest-compatible fallback, announced on the line above.
+        ...(ownResearchRunId === undefined ? {} : { ownResearchRunId }),
+        // Bind this control run to its research run BEFORE any chapter is
+        // researched, so the binding a later resume reads back survives a
+        // research FAILURE — which is the only case a resume exists for. The
+        // research COMPLETED book-run event already carries the id, and by
+        // definition never fires for the run that needs it.
+        onResearchRunResolved: (resolvedResearchRunId: string) => {
+          recordResearchBinding({
+            v25Root: input.v25Root,
+            bookId: definition.bookId,
+            controlRunId: runId,
+            researchRunId: resolvedResearchRunId,
+            boundAt: safeClock(this.#dependencies.clock),
+          });
+        },
         ...(input.sourceTextPath === undefined ? {} : { sourceTextPath: input.sourceTextPath }),
         // R-277 — the book's fact pins reach the researcher that mints the fact,
         // not only the writers one layer downstream.

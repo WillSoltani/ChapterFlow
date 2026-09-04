@@ -546,6 +546,78 @@ export function findCompatibleResearchRun(args: {
   return { ok: false, rejected };
 }
 
+/** Either the bundle a control run owns, or the named reason it cannot be
+ *  continued. There is no third answer: "some other bundle" is not one. */
+export type OwnedResearchRunResult =
+  | { ok: true; runDir: string; manifest: ResearchRunManifest }
+  | { ok: false; code: "NOT_ON_DISK" | "UNREADABLE" | "INCOMPATIBLE"; reasons: string[] };
+
+/**
+ * The research run a CONTROL run already owns, located by MANIFEST run id.
+ *
+ * `findCompatibleResearchRun` answers "which bundle for this book is newest and
+ * still compatible" — a question whose answer changes whenever any other round
+ * mints a bundle. That is the wrong question for a resume: a resumed control run
+ * must continue the ONE bundle it already paid model calls into, however many
+ * newer compatible bundles have appeared beside it since. This resolves exactly
+ * that one, by the id the caller durably recorded when the bundle was created,
+ * and reports WHY it cannot be continued instead of quietly selecting another.
+ *
+ * Identity comes from the manifest, never from the directory name — the same
+ * rule the pin path applies, for the same reason (createResearchRun mkdirs under
+ * the raw `bibliography.bookId` while discovery matches on `normSlug`, so a
+ * directory name can disagree with the run it holds).
+ *
+ * Compatibility is checked here, not by the caller: a bundle that IS this run's
+ * own but no longer matches the fingerprint must be reported as INCOMPATIBLE —
+ * naming the field — rather than silently missed and replaced.
+ */
+export function findOwnedResearchRun(args: {
+  runsRoot: string;
+  bookIdHint?: string;
+  runId: string;
+  inputHash: string;
+  compatibility: ResearchCompatibility;
+}): OwnedResearchRunResult {
+  const candidates = listManifestRunDirs(args.runsRoot, args.bookIdHint);
+  // A manifest that will not parse cannot be resolved, but it also cannot always
+  // be ruled out as the run we are looking for — and NOT_ON_DISK ("there is no
+  // such run") is a different instruction to the operator than UNREADABLE ("the
+  // run may be right there, and its manifest is corrupt"). Both fail closed, so
+  // only the reason code is at stake, and the reason code is the whole point.
+  //
+  // Identity here is never the directory name (createResearchRun mkdirs under
+  // the raw bookId while discovery matches on normSlug, so the two disagree
+  // legitimately), so attribution goes by the id recovered from the raw JSON,
+  // with the directory name as a secondary signal. A manifest too broken to
+  // yield any id is unattributable: it still counts as UNREADABLE, because
+  // nothing rules it out. Only a corrupt manifest that provably names ANOTHER
+  // run is discarded — that one cannot be ours.
+  const ownUnreadable: string[] = [];
+  const unattributable: string[] = [];
+  for (const candidate of candidates) {
+    if (!candidate.parsed.ok) {
+      const detail = `${candidate.runDir}: ${candidate.parsed.errors.join("; ")}`;
+      if (candidate.recoveredRunId === args.runId || candidate.runDir.endsWith(`/${args.runId}`)) ownUnreadable.push(detail);
+      else if (candidate.recoveredRunId === null) unattributable.push(detail);
+      continue;
+    }
+    if (candidate.parsed.manifest.runId !== args.runId) continue;
+    const reasons = compatibilityRejectionReasons(candidate.parsed.manifest, args);
+    if (reasons.length > 0) return { ok: false, code: "INCOMPATIBLE", reasons };
+    return { ok: true, runDir: candidate.runDir, manifest: candidate.parsed.manifest };
+  }
+  if (ownUnreadable.length > 0) return { ok: false, code: "UNREADABLE", reasons: ownUnreadable };
+  if (unattributable.length > 0) {
+    return {
+      ok: false,
+      code: "UNREADABLE",
+      reasons: unattributable.map((detail) => `${detail} (manifest names no recoverable run id, so research run ${args.runId} cannot be ruled out)`),
+    };
+  }
+  return { ok: false, code: "NOT_ON_DISK", reasons: [`no research run ${args.runId} under ${args.runsRoot}`] };
+}
+
 export function compatibilityRejectionReasons(
   manifest: ResearchRunManifest,
   args: { inputHash: string; compatibility: ResearchCompatibility; expectedChaptersHash?: string },
@@ -725,8 +797,28 @@ export function fileHash(path: string): string {
   return hashString(readFileSync(path, "utf8"));
 }
 
-function listManifestRunDirs(runsRoot: string, bookIdHint?: string): Array<{ runDir: string; parsed: ManifestParseResult; createdAtMs: number | null }> {
-  const out: Array<{ runDir: string; parsed: ManifestParseResult; createdAtMs: number | null }> = [];
+/**
+ * The `runId` still legible in a manifest the parser REJECTED.
+ *
+ * A schema-invalid manifest is not necessarily an illegible one: the common
+ * corruptions (a missing field, a stale schemaVersion, a half-written nested
+ * record) leave the top-level id intact. Recovering it lets an unreadable run be
+ * attributed to — or ruled out as — the run a caller is looking for, instead of
+ * falling back to the directory name, which is not identity here. Returns null
+ * when nothing can be recovered, and never throws.
+ */
+function recoverManifestRunId(runDir: string): string | null {
+  try {
+    const raw: unknown = JSON.parse(readFileSync(researchRunManifestPath(runDir), "utf8"));
+    if (!isRecord(raw)) return null;
+    return typeof raw.runId === "string" && raw.runId.length > 0 ? raw.runId : null;
+  } catch {
+    return null;
+  }
+}
+
+function listManifestRunDirs(runsRoot: string, bookIdHint?: string): Array<{ runDir: string; parsed: ManifestParseResult; createdAtMs: number | null; recoveredRunId: string | null }> {
+  const out: Array<{ runDir: string; parsed: ManifestParseResult; createdAtMs: number | null; recoveredRunId: string | null }> = [];
   let bookDirs: string[] = [];
   try {
     bookDirs = readdirSync(runsRoot)
@@ -751,12 +843,17 @@ function listManifestRunDirs(runsRoot: string, bookIdHint?: string): Array<{ run
       if (!safeIsDir(runDir)) continue;
       const manifestPath = researchRunManifestPath(runDir);
       if (!existsSync(manifestPath)) {
-        out.push({ runDir, parsed: { ok: false, errors: ["manifest missing"] }, createdAtMs: null });
+        out.push({ runDir, parsed: { ok: false, errors: ["manifest missing"] }, createdAtMs: null, recoveredRunId: null });
         continue;
       }
       const parsed = readResearchRunManifest(runDir);
       const createdAtMs = parsed.ok ? Date.parse(parsed.manifest.createdAt) : null;
-      out.push({ runDir, parsed, createdAtMs: Number.isFinite(createdAtMs) ? createdAtMs : null });
+      out.push({
+        runDir,
+        parsed,
+        createdAtMs: Number.isFinite(createdAtMs) ? createdAtMs : null,
+        recoveredRunId: parsed.ok ? parsed.manifest.runId : recoverManifestRunId(runDir),
+      });
     }
   }
   return out;

@@ -78,6 +78,10 @@ const LEGACY_DISABLED_COMMANDS = new Set<string>([
   "ping", "pipeline", "flow", "generate-book", "generate",
 ]);
 
+// --force-refresh is a FIRST-round axis: with --resume-run-id the run continues
+// the research run recorded against it (durable chapters replay with zero model
+// calls) and the flag is ignored, so the same resume command works with or
+// without it.
 const V4_RESEARCH_USAGE = 'research "<title>" "<author>" [--book-id <slug>] --v25-root <absolute> --attempt-root <absolute> --source-git-sha <sha> [--resume-run-id <id>] [--concurrency N] [--force-refresh]';
 const V4_QC_AUTO_USAGE = "qc-auto <bookId> --pass --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha> [--round <id>]";
 const V4_QC_DIAGNOSE_USAGE = "qc-diagnose <bookId> --round <roundId> --v25-root <absolute> --attempt-root <absolute> --candidate-id <id> --manifest-digest <digest> --source-git-sha <sha>";
@@ -944,6 +948,30 @@ Commands:
                                      sidecars and section-pack cache instead of re-minting the bibliography; it fails
                                      closed if the pinned run is missing, foreign, incompatible, or not fully reusable,
                                      and cannot be combined with --resume-run-id.
+                                     --resume-run-id continues an existing run. The research run a round creates is
+                                     recorded durably against its control run before the first chapter is researched,
+                                     so a resume continues THAT research run — not whichever compatible bundle for the
+                                     book is newest: the bibliography and chapter map are reused from the frozen
+                                     source, every chapter whose succeeded sidecar still passes reuse validation is
+                                     loaded from disk with zero model calls; a sidecar that no longer validates (e.g.
+                                     it predates the current source-v2 route rules) is re-researched and logged
+                                     "durable sidecar failed reuse validation — re-researching", as are the chapters
+                                     with no sidecar at all (same attempt budget). Two exceptions, both loud: a run
+                                     started before this binding existed (or whose record was lost) has no research
+                                     run of its own, so it falls back to the newest compatible bundle and prints
+                                     action=NO_RECORDED_RESEARCH_RUN; and a resume whose own research run is gone,
+                                     unreadable, or no longer matches the current fingerprint (codeVersion,
+                                     promptHash, configHash, provider, model — e.g. the prompts changed since the run
+                                     started) FAILS CLOSED with RESEARCH_RESUME_CONFLICT naming the field, rather than
+                                     silently re-researching or adopting another run's bundle; start a fresh run to
+                                     research it again. Passing --regen alongside --resume-run-id changes nothing
+                                     about research — on a resumed round --regen means ONLY "bypass the
+                                     already-promoted pointer", so --resume-run-id X and --regen --resume-run-id X do
+                                     the same work and neither is a definition conflict. Research refresh is a
+                                     FIRST-round axis: --regen on a fresh run still discards any cached bundle and
+                                     researches into a new research run. A resume still fails closed when the intent
+                                     that matters changed (different book, title, author, --v25-root, --source-text
+                                     bytes or --source-git-sha).
   migration-bakeoff <plan|seal|qualify|run|analyze|decide|status> --experiment <spec.json|id> [--corpus <corpus.json>] [--state-root <dir>] [--max-parallel N] [--allow-synthetic-qualification] [--json]
                                      IMP-11 NO-PUBLISH migration harness: Stage Q judge qualification →
                                      Stage D prompt-stack diagnostic → Stage C confirmatory four-way

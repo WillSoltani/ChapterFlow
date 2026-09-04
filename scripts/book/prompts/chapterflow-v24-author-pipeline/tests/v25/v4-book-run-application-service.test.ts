@@ -397,11 +397,16 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
 
   let researchPortCalls = 0;
   let researchModelCalls = 0;
+  // Recorded, not asserted inline: this fixture's resume never re-enters the
+  // research port at all (the durable seed rehydrates in-service first), so an
+  // inline assertion on the resume branch would be unreachable and would pin
+  // nothing. What the port is ACTUALLY asked, and how often, is asserted below.
+  const researchRequests: Array<{ resumeRunId?: string; newRunId?: string; forceRefresh?: boolean }> = [];
   const research = {
     async run(request: { resumeRunId?: string; newRunId?: string; forceRefresh?: boolean }) {
       researchPortCalls += 1;
+      researchRequests.push(request);
       if (request.resumeRunId === undefined) researchModelCalls += 13;
-      else assert.equal(request.forceRefresh, true, "completed research resume must preserve original regen intent");
       return {
         schemaVersion: "1" as const,
         bookId: BOOK,
@@ -560,6 +565,11 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   assert.equal(compilerAttemptRoots[1], resolve(context.roots.attemptsRoot, "book-run-retry", "compiler-retry-1"));
   assert.equal(researchPortCalls, 1, "resume rehydrates the durable seed in-service and must NOT re-invoke the research port (task 11g)");
   assert.equal(researchModelCalls, 13, "resume must not repeat research model work");
+  assert.deepEqual(
+    researchRequests.map((call) => ({ resumeRunId: call.resumeRunId, forceRefresh: call.forceRefresh })),
+    [{ resumeRunId: undefined, forceRefresh: true }],
+    "the only research the port was asked for is the FIRST round's --regen research",
+  );
   assert.equal(reviewCalls, 1);
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "STARTED").length, 1);
   assert.equal(events.filter((event) => event.phase === "research" && event.status === "COMPLETED").length, 1);
@@ -3130,6 +3140,75 @@ requiredTest("a research-run pin cannot fabricate the control-run bind or reach 
   assert.equal(crossBook.ok, false);
   if (crossBook.ok) throw new Error("a cross-book intake must be rejected under a pin");
   assert.equal(crossBook.error.code, "BOOK_RUN_RESEARCH_MISMATCH");
+});
+
+// ── The 2026-09-04 live Franklin resume defect, at the wiring seam ───────────
+//
+// bookRunApplicationService passed `forceRefresh: input.researchRunId === undefined
+// && input.regen` — so ATTEMPT 2's second round (`--regen --resume-run-id <id>
+// --reconcile-unsettled`, run book-run-37fa7f92-bd58-4d5e-b589-c648722f56b5)
+// told the research port to DISCARD every bundle, minting a second research run
+// and re-researching the book from chapter 1 over the 16 durable sidecars round
+// 1 had already produced. --regen's only meaning on a RESUMED round is the
+// BOOK_RUN_ALREADY_PROMOTED pointer bypass.
+requiredTest("a resumed round never force-refreshes research, whether or not --regen is passed", async (context: TestContext) => {
+  const harness = await researchPinHarness(context, "resume-regen");
+  // Round 1: a FRESH --regen round that fails AT research — the live shape.
+  harness.control.intake = () => {
+    throw new Error("RESEARCH_FIXTURE_FAILED:chapter research invalid");
+  };
+  const first = await harness.service.run({ ...harness.request, regen: true });
+  assert.equal(first.ok, false);
+  if (first.ok) throw new Error("the fixture research port must fail the first round");
+  assert.equal(first.error.code, "BOOK_RUN_RESEARCH_FAILED");
+  assert.equal(harness.captured.length, 1);
+  assert.equal(harness.captured[0]?.newRunId, BOOK_RUN_ID, "a first round is a fresh control run");
+  assert.equal(harness.captured[0]?.forceRefresh, true, "a FIRST --regen round still refreshes research verbatim");
+
+  // Round 2: the operator repeats the same command with --resume-run-id.
+  harness.control.intake = (runId) => ({ intakeRunId: runId });
+  await harness.service.run({
+    ...harness.request,
+    regen: true,
+    resumeRunId: BOOK_RUN_ID,
+    reconcileUnsettled: true,
+  });
+  assert.equal(harness.captured.length, 2);
+  assert.deepEqual(
+    {
+      resumeRunId: harness.captured[1]?.resumeRunId,
+      newRunId: harness.captured[1]?.newRunId,
+      forceRefresh: harness.captured[1]?.forceRefresh,
+      reconcileUnsettled: harness.captured[1]?.reconcileUnsettled,
+    },
+    { resumeRunId: BOOK_RUN_ID, newRunId: undefined, forceRefresh: false, reconcileUnsettled: true },
+    "--regen on a resumed round keeps ONLY its promotion-pointer meaning",
+  );
+
+  // The same resume WITHOUT --regen sends a byte-identical research intent, so
+  // the operator's two spellings of the retry cannot diverge.
+  const plain = await researchPinHarness(context, "resume-noregen");
+  plain.control.intake = () => {
+    throw new Error("RESEARCH_FIXTURE_FAILED:chapter research invalid");
+  };
+  await plain.service.run({ ...plain.request, regen: true });
+  plain.control.intake = (runId) => ({ intakeRunId: runId });
+  await plain.service.run({ ...plain.request, resumeRunId: BOOK_RUN_ID, reconcileUnsettled: true });
+  assert.equal(plain.captured.length, 2);
+  assert.deepEqual(
+    {
+      resumeRunId: plain.captured[1]?.resumeRunId,
+      newRunId: plain.captured[1]?.newRunId,
+      forceRefresh: plain.captured[1]?.forceRefresh,
+      reconcileUnsettled: plain.captured[1]?.reconcileUnsettled,
+    },
+    {
+      resumeRunId: harness.captured[1]?.resumeRunId,
+      newRunId: harness.captured[1]?.newRunId,
+      forceRefresh: harness.captured[1]?.forceRefresh,
+      reconcileUnsettled: harness.captured[1]?.reconcileUnsettled,
+    },
+  );
 });
 
 requiredTest("R-001 a provider-blocked compile failure is NOT operator-retryable", () => {

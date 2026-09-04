@@ -54,6 +54,41 @@ test("help exposes only canonical V4 production routes and flags", () => {
   assert.match(output, /book-autopilot <bookId> .*--research-run-id <id>/);
 });
 
+// The 2026-09-04 live Franklin resume defect was, for the operator, a
+// documentation failure as much as a code one: nothing said whether the retry
+// command should repeat --regen, and the two spellings behaved differently (one
+// discarded 16 durable chapter sidecars, the other was refused outright with
+// RESEARCH_RESUME_CONFLICT). The contract is now stated where the operator
+// looks — INCLUDING its two exceptions and the one condition on reuse. A help
+// text that promises more than the code does is worse than no help text, so the
+// exceptions and the condition are pinned here beside the promise.
+test("help states the resume contract: which research run a resume continues, what reuse actually promises, and both ways that can fail", () => {
+  const result = cli(["help"]);
+  const output = `${result.stdout}${result.stderr}`;
+  assert.equal(result.status, 0);
+  assert.match(output, /--resume-run-id continues an existing run\.\s+The research run a round creates is\s+recorded durably against its control run before the first chapter is researched/);
+  assert.match(output, /a resume continues THAT research run — not whichever compatible bundle for the\s+book is newest/);
+  // Reuse is CONDITIONAL, and the help says so: a succeeded sidecar is reused
+  // only while it still passes reuse validation (researcher.ts
+  // acceptReusedChapter), and one that no longer does is re-researched. The
+  // earlier unqualified "every chapter with a succeeded sidecar ... is loaded
+  // from disk" over-promised: probe P8 showed a manifest-succeeded sidecar that
+  // no longer passes source-v2 being re-researched on resume. Both halves are
+  // pinned here so the help can never drift back to the stronger claim.
+  assert.match(output, /every chapter whose succeeded sidecar still passes reuse validation is\s+loaded from disk with zero model calls/);
+  assert.match(output, /a sidecar that no longer validates \(e\.g\.\s+it predates the current source-v2 route rules\) is re-researched and logged/);
+  assert.match(output, /"durable sidecar failed reuse validation — re-researching", as are the chapters\s+with no sidecar at all \(same attempt budget\)/);
+  // Exception 1: a run that predates the binding falls back, and says so.
+  assert.match(output, /it falls back to the newest compatible bundle and prints\s+action=NO_RECORDED_RESEARCH_RUN/);
+  // Exception 2: an unusable own bundle stops the run, naming the field.
+  assert.match(output, /no longer matches the current fingerprint \(codeVersion,\s+promptHash, configHash, provider, model/);
+  assert.match(output, /FAILS CLOSED with RESEARCH_RESUME_CONFLICT naming the field, rather than\s+silently re-researching or adopting another run's bundle/);
+  assert.match(output, /on a resumed round --regen means ONLY "bypass the\s+already-promoted pointer"/);
+  assert.match(output, /--regen --resume-run-id X do\s+the same work and neither is a definition conflict/);
+  assert.match(output, /Research refresh is a\s+FIRST-round axis/);
+  assert.match(output, /A resume still fails closed when the intent\s+that matters changed/);
+});
+
 test("piped stdout is never truncated by exit — the whole document reaches the reader", () => {
   // Regression lock. `process.exit()` discards data still queued on an async
   // stream, and stdout is async whenever it is a pipe. Before exitAfterFlush,
