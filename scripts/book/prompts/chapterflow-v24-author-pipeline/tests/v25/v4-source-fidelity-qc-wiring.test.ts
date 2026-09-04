@@ -709,8 +709,9 @@ requiredTest("SF4 from the answer-key judge is enforced on the fidelity judge's 
 // The answer-key judge's source header said "this chapter's own span of the
 // book, verbatim" whatever it was handed. Over MAX_SPAN_PROMPT_CHARS the block
 // is SPAN_EXCERPT_WINDOWS (8) sampled windows joined by omission markers - and
-// the four Franklin v25 spans are 114,687 characters each, of which this judge
-// sees 60,424 and never sees 54,687, so the flagship case is exactly that one.
+// a Franklin v25 chapter span is 94,557 characters (quizKeyJudge's MEASURED
+// note names the artifact and the re-measurement), of which this judge sees
+// 60,424 and never sees the rest, so the flagship case is exactly that one.
 // A judge told an excerpt is the whole span reads absence from the excerpt as
 // absence from the book, and an SF4 blocker minted that way cites nothing.
 

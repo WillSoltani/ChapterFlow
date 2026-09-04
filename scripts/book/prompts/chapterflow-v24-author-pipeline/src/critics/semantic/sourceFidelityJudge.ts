@@ -31,6 +31,13 @@
  *     verbatim in the chapter, is still REPORTED - as a WARN naming exactly
  *     which citation failed. Nothing is dropped, and a fabricated citation can
  *     never mint a blocker.
+ *   - A BLOCKER also requires UNCONTESTED evidence. An `unsupported` verdict is
+ *     an argument from absence, and a chunked span manufactures absences by
+ *     construction (each chunk is told a claim it cannot place HERE is
+ *     "unsupported"; another part may carry it). So if anything in the round
+ *     bears the SAME PROPOSITION out, the absence is contested and WARNs -
+ *     naming the chunk that disagreed. Repair is never sent to delete a claim
+ *     this round's own record verified.
  *   - Under `model-memory` (the run had no book text) the judge is told it is
  *     checking against its own recall, and every adverse verdict is a WARN that
  *     says so. Recall is not evidence, so it may not gate.
@@ -253,6 +260,15 @@ export type SourceFidelityFinding = {
   /** What KIND of checkable thing the claim is about, per the judge. */
   readonly checkableKind: CheckableKind;
   readonly note: string;
+  /**
+   * Which chunk of the span produced this finding, stamped by
+   * {@link judgeChapterSourceFidelity} - never by the model, which cannot see
+   * the field and whose value for it is overwritten. It exists so a contested
+   * absence can NAME the part of the span that bears the claim out instead of
+   * saying "somewhere else"; a finding built by hand carries no stamp and the
+   * message says so.
+   */
+  readonly chunkIndex?: number;
 };
 
 const DOCUMENT_WORDS = [
@@ -306,6 +322,120 @@ export function detectCheckableKinds(text: string): readonly CheckableKind[] {
   return [...kinds];
 }
 
+/**
+ * IS THIS THE SAME PROPOSITION, worded twice?
+ *
+ * Every chunk of an over-long span judges the chapter on its own and writes its
+ * own `claim`, so ONE proposition reaches the merge as several strings: chunk 1
+ * "Franklin sailed for London in 1757.", chunk 2 "Franklin sailed to London in
+ * 1757." A rule that compares those byte-for-byte decides that the chunk which
+ * VERIFIED the claim and the chunks which could not place it are talking about
+ * different things - which is how round 2 turned a chapter one chunk had
+ * supported into a RED chapter, and told repair to delete the sentence.
+ *
+ * The predicate is deliberately narrow, because the cost of the two mistakes is
+ * not symmetric. Calling two DIFFERENT propositions the same downgrades a real
+ * blocker to a WARN that still names the defect and still reaches repair.
+ * Calling one proposition two erases nothing but does the round-2 harm: a
+ * blocker minted from an absence the round's own record contradicts, answered
+ * by deleting true content. So:
+ *
+ *   - DISCRIMINATORS must match EXACTLY - the numbers and dates, the proper
+ *     names, and whether the claim is negated. A claim about 1757 is never the
+ *     same proposition as one about 1758, about London never the one about
+ *     Boston, and "sailed" never "never sailed", however much prose they share.
+ *   - What is left over - the content words, function words dropped - must
+ *     overlap by {@link CLAIM_AGREEMENT_MIN_OVERLAP} (Jaccard). Word order and
+ *     function words are free; about one content word in four may differ.
+ *
+ * KNOWN LIMIT, stated rather than hidden: this is a bag of words, so two claims
+ * built from the SAME words in a different order ("met him first, then wrote"
+ * vs "wrote first, then met him") read as one proposition. The cost of that is
+ * a WARN where a BLOCKER was due - the safe direction, and the finding is still
+ * reported in full.
+ */
+export const CLAIM_AGREEMENT_MIN_OVERLAP = 0.6;
+
+/** Words a paraphrase may add or drop without changing what it asserts. Order
+ *  and temporal words (`first`, `then`, `after`, `until`) are NOT here: they
+ *  carry the sequence, which is one of the things the source can settle. */
+const CLAIM_FUNCTION_WORDS: ReadonlySet<string> = new Set([
+  "a", "an", "the", "of", "to", "for", "in", "on", "at", "by", "with", "from", "as", "into",
+  "and", "or", "that", "this", "these", "those", "it", "its", "is", "are", "was", "were",
+  "be", "been", "being", "has", "have", "had", "do", "does", "did", "he", "she", "him", "her",
+  "his", "hers", "they", "them", "their", "we", "us", "our", "you", "your", "i", "my",
+  "there", "here", "which", "who", "whom", "whose", "also", "own", "any", "some", "such",
+]);
+
+/** Negation is never a paraphrase difference; it is the claim's sign. */
+const CLAIM_NEGATIONS: ReadonlySet<string> = new Set([
+  "not", "no", "never", "none", "neither", "nor", "nothing", "without", "cannot",
+]);
+
+type ClaimShape = {
+  readonly content: ReadonlySet<string>;
+  readonly names: ReadonlySet<string>;
+  readonly numbers: ReadonlySet<string>;
+  readonly negated: boolean;
+};
+
+function claimShape(text: string): ClaimShape {
+  const content = new Set<string>();
+  const names = new Set<string>();
+  const numbers = new Set<string>();
+  let negated = false;
+  const tokens = normalizedQuote(text)
+    .split(/\s+/)
+    .map((token) => token.replace(/^[^\p{L}\p{N}]+/u, "").replace(/[^\p{L}\p{N}]+$/u, ""))
+    .filter((token) => token.length > 0);
+  for (const token of tokens) {
+    const lower = token.toLowerCase();
+    if (CLAIM_NEGATIONS.has(lower) || /n['\u2019]t$/.test(lower)) {
+      negated = true;
+      content.add("not");
+      continue;
+    }
+    if (/\d/.test(lower)) {
+      numbers.add(lower);
+      content.add(lower);
+      continue;
+    }
+    // A capitalized word that is not grammar is a proper name WHEREVER it sits:
+    // unlike `detectCheckableKinds`, this predicate must be symmetric, and
+    // "In 1757 Franklin sailed" and "Franklin sailed in 1757" name the same man.
+    if (token.length > 1 && /^\p{Lu}/u.test(token) && !NON_NAME_CAPS.has(token) && !CLAIM_FUNCTION_WORDS.has(lower)) {
+      names.add(lower);
+      content.add(lower);
+      continue;
+    }
+    if (CLAIM_FUNCTION_WORDS.has(lower)) continue;
+    content.add(lower);
+  }
+  return { content, names, numbers, negated };
+}
+
+function sameSet(left: ReadonlySet<string>, right: ReadonlySet<string>): boolean {
+  if (left.size !== right.size) return false;
+  for (const value of left) if (!right.has(value)) return false;
+  return true;
+}
+
+/** True when two claim strings assert the same proposition - see
+ *  {@link CLAIM_AGREEMENT_MIN_OVERLAP} for the rule and its known limit. */
+export function sameProposition(left: string, right: string): boolean {
+  if (normalizedQuote(left) === normalizedQuote(right)) return true;
+  const a = claimShape(left);
+  const b = claimShape(right);
+  if (a.negated !== b.negated) return false;
+  if (!sameSet(a.numbers, b.numbers)) return false;
+  if (!sameSet(a.names, b.names)) return false;
+  if (a.content.size === 0 || b.content.size === 0) return false;
+  let shared = 0;
+  for (const token of a.content) if (b.content.has(token)) shared += 1;
+  const union = a.content.size + b.content.size - shared;
+  return union > 0 && shared / union >= CLAIM_AGREEMENT_MIN_OVERLAP;
+}
+
 // -- the judge ---------------------------------------------------------------
 
 export type SourceFidelityRequest = {
@@ -353,26 +483,38 @@ const VERDICT_RANK: Readonly<Record<SourceFidelityVerdict, number>> = {
 };
 
 /**
- * Merge one surface+quote's verdicts across the chunks that judged it.
+ * Merge one surface+quote+claim's verdicts across the chunks that judged it.
  *
  * A chunk that does not CONTAIN the supporting passage will honestly report
  * `unsupported`, and on a chunked span most chunks are in that position by
  * construction - so `unsupported` is the weakest signal here and any positive
- * finding beats it. `contradicted` outranks `supported` because it is the only
+ * finding about the same proposition beats it (here when the chunks wrote the
+ * claim the same way, in `classifySourceFidelityFindings` when they did not).
+ * `contradicted` outranks `supported` because it is the only
  * verdict that carries a citation: a chunk that cites the line saying otherwise
  * has produced evidence, and a chunk that merely failed to find a conflict has
  * not. MAJORITY VOTING was rejected - the chunks are not independent judges of
  * the same evidence; most of them never saw it.
  *
- * THE KEY IS surface + quote + CLAIM, and the claim is the part that matters.
+ * THE KEY IS surface + quote + CLAIM, and this function only ever REPORTS.
  * Keyed on surface+quote alone, precedence ran ACROSS DIFFERENT CLAIMS about the
- * same sentence: a `supported` finding for claim A erased an enforceable
- * `unsupported` finding for claim B on that same quote - within one chunk as
- * readily as across two, so a judge could retire its own SF2 blocker by
- * emitting a second, agreeable finding on the same words. One quote can assert
- * several things and the source can settle them differently; only the SAME
- * claim, judged by chunks that saw different parts of the span, is the
- * disagreement this precedence exists to resolve.
+ * same sentence and DROPPED one of them: a `supported` finding for claim A
+ * erased an enforceable `unsupported` finding for claim B on that same quote,
+ * so a judge could retire its own SF2 blocker by emitting a second, agreeable
+ * finding on the same words (round 2). Keying on the claim string as well keeps
+ * every distinct claim in the record - but the claim string is the JUDGE'S OWN
+ * PARAPHRASE, written afresh by each chunk, so it cannot decide ENFORCEMENT
+ * either: two wordings of one proposition would then never meet, and the chunk
+ * that verified a claim would stop protecting it (round 3, blocking).
+ *
+ * So the two questions are answered in two places, which is the whole fix:
+ *   - WHAT IS REPORTED: here. Byte-identical claims about one quote collapse to
+ *     their best verdict; different claims all survive.
+ *   - WHAT MAY GATE: `classifySourceFidelityFindings`, per surface+quote, on the
+ *     best evidence anywhere in the round about the SAME PROPOSITION
+ *     ({@link sameProposition}). An `unsupported` finding that another chunk
+ *     bore out is CONTESTED and cannot gate; it is still reported, as a WARN
+ *     naming the chunk that disagreed.
  */
 function mergeFindings(all: readonly SourceFidelityFinding[]): readonly SourceFidelityFinding[] {
   const best = new Map<string, SourceFidelityFinding>();
@@ -423,7 +565,10 @@ export async function judgeChapterSourceFidelity(args: Readonly<{
       chunkCount: chunks.length,
       claimHints: args.claimHints ?? [],
     });
-    collected.push(...answer.findings);
+    // Stamped here, over anything the model may have put in the field: a
+    // contested absence must be able to name the part of the span that bore the
+    // claim out, and only this loop knows which part that was.
+    collected.push(...answer.findings.map((finding) => ({ ...finding, chunkIndex: index })));
   }
   return {
     chapterId: args.chapter.chapterId,
@@ -544,6 +689,52 @@ export function ruleCitedClaim(args: Readonly<{
   };
 }
 
+/**
+ * The evidence in this round that CONTESTS an `unsupported` finding, or null.
+ *
+ * "The source does not bear this out" is an argument from absence, and the chunk
+ * prompt manufactures absences by construction: it tells the model that a claim
+ * it cannot place in THIS part is `unsupported` and another part may carry it.
+ * So on a chunked span the same proposition comes back `supported` from the one
+ * chunk that holds the passage and `unsupported` from the rest - and the ONLY
+ * reason it did not simply merge is that each chunk wrote the claim in its own
+ * words. A blocker raised on that record contradicts the record.
+ *
+ * The rule, stated once: a BLOCKER rests on UNCONTESTED evidence. If anything in
+ * this round says the source bears the SAME PROPOSITION out (`supported`), or
+ * settles it the other way with its own citation (`contradicted`, which carries
+ * the evidence and blocks on its own account), then this absence is contested
+ * and may not gate. It is still reported in full, as a WARN naming the chunk
+ * that disagreed and what it said - the repair writer sees both halves and can
+ * judge, which is exactly what deleting the sentence would have prevented.
+ *
+ * Scope: `unsupported` only. A contradiction is not an absence; it stands or
+ * falls on whether its source quote verifies.
+ */
+function contestingEvidence(
+  findings: readonly SourceFidelityFinding[],
+  finding: SourceFidelityFinding,
+): SourceFidelityFinding | null {
+  if (finding.verdict !== "unsupported") return null;
+  const quote = normalizedQuote(finding.quote);
+  for (const other of findings) {
+    if (other === finding || other.verdict === "unsupported") continue;
+    if (other.surface !== finding.surface) continue;
+    if (normalizedQuote(other.quote) !== quote) continue;
+    if (!sameProposition(other.claim, finding.claim)) continue;
+    return other;
+  }
+  return null;
+}
+
+/** Name the part of the span a contesting finding came from, when the judge
+ *  stamped one (it always does; a hand-built report may not). */
+function chunkLabel(finding: SourceFidelityFinding, chunkCount: number): string {
+  const index = finding.chunkIndex;
+  if (typeof index !== "number" || !Number.isInteger(index) || index < 0) return "another finding in this round";
+  return chunkCount > 1 ? `part ${index + 1} of ${chunkCount} of this chapter's span` : "another finding in this round";
+}
+
 function codeFor(kind: SourceFidelitySurfaceKind | null, verdict: SourceFidelityVerdict): SourceFidelityCode {
   if (verdict === "contradicted") {
     return kind === "quiz_key" ? SOURCE_FIDELITY_KEY_CODE : SOURCE_FIDELITY_CONTRADICTED_CODE;
@@ -561,6 +752,8 @@ function codeFor(kind: SourceFidelitySurfaceKind | null, verdict: SourceFidelity
  *     contradicted + verified citations         -> BLOCKER  (SF1, or SF3 on a quiz key)
  *     unsupported  + a checkable claim          -> BLOCKER  (SF2, or SF4 on an explanation)
  *     unsupported  + a bare generality          -> WARN     (SF2/SF4)
+ *     unsupported  + another chunk bore the
+ *       SAME PROPOSITION out                    -> WARN, naming the disagreement
  *     any adverse verdict whose citation FAILED -> WARN, naming which citation failed
  *   provenance `model-memory` (no book text):
  *     every adverse verdict                     -> WARN, stating the provenance
@@ -617,9 +810,14 @@ export function classifySourceFidelityFindings(report: SourceFidelityReport): So
       }
     }
 
+    // CONTESTED ABSENCE NEVER GATES (see `contestingEvidence`). Computed for
+    // every adverse finding so the message can say so, and consulted by the
+    // severity below.
+    const contested = contestingEvidence(report.findings, finding);
     const modelMemory = report.provenance === "model-memory";
     const enforceable = !modelMemory
       && citationProblems.length === 0
+      && contested === null
       && (finding.verdict === "contradicted" || checkable);
     const severity: SourceFidelityIssue["severity"] = enforceable ? "BLOCKER" : "WARN";
 
@@ -640,6 +838,12 @@ export function classifySourceFidelityFindings(report: SourceFidelityReport): So
     }
     if (!modelMemory && citationProblems.length === 0 && finding.verdict === "unsupported" && !checkable) {
       parts.push(`NOT ENFORCED - ${NOT_CHECKABLE_REASON}`);
+    }
+    if (!modelMemory && contested !== null) {
+      parts.push(
+        `NOT ENFORCED - contested: ${chunkLabel(contested, report.chunkCount)} judged the same claim `
+        + `${contested.verdict} ("${clip(contested.claim, 200)}"), so this absence is not uncontested evidence`,
+      );
     }
 
     issues.push({ code, severity, message: parts.join("; "), location });

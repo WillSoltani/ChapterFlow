@@ -310,11 +310,14 @@ export type QuizJudgeSourceContext = {
  * `MAX_SPAN_PROMPT_CHARS` reaches the prompt as `SPAN_EXCERPT_WINDOWS` sampled
  * windows separated by omission markers, so the header must not call it
  * verbatim and a finding of ABSENCE inside it must not be enforced. MEASURED on
- * the book this package was built for: the Gutenberg Franklin normalizes to
- * 458,749 characters, its four v25 chapter spans are 114,687 characters each,
- * and each reaches this judge as 60,424 prompt characters with 54,687 (47.7% of
- * the span) omitted. The caller can hold both facts because it holds the whole
- * span AND this excerpt of it.
+ * the book this package was built for - the frozen Franklin the canary run read
+ * (~/cf-canary/sources/the-autobiography-of-benjamin-franklin.txt, sha256
+ * 7863cf09…, out of this repo and read-only): it normalizes to 378,231
+ * characters, a quarter of it is a 94,557-character chapter span, and each such
+ * span reaches this judge as 60,424 prompt characters with 34,557 (36.5%)
+ * omitted. `quizKeyJudge`'s header carries the full measurement note, including
+ * which artifact each figure came from and how to re-measure it. The caller can
+ * hold both facts because it holds the whole span AND this excerpt of it.
  */
 export function quizJudgeSourceContext(source: ResolvedCandidateSource): QuizJudgeSourceContext | undefined {
   if (source.context.provenance === "source-text") {

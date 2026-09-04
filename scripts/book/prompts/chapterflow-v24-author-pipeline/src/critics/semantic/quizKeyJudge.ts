@@ -149,10 +149,31 @@ export function buildJudgeUserPrompt(args: {
   // SPAN_EXCERPT_WINDOWS windows joined by omission markers, and the header now
   // says how much is missing and what the judge may not conclude from it.
   //
-  // MEASURED (2026-09-03, this repo): the Gutenberg Franklin normalizes to
-  // 458,749 characters and its four v25 chapter spans are 114,687 characters
-  // each; `spanExcerptForPrompt` hands this judge 60,424 of them and omits
-  // 54,687 — 47.7% of the span the old header called "verbatim".
+  // MEASURED — and each figure NAMES ITS ARTIFACT, because the book is not in
+  // this repo: only 20 KB slices are tracked (tests/fixtures/franklin-
+  // autobiography-*.txt), so a number measured on the whole text can only be
+  // re-measured if the reader is told what to re-measure it on.
+  //
+  //   [1] Reproducible HERE, with no book at all — it is a function of the span
+  //       length alone: `spanExcerptForPrompt` on a 114,687-character span
+  //       returns 60,424 prompt characters and omits 54,687, i.e. 47.7% of the
+  //       span the pre-round-2 header called "verbatim". Any span over
+  //       MAX_SPAN_PROMPT_CHARS yields the same 60,424 (SPAN_EXCERPT_WINDOWS
+  //       windows of MAX_SPAN_PROMPT_CHARS/SPAN_EXCERPT_WINDOWS plus markers)
+  //       and omits the rest.
+  //   [2] The frozen source the canary run actually read is out of the repo and
+  //       read-only: ~/cf-canary/sources/the-autobiography-of-benjamin-
+  //       franklin.txt, 384,939 bytes, sha256 7863cf09…. It normalizes through
+  //       `normalizeIngestedText` to 378,231 characters; quartered across the
+  //       memoir's four "Part" chapters that is 94,557 characters a span, of
+  //       which this judge sees 60,424 and never sees 34,557 (36.5%).
+  //   [3] The 458,749 / 114,687 pair round 2 wrote here reproduces on the
+  //       UNTRIMMED Gutenberg download (467,432 bytes, sha256 c5be0e49…),
+  //       whose even quarter is 114,687.25 characters — NOT on [2], which is
+  //       the same book with the front matter and licence removed. Either way
+  //       the conclusion is the one that matters and holds for both: a Franklin
+  //       chapter span is far over the bound, so this judge is reading an
+  //       excerpt and must be told so.
   const omitted = args.sourceOmittedChars ?? 0;
   const sourceHeader = args.sourceProvenance === "model-memory"
     ? "RECALLED SOURCE NOTES (a previous model's recollection of the book — NOT the book, and not ground truth; weigh it as recall)"

@@ -27,6 +27,7 @@ import {
   classifySourceFidelityFindings,
   detectCheckableKinds,
   judgeChapterSourceFidelity,
+  sameProposition,
   sourceFidelityVetoDisagreement,
   type SourceFidelityFinding,
 } from "../../src/critics/semantic/sourceFidelityJudge.js";
@@ -300,7 +301,10 @@ requiredTest("precedence resolves ONE claim across chunks, never two claims on o
           surface: "chapter/keyTakeaway",
           quote: REV6_ERROR,
           claim: unsupportedClaim,
-          verdict: request.chunkIndex === 0 ? "unsupported" : "unsupported",
+          // Every chunk, deliberately: NOTHING in this round supports claim B.
+          // (Round 2 wrote this as a ternary whose arms were identical, which
+          // read as if it varied by chunk when it never did — ROUND 3, MINOR 1.)
+          verdict: "unsupported",
           sourceQuote: null,
           checkableKind: "date",
           note: "no chunk places this",
@@ -315,6 +319,13 @@ requiredTest("precedence resolves ONE claim across chunks, never two claims on o
   assert.equal(classified.issues.length, 1, JSON.stringify(classified.issues, null, 2));
   assert.equal(classified.issues[0].severity, "BLOCKER", classified.issues[0].message);
   assert.ok(classified.issues[0].message.includes(unsupportedClaim), classified.issues[0].message);
+  // ROUND 3. Claim A is a DIFFERENT proposition — different name, different
+  // number, a third of the content words in common — so it is not evidence
+  // about claim B and may not contest it. `sameProposition` is what keeps the
+  // round-3 contest rule from re-opening this hole.
+  assert.equal(sameProposition(supportedClaim, unsupportedClaim), false);
+  assert.equal(classified.issues[0].message.includes("contested"), false, classified.issues[0].message);
+  assert.equal(classified.verdict.gate, "RED");
 });
 
 requiredTest("the one-ruler cross-check is a real invariant that fires on a corrupted classification", async () => {
@@ -412,6 +423,108 @@ requiredTest("a finding quoting text that is not in the chapter cannot block", a
   assert.equal(classified.issues.length, 1);
   assert.equal(classified.issues[0].severity, "WARN");
   assert.match(classified.issues[0].message, /not present in the chapter/i);
+});
+
+// ── ROUND 3, BLOCKING ───────────────────────────────────────────────────────
+// Round 2 keyed the chunk merge on surface+quote+CLAIM. That fixed one hole and
+// opened a worse one: each chunk paraphrases the claim in its OWN words, and the
+// chunk prompt tells the model "a claim you cannot place in THIS part is
+// unsupported; another part may carry it" — so on a Franklin-sized span (well
+// over SOURCE_FIDELITY_MAX_CONTEXT_CHARS: three chunks a chapter) the chunk
+// that VERIFIED the claim and the chunks that could not place it now key
+// differently and never meet. One preposition apart was enough to turn a GREEN
+// chapter RED and hand repair
+// "Remove this claim" about a claim the round's own record calls supported.
+//
+// The rule after round 3: REPORTING keeps every distinct claim (round 2's
+// intent), and ENFORCEMENT is decided per surface+quote by the best evidence in
+// the round about the SAME PROPOSITION (round 1's intent). Contested absence
+// never gates.
+
+/** The reproduced case from the round-2 review, one preposition apart. */
+const SAILED_SUPPORTED = "Franklin sailed for London in 1757.";
+const SAILED_UNSUPPORTED = "Franklin sailed to London in 1757.";
+
+requiredTest("chunk-varied wording of ONE claim is contested, not a blocker", async () => {
+  const chapter = franklinChapter();
+  const long = `${SLICE}\n\n`.repeat(Math.ceil((SOURCE_FIDELITY_MAX_CONTEXT_CHARS * 2.2) / SLICE.length));
+  const report = await judgeChapterSourceFidelity({
+    chapter,
+    source: { provenance: "source-text", spanText: long },
+    ask: async (request) => ({
+      findings: [{
+        surface: "chapter/keyTakeaway",
+        quote: REV6_ERROR,
+        // The SAME proposition, worded by each chunk for itself.
+        claim: request.chunkIndex === 0 ? SAILED_SUPPORTED : SAILED_UNSUPPORTED,
+        verdict: request.chunkIndex === 0 ? "supported" : "unsupported",
+        sourceQuote: request.chunkIndex === 0 ? SOURCE_LINE : null,
+        checkableKind: "date",
+        note: request.chunkIndex === 0 ? "this part carries it" : "not in this part",
+      }],
+    }),
+  });
+  assert.ok(report.chunkCount >= 3, `expected >=3 chunks, got ${report.chunkCount}`);
+  // REPORTING: both survive — they are different strings and the round records
+  // what each chunk actually said.
+  assert.equal(report.findings.length, 2, JSON.stringify(report.findings, null, 2));
+
+  const classified = classifySourceFidelityFindings(report);
+  // ENFORCEMENT: one adverse finding, and it cannot gate.
+  assert.equal(classified.issues.length, 1, JSON.stringify(classified.issues, null, 2));
+  assert.equal(classified.issues[0].severity, "WARN", classified.issues[0].message);
+  assert.ok(classified.issues[0].message.includes("contested"), classified.issues[0].message);
+  assert.ok(classified.issues[0].message.includes(SAILED_SUPPORTED), classified.issues[0].message);
+  assert.match(classified.issues[0].message, /part 1 of \d+/, classified.issues[0].message);
+  assert.equal(classified.axis.hits.length, 0, JSON.stringify(classified.axis.hits, null, 2));
+  assert.notEqual(classified.verdict.gate, "RED");
+  assert.equal(sourceFidelityVetoDisagreement(classified), null);
+});
+
+requiredTest("chunk-varied wording NO chunk supports still blocks", async () => {
+  // The fail-closed half of the same rule. Wording varies by chunk exactly as
+  // above, but nothing in the round bears the claim out, so the absence is
+  // uncontested and the blocker stands.
+  const chapter = franklinChapter();
+  const long = `${SLICE}\n\n`.repeat(Math.ceil((SOURCE_FIDELITY_MAX_CONTEXT_CHARS * 2.2) / SLICE.length));
+  const report = await judgeChapterSourceFidelity({
+    chapter,
+    source: { provenance: "source-text", spanText: long },
+    ask: async (request) => ({
+      findings: [{
+        surface: "chapter/keyTakeaway",
+        quote: REV6_ERROR,
+        claim: request.chunkIndex === 0 ? SAILED_SUPPORTED : SAILED_UNSUPPORTED,
+        verdict: "unsupported",
+        sourceQuote: null,
+        checkableKind: "date",
+        note: "no part of the span places this",
+      }],
+    }),
+  });
+  const classified = classifySourceFidelityFindings(report);
+  const blocking = classified.issues.filter((issue) => issue.severity === "BLOCKER");
+  assert.ok(blocking.length >= 1, JSON.stringify(classified.issues, null, 2));
+  for (const issue of classified.issues) {
+    assert.equal(issue.message.includes("contested"), false, issue.message);
+  }
+  assert.equal(classified.verdict.gate, "RED");
+  assert.equal(sourceFidelityVetoDisagreement(classified), null);
+});
+
+requiredTest("sameProposition folds paraphrase and separates propositions", () => {
+  // The whole contest rule rests on this predicate, so its boundary is pinned
+  // rather than described. Same proposition: function words, word order and one
+  // content word in four may vary.
+  assert.equal(sameProposition(SAILED_SUPPORTED, SAILED_UNSUPPORTED), true);
+  assert.equal(sameProposition("Franklin sailed to London in 1757.", "In 1757 Franklin sailed to London."), true);
+  assert.equal(sameProposition("Franklin sailed to London in 1757.", "Franklin departed for London in 1757."), true);
+  // Different proposition — a discriminator differs, whatever the overlap.
+  assert.equal(sameProposition("Franklin sailed to London in 1757.", "Franklin sailed to London in 1758."), false, "a different date");
+  assert.equal(sameProposition("Franklin sailed to London in 1757.", "Franklin sailed to Boston in 1757."), false, "a different name");
+  assert.equal(sameProposition("Franklin sailed to London in 1757.", "Franklin never sailed to London in 1757."), false, "a negation");
+  // Different proposition — too little in common.
+  assert.equal(sameProposition("The brothers are the proprietaries of Pennsylvania.", "The brothers refused every meeting."), false);
 });
 
 finishV25Tests().catch((error: unknown) => {
