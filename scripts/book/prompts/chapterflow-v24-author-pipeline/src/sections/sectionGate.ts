@@ -42,8 +42,10 @@ import {
   countSpecificsInProse,
   hasDraftedReadTiers,
   normalizeDerivabilityText,
-  qualifiedNameDerivable,
+  proseYearBandFigures,
+  specificDerivable,
   standaloneProseText,
+  yearOnThePage,
   type ChapterProseSource,
 } from "./chapterProse.js";
 import { contentLemmaSet } from "../critics/intraBookFieldSimilarity.js";
@@ -3040,17 +3042,10 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
   return findings;
 }
 
-/** A 4-digit NUMBER in 1500-2099 — the band where a figure is most likely to be a
- *  year a reader must reason about (old-style dating, a founding date, a study year).
- *  The band is the whole rule, not a semantic test: a quantity that happens to land
- *  inside it ("1,800 dollars", "2,000 steps") is checked exactly like a year, which is
- *  correct — the requirement is only that the FIGURE appears on the page, and
- *  digit-group separators are collapsed on both sides so formatting never decides it.
- *  Below 1500 and above 2099 the check stays silent by design (a bare "1200
- *  employees" is out of band), so it under-fires rather than over-fires.
- *  Digit boundaries, not \b: "1751" inside "1751st" is the same number, while "1751"
- *  inside "11751" is not — and the same regex form is used on both sides. */
-const PROSE_YEAR_RE = /(?<!\d)(?:1[5-9]\d{2}|20\d{2})(?!\d)/g;
+/* The year band (PROSE_YEAR_RE) and its two accessors now live in chapterProse.ts —
+ * proseYearBandFigures / yearOnThePage — because the WRITER CARD lists the year-band
+ * figures the prose cannot support and a second copy of the band in a second file is
+ * precisely the write/ship drift that module exists to prevent. */
 
 /**
  * SEC120 (Task 11ai) — DERIVABILITY BACKSTOP. Every section pack is drafted
@@ -3120,28 +3115,20 @@ export function learningProseDerivabilityFindings(
       // is, the defect is upstream — the summary tiers never covered a case the
       // blueprint dealt — and SEC120 stands down rather than blocking a chapter
       // that cannot be written.
-      const anchorSpecifics = (anchor.hardSpecifics ?? [])
-        .map((value) => normalizeDerivabilityText(text(value)))
-        .filter((value) => value.length >= 3);
-      const anySpecificOnThePage = anchorSpecifics.some((value) =>
-        haystack.includes(value)
-        || qualifiedNameDerivable(value, haystack)
-        || clippedPhraseDerivable(value, haystack));
+      const anySpecificOnThePage = (anchor.hardSpecifics ?? []).some((value) => specificDerivable(text(value), haystack));
       if (!anySpecificOnThePage) continue;
       for (const specific of anchor.hardSpecifics ?? []) {
         const normalized = normalizeDerivabilityText(text(specific));
         if (normalized.length < 3) continue;
         if (!unit.includes(normalized)) continue;
-        if (haystack.includes(normalized)) continue;
-        if (qualifiedNameDerivable(normalized, haystack)) continue;
-        if (clippedPhraseDerivable(normalized, haystack)) continue;
+        if (specificDerivable(text(specific), haystack)) continue;
         missing.add(text(specific));
       }
     }
     // The unit's years are read off the SAME normalised form the haystack is built
     // from, so a stem saying "1800" and prose saying "$1,800" are one number.
-    for (const year of unit.match(PROSE_YEAR_RE) ?? []) {
-      if (new RegExp(`(?<!\\d)${year}(?!\\d)`).test(haystack)) continue;
+    for (const year of proseYearBandFigures(unit)) {
+      if (yearOnThePage(year, haystack)) continue;
       missing.add(year);
     }
     return [...missing];

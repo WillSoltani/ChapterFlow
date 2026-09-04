@@ -28,7 +28,7 @@ import { test } from "./harness.js";
 import { FRANKLIN_SLICE_PATH, PIPELINE_DIR } from "./helpers.js";
 import { buildSectionTaskMarkdown, sectionContract, sectionDoNotLines } from "../src/sections/sectionTasks.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
-import { CHAPTER_PROSE_CARD_BUDGET } from "../src/sections/chapterProse.js";
+import { CHAPTER_PROSE_CARD_BUDGET, DERIVABILITY_ENTRY_MAX_CHARS, DERIVABILITY_LIST_BUDGET, DERIVABILITY_LIST_MAX_ENTRIES, packetProseDerivability } from "../src/sections/chapterProse.js";
 import { bookRuleChapters, loadBookScars, validateBookScars } from "../src/lib/bookScars.js";
 import { voiceCard } from "../src/lib/voiceCard.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
@@ -353,6 +353,22 @@ test("every rendered task is <= 72% of its pinned pre-refactor length", () => {
 const WORST_CASE_PROSE_CHARS = 220 + 220 + 600 + 1600 + 3400 + 200;
 const PROSE_BLOCK_SCAFFOLD_ALLOWANCE = 1200;
 
+/**
+ * Task 11ao — the two COMPUTED derivability lists (and the stand-down note) the card
+ * now renders under the prose. They are NOT prose and NOT scaffold: they are a
+ * deterministic diff of the packet against the prose, so they get their own measured
+ * term instead of being hidden inside the scaffold allowance.
+ *
+ * MEASURED on this file's two fixtures, both with the money-book packet:
+ *   aim-band prose (the test below)            618 chars
+ *   runaway 126k-char prose (the clamp test)   745 chars
+ * Pinned at 1,000 — above the larger measurement with room for a packet whose
+ * specifics run longer, and far below the HARD ceiling the two constants in
+ * chapterProse.ts impose for ANY packet (DERIVABILITY_LIST_BUDGET), which the
+ * pathological-packet test further down pins directly.
+ */
+const DERIVABILITY_BLOCK_ALLOWANCE = 1_000;
+
 function worstCaseChapterProse() {
   const filler = (chars: number) => "The reader sees the visible balance change before the lender reads it. ".repeat(Math.ceil(chars / 70)).slice(0, chars);
   return {
@@ -383,8 +399,8 @@ test("the production learning-pack card (with drafted chapter prose) is bounded 
   assert.ok(withProse.length <= 0.86 * pre, `learning-pack with prose: rendered ${withProse.length} chars is ${(ratio * 100).toFixed(1)}% of pre-refactor ${pre}; must be <= 86% (re-pin only with a stated rationale)`);
   const delta = withProse.length - bare.length;
   assert.ok(
-    delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
-    `the prose block added ${delta} chars for a ${WORST_CASE_PROSE_CHARS}-char payload; growth beyond the chapter's own text + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} chars of header/rule is prose creep`,
+    delta <= WORST_CASE_PROSE_CHARS + PROSE_BLOCK_SCAFFOLD_ALLOWANCE + DERIVABILITY_BLOCK_ALLOWANCE,
+    `the prose block added ${delta} chars for a ${WORST_CASE_PROSE_CHARS}-char payload; growth beyond the chapter's own text + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} chars of header/rule + ${DERIVABILITY_BLOCK_ALLOWANCE} of computed derivability lists is prose creep`,
   );
 });
 
@@ -421,8 +437,8 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   assert.ok(withProse.length <= 0.89 * pre, `a 126k-char summary pack rendered ${withProse.length} chars (${(ratio * 100).toFixed(1)}% of ${pre}); the clamp must hold the card at <= 89%`);
   const delta = withProse.length - bare.length;
   assert.ok(
-    delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE,
-    `unbounded prose added ${delta} chars against a ${CHAPTER_PROSE_CARD_BUDGET}-char clamp budget + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} of scaffold`,
+    delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE + DERIVABILITY_BLOCK_ALLOWANCE,
+    `unbounded prose added ${delta} chars against a ${CHAPTER_PROSE_CARD_BUDGET}-char clamp budget + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} of scaffold + ${DERIVABILITY_BLOCK_ALLOWANCE} of computed derivability lists`,
   );
   // Aim-band-conformant prose is never touched by the clamp (the test above still
   // measures the real, whole passages).
@@ -432,6 +448,53 @@ test("a runaway summary pack cannot blow the learning card: the prose block is c
   // The header cannot claim completeness it no longer has.
   assert.match(conformant, /This is EVERYTHING the reader has seen/);
   assert.doesNotMatch(withProse, /This is EVERYTHING the reader has seen/, "a clamped block must not claim to be everything");
+});
+
+// Task 11ao — the COMPUTED lists get the same treatment the prose block got above:
+// a hard ceiling that holds for ANY packet, not just a well-behaved one. Nothing
+// bounds how many anchors a researcher's sidecar declares or how long a telegraphic
+// "hardSpecific" runs, and this card's length is pinned in absolute characters, so an
+// unbounded list would turn every budget in this file back into a hope.
+test("a pathological packet cannot blow the learning card: the derivability lists are capped and over-long entries are dropped, never truncated", () => {
+  const bp = realisticFixture();
+  const RUNAWAY_SPECIFIC = "a telegraphic research note that runs far past the per-entry ceiling and would be useless to a writer if it were cut in half mid-clause";
+  assert.ok(RUNAWAY_SPECIFIC.length > DERIVABILITY_ENTRY_MAX_CHARS, "the fixture's over-long entry must actually exceed the cap");
+  const anchors = Array.from({ length: 200 }, (_, i) => ({
+    id: `ch01.case.bulk_${i}`,
+    kind: "named_example" as const,
+    label: `bulk case ${i}`,
+    supportsClaimTypes: ["quiz_prompt", "quiz_explanation", "quiz_key_evidence", "review_card"],
+    // One specific IS on the page (so the anchor never stands down and its others are
+    // really classified), one is a long absent string, one is an absent year.
+    hardSpecifics: ["visible balance", `${RUNAWAY_SPECIFIC} ${i}`, `${1500 + (i % 500)} ledger`],
+  }));
+  const packet = { ...bp.packet, allowedAnchors: [...bp.packet.allowedAnchors, ...anchors] } as unknown as SourcePacketV1;
+  const args = { bookId: "money-book", kind: "learning-pack" as const, blueprint: bp.blueprint, sourcePacket: packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } };
+  const prose = worstCaseChapterProse();
+
+  const split = packetProseDerivability(packet, prose);
+  assert.ok(split.notDerivable.length > DERIVABILITY_LIST_MAX_ENTRIES, "the fixture must overflow the list cap, or this bounds nothing");
+
+  const withProse = buildSectionTaskMarkdown({ ...args, chapterProse: prose });
+  const bare = buildSectionTaskMarkdown(args);
+  const delta = withProse.length - bare.length;
+  assert.ok(
+    delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE + DERIVABILITY_LIST_BUDGET,
+    `a 200-anchor packet added ${delta} chars against a ${CHAPTER_PROSE_CARD_BUDGET} prose clamp + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} scaffold + ${DERIVABILITY_LIST_BUDGET} list ceiling`,
+  );
+  // Everything below is measured on the RENDERED LISTS, not on the whole card: the
+  // card also embeds the packet JSON these strings came from, so an unscoped match
+  // would pass on the wrong text.
+  const listStart = withProse.indexOf("SPECIFICS THE PROSE SUPPORTS");
+  assert.ok(listStart > 0, "the computed lists must render");
+  const lists = withProse.slice(listStart, withProse.indexOf("\n\nSOURCE PACKET —"));
+  // Bullets are capped per list (plus at most one "…and N more" line each).
+  const bullets = (lists.match(/^ {2}• /gm) ?? []).length;
+  assert.ok(bullets <= 2 * (DERIVABILITY_LIST_MAX_ENTRIES + 1), `rendered ${bullets} bullets against a ${2 * (DERIVABILITY_LIST_MAX_ENTRIES + 1)} ceiling`);
+  assert.match(lists, /…and \d+ more; the same rule applies to every one of them\./, "an overflowing list says what it did not print");
+  // An over-long entry is DROPPED, never cut: a truncated "specific" is a string a
+  // writer might paste and a gate would then reject on a different substring.
+  assert.doesNotMatch(lists, /a telegraphic research note that runs far past/, "an over-long specific is omitted, not truncated into the lists");
 });
 
 // ── R-002 — AN HONEST BUDGET, measured on what production actually sends ──────
