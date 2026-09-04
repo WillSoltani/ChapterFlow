@@ -262,6 +262,35 @@ async function buildWorld(
   const judgeRunner: ModelTaskRunner = {
     async run(request): Promise<ModelResult> {
       const userPrompt = Buffer.from(request.prompt.inputs[1].bytes).toString("utf8");
+      // Fresh-qc hosts a SECOND judge on this run: the source-fidelity judge,
+      // one call per chapter source chunk. It admits and settles its own
+      // run-state attempt exactly as the answer-key judge does (so the capacity
+      // and attempt-uniqueness assertions below still cover it) and answers with
+      // an empty finding set, keeping these promotion cases about the key judge.
+      if (request.context.operationId.startsWith("source-fidelity-judge-")) {
+        const fidelityAdmittedAt = now();
+        const fidelityAdmitted = await runStore.admitAttempt({
+          bookId: request.context.bookId,
+          runId: request.context.runId,
+          attemptId: request.context.attemptId,
+          stageId: request.context.stageId,
+          operationId: request.context.operationId,
+          admittedAt: fidelityAdmittedAt,
+          staleAt: new Date(Date.parse(fidelityAdmittedAt) + 60_000).toISOString(),
+        });
+        if (!fidelityAdmitted.ok) {
+          return { attemptId: request.context.attemptId, outcome: "UNKNOWN", error: { code: fidelityAdmitted.error.code, message: fidelityAdmitted.error.message } };
+        }
+        const fidelitySettled = await runStore.finishAttempt({
+          bookId: request.context.bookId,
+          runId: request.context.runId,
+          attemptId: request.context.attemptId,
+          outcome: "SUCCEEDED",
+          finishedAt: now(),
+        });
+        assert.equal(fidelitySettled.ok, true, JSON.stringify(fidelitySettled));
+        return { attemptId: request.context.attemptId, outcome: "SUCCEEDED", output: { findings: [] } };
+      }
       const match = /^QUESTION:\n([\s\S]*?)\n\nCHOICES:/.exec(userPrompt);
       assert.ok(match, "quiz-key judge prompt must carry its question");
       const question = questionsByPrompt.get(match[1]);
@@ -502,7 +531,16 @@ requiredTest("fresh QC judge PASS commits a durable round and promotes the revie
   const judgeRun = await world.runStore.readRun(BOOK, derived("qc-judge-run", BOOK_RUN_ID), world.now());
   assert.ok(judgeRun.ok, JSON.stringify(judgeRun));
   assert.equal(judgeRun.value.status, "COMPLETED", "the fresh-qc judge run must not be left RUNNING");
-  assert.equal(judgeRun.value.attempts.length, world.chapter.quiz.questions.length);
+  // One attempt per quiz question (the answer-key judge) plus one per chapter
+  // source chunk (the source-fidelity judge). This fixture book is one chapter
+  // researched WITHOUT a source text, so its fidelity judgment is a single
+  // model-memory call — hence exactly one extra admission.
+  assert.equal(judgeRun.value.attempts.length, world.chapter.quiz.questions.length + 1);
+  assert.equal(
+    judgeRun.value.attempts.filter((attempt) => attempt.admission.operationId.startsWith("source-fidelity-judge-")).length,
+    1,
+    "the source-fidelity judge admits its own attempt against the same fresh-qc run",
+  );
   assert.equal(judgeRun.value.attempts.every((attempt) => attempt.status === "SUCCEEDED"), true);
 
   // The durable phase-event sequence is the whole contract of the run.

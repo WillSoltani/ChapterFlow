@@ -579,10 +579,12 @@ async function runV4SelectedCandidateQc(
   }
   const { CandidateQcEvaluator } = await import("./app/candidateQcEvaluator.js");
   const { countQuizQuestions, freshQcRunDefinition } = await import("./app/bookRunApplicationService.js");
-  // qc-auto's fresh-qc runs the LLM answer-key judge through the composition's
-  // runner (role "qc"). The judge is per-question model work the gateway admits
-  // against run-state, so open a dedicated fresh-qc run sized to the quiz-question
-  // count; the judge's READ_ONLY profile pins its workDir to the pipeline root.
+  // qc-auto's fresh-qc runs the LLM answer-key judge AND the source-fidelity
+  // judge through the composition's runner (role "qc"). Both are model work the
+  // gateway admits against run-state, so open a dedicated fresh-qc run;
+  // freshQcRunDefinition sizes it to the quiz-question count plus the
+  // candidate's source-chunk count. The judges' READ_ONLY profile pins their
+  // workDir to the pipeline root.
   const qcJudgeRunId = v25.value.ids.nextRunId();
   const qcJudgeRun = await v25.value.runStore.createRun(freshQcRunDefinition({
     bookId,

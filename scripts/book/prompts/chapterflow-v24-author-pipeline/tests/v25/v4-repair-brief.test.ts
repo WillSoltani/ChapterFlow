@@ -27,8 +27,10 @@ import {
   REPAIR_BRIEF_BLOCKER_MAX_CHARS,
   REPAIR_BRIEF_ITEM_MAX_CHARS,
   REPAIR_BRIEF_MAX_CHARS,
+  REPAIR_BRIEF_SOURCE_ITEM_MAX_CHARS,
   buildRepairBrief,
 } from "../../src/app/candidateRepairBrief.js";
+import { SOURCE_FIDELITY_CONTRADICTED_CODE } from "../../src/critics/semantic/sourceFidelityJudge.js";
 import type { QcIssue } from "../../src/qc/qcTypes.js";
 import {
   READER_PANEL_BELOW_FLOOR_CODE,
@@ -321,6 +323,51 @@ requiredTest("R-153: a small advisory set is still listed in full, with no omiss
   assert.match(brief, /advisory 1:/, brief);
   assert.match(brief, /advisory 2:/, brief);
   assert.doesNotMatch(brief, /further advisories/, brief);
+});
+
+/**
+ * A SOURCE-FIDELITY blocker is the one finding class whose message IS the fix.
+ * The general item clamp is 400 characters, which cuts a chapter quote plus a
+ * source quote in half — and a half-quoted source line is worse than none,
+ * because the writer cannot see what the book says and will guess.
+ */
+requiredTest("a source-fidelity blocker leads the brief with its source quote intact", () => {
+  const sourceLine = "it was concluded that I should give them the heads of our complaints in writing";
+  const chapterLine = "The brothers will not meet him.";
+  const padding = "context ".repeat(40);
+  const sourceBlocker: QcIssue = {
+    code: SOURCE_FIDELITY_CONTRADICTED_CODE,
+    severity: "BLOCKER",
+    message: `the chapter says "${chapterLine}"; the source says "${sourceLine}"; claim: the Penn brothers refused to meet Franklin; judge: ${padding}`,
+    location: "ch04/example[0]/whyItMatters",
+  };
+  const other: QcIssue = { code: "B5.em_dash", severity: "BLOCKER", message: "em dash in the deep read", location: "ch04/breakdown" };
+
+  const brief = buildRepairBrief({ chapterNumber: 4, blockers: [sourceBlocker, other], advisories: [factorScores()] });
+
+  // It LEADS: the writer meets the false fact before the style mandate.
+  assert.ok(brief.indexOf("SOURCE CONTRADICTIONS") < brief.indexOf("MANDATORY FIXES"), brief);
+  assert.ok(brief.includes(sourceLine), "the source line survives verbatim");
+  assert.ok(brief.includes(chapterLine), "the chapter's own words survive verbatim");
+  assert.match(brief, /FIX THE FACT/);
+  // The generic mandate list still carries every blocker CODE, this one included.
+  assert.ok(brief.includes("B5.em_dash"), brief);
+  assert.ok(brief.split(SOURCE_FIDELITY_CONTRADICTED_CODE).length - 1 >= 2, "the source finding is also a mandatory fix");
+  // Still inside the one recorded budget for the whole brief.
+  assert.ok(brief.length <= REPAIR_BRIEF_MAX_CHARS, `brief is ${brief.length} characters`);
+  // And the wider clamp is bounded too: this message is longer than the general
+  // item clamp but shorter than the source clamp, so it is printed whole.
+  assert.ok(sourceBlocker.message.length > REPAIR_BRIEF_ITEM_MAX_CHARS);
+  assert.ok(sourceBlocker.message.length < REPAIR_BRIEF_SOURCE_ITEM_MAX_CHARS);
+});
+
+requiredTest("a brief with no source finding carries no source section", () => {
+  const brief = buildRepairBrief({
+    chapterNumber: 4,
+    blockers: [{ code: "B5.em_dash", severity: "BLOCKER", message: "em dash", location: "ch04" }],
+    advisories: [],
+  });
+  assert.equal(brief.includes("SOURCE CONTRADICTIONS"), false, brief);
 });
 
 finishV25Tests().catch((error: unknown) => {

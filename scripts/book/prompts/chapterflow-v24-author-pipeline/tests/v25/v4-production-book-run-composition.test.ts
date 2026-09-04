@@ -435,16 +435,23 @@ function compilerOutputs(fixtureRoot: string) {
 /** A schema-valid reader-experience content object (the runtime stamps the
  *  schema/reviewerRole/rubricVersion + hash bindings on top). Empty findings +
  *  SHIP keep the panel PASS so the fixture book still promotes. */
-function readerReview(questionCount: number): Record<string, unknown> {
+function readerReview(questions: ReadonlyArray<{ correctIndex: number }>): Record<string, unknown> {
   const scores: Record<string, number> = {};
   for (const factor of REVIEW_FACTORS) scores[factor] = 82;
+  const questionCount = questions.length;
   return {
     scores,
     // One derivation per question (R-133): the strict reader assembly rejects a
     // seat whose positional derivation does not cover the chapter's quiz.
+    //
+    // R-131: the derivation is adjudicated against the stored key now. This
+    // fixture is a CLEAN panel read whose whole job is to let the book promote,
+    // so its seats derive the fixture's own key — answering "a" everywhere would
+    // assert that every non-"a"-keyed question is mis-keyed, block the review,
+    // and route the run into repair.
     quizDerivation: {
-      answers: Array.from({ length: questionCount }, () => "a"),
-      mechanisms: Array.from({ length: questionCount }, (_value, index) => `the prose forces choice a in q${index + 1}`),
+      answers: questions.map((question) => "abc"[question.correctIndex]),
+      mechanisms: Array.from({ length: questionCount }, (_value, index) => `the prose settles q${index + 1}`),
       confidence: Array.from({ length: questionCount }, () => "high"),
       ambiguities: Array.from({ length: questionCount }, () => ""),
       tells: [],
@@ -497,10 +504,17 @@ class FixtureProcessSupervisor implements ProcessSupervisor {
     // judge call with a low-confidence verdict — never a confident wrong-key flag —
     // so the fixture book still promotes, without consuming the ordered pipeline
     // outputs. The judge system prompt is the reliable, count-independent marker.
-    const isQuizKeyJudge = new TextDecoder().decode(spec.stdin).includes("answer-key auditor");
+    const stdin = new TextDecoder().decode(spec.stdin);
+    const isQuizKeyJudge = stdin.includes("answer-key auditor");
+    // Fresh-qc also runs the source-fidelity judge, once per chapter source
+    // chunk. Answer it with an empty finding set - never a source blocker - so
+    // the fixture book still promotes without consuming ordered outputs.
+    const isSourceFidelityJudge = stdin.includes("source-fidelity auditor");
     const output = isQuizKeyJudge
       ? { index: 0, confidence: "low", correctText: "scripted judge choice", reason: "fixture judge verdict" }
-      : this.#outputs.shift();
+      : isSourceFidelityJudge
+        ? { findings: [] }
+        : this.#outputs.shift();
     if (output === undefined) throw new Error("fixture process received an unexpected model call");
     this.specs.push(spec);
     return {
@@ -539,9 +553,9 @@ requiredTest("production composition reaches isolated local promotion and exact 
     // Canonical review = semantic panel: baseline model review first, then the
     // IMP-20 blind reader panel — three reader-experience seats per chapter.
     { outcome: "PASS", issues: [] },
-    readerReview(compilerFixture.learning.quiz.questions.length),
-    readerReview(compilerFixture.learning.quiz.questions.length),
-    readerReview(compilerFixture.learning.quiz.questions.length),
+    readerReview(compilerFixture.learning.quiz.questions),
+    readerReview(compilerFixture.learning.quiz.questions),
+    readerReview(compilerFixture.learning.quiz.questions),
     // R-080 — the whole-book catalog-rubric panel, after the fresh-qc PASS and
     // before promotion: three readers over the one-chapter fixture book.
     catalogRubricReader(1),
@@ -611,32 +625,40 @@ requiredTest("production composition reaches isolated local promotion and exact 
     advisoryApplied: false,
   });
 
-  const judgeSpecCount = (specs: readonly ProcessSpec[]): number =>
-    specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes("answer-key auditor")).length;
+  const specCount = (specs: readonly ProcessSpec[], marker: string): number =>
+    specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes(marker)).length;
   const rubricSpecCount = (specs: readonly ProcessSpec[]): number =>
-    specs.filter((spec) => new TextDecoder().decode(spec.stdin).includes("on a content-quality panel scoring")).length;
-  const judgeInitial = judgeSpecCount(supervisor.specs);
+    specCount(specs, "on a content-quality panel scoring");
+  const judgeInitial = specCount(supervisor.specs, "answer-key auditor");
   assert.ok(judgeInitial >= 1, "at least one quiz-key judge task must cross the process boundary during live fresh-qc");
+  // Fresh-qc runs a SECOND judge: one source-fidelity call per chapter source
+  // chunk. This fixture book has one chapter and no source text, so its
+  // fidelity judgment is a single model-memory call.
+  const fidelityInitial = specCount(supervisor.specs, "source-fidelity auditor");
+  assert.equal(fidelityInitial, 1, "the source-fidelity judge crosses the process boundary too");
   assert.equal(
     supervisor.specs.length,
-    14 + judgeInitial,
-    // MEASURED, not carried over, on the merge of this branch into main@73876ddf8:
-    // every spec this fixture pushes across the process boundary was dumped and
-    // read back by role. 23 specs total = 14 + judgeInitial(9), split as
+    14 + judgeInitial + fidelityInitial,
+    // MEASURED on THIS merge (this branch + main@d69f3f686, #543's whole-chapter
+    // editor), by re-running the case — not carried over from either side. The
+    // fixed part is 14, both PRs' additions counted, neither replacing the other:
     //   0  bibliography researcher          | the 10 main already had before
-    //   1  chapter-source researcher        | either PR: 2 research + 4 compiler
-    //   2  SummaryPack writer               | pack writers + 1 baseline review
-    //   3  ExamplePack writer               | + 3 reader-panel seats
+    //   1  chapter-source researcher        | #542/#543/this PR: 2 research
+    //   2  SummaryPack writer               | + 4 pack writers + 1 baseline
+    //   3  ExamplePack writer               | review + 3 reader-panel seats
     //   4  LearningPack writer              |
     //   5  ActionPack writer                |
     //   7  baseline canonical review        |
     //   8-10 three reader-panel seats       |
-    //   6  Chapter Editor  ......... +1, this branch (one call per chapter)
+    //   6  Chapter Editor  ......... +1, #543 (one call per chapter)
     //   11-13 catalog-rubric readers  +3, #542 (three whole-book readers)
-    //   14-22 quiz-key judge .......  judgeInitial = 9, one per quiz question
-    // 10 + 1 + 3 = 14. Both PRs' additions are counted; neither replaced the other.
+    // and the two variable parts are named rather than numbered: judgeInitial,
+    // one answer-key call per quiz question, and fidelityInitial, one
+    // source-fidelity call per chapter source chunk (1 here — one chapter, no
+    // source text, so a single model-memory call).
     "research, compiler, the whole-chapter editor, baseline review, three-seat reader panel,"
     + " one fresh-qc quiz-key judge call per quiz question,"
+    + " one source-fidelity judge call per chapter source chunk,"
     + " plus the three whole-book catalog-rubric readers",
   );
   assert.equal(
@@ -726,15 +748,20 @@ requiredTest("production composition reaches isolated local promotion and exact 
   assert.deepEqual(resumed.value.candidate, result.value.candidate);
   assert.equal(resumed.value.bookRevision, result.value.bookRevision);
   assert.equal(resumed.value.readback, "VERIFIED");
+  // REPLAY WITHOUT SPEND. Both fresh-qc judges are behind the committed round,
+  // so a resume re-reads the round and issues no model call at all — the spec
+  // count is byte-for-byte what it was before the resume, for the fidelity judge
+  // exactly as for the answer-key judge.
+  assert.equal(specCount(supervisor.specs, "source-fidelity auditor"), fidelityInitial, "the source-fidelity judge must not re-run on resume");
   assert.equal(
     supervisor.specs.length,
-    14 + judgeInitial,
+    14 + judgeInitial + fidelityInitial,
     // MEASURED: identical to the fresh count above — a resume adds no new specs.
     "resume reuses all settled attempts including the durable chapter-edit cache, the durable fresh-qc round"
     + " and the durable rubric record — neither the whole-chapter editor, the non-deterministic quiz-key judge,"
-    + " nor the whole-book rubric panel re-runs",
+    + " the source-fidelity judge nor the whole-book rubric panel re-runs",
   );
-  assert.equal(judgeSpecCount(supervisor.specs), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");
+  assert.equal(specCount(supervisor.specs, "answer-key auditor"), judgeInitial, "the fresh-qc quiz-key judge runs once and is reused from the durable round on resume");
   assert.equal(rubricSpecCount(supervisor.specs), 3, "R-080: a resume REPLAYS the durable rubric record and spends nothing");
   assert.equal(resumed.value.rubric?.replayed, true);
   assert.equal(resumed.value.rubric?.composite, 84);

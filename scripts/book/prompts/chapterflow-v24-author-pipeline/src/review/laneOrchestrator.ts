@@ -103,6 +103,7 @@ import {
   readerExperienceDocHash,
 } from "./readerExperienceReview.js";
 import { computeReaderComposite } from "./aggregateChapterReview.js";
+import type { PanelSeatDerivation } from "./panelQuizAdjudication.js";
 import { renderChapterReaderDocPhase1 } from "./renderReaderDoc.js";
 import type { ChapterV21 } from "../types.js";
 import {
@@ -192,6 +193,18 @@ export type ReaderPanelReviewV1 = {
   readonly blockingFindings: readonly PanelFindingV1[];
   readonly advisoryFindings: readonly PanelFindingV1[];
   readonly escalationSignals: readonly PanelFindingV1[];
+  /**
+   * EVERY SEAT'S BLIND QUIZ DERIVATION, in seat order (R-131).
+   *
+   * The reader prompt makes derivation the headline task and the reader
+   * document physically lacks the key, so these answers are the only evidence
+   * in the pipeline about the key that was produced by someone who could not
+   * see it. Before this field the panel computed one per seat and copied none
+   * of them out, so the signal was minted three times per chapter and thrown
+   * away three times per chapter. `adjudicatePanelQuizDerivations` is what
+   * reads it.
+   */
+  readonly quizDerivations: readonly PanelSeatDerivation[];
 };
 
 function pad(n: number): string {
@@ -429,6 +442,11 @@ export function aggregateReaderPanel(
     blockingFindings,
     advisoryFindings,
     escalationSignals,
+    quizDerivations: seats.map(({ seatId, review }) => ({
+      seatId,
+      answers: review.quizDerivation.answers,
+      confidence: review.quizDerivation.confidence,
+    })),
   };
 }
 
