@@ -28,7 +28,7 @@ import { test } from "./harness.js";
 import { FRANKLIN_SLICE_PATH, PIPELINE_DIR } from "./helpers.js";
 import { buildSectionTaskMarkdown, sectionContract, sectionDoNotLines } from "../src/sections/sectionTasks.js";
 import { loadBannedPhrases } from "../src/critics/shared.js";
-import { CHAPTER_PROSE_CARD_BUDGET, DERIVABILITY_ENTRY_MAX_CHARS, DERIVABILITY_LIST_BUDGET, DERIVABILITY_LIST_MAX_ENTRIES, packetProseDerivability } from "../src/sections/chapterProse.js";
+import { CHAPTER_PROSE_CARD_BUDGET, DERIVABILITY_ENTRY_MAX_CHARS, DERIVABILITY_LIST_BUDGET, DERIVABILITY_LIST_MAX_ENTRIES, DERIVABILITY_STANDDOWN_BUDGET, packetProseDerivability } from "../src/sections/chapterProse.js";
 import { bookRuleChapters, loadBookScars, validateBookScars } from "../src/lib/bookScars.js";
 import { voiceCard } from "../src/lib/voiceCard.js";
 import { compileSourcePacketFromSidecar } from "../src/compiler/sourcePacket.js";
@@ -359,13 +359,17 @@ const PROSE_BLOCK_SCAFFOLD_ALLOWANCE = 1200;
  * deterministic diff of the packet against the prose, so they get their own measured
  * term instead of being hidden inside the scaffold allowance.
  *
- * MEASURED on this file's two fixtures, both with the money-book packet:
- *   aim-band prose (the test below)            618 chars
- *   runaway 126k-char prose (the clamp test)   745 chars
- * Pinned at 1,000 — above the larger measurement with room for a packet whose
- * specifics run longer, and far below the HARD ceiling the two constants in
- * chapterProse.ts impose for ANY packet (DERIVABILITY_LIST_BUDGET), which the
- * pathological-packet test further down pins directly.
+ * MEASURED (review round 2 — the earlier 618/745 figures were not the quantity this
+ * allowance guards) as the growth of the GUARDED DELTA itself, origin/main -> this
+ * head, on this file's two fixtures, both with the money-book packet:
+ *   aim-band prose (the test below)            7,290 -> 8,236  (+946)
+ *   runaway 126k-char prose (the clamp test)   8,977 -> 9,923  (+946)
+ * Identical on both, as it must be: the two fixtures share one packet, so the computed
+ * blocks and the marked preflight are the same bytes in each. Pinned at 1,000 — just
+ * above the measurement, so further growth of these blocks fails HERE and is
+ * re-measured rather than absorbed — and far below the HARD ceiling the constants in
+ * chapterProse.ts impose for ANY packet (DERIVABILITY_LIST_BUDGET), which the two
+ * pathological-packet tests further down pin directly.
  */
 const DERIVABILITY_BLOCK_ALLOWANCE = 1_000;
 
@@ -495,6 +499,57 @@ test("a pathological packet cannot blow the learning card: the derivability list
   // An over-long entry is DROPPED, never cut: a truncated "specific" is a string a
   // writer might paste and a gate would then reject on a different substring.
   assert.doesNotMatch(lists, /a telegraphic research note that runs far past/, "an over-long specific is omitted, not truncated into the lists");
+});
+
+// Review round 2 — THE SAME BOUND ON THE FOURTH BLOCK. The test above overflows the
+// three bullet lists, but every one of its bulk anchors has a specific ON THE PAGE, so
+// none of them stands down and the stand-down note stayed one line long: the note was
+// unbounded (every id joined, no entry cap, no per-id clip, no overflow line) and no
+// test could see it. Measured before the fix, with 200 anchors whose specifics are all
+// off the page: 201 stand-down ids, a 15,046-char note, a 23,458-char with-prose delta
+// against an 11,088-char list ceiling.
+test("a pathological packet whose anchors all STAND DOWN cannot blow the learning card: the stand-down note is capped and long ids are clipped", () => {
+  const bp = realisticFixture();
+  const LONG_ID_TAIL = "x".repeat(80);
+  const anchors = Array.from({ length: 200 }, (_, i) => ({
+    id: `ch01.case.standdown_${i}_${LONG_ID_TAIL}`,
+    kind: "named_example" as const,
+    label: `stand-down case ${i}`,
+    supportsClaimTypes: ["quiz_prompt", "quiz_explanation", "quiz_key_evidence", "review_card"],
+    // NOTHING here reaches the page, so SEC120 stands down for every one of them
+    // (Task 11an) and they land in the note instead of in the three lists.
+    hardSpecifics: [`an absent research note ${i}`, `${1500 + i} ledger entry ${i}`],
+  }));
+  const packet = { ...bp.packet, allowedAnchors: [...bp.packet.allowedAnchors, ...anchors] } as unknown as SourcePacketV1;
+  const args = { bookId: "money-book", kind: "learning-pack" as const, blueprint: bp.blueprint, sourcePacket: packet, outputPath: "/tmp/learning-pack.json", context: { voiceCard: voiceCard("money-book"), bookScars: loadBookScars("money-book") } };
+  const prose = worstCaseChapterProse();
+
+  const split = packetProseDerivability(packet, prose);
+  assert.ok(split.standDownIds.size > DERIVABILITY_LIST_MAX_ENTRIES, "the fixture must overflow the stand-down cap, or this bounds nothing");
+
+  const withProse = buildSectionTaskMarkdown({ ...args, chapterProse: prose });
+  const bare = buildSectionTaskMarkdown(args);
+  const delta = withProse.length - bare.length;
+  assert.ok(
+    delta <= CHAPTER_PROSE_CARD_BUDGET + PROSE_BLOCK_SCAFFOLD_ALLOWANCE + DERIVABILITY_LIST_BUDGET,
+    `a 200-stand-down packet added ${delta} chars against a ${CHAPTER_PROSE_CARD_BUDGET} prose clamp + ${PROSE_BLOCK_SCAFFOLD_ALLOWANCE} scaffold + ${DERIVABILITY_LIST_BUDGET} list ceiling`,
+  );
+
+  // Measured on the note itself, not on the whole card: the card also embeds the packet
+  // JSON these ids came from, so an unscoped match would pass on the wrong text.
+  const start = withProse.indexOf("SEC120 STANDS DOWN");
+  assert.ok(start > 0, "the stand-down note must render");
+  const note = withProse.slice(start, withProse.indexOf("\n\n", start));
+  const rendered = note.slice(note.indexOf(": ") + 2, note.indexOf(". A slot dealt"));
+  assert.ok(
+    rendered.length <= DERIVABILITY_STANDDOWN_BUDGET,
+    `the stand-down list rendered ${rendered.length} chars against a ${DERIVABILITY_STANDDOWN_BUDGET} ceiling`,
+  );
+  assert.match(rendered, /…and \d+ more/, "an overflowing stand-down list says what it did not print");
+  assert.doesNotMatch(rendered, /x{40}/, "a runaway anchor id is clipped, exactly like a list entry's source label");
+  // MINOR 2: the carve exempts the SPECIFICS only — SEC120's year rule has no
+  // stand-down, and a card that implies otherwise sends the writer back into the block.
+  assert.match(note, /year rule has NO stand-down/, "the note must not imply a stood-down case's year figures are exempt too");
 });
 
 // ── R-002 — AN HONEST BUDGET, measured on what production actually sends ──────

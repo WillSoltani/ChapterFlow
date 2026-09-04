@@ -17,7 +17,7 @@ import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
 import { assembleChapterV21OrThrow } from "../src/assembler.js";
 import { buildSectionTaskMarkdown } from "../src/sections/sectionTasks.js";
-import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage, packetProseDerivability } from "../src/sections/chapterProse.js";
+import { CHAPTER_PROSE_CARD_CAPS, clampProsePassage, normalizeDerivabilityText, packetProseDerivability } from "../src/sections/chapterProse.js";
 import { memorableLineScore, selectMemorableLinesDeterministic } from "../src/optimizers/memorableLines.js";
 import { countSyllables } from "../src/critics/readingLevel.js";
 import { C7_BANNED_NAMES } from "../src/critics/finalGate.js";
@@ -573,25 +573,52 @@ test("an unprinted case NAME is advisory and is never filed under SEC120's autho
   assert.match(names, /"Assembly of Pennsylvania"/);
   // The SEC120 claim stays on the block that can back it.
   const gated = card.slice(card.indexOf("NOT DERIVABLE FROM THE PROSE"), card.indexOf("\n\n", card.indexOf("NOT DERIVABLE FROM THE PROSE")));
-  assert.match(gated, /SEC120 rejects the draft that uses any of them/);
+  // Round 2: the gate-backed block claims only what SEC120 actually checks — a unit
+  // that CITES the anchor, under a matching claim class — never "the draft".
+  assert.match(gated, /SEC120 rejects any unit that cites the listed anchor and uses the string/);
+  assert.doesNotMatch(gated, /rejects the draft that uses any of them/, "the old, wider claim must not come back");
   assert.doesNotMatch(gated, /Assembly of Pennsylvania/);
 });
 
-test("a year-band figure the prose never states is listed as underivable, and one it states is not (Task 11ao)", () => {
+test("a year the prose never states is listed through the specific that carries it, and the ALLOWED list never promises a figure it cannot check (Task 11ao)", () => {
   const fx = compileFixture();
-  const yearAnchor = { ...BOND_ANCHOR, id: "ch01.case.years", hardSpecifics: ["Dr. Thomas Bond", "the 1555 register"] };
-  // The sweep is over the PACKET's own figures — a year the prose states but the
-  // packet never carries is not a packet specific and has nothing to classify.
+  // Round 2: SEC120's year rule (rule 2) is implemented ONCE, in sectionGate
+  // (PROSE_YEAR_RE), and that gate file is frozen — the split deliberately does not
+  // carry a second copy of the band, so it classifies a year the way it classifies any
+  // other string: through the specific that carries it.
+  // "the match in 1751" is on the page LITERALLY; "asked match 1751" is on it only
+  // through the clipped-phrase folding (the words in order, the figure last).
+  const yearAnchor = { ...BOND_ANCHOR, id: "ch01.case.years", hardSpecifics: ["Dr. Thomas Bond", "the 1555 register", "the match in 1751", "asked match 1751"] };
   const packet = {
     ...fx.packet,
     allowedAnchors: [...fx.packet.allowedAnchors, yearAnchor as unknown as SourcePacketV1["allowedAnchors"][number]],
-    allowedNumbers: [...fx.packet.allowedNumbers, "1751"],
   };
-  const split = packetProseDerivability(packet, bondProse(fx));
-  const years = (list: readonly { value: string }[]) => list.map((e) => e.value);
-  assert.ok(years(split.notDerivable).includes("1555"), "1555 appears in the packet and never in the prose");
-  assert.equal(years(split.notDerivable).includes("1751"), false, "1751 is on the page");
-  assert.ok(years(split.derivable).includes("1751"), "a year the prose states is offered as usable");
+  const prose = bondProse(fx);
+  const split = packetProseDerivability(packet, prose);
+  const values = (list: readonly { value: string }[]) => list.map((e) => e.value);
+  assert.ok(values(split.notDerivable).includes("the 1555 register"), "1555 is in the packet and never in the prose");
+  assert.equal(values(split.derivable).includes("the 1555 register"), false, "and it is never offered back as usable");
+
+  // THE OFFER INVARIANT. This module cannot evaluate the year rule, so it never puts a
+  // figure it has not seen literally on the page into the list a writer reads as "safe,
+  // use verbatim": every digit-bearing ALLOWED entry appears literally in the prose.
+  assert.ok(values(split.derivable).includes("the match in 1751"), "a figure the prose literally shows IS offered — or this invariant is vacuous");
+  assert.equal(values(split.derivable).includes("asked match 1751"), false, "a figure reached only through the clipped-phrase folding is not offered as safe");
+  assert.equal(values(split.notDerivable).includes("asked match 1751"), false, "…and it is not forbidden either: SEC120 accepts it under rule 1");
+  for (const entry of split.derivable) {
+    if (!/\d/.test(entry.value)) continue;
+    assert.ok(
+      split.normalizedProse.includes(normalizeDerivabilityText(entry.value)),
+      `the ALLOWED list offers "${entry.value}", which carries a figure the prose does not literally show`,
+    );
+  }
+
+  // The card says so, rather than leaving the writer to infer it from an absence.
+  const card = buildSectionTaskMarkdown({
+    bookId: "money-book", kind: "learning-pack", blueprint: fx.blueprint, sourcePacket: packet,
+    outputPath: "/tmp/learning-pack.json", context: { voiceCard: null, bookScars: null }, chapterProse: prose,
+  });
+  assert.match(card, /SEC120 also checks year figures, unconditionally/, "the card states the rule it does not enumerate");
 });
 
 test("the SEC120 retry card states the rule and the ALLOWED specifics, not only the offending ones (Task 11ao)", () => {

@@ -6,6 +6,7 @@ import {
   clampProsePassage,
   packetProseDerivability,
   renderProseSpecificList,
+  renderProseStandDownIds,
   specificDerivable,
   type ChapterProseSource,
   type ProseDerivability,
@@ -693,16 +694,16 @@ function derivabilitySection(derivability?: ProseDerivability | null): string {
   if (!derivability?.available) return "";
   const blocks: string[] = [];
   if (derivability.derivable.length > 0) {
-    blocks.push(`SPECIFICS THE PROSE SUPPORTS — computed from the prose above with the validator's own matcher (case, punctuation, digit separators and number words all folded), so this is not a judgement call. Build the quiz and the cards out of these:\n${renderProseSpecificList(derivability.derivable)}`);
+    blocks.push(`SPECIFICS THE PROSE SUPPORTS — computed from the prose above with the validator's own matcher (case, punctuation, digit separators and number words all folded), so this is not a judgement call. A specific whose figures the prose does not itself show is left off it — SEC120 also checks year figures, unconditionally. Build the quiz and the cards out of these:\n${renderProseSpecificList(derivability.derivable)}`);
   }
   if (derivability.notDerivable.length > 0) {
-    blocks.push(`NOT DERIVABLE FROM THE PROSE — DO NOT USE. The SOURCE PACKET below carries every string here, but no testable tier above shows it, so a reader of THIS chapter cannot answer a stem, a choice, an explanation or a card that names one — naming it in a distractor counts too. SEC120 rejects the draft that uses any of them; teach the same material through the supported list instead:\n${renderProseSpecificList(derivability.notDerivable)}`);
+    blocks.push(`NOT DERIVABLE FROM THE PROSE — DO NOT USE. The SOURCE PACKET below carries every string here, but no testable tier above shows it, so a reader of THIS chapter cannot answer a stem, a choice, an explanation or a card that names one — naming it in a distractor counts too. SEC120 rejects any unit that cites the listed anchor and uses the string; the reader cannot answer it either way, so teach the same material through the supported list instead:\n${renderProseSpecificList(derivability.notDerivable)}`);
   }
   if (derivability.unprintedNames.length > 0) {
     blocks.push(`NAMES THE PROSE NEVER PRINTS — no validator checks these, and that is the point: a reader still cannot recognise a person, group or place this chapter never named. Refer to the case the way the prose does:\n${renderProseSpecificList(derivability.unprintedNames)}`);
   }
   if (derivability.standDownIds.size > 0) {
-    blocks.push(`SEC120 STANDS DOWN for these cases, because the prose shows NONE of their specifics: ${[...derivability.standDownIds].map((id) => `\`${id}\``).join(", ")}. A slot dealt one of them may still use its specifics verbatim — the anchor-specifics gate compels one and nothing else would satisfy it — but the chapter's own prose does not back them, so keep such a unit's claim to what the prose does support.`);
+    blocks.push(`SEC120 STANDS DOWN for these cases, because the prose shows NONE of their specifics: ${renderProseStandDownIds(derivability.standDownIds)}. A slot dealt one of them may still use its SPECIFICS verbatim — the anchor-specifics gate compels one and nothing else would satisfy it — but only those strings are exempt: SEC120's year rule has NO stand-down, so a four-digit year the prose never states still blocks, even inside a stood-down case's own specific. The chapter's prose does not back this material, so keep such a unit's claim to what the prose does support.`);
   }
   if (blocks.length === 0) return "";
   return `\n\n${blocks.join("\n\n")}`;
