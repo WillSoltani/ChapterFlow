@@ -1771,6 +1771,10 @@ export class BookRunApplicationService {
     /** Resolved ONCE per run by run(), so a mid-run env change cannot move the
      *  budget under an in-flight walk. */
     rubricBudget: number,
+    /** The bar THIS run gates against, resolved with the budgets above. It is
+     *  stamped onto the durable record so the release can state the bar the gate
+     *  enforced instead of re-resolving one from its own environment. */
+    rubricBar: number,
   ): Promise<Result<Readonly<{ record: CatalogRubricRecordV1; replayed: boolean }>>> {
     const candidateId = candidate.manifest.candidateId;
     const baseRunId = derivedId("rubric-run", `${candidateId}:${candidate.manifest.manifestDigest}`);
@@ -1939,7 +1943,13 @@ export class BookRunApplicationService {
     // durable record FIRST, finish the run COMPLETED second. If the write fails
     // the run stays RUNNING and a resume re-enters cleanly; if the process dies
     // after the write, the resume finds the record and settles the run.
-    const written = await this.#dependencies.rubricStore.putRecord(input.bookId, scored.value);
+    // The panel measures; the RUN owns the bar. Stamping it here (rather than
+    // asking the panel for it) keeps the instrument bar-free while giving the
+    // record the provenance the release-side evidence reads.
+    const written = await this.#dependencies.rubricStore.putRecord(
+      input.bookId,
+      { ...scored.value, gateBar: rubricBar },
+    );
     if (!written.ok) return failed("BOOK_RUN_RUBRIC_UNAVAILABLE", `${written.error.code}:${written.error.message}`);
     const finishedAt = safeNow(this.#dependencies.clock);
     if (finishedAt.ok) {
@@ -2831,7 +2841,7 @@ export class BookRunApplicationService {
     // panel is still the floor (R-144, R-147). This is the ceiling.
     const rubricStarted = await this.#event(runId, input.bookId, "rubric", "STARTED", `bar=${rubricBar}`, identity(candidate));
     if (!rubricStarted.ok) return rubricStarted;
-    const scored = await this.#runCatalogRubric(input, candidate, rubricBudget);
+    const scored = await this.#runCatalogRubric(input, candidate, rubricBudget, rubricBar);
     if (!scored.ok) {
       await this.#event(runId, input.bookId, "rubric", "FAILED", scored.error.message, identity(candidate));
       return scored;

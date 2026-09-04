@@ -11,14 +11,42 @@ import assert from "node:assert/strict";
 
 import {
   buildCandidateReleaseVerdict,
+  buildReleaseRubricEvidence,
   chapterNumberFromLocation,
   countIssuesBySeverity,
   parsePanelChapterComposites,
 } from "../../src/release/candidateReleaseVerdict.js";
+import { REVIEW_FACTORS } from "../../src/artifacts/artifactTypes.js";
+import { CATALOG_RUBRIC_INSTRUMENT_VERSION } from "../../src/review/catalogRubric.js";
+import type { CatalogRubricRecordV1 } from "../../src/review/catalogRubricStore.js";
+import { unanimousReaders } from "./catalogRubricFakes.js";
 import { READER_PANEL_FACTOR_SCORES_CODE } from "../../src/review/readerPanelIssueCodes.js";
 import { validCandidateReleaseVerdict } from "../../src/productionManifest.js";
 import type { ReviewIssue } from "../../src/review/reviewTypes.js";
 import { finishV25Tests, requiredTest } from "./harness.js";
+
+/** The ten factor medians a rubric block must carry — the REVIEW_WEIGHTS keys,
+ *  no more and no fewer. */
+function factorMedians(base = 84): Record<string, number> {
+  return Object.fromEntries(REVIEW_FACTORS.map((factor) => [factor, base]));
+}
+
+function rubricRecord(overrides: Partial<CatalogRubricRecordV1> = {}): CatalogRubricRecordV1 {
+  return {
+    schemaVersion: "1",
+    instrumentVersion: CATALOG_RUBRIC_INSTRUMENT_VERSION,
+    bookId: "verdict-book",
+    candidate: { candidateId: "candidate-1", manifestDigest: "a".repeat(64) },
+    title: "Verdict Book",
+    author: "Fixture Author",
+    totalChapters: 3,
+    sampledChapterNumbers: [1, 2, 3],
+    documentSha256: "0".repeat(64),
+    readers: unanimousReaders(84),
+    completedAt: "2026-09-02T01:00:00.000Z",
+    ...overrides,
+  };
+}
 
 function factorScores(chapter: string, composite: number): ReviewIssue {
   return {
@@ -96,7 +124,7 @@ requiredTest("a rubric-bearing verdict validates, and a malformed one is refused
     bar: 80,
     factorFloor: 70,
     highQuality: false,
-    factorMedians: { retention: 84, quizzes: 84 },
+    factorMedians: factorMedians(84),
     sampledChapterNumbers: [1, 2, 3],
     totalChapters: 3,
     readerCount: 3,
@@ -121,10 +149,63 @@ requiredTest("a rubric-bearing verdict validates, and a malformed one is refused
   assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, bar: 80.5 } }), false);
   assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, sampledChapterNumbers: [] } }), false);
   assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: { retention: "84" } } }), false);
+  // R-254 minor 2 — factorMedians is the TEN-factor ruler or it is not evidence.
+  // `{}` used to validate, so a verdict block could claim a composite while
+  // recording no factor at all.
+  assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: {} } }), false);
+  const { limits: _limits, ...missingFactor } = factorMedians(84);
+  assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: missingFactor } }), false);
+  assert.equal(
+    validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: { ...factorMedians(84), vibes: 84 } } }),
+    false,
+    "a factor the rubric does not weigh is not a factor median",
+  );
+  assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: factorMedians(101) } }), false);
+  assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: factorMedians(-1) } }), false);
+  assert.equal(
+    validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: { ...factorMedians(84), limits: Number.NaN } } }),
+    false,
+  );
+  assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: { ...rubric, factorMedians: factorMedians(0) } }), true);
   // An unknown extra key is refused: the block is a fixed contract, not a bag.
   assert.equal(validCandidateReleaseVerdict({ ...verdict, extra: 1 }), false);
   const { readerCount: _readerCount, ...missing } = rubric;
   assert.equal(validCandidateReleaseVerdict({ ...verdict, rubric: missing }), false);
+});
+
+requiredTest("the release evidence records the bar the GATE enforced, never the release process's own env", () => {
+  const previous = process.env.CHAPTERFLOW_RUBRIC_BAR;
+  const review = { outcome: "PASS" as const, issues: [] };
+  const qcRound = { outcome: "PASS" as const, issues: [] };
+  try {
+    // The release route runs in its OWN environment, long after the book run.
+    // Resolving the bar here (env, else the compiled 80) recorded a sidecar
+    // claiming bar 80 for a book the gate actually enforced at 90.
+    process.env.CHAPTERFLOW_RUBRIC_BAR = "80";
+    const gated = buildReleaseRubricEvidence(rubricRecord({ gateBar: 90 }));
+    assert.equal(gated.bar, 90, "the bar in the sidecar is the bar the gate ran against");
+    assert.equal(gated.composite, 84);
+    assert.equal(gated.factorFloor, 70);
+    assert.equal(gated.readerCount, 3);
+    assert.equal(gated.gate, "PASS");
+    assert.deepEqual({ ...gated.factorMedians }, factorMedians(84));
+    assert.equal(validCandidateReleaseVerdict(buildCandidateReleaseVerdict({ review, qcRound, rubric: gated })), true);
+
+    // A record written before the bar was recorded says UNKNOWN. Inventing the
+    // default here would be a fabricated measurement wearing the shape of one.
+    const legacy = buildReleaseRubricEvidence(rubricRecord());
+    assert.equal(legacy.bar, null, "an unrecorded bar is unknown, and the compiled default is not evidence");
+    assert.equal(legacy.composite, 84);
+    assert.equal(validCandidateReleaseVerdict(buildCandidateReleaseVerdict({ review, qcRound, rubric: legacy })), true);
+
+    // Unknown is the ONLY non-integer the block accepts.
+    const unknown = buildCandidateReleaseVerdict({ review, qcRound, rubric: legacy });
+    assert.equal(validCandidateReleaseVerdict({ ...unknown, rubric: { ...legacy, bar: 80.5 } }), false);
+    assert.equal(validCandidateReleaseVerdict({ ...unknown, rubric: { ...legacy, bar: "unknown" } }), false);
+  } finally {
+    if (previous === undefined) delete process.env.CHAPTERFLOW_RUBRIC_BAR;
+    else process.env.CHAPTERFLOW_RUBRIC_BAR = previous;
+  }
 });
 
 finishV25Tests().catch((error: unknown) => {

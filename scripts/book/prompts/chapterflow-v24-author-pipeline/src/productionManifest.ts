@@ -1,4 +1,5 @@
 import type { CandidateReleaseVerdict } from "./release/candidateReleaseVerdict.js";
+import { REVIEW_FACTORS } from "./artifacts/artifactTypes.js";
 import { existsSync, readFileSync } from "fs";
 import { basename, relative, resolve, sep } from "path";
 
@@ -1412,10 +1413,24 @@ export function validCandidateReleaseVerdict(value: unknown): boolean {
   if (!isString(rubric.tier) || rubric.tier.length === 0) return false;
   if (rubric.gate !== "PASS" && rubric.gate !== "FAIL" && rubric.gate !== "SPLIT") return false;
   if (rubric.churn !== "LOW" && rubric.churn !== "MED" && rubric.churn !== "HIGH") return false;
-  if (!Number.isSafeInteger(rubric.bar) || !Number.isSafeInteger(rubric.factorFloor)) return false;
+  // `null` is the ONLY non-integer bar: it means the durable rubric record
+  // predates the recorded gate bar, so the release states "unknown" instead of
+  // inventing the compiled default (see ReleaseRubricEvidence.bar).
+  if (rubric.bar !== null && !Number.isSafeInteger(rubric.bar)) return false;
+  if (!Number.isSafeInteger(rubric.factorFloor)) return false;
   if (typeof rubric.highQuality !== "boolean") return false;
+  // The factor medians are the TEN-factor ruler or they are not evidence. `{}`
+  // used to validate, so a block could state a weighted composite while
+  // recording no factor behind it — and a missing factor is exactly the one a
+  // reader would want to look up. Exactly the REVIEW_WEIGHTS keys (REVIEW_FACTORS
+  // is asserted to be that key set at load), each a finite 0-100 score.
   if (!isObject(rubric.factorMedians)) return false;
-  if (Object.values(rubric.factorMedians).some((score) => typeof score !== "number" || !Number.isFinite(score))) return false;
+  const medianKeys = Object.keys(rubric.factorMedians);
+  if (medianKeys.length !== REVIEW_FACTORS.length) return false;
+  for (const factor of REVIEW_FACTORS) {
+    const score = (rubric.factorMedians as Record<string, unknown>)[factor];
+    if (typeof score !== "number" || !Number.isFinite(score) || score < 0 || score > 100) return false;
+  }
   if (!Array.isArray(rubric.sampledChapterNumbers) || rubric.sampledChapterNumbers.length === 0) return false;
   if (rubric.sampledChapterNumbers.some((number) => !Number.isSafeInteger(number) || (number as number) < 1)) return false;
   if (!Number.isSafeInteger(rubric.totalChapters) || (rubric.totalChapters as number) < 1) return false;

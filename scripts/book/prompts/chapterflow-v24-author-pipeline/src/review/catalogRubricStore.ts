@@ -8,13 +8,17 @@
  * a COMPLETED run with nothing behind it. A resume that finds a record replays
  * it and spends nothing.
  *
- * WHAT IS STORED, AND WHAT IS NOT. The record carries the three READER BLOCKS
- * and the identity they were produced against — never the aggregate, never the
- * verdict, never the bar. Medians, composite, tier and badge are recomputed
- * from the stored readers on every read (`aggregateCatalogRubric`), so a stored
+ * WHAT IS STORED, AND WHAT IS NOT. The record carries the three READER BLOCKS,
+ * the identity they were produced against and the bar the writing run enforced
+ * — never the aggregate and never the verdict. Medians, composite, tier and
+ * badge are recomputed from the stored readers on every read
+ * (`aggregateCatalogRubric`), so a stored
  * aggregate can never drift from the readers it claims to summarize, and the
  * BAR stays an operator dial: raising it re-decides a stored panel for free and
  * fails closed, instead of quietly blessing a book scored against an older bar.
+ * `gateBar` is PROVENANCE, not a verdict — it is what the run that wrote the
+ * record gated against, so the release can state that number instead of
+ * re-resolving one out of its own environment (see the field's own note).
  *
  * CREATE-ONCE. A record is written with a link-based atomic create and is never
  * replaced. A second write of the same bytes is idempotent; a second write of
@@ -37,6 +41,8 @@ import {
 import type { CandidateIdentity, Result, UtcIso } from "../contracts/v4Core.js";
 import { REVIEW_FACTORS, type ReviewFactor } from "../artifacts/artifactTypes.js";
 import {
+  CATALOG_RUBRIC_BAR_MAX,
+  CATALOG_RUBRIC_BAR_MIN,
   CATALOG_RUBRIC_INSTRUMENT_VERSION,
   CATALOG_RUBRIC_READERS,
   CATALOG_RUBRIC_TEXTURE_AXES,
@@ -62,6 +68,19 @@ export type CatalogRubricRecordV1 = {
    *  later reader can tell whether two records saw the same page. */
   readonly documentSha256: string;
   readonly readers: readonly CatalogRubricReaderResultV1[];
+  /**
+   * The promotion bar the book run that WROTE this record enforced against this
+   * panel (`--rubric-bar` / `CHAPTERFLOW_RUBRIC_BAR`, else the compiled default).
+   *
+   * The aggregate is still recomputed on every read and the bar is still an
+   * operator dial — this is not a stored verdict. It exists because the RELEASE
+   * runs later, in its own environment: with no recorded bar the release-side
+   * evidence could only re-resolve one from its own env, so a run gated at 90
+   * shipped a sidecar recording `bar: 80`. OPTIONAL, because records written
+   * before this field exist: a record without it states no bar, and the release
+   * says the bar is unknown rather than inventing the default.
+   */
+  readonly gateBar?: number;
   readonly completedAt: UtcIso;
 };
 
@@ -94,6 +113,16 @@ function exactKeys(value: Record<string, unknown>, expected: readonly string[]):
   const actual = Object.keys(value).sort();
   const wanted = [...expected].sort();
   return actual.length === wanted.length && actual.every((key, index) => key === wanted[index]);
+}
+
+/** Every required key present, and nothing outside required ∪ optional. */
+function keysWithin(
+  value: Record<string, unknown>,
+  required: readonly string[],
+  optional: readonly string[],
+): boolean {
+  const allowed = new Set([...required, ...optional]);
+  return required.every((key) => key in value) && Object.keys(value).every((key) => allowed.has(key));
 }
 
 function isCanonicalUtc(value: unknown): value is UtcIso {
@@ -178,6 +207,8 @@ const RECORD_KEYS: readonly string[] = [
   "totalChapters", "sampledChapterNumbers", "documentSha256", "readers", "completedAt",
 ];
 
+const OPTIONAL_RECORD_KEYS: readonly string[] = ["gateBar"];
+
 export function serializeCatalogRubricRecord(record: CatalogRubricRecordV1): Record<string, unknown> {
   return {
     schemaVersion: record.schemaVersion,
@@ -190,6 +221,7 @@ export function serializeCatalogRubricRecord(record: CatalogRubricRecordV1): Rec
     sampledChapterNumbers: [...record.sampledChapterNumbers],
     documentSha256: record.documentSha256,
     readers: record.readers.map(serializeReader),
+    ...(record.gateBar === undefined ? {} : { gateBar: record.gateBar }),
     completedAt: record.completedAt,
   };
 }
@@ -202,7 +234,7 @@ export function serializeCatalogRubricRecord(record: CatalogRubricRecordV1): Rec
  * instrument-drift fail-open the version stamp exists to prevent.
  */
 export function parseCatalogRubricRecord(value: unknown, candidateId?: string): CatalogRubricRecordV1 | null {
-  if (!isRecord(value) || !exactKeys(value, RECORD_KEYS)) return null;
+  if (!isRecord(value) || !keysWithin(value, RECORD_KEYS, OPTIONAL_RECORD_KEYS)) return null;
   if (value.schemaVersion !== "1") return null;
   if (value.instrumentVersion !== CATALOG_RUBRIC_INSTRUMENT_VERSION) return null;
   if (typeof value.bookId !== "string" || value.bookId.length === 0) return null;
@@ -210,6 +242,17 @@ export function parseCatalogRubricRecord(value: unknown, candidateId?: string): 
   if (typeof value.author !== "string" || value.author.length === 0) return null;
   if (typeof value.documentSha256 !== "string" || !/^[0-9a-f]{64}$/.test(value.documentSha256)) return null;
   if (!Number.isInteger(value.totalChapters) || (value.totalChapters as number) < 1) return null;
+  // Absent is legal (a record written before the field existed); present and
+  // outside the operator dial's own bounds is not — a bar the CLI would refuse
+  // to accept may not be replayed out of a record as if it had been enforced.
+  if (
+    value.gateBar !== undefined
+    && (!Number.isInteger(value.gateBar)
+      || (value.gateBar as number) < CATALOG_RUBRIC_BAR_MIN
+      || (value.gateBar as number) > CATALOG_RUBRIC_BAR_MAX)
+  ) {
+    return null;
+  }
   if (!isCanonicalUtc(value.completedAt)) return null;
   const candidate = value.candidate;
   if (
@@ -260,6 +303,7 @@ export function parseCatalogRubricRecord(value: unknown, candidateId?: string): 
     sampledChapterNumbers: numbers as number[],
     documentSha256: value.documentSha256,
     readers: readers as CatalogRubricReaderResultV1[],
+    ...(value.gateBar === undefined ? {} : { gateBar: value.gateBar as number }),
     completedAt: value.completedAt,
   };
 }
