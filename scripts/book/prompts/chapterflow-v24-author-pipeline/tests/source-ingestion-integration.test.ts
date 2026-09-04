@@ -422,14 +422,29 @@ test("R-046: the book-run's own run definition binds the text, so a resume with 
     const second = intentCommandId(request(other));
     assert.notEqual(first, none, "a run WITH a text is not the same run as one without");
     assert.notEqual(first, second, "two different texts are two different runs");
-    // The model-memory intent id is unchanged by this package: re-derived here
-    // from the documented formula, with no source component at all.
+    // …while the REFRESH axis is not an intent at all. --regen says "discard the
+    // cached research" on a first round and "bypass the promoted pointer" on a
+    // resumed one; neither makes the run a different run. Folding it in is what
+    // refused the 2026-09-04 live Franklin resume three times with
+    // RESEARCH_RESUME_CONFLICT, because round 1 had passed --regen and the
+    // resume round had not.
+    assert.equal(
+      intentCommandId({ ...request(), forceRefresh: true }),
+      none,
+      "the regen axis never changes a model-memory run's identity",
+    );
+    assert.equal(
+      intentCommandId({ ...request(FRANKLIN_SLICE_PATH), forceRefresh: true }),
+      first,
+      "nor a source-text run's",
+    );
+    // The model-memory intent id: re-derived here from the documented formula,
+    // with no source component and no refresh component at all.
     const expected = createHash("sha256")
       .update("Autobiography of Benjamin Franklin").update("\0")
       .update("Benjamin Franklin").update("\0")
       .update("zz-franklin-slice").update("\0")
-      .update(resolve(dir, "v25")).update("\0")
-      .update("resume")
+      .update(resolve(dir, "v25"))
       .digest("hex").slice(0, 24);
     assert.equal(none, `research-candidate-v1-${expected}`);
   } finally {

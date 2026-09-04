@@ -118,6 +118,15 @@ export interface ResearchCandidateApplicationRequest {
    */
   readonly researchRunId?: string;
   readonly chapterConcurrency?: number;
+  /**
+   * FIRST-ROUND axis only. A fresh control run never adopts an earlier compatible
+   * bundle (it refreshes whether or not this is set), and a RESUMED run always
+   * continues its own research run — so on a resume this flag changes nothing but
+   * an operator log line. It is NOT part of the run's intent
+   * (see {@link intentCommandId}), so the same resume works with or without it.
+   * Still mutually exclusive with `researchRunId`: "read exactly this bundle" and
+   * "discard every bundle" are genuinely contradictory.
+   */
   readonly forceRefresh?: boolean;
   /**
    * Opt-in crash recovery. A hard-killed run (SIGKILL / host teardown — NOT the
@@ -235,13 +244,51 @@ function requireRequest(input: ResearchCandidateApplicationRequest, pipelineRoot
 }
 
 /**
- * The run's INTENT identity. `researchRunId` is deliberately absent: a run
- * definition drift makes fileRunStore.createRun throw CONFLICT, so folding the
- * pin in here would mean a run started WITHOUT the pin could never be resumed
- * WITH it (surfacing as a misleading RESEARCH_RESUME_CONFLICT). The pin selects
- * an INPUT, not an intent.
+ * The run's INTENT identity: WHICH book, from WHICH bytes, under WHICH root.
+ *
+ * Two axes are deliberately absent, for the same reason. A run-definition drift
+ * makes fileRunStore.createRun throw CONFLICT, so anything folded in here that a
+ * later round may legitimately spell differently would make that round
+ * unresumable, surfacing as a misleading RESEARCH_RESUME_CONFLICT:
+ *
+ *  - `researchRunId` — the pin selects an INPUT, not an intent.
+ *  - `forceRefresh` — the refresh axis is an EXECUTION MODE, not an intent. It
+ *    says "do not adopt a cached bundle on the FIRST round"; on a resumed round
+ *    it means nothing at all (a resume continues its own research run). Folding
+ *    it in is what refused the 2026-09-04 live Franklin resume three times: run
+ *    book-run-d51c92fc-65b7-4886-8d9c-635dfe1be862 was created with --regen, its
+ *    resume round did not repeat the flag, and the two hashed differently. So a
+ *    resumed round may pass --regen or not with exactly the same result.
+ *
+ * Everything that genuinely makes this a different run still binds: title,
+ * author, bookId, v25Root, the source text DIGEST — and, outside this digest,
+ * sourceGitSha and the stage/attempt limits, which fileRunStore compares field
+ * by field against the persisted definition.
  */
 export function intentCommandId(input: ResearchCandidateApplicationRequest): string {
+  return intentCommandIdWithRefreshAxis(input, null);
+}
+
+/**
+ * The ids this same intent hashed to BEFORE 2026-09-04, when the refresh axis
+ * was still part of the run definition. Accepted — and only ever accepted — for
+ * a run that ALREADY EXISTS on disk under one of them, so a run recorded by the
+ * older code stays resumable instead of dying on the error this contract exists
+ * to remove. Every other field of the persisted definition is still compared
+ * byte for byte by fileRunStore.createRun, so this admits the regen axis and
+ * nothing else. Delete once no pre-2026-09-04 run-state remains.
+ */
+function legacyRefreshAxisCommandIds(input: ResearchCandidateApplicationRequest): readonly string[] {
+  return Object.freeze([
+    intentCommandIdWithRefreshAxis(input, "force"),
+    intentCommandIdWithRefreshAxis(input, "resume"),
+  ]);
+}
+
+function intentCommandIdWithRefreshAxis(
+  input: ResearchCandidateApplicationRequest,
+  legacyRefreshAxis: "force" | "resume" | null,
+): string {
   const hash = createHash("sha256")
     .update(input.title.trim())
     .update("\0")
@@ -249,9 +296,8 @@ export function intentCommandId(input: ResearchCandidateApplicationRequest): str
     .update("\0")
     .update(input.bookId ?? "")
     .update("\0")
-    .update(resolve(input.v25Root))
-    .update("\0")
-    .update(input.forceRefresh === true ? "force" : "resume");
+    .update(resolve(input.v25Root));
+  if (legacyRefreshAxis !== null) hash.update("\0").update(legacyRefreshAxis);
   // R-046 — the source text is part of the run's INTENT: a different text is a
   // different book, so a resume against a different (or newly absent, or newly
   // present) text must be refused. It is refused HERE, at the run-definition
@@ -690,6 +736,7 @@ export class ResearchCandidateApplicationPort {
     let runId = input.resumeRunId ?? input.newRunId ?? this.#dependencies.ids.nextRunId();
     let createdAt = safeClock(this.#dependencies.clock);
     let resumedRun = false;
+    let priorCommandId: string | undefined;
     if (input.resumeRunId !== undefined) {
       const prior = await this.#dependencies.runStore.readRun(
         requestBookId(input),
@@ -698,12 +745,28 @@ export class ResearchCandidateApplicationPort {
       );
       if (prior.ok) {
         createdAt = prior.value.definition.createdAt;
+        priorCommandId = prior.value.definition.commandId;
         resumedRun = true;
       }
       else if (prior.error.code === "NOT_FOUND") throw new Error("RESEARCH_RESUME_NOT_FOUND:resumeRunId does not exist");
       else throw new Error(`RESEARCH_RUN_UNAVAILABLE:${prior.error.code}`);
     }
     let definition = definitionFor(input, runId, createdAt);
+    if (
+      priorCommandId !== undefined
+      && priorCommandId !== definition.commandId
+      && legacyRefreshAxisCommandIds(input).includes(priorCommandId)
+    ) {
+      // Durable-identity migration, not a relaxation: this run was RECORDED by
+      // code that folded the refresh axis into the definition. Its intent is
+      // this request's intent — same book, same author, same root, same source
+      // digest — so it is resumed under the id it was written with. Every other
+      // definition field is still compared byte for byte below.
+      console.error(
+        `[research] resume book=${definition.bookId} run=${runId} action=ACCEPT_PRE_2026_09_04_REFRESH_AXIS_INTENT_ID`,
+      );
+      definition = Object.freeze({ ...definition, commandId: priorCommandId });
+    }
     let created = await this.#dependencies.runStore.createRun(definition);
     if (!created.ok && created.error.code === "CONFLICT" && input.resumeRunId !== undefined) {
       throw new Error("RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent");
@@ -766,6 +829,16 @@ export class ResearchCandidateApplicationPort {
     // has zero prior attempts, so the id namespace is unchanged.
     const priorAttemptCount = created.value.attempts.length;
 
+    if (resumedRun && input.forceRefresh === true) {
+      // --regen is overloaded (see bookRunApplicationService). On a RESUMED round
+      // it keeps only its promotion-pointer meaning: this run already owns a
+      // research run, and re-minting one would discard every durable sidecar it
+      // paid for. Ignored, never silently.
+      console.error(
+        `[research] resume book=${definition.bookId} run=${runId} regen=true action=RESUME_REUSES_OWN_RESEARCH_RUN`,
+      );
+    }
+
     const resumePlan = await this.#dependencies.stageCoordinator.planResume(definition);
     if (!resumePlan.ok) throw new Error(`RESEARCH_RESUME_UNAVAILABLE:${resumePlan.error.code}`);
     const completedStages = new Set(resumePlan.value.completedStages);
@@ -799,7 +872,17 @@ export class ResearchCandidateApplicationPort {
         // status, identical input identity, an identical five-field
         // compatibility fingerprint, an internally consistent bibliography, and
         // every chapter durably reusable.
-        forceRefresh: input.researchRunId !== undefined ? false : (!resumedRun || input.forceRefresh === true),
+        //
+        // The refresh axis therefore belongs to the FIRST round only, and
+        // `input.forceRefresh` does not appear here. A fresh run always refreshes
+        // (as it always did); a RESUMED run — including the successor opened for
+        // a TERMINAL-FAILED predecessor — always resumes its own research run,
+        // reloading every succeeded chapter from disk with zero model calls and
+        // re-running only the chapters that have no durable sidecar. Honouring
+        // --regen here is what made the 2026-09-04 Franklin round 2 mint a second
+        // research run and re-research the book from chapter 1 over the 16
+        // durable sidecars round 1 had already paid for.
+        forceRefresh: input.researchRunId !== undefined ? false : !resumedRun,
         ...(input.sourceTextPath === undefined ? {} : { sourceTextPath: input.sourceTextPath }),
         // R-277 — the book's fact pins reach the researcher that mints the fact,
         // not only the writers one layer downstream.

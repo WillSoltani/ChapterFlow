@@ -2101,6 +2101,15 @@ export class BookRunApplicationService {
           `[book-run] research-pin book=${input.bookId} pinned-research-run=${input.researchRunId} regen=true action=REGEN_SUPERSEDES_POINTER_ONLY`,
         );
       }
+      if (input.resumeRunId !== undefined && input.regen) {
+        // The same split on the resume axis. A resumed round continues the run's
+        // OWN research run: reading --regen as "refresh research" there is what
+        // discarded 16 durable chapter sidecars on 2026-09-04 (run
+        // book-run-37fa7f92-bd58-4d5e-b589-c648722f56b5, round 2). Never silent.
+        console.error(
+          `[book-run] resume book=${input.bookId} resume-run=${input.resumeRunId} regen=true action=REGEN_SUPERSEDES_POINTER_ONLY`,
+        );
+      }
       try {
         researched = await this.#dependencies.research.run({
           bookId: input.bookId,
@@ -2111,10 +2120,13 @@ export class BookRunApplicationService {
           attemptRoot: resolve(input.attemptRoot, "research"),
           ...(input.resumeRunId === undefined ? { newRunId: runId } : { resumeRunId: input.resumeRunId }),
           ...(input.researchRunId === undefined ? {} : { researchRunId: input.researchRunId }),
-          // The --regen split: a pin owns the research axis, so regen retains
-          // only its promotion-pointer meaning (the ALREADY_PROMOTED bypass
-          // above). Unpinned behaviour is byte-unchanged.
-          forceRefresh: input.researchRunId === undefined && input.regen,
+          // The --regen split: research refresh is a FIRST-ROUND axis. A pin owns
+          // that axis, and so does a resume — a resumed round continues the run's
+          // own research run, reusing every succeeded chapter from disk. In both
+          // cases regen retains only its promotion-pointer meaning (the
+          // ALREADY_PROMOTED bypass above). A first, unpinned round is
+          // byte-unchanged.
+          forceRefresh: input.researchRunId === undefined && input.resumeRunId === undefined && input.regen,
           reconcileUnsettled: input.reconcileUnsettled === true,
           ...(input.sourceTextPath === undefined ? {} : { sourceTextPath: input.sourceTextPath }),
           signal: input.signal,

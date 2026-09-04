@@ -573,11 +573,15 @@ requiredTest("9 crash-resume WITH reconcile flag settles the unsettled attempt, 
  *  its retries (every attempt settled), so the control run goes TERMINAL FAILED
  *  while the OTHER chapter's durable sidecars survive on disk under the shared
  *  legacy research run. */
-async function failDuringChapter(context: TestContext, runId: string) {
+async function failDuringChapter(
+  context: TestContext,
+  runId: string,
+  patch: Partial<ResearchCandidateApplicationRequest> = {},
+) {
   const subject = rig(context);
   subject.control.failChapters = new Set([2]); // ch02 persistently source-v2-invalid
   await assert.rejects(
-    subject.port.run({ ...subject.request, newRunId: runId, chapterConcurrency: 1 }),
+    subject.port.run({ ...subject.request, newRunId: runId, chapterConcurrency: 1, ...patch }),
     /chapter research invalid|SV2|source-v2/i,
   );
   const failed = await subject.runStore.readRun(BOOK, runId, context.clock.now());
@@ -588,6 +592,12 @@ async function failDuringChapter(context: TestContext, runId: string) {
   const dir = legacyResearchRunDir(subject);
   assert.ok(readFileSync(resolve(dir, "sidecars", "source", "ch01.source.json"), "utf8"));
   return subject;
+}
+
+/** Every legacy research-run id that exists under the v25 root for this book,
+ *  byte-sorted. A resumed round must never add one. */
+function legacyResearchRunIds(subject: ReturnType<typeof rig>): string[] {
+  return readdirSync(resolve(subject.request.v25Root, "research-runs", BOOK)).sort();
 }
 
 /** Locate the single shared legacy research-run directory produced under the
@@ -854,6 +864,163 @@ requiredTest("17 the real research port forwards the run context, so a rejected 
     (record.problems as string[]).some((problem) => /meta-reference "The book"/.test(problem)),
     "with the reason it was refused",
   );
+});
+
+// ── The 2026-09-04 live Franklin resume defect ───────────────────────────────
+//
+// ATTEMPT 1 (run book-run-d51c92fc-65b7-4886-8d9c-635dfe1be862) started with
+// --regen and failed at research; the driver's resume round dropped --regen and
+// was refused three times with
+//   BOOK_RUN_RESEARCH_FAILED:RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent
+// ATTEMPT 2 (run book-run-37fa7f92-bd58-4d5e-b589-c648722f56b5) resumed WITH
+// --regen instead: round 1 wrote 16 succeeded chapter sidecars into research run
+// 20260904T085419449Z-5976350d-… before ch13 exhausted its 3 attempts; round 2 —
+// the same command again — MINTED A SECOND research run
+// 20260904T092510140Z-a9f614ed-… with the identical input hash and re-researched
+// from chapter 1, discarding all 16.
+//
+// The contract these four cases pin: --regen means "bypass the ALREADY_PROMOTED
+// pointer" and nothing else on a RESUMED round. The research-refresh axis
+// belongs to the FIRST round, so a resumed round always continues its own
+// research run and a resume may pass --regen or not with the same result.
+
+requiredTest("18 a --regen round that failed at one chapter resumes into its OWN research run with zero model calls for the chapters that succeeded", async (context) => {
+  const runId = "book-run-regen-resume-same-research";
+  const subject = await failDuringChapter(context, runId, { forceRefresh: true });
+  const researchRunBefore = legacyResearchRunIds(subject);
+  assert.equal(researchRunBefore.length, 1);
+  subject.control.failChapters = new Set(); // the transient chapter condition clears
+  const opsBefore = subject.operations.length;
+
+  // The operator's second round passes --regen again — exactly the live driver's
+  // retry shape. It must not be read as "discard the research".
+  const recovered = await subject.port.run({
+    ...subject.request,
+    resumeRunId: runId,
+    chapterConcurrency: 1,
+    reconcileUnsettled: true,
+    forceRefresh: true,
+  });
+  assert.equal(recovered.resumed, true);
+  assert.equal(recovered.researchRunId, researchRunBefore[0], "the resumed round continues the run's OWN research run");
+  assert.deepEqual(legacyResearchRunIds(subject), researchRunBefore, "a resumed round never mints a second research run");
+
+  // N-1 chapters replay from durable sidecars: only the failed chapter costs a
+  // model call, and the bibliography is never re-asked.
+  const resumeOps = subject.operations.slice(opsBefore).sort();
+  assert.deepEqual(resumeOps, ["research-ch02"]);
+  const successor = await subject.runStore.readRun(BOOK, recovered.intakeRunId, context.clock.now());
+  assert.equal(successor.ok, true);
+  if (successor.ok) assert.equal(successor.value.status, "COMPLETED");
+});
+
+requiredTest("19 the same resume WITHOUT --regen reaches the identical outcome and never conflicts on the regen axis", async (context) => {
+  const runId = "book-run-regen-resume-noflag";
+  const subject = await failDuringChapter(context, runId, { forceRefresh: true });
+  const researchRunBefore = legacyResearchRunIds(subject);
+  subject.control.failChapters = new Set();
+  const opsBefore = subject.operations.length;
+
+  // Attempt 1's exact command: the round that CREATED the run passed --regen,
+  // this one does not. The regen axis is not part of the run's intent, so the
+  // resume is admitted and does the same work as case 18.
+  const recovered = await subject.port.run({
+    ...subject.request,
+    resumeRunId: runId,
+    chapterConcurrency: 1,
+    reconcileUnsettled: true,
+  });
+  assert.equal(recovered.resumed, true);
+  assert.equal(recovered.researchRunId, researchRunBefore[0]);
+  assert.deepEqual(legacyResearchRunIds(subject), researchRunBefore);
+  assert.deepEqual(subject.operations.slice(opsBefore).sort(), ["research-ch02"]);
+});
+
+requiredTest("20 a FRESH regen run on a book that already has a research run still mints a new one", async (context) => {
+  const subject = rig(context);
+  const first = await subject.port.run({ ...subject.request, forceRefresh: true });
+  const opsAfterFirst = subject.operations.length;
+  assert.equal(opsAfterFirst, 3);
+
+  // The first-round refresh axis is UNCHANGED: a fresh control run never
+  // silently adopts an earlier compatible bundle.
+  const second = await subject.port.run({ ...subject.request, forceRefresh: true });
+  assert.equal(second.resumed, false);
+  assert.notEqual(second.intakeRunId, first.intakeRunId);
+  assert.notEqual(second.researchRunId, first.researchRunId, "a fresh round researches into a NEW research run");
+  assert.equal(subject.operations.length, opsAfterFirst + 3, "bibliography + both chapters are re-researched");
+  assert.equal(legacyResearchRunIds(subject).length, 2);
+});
+
+requiredTest("21 a resumed round still fails closed when the intent that actually matters changes", async (context) => {
+  const subject = rig(context);
+  const first = await subject.port.run({ ...subject.request, forceRefresh: true });
+  const opsAfterFirst = subject.operations.length;
+  const sourceTextPath = resolve(context.roots.tempRoot, "resume-identity-source.txt");
+  writeFileSync(sourceTextPath, "A source text the first round never read.\n", "utf8");
+
+  const changed: Array<Partial<ResearchCandidateApplicationRequest>> = [
+    // R-046 — the source text is the book. A digest that appears, disappears or
+    // changes is a different run, with or without the regen flag.
+    { sourceTextPath },
+    { sourceTextPath, forceRefresh: true },
+    { sourceGitSha: "b20d1cdab0fc33c4c1f840f4cf99089816e022d4" },
+    { title: "The Power of Other Moments" },
+    { v25Root: resolve(context.roots.tempRoot, "other-v25") },
+  ];
+  for (const patch of changed) {
+    await assert.rejects(
+      subject.port.run({ ...subject.request, resumeRunId: first.intakeRunId, reconcileUnsettled: true, ...patch }),
+      /RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent/,
+      JSON.stringify(patch),
+    );
+  }
+  // A pinned research run is still structurally refused on a resume: the pin
+  // names one bundle, the resume names a control run that owns its own.
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: first.intakeRunId, researchRunId: first.researchRunId }),
+    /RESEARCH_INPUT_INVALID:researchRunId and resumeRunId are mutually exclusive/,
+  );
+  assert.equal(subject.operations.length, opsAfterFirst, "a refused resume costs no model call");
+});
+
+requiredTest("22 a run recorded under the pre-2026-09-04 refresh-axis identity stays resumable, and only that axis is forgiven", async (context) => {
+  const subject = rig(context);
+  const first = await subject.port.run({ ...subject.request, forceRefresh: true });
+  const calls = subject.operations.length;
+
+  const runFile = resolve(context.roots.stateRoot, "v25-runs", "books", BOOK, "runs", first.intakeRunId, "run.json");
+  const record = JSON.parse(readFileSync(runFile, "utf8")) as { definition: Record<string, unknown> };
+  // The id this exact run WOULD have carried under the old code: the same
+  // fields, plus the refresh axis that is no longer part of the intent.
+  const legacyCommandId = (axis: "force" | "resume"): string => `research-candidate-v1-${createHash("sha256")
+    .update(TITLE).update("\0")
+    .update(AUTHOR).update("\0")
+    .update(BOOK).update("\0")
+    .update(subject.request.v25Root).update("\0")
+    .update(axis)
+    .digest("hex")
+    .slice(0, 24)}`;
+  assert.notEqual(legacyCommandId("force"), record.definition.commandId, "the axis really was part of the old id");
+  const rewriteCommandId = (commandId: string): void => {
+    writeFileSync(runFile, `${JSON.stringify({ ...record, definition: { ...record.definition, commandId } })}\n`, "utf8");
+  };
+
+  for (const axis of ["force", "resume"] as const) {
+    rewriteCommandId(legacyCommandId(axis));
+    const resumed = await subject.port.run({ ...subject.request, resumeRunId: first.intakeRunId });
+    assert.equal(resumed.resumed, true, `a run written with the ${axis} axis must still resume`);
+    assert.deepEqual(resumed.candidate, first.candidate);
+    assert.equal(subject.operations.length, calls, "a migrated resume costs no model call");
+  }
+
+  // …and an id that is NOT this intent under either spelling is still refused.
+  rewriteCommandId("research-candidate-v1-000000000000000000000000");
+  await assert.rejects(
+    subject.port.run({ ...subject.request, resumeRunId: first.intakeRunId }),
+    /RESEARCH_RESUME_CONFLICT:resume run definition differs from requested intent/,
+  );
+  assert.equal(subject.operations.length, calls);
 });
 
 finishV25Tests().catch((error: unknown) => {

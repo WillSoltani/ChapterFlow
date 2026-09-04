@@ -54,6 +54,24 @@ test("help exposes only canonical V4 production routes and flags", () => {
   assert.match(output, /book-autopilot <bookId> .*--research-run-id <id>/);
 });
 
+// The 2026-09-04 live Franklin resume defect was, for the operator, a
+// documentation failure as much as a code one: nothing said whether the retry
+// command should repeat --regen, and the two spellings behaved differently (one
+// discarded 18 durable chapter sidecars, the other was refused outright with
+// RESEARCH_RESUME_CONFLICT). The contract is now stated where the operator
+// looks.
+test("help states the resume contract: a resumed round continues its own research run either way", () => {
+  const result = cli(["help"]);
+  const output = `${result.stdout}${result.stderr}`;
+  assert.equal(result.status, 0);
+  assert.match(output, /--resume-run-id continues an existing run\.\s+A resumed round ALWAYS continues that\s+run's own research run/);
+  assert.match(output, /loaded from disk with zero model\s+calls, and only the chapters without one are re-run/);
+  assert.match(output, /on a resumed round --regen\s+means ONLY "bypass the already-promoted pointer"/);
+  assert.match(output, /--regen --resume-run-id X do the same work and neither is a definition conflict/);
+  assert.match(output, /Research refresh is a FIRST-round axis/);
+  assert.match(output, /A resume still fails closed\s+when the intent that matters changed/);
+});
+
 test("piped stdout is never truncated by exit — the whole document reaches the reader", () => {
   // Regression lock. `process.exit()` discards data still queued on an async
   // stream, and stdout is async whenever it is a pipe. Before exitAfterFlush,
