@@ -20,7 +20,7 @@
  *     `REVIEW.READER.PANEL.FACTOR_SCORES` WARNs — the numbers that were free
  *     text nothing read;
  *   - the whole-book catalog rubric's composite, medians, gate, churn and the
- *     bar it was judged against (R-080).
+ *     bar the gate enforced, as RECORDED by the run that enforced it (R-080).
  *
  * PARSED, NOT RE-DERIVED. Every number here comes from an artifact the release
  * already holds and the promotion service already verified; nothing is
@@ -29,6 +29,8 @@
  * the rubric stage existed must say "no rubric", never "rubric fine".
  */
 
+import { CATALOG_RUBRIC_FACTOR_FLOOR, aggregateCatalogRubric } from "../review/catalogRubric.js";
+import type { CatalogRubricRecordV1 } from "../review/catalogRubricStore.js";
 import type { QcRoundResult } from "../qc/qcTypes.js";
 import { READER_PANEL_FACTOR_SCORES_CODE } from "../review/readerPanelIssueCodes.js";
 import type { CanonicalReviewResult, ReviewIssue } from "../review/reviewTypes.js";
@@ -53,7 +55,18 @@ export type ReleaseRubricEvidence = {
   readonly tier: string;
   readonly gate: "PASS" | "FAIL" | "SPLIT";
   readonly churn: "LOW" | "MED" | "HIGH";
-  readonly bar: number;
+  /**
+   * The promotion bar the BOOK RUN's gate enforced against this panel, read out
+   * of the durable record — `null` when the record predates the field and no
+   * bar was recorded.
+   *
+   * It is never re-resolved here. The release runs later and in its own
+   * environment, so resolving `CHAPTERFLOW_RUBRIC_BAR` (or falling back to the
+   * compiled default) recorded `bar: 80` for a book that was actually gated at
+   * `--rubric-bar 90`: a number that looked like evidence and was not. An
+   * unknown bar is stated as unknown.
+   */
+  readonly bar: number | null;
   readonly factorFloor: number;
   readonly highQuality: boolean;
   /** Factor medians, factor-keyed. */
@@ -74,6 +87,32 @@ export type CandidateReleaseVerdict = {
   /** Absent when the candidate has no durable catalog-rubric record. */
   readonly rubric?: ReleaseRubricEvidence;
 };
+
+/**
+ * The rubric half of the verdict block, assembled from the DURABLE RECORD alone.
+ *
+ * The aggregate is recomputed from the stored reader blocks (so it can never
+ * drift from them) and the bar is REPLAYED from the record (so it is the bar the
+ * gate ran against, or `null`). Nothing here consults the environment: this
+ * function's whole job is to state what was measured and decided elsewhere.
+ */
+export function buildReleaseRubricEvidence(record: CatalogRubricRecordV1): ReleaseRubricEvidence {
+  const aggregate = aggregateCatalogRubric(record.readers);
+  return Object.freeze({
+    instrumentVersion: record.instrumentVersion,
+    composite: aggregate.composite,
+    tier: aggregate.tier,
+    gate: aggregate.gate,
+    churn: aggregate.churn,
+    bar: record.gateBar ?? null,
+    factorFloor: CATALOG_RUBRIC_FACTOR_FLOOR,
+    highQuality: aggregate.highQuality,
+    factorMedians: Object.freeze({ ...aggregate.factorMedians }),
+    sampledChapterNumbers: Object.freeze([...record.sampledChapterNumbers]),
+    totalChapters: record.totalChapters,
+    readerCount: aggregate.readerCount,
+  });
+}
 
 export function countIssuesBySeverity(
   issues: readonly (Readonly<{ severity: string }>)[],

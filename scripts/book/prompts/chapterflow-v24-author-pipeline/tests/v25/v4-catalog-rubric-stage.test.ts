@@ -285,6 +285,45 @@ requiredTest("a re-draw after a REFUSED block is told what was wrong; a re-draw 
   assert.equal(prompts[1].includes("Do not change your judgement to satisfy this note"), true);
 });
 
+requiredTest("a repair note does not survive an infrastructure blip on the SAME reader", async () => {
+  const candidate = buildCandidate(PANEL_BOOK, chaptersFor(PANEL_BOOK, 2));
+  const { runner, calls } = scriptedRunner([
+    // Reader 1, draw 1: REFUSED by the strict assembly (no churn field).
+    (request) => succeeded(request.context.attemptId, { ...readerJson(1), book3_churn: undefined }),
+    // Reader 1, draw 2: the informed re-draw the refusal earns.
+    { attemptId: "a", outcome: "FAILED", error: { code: "MODEL_OUTPUT_INVALID", message: "schema rejected" } } as ModelResult,
+    // Reader 1, draw 3: follows an infrastructure BLIP, not a refusal. The
+    // reader answered nothing on draw 2, so there is nothing to repair — and a
+    // stale note tells it its (never-seen) last answer was rejected.
+    (request) => succeeded(request.context.attemptId, readerJson(1)),
+    (request) => succeeded(request.context.attemptId, readerJson(2)),
+    (request) => succeeded(request.context.attemptId, readerJson(3)),
+  ]);
+  const panel = new CatalogRubricPanelEvaluator({ runner, sleep: instantSleep });
+  const scored = await panel.score({
+    bookId: PANEL_BOOK, title: "Panel Book", author: "Fixture Author", candidate,
+    completedAt: "2026-09-02T01:00:00.000Z", taskContext: taskContext(),
+  });
+  assert.equal(scored.ok, true, JSON.stringify(scored));
+  const prompts = calls().map((call) => {
+    const systemPrompt = call.prompt.inputs.find((input) => input.name === "system_prompt");
+    assert.notEqual(systemPrompt, undefined, "every rubric call carries the reader task as its system prompt");
+    return Buffer.from(systemPrompt!.bytes).toString("utf8");
+  });
+  assert.equal(prompts.length, 5);
+  assert.equal(prompts[0].includes("YOUR PREVIOUS ANSWER WAS REJECTED"), false, "the first draw is blind");
+  assert.equal(
+    prompts[1].includes("YOUR PREVIOUS ANSWER WAS REJECTED"),
+    true,
+    "the note applies to the draw IMMEDIATELY following the refusal",
+  );
+  assert.equal(
+    prompts[2].includes("YOUR PREVIOUS ANSWER WAS REJECTED"),
+    false,
+    "a re-draw after an infrastructure blip carries no note — the reader was refused two draws ago, not last draw",
+  );
+});
+
 requiredTest("output the strict assembly refuses exhausts the bounded budget and fails closed", async () => {
   const candidate = buildCandidate(PANEL_BOOK, chaptersFor(PANEL_BOOK, 2));
   const { runner, calls } = scriptedRunner(
@@ -397,6 +436,43 @@ requiredTest("a book above the bar clears the gate, is promoted, and carries its
   if (!stored.ok) return;
   assert.equal(stored.value.candidate.manifestDigest, result.value.candidate.manifestDigest);
   assert.equal(stored.value.readers.length, 3);
+});
+
+requiredTest("the durable record carries the BAR the gate enforced, not the compiled default", async (context: TestContext) => {
+  const book = "rubric-recorded-bar";
+  const h = await buildBookRunHarness(context, book, ["PASS"], {
+    rubricPanel: scriptedRubricPanel([{ readers: unanimousReaders(84) }]),
+    promoteLocal: false,
+  });
+  // 82, not the default 80: the release-side evidence reads the RECORD, so a
+  // record that does not carry the run's bar can only be decorated with a
+  // recomputed one — which is how a run gated at 90 shipped a sidecar saying 80.
+  const result = await h.service.run({ ...h.request, rubricBar: 82 });
+  assert.equal(result.ok, true, result.ok ? "" : `${result.error.code}:${result.error.message}`);
+  if (!result.ok) return;
+  assert.equal(result.value.rubric?.bar, 82);
+  const stored = await h.rubricStore.getRecord(book, result.value.candidate.candidateId);
+  assert.equal(stored.ok, true, JSON.stringify(stored));
+  if (!stored.ok) return;
+  assert.equal(stored.value.gateBar, 82, "the record states the bar its own run enforced");
+
+  // A record that predates the field still replays — it simply cannot state a
+  // bar — and an out-of-range one is refused rather than read.
+  const paths = h.rubricStore.paths(book);
+  assert.equal(paths.ok, true, JSON.stringify(paths));
+  if (!paths.ok) return;
+  const recordPath = paths.value.record(result.value.candidate.candidateId);
+  const onDisk = JSON.parse(readFileSync(recordPath, "utf8")) as Record<string, unknown>;
+  const { gateBar: _gateBar, ...legacy } = onDisk;
+  writeFileSync(recordPath, `${JSON.stringify(legacy, null, 2)}\n`, "utf8");
+  const replayed = await h.rubricStore.getRecord(book, result.value.candidate.candidateId);
+  assert.equal(replayed.ok, true, JSON.stringify(replayed));
+  if (!replayed.ok) return;
+  assert.equal(replayed.value.gateBar, undefined, "a pre-field record records no bar; it does not inherit one");
+
+  writeFileSync(recordPath, `${JSON.stringify({ ...onDisk, gateBar: 40 }, null, 2)}\n`, "utf8");
+  const outOfRange = await h.rubricStore.getRecord(book, result.value.candidate.candidateId);
+  assert.equal(outOfRange.ok, false, JSON.stringify(outOfRange));
 });
 
 requiredTest("a book below the bar is REFUSED promotion and the message names the weak factors", async (context: TestContext) => {

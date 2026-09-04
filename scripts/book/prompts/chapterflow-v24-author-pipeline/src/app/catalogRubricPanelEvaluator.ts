@@ -249,7 +249,10 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
     const operationId = `catalog-rubric-reader-${input.readerNumber}`;
     let lastDetail = "no attempt was made";
     // Set only when a draw was REFUSED by the strict assembly, so the next draw
-    // is told what was wrong with the last one.
+    // is told what was wrong with the last one — and CLEARED as soon as that
+    // draw has carried it. A note that survived its own draw followed the reader
+    // into an infrastructure re-draw and told it its (never-delivered) last
+    // answer had been rejected: an instruction to fix a fault it did not commit.
     let repairNote = "";
     for (let attempt = 1; attempt <= MAX_RUBRIC_READER_ATTEMPTS; attempt += 1) {
       const context: ModelTaskContext = {
@@ -257,10 +260,14 @@ export class CatalogRubricPanelEvaluator implements CatalogRubricPanel {
         attemptId: attempt === 1 ? attemptBase : `${attemptBase}-a${attempt}`,
         operationId,
       };
+      const carriedNote = repairNote;
+      // Consumed here: the note belongs to the draw IMMEDIATELY following the
+      // refusal that produced it, and to no later draw.
+      repairNote = "";
       const result: ModelResult = await this.#runner.run({
         profileId: this.#profileId,
         role: "review",
-        prompt: jsonPromptRequest(`${input.task}${repairNote}`, input.documentBlock),
+        prompt: jsonPromptRequest(`${input.task}${carriedNote}`, input.documentBlock),
         context,
       });
       if (result.outcome !== "SUCCEEDED") {
