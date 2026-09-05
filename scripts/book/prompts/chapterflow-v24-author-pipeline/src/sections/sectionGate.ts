@@ -128,9 +128,12 @@ const EXAMPLE_ID_RE = /^(?:ex\d{2}|ch\d{2}-ex\d{2}(?:-[a-z0-9][a-z0-9-]*)?)$/;
 const LOWERCASE_MECHANICAL_SENTENCE_TAIL_RE = /[.!?]\s+(?:under|after checking|based on|given|using)\b/;
 const LOWERCASE_SENTENCE_START_RE = /[.!?]\s+([a-z][a-z][^.!?]{10,})/g;
 /** The text immediately BEFORE a sentence-opening word: start of text, or terminal
- *  punctuation (or the colon that introduces a quotation) plus any quote/bracket and
- *  whitespace — "… the next morning: 'Whoever wrote this…" opens a sentence too. */
-const SENTENCE_OPENER_BEFORE_RE = /(?:^|[.!?:])["'\u2019\u201d)\]]*\s*["'\u2018\u201c([]?\s*$/;
+ *  punctuation (. ! ?) plus any closing quote/bracket, then an optional opening
+ *  quote/bracket and whitespace. A COLON opens a sentence only when it is followed by
+ *  an opening quote — the live attempt-1 shape, "… the next morning: 'Whoever wrote
+ *  this…". A BARE colon introduces an appositive or a list inside the SAME sentence
+ *  ("… at the counter: Long owed the shop…"), so what follows it stays mid-sentence. */
+const SENTENCE_OPENER_BEFORE_RE = /(?:(?:^|[.!?])["'\u2019\u201d)\]]*\s*["'\u2018\u201c([]?|:\s*["'\u2018\u201c])\s*$/;
 const TERMINAL_PUNCTUATION_RE = /[.!?"')\]\u201D\u2019\u201C\u2018]\s*$/;
 const PROP_SUBJECT_TITLE_RE =
   /^(?:the\s+)?(?:[a-z][a-z-]*\s+){0,2}(?:ledger|card|blotter|slip|capture|folder|memo|worksheet|binder|note|ticket|grid|schedule|page|sheet|screen|dashboard|spreadsheet|tablet|docket|form)\s+(?:reviews?|marks?|circles?|tabs?|questions?|annotates?|tests?|sorts?|checks?|flags?|indexes?|weighs?|traces?|files?|screens?|studies?|compares?)\b/i;

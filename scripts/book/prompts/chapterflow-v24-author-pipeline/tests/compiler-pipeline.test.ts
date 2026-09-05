@@ -3577,6 +3577,22 @@ test("v23 SEC35 still blocks an undealt name that opens a sentence and also appe
   assert.match(sec35[0].message, /Long/);
 });
 
+test("v23 SEC35 still blocks an undealt name after a BARE colon (a colon opens a sentence only with a quote)", () => {
+  // Round-2 review guard. The sentence-opener widening exists for the live
+  // attempt-1 shape, which is a colon FOLLOWED BY an opening quote ("… the next
+  // morning: 'Whoever wrote this…"). A bare colon introduces an appositive or a
+  // list inside the SAME sentence, so a capitalized token after one is a name in
+  // mid-sentence position and must still block.
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  bad.examples[0].scenario = `${dealt} counted the takings at the counter: Long owed the shop for a month of bread and the ledger said so plainly. ${dealt} weighed the tradeoff and made the balance match the careful behavior already in place before money moved.`;
+
+  const sec35 = validateExamplePack(bad, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC35.example_dealt_name" && f.severity === "blocker");
+  assert.equal(sec35.length, 1, sec35.map((f) => f.message).join("\n"));
+  assert.match(sec35[0].message, /Long/);
+});
+
 test("v23 a dealt name that only ever opens a sentence still counts as USED cast (SEC119 input)", () => {
   const fx = compileFixture();
   const pack = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
