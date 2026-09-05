@@ -850,6 +850,9 @@ export interface AssemblyEvictionOutcome {
  * restores each gate's own threshold, kind, and re-draft wording.
  */
 export interface CrossChapterEvictionPolicy {
+  /** Discriminates this keep-earliest-N shape from the budget shape below. Optional
+   *  so every pre-existing entry stays byte-identical. */
+  readonly mode?: "keep-earliest";
   /** The MAXIMUM number of chapters that may keep the colliding phrase and still
    *  satisfy the gate — one less than the gate's firing threshold. Sorted ascending,
    *  the earliest this-many chapters keep the phrase; every surplus chapter is
@@ -863,6 +866,30 @@ export interface CrossChapterEvictionPolicy {
    *  collision would design past the wrong axis). */
   readonly avoidMessage: (phrase: string, keptChapterLabels: string) => string;
 }
+
+/**
+ * The eviction policy for a per-book BUDGET gate (SEC90 soft-banned budget).
+ *
+ * A budget gate does not fire on a chapter COUNT — it fires when the book-wide
+ * occurrence total exceeds a configured per-book budget — so no `maxKeptChapters`
+ * mirrors it: keeping the earliest N chapters leaves the book over budget, and
+ * evicting every contributor throws away packs the budget never needed removed.
+ * The planner instead evicts the heaviest contributing packs until the removed
+ * contributions cover the overage (total - budget). The evicted KIND comes from the
+ * blocker, not from the policy, because a budget phrase leaks across every kind.
+ */
+export interface BudgetEvictionPolicy {
+  readonly mode: "budget";
+  /** Documentation only: a budget gate implicates whatever kind the blocker names. */
+  readonly kind: "any";
+  /** Build the re-draft avoid message. A phrase over its book budget is not
+   *  "already used by ch01" — no chapter keeps a licence to it — so the wording
+   *  takes the numbers instead of a kept-chapter list. */
+  readonly avoidMessage: (phrase: string, total: number, budget: number) => string;
+}
+
+/** Either eviction shape. `mode` discriminates them; keep-earliest entries may omit it. */
+export type AssemblyEvictionPolicy = CrossChapterEvictionPolicy | BudgetEvictionPolicy;
 
 /** SEC93 venue stamping keeps at most this many chapters (the gate blocks only
  *  ABOVE it). Retained as a named export — tests and the registry both pin to it. */
@@ -899,7 +926,7 @@ const actionFormPolicy = (maxKeptChapters: number, formLabel: string): CrossChap
  * here; `planAssemblyEvictions` throws loudly on any signature whose checkId is
  * absent, so a new gate can never silently borrow a wrong threshold.
  */
-export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, CrossChapterEvictionPolicy> = new Map<string, CrossChapterEvictionPolicy>([
+export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, AssemblyEvictionPolicy> = new Map<string, AssemblyEvictionPolicy>([
   // Example-pack gates.
   ["SEC80.example_cross_chapter_opening_shape", sceneFramePolicy(2, "opening shape")],
   ["SEC85.example_repeated_action_container", {
@@ -964,6 +991,28 @@ export const CROSS_CHAPTER_EVICTION_POLICIES: ReadonlyMap<string, CrossChapterEv
     avoidMessage: (phrase, keptChapterLabels) =>
       `coreSkill closing sentence "${phrase}" is already used by ${keptChapterLabels} — write a chapter-specific closer.`,
   }],
+  // The two ASSEMBLY-ONLY gates the Franklin canary wedged on. Both ran only in the
+  // assembly gate runner and emitted UNSTAMPED findings, so the port evicted nothing
+  // and every round recompiled the identical cached packs — the exact permanent-wedge
+  // shape the SEC83 comment above describes. Neither gate is weakened by these
+  // entries; they only give an existing blocker a way to clear.
+  ["SEC119.cast_containment", {
+    // A fictional example-cast name in the reader's OWN plan is a per-chapter LEAK,
+    // not a shared phrase some chapter is entitled to keep: nothing may keep it, so
+    // the keep count is 0 and every implicated action pack is evicted.
+    maxKeptChapters: 0,
+    kind: "action-pack",
+    avoidMessage: (phrase) =>
+      `the fictional example-cast name "${phrase}" must not appear anywhere in the reader's own plan (title, tryThisNow, coreSkill, challenge, weekly practice, if-then plans) — describe the behavior without naming any example character.`,
+  }],
+  ["SEC90.soft_banned_budget", {
+    // Budget mode: SEC90 fires on the BOOK TOTAL against config/banned-phrases.json's
+    // perBookBudget (unchanged here), so there is no chapter threshold to mirror.
+    mode: "budget",
+    kind: "any",
+    avoidMessage: (phrase, total, budget) =>
+      `the soft-banned phrase "${phrase}" is over its book budget (${total} uses, budget ${budget}) — do not use it at all in this section; rephrase every occurrence.`,
+  }],
 ]);
 
 /**
@@ -1012,6 +1061,88 @@ for (const checkId of CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.keys()) {
 }
 
 /**
+ * Tie-break order for budget eviction: the REVERSE of the compile order
+ * (summary → example → learning → action), so when two packs contribute equally the
+ * latest-drafted kind is evicted first. A later kind is the cheapest to re-draft —
+ * the learning card is built from the already-drafted summary prose, so evicting a
+ * summary pack invalidates more downstream context than evicting an action pack.
+ */
+const BUDGET_EVICTION_KIND_ORDER: readonly SectionKind[] = ["action-pack", "learning-pack", "example-pack", "summary-pack"];
+
+function budgetEvictionKindRank(kind: SectionKind): number {
+  const rank = BUDGET_EVICTION_KIND_ORDER.indexOf(kind);
+  return rank === -1 ? BUDGET_EVICTION_KIND_ORDER.length : rank;
+}
+
+function finiteNumbers(values: readonly (number | undefined)[]): number[] {
+  return values.filter((value): value is number => typeof value === "number" && Number.isFinite(value));
+}
+
+/**
+ * The BUDGET-mode plan (SEC90). The gate reports one blocker per contributing FIELD,
+ * so contributions are first summed per (chapter, kind) — the unit the pack cache
+ * actually evicts. Packs are then evicted heaviest-first until the removed
+ * contributions cover the overage (total - budget) and no further: the book is back
+ * inside budget with the fewest packs re-drafted.
+ *
+ * A blocker missing `count` is worth 1 (it contributed at least one occurrence, and
+ * under-counting only ever evicts MORE, never less). If NOT ONE blocker in the group
+ * carries a total/budget, the overage is unknowable — so every distinct contributing
+ * (chapter, kind) is evicted rather than a threshold being guessed.
+ */
+function planBudgetEvictions(
+  group: readonly AssemblyBlocker[],
+  policy: BudgetEvictionPolicy,
+  chapterIdByNumber: ReadonlyMap<number, string>,
+): AssemblyEviction[] {
+  const totals = finiteNumbers(group.map((blocker) => blocker.total));
+  const budgets = finiteNumbers(group.map((blocker) => blocker.budget));
+  const total = totals.length > 0 ? Math.max(...totals) : null;
+  const budget = budgets.length > 0 ? Math.max(...budgets) : null;
+  const overage = total !== null && budget !== null ? total - budget : null;
+
+  const contributions = new Map<string, { chapterNumber: number; kind: SectionKind; count: number; blocker: AssemblyBlocker }>();
+  for (const blocker of group) {
+    const key = `${blocker.chapterNumber} ${blocker.kind}`;
+    const contributed = typeof blocker.count === "number" && Number.isFinite(blocker.count) ? blocker.count : 1;
+    const existing = contributions.get(key);
+    if (existing) existing.count += contributed;
+    else contributions.set(key, { chapterNumber: blocker.chapterNumber, kind: blocker.kind, count: contributed, blocker });
+  }
+  const ordered = [...contributions.values()].sort((a, b) =>
+    b.count - a.count
+    // Ties: the LATER chapter goes first, so earlier chapters keep their wording —
+    // the same "keep earliest" bias the chapter-count policies apply.
+    || b.chapterNumber - a.chapterNumber
+    || budgetEvictionKindRank(a.kind) - budgetEvictionKindRank(b.kind));
+
+  const evictions: AssemblyEviction[] = [];
+  let removed = 0;
+  for (const contribution of ordered) {
+    if (overage !== null && removed >= overage) break;
+    const chapterId = chapterIdByNumber.get(contribution.chapterNumber);
+    if (chapterId === undefined) continue;
+    evictions.push({
+      chapterNumber: contribution.chapterNumber,
+      chapterId,
+      // The blocker's kind, not the policy's: a budget phrase leaks across kinds.
+      kind: contribution.kind,
+      avoid: Object.freeze({
+        checkId: contribution.blocker.checkId,
+        phrase: contribution.blocker.phrase,
+        // No chapter is entitled to keep an over-budget phrase.
+        keptByChapters: Object.freeze([]) as unknown as number[],
+        message: total !== null && budget !== null
+          ? policy.avoidMessage(contribution.blocker.phrase, total, budget)
+          : contribution.blocker.message,
+      }),
+    });
+    removed += contribution.count;
+  }
+  return evictions;
+}
+
+/**
  * Task 11aa/11ae — the livelock-break policy. Given the STRUCTURED cross-chapter
  * assembly blockers and the run's chapter-id map, decide the MINIMAL set of cached
  * (chapter, kind) packs to evict so the next compile run can converge, and the
@@ -1026,6 +1157,10 @@ for (const checkId of CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.keys()) {
  * phrase (they alone satisfy the gate) and every surplus chapter is evicted with an
  * avoid-entry naming the phrase and the chapters that keep it. A blocker whose
  * chapter cannot be mapped to a chapterId is skipped (never guessed).
+ *
+ * A checkId registered in BUDGET mode (SEC90) is planned differently — its gate
+ * fires on a book-wide occurrence total, not a chapter count — see
+ * planBudgetEvictions above.
  *
  * A blocker whose checkId has NO registry entry throws (fail loud) — a signature
  * was stamped without registering a threshold/kind/wording, a programming error we
@@ -1052,6 +1187,10 @@ export function planAssemblyEvictions(
       throw new Error(
         `COMPILER_ASSEMBLY_EVICTION_UNREGISTERED:cross-chapter gate ${checkId} (signature ${JSON.stringify(group[0].signature)}) stamped an eviction signature but has no CROSS_CHAPTER_EVICTION_POLICIES entry — register its threshold, kind, and avoid wording`,
       );
+    }
+    if (policy.mode === "budget") {
+      evictions.push(...planBudgetEvictions(group, policy, chapterIdByNumber));
+      continue;
     }
     const byChapter = new Map<number, AssemblyBlocker>();
     for (const blocker of group) if (!byChapter.has(blocker.chapterNumber)) byChapter.set(blocker.chapterNumber, blocker);

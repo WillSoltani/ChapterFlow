@@ -18,6 +18,7 @@ import {
   SEC93_MAX_VENUE_CHAPTERS,
   CROSS_CHAPTER_EVICTION_POLICIES,
   CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS,
+  type CrossChapterEvictionPolicy,
 } from "../../src/app/compilerApplicationPort.js";
 import {
   structureAssemblyBlockers,
@@ -560,17 +561,34 @@ requiredTest("11ae registry — a cross-chapter gate WITHOUT a registry entry ev
   assert.throws(() => planAssemblyEvictions(blockers, chapterIds), /UNREGISTERED|registr/i);
 });
 
+// The registry now holds two policy shapes (keep-earliest-N and per-book budget);
+// this narrows to the keep-earliest one so a chapter threshold can be asserted.
+function keepEarliestPolicy(checkId: string): CrossChapterEvictionPolicy {
+  const policy = CROSS_CHAPTER_EVICTION_POLICIES.get(checkId);
+  assert.ok(policy && policy.mode !== "budget", `${checkId} must be a keep-earliest eviction policy`);
+  return policy;
+}
+
 requiredTest("11ae registry — SEC93/SEC94/SEC114 are all registered with the gate's own threshold and kind", () => {
-  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get("SEC93.example_venue_stamping")?.maxKeptChapters, SEC93_MAX_VENUE_CHAPTERS);
+  assert.equal(keepEarliestPolicy("SEC93.example_venue_stamping").maxKeptChapters, SEC93_MAX_VENUE_CHAPTERS);
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get("SEC93.example_venue_stamping")?.kind, "example-pack");
-  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC94)?.maxKeptChapters, 1);
+  assert.equal(keepEarliestPolicy(SEC94).maxKeptChapters, 1);
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC94)?.kind, "action-pack");
   // R-020 — mirrors SEC114's own >= 2 threshold (see sectionGate.ts), so it keeps 1.
-  assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.maxKeptChapters, 1);
+  assert.equal(keepEarliestPolicy(SEC114).maxKeptChapters, 1);
   assert.equal(CROSS_CHAPTER_EVICTION_POLICIES.get(SEC114)?.kind, "action-pack");
   // Every registered policy has a sane threshold and a wording builder.
   for (const [checkId, policy] of CROSS_CHAPTER_EVICTION_POLICIES) {
-    assert.ok(policy.maxKeptChapters >= 1, `${checkId} keeps at least one chapter`);
+    if (policy.mode === "budget") {
+      // A per-book BUDGET gate has no chapter threshold to keep (see
+      // BudgetEvictionPolicy); its wording takes the numbers instead.
+      assert.ok(policy.avoidMessage("x", 64, 15).length > 0, `${checkId} builds an avoid message`);
+      continue;
+    }
+    // SEC119 containment keeps NO chapter: a leaked example-cast name in the
+    // reader's own plan is never something another chapter is entitled to hold.
+    const minKept = checkId === "SEC119.cast_containment" ? 0 : 1;
+    assert.ok(policy.maxKeptChapters >= minKept, `${checkId} keeps at least ${minKept} chapter(s)`);
     assert.ok(policy.avoidMessage("x", "ch01").length > 0, `${checkId} builds an avoid message`);
   }
 });

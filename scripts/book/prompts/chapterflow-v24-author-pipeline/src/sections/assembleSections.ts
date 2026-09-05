@@ -95,6 +95,13 @@ export interface AssemblyBlocker {
   readonly signature: string;
   readonly phrase: string;
   readonly message: string;
+  /** Present only for a per-book BUDGET gate (SEC90): this field's contribution,
+   *  the book-wide total, and the configured budget. The planner needs them to
+   *  size the eviction (a book total is not a chapter count), and refuses to
+   *  guess a threshold when they are absent. */
+  readonly count?: number;
+  readonly total?: number;
+  readonly budget?: number;
 }
 
 /** Project the structured cross-chapter blockers out of a section-gate finding
@@ -118,6 +125,13 @@ export function structureAssemblyBlockers(findings: readonly SectionFinding[]): 
       signature: finding.signature,
       phrase,
       message: finding.message,
+      // Carried through only when the gate stamped them (SEC90). Spread
+      // conditionally rather than assigned: an explicit `count: undefined` is an
+      // OWN property, which would make every other blocker structurally different
+      // from the object shape the assembly tests pin.
+      ...(finding.count === undefined ? {} : { count: finding.count }),
+      ...(finding.total === undefined ? {} : { total: finding.total }),
+      ...(finding.budget === undefined ? {} : { budget: finding.budget }),
     });
   }
   return blockers;
