@@ -11,7 +11,7 @@ import { canonicalJsonSha256 } from "../src/lib/canonicalJson.js";
 import { assertFactIdsSubset, compileChapterBlueprint } from "../src/compiler/chapterBlueprint.js";
 import { validateBlueprint } from "../src/compiler/blueprintGate.js";
 import { reservedFigureNamesForGenre } from "../src/compiler/bookDesign.js";
-import { checkSectionGate, contentBlockers, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
+import { checkSectionGate, contentBlockers, usedExampleCast, validateActionPack, validateExamplePack, validateLearningPack, validateSectionPack, validateSummaryPack } from "../src/sections/sectionGate.js";
 import { buildEvidenceMap } from "../src/evidence/evidenceMap.js";
 import { validateEvidenceMap } from "../src/evidence/evidenceGate.js";
 import { scoreChapterRisk } from "../src/risk/chapterRisk.js";
@@ -3474,7 +3474,11 @@ test("v23 example-pack validator rejects source-figure names as fictional actors
 test("v23 example-pack validator rejects undealt fictional protagonist names", () => {
   const fx = compileFixture();
   const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
-  bad.examples[0].scenario = "Jacob stands at the kitchen table with the card app open and chooses whether to pay a small amount before the balance becomes visible. Jacob decides to make the balance match the careful behavior already in place.";
+  // "Jacob" now also appears mid-sentence: after the sentence-opener fix an undealt
+  // token whose EVERY occurrence opens a sentence is read as grammar capitalization,
+  // not as a name (the Franklin "Long"/"Years"/"Whoever" family). A protagonist the
+  // scenario never mentions mid-sentence is the accepted recall cost of that fix.
+  bad.examples[0].scenario = "Jacob stands at the kitchen table with the card app open and chooses whether to pay a small amount before the balance becomes visible. The housemate asks Jacob to decide, and Jacob makes the balance match the careful behavior already in place.";
 
   const findings = validateExamplePack(bad, fx.blueprint, fx.packet);
   assert.ok(
@@ -3523,6 +3527,84 @@ test("v23 SEC35 ignores positional openers and scene prepositions (Partway, Besi
     [],
     `positional openers must not register as undealt names:\n${sec35.map((f) => f.message).join("\n")}`,
   );
+});
+
+test("v23 SEC35 ignores sentence-opening ordinary words (Long, Years, Whoever) — live Franklin ch02 wedge", () => {
+  // Franklin canary run 5 (compiler-run-bda264f9…, ch02 example-pack): three
+  // attempts, three sentence-opening ordinary words flagged as undealt
+  // protagonists — "Whoever" (attempt 1), "Years" (attempt 2), "Long"
+  // (attempt 3, the ONLY blocker on that draft) — and the slot died
+  // COMPILER_SECTION_BLOCKED. The scenario sentences below are the live ones
+  // with the invented protagonist swapped for this fixture's dealt name.
+  const fx = compileFixture();
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  const scenarios = [
+    `${dealt} took the blame, accepting a month's ban from the market to keep the fault off a child she had never met. Long since grown, ${dealt} sat at her own supper table when her daughter pushed the old story further than it should go, and chose to correct it before the balance of the tale hardened.`,
+    `${dealt} took the blame, accepting a month's ban from the market to keep the fault off a child she had never met. Years later, at her own supper table, ${dealt} heard her daughter push the old story further than it should go, and chose to correct it before the balance of the tale hardened.`,
+    `The editor read the paper over breakfast and pinned one line to the counter the next morning: 'Whoever wrote this reads older than their hand looks, keep sending.' ${dealt} weighed the praise against the risk and decided to keep a name off the next one before anyone could ask.`,
+  ];
+  for (const scenario of scenarios) {
+    const good = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+    good.examples[0].scenario = scenario;
+    const sec35 = validateExamplePack(good, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC35.example_dealt_name");
+    assert.deepEqual(
+      sec35.map((f) => f.message),
+      [],
+      `sentence-opening ordinary words must not register as undealt names:\n${scenario}\n${sec35.map((f) => f.message).join("\n")}`,
+    );
+  }
+});
+
+test("v23 SEC35 still blocks an undealt name used mid-sentence (Long as a person)", () => {
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  bad.examples[0].scenario = `${dealt} met Long at the market before the card app opened, and Long pressed for a payment the ledger could not show yet. ${dealt} weighed the tradeoff and made the balance match the careful behavior already in place before money moved.`;
+
+  const sec35 = validateExamplePack(bad, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC35.example_dealt_name" && f.severity === "blocker");
+  assert.equal(sec35.length, 1, sec35.map((f) => f.message).join("\n"));
+  assert.match(sec35[0].message, /Long/);
+});
+
+test("v23 SEC35 still blocks an undealt name that opens a sentence and also appears mid-sentence", () => {
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  bad.examples[0].scenario = `Long arrives before the card app opens and asks what the reported balance will say. ${dealt} answers that only the snapshot counts, then watches Long push for a payment the ledger cannot show yet, and makes the balance match the careful behavior already in place.`;
+
+  const sec35 = validateExamplePack(bad, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC35.example_dealt_name" && f.severity === "blocker");
+  assert.equal(sec35.length, 1, sec35.map((f) => f.message).join("\n"));
+  assert.match(sec35[0].message, /Long/);
+});
+
+test("v23 SEC35 still blocks an undealt name after a BARE colon (a colon opens a sentence only with a quote)", () => {
+  // Round-2 review guard. The sentence-opener widening exists for the live
+  // attempt-1 shape, which is a colon FOLLOWED BY an opening quote ("… the next
+  // morning: 'Whoever wrote this…"). A bare colon introduces an appositive or a
+  // list inside the SAME sentence, so a capitalized token after one is a name in
+  // mid-sentence position and must still block.
+  const fx = compileFixture();
+  const bad = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  bad.examples[0].scenario = `${dealt} counted the takings at the counter: Long owed the shop for a month of bread and the ledger said so plainly. ${dealt} weighed the tradeoff and made the balance match the careful behavior already in place before money moved.`;
+
+  const sec35 = validateExamplePack(bad, fx.blueprint, fx.packet).filter((f) => f.checkId === "SEC35.example_dealt_name" && f.severity === "blocker");
+  assert.equal(sec35.length, 1, sec35.map((f) => f.message).join("\n"));
+  assert.match(sec35[0].message, /Long/);
+});
+
+test("v23 a dealt name that only ever opens a sentence still counts as USED cast (SEC119 input)", () => {
+  const fx = compileFixture();
+  const pack = JSON.parse(JSON.stringify(fx.examples)) as ExamplePackV1;
+  const dealt = (fx.blueprint.sections.examples[0]?.allowedNames ?? [])[0] ?? fx.blueprint.reservedVariety.allowedNames[0];
+  for (const ex of pack.examples) {
+    ex.scenario = ex.scenario.split(dealt).join("The clerk");
+    ex.whatToDo = ex.whatToDo.split(dealt).join("the clerk");
+    ex.whyItMatters = ex.whyItMatters.split(dealt).join("the clerk");
+  }
+  pack.examples[0].scenario = `${dealt} opens the card app at the kitchen table and chooses whether to pay a small amount before the reported balance is read. ${dealt} makes the balance match the careful behavior already in place before money moves anywhere near the limit.`;
+
+  assert.ok(usedExampleCast(fx.blueprint, pack).has(dealt), `${dealt} must count as used cast even when it only opens sentences`);
 });
 
 test("v23 SEC35 ignores capitalized hyphenated prefixes (Mid-career) — not undealt names (Task 11r)", () => {

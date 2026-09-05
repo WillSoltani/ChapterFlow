@@ -127,6 +127,13 @@ const DEPTH_LEVELS = new Set(["simple", "standard", "deep"]);
 const EXAMPLE_ID_RE = /^(?:ex\d{2}|ch\d{2}-ex\d{2}(?:-[a-z0-9][a-z0-9-]*)?)$/;
 const LOWERCASE_MECHANICAL_SENTENCE_TAIL_RE = /[.!?]\s+(?:under|after checking|based on|given|using)\b/;
 const LOWERCASE_SENTENCE_START_RE = /[.!?]\s+([a-z][a-z][^.!?]{10,})/g;
+/** The text immediately BEFORE a sentence-opening word: start of text, or terminal
+ *  punctuation (. ! ?) plus any closing quote/bracket, then an optional opening
+ *  quote/bracket and whitespace. A COLON opens a sentence only when it is followed by
+ *  an opening quote — the live attempt-1 shape, "… the next morning: 'Whoever wrote
+ *  this…". A BARE colon introduces an appositive or a list inside the SAME sentence
+ *  ("… at the counter: Long owed the shop…"), so what follows it stays mid-sentence. */
+const SENTENCE_OPENER_BEFORE_RE = /(?:(?:^|[.!?])["'\u2019\u201d)\]]*\s*["'\u2018\u201c([]?|:\s*["'\u2018\u201c])\s*$/;
 const TERMINAL_PUNCTUATION_RE = /[.!?"')\]\u201D\u2019\u201C\u2018]\s*$/;
 const PROP_SUBJECT_TITLE_RE =
   /^(?:the\s+)?(?:[a-z][a-z-]*\s+){0,2}(?:ledger|card|blotter|slip|capture|folder|memo|worksheet|binder|note|ticket|grid|schedule|page|sheet|screen|dashboard|spreadsheet|tablet|docket|form)\s+(?:reviews?|marks?|circles?|tabs?|questions?|annotates?|tests?|sorts?|checks?|flags?|indexes?|weighs?|traces?|files?|screens?|studies?|compares?)\b/i;
@@ -2974,12 +2981,20 @@ export function validateExamplePack(pack: ExamplePackV1, bp: ChapterBlueprintV1,
     const scenarioNames = extractNamesFromText(scenarioText).filter((name) => {
       const bare = new RegExp(`\\b${name}\\b(?![-\u2010\u2011])`, "u");
       if (!bare.test(asciiScenario)) return false;
-      // Task 11v: a capitalized -ing token that only opens sentences is a
-      // fronted gerund ("Copying the ledger, …"), not a protagonist name.
-      // Mid-sentence -ing surnames (Fleming) keep firing.
-      if (/ing$/.test(name)) {
+      // A capitalized token whose every occurrence OPENS a sentence is
+      // capitalized by grammar, not by being a name — the superset of the
+      // Task 11v gerund rule it replaces, and of the stopword batches that kept
+      // chasing this family one word at a time. Live Franklin ch02 example-pack
+      // (canary run 5): "Whoever wrote this…" (attempt 1), "Years later, …"
+      // (attempt 2) and "Long since grown, …" (attempt 3, the only blocker on
+      // that draft) each read as an undealt protagonist and the slot died
+      // COMPILER_SECTION_BLOCKED. A token that ALSO appears mid-sentence, and
+      // any name this slot was dealt, are untouched, so "… met Long at the
+      // market" still blocks.
+      if (!slotAllowedNames.has(name)) {
         const total = (asciiScenario.match(new RegExp(`\\b${name}\\b`, "g")) ?? []).length;
-        const atStarts = (asciiScenario.match(new RegExp(`(?:^|[.!?]\\s+)${name}\\b`, "gm")) ?? []).length;
+        const atStarts = [...asciiScenario.matchAll(new RegExp(`\\b${name}\\b`, "g"))]
+          .filter((m) => SENTENCE_OPENER_BEFORE_RE.test(asciiScenario.slice(0, m.index ?? 0))).length;
         if (total > 0 && total === atStarts) return false;
       }
       return true;
