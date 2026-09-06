@@ -1,11 +1,16 @@
 import { createHash } from "node:crypto";
 
 import type { ArtifactMediaType, Result } from "../contracts/v4Core.js";
+import type { PromptInputTrust } from "./promptRequest.js";
 
 export interface PromptInputData {
   readonly name: string;
   readonly mediaType: ArtifactMediaType;
   readonly bytes: Uint8Array;
+  /** Absent for every input this function renders: a record IS the untrusted
+   *  envelope. Declared here only so the renderer can pass one input shape
+   *  around; an "instruction" input never reaches renderUntrustedData. */
+  readonly trust?: PromptInputTrust;
 }
 
 function error(code: string, message: string): Result<string> {

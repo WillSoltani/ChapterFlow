@@ -183,6 +183,14 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
       attemptIds.push(request.context.attemptId);
       const card = request.prompt.inputs.find((entry) => entry.name === "task_card");
       cards.push(card ? Buffer.from(card.bytes).toString("utf8") : "");
+      // The editor's control text and task card are source-controlled task
+      // instructions, so they are marked trusted and render outside the
+      // untrusted records (the candidate content they quote is JSON-escaped
+      // inside the card's own ```json blocks).
+      assert.deepEqual(
+        request.prompt.inputs.filter((entry) => entry.trust !== undefined).map((entry) => `${entry.name}:${entry.trust}`),
+        ["control:instruction", "task_card:instruction"],
+      );
       assert.equal(request.role, "author", "the editor is an author-role call");
       if (options.abortAt === calls) controller.abort();
       const failure = options.failures?.(calls) ?? null;

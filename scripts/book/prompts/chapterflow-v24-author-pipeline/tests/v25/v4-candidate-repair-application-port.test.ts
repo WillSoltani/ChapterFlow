@@ -36,6 +36,14 @@ requiredTest("scoped repair changes one chapter, preserves untouched bytes, reco
   assert.deepEqual(subject.prompts[0].prompt.inputs.map((input) => input.name), [
     "control", "writing_contract", "failed_chapter", "blueprint", "source_packet", "source_use_plan", "source_context_1", "source_context_2", "qc_findings", "repair_brief",
   ]);
+  // Only the lane's own source-controlled control text is trusted instruction.
+  // writing_contract / book_rules / repair_brief carry model-authored and
+  // gate-quoted material, so they keep the untrusted envelope and the control
+  // text keeps telling the model how to read them.
+  assert.deepEqual(
+    subject.prompts[0].prompt.inputs.filter((input) => input.trust !== undefined).map((input) => `${input.name}:${input.trust}`),
+    ["control:instruction"],
+  );
   const successor = subject.successor();
   assert.ok(successor);
   assert.deepEqual(Buffer.from(successor.files[1].bytes), untouchedBefore);
