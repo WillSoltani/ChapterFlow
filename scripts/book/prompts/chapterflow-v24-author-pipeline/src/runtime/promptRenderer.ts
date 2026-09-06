@@ -143,8 +143,21 @@ export function renderPrompt(request: PromptRequest): Result<Uint8Array> {
       // which is neither an exact RESERVED_BOUNDARY_LINES match nor a
       // TASK_INSTRUCTIONS_BEGIN prefix — so it passed, and the rendered prompt
       // closed the trusted block early and re-opened as the payload's own task.
+      //
+      // The comparison is on the line's TRIMMED content, not its raw bytes. A
+      // reader — human or model — sees " TASK_INSTRUCTIONS_END" as the closing
+      // delimiter; the padding is invisible. Comparing raw let one leading
+      // space defeat both the exact membership test and the anchored prefix
+      // test, so a card could close the trusted block and open a forged
+      // `TASK_INSTRUCTIONS_BEGIN name=system_override` inside it. Trimming is
+      // rejection-only: it can never accept text the raw test rejected, and it
+      // still ignores a delimiter that merely appears mid-line, so ordinary
+      // indented prose that mentions one keeps rendering.
       const lines = text.split(/\r\n|[\n\r\u2028\u2029]/);
-      if (lines.some((line) => RESERVED_BOUNDARY_LINES.includes(line) || line.startsWith(TASK_INSTRUCTIONS_BEGIN))) {
+      if (lines.some((line) => {
+        const bare = line.trim();
+        return RESERVED_BOUNDARY_LINES.includes(bare) || bare.startsWith(TASK_INSTRUCTIONS_BEGIN);
+      })) {
         return failure("PROMPT_INPUT_INVALID", `instruction input ${input.name} contains a reserved boundary line`);
       }
       instructions.push(`${TASK_INSTRUCTIONS_BEGIN} name=${input.name}\n${text}\n${TASK_INSTRUCTIONS_END}`);
