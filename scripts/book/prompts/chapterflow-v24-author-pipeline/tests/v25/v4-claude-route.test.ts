@@ -55,7 +55,7 @@ requiredTest("claude route READ_ONLY build: headless JSON, model, effort flag, t
   const built = route.build(READ_ONLY_PROFILE);
   assert.equal(built.command, "claude");
   assert.equal(built.args.includes("-p"), true);
-  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--effort", "high", "--disallowedTools", "*"].join("\0"));
+  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--effort", "high", "--restricted", "--disallowedTools", "*"].join("\0"));
   // model flows in from the caller (config), verbatim
   assert.equal(built.args.includes("claude-sonnet-5"), true);
   // READ_ONLY analog: no write-mode permission grant leaks in
@@ -69,8 +69,47 @@ requiredTest("claude route WORKSPACE_WRITE build: acceptEdits permission mode, n
   const route = createClaudeRoute("claude-sonnet-5", "high");
   const built = route.build(WRITE_PROFILE);
   assert.equal(built.command, "claude");
-  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--effort", "high", "--permission-mode", "acceptEdits"].join("\0"));
+  assert.equal(built.args.join("\0"), ["-p", "--output-format", "json", "--model", "claude-sonnet-5", "--effort", "high", "--restricted", "--permission-mode", "acceptEdits"].join("\0"));
   assert.equal(built.args.includes("--disallowedTools"), false);
+});
+
+// ── --restricted: the operator's user config never reaches a pipeline call ───
+
+requiredTest("claude route runs --restricted in BOTH modes so operator plugins, hooks and output styles cannot decorate pipeline output", () => {
+  // Franklin canary 2026-09-06, reader panel (role=review, claude-sonnet-5,
+  // effort xhigh): 4 of 9 failed seat reads came back as DECORATED output —
+  // "★ Insight ─────" blocks and the word "caveman decoration" before (or
+  // instead of) the JSON — which the gateway rejects as MODEL_OUTPUT_INVALID.
+  // Cause: `claude -p` runs under the OPERATOR's user config, so ~/.claude
+  // settings leak into pipeline calls (enabledPlugins carries
+  // learning-output-style, explanatory-output-style, and caveman, whose
+  // UserPromptSubmit hook injects "CAVEMAN MODE ACTIVE").
+  //
+  // Live probe 2026-09-06, claude CLI 2.1.263, subscription auth, API keys
+  // stripped — `claude -p "Reply with exactly the word OK" --output-format json
+  // --model claude-sonnet-5 --effort low --restricted` → is_error=false,
+  // result "OK". Its session transcript contained 0 CAVEMAN / 0 "Insight" /
+  // 0 hook-context / 0 output-style lines, against 4 / 3 / 6 / 5 in an
+  // identical control run without the flag. It composes with both of this
+  // route's modes (`--permission-mode acceptEdits` and `--disallowedTools '*'`).
+  //
+  // The two rejected alternatives are pinned here so neither comes back:
+  //   --bare              UNUSABLE. Its help: "Anthropic auth is strictly
+  //                       ANTHROPIC_API_KEY or apiKeyHelper via --settings
+  //                       (OAuth and keychain are never read)" — this route is
+  //                       subscription/OAuth, so --bare cannot authenticate.
+  //   CLAUDE_CONFIG_DIR   UNUSABLE. Pointing it at an empty dir → "Not logged in".
+  for (const profile of [READ_ONLY_PROFILE, WRITE_PROFILE]) {
+    const built = createClaudeRoute("claude-sonnet-5", "xhigh").build(profile);
+    assert.equal(built.args.includes("--restricted"), true, `--restricted must be present for ${profile.mode}`);
+    assert.equal(built.args.filter((arg) => arg === "--restricted").length, 1);
+    // It is a boolean flag: the next argv slot is the mode flag, never a value.
+    const idx = built.args.indexOf("--restricted");
+    assert.equal(built.args[idx + 1], profile.mode === "READ_ONLY" ? "--disallowedTools" : "--permission-mode");
+    // Never the rejected alternatives.
+    assert.equal(built.args.includes("--bare"), false, "--bare cannot authenticate on OAuth/keychain");
+    assert.equal(Object.keys(createClaudeRoute("claude-sonnet-5", "xhigh").env?.(profile) ?? {}).includes("CLAUDE_CONFIG_DIR"), false);
+  }
 });
 
 requiredTest("claude route: the model id flows through verbatim (no hardcoded model)", () => {

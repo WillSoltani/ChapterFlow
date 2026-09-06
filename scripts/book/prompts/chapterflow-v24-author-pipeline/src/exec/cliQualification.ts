@@ -65,8 +65,15 @@ export const CODEX_ROUTE_REQUIRED_FLAGS: readonly string[] = ["--sandbox", "--sk
  *  `claude -p` argv — probed and required (all are load-bearing). Live-probe
  *  spellings 2026-07-22 (`claude --help`, v2.1.197): `-p, --print`,
  *  `--output-format <format>`, `--model <model>`, `--effort <level>`,
- *  `--disallowedTools, --disallowed-tools <tools...>`, `--permission-mode <mode>`. */
-export const CLAUDE_PROBED_FLAGS: readonly string[] = ["-p", "--output-format", "--model", "--effort", "--disallowedTools", "--permission-mode"];
+ *  `--disallowedTools, --disallowed-tools <tools...>`, `--permission-mode <mode>`.
+ *
+ *  `--restricted` added 2026-09-06 (probed against `claude --help`, v2.1.263):
+ *  the route now emits it on every call so operator plugins, hooks and output
+ *  styles cannot decorate pipeline output (see claudeRoute.ts RESTRICTED_ARGS).
+ *  It is REQUIRED, not optional: a claude old enough to lack it would silently
+ *  run the pipeline under the operator's user settings, which is the failure
+ *  this flag exists to close, so preflight fails closed instead. */
+export const CLAUDE_PROBED_FLAGS: readonly string[] = ["-p", "--output-format", "--model", "--effort", "--disallowedTools", "--permission-mode", "--restricted"];
 
 /** Flags the live claude route actually emits — the minimal set a preflight
  *  (doctor, ModelGateway) must prove the installed `claude` supports before any
