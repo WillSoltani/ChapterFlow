@@ -197,7 +197,8 @@ requiredTest("regen-livelock — SEC83 stamps a signature, projects blockers, an
 requiredTest("regen-livelock — SEC83/SEC89 are registered evictable gates, and neither is silently omitted from both registries", () => {
   for (const checkId of [SEC83, SEC89]) {
     const policy = CROSS_CHAPTER_EVICTION_POLICIES.get(checkId);
-    assert.ok(policy, `${checkId} must carry an eviction policy`);
+    // The registry now holds two shapes; SEC83/SEC89 are keep-earliest-N gates.
+    assert.ok(policy && policy.mode !== "budget", `${checkId} must carry a keep-earliest eviction policy`);
     assert.equal(policy.maxKeptChapters, 2, `${checkId} keeps two chapters (the gate needs >= 2 OTHER chapters to fire)`);
     assert.equal(CROSS_CHAPTER_SATURATION_EVICTION_EXEMPTIONS.has(checkId), false);
   }

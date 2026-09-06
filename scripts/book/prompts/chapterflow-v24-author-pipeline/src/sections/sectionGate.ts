@@ -80,6 +80,16 @@ export type SectionFinding = {
    *  cross-chapter avoid-context into the re-draft. Absent on per-chapter
    *  findings. */
   signature?: string;
+  /** The machine-readable numbers behind a per-book BUDGET gate (SEC90): this
+   *  field's own contribution, the book-wide total for the phrase, and the
+   *  configured perBookBudget. A budget gate fires on a book TOTAL, not on a
+   *  chapter count, so keep-earliest-N cannot mirror it — the compiler port needs
+   *  the actual numbers to work out how much must be evicted before the book is
+   *  back inside budget. Absent on every non-budget finding; the port never
+   *  guesses a threshold when they are missing. */
+  count?: number;
+  total?: number;
+  budget?: number;
   /** R-041 — set when the finding reports that a check could not RUN (a missing or
    *  unreadable INPUT), not that pack CONTENT is invalid. Such a finding stays a
    *  blocker — `passed` goes false and `validate-sections` exits non-zero — but it is
@@ -1181,6 +1191,14 @@ export function castContainmentFindings(pack: SectionPackV1, usedCast: Set<strin
         chapterNumber,
         section: "action-pack",
         path: field.path,
+        // Stamp the leaked NAME as the eviction signature. SEC119 runs only in the
+        // assembly gate runner (the draft-time sectionGateBlockers path calls
+        // validateSectionPack alone), so the writer never saw this blocker; unstamped,
+        // structureAssemblyBlockers dropped the finding, planAssemblyEvictions evicted
+        // nothing, and the cached action pack was reused and re-blocked identically
+        // every round — the Franklin canary's permanent wedge on ch16's
+        // "Put the Ask in Writing, Not in a Chase".
+        signature: `cast:${name}`,
         message: `${field.path} names "${name}", one of this chapter's fictional example-pack characters, in the reader's own plan; the example cast is fictional and exists only in the example pack — translate the mechanism into a behavior without naming them`,
       });
     }
@@ -2098,6 +2116,16 @@ function softBannedBudgetFindings(fields: SoftBannedTextOccurrence[]): SectionFi
         chapterNumber: field.chapterNumber,
         section: field.section,
         path: field.path,
+        // Stamp the PHRASE plus the numbers behind the trip. This gate is
+        // assembly-only and fires on a BOOK TOTAL, so unstamped it wedged the
+        // Franklin canary exactly like SEC119: 64 uses of "rather than" against a
+        // budget of 15 blocked every round, evicted nothing, and the same 64
+        // occurrences came straight back out of the pack cache. The budget itself is
+        // config (config/banned-phrases.json) and is not touched here.
+        signature: `softban:${entry.phrase}`,
+        count: field.count,
+        total,
+        budget,
         message: `soft-banned phrase "${entry.phrase}" appears ${total} time(s) across available section artifacts (budget ${budget}); this field contributes ${field.count}. ${entry.reason ?? ""}`.trim(),
       });
     }
