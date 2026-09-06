@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
-import { existsSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 
 import { auditBookDeals, CompilerApplicationPort, type BookDealAudit } from "../../src/app/compilerApplicationPort.js";
@@ -9,6 +9,7 @@ import {
   createFileSectionPackCache,
   sectionPackCacheDir,
   type SectionPackCache,
+  type SectionPackCacheKey,
 } from "../../src/books/sectionPackCache.js";
 import {
   createFileSectionAvoidStore,
@@ -32,6 +33,7 @@ import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../..
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
 import { renderPrompt } from "../../src/runtime/promptRenderer.js";
 import { FileRunStore } from "../../src/run-state/fileRunStore.js";
+import type { RunStore } from "../../src/run-state/runStore.js";
 import { FileStageCoordinator } from "../../src/run-state/stageCoordinator.js";
 import type { StageCoordinator } from "../../src/run-state/stageTypes.js";
 import { deriveBookDesign } from "../../src/compiler/bookDesign.js";
@@ -185,6 +187,16 @@ type RigOptions = {
    *  default, which is the port asking its own run store where this run lives and
    *  writing the record there. */
   readonly rejectedSectionPacks?: RejectedSectionPackSink;
+  /** R-285 — the compiler run that immediately PRECEDED this one, whose rejected
+   *  drafts attempt 1 may open on. Absent = today's behaviour exactly. */
+  readonly carryOverFromRunId?: string;
+  /** Salt the run-state root separately from the fixture/run id, so two rig
+   *  invocations can share ONE run-state root — which is what makes run B able to
+   *  read the `rejected/` directory run A wrote. Defaults to `suffix`. */
+  readonly runStateSuffix?: string;
+  /** Hide `runDirectory` from the injected run store — the in-memory-store shape.
+   *  Nothing can be persisted and nothing can be carried over. */
+  readonly hideRunDirectory?: boolean;
 };
 
 /** The four fixture packs as the editor's `sections` document. */
@@ -231,8 +243,22 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
   const sectionAttempts = new Map<string, number>();
   const targetOperationId = options.targetOperationId ?? "compiler-ch01-summary-pack";
   const controller = new AbortController();
-  const runStore = new FileRunStore(resolve(context.roots.tempRoot, `run-state-${suffix}`));
-  const fileStageCoordinator = new FileStageCoordinator(resolve(context.roots.tempRoot, `run-state-${suffix}`));
+  const runStateSuffix = options.runStateSuffix ?? suffix;
+  const fileRunStore = new FileRunStore(resolve(context.roots.tempRoot, `run-state-${runStateSuffix}`));
+  // `runDirectory` is optional on the RunStore contract (the in-memory fakes have
+  // none). Delegating to the file store WITHOUT it reproduces that shape exactly:
+  // no diagnostics written, and nothing to carry over from.
+  const runStore: RunStore = options.hideRunDirectory
+    ? {
+        createRun: (definition) => fileRunStore.createRun(definition),
+        readRun: (bookId, runId, observedAt) => fileRunStore.readRun(bookId, runId, observedAt),
+        admitAttempt: (admission) => fileRunStore.admitAttempt(admission),
+        finishAttempt: (input) => fileRunStore.finishAttempt(input),
+        requestCancel: (input) => fileRunStore.requestCancel(input),
+        finishRun: (input) => fileRunStore.finishRun(input),
+      }
+    : fileRunStore;
+  const fileStageCoordinator = new FileStageCoordinator(resolve(context.roots.tempRoot, `run-state-${runStateSuffix}`));
   let checkpointFailures = options.checkpointErrorOnce ? 1 : 0;
   const stageCoordinator: StageCoordinator = {
     async checkpoint(input) {
@@ -431,11 +457,13 @@ function rig(context: TestContext, suffix: string, options: RigOptions = {}) {
     sectionTaskContextLogicalPath: CONTEXT,
     sources: [{ chapterNumber: 1, sidecarLogicalPath: SIDECAR, sourceLogicalPaths: [SOURCE] }],
     profileId: PROFILE,
+    ...(options.carryOverFromRunId === undefined ? {} : { carryOverFromRunId: options.carryOverFromRunId }),
     signal: controller.signal,
   } as const;
   return {
-    port, request, counts, prompts, attemptRoot, selected, runStore, controller, sleeps,
-    runStateRoot: resolve(context.roots.tempRoot, `run-state-${suffix}`),
+    port, request, counts, prompts, attemptRoot, selected, controller, sleeps,
+    runStore: fileRunStore,
+    runStateRoot: resolve(context.roots.tempRoot, `run-state-${runStateSuffix}`),
     staged: () => stagedInput,
   };
 }
@@ -2305,6 +2333,413 @@ requiredTest("R-284e one record is bounded: an oversized draft is truncated, and
   const smallParsed = JSON.parse(small) as Record<string, unknown>;
   assert.equal(smallParsed.truncated, undefined);
   assert.deepEqual(smallParsed.draft, { artifactType: "learning-pack" });
+});
+
+// ── R-285 CARRY-OVER OF THE LAST REJECTED DRAFT ACROSS COMPILER RUNS ──────────
+//
+// Every case below runs TWO compile runs against ONE run-state root: run A leaves
+// its rejected drafts on disk, run B is handed A's run id as `carryOverFromRunId`.
+// That is the production shape — the deterministic retry carries from the base
+// compile, operator attempt n from attempt n-1 — with the service's id derivation
+// left to the service's own suite. The carried section is the SUMMARY pack purely
+// because the rig already knows how to produce a gate-rejected summary draft; the
+// mechanism reads the record by (chapter, kind) and is otherwise kind-blind, which
+// the "every other section is untouched" assertions below pin from the other side.
+
+/** Capture the port's operator log for the duration of one call. */
+async function withCapturedStderr<T>(body: () => Promise<T>): Promise<{ value: T; lines: string[] }> {
+  const lines: string[] = [];
+  const original = console.error;
+  console.error = (...args: unknown[]) => { lines.push(args.map(String).join(" ")); };
+  try {
+    return { value: await body(), lines };
+  } finally {
+    console.error = original;
+  }
+}
+
+/** The task card the runner was handed for one section's Nth model call. */
+function sectionCard(prompts: Parameters<ModelTaskRunner["run"]>[0][], operationId: string, ordinal = 0): string {
+  const matching = prompts.filter((prompt) => prompt.context.operationId === operationId);
+  assert.ok(matching.length > ordinal, `no call ${ordinal} for ${operationId}`);
+  return Buffer.from(matching[ordinal].prompt.inputs[4].bytes).toString("utf8");
+}
+
+/** Run A: the summary pack is refused on all three attempts, so the run FAILS having
+ *  written ch01.summary-pack.attempt{1,2,3}.json under its own run directory. */
+async function exhaustedPriorRun(
+  context: TestContext,
+  suffix: string,
+  runStateSuffix: string,
+  cache?: SectionPackCache,
+  avoidStore?: SectionAvoidStore,
+) {
+  const subject = rig(context, suffix, {
+    runStateSuffix,
+    blockSummaryAttempts: 99,
+    ...(cache ? { cache } : {}),
+    ...(avoidStore ? { avoidStore } : {}),
+  });
+  await assert.rejects(subject.port.run(subject.request), /COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts/);
+  const records = rejectedRecords(subject.runStateRoot, `run-${suffix}`);
+  assert.deepEqual(records.map((record) => record.file), [
+    "ch01.summary-pack.attempt1.json",
+    "ch01.summary-pack.attempt2.json",
+    "ch01.summary-pack.attempt3.json",
+  ]);
+  return subject;
+}
+
+/** The avoid-context digest a record must carry, recomputed from the entries so the
+ *  CANONICAL FORM itself is pinned: entries in stored order, each rendered with the
+ *  five fields that reach the card (checkId, phrase, keptByChapters, message,
+ *  rounds), an absent `rounds` reading as null. */
+function expectedAvoidDigest(entries: ReadonlyArray<Record<string, unknown>>): string {
+  const canonical = entries.map((entry) => ({
+    checkId: entry.checkId,
+    phrase: entry.phrase,
+    keptByChapters: entry.keptByChapters,
+    message: entry.message,
+    rounds: entry.rounds ?? null,
+  }));
+  return createHash("sha256").update(JSON.stringify(canonical)).digest("hex");
+}
+
+/** Rewrite one of run A's records in place. */
+function patchRecord(runStateRoot: string, runId: string, file: string, patch: Record<string, unknown>): void {
+  const path = resolve(runStateRoot, "books", BOOK, "runs", runId, REJECTED_SECTION_PACKS_DIR, file);
+  const record = JSON.parse(readFileSync(path, "utf8")) as Record<string, unknown>;
+  writeFileSync(path, `${JSON.stringify({ ...record, ...patch }, null, 2)}\n`);
+}
+
+requiredTest("R-285a attempt 1 of the next run opens on the previous run's last rejected draft and its blocker lines", async (context) => {
+  const priorA = await exhaustedPriorRun(context, "carry-hit-a", "carry-hit");
+  const priorRecords = rejectedRecords(priorA.runStateRoot, "run-carry-hit-a");
+  const lastRejected = priorRecords[2].draft as Record<string, unknown>;
+  const lastBlockers = priorRecords[2].blockerLines as string[];
+  assert.ok(lastBlockers.length > 0);
+  // A section with NO cross-chapter avoid-context records a null avoid digest, and
+  // that null is what lets this round's avoid-free attempt open on the draft.
+  for (const record of priorRecords) assert.equal(record.assemblyAvoidDigest, null);
+
+  const next = rig(context, "carry-hit-b", { runStateSuffix: "carry-hit", carryOverFromRunId: "run-carry-hit-a" });
+  const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
+  assert.equal(result.runStatus, "COMPLETED");
+
+  // (1) The FIRST summary-pack card of the new run carries the retry-feedback block
+  //     — the same one attempts 2-3 receive inside a run — with the prior round's
+  //     blocker lines and the prior round's own rejected draft.
+  const carried = sectionCard(next.prompts, "compiler-ch01-summary-pack");
+  assert.match(carried, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  for (const line of lastBlockers.slice(0, 8)) assert.ok(carried.includes(line), `card is missing blocker line: ${line}`);
+  assert.ok(carried.includes(JSON.stringify(lastRejected, null, 2)), "the card echoes the prior run's rejected draft verbatim");
+
+  // (2) One log line names the source run and what came from it.
+  const carryLines = lines.filter((line) => line.includes("action=CARRY_OVER_REJECTED_DRAFT"));
+  assert.deepEqual(carryLines, [
+    "[book-run] compiler chapter=1 kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT"
+    + ` from=run-carry-hit-a attempt=3 blockers=${Math.min(lastBlockers.length, 8)}`,
+  ]);
+
+  // (3) Every OTHER section of the same chapter is untouched: no feedback block, and
+  //     a skip line naming the reason there was nothing to carry.
+  for (const kind of ["example-pack", "learning-pack", "action-pack"]) {
+    const card = sectionCard(next.prompts, `compiler-ch01-${kind}`);
+    assert.doesNotMatch(card, /PREVIOUS DRAFT REJECTED BY SECTION GATES/, `${kind} must be a fresh card`);
+    assert.ok(
+      lines.some((line) => line.includes(`kind=${kind} action=CARRY_OVER_SKIPPED reason=no-records`)),
+      `${kind} should log why nothing was carried`,
+    );
+  }
+  assert.equal(next.counts.runner, 4, "carry-over changes the CARD, never the attempt budget");
+});
+
+requiredTest("R-285b a prior attempt-1 record whose card digest no longer matches is dropped, and the fresh card is unchanged", async (context) => {
+  const prior = await exhaustedPriorRun(context, "carry-digest-a", "carry-digest");
+  patchRecord(prior.runStateRoot, "run-carry-digest-a", "ch01.summary-pack.attempt1.json", {
+    taskCardDigest: "0".repeat(64),
+    identityTaskCardDigest: "0".repeat(64),
+  });
+
+  const next = rig(context, "carry-digest-b", { runStateSuffix: "carry-digest", carryOverFromRunId: "run-carry-digest-a" });
+  const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
+  assert.equal(result.runStatus, "COMPLETED");
+  const card = sectionCard(next.prompts, "compiler-ch01-summary-pack");
+  assert.doesNotMatch(card, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.ok(lines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_SKIPPED reason=card-digest-mismatch")), lines.join("\n"));
+
+  // …and the card is BYTE-IDENTICAL to the one a run with no carry-over at all sends.
+  const control = rig(context, "carry-digest-c", { runStateSuffix: "carry-digest-control" });
+  await control.port.run(control.request);
+  assert.equal(card, sectionCard(control.prompts, "compiler-ch01-summary-pack"));
+
+  // It is the IDENTITY digest that is checked, not the digest of whatever card the
+  // attempt happened to be sent. A record written before `identityTaskCardDigest`
+  // existed falls back to `taskCardDigest`, which for those records is the same
+  // thing — so a pre-R-285 run directory still carries over.
+  const legacy = await exhaustedPriorRun(context, "carry-legacy-a", "carry-legacy");
+  const legacyPath = resolve(legacy.runStateRoot, "books", BOOK, "runs", "run-carry-legacy-a", REJECTED_SECTION_PACKS_DIR, "ch01.summary-pack.attempt1.json");
+  const legacyRecord = JSON.parse(readFileSync(legacyPath, "utf8")) as Record<string, unknown>;
+  assert.equal(legacyRecord.identityTaskCardDigest, legacyRecord.taskCardDigest, "attempt 1 of an un-carried round IS the identity card");
+  delete legacyRecord.identityTaskCardDigest;
+  writeFileSync(legacyPath, `${JSON.stringify(legacyRecord, null, 2)}\n`);
+  const legacyNext = rig(context, "carry-legacy-b", { runStateSuffix: "carry-legacy", carryOverFromRunId: "run-carry-legacy-a" });
+  const { lines: legacyLines } = await withCapturedStderr(() => legacyNext.port.run(legacyNext.request));
+  assert.ok(legacyLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT")), legacyLines.join("\n"));
+});
+
+requiredTest("R-285g carry-over CHAINS: round 3 opens on round 2's draft even though round 2 itself opened on round 1's", async (context) => {
+  // The live failure this whole mechanism exists for took THREE rounds (ch19's
+  // example pack, refused 9 times). Round 2's attempt-1 card carries round 1's
+  // feedback, so its own recorded card digest is NOT the identity digest — which is
+  // exactly why the record also carries `identityTaskCardDigest`, and why round 3
+  // still finds a match.
+  const round1 = await exhaustedPriorRun(context, "chain-1", "chain");
+  const round1Records = rejectedRecords(round1.runStateRoot, "run-chain-1");
+
+  const round2 = rig(context, "chain-2", { runStateSuffix: "chain", carryOverFromRunId: "run-chain-1", blockSummaryAttempts: 99 });
+  const { lines: round2Lines } = await withCapturedStderr(() =>
+    assert.rejects(round2.port.run(round2.request), /COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts/));
+  assert.ok(round2Lines.some((line) => line.includes("action=CARRY_OVER_REJECTED_DRAFT from=run-chain-1")), round2Lines.join("\n"));
+
+  const round2Records = rejectedRecords(round2.runStateRoot, "run-chain-2");
+  assert.equal(round2Records.length, 3);
+  // Round 2's attempt 1 was SENT feedback — recorded, not duplicated: the sink
+  // derives it from the retry feedback the card was built from.
+  const attempt1Feedback = round2Records[0].feedback as { blockerLines: string[]; priorDraftEchoed: boolean } | undefined;
+  assert.ok(attempt1Feedback, "attempt 1 of a carried round records the feedback it was sent");
+  assert.equal(attempt1Feedback.priorDraftEchoed, true);
+  assert.deepEqual(attempt1Feedback.blockerLines, (round1Records[2].blockerLines as string[]).slice(0, 8));
+  // …so its card digest is NOT the identity digest, and the identity digest is
+  // recorded beside it, unchanged from round 1's.
+  assert.notEqual(round2Records[0].taskCardDigest, round2Records[0].identityTaskCardDigest);
+  assert.equal(round2Records[0].identityTaskCardDigest, round1Records[0].identityTaskCardDigest);
+
+  const round3 = rig(context, "chain-3", { runStateSuffix: "chain", carryOverFromRunId: "run-chain-2" });
+  const { value: result, lines: round3Lines } = await withCapturedStderr(() => round3.port.run(round3.request));
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.ok(
+    round3Lines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-chain-2 attempt=3")),
+    round3Lines.join("\n"),
+  );
+  assert.ok(sectionCard(round3.prompts, "compiler-ch01-summary-pack").includes(JSON.stringify(round2Records[2].draft, null, 2)));
+});
+
+requiredTest("R-285c a truncated record, a wrong-artifact draft, and unreadable JSON each drop the carry-over and the compile proceeds", async (context) => {
+  const cases: ReadonlyArray<Readonly<{ label: string; reason: string; patch?: Record<string, unknown>; raw?: string }>> = [
+    { label: "trunc", reason: "truncated", patch: { truncated: true } },
+    { label: "shape", reason: "artifact-type", patch: { draft: { artifactType: "example-pack" } } },
+    { label: "parse", reason: "unreadable", raw: "{ not json" },
+  ];
+  for (const testCase of cases) {
+    const prior = await exhaustedPriorRun(context, `carry-${testCase.label}-a`, `carry-${testCase.label}`);
+    const path = resolve(prior.runStateRoot, "books", BOOK, "runs", `run-carry-${testCase.label}-a`, REJECTED_SECTION_PACKS_DIR, "ch01.summary-pack.attempt3.json");
+    if (testCase.raw !== undefined) writeFileSync(path, testCase.raw);
+    else patchRecord(prior.runStateRoot, `run-carry-${testCase.label}-a`, "ch01.summary-pack.attempt3.json", testCase.patch ?? {});
+
+    const next = rig(context, `carry-${testCase.label}-b`, { runStateSuffix: `carry-${testCase.label}`, carryOverFromRunId: `run-carry-${testCase.label}-a` });
+    const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
+    assert.equal(result.runStatus, "COMPLETED", `${testCase.label}: a bad record must never fail the compile`);
+    assert.doesNotMatch(sectionCard(next.prompts, "compiler-ch01-summary-pack"), /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+    assert.ok(
+      lines.some((line) => line.includes(`kind=summary-pack action=CARRY_OVER_SKIPPED reason=${testCase.reason}`)),
+      `${testCase.label}: expected reason=${testCase.reason}\n${lines.join("\n")}`,
+    );
+  }
+});
+
+requiredTest("R-285d with no carryOverFromRunId, and with a run store that exposes no run directory, the compile is byte-identical to today", async (context) => {
+  // A run store with no `runDirectory` — the in-memory-fake shape — cannot read a
+  // prior run even when it is handed one, and must not try.
+  const prior = await exhaustedPriorRun(context, "carry-nodir-a", "carry-nodir");
+  const hidden = rig(context, "carry-nodir-b", {
+    runStateSuffix: "carry-nodir",
+    carryOverFromRunId: "run-carry-nodir-a",
+    hideRunDirectory: true,
+  });
+  const { value: result, lines } = await withCapturedStderr(() => hidden.port.run(hidden.request));
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(lines.filter((line) => line.includes("CARRY_OVER_REJECTED_DRAFT")).length, 0);
+  const hiddenCard = sectionCard(hidden.prompts, "compiler-ch01-summary-pack");
+  assert.doesNotMatch(hiddenCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+
+  // The same card as a plain run that was never handed a predecessor at all.
+  const plain = rig(context, "carry-plain", { runStateSuffix: "carry-plain" });
+  await plain.port.run(plain.request);
+  assert.equal(hiddenCard, sectionCard(plain.prompts, "compiler-ch01-summary-pack"));
+  assert.equal(hidden.counts.runner, plain.counts.runner);
+  assert.equal(rejectedRecords(prior.runStateRoot, "run-carry-nodir-a").length, 3, "run A's records are still on disk — they were simply not read");
+});
+
+requiredTest("R-285e a section reused from the durable cache attempts no carry-over, because it makes no model call", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+
+  // Run A blocks the summary pack ONCE, then passes: the run COMPLETES, so every
+  // section is cached AND ch01.summary-pack.attempt1.json is on disk.
+  const priorA = rig(context, "carry-cached-a", { runStateSuffix: "carry-cached", cache, blockSummaryAttempts: 1 });
+  assert.equal((await priorA.port.run(priorA.request)).runStatus, "COMPLETED");
+  assert.deepEqual(
+    rejectedRecords(priorA.runStateRoot, "run-carry-cached-a").map((record) => record.file),
+    ["ch01.summary-pack.attempt1.json"],
+  );
+
+  const next = rig(context, "carry-cached-b", { runStateSuffix: "carry-cached", cache, carryOverFromRunId: "run-carry-cached-a" });
+  const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(next.counts.runner, 0, "every section is a cache HIT; nothing is drafted");
+  assert.equal(lines.filter((line) => line.includes("CARRY_OVER_")).length, 0, "a reused pack asks nothing of the previous run");
+});
+
+requiredTest("R-285f the section-pack cache identity is byte-identical whether or not a carry-over record exists", async (context) => {
+  const keysOf = (target: SectionPackCache, sink: SectionPackCacheKey[]): SectionPackCache => ({
+    read: async (key) => { sink.push(key); return target.read(key); },
+    write: (key, pack) => target.write(key, pack),
+    evict: (key) => target.evict(key),
+  });
+  const freshCache = (name: string): SectionPackCache => {
+    const booksRoot = resolve(context.roots.tempRoot, name);
+    mkdirSync(booksRoot, { recursive: true });
+    return createFileSectionPackCache({ booksRoot, writeLock: createBookWriteLock({ booksRoot }) });
+  };
+
+  // Run A exhausts the summary pack (leaving records) against its own cache root.
+  const priorKeys: SectionPackCacheKey[] = [];
+  const priorA = await exhaustedPriorRun(context, "carry-ident-a", "carry-ident", keysOf(freshCache("ident-books-a"), priorKeys));
+  assert.ok(priorA);
+
+  // Run B reads that carry-over — against a FRESH cache root, so every section is a
+  // miss and every identity is computed from scratch.
+  const carryKeys: SectionPackCacheKey[] = [];
+  const withCarry = rig(context, "carry-ident-b", {
+    runStateSuffix: "carry-ident",
+    carryOverFromRunId: "run-carry-ident-a",
+    cache: keysOf(freshCache("ident-books-b"), carryKeys),
+  });
+  const { value: carried, lines } = await withCapturedStderr(() => withCarry.port.run(withCarry.request));
+  assert.equal(carried.runStatus, "COMPLETED");
+  assert.ok(lines.some((line) => line.includes("action=CARRY_OVER_REJECTED_DRAFT")), "this case is only meaningful if carry-over actually fired");
+
+  // The control: the same book, no predecessor, its own fresh cache root.
+  const controlKeys: SectionPackCacheKey[] = [];
+  const control = rig(context, "carry-ident-c", { runStateSuffix: "carry-ident-control", cache: keysOf(freshCache("ident-books-c"), controlKeys) });
+  assert.equal((await control.port.run(control.request)).runStatus, "COMPLETED");
+
+  const byKind = (keys: SectionPackCacheKey[]) => Object.fromEntries(keys.map((key) => [key.kind, key]));
+  assert.deepEqual(Object.keys(byKind(carryKeys)).sort(), ["action-pack", "example-pack", "learning-pack", "summary-pack"]);
+  assert.deepEqual(byKind(carryKeys), byKind(controlKeys), "retry feedback is outside cache identity, by construction");
+  assert.equal(byKind(carryKeys)["summary-pack"].taskCardDigest, byKind(controlKeys)["summary-pack"].taskCardDigest);
+});
+
+requiredTest("R-285h an assembly-eviction re-draft opens on the previous run's draft when the avoid-context is UNCHANGED", async (context) => {
+  // The sections that actually burn operator compile slots are assembly-eviction
+  // re-drafts: live, ch19's example pack was refused 9 times across three rounds
+  // under a SEC96 ban and ch14's summary took four rounds under a SEC83 one. A
+  // blanket stand-down on avoid-context therefore switched carry-over off for
+  // exactly the sections it exists for. What makes an old draft unsafe is not the
+  // PRESENCE of a ban but a CHANGE in the bans since the draft was written: an
+  // eviction happens at assembly, which ends a run, so every draft of a round was
+  // already written against that round's bans. Same bans -> carry.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const avoidStore = createFileSectionAvoidStore({ booksRoot: context.roots.booksRoot, writeLock });
+  const entry = {
+    checkId: "SEC93.example_venue_stamping",
+    phrase: "kitchen table",
+    keptByChapters: [2],
+    message: `venue "kitchen table" is already used by ch02 — choose a different concrete venue.`,
+  };
+  const key = { bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "summary-pack" as const };
+  await avoidStore.write(key, { entries: [entry] });
+
+  // Run A drafts ch01's summary WITH the ban in its card, and is refused 3 times.
+  const prior = await exhaustedPriorRun(context, "carry-avoid-a", "carry-avoid", undefined, avoidStore);
+  const priorRecords = rejectedRecords(prior.runStateRoot, "run-carry-avoid-a");
+  assert.equal(priorRecords.length, 3);
+  // Every record says which avoid entries its draft was written against.
+  for (const record of priorRecords) {
+    assert.equal(record.assemblyAvoidDigest, expectedAvoidDigest([entry]));
+  }
+
+  const next = rig(context, "carry-avoid-b", { runStateSuffix: "carry-avoid", carryOverFromRunId: "run-carry-avoid-a", avoidStore });
+  const { value: result, lines } = await withCapturedStderr(() => next.port.run(next.request));
+  assert.equal(result.runStatus, "COMPLETED");
+  const card = sectionCard(next.prompts, "compiler-ch01-summary-pack");
+  assert.match(card, /CROSS-CHAPTER ASSEMBLY CONFLICT/, "the avoid brief is still the card's own brief");
+  assert.match(card, /PREVIOUS DRAFT REJECTED BY SECTION GATES/, "…and the round it continues is in the same card");
+  assert.ok(
+    lines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-carry-avoid-a attempt=3")),
+    lines.join("\n"),
+  );
+});
+
+requiredTest("R-285i a re-draft whose avoid-context CHANGED, or whose record predates the digest, stands the carry-over down", async (context) => {
+  // The unsafe cases, both of them: the ban set moved after the draft was written
+  // (so the draft answers a brief nobody is being given now), and a record from
+  // before this field existed while a ban is in play (so nothing can say what the
+  // draft was written against). Both drop to a fresh card; neither weakens a gate.
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const avoidStore = createFileSectionAvoidStore({ booksRoot: context.roots.booksRoot, writeLock });
+  const entry = {
+    checkId: "SEC93.example_venue_stamping",
+    phrase: "kitchen table",
+    keptByChapters: [2],
+    message: `venue "kitchen table" is already used by ch02 — choose a different concrete venue.`,
+  };
+  const second = {
+    checkId: "SEC96.example_object_stamping",
+    phrase: "index card",
+    keptByChapters: [3],
+    message: `object "index card" is already used by ch03 — choose a different concrete object.`,
+  };
+  const key = { bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "summary-pack" as const };
+  await avoidStore.write(key, { entries: [entry] });
+  const prior = await exhaustedPriorRun(context, "carry-changed-a", "carry-changed", undefined, avoidStore);
+  assert.equal(rejectedRecords(prior.runStateRoot, "run-carry-changed-a").length, 3);
+
+  // (b) A LATER assembly banned a second phrase. The digest moves, the draft goes.
+  await avoidStore.write(key, { entries: [entry, second] });
+  const changed = rig(context, "carry-changed-b", { runStateSuffix: "carry-changed", carryOverFromRunId: "run-carry-changed-a", avoidStore });
+  const { value: changedResult, lines: changedLines } = await withCapturedStderr(() => changed.port.run(changed.request));
+  assert.equal(changedResult.runStatus, "COMPLETED");
+  const changedCard = sectionCard(changed.prompts, "compiler-ch01-summary-pack");
+  assert.match(changedCard, /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+  assert.doesNotMatch(changedCard, /PREVIOUS DRAFT REJECTED BY SECTION GATES/, "a draft written under the old ban set must not be seeded");
+  assert.equal(changedLines.filter((line) => line.includes("CARRY_OVER_REJECTED_DRAFT")).length, 0, changedLines.join("\n"));
+  assert.ok(
+    changedLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_SKIPPED reason=assembly-avoid-changed")),
+    changedLines.join("\n"),
+  );
+
+  // (c) The same records as a pre-R-285 run wrote them: no digest at all. With a
+  //     ban in play there is nothing to compare, so the draft is dropped.
+  for (const attempt of [1, 2, 3]) {
+    patchRecord(prior.runStateRoot, "run-carry-changed-a", `ch01.summary-pack.attempt${attempt}.json`, { assemblyAvoidDigest: undefined });
+  }
+  await avoidStore.write(key, { entries: [entry] });
+  const legacy = rig(context, "carry-changed-c", { runStateSuffix: "carry-changed", carryOverFromRunId: "run-carry-changed-a", avoidStore });
+  const { value: legacyResult, lines: legacyLines } = await withCapturedStderr(() => legacy.port.run(legacy.request));
+  assert.equal(legacyResult.runStatus, "COMPLETED");
+  assert.doesNotMatch(sectionCard(legacy.prompts, "compiler-ch01-summary-pack"), /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.ok(
+    legacyLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_SKIPPED reason=assembly-avoid")
+      && !line.includes("assembly-avoid-changed")),
+    legacyLines.join("\n"),
+  );
+
+  // Per (chapter, kind), still: a ban on a DIFFERENT section leaves an avoid-free
+  // section's carry-over alone — its records carry a null digest and so does it.
+  const perKind = await exhaustedPriorRun(context, "carry-perkind-a", "carry-perkind");
+  await avoidStore.write({ bookId: BOOK, chapterId: `${BOOK}-ch01`, kind: "example-pack" }, { entries: [entry] });
+  const elsewhere = rig(context, "carry-perkind-b", { runStateSuffix: "carry-perkind", carryOverFromRunId: "run-carry-perkind-a", avoidStore });
+  const { value: elsewhereResult, lines: elsewhereLines } = await withCapturedStderr(() => elsewhere.port.run(elsewhere.request));
+  assert.equal(elsewhereResult.runStatus, "COMPLETED");
+  assert.equal(rejectedRecords(perKind.runStateRoot, "run-carry-perkind-a").length, 3);
+  assert.match(sectionCard(elsewhere.prompts, "compiler-ch01-example-pack"), /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+  assert.match(sectionCard(elsewhere.prompts, "compiler-ch01-summary-pack"), /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.ok(
+    elsewhereLines.some((line) => line.includes("kind=summary-pack action=CARRY_OVER_REJECTED_DRAFT from=run-carry-perkind-a attempt=3")),
+    elsewhereLines.join("\n"),
+  );
 });
 
 finishV25Tests().catch((error: unknown) => {

@@ -425,12 +425,16 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
 
   const compilerRunIds: string[] = [];
   const compilerAttemptRoots: string[] = [];
+  // R-285 — the compiler run whose rejected drafts the NEXT round's attempt 1 may
+  // open on. Undefined for the base compile (there is no predecessor).
+  const compilerCarryOvers: Array<string | undefined> = [];
   let compiled: CandidateSnapshot | undefined;
   const compiler = {
-    async run(request: { resumeRunId?: string; attemptRoot: string }) {
+    async run(request: { resumeRunId?: string; attemptRoot: string; carryOverFromRunId?: string }) {
       assert.ok(request.resumeRunId);
       compilerRunIds.push(request.resumeRunId);
       compilerAttemptRoots.push(request.attemptRoot);
+      compilerCarryOvers.push(request.carryOverFromRunId);
       if (compilerRunIds.length === 1) {
         assert.equal(request.resumeRunId, COMPILER_RUN_ID);
         const created = await runStore.createRun({
@@ -563,6 +567,10 @@ requiredTest("explicit parent resume reuses completed research seed and permits 
   });
   assert.deepEqual(compilerRunIds, [COMPILER_RUN_ID, retryRunId]);
   assert.equal(compilerAttemptRoots[1], resolve(context.roots.attemptsRoot, "book-run-retry", "compiler-retry-1"));
+  // R-285 — the base compile has no predecessor to carry from; the deterministic
+  // retry is handed the base compiler run, whose `rejected/` directory holds the
+  // drafts its sections died on.
+  assert.deepEqual(compilerCarryOvers, [undefined, COMPILER_RUN_ID]);
   assert.equal(researchPortCalls, 1, "resume rehydrates the durable seed in-service and must NOT re-invoke the research port (task 11g)");
   assert.equal(researchModelCalls, 13, "resume must not repeat research model work");
   assert.deepEqual(
@@ -804,11 +812,15 @@ requiredTest("reconcile resume grants one operator-authorized compile attempt pa
   } as unknown as ResearchCandidateApplicationPort;
 
   const compilerRunIds: string[] = [];
+  // R-285 — operator attempt n opens on the drafts operator attempt n-1 left behind
+  // (and operator attempt 1 on the deterministic retry's).
+  const compilerCarryOvers: Array<string | undefined> = [];
   let staged: CandidateSnapshot | undefined;
   const compiler = {
-    async run(request: { resumeRunId?: string }) {
+    async run(request: { resumeRunId?: string; carryOverFromRunId?: string }) {
       assert.ok(request.resumeRunId);
       compilerRunIds.push(request.resumeRunId);
+      compilerCarryOvers.push(request.carryOverFromRunId);
       // The FIRST operator-authorized attempt (op-retry-1) also fails, recording a
       // durable FAILED run — the run returns to the exhausted state.
       if (request.resumeRunId === opRetry1RunId) {
@@ -957,6 +969,7 @@ requiredTest("reconcile resume grants one operator-authorized compile attempt pa
   if (firstGrant.ok) throw new Error("operator attempt one is wired to fail in this fixture");
   assert.equal(firstGrant.error.code, "BOOK_RUN_COMPILER_FAILED");
   assert.deepEqual(compilerRunIds, [opRetry1RunId], "the operator grant starts a NEW compile control run");
+  assert.deepEqual(compilerCarryOvers, [retry1RunId], "operator attempt 1 opens on the deterministic retry's rejected drafts");
   assert.equal(operatorEvents().length, 1, "the operator authorization is durably recorded");
   assert.equal(operatorEvents()[0].status, "STARTED");
   assert.equal(operatorEvents()[0].detail, "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=2;operatorAttempt=1");
@@ -981,6 +994,7 @@ requiredTest("reconcile resume grants one operator-authorized compile attempt pa
   assert.ok(staged);
   assert.equal(secondGrant.value.candidate.candidateId, `${opRetry2RunId}-candidate`);
   assert.deepEqual(compilerRunIds, [opRetry1RunId, opRetry2RunId], "the second grant is a DISTINCT new compile control run");
+  assert.deepEqual(compilerCarryOvers, [retry1RunId, opRetry1RunId], "operator attempt n opens on operator attempt n-1's rejected drafts");
   assert.equal(operatorEvents().length, 2, "each grant is one logged attempt");
   assert.equal(operatorEvents()[1].detail, "action=OPERATOR_COMPILE_RETRY;priorExhaustedAttempts=3;operatorAttempt=2");
 });
