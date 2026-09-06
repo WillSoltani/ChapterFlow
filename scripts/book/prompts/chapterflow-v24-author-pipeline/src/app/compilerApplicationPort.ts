@@ -36,6 +36,7 @@ import type { ChapterEditPacks } from "../sections/chapterEditGuard.js";
 import type { ChapterEditCache } from "../books/chapterEditCache.js";
 import {
   createRejectedSectionPackWriter,
+  readCarryOverRejectedDraft,
   type RejectedSectionPackDraft,
   type RejectedSectionPackSink,
 } from "./rejectedSectionPacks.js";
@@ -218,6 +219,22 @@ export interface CompilerApplicationRequest {
    * does the work). Default false preserves the fail-closed contract exactly.
    */
   readonly reconcileUnsettled?: boolean;
+  /**
+   * R-285 — the compiler run that immediately PRECEDED this one (the base compile
+   * for the deterministic retry; operator attempt n-1 for operator attempt n).
+   *
+   * A section pack gets MAX_SECTION_ATTEMPTS drafts per run, and attempts 2-3 EDIT
+   * the rejected draft. When attempt 3 is still refused the run fails and the next
+   * round used to restart that section at attempt 1 from a blank page, discarding
+   * every edit the round had made. Given a predecessor, attempt 1 instead opens on
+   * that run's last rejected draft and its blocker lines — the SAME retry feedback
+   * the in-run loop already sends — provided the predecessor's attempt-1 card digest
+   * still equals this section's identity digest. See readCarryOverRejectedDraft.
+   *
+   * Absent (the base compile, and every caller that does not set it) renders exactly
+   * today's card. The attempt budget, every gate and the cache identity are untouched.
+   */
+  readonly carryOverFromRunId?: string;
   readonly signal: AbortSignal;
 }
 
@@ -624,8 +641,14 @@ function boundedCompilerDetail(value: unknown): string {
   return detail.replace(/\s+/g, " ").trim().slice(0, 1600) || "section output validation failed";
 }
 
+/** How many blocker lines a retry card carries. Named rather than inlined because
+ *  the cross-run carry-over (R-285) must bound the PREVIOUS run's persisted lines
+ *  exactly the way the in-run loop bounds this run's, and a second literal 8 could
+ *  drift away from this one. */
+const MAX_FEEDBACK_BLOCKER_LINES = 8;
+
 type SectionGateBlockers = Readonly<{
-  /** BOUNDED (at most 8) — the lines fed back into the next attempt's card and
+  /** BOUNDED (at most MAX_FEEDBACK_BLOCKER_LINES) — the lines fed back into the next attempt's card and
    *  into the terminal error's detail. Unchanged by the diagnostics work below. */
   blockerLines: readonly string[];
   detail: string;
@@ -672,7 +695,7 @@ function sectionGateBlockers(
   const render = (finding: (typeof findings)[number]): string =>
     `${finding.checkId}${finding.path ? `@${finding.path}` : ""}:${finding.message}`;
   const allBlockerLines = blockers.map(render);
-  const blockerLines = allBlockerLines.slice(0, 8);
+  const blockerLines = allBlockerLines.slice(0, MAX_FEEDBACK_BLOCKER_LINES);
   return {
     blockerLines,
     detail: boundedCompilerDetail(blockerLines.join(" | ")),
@@ -2143,6 +2166,67 @@ export class CompilerApplicationPort {
           // unchanged); retries mint salted `-r{n}` ids so run-state admits a fresh
           // attempt (the nextContext contract, applied inline).
           let retryFeedback: SectionRetryFeedback | undefined;
+          // R-285 — CARRY-OVER ACROSS COMPILER RUNS. Attempt 1 of a section that is
+          // about to be drafted opens on the PREVIOUS compiler run's last rejected
+          // draft, so a round that got within one blocker of passing is not thrown
+          // away when the run fails and the operator mints the next one.
+          //
+          // Five conditions, all necessary:
+          //   - a predecessor run was named (never on the base compile);
+          //   - the section is actually being DRAFTED — a cache hit makes no model
+          //     call, so there is no card to seed;
+          //   - pass 1 only, and no dealt-case re-draft brief in play: a livelock
+          //     breaker restart is drafting against DIFFERENT inputs (a re-drafted
+          //     summary, a MUST TEACH brief), so the previous round's draft answers
+          //     a question this attempt is no longer asking;
+          //   - no cross-chapter avoid-context for THIS (chapter, kind): an
+          //     assembly-eviction re-draft is the same statement across the run
+          //     boundary — the evicted pack PASSED its section gate and then
+          //     collided, so its brief is to change the wording, while carry-over's
+          //     brief is "change nothing else" around a draft the gate refused.
+          //     Two contradicting briefs in one card is how a re-draft returns the
+          //     same wording, and ASSEMBLY_AVOID_MAX_ROUNDS ends that in an
+          //     operator-only terminal state. Per (chapter, kind), so a ban on one
+          //     section never mutes carry-over on another — and a section-blocked
+          //     round, the case this exists for, never reaches assembly at all;
+          //   - the run store can say where a run lives (the in-memory fakes cannot).
+          // The digest check inside the reader is the one that makes this safe; see
+          // readCarryOverRejectedDraft.
+          //
+          // Diagnostics-grade reading of another process's files: the reader returns
+          // a reason instead of throwing, and every reason leaves the attempt exactly
+          // as it is today.
+          if (
+            !reusedFromCache
+            && sectionPass === 1
+            && summaryRedraftMustTeach === undefined
+            && request.carryOverFromRunId !== undefined
+          ) {
+            const label = `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind}`;
+            const carryOverRunDir = this.#dependencies.runStore.runDirectory?.(request.bookId, request.carryOverFromRunId);
+            if (assemblyAvoid !== undefined) {
+              console.error(`${label} action=CARRY_OVER_SKIPPED reason=assembly-avoid`);
+            } else if (carryOverRunDir === undefined) {
+              console.error(`${label} action=CARRY_OVER_SKIPPED reason=no-run-directory`);
+            } else {
+              const carried = readCarryOverRejectedDraft({
+                priorRunDir: carryOverRunDir,
+                chapterNumber: chapter.chapterNumber,
+                kind,
+                taskCardDigest,
+                maxBlockerLines: MAX_FEEDBACK_BLOCKER_LINES,
+              });
+              if (carried.ok) {
+                retryFeedback = { blockerLines: carried.value.blockerLines, priorDraft: carried.value.draft };
+                console.error(
+                  `${label} action=CARRY_OVER_REJECTED_DRAFT from=${request.carryOverFromRunId}`
+                  + ` attempt=${carried.value.attempt} blockers=${carried.value.blockerLines.length}`,
+                );
+              } else {
+                console.error(`${label} action=CARRY_OVER_SKIPPED reason=${carried.reason}`);
+              }
+            }
+          }
           for (let attemptNumber = 1; !reusedFromCache && attemptNumber <= MAX_SECTION_ATTEMPTS; attemptNumber += 1) {
             if (request.signal.aborted) throw new Error("MODEL_RUN_CANCELLED:compiler cancellation requested");
             // Pass 1 keeps the deterministic ids (checkpoint/resume identity on the
@@ -2277,6 +2361,11 @@ export class CompilerApplicationPort {
                 },
               }),
               taskCardDigest: createHash("sha256").update(task).digest("hex"),
+              // R-285 — the section's identity digest, recorded beside the digest of
+              // the card THIS attempt was actually sent. The next round's carry-over
+              // checks against this one, so a round that itself opened on a carried
+              // draft can still be carried from.
+              identityTaskCardDigest: taskCardDigest,
               draft,
             });
             // ---- THE INTRA-CHAPTER LIVELOCK BREAKER --------------------------

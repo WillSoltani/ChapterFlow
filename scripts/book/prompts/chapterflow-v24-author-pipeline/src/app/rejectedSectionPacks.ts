@@ -31,7 +31,7 @@
  *     gets cut.
  */
 
-import { mkdirSync } from "node:fs";
+import { existsSync, mkdirSync, readFileSync, readdirSync } from "node:fs";
 import { resolve } from "node:path";
 
 import type { SectionKind } from "../artifacts/artifactTypes.js";
@@ -83,9 +83,23 @@ export interface RejectedSectionPackDraft {
   /** Absent on the first draft of a pass: nothing had been sent yet. */
   readonly feedback?: RejectedSectionPackFeedback;
   /** sha256 of the EXACT task card this attempt was sent. Equal to the section's
-   *  cache-identity digest only on pass 1 / attempt 1, where the card carries no
-   *  retry feedback and no assembly avoid-context. */
+   *  cache-identity digest only on pass 1 / attempt 1 of a round that carried no
+   *  feedback in, where the card has no retry feedback and no assembly avoid-context. */
   readonly taskCardDigest: string;
+  /** sha256 of the section's IDENTITY card — the feedback-free, avoid-free card the
+   *  cache key is built from — regardless of what this attempt was actually sent.
+   *
+   *  It exists so cross-run carry-over can CHAIN. The identity check in
+   *  readCarryOverRejectedDraft asks "was the previous round's draft written against
+   *  these same inputs?", and reading that off `taskCardDigest` only answers for a
+   *  round whose attempt 1 was sent the bare card. Once round 2 opens on round 1's
+   *  draft, round 2's attempt-1 card carries a feedback block and its digest is no
+   *  longer the identity digest — so round 3 would find a mismatch and start over
+   *  from a blank page, which is the very failure this whole mechanism exists to
+   *  stop (live: ch19 needed three rounds). Optional: a record written before this
+   *  field existed falls back to `taskCardDigest`, which for those records IS the
+   *  identity digest. */
+  readonly identityTaskCardDigest?: string;
   /** The raw model output, exactly as it came back and was refused. */
   readonly draft: unknown;
 }
@@ -136,6 +150,7 @@ export function serializeRejectedSectionPack(
     advisoryLines: [...record.advisoryLines],
     ...(record.feedback === undefined ? {} : { feedback: record.feedback }),
     taskCardDigest: record.taskCardDigest,
+    ...(record.identityTaskCardDigest === undefined ? {} : { identityTaskCardDigest: record.identityTaskCardDigest }),
   };
   const render = (body: Record<string, unknown>): string => `${JSON.stringify({ ...head, ...body }, null, 2)}\n`;
   const whole = render({ draft: record.draft });
@@ -192,4 +207,136 @@ export function createRejectedSectionPackWriter(
       );
     }
   };
+}
+
+/**
+ * ── READING THE RECORDS BACK: cross-run carry-over ─────────────────────────────
+ *
+ * The records above were written as pure diagnostics. They are also, it turns
+ * out, the only surviving memory of a compile round — and the 2026-09-06 Franklin
+ * canary showed exactly what discarding that memory costs. A section pack gets
+ * MAX_SECTION_ATTEMPTS drafts per compiler run: attempt 1 from the fresh card,
+ * attempts 2-3 EDITING the rejected draft against its blocker lines. When attempt
+ * 3 is still refused the run fails, the operator mints the next compile retry run,
+ * and that run restarts the section at attempt 1 with NO memory of the previous
+ * round — the writer starts over from a blank page. Live: ch19's example pack was
+ * refused 9 times across three rounds, each round's attempt 3 one or two blockers
+ * from passing (SEC133/SEC39/SEC35); ch14's summary pack reached Flesch ease 66-69
+ * against a floor of 70, and the next round opened at ease ~50. Twenty operator
+ * slots were spent re-deriving progress that had already been made.
+ *
+ * The next round's attempt 1 now OPENS on the last round's best rejected draft and
+ * its blocker lines — the same retry feedback attempts 2-3 already receive inside a
+ * run, carried across the run boundary. Nothing else changes: the gate is the same
+ * gate, the attempt budget is the same 3, and the card for a section with no
+ * carry-over is byte-for-byte the card it is today.
+ *
+ * The safety of that hinges on ONE precondition, checked here rather than assumed:
+ * the prior round's attempt-1 record carries the section's IDENTITY card digest (the
+ * feedback-free, avoid-free card the cache key is built from). If it still equals the
+ * digest this round computes, the blueprint, the packet, the scars and the card text
+ * are all unchanged and the old draft was written against these exact inputs. If it
+ * does not, the old draft answers a question no longer being asked, and it is
+ * dropped. Every other failure — a missing file, unparseable JSON, a truncated
+ * record, a draft of the wrong artifact type — drops it too.
+ *
+ * BEST EFFORT, like the writer: this reads diagnostics files off a disk that a
+ * previous process wrote, so it returns a reason instead of throwing, and a compile
+ * with no usable carry-over proceeds exactly as it does today.
+ */
+
+/** What a usable carry-over record yields: the retry feedback attempt 1 will be
+ *  sent, plus the ordinal it came from (for the log line). */
+export interface CarryOverRejectedDraft {
+  readonly attempt: number;
+  readonly blockerLines: readonly string[];
+  readonly draft: Record<string, unknown>;
+}
+
+export type CarryOverRejectedDraftLookup =
+  | Readonly<{ ok: true; value: CarryOverRejectedDraft }>
+  | Readonly<{ ok: false; reason: string }>;
+
+function isPlainObject(value: unknown): value is Record<string, unknown> {
+  return typeof value === "object" && value !== null && !Array.isArray(value);
+}
+
+/** `chNN.<kind>.attemptK.json` for THIS chapter and kind, pass 1 only. A `.passN`
+ *  segment means the record came from a livelock-breaker restart, whose card
+ *  carries a re-draft brief and whose digest is therefore not the identity digest;
+ *  those records are deliberately not matched. */
+function pass1RecordPattern(chapterNumber: number, kind: SectionKind): RegExp {
+  const chapter = `ch${String(chapterNumber).padStart(2, "0")}`;
+  const escape = (value: string): string => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return new RegExp(`^${escape(chapter)}\\.${escape(kind)}\\.attempt(\\d+)\\.json$`);
+}
+
+/**
+ * Select the carry-over draft for one section from the PRECEDING compiler run's
+ * `rejected/` directory.
+ *
+ * `taskCardDigest` is this round's identity digest for the section; `maxBlockerLines`
+ * is the same bound the in-run retry loop applies to the lines it feeds back, passed
+ * in rather than duplicated so the two can never drift apart.
+ */
+export function readCarryOverRejectedDraft(input: Readonly<{
+  priorRunDir: string;
+  chapterNumber: number;
+  kind: SectionKind;
+  taskCardDigest: string;
+  maxBlockerLines: number;
+}>): CarryOverRejectedDraftLookup {
+  try {
+    const dir = resolve(input.priorRunDir, REJECTED_SECTION_PACKS_DIR);
+    if (!existsSync(dir)) return { ok: false, reason: "no-records" };
+    const pattern = pass1RecordPattern(input.chapterNumber, input.kind);
+    const matched = readdirSync(dir)
+      .map((name) => ({ name, attempt: Number(pattern.exec(name)?.[1] ?? Number.NaN) }))
+      .filter((entry) => Number.isInteger(entry.attempt) && entry.attempt >= 1)
+      .sort((left, right) => left.attempt - right.attempt);
+    if (matched.length === 0) return { ok: false, reason: "no-records" };
+    const first = matched[0];
+    if (first.attempt !== 1) return { ok: false, reason: "attempt1-missing" };
+
+    // The IDENTITY CHECK — the one thing that makes reusing another run's draft
+    // safe. An inequality means these drafts were written for different inputs.
+    const parse = (name: string): Record<string, unknown> | null => {
+      try {
+        const value = JSON.parse(readFileSync(resolve(dir, name), "utf8")) as unknown;
+        return isPlainObject(value) ? value : null;
+      } catch {
+        return null;
+      }
+    };
+    const attempt1 = parse(first.name);
+    if (attempt1 === null) return { ok: false, reason: "unreadable" };
+    // `identityTaskCardDigest` when the writer recorded one (it survives a round that
+    // itself carried feedback in, which is what lets carry-over chain across three or
+    // more rounds); `taskCardDigest` for a record written before that field existed,
+    // where attempt 1's card WAS the identity card.
+    const priorIdentity = typeof attempt1.identityTaskCardDigest === "string"
+      ? attempt1.identityTaskCardDigest
+      : attempt1.taskCardDigest;
+    if (priorIdentity !== input.taskCardDigest) return { ok: false, reason: "card-digest-mismatch" };
+
+    // The HIGHEST attempt is the one to carry: it is the round's most-edited draft,
+    // the one that got closest to passing.
+    const last = matched[matched.length - 1];
+    const record = last.name === first.name ? attempt1 : parse(last.name);
+    if (record === null) return { ok: false, reason: "unreadable" };
+    if (record.truncated === true) return { ok: false, reason: "truncated" };
+    const draft = record.draft;
+    if (!isPlainObject(draft)) return { ok: false, reason: "draft-shape" };
+    if (draft.artifactType !== input.kind) return { ok: false, reason: "artifact-type" };
+    const lines = Array.isArray(record.blockerLines)
+      ? record.blockerLines.filter((line): line is string => typeof line === "string")
+      : [];
+    if (lines.length === 0) return { ok: false, reason: "no-blocker-lines" };
+    return {
+      ok: true,
+      value: { attempt: last.attempt, blockerLines: lines.slice(0, input.maxBlockerLines), draft },
+    };
+  } catch (error) {
+    return { ok: false, reason: `read-failed:${(error as Error).name}` };
+  }
 }

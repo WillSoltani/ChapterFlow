@@ -2209,6 +2209,13 @@ export class BookRunApplicationService {
       const baseCompilerRunId = derivedId("compiler-run", runId);
       let compilerRunId = baseCompilerRunId;
       let compilerAttemptRoot = resolve(input.attemptRoot, "compiler");
+      // R-285 — the compiler run whose rejected section drafts the round about to run
+      // may open its attempt 1 on. Set ONLY on a resumed round that is stepping past a
+      // failed predecessor, and always to that immediate predecessor: the base compile
+      // for the deterministic retry, the deterministic retry for operator attempt 1,
+      // operator attempt n-1 for operator attempt n. Left undefined for the base
+      // compile — there is nothing before it — so a first round is unchanged.
+      let carryOverFromRunId: string | undefined;
       if (input.resumeRunId !== undefined) {
         const observedAt = safeNow(this.#dependencies.clock);
         if (!observedAt.ok) return observedAt;
@@ -2276,6 +2283,13 @@ export class BookRunApplicationService {
             if (!granted.ok) return granted;
             compilerRunId = granted.value.compilerRunId;
             compilerAttemptRoot = resolve(input.attemptRoot, granted.value.attemptSubdir);
+            // A GRANT drafts; a RECONCILE_WEDGED only settles a crashed run and then
+            // fails closed, so it has nothing to carry into.
+            if (granted.value.kind === "GRANT") {
+              carryOverFromRunId = granted.value.operatorAttempt === 1
+                ? retryRunId
+                : derivedId(`compiler-operator-retry-${granted.value.operatorAttempt - 1}-run`, runId);
+            }
             if (granted.value.kind === "RECONCILE_WEDGED") {
               // FINDING 25: a prior operator grant crashed INSIDE the grant (e.g. ENOSPC),
               // leaving its control run durably RUNNING with an admitted-unsettled attempt.
@@ -2314,6 +2328,7 @@ export class BookRunApplicationService {
           } else {
             compilerRunId = retryRunId;
             compilerAttemptRoot = resolve(input.attemptRoot, "compiler-retry-1");
+            carryOverFromRunId = baseCompilerRunId;
           }
         }
       }
@@ -2333,6 +2348,7 @@ export class BookRunApplicationService {
           sources: intake.sources,
           profileId: "attempt-read-json-v1",
           reconcileUnsettled: input.reconcileUnsettled === true,
+          ...(carryOverFromRunId === undefined ? {} : { carryOverFromRunId }),
           signal: input.signal,
         });
       } catch (cause) {
