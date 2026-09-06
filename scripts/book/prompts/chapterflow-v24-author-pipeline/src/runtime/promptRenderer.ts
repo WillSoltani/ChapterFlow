@@ -27,9 +27,18 @@ const INPUT_NAME = /^[A-Za-z][A-Za-z0-9._-]{0,127}$/;
  * scopes "untrusted" to the INPUT_RECORDS where it belongs.
  *
  * The boundary holds in both directions:
- *   - content -> instruction: impossible. A record is one JSON line, so an
- *     embedded "TASK_INSTRUCTIONS_END" stays escaped inside record.text and
- *     never becomes a line of its own.
+ *   - content -> instruction: a record is one JSON line, so an embedded
+ *     "TASK_INSTRUCTIONS_END" stays escaped inside record.text and never
+ *     becomes a line of its own. QUALIFIED, and deliberately so: JSON.stringify
+ *     escapes CR/LF but NOT U+2028/U+2029, so a content payload carrying those
+ *     emits them raw inside the quoted text value. That still sits on the
+ *     record's own physical line, after the CHAPTERFLOW_UNTRUSTED_INPUT_V1
+ *     prefix, so it forges no delimiter LINE — but a renderer that treats
+ *     U+2028 as a break could show a visually separated delimiter. It is not
+ *     escaped here because content records are byte-frozen against the
+ *     pre-trust renderer (see MAIN_CONTENT_ONLY_RENDER in the test); changing
+ *     record bytes is the one thing this change may not do. The instruction
+ *     side below carries the mitigation instead.
  *   - instruction -> boundary forgery: rejected. An instruction whose text
  *     carries a bare delimiter line fails closed with PROMPT_INPUT_INVALID
  *     rather than being escaped into something the model reads differently.
@@ -125,7 +134,16 @@ export function renderPrompt(request: PromptRequest): Result<Uint8Array> {
       } catch {
         return failure("PROMPT_INPUT_INVALID", `input ${input.name} is not valid UTF-8`);
       }
-      const lines = text.split("\n");
+      // Split on EVERY terminator a consumer may treat as a line break, not
+      // just "\n". An instruction input is not always pure repo text:
+      // sectionTasks.ts interpolates the voice card and the rejected prior
+      // draft raw into the section task card, and those bytes can descend from
+      // CRLF book source or from model output. Under a bare split("\n") the
+      // line "TASK_INSTRUCTIONS_END\r\n" arrives here as "TASK_INSTRUCTIONS_END\r",
+      // which is neither an exact RESERVED_BOUNDARY_LINES match nor a
+      // TASK_INSTRUCTIONS_BEGIN prefix — so it passed, and the rendered prompt
+      // closed the trusted block early and re-opened as the payload's own task.
+      const lines = text.split(/\r\n|[\n\r\u2028\u2029]/);
       if (lines.some((line) => RESERVED_BOUNDARY_LINES.includes(line) || line.startsWith(TASK_INSTRUCTIONS_BEGIN))) {
         return failure("PROMPT_INPUT_INVALID", `instruction input ${input.name} contains a reserved boundary line`);
       }
