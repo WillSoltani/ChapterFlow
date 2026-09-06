@@ -682,6 +682,284 @@ function sectionGateBlockers(
 }
 
 /**
+ * R-172 — DRAFT-TIME enforcement of the cross-chapter avoid ban.
+ *
+ * THE LOOP THIS CLOSES (live Franklin canary, 2026-09-05/06). When assembly blocks
+ * on a cross-chapter gate the port evicts the implicated cached pack and records an
+ * avoid entry for it (#applyAssemblyEvictions), and the re-draft's task card renders
+ * that entry ("The banned token sequence is exactly: …", sectionTasks). But NOTHING
+ * checked the re-draft: the draft-time gate (sectionGateBlockers → validateSectionPack)
+ * knows nothing about avoid entries, so a re-draft that STILL contains the banned
+ * phrase passed its section gates, was STORED in the pack cache, and only failed again
+ * at the NEXT assembly — one whole compile round (~15-60 min, one operator compile
+ * slot) burned per re-mint. On the canary, ch17's learning pack was evicted for SEC90
+ * "rather than", re-drafted WITH "rather than" still in it, and evicted again
+ * (rounds=2); after ASSEMBLY_AVOID_MAX_ROUNDS the run fails closed forever.
+ *
+ * The rule: a fresh draft of a section that carries avoid-context is REJECTED at draft
+ * time, exactly like a gate blocker (same retry-feedback path, same rejected-draft
+ * record, same attempt budget — MAX_SECTION_ATTEMPTS is unchanged), when it still
+ * contains a banned phrase. No gate, threshold, budget or cap is touched: this only
+ * moves an existing assembly rejection one layer earlier, where a retry is cheap.
+ */
+
+/**
+ * The avoid checkIds whose `phrase` is LITERAL reader-visible text, mapped to THE EXACT
+ * FIELDS THEIR OWN GATE READS — the only text a draft may be scanned for, and the only
+ * places the mirrored gate could ever see it.
+ *
+ * WHY AN ALLOW-LIST AND NOT "every avoid entry": most cross-chapter policies stamp a
+ * SIGNATURE, not a quote — SEC96's "shortcut-default-failure", SEC102's pending-template
+ * label, SEC93's venue bucket. Those strings are gate vocabulary describing a SHAPE; a
+ * draft that never contains the literal label can still be the shape, and a draft that
+ * happens to contain it need not be. Scanning for them would reject correct re-drafts
+ * and pass wrong ones, so anything not listed here is SKIPPED and left to assembly.
+ *
+ * WHY THE FIELD LISTS, and not "every reader-facing leaf" (review round 3): each of these
+ * gates lifts its phrase out of a NAMED, SHORT field list, and text outside that list
+ * cannot contribute one count to it. Scanning the whole pack refused drafts assembly is
+ * structurally incapable of rejecting — the credit fixture says "what the system can see"
+ * in /keyTakeaway and in no breakdown tier, so a SEC83 ban on that phrase refused a
+ * summary the gate reads three other fields for; a SEC90 "rather than" in an ifThenPlan's
+ * `context` (ordinary trigger English: "When the statement arrives rather than after the
+ * due date") is invisible to collectSoftBannedTextFields' action arm. Every list below is
+ * a transcription of the gate's own collector, cited beside it; a pack kind a gate does
+ * not read at all is simply absent, so the entry is skipped for that section.
+ */
+const DRAFT_TIME_AVOID_GATE_FIELDS: Readonly<Record<string, Partial<Record<SectionKind, readonly RegExp[]>>>> = {
+  // sectionGate.collectSummaryLiteralFields — the three breakdown tiers, nothing else.
+  "SEC83.summary_cross_chapter_ngram": {
+    "summary-pack": [/^\/breakdown\/(fastRead|deepRead|fullRead)$/],
+  },
+  // sectionGate.collectExampleLiteralFields — scenario/whatToDo/whyItMatters (NOT title).
+  "SEC89.example_cross_chapter_literal_ngram": {
+    "example-pack": [/^\/examples\/\d+\/(scenario|whatToDo|whyItMatters)$/],
+  },
+  // sectionGate.collectSoftBannedTextFields, one arm per pack kind.
+  "SEC90.soft_banned_budget": {
+    "summary-pack": [
+      /^\/hook\/(hook|counterintuition)$/,
+      /^\/breakdown\/(fastRead|deepRead|fullRead)$/,
+      /^\/keyTakeaway$/,
+      /^\/tryThisNow$/,
+    ],
+    "example-pack": [/^\/examples\/\d+\/(title|scenario|whatToDo|whyItMatters)$/],
+    "learning-pack": [
+      /^\/quiz\/questions\/\d+\/(prompt|explanation)$/,
+      /^\/quiz\/questions\/\d+\/choices\/\d+$/,
+      /^\/cards\/cards\/\d+\/(front|back)$/,
+    ],
+    "action-pack": [
+      /^\/tryThisNow$/,
+      /^\/implementationPlan\/(coreSkill|twentyFourHourChallenge|weeklyPractice)$/,
+      /^\/implementationPlan\/ifThenPlans\/\d+\/plan$/,
+    ],
+  },
+  // sectionGate.castReaderFields — the ACTION pack's own plan, and only that: SEC119
+  // deliberately does not scan the quiz/cards (the C25-blessed callback) or the summary
+  // (house style), so neither may this check.
+  "SEC119.cast_containment": {
+    "action-pack": [
+      /^\/tryThisNow$/,
+      /^\/implementationPlan\/(title|coreSkill|twentyFourHourChallenge|weeklyPractice)$/,
+      /^\/implementationPlan\/ifThenPlans\/\d+\/(context|plan)$/,
+    ],
+  },
+};
+
+/**
+ * The scannable checkIds — DERIVED from the field map, so the two can never drift: an id
+ * with no transcribed field list is not scannable, by construction.
+ */
+export const DRAFT_TIME_LITERAL_AVOID_CHECK_IDS: ReadonlySet<string> = new Set(Object.keys(DRAFT_TIME_AVOID_GATE_FIELDS));
+
+/**
+ * WHY SEC84, SEC94 and SEC114 ARE *NOT* HERE, though their gates do quote prose.
+ * Their signature is stamped through a NORMALIZER, and `phrase` is the signature's value
+ * component (structureAssemblyBlockers), so what the store holds is not literal reader
+ * text: SEC84 stamps `normalizePhrase(finalSentence)` (sectionGate `/[^a-z0-9]+/ -> " "`,
+ * which deletes every comma, dash and apostrophe), and SEC94/SEC114 stamp an opener
+ * joined from `/[a-z']+/` matches, which DROPS digits ("Set a 5-minute timer and" is
+ * stamped "set a minute timer and"). A literal scan can therefore never match them — the
+ * entry was silently skipped while the allow-list claimed it was covered, which is worse
+ * than not listing it: the operator sees the same "evicted again, rounds=3" as before and
+ * cannot tell the check ran and missed. Matching them honestly means re-deriving each
+ * gate's own field-specific opener/closer extraction (the gate compares only the FIRST
+ * words of `/tryThisNow` and the LAST sentence of `/implementationPlan/coreSkill`, not
+ * the whole pack), and a normalized substring search over every leaf would refuse drafts
+ * those gates accept. They stay assembly-only, exactly like the frame signatures above.
+ */
+
+/**
+ * The checkIds whose phrase is a WORD (or word sequence) rather than a fragment, so a
+ * hit must sit on word boundaries: SEC119's cast name "Chase" must not fire on
+ * "purchase" (it does fire on "Chase's" — the name is still named). The n-gram, opener
+ * and closer gates instead compare raw token windows, so they match as substrings.
+ */
+const WHOLE_WORD_AVOID_CHECK_IDS: ReadonlySet<string> = new Set([
+  "SEC90.soft_banned_budget",
+  "SEC119.cast_containment",
+]);
+
+/**
+ * The checkIds matched in the gate's OWN CASE — which is now all of them, for two
+ * separate reasons.
+ *
+ * SEC83/SEC89 (review round 3): their gate compares RAW token windows.
+ * sectionGate.literalContentWindows lowercases only inside its content-token COUNTER; the
+ * window it emits is `slice.join(" ")`, case and punctuation intact, and two chapters
+ * collide only when their windows are byte-identical. A ban stamped from "The system
+ * reads what you" therefore cannot fire on a draft that writes those words any other way
+ * — folding case here refused re-drafts the gate can never reject, on the credit fixture
+ * out of the box. (SEC90's gate genuinely does lowercase both sides, so it is not listed.)
+ *
+ * SEC119's phrase comes from
+ * `extractNamesFromText` (`/\b[A-Z][a-z]{2,}\b/`, librarian/libraryState), so the gate
+ * cannot fire on lowercase prose at all — and sectionGate's own zero-FP note names this
+ * exact hazard: the name bank is full of ordinary English words (Grant, Chase, Dean,
+ * Drew, Reid, Blake, Cole, Lane, Hunter, Sage, Wade), and gating on the dealt list would
+ * "false-positive the instant a plan said 'chase the metric'". Lowercasing both sides
+ * threw that protection away: a re-draft that REMOVED the character and wrote ordinary
+ * English ("the other options chase the monthly summary") was refused on every attempt
+ * and ended the compile with COMPILER_SECTION_BLOCKED — a terminal failure the pre-check
+ * code could not produce, on a book assembly would have passed, and one the writer had
+ * no way to comply with. Matching in the gate's own case keeps this check strictly
+ * inside what the gate would reject. (An accented name is ASCII-folded by the gate and
+ * not here, so such a phrase simply under-matches: the ban is left to assembly, which is
+ * the safe direction — a missed re-mint costs a round, a false refusal costs the run.)
+ */
+const CASE_SENSITIVE_AVOID_CHECK_IDS: ReadonlySet<string> = new Set([
+  "SEC83.summary_cross_chapter_ngram",
+  "SEC89.example_cross_chapter_literal_ngram",
+  "SEC119.cast_containment",
+]);
+
+/**
+ * Fields that carry IDS and machine labels, not reader-facing prose. A banned phrase
+ * inside `sourceAnchorIds: ["ch01.case.fico"]` is the packet's own vocabulary, which the
+ * writer cannot rephrase and no assembly gate reads as text — scanning them would reject
+ * a correct draft for citing its own source. Mirrors the id-like fields the cross-chapter
+ * gates themselves skip when they lift phrases out of a pack.
+ */
+const AVOID_SCAN_ID_FIELDS: ReadonlySet<string> = new Set([
+  "sourceAnchorIds", "sourceAnchorId", "sourceFactIds", "namedCaseIds", "keyEvidenceAnchorIds",
+  "questionId", "cardId", "exampleId", "slotId", "chapterId", "schemaVersion", "artifactType",
+  "introducedEntities", "numbersUsed", "correctIndex", "bloomsLevel", "depthLevel", "difficulty",
+]);
+
+/**
+ * The explicit set above names the BARE id keys; real packs also carry PREFIXED anchor-id
+ * arrays — `keyTakeawaySourceAnchorIds` and `tryThisNowSourceAnchorIds` (non-optional on
+ * every summary and action pack), `counterintuitionSourceAnchorIds`, `titleSourceAnchorIds`,
+ * `coreSkillSourceAnchorIds`, `twentyFourHourChallengeSourceAnchorIds`,
+ * `weeklyPracticeSourceAnchorIds`. Scanning those refused a draft for citing its own
+ * source the moment a single-token ban collided with an id slug ("ch07.case.chase-bank",
+ * "ch05.fact.grant-study") — a hit the writer cannot fix by rewriting anything, so the
+ * section always ran out its attempts and terminated the compile. The camelCase `…Id` /
+ * `…Ids` suffix is the id contract these schemas use throughout (artifacts/artifactTypes),
+ * and no reader-facing field ends that way, so the suffix closes the whole class rather
+ * than the two names that happened to be listed.
+ */
+function isIdLikeKey(key: string): boolean {
+  return AVOID_SCAN_ID_FIELDS.has(key) || /[a-z]Ids?$/.test(key);
+}
+
+/** RFC 6901 escaping, so a pointer path is unambiguous for any key. */
+function jsonPointerSegment(key: string): string {
+  return key.replaceAll("~", "~0").replaceAll("/", "~1");
+}
+
+/** Every reader-facing string leaf of a pack, with its JSON-pointer path. */
+function readerFacingStrings(value: unknown, path: string, out: { path: string; text: string }[]): void {
+  if (typeof value === "string") {
+    out.push({ path, text: value });
+    return;
+  }
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => readerFacingStrings(item, `${path}/${index}`, out));
+    return;
+  }
+  if (value !== null && typeof value === "object") {
+    for (const [key, child] of Object.entries(value as Record<string, unknown>)) {
+      if (isIdLikeKey(key)) continue;
+      readerFacingStrings(child, `${path}/${jsonPointerSegment(key)}`, out);
+    }
+  }
+}
+
+/** Collapse runs of whitespace so a phrase broken across a line break still matches. */
+function normalizeAvoidText(value: string): string {
+  return value.replace(/\s+/g, " ").trim();
+}
+
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function avoidPhraseMatches(text: string, phrase: string, wholeWord: boolean, caseSensitive: boolean): boolean {
+  // Case-sensitive only where the mirrored gate itself is (SEC119): folding case there
+  // refuses lowercase prose the gate cannot fire on.
+  const fold = (value: string): string => {
+    const normalized = normalizeAvoidText(value);
+    return caseSensitive ? normalized : normalized.toLowerCase();
+  };
+  const haystack = fold(text);
+  const needle = fold(phrase);
+  if (needle.length === 0) return false;
+  if (!wholeWord) return haystack.includes(needle);
+  // "Chase" hits "Chase's" (boundary at the apostrophe) but not "purchase" — and, under
+  // case-sensitive matching, not the verb "chase" either.
+  return new RegExp(`(?<![\\p{L}\\p{N}])${escapeRegExp(needle)}(?![\\p{L}\\p{N}])`, "u").test(haystack);
+}
+
+/**
+ * Score a FRESH draft against this section's avoid-context. Returns null when the
+ * section has no avoid-context, when no entry names a literal phrase THIS pack kind's
+ * mirrored gate could read, or when the draft is clean — the overwhelmingly common
+ * case, and the only one an unevicted section ever takes. Never throws: a malformed entry is skipped, because a diagnostics-shaped defect
+ * must not fail a compile the gates would otherwise pass.
+ */
+function draftTimeAvoidBlockers(
+  draft: Record<string, unknown>,
+  kind: SectionKind,
+  assemblyAvoid: readonly SectionAvoidEntry[] | undefined,
+): SectionGateBlockers | null {
+  if (assemblyAvoid === undefined || assemblyAvoid.length === 0) return null;
+  const entries = assemblyAvoid.filter((entry) =>
+    typeof entry?.checkId === "string"
+    && typeof entry?.phrase === "string"
+    && (DRAFT_TIME_AVOID_GATE_FIELDS[entry.checkId]?.[kind]?.length ?? 0) > 0);
+  if (entries.length === 0) return null;
+  const leaves: { path: string; text: string }[] = [];
+  readerFacingStrings(draft, "", leaves);
+  const allBlockerLines: string[] = [];
+  for (const entry of entries) {
+    const wholeWord = WHOLE_WORD_AVOID_CHECK_IDS.has(entry.checkId);
+    const caseSensitive = CASE_SENSITIVE_AVOID_CHECK_IDS.has(entry.checkId);
+    // Only the fields this ban's OWN gate reads on this pack kind.
+    const gateFields = DRAFT_TIME_AVOID_GATE_FIELDS[entry.checkId]?.[kind] ?? [];
+    for (const leaf of leaves) {
+      if (!gateFields.some((field) => field.test(leaf.path))) continue;
+      if (!avoidPhraseMatches(leaf.text, entry.phrase, wholeWord, caseSensitive)) continue;
+      allBlockerLines.push(
+        `AVOID.${entry.checkId}@${leaf.path}:this section is a cross-chapter re-draft and still contains`
+        + ` the banned token sequence "${entry.phrase}" — remove it; the assembly gate ${entry.checkId}`
+        + ` will reject the whole book otherwise`,
+      );
+    }
+  }
+  if (allBlockerLines.length === 0) return null;
+  // Bounded exactly as sectionGateBlockers bounds a gate verdict.
+  const blockerLines = allBlockerLines.slice(0, 8);
+  return {
+    blockerLines,
+    detail: boundedCompilerDetail(blockerLines.join(" | ")),
+    allBlockerLines,
+    advisoryLines: [],
+  };
+}
+
+/**
  * Hand one rejected section-pack draft to the diagnostics sink. Swallows
  * everything: a sink that throws must not become the compile's error, because the
  * operator is owed the gate's content verdict rather than whatever went wrong
@@ -2250,8 +2528,41 @@ export class CompilerApplicationPort {
             }
             const draft = result.output as Record<string, unknown>;
             // Throws (non-retryable) on structural garbage; returns gate blockers otherwise.
-            const blocked = sectionGateBlockers(draft, kind, candidateBlueprint, packet, sidecars[index], draftedChapterProse);
+            const gateBlocked = sectionGateBlockers(draft, kind, candidateBlueprint, packet, sidecars[index], draftedChapterProse);
+            // R-172 — a FRESH draft of a section under cross-chapter avoid-context is ALSO
+            // checked against the ban the card it was written from carries. Only reachable on
+            // a fresh draft (a reused cached pack never enters this loop) and only when this
+            // section HAS avoid-context: `assemblyAvoid` is the exact value the card was built
+            // from, so the check never bans anything the writer was not told to avoid. Each ban
+            // is matched the way its own gate matches it — the gate's own field list, its own
+            // case, word boundaries, id fields skipped — so the check stays inside what that
+            // gate reads. Where it is still STRICTER than the gate (SEC90 is a per-book budget
+            // and this asks for zero), the refusal is non-terminal: see the exhaustion branch
+            // below.
+            const blocked = gateBlocked ?? draftTimeAvoidBlockers(draft, kind, assemblyAvoid);
             if (blocked === null) {
+              acceptedOutput = draft;
+              break;
+            }
+            // AN AVOID-ONLY REFUSAL IS NEVER TERMINAL (review round 3). This check is a
+            // cheap MIRROR of an assembly rejection, and a mirror can be stricter than
+            // what it mirrors: SEC90 is a per-BOOK BUDGET (the canary tripped at total 16
+            // against 15), so a re-draft that merely CUTS its uses passes assembly while
+            // this check, which asks for the zero the card asks for, still refuses it —
+            // and any residual field/case mismatch behaves the same way. Ending the
+            // compile over that would cost the entire run this check exists to save one
+            // round of. So when the LAST attempt is refused by AVOID lines alone, the
+            // draft is accepted and the ban is left to the authority that owns it: the
+            // worst case degrades to exactly the behaviour before this check existed (one
+            // wasted round), while the earlier attempts still buy the cheap in-round
+            // retry. Gate blockers are untouched — `gateBlocked` still throws below —
+            // and ASSEMBLY_AVOID_MAX_ROUNDS still fails the run closed if the ban never
+            // converges.
+            if (gateBlocked === null && attemptNumber >= MAX_SECTION_ATTEMPTS) {
+              console.error(
+                `[book-run] compiler chapter=${chapter.chapterNumber} kind=${kind} action=ACCEPT_UNCONVERGED_AVOID_DRAFT`
+                + ` attempts=${MAX_SECTION_ATTEMPTS} detail=${blocked.detail}`,
+              );
               acceptedOutput = draft;
               break;
             }

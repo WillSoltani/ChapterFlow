@@ -21,12 +21,15 @@ import {
 import {
   CHAPTER_EDIT_PROVENANCE_LOGICAL_PATH,
   CHAPTER_EDIT_PROVENANCE_SCHEMA_VERSION,
+  DRAFT_TIME_LITERAL_AVOID_CHECK_IDS,
   MAX_EDITOR_ATTEMPTS_PER_CHAPTER,
+  MAX_SECTION_ATTEMPTS,
   MAX_SUMMARY_REDRAFTS_PER_CHAPTER,
   type ChapterEditProvenanceFile,
 } from "../../src/app/compilerApplicationPort.js";
 import { CHAPTER_EDIT_SCHEMA_VERSION } from "../../src/app/chapterEditorContract.js";
 import { chapterFileName } from "../../src/lib/chapterPaths.js";
+import { extractNamesFromText } from "../../src/librarian/libraryState.js";
 import { bookDesignPath, sourcePacketPath, writeJsonFile } from "../../src/artifacts/artifactStore.js";
 import type { CandidateManifest, CandidateSnapshot, CandidateStore } from "../../src/books/candidateTypes.js";
 import type { ModelTaskRunner } from "../../src/app/modelTaskRunner.js";
@@ -2305,6 +2308,520 @@ requiredTest("R-284e one record is bounded: an oversized draft is truncated, and
   const smallParsed = JSON.parse(small) as Record<string, unknown>;
   assert.equal(smallParsed.truncated, undefined);
   assert.deepEqual(smallParsed.draft, { artifactType: "learning-pack" });
+});
+
+// ── R-172 — the DRAFT-TIME cross-chapter avoid check ─────────────────────────────
+//
+// THE LOOP THESE PIN (live Franklin canary, 2026-09-05/06). Assembly evicts a pack
+// for a cross-chapter gate, records an avoid entry, and the re-draft's card names the
+// banned sequence — but nothing checked the RE-DRAFT. A re-draft that still carried
+// the phrase passed its section gates, was STORED, and only failed at the NEXT
+// assembly: one compile round (~15-60 min, one operator slot) per re-mint, and after
+// ASSEMBLY_AVOID_MAX_ROUNDS the run fails closed forever. On the canary ch17's
+// learning pack was evicted for SEC90 "rather than", re-drafted WITH it, and evicted
+// again (rounds=2), one round from the terminal state.
+//
+// The rule: on a FRESH draft of a section that carries avoid-context, a still-present
+// banned phrase is refused exactly as a gate blocker is — same feedback, same rejected
+// record, same attempt budget. No gate, threshold or cap moves; the rejection assembly
+// would have made anyway simply happens where a retry is cheap.
+
+function avoidStoreOf(context: TestContext): SectionAvoidStore {
+  return createFileSectionAvoidStore({
+    booksRoot: context.roots.booksRoot,
+    writeLock: createBookWriteLock({ booksRoot: context.roots.booksRoot }),
+  });
+}
+
+function avoidKeyOf(kind: "summary-pack" | "example-pack" | "learning-pack" | "action-pack") {
+  return { bookId: BOOK, chapterId: `${BOOK}-ch01`, kind } as const;
+}
+
+/** One seeded ban, shaped exactly as #applyAssemblyEvictions records it. */
+function seededAvoid(checkId: string, phrase: string, rounds = 1) {
+  return {
+    entries: [{
+      checkId,
+      phrase,
+      keptByChapters: [2],
+      message: `the phrase "${phrase}" is spent elsewhere — do not use it in this section.`,
+      rounds,
+    }],
+  };
+}
+
+/** The task cards this run sent for one section operation, in order. */
+function sectionCards(prompts: Parameters<ModelTaskRunner["run"]>[0][], operationId: string): string[] {
+  return prompts
+    .filter((prompt) => prompt.context.operationId === operationId)
+    .map((prompt) => {
+      const card = prompt.prompt.inputs.find((input) => input.name === "task_card");
+      assert.ok(card);
+      return Buffer.from(card.bytes).toString("utf8");
+    });
+}
+
+requiredTest("R-172a a fresh re-draft that STILL contains the banned SEC90 phrase is refused at draft time; the clean retry is accepted and stored", async (context) => {
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("learning-pack"), seededAvoid("SEC90.soft_banned_budget", "rather than", 2));
+  const cache = createFileSectionPackCache({
+    booksRoot: context.roots.booksRoot,
+    writeLock: createBookWriteLock({ booksRoot: context.roots.booksRoot }),
+  });
+
+  // Draft 1 re-mints the banned sequence in a quiz explanation — structurally perfect,
+  // gate-clean, and (before R-172) stored, to be caught only by the next assembly.
+  const subject = rig(context, "avoid-draft-sec90", {
+    avoidStore,
+    cache,
+    sectionOutput: (fixture, kind, attempt) => {
+      if (kind !== "learning-pack" || attempt !== 1) return undefined;
+      const draft = JSON.parse(JSON.stringify(fixture.learning)) as { quiz: { questions: { explanation: string }[] } };
+      draft.quiz.questions[0].explanation =
+        "The right move lowers the visible balance before the signal travels; the other options rely on intention rather than evidence.";
+      return draft;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  // Four sections plus EXACTLY one extra draft: the refusal consumed one attempt of
+  // the learning pack's ordinary MAX_SECTION_ATTEMPTS budget, nothing more.
+  assert.equal(subject.counts.runner, 5);
+
+  // The refusal is recorded like any gate rejection, with the pointer path of the
+  // field that carries the phrase.
+  const records = rejectedRecords(subject.runStateRoot, result.runId);
+  assert.deepEqual(records.map((record) => record.file), ["ch01.learning-pack.attempt1.json"]);
+  assert.deepEqual(records[0].blockerLines, [
+    'AVOID.SEC90.soft_banned_budget@/quiz/questions/0/explanation:this section is a cross-chapter re-draft'
+    + ' and still contains the banned token sequence "rather than" — remove it; the assembly gate'
+    + ' SEC90.soft_banned_budget will reject the whole book otherwise',
+  ]);
+  const rejectedDraft = records[0].draft as { quiz: { questions: { explanation: string }[] } };
+  assert.match(rejectedDraft.quiz.questions[0].explanation, /rather than/);
+
+  // The refusal travelled back to the writer on the SAME retry-feedback path a gate
+  // blocker takes: attempt 2's card names the blocker and echoes the rejected draft.
+  const cards = sectionCards(subject.prompts, "compiler-ch01-learning-pack");
+  assert.equal(cards.length, 2);
+  assert.doesNotMatch(cards[0], /AVOID\.SEC90/);
+  assert.match(cards[1], /PREVIOUS DRAFT REJECTED BY SECTION GATES/);
+  assert.ok(
+    cards[1].includes('AVOID.SEC90.soft_banned_budget@/quiz/questions/0/explanation'),
+    "the blocker line itself is fed back verbatim",
+  );
+
+  // The pack that was STORED is the clean second draft — the whole point: the banned
+  // phrase never reaches the cache, so the next assembly cannot re-fail on it.
+  const stored = readCacheEntries(context.roots.booksRoot, BOOK).find((entry) => entry.envelope.kind === "learning-pack");
+  assert.ok(stored);
+  assert.equal(JSON.stringify(stored.envelope.pack).includes("rather than"), false);
+});
+
+requiredTest("R-172b whole-word bans: SEC119 \"Chase\" matches \"Chase's\" and never \"purchase\" — on the ACTION pack, the only surface its gate reads", async (context) => {
+  // The rule, decided and documented: a cast-name ban is matched on WORD BOUNDARIES.
+  // "Chase's" IS the name being named (the possessive is punctuation), so it is a hit;
+  // "purchase" merely contains the letters and must not cost a compile round.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("action-pack"), seededAvoid("SEC119.cast_containment", "Chase"));
+
+  const subject = rig(context, "avoid-draft-wholeword", {
+    avoidStore,
+    sectionOutput: (fixture, kind, attempt) => {
+      if (kind !== "action-pack" || attempt > 2) return undefined;
+      const draft = JSON.parse(JSON.stringify(fixture.action)) as { implementationPlan: { ifThenPlans: { plan: string }[] } };
+      draft.implementationPlan.ifThenPlans[0].plan = attempt === 1
+        // Draft 1 names the banned cast member — a hit even in the possessive.
+        ? "If the visible balance is higher than the signal you want to send, then make the smallest useful payment before Chase's monthly snapshot."
+        // Draft 2 keeps a word that merely CONTAINS the ban — not a hit.
+        : "If the visible balance is higher than the signal you want to send, then make the smallest useful payment before the purchase clears.";
+      return draft;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 5, "exactly one refusal: the possessive hit, and nothing else");
+
+  const records = rejectedRecords(subject.runStateRoot, result.runId);
+  assert.deepEqual(records.map((record) => record.file), ["ch01.action-pack.attempt1.json"]);
+  assert.deepEqual(records[0].blockerLines, [
+    'AVOID.SEC119.cast_containment@/implementationPlan/ifThenPlans/0/plan:this section is a cross-chapter re-draft'
+    + ' and still contains the banned token sequence "Chase" — remove it; the assembly gate'
+    + ' SEC119.cast_containment will reject the whole book otherwise',
+  ]);
+
+  // The accepted draft is the one carrying "purchase": a substring match would have
+  // refused it too and burned the section's whole budget on a correct re-draft.
+  const cards = sectionCards(subject.prompts, "compiler-ch01-action-pack");
+  assert.equal(cards.length, 2, "the possessive cost one attempt; \"purchase\" cost none");
+});
+
+requiredTest("R-172c id-like fields are never scanned: a ban that appears only in an anchor id does not refuse the draft", async (context) => {
+  const avoidStore = avoidStoreOf(context);
+  // "fico" appears in this chapter's packs ONLY inside anchor/case ids the writer
+  // cannot rephrase and no assembly gate reads as prose.
+  await avoidStore.write(avoidKeyOf("example-pack"), seededAvoid("SEC90.soft_banned_budget", "fico"));
+
+  const subject = rig(context, "avoid-draft-idfields", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4, "no refusal, so no section spent a second attempt");
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+
+  // The premise: the drafted pack really does carry the phrase — in an id field.
+  const examples = compileCreditFixture(BOOK).examples;
+  const serialized = JSON.stringify(examples);
+  assert.ok(serialized.includes("ch01.case.fico"), "the fixture pack cites the fico anchor");
+  assert.equal(
+    JSON.stringify(examples.examples.map((example) => [example.title, example.scenario, example.whatToDo, example.whyItMatters])).toLowerCase().includes("fico"),
+    false,
+    "and never says it in reader-facing prose",
+  );
+});
+
+requiredTest("R-172d a FRAME-signature ban (SEC96) never triggers the draft-time check, even on a verbatim hit", async (context) => {
+  const avoidStore = avoidStoreOf(context);
+  // SEC96's "phrase" is a scene-frame LABEL, and the fixture's first example scenario
+  // contains the literal words. A shape ban is not a quote: only assembly can judge it,
+  // so the draft-time check must skip it rather than refuse a possibly-correct draft.
+  await avoidStore.write(
+    avoidKeyOf("example-pack"),
+    seededAvoid("SEC96.example_shortcut_default_failure_saturation", "kitchen table"),
+  );
+
+  const subject = rig(context, "avoid-draft-frame", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4);
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+  assert.ok(
+    JSON.stringify(compileCreditFixture(BOOK).examples).includes("kitchen table"),
+    "the premise: the accepted draft does contain the label verbatim",
+  );
+});
+
+requiredTest("R-172e a section with NO avoid-context is byte-for-byte unaffected — same cards, same calls", async (context) => {
+  // Baseline: no avoid store wired at all.
+  const plain = rig(context, "avoid-draft-none-a");
+  const plainResult = await plain.port.run(plain.request);
+  assert.equal(plainResult.runStatus, "COMPLETED");
+  assert.equal(plain.counts.runner, 4);
+
+  // Same book, with avoid-context seeded for ONE section only.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("example-pack"), seededAvoid("SEC90.soft_banned_budget", "rather than"));
+  const seeded = rig(context, "avoid-draft-none-b", { avoidStore });
+  const seededResult = await seeded.port.run(seeded.request);
+  assert.equal(seededResult.runStatus, "COMPLETED");
+  assert.equal(seeded.counts.runner, 4, "the seeded section drafts clean; nothing else is touched");
+  assert.deepEqual(rejectedRecords(seeded.runStateRoot, seededResult.runId), []);
+
+  // The three sections WITHOUT avoid-context get byte-identical cards.
+  for (const kind of ["summary-pack", "learning-pack", "action-pack"] as const) {
+    assert.deepEqual(
+      sectionCards(seeded.prompts, `compiler-ch01-${kind}`),
+      sectionCards(plain.prompts, `compiler-ch01-${kind}`),
+      `${kind} card bytes must not move`,
+    );
+    assert.doesNotMatch(sectionCards(seeded.prompts, `compiler-ch01-${kind}`)[0], /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+  }
+  // Only the seeded section's card differs, and only by the pre-existing avoid block.
+  assert.match(sectionCards(seeded.prompts, "compiler-ch01-example-pack")[0], /CROSS-CHAPTER ASSEMBLY CONFLICT/);
+});
+
+requiredTest("R-172f a CACHED pack is reused with no scan and no model call — avoid-context does not move the cache identity", async (context) => {
+  const writeLock = createBookWriteLock({ booksRoot: context.roots.booksRoot });
+  const cache = createFileSectionPackCache({ booksRoot: context.roots.booksRoot, writeLock });
+
+  // RUN 1 — no avoid-context; the learning pack is drafted WITH "rather than" in it,
+  // passes its gates (SEC90 is a book-wide ASSEMBLY budget, not a section gate) and is
+  // stored. This is exactly how the canary's banned phrase got into the cache.
+  const run1 = rig(context, "avoid-draft-cached-1", {
+    cache,
+    sectionOutput: (fixture, kind) => {
+      if (kind !== "learning-pack") return undefined;
+      const draft = JSON.parse(JSON.stringify(fixture.learning)) as { quiz: { questions: { explanation: string }[] } };
+      draft.quiz.questions[0].explanation =
+        "The right move lowers the visible balance before the signal travels; the other options rely on intention rather than evidence.";
+      return draft;
+    },
+  });
+  assert.equal((await run1.port.run(run1.request)).runStatus, "COMPLETED");
+  assert.equal(run1.counts.runner, 4);
+
+  // A later assembly records the ban.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("learning-pack"), seededAvoid("SEC90.soft_banned_budget", "rather than", 2));
+
+  // RUN 2 — every pack is served from the cache. The check is a DRAFT-time check: it
+  // must not run here, must not refuse the cached pack, and must not cost a model call.
+  // Zero calls also pins that avoid-context stays out of the cache identity digest
+  // (R-164): if it entered, this section would re-draft instead of reusing.
+  const run2 = rig(context, "avoid-draft-cached-2", { cache, avoidStore });
+  const result2 = await run2.port.run(run2.request);
+  assert.equal(result2.runStatus, "COMPLETED");
+  assert.equal(run2.counts.runner, 0, "cached packs are reused without any avoid scan");
+  assert.deepEqual(rejectedRecords(run2.runStateRoot, result2.runId), []);
+});
+
+requiredTest("R-172g an AVOID refusal consumes attempts exactly like a gate rejection — and the LAST one is ACCEPTED, because an avoid-only refusal must never end a compile", async (context) => {
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("learning-pack"), seededAvoid("SEC90.soft_banned_budget", "rather than", 3));
+  const cache = createFileSectionPackCache({
+    booksRoot: context.roots.booksRoot,
+    writeLock: createBookWriteLock({ booksRoot: context.roots.booksRoot }),
+  });
+
+  // A writer that ignores the ban on every attempt. The bounded budget is UNCHANGED —
+  // MAX_SECTION_ATTEMPTS drafts, each cheap retry pushing for the phrase to go. But the
+  // check is a MIRROR of an assembly rejection, not a new rule, and it can be stricter
+  // than the gate it mirrors: SEC90 is a per-BOOK BUDGET (total 16 vs budget 15 on the
+  // canary), so a re-draft that merely CUTS its uses passes assembly while this check,
+  // which asks for zero, still refuses it. Refusing it terminally would lose the whole
+  // compile run this check exists to save 15-60 minutes of. So the last attempt is
+  // ACCEPTED and left to assembly — exactly the behaviour before the check existed,
+  // which is the worst case it can ever cost.
+  const subject = rig(context, "avoid-draft-exhaust", {
+    avoidStore,
+    cache,
+    sectionOutput: (fixture, kind) => {
+      if (kind !== "learning-pack") return undefined;
+      const draft = JSON.parse(JSON.stringify(fixture.learning)) as { quiz: { questions: { explanation: string }[] } };
+      draft.quiz.questions[0].explanation =
+        "The right move lowers the visible balance before the signal travels; the other options rely on intention rather than evidence.";
+      return draft;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED", "an unconverged ban costs a round, never the run");
+  assert.equal(subject.counts.runner, MAX_SECTION_ATTEMPTS + 3, "three clean sections plus the re-minting one's three attempts");
+
+  // Attempts 1 and 2 were refused and are on disk with their AVOID lines; attempt 3 was
+  // accepted, so it is not a rejected draft.
+  const records = rejectedRecords(subject.runStateRoot, result.runId);
+  assert.deepEqual(records.map((record) => record.file), [
+    "ch01.learning-pack.attempt1.json",
+    "ch01.learning-pack.attempt2.json",
+  ]);
+  for (const record of records) {
+    assert.ok(
+      (record.blockerLines as string[]).every((line) => line.startsWith("AVOID.SEC90.soft_banned_budget@")),
+      "every refusal is for the ban, not for a gate",
+    );
+  }
+  // Attempt 2 was sent the previous refusal, exactly as a gate rejection is.
+  assert.deepEqual((records[1].feedback as { blockerLines: string[] }).blockerLines, records[0].blockerLines);
+  assert.equal((records[1].feedback as { priorDraftEchoed: boolean }).priorDraftEchoed, true);
+
+  // The unconverged pack IS stored — the compile carries on and the assembly gate, the
+  // authority on a book-wide budget, decides. The rounds bound (ASSEMBLY_AVOID_MAX_ROUNDS)
+  // is untouched and still fails the run closed if the ban never converges.
+  const stored = readCacheEntries(context.roots.booksRoot, BOOK).find((entry) => entry.envelope.kind === "learning-pack");
+  assert.ok(stored);
+  assert.equal(JSON.stringify(stored.envelope.pack).includes("rather than"), true);
+});
+
+requiredTest("R-172h a SEC119 cast ban is matched in the gate's own CASE: lowercase ordinary English (\"chase the monthly summary\") is accepted, never refused", async (context) => {
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("action-pack"), seededAvoid("SEC119.cast_containment", "Chase"));
+
+  const clean = "If the visible balance is higher than the signal you want to send, then make the smallest useful payment and chase the monthly summary.";
+  // THE PREMISE — this is a FULLY COMPLIANT re-draft: the character is gone and what
+  // remains is ordinary English. SEC119 is stamped from extractNamesFromText, which
+  // matches only CAPITALIZED tokens (/\b[A-Z][a-z]{2,}\b/), so the real gate finds no
+  // cast name here and assembly passes the book. sectionGate's own zero-FP note names
+  // this exact hazard: the name bank is full of common words (Grant, Chase, Dean, Drew,
+  // Reid, Blake, Cole, Lane), and "chase the metric" must never be read as the cast.
+  assert.equal(extractNamesFromText(clean).includes("Chase"), false, "the real gate sees no cast name in this draft");
+
+  const subject = rig(context, "avoid-draft-sec119-case", {
+    avoidStore,
+    sectionOutput: (fixture, kind) => {
+      if (kind !== "action-pack") return undefined;
+      const draft = JSON.parse(JSON.stringify(fixture.action)) as { implementationPlan: { ifThenPlans: { plan: string }[] } };
+      draft.implementationPlan.ifThenPlans[0].plan = clean;
+      return draft;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  // A case-insensitive match refuses this draft on every attempt, costs the section its
+  // whole budget, and stores an unconverged pack — on a book that compiles clean. The
+  // writer has no way to comply: the card bans a NAME, and the plan legitimately says
+  // "chase the invoice".
+  assert.equal(subject.counts.runner, 4, "no refusal: the gate cannot fire on lowercase prose, so neither may the draft-time check");
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+  assert.equal(sectionCards(subject.prompts, "compiler-ch01-action-pack").length, 1, "one draft, no re-mint");
+});
+
+requiredTest("R-172i PREFIXED anchor-id arrays are id fields too: a ban that appears only in *SourceAnchorIds never refuses the draft", async (context) => {
+  const avoidStore = avoidStoreOf(context);
+  // "concept" lives in this chapter's packs ONLY inside anchor ids — and every summary
+  // pack carries the id under PREFIXED keys (counterintuitionSourceAnchorIds,
+  // keyTakeawaySourceAnchorIds, tryThisNowSourceAnchorIds), not the bare
+  // `sourceAnchorIds` alone. A writer cannot rephrase its own citation, so a hit here is
+  // unfixable and runs the section to COMPILER_SECTION_BLOCKED every time.
+  await avoidStore.write(avoidKeyOf("summary-pack"), seededAvoid("SEC90.soft_banned_budget", "concept"));
+
+  const summary = compileCreditFixture(BOOK).summary;
+  assert.ok(
+    summary.keyTakeawaySourceAnchorIds.some((id) => id.includes("concept"))
+    && (summary.tryThisNowSourceAnchorIds ?? []).some((id) => id.includes("concept"))
+    && (summary.hook.counterintuitionSourceAnchorIds ?? []).some((id) => id.includes("concept")),
+    "the premise: the drafted pack cites the token in three PREFIXED id arrays",
+  );
+  const readerText = [
+    summary.hook.hook,
+    summary.hook.counterintuition,
+    summary.breakdown.fastRead,
+    summary.breakdown.deepRead,
+    summary.breakdown.fullRead,
+    summary.keyTakeaway,
+    summary.tryThisNow,
+  ].join(" ").toLowerCase();
+  assert.equal(readerText.includes("concept"), false, "and never says it in reader-facing prose");
+
+  const subject = rig(context, "avoid-draft-prefixed-ids", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4, "no refusal, so no section spent a second attempt");
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+});
+
+requiredTest("R-172j the allow-list holds ONLY gates that stamp LITERAL reader text — a normalized-signature gate is excluded outright, not silently scanned and missed", async (context) => {
+  // sectionGate stamps SEC84/SEC94/SEC114 through normalizers that DELETE punctuation
+  // and digits (normalizePhrase = /[^a-z0-9]+/ -> " "; the opener signatures keep only
+  // /[a-z']+/), so their `phrase` is a SIGNATURE, not a quote: it is not a substring of
+  // the prose it came from, and a literal scan can never match it. Listing them said the
+  // loop was closed for them when it was not, with no diagnostic — an operator watching
+  // the canary would see the identical "evicted again, rounds=3" and no way to tell the
+  // check ran and missed. They are assembly-only, exactly like the frame gates.
+  assert.deepEqual(
+    [...DRAFT_TIME_LITERAL_AVOID_CHECK_IDS].sort(),
+    [
+      "SEC119.cast_containment",
+      "SEC83.summary_cross_chapter_ngram",
+      "SEC89.example_cross_chapter_literal_ngram",
+      "SEC90.soft_banned_budget",
+    ],
+  );
+
+  // Why each excluded id cannot be scanned literally, shown on its own gate's normalizer.
+  const normalizePhrase = (value: string): string => value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
+  const openerSignature = (value: string, words: number): string => (value.toLowerCase().match(/[a-z']+/g) ?? []).slice(0, words).join(" ");
+  const closer = "Name the smallest next move, then do it today.";
+  assert.equal(closer.includes(normalizePhrase(closer)), false, "SEC84's stamped closer is not a substring of the sentence it came from");
+  const tryThisNow = "Set a 5-minute timer and write one line.";
+  assert.equal(openerSignature(tryThisNow, 5), "set a minute timer and", "SEC94/SEC114 drop the digits out of the opener");
+  assert.equal(tryThisNow.toLowerCase().includes(openerSignature(tryThisNow, 5)), false);
+
+  // And the behaviour: seeding one anyway changes nothing, because it is filtered by
+  // checkId before any text is looked at.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(
+    avoidKeyOf("action-pack"),
+    seededAvoid("SEC84.action_repeated_core_skill_closer", normalizePhrase(closer)),
+  );
+  const subject = rig(context, "avoid-draft-normalized-signature", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4);
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+});
+
+requiredTest("R-172k SEC83/SEC89 are matched in their gate's own CASE: the gate stores RAW token windows, so a lowercase re-use can never collide with the capitalized one the ban was lifted from", async (context) => {
+  // sectionGate.literalContentWindows lowercases only inside its content-token COUNTER;
+  // the window it EMITS is `slice.join(" ")` — raw tokens, case and punctuation intact —
+  // and two chapters collide only when their windows are byte-identical. So a ban
+  // stamped from "The system reads what you" cannot fire on a draft that writes the same
+  // words in another case, and folding case here refused drafts assembly accepts.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(
+    avoidKeyOf("summary-pack"),
+    seededAvoid("SEC83.summary_cross_chapter_ngram", "the system reads what you"),
+  );
+
+  const deepRead = compileCreditFixture(BOOK).summary.breakdown.deepRead;
+  assert.ok(deepRead.includes("The system reads what you"), "the premise: the drafted tier carries the phrase CAPITALIZED");
+  assert.equal(deepRead.includes("the system reads what you"), false, "and never in the banned window's own case");
+
+  const subject = rig(context, "avoid-draft-sec83-case", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4, "no refusal: the gate's window differs, so the draft-time check must not fire");
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+});
+
+requiredTest("R-172l the scan is scoped to the FIELDS the mirrored gate reads: a SEC83 ban surviving only in /keyTakeaway is left to assembly, which cannot see it", async (context) => {
+  // SEC83 lifts its windows from collectSummaryLiteralFields = /breakdown/fastRead,
+  // /breakdown/deepRead and /breakdown/fullRead, and nothing else. A re-draft that clears
+  // the banned window out of every tier the gate reads IS a compliant re-draft; refusing
+  // it for a hit in /keyTakeaway (or /hook/hook, or /tryThisNow) refuses text assembly
+  // cannot reject at all — and the default fixture trips it out of the box.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(
+    avoidKeyOf("summary-pack"),
+    seededAvoid("SEC83.summary_cross_chapter_ngram", "what the system can see"),
+  );
+
+  const summary = compileCreditFixture(BOOK).summary;
+  assert.ok(summary.keyTakeaway.includes("what the system can see"), "the premise: the drafted pack does say it");
+  for (const tier of ["fastRead", "deepRead", "fullRead"] as const) {
+    assert.equal(
+      summary.breakdown[tier].includes("what the system can see"),
+      false,
+      `${tier} — one of the three fields SEC83 actually reads — does not`,
+    );
+  }
+
+  const subject = rig(context, "avoid-draft-sec83-scope", { avoidStore });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4, "no refusal: the hit is outside the gate's own field list");
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+});
+
+requiredTest("R-172m field scope, SEC90 on the action pack: an ifThenPlan's CONTEXT is not a soft-banned field, so a hit there cannot reach the book total and must not refuse the draft", async (context) => {
+  // collectSoftBannedTextFields' action arm reads /tryThisNow,
+  // /implementationPlan/coreSkill, /twentyFourHourChallenge, /weeklyPractice and
+  // /implementationPlan/ifThenPlans/i/plan — never a plan's `context`, never the plan
+  // title. "When the statement arrives rather than after the due date" is ordinary
+  // trigger English that cannot contribute one count to SEC90's total, so assembly can
+  // never reject it; refusing it here spent the section's whole budget every round.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("action-pack"), seededAvoid("SEC90.soft_banned_budget", "rather than", 2));
+
+  const subject = rig(context, "avoid-draft-sec90-scope", {
+    avoidStore,
+    sectionOutput: (fixture, kind) => {
+      if (kind !== "action-pack") return undefined;
+      const draft = JSON.parse(JSON.stringify(fixture.action)) as { implementationPlan: { ifThenPlans: { context: string }[] } };
+      draft.implementationPlan.ifThenPlans[0].context = "When the statement arrives rather than after the due date";
+      return draft;
+    },
+  });
+  const result = await subject.port.run(subject.request);
+  assert.equal(result.runStatus, "COMPLETED");
+  assert.equal(subject.counts.runner, 4, "no refusal: the hit is outside the gate's own field list");
+  assert.deepEqual(rejectedRecords(subject.runStateRoot, result.runId), []);
+});
+
+// (The case letter jumps m -> p: the letter between them would end this case id in
+// digits + that letter, which the repo-root no-bigint-literal guard reads as a
+// BigInt literal — it strips comments, so this note is safe, but a test NAME is not.)
+requiredTest("R-172p only an AVOID-only refusal is soft: a real GATE blocker still ends the section at MAX_SECTION_ATTEMPTS, avoid-context present or not", async (context) => {
+  // The non-terminal branch is scoped to a block whose ONLY lines are AVOID lines. Every
+  // fail-closed path the gates own is untouched: a section that cannot pass its own gate
+  // still throws COMPILER_SECTION_BLOCKED after the unchanged attempt budget.
+  const avoidStore = avoidStoreOf(context);
+  await avoidStore.write(avoidKeyOf("summary-pack"), seededAvoid("SEC90.soft_banned_budget", "rather than"));
+
+  const subject = rig(context, "avoid-draft-gate-terminal", { avoidStore, blockSummaryAttempts: 99 });
+  await assert.rejects(
+    subject.port.run(subject.request),
+    /^Error: COMPILER_SECTION_BLOCKED:summary-pack:after 3 attempts:.*hook too short/s,
+  );
+  assert.equal(subject.counts.runner, MAX_SECTION_ATTEMPTS);
 });
 
 finishV25Tests().catch((error: unknown) => {
